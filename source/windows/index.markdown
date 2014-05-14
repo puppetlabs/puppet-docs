@@ -6,11 +6,11 @@ nav: windows.html
 
 <span class="versionnote">This documentation applies to Puppet versions ≥ 2.7.6 and Puppet Enterprise ≥ 2.5. Earlier versions may behave differently.</span>
 
-**Puppet runs on Microsoft Windows® and can manage Windows systems alongside \*nix systems.** These pages explain how to install and run Puppet on Windows, and describe how it differs from Puppet on *nix. 
+**Puppet runs on Microsoft Windows® and can manage Windows systems alongside \*nix systems.** These pages explain how to install and run Puppet on Windows, and describe how it differs from Puppet on *nix.
 
 
 [from_source]: ./from_source.html
-[installing]: ./installing.html
+[installing]: /guides/install_puppet/install_windows.html
 [running]: ./running.html
 [troubleshooting]: ./troubleshooting.html
 [writing]: ./writing.html
@@ -22,7 +22,7 @@ nav: windows.html
 [Installing][]
 -----
 
-Puppet Labs provides pre-built, standalone .msi packages for installing Puppet on Windows. 
+Puppet Labs provides pre-built, standalone .msi packages for installing Puppet on Windows.
 
 ### Downloads
 
@@ -31,17 +31,13 @@ Puppet Labs provides pre-built, standalone .msi packages for installing Puppet o
 
 ### Supported Platforms
 
-Puppet runs on the following versions of Windows :
-
-* Windows Server 2003 and 2003 R2
-* Windows Server 2008 and 2008 R2
-* Windows 7
+{% include platforms_windows.markdown %}
 
 ### More
 
-For full details, see [Installing Puppet on Windows][installing]. 
+For full details, see [Installing Puppet on Windows][installing].
 
-* * * 
+* * *
 
 [Running][]
 -----
@@ -59,13 +55,13 @@ Windows nodes can run the following Puppet subcommands:
 
 Because the installer doesn't alter the system's PATH variable, you must choose *Start Command Prompt with Puppet* from the Start menu to run Puppet commands manually.
 
-Windows nodes can't act as puppet masters or certificate authorities, and most of the ancillary Puppet subcommands aren't supported on Windows. 
+Windows nodes can't act as puppet masters or certificate authorities, and most of the ancillary Puppet subcommands aren't supported on Windows.
 
 ### Puppet's Environment on Windows
 
 * Puppet runs as a 32-bit process.
 * Puppet has to run with elevated privileges; on systems with UAC, it will request explicit elevation even when running as a member of the local Administrators group.
-* Puppet's configuration and data are stored in `%ALLUSERSPROFILE%\Application Data\PuppetLabs` on Windows 2003, and in `%PROGRAMDATA%\PuppetLabs` on Windows 7 and 2008. 
+* Puppet's configuration and data are stored in `%ALLUSERSPROFILE%\Application Data\PuppetLabs` on Windows 2003, and in `%PROGRAMDATA%\PuppetLabs` on Windows 7 and 2008.
 
 
 ### More
@@ -73,14 +69,14 @@ Windows nodes can't act as puppet masters or certificate authorities, and most o
 For full details, see [Running Puppet on Windows][running].
 
 
-* * * 
+* * *
 
 [Writing Manifests for Windows][writing]
 -----
 
 ### Resource Types
 
-Some \*nix resource types aren't supported on Windows, and there are some Windows-only resource types. 
+Some \*nix resource types aren't supported on Windows, and there are some Windows-only resource types.
 
 The following resource types can be managed on Windows:
 
@@ -98,14 +94,14 @@ The following resource types can be managed on Windows:
 For full details, see [Writing Manifests for Windows][writing].
 
 
-* * * 
+* * *
 
 [Troubleshooting][]
 -----
 
 The most common points of failure on Windows systems aren't the same as those on *nix. For full details, see [Troubleshooting Puppet on Windows][troubleshooting].
 
-* * * 
+* * *
 
 [For Developers and Testers][from_source]
 -----

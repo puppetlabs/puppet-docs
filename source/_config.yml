@@ -36,7 +36,8 @@ defaultnav:
   /puppet/3.6/reference: puppet_3_6.html
   /references: references_general.html
   /hiera/1: hiera1.html
-  /guides/deployment_guide:  deploy_guide.html
+  /guides/deployment_guide: deploy_guide.html
+  /guides/install_puppet: puppet_general.html
   /release_notes: release_notes.html
   /learning: learning_nav.html
   /community: community_nav.html

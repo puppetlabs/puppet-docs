@@ -155,7 +155,7 @@ Puppet can manage files and directories, including owner, group, permissions, an
 
 #### Required User Permissions
 
-By default, Puppet's installer sets puppet agent to run as the Administrator user. If you want to run it as a different user (see ["Automated Installation" in the installing page](./installing.html#automated-installation)), you must ensure Puppet has the following permissions:
+By default, Puppet's installer sets puppet agent to run as the Administrator user. If you want to run it as a different user (see ["Automated Installation" in the installing page](/guides/install_puppet/install_windows.html)), you must ensure Puppet has the following permissions:
 
 * In order to manage files that it does not own, Puppet must be running as a member of the local Administrators group (on Windows 2003) or with elevated privileges (Windows 7 and 2008). This gives Puppet the `SE_RESTORE_NAME` and `SE_BACKUP_NAME` privileges it requires to manage file permissions.
 * To manage symlinks, Puppet's user also needs the "Create Symbolic Links" privilege, which the Administrators group has by default.

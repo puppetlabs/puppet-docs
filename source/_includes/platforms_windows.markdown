@@ -11,5 +11,5 @@ We publish packages for the following versions, but do not run automated testing
 * Windows 7 and 8 (also supported by [Puppet Enterprise][peinstall])
 * Windows Vista
 
-[peinstall]: /pe/latest/install_basic.html
+[peinstall]: /pe/latest/install_windows.html
 <!-- When updating these, check the current version of the PE system requirements and make sure they don't need a bump as well. -->

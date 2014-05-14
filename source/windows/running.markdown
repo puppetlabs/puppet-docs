@@ -4,7 +4,8 @@ title: "Running Puppet on Windows"
 nav: windows.html
 ---
 
-[datadirectory]: ./installing.html#data-directory
+[confdir]: /puppet/latest/reference/dirs_confdir.html
+[vardir]: /puppet/latest/reference/dirs_vardir.html
 [puppetconf]: /guides/configuring.html#puppetconf
 [uac]: ./images/uac.png
 [rightclick]: ./images/run_as_admin.jpg
@@ -97,7 +98,7 @@ To use `puppet apply`, you must first use the **"Start Command Prompt with Puppe
 
 To use `puppet apply` effectively, you should distribute your Puppet modules to each agent node and copy them into the [`modulepath`](/references/latest/configuration.html#modulepath). This allows the small manifests written for `puppet apply` to easily assign pre-existing classes to the node.
 
-> Note: The default `modulepath` on Windows is [`<data directory>`][datadirectory]`\etc\modules`.
+> Note: The default `modulepath` on Windows is [`$confdir`][confdir]`\modules`.
 
 > Note: When using a multi-directory modulepath, remember to separate the directories with `;`, rather than `:`.
 
@@ -129,7 +130,7 @@ When writing manifests for Windows nodes, it can be helpful to see a test system
 Configuring Puppet
 -----
 
-Puppet's main `puppet.conf` configuration file can be found at [`<data directory>`][datadirectory]`\etc\puppet.conf`.
+Puppet's main `puppet.conf` configuration file can be found at [`$confdir`][confdir]`\puppet.conf`.
 
 * See [Configuring Puppet](/guides/configuring.html) for more details about Puppet's main config file. (Puppet's secondary config files are not used on Windows.)
 * See [the configuration reference](/references/latest/configuration.html) for a complete list of `puppet.conf` settings.
@@ -149,7 +150,7 @@ On Unix, puppet is either running as root or not. On Windows, this maps to runni
 
 Puppet agent typically runs as a service under the LocalSystem account, and thus always has elevated privileges. When running puppet from the command line or from a script or scheduled task, you should be aware of User Account Control (UAC) restrictions that may cause Puppet to run without elevated privileges.
 
-If Puppet is accidentally run in a non-elevated security context, it will use a different data directory (specifically, the `.puppet` directory in the current user's home directory) and will try to request a second SSL certificate. Since the puppet master does not allow duplicate certificates, running puppet agent in a non-elevated security context will usually cause it to fail.
+If Puppet is accidentally run in a non-elevated security context, it will use a different [confdir][] (specifically, the `.puppet` directory in the current user's home directory) and will try to request a second SSL certificate. Since the puppet master does not allow duplicate certificates, running puppet agent in a non-elevated security context will usually cause it to fail.
 
 * On systems without UAC (i.e. Windows 2003), users in the local Administrators group will typically run all commands with elevated privileges.
 * On systems with UAC (i.e. Windows 7 and 2008), you must explicitly elevate privileges, even when running as a member of the local Administrators group. Puppet's "Run Puppet Agent" Start menu item automatically requests privilege elevation when run, but the "Start Command Prompt with Puppet" item [must be manually started with elevated privileges][elevate] by right-clicking it and choosing "Run as administrator."

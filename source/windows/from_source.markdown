@@ -5,12 +5,12 @@ title: "Running Puppet From Source on Windows"
 ---
 
 
-[datadirectory]: ./installing.html#data-directory
-
+[confdir]: /puppet/latest/reference/dirs_confdir.html
+[vardir]: /puppet/latest/reference/dirs_vardir.html
 
 <span class="versionnote">This documentation applies to Puppet versions ≥ 2.7.6 and Puppet Enterprise ≥ 2.5. Earlier versions may behave differently.</span>
 
-> Note: **Nearly all users should install Puppet from Puppet Labs' installer packages,** which are provided free of charge. [See here for download links and more information](./installing.html). The following procedures are only for advanced users involved in Puppet's development.
+> Note: **Nearly all users should install Puppet from Puppet Labs' installer packages,** which are provided free of charge. [See here for download links and more information](/guides/install_puppet/install_windows.html). The following procedures are only for advanced users involved in Puppet's development.
 
 
 ## Prerequisites
@@ -67,9 +67,9 @@ At this point, you can run Puppet by running `bundle exec puppet` from within th
 
 ### Notes
 
-When running from source, Puppet does not install itself as an NT service. Use the [standard installer packages](./installing.html) if you want to run Puppet as a service.
+When running from source, Puppet does not install itself as an NT service. Use the [standard installer packages](/guides/install_puppet/install_windows.html) if you want to run Puppet as a service.
 
-The location of Puppet's data directory varies depending on the Windows version. [See this explanation from the installer documentation][datadirectory] to find the data directory on your version.
+The location of Puppet's data directories varies depending on the Windows version. See the reference pages on the [confdir][] and [vardir][] for more information about where Puppet's data is located.
 
 When installed from source, Puppet does not change the system's `PATH` or `RUBYLIB` variables, nor does it provide Start menu shortcuts for opening a terminal with these variables set. You will need to set them yourself before running Puppet. <!-- todo double check this -->
 
