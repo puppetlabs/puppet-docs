@@ -141,7 +141,7 @@ Create New Puppet Master Servers
 
 To add a new puppet master server to your deployment, begin by installing and configuring Puppet as per normal.
 
-* [Installing Puppet (open source versions)](/guides/installation.html)
+* [Installing Puppet (open source versions)](/guides/install_puppet/pre_install.html)
 * [Installing Puppet Enterprise](/pe/latest/install_basic.html)
 
 Like with any puppet master, you'll need to use a production-grade web server rather than the default WEBrick server. We generally assume that you know how to do this if you're already at the point where you need multiple masters, but see [Scaling with Passenger](/guides/passenger.html) for one way to do it.

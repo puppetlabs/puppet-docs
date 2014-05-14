@@ -1,36 +1,23 @@
 ---
 layout: default
-title: Passenger
+title: "Configuring a Puppet Master Server with Passenger and Apache"
 ---
 
-Passenger
-=========
 
-Using Passenger instead of WEBrick for web services offers numerous performance
-advantages.  This guide shows how to set it up in an Apache web server.
+Puppet includes a basic puppet master web server based on Ruby's WEBrick library. (This is what Puppet uses if you run `puppet master` on the command line or use most `puppetmaster` init scripts.)
 
-* * *
+You **cannot** use this default server for real-life loads, as it can't handle concurrent connections; it is only suitable for small tests with ten nodes or fewer. You must configure a production quality web server before you start managing your nodes with Puppet.
 
-Why Passenger
--------------
+Any Rack-based application server stack will work with a puppet master, but if you don't have any particular preference, you should use Passenger combined with Apache. This guide shows how to configure Puppet with this software.
 
-Traditionally, the puppetmaster would embed a WEBrick
-Web Server to serve the Puppet clients. This may work well for
-testing and small deployments, but it's recommended to use a more
-scalable server for production environments.
 
 What is Passenger?
 ------------------
 
 [Passenger](http://www.modrails.com/) (AKA mod\_rails or mod\_rack)
-is the Apache 2.x module which lets you run Rails or Rack
+is an Apache 2.x module which lets you run Rails or Rack
 applications inside a general purpose web server, like
 [Apache httpd](http://httpd.apache.org/) or [nginx](http://nginx.org/).
-
-Passenger is the recommended deployment method for modern versions
-of puppet masters, but you may run into compatibility issues with
-Puppet versions older than 0.24.6 and Passenger versions older than
-2.2.5.
 
 ### Relevant Pages in the Passenger Docs
 
@@ -39,8 +26,8 @@ Puppet versions older than 0.24.6 and Passenger versions older than
 * [The Apache version of the Passenger user's guide][passenger_apache_guide] covers the Passenger-specific configuration directives we use below in much greater detail.
 
 
-Apache and Passenger Installation
----------------------------------
+Install Apache and Passenger
+-----
 
 Make sure `puppet master` has been run at least once (or
 `puppet agent`, if this master is not the CA), so that all required
@@ -64,8 +51,8 @@ RHEL/CentOS (needs the Puppet Labs repository enabled, or the
     $ sudo gem install rack passenger
     $ sudo passenger-install-apache2-module
 
-Apache Configuration
---------------------
+Configure Apache
+-----
 
 To configure Apache to run the puppet master application, you must:
 

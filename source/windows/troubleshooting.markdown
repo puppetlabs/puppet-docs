@@ -4,7 +4,8 @@ title: "Troubleshooting Puppet on Windows"
 nav: windows.html
 ---
 
-[datadirectory]: ./installing.html#data-directory
+[confdir]: /puppet/latest/reference/dirs_confdir.html
+[vardir]: /puppet/latest/reference/dirs_vardir.html
 
 ## Tips
 
@@ -24,11 +25,11 @@ Puppet's windows service component also writes to the `windows.log` within the s
 
 ### Installation
 
-The Puppet MSI package will not overwrite an existing entry in the puppet.conf file.  As a result, if you uninstall the package, then reinstall the package using a different puppet master hostname, Puppet won't actually apply the new value if the previous value still exists in [`<data directory>`][datadirectory]`\etc\puppet.conf`.
+The Puppet MSI package will not overwrite an existing entry in the puppet.conf file.  As a result, if you uninstall the package, then reinstall the package using a different puppet master hostname, Puppet won't actually apply the new value if the previous value still exists in [`$confdir`][confdir]`\puppet.conf`.
 
 In general, we've taken the approach of preserving configuration data on the system when doing an upgrade, uninstall or reinstall.
 
-To fully clean out a system make sure to delete the [`<data directory>`][datadirectory].
+To fully clean out a system make sure to delete the [confdir][] and [vardir][].
 
 Similarly, the MSI will not overwrite the custom facts written to the `PuppetLabs\facter\facts.d` directory.
 

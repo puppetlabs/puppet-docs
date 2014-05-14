@@ -24,7 +24,7 @@ title: "Hiera 1: Using Hiera With Puppet"
 [hash_lookup]: ./lookup_types.html#hash-merge
 [template_functions]: /guides/templating.html#using-functions-within-templates
 [enc]: /guides/external_nodes.html
-[site_manifest]: /puppet/latest/reference/lang_summary.html#files
+[site_manifest]: /puppet/latest/reference/dirs_manifest.html
 [node_definition]: /puppet/latest/reference/lang_node_definitions.html
 
 
@@ -239,7 +239,7 @@ Assigning Classes to Nodes With Hiera (`hiera_include`)
 You can use Hiera to assign classes to nodes with the special `hiera_include` function. This lets you assign classes in great detail without repeating yourself --- it's essentially what people have traditionally tried and failed to use node inheritance for. It can get you the benefits of a rudimentary [external node classifier][enc] without having to write an actual ENC.
 
 1. Choose a key name to use for classes. Below, we assume you're just using `classes`.
-2. In your [`/etc/puppet/manifests/site.pp`][site_manifest] file, write the line `hiera_include('classes')`. Put this **outside any [node definition][node_definition],** and below any top-scope variables that you might be relying on for Hiera lookups.
+2. In your [main manifest][site_manifest], write the line `hiera_include('classes')`. Put this **outside any [node definition][node_definition],** and below any top-scope variables that you might be relying on for Hiera lookups.
 3. Create `classes` keys throughout your Hiera hierarchy.
     * The value of each `classes` key should be an **array.**
     * Each value in the array should be **the name of a class.**

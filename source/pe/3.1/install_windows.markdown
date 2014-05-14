@@ -67,8 +67,6 @@ The following public MSI properties can also be specified:
 `PUPPET_AGENT_CERTNAME`        | [`certname`][r]   | Value of `facter fdqn` (must be lowercase)
 `PUPPET_AGENT_ENVIRONMENT`     | [`environment`][e]| `production`
 
-{% comment %}This is specific to PE 3.1! For the 3.2 release, note that we'll have more MSI properties available -- see source/windows/installing.markdown for details. You'll also need to pull in stuff under the "Agent startup mode" and "agent account" headers, later in the document. {% endcomment %}
-
 For example:
 
     msiexec /qn /i puppet.msi PUPPET_MASTER_SERVER=puppet.acme.com
