@@ -28,7 +28,7 @@ If you're upgrading from Puppet 2.x, please [learn about major upgrades of Puppe
 Puppet 3.6.0
 -----
 
-Released May 14, 2014. (RC1: May 6.)
+Released May 15, 2014. (RC1: May 6.)
 
 Puppet 3.6.0 is a backward-compatible features and fixes release in the Puppet 3 series. The biggest things in this release are:
 
