@@ -64,12 +64,12 @@ The puppet master server that will be acting as the certificate authority should
 
 Once these tasks are complete, you can install Puppet. Pick the link appropriate to the operating system(s) you'll be installing on:
 
-* [Red Hat Enterprise Linux (and Derivatives)](./install_puppet/install_el.html)
-* [Debian and Ubuntu](./install_puppet/install_debian_ubuntu.html)
-* [Fedora](./install_puppet/install_fedora.html)
-* [Mac OS X](./install_puppet/install_osx.html)
-* [Microsoft Windows](./install_puppet/install_windows.html)
-* [On Misc \*nix With Gems](./install_puppet/install_gem.html) (for otherwise unsupported systems)
-* [On Misc \*nix With a Tarball](./install_puppet/install_tarball.html) (for otherwise unsupported systems)
+* [Red Hat Enterprise Linux (and Derivatives)](./install_el.html)
+* [Debian and Ubuntu](./install_debian_ubuntu.html)
+* [Fedora](./install_fedora.html)
+* [Mac OS X](./install_osx.html)
+* [Microsoft Windows](./install_windows.html)
+* [On Misc \*nix With Gems](./install_gem.html) (for otherwise unsupported systems)
+* [On Misc \*nix With a Tarball](./install_tarball.html) (for otherwise unsupported systems)
 
 After installing, you'll want to do the [post-install tasks](./post_install.html)
