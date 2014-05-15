@@ -60,7 +60,7 @@ Previously, if you ran `puppet module generate <module name>` or manually create
 
 Assessed Risk Level: medium. For LibYAML versions before 0.1.6, heap-based buffer overflow in the `yaml_parser_scan_uri_escapes` could allow attackers to execute arbitrary code via a long sequence of percent-endcoded characters in a URI in a YAML file.
 
-CVSS v2 score: 5.0 with v2 Vector (AV:N/AC:M/Au:N/C:P/I:P/A:P/E:U/RL:OF/RC:C)
+CVSS v2 score: 5.0 with Vector (AV:N/AC:M/Au:N/C:P/I:P/A:P/E:U/RL:OF/RC:C)
 
 *[CVE-2014-0098 Apache vulnerability in config module could allow denial of service attacks via cookies](http://puppetlabs.com/security/cve/cve-2014-0098)*
 
@@ -76,7 +76,7 @@ The variation in score is because `mod_log_config` is enabled by default on RHEL
 
 Assessed Risk Level: medium. For Apache versions earlier than 2.4.8, the `dav_xml_get_cdata` function in `main/util.c` in the `mod_dav` module does not properly remove leading spaces could allow remote attackers to cause a denial of service attack via a crafted DAV WRITE request. 
 
-CVSS v2 score: 4.0 with v2 Vector (AV:N/AC:H/Au:N/C:N/I:N/A:C/E:U/RL:OF/RC:C)
+CVSS v2 score: 4.0 with Vector (AV:N/AC:H/Au:N/C:N/I:N/A:C/E:U/RL:OF/RC:C)
 
 #### A Note about the Heartbleed Bug
 
