@@ -9,7 +9,7 @@ nav: windows.html
 **Puppet runs on Microsoft Windows® and can manage Windows systems alongside \*nix systems.** These pages explain how to install and run Puppet on Windows, and describe how it differs from Puppet on *nix.
 
 
-[from_source]: ./from_source.html
+[from_source]: /guides/install_puppet/from_source.html
 [installing]: /guides/install_puppet/install_windows.html
 [running]: ./running.html
 [troubleshooting]: ./troubleshooting.html
@@ -106,5 +106,5 @@ The most common points of failure on Windows systems aren't the same as those on
 [For Developers and Testers][from_source]
 -----
 
-To test pre-release features, or to hack and improve Puppet on Windows, you can run Puppet from source. This requires a fairly specific version of Ruby and several important gems. For full details, see [Running Puppet from Source on Windows][from_source].
+To test pre-release features, or to hack and improve Puppet on Windows, you can run Puppet from source. For full details, see [Running Puppet from Source][from_source].
 

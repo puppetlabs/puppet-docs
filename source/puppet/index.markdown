@@ -175,7 +175,7 @@ Puppet's default configuration is meant for prototyping and designing a site. On
 
 ### Developing Puppet
 
-* [Running Puppet from Source](/guides/from_source.html) --- preview the leading edge
+* [Running Puppet from Source](/guides/install_puppet/from_source.html) --- preview the leading edge
 * [Development Life Cycle](/guides/development_lifecycle.html) --- learn how to contribute code
 * [Puppet Internals](/guides/puppet_internals.html) --- understand how
   Puppet works internally
