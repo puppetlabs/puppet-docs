@@ -4,10 +4,7 @@ title: "Configuration: Short List of Important Settings"
 canonical: "/puppet/latest/reference/config_important_settings.html"
 ---
 
-<!-- TODO: replace these -->
-[cli_settings]: ./config_about_settings.html
-
-
+[cli_settings]: ./config_about_settings.html#settings-can-be-set-on-the-command-line
 [trusted_and_facts]: ./lang_facts_and_builtin_vars.html
 [config_environments]: ./environments_classic.html
 [config_reference]: /references/3.6.latest/configuration.html
@@ -77,6 +74,7 @@ canonical: "/puppet/latest/reference/config_important_settings.html"
 [ca_ttl]: /references/3.6.latest/configuration.html#cattl
 [autosign]: /references/3.6.latest/configuration.html#autosign
 [environmentpath]: /references/3.6.latest/configuration.html#environmentpath
+[environment.conf]: ./config_file_environment.html
 
 Puppet has about 230 settings, all of which are listed in the [configuration reference][config_reference]. Most users can ignore about 200 of those.
 
@@ -165,7 +163,7 @@ These settings should usually go in `[master]`. However, if you're using puppet 
     * Re-start the puppet master service.
 * [`environmentpath`][environmentpath] --- Set this to `$confdir/environments` to enable directory environments. See [the page on directory environments][environments] for details.
 * [`basemodulepath`][basemodulepath] --- A list of directories containing Puppet modules that can be used in all environments. [See the modulepath page][modulepath_dir] for details.
-    * The [`modulepath`][modulepath] setting controls the final modulepath, and can be set for each environment (when using [config file environments][config_environments]). Starting with Puppet 3.5, TODO deprecation though, we recommend setting `basemodulepath` and letting `modulepath` take care of itself.
+    * If [directory environments][environments] are disabled, the [`modulepath`][modulepath] setting controls the final modulepath. You can also set `modulepath` in [environment.conf][].
 * [`manifest`][manifest] --- The main entry point for compiling catalogs. This is only used if directory environments aren't enabled. Defaults to a single site.pp file, but can also point to a directory of manifests. [See the manifest page][manifest_dir] for details.
 * [`reports`][reports] --- Which report handlers to use. For a list of available report handlers, see [the report reference][report_reference]. You can also [write your own report handlers][write_reports]. Note that the report handlers might require settings of their own, like `tagmail`'s various email settings.
 

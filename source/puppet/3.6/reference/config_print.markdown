@@ -5,11 +5,8 @@ canonical: "/puppet/latest/reference/config_print.html"
 ---
 
 
-<!-- TODO: replace these -->
-[config_sections]: ./config_file_main.html
+[config_sections]: ./config_file_main.html#config-sections
 [setting_sources]: ./config_about_settings.html
-
-
 [confdir_sys]: ./dirs_confdir.html#system-and-user-confdirs
 [environment]: ./environments.html
 [confdir]: ./dirs_confdir.html
