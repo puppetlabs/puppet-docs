@@ -17,65 +17,64 @@ Puppet should usually be installed from reliable packages, such as those provide
 
 However, if you are developing Puppet, helping to resolve a bug, or testing a new feature, you may need to run pre-release versions of Puppet. The most flexible way to do this, if you are not being provided with pre-release packages, is to run Puppet directly from source.
 
-> ![windows logo](/images/windows-logo-small.jpg) To run Puppet from source on Windows, [see the equivalent page in the Puppet for Windows documentation](/windows/from_source.html).
-
 > Note: When running Puppet from source, you should never use the `install.rb` script included in the source. The point of running from source is to be able to switch versions of Puppet with a single command, and the `install.rb` script removes that capability by copying the source to several directories across your system.
 
 Prerequisites
 -----
 
-* Puppet requires Ruby 1.8.7, 1.9.3, or 2.0.0. See the open source Puppet [system requirements][sysreqs] for more details about supported versions.
+* Puppet requires Ruby, and some older versions won't work. See the Puppet [system requirements][sysreqs] for more details about supported versions.
+    * On Windows, you can use the Ruby installer from [rubyinstaller.org](http://rubyinstaller.org/downloads).
 * To automatically manage Puppet's dependencies, you will also need to install [Bundler](http://bundler.io/). You can usually do this by running `gem install bundler`, or your operating system may have packages available.
 * To access the Puppet source code, you will need [Git][].
+    * On Windows, you should use [the "msysgit" packages](http://msysgit.github.io/). You should also run `git config core.filemode false` to prevent unnecessary mode bit changes.
+* On Windows, the default `cmd.exe` terminal will work fine for running Puppet commands; Puppet doesn't require Cygwin or Powershell.
 
 [git]: http://git-scm.com/
 
-
-Get the Puppet Source Code
+Install Puppet
 -----
 
-Use Git to clone [Puppet's GitHub repository][gitpuppet]. The example below assumes a base directory of `/usr/src`; if you are installing the source elsewhere, substitute the correct locations when running commands.
+### Step 1: Get the Puppet Source Code
 
-    $ sudo mkdir -p /usr/src
-    $ cd /usr/src
-    $ sudo git clone git://github.com/puppetlabs/puppet
+Use Git to clone [Puppet's GitHub repository][gitpuppet]. The example below assumes a base directory of `~/src`; if you are installing the source elsewhere, substitute the correct locations when running commands.
 
-Select a Branch or Release
------
+    $ mkdir ~/src
+    $ cd ~/src
+    $ git clone git://github.com/puppetlabs/puppet
+    $ cd puppet
+
+Roughly equivalent commands on Windows:
+
+    C:>mkdir src
+    C:>cd src
+    C:\src>git clone git://github.com/puppetlabs/puppet.git
+    C:\src>cd puppet
+
+### Step 2: Select a Branch or Release
 
 By default, the instructions above will leave you running the `master` branch, which contains code for the next unreleased version of Puppet. This may or may not be what you want.
 
 Most development happens on either the `master` (for the next major or minor version) or `stable` (for patch releases for the current minor version) branches. Released versions are tagged with their version number; release candidates are tagged with their version number and a suffix like `-rc1`. [Explore the repository on GitHub][gitpuppet] to find the branch or tag you want, then run:
 
-    $ cd /usr/src/puppet
-    $ sudo git checkout origin/<BRANCH NAME>
+    $ git checkout origin/<BRANCH NAME>
 
 ...to switch to it. You can also check out:
 
 * Released versions, by version number:
 
-        $ sudo git checkout 2.7.12
+        $ git checkout 2.7.12
 * Specific commits anywhere on any branch:
 
-        $ sudo git checkout 2d51b64
+        $ git checkout 2d51b64
 
 Teaching the complete use of Git is beyond the scope of this guide.
 
 
-Install (or Update) Dependencies with Bundler
------
+### Step 3: Install (or Update) Dependencies with Bundler
 
 To install Puppet's dependencies, run:
 
-    $ sudo bundle install --path .bundle/gems/
-
-This will install everything Puppet needs to run, do spec tests, etc. To run Puppet, you'll be running something like this:
-
-    $ bundle exec puppet apply testmanifest.pp
-
-See [the "Run Puppet" section below](#run-puppet) for more details. To run the tests, you can run:
-
-    $ bundle exec rspec spec
+    $ bundle install --path .bundle/gems/
 
 If you change commits, Puppet's dependencies may also change; for example, a major new version of Puppet may require a new version of Facter. To update any changed dependencies, run:
 
@@ -86,40 +85,34 @@ Configure Puppet
 
 On systems that have never had Puppet installed, you should do the following:
 
-### Copy auth.conf Into Place
-
-Puppet master uses the [`auth.conf`][authconf] file to control which systems can access which resources. The source includes an example file that exposes the default rules; starting with this file makes it easier to tweak the rules if necessary.
-
-If you'll be running Puppet as root or as the `puppet` user, put it at `/etc/puppet/auth.conf`; otherwise, put it at `~/.puppet/auth.conf`.
-
-    $ sudo cp /usr/src/puppet/conf/auth.conf /etc/puppet/auth.conf
-
 ### Create a puppet.conf File
 
-If you'll be running Puppet as root or as the `puppet` user, the `puppet.conf` file is at `/etc/puppet/puppet.conf`; otherwise, put it at `~/.puppet/puppet.conf`.
+Create a [puppet.conf][] file in the confdir. (The location of the confdir depends on your OS and user account; see [the reference page on the confdir][confdir] for details.)
 
-    $ sudo touch /etc/puppet/puppet.conf
-
-The `puppet.conf` file contains Puppet's settings. See [Configuring Puppet][config] for more details.
+The puppet.conf file contains Puppet's settings. For more details, see [About Puppet's Settings][about_settings], [Short List of Important Settings][short_settings], and [the puppet.conf reference page][puppet.conf].
 
 You will likely want to set the following settings:
 
-* In the `[agent]` block:
+* In the `[agent]` section:
     * [`certname`](/references/latest/configuration.html#certname)
     * [`server`](/references/latest/configuration.html#server)
-    * [`pluginsync`](/references/latest/configuration.html#pluginsync)
-    * [`report`](/references/latest/configuration.html#report)
     * [`environment`](/references/latest/configuration.html#environment)
-* In the `[master]` block:
+* In the `[master]` section:
     * [`certname`](/references/latest/configuration.html#certname)
     * [`dns_alt_names`](/references/latest/configuration.html#dnsaltnames)
     * [`reports`](/references/latest/configuration.html#reports)
     * [`node_terminus`](/references/latest/configuration.html#nodeterminus)
     * [`external_nodes`](/references/latest/configuration.html#externalnodes)
 
-### Create the Puppet User and Group
+### Copy auth.conf Into Place (Puppet Master Servers Only)
 
-Puppet requires a user and group. By default, these are `puppet` and `puppet`, but they can be changed in [`puppet.conf`][config] with the [`user`](/references/latest/configuration.html#user) and [`group`](/references/latest/configuration.html#group) settings.
+Puppet master uses the [`auth.conf`][authconf] file to control which systems can access which resources. The source includes an example file that exposes the default rules; starting with this file makes it easier to tweak the rules if necessary.
+
+Copy the file from `~/src/puppet/conf/auth.conf` (or wherever you checked out the source) into the confdir. (The location of the confdir depends on your OS and user account; see [the reference page on the confdir][confdir] for details.)
+
+### Create the Puppet User and Group (Puppet Master Servers Only)
+
+To run a puppet master server, Puppet requires a user and group. By default, these are both named `puppet`, but they can be changed in [puppet.conf][] with the [`user`](/references/latest/configuration.html#user) and [`group`](/references/latest/configuration.html#group) settings.
 
 Create this user and group using your operating system's normal tools, or run the following:
 
@@ -128,17 +121,32 @@ Create this user and group using your operating system's normal tools, or run th
 
 If you skip this step, puppet master may not start correctly, and Puppet may have problems when creating some of its run data directories.
 
+This is never necessary on Windows, as Windows nodes can't serve as puppet masters.
+
 Run Puppet
 -----
 
 To run Puppet from source, you must first `cd` into its source directory and prefix your command with `bundle exec`. For example:
 
-    $ cd /usr/src/puppet
+    $ cd ~/src/puppet
     $ bundle exec puppet resource host localhost
+    $ bundle exec puppet agent --test --server puppet.example.com
 
-As long as you do that, you can interactively run the main puppet agent, puppet master, and puppet apply commands, as well as any of the additional commands used to manage Puppet.
+The `bundle exec` prefix will let you interactively run the puppet agent, puppet master, and puppet apply commands, as well as any of the additional commands used to manage Puppet.
 
 For testing purposes, you will usually want to run `puppet master --verbose --no-daemonize --autosign true` to start a temporary puppet master and `puppet agent --test --server <SERVER>` to run agents against it. For day-to-day use, you should create an init script for puppet agent (see the examples in the source's `conf/` directory) and use a Rack server like Passenger or Unicorn to run puppet master.
+
+### Windows Note: User Account Control
+
+In general, Puppet must be running in an account that is a member of the local Administrators group in order to make changes to the system (e.g., change file ownership, modify `/etc/hosts`, etc.).
+
+On systems where User Account Control (UAC) is enabled, such as Windows 7 and 2008, Puppet must be running with explicitly elevated privileges. **It will not ask for elevation automatically; you must specifically start your `cmd.exe` terminal window with elevated privileges before running Puppet commands.** See [this blog post (unaffiliated with Puppet Labs)](http://blog.didierstevens.com/2008/05/26/quickpost-restricted-tokens-and-uac/) for more information about UAC.
+
+### Running Spec Tests
+
+To run Puppet's spec tests, you can run:
+
+    $ bundle exec rspec spec
 
 
 Periodically Update the Source or Switch Versions
