@@ -79,8 +79,7 @@ And so on.
 Most types and facts should be stored in which ever module they are related to;
 for example, a Bind fact might be distributed in your Bind module.  If you wish to centrally
 deploy types and facts you could create a separate module just for this purpose, for example
-one called `custom`.  This module needs to be a valid module (with the correct directory structure and
-an `init.pp` file).
+one called `custom`.  
 
 So, if we are using our custom module and our modulepath is
 /etc/puppet/modules then types and facts would be stored in the
