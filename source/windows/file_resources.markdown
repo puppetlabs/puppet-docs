@@ -1,0 +1,97 @@
+---
+layout: default
+title: "Built-In Resource Types on Windows: File"
+nav: windows.html
+---
+
+[file]: /references/latest/type.html#file
+[relationships]: /puppet/latest/reference/lang_relationships.html
+
+Puppet's built-in [`file`][file] resource type can manage files and directories on Windows, including ownership, group, permissions, and content. Symbolic links are supported in Puppet 3.4.0 / PE 3.2 and later on Windows 2008 / Vista and later; for details, [see the notes in the type reference under `file`'s `ensure` attribute](/references/latest/type.html#file-attribute-ensure).
+
+
+{% highlight ruby %}
+    file { 'c:/mysql/my.ini':
+      ensure => 'file',
+      mode   => '0660',
+      owner  => 'mysql',
+      group  => 'Administrators',
+      source => 'N:/software/mysql/my.ini',
+    }
+{% endhighlight %}
+
+The `file` type was originally developed for \*nix systems, and has a few unusual behaviors on Windows. Here's what you'll want to know before using it.
+
+## Be Consistent With Case in File Names
+
+If you need to refer to a file resource in multiple places in a manifest (e.g. when creating [relationships between resources][relationships]), be consistent with the case of the file name. If you use `my.ini` in one place, don't use `MY.INI` in another place.
+
+Windows NTFS filesystems are case-insensitive (albeit case-preserving); Puppet is case-sensitive. While Windows itself won't get confused by inconsistent case, Puppet will think you're referring to completely different files.
+
+## Make Sure Puppet's User Account Has Appropriate Permissions
+
+<!-- TODO link to run environment reference stuff -->
+
+To manage files properly, Puppet needs the "Create symbolic links" (Vista/2008 and up), "Back up files and directories," and "Restore files and directories" privileges. The easiest way to handle this is:
+
+* When Puppet runs as a service, make sure its user account is a member of the local `Administrators` group.
+* Before running Puppet interactively (on Vista/2008 and up), be sure to start the command prompt window with elevated privileges by right-clicking on the start menu and choosing "Run as Administrator."
+
+## Always Block Source Permissions on Windows
+
+If you set [the `source` attribute](/references/latest/type.html#file-attribute-source), Puppet defaults to applying the ownership and permissions that the source files have on the puppet master server.
+
+This is **almost never what you want** when managing files on Windows, and the default behavior is now deprecated, scheduled for change in a future version of Puppet.
+
+In the meantime, you can change or disable this behavior with [the `file` type's `source_permissions` attribute](/references/latest/type.html#file-attribute-source_permissions); for Windows systems, you will usually want to set it to `ignore` with a resource default in site.pp:
+
+{% highlight ruby %}
+    if $osfamily == 'windows' {
+      File { source_permissions => ignore }
+    }
+{% endhighlight %}
+
+## Managing File Permissions
+
+The \*nix and Windows permission models are quite different. When you use the `mode` attribute, the `file` type manages them both like \*nix permissions, and translates the mode to roughly equivalent access controls on Windows. This makes basic controls fairly simple, but doesn't give an override for more complex controls.
+
+### How \*nix Modes Map to Windows Permissions
+
+\*nix permissions are expressed as either an octal number or a string of symbolic modes. See [the reference for the `file` type's `mode` attribute](/references/latest/type.html#file-attribute-mode) for more details about the syntax.
+
+These mode expressions generally manage three kinds of permission (read, write, execute) for three kinds of user (owner, group, other). They translate to Windows permissions as follows:
+
+* The read, write, and execute permissions are interpreted as the `FILE_GENERIC_READ`, `FILE_GENERIC_WRITE`, and `FILE_GENERIC_EXECUTE` access rights, respectively.
+* The `Everyone` SID is used to represent users other than the owner and group.
+* Directories on Windows can have the sticky bit, which makes it so users can only delete files if they own the containing directory.
+* The owner of a file can be a group (e.g. `owner => 'Administrators'`) and the group of a file can be a user (e.g. `group => 'Administrator'`).
+    * The owner and group can even be the same, but don't do that. (It can cause problems when the mode gives different permissions to the owner and group, e.g. `0750`.)
+* The group can't have higher permissions than the owner. Other users can't have higher permissions than the owner or group. (That is, 0640 and 0755 are supported, but 0460 is not.)
+
+### Extra Behavior When Managing Permissions
+
+When you manage permissions with the `mode` attribute, it has the following side effects:
+
+* The owner of a file/directory always has the `FULL_CONTROL` access right.
+* The security descriptor is always set to _protected._ This prevents the file from inheriting any more permissive access controls from the directory that contains it.
+
+### Future Improvements: The puppetlabs-acl Module
+
+Puppet Labs and the Puppet community are developing a new resource type for managing complex Windows ACLs. It hasn't seen an official release yet, but you can [test the in-progress code today][acl_module] and read [the original proposal for the module.](https://github.com/puppetlabs/armatures/blob/master/arm-16.acls/index.md)
+
+[acl_module]: https://github.com/puppetlabs/puppetlabs-acl/
+
+## File Sources
+
+The `source` attribute of a file can be a puppet URL, a local path, or a path to a file on a mapped drive.
+
+
+## Errata
+
+### Known Issues Prior to Puppet 3.4 / PE 3.2
+
+Prior to Puppet 3.4 / Puppet Enterprise 3.2, the `file` type had several limitations and problems. These were fixed as part of an NTFS support cleanup in 3.4.0. If you are writing manifests for Windows machines running an older version of Puppet, please be aware:
+
+* If an `owner` or `group` are specified for a file, **you must also specify a `mode`.** Failing to do so can render a file inaccessible to Puppet. [See here for more details](./troubleshooting.html#file-pre-340).
+* Setting a permissions mode can prevent the SYSTEM user from accessing the file (if SYSTEM isn't the file's owner or part of its group). This can make it so Puppet can access the file when run by a user, but can't access it when run as a service. In 3.4 and later, this is fixed, and Puppet will always ensure the SYSTEM user has the `FULL_CONTROL` access right (unless SYSTEM is specified as the owner or group for that file, in which case it will have the rights specified by the permissions mode).
+* Puppet will copy file permissions from the remote `source`; this isn't ideal, since the \*nix permissions on the puppet master are unlikely to match what you want on your Windows machines. The only way to prevent this is to specify ownership, group, and mode for every file (or with a resource default). In 3.4 and up, the `source_permissions` attribute provides a way to turn this behavior off.

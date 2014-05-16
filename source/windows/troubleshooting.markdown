@@ -39,7 +39,7 @@ Puppet may fail to install when trying to perform an unattended install from the
 
     msiexec /qn /i puppet.msi
 
-To get troubleshooting data, specify an installation log, e.g. /l*v install.txt. Look in the log for entries like the following:
+To get troubleshooting data, specify an installation log, e.g. `/l*v install.txt`. Look in the log for entries like the following:
 
     MSI (s) (7C:D0) [17:24:15:870]: Rejecting product '{D07C45E2-A53E-4D7B-844F-F8F608AFF7C8}': Non-assigned apps are disabled for non-admin users.
     MSI (s) (7C:D0) [17:24:15:870]: Note: 1: 1708
