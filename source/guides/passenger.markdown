@@ -136,9 +136,14 @@ puppetmaster port (8140). You can also see a similar file at `ext/rack/example-p
         SSLCertificateChainFile /var/lib/puppet/ssl/ca/ca_crt.pem
         SSLCACertificateFile    /var/lib/puppet/ssl/ca/ca_crt.pem
         SSLCARevocationFile     /var/lib/puppet/ssl/ca/ca_crl.pem
+        SSLCARevocationCheck 	chain
         SSLVerifyClient         optional
         SSLVerifyDepth          1
         SSLOptions              +StdEnvVars +ExportCertData
+        
+        # Apache 2.4 introduces the SSLCARevocationCheck directive and sets it to none
+    	# which effectively disables CRL checking. If you are using Apache 2.4+ you must
+        # specify 'SSLCARevocationCheck chain' to actually use the CRL.
 
         # These request headers are used to pass the client certificate
         # authentication information on to the puppet master process
