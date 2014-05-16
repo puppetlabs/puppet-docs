@@ -6,7 +6,7 @@ nav: puppet_general.html
 
 
 
-At Puppet Labs, we sign most of our packages and release tarballs with OpenPGP. This helps prove that the packages really originate from Puppet Labs and have not been tampered with.
+At Puppet Labs, we sign most of our packages and release tarballs with GPG. This helps prove that the packages really originate from Puppet Labs and have not been tampered with.
 
 Security conscious users can use GPG to verify signatures on our packages.
 
