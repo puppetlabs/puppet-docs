@@ -21,6 +21,10 @@ In these cases, you don't need to do any extra work.
 
 [repos]: ./puppetlabs_package_repositories.html
 
+## Unsigned Packages
+
+At this time, we do not sign our [OS X packages](http://downloads.puppetlabs.com/mac/) or our RubyGems.
+
 ## Manual Verification
 
 If you are using Puppet Labs' source tarballs, or are installing our RPM packages without Yum, you may need to manually verify the signatures.
