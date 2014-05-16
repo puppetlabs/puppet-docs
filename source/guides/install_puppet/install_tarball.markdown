@@ -31,12 +31,13 @@ Step 1: Ensure Prerequisites are Installed
 Step 2: Download Puppet and its Dependencies
 -----
 
-You will need the latest .tar.gz files for the Puppet source, the Facter source, and the Hiera source.
+You will need the latest `.tar.gz` files for the Puppet source, the Facter source, and the Hiera source.
 
 * [Puppet downloads](https://downloads.puppetlabs.com/puppet/)
 * [Facter downloads](http://downloads.puppetlabs.com/facter/)
 * [Hiera downloads](https://downloads.puppetlabs.com/hiera/)
 
+Optionally, you can also download the corresponding `.asc` files and [verify the signature](/guides/puppetlabs_package_verification.html) of each tarball.
 
 Step 3: Install Facter
 -----
