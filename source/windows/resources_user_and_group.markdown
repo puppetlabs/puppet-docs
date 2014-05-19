@@ -1,7 +1,6 @@
 ---
 layout: default
 title: "Built-In Resource Types on Windows: User and Group"
-nav: windows.html
 ---
 
 [user]: /references/latest/type.html#user

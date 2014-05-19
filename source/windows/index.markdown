@@ -1,7 +1,6 @@
 ---
 layout: default
 title: "Puppet on Windows"
-nav: windows.html
 ---
 
 <span class="versionnote">This documentation applies to Puppet versions ≥ 2.7.6 and Puppet Enterprise ≥ 2.5. Earlier versions may behave differently.</span>

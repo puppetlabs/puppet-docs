@@ -1,7 +1,6 @@
 ---
 layout: default
 title: "Built-In Resource Types on Windows: File"
-nav: windows.html
 ---
 
 [file]: /references/latest/type.html#file

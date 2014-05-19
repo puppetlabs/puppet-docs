@@ -1,7 +1,6 @@
 ---
 layout: default
 title: "Windows: Handling File Paths"
-nav: windows.html
 ---
 
 [template]: /guides/templating.html

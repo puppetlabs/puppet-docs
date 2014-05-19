@@ -1,7 +1,6 @@
 ---
 layout: default
 title: "Running Puppet on Windows"
-nav: windows.html
 ---
 
 [confdir]: /puppet/latest/reference/dirs_confdir.html
