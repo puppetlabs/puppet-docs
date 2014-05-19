@@ -440,15 +440,23 @@ Important Notes & Warnings
 
 **Installing Without Internet Connectivity**
 
-By default, the master node hosts a repo that contains packages used for agent installation. In order to obtain these packages, the install script will attempt to connect to the internet in order to access a Puppet Labs-maintained repo on Amazon S3. If the script cannot access the remote repo (due to a firewall issue, IT policy, etc.), the agent tarball will not be downloaded and you will see error messages in the first and subsequent puppet runs on the master. These do not mean the installation failed, only the retrieval of the tarball.
+By default, the master node hosts a repo that contains packages used for agent installation. In order to obtain these packages, the install script will attempt to connect to the internet and access a Puppet Labs-maintained repo on Amazon S3. If the script cannot access the remote repo (due to a firewall issue, IT policy, etc.), the agent tarball will not be downloaded and you will see error messages in the first and subsequent Puppet runs on the master. These do not mean the installation failed, only the retrieval of the tarball.
 
-Depending on your particular deployment there are three ways you can resolve this issue. In each case, you will need to procure the agent tarball beforehand.
+You can resolve this issue using the option below that corresponds with your particular deployment. In each case, you will need to procure the agent tarball beforehand.
 
-* If you already have a package management/distribution system, you can use it to install agents by adding the agent packages to your repo. In this case, you can disable the PE-hosted repo feature altogether by removing the `pe-repo` class from your master.
+* **Option 1**
 
-* If you would like to use PE-provided repo, you can copy the agent tarball into `/opt/staging/pe_repo` so the master won't attempt to download it. This will prevent the error message from recurring on subsequent puppet runs.
+    If you already have a package management/distribution system, you can use it to install agents by adding the agent packages to your repo. In this case, you can disable the PE-hosted repo feature altogether by removing the `pe-repo` class from your master.
 
-* Lastly, if your deployment has multiple masters and you don't wish to copy the agent tarball to each one, you can specify a path to the agent tarball. This can be done with an [answer file](./install_automated.html), by setting `q_tarball_server` to an accessible server containing the tarball, or by [using the console](./console_classes_groups.html#editing-class-parameters-on-nodes) to set the `base_path` parameter of the `pe_repo` class to an accessible server containing the tarball.
+* **Option 2**
+
+    If you would like to use the PE-provided repo, you can copy the agent tarball into `/opt/staging/pe_repo` so that the master won’t attempt to download it. This will prevent the error message from recurring on subsequent Puppet runs. For example, if you have downloaded puppet-enterprise-3.2.3-el-6-x86_64.tar.gz, you need to [download](http://puppetlabs.com/misc/pe-files/agent-downloads) the el-6-x86_64 agent package and copy the file to the `/opt/staging/pe_repo` directory on your master.
+
+    If you upgrade your server, you will need to perform this task again for the new version.
+
+* **Option 3**
+
+    If your deployment has multiple masters and you don't wish to copy the agent tarball to each one, you can specify a path to the agent tarball. This can be done with an [answer file](./install_automated.html), by setting `q_tarball_server` to an accessible server containing the tarball, or by [using the console](./console_classes_groups.html#editing-class-parameters-on-nodes) to set the `base_path` parameter of the `pe_repo` class to an accessible server containing the tarball.
 
 
 * * *
