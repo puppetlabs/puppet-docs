@@ -227,7 +227,7 @@ Related issues:
 
 ### Structured Facts (Early Version)
 
-You have to manually enable this by [setting `stringify_facts = false` in puppet.conf][structured_facts_on] on your puppet master(s). It'll be enabled by default in Puppet 4.
+You have to manually enable this by [setting `stringify_facts = false` in puppet.conf][structured_facts_on] on your puppet agents. It'll be enabled by default in Puppet 4.
 
 In Facter 2.0 and later, fact values can be any data type, including hashes, arrays, and booleans. (This is a change from Facter 1.7, where facts could only be strings.) If you enable structured facts in Puppet, you can do more cool stuff in your manifests and templates with any facts that use this new feature.
 
