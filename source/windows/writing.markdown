@@ -69,28 +69,6 @@ Core Resource Types
 By default, Puppet can manage the following resource types on Windows nodes:
 
 
-### [`user`][user]
-
-Puppet can create, edit, and delete local users. Puppet does not support managing domain user accounts, but can add (and remove) domain user accounts to local groups (in Puppet 3.4.0 and later).
-
-* The `comment`, `home`, and `password` attributes can be managed, as well as groups to which the user belongs.
-* Passwords can only be specified in cleartext. Windows does not provide an API for setting the password hash.
-* The user SID is available as a read-only parameter. Attempting to set the parameter will fail
-* User names are case-sensitive in Puppet manifests, but insensitive on Windows. Make sure to consistently use the same case in manifests.
-
-#### Security Identifiers (SID)
-
-On Windows, user and group account names can take multiple forms, e.g. `Administrators`, `<host>\Administrators`, `BUILTIN\Administrators`, `S-1-5-32-544`. When comparing two account names, puppet always first transforms account names into their canonical SID form and compares the SIDs instead.
-
-
-### [`group`][group]
-
-Puppet can create, edit, and delete local groups, and can manage a group's members. Puppet does not support managing domain group accounts, but a local group can include both local and domain users as members.
-
-* The group SID is available as a read-only parameter. Attempting to set the parameter will fail.
-* Group names are case-sensitive in puppet manifests, but insensitive on Windows. Make sure to consistently use the same case in manifests.
-* Group members can be users or groups. **However**, this is only supported in Puppet 3.4.0 and later.
-
 ### [`scheduled_task`][scheduledtask]
 
 {% highlight ruby %}
