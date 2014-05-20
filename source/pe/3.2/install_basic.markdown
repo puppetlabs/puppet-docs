@@ -450,7 +450,7 @@ You can resolve this issue using the option below that corresponds with your par
 
 * **Option 2**
 
-    If you would like to use the PE-provided repo, you can copy the agent tarball into `/opt/staging/pe_repo` so that the master won’t attempt to download it. This will prevent the error message from recurring on subsequent Puppet runs. For example, if you have downloaded puppet-enterprise-3.2.3-el-6-x86_64.tar.gz, you need to [download](http://puppetlabs.com/misc/pe-files/agent-downloads) the el-6-x86_64 agent package and copy the file to the `/opt/staging/pe_repo` directory on your master.
+    If you would like to use the PE-provided repo, you can copy the agent tarball into `/opt/staging/pe_repo` so that the master won’t attempt to download it. This will prevent the error message from recurring on subsequent Puppet runs. For example, if you have downloaded puppet-enterprise-3.2.3-el-6-x86\_64.tar.gz, you need to [download](http://puppetlabs.com/misc/pe-files/agent-downloads) the el-6-x86\_64 agent package and copy the file to the `/opt/staging/pe_repo` directory on your master.
 
     If you upgrade your server, you will need to perform this task again for the new version.
 
