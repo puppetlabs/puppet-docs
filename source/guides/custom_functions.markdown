@@ -91,6 +91,8 @@ arguments given in the manifest when the function is called.
 There's no real parameter validation, so you'll need to do that
 yourself.
 
+> **Note:** Accepting an `args` argument in the `newfunction() do` block is mandatory, even if you won't be doing anything with the arguments.
+
 This simple `write_line_to_file` function is an example of a
 *statement* function. It performs an action, and does not return a
 value. The other type of function
@@ -102,7 +104,7 @@ function like this:
 {% highlight ruby %}
     module Puppet::Parser::Functions
       newfunction(:rand, :type => :rvalue) do |args|
-        rand(vals.empty? ? 0 : args[0])
+        rand(args.empty? ? 0 : args[0])
       end
     end
 {% endhighlight %}

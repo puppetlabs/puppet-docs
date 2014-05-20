@@ -1,6 +1,7 @@
 ---
 layout: default
 title: "Language: Namespaces and Autoloading"
+canonical: "/puppet/latest/reference/lang_namespaces.html"
 ---
 
 [classes]: ./lang_classes.html

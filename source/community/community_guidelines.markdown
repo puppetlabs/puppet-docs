@@ -52,12 +52,12 @@ Puppet has a healthy community full of people who are happy to help you get unst
 
 Puppet has a relatively long history and open development process for an open-source project, so there is a ton of information returned from google searches for various problems. To narrow down your results to the most relevant, try these google tips:
 
-1. Restrict your search to site:projects.puppetlabs.com – this will cut out the old Trac / reductivelabs wiki and get you more recent hits.
+1. Restrict your search to site:tickets.puppetlabs.com – this will cut out the old Trac / reductivelabs wiki and get you more recent hits.
 2. Join the [puppet-users google group](http://groups.google.com/group/puppet-users) and use the search box on the group page to search the mailing list. this eliminates duplicate hits from ML mirrors like nabble and lets you order results by date so you aren’t getting confused by a bug that was fixed three versions ago.
 3. Use correct Puppet-specific terminology for your problem like yum provider, file resource, and manifest.
 
 
-Many general questions about Puppet and Puppet Labs are answered in the [Frequently Asked Questions](http://docs.puppetlabs.com/guides/faq.html). Otherwise, the [Documentation Start](http://docs.puppetlabs.com/) is the place to go. Also available is [“Pulling Strings with Puppet”](http://www.amazon.com/gp/product/1590599780?ie=UTF8&tag=puppet0e-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=1590599780) by James Turnbull which is the first book to be written about Puppet and its sequel [“Pro Puppet”](http://www.amazon.com/gp/product/1430230576?ie=UTF8&tag=puppet0e-20&linkCode=as2&camp=1789&creative=390957&creativeASIN=1430230576).
+Many general questions about Puppet and Puppet Labs are answered in the [Frequently Asked Questions](http://docs.puppetlabs.com/guides/faq.html). Otherwise, the [Documentation Start](http://docs.puppetlabs.com/) is the place to go. Also available is [“Pulling Strings with Puppet”](http://www.amazon.com/gp/product/1590599780?ie=UTF8&tag=puppet0e-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=1590599780) by James Turnbull which is the first book to be written about Puppet, and its sequel [“Pro Puppet”](http://www.apress.com/9781430260400).
 
 We also provide various [commercial services](http://puppetlabs.com/services/overview/) around Puppet (training, professional services, support, certification and more) for people who want a little extra help.
 
@@ -163,12 +163,12 @@ Here are a few guidelines:
 * This is a community website, you are encouraged to add relevant tags and make other improvements.
 * You get karma points to encourage people who are being helpful on the site. The site administrator can also remove karma points in the unlikely event that someone might try to abuse the system :)
 * If you see spam or any inappropriate content, please flag it as offensive so that our moderators can take a look at it.
-* If you find a bug in the way the Ask site itself works or you want to suggest a feature, you can submit your issue into our [Ask bug tracker](https://projects.puppetlabs.com/projects/ask/issues).
+* If you find a bug in the way the Ask site itself works or you want to suggest a feature, you can submit your issue into our [Ask bug tracker](https://tickets.puppetlabs.com/browse/ASK).
 
 ### Bug Guidelines
 
 
-You can log bug reports and support tickets for Puppet using our [ticketing system](http://projects.puppetlabs.com/projects/puppet). In order to cut down on ticket spam, the tracker requires you to register and log in before the “New issue” link appears in the UI.
+You can log bug reports and support tickets for Puppet using our [ticketing system](https://tickets.puppetlabs.com/browse/PUP). In order to cut down on ticket spam, the tracker requires you to register and log in before the “New issue” link appears in the UI.
 
 
 Here are a few guidelines that apply specifically to our bug tracker:
@@ -210,11 +210,11 @@ The [Puppet Forge](http://forge.puppetlabs.com/) is a repository of modules, wri
 
 ### Event Code of Conduct
 
-Exhibitors, speakers, sponsors, staff and all other attendees at events organized by Puppet Labs (PuppetConf,  Puppet Camps, training classes, and others) are subject to these Community Guidelines and Code of Conduct. We are dedicated to providing a harassment-free experience for everyone, and we do not tolerate harassment of participants in any form.
+Exhibitors, speakers, sponsors, staff and all other attendees at events organized by Puppet Labs (PuppetConf,  Puppet Camps, training classes, and others) or held at Puppet Labs facilities are subject to these Community Guidelines and Code of Conduct. We are dedicated to providing a harassment-free experience for everyone, and we do not tolerate harassment of participants in any form.
 
 We ask you to be considerate of others and behave professionally and respectfully to all other participants. Remember that sexual language and imagery is not appropriate for any event venue, including talks. Participants violating these rules may be sanctioned or expelled from the event without a refund at the discretion of the organizers or Puppet Labs staff members.
 
-Harassment includes offensive verbal comments related to gender, gender identity or expression, sexual orientation, disability, physical appearance, body size, race, religion, sexual images in public spaces, deliberate intimidation, stalking, following, harassing photography or recording, sustained disruption of talks or other events, inappropriate physical contact, and unwelcome sexual attention. Participants asked to stop any harassing behavior are expected to comply immediately.
+Harassment includes offensive verbal comments related to gender, gender identity or expression, sexual orientation, disability, physical appearance, body size, race, religion, sexual images in public spaces, real or implied violence, intimidation, oppression, stalking, following, harassing photography or recording, sustained disruption of talks or other events, inappropriate physical contact, and unwelcome sexual attention. Participants asked to stop any harassing behavior are expected to comply immediately.
 
 If a participant engages in harassing behavior, the event organizers may take any action they deem appropriate, including warning the offender or expulsion from the event with no refund. If you are being harassed, notice that someone else is being harassed, or have any other concerns, please contact a member of the event staff immediately.
 

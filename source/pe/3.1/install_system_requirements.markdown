@@ -19,7 +19,7 @@ Before installing Puppet Enterprise:
 Operating System
 -----
 
-Puppet Enterprise 3.1 supports the following systems:
+Puppet Enterprise 3.1.3 supports the following systems:
 
 Operating system             | Version(s)                              | Arch          | Roles
 -----------------------------|-----------------------------------------|---------------|----------------------------
@@ -34,6 +34,19 @@ Solaris                      | 10 (Update 9 or later)                           
 Microsoft Windows            | 2003, 2003R2, 2008, 2008R2, 7, 8, & 2012 | x86 & x86\_64 | agent
 AIX                          | 5.3, 6.1, & 7.1                         | Power         | agent
 
+<br>
+
+> *Note:* Upgrading your OS while PE is installed can cause problems with PE. To perform an OS upgrade, you'll need to uninstall PE, perform the OS upgrade, and then reinstall PE as follows:
+>
+1. Back up your databases and other PE files.
+>
+2. Perform a complete [uninstall](/pe/3.1/install_uninstalling.html) (including the -pd uninstaller option).
+>
+3. Upgrade your OS.
+>
+4. [Install PE](/pe/3.1/install_basic.html).
+>
+5. Restore your backup.
 
 Hardware
 -----
@@ -53,10 +66,25 @@ Puppet Enterprise's hardware requirements depend on the roles a machine performs
     * Minimum requirements: Any hardware able to comfortably run a supported operating system.
 
 
+Browser
+-----
+
+ The following browsers are supported for use with the console:
+
+* Chrome: Current version 
+* Firefox: Current version
+* Internet Explorer: 9 or higher
+* Safari: 5.1 and higher
+
+
 Configuration
 -----
 
 Before installing Puppet Enterprise at your site, you should make sure that your nodes and network are properly configured.
+
+### Timekeeping
+
+We recommend using NTP or an equivalent service to ensure that time is in sync between your puppet master and any puppet agent nodes. If time drifts out of sync in your PE infrastructure, you may encounter issues such as nodes disappearing from live manangement in the console. A service like NTP ([available as a Forge module](https://forge.puppetlabs.com/puppetlabs/ntp)) will ensure accurate timekeeping.
 
 ### Name Resolution
 
@@ -153,7 +181,7 @@ libreadline5  | libapr1                 | libapr1                 |             
 virt-what     | libcap2                 | libcap2                 |                          |
               | libaprutil1             | libaprutil1             |                          |
               | libaprutil1-dbd-sqlite3 | libaprutil1-dbd-sqlite3 |                          |
-              | libaprutil1-ldap        | ibaprutil1-ldap         |                          |
+              | libaprutil1-ldap        | libaprutil1-ldap        |                          |
               | libjpeg62               |                         |                          |
 
 <br>
@@ -174,7 +202,7 @@ libreadline5  | libapr1                 | libapr1                 |             
 virt-what     | libcap2                 | libcap2                 |                          |
               | libaprutil1             | libaprutil1             |                          |
               | libaprutil1-dbd-sqlite3 | libaprutil1-dbd-sqlite3 |                          |
-              | libaprutil1-ldap        | ibaprutil1-ldap         |                          |
+              | libaprutil1-ldap        | libaprutil1-ldap        |                          |
               | libjpeg62               |                         |                          |
 
 <br>
@@ -208,7 +236,7 @@ The PE AIX implementation supports the NIM, BFF, and RPM package providers. Chec
 Solaris support is agent only. The following packages are required:
 
   * SUNWgccruntime
-  * libgcc_s.so.1
+  * SUNWzlib
   * In some instances, bash may not be present on Solaris systems. It needs to be installed before running the PE installer. Install it via the media used to install the OS or via CSW if that is present on your system. (CSWbash or SUNWbash are both suitable.)
 
 

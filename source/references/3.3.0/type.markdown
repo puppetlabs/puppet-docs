@@ -863,8 +863,7 @@ running commands as different users in the shell.
 Whether to log command output in addition to logging the
 exit code.  Defaults to `on_failure`, which only logs the output
 when the command has an exit code that does not match any value
-specified by the `returns` attribute.  In addition to the values
-below, you may set this attribute to any legal log level.  Valid values are `true`, `false`, `on_failure`.
+specified by the `returns` attribute.  Valid values are `true`, `false`, `on_failure`.
 
 ([↑ Back to exec attributes](#exec-attributes))
 
@@ -7530,9 +7529,8 @@ A trigger can contain the following keys:
       first become active. Several time formats will work, but we
       suggest 24-hour time formatted as HH:MM.
     * `start_date` ---  The date when the trigger should first become active.
-      Defaults to "today." Several date formats will work, including
-      special dates like "today," but we suggest formatting dates as
-      YYYY-MM-DD.
+      Defaults to the current date. You should format dates as YYYY-MM-DD,
+      although other date formats may work. (Under the hood, this uses `Date.parse`.)
 * For daily triggers:
     * `every` --- How often the task should run, as a number of days. Defaults
       to 1. ("2" means every other day, "3" means every three days, etc.)

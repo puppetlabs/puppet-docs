@@ -5,9 +5,21 @@ subtitle: "New Features in PE 3.1"
 canonical: "/pe/latest/overview_whats_new.html"
 ---
 
+### Version 3.1.3
+
+PE 3.1.3 is a security release that patches a vulnerability. For details, check the [release notes](appendix.html#release-notes).
+
+### Version 3.1.2
+
+PE 3.1.2 is a maintenance release that patches a security vulnerability and fixes several minor bugs. For details, check the [release notes](appendix.html#release-notes).
+
+### Version 3.1.1
+
+PE 3.1.1 is a maintenance release that patches several security vulnerabilities. For details, check the [release notes](appendix.html#release-notes).
+
 ### Version 3.1.0
 
-Puppet Enterprise (PE) version 3.1.0 is a feature and maintenance release. It adds new features, fixes bugs, and addresses security issues. Specifically, the 3.1.0 release includes the following major changes and additions (a comprehensive list of updates, changes and additions can be found in the [release notes](appendix.html#release-notes)):
+Puppet Enterprise (PE) version 3.1.0 is a feature and maintenance release. It adds new features, fixes bugs, and addresses security issues. Specifically, the 3.1.0 release includes the following major changes and additions (a comprehensive list of updates, changes and additions can be found in the [release notes](appendix.html#release-notes):
 
 * *Event Inspector*
 

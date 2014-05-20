@@ -1,9 +1,9 @@
 {% capture version %}{% reference_version %}{% endcapture %}
-
+{% unless version contains 'html' %}
 <h3 id="generated-references">Generated References</h3>
 
-<p>These pages are generated from the Puppet source code. You are looking at the references for:</p>
 
+<p>These pages are generated from the Puppet source code. You are looking at the references for:</p>
 <h4 id="puppet--referenceversion-">Puppet {{ version }}</h4>
 
 <ul>
@@ -35,12 +35,13 @@
 </ul>
 
 <p><a href="/references/index.html">See here for all historical versions.</a></p>
-
+{% endunless %}
 <h4 id="puppet-reference-manual">Puppet Reference Manual</h4>
 
 <p>Use these links to go back to the Puppet Reference Manual:</p>
 
 <ul>
+  <li><a href="/puppet/3.5/reference">Puppet 3.5</a></li>
   <li><a href="/puppet/3/reference">Puppet 3</a></li>
   <li><a href="/puppet/2.7/reference">Puppet 2.7</a></li>
 </ul>

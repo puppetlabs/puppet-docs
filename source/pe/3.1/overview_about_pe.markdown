@@ -30,9 +30,9 @@ Puppet Enterprise is a comprehensive tool for enterprise systems configuration m
 * Powerful orchestration capabilities.
 * Cloud provisioning tools for creating and configuring new VM instances.
 
-Puppet Enterprise consists of a complete stack of Puppet Labs' technologies, which are automatically installed and connected. Specifically PE 3.1 includes all of the following Puppet Labs software:
+Puppet Enterprise consists of a complete stack of Puppet Labs' technologies, which are automatically installed and connected. Specifically PE 3.1.3 includes all of the following Puppet Labs software:
 
- * Puppet 3.3.1
+ * Puppet 3.3.3
  * PuppetDB 1.5.1
  * Facter 1.7.3.
  * MCollective 2.2.4

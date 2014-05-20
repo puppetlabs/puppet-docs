@@ -1,6 +1,7 @@
 ---
 layout: default
 title: "Puppet 2.7 Reference Manual"
+canonical: "/puppet/latest/reference/index.html"
 ---
 
 

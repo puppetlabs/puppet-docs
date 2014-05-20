@@ -1,6 +1,7 @@
 ---
 layout: default
 title: "Language: Node Definitions"
+canonical: "/puppet/latest/reference/lang_node_definitions.html"
 ---
 
 <!-- TODO: Need better link for hiera -->
@@ -238,8 +239,6 @@ In the above example, `www1.example.com` would receive the `common, ntp, apache,
 > In the example above, this means that by the time `node www01.example.com` has set its own value for `$ntpserver`, the `ntp` class has **already received** the value it needed and is no longer interested in that variable. For the derived node to override that variable **for classes in the base node,** it would have to be complied **before** the base node, and there is no way for Puppet's current implementation to do that.
 >
 > #### Alternatives to Node Inheritance
->
-> TODO Link to hiera guides
 >
 > * Most users who need hierarchical data should keep it in an external source and have their manifests look it up. The best solution right now is [Hiera][], which is available by default in Puppet 3 and later. See our [Hiera guides][hiera_guides] for more information about using it.
 > * [ENCs][enc] can look up data from any arbitrary source, and return it to Puppet as top-scope variables.

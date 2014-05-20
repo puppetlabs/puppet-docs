@@ -1,6 +1,7 @@
 ---
 layout: default
 title: "Language: Comments"
+canonical: "/puppet/latest/reference/lang_comments.html"
 ---
 
 Puppet supports two types of comments:

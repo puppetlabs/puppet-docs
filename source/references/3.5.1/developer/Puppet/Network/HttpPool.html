@@ -1,0 +1,438 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Module: Puppet::Network::HttpPool
+  
+    &mdash; Documentation by YARD 0.8.7.3
+  
+</title>
+
+  <link rel="stylesheet" href="../../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '../../';
+  framesUrl = "../../frames.html#!" + escape(window.location.href);
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../../_index.html">Index (H)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span> &raquo; <span class='title'><span class='object_link'>Network</span></span>
+     &raquo; 
+    <span class="title">HttpPool</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../../class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="../../method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="../../file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><h1>Module: Puppet::Network::HttpPool
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r1 last">Defined in:</dt>
+    <dd class="r1 last">lib/puppet/network/http_pool.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'><p>The name "HttpPool" is a misnomer, and a leftover of history, but we would
+like to make this cache connections in the future.</p>
+</div>
+  </div>
+
+<p>This module contains the factory methods that should be used for getting a
+href="HTTP::Connection">HTTP::Connection</a> instance.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+
+
+
+
+
+
+  
+    <h2>
+      Class Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#http_instance-class_method" title="http_instance (class method)">+ (Puppet::Network::HTTP::Connection) <strong>http_instance</strong>(host, port, use_ssl = true, verify_peer = true) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Retrieve a connection for the given host and port.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#http_ssl_instance-class_method" title="http_ssl_instance (class method)">+ (Puppet::Network::HTTP::Connection) <strong>http_ssl_instance</strong>(host, port, verifier = Puppet::SSL::Validator.default_validator()) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Get an http connection that will be secured with SSL and have the connection verified with the given verifier.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="http_instance-class_method">
+  
+    + (<tt><span class='object_link'><a href="HTTP/Connection.html" title="Puppet::Network::HTTP::Connection (class)">Puppet::Network::HTTP::Connection</a></span></tt>) <strong>http_instance</strong>(host, port, use_ssl = true, verify_peer = true) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Retrieve a connection for the given host and port.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>host</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>String</span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The hostname to connect to</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>port</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The port on the host to connect to</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>use_ssl</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Whether to use an SSL connection</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>verify_peer</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Whether to verify the peer credentials, if possible. Verification will not take place if the CA certificate is missing.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="HTTP/Connection.html" title="Puppet::Network::HTTP::Connection (class)">Puppet::Network::HTTP::Connection</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/network/http_pool.rb', line 25</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_http_instance'>http_instance</span><span class='lparen'>(</span><span class='id identifier rubyid_host'>host</span><span class='comma'>,</span> <span class='id identifier rubyid_port'>port</span><span class='comma'>,</span> <span class='id identifier rubyid_use_ssl'>use_ssl</span> <span class='op'>=</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='id identifier rubyid_verify_peer'>verify_peer</span> <span class='op'>=</span> <span class='kw'>true</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_verifier'>verifier</span> <span class='op'>=</span> <span class='kw'>if</span> <span class='id identifier rubyid_verify_peer'>verify_peer</span>
+               <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>SSL</span><span class='op'>::</span><span class='const'>Validator</span><span class='period'>.</span><span class='id identifier rubyid_default_validator'>default_validator</span><span class='lparen'>(</span><span class='rparen'>)</span>
+             <span class='kw'>else</span>
+               <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>SSL</span><span class='op'>::</span><span class='const'>Validator</span><span class='period'>.</span><span class='id identifier rubyid_no_validator'>no_validator</span><span class='lparen'>(</span><span class='rparen'>)</span>
+             <span class='kw'>end</span>
+
+  <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Network</span><span class='op'>::</span><span class='const'>HTTP</span><span class='op'>::</span><span class='const'>Connection</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_host'>host</span><span class='comma'>,</span> <span class='id identifier rubyid_port'>port</span><span class='comma'>,</span>
+                                        <span class='symbol'>:use_ssl</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_use_ssl'>use_ssl</span><span class='comma'>,</span>
+                                        <span class='symbol'>:verify</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_verifier'>verifier</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="http_ssl_instance-class_method">
+  
+    + (<tt><span class='object_link'><a href="HTTP/Connection.html" title="Puppet::Network::HTTP::Connection (class)">Puppet::Network::HTTP::Connection</a></span></tt>) <strong>http_ssl_instance</strong>(host, port, verifier = Puppet::SSL::Validator.default_validator()) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Get an http connection that will be secured with SSL and have the
+connection verified with the given verifier</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>host</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>String</span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the DNS name to connect to</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>port</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the port to connect to</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>verifier</span>
+      
+      
+        <span class='type'>(<tt>#setup_connection</tt>, <tt>#peer_certs</tt>, <tt>#verify_errors</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>Puppet::SSL::Validator.default_validator()</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>An object that will setup the appropriate
+verification on a Net::HTTP instance and report any errors and the certificates used.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="HTTP/Connection.html" title="Puppet::Network::HTTP::Connection (class)">Puppet::Network::HTTP::Connection</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+48
+49
+50
+51
+52</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/network/http_pool.rb', line 48</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_http_ssl_instance'>http_ssl_instance</span><span class='lparen'>(</span><span class='id identifier rubyid_host'>host</span><span class='comma'>,</span> <span class='id identifier rubyid_port'>port</span><span class='comma'>,</span> <span class='id identifier rubyid_verifier'>verifier</span> <span class='op'>=</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>SSL</span><span class='op'>::</span><span class='const'>Validator</span><span class='period'>.</span><span class='id identifier rubyid_default_validator'>default_validator</span><span class='lparen'>(</span><span class='rparen'>)</span><span class='rparen'>)</span>
+  <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Network</span><span class='op'>::</span><span class='const'>HTTP</span><span class='op'>::</span><span class='const'>Connection</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_host'>host</span><span class='comma'>,</span> <span class='id identifier rubyid_port'>port</span><span class='comma'>,</span>
+                                        <span class='symbol'>:use_ssl</span> <span class='op'>=&gt;</span> <span class='kw'>true</span><span class='comma'>,</span>
+                                        <span class='symbol'>:verify</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_verifier'>verifier</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+    <div id="footer">
+  Generated on Thu Apr 10 18:10:14 2014 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.3 (ruby-2.0.0).
+</div>
+
+  </body>
+</html>

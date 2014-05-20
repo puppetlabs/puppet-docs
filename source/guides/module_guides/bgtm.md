@@ -11,11 +11,11 @@ title: Beginner's Guide to Modules
 [service]: ./images/bgtmntpservice.png
 
 
-This module guide will help you learn how to create fantastic modules by introducing Puppet Labs' module best practice [standards and architecture](http://docs.puppetlabs.com/guides/style_guide.html). Contributors to this guide have spent years creating Puppet modules, falling into every pitfall, trap, and mistake you could hope to make. This guide is intended to help you avoid our mistakes through an approachable introduction to module best practices.
+This module guide will help you learn how to create fantastic modules by introducing Puppet Labs' module best practice [standards and architecture](/guides/style_guide.html). Contributors to this guide have spent years creating Puppet modules, falling into every pitfall, trap, and mistake you could hope to make. This guide is intended to help you avoid our mistakes through an approachable introduction to module best practices.
 
 ##Requirements
 
-Before reading this guide we recommend that you become familiar with [Puppet](http://docs.puppetlabs.com/learning/modules1.html) such that you have a basic understanding of the Puppet [language](http://docs.puppetlabs.com/learning/#contents), you know what constitutes a [class](http://docs.puppetlabs.com/learning/modules1.html#classes), and you know how to put together a [basic module](http://docs.puppetlabs.com/learning/modules1.html#the-modulepath).
+Before reading this guide we recommend that you become familiar with [Puppet](/learning/modules1.html) such that you have a basic understanding of the Puppet [language](/learning/#contents), you know what constitutes a [class](/learning/modules1.html#classes), and you know how to put together a [basic module](/learning/modules1.html#the-modulepath).
 
 ##Step One: Giving Your Module Purpose
 
@@ -62,7 +62,7 @@ In terms of class structure we recommend the following (more detail below):
 
 #### `module`
 
-The main class of any module must share the name of the module and be located in the `init.pp` file. The name and location of the main module class is extremely important, as it guides the [autoloader](http://docs.puppetlabs.com/puppet/2.7/reference/lang_namespaces.html#autoloader-behavior) behavior. The main class of a module is its interface point and ought to be the only parameterized class if possible. Limiting the parameterized classes to just the main class allows you to control usage of the entire module with the inclusion of a single class.  This class should provide sensible defaults so that a user can get going with `include module`.
+The main class of any module must share the name of the module and be located in the `init.pp` file. The name and location of the main module class is extremely important, as it guides the [autoloader](/puppet/2.7/reference/lang_namespaces.html#autoloader-behavior) behavior. The main class of a module is its interface point and ought to be the only parameterized class if possible. Limiting the parameterized classes to just the main class allows you to control usage of the entire module with the inclusion of a single class.  This class should provide sensible defaults so that a user can get going with `include module`.
 
 For instance, this is how the ntp module's main class is structured:
 
@@ -219,7 +219,7 @@ Classes do not _automatically_ contain the classes they declare. (This is becaus
 
 Thus, if you want to allow other modules to form ordering relationships with your module, you should ensure that your main class(es) will explicitly _contain_ any subordinate classes they declare. For more information and context, you can see [the Containment page of the Puppet reference manual](/puppet/latest/reference/lang_containment.html).
 
-In Puppet 3.4.0 and later, you can contain classes by using [the `contain` function](/references/latest/function.html#contain) on them. To support versions prior to 3.4.0, you must use the **anchor pattern** to hold those classes in place. See below for an example of anchoring. (*Note: anchoring requires [puppetlabs-stdlib](http://forge.puppetlabs.com/puppetlabs/stdlib)*.)
+In Puppet 3.4.0 / Puppet Enterprise 3.2 and later, you can contain classes by using [the `contain` function](/references/latest/function.html#contain) on them. To support versions prior to 3.4.0 / PE 3.2, you must use the **anchor pattern** to hold those classes in place. See below for an example of anchoring. (*Note: anchoring requires [puppetlabs-stdlib](http://forge.puppetlabs.com/puppetlabs/stdlib)*.)
 
 Two resources to anchor things to:
 
@@ -247,7 +247,7 @@ For a real world example of anchoring in action, please see Hunter's [puppet-wor
 
 If your module's functionality depends on another module, then you must  list these dependencies and include them directly, rather than indirectly hoping they are included in the catalog.
 
-This means you must `include x` in your `init.pp` to ensure the dependency is included in the catalog. You must also add the dependency to the [Modulefile](http://docs.puppetlabs.com/guides/style_guide.html#module-metadata) and `.fixtures.yml`. (`.fixtures.yml` is a file used exclusively by rspec to pull in dependencies required to successfully run unit tests.)
+This means you must `include x` in your `init.pp` to ensure the dependency is included in the catalog. You must also add the dependency to the [Modulefile](/guides/style_guide.html#module-metadata) and `.fixtures.yml`. (`.fixtures.yml` is a file used exclusively by rspec to pull in dependencies required to successfully run unit tests.)
 
 ##Step Three: Module Testing
 
@@ -295,13 +295,13 @@ It also allows you to create a list of dependencies in the Modulefile of your mo
 
 ##Step Five: Module releasing
 
-We encourage you to publish your modules on the [Puppet Forge](http://forge.puppetlabs.com). Sharing your modules allows other users to write improvements to the modules you make available and contribute them back to you, effectively giving you free improvements to your modules! Additionally, publishing your modules to the Forge helps foster community among Puppet users, and allows other Puppet community members to download and use your module in order to avoid reinventing the wheel. If the Puppet community routinely releases and hacks on modules on the Forge, the quality of available Puppet modules increases dramatically and gives you access to more modules to download and modify for your own purposes. Details on how to publish modules to the Puppet Forge can be found [here](http://docs.puppetlabs.com/puppet/latest/reference/modules_publishing.html).
+We encourage you to publish your modules on the [Puppet Forge](http://forge.puppetlabs.com). Sharing your modules allows other users to write improvements to the modules you make available and contribute them back to you, effectively giving you free improvements to your modules! Additionally, publishing your modules to the Forge helps foster community among Puppet users, and allows other Puppet community members to download and use your module in order to avoid reinventing the wheel. If the Puppet community routinely releases and hacks on modules on the Forge, the quality of available Puppet modules increases dramatically and gives you access to more modules to download and modify for your own purposes. Details on how to publish modules to the Puppet Forge can be found [here](/puppet/latest/reference/modules_publishing.html).
 
 ##Community Resources
 
-[All the module basics](http://docs.puppetlabs.com/puppet/3/reference/modules_fundamentals.html) (part of the Puppet Reference Guide)
+[All the module basics](/puppet/latest/reference/modules_fundamentals.html) (part of the Puppet Reference Guide)
 
-[Pro Puppet](http://www.amazon.com/Pro-Puppet-James-Turnbull/dp/1430230576) (an in-depth guide to Puppet by Jeff McCune and James Turnbull)
+[Pro Puppet](http://www.apress.com/9781430260400) (an in-depth guide to Puppet by Spencer Krum, Ben Kero, William Van Hevelingen, Jeff McCune and James Turnbull)
 
 [Puppet Types and Providers](http://shop.oreilly.com/product/0636920026860.do) (a book on extending Puppet's resource model by Dan Bode & Nan Liu)
 

@@ -5,7 +5,6 @@ canonical: "/pe/latest/install_what_and_where.html"
 ---
 
 
-
 ## License File
 
 
@@ -60,10 +59,8 @@ The software distributed with Puppet Enterprise generates the following log file
 ### Puppet Master Logs
 
 - `/var/log/pe-httpd/access.log`
-- `/var/log/pe-httpd/error.log`
-
-These logs are solely for HTTP activity; the puppet master service logs most of its activity to the syslog service. Your syslog configuration dictates where these messages will be saved, but the default location is `/var/log/messages` on Linux and `/var/adm/messages` on Solaris.
-
+- `/var/log/pe-httpd/puppetmasteraccess.log` contains all the endpoints that have been accessed with the puppet master REST API.
+ 
 ### Puppet Agent Logs
 
 The puppet agent service logs its activity to the syslog service. Your syslog configuration dictates where these messages will be saved, but the default location is `/var/log/messages` on Linux and `/var/adm/messages` on Solaris.
@@ -75,23 +72,28 @@ The puppet agent service logs its activity to the syslog service. Your syslog co
 - `/var/opt/puppet/activemq/data/kahadb/db-1.log`
 - `/var/opt/puppet/activemq/data/audit.log`
 
-### Orchestration Service Log
+### Orchestration Service Logs
 
-This log is maintained by the orchestration service, which is installed on all nodes.
-
-- `/var/log/pe-mcollective/mcollective.log`
+- `/var/log/pe-mcollective/mcollective.log` maintained by the orchestration service, which is installed on all nodes.
 
 ### Console Logs
 
-- `/var/log/pe-httpd/puppetdashboard.access.log`
 - `/var/log/pe-httpd/puppetdashboard.error.log`
 - `/var/log/pe-puppet-dashboard/delayed_job.log`
 - `/var/log/pe-puppet-dashboard/mcollective_client.log`
 - `/var/log/pe-puppet-dashboard/production.log`
+- `/var/log/pe-puppet-dashboard/event-inspector.log`
+- `/var/log/pe-puppet-dashboard/certificate_manager.log`
+- `/var/log/pe-console-auth/auth.log`
+- `/var/log/pe-console-auth/cas_client.log`
+- `/var/log/pe-console-auth/cas.log`
+- `/var/log/pe-httpd/puppetdashboard.access.log` contains all the endpoints that have been accessed in the console.
+- `var/log/pe-puppet-dasboard/failed_reports/` contains a collection of any reports that fail to upload the to the dashboard.
+- `/var/log/pe-httpd/error.log` contains errors related to Passenger. Console errors that don't get logged anywhere else can be found in this log. If you have problems with the console or Puppet, this log may be useful.
 
 ### Database Log
 
--`/var/log/pe-puppetdb/pe-puppetdb.log`
+- `/var/log/pe-puppetdb/pe-puppetdb.log`
 
 ### Miscellaneous Logs
 
@@ -100,7 +102,6 @@ These files may or may not be present.
 - `/var/log/pe-httpd/other_vhosts_access.log`
 - `/var/log/pe-puppet/masterhttp.log`
 - `/var/log/pe-puppet/rails.log`
-
 
 ## Puppet Enterprise Components
 
@@ -146,8 +147,9 @@ PE creates the following users:
 PE generates a number of certificates at install. These are:
 
 - **`pe-internal-dashboard`** ---  The certificate for the puppet dashboard.
-- **`q_puppet_enterpriseconsole_install`** ---  The certificate for the PE console. Only generated if the user has chosen to install the console.
-- **` q_puppetmaster_install `** --- This certificate is either generated at install if the puppet master and console are the same machine or is signed by the master if the console is on a separate machine.
+- **`<user entered console certname>`** ---  The certificate for the PE console. Only generated if the user has chosen to install the console in a split role configuration.
+- **`<user entered PuppetDB certname>`** ---  The certificate for the database role. Only generated if the user has chosen to install the database in a split role configuration.
+- **` <user entered master certname> `** --- This certificate is either generated at install if the puppet master and console are the same machine or is signed by the master if the console is on a separate machine.
 - **`pe-internal-mcollective-servers`** --- A shared certificate generated on the puppet master and shared to all agent nodes.
 - **`pe-internal-peadmin-mcollective-client`** --- The orchestration certificate for the peadmin account on the puppet master.
 - **`pe-internal-puppet-console-mcollective-client`** --- The orchestration certificate for the PE console/live management

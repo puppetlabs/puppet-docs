@@ -24,7 +24,7 @@ title: "Hiera 1: Using Hiera With Puppet"
 [hash_lookup]: ./lookup_types.html#hash-merge
 [template_functions]: /guides/templating.html#using-functions-within-templates
 [enc]: /guides/external_nodes.html
-[site_manifest]: /puppet/latest/reference/lang_summary.html#files
+[site_manifest]: /puppet/latest/reference/dirs_manifest.html
 [node_definition]: /puppet/latest/reference/lang_node_definitions.html
 
 
@@ -69,11 +69,16 @@ When doing any Hiera lookup, with both automatic parameter lookup and the Hiera 
 * `calling_module` --- The module in which the lookup is written. This has the same value as the [Puppet `$module_name` variable.][module_name]
 * `calling_class` --- The class in which the lookup is evaluated. If the lookup is written in a defined type, this is the class in which the current instance of the defined type is declared.
 
+Note that these variables are effectively local scope, as they are pseudo-variables that only exist within the context of a specific class, and only inside of hiera. Therefore, they must be called as `%{variable_name}` and never `%{::variable_name}`. They are not top-scope.
+
 > **Note:** These variables were broken in some versions of Puppet.
 >
-> * Puppet 2.7.x: **Good**
-> * Puppet 3.0.x and 3.1.x: **Bad**
-> * Puppet 3.2.x and later: **Good**
+> Version                                        | Status
+> -----------------------------------------------|-----------
+> Puppet 2.7.x / PE 2.x                          | **Good**
+> Puppet 3.0.x -- 3.3.x / PE 3.0 -- 3.1          | **Broken**
+> Puppet 3.4.x and later / PE 3.2                | **Good**
+
 
 [module_name]: /puppet/latest/reference/lang_variables.html#parser-set-variables
 
@@ -234,7 +239,7 @@ Assigning Classes to Nodes With Hiera (`hiera_include`)
 You can use Hiera to assign classes to nodes with the special `hiera_include` function. This lets you assign classes in great detail without repeating yourself --- it's essentially what people have traditionally tried and failed to use node inheritance for. It can get you the benefits of a rudimentary [external node classifier][enc] without having to write an actual ENC.
 
 1. Choose a key name to use for classes. Below, we assume you're just using `classes`.
-2. In your [`/etc/puppet/manifests/site.pp`][site_manifest] file, write the line `hiera_include('classes')`. Put this **outside any [node definition][node_definition],** and below any top-scope variables that you might be relying on for Hiera lookups.
+2. In your [main manifest][site_manifest], write the line `hiera_include('classes')`. Put this **outside any [node definition][node_definition],** and below any top-scope variables that you might be relying on for Hiera lookups.
 3. Create `classes` keys throughout your Hiera hierarchy.
     * The value of each `classes` key should be an **array.**
     * Each value in the array should be **the name of a class.**

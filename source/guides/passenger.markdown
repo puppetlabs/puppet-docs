@@ -1,36 +1,23 @@
 ---
 layout: default
-title: Passenger
+title: "Configuring a Puppet Master Server with Passenger and Apache"
 ---
 
-Passenger
-=========
 
-Using Passenger instead of WEBrick for web services offers numerous performance
-advantages.  This guide shows how to set it up in an Apache web server.
+Puppet includes a basic puppet master web server based on Ruby's WEBrick library. (This is what Puppet uses if you run `puppet master` on the command line or use most `puppetmaster` init scripts.)
 
-* * *
+You **cannot** use this default server for real-life loads, as it can't handle concurrent connections; it is only suitable for small tests with ten nodes or fewer. You must configure a production quality web server before you start managing your nodes with Puppet.
 
-Why Passenger
--------------
+Any Rack-based application server stack will work with a puppet master, but if you don't have any particular preference, you should use Passenger combined with Apache. This guide shows how to configure Puppet with this software.
 
-Traditionally, the puppetmaster would embed a WEBrick
-Web Server to serve the Puppet clients. This may work well for
-testing and small deployments, but it's recommended to use a more
-scalable server for production environments.
 
 What is Passenger?
 ------------------
 
 [Passenger](http://www.modrails.com/) (AKA mod\_rails or mod\_rack)
-is the Apache 2.x module which lets you run Rails or Rack
+is an Apache 2.x module which lets you run Rails or Rack
 applications inside a general purpose web server, like
 [Apache httpd](http://httpd.apache.org/) or [nginx](http://nginx.org/).
-
-Passenger is the recommended deployment method for modern versions
-of puppet masters, but you may run into compatibility issues with
-Puppet versions older than 0.24.6 and Passenger versions older than
-2.2.5.
 
 ### Relevant Pages in the Passenger Docs
 
@@ -39,8 +26,8 @@ Puppet versions older than 0.24.6 and Passenger versions older than
 * [The Apache version of the Passenger user's guide][passenger_apache_guide] covers the Passenger-specific configuration directives we use below in much greater detail.
 
 
-Apache and Passenger Installation
----------------------------------
+Install Apache and Passenger
+-----
 
 Make sure `puppet master` has been run at least once (or
 `puppet agent`, if this master is not the CA), so that all required
@@ -64,8 +51,8 @@ RHEL/CentOS (needs the Puppet Labs repository enabled, or the
     $ sudo gem install rack passenger
     $ sudo passenger-install-apache2-module
 
-Apache Configuration
---------------------
+Configure Apache
+-----
 
 To configure Apache to run the puppet master application, you must:
 
@@ -77,7 +64,7 @@ To configure Apache to run the puppet master application, you must:
 Your copy of Puppet includes a `config.ru` file, which tells Rack how to spawn puppet master processes. To install this Rack application in a form Passenger can use, you'll need to:
 
 * Create three directories for the application (a parent directory, a "public" directory, and a "tmp" directory)
-* Copy the `ext/rack/files/config.ru` file from the Puppet source code into the parent directory
+* Copy the `ext/rack/config.ru` file from the Puppet source code into the parent directory
 * Set the ownership of the config.ru file
 
 > **Note:** The `chown` step is important --- the owner of this file is the user the puppet master process will run under. This should usually be `puppet`, but may be different in your deployment.
@@ -91,7 +78,7 @@ These steps will look something like this:
     $ sudo cp /usr/share/puppet/ext/rack/config.ru /usr/share/puppet/rack/puppetmasterd/
     $ sudo chown puppet:puppet /usr/share/puppet/rack/puppetmasterd/config.ru
 
-The location of the Puppet source will vary by OS, and the packages you installed with might have excluded the files from `ext/`. If so, you can [download the config.ru file directly from GitHub](https://raw.github.com/puppetlabs/puppet/master/ext/rack/config.ru).
+The location of the Puppet source will vary by OS, and the packages you installed with might have excluded the files from `ext/`. If so, you can [download the config.ru file directly from GitHub](https://raw.github.com/puppetlabs/puppet/stable/ext/rack/config.ru).
 
 ### Create and Enable the Puppet Master Vhost
 
@@ -113,7 +100,7 @@ See "Example Vhost Configuration" below for the contents of the `puppetmaster.co
 #### Example Vhost Configuration
 
 This Apache Virtual Host configures the puppet master on the default
-puppetmaster port (8140). You can also see a similar file at `ext/rack/files/apache2.conf` in the Puppet source.
+puppetmaster port (8140). You can also see a similar file at `ext/rack/example-passenger-vhost.conf` in the Puppet source.
 
     # You'll need to adjust the paths in the Passenger config depending on which OS
     # you're using, as well as the installed version of Passenger.
@@ -149,9 +136,14 @@ puppetmaster port (8140). You can also see a similar file at `ext/rack/files/apa
         SSLCertificateChainFile /var/lib/puppet/ssl/ca/ca_crt.pem
         SSLCACertificateFile    /var/lib/puppet/ssl/ca/ca_crt.pem
         SSLCARevocationFile     /var/lib/puppet/ssl/ca/ca_crl.pem
+        SSLCARevocationCheck 	chain
         SSLVerifyClient         optional
         SSLVerifyDepth          1
         SSLOptions              +StdEnvVars +ExportCertData
+        
+        # Apache 2.4 introduces the SSLCARevocationCheck directive and sets it to none
+    	# which effectively disables CRL checking. If you are using Apache 2.4+ you must
+        # specify 'SSLCARevocationCheck chain' to actually use the CRL.
 
         # These request headers are used to pass the client certificate
         # authentication information on to the puppet master process

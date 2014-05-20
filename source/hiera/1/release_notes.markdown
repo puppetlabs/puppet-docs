@@ -4,10 +4,27 @@ title: "Hiera 1: Release Notes"
 ---
 
 
+Hiera 1.3.2
+-----
+
+Released February 26, 2014. (RC1: February 11; RC2: February 20.)
+
+Hiera 1.3.2 is a bug fix release in the 1.3 series. It adds packages for Red Hat Enterprise Linux 7, support for deploying to Solaris and Windows vCloud instances, and fixes a bug on Debian.
+
+### RHEL 7 Support
+
+* [HI-179](https://tickets.puppetlabs.com/browse/HI-179): Add RHEL 7 support for Hiera packaging.
+
+### Bug Fixes
+
+* [HI-176](https://tickets.puppetlabs.com/browse/HI-176): Hiera would fail to find the correct ruby binary on Debian when an alternative version was installed. Hiera now uses `/usr/bin/ruby`, which fixes the issue.
+* [HI-178](https://tickets.puppetlabs.com/browse/HI-178): Acceptance tests have been added for Solaris and Windows vCloud machines.
+* [HI-115](https://tickets.puppetlabs.com/browse/HI-115): Hiera would show an incorrect `recursive_guard` warning if the same variable was interpolated twice in a hierarchy definition, even if the usage was not recursive.
+
 Hiera 1.3.1
 -----
 
-**Pre-release:** Hiera 1.3.1 is not yet released. It entered RC1 on December 12, 2013.
+Released January 23, 2014. (RC1: December 12, 2013.)
 
 Hiera 1.3.1 is a bug fix release in the 1.3 series. It fixes one bug:
 

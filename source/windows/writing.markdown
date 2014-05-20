@@ -155,7 +155,7 @@ Puppet can manage files and directories, including owner, group, permissions, an
 
 #### Required User Permissions
 
-By default, Puppet's installer sets puppet agent to run as the Administrator user. If you want to run it as a different user (see ["Automated Installation" in the installing page](./installing.html#automated-installation)), you must ensure Puppet has the following permissions:
+By default, Puppet's installer sets puppet agent to run as the Administrator user. If you want to run it as a different user (see ["Automated Installation" in the installing page](/guides/install_puppet/install_windows.html)), you must ensure Puppet has the following permissions:
 
 * In order to manage files that it does not own, Puppet must be running as a member of the local Administrators group (on Windows 2003) or with elevated privileges (Windows 7 and 2008). This gives Puppet the `SE_RESTORE_NAME` and `SE_BACKUP_NAME` privileges it requires to manage file permissions.
 * To manage symlinks, Puppet's user also needs the "Create Symbolic Links" privilege, which the Administrators group has by default.
@@ -167,7 +167,11 @@ By default, Puppet's installer sets puppet agent to run as the Administrator use
     * The owner of a file/directory always has the `FULL_CONTROL` access right.
     * The `Everyone` SID is used to represent users other than the owner and group.
 * When a permissions mode is set with Puppet, it causes the security descriptor to be _protected._ This prevents that file from inheriting any more permissive access controls from the directory that contains it.
-* When copying files from a puppet master using the `source` attribute, Puppet defaults to applying the ownership and permissions from the source files. This is generally **not** desired on Windows, and the default behavior is now deprecated, scheduled for change in Puppet 4. In the meantime, you can change or disable this behavior with [the `file` type's `source_permissions` attribute](/references/latest/type.html#file-attribute-source_permissions); for Windows systems, you will usually want to use a resource default in site.pp to set `source_permissions => ignore`.
+* When copying files from a puppet master using the `source` attribute, Puppet defaults to applying the ownership and permissions from the source files. This is generally **not** desired on Windows, and the default behavior is now deprecated, scheduled for change in Puppet 4. In the meantime, you can change or disable this behavior with [the `file` type's `source_permissions` attribute](/references/latest/type.html#file-attribute-source_permissions); for Windows systems, you will usually want to set it to `ignore` with a resource default in site.pp:
+
+        if $osfamily == 'windows' {
+          File { source_permissions => ignore }
+        }
 * Puppet cannot set permission modes where the group has higher permissions than the owner, or other users have higher permissions than the owner or group. (That is, 0640 and 0755 are supported, but 0460 is not.) Directories on Windows can have the sticky bit, which makes it so users can only delete files if they own the containing directory.
 * On Windows, the owner of a file can be a group (e.g. `owner => 'Administrators'`) and the group of a file can be a user (e.g. `group => 'Administrator'`). The owner and group can even be the same, but as that can cause problems when the mode gives different permissions to the owner and group (like `0750`), this is not recommended.
 * Puppet does not currently manage ACLs on Windows, but Puppet Labs and the Puppet community are collaborating on a design for managing them as a new resource type. [See the in-progress ACLs proposal for more details.](https://github.com/puppetlabs/armatures/blob/master/arm-16.acls/index.md)
@@ -238,7 +242,7 @@ Puppet can install and remove two types of packages on Windows:
 
 Both of these use the default `windows` package provider. (There is an older `msi` provider included, but it is deprecated as of Puppet 3.0.)
 
-When managing packages on Windows, you **must** specify a package file using the `source` attribute. The source can be a local file, a file on a mapped network drive, or a UNC path. Puppet URLs are not currently supported for the `package` type's `source` attribute, although you can use `file` resources to copy packages to the local system.
+When managing packages using the `windows` package provider, you **must** specify a package file using the `source` attribute. The source can be a local file, a file on a mapped network drive, or a UNC path. Puppet URLs are not currently supported for the `package` type's `source` attribute, although you can use `file` resources to copy packages to the local system.
 
 #### Examples
 
@@ -247,8 +251,8 @@ MSI example:
 {% highlight ruby %}
     package { 'mysql':
       ensure          => '5.5.16',
-      source          => 'N:/packages/mysql-5.5.16-winx64.msi',
-      install_options => [ { 'INSTALLDIR' => 'C:\mysql-5.5' } ],
+      source          => 'N:\packages\mysql-5.5.16-winx64.msi',
+      install_options => ['INSTALLDIR=C:\mysql-5.5'],
     }
 {% endhighlight %}
 
@@ -256,8 +260,8 @@ Executable installer example:
 
 {% highlight ruby %}
     package { "Git version 1.8.4-preview20130916":
-     ensure   => installed,
-     source   => 'C:\\code\\puppetlabs\\temp\\windowsexample\\Git-1.8.4-preview20130916.exe',
+     ensure          => installed,
+     source          => 'C:\code\puppetlabs\temp\windowsexample\Git-1.8.4-preview20130916.exe',
      install_options => ['/VERYSILENT']
     }
 {% endhighlight %}
@@ -276,9 +280,15 @@ Some packages (Git is a notable example) will change their display names with ev
 
 #### Install and Uninstall Options
 
-The Windows package provider also supports package-specific `install_options` (e.g. install directory) and `uninstall_options`. These options will vary across packages, so you'll need to see the documentation for the specific package you're installing. Options are specified as an array of hashes and/or strings. (MSI properties can be specified as hashes, with the name of the property as the key; you should use one hash per property. Command line flags to executable installers can be specified as strings, with one string per flag.)
+The Windows package provider also supports package-specific `install_options` (e.g. install directory) and `uninstall_options`. These options will vary across packages, so you'll need to see the documentation for the specific package you're installing. Options are specified as an array of strings and/or hashes.
 
-Any file path arguments within the `install_options` attribute (such as `INSTALLDIR`) should use backslashes, not forward slashes. Be sure to escape your backslashes appropriately.
+MSI properties can be specified as an array of strings following the 'property=key' pattern; you should use one string per property. Command line flags to executable installers can be specified as an array of strings, with one string per flag.
+
+Any file path arguments within the `install_options` attribute (such as `INSTALLDIR`) should use backslashes, not forward slashes. Be sure to escape your backslashes appropriately. It's a good idea to use the hash notation for file path arguments since they may contain spaces, for example:
+
+{% highlight ruby %}
+install_options => [ '/S', { 'INSTALLDIR' => "${packagedir}" } ]
+{% endhighlight %}
 
 #### Versioning and Upgrades
 

@@ -30,6 +30,19 @@ Puppet Enterprise 2.8 supports the following systems:
 | Microsoft Windows            | 2003, 2008, and 7 | x86 and x86\_864  | agent     |
 | AIX            | 5, 6, and 7 | Power Arch.  | agent     |
 
+<br>
+
+> *Note:* Upgrading your OS while PE is installed can cause problems with PE. To perform an OS upgrade, you'll need to uninstall PE, perform the OS upgrade, and then reinstall PE as follows:
+>
+1. Back up your databases and other PE files.
+>
+2. Perform a complete [uninstall](/pe/2.8/install_uninstalling.html) (including the -pd uninstaller option).
+>
+3. Upgrade your OS.
+>
+4. [Install PE](/pe/2.8/install_basic.html).
+>
+5. Restore your backup.
 
 Hardware
 -----
@@ -144,7 +157,7 @@ This section details the packages that are installed from the various OS repos. 
 |                            |  libcap2                        |  libcap2                       |
 |                            |  libaprutil1                    |  libaprutil1                   |
 |                            |  libaprutil1-dbd-sqlite3 |  libaprutil1-dbd-sqlite3 |
-|                            |  libaprutil1-ldap            |  ibaprutil1-ldap            |
+|                            |  libaprutil1-ldap            |  libaprutil1-ldap            |
 |                            |  openjdk-6-jre-headless |
 
 <br>
@@ -165,7 +178,7 @@ This section details the packages that are installed from the various OS repos. 
 |                            |  libcap2                        |  libcap2                       |
 |                            |  libaprutil1                    |  libaprutil1                   |
 |                            |  libaprutil1-dbd-sqlite3 |  libaprutil1-dbd-sqlite3 |
-|                            |  libaprutil1-ldap            |  ibaprutil1-ldap            |
+|                            |  libaprutil1-ldap            |  libaprutil1-ldap            |
 |                            |  openjdk-6-jre-headless |
 
 <br>

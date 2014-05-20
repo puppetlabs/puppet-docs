@@ -35,6 +35,19 @@ Solaris                      | 10 (Update 9 or later)                           
 Microsoft Windows            | 2003, 2003R2, 2008, 2008R2 7, 8, & 2012 | x86 & x86\_64 | agent
 AIX                          | 5.3, 6.1, & 7.1                         | Power         | agent
 
+<br>
+
+> *Note:* Upgrading your OS while PE is installed can cause problems with PE. To perform an OS upgrade, you'll need to uninstall PE, perform the OS upgrade, and then reinstall PE as follows:
+>
+1. Back up your databases and other PE files.
+>
+2. Perform a complete [uninstall](/pe/3.0/install_uninstalling.html) (including the -pd uninstaller option).
+>
+3. Upgrade your OS.
+>
+4. [Install PE](/pe/3.0/install_basic.html).
+>
+5. Restore your backup.
 
 Hardware
 -----
@@ -52,6 +65,17 @@ Puppet Enterprise's hardware requirements depend on the roles a machine performs
     * Minimum requirements: A system which provides interactive shell access for trusted users. This system should be kept very secure, as the cloud provisioning tools must be given cloud service account credentials in order to function.
 * The **puppet agent** role has very modest requirements.
     * Minimum requirements: Any hardware able to comfortably run a supported operating system.
+
+
+Browser
+-----
+
+ The following browsers are supported for use with the console:
+
+* Chrome: Current version 
+* Firefox: Current version
+* Internet Explorer: 9 or higher
+* Safari: 5.1 and higher
 
 
 Configuration
@@ -154,7 +178,7 @@ libreadline5  | libapr1                 | libapr1                 |             
 virt-what     | libcap2                 | libcap2                 |                          |
               | libaprutil1             | libaprutil1             |                          |
               | libaprutil1-dbd-sqlite3 | libaprutil1-dbd-sqlite3 |                          |
-              | libaprutil1-ldap        | ibaprutil1-ldap         |                          |
+              | libaprutil1-ldap        | libaprutil1-ldap        |                          |
               | libjpeg62               |                         |                          |
 
 <br>
@@ -175,7 +199,7 @@ libreadline5  | libapr1                 | libapr1                 |             
 virt-what     | libcap2                 | libcap2                 |                          |
               | libaprutil1             | libaprutil1             |                          |
               | libaprutil1-dbd-sqlite3 | libaprutil1-dbd-sqlite3 |                          |
-              | libaprutil1-ldap        | ibaprutil1-ldap         |                          |
+              | libaprutil1-ldap        | libaprutil1-ldap        |                          |
               | libjpeg62               |                         |                          |
 
 <br>

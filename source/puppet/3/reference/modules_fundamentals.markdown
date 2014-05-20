@@ -1,6 +1,7 @@
 ---
 layout: default
 title: "Module Fundamentals"
+canonical: "/puppet/latest/reference/modules_fundamentals.html"
 ---
 
 [modulepath]: /references/stable/configuration.html#modulepath

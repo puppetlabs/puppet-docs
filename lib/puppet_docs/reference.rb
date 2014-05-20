@@ -89,8 +89,9 @@ module PuppetDocs
       end
 
       def generate
-
-        ENV['RUBYLIB'] = "#{facter_dir}/lib:#{hiera_dir}/lib:#{puppet_dir}/lib"
+        # Expect that we're running under bundler, and preserve its prepend to $RUBYLIB:
+        old_rubylib = ENV['RUBYLIB']
+        ENV['RUBYLIB'] = old_rubylib.split(':')[0] << ":#{facter_dir}/lib:#{hiera_dir}/lib:#{puppet_dir}/lib"
 
         puts "Generating #{@name} reference for #{version}."
 
@@ -158,7 +159,7 @@ EOT
 
       def valid_tags
         %x{git fetch --tags origin}
-        @valid_tags ||= at('master') { `git tag` }.grep(/\./).map { |s| s.strip }
+        @valid_tags ||= at('master') { `git tag` }.each_line.map { |s| s.strip }
       end
 
       def version

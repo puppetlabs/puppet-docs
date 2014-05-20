@@ -1,7 +1,6 @@
 ---
 layout: default
 title: "Facter 1.6: Core Facts"
-nav: facter16.html
 ---
 
 ## Summary

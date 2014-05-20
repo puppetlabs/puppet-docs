@@ -37,6 +37,8 @@ This task, `rake db:raw:optimize[mode]`,  runs in three modes:
 
 To run the task, change your working directory to `/opt/puppet/share/puppet-dashboard` and make sure your PATH variable contains `/opt/puppet/bin` (or use the full path to the rake binary). Then run the task `rake db:raw:optimize[mode]`. You can disregard any error messages about insufficient privileges to vacuum certain system objects because these objects should not require vacuuming. If you believe they do, you can do so manually by logging in to psql (or your tool of choice) as a database superuser.
 
+Please note that you should have at least as much free space available as is curently in use, on the partition where your postgresql data is stored, prior to attempting a full vacuum. If you are using the PE-vendored postgresql, the postgres data is kept in `/opt/puppet/var/lib/pgsql/`.
+
 The PostgreSQL docs contain more detailed information about [vacuuming](http://www.postgresql.org/docs/9.2/static/routine-vacuuming.html) and [reindexing](http://www.postgresql.org/docs/9.2/static/sql-reindex.html).
 
 
@@ -54,7 +56,7 @@ For example, to delete reports more than one month old:
 
 Although this task **should be run regularly as a cron job,** the actual frequency at which you set it to run will depend on your site's policies.
 
-If you run the `reports:prune` task without any arguments, it will display further usage instructions. The available units of time are `mon`, `yr`, `day`, `min`, `wk`, and `hr`.
+If you run the `reports:prune` task without any arguments, it will display further usage instructions. The available units of time are `yr`, `mon`, `wk`, `day`, `hr`, and `min`.
 
 
 Database backups
@@ -83,6 +85,16 @@ You will use the same procedure to change the console_auth database user's passw
 
 The same procedure is also used for the PuppetDB user's password, except you'll edit `/etc/puppetlabs/puppetdb/conf.d/database.ini` and will restart the `pe-puppetdb` service.
 
+Changing PuppetDB’s Parameters
+------------------------------
+
+PuppetDB parameters are set in the jetty.ini file, which is contained in the pe-puppetdb module. Jetty.ini is managed by PE, so if you change any PuppetDB parameters directly in the file, those changes will be overwritten on the next puppet run. 
+
+Instead, you should use the console to make changes to the parameters of the `pe-puppetdb` class. For example, the [PuppetDB performance dashboard](/puppetdb/latest/maintain_and_tune.html) requires the `listen_address` parameter to be set to “0.0.0.0”. So, in the console, you would edit the `pe_puppetdb` class so that the value of the `listen_address` parameter is set to “0.0.0.0”. 
+
+> **Warning**: This procedure will enable insecure access to the PuppetDB instance on your server.
+
+If you are unfamiliar with editing class parameters in the console, refer to [Editing Class Parameters on Nodes](/pe/latest/console_classes_groups.html#editing-class-parameters-on-nodes).
 
 
 * * * 

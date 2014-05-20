@@ -2,7 +2,7 @@
 layout: default
 title: "PE 2.8  » Quick Start » Writing Modules"
 subtitle: "Module Writing Basics"
-canonical: "/pe/latest/quick_writing.html"
+canonical: "/pe/latest/quick_writing_nix.html"
 ---
 
 Welcome to the PE 2.8 advanced quick start guide. This document is a continuation of the [quick start guide](./quick_start.html), and is a short walkthrough to help you become more familiar with PE's features. Follow along to learn how to:

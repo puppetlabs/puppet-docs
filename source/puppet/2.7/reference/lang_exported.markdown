@@ -1,6 +1,7 @@
 ---
 layout: default
 title: "Language: Exported Resources"
+canonical: "/puppet/latest/reference/lang_exported.html"
 ---
 
 [resources]: ./lang_resources.html
@@ -52,7 +53,7 @@ Using exported resources requires two steps: declaring and collecting.
       # Declare:
       @@sshkey { $hostname:
         type => dsa,
-        key => $sshdsakey,
+        key  => $sshdsakey,
       }
       # Collect:
       Sshkey <<| |>>

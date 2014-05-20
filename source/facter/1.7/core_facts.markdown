@@ -1,7 +1,6 @@
 ---
 layout: default
 title: "Facter 1.7: Core Facts"
-nav: facter17.html
 ---
 
 ## Summary
@@ -29,7 +28,7 @@ Returns the CPU hardware architecture.
 ## `augeasversion`
 
 
-Report the version of the Augeas library
+Returns the version of the Augeas library.
 
 **Resolution:**
 
@@ -106,7 +105,6 @@ Returns a comma-separated list of block devices.
 **Resolution:**
 
 Retrieve the block devices that were identified and iterated over in the creation of the blockdevice_ facts.
-
 
 **Caveats:**
 
@@ -285,6 +283,19 @@ either.
 
 * * *
 
+## `gid`
+
+
+Returns the group ID of the user running the puppet process.
+
+**Resolution**
+
+Uses the output of `gid -ng`.
+
+([↑ Back to top](#page-nav))
+
+* * *
+
 ## `hardwareisa`
 
 
@@ -292,7 +303,7 @@ Returns hardware processor type.
 
 **Resolution:**
 
-On Solaris, Linux and the BSDs simply uses the output of "uname -p"
+On Solaris, Linux and the BSDs simply uses the output of "uname -p".
 
 **Caveats:**
 
@@ -494,7 +505,7 @@ Returns Linux Standard Base information for the host.
 
 **Resolution:**
 
-Uses the `lsb_release` system command
+Uses the `lsb_release` system command.
 
 **Caveats:**
 
@@ -513,7 +524,7 @@ Returns Linux Standard Base information for the host.
 
 **Resolution:**
 
-Uses the `lsb_release` system command
+Uses the `lsb_release` system command.
 
 **Caveats:**
 
@@ -532,7 +543,7 @@ Returns Linux Standard Base information for the host.
 
 **Resolution:**
 
-Uses the `lsb_release` system command
+Uses the `lsb_release` system command.
 
 **Caveats:**
 
@@ -551,7 +562,7 @@ Returns Linux Standard Base information for the host.
 
 **Resolution:**
 
-Uses the `lsb_release` system command
+Uses the `lsb_release` system command.
 
 **Caveats:**
 
@@ -571,10 +582,22 @@ Returns the major version of the operation system version as gleaned from the ls
 
 Parses the lsbdistrelease fact for numbers followed by a period and returns those, or just the lsbdistrelease fact if none were found.
 
+([↑ Back to top](#page-nav))
+
+* * *
+
+## `lsbminordistrelease`
+
+
+Returns the minor version of the operation system version as gleaned from the lsbdistrelease fact.
+
+**Resolution:**
+
+Parses the lsbdistrelease fact for numbers preceded by a period and returns those. If there is no match, the fact is not present.
+
 **Caveats:**
 
-lsbmajdistrelease.rb
-
+If the version number has three components (e.g., '1.2.3'), only the second will be included in the fact.
 
 ([↑ Back to top](#page-nav))
 
@@ -587,7 +610,7 @@ Returns Linux Standard Base information for the host.
 
 **Resolution:**
 
-Uses the `lsb_release` system command
+Uses the `lsb_release` system command.
 
 **Caveats:**
 
@@ -740,6 +763,18 @@ Returns the name of the operating system.
 * If the kernel is a Linux kernel, check for the existence of a selection of files in /etc/ to find the specific flavour.
 * On SunOS based kernels, return Solaris.
 * On systems other than Linux, use the kernel value.
+
+([↑ Back to top](#page-nav))
+
+* * *
+
+## `operatingsystemmajrelease`
+
+Returns the major release of the operating system.
+
+**Resolution:**
+
+Splits the version number from the `operatingsystemrelease` fact by `.` and returns the first element. Only available if `operatingsystem` returns `Amazon`, `Centos`, `CloudLinux`, `CumulusLinux`, `Debian`, `Fedora`, `OEL`, `OracleLinux`, `OVS`, `RedHat`, `Scientific`, or `SLC`.
 
 ([↑ Back to top](#page-nav))
 
@@ -918,7 +953,7 @@ and returns `true` if `/proc/self/attr/current` does not contain `kernel`.
 
 ## `selinux_config_mode`
 
-Returns the configured SE Linux mode (e.g. `enforcing`, `permissive`, or `disabled`).
+Returns the configured SE Linux mode (e.g., `enforcing`, `permissive`, or `disabled`).
 
 **Resolution:**
 
@@ -931,7 +966,7 @@ Parses the output of `sestatus_cmd` and returns the value of the line beginning 
 ## `selinux_config_policy`
 
 
-Returns the configured SE Linux policy (e.g. `targeted`, `MLS`, or `minimum`).
+Returns the configured SE Linux policy (e.g., `targeted`, `MLS`, or `minimum`).
 
 **Resolution:**
 
@@ -945,7 +980,7 @@ Parses the output of `sestatus_cmd` and returns the value of the line beginning 
 ## `selinux_current_mode`
 
 
-Returns the current SE Linux mode (e.g. `enforcing`, `permissive`, or `disabled`).
+Returns the current SE Linux mode (e.g., `enforcing`, `permissive`, or `disabled`).
 
 **Resolution:**
 
@@ -984,7 +1019,7 @@ Returns the current SE Linux policy version.
 
 **Resolution:**
 
-Reads the content of the `policyvers` file found under the SE Linux mount point, e.g. (`/selinux/policyvers`).
+Reads the content of the `policyvers` file found under the SE Linux mount point, e.g. `/selinux/policyvers`.
 
 ([↑ Back to top](#page-nav))
 
@@ -1165,8 +1200,25 @@ Returns the total seconds of uptime.
 
 **Resolution:**
 
-* Using the 'facter/util/uptime.rb' module, try a verity of methods to acquire the uptime on Unix.
+* Using the 'facter/util/uptime.rb' module, try a variety of methods to acquire the uptime on Unix.
 * On Windows, the module calculates the uptime by the "LastBootupTime" Windows management value.
+
+([↑ Back to top](#page-nav))
+
+* * *
+
+## `uuid`
+
+
+Returns the universally unique identifier on systems where it is available.
+
+**Resolution:**
+
+Parses the output of `dmidecode`.
+
+**Caveats:**
+
+Only available on some versions of Linux, including RHEL/CentOS.
 
 ([↑ Back to top](#page-nav))
 

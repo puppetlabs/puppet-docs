@@ -20,11 +20,14 @@ The console's account system sends verification emails to new users, and require
       #username:  smtp_username
       #password:  smtp_password
 
-### Allowing Anonymous Console Access
+### Allowing Global Unauthenticated Access
+
+>**Important**: Do not enable global unauthenticated access alongside third-party authentication services. 
 
 To allow anonymous, read-only access to the console, do the following:
 
 * Edit the `/etc/puppetlabs/console-auth/cas_client_config.yml` file and change the `global_unauthenticated_access` setting to `true`.
+* In the same file, under `authorization`, comment out all the other authentication choices.
 * Restart Apache by running `sudo /etc/init.d/pe-httpd restart`.
 
 ### Changing Session Duration

@@ -4,7 +4,8 @@ title: "Troubleshooting Puppet on Windows"
 nav: windows.html
 ---
 
-[datadirectory]: ./installing.html#data-directory
+[confdir]: /puppet/latest/reference/dirs_confdir.html
+[vardir]: /puppet/latest/reference/dirs_vardir.html
 
 ## Tips
 
@@ -24,11 +25,11 @@ Puppet's windows service component also writes to the `windows.log` within the s
 
 ### Installation
 
-The Puppet MSI package will not overwrite an existing entry in the puppet.conf file.  As a result, if you uninstall the package, then reinstall the package using a different puppet master hostname, Puppet won't actually apply the new value if the previous value still exists in [`<data directory>`][datadirectory]`\etc\puppet.conf`.
+The Puppet MSI package will not overwrite an existing entry in the puppet.conf file.  As a result, if you uninstall the package, then reinstall the package using a different puppet master hostname, Puppet won't actually apply the new value if the previous value still exists in [`$confdir`][confdir]`\puppet.conf`.
 
 In general, we've taken the approach of preserving configuration data on the system when doing an upgrade, uninstall or reinstall.
 
-To fully clean out a system make sure to delete the [`<data directory>`][datadirectory].
+To fully clean out a system make sure to delete the [confdir][] and [vardir][].
 
 Similarly, the MSI will not overwrite the custom facts written to the `PuppetLabs\facter\facts.d` directory.
 
@@ -76,7 +77,7 @@ But this is an invalid path, because \p, \t, \f will be interpreted as escape se
 
 ### UNC Paths
 
-UNC paths are not currently supported. However, the path can be mapped as a network drive and accessed that way.
+UNC paths are supported for **package resources** on Windows as of Puppet 2.7.12, using the typical `\\servername\directory\package.msi` format. Support for UNC paths for **file resources** was added in Puppet 3.4.0.
 
 ### Case-insensitivity
 
@@ -84,7 +85,7 @@ Several resources are case-insensitive on Windows (file, user, group). When esta
 
     file { 'c:\foo\bar':
       ensure => directory,
-      owner => 'FOOBAR'
+      owner  => 'FOOBAR'
     }
     user { 'foobar':
       ensure => present
@@ -134,18 +135,26 @@ By default, powershell enforces a restricted execution policy which prevents the
 
     exec { 'test':
       command => 'powershell.exe -executionpolicy remotesigned -file C:\test.ps1',
-      path => $::path
+      path    => $::path
     }
 
 ### Package
 
-The source of an MSI package must be a file on either a local filesystem or on a network mapped drive. It does not support URI-based sources, though you can achieve a similar result by defining a file whose source is the puppet master and then defining a package whose source is the local file.
+The source of an MSI or EXE package must be a file on either a local filesystem, a network mapped drive, or a UNC path. It does not support URI-based sources, though you can achieve a similar result by defining a file whose source is the puppet master and then defining a package whose source is the local file.
 
 ### Service
 
 Windows services support a short name and a display name. Make sure to use the short name in puppet manifests. For example use `wuauserv`, not `Automatic Updates`. You can use `sc query` to get a list of services and their various names.
 
 ## Error Messages
+
+* "`Error: Could not connect via HTTPS to https://forge.puppetlabs.com / Unable to verify the SSL certificate / The certificate may not be signed by a valid CA / The CA bundle included with OpenSSL may not be valid or up to date`"
+
+    This can occur when you run the `puppet module` subcommand on newly provisioned Windows nodes.
+
+    The Puppet Forge uses an SSL certificate signed by the GeoTrust Global CA certificate. Once a Windows system has run Windows Update at least once, it will include that CA cert in its root CA store; however, newly provisioned nodes may not have it yet.
+
+    To resolve this and enable the `puppet module` subcommand on Windows nodes, you can either run Windows Update and fetch all available updates, or you can download the "GeoTrust Global CA" certificate from [GeoTrust's list of root certificates](https://www.geotrust.com/resources/root-certificates/) and manually install it by running `certutil -addstore Root GeoTrust_Global_CA.pem`
 
 * "`Service 'Puppet Agent' (puppet) failed to start. Verify that you have sufficient privileges to start system services.`"
 
@@ -183,7 +192,7 @@ Windows services support a short name and a display name. Make sure to use the s
 
 * "`err: /Stage[main]//Package[7zip]/ensure: change from absent to present failed: Execution of 'msiexec.exe /qn /norestart /i "c:\\7z920.exe"' returned 1620: T h i s   i n s t a l l a t i o n   p a c k a g e   c o u l d   n o t   b e   o p e n e d .  C o n t a c t   t h e   a p p l i c a t i o n   v e n d o r   t o   v e r i f y   t h a t   t h i s   i s  a   v a l i d   W i n d o w s   I n s t a l l e r   p a c k a g e .`"
 
-    This error can occur when attempting to install a non-MSI package. Puppet only supports MSI packages. To install non-MSI packages, use an exec resource with an `onlyif` parameter.
+    This error can occur when attempting to install a non-MSI package on Puppet versions prior to 3.0. Puppet 2.7 and earlier only support MSI packages. To install non-MSI packages, use an exec resource with an `onlyif` parameter or upgrade to Puppet 3 and use the `windows` package provider, which supports executable installers.
 
 * "`err: Could not request certificate: The certificate retrieved from the master does not match the agent's private key.`"
 
@@ -216,17 +225,17 @@ If the owner and/or group are specified in a file resource on Windows, the mode 
 
     file { 'c:/path/to/file.bat':
       ensure => present,
-      owner => 'Administrator',
-      group => 'Administrators',
-      mode => 0770
+      owner  => 'Administrator',
+      group  => 'Administrators',
+      mode   => 0770
     }
 
 But this is not:
 
     file { 'c:/path/to/file.bat':
       ensure => present,
-      owner => 'Administrator',
-      group => 'Adminstrators',
+      owner  => 'Administrator',
+      group  => 'Adminstrators',
     }
 
 The latter case will remove any permissions the Administrators group previously had to the file, resulting in the effective permissions of 0700. And since puppet runs as a service under the "SYSTEM" account, not "Administrator," Puppet itself will not be able to manage the file the next time it runs!

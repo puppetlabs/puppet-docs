@@ -36,6 +36,9 @@ ENCs can co-exist with standard node definitions in `site.pp`, and **the classes
 >     * Note 2: If the node name resembles a dot-separated fully qualified domain name, Puppet will make multiple attempts to match a node definition, removing the right-most part of the name each time. Thus, Puppet would first try `agent1.example.com`, then `agent1.example`, then `agent1`. This behavior isn't mimicked when calling an ENC, which is invoked only once with the agent's full node name.
 >     * Note 3: If no matching node definition can be found with the node's name, Puppet will try one last time with a node name of `default`; most users include a `node default {}` statement in their site.pp file. This behavior isn't mimicked when calling an ENC.
 
+> ### A Note about `node_terminus` for Puppet Enterprise Users
+>
+> PE 3.2 did away with `node_terminus=exec` and replaced it with `node_terminus=console`. With this change, we have improved security, as the puppet master can now verify the console. For more information about this change, [refer to the PE 3.2 upgrade instructions](source/pe/3.2/install_upgrading.html#important-notes-and-warnings).
 
 Considerations and Differences from Node Definitions
 -----

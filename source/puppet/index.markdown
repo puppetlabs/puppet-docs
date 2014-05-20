@@ -33,6 +33,24 @@ Learn to use Puppet! New users: start here.
 Reference Shelf
 ---------------
 
+### [Puppet 3.6 Reference Manual](/puppet/3.6/reference)
+
+A concise reference to Puppet 3.6's usage and internals. Use the left sidebar of any reference manual page to navigate between pages.
+
+- [Overview](/puppet/3.6/reference)
+- [Language](/puppet/3.6/reference/lang_summary.html)
+- [Modules](/puppet/3.6/reference/modules_fundamentals.html)
+
+
+### [Puppet 3.5 Reference Manual](/puppet/3.5/reference)
+
+A concise reference to Puppet 3.5's usage and internals. Use the left sidebar of any reference manual page to navigate between pages.
+
+- [Overview](/puppet/3.5/reference)
+- [Language](/puppet/3.5/reference/lang_summary.html)
+- [Modules](/puppet/3.5/reference/modules_fundamentals.html)
+
+
 ### [Puppet 3 Reference Manual](/puppet/3/reference)
 
 A concise reference to Puppet 3's usage and internals. Use the left sidebar of any reference manual page to navigate between pages.
@@ -90,8 +108,8 @@ Get Puppet up and running at your site.
 
 * [An Introduction to Puppet](/guides/introduction.html)
 * [Supported Platforms](/guides/platforms.html)
-* [Installing Puppet](/guides/installation.html) --- from packages, source, or gems
-* [Upgrading Puppet](/guides/upgrading.html) --- general advice and suggestions for upgrading critical infrastructure
+* [Installing Puppet](/guides/install_puppet/pre_install.html) --- from packages, source, or gems
+* [Upgrading Puppet](/guides/install_puppet/upgrading.html) --- general advice and suggestions for upgrading critical infrastructure
 * [Configuring Puppet](/guides/configuring.html) --- use `puppet.conf` to configure Puppet's behavior
 * [Setting Up Puppet](/guides/setting_up.html) --- includes server setup & testing
 

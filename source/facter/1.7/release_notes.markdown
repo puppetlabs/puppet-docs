@@ -2,10 +2,35 @@
 layout: default
 title: Facter 1.7 Release Notes
 description: Facter release notes for all 1.7 versions
-nav: facter17.html
 ---
 
 This page documents the history of the Facter 1.7 series.
+
+Facter 1.7.5
+-----
+
+Facter 1.7.5 is a bug fix release in the 1.7 series. It fixes two issues with the packaged installer on OS X 10.9 and adds support for Red Hat Enterprise Linux 7.
+
+### Support for Red Hat Enterprise Linux 7
+
+Facter now supports RHEL 7, although it is currently limited to x86_64.<!-- RE-815 -->
+
+### Support for OS X 10.9
+
+**Facter DMG packages on OSX will attempt to load Facter from rbenv PATH and fail**
+
+The Facter DMG package on OSX was identifying the path to ruby with `/usr/bin/env ruby`, which would cause it to load Facter from the wrong path if rbenv was installed. The package now uses `/usr/bin/ruby`. <!-- RE-828 -->
+
+[FACT-182: Facter Does not run on OS X 10.9 Mavericks](https://tickets.puppetlabs.com/browse/FACT-182)
+
+Previously, Facter would not run on OS X 10.9 when installed from the pre-built package, although installing through RubyGems would still work. Now, it runs properly either way.
+
+### Miscellaneous Fixes
+
+[FACT-82: Force ASCII-8BIT encoding on raw data in property lists](https://tickets.puppetlabs.com/browse/FACT-82)
+
+Facter now forces ASCII-8BIT encoding when reading from property lists whenever possible, which allows it to read strings encoded in binary plists. This fix primarily affects OS X Mavericks.
+
 
 Facter 1.7.4
 -----

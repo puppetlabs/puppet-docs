@@ -14,6 +14,23 @@ PostgreSQL is Taking Up Too Much Space
 
 PostgreSQL should have `autovacuum=on` set by default. If you're having memory issues from the database growing too large and unwieldy, make sure this setting did not get turned off. PE also includes a rake task for keeping the databases in good shape. The [console maintenance page](./maintain_console-db.html#optimizing-the-database) has the details.
 
+PostgreSQL Buffer Memory Causes PE Install to Fail
+------- 
+
+In some cases, when installing PE on machines with large amounts of RAM, the PostgreSQL database will use more shared buffer memory than is available and will not be able to start. This will prevent PE from installing correctly. The following error will be present in `/var/log/pe-postgresql/pgstartup.log`:
+
+    FATAL: could not create shared memory segment: No space left on device
+    DETAIL: Failed system call was shmget(key=5432001, size=34427584512,03600).
+
+A suggested workaround is tweak the machine's `shmmax` and `shmall` kernel settings before installing PE. The `shmmax` setting should be set to approximately  50% of the total RAM; the `shmall` setting can be calculated by dividing the new `shmmax` setting by the PAGE_SIZE.  (`PAGE_SIZE` can be confirmed by running `getconf PAGE_SIZE`).
+
+Use the following commands to set the new kernel settings:
+
+    sysctl -w kernel.shmmax=<your shmmax calculation>
+    sysctl -w kernel.shmall=<your shmall calculation>
+
+Alternatively, you can also report the issue to the [Puppet Labs customer support portal](https://support.puppetlabs.com/access/unauthenticated). 
+
 Recovering from a Lost Console Admin Password
 -----
 
@@ -22,7 +39,7 @@ If you have forgotten the password of the console's initial admin user, you can 
 On the console server, run the following commands:
 
     $ cd /opt/puppet/share/puppet-dashboard
-    $ sudo /opt/puppet/bin/bundle exec /opt/puppet/bin/rake -s -f /opt/puppet/share/console-auth/Rakefile db:create_user USERNAME="adminuser@example.com" PASSWORD="<password>" ROLE="Admin" RAILS_ENV=production
+    $ sudo /opt/puppet/bin/bundle exec /opt/puppet/bin/rake -s -f /opt/puppet/share/console-auth/Rakefile db:create_user USERNAME=<adminuser@example.com> PASSWORD=<password> ROLE="Admin" RAILS_ENV=production
 
 You can now log in to the console as the user you just created, and use the normal admin tools to reset other users' passwords.
 
@@ -56,6 +73,15 @@ To fix this:
           console_hostname: console.example.com
 
     Change its value if necessary. If you are serving the console on a port other than 443, be sure to add the port. (For example: `console.example.com:3000`)
+    
+Correcting Broken URLs in the Console
+----------------
+
+Starting with PE 3.0 and later, group names with periods in them (e.g., group.name) will generate a "page doesn't exist" error. To remove broken groups, you can use the following nodegroup:del rake task:
+
+	$ sudo /opt/puppet/bin/rake -f /opt/puppet/share/puppet-dashboard/Rakefile RAILS_ENV=production nodegroup:del name={bad.group.name.here}
+	
+After you remove the broken group names, you can create new groups with valid names and re-add your nodes as needed.
 
 * * *
 

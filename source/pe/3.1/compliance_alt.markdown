@@ -14,18 +14,18 @@ Compliance Alternate Workflow
 #### Workflow In Brief
 
  - _Instead of writing audit manifests:_ Write manifests that describe the desired baseline state(s). This is identical to writing Puppet manifests to _manage_ systems: you use the resource declaration syntax to describe the desired state of each significant resource.
- - _Instead of running puppet agent in its default mode:_ Make it sync the significant resources in **noop mode,** which can be done for the entire Puppet run, or per-resource. (See below.) This causes Puppet to detect changes and _simulate_ changes, without automatically enforcing the desired state.
+ - _Instead of running puppet agent in its default mode:_ Make it sync the significant resources in **no-op mode,** which can be done for the entire Puppet run, or per-resource. (See below.) This causes Puppet to detect changes and _simulate_ changes, without automatically enforcing the desired state.
  - _In the console:_ Look for "pending" events and node status. "Pending" is how the console represents detected differences and simulated changes.
 
 #### Controlling Your Manifests
 
  As part of a solid change control process, you should be maintaining your Puppet manifests in a version control system like Git. A well-designed branch structure in version control will allow changes to your manifests to be tracked, controlled, and audited.
 
-#### Noop Features
+#### No-op Features
 
- Puppet resources or catalogs can be marked as "noop" before they are applied by the agent nodes. This means that the user describes a desired state for the resource, and Puppet will detect and report any divergence from this desired state. Puppet will report what _should_ change to bring the resource into the desired state, but it will not _make_ those changes automatically.
+ Puppet resources or catalogs can be marked as "no-op" before they are applied by the agent nodes. This means that the user describes a desired state for the resource, and Puppet will detect and report any divergence from this desired state. Puppet will report what _should_ change to bring the resource into the desired state, but it will not _make_ those changes automatically.
 
- * To set an individual resource as noop, set [the `noop` metaparameter](/references/latest/metaparameter.html#noop) to `true`.
+ * To set an individual resource as no-op, set [the `noop` metaparameter](/references/latest/metaparameter.html#noop) to `true`.
 
          file {'/etc/sudoers':
            owner => root,
@@ -34,8 +34,8 @@ Compliance Alternate Workflow
            noop  => true,
          }
 
-     This allows you to mix enforced resources and noop resources in the same Puppet run.
- * To do an entire Puppet run in noop, set [the `noop` setting](/references/latest/configuration.html#noop) to `true`. This can be done in the `[agent]` block of puppet.conf, or as a `--noop` command-line flag. If you are running puppet agent in the default daemon mode, you would set noop in puppet.conf.
+     This allows you to mix enforced resources and no-op resources in the same Puppet run.
+ * To do an entire Puppet run in no-op, set [the `noop` setting](/references/latest/configuration.html#no-op) to `true`. This can be done in the `[agent]` block of puppet.conf, or as a `--noop` command-line flag. If you are running puppet agent in the default daemon mode, you would set no-op in puppet.conf.
 
 #### In the Console
 
@@ -59,7 +59,7 @@ Compliance Alternate Workflow
 
 #### After Detection
 
- When a Puppet node reports noop events, this means someone has made changes to a noop resource that has a desired state desribed. Generally, this either means an unauthorized change has been made, or an authorized change was made but the manifests have not yet been updated to contain the change. You will need to either:
+ When a Puppet node reports no-op events, this means someone has made changes to a no-op resource that has a desired state desribed. Generally, this either means an unauthorized change has been made, or an authorized change was made but the manifests have not yet been updated to contain the change. You will need to either:
 
  * Revert the system to the desired state (possibly by running puppet agent with `--no-noop`).
  * Edit your manifests to contain the new desired state, and check the changed manifests into version control.

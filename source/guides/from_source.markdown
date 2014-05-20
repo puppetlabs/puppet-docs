@@ -3,8 +3,8 @@ layout: default
 title: Running Puppet From Source
 ---
 
-[install]: /guides/installation.html
-[sysreqs]: /guides/platforms.html
+[install]: /guides/install_puppet/pre_install.html
+[sysreqs]: /puppet/latest/reference/system_requirements.html
 [config]: /guides/configuring.html
 [authconf]: /guides/rest_auth_conf.html
 [gitpuppet]: https://github.com/puppetlabs/puppet
@@ -138,7 +138,7 @@ To run Puppet from source, you must first `cd` into its source directory and pre
 
 As long as you do that, you can interactively run the main puppet agent, puppet master, and puppet apply commands, as well as any of the additional commands used to manage Puppet.
 
-For testing purposes, you will usually want to run puppet master with the `--verbose` and `--no-daemonize` options and run puppet agent with the `--test` option. For day-to-day use, you should create an init script for puppet agent (see the examples in the source's `conf/` directory) and use a Rack server like Passenger or Unicorn to run puppet master.
+For testing purposes, you will usually want to run `puppet master --verbose --no-daemonize --autosign true` to start a temporary puppet master and `puppet agent --test --server <SERVER>` to run agents against it. For day-to-day use, you should create an init script for puppet agent (see the examples in the source's `conf/` directory) and use a Rack server like Passenger or Unicorn to run puppet master.
 
 
 Periodically Update the Source or Switch Versions

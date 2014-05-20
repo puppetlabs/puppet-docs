@@ -1,6 +1,7 @@
 ---
 title: "Language: Conditional Statements"
 layout: default
+canonical: "/puppet/latest/reference/lang_conditional.html"
 ---
 
 

@@ -126,7 +126,7 @@ These answers are generally needed if you are installing the console role.
 : **Integer** --- The port where the PostgreSQL server that supports the console can be reached.
 
 `q_pe_database`
-:**Y or N** "Yes" if you chose to have the Postgres server for the console installed by PE, "No" if you're managing it yourself. Used for classifying PuppetDB in the console, so it knows whether or not to manage the database.
+: **Y or N** --- Whether to have the Postgres server for the console installed by PE or to manage it yourself. Used for classifying PuppetDB in the console, so it knows whether or not to manage the database.
 
 `q_puppet_enterpriseconsole_master_hostname`
 : **String** --- The hostname of the server running the master role. Only needed if you are _not_ installing the console role on the puppet master server.
@@ -185,7 +185,7 @@ These answers are generally needed if you are installing the console role.
 
   If you wish to disable update checks (e.g. if your company policy forbids transmitting this information), you will need to set this to `n`. You can also disable checking after installation by editing the `/etc/puppetlabs/installer/answers.install` file.
   
-  `q_public_hostname` 
+`q_public_hostname` 
 : **String** ---   A publicly accessible hostname where the console can be accessed if the host name resolves  to a private interface (e.g., Amazon EC2). This is set automatically by the installer on EC2 nodes, but can be set manually in environments with multiple hostnames.
 
 

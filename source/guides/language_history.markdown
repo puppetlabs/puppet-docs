@@ -9,31 +9,32 @@ The Puppet language has changed significantly over time, with many features bein
 Puppet Language Features by Release
 ---------------------------
 
-Feature                                                                          | 0.23.x | 0.24.x     | 0.25.x | 2.6.x                       | 2.7.0              | 3.x | 3.2.x
----------------------------------------------------------------------------------|--------|------------|--------|-----------------------------|--------------------|-----|----------------------
-[Dynamic variable scope (declaring classes/resources assigns parent scope)][ds]  | X      | X          | X      | X                           | X (deprecated)     |     |
-[Appending to attributes in class inheritance (+>)][plusign]                     | X      | X          | X      | X                           | X                  | X   | X
-[Multi-line C-style comments][ccomment]                                          |        | X (0.24.7) | X      | X                           | X                  | X   | X
-[Arrays of resource references allowed in relationships][rel_array]              |        | X          | X      | X                           | X                  | X   | X
-[Overrides in class inheritance][override]                                       |        | X          | X      | X                           | X                  | X   | X
-[Appending to variables in child scopes (+=)][append_var]                        |        | X          | X      | X                           | X                  | X   | X
-[Class names starting with 0-9][class_name]                                      |        | X          | X      | X                           |                    |     |
-[Regular expressions in node definitions][regex_nodes]                           |        |            | X      | X                           | X                  | X   | X
-[Assigning expressions to variables][exp_anywhere]                               |        |            | X      | X                           | X                  | X   | X
-[Regular expressions in conditionals/expresions][regex]                          |        |            | X      | X                           | X                  | X   | X
-[`elsif` in if statements][elsif]                                                |        |            |        | X                           | X                  | X   | X
-[Chaining Resources][chain]                                                      |        |            |        | X                           | X                  | X   | X
-[Hashes][]                                                                       |        |            |        | X (partial until 2.6.7)\*\* | X                  | X   | X
-[Class Parameters][class_params]                                                 |        |            |        | X                           | X                  | X   | X
-[Run Stages][stages]                                                             |        |            |        | X                           | X                  | X   | X
-[The "in" operator][in]                                                          |        |            |        | X                           | X                  | X   | X
-[`$title`, `$name`, and `$module_name` available in parameter lists][titleparam] |        |            |        | X (2.6.5)                   | X                  | X   | X
-[Optional trailing comma in parameter lists][param_trail]                        |        |            |        |                             | X (2.7.8)          | X   | X
-[Hyphens/dashes allowed in variable names][hyphenvars] \*                        |        |            |        |                             | X (2.7.3 - 2.7.14) |     |
-[Automatic class parameter lookup via data bindings][auto_params]                |        |            |        |                             |                    | X   | X
-["Unless" conditionals][unless]                                                  |        |            |        |                             |                    | X   | X
-Iteration over arrays and hashes                                                 |        |            |        |                             |                    |     | [X (future)][32_iter]
-[The modulo (`%`) operator][modulo]                                              |        |            |        |                             |                    |     | X
+Feature                                                                          | 0.23.x | 0.24.x     | 0.25.x | 2.6.x                       | 2.7.0              | 3.x | 3.2.x                 | 3.4.x
+---------------------------------------------------------------------------------|--------|------------|--------|-----------------------------|--------------------|-----|-----------------------|----------------------
+[Dynamic variable scope (declaring classes/resources assigns parent scope)][ds]  | X      | X          | X      | X                           | X (deprecated)     |     |                       |
+[Appending to attributes in class inheritance (+>)][plusign]                     | X      | X          | X      | X                           | X                  | X   | X                     | X
+[Multi-line C-style comments][ccomment]                                          |        | X (0.24.7) | X      | X                           | X                  | X   | X                     | X
+[Arrays of resource references allowed in relationships][rel_array]              |        | X          | X      | X                           | X                  | X   | X                     | X
+[Overrides in class inheritance][override]                                       |        | X          | X      | X                           | X                  | X   | X                     | X
+[Appending to variables in child scopes (+=)][append_var]                        |        | X          | X      | X                           | X                  | X   | X                     | X
+[Class names starting with 0-9][class_name]                                      |        | X          | X      | X                           |                    |     |                       |
+[Regular expressions in node definitions][regex_nodes]                           |        |            | X      | X                           | X                  | X   | X                     | X
+[Assigning expressions to variables][exp_anywhere]                               |        |            | X      | X                           | X                  | X   | X                     | X
+[Regular expressions in conditionals/expresions][regex]                          |        |            | X      | X                           | X                  | X   | X                     | X
+[`elsif` in if statements][elsif]                                                |        |            |        | X                           | X                  | X   | X                     | X
+[Chaining Resources][chain]                                                      |        |            |        | X                           | X                  | X   | X                     | X
+[Hashes][]                                                                       |        |            |        | X (partial until 2.6.7)\*\* | X                  | X   | X                     | X
+[Class Parameters][class_params]                                                 |        |            |        | X                           | X                  | X   | X                     | X
+[Run Stages][stages]                                                             |        |            |        | X                           | X                  | X   | X                     | X
+[The "in" operator][in]                                                          |        |            |        | X                           | X                  | X   | X                     | X
+[`$title`, `$name`, and `$module_name` available in parameter lists][titleparam] |        |            |        | X (2.6.5)                   | X                  | X   | X                     | X
+[Optional trailing comma in parameter lists][param_trail]                        |        |            |        |                             | X (2.7.8)          | X   | X                     | X
+[Hyphens/dashes allowed in variable names][hyphenvars] \*                        |        |            |        |                             | X (2.7.3 - 2.7.14) |     |                       |
+[Automatic class parameter lookup via data bindings][auto_params]                |        |            |        |                             |                    | X   | X                     | X
+["Unless" conditionals][unless]                                                  |        |            |        |                             |                    | X   | X                     | X
+Iteration over arrays and hashes                                                 |        |            |        |                             |                    |     | [X (future)][32_iter] | [X (future)][32_iter]
+[The modulo (`%`) operator][modulo]                                              |        |            |        |                             |                    |     | X                     | X
+[`$trusted` hash][trusted]                                                       |        |            |        |                             |                    |     |                       | X
 
 \* In Puppet 2.7.20+ and 3.0.2+, hyphens in variable names can be reenabled with [the `allow_variables_with_dashes` setting][hv_pref]. This should only be used as a temporary measure while renaming variables.
 
@@ -63,3 +64,4 @@ Iteration over arrays and hashes                                                
 [unless]: /puppet/latest/reference/lang_conditional.html#unless-statements
 [32_iter]: /puppet/3/reference/lang_experimental_3_2.html#collection-manipulation-and-iteration
 [modulo]: /puppet/latest/reference/lang_expressions.html#modulo
+[trusted]: /puppet/latest/reference/lang_variables.html#trusted-node-data

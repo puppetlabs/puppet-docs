@@ -31,20 +31,34 @@ The generated references are available for a wide range of versions, including s
 * 3.x.stable / 3.x.latest (see sections below) --- the newest official/unstable releases within a minor release series
 * [2.7.stable](./2.7.stable/) --- the current release in the 2.7 series, which is in security-updates-only maintenance
 
+### Puppet 3.6.x
+
+* [Stable](./3.6.stable/) / [Latest](./3.6.latest/)
+* [3.6.0](./3.6.0)
+
+### Puppet 3.5.x
+
+* [Stable](./3.5.stable/) / [Latest](./3.5.latest/)
+* [3.5.1](./3.5.1)
+* [3.5.0](./3.5.0/)
+
 ### Puppet 3.4.x
 
-* [Stable](./3.4.stable) / [Latest](./3.4.latest/)
-* [3.4.0-rc2](./3.4.0-rc2/)
+* [Stable](./3.4.stable/) / [Latest](./3.4.latest/)
+* [3.4.3](./3.4.3/)
+* [3.4.2](./3.4.2/)
+* [3.4.1](./3.4.1/)
+* [3.4.0](./3.4.0/)
 
 ### Puppet 3.3.x
 
-* [Stable](./3.3.stable) / [Latest](./3.3.latest/)
+* [Stable](./3.3.stable/) / [Latest](./3.3.latest/)
 * [3.3.1](./3.3.1)
 * [3.3.0](./3.3.0/)
 
 ### Puppet 3.2.x
 
-* [Stable](./3.2.stable) / [Latest](./3.2.latest/)
+* [Stable](./3.2.stable/) / [Latest](./3.2.latest/)
 * [3.2.4](./3.2.4/)
 * [3.2.3](./3.2.3/)
 * [3.2.2](./3.2.2/)
@@ -52,20 +66,20 @@ The generated references are available for a wide range of versions, including s
 
 ### Puppet 3.1.x
 
-* [Stable](./3.1.stable) / [Latest](./3.1.latest/)
+* [Stable](./3.1.stable/) / [Latest](./3.1.latest/)
 * [3.1.1](./3.1.1/)
 * [3.1.0](./3.1.0/)
 
 ### Puppet 3.0.x
 
-* [Stable](./3.0.stable) / [Latest](./3.0.latest/)
+* [Stable](./3.0.stable/) / [Latest](./3.0.latest/)
 * [3.0.2](./3.0.2/)
 * [3.0.1](./3.0.1/)
 * [3.0.0](./3.0.0/)
 
 ### Puppet 2.7.x
 
-* [Stable](./2.7.stable) / [Latest](./2.7.latest/)
+* [Stable](./2.7.stable/) / [Latest](./2.7.latest/)
 * [2.7.23](./2.7.23/)
 * [2.7.22](./2.7.22/)
 * [2.7.21](./2.7.21/)
@@ -90,7 +104,7 @@ The generated references are available for a wide range of versions, including s
 
 ### Puppet 2.6.x
 
-* [Stable](./2.6.stable) / [Latest](./2.6.latest/)
+* [Stable](./2.6.stable/) / [Latest](./2.6.latest/)
 * [2.6.17](./2.6.17/)
 * [2.6.16](./2.6.16/)
 * [2.6.15](./2.6.15/)
@@ -112,7 +126,7 @@ The generated references are available for a wide range of versions, including s
 
 ### Puppet 0.25.x
 
-* [Stable](./0.25.stable) / [Latest](./0.25.latest/)
+* [Stable](./0.25.stable/) / [Latest](./0.25.latest/)
 * [0.25.5](./0.25.5/)
 * [0.25.4](./0.25.4/)
 * [0.25.3](./0.25.3/)
@@ -122,7 +136,7 @@ The generated references are available for a wide range of versions, including s
 
 ### Puppet 0.24.x
 
-* [Stable](./0.24.stable) / [Latest](./0.24.latest/)
+* [Stable](./0.24.stable/) / [Latest](./0.24.latest/)
 * [0.24.9](./0.24.9/)
 * [0.24.8](./0.24.8/)
 * [0.24.7](./0.24.7/)

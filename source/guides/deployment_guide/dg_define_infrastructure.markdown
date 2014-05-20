@@ -11,15 +11,15 @@ How Can Puppet Enterprise Help You?
 
 The particulars of every infrastructure will vary, but all sysadmins have some needs in common. They want to be more productive and agile, they want to spend less time fixing recurring problems, and they want keen, timely insight into their infrastructure. In this chapter, we identify some specific needs and provide examples of ways to meet them by using [Puppet Enterprise][pe_dl] (PE) to automate stuff. If you've been an admin for any period of time, these wants should be all too familiar:
 
-1. I want to learn how to use a tool that will make me a more efficient sysadmin, so I can go home earlier (or get to the pub, or my kids' soccer game, or the weekly gaming session, dragon boat race, naked knitting club meeting, etc.). If you're reading this, it's safe to assume the tool you want to learn is PE.
+- I want to learn how to use a tool that will make me a more efficient sysadmin, so I can go home earlier (or get to the pub, or my kids' soccer game, or the weekly gaming session, dragon boat race, naked knitting club meeting, etc.). If you're reading this, it's safe to assume the tool you want to learn is PE.
 
-2. I want to know beyond a shadow of a doubt that I can always securely access any machine in my infrastructure to fix things, perform maintenance, or reconfigure something. I don't want to spend much time on this. I just want it to work.
+- I want to know beyond a shadow of a doubt that I can always securely access any machine in my infrastructure to fix things, perform maintenance, or reconfigure something. I don't want to spend much time on this. I just want it to work.
 
-3. I don't want to get repeated requests at all hours to fix simple mistakes. I want my infrastructure to care for itself, or at least be highly resistant to stupid.
+- I don't want to get repeated requests at all hours to fix simple mistakes. I want my infrastructure to care for itself, or at least be highly resistant to stupid.
 
-4. I want fast, accurate reporting so that I know what's going on and can recover from issues quickly, with minimal downtime. I want my post-mortems to read: "I saw what was broken, I ran PE to restore it, the node was down for two minutes."
+- I want fast, accurate reporting so that I know what's going on and can recover from issues quickly, with minimal downtime. I want my post-mortems to read: "I saw what was broken, I ran PE to restore it, the node was down for two minutes."
 
-5. I want to be able to implement changes quickly and repeatably. Pushing out a new website (shopping cart app, WordPress template, customer database) should be trivial, fast, and reliable (see above re: getting to the pub, etc.).
+- I want to be able to implement changes quickly and repeatably. Pushing out a new website (shopping cart app, WordPress template, customer database) should be trivial, fast, and reliable (see above re: getting to the pub, etc.).
 
 Below, we'll run through some examples that will help a hypothetical admin meet all these needs by automating things in her infrastructure using PE (and with the assistance of pre-built modules from the [Puppet Forge](http://forge.puppetlabs.com)).  We've tried to choose things that are low-risk but high-reward. That way you can try them out and can not only build your confidence working with PE, you can also actually start to get your infrastructure into a more automated, less on-fire condition relatively soon. Even if the specific services we discuss aren't directly applicable to your particular infrastructure, hopefully these examples will help you see methods you can apply to your specific situation and help you understand how and why PE can make you a better, less-stressed admin.
 
@@ -29,7 +29,16 @@ Judy Argyle[^1] is a sysadmin at a mid-sized flying car manufacturing concern, t
 
 This new responsibility is not exactly welcome. Judy already has 14 things that consistently set her hair on fire. In addition, NCC is rolling out a new model, the "Enterprise 1701," which means lots of people are making heavy demands on the IT infrastructure. She needs help. That help is Puppet Enterprise which, luckily, her manager has just approved implementing on a trial basis (since PE is free for up to 10 nodes, getting the approval wasn't all that hard). If PE can work for the marketing department, Judy will get the go-ahead to deploy it across the enterprise.
 
-To start with, Judy [downloads PE](http://info.puppetlabs.com/download-pe.html) and, following the first two sections of this guide and the additional documentation it references, she gets a master, console and database support installed on a spare RHEL box and agents installed on the four servers that constitute the marketing department's infrastructure. After signing the various certificates and kicking off a puppet run on each agent, she can look at the console to confirm that all the agents are talking to the master. All of this feels pretty familiar to Judy since she took the [Puppet Fundamentals Course](https://puppetlabs.com/category/events/upcoming/) a few weeks back.
+The infrastructure of the marketing department is an oddball collection of hardware that was set up ad hoc by a series of interns—poor Judy. Specifically, it consists of the following four servers:
+
+1. An Ubuntu box named "web01" that runs Apache to serve up NCC's main website
+2. An old RHEL 5 FTP server named "ftp01" that provides NCC's employees with access to marketing materials
+3. A Debian server, "crm01", running customer relationship software, SugarCRM
+4. A Windows database server, "sql01", running an SQL db containing customer info
+
+In addition, there is also a spare RHEL 6 box, on which she'll install the puppet master and name "puppet."
+
+To start with, Judy [downloads PE](http://info.puppetlabs.com/download-pe.html) and, following the first two sections of this guide and the additional documentation it references, she gets a master, console and database support installed on her RHEL box. For the Ubuntu, RHEL, and Debian agents, Judy uses the simplified agent installation method. To do this she first uses the console to classify the master with the remote package repos she'll need to create agents on those operating systems. Once the master is classified for the repos, she uses the agent installation script, hosted on the master, to install the correct package on each agent. (On the Windows agent, she downloads and installs the Windows installer separately since Windows does not support remote package repos.) Once she gets all the agents installed, she uses the console to accept the various certificate requests, and kicks off a puppet run on each agent. Finally, she checks the console to confirm that all the agents are talking to the master. All of this feels pretty familiar to Judy since she took the [Puppet Fundamentals Course](https://puppetlabs.com/category/events/upcoming/) a few weeks back.
 
 ![NCC Marketing Dept. console](assets/NCC_console.png)
 
@@ -37,18 +46,9 @@ Enough preamble, let's start automating infrastructure.
 
 ## Three Things You Can Configuration Manage First
 
-Poor Judy. As we know, the infrastructure of the marketing department is an oddball collection of hardware that was set up ad hoc by a series of interns. Specifically, it consists of the following four servers:
+Fortunately for Judy, the [Puppet Forge](http://forge.puppetlabs.com) has modules that will run three of the four machines, and two of those modules (NTP and Apache) are Puppet Enterprise supported modules, which means they have been rigorously tested with PE. For the fourth, the SugarCRM box (crm01), Judy decides she will write her own module.
 
-1. An Ubuntu box named "web01" that runs Apache to serve up NCC's main website
-2. An old RHEL 5 FTP server named "ftp01" that provides NCC's employees with access to marketing materials
-3. A Debian server, "crm01", running customer relationship software, SugarCRM
-4. A Windows database server, "sql01", running an SQL db containing customer info.
-
-In addition, there is also the puppet master server, a RHEL box named "puppet."
-
-Fortunately for Judy, the [Puppet Forge](http://forge.puppetlabs.com) has modules that will run three of the four machines. For the fourth, the SugarCRM box (crm01), Judy decides she will write her own module.
-
-> *Note:* In case you're not familiar with modules, they are self-contained bundles of code and data that use Puppet to express a model for a given piece of infrastructure and interact with the puppet master to build your desired configuration state. A module consists of simple structures of folders and files that deliver manifests and extensions, like custom types or custom facts.) To learn more about the Puppet Forge and the module download and installation process, visit the [installing modules page](/puppet/3/reference/modules_installing.html).
+> *Note:* In case you're not familiar with modules, they are self-contained bundles of code and data that use Puppet to express a model for a given piece of infrastructure and interact with the puppet master to build your desired configuration state. A module consists of simple structures of folders and files that deliver manifests and extensions, like custom types or custom facts.) To learn more about the Puppet Forge and the module download and installation process, visit the [installing modules page](/puppet/latest/reference/modules_installing.html).
 *Important:* As of PE 2.8, the Puppet module tool is not compatible with Windows nodes, although modules themselves can be readily applied to Windows systems. In a typical Puppet environment, it is unlikely that a module would need to be installed directly on a Windows agent. However, if you encounter a corner case where installing a module directly on a Windows agent is unavoidable, you can do so by downloading tarballs. You may also need to go the tarball route to get Forge modules if local firewall rules prevent access to the Forge.
 
 ### Thing One: NTP
@@ -57,17 +57,17 @@ The first thing Judy wants to do is get reoriented and comfortable with PE (her 
 
 Managing NTP is useful in a Puppet Enterprise deployment because it reduces the possibility of certificate expiration. In order to provide the most robust security possible, Puppet's certificates have short expiration times. This helps guard against things like replay attacks. Syncing time across all nodes reduces the possibility of certificates expiring unintentionally. In addition, having time synced across nodes will help ensure logs are correct and accurate, with events logged in the right order.
 
-Okay, then. Judy starts by ssh'ing into her master and getting her [selected module](http://forge.puppetlabs.com/saz/ntp) from the Forge by entering `sudo /opt/puppet/bin/puppet module install saz-ntp`. The module downloads and installs automatically, as seen on the command line:
+Okay, then. Judy starts by ssh'ing into her master and getting her [selected module](http://forge.puppetlabs.com/puppetlabs/ntp) from the Forge by entering `sudo /opt/puppet/bin/puppet module install puppetlabs-ntp`. The module downloads and installs automatically, as seen on the command line:
 
-    [jargyle@puppet ~]$ sudo /opt/puppet/bin/puppet module install saz-ntp
+    [jargyle@puppet ~]$ sudo /opt/puppet/bin/puppet module install puppetlabs-ntp
     [sudo] password for jargyle:
     Preparing to install into /etc/puppetlabs/puppet/modules ...
     Downloading from http://forge.puppetlabs.com ...
     Installing -- do not interrupt ...
     /etc/puppetlabs/puppet/modules
-    └── saz-ntp (v2.0.3)
+    └── puppetlabs-ntp (v3.0.1)
 
-Next, Judy opens up the PE console in a [supported browser](/pe/latest/console_accessing.html#browser-requirements) and, using the "Class" tool in the sidebar at the lower left, she clicks the "Add class" button. She names the class "ntp" and clicks the "Create" button.
+Next, Judy opens up the PE console in a [supported browser](/pe/latest/console_accessing.html#browser-requirements) and, using the "Class" tool in the sidebar at the lower left, she clicks the "Add classes" button. She sees that Puppet has created of list of classes that are available on her system, and she uses the filter tool to locate the NTP class. She then finishes the process by clicking the "Add selected classes" button.
 
 ![Adding the NTP Class](assets/add_ntp_class.png)
 
@@ -204,6 +204,27 @@ In the console, she clicks the "Add group" button in the Group view, she names t
 ![Webserver Group and Class Added](assets/webserver_added.png)
 
 If the code is working correctly, the new class should have configured the site's vhost correctly and pointed it at the correct root document directory. A quick look at the output from the puppet run shows that config file has been properly created. Sure enough, when Judy points her browser at NCC's home page, the site comes up. Looking at the glamor shots of the new model 1701 on the home page, Judy smiles and indulges herself with a mental high-five; thanks to PE, she knows the server is up and staying up no matter much stupid gets thrown at it.
+
+### Adding Windows MS-SQL
+
+In order to get the marketing department's mailing list server under automation, Judy needs to give PE control of their Windows MS-SQL server. The procedure for doing this is nearly identical to the process we used for the other modules. In this case, however, Judy is going to take the opportunity to replace the old, Windows 2003 machine with a modern, Windows 2008 r2 server. She sets up the box, installs the OS and [installs a puppet agent](http://docs.puppetlabs.com/pe/latest/install_windows.html), and connects it to the master by accepting the cert request. This is all old hat now. Next, she's going to use a module to install and manage MS-SQL Server. To that end, she'll need the MS installation disc. Thankfully, all the media in the marketing department have been neatly organized and cataloged (this is why you hire interns from liberal arts colleges). She mounts the disc on the Windows machine and goes back to her laptop to complete the procedure, much as before.
+
+> * Judy has chosen a Puppet Labs module, which she installs on her master with `puppet module install puppetlabs/mssql`. 
+> * Next, she adds the new `mssql` class in the console, and adds it to the Windows agent node's definition.
+> * Then, she uses orchestration's runonce action to kick off a puppet run on the Winbox and get the new class applied, which in turn will install MS-SQL and start it up. She can now migrate the data from the old 2003 machine using the MS-SQL native tools (e.g., the Import and Export Wizard). 
+    
+With that done, the next step will be to get the CRM machine under PE control. Since there is no Forge module for managing SugarCRM, Judy will have to write her own module. We'll cover that in the next chapter.
+
+Next Steps
+-----
+Judy now has a basic deployment that is managing some simple services in the marketing department's infrastructure.  Following Judy's example, after [downloading](pe_dl) and setting up PE, you should now be able to find and install Forge modules for basic services, classify nodes using the classes defined by the modules, and use PE to apply configurations to nodes. Some other easy things you might consider managing early on include:
+
+   * sudo 
+   * rsyslog
+   * vmware tools
+   * yumrepo (already defined in PE's core types, no module needed)
+ 
+You should be able to find Forge modules for most of these things. The workflow for installing the modules and adding nodes is essentially the same as we describe above. 
 
 Next: Puppetize Your Infrastructure: More Advanced Automating (coming soon)
 

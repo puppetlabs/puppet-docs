@@ -1,14 +1,15 @@
 ---
 title: "Subsystems: Agent/Master HTTPS Communications"
 layout: default
+canonical: "/puppet/latest/reference/subsystem_agent_master_comm.html"
 ---
 
 [rest_api]: /guides/rest_api.html
 [authconf]: /guides/rest_auth_conf.html
 [facts]: ./lang_variables.html#facts-and-built-in-variables
 [catalog]: ./lang_summary.html#compilation-and-catalogs
-[file]: /references/3.stable/type.html#file
-[static]: /references/3.stable/indirection.html#catalog
+[file]: /references/3.4.stable/type.html#file
+[static]: /references/3.4.stable/indirection.html#catalog
 
 <!-- TODO insert info about the CRL at the appropriate locations. Does the agent check it, these days? -->
 

@@ -15,7 +15,7 @@ Basic workflow items are covered in the main section of the documentation.  If y
 ## General
 
 ### My catalog won't compile and/or my code is behaving unpredictably. What's wrong?
-Puppet 3 uses an updated version of Ruby, 1.9 that is much stricter about character encodings than the version of Ruby used previously. As a result, puppet code that contains UTF-8 characters such as accents or other non-ASCII characters can fail or act unpredictably. There are a number of ways UTF-8 characters can make it into puppet code, including, but not limited to, downloading a Forge module where some piece of metadata (e.g., author's name) contains UTF-8 characters. With apologies to our international customers, the current solution is to strictly limit puppet code to the ASCII character set only, including any code comments or metadata. Puppet Labs is working on cleaning up character encoding issues in Puppet and the various libraries it interfaces with.
+Puppet 3 uses Ruby version 1.9, which is much stricter about character encodings than the version of Ruby used previously. As a result, puppet code that contains UTF-8 characters, such as accents or other non-ASCII characters, can fail or act unpredictably. There are a number of ways UTF-8 characters can make it into puppet code, such as downloading a Forge module where some piece of metadata (e.g., author's name) contains UTF-8 characters. With apologies to our international customers, the current solution is to strictly limit puppet code to the ASCII character set only, including any code comments or metadata. Puppet Labs is working on cleaning up character encoding issues in Puppet and the various libraries it interfaces with.
 
 ### Why hasn't my new node configuration been noticed?
 
@@ -43,7 +43,7 @@ problem:
 
 1.  Run `sudo puppet cert --clean {node certname}` on the puppet master to
     clear the certificates.
-2.  Remove the entire SSL directory of the client machine (`sudo rm -r etc/puppet/ssl; rm -r /var/lib/puppet/ssl`).
+2.  Remove the entire SSL directory of the client machine (`sudo rm -r /etc/puppet/ssl; rm -r /var/lib/puppet/ssl`).
 
 Assuming that you're not re-installing, by far the most common
 cause of SSL problems is that the clock on the client machine is
@@ -65,25 +65,25 @@ cURL), or revert to the original Webrick installation.
 
 ### Agents are failing with a "hostname was not match with the server certificate" error; what's wrong?
 
-Agent nodes determine the validity of the master's certificate based on hostname; if they're contacting it using a hostname that wasn't included when the certificate was signed, they'll reject the certificate. 
+Agent nodes determine the validity of the master's certificate based on hostname; if they're contacting it using a hostname that wasn't included when the certificate was signed, they'll reject the certificate.
 
-To fix this error, either: 
+To fix this error, either:
 
 - Modify your agent nodes' settings to point to one of the master's certified hostnames. (This may also require adjusting your site's DNS.) To see the puppet master's certified hostnames, run:
 
         $ sudo puppet master --configprint certname
-    
+
     ...on the puppet master server.
-- Re-generate the puppet master's certificate: 
+- Re-generate the puppet master's certificate:
     - Stop puppet master.
     - Delete the puppet master's certificate, private key, and public key:
-    
+
             $ sudo find $(puppet master --configprint ssldir) -name "$(puppet master --configprint certname).pem" -delete
     - Edit the `certname` setting in the puppet master's `/etc/puppet/puppet.conf` file to match the puppet master's actual hostname, and the `dns_alt_names` setting in that file to match any other DNS names you expect the master to need to respond to.
     - Start a non-daemonized WEBrick puppet master instance, and wait for it to generate and sign a new certificate:
-    
+
             $ sudo puppet master --no-daemonize --verbose
-            
+
         You should stop the temporary puppet master with ctrl-C after you see the "notice: Starting Puppet master version 2.6.9" message.
     - Restart the puppet master.
 
@@ -175,7 +175,7 @@ instance, in this example the comma is missing at the end of line
     service {
       "myservice":
         provider => "runit"
-        path => "/path/to/daemons"
+        path     => "/path/to/daemons"
     }
 
 ### Syntax error at ':'; expected ']' at manifest.pp:nnn
@@ -197,7 +197,7 @@ be the correct syntax.
 ### Syntax error at '.'; expected '}' at manifest.pp:nnn
 
 This error happens when you use unquoted comparators with dots in
-them, a'la:
+them, as in:
 
     class autofs {
 
@@ -273,7 +273,7 @@ You may get this error when using a manifest like:
     node b {
        #where we collect things
        .....
-       
+
        foo_module::bar_exported_resource <<| |>>
     }
 
@@ -291,7 +291,7 @@ This confusing error is a result of improper (or rather lack of any) capitalizat
 ### err: Exported resource Blah[$some\_title] cannot override local resource on node $nodename
 
 While this is not a classic "syntax" error, it is a annoying error
-none-the-less. The actual error tells you that you have a local
+nonetheless. The actual error tells you that you have a local
 resource Blah[$some\_title] that puppet refuses to overwrite with a
 collected resource of the same name. What most often happens, that
 the same resource is exported by two nodes. One of them is
@@ -309,7 +309,7 @@ It is generally assumed that the following will result in the
     class test_class {
         file { "/tmp/puppet-test.variable":
            content => "$testname",
-           ensure => present,
+           ensure  => present,
         }
     }
 
@@ -335,7 +335,7 @@ include classes rather than inheriting them. For example:
     class test_class {
         file { "/tmp/puppet-test.variable":
            content => "$testname",
-           ensure => present,
+           ensure  => present,
         }
     }
 
@@ -358,7 +358,7 @@ The following would also not work as generally expected:
         $myvar = 'bob'
         file {"/tmp/testvar":
              content => "$myvar",
-             ensure => present,
+             ensure  => present,
         }
     }
 
@@ -379,7 +379,7 @@ $myvar would be set twice in the same child\_class scope):
     class base_class {
         file {"/tmp/testvar":
              content => "$myvar",
-             ensure => present,
+             ensure  => present,
         }
     }
 

@@ -62,8 +62,8 @@ How did things look before we decided to use Hiera? Classes are assigned to node
 	  class { "ntp":
 		servers    => [ '0.us.pool.ntp.org iburst','1.us.pool.ntp.org iburst','2.us.pool.ntp.org iburst','3.us.pool.ntp.org iburst'],
 		autoupdate => false,
-		restrict => false,
-		enable => true,
+		restrict   => false,
+		enable     => true,
 	  }
 	}
 
@@ -71,8 +71,8 @@ How did things look before we decided to use Hiera? Classes are assigned to node
 	  class { "ntp":
 		servers    => [ 'kermit.example.com','0.us.pool.ntp.org iburst','1.us.pool.ntp.org iburst','2.us.pool.ntp.org iburst'],
 		autoupdate => true,
-		restrict => false,
-		enable => true,
+		restrict   => false,
+		enable     => true,
 	  }
 	}
 
@@ -80,8 +80,8 @@ How did things look before we decided to use Hiera? Classes are assigned to node
 	  class { "ntp":
 		servers    => [ 'grover.example.com', 'kermit.example.com'],
 		autoupdate => true,
-		restrict => true,
-		enable => true,
+		restrict   => true,
+		enable     => true,
 	  }
 	}
 {% endhighlight %}
@@ -92,8 +92,8 @@ All Hiera configuration begins with `hiera.yaml`. You can read a [full discussio
 
 	---
 	:backends:
-	  - json
-	:json:
+	  - yaml
+	:yaml:
 	  :datadir: /etc/puppet/hiera
 	:hierarchy:
 	  - "node/%{::fqdn}"
@@ -101,14 +101,14 @@ All Hiera configuration begins with `hiera.yaml`. You can read a [full discussio
 
 Step-by-step:
 
-`:backends:` tells Hiera what kind of data sources it should process. In this case, we'll be using JSON files.
+`:backends:` tells Hiera what kind of data sources it should process. In this case, we'll be using YAML files.
 
-`:json:` configures the JSON data backend, telling Hiera to look in `/etc/puppet/hiera` for JSON data sources.
+`:yaml:` configures the YAML data backend, telling Hiera to look in `/etc/puppet/hiera` for YAML data sources.
 
 `:hierarchy:` configures the data sources Hiera should consult. Puppet users commonly separate their hierarchies into directories to make it easier to get a quick top-level sense of how the hierarchy is put together. In this case, we're keeping it simple:
 
-- A single `node/` directory will contain any number of files named after some node's `fqdn` (fully qualified domain name) fact. (E.g. `/etc/puppet/hiera/node/grover.example.com.json`) This lets us specifically configure any given node with Hiera. Not every node needs to have a file in `node/` --- if it's not there, Hiera will just move onto the next hierarchy level.
-- Next, the `common` data source (the `/etc/puppet/hiera/common.json` file) will provide any common or default values we want to use when Hiera can't find a match for a given key elsewhere in our hierarchy. In this case, we're going to use it to set common ntp servers and default configuration options for the ntp module.
+- A single `node/` directory will contain any number of files named after some node's `fqdn` (fully qualified domain name) fact. (E.g. `/etc/puppet/hiera/node/grover.example.com.yaml`) This lets us specifically configure any given node with Hiera. Not every node needs to have a file in `node/` --- if it's not there, Hiera will just move onto the next hierarchy level.
+- Next, the `common` data source (the `/etc/puppet/hiera/common.yaml` file) will provide any common or default values we want to use when Hiera can't find a match for a given key elsewhere in our hierarchy. In this case, we're going to use it to set common ntp servers and default configuration options for the ntp module.
 
 > **Hierarchy and facts note:** When constructing a hierarchy, keep in mind that most of the useful Puppet variables are [**facts.**][facts] Since facts are submitted by the agent node itself, they _aren't necessarily trustworthy._ We don't recommend using facts as the sole deciding factor for distributing sensitive credentials.
 >
@@ -130,7 +130,7 @@ facts for Hiera to look up without having to go through cumbersome trial-and-err
 
 Now that we've got Hiera configured, we're ready to return to the ntp module and take a look at the `ntp` class's parameters.
 
-> **Learning About Hiera Data Sources:** This example won't cover all the data types you might want to use, and we're only using one of two built-in data backends (JSON). For a more complete look at data sources, please see our guide to [writing Hiera data sources][hiera_datasources], which includes more complete examples written in JSON and YAML.
+> **Learning About Hiera Data Sources:** This example won't cover all the data types you might want to use, and we're only using one of two built-in data backends (YAML). For a more complete look at data sources, please see our guide to [writing Hiera data sources][hiera_datasources], which includes more complete examples written in JSON and YAML.
 
 ### Identifying Parameters
 
@@ -157,23 +157,21 @@ template
 
 Now that we know the parameters the `ntp` class expects, we can start making decisions about the nodes on our system, then expressing those decisions as Hiera data. Let's start with kermit and grover: The two nodes in our organization that we allow to talk to the outside world for purposes of timekeeping.
 
-#### `kermit.example.com.json`
+#### `kermit.example.com.yaml`
 
-We want one of these two nodes, `kermit.example.com`, to act as the primary organizational time server. We want it to consult outside time servers, we won't want it to update its ntp server package by default, and we definitely want it to launch the ntp service at boot. So let's write that out in JSON, making sure to express our variables as part of the `ntp` namespace to insure Hiera will pick them up as part of its [automatic parameter lookup][].
+We want one of these two nodes, `kermit.example.com`, to act as the primary organizational time server. We want it to consult outside time servers, we won't want it to update its ntp server package by default, and we definitely want it to launch the ntp service at boot. So let's write that out in YAML, making sure to express our variables as part of the `ntp` namespace to insure Hiera will pick them up as part of its [automatic parameter lookup][].
 
-	{
-	   "ntp::restrict" : false,
-	   "ntp::autoupdate" : false,
-	   "ntp::enable" : true,
-	   "ntp::servers" : [
-		   "0.us.pool.ntp.org iburst",
-		   "1.us.pool.ntp.org iburst",
-		   "2.us.pool.ntp.org iburst",
-		   "3.us.pool.ntp.org iburst"
-		   ]
-	}
+    ---
+    ntp::restrict: false
+    ntp::autoupdate: false
+    ntp::enable: true
+    ntp::servers:
+      - 0.us.pool.ntp.org iburst
+      - 1.us.pool.ntp.org iburst
+      - 2.us.pool.ntp.org iburst
+      - 3.us.pool.ntp.org iburst
 
-Since we want to provide this data for a specific node, and since we're using the `fqdn` fact to identify unique nodes in our hierarchy, we need to save this data in the `/etc/puppet/hiera/node` directory as `kermit.example.com.json`.
+Since we want to provide this data for a specific node, and since we're using the `fqdn` fact to identify unique nodes in our hierarchy, we need to save this data in the `/etc/puppet/hiera/node` directory as `kermit.example.com.yaml`.
 
 Once you've saved that, let's do a quick test using the [Hiera command line tool][]:
 
@@ -183,56 +181,52 @@ You should see this:
 
 	["0.us.pool.ntp.org iburst", "1.us.pool.ntp.org iburst", "2.us.pool.ntp.org iburst", "3.us.pool.ntp.org iburst"]
 
-That's just the array of outside ntp servers and options, which we expressed as a JSON array and which Hiera is converting to a Puppet-like array. The module will use this array when it generates configuration files from its templates.
+That's just the array of outside ntp servers and options, which we expressed as a YAML array and which Hiera is converting to a Puppet-like array. The module will use this array when it generates configuration files from its templates.
 
 
 > **Something Went Wrong?** If, instead, you get `nil`, `false`, or something else completely, you should step back through your Hiera configuration making sure:
 >
 > - Your `hiera.yaml` file matches the example we provided
 > - You've put a symlink to `hiera.yaml` where the command line tool expects to find it (`/etc/hiera.yaml`)
-> - You've saved your `kermit.example.com` data source file with a `.json` extension
-> - Your data source file's JSON is well formed. Missing or extraneous commas will cause the JSON parser to fail
+> - You've saved your `kermit.example.com` data source file with a `.yaml` extension
+> - Your data source file's YAML is well formed
 > - You restarted your puppet master if you modified `hiera.yaml`
 {: #something-went-wrong }
 
 Provided everything works and you get back that array of ntp servers, you're ready to configure another node.
 
-#### `grover.example.com.json`
+#### `grover.example.com.yaml`
 
-Our next ntp node, `grover.example.com`, is a little less critical to our infrastructure than kermit, so we can be a little more permissive with its configuration: It's o.k. if grover's ntp packages are automatically updated. We also want grover to use kermit as its primary ntp server. Let's express that as JSON:
+Our next ntp node, `grover.example.com`, is a little less critical to our infrastructure than kermit, so we can be a little more permissive with its configuration: It's o.k. if grover's ntp packages are automatically updated. We also want grover to use kermit as its primary ntp server. Let's express that as YAML:
 
-	{
-	   "ntp::restrict" : false,
-	   "ntp::autoupdate" : true,
-	   "ntp::enable" : true,
-	   "ntp::servers" : [
-		   "kermit.example.com iburst",
-		   "0.us.pool.ntp.org iburst",
-		   "1.us.pool.ntp.org iburst",
-		   "2.us.pool.ntp.org iburst"
-		   ]
-	}
+    ---
+    ntp::restrict: false
+    ntp::autoupdate: true
+    ntp::enable: true
+    ntp::servers:
+      - kermit.example.com iburst
+      - 0.us.pool.ntp.org iburst
+      - 1.us.pool.ntp.org iburst
+      - 2.us.pool.ntp.org iburst
 
-As with `kermit.example.com`, we want to save grover's Hiera data source in the `/etc/puppet/hiera/nodes` directory using the `fqdn` fact for the file name: `grover.example.com.json`. We can once again test it with the hiera command line tool:
+As with `kermit.example.com`, we want to save grover's Hiera data source in the `/etc/puppet/hiera/nodes` directory using the `fqdn` fact for the file name: `grover.example.com.yaml`. We can once again test it with the hiera command line tool:
 
 	$ hiera ntp::servers ::fqdn=grover.example.com
 	["kermit.example.com iburst", "0.us.pool.ntp.org iburst", "1.us.pool.ntp.org iburst", "2.us.pool.ntp.org iburst"]
 
-#### `common.json`
+#### `common.yaml`
 
-So, now we've configured the two nodes in our organization that we'll allow to update from outside ntp servers. However, we still have a few nodes to account for that also provide ntp services. They depend on kermit and grover to get the correct time, and we don't mind if they update themselves. Let's write that out in JSON:
+So, now we've configured the two nodes in our organization that we'll allow to update from outside ntp servers. However, we still have a few nodes to account for that also provide ntp services. They depend on kermit and grover to get the correct time, and we don't mind if they update themselves. Let's write that out in YAML:
 
-	{
-	   "ntp::restrict" : true,
-	   "ntp::autoupdate" : true,
-	   "ntp::enable" : true,
-	   "ntp::servers" : [
-		   "grover.example.com iburst",
-		   "kermit.example.com iburst"
-		  ]
-	}
+    ---
+    ntp::restrict: true
+    ntp::autoupdate: true
+    ntp::enable: true
+    ntp::servers:
+      - grover.example.com iburst
+      - kermit.example.com iburst
 
-Unlike kermit and grover, for which we had slightly different but node-specific configuration needs, we're comfortable letting any other node that uses the ntp class use this generic configuration data. Rather than creating a node-specific data source for every possible node on our network that might need to use the ntp module, we'll store this data in `/etc/puppet/hiera/common.json`. With our very simple hierarchy, which so far only looks for the `fqdn` facts, any node with a `fqdn` that doesn't match the nodes we have data sources for will get the data found in `common.json`. Let's test against one of those nodes:
+Unlike kermit and grover, for which we had slightly different but node-specific configuration needs, we're comfortable letting any other node that uses the ntp class use this generic configuration data. Rather than creating a node-specific data source for every possible node on our network that might need to use the ntp module, we'll store this data in `/etc/puppet/hiera/common.yaml`. With our very simple hierarchy, which so far only looks for the `fqdn` facts, any node with a `fqdn` that doesn't match the nodes we have data sources for will get the data found in `common.yaml`. Let's test against one of those nodes:
 
 	$ hiera ntp::servers ::fqdn=snuffie.example.com
 	["kermit.example.com iburst", "grover.example.com iburst"]
@@ -248,8 +242,8 @@ If you'll remember back to our pre-Hiera configuration, we were declaring a numb
 	  class { "ntp":
 		servers    => [ '0.us.pool.ntp.org iburst','1.us.pool.ntp.org iburst','2.us.pool.ntp.org iburst','3.us.pool.ntp.org iburst'],
 		autoupdate => false,
-		restrict => false,
-		enable => true,
+		restrict   => false,
+		enable     => true,
 	  }
 	}
 {% endhighlight %}
@@ -269,8 +263,8 @@ That's it.
 Since Hiera is automatically providing the parameter data from the data sources in its hierarchy, we don't need to do anything besides assign the `ntp` class to the nodes and let Hiera's parameter lookups do the rest. In the future, as we change or add nodes that need to use the `ntp` class, we can:
 
 * Quickly copy data source files to cover cases where a node needs a specialized configuration.
-* If the new node can work with the generic configuration in `common.json`, we can say `include ntp` in our `site.pp` without writing any new Hiera data.
-* Since Hiera looks up each parameter individually, we can also write a new JSON file that, for example, only changes `ntp::autoupdate` --- Hiera will get the rest of the parameters from `common.json`.
+* If the new node can work with the generic configuration in `common.yaml`, we can say `include ntp` in our `site.pp` without writing any new Hiera data.
+* Since Hiera looks up each parameter individually, we can also write a new YAML file that, for example, only changes `ntp::autoupdate` --- Hiera will get the rest of the parameters from `common.yaml`.
 
 If you're interested in taking things a step further, using the decision-making skills you picked up in this example to choose which nodes even get a particular class, let's keep going.
 
@@ -284,43 +278,38 @@ Where last we left off, our `site.pp` manifest was looking somewhat spare. With 
 
 	hiera_include('classes')
 
-From this point on, you can add or modify an existing Hiera data source to add an array of classes you'd like to assign to matching nodes. In the simplest case, we can visit each of kermit, grover, and snuffie and add this to their JSON data sources in `/etc/puppet/hiera/node`:
+From this point on, you can add or modify an existing Hiera data source to add an array of classes you'd like to assign to matching nodes. In the simplest case, we can visit each of kermit, grover, and snuffie and add this to their YAML data sources in `/etc/puppet/hiera/node`:
 
 	"classes" : "ntp",
 
 modifying kermit's data source, for instance, to look like this:
 
-	{
-	   "classes" : "ntp",
-	   "ntp::restrict" : false,
-	   "ntp::autoupdate" : false,
-	   "ntp::enable" : true,
-	   "ntp::servers" : [
-		   "0.us.pool.ntp.org iburst",
-		   "1.us.pool.ntp.org iburst",
-		   "2.us.pool.ntp.org iburst",
-		   "3.us.pool.ntp.org iburst"
-		   ]
-	}
+    ---
+    classes: ntp
+    ntp::restrict: false
+    ntp::autoupdate: false
+    ntp::enable: true
+    ntp::servers:
+      - 0.us.pool.ntp.org iburst
+      - 1.us.pool.ntp.org iburst
+      - 2.us.pool.ntp.org iburst
+      - 3.us.pool.ntp.org iburst
 
 `hiera_include` requires either a string with a single class, or an array of classes to apply to a given node. Take a look at the "classes" array at the top of our kermit data source to see how we might add three classes to kermit:
 
-	{
-	   "classes" : [
-		   "ntp",
-		   "apache",
-		   "postfix"
-	   ],
-	   "ntp::restrict" : false,
-	   "ntp::autoupdate" : false,
-	   "ntp::enable" : true,
-	   "ntp::servers" : [
-		   "0.us.pool.ntp.org iburst",
-		   "1.us.pool.ntp.org iburst",
-		   "2.us.pool.ntp.org iburst",
-		   "3.us.pool.ntp.org iburst"
-		   ]
-	}
+    ---
+    classes:
+      - ntp
+      - apache
+      - postfix
+    ntp::restrict: false
+    ntp::autoupdate: false
+    ntp::enable: true
+    ntp::servers:
+      - 0.us.pool.ntp.org iburst
+      - 1.us.pool.ntp.org iburst
+      - 2.us.pool.ntp.org iburst
+      - 3.us.pool.ntp.org iburst
 
 
 We can test which classes we've assigned to a given node with the Hiera command line tool:
@@ -350,8 +339,8 @@ So let's take a look at our `hiera.yaml` file and make provisions for two new da
 
 	---
 	:backends:
-	  - json
-	:json:
+	  - yaml
+	:yaml:
 	  :datadir: /etc/puppet/hieradata
 	:hierarchy:
 	  - "node/%{::fqdn}"
@@ -363,38 +352,33 @@ Next, we'll need to create directories for our two new data sources:
 
 	`mkdir /etc/puppet/hiera/virtual; mkdir /etc/puppet/hiera/osfamily`
 
-In our `virtual` directory, we'll want to create the file `vmware.json`. In this data source, we'll be assigning the `vmwaretools` class, so the file will need to look like this:
+In our `virtual` directory, we'll want to create the file `vmware.yaml`. In this data source, we'll be assigning the `vmwaretools` class, so the file will need to look like this:
 
-	{
-	  "classes": "vmwaretools"
-	}
+    ---
+    classes: vmwaretools
 
-Next, we need to provide the data for the `vmwaretools` class parameters. We'll assume we have a mix of Red Hat and Debian VMs in use in our organization, and that we want to install VMWare Tools in `/opt/vmware` in our Red Hat VMs, and `/usr/local/vmware` for our Debian VMs.  We'll need `RedHat.json` and `Debian.json` files in the `/etc/puppet/hiera/osfamily` directory.
+Next, we need to provide the data for the `vmwaretools` class parameters. We'll assume we have a mix of Red Hat and Debian VMs in use in our organization, and that we want to install VMWare Tools in `/opt/vmware` in our Red Hat VMs, and `/usr/local/vmware` for our Debian VMs.  We'll need `RedHat.yaml` and `Debian.yaml` files in the `/etc/puppet/hiera/osfamily` directory.
 
-`RedHat.json` should look like this:
+`RedHat.yaml` should look like this:
 
-	{
-	  "vmwaretools::working_dir" : "/opt/vmware"
-	}
+    ---
+    vmwaretools::working_dir: /opt/vmware
 
-`Debian.json` should look like this:
+`Debian.yaml` should look like this:
 
-	{
-	 "vmwaretools::working_dir" : "/usr/local/vmware"
-	}
+    ---
+    vmwaretools::working_dir: /usr/local/vmware
 
-That leaves us with one parameter we haven't covered: the `version` parameter. Since we don't need to vary which version of VMWare Tools any of our VMs are using, we can put that in `common.json`, which should now look like this:
+That leaves us with one parameter we haven't covered: the `version` parameter. Since we don't need to vary which version of VMWare Tools any of our VMs are using, we can put that in `common.yaml`, which should now look like this:
 
-	{
-       "vmwaretools::version" : "8.6.5-621624",
-	   "ntp::restrict" : true,
-	   "ntp::autoupdate" : true,
-	   "ntp::enable" : true,
-	   "ntp::servers" : [
-		   "grover.example.com iburst",
-		   "kermit.example.com iburst"
-		  ]
-	}
+    ---
+    vmwaretools::version: 8.6.5-621624
+    ntp::restrict: true
+    ntp::autoupdate: true
+    ntp::enable: true
+    ntp::servers:
+      - grover.example.com iburst
+      - kermit.example.com iburst
 
 Once you've got all that configured, go ahead and test with the Hiera command line tool:
 

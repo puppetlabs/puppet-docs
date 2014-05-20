@@ -14,9 +14,9 @@ Puppet manages your servers: you describe machine configurations in an easy-to-r
 [See the index for Puppet's documentation here](/puppet), or go directly to one of the most popular pages:
 
 - [The Learning Puppet series](/learning) is a guided tutorial for new users, which includes a free VM to run exercises on and experiment with. Go from "What's that?" to "I can do it" in just a few hours.
-- [The installation guide](/guides/installation.html) can help you install and configure the current open-source Puppet releases.
-- [The Puppet 3 Reference Manual](/puppet/3/reference)
-- [The Puppet 2.7 Reference Manual](/puppet/2.7/reference)
+- [The installation guide](/guides/install_puppet/pre_install.html) can help you install and configure the current open-source Puppet releases.
+- [The Puppet 3.6 Reference Manual](/puppet/3.6/reference)
+    - (Older reference manuals: [Puppet 3.0-3.4](/puppet/3/reference), [Puppet 3.5](/puppet/3.5/reference), [Puppet 2.7](/puppet/2.7/reference)
 - [The latest type reference](/references/latest/type.html) covers all of the built-in resource types and their available attributes. New users should start elsewhere, but experienced users will spend most of their time in this one page.
 - [The glossary](/references/glossary.html) explains the terminology you'll encounter when reading about Puppet.
 
@@ -26,15 +26,16 @@ Puppet manages your servers: you describe machine configurations in an easy-to-r
 
 Puppet Enterprise is a complete configuration management platform, with an optimized set of components proven to work well together. It combines Puppet (including a preconfigured production-grade puppet master stack), a web console for analyzing reports and controlling your infrastructure, powerful orchestration features, cloud provisioning tools, and professional support.
 
-Nearly all of the main Puppet and MCollective documentation also applies to Puppet Enterprise. For details about PE's configuration, see [the current Puppet Enterprise user's guide](/pe/latest/), or go directly to:
+Nearly all of the main Puppet and MCollective documentation also applies to Puppet Enterprise. For details about PE's configuration:
 
+- [Puppet Enterprise user's guide](/pe/latest/)
 - [The system requirements](/pe/latest/install_system_requirements.html)
 - [The installation instructions](/pe/latest/install_basic.html) or [the upgrade instructions](/pe/latest/install_upgrading.html)
 - [The quick start guide](/pe/latest/quick_start.html), which walks through building and managing a small proof-of-concept deployment.
 - [The deployment guide](./guides/deployment_guide/index.html) has a ton of information to help you set up and deploy Puppet Enterprise in accordance with the best practices and methods used by Puppet Labs' professional services engineers.
 - [The PE download page](http://info.puppetlabs.com/download-pe.html)
 
-The current version of PE is 3.1. Documentation for previous versions can be found [here](/pe/index.html).
+The current version of PE is 3.2. Documentation for previous versions can be found [here](/pe/index.html).
 
 [MCollective](/mcollective)
 -----
@@ -93,21 +94,29 @@ Hiera is a key/value lookup tool for configuration data, built to make Puppet be
 * [Using Hiera from the command line](/hiera/1/command_line.html)
 
 
-[Facter](/facter/1.6/core_facts.html)
+[Facter](/facter/latest/)
 -----
 
 Facter is Puppet's cross-platform system profiling library. It discovers and reports per-node facts, which are available in your Puppet manifests as variables.
 
-* [The list of core facts](/facter/1.6/core_facts.html) lists and describes every built-in fact that ships with Facter.
-* [The custom facts guide](/guides/custom_facts.html) explains how to write and distribute your own facts.
+* [The list of core facts](/facter/latest/core_facts.html) lists and describes every built-in fact that ships with Facter.
+* [The custom fact overview](/facter/latest/fact_overview.html) is an example-driven primer and reference for fact authors.
+* [The custom facts guide](/guides/custom_facts.html) explains how to write and distribute your own facts in detail.
 
 
-[Geppetto](/geppetto/4.0/index.html)
+[Geppetto](/geppetto/latest/index.html)
 -----
 
 Geppetto is an integrated development environment (IDE) for Puppet. It provides a toolset for developing puppet modules and manifests that includes syntax highlighting, error tracing/debugging, and code completion features. Geppetto also adds PE integration by parsing PuppetDB error reporting. This allows you to quickly find the problems with your puppet code that are causing configuration failures.
 
-* [The Geppetto Manual](/geppetto/4.0/index.html) has installation and usage instructions.
+* [The Geppetto Manual](/geppetto/latest/index.html) has installation and usage instructions.
+
+Razor
+-----
+
+Razor is an advanced provisioning application that can deploy both bare metal and virtual systems. For information about the Razor integration with PE, see [Bare Metal Provisioning with Razor](http://docs.puppetlabs.com/pe/latest/razor_intro.html).
+
+[Razor is also available as an open source project](https://github.com/puppetlabs/razor-server). See the [Razor wiki](https://github.com/puppetlabs/razor-server/wiki) for further information.
 
 Community
 -----
@@ -120,7 +129,12 @@ Puppet has a large community and many resources for users.
 - [Workflow for Puppet Open-Source Projects](/community/puppet_projects_workflow.html) --- Info about how the Puppet projects use their issue trackers, and how you can help.
 - [Trivial Patch Exemption Policy](/community/trivial_patch_exemption.html) --- Details about which contributions are exempted from our contributor agreement.
 
+Background Information
+-----
 
+We occasionally publish articles about foundational technologies and practices. These are not tied to any specific Puppet Labs' product, but we believe many of our users will either need to or want to be familiar with them.
+
+- [SSL and Related Topics](/background/ssl) --- If you're wondering what a certificate or a CA is, read this. In five short articles, we explain the basics of the security technologies Puppet relies upon.
 
 * * *
 

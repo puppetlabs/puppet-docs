@@ -1,6 +1,7 @@
 ---
 layout: default
 title: "Language: Classes"
+canonical: "/puppet/latest/reference/lang_classes.html"
 ---
 
 <!-- TODO: Need better link for hiera -->

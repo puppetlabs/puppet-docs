@@ -50,7 +50,7 @@ canonical: "/references/latest/type.html"
   Resource types define features they can use, and providers can be tested to see
   which features they provide.
 
-    
+
 
 ----------------
 
@@ -396,9 +396,9 @@ special
   Overrides more specific time of day/week settings.
 
 target
-: The username that will own the cron entry. Defaults to the value of $USER 
+: The username that will own the cron entry. Defaults to the value of $USER
   for the shell that invoked Puppet, or root if $USER is empty.
-  
+
 user
 : The user to run the command as.  This user must
   be allowed to run cron jobs, which is not currently checked by
@@ -489,8 +489,7 @@ group
 
 logoutput
 : Whether to log output.  Defaults to `on_failure`, which only logs
-  the output when the command has a non-zero exit code.  In addition to
-  the values below, you may set this attribute to any legal log level.  Valid values are `true`, `false`, `on_failure`.
+  the output when the command has a non-zero exit code.  Valid values are `true`, `false`, `on_failure`.
 
 onlyif
 : If this parameter is set, then this `exec` will only run if
@@ -1178,14 +1177,14 @@ provider
   directoryservice
   : Group management using DirectoryService on OS X.
 
-  
+
 
     Required binaries: `/usr/bin/dscl`.  Default for `operatingsystem` == `darwin`.  Supported features: `manages_members`.
 
   groupadd
   : Group management via `groupadd` and its ilk. The default for most platforms.
 
-  
+
 
     Required binaries: `groupmod`, `groupdel`, `groupadd`.  Supported features: `system_groups`.
 
@@ -1251,7 +1250,7 @@ provider
   Available providers are:
 
   parsed
-  : 
+  :
 
 target
 : The file in which to store service information.  Only used by
@@ -1439,7 +1438,7 @@ provider
   macauthorization
   : Manage Mac OS X authorization database rules and rights.
 
-  
+
 
     Required binaries: `/usr/bin/sw_vers`, `/usr/bin/security`.  Default for `operatingsystem` == `darwin`.
 
@@ -1491,7 +1490,7 @@ provider
   Available providers are:
 
   aliases
-  : 
+  :
 
 recipient
 : Where email should be sent.  Multiple values
@@ -1737,7 +1736,7 @@ you can send them to a different file by setting their `target` attribute.
 You can purge Nagios resources using the `resources` type, but *only*
 in the default file locations.  This is an architectural limitation.
 
-    
+
 
 #### Parameters
 
@@ -1763,7 +1762,7 @@ provider
   Available providers are:
 
   naginator
-  : 
+  :
 
 target
 : The target.
@@ -1789,7 +1788,7 @@ you can send them to a different file by setting their `target` attribute.
 You can purge Nagios resources using the `resources` type, but *only*
 in the default file locations.  This is an architectural limitation.
 
-    
+
 
 #### Parameters
 
@@ -1854,7 +1853,7 @@ provider
   Available providers are:
 
   naginator
-  : 
+  :
 
 register
 : Nagios configuration file parameter.
@@ -1901,7 +1900,7 @@ you can send them to a different file by setting their `target` attribute.
 You can purge Nagios resources using the `resources` type, but *only*
 in the default file locations.  This is an architectural limitation.
 
-    
+
 
 #### Parameters
 
@@ -1930,7 +1929,7 @@ provider
   Available providers are:
 
   naginator
-  : 
+  :
 
 register
 : Nagios configuration file parameter.
@@ -1959,7 +1958,7 @@ you can send them to a different file by setting their `target` attribute.
 You can purge Nagios resources using the `resources` type, but *only*
 in the default file locations.  This is an architectural limitation.
 
-    
+
 
 #### Parameters
 
@@ -2090,7 +2089,7 @@ provider
   Available providers are:
 
   naginator
-  : 
+  :
 
 realm
 : Nagios configuration file parameter.
@@ -2140,7 +2139,7 @@ you can send them to a different file by setting their `target` attribute.
 You can purge Nagios resources using the `resources` type, but *only*
 in the default file locations.  This is an architectural limitation.
 
-    
+
 
 #### Parameters
 
@@ -2184,7 +2183,7 @@ provider
   Available providers are:
 
   naginator
-  : 
+  :
 
 register
 : Nagios configuration file parameter.
@@ -2213,7 +2212,7 @@ you can send them to a different file by setting their `target` attribute.
 You can purge Nagios resources using the `resources` type, but *only*
 in the default file locations.  This is an architectural limitation.
 
-    
+
 
 #### Parameters
 
@@ -2260,7 +2259,7 @@ provider
   Available providers are:
 
   naginator
-  : 
+  :
 
 register
 : Nagios configuration file parameter.
@@ -2289,7 +2288,7 @@ you can send them to a different file by setting their `target` attribute.
 You can purge Nagios resources using the `resources` type, but *only*
 in the default file locations.  This is an architectural limitation.
 
-    
+
 
 #### Parameters
 
@@ -2321,7 +2320,7 @@ provider
   Available providers are:
 
   naginator
-  : 
+  :
 
 register
 : Nagios configuration file parameter.
@@ -2356,7 +2355,7 @@ you can send them to a different file by setting their `target` attribute.
 You can purge Nagios resources using the `resources` type, but *only*
 in the default file locations.  This is an architectural limitation.
 
-    
+
 
 #### Parameters
 
@@ -2394,7 +2393,7 @@ provider
   Available providers are:
 
   naginator
-  : 
+  :
 
 realm
 : Nagios configuration file parameter.
@@ -2426,7 +2425,7 @@ you can send them to a different file by setting their `target` attribute.
 You can purge Nagios resources using the `resources` type, but *only*
 in the default file locations.  This is an architectural limitation.
 
-    
+
 
 #### Parameters
 
@@ -2560,7 +2559,7 @@ provider
   Available providers are:
 
   naginator
-  : 
+  :
 
 register
 : Nagios configuration file parameter.
@@ -2610,7 +2609,7 @@ you can send them to a different file by setting their `target` attribute.
 You can purge Nagios resources using the `resources` type, but *only*
 in the default file locations.  This is an architectural limitation.
 
-    
+
 
 #### Parameters
 
@@ -2657,7 +2656,7 @@ provider
   Available providers are:
 
   naginator
-  : 
+  :
 
 register
 : Nagios configuration file parameter.
@@ -2689,7 +2688,7 @@ you can send them to a different file by setting their `target` attribute.
 You can purge Nagios resources using the `resources` type, but *only*
 in the default file locations.  This is an architectural limitation.
 
-    
+
 
 #### Parameters
 
@@ -2736,7 +2735,7 @@ provider
   Available providers are:
 
   naginator
-  : 
+  :
 
 register
 : Nagios configuration file parameter.
@@ -2771,7 +2770,7 @@ you can send them to a different file by setting their `target` attribute.
 You can purge Nagios resources using the `resources` type, but *only*
 in the default file locations.  This is an architectural limitation.
 
-    
+
 
 #### Parameters
 
@@ -2809,7 +2808,7 @@ provider
   Available providers are:
 
   naginator
-  : 
+  :
 
 register
 : Nagios configuration file parameter.
@@ -2841,7 +2840,7 @@ you can send them to a different file by setting their `target` attribute.
 You can purge Nagios resources using the `resources` type, but *only*
 in the default file locations.  This is an architectural limitation.
 
-    
+
 
 #### Parameters
 
@@ -2871,7 +2870,7 @@ provider
   Available providers are:
 
   naginator
-  : 
+  :
 
 register
 : Nagios configuration file parameter.
@@ -2908,7 +2907,7 @@ you can send them to a different file by setting their `target` attribute.
 You can purge Nagios resources using the `resources` type, but *only*
 in the default file locations.  This is an architectural limitation.
 
-    
+
 
 #### Parameters
 
@@ -2935,7 +2934,7 @@ provider
   Available providers are:
 
   naginator
-  : 
+  :
 
 register
 : Nagios configuration file parameter.
@@ -3246,7 +3245,7 @@ provider
 
     When specifying a version in the Puppet DSL, only specify the version, not the revision.
     Revisions are only used internally for ensuring the latest version/revision of a port.
-  
+
 
     Required binaries: `/opt/local/bin/port`.  Supported features: `installable`, `uninstallable`, `upgradeable`, `versionable`.
 
@@ -3684,9 +3683,8 @@ trigger
         first become active. Several time formats will work, but we
         suggest 24-hour time formatted as HH:MM.
       * `start_date` ---  The date when the trigger should first become active.
-        Defaults to "today." Several date formats will work, including
-        special dates like "today," but we suggest formatting dates as
-        YYYY-MM-DD.
+        Defaults to the current date. You should format dates as YYYY-MM-DD,
+        although other date formats may work. (Under the hood, this uses `Date.parse`.)
   * For daily triggers:
       * `every` --- How often the task should run, as a number of days. Defaults
         to 1. ("2" means every other day, "3" means every three days, etc.)
@@ -4112,7 +4110,7 @@ provider
   : Red Hat's (and probably many others') form of `init`-style service
     management. Uses `chkconfig` for service enabling and disabling.
 
-  
+
 
     Required binaries: `/sbin/service`, `/sbin/chkconfig`.  Default for `osfamily` == `redhat, suse`.  Supported features: `enableable`, `refreshable`.
 
@@ -4253,8 +4251,8 @@ ensure
 : The basic property that the resource should be in.  Valid values are `present`, `absent`.
 
 key
-: The key itself; generally a long string of hex characters. The key attribute 
-  may not contain whitespace: Omit key headers (e.g. 'ssh-rsa') and key identifiers 
+: The key itself; generally a long string of hex characters. The key attribute
+  may not contain whitespace: Omit key headers (e.g. 'ssh-rsa') and key identifiers
   (e.g. 'joe@joescomputer.local') found in the public key file.
 
 name

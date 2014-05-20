@@ -5,6 +5,35 @@ subtitle: "New Features in PE 2.8"
 canonical: "/pe/latest/overview_whats_new.html"
 ---
 
+### Version 2.8.6
+
+PE 2.8.6 is a maintenance release that patches several security vulnerabilities. For details, check the [release notes](appendix.html#release-notes).
+
+#### A Note about the Heartbleed Bug
+
+We want to emphasize that Puppet Enterprise does not need to be patched for Heartbleed.  
+
+No version of Puppet Enterprise has been shipped with a vulnerable version of OpenSSL, so Puppet Enterprise is not itself vulnerable to the security bug known as Heartbleed, and does not require a patch from Puppet Labs.
+
+However, some of your Puppet Enterprise-managed nodes could be running operating systems that include OpenSSL versions 1.0.1 or 1.0.2, and both of these are vulnerable to the Heartbleed bug. Since tools included in Puppet Enterprise, such as PuppetDB and the Console, make use of SSL certificates we believe the safest, most secure method for assuring the security of your Puppet-managed infrastructure is to regenerate your certificate authority and all OpenSSL certificates. 
+
+We have outlined the remediation procedure to help make it an easy and fail-safe process. You’ll find the details here: Remediation for [Recovering from the Heartbleed Bug](http://docs.puppetlabs.com/trouble_remediate_heartbleed_overview.html).
+
+We’re here to help. If you have any issues with remediating the Heartbleed vulnerability, one of your authorized Puppet Enterprise support users can always log into the [customer support portal](https://support.puppetlabs.com/access/unauthenticated). We’ll continue to update the email list with any new information.
+
+Links:
+
+* [Heartbleed and Puppet-Supported Operating Systems](https://puppetlabs.com/blog/heartbleed-and-puppet-supported-operating-systems)
+
+* [Heartbleed Update: Regeneration Still the Safest Path](https://puppetlabs.com/blog/heartbleed-update-regeneration-still-safest-path)
+
+### Version 2.8.5
+
+PE 2.8.5 is a maintenance release that patches a security vulnerability and fixes several minor bugs. For details, check the [release notes](appendix.html#release-notes).
+
+### Version 2.8.4
+PE 2.8.4 is a maintenance release that patches several security vulnerabilities. For details, check the [release notes](appendix.html#release-notes)
+
 ### Version 2.8.3
 PE 2.8.3 is a maintenance release that patches several security vulnerabilities. For details, check the [release notes](http://docs.puppetlabs.com/pe/2.8/appendix.html#release-notes).
 

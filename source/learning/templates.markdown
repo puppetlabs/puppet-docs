@@ -219,7 +219,7 @@ Next, we'll move the default NTP servers out of the config file and into the man
         }
       }
 
-      $servers_real = $default_servers
+      $_servers = $default_servers
 
       package { 'ntp':
         ensure => installed,
@@ -245,13 +245,13 @@ We're storing the servers in an array, so we can show how to iterate within a te
 
 ### Editing the Templates
 
-First, make each template use the `$servers_real` variable to create the list of `server` statements:
+First, make each template use the `$_servers` variable to create the list of `server` statements:
 
 {% highlight erb %}
     <%# /etc/puppetlabs/puppet/modules/ntp/templates/ntp %>
 
     # Managed by Class['ntp']
-    <% @servers_real.each do |this_server| -%>
+    <% @_servers.each do |this_server| -%>
     server <%= this_server %>
     <% end -%>
 
@@ -260,7 +260,7 @@ First, make each template use the `$servers_real` variable to create the list of
 
 What's this doing?
 
-* Using a non-printing Ruby tag to start a loop. We reference the `$servers_real` Puppet variable by the name `@servers_real`, then call Ruby's `each` method on it. Everything between `do |server| -%>` and the `<% end -%>` tag will be repeated for each item in the `$servers_real` array, with the value of that array item being assigned to the temporary `this_server` variable.
+* Using a non-printing Ruby tag to start a loop. We reference the `$_servers` Puppet variable by the name `@_servers`, then call Ruby's `each` method on it. Everything between `do |server| -%>` and the `<% end -%>` tag will be repeated for each item in the `$_servers` array, with the value of that array item being assigned to the temporary `this_server` variable.
 * Within the loop, we print the literal word `server`, followed by the value of the current array item.
 
 This snippet will produce something like the following:

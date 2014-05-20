@@ -96,9 +96,41 @@ The [PuppetDB](/puppetdb/latest) terminus plugins also include a `puppetdb` repo
 #### Writing Custom Reports
 
 You can easily write your own report processor in place of any of
-the built-in reports. Put the report into the puppet master's `lib/puppet/reports` directory to make it available.
+the built-in reports. Put the report into the `lib/puppet/reports` directory of a Puppet module to make it available to the master.
 
-Documentation of the report plugin API is forthcoming; however, you can use the built-in reports as a guide, or use and/or hack one of these simple custom reports:
+The report processor API is as follows:
+
+* The name of a report processor should contain only alphanumeric characters, and should start with a letter. (More liberal names haven't been tested; underscores might be okay as well.)
+* Each report processor must be in its own Ruby file, named `lib/puppet/reponts/<NAME>.rb`.
+* The Ruby file must have `require 'puppet'` at the top.
+* It must contain a call to the `Puppet::Reports.register_report(:NAME)` method. This method takes the name of the report (as a Symbol) and a mandatory block of code; the block takes no arguments.
+* The block provided to the `register_report` method must contain the following:
+    * A call to the `desc` method, which takes a Markdown-formatted string describing the report.
+    * Implementation of a method named `process`, which can do basically anything. This method is the main substance of the report processor.
+* The `process` method has access to a `self` object, which will be a [`Puppet::Transaction::Report` object](/puppet/latest/reference/format_report.html) describing a Puppet run. Generally, the `process` method will either call `self.to_yaml` and forward the resulting data to some other service, or will filter through the attributes of the report object and do something whenever it finds events matching certain criteria.
+* When enabled via the `reports` setting, the report processor will be executed immediately whenever the puppet master receives a new report from an agent node.
+
+In summary, a report processor looks more or less like this:
+
+{% highlight ruby %}
+    # /etc/puppetlabs/puppet/modules/myreport/lib/puppet/reports/myreport.rb
+    require 'puppet'
+    # require any other Ruby libraries necessary for this specific report
+
+    Puppet::Reports.register_report(:myreport) do
+      desc "Process reports via the my_cool_cmdb API."
+
+      def process
+        # do something that sets up the API we're sending the report to.
+        # Post the report object (self), after dumping it to yaml:
+        my_api.post(self.to_yaml)
+      end
+    end
+{% endhighlight %}
+
+You would then set something like `reports = store,myreport` in the puppet master's puppet.conf.
+
+For examples of using this API, you can use [the built-in reports](https://github.com/puppetlabs/puppet/tree/master/lib/puppet/reports) as a guide, or use and/or hack one of these simple custom reports:
 
 
 * [Report failed runs to an IRC channel](https://github.com/jamtur01/puppet-irc)
@@ -128,7 +160,7 @@ Report Formats
 
 Puppet creates reports as Puppet::Transaction::Report objects, which have changed format several times over the course of Puppet's history. We have report format references for the following Puppet versions:
 
-* [Puppet 3.x](/puppet/3/reference/format_report.html) (report format 3)
+* [Puppet 3.x](/puppet/3/reference/format_report.html) (report formats 3 and 4)
 * [Puppet 2.7.x](/puppet/2.7/reference/format_report.html) (report formats 3 and 2)
 * [Puppet 2.6.x](/puppet/2.6/format_report.html) (report formats 2 and 1)
 * [Puppet 0.25.5](/puppet/0.25/format_report.html) (report format 0)

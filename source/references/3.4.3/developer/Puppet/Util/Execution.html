@@ -1,0 +1,1335 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Module: Puppet::Util::Execution
+  
+    &mdash; Documentation by YARD 0.8.7.3
+  
+</title>
+
+  <link rel="stylesheet" href="../../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '../../';
+  framesUrl = "../../frames.html#!" + escape(window.location.href);
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../../_index.html">Index (E)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span> &raquo; <span class='title'><span class='object_link'>Util</span></span>
+     &raquo; 
+    <span class="title">Execution</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../../class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="../../method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="../../file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><h1>Module: Puppet::Util::Execution
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r1 last">Defined in:</dt>
+    <dd class="r1 last">lib/puppet/util/execution.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p>This module defines methods for execution of system commands. It is intented for inclusion
+in classes that needs to execute system commands.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><h2>Defined Under Namespace</h2>
+<p class="children">
+  
+    
+  
+    
+      <strong class="classes">Classes:</strong> <span class='object_link'><a href="Execution/ProcessOutput.html" title="Puppet::Util::Execution::ProcessOutput (class)">ProcessOutput</a></span>
+    
+  
+</p>
+
+  <h2>Constant Summary</h2>
+  
+
+
+
+
+
+
+
+  
+    <h2>
+      Class Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#execfail-class_method" title="execfail (class method)">+ (Object) <strong>execfail</strong>(command, exception) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Wraps execution of <span class='object_link'><a href="#execute-class_method" title="Puppet::Util::Execution.execute (method)">Execution.execute</a></span> with mapping of exception to given exception (and output as argument).</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#execpipe-class_method" title="execpipe (class method)">+ (String) <strong>execpipe</strong>(command, failonfail = true) {|pipe| ... }</a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Executes the provided command with STDIN connected to a pipe, yielding the pipe object.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#execute-class_method" title="execute (class method)">+ (Puppet::Util::Execution::ProcessOutput) <strong>execute</strong>(command, options = NoOptionsSpecified) </a>
+    
+
+    
+      (also: util_execute)
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Executes the desired command, and return the status and output.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#execute_posix-class_method" title="execute_posix (class method)">+ (Object) <strong>execute_posix</strong>(command, options, stdin, stdout, stderr) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'><p>This is private method.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#execute_windows-class_method" title="execute_windows (class method)">+ (Object) <strong>execute_windows</strong>(command, options, stdin, stdout, stderr) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'><p>This is private method.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#ruby_path-class_method" title="ruby_path (class method)">+ (String) <strong>ruby_path</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'><p>Returns the path to the ruby executable (available via Config object, even if it's not in the PATH... so this is slightly safer than just using Puppet::Util.which).</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#wait_for_output-class_method" title="wait_for_output (class method)">+ (Object) <strong>wait_for_output</strong>(stdout) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'><p>This is private method.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="execfail-class_method">
+  
+    + (<tt><span class='object_link'>Object</span></tt>) <strong>execfail</strong>(command, exception) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Wraps execution of <span class='object_link'><a href="#execute-class_method" title="Puppet::Util::Execution.execute (method)">execute</a></span> with mapping of exception to given exception (and output as argument).</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>exception</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>under same conditions as <span class='object_link'><a href="#execute-class_method" title="Puppet::Util::Execution.execute (method)">execute</a></span>, but raises the given <code>exception</code> with the output as argument</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+86
+87
+88
+89
+90
+91</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/util/execution.rb', line 86</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_self self kw'>self</span><span class='dot token'>.</span><span class='rubyid_execfail identifier id'>execfail</span><span class='lparen token'>(</span><span class='rubyid_command identifier id'>command</span><span class='comma token'>,</span> <span class='rubyid_exception identifier id'>exception</span><span class='rparen token'>)</span>
+  <span class='rubyid_output identifier id'>output</span> <span class='assign token'>=</span> <span class='rubyid_execute identifier id'>execute</span><span class='lparen token'>(</span><span class='rubyid_command identifier id'>command</span><span class='rparen token'>)</span>
+  <span class='rubyid_return return kw'>return</span> <span class='rubyid_output identifier id'>output</span>
+<span class='rubyid_rescue rescue kw'>rescue</span> <span class='rubyid_Puppet constant id'>Puppet</span><span class='colon2 op'>::</span><span class='rubyid_ExecutionFailure constant id'>ExecutionFailure</span>
+  <span class='rubyid_raise identifier id'>raise</span> <span class='rubyid_exception identifier id'>exception</span><span class='comma token'>,</span> <span class='rubyid_output identifier id'>output</span>
+<span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="execpipe-class_method">
+  
+    + (<tt><span class='object_link'>String</span></tt>) <strong>execpipe</strong>(command, failonfail = true) {|pipe| ... }
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Executes the provided command with STDIN connected to a pipe, yielding the
+pipe object.
+This allows data to be fed to the subprocess.</p>
+
+<p>The command can be a simple string, which is executed as-is, or an Array,
+which is treated as a set of command arguments to pass through.</p>
+
+<p>In all cases this is passed directly to the shell, and STDOUT and STDERR
+are connected together during execution.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>command</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>String</span></tt>, <tt><span class='object_link'>Array</span>&lt;<span class='object_link'>String</span>&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the command to execute as one string, or as parts in an array.
+the parts of the array are joined with one separating space between each entry when converting to
+the command line string to execute.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>failonfail</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>(true) if the execution should fail with Exception on failure or not.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Yields:</p>
+<ul class="yield">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>pipe</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>to a block executing a subprocess</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Yield Parameters:</p>
+<ul class="yieldparam">
+  
+    <li>
+      
+        <span class='name'>pipe</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>IO</span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the opened pipe</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Yield Returns:</p>
+<ul class="yieldreturn">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>String</span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the output to return</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>String</span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>a string with the output from the subprocess executed by the given block</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../ExecutionFailure.html" title="Puppet::ExecutionFailure (class)">Puppet::ExecutionFailure</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>if the executed chiled process did not exit with status == 0 and <code>failonfail</code> is
+<code>true</code>.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/util/execution.rb', line 53</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_self self kw'>self</span><span class='dot token'>.</span><span class='rubyid_execpipe identifier id'>execpipe</span><span class='lparen token'>(</span><span class='rubyid_command identifier id'>command</span><span class='comma token'>,</span> <span class='rubyid_failonfail identifier id'>failonfail</span> <span class='assign token'>=</span> <span class='rubyid_true true kw'>true</span><span class='rparen token'>)</span>
+  <span class='comment val'># Paste together an array with spaces.  We used to paste directly</span>
+  <span class='comment val'># together, no spaces, which made for odd invocations; the user had to</span>
+  <span class='comment val'># include whitespace between arguments.</span>
+  <span class='comment val'>#</span>
+  <span class='comment val'># Having two spaces is really not a big drama, since this passes to the</span>
+  <span class='comment val'># shell anyhow, while no spaces makes for a small developer cost every</span>
+  <span class='comment val'># time this is invoked. --daniel 2012-02-13</span>
+  <span class='rubyid_command_str identifier id'>command_str</span> <span class='assign token'>=</span> <span class='rubyid_command identifier id'>command</span><span class='dot token'>.</span><span class='rubyid_respond_to? fid id'>respond_to?</span><span class='lparen token'>(</span><span class='symbol val'>:join</span><span class='rparen token'>)</span> <span class='question op'>?</span> <span class='rubyid_command identifier id'>command</span><span class='dot token'>.</span><span class='rubyid_join identifier id'>join</span><span class='lparen token'>(</span><span class='string val'>' '</span><span class='rparen token'>)</span> <span class='colon op'>:</span> <span class='rubyid_command identifier id'>command</span>
+
+  <span class='rubyid_if if kw'>if</span> <span class='rubyid_respond_to? fid id'>respond_to?</span> <span class='colon op'>:</span><span class='rubyid_debug identifier id'>debug</span>
+    <span class='rubyid_debug identifier id'>debug</span> <span class='dstring node'>&quot;Executing '#{command_str}'&quot;</span>
+  <span class='rubyid_else else kw'>else</span>
+    <span class='rubyid_Puppet constant id'>Puppet</span><span class='dot token'>.</span><span class='rubyid_debug identifier id'>debug</span> <span class='dstring node'>&quot;Executing '#{command_str}'&quot;</span>
+  <span class='rubyid_end end kw'>end</span>
+
+  <span class='rubyid_output identifier id'>output</span> <span class='assign token'>=</span> <span class='rubyid_open identifier id'>open</span><span class='lparen token'>(</span><span class='dstring node'>&quot;| #{command_str} 2&gt;&amp;1&quot;</span><span class='rparen token'>)</span> <span class='rubyid_do do kw'>do</span> <span class='bitor op'>|</span><span class='rubyid_pipe identifier id'>pipe</span><span class='bitor op'>|</span>
+    <span class='rubyid_yield yield kw'>yield</span> <span class='rubyid_pipe identifier id'>pipe</span>
+  <span class='rubyid_end end kw'>end</span>
+
+  <span class='rubyid_if if kw'>if</span> <span class='rubyid_failonfail identifier id'>failonfail</span>
+    <span class='rubyid_unless unless kw'>unless</span> <span class='rubyid_$CHILD_STATUS gvar id'>$CHILD_STATUS</span> <span class='eq op'>==</span> <span class='integer val'>0</span>
+      <span class='rubyid_raise identifier id'>raise</span> <span class='rubyid_Puppet constant id'>Puppet</span><span class='colon2 op'>::</span><span class='rubyid_ExecutionFailure constant id'>ExecutionFailure</span><span class='comma token'>,</span> <span class='rubyid_output identifier id'>output</span>
+    <span class='rubyid_end end kw'>end</span>
+  <span class='rubyid_end end kw'>end</span>
+
+  <span class='rubyid_output identifier id'>output</span>
+<span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="execute-class_method">
+  
+    + (<tt><span class='object_link'><a href="Execution/ProcessOutput.html" title="Puppet::Util::Execution::ProcessOutput (class)">Puppet::Util::Execution::ProcessOutput</a></span></tt>) <strong>execute</strong>(command, options = NoOptionsSpecified) 
+  
+
+  
+    <span class="aliases">Also known as:
+    <span class="names"><span id='util_execute-class_method'>util_execute</span></span>
+    </span>
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'><p>Unfortunately, the default behavior for failonfail and combine (since
+0.22.4 and 0.24.7, respectively) depend on whether options are specified
+or not. If specified, then failonfail and combine default to false (even
+when the options specified are neither failonfail nor combine). If no
+options are specified, then failonfail and combine default to true.</p>
+</div>
+  </div>
+
+<p>Executes the desired command, and return the status and output.
+def execute(command, options)</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>command</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Array</span>&lt;<span class='object_link'>String</span>&gt;</tt>, <tt><span class='object_link'>String</span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the command to execute. If it is
+an Array the first element should be the executable and the rest of the
+elements should be the individual arguments to that executable.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>options</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Hash</span></tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>NoOptionsSpecified</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>a Hash of options</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+  
+    
+    
+    
+    
+    <p class="tag_title">Options Hash (<tt>options</tt>):</p>
+    <ul class="option">
+      
+        <li>
+          <span class="name">:failonfail</span>
+          <span class="type">(<tt>Boolean</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>if this value is set to true, then this method will raise an error if the
+command is not executed successfully.</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:uid</span>
+          <span class="type">(<tt>Integer</tt>, <tt><span class='object_link'>String</span></tt>)</span>
+          <span class="default">
+            
+              &mdash; default:
+              <tt>nil</tt>
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>the user id of the user that the process should be run as</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:gid</span>
+          <span class="type">(<tt>Integer</tt>, <tt><span class='object_link'>String</span></tt>)</span>
+          <span class="default">
+            
+              &mdash; default:
+              <tt>nil</tt>
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>the group id of the group that the process should be run as</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:combine</span>
+          <span class="type">(<tt>Boolean</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>sets whether or not to combine stdout/stderr in the output</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:stdinfile</span>
+          <span class="type">(<tt><span class='object_link'>String</span></tt>)</span>
+          <span class="default">
+            
+              &mdash; default:
+              <tt>nil</tt>
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>sets a file that can be used for stdin. Passing a string for stdin is not currently
+supported.</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:squelch</span>
+          <span class="type">(<tt>Boolean</tt>)</span>
+          <span class="default">
+            
+              &mdash; default:
+              <tt>true</tt>
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>if true, ignore stdout / stderr completely.</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:override_locale</span>
+          <span class="type">(<tt>Boolean</tt>)</span>
+          <span class="default">
+            
+              &mdash; default:
+              <tt>true</tt>
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>by default (and if this option is set to true), we will temporarily override
+the user/system locale to "C" (via environment variables LANG and LC_*) while we are executing the command.
+This ensures that the output of the command will be formatted consistently, making it predictable for parsing.
+Passing in a value of false for this option will allow the command to be executed using the user/system locale.</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:custom_environment</span>
+          <span class="type">(<tt><span class='object_link'>Hash</span>&lt;{<span class='object_link'>String</span> =&gt; <span class='object_link'>String</span>}&gt;</tt>)</span>
+          <span class="default">
+            
+              &mdash; default:
+              <tt>{}</tt>
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>a hash of key/value pairs to set as environment variables for the duration
+of the command.</p>
+</div>
+          
+        </li>
+      
+    </ul>
+  
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Execution/ProcessOutput.html" title="Puppet::Util::Execution::ProcessOutput (class)">Puppet::Util::Execution::ProcessOutput</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>output as specified by options</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../ExecutionFailure.html" title="Puppet::ExecutionFailure (class)">Puppet::ExecutionFailure</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>if the executed chiled process did not exit with status == 0 and <code>failonfail</code> is
+<code>true</code>.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/util/execution.rb', line 127</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_self self kw'>self</span><span class='dot token'>.</span><span class='rubyid_execute identifier id'>execute</span><span class='lparen token'>(</span><span class='rubyid_command identifier id'>command</span><span class='comma token'>,</span> <span class='rubyid_options identifier id'>options</span> <span class='assign token'>=</span> <span class='rubyid_NoOptionsSpecified constant id'>NoOptionsSpecified</span><span class='rparen token'>)</span>
+  <span class='comment val'># specifying these here rather than in the method signature to allow callers to pass in a partial</span>
+  <span class='comment val'># set of overrides without affecting the default values for options that they don't pass in</span>
+  <span class='rubyid_default_options identifier id'>default_options</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span>
+      <span class='symbol val'>:failonfail</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='rubyid_NoOptionsSpecified constant id'>NoOptionsSpecified</span><span class='dot token'>.</span><span class='rubyid_equal? fid id'>equal?</span><span class='lparen token'>(</span><span class='rubyid_options identifier id'>options</span><span class='rparen token'>)</span><span class='comma token'>,</span>
+      <span class='symbol val'>:uid</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='rubyid_nil nil kw'>nil</span><span class='comma token'>,</span>
+      <span class='symbol val'>:gid</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='rubyid_nil nil kw'>nil</span><span class='comma token'>,</span>
+      <span class='symbol val'>:combine</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='rubyid_NoOptionsSpecified constant id'>NoOptionsSpecified</span><span class='dot token'>.</span><span class='rubyid_equal? fid id'>equal?</span><span class='lparen token'>(</span><span class='rubyid_options identifier id'>options</span><span class='rparen token'>)</span><span class='comma token'>,</span>
+      <span class='symbol val'>:stdinfile</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='rubyid_nil nil kw'>nil</span><span class='comma token'>,</span>
+      <span class='symbol val'>:squelch</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='rubyid_false false kw'>false</span><span class='comma token'>,</span>
+      <span class='symbol val'>:override_locale</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='rubyid_true true kw'>true</span><span class='comma token'>,</span>
+      <span class='symbol val'>:custom_environment</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='comma token'>,</span>
+  <span class='rbrace token'>}</span>
+
+  <span class='rubyid_options identifier id'>options</span> <span class='assign token'>=</span> <span class='rubyid_default_options identifier id'>default_options</span><span class='dot token'>.</span><span class='rubyid_merge identifier id'>merge</span><span class='lparen token'>(</span><span class='rubyid_options identifier id'>options</span><span class='rparen token'>)</span>
+
+  <span class='rubyid_if if kw'>if</span> <span class='rubyid_command identifier id'>command</span><span class='dot token'>.</span><span class='rubyid_is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='rubyid_Array constant id'>Array</span><span class='rparen token'>)</span>
+    <span class='rubyid_command identifier id'>command</span> <span class='assign token'>=</span> <span class='rubyid_command identifier id'>command</span><span class='dot token'>.</span><span class='rubyid_flatten identifier id'>flatten</span><span class='dot token'>.</span><span class='rubyid_map identifier id'>map</span><span class='lparen token'>(</span><span class='bitand op'>&amp;</span><span class='symbol val'>:to_s</span><span class='rparen token'>)</span>
+    <span class='rubyid_str identifier id'>str</span> <span class='assign token'>=</span> <span class='rubyid_command identifier id'>command</span><span class='dot token'>.</span><span class='rubyid_join identifier id'>join</span><span class='lparen token'>(</span><span class='string val'>&quot; &quot;</span><span class='rparen token'>)</span>
+  <span class='rubyid_elsif elsif kw'>elsif</span> <span class='rubyid_command identifier id'>command</span><span class='dot token'>.</span><span class='rubyid_is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='rubyid_String constant id'>String</span><span class='rparen token'>)</span>
+    <span class='rubyid_str identifier id'>str</span> <span class='assign token'>=</span> <span class='rubyid_command identifier id'>command</span>
+  <span class='rubyid_end end kw'>end</span>
+
+  <span class='rubyid_if if kw'>if</span> <span class='rubyid_respond_to? fid id'>respond_to?</span> <span class='colon op'>:</span><span class='rubyid_debug identifier id'>debug</span>
+    <span class='rubyid_debug identifier id'>debug</span> <span class='dstring node'>&quot;Executing '#{str}'&quot;</span>
+  <span class='rubyid_else else kw'>else</span>
+    <span class='rubyid_Puppet constant id'>Puppet</span><span class='dot token'>.</span><span class='rubyid_debug identifier id'>debug</span> <span class='dstring node'>&quot;Executing '#{str}'&quot;</span>
+  <span class='rubyid_end end kw'>end</span>
+
+  <span class='rubyid_null_file identifier id'>null_file</span> <span class='assign token'>=</span> <span class='rubyid_Puppet constant id'>Puppet</span><span class='dot token'>.</span><span class='rubyid_features identifier id'>features</span><span class='dot token'>.</span><span class='rubyid_microsoft_windows? fid id'>microsoft_windows?</span> <span class='integer val'>? </span><span class='string val'>'NUL'</span> <span class='colon op'>:</span> <span class='string val'>'/dev/null'</span>
+
+  <span class='rubyid_stdin identifier id'>stdin</span> <span class='assign token'>=</span> <span class='rubyid_File constant id'>File</span><span class='dot token'>.</span><span class='rubyid_open identifier id'>open</span><span class='lparen token'>(</span><span class='rubyid_options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:stdinfile</span><span class='rbrack token'>]</span> <span class='orop op'>||</span> <span class='rubyid_null_file identifier id'>null_file</span><span class='comma token'>,</span> <span class='string val'>'r'</span><span class='rparen token'>)</span>
+  <span class='rubyid_stdout identifier id'>stdout</span> <span class='assign token'>=</span> <span class='rubyid_options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:squelch</span><span class='rbrack token'>]</span> <span class='question op'>?</span> <span class='rubyid_File constant id'>File</span><span class='dot token'>.</span><span class='rubyid_open identifier id'>open</span><span class='lparen token'>(</span><span class='rubyid_null_file identifier id'>null_file</span><span class='comma token'>,</span> <span class='string val'>'w'</span><span class='rparen token'>)</span> <span class='colon op'>:</span> <span class='rubyid_Tempfile constant id'>Tempfile</span><span class='dot token'>.</span><span class='rubyid_new identifier id'>new</span><span class='lparen token'>(</span><span class='string val'>'puppet'</span><span class='rparen token'>)</span>
+  <span class='rubyid_stderr identifier id'>stderr</span> <span class='assign token'>=</span> <span class='rubyid_options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:combine</span><span class='rbrack token'>]</span> <span class='question op'>?</span> <span class='rubyid_stdout identifier id'>stdout</span> <span class='colon op'>:</span> <span class='rubyid_File constant id'>File</span><span class='dot token'>.</span><span class='rubyid_open identifier id'>open</span><span class='lparen token'>(</span><span class='rubyid_null_file identifier id'>null_file</span><span class='comma token'>,</span> <span class='string val'>'w'</span><span class='rparen token'>)</span>
+
+  <span class='rubyid_exec_args identifier id'>exec_args</span> <span class='assign token'>=</span> <span class='lbrack token'>[</span><span class='rubyid_command identifier id'>command</span><span class='comma token'>,</span> <span class='rubyid_options identifier id'>options</span><span class='comma token'>,</span> <span class='rubyid_stdin identifier id'>stdin</span><span class='comma token'>,</span> <span class='rubyid_stdout identifier id'>stdout</span><span class='comma token'>,</span> <span class='rubyid_stderr identifier id'>stderr</span><span class='rbrack token'>]</span>
+
+  <span class='rubyid_if if kw'>if</span> <span class='rubyid_execution_stub identifier id'>execution_stub</span> <span class='assign token'>=</span> <span class='rubyid_Puppet constant id'>Puppet</span><span class='colon2 op'>::</span><span class='rubyid_Util constant id'>Util</span><span class='colon2 op'>::</span><span class='rubyid_ExecutionStub constant id'>ExecutionStub</span><span class='dot token'>.</span><span class='rubyid_current_value identifier id'>current_value</span>
+    <span class='rubyid_return return kw'>return</span> <span class='rubyid_execution_stub identifier id'>execution_stub</span><span class='dot token'>.</span><span class='rubyid_call identifier id'>call</span><span class='lparen token'>(</span><span class='mult op'>*</span><span class='rubyid_exec_args identifier id'>exec_args</span><span class='rparen token'>)</span>
+  <span class='rubyid_elsif elsif kw'>elsif</span> <span class='rubyid_Puppet constant id'>Puppet</span><span class='dot token'>.</span><span class='rubyid_features identifier id'>features</span><span class='dot token'>.</span><span class='rubyid_posix? fid id'>posix?</span>
+    <span class='rubyid_child_pid identifier id'>child_pid</span> <span class='assign token'>=</span> <span class='rubyid_execute_posix identifier id'>execute_posix</span><span class='lparen token'>(</span><span class='mult op'>*</span><span class='rubyid_exec_args identifier id'>exec_args</span><span class='rparen token'>)</span>
+    <span class='rubyid_exit_status identifier id'>exit_status</span> <span class='assign token'>=</span> <span class='rubyid_Process constant id'>Process</span><span class='dot token'>.</span><span class='rubyid_waitpid2 identifier id'>waitpid2</span><span class='lparen token'>(</span><span class='rubyid_child_pid identifier id'>child_pid</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='rubyid_last identifier id'>last</span><span class='dot token'>.</span><span class='rubyid_exitstatus identifier id'>exitstatus</span>
+  <span class='rubyid_elsif elsif kw'>elsif</span> <span class='rubyid_Puppet constant id'>Puppet</span><span class='dot token'>.</span><span class='rubyid_features identifier id'>features</span><span class='dot token'>.</span><span class='rubyid_microsoft_windows? fid id'>microsoft_windows?</span>
+    <span class='rubyid_process_info identifier id'>process_info</span> <span class='assign token'>=</span> <span class='rubyid_execute_windows identifier id'>execute_windows</span><span class='lparen token'>(</span><span class='mult op'>*</span><span class='rubyid_exec_args identifier id'>exec_args</span><span class='rparen token'>)</span>
+    <span class='rubyid_begin begin kw'>begin</span>
+      <span class='rubyid_exit_status identifier id'>exit_status</span> <span class='assign token'>=</span> <span class='rubyid_Puppet constant id'>Puppet</span><span class='colon2 op'>::</span><span class='rubyid_Util constant id'>Util</span><span class='colon2 op'>::</span><span class='rubyid_Windows constant id'>Windows</span><span class='colon2 op'>::</span><span class='rubyid_Process constant id'>Process</span><span class='dot token'>.</span><span class='rubyid_wait_process identifier id'>wait_process</span><span class='lparen token'>(</span><span class='rubyid_process_info identifier id'>process_info</span><span class='dot token'>.</span><span class='rubyid_process_handle identifier id'>process_handle</span><span class='rparen token'>)</span>
+    <span class='rubyid_ensure ensure kw'>ensure</span>
+      <span class='rubyid_Puppet constant id'>Puppet</span><span class='colon2 op'>::</span><span class='rubyid_Util constant id'>Util</span><span class='colon2 op'>::</span><span class='rubyid_Windows constant id'>Windows</span><span class='colon2 op'>::</span><span class='rubyid_Process constant id'>Process</span><span class='dot token'>.</span><span class='rubyid_CloseHandle constant id'>CloseHandle</span><span class='lparen token'>(</span><span class='rubyid_process_info identifier id'>process_info</span><span class='dot token'>.</span><span class='rubyid_process_handle identifier id'>process_handle</span><span class='rparen token'>)</span>
+      <span class='rubyid_Puppet constant id'>Puppet</span><span class='colon2 op'>::</span><span class='rubyid_Util constant id'>Util</span><span class='colon2 op'>::</span><span class='rubyid_Windows constant id'>Windows</span><span class='colon2 op'>::</span><span class='rubyid_Process constant id'>Process</span><span class='dot token'>.</span><span class='rubyid_CloseHandle constant id'>CloseHandle</span><span class='lparen token'>(</span><span class='rubyid_process_info identifier id'>process_info</span><span class='dot token'>.</span><span class='rubyid_thread_handle identifier id'>thread_handle</span><span class='rparen token'>)</span>
+    <span class='rubyid_end end kw'>end</span>
+  <span class='rubyid_end end kw'>end</span>
+
+  <span class='lbrack token'>[</span><span class='rubyid_stdin identifier id'>stdin</span><span class='comma token'>,</span> <span class='rubyid_stdout identifier id'>stdout</span><span class='comma token'>,</span> <span class='rubyid_stderr identifier id'>stderr</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='rubyid_each identifier id'>each</span> <span class='lbrace token'>{</span><span class='bitor op'>|</span><span class='rubyid_io identifier id'>io</span><span class='bitor op'>|</span> <span class='rubyid_io identifier id'>io</span><span class='dot token'>.</span><span class='rubyid_close identifier id'>close</span> <span class='rubyid_rescue rescue kw'>rescue</span> <span class='rubyid_nil nil kw'>nil</span><span class='rbrace token'>}</span>
+
+  <span class='comment val'># read output in if required</span>
+  <span class='rubyid_unless unless kw'>unless</span> <span class='rubyid_options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:squelch</span><span class='rbrack token'>]</span>
+    <span class='rubyid_output identifier id'>output</span> <span class='assign token'>=</span> <span class='rubyid_wait_for_output identifier id'>wait_for_output</span><span class='lparen token'>(</span><span class='rubyid_stdout identifier id'>stdout</span><span class='rparen token'>)</span>
+    <span class='rubyid_Puppet constant id'>Puppet</span><span class='dot token'>.</span><span class='rubyid_warning identifier id'>warning</span> <span class='string val'>&quot;Could not get output&quot;</span> <span class='rubyid_unless unless_mod kw'>unless</span> <span class='rubyid_output identifier id'>output</span>
+  <span class='rubyid_end end kw'>end</span>
+
+  <span class='rubyid_if if kw'>if</span> <span class='rubyid_options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:failonfail</span><span class='rbrack token'>]</span> <span class='rubyid_and and kw'>and</span> <span class='rubyid_exit_status identifier id'>exit_status</span> <span class='neq op'>!=</span> <span class='integer val'>0</span>
+    <span class='rubyid_raise identifier id'>raise</span> <span class='rubyid_Puppet constant id'>Puppet</span><span class='colon2 op'>::</span><span class='rubyid_ExecutionFailure constant id'>ExecutionFailure</span><span class='comma token'>,</span> <span class='dstring node'>&quot;Execution of '#{str}' returned #{exit_status}: #{output}&quot;</span>
+  <span class='rubyid_end end kw'>end</span>
+
+  <span class='rubyid_Puppet constant id'>Puppet</span><span class='colon2 op'>::</span><span class='rubyid_Util constant id'>Util</span><span class='colon2 op'>::</span><span class='rubyid_Execution constant id'>Execution</span><span class='colon2 op'>::</span><span class='rubyid_ProcessOutput constant id'>ProcessOutput</span><span class='dot token'>.</span><span class='rubyid_new identifier id'>new</span><span class='lparen token'>(</span><span class='rubyid_output identifier id'>output</span> <span class='orop op'>||</span> <span class='string val'>''</span><span class='comma token'>,</span> <span class='rubyid_exit_status identifier id'>exit_status</span><span class='rparen token'>)</span>
+<span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="execute_posix-class_method">
+  
+    + (<tt><span class='object_link'>Object</span></tt>) <strong>execute_posix</strong>(command, options, stdin, stdout, stderr) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>This is private method.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/util/execution.rb', line 215</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_self self kw'>self</span><span class='dot token'>.</span><span class='rubyid_execute_posix identifier id'>execute_posix</span><span class='lparen token'>(</span><span class='rubyid_command identifier id'>command</span><span class='comma token'>,</span> <span class='rubyid_options identifier id'>options</span><span class='comma token'>,</span> <span class='rubyid_stdin identifier id'>stdin</span><span class='comma token'>,</span> <span class='rubyid_stdout identifier id'>stdout</span><span class='comma token'>,</span> <span class='rubyid_stderr identifier id'>stderr</span><span class='rparen token'>)</span>
+  <span class='rubyid_child_pid identifier id'>child_pid</span> <span class='assign token'>=</span> <span class='rubyid_Puppet constant id'>Puppet</span><span class='colon2 op'>::</span><span class='rubyid_Util constant id'>Util</span><span class='dot token'>.</span><span class='rubyid_safe_posix_fork identifier id'>safe_posix_fork</span><span class='lparen token'>(</span><span class='rubyid_stdin identifier id'>stdin</span><span class='comma token'>,</span> <span class='rubyid_stdout identifier id'>stdout</span><span class='comma token'>,</span> <span class='rubyid_stderr identifier id'>stderr</span><span class='rparen token'>)</span> <span class='rubyid_do do kw'>do</span>
+
+    <span class='comment val'># We can't just call Array(command), and rely on it returning</span>
+    <span class='comment val'># things like ['foo'], when passed ['foo'], because</span>
+    <span class='comment val'># Array(command) will call command.to_a internally, which when</span>
+    <span class='comment val'># given a string can end up doing Very Bad Things(TM), such as</span>
+    <span class='comment val'># turning &quot;/tmp/foo;\r\n /bin/echo&quot; into [&quot;/tmp/foo;\r\n&quot;, &quot; /bin/echo&quot;]</span>
+    <span class='rubyid_command identifier id'>command</span> <span class='assign token'>=</span> <span class='lbrack token'>[</span><span class='rubyid_command identifier id'>command</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='rubyid_flatten identifier id'>flatten</span>
+    <span class='rubyid_Process constant id'>Process</span><span class='dot token'>.</span><span class='rubyid_setsid identifier id'>setsid</span>
+    <span class='rubyid_begin begin kw'>begin</span>
+      <span class='rubyid_Puppet constant id'>Puppet</span><span class='colon2 op'>::</span><span class='rubyid_Util constant id'>Util</span><span class='colon2 op'>::</span><span class='rubyid_SUIDManager constant id'>SUIDManager</span><span class='dot token'>.</span><span class='rubyid_change_privileges identifier id'>change_privileges</span><span class='lparen token'>(</span><span class='rubyid_options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:uid</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='rubyid_options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:gid</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='rubyid_true true kw'>true</span><span class='rparen token'>)</span>
+
+      <span class='comment val'># if the caller has requested that we override locale environment variables,</span>
+      <span class='rubyid_if if kw'>if</span> <span class='lparen token'>(</span><span class='rubyid_options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:override_locale</span><span class='rbrack token'>]</span><span class='rparen token'>)</span> <span class='rubyid_then then kw'>then</span>
+        <span class='comment val'># loop over them and clear them</span>
+        <span class='rubyid_Puppet constant id'>Puppet</span><span class='colon2 op'>::</span><span class='rubyid_Util constant id'>Util</span><span class='colon2 op'>::</span><span class='rubyid_POSIX constant id'>POSIX</span><span class='colon2 op'>::</span><span class='rubyid_LOCALE_ENV_VARS constant id'>LOCALE_ENV_VARS</span><span class='dot token'>.</span><span class='rubyid_each identifier id'>each</span> <span class='lbrace token'>{</span> <span class='bitor op'>|</span><span class='rubyid_name identifier id'>name</span><span class='bitor op'>|</span> <span class='rubyid_ENV constant id'>ENV</span><span class='dot token'>.</span><span class='rubyid_delete identifier id'>delete</span><span class='lparen token'>(</span><span class='rubyid_name identifier id'>name</span><span class='rparen token'>)</span> <span class='rbrace token'>}</span>
+        <span class='comment val'># set LANG and LC_ALL to 'C' so that the command will have consistent, predictable output</span>
+        <span class='comment val'># it's OK to manipulate these directly rather than, e.g., via &quot;withenv&quot;, because we are in</span>
+        <span class='comment val'># a forked process.</span>
+        <span class='rubyid_ENV constant id'>ENV</span><span class='lbrack token'>[</span><span class='string val'>'LANG'</span><span class='rbrack token'>]</span> <span class='assign token'>=</span> <span class='string val'>'C'</span>
+        <span class='rubyid_ENV constant id'>ENV</span><span class='lbrack token'>[</span><span class='string val'>'LC_ALL'</span><span class='rbrack token'>]</span> <span class='assign token'>=</span> <span class='string val'>'C'</span>
+      <span class='rubyid_end end kw'>end</span>
+
+      <span class='comment val'># unset all of the user-related environment variables so that different methods of starting puppet</span>
+      <span class='comment val'># (automatic start during boot, via 'service', via /etc/init.d, etc.) won't have unexpected side</span>
+      <span class='comment val'># effects relating to user / home dir environment vars.</span>
+      <span class='comment val'># it's OK to manipulate these directly rather than, e.g., via &quot;withenv&quot;, because we are in</span>
+      <span class='comment val'># a forked process.</span>
+      <span class='rubyid_Puppet constant id'>Puppet</span><span class='colon2 op'>::</span><span class='rubyid_Util constant id'>Util</span><span class='colon2 op'>::</span><span class='rubyid_POSIX constant id'>POSIX</span><span class='colon2 op'>::</span><span class='rubyid_USER_ENV_VARS constant id'>USER_ENV_VARS</span><span class='dot token'>.</span><span class='rubyid_each identifier id'>each</span> <span class='lbrace token'>{</span> <span class='bitor op'>|</span><span class='rubyid_name identifier id'>name</span><span class='bitor op'>|</span> <span class='rubyid_ENV constant id'>ENV</span><span class='dot token'>.</span><span class='rubyid_delete identifier id'>delete</span><span class='lparen token'>(</span><span class='rubyid_name identifier id'>name</span><span class='rparen token'>)</span> <span class='rbrace token'>}</span>
+
+      <span class='rubyid_options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:custom_environment</span><span class='rbrack token'>]</span> <span class='opasgn op'>||=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span>
+      <span class='rubyid_Puppet constant id'>Puppet</span><span class='colon2 op'>::</span><span class='rubyid_Util constant id'>Util</span><span class='dot token'>.</span><span class='rubyid_withenv identifier id'>withenv</span><span class='lparen token'>(</span><span class='rubyid_options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:custom_environment</span><span class='rbrack token'>]</span><span class='rparen token'>)</span> <span class='rubyid_do do kw'>do</span>
+        <span class='rubyid_Kernel constant id'>Kernel</span><span class='dot token'>.</span><span class='rubyid_exec identifier id'>exec</span><span class='lparen token'>(</span><span class='mult op'>*</span><span class='rubyid_command identifier id'>command</span><span class='rparen token'>)</span>
+      <span class='rubyid_end end kw'>end</span>
+    <span class='rubyid_rescue rescue kw'>rescue</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='rubyid_detail identifier id'>detail</span>
+      <span class='rubyid_Puppet constant id'>Puppet</span><span class='dot token'>.</span><span class='rubyid_log_exception identifier id'>log_exception</span><span class='lparen token'>(</span><span class='rubyid_detail identifier id'>detail</span><span class='comma token'>,</span> <span class='dstring node'>&quot;Could not execute posix command: #{detail}&quot;</span><span class='rparen token'>)</span>
+      <span class='rubyid_exit! fid id'>exit!</span><span class='lparen token'>(</span><span class='integer val'>1</span><span class='rparen token'>)</span>
+    <span class='rubyid_end end kw'>end</span>
+  <span class='rubyid_end end kw'>end</span>
+  <span class='rubyid_child_pid identifier id'>child_pid</span>
+<span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="execute_windows-class_method">
+  
+    + (<tt><span class='object_link'>Object</span></tt>) <strong>execute_windows</strong>(command, options, stdin, stdout, stderr) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>This is private method.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/util/execution.rb', line 264</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_self self kw'>self</span><span class='dot token'>.</span><span class='rubyid_execute_windows identifier id'>execute_windows</span><span class='lparen token'>(</span><span class='rubyid_command identifier id'>command</span><span class='comma token'>,</span> <span class='rubyid_options identifier id'>options</span><span class='comma token'>,</span> <span class='rubyid_stdin identifier id'>stdin</span><span class='comma token'>,</span> <span class='rubyid_stdout identifier id'>stdout</span><span class='comma token'>,</span> <span class='rubyid_stderr identifier id'>stderr</span><span class='rparen token'>)</span>
+  <span class='rubyid_command identifier id'>command</span> <span class='assign token'>=</span> <span class='rubyid_command identifier id'>command</span><span class='dot token'>.</span><span class='rubyid_map identifier id'>map</span> <span class='rubyid_do do kw'>do</span> <span class='bitor op'>|</span><span class='rubyid_part identifier id'>part</span><span class='bitor op'>|</span>
+    <span class='rubyid_part identifier id'>part</span><span class='dot token'>.</span><span class='rubyid_include? fid id'>include?</span><span class='lparen token'>(</span><span class='string val'>' '</span><span class='rparen token'>)</span> <span class='question op'>?</span> <span class='dstring node'>%Q[&quot;#{part.gsub(/&quot;/, '\&quot;')}&quot;]</span> <span class='colon op'>:</span> <span class='rubyid_part identifier id'>part</span>
+  <span class='rubyid_end end kw'>end</span><span class='dot token'>.</span><span class='rubyid_join identifier id'>join</span><span class='lparen token'>(</span><span class='string val'>&quot; &quot;</span><span class='rparen token'>)</span> <span class='rubyid_if if_mod kw'>if</span> <span class='rubyid_command identifier id'>command</span><span class='dot token'>.</span><span class='rubyid_is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='rubyid_Array constant id'>Array</span><span class='rparen token'>)</span>
+
+  <span class='rubyid_options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:custom_environment</span><span class='rbrack token'>]</span> <span class='opasgn op'>||=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span>
+  <span class='rubyid_Puppet constant id'>Puppet</span><span class='colon2 op'>::</span><span class='rubyid_Util constant id'>Util</span><span class='dot token'>.</span><span class='rubyid_withenv identifier id'>withenv</span><span class='lparen token'>(</span><span class='rubyid_options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:custom_environment</span><span class='rbrack token'>]</span><span class='rparen token'>)</span> <span class='rubyid_do do kw'>do</span>
+    <span class='rubyid_Puppet constant id'>Puppet</span><span class='colon2 op'>::</span><span class='rubyid_Util constant id'>Util</span><span class='colon2 op'>::</span><span class='rubyid_Windows constant id'>Windows</span><span class='colon2 op'>::</span><span class='rubyid_Process constant id'>Process</span><span class='dot token'>.</span><span class='rubyid_execute identifier id'>execute</span><span class='lparen token'>(</span><span class='rubyid_command identifier id'>command</span><span class='comma token'>,</span> <span class='rubyid_options identifier id'>options</span><span class='comma token'>,</span> <span class='rubyid_stdin identifier id'>stdin</span><span class='comma token'>,</span> <span class='rubyid_stdout identifier id'>stdout</span><span class='comma token'>,</span> <span class='rubyid_stderr identifier id'>stderr</span><span class='rparen token'>)</span>
+  <span class='rubyid_end end kw'>end</span>
+<span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="ruby_path-class_method">
+  
+    + (<tt><span class='object_link'>String</span></tt>) <strong>ruby_path</strong> &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>Returns the path to the ruby executable (available via Config object, even if
+it's not in the PATH... so this is slightly safer than just using Puppet::Util.which)</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>String</span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the path to the Ruby executable</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+199
+200
+201
+202
+203</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/util/execution.rb', line 199</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_self self kw'>self</span><span class='dot token'>.</span><span class='rubyid_ruby_path identifier id'>ruby_path</span><span class='lparen token'>(</span><span class='rparen token'>)</span>
+  <span class='rubyid_File constant id'>File</span><span class='dot token'>.</span><span class='rubyid_join identifier id'>join</span><span class='lparen token'>(</span><span class='rubyid_RbConfig constant id'>RbConfig</span><span class='colon2 op'>::</span><span class='rubyid_CONFIG constant id'>CONFIG</span><span class='lbrack token'>[</span><span class='string val'>'bindir'</span><span class='rbrack token'>]</span><span class='comma token'>,</span>
+            <span class='rubyid_RbConfig constant id'>RbConfig</span><span class='colon2 op'>::</span><span class='rubyid_CONFIG constant id'>CONFIG</span><span class='lbrack token'>[</span><span class='string val'>'ruby_install_name'</span><span class='rbrack token'>]</span> <span class='plus op'>+</span> <span class='rubyid_RbConfig constant id'>RbConfig</span><span class='colon2 op'>::</span><span class='rubyid_CONFIG constant id'>CONFIG</span><span class='lbrack token'>[</span><span class='string val'>'EXEEXT'</span><span class='rbrack token'>]</span><span class='rparen token'>)</span><span class='dot token'>.</span>
+    <span class='rubyid_sub identifier id'>sub</span><span class='lparen token'>(</span><span class='regexp val'>/.*\s.*/</span><span class='rubyid_m identifier id'>m</span><span class='comma token'>,</span> <span class='string val'>'&quot;\&amp;&quot;'</span><span class='rparen token'>)</span>
+<span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="wait_for_output-class_method">
+  
+    + (<tt><span class='object_link'>Object</span></tt>) <strong>wait_for_output</strong>(stdout) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>This is private method.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/util/execution.rb', line 281</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_self self kw'>self</span><span class='dot token'>.</span><span class='rubyid_wait_for_output identifier id'>wait_for_output</span><span class='lparen token'>(</span><span class='rubyid_stdout identifier id'>stdout</span><span class='rparen token'>)</span>
+  <span class='comment val'># Make sure the file's actually been written.  This is basically a race</span>
+  <span class='comment val'># condition, and is probably a horrible way to handle it, but, well, oh</span>
+  <span class='comment val'># well.</span>
+  <span class='comment val'># (If this method were treated as private / inaccessible from outside of this file, we shouldn't have to worry</span>
+  <span class='comment val'>#  about a race condition because all of the places that we call this from are preceded by a call to &quot;waitpid2&quot;,</span>
+  <span class='comment val'>#  meaning that the processes responsible for writing the file have completed before we get here.)</span>
+  <span class='float val'>2</span><span class='dot token'>.</span><span class='rubyid_times identifier id'>times</span> <span class='rubyid_do do kw'>do</span> <span class='bitor op'>|</span><span class='rubyid_try identifier id'>try</span><span class='bitor op'>|</span>
+    <span class='rubyid_if if kw'>if</span> <span class='rubyid_Puppet constant id'>Puppet</span><span class='colon2 op'>::</span><span class='rubyid_FileSystem constant id'>FileSystem</span><span class='colon2 op'>::</span><span class='rubyid_File constant id'>File</span><span class='dot token'>.</span><span class='rubyid_exist? fid id'>exist?</span><span class='lparen token'>(</span><span class='rubyid_stdout identifier id'>stdout</span><span class='dot token'>.</span><span class='rubyid_path identifier id'>path</span><span class='rparen token'>)</span>
+      <span class='rubyid_stdout identifier id'>stdout</span><span class='dot token'>.</span><span class='rubyid_open identifier id'>open</span>
+      <span class='rubyid_begin begin kw'>begin</span>
+        <span class='rubyid_return return kw'>return</span> <span class='rubyid_stdout identifier id'>stdout</span><span class='dot token'>.</span><span class='rubyid_read identifier id'>read</span>
+      <span class='rubyid_ensure ensure kw'>ensure</span>
+        <span class='rubyid_stdout identifier id'>stdout</span><span class='dot token'>.</span><span class='rubyid_close identifier id'>close</span>
+        <span class='rubyid_stdout identifier id'>stdout</span><span class='dot token'>.</span><span class='rubyid_unlink identifier id'>unlink</span>
+      <span class='rubyid_end end kw'>end</span>
+    <span class='rubyid_else else kw'>else</span>
+      <span class='rubyid_time_to_sleep identifier id'>time_to_sleep</span> <span class='assign token'>=</span> <span class='rubyid_try identifier id'>try</span> <span class='div op'>/</span> <span class='float val'>2.0</span>
+      <span class='rubyid_Puppet constant id'>Puppet</span><span class='dot token'>.</span><span class='rubyid_warning identifier id'>warning</span> <span class='dstring node'>&quot;Waiting for output; will sleep #{time_to_sleep} seconds&quot;</span>
+      <span class='rubyid_sleep identifier id'>sleep</span><span class='lparen token'>(</span><span class='rubyid_time_to_sleep identifier id'>time_to_sleep</span><span class='rparen token'>)</span>
+    <span class='rubyid_end end kw'>end</span>
+  <span class='rubyid_end end kw'>end</span>
+  <span class='rubyid_nil nil kw'>nil</span>
+<span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+    <div id="footer">
+  Generated on Wed Feb 19 13:52:03 2014 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.3 (ruby-1.8.7).
+</div>
+
+  </body>
+</html>

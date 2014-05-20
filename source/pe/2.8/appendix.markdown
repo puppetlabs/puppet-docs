@@ -18,7 +18,81 @@ For a complete guide to the Puppet language, visit [the reference manual](/puppe
 Release Notes
 -----
 
-### Puppet 2.8.3 (8/15/2013)
+### PE 2.8.6 (4/15/2014)
+
+#### Security Fixes
+
+*[CVE-2014-0098 Apache vulnerability in config module could allow denial of service attacks via cookies](http://puppetlabs.com/security/cve/cve-2014-0098)*
+
+Assessed Risk Level: medium. For Apache versions earlier than 2.4.8, the `log_cookie` function in `mod_log_config.c` in the `mod_log_config` module could allow remote attackers to cause a denial of service attack via a crafted cookie that is not properly handled during truncation.
+
+For RHEL, SLES, CentOS, and Scientific Linux systems CVSS v2 score: 5.3 v2 Vector (AV:N/AC:M/Au:N/C:N/I:N/A:C/E:U/RL:OF/RC:C)
+
+For Debian and Ubuntu systems CVSS v2 score: 4.0 v2 Vector (AV:N/AC:H/Au:N/C:N/I:N/A:C/E:U/RL:OF/RC:C)
+
+The variation in score is because `mod_log_config` is enabled by default on RHEL, CentOS, SLES, and Scientific Linux systems. The module is not enabled by default on Debian and Ubuntu.
+
+*[CVE-2013-6438 Apache vulnerability in `mod_dav` module could allow denial of service attacks via DAV WRITE requests](http://puppetlabs.com/security/cve/cve-2013-6438)*
+
+Assessed Risk Level: medium. For Apache versions earlier than 2.4.8, the `dav_xml_get_cdata` function in `main/util.c` in the `mod_dav` module does not properly remove leading spaces could allow remote attackers to cause a denial of service attack via a crafted DAV WRITE request. 
+
+CVSS v2 score: 4.0 with v2 Vector (AV:N/AC:H/Au:N/C:N/I:N/A:C/E:U/RL:OF/RC:C)
+
+#### A Note about the Heartbleed Bug
+
+We want to emphasize that Puppet Enterprise does not need to be patched for Heartbleed.  
+
+No version of Puppet Enterprise has been shipped with a vulnerable version of OpenSSL, so Puppet Enterprise is not itself vulnerable to the security bug known as Heartbleed, and does not require a patch from Puppet Labs.
+
+However, some of your Puppet Enterprise-managed nodes could be running operating systems that include OpenSSL versions 1.0.1 or 1.0.2, and both of these are vulnerable to the Heartbleed bug. Since tools included in Puppet Enterprise, such as PuppetDB and the Console, make use of SSL certificates we believe the safest, most secure method for assuring the security of your Puppet-managed infrastructure is to regenerate your certificate authority and all OpenSSL certificates. 
+
+We have outlined the remediation procedure to help make it an easy and fail-safe process. You’ll find the details here: Remediation for [Recovering from the Heartbleed Bug](http://docs.puppetlabs.com/trouble_remediate_heartbleed_overview.html).
+
+We’re here to help. If you have any issues with remediating the Heartbleed vulnerability, one of your authorized Puppet Enterprise support users can always log into the [customer support portal](https://support.puppetlabs.com/access/unauthenticated). We’ll continue to update the email list with any new information.
+
+Links:
+
+* [Heartbleed and Puppet-Supported Operating Systems](https://puppetlabs.com/blog/heartbleed-and-puppet-supported-operating-systems)
+
+* [Heartbleed Update: Regeneration Still the Safest Path](https://puppetlabs.com/blog/heartbleed-update-regeneration-still-safest-path)
+
+### PE 2.8.5 (1/30/2014)
+
+#### Security Fixes
+
+*[CVE-2013-6450 OpenSSL DTLS retransmission vulnerability](http://puppetlabs.com/security/cve/cve-2013-6450/)*
+
+Assessed Risk Level: medium. The DTLS retransmission implementation in OpenSSL through 0.9.8y and 1.x through 1.0.1e does not properly maintain data structures for digest and encryption contexts, which might allow man-in-the-middle attackers to trigger the use of a different context by interfering with packet delivery, related to ssl/d1_both.c and ssl/t1_enc.c. This has been fixed in PE 2.8.5 by updating OpenSSL to 1.0.0.l
+
+#### Bug Fixes
+
+Several minor bugs in puppet core have been fixed in this release.
+
+### PE 2.8.4 (12/19/2013)
+
+#### Security Fixes
+
+*[CVE-2013-6414 Action View vulnerability in Ruby on Rails](http://puppetlabs.com/security/cve/cve-2013-6414)*
+
+Assessed Risk Level: medium. Ruby on Rails is vulnerable to headers containing an invalid MIME type that allows attackers to issue  denial of service through memory consumption, which leads to excessive caching. This has been fixed in PE 2.8.4.
+
+*[CVE-2013-4491 XSS vulnerability in Ruby on Rails](http://puppetlabs.com/security/cve/cve-2013-4491)* 
+
+Assed Risk Level: medium. An XXS vulnerability in the translation helper allows remote attackers to add web script or HTML that triggers generation of a fallback string in the i18n gem. This has been fixed in PE 2.8.4.
+
+*[CVE-2013-4363 Algorithmic Complexity Vulnerability in RubyGems](http://puppetlabs.com/security/cve/cve-2013-4363)*
+
+Assessed Risk Level: low. RubyGems validates versions with a regular expression that is vulnerable to attackers causing denial of service through CPU consumption. This is resolved in PE 2.8.4. 
+**Note:** This vulnerability was due to an incomplete fix for CVE-2013-4287.
+
+*[CVE-2013-4164 Heap overflow in floating point parsing in RubyGems](http://puppetlabs.com/security/cve/cve-2013-4164)*
+
+Assessed Risk Level: Medium. Converting strings of unknown origin to floating point values can cause heap overflow and allow attackers to create denial of service attacks. This has been fixed in PE 2.8.4.
+
+*[CVE-2013-4969 Unsafe use of temp files in `file_type`](http://puppetlabs.com/security/cve/cve-2013-4969)*
+
+Assessed Risk Level: medium. Previous code used temp files unsafely by looking for a name it could use in a directory, and then later writing to that file, creating a vulnerability in which an attacker could make the name a symlink to another file and thereby cause puppet agent to overwrite something that it did not intend to. This has been fixed in PE 2.8.4.
+### PE 2.8.3 (8/15/2013)
 
 #### Security Fixes
 
@@ -35,7 +109,7 @@ A vulnerability in Ruby's SSL client could allow an attacker to spoof SSL server
 The Puppet Module Tool (PMT) incorrectly transferred a module's original permissions.
 
 
-### Puppet 2.8.2 (6/18/2013)
+### PE 2.8.2 (6/18/2013)
 
 #### Security Fix
 

@@ -51,6 +51,7 @@ So when dealing with related resources, Puppet has ways to express those relatio
 > * You can also declare relationships outside a resource with the `->` and `~>` chaining arrows.
 > * Relationships can be either ordering (this before that) or ordering-with-notification (this before that, and tell that whether this was changed).
 > * Puppet's relationship behaviors and syntaxes are documented in [the Puppet reference manual page on relationships.][lang_relationships]
+> * The `ordering` setting in `puppet.conf` determines the order in which unrelated resources are applied.
 
 Metaparameters, Resource References, and Ordering
 -------------------------------------------------
@@ -172,6 +173,13 @@ Some of Puppet's resource types will notice when an instance is related to other
 
 Don't sweat much about the details of autorequiring; it's fairly conservative and should generally do the right thing without getting in your way. If you forget it's there and make explicit dependencies, your code will still work. Explicit dependencies will also override autorequires, if they conflict.
 
+Unrelated Resources and the `ordering` Setting
+-----
+
+For resources that are not associated with metaparameters, chaining arrows, or autorequire, Puppet assumes that they can be applied in any order at all. The idea is that any logical restrictions on resource ordering should be declared explicitly and not simply implied by, say, the order in which they appear in a manifest.
+
+That said, you can set `ordering = manifest` in `/etc/puppetlabs/puppet/puppet.conf` to have Puppet follow manifest ordering **as a fallback** for unrelated resources. All of the above metaparameters will still work as described, but if nothing else gives one resource priority over another, then the resource that appears first in the manifest will be applied first.
+
 
 Example: sshd
 -------------
@@ -235,7 +243,7 @@ Now manually restart the sshd service:
 
 ### Fix
 
-Actually, now that you've added those resources to site.pp, Puppet will fix this automatically within about half an hour. But if you're impatient, you can [log in to the Puppet Enterprise console](./ral.html#logging-in), then [trigger a puppet agent run](/pe/latest/console_live_puppet.html) in the live management page.
+Actually, now that you've added those resources to site.pp, Puppet will fix this automatically within about half an hour. But if you're impatient, you can [log in to the Puppet Enterprise console](./ral.html#logging-in), then [trigger a puppet agent run](/pe/latest/orchestration_puppet.html) in the live management page.
 
 And that'll do it! After the Puppet run has completed and you can see the report appear in the console (it will have a blue icon, to show that changes were made), you should be able to log in as root via SSH again. _Victory._
 

@@ -1,6 +1,7 @@
 ---
 title: "Language: Defined Resource Types"
 layout: default
+canonical: "/puppet/latest/reference/lang_defined_types.html"
 ---
 
 <!-- TODO: need better link for site.pp -->

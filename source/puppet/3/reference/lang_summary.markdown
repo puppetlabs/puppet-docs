@@ -1,6 +1,7 @@
 ---
 layout: default
 title: "Language: Summary"
+canonical: "/puppet/latest/reference/lang_summary.html"
 ---
 
 
@@ -26,6 +27,7 @@ title: "Language: Summary"
 [declared]: /references/glossary.html#declare
 [string_newline]: ./lang_datatypes.html#line-breaks
 [node]: ./lang_node_definitions.html
+[ordering option]: /references/3.4.stable/configuration.html#ordering
 <!-- TODO improve hiera link -->
 [hiera]: https://github.com/puppetlabs/hiera
 
@@ -48,9 +50,11 @@ Ordering
 
 Puppet's language is mostly **declarative:** Rather than listing a series of steps to carry out, a Puppet manifest describes a desired final state.
 
-The resources in a manifest can be freely ordered --- they will not be applied to the system in the order they are written. This is because Puppet assumes most resources aren't related to each other. If one resource depends on another, [you must say so explicitly][relationships]. (If you want a short section of code to get applied in the order written, you can use [chaining arrows][chaining].)
+The resources in a manifest can be freely ordered --- they will not necessarily be applied to the system in the order they are written. This is because Puppet assumes most resources aren't related to each other. If one resource depends on another, [you must say so explicitly][relationships]. (If you want a short section of code to get applied in the order written, you can use [chaining arrows][chaining].)
 
 Although resources can be freely ordered, several parts of the language do depend on parse order. The most notable of these are variables, which must be set before they are referenced.
+
+Puppet 3.3 introduced the [ordering option][], which provides an alternative to the effectively random order for unrelated resources. If you set `ordering = manifest` in `puppet.conf`, Puppet will apply resources in the order in which they appear in the manifest **if the order is not otherwise determined,** e.g., by metaparameters like `before` or `require`. 
 
 Files
 -----

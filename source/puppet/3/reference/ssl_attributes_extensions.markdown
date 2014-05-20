@@ -1,11 +1,12 @@
 ---
 layout: default
 title: "SSL Configuration: CSR Attributes and Certificate Extensions"
+canonical: "/puppet/latest/reference/ssl_attributes_extensions.html"
 ---
 
 [cert_request]: ./subsystem_agent_master_comm.html#check-for-keys-and-certificates
-[csr_attributes]: /references/3.latest/configuration.html#csrattributes
-[confdir]: /references/3.latest/configuration.html#confdir
+[csr_attributes]: /references/3.4.stable/configuration.html#csrattributes
+[confdir]: /references/3.4.stable/configuration.html#confdir
 [autosign_policy]: ./ssl_autosign.html#policy-based-autosigning
 [autosign_basic]: ./ssl_autosign.html#basic-autosigning-autosignconf
 [puppet_oids]: #puppet-specific-registered-ids
