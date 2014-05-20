@@ -95,7 +95,6 @@ After setting the repository, follow the instructions above for installing from 
 
     # puppet module install --module_repository http://dev-forge.example.com puppetlabs-apache
 
-
 ### Installing From a Release Tarball
 
 To install a module from a release tarball, specify the path to the tarball instead of the module name.
