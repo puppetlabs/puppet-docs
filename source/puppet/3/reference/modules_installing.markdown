@@ -17,20 +17,15 @@ Installing Modules
 =====
 
 
-> ![Windows note](/images/windows-logo-small.jpg) The puppet module tool does not currently work on Windows.
->
-> * Windows nodes which pull configurations from a Linux or Unix puppet master can use any Forge modules installed on the master. Continue reading to learn how to use the module tool on your puppet master.
-> * On Windows nodes which compile their own catalogs, you can install a Forge module by:
->     1. Downloading and extracting the module's release tarball from the module's page on the Forge (you will also need to download each module listed in the Dependencies tab);
->     2. Running the following command in PowerShell or Command Prompt: `puppet module install <path to tarball> --ignore-dependencies`.
-    
->**Solaris Note**
->**Note**
->To use the puppet module tool on Solaris systems, you must first install gtar.
+![Windows note](/images/windows-logo-small.jpg) 
+On Windows nodes which compile their own catalogs, you can install a Forge module by downloading and extracting the module's release tarball from the module's page on the Forge (you will also need to download each module listed in the Dependencies tab). Then run the following command in PowerShell or Command Prompt: `puppet module install <path to tarball> --ignore-dependencies`.
+
+**Solaris Note**
+To use the puppet module tool on Solaris systems, you must first install gtar.
 
 The [Puppet Forge][forge] is a **repository of pre-existing modules,** written and contributed by users. These modules solve a wide variety of problems so using them can save you time and effort.
 
-The `puppet module` subcommand, which ships with Puppet, is a tool for finding and managing new modules from the Forge. Its interface is similar to several common package managers, and makes it easy to **search for and install new modules from the command line.**
+The `puppet module` subcommand, which ships with Puppet, is a tool for finding and managing new modules from the Forge. Its interface is similar to several common package managers and makes it easy to **search for and install new modules from the command line.**
 
 * Continue reading to learn how to install and manage modules from the Puppet Forge.
 * [See "Module Fundamentals"][fundamentals] to learn how to use and write Puppet modules.
@@ -91,7 +86,6 @@ To install a module from the Puppet Forge, simply identify the desired module by
 
     # puppet module install puppetlabs-apache
 
-{% comment %}
 
 ### Installing From Another Module Repository
 
@@ -101,7 +95,6 @@ After setting the repository, follow the instructions above for installing from 
 
     # puppet module install --module_repository http://dev-forge.example.com puppetlabs-apache
 
-{% endcomment %}
 
 ### Installing From a Release Tarball
 
@@ -117,8 +110,8 @@ PE 3.2 introduces [supported modules](http://forge.puppetlabs.com/supported), wh
 
 If you are running PE 3.2, please note that if a version of the module matches the installed version of PE, non-matching versions will be filtered out. The `--force` flag will prevent this filtering, and will either install the most recent version of the module if no version is specified or install the specified version. Note that the `--force` flag will ignore dependencies and checksums, as well as overwrite installed modules with the same modulename. The `--debug` flag will show whether a module is being filtered or not. If no PE version metadata is present in any version, all available versions of the module will be displayed.
 
->*Note:*
->It is possible that some community modules may also include this `requirements` metadata.
+*Note:*
+It is possible that some community modules may also include this `requirements` metadata.
 
 Finding Modules
 -----
