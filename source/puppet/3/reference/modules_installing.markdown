@@ -68,6 +68,17 @@ The `puppet module` subcommand has several **actions.** The main actions used fo
 
 If you have used a command line package manager tool (like `gem`, `apt-get`, or `yum`) before, these actions will generally do what you expect. You can view a full description of each action with `puppet man module` or by [viewing the man page here][module_man].
 
+###Using the Module Tool Behind a Proxy
+
+In order to use the puppet module tool behind a proxy, you need to set the following:
+
+	export http_proxy=http://10.187.255.9:8080 
+	export https_proxy=http://10.187.255.9:8080
+	
+Alternatively, you can set these two proxy settings inside the `user` config section in the `puppet.conf` file: `http_proxy_host` and `http_proxy_port`. For more information, see [Configuration Reference](http://docs.puppetlabs.com/references/latest/configuration.html).
+
+**Note:** Make sure to set these two proxy settings in the `user` section only. Otherwise, there can be adverse effects. 
+
 Installing Modules
 -----
 
