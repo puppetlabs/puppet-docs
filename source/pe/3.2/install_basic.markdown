@@ -452,7 +452,7 @@ You can resolve this issue using the option below that corresponds with your par
 
 * **Option 2**
 
-    If you already have a package management/distribution system, you can use it to install agents by adding the agent packages to your repo. In this case, you can disable the PE-hosted repo feature altogether by removing the `pe-repo` class from your master.
+    If you already have a package management/distribution system, you can use it to install agents by adding the agent packages to your repo. In this case, you can disable the PE-hosted repo feature altogether by removing the `pe_repo` class from your master.
 
 * **Option 3**
 
