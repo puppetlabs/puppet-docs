@@ -71,7 +71,7 @@ For this walk-through, you will create a simple deployment where the puppet mast
 ### Installing the Puppet Master
 
 1. **On the puppet master node,** log in as root or with a root shell. (Use `sudo -s` to get a root shell if your operating system's root account is disabled, as on Debian and Ubuntu.)
-2.  [Download the full (NOT agent-only) Puppet Enterprise tarball][downloads], extract it, and navigate to the directory it creates. (The agent-only tarball is used for [package-management based agent installation](agent-install), which is not covered by this guide.)
+2.  [Download the full (NOT agent-only) Puppet Enterprise tarball][downloads], extract it, and navigate to the directory it creates. (The agent-only tarball is used for [package management-based agent installation][agent-install], which is not covered by this guide.)
 3. Run `./puppet-enterprise-installer`. The installer will ask a series of questions about which components to install, and how to configure them.
     * **Install** the puppet master, database support, and console roles; the cloud provisioner role is not required, but may be useful if you later promote this machine to production or just want to experiment with PE provisioning features.
     * Make sure that the unique "certname" matches the hostname you chose for this node. (For example, `master.example.com`.)
