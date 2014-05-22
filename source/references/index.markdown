@@ -34,6 +34,7 @@ The generated references are available for a wide range of versions, including s
 ### Puppet 3.6.x
 
 * [Stable](./3.6.stable/) / [Latest](./3.6.latest/)
+* [3.6.1](./3.6.1)
 * [3.6.0](./3.6.0)
 
 ### Puppet 3.5.x

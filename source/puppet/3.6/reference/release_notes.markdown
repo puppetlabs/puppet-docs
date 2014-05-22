@@ -25,6 +25,86 @@ If you're upgrading from a 3.x version of Puppet, you can usually just go for it
 
 If you're upgrading from Puppet 2.x, please [learn about major upgrades of Puppet first!][upgrade] We have important advice about upgrade plans and package management practices. The short version is: test first, roll out in stages, give yourself plenty of time to work with. Also, read the [release notes for Puppet 3][puppet_3] for a list of all the breaking changes made between the 2.x and 3.x series.
 
+
+Puppet 3.6.1
+-----
+
+[node termini]: ./subsystem_catalog_compilation.html#step-1-retrieve-the-node-object
+[enc]: /guides/external_nodes.html
+[allow_virtual]: /references/3.6.latest/type.html#package-attribute-allow_virtual
+[the main manifest]: ./dirs_manifest.html
+[multi_source]: /references/3.6.latest/type.html#file-attribute-source
+
+Released May 22, 2014.
+
+Puppet 3.6.1 is a bug fix release in the Puppet 3.6 series. It also makes the `transaction_uuid` more reliably available to extensions.
+
+### Changes to RPM Behavior With Virtual Packages
+
+In Puppet 3.5, the RPM package provider gained support for virtual packages. (That is, Puppet would handle package names the same way Yum does.) In this release, we added a new [`allow_virtual` attribute][allow_virtual] for `package`, which defaults to `false`. You'll have to set it to `true` to manage virtual packages.
+
+We did this because there are a few cases where a virtual package name can conflict with a non-virtual package name, and Puppet will manage the wrong thing. (Again, just like Yum would.) For example, if you set `ensure => absent` on the `inetd` package, Puppet might uninstall the `xinetd` package, since it provides the `inetd` virtual package.
+
+We had to treat that change as a regression, so we're currently defaulting `allow_virtual => false` to preserve compatibility in the Puppet 3 series. The default will change to `true` for Puppet 4. If you manage any packages with virtual/non-virtual name conflicts, you should set `allow_virtual => false` on a per-resource basis.
+
+If you don't have any resources with ambiguous virtual/non-virtual package names, you can enable the Puppet 4 behavior today by setting a resource default in [the main manifest][]:
+
+{% highlight ruby %}
+    Package {
+      allow_virtual => true,
+    }
+{% endhighlight %}
+
+- [PUP-2182: Package resource not working as expected in 3.5.0](https://tickets.puppetlabs.com/browse/PUP-2182)
+
+### Improvements to `transaction_uuid` in Reports and Node Termini
+
+Each catalog request from an agent node has a unique identifier, which persists through the entire run and ends up in the report. However, it was being omitted from reports when the catalog run failed, and [node termini][] had no access to it. This release adds it to failed reports and node object requests.
+
+(Note that `transaction_uuid` isn't available in the standard [ENC][] interface, but it is available to custom node termini.)
+
+- [PUP-2522: The transaction_uuid should be available to a node terminus](https://tickets.puppetlabs.com/browse/PUP-2522)
+- [PUP-2508: Failed compilation does not populate environment, transaction_uuid in report](https://tickets.puppetlabs.com/browse/PUP-2508)
+
+### Windows Start Menu Fixes
+
+If your Windows machine only had .NET 4.0 or higher, the "Run Facter" and "Run Puppet Agent" start menu items wouldn't work, stating that they needed an older version of .NET installed. This is now fixed.
+
+- [PUP-1951: Unable to "Run Facter" or "Run Puppet Agent" from Start Menu on Windows 8/2012 - Requires .NET Framework 3.5 installed](https://tickets.puppetlabs.com/browse/PUP-1951)
+
+### Improved Passenger Packages on Debian/Ubuntu
+
+The Apache vhost config we ship in the Debian/Ubuntu `puppetmaster-passenger` package had some non-optimal TLS settings. This has been improved.
+
+- [PUP-2582: Enable TLSv1.2 in apache vhost config](https://tickets.puppetlabs.com/browse/PUP-2582)
+
+
+### HTTP API Fixes
+
+A regression in Puppet 3.5 broke `DELETE` requests to Puppet's HTTP API. Also, a change in 3.6.0 made puppet agent log spurious warnings when using [multiple values for the `source` attribute][multi_source]. These bugs are both fixed.
+
+- [PUP-2505: REST API regression in DELETE request handling](https://tickets.puppetlabs.com/browse/PUP-2505)
+- [PUP-2584: Spurious warnings when using multiple file sources](https://tickets.puppetlabs.com/browse/PUP-2584) (regression in 3.6.0)
+
+
+### Directory Environment Fixes
+
+If puppet master was running under Rack (e.g. with Passenger) and the [environmentpath](./environments.html#about-environmentpath) was configured in the `[master]` section of puppet.conf (instead of in `[main]`), Puppet would use the wrong set of environments. This has been fixed.
+
+- [PUP-2607: environmentpath does not work in master section of config](https://tickets.puppetlabs.com/browse/PUP-2607)
+- [PUP-2610: Rack masters lose track of environment loaders](https://tickets.puppetlabs.com/browse/PUP-2610)
+
+
+### Future Parser Improvements
+
+This release fixes two compatibility bugs where the future parser conflicted with the 3.x parser. It also fixes a bug with the new EPP templating language.
+
+- [PUP-1894: Cannot render EPP templates from a module](https://tickets.puppetlabs.com/browse/PUP-1894)
+- [PUP-2568: Cannot use class references with upper cased strings](https://tickets.puppetlabs.com/browse/PUP-2568)
+- [PUP-2581: Interpolated variables with leading underscore regression](https://tickets.puppetlabs.com/browse/PUP-2581) (regression in 3.5.1)
+
+
+
 Puppet 3.6.0
 -----
 
