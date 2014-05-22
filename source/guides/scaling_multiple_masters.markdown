@@ -179,7 +179,7 @@ If you are using Puppet Dashboard or another HTTP report processor, you should p
 
 If you are using the inventory service or exported resources, it's complex and impractical to use any of the older (activerecord) backends in a multi-master environment. **You should definitely switch to [PuppetDB](/puppetdb),** and point all of your puppet masters at a shared PuppetDB instance. A reasonably robust PuppetDB server can handle many puppet masters and many thousands of agent nodes.
 
-See [the PuppetDB manual](/puppetdb/latest) for instructions on setting up PuppetDB. You will need to deploy a PuppetDB server, then configure each puppet master to use it.
+See [the PuppetDB manual](/puppetdb/latest) for instructions on setting up PuppetDB. You will need to deploy a PuppetDB server, then configure each puppet master to use it. Note that every puppet master will need to have its own [whitelist entry](/puppetdb/latest/configure.html#certificate-whitelist) if you're using HTTPS certificates for authorization.
 
 
 * * *
