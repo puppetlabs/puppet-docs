@@ -229,8 +229,8 @@ that an unbounded number of nodes can be bound to this policy, or a
 positive integer to set an upper bound.
 
 The `node_metadata` allows a policy to apply metadata to a node when it
-binds.  This is NON AUTHORITIVE in that it will not replace existing
-metadata on the node with the same keys it will only add keys that are
+binds.  This is NON AUTHORITATIVE in that it will not replace existing
+metadata on the node with the same keys, it will only add keys that are
 missing.
 
 ### Move policy
