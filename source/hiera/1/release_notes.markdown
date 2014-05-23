@@ -9,7 +9,7 @@ Hiera 1.3.3
 
 Released May 22, 2014.
 
-Hiera 1.3.3 is a backward-compatible performance and fixes release in the 1.3 series. It provides a substantial speed increase for lookups compared to Hiera 1.3.2. This release also adds support for Ubuntu 14.04 (Trusty Tahr) and discontinues support for Fedora 18 and Ubuntu 12.04 (Raring Ringtail).
+Hiera 1.3.3 is a backward-compatible performance and fixes release in the 1.3 series. It provides a substantial speed increase for lookups compared to Hiera 1.3.2. This release also adds support for Ubuntu 14.04 (Trusty Tahr) and discontinues support for Fedora 18 and Ubuntu 13.04 (Raring Ringtail).
 
 ### Performance Improvements
 
@@ -18,7 +18,7 @@ Hiera 1.3.3 is a backward-compatible performance and fixes release in the 1.3 se
 ### Operating System Support
 
 * [HI-149](https://tickets.puppetlabs.com/browse/HI-149): Remove Fedora 18 from default build targets
-* [HI-236](https://tickets.puppetlabs.com/browse/HI-236): Remove Raring (Ubuntu 12.04) from build_defaults, it is EOL
+* [HI-236](https://tickets.puppetlabs.com/browse/HI-236): Remove Raring (Ubuntu 13.04) from build_defaults, it is EOL
 * [HI-185](https://tickets.puppetlabs.com/browse/HI-185): Add Trusty (Ubuntu 14.04) support
 
 ### Bug Fixes
