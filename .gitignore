@@ -19,3 +19,4 @@ Gemfile.lock
 .*.swo
 .*.swp
 .*.un~
+*.orig
