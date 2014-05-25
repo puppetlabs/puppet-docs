@@ -110,5 +110,4 @@ symlink_latest:
   - geppetto
   - facter
   - pe
-  - dashboard/manual
 ---

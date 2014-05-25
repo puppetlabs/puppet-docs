@@ -265,7 +265,6 @@ The content for the docs site lives in the `_source` directory of the puppet-doc
     ├── community
     ├── config.ru (configuration for preview server run from `rake preview`)
     ├── contribute.markdown
-    ├── dashboard
     ├── facter
     ├── files
     │   ├── errors
@@ -284,7 +283,6 @@ The content for the docs site lives in the `_source` directory of the puppet-doc
     ├── output (directory where Jekyll keeps HTML output before deploy)
     ├── pe
     ├── puppet
-    ├── puppet_baseline
     ├── puppet_core_types_cheatsheet.pdf
     ├── puppetdb
     ├── references (generated references, you will not usually want to edit these)

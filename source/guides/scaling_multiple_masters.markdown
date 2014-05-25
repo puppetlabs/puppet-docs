@@ -11,7 +11,7 @@ To scale beyond a certain size, or for geographic distribution or disaster recov
 > Note: As of this writing, this document does not cover:
 >
 > * How to expand Puppet Enterprise's orchestration or live management features
-> * How to use multiple PE console or Puppet Dashboard servers
+> * How to use multiple PE console servers
 
 In brief:
 
@@ -175,7 +175,7 @@ Like with any puppet master, you'll need to use a production-grade web server ra
 Centralize Reports, Inventory Service, and Catalog Searching (storeconfigs)
 -----
 
-If you are using Puppet Dashboard or another HTTP report processor, you should point all of your puppet masters at the same shared Dashboard server; otherwise, you won't be able to see all of your nodes' reports.
+If you are using a HTTP report processor, you should point all of your puppet masters at the same shared Dashboard server; otherwise, you won't be able to see all of your nodes' reports.
 
 If you are using the inventory service or exported resources, it's complex and impractical to use any of the older (activerecord) backends in a multi-master environment. **You should definitely switch to [PuppetDB](/puppetdb),** and point all of your puppet masters at a shared PuppetDB instance. A reasonably robust PuppetDB server can handle many puppet masters and many thousands of agent nodes.
 

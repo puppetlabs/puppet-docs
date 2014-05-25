@@ -20,16 +20,6 @@ learningpuppet.html:
     - learning/agentprep.html
     - learning/agent_master_basic.html
     - bottom.html
-dashboardmanual.html:
-    - top.html
-    - dashboard/manual/1.2/index.html
-    - dashboard/manual/1.2/bootstrapping.html
-    - dashboard/manual/1.2/upgrading.html
-    - dashboard/manual/1.2/configuring.html
-    - dashboard/manual/1.2/maintaining.html
-    - dashboard/manual/1.2/using.html
-    - dashboard/manual/1.2/rake_api.html
-    - bottom.html
 pe3_0usersguide.html:
     - top.html
     - pe/3.0/overview_about_pe.html
