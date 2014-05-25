@@ -133,7 +133,7 @@ puppet inspect
 
 Inspection reports differ from standard Puppet reports, as they do not record the actions taken by Puppet when applying a catalog; instead, they document the current state of all resource attributes which have been marked as auditable with the [`audit` metaparameter](http://docs.puppetlabs.com/references/stable/metaparameter.html#audit). (The most recent cached catalog is used to determine which resource attributes are auditable.)
 
-Inspection reports are handled identically to standard reports, and must be differentiated  at parse time by your report tools; see the [report format documentation](http://projects.puppetlabs.com/projects/puppet/wiki/Report_Format_2) for more details. Although a future version of Puppet Dashboard will support viewing of inspection reports, Puppet Labs does not currently ship any inspection report tools.
+Inspection reports are handled identically to standard reports, and must be differentiated  at parse time by your report tools; see the [report format documentation](http://projects.puppetlabs.com/projects/puppet/wiki/Report_Format_2) for more details. Puppet Labs does not currently ship any inspection report tools.
 
 Puppet inspect was added in Puppet 2.6.5.
 

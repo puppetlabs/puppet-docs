@@ -20,7 +20,7 @@ Inventory Service
 
 Starting with Puppet 2.6.7, puppet master servers offer API access to the [facts][] reported by every node. You can use this API to get complete info about any node, and to search for nodes whose facts meet certain criteria.
 
-* Puppet Dashboard and Puppet Enterprise's console use the inventory service to provide a search function and display each node's complete facts on the node's page. (PE does this by default. [See here for instructions on activating Dashboard's inventory support](/dashboard/manual/1.2/configuring.html#enabling-inventory-support).)
+* Puppet Enterprise's console use the inventory service to provide a search function and display each node's complete facts on the node's page.
 * Your own custom applications can access any node's facts via the inventory service.
 
 
@@ -31,7 +31,7 @@ The _inventory_ is a collection of node facts. The _inventory service_ is a retr
 
 The puppet master updates the inventory when agent nodes report their facts, which happens every time puppet agent requests a catalog. Optionally, additional puppet masters can use the HTTP API to send facts from their agents to the central inventory.
 
-Other tools, including Puppet Dashboard, can query the inventory via the puppet master's HTTP API. An API call can return:
+Other tools can query the inventory via the puppet master's HTTP API. An API call can return:
 
 * Complete facts for a single node
 
