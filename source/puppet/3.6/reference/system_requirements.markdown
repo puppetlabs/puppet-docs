@@ -43,7 +43,7 @@ Puppet 3.6 and all of its prerequisites will run on the following platforms, and
 
 Although we publish packages for Mac OS X, we do not run automated testing on it.
 
-- Mac OS X, version 10.6 (Snow Leopard) and higher
+- Mac OS X, version 10.9 (Mavericks) and higher
 
 Platforms Without Packages
 -----
