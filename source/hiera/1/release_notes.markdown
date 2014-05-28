@@ -4,6 +4,19 @@ title: "Hiera 1: Release Notes"
 ---
 
 
+Hiera 1.3.4
+-----
+
+Released June 10, 2014.
+
+Hiera 1.3.4 is a security fix release in the Hiera 1.3 series. It has no other bug fixes or new features.
+
+### Security Fix
+
+#### [CVE-2014-3248 (An attacker could create and execute malicious code on platforms with Ruby 1.8)](http://www.puppetlabs.com/security/cve/cve-2014-3248/)
+
+Platforms running Ruby 1.8 would load source files from the current working directory during a Hiera lookup. This could lead to the execution of arbitrary code.
+
 Hiera 1.3.3
 -----
 
