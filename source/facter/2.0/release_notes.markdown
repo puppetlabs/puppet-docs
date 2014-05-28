@@ -6,6 +6,21 @@ description: "Facter release notes for all 2.0 versions"
 
 This page documents the history of the Facter 2.0 series.
 
+Facter 2.0.2
+-----
+
+Released June 10, 2014.
+
+Facter 2.0.2 is a security release in the Facter 2 series. It has no other bug fixes or new features.
+
+### Security Fixes
+
+[CVE-2014-3248]: http://puppetlabs.com/security/cve/CVE-2014-3248
+
+#### [CVE-2014-3248 (An attacker could create and execute malicious code on platforms with Ruby 1.8)][CVE-2014-3248]
+
+When running on Ruby 1.8, previous versions of Facter would load Ruby source files from the current working directory. This could lead to the execution of arbitrary code.
+
 Facter 2.0.1
 -----
 
@@ -53,7 +68,7 @@ Facter now does sanity checking on the output of facts. Facter previously assume
 
 [FACT-341: Windows operatingsystemrelease support](https://tickets.puppetlabs.com/browse/FACT-341)
 
-On Windows, the `operatingsystemrelease` fact now returns `XP`,`2003`, `2003 R2`, `Vista`, `2008`, `7`, `2008 R2`, `8`, or `2012`, depending on the version reportedy by WMI.
+On Windows, the `operatingsystemrelease` fact now returns `XP`,`2003`, `2003 R2`, `Vista`, `2008`, `7`, `2008 R2`, `8`, or `2012`, depending on the version reported by WMI.
 
 ### Improvements
 
@@ -95,7 +110,7 @@ The man page for Facter 2 now includes the new command line options.
 
 [FACT-342: Add Ubuntu 14.04 (Trusty Tahr) support](https://tickets.puppetlabs.com/browse/FACT-342)
 
-This release adds spec and accceptance tests for Ubuntu 14.04, also known as Trusty Tahr.
+This release adds spec and acceptance tests for Ubuntu 14.04, also known as Trusty Tahr.
 
 [FACT-447: Remove Ruby 1.8.5 support](https://tickets.puppetlabs.com/browse/FACT-447)
 
@@ -127,6 +142,6 @@ Facter 2.0.0
 
 For historical reasons, Facter 2.0.0 was never released. Facter 2.0.1 is the first release in the Facter 2 series.
 
-In May 2012, several release candidates were published for a Facter 2.0.0 release, using code that had diverged from the 1.6 series. After testing it, the Puppet community and developers decided that this code wasn't yet usable and the release was cancelled, in favor of continuing work that became the Facter 1.7 series.
+In May 2012, several release candidates were published for a Facter 2.0.0 release, using code that had diverged from the 1.6 series. After testing it, the Puppet community and developers decided that this code wasn't yet usable and the release was canceled, in favor of continuing work that became the Facter 1.7 series.
 
-Since the 2.0.0rc1 tag in the Facter repo was already occupied by that cancelled release, and since issuing a RC5 out of nowhere might have been confusing, we decided to go directly to 2.0.1 instead.
+Since the 2.0.0rc1 tag in the Facter repo was already occupied by that canceled release, and since issuing a RC5 out of nowhere might have been confusing, we decided to go directly to 2.0.1 instead.

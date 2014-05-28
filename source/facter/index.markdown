@@ -11,5 +11,3 @@ The currently supported Facter versions are 2.0 and 1.7. Both versions work with
 * [The list of core facts](/facter/latest/core_facts.html) lists and describes every built-in fact that ships with Facter.
 * [The custom facts overview](/facter/latest/fact_overview.html) is an example-driven primer and reference for fact authors.
 * [The custom facts walkthrough](/facter/latest/custom_facts.html) explains how to write and distribute your own facts in detail.
-
-
