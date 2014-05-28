@@ -123,43 +123,216 @@ authorization:
 
 ### Configuring `rubycas-server/config.yml`
 
-The `/etc/puppetlabs/rubycas-server/config.yml` file is used to configure RubyCAS to use external authentication services. As before, you will need to un-comment the section for the third-party services you wish to enable and configure them as necessary. The values for the listed keys are LDAP and ActiveDirectory standards. If you are not the administrator of those databases, you should check with that administrator for the correct values.
+The `/etc/puppetlabs/rubycas-server/config.yml` file is used to configure RubyCAS to use external authentication services. As before, you will need to un-comment the section for the third-party service you wish to enable and configure it as necessary. 
 
-The authenticators are listed in the file in the following manner (note how this example disables the Google authenticator but enables both AD and LDAP):
+>**Note**: If you are upgrading to PE 3.2.x or later, `rubycas-server/config.yml` will not contain the commented sections for the third-party services. We've provided the commented sections below, which you can copy and paste into `rubycas-server/config.yaml` after you upgrade.
 
-{% highlight yaml %}
+The values for the listed keys are LDAP and ActiveDirectory standards. If you are not the administrator of those databases, you should check with that administrator for the correct values.
 
-authenticator:
-  - class: CASServer::Authenticators::SQLEncrypted
-    database:
-      adapter: postgresql
-      database: console_auth
-      username: console_auth
-      password: easnthycea098iu7aeo6oeu # installer-generated password
-      server: localhost
-    user_table: users
-    username_column: username
-  #- class: CASServer::Authenticators::Google
-  #   restricted_domain: example.com
-  - class: CASServer::Authenticators::LDAP
-    ldap:
-      host: tb-driver.example.com
-      port: 389
-      base: dc=example,dc=test
-      filter: (objectClass=person)
-      username_attribute: mail
-  - class: CASServer::Authenticators::ActiveDirectoryLDAP
-    ldap:
-      host: winbox.example.com
-      port: 389
-      base: dc=example,dc=dev
-      filter: (memberOf=CN=Example Users,CN=Users,DC=example,DC=dev)
-      auth_user: cn=Test I. Am,cn=users,dc=example,dc=dev
-      auth_password: P4ssword
+#### Google Authentication
 
-{% endhighlight %}
+    # === Google Authentication ====================================================
+    #
+    # The Google authenticator allows users to log in to your CAS server using
+    # their Google account credentials (i.e. the same email and password they
+    # would use to log in to Google services like Gmail). This authenticator
+    # requires no special configuration -- just specify its class name:
+    #
+    # authenticator:
+    #  - class: CASServer::Authenticators::Google
+    #
+    # If you are behind an http proxy, you can try specifying proxy settings as follows:
+    #
+    # authenticator:
+    #  - class: CASServer::Authenticators::Google
+    #    proxy:
+    #      host: your-proxy-server
+    #      port: 8080
+    #      username: nil
+    #      password: nil
+    # 
+    # Note that as with all authenticators, it is possible to use the Google·
+    # authenticator alongside other authenticators. For example, CAS can first
+    # attempt to validate the account with Google, and if that fails, fall back
+    # to some other local authentication mechanism.
+    #
+    # For example:
+    #
+    # authenticator:
+    #  - class: CASServer::Authenticators::Google
+    #  - class: CASServer::Authenticators::SQL
+    #    database:
+    #      adapter: postgresql
+    #      database: some_database_with_users_table
+    #      username: root
+    #      password:
+    #      host: localhost
+    #    user_table: user
+    #    username_column: username
+    #    password_column: password
+    #
+    #
+    
+#### ActiveDirectory Authetication
 
-> **Note:** If your console server ever ran PE 2.5, the commented-out sections may not be present in this file. To find example config text that can be copied and pasted into place, look for a `config.yml.rpmnew` or `config.yml.dpkg-new` file in the same directory.
+    # === ActiveDirectory Authentication ===========================================
+    #
+    # This method authenticates against Microsoft's Active Directory using LDAP.
+    # You must configure the ActiveDirectory server, and base DN. The port number
+    # and LDAP filter are optional. You must also enter a CN and password
+    # for a special "authenticator" user. This account is used to log in to
+    # the ActiveDirectory server and search LDAP. This does not have to be an
+    # administrative account -- it only has to be able to search for other
+    # users.
+    #·
+    # Note that the auth_user parameter must be the user's CN (Common Name).
+    # In Active Directory, the CN is genarally the user's full name, which is usually
+    # NOT the same as their username (sAMAccountName).
+    # 
+    # For example:
+    #
+    #
+    # authenticator:
+    #  - class: CASServer::Authenticators::ActiveDirectoryLDAP
+    #    ldap:
+    #      host: ad.example.net
+    #      port: 389
+    #      base: dc=example,dc=net
+    #      filter: (objectClass=person)
+    #      auth_user: authenticator
+    #      auth_password: itsasecret
+    #
+    # A more complicated example, where the authenticator will use TLS encryption,
+    # will ignore users with disabled accounts, and will pass on the 'cn' and 'mail'·
+    # attributes to CAS clients:
+    #
+    # authenticator:
+    #  - class: CASServer::Authenticators::ActiveDirectoryLDAP
+    #    ldap:
+    #      host: ad.example.net
+    #      port: 636
+    #      base: dc=example,dc=net
+    #      filter: (objectClass=person) & !(msExchHideFromAddressLists=TRUE)
+    #      auth_user: authenticator
+    #      auth_password: itsasecret
+    #      encryption: simple_tls
+    #    extra_attributes: cn, mail
+    #
+    # It is possible to authenticate against Active Directory without the 
+    # authenticator user, but this requires that users type in their CN as
+    # the username rather than typing in their sAMAccountName. In other words
+    # users will likely have to authenticate by typing their full name,
+    # rather than their username. If you prefer to do this, then just
+    # omit the auth_user and auth_password values in the above example.
+    #
+    #
+    
+#### LDAP Authentication 
+
+    # === LDAP Authentication ======================================================
+    #
+    # This is a more general version of the ActiveDirectory authenticator.
+    # The configuration is similar, except you don't need an authenticator
+    # username or password. The following example has been reported to work·
+    # for a basic OpenLDAP setup.
+    #
+    # authenticator:
+    #  - class: CASServer::Authenticators::LDAP
+    #    ldap:
+    #      host: ldap.example.net
+    #      port: 389
+    #      base: dc=example,dc=net
+    #      username_attribute: uid
+    #      filter: (objectClass=person)
+    #
+    # If you need more secure connections via TSL, specify the 'encryption'
+    # option and change the port. This example also forces the authenticator
+    # to connect using a special "authenticator" user with the given
+    # username and password (see the ActiveDirectoryLDAP authenticator
+    # explanation above):
+    #
+    # authenticator:
+    #  - class: CASServer::Authenticators::LDAP
+    #    ldap:
+    #      host: ldap.example.net
+    #      port: 636
+    #      base: dc=example,dc=net
+    #      filter: (objectClass=person)
+    #      encryption: simple_tls
+    #      auth_user: cn=admin,dc=example,dc=net
+    #      auth_password: secret
+    #
+    # If you need additional data about the user passed to the client (for example,
+    # their 'cn' and 'mail' attributes, you can specify the list of attributes
+    # under the extra_attributes config option:·
+    #
+    # authenticator:
+    #  - class: CASServer::Authenticators::LDAP
+    #    ldap:
+    #      host: ldap.example.net
+    #      port: 389
+    #      base: dc=example,dc=net
+    #      filter: (objectClass=person)
+    #    extra_attributes: cn, mail
+    #
+    # Note that the above functionality is somewhat limited by client compatibility.
+    # See the SQL authenticator notes above for more info.
+    
+#### Custom Authentication
+
+    # === Custom Authentication ====================================================
+    #
+    # It should be relatively easy to write your own Authenticator class. Have a look
+    # at the built-in authenticators in the casserver/authenticators directory. Your
+    # authenticator should extend the CASServer::Authenticators::Base class and must
+    # implement a validate() method that takes a single hash argument. When the user·
+    # submits the login form, the username and password they entered is passed to·
+    # validate() as a hash under :username and :password keys. In the future, this·
+    # hash might also contain other data such as the domain that the user is logging·
+    # in to.
+    #
+    # To use your custom authenticator, specify it's class name and path to the·
+    # source file in the authenticator section of the config. Any other parameters·
+    # you specify in the authenticator configuration will be passed on to the·
+    # authenticator and made availabe in the validate() method as an @options hash.
+    #
+    # Example:
+    #
+    # authenticator:
+    #  - class: FooModule::MyCustomAuthenticator
+    #    source: /path/to/source.rb
+    #    option_a: foo
+    #    another_option: yeeha
+    #
+    
+#### Multiple Authenticators    
+    
+    # === Multiple Authenticators ==================================================
+    #
+    # If you need to have more than one source for authentication, such as an LDAP·
+    # directory and a database, you can use multiple authenticators by making·
+    # :authenticator an array of authenticators.
+    #
+    # authenticator:
+    #  - class: CASServer::Authenticators::ActiveDirectoryLDAP
+    #    ldap:
+    #      host: ad.example.net
+    #      port: 389
+    #      base: dc=example,dc=net
+    #      filter: (objectClass=person)
+    #  - class: CASServer::Authenticators::SQL
+    #    database:
+    #      adapter: postgresql
+    #      database: some_database_with_users_table
+    #      username: root
+    #      password:
+    #      host: localhost
+    #    user_table: user
+    #    username_column: username
+    #    password_column: password
+    #
+    # During authentication, the user credentials will be checked against the first
+    # authenticator and on failure fall through to the second authenticator.
 
 > **Note:** The commented-out examples in the config file may or may not have a line break between after the hyphen; both are valid YAML.
 >
@@ -171,7 +344,7 @@ authenticator:
 >       class: CASServer::Authenticators::SQLEncrypted
 
 
-As the above example shows, it's generally best to specify just `dc=` attributes in the `base` key. The criteria for the Organizational Unit (`OU`) and Common Name (`CN`) should be specified in the `filter` key. The value of the `filter:` key is where authorized users should be located in the AD organizational structure. Generally speaking, the `filter:` key is where you would specify an OU or an AD Group. In order to authenticate, users will need to be in the specified OU or Group.
+As the above examples show, it's generally best to specify just `dc=` attributes in the `base` key. The criteria for the Organizational Unit (`OU`) and Common Name (`CN`) should be specified in the `filter` key. The value of the `filter:` key is where authorized users should be located in the AD organizational structure. Generally speaking, the `filter:` key is where you would specify an OU or an AD Group. In order to authenticate, users will need to be in the specified OU or Group.
 
 Also note that the value for the `filter:` key must be the full name for the leftmost `cn=`; you cannot use the user ID or logon name. In addition, the `auth_user:` key requires the full Distinguished Name (DN), including any CNs associated with the user and all of the `dc=` attributes used in the DN.
 

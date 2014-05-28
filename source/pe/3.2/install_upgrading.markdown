@@ -95,6 +95,10 @@ In case 2, the installer is unable to obtain any information about the size or s
 ### Upgrading from PE 2.x or 3.0.0?
 Check the [upgrade instructions for PE 3.1](../3.1/install_upgrading.html) for specific instructions, issues, and warnings.
 
+### Upgrades to PE 3.2.x or Later Removes Commented Authentication Sections from `rubycas-server/config.yml` 
+
+If you are upgrading to PE 3.2.x or later, `rubycas-server/config.yml` will not contain the commented sections for the third-party services. We've provided the commented sections on [the console config page](./console_config.html#configuring-rubycas-server-config-yml), which you can copy and paste into `rubycas-server/config.yaml` after you upgrade.
+
 Downloading PE
 -----
 

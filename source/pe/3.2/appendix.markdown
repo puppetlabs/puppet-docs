@@ -227,6 +227,10 @@ An issue with MCollective prevents correct uninstallation of packages on nodes r
 
 The issue is being tracked on [this support ticket](https://tickets.puppetlabs.com/browse/MCOP-14).
 
+### Upgrades to PE 3.2.x or Later Removes Commented Authentication Sections from `rubycas-server/config.yml` 
+
+If you are upgrading to PE 3.2.x or later, `rubycas-server/config.yml` will not contain the commented sections for the third-party services. We've provided the commented sections on [the console config page](./console_config.html#configuring-rubycas-server-config-yml), which you can copy and paste into `rubycas-server/config.yaml` after you upgrade.
+
 ### `pe_mcollective` Module Integer Parameter Issue
 
 The `pe_mcollective` module includes a parameter for the ActiveMQ heap size (`activemq_heap_mb`). A bug prevents this parameter from correctly accepting an integer when one is entered in the console. The problem can be avoided by placing the integer inside quote marks (e.g., `"10"`). This will cause Puppet to correctly validate the value when it is passed from the console.
