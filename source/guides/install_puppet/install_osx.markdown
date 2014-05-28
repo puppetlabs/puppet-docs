@@ -17,7 +17,7 @@ Supported Versions
 
 Puppet Labs builds packages for OS X, but we don't run automated testing on them.
 
-We recommend using Puppet on the newest version of OS X available, and we will tend to not fix bugs related to older versions. However, we think the packages we ship should work as far back as 10.6 Snow Leopard.
+We recommend using Puppet on the newest version of OS X available, and we will tend to not fix bugs related to older versions. Our current packages are intended for OS X Mavericks (10.9) and later.
 
 To install on other operating systems, see the pages linked in the navigation sidebar.
 
@@ -57,18 +57,7 @@ To upgrade to the latest versions of Puppet, Facter, and Hiera, download new pac
 
 You'll need to restart the `com.puppetlabs.puppet` service and/or the puppet master web server after upgrading. To restart a launchd service, run something like `sudo launchctl stop com.puppetlabs.puppet`; the service will be restarted as soon as it stops.
 
-Step 5: Install JSON Gem (10.8 and Earlier)
------
-
-OS X 10.9 Mavericks includes the Ruby JSON library by default, but earlier versions don't. If installing on 10.8 or earlier, make sure JSON is installed.
-
-On puppet agent nodes, you should use the `json_pure` gem, since it can be installed quickly on any Mac:
-
-    $ sudo gem install json_pure
-
-Alternately, you can install the faster C-based JSON gem with `sudo gem install json`, but you'll need to make sure the XCode command line tools (about a 500 MB download) are installed first. This might give slightly better performance on a puppet master server, but with current versions of Puppet it probably won't be noticeable.
-
-Step 6: Pre-Configure Puppet
+Step 5: Pre-Configure Puppet
 -----
 
 The OS X packages don't have some of the conveniences that the Linux and Windows packages have. To prepare for the post-install tasks, you should now do the following:
