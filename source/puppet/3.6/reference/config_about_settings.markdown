@@ -30,7 +30,7 @@ When any Puppet command or service starts up, it gets values for all of its sett
 
 A command or service will _only_ read its settings _once;_ if it needs to be reconfigured, it will need to be restarted or run again.
 
-### Settings can be Set on the Command Line
+### Settings can be set on the Command Line
 
 When a Puppet command or service is started, you can specify any setting as a command line option, using two hyphens and the name of the setting:
 
@@ -60,7 +60,7 @@ For settings whose only valid values are `true` and `false`, you use a shorter f
 
 `--no-noop` is equivalent to setting `noop = false` in puppet.conf.
 
-### Settings can be Set in the Main Config File
+### Settings can be set in the Main Config File
 
 Puppet's main config file is called `puppet.conf`. Its format and behavior are [described in full on a separate page][puppet.conf].
 

@@ -25,6 +25,67 @@ If you're upgrading from a 3.x version of Puppet, you can usually just go for it
 
 If you're upgrading from Puppet 2.x, please [learn about major upgrades of Puppet first!][upgrade] We have important advice about upgrade plans and package management practices. The short version is: test first, roll out in stages, give yourself plenty of time to work with. Also, read the [release notes for Puppet 3][puppet_3] for a list of all the breaking changes made between the 2.x and 3.x series.
 
+Puppet 3.6.2
+-----
+
+[deprecated config-file environments]: #deprecation-config-file-environments-and-the-global-manifestmodulepathconfigversion-settings
+[CVE-2014-3248]: http://puppetlabs.com/security/cve/CVE-2014-3248
+[CVE-2014-3253]: http://puppetlabs.com/security/cve/cve-2014-3253
+
+Released June 10, 2014.
+
+Puppet 3.6.2 is a security and bug fix release in the Puppet 3.6 series. It addresses two security vulnerabilities and includes fixes for a number of fairly recent bugs. It also introduces a new `disable_warnings` setting to squelch deprecation messages.
+
+### Security Fixes
+
+#### [CVE-2014-3248 (An attacker could create and execute malicious code on platforms with Ruby 1.8)][CVE-2014-3248]
+
+On platforms running Ruby 1.8, previous code would load Ruby source files from the current working directory. This could lead to the execution of arbitrary code during puppet runs.
+
+#### [CVE-2014-3253 (Apache 2.4+ does not enforce CRL checks by default)][CVE-2014-3253]
+
+Apache 2.4+ uses the `SSLCARevocationCheck` setting to determine how to check the certificate revocation list (CRL) when establishing a connection. Unfortunately, the default setting is `none`, so a puppet master running Apache 2.4+ and Passenger will ignore the CRL by default. This release updates the Apache vhost settings to enable CRL checking.
+
+### Feature: Disabling Deprecation Warnings
+
+Puppet 3.6.0 [deprecated config-file environments][], leading to warnings during every puppet run for people who haven't yet switched to the new and improved [directory environments](environments.html). The high volume of duplicate deprecation warnings was deemed annoying enough that we've added a new feature to allow people to disable them.
+
+You can now use the new (optional) [`disable_warnings` setting](/references/3.6.2/configuration.html#disablewarnings) in puppet.conf or on the command line to suppress certain types of warnings. For now, `disable_warnings` can only be set to `deprecations`, but other warning types may be added in future versions. All warnings are still enabled by default.
+
+Related issue:
+
+- [PUP-2650: 3.6.1 issues "warning" message for deprecation](https://tickets.puppetlabs.com/browse/PUP-2650)
+
+### Fix for Directory Environments Under Webrick
+
+Puppet 3.6.1 introduced a bug that prevented directory environments from functioning correctly under Webrick, causing this error: "Attempted to pop, but already at root of the context stack." This release fixes the bug.
+
+Related issue:
+
+- [PUP-2659: Puppet stops working with error 'Attempted to pop, but already at root of the context stack.'](https://tickets.puppetlabs.com/browse/PUP-2659)
+
+### Fixes to `purge_ssh_keys`
+
+Two bugs were discovered with the new (as of 3.6.0) `purge_ssh_keys` attribute for the [user type](/references/3.6.latest/type.html#user). These bugs could prevent SSH keys from being purged under certain circumstances, and have been fixed.
+
+Related issues:
+
+- [PUP-2635: user purge_ssh_keys not purged](https://tickets.puppetlabs.com/browse/PUP-2635)
+- [PUP-2660: purging ssh_authorized_key fails because of missing user value](https://tickets.puppetlabs.com/browse/PUP-2660)
+
+### Default `environment_timeout` increased
+
+The previous default value for [`environment_timeout`](/references/3.6.latest/configuration.html#environmenttimeout) was 5s, which turns out to be way too short for a typical production environment. This release changes the default `environment_timeout` to 3m.
+
+Related issue:
+
+- [PUP-2639: Increase environment_timeout default.](https://tickets.puppetlabs.com/browse/PUP-2639)
+
+### General Bug Fixes
+
+- [PUP-2689: A node can't always collect its own exported resources](https://tickets.puppetlabs.com/browse/PUP-2689)
+- [PUP-2692: Puppet master passenger processes keep growing](https://tickets.puppetlabs.com/browse/PUP-2692)
+- [PUP-2705: Regression with external facts pluginsync not preserving executable bit](https://tickets.puppetlabs.com/browse/PUP-2705)
 
 Puppet 3.6.1
 -----
