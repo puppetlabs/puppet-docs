@@ -62,7 +62,7 @@ How did things look before we decided to use Hiera? Classes are assigned to node
 	  class { "ntp":
 		servers    => [ '0.us.pool.ntp.org iburst','1.us.pool.ntp.org iburst','2.us.pool.ntp.org iburst','3.us.pool.ntp.org iburst'],
 		autoupdate => false,
-		restrict   => false,
+		restrict   => [],
 		enable     => true,
 	  }
 	}
@@ -71,7 +71,7 @@ How did things look before we decided to use Hiera? Classes are assigned to node
 	  class { "ntp":
 		servers    => [ 'kermit.example.com','0.us.pool.ntp.org iburst','1.us.pool.ntp.org iburst','2.us.pool.ntp.org iburst'],
 		autoupdate => true,
-		restrict   => false,
+		restrict   => [],
 		enable     => true,
 	  }
 	}
@@ -80,7 +80,6 @@ How did things look before we decided to use Hiera? Classes are assigned to node
 	  class { "ntp":
 		servers    => [ 'grover.example.com', 'kermit.example.com'],
 		autoupdate => true,
-		restrict   => true,
 		enable     => true,
 	  }
 	}
@@ -140,7 +139,7 @@ servers
 : An array of time servers; `UNSET` by default. Conditional logic in `init.pp` provides a list of ntp servers maintained by the respective maintainers of our module's supported operating systems.
 
 restrict
-: Whether to restrict ntp daemons from allowing others to use as a server; `true` by default
+: An array of restrict directives; different values based on operating system by default
 
 autoupdate
 : Whether to update the ntp package automatically or not; `false` by default
@@ -162,7 +161,8 @@ Now that we know the parameters the `ntp` class expects, we can start making dec
 We want one of these two nodes, `kermit.example.com`, to act as the primary organizational time server. We want it to consult outside time servers, we won't want it to update its ntp server package by default, and we definitely want it to launch the ntp service at boot. So let's write that out in YAML, making sure to express our variables as part of the `ntp` namespace to insure Hiera will pick them up as part of its [automatic parameter lookup][].
 
     ---
-    ntp::restrict: false
+    ntp::restrict:
+      -
     ntp::autoupdate: false
     ntp::enable: true
     ntp::servers:
@@ -200,7 +200,8 @@ Provided everything works and you get back that array of ntp servers, you're rea
 Our next ntp node, `grover.example.com`, is a little less critical to our infrastructure than kermit, so we can be a little more permissive with its configuration: It's o.k. if grover's ntp packages are automatically updated. We also want grover to use kermit as its primary ntp server. Let's express that as YAML:
 
     ---
-    ntp::restrict: false
+    ntp::restrict:
+      -
     ntp::autoupdate: true
     ntp::enable: true
     ntp::servers:
@@ -219,7 +220,6 @@ As with `kermit.example.com`, we want to save grover's Hiera data source in the 
 So, now we've configured the two nodes in our organization that we'll allow to update from outside ntp servers. However, we still have a few nodes to account for that also provide ntp services. They depend on kermit and grover to get the correct time, and we don't mind if they update themselves. Let's write that out in YAML:
 
     ---
-    ntp::restrict: true
     ntp::autoupdate: true
     ntp::enable: true
     ntp::servers:
@@ -242,7 +242,7 @@ If you'll remember back to our pre-Hiera configuration, we were declaring a numb
 	  class { "ntp":
 		servers    => [ '0.us.pool.ntp.org iburst','1.us.pool.ntp.org iburst','2.us.pool.ntp.org iburst','3.us.pool.ntp.org iburst'],
 		autoupdate => false,
-		restrict   => false,
+		restrict   => [],
 		enable     => true,
 	  }
 	}
@@ -286,7 +286,8 @@ modifying kermit's data source, for instance, to look like this:
 
     ---
     classes: ntp
-    ntp::restrict: false
+    ntp::restrict:
+      -
     ntp::autoupdate: false
     ntp::enable: true
     ntp::servers:
@@ -302,7 +303,8 @@ modifying kermit's data source, for instance, to look like this:
       - ntp
       - apache
       - postfix
-    ntp::restrict: false
+    ntp::restrict:
+     -
     ntp::autoupdate: false
     ntp::enable: true
     ntp::servers:
@@ -373,7 +375,6 @@ That leaves us with one parameter we haven't covered: the `version` parameter. S
 
     ---
     vmwaretools::version: 8.6.5-621624
-    ntp::restrict: true
     ntp::autoupdate: true
     ntp::enable: true
     ntp::servers:
