@@ -86,7 +86,7 @@ When upgrading from 3.1 to 3.2, the console database tables are upgraded from 32
    2. The console database is a custom instance, not the database installed byPE.
 
    In case 1, the installer can determine how much space is needed, but it will be up to the user to determine if sufficient free-space exists.
-In case 2, the installer is unable to obtain any information about the size or state of the database. The user will not to locate the large console database table 
+In case 2, the installer is unable to obtain any information about the size or state of the database.
 
 ### Running a 3.x Master with 2.8.x Agents is not Supported
   
