@@ -99,7 +99,7 @@ Alternately, you can run `sudo puppet agent` on the command line with no additio
 
     $ sudo kill $(puppet config print pidfile --section agent)
 
-#### Configuring the Service
+#### Configuring the Run Interval
 
 The puppet agent service defaults to doing a configuration run every 30 minutes. You can configure this with [the `runinterval` setting][runinterval] in [puppet.conf][]:
 
@@ -126,7 +126,7 @@ Some sites prefer to only run puppet agent on demand; others use scheduled runs,
 
 Puppet agent runs can be started locally (while logged in to the target system), or remotely via an orchestration tool.
 
-#### While Logged In to the Target System
+#### While Logged in to the Target System
 
 If you are currently logged into the machine that needs to run puppet agent, you can do one of the following:
 
