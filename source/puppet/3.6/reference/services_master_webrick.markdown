@@ -5,10 +5,9 @@ canonical: "/puppet/latest/reference/services_master_webrick.html"
 ---
 
 [webrick]: http://ruby-doc.org/stdlib/libdoc/webrick/rdoc/WEBrick.html
-[arrangement]: ./services_arrangement.html
 [rack_master]: ./services_master_rack.html
 
-Puppet has the built-in capability to run a complete puppet master server using Ruby's [WEBrick][] library. This server handles all puppet master services as described in [the page on Puppet's arrangement of services][arrangement].
+Puppet has the built-in capability to run a complete puppet master server using Ruby's [WEBrick][] library.
 
 The WEBrick puppet master server is not capable of handling production-level numbers of agent nodes. Since it can't handle concurrent connections, it will be quickly overwhelmed by as few as 10 agents. You should never run a WEBrick puppet master in production, and should always configure a [Rack puppet master server][rack_master] instead.
 
@@ -32,7 +31,7 @@ By default, running the `puppet master` command will start a puppet master serve
 
 If you're testing something quickly and want to view logs in real time, it's more useful to run `sudo puppet master --verbose --no-daemonize`. This will keep the puppet master process in the foreground and print verbose logs to your terminal.
 
-## The Service's Run Environment
+## The WEBrick Puppet Master's Run Environment
 
 The WEBrick puppet master runs as a single Ruby process. This single process does everything related to handling puppet agent requests: It terminates SSL, routes HTTP requests, and executes the Ruby methods that recognize agent requests and build responses to them.
 
@@ -47,3 +46,14 @@ The puppet master process should generally be started as the root user, via `sud
 By default, Puppet's HTTPS traffic uses port 8140. The OS and firewall must allow the puppet master's Ruby process to accept incoming connections on this port.
 
 The port can be changed by changing [the `masterport` setting](/references/latest/configuration.html#masterport) across all agents and puppet masters.
+
+## Configuring a WEBrick Puppet Master
+
+As [described elsewhere,][about_settings] the puppet master application reads most of its settings from [puppet.conf][] and can accept additional settings on the command line.
+
+When running from the command line, puppet master can directly accept command line options. When running via an init script, it sometimes gets command line options from an init script config file. The location and format of this file will vary depending on your platform.
+
+To change the puppet master's settings, you should generally use [puppet.conf][]. The only two options you may want to set on the command line or in the init script config file are `--verbose` or `--debug`, to change the amount of detail in the logs.
+
+[about_settings]: ./config_about_settings.html
+[puppet.conf]: ./config_file_main.html

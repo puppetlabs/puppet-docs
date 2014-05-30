@@ -41,9 +41,9 @@ Under Rack, the puppet master processes are started and managed by your Rack web
 
 If your Rack stack isn't running any other applications or sites, you can simply start and stop the whole server process; if it also provides other services, as a Passenger/Apache stack sometimes does, you may need to disable the puppet master's virtual host and do a graceful restart.
 
-## The Service's Run Environment
+## The Rack Puppet Master's Run Environment
 
-Rack and puppet master each have various expectations about their environment. To make them work together, you'll need to make sure these expectations are met.
+Rack and the puppet master application each have various expectations about their environment. To make them work together, you'll need to make sure these expectations are met.
 
 ### User
 
@@ -93,7 +93,7 @@ Your SSL termination must be configured as follows:
 * It must have [client authentication][] enabled but optional.
 * It must note whether the client connection was verified. This information must eventually reach the puppet master; see below.
 * It must note the [Subject DN][] of the client's certificate, if the connection was verified. This information must eventually reach the puppet master.
-* It must pass on the entire client certificate, if the connection was verified. This information must eventually reach the puppet master.
+* It should pass on the entire client certificate, if the connection was verified. This information should eventually reach the puppet master.
 
 
 [ssl_persist]: /background/ssl/https.html#persistence-of-sslcertificate-data-in-https-applications
@@ -131,6 +131,15 @@ If the Rack server is embedded in the same server that terminates SSL, this vari
 If the Rack server is _not_ embedded in the SSL terminating part of your stack (for example, when running under the Nginx + Unicorn stack), you may need to embed the certificate in an HTTP header, then configure your Rack server to extract the certificate data and set the environment variable.
 
 The name of this variable is not configurable.
+
+## Configuring a Rack Puppet Master
+
+As [described elsewhere,][about_settings] the puppet master application reads most of its settings from [puppet.conf][] and can accept additional settings on the command line. When running under Rack, puppet master gets its command line options from the `config.ru` file. By default, it only sets the `confdir` and `vardir` settings and the special `--rack` option.
+
+To change the puppet master's settings, you should use [puppet.conf][]. The only two options you may want to set in `config.ru` are `--verbose` or `--debug`, to change the amount of detail in the logs.
+
+[about_settings]: ./config_about_settings.html
+[puppet.conf]: ./config_file_main.html
 
 > ## Aside: How a Rack Puppet Master Works
 >
