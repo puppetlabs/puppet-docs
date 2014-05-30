@@ -11,22 +11,23 @@ Summary
 
 The Puppet Installer script is used to perform both installations and upgrades. You start by [downloading][downloading] and unpacking a tarball with the appropriate version of the PE packages for your system. Then, when you run the `puppet-enterprise-installer` script, the script will check for a prior installation of PE and, if it detects one, will ask if you want to proceed with the upgrade. The installer will then upgrade all the PE components (master, agent, etc.) it finds on the node to version 3.1.3.
 
-The process involves the following steps, which *must be performed in the following order:*
+### Upgrading a Monolithic Installation
+If you have a monolithic installation (with the master, console, and database roles all on the same node), the installer will upgrade each role in the correct order, automatically.
 
-1. Provision and prepare a node for use by PuppetDB
-2. Upgrade Master
-3. Install PuppetDB/Database support role
-4. Upgrade Console
-5. Upgrade Agents
+### Upgrading a Split Installation
+If you have a split installation (with the master, console and database roles on different nodes), the process involves the following steps, which *must be performed in the following order:*
 
-If more than one of these roles is present on a given node (for example your master and console run on the same node), the installer will upgrade each role in the correct order.
+1. Upgrade Master
+2. Upgrade PuppetDB
+3. Upgrade Console
+4. Upgrade Agents
 
 > ![windows logo](./images/windows-logo-small.jpg) To upgrade Windows agents, simply download and run the new MSI package as described in [Installing Windows Agents](./install_windows.html). However, be sure to upgrade your master, console, and database nodes first.
 
 
 Important Notes and Warnings
 ---
-### Before Upgrading Back up Your Databases and Other PE Files
+### Before Upgrading Back Up Your Databases and Other PE Files
 
    We recommend that you backup the following databases and PE files. 
 
@@ -79,7 +80,7 @@ This issue has been documented in the [Known Issues section of the Appendix](./a
         rpm -Uvh readline-6.1-1.aix6.1.ppc.rpm
 
     If you see an error message after running this, you can disregard it. Readline-6 should be successfully installed and you can proceed with the upgrade (you can verify the installation with  `rpm -q readline`).
-- If you upgraded from PE 2.5, your `cas_client_config.yml` and `rubycas-server/config.yml` files will not have the relevant commented-out sections, as they were added for 2.6 and the upgrader does not overwrite the config files. You can find example config code that can be copied and pasted into the live config files; look in files with **the same names and either the `.rpmnew` or `.dpkg-new` extension.**
+- If you upgraded from PE 2.5, your `cas_client_config.yml` and `rubycas-server/config.yml` files will not have the relevant commented-out sections, as they were added for 2.6 and the upgrader does not overwrite the config files. To find example config code that can be copied and pasted into the live config files, look in files with **the same names and either the `.rpmnew` or `.dpkg-new` extension.**
 
 
 Downloading PE
@@ -100,12 +101,10 @@ Before starting the upgrade, all of the components (agents, master, console, etc
 > **Important:** All installer commands should be run as `root`.
 
 > **Note:** PE3 has moved from the MySQL implementation used in PE 2.x to PostgreSQL for all database support. PE3 also now includes PuppetDB, which requires PostgreSQL. When upgrading from 2.x to 3.x, the installer will automatically pipe your existing data from MySQL to PostgreSQL.
-
-### Prepare a Node for PostgreSQL
-
-You will need to have a node available and ready to receive an installation of PuppetDB and PostgreSQL. This can be the same node as the one running the master and console (if you have a monolithic, all-on-one implementation), or it can be a separate node (if you are running a split role implementation). In a split role implementation, **the database node must be up and running and reachable at a known hostname before starting the upgrade process on the console node.**
-
-The upgrader can install a pre-configured version of PostgreSQL (must be version 9.1 or higher) along with PuppetDB on the node you select. If you prefer to use a node with an existing instance of PostgreSQL, that instance needs to be manually configured with the [correct users and access](./install_basic.html#database-support-questions). This also needs to be done BEFORE starting the upgrade.
+>
+> You will need to have a node available and ready to receive an installation of PuppetDB and PostgreSQL. This can be the same node as the one running the master and console (if you have a monolithic, all-on-one implementation), or it can be a separate node (if you are running a split role implementation). In a split role implementation, **the database node must be up and running and reachable at a known hostname before starting the upgrade process on the console node.**
+>
+> The upgrader can install a pre-configured version of PostgreSQL (must be version 9.1 or higher) along with PuppetDB on the node you select. If you prefer to use a node with an existing instance of PostgreSQL, that instance needs to be manually configured with the [correct users and access](./install_basic.html#database-support-questions). This also needs to be done BEFORE starting the upgrade.
 
 ### Upgrade Master
 
@@ -117,7 +116,7 @@ Lastly, the script will summarize the upgrade plan and ask you to go ahead and p
 
 The upgrade script will run and provide detailed information as to what it installs, what it updates and what it replaces. It will preserve existing certificates and `puppet.conf` files.
 
-### Install PuppetDB/PostgreSQL
+### Upgrade PuppetDB
 
 On the node you provisioned for PuppetDB before starting the upgrade, unpack the PE 3.1 tarball and run the `puppet-enterprise-installer` script. If you are upgrading from a 2.8 deployment, you will need to provide some answers to the upgrader, as follows:
 

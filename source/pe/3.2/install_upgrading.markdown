@@ -11,15 +11,17 @@ Summary
 
 The Puppet Installer script is used to perform both installations and upgrades. The script will check for a prior version and run as upgrader or installer as needed. You start by [downloading][downloading] and unpacking a tarball with the appropriate version of the PE packages for your system. Then, when you run the `puppet-enterprise-installer` script, the script will check for a prior installation of PE and, if it detects one, will ask if you want to proceed with the upgrade. The installer will then upgrade all the PE components (master, agent, etc.) it finds on the node to version 3.2.
 
-The process involves the following steps, which *must be performed in the following order:*
+### Upgrading a Monolithic Installation
+If you have a monolithic installation (with the master, console, and database roles all on the same node), the installer will upgrade each role in the correct order, automatically.
 
-1. Provision and prepare a node for use by PuppetDB
-2. Upgrade Master
-3. Install PuppetDB/Database support role
-4. Upgrade Console
-5. Upgrade Agents
+### Upgrading a Split Installation
+If you have a split installation (with the master, console and database roles on different nodes), the process involves the following steps, which *must be performed in the following order:*
 
-If you have multiple roles on the master (e.g., you have a monolithic installation with the master, console, and database role  on the same node), the installer will upgrade each role in the correct order, automatically.
+1. Upgrade Master
+2. Upgrade PuppetDB
+3. Upgrade Console
+4. Upgrade Agents
+
 
 > ![windows logo](./images/windows-logo-small.jpg) To upgrade Windows agents, simply download and run the new MSI package as described in [Installing Windows Agents](./install_windows.html). However, be sure to upgrade your master, console, and database nodes first.
 
@@ -27,9 +29,9 @@ If you have multiple roles on the master (e.g., you have a monolithic installati
 Important Notes and Warnings
 ---
 
-### Before Upgrading Back up Your Databases and Other PE Files
+### Before Upgrading, Back Up Your Databases and Other PE Files
 
-   We recommend that you backup the following databases and PE files. 
+   We recommend that you back up the following databases and PE files. 
 
    On a monolithic (all-in-one) install, the databases and PE files will all be located on the same node as the puppet master.
 
@@ -47,11 +49,11 @@ Important Notes and Warnings
 
 ### Upgrades from 3.2.0 Can Cause Issues with Multi-Platform Agent Packages
 
-   Users upgrading from PE 3.2.0 to a later version of 3.x (including 3.2.3) will see errors when attempting to download agent packages for platforms other than the master. After adding `pe_repo` classes to the master for desired agent packages, errors will be seen on the subsequent puppet run as PE attempts to access the requisite packages. For a simple workaround to this issue, see the [installer troubleshooting page](/trouble_install.html).
+   Users upgrading from PE 3.2.0 to a later version of 3.x (including 3.2.3) will see errors when attempting to download agent packages for platforms other than the master. After adding `pe_repo` classes to the master for desired agent packages, errors will be seen on the subsequent puppet run as PE attempts to access the requisite packages. For a simple workaround to this issue, see the [installer troubleshooting page](./trouble_install.html#upgrades-from-320-can-cause-issues-with-multi-platform-agent-packages).
    
 ### Upgrades to PE 3.x from 2.8.3 Can Fail if PostgreSQL is Already Installed
 
-This issue has been documented in the [Known Issues section of the Appendix](./appendix.html#upgrades-to-pe-3.x-from-2.8.3-can-fail-if-postgresql-is-already-installed).
+This issue has been documented in the [Known Issues section of the Appendix](./appendix.html#upgrades-to-pe-3x-from-283-can-fail-if-postgresql-is-already-installed).
    
 ### A Note about Changes to `puppet.conf` that Can Cause Issues During Upgrades
 
@@ -61,7 +63,7 @@ If you manage `puppet.conf` with Puppet or a third-party tool like Git or r10k, 
 
    In PE versions earlier than 3.2, node classification was configured with `node_terminus=exec`, located in `/etc/puppetlabs/puppet/puppet.conf`. This caused the puppet master to execute a custom shell script (`/etc/puppetlabs/puppet-dashboard/external_node`) which ran a curl command to retrieve data from the console. 
 
-   PE 3.2 changes node classification in `puppet.conf`; the new configuration is `node_terminus=console`. The `external_node` script is no longer available; thus, `node_terminus=exec` no longer works. 
+   PE 3.2 changes node classification in `puppet.conf`. The new configuration is `node_terminus=console`. The `external_node` script is no longer available; thus, `node_terminus=exec` no longer works. 
 
    With this change, we have improved security, as the puppet master can now verify the console. The console certificate name is `pe-internal-dashboard`. The puppet master now finds the console by reading the contents of /`etc/puppetlabs/puppet/console.conf`, which provides the following:
 
@@ -76,14 +78,14 @@ If you manage `puppet.conf` with Puppet or a third-party tool like Git or r10k, 
 
 * **Reports Changes**
 
-   Report submission to the console no longer happens using `reports=https`. PE 3.2 changed the setting in `puppet.conf` to `reports=console`. This change works in the same way as the `node_terminus` changes described above.
+   Reports are no longer submitted to the console using `reports=https`. PE 3.2 changed the setting in `puppet.conf` to `reports=console`. This change works in the same way as the `node_terminus` changes described above.
 
 ### Upgrading Split Console and Custom PostgreSQL Databases 
 
 When upgrading from 3.1 to 3.2, the console database tables are upgraded from 32-bit integers to 64-bit. This helps to avoid ID overflows in large databases. In order to migrate the database, the upgrader will temporarily require disc space equivalent to 20% more than the largest table in the console's database (by default, located here: `/opt/puppet/var/lib/pgsqul/9.2/console`). If the database is in this default location, on the same node as the console, the upgrader can successfully determine the amount of disc space needed and provide warnings if needed. However, there are certain circumstances in which the upgrader cannot make this determination automatically. Specifically, the installer cannot determine the disc space requirement if:
 
    1. The console database is installed on a different node than the console.
-   2. The console database is a custom instance, not the database installed byPE.
+   2. The console database is a custom instance, not the database installed by PE.
 
    In case 1, the installer can determine how much space is needed, but it will be up to the user to determine if sufficient free-space exists.
 In case 2, the installer is unable to obtain any information about the size or state of the database.
@@ -91,9 +93,6 @@ In case 2, the installer is unable to obtain any information about the size or s
 ### Running a 3.x Master with 2.8.x Agents is not Supported
   
 3.x versions of PE contain changes to the MCollective module that are not compatible with 2.8.x agents. When running a 3.x master with a 2.8.x agent, it is possible that puppet will still continue to run and check into the console, but this means puppet is running in a degraded state that is not supported.
-
-### Upgrading from PE 2.x or 3.0.0?
-Check the [upgrade instructions for PE 3.1](../3.1/install_upgrading.html) for specific instructions, issues, and warnings.
 
 ### Upgrades to PE 3.2.x or Later Removes Commented Authentication Sections from `rubycas-server/config.yml` 
 
@@ -117,12 +116,10 @@ Before starting the upgrade, all of the components (agents, master, console, etc
 > **Important:** All installer commands should be run as `root`.
 
 > **Note:** PE3 has moved from the MySQL implementation used in PE 2.x to PostgreSQL for all database support. PE3 also now includes PuppetDB, which requires PostgreSQL. When upgrading from 2.x to 3.x, the installer will automatically pipe your existing data from MySQL to PostgreSQL.
-
-### Prepare a Node for PostgreSQL
-
-You will need to have a node available and ready to receive an installation of PuppetDB and PostgreSQL. This can be the same node as the one running the master and console (if you have a monolithic, all-on-one implementation), or it can be a separate node (if you are running a split role implementation). In a split role implementation, **the database node must be up and running and reachable at a known hostname before starting the upgrade process on the console node.**
-
-The upgrader can install a pre-configured version of PostgreSQL (must be version 9.1 or higher) along with PuppetDB on the node you select. If you prefer to use a node with an existing instance of PostgreSQL, that instance needs to be manually configured with the [correct users and access](./install_basic.html#database-support-questions). This also needs to be done BEFORE starting the upgrade.
+>
+> You will need to have a node available and ready to receive an installation of PuppetDB and PostgreSQL. This can be the same node as the one running the master and console (if you have a monolithic, all-on-one implementation), or it can be a separate node (if you are running a split role implementation). In a split role implementation, **the database node must be up and running and reachable at a known hostname before starting the upgrade process on the console node.**
+>
+> The upgrader can install a pre-configured version of PostgreSQL (must be version 9.1 or higher) along with PuppetDB on the node you select. If you prefer to use a node with an existing instance of PostgreSQL, that instance needs to be manually configured with the [correct users and access](./install_basic.html#database-support-questions). This also needs to be done BEFORE starting the upgrade.
 
 ### Upgrade Master
 
@@ -134,7 +131,7 @@ Lastly, the script will summarize the upgrade plan and ask you to go ahead and p
 
 The upgrade script will run and provide detailed information as to what it installs, what it updates and what it replaces. It will preserve existing certificates and `puppet.conf` files.
 
-### Install PuppetDB/PostgreSQL
+### Upgrade PuppetDB
 
 On the node you provisioned for PuppetDB before starting the upgrade, unpack the PE 3.2 tarball and run the `puppet-enterprise-installer` script. If you are upgrading from a 2.8 deployment, you will need to provide some answers to the upgrader, as follows:
 
@@ -185,16 +182,16 @@ Depending on your answer, the `disable_live_management` setting in `/etc/puppetl
 
 ### Upgrade Agents and Complete the Upgrade
 
-The simplest way to upgrade agents is to upgrade the `pe-agent` package in the repo your package manager (e.g., Satellite) is using. Similarly, if you are using the PE package repo hosted on the master, it will get upgraded when you upgrade the master. You can then [use the agent install script](./install_basic.html#installing-agents-using-pe-package-management)as usual to upgrade your agent.
+The simplest way to upgrade agents is to upgrade the `pe-agent` package in the repo your package manager (e.g., Satellite) is using. Similarly, if you are using the PE package repo hosted on the master, it will get upgraded when you upgrade the master. You can then [use the agent install script](./install_basic.html#installing-agents-using-pe-package-management) as usual to upgrade your agent.
 
 For nodes running an OS that doesn't support remote package repos (e.g., RHEL 4, AIX) you'll need to use the installer script on the PE tarball as you did for the master, etc. On each node with a puppet agent, unpack the PE 3.2 tarball and run the `puppet-enterprise-installer` script. The installer will detect the version from which you are upgrading and answer as many installer questions as possible based on your existing deployment. Note that the agents on your master and console nodes will have been updated already when you upgraded those nodes. Nodes running 2.x agents will not be available for live management until they have been upgraded.
 
-PE services should restart automatically after the upgrade. But if you want to check that everything is working correctly, you can run `puppet agent -t` on your agents to ensure that everything is behaving as it was before upgrading. Generally speaking, it's a good idea to run puppet right away after an upgrade to make sure everything is hooked and has gotten the latest configuration.
+PE services should restart automatically after the upgrade. But if you want to check that everything is working correctly, you can run `puppet agent -t` on your agents to ensure that everything is behaving as it was before upgrading. Generally speaking, it's a good idea to run puppet right away after an upgrade to make sure everything is hooked and has the latest configuration.
 
 Checking For Updates
 -----
 
-[Check here][updateslink] to find out what the latest maintenance release of Puppet Enterprise is. To see the version of PE you are currently using, you can run `puppet --version` on the command line .
+[Check here][updateslink] to find out the latest maintenance release of Puppet Enterprise. To see the version of PE you are currently using, you can run `puppet --version` on the command line.
 
 {% comment %} This link is the same one as the console's help -> version information link. We only have to change the one to update both. {% endcomment %}
 
