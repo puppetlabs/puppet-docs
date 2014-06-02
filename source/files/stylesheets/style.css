@@ -1394,7 +1394,9 @@ ul#doc-navigation li {
   display: inline-block;
   color: white;
   margin: 0;
+  margin-top: 10px;
   margin-left: 0 !important;
+  margin-right: 8px;
   -webkit-border-radius: 0.5em;
   -moz-border-radius: 0.5em;
   border-radius: 0.5em;
