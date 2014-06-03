@@ -47,6 +47,17 @@ These answers are always needed.
 `q_run_updtvpkg`
 : **Y or N** --- Only used on AIX. Whether to run the `updtvpkg` command to add info about native libraries to the RPM database. The answer should usually be Y, unless you have special needs around the RPM database.
 
+These answers are only used in some cases, such as when upgrading or reinstalling.
+
+`q_backup_and_purge_old_configuration`
+: **Y or N** --- Whether the installer should backup the existing configuration files and then purge them, or leave them in place. If this is 'N' the installer will fail. This is only needed if Puppet Enterprise was uninstalled without the -p option.
+
+`q_upgrade_installation`
+: This option is no longer used, upgrades will be detected automatically.
+
+`q_continue_or_reenter_master_hostname`
+: **C or R** --- Used if the installer cannot reach the puppet master. If C the installer will continue, if R the installer will ask for a new puppet master server name. (This answer applies to all roles except for the master roles)
+
 ### Roles
 
 These answers are always needed.
@@ -83,6 +94,9 @@ These answers are always needed.
 `q_skip_master_verification`
 : **Y or N** --- This is a silent install option, default is N. When set to Y, the installer will skip master verification which allows the user to deploy agents when they know the master won't be available.
 
+`q_puppet_agent_first_run`
+: **Y or N** --- Controls whether or not the Puppet Agent should run after being installed. 
+
 ### Puppet Master Answers
 
 These answers are generally needed if you are installing the puppet master role.
@@ -114,6 +128,9 @@ These answers are generally needed if you are installing the puppet master role.
 
 `q_tarball_server`
 : **String** --- The location from which PE agent tarballs will be downloaded before installation. Note that agent tarballs are only available for certain operating systems. For details, see [the PE installation instructions](./install_basic.html)
+
+`q_puppetca_install`
+: **Y or N** --- Controls whether or not the CA will be installed on a Master role install.
 
 ### Console Answers
 
@@ -184,6 +201,11 @@ These answers are generally needed if you are installing the console role.
 `q_public_hostname` 
 : **String** ---   A publicly accessible hostname where the console can be accessed if the host name resolves  to a private interface (e.g., Amazon EC2). This is set automatically by the installer on EC2 nodes, but can be set manually in environments with multiple hostnames.
 
+`q_backup_and_purge_old_database_directory`
+: **Y or N** --- Whether the installer should backup the existing database directory and then purge it, or leave it in place. If this is 'N' the installer will fail. Used when Puppet Enterprise was uninstalled without the -d option.
+
+`q_database_transfer`
+: **Y or N** --- Used when upgrading from PE 2.x to PE 3.x. Controls whether or not the existing data in PE 2.x's MySQL database should be converted and transferred to the newer PostgreSQL database.
 
 ### Database Support Answers
 
@@ -224,29 +246,6 @@ These answers are only needed if you are installing the database support role.
 
 `q_puppetdb_plaintext_port`
 : **Integer** --- The port on which PuppetDB accepts plain-text HTTP connections (default port is 8080).
-
-### Miscellaneous Answers
-
-`q_backup_and_purge_old_configuration`
-: **Y or N** --- Whether the installer should backup the existing configuration files and then purge them, or leave them in place. If this is 'N' the installer will fail. This is only needed if Puppet Enterprise was uninstalled without the -p option.
-
-`q_backup_and_purge_old_database_directory`
-: **Y or N** --- Whether the installer should backup the existing database directory and then purge it, or leave it in place. If this is 'N' the installer will fail. Used when Puppet Enterprise was uninstalled without the -d option.
-
-`q_continue_or_reenter_master_hostname`
-: **C or R** --- Used if the installer cannot reach the puppet master. If C the installer will continue, if R the installer will ask for a new puppet master server name.
-
-`q_database_transfer`
-: **Y or N** --- Used when upgrading from PE 2.x to PE 3.x. Controls whether or not the existing MySQL dataabse should be converted to the newer PostgreSQL database.
-
-`q_puppet_agent_first_run`
-: **Y or N** --- Controls whether or not the Puppet Agent should run after being installed. 
-
-`q_puppetca_install`
-: **Y or N** --- Controls whether or not the CA will be installed on a Master role install.
-
-`q_upgrade_installation`
-: This option is no longer used, upgrades will be detected automatically.
 
 `q_upgrade_with_low_disk_space`
 : **Y or N** --- Used when upgrading and the amount of disk space available appears to be too low for the database to be converted. This can be a false alarm at times if the dataabse has not been vacuumed. If N the install will fail.
