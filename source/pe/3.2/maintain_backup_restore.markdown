@@ -105,8 +105,8 @@ For more information about using the PE uninstaller, refer to [Uninstalling Pupp
    * `/etc/puppetlabs/puppet/puppet.conf`
    * `/etc/puppetlabs/puppet/ssl` (fully replace with backup, do not leave existing ssl data)
    * `/opt/puppet/share/puppet-dashboard/certs`
-   * the console and console_auth databases
-   * the PuppetDB database
+   * [The console and console_auth databases](./maintain_console-db.html#database-backups)
+   * [The PuppetDB database](http://docs.puppetlabs.com/puppetdb/1.5/migrate.html#importing-data-to-a-new-puppetdb-database)
    * The modulepath——if you've configured it to be something other than the PE default. 
    
    For a split install, these files and databases should be replaced on the various servers assigned to these PE roles.
@@ -121,7 +121,8 @@ For more information about using the PE uninstaller, refer to [Uninstalling Pupp
   
 6. Run `chown -R pe-puppet:pe-puppet /etc/puppetlabs/puppet/ssl/`.
 7. Run `chown -R puppet-dashboard /opt/puppet/share/puppet-dashboard/certs/`.
-8. Restore modules, manifests, hieradata, etc, if necessary. <!--Zachary, if you want this step here, shouldn't we say earlier to back these up? Are these not in /etc/puppetlabs/?-->
+8. Restore modules, manifests, hieradata, etc, if necessary. 
+   These are typically located in the `/etc/puppetlabs/` directory, but you may have configured them in another location.
 9. Run `/opt/puppet/sbin/puppetdb-ssl-setup -f`. This script generates SSL certificates and configuration based on the agent cert on your PuppetDB node.
 10. Start all PE services you stopped in step 2.
 
