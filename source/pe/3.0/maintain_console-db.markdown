@@ -33,7 +33,7 @@ PostgreSQL should have `autovacuum=on` set by default. If you're having issues w
 This task, `rake db:raw:optimize[mode]`,  runs in three modes:
 
   * `reindex` mode will run the REINDEX DATABASE command on the console database.
-  * `vacuum` model will run the VACUUM FULL command on the console database.
+  * `vacuum` mode will run the VACUUM FULL command on the console database.
     * Please note that this requires free space roughly equivalent to the current size of the database on disk.
   * `reindex+vacuum` will run both of the above commands on the console database. This is also the default mode if no mode is specified.
 
