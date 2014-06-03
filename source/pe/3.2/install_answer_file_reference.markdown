@@ -234,7 +234,7 @@ These answers are only needed if you are installing the database support role.
 : **Y or N** --- Whether the installer should backup the existing database directory and then purge it, or leave it in place. If this is 'N' the installer will fail. Used when Puppet Enterprise was uninstalled without the -d option.
 
 `q_continue_or_reenter_master_hostname`
-: **C or R** --- Used if the installer cannot reach the puppet master. If C the installer will continue, if R the instalelr will ask for a new puppet master server name.
+: **C or R** --- Used if the installer cannot reach the puppet master. If C the installer will continue, if R the installer will ask for a new puppet master server name.
 
 `q_database_transfer`
 : **Y or N** --- Used when upgrading from PE 2.x to PE 3.x. Controls whether or not the existing MySQL dataabse should be converted to the newer PostgreSQL database.
@@ -243,13 +243,13 @@ These answers are only needed if you are installing the database support role.
 : **Y or N** --- Controls whether or not the Puppet Agent should run after being installed. 
 
 `q_puppetca_install`
-: **Y or N** --- Controls whether or not the CA willbe installed on a Master role install.
+: **Y or N** --- Controls whether or not the CA will be installed on a Master role install.
 
 `q_upgrade_installation`
 : This option is no longer used, upgrades will be detected automatically.
 
 `q_upgrade_with_low_disk_space`
-: **Y or N** --- Used when upgrading and the amount of disk space available appears to be too low for the dataabse to be converted. This can be a false alarm at times if the dataabse has not been vacuumed. If N the install will fail.
+: **Y or N** --- Used when upgrading and the amount of disk space available appears to be too low for the database to be converted. This can be a false alarm at times if the dataabse has not been vacuumed. If N the install will fail.
 
 `q_upgrade_with_unknown_disk_space`
 : **Y or N** --- Used when upgrading and the amount of disk space available cannot be determined.  If N the install will fail.
