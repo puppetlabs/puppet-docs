@@ -38,9 +38,9 @@ Puppet 3.6.2 is a security and bug fix release in the Puppet 3.6 series. It addr
 
 ### Security Fixes
 
-#### [CVE-2014-3248 (An attacker could create and execute malicious code on platforms with Ruby 1.8)][CVE-2014-3248]
+#### [CVE-2014-3248 (An attacker could convince an administrator to unknowingly execute malicious code on platforms with Ruby 1.9.1 and earlier)][CVE-2014-3248]
 
-On platforms running Ruby 1.8, previous code would load Ruby source files from the current working directory. This could lead to the execution of arbitrary code during puppet runs.
+On platforms running Ruby 1.9.1, previous code would load Ruby source files from the current working directory. This could lead to the execution of arbitrary code during puppet runs.
 
 #### [CVE-2014-3253 (Apache 2.4+ does not enforce CRL checks by default)][CVE-2014-3253]
 

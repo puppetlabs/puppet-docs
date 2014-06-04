@@ -17,9 +17,9 @@ Facter 2.0.2 is a security release in the Facter 2 series. It has no other bug f
 
 [CVE-2014-3248]: http://puppetlabs.com/security/cve/CVE-2014-3248
 
-#### [CVE-2014-3248 (An attacker could create and execute malicious code on platforms with Ruby 1.8)][CVE-2014-3248]
+#### [CVE-2014-3248 (An attacker could convince an administrator to unknowingly execute malicious code on platforms with Ruby 1.9.1 and earlier)][CVE-2014-3248]
 
-When running on Ruby 1.8, previous versions of Facter would load Ruby source files from the current working directory. This could lead to the execution of arbitrary code.
+When running on Ruby 1.9.1 or earlier, previous versions of Facter would load Ruby source files from the current working directory. This could lead to the execution of arbitrary code.
 
 Facter 2.0.1
 -----

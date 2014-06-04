@@ -8,6 +8,20 @@ canonical: "/puppet/latest/reference/release_notes.html"
 Puppet 2.7 Release Notes
 ------------------------
 
+[CVE-2014-3248]: http://puppetlabs.com/security/cve/cve-2014-3248
+
+## Puppet 2.7.26
+
+Released June 10, 2014.
+
+2.7.26 is a security fix release in the Puppet 2.7 series. It has no other bug fixes or new features.
+
+### Security Fix
+
+#### [CVE-2014-3248 (An attacker could convince an administrator to unknowingly execute malicious code on platforms with Ruby 1.9.1 and earlier)][CVE-2014-3248]
+
+On platforms running Ruby 1.9.1, previous code would load Ruby source files from the current working directory. This could lead to the execution of arbitrary code during a puppet run.
+
 ## Puppet 2.7.25
 
 2.7.25 is a bug fix release of the Puppet 2.7 series. It contains an important

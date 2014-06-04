@@ -13,9 +13,9 @@ Hiera 1.3.4 is a security fix release in the Hiera 1.3 series. It has no other b
 
 ### Security Fix
 
-#### [CVE-2014-3248 (An attacker could create and execute malicious code on platforms with Ruby 1.8)](http://www.puppetlabs.com/security/cve/cve-2014-3248/)
+#### [CVE-2014-3248 (An attacker could convince an administrator to unknowingly execute malicious code on platforms with Ruby 1.9.1 and earlier)](http://www.puppetlabs.com/security/cve/cve-2014-3248/)
 
-Platforms running Ruby 1.8 would load source files from the current working directory during a Hiera lookup. This could lead to the execution of arbitrary code.
+Platforms running Ruby 1.9.1 would load Ruby source files from the current working directory during a Hiera lookup. This could lead to the execution of arbitrary code.
 
 Hiera 1.3.3
 -----
