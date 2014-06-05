@@ -1,17 +1,15 @@
 ---
 layout: default
-title: "Using Multiple Puppet Masters"
+title: "Using Multiple Puppet Masters With Open Source Puppet"
+description: "This document outlines options for open source Puppet deployments with multiple masters."
 ---
 
 Using Multiple Puppet Masters
 =====
 
-To scale beyond a certain size, or for geographic distribution or disaster recovery, a deployment may warrant having more than one puppet master server. This document outlines options for deployments with multiple masters.
+To scale beyond a certain size, or for geographic distribution or disaster recovery, a deployment may warrant having more than one puppet master server. This document outlines options for open source Puppet deployments with multiple masters.
 
-> Note: As of this writing, this document does not cover:
->
-> * How to expand Puppet Enterprise's orchestration or live management features
-> * How to use multiple PE console or Puppet Dashboard servers
+> Note: This document is specific to open source Puppet, versions 2.7 through 3.2. 
 
 In brief:
 
@@ -139,12 +137,9 @@ Create New Puppet Master Servers
 
 ### Install Puppet
 
-To add a new puppet master server to your deployment, begin by installing and configuring Puppet as per normal.
+To add a new puppet master server to your deployment, begin by [installing and configuring Puppet](/guides/install_puppet/pre_install.html) as per normal.
 
-* [Installing Puppet (open source versions)](/guides/install_puppet/pre_install.html)
-* [Installing Puppet Enterprise](/pe/latest/install_basic.html)
-
-Like with any puppet master, you'll need to use a production-grade web server rather than the default WEBrick server. We generally assume that you know how to do this if you're already at the point where you need multiple masters, but see [Scaling with Passenger](/guides/passenger.html) for one way to do it.
+As with any puppet master, you'll need to use a production-grade web server rather than the default WEBrick server. We generally assume that you know how to do this if you're already at the point where you need multiple masters, but see [Scaling with Passenger](/guides/passenger.html) for one way to do it.
 
 ### Before Running `puppet agent` or `puppet master`
 
