@@ -122,9 +122,9 @@ For *AWS installations*, you can find your Amazon Web Services credentials onlin
 
 ![AWS Account tab](./images/cloud/awsaccount.png)
 
-Select the "Security Credentials" menu and choose "Access Credentials." Click on the "Access Keys" tab to view your Access Keys.
+Select the __Security Credentials__ menu and choose __Access Credentials.__ Click on the __Access Keys__ tab to view your Access Keys.
 
-You need to record two pieces of information: the Access Key ID and the Secret Key ID. To see your Secret Access Key, click the "Show" link under "Secret Access Key".
+You need to record two pieces of information: the Access Key ID and the Secret Key ID. To see your Secret Access Key, click the __Show__ link under __Secret Access Key__.
 
 Put both keys in your `~/.fog` file as described above. You will also need to generate an SSH private key using Horizon, or simply import a selected public key.
 
@@ -145,22 +145,22 @@ EC2 console](https://console.aws.amazon.com/ec2/).
 
 ![AWS EC2 Console](./images/cloud/ec2console.png)
 
-Select the "Key Pairs" menu item from the dashboard. If you don't have any existing key pairs, you can create one with the "Create Key Pairs" button. Specify a new name for the key pair to create it; the private key file will be automatically downloaded to your host.
+Select the __Key Pairs__ menu item from the dashboard. If you don't have any existing key pairs, you can create one with the __Create Key Pairs__ button. Specify a new name for the key pair to create it; the private key file will be automatically downloaded to your host.
 
 Make a note of the name of your key pair, since you will need to know it when creating new instances.
 
 #### Security Group
 
-To add or edit a security group, select the "Security Groups" menu item
+To add or edit a security group, select the __Security Groups__ menu item
 from the dashboard. You should see a list of the available security
 groups.  If no groups exist, you can create a new one by clicking the
-"Create Security Groups" button. Otherwise, you can edit an existing group.
+__Create Security Groups__ button. Otherwise, you can edit an existing group.
 
 ![AWS Security Groups](./images/cloud/awssecgroup.png)
 
-To add the required rules, select the "Inbound" tab and add an SSH rule. Make sure that inbound SSH traffic is using port 22.
-You can also indicate a specific source to lock the source IP down to an appropriate source IP or network.  Click "Add Rule" to add the rule,
-then click "Apply Rule Changes" to save.
+To add the required rules, select the __Inbound__ tab and add an SSH rule. Make sure that inbound SSH traffic is using port 22.
+You can also indicate a specific source to lock the source IP down to an appropriate source IP or network.  Click __Add Rule__ to add the rule,
+then click __Apply Rule Changes__ to save.
 
 You should also ensure that your security group allows outbound traffic on ports **8140** and **61613.** These are the ports PE uses to request configurations and listen for orchestration messages.
 

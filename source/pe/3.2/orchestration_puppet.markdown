@@ -42,7 +42,7 @@ The orchestration engine can control Puppet from the **PE console** and from the
 > * [Invoking Actions on the Command Line][cli]
 > * [Navigating Live Management][console]
 
-In the console, most of these tasks use [the "Control Puppet" tab of the live management page][puppet_tab], which behaves much like the "Advanced Tasks" tab. On the command line, most of these tasks use the `mco puppet` subcommand.
+In the console, most of these tasks use [the __Control Puppet__ tab of the live management page][puppet_tab], which behaves much like the __Advanced Tasks__ tab. On the command line, most of these tasks use the `mco puppet` subcommand.
 
 ![The control puppet tab][live_puppet_main]
 
@@ -89,7 +89,7 @@ Use the `runonce` action to trigger an immediate Puppet run on a few nodes. If y
 
 ### In the Console
 
-While logged in as a [read/write or admin user][console_user], navigate to the [Control Puppet][tab] tab, [filter and select your nodes][select_nodes], and click the "runonce" action. Enter any arguments, and click the red "Run" button.
+While logged in as a [read/write or admin user][console_user], navigate to the [Control Puppet][tab] tab, [filter and select your nodes][select_nodes], and click the __runonce__ action. Enter any arguments, and click the red __Run__ button.
 
 ![The runonce action with its arguments][live_puppet_runonce_arguments]
 
@@ -171,7 +171,7 @@ After a node has been disabled for an hour, it will appear as "unresponsive" in 
 
 ### In the Console
 
-While logged in as a [read/write or admin user][console_user], navigate to the [Control Puppet][tab] tab, [filter and select your nodes][select_nodes], and click the "enable" or "disable" action. Enter a reason (if disabling), and click the red "Run" button.
+While logged in as a [read/write or admin user][console_user], navigate to the [Control Puppet][tab] tab, [filter and select your nodes][select_nodes], and click the __enable__ or __disable__ action. Enter a reason (if disabling), and click the red __Run__ button.
 
 ### On the Command Line
 
@@ -192,7 +192,7 @@ You can start or stop the `pe-puppet` service with the `start` and `stop` action
 
 ### In the Console
 
-While logged in as a [read/write or admin user][console_user], navigate to the [Advanced Tasks][advanced_tasks] tab, [filter and select your nodes][select_nodes], choose the "Service" action list, and click the "start" or "stop" action. Click the red "Run" button.
+While logged in as a [read/write or admin user][console_user], navigate to the [Advanced Tasks][advanced_tasks] tab, [filter and select your nodes][select_nodes], choose the __Service__ action list, and click the __start__ or __stop__ action. Click the red __Run__ button.
 
 
 ### On the Command Line
@@ -216,7 +216,7 @@ View Puppet Agent's Status
 
 ### In the Console
 
-While logged in as a [read/write or admin user][console_user], navigate to the [Control Puppet][tab] tab, [filter and select your nodes][select_nodes], and click the "status" action. Click the red "Run" button.
+While logged in as a [read/write or admin user][console_user], navigate to the [Control Puppet][tab] tab, [filter and select your nodes][select_nodes], and click the __status__ action. Click the red __Run__ button.
 
 ![The results of the status action][live_puppet_status]
 
@@ -232,7 +232,7 @@ While [logged in to the puppet master server as `peadmin`][peadmin], run `mco pu
 
 #### Viewing Disable Messages
 
-The one thing `mco puppet status` doesn't show is the [reason why puppet agent was disabled](#enable-and-disable-puppet-agent). If you're checking up on disabled nodes, you can get a more raw view of the status by running `mco rpc puppet status` instead. This will display the reason in the "Lock Message" field.
+The one thing `mco puppet status` doesn't show is the [reason why puppet agent was disabled](#enable-and-disable-puppet-agent). If you're checking up on disabled nodes, you can get a more raw view of the status by running `mco rpc puppet status` instead. This will display the reason in the __Lock Message__ field.
 
 **Example:** Get the detailed status for every disabled node, using the `puppet` [data plugin][data_plugins]:
 
@@ -251,7 +251,7 @@ Puppet keeps records of the last run, including the amount of time spent per res
 
 ### In the Console
 
-While logged in as a [read/write or admin user][console_user], navigate to the [Control Puppet][tab] tab, [filter and select your nodes][select_nodes], and click the "last\_run\_summary" action. Click the red "Run" button.
+While logged in as a [read/write or admin user][console_user], navigate to the [Control Puppet][tab] tab, [filter and select your nodes][select_nodes], and click the __last\_run\_summary__ action. Click the red __Run__ button.
 
 Usually, you should use the graphs and reports on the console's node views to investigate previous Puppet runs; they are more detailed, and provide more historical context.
 

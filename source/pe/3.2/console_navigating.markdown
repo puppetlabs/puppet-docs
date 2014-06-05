@@ -24,7 +24,7 @@ The following navigation items all lead to their respective **sections** of the 
 * [Live Management](./console_navigating_live_mgmt.html)
 * [Node requests](./console_cert_mgmt.html)
 
-The navigation item containing your **username** ("admin," in the screenshot above) is a menu which provides access to your account information and (for admin users) [the user management tools](./console_auth.html).
+The navigation item containing your **username** (__admin__ in the screenshot above) is a menu which provides access to your account information and (for admin users) [the user management tools](./console_auth.html).
 
 The **Resources** menu leads to the Puppet Enterprise documentation and also provides links to the Puppet Forge, Geppetto IDE documentation, and Puppet Labs Support and Feedback portals.
 
@@ -41,9 +41,9 @@ Within the [node/group/class/report pages of the console](#nodes-groups-classes-
 The sidebar contains the following elements:
 
 * The **background tasks indicator.** The console handles Puppet run reports asynchronously using several background worker processes. This element lets you monitor the health of those workers. The number of tasks increases as new reports come in, and decreases as the workers finish processing them. If the number of tasks increases rapidly and won't go down, something is wrong with the worker processes and you may need to [use the advanced tasks tab](./console_navigating_live_mgmt.html#the-advanced-tasks-tab) to restart the `pe-puppet-dashboard-workers` service on the console node. A green check-mark with the text "All systems go" means the worker processes have caught up with all available reports.
-* The **node state summary.** Depending on how its last Puppet run went, every node is in one of six states. [A description of those states is available here.](./console_reports.html#node-states) The state summary shows how many nodes are in each state, and you can click any of the states for a view of all nodes in that state. You can also click the "Radiator view" link for a high-visibility dashboard (see below for a screenshot) and the "Add node" button to add a node before it has submitted any reports. (Nodes are automatically added to the console after they have submitted their first report, so this button is only useful in certain circumstances.)
-* The **group summary,** which lists the [node groups](./console_classes_groups.html#grouping-nodes) in use and shows how many nodes are members of each. You can click each group name to view and edit that group's detail page. You can also use the "Add group" button to create a new group.
-* The **class summary,** which lists the [classes](./console_classes_groups.html#classes) in use and shows how many nodes have been **directly** assigned each class. (The summary doesn't count nodes that receive a class due to their group membership.) You can click each class name to view and edit that class's detail page. You can also use the "Add classes" button to add a new class to the console.
+* The **node state summary.** Depending on how its last Puppet run went, every node is in one of six states. [A description of those states is available here.](./console_reports.html#node-states) The state summary shows how many nodes are in each state, and you can click any of the states for a view of all nodes in that state. You can also click the __Radiator view__ link for a high-visibility dashboard (see below for a screenshot) and the __Add node__ button to add a node before it has submitted any reports. (Nodes are automatically added to the console after they have submitted their first report, so this button is only useful in certain circumstances.)
+* The **group summary,** which lists the [node groups](./console_classes_groups.html#grouping-nodes) in use and shows how many nodes are members of each. You can click each group name to view and edit that group's detail page. You can also use the __Add group__ button to create a new group.
+* The **class summary,** which lists the [classes](./console_classes_groups.html#classes) in use and shows how many nodes have been **directly** assigned each class. (The summary doesn't count nodes that receive a class due to their group membership.) You can click each class name to view and edit that class's detail page. You can also use the __Add classes__ button to add a new class to the console.
 
 A screenshot of the "radiator view:"
 
@@ -77,7 +77,7 @@ The **nodes, groups, classes,** and **reports** sections of the console are clos
 
 Many pages in the console --- including class and group detail pages --- contain a **node list** view. A list will show the name of each node that is relevant to the current view (members of a group, for example), a graph of their recent aggregate activity, and a few details about each node's most recent run. Node names will have icons next to them [representing their most recent state.](./console_reports.html#node-states)
 
-Every node list includes an "Export nodes as CSV" link, for use when importing data into a spreadsheet.
+Every node list includes an __Export nodes as CSV__ link, for use when importing data into a spreadsheet.
 
 Certain node lists (the main node list and the per-state lists) include a **search field.** This field accepts partial node names, and narrows the list to show only nodes whose names match the search.
 
@@ -87,7 +87,7 @@ Clicking the name of a node will take you to that node's **node detail page,** w
 
 #### Reports and Report Lists
 
-Node detail pages contain a **report list.** If you click a report in this list, or a timestamp in the "Latest report" column of a node list view, you can navigate to a **report detail page.** See the [Viewing Reports and Inventory Data][report] page for information about report detail pages.
+Node detail pages contain a **report list.** If you click a report in this list, or a timestamp in the __Latest report__ column of a node list view, you can navigate to a **report detail page.** See the [Viewing Reports and Inventory Data][report] page for information about report detail pages.
 
 #### Groups
 
@@ -99,7 +99,7 @@ You can use a group page to view aggregate information about its members, or to 
 
 #### Classes
 
-**Classes** are the main unit of Puppet configurations. You must deliberately add classes to the console with the "Add classes" button before you can assign them to nodes or groups. See the [Grouping and Classifying Nodes][classify] page for information about adding classes and assigning them to nodes or groups. If you click the name of a class to see its **class detail page,** you can view a node list of every node assigned that class.
+**Classes** are the main unit of Puppet configurations. You must deliberately add classes to the console with the __Add classes__ button before you can assign them to nodes or groups. See the [Grouping and Classifying Nodes][classify] page for information about adding classes and assigning them to nodes or groups. If you click the name of a class to see its **class detail page,** you can view a node list of every node assigned that class.
 
 ### Working with Licenses
 

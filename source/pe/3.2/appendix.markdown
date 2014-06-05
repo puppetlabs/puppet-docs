@@ -243,7 +243,7 @@ If you need to use Safari, you may encounter the following dialog box the first 
 
 ![Safari Certificate Dialog][client_cert_dialog]
 
-If this happens, click "Cancel" to access the console. (In some cases, you may need to click "Cancel" several times.)
+If this happens, click __Cancel__ to access the console. (In some cases, you may need to click __Cancel__ several times.)
 
 This issue will be fixed in a future release.
 

@@ -297,7 +297,7 @@ Classes assigned by the console are able to access all top-scope and node-scope 
 
 ### Assigning Class Parameters With the Console
 
-You can assign class parameters to a node or group by clicking the "edit" button on that node or group's detail page; scroll down to the classes section and click the "edit parameters" link for the class you're configuring.
+You can assign class parameters to a node or group by clicking the __edit__ button on that node or group's detail page; scroll down to the classes section and click the __edit parameters__ link for the class you're configuring.
 
 * See [the Setting Class Parameters section][console_params] of the Grouping and Classifying Nodes page for details.
 

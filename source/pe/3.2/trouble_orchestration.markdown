@@ -32,17 +32,17 @@ In some cases, you may need to access the ActiveMQ console to troubleshoot orche
 
 To activate the ActiveMQ console:
 
-1. In the PE console, navigate to the "Groups" page.
+1. In the PE console, navigate to the __Groups__ page.
 
 2. Select the `puppet_master` group.
 
-3. From the `puppet_master` group page, click the "Edit" button.
+3. From the `puppet_master` group page, click the __Edit__ button.
 
 4. From the class list, select `pe_mcollective::role::master`.
 
 5. From the `pe_mcollective::role::master parameters` dialog, set the `activemq_enable_web_console` parameter to `true`. 
 
-6. Click the "Done" button when finished.
+6. Click the __Done__ button when finished.
 
 You can access the ActiveMQ console on port 8161.
 

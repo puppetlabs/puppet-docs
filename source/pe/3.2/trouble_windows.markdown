@@ -20,7 +20,7 @@ We recommend installing [Process Explorer](http://en.wikipedia.org/wiki/Process_
 
 ### Logging
 
-As of Puppet 2.7.x, messages from the `puppetd` log file are available via the Windows Event Viewer (choose "Windows Logs" > "Application"). To enable debugging, stop the puppet service and restart it as:
+As of Puppet 2.7.x, messages from the `puppetd` log file are available via the Windows Event Viewer (choose __Windows Logs__ > __Application__). To enable debugging, stop the puppet service and restart it as:
 
     c:\>sc stop puppet && sc start puppet --debug --trace
 

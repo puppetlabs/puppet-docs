@@ -47,7 +47,7 @@ Once the answer file has been generated, edit it by adding an answer that disabl
 
 Now you can run the installer using the newly generated answer file: `puppet-installer -a puppet_answers.txt`. 
 
-After the installation is complete, log into the console and verify that the "Live Management" tab is NOT present in the main, top nav bar.
+After the installation is complete, log into the console and verify that the __Live Management__ tab is NOT present in the main, top nav bar.
 
 #### Modify the “Default” Group to Exclude Live Management
 

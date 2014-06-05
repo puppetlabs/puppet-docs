@@ -94,7 +94,7 @@ When upgrading, the installer will not replace any settings in the main puppet.c
 Uninstalling
 -----
 
-Puppet can be uninstalled through Windows' standard "Add or Remove Programs" interface or from the command line.
+Puppet can be uninstalled through the Windows standard __Add or Remove Programs__ interface or from the command line.
 
 To uninstall from the command line, you must have the original MSI file or know the <a href="http://msdn.microsoft.com/en-us/library/windows/desktop/aa370854(v=vs.85).aspx">ProductCode</a> of the installed MSI:
 

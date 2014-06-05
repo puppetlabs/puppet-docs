@@ -118,11 +118,11 @@ During installation, the agent node contacted the puppet master and requested a 
 
    ![The console login screen](./images/quick/login.png)
 
-   The console GUI loads in your browser. Note the pending "node requests" indicator in the upper right corner. Click it to load a list of currently pending node requests.
+   The console GUI loads in your browser. Note the pending __node requests__ indicator in the upper right corner. Click it to load a list of currently pending node requests.
 
    ![Node Request Indicator](./images/console/request_indicator.png)
 
-3. Click the "Accept All" button to approve all the requests and add the nodes.
+3. Click the __Accept All__ button to approve all the requests and add the nodes.
 
 > The puppet agents can now retrieve configurations from the master the next time puppet runs.
 
@@ -145,7 +145,7 @@ During this walkthrough, we will be running the puppet agent interactively. By d
 [console_nav]: ./console_navigating.html
 
 
-1. Click "Nodes" in the primary navigation bar. 
+1. Click __Nodes__ in the primary navigation bar. 
    You'll see various UI elements, which show a summary of recent puppet runs and their status. Notice that the master and any agent nodes appear in the list of nodes:
    
    ![The console front page](./images/quick/front.png)
@@ -160,16 +160,16 @@ Although the puppet agent is now fully functional on the agent node, some other 
 
 Puppet Enterprise does this automatically within 30 minutes of a node's first check-in. To speed up the process and avoid the wait, do the following:
 
-1. **On the console**, use the sidebar to navigate to the "mcollective" group:
+1. **On the console**, use the sidebar to navigate to the __mcollective__ group:
 
    ![the mcollective group link](./images/quick/mcollective_link.png)
 
 2. Check the list of nodes at the bottom of the page for `agent1.example.com` --- depending on your timing, it may already be present. If so, skip to "on each agent node" below.
-3. If `agent1` is not a member of the group already, click the "Edit" button:
+3. If `agent1` is not a member of the group already, click the __Edit__ button:
 
    ![the edit button](./images/quick/mcollective_edit.png)
 
-4. In the "nodes" field, begin typing `agent1.example.com`'s name. You can then select it from the list of autocompletion guesses. Click the "Update" button after you have selected it.
+4. In the __nodes__ field, begin typing `agent1.example.com`'s name. You can then select it from the list of autocompletion guesses. Click the __Update__ button after you have selected it.
 
    ![the nodes field](./images/quick/default_nodes.png)
 
@@ -184,7 +184,7 @@ Using Live Management to Control Agent Nodes
 
 Live management uses Puppet Enterprise's orchestration features to view and edit resources in real time. It can also trigger puppet runs and perform other orchestration tasks.
 
-1. **On the console**, click the "Live Management" tab in the top navigation.
+1. **On the console**, click the __Live Management__ tab in the top navigation.
 
    ![live management](./images/quick/live_mgmt.png)
 
@@ -192,8 +192,8 @@ Live management uses Puppet Enterprise's orchestration features to view and edit
 
 ### Discovering Resources
 
-1. Note that you are currently in the "Browse Resources" tab.
-2. Choose "user resources" from the list of resource types, then click the "Find Resources" button:
+1. Note that you are currently in the __Browse Resources__ tab.
+2. Choose __user resources__ from the list of resource types, then click the __Find Resources__ button:
 
    ![the find resources button](./images/quick/find_resources.png)
 
@@ -203,22 +203,22 @@ Live management uses Puppet Enterprise's orchestration features to view and edit
 
 4. Click on any user to view details about its properties and where it is present.
 
-The other resource types work in a similar manner. Choose the node(s) whose resources you wish to browse. Select a resource type, click "Find Resources" to discover the resource on the selected nodes, click on one of the resulting found resources to see details about it.
+The other resource types work in a similar manner. Choose the node(s) whose resources you wish to browse. Select a resource type, click __Find Resources__ to discover the resource on the selected nodes, click on one of the resulting found resources to see details about it.
 
 ### Triggering Puppet Runs
 
 Rather than using the command line to kick off puppet runs with `puppet agent -t` one at a time, you can use live management to run Puppet on several selected nodes.
 
-1. **On the console, in the live management page**, click the "Control Puppet" tab.
+1. **On the console, in the live management page**, click the __Control Puppet__ tab.
 2. Make sure one or more nodes are selected with the node selector on the left.
-3. Click the `runonce` action to reveal the red "Run" button and additional options, and then click the "Run" button to run Puppet on the selected nodes.
+3. Click the `runonce` action to reveal the red __Run__ button and additional options, and then click the __Run__ button to run Puppet on the selected nodes.
 
 > **Note**: You can't always use the `runonce` action's additional options --- with \*nix nodes, you must stop the `pe-puppet` service before you can use options like `noop`. [See this note in the orchestration section of the manual](./orchestration_puppet.html#behavior-differences-running-vs-stopped) for more details.
 <br>
 
 ![The runonce action and its options](./images/quick/console_runonce.png)
 
-You have just triggered a puppet run on several agents at once; in this case, the master and the agent node. The "runonce" action will trigger a puppet run on every node currently selected in the sidebar.
+You have just triggered a puppet run on several agents at once; in this case, the master and the agent node. The __runonce__ action will trigger a puppet run on every node currently selected in the sidebar.
 
 When using this action in production deployments, select target nodes carefully, as running it on dozens or hundreds of nodes at once can strain  the Puppet master server. If you need to do an immediate Puppet run on many nodes, [you should use the orchestration command line to do a controlled run series](./orchestration_puppet.html#run-puppet-on-many-nodes-in-a-controlled-series).
 
@@ -268,20 +268,20 @@ There are many more modules, including PE supported modules, on [the Forge](http
 
 Every module contains one or more **classes**. [Classes](../puppet/3/reference/lang_classes.html) are named chunks of puppet code and are the primary means by which Puppet configures nodes. The module you just installed contains a class called `ntp`. To use any class, you must first **tell the console about it** and then **assign it to one or more nodes**.
 
-1. **On the console**, click the "Add classes" button in the sidebar:
+1. **On the console**, click the __Add classes__ button in the sidebar:
 
    ![The console's add classes button][classbutton]
 
-2. Locate the `ntp` class in the list of classes, and click its checkbox to select it. Click the "Add selected classes" button at the bottom of the page.
+2. Locate the `ntp` class in the list of classes, and click its checkbox to select it. Click the __Add selected classes__ button at the bottom of the page.
 
    ![the add class field][add_ntp]
 
-3. Navigate to the "default" group page (by clicking the link in the "Groups" menu in the sidebar), click the "Edit" button, and begin typing "`ntp`" in the "Classes" field; you can select the `ntp` class from the list of autocomplete suggestions. Click the "Update" button after you have selected it.
+3. Navigate to the __default__ group page (by clicking the link in the __Groups__ menu in the sidebar), click the __Edit__ button, and begin typing "`ntp`" in the __Classes__ field; you can select the `ntp` class from the list of autocomplete suggestions. Click the __Update__ button after you have selected it.
 
    ![assigning the ntp class to default group][assign_ntp_default]
 
-4. Note that the `ntp` class now appears in the list of classes for the "default" group. Also note that the "default" group contains your master and agent.
-5. Navigate to the live management page, and select the "Control Puppet" tab. Use the "runonce" action to trigger a puppet run on both the master and the agent. This will configure the nodes using the newly-assigned classes. Wait one or two minutes.
+4. Note that the `ntp` class now appears in the list of classes for the __default__ group. Also note that the __default__ group contains your master and agent.
+5. Navigate to the live management page, and select the __Control Puppet__ tab. Use the __runonce__ action to trigger a puppet run on both the master and the agent. This will configure the nodes using the newly-assigned classes. Wait one or two minutes.
 6. On the agent, stop the ntp service.
 
    **Note**: the NTP service name may vary depending on your operating system; for example, on Debian nodes, the service name is "ntp."
@@ -291,21 +291,21 @@ Every module contains one or more **classes**. [Classes](../puppet/3/reference/l
 
 8. Finally, restart the ntp service.
 
-> Puppet is now managing NTP on the nodes in the "default" group. So, for example, if you forget to restart the NTP service on one of those nodes after running `ntpdate`, PE will automatically restart it on the next puppet run. 
+> Puppet is now managing NTP on the nodes in the __default__ group. So, for example, if you forget to restart the NTP service on one of those nodes after running `ntpdate`, PE will automatically restart it on the next puppet run. 
 
 #### Setting Class Parameters
 
-You can use the console to set the values of the class parameters of nodes by selecting a node and then clicking "Edit parameters" in the list of classes. For example, you want to specify an NTP server for a given node.
+You can use the console to set the values of the class parameters of nodes by selecting a node and then clicking __Edit parameters__ in the list of classes. For example, you want to specify an NTP server for a given node.
 
 1. Click a node in the node list.
-2. On the node view page, click the "Edit" button.
-3. Find "ntp" in the class list, and click "Edit Parameters".
+2. On the node view page, click the __Edit__ button.
+3. Find __ntp__ in the class list, and click __Edit Parameters__.
 
    ![the node class list][edit-params]
 
-4. Enter a value for the parameter you wish to set. To set a specific server, enter `ntp1.example.com` in the box next to the "servers" parameter. 
+4. Enter a value for the parameter you wish to set. To set a specific server, enter `ntp1.example.com` in the box next to the __servers__ parameter. 
 
-  The grey text that appears as values for some parameters is the default value, which can be either a literal value or a Puppet variable. You can restore this value with the "Reset value" control that appears next to the value after you have entered a custom value.
+  The grey text that appears as values for some parameters is the default value, which can be either a literal value or a Puppet variable. You can restore this value with the __Reset value__ control that appears next to the value after you have entered a custom value.
     
   ![the NTP parameters list][ntp-params]
     
@@ -317,11 +317,11 @@ For more information, see the page on [classifying nodes with the console](./con
 [EI-class_change]: ./images/quick/EI_class-change.png
 [EI-detail]: ./images/quick/EI_detail.png
 
-The event inspector lets you view and research changes and other events. Click the "Events" tab in the main navigation bar. The event inspector window is displayed, showing the default view: classes with failures. Note that in the summary pane on the left, one event, a successful change, has been recorded for Nodes. However, there are two changes for Classes and Resources. This is because the NTP class loaded from the Puppetlabs-ntp module contains additional classes---a class that handles the configuration of NTP (`Ntp::Config`)and a class that handles the NTP service (`Ntp::Service`).
+The event inspector lets you view and research changes and other events. Click the __Events__ tab in the main navigation bar. The event inspector window is displayed, showing the default view: classes with failures. Note that in the summary pane on the left, one event, a successful change, has been recorded for Nodes. However, there are two changes for Classes and Resources. This is because the NTP class loaded from the Puppetlabs-ntp module contains additional classes---a class that handles the configuration of NTP (`Ntp::Config`)and a class that handles the NTP service (`Ntp::Service`).
 
 ![The default event inspector view][EI-default]
 
-You can click on events in the summary pane to inspect them in detail. For example, if you click "With Changes" in the "Classes With Events" summary view, the main pane will show you that the `Ntp::Config` and `Ntp::Service` classes were successfully added when you triggered the last puppet run.
+You can click on events in the summary pane to inspect them in detail. For example, if you click __With Changes__ in the __Classes With Events__ summary view, the main pane will show you that the `Ntp::Config` and `Ntp::Service` classes were successfully added when you triggered the last puppet run.
 
 ![Viewing a successful change][EI-class_change]
 

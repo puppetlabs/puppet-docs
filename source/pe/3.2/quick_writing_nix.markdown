@@ -157,12 +157,12 @@ For more information about writing classes, refer to the following documentation
 
 [php_info]: ./images/quick/php_info.png
 
-1. **On the console**, click the "Add classes" button, choose the `pe_quickstart_app` class from the list, and then click the "Add selected classes" button to make it available, just as in the [previous example](./quick_start.html#using-modules-in-the-console). You may need to wait a moment or two for the class to show up in the list.
-2. Navigate to the node view page for your agent node, and use the "Edit" button to add the `pe_quickstart_app` class to your agent node, and remove the `apache` class you previously added.
+1. **On the console**, click the __Add classes__ button, choose the `pe_quickstart_app` class from the list, and then click the __Add selected classes__ button to make it available, just as in the [previous example](./quick_start.html#using-modules-in-the-console). You may need to wait a moment or two for the class to show up in the list.
+2. Navigate to the node view page for your agent node, and use the __Edit__ button to add the `pe_quickstart_app` class to your agent node, and remove the `apache` class you previously added.
 
    >**Note**: Since the `pe_quickstart_app` includes the `apache` class, you need to remove the first `apache` class you added the master node, as puppet will only allow you to declare a class once. 
 
-3. Use live management to run the "runonce" action your agent node. 
+3. Use live management to run the __runonce__ action your agent node. 
 
      When the puppet run is complete, you will see in the node's log that a vhost for the app has been created and the Apache service (httpd) has been started.
      
@@ -178,7 +178,7 @@ You have created a new class from scratch and used it to launch a Apache PHP-bas
 
 1. **On the agent node**, open `/var/www/pe_quickstart_app/index.php`, and change the content; change it to something like, "THIS APP IS MANAGED BY PUPPET!"
 2. Refresh your browser, and notice that the PHP info page has been replaced with your new message.
-3. **On the console**, use live management to run the "runonce" action on your node.
+3. **On the console**, use live management to run the __runonce__ action on your node.
 4. Refresh your browser, and notice that puppet has reset your web app to display the PHP info page. (You can also see that the contents of `/var/www/pe_quickstart_app/index.php` has been reset to what was specified in your manifest.)
 
 Using a Site Module
@@ -207,8 +207,8 @@ Site modules hide complexity so you can more easily divide labor at your site. S
 
 This class declares other classes with the `include` function. Note the "if" conditional that sets different classes for different kernels using the `$kernel` fact. In this example, if an agent node is a Linux machine, puppet will apply your `pe_quickstart_app` class; if it is a window machines, puppet will apply the `registry::compliance_example` class. For more information about declaring classes, see the [modules and classes chapters of Learning Puppet](/learning/modules1.html).
 
-1. **On the console**, remove all of the previous example classes from your nodes and groups, using the "Edit" button in each node or group page. Be sure to leave the `pe_*` classes in place.
-2. Add the `site::basic` class to the console with the "Add classes" button in the sidebar as before.
+1. **On the console**, remove all of the previous example classes from your nodes and groups, using the __Edit__ button in each node or group page. Be sure to leave the `pe_*` classes in place.
+2. Add the `site::basic` class to the console with the __Add classes__ button in the sidebar as before.
 3. Assign the `site::basic` class to the default group.
 
 > Your nodes are now receiving the same configurations as before, but with a simplified interface in the console. Instead of deciding which classes a new node should receive, you can decide what *type* of node it is and take advantage of decisions you made earlier.

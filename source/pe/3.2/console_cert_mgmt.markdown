@@ -39,7 +39,7 @@ In some cases, DNS altnames may be set up for agent nodes. In such cases, you ca
 
 In some cases, attempting to accept or reject a node request will result in an error. This is typically because the request has been modified somehow, usually by being accepted or rejected elsewhere (e.g. by another user or from the CLI) since the request was first generated.
 
-Accepted/rejected nodes will remain displayed in the console for 24 hours after the action is taken. This interval cannot be modified. However, you can use the "Clear accepted/rejected requests" button to clean up the display at any time.
+Accepted/rejected nodes will remain displayed in the console for 24 hours after the action is taken. This interval cannot be modified. However, you can use the __Clear accepted/rejected requests__ button to clean up the display at any time.
 
 
 #### Working with Requests from the CLI

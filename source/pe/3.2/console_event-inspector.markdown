@@ -14,13 +14,13 @@ Structure and Terminology
 
 ### Navigating Event Inspector
 
-Event inspector can be reached by clicking "Events" in the console's main navigation bar.
+Event inspector can be reached by clicking __Events__ in the console's main navigation bar.
 
 ![Accessing event inspector][eventtab]
 
 The event inspector page displays two panes of data. Clicking an item will show its details (and any sub-items) in the detail pane on the right. The context pane on the left always shows the list of items from which the one in the right pane was chosen, to let you easily view similar items and compare their states.
 
-To backtrack out of the current list of items, you can use the breadcrumb navigation or the "previous" button (appearing left of the left pane after you've drilled in at least one level). The back and forward buttons in your browser will behave normally, returning you to the previously loaded URL.
+To backtrack out of the current list of items, you can use the breadcrumb navigation or the __previous__ button (appearing left of the left pane after you've drilled in at least one level). The back and forward buttons in your browser will behave normally, returning you to the previously loaded URL.
 
 You can also bookmark pages as you investigate events on classes, nodes, and resources, allowing you to return to a previous set of events. However, after subsequent Puppet runs, the contents of the bookmarked pages may be different when you revisit them. Also, if there are no changes for a selected time period, the bookmarks may show default text indicating there were no events on that class, node, or resource.
 
@@ -84,13 +84,13 @@ Assume you are a sysadmin and Puppet developer for a large web commerce enterpri
 
 ![Default view with failure events][default-failure]
 
-After you click `Testweb`, you can select the "Nodes with failures" tab or the "Resources with failures" tab, depending on how you want to investigate the failure on the class.
+After you click `Testweb`, you can select the __Nodes with failures__ tab or the __Resources with failures__ tab, depending on how you want to investigate the failure on the class.
 
-You click the "Resources with failures" tab, which loads a detail view showing failed resources. In this case, you can see in the detail pane that there is an issue with a file resource, specifically `/var/www/first/.htaccess`.
+You click the __Resources with failures__ tab, which loads a detail view showing failed resources. In this case, you can see in the detail pane that there is an issue with a file resource, specifically `/var/www/first/.htaccess`.
 
 ![Failed Resources view][resource-failure]
 
-Next, you drill down further by clicking on the failed resource in the detail pane. Note that the left pane now displays the failed resource info that was in the detail pane previously. This helps you stay aware of the context you're searching in. You can use the "previous" button next to the left pane, the breadcrumb trail at the top, or the back button in your browser to step back through the process, if you wish.
+Next, you drill down further by clicking on the failed resource in the detail pane. Note that the left pane now displays the failed resource info that was in the detail pane previously. This helps you stay aware of the context you're searching in. You can use the __previous__ button next to the left pane, the breadcrumb trail at the top, or the back button in your browser to step back through the process, if you wish.
 
 After clicking the failed resource, the detail pane now shows the node it failed on.
 
@@ -107,7 +107,7 @@ Tips & Issues
 
 #### Runs that Restart PuppetDB Not Displayed
 
-If a given puppet run restarts PuppetDB, puppet will not be able to submit a run report from that run to PuppetDB since, obviously, PuppetDB is not available. Because event inspector relies on data from PuppetDB, and PuppetDB reports are not queued, event inspector will not display any events from that run. Note that in such cases, a run report *will* be available via the console's "Reports" tab. Having a puppet run restart PuppetDB is an unlikely scenario, but one that could arise in cases where some change to, say, a parameter in the `puppetdb` class causes the `pe-puppetdb` service to restart. This is a known issue that will be fixed in a future release.
+If a given puppet run restarts PuppetDB, puppet will not be able to submit a run report from that run to PuppetDB since, obviously, PuppetDB is not available. Because event inspector relies on data from PuppetDB, and PuppetDB reports are not queued, event inspector will not display any events from that run. Note that in such cases, a run report *will* be available via the console's __Reports__ tab. Having a puppet run restart PuppetDB is an unlikely scenario, but one that could arise in cases where some change to, say, a parameter in the `puppetdb` class causes the `pe-puppetdb` service to restart. This is a known issue that will be fixed in a future release.
 
 #### Runs Without Events Not Displayed
 

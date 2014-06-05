@@ -25,7 +25,7 @@ From time to time, you may need to completely deactivate an agent node in your P
    
    > **Tip**: You will need to run `pe-httpd restart` any load-balanced masters in your system. 
 
-5. Delete the node from the console. Navigate to the node detail page for the deactivated node, and click the "Delete" button. 
+5. Delete the node from the console. Navigate to the node detail page for the deactivated node, and click the __Delete__ button. 
 
    Alternatively, you can also run `/opt/puppet/bin/rake -f /opt/puppet/share/puppet-dashboard/Rakefile RAILS_ENV=production node:del[node name]`.
 

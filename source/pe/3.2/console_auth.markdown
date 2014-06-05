@@ -97,7 +97,7 @@ For users who have completed the validation process, you can also enable or disa
 
 #### Adding/Deleting Users
 
-To add a new user, open the user admin screen by choosing *Admin Tools* in the user menu. Enter the user's email address and their desired role, then click the "Add user" button. The user will be added to the list with a *pending* status and an activation email will be automatically sent to them.
+To add a new user, open the user admin screen by choosing *Admin Tools* in the user menu. Enter the user's email address and their desired role, then click the __Add user__ button. The user will be added to the list with a *pending* status and an activation email will be automatically sent to them.
 
 To delete an existing user (including pending users), click on the user's name in the list and then click the *Delete account* button. Note that deleting a user cannot be undone, so be sure this is what you want to do before proceeding.
 

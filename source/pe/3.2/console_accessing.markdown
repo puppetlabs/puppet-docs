@@ -45,13 +45,13 @@ The console uses an SSL certificate created by your own local Puppet certificate
 
 ### Accepting the Certificate in Google Chrome or Chromium
 
-Use the "Proceed anyway" button on Chrome's warning page.
+Use the __Proceed anyway__ button on Chrome's warning page.
 
 ![Screenshot: Chrome showing an untrusted cert warning, with the 'Proceed anyway' button highlighted][cert_chrome]
 
 ### Accepting the Certificate in Mozilla Firefox
 
-Click "I Understand the Risks" to reveal more of the page, then click the "Add Exception..." button. On the dialog this raises, click the "Confirm Security Exception" button.
+Click __I Understand the Risks__ to reveal more of the page, then click the __Add Exception...__ button. On the dialog this raises, click the __Confirm Security Exception__ button.
 
 Step 1:
 
@@ -63,13 +63,13 @@ Step 2:
 
 ### Accepting the Certificate in Apple Safari
 
-Click the "Continue" button on the warning dialog.
+Click the __Continue__ button on the warning dialog.
 
 ![Screenshot: Safari's untrusted cert dialog, with the continue button highlighted][cert_safari]
 
 ### Accepting the Certificate in Microsoft Internet Explorer
 
-Click the "Continue to this website (not recommended)" link on the warning page.
+Click the __Continue to this website (not recommended)__ link on the warning page.
 
 ![Screenshot: IE's untrusted cert page, with the continue link highlighted][cert_ie]
 

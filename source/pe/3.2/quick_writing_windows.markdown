@@ -108,7 +108,7 @@ Puppet has also set a number of Registry keys to define the `PuppetExample1` Win
 
 ![EI registry service example][ei_registry_example]
 
-To see `PuppetExample1` in the list of services that are running, you'll first need to reboot your Windows agent node, and then navigate to "Services" via the "Administrative Tools." 
+To see `PuppetExample1` in the list of services that are running, you'll first need to reboot your Windows agent node, and then navigate to __Services__ via the __Administrative Tools.__ 
 
 [puppet_example_batch]: ./images/quick/puppet_example_batch.png
 [ei_registry_example]: ./images/quick/ei_registry_example.png
@@ -174,13 +174,13 @@ For more information about writing classes, refer to the following documentation
 [legal_notice_text_larry]: ./images/quick/legal_notice_larry.png
 [legal_notice_text_values]: ./images/quick/legal_notice_values.png
 
-1. **On the console,** use the "Add classes" button to choose the `critical_policy` class from the list, and then click the "Add selected classes" button to make it available, just as in the [previous example](./quick_start.html#using-modules-in-the-console). You may need to wait a moment or two for the class to show up in the list.
+1. **On the console,** use the __Add classes__ button to choose the `critical_policy` class from the list, and then click the __Add selected classes__ button to make it available, just as in the [previous example](./quick_start.html#using-modules-in-the-console). You may need to wait a moment or two for the class to show up in the list.
 2. Add the `critical_policy` class to your Wiindows agent node.
 3. **On the Windows agent node,** manually set the data values of `legalnoticecaption` and `legalnoticetext` to some other values. For example, set `legalnoticecaption` to "Larry's Computer" and set `legalnoticetext` to "This is Larry's computer."
 
    ![Legal notice text larry][legal_notice_text_larry]
     
-4. Use live management to run the "runonce" action on your Windows agent node.         
+4. Use live management to run the __runonce__ action on your Windows agent node.         
 5. **On the Windows agent node,** refresh the registry and note that the values of `legalnoticecaption` and `legalnoticetext` have been returned to the values specified in your `critical_policy` manifest.
 
    ![Legal notice text original value][legal_notice_text_values]
@@ -216,8 +216,8 @@ Site modules hide complexity so you can more easily divide labor at your site. S
 
 This class declares other classes with the `include` function. Note the "if" conditional that sets different classes for different OS's using the `$osfamily` fact. In this example, if an agent node is not a Windows agent, puppet will apply the `motd` and `core_permissions` classes. For more information about declaring classes, see the [modules and classes chapters of Learning Puppet](/learning/modules1.html).
 
-1. **On the console,** remove all of the previous example classes from your nodes and groups, using the "Edit" button in each node or group page. Be sure to leave the `pe_*` classes in place.
-2. Add the `site::basic` class to the console with the "Add classes" button in the sidebar as before.
+1. **On the console,** remove all of the previous example classes from your nodes and groups, using the __Edit__ button in each node or group page. Be sure to leave the `pe_*` classes in place.
+2. Add the `site::basic` class to the console with the __Add classes__ button in the sidebar as before.
 3. Assign the `site::basic` class to the default group.
 
 > Your nodes are now receiving the same configurations as before, but with a simplified interface in the console. Instead of deciding which classes a new node should receive, you can decide what _type_ of node it is and take advantage of decisions you made earlier.

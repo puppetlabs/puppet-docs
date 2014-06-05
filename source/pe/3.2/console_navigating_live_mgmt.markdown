@@ -49,13 +49,13 @@ As long as you stay within the live management page, your selection and filterin
 
 ### Selecting Nodes
 
-Clicking a node selects it or deselects it. Use the "select all" and "select none" controls to select and deselect all nodes that match the current filter.
+Clicking a node selects it or deselects it. Use the __select all__ and __select none__ controls to select and deselect all nodes that match the current filter.
 
 Only visible nodes --- i.e. nodes that match the current filter --- can be selected. (Note that an empty filter shows all nodes.) You don't have to worry about accidentally commanding "invisibly" selected nodes.
 
 ### Filtering by Name
 
-Use the "node filter" field to filter your nodes by name.
+Use the __node filter__ field to filter your nodes by name.
 
 ![Nodes being filtered by name][live_nav_namefilter]
 
@@ -64,17 +64,17 @@ You can use the following wildcards in the node filter field:
 - <big><strong>?</strong></big> matches one character
 - <big><strong>\*</strong></big> matches many (or zero) characters
 
-Use the "filter" button or the enter key to confirm your search, then wait for the node list to be updated.
+Use the __filter__ button or the enter key to confirm your search, then wait for the node list to be updated.
 
-> **Hint**: Use the "Wildcards allowed" link for a quick pop-over reminder.
+> **Hint**: Use the __Wildcards allowed__ link for a quick pop-over reminder.
 
 ### Advanced Search
 
-You can also filter by Puppet class or by the value of any fact on your nodes. Click the "advanced search" link to reveal these fields.
+You can also filter by Puppet class or by the value of any fact on your nodes. Click the __advanced search__ link to reveal these fields.
 
 ![The advanced search fields, filtering by the operatingsystem fact][live_nav_advancedsearch]
 
-> **Hint**: Use the "common fact names" link for a pop-over list of the most useful facts. Click a fact name to copy it to the filter field.
+> **Hint**: Use the __common fact names__ link for a pop-over list of the most useful facts. Click a fact name to copy it to the filter field.
 >
 > ![The common fact names popover][live_nav_factlist]
 
@@ -120,7 +120,7 @@ The Advanced Tasks tab contains a column of **task navigation** links in the lef
 
 #### Action Lists
 
-Action lists contain groups of related actions --- for example, the "service" list has actions for starting, stopping, restarting, and checking the status of services:
+Action lists contain groups of related actions --- for example, the __service__ list has actions for starting, stopping, restarting, and checking the status of services:
 
 ![The service action list][live_service_tasks]
 
@@ -144,9 +144,9 @@ You can invoke actions from the [Control Puppet](#the-control-puppet-tab) and [A
 
 To invoke an action, you must be viewing an **action list**.
 
-1. Click the name of the action you want. It will reveal a red **"Run"** button and any available **argument fields** ([see below](#argument-fields)). Some actions do not have arguments.
+1. Click the name of the action you want. It will reveal a red **Run** button and any available **argument fields** ([see below](#argument-fields)). Some actions do not have arguments.
 2. Enter any arguments you wish to use.
-3. Press the "Run" button; Puppet Enterprise will show that the action is running, then display any results from the action.
+3. Press the __Run__ button; Puppet Enterprise will show that the action is running, then display any results from the action.
 
 If several nodes have similar results, they'll be collapsed to save space; you can click any result group to see which nodes have that result.
 

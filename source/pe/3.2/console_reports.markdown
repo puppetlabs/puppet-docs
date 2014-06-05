@@ -41,7 +41,7 @@ The run-time chart graphs how long each of the last 30 Puppet runs took to compl
 
 ### Reports
 
-Each node page has a short list of recent reports, with a "More" button at the bottom for viewing older reports:
+Each node page has a short list of recent reports, with a __More__ button at the bottom for viewing older reports:
 
 ![The list of recent reports][reports_recent]
 

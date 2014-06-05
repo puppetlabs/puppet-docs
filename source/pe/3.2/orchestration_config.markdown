@@ -32,9 +32,9 @@ Changing the Port Used by MCollective/ActiveMQ
 You can change the port that MCollective/ActiveMQ uses with a simple variable change in the console. 
 
 1. In the sidebar, select the `mcollective` group. 
-2. On the `mcollective` group page, click "Edit". 
-3. Under "Variables", in the "key" field, add `fact_stomp_port`, and in the "value" field, add the port number you want to use.
-4. Click "Update".
+2. On the `mcollective` group page, click __Edit__. 
+3. Under __Variables__, in the __key__ field, add `fact_stomp_port`, and in the __value__ field, add the port number you want to use.
+4. Click __Update__.
 
 Configuring Orchestration Plugins
 -----
@@ -86,9 +86,9 @@ The puppet master node runs an ActiveMQ server to route orchestration commands. 
 You can set a new heap size by doing the following:
 
 1. In the PE console, navigate to the special `puppet_master` group.
-2. On the `puppet_master` group page, click "Edit".
-3. Under "Variables", in the "key" field, add `activemq_heap_mb`, and in the "value" field add a new heap size to use (in MB).
-4. Click "Update".
+2. On the `puppet_master` group page, click __Edit__.
+3. Under __Variables__, in the __key__ field, add `activemq_heap_mb`, and in the __value__ field add a new heap size to use (in MB).
+4. Click __Update__.
 
 You can later delete the variable to revert to the default setting.
 
@@ -101,9 +101,9 @@ By default, all agent nodes will send dummy registration messages over the orche
 Most users shouldn't need to change this behavior, but you can adjust the frequency of the heartbeat messages as follows:
 
 1. In the PE console, navigate to the special `mcollective` group.
-2. On the `mcollective` group page, click "Edit".
-3. Under "Variables", in the "key" field, add `mcollective_registerinterval`, and in the "value" field add a new interval (in seconds).
-4. Click "Update".
+2. On the `mcollective` group page, click __Edit__.
+3. Under __Variables__, in the __key__ field, add `mcollective_registerinterval`, and in the __value__ field add a new interval (in seconds).
+4. Click __Update__.
 
 You can later delete the variable to revert to the default setting.
 
@@ -114,9 +114,9 @@ By default, the orchestration engine uses SSL to encrypt all orchestration messa
 To disable SSL:
 
 1. In the PE console, navigate to the `mcollective` group.
-2. On the `mcollective` group page, click "Edit".
-3. Under "Variables", in the "key" field, add `mcollective_enable_stopmp_ssl`, and in the "value" field add `false`.
-4. Click "Update".
+2. On the `mcollective` group page, click __Edit__.
+3. Under __Variables__, in the __key__ field, add `mcollective_enable_stopmp_ssl`, and in the __value__ field add `false`.
+4. Click __Update__.
 
 You can later delete the variable to revert to the default setting.
 

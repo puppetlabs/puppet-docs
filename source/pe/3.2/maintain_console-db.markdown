@@ -19,17 +19,17 @@ To prevent bloating in the console database, we recommend adding the `pe_console
 
 To access the `prune_upto` parameter:
 
-1. In the PE console, navigate to the "Groups" page.
+1. In the PE console, navigate to the __Groups__ page.
 
 2. Select the `puppet_console` group.
 
-3. From the `puppet_console` group page, click the "Edit" button.
+3. From the `puppet_console` group page, click the __Edit__ button.
 
 4. From the class list, select `pe_console_prune`.
 
 5. From the `pe_console_prune parameters` dialog, edit the parameters as needed. The `prune_upto` parameter is at the bottom of the list.  
 
-6. Click the "Done" button when finished.
+6. Click the __Done__ button when finished.
 
 
 Restarting the Background Tasks
@@ -116,7 +116,7 @@ The console uses a database user account to access its PostgreSQL database. If t
 2. On the database server (which may or may not be the same as the console, depending on your deployment's architecture) use the PostgreSQL administration tool of your choice to change the user's password. With the standard `psql` client, you can do this with:
 
         ALTER USER console PASSWORD '<new password>';
-3. Edit `/etc/puppetlabs/puppet-dashboard/database.yml` on the console server and change the `password:` line under "common" (or under "production," depending on your configuration) to contain the new password.
+3. Edit `/etc/puppetlabs/puppet-dashboard/database.yml` on the console server and change the `password:` line under __common__ (or under __production,__ depending on your configuration) to contain the new password.
 4. Start the `pe-httpd` service on the console server:
 
         $ sudo /etc/init.d/pe-httpd start

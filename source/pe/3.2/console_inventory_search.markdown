@@ -9,7 +9,7 @@ The **Inventory Search** section of the Puppet Enterprise console lets you searc
 
 ## Using the Inventory Search
 
-Use console's main navigation to reach the "Inventory Search" section.
+Use console's main navigation to reach the __Inventory Search__ section.
 
 ![The inventory search page][inventory_zoom]
 
