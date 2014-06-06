@@ -22,7 +22,6 @@ Answer files are simply shell scripts that declare variables used by the install
     q_install=y
     q_puppet_cloud_install=n
     q_puppet_enterpriseconsole_install=n
-    q_puppet_symlinks_install=y
     q_puppetagent_certname=webmirror1.example.com
     q_puppetagent_install=y
     q_puppetagent_server=puppet
