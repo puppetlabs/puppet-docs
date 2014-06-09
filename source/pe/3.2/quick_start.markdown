@@ -285,7 +285,7 @@ Every module contains one or more **classes**. [Classes](../puppet/3/reference/l
 6. On the agent, stop the ntp service.
 
    **Note**: the NTP service name may vary depending on your operating system; for example, on Debian nodes, the service name is "ntp."
-7. Run `nptdate us.pool.ntp.org`. The result should resemble the following:
+7. Run `ntpdate us.pool.ntp.org`. The result should resemble the following:
 
    `28 Jan 17:12:40 ntpdate[27833]: adjust time server 50.18.44.19 offset 0.057045 sec`
 
