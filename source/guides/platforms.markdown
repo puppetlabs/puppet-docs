@@ -101,8 +101,8 @@ Dependency | Puppet 2.x | Puppet 3.x
 
 Rgen is only needed if you are using Puppet ≥ 3.2 [with `parser = future` enabled](/puppet/latest/reference/lang_future.html). The official Puppet Labs packages will install it as a dependency.
 
-[Facter]: http://www.puppetlabs.com/projects/facter/index.html
-[Hiera]: https://github.com/puppetlabs/hiera
+[Facter]: /facter
+[Hiera]: /hiera/latest/installing.html
 [rgen]: http://ruby-gen.org/downloads
 
 All other prerequisite Ruby libraries should come with any standard Ruby 1.8.5+ install.  Should your OS not come with the complete standard library (or you are using a custom Ruby build), these include:
