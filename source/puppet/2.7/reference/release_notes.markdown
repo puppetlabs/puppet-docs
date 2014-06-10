@@ -20,7 +20,7 @@ Released June 10, 2014.
 
 #### [CVE-2014-3248 (An attacker could convince an administrator to unknowingly execute malicious code on platforms with Ruby 1.9.1 and earlier)][CVE-2014-3248]
 
-On platforms running Ruby 1.9.1, previous code would load Ruby source files from the current working directory. This could lead to the execution of arbitrary code during a puppet run.
+On platforms running Ruby 1.9.1 or earlier, previous code would load Ruby source files from the current working directory. This could lead to the execution of arbitrary code during a puppet run.
 
 ## Puppet 2.7.25
 
