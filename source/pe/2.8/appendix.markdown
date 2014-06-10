@@ -18,6 +18,22 @@ For a complete guide to the Puppet language, visit [the reference manual](/puppe
 Release Notes
 -----
 
+### PE 2.8.7 (6/10/2014)
+
+#### Security Fixes
+
+*[CVE-2014-3248 Arbitrary Code Execution with Required Social Engineering](http://puppetlabs.com/security/cve/cve-2014-3248)*
+
+Assessed Risk Level: Medium. On platforms with Ruby 1.9.1 and earlier, an attacker could have Puppet execute malicious code by convincing a privileged user to change directories to one containing the malicious code and then run Puppet.
+
+CVSS v2 score: 5.2 Vector (AV:L/AC:M/Au:S/C:C/I:C/A:C/E:POC/RL:OF/RC:C)
+
+*[CVE-2014-3249 Information leakage](http://puppetlabs.com/security/cve/cve-2014-3252)*
+
+Assessed Risk Level: Medium. Unauthenticated users could hide and unhide nodes in the console and get a list of facts for a node. 
+
+CVSS v2 score: 3.9 Vector (AV:N/AC:L/Au:N/C:P/I:N/A:N/E:POC/RL:OF/RC:C)
+
 ### PE 2.8.6 (4/15/2014)
 
 #### Security Fixes
