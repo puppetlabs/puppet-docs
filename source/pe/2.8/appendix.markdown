@@ -30,7 +30,7 @@ CVSS v2 score: 5.2 Vector (AV:L/AC:M/Au:S/C:C/I:C/A:C/E:POC/RL:OF/RC:C)
 
 *[CVE-2014-3249 Information leakage](http://puppetlabs.com/security/cve/cve-2014-3249)*
 
-Assessed Risk Level: Medium. Unauthenticated users could hide and unhide nodes in the console and get a list of facts for a node. 
+Assessed Risk Level: Low. Unauthenticated users could hide and unhide nodes in the console and get a list of facts for a node. 
 
 CVSS v2 score: 3.9 Vector (AV:N/AC:L/Au:N/C:P/I:N/A:N/E:POC/RL:OF/RC:C)
 
