@@ -36,17 +36,17 @@ AIX                          | 5.3, 6.1, & 7.1                         | Power  
 
 <br>
 
-> *Note:* Upgrading your OS while PE is installed can cause problems with PE. To perform an OS upgrade, you'll need to uninstall PE, perform the OS upgrade, and then reinstall PE as follows:
+>**Note**: Upgrading your OS while PE is installed can cause problems with PE. To perform an OS upgrade, you’ll need to uninstall PE, perform the OS upgrade, and then reinstall PE as follows:
 >
-1. [Back up](/pe/latest/maintain_backup_restore.html) your databases and other PE files.
+>1. [Back up](./maintain_backup_restore.html#back-up-your-database-and-puppet-enterprise-files) your databases and other PE files.
 >
-2. Perform a complete [uninstall](/pe/latest/install_uninstalling.html) (including the -pd uninstaller option).
+>2. Perform a complete [uninstall](./install_uninstalling.html) (including the -p -d uninstaller option).
 >
-3. Upgrade your OS.
+>3. Upgrade your OS.
 >
-4. [Install PE](/pe/latest/install_basic.html).
+>4. [Install PE](./install_basic.html).
 >
-5. Restore your backup.
+>5. [Restore](./maintain_backup_restore.html#restore-your-database-and-puppet-enterprise-files) your backup.
 
 Hardware
 -----
