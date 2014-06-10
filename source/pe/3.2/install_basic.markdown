@@ -15,7 +15,7 @@ canonical: "/pe/latest/install_basic.html"
 Downloading PE
 -----
 
-Start by downloading the [current version of Puppet Enterprise from the Puppet Labs website][downloadpe].
+Start by downloading the [current version of Puppet Enterprise and the GPG signature from the Puppet Labs website][downloadpe].
 
 ### Choosing an Installer Tarball
 
@@ -35,7 +35,7 @@ Puppet Enterprise is distributed in tarballs specific to your OS version and arc
 
 ### Verifying the Installer
 
-To verify the PE installer, you can import the Puppet Labs public key and run a cryptographic verification of the tarball you downloaded. The Puppet Labs public key is certified by Puppet and is available from public keyservers, such as `pgp.mit.edu`. You'll need to have GNuPG installed and you'll need to download the GPG signature (.asc file) associated with your PE version from the PE downloads page.
+To verify the PE installer, you can import the Puppet Labs public key and run a cryptographic verification of the tarball you downloaded. The Puppet Labs public key is certified by Puppet and is available from public keyservers, such as `pgp.mit.edu`. You'll need to have GNuPG installed and you'll need to download the GPG signature (.asc file) associated with your PE version from the PE downloads page. You can also access the GPG signature from the link in the email that is sent to you after you download PE.
 
 To import the Puppet Labs public key, run:
 
