@@ -59,15 +59,15 @@ Forward slashes **MUST** be used:
 
 Forward slashes **SHOULD** be used in:
 
-* The title or `path` attribute of a [`file`][file] resource
-* The `source` attribute of a [`package`][package] resource
-* Local paths in a [`file`][file] resource's `source` attribute
-* The `command` of an [`exec`][exec] resource, unless the executable requires backslashes, e.g. cmd.exe
+* The title or `path` attribute of a [`file`][file] resource.
+* The `command` of an [`exec`][exec] resource, unless the executable requires backslashes, e.g. `cmd.exe`.
+* Local paths in a [`file`][file] resource's `source` attribute.
 
 Forward slashes **MUST NOT** be used in:
 
 * The `command` of a [`scheduled_task`][scheduledtask] resource.
 * The `install_options` of a [`package`][package] resource.
+* The `source` attribute of a [`package`][package] resource.
 
 #### The Rule
 
