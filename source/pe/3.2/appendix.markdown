@@ -131,6 +131,10 @@ PE 3.2 offers a [tech preview](http://puppetlabs.com/services/tech-preview) of n
 > *Note*: Razor is included in Puppet Enterprise 3.2 as a tech preview. Puppet Labs tech previews provide early access to new technology still under development. As such, you should only use them for evaluation purposes and not in production environments. You can find more information on tech previews on the [tech preview support scope page](http://puppetlabs.com/services/tech-preview).
 
 
+#### Symlinks
+
+The answer file no longer gives the option of whether to install symlinks. These are now automatically installed by packages. To allow the creation of symlinks, you need to ensure that /usr/local is writable.
+
 #### Puppet Agent with Non-Root Privileges
 
 In some situations, a development team may wish to manage infrastructure on nodes to which they do not have root access. PE 3.2 lets users take advantage of PE's capabilities with puppet agents that can run without root privileges. You can learn more in the new [guide to non-root agents](deploy_nonroot-agent.html).

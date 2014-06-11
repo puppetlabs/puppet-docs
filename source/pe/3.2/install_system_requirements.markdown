@@ -106,7 +106,7 @@ Configure your firewalls to accommodate Puppet Enterprise's network traffic. In 
 
 ### Symlinks
 
-The answer file no longer gives the option of whether to install symlinks. These are now automatically installed by packages. To allow the creation of symlinks, you need to ensure that /use/local is writable.
+The answer file no longer gives the option of whether to install symlinks. These are now automatically installed by packages. To allow the creation of symlinks, you need to ensure that /usr/local is writable.
 
 ### Dependencies and OS Specific Details
 
