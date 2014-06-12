@@ -120,19 +120,6 @@ If you will be using your own instance of PostgreSQL (as opposed to the instance
 
 OpenSSL is a dependency required for PE. For RHEL 4, Windows, AIX, and Solaris 10 nodes, OpenSSL is included with PE; for all other platforms it is installed directly from the system repositories.
 
-***Amazon Linux AMI***
-
-All Nodes    | Master Nodes | Console Nodes | Console/Console DB Nodes | Cloud Provisioner Nodes
--------------|--------------|---------------|--------------------------|------------------------
-pciutils     | apr          | apr           | libjpeg                  | libxslt
-system-logos | apr-util     | apr-util      |                          | libxml2
-which        | curl         | curl          |                          |
-libxml2      | mailcap      | mailcap       |                          |
-dmidecode    | libjpeg      |               |                          |
-net-tools    |              |               |                          |
-virt-what    |              |               |                          |
-
-<br>
 ***Centos***
 
 All Nodes    | Master Nodes | Console Nodes | Console/Console DB Nodes | Cloud Provisioner Nodes
