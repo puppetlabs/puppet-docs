@@ -111,19 +111,6 @@ This section details the packages that are installed from the various OS repos. 
 
 If you will be using your own instance of PostgreSQL (as opposed to the instance PE can install) for the console and PuppetDB, it must be version 9.1 or higher.
 
-***Amazon Linux AMI***
-
-All Nodes    | Master Nodes | Console Nodes | Console/Console DB Nodes | Cloud Provisioner Nodes
--------------|--------------|---------------|--------------------------|------------------------
-pciutils     | apr          | apr           | libjpeg                  | libxslt
-system-logos | apr-util     | apr-util      |                          | libxml2
-which        | curl         | curl          |                          |
-libxml2      | mailcap      | mailcap       |                          |
-dmidecode    | libjpeg      |               |                          |
-net-tools    |              |               |                          |
-virt-what    |              |               |                          |
-
-<br>
 ***Centos***
 
 All Nodes    | Master Nodes | Console Nodes | Console/Console DB Nodes | Cloud Provisioner Nodes
