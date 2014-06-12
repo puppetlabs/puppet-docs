@@ -50,6 +50,13 @@ sometimes available.</dd>
 syncing any resources. If no manifest files are provided, it will
 validate the default site manifest.</p>
 
+<p>When validating with --parser current, the validation stops after the first
+encountered issue.</p>
+
+<p>When validating with --parser future, multiple issues per file are reported up
+to the settings of max_error, and max_warnings. The processing stops
+after having reported issues for the first encountered file with errors.</p>
+
 <p><code>RETURNS</code></p>
 
 <p>Nothing, or the first syntax error encountered.</p></dd>
