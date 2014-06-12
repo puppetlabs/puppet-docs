@@ -17,7 +17,7 @@ Extend facter by writing your own custom facts to provide information to Puppet.
 ## Adding Custom Facts to Facter
 
 Sometimes you need to be able to write conditional expressions
-based on site-specific data that just isn't available via Facter, 
+based on site-specific data that just isn't available via Facter,
 or perhaps you'd like to include it in a template.
 
 Since you can't include arbitrary ruby code in your manifests,
@@ -99,6 +99,8 @@ execute shell commands:
   * if your fact is any more complicated than that, you'll have to call `Facter::Util::Resolution.exec('uname --hardware-platform')`
   from within the `setcode do`...`end` block.
 
+It's important to note that *not everything that works in the terminal will work in a fact*. You can use the pipe (`|`) and similar operators just as you normally would, but Bash-specific syntax like `if` will not work.
+
 ### An Example
 
 Let's say you need to get the output of `uname --hardware-platform` to single out a
@@ -176,7 +178,7 @@ systems that don't support this type of enumeration.
 ### Fact precedence
 
 A single fact can have multiple **resolutions**, each of which is a different way
-of ascertaining what the value of the fact should be. It's very common to have 
+of ascertaining what the value of the fact should be. It's very common to have
 different resolutions for different operating systems, for example. It's easy to
 confuse facts and resolutions because they are superficially identical --- to add
 a new resolution to a fact, you simply add the fact again, only with a different
