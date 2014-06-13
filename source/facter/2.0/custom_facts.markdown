@@ -89,15 +89,16 @@ minimum that you will see in every fact.
 
 Puppet gets information about a system from Facter, and the most common way for Facter to
 get that information is by executing shell commands. You can then parse and manipulate the
-output from those commands using standard ruby code. The Facter API gives you two ways to
+output from those commands using standard ruby code. The Facter API gives you a few ways to
 execute shell commands:
 
   * if all you want to do is run the command and use the output, verbatim, as your fact's value,
-  you can pass the command into `setcode` directly. For example: `setcode "uname --hardware-platform"`
-  * if your fact is any more complicated than that, you'll have to call `Facter::Core::Resolution.exec('uname --hardware-platform')`
-  from within the `setcode do`...`end` block.
+  you can pass the command into `setcode` directly. For example: `setcode 'uname --hardware-platform'`
+  * if your fact is any more complicated than that, you can call `Facter::Core::Execution.exec('uname --hardware-platform')`
+  from within the `setcode do`...`end` block. As always, whatever the `setcode` statement returns will be used as the fact's value.
+  * in any case, remember that your shell command is also a ruby string, so you'll need to escape special characters if you want to pass them through.
 
-It's important to note that *not everything that works in the terminal will work in a fact*. You can use the pipe (`|`) and similar operators just as you normally would, but Bash-specific syntax like `if` statements will not work. You can safely work around this limitation by writing your fact as a shell script and including it in a module as an [external fact](#external-facts). 
+It's important to note that *not everything that works in the terminal will work in a fact*. You can use the pipe (`|`) and similar operators just as you normally would, but Bash-specific syntax like `if` statements will not work. The best way to handle this limitation is to write your conditional logic in ruby.
 
 ### An Example
 
@@ -110,7 +111,7 @@ Puppet master server:
 {% highlight ruby %}
     # hardware_platform.rb
 
-    Facter.add("hardware_platform") do
+    Facter.add('hardware_platform') do
       setcode do
         Facter::Core::Resolution.exec('/bin/uname --hardware-platform')
       end
@@ -136,9 +137,9 @@ For example:
         distid = Facter.value(:lsbdistid)
         case distid
         when /RedHatEnterprise|CentOS|Fedora/
-          "redhat"
-        when "ubuntu"
-          "debian"
+          'redhat'
+        when 'ubuntu'
+          'debian'
         else
           distid
         end
@@ -159,7 +160,7 @@ An example of the confine statement would be something like the following:
 
 {% highlight ruby %}
     Facter.add(:powerstates) do
-      confine :kernel => "Linux"
+      confine :kernel => 'Linux'
       setcode do
         Facter::Core::Resolution.exec('cat /sys/power/states')
       end
@@ -198,8 +199,8 @@ that more specific resolutions will take priority over less specific resolutions
     Facter.add(:role) do
       has_weight 100
       setcode do
-        if File.exist? "/etc/postgres_server"
-          "postgres_server"
+        if File.exist? '/etc/postgres_server'
+          'postgres_server'
         end
       end
     end
@@ -208,8 +209,8 @@ that more specific resolutions will take priority over less specific resolutions
     Facter.add(:role) do
       has_weight 50
       setcode do
-        if File.exist? "/usr/sbin/pg_create"
-          "postgres_server"
+        if File.exist? '/usr/sbin/pg_create'
+          'postgres_server'
         end
       end
     end
@@ -217,7 +218,7 @@ that more specific resolutions will take priority over less specific resolutions
     # If this server doesn't look like a server, it must be a desktop
     Facter.add(:role) do
       setcode do
-        "desktop"
+        'desktop'
       end
     end
 {% endhighlight %}
@@ -259,11 +260,11 @@ Each step in the resolution then gets its own `chunk` statement with an arbitrar
 
 {% highlight ruby %}
     chunk(:one) do
-        "Chunk one returns this. "
+        'Chunk one returns this. '
     end
     
     chunk(:two) do
-        "Chunk two returns this."
+        'Chunk two returns this.'
     end
 {% endhighlight %}
 
@@ -271,7 +272,7 @@ In a simple resolution, the code always includes a `setcode` statement that dete
 
 {% highlight ruby %}
     aggregate do |chunks|
-      result = ""
+      result = ''
 
       chunks.each do |chunk|
         result += chunk

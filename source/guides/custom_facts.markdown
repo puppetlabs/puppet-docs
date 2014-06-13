@@ -97,9 +97,9 @@ execute shell commands:
   * if all you want to do is run the command and use the output, verbatim, as your fact's value,
   you can pass the command into `setcode` directly. For example: `setcode "uname --hardware-platform"`
   * if your fact is any more complicated than that, you'll have to call `Facter::Util::Resolution.exec('uname --hardware-platform')`
-  from within the `setcode do`...`end` block.
+  from within the `setcode do`...`end` block. As always, whatever the `setcode` statement returns will be used as the fact's value.
 
-It's important to note that *not everything that works in the terminal will work in a fact*. You can use the pipe (`|`) and similar operators just as you normally would, but Bash-specific syntax like `if` will not work.
+It's important to note that *not everything that works in the terminal will work in a fact*. You can use the pipe (`|`) and similar operators just as you normally would, but Bash-specific syntax like `if` will not work. The best way to handle this limitation is to write your conditional logic in ruby.
 
 ### An Example
 
@@ -112,7 +112,7 @@ Puppet master server:
 {% highlight ruby %}
     # hardware_platform.rb
 
-    Facter.add("hardware_platform") do
+    Facter.add('hardware_platform') do
       setcode do
         Facter::Util::Resolution.exec('/bin/uname --hardware-platform')
       end
@@ -130,19 +130,19 @@ The best place to get ideas about how to write your own custom facts is to look 
 ## Using other facts
 
 You can write a fact which uses other facts by accessing
-`Facter.value("somefact")`.
+`Facter.value('somefact')`.
 
 For example:
 
 {% highlight ruby %}
-    Facter.add("osfamily") do
+    Facter.add('osfamily') do
       setcode do
         distid = Facter.value('lsbdistid')
         case distid
         when /RedHatEnterprise|CentOS|Fedora/
-          "redhat"
-        when "ubuntu"
-          "debian"
+          'redhat'
+        when 'ubuntu'
+          'debian'
         else
           distid
         end
@@ -163,7 +163,7 @@ An example of the confine statement would be something like the following:
 
 {% highlight ruby %}
     Facter.add(:powerstates) do
-      confine :kernel => "Linux"
+      confine :kernel => 'Linux'
       setcode do
         Facter::Util::Resolution.exec('cat /sys/power/states')
       end
@@ -202,8 +202,8 @@ that more specific resolutions will take priority over less specific resolutions
     Facter.add(:role) do
       has_weight 100
       setcode do
-        if File.exist? "/etc/postgres_server"
-          "postgres_server"
+        if File.exist? '/etc/postgres_server'
+          'postgres_server'
         end
       end
     end
@@ -212,8 +212,8 @@ that more specific resolutions will take priority over less specific resolutions
     Facter.add(:role) do
       has_weight 50
       setcode do
-        if File.exist? "/usr/sbin/pg_create"
-          "postgres_server"
+        if File.exist? '/usr/sbin/pg_create'
+          'postgres_server'
         end
       end
     end
@@ -221,7 +221,7 @@ that more specific resolutions will take priority over less specific resolutions
     # If this server doesn't look like a server, it must be a desktop
     Facter.add(:role) do
       setcode do
-        "desktop"
+        'desktop'
       end
     end
 {% endhighlight %}
