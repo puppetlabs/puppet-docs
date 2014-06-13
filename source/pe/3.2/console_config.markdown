@@ -378,16 +378,12 @@ Changing the Console's Port
 
 By default, a new installation of PE will serve the console on port 443. However, previous versions of PE served the console's predecessor on port 3000. If you upgraded and want to change to the more convenient new default, or if you need port 443 for something else and want to shift the console somewhere else, perform the following steps:
 
-* Stop the `pe-httpd` service:
-
-        $ sudo /etc/init.d/pe-httpd stop
-* Edit `/etc/puppetlabs/httpd/conf.d/puppetdashboard.conf` on the console server, and change the port number in the `Listen 443` and `<VirtualHost *:443>` directives. (These directives will contain the current port, which is not necessarily 443.)
-* Edit `/etc/puppetlabs/console-auth/config.yml ` on the puppet master server, and change the `cas_url` to use your preferred port.
-* Edit `/etc/puppetlabs/rubycas-server/config.yml ` on the puppet master server, and change the `console_base_url` to use your preferred port.
-* Make sure to allow access to the new port in your system's firewall rules.
-* Start the `pe-httpd` service:
-
-        $ sudo /etc/init.d/pe-httpd start
+1. Stop the `pe-httpd` service: `sudo /etc/init.d/pe-httpd stop`.
+2. Edit `/etc/puppetlabs/httpd/conf.d/puppetdashboard.conf` on the console server, and change the port number in the `Listen 443` and `<VirtualHost *:443>` directives. (These directives will contain the current port, which is not necessarily 443.)
+3. Edit `/etc/puppetlabs/console-auth/config.yml ` on the puppet master server, and change the `cas_url` to use your preferred port.
+4. Edit `/etc/puppetlabs/rubycas-server/config.yml ` on the puppet master server, and change the `console_base_url` to use your preferred port.
+5. Make sure to allow access to the new port in your system's firewall rules.
+6. Start the `pe-httpd` service: `sudo /etc/init.d/pe-httpd start`.
         
 Configuring the Console Location
 ------
