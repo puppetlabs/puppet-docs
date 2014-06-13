@@ -96,6 +96,12 @@ To contain classes that are declared with the resource-like declaration syntax, 
     }
 {% endhighlight %}
 
+> **Bug note:** In this version of Puppet, some uses of the `contain` function are affected by bug [PUP-1597](https://tickets.puppetlabs.com/browse/PUP-1597). This bug prevents `contain` from accepting class names with an absolute `::` prefix (for example, `::ntp::service`).
+>
+> This bug can also cause `Error: undefined method 'ref' for nil:NilClass` errors. These occur when `contain` is given a class name that would  have been affected by [accidental relative name lookup.](./lang_namespaces.html#relative-name-lookup-and-incorrect-name-resolution)
+>
+> [PUP-1597](https://tickets.puppetlabs.com/browse/PUP-1597) will be fixed in Puppet 3.7.
+
 ### Faux Containment (for Compatibility With Puppet ≤ 3.4.0)
 
 Versions prior to Puppet 3.4.0 and Puppet Enterprise 3.2 do not ship with the `contain` function. To support these versions, you must mimic containment with the **anchor pattern.**
