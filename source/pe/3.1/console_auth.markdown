@@ -105,32 +105,32 @@ To delete an existing user (including pending users), click on the user's name i
 
 Several actions related to console users can be done from the command line using rake tasks. This can be useful for things like automating user creation/deletion or importing large numbers of users from an external source all at once. All of these tasks should be run on the console server node.
 
-Note that console_auth rake tasks that list, add or remove users **must** be run using the bundle `exec` command. For example, 
+Note that `console_auth` rake tasks that list, add or remove users **must** be run using the bundle `exec` command. For example, 
 
     cd /opt/puppet/share/puppet-dashboard
-     sudo /opt/puppet/bin/bundle exec rake -f /opt/puppet/share/console-auth/Rakefile db:users:list
+    sudo /opt/puppet/bin/bundle exec rake -f /opt/puppet/share/console-auth/Rakefile db:users:list
 
-Console_auth rake tasks will add their actions to the console_auth log, located by default at `/var/log/pe-console-auth/auth.log`.
+The `console_auth` rake tasks will add their actions to the console_auth log, located by default at `/var/log/pe-console-auth/auth.log`.
 
 #### Adding or Modifying Users
 
-The db:create_user rake task is used to add users. The command is issued as follows:
+The `db:create_user` rake task is used to add users. The command is issued as follows:
 
-     cd /opt/puppet/share/puppet-dashboard
+    cd /opt/puppet/share/puppet-dashboard
     sudo /opt/puppet/bin/bundle exec rake -f /opt/puppet/share/console-auth/Rakefile db:create_user USERNAME="<email address>" PASSWORD="<password>" ROLE="< Admin | Read-Only | Read-Write >"
 
 If you specify a user that already exists, the same command can be used to change attributes for that user, e.g. to reset a password or elevate/demote privileges.
 
 #### Deleting Users
 
-The db:users:remove task is used to delete users. The command is issued as follows:
+The `db:users:remove` task is used to delete users. The command is issued as follows:
 
     cd /opt/puppet/share/puppet-dashboard
     sudo /opt/puppet/bin/bundle exec rake -f /opt/puppet/share/console-auth/Rakefile db:users:remove[<email address>]
 
 #### Viewing Users
 
-To print a list of existing users to the screen use the db:users:list task as follows:
+To print a list of existing users to the screen use the `db:users:list` task as follows:
 
     cd /opt/puppet/share/puppet-dashboard
     sudo /opt/puppet/bin/bundle exec rake -f /opt/puppet/share/console-auth/Rakefile db:users:list
