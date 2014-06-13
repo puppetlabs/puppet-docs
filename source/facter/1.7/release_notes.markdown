@@ -6,6 +6,21 @@ description: Facter release notes for all 1.7 versions
 
 This page documents the history of the Facter 1.7 series.
 
+Facter 1.7.6
+-----
+
+Released June 16, 2014.
+
+Facter 1.7.6 is a security fix release in the 1.7 series. It has no other bug fixes or new features.
+
+### Security Fixes
+
+[CVE-2014-3248]: http://puppetlabs.com/security/cve/CVE-2014-3248
+
+#### [CVE-2014-3248 (An attacker could convince an administrator to unknowingly execute malicious code on platforms with Ruby 1.9.1 and earlier)][CVE-2014-3248]
+
+When running on Ruby 1.9.1 or earlier, previous versions of Facter would load Ruby source files from the current working directory. This could lead to the execution of arbitrary code.
+
 Facter 1.7.5
 -----
 
