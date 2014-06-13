@@ -185,7 +185,7 @@ catalog, including the resources and the relationships between them.</p>
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#relationship_graph-instance_method" title="#relationship_graph (instance method)">- (Puppet::Graph::RelationshipGraph) <strong>relationship_graph</strong> </a>
+      <a href="#relationship_graph-instance_method" title="#relationship_graph (instance method)">- (Puppet::Graph::RelationshipGraph) <strong>relationship_graph</strong>(given_prioritizer = nil) </a>
     
 
     
@@ -510,7 +510,7 @@ application</p>
       <div class="method_details ">
   <h3 class="signature " id="relationship_graph-instance_method">
   
-    - (<tt><span class='object_link'><a href="../Graph/RelationshipGraph.html" title="Puppet::Graph::RelationshipGraph (class)">Puppet::Graph::RelationshipGraph</a></span></tt>) <strong>relationship_graph</strong> 
+    - (<tt><span class='object_link'><a href="../Graph/RelationshipGraph.html" title="Puppet::Graph::RelationshipGraph (class)">Puppet::Graph::RelationshipGraph</a></span></tt>) <strong>relationship_graph</strong>(given_prioritizer = nil) 
   
 
   
@@ -525,7 +525,30 @@ dependency edges that are used for determining order.</p>
   </div>
 </div>
 <div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
   
+    <li>
+      
+        <span class='name'>given_prioritizer</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Graph/Prioritizer.html" title="Puppet::Graph::Prioritizer (class)">Puppet::Graph::Prioritizer</a></span></tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>nil</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The prioritization
+strategy to use when constructing the relationship graph. Defaults the
+being determined by the <code>ordering</code> setting.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -546,20 +569,20 @@ dependency edges that are used for determining order.</p>
       <pre class="lines">
 
 
-189
-190
-191
 192
 193
 194
-195</pre>
+195
+196
+197
+198</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/resource/catalog.rb', line 189</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/resource/catalog.rb', line 192</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_relationship_graph'>relationship_graph</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_relationship_graph'>relationship_graph</span><span class='lparen'>(</span><span class='id identifier rubyid_given_prioritizer'>given_prioritizer</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='ivar'>@relationship_graph</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
-    <span class='ivar'>@relationship_graph</span> <span class='op'>=</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Graph</span><span class='op'>::</span><span class='const'>RelationshipGraph</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_prioritizer'>prioritizer</span><span class='rparen'>)</span>
+    <span class='ivar'>@relationship_graph</span> <span class='op'>=</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Graph</span><span class='op'>::</span><span class='const'>RelationshipGraph</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_given_prioritizer'>given_prioritizer</span> <span class='op'>||</span> <span class='id identifier rubyid_prioritizer'>prioritizer</span><span class='rparen'>)</span>
     <span class='ivar'>@relationship_graph</span><span class='period'>.</span><span class='id identifier rubyid_populate_from'>populate_from</span><span class='lparen'>(</span><span class='kw'>self</span><span class='rparen'>)</span>
   <span class='kw'>end</span>
   <span class='ivar'>@relationship_graph</span>
@@ -574,7 +597,7 @@ dependency edges that are used for determining order.</p>
 </div>
 
     <div id="footer">
-  Generated on Thu May 22 13:42:22 2014 by
+  Generated on Thu Jun 12 11:08:10 2014 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.4 (ruby-2.0.0).
 </div>

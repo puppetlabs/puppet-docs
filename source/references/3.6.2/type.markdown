@@ -59,7 +59,7 @@ toc: false
 <li class="toc-lv2"><a href="#zpool">zpool</a></li>
 </ol></nav>
 
-> **NOTE:** This page was generated from the Puppet source code on 2014-05-22 13:41:37 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2014-06-12 11:07:19 -0700
 
 ## About Resource Types
 
@@ -11762,4 +11762,4 @@ Provider for zpool.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2014-05-22 13:41:37 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2014-06-12 11:07:19 -0700

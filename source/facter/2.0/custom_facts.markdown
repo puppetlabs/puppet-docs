@@ -15,7 +15,7 @@ Extend facter by writing your own custom facts to provide information to Puppet.
 ## Adding Custom Facts to Facter
 
 Sometimes you need to be able to write conditional expressions
-based on site-specific data that just isn't available via Facter, 
+based on site-specific data that just isn't available via Facter,
 or perhaps you'd like to include it in a template.
 
 Since you can't include arbitrary ruby code in your manifests,
@@ -73,7 +73,7 @@ Facter can also easily load fact files distributed using pluginsync. Running
 so if you're using a lot of custom facts inside puppet, you can easily use
 these facts with standalone facter.
 
-Custom facts can be distributed to clients using the [Plugins in Modules](./plugins_in_modules.html) method.
+Custom facts can be distributed to clients using the [Plugins in Modules](/guides/plugins_in_modules.html) method.
 
 ## Two Parts of Every Fact
 
@@ -96,6 +96,8 @@ execute shell commands:
   you can pass the command into `setcode` directly. For example: `setcode "uname --hardware-platform"`
   * if your fact is any more complicated than that, you'll have to call `Facter::Core::Resolution.exec('uname --hardware-platform')`
   from within the `setcode do`...`end` block.
+
+It's important to note that *not everything that works in the terminal will work in a fact*. You can use the pipe (`|`) and similar operators just as you normally would, but Bash-specific syntax like `if` statements will not work. You can safely work around this limitation by writing your fact as a shell script and including it in a module as an [external fact](#external-facts). 
 
 ### An Example
 
@@ -124,7 +126,7 @@ The best place to get ideas about how to write your own custom facts is to look 
 ## Using other facts
 
 You can write a fact which uses other facts by accessing
-`Facter.value(:somefact)`. If the named fact is unresolved, `Facter.value` will return `nil`, but if the fact can't be found at all, it will throw an error. 
+`Facter.value(:somefact)`. If the named fact is unresolved, `Facter.value` will return `nil`; but if the fact can't be found at all, it will throw an error.
 
 For example:
 
@@ -172,7 +174,7 @@ systems that don't support this type of enumeration.
 ### Fact precedence
 
 A single fact can have multiple **resolutions**, each of which is a different way
-of ascertaining what the value of the fact should be. It's very common to have 
+of ascertaining what the value of the fact should be. It's very common to have
 different resolutions for different operating systems, for example. It's easy to
 confuse facts and resolutions because they are superficially identical --- to add
 a new resolution to a fact, you simply add the fact again, only with a different
@@ -242,7 +244,7 @@ While the norm is for a fact to return a single string, Facter 2.0 introduced **
 
 ## Aggregate Resolutions
 
-If your fact combines the output of multiple commands, it may make sense to use **aggregate resolutions**. An aggregate resolution is split into "chunks," each one responsible for resolving one piece of the fact. After all of the chunks hae been resolved separately, they're combined into a single flat or structured fact and returned. 
+If your fact combines the output of multiple commands, it may make sense to use **aggregate resolutions**. An aggregate resolution is split into "chunks," each one responsible for resolving one piece of the fact. After all of the chunks hae been resolved separately, they're combined into a single flat or structured fact and returned.
 
 Aggregate resolutions have several key differences compared to simple resolutions, beginning with the fact declaration. To introduce an aggregate resolution, you'll need to add the `:type => :aggregate` parameter:
 
