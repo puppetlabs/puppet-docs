@@ -152,9 +152,9 @@ Windows services support a short name and a display name. Make sure to use the s
 
     This can occur when you run the `puppet module` subcommand on newly provisioned Windows nodes.
 
-    The Puppet Forge uses an SSL certificate signed by the GeoTrust Global CA certificate. Once a Windows system has run Windows Update at least once, it will include that CA cert in its root CA store; however, newly provisioned nodes may not have it yet.
+    The Puppet Forge uses an SSL certificate signed by the UTN-USERFirst-Hardware CA certificate. Once a Windows system has run Windows Update at least once, it will include that CA cert in its root CA store; however, newly provisioned nodes may not have it yet.
 
-    To resolve this and enable the `puppet module` subcommand on Windows nodes, you can either run Windows Update and fetch all available updates, or you can download the "GeoTrust Global CA" certificate from [GeoTrust's list of root certificates](https://www.geotrust.com/resources/root-certificates/) and manually install it by running `certutil -addstore Root GeoTrust_Global_CA.pem`
+    To resolve this and enable the `puppet module` subcommand on Windows nodes, you can either run Windows Update and fetch all available updates, or you can [download the UTN-USERFirst-Hardware certificate here](https://www.instantssl.com/ssl-certificate-support/cert_installation/UTN-USERFirst-Hardware.crt) and manually install it by running `certutil -addstore Root UTN-USERFirst-Hardware.pem`
 
 * "`Service 'Puppet Agent' (puppet) failed to start. Verify that you have sufficient privileges to start system services.`"
 
