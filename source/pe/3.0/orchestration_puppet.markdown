@@ -199,7 +199,7 @@ While logged in as a [read/write or admin user][console_user], navigate to the [
 
 While [logged in to the puppet master server as `peadmin`][peadmin], run `mco service pe-puppet stop` or `mco service pe-puppet start` with or without a filter.
 
-To prepare all web servers for a manifest update and no-op run:
+**Example:** To prepare all web servers for a manifest update and no-op run:
 
     $ mco service pe-puppet stop -C /apache/
 
