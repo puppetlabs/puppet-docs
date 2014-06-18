@@ -98,7 +98,7 @@ To use `puppet apply`, you must first use the **"Start Command Prompt with Puppe
 
 To use `puppet apply` effectively, you should distribute your Puppet modules to each agent node and copy them into the [`modulepath`](/references/latest/configuration.html#modulepath). This allows the small manifests written for `puppet apply` to easily assign pre-existing classes to the node.
 
-> Note: The default `modulepath` on Windows is [`$confdir`][confdir]`\modules`.
+> Note: The default `modulepath` on Windows is `$confdir\modules`. [See here for more information about the confdir.][confdir]
 
 > Note: When using a multi-directory modulepath, remember to separate the directories with `;`, rather than `:`.
 
@@ -130,7 +130,7 @@ When writing manifests for Windows nodes, it can be helpful to see a test system
 Configuring Puppet
 -----
 
-Puppet's main `puppet.conf` configuration file can be found at [`$confdir`][confdir]`\puppet.conf`.
+Puppet's main `puppet.conf` configuration file can be found at `$confdir\puppet.conf`. [See here for more information about the confdir.][confdir]
 
 * See [Configuring Puppet](/guides/configuring.html) for more details about Puppet's main config file. (Puppet's secondary config files are not used on Windows.)
 * See [the configuration reference](/references/latest/configuration.html) for a complete list of `puppet.conf` settings.
