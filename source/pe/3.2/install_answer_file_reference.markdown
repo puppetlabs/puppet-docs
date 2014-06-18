@@ -129,9 +129,6 @@ These answers are generally needed if you are installing the puppet master role.
 `q_tarball_server`
 : **String** --- The location from which PE agent tarballs will be downloaded before installation. Note that agent tarballs are only available for certain operating systems. For details, see [the PE installation instructions](./install_basic.html)
 
-`q_puppetca_install`
-: **Y or N** --- Controls whether or not the CA will be installed when the master role is installed.
-
 ### Console Answers
 
 These answers are generally needed if you are installing the console role.
