@@ -93,7 +93,7 @@ We've added improved behavior to Puppet over the course of the 3.x series, but s
 
 * [`trusted_node_data = true`][trusted_node_data] (puppet master/apply only) --- This enables [the `$trusted` and `$facts` hashes][trusted_and_facts], so you can start using them in your own code.
     * And then the `$facts` variable can be independently disabled with the [`immutable_node_data`][immutable_node_data] setting, but you probably want both.
-* [`stringify_facts = false`][stringify_facts] (puppet master/apply only) --- This enables [structured facts][structured_facts], allowing facts to contain arrays, hashes, and booleans instead of just strings. This requires Facter 2.0, and none of the core facts use this yet, but enabling it will let you take advantage of structured facts as they are gradually released.
+* [`stringify_facts = false`][stringify_facts] (all nodes) --- This enables [structured facts][structured_facts], allowing facts to contain arrays, hashes, and booleans instead of just strings. This requires Facter 2.0, and none of the core facts use this yet, but enabling it will let you take advantage of structured facts as they are gradually released.
 * [`ordering = manifest`][ordering] (all nodes) --- This causes unrelated resources to be applied in the order they are written, instead of in effectively random order. It allows you to be "lazy" in small classes and write resources in chronological order instead of specifying dependencies. But be careful when writing manifests like this, since it makes it harder to share code with other users.
 
 ### Possibly Disruptive
