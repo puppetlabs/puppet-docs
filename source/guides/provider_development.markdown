@@ -118,6 +118,17 @@ package is installed).
     confine :feature => :posix
     confine :feature => :rrd 
 
+You can also create your own custom feature. They live in
+`lib/puppet/feature/*.rb` and an example can be found
+[here](https://github.com/puppetlabs/puppet/blob/master/lib/puppet/feature/libuser.rb).
+These features can be shipped in a similar manner as types and providers
+are shipped within modules and will be pluginsynced.
+
+Using custom features you can delay resource evaluation until the provider
+becomes suitable. This means that if your provider depends on a file being
+created by Puppet you can inform Puppet of this fact. It can also depend
+on a certain Fact being set to some value or it not being set at all.
+
 ## Default Providers
 
 Providers are generally meant to be hidden from the users, allowing
