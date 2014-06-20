@@ -228,7 +228,7 @@ The `-W` filter always combines facts and classes with "and" logic --- nodes mus
 
 The `-S` filter lets you combine values with nested Boolean "and"/"or"/"not" logic:
 
-    $ mco service httpd restart -S "((customer=acme and environment=staging) or environment=development) and /apache/"
+    $ mco service httpd restart -S "((customer=acme and osfamily=RedHat) or domain=acme.com) and /apache/"
 
 #### Data Plugins
 
@@ -246,7 +246,7 @@ Data plugins can be tricky, but are very powerful. To use them effectively, you 
 4. Construct a query fragment of the format `<PLUGIN>('<INPUT>').<OUTPUT>=<VALUE>` --- note the parentheses, the fact that the input must be in quotes, the `.output` notation, and the equals sign. Make sure the value you're searching for matches the expected format, which you saw when you did your test query.
 5. Use that fragment as part of a `-S` filter:
 
-        $ mco find -S "fstat('/etc/hosts').md5=/baa3772104/ and environment=development"
+        $ mco find -S "fstat('/etc/hosts').md5=/baa3772104/ and osfamily=RedHat"
 
 You can specify multiple data plugin query fragments per `-S` filter.
 
