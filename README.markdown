@@ -1,7 +1,7 @@
 Puppet Docs
 ===========
 
-Curated documentation for Puppet, and tools for generating a deployable copy
+Curated documentation for Puppet and tools for generating a deployable copy
 of the docs site.
 
 Installation
