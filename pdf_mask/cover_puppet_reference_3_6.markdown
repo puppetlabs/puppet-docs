@@ -1,7 +1,7 @@
 ---
 layout: cover
-title: Puppet Documentation
+title: "Puppet 3.6 Reference Manual"
 ---
 
-<h1 style="text-align: center;">Puppet Documentation</h1>
+<h1 style="text-align: center;">Puppet 3.6 Reference Manual</h1>
 <p><small>(Generated on {{ 'now' | date: "%B %d, %Y" }}, from git revision {% gitrevision %})</small></p>
