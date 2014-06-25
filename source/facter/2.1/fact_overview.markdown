@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Facter 2.0: Overview of Custom Facts With Examples"
+title: "Facter 2.1: Overview of Custom Facts With Examples"
 ---
 
 Anatomy of a Facter Fact
