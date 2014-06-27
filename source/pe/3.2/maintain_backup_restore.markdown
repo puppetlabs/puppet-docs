@@ -19,8 +19,7 @@ To properly back up your PE installation, the following databases and PE files s
 
  - `/etc/puppetlabs/`
  - `/opt/puppet/share/puppet-dashboard/certs`
- - [The console and console_auth databases](./maintain_console-db.html#database-backups)
- - [The PuppetDB database](http://docs.puppetlabs.com/puppetdb/1.5/migrate.html#exporting-data-from-an-existing-puppetdb-database)
+ - [The PuppetDB, console, and console_auth databases](./maintain_console-db.html#database-backups)
  - The modulepath——if you've configured it to be outside the PE default of `modulepath = /etc/puppetlabs/puppet/module:/opt/puppet/share/puppet/modules` in `puppet.conf`.
  
 > **Note**: If you have any custom Simple RPC agents, you will want to back these up. These are located in the `libdir` configured in `/etc/puppetlabs/mcollective/server.cfg`. 
@@ -94,8 +93,6 @@ For more information about using the PE uninstaller, refer to [Uninstalling Pupp
    
    j. `\q`
    
-   k. `su - pe-postgres -s /bin/bash -c "/opt/puppet/bin/psql -f /path/to/backup.sql"`
-   
    > **Note**: During this process, you may encounter an error message similar to, `ERROR:  role "console" already exists`. This error is safe to ignore. 
 
 5. Restore from your `/etc/puppetlabs/` backup the following directories and files:
@@ -105,8 +102,7 @@ For more information about using the PE uninstaller, refer to [Uninstalling Pupp
    * `/etc/puppetlabs/puppet/puppet.conf`
    * `/etc/puppetlabs/puppet/ssl` (fully replace with backup, do not leave existing ssl data)
    * `/opt/puppet/share/puppet-dashboard/certs`
-   * [The console and console_auth databases](./maintain_console-db.html#database-backups)
-   * [The PuppetDB database](http://docs.puppetlabs.com/puppetdb/1.5/migrate.html#importing-data-to-a-new-puppetdb-database)
+   * [The PuppetDB, console, and console_auth databases](./maintain_console-db.html#database-backups)
    * The modulepath——if you've configured it to be something other than the PE default. 
    
    For a split install, these files and databases should be replaced on the various servers assigned to these PE roles.
