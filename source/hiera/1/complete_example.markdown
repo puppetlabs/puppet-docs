@@ -210,7 +210,7 @@ Our next ntp node, `grover.example.com`, is a little less critical to our infras
       - 1.us.pool.ntp.org iburst
       - 2.us.pool.ntp.org iburst
 
-As with `kermit.example.com`, we want to save grover's Hiera data source in the `/etc/puppet/hieradata/nodes` directory using the `fqdn` fact for the file name: `grover.example.com.yaml`. We can once again test it with the hiera command line tool:
+As with `kermit.example.com`, we want to save grover's Hiera data source in the `/etc/puppet/hieradata/node` directory using the `fqdn` fact for the file name: `grover.example.com.yaml`. We can once again test it with the hiera command line tool:
 
 	$ hiera ntp::servers ::fqdn=grover.example.com
 	["kermit.example.com iburst", "0.us.pool.ntp.org iburst", "1.us.pool.ntp.org iburst", "2.us.pool.ntp.org iburst"]
