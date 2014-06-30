@@ -171,13 +171,86 @@ So `template('my_module/component.erb')` would render the template `my_module/te
 Writing Modules
 -----
 
-To write a module, simply write classes and defined types and place them in properly named manifest files as described above.
+To write a module, we strongly suggest running `puppet module generate <USERNAME>-<MODULE NAME>`. 
+
+When you run the above command, the puppet module tool (PMT) will run a series of questions to gather metadata about your module and will create a basic module structure for you.
+
+```
+$ puppet module generate examplecorp-mymodule                                                                                
+
+We need to create a metadata.json file for this module.  Please answer the
+following questions; if the question is not applicable to this module, feel free
+to leave it blank.
+
+Puppet uses Semantic Versioning (semver.org) to version modules.
+What version is this module?  [0.1.0]
+--> 0.1.0
+
+Who wrote this module?  [examplecorp]
+--> Pat
+
+What license does this module code fall under?  [Apache 2.0]
+--> Apache 2.0
+
+How would you describe this module in a single sentence? 
+--> It examples with Puppet.
+
+Where is this module's source code repository? 
+--> https://github.com/examplecorp/examplecorp-mymodule
+
+Where can others go to learn more about this module?
+--> https://forge.puppetlabs.com/examplecorp/mymodule
+
+Where can others go to file issues about this module?
+-->
+
+
+{
+  "name": "examplecorp-mymodule",
+  "version": "0.1.0",
+  "author": "Pat",
+  "summary": "It examples with Puppet.",
+  "license": "Apache 2.0",
+  "source": "https://github.com/examplecorp/examplecorp-mymodule",
+  "project_page": "(https://forge.puppetlabs.com/examplecorp/mymodule)",
+  "issues_url": null,
+  "dependencies": [
+    {
+      "name": "puppetlabs-stdlib",
+      "version_range": ">= 1.0.0"
+    }
+  ]
+}
+
+
+About to generate this metadata; continue? [n/Y] 
+--> Y
+
+Notice: Generating module at /Users/Pat/Development/examplecorp-mymodule...
+Notice: Populating ERB templates...
+Finished; module generated in examplecorp-mymodule.
+examplecorp-mymodule/manifests
+examplecorp-mymodule/manifests/init.pp
+examplecorp-mymodule/metadata.json
+examplecorp-mymodule/Rakefile
+examplecorp-mymodule/README.md
+examplecorp-mymodule/spec
+examplecorp-mymodule/spec/classes
+examplecorp-mymodule/spec/classes/init_spec.rb
+examplecorp-mymodule/spec/spec_helper.rb
+examplecorp-mymodule/tests
+examplecorp-mymodule/tests/init.pp
+```
+
+For best practices about writing your module, please see the [Beginner's Guide to Modules](docs.puppetlabs.com/guides/module_guides/bgtm.html).
+
+You also have the option of writing classes and defined types by hand and placing them in properly named manifest files as [described above](#module_layout). If you take this route, you **must** ensure that your metadata.json file is properly formatted or your module **will not work**.
 
 * [See here][classes] for more information on classes
 * [See here][defined_types] for more information on defined types
 
 
-Best Practices
+Tips
 -----
 
 The [classes][], [defined types][defined_types], and [plugins][] in a module **should all be related,** and the module should aim to be **as self-contained as possible.**
