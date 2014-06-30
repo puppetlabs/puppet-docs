@@ -96,7 +96,7 @@ Classifying and Installing Puppet in One Command
 
 Rather than using multiple commands to classify and install Puppet on a node, there are a couple of other options that combine actions into a "wrapper" command. Note that you will need access to the PE installer, which is typically specified with the `--installer-payload` argument.
 
-If a node has been prepared to remotely sign certificates, you can use the `init` action which will `install` Puppet, `classify` the node and sign the certificate in one step. For example:
+If a node has been prepared to remotely sign certificates, you can use the `init` action which will `install` Puppet, `classify` the node and sign the certificate in one step. 
 
 **Note** - With `classify` and `init`, you need to specify the `--insecure` option because the PE console uses the internal certificate name, `pe-internal-dashboard`, which fails verification because it doesn't match the host name of the host where the console is running.
 
