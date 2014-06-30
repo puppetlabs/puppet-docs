@@ -392,7 +392,7 @@ Once you've got all that configured, go ahead and test with the Hiera command li
 	$ hiera vmwaretools::version
 	8.6.5-621624
 
-	$ hiera classes virtual=vmware
+	$ hiera classes ::virtual=vmware
 	vmwaretools
 
 If everything worked, great. If not, [consult the checklist we provided earlier](#something-went-wrong) and give it another shot.
