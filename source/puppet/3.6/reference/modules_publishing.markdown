@@ -98,7 +98,6 @@ The metadata.json is a JSON-formatted file containing information about your mod
 
 Your metadata.json will look something like
 
-```
     {
       "name": "examplecorp-mymodule",
       "version": "0.0.1",
@@ -110,24 +109,20 @@ Your metadata.json will look something like
       "issues_url": "",
       "tags": ["things", "stuff"],
       "operatingsystem_support": [
-         {
-           "operatingsystem":"RedHat",
-           "operatingsystemrelease":[ "5.0", "6.0" ]
-         },
-         {
-           "operatingsystem": "Ubuntu",
-           "operatingsystemrelease": [
-               "12.04",
-               "10.04"
-           ]
-         }
+        {
+        "operatingsystem":"RedHat",
+        "operatingsystemrelease":[ "5.0", "6.0" ]
+        },
+        {
+        "operatingsystem": "Ubuntu",
+        "operatingsystemrelease": [ "12.04", "10.04" ]
+        }
        ]
       "dependencies": [
         { "name": "puppetlabs/stdlib", "version_requirement": ">=3.2.0 <5.0.0" },
         { "name": "puppetlabs/firewall", "version_requirement": ">= 0.0.4" },
       ] 
     }
-```
 
 ###Fields in metadata.json 
 
@@ -152,14 +147,13 @@ Your metadata.json will look something like
 
 If your module's functionality depends upon functionality in another module, you can express this in the `dependencies` field of your metadata.json file. The `dependencies` field accepts an array of hashes. Here's an example from the [puppetlabs-postgresql](https://forge.puppetlabs.com/puppetlabs/postgresql) module:
 
-```
     "dependencies": [
       { "name": "puppetlabs/stdlib", "version_requirement": ">=3.2.0 <5.0.0" },
       { "name": "puppetlabs/firewall", "version_requirement": ">= 0.0.4" },
       { "name": "puppetlabs/apt", "version_requirement": ">=1.1.0 <2.0.0" },      
       { "name": "puppetlabs/concat", "version_requirement": ">= 1.0.0 <2.0.0" }
     ]
-```
+
 
 **Note:** Once you've generated your module and gone through the metadata.json dialog, you must manually edit the metadata.json file to include the dependency information. 
 
@@ -183,23 +177,23 @@ The version requirement in a dependency isn't limited to a single version; you c
 
 ###Operating system compatibility in metadata.json
 
-If you are publishing your module to the Puppet Forge, we highly recommend that you include `operatingsystem_support` in your metadata.json. Even if you do not intend to publish your module, including this information can be helpful for tracking your work. You can express this field through an array of hashes, classified under `operatingsystem` or `operatingsystemrelease`. `operatingsystem` will be used with Forge search filters, and `operatingsystemrelease` will be treated as strings on module pages. 
+If you are publishing your module to the Puppet Forge, we highly recommend that you include `operatingsystem_support` in your metadata.json. Even if you do not intend to publish your module, including this information can be helpful for tracking your work. 
 
-```
-"operatingsystem_support": [
-         {
-           "operatingsystem":"RedHat",
-           "operatingsystemrelease":[ "5.0", "6.0" ]
-         },
-         {
-           "operatingsystem": "Ubuntu",
-           "operatingsystemrelease": [
-               "12.04",
-               "10.04"
-           ]
-         }
+You can express this field through an array of hashes, classified under `operatingsystem` or `operatingsystemrelease`. `operatingsystem` will be used with Forge search filters, and `operatingsystemrelease` will be treated as strings on module pages. You can format it in either way shown below:
+
+    "operatingsystem_support": [
+      {
+      "operatingsystem":"RedHat",
+      "operatingsystemrelease":[ "5.0", "6.0" ]
+      },
+      {
+      "operatingsystem": "Ubuntu",
+      "operatingsystemrelease": [
+        "12.04",
+        "10.04"
         ]
-```
+      }
+    ]
 
 > ###A Note on Semantic Versioning
 >
@@ -257,7 +251,7 @@ To migrate from Modulefile to metadata.json:
 Upload to the Puppet Forge
 ------
 
-Now that you have a compiled `tar.gz` package, you can upload it to the Puppet Forge. There is currently no command line tool for publishing; you must use the Puppet Forge's web interface.
+Now that you have a compiled `tar.gz` package, you can upload it to the Puppet Forge. *Note:* Your tarball must be 10MB or less. There is currently no command line tool for publishing; you must use the Puppet Forge's web interface.
 
 In your web browser, navigate [to the Puppet Forge][forge] and log in.
 
