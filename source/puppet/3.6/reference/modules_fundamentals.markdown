@@ -175,7 +175,7 @@ To write a module, we strongly suggest running `puppet module generate <USERNAME
 
 When you run the above command, the puppet module tool (PMT) will run a series of questions to gather metadata about your module and will create a basic module structure for you.
 
-```
+~~~
 $ puppet module generate examplecorp-mymodule                                                                                
 
 We need to create a metadata.json file for this module.  Please answer the
@@ -240,7 +240,7 @@ examplecorp-mymodule/spec/classes/init_spec.rb
 examplecorp-mymodule/spec/spec_helper.rb
 examplecorp-mymodule/tests
 examplecorp-mymodule/tests/init.pp
-```
+~~~
 
 For best practices about writing your module, please see the [Beginner's Guide to Modules](docs.puppetlabs.com/guides/module_guides/bgtm.html).
 
