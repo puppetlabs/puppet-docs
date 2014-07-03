@@ -16,7 +16,7 @@ canonical: "/geppetto/latest/geppetto.html"
 
 Geppetto is an integrated development environment for Puppet. In other words, it is a simplified toolset for developing and integrating Puppet modules and manifests.
 
-Built on Eclipse, Geppetto provides a puppet manifest editor that supplies syntax highlighting, content assistance, error tracing/debugging, and code completion features. It also includes a puppet module editor and an interface to the [Puppet Forge](http://forge.puppetlabs.com/), which enable you to create projects from existing modules on the Forge as well as to easily upload your custom modules directly to the Forge.
+Built on Eclipse, Geppetto provides a puppet manifest editor that supplies syntax highlighting, content assistance, error tracing/debugging, and code completion features. It also includes a puppet module editor and an interface to the [Puppet Forge](http://forge.puppetlabs.com/), which enable you to create projects from existing modules on the Forge, as well as to easily upload your custom modules directly to the Forge.
 
 Geppetto is even integrated with GitHub (Git) and with Subversion (SVN) via Eclipse Subversive. This means you can manage your projects' version control from within Geppetto. You can also compare versions of your code side-by-side, complete with highlighting, code validation, syntax error parsing, and expression troubleshooting.
 
@@ -36,18 +36,18 @@ Your version of Geppetto might be a little different, either because you added G
 
 In the image above, you can see some of the most common work areas (this description is by no means comprehensive):
 
-* The **Project Explorer** lets you easily navigate your Puppet project's file structure.
+* You can easily navigate your Puppet project's file structure in the **Project Explorer**.
 
-* As its name indicates, the **editor** is where you edit your code. Geppetto takes advantage of Eclipse's editing capabilities, like syntax highlighting, content assistance, and error tracing and debugging for your Puppet code.
+* You can edit your code in the **Editor**. Geppetto takes advantage of Eclipse's editing capabilities, like syntax highlighting, content assistance, and error tracing and debugging for your Puppet code.
 
-* The **Outline** view shows a tree version of the code you're editing. It's useful for quickly finding the elements of your classes.
+* You can quickly find the elements of your classes in the **Outline** view, which shows a tree version of the code you're editing. 
 
-* You can use the **Tasks** view to create your own tasks and to automatically add tasks from comments in code.
+* You can create your own tasks from the **Tasks** view. You can also automatically add tasks from comments in code from this view.
 
 ##Installing Geppetto
 Geppetto is available as an all-in-one download that includes GitHub or Eclipse Subversive, a project that integrates SVN with Eclipse. Or, if you're already using Eclipse, you can install Geppetto into your existing development environment.
 
-Geppetto is available in 32 and 64-bit versions for Linux, Mac OS X, and Windows. Because the all-in-one download doesn't contain Java development tools, it's smaller than adding Geppetto to an existing Eclipse install.
+Geppetto is available in 32- and 64-bit versions for Linux, Mac OS X, and Windows. Because the all-in-one download doesn't contain Java development tools, it's smaller than adding Geppetto to an existing Eclipse install.
 
 ###Install Geppetto as an All-In-One Download
 1. Download the appropriate version of Geppetto [here](http://puppetlabs.github.io/geppetto/download.html).
@@ -71,26 +71,26 @@ This URL is for use with a download manager. It's not meaningful to visit it wit
 ##Working with Puppet Projects
 Geppetto provides several options for creating and editing Puppet projects.
 
-* **Create new projects**  Work on new Puppet projects, Puppet modules, or Puppet projects based on [Forge](http://forge.puppetlabs.com/) modules. You can create new projects based on existing projects from your local file system, and from Git or SVN.
+* **Create new projects**: Work on new Puppet projects, Puppet modules, or Puppet projects based on [Forge](http://forge.puppetlabs.com/) modules. You can create new projects based on existing projects from your local file system, Git, or SVN.
 
-* **Manage project versioning with Git or SVN**  You can create new repositories on Git or SVN, and then populate them with new or existing Puppet projects. You can also import existing Puppet projects, edit them, and then commit them back to the repository that they came from.
+* **Manage project versioning with Git or SVN**: You can create new repositories on Git or SVN, and then populate them with new or existing Puppet projects. You can also import existing Puppet projects, edit them, and then commit them back to the repository that they came from.
 
-* **Import and export Forge projects**  In addition to creating projects based on Forge modules, you can publish modules directly to the Forge.
+* **Import and export Forge projects**:  In addition to creating projects based on Forge modules, you can publish modules directly to the Forge.
 
 ####About Geppetto Project Files
 
 Geppetto will add a hidden file named **.project** to each project that you create. This file contains information about the project, such as nature and builder information. When puppet project nature is added, for instance, that addition is tracked by this file. Geppetto will automatically recognize a folder that contains this file as a project.
 
-The .project file can be committed to the source code repository in order to retain the information  it contains. Having the file checked in will make it easy for Geppetto to find the project and automatically assign the project nature. This is especially valuable when you have multiple projects in a repository since it means that Geppetto will be able to automatically detect and import each project when you import from the repository root.
+The .project file can be committed to the source code repository in order to retain the information  it contains. Having the file checked in will make it easy for Geppetto to find the project and automatically assign the project nature. This is especially valuable when you have multiple projects in a repository, since it means that Geppetto will be able to automatically detect and import each project when you import from the repository root.
 
 The .project file is completely harmless. Puppet will not pay any attention to it when it’s present in a module.
 
 
 The following are some basic steps to get started with Puppet projects in Geppetto.
 
-###Create New Puppet Projects
+###Create a New Puppet Project
 1. In Geppetto, click **File -> New -> Project** to open the **Select a wizard** dialog box.
-	If the **Select a wizard** box doesn't open, for example, if you have previously created a project, click **File -> New -> Other**.
+	If the **Select a wizard** box doesn't open---for example, if you have previously created a project---click **File -> New -> Other**.
 
 3. Expand the **Puppet** folder, and click **Puppet Project**.
 	You can select a Puppet Module or Puppet Module from the Forge in this location as well.
@@ -131,7 +131,7 @@ From the SVN Repositories tab, you can:
 - Set a new repository location
 - Create a repository
 
-To open the repository perspective, in Geppetto, click **Window ->Open Perspective -> Other** and then select **Git Repository Exploring** or **SVN Repository Exploring**.
+To open the repository perspective, in Geppetto, click **Window -> Open Perspective -> Other** and then select **Git Repository Exploring** or **SVN Repository Exploring**.
 
 ####Add an Existing Repo to the Git Repositories Area
 
@@ -144,7 +144,7 @@ To open the repository perspective, in Geppetto, click **Window ->Open Perspecti
 
 
 ####Import Modules From Git Repository Into Project Editor
-You might have a repo that is a single module or your repo might contain several modules. If your repo contains several modules and none of the modules contain .project files, then you have to import each module one-by-one using **Import as general project**. Otherwise, Geppetto has no way of recognizing the module as a project. You also have to add puppet project nature.
+You might have a repo that is a single module, or your repo might contain several modules. If your repo contains several modules and none of the modules contain .project files, then you have to import each module one-by-one using **Import as general project**. Otherwise, Geppetto has no way of recognizing the module as a project. You also have to add puppet project nature.
 
 If your repo contains modules that already have .project files, then you can import all the modules at once using **Import existing projects**. Puppet project nature will then be added automatically. For more about .project files, see [About Geppetto Project Files](./index.html#aboutgeppettoprojecttfiles).
 
