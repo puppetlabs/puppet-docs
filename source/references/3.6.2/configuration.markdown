@@ -1291,7 +1291,7 @@ Selects the parser to use for parsing puppet manifests (in puppet DSL
 language/'.pp' files). Available choices are `current` (the default)
 and `future`.
 
-The `curent` parser means that the released version of the parser should
+The `current` parser means that the released version of the parser should
 be used.
 
 The `future` parser is a "time travel to the future" allowing early
