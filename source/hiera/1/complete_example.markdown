@@ -93,7 +93,7 @@ All Hiera configuration begins with `hiera.yaml`. You can read a [full discussio
 	:backends:
 	  - yaml
 	:yaml:
-	  :datadir: /etc/puppet/hiera
+	  :datadir: /etc/puppet/hieradata
 	:hierarchy:
 	  - "node/%{::fqdn}"
 	  - common
@@ -102,12 +102,12 @@ Step-by-step:
 
 `:backends:` tells Hiera what kind of data sources it should process. In this case, we'll be using YAML files.
 
-`:yaml:` configures the YAML data backend, telling Hiera to look in `/etc/puppet/hiera` for YAML data sources.
+`:yaml:` configures the YAML data backend, telling Hiera to look in `/etc/puppet/hieradata` for YAML data sources.
 
 `:hierarchy:` configures the data sources Hiera should consult. Puppet users commonly separate their hierarchies into directories to make it easier to get a quick top-level sense of how the hierarchy is put together. In this case, we're keeping it simple:
 
-- A single `node/` directory will contain any number of files named after some node's `fqdn` (fully qualified domain name) fact. (E.g. `/etc/puppet/hiera/node/grover.example.com.yaml`) This lets us specifically configure any given node with Hiera. Not every node needs to have a file in `node/` --- if it's not there, Hiera will just move onto the next hierarchy level.
-- Next, the `common` data source (the `/etc/puppet/hiera/common.yaml` file) will provide any common or default values we want to use when Hiera can't find a match for a given key elsewhere in our hierarchy. In this case, we're going to use it to set common ntp servers and default configuration options for the ntp module.
+- A single `node/` directory will contain any number of files named after some node's `fqdn` (fully qualified domain name) fact. (E.g. `/etc/puppet/hieradata/node/grover.example.com.yaml`) This lets us specifically configure any given node with Hiera. Not every node needs to have a file in `node/` --- if it's not there, Hiera will just move onto the next hierarchy level.
+- Next, the `common` data source (the `/etc/puppet/hieradata/common.yaml` file) will provide any common or default values we want to use when Hiera can't find a match for a given key elsewhere in our hierarchy. In this case, we're going to use it to set common ntp servers and default configuration options for the ntp module.
 
 > **Hierarchy and facts note:** When constructing a hierarchy, keep in mind that most of the useful Puppet variables are [**facts.**][facts] Since facts are submitted by the agent node itself, they _aren't necessarily trustworthy._ We don't recommend using facts as the sole deciding factor for distributing sensitive credentials.
 >
@@ -171,7 +171,7 @@ We want one of these two nodes, `kermit.example.com`, to act as the primary orga
       - 2.us.pool.ntp.org iburst
       - 3.us.pool.ntp.org iburst
 
-Since we want to provide this data for a specific node, and since we're using the `fqdn` fact to identify unique nodes in our hierarchy, we need to save this data in the `/etc/puppet/hiera/node` directory as `kermit.example.com.yaml`.
+Since we want to provide this data for a specific node, and since we're using the `fqdn` fact to identify unique nodes in our hierarchy, we need to save this data in the `/etc/puppet/hieradata/node` directory as `kermit.example.com.yaml`.
 
 Once you've saved that, let's do a quick test using the [Hiera command line tool][]:
 
@@ -210,7 +210,7 @@ Our next ntp node, `grover.example.com`, is a little less critical to our infras
       - 1.us.pool.ntp.org iburst
       - 2.us.pool.ntp.org iburst
 
-As with `kermit.example.com`, we want to save grover's Hiera data source in the `/etc/puppet/hiera/nodes` directory using the `fqdn` fact for the file name: `grover.example.com.yaml`. We can once again test it with the hiera command line tool:
+As with `kermit.example.com`, we want to save grover's Hiera data source in the `/etc/puppet/hieradata/node` directory using the `fqdn` fact for the file name: `grover.example.com.yaml`. We can once again test it with the hiera command line tool:
 
 	$ hiera ntp::servers ::fqdn=grover.example.com
 	["kermit.example.com iburst", "0.us.pool.ntp.org iburst", "1.us.pool.ntp.org iburst", "2.us.pool.ntp.org iburst"]
@@ -226,7 +226,7 @@ So, now we've configured the two nodes in our organization that we'll allow to u
       - grover.example.com iburst
       - kermit.example.com iburst
 
-Unlike kermit and grover, for which we had slightly different but node-specific configuration needs, we're comfortable letting any other node that uses the ntp class use this generic configuration data. Rather than creating a node-specific data source for every possible node on our network that might need to use the ntp module, we'll store this data in `/etc/puppet/hiera/common.yaml`. With our very simple hierarchy, which so far only looks for the `fqdn` facts, any node with a `fqdn` that doesn't match the nodes we have data sources for will get the data found in `common.yaml`. Let's test against one of those nodes:
+Unlike kermit and grover, for which we had slightly different but node-specific configuration needs, we're comfortable letting any other node that uses the ntp class use this generic configuration data. Rather than creating a node-specific data source for every possible node on our network that might need to use the ntp module, we'll store this data in `/etc/puppet/hieradata/common.yaml`. With our very simple hierarchy, which so far only looks for the `fqdn` facts, any node with a `fqdn` that doesn't match the nodes we have data sources for will get the data found in `common.yaml`. Let's test against one of those nodes:
 
 	$ hiera ntp::servers ::fqdn=snuffie.example.com
 	["kermit.example.com iburst", "grover.example.com iburst"]
@@ -278,7 +278,7 @@ Where last we left off, our `site.pp` manifest was looking somewhat spare. With 
 
 	hiera_include('classes')
 
-From this point on, you can add or modify an existing Hiera data source to add an array of classes you'd like to assign to matching nodes. In the simplest case, we can visit each of kermit, grover, and snuffie and add this to their YAML data sources in `/etc/puppet/hiera/node`:
+From this point on, you can add or modify an existing Hiera data source to add an array of classes you'd like to assign to matching nodes. In the simplest case, we can visit each of kermit, grover, and snuffie and add this to their YAML data sources in `/etc/puppet/hieradata/node`:
 
 	"classes" : "ntp",
 
@@ -352,14 +352,14 @@ So let's take a look at our `hiera.yaml` file and make provisions for two new da
 
 Next, we'll need to create directories for our two new data sources:
 
-	`mkdir /etc/puppet/hiera/virtual; mkdir /etc/puppet/hiera/osfamily`
+	`mkdir /etc/puppet/hieradata/virtual; mkdir /etc/puppet/hieradata/osfamily`
 
 In our `virtual` directory, we'll want to create the file `vmware.yaml`. In this data source, we'll be assigning the `vmwaretools` class, so the file will need to look like this:
 
     ---
     classes: vmwaretools
 
-Next, we need to provide the data for the `vmwaretools` class parameters. We'll assume we have a mix of Red Hat and Debian VMs in use in our organization, and that we want to install VMWare Tools in `/opt/vmware` in our Red Hat VMs, and `/usr/local/vmware` for our Debian VMs.  We'll need `RedHat.yaml` and `Debian.yaml` files in the `/etc/puppet/hiera/osfamily` directory.
+Next, we need to provide the data for the `vmwaretools` class parameters. We'll assume we have a mix of Red Hat and Debian VMs in use in our organization, and that we want to install VMWare Tools in `/opt/vmware` in our Red Hat VMs, and `/usr/local/vmware` for our Debian VMs.  We'll need `RedHat.yaml` and `Debian.yaml` files in the `/etc/puppet/hieradata/osfamily` directory.
 
 `RedHat.yaml` should look like this:
 
