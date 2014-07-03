@@ -3,20 +3,38 @@ layout: default
 title: Inventory Service
 ---
 
-Inventory Service
-======
 
 [puppetdb]: /puppetdb/latest/
-[puppetdb_nodes]: /puppetdb/latest/api/query/v2/nodes.html
-[puppetdb_facts]: /puppetdb/latest/api/query/v2/facts.html
-[puppetdb_fact-names]: /puppetdb/latest/api/query/v2/fact-names.html
 [puppetdb_install]: /puppetdb/latest/install_via_module.html
 [puppetdb_connect]: /puppetdb/latest/connect_puppet_master.html
+[puppetdb_api]: /puppetdb/latest/api/index.html
 [authdotconf]: ./rest_auth_conf.html
 [rest]: ./rest_api.html#facts
 [old_storeconfigs]: http://projects.puppetlabs.com/projects/1/wiki/Using_Stored_Configuration
 [facts]: /puppet/latest/reference/lang_variables.html#facts-and-built-in-variables
 [exported]: /puppet/latest/reference/lang_exported.html
+
+
+
+> The Inventory Service is Deprecated!
+> -----
+>
+> The inventory service is deprecated and will be removed in Puppet 4.0.
+>
+> We're removing it because [PuppetDB][] does the same job, many times better. If you're doing anything with the inventory service, switching to PuppetDB will let you do it faster, easier, and more reliably. For more information, see:
+>
+> * [Installing PuppetDB][puppetdb_install]
+> * [Overview of the PuppetDB API][puppetdb_api]
+>
+> The parts of Puppet that will be removed as part of the inventory service deprecation are:
+>
+> * The puppet master server's `facts` and `facts_search` HTTP endpoints
+> * The `inventory_active_record` terminus for the `facts` indirection
+> * The `puppet facts upload` and `puppet facts find --terminus rest` commands
+
+
+About the Inventory Service
+-----
 
 Starting with Puppet 2.6.7, puppet master servers offer API access to the [facts][] reported by every node. You can use this API to get complete info about any node, and to search for nodes whose facts meet certain criteria.
 
@@ -54,14 +72,6 @@ Full documentation of these endpoints can be found [here](http://docs.puppetlabs
 * To retrieve a list of all Ubuntu nodes with two or more processors, send a GET request to <https://puppet:8140/production/facts_search/search?facts.processorcount.ge=2&facts.operatingsystem=Ubuntu>.
 
 In both cases, be sure to specify an `Accept: pson` or `Accept: yaml` header.
-
-### Directly Accessing the Inventory Service Backend
-
-If you are using the [PuppetDB][] inventory backend, you also have the option of using _its_ public API instead of the inventory service API. See the following PuppetDB pages for more info:
-
-* [The node query API][puppetdb_nodes]
-* [The facts query API][puppetdb_facts]
-* [The fact-names query API][puppetdb_fact-names]
 
 Setting Up the Inventory Service
 -----
