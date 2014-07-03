@@ -187,30 +187,32 @@ Currently, Geppetto can work with metadata.json in two modes:
 * As "derived" from the Modulefile
 * As a first class file
 
-When it's derived, the metadata.json file will change whenever the Modulefile changes. It will also be deleted if the Modulefile is deleted. Eventually, the Modulefile will be deprecated. For this reason, you might want to delete the Modulfile but _keep_ the metadata.json. Here's how:
+When it's derived, the metadata.json file will change whenever the Modulefile changes. It will also be deleted if the Modulefile is deleted. Eventually, the Modulefile will be deprecated. For this reason, you might want to delete the Modulefile but _keep_ the metadata.json. Here's how:
 
 1. Close any editor that's open for the Modulefile or metadata.json.
 2. Right-click the metadata.json file, and click **Properties**.
-3. In the **Properties** dialog, clear the **Derived** check box and click **OK**.
+3. In the **Properties** dialog, clear the **Derived** check box, and click **OK**.
 4. Now, delete the Modulefile.
 
 ####The Metadata Editor
 
 Opening the metadata editor will bring you to the *Overview* screen. The *Overview* screen will display your metadata in individual text fields for editing. This metadata is split into two groups: *General Information* and *Details*.
 
-Within *General Information*:
+*General Information*:
 
 * **Name**: This field is unique as it has two text fields separated by a '-'. If you are planning to upload your module to the Puppet Forge at any point, the first field should contain your Puppet Forge username. The second field should contain the name of your module. For more information on module naming, see [this article about publishing modules](/puppet/latest/reference/modules_publishing.html#a-note-on-module-names).
-* **Version**: Your module's current version number. It is important that this is kept up-to-date, as it impacts the ability for your modules to connect with one another via dependencies. We highly recommend using [semver](http://semver.org/) to guide your versioning.
+* **Version**: Your module's current version number. It is important that this is kept up-to-date, as it impacts your modules' ability to connect with one another via dependencies. We highly recommend using [semver](http://semver.org/) to guide your versioning.
 * **Author**: The name of the module's author.
 * **License**: Any applicable license guiding the module's use.
 
-Within *Details*:
+*Details*:
 
 * **Source**: The repo where the module lives. If you used Geppetto to create your module, you can ignore this.
 * **Project Page**: The GitHub page where the module's source code is published.
 * **Summary**: A brief description of the module's functionality.
 * **Description**: Originally, this was a space to give some more detailed information about your module, but this feature is being deprecated. Information you put in this field will be lost. Please enter detailed information about your module in the [README](/puppet/latest/reference/modules_documentation.html) instead.
+
+*Dependencies*:
 
 If your module requires capabilities or functionality provided by another module in order to run properly, your module is dependent on that other module. From the *Dependencies* tab, you can add, delete, or edit dependencies for your module.
 
@@ -226,7 +228,7 @@ To edit a dependency:
 2. Update the module's name or version range as appropriate, or choose an entirely different module from the list to replace it.
 3. Click the **OK** button.
 
-To remove a dependency, simply select the module from the list of dependencies and click the **Remove** button.
+To remove a dependency, select the module from the list of dependencies and click the **Remove** button.
 
 You also have the option of editing your module's metadata within the raw json format. If you click on the *JSON* tab, you will have access to the json information and may edit it directly as you wish.
 
@@ -251,15 +253,15 @@ Geppetto will generate a pop-up confirmation window when your modules have been 
 
 ##Geppetto and PE
 
-Geppetto offers a special view for Puppet Enterprise users, the *Puppet Resource Events View*. This new view is an integration with PuppetDB which enables Geppetto to query PuppetDB instances and get information about recent events.
+Geppetto offers a special view for Puppet Enterprise users, the *Puppet Resource Events View*. This new view is part of an integration with PuppetDB, which enables Geppetto to query PuppetDB instances and get information about recent events.
 
-The *Puppet Resource Events View* lists failures and successful changes from the most recent puppet run, and enables you to view the resource, file, etc. in the source code to help determine why the failure or success is occurring.
+The *Puppet Resource Events View* lists failures and successful changes from the most recent puppet run and enables you to view the resource, file, etc. in the source code to help determine why the failure or success is occurring.
 
 To access the *Puppet Resource Events View*
 
-1. Click the **Window** menu,
+1. Click the **Window** menu.
 2. Choose **Show View** -> **Other…**.
-3. Then, when the *Show View* window pops up, expand the Geppetto folder and select **Puppet Resource Events**,
+3. When the *Show View* window pops up, expand the Geppetto folder and select **Puppet Resource Events**.
 4. Click **OK**.
 
 The *Puppet Resource Events View* window should now be available next to the *Tasks* and *Problems* tabs.
@@ -273,7 +275,7 @@ To set up a connection to your puppet master server, click the database image wi
 A setup window will pop up with the following fields:
 
 * **Hostname**: The hostname of your PuppetDB server
-* **Port**: The port to connect to PuppetDB on, defaults to 8080.
+* **Port**: The port to connect to PuppetDB (defaults to 8080).
 
 The following settings are optional. Use them only if you want to make an SSL connection.
 
@@ -295,4 +297,4 @@ The events you see will only be events from the most recent puppet run. If puppe
 
 ![Refresh Puppet Resource Events][refresh]
 
-**NOTE:** If you refresh after another puppet run, whatever you were looking at previously will be gone forever and you will see only the most recent run.
+**NOTE:** If you refresh after another puppet run, whatever you were looking at previously will be gone forever, and you will see only the most recent run.
