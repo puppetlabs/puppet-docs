@@ -60,9 +60,9 @@ This URL is for use with a download manager. It's not meaningful to visit it wit
 
 	![Geppetto install in Eclipse][geppetto_install]
 
-3. Select Geppetto in the available software list, and then click **Next**.
+3. Select Geppetto in the available software list, and click **Next**.
 
-4. Accept the license agreement and click **Finish**.
+4. Accept the license agreement, and click **Finish**.
 
 5. Close and reopen Eclipse.
 
@@ -107,7 +107,7 @@ Now, start coding your Puppet project in Geppetto.
     The module is now displayed in your Project Explorer.
 
 ##Manage Project Versioning with Git and SVN
-The following sections describe creating repos and handling versions from within Geppetto. Once you create or add repos in Geppetto, you can import your projects into the Project Explorer and then use **Add Puppet Project Nature** to take advantage of Geppetto editor offerings like syntax highlighting, spell check, file cross-referencing and so on.
+The following sections describe creating repos and handling versions from within Geppetto. Once you create or add repos in Geppetto, you can import your projects into the Project Explorer and then use **Add Puppet Project Nature** to take advantage of Geppetto editor offerings like syntax highlighting, spell check, file cross-referencing, and so on.
 
 If you have a repository that contains several modules, you need to map each module into an individual project when you import into Project Explorer. However, if the modules already contain a .project file, this mapping happens automatically when you choose **Import Existing Projects**. Working with individual module projects means that Geppetto will recognize the modules and be able to resolve declared dependencies and validate cross-references.
 
@@ -119,8 +119,8 @@ If you have a repository that contains several modules, you need to map each mod
 
 	The steps are pretty similar to set up an SVN repository. In that case, expand the **SVN** list and click **Repository Location**. Then provide the appropriate information in the wizard.
 
-####Add the Repositories Perspective to the IDE
-To easily interact with Git or SVN repositories in Geppetto, add the repositories' perspective to the IDE. From the Git Repositories tab, you can:
+####Add the Repository Perspective to the IDE
+To easily interact with Git or SVN repositories in Geppetto, add the repository perspective to the IDE. From the Git Repositories tab, you can:
 
 - Search and select Git repositories on your local machine
 - Clone a Git repository
@@ -184,7 +184,7 @@ If you have pulled a module from the [Puppet Forge](forge.puppetlabs.com) or a G
 
 Currently, Geppetto can work with metadata.json in two modes:
 
-* As "derived" from the Modulefile
+* As derived from the Modulefile
 * As a first class file
 
 When it's derived, the metadata.json file will change whenever the Modulefile changes. It will also be deleted if the Modulefile is deleted. Eventually, the Modulefile will be deprecated. For this reason, you might want to delete the Modulefile but _keep_ the metadata.json. Here's how:
@@ -192,7 +192,7 @@ When it's derived, the metadata.json file will change whenever the Modulefile ch
 1. Close any editor that's open for the Modulefile or metadata.json.
 2. Right-click the metadata.json file, and click **Properties**.
 3. In the **Properties** dialog, clear the **Derived** check box, and click **OK**.
-4. Now, delete the Modulefile.
+4. Delete the Modulefile.
 
 ####The Metadata Editor
 
@@ -238,18 +238,18 @@ The [Puppet Forge](https://forge.puppetlabs.com/) is a repository of modules wri
 
 Geppetto allows you to publish one or several modules, as well as allowing you to publish only specific parts of a module. To get started publishing modules to the Forge, make sure the *Project Explorer* window is open. Then,
 
-1. Right-click (or control+click) anywhere in the *Project Explorer* window and on the shortcut menu, click **Export**. OR, choose **File** -> **Export…** to open the Export Wizard.
+1. Right-click (or control+click) anywhere in the *Project Explorer* window, and on the shortcut menu, click **Export**. OR, choose **File** -> **Export…** to open the Export Wizard.
 2. In the *Export Wizard*, you can either type 'Forge' in the text box OR expand the Puppet folder.
-3. Then choose **Export Modules to Forge** and click **Next**.
+3. Then choose **Export Modules to Forge**, and click **Next**.
 4. From here, you can choose to publish one or several modules, as well as choose what parts of the modules you would like to publish.
     * To publish all of one or more modules, simply click the checkbox(es) next to the name of the project(s) housing the module.
     * To publish only part of a module:
-        * Select the project name and choose the individual files to include by clicking the checkboxes next to those filenames, OR
-        * Click the arrow next to the project name and choose the individual folders/files by clicking the checkboxes next to the folder or filenames.
+        * Select the project name, and then choose the individual files to include by clicking the checkboxes next to those filenames, OR
+        * Click the arrow next to the project name, and then choose the individual folders/files by clicking the checkboxes next to the folder or filenames.
 5. Enter your Forge username and password in the text boxes below the pane where you selected your modules. (If you do not have a Forge username, see the instructions [here](/puppet/latest/reference/modules_publishing.html#create-a-puppet-forge-account).)
 6. Click **Finish**.
 
-Geppetto will generate a pop-up confirmation window when your modules have been uploaded successfully. Clicking **OK** on this confirmation message will bring you back to your main Geppetto screens. Otherwise, you will recieve a pop up stating there were problems. Clicking **OK** on this error message will bring you back to the *Export Wizard*.
+Geppetto will generate a pop-up confirmation window when your modules have been uploaded successfully. Clicking **OK** on this confirmation message will bring you back to your main Geppetto screens. Otherwise, you will receive a pop-up stating there were problems. Clicking **OK** on this error message will bring you back to the *Export Wizard*.
 
 ##Geppetto and PE
 
@@ -293,7 +293,7 @@ If you expand your connected server, you should see *Failures* and *Changes*. Ea
 
 By hovering over any listed event detail, you will see additional information about the event. Double-clicking on a listed event detail will open the source file to the place where the resource or file, etc. is defined so you can look it over to see what might be going wrong.
 
-The events you see will only be events from the most recent puppet run. If puppet runs while you are working in Geppetto, you must refresh the *Puppet Resource Events* tab. You may do so by clicking the image with the green arrow.
+The events you see will be events only from the most recent puppet run. If puppet runs while you are working in Geppetto, you must refresh the *Puppet Resource Events* tab. You may do so by clicking the image with the green arrow.
 
 ![Refresh Puppet Resource Events][refresh]
 
