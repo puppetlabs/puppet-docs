@@ -65,9 +65,9 @@ For more information about using the PE uninstaller, refer to [Uninstalling Pupp
    
    d. `service pe-puppet-dashboard-workers stop`
    
-   e.`service pe-activemq stop`
+   e. `service pe-activemq stop`
    
-   f.`service pe-puppetdb stop`
+   f. `service pe-puppetdb stop`
 
 3. Purge any locks remaining on the database from the services that were running earlier with `service pe-postgresql restart`.
 
@@ -80,16 +80,6 @@ For more information about using the PE uninstaller, refer to [Uninstalling Pupp
    c. `drop database console_auth;`
    
    d. `drop database "pe-puppetdb";`
-   
-   e. `DROP ROLE console;`
-   
-   f. `DROP ROLE console_auth;`
-   
-   g. `DROP ROLE "pe-puppetdb";`
-   
-   h. `DROP TABLESPACE "pe-console";`
-   
-   i. `DROP TABLESPACE "pe-puppetdb";`
    
    j. `\q`
    
@@ -120,6 +110,6 @@ For more information about using the PE uninstaller, refer to [Uninstalling Pupp
 8. Restore modules, manifests, hieradata, etc, if necessary. 
    These are typically located in the `/etc/puppetlabs/` directory, but you may have configured them in another location.
 9. Run `/opt/puppet/sbin/puppetdb-ssl-setup -f`. This script generates SSL certificates and configuration based on the agent cert on your PuppetDB node.
-10. Start all PE services you stopped in step 2.
+10. Start all PE services you stopped in step 2. (For example, run `service pe-httpd start`.)
 
     >**Note**: During this process, you may get a message indicating that starting the dashboard workers failed, but they have in fact started. You can verify this by running `service pe-puppet-dashboard-workers status`.
