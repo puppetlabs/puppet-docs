@@ -81,7 +81,7 @@ For more information about using the PE uninstaller, refer to [Uninstalling Pupp
    
    d. `drop database "pe-puppetdb";`
    
-   j. `\q`
+   e. `\q`
    
    > **Note**: During this process, you may encounter an error message similar to, `ERROR:  role "console" already exists`. This error is safe to ignore. 
 
