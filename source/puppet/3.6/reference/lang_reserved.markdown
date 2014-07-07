@@ -68,9 +68,9 @@ Reserved Variable Names
 
 The following variable names are reserved, and you **must not** assign values to them:
 
-* `$string` --- If a variable with this name is present, all templates and inline templates in the current scope will return the value of `$string` instead of whatever they were meant to return. This is a bug rather than a deliberate design, and can be tracked at [issue #14093](http://projects.puppetlabs.com/issues/14093).
+* `$string` --- If a variable with this name is present, all templates and inline templates in the current scope will return the value of `$string` instead of whatever they were meant to return. This is a bug rather than a deliberate design, and it can be tracked at [issue #14093](http://projects.puppetlabs.com/issues/14093).
 * Every variable name consisting only of numbers, starting with `$0` --- These [regex capture variables][capture] are automatically set by regular expressions used in [conditional statements][conditional], and their values do not persist outside their associated code block or selector value. Puppet's behavior when these variables are directly assigned a value is undefined.
-* Puppet's [built-in variables][built_in] and [facts][facts] are reserved at [top scope][topscope], but can be safely re-used at node or local scope.
+* Puppet's [built-in variables][built_in] and [facts][facts] are reserved at [top scope][topscope], but can be safely reused at node or local scope.
 * If [enabled][trusted_on], the `$trusted` and `$facts` variables are reserved for facts and cannot be reassigned at local scopes.
 
 [trusted_on]: ./config_important_settings.html#getting-new-features-early
@@ -81,7 +81,7 @@ Acceptable Characters in Names
 
 Puppet limits the characters you can use when naming language constructs.
 
-> Note: In some cases, names containing unsupported characters will still work. These cases should be considered bugs, and may cease to work at any time. Removal of these bug cases will not be limited to major releases.
+> Note: In some cases, names containing unsupported characters will still work. These cases should be considered bugs and may cease to work at any time. Removal of these bug cases will not be limited to major releases.
 
 ### Variables
 
@@ -170,7 +170,7 @@ Tag names should match the following regular expression:
 
 Resource **titles** may contain any characters whatsoever. They are case-sensitive.
 
-Resource names (or namevars) may be limited by the underlying system being managed. (E.g., most systems have limits on the characters allowed in the name of a user account.) The user is generally responsible for knowing the name limits on the platforms they manage.
+Resource names (or namevars) may be limited by the underlying system being managed; for example, most systems have limits on the characters allowed in the name of a user account. The user is generally responsible for knowing the name limits on the platforms they manage.
 
 ### Nodes
 

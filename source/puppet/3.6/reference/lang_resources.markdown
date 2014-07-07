@@ -24,7 +24,7 @@ canonical: "/puppet/latest/reference/lang_resources.html"
 [collector]: ./lang_collectors.html
 [catalog]: ./lang_summary.html#compilation-and-catalogs
 
-> * [See the Type Reference for complete information about Puppet's built-in resource types.][types]
+> [See the Type Reference for complete information about Puppet's built-in resource types.][types]
 
 **Resources** are the fundamental unit for modeling system configurations. Each resource describes some aspect of a system, like a service that must be running or a package that must be installed. The block of Puppet code that describes a resource is called a **resource declaration.**
 
@@ -94,11 +94,11 @@ When discussing resources and types, **parameter** is a synonym for attribute. "
 Behavior
 -----
 
-A resource declaration adds a resource to the catalog, and tells Puppet to manage that resource's state. When Puppet applies the compiled catalog, it will:
+A resource declaration adds a resource to the catalog and tells Puppet to manage that resource's state. When Puppet applies the compiled catalog, it will:
 
-* Read the actual state of the resource on the target system
-* Compare the actual state to the desired state
-* If necessary, change the system to enforce the desired state
+* Read the actual state of the resource on the target system.
+* Compare the actual state to the desired state.
+* If necessary, change the system to enforce the desired state.
 
 ### Uniqueness
 
@@ -135,11 +135,11 @@ Namevar values **must be unique per resource type,** with only rare exceptions (
 
 Namevars are not to be confused with the title, which identifies a resource _to Puppet._ However, they often have the same value, since the namevar's value will **default to the title** if it isn't specified. Thus, the `path` of the file example [above](#syntax) is `/etc/passwd`, even though it was never specified.
 
-The distinction between title and namevar lets you use a single, consistently-titled resource to manage something whose name differs by platform. For example, the NTP service is `ntpd` on Red Hat-derived systems, but `ntp` on Debian and Ubuntu; the service resource could simply be titled "ntp," but could have its name set correctly by platform. Other resources could then form relationships to it without worrying that its title will change.
+The distinction between title and namevar lets you use a single, consistently titled resource to manage something whose name differs by platform. For example, the NTP service is `ntpd` on Red Hat-derived systems, but `ntp` on Debian and Ubuntu; the service resource could simply be titled "ntp," but could have its name set correctly by platform. Other resources could then form relationships to it without worrying that its title will change.
 
 ### Ensure
 
-Many types have an `ensure` attribute. This generally manages the most fundamental aspect of the resource on the target system --- does the file exist, is the service running or stopped, is the package installed or uninstalled, etc.
+Many types have an `ensure` attribute. This generally manages the most fundamental aspect of the resource on the target system --- whether the file exists, whether the service is running or stopped, whether the package is installed or uninstalled, etc.
 
 Allowed values for `ensure` vary by type. Most types accept `present` and `absent`, but there may be additional variations. Be sure to check the reference for each type you are working with.
 
@@ -291,5 +291,5 @@ Much like in an [inherited class][inheritance], you can use the special `+>` key
 >
 > * It **can always override** already-specified attributes, regardless of class inheritance.
 > * It can affect large numbers of resources at once.
-> * It will [implicitly realize][realize] any [virtual resources][virtual] that the collector matches. If you are using virtual resources at all, you must use extreme care when constructing collectors that are not intended to realize resources, and would be better off avoiding non-realizing collectors entirely.
+> * It will [implicitly realize][realize] any [virtual resources][virtual] that the collector matches. If you are using virtual resources at all, you must use extreme care when constructing collectors that are not intended to realize resources, and you would be better off avoiding non-realizing collectors entirely.
 > * Since it ignores class inheritance, you can override the same attribute twice, which results in a parse-order dependent race where the final override wins.

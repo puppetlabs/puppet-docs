@@ -30,7 +30,7 @@ canonical: "/puppet/latest/reference/lang_summary.html"
 [hiera]: /hiera/latest
 [compilation]: ./subsystem_catalog_compilation.html
 
-Puppet uses its own configuration language, which was designed to be accessible to sysadmins. The Puppet language does not require much formal programming experience and its syntax was inspired by the Nagios configuration file format.
+Puppet uses its own configuration language, which was designed to be accessible to sysadmins. The Puppet language does not require much formal programming experience, and its syntax was inspired by the Nagios configuration file format.
 
 > To see how the Puppet language's features have evolved over time, see [History of the Puppet Language](/guides/language_history.html).
 
@@ -64,10 +64,10 @@ This setting only affects resources whose relative order **is not otherwise dete
 Files
 -----
 
-Puppet language files are called **manifests,** and are named with the `.pp` file extension. Manifest files:
+Puppet language files are called **manifests** and are named with the `.pp` file extension. Manifest files:
 
-* Should use UTF8 encoding
-* May use Unix (LF) or Windows (CRLF) line breaks (note that the line break format also affects [literal line breaks in strings][string_newline])
+* Should use UTF8 encoding.
+* May use Unix (LF) or Windows (CRLF) line breaks (note that the line break format also affects [literal line breaks in strings][string_newline]).
 
 Puppet always begins compiling with a single manifest (which may be broken up into several pieces), called the "site manifest" or "main manifest." See [the reference page on the main manifest][site_manifest] for details about this special file/directory.
 

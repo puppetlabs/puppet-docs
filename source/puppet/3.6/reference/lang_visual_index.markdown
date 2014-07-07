@@ -119,7 +119,7 @@ This page can help you find syntax elements when you can't remember their names.
     }
 {% endhighlight %}
 
-↑ A [class definition][class_def], which makes a class avaliable for later use.
+↑ A [class definition][class_def], which makes a class available for later use.
 
 {% highlight ruby %}
     include ntp
@@ -223,7 +223,7 @@ This page can help you find syntax elements when you can't remember their names.
     }
 {% endhighlight %}
 
-↑ An [if statement][if] using an [`in` expression][in]
+↑ An [if statement][if] using an [`in` expression][in].
 
 {% highlight ruby %}
     case $operatingsystem {
@@ -256,7 +256,7 @@ This page can help you find syntax elements when you can't remember their names.
     Concat::Fragment <<| tag == "bacula-storage-dir-${bacula_director}" |>>
 {% endhighlight %}
 
-↑ An [exported resource collector][export_collector], which works with [exported resources][export]
+↑ An [exported resource collector][export_collector], which works with [exported resources][export].
 
 {% highlight ruby %}
     Exec {
