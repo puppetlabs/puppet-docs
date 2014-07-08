@@ -14,13 +14,14 @@ Stable Puppet Enterprise Versions
 Stable Community Versions
 -----
 
-* [PuppetDB 2.0](./2.0)
+* [PuppetDB 2.1](./2.1)
 
 Legacy Versions
 -----
 
 The following documentation links are no longer actively maintained. You should upgrade to the latest revision of PuppetDB to benefit from the latest bug fixes, features and documentation.
 
+* [PuppetDB 2.0](./2.0)
 * [PuppetDB 1.6](./1.6)
 * [PuppetDB 1.5](./1.5)
 * [PuppetDB 1.4](./1.4)
@@ -35,5 +36,4 @@ Development and Pre-release Versions
 
 This version of the documentation represents a future feature or major release. This content only applies to the code available in the master branch of the PuppetDB git repository or a release candidate, so if you have downloaded a stable release you should consult the documentation above.
 
-* [PuppetDB 2.1](./2.1)
 * [PuppetDB (master)](./master)
