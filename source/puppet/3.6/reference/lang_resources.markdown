@@ -53,7 +53,7 @@ Every resource has a **type,** a **title,** and a set of **attributes:**
 
 The general form of a resource declaration is:
 
-* The resource type, in lower-case
+* The resource type, in lowercase
 * An opening curly brace
 * The title, which is a [string][]
 * A colon
@@ -62,16 +62,16 @@ The general form of a resource declaration is:
     * A `=>` (arrow, fat comma, or hash rocket)
     * A value, which can be any [data type][datatype], depending on what the attribute requires
     * A trailing comma (note that the comma is optional after the final attribute/value pair)
-* Optionally, a semicolon, followed by another title, colon, and attribute block
+* Optionally, a semicolon followed by another title, colon, and attribute block
 * A closing curly brace
 
-Note that, in the Puppet language, whitespace is fungible.
+Note that whitespace is fungible in the Puppet language.
 
 ### Type
 
 The type identifies what kind of resource it is. Puppet has a large number of built-in resource types, including files on disk, cron jobs, user accounts, services, and software packages. [See here for a list of built-in resource types][types].
 
-Puppet can be extended with additional resource types, written in Ruby or in the Puppet language.
+Puppet can be extended with additional resource types written in Ruby or in the Puppet language.
 
 ### Title
 
@@ -102,7 +102,7 @@ A resource declaration adds a resource to the catalog and tells Puppet to manage
 
 ### Uniqueness
 
-Puppet does not allow you to declare the same resource twice. This is to prevent multiple conflicting values from being declared for the same attribute.
+Puppet does not allow you to declare the same resource twice. This prevents multiple conflicting values from being declared for the same attribute.
 
 Puppet uses the [title](#title) and [name/namevar](#namenamevar) to identify duplicate resources --- if either of these is duplicated within a given resource type, the compilation will fail.
 
@@ -110,7 +110,7 @@ If multiple classes require the same resource, you can use a [class][] or a [vir
 
 ### Events
 
-If Puppet makes any changes to a resource, it will log those changes as events. These events will appear in puppet agent's log and in the run [report][], which is sent to the puppet master and forwarded to any number of report processors.
+If Puppet makes any changes to a resource, it will log those changes as events. These events will appear in the puppet agent's log and in the run [report][], which is sent to the puppet master and forwarded to any number of report processors.
 
 ### Parse-Order Independence
 
