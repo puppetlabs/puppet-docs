@@ -21,6 +21,9 @@ The repo contains the actual bits that are used when installing a node; the inst
 
 ##Known Issues
 
+###Razor client cannot be installed with Ruby < 1.9.2.
+A new release of rest-client requires Ruby versions later than 1.9.2. Because the Razor client is dependent on rest-client, it also has that requirement.
+
 ###Razor doesn't handle local time jumps 
 The Razor server is sensitive to large jumps in the local time, like the one that is experienced by a VM after it has been suspended for some time and then resumed. In that case, the server will stop processing background tasks, such as the creation of repos. To remediate that, restart the server with `service pe-razor-server restart`.
 
