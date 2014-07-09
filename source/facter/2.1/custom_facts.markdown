@@ -26,7 +26,7 @@ in manifests and templates, just like any other fact would be.
 ## The Concept
 
 You can add new facts by writing snippets of ruby code on the
-Puppet master. Puppet will then use [Plugins in Modules](./plugins_in_modules.html)
+Puppet master. Puppet will then use [Plugins in Modules](/guides/plugins_in_modules.html)
 to distribute the facts to the client.
 
 ## Loading Custom Facts
@@ -118,7 +118,7 @@ Puppet master server:
     end
 {% endhighlight %}
 
-You can then use the instructions in [Plugins In Modules](./plugins_in_modules.html) page to copy
+You can then use the instructions in the [Plugins In Modules](/guides/plugins_in_modules.html) page to copy
 the new fact to a module and distribute it. During your next Puppet run, the value of the new fact
 will be available to use in your manifests and templates.
 
