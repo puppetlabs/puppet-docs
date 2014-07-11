@@ -129,8 +129,8 @@ puppetmaster port (8140). You can also see a similar file at `ext/rack/example-p
         SSLEngine On
 
         # Only allow high security cryptography. Alter if needed for compatibility.
-        SSLProtocol             All -SSLv2
-        SSLCipherSuite          HIGH:!ADH:RC4+RSA:-MEDIUM:-LOW:-EXP
+        SSLProtocol ALL -SSLv2 -SSLv3
+        SSLCipherSuite EDH+CAMELLIA:EDH+aRSA:EECDH+aRSA+AESGCM:EECDH+aRSA+SHA384:EECDH+aRSA+SHA256:EECDH:+CAMELLIA256:+AES256:+CAMELLIA128:+AES128:+SSLv3:!aNULL:!eNULL:!LOW:!3DES:!MD5:!EXP:!PSK:!DSS:!RC4:!SEED:!IDEA:!ECDSA:kEDH:CAMELLIA256-SHA:AES256-SHA:CAMELLIA128-SHA:AES128-SHA
         SSLCertificateFile      /var/lib/puppet/ssl/certs/puppet-server.example.com.pem
         SSLCertificateKeyFile   /var/lib/puppet/ssl/private_keys/puppet-server.example.pem
         SSLCertificateChainFile /var/lib/puppet/ssl/ca/ca_crt.pem
@@ -140,7 +140,7 @@ puppetmaster port (8140). You can also see a similar file at `ext/rack/example-p
         SSLVerifyClient         optional
         SSLVerifyDepth          1
         SSLOptions              +StdEnvVars +ExportCertData
-        
+
         # Apache 2.4 introduces the SSLCARevocationCheck directive and sets it to none
     	# which effectively disables CRL checking. If you are using Apache 2.4+ you must
         # specify 'SSLCARevocationCheck chain' to actually use the CRL.
