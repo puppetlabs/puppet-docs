@@ -160,12 +160,13 @@ For more details, you can also refer to the man page for a given command or subc
 
 PE uses the following services:
 
-- **`pe-puppet`** (on EL and Debian-based platforms) --- The puppet agent daemon. Runs on every agent node.
-- **`pe-httpd`** --- Apache 2, which manages and serves puppet master and the console on servers with those roles. (Note that PE uses Passenger to run puppet master, instead of running it as a standalone daemon.)
+- **`pe-activemq`** --- The ActiveMQ message server, which passes messages to the MCollective servers on agent nodes. Runs on servers with the puppet master component.
+- **`pe-httpd`** --- Apache 2, which manages and serves puppet master and the console on servers with those components. (Note that PE uses Passenger to run puppet master, instead of running it as a standalone daemon.)
 - **`pe-mcollective`** --- The orchestration (MCollective) daemon, which listens for orchestration messages and invokes actions. Runs on every agent node.
-- **`pe-puppet-dashboard-workers`** --- A supervisor that manages the console's background processes. Runs on servers with the console role.
-- **`pe-activemq`** --- The ActiveMQ message server, which passes messages to the MCollective servers on agent nodes. Runs on servers with the puppet master role.
--**`pe-puppetdb`** and **`pe-postgresql`** --- daemons that manage and serve the db roles.
+- **`pe-memcached`** --- The PE console memcached daemon. Runs on the same node as the PE console.
+- **`pe-puppet`** (on EL and Debian-based platforms) --- The puppet agent daemon. Runs on every agent node.
+- **`pe-puppet-dashboard-workers`** --- A supervisor that manages the console's background processes. Runs on servers with the console component.
+-**`pe-puppetdb`** and **`pe-postgresql`** --- Daemons that manage and serve the database components. Note that pe-postgresql is only created if we install and manage PostgreSQL for you.
 
 ###User Accounts
 
