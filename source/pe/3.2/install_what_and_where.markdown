@@ -180,7 +180,7 @@ PE creates the following users:
 - **`pe-puppetdb`** --- A system user with root access to the db.
 - **`pe-auth`** --- Puppet Console Auth User
 - **`pe-memcached`** --- Puppet Enterprise Memcached Daemon User
-- **`pe-postgresql`** --- A system user with access to the pe-postgreSQL instance. Note that this user is only created if we install and manage PostgreSQL for you.
+- **`pe-postgres`** --- A system user with access to the pe-postgreSQL instance. Note that this user is only created if we install and manage PostgreSQL for you.
 
 ###Certificates
 
