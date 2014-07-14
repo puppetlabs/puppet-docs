@@ -1,0 +1,172 @@
+{% comment %}
+
+Format:
+<ul>
+  <li><strong>section label</strong>
+    <ul>
+      <li>page if-links...</li>
+    </ul>
+  </li>
+</ul>
+
+
+{% endcomment %}
+
+<h3><a href="./index.html">Puppet Enterprise 3.3</a></h3>
+
+<ul>
+  <li><strong>Overview</strong>
+    <ul>
+      <li>{% iflink "About Puppet Enterprise", "./overview_about_pe.html" %}</li>
+      <li>{% iflink "Release Notes", "./release_notes.html" %}</li>
+      <li>{% iflink "Getting Support", "./overview_getting_support.html" %}</li>
+    </ul>
+  </li>
+  <li><strong>Quick Start</strong>
+    <ul>
+        <li>{% iflink "Quick Start: Using PE", "./quick_start.html" %}</li>
+        <li>{% iflink "Quick Start: Writing Modules (Windows)", "./quick_writing_windows.html" %}</li>
+        <li>{% iflink "Quick Start: Writing Modules (Linux)", "./quick_writing_nix.html" %}</li>
+    </ul>
+  </li>
+  <li><strong>Installing Puppet Enterprise</strong>
+    <ul>
+      <li>{% iflink "System Requirements", "./install_system_requirements.html" %}</li>
+      <li>{% iflink "Installing PE Overview", "./install_basic.html" %}</li>
+      <li><strong>Web-based Installation</strong>
+          <ul>
+            <li>{% iflink "Installing PE: Monolithic", "./install_pe_mono.html" %}</li>
+            <li>{% iflink "Installing PE: Split", "./install_pe_split.html" %}</li>
+          </ul> 
+      <li><strong>Installing PE Agents</strong>
+          <ul>
+           <li>{% iflink "Install PE Agents: *nix", "./install_agents.html" %}</li>
+           <li>{% iflink "Install PE Agents: Windows", "./install_windows.html" %}</li>
+           <li>{% iflink "Install PE Agents: Mac OS X", "./install_osx.html" %}</li>
+          </ul> 
+      <li><strong>Automated Installation</strong>
+          <ul>
+           <li>{% iflink "Automated Installation with Answer File", "./install_automated.html" %}</li>
+           <li>{% iflink "Answer File Reference Overview", "./install_answer_file_reference.html" %}</li>
+           <li>{% iflink "Monolithic Install Answer File Reference", "./install_mono_answers.html" %}</li>
+           <li>{% iflink "Split Install, Console Answer File Reference", "./install_split_console_answers.html" %}</li>
+           <li>{% iflink "Split Install, Puppet Master Answer File Reference", "./install_split_master_answers.html" %}</li>
+           <li>{% iflink "Split Install, PuppetDB Answer File Reference", "./install_split_puppetdb_answers.html" %}</li>
+          </ul>
+         </li>
+      <li>{% iflink "Upgrading", "./install_upgrading.html" %}</li>
+      <li>{% iflink "Uninstalling", "./install_uninstalling.html" %}</li>  
+      <li>{% iflink "What Gets Installed Where?", "./install_what_and_where.html" %}</li>
+      </li>
+    </ul>
+  </li>
+  <li><strong>The PE Console</strong>
+    <ul>
+      <li>{% iflink "Accessing the Console", "./console_accessing.html" %}</li>
+      <li>{% iflink "Navigating the Console", "./console_navigating.html" %}</li>
+      <li>{% iflink "Navigating the Live Management Page", "./console_navigating_live_mgmt.html" %}</li>
+      <li>{% iflink "Managing Node Requests", "./console_cert_mgmt.html" %}</li>
+      <li>{% iflink "Grouping & Classifying Nodes", "./console_classes_groups.html" %}</li>
+      <li>{% iflink "Using Event Inspector", "./console_event-inspector.html" %}</li>
+      <li>{% iflink "Viewing Reports & Inventory Data", "./console_reports.html" %}</li>
+      <li>{% iflink "Managing Users", "./console_auth.html" %}</li>
+      <li>{% iflink "Inventory Search", "./console_inventory_search.html" %}</li>
+      <li>{% iflink "Rake API and List of Tasks", "./console_rake_api.html" %}</li>
+      <li>{% iflink "Rake API: List of Tasks (Old Argument Style)", "./console_rake_api_old.html" %}</li>
+      <li>{% iflink "Configuring the Console", "./console_config.html" %}</li>
+    </ul>
+  </li>
+  <li><strong>Puppet Core</strong>
+    <ul>
+      <li>{% iflink "Overview", "./puppet_overview.html" %}</li>
+      <li>{% iflink "Modules & Manifests", "./puppet_modules_manifests.html" %}</li>
+      <li>{% iflink "Assigning Configurations to Nodes", "./puppet_assign_configurations.html" %}</li>
+      <li>{% iflink "Tools", "./puppet_tools.html" %}</li>
+      <li>{% iflink "Puppet Data Library", "./puppet_data_library.html" %}</li>
+      <li>{% iflink "References", "./puppet_references.html" %}</li>
+      <li>{% iflink "Configuring Puppet Core", "./puppet_config.html" %}</li>
+    </ul>
+  </li>
+  <li><strong>Orchestration</strong>
+    <ul>
+      <li>{% iflink "Overview", "./orchestration_overview.html" %}</li>
+      <li>{% iflink "Invoking Actions", "./orchestration_invoke_cli.html" %}</li>
+      <li>{% iflink "Controlling Puppet", "./orchestration_puppet.html" %}</li>
+      <li>{% iflink "Browsing Resources", "./orchestration_resources.html" %}</li>
+      <li>{% iflink "List of Built-In Actions", "./orchestration_actions.html" %}</li>
+      <li>{% iflink "Adding New Actions", "./orchestration_adding_actions.html" %}</li>
+      <!-- <li>{% iflink "Integrating Applications", "./orchestration_integrating.html" %}</li> -->
+      <li>{% iflink "Configuring Orchestration", "./orchestration_config.html" %}</li>
+    </ul>
+  </li>
+   <li><strong>Deploying PE</strong>
+    <ul>
+      <li>{% iflink "Basic Deployment Guide", "../../guides/deployment_guide/index.html" %}</li>
+      <li>{% iflink "Running Agents Without Root Privileges", "./deploy_nonroot-agent.html" %}</li>
+      <li>{% iflink "Beginners Guide to Modules", "../../guides/module_guides/bgtm.html" %}</li>
+      <li>{% iflink "Deactivating a PE Agent Node", "./node_deactivation.html" %}</li>
+      <li>{% iflink "Regenerating a Puppet Agent Certificate", "./agent_cert_regen.html" %}</li>
+      <li>{% iflink "Using an External Certificate Authority with PE", "./external_ca.html" %}</li>
+      <li>{% iflink "Configuring the Puppet Enterprise Console to Use a Custom SSL Certificate", "./custom_console_cert.html" %}</li>
+    </ul>
+</li>
+  <li><strong>Provision With Razor</strong>
+    <ul>
+      <li>{% iflink "Bare-Metal Provisioning with Razor", "./razor_intro.html" %}</li>
+      <li>{% iflink "Set Up a Virtual Environment for Razor", "./razor_prereqs.html" %}</li>
+      <li>{% iflink "Install Razor", "./razor_install.html" %}</li>
+      <li>{% iflink "Razor Provisioning Setup", "./razor_using.html" %}</li>
+      <li>{% iflink "Razor Command Reference", "./razor_reference.html" %}</li>
+      <li>{% iflink "Razor Tags", "./razor_tags.html" %}</li>
+      <li>{% iflink "Razor Broker Types", "./razor_brokertypes.html" %}</li>
+      <li>{% iflink "Razor Tasks", "./razor_tasks.html" %}</li>
+      <li>{% iflink "Razor Setup Information and Known Issues", "./razor_knownissues.html" %}</li>
+    </ul>
+  </li>
+  <li><strong>Cloud Provisioners</strong>
+    <ul>
+      <li>{% iflink "Overview", "./cloudprovisioner_overview.html" %}</li>
+      <li>{% iflink "Installing & Configuring Cloud Provisioner", "./cloudprovisioner_configuring.html" %}</li>
+      <li>{% iflink "Provisioning with VMware", "./cloudprovisioner_vmware.html" %}</li>
+      <li>{% iflink "Provisioning with GCE", "./cloudprovisioner_gce.html" %}</li>
+      <li>{% iflink "Provisioning with AWS", "./cloudprovisioner_aws.html" %}</li>
+      <li>{% iflink "Classifying Nodes & Remotely Installing Puppet", "./cloudprovisioner_classifying_installing.html" %}</li>
+      <li>{% iflink "Sample Workflow", "./cloudprovisioner_workflow.html" %}</li>
+    </ul>
+  </li>
+  <li><strong>The PE Accounts Module</strong>
+    <ul>
+      <li>{% iflink "The pe_accounts::user Type", "./accounts_user_type.html" %}</li>
+      <li>{% iflink "The pe_accounts Class", "./accounts_class.html" %}</li>
+    </ul>
+  </li>
+   <li><strong>Maintenance</strong>
+    <ul>
+      <li>{% iflink "Console & Database Maintenance", "./maintain_console-db.html" %}</li>
+      <li>{% iflink "Back up and Restore PE", "./maintain_backup_restore.html" %}</li>
+      <!--
+<li> {% iflink "Puppet Core Maintenance", "./maintain_puppet.html" %}</li>
+      <li> {% iflink "Orchestration Maintenance", "./maintain_orchestration.html" %}</li>
+ -->
+    </ul>
+  </li>
+  <li><strong>Troubleshooting</strong>
+    <ul>
+     <li> {% iflink "Troubleshooting the Installer", "./trouble_install.html" %}</li>
+     <li> {% iflink "Troubleshooting Connections & Communications", "./trouble_comms.html" %}</li>
+     <li> {% iflink "Troubleshooting the Console & Database", "./trouble_console-db.html" %}</li>
+     <li> {% iflink "Troubleshooting the Puppet Core", "./trouble_puppet.html" %}</li>
+     <li> {% iflink "Troubleshooting Orchestration", "./trouble_orchestration.html" %}</li>
+     <li> {% iflink "Troubleshooting Cloud Provisioner", "./trouble_cloudprovisioner.html" %}</li>
+     <li> {% iflink "Troubleshooting Windows", "./trouble_windows.html" %}</li>
+      <li>{% iflink "Regenerating Certificates: Split Deployments", "./trouble_regenerate_certs_split.html" %}</li>
+      <li>{% iflink "Regenerating Certificates: Monolithic Deployments", "./trouble_regenerate_certs_monolithic.html" %}</li>
+    </ul>
+  </li>
+  <li><strong>Appendix</strong>
+    <ul>
+       <li>{% iflink "Compliance Alternate Workflow", "./compliance_alt.html" %}</li>
+    <!--    <li>{% iflink "Cloning Alternate Workflow", "./cloning_alt.html" %}</li> -->
+    </ul>
+  </li>
+</ul>
