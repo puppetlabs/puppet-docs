@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Windows: Handling File Paths"
+title: "Language: Handling File Paths on Windows"
 ---
 
 [template]: /guides/templating.html
@@ -9,10 +9,12 @@ title: "Windows: Handling File Paths"
 [package]: /references/latest/type.html#package
 [file]: /references/latest/type.html#file
 
+Several [resource types](./lang_resources.html) take file paths as values for various attributes.
+
 When writing Puppet manifests to manage Windows systems, you'll have to be somewhat flexible about the way you write file paths. It's more complex than it is on \*nix systems, for a few reasons:
 
-* The Puppet language uses the backslash (`\`) as an escape character in quoted strings. This means writing literal backslashes can be awkward.
 * Windows traditionally uses the backslash (`\`) to separate directories in file paths. (E.g. `C:\Program Files\PuppetLabs`)
+* The Puppet language uses the backslash (`\`) as an escape character in quoted strings. This means writing literal backslashes can be awkward.
 * The Windows file system APIs will accept both the backslash (`\`) and forward-slash (`/`) in file paths...
 * ...but some Windows programs still only accept backslashes.
 
@@ -22,7 +24,9 @@ The following guidelines will help you use backslashes safely in Windows file pa
 
 ## When to Use Each Kind of Slash
 
-If Puppet itself is interpreting the file path, forward slashes are generally okay. If the file path is being passed directly to a Windows program, backslashes may be mandatory. If the file path is meant for the puppet master, forward-slashes may be mandatory. The most notable instances of each kind of path are listed below.
+If Puppet itself is interpreting the file path, forward slashes are generally okay. If the file path is being passed directly to a Windows program, backslashes may be mandatory. If the file path is meant for the puppet master, forward-slashes may be mandatory.
+
+The most notable instances of each kind of path are listed below.
 
 ### Forward-Slashes Only
 
@@ -80,6 +84,8 @@ In single-quoted strings:
 
 ## Errata
 
+### Known Issues Prior to Puppet 3.0
+
 In Puppet 2.7, there was one additional place where backslashes were not allowed: the `modulepath` setting required forward-slashes. For example: `puppet apply --modulepath="Z:/path/to/my/modules" "Z:/path/to/my/site.pp"`
 
-This was fixed in Puppet 3.0.
+This was fixed in Puppet 3.0 / Puppet Enterprise 3.0.

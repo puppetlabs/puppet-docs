@@ -9,6 +9,7 @@
   <li>{% iflink "System Requirements", "./system_requirements.html" %}</li>
   <li><strong>The Puppet Services</strong>
     <ul>
+      <li>{% iflink "Overview of Puppet's Run Environment", "./services_environment.html" %}</li>
       <li>{% iflink "The WEBrick Puppet Master", "./services_master_webrick.html" %}</li>
       <li>{% iflink "The Rack Puppet Master", "./services_master_rack.html" %}</li>
       <li>{% iflink "Puppet Agent on *nix", "./services_agent_unix.html" %}</li>
@@ -22,6 +23,7 @@
       <li>{% iflink "Basics", "./lang_summary.html" %}</li>
       <li>{% iflink "Reserved Words and Allowed Names", "./lang_reserved.html" %}</li>
       <li>{% iflink "Resources", "./lang_resources.html" %}</li>
+      <li>{% iflink "Handling File Paths on Windows", "./lang_windows_file_paths.html" %}</li>
       <li>{% iflink "Relationships and Ordering", "./lang_relationships.html" %}</li>
       <li>{% iflink "Resource Defaults", "./lang_defaults.html" %}</li>
       <li>{% iflink "Variables", "./lang_variables.html" %}</li>
@@ -57,6 +59,19 @@
   </li>
 
   <li>{% iflink "The Resource Type Reference", "/references/3.6.latest/type.html" %}</li>
+
+  <li><strong>Resource Types: Tips and Examples</strong>
+    <ul>
+      <li>{% iflink "Service Resources (All OSes)", "./resources_service.html" %}</li>
+      <li>{% iflink "File Resources (Windows)", "./resources_file_windows.html" %}</li>
+      <li>{% iflink "Package Resources (Windows)", "./resources_package_windows.html" %}</li>
+      <li>{% iflink "User and Group Resources (Windows)", "./resources_user_group_windows.html" %}</li>
+      <li>{% iflink "Scheduled Task Resources (Windows)", "./resources_scheduled_task_windows.html" %}</li>
+      <li>{% iflink "Exec Resources (Windows)", "./resources_exec_windows.html" %}</li>
+      <li>{% iflink "Optional Resource Types for Windows", "./resources_windows_optional.html" %}</li>
+    </ul>
+  </li>
+
   <li><strong>Other References (Settings, Functions, HTTP, etc.)</strong>
     <ul>
       <li>{% iflink "Settings (Configuration Reference)", "/references/3.6.latest/configuration.html" %}</li>

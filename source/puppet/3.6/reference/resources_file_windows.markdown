@@ -1,9 +1,9 @@
 ---
 layout: default
-title: "Built-In Resource Types on Windows: File"
+title: "Resource Tips and Examples: File on Windows"
 ---
 
-[file]: /references/latest/type.html#file
+[file]: /references/3.6.latest/type.html#file
 [relationships]: /puppet/latest/reference/lang_relationships.html
 
 Puppet's built-in [`file`][file] resource type can manage files and directories on Windows, including ownership, group, permissions, and content. Symbolic links are supported in Puppet 3.4.0 / PE 3.2 and later on Windows 2008 / Vista and later; for details, [see the notes in the type reference under `file`'s `ensure` attribute](/references/latest/type.html#file-attribute-ensure).
@@ -83,6 +83,18 @@ Puppet Labs and the Puppet community are developing a new resource type for mana
 ## File Sources
 
 The `source` attribute of a file can be a puppet URL, a local path, or a path to a file on a mapped drive.
+
+## Handling Line Endings
+
+Windows usually uses CRLF line endings instead of \*nix's LF line endings. In most cases, Puppet **will not** automatically convert line endings when managing files on Windows.
+
+* If a file resource uses the `content` attribute, Puppet will write the content in "binary" mode, using whatever line endings are present in the content.
+    * If the manifest or template file is saved with CRLF line endings, Puppet will use those endings in the destination file.
+    * If the manifest or template file is saved with LF line endings, you can use the `\r\n` escape sequence to create literal CRLFs.
+* If a file resource uses the `source` attribute, Puppet will transfer the file in "binary" mode, leaving the original newlines untouched.
+* Non-`file` resource types that make partial edits to a system file (most notably the [`host`](/references/latest/type.html#host) type, which manages the `%windir%\system32\drivers\etc\hosts` file) manage their files in text mode, and will automatically translate between Windows and \*nix line endings.
+
+    > Note: When writing your own resource types, you can get this same behavior by using the `flat` filetype.
 
 
 ## Errata
