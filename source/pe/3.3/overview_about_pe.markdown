@@ -18,7 +18,7 @@ This user's guide will help you start using Puppet Enterprise 3.3, and will serv
 > For Returning Users
 > -----
 >
-> See the [what's new page](./overview_whats_new.html) for the new features in this release of Puppet Enterprise. You can find detailed release notes for updates within the 3.3.x series in the [release notes](./release_notes.html).
+> See the [release notes](./release_notes.html). Here you can find detailed information about [New Features](./release_notes.html#new-features) in the 3.3.x series.
 
 About Puppet Enterprise
 -----
