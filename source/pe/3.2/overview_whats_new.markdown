@@ -2,12 +2,12 @@
 layout: default
 title: "PE 3.2 » Overview » What's New"
 subtitle: "New Features in PE 3.2"
-canonical: "/pe/latest/overview_whats_new.html"
+canonical: "/pe/latest/release_notes.html"
 ---
 
 ### Version 3.2.3
 
-PE 3.2.3 is a maintenance release that patches several security vulnerabilities in Java. For details, check the [release notes](appendix.html#release-notes). 
+PE 3.2.3 is a maintenance release that patches several security vulnerabilities in Java. For details, check the [release notes](appendix.html#release-notes).
 
 ### Version 3.2.2
 
@@ -15,7 +15,7 @@ PE 3.2.2 is a maintenance release that patches several security vulnerabilities 
 
 #### A Note about the Heartbleed Bug
 
-We want to emphasize that Puppet Enterprise does not need to be patched for Heartbleed. 
+We want to emphasize that Puppet Enterprise does not need to be patched for Heartbleed.
 
 No version of Puppet Enterprise has been shipped with a vulnerable version of OpenSSL, so Puppet Enterprise is not itself vulnerable to the security bug known as Heartbleed, and does not require a patch from Puppet Labs.
 

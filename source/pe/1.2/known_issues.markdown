@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "PE 1.2 Manual: Known Issues"
-canonical: "/pe/latest/appendix.html"
+canonical: "/pe/latest/release_notes.html"
 ---
 
 {% include pe_1.2_nav.markdown %}
