@@ -4,9 +4,6 @@ title: "Puppet Enterprise User's Guides"
 toc: false
 ---
 
-Puppet Enterprise User's Guides
-=====
-
 Puppet Enterprise is the best-of-breed distribution for the Puppet family of systems automation tools.
 
 Puppet Enterprise 3.3
