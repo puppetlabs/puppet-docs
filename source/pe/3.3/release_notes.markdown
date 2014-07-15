@@ -119,7 +119,7 @@ Every node list view in the console now includes a link to export the table data
 
 This release provides full support for RHEL 7 for all applicable PE features and capabilities. For more information, see the [system requirements](./install_system_requirements.html).
 
-### Support for Ubuntu 14 LTS
+### Support for Ubuntu 14.04 LTS
 
 This release provides full support for Ubuntu 14.04 LTS for all applicable PE features and capabilities. For more information, see the [system requirements](./install_system_requirements.html).
 
