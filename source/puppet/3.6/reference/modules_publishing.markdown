@@ -16,6 +16,7 @@ canonical: "/puppet/latest/reference/modules_publishing.html"
 [uploadtarball2]: ./images/forge_upload_tarball2.png
 [forgenewrelease]: ./images/forge_new_release.png
 [documentation]: ./modules_documentation.html
+[errors]: ./modules_installing.html#errors
 
 Publishing Modules on the Puppet Forge
 =====
@@ -213,41 +214,57 @@ With Puppet 3.6's updates to the puppet module tool (PMT), the process for  buil
 * [I generated a new module using `puppet module generate`](#brand-new-module)
 * [I have a Modulefile and no metadata.json](#modulefile-no-metadatajson)
 * [I have a Modulefile and a metadata.json](#modulefile-and-metadatajson)
+* [I have a metadata.json and no Modulefile](#metadatajson-no-modulefile)
 
 In order for your module to be successfully uploaded to and displayed on the Forge, your metadata.json file will need to have the following [fields](#fields-in-metadatajson): name, version, author, license, summary, source, dependencies, project_page, operatingsystem_support, and tags.
 
 ###Brand new module
 
-If you used `puppet module generate` to create your module *and* you're using Puppet 3.6, your metadata.json file was created for you! All you need to do is build  a package of your module by running the following command:
+If you used Puppet 3.6 to run `puppet module generate` to create your module, your metadata.json file was created for you! To build your module:
 
-    # puppet module build <MODULE DIRECTORY>
+1. Run `# puppet module build <MODULE DIRECTORY>`. A .tar.gz package will be generated and saved in the module's pkg/ subdirectory. For example:
 
-This generates a `.tar.gz` package, which is saved in the module's `pkg/` subdirectory.
-
-For example:
-
+~~~
     # puppet module build /etc/puppetlabs/puppet/modules/mymodule
     Building /etc/puppetlabs/puppet/modules/mymodule for release
     /etc/puppetlabs/puppet/modules/mymodule/pkg/examplecorp-mymodule-0.0.1.tar.gz
+~~~
+
+2. Navigate to your module in the pkg/ subdirectory, `#cd <username-modulename>/pkg/<username-modulename-version>`.
+3. Copy the metadata.json file to the root of your module.
+4. Navigate out of the pkg/ subdirectory to your module's root directory. Run `# puppet module build <MODULE DIRECTORY>` again. (If you do not rebuild your module before publishing, you will cause users of your module to face [errors][errors]).
+5. Run `puppet module changes pkg/<username-modulename-version>` to determine whether your build was successful. A successful build will return: `Notice: No modified files`. An unsuccessful build will show modified files, which means you must start the process again.
 
 ###Modulefile, no metadata.json
 
-If you have a Modulefile but no metadata.json file, you will receive a deprecation warning when you build a package of your module. The PMT will build you a complete metadata.json file using the information in your Modulefile, and will place the metadata.json in both your build directory and root module directory. You must then perform [migration steps](#migrate-from-modulefile-to-metadatajson).
+1. Run `# puppet module build <MODULE DIRECTORY>`. 
+2. If you have a Modulefile but no metadata.json file, you will receive a deprecation warning when you run the build command. The PMT will build you a complete metadata.json file using the information in your Modulefile, and will place the metadata.json in both your build directory and root module directory. 
+3. Navigate to your module in the pkg/ subdirectory, `#cd <username-modulename>/pkg/<username-modulename-version>`.
+4. Copy the metadata.json file to the root of your module.
+5. Navigate out of the pkg/ subdirectory to your module's root directory. Delete your Modulefile.
+6. Run `puppet module build <MODULE DIRECTORY>` again. (If you do not rebuild your module before publishing, you will cause users of your module to face [errors][errors]).
+7. Run `puppet module changes pkg/<username-modulename-version>` to determine whether your build was successful. A successful build will return: `Notice: No modified files`. An unsuccessful build will show modified files, which means you must start the process again.
 
 ###Modulefile and metadata.json
 
-If you have a complete metadata.json, the PMT will merge your Modulefile and metadata.json files and issue a deprecation warning when you build a package of your module. You must then go through the [migration steps](#migrate-from-modulefile-to-metadatajson). 
+1. Open the metadata.json file in your editor and remove the `types` and `checksums` fields entirely, if present.
+2. Make sure your dependencies are expressed in the metadata.json and **NOT** in the Modulefile.
+3. Run `# puppet module build <MODULE DIRECTORY>`. The PMT will merge your Modulefile and metadata.json files and issue a deprecation warning. 
+4. Navigate to your module in the pkg/ subdirectory, `#cd <username-modulename>/pkg/<username-modulename-version>`.
+5. Copy the metadata.json file to the root of your module.
+6. Navigate out of the pkg/ subdirectory to your module's root directory. Delete your Modulefile.
+7. Run `# puppet module build <MODULE DIRECTORY>` again. (If you do not rebuild your module before publishing, you will cause users of your module to face [errors][errors]). 
+8. Run `puppet module changes pkg/<username-modulename-version>` to determine whether your build was successful. A successful build will return: `Notice: No modified files`. An unsuccessful build will show modified files, which means you must start the process again.
 
-###Migrate from Modulefile to metadata.json
+###metadata.json, no Modulefile
 
-To migrate from Modulefile to metadata.json:
+1. Open the metadata.json file in your editor and remove the `types` and `checksums` fields entirely, if present.
+2. Run `# puppet module build <MODULE DIRECTORY>`.
+3. Navigate to your module in the pkg/ subdirectory, `#cd <username-modulename>/pkg/<username-modulename-version>`.
+4. Copy the metadata.json file to the root of your module.
+5. Navigate out of the pkg/ subdirectory to your module's root directory. Run `# puppet module build <MODULE DIRECTORY>` again. (If you do not rebuild your module before publishing, you will cause users of your module to face [errors][errors]).
+6. Run `puppet module changes pkg/<username-modulename-version>` to determine whether your build was successful. A successful build will return: `Notice: No modified files`. An unsuccessful build will show modified files, which means you must start the process again.
 
-1. Run `puppet module build` as normal.
-2. Navigate to the current version of your module in the pkg/ subdirectory.
-3. Copy the metadata.json file to the root of your module.
-4. Delete the `types` and `checksums` fields, if present.
-5. Delete the Modulefile.
-  
 Upload to the Puppet Forge
 ------
 
