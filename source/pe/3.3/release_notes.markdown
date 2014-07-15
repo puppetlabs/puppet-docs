@@ -113,7 +113,7 @@ Please see [Known Issues](#known-issues) for information about a bug impacting m
 
 ### Console Data Export
 
-Every node list view in the console now includes a link to export the table data in CSV format, so that you can include the data in a spreadsheet or other tool. [to do: add info if this also becomes part of EI]
+Every node list view in the console now includes a link to export the table data in CSV format, so that you can include the data in a spreadsheet or other tool. 
 
 ### Support for Red Hat Enterprise Linux 7
 
