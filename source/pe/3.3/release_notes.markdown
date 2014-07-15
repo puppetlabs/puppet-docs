@@ -157,7 +157,7 @@ Razor is included in PE 3.3 as a [tech preview](http://puppetlabs.com/services/t
 
 * Puppet Enterprise 3.2 (Solaris, Windows, AIX)
  
-Due to a vulnerability in OpenSSL versions 1.0.1 and later, an attacker could intercept and decrypt secure communications. This vulnerability requires that both the client and server be running an unpatched version of OpenSSL. Unlike heartbleed, this attack vector occurs after the initial handshake, which means ecnryption keys are not compromised. However, Puppet Enterprise encrypts catalogs for transmission to agents, so PE manifests containing sensitive information could have been intercepted. We advise all users to avoid including sensitive information in catalogs. 
+Due to a vulnerability in OpenSSL versions 1.0.1 and later, an attacker could intercept and decrypt secure communications. This vulnerability requires that both the client and server be running an unpatched version of OpenSSL. Unlike heartbleed, this attack vector occurs after the initial handshake, which means encryption keys are not compromised. However, Puppet Enterprise encrypts catalogs for transmission to agents, so PE manifests containing sensitive information could have been intercepted. We advise all users to avoid including sensitive information in catalogs. 
 
 Puppet Enterprise 3.3.0 includes a patched version of OpenSSL.
  
