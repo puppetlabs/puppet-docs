@@ -92,20 +92,19 @@ Defining a class makes it available for later use. It doesn't yet add any resour
 
 The general form of a class definition is:
 
-* The `class` keyword
-* The [name][allowed] of the class
+* The `class` keyword.
+* The [name][allowed] of the class.
 * An optional **set of parameters,** which consists of:
-    * An opening parenthesis
+    * An opening parenthesis.
     * A comma-separated list of **parameters,** each of which consists of:
-        * A new [variable][] name, including the `$` prefix
-        * An optional equals (=) sign and **default value** (any data type)
-    * An optional trailing comma after the last parameter
-    * A closing parenthesis
-* Optionally, the `inherits` keyword followed by a single class name
-* An opening curly brace
-* A block of arbitrary Puppet code, which generally contains at least one [resource declaration][resource_declaration]
-* A closing curly brace
-
+        * A new [variable][] name, including the `$` prefix.
+        * An optional equals (=) sign and **default value** (any data type).
+    * An optional trailing comma after the last parameter.
+    * A closing parenthesis.
+* Optionally, the `inherits` keyword followed by a single class name.
+* An opening curly brace.
+* A block of arbitrary Puppet code, which generally contains at least one [resource declaration][resource_declaration].
+* A closing curly brace.
 
 ### Class Parameters and Variables
 
@@ -128,13 +127,13 @@ Classes should be stored in their module's `manifests/` directory as one class p
 >
 > * [The main manifest][sitedotpp]. If you do so, they may be placed anywhere in the file and are not parse-order dependent.
 > * [Imported manifests][import]. If you do so, you must [import][] the file containing the class before you may declare it.
-> * Other class definitions. This puts the interior class under the exterior class's [namespace][], causing its real name to be something other than the name with which it was defined. It does not cause the interior class to be automatically declared along with the exterior class. Nested classes cannot be autoloaded; in order for the interior class to be visible to Puppet, the manifest containing it must have been forcibly loaded, either by autoloading the outermost class, using an [import][] statement, or placing the entire nested structure in the site manifest. Although nesting classes is not yet formally deprecated, it is **very much** not recommended.
+> * Other class definitions. This puts the interior class under the exterior class's [namespace][], causing its real name to be something other than the name with which it was defined. It does not cause the interior class to be automatically declared along with the exterior class. Nested classes cannot be autoloaded; in order for the interior class to be visible to Puppet, the manifest containing it must have been forcibly loaded, either by autoloading the outermost class, using an [import][] statement, or placing the entire nested structure in the site manifest. Although nesting classes is not yet formally deprecated, we **strongly recommended against** it.
 
 ### Containment
 
 A class [contains][] all of its resources. This means any [relationships][] formed with the class as a whole will be extended to every resource in the class.
 
-Classes can also contain other classes, but _you must manually specify that a class should be contained._ For details, [see the "Containing Classes" section of the Containment page.][contain_classes]
+Classes can also contain other classes, but **you must manually specify that a class should be contained.** For details, [see the "Containing Classes" section of the Containment page.][contain_classes]
 
 ### Auto-Tagging
 
@@ -152,9 +151,9 @@ Inheritance causes three things to happen:
 * The base class becomes the [parent scope][parent_scope] of the derived class, so that the new class receives a copy of all of the base class's variables and resource defaults.
 * Code in the derived class is given special permission to override any resource attributes that were set in the base class.
 
-> #### Aside: When to Inherit
+> #### When to Inherit
 >
-> Class inheritance should be used **very sparingly,** generally only in the following situations:
+> Class inheritance should be used **very sparingly.** Generally, you should only use it:
 >
 > * When you need to override resource attributes in the base class.
 > * To let a "params class" provide default values for another class's parameters:
@@ -163,7 +162,7 @@ Inheritance causes three things to happen:
 >
 >   This pattern works by guaranteeing that the params class is evaluated before Puppet attempts to evaluate the main class's parameter list. It is especially useful when you want your default values to change based on system facts and other data, since it lets you isolate and encapsulate all that conditional logic.
 >
-> **In nearly all other cases, inheritance is unnecessary complexity.** If you need some class's resources declared before proceeding further, you can [include](#using-include) it inside another class's definition. If you need to read internal data from another class, you should generally use [qualified variable names][qualified_var] instead of assigning parent scopes. If you need to use an "anti-class" pattern (e.g. to disable a service that is normally enabled), you can use a class parameter to override the standard behavior.
+> **In nearly all other cases, inheritance is unnecessary complexity.** If you need some class's resources declared before proceeding further, you can [include](#using-include) it inside another class's definition. If you need to read internal data from another class, you should generally use [qualified variable names][qualified_var] instead of assigning parent scopes. If you need to use an "anti-class" pattern (e.g., to disable a service that is normally enabled), you can use a class parameter to override the standard behavior.
 >
 > Note also that you can [use resource collectors to override resource attributes][collector_override] in unrelated classes, although this feature should be handled with care.
 
@@ -232,7 +231,7 @@ Classes are singletons --- although a given class may have very different behavi
 
 Puppet has two main ways to declare classes: include-like and resource-like.
 
-> **Note:** These two behaviors **should not be mixed** for a given class. Puppet's behavior when declaring or assigning a class with both styles is undefined, and will sometimes work and sometimes cause compilation failures.
+> **Note:** These two behaviors **should not be mixed** for a given class. Puppet's behavior when declaring or assigning a class with both styles is undefined; sometimes it will work, and sometimes it will cause compilation failures.
 
 #### Include-Like Behavior
 
@@ -246,7 +245,7 @@ Include-like behavior relies on [external data][external_data] and defaults for 
 2. Use the default value.
 3. Fail compilation with an error if no value can be found.
 
-> **Aside: Best Practices**
+> #### Best Practices
 >
 > **Most** users in **most** situations should use include-like declarations and set parameter values in their external data. However, compatibility with earlier versions of Puppet may require compromises. See [Aside: Writing for Multiple Puppet Versions][aside_history] below for details.
 
@@ -256,14 +255,14 @@ Include-like behavior relies on [external data][external_data] and defaults for 
 
 [resource-like]: #resource-like-behavior
 
-Resource-like class declarations require that you **only declare a given class once.** They allow you to override class parameters at compile time, and will fall back to [external data][external_data] for any parameters you don't override.  When a class is declared, Puppet will try the following for each of its parameters:
+Resource-like class declarations require that you **only declare a given class once.** They allow you to override class parameters at compile time, and they will fall back to [external data][external_data] for any parameters you don't override.  When a class is declared, Puppet will try the following for each of its parameters:
 
 1. Use the override value from the declaration, if present.
 2. Request a value from [the external data source][external_data], using the key `<class name>::<parameter name>`. (For example, to get the `apache` class's `version` parameter, Puppet would search for `apache::version`.)
 3. Use the default value.
 4. Fail compilation with an error if no value can be found.
 
-> **Aside: Why Do Resource-Like Declarations Have to Be Unique?**
+> #### Why Do Resource-Like Declarations Have to Be Unique?
 >
 > This is necessary to avoid paradoxical or conflicting parameter values. Since overridden values from the class declaration always win, are computed at compile-time, and do not have a built-in hierarchy for resolving conflicts, allowing repeated overrides would cause catalog compilation to be unreliable and parse-order dependent.
 >
@@ -284,11 +283,11 @@ The `include` [function][] is the standard way to declare classes.
     include $my_classes # including an array
 {% endhighlight %}
 
-The `include` function uses [include-like behavior][include-like]. (Multiple declarations OK; relies on external data for parameters.) It can accept:
+The `include` function uses [include-like behavior][include-like]. (Multiple declarations okay; relies on external data for parameters.) It can accept:
 
-* A single class
-* A comma-separated list of classes
-* An array of classes
+* A single class.
+* A comma-separated list of classes.
+* An array of classes.
 
 ### Using `require`
 
@@ -303,15 +302,15 @@ The `require` function (not to be confused with the [`require` metaparameter][re
 
 In the above example, Puppet will ensure that every resource in the `apache` class gets applied before every resource in **any** `apache::vhost` instance.
 
-The `require` function uses [include-like behavior][include-like]. (Multiple declarations OK; relies on external data for parameters.) It can accept:
+The `require` function uses [include-like behavior][include-like]. (Multiple declarations okay; relies on external data for parameters.) It can accept:
 
-* A single class
-* A comma-separated list of classes
-* An array of classes
+* A single class.
+* A comma-separated list of classes.
+* An array of classes.
 
 ### Using `contain`
 
-The `contain` function is meant to be used _inside another class definition._ It declares one or more classes, then causes them to become [contained][contains] by the surrounding class. For details, [see the "Containing Classes" section of the Containment page.][contain_classes]
+The `contain` function is meant to be used **inside another class definition.** It declares one or more classes, then causes them to become [contained][contains] by the surrounding class. For details, [see the "Containing Classes" section of the Containment page.][contain_classes]
 
 {% highlight ruby %}
     class ntp {
@@ -331,9 +330,9 @@ In the above example, any resource that forms a `before` or `require` relationsh
 
 The `contain` function uses [include-like behavior][include-like]. (Multiple declarations OK; relies on external data for parameters.) It can accept:
 
-* A single class
-* A comma-separated list of classes
-* An array of classes
+* A single class.
+* A comma-separated list of classes.
+* An array of classes.
 
 > **Bug note:** In this version of Puppet, some uses of the `contain` function are affected by bug [PUP-1597](https://tickets.puppetlabs.com/browse/PUP-1597). This bug prevents `contain` from accepting class names with an absolute `::` prefix (for example, `::ntp::service`).
 >
@@ -343,7 +342,7 @@ The `contain` function uses [include-like behavior][include-like]. (Multiple dec
 
 ### Using `hiera_include`
 
-The `hiera_include` function requests a list of class names from [Hiera][], then declares all of them. Since it uses the [array resolution type][array_search], it will get a combined list that includes classes from **every level** of the [hierarchy][hiera_hierarchy]. This allows you to abandon [node definitions][node] and use Hiera like a lightweight ENC.
+The `hiera_include` function requests a list of class names from [Hiera][] and then declares all of them. Since it uses the [array resolution type][array_search], it will get a combined list that includes classes from **every level** of the [hierarchy][hiera_hierarchy]. This allows you to abandon [node definitions][node] and use Hiera like a lightweight ENC.
 
     # /etc/puppetlabs/puppet/hiera.yaml
     ...
@@ -370,7 +369,7 @@ The `hiera_include` function requests a list of class names from [Hiera][], then
 
 On the node `web01.example.com`, the example above would declare the classes `apache`, `memcached`, `wordpress`, and `base::linux`. On other nodes, it would only declare `base::linux`.
 
-The `hiera_include` function uses [include-like behavior][include-like]. (Multiple declarations OK; relies on external data for parameters.) It accepts a single lookup key.
+The `hiera_include` function uses [include-like behavior][include-like]. (Multiple declarations okay; relies on external data for parameters.) It accepts a single lookup key.
 
 ### Using Resource-Like Declarations
 
@@ -385,7 +384,7 @@ Resource-like declarations look like [normal resource declarations][resource_dec
     class {'base::linux':}
 {% endhighlight %}
 
-Resource-like declarations use [resource-like behavior][resource-like]. (Multiple declarations prohibited; parameters may be overridden at compile-time.) You can provide a value for any class parameter by specifying it as resource attribute; any parameters not specified will follow the normal external/default/fail lookup path.
+Resource-like declarations use [resource-like behavior][resource-like]. (Multiple declarations prohibited; parameters may be overridden at compile time.) You can provide a value for any class parameter by specifying it as resource attribute; any parameters not specified will follow the normal external/default/fail lookup path.
 
 In addition to class-specific parameters, you can also specify a value for any [metaparameter][metaparameters]. In such cases, every resource contained in the class will also have that metaparameter:
 
@@ -414,18 +413,18 @@ Classes can also be assigned to nodes by [external node classifiers][enc] and [L
 
 [aside_history]: #aside-writing-for-multiple-puppet-versions
 
-> Aside: Writing for Multiple Puppet Versions
-> -----
->
-> Hiera integration and automatic parameter lookup were new features in Puppet 3; older versions may install the Hiera functions as an add-on, but will not automatically find parameters. If you are writing code for multiple Puppet versions, you have several options:
->
-> ### Expect Users to Handle Parameters
->
-> The simplest approach is to not look back, and expect Puppet 2.x users to use resource-like declarations. This isn't the friendliest approach, but many modules did this even before auto-parameters were available, and users are accustomed to a subset of their modules requiring it.
->
-> ### Use Hiera Functions in Default Values
->
-> If you are willing to require Hiera and the `hiera-puppet` add-on package for pre-3.0 users, you can emulate Puppet 3's behavior by using a `hiera` function call in each parameter's default value:
+Practical Advice: Writing for Multiple Puppet Versions
+-----
+
+Hiera integration and automatic parameter lookup were new features in Puppet 3; older versions may install the Hiera functions as an add-on, but they will not automatically find parameters. If you are writing code for multiple Puppet versions, you have several options:
+
+### Expect Users to Handle Parameters
+
+The simplest approach is to not look back, and to expect Puppet 2.x users to use resource-like declarations. This isn't the friendliest approach, but many modules did this even before auto-parameters were available, and users are accustomed to a subset of their modules requiring it.
+
+### Use Hiera Functions in Default Values
+
+If you are willing to require Hiera and the `hiera-puppet` add-on package for pre-3.0 users, you can emulate Puppet 3's behavior by using a `hiera` function call in each parameter's default value:
 
 {% highlight ruby %}
     class example ( $parameter_one = hiera('example::parameter_one'), $parameter_two = hiera('example::parameter_two') ) {
@@ -433,9 +432,9 @@ Classes can also be assigned to nodes by [external node classifiers][enc] and [L
     }
 {% endhighlight %}
 
-> Be sure to use 3.0-compatible lookup keys (`<class name>::<parameter>`). This will let 2.x users declare the class with `include`, and their Hiera data will continue to work without changes once they upgrade to Puppet 3.
->
-> This approach can also be combined with the "params class" pattern, if default values are necessary:
+Be sure to use 3.0-compatible lookup keys (`<class name>::<parameter>`). This will let 2.x users declare the class with `include`, and their Hiera data will continue to work without changes once they upgrade to Puppet 3.
+
+This approach can also be combined with the "params class" pattern, if default values are necessary:
 
 {% highlight ruby %}
     class example (
@@ -446,16 +445,16 @@ Classes can also be assigned to nodes by [external node classifiers][enc] and [L
     }
 {% endhighlight %}
 
-> The drawbacks of this approach are:
->
-> * It requires 2.x users to install Hiera and `hiera-puppet`.
-> * It's slower on Puppet 3 --- if you don't set a value in your external data, Puppet will do _two_ searches before falling back to the default value.
->
-> However, depending on your needs, it can be a useful stopgap until all of your users are off Puppet 2.7.
->
-> ### Avoid Class Parameters
->
-> Prior to Puppet 2.6, classes could only request data by reading arbitrary variables outside their local [scope][]. It is still possible to design classes like this. **However,** since dynamic scope was removed in Puppet 3, old-style classes can only read **top-scope or node-scope** variables, which makes them less flexible than they were in previous versions. Your best options for using old-style classes with Puppet 3 are to use an ENC to set your classes' variables, or to manually insert `$special_variable = hiera('class::special_variable')` calls at top scope in your site manifest.
+The drawbacks of this approach are:
+
+* It requires 2.x users to install Hiera and `hiera-puppet`.
+* It's slower on Puppet 3 --- if you don't set a value in your external data, Puppet will do **two** searches before falling back to the default value.
+
+However, depending on your needs, it can be a useful stopgap until all of your users are off Puppet 2.7.
+
+### Avoid Class Parameters
+
+Prior to Puppet 2.6, classes could only request data by reading arbitrary variables outside their local [scope][]. It is still possible to design classes like this. **However,** since dynamic scope was removed in Puppet 3, old-style classes can only read **top-scope or node-scope** variables, which makes them less flexible than they were in previous versions. Your best options for using old-style classes with Puppet 3 are to either use an ENC to set your classes' variables or manually insert `$special_variable = hiera('class::special_variable')` calls at top scope in your site manifest.
 
 
 

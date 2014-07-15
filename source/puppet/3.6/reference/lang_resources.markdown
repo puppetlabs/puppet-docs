@@ -53,17 +53,17 @@ Every resource has a **type,** a **title,** and a set of **attributes:**
 
 The general form of a resource declaration is:
 
-* The resource type, in lowercase
-* An opening curly brace
-* The title, which is a [string][]
-* A colon
+* The resource type, in lowercase.
+* An opening curly brace.
+* The title, which is a [string][].
+* A colon.
 * Optionally, any number of attribute and value pairs, each of which consists of:
-    * An attribute name, which is a bare word
-    * A `=>` (arrow, fat comma, or hash rocket)
-    * A value, which can be any [data type][datatype], depending on what the attribute requires
-    * A trailing comma (note that the comma is optional after the final attribute/value pair)
-* Optionally, a semicolon followed by another title, colon, and attribute block
-* A closing curly brace
+    * An attribute name, which is a bare word.
+    * A `=>` (arrow, fat comma, or hash rocket).
+    * A value, which can be any [data type][datatype], depending on what the attribute requires.
+    * A trailing comma (note that the comma is optional after the final attribute/value pair).
+* Optionally, a semicolon followed by another title, colon, and attribute block.
+* A closing curly brace.
 
 Note that whitespace is fungible in the Puppet language.
 
@@ -252,10 +252,10 @@ Although you cannot declare the same resource twice, you can add attributes to a
 
 The general form of a reference attribute block is:
 
-* A [reference][] to the resource in question (or a multi-resource reference)
-* An opening curly brace
-* Any number of attribute => value pairs
-* A closing curly brace
+* A [reference][] to the resource in question (or a multi-resource reference).
+* An opening curly brace.
+* Any number of attribute => value pairs.
+* A closing curly brace.
 
 In normal circumstances, this idiom can only be used to add previously unmanaged attributes to a resource; it cannot override already-specified attributes. However, within an [inherited class][inheritance], you **can** use this idiom to override attributes.
 
@@ -280,10 +280,10 @@ In normal circumstances, this idiom can only be used to add previously unmanaged
 
 The general form of a collector attribute block is:
 
-* A [resource collector][collector] that matches any number of resources
-* An opening curly brace
-* Any number of attribute => value (or attribute +> value) pairs
-* A closing curly brace
+* A [resource collector][collector] that matches any number of resources.
+* An opening curly brace.
+* Any number of attribute => value (or attribute +> value) pairs.
+* A closing curly brace.
 
 Much like in an [inherited class][inheritance], you can use the special `+>` keyword to append values to attributes that accept arrays. See [appending to attributes][append_attributes] for more details.
 

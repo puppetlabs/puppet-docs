@@ -29,7 +29,7 @@ Several words in the Puppet language are **reserved**. This means they:
 * Cannot be used as bare word strings --- you must quote these words if you wish to use them as strings.
 * Cannot be used as names for custom functions.
 * Cannot be used as names for classes.
-* Cannot be used as names for custom resource types or defined resource types.
+* Cnot be used as names for custom resource types or defined resource types.
 
 > **Note:** As of Puppet 3, reserved words MAY be used as names for attributes in custom resource types. This is a change from the behavior of 2.7 and earlier.
 
@@ -87,9 +87,9 @@ Puppet limits the characters you can use when naming language constructs.
 
 Variable names begin with a `$` (dollar sign) and can include:
 
-* Uppercase and lowercase letters
-* Numbers
-* Underscores
+* Uppercase and lowercase letters.
+* Numbers.
+* Underscores.
 
 There is no additional restriction on the first non-$ character of a variable name. Variable names are case-sensitive. Note that [some variable names are reserved.](#reserved-variable-names)
 
@@ -107,9 +107,9 @@ Qualified variable names should match the following regular expression:
 
 The names of classes, defined types, and custom types can consist of one or more [namespace segments][namespace]. Each namespace segment **must begin with a lowercase letter** and can include:
 
-* Lowercase letters
-* Numbers
-* Underscores
+* Lowercase letters.
+* Numbers.
+* Underscores.
 
 Namespace segments should match the following regular expression:
 
@@ -129,9 +129,9 @@ Note that [some class names are reserved](#reserved-class-names), and [reserved 
 
 Module names obey the same rules as individual class/type namespace segments. That is, they **must begin with a lowercase letter** and can include:
 
-* Lowercase letters
-* Numbers
-* Underscores
+* Lowercase letters.
+* Numbers.
+* Underscores.
 
 Module names should match the following regular expression:
 
@@ -143,9 +143,9 @@ Note that [reserved words](#reserved-words) and [reserved class names](#reserved
 
 Class and defined type parameters begin with a `$` (dollar sign), and their first non-`$` character **must be a lowercase letter.** They can include:
 
-* Lowercase letters
-* Numbers
-* Underscores
+* Lowercase letters.
+* Numbers.
+* Underscores.
 
 Parameter names should match the following regular expression:
 
@@ -155,12 +155,12 @@ Parameter names should match the following regular expression:
 
 [Tags][] must begin with a lowercase letter, number, or underscore, and can include:
 
-* Lowercase letters
-* Numbers
-* Underscores
-* Colons
-* Periods
-* Hyphens
+* Lowercase letters.
+* Numbers.
+* Underscores.
+* Colons.
+* Periods.
+* Hyphens.
 
 Tag names should match the following regular expression:
 

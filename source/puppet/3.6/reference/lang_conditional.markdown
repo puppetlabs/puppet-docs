@@ -77,7 +77,7 @@ A selector:
 "If" Statements
 -----
 
-**"If" statements** take a [boolean][] condition and an arbitrary block of Puppet code, and will only execute the block if the condition is **true.** They can optionally include `elsif` and `else` clauses.
+**"If" statements** take a [boolean][] condition and an arbitrary block of Puppet code, and they will only execute the block if the condition is **true.** They may also include `elsif` and `else` clauses.
 
 
 ### Syntax
@@ -98,11 +98,11 @@ A selector:
 
 The general form of an "if" statement is:
 
-* The `if` keyword
-* A **condition**
-* A pair of curly braces containing any Puppet code
-* **Optionally:** the `elsif` keyword, another condition, and a pair of curly braces containing Puppet code
-* **Optionally:** the `else` keyword and a pair of curly braces containing Puppet code
+* The `if` keyword.
+* A **condition**.
+* A pair of curly braces containing any Puppet code.
+* **Optionally:** the `elsif` keyword, another condition, and a pair of curly braces containing Puppet code.
+* **Optionally:** the `else` keyword and a pair of curly braces containing Puppet code.
 
 ### Behavior
 
@@ -116,9 +116,9 @@ If none of the conditions in the statement match and there is no `else` block, P
 
 The condition(s) of an "if" statement may be any fragment of Puppet code that resolves to a boolean value. This includes:
 
-* [Variables][]
-* [Expressions][], including arbitrarily nested `and` and `or` expressions
-* [Functions][] that return values
+* [Variables][].
+* [Expressions][], including arbitrarily nested `and` and `or` expressions.
+* [Functions][] that return values.
 
 Fragments that resolve to non-boolean values will be [automatically converted to booleans as described here][bool_convert].
 
@@ -136,7 +136,7 @@ If you use the regular expression match operator in a condition, any captures fr
 
 This example would capture any digits from a hostname like `www01` and `www02` and store them in the `$1` variable.
 
-These are not normal variables, and have some special behaviors:
+These are not normal variables and have some special behaviors:
 
 * The values of the numbered variables do not persist outside the code block associated with the pattern that set them.
 * In nested conditionals, each conditional has its own set of values for the set of numbered variables. At the end of an interior statement, the numbered variables are reset to their previous values for the remainder of the outside statement. (This causes conditional statements to act like [local scopes][local], but only with regard to the numbered variables.)
@@ -144,7 +144,7 @@ These are not normal variables, and have some special behaviors:
 "Unless" Statements
 -----
 
-**"Unless" statements** work like reversed "if" statements. They take a [boolean][] condition and an arbitrary block of Puppet code, and will only execute the block if the condition is **false.** They **cannot** include `elsif` or `else` clauses.
+**"Unless" statements** work like reversed "if" statements. They take a [boolean][] condition and an arbitrary block of Puppet code, and they will only execute the block if the condition is **false.** They **cannot** include `elsif` or `else` clauses.
 
 ### Syntax
 
@@ -156,9 +156,9 @@ These are not normal variables, and have some special behaviors:
 
 The general form of an "unless" statement is:
 
-* The `unless` keyword
-* A **condition**
-* A pair of curly braces containing any Puppet code
+* The `unless` keyword.
+* A **condition**.
+* A pair of curly braces containing any Puppet code.
 
 If an `else` or `elsif` clause is included in an "unless" statement, it is a syntax error and will cause compilation to fail.
 
@@ -170,9 +170,9 @@ The condition is evaluated first and, if it is false, the code block is executed
 
 The condition(s) of an "unless" statement may be any fragment of Puppet code that resolves to a boolean value. This includes:
 
-* [Variables][]
-* [Expressions][], including arbitrarily nested `and` and `or` expressions
-* [Functions][] that return values
+* [Variables][].
+* [Expressions][], including arbitrarily nested `and` and `or` expressions.
+* [Functions][] that return values.
 
 Fragments that resolve to non-boolean values will be [automatically converted to booleans as described here][bool_convert].
 
@@ -187,7 +187,7 @@ Although "unless" statements receive regex capture variables like "if" statement
 Case Statements
 -----
 
-Like "if" statements, **case statements** choose one of several blocks of arbitrary Puppet code to execute. They take a control expression and a list of cases and code blocks, and will execute the first block whose case value matches the control expression.
+Like "if" statements, **case statements** choose one of several blocks of arbitrary Puppet code to execute. They take a control expression and a list of cases and code blocks, and they will execute the first block whose case value matches the control expression.
 
 ### Syntax
 
@@ -202,19 +202,19 @@ Like "if" statements, **case statements** choose one of several blocks of arbitr
 
 The general form of a case statement is:
 
-* The `case` keyword
-* A **control expression** (see below)
-* An opening curly brace
+* The `case` keyword.
+* A **control expression** (see below).
+* An opening curly brace.
 * Any number of possible matches, which consist of:
-    * A **case** (see below) or comma-separated list of cases
-    * A colon
-    * A pair of curly braces containing any arbitrary Puppet code
-* A closing curly brace
+    * A **case** (see below) or comma-separated list of cases.
+    * A colon.
+    * A pair of curly braces containing any arbitrary Puppet code.
+* A closing curly brace.
 
 
 ### Behavior
 
-Puppet compares the **control expression** to each of the **cases,** in the order they are listed. It will execute the block of code associated with the **first** matching case, and ignore the remainder of the statement.
+Puppet compares the **control expression** to each of the **cases,** in the order they are listed. It will execute the block of code associated with the **first** matching case and ignore the remainder of the statement.
 
 * Basic cases are compared with [the `==` operator][equality] (which is case-insensitive).
 * Regular expression cases are compared with [the `=~` operator][regex_compare] (which is case-sensitive).
@@ -228,19 +228,19 @@ Case statements will execute a maximum of one code block.
 
 The control expression of a case statement may be any fragment of Puppet code that resolves to a normal value. This includes:
 
-* [Variables][]
-* [Expressions][]
-* [Functions][] that return values
+* [Variables][].
+* [Expressions][].
+* [Functions][] that return values.
 
 ### Cases
 
 Cases may be any of the following:
 
-* A literal value (remember to quote strings)
-* A variable
-* A [function][functions] call that returns a value
-* A [regular expression][regex]
-* The special bare word value `default`
+* A literal value (remember to quote strings).
+* A variable.
+* A [function][functions] call that returns a value.
+* A [regular expression][regex].
+* The special bare word value `default`.
 
 Note that you cannot use arbitrary [expressions][] or [selectors](#selectors) as cases.
 
@@ -262,13 +262,13 @@ If you use regular expression cases, any captures from parentheses in the patter
 
 This example would capture any digits from a hostname like `www01` and `www02` and store them in the `$1` variable.
 
-These are not normal variables, and have some special behaviors:
+These are not normal variables and have some special behaviors:
 
 * The values of the numbered variables do not persist outside the code block associated with the pattern that set them.
 * In nested conditionals, each conditional has its own set of values for the set of numbered variables. At the end of an interior statement, the numbered variables are reset to their previous values for the remainder of the outside statement. (This causes conditional statements to act like [local scopes][local], but only with regard to the numbered variables.)
 
 
-> #### Aside: Best Practices
+> #### Best Practices
 >
 > Case statements should usually have a default case.
 >
@@ -279,25 +279,25 @@ These are not normal variables, and have some special behaviors:
 Selectors
 -----
 
-**Selector statements** are similar to case statements, but return a value instead of executing a code block.
+**Selector statements** are similar to case statements, but they return a value instead of executing a code block.
 
 ### Location
 
 Selectors must be used at places in the code where a **plain value** is expected. This includes:
 
-* Variable assignments
-* Resource attributes
-* Function arguments
-* Resource titles
-* A value in another selector
+* Variable assignments.
+* Resource attributes.
+* Function arguments.
+* Resource titles.
+* A value in another selector.
 * [Expressions][]
 
 Selectors are not legal in:
 
-* A case in another selector
-* A case in a case statement
+* A case in another selector.
+* A case in a case statement.
 
-> #### Aside: Best Practices
+> #### Best Practices
 >
 > For readability's sake, you should generally only use selectors in variable assignments.
 
@@ -323,21 +323,21 @@ In the example above, the value of `$rootgroup` is determined using the value of
 
 The general form of a selector is:
 
-* A **control variable**
-* The `?` (question mark) keyword
-* An opening curly brace
+* A **control variable**.
+* The `?` (question mark) keyword.
+* An opening curly brace.
 * Any number of possible matches, each of which consists of:
-    * A **case**
-    * The `=>` (fat comma) keyword
-    * A **value**
-    * A trailing comma
-* A closing curly brace
+    * A **case**.
+    * The `=>` (fat comma) keyword.
+    * A **value**.
+    * A trailing comma.
+* A closing curly brace.
 
 ### Behavior
 
 The entire selector statement is **treated as a single value.**
 
-Puppet compares the **control variable** to each of the **cases,** in the order they are listed. When it finds a matching case, it will treat that value as the value of the statement and ignore the remainder of the statement.
+Puppet compares the **control variable** to each of the **cases** in the order they are listed. When it finds a matching case, it will treat that value as the value of the statement and ignore the remainder of the statement.
 
 * Basic cases are compared with [the `==` operator][equality] (which is case-insensitive).
 * Regular expression cases are compared with [the `=~` operator][regex_compare] (which is case-sensitive).
@@ -353,11 +353,11 @@ Control variables in selectors must be **variables** or **functions that return 
 
 Cases may be any of the following:
 
-* A literal value (remember to quote strings)
-* A variable
-* A [function][functions] call that returns a value
-* A [regular expression][regex]
-* The special bare word value `default`
+* A literal value (remember to quote strings).
+* A variable.
+* A [function][functions] call that returns a value.
+* A [regular expression][regex].
+* The special bare word value `default`.
 
 Note that you cannot use arbitrary [expressions][] or [selectors](#selectors) as cases.
 
@@ -378,7 +378,7 @@ If you use regular expression cases, any captures from parentheses in the patter
     }
 {% endhighlight %}
 
-These are not normal variables, and have some special behaviors:
+These are not normal variables and have some special behaviors:
 
 * The values of the numbered variables do not persist outside the value associated with the pattern that set them.
 * In nested conditionals, each conditional has its own set of values for the set of numbered variables. At the end of an interior statement, the numbered variables are reset to their previous values for the remainder of the outside statement. (This causes conditional statements to act like [local scopes][local], but only with regard to the numbered variables.)
@@ -387,9 +387,9 @@ These are not normal variables, and have some special behaviors:
 
 Values may be any of the following:
 
-* Any literal value, with the exception of hash literals
-* A variable
-* A [function][functions] call that returns a value
-* Another selector
+* Any literal value, with the exception of hash literals.
+* A variable.
+* A [function][functions] call that returns a value.
+* Another selector.
 
 Note that you cannot use arbitrary [expressions][] as values.

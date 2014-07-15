@@ -65,11 +65,11 @@ This page can help you find syntax elements when you can't remember their names.
 
 ↑ A [resource declaration][resource].
 
-* `file`: The [resource type][type]
-* `ntp.conf`: The [title][]
-* `path`: An [attribute][]
-* `'/etc/ntp.conf'`: A [value][]; in this case, a [string][]
-* `template('ntp/ntp.conf')`: A [function][] call that [returns a value][rvalue]; in this case, the [`template`][template_func] function, with the name of a template in a [module][] as its [argument][]
+* `file`: The [resource type][type].
+* `ntp.conf`: The [title][].
+* `path`: An [attribute][].
+* `'/etc/ntp.conf'`: A [value][]; in this case, a [string][].
+* `template('ntp/ntp.conf')`: A [function][] call that [returns a value][rvalue]; in this case, the [`template`][template_func] function, with the name of a template in a [module][] as its [argument][].
 
 {% highlight ruby %}
     package {'ntp':

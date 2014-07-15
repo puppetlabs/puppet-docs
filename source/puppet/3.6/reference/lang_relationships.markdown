@@ -111,9 +111,9 @@ You can create relationships between two resources or groups of resources using 
 
 The chaining arrows accept the following types of operands on either side of the arrow:
 
-* [Resource references][reference], including multi-resource references
-* [Resource declarations][resources]
-* [Resource collectors][collector]
+* [Resource references][reference], including multi-resource references.
+* [Resource declarations][resources].
+* [Resource collectors][collector].
 
 > Note: Arrays of references cannot be chained. To chain multiple resources at once, you must use a multi-resource reference or a collector.
 
@@ -192,8 +192,8 @@ Behavior
 
 Puppet has two types of resource relationships:
 
-* Ordering
-* Ordering with notification
+* Ordering.
+* Ordering with notification.
 
 An ordering relationship ensures that one resource will be managed before another.
 

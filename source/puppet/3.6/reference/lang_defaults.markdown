@@ -10,7 +10,7 @@ canonical: "/puppet/latest/reference/lang_defaults.html"
 [definedtypes]: ./lang_defined_types.html
 [node]: ./lang_node_definitions.html
 
-Resource defaults let you set default attribute values for a given resource type. Any resource declaration within the area of effect that omits those attributes will inherit the default values.
+Resource defaults let you set default attribute values for a given resource type. Any resource declaration that omits those attributes within the area of effect will inherit the default values.
 
 Syntax
 -----
@@ -26,7 +26,7 @@ Syntax
 
 The general form of resource defaults is:
 
-* The resource type, capitalized. (If the type has a namespace separator (`::`) in its name, every segment must be capitalized. E.g., `Concat::Fragment`.)
+* The resource type, capitalized. (If the type has a namespace separator (`::`) in its name, every segment must be capitalized: for example, `Concat::Fragment`.)
 * An opening curly brace.
 * Any number of attribute and value pairs.
 * A closing curly brace.

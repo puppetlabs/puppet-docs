@@ -23,21 +23,21 @@ canonical: "/puppet/latest/reference/lang_scope.html"
 Scope Basics
 -----
 
-A **scope** is a specific **area of code,** which is partially isolated from other areas of code. Scopes limit the reach of:
+A _scope_ is a specific area of code, which is partially isolated from other areas of code. Scopes limit the reach of:
 
-* [Variables][]
-* [Resource defaults][resourcedefaults]
+* [Variables][].
+* [Resource defaults][resourcedefaults].
 
 Scopes **do not** limit the reach of:
 
-* [Resource titles][resources], which are all global
-* [Resource references][refs], which can refer to a resource declared in any scope
+* [Resource titles][resources], which are all global.
+* [Resource references][refs], which can refer to a resource declared in any scope.
 
 ### Summary Diagram
 
 ![An Euler diagram of several scopes. Top scope contains node scope, which contains the example::other, example::four, and example::parent scopes. Example::parent contains the example::child scope.][diagram]
 
-Any given scope has access to its own contents, and also receives additional contents from its **parent scope,** from node scope, and from top scope.
+Any given scope has access to its own contents and also receives additional contents from its parent scope, from node scope, and from top scope.
 
 In the diagram above:
 
@@ -49,7 +49,7 @@ In the diagram above:
 
 ### Top Scope
 
-Code that is _outside_ any class definition, type definition, or node definition exists at **top scope.** Variables and defaults declared at top scope are available **everywhere.**
+Code that is outside any class definition, type definition, or node definition exists at **top scope.** Variables and defaults declared at top scope are available **everywhere.**
 
 {% highlight ruby %}
     # site.pp
@@ -71,7 +71,7 @@ Code inside a [node definition][node] exists at **node scope.** Note that since 
 
 Variables and defaults declared at node scope are available **everywhere except top scope.**
 
-> Note: Classes and resources declared at top scope **bypass node scope entirely,** and so cannot access variables or defaults from node scope.
+> Note: Classes and resources declared at top scope **bypass node scope entirely** and so cannot access variables or defaults from node scope.
 
 {% highlight ruby %}
     # site.pp
@@ -89,7 +89,7 @@ Variables and defaults declared at node scope are available **everywhere except 
     notice: Top scope: Available!
     notice: Message from top scope:
 
-In this example, node scope can access top scope variables, but not vice-versa.
+In this example, node scope can access top scope variables, but not vice versa.
 
 ### Local Scopes
 
@@ -126,7 +126,7 @@ In this example, a local scope can see "out" into node and top scope, but outer 
 
 ### Overriding Received Values
 
-Variables and defaults declared at node scope can override those received from top scope. Those declared at local scope can override those received from node and top scope, as well as any parent scopes. That is: if multiple variables with the same name are available, **Puppet will use the "most local" one.**
+Variables and defaults declared at node scope can override those received from top scope. Those declared at local scope can override those received from node and top scope, as well as any parent scopes. That is, if multiple variables with the same name are available, **Puppet will use the "most local" one.**
 
 {% highlight ruby %}
     # /etc/puppet/modules/scope_example/manifests/init.pp
@@ -166,7 +166,7 @@ Resource defaults are processed **by attribute** rather than as a block. Thus, d
     include scope_example
 {% endhighlight %}
 
-In this example, `/tmp/example` would be a directory owned by the `puppet` user, and would combine the defaults from top and local scope.
+In this example, `/tmp/example` would be a directory owned by the `puppet` user and would combine the defaults from top and local scope.
 
 More Details
 -----
@@ -203,10 +203,10 @@ This example would set the variable `$local_copy` to the value of the `$confdir`
 
 > Notes:
 >
-> * Remember that top scope's name is the empty string (a.k.a, the null string). Thus, `$::my_variable` would always refer to the top-scope value of `$my_variable`, even if `$my_variable` has a different value in local scope.
+> * Remember that top scope's name is the empty string (aka, the null string). Thus, `$::my_variable` would always refer to the top-scope value of `$my_variable`, even if `$my_variable` has a different value in local scope.
 > * Note that a class must be [declared][declare_class] in order to access its variables; simply having the class available in your modules is insufficient.
 >
->   This means the availability of out-of-scope variables is **parse order dependent.** You should only access out-of-scope variables if the class accessing them can guarantee that the other class is already declared, usually by explicitly declaring it with `include` before trying to read its variables.
+>   This means the availability of out-of-scope variables is **parse-order dependent.** You should only access out-of-scope variables if the class accessing them can guarantee that the other class is already declared, usually by explicitly declaring it with `include` before trying to read its variables.
 
 Variables declared in **anonymous scopes** can only be accessed normally and do not have global qualified names.
 
@@ -224,23 +224,23 @@ There are two different sets of scope lookup rules: **static scope** and **dynam
 
 In **static scope,** parent scopes are **only** assigned by [class inheritance][inheritance] (using the `inherits` keyword). Any **derived** class receives the contents of its base class in addition to the contents of node and top scope.
 
-**All other** local scopes have no parents --- they only receive their own contents, and the contents of node scope (if applicable) and top scope.
+**All other** local scopes have no parents --- they only receive their own contents, the contents of node scope (if applicable), and top scope.
 
 > Static scope has the following characteristics:
 >
 > * Scope contents are predictable and do not depend on parse order.
-> * Scope contents can be determined simply by looking at the relevant class definition(s); the place where a class or type is _declared_ has no effect. (The only exception is node definitions --- if a class is declared outside a node, it does not receive the contents of node scope.)
+> * Scope contents can be determined simply by looking at the relevant class definition(s); the place where a class or type is **declared** has no effect. (The only exception is node definitions --- if a class is declared outside a node, it does not receive the contents of node scope.)
 
 This version of Puppet uses static scope for looking up variables.
 
 ### Dynamic Scope
 
-In **dynamic scope,** parent scopes are assigned by both **inheritance** and **declaration,** with preference being given to inheritance. The full list of rules is:
+In _dynamic scope_, parent scopes are assigned by both inheritance and declaration, with preference being given to inheritance. The full list of rules is:
 
-* Each scope has only one parent, but may have an unlimited chain of grandparents, and receives the merged contents of all of them (with nearer ancestors overriding more distant ones).
+* Each scope has only one parent but may have an unlimited chain of grandparents, and the scope receives the merged contents of all of them (with nearer ancestors overriding more distant ones).
 * The parent of a derived class is its base class.
 * The parent of any other class or defined resource is the **first** scope in which it was declared.
-* When you declare a derived class whose base class _hasn't_ already been declared, the base class is immediately declared in the current scope, and its parent assigned accordingly. This effectively "inserts" the base class between the derived class and the current scope. (If the base class _has_ already been declared elsewhere, its existing parent scope is not changed.)
+* When you declare a derived class whose base class **hasn't** already been declared, the base class is immediately declared in the current scope, and its parent assigned accordingly. This effectively "inserts" the base class between the derived class and the current scope. (If the base class **has** already been declared elsewhere, its existing parent scope is not changed.)
 
 > Dynamic scope has the following characteristics:
 >
