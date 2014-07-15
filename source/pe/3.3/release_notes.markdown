@@ -405,9 +405,9 @@ These steps will remove the node's certificate, purge information about the node
 
 For instructions on completely deactivating an agent node, refer to [Deactivating a PE Agent Node](./node_deactivation.html).
 
-### Errors Related to Stopping `pe-postresql` Service
+### Errors Related to Stopping `pe-postgresql` Service
 
-If for any reason the `pe-postresql` service is stopped, agents will receive several different error messages, for example:
+If for any reason the `pe-postgresql` service is stopped, agents will receive several different error messages, for example:
 
     Warning: Unable to fetch my node definition, but the agent run will continue:
     Warning: Error 400 on SERVER: (<unknown>): mapping values are not allowed in this context at line 7 column 28
