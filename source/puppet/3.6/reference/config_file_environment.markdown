@@ -35,7 +35,7 @@ The environment.conf file uses the same INI-like format as puppet.conf, with one
 
 In this version of Puppet, the environment.conf file is only allowed to override four settings:
 
-* [`modulepath`][modulepath] --- note that Puppet Enterprise requires the modules in `/opt/puppet/share/puppet/modules` for normal operation, so you should usually include `$basemodulepath` at the end of the modulepath.
+* [`modulepath`][modulepath] --- **Note:** if you're using Puppet Enterprise, you must always include either `$basemodulepath` or `/opt/puppet/share/puppet/modules` in the modulepath.
 * [`manifest`][manifest]
 * [`config_version`][config_version]
 * [`environment_timeout`][environment_timeout]
