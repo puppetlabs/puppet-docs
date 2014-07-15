@@ -217,7 +217,15 @@ To workaround this issue, install and start Samba with the following commands:
 
     puppet resource package samba ensure=present
     puppet resource service smbd provider=init enable=true ensure=running
-    puppet resource service nmbd provider=init enable=true ensure=running   
+    puppet resource service nmbd provider=init enable=true ensure=running  
+    
+### Errors Not Issued for Unprivileged Non-root Agent Actions on Windows 
+
+- If you run a PE agent on Windows with non-root privileges and attempt to create a file without the correct access, PE will fail the file creation but will not issue any warnings.
+
+- If you run a PE agent on Windows with non-root privileges and attempt to create a registry key, PE will fail the registry key creation but will indicate they were created. 
+
+These issues will be fixed in a future release. 
 
 
 ### PostgreSQL Buffer Memory Issue Can Cause PE Install to Fail on Machines with Large Amounts of RAM
