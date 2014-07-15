@@ -22,8 +22,8 @@ For example: if your [`environmentpath` setting][environmentpath] is set to `$co
 ## Example
 
     # /etc/puppetlabs/puppet/environments/test/environment.conf
-    # Exclude global directories in basemodulepath from this environment:
-    modulepath = modules
+    # Exclude /etc/puppetlabs/puppet/modules, but leave /opt/puppet/share/puppet/modules (required by PE)
+    modulepath = modules:/opt/puppet/share/puppet/modules
     # Use our custom script to get a git commit for the current state of the code:
     config_version = get_environment_commit.sh
 
@@ -35,7 +35,7 @@ The environment.conf file uses the same INI-like format as puppet.conf, with one
 
 In this version of Puppet, the environment.conf file is only allowed to override four settings:
 
-* [`modulepath`][modulepath]
+* [`modulepath`][modulepath] --- note that Puppet Enterprise requires the modules in `/opt/puppet/share/puppet/modules` for normal operation, so you should usually include `$basemodulepath` at the end of the modulepath.
 * [`manifest`][manifest]
 * [`config_version`][config_version]
 * [`environment_timeout`][environment_timeout]
@@ -53,10 +53,12 @@ The example environment.conf file above configures an environment called `test`,
 * The `modulepath = modules` line will resolve to `modulepath = /etc/puppetlabs/puppet/environments/test/modules`. This removes all of the global directories inherited from the `basemodulepath` setting, and limits the environment to only its local modules.
 * Likewise, `config_version = get_environment_commit.sh` in that environment will be interpreted as `config_version = /etc/puppetlabs/puppet/environments/test/get_environment_commit.sh`
 
-### Interpolation and `$environment`
+### Interpolation in Values
 
-Settings in environment.conf can use the special `$environment` variable in their values. Puppet will replace `$environment` with the name of the active environment.
+The settings in environment.conf can the values of other settings as variables (e.g. `$confdir`). Additionally, they can use the special `$environment` variable, which gets replaced with the name of the active environment.
 
-This is almost never necessary for `modulepath` or `manifest`, but it can be useful as an argument to your `config_version` script.
+The most useful variables to interpolate into environment.conf settings are:
 
-Settings in environment.conf can also interpolate other settings as variables, such as `$confdir`.
+* `$basemodulepath` --- useful for including the default module directories in the `modulepath` setting.
+* `$environment` --- useful for locating files, or as a command line argument to your `config_version` script.
+* `$confdir` --- useful for locating files.

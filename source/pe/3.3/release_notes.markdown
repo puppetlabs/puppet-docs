@@ -32,14 +32,14 @@ This release introduces a web-based interface meant to simplify—and provide be
 
 - Perform a guided installation using the web-based interface. Think of this as an installation interview in which we ask you exactly how you want to install PE. If you're able to provide a few SSH credentials, this method will get you up and running fairly quickly. Refer to the [installation overview](./install_basic.html) for more information.
 
-- Use the web-based interface to create an answer file that you can then add as an argument to the installer script to perform an installation (e.g., `sudo ./puppet-enterprise-installer -a ~/my_answers.txt`). Refer to [Automated Installation with an Answer File](./install_automated.html), which provides an overview on installing PE with an answer file. 
+- Use the web-based interface to create an answer file that you can then add as an argument to the installer script to perform an installation (e.g., `sudo ./puppet-enterprise-installer -a ~/my_answers.txt`). Refer to [Automated Installation with an Answer File](./install_automated.html), which provides an overview on installing PE with an answer file.
 
 - Write your own answer file or use the answer file(s) provided in the PE installation tarball. Check the [Answer File Reference Overview](./install_answer_file_reference.html) to get started.
 
 
 ### Manifest Ordering
 
-Puppet Enterprise is now using a new `ordering` setting in the Puppet core that allows you to configure how unrelated resources should be ordered when applying a catalog. By default, `ordering` will be set to `manifest` in PE. 
+Puppet Enterprise is now using a new `ordering` setting in the Puppet core that allows you to configure how unrelated resources should be ordered when applying a catalog. By default, `ordering` will be set to `manifest` in PE.
 
 The following values are allowed for the `ordering` setting:
 
@@ -56,11 +56,11 @@ For more information, and instructions on changing the `ordering` setting, refer
 [dir_environments]: http://docs.puppetlabs.com/puppet/latest/reference/environments.html
 [config_envir]: http://docs.puppetlabs.com/puppet/latest/reference/environments_classic.html
 
-The latest version of the Puppet core (Puppet 3.6) deprecates the classic [config-file environments][config_envir] in favor of the new and improved [directory environments][dir_environments]. Over time, both Puppet open source and Puppet Enterprise will make more extensive use of this pattern. 
+The latest version of the Puppet core (Puppet 3.6) deprecates the classic [config-file environments][config_envir] in favor of the new and improved [directory environments][dir_environments]. Over time, both Puppet open source and Puppet Enterprise will make more extensive use of this pattern.
 
 Environments are isolated groups of puppet agent nodes. This frees you to use different versions of the same modules for different populations of nodes, which is useful for testing changes to your Puppet code before implementing them on production machines. (You could also do this by running a separate puppet master for testing, but using environments is often easier.)
 
-In this release of PE, please note that if you define environment blocks or use any of the `modulepath`, `manifest`, and `config_version` settings in `puppet.conf`, you will see deprecation warnings intended to prepare you for these changes. Configuring PE to use *no* environments will also produce deprecation warnings. 
+In this release of PE, please note that if you define environment blocks or use any of the `modulepath`, `manifest`, and `config_version` settings in `puppet.conf`, you will see deprecation warnings intended to prepare you for these changes. Configuring PE to use *no* environments will also produce deprecation warnings.
 
 Once PE has fully moved to directory environments, the default `production` environment will take the place of the global `manifest`/`modulepath`/`config_version` settings.
 
@@ -90,14 +90,14 @@ Using the `modulepath`, `manifest`, or `config_version` settings will raise a de
         (at /usr/lib/ruby/site_ruby/1.8/puppet/settings.rb:1065:in `each')
     Warning: Setting config_version is deprecated in puppet.conf. See http://links.puppetlabs.com/env-settings-deprecations
         (at /usr/lib/ruby/site_ruby/1.8/puppet/settings.rb:1065:in `each')
-        
-> **Note**: Executing puppet commands will raise the `modulepath` deprecation warning. 
 
-> **About Disabling Deprecation Warnings** 
+> **Note**: Executing puppet commands will raise the `modulepath` deprecation warning.
+
+> **About Disabling Deprecation Warnings**
 >
 > You can disable deprecation warnings by adding `disable_warnings = deprecations` to the `[main]` section of `puppet.conf`. However, please note that this will disable **ALL** deprecation warnings. We recommend that you re-enable deprecation warnings when upgrading so that you don't potentially miss new warnings.
-        
-The Puppet 3.6 documentation has a comprehensive overview on working with [directory environments][dir_environments], but please note that this feature may have variations in functionality once fully integrated in Puppet Enterprise.
+
+The Puppet 3.6 documentation has a comprehensive overview on working with [directory environments][dir_environments].
 
 ### New Puppet Enterprise Supported Modules
 
@@ -105,7 +105,7 @@ This release adds new modules to the list of Puppet Enterprise supported modules
 
 ### Puppet Module Tool (PMT) Improvements
 
-The PMT has been updated to deprecate the Modulefile in favor of metadata.json. To help ease the transition, when you run `puppet module generate` the module tool will kick off an interview and generate metadata.json based on your responses. 
+The PMT has been updated to deprecate the Modulefile in favor of metadata.json. To help ease the transition, when you run `puppet module generate` the module tool will kick off an interview and generate metadata.json based on your responses.
 
 If you have already built a module and are still using a Modulefile, you will receive a deprecation warning when you build your module with `puppet module build`. You will need to perform [migration steps](http://docs.puppetlabs.com/puppet/latest/reference/modules_publishing.html#build-your-module) before you publish your module. For complete instructions on working with metadata.json, see [Publishing Modules](http://docs.puppetlabs.com/puppet/latest/reference/modules_publishing.html)
 
@@ -113,7 +113,7 @@ Please see [Known Issues](#known-issues) for information about a bug impacting m
 
 ### Console Data Export
 
-Every node list view in the console now includes a link to export the table data in CSV format, so that you can include the data in a spreadsheet or other tool. 
+Every node list view in the console now includes a link to export the table data in CSV format, so that you can include the data in a spreadsheet or other tool.
 
 ### Support for Red Hat Enterprise Linux 7
 
@@ -137,7 +137,7 @@ This release increases the number of PE supported operating systems than can ins
 
 ### Support for stdlib 4
 
-This version of PE is fully compatible with version 4.x of stdlib. 
+This version of PE is fully compatible with version 4.x of stdlib.
 
 ### Razor Provisioning Tech Preview Usability Enhancements and Bug Fixes
 
@@ -148,7 +148,7 @@ Razor is included in PE 3.3 as a [tech preview](http://puppetlabs.com/services/t
 ## Security Fixes
 
 [CVE-2014-0224 OpenSSL vulnerability in secure communications](http://puppetlabs.com/security/cve/cve-2014-0224/)
- 
+
 **Assessed Risk Level**: medium
 
 **Affected Platforms**:
@@ -156,27 +156,27 @@ Razor is included in PE 3.3 as a [tech preview](http://puppetlabs.com/services/t
 * Puppet Enterprise 2.8 (Solaris, Windows)
 
 * Puppet Enterprise 3.2 (Solaris, Windows, AIX)
- 
-Due to a vulnerability in OpenSSL versions 1.0.1 and later, an attacker could intercept and decrypt secure communications. This vulnerability requires that both the client and server be running an unpatched version of OpenSSL. Unlike heartbleed, this attack vector occurs after the initial handshake, which means encryption keys are not compromised. However, Puppet Enterprise encrypts catalogs for transmission to agents, so PE manifests containing sensitive information could have been intercepted. We advise all users to avoid including sensitive information in catalogs. 
+
+Due to a vulnerability in OpenSSL versions 1.0.1 and later, an attacker could intercept and decrypt secure communications. This vulnerability requires that both the client and server be running an unpatched version of OpenSSL. Unlike heartbleed, this attack vector occurs after the initial handshake, which means encryption keys are not compromised. However, Puppet Enterprise encrypts catalogs for transmission to agents, so PE manifests containing sensitive information could have been intercepted. We advise all users to avoid including sensitive information in catalogs.
 
 Puppet Enterprise 3.3.0 includes a patched version of OpenSSL.
- 
+
 CVSS v2 score: 2.4 with Vector: AV:N/AC:H/Au:M/C:P/I:P/A:N/E:U/RL:OF/RC:C
 
 [CVE-2014-0198 OpenSSL vulnerability could allow denial of service attack](http://puppetlabs.com/security/cve/cve-2014-0198/)
- 
+
 **Assessed Risk Level**: low
 
 **Affected Platforms**: Puppet Enterprise 3.2 (Solaris, Windows, AIX)
- 
+
 Due to a vulnerability in OpenSSL versions 1.0.0 and 1.0.1, if SSL\_MODE_\RELEASE\_BUFFERS is enabled, an attacker could cause a denial of service.
- 
+
 CVSS v2 score: 1.9 with Vector: AV:N/AC:H/Au:N/C:N/I:N/A:P/E:U/RL:OF/RC:C
 
 [CVE-2014-3251 MCollective `aes_security` plugin did not correctly validated new server certs](http://puppetlabs.com/security/cve/cve-2014-3251/)
- 
+
 **Assessed Risk Level**: low
- 
+
 **Affected Platforms**:
 
 * Mcollective (all)
@@ -184,7 +184,7 @@ CVSS v2 score: 1.9 with Vector: AV:N/AC:H/Au:N/C:N/I:N/A:P/E:U/RL:OF/RC:C
 * Puppet Enterprise 3.2
 
 The MCollective `aes_security` public key plugin did not correctly validate new server certs against the CA certificate. By exploiting this vulnerability within a specific race condition window, an attacker with local access could initiate an unauthorized Mcollective client connection with a server. Note that this vulnerability requires that a collective be configured to use the `aes_security` plugin. Puppet Enterprise and open source Mcollective are not configured to use the plugin and are not vulnerable by default.
- 
+
 CVSS v2 score: 3.4 with Vector: AV:L/AC:H/Au:M/C:P/I:N/A:C/E:POC/RL:OF/RC:C
 
 ## Bug Fixes
@@ -192,7 +192,7 @@ CVSS v2 score: 3.4 with Vector: AV:L/AC:H/Au:M/C:P/I:N/A:C/E:POC/RL:OF/RC:C
 The following is a basic overview of some of the bug fixes in this release:
 
 * Installation - fixes improve installation so that the installer checks for config files and not just /etc/puppetlabs/, stops pe-puppet-dashboard-workers during upgrade, warns the user if there is not enough PostgreSQL disk space, and more.
-* UI updates - fixes make the appearance and behavior more consistent across all areas of the console.  
+* UI updates - fixes make the appearance and behavior more consistent across all areas of the console.
 
 ## Known Issues
 
@@ -212,20 +212,20 @@ If you attempt to install and start Samba using PE resource management, you will
 
     Error: /Service[smb]: Could not evaluate: Could not find init script or upstart conf file for 'smb'`
     Error: Could not run: Could not find init script or upstart conf file for 'smb'`
-   
+
 To workaround this issue, install and start Samba with the following commands:
 
     puppet resource package samba ensure=present
     puppet resource service smbd provider=init enable=true ensure=running
-    puppet resource service nmbd provider=init enable=true ensure=running  
-    
-### Errors Not Issued for Unprivileged Non-root Agent Actions on Windows 
+    puppet resource service nmbd provider=init enable=true ensure=running
+
+### Errors Not Issued for Unprivileged Non-root Agent Actions on Windows
 
 - If you run a PE agent on Windows with non-root privileges and attempt to create a file without the correct access, PE will fail the file creation but will not issue any warnings.
 
-- If you run a PE agent on Windows with non-root privileges and attempt to create a registry key, PE will fail the registry key creation but will indicate they were created. 
+- If you run a PE agent on Windows with non-root privileges and attempt to create a registry key, PE will fail the registry key creation but will indicate they were created.
 
-These issues will be fixed in a future release. 
+These issues will be fixed in a future release.
 
 
 ### PostgreSQL Buffer Memory Issue Can Cause PE Install to Fail on Machines with Large Amounts of RAM
@@ -249,7 +249,7 @@ There are two scenarios in which your upgrade can fail:
        connections on Unix domain socket "/tmp/.s.PGSQL.5432"?
        Database transfer failed.
 
-To work around these issues, ensure the PostgreSQL service is stopped before installing PE. To determine if PostgreSQL is running, run `service status postgresql`. If an equivalent of "stopped" or "no such service" is returned, the service is not running. If the service is running, stop it (e.g., `service postgresql stop`) and disable it (`chkconfig postgresql off`). 
+To work around these issues, ensure the PostgreSQL service is stopped before installing PE. To determine if PostgreSQL is running, run `service status postgresql`. If an equivalent of "stopped" or "no such service" is returned, the service is not running. If the service is running, stop it (e.g., `service postgresql stop`) and disable it (`chkconfig postgresql off`).
 
 To resolve the issue, make sure that `which psql` resolves to `/opt/puppet/bin/psql`.
 
@@ -261,7 +261,7 @@ Users upgrading from PE 3.2.0 to a later version of 3.x (including 3.2.3) will s
 
 An issue with MCollective prevents correct uninstallation of packages on nodes running Windows. You can uninstall packages on Windows nodes using Puppet, for example:
         `package
-            { 'Google Chrome': ensure => absent, }` 
+            { 'Google Chrome': ensure => absent, }`
 
 The issue is being tracked on [this support ticket](https://tickets.puppetlabs.com/browse/MCOP-14).
 
@@ -269,7 +269,7 @@ The issue is being tracked on [this support ticket](https://tickets.puppetlabs.c
 
 The answer file no longer gives the option of whether to install symlinks. These are now automatically installed by packages. To allow the creation of symlinks, you need to ensure that `/usr/local` is writable.
 
-### Upgrades to PE 3.2.x or Later Remove Commented Authentication Sections from `rubycas-server/config.yml` 
+### Upgrades to PE 3.2.x or Later Remove Commented Authentication Sections from `rubycas-server/config.yml`
 
 If you are upgrading to PE 3.2.x or later, `rubycas-server/config.yml` will not contain the commented sections for the third-party services. We've provided the commented sections on [the console config page](./console_config.html#configuring-rubycas-server-config-yml), which you can copy and paste into `rubycas-server/config.yaml` after you upgrade.
 
@@ -277,7 +277,7 @@ If you are upgrading to PE 3.2.x or later, `rubycas-server/config.yml` will not 
 
 The `pe_mcollective` module includes a parameter for the ActiveMQ heap size (`activemq_heap_mb`). A bug prevents this parameter from correctly accepting an integer when one is entered in the console. The problem can be avoided by placing the integer inside quote marks (e.g., `"10"`). This will cause Puppet to correctly validate the value when it is passed from the console.
 
-### Safari Certificate Handling May Prevent Console Access 
+### Safari Certificate Handling May Prevent Console Access
 
 Due to [Apache bug 53193](https://issues.apache.org/bugzilla/show_bug.cgi?id=53193) and the way Safari handles certificates, Puppet Labs recommends that PE 3.3 users avoid using Safari to access the PE console.
 
@@ -291,7 +291,7 @@ This issue will be fixed in a future release.
 
 ### `puppet module list --tree` Shows Incorrect Dependencies After Uninstalling Modules
 
-If you uninstall a module with `puppet module uninstall <module name>` and then run `puppet module list --tree`, you will get a tree that does not accurately reflect module dependencies. 
+If you uninstall a module with `puppet module uninstall <module name>` and then run `puppet module list --tree`, you will get a tree that does not accurately reflect module dependencies.
 
 ### Passenger Global Queue Error on Upgrade
 
@@ -426,7 +426,7 @@ The PMT has a known issue wherein modules that were published to the Puppet Forg
 
 To determine if a module you're using has this issue, run `puppet module changes username-modulename`. If your module has this checksum issue, you will see that the metadata.json has been modified. If you try to upgrade or uninstall a module with this issue, you will receive warnings and your action will fail.
 
-To work around this issue: 
+To work around this issue:
 1. Navigate to the current version of the module.
 2. If the checksums.json file is present, open it in your editor and delete the line: "metadata.json": [some checksum here]
 3. If there is no checksums.json, open the metadata.json file in your editor and delete the entire 'checksums' field.
@@ -445,7 +445,7 @@ This error is because there is no CA-cert bundle on Solaris 10 to trust the Pupp
 
 ### Razor Known Issues
 
-Please see the page [Razor Setup Recommendations and Known Issues](./razor_knownissues.html). 
+Please see the page [Razor Setup Recommendations and Known Issues](./razor_knownissues.html).
 
 Puppet Terminology
 -----
