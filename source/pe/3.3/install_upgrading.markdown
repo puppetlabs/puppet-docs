@@ -101,7 +101,7 @@ If you are upgrading to PE 3.2.x or later, `rubycas-server/config.yml` will not 
 ### You Might Need to Upgrade puppetlabs-inifile to Version 1.1.0 or Later
 PE will automatically update your version of puppetlabs-inifile as part of the upgrade process. However, if you encounter the following error message on your PuppetDB node, then you need to manually upgrade the puppetlabs-inifile module to version 1.1.0 or higher.
 
-	Error: Could not retrieve catalog from remote server: Error 400 on SERVER: Invalid 		parameter quote_char on Ini_subsetting['-Xmx'] on node master
+	Error: Could not retrieve catalog from remote server: Error 400 on SERVER: Invalid parameter quote_char on Ini_subsetting['-Xmx'] on node master
 	Warning: Not using cache on failed catalog
 	Error: Could not retrieve catalog; skipping run
 
