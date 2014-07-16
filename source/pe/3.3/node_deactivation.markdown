@@ -15,7 +15,7 @@ From time to time, you may need to completely deactivate an agent node in your P
 1. [Stop the agent service on the node you want to deactivate](./orchestration_puppet.html). 
 2. On the master, deactivate the node; run `puppet node deactivate <node name>`. 
 
-   This deactivates the agent node in PuppetDB and decrements the PE license count. 
+   This deactivates the agent node in PuppetDB. In some cases, the PE license count in the console will not decrease for up to 24 hours, but you can restart the `pe-memcached` service to update the license count sooner. 
    
 3. On the master, revoke the agent certificate; run `puppet cert clean <node name>`. 
 
@@ -31,7 +31,7 @@ From time to time, you may need to completely deactivate an agent node in your P
 
    This action does **NOT** disable MCollective/live management on the node. 
    
-   **Note**: If you delete a node from the node view without first deactivating the node, the node will be absent from the node list in the console, but the license count will not decrement, and on the next puppet run, the node will be listed in the console. 
+   **Note**: If you delete a node from the node view without first deactivating the node, the node will be absent from the node list in the console, but the license count will not decrease, and on the next puppet run, the node will be listed in the console. 
 
 6. To disable MCollective/live management on the node, [uninstall the puppet agent](./install_uninstalling.html), stop the pe-mcollective service (on the agent, run `service pe-mcollective stop`), or destroy the agent node altogether. 
 
