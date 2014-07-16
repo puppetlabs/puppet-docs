@@ -257,6 +257,13 @@ To resolve the issue, make sure that `which psql` resolves to `/opt/puppet/bin/p
 
 Users upgrading from PE 3.2.0 to a later version of 3.x (including 3.2.3) will see errors when attempting to download agent packages for platforms other than the master. After adding `pe_repo` classes to the master for desired agent packages, errors will be seen on the subsequent puppet run as PE attempts to access the requisite packages. For a simple workaround to this issue, see the [installer troubleshooting page](./trouble_install.html).
 
+### You Might Need to Upgrade puppetlabs-inifile to Version 1.1.0 or Later
+PE will automatically update your version of puppetlabs-inifile as part of the upgrade process. However, if you encounter the following error message on your PuppetDB node, then you need to manually upgrade the puppetlabs-inifile module to version 1.1.0 or higher.
+
+	Error: Could not retrieve catalog from remote server: Error 400 on SERVER: Invalid 		parameter quote_char on Ini_subsetting['-Xmx'] on node master
+	Warning: Not using cache on failed catalog
+	Error: Could not retrieve catalog; skipping run
+
 ### Live Management Cannot Uninstall Packages on Windows Nodes
 
 An issue with MCollective prevents correct uninstallation of packages on nodes running Windows. You can uninstall packages on Windows nodes using Puppet, for example:
