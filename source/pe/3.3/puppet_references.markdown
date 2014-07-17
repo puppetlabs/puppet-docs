@@ -25,7 +25,7 @@ Resource types are the atomic unit of Puppet configurations, and there are a lot
 Puppet Syntax
 -----
 
-* [The Puppet Language Reference](/puppet/3/reference/lang_summary.html) covers every part of the Puppet language as of Puppet 3.x.
+* [The Puppet Language Reference](/puppet/3.6/reference/lang_summary.html) covers every part of the Puppet language as of Puppet 3.x.
 
 
 Configuration and Settings

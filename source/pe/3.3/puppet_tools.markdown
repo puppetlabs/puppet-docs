@@ -33,7 +33,7 @@ Puppet agent and puppet master are the heart of Puppet's architecture.
     External services can easily integrate with PuppetDB's data via its query API. [See the PuppetDB manual's API pages][puppetdb_api] for more details.
 
 [query_functions]: https://forge.puppetlabs.com/dalen/puppetdbquery
-[exported]: /puppet/3/reference/lang_exported.html
+[exported]: /puppet/3.6/reference/lang_exported.html
 [puppetdb_api]: /puppetdb/1.3/api/index.html
 
 Everyday Tools

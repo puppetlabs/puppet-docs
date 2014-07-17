@@ -17,7 +17,7 @@ In this first part, follow along to learn how to:
 * Create a small proof-of-concept deployment
 
 >**Note**: The installation instructions describe how to install a single agent. If you want to install more than one agent, just repeat the steps in the "Install the Puppet Enterprise Agent" section.
- 
+
 * Examine and control nodes in real time with live management
 * Install a PE-supported Puppet module
 * Apply Puppet classes to nodes using the console
@@ -26,7 +26,7 @@ In this first part, follow along to learn how to:
 
 ####  Quick Start Part Two: Developing Modules
 
-For part two, you'll build on your knowledge of PE and  learn about module development . You can choose from either [the Linux track](./quick_writing_nix) or [the Windows track](./quick_writing_windows). 
+For part two, you'll build on your knowledge of PE and  learn about module development . You can choose from either [the Linux track](./quick_writing_nix) or [the Windows track](./quick_writing_windows).
 
 In part two, you'll learn about:
 
@@ -76,7 +76,7 @@ For this walk-through, you will create a simple deployment where the puppet mast
 >     * Are you installing using root with an ssh key? The installer will ask you to provide the username, private key path, and key passphrase (as needed) for each node on which you're installing a PE component. Remote root ssh login must enabled on each node, including the node from which you're running the installer. And the public root ssh key must be added to `authorized_keys` on each node on which you're installing a PE component.
 > * Please ensure that port 3000 is reachable, as the web-based installer uses this port. You can close the port when the installation is complete.
 >
-> * The web-based installer does not support sudo configurations with `Defaults targetpw` or `Defaults rootpw`. Make sure your `/etc/sudoers` file does not contain, or else comment out, those lines. 
+> * The web-based installer does not support sudo configurations with `Defaults targetpw` or `Defaults rootpw`. Make sure your `/etc/sudoers` file does not contain, or else comment out, those lines.
 >
 > * **For Debian Users**: If you gave the root account a password during the installation of Debian, sudo may not have been installed. In this case, you will need to either install PE as root, or install sudo on any node(s) on which you want to install PE.
 
@@ -91,14 +91,14 @@ For this walk-through, you will create a simple deployment where the puppet mast
 4. When prompted, choose "Yes" to install the setup packages. (If you choose "No," the installer will exit.)
 
    At this point, the PE installer will start a web server and provide a web address: `https://<install platform hostname>:3000`. Please ensure that port 3000 is reachable. If necessary, you can close port 3000 when the installation is complete. Also be sure to use `https`.
-   
+
    >**Warning**: Leave your terminal connection open until the installation is complete; otherwise the installation will fail.
 
 5. Copy the address into your browser.
 6. When prompted, accept the security request in your browser.
 
-   The web-based installation uses a default SSL certificate; you’ll have to add a security exception in order to access the web-based installer. This is safe to do.. 
-   
+   The web-based installation uses a default SSL certificate; you’ll have to add a security exception in order to access the web-based installer. This is safe to do..
+
    You'll be taken to the installer start page.
 
 7. On the start page, click **Let's get started**.
@@ -106,27 +106,27 @@ For this walk-through, you will create a simple deployment where the puppet mast
 9. Provide the following information about the puppet master server:
 
    a. **Puppet master FQDN**: provide the fully qualified domain name of the server you're installing PE on; for example, `master.example.com`.
-   
+
    b. **DNS aliases**: provide a comma-separated list of aliases agent nodes can use to reach to the master; for example `master`.
-   
+
    c. **SSH Username**: provide the SSH username for the user connecting to the puppet master; in this case, `root`.
 
 10. When prompted about database support, choose the default option **Install PostgreSQL for me**.
 11. Provide the following information about the PE console administrator user:
 
     a. **Console superuser email address**: provide the address you'll use to log in to the console as the administrator.
-   
+
     b. **Console superuser passphrase**: create a password for the console login; as indicated, the password must be at least eight characters.
-  
+
 12. For **SMTP Hostname** use `localhost`.
 
 13. Click **Submit**.
-14. On the confirm plan page, review the information you provided, and, if it looks correct, click **Continue**. 
+14. On the confirm plan page, review the information you provided, and, if it looks correct, click **Continue**.
 
     If you need to make any changes, click **Go Back** and make whatever changes are required.
-    
+
 15. On the validation page, the installer will verify various configuration elements (e.g., if SSH credentials are correct, if there is enough disk space, and if the OS is the same for the various components). If there aren't any outstanding issues, click **Deploy now**.
-     
+
 The installer will then install and configure Puppet Enterprise. It may also need to install additional packages from your OS's repository. **This process may take up to 10-15 minutes.** When the installation is complete, the installer script that was running in the terminal will close itself.
 
 > You have now installed the puppet master node. As indicated by the installer, the puppet master node is also an agent node, and can configure itself the same way it configures the other nodes in a deployment. Stay logged in as root for further exercises.
@@ -141,13 +141,13 @@ To log in to the console, you can select the **Start Using Puppet Enterprise Now
 
    ![The console login screen](./images/quick/login.png)
 
-   The console GUI loads in your browser. 
+   The console GUI loads in your browser.
 
 ### Installing the Puppet Enterprise Agent
 
 >**Note**: This procedure references RHEL and Debian, but it can be used for all supported platforms except Windows. For instructions on installing agents on Windows, refer to the [Windows agent installation instructions](./install_windows.html).
 
->**Tip**: If you don't have internet connectivity, refer to the [note about installing without internet connectivity](./install_agents.html#important-notes-and-warnings) to choose a method that is suitable for your needs. 
+>**Tip**: If you don't have internet connectivity, refer to the [note about installing without internet connectivity](./install_agents.html#important-notes-and-warnings) to choose a method that is suitable for your needs.
 
 The puppet master that you've installed hosts a package repository for the agent of the same OS and architecture as the puppet master. When you run the installation script on your agent (for example, `curl -k https://<master.example.com>:8140/packages/current/install.bash | sudo bash`), the script will detect the OS on which it is running, set up an apt (or yum, or zypper) repo that refers back to the master, pull down and install the `pe-agent` packages.
 
@@ -163,19 +163,19 @@ If your master OS and architecture is different than the agent (for example, the
 
 2. Search for the `pe_repo::platform::debian_6_amd64` class in the list of classes, and click its checkbox to select it. Click the __Add selected classes__ button at the bottom of the page.
 
-3. Navigate to the master.example.com node page, click the __Edit__ button, and begin typing "`pe_repo::platform::debian_6_amd64`" in the __Classes__ field; you can select the `pe_repo::platform::debian_6_amd64` class from the list of autocomplete suggestions. 
+3. Navigate to the master.example.com node page, click the __Edit__ button, and begin typing "`pe_repo::platform::debian_6_amd64`" in the __Classes__ field; you can select the `pe_repo::platform::debian_6_amd64` class from the list of autocomplete suggestions.
 
 4. Click the __Update__ button after you have selected it.
 
-5. Note that the `pe_repo::platform::debian_6_amd64` class now appears in the list of classes for the master.example.com node. 
- 
+5. Note that the `pe_repo::platform::debian_6_amd64` class now appears in the list of classes for the master.example.com node.
+
 6. Navigate to the live management page, and select the __Control Puppet__ tab. Use the __runonce__ action to trigger a puppet run.
-   
+
    The new repo will be created in `/opt/puppet/packages/public`. It will be called `puppet-enterprise-3.3.0-debian-6-amd64-agent`.
-   
+
 8. SSH into the Debian node where you want to install the agent, and run `curl -k https://<master.example.com>:8140/packages/current/install.bash | sudo bash`.
 
-The installer will then install and configure the Puppet Enterprise agent. 
+The installer will then install and configure the Puppet Enterprise agent.
 
 > You have now installed the puppet agent node. Stay logged in as root for further exercises.
 
@@ -205,7 +205,7 @@ During this walkthrough, we will be running the puppet agent interactively. By d
 1. **On the agent node,** log in as root and run `puppet agent --test` on the command line. This will trigger a single puppet run on the agent with verbose logging.
 
    > **Note**: You may receive a `-bash: puppet: command not found` error; this is due to the fact that PE installs its binaries in `/opt/puppet/bin` and `/opt/puppet/sbin`, which aren't included in your default `$PATH`. To include these binaries in your default `$PATH`, manually add them to your profile or run `PATH=/opt/puppet/bin:$PATH;export PATH`.
-      
+
 2. Note the long string of log messages, which should end with `notice: Finished catalog run in [...] seconds`.
 
 
@@ -217,9 +217,9 @@ During this walkthrough, we will be running the puppet agent interactively. By d
 [console_nav]: ./console_navigating.html
 
 
-1. Click __Nodes__ in the primary navigation bar. 
+1. Click __Nodes__ in the primary navigation bar.
    You'll see various UI elements, which show a summary of recent puppet runs and their status. Notice that the master and any agent nodes appear in the list of nodes:
-   
+
    ![The console front page](./images/quick/front.png)
 
 2. **Explore the console**. Note that if you click on a node to view its details, you can see its recent history, the Puppet classes it receives, and a very large list of inventory information about it. [See here for more information about navigating the console.][console_nav]
@@ -303,7 +303,7 @@ Puppet classes are **distributed in the form of modules**. You can save time by 
 
 ### Installing a Forge Module
 
-We will install a Puppet Enterprise supported module: `puppetlabs-ntp`. While you can use any module available on the Forge, PE customers can take advantage of [supported modules](http://forge.puppetlabs.com/supported) which are supported, tested, and maintained by Puppet Labs. 
+We will install a Puppet Enterprise supported module: `puppetlabs-ntp`. While you can use any module available on the Forge, PE customers can take advantage of [supported modules](http://forge.puppetlabs.com/supported) which are supported, tested, and maintained by Puppet Labs.
 
 1. **On your control workstation**, point your browser to [http://forge.puppetlabs.com/puppetlabs/ntp](http://forge.puppetlabs.com/puppetlabs/ntp). This is the Forge listing for a module that installs, configures, and manages the NTP service.
 
@@ -314,8 +314,8 @@ We will install a Puppet Enterprise supported module: `puppetlabs-ntp`. While yo
         puppetlabs-ntp   NTP Module                                                  @puppetlabs   ntp aix
         saz-ntp          UNKNOWN                                                     @saz          ntp OEL
         thias-ntp        Network Time Protocol...                                    @thias        ntp ntpd
-        warriornew-ntp   ntp setup                                                   @warriornew   ntp 
-        
+        warriornew-ntp   ntp setup                                                   @warriornew   ntp
+
    We want `puppetlabs-ntp`, which is the PE supported NTP module. You can view detailed info about the module in the "Read Me" on the Forge page you just visited: <http://forge.puppetlabs.com/puppetlabs/ntp>.
 
 4. Install the module by running `puppet module install puppetlabs-ntp`:
@@ -325,7 +325,7 @@ We will install a Puppet Enterprise supported module: `puppetlabs-ntp`. While yo
         Notice: Installing -- do not interrupt ...
         /etc/puppetlabs/puppet/modules
         └── puppetlabs-ntp (v3.0.1)
-        
+
 > You have just installed a Puppet module. All of the classes in it are now available to be added to the console and assigned to nodes.
 
 There are many more modules, including PE supported modules, on [the Forge](http://forge.puppetlabs.com). In part two of this guide you'll learn more about modules, including customizing and writing your own modules on either  [Windows](./quick_writing_windows) or [*nix](./quick_writing_nix) platforms.
@@ -337,7 +337,7 @@ There are many more modules, including PE supported modules, on [the Forge](http
 [assign_ntp_default]: ./images/quick/assign_ntp_default.png
 [ntp-params]: ./images/quick/ntp-params.png
 
-Every module contains one or more **classes**. [Classes](../puppet/3/reference/lang_classes.html) are named chunks of puppet code and are the primary means by which Puppet configures nodes. The module you just installed contains a class called `ntp`. To use any class, you must first **tell the console about it** and then **assign it to one or more nodes**.
+Every module contains one or more **classes**. [Classes](/puppet/3.6/reference/lang_classes.html) are named chunks of puppet code and are the primary means by which Puppet configures nodes. The module you just installed contains a class called `ntp`. To use any class, you must first **tell the console about it** and then **assign it to one or more nodes**.
 
 1. **On the console**, click the __Add classes__ button in the sidebar:
 
@@ -362,7 +362,7 @@ Every module contains one or more **classes**. [Classes](../puppet/3/reference/l
 
 8. Finally, restart the NTP service.
 
-> Puppet is now managing NTP on the nodes in the __default__ group. So, for example, if you forget to restart the NTP service on one of those nodes after running `ntpdate`, PE will automatically restart it on the next puppet run. 
+> Puppet is now managing NTP on the nodes in the __default__ group. So, for example, if you forget to restart the NTP service on one of those nodes after running `ntpdate`, PE will automatically restart it on the next puppet run.
 
 #### Setting Class Parameters
 
@@ -374,7 +374,7 @@ You can use the console to set the values of the class parameters of nodes by se
 
    ![the NTP parameters list][ntp-params]
 
-4. Enter a value for the parameter you wish to set. To set a specific server, enter `ntp1.example.com` in the box next to the __servers__ parameter. 
+4. Enter a value for the parameter you wish to set. To set a specific server, enter `ntp1.example.com` in the box next to the __servers__ parameter.
 
   The grey text that appears as values for some parameters is the default value, which can be either a literal value or a Puppet variable. You can restore this value with the __Reset value__ control that appears next to the value after you have entered a custom value.
 
@@ -430,7 +430,7 @@ To learn about these workflows, continue to part two of this quick start guide. 
 
 Puppet Labs offers many opportunities for learning and training, from formal certification courses to guided on-line lessons. We've noted a few below; head over to the [learning Puppet page](https://puppetlabs.com/learn) to discover more.
 
-* [Learning Puppet](http://docs.puppetlabs.com/learning/) is a series of exercises on various core topics on deploying and using PE.  It includes the [Learning Puppet VM](http://info.puppetlabs.com/download-learning-puppet-VM.html) which provides PE pre-installed and configured on VMware and VirtualBox virtualization platforms. 
+* [Learning Puppet](http://docs.puppetlabs.com/learning/) is a series of exercises on various core topics on deploying and using PE.  It includes the [Learning Puppet VM](http://info.puppetlabs.com/download-learning-puppet-VM.html) which provides PE pre-installed and configured on VMware and VirtualBox virtualization platforms.
 * The Puppet Labs workshop contains a series of self-paced, online lessons that cover a variety of topics on Puppet basics. You can sign up at the [learning page](https://puppetlabs.com/learn).
 * To explore the rest of the PE user's manual, use the sidebar at the top of this page, or [return to the index](./index.html).
 

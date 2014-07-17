@@ -53,8 +53,8 @@ For more information, and instructions on changing the `ordering` setting, refer
 
 ### Directory Environments and Deprecation Warnings
 
-[dir_environments]: http://docs.puppetlabs.com/puppet/latest/reference/environments.html
-[config_envir]: http://docs.puppetlabs.com/puppet/latest/reference/environments_classic.html
+[dir_environments]: http://docs.puppetlabs.com/puppet/3.6/reference/environments.html
+[config_envir]: http://docs.puppetlabs.com/puppet/3.6/reference/environments_classic.html
 
 The latest version of the Puppet core (Puppet 3.6) deprecates the classic [config-file environments][config_envir] in favor of the new and improved [directory environments][dir_environments]. Over time, both Puppet open source and Puppet Enterprise will make more extensive use of this pattern.
 
@@ -71,7 +71,7 @@ If you use an environment config section in `puppet.conf`, you will see a deprec
      # puppet.conf
      [legacy]
      # puppet config print confdir
-     Warning: Sections other than main, master, agent, user are deprecated in puppet.conf. Please use the directory environments feature to specify  environments. (See http://docs.puppetlabs.com/puppet/latest/reference/environments.html)
+     Warning: Sections other than main, master, agent, user are deprecated in puppet.conf. Please use the directory environments feature to specify  environments. (See http://docs.puppetlabs.com/puppet/3.6/reference/environments.html)
         (at /usr/lib/ruby/site_ruby/1.8/puppet/settings/config_file.rb:77:in `collect')
     /etc/puppet
 
@@ -107,7 +107,7 @@ This release adds new modules to the list of Puppet Enterprise supported modules
 
 The PMT has been updated to deprecate the Modulefile in favor of metadata.json. To help ease the transition, when you run `puppet module generate` the module tool will kick off an interview and generate metadata.json based on your responses.
 
-If you have already built a module and are still using a Modulefile, you will receive a deprecation warning when you build your module with `puppet module build`. You will need to perform [migration steps](http://docs.puppetlabs.com/puppet/latest/reference/modules_publishing.html#build-your-module) before you publish your module. For complete instructions on working with metadata.json, see [Publishing Modules](http://docs.puppetlabs.com/puppet/latest/reference/modules_publishing.html)
+If you have already built a module and are still using a Modulefile, you will receive a deprecation warning when you build your module with `puppet module build`. You will need to perform [migration steps](http://docs.puppetlabs.com/puppet/3.6/reference/modules_publishing.html#build-your-module) before you publish your module. For complete instructions on working with metadata.json, see [Publishing Modules](http://docs.puppetlabs.com/puppet/3.6/reference/modules_publishing.html)
 
 Please see [Known Issues](#known-issues) for information about a bug impacting modules that were built with the new PMT but did not perform the migration steps.
 
@@ -429,7 +429,7 @@ If you encounter these errors, simply re-start the `pe-postgresql` service.
 
 ### Modules Must Perform Migration Steps Before Being Published with the New Puppet Module Tool
 
-The PMT has a known issue wherein modules that were published to the Puppet Forge using the new PMT and that had not performed the [migration steps](http://docs.puppetlabs.com/puppet/latest/reference/modules_publishing.html#build-your-module) before publishing will have erroneous checksum information in their metadata.json. These checksums will cause errors that prevent you from upgrading or uninstalling the module.
+The PMT has a known issue wherein modules that were published to the Puppet Forge using the new PMT and that had not performed the [migration steps](http://docs.puppetlabs.com/puppet/3.6/reference/modules_publishing.html#build-your-module) before publishing will have erroneous checksum information in their metadata.json. These checksums will cause errors that prevent you from upgrading or uninstalling the module.
 
 To determine if a module you're using has this issue, run `puppet module changes username-modulename`. If your module has this checksum issue, you will see that the metadata.json has been modified. If you try to upgrade or uninstall a module with this issue, you will receive warnings and your action will fail.
 
@@ -459,7 +459,7 @@ Puppet Terminology
 
 For help with Puppet-specific terms and language, visit [the glossary](/references/glossary.html)
 
-For a complete guide to the Puppet language, visit [the reference manual](/puppet/3/reference/)
+For a complete guide to the Puppet language, visit [the reference manual](/puppet/3.6/reference/)
 
 * * *
 

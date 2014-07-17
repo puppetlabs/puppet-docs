@@ -7,11 +7,11 @@ canonical: "/pe/latest/console_classes_groups.html"
 
 [puppet]: ./puppet_overview.html
 [puppet_assign]: ./puppet_assign_configurations.html
-[lang_classes]: /puppet/3/reference/lang_classes.html
+[lang_classes]: /puppet/3.6/reference/lang_classes.html
 [learn]: /learning/
 [forge]: http://forge.puppetlabs.com
-[modules]: /puppet/3/reference/modules_fundamentals.html
-[topscope]: /puppet/3/reference/lang_scope.html#top-scope
+[modules]: /puppet/3.6/reference/modules_fundamentals.html
+[topscope]: /puppet/3.6/reference/lang_scope.html#top-scope
 [sidebar]: ./console_navigating.html#the-sidebar
 [environment]: /guides/environment.html
 

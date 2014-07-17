@@ -134,6 +134,6 @@ Once an agent node's new certificate is signed, it will fetch it automatically w
 
 > Once you have regenerated all agents' certificates, **everything should now be back to normal and fully functional under the new CA**.
 
-[confdir]: /puppet/3.5/reference/dirs_confdir.html#windows-systems
+[confdir]: /puppet/3.6/reference/dirs_confdir.html#windows-systems
 [request_manager]: ./console_cert_mgmt.html
 [mono_regen]: ./trouble_regenerate_certs_monolithic.html

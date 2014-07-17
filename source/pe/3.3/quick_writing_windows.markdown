@@ -45,13 +45,13 @@ Every manifest (.pp) file contains a single class. File names map to class names
 
 Many modules contain directories other than `manifests`; for simplicity's sake, we will not cover them in this introductory guide.
 
-* For more on how modules work, see [Module Fundamentals](/puppet/3/reference/modules_fundamentals.html) in the Puppet documentation.
+* For more on how modules work, see [Module Fundamentals](/puppet/3.6/reference/modules_fundamentals.html) in the Puppet documentation.
 * For more on best practices, methods, and approaches to writing modules, see the [Beginners Guide to Modules](/guides/module_guides/bgtm.html).
 * For a more detailed guided tour, also see [the module chapters of Learning Puppet](/learning/modules1.html).
 
 ### Editing a Manifest
 
-This simplified exercise will modify an example manifest from the Puppet Labs Registry module, specifically `service_example.pp`. The `registry::service` [defined resource type](./puppet/3/reference/lang_defined_types.html) makes it easy to control your registry; you can avoid having to declare both `registry_key` and `registry_value` resources with just a bit of puppet code.  
+This simplified exercise will modify an example manifest from the Puppet Labs Registry module, specifically `service_example.pp`. The `registry::service` [defined resource type](./puppet/3.6/reference/lang_defined_types.html) makes it easy to control your registry; you can avoid having to declare both `registry_key` and `registry_value` resources with just a bit of puppet code.  
 
 1. **On the puppet master,** navigate to the modules directory by running `cd /etc/puppetlabs/puppet/modules`.
 2. Run `ls` to view the currently installed modules; note that `registry` is present.
@@ -94,7 +94,7 @@ This simplified exercise will modify an example manifest from the Puppet Labs Re
             }	
         }
    
-    The `registry::service_example` class is now managing `C:\PuppetExample1.bat`, and the contents of that file are being set with the `content` attribute. For more on resource declarations, see the [manifests chapter of Learning Puppet](/learning/manifests.html) or the [resources page of the language reference](/puppet/3/reference/lang_resources.html). For more about how file paths with backslashes work in manifests for Windows, see the page on [writing manifests for Windows](/windows/writing.html).
+    The `registry::service_example` class is now managing `C:\PuppetExample1.bat`, and the contents of that file are being set with the `content` attribute. For more on resource declarations, see the [manifests chapter of Learning Puppet](/learning/manifests.html) or the [resources page of the language reference](/puppet/3.6/reference/lang_resources.html). For more about how file paths with backslashes work in manifests for Windows, see the page on [writing manifests for Windows](/windows/writing.html).
 
 5. Save and close the file.
 6. **On the console**, add `registry::service_example` to the available classes, and then add that class to the Windows agent node. Refer to [the introductory section of this guide if you need help adding classes in the console](./quick_start#using_modules_in_the_pe_console).
@@ -165,7 +165,7 @@ During this exercise, you will create a class called `critical_policy` that will
 For more information about writing classes, refer to the following documentation:
 
 * To learn how to write resource declarations, conditionals, and classes in a guided tour format, [start at the beginning of Learning Puppet.](/learning/)
-* For a complete but succinct guide to the Puppet language's syntax, [see the Puppet 3 language reference](/puppet/3/reference/lang_summary.html).
+* For a complete but succinct guide to the Puppet language's syntax, [see the Puppet 3 language reference](/puppet/3.6/reference/lang_summary.html).
 * For complete documentation of the available resource types, [see the type reference](/references/3.4.latest/type.html).
 * For short, printable references, see [the modules cheat sheet](/module_cheat_sheet.pdf) and [the core types cheat sheet](/puppet_core_types_cheatsheet.pdf).
 
