@@ -20,11 +20,11 @@ To purchase a license, please see the [Puppet Enterprise pricing page](http://ww
 
 All functional components of PE, excluding configuration files. You are not likely to need to change these components. The following software components are installed:
 
- * Puppet 
- * PuppetDB 
- * Facter 
+ * Puppet
+ * PuppetDB
+ * Facter
  * MCollective
- * Hiera 
+ * Hiera
  * Puppet Dashboard
 
 ###<i>Where</i>
@@ -33,13 +33,13 @@ On \*nix nodes, all PE software (excluding config files and generated data) is i
 
 On Windows nodes, all PE software is installed in the "Puppet Enterprise" subdirectory of [the standard 32-bit applications directory](./install_windows.html#program-directory)
 
-* Executable binaries on \*nix are in `/opt/puppet/bin` and `/opt/puppet/sbin`. 
+* Executable binaries on \*nix are in `/opt/puppet/bin` and `/opt/puppet/sbin`.
 * The Puppet modules included with PE are installed on the puppet master server in `/opt/puppet/share/puppet/modules`. Don't modify anything in this directory or add modules of your own. Instead, install them in `/etc/puppetlabs/puppet/modules`.
 * Orchestration plugins are installed in `/opt/puppet/libexec/mcollective/mcollective` on \*nix and in [`<COMMON_APPDATA>`](./install_windows.html#data-directory)`\PuppetLabs\mcollective\etc\plugins\mcollective` on Windows. If you are adding new plugins to your PE agent nodes, you should [distribute them via Puppet as described in the "Adding Actions" page of this manual](./orchestration_adding_actions.html).
 
 ## Dependencies
 
-For information about PostgreSQL and OpenSSL requirements, refer to the [system requirements](./install_system_requirements.html#dependencies-and-os-specific-details). 
+For information about PostgreSQL and OpenSSL requirements, refer to the [system requirements](./install_system_requirements.html#dependencies-and-os-specific-details).
 
 ##Configuration Files
 
@@ -69,10 +69,16 @@ The software distributed with Puppet Enterprise generates the following log file
 
 ### Puppet Master Logs
 
-- `/var/log/pe-httpd/access.log`
-- `/var/log/pe-httpd/puppetmaster.error.log`
-- `/var/log/pe-httpd/puppetmaster.access.log` contains all the endpoints that have been accessed with the puppet master REST API.
- 
+The puppet master service's logging is split across several destinations.
+
+* The puppet master application itself logs its activity to the syslog service. This is where things like compilation errors and deprecation warnings go.
+
+    Your syslog configuration dictates where these messages will be saved, but the default location is `/var/log/messages` on Linux and `/var/adm/messages` on Solaris.
+* Additionally, Apache and Passenger will log information about HTTPS activity to several log files:
+    - `/var/log/pe-httpd/puppetmaster.access.log` has messages about all requests to the puppet master's HTTP endpoints.
+    - `/var/log/pe-httpd/puppetmaster.error.log` has messages about errors handled by Apache or Passenger, including rejected SSL requests.
+    - `/var/log/pe-httpd/access.log` (contents not documented)
+
 ### Puppet Agent Logs
 
 The puppet agent service logs its activity to the syslog service. Your syslog configuration dictates where these messages will be saved, but the default location is `/var/log/messages` on Linux and `/var/adm/messages` on Solaris.
