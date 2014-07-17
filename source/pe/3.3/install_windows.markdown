@@ -22,7 +22,7 @@ Windows nodes in Puppet Enterprise:
 
 See [the main Puppet on Windows documentation](/windows/) for details on [running Puppet on Windows](/windows/running.html) and [writing manifests for Windows](/windows/writing.html).
 
-In particular, note that puppet *must* be run with elevated privileges (a.k.a., "Run as administrator"), as explained in this [section on Windows Security Context](http://docs.puppetlabs.com/windows/running.html#security-context).
+In particular, note that puppet *must* be run with elevated privileges (a.k.a., "Run as administrator"), as explained in this [section on Windows Security Context](/windows/running.html#security-context).
 
 [running]: /windows/running.html
 

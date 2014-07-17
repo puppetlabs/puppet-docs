@@ -20,4 +20,4 @@ Welcome! This is the user's guide for Puppet Enterprise 3.3.
 
 Otherwise, use the **navigation to the left** to move between this guide's sections and chapters.
 
-If you are using an older version of Puppet Enterprise, you can find [documentation for previous versions here](http://docs.puppetlabs.com/pe/index.html).
+If you are using an older version of Puppet Enterprise, you can find [documentation for previous versions here](/pe/index.html).

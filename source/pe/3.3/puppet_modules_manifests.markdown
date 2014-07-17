@@ -108,7 +108,7 @@ When a resource depends on another resource, you should explicitly state the rel
 >
 >You most likely expect that resources will be executed in the order you wrote them in your manifest files—if there were no dependencies specified. If you’re an experienced user and have been using this kind of explicit ordering in your codebase, you'll be able to use manifest ordering without any problems.
 >
->We know that for new PE users learning the puppet language, one of the first stumbling blocks is figuring out how to order resources so they’re evaluated correctly when puppet runs. We anticipate that manifest ordering will help mitigate your struggles and help get you writing more effective puppet code. And as you’re learning, we definitely recommend you study up on [relationships and ordering in Puppet](http://docs.puppetlabs.com/puppet/3.6/reference/lang_relationships.html). 
+>We know that for new PE users learning the puppet language, one of the first stumbling blocks is figuring out how to order resources so they’re evaluated correctly when puppet runs. We anticipate that manifest ordering will help mitigate your struggles and help get you writing more effective puppet code. And as you’re learning, we definitely recommend you study up on [relationships and ordering in Puppet](/puppet/3.6/reference/lang_relationships.html). 
 >
 >The following values are allowed for the `ordering` setting:
 >
