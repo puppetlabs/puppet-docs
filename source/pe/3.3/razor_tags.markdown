@@ -18,7 +18,7 @@ The tag could also be written like this:
 
     ["in", ["fact", "macaddress"], "de:ea:db:ee:f0:00", "de:ea:db:ee:f0:01"]
 
-The syntax for rule expressions is defined in `lib/razor/matcher.rb`. Expressions are of the form `[op arg1 arg2 .. argn]` where `op` is one of the operators below, and `arg1` through `argn` are the arguments for the operator. If they are expressions themselves, they will be evaluated before `op` is evaluated.
+The syntax for rule expressions is defined in `lib/razor/matcher.rb`. Expressions are of the form `[op arg1 arg2 ... argn]` where `op` is one of the operators below, and `arg1` through `argn` are the arguments for the operator. If they are expressions themselves, they will be evaluated before `op` is evaluated.
 
 The expression language currently supports the following operators:
 
@@ -33,7 +33,7 @@ Operator                       |Returns                                         
 `["fact", arg1 (, arg2)]`      |the fact named `arg1` for the current node* |
 `["metadata", arg1 (, arg2)]`  |the metadata entry `arg1` for the current node* |
 `["tag", arg]`                 |the result (a boolean) of evaluating the tag with name `arg` against the current node|
-`["in", arg1, arg2, ..., argn]`|true if `arg1` equals one of `arg2` .. `argn`  |
+`["in", arg1, arg2, ..., argn]`|true if `arg1` equals one of `arg2` ... `argn`  |
 `["num", arg1]`                |`arg1` as a numeric value, or raises an error  |
 `[">", arg1, arg2]`            |true if `arg1` is strictly greater than `arg2` |`"gt"`
 `["<", arg1, arg2]`            |true if `arg1` is strictly less than `arg2`    |`"lt"`

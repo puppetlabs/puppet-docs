@@ -97,7 +97,7 @@ For this walk-through, you will create a simple deployment where the puppet mast
 5. Copy the address into your browser.
 6. When prompted, accept the security request in your browser.
 
-   The web-based installation uses a default SSL certificate; you’ll have to add a security exception in order to access the web-based installer. This is safe to do..
+   The web-based installation uses a default SSL certificate; you’ll have to add a security exception in order to access the web-based installer. This is safe to do.
 
    You'll be taken to the installer start page.
 

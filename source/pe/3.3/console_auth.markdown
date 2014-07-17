@@ -165,7 +165,7 @@ The user administration page will also indicate the authentication service ("Acc
 
 ![user-list_legend](./images/console/user-list_legend.jpg)
 
-Lastly, note that while built-in auth accounts use the email address provided, AD/LDAP accounts are generally accessed using just the username (e..g "a.user"), although this may vary in your organization's specific implementation.
+Lastly, note that while built-in auth accounts use the email address provided, AD/LDAP accounts are generally accessed using just the username (e.g. "a.user"), although this may vary in your organization's specific implementation.
 
 
 
