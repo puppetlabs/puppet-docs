@@ -79,7 +79,7 @@ The Razor client is installed as a Ruby gem.
 
 1. Install the client:
 
-		gem install pe-razor-client --version 0.15.0
+		gem install pe-razor-client --version 0.15.2
 		
 2. You can verify that the Razor client is installed by printing Razor help:
 
