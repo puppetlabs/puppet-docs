@@ -34,7 +34,7 @@ Puppet agent and puppet master are the heart of Puppet's architecture.
 
 [query_functions]: https://forge.puppetlabs.com/dalen/puppetdbquery
 [exported]: /puppet/3.6/reference/lang_exported.html
-[puppetdb_api]: /puppetdb/1.3/api/index.html
+[puppetdb_api]: /puppetdb/1.6/api/index.html
 
 Everyday Tools
 -----

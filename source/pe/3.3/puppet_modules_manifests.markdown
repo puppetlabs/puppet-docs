@@ -240,7 +240,7 @@ Only sending the catalog to agents allows Puppet to do several things:
 
 * **Separate privileges:** Each individual node has little to no knowledge about other nodes. It only receives its own resources.
 * **Simulate changes:** Since the agent has a declarative document describing its configuration, with no contingent logic, it has the option of simulating the changes necessary to apply the configuration. If you [do a Puppet run in _noop_ mode](./orchestration_puppet.html#arguments), the agent will check against its current state and report on what _would_ have changed without actually making any changes.
-* **Record and query configurations:** Each node's most recent catalog is stored in PuppetDB, and you can [query the database service for information about managed resources](/puppetdb/1.3/api/index.html).
+* **Record and query configurations:** Each node's most recent catalog is stored in PuppetDB, and you can [query the database service for information about managed resources](/puppetdb/1.6/api/index.html).
 
 
 

@@ -306,7 +306,7 @@ When upgrading a PE 2.8.3 master to PE 3.3.0, restarting `pe-httpd` produces a w
 
 ### `puppet resource` Fails if `puppet.conf` is Modified to Make `puppet apply` Work with PuppetDB.
 
-In an effort to make `puppet apply` work with PuppetDB in masterless puppet scenarios, users may edit puppet.conf to make storeconfigs point to PuppetDB. This breaks `puppet resource`, causing it to fail with a Ruby error. For more information, see the [console & database troubleshooting page](./trouble_console-db.html), and for a workaround see the [PuppetDB documentation on connecting `puppet apply`](/puppetdb/1.5/connect_puppet_apply.html).
+In an effort to make `puppet apply` work with PuppetDB in masterless puppet scenarios, users may edit puppet.conf to make storeconfigs point to PuppetDB. This breaks `puppet resource`, causing it to fail with a Ruby error. For more information, see the [console & database troubleshooting page](./trouble_console-db.html), and for a workaround see the [PuppetDB documentation on connecting `puppet apply`](/puppetdb/1.6/connect_puppet_apply.html).
 
 ### Puppet Agent on Windows Requires `--onetime`
 

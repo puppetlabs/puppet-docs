@@ -13,18 +13,18 @@ Below are some common issues that can cause trouble with the databases that supp
 Disabling/Enabling Live Management
 -------
 
-Live management is enabled in the console by default when you install PE, but you can configure your installation to disable it. In addition, live management can be disabled/enabled during [upgrades][install_upgrade] or [normal operations][normal_operations]. 
+Live management is enabled in the console by default when you install PE, but you can configure your installation to disable it. In addition, live management can be disabled/enabled during [upgrades][install_upgrade] or [normal operations][normal_operations].
 
 [install_upgrading]: ./install_upgrading.html#disabling/enabling-live-management-during-an-upgrade
-[normal_operations]: ./console_navigating_live_mgmt.html#disabling/enabling-live-management				
+[normal_operations]: ./console_navigating_live_mgmt.html#disabling/enabling-live-management
 
 PostgreSQL is Taking Up Too Much Space
------			
+-----
 
 PostgreSQL should have `autovacuum=on` set by default. If you're having memory issues from the database growing too large and unwieldy, make sure this setting did not get turned off. PE also includes a rake task for keeping the databases in good shape. The [console maintenance page](./maintain_console-db.html#optimizing-the-database) has the details.
 
 PostgreSQL Buffer Memory Causes PE Install to Fail
-------- 
+-------
 
 In some cases, when installing PE on machines with large amounts of RAM, the PostgreSQL database will use more shared buffer memory than is available and will not be able to start. This will prevent PE from installing correctly. The following error will be present in `/var/log/pe-postgresql/pgstartup.log`:
 
@@ -38,12 +38,12 @@ Use the following commands to set the new kernel settings:
     sysctl -w kernel.shmmax=<your shmmax calculation>
     sysctl -w kernel.shmall=<your shmall calculation>
 
-Alternatively, you can also report the issue to the [Puppet Labs customer support portal](https://support.puppetlabs.com/access/unauthenticated). 
+Alternatively, you can also report the issue to the [Puppet Labs customer support portal](https://support.puppetlabs.com/access/unauthenticated).
 
 PuppetDB's Default Port Conflicts with Another Service
 -----
 
-By default, PuppetDB communicates over port 8081. In some cases, this may conflict with existing services (e.g., McAfee's ePO). You can work around this issue by installing with an answer file that specifies a different port with `q_puppetdb_port`. For more information on using answer files, take a look at the [documentation for automated installs](./install_automated.html) 
+By default, PuppetDB communicates over port 8081. In some cases, this may conflict with existing services (e.g., McAfee's ePO). You can work around this issue by installing with an answer file that specifies a different port with `q_puppetdb_port`. For more information on using answer files, take a look at the [documentation for automated installs](./install_automated.html)
 
 New Script to curl the PE Console ENC
 --------
@@ -74,7 +74,7 @@ You can now log in to the console as the user you just created, and use the norm
 `Puppet resource` Generates Ruby Errors After Connecting `puppet apply` to PuppetDB
 -----
 
-Users who wish to use `puppet apply` (typically in deployments running masterless puppet), need to get it working with PuppetDB. If they do so by modifying `puppet.conf` to add the parameters `storeconfigs_backend = puppetdb` and `storeconfigs = true` in both the [main] and [master] sections), then `puppet resource` will cease to function and will display a Ruby run error. To avoid this, the correct way to get `puppet apply` connected to PuppetDB is to modify `/etc/puppetlabs/puppet/routes.yaml ` to correctly define the behavior of `puppet apply` without affecting other functions. The PuppetDB manual has [complete information and code samples](/puppetdb/1.5/connect_puppet_apply.html).  
+Users who wish to use `puppet apply` (typically in deployments running masterless puppet), need to get it working with PuppetDB. If they do so by modifying `puppet.conf` to add the parameters `storeconfigs_backend = puppetdb` and `storeconfigs = true` in both the [main] and [master] sections), then `puppet resource` will cease to function and will display a Ruby run error. To avoid this, the correct way to get `puppet apply` connected to PuppetDB is to modify `/etc/puppetlabs/puppet/routes.yaml ` to correctly define the behavior of `puppet apply` without affecting other functions. The PuppetDB manual has [complete information and code samples](/puppetdb/1.6/connect_puppet_apply.html).
 
 The Console Has Too Many Pending Tasks
 -----
@@ -87,7 +87,7 @@ The console either does not have enough worker processes, or the worker processe
 Old "Pending Tasks" Never Expire
 -----
 
-In earlier versions of PE 3.x, failed delayed jobs did not get properly deleted. If a report for a job failed to upload (due to a problem with the report itself), a pending task would be displayed in the console in perpetuity. This has been fixed in PE 3.1. The __Background Tasks__ pane in the console (upper left corner) now displays a red alert icon when a report fails to upload. Clicking the icon displays a view with information about the failure and a backtrace. You can stop the reports from showing the alert by marking them as read with the __Mark all as read__ button. 
+In earlier versions of PE 3.x, failed delayed jobs did not get properly deleted. If a report for a job failed to upload (due to a problem with the report itself), a pending task would be displayed in the console in perpetuity. This has been fixed in PE 3.1. The __Background Tasks__ pane in the console (upper left corner) now displays a red alert icon when a report fails to upload. Clicking the icon displays a view with information about the failure and a backtrace. You can stop the reports from showing the alert by marking them as read with the __Mark all as read__ button.
 
 Note, however, that this will not remove old failed/delayed jobs. You can clean these out by running `/opt/puppet/bin/bundle exec rails runner 'Delayed::Job.delete_all("attempts >= 3")'` on the console node. This command should be run from `/opt/puppet/share/puppet-dashboard`.
 
@@ -113,7 +113,7 @@ To fix this:
           console_hostname: console.example.com
 
     Change its value if necessary. If you are serving the console on a port other than 443, be sure to add the port. (For example: `console.example.com:3000`)
-    
+
 Correcting Broken URLs in the Console
 ----------------
 
@@ -125,7 +125,7 @@ After you remove the broken group names, you can create new groups with valid na
 
 Running a 3.x Master with 2.8.x Agents is not Supported
 ----------
-  
+
 3.x versions of PE contain changes to the MCollective module that are not compatible with 2.8.x agents. When running a 3.x master with a 2.8.x agent, it is possible that puppet will still continue to run and check into the console, but this means puppet is running in a degraded state that is not supported.
 
 * * *
