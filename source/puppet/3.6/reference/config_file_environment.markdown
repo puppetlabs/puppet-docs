@@ -22,8 +22,10 @@ For example: if your [`environmentpath` setting][environmentpath] is set to `$co
 ## Example
 
     # /etc/puppetlabs/puppet/environments/test/environment.conf
-    # Exclude /etc/puppetlabs/puppet/modules, but leave /opt/puppet/share/puppet/modules (required by PE)
+
+    # Include only environment modules and modules required by PE:
     modulepath = modules:/opt/puppet/share/puppet/modules
+
     # Use our custom script to get a git commit for the current state of the code:
     config_version = get_environment_commit.sh
 
@@ -42,16 +44,15 @@ In this version of Puppet, the environment.conf file is only allowed to override
 
 ### Relative Paths in Values
 
-Most of the allowed settings accept file paths or lists of paths as their values.
+Most of the allowed settings accept **file paths** or **lists of paths** as their values.
 
 If any of these paths are **relative paths** --- that is, they start _without_ a leading slash or drive letter --- they will be resolved relative to that environment's main directory.
 
-#### Relative Path Examples
+For example:
 
-The example environment.conf file above configures an environment called `test`, which is located in `$confdir/environments`. This means:
-
-* The `modulepath = modules` line will resolve to `modulepath = /etc/puppetlabs/puppet/environments/test/modules`. This removes all of the global directories inherited from the `basemodulepath` setting, and limits the environment to only its local modules.
-* Likewise, `config_version = get_environment_commit.sh` in that environment will be interpreted as `config_version = /etc/puppetlabs/puppet/environments/test/get_environment_commit.sh`
+* Environment directory: `/etc/puppetlabs/puppet/environments/test`
+* Relative setting in environment.conf: `config_version = get_environment_commit.sh`
+* Equivalent value for setting: `config_version = /etc/puppetlabs/puppet/environments/test/get_environment_commit.sh`
 
 ### Interpolation in Values
 
