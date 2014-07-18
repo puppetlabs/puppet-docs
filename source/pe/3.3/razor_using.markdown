@@ -21,11 +21,11 @@ Include Repos
 
 A repo contains all of the actual bits used when installing a node with Razor. The repo is identified by a unique name, such as 'centos-6.4'. The instructions for an installation are contained in *tasks*, which are described below.
 
-To load a repo onto the server, you use: `razor create-repo --name=<repo name> --iso-url <URL>`.
+To load a repo onto the server, you use: `razor create-repo --name=<repo name> --iso-url <URL> --task <task name>`.
 	
-For example: `razor create-repo --name=centos-6.4 --iso-url http://mirrors.usc.edu/pub/linux/distributions/centos/6.4/isos/x86_64/CentOS-6.4-x86_64-minimal.iso`.
+For example: `razor create-repo --name=centos-6.4 --iso-url http://mirrors.usc.edu/pub/linux/distributions/centos/6.4/isos/x86_64/CentOS-6.4-x86_64-minimal.iso --task centos`.
 
-**Note**: Creating the repo can take five or so minutes, plus however long it takes to download the ISO and unpack the contents. Currently, the best way to find out the status is to check the log file.
+**Note**: Creating the repo can take five or so minutes, plus however long it takes to download the ISO and unpack the contents. Currently, the best way to find out the status is to check the status of the job: `razor commands` then `razor commands <command number>` using the command number from the list. If there are errors in the job, they will be present in `razor commands <command number> errors`.
 
 
 Include Brokers
@@ -72,14 +72,14 @@ Because policies contain a good deal of information, it's handy to save them in 
 
 	{
 		"name": "centos-for-small",
-		"repo": { "name": "centos-6.4" },
-		"task": { "name": "centos" },
-		"broker": { "name": "noop" },
+		"repo": "centos-6.4",
+		"task": "centos",
+		"broker": "noop",
 		"enabled": true,
 		"hostname": "host${id}.example.com",
 		"root_password": "secret",
-		"max_count": "20",
-		"tags": [{ "name": "small", "rule": ["<=", ["num", ["fact", "processorcount"]], 2]}]
+		"max_count": 20,
+		"tags": ["small"]
 	}
 
 **Policy Tables**
@@ -96,14 +96,14 @@ See [Razor Command Reference](./razor_reference.html) for more information.
 
 		{	
   		"name": "test_<NODE_ID>",
-  		"repo": { "name": "<OS>" },
-  		"task": { "name": "<INSTALLER>" },
-  		"broker": { "name": "pe" },
+  		"repo": "<OS>",
+  		"task": "<INSTALLER>",
+  		"broker": "pe",
   		"enabled": true,
   		"hostname": "node${id}.vm",
   		"root_password": "puppet",
-  		"max_count": "20",
-  		"tags": [{ "name": "<TAG_NAME>", "rule": ["in",["fact", "macaddress"],"<NODE_MAC_ADDRESS>"]}]
+  		"max_count": 20,
+  		"tags": ["<TAG_NAME>"]
   		}
 
 2. Edit the options in the `policy.json` template with information specific to  your environment. 
