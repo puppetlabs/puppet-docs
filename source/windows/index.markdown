@@ -1,44 +1,53 @@
 ---
 layout: default
-title: "Puppet on Windows"
+title: "Overview of Puppet on Windows"
 ---
 
-<span class="versionnote">This documentation applies to Puppet versions ≥ 2.7.6 and Puppet Enterprise ≥ 2.5. Earlier versions may behave differently.</span>
-
-**Puppet runs on Microsoft Windows® and can manage Windows systems alongside \*nix systems.** These pages explain how to install and run Puppet on Windows, and describe how it differs from Puppet on *nix.
 
 
-[from_source]: /guides/install_puppet/from_source.html
-[installing]: /guides/install_puppet/install_windows.html
+
 [running]: ./running.html
 [troubleshooting]: ./troubleshooting.html
-[writing]: ./writing.html
-
-
 [downloads]: http://downloads.puppetlabs.com/windows
-[pedownloads]: http://info.puppetlabs.com/download-pe.html
 
-[Installing][]
+
+**Puppet runs on Microsoft Windows® and can manage Windows systems alongside \*nix systems.** This page will help get you oriented and ready to manage Windows systems with Puppet.
+
+General Notes
 -----
 
-Puppet Labs provides pre-built, standalone .msi packages for installing Puppet on Windows.
+Windows systems can:
 
-### Downloads
+* Run the puppet agent service, to fetch configurations from a \*nix puppet master and apply them.
+* Run the puppet apply command, to locally compile and apply configurations.
 
-* [For Puppet Enterprise][pedownloads]
-* [For open source Puppet][downloads]
+They can't act as a puppet master server.
+
+Installing
+-----
+
+### Puppet Enterprise
+
+To install Puppet Enterprise on Windows, [see the Puppet Enterprise manual's installation instructions.](/pe/latest/install_windows.html)
+
+### Open Source
+
+To install open source Puppet on Windows:
+
+* Follow [the pre-install tasks](/guides/install_puppet/pre_install.html)
+* [Download the installer][downloads]
+* Follow [the installation instructions](/guides/install_puppet/install_windows.html)
+* Follow [the post-install instructions](/guides/install_puppet/post_install.html#configure-a-puppet-agent-node)
+
+Most post-install tasks are handled automatically on Windows, but you'll still need to sign the new node's certificate and assign classes to manage it.
 
 ### Supported Platforms
 
 {% include platforms_windows.markdown %}
 
-### More
-
-For full details, see [Installing Puppet on Windows][installing].
-
 * * *
 
-[Running][]
+Running
 -----
 
 ### Puppet Subcommands and Services
@@ -50,7 +59,6 @@ Windows nodes can run the following Puppet subcommands:
     * Windows nodes can connect to any *nix puppet master server running Puppet 2.7.6 or higher.
 * **Puppet apply,** to apply configurations from local manifest files
 * **Puppet resource,** to directly manipulate system resources
-* **Puppet inspect,** to send audit reports for compliance purposes
 
 Because the installer doesn't alter the system's PATH variable, you must choose *Start Command Prompt with Puppet* from the Start menu to run Puppet commands manually.
 
@@ -70,40 +78,53 @@ For full details, see [Running Puppet on Windows][running].
 
 * * *
 
-[Writing Manifests for Windows][writing]
+Writing Manifests
 -----
+
+In general, manifests written for Windows nodes work the same way as manifests written for \*nix nodes.
 
 ### Resource Types
 
 Some \*nix resource types aren't supported on Windows, and there are some Windows-only resource types.
 
-The following resource types can be managed on Windows:
+The following core resource types can be managed on Windows:
 
-* [file](/references/latest/type.html#file)
-* [user](/references/latest/type.html#user)
-* [group](/references/latest/type.html#group)
-* [scheduled_task](/references/latest/type.html#scheduledtask) (Windows-only)
-* [package](/references/latest/type.html#package)
-* [service](/references/latest/type.html#service)
-* [exec](/references/latest/type.html#exec)
+* [file](/references/latest/type.html#file) ([tips for Windows](/puppet/latest/reference/resources_file_windows.html))
+* [user](/references/latest/type.html#user) ([tips for Windows](/puppet/latest/reference/resources_user_group_windows.html))
+* [group](/references/latest/type.html#group) ([tips for Windows](/puppet/latest/reference/resources_user_group_windows.html))
+* [scheduled_task](/references/latest/type.html#scheduledtask) ([tips for Windows](/puppet/latest/reference/resources_scheduled_task_windows.html))
+* [package](/references/latest/type.html#package) ([tips for Windows](/puppet/latest/reference/resources_package_windows.html))
+* [service](/references/latest/type.html#service) ([tips for Windows](/puppet/latest/reference/resources_service.html))
+* [exec](/references/latest/type.html#exec) ([tips for Windows](/puppet/latest/reference/resources_exec_windows.html))
 * [host](/references/latest/type.html#host)
 
-### More
+Also, there are some popular [optional resource types for Windows.](/puppet/latest/reference/resources_windows_optional.html)
 
-For full details, see [Writing Manifests for Windows][writing].
+### Handling File Paths
+
+Some resource types take file paths as attributes. On Windows, there are some [special cases to take into account when writing file paths.](/puppet/latest/reference/lang_windows_file_paths.html)
+
+### Line Endings
+
+Windows systems generally use different line endings in text files than \*nix systems do. Puppet manifest files can use either kind of line ending.
+
+There are a few subtleties of behavior when handling the content of managed files. For details, [see the note on line endings in the language reference.](/puppet/latest/reference/lang_summary.html#line-endings-in-windows-text-files)
+
+### Facts
+
+Windows nodes with a default install of Puppet will include the following notable and identifying facts, which can be useful when writing manifests:
+
+* `kernel => windows`
+* `operatingsystem => windows`
+* `osfamily => windows`
+* `env_windows_installdir` --- This fact will contain the directory in which Puppet was installed.
+* `id` --- This fact will be `<DOMAIN>\<USER NAME>`. You can use the user name to determine whether Puppet is running as a service or was triggered manually.
 
 
 * * *
 
-[Troubleshooting][]
+Troubleshooting
 -----
 
 The most common points of failure on Windows systems aren't the same as those on *nix. For full details, see [Troubleshooting Puppet on Windows][troubleshooting].
-
-* * *
-
-[For Developers and Testers][from_source]
------
-
-To test pre-release features, or to hack and improve Puppet on Windows, you can run Puppet from source. For full details, see [Running Puppet from Source][from_source].
 

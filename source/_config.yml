@@ -43,7 +43,6 @@ defaultnav:
   /puppet/3.6/reference: puppet_3_6.html
   /references: references_general.html
   /release_notes: release_notes.html
-  /windows: windows.html
 destination: ../output
 url: "http://docs.puppetlabs.com"
 #Anatomy of an external source:
