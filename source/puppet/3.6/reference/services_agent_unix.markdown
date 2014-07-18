@@ -66,6 +66,15 @@ If you want to use a non-default port, you'll have to change [the `masterport` s
 
 If you are using the deprecated `listen` feature, puppet agent will also need to listen for incoming connections on port 8139. (Configurable with [`puppetport`](/references/latest/configuration.html#puppetport).)
 
+### Logging
+
+When running as a service, puppet agent logs messages to syslog. Your syslog configuration dictates where these messages will be saved, but the default location is `/var/log/messages` on Linux and `/var/adm/messages` on Solaris.
+
+When running in the foreground with the `--verbose`, `--debug`, or `--test` options, puppet agent logs directly to the terminal instead of to syslog.
+
+When started with the `--logdest <FILE>` option, puppet agent logs to the file specified by `<FILE>`.
+
+Additionally, puppet agent will submit a report to the puppet master after each run. In Puppet Enterprise, you can browse these reports in the Puppet Enterprise console's node pages, and you can analyze correlated events with the PE event inspector.
 
 ## Managing Systems With Puppet Agent
 
@@ -158,7 +167,7 @@ Alternately, [parallel SSH][pssh] can be a more lightweight solution for doing P
 
 > #### Deprecated: Puppet Kick
 >
-> This version of Puppet still has an older method for remote runs, known as puppet kick. It is deprecated and you shouldn't it, since it requires _all_ of your agent nodes to accept incoming HTTPS connections.
+> This version of Puppet still has an older method for remote runs, known as puppet kick. It is deprecated and you shouldn't use it, since it requires _all_ of your agent nodes to accept incoming HTTPS connections.
 >
 > If you're maintaining a site that already uses puppet kick, here are the requirements for getting it working when deploying new agent nodes:
 >

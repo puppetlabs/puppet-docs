@@ -47,6 +47,18 @@ By default, Puppet's HTTPS traffic uses port 8140. The OS and firewall must allo
 
 The port can be changed by changing [the `masterport` setting](/references/latest/configuration.html#masterport) across all agents and puppet masters.
 
+### Logging
+
+When running under WEBrick, puppet master's logging is split.
+
+WEBrick will log all HTTPS requests and errors to the file specified by [the `masterhttplog` setting](/references/3.6.latest/configuration.html#masterhttplog).
+
+The puppet master application itself logs its activity to syslog. This is where things like compilation errors and deprecation warnings go. Your syslog configuration dictates where these messages will be saved, but the default location is `/var/log/messages` on Linux, `/var/log/system.log` on Mac OS X, and `/var/adm/messages` on Solaris.
+
+When running in the foreground with the `--verbose` or `--debug` options, puppet master logs directly to the terminal instead of to syslog.
+
+When started with the `--logdest <FILE>` option, puppet master logs to the file specified by `<FILE>`.
+
 ## Configuring a WEBrick Puppet Master
 
 As [described elsewhere,][about_settings] the puppet master application reads most of its settings from [puppet.conf][] and can accept additional settings on the command line.

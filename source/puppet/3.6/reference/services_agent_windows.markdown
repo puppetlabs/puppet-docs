@@ -43,6 +43,16 @@ By default, Puppet's HTTPS traffic uses port 8140. Your OS and firewall must all
 
 If you want to use a non-default port, you'll have to change [the `masterport` setting](/references/latest/configuration.html#masterport) on all agent nodes, and ensure that you've changed your puppet master's port as well.
 
+### Logging
+
+When running as a service, puppet agent logs messages to the Windows Event Log. You can view its logs by browsing the Event Viewer. (Control Panel → System and Security → Administrative Tools → Event Viewer)
+
+When running in the foreground with the `--verbose`, `--debug`, or `--test` options, puppet agent logs directly to the terminal.
+
+When started with the `--logdest <FILE>` option, puppet agent logs to the file specified by `<FILE>`.
+
+Additionally, puppet agent will submit a report to the puppet master after each run. In Puppet Enterprise, you can browse these reports in the Puppet Enterprise console's node pages, and you can analyze correlated events with the PE event inspector.
+
 ## Managing Systems With Puppet Agent
 
 In a normal Puppet site, every node should periodically do configuration runs, to revert unwanted changes and to pick up recent updates.

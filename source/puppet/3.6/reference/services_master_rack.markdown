@@ -63,6 +63,16 @@ A Rack puppet master will ignore [the `masterport` setting](/references/latest/c
 
 If you want to switch to a non-default port, you'll have to change your web server's configuration, then make sure `masterport` is set correctly on all agents.
 
+### Logging
+
+When running under Rack, puppet master's logging is split.
+
+Your Rack server stack is in charge of logging any information about incoming HTTPS requests and errors. It may maintain per-vhost log files, or send messages elsewhere. See your server's documentation for details.
+
+The puppet master application itself logs its activity to syslog. This is where things like compilation errors and deprecation warnings go. Your syslog configuration dictates where these messages will be saved, but the default location is `/var/log/messages` on Linux and `/var/adm/messages` on Solaris.
+
+Alternately, if you specify the `--logdest <FILE>` option in `config.ru`, puppet master will log to the file specified by `<FILE>`.
+
 ### The `config.ru` File
 
 All Rack web servers use a `config.ru` file to load applications. This file is a Ruby script that loads any necessary libraries, performs any necessary configuration, and creates an application object that can handle Rack-formatted requests.
@@ -74,7 +84,7 @@ To run a Rack puppet master, you must:
 * Put the `config.ru` file somewhere sensible
 * Ensure the `config.ru` file is owned by the user `puppet` and the group `puppet` (or whatever user you want the puppet master to run as; see "User" above).
 
-  Most Rack servers use this file's ownership to set the application's user. Alternately, you may be able to explicitly configure your Rack server to use a specific user.
+    Most Rack servers use this file's ownership to set the application's user. Alternately, you may be able to explicitly configure your Rack server to use a specific user.
 * Configure your Rack web server to load an application from this `config.ru` file and to route all Puppet requests to it. The exact steps will depend on your Rack server; see the [Passenger guide][passenger_guide] for an example.
 
 ### SSL Termination
