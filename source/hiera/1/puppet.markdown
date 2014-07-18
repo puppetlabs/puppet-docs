@@ -10,7 +10,7 @@ title: "Hiera 1: Using Hiera With Puppet"
 [variable_tokens]: ./variables.html
 [hierarchy]: ./hierarchy.html
 [data_sources]: data_sources.html
-[custom_facts]: /guides/custom_facts.html
+[custom_facts]: /facter/latest/custom_facts.html
 [facts]: /puppet/latest/reference/lang_variables.html#facts-and-built-in-variables
 [absolute_scope]: /puppet/latest/reference/lang_variables.html#accessing-out-of-scope-variables
 [classes]: /puppet/latest/reference/lang_classes.html

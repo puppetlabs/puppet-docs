@@ -24,7 +24,7 @@ PuppetDB is an optional add-on for Puppet, and a built-in part of Puppet Enterpr
 PuppetDB stores up-to-date copies of every node's **facts,** **resource catalogs,** and **run reports** as part of each Puppet run. External tools can easily query and search all of this data over a stable, versioned HTTP query API. This is a more full-featured replacement for Puppet's older Inventory Service interface, and it enables entirely new functionality like class, resource, and event searches.
 
 * [See the documentation for PuppetDB's query API here.][puppetdb_api]
-* Since PuppetDB receives all facts for all nodes, you can extend its data with [custom facts](/guides/custom_facts.html) on your puppet master server.
+* Since PuppetDB receives all facts for all nodes, you can extend its data with [custom facts](/facter/latest/custom_facts.html) on your puppet master server.
 
 [puppetdb_api]: /puppetdb/latest/api/index.html
 

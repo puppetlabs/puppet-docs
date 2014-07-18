@@ -137,9 +137,7 @@ Facter 1.7.3
 ### Windows Executable External Facts (#22077)
 
 Facter on Windows now supports generating external facts from
-executables (.exe, .com, .bat, .ps1). Text-based external facts (.txt) have been supported since 1.7.0. See
-http://docs.puppetlabs.com/guides/custom_facts.html#executable-facts-----windows
-for more information.
+executables (.exe, .com, .bat, .ps1). Text-based external facts (.txt) have been supported since 1.7.0. See [the custom facts guide](/facter/1.7/custom_facts.html#executable-facts-----windows) for more information.
 
 ### Windows IP related Facts (#12116, #16665, #16668, #21518)
 

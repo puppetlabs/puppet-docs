@@ -4,7 +4,7 @@ title: Learning Puppet — Variables, Conditionals, and Facts
 ---
 
 [next]: ./modules1.html
-[customfacts]: /guides/custom_facts.html
+[customfacts]: /facter/latest/custom_facts.html
 
 
 Begin
@@ -113,7 +113,7 @@ They're ["facts."][lang_facts] Puppet uses a tool called Facter, which discovers
 * [See here for a list of all of the "core" facts built into Facter.][core_facts] Most of them are always available to Puppet, although some of them are only present on certain system types.
 * You can see what Facter knows about a given system by running `facter` at the command line.
 * You can also see all of the facts for any node in your Puppet Enterprise deployment by browsing to that node's page in the console and [scrolling down to the inventory information.](/pe/latest/console_reports.html#viewing-inventory-data)
-* You can also add new custom facts to Puppet; see [the custom facts guide](/guides/custom_facts.html) for more information.
+* You can also add new custom facts to Puppet; see [the custom facts guide][customfacts] for more information.
 
 ### Other Built-In Variables
 
