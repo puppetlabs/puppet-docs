@@ -81,7 +81,9 @@ The puppet master service's logging is split across several destinations.
 
 ### Puppet Agent Logs
 
-The puppet agent service logs its activity to the syslog service. Your syslog configuration dictates where these messages will be saved, but the default location is `/var/log/messages` on Linux and `/var/adm/messages` on Solaris.
+On \*nix nodes, the puppet agent service logs its activity to the syslog service. Your syslog configuration dictates where these messages will be saved, but the default location is `/var/log/messages` on Linux, `/var/log/system.log` on Mac OS X, and `/var/adm/messages` on Solaris.
+
+On Windows nodes, the puppet agent service logs its activity to the Windows Event Log. You can view its logs by browsing the Event Viewer. (Control Panel → System and Security → Administrative Tools → Event Viewer)
 
 ### ActiveMQ Logs
 
