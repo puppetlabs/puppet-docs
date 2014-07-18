@@ -13,7 +13,7 @@ Tasks are stored in the file system. The configuration setting `task_path` deter
 
 ## Task Metadata
 
-Tasks can include the following metadata in the task's YAML file. This file is called  `NAME.yaml` where `NAME` is the task name.
+Tasks can include the following metadata in the task's YAML file. This file is called  `metadata.yaml` and exists in `tasks/NAME.task` where `NAME` is the task name.
 
     ---
     description: HUMAN READABLE DESCRIPTION
@@ -33,11 +33,9 @@ The `boot_sequence` hash indicates which templates to use when a node using this
 
 Task templates are ERB templates and are searched in all the directories given in the `task_path` configuration setting. Templates are searched in the subdirectories in this order: 
 
-1. `name/os_version`
-2. `name`
+1. `name.task`
+2. `base.task` # If the task has a base task.
 3. `common` 
-
-If the task has a base task, the base task's template directories are searched just before the `common` directory.
 
 ####Template Helpers
 Templates can use the following helpers to generate URLs that point back to the server; all of the URLs respond to a `GET` request, even the ones that make changes on the server:
