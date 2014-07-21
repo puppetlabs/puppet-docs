@@ -153,7 +153,7 @@ pmtools   | libapr-util1   | libapr-util1  |                          |
 cron      | libxslt        | curl          |                          |
 libxml2   | curl           |               |                          |
 net-tools | libjpeg        |               |                          |
-libxslt   | db43           | db43
+libxslt   | db43           | db43          |                          |
           | unixODBC       | unixODBC
         
  <br>
