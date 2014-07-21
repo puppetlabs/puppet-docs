@@ -168,13 +168,6 @@ body {
 
 /* @group Typography */
 
-@font-face {
-	font-family: 'CallunaRegular';
-	src: url('fonts/Calluna-Regular.otf');
-	src: local('Calluna Regular'), local('Calluna-Regular'), url('fonts/Calluna-Regular.woff') format('woff'), url('fonts/Calluna-Regular.otf') format('opentype'), url('fonts/Calluna-Regular.svg#Calluna-Regular') format('svg');
-}
-
-
 h1, h2, h3 {
   display: block;
   margin-bottom: 1em;
@@ -272,7 +265,7 @@ p:last-child {
 p.introduction {
   font-size: 1.33em !important;
   line-height: 1.5em;
-  font-family: "CallunaRegular", Georgia, "Times New Roman", Times, serif;
+  font-family: Georgia, "Times New Roman", Times, serif;
   margin-bottom: 0.75em;
 }
 
@@ -374,7 +367,7 @@ blockquote:before {
   position: absolute;
   top: 0;
   left: -10px;
-  font-family:"CallunaRegular", Georgia, "Times New Roman", Times, serif;
+  font-family: Georgia, "Times New Roman", Times, serif;
   font-size: 12em;
   font-style: normal;
   z-index: 1;
@@ -382,7 +375,7 @@ blockquote:before {
 }
 
 blockquote p{
-  font-family: "CallunaRegular", Georgia, "Times New Roman", Times, serif;
+  font-family: Georgia, "Times New Roman", Times, serif;
   font-size: 1.33em;
   font-style: italic;
   line-height: 1.5em;
@@ -861,7 +854,7 @@ section#masthead p {
   text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.125);
   margin-bottom: 1em;
   max-width: 36em;
-  font: 1.5em/1.4em "CallunaRegular", Georgia, "Times New Roman", Times, serif;
+  font: 1.5em/1.4em Georgia, "Times New Roman", Times, serif;
 }
 
 section#masthead h1 {
@@ -871,11 +864,6 @@ section#masthead h1 {
   font-weight: inherit;
   margin: 0;
   text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.125);
-}
-
-.cufon-active section#masthead h1 {
-	margin-left: -8px;
-	line-height: 1em;
 }
 
 span.edit a {
@@ -1649,7 +1637,7 @@ input, textarea {
   -webkit-border-radius: 0.375em;
   -moz-border-radius: 0.375em;
   border-radius: .375em;
-  font: 1em "CallunaRegular", Georgia, "Times New Roman", Times, serif;
+  font: 1em Georgia, "Times New Roman", Times, serif;
   margin-bottom: 1.5em !important;
   text-indent: 0.2em;
   line-height: 1.5em;
