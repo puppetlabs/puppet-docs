@@ -9,7 +9,7 @@ Using Multiple Puppet Masters
 
 To scale beyond a certain size, or for geographic distribution or disaster recovery, a deployment may warrant having more than one puppet master server. This document outlines options for open source Puppet deployments with multiple masters.
 
-> Note: This document is specific to open source Puppet, versions 2.7 through 3.2. 
+> Note: This document is specific to open source Puppet, versions 2.7 through 3.2.
 
 In brief:
 
@@ -122,6 +122,12 @@ All certificate related URLs begin with `/<NAME OF PUPPET ENVIRONMENT>/certifica
 >     ProxyPassMatch ^/([^/]+/certificate.*)$ https://puppetca.example.com:8140/$1
 >
 > This change must be made to the Apache configuration on every puppet master server other than the one serving as the CA. No changes need to be made to agent nodes' configurations.
+>
+> Note that if your puppet master vhost sets `PassengerHighPerformance On`, you'll need to disable it for the CA routes, since it interferes with `mod_proxy` (among other things). Since PassengerHighPerformance can be enabled or disabled at global, vhost, or directory scope, you can use a Location directive to disable it:
+>
+>     <Location ~ "/[^/]+/certificate">
+>         PassengerHighPerformance Off
+>     </Location>
 >
 > Additionally, the CA master must allow the nodes to download the certificate revocation list via the proxy, without authentication --- certificate requests and retrieval of signed certificates are allowed by default, but not CRLs.  Add the following to the CA master's `auth.conf`:
 >
