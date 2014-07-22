@@ -22,6 +22,8 @@ If your infrastructure does not currently host a package repository, PE hosts a 
 
 You can also add repos for any PE-supported OS and architecture by creating a new repository for that platform. This is done by adding a new class to your master, `pe_repo::platform::<platform>` for each platform on which you'll be running an agent. [Classify the master](./console_classes_groups.html#classes) using the desired platform, and on the next puppet run, the new repo will be created and populated with the appropriate agent packages for that platform.
 
+>**Warning**: Installing agents using the `pe_repo` class requires an internet connection. If you don't have access to the internet, refer to [Installing Agents without Internet Connectivity](#installing-agents-without-internet-connectivity).  
+
 Once you have added the packages to the PE repo, you can use the agent installation script, hosted on the master, to install agent packages on your selected nodes. The script can be found at `https://<master hostname>:8140/packages/current/install.bash`. 
 
 When you run the installation script on your agent (for example, with `curl -k https://<master hostname>:8140/packages/current/install.bash | sudo bash`), the script will detect the OS on which it is running, set up an apt (or yum, or zypper) repo that refers back to the master, pull down and install the `pe-agent` packages, and create a simple `puppet.conf` file. The certname for the agent node installed this way will be the value of `facter fqdn`.
@@ -112,10 +114,8 @@ After signing a new node's certificate, it may take up to 30 minutes before that
 If you need to remove certificates (e.g., during reinstallation of a node), you can use the `puppet cert clean <node name>` command.
 
 
-Important Notes and Warnings
+Installing Agents without Internet Connectivity
 -----
-
-**Installing Without Internet Connectivity**
 
 By default, the master node hosts a repo that contains packages used for agent installation. When you download the tarball for the master, the master also downloads the agent tarball for the same platform and unpacks it in this repo. 
 
