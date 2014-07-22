@@ -193,8 +193,22 @@ PE creates the following users:
 - **`puppet-dashboard`** --- A system user which runs the console processes spawned by Passenger.
 - **`pe-puppetdb`** --- A system user with root access to the database.
 - **`pe-auth`** --- The PE console auth user.
-- **`pe-memcached`** --- The PE memcached daemon user,
+- **`pe-memcached`** --- The PE memcached daemon user.
 - **`pe-postgres`** --- A system user with access to the pe-postgreSQL instance. Note that this user is only created if we install and manage PostgreSQL for you.
+
+### Group Accounts
+
+PE creates the following groups:
+
+- **`peadmin`** --- An administrative group which can invoke orchestration actions.
+- **`pe-puppet`** --- A system group which runs the puppet master processes spawned by Passenger.
+- **`pe-apache`** --- A system group which runs Apache (`pe-httpd`).
+- **`pe-activemq`** --- A system group which runs the ActiveMQ message bus used by MCollective.
+- **`puppet-dashboard`** --- A system group which runs the console processes spawned by Passenger.
+- **`pe-puppetdb`** --- A system group with root access to the database.
+- **`pe-auth`** --- The PE console auth group.
+- **`pe-memcached`** --- The PE memcached daemon group.
+- **`pe-postgres`** --- A system group with access to the pe-postgreSQL instance. Note that this group is only created if we install and manage PostgreSQL for you.
 
 ### Certificates
 
