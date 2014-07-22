@@ -35,6 +35,6 @@ From time to time, you may need to completely deactivate an agent node in your P
 
 6. To disable MCollective/live management on the node, [uninstall the puppet agent](./install_uninstalling.html), stop the pe-mcollective service (on the agent, run `service pe-mcollective stop`), or destroy the agent node altogether. 
 
-7. You should also manually remove the node certificates in `/etc/pupuppetlabs/mcollective/ssl/clients`. 
+7. On the agent node, remove the node certificates in `/etc/puppetlabs/mcollective/ssl/clients`. 
 
 At this point, the node should be fully deactivated.
