@@ -341,7 +341,7 @@ If you are currently using native package management, you just need to add the a
 
 For nodes running an OS and/or architecture different from the master, [download the appropriate agent tarball](http://puppetlabs.com/misc/pe-files/agent-downloads). Extract the agent packages into the appropriate repo and then you can install agents on your nodes just as you would any other package (e.g., `yum install pe-agent`). Alternatively, you can follow the instructions below and classify the master using one of the built-in `pe_repo::platform::<platform>` classes. Once the master is classified and a puppet run has occurred, the appropriate agent packages will be generated and stored in `/opt/puppet/packages/public/<platform version>`.
 
-Once the agent has been installed on the target node, it can be configured using `puppet config set`. See "[Configuring Agents](#Configuring-Agents)" below.
+Once the agent has been installed on the target node, it can be configured using `puppet config set`. See "[Configuring Agents](#configuring-agents)" below.
 
 ### Installing Agents Using PE Package Management
 
@@ -353,7 +353,7 @@ Once installed, the master hosts an agent installation script that is used to in
 
 Note that if install.bash can't find agent packages corresponding to the agent's platform it will fail with an error message telling you which `pe_repo` class needs to get added to the master so the packages are accessible.
 
-Once the agent has been installed on the target node, it can be configured using [`puppet config set`][config_set]. See [Configuring Agents](#Configuring-Agents) below.
+Once the agent has been installed on the target node, it can be configured using [`puppet config set`][config_set]. See [Configuring Agents](#configuring-agents) below.
 
 #### Example Script Usage
 
