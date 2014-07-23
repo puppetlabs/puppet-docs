@@ -140,7 +140,7 @@ For details on how Puppet loads modules from modulepath directories, see [the re
 
 An environment can contain an `environment.conf` file, which can override values for the following settings:
 
-* [`modulepath`][modulepath_setting] --- **Note:** if you're using Puppet Enterprise, you must always include either `$basemodulepath` or `/opt/puppet/share/puppet/modules` in the modulepath.
+* [`modulepath`][modulepath_setting] --- **Note:** if you're using Puppet Enterprise, you must always include either `$basemodulepath` or `/opt/puppet/share/puppet/modules` in the modulepath, since PE uses the modules in `/opt` to configure orchestration and other features.
 * [`manifest`][manifest_setting]
 * [`config_version`][config_version]
 * [`environment_timeout`][environment_timeout]

@@ -23,8 +23,8 @@ For example: if your [`environmentpath` setting][environmentpath] is set to `$co
 
     # /etc/puppetlabs/puppet/environments/test/environment.conf
 
-    # Include only environment modules and modules required by PE:
-    modulepath = modules:/opt/puppet/share/puppet/modules
+    # Puppet Enterprise requires $basemodulepath; see note below under "modulepath".
+    modulepath = site:dist:modules:$basemodulepath
 
     # Use our custom script to get a git commit for the current state of the code:
     config_version = get_environment_commit.sh
@@ -37,7 +37,7 @@ The environment.conf file uses the same INI-like format as puppet.conf, with one
 
 In this version of Puppet, the environment.conf file is only allowed to override four settings:
 
-* [`modulepath`][modulepath] --- **Note:** if you're using Puppet Enterprise, you must always include either `$basemodulepath` or `/opt/puppet/share/puppet/modules` in the modulepath.
+* [`modulepath`][modulepath] --- **Note:** if you're using Puppet Enterprise, you must always include either `$basemodulepath` or `/opt/puppet/share/puppet/modules` in the modulepath, since PE uses the modules in `/opt` to configure orchestration and other features.
 * [`manifest`][manifest]
 * [`config_version`][config_version]
 * [`environment_timeout`][environment_timeout]
@@ -60,6 +60,6 @@ The settings in environment.conf can the values of other settings as variables (
 
 The most useful variables to interpolate into environment.conf settings are:
 
-* `$basemodulepath` --- useful for including the default module directories in the `modulepath` setting.
+* `$basemodulepath` --- useful for including the default module directories in the `modulepath` setting. Puppet Enterprise users should usually include this in the value of `modulepath`, since PE uses modules in the `basemodulepath` to configure orchestration and other features.
 * `$environment` --- useful for locating files, or as a command line argument to your `config_version` script.
 * `$confdir` --- useful for locating files.
