@@ -34,7 +34,7 @@ Note that this process **destroys the certificate authority and all other certif
 2. Stop the puppet agent service with `sudo puppet resource service pe-puppet ensure=stopped`.
 3. Stop the orchestration service with `sudo puppet resource service pe-mcollective ensure=stopped`.
 4. Stop the puppet master service with `sudo puppet resource service pe-httpd ensure=stopped`.
-5. Clear all certs from your master with `sudo rm -rf /etc/puppetlabs/puppet/ssl/*`.
+5. Clear all certs from your master with `sudo rm -r /etc/puppetlabs/puppet/ssl/*`.
 6. Regenerate the CA by running `sudo puppet cert list -a`. You should see this message: `Notice: Signed certificate request for ca`.
 7. Generate the puppet master's new certs with `sudo puppet master --no-daemonize --verbose`.
 8. When you see `Notice: Starting Puppet master <your Puppet and PE versions>`, type CTRL + C.
@@ -57,8 +57,8 @@ Note that this process **destroys the certificate authority and all other certif
 2. Stop the puppet agent service with `sudo puppet resource service pe-puppet ensure=stopped`.
 3. Stop the orchestration service with `sudo puppet resource service pe-mcollective ensure=stopped`.
 4. Stop the PuppetDB service with `sudo puppet resource service pe-puppetdb ensure=stopped`.
-5. Delete puppet agent's SSL credentials with `sudo rm -rf /etc/puppetlabs/puppet/ssl/*`.
-6. Delete the SSL credentials from the PuppetDB SSL directory with `sudo rm -rf /etc/puppetlabs/puppetdb/ssl/*`.
+5. Delete puppet agent's SSL credentials with `sudo rm -r /etc/puppetlabs/puppet/ssl/*`.
+6. Delete the SSL credentials from the PuppetDB SSL directory with `sudo rm -r /etc/puppetlabs/puppetdb/ssl/*`.
 7. Request an agent certificate from the CA puppet master with `sudo puppet agent -t`. The puppet master will autosign the request, and the puppet agent will fetch the certificate.
 
    The Puppet agent will also try to do a full Puppet run, which will fail. This is as expected, so don't worry about it.
@@ -85,14 +85,14 @@ Note that this process **destroys the certificate authority and all other certif
 2. Stop the puppet agent service with `sudo puppet resource service pe-puppet ensure=stopped`.
 3. Stop the orchestration service with `sudo puppet resource service pe-mcollective ensure=stopped`.
 4. Stop the console service with `sudo puppet resource service pe-httpd ensure=stopped`.
-5. Delete puppet agent's SSL credentials with `sudo rm -rf /etc/puppetlabs/puppet/ssl/*`.
+5. Delete puppet agent's SSL credentials with `sudo rm -r /etc/puppetlabs/puppet/ssl/*`.
 6. Request an agent certificate from the CA puppet master with `sudo puppet agent -t`. The puppet master will autosign the request, and the puppet agent will fetch the certificate.
 
    The puppet agent will also try to do a full Puppet run, which will fail. This is as expected, so don't worry about it.
 
    If the master doesn't autosign the certificate in this step, you may have changed its autosign configuration. You'll need to manually sign the certificate ([see below][agent_certs]).
 7. Navigate to the console certs directory with `sudo cd /opt/puppet/share/puppet-dashboard/certs`. Stay in this directory for the following steps.
-8. Remove all the credentials in this directory with `sudo rm -rf /opt/puppet/share/puppet-dashboard/certs/*`.
+8. Remove all the credentials in this directory with `sudo rm -r /opt/puppet/share/puppet-dashboard/certs/*`.
 9. Run `sudo /opt/puppet/bin/rake RAILS_ENV=production cert:create_key_pair`.
 10. Run `sudo /opt/puppet/bin/rake RAILS_ENV=production cert:request`. The puppet master will autosign the request, and the script will fetch the certificate.
 
@@ -124,7 +124,7 @@ To replace the certs on agents, you'll need to log into each agent node and do t
 
 1. Stop the puppet agent service. On \*nix nodes, run `sudo puppet resource service pe-puppet ensure=stopped`. On Windows nodes, run the same command (minus `sudo`) with Administrator privileges.
 2. Stop the orchestration service. On \*nix nodes, run `sudo puppet resource service pe-mcollective ensure=stopped`. On Windows nodes, run the same command (minus `sudo`) with Administrator privileges.
-3. Delete the agent's SSL directory. On \*nix nodes, run `sudo rm -rf /etc/puppetlabs/puppet/ssl/*`. On Windows nodes, delete the `$confdir\ssl` directory, using the Administrator confdir. [See here for more information on locating the confdir.][confdir]
+3. Delete the agent's SSL directory. On \*nix nodes, run `sudo rm -r /etc/puppetlabs/puppet/ssl/*`. On Windows nodes, delete the `$confdir\ssl` directory, using the Administrator confdir. [See here for more information on locating the confdir.][confdir]
 4. Re-start the puppet agent service. On \*nix nodes, run `sudo puppet resource service pe-puppet ensure=running`. On Windows nodes, run the same command (minus `sudo`) with Administrator privileges.
 
    Once the puppet agent starts, it will automatically generate keys and request a new certificate from the CA puppet master.
