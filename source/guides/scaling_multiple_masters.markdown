@@ -164,7 +164,7 @@ As with any puppet master, you'll need to use a production-grade web server rath
 >
 >       dns_alt_names = puppet,puppet.example.com,puppet.site-a.example.com
 >
-> * If the agent or master has been run and already created a certificate, blow it away by running `sudo rm -rf $(puppet master --configprint ssldir)`.  If a cert has been requested from the master, you'll also need to delete it there to re-issue a new one with the alt names: `puppet cert clean master-2.example.com`.
+> * If the agent or master has been run and already created a certificate, blow it away by running `sudo rm -r $(puppet master --configprint ssldir)`.  If a cert has been requested from the master, you'll also need to delete it there to re-issue a new one with the alt names: `puppet cert clean master-2.example.com`.
 
 * Request a new certificate by running `puppet agent --test --waitforcert 10`.
 * Log into the CA server and run `puppet cert sign master-2.example.com`.
