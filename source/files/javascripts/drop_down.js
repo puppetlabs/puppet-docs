@@ -6,8 +6,8 @@ $(document).ready(function() {
      if (!navElement.hasClass('active')) {
        $('li.with-submenu').removeClass('active');
      }
-     
-     if (clickedElement.hasClass('.drop-down-trigger') || clickedElement.is('li.with-submenu > a[href="#"] *')) {
+
+     if (clickedElement.hasClass('drop-down-trigger') || clickedElement.is('li.with-submenu > a[href="#"] *')) {
        navElement.toggleClass('active');
        return false;
      }
