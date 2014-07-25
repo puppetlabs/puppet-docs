@@ -1,10 +1,9 @@
 $( document ).ready( function() {
+    "use strict";
     var navList = $( "nav.main > div#subCol > ul:not(.doc-navigation)" );
     var navLinksToCurrentPage = navList.find( "span.currentpage" );
     var navSections = navList.find( "li:has(ul)" ); // an LI that contains a label followed by a list of contents
     var navSectionLabels = navSections.children( "strong" );
-    // var navSectionLists = navSections.children("ul");
-    // var navSectionLists = navSectionLabels.next("ul");
     var activeNavSections = navLinksToCurrentPage.parentsUntil(navList).filter(navSections); // can include parents of the parent section
 
     // Add custom events to nav sections. Since we can have sections within sections
@@ -12,16 +11,9 @@ $( document ).ready( function() {
     navSections.on( {
         "toggleNavSection": function(e) {
             e.stopPropagation();
-            $( this ).trigger("toggleNavBullet").trigger("slideNavContents");
-        },
-        "toggleNavBullet": function(e) {
-            e.stopPropagation();
+            // Toggle the list item bullet
             $( this ).toggleClass("hidden-nav expanded-nav");
-        },
-        "slideNavContents": function(e) {
-            // You can use a second function argument to toggle the bullet after
-            // the slide finishes, but that always felt laggy to me.
-            e.stopPropagation();
+            // Slide the contents of the section
             $( this ).children("ul").slideToggle( 200 );
         },
         "setExpanded": function(e) {
@@ -41,7 +33,7 @@ $( document ).ready( function() {
     // Expand any sections that contain the current page
     activeNavSections.trigger("setExpanded");
 
-    // Allow section labels to collapse their section
+    // Clicking section labels will toggle their section
     navSectionLabels.on("click", function() {
         $( this ).parent("li").trigger("toggleNavSection");
     });
