@@ -1316,6 +1316,10 @@ div#subCol ul > li {
   list-style-position: outside;
 }
 
+div#subCol ul > li strong {
+  cursor: pointer;
+}
+
 div#subCol ul > li strong:hover {
   color: #999;
 }
