@@ -8,6 +8,7 @@ $(document).ready(function() {
      }
 
      if (clickedElement.hasClass('drop-down-trigger') || clickedElement.is('li.with-submenu > a[href="#"] *')) {
+       e.preventDefault();
        navElement.toggleClass('active');
        return false;
      }
