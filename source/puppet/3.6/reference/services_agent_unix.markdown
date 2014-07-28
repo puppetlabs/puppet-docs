@@ -74,7 +74,11 @@ When running in the foreground with the `--verbose`, `--debug`, or `--test` opti
 
 When started with the `--logdest <FILE>` option, puppet agent logs to the file specified by `<FILE>`.
 
-Additionally, puppet agent will submit a report to the puppet master after each run. In Puppet Enterprise, you can browse these reports in the Puppet Enterprise console's node pages, and you can analyze correlated events with the PE event inspector.
+### Reporting
+
+In addition to local logging, puppet agent will submit a report to the puppet master after each run. (This can be disabled by setting [`report = false`](/references/3.6.latest/configuration.html#report) in [puppet.conf][].)
+
+In Puppet Enterprise, you can browse these reports in the PE console's node pages, and you can analyze correlated events with the PE event inspector.
 
 ## Managing Systems With Puppet Agent
 
