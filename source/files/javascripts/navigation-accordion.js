@@ -1,6 +1,6 @@
 $( document ).ready( function() {
     "use strict";
-    var navList = $( "nav.main > div#subCol > ul:not(.doc-navigation)" );
+    var navList = $( "nav.main > div#subCol > ul:not(#doc-navigation)" );
     var navLinksToCurrentPage = navList.find( "span.currentpage" );
     var navSections = navList.find( "li:has(ul)" ); // an LI that contains a label followed by a list of contents
     var navSectionLabels = navSections.children( "strong" );
