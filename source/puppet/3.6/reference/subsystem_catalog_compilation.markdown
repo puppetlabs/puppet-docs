@@ -32,6 +32,7 @@ canonical: "/puppet/latest/reference/subsystem_catalog_compilation.html"
 [class definitions]: ./lang_classes.html#defining-classes
 [classes]: ./lang_classes.html
 [manifest naming conventions]: ./modules_fundamentals.html#manifests
+[modulepath]: ./dirs_modulepath.html
 
 Background Info
 -----
@@ -140,6 +141,8 @@ The main manifest can contain any arbitrary Puppet code. The way it is evaluated
 It's possible for the main manifest to contain [class definitions][], but usually classes are defined elsewhere, in [modules][].
 
 If any [classes][] were declared in the main manifest and their definitions were not present, Puppet will automatically load the manifests containing them from its collection of [modules][]. It will follow the normal [manifest naming conventions][] to locate the files it should load.
+
+The set of locations Puppet will load modules from is called the [modulepath][]. The modulepath can be influenced by the node's [environment][].
 
 Once a class is loaded, the Puppet code in it is evaluated, and any resources are added to the catalog. If it was declared at node scope, it has access to any node-scope variables; otherwise, it only has access to top-scope variables.
 
