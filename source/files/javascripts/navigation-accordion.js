@@ -49,10 +49,19 @@ $( document ).ready( function() {
         $( this ).parent("li").trigger("toggleNavSection");
     });
 
-    // Enable an "expand all" button
-    $( "a#expand-all-nav-sections" ).on("click", function(e) {
+    // Add a "toggle all" button
+    navList.before( '<p style="text-align: center;"><a href="#" id="toggle-all-nav-sections">(↓ expand all ↓)</a></p>' );
+
+    // Enable the "toggle all" button
+    $( "a#toggle-all-nav-sections" ).on("click", function(e) {
         e.preventDefault();
-        navSections.trigger("setExpanded");
+        if ( $( this ).text() === '(↓ expand all ↓)' ) {
+            navSections.trigger("setExpanded");
+            $( this ).text('(↑ collapse all ↑)');
+        } else {
+            navSections.trigger("setHidden");
+            $( this ).text('(↓ expand all ↓)');
+        }
     });
 
 });
