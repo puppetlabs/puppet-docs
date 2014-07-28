@@ -17,7 +17,9 @@ canonical: "/puppet/latest/reference/services_master_rack.html"
 
 [Rack][] is an interface for deploying Ruby web apps. The puppet master application supports running as a Rack app.
 
-This is the recommended way of running the puppet master service. Puppet Enterprise runs this way by default.
+This is the recommended way of running the puppet master service.
+
+**Puppet Enterprise runs this way by default.** You do not need to manually configure a Rack server under Puppet Enterprise.
 
 This page describes the generic requirements and run environment for running under Rack; for practical configuration instructions, see [the guide to configuring a Passenger + Apache puppet master.][passenger_guide]
 
