@@ -1,10 +1,21 @@
 $( document ).ready( function() {
     "use strict";
     var navList = $( "nav.main > div#subCol > ul:not(#doc-navigation)" );
-    var navLinksToCurrentPage = navList.find( "span.currentpage" );
+
+    // Find nav links to current page
+    var isLinkToCurrentPage = function(index, element) {
+        return $( element ).prop( "href" ).indexOf( location.pathname ) != -1;
+    };
+    var navLinksToCurrentPage = navList.find("a").filter( isLinkToCurrentPage );
+    navLinksToCurrentPage = navLinksToCurrentPage.add( navList.find( "span.currentpage" ) ); // add old-style spans
+
     var navSections = navList.find( "li:has(ul)" ); // an LI that contains a label followed by a list of contents
     var navSectionLabels = navSections.children( "strong" );
     var activeNavSections = navLinksToCurrentPage.parentsUntil(navList).filter(navSections); // can include parents of the parent section
+
+    // Disable links to current page
+    navLinksToCurrentPage.addClass("disabled-nav-link");
+    navLinksToCurrentPage.on("click", function(e) { e.preventDefault(); } );
 
     // Add custom events to nav sections. Since we can have sections within sections
     // with independent expansion state, we shouldn't let these events bubble up.

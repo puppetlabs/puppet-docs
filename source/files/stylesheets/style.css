@@ -1316,6 +1316,15 @@ div#subCol ul > li {
   list-style-position: outside;
 }
 
+a.disabled-nav-link {
+  cursor: text;
+  color: #444;
+}
+
+a.disabled-nav-link:hover {
+  text-decoration: none;
+}
+
 div#subCol ul > li strong {
   cursor: pointer;
 }
