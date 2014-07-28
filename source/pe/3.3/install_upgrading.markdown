@@ -140,7 +140,9 @@ The upgrade script will run and provide detailed information as to what it insta
 
 ### Upgrade PuppetDB
 
-On the node you provisioned for PuppetDB before starting the upgrade, unpack the PE 3.3 tarball and run the `puppet-enterprise-installer` script. If you are upgrading from a 2.8 deployment, you will need to provide some answers to the upgrader, as follows:
+On the node you provisioned for PuppetDB before starting the upgrade, unpack the PE 3.3 tarball and run the `puppet-enterprise-installer` script. 
+
+If you are upgrading from a 2.8 deployment, you will need to provide some answers to the upgrader. These answers are ONLY needed when upgrading from the 2.8 line.
 
 *  `?? Install puppet master? [y/N]` Answer N. This will not be your master. The master was upgraded in the previous step.
 *  `?? Puppet master hostname to connect to? [Default: puppet]` Enter the FQDN of the master node you upgraded in the previous step.
