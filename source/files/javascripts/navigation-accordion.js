@@ -3,8 +3,10 @@ $( document ).ready( function() {
     var navList = $( "nav.main > div#subCol > ul:not(#doc-navigation)" );
 
     // Find nav links to current page
+    var normalizedLocation = location.pathname.replace(/(\/|\/index.html)$/, "/(index.html)?") + '$'; // handle index pages
+    var locationTest = new RegExp(normalizedLocation);
     var isLinkToCurrentPage = function(index, element) {
-        return $( element ).prop( "href" ).indexOf( location.pathname ) != -1;
+        return locationTest.test( $( element ).prop( "href" ) );
     };
     var navLinksToCurrentPage = navList.find("a").filter( isLinkToCurrentPage );
     navLinksToCurrentPage = navLinksToCurrentPage.add( navList.find( "span.currentpage" ) ); // add old-style spans
