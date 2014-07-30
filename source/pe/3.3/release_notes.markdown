@@ -20,7 +20,21 @@ canonical: "/pe/latest/release_notes.html"
 [pe-javaks]: http://forge.puppetlabs.com/puppetlabs/java_ks
 [pe-concat]: http://forge.puppetlabs.com/puppetlabs/concat
 
-This page contains information about the Puppet Enterprise (PE) 3.3.0 release, including new features, known issues, bug fixes and more.
+This page contains information about the Puppet Enterprise (PE) 3.3.x release line, including new features, known issues, bug fixes and more.
+
+# Puppet Enterprise 3.3.1 (8/06/2014)
+
+### Security Fixes
+
+On July 15th, Oracle announced several security vulnerabilities in Java. Puppet Enterprise 3.3.0 contained a vulnerable version of Java. Puppet Enterprise 3.3.1 contains an updated version of Java that has patched the vulnerabilities.
+
+For more information about the Java vulnerabilities, refer to the [Oracle security site](http://www.oracle.com/technetwork/topics/security/cpujul2014-1972956.html).
+
+### Bug Fixes
+
+This release fixes several minor bugs.
+
+# Puppet Enterprise 3.3.0 (6/15/2014)
 
 ## New Features
 

@@ -14,15 +14,7 @@ Mac OS X agents provide consistent automated management of Apple laptops and des
 * Directory Services integration for local user/group management 
 * Inventory facts via System Profiler
 
-> **Warning**: In PE agent certnames need to be lowercase. For Mac OS X agents, the certname is derived from the name of the machine (e.g., My-Example-Mac>. To prevent installation issues, you will want to make sure the name of your machine uses lowercases letters. You can make this change in **System Preferences** > **Sharing** > **Computer Name** > **Edit**. 
->
-> To make this change from the command line, run the following commands:
->
->  1. `sudo scutil --set ComputerName <newname>`
->  2. `sudo scutil --set LocalHostName <newname>`
->  3. `sudo scutil --set HostName <newname>`
->
->If you don't want to change your computer's name, you can also enter the agent certname in all lowercase letters when prompted by the installer. 
+> **Note**: In PE agent certnames need to be lowercase. For Mac OS X agents, the certname is derived from the name of the machine, and PE will automatically lowercase any mixed-case certnames during the installation process. 
 
 ### Install with Puppet Enterprise Package Management
 
