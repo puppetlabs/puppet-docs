@@ -20,8 +20,9 @@ canonical: "/puppet/latest/reference/services_master_unix.html"
 [auth.conf]: ./config_file_auth.html
 [short_settings]: ./config_important_settings.html#settings-for-agents-all-nodes
 [page on triggering puppet runs]: /pe/latest/orchestration_puppet.html
+[report]: /guides/reporting.html
 
-Puppet agent is the application that manages configurations on nodes. It requires a puppet master server to fetch configuration [catalogs][] from.
+Puppet agent is the application that manages configurations on nodes. It requires a puppet master server to fetch configuration [catalogs][] from. (For more info, see [Overview of Puppet's Architecture](./architecture.html).)
 
 ## Supported Platforms
 
@@ -76,7 +77,7 @@ When started with the `--logdest <FILE>` option, puppet agent logs to the file s
 
 ### Reporting
 
-In addition to local logging, puppet agent will submit a report to the puppet master after each run. (This can be disabled by setting [`report = false`](/references/3.6.latest/configuration.html#report) in [puppet.conf][].)
+In addition to local logging, puppet agent will submit a [report][] to the puppet master after each run. (This can be disabled by setting [`report = false`](/references/3.6.latest/configuration.html#report) in [puppet.conf][].)
 
 In Puppet Enterprise, you can browse these reports in the PE console's node pages, and you can analyze correlated events with the PE event inspector.
 

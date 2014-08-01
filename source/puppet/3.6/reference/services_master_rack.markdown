@@ -8,12 +8,13 @@ canonical: "/puppet/latest/reference/services_master_rack.html"
 [rack]: http://rack.github.io/
 [passenger_guide]: /guides/passenger.html
 [passenger]: http://www.modrails.com/
-[post_install]: /guides/install_puppet/post_install.html
 [external_ca]: ./config_ssl_external_ca.html
 [client authentication]: /background/ssl/tls_ssl.html
 [subject dn]: /background/ssl/cert_anatomy.html#the-subject-dn-cn-certname-etc
 [pem format]: /background/ssl/cert_anatomy.html#pem-file
 [trusted]: ./lang_facts_and_builtin_vars.html#trusted-facts
+
+Puppet master is the application that compiles configurations for any number of puppet agent nodes, using Puppet code and various other data sources. (For more info, see [Overview of Puppet's Architecture](./architecture.html).)
 
 [Rack][] is an interface for deploying Ruby web apps. The puppet master application supports running as a Rack app.
 

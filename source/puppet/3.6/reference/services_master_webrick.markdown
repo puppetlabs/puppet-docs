@@ -7,6 +7,8 @@ canonical: "/puppet/latest/reference/services_master_webrick.html"
 [webrick]: http://ruby-doc.org/stdlib/libdoc/webrick/rdoc/WEBrick.html
 [rack_master]: ./services_master_rack.html
 
+Puppet master is the application that compiles configurations for any number of puppet agent nodes, using Puppet code and various other data sources. (For more info, see [Overview of Puppet's Architecture](./architecture.html).)
+
 Puppet has the built-in capability to run a complete puppet master server using Ruby's [WEBrick][] library.
 
 The WEBrick puppet master server is not capable of handling production-level numbers of agent nodes. Since it can't handle concurrent connections, it will be quickly overwhelmed by as few as 10 agents. You should never run a WEBrick puppet master in production, and should always configure a [Rack puppet master server][rack_master] instead.
