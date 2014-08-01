@@ -71,7 +71,7 @@ If you are using the deprecated `listen` feature, puppet agent will also need to
 
 ### Logging
 
-When running as a service, puppet agent logs messages to syslog. Your syslog configuration dictates where these messages will be saved, but the default location is `/var/log/messages` on Linux and `/var/adm/messages` on Solaris.
+When running as a service, puppet agent logs messages to syslog. Your syslog configuration dictates where these messages will be saved, but the default location is `/var/log/messages` on Linux, `/var/log/system.log` on Mac OS X, and `/var/adm/messages` on Solaris.
 
 When running in the foreground with the `--verbose`, `--debug`, or `--test` options, puppet agent logs directly to the terminal instead of to syslog.
 
@@ -132,9 +132,9 @@ If [the `onetime` setting][onetime] is set to `true`, the puppet agent command w
 
 This behavior is good for building a cron job that does configuration runs. You may also want to use the [`splay`][splay] and [`splaylimit`][splaylimit] settings to keep the puppet master from getting overwhelmed, since the system time is probably synchronized on all of your agent nodes.
 
-You can use the puppet resource command to set up this cron job; below is an example that runs Puppet once an hour:
+You can use the puppet resource command to set up this cron job. Below is an example that runs Puppet once an hour; adjust the path to the Puppet command if you are not using Puppet Enterprise.
 
-    $ sudo puppet resource cron puppet-agent ensure=present user=root minute=30 command='/usr/bin/puppet agent --onetime --no-daemonize --splay --splaylimit 60'
+    $ sudo puppet resource cron puppet-agent ensure=present user=root minute=30 command='/opt/puppet/bin/puppet agent --onetime --no-daemonize --splay --splaylimit 60'
 
 ### Running Puppet Agent On Demand
 

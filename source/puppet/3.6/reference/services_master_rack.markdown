@@ -74,7 +74,7 @@ When running under Rack, puppet master's logging is split.
 
 Your Rack server stack is in charge of logging any information about incoming HTTPS requests and errors. It may maintain per-vhost log files, or send messages elsewhere. See your server's documentation for details.
 
-The puppet master application itself logs its activity to syslog. This is where things like compilation errors and deprecation warnings go. Your syslog configuration dictates where these messages will be saved, but the default location is `/var/log/messages` on Linux and `/var/adm/messages` on Solaris.
+The puppet master application itself logs its activity to syslog. This is where things like compilation errors and deprecation warnings go. Your syslog configuration dictates where these messages will be saved, but the default location is `/var/log/messages` on Linux, `/var/log/system.log` on Mac OS X, and `/var/adm/messages` on Solaris.
 
 Alternately, if you specify the `--logdest <FILE>` option in `config.ru`, puppet master will log to the file specified by `<FILE>`.
 
