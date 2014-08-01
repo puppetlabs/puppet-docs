@@ -14,30 +14,8 @@ title: "Overview of Puppet's Architecture"
 [report handlers]: /references/3.6.latest/report.html
 [lang_basics]: ./lang_summary.html
 [apply]: ./services_apply.html
-
-
-[multi_master]: /guides/scaling_multiple_masters.html
-[ext_ca]: ./config_ssl_external_ca.html
-[facter]: /facter/latest/
-[facts]: ./lang_facts_and_builtin_vars.html
-[reporting]: /guides/reporting.html
-[environment]: ./environments.html
-[enc]: /guides/external_nodes.html
-[static_compiler]: /references/3.6.latest/indirection.html#staticcompiler-terminus
-[file resource]: /references/3.6.latest/type.html#file
-[node terminus]: /references/3.6.latest/configuration.html#nodeterminus
-[catalog terminus]: /references/3.6.latest/configuration.html#catalogterminus
-[usecacheonfailure]: /references/3.6.latest/configuration.html#usecacheonfailure
-[ca_server]: /references/3.6.latest/configuration.html#caserver
-[server]: /references/3.6.latest/configuration.html#server
-[noop_setting]: /references/3.6.latest/configuration.html#noop
-[reportserver]: /references/3.6.latest/configuration.html#reportserver
-[report_setting]: /references/3.6.latest/configuration.html#report
-[reports_setting]: /references/3.6.latest/configuration.html#reports
-[ca_server_setting]: /references/3.6.latest/configuration.html#caserver
-[request manager]: /pe/latest/console_cert_mgmt.html
-[autosigning]: ./ssl_autosign.html
 [puppetdb]: /puppetdb/latest
+
 
 
 Puppet usually uses an agent/master (client/server) architecture for configuring systems, using the **puppet agent** and **puppet master** applications. It can also run in a self-contained architecture with the **puppet apply** application.
