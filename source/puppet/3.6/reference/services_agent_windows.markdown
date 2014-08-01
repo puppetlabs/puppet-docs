@@ -20,6 +20,8 @@ canonical: "/puppet/latest/reference/services_master_windows.html"
 
 Puppet agent is the application that manages configurations on nodes. It requires a puppet master server to fetch configuration [catalogs][] from. (For more info, see [Overview of Puppet's Architecture](./architecture.html).)
 
+For details about invoking the puppet agent command, see [the puppet agent man page](/references/3.6.latest/man/agent.html).
+
 ## Supported Platforms
 
 This page describes how puppet agent behaves on Windows systems. For information about Linux, OS X, and other Unix-like operating systems, see [Puppet Agent on \*nix Systems][win_agent].

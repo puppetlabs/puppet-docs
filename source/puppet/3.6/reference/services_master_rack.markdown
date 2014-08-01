@@ -24,6 +24,8 @@ This is the recommended way of running the puppet master service.
 
 This page describes the generic requirements and run environment for running under Rack; for practical configuration instructions, see [the guide to configuring a Passenger + Apache puppet master.][passenger_guide]
 
+For details about invoking the puppet master command, see [the puppet master man page](/references/3.6.latest/man/master.html).
+
 ## Supported Platforms
 
 The Rack puppet master will run on any \*nix platform, including all Linux variants and OS X. It requires a Rack web server.

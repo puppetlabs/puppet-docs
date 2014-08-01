@@ -13,6 +13,8 @@ Puppet has the built-in capability to run a complete puppet master server using 
 
 The WEBrick puppet master server is not capable of handling production-level numbers of agent nodes. Since it can't handle concurrent connections, it will be quickly overwhelmed by as few as 10 agents. You should never run a WEBrick puppet master in production, and should always configure a [Rack puppet master server][rack_master] instead.
 
+For details about invoking the puppet master command, see [the puppet master man page](/references/3.6.latest/man/master.html).
+
 ## Supported Platforms
 
 The WEBrick puppet master will run on any \*nix platform, including all Linux variants and OS X.
