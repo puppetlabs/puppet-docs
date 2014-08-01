@@ -7,13 +7,16 @@
   <li>{% iflink "Introduction", "./index.html" %}</li>
   <li>{% iflink "Puppet 3.6 Release Notes", "./release_notes.html" %}</li>
   <li>{% iflink "System Requirements", "./system_requirements.html" %}</li>
-  <li><strong>The Puppet Services</strong>
+  <li>{% iflink "Overview of Puppet's Architecture", "./architecture.html" %}</li>
+
+  <li><strong>Puppet's Services and Tools</strong>
     <ul>
       <li>{% iflink "Overview of Puppet's Run Environment", "./services_environment.html" %}</li>
       <li>{% iflink "The WEBrick Puppet Master", "./services_master_webrick.html" %}</li>
       <li>{% iflink "The Rack Puppet Master", "./services_master_rack.html" %}</li>
       <li>{% iflink "Puppet Agent on *nix", "./services_agent_unix.html" %}</li>
       <li>{% iflink "Puppet Agent on Windows", "./services_agent_windows.html" %}</li>
+      <li>{% iflink "Puppet Apply (Masterless Puppet)", "./services_apply.html" %}</li>
     </ul>
   </li>
 
