@@ -145,7 +145,7 @@ Naming
 
 Variable names are case-sensitive and can include alphanumeric characters and underscores.
 
-Qualified variable names are prefixed with the name of their scope and the `::` (double colon) namespace separator. (For example, the `$vhostdir` variable from the `apache::params` class would be `$apache::params::vhostdir`.)
+**Qualified variable names** are prefixed with the name of their scope and the `::` (double colon) namespace separator. (For example, the `$vhostdir` variable from the `apache::params` class would be `$apache::params::vhostdir`.)
 
 [See the section on acceptable characters in variable names][acceptable] for more details. Additionally, [several variable names are reserved][reserved].
 
