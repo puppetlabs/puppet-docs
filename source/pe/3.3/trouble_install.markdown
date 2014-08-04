@@ -46,7 +46,7 @@ If you manage `puppet.conf` with Puppet or a third-party tool like Git or r10k, 
 
    Report submission to the console no longer happens using `reports=https`. PE 3.2 changed the setting in `puppet.conf` to `reports=console`. This change works in the same way as the `node_terminus` changes described above.
 
-**Installing Without Internet Connectivity**
+### Installing Without Internet Connectivity
 
 By default, the master node hosts a repo that contains packages used for agent installation. When you download the tarball for the master, the master also downloads the agent tarball for the same platform and unpacks it in this repo. 
 
