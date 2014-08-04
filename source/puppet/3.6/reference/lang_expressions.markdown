@@ -21,21 +21,21 @@ canonical: "/puppet/latest/reference/lang_expressions.html"
 [variables]: ./lang_variables.html
 
 
-**Expressions** resolve to values and can be used in **most** of the places where values of the [standard data types][datatypes] are required.  Expressions can be compounded with other expressions and the entire combined expression will resolve to a single value.
+**Expressions** resolve to values and can be used in **most** places that require [standard data type][datatypes] values.  Expressions can be compounded with other expressions, and the entire combined expression will resolve to a single value.
 
 Most expressions resolve to [boolean][] values. They are particularly useful as conditions in [conditional statements][conditional].
 
 Location
 -----
 
-Expressions can be used in the following places:
+Expressions can be used in:
 
-* The operand of another expression
-* The condition of an [if statement][if]
-* The control expression of a [case statement][case]
-* The assignment of a variable
-* The value of a resource attribute
-* The argument(s) of a [function][] call
+* The operand of another expression.
+* The condition of an [if statement][if].
+* The control expression of a [case statement][case].
+* The assignment of a variable.
+* The value of a resource attribute.
+* The argument(s) of a [function][] call.
 
 They cannot be used in selectors or as resource titles.
 
@@ -59,10 +59,10 @@ Optionally, expressions can be surrounded by parentheses.
 
 Operands in an expression may be:
 
-* Literal values
-* [Variables][]
-* Other expressions
-* [Function calls][function] which return values
+* Literal values.
+* [Variables][].
+* Other expressions.
+* [Function calls][function] that return values.
 
 The [data type][datatypes] of each operand is dictated by the operator. See the list of operators below for details.
 
@@ -104,8 +104,8 @@ Comparison Operators
 
 Comparison operators have the following traits:
 
-* They take operands of **several data types**
-* They resolve to [**boolean**][boolean] values
+* They take operands of **several data types**.
+* They resolve to [**boolean**][boolean] values.
 
 ### `==` (equality)
 
@@ -181,8 +181,8 @@ Boolean Operators
 
 Boolean Operators have the following traits:
 
-* They take [**boolean**][boolean] operands; if another data type is given, it will be [automatically converted to boolean][bool_convert]
-* They resolve to [**boolean**][boolean] values
+* They take [**boolean**][boolean] operands; if another data type is given, it will be [automatically converted to boolean][bool_convert].
+* They resolve to [**boolean**][boolean] values.
 
 These expressions are most useful when creating compound expressions.
 
@@ -211,8 +211,8 @@ Arithmetic Operators
 
 Arithmetic Operators have the following traits:
 
-* They take two [**numeric**][numbers] operands
-* They resolve to [**numeric**][numbers] values
+* They take two [**numeric**][numbers] operands.
+* They resolve to [**numeric**][numbers] values.
 
 ### `+` (addition)
 

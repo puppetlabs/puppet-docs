@@ -34,7 +34,7 @@ Syntax
 
 Variable names are prefixed with a `$` (dollar sign). Values are assigned to them with the `=` (equal sign) assignment operator.
 
-Any value of any of the normal (i.e. non-regex) [data types][datatype] can be assigned to a variable. Any statement that resolves to a normal value (including [expressions][], [functions][], and other variables) can be used in place of a literal value. The variable will contain the value that the statement resolves to, rather than a reference to the statement.
+You can assign any value of any of the normal (i.e., non-regex) [data types][datatype] to a variable. You can use any statement that resolves to a normal value (including [expressions][], [functions][], and other variables) in place of a literal value. The variable will contain the value that the statement resolves to, rather than a reference to the statement.
 
 Variables can only be assigned using their [short name](#naming). That is, a given [scope][] cannot assign values to variables in a foreign scope.
 
@@ -49,7 +49,7 @@ Variables can only be assigned using their [short name](#naming). That is, a giv
     $address_array = [$address1, $address2, $address3]
 {% endhighlight %}
 
-The name of a variable can be used in any place where a value of its data type would be accepted, including [expressions][], [functions][], and [resource attributes][resource_attribute]. Puppet will replace the name of the variable with its value.
+You can use the name of a variable in any place where a value of its data type would be accepted, including [expressions][], [functions][], and [resource attributes][resource_attribute]. Puppet will replace the name of the variable with its value.
 
 ### Interpolation
 
@@ -61,13 +61,13 @@ The name of a variable can be used in any place where a value of its data type w
     }
 {% endhighlight %}
 
-Puppet can resolve variables in [double-quoted strings][double_quote]; this is called "interpolation."
+Puppet can resolve variables in [double-quoted strings][double_quote]; this is called _interpolation_.
 
-Inside a double-quoted string, you can optionally surround the name of the variable (the portion after the `$`) with curly braces (`${var_name}`). This syntax helps to avoid ambiguity and allows variables to be placed directly next to non-whitespace characters. These optional curly braces are only allowed inside strings.
+Inside a double-quoted string, you can surround the name of the variable (the portion after the `$`) with curly braces (`${var_name}`). This optional syntax helps to avoid ambiguity and allows you to place variables directly next to non-whitespace characters. These optional curly braces are only allowed inside strings.
 
 ### Appending Assignment
 
-When creating a local variable with the same name as a variable in [top scope, node scope, or a parent scope][scope], you can optionally append to the received value with the `+=` (plus-equals) appending assignment operator.
+When creating a local variable with the same name as a variable in [top scope, node scope, or a parent scope][scope], you can append to the received value with the `+=` (plus-equals) appending assignment operator.
 
 {% highlight ruby %}
     $ssh_users = ['myself', 'someone']
@@ -81,9 +81,9 @@ In the example above, the value of `$ssh_users` inside class `test` would be `['
 
 The value appended with the `+=` operator **must** be the same [data type][datatype] as the received value. This operator can only be used with strings, arrays, and hashes:
 
-* Strings: Will concatenate the two strings.
-* Arrays: Will add the elements of the appended array to the end of the received array.
-* Hashes: Will merge the two hashes.
+* Strings --- Will concatenate the two strings.
+* Arrays --- Will add the elements of the appended array to the end of the received array.
+* Hashes --- Will merge the two hashes.
 
 
 Behavior

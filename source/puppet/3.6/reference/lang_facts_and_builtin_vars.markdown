@@ -28,7 +28,7 @@ Facts
 
 Before requesting a [catalog][] from a puppet master (or compiling one locally with puppet apply), a puppet node will run [Facter][] to collect information about the system.
 
-Puppet receives this information as **facts,** which are pre-set variables you can use anywhere in your manifests. Puppet can use both the built-in [core facts][core_facts] and any [custom facts][customfacts] present in your modules.
+Puppet receives this information as _facts_, which are preset variables you can use anywhere in your manifests. Puppet can use both the built-in [core facts][core_facts] and any [custom facts][customfacts] present in your modules.
 
 By default, all facts are [strings][]. If you use Facter 2.0 and [enable structured facts in Puppet][structured_facts_on], facts can contain any data type, including arrays and hashes. At this time, structured facts don't work with extensions like PuppetDB.
 
@@ -56,7 +56,7 @@ Example, with the osfamily fact:
 
 ### The `$facts` Hash
 
-If you [set `trusted_node_data = true` in puppet.conf][trusted_on] on the puppet master,\* facts also appear in a `$facts` hash. They can be accessed in manifests as `$facts[fact_name]`. The variable name `$facts` will be reserved, so local scopes cannot re-use it.
+If you [set `trusted_node_data = true` in puppet.conf][trusted_on] on the puppet master,\* facts also appear in a `$facts` hash. They can be accessed in manifests as `$facts[fact_name]`. The variable name `$facts` will be reserved, so local scopes cannot reuse it.
 
 Example, with the osfamily fact:
 
@@ -66,7 +66,7 @@ Example, with the osfamily fact:
     }
 {% endhighlight %}
 
-**Benefits:** More readable and maintainable code, by making facts visibly distinct from other variables. Also, you don't have to use the `$::fact_name` idiom mentioned above to protect yourself from local scopes, since the `$facts` variable can never be overridden or modified.
+**Benefits:** More readable and maintainable code, with facts visibly distinct from other variables. Also, you don't have to use the `$::fact_name` idiom mentioned above to protect yourself from local scopes, since the `$facts` variable can never be overridden or modified.
 
 **Drawbacks:** Only works with Puppet 3.5 or later, so it's currently a bad choice for reusable code.
 
@@ -74,7 +74,7 @@ Example, with the osfamily fact:
 
 ### Trusted Facts
 
-If you [set `trusted_node_data = true` in puppet.conf][trusted_on] on the puppet master, a few special **trusted facts** will appear in a `$trusted` hash. They can be accessed in manifests as `$trusted[fact_name]`. The variable name `$trusted` will be reserved, so local scopes cannot re-use it.
+If you [set `trusted_node_data = true` in puppet.conf][trusted_on] on the puppet master, a few special trusted facts will appear in a `$trusted` hash. They can be accessed in manifests as `$trusted[fact_name]`. The variable name `$trusted` will be reserved, so local scopes cannot reuse it.
 
 Normal facts are self-reported by the node, and nothing guarantees their accuracy. Trusted facts are extracted from the node's certificate, which can prove that the CA checked and approved them. This makes them useful for deciding whether a given node should receive sensitive data in its catalog.
 
@@ -105,9 +105,9 @@ The `$trusted` hash looks something like this:
 The available keys are:
 
 * `authenticated` --- an indication of whether the catalog request was authenticated, as well as how it was authenticated. The value will be one of:
-    * `remote` for authenticated remote requests (as with agent/master Puppet configurations)
-    * `local` for all local requests (as with standalone puppet apply nodes)
-    * `false` for unauthenticated remote requests (generally only possible if you've configured auth.conf to allow unauthenticated catalog requests)
+    * `remote` for authenticated remote requests (as with agent/master Puppet configurations).
+    * `local` for all local requests (as with standalone puppet apply nodes).
+    * `false` for unauthenticated remote requests (generally only possible if you've configured auth.conf to allow unauthenticated catalog requests).
 * `certname` --- the node's subject CN, as listed in its certificate. (When first requesting its certificate, the node requests a subject CN matching the value of its `certname` setting.)
     * If `authenticated` is `remote`, this is the subject CN extracted from the node's certificate.
     * If `authenticated` is `local`, this is read directly from the `certname` setting.
@@ -131,7 +131,7 @@ Variables Set by the Puppet Master
 Several variables are set by the puppet master. These are most useful when managing Puppet with Puppet. (For example, managing puppet.conf with a template.)
 
 * `$environment` --- the agent node's [environment][].
-* `$servername` --- the puppet master's fully-qualified domain name. (Note that this information is gathered from the puppet master by Facter, rather than read from the config files; even if the master's certname is set to something other than its fully-qualified domain name, this variable will still contain the server's fqdn.)
+* `$servername` --- the puppet master's fully qualified domain name. (Note that this information is gathered from the puppet master by Facter, rather than read from the config files; even if the master's certname is set to something other than its fully qualified domain name, this variable will still contain the server's fqdn.)
 * `$serverip` --- the puppet master's IP address.
 * `$serverversion` --- the current version of puppet on the puppet master.
 * `$settings::<name of setting>` --- the value of any of the master's [settings](/guides/configuring.html). This is implemented as a special namespace and these variables must be referred to by their qualified names. Note that, other than `$environment` and `$clientnoop`, the agent node's settings are **not** available in manifests. If you wish to expose them to the master in this version of Puppet, you will have to create a custom fact.
@@ -142,5 +142,5 @@ Variables Set by the Parser
 These variables are set in every [local scope][scope] by the parser during compilation. These are mostly useful when implementing complex [defined types][definedtype].
 
 * `$module_name` --- the name of the module that contains the current class or defined type.
-* `$caller_module_name` --- the name of the module in which the **specific instance** of the surrounding defined type was declared. This is only useful when creating versatile defined types which will be re-used by several modules.
+* `$caller_module_name` --- the name of the module in which the **specific instance** of the surrounding defined type was declared. This is only useful when creating versatile defined types which will be reused by several modules.
 

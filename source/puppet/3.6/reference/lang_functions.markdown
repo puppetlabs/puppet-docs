@@ -15,7 +15,7 @@ canonical: "/puppet/latest/reference/lang_functions.html"
 
 > * [See the Function Reference for complete info about Puppet's built-in functions.][func_ref]
 
-**Functions** are pre-defined chunks of Ruby code which run during [compilation][catalog]. Most functions either **return values** or **modify the [catalog][].**
+**Functions** are predefined chunks of Ruby code which run during [compilation][catalog]. Most functions either **return values** or **modify the [catalog][].**
 
 Puppet includes several built-in functions, and more are available in modules on the [Puppet Forge][forge], particularly the [puppetlabs-stdlib][stdlib] module. You can also write [custom functions][custom] and put them in your own modules.
 
@@ -44,10 +44,10 @@ In the examples above, `template`, `include`, and `str2bool` are all functions. 
 
 The general form of a function call is:
 
-* The name of the function, as a bare word
-* An opening parenthesis, which is optional for statements but mandatory for rvalues
-* Any number of **arguments,** separated with commas; the number and type of arguments are controlled by the function
-* A closing parenthesis, if an open parenthesis was used
+* The name of the function, as a bare word.
+* An opening parenthesis, which is optional for statements but mandatory for rvalues.
+* Any number of **arguments,** separated with commas; the number and type of arguments are controlled by the function.
+* A closing parenthesis, if an opening parenthesis was used.
 
 Behavior
 -----

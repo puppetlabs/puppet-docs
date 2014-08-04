@@ -24,7 +24,7 @@ canonical: "/puppet/latest/reference/lang_resources.html"
 [collector]: ./lang_collectors.html
 [catalog]: ./lang_summary.html#compilation-and-catalogs
 
-> * [See the Type Reference for complete information about Puppet's built-in resource types.][types]
+> [See the Type Reference for complete information about Puppet's built-in resource types.][types]
 
 **Resources** are the fundamental unit for modeling system configurations. Each resource describes some aspect of a system, like a service that must be running or a package that must be installed. The block of Puppet code that describes a resource is called a **resource declaration.**
 
@@ -53,25 +53,25 @@ Every resource has a **type,** a **title,** and a set of **attributes:**
 
 The general form of a resource declaration is:
 
-* The resource type, in lower-case
-* An opening curly brace
-* The title, which is a [string][]
-* A colon
+* The resource type, in lowercase.
+* An opening curly brace.
+* The title, which is a [string][].
+* A colon.
 * Optionally, any number of attribute and value pairs, each of which consists of:
-    * An attribute name, which is a bare word
-    * A `=>` (arrow, fat comma, or hash rocket)
-    * A value, which can be any [data type][datatype], depending on what the attribute requires
-    * A trailing comma (note that the comma is optional after the final attribute/value pair)
-* Optionally, a semicolon, followed by another title, colon, and attribute block
-* A closing curly brace
+    * An attribute name, which is a bare word.
+    * A `=>` (arrow, fat comma, or hash rocket).
+    * A value, which can be any [data type][datatype], depending on what the attribute requires.
+    * A trailing comma (note that the comma is optional after the final attribute/value pair).
+* Optionally, a semicolon followed by another title, colon, and attribute block.
+* A closing curly brace.
 
-Note that, in the Puppet language, whitespace is fungible.
+Note that whitespace is fungible in the Puppet language.
 
 ### Type
 
 The type identifies what kind of resource it is. Puppet has a large number of built-in resource types, including files on disk, cron jobs, user accounts, services, and software packages. [See here for a list of built-in resource types][types].
 
-Puppet can be extended with additional resource types, written in Ruby or in the Puppet language.
+Puppet can be extended with additional resource types written in Ruby or in the Puppet language.
 
 ### Title
 
@@ -94,15 +94,15 @@ When discussing resources and types, **parameter** is a synonym for attribute. "
 Behavior
 -----
 
-A resource declaration adds a resource to the catalog, and tells Puppet to manage that resource's state. When Puppet applies the compiled catalog, it will:
+A resource declaration adds a resource to the catalog and tells Puppet to manage that resource's state. When Puppet applies the compiled catalog, it will:
 
-* Read the actual state of the resource on the target system
-* Compare the actual state to the desired state
-* If necessary, change the system to enforce the desired state
+* Read the actual state of the resource on the target system.
+* Compare the actual state to the desired state.
+* If necessary, change the system to enforce the desired state.
 
 ### Uniqueness
 
-Puppet does not allow you to declare the same resource twice. This is to prevent multiple conflicting values from being declared for the same attribute.
+Puppet does not allow you to declare the same resource twice. This prevents multiple conflicting values from being declared for the same attribute.
 
 Puppet uses the [title](#title) and [name/namevar](#namenamevar) to identify duplicate resources --- if either of these is duplicated within a given resource type, the compilation will fail.
 
@@ -110,7 +110,7 @@ If multiple classes require the same resource, you can use a [class][] or a [vir
 
 ### Events
 
-If Puppet makes any changes to a resource, it will log those changes as events. These events will appear in puppet agent's log and in the run [report][], which is sent to the puppet master and forwarded to any number of report processors.
+If Puppet makes any changes to a resource, it will log those changes as events. These events will appear in the puppet agent's log and in the run [report][], which is sent to the puppet master and forwarded to any number of report processors.
 
 ### Parse-Order Independence
 
@@ -135,11 +135,11 @@ Namevar values **must be unique per resource type,** with only rare exceptions (
 
 Namevars are not to be confused with the title, which identifies a resource _to Puppet._ However, they often have the same value, since the namevar's value will **default to the title** if it isn't specified. Thus, the `path` of the file example [above](#syntax) is `/etc/passwd`, even though it was never specified.
 
-The distinction between title and namevar lets you use a single, consistently-titled resource to manage something whose name differs by platform. For example, the NTP service is `ntpd` on Red Hat-derived systems, but `ntp` on Debian and Ubuntu; the service resource could simply be titled "ntp," but could have its name set correctly by platform. Other resources could then form relationships to it without worrying that its title will change.
+The distinction between title and namevar lets you use a single, consistently titled resource to manage something whose name differs by platform. For example, the NTP service is `ntpd` on Red Hat-derived systems, but `ntp` on Debian and Ubuntu; the service resource could simply be titled "ntp," but could have its name set correctly by platform. Other resources could then form relationships to it without worrying that its title will change.
 
 ### Ensure
 
-Many types have an `ensure` attribute. This generally manages the most fundamental aspect of the resource on the target system --- does the file exist, is the service running or stopped, is the package installed or uninstalled, etc.
+Many types have an `ensure` attribute. This generally manages the most fundamental aspect of the resource on the target system --- whether the file exists, whether the service is running or stopped, whether the package is installed or uninstalled, etc.
 
 Allowed values for `ensure` vary by type. Most types accept `present` and `absent`, but there may be additional variations. Be sure to check the reference for each type you are working with.
 
@@ -252,10 +252,10 @@ Although you cannot declare the same resource twice, you can add attributes to a
 
 The general form of a reference attribute block is:
 
-* A [reference][] to the resource in question (or a multi-resource reference)
-* An opening curly brace
-* Any number of attribute => value pairs
-* A closing curly brace
+* A [reference][] to the resource in question (or a multi-resource reference).
+* An opening curly brace.
+* Any number of attribute => value pairs.
+* A closing curly brace.
 
 In normal circumstances, this idiom can only be used to add previously unmanaged attributes to a resource; it cannot override already-specified attributes. However, within an [inherited class][inheritance], you **can** use this idiom to override attributes.
 
@@ -280,10 +280,10 @@ In normal circumstances, this idiom can only be used to add previously unmanaged
 
 The general form of a collector attribute block is:
 
-* A [resource collector][collector] that matches any number of resources
-* An opening curly brace
-* Any number of attribute => value (or attribute +> value) pairs
-* A closing curly brace
+* A [resource collector][collector] that matches any number of resources.
+* An opening curly brace.
+* Any number of attribute => value (or attribute +> value) pairs.
+* A closing curly brace.
 
 Much like in an [inherited class][inheritance], you can use the special `+>` keyword to append values to attributes that accept arrays. See [appending to attributes][append_attributes] for more details.
 
@@ -291,5 +291,5 @@ Much like in an [inherited class][inheritance], you can use the special `+>` key
 >
 > * It **can always override** already-specified attributes, regardless of class inheritance.
 > * It can affect large numbers of resources at once.
-> * It will [implicitly realize][realize] any [virtual resources][virtual] that the collector matches. If you are using virtual resources at all, you must use extreme care when constructing collectors that are not intended to realize resources, and would be better off avoiding non-realizing collectors entirely.
+> * It will [implicitly realize][realize] any [virtual resources][virtual] that the collector matches. If you are using virtual resources at all, you must use extreme care when constructing collectors that are not intended to realize resources, and you would be better off avoiding non-realizing collectors entirely.
 > * Since it ignores class inheritance, you can override the same attribute twice, which results in a parse-order dependent race where the final override wins.
