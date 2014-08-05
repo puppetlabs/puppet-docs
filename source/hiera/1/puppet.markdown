@@ -84,15 +84,14 @@ Note that these variables are effectively local scope, as they are pseudo-variab
 
 ### Best Practices
 
-**Do not use local Puppet variables** in Hiera's hierarchy or data sources. Only use [**facts**][facts] and **ENC-set top-scope variables.** Use [absolute top-scope notation][absolute_scope] (i.e. `%{::clientcert}` instead of `%{clientcert}`) in Hiera's config files to avoid accidentally using a local variable instead of a top-scope one.
+There are two practices we always recommend when using Puppet's variables in Hiera:
 
-This is not a hard and fast rule, and there are some exceptions, but you'll almost always regret breaking it. This is because the point of Hiera is to **disentangle data from code,** and enable node-specific hierarchical data that doesn't rely on Puppet's parse order.
+- **Do not use local Puppet variables** in Hiera's hierarchy or data sources. Only use [**facts**][facts] and **ENC-set top-scope variables.**
 
-If Hiera only relies on variables that are set **before Puppet starts to parse its manifests,** its data will be node-specific but static and reliable. This is good! It frees you from weird parse-order dependent bugs, makes it easier to test your data, and makes it easier to tell exactly what's going to happen by looking at a given section of Puppet code.
+    Using local variables can make your hierarchy incredibly difficult to debug.
+- **Use [absolute top-scope notation][absolute_scope]** (i.e. `%{::clientcert}` instead of `%{clientcert}`) in Hiera's config files to avoid accidentally accessing a local variable instead of a top-scope one.
 
-On the other hand, making Hiera rely on local variables set by Puppet's parser means you're still fundamentally embedding data in your code, and will still have all of the problems Hiera is meant to solve.
-
-Again, there are sometimes exceptions, but tread carefully.
+    Note that this is different from Puppet manifests, where the `$::fact` idiom is [never necessary.](/puppet/latest/reference/lang_facts_and_builtin_vars.html#historical-note-about-) In Puppet, re-using the name of a fact variable in a local scope will only have local consequences. In Hiera, a re-used fact name can have more distant effects, so you still need to defend against it.
 
 Automatic Parameter Lookup
 -----

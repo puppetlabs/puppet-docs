@@ -11,7 +11,7 @@ title: "Hiera 1: Creating Hierarchies"
 [priority]: ./lookup_types.html#priority-default
 [array]: ./lookup_types.html#array-merge
 [hash]: ./lookup_types.html#hash-merge
-
+[qualified_var]: /puppet/latest/reference/lang_variables.html#accessing-out-of-scope-variables
 
 Hiera uses an ordered hierarchy to look up data. This allows you to have a large amount of common data and override smaller amounts of it wherever necessary.
 
@@ -32,12 +32,19 @@ Each element in the hierarchy must be a **string,** which may or may not include
       - "virtual_%{::is_virtual}"
       - common
 
-> **Terminology:**
+> ### Best Practice: Use Fully-Qualified Puppet Variables
 >
-> We use these two terms within the Hiera docs and in various other places:
+> If your hierarchy includes any [variables][] set by Puppet, we recommend that you use their [fully-qualified top-scope name.][qualified_var] (E.g. `::clientcert`.)
 >
-> * **Static data source** --- A hierarchy element **without** any interpolation tokens. A static data source will be the same for every node. In the example above, `common` is a static data source --- a virtual machine named `web01` and a physical machine named `db01` would both use `common`.
-> * **Dynamic data source** --- A hierarchy element with at least one interpolation token. If two nodes have different values for the variables it references, a dynamic data source will use two different data sources for those nodes. In the example above: the special `$::clientcert` Puppet variable has a unique value for every node. A machine named `web01` would have a data source named `web01` at the top of its hierarchy, while a machine named `db01` would have `db01` at the top.
+> For more details, see [the Best Practices section](./puppet.html#best-practices) of the Using Hiera With Puppet page.
+
+Terminology
+-----
+
+We use these two terms within the Hiera docs and in various other places:
+
+* **Static data source** --- A hierarchy element **without** any interpolation tokens. A static data source will be the same for every node. In the example above, `common` is a static data source --- a virtual machine named `web01` and a physical machine named `db01` would both use `common`.
+* **Dynamic data source** --- A hierarchy element with at least one interpolation token. If two nodes have different values for the variables it references, a dynamic data source will use two different data sources for those nodes. In the example above: the special `$::clientcert` Puppet variable has a unique value for every node. A machine named `web01` would have a data source named `web01` at the top of its hierarchy, while a machine named `db01` would have `db01` at the top.
 
 Behavior
 -----
