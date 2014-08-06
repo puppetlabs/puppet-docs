@@ -14,7 +14,7 @@ canonical: "/puppet/latest/reference/services_master_windows.html"
 [page on triggering puppet runs]: /pe/latest/orchestration_puppet.html
 [msiproperties]: /guides/install_puppet/install_windows.html#automated-installation
 [uac]: ./images/uac.png
-[rightclick]: ./images/run_as_admin.jpg
+[rightclick]: ./images/run_as_admin.png
 [report]: /guides/reporting.html
 
 
