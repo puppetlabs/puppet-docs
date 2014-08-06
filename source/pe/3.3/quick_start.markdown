@@ -328,7 +328,7 @@ We will install a Puppet Enterprise supported module: `puppetlabs-ntp`. While yo
 
 > You have just installed a Puppet module. All of the classes in it are now available to be added to the console and assigned to nodes.
 
-There are many more modules, including PE supported modules, on [the Forge](http://forge.puppetlabs.com). In part two of this guide you'll learn more about modules, including customizing and writing your own modules on either  [Windows](./quick_writing_windows) or [*nix](./quick_writing_nix) platforms.
+There are many more modules, including PE supported modules, on [the Forge](http://forge.puppetlabs.com). In part two of this guide you'll learn more about modules, including customizing and writing your own modules on either  [Windows](./quick_writing_windows.html) or [*nix](./quick_writing_nix.html) platforms.
 
 ### Using Modules in the PE Console
 
