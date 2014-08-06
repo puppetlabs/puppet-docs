@@ -134,5 +134,7 @@ The Puppet agent process runs as a 32-bit process. When run on 64-bit versions o
 Troubleshooting
 -----
 
-The most common points of failure on Windows systems aren't the same as those on \*nix. For more details, see [Troubleshooting Puppet on Windows][troubleshooting].
+The most common points of failure on Windows systems aren't the same as those on \*nix. For more details, see:
+
+* [Troubleshooting Puppet on Windows][troubleshooting].
 
