@@ -74,7 +74,7 @@ Out of the core resource types listed in the [type reference][], the following r
 
 If you need to install packages into a directory controlled by a non-root user, you can either use an `exec` to unzip a tarball or use a recursive `file` resource to copy a directory into place.
 
-### Ports
+### Network Access
 
 By default, puppet apply does not communicate over the network. It uses its local collection of [modules][] for any file sources, and does not submit reports to a central server.
 
