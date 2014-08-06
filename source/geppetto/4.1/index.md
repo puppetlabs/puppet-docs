@@ -176,23 +176,14 @@ For more information about interacting with Git or SVN from Geppetto, refer to t
 
 All Puppet modules include a metadata file, which contains high-level information about the module (version, author, license, dependencies, et cetera). Geppetto's editor provides an easy way to modify this metadata.
 
-If you create a module using Geppetto's Project Wizard, you will have access to the same metadata editor through either the Modulefile or metadata.json.
+If you create a module using Geppetto's Project Wizard, you will have access to the same metadata editor through the metadata.json.
 
-If you have pulled a module from the [Puppet Forge](forge.puppetlabs.com) or a Git/SVN repo, you may edit the metadata via Modulefile or metadata.json, whichever is available. Whether there will be a Modulefile or not depends on how that module was built. Upon pulling a module from the Puppet Forge, Geppetto will open the Modulefile or metadata.json in the editor automatically.
+If you have pulled a module from the [Puppet Forge](forge.puppetlabs.com) or a Git/SVN repo, you may edit the metadata via metadata.json. Upon pulling a module from the Puppet Forge, Geppetto will open the metadata.json in the editor automatically. 
 
-####Working With Metadata.json
 
-Currently, Geppetto can work with metadata.json in two modes:
+####Deriving Metadata.json from Deprecated Modulefile
 
-* As derived from the Modulefile
-* As a first class file
-
-When it's derived, the metadata.json file will change whenever the Modulefile changes. It will also be deleted if the Modulefile is deleted. Eventually, the Modulefile will be deprecated. For this reason, you might want to delete the Modulefile but _keep_ the metadata.json. Here's how:
-
-1. Close any editor that's open for the Modulefile or metadata.json.
-2. Right-click the metadata.json file, and click **Properties**.
-3. In the **Properties** dialog, clear the **Derived** check box, and click **OK**.
-4. Delete the Modulefile.
+Normally, your metadata is stored and edited in your metadata.json. However, if you are working with an older module, it may have a deprecated Modulefile instead. Geppetto will automatically generate the metadata.json from the Modulefile and then notify you. Once the metadata.json has been created, Geppetto will ignore the Modulefile. At this point, we recommend that you check to make sure the metadata.json is up to date, and then delete the Modulefile.
 
 ####The Metadata Editor
 
