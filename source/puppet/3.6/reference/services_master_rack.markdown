@@ -28,13 +28,15 @@ For details about invoking the puppet master command, see [the puppet master man
 
 ## Supported Platforms
 
-The Rack puppet master will run on any \*nix platform, including all Linux variants and OS X. It requires a Rack web server.
+The Rack puppet master will run on any \*nix platform, including all Linux variants and OS X. It requires a **multi-process** (_not_ threaded) Rack web server.
 
 You cannot run a puppet master on Windows.
 
 ### Rack Web Servers
 
-There are a lot of Rack web server stacks available, and you can probably make Puppet work with any of them.
+There are a lot of Rack web server stacks available. Puppet should work with any Rack server that spawns multiple processes to handle parallel requests.
+
+> Note that Puppet **will not** work with **threaded** Rack servers like Puma. Puppet's code isn't thread-safe, and it expects to be isolated in a single process.
 
 If you don't have any particular preference, you should start with [Passenger][] and Apache, since it's the most familiar and most thoroughly tested stack in the Puppet community. Some OSes have packages that set Passenger up automatically, and we have [a detailed guide to configuring it for Puppet.][passenger_guide]
 
