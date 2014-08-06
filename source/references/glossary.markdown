@@ -106,7 +106,7 @@ A piece of information about a node, such as its operating system, hostname, or 
 
 Facts are read from the system by [Facter](#facter), and are made available to Puppet as global variables.
 
-Facter can also be extended with custom facts, which can expose site-specific details of your systems to your Puppet manifests. See [Custom Facts](/guides/custom_facts.html) for more details.
+Facter can also be extended with custom facts, which can expose site-specific details of your systems to your Puppet manifests. See [Custom Facts](/facter/latest/custom_facts.html) for more details.
 
 ### Facter
 

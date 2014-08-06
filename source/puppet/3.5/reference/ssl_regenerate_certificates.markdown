@@ -40,7 +40,7 @@ Note that this process **destroys the certificate authority and all other certif
 2. Stop the puppet agent service with `sudo puppet resource service puppet ensure=stopped`.
 3. Stop the puppet master service. Your puppet master is probably managed by a Rack-supporting web server, such as Apache with Passenger; you'll need to stop that web server. (For example, `sudo puppet resource service apache2 ensure=stopped`.)
 4. Locate Puppet's ssldir by [reading the setting from Puppet][config_print]; run either `sudo puppet config print ssldir --section master` or `sudo puppet master --configprint ssldir`.
-5. Delete all files in the ssldir with `sudo rm -rf <PATH TO SSLDIR>`.
+5. Delete all files in the ssldir with `sudo rm -r <PATH TO SSLDIR>`.
 5. Regenerate the CA by running `sudo puppet cert list -a`.
    You should see this message: `Notice: Signed certificate request for ca`.
 

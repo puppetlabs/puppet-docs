@@ -187,3 +187,25 @@ Use the module tool's **`uninstall` action** to remove an installed module. The 
 By default, the tool won't uninstall a module which other modules depend on or whose files have been edited since it was installed.
 
 * Use the `--force` option to uninstall even if the module is depended on or has been manually edited.
+
+### Errors
+
+The PMT from Puppet 3.6. has a known issue wherein modules that were published to the Puppet Forge that had not performed the [migration steps](http://docs.puppetlabs.com/puppet/latest/reference/modules_publishing.html#build-your-module) before publishing will have erroneous checksum information in their metadata.json. These checksums will cause errors that prevent you from upgrading or uninstalling the module.
+
+To determine if a module you're using has this issue, run `puppet module changes <path to module>`. If your module has this checksum issue, you will see that the metadata.json has been modified. If you try to upgrade or uninstall a module with this issue, your action will fail and you will receive warning similar to that below.
+
+~~~
+Notice: Preparing to upgrade 'puppetlabs-motd' ...
+Notice: Found 'puppetlabs-motd' (v1.0.0) in /etc/puppetlabs/puppet/modules ...
+Error: Could not upgrade module 'puppetlabs-motd' (v1.0.0 -> latest)
+  Installed module has had changes made locally
+~~~
+
+The workaround for this issue is:
+ 
+1. Navigate to the module. 
+2. Open the checksums.json file in your editor if it is present and delete the line: "metadata.json": [some checksum here]
+3. If there is no checksums.json, open the metadata.json file in your editor and delete the entire 'checksums' field.
+4. Run `puppet module changes <path to module>` to determine whether the fix was successful. A successful fix will return: `Notice: No modified files`. An unsuccessful fix will show modified files.
+5. Retry your upgrade/uninstall action. 
+

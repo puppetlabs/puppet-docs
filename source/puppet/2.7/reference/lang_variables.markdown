@@ -19,7 +19,7 @@ canonical: "/puppet/latest/reference/lang_variables.html"
 [topscope]: ./lang_scope.html#top-scope
 [facts]: /facter/latest/core_facts.html
 [facter]: /facter
-[customfacts]: /guides/custom_facts.html
+[customfacts]: /facter/1.7/custom_facts.html
 [catalog]: ./lang_summary.html#compilation-and-catalogs
 
 

@@ -2,7 +2,7 @@
 layout: default
 title: "PE 3.2 » Appendix"
 subtitle: "User's Guide Appendix"
-canonical: "/pe/latest/appendix.html"
+canonical: "/pe/latest/release_notes.html"
 ---
 
 [client_cert_dialog]: ./images/client_cert_dialog.png
@@ -48,11 +48,11 @@ This release fixes several minor bugs.
 
 #### Bad Data in Facter’s `architecture` Fact
 
-Previously on AIX agents, a bug caused Facter to return the system’s model number (e.g., IBM 3271) instead of the processor’s architecture (e.g. Power6). 
+Previously on AIX agents, a bug caused Facter to return the system’s model number (e.g., IBM 3271) instead of the processor’s architecture (e.g. Power6).
 
 #### `puppet module list --tree` Didn't Work Without `metadata.json`
 
-Previously, if you ran `puppet module generate <module name>` or manually created a module directory on the PE module path (`/etc/puppetlabs/puppet/module`) you would get a module structure that did not include `metadata.json`, which is required to run `puppet module list --tree`. 
+Previously, if you ran `puppet module generate <module name>` or manually created a module directory on the PE module path (`/etc/puppetlabs/puppet/module`) you would get a module structure that did not include `metadata.json`, which is required to run `puppet module list --tree`.
 
 #### Security Fixes
 
@@ -74,17 +74,17 @@ The variation in score is because `mod_log_config` is enabled by default on RHEL
 
 *[CVE-2013-6438 Apache vulnerability in `mod_dav` module could allow denial of service attacks via DAV WRITE requests](http://puppetlabs.com/security/cve/cve-2013-6438)*
 
-Assessed Risk Level: medium. For Apache versions earlier than 2.4.8, the `dav_xml_get_cdata` function in `main/util.c` in the `mod_dav` module does not properly remove leading spaces could allow remote attackers to cause a denial of service attack via a crafted DAV WRITE request. 
+Assessed Risk Level: medium. For Apache versions earlier than 2.4.8, the `dav_xml_get_cdata` function in `main/util.c` in the `mod_dav` module does not properly remove leading spaces could allow remote attackers to cause a denial of service attack via a crafted DAV WRITE request.
 
 CVSS v2 score: 4.0 with Vector (AV:N/AC:H/Au:N/C:N/I:N/A:C/E:U/RL:OF/RC:C)
 
 #### A Note about the Heartbleed Bug
 
-We want to emphasize that Puppet Enterprise does not need to be patched for Heartbleed.  
+We want to emphasize that Puppet Enterprise does not need to be patched for Heartbleed.
 
 No version of Puppet Enterprise has been shipped with a vulnerable version of OpenSSL, so Puppet Enterprise is not itself vulnerable to the security bug known as Heartbleed, and does not require a patch from Puppet Labs.
 
-However, some of your Puppet Enterprise-managed nodes could be running operating systems that include OpenSSL versions 1.0.1 or 1.0.2, and both of these are vulnerable to the Heartbleed bug. Since tools included in Puppet Enterprise, such as PuppetDB and the Console, make use of SSL certificates we believe the safest, most secure method for assuring the security of your Puppet-managed infrastructure is to regenerate your certificate authority and all OpenSSL certificates. 
+However, some of your Puppet Enterprise-managed nodes could be running operating systems that include OpenSSL versions 1.0.1 or 1.0.2, and both of these are vulnerable to the Heartbleed bug. Since tools included in Puppet Enterprise, such as PuppetDB and the Console, make use of SSL certificates we believe the safest, most secure method for assuring the security of your Puppet-managed infrastructure is to regenerate your certificate authority and all OpenSSL certificates.
 
 We have outlined the remediation procedure to help make it an easy and fail-safe process. You’ll find the details here: Remediation for [Recovering from the Heartbleed Bug](http://docs.puppetlabs.com/trouble_remediate_heartbleed_overview.html).
 
@@ -142,6 +142,10 @@ In some situations, a development team may wish to manage infrastructure on node
 #### Agent Support for Solaris 11
 
 The puppet agent can now be installed on nodes running Solaris 11. Other roles (e.g., master, console) are not supported. For more information, see the [system requirements](install_system_requirements.html).
+
+#### Manifest Compilation and Other Puppet Code Issues with UTF-8 encoding
+
+PE 3 uses an updated version of Ruby, 1.9, that is much stricter about character encodings than the version of Ruby used in PE 2.8. As a result, puppet code that contains non-ASCII characters can fail or act unpredictably. There are a number of ways UTF-8 characters can make it into puppet code, including but not limited to downloading a Forge module where some piece of metadata (e.g. author's name) contains UTF-8 characters. With apologies to our international customers, the current solution is to strictly limit puppet code, including metadata, to the ASCII character set. The only exception is puppet manifest comments, which do support non-ASCII characters. Puppet Labs is working on resolving character encoding issues in Puppet and the various libraries it interfaces with.
 
 #### Disable/Enable Live Management
 
@@ -215,7 +219,7 @@ There are two scenarios in which your upgrade can fail:
        connections on Unix domain socket "/tmp/.s.PGSQL.5432"?
        Database transfer failed.
 
-To work around these issues, ensure the PostgreSQL service is stopped before installing PE. To determine if PostgreSQL is running, run `service status postgresql`. If an equivalent of "stopped" or "no such service" is returned, the service is not running. If the service is running, stop it (e.g., `service postgresql stop`) and disable it (`chkconfig postgresql off`). 
+To work around these issues, ensure the PostgreSQL service is stopped before installing PE. To determine if PostgreSQL is running, run `service status postgresql`. If an equivalent of "stopped" or "no such service" is returned, the service is not running. If the service is running, stop it (e.g., `service postgresql stop`) and disable it (`chkconfig postgresql off`).
 
 To resolve the issue make sure that `which psql` resolves to `/opt/puppet/bin/psql`.
 
@@ -227,11 +231,11 @@ Users upgrading from PE 3.2.0 to a later version of 3.x (including 3.2.3) will s
 
 An issue with MCollective prevents correct uninstallation of packages on nodes running Windows. Packages on Windows nodes can be uninstalled using Puppet, for example:
         package
-            { 'Google Chrome': ensure => absent, } 
+            { 'Google Chrome': ensure => absent, }
 
 The issue is being tracked on [this support ticket](https://tickets.puppetlabs.com/browse/MCOP-14).
 
-### Upgrades to PE 3.2.x or Later Removes Commented Authentication Sections from `rubycas-server/config.yml` 
+### Upgrades to PE 3.2.x or Later Removes Commented Authentication Sections from `rubycas-server/config.yml`
 
 If you are upgrading to PE 3.2.x or later, `rubycas-server/config.yml` will not contain the commented sections for the third-party services. We've provided the commented sections on [the console config page](./console_config.html#configuring-rubycas-server-config-yml), which you can copy and paste into `rubycas-server/config.yaml` after you upgrade.
 
@@ -253,7 +257,7 @@ This issue will be fixed in a future release.
 
 ### `puppet module list --tree` Shows Incorrect Dependencies After Uninstalling Modules
 
-If you uninstall a module with `puppet module uninstall <module name>` and then run `puppet module list --tree`, you will get a tree that does not accurately reflect module dependencies. 
+If you uninstall a module with `puppet module uninstall <module name>` and then run `puppet module list --tree`, you will get a tree that does not accurately reflect module dependencies.
 
 ### Passenger Global Queue Error on Upgrade
 
@@ -390,7 +394,7 @@ To work around this issue, you may upgrade to puppetlabs-apt 1.4.2, which is the
 `puppet module upgrade puppetlabs-apt`
 
 ### Razor Known Issues
-Please see the page [Razor Setup Recommendations and Known Issues](./razor_knownissues.html). 
+Please see the page [Razor Setup Recommendations and Known Issues](./razor_knownissues.html).
 
 
 * * *

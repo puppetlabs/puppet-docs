@@ -341,7 +341,7 @@ If you are currently using native package management, you just need to add the a
 
 For nodes running an OS and/or architecture different from the master, [download the appropriate agent tarball](http://puppetlabs.com/misc/pe-files/agent-downloads). Extract the agent packages into the appropriate repo and then you can install agents on your nodes just as you would any other package (e.g., `yum install pe-agent`). Alternatively, you can follow the instructions below and classify the master using one of the built-in `pe_repo::platform::<platform>` classes. Once the master is classified and a puppet run has occurred, the appropriate agent packages will be generated and stored in `/opt/puppet/packages/public/<platform version>`.
 
-Once the agent has been installed on the target node, it can be configured using `puppet config set`. See "[Configuring Agents](#Configuring-Agents)" below.
+Once the agent has been installed on the target node, it can be configured using `puppet config set`. See "[Configuring Agents](#configuring-agents)" below.
 
 ### Installing Agents Using PE Package Management
 
@@ -349,11 +349,13 @@ If your infrastructure does not currently host a package repository, PE also hos
 
 You can also add repos for any PE-supported OS and architecture by creating a new repository for that platform. This is done by adding a new class to your master, `pe_repo::platform::<platform>` for each platform you'll be running an agent on.  [Classify the master](./console_classes_groups.html#classes) using the desired platform and on the next puppet run the new repo will be created and populated with the appropriate agent packages for that platform.
 
+>**Warning**: Installing agents using the `pe_repo` class requires an internet connection. If you don't have access to the internet, refer to [Installing Agents without Internet Connectivity](#installing-agents-without-internet-connectivity).  
+
 Once installed, the master hosts an agent installation script that is used to install agent packages on your selected nodes. The script can be found at `https://<master>:8140/packages/current/install.bash`. When you run it on your selected agent (for example, with `curl -k https://<master hostname>:8140/packages/current/install.bash | bash`), the script will detect the OS on which it is running, set up an apt (or yum, or zypper) repo that refers back to the master, pull down and install the `pe-agent` packages, and create a simple `puppet.conf` file. The certname for the agent node installed this way will be the value of `facter fqdn`.
 
 Note that if install.bash can't find agent packages corresponding to the agent's platform it will fail with an error message telling you which `pe_repo` class needs to get added to the master so the packages are accessible.
 
-Once the agent has been installed on the target node, it can be configured using [`puppet config set`][config_set]. See [Configuring Agents](#Configuring-Agents) below.
+Once the agent has been installed on the target node, it can be configured using [`puppet config set`][config_set]. See [Configuring Agents](#configuring-agents) below.
 
 #### Example Script Usage
 
@@ -435,10 +437,8 @@ When you purchased Puppet Enterprise, you should have been sent a `license.key` 
 
 Note that you can download and install Puppet Enterprise on up to ten nodes at no charge. No license key is needed to run PE on up to ten nodes.
 
-Important Notes & Warnings
+Installing Agents without Internet Connectivity
 -----
-
-**Installing Without Internet Connectivity**
 
 By default, the master node hosts a repo that contains packages used for agent installation. In order to obtain these packages, the install script will attempt to connect to the internet and access a Puppet Labs-maintained repo on Amazon S3. If the script cannot access the remote repo (due to a firewall issue, IT policy, etc.), the agent tarball will not be downloaded and you will see error messages in the first and subsequent Puppet runs on the master. These do not mean the installation failed, only the retrieval of the tarball.
 

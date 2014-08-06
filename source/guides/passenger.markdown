@@ -116,7 +116,6 @@ puppetmaster port (8140). You can also see a similar file at `ext/rack/example-p
     #PassengerRuby /usr/bin/ruby
 
     # And the passenger performance tuning settings:
-    PassengerHighPerformance On
     # Set this to about 1.5 times the number of CPU cores in your master:
     PassengerMaxPoolSize 12
     # Recycle master processes after they service 1000 requests
@@ -126,6 +125,10 @@ puppetmaster port (8140). You can also see a similar file at `ext/rack/example-p
 
     Listen 8140
     <VirtualHost *:8140>
+        # Make Apache hand off HTTP requests to Puppet earlier, at the cost of
+        # interfering with mod_proxy, mod_rewrite, etc. See note below.
+        PassengerHighPerformance On
+
         SSLEngine On
 
         # Only allow high security cryptography. Alter if needed for compatibility.
@@ -179,6 +182,12 @@ need to use different paths to the CA certificate and CRL:
 
 For additional details about enabling and configuring Passenger, see the
 [Passenger install guide](http://www.modrails.com/install.html) and the [Apache version of the Passenger user's guide][passenger_apache_guide].
+
+> ### Notes on PassengerHighPerformance
+>
+> The example vhost config above sets `PassengerHighPerformance On`. This setting basically allows Passenger to shortcut some of Apache's normal layers of request handling, so the Puppet application can respond earlier. Unfortunately, it can also interfere with other Apache modules, including important ones like `mod_proxy`, `mod_rewrite`, and `mod_authz_core`.
+>
+> In the example, we've limited its effect by setting PassengerHighPerformance at the vhost scope, so it won't interfere with any non-Puppet requests the Apache process is handling. You can also enable or disable it in a `<Location>` directive, which may be necessary if you're proxying traffic to the Puppet CA in a multi-master setup.
 
 > ### Notes on DocumentRoot and PassengerAppRoot
 >

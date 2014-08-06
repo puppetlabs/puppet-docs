@@ -2,7 +2,7 @@
 layout: default
 title: "PE 2.7  » Overview » What's New"
 subtitle: "New Features in PE 2.7"
-canonical: "/pe/latest/overview_whats_new.html"
+canonical: "/pe/latest/release_notes.html"
 ---
 
 ### Version 2.7.2

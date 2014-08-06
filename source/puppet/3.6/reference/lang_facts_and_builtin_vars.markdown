@@ -20,6 +20,7 @@ canonical: "/puppet/latest/reference/lang_facts_and_builtin_vars.html"
 [extensions]: ./ssl_attributes_extensions.html
 [structured_facts_on]: ./config_important_settings.html#getting-new-features-early
 [strings]: ./lang_datatypes.html#strings
+[qualified_var_names]: ./lang_variables.html#accessing-out-of-scope-variables
 
 Puppet provides many built-in variables that you can use in your manifests. This page covers where they come from and how to use them.
 
@@ -52,7 +53,22 @@ Example, with the osfamily fact:
 
 **Benefits:** Works in all versions of Puppet.
 
-**Drawbacks:** Facts use the same namespace as normal user-set variables, so the value of a fact variable can be overridden in a [local scope][localscope]. People usually don't do this with the core facts, but if you are publishing code that relies on a custom fact, you might need to take into account the way that code will be invoked in others' environments, since they might be using your variable name for something else. Some people use the `$::fact_name` idiom to make sure they're always reading the top-scope value of that variable; this is messy, but it works reliably.
+**Drawbacks:** It's not immediately obvious that you're using a fact --- someone reading your code needs to know which facts exist to guess that you're accessing a special top-scope variable. To get around this, some people use [the `$::fact_name` idiom][qualified_var_names] as a hint, to show that they're accessing a top-scope variable.
+
+> #### Historical Note About `$::`
+>
+> Classic facts use the same naming conventions as normal user-set variables, so the value of a fact variable can be overridden in a [local scope][localscope].
+>
+> Nowadays, this isn't a problem, because:
+>
+> * If a programmer overrides a fact value in a [local scope][localscope], it will only affect code that they control.
+> * Most people don't set tons of variables in [node scope.](./lang_scope.html#node-scope)
+>
+> But prior to Puppet 3.0, Puppet's long and unpredictable chains of dynamic parent scopes could create serious problems, where an overridden value would clobber distant code that was trying to access a normal fact. To defend against that, people started using [the `$::fact_name` idiom][qualified_var_names] to always access the top-scope value of a variable.
+>
+> Then, when Puppet 2.7 added deprecation warnings about dynamic scope lookup, the code that implemented the warnings had [an annoying bug](http://projects.puppetlabs.com/issues/8174) that could cause _false_ warnings when facts were accessed without a leading `$::`. This made even more people start using it, just to make the warnings go away.
+>
+> Since Puppet 3.0, `$::fact` has never been strictly necessary, but some people still use it to alert readers that they're using a top-scope variable, as described above.
 
 ### The `$facts` Hash
 
@@ -66,7 +82,7 @@ Example, with the osfamily fact:
     }
 {% endhighlight %}
 
-**Benefits:** More readable and maintainable code, by making facts visibly distinct from other variables. Also, you don't have to use the `$::fact_name` idiom mentioned above to protect yourself from local scopes, since the `$facts` variable can never be overridden or modified.
+**Benefits:** More readable and maintainable code, by making facts visibly distinct from other variables. Eliminates possible confusion if you use a local variable whose name happens to match that of a common fact.
 
 **Drawbacks:** Only works with Puppet 3.5 or later, so it's currently a bad choice for reusable code.
 

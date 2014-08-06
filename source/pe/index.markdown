@@ -1,23 +1,22 @@
 ---
 layout: default
 title: "Puppet Enterprise User's Guides"
+toc: false
 ---
-
-Puppet Enterprise User's Guides
-=====
 
 Puppet Enterprise is the best-of-breed distribution for the Puppet family of systems automation tools.
 
-Puppet Enterprise 3.2
+Puppet Enterprise 3.3
 -----
 
-* [Puppet Enterprise 3.2 User's Guide](./3.2)
+* [Puppet Enterprise 3.3 User's Guide](./3.3)
 
 Previous Versions
 -----
 
 Please select your version of Puppet Enterprise:
 
+* [Puppet Enterprise 3.2](./3.2)
 * [Puppet Enterprise 3.1](./3.1)
 * [Puppet Enterprise 3.0](./3.0)
 * [Puppet Enterprise 2.8](./2.8)

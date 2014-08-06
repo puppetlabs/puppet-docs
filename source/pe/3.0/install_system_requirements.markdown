@@ -96,7 +96,7 @@ Configure your firewalls to accommodate Puppet Enterprise's network traffic. In 
 
 * All agent nodes must be able to send requests to the puppet master on ports **8140** (for Puppet) and **61613** (for orchestration).
 * The puppet master must be able to accept inbound traffic from agents on ports **8140** (for Puppet) and **61613** (for orchestration).
-* Any hosts you will use to access the console must be able to reach the console server on port **443,** or whichever port you specify during installation. (Users who cannot run the console on port 443 will often run it on port 3000.)
+* Any hosts you will use to access the console must be able to reach the console server on port **443,** or whichever port you specify during installation. (Users who cannot run the console on port **443** will often run it on port **3000**.)
 * If you will be invoking orchestration commands from machines other than the puppet master, they will need to be able to reach the master on port **61613.** (**Note:** enabling other machines to invoke orchestration actions is possible but not supported in this version of Puppet Enterprise.)
 * If you will be running the console and puppet master on separate servers, the console server must be able to accept traffic from the puppet master (and the master must be able to send requests) on ports **443** and **8140.** The console server must also be able to send requests to the puppet master on port **8140,** both for retrieving its own catalog and for viewing archived file contents.
 
@@ -160,7 +160,7 @@ pmtools | libapr-util1   | libapr-util1  |                          |
 cron      | libxslt | curl          |                          |
 libxml2  | curl           |               |                          |
 net-tools | libjpeg        |               |                          |
-libxslt      |
+libxslt      | | | |
  
  <br>
 

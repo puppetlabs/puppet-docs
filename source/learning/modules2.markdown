@@ -224,6 +224,6 @@ Well, you'd [whip up a defined resource type](./definedtypes.html).
 
 You've seen how to configure classes in both your Hiera data and the PE console; why not grab a module and configure it for your own systems? [Download Puppet Enterprise for free][dl], follow [the quick start guide][quick] to get a small environment installed, install a module from the Puppet Forge ([maybe puppetlabs/ntp?](http://forge.puppetlabs.com/puppetlabs/ntp)), and assign it to a node in the console; don't forget to [add parameters][console_params].
 
-[console_params]: insert_link_here
+[console_params]: /pe/latest/console_classes_groups.html#editing-class-parameters-on-nodes
 [dl]: http://info.puppetlabs.com/download-pe.html
 [quick]: http://docs.puppetlabs.com/pe/latest/quick_start.html

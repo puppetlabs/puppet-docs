@@ -321,7 +321,7 @@ The event inspector lets you view and research changes and other events. Click t
 
 ![The default event inspector view][EI-default]
 
-You can click on events in the summary pane to inspect them in detail. For example, if you click __With Changes__ in the __Classes With Events__ summary view, the main pane will show you that the `Ntp::Config` and `Ntp::Service` classes were successfully added when you triggered the last puppet run.
+You can click on events in the summary pane to inspect them in detail. For example, if you click __With Changes__ in the __Classes: with events__ summary view, the main pane will show you that the `Ntp::Config` and `Ntp::Service` classes were successfully added when you triggered the last puppet run.
 
 ![Viewing a successful change][EI-class_change]
 
@@ -329,7 +329,7 @@ You can keep clicking to drill down and see more detail. You can click the previ
 
 ![Event detail][EI-detail]
 
-If there had been a problem applying this class, this information would tell you exactly what piece of code you need to fix. In this case, event inspector lets you confirm that PE is now managing NTP.
+If PE was unable to apply this class, the information would tell you exactly what piece of code you need to fix. In this case, you can see that PE is now managing NTP. 
 
 In the upper right corner of the detail pane is a link to a run report which contains information about the puppet run that made the change, including metrics about the run, logs, and more information. Visit the [reports page](./console_reports.html#reading-reports) for more information.
 

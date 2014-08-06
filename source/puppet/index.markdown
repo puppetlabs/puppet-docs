@@ -111,7 +111,6 @@ Get Puppet up and running at your site.
 * [Installing Puppet](/guides/install_puppet/pre_install.html) --- from packages, source, or gems
 * [Upgrading Puppet](/guides/install_puppet/upgrading.html) --- general advice and suggestions for upgrading critical infrastructure
 * [Configuring Puppet](/guides/configuring.html) --- use `puppet.conf` to configure Puppet's behavior
-* [Setting Up Puppet](/guides/setting_up.html) --- includes server setup & testing
 
 ### Building and Using Modules
 
@@ -168,7 +167,7 @@ Puppet's default configuration is meant for prototyping and designing a site. On
 ### Hacking and Extending: Ruby Plugins
 
 * [Plugins In Modules](/guides/plugins_in_modules.html) --- where to put plugins, how to sync to clients
-* [Writing Custom Facts](/guides/custom_facts.html)
+* [Writing Custom Facts](/facter/latest/custom_facts.html)
 * [Writing Custom Functions](/guides/custom_functions.html)
 * [Writing Custom Types & Providers](/guides/custom_types.html)
 * [Complete Resource Example](/guides/complete_resource_example.html) --- more information on custom types & providers

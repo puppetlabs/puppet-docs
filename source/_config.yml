@@ -9,12 +9,14 @@ defaultnav:
   /facter/1.6: facter16.html
   /facter/1.7: facter17.html
   /facter/2.0: facter20.html
+  /facter/2.1: facter21.html
   /guides/deployment_guide: deploy_guide.html
   /guides/install_puppet: puppet_general.html
   /hiera/1: hiera1.html
   /learning: learning_nav.html
   /mcollective: mcollective_menu.html
   /mcollective1.2: mcollective_1.2.html
+  /pe/3.3: pe33.html
   /pe/3.2: pe32.html
   /pe/3.1: pe31.html
   /pe/3.0: pe30.html

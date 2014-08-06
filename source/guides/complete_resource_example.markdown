@@ -6,7 +6,7 @@ title: Complete Resource Example
 Complete Resource Example
 =========================
 
-This document walks through the definition of a very simple resource type and one provider. We'll build the resource up slowly, and the provider along with it. See [Custom Types](./custom_types.html) and [Provider Development](/guides/provider_development.html) for more information on the individual classes.  As with creating [Custom Facts](/guides/custom_facts.html) and [Custom Functions](/guides/custom_functions.html), these examples involve Ruby programming.
+This document walks through the definition of a very simple resource type and one provider. We'll build the resource up slowly, and the provider along with it. See [Custom Types](./custom_types.html) and [Provider Development](/guides/provider_development.html) for more information on the individual classes.  As with creating [Custom Facts](/facter/latest/custom_facts.html) and [Custom Functions](/guides/custom_functions.html), these examples involve Ruby programming.
 
 * * *
 

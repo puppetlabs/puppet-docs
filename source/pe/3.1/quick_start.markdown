@@ -291,7 +291,7 @@ Click on the "Events" tab in the main navigation bar. The event inspector window
 
 ![The default event inspector view][EI-default]
 
-You can click on events in the summary pane to inspect them in detail. For example, if you click on "With Changes" in the "Classes With Events" summary view, the main pane will show you that the MOTD class was successfully added when you triggered the last puppet run.
+You can click on events in the summary pane to inspect them in detail. For example, if you click on "With Changes" in the "Classes: with events" summary view, the main pane will show you that the MOTD class was successfully added when you triggered the last puppet run.
 
 ![Viewing a successful change][EI-class_change]
 
@@ -299,7 +299,7 @@ You can keep clicking to drill down and see more detail. You can click the back 
 
 ![Event detail][EI-detail]
 
-If there had been a problem with applying this class, this information would tell you exactly what piece of code you need to fix. In this case, event inspector lets you confirm that PE is now managing the `/etc/motd` file.
+If PE was unable to apply this class, the information would tell you exactly what piece of code you need to fix. In this case, you can see that PE is now managing the `/etc/motd` file.
 
 Summary
 -----

@@ -348,7 +348,7 @@ Several changes were made to [the experimental lambda and iteration support](./e
 
 ### Preparations for Syncing External Facts
 
-Puppet can now pluginsync [external facts](/guides/custom_facts.html#external-facts) to agent nodes... but it's not very useful yet, since Facter can't yet _load_ those facts. End-to-end support is planned for next quarter, in Facter 2.0.
+Puppet can now pluginsync [external facts](/facter/latest/custom_facts.html#external-facts) to agent nodes... but it's not very useful yet, since Facter can't yet _load_ those facts. End-to-end support is planned for next quarter, in Facter 2.0.
 
 ([Issue 9546](http://projects.puppetlabs.com/issues/9546), [PUP-578](https://tickets.puppetlabs.com/browse/PUP-578))
 

@@ -168,9 +168,10 @@ The values of settings are available as variables within puppet.conf, and you ca
 
     ssldir = $vardir/ssl
 
-**However,** not every setting can be safely interpolated into other settings; since the order in which Puppet evaluates its settings can be somewhat opaque, it's possible that a setting's value won't be initialized by the time you reference it. In general, you should only interpolate the following variables:
+Not all settings are equally useful; there's no real point in interpolating `$ssldir` into `basemodulepath`, for example. We recommend that you use only the following variables:
 
 * `$confdir`
 * `$vardir`
-* `$environment` (When used on the puppet master, this always refers to the agent's environment, and should only be used in the `manifest` and `modulepath` settings. Use of this variable isn't technically deprecated yet, but it will be soon. See the [page on config file environments][conf_environments] for details, and the [page on directory environments][dir_environments] for the easier system that replaces it.)
+* `$environment` --- the name of the active environment. Used in dynamic [config file environments.][conf_environments] If you are using this in puppet.conf, you should switch to [directory environments][dir_environments].
 
+[env_conf_interp]: ./config_file_environment.html#interpolation-in-values

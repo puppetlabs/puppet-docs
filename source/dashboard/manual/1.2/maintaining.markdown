@@ -57,7 +57,7 @@ Over time, the innodb database can get quite hefty, especially in larger deploym
 
 2. Stop the MySQL service
 
-3. Remove *just* the dashboard-specific database files. If you have no other databases, you can run `# cd /var/lib/mysql # rm -rf ./ib* # rm -rf ./console*`. *Warning:* this will remove everything, including any db's you may have added.
+3. Remove *just* the dashboard-specific database files. If you have no other databases, you can run `# cd /var/lib/mysql # rm -r ./ib* # rm -r ./console*`. *Warning:* this will remove everything, including any db's you may have added.
 
 4. Restart the MySQL service.
 

@@ -2,7 +2,7 @@
 layout: default
 title: "PE 3.1 » Overview » What's New"
 subtitle: "New Features in PE 3.1"
-canonical: "/pe/latest/overview_whats_new.html"
+canonical: "/pe/latest/release_notes.html"
 ---
 
 ### Version 3.1.3

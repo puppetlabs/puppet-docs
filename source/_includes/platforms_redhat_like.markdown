@@ -2,7 +2,7 @@ We publish official packages and run automated testing on the following versions
 
 * Enterprise Linux 5 (also supported by [Puppet Enterprise][peinstall])
 * Enterprise Linux 6 (also supported by [Puppet Enterprise][peinstall])
-* Enterprise Linux 7
+* Enterprise Linux 7 (also supported by [Puppet Enterprise][peinstall])
 
 Puppet Enterprise also supports RHEL 4, which does not receive packages for open source Puppet.
 

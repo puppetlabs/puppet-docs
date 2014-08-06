@@ -35,7 +35,7 @@ Nearly all of the main Puppet and MCollective documentation also applies to Pupp
 - [The deployment guide](./guides/deployment_guide/index.html) has a ton of information to help you set up and deploy Puppet Enterprise in accordance with the best practices and methods used by Puppet Labs' professional services engineers.
 - [The PE download page](http://info.puppetlabs.com/download-pe.html)
 
-The current version of PE is 3.2. Documentation for previous versions can be found [here](/pe/index.html).
+The current version of PE is 3.3. Documentation for previous versions can be found [here](/pe/index.html).
 
 [MCollective](/mcollective)
 -----
@@ -101,7 +101,7 @@ Facter is Puppet's cross-platform system profiling library. It discovers and rep
 
 * [The list of core facts](/facter/latest/core_facts.html) lists and describes every built-in fact that ships with Facter.
 * [The custom fact overview](/facter/latest/fact_overview.html) is an example-driven primer and reference for fact authors.
-* [The custom facts guide](/guides/custom_facts.html) explains how to write and distribute your own facts in detail.
+* [The custom facts guide](/facter/latest/custom_facts.html) explains how to write and distribute your own facts in detail.
 
 
 [Geppetto](/geppetto/latest/index.html)
