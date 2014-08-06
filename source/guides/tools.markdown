@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Tools
+canonical: "/puppet/latest/reference/services_commands.html"
 ---
 
 Tools
