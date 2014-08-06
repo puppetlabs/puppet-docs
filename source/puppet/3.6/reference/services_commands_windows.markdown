@@ -85,9 +85,13 @@ The Start Menu items do the following:
 
 This shortcut automatically requests UAC elevation, then runs [Facter][] in a command prompt window with administrator privileges.
 
+> **Note:** In Puppet 3.6.0, this Start Menu item requires .NET 2.0, 3.0, or 3.5, and will malfunction on systems where only later versions of .NET are installed. This bug was [fixed in Puppet 3.6.1.](https://tickets.puppetlabs.com/browse/PUP-1951)
+
 ### Run Puppet Agent
 
 This shortcut automatically requests UAC elevation, then performs a single puppet agent run in a command prompt window with administrator privileges.
+
+> **Note:** In Puppet 3.6.0, this Start Menu item requires .NET 2.0, 3.0, or 3.5, and will malfunction on systems where only later versions of .NET are installed. This bug was [fixed in Puppet 3.6.1.](https://tickets.puppetlabs.com/browse/PUP-1951)
 
 ### Start Command Prompt with Puppet
 
