@@ -79,7 +79,7 @@ By default, the Puppet installer will configure puppet agent to run as a Windows
 
 The puppet agent service defaults to doing a configuration run every 30 minutes. You can configure this with [the `runinterval` setting][runinterval] in [puppet.conf][]:
 
-    # /etc/puppet/puppet.conf
+    # C:\ProgramData\PuppetLabs\puppet\etc\puppet.conf
     [agent]
       runinterval = 2h
 
@@ -90,6 +90,22 @@ Once the run interval has been changed, the service will stick to the prior sche
 #### Configuring the Service Start Up Type
 
 The puppet agent service defaults to starting automatically. If you'd rather start it manually or disable it, you can configure this during installation. To do this, install via the command line and [specify the `PUPPET_AGENT_STARTUP_MODE` MSI property][msiproperties].
+
+You can also configure this after installation with the Service Control Manager (SCM). To start the SCM, choose "Run..." from the Start menu and type `Services.msc`.
+
+You can also configure agent service with the `sc.exe` command. To prevent the service from starting on boot:
+
+    C:\>sc config puppet start= demand
+    [SC] ChangeServiceConfig SUCCESS
+
+To restart the service:
+
+    C:\>sc stop puppet && sc start puppet
+
+To change the arguments used when triggering a puppet agent run (this example changes the level of detail that gets written to the Event Log):
+
+    C:\>sc start puppet --debug --logdest eventlog
+
 
 ### Running Puppet Agent On Demand
 
