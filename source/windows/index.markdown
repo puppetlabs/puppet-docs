@@ -6,22 +6,17 @@ title: "Overview of Puppet on Windows"
 
 
 
-[running]: ./running.html
 [troubleshooting]: ./troubleshooting.html
 [downloads]: http://downloads.puppetlabs.com/windows
 
+[win_commands]: /puppet/latest/reference/services_commands_windows.html
+[win_agent]: /puppet/latest/reference/services_agent_windows.html
+[arch]: /puppet/latest/reference/architecture.html
+[the confdir]: /puppet/latest/reference/dirs_confdir.html
+[the vardir]: /puppet/latest/reference/dirs_vardir.html
 
 **Puppet runs on Microsoft Windows® and can manage Windows systems alongside \*nix systems.** This page will help get you oriented and ready to manage Windows systems with Puppet.
 
-General Notes
------
-
-Windows systems can:
-
-* Run the puppet agent service, to fetch configurations from a \*nix puppet master and apply them.
-* Run the puppet apply command, to locally compile and apply configurations.
-
-They can't act as a puppet master server.
 
 Installing
 -----
@@ -50,31 +45,16 @@ Most post-install tasks are handled automatically on Windows, but you'll still n
 Running
 -----
 
-### Puppet Subcommands and Services
-
-Windows nodes can run the following Puppet subcommands:
-
-* **Puppet agent,** to fetch configurations from a puppet master and apply them
-    * The agent functions as a standard Windows service, and agent runs can also be triggered manually.
-    * Windows nodes can connect to any *nix puppet master server running Puppet 2.7.6 or higher.
-* **Puppet apply,** to apply configurations from local manifest files
-* **Puppet resource,** to directly manipulate system resources
-
-Because the installer doesn't alter the system's PATH variable, you must choose *Start Command Prompt with Puppet* from the Start menu to run Puppet commands manually.
-
-Windows nodes can't act as puppet masters or certificate authorities, and most of the ancillary Puppet subcommands aren't supported on Windows.
-
-### Puppet's Environment on Windows
-
+* Windows systems can run puppet agent and puppet apply, but they can't act as a puppet master server.
 * Puppet runs as a 32-bit process.
 * Puppet has to run with elevated privileges; on systems with UAC, it will request explicit elevation even when running as a member of the local Administrators group.
-* Puppet's configuration and data are stored in `%ALLUSERSPROFILE%\Application Data\PuppetLabs` on Windows 2003, and in `%PROGRAMDATA%\PuppetLabs` on Windows 7 and 2008.
+* Puppet's configuration and data are stored in different places on different Windows versions. For more details, see the Puppet reference manual pages on [the confdir][] and [the vardir][].
 
+For more information, see:
 
-### More
-
-For full details, see [Running Puppet on Windows][running].
-
+* [Overview of Puppet's Architecture][arch], for more about puppet masters and puppet agents.
+* [Running Puppet Commands on Windows][win_commands], for information on running commands interactively.
+* [Puppet Agent on Windows][win_agent], for information on the puppet agent service's run environment.
 
 * * *
 
@@ -123,8 +103,36 @@ Windows nodes with a default install of Puppet will include the following notabl
 
 * * *
 
+Important Windows Concepts for Unix Admins
+-----
+
+Windows differs from \*nix systems in many ways, several of which affect how Puppet works.
+
+### Security Context
+
+On Unix, puppet is either running as root or not. On Windows, this maps to running with **elevated privileges** or not.
+
+For more information, see the following pages in the Puppet reference manual:
+
+* [Running Puppet Commands on Windows][win_commands], for information on running commands interactively.
+* [Puppet Agent on Windows][win_agent], for information on the puppet agent service's run environment.
+
+### File System Redirection in 64-bit Windows Versions
+
+The Puppet agent process runs as a 32-bit process. When run on 64-bit versions of Windows, there are some issues to be aware of.
+
+* The <a href="http://msdn.microsoft.com/en-us/library/aa384187(v=vs.85).aspx">File System Redirector</a> will silently redirect all file system access to `%windir%\system32` to `%windir%\SysWOW64` instead. This can be an issue when trying to manage files in the system directory, e.g., IIS configuration files. In order to prevent redirection, you can use the `sysnative` alias, e.g. `C:\Windows\sysnative\inetsrv\config\application Host.config`.
+
+    > Note: 64-bit Windows Server 2003 requires hotfix [KB942589](http://support.microsoft.com/kb/942589/en-us) to use the sysnative alias.
+
+* The <a href="http://msdn.microsoft.com/en-us/library/aa384232(v=vs.85).aspx">Registry Redirector</a> performs a similar function with certain <a href="http://msdn.microsoft.com/en-us/library/aa384253(v=vs.85).aspx">registry keys</a>.
+
+
+
+* * *
+
 Troubleshooting
 -----
 
-The most common points of failure on Windows systems aren't the same as those on *nix. For full details, see [Troubleshooting Puppet on Windows][troubleshooting].
+The most common points of failure on Windows systems aren't the same as those on \*nix. For more details, see [Troubleshooting Puppet on Windows][troubleshooting].
 
