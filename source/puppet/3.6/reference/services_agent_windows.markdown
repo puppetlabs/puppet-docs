@@ -30,11 +30,11 @@ Not all operating systems can manage the same resources with Puppet; some resour
 
 ## Puppet Agent's Run Environment
 
-Puppet agent runs as a specific user (defaulting to `LocalService`) and initiates outbound connections on port 8140.
+Puppet agent runs as a specific user (defaulting to `LocalSystem`) and initiates outbound connections on port 8140.
 
 ### User
 
-By default, puppet agent runs as the `LocalService` user. This lets it manage the configuration of the entire system, but prevents it from accessing files on UNC shares.
+By default, puppet agent runs as the `LocalSystem` user. This lets it manage the configuration of the entire system, but prevents it from accessing files on UNC shares.
 
 To run as a different user, you must specify that user when installing Puppet. To do this, install via the command line and [specify the required MSI properties][msiproperties] (`PUPPET_AGENT_ACCOUNT_USER`, `PUPPET_AGENT_ACCOUNT_PASSWORD`, and `PUPPET_AGENT_ACCOUNT_DOMAIN`).
 

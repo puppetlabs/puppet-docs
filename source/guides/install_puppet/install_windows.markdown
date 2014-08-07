@@ -172,7 +172,7 @@ Whether the puppet agent service should run (or be allowed to run). Allowed valu
 
 #### `PUPPET_AGENT_ACCOUNT_USER`
 
-Which Windows user account the puppet agent service should use. This is important if puppet agent will need to access files on UNC shares, since the default `LocalService` account cannot access these network resources.
+Which Windows user account the puppet agent service should use. This is important if puppet agent will need to access files on UNC shares, since the default `LocalSystem` account cannot access these network resources.
 
 * This user account **must already exist,** and may be a local or domain user. (The installer will allow domain users even if they have not accessed this machine before.)
 * If the user isn't already a local administrator, the installer will add it to the `Administrators` group.
