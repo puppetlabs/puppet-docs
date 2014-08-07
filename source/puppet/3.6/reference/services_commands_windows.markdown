@@ -41,13 +41,13 @@ On \*nix systems, Puppet defaults to running with limited privileges (when not r
 
 Windows systems don't use `sudo`, so raising privileges works differently.
 
-### Systems With UAC (Windows 2008+ / 7+)
+### Systems With UAC (Windows 2008+ / Vista+)
 
 [uac]: ./images/uac.png
 [rightclick]: ./images/run_as_admin.png
 [admin_prompt]: ./images/windows_administrator_prompt.png
 
-Newer versions of Windows manage security with User Account Control (UAC), which was added in Windows 2008 and Windows 7. With UAC, most programs run by administrators will still have limited privileges. To get administrator privileges, the process has to request those privileges when it starts.
+Newer versions of Windows manage security with User Account Control (UAC), which was added in Windows 2008 and Windows Vista. With UAC, most programs run by administrators will still have limited privileges. To get administrator privileges, the process has to request those privileges when it starts.
 
 Thus, to run Puppet's commands in administrator mode, you must first start a command prompt or PowerShell window with administrator privileges.
 
