@@ -5,6 +5,8 @@ title: "Resource Tips and Examples: File on Windows"
 
 [file]: /references/3.6.latest/type.html#file
 [relationships]: /puppet/latest/reference/lang_relationships.html
+[acl_module]: https://forge.puppetlabs.com/puppetlabs/acl
+[mode]: /references/3.6.latest/type.html#file-attribute-mode
 
 Puppet's built-in [`file`][file] resource type can manage files and directories on Windows, including ownership, group, permissions, and content. Symbolic links are supported in Puppet 3.4.0 / PE 3.2 and later on Windows 2008 / Vista and later; for details, [see the notes in the type reference under `file`'s `ensure` attribute](/references/latest/type.html#file-attribute-ensure).
 
@@ -52,7 +54,15 @@ In the meantime, you can change or disable this behavior with [the `file` type's
 
 ## Managing File Permissions
 
-The \*nix and Windows permission models are quite different. When you use the `mode` attribute, the `file` type manages them both like \*nix permissions, and translates the mode to roughly equivalent access controls on Windows. This makes basic controls fairly simple, but doesn't give an override for more complex controls.
+The \*nix and Windows permission models are quite different. When you use [the `mode` attribute,][mode] the `file` type manages them both like \*nix permissions, and translates the mode to roughly equivalent access controls on Windows. This makes basic controls fairly simple, but doesn't work for managing really complex access rules.
+
+### Consider Using the ACL Resource Type Instead
+
+The `mode` attribute is a somewhat blunt instrument on Windows. If you need truly Windows-like access controls, you should install:
+
+* [The puppetlabs/acl module][acl_module]
+
+This module provides an optional `acl` resource type that manages permissions in a Windows-centric way. If you need to do anything complicated, leave `mode` unspecified and add an `acl` resource. See [the acl module's documentation][acl_module] for more details.
 
 ### How \*nix Modes Map to Windows Permissions
 
@@ -73,12 +83,6 @@ When you manage permissions with the `mode` attribute, it has the following side
 
 * The owner of a file/directory always has the `FULL_CONTROL` access right.
 * The security descriptor is always set to _protected._ This prevents the file from inheriting any more permissive access controls from the directory that contains it.
-
-### Future Improvements: The puppetlabs-acl Module
-
-Puppet Labs and the Puppet community are developing a new resource type for managing complex Windows ACLs. It hasn't seen an official release yet, but you can [test the in-progress code today][acl_module] and read [the original proposal for the module.](https://github.com/puppetlabs/armatures/blob/master/arm-16.acls/index.md)
-
-[acl_module]: https://github.com/puppetlabs/puppetlabs-acl/
 
 ## File Sources
 
