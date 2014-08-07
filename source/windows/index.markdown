@@ -47,7 +47,7 @@ Running
 
 * Windows systems can run puppet agent and puppet apply, but they can't act as a puppet master server.
 * Puppet runs as a 32-bit process.
-* Puppet has to run with elevated privileges; on systems with UAC, it will request explicit elevation even when running as a member of the local Administrators group.
+* Puppet should usually run with elevated privileges. If you want to run any of Puppet's commands interactively on systems with UAC, you'll have to start a command prompt by right-clicking and choosing "Run as administrator."
 * Puppet's configuration and data are stored in different places on different Windows versions. For more details, see the Puppet reference manual pages on [the confdir][] and [the vardir][].
 
 For more information, see:
