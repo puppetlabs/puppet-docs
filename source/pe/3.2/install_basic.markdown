@@ -376,7 +376,8 @@ The `-k` flag is needed in order to get curl to trust the master, which it would
  >   - debian-{6, 7}-{i386, amd64}
  >   - ubuntu-{10.04, 12.04}-{i386, amd64}
  >   - sles-11-{i386, x86_64}
-
+  
+> **Warning**: If the puppet master and agent differ in architecture and OS type/version, the correct `pe_repo` class for the agent must be assigned to the puppet master node before running the script. If you have not added the correct agent class and run the script, you will get an error message returned by `curl` similar to, `the indirection name must be purely alphanumeric, not <'3.2.0-15-gd7f6fa6'>`. This error is safe to ignore, but you will need to be sure you add the correct `pe_repo` class for the agent to the puppet master before running the script again.
 
 ### Configuring Agents
 
