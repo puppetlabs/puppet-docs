@@ -36,7 +36,9 @@ Puppet agent runs as a specific user (defaulting to `LocalSystem`) and initiates
 
 By default, puppet agent runs as the `LocalSystem` user. This lets it manage the configuration of the entire system, but prevents it from accessing files on UNC shares.
 
-To run as a different user, you must specify that user when installing Puppet. To do this, install via the command line and [specify the required MSI properties][msiproperties] (`PUPPET_AGENT_ACCOUNT_USER`, `PUPPET_AGENT_ACCOUNT_PASSWORD`, and `PUPPET_AGENT_ACCOUNT_DOMAIN`).
+Puppet can also run as a different user. You can change the user in the Service Control Manager (SCM). To start the SCM, choose "Run..." from the Start menu and type `Services.msc`.
+
+You can also specify a different user when installing Puppet. To do this, install via the command line and [specify the required MSI properties][msiproperties] (`PUPPET_AGENT_ACCOUNT_USER`, `PUPPET_AGENT_ACCOUNT_PASSWORD`, and `PUPPET_AGENT_ACCOUNT_DOMAIN`).
 
 Puppet agent's user can be a local or domain user. If this user isn't already a local administrator, the Puppet installer will add it to the `Administrators` group. The installer will also grant [Logon as Service](http://msdn.microsoft.com/en-us/library/ms813948.aspx) to the user.
 
