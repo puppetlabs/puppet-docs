@@ -13,9 +13,11 @@ These types were originally developed for \*nix systems, and have a few unusual 
 
 ## What Puppet Can Manage
 
-### Local Users/Groups Only
+### Local User/Group Resources
 
-Puppet can manage **local** users and groups on a Windows machine. It cannot manage **domain** users or groups.
+Puppet can use the `user` and `group` resource types to manage **local** accounts.
+
+You can't write a Puppet resource that describes a **domain** user or group. However, a local `group` resource can manage which domain users are members of that local group. See the next section for details.
 
 ### Group Membership
 
