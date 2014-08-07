@@ -48,9 +48,8 @@ You can choose which kind of slash to use in:
 
 Backslashes **MUST** be used in:
 
-* The `command` of a [`scheduled_task`][scheduledtask] resource.
-* The `install_options` of a [`package`][package] resource.
-
+* Any file paths included in the `command` of a [`scheduled_task`][scheduledtask] resource.
+* Any file paths included in the `install_options` of a [`package`][package] resource.
 
 
 ## Using Backslashes in Double-Quoted Strings
