@@ -17,7 +17,11 @@ If a file extension for the `command` is not specified (for example, `ruby` inst
 
 ## Exit Codes
 
-Windows allows negative exit codes in some odd cases, but the `exec` type doesn't recognize them and will display a very large positive number instead.
+On Windows, **most** exit codes should be integers between 0 and 2147483647.
+
+Larger exit codes on Windows can behave inconsistently across different tools. The Win32 APIs define exit codes as 32-bit unsigned integers, but both the cmd.exe shell and the .NET runtime cast them to signed integers. This means some tools will report negative numbers for exit codes above 2147483647. (For example, cmd.exe reports 4294967295 as -1.) Since Puppet uses the plain Win32 APIs, it will report the very large number instead of the negative number, which might not be what you expect if you got the exit code from a cmd.exe session.
+
+Microsoft recommends against using negative/very large exit codes, and you should avoid them when possible. To convert a negative exit code to the positive one Puppet will use, subtract it from 4294967296.
 
 ## Shell Built-ins
 
