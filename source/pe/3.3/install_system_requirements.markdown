@@ -52,16 +52,23 @@ Mac OS X                     | Mavericks (10.9)                        | x86_64 
 Hardware Requirements
 -----
 
-Puppet Enterprise's hardware requirements depend on the components a machine performs.
+Puppet Enterprise's hardware requirements depend on the type of installation you have and on the function a machine performs. 
 
-For the puppet master, PE console, PuppetDB and database support, and any agent nodes, we recommend that your hardware meets the following requirements.
+### Monolithic (all-in-one) Installation 
 
-* At least four processor cores per node
-* At least 4 GB RAM per node
-* Very accurate timekeeping 
-* For `/var/`, at least 1 GB of free space for each PE component on a given node
-* For PE-installed PostgreSQL, `/opt/` requires at least 100 GB of free space for data gathering
-* For no PE-installed PostgreSQL, `/opt/` needs at least 1 GB of disk space available
+- The **puppet master**, **PE console**, and **PuppetDB** node: at least 16 processor cores, 32 GB RAM, and high-performance disk space
+- **Puppet agent** nodes: any hardware able to run the supported operating system
+- For `/var/`, at least 1 GB of free space for each PE component on a given node
+- For PE-installed PostgreSQL, `/opt/` requires at least 100 GB of free space for data gathering
+- For no PE-installed PostgreSQL, `/opt/` needs at least 1 GB of disk space available
+
+### Split Installation
+
+- **Puppet master**, **PE console**, and **PuppetDB** nodes: at least 8 processor cores, 8 GB RAM, and high-performance disk space (per node)
+- **Puppet agent** nodes: any hardware able to run the supported operating system
+- For `/var/`, at least 1 GB of free space for each PE component on a given node
+- For PE-installed PostgreSQL, `/opt/` requires at least 100 GB of free space for data gathering
+- For no PE-installed PostgreSQL, `/opt/` needs at least 1 GB of disk space available
 
 Supported Browsers
 -----
