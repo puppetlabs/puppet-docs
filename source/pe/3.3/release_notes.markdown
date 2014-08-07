@@ -220,6 +220,10 @@ To find out which of these issues may affect you, run `/opt/puppet/bin/puppet --
 
 The following issues affect the currently shipped version of PE and all prior releases through the 3.x.x series, unless otherwise stated.
 
+### Nonexistent manifestdir 500 Internal Server Error
+
+If you specify a manifestdir in `puppet.conf` that does not exist, a 500 internal server error will be raised on subsequent puppet runs.
+
 ### Puppet Enterprise Cannot Locate Samba init Script for Ubuntu 14.04
 
 If you attempt to install and start Samba using PE resource management, you will may encounter the following errors:
