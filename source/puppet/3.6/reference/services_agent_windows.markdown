@@ -5,7 +5,7 @@ canonical: "/puppet/latest/reference/services_master_windows.html"
 ---
 
 [catalogs]: ./subsystem_catalog_compilation.html
-[win_agent]: ./services_agent_windows.html
+[unix_agent]: ./services_agent_unix.html
 [type reference]: /references/3.6.latest/type.html
 [mcollective]: /mcollective
 [puppet.conf]: ./config_file_main.html
@@ -16,7 +16,7 @@ canonical: "/puppet/latest/reference/services_master_windows.html"
 [uac]: ./images/uac.png
 [rightclick]: ./images/run_as_admin.png
 [report]: /guides/reporting.html
-
+[running]: ./services_commands_windows.html
 
 Puppet agent is the application that manages configurations on nodes. It requires a puppet master server to fetch configuration [catalogs][] from. (For more info, see [Overview of Puppet's Architecture](./architecture.html).)
 
@@ -24,7 +24,7 @@ For details about invoking the puppet agent command, see [the puppet agent man p
 
 ## Supported Platforms
 
-This page describes how puppet agent behaves on Windows systems. For information about Linux, OS X, and other Unix-like operating systems, see [Puppet Agent on \*nix Systems][win_agent].
+This page describes how puppet agent behaves on Windows systems. For information about Linux, OS X, and other Unix-like operating systems, see [Puppet Agent on \*nix Systems][unix_agent].
 
 Not all operating systems can manage the same resources with Puppet; some resource types are OS-specific, and other types may have OS-specific features. See the [type reference][] for details.
 
@@ -100,9 +100,12 @@ You can also configure agent service with the `sc.exe` command. To prevent the s
     C:\>sc config puppet start= demand
     [SC] ChangeServiceConfig SUCCESS
 
+(Note that the space after `start=` is mandatory! Also note that this must be run in cmd.exe; this command won't work from PowerShell.)
+
 To restart the service:
 
-    C:\>sc stop puppet && sc start puppet
+    C:\>sc stop puppet
+    C:\>sc start puppet
 
 To change the arguments used when triggering a puppet agent run (this example changes the level of detail that gets written to the Event Log):
 
@@ -146,9 +149,12 @@ Puppet agent on Windows doesn't support the deprecated puppet kick command.
 
 ## Disabling and Re-enabling Puppet Runs
 
-Regardless of how you're running puppet agent, you can prevent it from doing any Puppet runs by running `sudo puppet agent --disable "<MESSAGE>"`. You can re-enable it with `sudo puppet agent --enable`.
+You can prevent puppet agent from doing any Puppet runs by [starting a command prompt with elevated privileges][running] and running `puppet agent --disable "<MESSAGE>"`. You can re-enable it with `puppet agent --enable`.
 
-If puppet agent attempts to do a configuration run while disabled --- either a scheduled run or a manually triggered one --- it will log a message like `Notice: Skipping run of Puppet configuration client; administratively disabled (Reason: 'Investigating a problem 5/23/14 -NF'); Use 'puppet agent --enable' to re-enable.`
+If puppet agent attempts to do a configuration run while disabled --- either a scheduled run or a manually triggered one --- it will log a message like:
+
+    Notice: Skipping run of Puppet configuration client; administratively disabled
+    (Reason: 'Investigating a problem 5/23/14 -NF'); Use 'puppet agent --enable' to re-enable.
 
 ## Configuring Puppet Agent
 
