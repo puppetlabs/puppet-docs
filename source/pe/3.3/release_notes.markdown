@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "PE 3.3 » Release Notes"
-subtitle: "Puppet Enterprise 3.3.0 Release Notes"
+subtitle: "Puppet Enterprise 3.3.1 Release Notes"
 canonical: "/pe/latest/release_notes.html"
 ---
 
