@@ -169,6 +169,11 @@ Solaris 10 SPARC systems are not affected by this issue.
 
 If you specify a manifestdir in `puppet.conf` that does not exist, a 500 internal server error will be raised on subsequent puppet runs.
 
+### The PE Console May Show the Puppet Master as Unreported Immediately after Monolithic Install
+
+Immediately after a monolithic (all-in-one) install, the PE console may show that the puppet master has not reported, that facts could not be retrieved from the inventory service, and that the license count is still zero. 
+
+To correct this situation, use live management or `puppet agent -t` on the command line to kick off a puppet run. (You can always wait 30 minutes for puppet to run.) 
 
 ### PostgreSQL Buffer Memory Issue Can Cause PE Install to Fail on Machines with Large Amounts of RAM
 
