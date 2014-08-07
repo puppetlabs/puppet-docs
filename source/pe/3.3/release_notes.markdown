@@ -22,7 +22,7 @@ canonical: "/pe/latest/release_notes.html"
 
 This page contains information about the Puppet Enterprise (PE) 3.3.x release line, including new features, known issues, bug fixes and more.
 
-# Puppet Enterprise 3.3.1 (8/06/2014)
+# Puppet Enterprise 3.3.1 (8/07/2014)
 
 ### Security Fixes
 
