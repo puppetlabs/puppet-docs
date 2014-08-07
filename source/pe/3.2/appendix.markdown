@@ -227,6 +227,10 @@ To resolve the issue make sure that `which psql` resolves to `/opt/puppet/bin/ps
 
 Users upgrading from PE 3.2.0 to a later version of 3.x (including 3.2.3) will see errors when attempting to download agent packages for platforms other than the master. After adding `pe_repo` classes to the master for desired agent packages, errors will be seen on the subsequent puppet run as PE attempts to access the requisite packages. For a simple workaround to this issue, see the [installer troubleshooting page](/trouble_install.html).
 
+### Nonexistent manifestdir 500 Internal Server Error
+
+If you specify a manifestdir in `puppet.conf` that does not exist, a 500 internal server error will be raised on subsequent puppet runs.
+
 ### Live Management Cannot Uninstall Packages on Windows Nodes
 
 An issue with MCollective prevents correct uninstallation of packages on nodes running Windows. Packages on Windows nodes can be uninstalled using Puppet, for example:
