@@ -77,7 +77,7 @@ The next time Puppet runs, it will notice that the versions don't match and will
 
 The version you use in `ensure` must exactly match the version string that the package reports when you inspect it with puppet resource. If it doesn't, Puppet will get confused and repeatedly try to re-install.
 
-### Packages That Use DisplayName as Their Version
+### Packages That Include Version Info in Their DisplayName
 
 Some packages don't embed version metadata; instead, they change their DisplayName property with each release. (The Git packages are a notable example of this.)
 
