@@ -15,7 +15,7 @@ title: "Overview of Puppet's Architecture"
 [lang_basics]: ./lang_summary.html
 [apply]: ./services_apply.html
 [puppetdb]: /puppetdb/latest
-
+[resource]: ./lang_resources.html
 
 
 Puppet usually uses an agent/master (client/server) architecture for configuring systems, using the **puppet agent** and **puppet master** applications. It can also run in a self-contained architecture with the **puppet apply** application.
@@ -42,11 +42,11 @@ Puppet usually runs in an agent/master architecture, where a puppet master serve
 
 ### Basics
 
-In this architecture, managed nodes run the **puppet agent** application, usually as a background service. One or more servers run the **puppet master** application, usually as a Rack application managed by a web server like Apache with Passenger.
+In this architecture, managed nodes run the **puppet agent** application, usually as a background service. One or more servers run the **puppet master** application, usually [as a Rack application][rack] managed by a web server (like Apache with Passenger).
 
 Periodically, puppet agent will send facts to the puppet master and request a catalog. The master will compile and return that node's catalog, using several sources of information it has access to.
 
-Once it receives a catalog, puppet agent will apply it by checking each resource the catalog describes. If it finds any resources that are not in their desired state, it will make any changes necessary to correct them. (Or, in no-op mode, it will report on what changes would have been needed.)
+Once it receives a catalog, puppet agent will apply it by checking each [resource][] the catalog describes. If it finds any resources that are not in their desired state, it will make any changes necessary to correct them. (Or, in no-op mode, it will report on what changes would have been needed.)
 
 After applying the catalog, the agent will submit a report to the puppet master.
 
@@ -61,7 +61,7 @@ After applying the catalog, the agent will submit a report to the puppet master.
 
 Puppet agent nodes and puppet masters communicate via HTTPS with client-verification.
 
-The puppet master provides an HTTP interface, with various endpoints available. When requesting or submitting anything to the master, the agent will make an HTTPS request to one of those endpoints.
+The puppet master provides an HTTP interface, with [various endpoints][master_http] available. When requesting or submitting anything to the master, the agent will make an HTTPS request to one of those endpoints.
 
 For details, see:
 
@@ -87,7 +87,7 @@ In this architecture, managed nodes run the **puppet apply** application, usuall
 
 Like the puppet master application, puppet apply needs access to several sources of configuration data, which it uses to compile a catalog for the node it is managing.
 
-After puppet apply compiles the catalog, it immediately applies it by checking each resource the catalog describes. If it finds any resources that are not in their desired state, it will make any changes necessary to correct them. (Or, in no-op mode, it will report on what changes would have been needed.)
+After puppet apply compiles the catalog, it immediately applies it by checking each [resource][] the catalog describes. If it finds any resources that are not in their desired state, it will make any changes necessary to correct them. (Or, in no-op mode, it will report on what changes would have been needed.)
 
 After applying the catalog, puppet apply will store a report on disk. It can also be configured to send reports to a central service.
 

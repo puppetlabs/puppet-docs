@@ -21,7 +21,7 @@ canonical: "/puppet/latest/reference/services_apply.html"
 [puppet.conf]: ./config_file_main.html
 [short_settings]: ./config_important_settings.html#settings-for-agents-all-nodes
 
-Puppet apply is an application that compiles and manages configurations on nodes. It acts like a self-contained combination of the puppet master and puppet agent applications. (For more info, see [Overview of Puppet's Architecture](./architecture.html).)
+Puppet apply is an application that compiles and manages configurations on nodes. It acts like a self-contained combination of the puppet master and puppet agent applications. For more info about Puppet's architecture, see [Overview of Puppet's Architecture](./architecture.html) --- in particular, read the note at the end about [differences and trade-offs between agent/master and puppet apply.](architecture.html#note-differences-between-agentmaster-and-puppet-apply)
 
 For details about invoking the puppet apply command, see [the puppet apply man page][man].
 
@@ -39,7 +39,7 @@ By default, it never initiates outbound network connections, although it can be 
 
 ### Main Manifest
 
-Like the puppet master application, puppet apply uses its [settings][short_settings] and the configured [environments][] to locate the Puppet code and configuration data it will use when compiling a catalog.
+Like the puppet master application, puppet apply uses its [settings][short_settings] (such as `basemodulepath`) and the configured [environments][] to locate the Puppet code and configuration data it will use when compiling a catalog.
 
 The one exception is the [main manifest][]. Puppet apply always requires a single command line argument, which acts as its main manifest. It ignores [the `manifest` setting][manifest_setting] and the [default main manifest from an environment.][env_main_manifest]
 
@@ -69,7 +69,7 @@ Out of the core resource types listed in the [type reference][], the following r
 * `schedule`
 * `ssh_key`
 * `ssh_authorized_key`
-* `service` (for services that don't require root; you can also use the `start`, `stop`, and `status` attributes to specify how non-root users should control the service)
+* `service` (for services that don't require root. You can also use the `start`, `stop`, and `status` attributes to specify how non-root users should control the service; see [the tips and examples for the service type](./resources_service.html) for more info.)
 * `augeas`
 
 If you need to install packages into a directory controlled by a non-root user, you can either use an `exec` to unzip a tarball or use a recursive `file` resource to copy a directory into place.

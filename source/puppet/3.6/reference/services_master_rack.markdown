@@ -13,6 +13,7 @@ canonical: "/puppet/latest/reference/services_master_rack.html"
 [subject dn]: /background/ssl/cert_anatomy.html#the-subject-dn-cn-certname-etc
 [pem format]: /background/ssl/cert_anatomy.html#pem-file
 [trusted]: ./lang_facts_and_builtin_vars.html#trusted-facts
+[webrick]: ./services_master_webrick.html
 
 Puppet master is the application that compiles configurations for any number of puppet agent nodes, using Puppet code and various other data sources. (For more info, see [Overview of Puppet's Architecture](./architecture.html).)
 
@@ -20,7 +21,7 @@ Puppet master is the application that compiles configurations for any number of 
 
 This is the recommended way of running the puppet master service.
 
-**Puppet Enterprise runs this way by default.** You do not need to manually configure a Rack server under Puppet Enterprise.
+> **Puppet Enterprise runs this way by default.** You do not need to manually configure a Rack server under Puppet Enterprise.
 
 This page describes the generic requirements and run environment for running under Rack; for practical configuration instructions, see [the guide to configuring a Passenger + Apache puppet master.][passenger_guide]
 
@@ -38,7 +39,7 @@ There are a lot of Rack web server stacks available. Puppet should work with any
 
 > Note that Puppet **will not** work with **threaded** Rack servers like Puma. Puppet's code isn't thread-safe, and it expects to be isolated in a single process.
 
-If you don't have any particular preference, you should start with [Passenger][] and Apache, since it's the most familiar and most thoroughly tested stack in the Puppet community. Some OSes have packages that set Passenger up automatically, and we have [a detailed guide to configuring it for Puppet.][passenger_guide]
+If you don't have any particular preference, you should start with [Passenger][] and Apache, since it's the most familiar and most thoroughly tested stack in the Puppet community. We have [a detailed guide to configuring Passenger for Puppet.][passenger_guide] Additionally, some OSes have packages that automatically configure a puppet master with Passenger.
 
 The Unicorn + Nginx stack is also fairly popular, but it has more pieces that you'll need to assemble and configure.
 
@@ -61,6 +62,21 @@ The Rack web server sets the puppet master process's user. By default, it will u
 All of the puppet master's files and directories must be readable and writable by this user.
 
 [user]: /references/latest/configuration.html#user
+
+### Required Directories
+
+[confdir]: ./dirs_confdir.html
+[vardir]: ./dirs_vardir.html
+
+Before a Rack puppet master can fully start up, it needs access to a [confdir][] and a [vardir][] that its user has permission to write to. The locations of the confdir and vardir it will use are set in the `config.ru` file (see below).
+
+The puppet master application can manage its own files inside those directories, but since Rack doesn't start the master with root permissions, it won't be able to create the initial directories in `/etc` or `/var`.
+
+You can create these directories manually and set their ownership to the puppet master's user. Alternately, you can briefly start a [WEBrick puppet master][webrick] and let it handle the initial setup. Run:
+
+    $ sudo puppet master --verbose --no-daemonize
+
+Once the terminal says `Notice: Starting Puppet master version <VERSION>`, type ctrl-C to kill the process.
 
 ### Ports
 
@@ -86,13 +102,11 @@ All Rack web servers use a `config.ru` file to load applications. This file is a
 
 The Puppet source includes a `config.ru` file for the puppet master application. It is located at `ext/rack/config.ru`. If you don't have a full copy of the Puppet source, you can [download this `config.ru` file directly from GitHub](https://raw.github.com/puppetlabs/puppet/stable/ext/rack/config.ru).
 
-To run a Rack puppet master, you must:
+To run a Rack puppet master, you must configure your Rack web server to load an application from this `config.ru` file and to route all Puppet requests to it.
 
-* Put the `config.ru` file somewhere sensible
-* Ensure the `config.ru` file is owned by the user `puppet` and the group `puppet` (or whatever user you want the puppet master to run as; see "User" above).
+The exact steps will depend on your Rack server; see the [Passenger guide][passenger_guide] for an example.
 
-    Most Rack servers use this file's ownership to set the application's user. Alternately, you may be able to explicitly configure your Rack server to use a specific user.
-* Configure your Rack web server to load an application from this `config.ru` file and to route all Puppet requests to it. The exact steps will depend on your Rack server; see the [Passenger guide][passenger_guide] for an example.
+Note that the `config.ru` file must be owned by the user `puppet` and the group `puppet` (or whatever user you want the puppet master to run as; see "User" above). Most Rack servers use this file's ownership to set the application's user. Alternately, you may be able to explicitly configure your Rack server to use a specific user.
 
 ### SSL Termination
 

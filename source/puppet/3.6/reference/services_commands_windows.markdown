@@ -19,6 +19,20 @@ Puppet was originally designed to run on \*nix systems, so its commands generall
 
 Since Windows systems work differently, there are a few extra things to keep in mind when using Puppet's commands.
 
+Supported Commands
+-----
+
+Not all of Puppet's commands work on Windows. Notably, Windows nodes can't run the puppet master or puppet cert commands.
+
+The following commands are designed for use on Windows:
+
+- [puppet agent][]
+- [puppet apply][]
+- [puppet module][]
+- [puppet resource][]
+- [puppet config][]
+- [puppet help][]
+- [puppet man][]
 
 Running Puppet's Commands
 -----
@@ -105,19 +119,4 @@ Note that this shortcut **does not** automatically request UAC elevation; just l
 
 This folder contains several links to the Puppet Labs website.
 
-
-Supported Commands
------
-
-Not all of Puppet's commands work on Windows. Notably, Windows nodes can't run the puppet master or puppet cert commands.
-
-The following commands are designed for use on Windows:
-
-- [puppet agent][]
-- [puppet apply][]
-- [puppet module][]
-- [puppet resource][]
-- [puppet config][]
-- [puppet help][]
-- [puppet man][]
 

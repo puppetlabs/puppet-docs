@@ -23,6 +23,16 @@ Puppet's built-in [`file`][file] resource type can manage files and directories 
 
 The `file` type was originally developed for \*nix systems, and has a few unusual behaviors on Windows. Here's what you'll want to know before using it.
 
+## Take Care With Backslashes in Paths
+
+The issue of backslashes and forward-slashes in file paths can get complicated. It's covered in full detail in [Handling File Paths on Windows.][win_paths]
+
+[win_paths]: ./lang_windows_file_paths.html
+
+## Watch for Filesystem Redirection in `system32`
+
+When accessing files in the `%windir%\system32` directory on 64-bit versions of Windows, Puppet is affected by Windows' File System Redirector. This is covered in full detail in [Handling File Paths on Windows.][win_paths]
+
 ## Be Consistent With Case in File Names
 
 If you need to refer to a file resource in multiple places in a manifest (e.g. when creating [relationships between resources][relationships]), be consistent with the case of the file name. If you use `my.ini` in one place, don't use `MY.INI` in another place.

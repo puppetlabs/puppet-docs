@@ -7,7 +7,6 @@ title: "Overview of Puppet on Windows"
 
 
 [troubleshooting]: ./troubleshooting.html
-[downloads]: http://downloads.puppetlabs.com/windows
 
 [win_commands]: /puppet/latest/reference/services_commands_windows.html
 [win_agent]: /puppet/latest/reference/services_agent_windows.html
@@ -27,18 +26,11 @@ To install Puppet Enterprise on Windows, [see the Puppet Enterprise manual's ins
 
 ### Open Source
 
-To install open source Puppet on Windows:
+To install open source Puppet on Windows, follow the instructions on the following pages, in order:
 
-* Follow [the pre-install tasks](/guides/install_puppet/pre_install.html)
-* [Download the installer][downloads]
-* Follow [the installation instructions](/guides/install_puppet/install_windows.html)
-* Follow [the post-install instructions](/guides/install_puppet/post_install.html#configure-a-puppet-agent-node)
-
-Most post-install tasks are handled automatically on Windows, but you'll still need to sign the new node's certificate and assign classes to manage it.
-
-### Supported Platforms
-
-{% include platforms_windows.markdown %}
+* [Pre-install tasks](/guides/install_puppet/pre_install.html)
+* [Installation instructions](/guides/install_puppet/install_windows.html)
+* [Post-install tasks](/guides/install_puppet/post_install.html)
 
 * * *
 
