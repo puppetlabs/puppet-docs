@@ -113,7 +113,7 @@ Puppet master server:
 
     Facter.add('hardware_platform') do
       setcode do
-        Facter::Core::Resolution.exec('/bin/uname --hardware-platform')
+        Facter::Core::Execution.exec('/bin/uname --hardware-platform')
       end
     end
 {% endhighlight %}
@@ -162,7 +162,7 @@ An example of the confine statement would be something like the following:
     Facter.add(:powerstates) do
       confine :kernel => 'Linux'
       setcode do
-        Facter::Core::Resolution.exec('cat /sys/power/states')
+        Facter::Core::Execution.exec('cat /sys/power/states')
       end
     end
 {% endhighlight %}
