@@ -59,7 +59,7 @@ In PE versions earlier than 3.2, you could run the external node script (`/etc/p
 
     curl -k -X GET -H "Accept: text/yaml" ${CERT_OPTIONS} "${MASTER}/nodes/$1"
     
-Pass the desired `nodename` as the argument to the script.
+Pass the desired node's name as the argument to the script. This is almost always the `certname` of the node, but may be different if you have configured `node_name`.
 
 Recovering from a Lost Console Admin Password
 -----
