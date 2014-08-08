@@ -606,7 +606,7 @@ Here's an example to set up /etc/resolv.conf with nameservers and domains.  Firs
       domain     => "example.com",
     }
 
-This template is stored at `modules/resolv/templates/resolvconf.erb` following the standard [module layout](/guides/modules.html):
+This template is stored at `modules/resolv/templates/resolvconf.erb` following the standard [module layout](/puppet/latest/reference/modules_fundamentals.html):
 
     <% if domain and not domain.empty? -%>
       set domain <%= domain %>
