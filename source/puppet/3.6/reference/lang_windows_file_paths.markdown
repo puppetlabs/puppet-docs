@@ -9,33 +9,49 @@ title: "Language: Handling File Paths on Windows"
 [package]: /references/latest/type.html#package
 [file]: /references/latest/type.html#file
 
-Several [resource types](./lang_resources.html) take file paths as values for various attributes.
+Several [resource types](./lang_resources.html) (including `file`, `exec`, and `package`) take file paths as values for various attributes.
 
-When writing Puppet manifests to manage Windows systems, you'll have to be somewhat flexible about the way you write file paths. It's more complex than it is on \*nix systems, for a few reasons:
+When writing Puppet manifests to manage Windows systems, there are two extra issues to take into account when writing file paths: directory separators, and filesystem redirection.
 
-* Windows traditionally uses the backslash (`\`) to separate directories in file paths. (E.g. `C:\Program Files\PuppetLabs`)
-* The Puppet language uses the backslash (`\`) as an escape character in quoted strings. This means writing literal backslashes can be awkward.
-* The Windows file system APIs will accept both the backslash (`\`) and forward-slash (`/`) in file paths...
-* ...but some Windows programs still only accept backslashes.
+## Filesystem Redirection
 
-In short: Using forward-slashes in paths is easier, but sometimes you just have to use backslashes. When you use backslashes, you have to pay extra attention to keep them from being suppressed by Puppet's string quoting.
+This version of Puppet always runs as a 32-bit process on Windows systems. On 64-bit versions of Windows, this means Puppet is affected by the <a href="http://msdn.microsoft.com/en-us/library/aa384187(v=vs.85).aspx">File System Redirector</a>. This can be an issue when trying to manage files in the system directory, like IIS configuration files.
+
+**When a Puppet resource accesses any files in the `%windir%\system32` directory, Windows will silently change the path to point to `%windir%\SysWOW64` instead.**
+
+To prevent redirection, you should **use the `sysnative` alias** in place of `system32` whenever you need to access files in the system directory.
+
+For example: `C:\Windows\sysnative\inetsrv\config\application Host.config` will always point to `C:\Windows\system32\inetsrv\config\application Host.config`, and never to `C:\Windows\SysWOW64\inetsrv\config\application Host.config`.
+
+> Note: 64-bit Windows Server 2003 requires hotfix [KB942589](http://support.microsoft.com/kb/942589/en-us) to use the sysnative alias.
+
+## Directory Separators
+
+Windows traditionally uses the backslash (`\`) to separate directories in file paths. (For example, `C:\Program Files\PuppetLabs`.) However, the Puppet language also uses the backslash (`\`) as an escape character in [quoted strings.](./lang_datatypes.html#strings) This can make it awkward to write literal backslashes.
+
+To complicate things further: the Windows file system APIs will accept **both** the backslash (`\`) and forward-slash (`/`) in file paths, but some Windows programs still only accept backslashes.
+
+In short:
+
+* Using forward-slashes in paths is easier, but sometimes you must use backslashes.
+* When you use backslashes, you must pay extra attention to keep them from being suppressed by Puppet's string quoting.
 
 The following guidelines will help you use backslashes safely in Windows file paths with Puppet.
 
-## When to Use Each Kind of Slash
+### When to Use Each Kind of Slash
 
 If Puppet itself is interpreting the file path, forward slashes are generally okay. If the file path is being passed directly to a Windows program, backslashes may be mandatory. If the file path is meant for the puppet master, forward-slashes may be mandatory.
 
 The most notable instances of each kind of path are listed below.
 
-### Forward-Slashes Only
+#### Forward-Slashes Only
 
 Forward slashes **MUST** be used in:
 
 * [Template][] paths (e.g. `template('my_module/content.erb')`)
 * `puppet:///` URLs
 
-### Forward- and Backslashes Both Allowed
+#### Forward- and Backslashes Both Allowed
 
 You can choose which kind of slash to use in:
 
@@ -44,7 +60,7 @@ You can choose which kind of slash to use in:
 * Local paths in a [`file`][file] resource's `source` attribute
 * The `command` of an [`exec`][exec] resource, unless the executable requires backslashes, e.g. cmd.exe
 
-### Backslashes Only
+#### Backslashes Only
 
 Backslashes **MUST** be used in:
 
@@ -52,7 +68,7 @@ Backslashes **MUST** be used in:
 * Any file paths included in the `install_options` of a [`package`][package] resource.
 
 
-## Using Backslashes in Double-Quoted Strings
+### Using Backslashes in Double-Quoted Strings
 
 Puppet supports two kinds of string quoting. See [the reference section about strings](/puppet/latest/reference/lang_datatypes.html#strings) for full details.
 
@@ -64,7 +80,7 @@ Example:
 
     "C:\\Program Files\\PuppetLabs"
 
-## Using Backslashes in Single-Quoted Strings
+### Using Backslashes in Single-Quoted Strings
 
 Strings surrounded by single quotes (`'`) allow only two escape sequences: `\'` (a literal single quote) and `\\` (a literal backslash).
 
@@ -73,7 +89,7 @@ Lone backslashes can usually be used in single-quoted strings. However:
 * When a backslash occurs at the very end of a single-quoted string, a double backslash must be used instead of a single backslash. For example: `path => 'C:\Program Files(x86)\\'`
 * When a literal double backslash is intended, a quadruple backslash must be used.
 
-### The Rule
+#### The Rule
 
 In single-quoted strings:
 
