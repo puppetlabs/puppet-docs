@@ -109,17 +109,6 @@ The example below will bootstrap a node using the ami--0530e66c image, located i
     --keyname ccaum_rsa  
     --type t1.micro
 
-Demo
--------
-
-The following video demonstrates the EC2 instance creation process in more detail:
-
-<object width="560" height="315">
-<param name="movie" value="http://www.youtube.com/v/dAqbLwYzMVk?version=3&amp;hl=en_US"></param>
-<param name="allowFullScreen" value="true"></param>
-<param name="allowscriptaccess" value="always"></param>
-<embed src="http://www.youtube.com/v/dAqbLwYzMVk?version=3&amp;hl=en_US" type="application/x-shockwave-flash" width="560" height="315" allowscriptaccess="always" allowfullscreen="true"></embed>
-</object>
 
 Connecting to an EC2 instance
 -----
@@ -154,14 +143,14 @@ To terminate an instance, use the `node_aws terminate` action.
     notice: Destroying i-df7ee898 (ec2-50-18-93-82.us-east-1.compute.amazonaws.com) ... Done
 
 
-The following video demonstrates the EC2 instance termination process in more detail:
+Demos
+-------
 
-<object width="560" height="315">
-<param name="movie" value="http://www.youtube.com/v/NKisTfXuJlw?version=3&amp;hl=en_US"></param>
-<param name="allowFullScreen" value="true"></param>
-<param name="allowscriptaccess" value="always"></param>
-<embed src="http://www.youtube.com/v/NKisTfXuJlw?version=3&amp;hl=en_US" type="application/x-shockwave-flash" width="560" height="315" allowscriptaccess="always" allowfullscreen="true"></embed>
-</object>
+The following demos show how to install a puppet master and a puppet agent in EC2, as well as how to deploy a web app with Puppet Enterprise.
+
+* [AWS EC2 Part 1](https://www.youtube.com/watch?v=Drl35Bpc6OE): Spin up a virtual machine and install Puppet Enterprise.
+* [AWS EC2 Part 2](https://www.youtube.com/watch?v=_Cq-dzR3-v4): Spin up a new node in EC2 and then install a Puppet agent.
+* [AWS EC2 Part 3](https://www.youtube.com/watch?v=ujWAKU1vYn4): Use a module from the forge to deploy a web app to an EC2 node.
 
 Getting more help
 -----
