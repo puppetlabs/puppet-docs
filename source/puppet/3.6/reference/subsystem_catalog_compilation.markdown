@@ -14,7 +14,7 @@ canonical: "/puppet/latest/reference/subsystem_catalog_compilation.html"
 [exported resources]: ./lang_exported.html
 [puppetdb]: /puppetdb/latest
 [functions]: ./lang_functions.html
-[site manifest]: ./dirs_manifest.html
+[main manifest]: ./dirs_manifest.html
 [modules]: ./modules_fundamentals.html
 [node terminus]: /references/3.6.latest/configuration.html#nodeterminus
 [plain_node]: /references/3.6.latest/indirection.html#plain-terminus
@@ -32,6 +32,7 @@ canonical: "/puppet/latest/reference/subsystem_catalog_compilation.html"
 [class definitions]: ./lang_classes.html#defining-classes
 [classes]: ./lang_classes.html
 [manifest naming conventions]: ./modules_fundamentals.html#manifests
+[modulepath]: ./dirs_modulepath.html
 
 Background Info
 -----
@@ -83,7 +84,7 @@ Puppet can use external data at several stages when compiling, but there are two
     * **Classes** that should be assigned to the node, and parameters to configure the classes
     * Extra **top-scope variables** that should be set for the node
     * An **environment** for the node (which will override its requested environment)
-* Data from other sources, which is accessed as needed during compilation. It may be invoked by the site manifest or by classes or defined types in modules. This kind of data includes:
+* Data from other sources, which is accessed as needed during compilation. It may be invoked by the main manifest or by classes or defined types in modules. This kind of data includes:
     * [Exported resources][] queried from [PuppetDB][]
     * The results of [functions][], which can access arbitrary data sources including Hiera or an external CMDB
 
@@ -91,7 +92,7 @@ Puppet can use external data at several stages when compiling, but there are two
 
 This is the heart of a Puppet deployment. It can include:
 
-* The [site manifest][], which might be broken out into per-node `.pp` files for easier organization
+* The [main manifest][], which might be broken out into per-node `.pp` files for easier organization
 * [Modules][] downloaded from the [Puppet Forge](https://forge.puppetlabs.com)
 * [Modules][] written specifically for your site
 
@@ -124,11 +125,11 @@ Finally, it's possible to write a custom node terminus that retrieves classes, v
 
 All of these variables will be available for use by any manifest or template during the subsequent stages of compilation.
 
-### Step 3: Evaluate the Site Manifest
+### Step 3: Evaluate the Main Manifest
 
-Puppet now parses the [site manifest][]. The node's [environment][] may specify a site manifest to use; if it doesn't, the puppet master will use the main site manifest from its config file.
+Puppet now parses the [main manifest][]. The node's [environment][] may specify a main manifest to use; if it doesn't, the puppet master will use the main manifest from its config file.
 
-The site manifest can contain any arbitrary Puppet code. The way it is evaluated is:
+The main manifest can contain any arbitrary Puppet code. The way it is evaluated is:
 
 * If there are any [node definitions][] in the manifest, Puppet **must** find one that matches the node's **name** (see [agent-provided information][agent_provided], above). See [the page on node definitions][node definitions] for information on how node statements match names.
     * If at least one node definition is present and Puppet cannot find a match, it will fail compilation now.
@@ -137,9 +138,11 @@ The site manifest can contain any arbitrary Puppet code. The way it is evaluated
 
 ### Step 3a: Load and Evaluate Classes from Modules
 
-It's possible for the site manifest to contain [class definitions][], but usually classes are defined elsewhere, in [modules][].
+It's possible for the main manifest to contain [class definitions][], but usually classes are defined elsewhere, in [modules][].
 
-If any [classes][] were declared in the site manifest and their definitions were not present, Puppet will automatically load the manifests containing them from its collection of [modules][]. It will follow the normal [manifest naming conventions][] to locate the files it should load.
+If any [classes][] were declared in the main manifest and their definitions were not present, Puppet will automatically load the manifests containing them from its collection of [modules][]. It will follow the normal [manifest naming conventions][] to locate the files it should load.
+
+The set of locations Puppet will load modules from is called the [modulepath][]. The modulepath can be influenced by the node's [environment][].
 
 Once a class is loaded, the Puppet code in it is evaluated, and any resources are added to the catalog. If it was declared at node scope, it has access to any node-scope variables; otherwise, it only has access to top-scope variables.
 
@@ -147,8 +150,8 @@ Classes can also declare other classes; if they do, Puppet will load and evaluat
 
 ### Step 4: Evaluate Classes from the Node Object
 
-Finally, after Puppet has evaluated the site manifest and any classes it declared (and any classes _they_ declared), it will load from modules and evaluate any classes that were specified by the node object. Resources from those classes will be added to the catalog.
+Finally, after Puppet has evaluated the main manifest and any classes it declared (and any classes _they_ declared), it will load from modules and evaluate any classes that were specified by the node object. Resources from those classes will be added to the catalog.
 
-If a matching node definition was found in step 3, these classes are evaluated **at node scope,** which means they can access any node-scope variables set by the site manifest. If no node definitions were present in the site manifest, they will be evaluated at top scope.
+If a matching node definition was found in step 3, these classes are evaluated **at node scope,** which means they can access any node-scope variables set by the main manifest. If no node definitions were present in the main manifest, they will be evaluated at top scope.
 
 

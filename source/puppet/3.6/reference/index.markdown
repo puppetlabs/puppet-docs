@@ -8,6 +8,10 @@ toc: false
 
 Welcome to the Puppet 3.6 Reference Manual! Use the navigation to the left to get around.
 
+## What Is This?
+
+For an introduction to how Puppet manages systems, see the [Overview of Puppet's Architecture.](./architecture.html)
+
 ## Previous Versions
 
 - [Puppet 3.5](/puppet/3.5/reference)

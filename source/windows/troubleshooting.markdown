@@ -1,7 +1,6 @@
 ---
 layout: default
 title: "Troubleshooting Puppet on Windows"
-nav: windows.html
 ---
 
 [confdir]: /puppet/latest/reference/dirs_confdir.html
@@ -39,7 +38,7 @@ Puppet may fail to install when trying to perform an unattended install from the
 
     msiexec /qn /i puppet.msi
 
-To get troubleshooting data, specify an installation log, e.g. /l*v install.txt. Look in the log for entries like the following:
+To get troubleshooting data, specify an installation log, e.g. `/l*v install.txt`. Look in the log for entries like the following:
 
     MSI (s) (7C:D0) [17:24:15:870]: Rejecting product '{D07C45E2-A53E-4D7B-844F-F8F608AFF7C8}': Non-assigned apps are disabled for non-admin users.
     MSI (s) (7C:D0) [17:24:15:870]: Note: 1: 1708
@@ -95,7 +94,7 @@ Several resources are case-insensitive on Windows (file, user, group). When esta
 
 ### Diffs
 
-Puppet does not show diffs on Windows (e.g., `puppet agent --show_diff`) unless a third-party diff utility has been installed (e.g., msys, gnudiff, cygwin, etc) and the `diff` property has been set appropriately.
+Puppet does not show diffs on Windows (e.g., `puppet agent --show_diff`) unless a third-party diff utility has been installed (e.g., msys, gnudiff, cygwin, etc) and [the `diff` setting](/references/latest/configuration.html#diff) has been set appropriately.
 
 ## Resource Errors and Quirks
 

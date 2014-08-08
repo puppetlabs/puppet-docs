@@ -115,6 +115,18 @@ OS type  | Default Install Path
 
 The Program Files directory can be located using the `PROGRAMFILES` environment variable on 32-bit versions of Windows or the `PROGRAMFILES(X86)` variable on 64-bit versions.
 
+Puppet's program directory contains the following subdirectories:
+
+Directory | Description
+----------|------------
+bin       | scripts for running Puppet and Facter
+facter    | Facter source
+hiera     | Hiera source
+misc      | resources
+puppet    | Puppet source
+service   | code to run puppet agent as a service
+sys       | Ruby and other tools
+
 #### `PUPPET_MASTER_SERVER`
 
 The hostname where the puppet master server can be reached. This will set a value for [the `server` setting][s] in the `[main]` section of [puppet.conf][].
@@ -160,7 +172,7 @@ Whether the puppet agent service should run (or be allowed to run). Allowed valu
 
 #### `PUPPET_AGENT_ACCOUNT_USER`
 
-Which Windows user account the puppet agent service should use. This is important if puppet agent will need to access files on UNC shares, since the default `LocalService` account cannot access these network resources.
+Which Windows user account the puppet agent service should use. This is important if puppet agent will need to access files on UNC shares, since the default `LocalSystem` account cannot access these network resources.
 
 * This user account **must already exist,** and may be a local or domain user. (The installer will allow domain users even if they have not accessed this machine before.)
 * If the user isn't already a local administrator, the installer will add it to the `Administrators` group.
@@ -203,7 +215,6 @@ To uninstall from the command line, you must have the original MSI file or know 
     msiexec /qn /x <PRODUCT CODE>
 
 Uninstalling will remove Puppet's program directory, the puppet agent service, and all related registry keys. It will leave the [confdir][] and [vardir][] intact, including any SSL keys. To completely remove Puppet from the system, the confdir and vardir can be manually deleted.
-
 
 Next
 ----
