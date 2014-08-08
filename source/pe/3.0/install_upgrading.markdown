@@ -76,7 +76,7 @@ If provisioning a standalone PostgreSQL database, you will need to create a data
 
 ### Upgrade Master
 
-Start the upgrade by running the `puppet-enterprise-installer` script on the master node. You can use any of the flags described in the [install instructions](http://docs.puppetlabs.com/pe/latest/install_basic.html). The script will detect any previous versions of PE roles and stop any PE services that are currently running. The script will then step through the install script, providing default answers based on the roles it has detected on the node (e.g., if the script detects only an agent on a given node, it will provide "No" as the default answer to installing the master role). The installer should be able to answer all of the questions based on your current installation except for the hostname and port of the PuppetDB node you prepped before starting the install.
+Start the upgrade by running the `puppet-enterprise-installer` script on the master node. You can use any of the flags described in the [install instructions](/pe/latest/install_basic.html). The script will detect any previous versions of PE roles and stop any PE services that are currently running. The script will then step through the install script, providing default answers based on the roles it has detected on the node (e.g., if the script detects only an agent on a given node, it will provide "No" as the default answer to installing the master role). The installer should be able to answer all of the questions based on your current installation except for the hostname and port of the PuppetDB node you prepped before starting the install.
 
 As with installation, the script will also check for any missing dependent vendor packages and offer to install them automatically.
 

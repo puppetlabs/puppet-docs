@@ -138,7 +138,7 @@ desktops.
 
 Yes.  As of Puppet 2.7.6 basic types and providers do run on Windows, and the test
 suite is being run on Windows to ensure future compatibility.  More information
-can be found on the *Puppet on Windows* [page](http://docs.puppetlabs.com/windows/), and
+can be found on the *Puppet on Windows* [page](/windows/), and
 [bug reports](https://tickets.puppetlabs.com/secure/CreateIssue!default.jspa) and
 [patches](./development_lifecycle.html) are welcome.
 
@@ -216,7 +216,7 @@ most days (and nights).
 
 If you are interested in helping with Puppet's development, you can
 read about how it is developed and how to submit patches and fixes
-on the [Development Lifecycle](http://docs.puppetlabs.com/guides/development_lifecycle.html) page.
+on the [Development Lifecycle](/guides/development_lifecycle.html) page.
 
 The most valuable contribution you can make, though, is to use
 Puppet and submit your feedback, either directly on IRC or through
@@ -241,7 +241,7 @@ at [Puppet Labs' Github page](https://github.com/puppetlabs/puppet).
 
 ### Which versions of Ruby does Puppet support?
 
-Please see the ['Ruby Versions' section of the Supported Platforms document](http://docs.puppetlabs.com/guides/platforms.html#ruby-versions) for the complete matrix of supported Ruby versions.
+Please see the ['Ruby Versions' section of the Supported Platforms document](/guides/platforms.html#ruby-versions) for the complete matrix of supported Ruby versions.
 
 Upgrading
 ---------
@@ -269,7 +269,7 @@ be left in place between installs.
 The best way to find out what's changed in Puppet is to read the release notes,
 which are posted to the
 [puppet-announce mailing list](http://groups.google.com/group/puppet-announce) and
-on the [release notes page](http://docs.puppetlabs.com/release_notes/).
+on the [release notes page](/release_notes/).
 
 
 Configuration

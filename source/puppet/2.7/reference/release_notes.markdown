@@ -2920,7 +2920,7 @@ Notable Features and Bug Fixes
 
 ### Apache License
 
-Puppet is now released under the Apache 2.0 license. More info is available [here](http://docs.puppetlabs.com/guides/faq#change-to-apache-license).
+Puppet is now released under the Apache 2.0 license. More info is available [here](/guides/faq#change-to-apache-license).
 
 ### Ruby 1.9 Support
 
@@ -2980,7 +2980,7 @@ We've spiffed up our man pages. Static man files are in the `man/` directory of 
 We're starting the hourglass on a few older features:
 
 * **'puppet' as a synonym for 'puppet apply'** --- Starting today, running `puppet my-manifest.pp` will issue a warning; you should start using `puppet apply` directly instead. Support for implicit invocation of puppet apply will be dropped in Puppet 2.8.
-* **Dynamic scope** --- We've started issuing warnings when variables or resource defaults are found via dynamic lookup. [There's more info and explanation in a guide on the docs site](http://docs.puppetlabs.com/guides/scope_and_puppet.html), but the short version is that you should start referencing variables with their qualified names instead of counting on dynamic scope. We hope to drop support for dynamic scope in Puppet 2.8. (Issue #5027)
+* **Dynamic scope** --- We've started issuing warnings when variables or resource defaults are found via dynamic lookup. [There's more info and explanation in a guide on the docs site](/guides/scope_and_puppet.html), but the short version is that you should start referencing variables with their qualified names instead of counting on dynamic scope. We hope to drop support for dynamic scope in Puppet 2.8. (Issue #5027)
 * **No more `--parseonly` option** --- This one's already gone, because we used Faces to build a drop-in replacement: use `puppet parser validate [<manifest>] [<manifest> ...]` instead.
 
 ### Notice Changed Manifests on the First Try
@@ -2995,7 +2995,7 @@ There are some known issues that keep it from being used as-is, yet --- you have
 
 ### Improved APIs
 
-You can now [manage and sign certificates via Puppet's REST API](http://docs.puppetlabs.com/guides/rest_api.html#certificate-status), which means that in the near future you'll be able to check off signing requests for new nodes right from Puppet Dashboard. (And someone can now easily write an iPhone or Android app to fetch and handle CSRs, hint hint. :) )
+You can now [manage and sign certificates via Puppet's REST API](/guides/rest_api.html#certificate-status), which means that in the near future you'll be able to check off signing requests for new nodes right from Puppet Dashboard. (And someone can now easily write an iPhone or Android app to fetch and handle CSRs, hint hint. :) )
 
 ### Services Are Assumed to Have Status Commands
 

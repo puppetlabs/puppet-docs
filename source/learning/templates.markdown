@@ -312,5 +312,5 @@ Are you managing any configuration on your real infrastructure yet? You've learn
 
 
 [dl]: http://info.puppetlabs.com/download-pe.html
-[quick]: http://docs.puppetlabs.com/pe/latest/quick_start.html
+[quick]: /pe/latest/quick_start.html
 

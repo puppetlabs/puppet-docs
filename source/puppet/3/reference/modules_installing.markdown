@@ -75,7 +75,7 @@ In order to use the puppet module tool behind a proxy, you need to set the follo
 	export http_proxy=http://10.187.255.9:8080 
 	export https_proxy=http://10.187.255.9:8080
 	
-Alternatively, you can set these two proxy settings inside the `user` config section in the `puppet.conf` file: `http_proxy_host` and `http_proxy_port`. For more information, see [Configuration Reference](http://docs.puppetlabs.com/references/latest/configuration.html).
+Alternatively, you can set these two proxy settings inside the `user` config section in the `puppet.conf` file: `http_proxy_host` and `http_proxy_port`. For more information, see [Configuration Reference](/references/latest/configuration.html).
 
 **Note:** Make sure to set these two proxy settings in the `user` section only. Otherwise, there can be adverse effects. 
 

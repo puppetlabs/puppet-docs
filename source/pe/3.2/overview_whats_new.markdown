@@ -21,7 +21,7 @@ No version of Puppet Enterprise has been shipped with a vulnerable version of Op
 
 However, some of your Puppet Enterprise-managed nodes could be running operating systems that include OpenSSL versions 1.0.1 or 1.0.2, and both of these are vulnerable to the Heartbleed bug. Since tools included in Puppet Enterprise, such as PuppetDB and the Console, make use of SSL certificates we believe the safest, most secure method for assuring the security of your Puppet-managed infrastructure is to regenerate your certificate authority and all OpenSSL certificates.
 
-We have outlined the remediation procedure to help make it an easy and fail-safe process. You’ll find the details here: Remediation for [Recovering from the Heartbleed Bug](http://docs.puppetlabs.com/trouble_remediate_heartbleed_overview.html).
+We have outlined the remediation procedure to help make it an easy and fail-safe process. You’ll find the details here: Remediation for [Recovering from the Heartbleed Bug](/trouble_remediate_heartbleed_overview.html).
 
 We’re here to help. If you have any issues with remediating the Heartbleed vulnerability, one of your authorized Puppet Enterprise support users can always log into the [customer support portal](https://support.puppetlabs.com/access/unauthenticated). We’ll continue to update the email list with any new information.
 

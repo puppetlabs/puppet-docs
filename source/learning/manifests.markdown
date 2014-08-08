@@ -5,7 +5,7 @@ title: Learning Puppet — Manifests
 
 
 [2state]: ./images/manifest_to_defined_state_unified.png
-[cheat]: http://docs.puppetlabs.com/puppet_core_types_cheatsheet.pdf
+[cheat]: /puppet_core_types_cheatsheet.pdf
 
 
 Begin
@@ -305,7 +305,7 @@ This way, you can have many machines being configured by Puppet, while only main
 
 > ### Exercise: SSH Authorized Key
 >
-> Write and apply a manifest that uses the [`ssh_authorized_key` type](http://docs.puppetlabs.com/references/stable/type.html#sshauthorizedkey) to let you log into the learning VM as root without a password.
+> Write and apply a manifest that uses the [`ssh_authorized_key` type](/references/stable/type.html#sshauthorizedkey) to let you log into the learning VM as root without a password.
 >
 > **Bonus work:** Try putting it directly into the site manifest, instead of using puppet apply. [Use the console to trigger a puppet agent run](/pe/latest/orchestration_puppet.html), and [check the reports in the console](/pe/latest/console_reports.html) to see whether the manifest worked.
 >
@@ -328,4 +328,4 @@ Are there any files on your systems that you've had a hard time keeping in sync?
 
 
 [dl]: http://info.puppetlabs.com/download-pe.html
-[quick]: http://docs.puppetlabs.com/pe/latest/quick_start.html
+[quick]: /pe/latest/quick_start.html

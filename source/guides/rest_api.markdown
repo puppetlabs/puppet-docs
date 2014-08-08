@@ -224,7 +224,7 @@ Get a file from the file server.
 
 GET `/file_{metadata, content}/{file}`
 
-File serving is covered in more depth in the [fileserver configuration documentation](http://docs.puppetlabs.com/guides/file_serving.html)
+File serving is covered in more depth in the [fileserver configuration documentation](/guides/file_serving.html)
 
 ### Node
 

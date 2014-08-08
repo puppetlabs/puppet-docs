@@ -21,7 +21,7 @@ The demands on the puppet master will vary widely between different deployments.
 Platforms With Packages
 -----
 
-Puppet 3.6 and all of its prerequisites will run on the following platforms, and Puppet Labs provides official packages in [our package repositories.](http://docs.puppetlabs.com/guides/puppetlabs_package_repositories.html)
+Puppet 3.6 and all of its prerequisites will run on the following platforms, and Puppet Labs provides official packages in [our package repositories.](/guides/puppetlabs_package_repositories.html)
 
 ### Red Hat Enterprise Linux (and Derivatives)
 
@@ -86,7 +86,7 @@ Other interpreters and versions of Ruby are not covered by our tests, and may or
 ### Mandatory Libraries
 
 - [Facter](http://www.puppetlabs.com/puppet/related-projects/facter/) 1.7.0 or later
-- [Hiera](http://docs.puppetlabs.com/hiera/latest/) 1.0 or later
+- [Hiera](/hiera/latest/) 1.0 or later
 - The `json` gem (any modern version).
 
 ### Optional Libraries

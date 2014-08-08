@@ -258,7 +258,7 @@ active_record
 
 exec
 : Call an external program to get node information.  See
-  the [External Nodes](http://docs.puppetlabs.com/guides/external_nodes.html) page for more information.
+  the [External Nodes](/guides/external_nodes.html) page for more information.
 
 ldap
 : Search in LDAP for node configuration information.  See

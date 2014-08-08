@@ -47,7 +47,7 @@ the declarative model works for simple things like users, services, and file per
 Once you've learned the basics, make sure you understand classes and modules,
 then move on to the advanced sections and read more about the features
 that are useful to you.  Learning all at once is definitely not required.
-If you find something confusing, [file a ticket](http://docs.puppetlabs.com/contribute.html#filing-tickets) or email us at <faq@puppetlabs.com> to let us know.
+If you find something confusing, [file a ticket](/contribute.html#filing-tickets) or email us at <faq@puppetlabs.com> to let us know.
 
 System Components
 -----------------

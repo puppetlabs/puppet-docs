@@ -29,7 +29,7 @@ Don't stop learning when you complete the quests in our new Learning Puppet VM. 
 Don't worry, the original "guided tour" tutorials for the Learning Puppet VM still exist. 
 Continue here: 
 
-[http://docs.puppetlabs.com/learning/introduction.html](http://docs.puppetlabs.com/learning/introduction.html)
+[http://docs.puppetlabs.com/learning/introduction.html](/learning/introduction.html)
 
 The Learning Puppet VM is suitable for both the new quest-based material and the original tutorials.
 

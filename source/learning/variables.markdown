@@ -293,4 +293,4 @@ Since facts from every node show up in the console, Puppet Enterprise can be a p
 
 
 [dl]: http://info.puppetlabs.com/download-pe.html
-[quick]: http://docs.puppetlabs.com/pe/latest/quick_start.html
+[quick]: /pe/latest/quick_start.html

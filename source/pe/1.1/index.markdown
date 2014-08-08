@@ -313,7 +313,7 @@ The next time this node's puppet agent contacts the master, its `/etc/motd` file
 Configuring and Troubleshooting
 -----
 
-What follows is a short list of common problems that can prevent a Puppet site from working as expected. Additional troubleshooting information can be found at the [main Puppet documentation site](http://docs.puppetlabs.com), on the [Puppet Users mailing list](https://groups.google.com/group/puppet-users), and in `#puppet` on freenode.net. 
+What follows is a short list of common problems that can prevent a Puppet site from working as expected. Additional troubleshooting information can be found at the [main Puppet documentation site](), on the [Puppet Users mailing list](https://groups.google.com/group/puppet-users), and in `#puppet` on freenode.net. 
 
 Furthermore, please feel free to contact Puppet Labs' enterprise technical support. When reporting issues with the installer itself, please run the installer using the `-D` debugging flag and provide a transcript of the installer's output along with your description of the problem. 
 

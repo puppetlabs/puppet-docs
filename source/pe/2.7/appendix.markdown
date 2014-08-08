@@ -82,7 +82,7 @@ Two modules have been updated in this maintenance release: puppetlabs-request_ma
 #### Change to auth.conf File Management
 
 Previously, the auth.conf file was fully managed by PE 2.7.0. This meant that manual changes to the file would get over-written on the next puppet run. This is no longer the case. When upgrading to 2.7.1, the upgrader will still convert auth.conf to add the code needed to enable certificate management. However, it will do this if and only if the file has not been manually modified. If the file has been modified, the upgrader will show a warning that it is not going to convert the file and, on subsequent puppet runs, the file will now be left untouched. 
-Note that when auth.conf is not modified by the upgrader, you will have to manually add some lines of code to it in order to enable the Console's node request management capabilities. This is explained in the [ node request management configuration details](http://docs.puppetlabs.com/pe/2.7/console_cert_mgmt.html#configuration-details).
+Note that when auth.conf is not modified by the upgrader, you will have to manually add some lines of code to it in order to enable the Console's node request management capabilities. This is explained in the [ node request management configuration details](/pe/2.7/console_cert_mgmt.html#configuration-details).
 
 #### Broken Augeas puppet Lens on Solaris
 
@@ -130,7 +130,7 @@ The initial release of PE 2.7.
 
 #### Puppet Core Patches
 
-Changes to the current version of Puppet's core are documented in the [Puppet Release notes](http://docs.puppetlabs.com/puppet/2.7/reference/release_notes.html#puppet-2719). PE 2.7 uses a specially patched version of Puppet 2.7.19. These patches address the following:
+Changes to the current version of Puppet's core are documented in the [Puppet Release notes](/puppet/2.7/reference/release_notes.html#puppet-2719). PE 2.7 uses a specially patched version of Puppet 2.7.19. These patches address the following:
 
 * In some cases, an improperly functioning alias between scope and named_scope could cause inventory service to fail. This has been fixed. For details, see [Issue 16376](http://projects.puppetlabs.com/issues/16376).
 
@@ -169,7 +169,7 @@ During installation, the PE installer attempts to automatically determine the UR
 
 ### Answer file required for some SMTP servers.
 
-Any SMTP server that requires authentication, TLS, or runs over any port other than 25 needs to be explicitly added to an answers file. See the [advanced configuration page](http://docs.puppetlabs.com/pe/2.7/config_advanced.html#allowing-anonymous-console-access) for details.
+Any SMTP server that requires authentication, TLS, or runs over any port other than 25 needs to be explicitly added to an answers file. See the [advanced configuration page](/pe/2.7/config_advanced.html#allowing-anonymous-console-access) for details.
 
 ### Upgrading the Console Server Requires an Increased MySQL Buffer Pool Size
 

@@ -361,7 +361,7 @@ To learn about these workflows, continue to part two of this quick start guide.
 
 Puppet Labs offers many opportunities for learning and training, from formal certification courses to guided on-line lessons. We've noted a few below; head over to the [learning Puppet page](https://puppetlabs.com/learn) to discover more.
 
-* [Learning Puppet](http://docs.puppetlabs.com/learning/) is a series of exercises on various core topics on deploying and using PE.  It includes the [Learning Puppet VM](http://info.puppetlabs.com/download-learning-puppet-VM.html) which provides PE pre-installed and configured on VMware and VirtualBox virtualization platforms. 
+* [Learning Puppet](/learning/) is a series of exercises on various core topics on deploying and using PE.  It includes the [Learning Puppet VM](http://info.puppetlabs.com/download-learning-puppet-VM.html) which provides PE pre-installed and configured on VMware and VirtualBox virtualization platforms. 
 * The Puppet Labs workshop contains a series of self-paced, online lessons that cover a variety of topics on Puppet basics. You can sign up at the [learning page](https://puppetlabs.com/learn).
 * To explore the rest of the PE user's manual, use the sidebar at the top of this page, or [return to the index](./index.html).
 

@@ -286,7 +286,7 @@ It's hard to overstate the importance of this pattern! If you stopped here and o
 
 > ### Exercise: Apache
 >
-> Write and apply a manifest that will install the Apache [package](http://docs.puppetlabs.com/references/latest/type.html#package), then make sure the Apache [service](http://docs.puppetlabs.com/references/latest/type.html#service) is running. Prove that it worked by using a web browser on your host OS to view the Apache welcome page.
+> Write and apply a manifest that will install the Apache [package](/references/latest/type.html#package), then make sure the Apache [service](/references/latest/type.html#service) is running. Prove that it worked by using a web browser on your host OS to view the Apache welcome page.
 >
 > **Bonus work:** Manage the httpd.conf file, and have it notify the service. Force Apache to be kept at a certain version (note that you'll have to research the format of the version strings for your operating system, as well as which versions are available).
 >
@@ -295,9 +295,9 @@ It's hard to overstate the importance of this pattern! If you stopped here and o
 > * On modern Red Hat-like (your VM) and Debian-like Linux systems, packages are installed from the operating system's Apt or Yum repositories. Since the system tools know how to find and install a package (or even a specific version of a package), all Puppet needs to know is `ensure => installed`; it doesn't need to know where the package lives.
 > * The names of package and service resources depend on the OS's own naming conventions. This means you often need to do a bit of research before writing a manifest, to learn what the local name for, e.g., the Apache package and service are. On CentOS, which your VM runs, both the package and service are named `httpd`.
 > * Make sure you're using the right `ensure` values for each resource type; they aren't the same for package, file, and service.
-> * The [core types cheat sheet][cheat] and the [type reference](http://docs.puppetlabs.com/references/stable/type.html) are your friends.
+> * The [core types cheat sheet][cheat] and the [type reference](/references/stable/type.html) are your friends.
 
-[cheat]: http://docs.puppetlabs.com/puppet_core_types_cheatsheet.pdf
+[cheat]: /puppet_core_types_cheatsheet.pdf
 
 
 Next
@@ -313,4 +313,4 @@ Now that you can manage a complete service from top to bottom, try managing an i
 
 
 [dl]: http://info.puppetlabs.com/download-pe.html
-[quick]: http://docs.puppetlabs.com/pe/latest/quick_start.html
+[quick]: /pe/latest/quick_start.html

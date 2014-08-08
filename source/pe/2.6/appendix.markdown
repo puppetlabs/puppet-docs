@@ -17,7 +17,7 @@ For help with Puppet specific terms and language, visit [the glossary](/referenc
 Release Notes
 -----
 
-* Changes to Puppet's core are documented in the [Puppet Release notes](http://docs.puppetlabs.com/puppet/2.7/reference/release_notes.html#puppet-2719). PE 2.6 uses Puppet version 2.7.19, and the previous release of PE (2.5.3) used Puppet 2.7.12. Changes between these versions include a major speed improvement. 
+* Changes to Puppet's core are documented in the [Puppet Release notes](/puppet/2.7/reference/release_notes.html#puppet-2719). PE 2.6 uses Puppet version 2.7.19, and the previous release of PE (2.5.3) used Puppet 2.7.12. Changes between these versions include a major speed improvement. 
 * [Release notes for the PE 2.5.x series are available here.][25releasenotes]
 
 ### PE 2.6.0
@@ -63,7 +63,7 @@ During installation, the PE installer attempts to automatically determine the UR
 
 ### Answer file required for some SMTP servers.
 
-Any SMTP server that requires authentication, TLS, or runs over any port other than 25 needs to be explicitly added to an answers file. See the [advanced configuration page](http://docs.puppetlabs.com/pe/2.5/config_advanced.html#allowing-anonymous-console-access) for details.
+Any SMTP server that requires authentication, TLS, or runs over any port other than 25 needs to be explicitly added to an answers file. See the [advanced configuration page](/pe/2.5/config_advanced.html#allowing-anonymous-console-access) for details.
 
 ### Upgrading the Console Server Requires an Increased MySQL Buffer Pool Size
 

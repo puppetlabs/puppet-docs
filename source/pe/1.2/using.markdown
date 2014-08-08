@@ -65,13 +65,13 @@ Teaching the use of Puppet and MCollective is currently outside the scope of thi
 * To learn how to use MCollective, we recommend starting with the [MCollective documentation][mco].
 * To learn how to use Puppet Dashboard, please see the [Puppet Dashboard 1.2 Manual][dashboard].
 
-[dashboard]: http://docs.puppetlabs.com/dashboard/manual/1.2
-[modules]: http://docs.puppetlabs.com/puppet/2.7/reference/modules_fundamentals.html
-[coretypes]: http://docs.puppetlabs.com/puppet_core_types_cheatsheet.pdf
+[dashboard]: /dashboard/manual/1.2
+[modules]: /puppet/2.7/reference/modules_fundamentals.html
+[coretypes]: /puppet_core_types_cheatsheet.pdf
 [lg]: /puppet/latest/reference/lang_summary.html
-[lp]: http://docs.puppetlabs.com/learning/
-[mco]: http://docs.puppetlabs.com/mcollective/index.html
-[docs]: http://docs.puppetlabs.com
+[lp]: /learning/
+[mco]: /mcollective/index.html
+[docs]: 
 
 Enabling MCollective
 -----
@@ -114,7 +114,7 @@ If you are integrating puppet agent nodes running a non-supported operating syst
 
 ### Maintaining Puppet Dashboard in Puppet Enterprise
 
-[dashmaint]: http://docs.puppetlabs.com/dashboard/manual/1.2/maintaining.html
+[dashmaint]: /dashboard/manual/1.2/maintaining.html
 
 Puppet Dashboard can require periodic maintenance; most notably, old reports should be cleaned occasionally. All of these tasks are done via rake tasks, and in Puppet Enterprise, they must be done with PE's copy of rake.
 

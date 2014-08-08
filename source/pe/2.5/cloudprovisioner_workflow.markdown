@@ -22,7 +22,7 @@ Tom grabs a cup of coffee and fires up his terminal. He starts by creating a new
 *  The node does not have Puppet installed on it yet.
 *  The node is not yet configured to function as a CloudWidget application server.
 
-When Tom first configured Puppet, he set up his workstation with the ability to remotely sign certificates. He did this by creating a certifcate/key pair and then modifying the CA's `auth.conf` to allow that certificate to perform authentication tasks. (To find out more about how to do this, see the [auth.conf documentation](http://docs.puppetlabs.com/guides/rest_auth_conf.html) and the [REST API guide](http://docs.puppetlabs.com/guides/rest_api#the-master-rest-api).)
+When Tom first configured Puppet, he set up his workstation with the ability to remotely sign certificates. He did this by creating a certifcate/key pair and then modifying the CA's `auth.conf` to allow that certificate to perform authentication tasks. (To find out more about how to do this, see the [auth.conf documentation](/guides/rest_auth_conf.html) and the [REST API guide](/guides/rest_api#the-master-rest-api).)
 
 This allows Tom to use `puppet node init` to complete the process of getting the new node up and running. `Puppet node init` is a wrapper command that will `install` Puppet, `classify` the node, and sign the certificate (`puppet certicate sign` or `puppet cert sign`). "Classifying" the node tells Puppet which configuration groups and classes should be applied to the node. In this case, applying the `cloudwidget_appserv` class configures the node with all the settings, files and database hooks needed to create a fully configured, ready-to-run app server tailored to the CloudWidget environment.
 

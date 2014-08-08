@@ -206,7 +206,7 @@ Over time, the innodb database can get quite hefty, especially in larger deploym
 Troubleshooting Issues on Windows
 -----
 
-Refer to the [Windows Troubleshooting page](http://docs.puppetlabs.com/windows/troubleshooting.html) for tips and  advice to help you resolve common issues when running PE on Windows.
+Refer to the [Windows Troubleshooting page](/windows/troubleshooting.html) for tips and  advice to help you resolve common issues when running PE on Windows.
 
 * * *
 

@@ -4,7 +4,7 @@ title: Learning Puppet — Modules and Classes
 ---
 
 
-[smoke]: http://docs.puppetlabs.com/guides/tests_smoke.html
+[smoke]: /guides/tests_smoke.html
 [manifestsdir]: #manifests-namespacing-and-autoloading
 
 
@@ -454,4 +454,4 @@ Since you know how to install free modules from the Puppet Forge, and how to dec
 
 
 [dl]: http://info.puppetlabs.com/download-pe.html
-[quick]: http://docs.puppetlabs.com/pe/latest/quick_start.html
+[quick]: /pe/latest/quick_start.html

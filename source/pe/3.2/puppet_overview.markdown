@@ -70,7 +70,7 @@ In a default PE deployment:
 
 #### Prioritizing Processes
 
-You can change the priority of Puppet processes (`puppet agent`, `puppet apply`) using the [priority setting](http://docs.puppetlabs.com/references/3.latest/configuration.html#priority). This can be helpful if you want to manage resource-intensive loads on busy nodes. Note that the process must be running as privileged user if it is going to *raise* its priority.
+You can change the priority of Puppet processes (`puppet agent`, `puppet apply`) using the [priority setting](/references/3.latest/configuration.html#priority). This can be helpful if you want to manage resource-intensive loads on busy nodes. Note that the process must be running as privileged user if it is going to *raise* its priority.
 
 #### Different Run Interval
 
@@ -78,7 +78,7 @@ You can change the run interval by setting a new value for [the `runinterval` se
 
 [runinterval]: /references/3.4.latest/configuration.html#runinterval
 
-* This file is located at `/etc/puppetlabs/puppet/puppet.conf` on \*nix nodes, and [`<DATADIR>`](http://docs.puppetlabs.com/guides/install_puppet/install_windows.html#data-directory)`\puppet.conf` on Windows.
+* This file is located at `/etc/puppetlabs/puppet/puppet.conf` on \*nix nodes, and [`<DATADIR>`](/guides/install_puppet/install_windows.html#data-directory)`\puppet.conf` on Windows.
 * Make sure you put this setting in [the `[agent]` or `[main]` block of puppet.conf](/guides/configuring.html#config-blocks).
 * Since you will be managing this file on many systems at once, you may wish to manage puppet.conf with a Puppet template.
 

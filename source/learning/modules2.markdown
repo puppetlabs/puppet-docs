@@ -226,4 +226,4 @@ You've seen how to configure classes in both your Hiera data and the PE console;
 
 [console_params]: /pe/latest/console_classes_groups.html#editing-class-parameters-on-nodes
 [dl]: http://info.puppetlabs.com/download-pe.html
-[quick]: http://docs.puppetlabs.com/pe/latest/quick_start.html
+[quick]: /pe/latest/quick_start.html

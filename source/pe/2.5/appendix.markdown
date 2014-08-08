@@ -16,7 +16,7 @@ For help with Puppet specific terms and language, visit [the glossary](/referenc
 Release Notes
 -----
 
-Changes to Puppet's core are documented in the [Puppet Release notes](http://docs.puppetlabs.com/puppet/2.7/reference/release_notes.html#puppet-2710). The changes for Puppet versions 2.7.10, 2.7.11, and 2.7.12 cover the difference between Puppet Enterprise 2.0.3 and Puppet Enterprise 2.5.0.
+Changes to Puppet's core are documented in the [Puppet Release notes](/puppet/2.7/reference/release_notes.html#puppet-2710). The changes for Puppet versions 2.7.10, 2.7.11, and 2.7.12 cover the difference between Puppet Enterprise 2.0.3 and Puppet Enterprise 2.5.0.
 
 
 ### Puppet Enterprise 2.5.3
@@ -51,7 +51,7 @@ By default, ActiveMQ uses a dedicated thread for each destination. If there are 
 
 #### Update: New Installer Behavior for Database Setup
 
-The Puppet Enterprise installer will now check for an installation of MySQL. If found, the installer will prompt for information about contacting the MySQL server (whether it is remote or local). If no instance of MySQL is found, the installer will offer to install and configure MySQL and a new a database. See the [Installing Puppet Enterprise](http://docs.puppetlabs.com/pe/2.5/install_basic.html) page for complete information.
+The Puppet Enterprise installer will now check for an installation of MySQL. If found, the installer will prompt for information about contacting the MySQL server (whether it is remote or local). If no instance of MySQL is found, the installer will offer to install and configure MySQL and a new a database. See the [Installing Puppet Enterprise](/pe/2.5/install_basic.html) page for complete information.
 
 #### Update: Support Added for New Platforms and Browsers.
 
@@ -95,7 +95,7 @@ Running a normal uninstall on PE 2.5.0 systems running Solaris failed to remove 
 
 #### Bug Fix: Allowing Anonymous Console Access
 
-Setting up anonymous access to the console now works as documented, by editing config.yml so as to set `global_unauthenticated_access: true`. See the [advanced configuration page](http://docs.puppetlabs.com/pe/2.5/config_advanced.html#allowing-anonymous-console-access) for details.
+Setting up anonymous access to the console now works as documented, by editing config.yml so as to set `global_unauthenticated_access: true`. See the [advanced configuration page](/pe/2.5/config_advanced.html#allowing-anonymous-console-access) for details.
 
 #### Bug Fix: Custom modules can cause upgrade failures
 
@@ -178,7 +178,7 @@ During installation, the PE installer attempts to automatically determine the UR
 
 ### Answer file required for some SMTP servers.
 
-Any SMTP server that requires authentication, TLS, or runs over any port other than 25 needs to be explicitly added to an answers file. See the [advanced configuration page](http://docs.puppetlabs.com/pe/2.5/config_advanced.html#allowing-anonymous-console-access) for details.
+Any SMTP server that requires authentication, TLS, or runs over any port other than 25 needs to be explicitly added to an answers file. See the [advanced configuration page](/pe/2.5/config_advanced.html#allowing-anonymous-console-access) for details.
 
 ### Logging for Parts of the Console Non-Functional
 

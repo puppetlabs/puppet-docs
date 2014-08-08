@@ -166,7 +166,7 @@ To run remotely on _many_ machines, you will need some form of orchestration or 
 
 **Puppet Enterprise has built-in tools for this.** For info, see the Puppet Enterprise manual [page on triggering Puppet runs][].
 
-For open source Puppet users, the most flexible tool is [MCollective][], which is somewhat heavyweight to deploy but has many other uses. You'll need to [deploy MCollective](http://docs.puppetlabs.com/mcollective/deploy/standard.html) and [the puppet agent plugin](https://github.com/puppetlabs/mcollective-puppet-agent); once everything is ready, see the instructions in [the puppet agent plugin's README](https://github.com/puppetlabs/mcollective-puppet-agent#readme) for usage details.
+For open source Puppet users, the most flexible tool is [MCollective][], which is somewhat heavyweight to deploy but has many other uses. You'll need to [deploy MCollective](/mcollective/deploy/standard.html) and [the puppet agent plugin](https://github.com/puppetlabs/mcollective-puppet-agent); once everything is ready, see the instructions in [the puppet agent plugin's README](https://github.com/puppetlabs/mcollective-puppet-agent#readme) for usage details.
 
 Alternately, [parallel SSH][pssh] can be a more lightweight solution for doing Puppet runs. Be sure to limit the number of nodes that run at once, so you don't overwhelm your puppet master(s).
 

@@ -116,7 +116,7 @@ If you chose a different MySQL user name for Puppet Dashboard when you originall
 
 ### Edit `/etc/puppetlabs/puppet/auth.conf`
 
-To support the inventory service, you must add the following stanzas to your [`auth.conf`](http://docs.puppetlabs.com/guides/rest_auth_conf.html) file:
+To support the inventory service, you must add the following stanzas to your [`auth.conf`](/guides/rest_auth_conf.html) file:
 
     # Allow Dashboard to retrieve inventory facts:
 

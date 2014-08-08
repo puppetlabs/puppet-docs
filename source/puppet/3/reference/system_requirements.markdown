@@ -27,7 +27,7 @@ Puppet 3 has the following prerequisites:
 
 ### Hiera
 
-- [Hiera](http://docs.puppetlabs.com/hiera/latest/) 1.0 or later
+- [Hiera](/hiera/latest/) 1.0 or later
 
 ### Optional: the `rgen` Ruby Gem (Puppet 3.2.0 and later)
 

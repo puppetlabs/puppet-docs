@@ -46,7 +46,7 @@ Downloading PE
 
 See the [Preparing to Install chapter][downloading] of this guide for information on downloading PE.
 
-[downloading]: http://docs.puppetlabs.com/pe/2.0/install_preparing.html#downloading-pe
+[downloading]: /pe/2.0/install_preparing.html#downloading-pe
 
 Starting the Upgrader
 -----

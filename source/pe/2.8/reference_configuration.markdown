@@ -31,7 +31,7 @@ canonical: "/references/2.7.latest/configuration.html"
 
 See the [configuration guide][confguide] for more details.
 
-[confguide]: http://docs.puppetlabs.com/guides/configuring.html
+[confguide]: /guides/configuring.html
 
 * * *
 

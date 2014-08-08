@@ -57,7 +57,7 @@ Puppet has a relatively long history and open development process for an open-so
 3. Use correct Puppet-specific terminology for your problem like yum provider, file resource, and manifest.
 
 
-Many general questions about Puppet and Puppet Labs are answered in the [Frequently Asked Questions](http://docs.puppetlabs.com/guides/faq.html). Otherwise, the [Documentation Start](http://docs.puppetlabs.com/) is the place to go. Also available is [“Pulling Strings with Puppet”](http://www.amazon.com/gp/product/1590599780?ie=UTF8&tag=puppet0e-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=1590599780) by James Turnbull which is the first book to be written about Puppet, and its sequel [“Pro Puppet”](http://www.apress.com/9781430260400).
+Many general questions about Puppet and Puppet Labs are answered in the [Frequently Asked Questions](/guides/faq.html). Otherwise, the [Documentation Start](/) is the place to go. Also available is [“Pulling Strings with Puppet”](http://www.amazon.com/gp/product/1590599780?ie=UTF8&tag=puppet0e-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=1590599780) by James Turnbull which is the first book to be written about Puppet, and its sequel [“Pro Puppet”](http://www.apress.com/9781430260400).
 
 We also provide various [commercial services](http://puppetlabs.com/services/overview/) around Puppet (training, professional services, support, certification and more) for people who want a little extra help.
 
@@ -187,7 +187,7 @@ Here are a few guidelines that apply specifically to our bug tracker:
 * We encourage contributions to our documentation.
 * Our documentation is licensed under a [Creative Commons Attribution-Share Alike 3.0 United States License](http://creativecommons.org/licenses/by-sa/3.0/us/).
 * For suggestions or minor corrections, just email faq@puppetlabs.com.
-* To contribute text or make larger-scale suggestions, see the [instructions for contributing](http://docs.puppetlabs.com/contribute.html).
+* To contribute text or make larger-scale suggestions, see the [instructions for contributing](/contribute.html).
 * If you would like to submit your own content, you can fork the project on [github](http://github.com/puppetlabs/puppet-docs), make changes, and send us a pull request. See the README files in the project for more information about how to generate and view a copy of the website.
 
 
@@ -203,10 +203,10 @@ Here are a few guidelines that apply specifically to our bug tracker:
 
 The [Puppet Forge](http://forge.puppetlabs.com/) is a repository of modules, written and contributed by users, and we encourage you to publish your modules on the Forge.
 
-* Start with the [Publishing Modules](http://docs.puppetlabs.com/puppet/latest/reference/modules_publishing.html) document to learn how to publish your modules to the Puppet Forge.
-* See the [Module Fundamentals](http://docs.puppetlabs.com/puppet/latest/reference/modules_fundamentals.html) document for how to write and use your own Puppet modules.
-* See the [Installing Modules](http://docs.puppetlabs.com/puppet/latest/reference/modules_installing.html) document for how to install pre-built modules from the Puppet Forge.
-* See the [Using Plugins](http://docs.puppetlabs.com/guides/plugins_in_modules.html) document for how to arrange plugins (like custom facts and custom resource types) in modules and sync them to agent nodes.
+* Start with the [Publishing Modules](/puppet/latest/reference/modules_publishing.html) document to learn how to publish your modules to the Puppet Forge.
+* See the [Module Fundamentals](/puppet/latest/reference/modules_fundamentals.html) document for how to write and use your own Puppet modules.
+* See the [Installing Modules](/puppet/latest/reference/modules_installing.html) document for how to install pre-built modules from the Puppet Forge.
+* See the [Using Plugins](/guides/plugins_in_modules.html) document for how to arrange plugins (like custom facts and custom resource types) in modules and sync them to agent nodes.
 
 ### Event Code of Conduct
 

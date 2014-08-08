@@ -16,9 +16,9 @@ About This Manual
 
 This manual covers Puppet Enterprise version 1.2, and documents its installation and maintenance. In its current form, it is not intended to teach the use of Puppet or MCollective to new users. For an introduction to Puppet, we recommend starting with the [Learning Puppet][lp] series; for an introduction to MCollective, we recommend starting with the [MCollective documentation][mco]. 
 
-[lp]: http://docs.puppetlabs.com/learning/
-[mco]: http://docs.puppetlabs.com/mcollective/index.html
-[docs]: http://docs.puppetlabs.com
+[lp]: /learning/
+[mco]: /mcollective/index.html
+[docs]: 
 
 System Requirements
 -----------------

@@ -302,4 +302,4 @@ We've seen several Apache examples already, and it's pretty likely that you're r
 Read the module's documentation to see how it works, then try managing the service and any relevant virtual hosts to match your manually configured infrastructure.
 
 [dl]: http://info.puppetlabs.com/download-pe.html
-[quick]: http://docs.puppetlabs.com/pe/latest/quick_start.html
+[quick]: /pe/latest/quick_start.html

@@ -3,7 +3,7 @@ layout: default
 title: "Learning Puppet — Resources and the RAL"
 ---
 
-[cheat]: http://docs.puppetlabs.com/puppet_core_types_cheatsheet.pdf
+[cheat]: /puppet_core_types_cheatsheet.pdf
 [notify]: ../references/stable/type.html#notify
 [file]: ../references/stable/type.html#file
 [package]: ../references/stable/type.html#package
@@ -166,7 +166,7 @@ Once logged in, navigate to "Live Management" in the top menu bar, then click th
 
 Since you're only using a single node, you won't see much in the way of comparisons, but you can see the current states of packages, user accounts, etc.
 
-[live_resources]: http://docs.puppetlabs.com/pe/3.0/orchestration_resources.html
+[live_resources]: /pe/3.0/orchestration_resources.html
 
 ### The Puppet Resource Command
 
@@ -225,4 +225,4 @@ The puppet resource command can be useful for one-off jobs, but Puppet was born 
 The LP VM is a tiny sandbox system, and it doesn't have much going on. If you have some dev machines that look more like your actual servers, why not [download Puppet Enterprise for free][dl] and inspect them? Follow [the quick start guide][quick] to get a small environment installed, then try using the console to inspect resources for many systems at once.
 
 [dl]: http://info.puppetlabs.com/download-pe.html
-[quick]: http://docs.puppetlabs.com/pe/latest/quick_start.html
+[quick]: /pe/latest/quick_start.html

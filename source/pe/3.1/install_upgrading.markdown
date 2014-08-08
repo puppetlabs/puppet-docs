@@ -36,7 +36,7 @@ Important Notes and Warnings
    - `/etc/puppetlabs/`
    - `/opt/puppet/share/puppet-dashboard/certs`
    - [The console and console_auth databases](./maintain_console-db.html#database-backups)
-   - [The PuppetDB database](http://docs.puppetlabs.com/puppetdb/1.5/migrate.html#exporting-data-from-an-existing-puppetdb-database)
+   - [The PuppetDB database](/puppetdb/1.5/migrate.html#exporting-data-from-an-existing-puppetdb-database)
    
 On a split install, the databases and PE files will be located across the various roles assigned to your servers.
 
@@ -108,7 +108,7 @@ Before starting the upgrade, all of the components (agents, master, console, etc
 
 ### Upgrade Master
 
-Start the upgrade by running the `puppet-enterprise-installer` script on the master node. You can use any of the flags described in the [install instructions](http://docs.puppetlabs.com/pe/latest/install_basic.html). The script will detect any previous versions of PE roles and stop any PE services that are currently running. The script will then step through the install script, providing default answers based on the roles it has detected on the node (e.g., if the script detects only an agent on a given node, it will provide "No" as the default answer to installing the master role). The installer should be able to answer all of the questions based on your current installation except for the hostname and port of the PuppetDB node you prepped before starting the install.
+Start the upgrade by running the `puppet-enterprise-installer` script on the master node. You can use any of the flags described in the [install instructions](/pe/latest/install_basic.html). The script will detect any previous versions of PE roles and stop any PE services that are currently running. The script will then step through the install script, providing default answers based on the roles it has detected on the node (e.g., if the script detects only an agent on a given node, it will provide "No" as the default answer to installing the master role). The installer should be able to answer all of the questions based on your current installation except for the hostname and port of the PuppetDB node you prepped before starting the install.
 
 As with installation, the script will also check for any missing dependent vendor packages and offer to install them automatically.
 

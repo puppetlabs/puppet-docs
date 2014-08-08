@@ -631,7 +631,7 @@ Previous versions of Puppet were licensed as GPL version 2 or greater; the licen
 
 #####  Filebucket API can now provide diffs of file contents
 
-The filebucket service can now diff file contents specified by MD5 checksum. From [the REST API documentation](http://docs.puppetlabs.com/guides/rest_api.html):
+The filebucket service can now diff file contents specified by MD5 checksum. From [the REST API documentation](/guides/rest_api.html):
 
     GET /{environment}/file_bucket_file/md5/{checksum}?diff_with={checksum}
 

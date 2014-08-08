@@ -66,7 +66,7 @@ The inventory service is plain vanilla HTTP: Submit HTTP requests, get back stru
 
 To read from the inventory, submit secured HTTP requests to the puppet master's `facts` and `facts_search` HTTP endpoints in the appropriate environment. Your API client will have to have an SSL certificate signed by the puppet master's CA.
 
-Full documentation of these endpoints can be found [here](http://docs.puppetlabs.com/guides/rest_api.html#facts), but a summary follows:
+Full documentation of these endpoints can be found [here](/guides/rest_api.html#facts), but a summary follows:
 
 * To retrieve the facts for testnode.example.com, send a GET request to <https://puppet:8140/production/facts/testnode.example.com>.
 * To retrieve a list of all Ubuntu nodes with two or more processors, send a GET request to <https://puppet:8140/production/facts_search/search?facts.processorcount.ge=2&facts.operatingsystem=Ubuntu>.
