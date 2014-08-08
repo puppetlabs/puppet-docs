@@ -21,11 +21,11 @@ To purchase a license, please see the [Puppet Enterprise pricing page](http://ww
 
 All functional components of PE, excluding configuration files. You are not likely to need to change these components. The following software components are installed:
 
- * Puppet 
- * PuppetDB 
- * Facter 
+ * Puppet
+ * PuppetDB
+ * Facter
  * MCollective
- * Hiera 
+ * Hiera
  * Puppet Dashboard
 
 ###<i>Where</i>
@@ -34,7 +34,7 @@ On \*nix nodes, all PE software (excluding config files and generated data) is i
 
 On Windows nodes, all PE software is installed in the "Puppet Enterprise" subdirectory of [the standard 32-bit applications directory](./install_windows.html#program-directory)
 
-* Executable binaries on \*nix are in `/opt/puppet/bin` and `/opt/puppet/sbin`. 
+* Executable binaries on \*nix are in `/opt/puppet/bin` and `/opt/puppet/sbin`.
 * The Puppet modules included with PE are installed on the puppet master server in `/opt/puppet/share/puppet/modules`. Don't edit this directory to add modules of your own. Instead, install them in `/etc/puppetlabs/puppet/modules`.
 * Orchestration plugins are installed in `/opt/puppet/libexec/mcollective/mcollective` on \*nix and in [`<COMMON_APPDATA>`](./install_windows.html#data-directory)`\PuppetLabs\mcollective\etc\plugins\mcollective`. If you are adding new plugins to your PE agent nodes, you should [distribute them via Puppet as described in the "Adding Actions" page of this manual](./orchestration_adding_actions.html).
 
@@ -76,7 +76,7 @@ The software distributed with Puppet Enterprise generates the following log file
 
 - `/var/log/pe-httpd/access.log`
 - `/var/log/pe-httpd/puppetmasteraccess.log` contains all the endpoints that have been accessed with the puppet master REST API.
- 
+
 ### Puppet Agent Logs
 
 The puppet agent service logs its activity to the syslog service. Your syslog configuration dictates where these messages will be saved, but the default location is `/var/log/messages` on Linux and `/var/adm/messages` on Solaris.
@@ -148,7 +148,7 @@ PE 3.2 includes the following major components:
 Puppet Enterprise installs several suites of command line tools to help you work with the major components of the software. These include:
 
 - **Puppet Tools:** Tools that control basic functions of Puppet such as `puppet master,` `puppet apply` and `puppet cert.`
-    See the [Tools section](/guides/tools.html) of the Puppet Manual for more information.
+    See the Puppet reference manual page on [Puppet's commands](/puppet/3.6/reference/services_commands.html) for more information.
 - **Cloud Provisioning Tools:** Tools used to provision new nodes. Mostly based around the `node` subcommand, these tools are used for tasks such as creating or destroying virtual machines, classifying new nodes, etc. See the [Cloud Provisioning section](./cloudprovisioner_overview.html)  for more information.
 - **Orchestration Tools:** Tools used to orchestrate simultaneous actions across a number of nodes. These tools are built on the MCollective framework and are accessed either via the `mco` command or via the __Live Management__ page of the PE console. See the [Orchestration section](./orchestration_overview.html) for more information.
 - **Module Tools:** The Module tool is used to access and create Puppet Modules, which are reusable chunks of Puppet code users have written to automate configuration and deployment tasks. For more information, and to access modules, visit the [Puppet Forge](http://forge.puppetlabs.com/).

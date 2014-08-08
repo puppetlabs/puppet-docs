@@ -39,10 +39,7 @@ Learning Recommendations
 We're glad you want to learn Puppet.  You're free to browse around the documentation as you like, though we generally recommend trying out Puppet locally first (without the
 daemon and client/server setup), so you
 can understand the basic concepts.  From there, move on to
-centrally managed server infrastructure.   [Ralsh](./tools.html)
-is also a great way to get your feet wet exploring the Puppet model,
-after you have read some of the basic information --- you can quickly see how
-the declarative model works for simple things like users, services, and file permissions.
+centrally managed server infrastructure.
 
 Once you've learned the basics, make sure you understand classes and modules,
 then move on to the advanced sections and read more about the features
@@ -67,8 +64,6 @@ responsible for a fixed aspect of the system, with tight controls
 on how information passes between layers:
 
 ![image](/images/Puppet_Layers.png)
-
-See also [Configuring Puppet](./configuring.html).  For more information about components (puppetmasterd, puppetd, puppet, and so on), see the [Tools](/guides/tools.html) section.
 
 Features of the System
 ----------------------
@@ -106,9 +101,6 @@ names, arguments, and file formats --- your tools should treat all
 users the same, whether the user is stored in NetInfo or
 `/etc/passwd`.  We call these system entities
 `resources`.
-
-Ralsh, listed in the [Tools](./tools.html) section is a fun way to
-try out the RAL before you get too deep into Puppet language.
 
 ### Model & Graph Based
 

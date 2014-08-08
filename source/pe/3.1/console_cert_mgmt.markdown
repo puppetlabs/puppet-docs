@@ -54,7 +54,7 @@ To sign one of the pending requests, run:
 
     $ sudo puppet cert sign <name>
 
-For more information on working with certificates from the CLI, see the [Puppet tools guide](/guides/tools.html#puppet-cert-or-puppetca) or view the [man page for `puppet cert`](/references/3.3.stable/man/cert.html).
+For more information on working with certificates from the CLI, see the [man page for `puppet cert`](/references/3.3.stable/man/cert.html).
 
 ### Configuration Details
 

@@ -96,12 +96,6 @@ Puppet Guides
 
 Learn about different areas of Puppet, fix problems, and design solutions.
 
-### Components
-
-Learn more about major working parts of the Puppet system.
-
-* [Puppet commands: master, agent, apply, resource, and more](/guides/tools.html) --- components of the system
-
 ### Installing and Configuring
 
 Get Puppet up and running at your site.
