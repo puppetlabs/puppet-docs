@@ -48,7 +48,7 @@ By default, PuppetDB communicates over port 8081. In some cases, this may confli
 New Script to curl the PE Console ENC
 --------
 
-In PE versions earlier than 3.2, you could run the external node script (`/etc/puppetlabs/puppet-dashboard/external_node`) to reach the console ENC. PE 3.2 introduced changes in console authentication and the external node script was removed. You can now curl the console ENC using the following script (but be sure to replace \<NODE NAME> with an actual node name from your deployment):
+In PE versions earlier than 3.2, you could run the external node script (`/etc/puppetlabs/puppet-dashboard/external_node`) to reach the console ENC. PE 3.2 introduced changes in console authentication and the external node script was removed. You can now curl the console ENC using the following script:
 
     CERT=$(puppet master --configprint hostcert)
     CACERT=$(puppet master --configprint localcacert)
@@ -57,7 +57,9 @@ In PE versions earlier than 3.2, you could run the external node script (`/etc/p
     CONSOLE=$(awk '/server =/{print $NF}' /etc/puppetlabs/puppet/console.conf)
     MASTER="https://${CONSOLE}:443"
 
-    curl -k -X GET -H "Accept: text/yaml" ${CERT_OPTIONS} "${MASTER}/nodes/<NODE NAME>"
+    curl -k -X GET -H "Accept: text/yaml" ${CERT_OPTIONS} "${MASTER}/nodes/$1"
+    
+Pass the desired node's name as the argument to the script. This is almost always the `certname` of the node, but may be different if you have configured `node_name`.
 
 Recovering from a Lost Console Admin Password
 -----
