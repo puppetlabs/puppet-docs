@@ -182,7 +182,7 @@ Eventually, once the site is deployed to the servers, it's served by Apache, alt
 
 In production, the Apache virtual host file is managed by a Puppet module in the puppetlabs-modules repo. This is a private repository only accessible to Puppet Labs employees.
 
-If you need to do redirects from one page to another within the docs.puppetlabs.com domain, where by "you" we mean "us," edit the puppetlabs-modules/site/puppetlabs/templates/docs_vhost.erb file.
+If you need to do redirects from one page to another within the docs.puppetlabs.com domain, where by "you" we mean "us," edit the puppetlabs-modules/site/profile/manifests/web/static/docs.pp file. (This file changed in early August, 2014, when Ops refactored our web stack to use Nginx. As of Aug 8, it's in the nginx_next branch, but it will get merged to production very soon.)
 
 If you need to do redirects from the wiki, edit the puppetlabs-modules/dist/redmine/templates/vhost-redmine-unicorn.nginx.erb file. WATCH OUT, because there's another file that looks nearly identical but is not used.
 
