@@ -8,7 +8,7 @@ canonical: "/pe/latest/quick_start.html"
 [downloads]: http://info.puppetlabs.com/download-pe.html
 [agent-install]: ./install_basic.html#installing-agents
 
-Welcome to the Puppet Enterprise 3.3 quick start guide. This document is a short walkthrough to help you evaluate Puppet Enterprise (PE) and become familiar with its features. There are two parts to this guide, an introductory guide (below) that demonstrates basic use and concepts and a follow-up guide where you can build on the concepts you learned in the introduction while learning some basics about developing puppet modules for either [Windows](./quick_writing_windows) or [*nix](./quick_writing_nix) platforms.
+Welcome to the Puppet Enterprise 3.3 quick start guide. This document is a short walkthrough to help you evaluate Puppet Enterprise (PE) and become familiar with its features. There are two parts to this guide, an introductory guide (below) that demonstrates basic use and concepts and a follow-up guide where you can build on the concepts you learned in the introduction while learning some basics about developing puppet modules for either [Windows](./quick_writing_windows.html) or [*nix](./quick_writing_nix.html) platforms.
 
 #### Quick Start Part One: Introduction
 
