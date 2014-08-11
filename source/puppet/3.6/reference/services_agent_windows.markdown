@@ -79,15 +79,9 @@ By default, the Puppet installer will configure puppet agent to run as a Windows
 
 #### Configuring the Run Interval
 
-The puppet agent service defaults to doing a configuration run every 30 minutes. You can configure this with [the `runinterval` setting][runinterval] in [puppet.conf][]:
+The puppet agent service will do a configuration run every 30 minutes.
 
-    # C:\ProgramData\PuppetLabs\puppet\etc\puppet.conf
-    [agent]
-      runinterval = 2h
-
-If you don't need an aggressive schedule of configuration runs, a longer run interval will let your puppet master server(s) handle many more agent nodes.
-
-Once the run interval has been changed, the service will stick to the prior schedule for the next run and then switch to the new run interval for subsequent runs.
+In this version of Puppet, the run interval **cannot** be configured on Windows. Although Puppet is designed to allow configuration with [the `runinterval` setting][runinterval], bug [PUP-1280](https://tickets.puppetlabs.com/browse/PUP-1280) currently prevents Windows agents from accessing the setting.
 
 #### Configuring the Service Start Up Type
 
