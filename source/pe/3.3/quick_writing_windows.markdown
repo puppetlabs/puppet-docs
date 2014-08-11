@@ -5,7 +5,7 @@ subtitle: "Module Writing Basics for Windows"
 canonical: "/pe/latest/quick_writing_windows.html"
 ---
 
-Welcome to part two of the PE 3.3 quick start guide---the Windows track. This document is a continuation of the introductory [quick start guide](./quick_start.html), and is a short walkthrough to help you become more familiar with Puppet modules, module development, and additional PE features for your Windows agent nodes. Follow along to learn how to:
+Welcome to part two of the PE 3.3 Quick Start Guide---the Windows track. This document is a continuation of the introductory [Quick Start Guide](./quick_start.html), and is a short walkthrough to help you become more familiar with Puppet modules, module development, and additional PE features for your Windows agent nodes. Follow along to learn how to:
 
 * Modify a module obtained from the Forge
 * Write your own Puppet module
@@ -17,9 +17,49 @@ Welcome to part two of the PE 3.3 quick start guide---the Windows track. This do
 Getting Started
 -----
 
-First, you'll need to [install the puppet agent](./install_windows.html) on a node running a [supported version](./install_system_requirements.html#operating-system) of Windows. Once the agent is installed, sign its certificate to add it to the console just as you did for the first agent node in part one of this guide.
+Before you get started, you need to set up your Windows agent. To set up your Windows agent:
 
-Next, install the [Puppet Labs Registry module](https://forge.puppetlabs.com/puppetlabs/registry) on your puppet master. The process is identical to how you [installed the NTP module](./quick_start.html#installing-a-forge-module) in part one. Once the module has been installed, add its class as you did with NTP.
+1. [Install the puppet agent](./install_windows.html) on a node running a [supported version](./install_system_requirements.html#operating-system) of Windows.
+
+   >**Tip**: For more information about installing Windows agents, check out the [Windows agent installation instructions](./install_windows.html) as needed.
+
+2. [Sign the agent's certificate](./install_agents.html#signing-agent-certificates).
+
+### Installing the Puppet Labs Registry Module
+
+We will install a Puppet Enterprise supported module: `puppetlabs-registry`. 
+
+1. **On the puppet master**, run `puppet module search registry`. This searches for modules from the Puppet Forge with `ntp` in their names or descriptions and results in something like:
+
+        Searching http://forgeapi.puppetlabs.com ...
+        NAME                 DESCRIPTION               AUTHOR        KEYWORDS
+        puppetlabs-registry  This module provides...   @puppetlabs   type registry        
+
+   You want `puppetlabs-registy`. You can view detailed info about the module in the "Read Me" on the Puppet Forge. <http://forge.puppetlabs.com/puppetlabs/ntp>.
+
+2. To install the module, run `puppet module install puppetlabs-registry`:
+
+        Preparing to install into /etc/puppetlabs/puppet/modules ...
+        Notice: Downloading from http://forgeapi.puppetlabs.com ...
+        Notice: Installing -- do not interrupt ...
+        /etc/puppetlabs/puppet/modules
+        └── puppetlabs-registry (v1.0.2)
+        
+> You have just installed a Puppet module. All of the classes in it are now available to be added to the console and assigned to nodes.
+
+### Using the Puppet Labs Registry Module in the Console
+
+1. **On the console**, click the __Add classes__ button in the sidebar:
+
+2. Locate the `registry` class in the list of classes, and click its checkbox to select it. Click the __Add selected classes__ button at the bottom of the page.
+
+3. Navigate to your Windows node, click the __Edit__ button, and begin typing "`registry`" in the __Classes__ field; you can select the `registry` class from the list of autocomplete suggestions. Click the __Update__ button after you have selected it.
+
+4. Note that the `registry` class now appears in the list of classes for the Windows node. 
+
+5. Navigate to the live management page, and select the __Control Puppet__ tab. Use the __runonce__ action to trigger a puppet run on both the master and the Windows agent. This will configure the node using the newly-assigned class. Wait one or two minutes.
+
+> Your Windows node is now classified with the necessary classes from the Puppet Labs Registry module. 
 
 Editing a Forge Module
 -----
