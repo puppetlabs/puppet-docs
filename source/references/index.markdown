@@ -31,9 +31,15 @@ The generated references are available for a wide range of versions, including s
 * 3.x.stable / 3.x.latest (see sections below) --- the newest official/unstable releases within a minor release series
 * [2.7.stable](./2.7.stable/) --- the current release in the 2.7 series, which is in security-updates-only maintenance
 
+### Puppet 3.7.x
+
+* [Stable](./3.7.stable/) / [Latest](./3.7.latest/)
+* [3.7.0-rc1](./3.7.0-rc1)
+
 ### Puppet 3.6.x
 
 * [Stable](./3.6.stable/) / [Latest](./3.6.latest/)
+* [3.6.2](./3.6.2)
 * [3.6.1](./3.6.1)
 * [3.6.0](./3.6.0)
 
