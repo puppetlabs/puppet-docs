@@ -92,14 +92,6 @@ Strings surrounded by single quotes `'like this'` do not interpolate variables. 
 > * When a literal double backslash is intended, a quadruple backslash must be used.
 
 
-#### The Rule
-
-In single-quoted strings:
-
-* A double backslash always means a literal backslash.
-* A single backslash _usually_ means a literal backslash, unless it is followed by a single quote or another backslash.
-
-
 ## Errata
 
 ### Known Issues Prior to Puppet 3.0
