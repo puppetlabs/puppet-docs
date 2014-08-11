@@ -38,7 +38,7 @@ ENCs can co-exist with standard node definitions in `site.pp`, and **the classes
 
 > ### A Note about `node_terminus` for Puppet Enterprise Users
 >
-> PE 3.2 did away with `node_terminus=exec` and replaced it with `node_terminus=console`. With this change, we have improved security, as the puppet master can now verify the console. For more information about this change, [refer to the PE 3.2 upgrade instructions](source/pe/3.2/install_upgrading.html#important-notes-and-warnings).
+> PE 3.2 did away with `node_terminus=exec` and replaced it with `node_terminus=console`. With this change, we have improved security, as the puppet master can now verify the console. For more information about this change, [refer to the PE 3.2 upgrade instructions](/pe/3.2/install_upgrading.html#important-notes-and-warnings).
 
 Considerations and Differences from Node Definitions
 -----
