@@ -6,10 +6,10 @@ canonical: "/puppet/latest/reference/config_file_environment.html"
 
 [directory environments]: ./environments.html
 [environmentpath]: ./environments.html#about-environmentpath
-[modulepath]: /references/3.6.latest/configuration.html#modulepath
-[manifest]: /references/3.6.latest/configuration.html#manifest
-[config_version]: /references/3.6.latest/configuration.html#configversion
-[environment_timeout]: /references/3.6.latest/configuration.html#environmenttimeout
+[modulepath]: /references/3.7.latest/configuration.html#modulepath
+[manifest]: /references/3.7.latest/configuration.html#manifest
+[config_version]: /references/3.7.latest/configuration.html#configversion
+[environment_timeout]: /references/3.7.latest/configuration.html#environmenttimeout
 
 When using [directory environments][], each environment may contain an `environment.conf` file. This file can override several settings whenever the puppet master is serving nodes assigned to that environment.
 

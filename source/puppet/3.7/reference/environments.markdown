@@ -7,23 +7,23 @@ canonical: "/puppet/latest/reference/environments.html"
 [manifest_dir]: ./dirs_manifest.html
 [manifest_dir_dir]: ./dirs_manifest.html#directory-behavior-vs-single-file
 [config_file_envs]: ./environments_classic.html
-[config_version]: /references/3.6.latest/configuration.html#configversion
-[environmentpath]: /references/3.6.latest/configuration.html#environmentpath
+[config_version]: /references/3.7.latest/configuration.html#configversion
+[environmentpath]: /references/3.7.latest/configuration.html#environmentpath
 [confdir]: ./dirs_confdir.html
 [enc]: /guides/external_nodes.html
 [node terminus]: ./subsystem_catalog_compilation.html#step-1-retrieve-the-node-object
 [enc_environment]: /guides/external_nodes.html#environment
 [puppet.conf]: ./config_file_main.html
-[env_setting]: /references/3.6.latest/configuration.html#environment
+[env_setting]: /references/3.7.latest/configuration.html#environment
 [modulepath]: ./dirs_modulepath.html
-[basemodulepath]: /references/3.6.latest/configuration.html#basemodulepath
-[manifest_setting]: /references/3.6.latest/configuration.html#manifest
-[modulepath_setting]: /references/3.6.latest/configuration.html#modulepath
+[basemodulepath]: /references/3.7.latest/configuration.html#basemodulepath
+[manifest_setting]: /references/3.7.latest/configuration.html#manifest
+[modulepath_setting]: /references/3.7.latest/configuration.html#modulepath
 [config_print]: ./config_print.html
 [env_var]: ./lang_facts_and_builtin_vars.html#variables-set-by-the-puppet-master
 [config_file_envs_sections]: ./environments_classic.html#environment-config-sections
 [environment.conf]: ./config_file_environment.html
-[environment_timeout]: /references/3.6.latest/configuration.html#environmenttimeout
+[environment_timeout]: /references/3.7.latest/configuration.html#environmenttimeout
 
 Environments are isolated groups of puppet agent nodes. A puppet master server can serve each environment with completely different [main manifests][manifest_dir] and [modulepaths][modulepath].
 

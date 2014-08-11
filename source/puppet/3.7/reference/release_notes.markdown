@@ -66,7 +66,7 @@ Related issue:
 
 ### Fixes to `purge_ssh_keys`
 
-Two bugs were discovered with the new (as of 3.6.0) `purge_ssh_keys` attribute for the [user type](/references/3.6.latest/type.html#user). These bugs could prevent SSH keys from being purged under certain circumstances, and have been fixed.
+Two bugs were discovered with the new (as of 3.6.0) `purge_ssh_keys` attribute for the [user type](/references/3.7.latest/type.html#user). These bugs could prevent SSH keys from being purged under certain circumstances, and have been fixed.
 
 Related issues:
 
@@ -75,7 +75,7 @@ Related issues:
 
 ### Default `environment_timeout` increased
 
-The previous default value for [`environment_timeout`](/references/3.6.latest/configuration.html#environmenttimeout) was 5s, which turns out to be way too short for a typical production environment. This release changes the default `environment_timeout` to 3m.
+The previous default value for [`environment_timeout`](/references/3.7.latest/configuration.html#environmenttimeout) was 5s, which turns out to be way too short for a typical production environment. This release changes the default `environment_timeout` to 3m.
 
 Related issue:
 
@@ -92,9 +92,9 @@ Puppet 3.6.1
 
 [node termini]: ./subsystem_catalog_compilation.html#step-1-retrieve-the-node-object
 [enc]: /guides/external_nodes.html
-[allow_virtual]: /references/3.6.latest/type.html#package-attribute-allow_virtual
+[allow_virtual]: /references/3.7.latest/type.html#package-attribute-allow_virtual
 [the main manifest]: ./dirs_manifest.html
-[multi_source]: /references/3.6.latest/type.html#file-attribute-source
+[multi_source]: /references/3.7.latest/type.html#file-attribute-source
 
 Released May 22, 2014.
 
@@ -212,9 +212,9 @@ Related issues:
 
 ### Feature: Purging Unmanaged SSH Authorized Keys
 
-Purging unmanaged [`ssh_authorized_key`](/references/3.6.latest/type.html#sshauthorizedkey) resources has been on the most-wanted features list for a very long time, and we haven't been able to make [the `resources` meta-type](/references/3.6.latest/type.html#resources) accommodate it.
+Purging unmanaged [`ssh_authorized_key`](/references/3.7.latest/type.html#sshauthorizedkey) resources has been on the most-wanted features list for a very long time, and we haven't been able to make [the `resources` meta-type](/references/3.7.latest/type.html#resources) accommodate it.
 
-Fortunately, the [user type](/references/3.6.latest/type.html#user) accommodates it very nicely. You can now purge unmanaged SSH keys for a user by setting the `purge_ssh_keys` attribute:
+Fortunately, the [user type](/references/3.7.latest/type.html#user) accommodates it very nicely. You can now purge unmanaged SSH keys for a user by setting the `purge_ssh_keys` attribute:
 
     user { 'nick':
       ensure         => present,
@@ -246,7 +246,7 @@ Related issue:
 
 ### Feature: `digest_algorithm` Setting
 
-You can now change the hashing algorithm that puppet uses for file digests to `sha256` using the new [`digest_algorithm` setting](/references/3.6.latest/configuration.html#digestalgorithm) in puppet.conf. This is especially important for FIPS-compliant hosts, which would previously crash when puppet tried to use MD5 for hashing. Changing this setting won't affect the `md5` or `fqdn_rand` functions.
+You can now change the hashing algorithm that puppet uses for file digests to `sha256` using the new [`digest_algorithm` setting](/references/3.7.latest/configuration.html#digestalgorithm) in puppet.conf. This is especially important for FIPS-compliant hosts, which would previously crash when puppet tried to use MD5 for hashing. Changing this setting won't affect the `md5` or `fqdn_rand` functions.
 
 This setting **must** be set to the same value on all agents and all masters simultaneously; if they mismatch, you'll run into two problems:
 

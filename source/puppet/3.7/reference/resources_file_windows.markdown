@@ -3,10 +3,10 @@ layout: default
 title: "Resource Tips and Examples: File on Windows"
 ---
 
-[file]: /references/3.6.latest/type.html#file
+[file]: /references/3.7.latest/type.html#file
 [relationships]: /puppet/latest/reference/lang_relationships.html
 [acl_module]: https://forge.puppetlabs.com/puppetlabs/acl
-[mode]: /references/3.6.latest/type.html#file-attribute-mode
+[mode]: /references/3.7.latest/type.html#file-attribute-mode
 
 Puppet's built-in [`file`][file] resource type can manage files and directories on Windows, including ownership, group, permissions, and content. Symbolic links are supported in Puppet 3.4.0 / PE 3.2 and later on Windows 2008 / Vista and later; for details, [see the notes in the type reference under `file`'s `ensure` attribute](/references/latest/type.html#file-attribute-ensure).
 

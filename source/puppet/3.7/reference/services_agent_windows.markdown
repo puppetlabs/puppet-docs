@@ -6,10 +6,10 @@ canonical: "/puppet/latest/reference/services_master_windows.html"
 
 [catalogs]: ./subsystem_catalog_compilation.html
 [unix_agent]: ./services_agent_unix.html
-[type reference]: /references/3.6.latest/type.html
+[type reference]: /references/3.7.latest/type.html
 [mcollective]: /mcollective
 [puppet.conf]: ./config_file_main.html
-[runinterval]: /references/3.6.latest/configuration.html#runinterval
+[runinterval]: /references/3.7.latest/configuration.html#runinterval
 [short_settings]: ./config_important_settings.html#settings-for-agents-all-nodes
 [page on triggering puppet runs]: /pe/latest/orchestration_puppet.html
 [msiproperties]: /guides/install_puppet/install_windows.html#automated-installation
@@ -20,7 +20,7 @@ canonical: "/puppet/latest/reference/services_master_windows.html"
 
 Puppet agent is the application that manages configurations on nodes. It requires a puppet master server to fetch configuration [catalogs][] from. (For more info, see [Overview of Puppet's Architecture](./architecture.html).)
 
-For details about invoking the puppet agent command, see [the puppet agent man page](/references/3.6.latest/man/agent.html).
+For details about invoking the puppet agent command, see [the puppet agent man page](/references/3.7.latest/man/agent.html).
 
 ## Supported Platforms
 
@@ -58,7 +58,7 @@ When started with the `--logdest <FILE>` option, puppet agent logs to the file s
 
 ### Reporting
 
-In addition to local logging, puppet agent will submit a [report][] to the puppet master after each run. (This can be disabled by setting [`report = false`](/references/3.6.latest/configuration.html#report) in [puppet.conf][].)
+In addition to local logging, puppet agent will submit a [report][] to the puppet master after each run. (This can be disabled by setting [`report = false`](/references/3.7.latest/configuration.html#report) in [puppet.conf][].)
 
 In Puppet Enterprise, you can browse these reports in the PE console's node pages, and you can analyze correlated events with the PE event inspector.
 
