@@ -11,7 +11,7 @@ canonical: "/puppet/latest/reference/experiments_lambdas.html"
 
 > **Warning:** This document describes an **experimental feature,** which is not officially supported and is not considered ready for production. [See here for more information about experimental features in Puppet](./experiments_overview.html), especially if you are using Puppet Enterprise.
 
-> **Status:** In Puppet 3.6, the future parser performs much better than it used to. We think it's about on par with the default parser, but haven't extensively speed tested it with real-world manifests. It should still be considered a preview, but can now be used with larger test environments.
+> **Status:** In Puppet 3.7, the future parser performs much better than it used to. We think it's about on par with the default parser, but haven't extensively speed tested it with real-world manifests. It should still be considered a preview, but can now be used with larger test environments.
 >
 > The new language features in the future parser are still being designed and considered, and there is ongoing debate over how they should work and whether they should be an official part of Puppet.
 
