@@ -82,12 +82,15 @@ Example:
 
 ### Using Backslashes in Single-Quoted Strings
 
-Strings surrounded by single quotes (`'`) allow only two escape sequences: `\'` (a literal single quote) and `\\` (a literal backslash).
+Strings surrounded by single quotes `'like this'` do not interpolate variables. Only one escape sequence is permitted: `\'` (a literal single quote). Line breaks within the string are interpreted as literal line breaks.
 
-Lone backslashes can usually be used in single-quoted strings. However:
+**Any** backslash (`\`) not followed by a single quote is interpreted as a literal backslash. This means there's no way to end a single-quoted string with a backslash; if you need to refer to a string like `C:\Program Files(x86)\`, you'll have to use a double-quote string instead.
 
-* When a backslash occurs at the very end of a single-quoted string, a double backslash must be used instead of a single backslash. For example: `path => 'C:\Program Files(x86)\\'`
-* When a literal double backslash is intended, a quadruple backslash must be used.
+> **Note:** This behavior is different when the `parser` setting is set to `future`. In the future parser, lone backslashes are literal backslashes unless followed by a single quote or another backslash. That is:
+>
+> * When a backslash occurs at the very end of a single-quoted string, a double backslash must be used instead of a single backslash. For example: `path => 'C:\Program Files(x86)\\'`
+> * When a literal double backslash is intended, a quadruple backslash must be used.
+
 
 #### The Rule
 
