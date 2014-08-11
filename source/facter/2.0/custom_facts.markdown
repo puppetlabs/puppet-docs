@@ -274,8 +274,8 @@ In a simple resolution, the code always includes a `setcode` statement that dete
     aggregate do |chunks|
       result = ''
 
-      chunks.each do |chunk|
-        result += chunk
+      chunks.each_value do |str|
+        result += str
       end
 
       result
