@@ -12,7 +12,9 @@ Welcome to part two of the PE 3.3 Quick Start Guide---the Windows track. This do
 * Create a site module that assigns other modules into machine roles
 * Apply Puppet classes to groups with the console
 
-> Before starting this walkthrough, you should have completed the [introductory quick start guide](./quick_start.html). You should still be logged in as root or administrator on your nodes.
+> **Important**:  Before starting this walkthrough, you should have completed [part one of the Quick Start Guide](./quick_start.html), which set up your puppet master on a supported Linux machine.
+>
+> Windows nodes can only run the puppet agent component; the puppet master component must be run on a supported Linux machine. 
 
 Getting Started
 -----
