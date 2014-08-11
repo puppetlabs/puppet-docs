@@ -25,24 +25,28 @@ See [the main Puppet on Windows documentation](/windows/) for details on [runnin
 In particular, note that puppet *must* be run with elevated privileges (a.k.a., "Run as administrator"), as explained in this [section on Windows Security Context](/windows/running.html#security-context).
 
 [running]: /windows/running.html
-
 [startmenu]: ./images/windows/start_menu.png
 [server]: ./images/windows/wizard_server.png
+[signcert]: ./install_agents.html#signing-agent-certificates
 
-Installing Puppet
+Installing Puppet Enterprise for Windows
 -----
 
-To install Puppet Enterprise on a Windows node, simply [download][pedownloads] and run the installer, which is a standard Windows .msi package and will run as a graphical wizard. Alternately, you can run the installer unattended; [see "Automated Installation" below.](#automated-installation)
+The PE Windows installer is a standard Windows .msi package and will run as a graphical wizard. Alternately, you can run the installer unattended; [see "Automated Installation"](#automated-installation) for more information.
 
 The installer must be run with elevated privileges. Installing Puppet **does not** require a system reboot.
 
-The only information you need to specify during installation is **the hostname of your puppet master server:**
+**To install Puppet Enterprise on a Windows node**:
+
+1. [Download][pedownloads] and run the installer. 
+
+2. When prompted by the install dialog, provide the hostname of your puppet master server.
 
 ![Puppet master hostname selection][server]
 
-### After Installation
+3. [Sign the agent certificate][signcert].
 
-Once the installer finishes:
+### After Installation
 
 * Puppet agent will be running as a Windows service, and will fetch and apply configurations every 30 minutes (by default). You can now assign classes to the node as normal; [see "Puppet: Assigning Configurations to Nodes" for more details](./puppet_assign_configurations.html). After the first puppet run, the MCollective service will also be running and the node can now be controlled with live management and orchestration. The puppet agent service and the MCollective service can be started and stopped independently using either the service control manager GUI or the command line `sc.exe` utility; see [Running Puppet on Windows](/windows/running.html#configuring-the-agent-service) for more details.
 * The Start Menu will contain a Puppet folder, with shortcuts for running puppet agent manually, running Facter, and opening a command prompt for use with the Puppet tools. See [Running Puppet on Windows][running] for more details.
@@ -177,7 +181,7 @@ Upgrading
 
 Puppet can be upgraded by installing a new version of the MSI package. No extra steps are required, and the installer will handle stopping and re-starting the puppet agent service.
 
-When upgrading, the installer will not replace any settings in the main puppet.conf configuration file, but it can add previously unspecified settings if they are provided on the command line.
+When upgrading, the installer will not replace any settings in the main `puppet.conf` configuration file, but it can add previously unspecified settings if they are provided on the command line.
 
 
 Uninstalling
