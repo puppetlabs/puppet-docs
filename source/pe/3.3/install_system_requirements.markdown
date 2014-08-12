@@ -8,7 +8,7 @@ canonical: "/pe/latest/install_system_requirements.html"
 Before installing Puppet Enterprise:
 
 * Ensure that your nodes are running a supported operating system.    
-* Ensure that your puppet master and console servers are sufficiently powerful (see the [hardware section](#hardware-requirements) section below).
+* Ensure that your puppet master and console servers are sufficiently powerful (see the [hardware section](#hardware-requirements) below).
 * Ensure that your network, firewalls, and name resolution are configured correctly and all target servers are communicating.
 * Plan to install the puppet master server before the console server, and the console server before any agent nodes. If you are separating components, install them in this order:  
     1. Puppet Master
@@ -127,86 +127,130 @@ OpenSSL is a dependency required for PE. For Solaris 10 and all versions of RHEL
 
 ***Centos***
 
-All Nodes    | Master Nodes | Console Nodes | Console/Console DB Nodes | Cloud Provisioner Nodes
--------------|--------------|---------------|--------------------------|------------------------
-pciutils     | apr          | apr           | libjpeg                  | libxslt
-system-logos | apr-util     | apr-util      |                          | libxml2
-which        | curl         | curl          |                          |
-libxml2      | mailcap      | mailcap       |                          |
-dmidecode    | libjpeg      |               |                          |
-net-tools    | libtool-ltdl | libtool-ltdl  |                          |
-virt-what    | unixODBC     | unixODBC      |                          |
+ &nbsp;      | All Nodes | Master Nodes | Console Nodes | Console/Console DB Nodes | Cloud Provisioner Nodes
+-------------|:---------:|:------------:|:-------------:|:------------------------:|:----------------------:
+pciutils     | x         |              |               |                          |
+system-logos | x         |              |               |                          |
+which        | x         |              |               |                          |
+libxml2      | x         |              |               |                          | x
+dmidecode    | x         |              |               |                          |
+net-tools    | x         |              |               |                          |
+virt-what    | x         |              |               |                          |
+apr    		 |           | x            | x             |                          |
+apr-util     |           | x            | x             |                          |
+curl         |           | x            | x             |                          |
+mailcap      |           | x            | x             |                          |
+libjpeg      |           | x            |               | x                        |
+libtool-ltdl |           | x            | x             |                          |
+unixODBC     |           | x            | x             |                          | 
+libxslt      |           |              |               |                          | x
 
 <br>
 
 ***RHEL***
 
-All Nodes           | Master Nodes           | Console Nodes          | Console/Console DB Nodes | Cloud Provisioner Nodes
---------------------|------------------------|------------------------|--------------------------|------------------------
-pciutils            | apr                    | apr                    | libjpeg                  | libxslt
-system-logos        | apr-util               | apr-util               |                          | libxml2
-which               | apr-util-ldap (RHEL 6) | curl                   |                          |
-libxml2             | curl                   | mailcap                |                          |
-dmidecode           | mailcap                | apr-util-ldap (RHEL 6) |                          |
-net-tools           | libjpeg                |                        |                          |
-cronie (RHEL 6)     | libtool-ltdl (RHEL 7)  | libtool-ltdl (RHEL 7)                       |                          |
-vixie-cron (RHEL 4, 5) | unixODBC (RHEL 7)   | unixODBC (RHEL 7)                       |                          |
-virt-what           |                        |                        |                          |
+ &nbsp;      | All Nodes | Master Nodes | Console Nodes | Console/Console DB Nodes | Cloud Provisioner Nodes
+-------------|:---------:|:------------:|:-------------:|:------------------------:|:----------------------:
+pciutils     | x         |              |               |                          | 
+system-logos | x         |              |               |                          | 
+which        | x         |              |               |                          |
+libxml2      | x         |              |               |                          | x
+dmidecode    | x         |              |               |                          |
+net-tools    | x         |              |               |                          |
+cronie (RHEL 6) | x      |              |               |                          |
+vixie-cron (RHEL 4, 5) | x |            |               |                          |
+virt-what    | x         |              |               |                          |
+apr          |           | x            | x             |                          |
+apr-util     |           | x            | x             |                          |
+apr-util-ldap (RHEL 6) | | x            | x             |                          |
+curl         |           | x            | x             |                          |
+mailcap      |           | x            | x             |                          |
+libjpeg      |           | x            |               | x                        |
+libtool-ltdl (RHEL 7) |  | x            | x             |                          |
+unixODBC (RHEL 7) |      | x            | x             |                          |
+libxslt      |           |              |               |                          | x
+
 
   <br>
 
 ***SLES***
 
-All Nodes | Master Nodes   | Console Nodes | Console/Console DB Nodes | Cloud Provisioner Nodes
-----------|----------------|---------------|--------------------------|------------------------
-pciutils  | libapr1        | libapr1       | libjpeg                  | libxml2
-pmtools   | libapr-util1   | libapr-util1  |                          |
-cron      | libxslt        | curl          |                          |
-libxml2   | curl           |               |                          |
-net-tools | libjpeg        |               |                          |
-libxslt   | db43           | db43          |                          |
-          | unixODBC       | unixODBC
+ &nbsp;      | All Nodes | Master Nodes | Console Nodes | Console/Console DB Nodes | Cloud Provisioner Nodes
+-------------|:---------:|:------------:|:-------------:|:------------------------:|:----------------------:
+pciutils     | x         |              |               |                          |
+pmtools      | x         |              |               |                          |
+cron         | x         |              |               |                          |
+libxml2      | x         |              |               |                          | x
+net-tools    | x         |              |               |                          |
+libxslt      | x         | x            |               |                          |
+libapr1      |           | x            | x             |                          | 
+libapr-util1 |           | x            | x             |                          | 
+curl         |           | x            | x             |                          | 
+libjpeg      |           | x            |               | x                        | 
+db43         |           | x            | x             |                          | 
+unixODBC     |           | x            | x             |                          | 
+
         
  <br>
 
 ***Debian***
 
-All Nodes     | Master Nodes            | Console Nodes           | Console/Console DB Nodes | Cloud Provisioner Nodes
---------------|-------------------------|-------------------------|--------------------------|------------------------
-pciutils      | file                    | file                    | libjpeg62                | libxslt1.1
-dmidecode     | libmagic1               | libmagic1               | libxml2-dev (Debian 7)   | libxml2
-cron          | libpcre3                | libpcre3                | locales-all   (Debian 7) |
-libxml2       | curl                    | curl                    |                          |
-hostname      | perl                    | perl                    |                          |
-libldap-2.4-2 | mime-support            | mime-support            |                          |
-libreadline5  | libapr1                 | libapr1                 |                          |
-virt-what     | libcap2                 | libcap2                 |                          |
-              | libaprutil1             | libaprutil1             |                          |
-              | libaprutil1-dbd-sqlite3 | libaprutil1-dbd-sqlite3 |                          |
-              | libaprutil1-ldap        | libaprutil1-ldap        |                          |
-              | libjpeg62               | libcurl3 (Debian 7)     |                          |
-              | libcurl3 (Debian 7)     | libxml2-dev (Debian 7)  |                          |
-              | libxml2-dev (Debian 7)  |                 
+ &nbsp;      | All Nodes | Master Nodes | Console Nodes | Console/Console DB Nodes | Cloud Provisioner Nodes
+-------------|:---------:|:------------:|:-------------:|:------------------------:|:----------------------:
+pciutils     | x         |              |               |                          |
+dmidecode    | x         |              |               |                          |
+cron         | x         |              |               |                          |
+libxml2      | x         |              |               |                          | x
+hostname     | x         |              |               |                          |
+libldap-2.4-2 | x        |              |               |                          |
+libreadline5 | x         |              |               |                          |
+virt-what    | x         |              |               |                          |
+file         |           | x            | x             |                          |
+libmagic1    |           | x            | x             |                          |
+libpcre3     |           | x            | x             |                          |
+curl         |           | x            | x             |                          |
+perl         |           | x            | x             |                          |
+mime-support |           | x            | x             |                          |
+libapr1      |           | x            | x             |                          | 
+libcap2      |           | x            | x             |                          |
+libaprutil1  |           | x            | x             |                          |
+libaprutil1-dbd-sqlite3 | | x           | x             |                          |
+libaprutil1-ldap |       | x            | x             |                          |
+libjpeg62    |           | x            |               | x                        |
+libcurl3 (Debian 7) |    | x            | x             |                          |
+libxml2-dev (Debian 7) | | x            | x             | x                        |
+locales-all (Debian 7) | |              |               | x                        | 
+libxslt1.1   |           |              |               |                          | x
+
 
 <br>
 
 ***Ubuntu***
 
 
-All Nodes     | Master Nodes            | Console Nodes           | Console/Console DB Nodes | Cloud Provisioner Nodes
---------------|-------------------------|-------------------------|--------------------------|------------------------
-pciutils      | file                    | file                    | libjpeg62                | libxslt1.1
-dmidecode     | libmagic1               | libmagic1               |                          | libxml2
-cron          | libpcre3                | libpcre3                |                          |
-libxml2       | curl                    | curl                    |                          |
-hostname      | perl                    | perl                    |                          |
-libldap-2.4-2 | mime-support            | mime-support            |                          |
-libreadline5  | libapr1                 | libapr1                 |                          |
-virt-what     | libcap2                 | libcap2                 |                          |
-              | libaprutil1             | libaprutil1             |                          |
-              | libaprutil1-dbd-sqlite3 | libaprutil1-dbd-sqlite3 |                          |
-              | libaprutil1-ldap        | libaprutil1-ldap        |                          |
-              | libjpeg62               |                         |                          |
+ &nbsp;      | All Nodes | Master Nodes | Console Nodes | Console/Console DB Nodes | Cloud Provisioner Nodes
+-------------|:---------:|:------------:|:-------------:|:------------------------:|:----------------------:
+pciutils     | x         |              |               |                          |
+dmidecode    | x         |              |               |                          |
+cron         | x         |              |               |                          |
+libxml2      | x         |              |               |                          | x
+hostname     | x         |              |               |                          |
+libldap-2.4-2 | x        |              |               |                          |
+libreadline5 | x         |              |               |                          |
+virt-what    | x         |              |               |                          |
+file         |           | x            | x             |                          |
+libmagic1    |           | x            | x             |                          |
+libpcre3     |           | x            | x             |                          |
+curl         |           | x            | x             |                          |
+perl         |           | x            | x             |                          |
+mime-support |           | x            | x             |                          |
+libapr1      |           | x            | x             |                          | 
+libcap2      |           | x            | x             |                          |
+libaprutil1  |           | x            | x             |                          |
+libaprutil1-dbd-sqlite3 | | x           | x             |                          |
+libaprutil1-ldap |       | x            | x             |                          |
+libjpeg62    |           | x            |               | x                        |
+libxslt1.1   |           |              |               |                          | x
 
 <br>
 
@@ -257,3 +301,4 @@ Next Steps
 
 * To install Puppet Enterprise on \*nix nodes, continue to [Installing Puppet Enterprise](./install_basic.html).
 * To install Puppet Enterprise on Windows nodes, continue to [Installing Windows Agents](./install_windows.html).
+* To install Puppet Enterprise on OS X, continue to [Installing Mac OS X Agents](./install_osx.html).
