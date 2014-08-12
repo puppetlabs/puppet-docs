@@ -171,12 +171,12 @@ So `template('my_module/component.erb')` would render the template `my_module/te
 Writing Modules
 -----
 
-To write a module, we strongly suggest running `puppet module generate <USERNAME>-<MODULE NAME>`. 
+To write a module, we strongly suggest running `puppet module generate <USERNAME>-<MODULE NAME>`.
 
 When you run the above command, the puppet module tool (PMT) will run a series of questions to gather metadata about your module and will create a basic module structure for you.
 
 ~~~
-$ puppet module generate examplecorp-mymodule                                                                                
+$ puppet module generate examplecorp-mymodule
 
 We need to create a metadata.json file for this module.  Please answer the
 following questions; if the question is not applicable to this module, feel free
@@ -192,10 +192,10 @@ Who wrote this module?  [examplecorp]
 What license does this module code fall under?  [Apache 2.0]
 --> Apache 2.0
 
-How would you describe this module in a single sentence? 
+How would you describe this module in a single sentence?
 --> It examples with Puppet.
 
-Where is this module's source code repository? 
+Where is this module's source code repository?
 --> https://github.com/examplecorp/examplecorp-mymodule
 
 Where can others go to learn more about this module?
@@ -223,7 +223,7 @@ Where can others go to file issues about this module?
 }
 
 
-About to generate this metadata; continue? [n/Y] 
+About to generate this metadata; continue? [n/Y]
 --> Y
 
 Notice: Generating module at /Users/Pat/Development/examplecorp-mymodule...
@@ -242,7 +242,7 @@ examplecorp-mymodule/tests
 examplecorp-mymodule/tests/init.pp
 ~~~
 
-For best practices about writing your module, please see the [Beginner's Guide to Modules](docs.puppetlabs.com/guides/module_guides/bgtm.html).
+For best practices about writing your module, please see the [Beginner's Guide to Modules](/guides/module_guides/bgtm.html).
 
 You also have the option of writing classes and defined types by hand and placing them in properly named manifest files as [described above](#module_layout). If you take this route, you **must** ensure that your metadata.json file is properly formatted or your module **will not work**.
 
