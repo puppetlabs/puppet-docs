@@ -19,7 +19,7 @@ based on site-specific data that just isn't available via Facter,
 or perhaps you'd like to include it in a template.
 
 Since you can't include arbitrary ruby code in your manifests,
-the best solution is to a new fact to Facter. These additional facts
+the best solution is to add a new fact to Facter. These additional facts
 can then be distributed to Puppet clients and are available for use
 in manifests and templates, just like any other fact would be.
 
