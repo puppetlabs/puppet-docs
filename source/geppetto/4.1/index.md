@@ -178,12 +178,12 @@ All Puppet modules include a metadata file, which contains high-level informatio
 
 If you create a module using Geppetto's Project Wizard, you will have access to the same metadata editor through the metadata.json.
 
-If you have pulled a module from the [Puppet Forge](forge.puppetlabs.com) or a Git/SVN repo, you may edit the metadata via metadata.json. Upon pulling a module from the Puppet Forge, Geppetto will open the metadata.json in the editor automatically. 
+If you have pulled a module from the [Puppet Forge](forge.puppetlabs.com) or a Git/SVN repo, you can edit the metadata via metadata.json. Upon pulling a module from the Puppet Forge, Geppetto will open the metadata.json in the editor automatically. 
 
 
 ####Deriving Metadata.json from Deprecated Modulefile
 
-Normally, your metadata is stored and edited in your metadata.json. However, if you are working with an older module, it may have a deprecated Modulefile instead. Geppetto will automatically generate the metadata.json from the Modulefile and then notify you. Once the metadata.json has been created, Geppetto will ignore the Modulefile. At this point, we recommend that you check to make sure the metadata.json is up to date, and then delete the Modulefile.
+Normally, your metadata is stored and edited in your metadata.json. However, if you are working with an older module, it might have a deprecated Modulefile instead. Geppetto will automatically generate the metadata.json from the Modulefile and then notify you. Once the metadata.json has been created, Geppetto will ignore the Modulefile. At this point, we recommend that you check to make sure the metadata.json is up to date, and then delete the Modulefile.
 
 ####The Metadata Editor
 
@@ -221,7 +221,7 @@ To edit a dependency:
 
 To remove a dependency, select the module from the list of dependencies and click the **Remove** button.
 
-You also have the option of editing your module's metadata within the raw json format. If you click on the *JSON* tab, you will have access to the json information and may edit it directly as you wish.
+You also have the option of editing your module's metadata within the raw json format. If you click on the *JSON* tab, you will have access to the json information and can edit it directly as you wish.
 
 ###Publishing Modules to the Forge
 
@@ -278,13 +278,13 @@ The following settings are optional. Use them only if you want to make an SSL co
 If any of your required information is missing, it will be listed at the top of the window next to the red button and the **OK** button will be disabled.
 
 
-In the *Description* column, you should see your PuppetDB server listed. Once added, PuppetDB connections cannot be edited. However, you may delete a connection by selecting it and clicking the database icon with the red 'x'.
+In the *Description* column, you should see your PuppetDB server listed. Once added, PuppetDB connections cannot be edited. However, you can delete a connection by selecting it and clicking the database icon with the red 'x'.
 
 If you expand your connected server, you should see *Failures* and *Changes*. Each of these can be expanded to show details of the events of the most recent puppet run.
 
 To see additional information about an event, hover over any listed event detail. To review the definition of a resource or file, double-click a listed event detail.
 
-The events you see will be events only from the most recent puppet run. If puppet runs while you are working in Geppetto, you must refresh the *Puppet Resource Events* tab. You may do so by clicking the image with the green arrow.
+The events you see will be events only from the most recent puppet run. If puppet runs while you are working in Geppetto, you must refresh the *Puppet Resource Events* tab. You can do so by clicking the image with the green arrow.
 
 ![Refresh Puppet Resource Events][refresh]
 
