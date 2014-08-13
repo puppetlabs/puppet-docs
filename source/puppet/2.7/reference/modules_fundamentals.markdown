@@ -16,7 +16,7 @@ canonical: "/puppet/latest/reference/modules_fundamentals.html"
 [defined_types]: ./lang_defined_types.html
 [enc]: /guides/external_nodes.html
 [conf]: /guides/configuring.html
-[environment]: /guides/environment.html
+[environment]: /puppet/latest/reference/environments_classic.html
 [templates]: /guides/templating.html
 
 Puppet Modules

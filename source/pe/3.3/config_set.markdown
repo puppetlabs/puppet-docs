@@ -6,7 +6,7 @@ nav: puppet_3.html
 
 [puppet.conf]: /guides/configuring.html#puppetconf
 [config_sections]: /guides/configuring.html#config-blocks
-[environments]: /guides/environment.html
+[environments]: /puppet/3.6/reference/environments.html
 [confdir_sys]: /guides/configuring.html#finding-puppetconf
 
 Puppet loads most of its settings from [the puppet.conf config file.][puppet.conf] You can edit this file directly, or you can change individual settings with the `puppet config set` command.

@@ -13,7 +13,7 @@ canonical: "/pe/latest/console_classes_groups.html"
 [modules]: /puppet/3/reference/modules_fundamentals.html
 [topscope]: /puppet/3/reference/lang_scope.html#top-scope
 [sidebar]: ./console_navigating.html#the-sidebar
-[environment]: /guides/environment.html
+[environment]: /puppet/latest/reference/environments_classic.html
 
 This page describes how to use the Puppet Enterprise (PE) console to **assign configurations** to nodes. (For help with **inspecting status and activity** among your nodes, see [the Viewing Reports and Inventory Data page](./console_reports.html).)
 

@@ -12,7 +12,7 @@ canonical: "/puppet/latest/reference/lang_variables.html"
 [double_quote]: ./lang_datatypes.html#double-quoted-strings
 [functions]: ./lang_functions.html
 [definedtype]: ./lang_defined_types.html
-[environment]: /guides/environment.html
+[environment]: /puppet/latest/reference/environments_classic.html
 [resource]: ./lang_resources.html
 [resource_attribute]: ./lang_resources.html#syntax
 [scope]: ./lang_scope.html

@@ -5,7 +5,7 @@ canonical: "/puppet/latest/reference/lang_facts_and_builtin_vars.html"
 ---
 
 [definedtype]: ./lang_defined_types.html
-[environment]: /guides/environment.html
+[environment]: ./environments.html
 [topscope]: ./lang_scope.html#top-scope
 [core_facts]: /facter/latest/core_facts.html
 [facter]: /facter/latest

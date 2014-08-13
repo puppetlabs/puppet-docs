@@ -13,7 +13,7 @@ canonical: "/pe/latest/console_classes_groups.html"
 [modules]: /puppet/3.6/reference/modules_fundamentals.html
 [topscope]: /puppet/3.6/reference/lang_scope.html#top-scope
 [sidebar]: ./console_navigating.html#the-sidebar
-[environment]: /guides/environment.html
+[environment]: /puppet/3.6/reference/environments.html
 
 This page describes how to use the Puppet Enterprise (PE) console to **assign configurations** to nodes. (For help with **inspecting status and activity** among your nodes, see [the Viewing Reports and Inventory Data page](./console_reports.html).)
 
@@ -236,7 +236,7 @@ Class parameters support the following data types:
     * Numbers (e.g., 123)
     * Hashes (e.g., `{'a'=>1}`
     * Arrays (e.g., [1,2.3]
-    
+
 Any data type not recognized as a boolean, number, hash or array will be treated as a string. Hashes and arrays are expressed using Ruby-style syntax.
 
 ### Editing Groups on Nodes

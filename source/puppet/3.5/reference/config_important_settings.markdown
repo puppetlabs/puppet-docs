@@ -11,7 +11,7 @@ canonical: "/puppet/latest/reference/config_important_settings.html"
 [trusted_and_facts]: ./lang_facts_and_builtin_vars.html
 [config_environments]: ./environments_classic.html
 [config_reference]: /references/3.5.latest/configuration.html
-[environments]: /guides/environment.html
+[environments]: ./environments.html
 [future]: ./experiments_future.html
 [multi_master]: /guides/scaling_multiple_masters.html
 [enc]: /guides/external_nodes.html

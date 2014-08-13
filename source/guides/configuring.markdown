@@ -13,7 +13,7 @@ This document describes how Puppet's configuration settings work, and describes 
 
 * * *
 
-[environments]: ./environment.html
+[environments]: /puppet/latest/reference/environments.html
 [configref]: /references/stable/configuration.html
 [versioned]: /references/
 [reports]: /guides/reporting.html

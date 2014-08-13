@@ -67,7 +67,7 @@ An ACL's `path` is interpreted as either a regular expression (with tilde) or a 
 
 ### Environment
 
-The `environment` directive can contain a single [environment](./environment.html) or a comma-separated list (spaces after commas OK). If environment isn't explicitly specified, it will default to all environments.
+The `environment` directive can contain a single [environment](/puppet/latest/reference/environments.html) or a comma-separated list (spaces after commas OK). If environment isn't explicitly specified, it will default to all environments.
 
 ### Method
 

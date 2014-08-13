@@ -128,7 +128,6 @@ Get Puppet up and running at your site.
 
 ### Using Optional Features
 
-* [Environments](/guides/environment.html) --- separate dev, stage, & production
 * [Puppet File Serving](/guides/file_serving.html) --- Files in modules are automatically served; this guide explains how to configure additional custom mount points for serving large files that shouldn't be kept in modules.
 
 ### Puppet on Windows

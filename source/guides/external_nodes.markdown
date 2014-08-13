@@ -3,7 +3,7 @@ layout: default
 title: External Node Classifiers
 ---
 
-[environment]: ./environment.html
+[environment]: /puppet/latest/reference/environments.html
 
 External Node Classifiers
 ==============
