@@ -151,9 +151,13 @@ PE 3 uses an updated version of Ruby, 1.9, that is much stricter about character
 
 In some cases, you may want to disable PE's orchestration capabilities. This can now be done easily by disabling live management, either by changing a config setting or during installation with an answer file entry. For more information, see [navigating live management](console_navigating_live_mgmt.html) and the [installation instructions](install_basic.html).
 
-#### Security Patches
+#### Hiera Configuration Variables Changed Between PE3.1 and PE3.2
 
-A handful of vulnerabilities have been addressed in PE 3.2.0. For details, check the [release notes](appendix.html#release-notes).
+In PE3.2, Hiera variables were updated to include `::pe` in the name. If you set Hiera variables in PE3.1 and then upgrade to PE3.2, Hiera variables will revert back to the default values. You may experience performance issues as a result.
+
+For example, in PE3.1, the `java_args` variable was set using `pe_puppetdb::java_args` but in PE3.2 it is set using `pe_puppetdb::pe::java_args`. In PE3.1, the `database_config_hash` variable was set using `pe_puppetdb::database::database_config_hash` but in PE3.2 it is set using `pe_puppetdb::pe::database::database_config_hash`. 
+
+To avoid reverting back to the default values, add `::pe` to the variable name.
 
 #### Component Package Upgrades
 

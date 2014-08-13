@@ -207,6 +207,7 @@ The following is a basic overview of some of the bug fixes in this release:
 
 * Installation - fixes improve installation so that the installer checks for config files and not just /etc/puppetlabs/, stops pe-puppet-dashboard-workers during upgrade, warns the user if there is not enough PostgreSQL disk space, and more.
 * UI updates - fixes make the appearance and behavior more consistent across all areas of the console.
+* When upgrading from PE3.1 to PE3.2, Hiera variables set in PE3.1 would revert back to default values because `::pe` was added to the variable name in PE3.2. This issue has been fixed and PE3.3 recognizes variable names both with and without `::pe` in the name.
 
 ## Known Issues
 
