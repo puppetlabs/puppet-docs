@@ -335,12 +335,6 @@ The `contain` function uses [include-like behavior][include-like]. (Multiple dec
 * A comma-separated list of classes
 * An array of classes
 
-> **Bug note:** In this version of Puppet, some uses of the `contain` function are affected by bug [PUP-1597](https://tickets.puppetlabs.com/browse/PUP-1597). This bug prevents `contain` from accepting class names with an absolute `::` prefix (for example, `::ntp::service`).
->
-> This bug can also cause `Error: undefined method 'ref' for nil:NilClass` errors. These occur when `contain` is given a class name that would  have been affected by [accidental relative name lookup.](./lang_namespaces.html#relative-name-lookup-and-incorrect-name-resolution)
->
-> [PUP-1597](https://tickets.puppetlabs.com/browse/PUP-1597) will be fixed in Puppet 3.7.
-
 ### Using `hiera_include`
 
 The `hiera_include` function requests a list of class names from [Hiera][], then declares all of them. Since it uses the [array resolution type][array_search], it will get a combined list that includes classes from **every level** of the [hierarchy][hiera_hierarchy]. This allows you to abandon [node definitions][node] and use Hiera like a lightweight ENC.
