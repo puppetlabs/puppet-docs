@@ -200,7 +200,7 @@ Tuning Environment Caching
 
 The puppet master loads environments on request, and it caches data associated with them to give faster service to other nodes in that environment. Cached environments will time out and be discarded after a while, after which they'll be loaded on request again.
 
-You can configure environment cache timeouts with the `environment_timeout` setting. This can be set globally in [puppet.conf][], and can also be overridden per-environment in [environment.conf][]. See [the description of the `environment_timeout` setting][environment_timeout] for details on allowed values. The default cache timeout is five seconds, which doesn't give much of a performance boost but also won't surprise you by ignoring their file changes.
+You can configure environment cache timeouts with the `environment_timeout` setting. This can be set globally in [puppet.conf][], and can also be overridden per-environment in [environment.conf][]. See [the description of the `environment_timeout` setting][environment_timeout] for details on allowed values. The default cache timeout is **three minutes.**
 
 To get more performance from your puppet master, you may want to tune the timeout for your most heavily used environments. Getting the most benefit involves a tradeoff between speed, memory usage, and responsiveness to changed files. The general best practice is:
 
