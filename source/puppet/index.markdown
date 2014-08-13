@@ -104,7 +104,6 @@ Get Puppet up and running at your site.
 * [Supported Platforms](/guides/platforms.html)
 * [Installing Puppet](/guides/install_puppet/pre_install.html) --- from packages, source, or gems
 * [Upgrading Puppet](/guides/install_puppet/upgrading.html) --- general advice and suggestions for upgrading critical infrastructure
-* [Configuring Puppet](/guides/configuring.html) --- use `puppet.conf` to configure Puppet's behavior
 
 ### Building and Using Modules
 
@@ -128,7 +127,6 @@ Get Puppet up and running at your site.
 
 ### Using Optional Features
 
-* [Environments](/guides/environment.html) --- separate dev, stage, & production
 * [Puppet File Serving](/guides/file_serving.html) --- Files in modules are automatically served; this guide explains how to configure additional custom mount points for serving large files that shouldn't be kept in modules.
 
 ### Puppet on Windows

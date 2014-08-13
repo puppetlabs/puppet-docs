@@ -60,7 +60,7 @@ On Windows nodes, Puppet Enterprise's configuration files all live under `<COMMO
 
 PE's various components all have subdirectories inside this main data directory:
 
-* Puppet's `confdir` is in the `puppet` subdirectory. This directory contains the [`puppet.conf`](/guides/configuring.html) file, the site manifest (`manifests/site.pp`), and the `modules` directory.
+* Puppet's `confdir` is in the `puppet` subdirectory. This directory contains the [`puppet.conf`](/puppet/3.6/reference/config_file_main.html) file, the site manifest (`manifests/site.pp`), and the `modules` directory.
 * [The orchestration engine](orchestration_overview.html)'s config files are in the `mcollective` subdirectory on all agent nodes, as well as the `activemq` subdirectory and the `/var/lib/peadmin` directories on the puppet master. The default files in these directories are managed by Puppet Enterprise, but you can add [plugin config files](./orchestration_adding_actions.html#step-4-configure-the-plugin-optional) to the `mcollective/plugin.d` directory.
 * The console's config files are in the `puppet-dashboard`, `rubycas-server`, and `console-auth` subdirectories.
 * PuppetDB's config files are in the `puppetdb` subdirectory.

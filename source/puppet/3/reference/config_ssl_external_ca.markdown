@@ -4,7 +4,7 @@ title: "SSL Configuration: External CA Support"
 canonical: "/puppet/latest/reference/config_ssl_external_ca.html"
 ---
 
-[conf]: /guides/configuring.html#puppetconf
+[conf]: /puppet/3.6/reference/config_file_main.html
 [verify_header]: /references/latest/configuration.html#sslclientverifyheader
 [client_header]: /references/latest/configuration.html#sslclientheader
 [ca_auth]: /references/latest/configuration.html#sslclientcaauth

@@ -6,7 +6,7 @@ canonical: "/puppet/latest/reference/lang_summary.html"
 
 
 [autoload]: ./lang_namespaces.html#autoloader-behavior
-[config]: /guides/configuring.html
+[config]: /puppet/3.6/reference/config_file_main.html
 [usecacheonfailure]: /references/latest/configuration.html#usecacheonfailure
 [fileserve]: ./modules_fundamentals.html#files
 [sitepp]: /references/glossary.html#site-manifest
@@ -54,7 +54,7 @@ The resources in a manifest can be freely ordered --- they will not necessarily 
 
 Although resources can be freely ordered, several parts of the language do depend on parse order. The most notable of these are variables, which must be set before they are referenced.
 
-Puppet 3.3 introduced the [ordering option][], which provides an alternative to the effectively random order for unrelated resources. If you set `ordering = manifest` in `puppet.conf`, Puppet will apply resources in the order in which they appear in the manifest **if the order is not otherwise determined,** e.g., by metaparameters like `before` or `require`. 
+Puppet 3.3 introduced the [ordering option][], which provides an alternative to the effectively random order for unrelated resources. If you set `ordering = manifest` in `puppet.conf`, Puppet will apply resources in the order in which they appear in the manifest **if the order is not otherwise determined,** e.g., by metaparameters like `before` or `require`.
 
 Files
 -----

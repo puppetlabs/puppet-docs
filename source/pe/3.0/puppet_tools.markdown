@@ -25,7 +25,7 @@ Puppet agent and puppet master are the heart of Puppet's architecture.
 
     The puppet master creates agent configurations by consulting its Puppet modules and the instructions it receives from the [console](./console_accessing.html).
 
-    The puppet master reads its settings from the `[main]` and `[master]` blocks of `/etc/puppetlabs/puppet/puppet.conf`. It can also be configured conditionally by using [environments](/guides/environment.html).
+    The puppet master reads its settings from the `[main]` and `[master]` blocks of `/etc/puppetlabs/puppet/puppet.conf`. It can also be configured conditionally by using [environments](/puppet/latest/reference/environments_classic.html).
 * The PuppetDB service collects information from the puppet master, and makes it available to other services.
 
     The puppet master itself consumes PuppetDB's data in the form of [exported resources][exported]. You can also install [a set of additional functions][query_functions] to do deeper queries from your Puppet manifests.

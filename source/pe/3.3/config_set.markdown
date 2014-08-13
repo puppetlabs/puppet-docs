@@ -4,10 +4,10 @@ title: "Configuration: Changing Settings on the Command Line"
 nav: puppet_3.html
 ---
 
-[puppet.conf]: /guides/configuring.html#puppetconf
-[config_sections]: /guides/configuring.html#config-blocks
-[environments]: /guides/environment.html
-[confdir_sys]: /guides/configuring.html#finding-puppetconf
+[puppet.conf]: /puppet/3.6/reference/config_file_main.html
+[config_sections]: /puppet/3.6/reference/config_file_main.html#format
+[environments]: /puppet/3.6/reference/environments.html
+[confdir_sys]: /puppet/3.6/reference/dirs_confdir.html
 
 Puppet loads most of its settings from [the puppet.conf config file.][puppet.conf] You can edit this file directly, or you can change individual settings with the `puppet config set` command.
 

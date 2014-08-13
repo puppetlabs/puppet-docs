@@ -10,7 +10,7 @@ canonical: "/pe/latest/orchestration_puppet.html"
 [peadmin]: ./orchestration_invoke_cli.html#logging-in-as-peadmin
 [inpage_stop]: #start-and-stop-the-puppet-agent-service
 [filter]: ./orchestration_invoke_cli.html#filtering-actions
-[environment]: /guides/environment.html
+[environment]: /puppet/3.6/reference/environments.html
 [tags]: /puppet/3.6/reference/lang_tags.html
 [batch]: ./orchestration_invoke_cli.html#batching
 [data_plugins]: ./orchestration_invoke_cli.html#data-plugins

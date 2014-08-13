@@ -3,7 +3,7 @@ layout: default
 title: External Node Classifiers
 ---
 
-[environment]: ./environment.html
+[environment]: /puppet/latest/reference/environments.html
 
 External Node Classifiers
 ==============
@@ -54,7 +54,7 @@ Considerations and Differences from Node Definitions
 Connecting an ENC
 -----------------
 
-To tell puppet master to use an ENC, you need to set two [configuration](./configuring.html) options: `node_terminus` has to be set to "exec", and `external_nodes` should have the path to the executable.
+To tell puppet master to use an ENC, you need to set two [settings](/puppet/latest/reference/config_about_settings.html): `node_terminus` has to be set to "exec", and `external_nodes` should have the path to the executable.
 
     [master]
       node_terminus = exec

@@ -6,7 +6,7 @@ canonical: "/pe/latest/install_basic.html"
 
 {% include pe_1.2_nav.markdown %}
 
-Installing Puppet Enterprise 
+Installing Puppet Enterprise
 ============================
 
 Puppet Enterprise is the easiest way to install Puppet in a production-ready state --- after some quick pre-install sanity checks, simply run the interactive installer and get started immediately.
@@ -18,7 +18,7 @@ Before installing Puppet Enterprise at your site, you should:
 
 * Decide in advance which server will fill the role of puppet master, and decide whether it will also run Puppet Dashboard. **If you are splitting these two roles, you must perform some [extra configuration][dashboardconfig] after installation.**
 * Ensure that the puppet master server can be reached via domain name lookup by all of the future puppet agent nodes at the site.
-* Optionally, add a CNAME record to your site's DNS configuration (or an alias in the relevant `/etc/hosts` files) to ensure that your puppet master can also be reached at the hostname `puppet` --- since this is the default puppet master hostname, using it can simplify installation on your agent nodes. 
+* Optionally, add a CNAME record to your site's DNS configuration (or an alias in the relevant `/etc/hosts` files) to ensure that your puppet master can also be reached at the hostname `puppet` --- since this is the default puppet master hostname, using it can simplify installation on your agent nodes.
 * Configure your firewalls to accomodate Puppet Enterprise's network traffic.
     * All agent nodes must be able to send send requests to the puppet master on ports **8140** (for Puppet) and **61613** (for MCollective).
     * The puppet master must be able to accept inbound traffic from agents on ports **8140** (for Puppet) and **61613** (for MCollective).
@@ -49,7 +49,7 @@ Puppet Enterprise can be downloaded in tarballs specific to your OS version and 
 Installing PE
 -----
 
-To install PE, unarchive the tarball, navigate to the resulting directory, and run the `./puppet-enterprise-installer` script with root privileges in your shell; this will start the installer in interactive mode and guide you through the process of customizing your installation. After you've finished, it will save your answers in a file called `answers.lastrun`, install the selected software, and configure and enable all of the necessary services. 
+To install PE, unarchive the tarball, navigate to the resulting directory, and run the `./puppet-enterprise-installer` script with root privileges in your shell; this will start the installer in interactive mode and guide you through the process of customizing your installation. After you've finished, it will save your answers in a file called `answers.lastrun`, install the selected software, and configure and enable all of the necessary services.
 
 The installer can also be run non-interactively; [see below][noninteractive] for details.
 
@@ -60,7 +60,7 @@ The PE installer configures Puppet by asking a series of questions. Most questio
 
 ### Roles
 
-First, the installer will ask which of PE's [three roles](./overview.html#roles) (puppet master, Puppet Dashboard, and puppet agent) to install. The roles you apply will determine which other questions the installer will ask. 
+First, the installer will ask which of PE's [three roles](./overview.html#roles) (puppet master, Puppet Dashboard, and puppet agent) to install. The roles you apply will determine which other questions the installer will ask.
 
 If you choose the puppet master or Puppet Dashboard roles, the puppet agent role will be installed automatically.
 
@@ -72,9 +72,9 @@ The puppet master's certname --- its unique identifier --- should always be its 
 
 #### Certified Hostnames
 
-The puppet master's certified hostnames should be a colon-separated list of every hostname (short and fully-qualified) you use to reach it. This list will be included in the master's SSL certificate, and agent nodes will refuse to connect to a puppet master unless the hostname at which they reached it is included in the certificate. 
+The puppet master's certified hostnames should be a colon-separated list of every hostname (short and fully-qualified) you use to reach it. This list will be included in the master's SSL certificate, and agent nodes will refuse to connect to a puppet master unless the hostname at which they reached it is included in the certificate.
 
-This list should at least include the master's fully-qualified domain name and its short hostname, but may also include aliases like `puppet` and `puppet.<domain>.com`. If you ensure that the hostname `puppet` resolves to your puppet master and is included in the master's certificate, you can use the default puppet master hostname when installing subsequent agent nodes. 
+This list should at least include the master's fully-qualified domain name and its short hostname, but may also include aliases like `puppet` and `puppet.<domain>.com`. If you ensure that the hostname `puppet` resolves to your puppet master and is included in the master's certificate, you can use the default puppet master hostname when installing subsequent agent nodes.
 
 #### Integration with Puppet Dashboard
 
@@ -82,11 +82,11 @@ The installer will ask if you wish to:
 
 * Send reports to Dashboard
 * Use Dashboard as a node classifier
-* Forward facts to Dashboard's inventory service 
+* Forward facts to Dashboard's inventory service
 
 (The latter question won't appear unless you chose not to install Dashboard on the same machine as the master; if they are running on the same machine, inventory viewing will be enabled by default.) <!-- TK todo for future: what happens w/ inventory search if you don't have reporting enabled and dashboard doesn't know about your nodes? -->
 
-For most users, we recommend doing all three. If you selected any of them, the installer will then ask for Dashboard's hostname and port. 
+For most users, we recommend doing all three. If you selected any of them, the installer will then ask for Dashboard's hostname and port.
 
 ### Puppet Dashboard Options
 
@@ -94,22 +94,22 @@ Puppet Dashboard is usually run on the same server as the puppet master, but can
 
 #### Port
 
-By default, Dashboard will run on port 3000. If the server you install it on is not running any other webserver instances, you may wish to use the standard HTTP port of 80 instead; if so, remember to [point puppet master to the correct port during installation](#integration-with-puppet-dashboard). If you need to change puppet's settings later, edit the `reporturl` setting  in [puppet.conf](/guides/configuring.html) and the `BASE=` line in `/etc/puppetlabs/puppet-dashboard/external_node`. 
+By default, Dashboard will run on port 3000. If the server you install it on is not running any other webserver instances, you may wish to use the standard HTTP port of 80 instead; if so, remember to [point puppet master to the correct port during installation](#integration-with-puppet-dashboard). If you need to change puppet's settings later, edit the `reporturl` setting  in [puppet.conf](/puppet/3.6/reference/config_file_main.html) and the `BASE=` line in `/etc/puppetlabs/puppet-dashboard/external_node`.
 
 #### Inventory Certname/Certified Hostnames
 
 Dashboard will automatically use the puppet master's inventory service if you install it on the same server, but will have to maintain the inventory service[^technically] itself if you're installing it on a separate server.
 
-Like puppet master, the inventory service needs a certname and a list of certified hostnames, which include the Dashboard server's short hostname and fully-qualified domain name. Unlike puppet master, its certified hostnames shouldn't include `puppet`. 
+Like puppet master, the inventory service needs a certname and a list of certified hostnames, which include the Dashboard server's short hostname and fully-qualified domain name. Unlike puppet master, its certified hostnames shouldn't include `puppet`.
 
-Note that if you split Dashboard and master and wish to enable Dashboard's inventory and filebucket features, **you will need to [exchange certificates between Dashboard and the puppet master after installation][dashboardconfig].** 
+Note that if you split Dashboard and master and wish to enable Dashboard's inventory and filebucket features, **you will need to [exchange certificates between Dashboard and the puppet master after installation][dashboardconfig].**
 
 
-[^technically]: Under the hood, this is a private instance of puppet master that doesn't serve catalogs to agent nodes. 
+[^technically]: Under the hood, this is a private instance of puppet master that doesn't serve catalogs to agent nodes.
 
 #### MySQL Server
 
-Dashboard needs a MySQL server, user, and database to operate. If MySQL isn't already installed on Dashboard's server, the installer can automatically configure everything Dashboard needs; just confirm that you want to install a new database server, and answer the questions about: 
+Dashboard needs a MySQL server, user, and database to operate. If MySQL isn't already installed on Dashboard's server, the installer can automatically configure everything Dashboard needs; just confirm that you want to install a new database server, and answer the questions about:
 
 * MySQL's root user's password
 * A name for Dashboard's database
@@ -129,7 +129,7 @@ If you choose not to install a new database server, you'll need to have already 
 
 #### Unique Identifier ("Certname")
 
-Like the puppet master, each puppet agent node needs a unique identifier for its SSL certificate. Unlike the master, this doesn't have to be a valid hostname, and can be any unique string that identifies the node. 
+Like the puppet master, each puppet agent node needs a unique identifier for its SSL certificate. Unlike the master, this doesn't have to be a valid hostname, and can be any unique string that identifies the node.
 
 If domain names change frequently at your site or are otherwise unreliable, you may wish to investigate other schemes of node identification, such as UUIDs or hashes of some permanent firmware attribute.
 
@@ -139,21 +139,21 @@ By default, puppet agent will attempt to connect to a puppet master server at th
 
 #### Using Pluginsync
 
-Puppet agent's pluginsync feature will download executable Ruby code (such as custom facts, types, and providers) from the puppet master. This should almost always be enabled, as Puppet Enterprise requires it to activate MCollective on agent nodes. 
+Puppet agent's pluginsync feature will download executable Ruby code (such as custom facts, types, and providers) from the puppet master. This should almost always be enabled, as Puppet Enterprise requires it to activate MCollective on agent nodes.
 
 ### Development Libraries
 
-As Puppet Enterprise maintains its own copy of Ruby and `gem`, you will need PE-specific copies of the Ruby development libraries if you intend to install any gems with native bindings. 
+As Puppet Enterprise maintains its own copy of Ruby and `gem`, you will need PE-specific copies of the Ruby development libraries if you intend to install any gems with native bindings.
 
-Most users will not need to install the Ruby development libraries on any of their nodes. If you do not install the development libraries when installing Puppet Enterprise and find that you need them later, you can install them manually; see "Configuring and Troubleshooting" below. 
+Most users will not need to install the Ruby development libraries on any of their nodes. If you do not install the development libraries when installing Puppet Enterprise and find that you need them later, you can install them manually; see "Configuring and Troubleshooting" below.
 
 ### Convenience Links
 
-Puppet Enterprise installs the Puppet software and manpages into subdirectories of `/opt/puppet`, which aren't included in your system's default `$PATH` or `$MANPATH`. For ease of use, the installer can create symbolic links to the Puppet executables in `/usr/local/bin`. 
+Puppet Enterprise installs the Puppet software and manpages into subdirectories of `/opt/puppet`, which aren't included in your system's default `$PATH` or `$MANPATH`. For ease of use, the installer can create symbolic links to the Puppet executables in `/usr/local/bin`.
 
 ### Additional Packages
 
-Puppet Enterprise requires certain software from your operating system vendor's package repositories. If any of this software isn't yet installed, the installer will list which packages (if any) are needed and offer to automatically install them. If you decline, the installer will exit so you can install the necessary packages manually. 
+Puppet Enterprise requires certain software from your operating system vendor's package repositories. If any of this software isn't yet installed, the installer will list which packages (if any) are needed and offer to automatically install them. If you decline, the installer will exit so you can install the necessary packages manually.
 
 
 Post-install Configuration
@@ -214,9 +214,9 @@ The Puppet Enterprise installer will accept the following command-line flags:
 
 ### Non-interactive Installation
 
-To streamline your deployment, the Puppet Enterprise installer can run non-interactively. When run with the `-a` or `-A` flags, the installer will load an answer file specified by the user. 
+To streamline your deployment, the Puppet Enterprise installer can run non-interactively. When run with the `-a` or `-A` flags, the installer will load an answer file specified by the user.
 
-Answer files are simply shell scripts; they set a number of predefined variables and are sourced by the installer at runtime. Although static answer files are easily generated by running the installer with the `-s ANSWER_FILE` option (or by retrieving the `answers.lastrun` file from a previous installation), they can also be constructed by hand or with other tools, and can contain arbitrary shell code. This feature of the installer can be used to, for example, automate the generation of puppet agent certnames for sites that do not identify nodes by FQDN. 
+Answer files are simply shell scripts; they set a number of predefined variables and are sourced by the installer at runtime. Although static answer files are easily generated by running the installer with the `-s ANSWER_FILE` option (or by retrieving the `answers.lastrun` file from a previous installation), they can also be constructed by hand or with other tools, and can contain arbitrary shell code. This feature of the installer can be used to, for example, automate the generation of puppet agent certnames for sites that do not identify nodes by FQDN.
 
-Further details and a full description of the available variables can be found in the [answer file reference](./answer_file_reference.html). 
+Further details and a full description of the available variables can be found in the [answer file reference](./answer_file_reference.html).
 

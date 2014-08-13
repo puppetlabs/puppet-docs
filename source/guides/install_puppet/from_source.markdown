@@ -5,10 +5,12 @@ title: Running Puppet From Source
 
 [install]: /guides/install_puppet/pre_install.html
 [sysreqs]: /puppet/latest/reference/system_requirements.html
-[config]: /guides/configuring.html
 [authconf]: /guides/rest_auth_conf.html
 [gitpuppet]: https://github.com/puppetlabs/puppet
-[gitfacter]: https://github.com/puppetlabs/facter
+[puppet.conf]: /puppet/latest/reference/config_file_main.html
+[confdir]: /puppet/latest/reference/dirs_confdir.html
+[about_settings]: /puppet/latest/reference/config_about_settings.html
+[short_settings]: /puppet/latest/reference/config_important_settings.html
 
 Running Puppet From Source
 =====

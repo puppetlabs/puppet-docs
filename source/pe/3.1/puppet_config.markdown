@@ -11,7 +11,7 @@ All of puppet's configuration files can be found in `/etc/puppetlabs/puppet/` on
 
 ## References
 
-- For an exhaustive description of puppet's configuration settings and auxiliary configuration files, refer to the [Configuring Puppet Guide](/guides/configuring.html).
+- For an exhaustive description of puppet's configuration settings and auxiliary configuration files, refer to the [Configuring Puppet Guide](/puppet/3.6/reference/config_about_settings.html).
 - For details, syntax and options for the available configuration settings, visit the [configuration reference](/references/3.3.latest/configuration.html).
 - For details on how to configure access to Puppet's pseudo-RESTful HTTP API, refer to the [Access Control Guide](/guides/rest_auth_conf.html).
 

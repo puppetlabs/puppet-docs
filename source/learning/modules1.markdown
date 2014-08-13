@@ -220,7 +220,7 @@ The Puppet config file is called puppet.conf, and in Puppet Enterprise it is loc
     [master]
         ... etc.
 
-The format of puppet.conf [is explained in the configuration guide](/guides/configuring.html), but in short, the `[main]` section has settings that apply to everything (puppet master, puppet apply, puppet agent, etc.), and it sets the value of `modulepath` to a colon-separated list of two directories:
+The format of puppet.conf [is explained in the configuration docs](/puppet/latest/reference/config_file_main.html), but in short, the `[main]` section has settings that apply to everything (puppet master, puppet apply, puppet agent, etc.), and it sets the value of `modulepath` to a colon-separated list of two directories:
 
 * `/etc/puppetlabs/puppet/modules`
 * `/opt/puppet/share/puppet/modules`
