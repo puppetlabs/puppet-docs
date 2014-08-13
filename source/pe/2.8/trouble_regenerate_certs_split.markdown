@@ -12,7 +12,7 @@ description: "This page explains how to regenerate all SSL certificates in Puppe
 [blog]: http://puppetlabs.com/blog/heartbleed-security-bug-update-puppet-users
 [cve]: https://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2014-0160
 
-> **Note:** This page explains how to regenerate all certificates in **a split PE deployment** --- that is, where the puppet master, PuppetDB, and PE console roles are all installed on separate servers. [See this page for instructions on regenerating certificates in a **monolithic PE deployment.**][mono_regen]
+> **Note:** This page explains how to regenerate all certificates in **a split PE deployment** --- that is, where the puppet master and PE console roles are installed on separate servers. [See this page for instructions on regenerating certificates in a **monolithic PE deployment.**][mono_regen]
 
 ## Overview
 
@@ -46,7 +46,7 @@ Note that this process **destroys the certificate authority and all other certif
 > * You have a brand new CA certificate and key.
 > * Your puppet master has a certificate from the new CA, and it can once again field new certificate requests.
 > * The puppet master will reject any requests for configuration catalogs from nodes that haven't replaced their certificates (which, at this point, will be all of them except the master).
-> * The puppet master can't serve catalogs even to agents that do have new certificates, since it can't communicate with the console and PuppetDB.
+> * The puppet master can't serve catalogs even to agents that do have new certificates, since it can't communicate with the console.
 > * Orchestration and live management are down.
 
 ## Step 2: Clear and Regenerate Certs for the PE Console
@@ -83,11 +83,11 @@ Note that this process **destroys the certificate authority and all other certif
 > * The puppet master can talk to the console again, and vice versa.
 > * The puppet master can now serve catalogs to agents.
 >
->   However, it will only trust agents that have replaced their certificates. The only agents that have replaced their certificates at this point are the puppet master node, the PuppetDB node, and the console node.
+>   However, it will only trust agents that have replaced their certificates. The only agents that have replaced their certificates at this point are the puppet master node and the console node.
 > * The console is usable, but because its SSL certificate has been replaced, your web browser may notice the change, assume it results from a malicious attack, and refuse to allow you access. If this happens, you may need delete the old cert from your browser's collection of cached certificates. Details of this process are beyond the scope of this guide and will vary by browser and platform. (You can delay having to figure this out by temporarily using a different browser.)
 > * Orchestration and live management may or may not work yet. If they're stopped, they will start working again within about 30 minutes, as soon as both the puppet master server and the console node complete a puppet agent run.
 >
-> On any of the nodes that are completely taken care of, you can start a successful agent run with `sudo puppet agent -t`. Try it on your console and PuppetDB nodes to ensure it works as expected.
+> On any of the nodes that are completely taken care of, you can start a successful agent run with `sudo puppet agent -t`. Try it on your console node to ensure it works as expected.
 
 
 ## Step 3: Clear and Regenerate Certs for PE Agents

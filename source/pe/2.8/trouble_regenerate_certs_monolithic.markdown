@@ -13,7 +13,7 @@ description: "This page explains how to regenerate all SSL certificates in monol
 [blog]: http://puppetlabs.com/blog/heartbleed-security-bug-update-puppet-users
 [cve]: https://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2014-0160
 
-> **Note:** This page explains how to regenerate all certificates in **a monolithic PE deployment** --- that is, where the puppet master, PuppetDB, and PE console roles are all installed on the same server. [See this page for instructions on regenerating certificates in a **split PE deployment.**][split_regen]
+> **Note:** This page explains how to regenerate all certificates in **a monolithic PE deployment** --- that is, where the puppet master and PE console roles are installed on the same server. [See this page for instructions on regenerating certificates in a **split PE deployment.**][split_regen]
 
 [split_regen]: ./trouble_regenerate_certs_split.html
 
@@ -33,7 +33,7 @@ Note that this process **destroys the certificate authority and all other certif
 
 **On your monolithic puppet master:**
 
-1. Back up the `/etc/puppetlabs/puppet/ssl/`, `/etc/puppetlabs/puppetdb/ssl/`, and `/opt/puppet/share/puppet-dashboard/certs` directories. If something goes wrong, you may need to restore these directories so your deployment can stay functional. **However,** if you needed to regenerate your certs for security reasons and couldn't, you should contact Puppet Labs support as soon as you restore service, so we can help you secure your site.
+1. Back up the `/etc/puppetlabs/puppet/ssl/` and `/opt/puppet/share/puppet-dashboard/certs` directories. If something goes wrong, you may need to restore these directories so your deployment can stay functional. **However,** if you needed to regenerate your certs for security reasons and couldn't, you should contact Puppet Labs support as soon as you restore service, so we can help you secure your site.
 2. Stop the puppet agent service with `sudo puppet resource service pe-puppet ensure=stopped`.
 3. Stop the orchestration service with `sudo puppet resource service pe-mcollective ensure=stopped`.
 4. Stop the puppet master service with `sudo puppet resource service pe-httpd ensure=stopped`.
@@ -49,7 +49,7 @@ Note that this process **destroys the certificate authority and all other certif
 > * You have a brand new CA certificate and key.
 > * Your puppet master has a certificate from the new CA, and it can once again field new certificate requests.
 > * The puppet master will reject any requests for configuration catalogs from nodes that haven't replaced their certificates (which, at this point, will be all of them except the master).
-> * The puppet master can't serve catalogs even to agents that do have new certificates, since it can't communicate with the console and PuppetDB.
+> * The puppet master can't serve catalogs even to agents that do have new certificates, since it can't communicate with the console.
 > * Orchestration and live management are down.
 
 ## Step 2: Clear and Regenerate Certs for the PE Console
