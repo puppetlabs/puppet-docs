@@ -11,9 +11,9 @@ canonical: "/pe/latest/install_what_and_where.html"
 
 Your PE license file (which was emailed to you when you purchased Puppet Enterprise) should be placed at `/etc/puppetlabs/license.key`.
 
-Puppet Enterprise can be evaluated with a complementary ten-node license; beyond that, a commercial per-node license is required for use. A license key file will have been emailed to you after your purchase, and the puppet master will look for this key at `/etc/puppetlabs/license.key`. Puppet will log warnings if the license is expired or exceeded, and you can view the status of your license by running `puppet license` at the command line on the puppet master. 
+Puppet Enterprise can be evaluated with a complementary ten-node license; beyond that, a commercial per-node license is required for use. A license key file will have been emailed to you after your purchase, and the puppet master will look for this key at `/etc/puppetlabs/license.key`. Puppet will log warnings if the license is expired or exceeded, and you can view the status of your license by running `puppet license` at the command line on the puppet master.
 
-To purchase a license, please see the [Puppet Enterprise pricing page](http://www.puppetlabs.com/puppet/how-to-buy/), or contact Puppet Labs at <sales@puppetlabs.com> or (877) 575-9775. For more information on licensing terms, please see [the licensing FAQ](http://www.puppetlabs.com/licensing-faq/). If you have misplaced or never received your license key, please contact <sales@puppetlabs.com>. 
+To purchase a license, please see the [Puppet Enterprise pricing page](http://www.puppetlabs.com/puppet/how-to-buy/), or contact Puppet Labs at <sales@puppetlabs.com> or (877) 575-9775. For more information on licensing terms, please see [the licensing FAQ](http://www.puppetlabs.com/licensing-faq/). If you have misplaced or never received your license key, please contact <sales@puppetlabs.com>.
 
 ##Software
 
@@ -27,7 +27,7 @@ All PE software (excluding config files) is installed under `/opt/puppet`.
 
 * Executable binaries are in `/opt/puppet/bin` and `/opt/puppet/sbin`.
 * Optionally, you can choose at install time to symlink the most common binaries into `/usr/local/bin`.
-* The Puppet modules included with PE are installed in `/opt/puppet/share/puppet/modules`. Don't edit this directory to add modules of your own. Instead, install them in `/etc/puppetlabs/puppet/modules`. 
+* The Puppet modules included with PE are installed in `/opt/puppet/share/puppet/modules`. Don't edit this directory to add modules of your own. Instead, install them in `/etc/puppetlabs/puppet/modules`.
 * MCollective plugins are installed in `/opt/puppet/libexec/mcollective/`. If you are adding new plugins to your PE agent nodes, you should distribute them via Puppet.
 
 ##Configuration Files
@@ -40,7 +40,7 @@ All PE software (excluding config files) is installed under `/opt/puppet`.
 
 Puppet Enterprise's configuration files all live under `/etc/puppetlabs`, with subdirectories for each of PE's components.
 
-* Puppet's `confdir` is in `/etc/puppetlabs/puppet`. This directory contains the [`puppet.conf`](/guides/configuring.html) file, the site manifest (`manifests/site.pp`), and the `modules` directory.
+* Puppet's `confdir` is in `/etc/puppetlabs/puppet`. This directory contains the [`puppet.conf`](/puppet/3.6/reference/config_file_main.html) file, the site manifest (`manifests/site.pp`), and the `modules` directory.
 * [MCollective's](orchestration_overview.html) config files are in `/etc/puppetlabs/mcollective`.
 * The console's config files are in `/etc/puppetlabs/puppet-dashboard`.
 
@@ -49,7 +49,7 @@ Puppet Enterprise's configuration files all live under `/etc/puppetlabs`, with s
 ###<i>What</i>
 The software distributed with Puppet Enterprise generates the following log files, which can be found as follows.
 
-###<i>Where</i> 
+###<i>Where</i>
 
 ### Puppet Master Logs
 
@@ -98,7 +98,7 @@ These files may or may not be present.
 
 Puppet Enterprise installs several suites of command line tools to help you work with the major components of the software. These include:
 
-- **Puppet Tools:** Tools that control basic functions of Puppet such as `puppet master,` `puppet apply` and `puppet cert.` 
+- **Puppet Tools:** Tools that control basic functions of Puppet such as `puppet master,` `puppet apply` and `puppet cert.`
     See the Puppet reference manual page on [Puppet's commands](/puppet/3.6/reference/services_commands.html) for more information.
 - **Cloud Provisioning Tools:** Tools used to provision new nodes. Mostly based around the `node` subcommand, these tools are used for tasks such as creating or destroying virtual machines, classifying new nodes, etc. See the [Cloud Provisioning Section](./cloudprovisioner_overview.html)  for more information.
 - **Orchestration Tools:** Tools used to orchestrate simultaneous actions across a number of nodes. These tools are built on the MCollective framework and are accessed either via the `mco` command or via the Live Management tab of the PE console. See the [Orchestration Section](./orchestration_overview.html) for more information.
@@ -155,10 +155,10 @@ root@master:~# puppet cert list --all
 
 Man pages for the Puppet subcommands are generated on the fly. To view them, run `puppet man <SUBCOMMAND>`.
 
-The `pe-man` command from previous versions of Puppet Enterprise is no longer functional. Use the above method instead. 
+The `pe-man` command from previous versions of Puppet Enterprise is no longer functional. Use the above method instead.
 
 
 
-* * * 
+* * *
 
-- [Next: Accessing the Console](./console_accessing.html) 
+- [Next: Accessing the Console](./console_accessing.html)

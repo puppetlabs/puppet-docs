@@ -52,7 +52,7 @@ In basic autosigning, the CA uses a config file containing a whitelist of certif
 
 To enable basic autosigning, set `autosign = <whitelist file>` in the `[master]` section of the CA puppet master's puppet.conf. The whitelist file must **not** be executable by the same user as the puppet master; otherwise it will be treated as a policy executable.
 
-> **Note:** Basic autosigning is enabled by default and looks for a whitelist located at `$confdir/autosign.conf`. See ["Configuring Puppet"](/guides/configuring.html) for details about Puppet's confdir.
+> **Note:** Basic autosigning is enabled by default and looks for a whitelist located at `$confdir/autosign.conf`. For more info, see [the page on the confdir](./dirs_confdir.html).
 
 ### The `autosign.conf` File
 

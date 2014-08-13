@@ -61,7 +61,7 @@ in the [`reportdir`](/references/latest/configuration.html#reportdir).
 
 Set the [`report`](/references/latest/configuration.html#report) setting in the [`puppet.conf` file][conf] to true in order to turn on reporting on agent nodes.
 
-[conf]: ./configuring.html
+[conf]: /puppet/latest/reference/config_file_main.html
 
     #
     #  /etc/puppet/puppet.conf

@@ -18,17 +18,17 @@ License File
 
 Your PE license file (which was emailed to you when you purchased Puppet Enterprise) should be placed at `/etc/puppetlabs/license.key`.
 
-Puppet Enterprise can be evaluated with a complementary ten-node license; beyond that, a commercial per-node license is required for use. A license key file will have been emailed to you after your purchase, and the puppet master will look for this key at `/etc/puppetlabs/license.key`. Puppet will log warnings if the license is expired or exceeded, and you can view the status of your license by running `puppet license` at the command line on the puppet master. 
+Puppet Enterprise can be evaluated with a complementary ten-node license; beyond that, a commercial per-node license is required for use. A license key file will have been emailed to you after your purchase, and the puppet master will look for this key at `/etc/puppetlabs/license.key`. Puppet will log warnings if the license is expired or exceeded, and you can view the status of your license by running `puppet license` at the command line on the puppet master.
 
-To purchase a license, please see the [Puppet Enterprise pricing page](http://www.puppetlabs.com/puppet/how-to-buy/), or contact Puppet Labs at <sales@puppetlabs.com> or (877) 575-9775. For more information on licensing terms, please see [the licensing FAQ](http://www.puppetlabs.com/licensing-faq/). If you have misplaced or never received your license key, please contact <sales@puppetlabs.com>. 
+To purchase a license, please see the [Puppet Enterprise pricing page](http://www.puppetlabs.com/puppet/how-to-buy/), or contact Puppet Labs at <sales@puppetlabs.com> or (877) 575-9775. For more information on licensing terms, please see [the licensing FAQ](http://www.puppetlabs.com/licensing-faq/). If you have misplaced or never received your license key, please contact <sales@puppetlabs.com>.
 
 
 Configuration Files
 -----
 
-Puppet Enterprise's configuration files all live under `/etc/puppetlabs`, with subdirectories for each of PE's components. 
+Puppet Enterprise's configuration files all live under `/etc/puppetlabs`, with subdirectories for each of PE's components.
 
-* Puppet's `confdir` is in `/etc/puppetlabs/puppet`. This directory contains the [`puppet.conf`](/guides/configuring.html) file, the site manifest (`manifests/site.pp`), and the `modules` directory.
+* Puppet's `confdir` is in `/etc/puppetlabs/puppet`. This directory contains the [`puppet.conf`](/puppet/3.6/reference/config_file_main.html) file, the site manifest (`manifests/site.pp`), and the `modules` directory.
 * MCollective's config files are in `/etc/puppetlabs/mcollective`.
 * The console's config files are in `/etc/puppetlabs/puppet-dashboard`.
 
@@ -37,7 +37,7 @@ Documentation
 
 Man pages for the Puppet subcommands are generated on the fly. To view them, run `puppet man <SUBCOMMAND>`.
 
-The `pe-man` command from previous versions of Puppet Enterprise is still functional, but it is deprecated and is slated for removal in a future release. 
+The `pe-man` command from previous versions of Puppet Enterprise is still functional, but it is deprecated and is slated for removal in a future release.
 
 Software
 -----
@@ -46,7 +46,7 @@ All PE software is installed under `/opt/puppet`.
 
 * Executable binaries are in `/opt/puppet/bin` and `/opt/puppet/sbin`.
 * Optionally, you can choose at install time to symlink the most common binaries into `/usr/local/bin`.
-* The Puppet modules included with PE are installed in `/opt/puppet/share/puppet/modules`. Don't edit this directory to add modules of your own; instead, install them in `/etc/puppetlabs/puppet/modules`. 
+* The Puppet modules included with PE are installed in `/opt/puppet/share/puppet/modules`. Don't edit this directory to add modules of your own; instead, install them in `/etc/puppetlabs/puppet/modules`.
 * MCollective plugins are installed in `/opt/puppet/libexec/mcollective/`. If you are adding new plugins to your PE agent nodes, you should distribute them via Puppet.
 
 Services
@@ -74,7 +74,7 @@ PE creates the following users:
 Log Files
 -----
 
-The software distributed with Puppet Enterprise generates the following log files: 
+The software distributed with Puppet Enterprise generates the following log files:
 
 ### Puppet Master
 
@@ -87,7 +87,7 @@ These logs are solely for HTTP activity; the puppet master service logs most of 
 
 The puppet agent service logs its activity to the syslog service. Your syslog configuration dictates where these messages will be saved, but the default location is `/var/log/messages` on Linux and `/var/adm/messages` on Solaris.
 
-### ActiveMQ 
+### ActiveMQ
 
 - `/var/log/pe-activemq/wrapper.log`
 - `/var/log/pe-activemq/activemq.log`

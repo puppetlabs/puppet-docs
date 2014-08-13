@@ -72,12 +72,12 @@ If you have used a command line package manager tool (like `gem`, `apt-get`, or 
 
 In order to use the puppet module tool behind a proxy, you need to set the following:
 
-	export http_proxy=http://10.187.255.9:8080 
+	export http_proxy=http://10.187.255.9:8080
 	export https_proxy=http://10.187.255.9:8080
-	
+
 Alternatively, you can set these two proxy settings inside the `user` config section in the `puppet.conf` file: `http_proxy_host` and `http_proxy_port`. For more information, see [Configuration Reference](/references/latest/configuration.html).
 
-**Note:** Make sure to set these two proxy settings in the `user` section only. Otherwise, there can be adverse effects. 
+**Note:** Make sure to set these two proxy settings in the `user` section only. Otherwise, there can be adverse effects.
 
 Installing Modules
 -----
@@ -90,7 +90,7 @@ The `puppet module install` action will install a module and all of its dependen
 * Use the `--modulepath` option to manually specify which directory to install into. Note: To avoid duplicating modules installed as dependencies, you may need to specify the modulepath as a list of directories; see [the documentation for setting the modulepath][modulepath] for details.
 * Use the `--ignore-dependencies` option to skip installing any modules required by this module.
 * Use the `--debug` option to see additional information about what the puppet module tool is doing.
- 
+
 <!-- TODO: change this if the behavior of --dir/--target-dir changes; for now, we aren't mentioning it -->
 
 ### Installing From the Puppet Forge
@@ -102,7 +102,7 @@ To install a module from the Puppet Forge, simply identify the desired module by
 
 ### Installing From Another Module Repository
 
-The module tool can install modules from other repositories that mimic the Forge's interface. To do this, change the [`module_repository`](/references/latest/configuration.html#modulerepository) setting in [`puppet.conf`](/guides/configuring.html) or specify a repository on the command line with the `--module_repository` option. The value of this setting should be the base URL of the repository; the default value, which uses the Forge, is `https://forgeapi.puppetlabs.com`.
+The module tool can install modules from other repositories that mimic the Forge's interface. To do this, change the [`module_repository`](/references/latest/configuration.html#modulerepository) setting in [`puppet.conf`](/puppet/3.6/reference/config_file_main.html) or specify a repository on the command line with the `--module_repository` option. The value of this setting should be the base URL of the repository; the default value, which uses the Forge, is `https://forgeapi.puppetlabs.com`.
 
 After setting the repository, follow the instructions above for installing from the Forge.
 
@@ -118,7 +118,7 @@ Make sure to use the `--ignore-dependencies` flag if you cannot currently reach 
 
 ### Installing PE Supported Modules
 
-PE 3.2 introduces [supported modules](http://forge.puppetlabs.com/supported), which  includes additional fields in the modules' metadata.json file to indicate compatibility with PE versions and OSes. The puppet module tool (PMT) has been updated in PE 3.2 to look for PE version requirements in the metadata. 
+PE 3.2 introduces [supported modules](http://forge.puppetlabs.com/supported), which  includes additional fields in the modules' metadata.json file to indicate compatibility with PE versions and OSes. The puppet module tool (PMT) has been updated in PE 3.2 to look for PE version requirements in the metadata.
 
 If you are running PE 3.2, please note that if a version of the module matches the installed version of PE, non-matching versions will be filtered out. The `--force` flag will prevent this filtering, and will either install the most recent version of the module if no version is specified or install the specified version. Note that the `--force` flag will ignore dependencies and checksums, as well as overwrite installed modules with the same modulename. The `--debug` flag will show whether a module is being filtered or not. If no PE version metadata is present in any version, all available versions of the module will be displayed.
 

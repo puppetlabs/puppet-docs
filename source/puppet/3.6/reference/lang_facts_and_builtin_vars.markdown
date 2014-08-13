@@ -150,7 +150,7 @@ Several variables are set by the puppet master. These are most useful when manag
 * `$servername` --- the puppet master's fully-qualified domain name. (Note that this information is gathered from the puppet master by Facter, rather than read from the config files; even if the master's certname is set to something other than its fully-qualified domain name, this variable will still contain the server's fqdn.)
 * `$serverip` --- the puppet master's IP address.
 * `$serverversion` --- the current version of puppet on the puppet master.
-* `$settings::<name of setting>` --- the value of any of the master's [settings](/guides/configuring.html). This is implemented as a special namespace and these variables must be referred to by their qualified names. Note that, other than `$environment` and `$clientnoop`, the agent node's settings are **not** available in manifests. If you wish to expose them to the master in this version of Puppet, you will have to create a custom fact.
+* `$settings::<name of setting>` --- the value of any of the master's [settings](./config_about_settings.html). This is implemented as a special namespace and these variables must be referred to by their qualified names. Note that, other than `$environment` and `$clientnoop`, the agent node's settings are **not** available in manifests. If you wish to expose them to the master in this version of Puppet, you will have to create a custom fact.
 
 Variables Set by the Parser
 -----

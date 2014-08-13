@@ -31,7 +31,7 @@ Puppet Syntax
 Configuration and Settings
 -----
 
-* [Configuring Puppet](/guides/configuring.html) describes Puppet's configuration files and covers the ten or so most useful settings.
+* [Configuring Puppet](/puppet/3.6/reference/config_about_settings.html) describes Puppet's configuration files and covers the ten or so most useful settings.
 * [The Configuration Reference](/references/3.4.latest/configuration.html) lists every single setting available to Puppet.
 
 * * *

@@ -6,7 +6,7 @@ canonical: "/puppet/latest/reference/lang_summary.html"
 
 
 [autoload]: ./lang_namespaces.html#autoloader-behavior
-[config]: /guides/configuring.html
+[config]: /puppet/3.6/reference/config_file_main.html
 [usecacheonfailure]: /references/2.7.latest/configuration.html#usecacheonfailure
 [fileserve]: ./modules_fundamentals.html#files
 [sitepp]: /references/glossary.html#site-manifest

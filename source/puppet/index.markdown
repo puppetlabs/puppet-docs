@@ -104,7 +104,6 @@ Get Puppet up and running at your site.
 * [Supported Platforms](/guides/platforms.html)
 * [Installing Puppet](/guides/install_puppet/pre_install.html) --- from packages, source, or gems
 * [Upgrading Puppet](/guides/install_puppet/upgrading.html) --- general advice and suggestions for upgrading critical infrastructure
-* [Configuring Puppet](/guides/configuring.html) --- use `puppet.conf` to configure Puppet's behavior
 
 ### Building and Using Modules
 
