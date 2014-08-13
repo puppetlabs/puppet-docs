@@ -46,21 +46,23 @@ If you manage `puppet.conf` with Puppet or a third-party tool like Git or r10k, 
 
    Report submission to the console no longer happens using `reports=https`. PE 3.2 changed the setting in `puppet.conf` to `reports=console`. This change works in the same way as the `node_terminus` changes described above.
 
-### Installing Without Internet Connectivity
+### Installing Agents in a Puppet Enterprise Infrastructure without Internet Access
 
-By default, the master node hosts a repo that contains packages used for agent installation. When you download the tarball for the master, the master also downloads the agent tarball for the same platform and unpacks it in this repo. 
+When installing agents on a platform that is different from the puppet master platform, the agent install script attempts to connect to the internet to download the appropriate agent tarball after you classify the puppet master, as described in [Installing Agents Using PE Package Management](#installing-agents-using-pe-package-management).
 
-When installing agents on a platform that is different from the master platform, the install script attempts to connect to the internet to download the appropriate agent tarball. If you will not have internet access at the time of installation, you need to [download](http://puppetlabs.com/misc/pe-files/agent-downloads) the appropriate agent tarball in advance and use the option below that corresponds with your particular deployment.
+If your PE infrastructure does not have access to the outside internet, you will not be able to fully use the agent installation instructions.  Instead, you will need to [download](http://puppetlabs.com/misc/pe-files/agent-downloads) the appropriate agent tarball in advance and use the option below that corresponds to your deployment needs. 
 
 * **Option 1**
 
     If you would like to use the PE-provided repo, you can copy the agent tarball into the `/opt/staging/pe_repo` directory on your master.
 
-    If you upgrade your server, you will need to perform this task again for the new version.
+    Note that if you upgrade your server at any point, you will need to perform this task again for the new version.
 
 * **Option 2**
 
-    If you already have a package management/distribution system, you can use it to install agents by adding the agent packages to your repo. In this case, you can disable the PE-hosted repo feature altogether by [removing](./console_classes_groups.html#classes) the `pe_repo` class from your master, along with any class that starts with `pe_repo::`.
+    If you already have a package management/distribution system, you can use it to install agents by adding the agent packages to your own repo. In this case, you can disable the PE-hosted repo feature altogether by [removing](./console_classes_groups.html#classes) the `pe_repo` class from your master, along with any class that starts with `pe_repo::`.
+
+    Note that if you upgrade your server, you will need to perform this task again for the new version.
 
 * **Option 3**
 

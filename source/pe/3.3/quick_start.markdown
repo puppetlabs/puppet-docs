@@ -147,7 +147,7 @@ To log in to the console, you can select the **Start Using Puppet Enterprise Now
 
 >**Note**: This procedure references RHEL and Debian, but it can be used for all supported platforms except Windows. For instructions on installing agents on Windows, refer to the [Windows agent installation instructions](./install_windows.html).
 
->**Tip**: If you don't have internet connectivity, refer to the [note about installing without internet connectivity](./install_agents.html#important-notes-and-warnings) to choose a method that is suitable for your needs.
+>**Tip**: If you don't have internet connectivity, refer to [Installing Agents in a Puppet Enterprise Infrastructure without Internet Access](./install_agents.html#installing-agents-in-a-puppet-enterprise-infrastructure-without-internet-access) to choose a method that is suitable for your needs.
 
 The puppet master that you've installed hosts a package repository for the agent of the same OS and architecture as the puppet master. When you run the installation script on your agent (for example, `curl -k https://<master.example.com>:8140/packages/current/install.bash | sudo bash`), the script will detect the OS on which it is running, set up an apt (or yum, or zypper) repo that refers back to the master, pull down and install the `pe-agent` packages.
 
