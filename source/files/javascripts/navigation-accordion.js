@@ -51,8 +51,10 @@ $( document ).ready( function() {
         $( this ).parent("li").trigger("toggleNavSection");
     });
 
-    // Add a "toggle all" button
-    navList.before( '<p style="text-align: center;"><a href="#" id="toggle-all-nav-sections">(↓ expand all ↓)</a></p>' );
+    // Add a "toggle all" button if there is at least one navSection
+    if ( navSections.length > 0 ) {
+        navList.before( '<p style="text-align: center;"><a href="#" id="toggle-all-nav-sections">(↓ expand all ↓)</a></p>' );
+    }
 
     // Enable the "toggle all" button
     $( "a#toggle-all-nav-sections" ).on("click", function(e) {
