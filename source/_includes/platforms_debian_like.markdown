@@ -6,9 +6,5 @@ We publish official packages and run automated testing on the following versions
 * Ubuntu 12.04 LTS "Precise Pangolin" (also supported by [Puppet Enterprise][peinstall])
 * Ubuntu 10.04 LTS "Lucid Lynx" (also supported by [Puppet Enterprise][peinstall])
 
-We publish packages for the following versions, but do not run automated testing on them:
-
-* Ubuntu 13.10 "Saucy Salamander"
-
 [peinstall]: /pe/latest/install_basic.html
 <!-- When updating these, you don't need to update any other area of the docs. -->
