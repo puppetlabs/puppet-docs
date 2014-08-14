@@ -69,8 +69,9 @@ code in a mostly accurate highlight.
 
 ### Linking
 
-Use absolute paths (eg, `/guides/goo/bar.html`) whenever possible;
-this makes moving documents less tedious.
+Use relative paths when linking pages WITHIN a large document. Use absolute paths (e.g. `/guides/goo/bar.html`) when linking pages OUTSIDE the current document.
+
+When linking from a PE manual to an upstream project manual, use the version of that upstream project that that PE version contains (e.g. PE 3.3 links to Puppet 3.6). In all other cases, use the "latest" alias.
 
 Footnote-style linking is preferred.
 
