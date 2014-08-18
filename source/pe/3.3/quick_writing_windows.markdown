@@ -31,13 +31,13 @@ Before you get started, you need to set up your Windows agent. To set up your Wi
 
 We will install a Puppet Enterprise supported module: `puppetlabs-registry`. 
 
-1. **On the puppet master**, run `puppet module search registry`. This searches for modules from the Puppet Forge with `ntp` in their names or descriptions and results in something like:
+1. **On the puppet master**, run `puppet module search registry`. This searches for modules from the Puppet Forge with `registry` in their names or descriptions and results in something like:
 
         Searching http://forgeapi.puppetlabs.com ...
         NAME                 DESCRIPTION               AUTHOR        KEYWORDS
         puppetlabs-registry  This module provides...   @puppetlabs   type registry        
 
-   You want `puppetlabs-registy`. You can view detailed info about the module in the "Read Me" on the Puppet Forge. <http://forge.puppetlabs.com/puppetlabs/ntp>.
+   You want `puppetlabs-registy`. You can view detailed info about the module in the "Read Me" on the Puppet Forge. 
 
 2. To install the module, run `puppet module install puppetlabs-registry`:
 
