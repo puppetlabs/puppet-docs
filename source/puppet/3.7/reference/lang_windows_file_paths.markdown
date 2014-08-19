@@ -11,19 +11,7 @@ title: "Language: Handling File Paths on Windows"
 
 Several [resource types](./lang_resources.html) (including `file`, `exec`, and `package`) take file paths as values for various attributes.
 
-When writing Puppet manifests to manage Windows systems, there are two extra issues to take into account when writing file paths: directory separators, and filesystem redirection.
-
-## Filesystem Redirection
-
-This version of Puppet always runs as a 32-bit process on Windows systems. On 64-bit versions of Windows, this means Puppet is affected by the <a href="http://msdn.microsoft.com/en-us/library/aa384187(v=vs.85).aspx">File System Redirector</a>. This can be an issue when trying to manage files in the system directory, like IIS configuration files.
-
-**When a Puppet resource accesses any files in the `%windir%\system32` directory, Windows will silently change the path to point to `%windir%\SysWOW64` instead.**
-
-To prevent redirection, you should **use the `sysnative` alias** in place of `system32` whenever you need to access files in the system directory.
-
-For example: `C:\Windows\sysnative\inetsrv\config\application Host.config` will always point to `C:\Windows\system32\inetsrv\config\application Host.config`, and never to `C:\Windows\SysWOW64\inetsrv\config\application Host.config`.
-
-> Note: 64-bit Windows Server 2003 requires hotfix [KB942589](http://support.microsoft.com/kb/942589/en-us) to use the sysnative alias.
+When writing Puppet manifests to manage Windows systems, there are two extra issues to take into account when writing file paths: directory separators and, for Windows Server 2003 only, file system redirection.
 
 ## Directory Separators
 
@@ -90,6 +78,50 @@ Strings surrounded by single quotes `'like this'` do not interpolate variables. 
 >
 > * When a backslash occurs at the very end of a single-quoted string, a double backslash must be used instead of a single backslash. For example: `path => 'C:\Program Files(x86)\\'`
 > * When a literal double backslash is intended, a quadruple backslash must be used.
+
+
+## File System Redirection (Windows Server 2003 or older versions of Puppet)
+
+As of Puppet 3.7, the Puppet agent can run as either a 32- or a 64-bit process. This means file system redirection is no longer a problem for most Windows systems.
+
+However, Windows Server 2003 is incompatible with 64-bit Puppet. Because you will be running a 32-bit version of Puppet on a 64-bit version of Windows, file system redirection will still affect you. This is also true if you are using a version of Puppet older than 3.7.
+
+In these cases, the <a href="http://msdn.microsoft.com/en-us/library/aa384187(v=vs.85).aspx">File System Redirector</a> will silently redirect all file system access of `%windir%\system32` to `%windir%\SysWOW64` instead. This can be an issue when trying to manage files in the system directory, such as IIS configuration files. 
+
+To prevent redirection, you should **use the `sysnative` alias** in place of `system32` whenever you need to access files in the system directory.
+
+For example: `C:\Windows\sysnative\inetsrv\config\application Host.config` will always point to `C:\Windows\system32\inetsrv\config\application Host.config`, and never to `C:\Windows\SysWOW64\inetsrv\config\application Host.config`.
+
+> Note: 64-bit Windows Server 2003 requires hotfix [KB942589](http://support.microsoft.com/kb/942589/en-us) to use the sysnative alias.
+  
+The <a href="http://msdn.microsoft.com/en-us/library/aa384232(v=vs.85).aspx">Registry Redirector</a> performs a similar function with certain <a href="http://msdn.microsoft.com/en-us/library/aa384253(v=vs.85).aspx">registry keys</a>. This isn't a problem if you use the puppetlabs/registry module to manage keys, but it can affect extension developers. (See below.)
+
+
+###Developing Extensions
+
+If you're developing custom types and providers or writing custom facts, be aware that the <a href="http://msdn.microsoft.com/en-us/library/aa384187(v=vs.85).aspx">File System Redirector</a> and the <a href="http://msdn.microsoft.com/en-us/library/aa384232(v=vs.85).aspx">Registry Redirector</a> will also affect these types, providers, and facts.
+
+#### Registry Redirection
+
+If you need to access registry keys in the native 64-bit registry space, you'll need to make sure you opt out of redirection. Here's an example of avoiding redirection in a custom fact:
+
+{% highlight ruby %}
+    Facter.add(:myfact) do
+      confine :kernel => :windows
+      setcode do
+        require 'win32/registry'
+
+        value = nil
+        hive = Win32::Registry::HKEY_CLASSES_ROOT
+        hive.open('SOFTWARE\Somewhere\SomeValue',  Win32::Registry::KEY_READ | 0x100) do |reg|
+          value = reg['SomeValue']
+        end
+        value
+      end
+    end
+{% endhighlight %}
+
+The addition of `| 0x100` ensures the registry is opened without redirection so you can access the keys you expect to access. For more information, see <a href="http://msdn.microsoft.com/en-us/library/aa384232(v=vs.85).aspx">Microsoft’s MSDN Reference on registry redirection.</a>
 
 
 ## Errata

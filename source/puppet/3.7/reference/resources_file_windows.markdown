@@ -29,9 +29,9 @@ The issue of backslashes and forward-slashes in file paths can get complicated. 
 
 [win_paths]: ./lang_windows_file_paths.html
 
-## Watch for Filesystem Redirection in `system32`
+## Watch for Filesystem Redirection with Windows 2003 or older versions of Puppet
 
-When accessing files in the `%windir%\system32` directory on 64-bit versions of Windows, Puppet is affected by Windows' File System Redirector. This is covered in full detail in [Handling File Paths on Windows.][win_paths]
+As of Puppet 3.7, Puppet can run as either a 32- or a 64-bit process. However, if you're using Windows Server 2003 or older versions of Puppet, you will be affected by the Windows File System Redirector. When accessing files in the `%windir%\system32` directory on 64-bit versions of Windows, Windows silently redirects all file system access of `%windir%\system32` to `%windir%\SysWOW64` instead. This issue is covered in full detail in [Handling File Paths on Windows.][win_paths]
 
 ## Be Consistent With Case in File Names
 
