@@ -37,7 +37,7 @@ We will install a Puppet Enterprise supported module: `puppetlabs-registry`.
         NAME                 DESCRIPTION               AUTHOR        KEYWORDS
         puppetlabs-registry  This module provides...   @puppetlabs   type registry        
 
-   You want `puppetlabs-registy`. You can view detailed info about the module in the "Read Me" on the Puppet Forge. 
+   You want `puppetlabs-registy`. You can view detailed info about the module in the "Read Me" on the Puppet Forge. w
 
 2. To install the module, run `puppet module install puppetlabs-registry`:
 
