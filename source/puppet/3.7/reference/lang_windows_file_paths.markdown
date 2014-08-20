@@ -94,35 +94,6 @@ For example: `C:\Windows\sysnative\inetsrv\config\application Host.config` will 
 
 > Note: 64-bit Windows Server 2003 requires hotfix [KB942589](http://support.microsoft.com/kb/942589/en-us) to use the sysnative alias.
   
-The <a href="http://msdn.microsoft.com/en-us/library/aa384232(v=vs.85).aspx">Registry Redirector</a> performs a similar function with certain <a href="http://msdn.microsoft.com/en-us/library/aa384253(v=vs.85).aspx">registry keys</a>. This isn't a problem if you use the puppetlabs/registry module to manage keys, but it can affect extension developers. (See below.)
-
-
-###Developing Extensions
-
-If you're developing custom types and providers or writing custom facts, be aware that the <a href="http://msdn.microsoft.com/en-us/library/aa384187(v=vs.85).aspx">File System Redirector</a> and the <a href="http://msdn.microsoft.com/en-us/library/aa384232(v=vs.85).aspx">Registry Redirector</a> will also affect these types, providers, and facts.
-
-#### Registry Redirection
-
-If you need to access registry keys in the native 64-bit registry space, you'll need to make sure you opt out of redirection. Here's an example of avoiding redirection in a custom fact:
-
-{% highlight ruby %}
-    Facter.add(:myfact) do
-      confine :kernel => :windows
-      setcode do
-        require 'win32/registry'
-
-        value = nil
-        hive = Win32::Registry::HKEY_CLASSES_ROOT
-        hive.open('SOFTWARE\Somewhere\SomeValue',  Win32::Registry::KEY_READ | 0x100) do |reg|
-          value = reg['SomeValue']
-        end
-        value
-      end
-    end
-{% endhighlight %}
-
-The addition of `| 0x100` ensures the registry is opened without redirection so you can access the keys you expect to access. For more information, see <a href="http://msdn.microsoft.com/en-us/library/aa384232(v=vs.85).aspx">Microsoft’s MSDN Reference on registry redirection.</a>
-
 
 ## Errata
 

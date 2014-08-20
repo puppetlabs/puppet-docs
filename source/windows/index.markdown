@@ -117,6 +117,33 @@ As of Puppet 3.7, the Puppet agent can run as either a 32- or a 64-bit process. 
 
 However, if you are running Windows Server 2003, which is incompatible with 64-bit Puppet, or if you are using an earlier version of Puppet, file system redirection will still affect you. Please see [Language: Handling File Paths on Windows](/puppet/latest/reference/lang_windows_file_paths.html) for how to safely handle file system redirection when running 32-bit Puppet on a 64-bit Windows system. Note that the information about file system redirection applies to extensions as well.
 
+###Developing Extensions
+
+If you're developing custom types and providers or writing custom facts, be aware that the <a href="http://msdn.microsoft.com/en-us/library/aa384187(v=vs.85).aspx">File System Redirector</a> and the <a href="http://msdn.microsoft.com/en-us/library/aa384232(v=vs.85).aspx">Registry Redirector</a> will also affect these types, providers, and facts.
+
+#### Registry Redirection
+
+If you need to access registry keys in the native 64-bit registry space, you'll need to make sure you opt out of redirection. Here's an example of avoiding redirection in a custom fact:
+
+{% highlight ruby %}
+    Facter.add(:myfact) do
+      confine :kernel => :windows
+      setcode do
+        require 'win32/registry'
+
+        value = nil
+        hive = Win32::Registry::HKEY_CLASSES_ROOT
+        hive.open('SOFTWARE\Somewhere\SomeValue',  Win32::Registry::KEY_READ | 0x100) do |reg|
+          value = reg['SomeValue']
+        end
+        value
+      end
+    end
+{% endhighlight %}
+
+The addition of `| 0x100` ensures the registry is opened without redirection so you can access the keys you expect to access. For more information, see <a href="http://msdn.microsoft.com/en-us/library/aa384232(v=vs.85).aspx">Microsoft’s MSDN Reference on registry redirection.</a>
+
+
 * * *
 
 Troubleshooting
