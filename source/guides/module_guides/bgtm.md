@@ -224,18 +224,18 @@ In Puppet 3.4.0 / Puppet Enterprise 3.2 and later, you can contain classes by us
 Two resources to anchor things to:
 
 {% highlight ruby %}
-    anchor { 'begin': }
-    anchor { 'end' }
+    anchor { 'module::begin': }
+    anchor { 'module::end' }
 {% endhighlight %}
 
 The anchoring:
 
 {% highlight ruby %}
-    Anchor['begin'] ->
-    Class['module::install'] ->
-    Class['module::config'] ->
-    Class['module::service'] ->
-    Anchor['end']
+    Anchor['module::begin'] ->
+      Class['module::install'] ->
+      Class['module::config']  ->
+      Class['module::service'] ->
+    Anchor['module::end']
 {% endhighlight %}
 
 This enforces ordering, so `::install` will happen before `::config`, and
