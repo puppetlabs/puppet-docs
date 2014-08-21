@@ -16,6 +16,8 @@ canonical: "/puppet/latest/reference/modules_installing.html"
 Installing Modules
 =====
 
+>**A Note for Puppet Enterprise 3.3.1 users**
+>A bug present in Puppet 3.6 was fixed in PE's 3.3.1 release. Please go to the [PE-specific](https://docs.puppetlabs.com/pe/3.3/modules_installing.html) page for an updated workflow. 
 
 ![Windows note](/images/windows-logo-small.jpg)
 
