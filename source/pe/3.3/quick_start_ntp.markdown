@@ -113,7 +113,7 @@ We're going to add the `ntp` class to the **default** node group. Depending on y
 
 > **Success!** Puppet Enterprise is now managing NTP on the nodes in the __default__ group. So, for example, if you forget to restart the NTP service on one of those nodes after running `ntpdate`, PE will automatically restart it on the next Puppet Enterprise run. 
 
-### Using the PE Console Event Inspector to View Changes Made by the `ntp` Class.
+### Using the PE Console Event Inspector to View Changes Made by the `ntp` Class
 
 [EI-default]: ./images/quick/EI_default.png
 [EI-class_change]: ./images/quick/EI_class-change.png
@@ -140,7 +140,7 @@ In the upper right corner of the detail pane is a link to a run report which con
 For more information about using the PE console event inspector, check out the [event inspector docs](./console_event_inspector). 
 
 
-### Using the PE Console to Edit Parameters of the NTP Class.
+### Using the PE Console to Edit Parameters of the NTP Class
 
 [ntp_params]: ./images/quick/ntp-params.png
 
