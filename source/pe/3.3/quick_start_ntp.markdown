@@ -43,7 +43,7 @@ If you haven't already done so, you'll need to get PE installed. See the [system
   
 ### Installing the Puppet Labs NTP Module
 
-The Puppet Labs NTP module (`puppetlabs-ntp`), is part of the PE [supported modules](http://forge.puppetlabs.com/supported) program; these modules are supported, tested, and maintained by Puppet Labs. Point your browser to [http://forge.puppetlabs.com/puppetlabs/ntp](http://forge.puppetlabs.com/puppetlabs/ntp). You can learn more about the Puppet Labs NTP module by visiting [the Puppet Forge](http://forge.puppetlabs.com/puppetlabs/ntp). 
+The Puppet Labs NTP module (`puppetlabs-ntp`), is part of the PE [supported modules](http://forge.puppetlabs.com/supported) program; these modules are supported, tested, and maintained by Puppet Labs. You can learn more about the Puppet Labs NTP module by visiting [http://forge.puppetlabs.com/puppetlabs/ntp](http://forge.puppetlabs.com/puppetlabs/ntp). 
 
 **To install the Puppet Labs NTP module**:
 
