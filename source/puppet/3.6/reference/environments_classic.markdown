@@ -131,34 +131,6 @@ If a node is assigned to an environment for which a config section doesn't exist
 If the values of the `manifest` or `modulepath` settings point to any files or directories that don't exist (due to interpolating `$environment` for an unexpected environment name), Puppet will act as though those directories were empty.
 
 
-Assigning Nodes to Environments
------
-
-By default, all nodes are assigned to a default environment named `production`.
-
-There are two ways to assign nodes to a different environment:
-
-* Via your [ENC][] or [node terminus][]
-* Via each agent node's puppet.conf
-
-The value from the ENC is authoritative, if it exists. If the ENC doesn't specify an environment, the node's config value is used.
-
-With config file environments, nodes can be assigned to environments that are not configured. This will cause them to fall back to global values for `modulepath` and `manifest`.
-
-### Via an ENC
-
-The interface to set the environment for a node will be different for each ENC. Some ENCs cannot manage environments.
-
-When writing an ENC, simply ensure that the `environment:` key is set in the YAML output that the ENC returns. [See the documentation on writing ENCs for details.][enc_environment]
-
-If the environment key isn't set in the ENC's YAML output, the puppet master will just use the environment requested by the agent.
-
-### Via the Agent's Config File
-
-In [puppet.conf][] on each agent node, you can set [the `environment` setting][env_setting] in either the `agent` or `main` config section. When that node requests a catalog from the puppet master, it will request that environment.
-
-If you are using an ENC and it specifies an environment for that node, it will override whatever is in the config file.
-
 Referencing the Environment in Manifests
 -----
 
