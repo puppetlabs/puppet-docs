@@ -22,6 +22,7 @@ Publishing Modules on the Puppet Forge
 =====
 
 >**A Note for Puppet Enterprise 3.3.1 users**
+>
 >A bug present in Puppet 3.6 was fixed in PE's 3.3.1 release. Please go to the [PE-specific](https://docs.puppetlabs.com/pe/3.3/modules_publishing.html) page for an updated workflow.
 
 The Puppet Forge is a community repository of modules, written and contributed by  Puppet Open Source and Puppet Enterprise users. Using the Puppet Forge is a great way to build on the work others have done and get updates and expansions on your own module work. This document describes how to publish your own modules to the Puppet Forge so that other users can [install][installing] them.
