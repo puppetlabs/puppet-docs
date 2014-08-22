@@ -19,6 +19,8 @@ See the [installation overview](./install_basic.html) for instructions on downlo
 >
 >- The machine you run the installer from must have the same OS/architecture as your PE deployment.
 >
+>- The server running the PuppetDB component needs port 5432 open.
+>
 >- Please ensure that port 3000 is reachable, as the web-based installer uses this port. You can close this port when the installation is complete.
 >
 >- The web-based installer does not support sudo configurations with `Defaults targetpw` or `Defaults rootpw`. Make sure your `/etc/sudoers` file does not contain, or else comment out, those lines.

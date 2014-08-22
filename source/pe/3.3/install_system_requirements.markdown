@@ -103,7 +103,7 @@ You can also simplify configuration of agent nodes by using a CNAME record to ma
 
 ### Firewall Configuration
 
-Configure your firewalls to accommodate Puppet Enterprise's network traffic. In brief: you should open up ports **8140, 8081, 61613, 5432, and 443.** The more detailed version is:
+Configure your firewalls to accommodate Puppet Enterprise's network traffic. In brief: you should open up ports **8140, 8081, 61613, and 443.** The more detailed version is:
 
 * If you are installing PE using the web-based installer, ensure port **3000** is open. You can close this port when the installation is complete.
 * All agent nodes must be able to send requests to the puppet master on ports **8140** (for Puppet) and **61613** (for orchestration).
@@ -111,7 +111,8 @@ Configure your firewalls to accommodate Puppet Enterprise's network traffic. In 
 * Any hosts you will use to access the console must be able to reach the console server on port **443,** or whichever port you specify during installation. (Users who cannot run the console on port **443** will often run it on port **3000**.)
 * If you will be invoking orchestration commands from machines other than the puppet master, they will need to be able to reach the master on port **61613.** (**Note:** enabling other machines to invoke orchestration actions is possible but not supported in this version of Puppet Enterprise.)
 * If you will be running the console and puppet master on separate servers, the console server must be able to accept traffic from the puppet master (and the master must be able to send requests) on ports **443** and **8140.** The console server must also be able to send requests to the puppet master on port **8140,** both for retrieving its own catalog and for viewing archived file contents.
-* PuppetDB needs to accept connections on ports **5432** and **8081**, and the puppet master and PE console need to be able to do outbound traffic on **8081**. 
+* PuppetDB needs to accept connections on port **8081**, and the puppet master and PE console need to be able to do outbound traffic on **8081**. 
+* For split installs, the server running the PuppetDB component needs port 5432 open. 
 
 ### Dependencies and OS Specific Details
 
