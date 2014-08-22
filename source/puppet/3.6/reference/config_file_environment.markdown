@@ -7,9 +7,10 @@ canonical: "/puppet/latest/reference/config_file_environment.html"
 [directory environments]: ./environments.html
 [environmentpath]: ./environments.html#about-environmentpath
 [modulepath]: /references/3.6.latest/configuration.html#modulepath
-[manifest]: /references/3.6.latest/configuration.html#manifest
-[config_version]: /references/3.6.latest/configuration.html#configversion
-[environment_timeout]: /references/3.6.latest/configuration.html#environmenttimeout
+[puppet.conf]: ./config_file_main.html
+[basemodulepath]: /references/3.6.latest/configuration.html#basemodulepath
+[main manifest]: ./dirs_manifest.html
+
 
 When using [directory environments][], each environment may contain an `environment.conf` file. This file can override several settings whenever the puppet master is serving nodes assigned to that environment.
 
@@ -31,16 +32,7 @@ For example: if your [`environmentpath` setting][environmentpath] is set to `$co
 
 ## Format
 
-The environment.conf file uses the same INI-like format as puppet.conf, with one exception: it cannot contain config sections like `[main]`. All settings in environment.conf must be outside any config section.
-
-### Allowed Settings
-
-In this version of Puppet, the environment.conf file is only allowed to override four settings:
-
-* [`modulepath`][modulepath] --- **Note:** if you're using Puppet Enterprise, you must always include either `$basemodulepath` or `/opt/puppet/share/puppet/modules` in the modulepath, since PE uses the modules in `/opt` to configure orchestration and other features.
-* [`manifest`][manifest]
-* [`config_version`][config_version]
-* [`environment_timeout`][environment_timeout]
+The environment.conf file uses the same INI-like format as [puppet.conf][], with one exception: it cannot contain config sections like `[main]`. All settings in environment.conf must be outside any config section.
 
 ### Relative Paths in Values
 
@@ -63,3 +55,51 @@ The most useful variables to interpolate into environment.conf settings are:
 * `$basemodulepath` --- useful for including the default module directories in the `modulepath` setting. Puppet Enterprise users should usually include this in the value of `modulepath`, since PE uses modules in the `basemodulepath` to configure orchestration and other features.
 * `$environment` --- useful for locating files, or as a command line argument to your `config_version` script.
 * `$confdir` --- useful for locating files.
+
+Allowed Settings
+-----
+
+In this version of Puppet, the environment.conf file is only allowed to override four settings:
+
+* `modulepath`
+* `manifest`
+* `config_version`
+* `environment_timeout`
+
+### `modulepath`
+
+The list of directories Puppet will load modules from. See [the reference page on the modulepath][modulepath] for more details about how Puppet uses it.
+
+If this setting isn't set, the modulepath for the environment will be:
+
+    <MODULES DIRECTORY FROM ENVIRONMENT>:$basemodulepath
+
+That is, Puppet will add the environment's `modules` directory to the value of the [`basemodulepath` setting][basemodulepath] from [puppet.conf][], with the environment's modules getting priority. If the `modules` directory is empty or absent, Puppet will only use modules from directories in the `basemodulepath`. A directory environment will never use the global `modulepath` from [puppet.conf][].
+
+**Note:** If you are using Puppet Enterprise 3.3, you **must** ensure that `/opt/puppet/share/puppet/modules` is included in the modulepath. ([See the note on the Creating Directory Environments page.][pe_reqs])
+
+[pe_reqs]: ./environments_creating.html#puppet-enterprise-requirements
+
+### `manifest`
+
+The [main manifest][] the Puppet master will use when compiling catalogs for this environment. This can be one file or a directory of manifests to be evaluated in alphabetical order. Puppet manages this path as a directory if one exists or if the path ends with a / or .
+
+If this setting isn't set, Puppet will use the environment's `manifests` directory as the main manifest, even if it is empty or absent. A directory environment will never use the global `manifest` from [puppet.conf][].
+
+**Note:** If you are using Puppet Enterprise 3.3, you **must** ensure that the default filebucket resource is included in the main manifest. ([See the note on the Creating Directory Environments page.][pe_reqs])
+
+### `config_version`
+
+A script Puppet can run to determine the configuration version.
+
+Puppet automatically adds a **config version** to every catalog it compiles, as well as to messages in reports. The version is an arbitrary piece of data that can be used to identify catalogs and events.
+
+You can specify an executable script that will determine an environment's config version by setting `config_version` in its environment.conf file. Puppet will run this script when compiling a catalog for a node in the environment, and use its output as the config version.
+
+If this setting isn't set, the config version will be the **time** at which the catalog was compiled (as the number of seconds since January 1, 1970). A directory environment will never use the global `config_version` from [puppet.conf][].
+
+### `environment_timeout`
+
+The time to live for a cached environment. This setting can be a time interval in seconds (30 or 30s), minutes (30m), hours (6h), days (2d), or years (5y). This setting can also be set to unlimited, which causes the environment to be cached until the master is restarted.
+
+If this setting isn't set, Puppet will use the global `environment_timeout` from [puppet.conf][]. The default cache timeout is **three minutes.**
