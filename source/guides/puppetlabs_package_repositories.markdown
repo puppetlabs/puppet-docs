@@ -44,10 +44,64 @@ The [yum.puppetlabs.com](https://yum.puppetlabs.com) repository supports the fol
 
 {% include repo_fedora.markdown %}
 
-Enabling the Prerelease Repos
+
+Using the Nightly Repos
+-----
+
+We provide automatic nightly repositories, and you can use them to test pre-release builds. These repos are available at <http://nightlies.puppetlabs.com/>.
+
+The nightly repos require that you also have the standard Puppet Labs repos enabled.
+
+### Nightly?
+
+Our automated systems will only create new "nightly" repos for builds that pass our acceptance testing on the most popular platforms. This means there will sometimes be a skipped day.
+
+### Contents of a Nightly Repo
+
+Each nightly repo only contains **a single product.** Currently, we only make nightly repos for Puppet and Facter.
+
+### Latest vs. Specific Commit
+
+There are two kinds of nightly repo for each product:
+
+* The "-latest" repo stays around forever, and always contains the latest build. It will have new packages every day or two. These repos are good for persistent canary systems.
+* The other repos are all named after a specific Git commit. They contain a single build, so you can reliably install the same version on many systems. These repos are good for testing a specific build you're interested in; for example, if you want to help test an impending release announced on the puppet-users list.
+
+    A single-commit repo will get deleted a week or two after it is created, so if you want to keep the packages available, you should import them into your local repository.
+
+### Enabling Nightly Repos on Yum-based Systems
+
+1. Make sure you've enabled the main Puppet Labs repos, as described above.
+2. In a web browser, go to <http://nightlies.puppetlabs.com/>. Choose the repository you want; this will be either `<PRODUCT>-latest`, or `<PRODUCT>/<COMMIT>`.
+3. Click through to your repository's `repo_configs/rpm` directory, and identify the `.repo` file that applies to your operating system; this will usually be something like `pl-puppet-<COMMIT>-el-7-x86_64.repo`.
+4. Download that `.repo` file into the system's `/etc/yum.repos.d/` directory. For example:
+
+        $ cd /etc/yum.repos.d
+        $ sudo wget http://nightlies.puppetlabs.com/puppet/30e4febe85e24c278a2830530965871dc3c0eec1/repo_configs/rpm/pl-puppet-30e4febe85e24c278a2830530965871dc3c0eec1-el-7-x86_64.repo
+5. Upgrade or install the product as usual.
+
+### Enabling Nightly Repos on Apt-based Systems
+
+1. Make sure you've enabled the main Puppet Labs repos, as described above.
+2. Make sure you've installed the GPG key we use for the nightly repos. This is different from the key we use to sign the main repos. If you aren't sure, you can install it by running:
+
+        $ wget http://nightlies.puppetlabs.com/07BB6C57
+        $ sudo apt-key add 07BB6C57
+2. In a web browser, go to <http://nightlies.puppetlabs.com/>. Choose the repository you want; this will be either `<PRODUCT>-latest`, or `<PRODUCT>/<COMMIT>`.
+3. Click through to your repository's `repo_configs/deb` directory, and identify the `.list` file that applies to your operating system; this will usually be something like `pl-puppet-<COMMIT>-precise.list`.
+4. Download that `.list` file into the system's `/etc/apt/sources.list.d/` directory. For example:
+
+        $ cd /etc/apt/sources.list.d
+        $ sudo wget http://nightlies.puppetlabs.com/puppet/30e4febe85e24c278a2830530965871dc3c0eec1/repo_configs/deb/pl-puppet-30e4febe85e24c278a2830530965871dc3c0eec1-precise.list
+5. Be sure to run `sudo apt-get update`.
+6. Upgrade or install the product as usual.
+
+Using the Prerelease Repos
 -----
 
 Our open source repository packages also install a disabled prerelease repo, which contains release candidate versions of all Puppet Labs products. Enable this if you wish to test upcoming versions early, or if you urgently need a bug fix that has not gone into a final release yet.
+
+> **Note:** We plan to phase out the prerelease repos in favor of the new and more flexible nightly repos. (See above.) The nightlies are nicer because they're single-serve; for example, you can enable a specific new version of Puppet without inviting in pre-release versions of everything.
 
 ### On Debian and Ubuntu
 
