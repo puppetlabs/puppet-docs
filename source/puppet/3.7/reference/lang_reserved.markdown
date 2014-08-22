@@ -97,7 +97,7 @@ Variable names begin with a `$` (dollar sign) and can include:
 * Numbers
 * Underscores
 
-There is no additional restriction on the first non-$ character of a variable name. Variable names are case-sensitive. Note that [some variable names are reserved.](#reserved-variable-names)
+Puppet 3.7 deprecates the use of uppercase letters for the first non-$ character of a variable name. Variable names are case-sensitive. Note that [some variable names are reserved.](#reserved-variable-names)
 
 Variable names should match the following regular expression:
 
