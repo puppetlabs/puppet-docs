@@ -14,6 +14,8 @@ title: "Directories: The Modulepath (Default Config)"
 [dynamic environments]: ./environments_classic.html#dynamic-environments
 [config_print]: ./config_print.html
 [enable_dir_envs]: ./environments.html#enabling-directory-environments
+[puppet.conf]: ./config_file_main.html
+[environment.conf]: ./config_file_environment.html
 
 The puppet master service and the puppet apply command both load most of their content from modules. (See the page on [module structure and behavior][module_fundamentals] for more details.)
 
@@ -43,8 +45,8 @@ The location of the modulepath is configured differently, depending on whether [
 
 Configuration                                   | Location of modulepath
 ------------------------------------------------|-----------------------
-[Config file environments][] or no environments | Value of `modulepath` setting (defaults to the **base modulepath**)
-[Directory environments][]                      | Active environment's [`modules` directory][env_modules], followed by the **base modulepath.**
+[Config file environments][] or no environments | Value of `modulepath` setting from [puppet.conf][] (defaults to the **base modulepath**)
+[Directory environments][]                      | Value of `modulepath` setting from [environment.conf][] (defaults to the active environment's [`modules` directory][env_modules] plus the **base modulepath**)
 
 You can view the effective modulepath for any environment by specifying the environment when [requesting the setting value][config_print]:
 

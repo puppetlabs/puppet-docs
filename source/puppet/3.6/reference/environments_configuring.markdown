@@ -7,19 +7,20 @@ title: "Configuring Directory Environments"
 [environmentpath]: /references/3.6.latest/configuration.html#environmentpath
 [confdir]: ./dirs_confdir.html
 [puppet.conf]: ./config_file_main.html
-[env_setting]: /references/3.6.latest/configuration.html#environment
 [modulepath]: ./dirs_modulepath.html
 [basemodulepath]: /references/3.6.latest/configuration.html#basemodulepath
 [environment.conf]: ./config_file_environment.html
 [environment_timeout]: /references/3.6.latest/configuration.html#environmenttimeout
 [create_environment]: ./environments_creating.html
 [about]: ./environments.html
+[assign]: ./environments_assigning.html
 
+Before you can use directory environments, you have to configure Puppet to enable them. After enabling them, you can:
 
-Before you can use directory environments, you have to configure Puppet to enable them.
+* [Create environments][create_environment]
+* [Assign environments to your nodes][assign]
 
-* After enabling them, you can start [creating directory environments.][create_environment]
-* For more info about what environments do, see [About Directory Environments.][about]
+For more info about what environments do, see [About Directory Environments.][about]
 
 Enabling Directory Environments in Puppet Enterprise
 -----
