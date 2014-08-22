@@ -53,6 +53,12 @@ The following words are reserved:
 * `undef` --- special value
 * `unless` --- language keyword
 
+The following words are reserved for future use and cause a deprecation warning in Puppet 3.7:
+* `attr`
+* `function`
+* `type`
+* `private`
+
 Additionally, you cannot use the name of any existing [resource type][type_ref] or [function][func_ref] as the name of a function, and you cannot use the name of any existing [resource type][type_ref] as the name of a defined type.
 
 Reserved Class Names
@@ -91,7 +97,7 @@ Variable names begin with a `$` (dollar sign) and can include:
 * Numbers
 * Underscores
 
-There is no additional restriction on the first non-$ character of a variable name. Variable names are case-sensitive. Note that [some variable names are reserved.](#reserved-variable-names)
+Puppet 3.7 deprecates the use of uppercase letters for the first non-$ character of a variable name. Variable names are case-sensitive. Note that [some variable names are reserved.](#reserved-variable-names)
 
 Variable names should match the following regular expression:
 
