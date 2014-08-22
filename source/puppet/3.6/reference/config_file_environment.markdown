@@ -103,3 +103,10 @@ If this setting isn't set, the config version will be the **time** at which the 
 The time to live for a cached environment. This setting can be a time interval in seconds (30 or 30s), minutes (30m), hours (6h), days (2d), or years (5y). This setting can also be set to unlimited, which causes the environment to be cached until the master is restarted.
 
 If this setting isn't set, Puppet will use the global `environment_timeout` from [puppet.conf][]. The default cache timeout is **three minutes.**
+
+Most users should be fine with the default. To get more performance from your puppet master, you may want to tune the timeout for your most heavily used environments. Getting the most benefit involves a tradeoff between speed, memory usage, and responsiveness to changed files. The general best practice is:
+
+- Long-lived, slowly changing, relatively homogenous, highly populated environments (like `production`) will give the most benefit from longer timeouts. You might be able to set this to hours, or `unlimited` if you're content to let cache stick around until your Rack server kills a given puppet master process.
+- Rapidly changing dev environments should have short timeouts: a few seconds, or `0` if you don't want to wait.
+- Sparsely populated environments should have short-ish timeouts, which are just long enough to help out if a cluster of nodes all hit the master at once, but won't clog your RAM with a bunch of rarely used data. Three minutes is fine.
+- Extremely heterogeneous environments --- where you have a lot of modules and each node uses a different tiny subset --- will sometimes perform _worse_ with a long timeout. (This can cause excessive memory usage and garbage collection without giving back any performance boost.) Give these short timeouts of 5-10 seconds.
