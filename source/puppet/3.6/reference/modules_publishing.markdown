@@ -92,12 +92,12 @@ To generate a new module, run `puppet module generate <USERNAME>-<MODULE NAME>`.
     examplecorp-mymodule/spec/spec_helper.rb
     examplecorp-mymodule/tests
     examplecorp-mymodule/tests/init.pp
-    
+
 
 Write a metadata.json File
 -----
 
-If you generated your module using the `puppet module generate` command, you'll already have a metadata.json file. If you put your module together without using the `puppet module generate` command, you must make sure that you have a metadata.json file in your module's main directory. 
+If you generated your module using the `puppet module generate` command, you'll already have a metadata.json file. If you put your module together without using the `puppet module generate` command, you must make sure that you have a metadata.json file in your module's main directory.
 
 The metadata.json is a JSON-formatted file containing information about your module, such as its name, version, and dependencies.
 
@@ -126,10 +126,10 @@ Your metadata.json will look something like
       "dependencies": [
         { "name": "puppetlabs/stdlib", "version_requirement": ">=3.2.0 <5.0.0" },
         { "name": "puppetlabs/firewall", "version_requirement": ">= 0.0.4" },
-      ] 
+      ]
     }
 
-###Fields in metadata.json 
+###Fields in metadata.json
 
 * `name` --- REQUIRED. The **full name** of your module, including the username (e.g. "username-module" --- [see note above](#a-note-on-module-names)).
 * `version` --- REQUIRED. The current version of your module. This should be a [semantic version](http://semver.org/).
@@ -141,7 +141,7 @@ Your metadata.json will look something like
 * `project_page` --- A link to your module's website. This will typically be the Puppet Forge.
 * `issues_url` --- A link to your module's issue tracker.
 * `operatingsystem_support` --- A list of operating system compatibility for your module. See [Operating system compatibility in metadata.json](#operating-system-compatibility-in-metadatajson) below for more details.
-* `tags` --- A list of key words that will help others find your module (not case sensitive)(e.g. [“msyql”, “database”, “monitoring”]). Tags cannot contain whitespace. We recommend using four to six tags. 
+* `tags` --- A list of key words that will help others find your module (not case sensitive)(e.g. [“msyql”, “database”, “monitoring”]). Tags cannot contain whitespace. We recommend using four to six tags.
 
 #####DEPRECATED
 
@@ -155,16 +155,16 @@ If your module's functionality depends upon functionality in another module, you
     "dependencies": [
       { "name": "puppetlabs/stdlib", "version_requirement": ">=3.2.0 <5.0.0" },
       { "name": "puppetlabs/firewall", "version_requirement": ">= 0.0.4" },
-      { "name": "puppetlabs/apt", "version_requirement": ">=1.1.0 <2.0.0" },      
+      { "name": "puppetlabs/apt", "version_requirement": ">=1.1.0 <2.0.0" },
       { "name": "puppetlabs/concat", "version_requirement": ">= 1.0.0 <2.0.0" }
     ]
 
 
-**Note:** Once you've generated your module and gone through the metadata.json dialog, you must manually edit the metadata.json file to include the dependency information. 
+**Note:** Once you've generated your module and gone through the metadata.json dialog, you must manually edit the metadata.json file to include the dependency information.
 
 > **Warning:** The full name in a dependency **must** use a slash between the username and module name. **This is different from the name format used elsewhere in metadata.json.** This is a legacy architecture problem with the Puppet Forge, and we apologize for the inconvenience. We are working on a solution.
 
-The version requirement in a dependency isn't limited to a single version; you can use several operators for version comparisons. 
+The version requirement in a dependency isn't limited to a single version; you can use several operators for version comparisons.
 
 * `1.2.3` --- A specific version.
 * `>1.2.3` --- Greater than a specific version.
@@ -182,7 +182,7 @@ The version requirement in a dependency isn't limited to a single version; you c
 
 ###Operating system compatibility in metadata.json
 
-If you are publishing your module to the Puppet Forge, we highly recommend that you include `operatingsystem_support` in your metadata.json. Even if you do not intend to publish your module, including this information can be helpful for tracking your work. 
+If you are publishing your module to the Puppet Forge, we highly recommend that you include `operatingsystem_support` in your metadata.json. Even if you do not intend to publish your module, including this information can be helpful for tracking your work.
 
 You can express this field through an array of hashes, classified under `operatingsystem` or `operatingsystemrelease`. `operatingsystem` will be used with Forge search filters, and `operatingsystemrelease` will be treated as strings on module pages. You can format it in either way shown below:
 
@@ -213,7 +213,7 @@ You can express this field through an array of hashes, classified under `operati
 Build Your Module
 ------
 
-With Puppet 3.6's updates to the puppet module tool (PMT), the process for  building your module will be slightly different based on the files in your module's directory. 
+With Puppet 3.6's updates to the puppet module tool (PMT), the process for  building your module will be slightly different based on the files in your module's directory.
 
 * [I generated a new module using `puppet module generate`](#brand-new-module)
 * [I have a Modulefile and no metadata.json](#modulefile-no-metadatajson)
@@ -241,8 +241,8 @@ If you used Puppet 3.6 to run `puppet module generate` to create your module, yo
 
 ###Modulefile, no metadata.json
 
-1. Run `# puppet module build <MODULE DIRECTORY>`. 
-2. If you have a Modulefile but no metadata.json file, you will receive a deprecation warning when you run the build command. The PMT will build you a complete metadata.json file using the information in your Modulefile, and will place the metadata.json in both your build directory and root module directory. 
+1. Run `# puppet module build <MODULE DIRECTORY>`.
+2. If you have a Modulefile but no metadata.json file, you will receive a deprecation warning when you run the build command. The PMT will build you a complete metadata.json file using the information in your Modulefile, and will place the metadata.json in both your build directory and root module directory.
 3. Navigate to your module in the pkg/ subdirectory, `#cd <username-modulename>/pkg/<username-modulename-version>`.
 4. Copy the metadata.json file to the root of your module.
 5. Navigate out of the pkg/ subdirectory to your module's root directory. Delete your Modulefile.
@@ -253,11 +253,11 @@ If you used Puppet 3.6 to run `puppet module generate` to create your module, yo
 
 1. Open the metadata.json file in your editor and remove the `types` and `checksums` fields entirely, if present.
 2. Make sure your dependencies are expressed in the metadata.json and **NOT** in the Modulefile.
-3. Run `# puppet module build <MODULE DIRECTORY>`. The PMT will merge your Modulefile and metadata.json files and issue a deprecation warning. 
+3. Run `# puppet module build <MODULE DIRECTORY>`. The PMT will merge your Modulefile and metadata.json files and issue a deprecation warning.
 4. Navigate to your module in the pkg/ subdirectory, `#cd <username-modulename>/pkg/<username-modulename-version>`.
 5. Copy the metadata.json file to the root of your module.
 6. Navigate out of the pkg/ subdirectory to your module's root directory. Delete your Modulefile.
-7. Run `# puppet module build <MODULE DIRECTORY>` again. (If you do not rebuild your module before publishing, you will cause users of your module to face [errors][errors]). 
+7. Run `# puppet module build <MODULE DIRECTORY>` again. (If you do not rebuild your module before publishing, you will cause users of your module to face [errors][errors]).
 8. Run `puppet module changes pkg/<username-modulename-version>` to determine whether your build was successful. A successful build will return: `Notice: No modified files`. An unsuccessful build will show modified files, which means you must start the process again.
 
 ###metadata.json, no Modulefile
@@ -278,7 +278,7 @@ In your web browser, navigate [to the Puppet Forge][forge] and log in.
 
 ###Create a Module Page
 
-If you have never published this module before, you must create a new page for it. 
+If you have never published this module before, you must create a new page for it.
 
 1. Click the "Publish a Module" in the sidebar:
 
