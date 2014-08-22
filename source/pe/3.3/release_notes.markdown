@@ -223,7 +223,9 @@ The following issues affect the currently shipped version of PE and all prior re
 
 ### Nonexistent manifestdir 500 Internal Server Error
 
-If you specify a manifestdir in `puppet.conf` that does not exist, a 500 internal server error will be raised on subsequent puppet runs.
+If the Puppet master's `/etc/puppetlabs/puppet/manifests` directory doesn't exist (or if you specify a manifestdir in `puppet.conf` that does not exist), a 500 internal server error will be raised on subsequent Puppet runs.
+
+This can be caused if you move the `manifests` directory into an environment, as we previously recommended in the docs. We've corrected the docs; if you encounter this error, you can fix it by running `sudo mkdir /etc/puppetlabs/puppet/manifests` on your Puppet master(s).
 
 ### Puppet Enterprise Cannot Locate Samba init Script for Ubuntu 14.04
 
