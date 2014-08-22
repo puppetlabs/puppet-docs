@@ -58,7 +58,7 @@ Our automated systems will only create new "nightly" repos for builds that pass 
 
 ### Contents of a Nightly Repo
 
-Each nightly repo only contains **a single product.** Currently, we only make nightly repos for Puppet and Facter.
+Each nightly repo only contains **a single product.** Currently, we only make nightly repos for Puppet, Facter, and PuppetDB.
 
 ### Latest vs. Specific Commit
 
