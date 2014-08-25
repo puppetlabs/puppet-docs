@@ -19,6 +19,7 @@ canonical: "/puppet/latest/reference/modules_fundamentals.html"
 [environment]: ./environments.html
 [templates]: /guides/templating.html
 [forge]: http://forge.puppetlabs.com
+[file_function]: /references/3.7.latest/function.html#file
 
 Puppet Modules
 =====
@@ -93,7 +94,7 @@ This example module, named "`my_module`," shows the standard module layout in mo
             * `foo.pp` --- Contains a class named **`my_module::implementation::foo`.**
             * `bar.pp` --- Contains a class named **`my_module::implementation::bar`.**
     * `files/` --- Contains static files, which managed nodes can download.
-        * `service.conf` --- This file's URL would be **`puppet:///modules/my_module/service.conf`.**
+        * `service.conf` --- This file's `source =>` URL would be **`puppet:///modules/my_module/service.conf`.** Its contents can also be accessed with the `file` function, like `content => file('my_module/service.conf')`.
     * `lib/` --- Contains plugins, like [custom facts][] and custom resource types. These will be used by both the puppet master server and the puppet agent service, and they'll be synced to all agent nodes whenever they request their configurations. See ["Using Plugins"][plugins] for more details.
     * `facts.d/` --- Contains [external facts][], which are an alternative to Ruby-based [custom facts][]. These will be synced to all agent nodes, so they can submit values for those facts to the puppet master. (Requires Facter 2.0.1 or later.)
     * `templates/` --- Contains templates, which the module's manifests can use. See ["Templates"][templates] for more details.
@@ -139,10 +140,11 @@ Certain module names are disallowed:
 
 ### Files
 
-Files in a module's `files` directory are automatically served to agent nodes. They can be downloaded by using **puppet:/// URLs** in the `source` attribute of a [`file`][file] resource.
+Files in a module's `files` directory can be served to agent nodes. They can be downloaded by using **puppet:/// URLs** in the `source` attribute of a [`file`][file] resource.
+
+You can also access module files with [the `file` function][file_function]. This function takes a `<MODULE NAME>/<FILE NAME>` reference, and returns the content of the requested file from the module's `files` directory.
 
 Puppet URLs work transparently in both agent/master mode and standalone mode; in either case, they will retrieve the correct file from a module.
-
 
 [file]: /references/stable/type.html#file
 
