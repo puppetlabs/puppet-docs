@@ -48,7 +48,7 @@ Alternately, you can store node definitions in any number of manifest files whic
     import 'extra_nodes.pp'
 {% endhighlight %}
 
-This is one of the only recommended use cases for `import`. Note that using `import` will require you to restart the puppet master if you change the node manifests and that importing many files will slow down Puppet's compilation time. [See the documentation of `import`][import] for details.
+This is one of the only recommended use cases for `import`. Note that using `import` will require you to restart the Puppet master if you change the node manifests and that importing many files will slow down Puppet's compilation time. [See the documentation of `import`][import] for details.
 
 > Node statements should never be put in [modules][]. The behavior of a node statement in an autoloaded manifest is undefined.
 
@@ -170,7 +170,7 @@ Thus, for the node `www01.example.com`, Puppet would try the following, in order
 * The first regex matching `www01`
 * `default`
 
-You can turn off this fuzzy name matching by changing the puppet master's [`strict_hostname_checking`][strict] setting to `true`. This will cause Puppet to skip step 3 and only use the node's full name before resorting to `default`.
+You can turn off this fuzzy name matching by changing the Puppet master's [`strict_hostname_checking`][strict] setting to `true`. This will cause Puppet to skip step 3 and only use the node's full name before resorting to `default`.
 
 ### Regex Capture Variables
 
@@ -195,49 +195,14 @@ Although ENCs and node definitions can work together, we recommend that most use
 
 ### Inheritance
 
-Nodes can inherit from other nodes using the `inherits` keyword. Inheritance works identically to [class inheritance][inherit]. **This feature is not recommended; see the aside below.**
+In earlier versions of Puppet, nodes could inherit from other nodes using the `inherits` keyword. This feature is deprecated in Puppet 3.7. Node inheritance often caused complications and ambiguities --- classes and defined types are more effective strategies for reuse. As of Puppet 3.7, node inheritance causes a deprecation warning in the current parser and an error in the future parser.
 
-Example:
 
-{% highlight ruby %}
-    node 'common' {
-      $ntpserver = 'time.example.com'
-      include common
-    }
-    node 'www1.example.com' inherits 'common' {
-      include ntp
-      include apache
-      include squid
-    }
-{% endhighlight %}
-
-In the above example, `www1.example.com` would receive the `common, ntp, apache,` and `squid` classes, and would have an `$ntpserver` of `time.example.com`.
-
-> #### Aside: Best Practices
->
-> You should almost certainly avoid using node inheritance. Many users attempt to do the following:
->
-{% highlight ruby %}
-    node 'common' {
-      $ntpserver = 'time.example.com'
-      include common
-      include ntp
-    }
-    node 'www01.example.com' inherits 'common' {
-      # Override default NTP server:
-      $ntpserver = '0.pool.ntp.org'
-    }
-{% endhighlight %}
->
-> This will have the opposite of the intended effect, because Puppet treats node definitions like classes. It does not mash the two together and then compile the mix; instead, it compiles the base class, **then** compiles the derived class, which gets a parent scope and special permission to modify resource attributes from the base class.
->
-> In the example above, this means that by the time `node www01.example.com` has set its own value for `$ntpserver`, the `ntp` class has **already received** the value it needed and is no longer interested in that variable. For the derived node to override that variable **for classes in the base node,** it would have to be complied **before** the base node, and there is no way for Puppet's current implementation to do that.
->
 > #### Alternatives to Node Inheritance
 >
 > * Most users who need hierarchical data should keep it in an external source and have their manifests look it up. The best solution right now is [Hiera][], which is available by default in Puppet 3 and later. See our [Hiera guides][hiera] for more information about using it.
-> * [ENCs][enc] can look up data from any arbitrary source, and return it to Puppet as top-scope variables.
+> * [ENCs][enc] can look up data from any arbitrary source and return it to Puppet as top-scope variables.
 > * If you have node-specific data in an external CMDB, you can easily write [custom Puppet functions][custom_functions] to query it.
 > * For very small numbers of nodes, you can copy and paste to make complete node definitions for special-case nodes.
-> * With discipline, you can use node inheritance **only** for data lookup. The safest approach is to **only set variables** in the base nodes, then declare **all** classes in the derived nodes. This is less terse than the mix-and-match that most users try first, but is completely reliable.
+
 
