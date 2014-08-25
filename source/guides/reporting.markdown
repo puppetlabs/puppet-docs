@@ -54,29 +54,10 @@ each report, and each type of metric has one or more values:
 
 ## Setting Up Reporting
 
-By default, the agent does not send reports, and the master is only configured to store reports, which just dumps reports as YAML
-in the [`reportdir`](/references/latest/configuration.html#reportdir).
+By default:
 
-### Make Agent Nodes Send Reports
-
-Set the [`report`](/references/latest/configuration.html#report) setting in the [`puppet.conf` file][conf] to true in order to turn on reporting on agent nodes.
-
-[conf]: /puppet/latest/reference/config_file_main.html
-
-    #
-    #  /etc/puppet/puppet.conf
-    #
-    [agent]
-        report = true
-
-With this setting enabled, the agent will then send the report to
-the puppet master server at the end of every transaction.
-
-Agents default to sending reports to the same server they get
-their configurations from, but you can change that by setting
-[`reportserver`](/references/latest/configuration.html#reportserver), so if you have load-balanced Puppet
-servers you can keep all of your reports consolidated on a single
-machine. (This is unimportant if the puppet masters are using report processors like `http` or `puppetdb`, which just hand off reports to an external system.)
+* The agent sends reports to the master.
+* The master is configured to use the `store` report handler, which just dumps reports as YAML to disk in the [`reportdir`](/references/latest/configuration.html#reportdir).
 
 ### Make Masters Process Reports
 
