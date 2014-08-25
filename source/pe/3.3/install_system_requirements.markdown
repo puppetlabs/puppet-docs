@@ -112,7 +112,7 @@ Configure your firewalls to accommodate Puppet Enterprise's network traffic. In 
 * If you will be invoking orchestration commands from machines other than the puppet master, they will need to be able to reach the master on port **61613.** (**Note:** enabling other machines to invoke orchestration actions is possible but not supported in this version of Puppet Enterprise.)
 * If you will be running the console and puppet master on separate servers, the console server must be able to accept traffic from the puppet master (and the master must be able to send requests) on ports **443** and **8140.** The console server must also be able to send requests to the puppet master on port **8140,** both for retrieving its own catalog and for viewing archived file contents.
 * PuppetDB needs to accept connections on port **8081**, and the puppet master and PE console need to be able to do outbound traffic on **8081**. 
-* For split installs, the server running the PuppetDB component needs port 5432 open. 
+* For split installs, the server running the PuppetDB component needs port **5432** open. 
 
 ### Dependencies and OS Specific Details
 
