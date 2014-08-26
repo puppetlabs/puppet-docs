@@ -380,8 +380,10 @@ As an example, if your master is on a node running EL6 and you want to add an ag
 2. To create the new repo containing the agent packages, use live management to kick off a puppet run.
 
    a. Navigate to the live management page, and select the __Control Puppet__ tab.
+   
+   b. Select only the puppet master node.
     
-   b. Click the __runonce__ action and then __Run__ to trigger a puppet run 
+   c. Click the __runonce__ action and then __Run__ to trigger a puppet run 
 
    The new repo is created in `/opt/puppet/packages/public`. It will be called `puppet-enterprise-3.3.0-debian-6-amd64-agent`.
    
