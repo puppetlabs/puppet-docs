@@ -96,14 +96,14 @@ Initial Installation: Using the Installer Script
 The installation process begins with the initial installation of the master, database, console, and provisioner roles:
 
 1. Unarchive the installer tarball, usually with `tar -xzf <TARBALL FILE>`.
-1. Navigate to the resulting directory in your shell.
-1. Run the `puppet-enterprise-installer` script with root privileges:
+2. Navigate to the resulting directory in your shell.
+3. Run the `puppet-enterprise-installer` script with root privileges:
 
         $ sudo ./puppet-enterprise-installer
-1. Answer the interview questions to [select and configure PE's roles](#selecting-roles).
-1. Log into the puppet master server and [sign the new node's certificate](#signing-agent-certificates).
-1. If you have purchased PE and are installing the puppet master, [copy your license key into place](#verifying-your-license).
-1. Wait 30 minutes for the next puppet run, or kick off a run manually, to get all the agents checked in.
+4. Answer the interview questions to [select and configure PE's roles](#selecting-roles).
+5. Log into the puppet master server and [sign the new node's certificate](#signing-agent-certificates).
+6. If you have purchased PE and are installing the puppet master, [copy your license key into place](#verifying-your-license).
+7. Wait 30 minutes for the next puppet run, or kick off a run manually, to get all the agents checked in.
 
 Note that after the installer has finished installing and configuring PE, it will save your interview answers to a file called `answers.lastrun`. This file can be used as the basis for future, automated installations. For details [see the section on automated installation][automated].
 
@@ -357,7 +357,9 @@ After you’ve installed the agent on the target node, you can configure it usin
 
 Simply SSH into the node where you want to install the PE agent, and run `curl -k https://<master hostname>:8140/packages/current/install.bash | sudo bash`.
 
-The script will install the PE agent packages on the agent node, create a basic `puppet.conf`, and kick off a puppet run.
+This script will detect the OS on which it is running, set up an apt, yum, or zipper repo that refers back to the Puppet master, and then pull down and install the `pe-agent` packages. It will also create a basic `puppet.conf`, and kick off a puppet run.
+
+> After the installation is complete, continue on to [Signing Agent Certificates](#signing-agent-certificates)
 
 **Scenario 2**: The OS/architecture of the Puppet master and the agent node are different.  
 
