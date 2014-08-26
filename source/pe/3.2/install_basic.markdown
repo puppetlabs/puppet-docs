@@ -381,7 +381,7 @@ As an example, if your master is on a node running EL6 and you want to add an ag
 
    a. Navigate to the live management page, and select the __Control Puppet__ tab.
    
-   b. Select only the puppet master node.
+   b. Select only the puppet master node. (If you have other agents installed, they do not need to run at this time.)
     
    c. Click the __runonce__ action and then __Run__ to trigger a puppet run 
 
