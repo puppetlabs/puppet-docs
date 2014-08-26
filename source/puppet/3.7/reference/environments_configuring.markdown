@@ -48,7 +48,7 @@ Once you edit puppet.conf, directory environments will be enabled and config fil
 
 ### Create a Directory Environment
 
-You must have a directory environment for **every** environment that **any** nodes are assigned to. **At minimum, you must have a `production` environment.** Nodes assigned to nonexistent environments cannot fetch their catalogs.
+You must have a directory environment for **every** environment that **any** nodes are assigned to. At minimum, you should have a `production` environment. Nodes assigned to nonexistent environments cannot fetch their catalogs.
 
 To create your first environment:
 
@@ -79,7 +79,7 @@ Once you edit puppet.conf, directory environments will be enabled and config fil
 
 ### Create a Directory Environment
 
-You must have a directory environment for **every** environment that **any** nodes are assigned to. **At minimum, you must have a `production` environment.** Nodes assigned to nonexistent environments cannot fetch their catalogs.
+You must have a directory environment for **every** environment that **any** nodes are assigned to. At minimum, you should have a `production` environment. Nodes assigned to nonexistent environments cannot fetch their catalogs.
 
 To create your first environment, create a directory named `production` in your environmentpath. Once it is created, you can add modules, a [main manifest,][manifest_dir] and an [environment.conf][] file to it.
 
