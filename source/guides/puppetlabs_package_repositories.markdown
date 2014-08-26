@@ -83,10 +83,6 @@ There are two kinds of nightly repo for each product:
 ### Enabling Nightly Repos on Apt-based Systems
 
 1. Make sure you've enabled the main Puppet Labs repos, as described above.
-2. Make sure you've installed the GPG key we use for the nightly repos. This is different from the key we use to sign the main repos. If you aren't sure, you can install it by running:
-
-        $ wget http://nightlies.puppetlabs.com/07BB6C57
-        $ sudo apt-key add 07BB6C57
 2. In a web browser, go to <http://nightlies.puppetlabs.com/>. Choose the repository you want; this will be either `<PRODUCT>-latest`, or `<PRODUCT>/<COMMIT>`.
 3. Click through to your repository's `repo_configs/deb` directory, and identify the `.list` file that applies to your operating system; this will usually be something like `pl-puppet-<COMMIT>-precise.list`.
 4. Download that `.list` file into the system's `/etc/apt/sources.list.d/` directory. For example:
