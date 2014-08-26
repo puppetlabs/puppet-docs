@@ -29,7 +29,7 @@ Location
 
 The main manifest may be a single file or a directory of `.pp` files. To check the actual manifest your puppet master will use, [run `puppet config print manifest --section master --environment <ENVIRONMENT>`][print_settings].
 
-> **Recommended:** If you're using the main manifest heavily instead of relying on an [ENC][], consider changing the `manifest` setting to `$confdir/manifests`. This lets you split up your top-level code into multiple files while [avoiding the `import` keyword][import_deprecation]. It will also match the behavior of [simple environments][environment].
+> **Recommended:** If you're using the main manifest heavily instead of relying on an [ENC][], consider changing the `manifest` setting to `$confdir/manifests`. This lets you split up your top-level code into multiple files while [avoiding the `import` keyword][import_deprecation]. It will also match the behavior of [directory environments][environment].
 
 ### With Puppet Apply
 
@@ -44,5 +44,9 @@ If the main manifest is a directory, Puppet will parse every `.pp` file in the d
 
 Puppet will act as though the whole directory were just one big manifest; for example, a variable assigned in the file `01_all_nodes.pp` would be accessible in `node_web01.pp`.
 
-Puppet will only read **the first level of files** in a manifest directory; it won't descend into subdirectories.
+* If [the `parser` setting][parser] is set to `current`, Puppet will only read **the first level of files** in a manifest directory; it **won't** descend into subdirectories.
+* If you've set [`parser = future`][parser], Puppet **will** descend into all subdirectories of the manifest dir.
 
+    Puppet will load files in depth-first order. (For example, if the manifest directory contains a directory named `01` and a file named `02.pp`, it will parse all the files in `01` before `02`.)
+
+[parser]: /references/3.7.latest/configuration.html#parser
