@@ -5,7 +5,6 @@ canonical: "/puppet/latest/reference/experiments_future.html"
 ---
 
 [parser_setting]: /references/latest/configuration.html#parser
-[evaluator_setting]: /references/latest/configuration.html#evaluator
 [users_group]: https://groups.google.com/forum/#!forum/puppet-users
 
 > **Warning:** This document describes an **experimental feature,** which is not officially supported and is not considered ready for production. [See here for more information about experimental features in Puppet](./experiments_overview.html), especially if you are using Puppet Enterprise.
@@ -27,14 +26,6 @@ To enable the future parser:
 * On your puppet master(s) (or all nodes, if running puppet apply), ensure the `rgen` gem is installed. If you installed Puppet from the official packages, this was already installed as a dependency; otherwise, you may need to install it manually.
 * On your puppet master(s) (or each node, if running puppet apply), set [`parser = future`][parser_setting] in the `[master]` or `[main]` section of puppet.conf. (In a masterless "puppet apply" deployment, use `[main]`.)
     * Alternately, for one-off tests, you can set `--parser future` on the command line when running puppet apply.
-
-### Toggling the Future Evaluator
-
-By default, the future parser also uses a new evaluator. (The parser is what turns the source text into a model; the evaluator is what takes actions based on the model --- for example, reducing a complex expression into a simpler expression, or adding a resource to the catalog based on a resource declaration.)
-
-The new evaluator defaults to enabled when the future parser is turned on, but it can be independently deactivated by setting [`evaluator = current`][evaluator_setting] in puppet.conf or `--evaluator current` on the command line.
-
-This is generally only useful if you're comparing the old and new compilation systems and need to track down differences in catalog output.
 
 Lambdas and Iteration
 -----
