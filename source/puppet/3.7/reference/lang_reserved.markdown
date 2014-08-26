@@ -53,7 +53,8 @@ The following words are reserved:
 * `undef` --- special value
 * `unless` --- language keyword
 
-The following words are reserved for future use and cause a deprecation warning in Puppet 3.7:
+The following words are reserved for future use:
+
 * `attr`
 * `function`
 * `type`
