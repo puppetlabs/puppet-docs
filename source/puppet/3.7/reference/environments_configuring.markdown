@@ -61,6 +61,10 @@ Once the `production` environment is created, you can add modules, additional [m
 
 * See [the page on creating directory environments][create_environment] for full details.
 
+### Restart the Puppet Master
+
+Restart the `pe-httpd` service to make sure the Puppet master picks up its changed configuration.
+
 Enabling Directory Environments in Open Source Puppet
 -----
 
@@ -81,10 +85,13 @@ Once you edit puppet.conf, directory environments will be enabled and config fil
 
 You must have a directory environment for **every** environment that **any** nodes are assigned to. At minimum, you should have a `production` environment. Nodes assigned to nonexistent environments cannot fetch their catalogs.
 
-To create your first environment, create a directory named `production` in your environmentpath. Once it is created, you can add modules, a [main manifest,][manifest_dir] and an [environment.conf][] file to it.
+To create your first environment, create a directory named `production` in your environmentpath. (If a `production` directory doesn't exist, the puppet master will try to create one when it starts up.) Once it is created, you can add modules, a [main manifest,][manifest_dir] and an [environment.conf][] file to it.
 
 * See [the page on creating directory environments][create_environment] for full details.
 
+### Restart the Puppet Master
+
+Restart the web server that manages your Puppet master, to make sure the Puppet master picks up its changed configuration.
 
 
 Global Settings for Configuring Environments
