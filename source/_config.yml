@@ -36,6 +36,7 @@ defaultnav:
   /puppetdb/1.6: puppetdb1.6.html
   /puppetdb/2.0: puppetdb2.0.html
   /puppetdb/2.1: puppetdb2.1.html
+  /puppetdb/2.2: puppetdb2.2.html
   /puppetdb/master: puppetdb_master.html
   /puppet/0.24/reference: puppet_0_24.html
   /puppet/0.25/reference: puppet_0_25.html
@@ -55,8 +56,8 @@ url: "http://docs.puppetlabs.com"
 #    commit: origin/master # a git treeish (in a form acceptable to `git checkout`) that the external source should track. This should almost always be either a tag, which will never update, or an upstream tracking branch on the default "origin" remote (origin/<branch>), which will update every time someone builds the site.
 #    subdirectory: website # A subdirectory within the remote repository that contains the documentation files that we'll build and mount at the specified url.
 externalsources:
-  # Both 1.1 and 1.2 are now 'legacy' and so we can clear the branch, we are
-  # referencing a sha1 directly instead.
+  # Older versions of PuppetDB are now 'legacy' and so we can clear the branch, we are
+  # referencing a tag instead.
   puppetdb_1.1:
     url: /puppetdb/1.1
     repo: git://github.com/puppetlabs/puppetdb.git
@@ -94,6 +95,11 @@ externalsources:
     subdirectory: documentation
   puppetdb_2.1:
     url: /puppetdb/2.1
+    repo: git://github.com/puppetlabs/puppetdb.git
+    commit: origin/2.1.x
+    subdirectory: documentation
+  puppetdb_2.2:
+    url: /puppetdb/2.2
     repo: git://github.com/puppetlabs/puppetdb.git
     commit: origin/stable
     subdirectory: documentation
