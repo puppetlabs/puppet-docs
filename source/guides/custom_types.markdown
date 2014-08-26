@@ -426,11 +426,13 @@ required resources are being managed, they get applied before the
 requiring resource.
 
 
-### Agent-Side Pre-Run Resource Validation
+### Agent-Side Pre-Run Resource Validation (Puppet 3.7 and Later)
 
 A resource may have prerequisites on the target, without which it cannot be synced. In some cases, if the absence of these prerequisites would be catastrophic, you may want to abort the whole catalog run if you detect a missing prerequisite.
 
 In this situation, you can define a method in your type named `pre_run_check`. This method can do any check you want. It should take no arguments, and should raise a `Puppet::Error` if the catalog run should be aborted.
+
+This method is **only available in Puppet 3.7 and later.**
 
 If a `pre_run_check` method is present in the type, Puppet agent and Puppet apply will run the check for every resource of the type before attempting to apply the catalog. It will collect any errors raised, and present all of them before aborting the catalog run.
 
