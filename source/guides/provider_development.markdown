@@ -32,33 +32,77 @@ throughout this document, and the examples used are current as of
 ## Declaration
 
 Providers are always associated with a single resource type, so
-they are created by calling the provide class method on that
-resource type. When declarating a provider, you can specify a
-parent class --- for instance, all package providers have a common
+they are created by calling the `provide` method on that
+resource type. The `provide` method takes three arguments plus a block:
+
+* The first argument must be the name of the provider, as a `:symbol`.
+* The optional `:parent` argument should be the name of a parent class.
+* The optional `:source` argument should be a symbol.
+* The block takes no arguments, and implements the behavior of the provider.
+
+### Parent Classes
+
+When declarating a provider, you can specify a
+parent class. There are several different kinds of parent you can use.
+
+#### Base Provider
+
+A provider can inherit from a base provider, which is never used alone and only exists for other providers to inherit from. Use the full name of the class.
+
+For example, all package providers have a common
 parent class:
 
-    Puppet::Type.type(:package).provide :dpkg, :parent => Puppet::Provider::Package do
-        desc "..."
-        ...
+    Puppet::Type.type(:package).provide(:dpkg, :parent => Puppet::Provider::Package) do
+      desc "..."
+      ...
     end
 
-Note the call desc there; it sets the documentation for this
+Note the call to the `desc` method; this sets the documentation for this
 provider, and should include everything necessary for someone to
 use this provider.
 
-Providers can also specify another provider (from the same resource
-type) as their parent:
+#### Another Provider of the Same Resource Type
 
-    Puppet::Type.type(:package).provide :apt, :parent => :dpkg, :source => :dpkg do
+Providers can also specify another provider as their parent. If it's a provider for the same resource type, you can use the name of that provider as a symbol.
+
+    Puppet::Type.type(:package).provide(:apt, :parent => :dpkg, :source => :dpkg) do
         ...
     end
 
 Note that we're also specifying that this provider uses the dpkg
-source; this tells Puppet to deduplicate packages from dpkg and
+`source`; this tells Puppet to deduplicate packages from dpkg and
 apt, so the same package does not show up in an instance list from
 each provider type. Puppet defaults to creating a new source for
 each provider type, so you have to specify when a provider subclass
 shares a source with its parent class.
+
+#### A Provider of Any Resource Type
+
+Providers can also specify a provider of any resource type as their parent. Use the `Puppet::Type.type(<NAME>).provider(<NAME>)` methods to locate the provider.
+
+For example, the `ini_setting` type's `ruby` provider (from the [puppetlabs/inifile](https://forge.puppetlabs.com/puppetlabs/inifile) module) can be re-used to implement new resource types that act like INI settings:
+
+{% highlight ruby %}
+    # my_module/lib/puppet/provider/glance_api_config/ini_setting.rb
+    Puppet::Type.type(:glance_api_config).provide(
+      :ini_setting,
+      # set ini_setting as the parent provider
+      :parent => Puppet::Type.type(:ini_setting).provider(:ruby)
+    ) do
+      # implement section as the first part of the namevar
+      def section
+        resource[:name].split('/', 2).first
+      end
+      def setting
+        # implement setting as the second part of the namevar
+        resource[:name].split('/', 2).last
+      end
+      # hard code the file path (this allows purging)
+      def self.file_path
+        '/etc/glance/glance-api.conf'
+      end
+    end
+{% endhighlight %}
 
 ## Suitability
 
@@ -116,7 +160,7 @@ the provider if the feature becomes available during a run (i.e. a
 package is installed).
 
     confine :feature => :posix
-    confine :feature => :rrd 
+    confine :feature => :rrd
 
 You can also create your own custom feature. They live in
 `lib/puppet/feature/*.rb` and an example can be found
