@@ -974,6 +974,26 @@ Requires puppet via Ruby and returns the value of its version constant.
 
 * * *
 
+## `rsc_<RACKSPACE INSTANCE DATA>`
+
+
+**Purpose**:
+
+Determine information about Rackspace cloud instances.
+
+**Resolution**:
+
+If this is a Rackspace Cloud instance, populates `rsc_` facts: `is_rsc`, `rsc_region`, and `rsc_instance_id`.
+
+**Caveats**:
+
+Depends on Xenstore.
+
+
+([↑ Back to top](#page-nav))
+
+* * *
+
 ## `rubysitedir`
 
 
