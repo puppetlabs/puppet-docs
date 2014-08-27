@@ -5,8 +5,7 @@ subtitle: "Uninstalling Puppet Enterprise"
 canonical: "/pe/latest/install_uninstalling.html"
 ---
 
-* If you are uninstalling PE on a puppet master, PuppetDB, or console node (or a monolithic install), refer to [Using the Uninstaller Script](#using-the-uninstaller-script). 
-* If you are uninstalling PE from an agent node, refer to [Uninstalling Puppet Enterprise from Agent Nodes](#uninstalling-puppet-enterprise-from-agent-nodes).
+* If you are uninstalling PE from a puppet master, PuppetDB, or console node (or a monolithic install), refer to [Using the Uninstaller Script](#using-the-uninstaller-script). 
 
 > **About Mac OS X and Windows Agent Uninstallation** 
 >
@@ -68,30 +67,6 @@ Thus, to remove every trace of PE from a system, you would run:
     
 Note that if you plan to reinstall any PE component on a node you've run an uninstall on, you may need to run `puppet cert clean <node name>` on the master in order to remove any orphaned certificates from the node.
 
-Uninstalling Puppet Enterprise from Agent Nodes
----------
-
-The uninstaller script is not installed on Puppet Enterprise agent nodes. To uninstall PE from an agent node, you will need to use the package management tool for the operating system your agent nodes is installed on. Your package management tool will remove the PE agent package, but it will not remove the remaining directories and files installed by PE. You will need to manually remove these directories and files.
-
-**To uninstall PE from an Agent Node**:
-
-1. Remove the pe agent packages.
-
-   a. For RHEL and CentOS, run `yum remove pe-puppet-enterprise-release`.
-   
-   b. For Debian and Ubuntu, run `apt-get remove pe-puppet-enterprise-release`.
-   
-2. Remove the remaining PE directories and files.
-
-   a. Run `rm /opt/puppet`.
-   
-   b. Run `rm /etc/puppetlabs`.
-   
-   c. Run `rm /var/log/pe-*`.
-   
-   d. Run `rm /var/opt/lib/pe-*`.
-   
-> **Note**: For instructions on fully deactivating an agent node, refer to [Deactivating a PE Agent Node](./node_deactivation.html)
 
 
 
