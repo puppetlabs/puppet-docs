@@ -44,7 +44,7 @@ If you've set up [Chocolatey](https://chocolatey.org/), there's a community-supp
 
 When managing packages using the `windows` package provider, you **must** specify a package file using [the `source` attribute.][source]
 
-The source can be a local file, a file on a mapped network drive, or a UNC path. Puppet URLs are not currently supported for the `package` type's `source` attribute, although you can use `file` resources to copy packages to the local system.
+The source can be a local file, a file on a mapped network drive, or a UNC path. Puppet URLs are not currently supported for the `package` type's `source` attribute, although you can use `file` resources to copy packages to the local system. The `source` attribute accepts only backslashes, not forward slashes. For more info, see [the page on handling Windows file paths.](./file_paths.html)
 
 
 ## Package Name Must be the `DisplayName`
