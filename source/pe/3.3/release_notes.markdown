@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "PE 3.3 » Release Notes"
-subtitle: "Puppet Enterprise 3.3.1 Release Notes"
+subtitle: "Puppet Enterprise 3.3 Security Fixes, Bug Fixes, Known Issues, and New Features"
 canonical: "/pe/latest/release_notes.html"
 ---
 
@@ -22,9 +22,56 @@ canonical: "/pe/latest/release_notes.html"
 
 This page contains information about the Puppet Enterprise (PE) 3.3.x release line, including new features, known issues, bug fixes and more.
 
-# Puppet Enterprise 3.3.1 (8/07/2014)
+## Puppet Enterprise 3.3.2 (9/09/2014)
 
-### Security Fixes
+## Security Fixes
+
+####[CVE-2014-0226 - Apache vulnerabilty in mod_status module could allow arbitrary code execution](http://puppetlabs.com/security/cve/cve-2014-0226/)
+
+**Assessed risk level**: medium
+
+**Affected platforms**: Puppet Enterprise 2.x and 3.x 
+
+**Resolved in**: Puppet Enterprise 2.8.8, 3.3.2
+
+A race condition in the mod_status module in the Apache HTTP Server before 2.4.10 allows remote attackers to cause a denial of service (due to heap-based buffer overflow), or possibly obtain sensitive credential information or execute arbitrary code.
+
+Upstream CVSS v2 Score: 4.4 with Vector:  AV:L/AC:M/Au:N/C:P/I:P/A:P/E:ND/RL:U/RC:C
+
+####[CVE-2014-0118 - Apache vulnerability in mod_deflate module could allow denial of service attacks](http://puppetlabs.com/security/cve/cve-2014-0118) 
+
+**Assessed risk level**: medium
+
+**Affected platforms**: Puppet Enterprise 2.x and 3.x on Debian-based platforms only
+
+**Resolved in**: Puppet Enterprise 2.8.8, 3.3.2
+
+The `deflate_in_filter` function in the mod_deflate module in the Apache HTTP Server before 2.4.10 allows remote attackers to cause a denial of service (due to resource consumption) via crafted request data that decompresses to a much larger size.
+
+Upstream CVSS v2 Score: 5.0 with Vector: AV:N/AC:L/Au:N/C:N/I:N/A:P/E:ND/RL:U/RC:C
+
+####[CVE-2014-0231 - Apache vulnerability in mod_cgid module could allow denial of service attacks](http://puppetlabs.com/security/cve/cve-2014-0231) 
+
+**Assessed risk level**: low
+
+**Affected platforms**: Puppet Enterprise 2.x and 3.x on Debian-based platforms only
+
+**Resolved in**: Puppet Enterprise 2.8.8, 3.3.2
+
+The mod_cgid module in the Apache HTTP Server before 2.4.10 does not have a timeout mechanism, which allows remote attackers to cause a denial of service (due to process hang) via a request to a CGI script that does not read from its stdin file descriptor.
+
+Upstream CVSS v2 Score: 2.6 with Vector: AV:N/AC:H/Au:N/C:N/I:N/A:P/E:ND/RL:U/RC:C)
+
+####Additional Security Information for this Release: OpenSSL Security Fixes
+
+On August 6, the OpenSSL project announced several security vulnerabilities in OpenSSL. Puppet Enterprise 2.x and 3.x contained vulnerable versions of OpenSSL. Puppet Enterprise 2.8.8 and 3.3.2 contain updated versions of OpenSSL that have patched the vulnerabilities.
+
+For more information about the OpenSSL vulnerabilities, refer to the [OpenSSL security site](https://www.openssl.org/news/vulnerabilities.html).
+
+
+## Puppet Enterprise 3.3.1 (8/07/2014)
+
+## Security Fixes
 
 On July 15th, Oracle announced several security vulnerabilities in Java. Puppet Enterprise 3.3.0 contained a vulnerable version of Java. Puppet Enterprise 3.3.1 contains an updated version of Java that has patched the vulnerabilities.
 
@@ -34,7 +81,7 @@ For more information about the Java vulnerabilities, refer to the [Oracle securi
 
 This release fixes several minor bugs.
 
-# Puppet Enterprise 3.3.0 (6/15/2014)
+## Puppet Enterprise 3.3.0 (6/15/2014)
 
 ## New Features
 
@@ -220,6 +267,17 @@ To find out which of these issues may affect you, run `/opt/puppet/bin/puppet --
 
 
 The following issues affect the currently shipped version of PE and all prior releases through the 3.x.x series, unless otherwise stated.
+
+###Incomplete /etc/inittab entry for pe-puppet service on AIX
+
+On AIX, the Puppet Enterprise installation creates an incomplete /etc/inittab entry for the pe-puppet service. As a result, Puppet will not automatically start on boot unless the /etc/inittab entry is corrected.
+
+If Puppet should be started on boot, remove and re-create the /etc/inittab entry with the following commands:
+
+	puppet resource service pe-puppet enable=false
+	puppet resource service pe-puppet enable=true
+
+This issue will be fixed in a future release.
 
 ### Nonexistent manifestdir 500 Internal Server Error
 
