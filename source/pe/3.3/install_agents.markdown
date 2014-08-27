@@ -163,6 +163,8 @@ After signing a new node's certificate, it may take up to 30 minutes before that
 
 If you need to remove certificates (e.g., during reinstallation of a node), you can use the `puppet cert clean <node name>` command.
 
+>**Tip**: After you finish installing your agents, follow the instructions in the [NTP Quick Start Guide](./quick_start_ntp.html) to have PE ensure time is in sync across your deployment.
+
 ---------
     
 - [Next: Upgrading](./install_upgrading.html)    

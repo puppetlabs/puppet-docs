@@ -29,6 +29,8 @@ If you haven't already done so, you'll need to get PE installed. See the [system
 2. Refer to the [installation overview][install_overview] to determine how you want to install PE, and then follow the instructions provided.
 3. Refer to the [agent installation instructions][agent_install] to determine how you want to install your PE agent(s), and then follow the instructions provided.
 
+>**Tip**: Follow the instructions in the [NTP Quick Start Guide](./quick_start_ntp.html) to have PE ensure time is in sync across your deployment.
+
 >**Note**: You can add the DNS nameserver class to as many agents as needed. For ease of explanation, our console images or instructions may show only one agent node. 
 
 ### Write the `resolver` Class
