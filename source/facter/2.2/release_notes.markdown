@@ -13,7 +13,7 @@ Released August 25, 2014.
 
 Facter 2.2.0 is a backward-compatible features and fixes release in the Facter 2 series. In addition to a number bug fixes, this release includes three new structured facts: [`os`](#structured-fact-os), [`processors`](#structured-fact-processors), and [`system_uptime`](#structured-fact-systemuptime). Several flat facts have also been added: [`lsbminordistrelease`](#flat-fact-lsbminordistrelease), [`gid`](#flat-fact-gid), and [`rsc_` (Rackspace) instance data](#flat-facts-rsc-rackspace-instance-data).
 
-No facts have been removed or deprecated, but there are a few changes to `operatingsystem`, `operatingsystemrelease`, and `operatingsystemmajrelease` that may affect backwards compatibility with some manifests written for Ubuntu and/or Amazon Linux. See [Significant Changes to Existing Facts](#significant-changes-to-existing-facts) for more information.
+No facts have been removed or deprecated, but there are a few changes to `lsbmajdistrelease`, `operatingsystemrelease`, and `operatingsystemmajrelease` that may affect backwards compatibility with some manifests written for Ubuntu and/or Amazon Linux. See [Significant Changes to Existing Facts](#significant-changes-to-existing-facts) for more information.
 
 ### New Facts
 
