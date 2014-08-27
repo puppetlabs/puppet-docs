@@ -11,9 +11,11 @@ Facter 2.2.0
 
 Released August 25, 2014.
 
-Facter 2.2.0 is a backward-compatible features and fixes release in the Facter 2 series. In addition to a number bug fixes, this release includes three [new structured facts](#new-structured-facts): [`os`](#structured-fact-os), [`processors`](#structured-fact-processors), and [`system_uptime`](#structured-fact-systemuptime). No facts have been removed or deprecated.
+Facter 2.2.0 is a backward-compatible features and fixes release in the Facter 2 series. In addition to a number bug fixes, this release includes three new structured facts: [`os`](#structured-fact-os), [`processors`](#structured-fact-processors), and [`system_uptime`](#structured-fact-systemuptime). Several flat facts have also been added: [`lsbminordistrelease`](#flat-fact-lsbminordistrelease), [`gid`](#flat-fact-gid), and [`rsc_` (Rackspace) instance data](#flat-facts-rsc-rackspace-instance-data).
 
-### New Structured Facts
+No facts have been removed or deprecated, but there are a few changes to `operatingsystem`, `operatingsystemrelease`, and `operatingsystemmajrelease` that may affect backwards compatibility with some manifests written for Ubuntu and/or Amazon Linux. See [Significant Changes to Existing Facts](#significant-changes-to-existing-facts) for more information.
+
+### New Facts
 
 Facter 2.2.0 ships with several new [structured facts](fact_overview.html#writing-structured-facts). These facts combine information from a
 number of different flat facts into a single hash. The old facts **are still available** in the same form as before, so you don't *need* to
@@ -100,6 +102,30 @@ Related issue:
 
 - [FACT-613: Create structured processor fact](https://tickets.puppetlabs.com/browse/FACT-613)
 
+#### Flat Fact: `lsbminordistrelease`
+
+Returns the minor version of the operation system version as gleaned from the `lsbdistrelease` fact.
+
+Related issue:
+
+- [FACT-637: Add lsbminordistrelease fact](https://tickets.puppetlabs.com/browse/FACT-637)
+
+#### Flat Fact: `gid`
+
+Returns the GID (group identifier) of the user running Puppet.
+
+Related issue:
+
+- [FACT-640: GID fact](https://tickets.puppetlabs.com/browse/FACT-640)
+
+#### Flat Facts: `rsc_` (Rackspace) Instance Data
+
+Adds `is_rsc`, `rsc_region`, and `rsc_instance_id` facts on Rackspace instances.
+
+Related issue:
+
+- [FACT-643: Rackspace facts](https://tickets.puppetlabs.com/browse/FACT-643)
+
 ### Platform-Specific Fixes
 
 [FACT-547: Limit the output of prtdiag on Solaris](https://tickets.puppetlabs.com/browse/FACT-547)
@@ -122,9 +148,41 @@ This release improves the `partitions` fact to support OpenBSD systems.
 
 The `ec2_` facts are gathered by making an HTTP call to the EC2 API's metadata endpoint, which is directly accessible from all EC2 instances. If an HTTP proxy was configured, previous versions would attempt to use it to reach the EC2 API server, which probably isn't a good idea. This release skips the proxy when making the request to the EC2 metadata endpoint.
 
+[FACT-641: Solaris 10 zfs_version fix](https://tickets.puppetlabs.com/browse/FACT-641)
+
+The `zfs_version` fact would sometimes leak errors generated while resolving the fact. This release fixes the behavior.
+
+[FACT-642: zpool_version fix](https://tickets.puppetlabs.com/browse/FACT-642)
+
+Previously, the `zfs_version` fact would fail under zfsonlinux. This release fixes the behavior.
+
+[FACT-644: XCP operatingsystem fact fix](https://tickets.puppetlabs.com/browse/FACT-644)
+
+The `operatingsystem` fact will now resolve to `XCP` on XCP systems, rather than `RedHat`.
+
+[FACT-647: SELinux exception handling](https://tickets.puppetlabs.com/browse/FACT-647)
+
+Adds basic exception handling to the `selinux` fact.
+
+[FACT-648: Xen 4.0 command support](https://tickets.puppetlabs.com/browse/FACT-648)
+
+Xen 4.0 changed the command for querying Xen domains from `/usr/bin/xm` to `/usr/bin/xl`, which broke the `xendomains` fact. This release changes the resolution of that fact to prefer `/usr/bin/xl`, falling back to `/usr/bin/xm` if that doesn't work.
+
 [FACT-659: Partitions fact does not correctly parse the filesystem attribute under Linux](https://tickets.puppetlabs.com/browse/FACT-659)
 
 This bug in the `partitions` fact prevented filesystem attributes from being properly parsed under Linux. This release fixes the bug.
+
+### Significant Changes to Existing Facts
+
+These changes improve the accuracy of the `lsbmajdistrelease`, `operatingsystemmajrelease`, and `operatingsystemrelease` facts, but may break manifests that were based on the previous behavior. Note that only Ubuntu and Amazon Linux are affected.
+
+[FACT-688: Facter reports Ubuntu Major Release version incorrectly (lsbmajdistrelease)](https://tickets.puppetlabs.com/browse/FACT-688)
+
+Previously, the major version for an Ubuntu release like 12.10 would be reported as `12`, as though 12.10 were a patch on 12.04. Since that's not the way Ubuntu releases are actually numbered, the behavior has been changed so that `lsbmajdistrelease` will respect Ubuntu's two-part major versions, e.g., `lsbmajdistrelease => 12.10`.
+
+[FACT-689: Facter reports Amazon release incorrectly (operatingsystemrelease / operatingsystemmajrelease)](https://tickets.puppetlabs.com/browse/FACT-689)
+
+Previously, the `operatingsystemrelease` and `operatingsystemmajrelease` facts on Amazon Linux would fail to find the AMI version and instead report the Linux kernel version, for example: `operatingsystemmajrelease => 2, operatingsystemrelease => 2.6.32-431.11.2.el6.x86_64`. This release properly identifies the AMI release version, e.g.: `operatingsystemmajrelease => 2014, operatingsystemrelease => 2014.03`.
 
 ### Packaging Fixes
 
@@ -136,6 +194,10 @@ ARM platforms (including the Raspberry Pi). This release ensures that installati
 [FACT-597: Facter needs a package dependency on net-tools on RHEL7 for ifconfig](https://tickets.puppetlabs.com/browse/FACT-597)
 
 Red Hat Enterprise Linux 7 doesn't include `ifconfig` as part of the minimal install, but it's required for a number of networking facts. This release adds a dependency for the `net-tools` package on RHEL 7, which includes `ifconfig`.
+
+[FACT-646: Recommend lsb-release in Debian control file](https://tickets.puppetlabs.com/browse/FACT-646)
+
+Adding `lsb-release` as a recommended dependency in the Debian control file, which should prevent some issues with the various LSB facts.
 
 ### Miscellaneous Fixes
 
