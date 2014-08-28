@@ -34,7 +34,13 @@ Puppet 3.7.0 is a backward-compatible features and fixes release in the Puppet 3
 
 TODO
 
-### TODO Future Language Improvements
+### Feature: Nearly Final Implementation of the Puppet 4 Language
+
+For several versions now, Puppet has shipped with a preview of a revised version of the Puppet language, which can be enabled by setting `parser = future` in [puppet.conf][]. This revision, which will become the main implementation of the Puppet language in Puppet 4.0, is now in essentially its final state.
+
+We plan to post complete docs for the Puppet 4 language soon.
+
+Since Puppet 3.7 includes the Puppet 4 version of the language, getting ready to upgrade should be a lot easier than it was for the 2.7 to 3.0 jump. If you want to start preparing now, try setting `parser = future` on a test Puppet master to make sure your existing code still works well.
 
 * [PUP-514: Add optional type to parameters](https://tickets.puppetlabs.com/browse/PUP-514)
 * [PUP-121: Remove relative namespacing](https://tickets.puppetlabs.com/browse/PUP-121)
@@ -73,21 +79,32 @@ TODO
 * [PUP-2787: Rename Object to Any](https://tickets.puppetlabs.com/browse/PUP-2787)
 * [PUP-2914: Vendor RGen 0.7.0](https://tickets.puppetlabs.com/browse/PUP-2914)
 * [PUP-3117: Resource Expression Enhancements](https://tickets.puppetlabs.com/browse/PUP-3117)
-
-
-### TODO Future Language Removals
-
 * [PUP-1057: Remove 'collect' and 'select' iterative function stubs](https://tickets.puppetlabs.com/browse/PUP-1057)
 * [PUP-2858: remove --evaluator current switch for future parser](https://tickets.puppetlabs.com/browse/PUP-2858)
 
-### TODO Type And Provider Apis
+### Feature: Agent-Side Pre-Run Resource Validation
 
-* [PUP-2458: Tests for providers inheriting from providers of another type](https://tickets.puppetlabs.com/browse/PUP-2458)
+Custom resource types now have a way to perform pre-run checks on an agent, and abort the catalog application before it starts if they detect something horribly wrong. Your resource types can do this by defining a `pre_run_check` method, which will run for every resource of that type and which should raise a `Puppet::Error` if the run should be aborted.
+
+For details, see [the section on pre-run validation in the custom resource types guide][prerun].
+
+[prerun]: /guides/custom_types.html#agent-side-pre-run-resource-validation-puppet-37-and-later
+
 * [PUP-2298: PR (#2549) Enable pre-run validation of catalogs](https://tickets.puppetlabs.com/browse/PUP-2298)
 
-### TODO Support For New C-Based Facter Implementation
+### Feature: Providers Can Inherit From Providers of Another Resource Type
 
-cfacter blurb
+This has actually been possible forever, but we've added tests to demonstrate that it's supported and to keep it from breaking in the future. For details, [see the relevant section in the provider development guide.](/guides/provider_development.html#a-provider-of-any-resource-type)
+
+* [PUP-2458: Tests for providers inheriting from providers of another type](https://tickets.puppetlabs.com/browse/PUP-2458)
+
+### Feature: Early Support For New Compiled Facter Implementation
+
+Puppet agent can now use preview builds of [the new, faster, natively compiled Facter,][cfacter] by setting `cfacter = true` in [puppet.conf][] or including `--cfacter` on the command line.
+
+This is a very early version of this feature, and it's not for the faint of heart: since we don't provide builds of the compiled Facter project yet, you'll need to compile and package it yourself. To get started, [see the build and installation instructions in the cfacter repository.][cfacter]
+
+[cfacter]: https://github.com/puppetlabs/cfacter
 
 * [PUP-2104: Make puppet able to configure a facter implementation to use](https://tickets.puppetlabs.com/browse/PUP-2104)
 
@@ -262,7 +279,7 @@ This release fixes a bug where escaped double quotes weren't allowed in the `opt
 
 #### Zone
 
-This release fixes a bug that broke sparse zone creation on Solaris 10.
+This release fixes a bug that made it impossible to set the `ip`, `dataset`, and `inherit` attributes when creating a zone. (Among other things, this meant sparse zone creation on Solaris 10 was broken.)
 
 * [PUP-2817: Solaris Zone properties ip, dataset and inherit are not set upon zone creation](https://tickets.puppetlabs.com/browse/PUP-2817)
 
@@ -327,7 +344,7 @@ We've added this setting to our [list of recommended settings for Puppet master 
 
 #### Other
 
-In other performance news: This release makes Puppet stop searching the disk in a situation where it didn't have to, makes Puppet apply slightly faster when using the future parser, and makes filebucket operations use less memory.
+In other performance news: Puppet no longer searches the disk in a situation where it didn't have to, `puppet apply` is slightly faster when using the future parser, and filebucket operations use less memory.
 
 * [PUP-744: Persistent HTTP(S) connections](https://tickets.puppetlabs.com/browse/PUP-744)
 * [PUP-2924: Puppet searches disk for whit classes](https://tickets.puppetlabs.com/browse/PUP-2924)
@@ -367,13 +384,32 @@ I don't know what the two profiling tickets do.
 * [PUP-2747: support multiple profilers](https://tickets.puppetlabs.com/browse/PUP-2747)
 * [PUP-2750: expand profiler signature to support hierarchical profiling data](https://tickets.puppetlabs.com/browse/PUP-2750)
 
-### TODO Security
+### Security Improvements
 
+#### Fixed a `puppet cert` Bug
 
+When using `puppet cert revoke` on a certificate that isn't available on disk anymore, Puppet could revoke the wrong cert if _another_ certificate of the same name used to exist. This is now fixed, and `puppet cert revoke <NAME>` will now revoke all certificates by that name.
+
+* [PUP-2569: "puppet cert revoke <name>" doesn't always revoke what you expect](https://tickets.puppetlabs.com/browse/PUP-2569)
+
+#### Better Cipher Settings in Example Virtual Host
+
+We've improved the Apache SSL cipher settings we use in the example Passenger vhost we ship with Puppet.
 
 * [PUP-2177: PR (2494) Insecure shipped Cipher settings in Passenger example config](https://tickets.puppetlabs.com/browse/PUP-2177)
-* [PUP-2569: "puppet cert revoke <name>" doesn't always revoke what you expect](https://tickets.puppetlabs.com/browse/PUP-2569)
+
+### Feature: Authenticated Proxy Servers
+
+Puppet can now use proxy servers that require a username and password. You'll need to provide the authentication in the new [`http_proxy_user`](/references/3.7.latest/configuration.html#httpproxyuser) and [`http_proxy_password`](/references/3.7.latest/configuration.html#httpproxypassword) settings. (Note that passwords must be valid as part of a URL, and any reserved characters must be URL-encoded.)
+
 * [PUP-2869: Puppet should be able to use authenticated proxies](https://tickets.puppetlabs.com/browse/PUP-2869)
+
+### Feature: New `digest` Function
+
+The [`md5` function](/references/3.7.latest/function.html#md5) is hardcoded to the (old, low-quality) MD5 hash algorithm, which is no good at sites that are prohibited from using MD5.
+
+To help those users, Puppet now has a [`digest` function](/references/3.7.latest/function.html#digest), which uses whichever hash algorithm is specified in the Puppet master's [`digest_algorithm` setting.](/references/3.7.latest/configuration.html#digestalgorithm)
+
 * [PUP-2511: Add parser function digest: uses digest_algorithm to hash, not strictly md5](https://tickets.puppetlabs.com/browse/PUP-2511)
 
 ### Improvements for Running Puppet From Source
@@ -387,8 +423,42 @@ Running Puppet with Bundler should now work more smoothly on platforms where `ru
 
 Our ticket tracker has the list of [all issues resolved in Puppet 3.7.0.](https://tickets.puppetlabs.com/secure/ReleaseNote.jspa?projectId=10102&version=11660)
 
-### TODO Special Thanks
+### Community Thank-Yous
 
-Big thanks to the following community members, who helped make this release what it is:
+Big thanks to our community members, who helped make this release what it is. In particular, we'd like to thank:
 
-* [Daniel Berger](https://github.com/djberg96), whose Ruby modules have helped make Puppet on Windows possible.
+* [Daniel Berger](https://github.com/djberg96), whose Ruby modules have helped make Puppet on Windows a reality.
+* All of our community contributors who committed code for this release (listed by the name in their commit messages):
+    * Aaron Zauner
+    * Alexandros Kosiaris
+    * Anthony Weems
+    * Brice Figureau
+    * Carlos Salazar
+    * Daniel Thornton
+    * Daniele Sluijters
+    * David Caro
+    * Dominic Cleal
+    * Jeff '2 bits' Bachtel
+    * Erik Dalén
+    * Ewoud Kohl van Wijngaarden
+    * Felix Frank
+    * Garrett Honeycutt
+    * Graham Taylor
+    * glenn.sarti
+    * Henrique Rodrigues
+    * Jared Jennings
+    * Jasper Lievisse Adriaanse
+    * Johan Haals
+    * Julien Pivotto
+    * Maksym Melnychok
+    * Martijn Heemels
+    * Paul Beltrani
+    * Peter Meier
+    * renanvicente
+    * René Föhring
+    * Richard Clark
+    * Romain LE DISEZ
+    * rvalente
+    * Stefan
+    * Ville Skyttä
+    * William Van Hevelingen
