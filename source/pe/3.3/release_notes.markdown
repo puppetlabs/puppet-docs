@@ -66,7 +66,13 @@ On August 6, the OpenSSL project announced several security vulnerabilities in O
 
 For more information about the OpenSSL vulnerabilities, refer to the [OpenSSL security site](https://www.openssl.org/news/vulnerabilities.html).
 
+##Bug Fixes 
 
+**Incomplete /etc/inittab entry for pe-puppet service on AIX**
+
+On AIX, the Puppet Enterprise installation created an incomplete /etc/inittab entry for the pe-puppet service. As a result, Puppet would not automatically start on boot unless the /etc/inittab entry was corrected.
+
+This issue is now fixed.
 
 ## Known Issues
 
@@ -79,17 +85,6 @@ To find out which of these issues may affect you, run `/opt/puppet/bin/puppet --
 
 
 The following issues affect the currently shipped version of PE and all prior releases through the 3.x.x series, unless otherwise stated.
-
-###Incomplete /etc/inittab entry for pe-puppet service on AIX
-
-On AIX, the Puppet Enterprise installation creates an incomplete /etc/inittab entry for the pe-puppet service. As a result, Puppet will not automatically start on boot unless the /etc/inittab entry is corrected.
-
-If Puppet should be started on boot, remove and re-create the /etc/inittab entry with the following commands:
-
-	puppet resource service pe-puppet enable=false
-	puppet resource service pe-puppet enable=true
-
-This issue will be fixed in a future release.
 
 ### Nonexistent manifestdir 500 Internal Server Error
 
