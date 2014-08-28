@@ -57,7 +57,8 @@ Puppet Enterprise's hardware requirements depend on the type of installation you
 
 Monolithic installs are suitable for deployments up to 500 nodes. We recommend that your hardware meets the following: 
 
-- The **puppet master**, **PE console**, and **PuppetDB** node: at least 4-8 processor cores, 8 GB RAM, and high-performance disk space
+- The **puppet master**, **PE console**, and **PuppetDB** node: at least 4-8 processor cores, 8 GB RAM
+- All machines require very accurate timekeeping
 - **Puppet agent** nodes: any hardware able to run the supported operating system
 - For `/var/`, at least 1 GB of free space for each PE component on a given node
 - For PE-installed PostgreSQL, at least 100 GB of free space in `/opt/` for data gathering 
@@ -67,7 +68,8 @@ Monolithic installs are suitable for deployments up to 500 nodes. We recommend t
 
 For larger deployments (500-1000, or more nodes), we recommend a split install. We recommend that your hardware meets the following:
 
-- **Puppet master**, **PE console**, and **PuppetDB** nodes: at least 8 processor cores, 8 GB RAM, and high-performance disk space (per node)
+- **Puppet master**, **PE console**, and **PuppetDB** nodes: at least 8 processor cores, 8 GB RAM (per node)
+- All machines require very accurate timekeeping
 - **Puppet agent** nodes: any hardware able to run the supported operating system
 - For `/var/`, at least 1 GB of free space for each PE component on a given node
 - For PE-installed PostgreSQL, at least 100 GB of free space in `/opt/` for data gathering
