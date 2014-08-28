@@ -162,10 +162,12 @@ Puppet has a new [`http_debug` setting](/references/3.7.latest/configuration.htm
 
 Use this only for temporary debugging (e.g. `puppet agent --test --http_debug`). It should never be enabled in production, because it can leak sensitive data to stderr. (Also because it's extremely noisy.)
 
-### TODO Resource Type and Provider Improvements
+### Resource Type and Provider Improvements
 
 
 #### Package
+
+This release adds `install_options` and `uninstall_options` to the `pacman` provider, makes the `windows` provider accept backslashes in `source` paths, enables `ensure => latest` on OpenBSD, and fixes a few bugs with other providers.
 
 * [PUP-398: Backslashify windows paths when appropriate](https://tickets.puppetlabs.com/browse/PUP-398)
 * [PUP-2014: Make gem provider match on a single gem name](https://tickets.puppetlabs.com/browse/PUP-2014)
@@ -177,6 +179,8 @@ Use this only for temporary debugging (e.g. `puppet agent --test --http_debug`).
 
 #### File
 
+The `file` type got a handful of bug fixes and no new features.
+
 * [PUP-2583: mode attribute of file type doesn't behave like chmod when given X](https://tickets.puppetlabs.com/browse/PUP-2583)
 * [PUP-2710: Audit of mtime/ctime for files on ext4 reports spurious changes (only ruby 1.9+)](https://tickets.puppetlabs.com/browse/PUP-2710)
 * [PUP-2700: Puppet 3.6.1 File recurse improperly handles spaces in filenames](https://tickets.puppetlabs.com/browse/PUP-2700)
@@ -184,27 +188,47 @@ Use this only for temporary debugging (e.g. `puppet agent --test --http_debug`).
 
 #### Service
 
+Puppet had a problem with the `cryptdisks-udev` service, and we worked around that by no longer trying to manage it. (This is actually part of [a bigger issue](https://tickets.puppetlabs.com/browse/PUP-3040) with services that can have multiple instances; they don't fit Puppet's model of what services are.)
+
+This release also has some bug fixes for the `openbsd` service provider.
+
 * [PUP-2879: `puppet resource service` not working for `cryptdisks-udev`](https://tickets.puppetlabs.com/browse/PUP-2879)
 * [PUP-2578: Adjustments for new OpenBSD service provider](https://tickets.puppetlabs.com/browse/PUP-2578)
 
 #### User
+
+The `user` type got two bug fixes and no new features.
 
 * [PUP-229: User provider password_max_age attribute is flawed under Solaris](https://tickets.puppetlabs.com/browse/PUP-229)
 * [PUP-2737: user purge_ssh_keys cannot remove keys with spaces in the comment](https://tickets.puppetlabs.com/browse/PUP-2737)
 
 #### SSHKey
 
+The `sshkey` type was using an overly strict permissions mode for the `/etc/ssh/ssh_known_hosts` file. This release loosens it up a bit.
+
 * [PUP-1177: sshkey creates /etc/ssh/ssh_known_hosts with mode 600](https://tickets.puppetlabs.com/browse/PUP-1177)
 
 #### Cron
+
+When purging `cron` resources (with `resources { cron: purge => true }`), Puppet will only purge cron jobs owned by the user it's running as, usually `root`. This doesn't match expectations, and we want to change Puppet to purge all cron jobs instead.
+
+But we can't do that until 4.0, because it's a big change in behavior and would surprise a lot of users. So in 3.7, Puppet will issue a warning when you purge cron jobs, notifying you of the change coming in 4.0.
 
 * [PUP-1381: cron type and provider only return resources for ENV["USER"] or "root", not all users](https://tickets.puppetlabs.com/browse/PUP-1381)
 
 #### Nagios
 
+The Nagios types were not properly munging non-string values for their attributes. Among other things, this was causing problems when using them with the `create_resources` function. This release fixes that bug.
+
 * [PUP-1527: After upgrade from 3.3.2-1 to 3.4.2-1 naginator fails to create config from exported resources taken from hiera](https://tickets.puppetlabs.com/browse/PUP-1527)
 
 #### Resources
+
+When using `unless_system_user` to limit which `user` resources get purged, Puppet was using the wrong system user cutoff on OpenBSD. This release fixes that.
+
+Also, the `unless_uid` attribute was intended to accept ranges of UIDs, but that turned out to not work.
+
+We decided the best option was to remove the special range support in this type and rely on more general range support. In Puppet 4 and in the future parser, you can use the language's built-in range support, like `unless_uid => Integer[600, 650]`. In the current parser, you can use the `range` function from [the stdlib module](https://forge.puppetlabs.com/puppetlabs/stdlib), like `unless_uid => range(600, 650)`.
 
 * [PUP-2031: unless_uid on user is completely broken wrt ranges](https://tickets.puppetlabs.com/browse/PUP-2031)
 * [PUP-2866: Read UID_MIN from /etc/login.defs (if available) instead of hardcoding minimum.](https://tickets.puppetlabs.com/browse/PUP-2866)
@@ -212,23 +236,39 @@ Use this only for temporary debugging (e.g. `puppet agent --test --http_debug`).
 
 #### Yumrepo
 
+The `proxy` attribute now supports the special value `'_none_'`, which lets a repo bypass Yum's global proxy settings. This release also adds stricter checking of values for several attributes, and adds the following new Yum repo options:
+
+* `mirrorlist_expire`
+* `gpgcakey`
+* `retries`
+* `throttle`
+* `bandwidth`
+
 * [PUP-2271: yumrepo attributes cannot be set to '_none_'](https://tickets.puppetlabs.com/browse/PUP-2271)
 * [PUP-2360: Yumrepo type allows invalid values](https://tickets.puppetlabs.com/browse/PUP-2360)
 * [PUP-2356: (PR 2577) Add yumrepo extra options](https://tickets.puppetlabs.com/browse/PUP-2356)
 
 #### Mac OS X Group and Computer Providers
 
+This release fixes a bug that prevented some resource types from working on Yosemite.
+
 * [PUP-2577: Mac OS X version comparison fails spuriously](https://tickets.puppetlabs.com/browse/PUP-2577)
 
 #### SSH Authorized Key
+
+This release fixes a bug where escaped double quotes weren't allowed in the `options` attribute.
 
 * [PUP-2579: ssh_authorized_key does not handle options with escaped double quotes](https://tickets.puppetlabs.com/browse/PUP-2579)
 
 #### Zone
 
+This release fixes a bug that broke sparse zone creation on Solaris 10.
+
 * [PUP-2817: Solaris Zone properties ip, dataset and inherit are not set upon zone creation](https://tickets.puppetlabs.com/browse/PUP-2817)
 
 #### Scheduled Task
+
+Thanks to an update in an upstream library, Puppet gives better errors when the Windows task scheduler is disabled.
 
 * [PUP-2818: Win32-taskscheduler gem 0.2.2 (patched in vendored repo) crashes when task scheduler is disabled](https://tickets.puppetlabs.com/browse/PUP-2818)
 
@@ -236,7 +276,7 @@ Use this only for temporary debugging (e.g. `puppet agent --test --http_debug`).
 
 ### Puppet Agent Bug Fixes
 
-We fixed several issues with the Puppet agent application, including unwanted timeouts, some service bugs on Windows, some needlessly noisy log messages, and a bug involving the lockfile.
+This release fixes several issues with the Puppet agent application, including unwanted timeouts, some service bugs on Windows, some needlessly noisy log messages, and a bug involving the lockfile.
 
 * [PUP-1070: puppetd doesn't always cleanup lockfile properly](https://tickets.puppetlabs.com/browse/PUP-1070)
 * [PUP-1471: Puppet Agent windows services accidentally comes of out Paused state](https://tickets.puppetlabs.com/browse/PUP-1471)
@@ -287,7 +327,7 @@ We've added this setting to our [list of recommended settings for Puppet master 
 
 #### Other
 
-In other performance news, we made Puppet stop searching the disk in a situation where it didn't have to, made Puppet apply slightly faster when using the future parser, and made filebucket operations use less memory.
+In other performance news: This release makes Puppet stop searching the disk in a situation where it didn't have to, makes Puppet apply slightly faster when using the future parser, and makes filebucket operations use less memory.
 
 * [PUP-744: Persistent HTTP(S) connections](https://tickets.puppetlabs.com/browse/PUP-744)
 * [PUP-2924: Puppet searches disk for whit classes](https://tickets.puppetlabs.com/browse/PUP-2924)
@@ -346,3 +386,9 @@ Running Puppet with Bundler should now work more smoothly on platforms where `ru
 ### All Resolved Issues for 3.7.0
 
 Our ticket tracker has the list of [all issues resolved in Puppet 3.7.0.](https://tickets.puppetlabs.com/secure/ReleaseNote.jspa?projectId=10102&version=11660)
+
+### TODO Special Thanks
+
+Big thanks to the following community members, who helped make this release what it is:
+
+* [Daniel Berger](https://github.com/djberg96), whose Ruby modules have helped make Puppet on Windows possible.
