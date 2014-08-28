@@ -254,7 +254,7 @@ When running `puppet master --compile`, Puppet master used to ignore its `--logd
 
 ### TODO Puppet Module Command Improvements
 
-TODO: SUMMARY OF MODULE IMPROVEMENTS HERE
+The bug affecting module builds is resolved; no more workaround is required. You can now exclude files from your module build using either .gitignore or .pmtignore files. You can also use `--ignorechanges` flag to ignore any changes made to a module's metadata.json file when upgrading or uninstalling the module. And, finally, symlinks are no longer allowed in modules. The module build command will error on a module with symlinks.
 
 * [PUP-1186: puppet module tool on windows will (sometimes) create a PaxHeader directory](https://tickets.puppetlabs.com/browse/PUP-1186)
 * [PUP-2078: Puppet module install --force does not re-install dependencies](https://tickets.puppetlabs.com/browse/PUP-2078)
