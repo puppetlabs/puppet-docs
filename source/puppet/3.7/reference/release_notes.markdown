@@ -374,13 +374,30 @@ In other performance news: Puppet no longer searches the disk in a situation whe
 * [PUP-2994: puppet parser validate shouldn't puke on exported resources](https://tickets.puppetlabs.com/browse/PUP-2994)
 * [PUP-1843: 3.4.0 broke compatibility with plugins using the hiera indirector terminus](https://tickets.puppetlabs.com/browse/PUP-1843)
 
-### TODO Miscellaneous Improvements
+### Miscellaneous Improvements
 
-I don't know what the two profiling tickets do.
+Puppet's `--debug` output now begins with a line containing the following information:
+
+- `puppet_version`
+- `ruby_version`
+- `run_mode`
+- `default_encoding` (on Ruby 1.9.3 or later only)
 
 * [PUP-1736: Add encoding information to debug output](https://tickets.puppetlabs.com/browse/PUP-1736)
+
+The [`file()` function](function.html#file) will now accept [template](function.html#template)-style module paths, rather than only absolute paths. For example, `file('example/file.txt')` is now equivalent to `file('<MODULE PATH>/example/files/file.txt')`.
+
 * [PUP-2626: Accept module paths in Puppet::Parser::Functions.file()](https://tickets.puppetlabs.com/browse/PUP-2626)
+
+The new [`digest()` function](function.html#digest) is similar to the existing `md5()` function, but hashes its argument using the algorithm specified by the [`digest_algorithm` setting](configuration.html#digestalgorithm).
+
 * [PUP-2511: Add parser function digest: uses digest_algorithm to hash, not strictly md5](https://tickets.puppetlabs.com/browse/PUP-2511)
+
+This release also includes some significant backward-compatible improvements to Puppet's built-in profiling API. Specifically:
+
+* The new `Puppet::Util::Profiler.add_profiler` method is an alternative to setting `Puppet::Util::Profiler.current` that allows **multiple profilers** to be active at the same time.
+* The `Puppet::Util::Profiler.profile` method now accepts a new optional second argument: an array of strings or symbols that will be used to group profiling data. For example, if you pass `[:functions, name]` as the second argument, then the profiling data will be grouped with other blocks labeled `:functions`, but under its own `name`.
+
 * [PUP-2747: support multiple profilers](https://tickets.puppetlabs.com/browse/PUP-2747)
 * [PUP-2750: expand profiler signature to support hierarchical profiling data](https://tickets.puppetlabs.com/browse/PUP-2750)
 
