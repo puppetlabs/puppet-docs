@@ -28,107 +28,130 @@ If you're upgrading from Puppet 2.x, please [learn about major upgrades of Puppe
 Puppet 3.7.0
 -----
 
-FUTURE LANGUAGE IMPROVEMENTS
-    [PUP-514: Add optional type to parameters](https://tickets.puppetlabs.com/browse/PUP-514)
-    [PUP-121: Remove relative namespacing](https://tickets.puppetlabs.com/browse/PUP-121)
-    [PUP-957: Case and Selector expressions using Regexp type does not set match vars](https://tickets.puppetlabs.com/browse/PUP-957)
-    [PUP-2314: assert_type function should handle lambda](https://tickets.puppetlabs.com/browse/PUP-2314)
-    [PUP-2357: Validation missing for meaningless sequences](https://tickets.puppetlabs.com/browse/PUP-2357)
-    [PUP-2514: Remove support to search for Type in String](https://tickets.puppetlabs.com/browse/PUP-2514)
-    [PUP-2532: parameter lookup produces screwy result for default values](https://tickets.puppetlabs.com/browse/PUP-2532)
-    [PUP-2642: selector expression default should be matched last](https://tickets.puppetlabs.com/browse/PUP-2642)
-    [PUP-2682: Trailing commas should be allowed in node definitions](https://tickets.puppetlabs.com/browse/PUP-2682)
-    [PUP-2703: tag should be a statement function in future parser](https://tickets.puppetlabs.com/browse/PUP-2703)
-    [PUP-2791: Incorrect EPP syntax in epp() function documentation](https://tickets.puppetlabs.com/browse/PUP-2791)
-    [PUP-2824: Make $title and $name Reserved Words](https://tickets.puppetlabs.com/browse/PUP-2824)
-    [PUP-2839: Puppet 3.6.x future parser introduces dependency cycles](https://tickets.puppetlabs.com/browse/PUP-2839)
-    [PUP-2883: epp does not handle empty template](https://tickets.puppetlabs.com/browse/PUP-2883)
-    [PUP-2891: creating a resource override for a Class fails (future parser)](https://tickets.puppetlabs.com/browse/PUP-2891)
-    [PUP-2898: Long form Resource Type reference fools "future parser" this is an override](https://tickets.puppetlabs.com/browse/PUP-2898)
-    [PUP-2886: future parser should validate class/resource names that are types](https://tickets.puppetlabs.com/browse/PUP-2886)
-    [PUP-2972: Implementation of +=/-= is potentially confusing](https://tickets.puppetlabs.com/browse/PUP-2972)
-    [PUP-3054: Class inheritance behaving incorrectly in the future parser](https://tickets.puppetlabs.com/browse/PUP-3054)
-    [PUP-511: Specify Resource Expression Evaluation](https://tickets.puppetlabs.com/browse/PUP-511)
-    [PUP-1782: Deprecation warning when attempt to match a number with a regexp in 3.x](https://tickets.puppetlabs.com/browse/PUP-1782)
-    [PUP-1807: Empty string should not equal undef](https://tickets.puppetlabs.com/browse/PUP-1807)
-        This seems like it was already in effect by 3.6.2???
-    [PUP-1811: "in" with regexps should set match variables](https://tickets.puppetlabs.com/browse/PUP-1811)
-    [PUP-2288: access operation vs. liststart causes confusing errors...](https://tickets.puppetlabs.com/browse/PUP-2288)
-    [PUP-2794: Specify signatures for blocks of block-accepting methods](https://tickets.puppetlabs.com/browse/PUP-2794)
-    [PUP-2825: Change "Ruby" type to "Runtime"](https://tickets.puppetlabs.com/browse/PUP-2825)
-        [PUP-2832: Rename the Ruby type to Runtime['ruby']](https://tickets.puppetlabs.com/browse/PUP-2832)
-        I think this was never released, so it should go in the "future don't care" section, but it's sort of relevant. gotta go back over our docs of the types system, if we have it yet.
-    [PUP-2857: Add a Default type](https://tickets.puppetlabs.com/browse/PUP-2857)
-    [PUP-2240: support unfold/splat of array](https://tickets.puppetlabs.com/browse/PUP-2240)
-    [PUP-2663: Allow string to numeric conversion to start with + or -](https://tickets.puppetlabs.com/browse/PUP-2663)
-    [PUP-1808: Deprecate variables with an initial capital letter](https://tickets.puppetlabs.com/browse/PUP-1808)
-    [PUP-2034: Add depreciation warning for hyphenated class names](https://tickets.puppetlabs.com/browse/PUP-2034)
-    [PUP-2349: Deprecate non-string modes on file type](https://tickets.puppetlabs.com/browse/PUP-2349)
-    [PUP-2557: Deprecate and remove node inheritance](https://tickets.puppetlabs.com/browse/PUP-2557)
-    [PUP-2787: Rename Object to Any](https://tickets.puppetlabs.com/browse/PUP-2787)
-    [PUP-2914: Vendor RGen 0.7.0](https://tickets.puppetlabs.com/browse/PUP-2914)
-    [PUP-3117: Resource Expression Enhancements](https://tickets.puppetlabs.com/browse/PUP-3117)
+Released September 2, 2014.
+
+Puppet 3.7.0 is a backward-compatible features and fixes release in the Puppet 3 series. The biggest things in this release are:
+
+TODO
+
+### TODO Future Language Improvements
+
+* [PUP-514: Add optional type to parameters](https://tickets.puppetlabs.com/browse/PUP-514)
+* [PUP-121: Remove relative namespacing](https://tickets.puppetlabs.com/browse/PUP-121)
+* [PUP-957: Case and Selector expressions using Regexp type does not set match vars](https://tickets.puppetlabs.com/browse/PUP-957)
+* [PUP-2314: assert_type function should handle lambda](https://tickets.puppetlabs.com/browse/PUP-2314)
+* [PUP-2357: Validation missing for meaningless sequences](https://tickets.puppetlabs.com/browse/PUP-2357)
+* [PUP-2514: Remove support to search for Type in String](https://tickets.puppetlabs.com/browse/PUP-2514)
+* [PUP-2532: parameter lookup produces screwy result for default values](https://tickets.puppetlabs.com/browse/PUP-2532)
+* [PUP-2642: selector expression default should be matched last](https://tickets.puppetlabs.com/browse/PUP-2642)
+* [PUP-2682: Trailing commas should be allowed in node definitions](https://tickets.puppetlabs.com/browse/PUP-2682)
+* [PUP-2703: tag should be a statement function in future parser](https://tickets.puppetlabs.com/browse/PUP-2703)
+* [PUP-2791: Incorrect EPP syntax in epp() function documentation](https://tickets.puppetlabs.com/browse/PUP-2791)
+* [PUP-2824: Make $title and $name Reserved Words](https://tickets.puppetlabs.com/browse/PUP-2824)
+* [PUP-2839: Puppet 3.6.x future parser introduces dependency cycles](https://tickets.puppetlabs.com/browse/PUP-2839)
+* [PUP-2883: epp does not handle empty template](https://tickets.puppetlabs.com/browse/PUP-2883)
+* [PUP-2891: creating a resource override for a Class fails (future parser)](https://tickets.puppetlabs.com/browse/PUP-2891)
+* [PUP-2898: Long form Resource Type reference fools "future parser" this is an override](https://tickets.puppetlabs.com/browse/PUP-2898)
+* [PUP-2886: future parser should validate class/resource names that are types](https://tickets.puppetlabs.com/browse/PUP-2886)
+* [PUP-2972: Implementation of +=/-= is potentially confusing](https://tickets.puppetlabs.com/browse/PUP-2972)
+* [PUP-3054: Class inheritance behaving incorrectly in the future parser](https://tickets.puppetlabs.com/browse/PUP-3054)
+* [PUP-511: Specify Resource Expression Evaluation](https://tickets.puppetlabs.com/browse/PUP-511)
+* [PUP-1782: Deprecation warning when attempt to match a number with a regexp in 3.x](https://tickets.puppetlabs.com/browse/PUP-1782)
+* [PUP-1807: Empty string should not equal undef](https://tickets.puppetlabs.com/browse/PUP-1807)
+* [PUP-1811: "in" with regexps should set match variables](https://tickets.puppetlabs.com/browse/PUP-1811)
+* [PUP-2288: access operation vs. liststart causes confusing errors...](https://tickets.puppetlabs.com/browse/PUP-2288)
+* [PUP-2794: Specify signatures for blocks of block-accepting methods](https://tickets.puppetlabs.com/browse/PUP-2794)
+* [PUP-2825: Change "Ruby" type to "Runtime"](https://tickets.puppetlabs.com/browse/PUP-2825)
+* [PUP-2832: Rename the Ruby type to Runtime['ruby']](https://tickets.puppetlabs.com/browse/PUP-2832)
+* [PUP-2857: Add a Default type](https://tickets.puppetlabs.com/browse/PUP-2857)
+* [PUP-2240: support unfold/splat of array](https://tickets.puppetlabs.com/browse/PUP-2240)
+* [PUP-2663: Allow string to numeric conversion to start with + or -](https://tickets.puppetlabs.com/browse/PUP-2663)
+* [PUP-1808: Deprecate variables with an initial capital letter](https://tickets.puppetlabs.com/browse/PUP-1808)
+* [PUP-2034: Add depreciation warning for hyphenated class names](https://tickets.puppetlabs.com/browse/PUP-2034)
+* [PUP-2349: Deprecate non-string modes on file type](https://tickets.puppetlabs.com/browse/PUP-2349)
+* [PUP-2557: Deprecate and remove node inheritance](https://tickets.puppetlabs.com/browse/PUP-2557)
+* [PUP-2787: Rename Object to Any](https://tickets.puppetlabs.com/browse/PUP-2787)
+* [PUP-2914: Vendor RGen 0.7.0](https://tickets.puppetlabs.com/browse/PUP-2914)
+* [PUP-3117: Resource Expression Enhancements](https://tickets.puppetlabs.com/browse/PUP-3117)
 
 
-FUTURE LANGUAGE REMOVALS
-    [PUP-1057: Remove 'collect' and 'select' iterative function stubs](https://tickets.puppetlabs.com/browse/PUP-1057)
-    [PUP-2858: remove --evaluator current switch for future parser](https://tickets.puppetlabs.com/browse/PUP-2858)
+### TODO Future Language Removals
 
-TYPE AND PROVIDER APIS
-    [PUP-2458: Tests for providers inheriting from providers of another type](https://tickets.puppetlabs.com/browse/PUP-2458)
-    [PUP-2298: PR (#2549) Enable pre-run validation of catalogs](https://tickets.puppetlabs.com/browse/PUP-2298)
-        This is fascinating and could be fiendishly complicated.
+* [PUP-1057: Remove 'collect' and 'select' iterative function stubs](https://tickets.puppetlabs.com/browse/PUP-1057)
+* [PUP-2858: remove --evaluator current switch for future parser](https://tickets.puppetlabs.com/browse/PUP-2858)
 
-SUPPORT FOR NEW C-BASED FACTER IMPLEMENTATION
-    [PUP-2104: Make puppet able to configure a facter implementation to use](https://tickets.puppetlabs.com/browse/PUP-2104)
-        Should we talk about this yet? I don't know when this'll be ready for primetime.
+### TODO Type And Provider Apis
 
+* [PUP-2458: Tests for providers inheriting from providers of another type](https://tickets.puppetlabs.com/browse/PUP-2458)
+* [PUP-2298: PR (#2549) Enable pre-run validation of catalogs](https://tickets.puppetlabs.com/browse/PUP-2298)
 
-LANGUAGE BUG FIXES
-    [PUP-1597: "contain" cannot contain a fully qualified class](https://tickets.puppetlabs.com/browse/PUP-1597)
-    [PUP-2902: collection of classes should raise a meaningful error](https://tickets.puppetlabs.com/browse/PUP-2902)
+### TODO Support For New C-Based Facter Implementation
+
+cfacter blurb
+
+* [PUP-2104: Make puppet able to configure a facter implementation to use](https://tickets.puppetlabs.com/browse/PUP-2104)
 
 
-WINDOWS 64 BIT
-    [PUP-389: Support ruby 2.0 x64 on windows](https://tickets.puppetlabs.com/browse/PUP-389)
-    [PUP-2396: Support ruby 2.0 x64 on windows](https://tickets.puppetlabs.com/browse/PUP-2396)
-    [PUP-2777: Support Bundler workflow on x64](https://tickets.puppetlabs.com/browse/PUP-2777)
-    [PUP-3008: Already initialized constant warning when running puppet](https://tickets.puppetlabs.com/browse/PUP-3008)
-    [PUP-3056: Restore constants / deprecated call sites changed during x64 upgrade that impact ACL module](https://tickets.puppetlabs.com/browse/PUP-3056)
-    [PUP-2913: Remove RGen Gem in Puppet-Win32-Ruby libraries](https://tickets.puppetlabs.com/browse/PUP-2913)
-    [PUP-390: Modify build process to generate x86 and x64 versions of ruby](https://tickets.puppetlabs.com/browse/PUP-390)
-    [PUP-3006: Do not allow x64 to install on Windows Server 2003](https://tickets.puppetlabs.com/browse/PUP-3006)
+### Language Bug Fixes
 
-PACKAGING BUGS
-    [PUP-2878: puppet-kick.8.gz conflict upgrading from 2.7.26 to 3.6.2](https://tickets.puppetlabs.com/browse/PUP-2878)
+We fixed a bug where the `contain` function misbehaved when given classes that start with a `::` prefix. We also made [resource collectors](./lang_collectors.html) give more informative errors if you try to collect classes (which isn't allowed).
+
+* [PUP-1597: "contain" cannot contain a fully qualified class](https://tickets.puppetlabs.com/browse/PUP-1597)
+* [PUP-2902: collection of classes should raise a meaningful error](https://tickets.puppetlabs.com/browse/PUP-2902)
 
 
-DEPRECATIONS
-    [PUP-850: Puppet 3.x Deprecations in Preparation for Puppet 4](https://tickets.puppetlabs.com/browse/PUP-850)
-    [PUP-1381: cron type and provider only return resources for ENV["USER"] or "root", not all users](https://tickets.puppetlabs.com/browse/PUP-1381)
-    [PUP-1299: Deprecate and eliminate magic parameter array handling](https://tickets.puppetlabs.com/browse/PUP-1299)
-    [PUP-2691: Real-world module skeletons still use the 'description' metadata property](https://tickets.puppetlabs.com/browse/PUP-2691)
-    [PUP-2711: The manifests directory should be recursively loaded when using directory environments](https://tickets.puppetlabs.com/browse/PUP-2711)
-    [PUP-1027: Add warning for use of bare words that clash with new keywords](https://tickets.puppetlabs.com/browse/PUP-1027)
-    [PUP-480: Complete handling of undef/nil](https://tickets.puppetlabs.com/browse/PUP-480)
-    [PUP-2798: Stop issuing deprecation warnings for reserved words](https://tickets.puppetlabs.com/browse/PUP-2798)
-    [PUP-121: Remove relative namespacing](https://tickets.puppetlabs.com/browse/PUP-121)
-    [PUP-1874: Deprecate the inventory service on master](https://tickets.puppetlabs.com/browse/PUP-1874)
-    [PUP-2379: Deprecate `recurse => inf` for file type](https://tickets.puppetlabs.com/browse/PUP-2379)
-    [PUP-406: Deprecate stringify_fact = true](https://tickets.puppetlabs.com/browse/PUP-406)
-    [PUP-1782: Deprecation warning when attempt to match a number with a regexp in 3.x](https://tickets.puppetlabs.com/browse/PUP-1782)
-    [PUP-1852: deprecate the 'search' function](https://tickets.puppetlabs.com/browse/PUP-1852)
-    [PUP-3031: simplify/move warn_if_near_expiration](https://tickets.puppetlabs.com/browse/PUP-3031)
-    [PUP-586: Deprecate Instrumentation system](https://tickets.puppetlabs.com/browse/PUP-586)
-    [PUP-796: Deprecate couchdb facts terminus and associated settings](https://tickets.puppetlabs.com/browse/PUP-796)
-    [PUP-1808: Deprecate variables with an initial capital letter](https://tickets.puppetlabs.com/browse/PUP-1808)
-    [PUP-2034: Add depreciation warning for hyphenated class names](https://tickets.puppetlabs.com/browse/PUP-2034)
-    [PUP-2349: Deprecate non-string modes on file type](https://tickets.puppetlabs.com/browse/PUP-2349)
-    [PUP-2424: Deprecate Puppet::Plugins](https://tickets.puppetlabs.com/browse/PUP-2424)
-    [PUP-2557: Deprecate and remove node inheritance](https://tickets.puppetlabs.com/browse/PUP-2557)
-    [PUP-2614: Deprecate default source_permissions :use on all platforms](https://tickets.puppetlabs.com/browse/PUP-2614)
-        This might not happen, since pluginsync for external facts relies on this.
-    [PUP-3129: Deprecate hidden _timestamp fact](https://tickets.puppetlabs.com/browse/PUP-3129)
+### Feature: 64-Bit Support and Ruby 2.0 on Windows
+
+We now ship both 32- and 64-bit Puppet installers for Windows! You should download the version that fits your systems' version of Windows.
+
+> **Note:** Windows Server 2003 can't use our 64-bit installer, and must continue to use the 32-bit installer for all architectures. This is because 64-bit Ruby relies on OS features that weren't added until after Windows 2003.
+
+Prior to this release, we only shipped 32-bit packages. Although these ran fine on 64-bit versions of Windows, they were subject to [file system redirection](/puppet/3.6/reference/lang_windows_file_paths.html), which could be surprising.
+
+As part of this expanded Windows support, Puppet on Windows now uses Ruby 2.0.
+
+* [PUP-389: Support ruby 2.0 x64 on windows](https://tickets.puppetlabs.com/browse/PUP-389)
+* [PUP-2396: Support ruby 2.0 x64 on windows](https://tickets.puppetlabs.com/browse/PUP-2396)
+* [PUP-2777: Support Bundler workflow on x64](https://tickets.puppetlabs.com/browse/PUP-2777)
+* [PUP-3008: Already initialized constant warning when running puppet](https://tickets.puppetlabs.com/browse/PUP-3008)
+* [PUP-3056: Restore constants / deprecated call sites changed during x64 upgrade that impact ACL module](https://tickets.puppetlabs.com/browse/PUP-3056)
+* [PUP-2913: Remove RGen Gem in Puppet-Win32-Ruby libraries](https://tickets.puppetlabs.com/browse/PUP-2913)
+* [PUP-390: Modify build process to generate x86 and x64 versions of ruby](https://tickets.puppetlabs.com/browse/PUP-390)
+* [PUP-3006: Do not allow x64 to install on Windows Server 2003](https://tickets.puppetlabs.com/browse/PUP-3006)
+
+### Packaging Bugs
+
+We fixed a problem where a man page was being marked as a conflict.
+
+* [PUP-2878: puppet-kick.8.gz conflict upgrading from 2.7.26 to 3.6.2](https://tickets.puppetlabs.com/browse/PUP-2878)
+
+
+### TODO Deprecations
+
+* [PUP-850: Puppet 3.x Deprecations in Preparation for Puppet 4](https://tickets.puppetlabs.com/browse/PUP-850)
+* [PUP-1381: cron type and provider only return resources for ENV["USER"] or "root", not all users](https://tickets.puppetlabs.com/browse/PUP-1381)
+* [PUP-1299: Deprecate and eliminate magic parameter array handling](https://tickets.puppetlabs.com/browse/PUP-1299)
+* [PUP-2691: Real-world module skeletons still use the 'description' metadata property](https://tickets.puppetlabs.com/browse/PUP-2691)
+* [PUP-2711: The manifests directory should be recursively loaded when using directory environments](https://tickets.puppetlabs.com/browse/PUP-2711)
+* [PUP-1027: Add warning for use of bare words that clash with new keywords](https://tickets.puppetlabs.com/browse/PUP-1027)
+* [PUP-480: Complete handling of undef/nil](https://tickets.puppetlabs.com/browse/PUP-480)
+* [PUP-2798: Stop issuing deprecation warnings for reserved words](https://tickets.puppetlabs.com/browse/PUP-2798)
+* [PUP-121: Remove relative namespacing](https://tickets.puppetlabs.com/browse/PUP-121)
+* [PUP-1874: Deprecate the inventory service on master](https://tickets.puppetlabs.com/browse/PUP-1874)
+* [PUP-2379: Deprecate `recurse => inf` for file type](https://tickets.puppetlabs.com/browse/PUP-2379)
+* [PUP-406: Deprecate stringify_fact = true](https://tickets.puppetlabs.com/browse/PUP-406)
+* [PUP-1782: Deprecation warning when attempt to match a number with a regexp in 3.x](https://tickets.puppetlabs.com/browse/PUP-1782)
+* [PUP-1852: deprecate the 'search' function](https://tickets.puppetlabs.com/browse/PUP-1852)
+* [PUP-3031: simplify/move warn_if_near_expiration](https://tickets.puppetlabs.com/browse/PUP-3031)
+* [PUP-586: Deprecate Instrumentation system](https://tickets.puppetlabs.com/browse/PUP-586)
+* [PUP-796: Deprecate couchdb facts terminus and associated settings](https://tickets.puppetlabs.com/browse/PUP-796)
+* [PUP-1808: Deprecate variables with an initial capital letter](https://tickets.puppetlabs.com/browse/PUP-1808)
+* [PUP-2034: Add depreciation warning for hyphenated class names](https://tickets.puppetlabs.com/browse/PUP-2034)
+* [PUP-2349: Deprecate non-string modes on file type](https://tickets.puppetlabs.com/browse/PUP-2349)
+* [PUP-2424: Deprecate Puppet::Plugins](https://tickets.puppetlabs.com/browse/PUP-2424)
+* [PUP-2557: Deprecate and remove node inheritance](https://tickets.puppetlabs.com/browse/PUP-2557)
+* [PUP-2614: Deprecate default source_permissions :use on all platforms](https://tickets.puppetlabs.com/browse/PUP-2614)
+* [PUP-3129: Deprecate hidden _timestamp fact](https://tickets.puppetlabs.com/browse/PUP-3129)
 
 
 
@@ -139,9 +162,8 @@ Puppet has a new [`http_debug` setting](/references/3.7.latest/configuration.htm
 
 Use this only for temporary debugging (e.g. `puppet agent --test --http_debug`). It should never be enabled in production, because it can leak sensitive data to stderr. (Also because it's extremely noisy.)
 
-### Resource Type and Provider Improvements
+### TODO Resource Type and Provider Improvements
 
-TODO: summaries for each resource type.
 
 #### Package
 
@@ -230,7 +252,7 @@ When running `puppet master --compile`, Puppet master used to ignore its `--logd
 * [PUP-2873: puppet master --compile right now unconditionally spews logs to standard output](https://tickets.puppetlabs.com/browse/PUP-2873)
 
 
-### Puppet Module Command Improvements
+### TODO Puppet Module Command Improvements
 
 TODO: SUMMARY OF MODULE IMPROVEMENTS HERE
 
@@ -274,9 +296,7 @@ In other performance news, we made Puppet stop searching the disk in a situation
 * [PUP-1044: FileBucket should not keep files in memory](https://tickets.puppetlabs.com/browse/PUP-1044)
 
 
-### Improvements to Directory Environments
-
-TODO: directory environments summary
+### TODO Improvements to Directory Environments
 
 * [PUP-2426: Puppet's v2 environment listing does not display config_version and environment_timeout as well.](https://tickets.puppetlabs.com/browse/PUP-2426)
 
@@ -287,9 +307,7 @@ TODO: directory environments summary
 * [PUP-3069: Use a manifest setting in [master] as global manifests](https://tickets.puppetlabs.com/browse/PUP-3069)
 
 
-### Miscellaneous Bug Fixes
-
-TODO: misc summary.
+### TODO Miscellaneous Bug Fixes
 
 * [PUP-1100: create_resources auto importing a manifest with a syntax error produce a bad error message](https://tickets.puppetlabs.com/browse/PUP-1100)
 * [PUP-2303: ArgumentErrors in file_server config parser are swallowed by raising the error wrong](https://tickets.puppetlabs.com/browse/PUP-2303)
@@ -299,9 +317,9 @@ TODO: misc summary.
 * [PUP-2994: puppet parser validate shouldn't puke on exported resources](https://tickets.puppetlabs.com/browse/PUP-2994)
 * [PUP-1843: 3.4.0 broke compatibility with plugins using the hiera indirector terminus](https://tickets.puppetlabs.com/browse/PUP-1843)
 
-### Miscellaneous Improvements
+### TODO Miscellaneous Improvements
 
-TODO: misc summary. I don't know what the two profiling tickets do.
+I don't know what the two profiling tickets do.
 
 * [PUP-1736: Add encoding information to debug output](https://tickets.puppetlabs.com/browse/PUP-1736)
 * [PUP-2626: Accept module paths in Puppet::Parser::Functions.file()](https://tickets.puppetlabs.com/browse/PUP-2626)
@@ -309,9 +327,9 @@ TODO: misc summary. I don't know what the two profiling tickets do.
 * [PUP-2747: support multiple profilers](https://tickets.puppetlabs.com/browse/PUP-2747)
 * [PUP-2750: expand profiler signature to support hierarchical profiling data](https://tickets.puppetlabs.com/browse/PUP-2750)
 
-### Security
+### TODO Security
 
-TODO: security summary
+
 
 * [PUP-2177: PR (2494) Insecure shipped Cipher settings in Passenger example config](https://tickets.puppetlabs.com/browse/PUP-2177)
 * [PUP-2569: "puppet cert revoke <name>" doesn't always revoke what you expect](https://tickets.puppetlabs.com/browse/PUP-2569)
