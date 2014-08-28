@@ -32,7 +32,10 @@ Released September 2, 2014.
 
 Puppet 3.7.0 is a backward-compatible features and fixes release in the Puppet 3 series. The biggest things in this release are:
 
-TODO
+* A nearly-final implementation of the Puppet 4 language
+* Preview support for a new, fast, natively compiled Facter
+* 64-bit Puppet packages for Windows
+* Lots of deprecations to prepare for Puppet 4.0
 
 ### Feature: Nearly Final Implementation of the Puppet 4 Language
 
@@ -92,9 +95,9 @@ For details, see [the section on pre-run validation in the custom resource types
 
 * [PUP-2298: PR (#2549) Enable pre-run validation of catalogs](https://tickets.puppetlabs.com/browse/PUP-2298)
 
-### Feature: Providers Can Inherit From Providers of Another Resource Type
+### Retroactive Feature: Providers Can Inherit From Providers of Another Resource Type
 
-This has actually been possible forever, but we've added tests to demonstrate that it's supported and to keep it from breaking in the future. For details, [see the relevant section in the provider development guide.](/guides/provider_development.html#a-provider-of-any-resource-type)
+This has actually been possible forever, but it wasn't called out as a legitimate feature. We've added tests to demonstrate that it's supported and to keep it from breaking in the future. For details, [see the relevant section in the provider development guide.](/guides/provider_development.html#a-provider-of-any-resource-type)
 
 * [PUP-2458: Tests for providers inheriting from providers of another type](https://tickets.puppetlabs.com/browse/PUP-2458)
 
@@ -353,18 +356,28 @@ In other performance news: Puppet no longer searches the disk in a situation whe
 * [PUP-1044: FileBucket should not keep files in memory](https://tickets.puppetlabs.com/browse/PUP-1044)
 
 
-### TODO Improvements to Directory Environments
+### Feature: Recursive Manifest Directory Loading Under Future Parser
 
-* [PUP-2426: Puppet's v2 environment listing does not display config_version and environment_timeout as well.](https://tickets.puppetlabs.com/browse/PUP-2426)
+When `parser = future` is set in [puppet.conf][], Puppet will recursively load any subdirectories in the [main manifest][]. This will be the default behavior in Puppet 4.
+
+* [PUP-2711: The manifests directory should be recursively loaded when using directory environments](https://tickets.puppetlabs.com/browse/PUP-2711)
+
+### Improvements to Directory Environments
+
+We've improved Puppet's behavior and error messages when trying to use an environment that doesn't exist. Also, the [`v2.0/environments` API endpoint][env_api] now includes the `config_version` and `environment_timeout` settings.
+
+TODO blurb about resolution of PUP-3069
 
 * [PUP-2214: Many puppet commands fail when using a configured or requested directory environment that doesn't exist.](https://tickets.puppetlabs.com/browse/PUP-2214)
+* [PUP-2426: Puppet's v2 environment listing does not display config_version and environment_timeout as well.](https://tickets.puppetlabs.com/browse/PUP-2426)
 * [PUP-2519: Settings catalog should create the default environment if environmentpath set.](https://tickets.puppetlabs.com/browse/PUP-2519)
 * [PUP-2631: Running the puppet agent against a nonexistent environment produces an overly verbose error message.](https://tickets.puppetlabs.com/browse/PUP-2631)
-* [PUP-2711: The manifests directory should be recursively loaded when using directory environments](https://tickets.puppetlabs.com/browse/PUP-2711)
 * [PUP-3069: Use a manifest setting in [master] as global manifests](https://tickets.puppetlabs.com/browse/PUP-3069)
 
 
-### TODO Miscellaneous Bug Fixes
+### Miscellaneous Bug Fixes
+
+The `puppet` command now exits 1 when given an invalid subcommand, instead of exiting 0 as if everything were fine. We fixed some wrong or confusing error messages. The `puppet parser validate` command now handles exported resources just fine even if storeconfigs isn't configured (but only in the future parser). And we fixed a regression from Puppet 3.4 that broke plugins using the `hiera` indirector terminus.
 
 * [PUP-1100: create_resources auto importing a manifest with a syntax error produce a bad error message](https://tickets.puppetlabs.com/browse/PUP-1100)
 * [PUP-2303: ArgumentErrors in file_server config parser are swallowed by raising the error wrong](https://tickets.puppetlabs.com/browse/PUP-2303)
