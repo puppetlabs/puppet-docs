@@ -934,9 +934,9 @@ The new [`%` modulo operator][32modulo_operator] will return the remainder of di
 
 If you set [the `profile` setting][32profiling_setting] to `true` in  an agent node's puppet.conf (or specify `--profile` on the command line), the puppet master will log additional debug-level messages about how much time each step of its catalog compilation takes.
 
-If you're trying to profile, be sure to check the `--logdest` and `--debug` command-line options on the master --- debug must be on, and messages will go to the log destination, which defaults to syslog. If you're running via Passenger or another Rack server, these options will be set in the config.ru file.
+If you're trying to profile, be sure to check the `--logdest` and `--debug` command-line options on the master --- debug must be on, and messages will go to the log destination, which defaults to syslog. If you're running via Passenger or another Rack server, these options must be set as command-line arguments in the config.ru file and not as settings in puppet.conf.
 
-To find the messages, look for the string `PROFILE` in the master's logs --- each catalog request will get a unique ID, so you can tell which messages are for which request.
+To find the messages, look for the string `PROFILE` in the master's logs --- each catalog request will get a unique ID, so you can tell which messages are for which request. Ensure syslog is configured to record messages logged at debug priority when used as the log destination.
 
 (Issue [17190][])
 
