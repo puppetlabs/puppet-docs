@@ -100,7 +100,7 @@ At this point, puppet configures apache and starts the httpd service. When this 
 
 As you can see, PE has used Facter to retrieve some key facts about your node, and then used those facts to populate the header of your vhost template.  
 
-But now, let's see what happens you write your own Puppet code.
+But now, let's see what happens when you write your own Puppet code.
 
 Writing a Puppet Module
 --------------
