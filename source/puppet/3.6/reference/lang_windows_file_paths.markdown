@@ -56,7 +56,7 @@ Forward slashes **MUST** be used in:
 You can choose which kind of slash to use in:
 
 * The `path` attribute or title of a [`file`][file] resource
-* The `source` attribute of a [`package`][package] resource
+
 * Local paths in a [`file`][file] resource's `source` attribute
 * The `command` of an [`exec`][exec] resource, unless the executable requires backslashes, e.g. cmd.exe
 
@@ -64,6 +64,7 @@ You can choose which kind of slash to use in:
 
 Backslashes **MUST** be used in:
 
+* The `source` attribute of a [`package`][package] resource
 * Any file paths included in the `command` of a [`scheduled_task`][scheduledtask] resource.
 * Any file paths included in the `install_options` of a [`package`][package] resource.
 

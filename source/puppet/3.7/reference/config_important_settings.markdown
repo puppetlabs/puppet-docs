@@ -75,6 +75,7 @@ canonical: "/puppet/latest/reference/config_important_settings.html"
 [autosign]: /references/3.7.latest/configuration.html#autosign
 [environmentpath]: /references/3.7.latest/configuration.html#environmentpath
 [environment.conf]: ./config_file_environment.html
+[alwayscachefeatures]: /references/3.7.latest/configuration.html#alwayscachefeatures
 
 Puppet has about 230 settings, all of which are listed in the [configuration reference][config_reference]. Most users can ignore about 200 of those.
 
@@ -155,6 +156,8 @@ Many of these settings are also important for standalone puppet apply nodes, sin
 These settings should usually go in `[master]`. However, if you're using puppet apply in production, put them in `[main]` instead.
 
 ### Basics
+
+* [`always_cache_features`][alwayscachefeatures] --- If set to the default 'false,' Puppet will check provider prerequisites several times every runs. On agents, this improves plugin reliability, but on the master, set this to 'true' for better performance. 
 
 * [`dns_alt_names`][dns_alt_names] --- A list of hostnames the server is allowed to use when acting as a puppet master. The hostname your agents use in their `server` setting **must** be included in either this setting or the master's `certname` setting. Note that this setting is only used when initially generating the puppet master's certificate --- if you need to change the DNS names, you must:
     * Turn off the puppet master service (or Rack server).
