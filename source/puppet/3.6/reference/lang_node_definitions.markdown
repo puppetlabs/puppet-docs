@@ -33,11 +33,7 @@ Unlike more general conditional structures, node statements only match nodes by 
 Location
 -----
 
-Node definitions should go in [the site manifest (site.pp)][sitepp].
-
-In earlier versions of Puppet, you could import manifests into site.pp. However, the `import` keyword is deprecated in Puppet 3.6 and will be removed completely in Puppet 4. Please see [Language: Importing Manifests][import] for deprecation details and alternative solutions.
-
-> Node statements should never be put in [modules][]. The behavior of a node statement in an autoloaded manifest is undefined.
+Node definitions should go in [the main manifest (site.pp)][sitepp]. The main manifest can be a single file, or a directory containing many files.
 
 Syntax
 -----

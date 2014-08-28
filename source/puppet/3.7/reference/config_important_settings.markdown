@@ -157,7 +157,8 @@ These settings should usually go in `[master]`. However, if you're using puppet 
 
 ### Basics
 
-* [`always_cache_features`][alwayscachefeatures] --- Set this to true to always cache feature state whether or not the feature test was successful.
+* [`always_cache_features`][alwayscachefeatures] --- If set to the default 'false,' Puppet will check provider prerequisites several times every runs. On agents, this improves plugin reliability, but on the master, set this to 'true' for better performance. 
+
 * [`dns_alt_names`][dns_alt_names] --- A list of hostnames the server is allowed to use when acting as a puppet master. The hostname your agents use in their `server` setting **must** be included in either this setting or the master's `certname` setting. Note that this setting is only used when initially generating the puppet master's certificate --- if you need to change the DNS names, you must:
     * Turn off the puppet master service (or Rack server).
     * Run `sudo puppet cert clean <MASTER'S CERTNAME>`.
