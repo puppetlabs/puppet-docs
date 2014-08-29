@@ -398,11 +398,11 @@ Puppet's `--debug` output now begins with a line containing the following inform
 
 * [PUP-1736: Add encoding information to debug output](https://tickets.puppetlabs.com/browse/PUP-1736)
 
-The [`file()` function](function.html#file) will now accept [template](function.html#template)-style module paths, rather than only absolute paths. For example, `file('example/file.txt')` is now equivalent to `file('<MODULE PATH>/example/files/file.txt')`.
+The [`file()` function](/reference/3.7.latest/function.html#file) will now accept [template](/reference/3.7.latest/function.html#template)-style module paths, rather than only absolute paths. For example, `file('example/file.txt')` is now equivalent to `file('<MODULE PATH>/example/files/file.txt')`.
 
 * [PUP-2626: Accept module paths in Puppet::Parser::Functions.file()](https://tickets.puppetlabs.com/browse/PUP-2626)
 
-The new [`digest()` function](function.html#digest) is similar to the existing `md5()` function, but hashes its argument using the algorithm specified by the [`digest_algorithm` setting](configuration.html#digestalgorithm).
+The new [`digest()` function](/reference/3.7.latest/function.html#digest) is similar to the existing `md5()` function, but hashes its argument using the algorithm specified by the [`digest_algorithm` setting](/reference/3.7.latest/configuration.html#digestalgorithm).
 
 * [PUP-2511: Add parser function digest: uses digest_algorithm to hash, not strictly md5](https://tickets.puppetlabs.com/browse/PUP-2511)
 
