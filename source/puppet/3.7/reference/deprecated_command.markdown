@@ -18,59 +18,59 @@ The following features of Puppet's command line interface are deprecated, and wi
 
 ## `puppet kick`
 
-#### Now
+### Now
 
 If you run `puppet agent` as a daemon, set `listen = true` in your agent nodes' [puppet.conf][] files, give all of them an [auth.conf][] that opens the `run` endpoint, and open their firewalls to port 8139, you can use the `puppet kick` command to start Puppet runs.
 
-#### In Puppet 4.0
+### In Puppet 4.0
 
 The `puppet kick` command is gone, and the agent daemon will no longer listen for incoming HTTPS connections.
 
-#### Detecting and Updating
+### Detecting and Updating
 
 If you or your scripts use `puppet kick`, you'll need to either install [MCollective][] for a more robust and parallel task running system or use a parallel SSH tool to kick off Puppet runs. If you use Puppet Enterprise, you can already [use its orchestration features to trigger Puppet runs.][pe_mco_puppet]
 
 You'll probably want to close port 8139, while you're at it.
 
-#### Context
+### Context
 
 Opening a port and listening for connections on every agent node is kind of horrible, so we decided to stop supporting it. If all you need to do is trigger Puppet runs, plain old [pssh][] is a better tool for the job. If you have other needs, or want to do fancy things with Puppet runs, [MCollective][] is much more capable.
 
 ## `puppet queue`
 
-#### Now
+### Now
 
 If you're using the old, slow, and deprecated ActiveRecord-based storeconfigs implementation (instead of the superior-in-every-way [PuppetDB][]), you can use the `puppet queue` command to partially work around its slowness and oldness.
 
-#### In Puppet 4.0
+### In Puppet 4.0
 
 Switch to [PuppetDB][].
 
-#### Detecting and Updating
+### Detecting and Updating
 
 No matter what you're doing, switch to [PuppetDB][].
 
-#### Context
+### Context
 
 [PuppetDB][].
 
 ## `puppet facts find --terminus rest`
 
-#### Now
+### Now
 
 You can query the deprecated [inventory service][] with the `puppet facts` command.
 
-#### In Puppet 4.0
+### In Puppet 4.0
 
 The inventory service is gone and this command no longer works.
 
-#### Detecting and Updating
+### Detecting and Updating
 
 If you or your scripts use `puppet facts find --terminus rest`, you should change your workflow and speak directly to [PuppetDB][]. Write a small script that hits [PuppetDB's `facts` API][puppetdb_facts] and does something with the resulting JSON, or just [use `curl` to get raw JSON.][puppetdb_curl]
 
 [puppetdb_facts]: /puppetdb/latest/api/query/v4/facts.html
 
-#### Context
+### Context
 
 The inventory service was kind of an awkward API, and PuppetDB's API is much better.
 
@@ -79,19 +79,19 @@ The inventory service was kind of an awkward API, and PuppetDB's API is much bet
 
 ## `puppet facts upload`
 
-#### Now
+### Now
 
 Agent nodes can upload facts to the Puppet master's deprecated [inventory service][] with the `puppet facts` command, and they'll eventually end up in PuppetDB.
 
-#### In Puppet 4.0
+### In Puppet 4.0
 
 The inventory service is gone and this command no longer works.
 
-#### Detecting and Updating
+### Detecting and Updating
 
 If you or your scripts use `puppet facts upload`, you should change your workflow and speak directly to [PuppetDB][]. Write a small script that reads facts from Facter, formats them into [PuppetDB's facts wire format][puppetdb_facts_wire], then uploads them to [PuppetDB's `replace_facts` API][puppetdb_facts_replace].
 
-#### Context
+### Context
 
 The inventory service was kind of an awkward API, and PuppetDB's API is much better.
 
