@@ -1,9 +1,9 @@
-----------
+---
 layout: default
 title: "PE 3.3 » Quick Start » SSH"
 subtitle: "SSH Quick Start Guide"
 canonical: "/pe/latest/quick_start_ssh.html"
-----------
+---
 
 [downloads]: http://info.puppetlabs.com/download-pe.html
 [sys_req]: ./install_system_requirements.html
