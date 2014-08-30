@@ -6,7 +6,7 @@ title: "Deprecated Settings"
 
 
 
-The following Puppet settings are deprecated, and will be removed in Puppet 4.0. Many of them are related to other deprecated features.
+The following Puppet settings are deprecated and will be removed in Puppet 4.0. Many of them are related to other deprecated features.
 
 
 Config File Environment Settings
@@ -61,15 +61,15 @@ Activerecord-based storeconfigs still works, and these settings configure variou
 
 ### In Puppet 4.0
 
-It's gone, and so are the settings. Use PuppetDB instead.
+It's gone, and so are these settings. Use PuppetDB instead.
 
 ### Detecting and Updating
 
-Look for the settings in your puppet master config files and delete them. Install PuppetDB.
+Look for the settings in your Puppet master config files and delete them. Install PuppetDB.
 
 ### Context
 
-Activerecord storeconfigs was an old and slow system that could do a fraction of what PuppetDB does, badly.
+Activerecord storeconfigs was an old and slow system that could do only a fraction of what PuppetDB does, and it did it badly.
 
 
 Inventory Service Settings
@@ -85,7 +85,7 @@ These settings configure the deprecated inventory service.
 
 ### In Puppet 4.0
 
-The settings are gone.
+The inventory service is gone, as are the settings.
 
 ### Detecting and Updating
 
@@ -93,7 +93,7 @@ If you or your applications use the inventory service, you should switch to [Pup
 
 ### Context
 
-The inventory service could do a fraction of what PuppetDB did, with a slower and less flexible API. It's been replaced.
+The inventory service could do a fraction of what PuppetDB does, and with a slower and less flexible API. It's been replaced.
 
 Other Settings
 -----
@@ -104,11 +104,11 @@ Other Settings
 
 #### Now
 
-This setting appears to no longer work.
+This setting once permitted hyphens in variable names, but no longer works.
 
 #### In Puppet 4.0
 
-The setting is gone.
+This setting is removed.
 
 #### Detecting and Updating
 
@@ -116,7 +116,7 @@ If this is set in puppet.conf on your master(s), you'll need to delete it.
 
 #### Context
 
-This setting was designed to reduce the damage from a pair of bad decisions we made in the Puppet 2.7 era.
+This setting was designed to reduce the damage from a pair of bad decisions we made in the Puppet 2.7 era. Hyphenated variables cause major problems in the language.
 
 ### `catalog_format`
 
@@ -124,11 +124,11 @@ This setting was designed to reduce the damage from a pair of bad decisions we m
 
 #### Now
 
-It's present
+This setting is deprecated.
 
 #### In Puppet 4.0
 
-It's gone
+This setting is gone. Use `preferred_serialization_format` instead.
 
 #### Detecting and Updating
 
@@ -136,7 +136,7 @@ Search your puppet.conf file on agent nodes for the name of the setting.
 
 #### Context
 
-This setting was replaced by the [`preferred_serialization_format`](/references/3.7.latest/configuration.html#preferredserializationformat) setting.
+This setting is replaced by the [`preferred_serialization_format`](/references/3.7.latest/configuration.html#preferredserializationformat) setting.
 
 ### `dynamicfacts`
 
@@ -144,11 +144,11 @@ This setting was replaced by the [`preferred_serialization_format`](/references/
 
 #### Now
 
-It's dead code and does nothing, but you can still set it in puppet.conf. It'll cause a deprecation warning.
+This setting is not functional, but you can still set it in puppet.conf. It causes a deprecation warning.
 
 #### In Puppet 4.0
 
-It's gone.
+This setting has been removed.
 
 #### Detecting and Updating
 
@@ -158,7 +158,7 @@ Deprecation warning:
 
 #### Context
 
-I don't think we ever actually implemented the behavior it seems designed for?
+This setting was intended to ignore dynamic facts when deciding whether changed facts should result in a recompile, but was never implemented.
 
 ### `listen`
 
@@ -170,7 +170,7 @@ Setting `listen = true` will cause `puppet agent` to listen for incoming connect
 
 #### In Puppet 4.0
 
-The setting is gone.
+The setting is removed.
 
 #### Detecting and Updating
 
@@ -195,11 +195,11 @@ The setting is gone and its directory doesn't have to exist.
 
 #### Detecting and Updating
 
-Nothing needed.
+No action is needed to update the behavior.
 
 #### Context
 
-I dunno why this ever existed.
+Setting a global value for manifest in puppet.conf is deprecated. Use directory environments instead.
 
 ### `masterlog`
 
@@ -207,22 +207,21 @@ I dunno why this ever existed.
 
 #### Now
 
-This setting does literally nothing but can be set in puppet.conf.
+This setting is not functional, but it can be set in puppet.conf.
 
 #### In Puppet 4.0
 
-The setting is gone.
+The setting is removed.
 
 #### Detecting and Updating
 
-Nothing needed. If you have the setting set and you upgrade, Puppet will give an error and ask you to remove it.
+No action is needed. If you have the setting set and you upgrade, Puppet will give an error and ask you to remove it.
 
 #### Context
 
-This might have done something once, but has probably been dead code since before Puppet 2.6.
+This setting once could specify where the Puppet master logged, but it has not worked in some time. Syslog is the default log destination.
 
 ### `stringify_facts = true`
-
 
 * [`stringify_facts`](/references/latest/configuration.html#stringifyfacts)
 
