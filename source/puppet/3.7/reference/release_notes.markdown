@@ -146,7 +146,21 @@ We fixed a problem where a man page was being marked as a conflict.
 * [PUP-2878: puppet-kick.8.gz conflict upgrading from 2.7.26 to 3.6.2](https://tickets.puppetlabs.com/browse/PUP-2878)
 
 
-### TODO Deprecations
+### DEPRECATIONS in Preparation for Puppet 4.0
+
+Puppet 3.7 may well be the final Puppet 3.x release, and we've deprecated a lot of old and crusty features in preparation for Puppet 4.0.
+
+**After upgrading to Puppet 3.7, every Puppet user** should budget some time to read through the following docs pages and investigate the state of Puppet code and custom integrations at their site. We've tried to make it super easy to identify and check off each deprecated feature, so your next upgrade can go as smoothly as possible.
+
+
+* [About Deprecations in This Version](./deprecated_summary.html)
+* [Language Features](./deprecated_language.html)
+* [Resource Type Features](./deprecated_resource.html)
+* [Extension Points and APIs](./deprecated_api.html)
+* [Command Line Features](./deprecated_command.html)
+* [Settings](./deprecated_settings.html)
+* [Other Features](./deprecated_misc.html)
+
 
 * [PUP-850: Puppet 3.x Deprecations in Preparation for Puppet 4](https://tickets.puppetlabs.com/browse/PUP-850)
 * [PUP-1381: cron type and provider only return resources for ENV["USER"] or "root", not all users](https://tickets.puppetlabs.com/browse/PUP-1381)
