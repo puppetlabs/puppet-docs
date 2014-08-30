@@ -3,6 +3,7 @@ layout: default
 title: "Deprecated Language Features"
 ---
 
+[main manifest]: ./dirs_manifest.html
 
 The following features of the Puppet language are deprecated, and will be removed in Puppet 4.0.
 
@@ -26,6 +27,54 @@ Relative name lookup was introduced in pre-module versions of Puppet and reflect
 
 * [PUP-121: Remove relative namespacing](https://tickets.puppetlabs.com/browse/PUP-121)
 
+## Node Inheritance
+
+### Now
+
+You can use the `inherits` keyword to allow nodes to inherit definitions from other nodes.
+
+### In Puppet 4.0
+
+Node inheritance is completely removed.
+
+### Detecting and Updating
+
+As of Puppet 3.7, node inheritance causes a deprecation warning:
+
+    Warning: Deprecation notice: Node inheritance is not supported in Puppet >= 4.0.0. See http://links.puppetlabs.com/puppet-node-inheritance-deprecation
+
+In the future parser as of Puppet 3.7, node inheritance causes an error:
+
+    Error: Node inheritance is not supported in Puppet >= 4.0.0. See http://links.puppetlabs.com/puppet-node-inheritance-deprecation at c:/vagrantshared/puppet/manifests/site.pp:12:22
+
+### Context
+
+Node inheritance often causes ambiguous or counterintuitive behavior. More effective code reuse can be achieved using classes and defined types.
+
+* [PUP-2557: Deprecate and remove node inheritance](https://tickets.puppetlabs.com/browse/PUP-2557)
+
+## Importing Manifests
+
+### Now
+
+You can use the `import` statement in the [main manifest][] to compile more than one manifest without autoloading the additional files from modules.
+
+### In Puppet 4.0
+
+The `import` keyword has been removed completely and manifests can no longer be imported.
+
+### Detecting and Updating
+
+Use of the `import` keyword in Puppet 3.6 and later causes a deprecation warning:
+
+    Warning: The use of 'import' is deprecated at 1. See http://links.puppetlabs.com/puppet-import-deprecation
+
+### Context
+
+The `import` keyword predates Puppet's module system. Once modules were introduced, most of the use cases for `import` vanished. One use case remained (importing a directory of node-specific manifests into the [main manifest][]), but now that the main manifest can be a directory with any number of files, that last use case is gone. Since it's now a redundant way to do things, and can behave really oddly under certain circumstances, we're removing it.
+
+* [PUP-866: Deprecate "import"](https://tickets.puppetlabs.com/browse/PUP-866)
+
 ## Matching Numbers With Regular Expressions
 
 ### Now
@@ -46,22 +95,23 @@ The ability to match a regexp against a non-string value was inconsistent, so we
 
 * [PUP-1782: Deprecation warning when attempt to match a number with a regexp in 3.x](https://tickets.puppetlabs.com/browse/PUP-1782)
 
-## The `search` Function [TO DO PLEASE NICK]
+## The `search` Function
 
 ### Now
- 
-The `search` functions allow a scope to expand the set of searched namespaces to find something referenced.
-[I JUST COPIED THIS AND DON'T TRULY UNDERSTAND HOW TO EXPLAIN IT]
 
-this one's complicated. It's related to relative namespacing. you can skip it if it's incomprehensible.
+The `search` function allows you to make relative namespacing even worse, by adding _additional_ namespaces that Puppet will attempt to tack onto any class or defined type names.
 
 ### In Puppet 4.0
-The `search` function no longer ... [DOES THAT... I **KIND OF** GET IT BUT I CAN'T EXPLAIN IT. ]
+
+The `search` function is removed, and would have no effect even if it were present.
 
 ### Detecting and Updating
 
 If you use this function, Puppet gives a deprecation warning:
+
     Warning: The 'search' function is deprecated. See http://links.puppetlabs.com/search-function-deprecation
+
+If you see this warning, stop using `search` and refer to all classes and defined types by their fully qualified names.
 
 ### Context
 
@@ -70,9 +120,11 @@ If you use this function, Puppet gives a deprecation warning:
 ## Variable Names Beginning With Capital Letters
 
 ### Now
+
 Variable names can begin with either uppercase or lowercase letters.
 
 ### In Puppet 4.0
+
 Variable names cannot begin with uppercase letters.
 
 ### Detecting and Updating
@@ -81,7 +133,7 @@ Puppet 3.7 does not give deprecation warnings for this issue. If you turn on the
 
 ### Context
 
-When variable names start with capital letters, it can cause problems with variable references and, in some cases, type references, so we've removed the ability to capitalize variable names. 
+When variable names start with capital letters, it can potentially cause variable references to conflict with type references, so we've removed the ability to capitalize variable names.
 
 * [PUP-1808: Deprecate variables with an initial capital letter](https://tickets.puppetlabs.com/browse/PUP-1808)
 
@@ -105,59 +157,11 @@ Hyphenated class names behaved inconsistently, so we have removed the ability to
 
 * [PUP-2034: Add depreciation warning for hyphenated class names](https://tickets.puppetlabs.com/browse/PUP-2034)
 
-## Node Inheritance
-
-### Now
-
-You can use the `inherits` keyword to allow nodes to inherit definitions from other nodes.
-
-### In Puppet 4.0
-
-Node inheritance is completely removed.
-
-### Detecting and Updating
-
-As of Puppet 3.7, node inheritance causes a deprecation warning:
-
-    Warning: Deprecation notice: Node inheritance is not supported in Puppet >= 4.0.0. See http://links.puppetlabs.com/puppet-node-inheritance-deprecation
-
-In the future parser as of Puppet 3.7, node inheritance causes an error: 
-
-    Error: Node inheritance is not supported in Puppet >= 4.0.0. See http://links.puppetlabs.com/puppet-node-inheritance-deprecation at c:/vagrantshared/puppet/manifests/site.pp:12:22
-
-### Context
-
-Node inheritance often causes ambiguous or counterintuitive behavior. More effective reuse can be achieved using classes and defined types.
-
-* [PUP-2557: Deprecate and remove node inheritance](https://tickets.puppetlabs.com/browse/PUP-2557)
-
-## Importing Manifests
-
-### Now
-
-Import statements can be used to compile more than one manifest without autoloading for modules.
-
-### In Puppet 4.0
-
-The `import` keyword has been removed completely and manifests can no longer be imported.
-
-### Detecting and Updating
-
-Use of the `import` keyword in Puppet 3.6 and later causes a deprecation warning:
-
-    Warning: The use of 'import' is deprecated at 1. See http://links.puppetlabs.com/puppet-import-deprecation
-
-### Context
-
-The behavior of `import` within autoloaded manifests was undefined and could vary randomly. 
-
-* [PUP-866: Deprecate "import"](https://tickets.puppetlabs.com/browse/PUP-866)
-
 ## Mutating Arrays and Hashes
 
 ### Now
 
-You can change the contents of arrays and hashes in Puppet code and in templates.
+You can change the contents of already-defined arrays and hashes in Puppet code and in templates.
 
 ### In Puppet 4.0
 
@@ -165,7 +169,11 @@ You cannot change the contents of arrays and hashes.
 
 ### Detecting and Updating
 
+If any of your code modifies an array or hash variable, Puppet will log the following deprecation warning:
+
     Warning: The use of mutating operations on Array/Hash is deprecated at 1. See http://links.puppetlabs.com/puppet-mutation-deprecation
+
+If you are mutating data structures, you should change your code to create new values instead of modifying existing ones.
 
 ### Context
 
@@ -187,7 +195,7 @@ Search the `manifests` directories of your modules for any files ending in `.rb`
 
 ### Context
 
-The Ruby DSL sometimes behaved erratically, so we've implemented some of the most-used Ruby abilities --- such as [iteration](./experiments_lambdas.html) --- in the Puppet DSL. 
+The Ruby DSL sometimes behaved erratically. When we attempted to improve it, we realized it was too heavyweight for what our users actually needed, so we've implemented some of the most-used Ruby abilities --- such as [iteration](./experiments_lambdas.html) --- in the Puppet DSL.
 
 * [PUP-987: Remove Ruby DSL support](https://tickets.puppetlabs.com/browse/PUP-987)
 
