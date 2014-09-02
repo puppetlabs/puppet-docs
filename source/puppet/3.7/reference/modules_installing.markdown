@@ -86,13 +86,23 @@ Installing Modules
 The `puppet module install` action will install a module and all of its dependencies. By default, **it will install into the first directory in Puppet's modulepath.**
 
 * Use the `--version` option to specify a version. You can use an exact version or a requirement string like `>=1.0.3`.
-* Use the `--force` option to forcibly install a module or re-install an existing module.
+* Use the `--force` option to forcibly install a module or re-install an existing module (**note:** does not install dependencies).
 * Use the `--environment` option to install into a different environment.
 * Use the `--modulepath` option to manually specify which directory to install into. Note: To avoid duplicating modules installed as dependencies, you may need to specify the modulepath as a list of directories; see [the documentation for setting the modulepath][modulepath] for details.
 * Use the `--ignore-dependencies` option to skip installing any modules required by this module.
 * Use the `--debug` option to see additional information about what the puppet module tool is doing.
 
 <!-- TODO: change this if the behavior of --dir/--target-dir changes; for now, we aren't mentioning it -->
+>**A note about installing**
+>
+>As of Puppet 3.6, if any module in your /etc/puppetlabs/puppet/modules directory has incorrect versioning (anything other than major.minor.patch), attempting to install a module will result in this warning. 
+>
+>~~~ 
+>Warning: module (/Users/youtheuser/.puppet/modules/module) has an invalid version number (0.1). The version has been set to 0.0.0. If you are the maintainer for this module, please update the metadata.json with a valid Semantic Version (http://semver.org).
+~~~
+>
+>Despite the warning, your module will still be downloaded. The metadata of the offending module will not be altered. The versioning information has only been changed in memory during the run of the program.
+
 
 ### Installing From the Puppet Forge
 
@@ -171,6 +181,7 @@ Use the module tool's **`list` action** to see which modules you have installed 
 Use the module tool's **`upgrade` action** to upgrade an installed module to the latest version. The target module must be identified by its full name.
 
 * Use the `--version` option to specify a version.
+* Use the `--ignore-changes` option to upgrade the module while ignoring and overwriting any local changes that may have been made.
 * Use the `--ignore-dependencies` option to skip upgrading any modules required by this module.
 
 ### Uninstalling Modules
