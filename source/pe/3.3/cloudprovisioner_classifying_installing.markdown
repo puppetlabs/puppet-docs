@@ -46,15 +46,7 @@ To see additional help for node classification, run `puppet help node classify`.
 
 You may also wish review the [basics of Puppet classes and configuration](./puppet_overview.html) to help you understand how groups and classes interact.
 
-The process of adding a node to the console is demonstrated in the following video:
-
-<object width="420" height="315"><param name="movie"
-value="http://www.youtube.com/v/LG6WQPVsBNg?version=3&amp;hl=en_US"></param><param
-name="allowFullScreen" value="true"></param><param name="allowscriptaccess"
-value="always"></param><embed
-src="http://www.youtube.com/v/LG6WQPVsBNg?version=3&amp;hl=en_US"
-type="application/x-shockwave-flash" width="420" height="315"
-allowscriptaccess="always" allowfullscreen="true"></embed></object>
+The process of adding a node to the console is demonstrated in [this video](https://www.youtube.com/v/LG6WQPVsBNg?version=3&amp;hl=en_US).
 
 Installing Puppet
 -----------------
@@ -80,15 +72,7 @@ For the default installation, the `install` action uses the installation package
 
 In addition to these default configuration options, you can specify a number of additional options to control how and what we install on the host. You can control the version of Facter to install, the specific answers file to use to configure Puppet Enterprise, the certificate name of the agent to be installed, and a variety of other options. To see a full list of the available options, use the `puppet help node install` command.
 
-The process of installing Puppet on a node is demonstrated in detail in the following video:
-
-<object width="420" height="315"><param name="movie"
-value="http://www.youtube.com/v/F0hU94bBrQo?version=3&amp;hl=en_US"></param><param
-name="allowFullScreen" value="true"></param><param name="allowscriptaccess"
-value="always"></param><embed
-src="http://www.youtube.com/v/F0hU94bBrQo?version=3&amp;hl=en_US"
-type="application/x-shockwave-flash" width="420" height="315"
-allowscriptaccess="always" allowfullscreen="true"></embed></object>
+The process of installing Puppet on a node is demonstrated in detail in [this video](https://www.youtube.com/v/F0hU94bBrQo?version=3&amp;hl=en_US).
 
 Classifying and Installing Puppet in One Command
 ------------------------------------------------
