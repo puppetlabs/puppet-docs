@@ -29,6 +29,8 @@ After installing PE, you can run `puppet cert list --all` on your puppet master 
 
 Each of these will need to be replaced with new certificates signed by your external CA. The steps below will explain how to find and replace these credentials.
 
+>**Hint**: For a quick reference of the certs and security credentials you need to replace, see the [PE Certificates and Security Credentials Quick Reference](#pe-certificates-and-security-credentials-quick-reference) at the bottom of this page.
+
 ###Locating the PE Agent Certificate and Security Credentials
 
 Every system under PE management (including the puppet master, console, and PuppetDB) runs the puppet agent service. To determine the proper locations for the certificate and security credential files used by the puppet agent, run the following commands:
@@ -166,4 +168,35 @@ You should now see the master node in live management and be able to perform Pup
 Your node should now be able to do puppet agent runs, and its reports will appear in the console. If it is a new node, it may not appear in live management for up to 30 minutes. (You can accelerate this by letting Puppet run once, waiting a few minutes for the node to be added to the MCollective group in the console, and then running `puppet agent -t`. Once the )
 
 If you still don't see your agent node in live management, use NTP to verify that time is in sync across your PE deployment. (You should *always* do this anyway.)
+
+## PE Certificates and Security Credentials Quick Reference
+
+**Note**: This table is meant to be used as a quick reference for a list of the all certs and security credentias you'll need to replace. You will need to follow the complete instructions in [Replacing the PE Certificate Authority and Security Crendentials](#replacing-the-pe-certificate-authority-and-security-credentials) to ensure all related tasks are performed correctly. 
+
+| Order| Cert | Location | Filename | 
+|---|---|---|---|
+| 1 | Master Cert | `/etc/puppetlabs/puppet/ssl/certs` | `<puppet_master_fqdn>.ca.pem`  | On the puppet master, the certs and credentials for the master and agent are in the same location/file in each of these categories, so only one set are needed  |
+| 2  |Master Private Key   | `/etc/puppetlabs/puppet/ssl/private_keys`   | `<puppet_master_fqdn>.ca.pem`	  |   |
+| 3  | Master Public Key  | `/etc/puppetlabs/puppet/ssl/public_keys`  | `<puppet_master_fqdn>.ca.pem`  |   |
+| 4 | Master CRL  | `/etc/puppetlabs/puppet/ssl`  | `crl.pem`  |   |
+| 5  | Master CA Cert | `/etc/puppetlabs/puppet/ssl/certs`  | `ca.pem`  |   |
+| 6 | Console Cert   | `/opt/puppet/share/puppet-dashboard/certs`  | `pe-internal-dashboard.ca_cert.pem`  |   |
+| 7  | Console CRL  | `/opt/puppet/share/puppet-dashboard/certs`   | `pe-internal-dashboard.ca_crl.pem`  |   |
+| 8  | PuppetDB cert  | `/etc/puppetlabs/puppetdb/ssl`  | `/etc/puppetlabs/puppetdb/ssl` | Copy the puppet master's agent cert to this location   |
+| 9  | PuppetDB private key  | `/etc/puppetlabs/puppet/ssl`  | `private.pem`  | Copy the puppet master's agent priv key to this location  |
+| 10  | PuppetDB public key  | `/etc/puppetlabs/puppet/ssl`  | `public.pem`  | Copy puppet master's agent pub key to this location  |
+| 11  | mco internal broker cert  | `/etc/puppetlabs/puppet/ssl/certs`   | `pe-internal-broker.pem`  |   |
+| 12  | mco int. broker priv key  | `/etc/puppetlabs/puppet/ssl_private_keys`  | `pe-internal-broker.pem`  |   |
+| 13  | mco int broker public key  | `/etc/puppetlabs/puppet/ssl_public_keys`  | `pe-internal-broker.pem`  |   |
+| 14  | mco int. servers  | `/etc/puppetlabs/puppet/ssl/certs`  | `pe-internal-mcollective-servers.pem`	  |   |
+| 15  | mco int. servers  | `/etc/puppetlabs/puppet/ssl_private_keys`  | `pe-internal-mcollective-servers.pem`	  |   |
+| 16  | mco int. servers  | `/etc/puppetlabs/puppet/ssl_public_keys`  | `pe-internal-mcollective-servers.pem`  |   |
+| 17  | mco client  | `/etc/puppetlabs/puppet/ssl/certs`  | `pe-internal-peadmin-mcollective-client.pem`  |   |
+| 18  | mco client | `/etc/puppetlabs/puppet/ssl_private_keys`  | `pe-internal-peadmin-mcollective-client.pem`  |   |
+| 19  | mco client  | 	`/etc/puppetlabs/puppet/ssl_public_keys`  | `pe-internal-peadmin-mcollective-client.pem`	  |   |
+| 20  | Agent Cert  | `/etc/puppetlabs/puppet/ssl/certs`   | `<agent_node_fqdn>.pem`  | |
+| 21  | Agent Private Key  | `/etc/puppetlabs/puppet/ssl/private_keys`  | `<agent_node_fqdn>.pem`  |   |
+| 22  | Agent Public Key  | `/etc/puppetlabs/puppet/ssl/public_keys`  | `<agent_node_fqdn>.pem`   |   |
+
+
 
