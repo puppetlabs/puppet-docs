@@ -20,7 +20,7 @@ See the [installation overview](./install_basic.html#downloading-puppet-enterpri
 >
 >- The machine you run the installer from must have the same OS/architecture as your PE deployment.
 > 
->- Please ensure that port 3000 is reachable, as the web-based installer uses this port. You can close this port when the installation is complete.
+>- Please ensure that port 3000 is reachable on the machine you're running the installer from, as the web-based installer uses this port. You can close this port when the installation is complete. If you cannot connect directly to port 3000, we suggest [port forwarding (or "tunneling" to) the installer via SSH](#port-forwarding-to-the-installer).
 >
 >- The web-based installer does not support sudo configurations with `Defaults targetpw` or `Defaults rootpw`. Make sure your `/etc/sudoers` file does not contain, or else comment out, those lines. 
 >
@@ -155,6 +155,29 @@ You can find the installer answer file at `/opt/puppet/share/installer/answers` 
 When the installation is complete, the installer script that was running in the terminal will close itself.
 
 Finally, click **Start using Puppet Enterprise** to [log into the console](./console_accessing.html) or continue on to [Installing Agents](./install_agents.html).
+
+>#### Port Forwarding to the Installer
+>
+>If you cannot connect directly to port 3000 on the on the machine you're running the installer from, we suggest port forwarding (or "tunneling" to) the installer via SSH.
+>
+>From a Linux machine:
+>
+>1. On the machine from which you're running the installer, run `ssh -L 3000:localhost:3000 jumphost.exmple.tld`
+>2. Run the installer script as indicated in the instructions below. 
+>3. When prompted to enter the installer URL, instead navigate to `https://localhost:3000`.
+>
+>From a Windows machine:
+>
+>1. Open PuTTY, and select **Sessions**.
+>2. In the **Host Name** field, enter the FQDN of the host you want to run the installer from.
+>3. Select **Tunnels**.
+>4. In the **Source Port** field, enter `3000`. 
+>5. In the **Destination** field, enter `localhost:3000`.
+>6. Select **Local**. 
+>7. Click **Add**.
+>8. Click **Open**. 
+>
+>When the installer asks you to launch the browser, use `https://localhost:3000`, and continue following the installation instructions.
 
 ***
 
