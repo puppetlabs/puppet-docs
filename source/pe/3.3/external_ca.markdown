@@ -171,7 +171,7 @@ If you still don't see your agent node in live management, use NTP to verify tha
 
 ## PE Certificates and Security Credentials Quick Reference
 
-**Note**: This table is meant to be used as a quick reference for a list of the all certs and security credentias you'll need to replace. You will need to follow the complete instructions in [Replacing the PE Certificate Authority and Security Crendentials](#replacing-the-pe-certificate-authority-and-security-credentials) to ensure all related tasks are performed correctly. 
+**Note**: This table is meant to be used as a quick reference of the certs and security credentials you'll need to replace. You'll need to follow the complete instructions in [Replacing the PE Certificate Authority and Security Crendentials](#replacing-the-pe-certificate-authority-and-security-credentials) to ensure all related tasks are performed correctly. 
 
 | Order| Cert | Location | Filename | 
 |---|---|---|---|
