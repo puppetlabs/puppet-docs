@@ -155,7 +155,7 @@ Changing the server parameter of the `ntp` class can be accomplished in a few st
 1. Navigate to the node list and choose the node you want to edit.
 2. On the node view page, click __Edit__.
 3. Find __ntp__ in the class list, and click __Edit parameters__.
-4. For the `server` parameter, enter the new server name (e.g., `ntp1.example.com`) in the __servers__  value field.
+4. For the `server` parameter, enter the new server name (e.g., `time.apple.com`) in the __servers__  value field.
 
    ![the NTP parameters list][ntp_params]
 

@@ -303,7 +303,8 @@ You can use the console to set the values of the class parameters of nodes by se
 
    ![the node class list][edit-params]
 
-4. Enter a value for the parameter you wish to set. To set a specific server, enter `ntp1.example.com` in the box next to the __servers__ parameter. 
+4. Enter a value for the parameter you wish to set (e.g., `time.apple.com`) in the box next to the __servers__ parameter.
+
 
   The grey text that appears as values for some parameters is the default value, which can be either a literal value or a Puppet variable. You can restore this value with the __Reset value__ control that appears next to the value after you have entered a custom value.
     
