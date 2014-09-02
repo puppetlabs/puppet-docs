@@ -137,7 +137,7 @@ During this exercise, you will create a class called `pe_quickstart_app` that wi
           
         }
 
-> You have written a new module containing a new class that includes two other classes. Puppet now knows about this your new class, and it can be added to the console and assigned to your node, just as you did in part one of this guide.
+> You have written a new module containing a new class that includes two other classes. Puppet now knows about your new class, and it can be added to the console and assigned to your node, just as you did in part one of this guide.
 >
 > Note the following about your new class:
 >
