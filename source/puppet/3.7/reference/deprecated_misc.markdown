@@ -63,7 +63,13 @@ This didn't make the initial implementation of main manifest directories. Once w
 
 ## The `Modulefile`
 
-TODO Lauren, could you write a blurb on this, matching the surrounding sections?
+### Now
+
+If you are using Modulefile for your metadata, its contents will be merged with metadata.json during the build process. Only the metadata.json is used by the Puppet Forge. You are encouraged, post build, to removed your Modulefile entirely.
+
+### Context
+
+A single source of metadata is needed for all tools to use, and it couldn't be the Modulefile since it contains Ruby code. 
 
 
 
