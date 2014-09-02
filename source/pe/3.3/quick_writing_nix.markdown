@@ -105,7 +105,7 @@ But now, let's see what happens when you write your own Puppet code.
 Writing a Puppet Module
 --------------
 
-Puppet Labs modules save time, but at some point you may that you'll need to write your own modules.
+Puppet Labs modules save time, but at some point you may find that you'll need to write your own modules.
 
 ### Writing a Class in a Module
 
