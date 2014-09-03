@@ -14,9 +14,9 @@ Welcome to the Puppet Enterprise Sudo Users Quick Start Guide. This document pro
 
 In most cases, you want to manage sudo on your agent nodes to control which system users have access to elevated privileges. Using this guide, you will:
 
-* [install the Saz-Sudo module as the foundation for your management of sudo privileges ](#installing-the-Saz-Sudo-module).
-* [write a simple module that contains a class called `privileges` to manage a few resources that set privileges for certain users, which will be managed by the Saz-Sudo module](#writing-the-privileges-class).
-* [use the PE console to add classes from the Privileges and Sudo modules to your agent nodes](#using-the-pe-console-to-add-classes-from-the-sudo-module). 
+* [install the Saz-Sudo module as the foundation for your management of sudo privileges ](#install-the-saz-sudo-module).
+* [write a simple module that contains a class called `privileges` to manage a few resources that set privileges for certain users, which will be managed by the Saz-Sudo module](#write-the-privileges-class).
+* [use the PE console to add classes from the Privileges and Sudo modules to your agent nodes](#use-the-pe-console-to-add-the-privileges-and-sudo-classes). 
 
 ### Install Puppet Enterprise and the Puppet Enterprise Agent
 
@@ -30,7 +30,7 @@ If you haven't already done so, you'll need to get PE installed. See the [system
 
 >**Note**: You can add the Sudo and Privileges classes to as many agents as needed. For ease of explanation, our console images or instructions might show only two agent nodes.
 
-### Installing the Saz-Sudo Module
+### Install the Saz-Sudo Module
 
 The Saz-Sudo module, available on the Puppet Forge, is one of many modules written by a member of our user community.  You can learn more about the module by visiting [http://forge.puppetlabs.com/saz/sudo](http://forge.puppetlabs.com/saz/sudo). 
 
@@ -108,7 +108,7 @@ Modules are directory trees. For this task, you'll create the following files:
 
 You will add this class at the same time you add the Saz-Sudo module.
 
-### Using the PE Console to Add the Privileges and Sudo classes
+### Use the PE Console to Add the Privileges and Sudo classes
 
 [classbutton]: ./images/quick/add_class_button.png
 [add_sudo]: ./images/quick/add_sudo.png
