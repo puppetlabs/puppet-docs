@@ -36,9 +36,14 @@ If you haven't done this yet, go back to the [pre-install tasks][pre_install], m
 Step 2: Download Package
 -----
 
-[Puppet Labs' Windows packages can be found here.][downloads] You will need the most recent `puppet-<VERSION>.msi` package. (This package bundles all of Puppet's prerequisites, so you don't need to download anything else.)
+[Puppet Labs' Windows packages can be found here.][downloads] You will need the most recent package for your OS's architecture:
 
-The list of Windows packages includes release candidates, whose filenames have something like `-rc1` after the version number. Only use these if you want to test upcoming Puppet versions.
+* 64-bit versions of Windows Vista/2008 and higher should use `puppet-<VERSION>-x64.msi`.
+* 32-bit versions of Windows, as well as the 64-bit version of Windows Server 2003, should use `puppet-<VERSION>.msi`.
+
+These packages bundle all of Puppet's prerequisites, so you don't need to download anything else.
+
+The list of Windows packages may include release candidates, whose filenames have something like `-rc1` after the version number. Only use these if you want to test upcoming Puppet versions.
 
 Step 3: Install Puppet
 -----
@@ -106,14 +111,9 @@ MSI Property                                                   | Puppet Setting 
 
 Where Puppet and its dependencies should be installed.
 
-**Default:**
-
-OS type  | Default Install Path
----------|---------------------
-32-bit   | `C:\Program Files\Puppet Labs\Puppet`
-64-bit   | `C:\Program Files (x86)\Puppet Labs\Puppet`
-
-The Program Files directory can be located using the `PROGRAMFILES` environment variable on 32-bit versions of Windows or the `PROGRAMFILES(X86)` variable on 64-bit versions.
+> **Note:** If you installed Puppet into a custom directory and are upgrading from a 32-bit version to a 64-bit version, you must re-specify the `INSTALLDIR` option when upgrading.
+>
+> If you are replacing 64-bit Puppet with a 32-bit version, you should **uninstall** Puppet before installing the new package. Be sure to re-specify any relevant MSI properties when re-installing.
 
 Puppet's program directory contains the following subdirectories:
 
@@ -126,6 +126,27 @@ misc      | resources
 puppet    | Puppet source
 service   | code to run puppet agent as a service
 sys       | Ruby and other tools
+
+**Default (Puppet 3.7+):**
+
+When using the architecture-appropriate installer, Puppet will install into the following directories:
+
+OS type                    | Default Install Path
+---------------------------|--------------------------------------------
+Most Windows Versions      | `C:\Program Files\Puppet Labs\Puppet`
+Windows Server 2003 64-bit | `C:\Program Files (x86)\Puppet Labs\Puppet`
+
+The Program Files directory can be located using the `PROGRAMFILES` environment variable. (On Windows Server 2003 64-bit, you should use the `PROGRAMFILES(X86)` variable instead.)
+
+
+**Default (Puppet 3.6 and earlier):**
+
+OS type  | Default Install Path
+---------|---------------------
+32-bit   | `C:\Program Files\Puppet Labs\Puppet`
+64-bit   | `C:\Program Files (x86)\Puppet Labs\Puppet`
+
+The Program Files directory can be located using the `PROGRAMFILES` environment variable on 32-bit versions of Windows or the `PROGRAMFILES(X86)` variable on 64-bit versions.
 
 #### `PUPPET_MASTER_SERVER`
 
@@ -199,11 +220,19 @@ The domain of puppet agent's user account. See the notes about users above.
 
 ### Upgrading
 
-**Note:** Be sure to read our [tips on upgrading](./upgrading.html) before upgrading your whole Puppet deployment.
+Be sure to read our [tips on upgrading](./upgrading.html) before upgrading your whole Puppet deployment.
+
+#### Normal Upgrades
 
 To upgrade to the latest version of Puppet, download the new MSI package and run the installer again. The installer will automatically restart the puppet agent service.
 
 As noted above, there are several settings that will be remembered by the installer if they were set during the install. If you used those MSI properties in a previous installation and later changed those settings in puppet.conf, you will need to specify your new values when upgrading.
+
+> **Note:** If you installed Puppet into a custom directory and are upgrading to a different architecture, be sure to see the note above [in the `INSTALLDIR` section.](#installdir)
+
+#### Downgrades
+
+If you need to replace a 64-bit version of Puppet with a 32-bit version, you must **uninstall** Puppet before installing the new package. You must also uninstall if you are downgrading from 3.7 or later to 3.6 or earlier.
 
 ### Uninstalling
 

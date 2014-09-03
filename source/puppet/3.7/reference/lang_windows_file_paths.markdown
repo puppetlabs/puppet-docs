@@ -80,20 +80,83 @@ Strings surrounded by single quotes `'like this'` do not interpolate variables. 
 > * When a literal double backslash is intended, a quadruple backslash must be used.
 
 
-## File System Redirection (Windows Server 2003 or older versions of Puppet)
+## File System Redirection (When Running 32-Bit Puppet on 64-Bit Windows)
 
-As of Puppet 3.7, the Puppet agent can run as either a 32- or a 64-bit process. This means file system redirection is no longer a problem for most Windows systems.
+With some combinations of Windows and Puppet versions, Windows will redirect Puppet's access to the `C:\Windows\system32` directory. If you are running Puppet in one of these configurations and are managing files in the system directory, you will need to watch out for this and compensate.
 
-However, Windows Server 2003 is incompatible with 64-bit Puppet. Because you will be running a 32-bit version of Puppet on a 64-bit version of Windows, file system redirection will still affect you. This is also true if you are using a version of Puppet older than 3.7.
+### Summary
 
-In these cases, the <a href="http://msdn.microsoft.com/en-us/library/aa384187(v=vs.85).aspx">File System Redirector</a> will silently redirect all file system access of `%windir%\system32` to `%windir%\SysWOW64` instead. This can be an issue when trying to manage files in the system directory, such as IIS configuration files. 
+<table>
 
-To prevent redirection, you should **use the `sysnative` alias** in place of `system32` whenever you need to access files in the system directory.
+<tr>
+<th>Windows</th>
+<th>Puppet</th>
+<th>Effects</th>
+</tr>
 
-For example: `C:\Windows\sysnative\inetsrv\config\application Host.config` will always point to `C:\Windows\system32\inetsrv\config\application Host.config`, and never to `C:\Windows\SysWOW64\inetsrv\config\application Host.config`.
+<tr>
+<td>32-bit</td>
+<td>32-bit</td>
+<td rowspan="2">Not affected by redirection. <code>sysnative</code> alias doesn't exist.</td>
+</tr>
 
-> Note: 64-bit Windows Server 2003 requires hotfix [KB942589](http://support.microsoft.com/kb/942589/en-us) to use the sysnative alias.
-  
+<tr>
+<td rowspan="2">64-bit, Vista+ / 2008+</td>
+<td>64-bit</td>
+</tr>
+
+<tr>
+<td>32-bit</td>
+<td rowspan="2"><strong>Redirects system32 access to SysWOW64.</strong> <code>sysnative</code> alias can access real system32.</td>
+</tr>
+
+<tr>
+<td>64-bit, 2003 R2</td>
+<td>32-bit</td>
+</tr>
+
+<tr>
+<td>64-bit, 2003</td>
+<td>32-bit</td>
+<td><strong>Redirects system32 access to SysWOW64.</strong> Hotfix <a href="http://support.microsoft.com/kb/942589/en-us">KB942589</a> is required to use <code>sysnative</code> alias.</td>
+</tr>
+
+</table>
+
+> Note: The `sysnative` alias was added in Windows 2003 R2. 64-bit Windows 2003 requires hotfix [KB942589](http://support.microsoft.com/kb/942589/en-us) to use the `sysnative` alias.
+
+### Details
+
+As of Puppet 3.7, file system redirection is not an issue, **as long as you are running the architecture-appropriate Puppet version on a recent version of Windows.** (That is: Windows Server 2008 and higher, or Windows Vista and higher.)
+
+However, if you are **running a 32-bit version of Puppet on a 64-bit version of Windows,** the <a href="http://msdn.microsoft.com/en-us/library/aa384187(v=vs.85).aspx">File System Redirector</a> will silently redirect all file system access of the `%windir%\system32` directory to `%windir%\SysWOW64` instead. This can be an issue when trying to manage files in the system directory, such as IIS configuration files.
+
+There are three cases where you might be dealing with mixed Puppet/Windows architectures:
+
+* You deliberately installed a 32-bit package on a 64-bit system, to maintain compatibility for certain modules until you're able to update their code for 64-bit Puppet.
+* You are running a 64-bit version Windows Server 2003 or 2003 R2, which is not supported by the 64-bit Puppet installer.
+* You are writing code that must support older versions of Puppet, which did not have 64-bit packages available.
+
+### Compensating for Redirection
+
+On systems affected by file system redirection, you can use the `sysnative` alias in place of `system32` whenever you need to access files in the system directory. (For example: `C:\Windows\sysnative\inetsrv\config\application Host.config` will point to `C:\Windows\system32\inetsrv\config\application Host.config`, not `C:\Windows\SysWOW64\inetsrv\config\application Host.config`.)
+
+**However,** note that `sysnative` is **only** a valid path when used within a 32-bit process running on a 64-bit Windows version. It **does not exist** when running an architecture-appropriate Puppet package. This means you can't simply use `sysnative` everywhere to access the correct files; you'll need to detect Puppet's run environment, then decide which path to use.
+
+In Ruby plugin code, this is fairly straightforward. Do something like [this example from the puppetlabs/powershell module](https://github.com/puppetlabs/puppetlabs-powershell/blob/master/lib/puppet/provider/exec/powershell.rb#L6-L13):
+
+{% highlight ruby %}
+    commands :powershell =>
+      if File.exists?("#{ENV['SYSTEMROOT']}\\sysnative\\WindowsPowershell\\v1.0\\powershell.exe")
+      "#{ENV['SYSTEMROOT']}\\sysnative\\WindowsPowershell\\v1.0\\powershell.exe"
+      elsif File.exists?("#{ENV['SYSTEMROOT']}\\system32\\WindowsPowershell\\v1.0\\powershell.exe")
+      "#{ENV['SYSTEMROOT']}\\system32\\WindowsPowershell\\v1.0\\powershell.exe"
+      else
+      'powershell.exe'
+      end
+{% endhighlight %}
+
+However, in Puppet code there is not currently an easy way to detect whether you should be using `sysnative` to access the `system32` directory. If you can predict the mix of OS versions and architectures where your code will be run, you can simply do the right thing for that environment, but authors of public modules may need to create a custom fact to help handle this transition.
 
 ## Errata
 
