@@ -46,7 +46,9 @@ To see additional help for node classification, run `puppet help node classify`.
 
 You may also wish review the [basics of Puppet classes and configuration](./puppet_overview.html) to help you understand how groups and classes interact.
 
-The process of adding a node to the console is demonstrated in [this video](https://www.youtube.com/v/LG6WQPVsBNg?version=3&amp;hl=en_US).
+The process of adding a node to the console is demonstrated in in the following video:
+
+<object width="420" height="315"><param name="movie" value="http://www.youtube.com/v/LG6WQPVsBNg?version=3&amp;hl=en_US" /><param name="allowFullScreen" value="true" /><param name="allowscriptaccess" value="always" /><embed src="http://www.youtube.com/v/LG6WQPVsBNg?version=3&amp;hl=en_US" type="application/x-shockwave-flash" width="420" height="315" allowscriptaccess="always" allowfullscreen="true" /></object>
 
 Installing Puppet
 -----------------
@@ -72,7 +74,15 @@ For the default installation, the `install` action uses the installation package
 
 In addition to these default configuration options, you can specify a number of additional options to control how and what we install on the host. You can control the version of Facter to install, the specific answers file to use to configure Puppet Enterprise, the certificate name of the agent to be installed, and a variety of other options. To see a full list of the available options, use the `puppet help node install` command.
 
-The process of installing Puppet on a node is demonstrated in detail in [this video](https://www.youtube.com/v/F0hU94bBrQo?version=3&amp;hl=en_US).
+The process of installing Puppet on a node is demonstrated in detail in the following video:
+
+<object width="420" height="315"><param name="movie"
+value="http://www.youtube.com/v/F0hU94bBrQo?version=3&amp;hl=en_US"></param><param
+name="allowFullScreen" value="true"></param><param name="allowscriptaccess"
+value="always"></param><embed
+src="http://www.youtube.com/v/F0hU94bBrQo?version=3&amp;hl=en_US"
+type="application/x-shockwave-flash" width="420" height="315"
+allowscriptaccess="always" allowfullscreen="true"></embed></object>
 
 Classifying and Installing Puppet in One Command
 ------------------------------------------------
@@ -81,7 +91,7 @@ Classifying and Installing Puppet in One Command
 
 Rather than using multiple commands to classify and install Puppet on a node, there are a couple of other options that combine actions into a "wrapper" command. Note that you will need access to the PE installer, which is typically specified with the `--installer-payload` argument.
 
-If a node has been prepared to remotely sign certificates, you can use the `init` action which will `install` Puppet, `classify` the node and sign the certificate in one step. 
+If a node has been prepared to remotely sign certificates, you can use the `init` action which will `install` Puppet, `classify` the node and sign the certificate in one step.
 
 **Note** - With `classify` and `init`, you need to specify the `--insecure` option because the PE console uses the internal certificate name, `pe-internal-dashboard`, which fails verification because it doesn't match the host name of the host where the console is running.
 
