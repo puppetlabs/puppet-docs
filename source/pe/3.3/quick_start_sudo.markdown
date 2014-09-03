@@ -1,8 +1,8 @@
 ---
 layout: default
-title: 
-subtitle: 
-canonical: 
+title: "PE 3.3 » Quick Start » Sudo"
+subtitle: "Sudo Quick Start Guide"
+canonical: "/pe/latest/quick_start_sudo.html"
 ---
 
 [downloads]: http://info.puppetlabs.com/download-pe.html
@@ -74,25 +74,25 @@ Modules are directory trees. For this task, you'll create the following files:
 3. Use your text editor to create the `privileges/manifests/init.pp` file.
 4. Edit the `init.pp` file so it contains the following Puppet code.
 
-    class privileges {
-          user { 'root':
-          ensure   => 'present',
-          password => '$1$oST1TkX7$p21hU2qzMkR4Iy7HK6zWq0',
-          shell    => '/bin/bash',
-          uid      => '0',
-       }
+        class privileges {
+              user { 'root':
+              ensure   => 'present',
+              password => '$1$oST1TkX7$p21hU2qzMkR4Iy7HK6zWq0',
+              shell    => '/bin/bash',
+              uid      => '0',
+           }
 
-      sudo::conf { 'admins':
-         ensure  => present,
-         content => '%admin ALL=(ALL) ALL',
-      }
+          sudo::conf { 'admins':
+              ensure  => present,
+              content => '%admin ALL=(ALL) ALL',
+          }
 
-      sudo::conf { 'wheel':
-         ensure  => present,
-         content => '%wheel ALL=(ALL) ALL',
-      }
+          sudo::conf { 'wheel':
+              ensure  => present,
+              content => '%wheel ALL=(ALL) ALL',
+          }
 
-  }
+        }
 
 5. Save and exit the file.
 
