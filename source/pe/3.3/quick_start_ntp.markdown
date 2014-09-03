@@ -24,13 +24,13 @@ NTP is one of the most crucial, yet easiest, services to configure and manage wi
 
 Using this guide, you will:
 
-* [install the `puppetlabs-ntp` module](#installing-the-puppet-labs-ntp-module).
-* [use the PE console to add classes from the NTP module to your agent nodes](#using-the-pe-console-to-add-classes-from-the-ntp-module). 
-* [use the PE console event inspector to view changes to your infrastructure made by the main NTP class](#using-the-console-event-inspector-to-view-changes-made-by-the-ntp-class).
-* [use the PE console to edit parameters of the main NTP class](#using-the-pe-console-to-edit-parameters-of-the-ntp-class).
+* [install the `puppetlabs-ntp` module](#install-the-puppet-labs-ntp-module).
+* [use the PE console to add classes from the NTP module to your agent nodes](#use-the-pe-console-to-add-classes-from-the-ntp-module). 
+* [use the PE console event inspector to view changes to your infrastructure made by the main NTP class](#use-the-console-event-inspector-to-view-changes-made-by-the-ntp-class).
+* [use the PE console to edit parameters of the main NTP class](#use-the-pe-console-to-edit-parameters-of-the-ntp-class).
 
 
-### Installing Puppet Enterprise and the Puppet Enterprise Agent
+### Install Puppet Enterprise and the Puppet Enterprise Agent
 
 If you haven't already done so, you'll need to get PE installed. See the [system requirements][sys_req] for supported platforms. 
 
@@ -41,7 +41,7 @@ If you haven't already done so, you'll need to get PE installed. See the [system
 >**Note**: You can add the NTP service to as many agents as needed. For ease of explanation, our console images or instructions may show only one agent node. 
 
   
-### Installing the Puppet Labs NTP Module
+### Install the Puppet Labs NTP Module
 
 The Puppet Labs NTP module (`puppetlabs-ntp`), is part of the PE [supported modules](http://forge.puppetlabs.com/supported) program; these modules are supported, tested, and maintained by Puppet Labs. You can learn more about the Puppet Labs NTP module by visiting [http://forge.puppetlabs.com/puppetlabs/ntp](http://forge.puppetlabs.com/puppetlabs/ntp). 
 
@@ -59,7 +59,7 @@ You should see output similar to the following:
         
 > That's it! You've just installed the Puppet Labs NTP module. All of the classes in it are now available to be added to the console and assigned to your agent nodes.
 
-### Using the PE Console to Add Classes from the NTP Module
+### Use the PE Console to Add Classes from the NTP Module
 
 [classbutton]: ./images/quick/add_class_button.png
 [add_ntp]: ./images/quick/add_ntp.png
@@ -140,7 +140,7 @@ In the upper right corner of the detail pane is a link to a run report which con
 For more information about using the PE console event inspector, check out the [event inspector docs](./console_event_inspector). 
 
 
-### Using the PE Console to Edit Parameters of the NTP Class
+### Use the PE Console to Edit Parameters of the NTP Class
 
 [ntp_params]: ./images/quick/ntp-params.png
 

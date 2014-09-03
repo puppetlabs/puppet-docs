@@ -24,13 +24,13 @@ The SSH module you’ll install in this guide uses Puppet resources that collect
 
 Using this guide, you will:
 
-* [install the Saz-SSH module](#installing-the-Saz-SSH-module).
-* [use the PE console to add classes from the SSH module to your agent nodes](#using-the-pe-console-to-add-classes-from-the-ssh-module). 
-* [use the PE console event inspector to view changes to your infrastructure made by the `ssh` class](#using-the-console-event-inspector-to-view-changes-made-by-the-ssh-class).
-* [use the PE console to edit root login parameters of the `ssh` class](#using-the-pe-console-to-edit-root-login-parameters-of-the-ssh-class).
+* [install the Saz-SSH module](#install-the-saz-ssh-module).
+* [use the PE console to add classes from the SSH module to your agent nodes](#use-the-pe-console-to-add-classes-from-the-ssh-module). 
+* [use the PE console event inspector to view changes to your infrastructure made by the `ssh` class](#use-the-console-event-inspector-to-view-changes-made-by-the-ssh-class).
+* [use the PE console to edit root login parameters of the `ssh` class](#use-the-pe-console-to-edit-root-login-parameters-of-the-ssh-class).
 
 
-### Installing Puppet Enterprise and the Puppet Enterprise Agent
+### Install Puppet Enterprise and the Puppet Enterprise Agent
 
 If you haven't already done so, you'll need to get PE installed. See the [system requirements][sys_req] for supported platforms. 
 
@@ -39,7 +39,7 @@ If you haven't already done so, you'll need to get PE installed. See the [system
 3. Refer to the [agent installation instructions][agent_install] to determine how you want to install your PE agent(s), and follow the instructions provided.
 
 
-### Installing the Saz-SSH Module
+### Install the Saz-SSH Module
 
 The Saz-SSH module, available on the Puppet Forge, is one of many modules written by  members of our user community.  
 
@@ -81,7 +81,7 @@ In this procedure, you’ll create a simple group called, __ssh_example__, but y
 4. Click __Update__. 
 
 
-### Using the PE Console to Add Classes from the SSH Module
+### Use the PE Console to Add Classes from the SSH Module
 
 [classbutton]: ./images/quick/add_class_button.png
 [add_ssh]: ./images/quick/add_ssh.png
@@ -132,7 +132,7 @@ After you apply the `ssh` class and run Puppet, the public key for each agent no
 
 > **That’s it!** Puppet Enterprise is now managing SSH known_host files for the agent nodes in your deployment. The next section will use the PE console event to examine the events and SSH configuration files PE is now managing. 
 
-### Using the Puppet Enterprise Console Event Inspector to View Changes Made by the `ssh` Class
+### Use the Puppet Enterprise Console Event Inspector to View Changes Made by the `ssh` Class
 
 [ssh_ei_default]: ./images/quick/ssh_ei_default.png
 [ssh_ei_class_change]: ./images/quick/ssh_ei_class_change.png
@@ -159,7 +159,7 @@ In the upper right corner of the detail pane is a link to a run report which con
 For more information about using the PE console event inspector, check out the [event inspector docs](./console_event_inspector). 
 
  
-### Using the PE Console to Edit Root Login Parameters of the `ssh` Class
+### Use the PE Console to Edit Root Login Parameters of the `ssh` Class
 
 [ssh_params]: ./images/quick/ssh_params.png
 

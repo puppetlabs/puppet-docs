@@ -16,7 +16,7 @@ Sysadmins typically need to manage a nameserver file for internal resources that
 
 Following this example, you will use this guide to:
 
-* [write a simple module that contains a class called `resolver` to manage a nameserver file called, `/etc/resolv.conf`](#writing-the-resolver-class).
+* [write a simple module that contains a class called `resolver` to manage a nameserver file called, `/etc/resolv.conf`](#write-the-resolver-class).
 * [use the PE console to add the `resolver` class to your agent nodes](#add-the-resolver-class-in-the-console). 
 * [change the contents of the nameserver file to see how PE enforces the desired state you specified in the PE console](#enforce-the-desired-state-of-the-resolver-class).
 
