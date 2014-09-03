@@ -61,27 +61,27 @@ This didn't make the initial implementation of main manifest directories. Once w
 * [PUP-2711: The manifests directory should be recursively loaded when using directory environments](https://tickets.puppetlabs.com/browse/PUP-2711)
 
 
-## The `Modulefile`
+## The Modulefile
 
 ### Now
 
-If you are using `Modulefile` for metadata in your modules, its contents will be merged with the `metadata.json` file during the build process. Only the `metadata.json` file is used by the Puppet Forge, and we encourage you to remove the `Modulefile` after building your module.
+If you are using Modulefile for metadata in your modules, its contents will be merged with the metadata.json file during the build process. Only the metadata.json file is used by the Puppet Forge, and we encourage you to remove the Modulefile after building your module.
 
 ### In the Future
 
-The `metadata.json` file will eventually be the only valid source of module metadata. We haven't yet decided when we'll remove `Modulefile` support.
+The metadata.json file will eventually be the only valid source of module metadata. We haven't yet decided when we'll remove Modulefile support.
 
 ### Detecting and Updating
 
-Look for a file named `Modulefile` in the modules you publish. If any of them contain one, you can convert it to a `metadata.json` file by doing the following:
+Look for a file named Modulefile in the modules you publish. If any of them contain one, you can convert it to a metadata.json file by doing the following:
 
 * Run `puppet module build <MODULE DIRECTORY>` once.
-* Delete the `Modulefile`.
-* Check the updated `metadata.json` file into version control.
+* Delete the Modulefile.
+* Check the updated metadata.json file into version control.
 
 ### Context
 
-A lot of different tools interact with Puppet modules, and some of them aren't Ruby-based. This makes the `Modulefile` a poor data format, since it contains raw Ruby code that must be evaluated in order to read it. Plain JSON is much safer and friendlier.
+A lot of different tools interact with Puppet modules, and some of them aren't Ruby-based. This makes the Modulefile a poor data format, since it contains raw Ruby code that must be evaluated in order to read it. Plain JSON is much safer and friendlier.
 
 
 ## The Hidden `_timestamp` Fact
