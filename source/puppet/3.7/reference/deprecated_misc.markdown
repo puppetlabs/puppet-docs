@@ -65,12 +65,23 @@ This didn't make the initial implementation of main manifest directories. Once w
 
 ### Now
 
-If you are using Modulefile for your metadata, its contents will be merged with metadata.json during the build process. Only the metadata.json is used by the Puppet Forge. You are encouraged, post build, to removed your Modulefile entirely.
+If you are using `Modulefile` for metadata in your modules, its contents will be merged with the `metadata.json` file during the build process. Only the `metadata.json` file is used by the Puppet Forge, and we encourage you to remove the `Modulefile` after building your module.
+
+### In the Future
+
+The `metadata.json` file will eventually be the only valid source of module metadata. We haven't yet decided when we'll remove `Modulefile` support.
+
+### Detecting and Updating
+
+Look for a file named `Modulefile` in the modules you publish. If any of them contain one, you can convert it to a `metadata.json` file by doing the following:
+
+* Run `puppet module build <MODULE DIRECTORY>` once.
+* Delete the `Modulefile`.
+* Check the updated `metadata.json` file into version control.
 
 ### Context
 
-A single source of metadata is needed for all tools to use, and it couldn't be the Modulefile since it contains Ruby code. 
-
+A lot of different tools interact with Puppet modules, and some of them aren't Ruby-based. This makes the `Modulefile` a poor data format, since it contains raw Ruby code that must be evaluated in order to read it. Plain JSON is much safer and friendlier.
 
 
 ## The Hidden `_timestamp` Fact
