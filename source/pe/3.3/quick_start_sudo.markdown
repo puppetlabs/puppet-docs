@@ -1,7 +1,7 @@
 ---
 layout: default
-title: "PE 3.3 » Quick Start » Sudo"
-subtitle: "Sudo Quick Start Guide"
+title: "PE 3.3 » Quick Start » Sudo Users"
+subtitle: "Sudo Users Quick Start Guide"
 canonical: "/pe/latest/quick_start_sudo.html"
 ---
 
@@ -10,7 +10,7 @@ canonical: "/pe/latest/quick_start_sudo.html"
 [agent_install]: ./install_agents.html
 [install_overview]: ./install_basic.html
 
-Welcome to the Puppet Enterprise Sudo Quick Start Guide. This document provides instructions for getting started managing sudo privileges across your PE deployment, using a module from the Puppet Forge in conjunction with a simple module you will write.
+Welcome to the Puppet Enterprise Sudo Users Quick Start Guide. This document provides instructions for getting started managing sudo privileges across your PE deployment, using a module from the Puppet Forge in conjunction with a simple module you will write.
 
 In most cases, you want to manage sudo on your agent nodes to control which system users have access to elevated privileges. Using this guide, you will:
 
