@@ -3,7 +3,6 @@ layout: default
 title: "Creating Directory Environments"
 ---
 
-[manifest_dir_dir]: ./dirs_manifest.html#directory-behavior-vs-single-file
 [config_print]: ./config_print.html
 [env_conf_path]: ./environments_configuring.html#environmentpath
 [enable_dirs]: ./environments_configuring.html
@@ -14,6 +13,8 @@ title: "Creating Directory Environments"
 [modulepath]: ./dirs_modulepath.html
 [puppet.conf]: ./config_file_main.html
 [basemodulepath]: /references/3.7.latest/configuration.html#basemodulepath
+[default_manifest]: /references/3.7.latest/configuration.html#defaultmanifest
+[disable_per_environment_manifest]: /references/3.7.latest/configuration.html#disableperenvironmentmanifest
 
 Once you have [enabled directory environments][enable_dirs], you can:
 
@@ -41,7 +42,7 @@ Puppet Enterprise Requirements
 
 [inpage_pe]: #puppet-enterprise-requirements
 
-With Puppet Enterprise 3.3, **every** environment must meet two extra requirements.
+With Puppet Enterprise, **every** environment must meet two extra requirements.
 
 ### Filebucket Resource in Main Manifest
 
@@ -58,10 +59,10 @@ The [main manifest][manifest_dir] **must** contain the following snippet of Pupp
     File { backup => 'main' }
 {% endhighlight %}
 
-You can accomplish this in one of two ways:
+You should do the following to ensure this is present:
 
-* Copy this code from the `/etc/puppetlabs/puppet/manifests/site.pp` file into some file in the `<ENVIRONMENT>/manifests` directory.
-* If you aren't using the main manifest to assign configurations, you can set `manifest = $confdir/manifests` in [environment.conf][], to make all environments use the default site.pp as their main manifest.
+* Make sure you set `default_manifest = $confdir/manifests` in [puppet.conf][]. This will provide the necessary code to any environments that don't override their main manifest in [environment.conf][].
+* If any environments DO provide their own main manifests, make sure you copy this code from the `/etc/puppetlabs/puppet/manifests/site.pp` file into some file in their manifests directory.
 
 ### Modulepath Includes `/opt/puppet/share/puppet/modules`
 
@@ -130,15 +131,26 @@ The **main manifest** is Puppet's starting point for compiling a catalog. See [t
 
 #### The Default Main Manifest
 
-**By default,** an environment's `manifests` directory is that environment's main manifest. Note that this uses the [directory-as-manifest behavior][manifest_dir_dir].
+Unless you say otherwise in [environment.conf][], an environment will use Puppet's global [`default_manifest` setting][default_manifest] to determine its main manifest.
 
-If the `manifests` directory is empty or absent, Puppet will **not** fall back to the default main manifest; instead, it will behave as though you used a totally blank main manifest.
+The value of this setting can be an **absolute path** to a manifest that all environments will share, or a **relative path** to a file or directory inside each environment.
+
+The default value of `default_manifest` is `./manifests` --- that is, the environment's own `manifests` directory.
+
+If the file or directory specified by `default_manifest` is empty or absent, Puppet will **not** fall back to any other manifest; instead, it will behave as though you used a totally blank main manifest. Note that the global `manifest` setting from [puppet.conf][] will never be used by a directory environment.
+
 
 #### Configuring the Main Manifest
 
-You can configure a different main manifest for an environment by setting `manifest` in its [environment.conf][] file. This lets you use a global main manifest for all environments, or just specify a different manifests directory inside the environment. Note that the global `manifest` setting from [puppet.conf][] will never be used by a directory environment.
+You can configure a different main manifest for an environment by setting `manifest` in its [environment.conf][] file.
 
-**Note:** If you are using Puppet Enterprise 3.3, you **must** ensure that the default filebucket resource is included in the main manifest. ([See above.][inpage_pe])
+As with the global `default_manifest` setting, you can specify a relative path (to be resolved within the environment's directory) or an absolute path.
+
+**Note:** If you are using Puppet Enterprise, you **must** ensure that the default filebucket resource is included in the main manifest. ([See above.][inpage_pe])
+
+#### Locking the Main Manifest
+
+If you want to prevent any environment from setting its own main manifest, you can lock all environments to a single global manifest with [the `disable_per_environment_manifest` setting.][disable_per_environment_manifest] For details, see [the docs for this setting.][disable_per_environment_manifest]
 
 ### The Config Version Script
 

@@ -11,8 +11,13 @@ canonical: "/puppet/latest/reference/dirs_manifest.html"
 [manifest_setting]: /references/3.7.latest/configuration.html#manifest
 [print_settings]: ./config_print.html
 [enc]: /guides/external_nodes.html
-[environmentpath]: /references/3.7.latest/configuration.html#environmentpath
-[classic_environments]: ./environments_classic.html
+[default_manifest]: /references/3.7.latest/configuration.html#defaultmanifest
+[disable_per_environment_manifest]: /references/3.7.latest/configuration.html#disableperenvironmentmanifest
+[environment.conf]: ./config_file_environment.html
+[puppet.conf]: ./config_file_main.html
+[configuring directory environments]: ./environments_configuring.html
+[creating directory environments]: ./environments_creating.html
+
 
 Puppet always starts compiling with either a single manifest file or a directory of manifests that get treated like a single file. This main starting point is called the **main manifest** or **site manifest.**
 
@@ -21,21 +26,41 @@ For more information on how the site manifest is used in catalog compilation, se
 Location
 -----
 
-### With Puppet Master
-
-* When using no environments, the main manifest will default to `$confdir/manifests/site.pp`, which is a single file. ([See here for info about the confdir][confdir].) This location can be configured with the [`manifest` setting][manifest_setting].
-* If you are using [directory environments][environment], the main manifest will always be `$confdir/environments/<ENVIRONMENT NAME>/manifests`, which is a directory. The location of the environments directory can be configured with the [`environmentpath` setting][environmentpath]; see [the page about directory environments][environment] for more details.
-* If you are using [config file environments][classic_environments], Puppet will look for a `manifest` setting in that environment's config section; if it isn't set there, Puppet will fall back to the `manifest` setting in the `[master]` or `[main]` section. See [the page about config file environments][classic_environments] for more details.
-
-The main manifest may be a single file or a directory of `.pp` files. To check the actual manifest your puppet master will use, [run `puppet config print manifest --section master --environment <ENVIRONMENT>`][print_settings].
-
-> **Recommended:** If you're using the main manifest heavily instead of relying on an [ENC][], consider changing the `manifest` setting to `$confdir/manifests`. This lets you split up your top-level code into multiple files while [avoiding the `import` keyword][import_deprecation]. It will also match the behavior of [directory environments][environment].
-
 ### With Puppet Apply
 
-The puppet apply command requires a manifest as an argument on the command line. (For example: `puppet apply /etc/puppetlabs/puppet/manifests/site.pp`.) It may be a single file or a directory of files.
+The `puppet apply` command requires a manifest as an argument on the command line. (For example: `puppet apply /etc/puppetlabs/puppet/manifests/site.pp`.) It may be a single file or a directory of files.
 
 Puppet apply does not use the `manifest` setting or environment-specific manifests; it always uses the manifest given on the CLI.
+
+### With Puppet Master
+
+The location of the main manifest depends on how Puppet is configured. See the sections below for details.
+
+To check the actual manifest your puppet master will use for a given environment, [run `puppet config print manifest --section master --environment <ENVIRONMENT>`][print_settings].
+
+The main manifest may be a single file or a directory of `.pp` files.
+
+#### Directory Environments
+
+Each [environment][] can configure its own main manifest with the `manifest` setting in [environment.conf][]. (You can disable this ability with [the `disable_per_environment_manifest` setting][disable_per_environment_manifest].)
+
+Any environment that doesn't set a manifest in its config file will use [the `default_manifest` setting][default_manifest] from [puppet.conf][].
+
+Like the `manifest` setting in [environment.conf][], the value of `default_manifest` can be an absolute or relative path. If it's a relative path, Puppet will resolve it relative to each environment's main directory.
+
+Since the default value of `default_manifest` is `./manifests`, the default main manifest for a directory environment is `<ENVIRONMENTS DIRECTORY>/<ENVIRONMENT NAME>/manifests`. (For example: `/etc/puppetlabs/puppet/environments/production/manifests`.)
+
+For more details, see:
+
+* [Configuring Directory Environments][]
+* [Creating Directory Environments][]
+
+#### No Environments, or Config File Environments
+
+If you haven't enabled directory environments, Puppet will use the value of [the `manifest` setting][manifest_setting] in `puppet.conf` as its main manifest. **Note that setting `manifest` in puppet.conf is deprecated,** and will not be possible in Puppet 4.0.
+
+The `manifest` setting defaults to `$confdir/manifests/site.pp`, which is a single file. ([See the confdir documentation for more about the confdir.][confdir])
+
 
 Directory Behavior (vs. Single File)
 -----
@@ -50,3 +75,6 @@ Puppet will act as though the whole directory were just one big manifest; for ex
     Puppet will load files in depth-first order. (For example, if the manifest directory contains a directory named `01` and a file named `02.pp`, it will parse all the files in `01` before `02`.)
 
 [parser]: /references/3.7.latest/configuration.html#parser
+
+> **Recommended:** If you're using the main manifest heavily instead of relying on an [ENC][], consider changing the `manifest` setting to `$confdir/manifests`. This lets you split up your top-level code into multiple files while [avoiding the `import` keyword][import_deprecation]. It will also match the behavior of [directory environments][environment].
+
