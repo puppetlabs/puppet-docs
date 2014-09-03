@@ -11,7 +11,7 @@ title: "Language: Handling File Paths on Windows"
 
 Several [resource types](./lang_resources.html) (including `file`, `exec`, and `package`) take file paths as values for various attributes.
 
-When writing Puppet manifests to manage Windows systems, there are two extra issues to take into account when writing file paths: directory separators and, for Windows Server 2003 only, file system redirection.
+When writing Puppet manifests to manage Windows systems, there are two extra issues to take into account when writing file paths: directory separators and file system redirection.
 
 ## Directory Separators
 
