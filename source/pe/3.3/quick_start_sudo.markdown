@@ -75,21 +75,21 @@ Modules are directory trees. For this task, you'll create the following files:
 4. Edit the `init.pp` file so it contains the following Puppet code.
 
         class privileges {
-              user { 'root':
-              ensure   => 'present',
-              password => '$1$oST1TkX7$p21hU2qzMkR4Iy7HK6zWq0',
-              shell    => '/bin/bash',
-              uid      => '0',
-           }
+          user { 'root':
+            ensure   => 'present',
+            password => '$1$oST1TkX7$p21hU2qzMkR4Iy7HK6zWq0',
+            shell    => '/bin/bash',
+            uid      => '0',
+          }
 
           sudo::conf { 'admins':
-              ensure  => present,
-              content => '%admin ALL=(ALL) ALL',
+            ensure  => present,
+            content => '%admin ALL=(ALL) ALL',
           }
 
           sudo::conf { 'wheel':
-              ensure  => present,
-              content => '%wheel ALL=(ALL) ALL',
+            ensure  => present,
+            content => '%wheel ALL=(ALL) ALL',
           }
 
         }
