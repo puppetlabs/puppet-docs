@@ -48,7 +48,7 @@ You may also wish review the [basics of Puppet classes and configuration](./pupp
 
 The process of adding a node to the console is demonstrated in in the following video:
 
-<object width="420" height="315"><param name="movie" value="http://www.youtube.com/v/LG6WQPVsBNg?version=3&amp;hl=en_US" /><param name="allowFullScreen" value="true" /><param name="allowscriptaccess" value="always" /><embed src="http://www.youtube.com/v/LG6WQPVsBNg?version=3&amp;hl=en_US" type="application/x-shockwave-flash" width="420" height="315" allowscriptaccess="always" allowfullscreen="true" /></object>
+<object width="420" height="315"><param name="movie" value="https://www.youtube.com/v/LG6WQPVsBNg?version=3&amp;hl=en_US" /><param name="allowFullScreen" value="true" /><param name="allowscriptaccess" value="always" /><embed src="https://www.youtube.com/v/LG6WQPVsBNg?version=3&amp;hl=en_US" type="application/x-shockwave-flash" width="420" height="315" allowscriptaccess="always" allowfullscreen="true" /></object>
 
 Installing Puppet
 -----------------
@@ -77,10 +77,10 @@ In addition to these default configuration options, you can specify a number of 
 The process of installing Puppet on a node is demonstrated in detail in the following video:
 
 <object width="420" height="315"><param name="movie"
-value="http://www.youtube.com/v/F0hU94bBrQo?version=3&amp;hl=en_US"></param><param
+value="https://www.youtube.com/v/F0hU94bBrQo?version=3&amp;hl=en_US"></param><param
 name="allowFullScreen" value="true"></param><param name="allowscriptaccess"
 value="always"></param><embed
-src="http://www.youtube.com/v/F0hU94bBrQo?version=3&amp;hl=en_US"
+src="https://www.youtube.com/v/F0hU94bBrQo?version=3&amp;hl=en_US"
 type="application/x-shockwave-flash" width="420" height="315"
 allowscriptaccess="always" allowfullscreen="true"></embed></object>
 
