@@ -110,7 +110,7 @@ Each of the module's subdirectories has a specific function, as follows.
 
 **Each manifest in a module's `manifests` folder should contain one class or defined type.** The file names of manifests **map predictably** to the names of the classes and defined types they contain.
 
-`init.pp` is special and **always contains a class with the same name as the module.**
+`init.pp` is special and **always contains a class with the same name as the module. You may not have a class named init.**
 
 Every other manifest contains a class or defined type named as follows:
 

@@ -59,7 +59,7 @@ name                     | file path
 `apache::mod`            | `<modulepath>/apache/manifests/mod.pp`
 `apache::mod::passenger` | `<modulepath>/apache/manifests/mod/passenger.pp`
 
-Note again that `init.pp` always contains a class or defined type named after the module, and any other `.pp` file contains a class or type with at least two namespace segments. (That is, `apache.pp` would contain a class named `apache::apache`.)
+Note again that `init.pp` always contains a class or defined type named after the module, and any other `.pp` file contains a class or type with at least two namespace segments. (That is, `apache.pp` would contain a class named `apache::apache`.) This also means you can't have a class named `<MODULE NAME>::init`.
 
 
 Relative Name Lookup and Incorrect Name Resolution
@@ -104,7 +104,7 @@ When asked to `include nagios`, Puppet will first attempt to load `apache::nagio
 
 ### Workaround
 
-Note: You can avoid relative namespace issues --- and this workaround --- by enabling the [future parser](future) in Puppet 3.7. 
+Note: You can avoid relative namespace issues --- and this workaround --- by enabling the [future parser](future) in Puppet 3.7.
 
 If a class within another module is blocking the declaration of a top-namespace class, you can force the correct class to load by specifying its name from the top namespace ([as seen above](#syntax)). To specify a name from the top namespace, prepend `::` (double colon) to it:
 

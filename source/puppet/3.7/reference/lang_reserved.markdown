@@ -132,6 +132,8 @@ Class names with multiple namespaces should match the following regular expressi
 
 Note that [some class names are reserved](#reserved-class-names), and [reserved words](#reserved-words) cannot be used as class or type names.
 
+Additionally, you cannot use the name `<MODULE NAME>::init` for a class or defined type. This is because `init.pp` is a reserved filename, which should contain a class named after the module.
+
 ### Modules
 
 Module names obey the same rules as individual class/type namespace segments. That is, they **must begin with a lowercase letter** and can include:
