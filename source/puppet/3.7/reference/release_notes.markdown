@@ -434,7 +434,7 @@ The bug affecting module builds is resolved; no more workaround is required. You
 
 ### Performance Improvements
 
-#### Persistant Connections
+#### Persistent Connections
 
 The biggest performance win this time comes from using longer-lived persistent HTTPS connections for agent/master interactions. Depending on how many plugins you have and how many files you manage, Puppet agent can make 50-100 separate HTTPS per run, and the SSL handshakes can put stress on the master. By re-using connections, nearly all users should see a speed boost and improved capacity on the Puppet master.
 
