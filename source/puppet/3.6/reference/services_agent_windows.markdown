@@ -79,6 +79,8 @@ By default, the Puppet installer will configure puppet agent to run as a Windows
 
 #### Configuring the Run Interval
 
+> **Note:** Configuring the run interval does not currently work in Puppet Enterprise 3.3, due to [bug ENTERPRISE-312](https://tickets.puppetlabs.com/browse/ENTERPRISE-312).
+
 The puppet agent service defaults to doing a configuration run every 30 minutes. You can configure this with [the `runinterval` setting][runinterval] in [puppet.conf][]:
 
     # C:\ProgramData\PuppetLabs\puppet\etc\puppet.conf
