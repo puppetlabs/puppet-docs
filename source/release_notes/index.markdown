@@ -10,12 +10,11 @@ description: Links to Puppet and Puppet Enterprise release notes
 
 ### Current Releases
 
-- [Puppet 3.6][3.6]
-
-<!-- ### Maintenance and Security Branches -->
+- [Puppet 3.7](/puppet/3.7/reference/release_notes.html)
 
 ### Previous Releases
 
+- [Puppet 3.6][3.6]
 - [Puppet 3.5][3.5]
 - [Puppet 3.0 through 3.4][3.x]
 - [Puppet 2.7][]
@@ -31,6 +30,7 @@ description: Links to Puppet and Puppet Enterprise release notes
 - [Puppet Enterprise 3.3][pe3.3]
 
 ### Maintenance and Security Branches
+
 - [Puppet Enterprise 3.2][pe3.2]
 - [Puppet Enterprise 3.1][pe3.1]
 - [Puppet Enterprise 3.0][pe3.0]
