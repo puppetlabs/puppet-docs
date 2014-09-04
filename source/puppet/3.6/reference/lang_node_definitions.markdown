@@ -33,24 +33,7 @@ Unlike more general conditional structures, node statements only match nodes by 
 Location
 -----
 
-Node definitions should go in [the site manifest (site.pp)][sitepp].
-
-Alternately, you can store node definitions in any number of manifest files which are [imported][import] into site.pp:
-
-{% highlight ruby %}
-    # /etc/puppetlabs/puppet/manifests/site.pp
-
-    # Import every file in /etc/puppetlabs/puppet/manifests/nodes/
-    # (Usually, each file contains one node definition.)
-    import 'nodes/*.pp'
-
-    # Import several nodes from a single file
-    import 'extra_nodes.pp'
-{% endhighlight %}
-
-This is one of the only recommended use cases for `import`. Note that using `import` will require you to restart the puppet master if you change the node manifests and that importing many files will slow down Puppet's compilation time. [See the documentation of `import`][import] for details.
-
-> Node statements should never be put in [modules][]. The behavior of a node statement in an autoloaded manifest is undefined.
+Node definitions should go in [the main manifest (site.pp)][sitepp]. The main manifest can be a single file, or a directory containing many files.
 
 Syntax
 -----

@@ -134,6 +134,8 @@ puppetmaster port (8140). You can also see a similar file at `ext/rack/example-p
         # Only allow high security cryptography. Alter if needed for compatibility.
         SSLProtocol ALL -SSLv2 -SSLv3
         SSLCipherSuite EDH+CAMELLIA:EDH+aRSA:EECDH+aRSA+AESGCM:EECDH+aRSA+SHA384:EECDH+aRSA+SHA256:EECDH:+CAMELLIA256:+AES256:+CAMELLIA128:+AES128:+SSLv3:!aNULL:!eNULL:!LOW:!3DES:!MD5:!EXP:!PSK:!DSS:!RC4:!SEED:!IDEA:!ECDSA:kEDH:CAMELLIA256-SHA:AES256-SHA:CAMELLIA128-SHA:AES128-SHA
+        SSLHonorCipherOrder     on
+        
         SSLCertificateFile      /var/lib/puppet/ssl/certs/puppet-server.example.com.pem
         SSLCertificateKeyFile   /var/lib/puppet/ssl/private_keys/puppet-server.example.pem
         SSLCertificateChainFile /var/lib/puppet/ssl/ca/ca_crt.pem

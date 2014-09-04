@@ -215,7 +215,9 @@ Windows services support a short name and a display name. Make sure to use the s
 
 * "`err: You cannot service a running 64-bit operating system with a 32-bit version of DISM. Please use the version of DISM that corresponds to your computer's architecture.`"
 
-    As described in the Installation Guide, 64-bit versions of windows will redirect all file system access from `%windir%\system32` to `%windir%\SysWOW64` instead. When attempting to configure Windows roles and features using `dism.exe`, make sure to use the 64-bit version. This can be done by executing `c:\windows\sysnative\dism.exe`, which will prevent file system redirection. See <https://projects.puppetlabs.com/issues/12980>
+  If you are running a 32-bit version of Puppet on a 64-bit versions of Windows, Windows will redirect all file system access from `%windir%\system32` to `%windir%\SysWOW64` instead. This happens if you are using Windows Server 2003, which is compatible only with 32-bit Puppet, or if you are using a version of Puppet older than 3.7. 
+
+  When attempting to configure Windows roles and features using `dism.exe`, make sure to use the 64-bit version. This can be done by executing `c:\windows\sysnative\dism.exe`, which will prevent file system redirection. See [Language: Handling File Paths on Windows](/puppet/latest/reference/lang_windows_file_paths.html) for more information about file system redirection in Windows 2003.
 
 * "Error: Could not parse for environment production: Syntax error at '='; expected '}'"
 

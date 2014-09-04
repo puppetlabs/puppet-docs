@@ -38,7 +38,7 @@ Running
 -----
 
 * Windows systems can run puppet agent and puppet apply, but they can't act as a puppet master server.
-* Puppet runs as a 32-bit process.
+* Puppet is available in 32- and 64-bit versions. Install the appropriate Puppet package for your version of Windows. (Note that Windows Server 2003 requires 32-bit Puppet.) 
 * Puppet should usually run with elevated privileges. If you want to run any of Puppet's commands interactively on systems with UAC, you'll have to start a command prompt by right-clicking and choosing "Run as administrator."
 * Puppet's configuration and data are stored in different places on different Windows versions. For more details, see the Puppet reference manual pages on [the confdir][] and [the vardir][].
 
@@ -74,7 +74,7 @@ Also, there are some popular [optional resource types for Windows.](/puppet/late
 
 ### Handling File Paths
 
-Some resource types take file paths as attributes. On Windows, there are some extra things to take into account when writing file paths, including directory separators and filesystem redirection on 64-bit systems. For more info, see:
+Some resource types take file paths as attributes. On Windows, there are some extra things to take into account when writing file paths, including directory separators. For more info, see:
 
 * [Handling File Paths on Windows](/puppet/latest/reference/lang_windows_file_paths.html)
 
@@ -111,27 +111,17 @@ For more information, see the following pages in the Puppet reference manual:
 * [Running Puppet Commands on Windows][win_commands], for information on running commands interactively.
 * [Puppet Agent on Windows][win_agent], for information on the puppet agent service's run environment.
 
-### File System Redirection in 64-bit Windows Versions
+### File System Redirection (Windows Server 2003 or older versions of Puppet)
 
-The Puppet agent process runs as a 32-bit process. When run on 64-bit versions of Windows, there are some issues to be aware of.
+As of Puppet 3.7, the Puppet agent can run as either a 32- or a 64-bit process. This means that as long as you've installed the correct package for your version of Windows, file system redirection should no longer be an issue. 
 
-* The <a href="http://msdn.microsoft.com/en-us/library/aa384187(v=vs.85).aspx">File System Redirector</a> will silently redirect all file system access to `%windir%\system32` to `%windir%\SysWOW64` instead. This can be an issue when trying to manage files in the system directory, e.g., IIS configuration files. In order to prevent redirection, you can use the `sysnative` alias, e.g. `C:\Windows\sysnative\inetsrv\config\application Host.config`.
+However, if you are running Windows Server 2003, which is incompatible with 64-bit Puppet, or if you are using an earlier version of Puppet, file system redirection will still affect you. Please see [Language: Handling File Paths on Windows](/puppet/latest/reference/lang_windows_file_paths.html) for how to safely handle file system redirection when running 32-bit Puppet on a 64-bit Windows system. Note that the information about file system redirection applies to extensions as well.
 
-    > Note: 64-bit Windows Server 2003 requires hotfix [KB942589](http://support.microsoft.com/kb/942589/en-us) to use the sysnative alias.
+###Developing Extensions
 
-* The <a href="http://msdn.microsoft.com/en-us/library/aa384232(v=vs.85).aspx">Registry Redirector</a> performs a similar function with certain <a href="http://msdn.microsoft.com/en-us/library/aa384253(v=vs.85).aspx">registry keys</a>. This isn't a problem if you use the puppetlabs/registry module to manage keys, but it can affect extension developers. (See below.)
+If you're developing custom types and providers or writing custom facts, be aware that the <a href="http://msdn.microsoft.com/en-us/library/aa384187(v=vs.85).aspx">File System Redirector</a> and the <a href="http://msdn.microsoft.com/en-us/library/aa384232(v=vs.85).aspx">Registry Redirector</a> will also affect these types, providers, and facts.
 
-
-
-* * *
-
-
-Developing Extensions
------
-
-If you're developing custom types and providers, or writing custom facts, be aware that Puppet runs as a 32-bit process. This means that when it runs on a 64-bit version of Windows, it's affected by the <a href="http://msdn.microsoft.com/en-us/library/aa384187(v=vs.85).aspx">File System Redirector</a> and the <a href="http://msdn.microsoft.com/en-us/library/aa384232(v=vs.85).aspx">Registry Redirector</a>.
-
-### Registry Redirection
+#### Registry Redirection
 
 If you need to access registry keys in the native 64-bit registry space, you'll need to make sure you opt out of redirection. Here's an example of avoiding redirection in a custom fact:
 
@@ -152,10 +142,6 @@ If you need to access registry keys in the native 64-bit registry space, you'll 
 {% endhighlight %}
 
 The addition of `| 0x100` ensures the registry is opened without redirection so you can access the keys you expect to access. For more information, see <a href="http://msdn.microsoft.com/en-us/library/aa384232(v=vs.85).aspx">Microsoft’s MSDN Reference on registry redirection.</a>
-
-### Filesystem Redirection
-
-For info about how to safely handle redirected files, see [Handling File Paths on Windows](/puppet/latest/reference/lang_windows_file_paths.html) --- the info about filesystem redirection applies to extensions as well.
 
 
 * * *

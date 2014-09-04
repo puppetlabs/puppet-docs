@@ -1,0 +1,174 @@
+<h3 id="puppet-3-7-reference-manual">Puppet 3.7 Reference Manual</h3>
+
+<ul>
+  <li><a href="./index.html">Introduction</a></li>
+  <li><a href="./release_notes.html">Puppet 3.7 Release Notes</a></li>
+  <li><a href="./system_requirements.html">System Requirements</a></li>
+  <li><a href="./architecture.html">Overview of Puppet's Architecture</a></li>
+
+  <li><strong>Deprecated Features</strong>
+    <ul>
+      <li><a href="./deprecated_summary.html">About Deprecations in This Version</a></li>
+      <li><a href="./deprecated_language.html">Language Features</a></li>
+      <li><a href="./deprecated_resource.html">Resource Type Features</a></li>
+      <li><a href="./deprecated_api.html">Extension Points and APIs</a></li>
+      <li><a href="./deprecated_command.html">Command Line Features</a></li>
+      <li><a href="./deprecated_settings.html">Settings</a></li>
+      <li><a href="./deprecated_windows_api.html">Breaking Changes to Windows APIs</a></li>
+      <li><a href="./deprecated_misc.html">Other Features</a></li>
+    </ul>
+  </li>
+
+  <li><strong>Puppet's Services and Tools</strong>
+    <ul>
+      <li><a href="./services_commands.html">Puppet's Commands</a></li>
+      <li><a href="./services_commands_windows.html">Running Puppet Commands on Windows</a></li>
+      <li><a href="./services_master_webrick.html">The WEBrick Puppet Master</a></li>
+      <li><a href="./services_master_rack.html">The Rack Puppet Master</a></li>
+      <li><a href="./services_agent_unix.html">Puppet Agent on *nix</a></li>
+      <li><a href="./services_agent_windows.html">Puppet Agent on Windows</a></li>
+      <li><a href="./services_apply.html">Puppet Apply</a></li>
+    </ul>
+  </li>
+
+  <li><strong>The Puppet Language</strong>
+    <ul>
+      <li><a href="./lang_visual_index.html">Visual Index</a></li>
+      <li><a href="./lang_summary.html">Basics</a></li>
+      <li><a href="./lang_reserved.html">Reserved Words and Allowed Names</a></li>
+      <li><a href="./lang_resources.html">Resources</a></li>
+      <li><a href="./lang_windows_file_paths.html">Handling File Paths on Windows</a></li>
+      <li><a href="./lang_relationships.html">Relationships and Ordering</a></li>
+      <li><a href="./lang_defaults.html">Resource Defaults</a></li>
+      <li><a href="./lang_variables.html">Variables</a></li>
+      <li><a href="./lang_facts_and_builtin_vars.html">Facts and Built-in Variables</a></li>
+      <li><a href="./lang_scope.html">Scope</a></li>
+      <li><a href="./lang_conditional.html">Conditional Statements</a></li>
+      <li><a href="./lang_expressions.html">Expressions</a></li>
+      <li><a href="./lang_functions.html">Functions</a></li>
+      <li><a href="./lang_classes.html">Classes</a></li>
+      <li><a href="./lang_defined_types.html">Defined Types</a></li>
+      <li><a href="./lang_containment.html">Containment</a></li>
+      <li><a href="./lang_namespaces.html">Namespaces and Autoloading</a></li>
+      <li><a href="./lang_collectors.html">Resource Collectors</a></li>
+      <li><a href="./lang_node_definitions.html">Node Definitions</a></li>
+      <li><a href="./lang_datatypes.html">Data Types</a></li>
+      <li><a href="./lang_comments.html">Comments</a></li>
+      <li><a href="./lang_virtual.html">Virtual Resources</a></li>
+      <li><a href="./lang_exported.html">Exported Resources</a></li>
+      <li><a href="./lang_tags.html">Tags</a></li>
+      <li><a href="./lang_run_stages.html">Run Stages</a></li>
+      <li><a href="./lang_import.html">Importing Manifest Files</a></li>
+    </ul>
+  </li>
+
+  <li><strong>Modules</strong>
+    <ul>
+      <li><a href="./modules_fundamentals.html">Fundamentals</a></li>
+      <li><a href="/guides/plugins_in_modules.html">Plugins in Modules</a></li>
+      <li><a href="./modules_installing.html">Installing Modules</a></li>
+      <li><a href="./modules_publishing.html">Publishing Modules on the Puppet Forge</a></li>
+      <li><a href="./modules_documentation.html">Module Documentation</a></li>
+    </ul>
+  </li>
+
+  <li><a href="/references/3.7.latest/type.html">The Resource Type Reference</a></li>
+
+  <li><strong>Resource Types: Tips and Examples</strong>
+    <ul>
+      <li><a href="./resources_service.html">Service Resources (All OSes)</a></li>
+      <li><a href="./resources_file_windows.html">File Resources (Windows)</a></li>
+      <li><a href="./resources_package_windows.html">Package Resources (Windows)</a></li>
+      <li><a href="./resources_user_group_windows.html">User and Group Resources (Windows)</a></li>
+      <li><a href="./resources_scheduled_task_windows.html">Scheduled Task Resources (Windows)</a></li>
+      <li><a href="./resources_exec_windows.html">Exec Resources (Windows)</a></li>
+      <li><a href="./resources_windows_optional.html">Optional Resource Types for Windows</a></li>
+    </ul>
+  </li>
+
+  <li><strong>Misc. References (Settings, Functions, HTTP, etc.)</strong>
+    <ul>
+      <li><a href="/references/3.7.latest/configuration.html">Settings (Configuration Reference)</a></li>
+      <li><a href="/references/3.7.latest/function.html">Functions</a></li>
+      <li><a href="/references/3.7.latest/metaparameter.html">Metaparameters</a></li>
+      <li><a href="/references/3.7.latest/report.html">Report Handlers</a></li>
+      <li><a href="/references/3.7.latest/indirection.html">Indirections and Termini</a></li>
+      <li><a href="/references/3.7.latest/developer/index.html">Ruby API for Developing Extensions</a></li>
+      <li><a href="/references/3.7.latest/developer/file.http_api_index.html">Puppet's HTTP API</a></li>
+    </ul>
+  </li>
+  <li><strong>Important Directories and Files</strong>
+    <ul>
+      <li><a href="./dirs_confdir.html">The Main Config Directory (Confdir)</a></li>
+      <li><a href="./dirs_manifest.html">The Main Manifest(s)</a></li>
+      <li><a href="./dirs_modulepath.html">The Modulepath</a></li>
+      <li><a href="./dirs_ssldir.html">The SSLdir</a></li>
+      <li><a href="./dirs_vardir.html">The Vardir</a></li>
+    </ul>
+  </li>
+  <li><strong>Environments</strong>
+    <ul>
+      <li><a href="./environments.html">About Environments</a></li>
+      <li><a href="./environments_configuring.html">Configuring Directory Environments</a></li>
+      <li><a href="./environments_creating.html">Creating Directory Environments</a></li>
+      <li><a href="./environments_assigning.html">Assigning Environments to Nodes</a></li>
+      <li><a href="./environments_classic.html">Using Config File Environments (deprecated)</a></li>
+      <li><a href="./environments_suggestions.html">Suggestions for Use</a></li>
+      <li><a href="./environments_limitations.html">Limitations of Environments</a></li>
+      <li><a href="./environments_https.html">Environments and Puppet's HTTPS Interface</a></li>
+    </ul>
+  </li>
+  <li><strong>Configuration</strong>
+    <ul>
+      <li><a href="./config_about_settings.html">About Puppet's Settings</a></li>
+      <li><a href="./config_print.html">Checking Values of Settings</a></li>
+      <li><a href="./config_set.html">Editing Settings on the Command Line</a></li>
+      <li><a href="./config_important_settings.html">Short List of Important Settings</a></li>
+      <li><a href="/references/3.7.latest/configuration.html">Complete List of Settings (Configuration Reference)</a></li>
+      <li><strong>Config Files</strong>
+        <ul>
+          <li><a href="./config_file_main.html">puppet.conf: The Main Config File</a></li>
+          <li><a href="./config_file_auth.html">The auth.conf File</a></li>
+          <li><a href="./config_file_autosign.html">The autosign.conf File</a></li>
+          <li><a href="./config_file_csr_attributes.html">The csr_attributes.yaml File</a></li>
+          <li><a href="./config_file_device.html">The device.conf File</a></li>
+          <li><a href="./config_file_environment.html">The environment.conf Files</a></li>
+          <li><a href="./config_file_fileserver.html">The fileserver.conf File</a></li>
+          <li><a href="./config_file_hiera.html">The hiera.yaml File</a></li>
+          <li><a href="./config_file_puppetdb.html">The puppetdb.conf File</a></li>
+          <li><a href="./config_file_routes.html">The routes.yaml File</a></li>
+          <li><a href="./config_file_tagmail.html">The tagmail.conf File</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong>SSL and Certificates</strong>
+    <ul>
+      <li><a href="./config_ssl_external_ca.html">Using an External CA</a></li>
+      <li><a href="./ssl_autosign.html">Configuring Autosigning</a></li>
+      <li><a href="./ssl_attributes_extensions.html">CSR Attributes and Certificate Extensions</a></li>
+      <li><a href="./ssl_regenerate_certificates.html">Regenerating All Certificates in a Deployment</a></li>
+    </ul>
+  </li>
+
+  <li><strong>Data Formats</strong>
+    <ul>
+      <li><a href="./format_report.html">Report Format</a></li>
+    </ul>
+  </li>
+
+  <li><strong>Puppet Subsystems</strong>
+    <ul>
+      <li><a href="./subsystem_agent_master_comm.html">Agent/Master HTTPS Communications</a></li>
+      <li><a href="./subsystem_catalog_compilation.html">Catalog Compilation</a></li>
+    </ul>
+  </li>
+  <li><strong>Experimental Features</strong>
+    <ul>
+      <li><a href="./experiments_overview.html">Overview</a></li>
+      <li><a href="./experiments_future.html">The Future Parser and Evaluator</a></li>
+      <li><a href="./experiments_lambdas.html">Iteration and Lambdas</a></li>
+      <li><a href="./experiments_msgpack.html">Msgpack Support</a></li>
+    </ul>
+  </li>
+</ul>
