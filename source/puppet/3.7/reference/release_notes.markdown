@@ -60,10 +60,11 @@ We think most users should use the architecture-appropriate package, but make su
 
 * **64-bit Puppet uses Ruby 2.0.** The 32-bit Puppet package still uses Ruby 1.9.3, to maintain compatibility with previous versions. This is a major version jump, and it's possible that some of your plugins will stop working and will need to be updated.
 * **If your code uses the `sysnative` alias, it may break.** The `sysnative` alias, used to get around file system redirection, can only be accessed by a 32-bit process running on a 64-bit version of Windows. Once you upgrade to 64-bit Puppet, it will disappear. [See our docs about file system redirection for more details.][file_system_redirect]
+* **If your code uses the `ProgramFiles` environment variable, it has a different value in 64-bit Puppet.** In a default Windows installation, the `ProgramFiles` environment variable resolves to `C:\Program Files\` in a 64-bit native application, and `C:\Program Files (x86)\` in a 32-bit process running on a 64-bit version of Windows.
 
 Also, there are some changes that may affect users of 32-bit Puppet as well:
 
-* **There are a few breaking changes to private APIs.** If you use any resource types and providers (or other custom plugins) that access Puppet's internal APIs, they may break in the upgrade. For details, [see the page about Windows API changes in Puppet 3.7](./deprecated_windows_api.html) and [the puppet-dev thread about these API changes.](https://groups.google.com/forum/#!msg/puppet-dev/IWQyxDH0WcQ/9-5hQCfla-cJ)
+* **There are a few breaking changes to private APIs.** If you use any resource types and providers (or other custom plugins) that access Puppet's internal APIs, they may break in the upgrade. For details, [see the page about private Windows API changes in Puppet 3.7](./deprecated_windows_api.html) and [the puppet-dev thread about these API changes.](https://groups.google.com/forum/#!msg/puppet-dev/IWQyxDH0WcQ/9-5hQCfla-cJ)
 * **You may need to upgrade your modules.** If you use any of the following modules from [the Puppet Forge](https://forge.puppetlabs.com), you should upgrade them to the latest versions, since they may have been updated for compatibility with Puppet 3.7:
     * [`puppetlabs/puppetlabs-acl`](https://forge.puppetlabs.com/puppetlabs/puppetlabs-acl)
     * [`puppetlabs/puppetlabs-dism`](https://forge.puppetlabs.com/puppetlabs/puppetlabs-dism)
@@ -73,6 +74,7 @@ Also, there are some changes that may affect users of 32-bit Puppet as well:
     * [`badgerious/npackd`](https://forge.puppetlabs.com/badgerious/npackd)
     * [`badgerious/windows_env`](https://forge.puppetlabs.com/badgerious/windows_env)
     * [`basti1302/windows_path`](https://forge.puppetlabs.com/basti1302/windows_path)
+    * [`ptierno/windowspagefile`](https://forge.puppetlabs.com/ptierno/windowspagefile)
 
 In short: Windows users should **test thoroughly before upgrading to Puppet 3.7.**
 

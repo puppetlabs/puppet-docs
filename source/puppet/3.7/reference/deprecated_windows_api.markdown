@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Breaking Changes to Windows APIs"
+title: "Breaking Changes to Private Windows APIs"
 ---
 
 
