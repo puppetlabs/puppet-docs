@@ -71,15 +71,19 @@ To verify the PE installer, you can import the Puppet Labs public key and run a 
 
 To import the Puppet Labs public key, run:
 
-    $ gpg --keyserver=pgp.mit.edu --recv-key 4BD6EC30
+    $ gpg --keyserver=pgp.mit.edu --recv-key 0x1054b7a24bd6ec30
 
 The result should be similar to
 
-    gpg: requesting key 4BD6EC30 from hkp server pgp.mit.edu
+    gpg: requesting key 1054b7a24bd6ec30 from hkp server pgp.mit.edu
     gpg: key 4BD6EC30: public key "Puppet Labs Release Key" imported
     gpg: no ultimately trusted keys found
     gpg: Total number processed: 1
     gpg:               imported: 1  (RSA: 1)
+    
+You should also see an exact match of the fingerprint of our key, which is printed on the verification:
+
+    Primary key fingerprint: 47B3 20EB 4C7C 375A A9DA  E1A0 1054 B7A2 4BD6 EC30    
 
 Next, verify the release signature on the tarball by running:
 

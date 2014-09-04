@@ -35,7 +35,7 @@ Before you can verify signatures, you must import the Puppet Labs public key and
 
 To import the release signing key, run:
 
-    $ gpg --recv-key 4BD6EC30
+    $ gpg --recv-key 1054b7a24bd6ec30
     gpg: requesting key 4BD6EC30 from hkp server pool.sks-keyservers.net
     gpg: key 4BD6EC30: public key "Puppet Labs Release Key " imported
     gpg: no ultimately trusted keys found
@@ -48,7 +48,7 @@ The key is also [available here](http://pool.sks-keyservers.net:11371/pks/lookup
 
 The fingerprint of the Puppet Labs release signing key is **`47B3 20EB 4C7C 375A A9DA  E1A0 1054 B7A2 4BD6 EC30`**. Run the following and ensure the fingerprints match:
 
-    $ gpg --list-key --fingerprint 4bd6ec30
+    $ gpg --list-key --fingerprint 1054b7a24bd6ec30
       pub   4096R/4BD6EC30 2010-07-10 [expires: 2016-07-08]
             Key fingerprint = 47B3 20EB 4C7C 375A A9DA  E1A0 1054 B7A2 4BD6 EC30
       uid                  Puppet Labs Release Key (Puppet Labs Release Key)
