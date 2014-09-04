@@ -124,7 +124,9 @@ The puppet master will only look for environments in certain directories, listed
 
 If `environmentpath` isn't set, directory environments will be disabled completely.
 
-If you need to manage environments in multiple directories, you can set `environmentpath` to a colon-separated list of directories. (For example: `$confdir/temporary_environments:$confdir/environments`.) Puppet will search these directories in order, with earlier directories having precedence.
+If you need to manage environments in multiple directories, you can set `environmentpath` to a colon-separated list of directories. (For example: `$confdir/temporary_environments:$confdir/environments`.) When looking for an environment, Puppet will search these directories in order, with earlier directories having precedence.
+
+Note that if multiple copies a given environment exist in the `environmentpath`, Puppet will use the first one. It won't use any contents of the other copies.
 
 The `environmentpath` setting should usually be set in the `[main]` section of [puppet.conf][].
 
