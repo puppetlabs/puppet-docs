@@ -175,6 +175,8 @@ Puppet agent can now use preview builds of [the new, faster, natively compiled F
 
 This is a very early version of this feature, and it's not for the faint of heart: since we don't provide builds of the compiled Facter project yet, you'll need to compile and package it yourself. To get started, [see the build and installation instructions in the cfacter repository.][cfacter]
 
+Currently, the natively compiled Facter only supports Linux and OS X.
+
 [cfacter]: https://github.com/puppetlabs/cfacter
 
 * [PUP-2104: Make puppet able to configure a facter implementation to use](https://tickets.puppetlabs.com/browse/PUP-2104)
