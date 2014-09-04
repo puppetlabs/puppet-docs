@@ -570,7 +570,7 @@ Our ticket tracker has the list of [all issues resolved in Puppet 3.7.0.](https:
 
 Big thanks to our community members, who helped make this release what it is. In particular, we'd like to thank:
 
-* [Daniel Berger](https://github.com/djberg96), whose Ruby modules have helped make Puppet on Windows a reality.
+* [Daniel Berger](https://github.com/djberg96) and Park Heesob, whose Ruby modules have helped make Puppet on Windows a reality.
 * All of our community contributors who committed code for this release (listed by the name in their commit messages):
     * Aaron Zauner
     * Alexandros Kosiaris
