@@ -10,6 +10,14 @@ canonical: "/puppet/latest/reference/release_notes.html"
 [puppet_35]: /puppet/3.5/reference/release_notes.html
 [puppet_36]: /puppet/3.6/reference/release_notes.html
 
+[puppet.conf]: ./config_file_main.html
+[main manifest]: ./dirs_manifest.html
+[env_api]: /references/3.7.latest/developer/file.http_environments.html
+[file_system_redirect]: ./lang_windows_file_paths.html#file-system-redirection-when-running-32-bit-puppet-on-64-bit-windows
+[environment.conf]: ./config_file_environment.html
+[default_manifest]: /references/3.7.latest/configuration.html#defaultmanifest
+[disable_per_environment_manifest]: /references/3.7.latest/configuration.html#disableperenvironmentmanifest
+
 This page tells the history of the Puppet 3.7 series. (Elsewhere: release notes for [Puppet 3.0 -- 3.4][puppet_3], [Puppet 3.5][puppet_35], and [Puppet 3.6][puppet_36].)
 
 Puppet's version numbers use the format X.Y.Z, where:
@@ -21,14 +29,16 @@ Puppet's version numbers use the format X.Y.Z, where:
 How to Upgrade
 -----
 
-If you're upgrading from a 3.x version of Puppet, you can usually just go for it. Upgrade your puppet master servers before upgrading the agents they serve. (But do look at the table of contents above and see if there are any "Upgrade Warning" notes for the new version.)
+Before upgrading, **look at the table of contents above and see if there are any "UPGRADE WARNING" or "Upgrade Note" items for the new version.** Although it's usually safe to upgrade from any 3.x version to any later 3.x version, there are sometimes special conditions that can cause trouble.
+
+We always recommend that you **upgrade your puppet master servers before upgrading the agents they serve.**
 
 If you're upgrading from Puppet 2.x, please [learn about major upgrades of Puppet first!][upgrade] We have important advice about upgrade plans and package management practices. The short version is: test first, roll out in stages, give yourself plenty of time to work with. Also, read the [release notes for Puppet 3][puppet_3] for a list of all the breaking changes made between the 2.x and 3.x series.
 
 Puppet 3.7.0
 -----
 
-Released September 2, 2014.
+Released September 4, 2014.
 
 Puppet 3.7.0 is a backward-compatible features and fixes release in the Puppet 3 series. The biggest things in this release are:
 
@@ -36,6 +46,38 @@ Puppet 3.7.0 is a backward-compatible features and fixes release in the Puppet 3
 * Preview support for a new, fast, natively compiled Facter
 * 64-bit Puppet packages for Windows
 * Lots of deprecations to prepare for Puppet 4.0
+
+### UPGRADE WARNING (for Windows Users)
+
+Starting with Puppet 3.7, [we provide 64-bit packages for Windows systems.][inpage_win64] When upgrading, Windows users with 64-bit OS versions must decide whether to install the 32-bit package or the 64-bit package.
+
+With this release:
+
+* **We think** the 32-bit package should be backwards-compatible for **most** users, even though we made some changes to private APIs.
+* **The 64-bit package may cause unexpected breakages.**
+
+We think most users should use the architecture-appropriate package, but make sure you consider the following before deciding:
+
+* **64-bit Puppet uses Ruby 2.0.** The 32-bit Puppet package still uses Ruby 1.9.3, to maintain compatibility with previous versions. This is a major version jump, and it's possible that some of your plugins will stop working and will need to be updated.
+* **If your code uses the `sysnative` alias, it may break.** The `sysnative` alias, used to get around file system redirection, can only be accessed by a 32-bit process running on a 64-bit version of Windows. Once you upgrade to 64-bit Puppet, it will disappear. [See our docs about file system redirection for more details.][file_system_redirect]
+
+Also, there are some changes that may affect users of 32-bit Puppet as well:
+
+* **There are a few breaking changes to private APIs.** If you use any resource types and providers (or other custom plugins) that access Puppet's internal APIs, they may break in the upgrade. For details, [see the page about Windows API changes in Puppet 3.7](./deprecated_windows_api.html) and [the puppet-dev thread about these API changes.](https://groups.google.com/forum/#!msg/puppet-dev/IWQyxDH0WcQ/9-5hQCfla-cJ)
+* **You may need to upgrade your modules.** If you use any of the following modules from [the Puppet Forge](https://forge.puppetlabs.com), you should upgrade them to the latest versions, since they may have been updated for compatibility with Puppet 3.7:
+    * [`puppetlabs/puppetlabs-acl`](https://forge.puppetlabs.com/puppetlabs/puppetlabs-acl)
+    * [`puppetlabs/puppetlabs-dism`](https://forge.puppetlabs.com/puppetlabs/puppetlabs-dism)
+    * [`puppetlabs/puppetlabs-registry`](https://forge.puppetlabs.com/puppetlabs/puppetlabs-registry)
+    * [`puppetlabs/puppetlabs-reboot`](https://forge.puppetlabs.com/puppetlabs/puppetlabs-reboot)
+    * [`puppetlabs/puppetlabs-powershell`](https://forge.puppetlabs.com/puppetlabs/puppetlabs-powershell)
+    * [`badgerious/npackd`](https://forge.puppetlabs.com/badgerious/npackd)
+    * [`badgerious/windows_env`](https://forge.puppetlabs.com/badgerious/windows_env)
+    * [`basti1302/windows_path`](https://forge.puppetlabs.com/basti1302/windows_path)
+
+In short: Windows users should **test thoroughly before upgrading to Puppet 3.7.**
+
+Check to make sure nothing breaks when upgrading to the 64-bit version. You can always fall back to the 32-bit version, which should work the same as it has before, but **test that too** before upgrading your whole fleet.
+
 
 ### Feature: Nearly Final Implementation of the Puppet 4 Language
 
@@ -85,21 +127,45 @@ Since Puppet 3.7 includes the Puppet 4 version of the language, getting ready to
 * [PUP-1057: Remove 'collect' and 'select' iterative function stubs](https://tickets.puppetlabs.com/browse/PUP-1057)
 * [PUP-2858: remove --evaluator current switch for future parser](https://tickets.puppetlabs.com/browse/PUP-2858)
 
-### Feature: Agent-Side Pre-Run Resource Validation
+### Feature: 64-Bit Support, Ruby 2.0, and FFI on Windows
 
-Custom resource types now have a way to perform pre-run checks on an agent, and abort the catalog application before it starts if they detect something horribly wrong. Your resource types can do this by defining a `pre_run_check` method, which will run for every resource of that type and which should raise a `Puppet::Error` if the run should be aborted.
+[inpage_win64]: #feature-64-bit-support-ruby-20-and-ffi-on-windows
 
-For details, see [the section on pre-run validation in the custom resource types guide][prerun].
+We now ship both 32- and 64-bit Puppet installers for Windows! When installing Puppet, you should download the package that matches your systems' version of Windows. If you installed Puppet into a custom directory, or if you need to downgrade, be sure to see the new notes in [the Windows installation page.](/guides/install_puppet/install_windows.html)
 
-[prerun]: /guides/custom_types.html#agent-side-pre-run-resource-validation-puppet-37-and-later
+> **Note:** Windows Server 2003 can't use our 64-bit installer, and must continue to use the 32-bit installer for all architectures. This is because 64-bit Ruby relies on OS features that weren't added until after Windows 2003.
 
-* [PUP-2298: PR (#2549) Enable pre-run validation of catalogs](https://tickets.puppetlabs.com/browse/PUP-2298)
+Prior to this release, we only shipped 32-bit packages. Although these ran fine on 64-bit versions of Windows, they were subject to [file system redirection](/puppet/3.6/reference/lang_windows_file_paths.html), which could be surprising.
 
-### Retroactive Feature: Providers Can Inherit From Providers of Another Resource Type
+As part of this expanded Windows support, Puppet on Windows now uses Ruby 2.0. We've also updated a lot of our Windows code to work more reliably and consistently.
 
-This has actually been possible forever, but it wasn't called out as a legitimate feature. We've added tests to demonstrate that it's supported and to keep it from breaking in the future. For details, [see the relevant section in the provider development guide.](/guides/provider_development.html#a-provider-of-any-resource-type)
-
-* [PUP-2458: Tests for providers inheriting from providers of another type](https://tickets.puppetlabs.com/browse/PUP-2458)
+* [PUP-389: Support ruby 2.0 x64 on windows](https://tickets.puppetlabs.com/browse/PUP-389)
+* [PUP-2396: Support ruby 2.0 x64 on windows](https://tickets.puppetlabs.com/browse/PUP-2396)
+* [PUP-2777: Support Bundler workflow on x64](https://tickets.puppetlabs.com/browse/PUP-2777)
+* [PUP-3008: Already initialized constant warning when running puppet](https://tickets.puppetlabs.com/browse/PUP-3008)
+* [PUP-3056: Restore constants / deprecated call sites changed during x64 upgrade that impact ACL module](https://tickets.puppetlabs.com/browse/PUP-3056)
+* [PUP-2913: Remove RGen Gem in Puppet-Win32-Ruby libraries](https://tickets.puppetlabs.com/browse/PUP-2913)
+* [PUP-390: Modify build process to generate x86 and x64 versions of ruby](https://tickets.puppetlabs.com/browse/PUP-390)
+* [PUP-3006: Do not allow x64 to install on Windows Server 2003](https://tickets.puppetlabs.com/browse/PUP-3006)
+* [PUP-836: FFI Puppet::Util::Windows::User module](https://tickets.puppetlabs.com/browse/PUP-836)
+* [PUP-837: FFI Puppet::Util::Windows::SID module](https://tickets.puppetlabs.com/browse/PUP-837)
+* [PUP-838: FFI Puppet::Util::Windows::Process module](https://tickets.puppetlabs.com/browse/PUP-838)
+* [PUP-839: FFI Puppet::Util::Windows::Security module](https://tickets.puppetlabs.com/browse/PUP-839)
+* [PUP-840: FFI Puppet::Util::Colors module](https://tickets.puppetlabs.com/browse/PUP-840)
+* [PUP-1281: Remove win32console gem in ruby 2.0 on windows](https://tickets.puppetlabs.com/browse/PUP-1281)
+* [PUP-1283: Update win32-service gem](https://tickets.puppetlabs.com/browse/PUP-1283)
+* [PUP-1760: Update win32-security gem to latest (after string_to_sid fix)](https://tickets.puppetlabs.com/browse/PUP-1760)
+* [PUP-2382: Standardize existing FFI code and refactor where necessary](https://tickets.puppetlabs.com/browse/PUP-2382)
+* [PUP-2385: FFI Puppet::Util::Windows::File module](https://tickets.puppetlabs.com/browse/PUP-2385)
+* [PUP-2521: Remove windows-pr gem as a Windows dependency](https://tickets.puppetlabs.com/browse/PUP-2521)
+* [PUP-2554: FFI Puppet::Util::ADSI module](https://tickets.puppetlabs.com/browse/PUP-2554)
+* [PUP-2656: FFI Puppet::Util::Windows::Registry](https://tickets.puppetlabs.com/browse/PUP-2656)
+* [PUP-2657: FFI Puppet::Util::Windows::Error](https://tickets.puppetlabs.com/browse/PUP-2657)
+* [PUP-2738: Investigate FFI Memory Pressure / Deterministically Release FFI MemoryPointer](https://tickets.puppetlabs.com/browse/PUP-2738)
+* [PUP-2881: Upgrade win32-taskscheduler (or replace)](https://tickets.puppetlabs.com/browse/PUP-2881)
+* [PUP-2889: Upgrade win32-eventlog](https://tickets.puppetlabs.com/browse/PUP-2889)
+* [PUP-3060: Remove Warning on Ruby 2.0 / Windows about "DL is deprecated, please use Fiddle"](https://tickets.puppetlabs.com/browse/PUP-3060)
+* [PUP-1884: Move puppet dependencies on windows into the puppet repo](https://tickets.puppetlabs.com/browse/PUP-1884)
 
 ### Feature: Early Support For New Compiled Facter Implementation
 
@@ -111,39 +177,48 @@ This is a very early version of this feature, and it's not for the faint of hear
 
 * [PUP-2104: Make puppet able to configure a facter implementation to use](https://tickets.puppetlabs.com/browse/PUP-2104)
 
+### Feature: Agent-Side Pre-Run Resource Validation
 
-### Language Bug Fixes
+Custom resource types now have a way to perform pre-run checks on an agent, and abort the catalog application before it starts if they detect something horribly wrong. Your resource types can do this by defining a `pre_run_check` method, which will run for every resource of that type and which should raise a `Puppet::Error` if the run should be aborted.
 
-We fixed a bug where the `contain` function misbehaved when given classes that start with a `::` prefix. We also made [resource collectors](./lang_collectors.html) give more informative errors if you try to collect classes (which isn't allowed).
+For details, see [the section on pre-run validation in the custom resource types guide][prerun].
 
-* [PUP-1597: "contain" cannot contain a fully qualified class](https://tickets.puppetlabs.com/browse/PUP-1597)
-* [PUP-2902: collection of classes should raise a meaningful error](https://tickets.puppetlabs.com/browse/PUP-2902)
+[prerun]: /guides/custom_types.html#agent-side-pre-run-resource-validation-puppet-37-and-later
 
+* [PUP-2298: PR (#2549) Enable pre-run validation of catalogs](https://tickets.puppetlabs.com/browse/PUP-2298)
 
-### Feature: 64-Bit Support and Ruby 2.0 on Windows
+### Feature: Improved HTTP Debugging
 
-We now ship both 32- and 64-bit Puppet installers for Windows! You should download the version that fits your systems' version of Windows.
+Puppet has a new [`http_debug` setting](/references/3.7.latest/configuration.html#httpdebug) for troubleshooting Puppet's HTTPS connections. When set to `true` on an agent node, Puppet will log all HTTP requests and responses to stderr.
 
-> **Note:** Windows Server 2003 can't use our 64-bit installer, and must continue to use the 32-bit installer for all architectures. This is because 64-bit Ruby relies on OS features that weren't added until after Windows 2003.
+Use this only for temporary debugging (e.g. `puppet agent --test --http_debug`). It should never be enabled in production, because it can leak sensitive data to stderr. (Also because it's extremely noisy.)
 
-Prior to this release, we only shipped 32-bit packages. Although these ran fine on 64-bit versions of Windows, they were subject to [file system redirection](/puppet/3.6/reference/lang_windows_file_paths.html), which could be surprising.
+### Feature: Recursive Manifest Directory Loading Under Future Parser
 
-As part of this expanded Windows support, Puppet on Windows now uses Ruby 2.0.
+When `parser = future` is set in [puppet.conf][], Puppet will recursively load any subdirectories in the [main manifest][]. This will be the default behavior in Puppet 4.
 
-* [PUP-389: Support ruby 2.0 x64 on windows](https://tickets.puppetlabs.com/browse/PUP-389)
-* [PUP-2396: Support ruby 2.0 x64 on windows](https://tickets.puppetlabs.com/browse/PUP-2396)
-* [PUP-2777: Support Bundler workflow on x64](https://tickets.puppetlabs.com/browse/PUP-2777)
-* [PUP-3008: Already initialized constant warning when running puppet](https://tickets.puppetlabs.com/browse/PUP-3008)
-* [PUP-3056: Restore constants / deprecated call sites changed during x64 upgrade that impact ACL module](https://tickets.puppetlabs.com/browse/PUP-3056)
-* [PUP-2913: Remove RGen Gem in Puppet-Win32-Ruby libraries](https://tickets.puppetlabs.com/browse/PUP-2913)
-* [PUP-390: Modify build process to generate x86 and x64 versions of ruby](https://tickets.puppetlabs.com/browse/PUP-390)
-* [PUP-3006: Do not allow x64 to install on Windows Server 2003](https://tickets.puppetlabs.com/browse/PUP-3006)
+* [PUP-2711: The manifests directory should be recursively loaded when using directory environments](https://tickets.puppetlabs.com/browse/PUP-2711)
 
-### Packaging Bugs
+### Feature: Authenticated Proxy Servers
 
-We fixed a problem where a man page was being marked as a conflict.
+Puppet can now use proxy servers that require a username and password. You'll need to provide the authentication in the new [`http_proxy_user`](/references/3.7.latest/configuration.html#httpproxyuser) and [`http_proxy_password`](/references/3.7.latest/configuration.html#httpproxypassword) settings. (Note that passwords must be valid as part of a URL, and any reserved characters must be URL-encoded.)
 
-* [PUP-2878: puppet-kick.8.gz conflict upgrading from 2.7.26 to 3.6.2](https://tickets.puppetlabs.com/browse/PUP-2878)
+* [PUP-2869: Puppet should be able to use authenticated proxies](https://tickets.puppetlabs.com/browse/PUP-2869)
+
+### Feature: New `digest` Function
+
+The [`md5` function](/references/3.7.latest/function.html#md5) is hardcoded to the (old, low-quality) MD5 hash algorithm, which is no good at sites that are prohibited from using MD5.
+
+To help those users, Puppet now has a [`digest` function](/references/3.7.latest/function.html#digest), which uses whichever hash algorithm is specified in the Puppet master's [`digest_algorithm` setting.](/references/3.7.latest/configuration.html#digestalgorithm)
+
+* [PUP-2511: Add parser function digest: uses digest_algorithm to hash, not strictly md5](https://tickets.puppetlabs.com/browse/PUP-2511)
+
+### Feature (Retroactively): Providers Can Inherit From Providers of Another Resource Type
+
+This has actually been possible forever, but it wasn't called out as a legitimate feature. We've added tests to demonstrate that it's supported and to keep it from breaking in the future. For details, [see the relevant section in the provider development guide.](/guides/provider_development.html#a-provider-of-any-resource-type)
+
+* [PUP-2458: Tests for providers inheriting from providers of another type](https://tickets.puppetlabs.com/browse/PUP-2458)
+
 
 
 ### DEPRECATIONS in Preparation for Puppet 4.0
@@ -161,6 +236,7 @@ Puppet 3.7 may well be the final Puppet 3.x release, and we've deprecated a lot 
 * [Settings](./deprecated_settings.html)
 * [Other Features](./deprecated_misc.html)
 
+Relevant tickets:
 
 * [PUP-850: Puppet 3.x Deprecations in Preparation for Puppet 4](https://tickets.puppetlabs.com/browse/PUP-850)
 * [PUP-1381: cron type and provider only return resources for ENV["USER"] or "root", not all users](https://tickets.puppetlabs.com/browse/PUP-1381)
@@ -186,15 +262,26 @@ Puppet 3.7 may well be the final Puppet 3.x release, and we've deprecated a lot 
 * [PUP-2557: Deprecate and remove node inheritance](https://tickets.puppetlabs.com/browse/PUP-2557)
 * [PUP-2614: Deprecate default source_permissions :use on all platforms](https://tickets.puppetlabs.com/browse/PUP-2614)
 * [PUP-3129: Deprecate hidden _timestamp fact](https://tickets.puppetlabs.com/browse/PUP-3129)
+* [PUP-877: Deprecate "masterlog" Setting](https://tickets.puppetlabs.com/browse/PUP-877)
 
 
+### Language Bug Fixes
+
+We fixed a bug where the `contain` function misbehaved when given classes that start with a `::` prefix. We also made [resource collectors](./lang_collectors.html) give more informative errors if you try to collect classes (which isn't allowed).
+
+* [PUP-1597: "contain" cannot contain a fully qualified class](https://tickets.puppetlabs.com/browse/PUP-1597)
+* [PUP-2902: collection of classes should raise a meaningful error](https://tickets.puppetlabs.com/browse/PUP-2902)
 
 
-### Feature: Improved HTTP Debugging
+### Packaging Bugs
 
-Puppet has a new [`http_debug` setting](/references/3.7.latest/configuration.html#httpdebug) for troubleshooting Puppet's HTTPS connections. When set to `true` on an agent node, Puppet will log all HTTP requests and responses to stderr.
+We fixed a problem where a man page was being marked as a conflict. We also fixed some issues with directory creation and permissions.
 
-Use this only for temporary debugging (e.g. `puppet agent --test --http_debug`). It should never be enabled in production, because it can leak sensitive data to stderr. (Also because it's extremely noisy.)
+* [PUP-2878: puppet-kick.8.gz conflict upgrading from 2.7.26 to 3.6.2](https://tickets.puppetlabs.com/browse/PUP-2878)
+* [PUP-3035: Debian package does not create /var/run/puppet dir during install](https://tickets.puppetlabs.com/browse/PUP-3035)
+* [PUP-3156: Fix /var/lib/puppet/state permissions on redhat](https://tickets.puppetlabs.com/browse/PUP-3156)
+* [PUP-3163: Fix /var/lib/puppet/reports permissions on debian/redhat](https://tickets.puppetlabs.com/browse/PUP-3163)
+
 
 ### Resource Type and Provider Improvements
 
@@ -278,6 +365,8 @@ The `proxy` attribute now supports the special value `'_none_'`, which lets a re
 * `throttle`
 * `bandwidth`
 
+Relevant tickets:
+
 * [PUP-2271: yumrepo attributes cannot be set to '_none_'](https://tickets.puppetlabs.com/browse/PUP-2271)
 * [PUP-2360: Yumrepo type allows invalid values](https://tickets.puppetlabs.com/browse/PUP-2360)
 * [PUP-2356: (PR 2577) Add yumrepo extra options](https://tickets.puppetlabs.com/browse/PUP-2356)
@@ -310,7 +399,7 @@ Thanks to an update in an upstream library, Puppet gives better errors when the 
 
 ### Puppet Agent Bug Fixes
 
-This release fixes several issues with the Puppet agent application, including unwanted timeouts, some service bugs on Windows, some needlessly noisy log messages, and a bug involving the lockfile.
+This release fixes several issues with the Puppet agent application, including unwanted timeouts, a bug on Windows where the service would hang, some needlessly noisy log messages, and a bug involving the lockfile.
 
 * [PUP-1070: puppetd doesn't always cleanup lockfile properly](https://tickets.puppetlabs.com/browse/PUP-1070)
 * [PUP-1471: Puppet Agent windows services accidentally comes of out Paused state](https://tickets.puppetlabs.com/browse/PUP-1471)
@@ -326,9 +415,9 @@ When running `puppet master --compile`, Puppet master used to ignore its `--logd
 * [PUP-2873: puppet master --compile right now unconditionally spews logs to standard output](https://tickets.puppetlabs.com/browse/PUP-2873)
 
 
-### TODO Puppet Module Command Improvements
+### Puppet Module Command Improvements
 
-The bug affecting module builds is resolved; no more workaround is required. You can now exclude files from your module build using either .gitignore or .pmtignore files. You can also use `--ignorechanges` flag to ignore any changes made to a module's metadata.json file when upgrading or uninstalling the module. And, finally, symlinks are no longer allowed in modules. The module build command will error on a module with symlinks.
+The bug affecting module builds is resolved; no more workaround is required. You can now exclude files from your module build using either `.gitignore` or `.pmtignore` files. You can also use `--ignorechanges` flag to ignore any changes made to a module's metadata.json file when upgrading or uninstalling the module. And, finally, symlinks are no longer allowed in modules. The module build command will error on a module with symlinks.
 
 * [PUP-1186: puppet module tool on windows will (sometimes) create a PaxHeader directory](https://tickets.puppetlabs.com/browse/PUP-1186)
 * [PUP-2078: Puppet module install --force does not re-install dependencies](https://tickets.puppetlabs.com/browse/PUP-2078)
@@ -370,28 +459,40 @@ In other performance news: Puppet no longer searches the disk in a situation whe
 * [PUP-1044: FileBucket should not keep files in memory](https://tickets.puppetlabs.com/browse/PUP-1044)
 
 
-### Feature: Recursive Manifest Directory Loading Under Future Parser
-
-When `parser = future` is set in [puppet.conf][], Puppet will recursively load any subdirectories in the [main manifest][]. This will be the default behavior in Puppet 4.
-
-* [PUP-2711: The manifests directory should be recursively loaded when using directory environments](https://tickets.puppetlabs.com/browse/PUP-2711)
-
 ### Improvements to Directory Environments
 
-We've improved Puppet's behavior and error messages when trying to use an environment that doesn't exist. Also, the [`v2.0/environments` API endpoint][env_api] now includes the `config_version` and `environment_timeout` settings.
 
-TODO blurb about resolution of PUP-3069
+#### Configurable and Lockable Default Manifest
+
+In previous versions, the default main manifest for any environment that didn't specify a `manifest` setting in [environment.conf][] was hardcoded to that environment's `manifests` directory.
+
+Now, you can use the global [`default_manifest` setting][default_manifest] to choose the manifest that environments without a preference will use.
+
+You can also use [the `disable_per_environment_manifest` setting][disable_per_environment_manifest] to lock all environments to a single global main manifest.
+
+For more details, see:
+
+* The descriptions of the [`default_manifest`][default_manifest] and [`disable_per_environment_manifest`][disable_per_environment_manifest] settings
+* The pages on [configuring](./environments_configuring.html) and [creating](./environment_creating.html) directory environments
+* The page on [the main manifest](./dirs_manifest.html)
+
+Relevant tickets:
+
+* [PUP-3069: Use a manifest setting in [master] as global manifests](https://tickets.puppetlabs.com/browse/PUP-3069)
+
+#### Other Fixes
+
+We've improved Puppet's behavior and error messages when trying to use an environment that doesn't exist. Also, the [`v2.0/environments` API endpoint][env_api] now includes the `config_version` and `environment_timeout` settings.
 
 * [PUP-2214: Many puppet commands fail when using a configured or requested directory environment that doesn't exist.](https://tickets.puppetlabs.com/browse/PUP-2214)
 * [PUP-2426: Puppet's v2 environment listing does not display config_version and environment_timeout as well.](https://tickets.puppetlabs.com/browse/PUP-2426)
 * [PUP-2519: Settings catalog should create the default environment if environmentpath set.](https://tickets.puppetlabs.com/browse/PUP-2519)
 * [PUP-2631: Running the puppet agent against a nonexistent environment produces an overly verbose error message.](https://tickets.puppetlabs.com/browse/PUP-2631)
-* [PUP-3069: Use a manifest setting in [master] as global manifests](https://tickets.puppetlabs.com/browse/PUP-3069)
 
 
 ### Miscellaneous Bug Fixes
 
-The `puppet` command now exits 1 when given an invalid subcommand, instead of exiting 0 as if everything were fine. We fixed some wrong or confusing error messages. The `puppet parser validate` command now handles exported resources just fine even if storeconfigs isn't configured (but only in the future parser). And we fixed a regression from Puppet 3.4 that broke plugins using the `hiera` indirector terminus.
+The `puppet` command now exits 1 when given an invalid subcommand, instead of exiting 0 as if everything were fine. We fixed some wrong or confusing error messages. The `puppet parser validate` command now handles exported resources just fine even if storeconfigs isn't configured (but only in the future parser). We fixed a bogus error message involving the `Uniquefile` API. And we fixed a regression from Puppet 3.4 that broke plugins using the `hiera` indirector terminus.
 
 * [PUP-1100: create_resources auto importing a manifest with a syntax error produce a bad error message](https://tickets.puppetlabs.com/browse/PUP-1100)
 * [PUP-2303: ArgumentErrors in file_server config parser are swallowed by raising the error wrong](https://tickets.puppetlabs.com/browse/PUP-2303)
@@ -400,8 +501,11 @@ The `puppet` command now exits 1 when given an invalid subcommand, instead of ex
 * [PUP-2831: Puppet does not work with RGen 0.7.0](https://tickets.puppetlabs.com/browse/PUP-2831)
 * [PUP-2994: puppet parser validate shouldn't puke on exported resources](https://tickets.puppetlabs.com/browse/PUP-2994)
 * [PUP-1843: 3.4.0 broke compatibility with plugins using the hiera indirector terminus](https://tickets.puppetlabs.com/browse/PUP-1843)
+* [PUP-3153: Need to guard against `nil` when calling `Uniquefile#close!` in `ensure` blocks](https://tickets.puppetlabs.com/browse/PUP-3153)
 
 ### Miscellaneous Improvements
+
+#### More Useful Info at Start of Debug Output
 
 Puppet's `--debug` output now begins with a line containing the following information:
 
@@ -410,20 +514,25 @@ Puppet's `--debug` output now begins with a line containing the following inform
 - `run_mode`
 - `default_encoding` (on Ruby 1.9.3 or later only)
 
+Relevant tickets:
+
 * [PUP-1736: Add encoding information to debug output](https://tickets.puppetlabs.com/browse/PUP-1736)
+
+#### Improved `file()` Function
 
 The [`file()` function](/reference/3.7.latest/function.html#file) will now accept [template](/reference/3.7.latest/function.html#template)-style module paths, rather than only absolute paths. For example, `file('example/file.txt')` is now equivalent to `file('<MODULE PATH>/example/files/file.txt')`.
 
 * [PUP-2626: Accept module paths in Puppet::Parser::Functions.file()](https://tickets.puppetlabs.com/browse/PUP-2626)
 
-The new [`digest()` function](/reference/3.7.latest/function.html#digest) is similar to the existing `md5()` function, but hashes its argument using the algorithm specified by the [`digest_algorithm` setting](/reference/3.7.latest/configuration.html#digestalgorithm).
 
-* [PUP-2511: Add parser function digest: uses digest_algorithm to hash, not strictly md5](https://tickets.puppetlabs.com/browse/PUP-2511)
+#### Profiling API Improvements
 
 This release also includes some significant backward-compatible improvements to Puppet's built-in profiling API. Specifically:
 
 * The new `Puppet::Util::Profiler.add_profiler` method is an alternative to setting `Puppet::Util::Profiler.current` that allows **multiple profilers** to be active at the same time.
 * The `Puppet::Util::Profiler.profile` method now accepts a new optional second argument: an array of strings or symbols that will be used to group profiling data. For example, if you pass `[:functions, name]` as the second argument, then the profiling data will be grouped with other blocks labeled `:functions`, but under its own `name`.
+
+Relevant tickets:
 
 * [PUP-2747: support multiple profilers](https://tickets.puppetlabs.com/browse/PUP-2747)
 * [PUP-2750: expand profiler signature to support hierarchical profiling data](https://tickets.puppetlabs.com/browse/PUP-2750)
@@ -441,20 +550,6 @@ When using `puppet cert revoke` on a certificate that isn't available on disk an
 We've improved the Apache SSL cipher settings we use in the example Passenger vhost we ship with Puppet.
 
 * [PUP-2177: PR (2494) Insecure shipped Cipher settings in Passenger example config](https://tickets.puppetlabs.com/browse/PUP-2177)
-
-### Feature: Authenticated Proxy Servers
-
-Puppet can now use proxy servers that require a username and password. You'll need to provide the authentication in the new [`http_proxy_user`](/references/3.7.latest/configuration.html#httpproxyuser) and [`http_proxy_password`](/references/3.7.latest/configuration.html#httpproxypassword) settings. (Note that passwords must be valid as part of a URL, and any reserved characters must be URL-encoded.)
-
-* [PUP-2869: Puppet should be able to use authenticated proxies](https://tickets.puppetlabs.com/browse/PUP-2869)
-
-### Feature: New `digest` Function
-
-The [`md5` function](/references/3.7.latest/function.html#md5) is hardcoded to the (old, low-quality) MD5 hash algorithm, which is no good at sites that are prohibited from using MD5.
-
-To help those users, Puppet now has a [`digest` function](/references/3.7.latest/function.html#digest), which uses whichever hash algorithm is specified in the Puppet master's [`digest_algorithm` setting.](/references/3.7.latest/configuration.html#digestalgorithm)
-
-* [PUP-2511: Add parser function digest: uses digest_algorithm to hash, not strictly md5](https://tickets.puppetlabs.com/browse/PUP-2511)
 
 ### Improvements for Running Puppet From Source
 
