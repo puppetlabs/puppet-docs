@@ -47,7 +47,6 @@ defaultnav:
   /puppet/3.6/reference: puppet_3_6.html
   /puppet/3.7/reference: puppet_3_7.html
   /references: references_general.html
-  /release_notes: release_notes.html
 destination: ../output
 url: "http://docs.puppetlabs.com"
 #Anatomy of an external source:
