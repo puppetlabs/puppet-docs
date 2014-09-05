@@ -131,6 +131,8 @@ As of Puppet 3.7, file system redirection is not an issue, **as long as you are 
 
 However, if you are **running a 32-bit version of Puppet on a 64-bit version of Windows,** the <a href="http://msdn.microsoft.com/en-us/library/aa384187(v=vs.85).aspx">File System Redirector</a> will silently redirect all file system access of the `%windir%\system32` directory to `%windir%\SysWOW64` instead. This can be an issue when trying to manage files in the system directory, such as IIS configuration files.
 
+Additionally, the `ProgramFiles` environment variable resolves to `C:\Program Files\` in a 64-bit native application, and `C:\Program Files (x86)\` in a 32-bit process running on a 64-bit version of Windows.
+
 There are three cases where you might be dealing with mixed Puppet/Windows architectures:
 
 * You deliberately installed a 32-bit package on a 64-bit system, to maintain compatibility for certain modules until you're able to update their code for 64-bit Puppet.
