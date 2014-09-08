@@ -12,6 +12,10 @@ canonical: "/pe/latest/quick_start_ssh.html"
 
 Welcome to the Puppet Enterprise SSH Quick Start Guide. This document provides instructions for getting started managing SSH across your PE deployment using a module from the Puppet Forge.
 
+Secure Shell (SSH) is a protocol that enables encrypted connections between nodes on a network for administrative purposes. It is most commonly used in the *nix world by admins who wish to remotely log into machines to access the command line and execute commands and scripts.
+
+PE uses SSH to establish a connection between the puppet master and agents on nodes under management. This helps to ensure a secure, encrypted connection, which is a critical requirement in the majority of customer environments.
+
 Typically, the first time you attempt to SSH into a host you’ve never connected to before, you get a warning similar to the following:
 
     The authenticity of host '10.10.10.9 (10.10.10.9)' can't be established.
@@ -24,7 +28,7 @@ The SSH module you’ll install in this guide uses Puppet resources that collect
 
 Using this guide, you will:
 
-* [install the Saz-SSH module](#install-the-saz-ssh-module).
+* [install the saz-ssh module](#install-the-saz-ssh-module).
 * [use the PE console to add classes from the SSH module to your agent nodes](#use-the-pe-console-to-add-classes-from-the-ssh-module). 
 * [use the PE console event inspector to view changes to your infrastructure made by the `ssh` class](#use-the-console-event-inspector-to-view-changes-made-by-the-ssh-class).
 * [use the PE console to edit root login parameters of the `ssh` class](#use-the-pe-console-to-edit-root-login-parameters-of-the-ssh-class).
@@ -39,13 +43,13 @@ If you haven't already done so, you'll need to get PE installed. See the [system
 3. Refer to the [agent installation instructions][agent_install] to determine how you want to install your PE agent(s), and follow the instructions provided.
 
 
-### Install the Saz-SSH Module
+### Install the saz-ssh Module
 
-The Saz-SSH module, available on the Puppet Forge, is one of many modules written by  members of our user community.  
+The saz-ssh module, available on the Puppet Forge, is one of many modules written by  members of our user community.  
 
-You can learn more about the Saz-SSH module by visiting[http://forge.puppetlabs.com/saz/ssh](http://forge.puppetlabs.com/saz/ssh). 
+You can learn more about the saz-ssh module by visiting[http://forge.puppetlabs.com/saz/ssh](http://forge.puppetlabs.com/saz/ssh). 
 
-**To install the Saz-SSH module**:
+**To install the saz-ssh module**:
 
 From the PE master, run `puppet module install saz-ssh`.
 
