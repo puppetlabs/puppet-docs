@@ -14,9 +14,9 @@ Welcome to the Puppet Enterprise Sudo Users Quick Start Guide. This document pro
 
 In most cases, you want to manage sudo on your agent nodes to control which system users have access to elevated privileges. Using this guide, you will:
 
-* [install the Saz-Sudo module as the foundation for your management of sudo privileges ](#install-the-saz-sudo-module).
-* [write a simple module that contains a class called `privileges` to manage a few resources that set privileges for certain users, which will be managed by the Saz-Sudo module](#write-the-privileges-class).
-* [use the PE console to add classes from the Privileges and Sudo modules to your agent nodes](#use-the-pe-console-to-add-the-privileges-and-sudo-classes). 
+* [install the saz-sudo module as the foundation for your management of sudo privileges ](#install-the-saz-sudo-module).
+* [write a simple module that contains a class called `privileges` to manage a few resources that set privileges for certain users, which will be managed by the saz-sudo module](#write-the-privileges-class).
+* [use the PE console to add classes from the privileges and sudo modules to your agent nodes](#use-the-pe-console-to-add-the-privileges-and-sudo-classes). 
 
 ### Install Puppet Enterprise and the Puppet Enterprise Agent
 
@@ -28,13 +28,13 @@ If you haven't already done so, you'll need to get PE installed. See the [system
 
 >**Tip**: Follow the instructions in the [NTP Quick Start Guide](./quick_start_ntp.html) to have PE ensure time is in sync across your deployment.
 
->**Note**: You can add the Sudo and Privileges classes to as many agents as needed. For ease of explanation, our console images or instructions might show only two agent nodes.
+>**Note**: You can add the sudo and privileges classes to as many agents as needed. For ease of explanation, our console images or instructions might show only two agent nodes.
 
-### Install the Saz-Sudo Module
+### Install the saz-sudo Module
 
-The Saz-Sudo module, available on the Puppet Forge, is one of many modules written by a member of our user community.  You can learn more about the module by visiting [http://forge.puppetlabs.com/saz/sudo](http://forge.puppetlabs.com/saz/sudo). 
+The saz-sudo module, available on the Puppet Forge, is one of many modules written by a member of our user community.  You can learn more about the module by visiting [http://forge.puppetlabs.com/saz/sudo](http://forge.puppetlabs.com/saz/sudo). 
 
-**To install the Saz-Sudo module**:
+**To install the saz-sudo module**:
 
 From the PE master, run `puppet module install saz-sudo`.
 
@@ -47,9 +47,9 @@ You should see output similar to the following:
         └── saz-sudo (v2.3.6)
               └── puppetlabs-stdlib (3.2.2) [/opt/puppet/share/puppet/modules]
 
-> That's it! You've just installed the Saz-Sudo module. All of the classes in it are now available to be added to the console and assigned to your agent nodes. 
+> That's it! You've just installed the saz-sudo module. All of the classes in it are now available to be added to the console and assigned to your agent nodes. 
 
-### Write the Privileges Class
+### Write the `privileges` Class
 
 Some modules can be large, complex, and require a significant amount of trial and error as you create them, while others, like [PE-supported modules](https://forge.puppetlabs.com/supported), often work "right out of the box." This module will be a very simple module to write: it contains just one class.  
 
@@ -106,15 +106,15 @@ Modules are directory trees. For this task, you'll create the following files:
 >
 > * `sudo::conf ‘wheel’`: Create a sudoers rule to ensure that members of the wheel group have the ability to run any command using sudo. This resource creates a configuration fragment to define this rule in `/etc/sudoers.d/`. It will be called something like `10_wheel`.
 
-You will add this class at the same time you add the Saz-Sudo module.
+You will add this class at the same time you add the saz-sudo module.
 
-### Use the PE Console to Add the Privileges and Sudo classes
+### Use the PE Console to Add the privileges and sudo classes
 
 [classbutton]: ./images/quick/add_class_button.png
 [add_sudo]: ./images/quick/add_sudo.png
 [assign_sudo_group]: ./images/quick/assign_sudo_group.png
 
-The Saz-Sudo module contains several **classes**. [Classes](../puppet/3/reference/lang_classes.html) are named chunks of puppet code and are the primary means by which Puppet Enterprise configures nodes.  For this procedure, you're going to add the `sudo` class to the **default** group. 
+The saz-sudo module contains several **classes**. [Classes](../puppet/3/reference/lang_classes.html) are named chunks of puppet code and are the primary means by which Puppet Enterprise configures nodes.  For this procedure, you're going to add the `sudo` class to the **default** group. 
 
 The **default** group contains all the nodes in your deployment (including the Puppet master), but you can [create your own group](./console_classes_groups.html#adding-a-new-group) or add the classes to individual nodes, depending on your needs. 
 
@@ -146,7 +146,7 @@ The **default** group contains all the nodes in your deployment (including the P
 
 8. Click the __runonce__ action and then __Run__. 
 
-> Congratulations! You’ve just created a privileges class that you can use to define and enforce a sudoers configuration across your PE-managed infrastructure. 
+> Congratulations! You’ve just created the `privileges` class that you can use to define and enforce a sudoers configuration across your PE-managed infrastructure. 
 
 ### Other Resources
 
