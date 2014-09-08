@@ -136,4 +136,4 @@ Still need to know what classes to apply, etc., as well as how to comply with th
 
 * * *
 
-- [Next: Cloud Provisioning: Overview](./cloudprovisioner_overview.html)
+- [Next: Deploying PE: PE Deployment Guide](./guides/deployment_guide/dg_first_steps.html)
