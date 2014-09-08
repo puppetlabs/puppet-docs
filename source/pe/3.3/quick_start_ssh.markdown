@@ -62,9 +62,9 @@ You should see output similar to the following:
         └── saz-ssh (v2.3.6)
               └── puppetlabs-stdlib (3.2.2) [/opt/puppet/share/puppet/modules]
 
-> That's it! You've just installed the Saz-SSH module. All of the classes in it are now available to be added to the console and assigned to your agent nodes.
+> That's it! You've just installed the saz-ssh module. All of the classes in it are now available to be added to the console and assigned to your agent nodes.
 >
-> Note: the Puppet Labs Standard Library module is listed as a dependency for the Saz-SSH module. But it was installed as part of your PE installation. 
+> Note: the Puppet Labs Standard Library module is listed as a dependency for the saz-ssh module. But it was installed as part of your PE installation. 
 
 ### Create SSH Group
 
@@ -91,7 +91,7 @@ In this procedure, you’ll create a simple group called, __ssh_example__, but y
 [add_ssh]: ./images/quick/add_ssh.png
 [assign_ssh_group]: ./images/quick/assign_ssh_group.png
 
-The Saz-SSH module contains several **classes**. [Classes](../puppet/3/reference/lang_classes.html) are named chunks of Puppet code and are the primary means by which Puppet Enterprise configures nodes. Some useful classes in the Saz-SSH module include:
+The saz-ssh module contains several **classes**. [Classes](../puppet/3/reference/lang_classes.html) are named chunks of Puppet code and are the primary means by which Puppet Enterprise configures nodes. Some useful classes in the saz-ssh module include:
 
 * `ssh`: the main class; this class handles all the other classes (including the classes in this list).
 * `ssh::hostkeys`: creates host keys on your servers, if needed.
@@ -169,7 +169,7 @@ For more information about using the PE console event inspector, check out the [
 
 With Puppet Enterprise you can edit or add class parameters directly in the PE console without needing to edit the module code directly. 
 
-The Saz-SSH module, by default, allows root login over SSH, but what if your compliance protocols do not allow this on certain pools of agent nodes? 
+The saz-ssh module, by default, allows root login over SSH, but what if your compliance protocols do not allow this on certain pools of agent nodes? 
 
 Changing this parameter of the `ssh` class can be accomplished in a few steps using the PE console.
 

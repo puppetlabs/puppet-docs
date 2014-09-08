@@ -41,11 +41,11 @@ If you haven't already done so, you'll need to get PE installed. See the [system
 >**Note**: You can add the NTP service to as many agents as needed. For ease of explanation, our console images or instructions may show only one agent node. 
 
   
-### Install the Puppet Labs NTP Module
+### Install the puppetlabs-ntp Module
 
-The Puppet Labs NTP module (`puppetlabs-ntp`), is part of the PE [supported modules](http://forge.puppetlabs.com/supported) program; these modules are supported, tested, and maintained by Puppet Labs. You can learn more about the Puppet Labs NTP module by visiting [http://forge.puppetlabs.com/puppetlabs/ntp](http://forge.puppetlabs.com/puppetlabs/ntp). 
+The puppetlabs-ntp module is part of the PE [supported modules](http://forge.puppetlabs.com/supported) program; these modules are supported, tested, and maintained by Puppet Labs. You can learn more about the puppetlabs-ntp module by visiting [http://forge.puppetlabs.com/puppetlabs/ntp](http://forge.puppetlabs.com/puppetlabs/ntp). 
 
-**To install the Puppet Labs NTP module**:
+**To install the puppetlabs-ntp module**:
 
 From the PE master, run `puppet module install puppetlabs-ntp`.
 
@@ -57,7 +57,7 @@ You should see output similar to the following:
         /etc/puppetlabs/puppet/modules
         └── puppetlabs-ntp (v3.1.2)
         
-> That's it! You've just installed the Puppet Labs NTP module. All of the classes in it are now available to be added to the console and assigned to your agent nodes.
+> That's it! You've just installed the puppetlabs-ntp module. All of the classes in it are now available to be added to the console and assigned to your agent nodes.
 
 ### Use the PE Console to Add Classes from the NTP Module
 
@@ -140,7 +140,7 @@ In the upper right corner of the detail pane is a link to a run report which con
 For more information about using the PE console event inspector, check out the [event inspector docs](./console_event_inspector). 
 
 
-### Use the PE Console to Edit Parameters of the NTP Class
+### Use the PE Console to Edit Parameters of the `ntp` Class
 
 [ntp_params]: ./images/quick/ntp-params.png
 
@@ -171,7 +171,7 @@ Changing the server parameter of the `ntp` class can be accomplished in a few st
 
 ### Other Resources
 
-For more information about working with the Puppet Labs NTP module, check out our [Puppetlabs-NTP: A Puppet Enterprise Supported Module](http://puppetlabs.com/blog/puppetlabs-ntp-puppet-enterprise-supported-module) blog post and our [How to Manage NTP](http://puppetlabs.com/webinars/how-manage-ntp) webinar. 
+For more information about working with the puppetlabs-ntp module, check out our [Puppetlabs-NTP: A Puppet Enterprise Supported Module](http://puppetlabs.com/blog/puppetlabs-ntp-puppet-enterprise-supported-module) blog post and our [How to Manage NTP](http://puppetlabs.com/webinars/how-manage-ntp) webinar. 
 
 Puppet Labs offers many opportunities for learning and training, from formal certification courses to guided online lessons. We've noted a few below; head over to the [learning Puppet page](https://puppetlabs.com/learn) to discover more.
 
