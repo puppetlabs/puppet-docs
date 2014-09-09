@@ -11,7 +11,7 @@ The PE console uses a certificate signed by PE's built-in certificate authority 
 
 When you use a custom CA to create a certificate for the console, the console still needs to trust requests from other elements of your PE infrastructure that have been authenticated with certificates signed by PE's built-in CA; and when making requests to the puppet master, the console still needs to present a certificate signed by PE's built-in CA. 
 
-Also, when the puppet master is acting as a client, it needs to trust the certificates signed by both the custom CA and PE's built-in CA. 
+If your custom cert is issued by an intermediate CA, the CA bundle (i.e., `ca_auth.pem`) needs to contain a complete chain, including the applicable root CA.
 
 Here are the main things you will need to do: 
 
@@ -44,11 +44,12 @@ The first three certificates in the list are your custom certificate's public an
 1. On the puppet master, create `ca_auth.pem` by running `cat /etc/puppetlabs/puppet/ssl/certs/ca.pem /opt/puppet/share/puppet-dashboard/certs/public-dashboard.ca_cert.pem > /etc/puppetlabs/puppet/ssl/ca_auth.pem`.
 
    > **Note**: The second path in the above command is the full path the public key of the custom CA, which you put in `/opt/puppet/share/puppet-dashboard/certs/` in step 1.2.
-
-2. Change the permissions of the file you just created by running `chmod 644 /etc/puppetlabs/puppet/ss/ca_auth.pem`. 
-3. Edit `/etc/puppetlabs/puppet/puppet.conf` and, in the `[master]` stanza, add `ssl_client_ca_auth = /etc/puppetlabs/puppet/ssl/ca_auth.pem`.
-4. Edit `/etc/puppetlabs/puppet/console.conf` and for `certificate_name`, change the value to the DNS FQDN of the console server. Note that the DNS FQDN must match the name of the new console certificate. 
-5. Restart the `pe-httpd` service on both the master and console servers by running `sudo /etc/init.d/pe-httpd restart`. (If it is an all-in-one install, you only need to restart the `pe-httpd` service once.)
-6. Kick off a puppet run. 
+   
+2. If you need to include an applicable root CA in your bundle, run `cat root.pem >> ca_auth.pem`.    
+3. Change the permissions of the file you just created by running `chmod 644 /etc/puppetlabs/puppet/ss/ca_auth.pem`. 
+4. Edit `/etc/puppetlabs/puppet/puppet.conf` and, in the `[master]` stanza, add `ssl_client_ca_auth = /etc/puppetlabs/puppet/ssl/ca_auth.pem`.
+5. Edit `/etc/puppetlabs/puppet/console.conf` and for `certificate_name`, change the value to the DNS FQDN of the console server. Note that the DNS FQDN must match the name of the new console certificate. 
+6. Restart the `pe-httpd` service on both the master and console servers by running `sudo /etc/init.d/pe-httpd restart`. (If it is an all-in-one install, you only need to restart the `pe-httpd` service once.)
+7. Kick off a puppet run. 
 
 You should now be able to navigate to your console and see the custom certificate in your browser. 
