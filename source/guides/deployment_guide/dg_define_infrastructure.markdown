@@ -4,6 +4,8 @@ title: "PE Deployment Guide"
 subtitle: "Puppetize Your Infrastructure: Beginning Automation"
 ---
 
+Back to the [PE user guide](/pe/latest/index.html).
+
 How Can Puppet Enterprise Help You?
 -----
 
@@ -209,23 +211,23 @@ If the code is working correctly, the new class should have configured the site'
 
 In order to get the marketing department's mailing list server under automation, Judy needs to give PE control of their Windows MS-SQL server. The procedure for doing this is nearly identical to the process we used for the other modules. In this case, however, Judy is going to take the opportunity to replace the old, Windows 2003 machine with a modern, Windows 2008 r2 server. She sets up the box, installs the OS and [installs a puppet agent](/pe/latest/install_windows.html), and connects it to the master by accepting the cert request. This is all old hat now. Next, she's going to use a module to install and manage MS-SQL Server. To that end, she'll need the MS installation disc. Thankfully, all the media in the marketing department have been neatly organized and cataloged (this is why you hire interns from liberal arts colleges). She mounts the disc on the Windows machine and goes back to her laptop to complete the procedure, much as before.
 
-> * Judy has chosen a Puppet Labs module, which she installs on her master with `puppet module install puppetlabs/mssql`. 
+> * Judy has chosen a Puppet Labs module, which she installs on her master with `puppet module install puppetlabs/mssql`.
 > * Next, she adds the new `mssql` class in the console, and adds it to the Windows agent node's definition.
-> * Then, she uses orchestration's runonce action to kick off a puppet run on the Winbox and get the new class applied, which in turn will install MS-SQL and start it up. She can now migrate the data from the old 2003 machine using the MS-SQL native tools (e.g., the Import and Export Wizard). 
-    
+> * Then, she uses orchestration's runonce action to kick off a puppet run on the Winbox and get the new class applied, which in turn will install MS-SQL and start it up. She can now migrate the data from the old 2003 machine using the MS-SQL native tools (e.g., the Import and Export Wizard).
+
 With that done, the next step will be to get the CRM machine under PE control. Since there is no Forge module for managing SugarCRM, Judy will have to write her own module. We'll cover that in the next chapter.
 
 Next Steps
 -----
 Judy now has a basic deployment that is managing some simple services in the marketing department's infrastructure.  Following Judy's example, after [downloading](pe_dl) and setting up PE, you should now be able to find and install Forge modules for basic services, classify nodes using the classes defined by the modules, and use PE to apply configurations to nodes. Some other easy things you might consider managing early on include:
 
-   * sudo 
+   * sudo
    * rsyslog
    * vmware tools
    * yumrepo (already defined in PE's core types, no module needed)
- 
-You should be able to find Forge modules for most of these things. The workflow for installing the modules and adding nodes is essentially the same as we describe above. 
 
-Next: Puppetize Your Infrastructure: More Advanced Automating (coming soon)
+You should be able to find Forge modules for most of these things. The workflow for installing the modules and adding nodes is essentially the same as we describe above.
+
+Next: [Running PE Agents without Root Privileges](/pe/latest/deploy_nonroot-agent.html)
 
 [^1]:   Judy Argyle is a fictitious character. Any resemblance to any person living or dead is purely coincidental.
