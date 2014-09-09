@@ -4,6 +4,8 @@ title: "PE Deployment Guide"
 subtitle: "First Steps: Setting Up Your Environment"
 ---
 
+Back to the [PE user guide](/pe/latest/index.html).
+
 [pe_dl]: http://info.puppetlabs.com/download-pe.html
 
 Once you've [downloaded Puppet Enterprise][pe_dl], completed installation, and verified that all the parts are talking to each other, there are a few things you'll want to do to set up your working environment.

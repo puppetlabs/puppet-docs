@@ -4,6 +4,8 @@ title: "PE Deployment Guide"
 subtitle: "Introduction and Installation"
 ---
 
+Back to the [PE user guide](/pe/latest/index.html).
+
 Introduction
 -----
 
