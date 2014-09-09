@@ -173,6 +173,8 @@ As part of this expanded Windows support, Puppet on Windows now uses Ruby 2.0. W
 
 Puppet agent can now use preview builds of [the new, faster, natively compiled Facter,][cfacter] by setting `cfacter = true` in [puppet.conf][] or including `--cfacter` on the command line.
 
+* For more details, [see the experimental feature page on native Facter.](./experiments_cfacter.html)
+
 This is a very early version of this feature, and it's not for the faint of heart: since we don't provide builds of the compiled Facter project yet, you'll need to compile and package it yourself. To get started, [see the build and installation instructions in the cfacter repository.][cfacter]
 
 Currently, the natively compiled Facter only supports Linux and OS X.
