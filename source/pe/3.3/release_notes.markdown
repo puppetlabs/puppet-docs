@@ -28,7 +28,7 @@ This page contains information about the Puppet Enterprise (PE) 3.3.2 release as
 
 **Assessed risk level**: medium
 
-**Affected platforms**: Puppet Enterprise 2.x and 3.x 
+**Affected platforms**: Puppet Enterprise 2.x and 3.x
 
 **Resolved in**: Puppet Enterprise 2.8.8, 3.3.2
 
@@ -36,7 +36,7 @@ A race condition in the mod_status module in the Apache HTTP Server before 2.4.1
 
 Upstream CVSS v2 Score: 4.4 with Vector:  AV:L/AC:M/Au:N/C:P/I:P/A:P/E:ND/RL:U/RC:C
 
-####[CVE-2014-0118 - Apache vulnerability in mod_deflate module could allow denial of service attacks](http://puppetlabs.com/security/cve/cve-2014-0118) 
+####[CVE-2014-0118 - Apache vulnerability in mod_deflate module could allow denial of service attacks](http://puppetlabs.com/security/cve/cve-2014-0118)
 
 **Assessed risk level**: medium
 
@@ -48,7 +48,7 @@ The `deflate_in_filter` function in the mod_deflate module in the Apache HTTP Se
 
 Upstream CVSS v2 Score: 5.0 with Vector: AV:N/AC:L/Au:N/C:N/I:N/A:P/E:ND/RL:U/RC:C
 
-####[CVE-2014-0231 - Apache vulnerability in mod_cgid module could allow denial of service attacks](http://puppetlabs.com/security/cve/cve-2014-0231) 
+####[CVE-2014-0231 - Apache vulnerability in mod_cgid module could allow denial of service attacks](http://puppetlabs.com/security/cve/cve-2014-0231)
 
 **Assessed risk level**: low
 
@@ -66,13 +66,19 @@ On August 6, the OpenSSL project announced several security vulnerabilities in O
 
 For more information about the OpenSSL vulnerabilities, refer to the [OpenSSL security site](https://www.openssl.org/news/vulnerabilities.html).
 
-##Bug Fixes 
+##Bug Fixes
 
 **Incomplete /etc/inittab entry for pe-puppet service on AIX**
 
 On AIX, the Puppet Enterprise installation created an incomplete /etc/inittab entry for the pe-puppet service. As a result, Puppet would not automatically start on boot unless the /etc/inittab entry was corrected.
 
 This issue is now fixed.
+
+**Ruby using incorrect LIBPATH on AIX**
+
+Under certain conditions on AIX clients, Puppet Enterprise attempted to use an incorrect OpenSSL library, causing Puppet runs to fail with a Ruby "load failed" error.
+
+This issue is fixed in PE 3.3.2.
 
 ## Known Issues
 
