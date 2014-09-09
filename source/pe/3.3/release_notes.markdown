@@ -22,7 +22,7 @@ canonical: "/pe/latest/release_notes.html"
 
 This page contains information about the Puppet Enterprise (PE) 3.3.2 release as well as known issues for all versions of PE 3.3. For information on previous 3.x releases, including new features, bug fixes, security fixes, and more, see the [archived PE 3.x release notes](/pe/latest/release_notes_archive.html).
 
-## Security Fixes
+## Security Fixes (9/9/14)
 
 ####[CVE-2014-0226 - Apache vulnerabilty in mod_status module could allow arbitrary code execution](http://puppetlabs.com/security/cve/cve-2014-0226/)
 
