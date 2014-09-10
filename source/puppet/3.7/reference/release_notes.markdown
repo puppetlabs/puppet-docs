@@ -17,6 +17,7 @@ canonical: "/puppet/latest/reference/release_notes.html"
 [environment.conf]: ./config_file_environment.html
 [default_manifest]: /references/3.7.latest/configuration.html#defaultmanifest
 [disable_per_environment_manifest]: /references/3.7.latest/configuration.html#disableperenvironmentmanifest
+[directory environments]: ./environments.html
 
 This page tells the history of the Puppet 3.7 series. (Elsewhere: release notes for [Puppet 3.0 -- 3.4][puppet_3], [Puppet 3.5][puppet_35], and [Puppet 3.6][puppet_36].)
 
@@ -34,6 +35,50 @@ Before upgrading, **look at the table of contents above and see if there are any
 We always recommend that you **upgrade your puppet master servers before upgrading the agents they serve.**
 
 If you're upgrading from Puppet 2.x, please [learn about major upgrades of Puppet first!][upgrade] We have important advice about upgrade plans and package management practices. The short version is: test first, roll out in stages, give yourself plenty of time to work with. Also, read the [release notes for Puppet 3][puppet_3] for a list of all the breaking changes made between the 2.x and 3.x series.
+
+Puppet 3.7.1
+-----
+
+Released September 11, 2014. (TODO: update date)
+
+Puppet 3.7.1 is a bug fix release in the Puppet 3.7 series. It fixes regressions introduced by Puppet 3.7.0, some issues with directory environments, and a few other bugs.
+
+### Regressions from 3.7.0
+
+Puppet 3.7.0 broke certain functions in the future parser, and caused the `puppet module` command to change its behavior around symlinks and templates that start with a period. This release fixes those regressions.
+
+- [PUP-3188: Puppet module tool no longer processes files starting with a period as erb](https://tickets.puppetlabs.com/browse/PUP-3188)
+- [PUP-3190: "each" no longer supported in Puppet 3.7.0](https://tickets.puppetlabs.com/browse/PUP-3190)
+- [PUP-3191: Symlinks to missing targets cause a File Not Found error instead of a warning](https://tickets.puppetlabs.com/browse/PUP-3191)
+
+### Miscellaneous Bugs
+
+This release fixes a potential race condition for the validity of the CA's certificate revocation list (CRL), and a case where agents using Ruby 2.x could hit HTTP errors.
+
+- [PUP-894: Too easy to hit "CRL not yet valid for `<host>`" (and not very informative)](https://tickets.puppetlabs.com/browse/PUP-894)
+- [PUP-1680: "incorrect header check" using Ruby 2](https://tickets.puppetlabs.com/browse/PUP-1680)
+
+### Resource Type and Provider Bugs
+
+Resources whose titles ended with a square bracket would unexpectedly fail with an "invalid tag" error. This was because Puppet was accidentally applying the behavior of the (secret, internal) `component` resource type to all resource types.
+
+- [PUP-3177: Resource titles ending with square brackets fail](https://tickets.puppetlabs.com/browse/PUP-3177)
+
+### Directory Environment Improvements
+
+This release tightens up the rules about interpolating `$environment` when [directory environments][] are enabled: the only setting where `$environment` is allowed is `config_version`, in [environment.conf][].
+
+If you try to interpolate `$environment` into any other setting, Puppet will log a warning and leave the setting with a literal `$environment` in its value. This helps prevent directory environments from getting too dynamic and behaving unpredictably.
+
+This release also fixes errors when the directory specified by the deprecated `manifestdir` setting doesn't exist, and allows use of symlinks in the `environmentpath`.
+
+- [PUP-3174: After enabling directory environments the manifestdir setting is still required to be valid](https://tickets.puppetlabs.com/browse/PUP-3174)
+- [PUP-3162: Block $environment in directory based environment configuration settings](https://tickets.puppetlabs.com/browse/PUP-3162)
+- [PUP-3186: Puppetmaster removes /etc/puppet/environments/production if it's a link rather than a directory](https://tickets.puppetlabs.com/browse/PUP-3186)
+
+### All Resolved Issues for 3.7.1
+
+Our ticket tracker has the list of [all issues resolved in Puppet 3.7.1.](https://tickets.puppetlabs.com/secure/ReleaseNote.jspa?projectId=10102&version=11854)
 
 Puppet 3.7.0
 -----
