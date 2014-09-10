@@ -81,6 +81,10 @@ The result should be similar to
     gpg: Total number processed: 1
     gpg:               imported: 1  (RSA: 1)
     
+To print the fingerprint of our key, run: 
+  
+    gpg --fingerprint 0x1054b7a24bd6ec30
+
 You should also see an exact match of the fingerprint of our key, which is printed on the verification:
 
     Primary key fingerprint: 47B3 20EB 4C7C 375A A9DA  E1A0 1054 B7A2 4BD6 EC30    
