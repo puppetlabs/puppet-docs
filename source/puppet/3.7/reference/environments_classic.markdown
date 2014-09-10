@@ -22,14 +22,14 @@ canonical: "/puppet/latest/reference/environments_classic.html"
 > Config File Environments Are Deprecated
 > -----
 >
-> If your puppet.conf file:
+> In Puppet 4, [directory environments][directory_environments] will always be enabled. This means the `environmentpath` setting **must** point to a valid directory (defaulting to `$confdir/environments`), and Puppet won't allow you to set `manifest`, `modulepath`, or `config_version` in puppet.conf.
+>
+> In this version of Puppet, the Puppet master will log deprecation warnings if your puppet.conf file:
 >
 > * Contains any environment config blocks
 > * Sets global values for the `manifest`, `modulepath`, or `config_version` settings
 >
-> ...then the puppet master will log deprecation warnings. (Interpolating the `$environment` variable won't log warnings, since it's benign without the global settings and is useful in `environment.conf` files.)
->
-> In a future version of Puppet (probably Puppet 4), [directory environments][directory_environments] will always be enabled, and the default `production` environment will take the place of the global `manifest`/`modulepath`/`config_version` settings.
+> (Interpolating the `$environment` variable won't log warnings.)
 >
 > When you have time, you should read up on [directory environments][directory_environments] and start using them.
 
