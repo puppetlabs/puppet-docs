@@ -45,9 +45,11 @@ Puppet 3.7.1 is a bug fix release in the Puppet 3.7 series. It fixes regressions
 
 ### Regressions from 3.7.0
 
-Puppet 3.7.0 broke certain functions in the future parser, and caused the `puppet module` command to change its behavior around symlinks and templates that start with a period. This release fixes those regressions.
+Puppet 3.7.0 broke error handling when trying to manage nonexistent services on Windows, replacing a descriptive message with "`Could not evaluate: uninitialized constant Win32::Service::Error`". It also broke certain functions in the future parser, and caused the `puppet module` command to change its behavior around symlinks.
 
-- [PUP-3188: Puppet module tool no longer processes files starting with a period as erb](https://tickets.puppetlabs.com/browse/PUP-3188)
+This release fixes those regressions.
+
+- [PUP-3222: Windows service provider references a non-existent class](https://tickets.puppetlabs.com/browse/PUP-3222)
 - [PUP-3190: "each" no longer supported in Puppet 3.7.0](https://tickets.puppetlabs.com/browse/PUP-3190)
 - [PUP-3191: Symlinks to missing targets cause a File Not Found error instead of a warning](https://tickets.puppetlabs.com/browse/PUP-3191)
 
