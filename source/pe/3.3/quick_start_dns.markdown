@@ -132,7 +132,7 @@ The first thing you need to do is add the `resolver` class to at least one agent
 
 You can add class parameter values to the code in your module, but it’s easier to add those parameters to your classes using the PE console.
   
-**To add the** `resolver` **class to an agent node**:
+**To edit the parameters of the** `resolver` **class**:
 
 1. From the console, navigate to the __agent1.example.com__ node view page.
 2. On the node view page, click __Edit__.
