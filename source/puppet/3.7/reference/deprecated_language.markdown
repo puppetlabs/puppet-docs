@@ -59,15 +59,21 @@ Node inheritance often causes ambiguous or counterintuitive behavior. More effec
 
 You can use the `import` statement in the [main manifest][] to compile more than one manifest without autoloading the additional files from modules.
 
+Since `import` statements can interfere with syntax checking individual manifest files, you can also use [the `ignoreimport` setting](/references/3.7.latest/configuration.html#ignoreimport) to block importing when using the `puppet parser validate` command.
+
 ### In Puppet 4.0
 
 The `import` keyword has been removed completely and manifests can no longer be imported.
+
+Additionally, the `ignoreimport` setting has been removed, since it's no longer necessary.
 
 ### Detecting and Updating
 
 Use of the `import` keyword in Puppet 3.6 and later causes a deprecation warning:
 
     Warning: The use of 'import' is deprecated at 1. See http://links.puppetlabs.com/puppet-import-deprecation
+
+If any of your commit hooks or CI tools use the `ignoreimport` setting, you should also see [the note on `ignoreimport`'s deprecation](./deprecated_settings.html#ignoreimport).
 
 ### Context
 

@@ -156,7 +156,7 @@ This setting is not functional, but you can still set it in [puppet.conf][]. It 
 
 #### In Puppet 4.0
 
-This setting has been removed.
+This setting is removed.
 
 #### Detecting and Updating
 
@@ -169,6 +169,33 @@ Remove the setting from puppet.conf.
 #### Context
 
 This setting was intended to ignore dynamic facts when deciding whether changed facts should result in a recompile, but that workflow was never implemented.
+
+### `ignoreimport`
+
+* [`ignoreimport`](/references/3.7.latest/configuration.html#ignoreimport)
+
+#### Now
+
+When `ignoreimport` is set to true, Puppet won't import additional manifest files. This can be useful when syntax checking individual manifests with `puppet parser validate`. (The setting is necessary because `import` directives are handled before parsing, unlike basically every other part of the language.)
+
+#### In Puppet 4.0
+
+The setting is removed.
+
+#### Detecting and Updating
+
+Puppet will **not** issue deprecation warnings if you're using this setting (although it will issue deprecations if you are using the `import` keyword).
+
+To find out whether you're using it, you should:
+
+* Check your commit hooks, continuous integration tools, and any other automated tooling that might use the `puppet parser validate` command. Look at their invocations of Puppet's commands, and see whether the `--ignoreimport` option is specified on the command line.
+* Check your [puppet.conf][] file, in case it's set there. (This should almost never be the case.)
+
+If you find any use of the `ignoreimport` setting, you can safely remove it after you have stopped using the `import` keyword in all of your manifests.
+
+#### Context
+
+This is part of [deprecating the `import` keyword](./deprecated_language.html#importing-manifests).
 
 ### `listen`
 
