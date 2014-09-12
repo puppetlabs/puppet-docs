@@ -7,10 +7,10 @@ canonical: "/pe/latest/install_system_requirements.html"
 
 Before installing Puppet Enterprise:
 
-* Ensure that your nodes are running a supported operating system.    
+* Ensure that your nodes are running a supported operating system.
 * Ensure that your puppet master and console servers are sufficiently powerful (see the [hardware section](#hardware-requirements) below).
 * Ensure that your network, firewalls, and name resolution are configured correctly and all target servers are communicating.
-* Plan to install the puppet master server before the console server, and the console server before any agent nodes. If you are separating components, install them in this order:  
+* Plan to install the puppet master server before the console server, and the console server before any agent nodes. If you are separating components, install them in this order:
     1. Puppet Master
     2. PuppetDB and PostgreSQL
     3. Console
@@ -24,10 +24,10 @@ Puppet Enterprise 3.3 supports the following systems:
 Operating system             | Version(s)                              | Arch          | Component(s)
 -----------------------------|-----------------------------------------|---------------|----------------------------
 Red Hat Enterprise Linux     | 4, 5, 6, & 7                                   | x86 & x86\_64 | all (RHEL 4 supports agent only)
-CentOS                       | 4, 5, & 6                                   | x86 & x86\_64 | all (CentOS 4 supports agent only)
+CentOS                       | 4, 5, 6, & 7                                 | x86 & x86\_64 | all (CentOS 4 supports agent only)
 Ubuntu LTS                   | 10.04, 12.04, & 14.04                           | i386 & amd64  | all
 Debian                       | Squeeze (6) & Wheezy (7)                | i386 & amd64  | all
-Oracle Linux                 | 4, 5 & 6                                   | x86 & x86\_64 | all (Oracle Linux 4 supports agent only)
+Oracle Linux                 | 4, 5, 6, & 7                                   | x86 & x86\_64 | all (Oracle Linux 4 supports agent only)
 Scientific Linux             | 4, 5 & 6                                   | x86 & x86\_64 | all (Scientific Linux 4 supports agent only)
 SUSE Linux Enterprise Server | 11 (SP1 and later)                      | x86 & x86\_64 | all
 Solaris                      | 10 (Update 9 or later) & 11          | SPARC & i386   | agent
@@ -35,7 +35,7 @@ Microsoft Windows            | 2003, 2003R2, 2008, 2008R2, 7, 8, 2012, & 2012R2|
 AIX                          | 5.3, 6.1, & 7.1                         | Power         | agent
 Mac OS X                     | Mavericks (10.9)                        | x86_64         | agent
 
->**Note**: Some operating systems require an active subscription with the vendor's package management system to install dependencies, such as Red Hat Network. 
+>**Note**: Some operating systems require an active subscription with the vendor's package management system to install dependencies, such as Red Hat Network.
 
 >**Note**: In addition, upgrading your OS while PE is installed can cause problems with PE. To perform an OS upgrade, you’ll need to uninstall PE, perform the OS upgrade, and then reinstall PE as follows:
 >
@@ -52,17 +52,17 @@ Mac OS X                     | Mavericks (10.9)                        | x86_64 
 Hardware Requirements
 -----
 
-Puppet Enterprise's hardware requirements depend on the type of installation you have and on the function a machine performs. 
+Puppet Enterprise's hardware requirements depend on the type of installation you have and on the function a machine performs.
 
 ### Monolithic (all-in-one) Installation
 
-Monolithic installs are suitable for deployments up to 500 nodes. We recommend that your hardware meets the following: 
+Monolithic installs are suitable for deployments up to 500 nodes. We recommend that your hardware meets the following:
 
-- The **puppet master**, **PE console**, and **PuppetDB** node: at least 4-8 processor cores, 8 GB RAM  
+- The **puppet master**, **PE console**, and **PuppetDB** node: at least 4-8 processor cores, 8 GB RAM
 - **Puppet agent** nodes: any hardware able to run the supported operating system
 - All machines require very accurate timekeeping
 - For `/var/`, at least 1 GB of free space for each PE component on a given node
-- For PE-installed PostgreSQL, at least 100 GB of free space in `/opt/` for data gathering 
+- For PE-installed PostgreSQL, at least 100 GB of free space in `/opt/` for data gathering
 - For no PE-installed PostgreSQL, `/opt/` needs at least 1 GB of disk space available
 
 ### Split Installation
@@ -113,8 +113,8 @@ Configure your firewalls to accommodate Puppet Enterprise's network traffic. In 
 * Any hosts you will use to access the console must be able to reach the console server on port **443,** or whichever port you specify during installation. (Users who cannot run the console on port **443** will often run it on port **3000**.)
 * If you will be invoking orchestration commands from machines other than the puppet master, they will need to be able to reach the master on port **61613.** (**Note:** enabling other machines to invoke orchestration actions is possible but not supported in this version of Puppet Enterprise.)
 * If you will be running the console and puppet master on separate servers, the console server must be able to accept traffic from the puppet master (and the master must be able to send requests) on ports **443** and **8140.** The console server must also be able to send requests to the puppet master on port **8140,** both for retrieving its own catalog and for viewing archived file contents.
-* PuppetDB needs to accept connections on port **8081**, and the puppet master and PE console need to be able to do outbound traffic on **8081**. 
-* For split installs, the server running the PuppetDB component needs port **5432** open. 
+* PuppetDB needs to accept connections on port **8081**, and the puppet master and PE console need to be able to do outbound traffic on **8081**.
+* For split installs, the server running the PuppetDB component needs port **5432** open.
 
 ### Dependencies and OS Specific Details
 
@@ -145,7 +145,7 @@ curl         |           | x            | x             |                       
 mailcap      |           | x            | x             |                          |
 libjpeg      |           | x            |               | x                        |
 libtool-ltdl |           | x            | x             |                          |
-unixODBC     |           | x            | x             |                          | 
+unixODBC     |           | x            | x             |                          |
 libxslt      |           |              |               |                          | x
 
 <br>
@@ -154,8 +154,8 @@ libxslt      |           |              |               |                       
 
  &nbsp;      | All Nodes | Master Nodes | Console Nodes | Console/Console DB Nodes | Cloud Provisioner Nodes
 -------------|:---------:|:------------:|:-------------:|:------------------------:|:----------------------:
-pciutils     | x         |              |               |                          | 
-system-logos | x         |              |               |                          | 
+pciutils     | x         |              |               |                          |
+system-logos | x         |              |               |                          |
 which        | x         |              |               |                          |
 libxml2      | x         |              |               |                          | x
 dmidecode    | x         |              |               |                          |
@@ -186,14 +186,14 @@ cron         | x         |              |               |                       
 libxml2      | x         |              |               |                          | x
 net-tools    | x         |              |               |                          |
 libxslt      | x         | x            |               |                          |
-libapr1      |           | x            | x             |                          | 
-libapr-util1 |           | x            | x             |                          | 
-curl         |           | x            | x             |                          | 
-libjpeg      |           | x            |               | x                        | 
-db43         |           | x            | x             |                          | 
-unixODBC     |           | x            | x             |                          | 
+libapr1      |           | x            | x             |                          |
+libapr-util1 |           | x            | x             |                          |
+curl         |           | x            | x             |                          |
+libjpeg      |           | x            |               | x                        |
+db43         |           | x            | x             |                          |
+unixODBC     |           | x            | x             |                          |
 
-        
+
  <br>
 
 ***Debian***
@@ -214,7 +214,7 @@ libpcre3     |           | x            | x             |                       
 curl         |           | x            | x             |                          |
 perl         |           | x            | x             |                          |
 mime-support |           | x            | x             |                          |
-libapr1      |           | x            | x             |                          | 
+libapr1      |           | x            | x             |                          |
 libcap2      |           | x            | x             |                          |
 libaprutil1  |           | x            | x             |                          |
 libaprutil1-dbd-sqlite3 | | x           | x             |                          |
@@ -222,7 +222,7 @@ libaprutil1-ldap |       | x            | x             |                       
 libjpeg62    |           | x            |               | x                        |
 libcurl3 (Debian 7) |    | x            | x             |                          |
 libxml2-dev (Debian 7) | | x            | x             | x                        |
-locales-all (Debian 7) | |              |               | x                        | 
+locales-all (Debian 7) | |              |               | x                        |
 libxslt1.1   |           |              |               |                          | x
 
 
@@ -247,7 +247,7 @@ libpcre3     |           | x            | x             |                       
 curl         |           | x            | x             |                          |
 perl         |           | x            | x             |                          |
 mime-support |           | x            | x             |                          |
-libapr1      |           | x            | x             |                          | 
+libapr1      |           | x            | x             |                          |
 libcap2      |           | x            | x             |                          |
 libaprutil1  |           | x            | x             |                          |
 libaprutil1-dbd-sqlite3 | | x           | x             |                          |
@@ -282,12 +282,12 @@ The PE AIX implementation supports the NIM, BFF, and RPM package providers. Chec
 
 ***Solaris***
 
-Solaris support is agent only. 
+Solaris support is agent only.
 
 For Solaris 10, the following packages are required:
 
   * SUNWgccruntime
-  * SUNWzlib 
+  * SUNWzlib
   * In some instances, bash may not be present on Solaris systems. It needs to be installed before running the PE installer. Install it via the media used to install the OS or via CSW if that is present on your system. (CSWbash or SUNWbash are both suitable.)
 
 For Solaris 11 the following packages are required:
