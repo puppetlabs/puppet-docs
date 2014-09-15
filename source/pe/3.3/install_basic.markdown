@@ -67,11 +67,11 @@ Puppet Enterprise is distributed in tarballs specific to your OS version and arc
 
 ### Verifying the Installer
 
-To verify the PE installer, you can import the Puppet Labs public key and run a cryptographic verification of the tarball you downloaded. The Puppet Labs public key is certified by Puppet and is available from public keyservers, such as `pgp.mit.edu`. You'll need to have GnuPG installed and the GPG signature (.asc file) that you downloaded with the PE tarball.
+To verify the PE installer, you can import the Puppet Labs public key and run a cryptographic verification of the tarball you downloaded. The Puppet Labs public key is certified by Puppet Labs and is available from public keyservers, such as `pgp.mit.edu`,  as well as Puppet Labs. You'll need to have GnuPG installed and the GPG signature (.asc file) that you downloaded with the PE tarball.
 
 To import the Puppet Labs public key, run:
 
-    $ gpg --keyserver=pgp.mit.edu --recv-key 0x1054b7a24bd6ec30
+    wget -O - https://downloads.puppetlabs.com/puppetlabs-gpg-signing-key.pub | gpg --import
 
 The result should be similar to
 
