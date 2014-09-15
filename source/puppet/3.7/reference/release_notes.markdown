@@ -39,7 +39,7 @@ If you're upgrading from Puppet 2.x, please [learn about major upgrades of Puppe
 Puppet 3.7.1
 -----
 
-Released September 11, 2014. (TODO: update date)
+Released September 15, 2014.
 
 Puppet 3.7.1 is a bug fix release in the Puppet 3.7 series. It fixes regressions introduced by Puppet 3.7.0, some issues with directory environments, and a few other bugs.
 
@@ -55,8 +55,11 @@ This release fixes those regressions.
 
 ### Miscellaneous Bugs
 
-This release fixes a potential race condition for the validity of the CA's certificate revocation list (CRL), and a case where agents using Ruby 2.x could hit HTTP errors.
+Puppet logs an error message if it tries to manage a resource whose provider isn't suitable for the target system. But it could also log that error if it _wasn't_ managing such a resource, as long as that resource was skipped with [the `tags` setting](/references/3.7.latest/configuration.html#tags) (or the `--tags` option). This release fixes that, so the error only appears if Puppet _actually_ attempts to manage an unsuitable resource.
 
+This release also fixes a potential race condition for the validity of the CA's certificate revocation list (CRL), and a case where agents using Ruby 2.x could hit HTTP errors.
+
+- [PUP-3231: Specifying --tags doesn't cause suitability check to be skipped for skipped resources](https://tickets.puppetlabs.com/browse/PUP-3231)
 - [PUP-894: Too easy to hit "CRL not yet valid for `<host>`" (and not very informative)](https://tickets.puppetlabs.com/browse/PUP-894)
 - [PUP-1680: "incorrect header check" using Ruby 2](https://tickets.puppetlabs.com/browse/PUP-1680)
 
