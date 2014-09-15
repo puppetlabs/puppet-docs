@@ -43,9 +43,7 @@ To import the Puppet Labs public key, run:
 
 The result should be similar to
 
-    gpg: requesting key 1054b7a24bd6ec30 from hkp server pgp.mit.edu
-    gpg: key 4BD6EC30: public key "Puppet Labs Release Key" imported
-    gpg: no ultimately trusted keys found
+    gpg: key 4BD6EC30: public key "Puppet Labs Release Key (Puppet Labs Release Key) <info@puppetlabs.com>" imported
     gpg: Total number processed: 1
     gpg:               imported: 1  (RSA: 1)
     
