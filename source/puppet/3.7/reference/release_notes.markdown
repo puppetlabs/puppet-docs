@@ -85,6 +85,8 @@ This release also fixes errors when the directory specified by the deprecated `m
 
 Our ticket tracker has the list of [all issues resolved in Puppet 3.7.1.](https://tickets.puppetlabs.com/secure/ReleaseNote.jspa?projectId=10102&version=11854)
 
+There's also a list of [new issues introduced in Puppet 3.7.1,](https://tickets.puppetlabs.com/issues/?filter=12673) for tracking late-breaking regressions.
+
 Puppet 3.7.0
 -----
 
@@ -617,6 +619,8 @@ Running Puppet with Bundler should now work more smoothly on platforms where `ru
 ### All Resolved Issues for 3.7.0
 
 Our ticket tracker has the list of [all issues resolved in Puppet 3.7.0.](https://tickets.puppetlabs.com/secure/ReleaseNote.jspa?projectId=10102&version=11660)
+
+There's also a list of [new issues introduced in Puppet 3.7.0,](https://tickets.puppetlabs.com/issues/?filter=12641) for tracking late-breaking regressions.
 
 ### Community Thank-Yous
 
