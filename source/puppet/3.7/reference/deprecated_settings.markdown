@@ -224,7 +224,7 @@ See [the note on `puppet kick`.](./deprecated_command.html#puppet-kick)
 
 #### Now
 
-This setting is used to construct the default value of the `manifest` setting. It has no other purpose. However, the directory it specifies has to exist, or else Puppet will raise an error.
+This setting is used to construct the default value of the `manifest` setting. It has no other purpose. As of 3.7.1, Puppet no longer raises an error if the directory specified doesn't exist.
 
 #### In Puppet 4.0
 

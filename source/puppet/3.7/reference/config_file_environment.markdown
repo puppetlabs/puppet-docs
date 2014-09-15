@@ -12,7 +12,7 @@ canonical: "/puppet/latest/reference/config_file_environment.html"
 [main manifest]: ./dirs_manifest.html
 
 
-When using [directory environments][], each environment may contain an `environment.conf` file. This file can override several settings whenever the puppet master is serving nodes assigned to that environment.
+When using [directory environments][], each environment may contain an `environment.conf` file. This file can override several settings whenever the Puppet master is serving nodes assigned to that environment.
 
 ## Location
 
@@ -48,12 +48,12 @@ For example:
 
 ### Interpolation in Values
 
-The settings in environment.conf can the values of other settings as variables (e.g. `$confdir`). Additionally, they can use the special `$environment` variable, which gets replaced with the name of the active environment.
+The settings in environment.conf can use the values of other settings as variables (e.g., `$confdir`). Additionally, the `config_version` setting can use the special `$environment` variable, which gets replaced with the name of the active environment. As of Puppet 3.7.1, you can interpolate `$environment` only into the `config_version` setting.
 
 The most useful variables to interpolate into environment.conf settings are:
 
 * `$basemodulepath` --- useful for including the default module directories in the `modulepath` setting. Puppet Enterprise users should usually include this in the value of `modulepath`, since PE uses modules in the `basemodulepath` to configure orchestration and other features.
-* `$environment` --- useful for locating files, or as a command line argument to your `config_version` script.
+* `$environment` --- useful as a command line argument to your `config_version` script. *You can interpolate this variable only in the `config_version` setting.*
 * `$confdir` --- useful for locating files.
 
 Allowed Settings
@@ -104,9 +104,9 @@ The time to live for a cached environment. This setting can be a time interval i
 
 If this setting isn't set, Puppet will use the global `environment_timeout` from [puppet.conf][]. The default cache timeout is **three minutes.**
 
-Most users should be fine with the default. To get more performance from your puppet master, you may want to tune the timeout for your most heavily used environments. Getting the most benefit involves a tradeoff between speed, memory usage, and responsiveness to changed files. The general best practice is:
+Most users should be fine with the default. To get more performance from your Puppet master, you may want to tune the timeout for your most heavily used environments. Getting the most benefit involves a tradeoff between speed, memory usage, and responsiveness to changed files. The general best practice is:
 
-- Long-lived, slowly changing, relatively homogenous, highly populated environments (like `production`) will give the most benefit from longer timeouts. You might be able to set this to hours, or `unlimited` if you're content to let cache stick around until your Rack server kills a given puppet master process.
+- Long-lived, slowly changing, relatively homogenous, highly populated environments (like `production`) will give the most benefit from longer timeouts. You might be able to set this to hours, or `unlimited` if you're content to let cache stick around until your Rack server kills a given Puppet master process.
 - Rapidly changing dev environments should have short timeouts: a few seconds, or `0` if you don't want to wait.
 - Sparsely populated environments should have short-ish timeouts, which are just long enough to help out if a cluster of nodes all hit the master at once, but won't clog your RAM with a bunch of rarely used data. Three minutes is fine.
 - Extremely heterogeneous environments --- where you have a lot of modules and each node uses a different tiny subset --- will sometimes perform _worse_ with a long timeout. (This can cause excessive memory usage and garbage collection without giving back any performance boost.) Give these short timeouts of 5-10 seconds.
