@@ -33,6 +33,15 @@ Learn to use Puppet! New users: start here.
 Reference Shelf
 ---------------
 
+### [Puppet 3.7 Reference Manual](/puppet/3.7/reference)
+
+A concise reference to Puppet 3.7's usage and internals. Use the left sidebar of any reference manual page to navigate between pages.
+
+- [Overview](/puppet/3.7/reference)
+- [Language](/puppet/3.7/reference/lang_summary.html)
+- [Modules](/puppet/3.7/reference/modules_fundamentals.html)
+
+
 ### [Puppet 3.6 Reference Manual](/puppet/3.6/reference)
 
 A concise reference to Puppet 3.6's usage and internals. Use the left sidebar of any reference manual page to navigate between pages.
