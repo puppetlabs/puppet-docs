@@ -45,9 +45,13 @@ The console uses an SSL certificate created by your own local Puppet certificate
 
 ### Accepting the Certificate in Google Chrome or Chromium
 
-Use the __Proceed anyway__ button on Chrome's warning page.
+Step 1: 
 
-![Screenshot: Chrome showing an untrusted cert warning, with the 'Proceed anyway' button highlighted][cert_chrome]
+![Screenshot: Chrome showing an untrusted cert warning, with the 'Proceed anyway' button highlighted][cert_chrome1]
+
+Step 2: 
+
+![Screenshot: Chrome showing an untrusted cert warning, with the 'Proceed to IP address' button highlighted][cert_chrome2]
 
 ### Accepting the Certificate in Mozilla Firefox
 
@@ -83,7 +87,8 @@ Click the __Continue to this website (not recommended)__ link on the warning pag
 
 ![Screenshot: IE's untrusted cert page, with the continue link highlighted][cert_ie]
 
-[cert_chrome]: ./images/console/accessing_cert_chrome.png
+[cert_chrome1]: ./images/console/accessing_cert_chrome1.png
+[cert_chrome2]: ./images/console/accessing_cert_chrome2.png
 [cert_firefox1]: ./images/console/accessing_cert_firefox1.png
 [cert_firefox2]: ./images/console/accessing_cert_firefox2.png
 [cert_safari]: ./images/console/accessing_cert_safari.png
