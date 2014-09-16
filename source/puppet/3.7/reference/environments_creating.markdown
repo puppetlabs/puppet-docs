@@ -164,6 +164,7 @@ By default, the config version will be the **time** at which the catalog was com
 
 You can specify an executable script that will determine an environment's config version by setting `config_version` in its [environment.conf][] file. Puppet will run this script when compiling a catalog for a node in the environment, and use its output as the config version. Note that the global `config_version` setting from [puppet.conf][] will never be used by a directory environment.
 
+**Note:** If you're using a system binary like `git rev-parse`, make sure to specify the absolute path to it! If `config_version` is set to a relative path, Puppet will look for the binary _in the environment,_ not in the system's `PATH`.
 
 The `environment.conf` File
 -----
