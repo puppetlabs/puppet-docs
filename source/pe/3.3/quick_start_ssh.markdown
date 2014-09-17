@@ -14,8 +14,6 @@ Welcome to the Puppet Enterprise SSH Quick Start Guide. This document provides i
 
 Secure Shell (SSH) is a protocol that enables encrypted connections between nodes on a network for administrative purposes. It is most commonly used in the *nix world by admins who wish to remotely log into machines to access the command line and execute commands and scripts.
 
-PE uses SSH to establish a connection between the puppet master and agents on nodes under management. This helps to ensure a secure, encrypted connection, which is a critical requirement in the majority of customer environments.
-
 Typically, the first time you attempt to SSH into a host you’ve never connected to before, you get a warning similar to the following:
 
     The authenticity of host '10.10.10.9 (10.10.10.9)' can't be established.
