@@ -132,7 +132,7 @@ After you apply the `ssh` class and run Puppet, the public key for each agent no
 
 9. Attempt to SSH from one agent to another. Note that you are no longer asked to verify the authenticity of the host. 
 
-> **That’s it!** Puppet Enterprise is now managing SSH known_host files for the agent nodes in your deployment. The next section will use the PE console event to examine the events and SSH configuration files PE is now managing. 
+> **That’s it!** Puppet Enterprise is now managing SSH known_host files for the agent nodes in your deployment. The next section will use the PE console event inspector to examine the events and SSH configuration files PE is now managing. 
 
 ### Use the Puppet Enterprise Console Event Inspector to View Changes Made by the `ssh` Class
 
