@@ -40,7 +40,7 @@ Simply SSH into the node where you want to install the PE agent, and run `curl -
 
 This script will detect the OS on which it is running, set up an apt, yum, or zipper repo that refers back to the Puppet master, and then pull down and install the `pe-agent` packages. It will also create a basic `puppet.conf`, and kick off a puppet run.
 
-> After the installation is complete, continue on to [Signing Agent Certificates](#signing-agent-certificates)
+> After the installation is complete, continue on to [Signing Agent Certificates](#signing-agent-certificates).
 
 **Scenario 2**: The OS/architecture of the Puppet master and the agent node are different.  
 
@@ -72,21 +72,24 @@ As an example, if your master is on a node running EL6 and you want to add an ag
    
 3. SSH into the node where you want to install the agent, and run `curl -k https://<master hostname>:8140/packages/current/install.bash | sudo bash`.
 
-The script will install the PE agent packages, create a basic `puppet.conf`, and kick off a puppet run.
+    The script will install the PE agent packages, create a basic `puppet.conf`, and kick off a puppet run.
 
->**Note**: The `-k` flag is needed in order to get `curl` to trust the master, which it wouldn't otherwise since Puppet and its SSL infrastructure have not yet been set up on the node. 
+   >**Note**: The `-k` flag is needed in order to get `curl` to trust the master, which it wouldn't otherwise since Puppet and its SSL infrastructure have not yet been set up on the node. 
 >
 >In some cases, you may be using `wget` instead of `curl`. Please use the appropriate flags as needed.
 
-> #### About the Platform-Specific Install Script
->
-> The `install.bash` script actually uses a secondary script to retrieve and install an agent package repo once it has detected the platform on which it is running. You can use this secondary script if you want to manually specify the platform of the agent packages. You can also use this script as an example or as the basis for your own custom scripts.
-> The script can be found at `https://<master hostname>:8140/packages/current/<platform>.bash`, where `<platform>` uses the form `el-6-x86_64`. Platform names are the same as those used for the PE tarballs:
->
- >   - el-{5, 6}-{i386, x86_64}
- >   - debian-{6, 7}-{i386, amd64}
- >   - ubuntu-{10.04, 12.04}-{i386, amd64}
- >   - sles-11-{i386, x86_64}
+   > After the installation is complete, continue on to [Signing Agent Certificates](#signing-agent-certificates).
+   
+#### About the Platform-Specific Install Script
+
+The `install.bash` script actually uses a secondary script to retrieve and install an agent package repo once it has detected the platform on which it is running. You can use this secondary script if you want to manually specify the platform of the agent packages. You can also use this script as an example or as the basis for your own custom scripts.
+ 
+The script can be found at `https://<master hostname>:8140/packages/current/<platform>.bash`, where `<platform>` uses the form `el-6-x86_64`. Platform names are the same as those used for the PE tarballs:
+
+     - el-{5, 6}-{i386, x86_64}
+     - debian-{6, 7}-{i386, amd64}
+     - ubuntu-{10.04, 12.04}-{i386, amd64}
+     - sles-11-{i386, x86_64}
 
 > **Warning**: If the puppet master and agent differ in architecture and OS type/version, the correct `pe_repo` class for the agent must be assigned to the puppet master node before running the script. If you have not added the correct agent class and run the script, you will get an error message returned by `curl` similar to, `the indirection name must be purely alphanumeric, not <'3.2.0-15-gd7f6fa6'>`. This error is safe to ignore, but you will need to be sure you add the correct `pe_repo` class for the agent to the puppet master before running the script again.
 
