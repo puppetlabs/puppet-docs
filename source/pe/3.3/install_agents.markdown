@@ -78,7 +78,7 @@ As an example, if your master is on a node running EL6 and you want to add an ag
 >
 >In some cases, you may be using `wget` instead of `curl`. Please use the appropriate flags as needed.
 
-   > After the installation is complete, continue on to [Signing Agent Certificates](#signing-agent-certificates).
+4. After the installation is complete, continue on to [Signing Agent Certificates](#signing-agent-certificates).
    
 #### About the Platform-Specific Install Script
 
