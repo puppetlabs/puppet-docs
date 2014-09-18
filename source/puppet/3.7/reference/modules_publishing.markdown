@@ -265,42 +265,27 @@ Upload to the Puppet Forge
 
 Now that you have a compiled `tar.gz` package, you can upload it to the Puppet Forge. *Note:* Your tarball must be 10MB or less. There is currently no command line tool for publishing; you must use the Puppet Forge's web interface.
 
-In your web browser, navigate [to the Puppet Forge][forge] and log in.
+If you are uploading a brand new module, you no longer need to create a page for it! Releasing a new module follows the same process as releasing a new version of a module.
 
-###Create a Module Page
+1. In your web browser, navigate [to the Puppet Forge][forge] and log in.
 
-If you have never published this module before, you must create a new page for it.
-
-1. Click the "Publish a Module" in the sidebar:
-
-![the "publish a module"" link in the Forge's sidebar][publishmodule]
-
-2. Fill in the module form that opens. Only the "Module Name" field is required. **Use the module's short name, not the long `username-module` name.**
-
-3. Click the "Publish Module" button at the bottom of the form. Doing so automatically takes you to the new module page.
-
-###Create a Release
-
-1. Navigate to the module's page if you are not already there, and click the "Click here to upload your tarball" link:
-
-![the "upload a tarball" link on a module's page][uploadtarball]
-
-This will bring you to the upload form:
-
-![the upload form for a new release of a module][uploadtarball2]
-
-2. Click "Choose File" and use the file browser to locate and select the release tarball you created with the `puppet module build` action. Then click the "Upload Release" link.
-
-Your module has now been published to the Puppet Forge. The Forge will pull your README, Changelog, and License files from your tarball to display on your module's page. To confirm that it was published correctly, you can [install it][installing] on a new system using the `puppet module install` action.
+2. Click on "Publish" in the upper right hand corner of the screen.
 
 
-Release a New Version
------
+   ![publish a module][publishmodule]
 
-1. To release a new version of an already published module, make any necessary edits to your module, and then increment the `version` field in the metadata.json file (ensuring you use a valid [semantic version](http://semver.org/)).
+3. This will bring you to the upload page:
 
-2. When you're ready to publish your new version, navigate [to the Puppet Forge][forge] and log in if necessary. Click the "Upload a New Release" link:
 
-![the upload a new release link][forgenewrelease]
+   ![upload a tarball][uploadtarball]
 
-This will bring you to the upload form as mentioned in [Create a Release](#create-a-release) above, where you can select the new release tarball and upload the release.
+4. Click "Choose File" and use the file browser to locate and select the release tarball you created with the `puppet module build` action. Then click the "Upload Release" link.
+
+5. A successful upload will result in you being taken to the new release page of your module. Any errors will come up on the same screen. Once your module has been published to the Puppet Forge, the Forge will pull your README, Changelog, and License files from your tarball to display on your module's page. To confirm that it was published correctly, you can [install it][installing] on a new system using the `puppet module install` action.
+
+
+####Notes
+
+1. You must make sure that your [metadata](#write-a-metadatajson-file) is correct and entirely located in metadata.json, otherwise your module will either not display correctly on the Forge or will error out during upload.
+2. When you release a new version of an already published module, you must increment the `version` field in the metadata.json file (ensuring you use a valid [semantic version](http://semver.org/)).
+3. You are highly encouraged to fix any problems or mistakes with your module by issuing another release.
