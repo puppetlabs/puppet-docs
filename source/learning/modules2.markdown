@@ -202,7 +202,7 @@ You have a fairly functional NTP module, at this point. About the only thing it'
       ...
 {% endhighlight %}
 
-[rdoc]: http://links.puppetlabs.com/rdoc_markup
+[rdoc]: http://docs.seattlerb.org/rdoc/RDoc/Markup.html
 
 This doesn't have to be Tolstoy, but you should at least write down what the parameters are and what kind of data they take. Your future self will thank you. Also! If you write your documentation in [RDoc][] format and put it in a comment block butted up directly against the start of the class definition, you can automatically generate a browsable Rdoc-style site with info for all your modules. You can test it now, actually:
 
