@@ -33,7 +33,7 @@ Nearly all of the main Puppet and MCollective documentation also applies to Pupp
 - [The installation instructions](/pe/latest/install_basic.html) or [the upgrade instructions](/pe/latest/install_upgrading.html)
 - [The quick start guide](/pe/latest/quick_start.html), which walks through building and managing a small proof-of-concept deployment.
 - [The deployment guide](./guides/deployment_guide/index.html) has a ton of information to help you set up and deploy Puppet Enterprise in accordance with the best practices and methods used by Puppet Labs' professional services engineers.
-- [The PE download page](http://info.puppetlabs.com/download-pe.html)
+- [The PE download page](http://puppetlabs.com/download-puppet-enterprise)
 
 The current version of PE is 3.3. Documentation for previous versions can be found [here](/pe/index.html).
 
