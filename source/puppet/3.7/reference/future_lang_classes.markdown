@@ -6,33 +6,33 @@ canonical: "/puppet/latest/reference/future_lang_classes.html"
 
 [paramtypes]: ./future_parameter_types.html
 [sitedotpp]: ./dirs_manifest.html
-[collector_override]: ./lang_resources.html#amending-attributes-with-a-collector
-[namespace]: ./lang_namespaces.html
+[collector_override]: ./future_lang_resources.html#amending-attributes-with-a-collector
+[namespace]: ./future_lang_namespaces.html
 [enc]: /guides/external_nodes.html
-[tags]: ./lang_tags.html
-[allowed]: ./lang_reserved.html#classes-and-types
-[function]: ./lang_functions.html
+[tags]: ./future_lang_tags.html
+[allowed]: ./future_lang_reserved.html#classes-and-types
+[function]: ./future_lang_functions.html
 [modules]: ./modules_fundamentals.html
-[contains]: ./lang_containment.html
-[contain_classes]: ./lang_containment.html#containing-classes
-[function]: ./lang_functions.html
-[multi_ref]: ./lang_datatypes.html#multi-resource-references
-[add_attribute]: ./lang_resources.html#adding-or-modifying-attributes
-[undef]: ./lang_datatypes.html#undef
-[relationships]: ./lang_relationships.html
-[qualified_var]: ./lang_variables.html#accessing-out-of-scope-variables
-[variable]: ./lang_variables.html
-[variable_assignment]: ./lang_variables.html#assignment
-[resource_reference]: ./lang_datatypes.html#resource-references
-[node]: ./lang_node_definitions.html
-[resource_declaration]: ./lang_resources.html
-[scope]: ./lang_scope.html
-[parent_scope]: ./lang_scope.html#scope-lookup-rules
-[definedtype]: ./lang_defined_types.html
-[metaparameters]: ./lang_resources.html#metaparameters
-[catalog]: ./lang_summary.html#compilation-and-catalogs
-[facts]: ./lang_variables.html#facts-and-built-in-variables
-[import]: ./lang_import.html
+[contains]: ./future_lang_containment.html
+[contain_classes]: ./future_lang_containment.html#containing-classes
+[function]: ./future_lang_functions.html
+[multi_ref]: ./future_lang_datatypes.html#multi-resource-references
+[add_attribute]: ./future_lang_resources.html#adding-or-modifying-attributes
+[undef]: ./future_lang_datatypes.html#undef
+[relationships]: ./future_lang_relationships.html
+[qualified_var]: ./future_lang_variables.html#accessing-out-of-scope-variables
+[variable]: ./future_lang_variables.html
+[variable_assignment]: ./future_lang_variables.html#assignment
+[resource_reference]: ./future_lang_datatypes.html#resource-references
+[node]: ./future_lang_node_definitions.html
+[resource_declaration]: ./future_lang_resources.html
+[scope]: ./future_lang_scope.html
+[parent_scope]: ./future_lang_scope.html#scope-lookup-rules
+[definedtype]: ./future_lang_defined_types.html
+[metaparameters]: ./future_lang_resources.html#metaparameters
+[catalog]: ./future_lang_summary.html#compilation-and-catalogs
+[facts]: ./future_lang_variables.html#facts-and-built-in-variables
+[import]: ./future_lang_import.html
 [declare]: #declaring-classes
 [setting_parameters]: #include-like-vs-resource-like
 [override]: #using-resource-like-declarations
@@ -341,7 +341,7 @@ The `contain` function uses [include-like behavior][include-like]. (Multiple dec
 
 > **Bug note:** In this version of Puppet, some uses of the `contain` function are affected by bug [PUP-1597](https://tickets.puppetlabs.com/browse/PUP-1597). This bug prevents `contain` from accepting class names with an absolute `::` prefix (for example, `::ntp::service`).
 >
-> This bug can also cause `Error: undefined method 'ref' for nil:NilClass` errors. These occur when `contain` is given a class name that would  have been affected by [accidental relative name lookup.](./lang_namespaces.html#relative-name-lookup-and-incorrect-name-resolution)
+> This bug can also cause `Error: undefined method 'ref' for nil:NilClass` errors. These occur when `contain` is given a class name that would  have been affected by [accidental relative name lookup.](./future_lang_namespaces.html#relative-name-lookup-and-incorrect-name-resolution)
 >
 > [PUP-1597](https://tickets.puppetlabs.com/browse/PUP-1597) will be fixed in Puppet 3.7.
 

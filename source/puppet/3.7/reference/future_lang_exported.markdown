@@ -4,24 +4,24 @@ title: "Future Parser: Exported Resources"
 canonical: "/puppet/latest/reference/future_lang_exported.html"
 ---
 
-[resources]: ./lang_resources.html
+[resources]: ./future_lang_resources.html
 [nagios_service]: /references/latest/type.html#nagiosservice
 [concat]: http://forge.puppetlabs.com/ripienaar/concat
-[title]: ./lang_resources.html#title
-[namevar]: ./lang_resources.html#namenamevar
+[title]: ./future_lang_resources.html#title
+[namevar]: ./future_lang_resources.html#namenamevar
 [hostname]: /facter/latest/core_facts.html#hostname
 [fqdn]: /facter/latest/core_facts.html#fqdn
-[tags]: ./lang_tags.html
-[facts]: ./lang_variables.html#facts
+[tags]: ./future_lang_tags.html
+[facts]: ./future_lang_variables.html#facts
 [bacula]: https://forge.puppetlabs.com/puppetlabs/bacula
-[exported_collector]: ./lang_collectors.html#exported-resource-collectors
-[search]: ./lang_collectors.html#search-expressions
+[exported_collector]: ./future_lang_collectors.html#exported-resource-collectors
+[search]: ./future_lang_collectors.html#search-expressions
 [puppetdb]: /puppetdb/1
 [puppetdb_connect]: /puppetdb/latest/connect_puppet_master.html
 [puppetdb_install]: /puppetdb/latest/install_via_module.html
 [ar_storeconfigs]: http://projects.puppetlabs.com/projects/puppet/wiki/Using_Stored_Configuration
 [exported_guide]: /guides/exported_resources.html
-[catalog]: ./lang_summary.html#compilation-and-catalogs
+[catalog]: ./future_lang_summary.html#compilation-and-catalogs
 
 > **Note:** Exported resources require catalog storage and searching (formerly known as "storeconfigs") to be enabled on your puppet master. Both the catalog storage and the searching (among other features) are provided by [PuppetDB][]. To enable exported resources, follow these instructions:
 >

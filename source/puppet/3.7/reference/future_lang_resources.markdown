@@ -4,25 +4,25 @@ title: "Future Parser: Resources"
 canonical: "/puppet/latest/reference/future_lang_resources.html"
 ---
 
-[realize]: ./lang_virtual.html#syntax
-[virtual]: ./lang_virtual.html
-[containment]: ./lang_containment.html
-[scope]: ./lang_scope.html
+[realize]: ./future_lang_virtual.html#syntax
+[virtual]: ./future_lang_virtual.html
+[containment]: ./future_lang_containment.html
+[scope]: ./future_lang_scope.html
 [report]: /guides/reporting.html
-[append_attributes]: ./lang_classes.html#appending-to-resource-attributes
+[append_attributes]: ./future_lang_classes.html#appending-to-resource-attributes
 [types]: /references/latest/type.html
-[bareword]: ./lang_datatypes.html#bare-words
-[string]: ./lang_datatypes.html#strings
-[array]: ./lang_datatypes.html#arrays
-[datatype]: ./lang_datatypes.html
-[inheritance]: ./lang_classes.html#inheritance
-[relationships]: ./lang_relationships.html
-[resdefaults]: ./lang_defaults.html
-[reference]: ./lang_datatypes.html#resource-references
-[class]: ./lang_classes.html
-[defined_type]: ./lang_defined_types.html
-[collector]: ./lang_collectors.html
-[catalog]: ./lang_summary.html#compilation-and-catalogs
+[bareword]: ./future_lang_datatypes.html#bare-words
+[string]: ./future_lang_datatypes.html#strings
+[array]: ./future_lang_datatypes.html#arrays
+[datatype]: ./future_lang_datatypes.html
+[inheritance]: ./future_lang_classes.html#inheritance
+[relationships]: ./future_lang_relationships.html
+[resdefaults]: ./future_lang_defaults.html
+[reference]: ./future_lang_datatypes.html#resource-references
+[class]: ./future_lang_classes.html
+[defined_type]: ./future_lang_defined_types.html
+[collector]: ./future_lang_collectors.html
+[catalog]: ./future_lang_summary.html#compilation-and-catalogs
 
 > * [See the Type Reference for complete information about Puppet's built-in resource types.][types]
 

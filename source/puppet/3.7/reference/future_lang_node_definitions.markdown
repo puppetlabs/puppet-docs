@@ -7,21 +7,21 @@ canonical: "/puppet/latest/reference/future_lang_node_definitions.html"
 [hiera]: /hiera/latest
 [sitepp]: ./dirs_manifest.html
 [certname]: ./config_important_settings.html#basics
-[classes]: ./lang_classes.html
-[nodescope]: ./lang_scope.html#node-scope
-[topscope]: ./lang_scope.html#top-scope
+[classes]: ./future_lang_classes.html
+[nodescope]: ./future_lang_scope.html#node-scope
+[topscope]: ./future_lang_scope.html#top-scope
 [extlookup]: /references/latest/function.html#extlookup
 [custom_functions]: /guides/custom_functions.html
-[import]: ./lang_import.html
-[regex]: ./lang_datatypes.html#regular-expressions
-[strings]: ./lang_datatypes.html#strings
-[inherit]: ./lang_classes.html#inheritance
+[import]: ./future_lang_import.html
+[regex]: ./future_lang_datatypes.html#regular-expressions
+[strings]: ./future_lang_datatypes.html#strings
+[inherit]: ./future_lang_classes.html#inheritance
 [modules]: ./modules_fundamentals.html
 [enc]: /guides/external_nodes.html
-[facts]: ./lang_variables.html#facts-and-built-in-variables
-[catalog]: ./lang_summary.html#compilation-and-catalogs
+[facts]: ./future_lang_variables.html#facts-and-built-in-variables
+[catalog]: ./future_lang_summary.html#compilation-and-catalogs
 [strict]: /references/latest/configuration.html#stricthostnamechecking
-[conditional]: ./lang_conditional.html
+[conditional]: ./future_lang_conditional.html
 
 
 A **node definition** or **node statement** is a block of Puppet code that will only be included in one node's [catalog][]. This feature allows you to assign specific configurations to specific nodes.

@@ -9,7 +9,7 @@ canonical: "/puppet/latest/reference/lang_summary.html"
 [config]: /guides/configuring.html
 [usecacheonfailure]: /references/latest/configuration.html#usecacheonfailure
 [fileserve]: ./modules_fundamentals.html#files
-[classes]: ./lang_classes.html
+[classes]: ./future_lang_classes.html
 [enc]: /guides/external_nodes.html
 [resources]: ./future_lang_resources.html
 [chaining]: ./future_lang_relationships.html#chaining-arrows

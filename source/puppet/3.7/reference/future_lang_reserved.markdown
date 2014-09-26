@@ -5,18 +5,18 @@ canonical: "/puppet/latest/reference/future_lang_reserved.html"
 ---
 
 [settings]: ./config_about_settings.html
-[tags]: ./lang_tags.html
-[built_in]: ./lang_variables.html#facts-and-built-in-variables
+[tags]: ./future_lang_tags.html
+[built_in]: ./future_lang_variables.html#facts-and-built-in-variables
 [facts]: /facter/latest/core_facts.html
-[capture]: ./lang_datatypes.html#regex-capture-variables
-[conditional]: ./lang_conditional.html
-[topscope]: ./lang_scope.html#top-scope
-[namespace]: ./lang_namespaces.html
-[scopes]: ./lang_scope.html
-[contains]: ./lang_containment.html
-[resources]: ./lang_resources.html
-[class]: ./lang_classes.html
-[qualified_var]: ./lang_variables.html#accessing-out-of-scope-variables
+[capture]: ./future_lang_datatypes.html#regex-capture-variables
+[conditional]: ./future_lang_conditional.html
+[topscope]: ./future_lang_scope.html#top-scope
+[namespace]: ./future_lang_namespaces.html
+[scopes]: ./future_lang_scope.html
+[contains]: ./future_lang_containment.html
+[resources]: ./future_lang_resources.html
+[class]: ./future_lang_classes.html
+[qualified_var]: ./future_lang_variables.html#accessing-out-of-scope-variables
 [type_ref]: /references/latest/type.html
 [func_ref]: /references/latest/function.html
 [environment]: ./environments.html

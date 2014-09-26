@@ -5,17 +5,17 @@ canonical: "/puppet/latest/reference/future_lang_conditional.html"
 ---
 
 
-[local]: ./lang_scope.html#local-scopes
-[boolean]: ./lang_datatypes.html#booleans
-[regex]: ./lang_datatypes.html#regular-expressions
-[facts]: ./lang_variables.html#facts
-[equality]: ./lang_expressions.html#equality
+[local]: ./future_lang_scope.html#local-scopes
+[boolean]: ./future_lang_datatypes.html#booleans
+[regex]: ./future_lang_datatypes.html#regular-expressions
+[facts]: ./future_lang_variables.html#facts
+[equality]: ./future_lang_expressions.html#equality
 [fail]: /references/latest/function.html#fail
-[regex_compare]: ./lang_expressions.html#regex-match
-[expressions]: ./lang_expressions.html
-[bool_convert]: ./lang_datatypes.html#automatic-conversion-to-boolean
-[variables]: ./lang_variables.html
-[functions]: ./lang_functions.html
+[regex_compare]: ./future_lang_expressions.html#regex-match
+[expressions]: ./future_lang_expressions.html
+[bool_convert]: ./future_lang_datatypes.html#automatic-conversion-to-boolean
+[variables]: ./future_lang_variables.html
+[functions]: ./future_lang_functions.html
 
 
 Conditional statements let your Puppet code behave differently in different situations. They are most helpful when combined with [facts][] or with data retrieved from an external source.

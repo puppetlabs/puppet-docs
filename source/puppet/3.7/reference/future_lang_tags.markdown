@@ -5,13 +5,13 @@ canonical: "/puppet/latest/reference/lang_tags.html"
 ---
 
 
-[virtual]: ./lang_virtual.html
-[exported]: ./lang_exported.html
-[namespace]: ./lang_namespaces.html
-[resources]: ./lang_resources.html
-[classes]: ./lang_classes.html
-[defined]: ./lang_defined_types.html
-[collectors]: ./lang_collectors.html
+[virtual]: ./future_lang_virtual.html
+[exported]: ./future_lang_exported.html
+[namespace]: ./future_lang_namespaces.html
+[resources]: ./future_lang_resources.html
+[classes]: ./future_lang_classes.html
+[defined]: ./future_lang_defined_types.html
+[collectors]: ./future_lang_collectors.html
 [reports]: /guides/reporting.html#make-masters-process-reports
 [report_format]: ./format_report.html
 [tagmail]: /references/latest/report.html#tagmail
@@ -19,11 +19,11 @@ canonical: "/puppet/latest/reference/lang_tags.html"
 [tagmeta]: /references/latest/metaparameter.html#tag
 [tagfunction]: /references/latest/function.html#tag
 [tags_setting]: /references/latest/configuration.html#tags
-[tagnames]: ./lang_reserved.html#tags
-[relationships]: ./lang_relationships.html
-[containment]: ./lang_containment.html
-[collector_search]: ./lang_collectors.html#search-expressions
-[catalog]: ./lang_summary.html#compilation-and-catalogs
+[tagnames]: ./future_lang_reserved.html#tags
+[relationships]: ./future_lang_relationships.html
+[containment]: ./future_lang_containment.html
+[collector_search]: ./future_lang_collectors.html#search-expressions
+[catalog]: ./future_lang_summary.html#compilation-and-catalogs
 
 
 [Resources][], [classes][], and [defined type instances][defined] may have any number of **tags** associated with them, plus they receive some tags automatically. Tags are useful for:

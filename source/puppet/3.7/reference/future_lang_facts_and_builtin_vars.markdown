@@ -4,22 +4,22 @@ title: "Future Parser: Facts and Built-in Variables"
 canonical: "/puppet/latest/reference/future_lang_facts_and_builtin_vars.html"
 ---
 
-[definedtype]: ./lang_defined_types.html
+[definedtype]: ./future_lang_defined_types.html
 [environment]: /guides/environment.html
-[topscope]: ./lang_scope.html#top-scope
+[topscope]: ./future_lang_scope.html#top-scope
 [core_facts]: /facter/latest/core_facts.html
 [facter]: /facter/latest
 [customfacts]: /facter/latest/custom_facts.html
-[catalog]: ./lang_summary.html#compilation-and-catalogs
+[catalog]: ./future_lang_summary.html#compilation-and-catalogs
 [noop]: /references/3.6.latest/configuration.html#noop
 [certname]: /references/3.6.latest/configuration.html#certname
 [puppetdb_facts]: /puppetdb/latest/api/index.html
-[localscope]: ./lang_scope.html#local-scopes
+[localscope]: ./future_lang_scope.html#local-scopes
 [trusted_on]: ./config_important_settings.html#getting-new-features-early
-[scope]: ./lang_scope
+[scope]: ./future_lang_scope
 [extensions]: ./ssl_attributes_extensions.html
 [structured_facts_on]: ./config_important_settings.html#getting-new-features-early
-[strings]: ./lang_datatypes.html#strings
+[strings]: ./future_lang_datatypes.html#strings
 
 Puppet provides many built-in variables that you can use in your manifests. This page covers where they come from and how to use them.
 

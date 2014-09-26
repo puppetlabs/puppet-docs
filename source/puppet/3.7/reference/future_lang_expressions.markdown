@@ -4,21 +4,21 @@ layout: default
 canonical: "/puppet/latest/reference/future_lang_expressions.html"
 ---
 
-[conditional]: ./lang_conditional.html
-[datatypes]: ./lang_datatypes.html
-[boolean]: ./lang_datatypes.html#booleans
-[numbers]: ./lang_datatypes.html#numbers
-[strings]: ./lang_datatypes.html#strings
-[arrays]: ./lang_datatypes.html#arrays
-[hashes]: ./lang_datatypes.html#hashes
-[regex]: ./lang_datatypes.html#regular-expressions
+[conditional]: ./future_lang_conditional.html
+[datatypes]: ./future_lang_datatypes.html
+[boolean]: ./future_lang_datatypes.html#booleans
+[numbers]: ./future_lang_datatypes.html#numbers
+[strings]: ./future_lang_datatypes.html#strings
+[arrays]: ./future_lang_datatypes.html#arrays
+[hashes]: ./future_lang_datatypes.html#hashes
+[regex]: ./future_lang_datatypes.html#regular-expressions
 [regex_match]: http://www.ruby-doc.org/core/Regexp.html
-[if]: ./lang_conditional.html#if-statements
-[case]: ./lang_conditional.html#case-statements
-[selector]: ./lang_conditional.html#selectors
-[function]: ./lang_functions.html
-[bool_convert]: ./lang_datatypes.html#automatic-conversion-to-boolean
-[variables]: ./lang_variables.html
+[if]: ./future_lang_conditional.html#if-statements
+[case]: ./future_lang_conditional.html#case-statements
+[selector]: ./future_lang_conditional.html#selectors
+[function]: ./future_lang_functions.html
+[bool_convert]: ./future_lang_datatypes.html#automatic-conversion-to-boolean
+[variables]: ./future_lang_variables.html
 
 
 **Expressions** resolve to values and can be used in **most** of the places where values of the [standard data types][datatypes] are required.  Expressions can be compounded with other expressions and the entire combined expression will resolve to a single value.

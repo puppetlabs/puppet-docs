@@ -5,10 +5,10 @@ canonical: "/puppet/latest/reference/future_lang_containment.html"
 ---
 
 [stdlib]: http://forge.puppetlabs.com/puppetlabs/stdlib
-[classes]: ./lang_classes.html
-[definedtype]: ./lang_defined_types.html
-[relationship]: ./lang_relationships.html
-[notify]: ./lang_relationships.html#ordering-and-notification
+[classes]: ./future_lang_classes.html
+[definedtype]: ./future_lang_defined_types.html
+[relationship]: ./future_lang_relationships.html
+[notify]: ./future_lang_relationships.html#ordering-and-notification
 
 Containment
 -----

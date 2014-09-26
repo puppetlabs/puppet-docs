@@ -4,22 +4,22 @@ title: "Future Parser: Resource Collectors"
 canonical: "/puppet/latest/reference/future_lang_collectors.html"
 ---
 
-[virtual]: ./lang_virtual.html
-[realize]: ./lang_virtual.html#syntax
-[exported]: ./lang_exported.html
+[virtual]: ./future_lang_virtual.html
+[realize]: ./future_lang_virtual.html#syntax
+[exported]: ./future_lang_exported.html
 [puppetdb]: /puppetdb/
 [puppetdb_install]: /puppetdb/latest/install_via_module.html
 [puppetdb_connect]: /puppetdb/latest/connect_puppet_master.html
-[chaining]: ./lang_relationships.html#chaining-arrows
-[attribute]: ./lang_resources.html#attributes
-[expressions]: ./lang_expressions.html
-[string]: ./lang_datatypes.html#strings
-[boolean]: ./lang_datatypes.html#booleans
-[number]: ./lang_datatypes.html#numbers
-[reference]: ./lang_datatypes.html#resource-references
-[undef]: ./lang_datatypes.html#undef
-[amend]: ./lang_resources.html#amending-attributes-with-a-collector
-[catalog]: ./lang_summary.html#compilation-and-catalogs
+[chaining]: ./future_lang_relationships.html#chaining-arrows
+[attribute]: ./future_lang_resources.html#attributes
+[expressions]: ./future_lang_expressions.html
+[string]: ./future_lang_datatypes.html#strings
+[boolean]: ./future_lang_datatypes.html#booleans
+[number]: ./future_lang_datatypes.html#numbers
+[reference]: ./future_lang_datatypes.html#resource-references
+[undef]: ./future_lang_datatypes.html#undef
+[amend]: ./future_lang_resources.html#amending-attributes-with-a-collector
+[catalog]: ./future_lang_summary.html#compilation-and-catalogs
 
 
 Resource collectors (AKA the spaceship operator) select a group of resources by searching the attributes of every resource in the [catalog][]. This search is parse-order independent (that is, it even includes resources which haven't yet been declared at the time the collector is written). Collectors realize [virtual resources][virtual], can be used in [chaining statements][chaining], and can override resource attributes.

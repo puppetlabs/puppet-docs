@@ -5,15 +5,15 @@ canonical: "/puppet/latest/reference/future_lang_variables.html"
 ---
 
 
-[expressions]: ./lang_expressions.html
-[acceptable]: ./lang_reserved.html#variables
-[reserved]: ./lang_reserved.html#reserved-variable-names
-[datatype]: ./lang_datatypes.html
-[double_quote]: ./lang_datatypes.html#double-quoted-strings
-[functions]: ./lang_functions.html
-[resource]: ./lang_resources.html
-[resource_attribute]: ./lang_resources.html#syntax
-[scope]: ./lang_scope.html
+[expressions]: ./future_lang_expressions.html
+[acceptable]: ./future_lang_reserved.html#variables
+[reserved]: ./future_lang_reserved.html#reserved-variable-names
+[datatype]: ./future_lang_datatypes.html
+[double_quote]: ./future_lang_datatypes.html#double-quoted-strings
+[functions]: ./future_lang_functions.html
+[resource]: ./future_lang_resources.html
+[resource_attribute]: ./future_lang_resources.html#syntax
+[scope]: ./future_lang_scope.html
 
 
 <!-- Preserve links to old headers --> <a id="facts"><a id="trusted-node-data"><a id="agent-set-variables"><a id="master-set-variables"><a id="parser-set-variables">
@@ -21,7 +21,7 @@ canonical: "/puppet/latest/reference/future_lang_variables.html"
 > Facts and Built-In Variables
 > -----
 >
-> Puppet has many built-in variables that you can use in your manifests. For a list of these, see [the page on facts and built-in variables.](./lang_facts_and_builtin_vars.html)
+> Puppet has many built-in variables that you can use in your manifests. For a list of these, see [the page on facts and built-in variables.](./future_lang_facts_and_builtin_vars.html)
 
 Syntax
 -----

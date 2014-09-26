@@ -4,20 +4,20 @@ title: "Future Parser: Scope"
 canonical: "/puppet/latest/reference/future_lang_scope.html"
 ---
 
-[resources]: ./lang_resources.html
-[refs]: ./lang_datatypes.html#resource-references
-[class]: ./lang_classes.html
-[definedtype]: ./lang_defined_types.html
-[node]: ./lang_node_definitions.html
-[resourcedefaults]: ./lang_defaults.html
-[declare_class]: ./lang_classes.html#declaring-classes
+[resources]: ./future_lang_resources.html
+[refs]: ./future_lang_datatypes.html#resource-references
+[class]: ./future_lang_classes.html
+[definedtype]: ./future_lang_defined_types.html
+[node]: ./future_lang_node_definitions.html
+[resourcedefaults]: ./future_lang_defaults.html
+[declare_class]: ./future_lang_classes.html#declaring-classes
 [lookup]: #scope-lookup-rules
 [enc]: /guides/external_nodes.html
-[inheritance]: ./lang_classes.html#inheritance
-[import]: ./lang_import.html
+[inheritance]: ./future_lang_classes.html#inheritance
+[import]: ./future_lang_import.html
 [scopedoc]: /guides/scope_and_puppet.html
-[variables]: ./lang_variables.html
-[namespace]: ./lang_namespaces.html
+[variables]: ./future_lang_variables.html
+[namespace]: ./future_lang_namespaces.html
 [diagram]: ./images/scope-euler-diagram.png
 
 Scope Basics

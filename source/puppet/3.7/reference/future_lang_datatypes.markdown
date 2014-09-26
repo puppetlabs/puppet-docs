@@ -5,23 +5,23 @@ canonical: "/puppet/latest/reference/future_lang_datatypes.html"
 ---
 
 
-[conditional]: ./lang_conditional.html
-[node]: ./lang_node_definitions.html
-[attribute]: ./lang_resources.html#syntax
+[conditional]: ./future_lang_conditional.html
+[node]: ./future_lang_node_definitions.html
+[attribute]: ./future_lang_resources.html#syntax
 [regsubst]: /references/latest/function.html#regsubst
-[function]: ./lang_functions.html
-[variables]: ./lang_variables.html
-[expression]: ./lang_expressions.html
-[if]: ./lang_conditional.html#if-statements
-[comparison]: ./lang_expressions.html#comparison-operators
+[function]: ./future_lang_functions.html
+[variables]: ./future_lang_variables.html
+[expression]: ./future_lang_expressions.html
+[if]: ./future_lang_conditional.html#if-statements
+[comparison]: ./future_lang_expressions.html#comparison-operators
 [stdlib]: http://forge.puppetlabs.com/puppetlabs/stdlib
-[facts]: ./lang_variables.html#facts
-[reserved]: ./lang_reserved.html#reserved-words
-[attribute_override]: ./lang_resources.html#adding-or-modifying-attributes
-[resourcedefault]: ./lang_defaults.html
-[node_def]: ./lang_node_definitions.html
-[relationship]: ./lang_relationships.html
-[chaining]: ./lang_relationships.html#chaining-arrows
+[facts]: ./future_lang_variables.html#facts
+[reserved]: ./future_lang_reserved.html#reserved-words
+[attribute_override]: ./future_lang_resources.html#adding-or-modifying-attributes
+[resourcedefault]: ./future_lang_defaults.html
+[node_def]: ./future_lang_node_definitions.html
+[relationship]: ./future_lang_relationships.html
+[chaining]: ./future_lang_relationships.html#chaining-arrows
 [mutable]: http://projects.puppetlabs.com/issues/16116
 
 The Puppet language allows several data types as [variables][], [attribute][] values, and [function][] arguments:
