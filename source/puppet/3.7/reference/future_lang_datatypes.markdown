@@ -128,7 +128,6 @@ Behavioral oddities of interpolated expressions:
 
 * You may not use bare word [strings](#strings) or [numbers](#numbers); all literal string or number values must be quoted. The behavior of bare words in an interpolated expression is undefined.
 * Within the `${}`, you may use double or single quotes without needing to escape them.
-* Interpolated expressions may not use [function calls][function] as operands.
 
 #### Escape Sequences
 
