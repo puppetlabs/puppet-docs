@@ -26,14 +26,14 @@ PE *must* be installed with root privileges, so the platform team will need to s
  
 This will provide a reduced set of configuration management tasks available for the application team’s nodes. Application team members will be able to configure puppet settings (i.e., edit `~/.puppet/puppet.conf`), configure Facter external facts, and run `puppet agent --test` on their nodes. Alternatively, the application team can run puppet via non-privileged cron jobs (or a similar scheduling service). The application team will classify their nodes by writing or editing manifests in the directories where they have write privileges.
 
-Note that the application team will not be able to use PE’s orchestration capabilities to manage their nodes, and non-root agents need to be added to the no-mcollective group. 
+Note that the application team will not be able to use PE’s orchestration capabilities to manage their nodes, and non-root agents need to be added to the `no mcollective` group. 
 
 ### Installation & Configuration
 
 In this scenario, the platform team needs to:
 
    * Install and configure a monolithic PE master
-   * Add non-root agents to the no-mcollective group and remove them from the mcollective group
+   * Add non-root agents to the `no mcollective` group 
    * Install and configure PE agents, disable the `pe-puppet` service on all nodes, and create non-root users 
    * Verify the non-root configuration
 
@@ -46,7 +46,6 @@ The platform team starts by having a root (i.e., privileged) user install and co
 We now need to ensure that non-root agents are added to the `no mcollective` group.
 In the console sidebar, click the **no mcollective** group and click **Edit** to navigate to the group edit page. Start typing the name of your non-root agent into the **Add a node** text field. As you type, an auto-completion list appears. Select the appropriate node and click **Update**.
 
-![Add the No MCO Group][add_no_mco_group]
 
 #### Install and Configure PE Agents and Create Non-Root Users
 
