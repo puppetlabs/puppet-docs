@@ -19,7 +19,7 @@ PE is installed with root privileges, so you will need a root user to set up and
 
 When you or another user are set up as a non-root user, you will have a reduced set of configuration management tasks that you can perform. As a non-root user, you will be able to configure puppet settings (i.e., edit `~/.puppet/puppet.conf`), configure Facter external facts, run `puppet agent --test`, and run puppet via non-privileged cron jobs (or a similar scheduling service). You can classify your nodes by writing or editing manifests in the directories where you have write privileges.
 
-> **Note**: Non-root users are not able to use PE’s orchestration capabilities to manage nodes. Therefore, non-root agents need to be added to the `no mcollective` group. 
+> **Note**: Non-root users are not able to use PE’s orchestration capabilities to manage nodes.
 
 ### Installation & Configuration
 
@@ -33,10 +33,8 @@ To properly configure non-root agent access, you will need to:
 #### Install and Configure a Monolithic Master
 
 1. As a root user, install and configure a monolithic PE master. Use the [standard installation method](./install_basic.html#monolithic-puppet-enterprise-installation), or use [an answer file](./install_automated.html) to automate your installation.
-2. Add non-root agents to the `no mcollective` group. In the console sidebar, click the **no mcollective** group and click **Edit** to navigate to the group edit page. Start typing the name of your non-root agent into the **Add a node** text field. As you type, an auto-completion list appears. Select the appropriate node and click **Update**.
+2. Add non-root agents to the `no mcollective` group. In the console sidebar, click **no mcollective** and click **Edit** to navigate to the group edit page. Start typing the name of your non-root agent into the **Add a node** text field. As you type, an auto-completion list appears. Select the appropriate node and click **Update**.
 
-
-![Add the No MCO Group][add_no_mco_group]
 
 #### Install and Configure PE Agents and Create Non-Root Users
 
