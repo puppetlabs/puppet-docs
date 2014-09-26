@@ -26,34 +26,25 @@ PE *must* be installed with root privileges, so the platform team will need to s
  
 This will provide a reduced set of configuration management tasks available for the application team’s nodes. Application team members will be able to configure puppet settings (i.e., edit `~/.puppet/puppet.conf`), configure Facter external facts, and run `puppet agent --test` on their nodes. Alternatively, the application team can run puppet via non-privileged cron jobs (or a similar scheduling service). The application team will classify their nodes by writing or editing manifests in the directories where they have write privileges.
 
-Note that the application team will not be able to use PE’s orchestration capabilities to manage their nodes and Mcollective must be disabled on all nodes. 
+Note that the application team will not be able to use PE’s orchestration capabilities to manage their nodes, and non-root agents need to be added to the no-mcollective group. 
 
 ### Installation & Configuration
 
 In this scenario, the platform team needs to:
 
    * Install and configure a monolithic PE master
-   * Modify the "default" group to exclude live management
+   * Add non-root agents to the no-mcollective group and remove them from the mcollective group
    * Install and configure PE agents, disable the `pe-puppet` service on all nodes, and create non-root users 
    * Verify the non-root configuration
 
 #### Install and Configure a Monolithic Master
 
-The platform team starts by having a root (i.e., privileged) user install and configure a monolithic PE master with orchestration disabled. (To learn more about installing PE, refer to [Installing Puppet Enterprise](../pe/latest/install_basic.html).)
+The platform team starts by having a root (i.e., privileged) user install and configure a monolithic PE master. (To learn more about installing PE, refer to [Installing Puppet Enterprise](../pe/latest/install_basic.html).)
 
-Disabling live management is done by automating the install with an [answers file](../pe/latest/install_automated.html). Once you have [downloaded the appropriate tarball](http://info.puppetlabs.com/download-pe.html) for your hardware onto the node you’ll be using for the master, generate an answers file by doing a dry-run of the installer with `puppet-enterprise-installer -s puppet_answers.txt`.  It is not necessary to install the optional cloud provisioner, but you can if you wish.
+#### Add non-root agents to the `no mcollective` group
 
-Once the answer file has been generated, edit it by adding an answer that disables live management: `q_disable_live_management=y`.
-
-Now you can run the installer using the newly generated answer file: `puppet-installer -a puppet_answers.txt`. 
-
-After the installation is complete, log into the console and verify that the __Live Management__ tab is NOT present in the main, top nav bar.
-
-#### Modify the “Default” Group to Exclude Live Management
-
-We now need to ensure that any new agents that are added will not get added to the Live Management group (which would normally happen by default whenever puppet runs). 
-In the console, navigate to the “Groups” tab, select the “default” group and click “Edit”.
-Add the “no mcollective” group and click “Update”.
+We now need to ensure that non-root agents are added to the `no mcollective` group.
+In the console sidebar, click the **no mcollective** group and click **Edit** to navigate to the group edit page. Start typing the name of your non-root agent into the **Add a node** text field. As you type, an auto-completion list appears. Select the appropriate node and click **Update**.
 
 ![Add the No MCO Group][add_no_mco_group]
 
