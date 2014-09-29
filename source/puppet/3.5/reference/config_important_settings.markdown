@@ -4,7 +4,7 @@ title: "Configuration: Short List of Important Settings"
 canonical: "/puppet/latest/reference/config_important_settings.html"
 ---
 
-<!-- TODO: replace these -->
+
 [cli_settings]: ./config_about_settings.html
 
 

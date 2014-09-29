@@ -49,7 +49,7 @@ The following words are reserved:
 * `node` --- language keyword
 * `or` --- expression operator
 * `true` --- boolean value
-* `undef` --- special value <!-- Add "unless" for 3.0 -->
+* `undef` --- special value 
 
 Additionally, you cannot use the name of any existing [resource type][type_ref] or [function][func_ref] as the name of a function, and you cannot use the name of any existing [resource type][type_ref] as the name of a defined type.
 

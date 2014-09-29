@@ -118,11 +118,7 @@ If you receive a warning about the `innodb_buffer_pool_size` setting, you should
 * [Follow these instructions](./config_advanced.html#increasing-the-mysql-buffer-pool-size) to increase the buffer size. 
 * Re-run the upgrader and allow it to finish. 
 
-<!--
-Final Steps: From an Earlier 2.5.x Release
------
 
-**No extra steps** are needed when upgrading between maintenance releases of PE 2.0. -->
 
 Final Steps: From PE 2.0 or 1.2
 -----

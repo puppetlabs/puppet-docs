@@ -8,7 +8,7 @@ toc: false
 [language_ref]: /puppet/latest/reference/lang_summary.html
 
 
-<!-- LVM PROMO MARKUP -->
+
 <section class="promo-lvm">
   <a href="http://puppetlabs.com/download-learning-vm">
     <h2>New and Improved Learning&nbsp;VM</h2>

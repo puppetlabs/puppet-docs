@@ -5,7 +5,7 @@ canonical: "/puppet/latest/reference/config_print.html"
 ---
 
 
-<!-- TODO: replace these -->
+
 [config_sections]: ./config_file_main.html
 [setting_sources]: ./config_about_settings.html
 

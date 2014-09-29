@@ -28,13 +28,13 @@ Facter 1.7.5 is a bug fix release in the 1.7 series. It fixes two issues with th
 
 ### Support for Red Hat Enterprise Linux 7
 
-Facter now supports RHEL 7, although it is currently limited to x86_64.<!-- RE-815 -->
+Facter now supports RHEL 7, although it is currently limited to x86_64.
 
 ### Support for OS X 10.9
 
 **Facter DMG packages on OSX will attempt to load Facter from rbenv PATH and fail**
 
-The Facter DMG package on OSX was identifying the path to ruby with `/usr/bin/env ruby`, which would cause it to load Facter from the wrong path if rbenv was installed. The package now uses `/usr/bin/ruby`. <!-- RE-828 -->
+The Facter DMG package on OSX was identifying the path to ruby with `/usr/bin/env ruby`, which would cause it to load Facter from the wrong path if rbenv was installed. The package now uses `/usr/bin/ruby`. 
 
 [FACT-182: Facter Does not run on OS X 10.9 Mavericks](https://tickets.puppetlabs.com/browse/FACT-182)
 
@@ -59,7 +59,7 @@ This release fixes several issues related to external facts:
 [Bug #22944: External facts are evaluated many times](https://projects.puppetlabs.com/issues/22944)
 
 Facter was evaluating each external fact several times per run, which could cause significant slowdowns. This is now fixed, and Facter will load each external fact once.
-<!-- https://tickets.puppetlabs.com/browse/FACT-90 -->
+
 
 [Bug #22349: Facter fails to run as a non-root user when /etc/facter/facts.d is not readable](https://projects.puppetlabs.com/issues/22349)
 
@@ -68,21 +68,21 @@ When running as a non-root user, Facter will now load external facts from a `.fa
 [Bug #22622: Facter (and Puppet) broken when executable external facts return no output](https://projects.puppetlabs.com/issues/22622)
 
 Facter was making a bad assumption that the output of an executable external fact would always consist of at least one line of text. What this fix presupposes is... maybe it doesn't??
-<!-- https://tickets.puppetlabs.com/browse/FACT-75 -->
+
 
 Maint: Do not execute com, cmd, exe, or bat files if not on windows
 
 In preparation for pluginsync support for external facts, Facter needed a bit of defense for situations where Windows external facts may be present on non-Windows systems.
-<!-- https://tickets.puppetlabs.com/browse/FACT-85 -->
+
 
 ### Windows Fixes
 
 [Bug #22619: Error when NetConnectionId is missing on NetworkAdapter](https://projects.puppetlabs.com/issues/22619)
 
 This was a regression in Facter 1.7.3 --- Facter would fail and quit on systems where a network adapter was configured in a specific way.
-<!-- https://tickets.puppetlabs.com/browse/FACT-67 -->
 
-[Bug #23368: Executable external facts fail on Windows 2003](https://projects.puppetlabs.com/issues/23368) <!-- https://tickets.puppetlabs.com/browse/FACT-124 -->
+
+[Bug #23368: Executable external facts fail on Windows 2003](https://projects.puppetlabs.com/issues/23368) 
 
 This was a problem with file paths containing a space, which included the default directory for external facts under Windows 2003.
 
@@ -91,7 +91,7 @@ This was a problem with file paths containing a space, which included the defaul
 [Bug #15586: 'facter --help' does not work with Ruby 1.9.3](https://projects.puppetlabs.com/issues/15586)
 
 Facter was using an Rdoc feature that went away, so we replaced it with something else. You can now get help on the command line when running Facter under Ruby 1.9.3.
-<!-- https://tickets.puppetlabs.com/browse/FACT-44 -->
+
 
 [Bug #22322: facter should suppress stderr from "swap" commands on Solaris](https://projects.puppetlabs.com/issues/22322)
 
@@ -105,7 +105,7 @@ This was causing noisy logging everywhere.
 
 This release fixes several bugs where facts reported incorrect values on certain operating systems.
 
-[Bug #21604: Xen virtual fact doesn't work on Windows](https://projects.puppetlabs.com/issues/21604) <!-- https://tickets.puppetlabs.com/browse/FACT-20 -->
+[Bug #21604: Xen virtual fact doesn't work on Windows](https://projects.puppetlabs.com/issues/21604) 
 
 [Bug #16081: Facter reports bogus arch on AIX](https://projects.puppetlabs.com/issues/16081)
 

@@ -95,7 +95,7 @@ The `puppet module install` action will install a module and all of its dependen
 * Use the `--ignore-dependencies` option to skip installing any modules required by this module.
 * Use the `--debug` option to see additional information about what the puppet module tool is doing.
 
-<!-- TODO: change this if the behavior of --dir/--target-dir changes; for now, we aren't mentioning it -->
+
 
 ### Installing From the Puppet Forge
 

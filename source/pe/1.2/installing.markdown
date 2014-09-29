@@ -84,7 +84,7 @@ The installer will ask if you wish to:
 * Use Dashboard as a node classifier
 * Forward facts to Dashboard's inventory service
 
-(The latter question won't appear unless you chose not to install Dashboard on the same machine as the master; if they are running on the same machine, inventory viewing will be enabled by default.) <!-- TK todo for future: what happens w/ inventory search if you don't have reporting enabled and dashboard doesn't know about your nodes? -->
+(The latter question won't appear unless you chose not to install Dashboard on the same machine as the master; if they are running on the same machine, inventory viewing will be enabled by default.) 
 
 For most users, we recommend doing all three. If you selected any of them, the installer will then ask for Dashboard's hostname and port.
 

@@ -72,7 +72,7 @@ To fix this, make sure the puppet master server is reachable at the DNS name you
 
 The puppet master depends on the console for the names of the classes an agent node should get. If it can't reach the console, it can't compile configurations for nodes.
 
-Check the puppet agent logs <!-- TODO link to the logs --> on your nodes, or run `puppet agent --test` on one of them; if you see something like `err: Could not retrieve catalog from remote server: Error 400 on SERVER: Could not find node 'agent01.example.com'; cannot compile`, the master may be failing to find the console.
+Check the puppet agent logs  on your nodes, or run `puppet agent --test` on one of them; if you see something like `err: Could not retrieve catalog from remote server: Error 400 on SERVER: Could not find node 'agent01.example.com'; cannot compile`, the master may be failing to find the console.
 
 To fix this, make sure that the console is alive by [navigating to its web interface](./console_navigating.html). If it can't be reached, make sure DNS is set up correctly for the console server and ensure that the `pe-httpd` service on it is running.
 
@@ -83,7 +83,7 @@ If the console is alive and reachable from the master but the master can't retri
 
 ### Do Your Agents Have Signed Certificates?
 
-Check the puppet agent logs <!-- TODO log link --> on your nodes and look for something like the following:
+Check the puppet agent logs  on your nodes and look for something like the following:
 
     warning: peer certificate won't be verified in this SSL session
 
@@ -91,7 +91,7 @@ If you see this, it means the agent has submitted a certificate signing request 
 
 ### Do Agents Trust the Master's Certificate?
 
-Check the puppet agent logs <!-- TODO log link --> on your nodes and look for something like the following:
+Check the puppet agent logs  on your nodes and look for something like the following:
 
     err: Could not retrieve catalog from remote server: SSL_connect returned=1 errno=0
     state=SSLv3 read server certificate B: certificate verify failed.  This is often

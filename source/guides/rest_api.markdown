@@ -132,7 +132,7 @@ Example:
     curl -k -H "Accept: yaml" https://puppetmaster:8140/production/certificate_request/{agent certname}
     curl -k -X PUT -H "Content-Type: text/plain" --data-binary @cert_request.csr https://puppetmaster:8140/production/certificate_request/no_key
 
-<!-- Note that --data won't work; it has to be --data-binary. -->
+
 To manually generate a CSR from an existing private key:
 
     openssl req -new -key private_key.pem -subj "/CN={node certname}" -out request.csr

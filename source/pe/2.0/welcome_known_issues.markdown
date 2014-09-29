@@ -314,7 +314,7 @@ If you _are_ about to run out of disk, and cannot immediately upgrade PE on your
         RAILS_ENV=production \
         reports:prune:orphaned
 
-    This task will have to be run after every time you run the `reports:prune` task, until you are able to upgrade to an unaffected version of Puppet Enterprise. <!-- Remember to delete the links to this issue from maint_maintaining_console.markdown, once the fix gets rolled in. -->
+    This task will have to be run after every time you run the `reports:prune` task, until you are able to upgrade to an unaffected version of Puppet Enterprise. 
 
 [updated_task]: https://raw.github.com/puppetlabs/puppet-dashboard/3652aca542671059cdb88e1408efff64cc3cb878/lib/tasks/prune_reports.rake
 [resource_statuses]: http://projects.puppetlabs.com/issues/6717

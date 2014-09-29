@@ -7,7 +7,7 @@ canonical: "/puppet/latest/reference/modules_fundamentals.html"
 [modulepath]: /references/stable/configuration.html#modulepath
 [installing]: ./modules_installing.html
 [publishing]: ./modules_publishing.html
-<!-- {% comment %} The one below will get renamed to "using plugins" when we revise and move it into place. {% endcomment %} -->
+
 [plugins]: /guides/plugins_in_modules.html
 [documentation]: ./modules_documentation.html
 

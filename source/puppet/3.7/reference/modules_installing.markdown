@@ -93,7 +93,7 @@ The `puppet module install` action will install a module and all of its dependen
 * Use the `--ignore-dependencies` option to skip installing any modules required by this module.
 * Use the `--debug` option to see additional information about what the puppet module tool is doing.
 
-<!-- TODO: change this if the behavior of --dir/--target-dir changes; for now, we aren't mentioning it -->
+
 >**A note about installing**
 >
 >As of Puppet 3.6, if any module in your /etc/puppetlabs/puppet/modules directory has incorrect versioning (anything other than major.minor.patch), attempting to install a module will result in this warning. 

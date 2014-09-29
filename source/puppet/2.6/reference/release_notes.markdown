@@ -301,8 +301,8 @@ This is a security release in the 2.6.x branch.
 
 [(Full vulnerability and mitigation details)][cve20113872]
 
-<!-- [cve20113872]: http://puppetlabs.com/security/cve/cve-2011-3872/ -->
-<!-- This link reference already exists under 2.7.6. Uncomment it if re-posting these notes elsewhere. -->
+
+
 
 **This is a major security vulnerability which must be manually remediated;**
 upgrading Puppet will not fully protect a site from this vulnerability.
@@ -345,12 +345,7 @@ This release resolves the following security vulnerabilities:
 
 Follow the links above for details on each vulnerability.
 
-<!--
-[cve20113871]: http://puppetlabs.com/security/cve/cve-2011-3871/
-[cve20113870]: http://puppetlabs.com/security/cve/cve-2011-3870/
-[cve20113869]: http://puppetlabs.com/security/cve/cve-2011-3869/
-(These link references are enabled under 2.7.5.)
- -->
+
 
 
 ## 2.6.10

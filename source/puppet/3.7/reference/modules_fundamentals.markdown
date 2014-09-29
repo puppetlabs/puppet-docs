@@ -8,7 +8,7 @@ canonical: "/puppet/latest/reference/modules_fundamentals.html"
 [installing]: ./modules_installing.html
 [publishing]: ./modules_publishing.html
 [documentation]: ./modules_documentation.html
-<!-- {% comment %} The one below will get renamed to "using plugins" when we revise and move it into place. {% endcomment %} -->
+
 [plugins]: /guides/plugins_in_modules.html
 
 [external facts]: /facter/latest/custom_facts.html#external-facts

@@ -43,7 +43,7 @@ Windows NTFS filesystems are case-insensitive (albeit case-preserving); Puppet i
 
 ## Make Sure Puppet's User Account Has Appropriate Permissions
 
-<!-- TODO link to run environment reference stuff -->
+
 
 To manage files properly, Puppet needs the "Create symbolic links" (Vista/2008 and up), "Back up files and directories," and "Restore files and directories" privileges. The easiest way to handle this is:
 

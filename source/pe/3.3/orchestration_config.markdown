@@ -121,18 +121,7 @@ To disable SSL:
 You can later delete the variable to revert to the default setting.
 
 
-<!--
-Scaling: Multiple Orchestration Message Brokers
------
 
-$::activemq_brokers
-
-should be comma-sep'd list (NO SPACES), can be set as a console variable.
-Must set it individually on EACH activemq server, with that server's own name excluded. the module doesn't use special smarts to reject the local one.
-
-Still need to know what classes to apply, etc., as well as how to comply with the reference architecture.
-
--->
 
 * * *
 

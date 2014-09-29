@@ -2,7 +2,7 @@
 
 
 <ul>
-  <li><strong>Welcome to Puppet Enterprise</strong> <!-- welcome -->
+  <li><strong>Welcome to Puppet Enterprise</strong> 
     <ul>
       <li>{% iflink "Getting Started", "./welcome_getting_started.html" %}</li>
       <li>{% iflink "Components and Roles", "./welcome_roles.html" %}</li>
@@ -11,7 +11,7 @@
       <li>{% iflink "Getting Support", "./welcome_getting_support.html" %}</li>
     </ul>
   </li>
-  <li><strong>Installing Puppet Enterprise</strong> <!-- install -->
+  <li><strong>Installing Puppet Enterprise</strong> 
     <ul>
       <li>{% iflink "System Requirements", "./install_system_requirements.html" %}</li>
       <li>{% iflink "Preparing to Install", "./install_preparing.html" %}</li>
@@ -23,7 +23,7 @@
       <li>{% iflink "What gets installed where?", "./install_what_and_where.html" %}</li>
     </ul>
   </li>
-  <li><strong>The Console</strong> <!-- console -->
+  <li><strong>The Console</strong> 
     <ul>
       <li>{% iflink "Accessing the Console", "./console_accessing.html" %}</li>
       <li>{% iflink "Navigating the Console", "./console_navigating.html" %}</li>
@@ -35,7 +35,7 @@
       <li>{% iflink "Live Management: Advanced Tasks", "./console_live_advanced.html" %}</li>
     </ul>
   </li>
-  <li><strong>Puppet For New PE Users</strong> <!-- puppet -->
+  <li><strong>Puppet For New PE Users</strong> 
     <ul>
       <li>{% iflink "Overview", "./puppet_overview.html" %}</li>
       <li>{% iflink "Your First Module", "./puppet_first_module.html" %}</li>
@@ -43,13 +43,13 @@
       <li>{% iflink "Next Steps", "./puppet_next_steps.html" %}</li>
     </ul>
   </li>
-  <li><strong>Orchestration For New PE Users</strong> <!-- orchestration -->
+  <li><strong>Orchestration For New PE Users</strong> 
     <ul>
       <li>{% iflink "Overview", "./orchestration_overview.html" %}</li>
       <li>{% iflink "Usage and Examples", "./orchestration_usage.html" %}</li>
     </ul>
   </li>
-  <li><strong>Cloud Provisioning</strong> <!-- cloudprovisioner -->
+  <li><strong>Cloud Provisioning</strong> 
     <ul>
       <li>{% iflink "Overview", "./cloudprovisioner_overview.html" %}</li>
       <li>{% iflink "Configuring and Troubleshooting", "./cloudprovisioner_configuring.html" %}</li>
@@ -61,20 +61,20 @@
       <li>{% iflink "Man Page: puppet node", "./cloudprovisioner_man_node.html" %}</li>
     </ul>
   </li>
-  <li><strong>The Compliance Workflow</strong> <!-- compliance -->
+  <li><strong>The Compliance Workflow</strong> 
     <ul>
       <li>{% iflink "Basics and UI", "./compliance_basics.html" %}</li>
       <li>{% iflink "Using the Compliance Workflow", "./compliance_using.html" %}</li>
       <li>{% iflink "Tutorial", "./compliance_tutorial.html" %}</li>
     </ul>
   </li>
-  <li><strong>The PE Accounts Module</strong> <!-- accounts -->
+  <li><strong>The PE Accounts Module</strong> 
     <ul>
       <li>{% iflink "The pe_accounts::user Type", "./accounts_user_type.html" %}</li>
       <li>{% iflink "The pe_accounts Class", "./accounts_class.html" %}</li>
     </ul>
   </li>
-  <li><strong>Maintenance and Troubleshooting</strong> <!-- maint -->
+  <li><strong>Maintenance and Troubleshooting</strong> 
     <ul>
       <li>{% iflink "Common Configuration Errors", "./maint_common_config_errors.html" %}</li>
       <li>{% iflink "Console Maintenance Tasks", "./maint_maintaining_console.html" %}</li>

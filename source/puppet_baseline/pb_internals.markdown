@@ -28,7 +28,7 @@ The baseline plugin ships with a rake task (`puppet:plugin:baseline:daily`) that
 
 * Constructs and queues daily comparison jobs, for consumption by Dashboard's `delayed_job` workers (see "Daily Comparisons" below). 
 * Modifies node baselines to include any changes that were approved by an admin.
-* Creates new baselines for any nodes which don't yet have them. <!-- Anything else I'm forgetting? -->
+* Creates new baselines for any nodes which don't yet have them. 
 
 The package you installed the plugin with should have instated this task as an hourly cron job. 
 
@@ -37,7 +37,7 @@ Daily Comparisons
 
 Dashboard doesn't compare inspections against baselines continuously. It makes a single comparison for each node for each day, and there isn't a one-to-one correspondence between runs of the maintenance task and new sets of difference reports. 
 
-Every time the maintenance task is run, it checks whether baseline comparisons exist yet for every node on recent days. <!-- is there a 7-day limit? --> For each node lacking a comparison, it checks whether any inspection reports arrived during that day; if any did, it picks the latest report of that day and queues up a comparison with the current baseline. 
+Every time the maintenance task is run, it checks whether baseline comparisons exist yet for every node on recent days.  For each node lacking a comparison, it checks whether any inspection reports arrived during that day; if any did, it picks the latest report of that day and queues up a comparison with the current baseline. 
 
 This means that:
 

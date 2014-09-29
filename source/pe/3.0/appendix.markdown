@@ -113,7 +113,7 @@ Many of the constituent components of Puppet Enterprise have been upgraded. Name
 
 The live management cloning tool is deprecated and has been removed in PE 3.0. We are continuing to improve resource inspection and interactive orchestration commands in the console. In general, we recommend managing resources with Puppet manifests instead of one-off commands.
 
-If you are using cloning, you can achieve a similar workflow by using `puppet resource` or [the puppetral plugin's `find` action](./orchestration_actions.html#find) to learn the details of resources on individual host. Then, you can use that info to write or append to a manifest. <!-- We've created an example page that shows this [alternate workflow in greater detail](./cloning_alt.html). -->
+If you are using cloning, you can achieve a similar workflow by using `puppet resource` or [the puppetral plugin's `find` action](./orchestration_actions.html#find) to learn the details of resources on individual host. Then, you can use that info to write or append to a manifest. 
 
 
 #### Removal of Compliance

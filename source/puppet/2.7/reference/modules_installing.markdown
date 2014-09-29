@@ -77,7 +77,7 @@ The `puppet module install` action will install a module and all of its dependen
 * Use the `--modulepath` option to manually specify which directory to install into. Note: To avoid duplicating modules installed as dependencies, you may need to specify the modulepath as a list of directories; see [the documentation for setting the modulepath][modulepath] for details.
 * Use the `--ignore-dependencies` option to skip installing any modules required by this module.
 
-<!-- TODO: change this if the behavior of --dir/--target-dir changes; for now, we aren't mentioning it -->
+
 
 ### Installing From the Puppet Forge
 

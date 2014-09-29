@@ -4,9 +4,9 @@ title: "Language: Classes"
 canonical: "/puppet/latest/reference/lang_classes.html"
 ---
 
-<!-- TODO: Need better link for hiera -->
+
 [hiera]: https://github.com/puppetlabs/hiera
-<!-- TODO: need better link for site.pp -->
+
 [sitedotpp]: ./lang_summary.html#files
 [collector_override]: ./lang_resources.html#amending-attributes-with-a-collector
 [namespace]: ./lang_namespaces.html
@@ -39,7 +39,7 @@ canonical: "/puppet/latest/reference/lang_classes.html"
 [setting_parameters]: #include-like-vs-resource-like
 [override]: #using-resource-like-declarations
 [ldap_nodes]: http://projects.puppetlabs.com/projects/1/wiki/Ldap_Nodes
-<!-- TODO point these to correct places in hiera docs -->
+
 [hiera]: https://github.com/puppetlabs/hiera
 [external_data]: https://github.com/puppetlabs/hiera
 [array_search]: https://github.com/puppetlabs/hiera

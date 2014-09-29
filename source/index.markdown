@@ -154,4 +154,4 @@ Documentation Version
 ---------------------
 
 This release of the documentation was generated from revision {% gitrevision %} of the [puppet-docs Git repo](http://github.com/puppetlabs/puppet-docs) on {{ 'now' | date: "%B %d, %Y" }}.
-<!-- This used to be hardcoded as the sha of "master", since shenanigans with the "release" branch made HEAD unreliable. But now we can accurately call out the source version even when generating from a topic branch. -->
+

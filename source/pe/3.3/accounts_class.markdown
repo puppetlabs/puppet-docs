@@ -211,7 +211,7 @@ Specifies whether or not to manage a set of `pe_accounts::user` resources. If tr
 
 ### `manage_sudoers`
 
-Specifies whether or not to add sudo rules to the node's `sudoers` file. If true, the class will add <!-- TK why the % sign --> `%sudo` and `%sudonopw` groups to the `sudoers` file and give them full sudo and passwordless sudo privileges respectively. You will need to make sure that the `sudo` and `sudonopw` groups exist in the groups hash, and that your chosen users have those groups in their `groups` arrays. Managing `sudoers` is not supported on Solaris.
+Specifies whether or not to add sudo rules to the node's `sudoers` file. If true, the class will add  `%sudo` and `%sudonopw` groups to the `sudoers` file and give them full sudo and passwordless sudo privileges respectively. You will need to make sure that the `sudo` and `sudonopw` groups exist in the groups hash, and that your chosen users have those groups in their `groups` arrays. Managing `sudoers` is not supported on Solaris.
 
 Allowed values are `true` and `false`; defaults to `false`.
 

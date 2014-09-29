@@ -4,7 +4,7 @@ layout: default
 canonical: "/puppet/latest/reference/lang_import.html"
 ---
 
-<!-- TODO: need better link for site.pp and certname-->
+
 [site_manifest]: ./lang_summary.html#files
 [modules]: ./modules_fundamentals.html
 [enc]: /guides/external_nodes.html

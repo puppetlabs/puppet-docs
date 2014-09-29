@@ -4,9 +4,9 @@ title: "Language: Classes"
 canonical: "/puppet/latest/reference/lang_classes.html"
 ---
 
-<!-- TODO: Need better link for hiera -->
+
 [hiera]: https://github.com/puppetlabs/hiera
-<!-- TODO: need better link for site.pp -->
+
 [sitedotpp]: ./lang_summary.html#files
 [collectors]: ./lang_collectors.html
 [collector_override]: ./lang_resources.html#amending-attributes-with-a-collector

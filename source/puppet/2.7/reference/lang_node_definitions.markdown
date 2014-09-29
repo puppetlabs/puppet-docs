@@ -4,9 +4,9 @@ title: "Language: Node Definitions"
 canonical: "/puppet/latest/reference/lang_node_definitions.html"
 ---
 
-<!-- TODO: Need better link for hiera -->
+
 [hiera]: https://github.com/puppetlabs/hiera
-<!-- TODO: need better link for site.pp and certname-->
+
 [sitepp]: lang_summary.html#files
 [certname]: /references/2.7.latest/configuration.html#certname
 [classes]: ./lang_classes.html

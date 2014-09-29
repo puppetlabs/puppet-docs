@@ -211,4 +211,4 @@ You now know how to:
 
 But there are some important details we've glossed over. In a future installment, we'll talk more about certificates and node classification.
 
-<!-- [Next](./agent_master_explained.html), -->
+
