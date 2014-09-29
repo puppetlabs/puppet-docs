@@ -256,8 +256,9 @@ Cases are compared in the order that they are written in the manifest --- if mor
 If you use regular expression cases, any captures from parentheses in the pattern will be available inside the associated code block as numbered variables (`$1, $2`, etc.), and the entire match will be available as `$0`:
 
 {% highlight ruby %}
-    if $hostname =~ /^www(\d+)\./ {
-      notice("Welcome to web server number $1")
+    case $hostname {
+      /www(d+)/: { notice("Welcome to web server number ${1}"); include role::web }
+      default:   { include role::generic }
     }
 {% endhighlight %}
 
@@ -378,7 +379,7 @@ If you use regular expression cases, any captures from parentheses in the patter
 
 {% highlight ruby %}
     $system = $operatingsystem ? {
-      /(RedHat|Debian)/ => "our system is $1",
+      /(RedHat|Debian)/ => "our system is ${1}",
       default           => "our system is unknown",
     }
 {% endhighlight %}
