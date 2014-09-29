@@ -23,7 +23,7 @@ Checking For Updates
 
 [Check here][updateslink] to find out what the latest maintenance release of Puppet Enterprise is. You can run `puppet --version` at the command line to see the version of PE you are currently running.
 
-{% comment %} This link is the same one as the console's help -> version information link. We only have to change the one to update both. {% endcomment %}
+
 [updateslink]: http://info.puppetlabs.com/download-pe.html
 
 Downloading PE

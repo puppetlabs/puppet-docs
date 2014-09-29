@@ -31,7 +31,7 @@ Important Notes and Warnings
 
 ### Before Upgrading, Back Up Your Databases and Other PE Files
 
-   We recommend that you back up the following databases and PE files. 
+   We recommend that you back up the following databases and PE files.
 
    On a monolithic (all-in-one) install, the databases and PE files will all be located on the same node as the puppet master.
 
@@ -39,31 +39,31 @@ Important Notes and Warnings
    - `/opt/puppet/share/puppet-dashboard/certs`
    - [The console and console_auth databases](./maintain_console-db.html#database-backups)
    - [The PuppetDB database](/puppetdb/1.6/migrate.html#exporting-data-from-an-existing-puppetdb-database)
-   
+
    On a split install, the databases and PE files will be located across the various components assigned to your servers.
 
    - `/etc/puppetlabs/`: different versions of this directory can be found on the server assigned to the puppet master component, the server assigned to the console component, and the server assigned to the database support component (i.e., PuppetDB and PostgreSQL). You should back up each version.
-   - `/opt/puppet/share/puppet-dashboard/certs`: located on the server assigned to the console component. 
+   - `/opt/puppet/share/puppet-dashboard/certs`: located on the server assigned to the console component.
    - The console and console_auth databases: located on the server assigned to the database support component.
-   - The PuppetDB database: located on the server assigned to the database support component. 
+   - The PuppetDB database: located on the server assigned to the database support component.
 
 ### Upgrades from 3.2.0 Can Cause Issues with Multi-Platform Agent Packages
 
    Users upgrading from PE 3.2.0 to a later version of 3.x (including 3.2.3) will see errors when attempting to download agent packages for platforms other than the master. After adding `pe_repo` classes to the master for desired agent packages, errors will be seen on the subsequent puppet run as PE attempts to access the requisite packages. For a simple workaround to this issue, see the [installer troubleshooting page](./trouble_install.html#upgrades-from-320-can-cause-issues-with-multi-platform-agent-packages).
-   
+
 ### Upgrades to PE 3.x from 2.8.3 Can Fail if PostgreSQL is Already Installed
 
 This issue has been documented in the [known issues section of the release notes](./release_notes.html#upgrades-to-pe-3x-from-283-can-fail-if-postgresql-is-already-installed).
-   
+
 ### A Note about Changes to `puppet.conf` that Can Cause Issues During Upgrades
 
-If you manage `puppet.conf` with Puppet or a third-party tool like Git or r10k, you may encounter errors after upgrading based on the following changes. Please assess these changes before upgrading. 
+If you manage `puppet.conf` with Puppet or a third-party tool like Git or r10k, you may encounter errors after upgrading based on the following changes. Please assess these changes before upgrading.
 
 * **`node_terminus` Changes**
 
-   In PE versions earlier than 3.2, node classification was configured with `node_terminus=exec`, located in `/etc/puppetlabs/puppet/puppet.conf`. This caused the puppet master to execute a custom shell script (`/etc/puppetlabs/puppet-dashboard/external_node`) which ran a curl command to retrieve data from the console. 
+   In PE versions earlier than 3.2, node classification was configured with `node_terminus=exec`, located in `/etc/puppetlabs/puppet/puppet.conf`. This caused the puppet master to execute a custom shell script (`/etc/puppetlabs/puppet-dashboard/external_node`) which ran a curl command to retrieve data from the console.
 
-   PE 3.2 changes node classification in `puppet.conf`. The new configuration is `node_terminus=console`. The `external_node` script is no longer available; thus, `node_terminus=exec` no longer works. 
+   PE 3.2 changes node classification in `puppet.conf`. The new configuration is `node_terminus=console`. The `external_node` script is no longer available; thus, `node_terminus=exec` no longer works.
 
    With this change, we have improved security, as the puppet master can now verify the console. The console certificate name is `pe-internal-dashboard`. The puppet master now finds the console by reading the contents of /`etc/puppetlabs/puppet/console.conf`, which provides the following:
 
@@ -72,15 +72,15 @@ If you manage `puppet.conf` with Puppet or a third-party tool like Git or r10k, 
       port=<console port>
       certificate_name=pe-internal-dashboard
 
-   This file tells the puppet master where to locate the console and what name it should expect the console to have. If you want to change the location of the console, you can edit `console.conf`, but **DO NOT** change the `certificate_name` setting. 
+   This file tells the puppet master where to locate the console and what name it should expect the console to have. If you want to change the location of the console, you can edit `console.conf`, but **DO NOT** change the `certificate_name` setting.
 
-   The rules for certificate-based authorization to the console are found in `/etc/puppetlabs/console-auth/certificate_authorization.yml` on the console node. By default, this file allows the puppet master read-write access to the console (based on it's certificate name) to request node data and submit report data. 
+   The rules for certificate-based authorization to the console are found in `/etc/puppetlabs/console-auth/certificate_authorization.yml` on the console node. By default, this file allows the puppet master read-write access to the console (based on it's certificate name) to request node data and submit report data.
 
 * **Reports Changes**
 
    Reports are no longer submitted to the console using `reports=https`. PE 3.2 changed the setting in `puppet.conf` to `reports=console`. This change works in the same way as the `node_terminus` changes described above.
 
-### Upgrading Split Console and Custom PostgreSQL Databases 
+### Upgrading Split Console and Custom PostgreSQL Databases
 
 When upgrading from 3.1 to 3.3, the console database tables are upgraded from 32-bit integers to 64-bit. This helps to avoid ID overflows in large databases. In order to migrate the database, the upgrader will temporarily require disc space equivalent to 20% more than the largest table in the console's database (by default, located here: `/opt/puppet/var/lib/pgsqul/9.2/console`). If the database is in this default location, on the same node as the console, the upgrader can successfully determine the amount of disc space needed and provide warnings if needed. However, there are certain circumstances in which the upgrader cannot make this determination automatically. Specifically, the installer cannot determine the disc space requirement if:
 
@@ -91,10 +91,10 @@ When upgrading from 3.1 to 3.3, the console database tables are upgraded from 32
 In case 2, the installer is unable to obtain any information about the size or state of the database.
 
 ### Running a 3.x Master with 2.8.x Agents is not Supported
-  
+
 3.x versions of PE contain changes to the MCollective module that are not compatible with 2.8.x agents. When running a 3.x master with a 2.8.x agent, it is possible that puppet will still continue to run and check into the console, but this means puppet is running in a degraded state that is not supported.
 
-### Upgrades to PE 3.2.x or Later Removes Commented Authentication Sections from `rubycas-server/config.yml` 
+### Upgrades to PE 3.2.x or Later Removes Commented Authentication Sections from `rubycas-server/config.yml`
 
 If you are upgrading to PE 3.2.x or later, `rubycas-server/config.yml` will not contain the commented sections for the third-party services. We've provided the commented sections on [the console config page](./console_config.html#configuring-rubycas-server-config-yml), which you can copy and paste into `rubycas-server/config.yaml` after you upgrade.
 
@@ -140,7 +140,7 @@ The upgrade script will run and provide detailed information as to what it insta
 
 ### Upgrade PuppetDB
 
-On the node you provisioned for PuppetDB before starting the upgrade, unpack the PE 3.3 tarball and run the `puppet-enterprise-installer` script. 
+On the node you provisioned for PuppetDB before starting the upgrade, unpack the PE 3.3 tarball and run the `puppet-enterprise-installer` script.
 
 If you are upgrading from a 2.8 deployment, you will need to provide some answers to the upgrader. These answers are ONLY needed when upgrading from the 2.8 line.
 
@@ -183,7 +183,7 @@ The installer will also ask for the following information:
 
 #### Disabling/Enabling Live Management During an Upgrade
 
-The status of live management is not managed during an upgrade of PE unless you specifically indicate a change is needed in an answer file. In other words, if your previous version of PE had live management enabled (the PE default), it will remain enabled after you upgrade unless you add or change `q_disable_live_manangement={y|n}` in your answer file. 
+The status of live management is not managed during an upgrade of PE unless you specifically indicate a change is needed in an answer file. In other words, if your previous version of PE had live management enabled (the PE default), it will remain enabled after you upgrade unless you add or change `q_disable_live_manangement={y|n}` in your answer file.
 
 Depending on your answer, the `disable_live_management` setting in `/etc/puppetlabs/puppet-dashboard/settings.yml` on the puppet master (or console node in a split install) will be set to either `true` or `false` after the upgrade is complete.
 
@@ -202,7 +202,7 @@ Checking For Updates
 
 [Check here][updateslink] to find out the latest maintenance release of Puppet Enterprise. To see the version of PE you are currently using, you can run `puppet --version` on the command line.
 
-{% comment %} This link is the same one as the console's help -> version information link. We only have to change the one to update both. {% endcomment %}
+
 
 [updateslink]: http://info.puppetlabs.com/download-pe.html
 

@@ -6,19 +6,6 @@ canonical: "/pe/latest/install_upgrading.html"
 ---
 
 
-{% comment %}
-
-Things we don't have a place for yet, since we don't support console/etc upgrades yet: this upgrade note for systems that used to run 2.5.
-
-> **Note:** If you upgraded from PE 2.5, your `cas_client_config.yml` and `rubycas-server/config.yml` files will not have the relevant commented-out sections, as they were added for 2.6 and the upgrader does not overwrite the config files.
->
-> You can find example config code that can be copied and pasted into the live config files; look in files with **the same names and either the `.rpmnew` or `.dpkg-new` extension.**
-
-We should think about how to handle diminishing returns on stuff like this that involves very old versions.
-
-{% endcomment %}
-
-
 Summary
 -----
 
@@ -159,7 +146,7 @@ Checking For Updates
 
 [Check here][updateslink] to find out what the latest maintenance release of Puppet Enterprise is. You can run `puppet --version` at the command line to see the version of PE you are currently running.
 
-{% comment %} This link is the same one as the console's help -> version information link. We only have to change the one to update both. {% endcomment %}
+
 [updateslink]: http://info.puppetlabs.com/download-pe.html
 
 **Note: By default, the puppet master will check for updates whenever the `pe-httpd` service restarts.** As part of the check, it passes some basic, anonymous information to Puppet Labs' servers. This behavior can be disabled if need be. The details on what is collected and how to disable checking can be found in the [answer file reference](./install_answer_file_reference.html#puppet-master-answers).

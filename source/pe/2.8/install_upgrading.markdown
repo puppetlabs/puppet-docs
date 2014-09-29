@@ -44,13 +44,13 @@ To automate the upgrades of your agent nodes, you can use [the `adrien/pe_upgrad
 
 - **Warning:** If you have created custom modules and stored them in  `/opt/puppet/share/puppet/modules`, the upgrader will fail. Before upgrading, you should move your custom modules to `/etc/puppetlabs/puppet/modules`. Alternatively, you can update your modules manually to have the correct metadata.
 
-- **Warning:** If you are upgrading to 3.0.x from an installation of PE 2.8.3 or later in the 2.8.x series that includes a manually added PuppetDB, you will need to remove PuppetDB before upgrading or your upgrade the will fail. 
+- **Warning:** If you are upgrading to 3.0.x from an installation of PE 2.8.3 or later in the 2.8.x series that includes a manually added PuppetDB, you will need to remove PuppetDB before upgrading or your upgrade the will fail.
 
   Before upgrading, remove the following:
   	 * `/etc/puppetlabs/puppet/routes.yaml`
 	 * `/etc/puppetlabs/puppet/puppetdb.conf`
 	 * PostgreSQL (if installed on the master), including any data and config directories
-	
+
   Next, in the `[master]` stanza of `/etc/puppetlabs/puppet/puppet.conf`, make the following changes:
       * remove the entire `storeconfigs_backend` entry; it will default to ActiveRecord.
       * make sure the `facts_terminus` parameter is set to inventory_active_record.
@@ -63,7 +63,7 @@ Checking For Updates
 
 [Check here][updateslink] to find out what the latest maintenance release of Puppet Enterprise is. You can run `puppet --version` at the command line to see the version of PE you are currently running.
 
-{% comment %} This link is the same one as the console's help -> version information link. We only have to change the one to update both. {% endcomment %}
+
 [updateslink]: http://info.puppetlabs.com/download-pe.html
 
 **Note: By default, the puppet master will check for updates whenever the `pe-httpd` service restarts.** As part of the check, it passes some basic, anonymous information to Puppet Labs' servers. This behavior can be disabled if need be. The details on what is collected and how to disable checking can be found in the [answer file reference](/pe/latest/install_answer_file_reference.html#puppet-master-answers).

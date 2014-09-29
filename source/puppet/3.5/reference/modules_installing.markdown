@@ -84,18 +84,6 @@ To install a module from the Puppet Forge, simply identify the desired module by
 
     # puppet module install puppetlabs-apache
 
-{% comment %}
-
-### Installing From Another Module Repository
-
-The module tool can install modules from other repositories that mimic the Forge's interface. To do this, change the [`module_repository`](/references/latest/configuration.html#modulerepository) setting in [`puppet.conf`](./config_file_main.html) or specify a repository on the command line with the `--module_repository` option. The value of this setting should be the base URL of the repository; the default value, which uses the Forge, is `http://forge.puppetlabs.com`.
-
-After setting the repository, follow the instructions above for installing from the Forge.
-
-    # puppet module install --module_repository http://dev-forge.example.com puppetlabs-apache
-
-{% endcomment %}
-
 ### Installing From a Release Tarball
 
 To install a module from a release tarball, specify the path to the tarball instead of the module name.

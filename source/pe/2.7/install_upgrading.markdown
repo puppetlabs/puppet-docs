@@ -21,7 +21,7 @@ Checking For Updates
 
 [Check here][updateslink] to find out what the latest maintenance release of Puppet Enterprise is. You can run `puppet --version` at the command line to see the version of PE you are currently running.
 
-{% comment %} This link is the same one as the console's help -> version information link. We only have to change the one to update both. {% endcomment %}
+
 [updateslink]: http://info.puppetlabs.com/download-pe.html
 
 **Note: By default, the puppet master will check for updates whenever the `pe-httpd` service restarts.** As part of the check, it passes some basic, anonymous information to Puppet Labs' servers. This behavior can be disabled if need be. The details on what is collected and how to disable checking can be found in the [answer file reference](/pe/latest/install_answer_file_reference.html#puppet-master-answers).
