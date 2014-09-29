@@ -219,7 +219,7 @@ Puppet compares the **control expression** to each of the **cases,** in the orde
 
 * Basic cases are compared with [the `==` operator][equality] (which is case-insensitive).
 * Regular expression cases are compared with [the `=~` operator][regex_compare] (which is case-sensitive).
-* The special `default` case matches anything.
+* The special `default` case matches anything, but only if none of the other cases match.
 
 If none of the cases match, Puppet will do nothing and move on.
 
@@ -249,7 +249,7 @@ You may use a comma-separated list of cases to associate more than one case with
 
 Normal values are compared to the control expression using [the `==` operator][equality], and regular expressions are compared with [the `=~` operator][regex_compare]. The special `default` case matches any control expression.
 
-Cases are compared in the order that they are written in the manifest --- if more than one case might match for a given node, the first one will win. The one exception is the special `default` case, which will only be used as a last resort regardless of its position in the list.
+Cases are compared in the order that they are written in the manifest --- if more than one case might match for a given node, the first one will win. The one exception is the special `default` case, which will only be used as a last resort, regardless of its position in the list.
 
 #### Regex Capture Variables
 
@@ -343,7 +343,7 @@ Puppet compares the value of **control expression** to each of the **cases,** in
 
 * Basic cases are compared with [the `==` operator][equality] (which is case-insensitive).
 * Regular expression cases are compared with [the `=~` operator][regex_compare] (which is case-sensitive).
-* The special `default` case matches anything.
+* The special `default` case matches anything, but only as a last resort if none of the other cases match.
 
 If none of the cases match, Puppet will **fail compilation with a parse error.** Consequently, a default case should be considered mandatory.
 
@@ -371,7 +371,7 @@ Note that you cannot use arbitrary [expressions][] or [selectors](#selectors) as
 
 Normal values are compared to the control variable using [the `==` operator][equality], and regular expressions are compared with [the `=~` operator][regex_compare]. The special `default` case matches any control variable.
 
-Cases are compared in the order that they are written in the manifest; thus, the `default` case (if any) must be at the end of the list.
+Cases are compared in the order that they are written in the manifest. The one exception is the special `default` case, which will only be used as a last resort, regardless of its position in the list.
 
 #### Regex Capture Variables
 
