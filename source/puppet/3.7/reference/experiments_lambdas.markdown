@@ -8,6 +8,7 @@ canonical: "/puppet/latest/reference/experiments_lambdas.html"
 [array]: /puppet/3/reference/lang_datatypes.html#arrays
 [experimentalmodule]: https://github.com/hlindberg/puppet-network
 [experimentalcommit]: https://github.com/hlindberg/puppet-network/commit/b1665a2da730e31b76a9230796510d01e6a626d7
+[paramtypes]: ./future_parameter_types.html
 
 > **Warning:** This document describes an **experimental feature,** which is not officially supported and is not considered ready for production. [See here for more information about experimental features in Puppet](./experiments_overview.html), especially if you are using Puppet Enterprise.
 
@@ -34,11 +35,11 @@ Lambdas
 A Lambda can be thought of as _parameterized code blocks;_ a block of code that has parameters and can be invoked/called with arguments. A single lambda can be passed to a function (such as the iteration function `each`).
 
     $a = [1,2,3]
-    each($a) |$value| { notice $value }
+    each($a) |Integer $value| { notice $value }
 
 We can try this on the command line:
 
-    puppet apply --parser future -e '$a=[1,2,3] each($a) |$value|{ notice $value }'
+    puppet apply --parser future -e '$a=[1,2,3] each($a) |Integer $value|{ notice $value }'
     Notice: Scope(Class[main]): 1
     Notice: Scope(Class[main]): 2
     Notice: Scope(Class[main]): 3
@@ -52,6 +53,7 @@ Let's look at what we just did:
 * After the list of arguments we gave it a _lambda_:
     * The lambda's parameters are declared within _pipes_ (`|`) (just like parameters are specified for a define).
     * We declared the lambda to have one parameter, and we named it `$value` (we could have called it whatever we wanted; `$x`, or `$a_unicorn`, etc.)
+    * Lambda parameters support [parameter types][paramtypes], so we gave `$value` the [`Integer` type](./future_param_types.html#Integer). This part's optional, and we could easily have left it out.
     * The lambda's body is enclosed in braces `{ }`, where you can place any puppet logic except class, define, or node statements.
 
 Available Functions
@@ -77,7 +79,7 @@ If two parameters are used, they will be set to the key and value of each hash e
 
 Using a similar example as before, but now with two parameters, we get:
 
-    user$ puppet apply -e '$a  = ['a','b','c'] each($a) |$index, $value| { notice "$index = $value" }'
+    user$ puppet apply -e '$a  = ['a','b','c'] each($a) |Integer $index, String $value| { notice "$index = $value" }'
     Notice: Scope(Class[main]): 0 = a
     Notice: Scope(Class[main]): 1 = b
     Notice: Scope(Class[main]): 2 = c
@@ -92,7 +94,7 @@ Here are some examples to illustrate:
     reduce([1,2,3]) |$result, $value|  { $result + $value }
     # produces: 6
 
-    slice(['fred', 10, 'mary', 20], 2) |$name, $val| { notice "$name = $val" }
+    slice(['fred', 0, 'mary', 20], 2) |String $name, Integer $val| { notice "$name = $val" }
     # results in the following output
     Notice: Scope(Class[main]): fred = 10
     Notice: Scope(Class[main]): mary = 20
@@ -110,7 +112,7 @@ The examples you have seen can be written like this:
 
     [1,2,3].reduce |$result, $value|  { $result + $value }
 
-    ['fred', 10, 'mary', 20].slice(2) |$name, $val| { notice "$name = $val" }
+    ['fred', 10, 'mary', 20].slice(2) |String $name, Integer $val| { notice "$name = $val" }
 
 And then let's chain these:
 
@@ -133,8 +135,8 @@ Lambda Scope
 
 When a lambda is evaluated, this takes place in a _local scope_ that shadows outer scopes. Each invocation of a lambda sets up a fresh local scope. The variables assigned (and the lambda parameters) are immutable once assigned, and they can not be referenced from code outside of the lambda block. The lambda block may however use variables visible in the scope where the lambda is given, as in this example:
 
-    $names = [fred, mary]
-    [1,2].each |$x| { notice "$i is called ${names[$x]}"}
+    $names = ['fred', 'mary']
+    [1,2].each |$i| { notice "$i is called ${names[$x]}"}
 
 Calls with Lambdas
 -----
