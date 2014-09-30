@@ -165,6 +165,12 @@ This operator is **non-transitive** with regard to data types: it accepts a [str
 * [Arrays][] --- Tests whether one of the members of the array is identical to the left operand (case-sensitive).
 * [Hashes][] --- Tests whether the hash has a **key** identical to the left operand (case-sensitive).
 
+The future parser also supports using a [regular expression][regex] for the left operand, with slightly different behavior depending on the right operand:
+
+* [Strings][] --- Tests whether the right operand matches the regular expression.
+* [Arrays][] --- Tests whether one of the members of the array matches the regular expression.
+* [Hashes][] --- Tests whether the hash has a **key** that matches the regular expression.
+
 Examples:
 
 {% highlight ruby %}
@@ -178,7 +184,10 @@ Examples:
 
     # Right hand operand is a hash:
     'eat' in { 'eat' => 'present tense', 'ate' => 'past tense'} # resolves to true
-    'eat' in { 'present' => 'eat', 'past' => 'ate' } # resolves to false
+    'eat' in { 'present' => 'eat', 'past' => 'ate' }            # resolves to false
+
+    # Left hand operand is a regular expression (with the case-insensitive option "?i")
+    /(?i:EAT)/ in ['eat', 'ate', 'eating'] # resolves to true
 {% endhighlight %}
 
 Boolean Operators
