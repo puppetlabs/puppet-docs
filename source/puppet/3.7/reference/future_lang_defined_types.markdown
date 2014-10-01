@@ -105,6 +105,8 @@ Every parameter of a defined type can be used as a local variable inside the def
     }
 {% endhighlight %}
 
+Note that the special variables `$title` and `$name` are both set to the defined type's name automatically, so they can't be used as parameters.
+
 ### `$title` and `$name`
 
 Every defined type gets two "free" parameters, which are always available and do not have to be explicitly added to the definition:

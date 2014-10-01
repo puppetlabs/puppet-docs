@@ -104,6 +104,13 @@ The following variable names are reserved, and you **must not** assign values to
 
 [trusted_on]: ./config_important_settings.html#getting-new-features-early
 
+Reserved Parameter Names
+------
+
+The following are special variable names that may not be used as parameters in classes or defined types:
+
+* `$title` -- the title of a class or defined type
+* `$name` -- a synonym for `$title`
 
 Acceptable Characters in Names
 -----

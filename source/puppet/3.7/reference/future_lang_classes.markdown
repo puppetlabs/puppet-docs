@@ -11,6 +11,7 @@ canonical: "/puppet/latest/reference/future_lang_classes.html"
 [enc]: /guides/external_nodes.html
 [tags]: ./future_lang_tags.html
 [allowed]: ./future_lang_reserved.html#classes-and-types
+[reserved]: ./future_lang_reserved.html#reserved-parameter-names
 [function]: ./future_lang_functions.html
 [modules]: ./modules_fundamentals.html
 [contains]: ./future_lang_containment.html
@@ -119,6 +120,8 @@ Each class parameter can be used as a normal [variable][] inside the class defin
 Note that if a class parameter lacks a default value, the user of the module **must** set a value themselves (either in their [external data][external_data] or an [override][]). As such, you should supply defaults wherever possible.
 
 Each parameter may be preceeded by an optional **[parameter type][paramtypes] annotation**. If you include one, puppet will check the parameter *at runtime* to make sure that it has the right type. If no type annotation is provided, the default `Any` type will be assumed.
+
+The special variables `$title` and `$name` are both set to the class name automatically, so they can't be used as parameters.
 
 ### Location
 
