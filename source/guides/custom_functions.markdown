@@ -213,34 +213,6 @@ manner to the `fail()` function:
     raise Puppet::ParseError, "my error"
 {% endhighlight %}
 
-## Troubleshooting Functions
-
-If you're experiencing problems with your functions loading,
-there's a couple of things you can do to see what might be causing
-the issue:
-
-1 - Make sure your function is parsing correctly, by running:
-
-    ruby -rpuppet my_funct.rb
-
-This should return nothing if the function is parsing correctly,
-otherwise you'll get an exception which should help troubleshoot
-the problem.
-
-2 - Check that the function is available to Puppet:
-
-    irb
-    > require 'puppet'
-    > require '/path/to/puppet/functions/my_funct.rb'
-    > Puppet::Parser::Functions.function(:my_funct)
-    => "function_my_funct"
-
-Substitute `:my_funct` with the name of your function, and it should
-return something similar to "`function_my_funct`" if the function
-is seen by Puppet. Otherwise it will just return false, indicating
-that you still have a problem (and you'll more than likely get a
-"Unknown Function" error on your clients).
-
 ## Referencing Custom Functions In Templates
 
 To call a custom function within a [Puppet Template](./templating.html), you can do:
