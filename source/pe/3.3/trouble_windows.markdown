@@ -184,7 +184,7 @@ Windows services support a short name and a display name. Make sure to use the s
 
     The Puppet Forge uses an SSL certificate signed by the GeoTrust Global CA certificate. Newly provisioned Windows nodes may not have that CA in their root CA store yet.
 
-    To resolve this and enable the `puppet module` subcommand on Windows nodes, do _one_ of the following:
+    **You have two options for fixing this. Choose one:**
 
     * Run Windows Update and fetch all available updates, then visit <https://forge.puppetlabs.com> in your web browser. The web browser will notice that the GeoTrust CA is whitelisted for automatic download, and will add it to the root CA store.
     * Download the "GeoTrust Global CA" certificate from [GeoTrust's list of root certificates](https://www.geotrust.com/resources/root-certificates/) and manually install it by running `certutil -addstore Root GeoTrust_Global_CA.pem`.
