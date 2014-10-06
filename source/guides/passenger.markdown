@@ -59,6 +59,14 @@ To configure Apache to run the puppet master application, you must:
 * Install the puppet master Rack application, by creating a directory for it and copying the `config.ru` file from the Puppet source.
 * Create a virtual host config file for the puppet master application, and install/enable it.
 
+### Global Configuration
+
+#### Keepalive Timeout
+
+Make sure Apache's `KeepAliveTimeout` setting is set to at least `5`. (`5` is the default value, but your global Apache config may have set a different value, in which case you'll need to change it.)
+
+Although this setting is valid at virtual host scope, the way Apache reads its value means it's safer to set it globally.
+
 ### Install the Puppet Master Rack Application
 
 Your copy of Puppet includes a `config.ru` file, which tells Rack how to spawn puppet master processes. To install this Rack application in a form Passenger can use, you'll need to:
@@ -135,7 +143,7 @@ puppetmaster port (8140). You can also see a similar file at `ext/rack/example-p
         SSLProtocol ALL -SSLv2 -SSLv3
         SSLCipherSuite EDH+CAMELLIA:EDH+aRSA:EECDH+aRSA+AESGCM:EECDH+aRSA+SHA384:EECDH+aRSA+SHA256:EECDH:+CAMELLIA256:+AES256:+CAMELLIA128:+AES128:+SSLv3:!aNULL:!eNULL:!LOW:!3DES:!MD5:!EXP:!PSK:!DSS:!RC4:!SEED:!IDEA:!ECDSA:kEDH:CAMELLIA256-SHA:AES256-SHA:CAMELLIA128-SHA:AES128-SHA
         SSLHonorCipherOrder     on
-        
+
         SSLCertificateFile      /var/lib/puppet/ssl/certs/puppet-server.example.com.pem
         SSLCertificateKeyFile   /var/lib/puppet/ssl/private_keys/puppet-server.example.pem
         SSLCertificateChainFile /var/lib/puppet/ssl/ca/ca_crt.pem

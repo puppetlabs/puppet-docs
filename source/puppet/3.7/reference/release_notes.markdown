@@ -99,6 +99,14 @@ Puppet 3.7.0 is a backward-compatible features and fixes release in the Puppet 3
 * 64-bit Puppet packages for Windows
 * Lots of deprecations to prepare for Puppet 4.0
 
+### UPGRADE WARNING (Rack Server Config)
+
+Please check the configuration of your Rack web server and make sure the **keepalive timeout** is configured to be **five seconds or higher.**
+
+If you are using the Apache+Passenger stack, this will be the `KeepAliveTimeout` setting. The default value is `5`, but your global Apache config may have set a different value, in which case you'll need to change it.
+
+Puppet 3.7 introduces [persistent HTTPS connections](#persistent-connections), which gives a major performance boost. But if your server's keepalive timeout is less than the agent's [`http_keepalive_timeout` setting](/references/3.7.latest/configuration.html#httpkeepalivetimeout) (default: four seconds), agents will sometimes fail with an **"Error: Could not retrieve catalog from remote server: end of file reached"** message.
+
 ### UPGRADE WARNING (for Windows Users)
 
 Starting with Puppet 3.7, [we provide 64-bit packages for Windows systems.][inpage_win64] When upgrading, Windows users with 64-bit OS versions must decide whether to install the 32-bit package or the 64-bit package.

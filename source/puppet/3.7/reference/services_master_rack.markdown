@@ -86,6 +86,14 @@ A Rack puppet master will ignore [the `masterport` setting](/references/latest/c
 
 If you want to switch to a non-default port, you'll have to change your web server's configuration, then make sure `masterport` is set correctly on all agents.
 
+### Keepalive Timeout
+
+By default, the Puppet agent application will keep its HTTPS connections open for **up to four seconds** of idle time. (Configurable with [the `http_keepalive_timeout` setting.](/references/3.7.latest/configuration.html#httpkeepalivetimeout))
+
+This means Puppet expects the Rack web server to have **a keepalive timeout of at least four seconds, preferably five.** This is compatible with the default configuration of the most popular Rack stack.
+
+If the keepalive timeout is set too low on the master, agents will occasionally fail with an "Error: Could not retrieve catalog from remote server: end of file reached" message.
+
 ### Logging
 
 When running under Rack, puppet master's logging is split.
