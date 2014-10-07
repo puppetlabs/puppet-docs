@@ -13,7 +13,7 @@ defaultnav:
   /guides/deployment_guide: deploy_guide.html
   /guides/install_puppet: puppet_general.html
   /hiera/1: hiera1.html
-  /ja: ja_docs.html
+  /ja/learning: ja_docs.html
   /learning: learning_nav.html
   /mcollective: mcollective_menu.html
   /mcollective1.2: mcollective_1.2.html
