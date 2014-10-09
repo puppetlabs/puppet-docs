@@ -18,7 +18,7 @@ Puppet Labsでは、次の２つの製品を提供しています。
 日本語のマニュアル、リソース
 -----
 
-**[Learning Puppet](/introduction_ja.html)**
+**[Learning Puppet](/learning/introduction_ja.html)**
 -----
 Learning Puppetは、Puppetを使いお客様のシステム管理を自動化する基礎について説明するPuppetのガイドツアーです。Learning Puppet 日本語版はNTT OSS センタの菅原亮氏が、同センタの長谷部ジュン氏の協力を得て翻訳されたものです。
 Learning Puppetの翻訳に多大なご尽力をいただき、ユーザーコミュニティと共有していただいた菅原、長谷部両氏に改めて感謝いたします。
@@ -37,4 +37,4 @@ Puppet Labsでは、日本のユーザーの方々のサポートに尽力して
 その他のリソース
 -----
 
-完全な英語版の文書は、https://docs.puppetlabs.comでご覧いただけます。
+完全な英語版の文書は、[https://docs.puppetlabs.com](https://docs.puppetlabs.com)でご覧いただけます。
