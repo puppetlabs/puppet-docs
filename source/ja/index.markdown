@@ -4,7 +4,7 @@ title: "日本語ホーム"
 canonical: "/ja/index.html"
 ---
 
-Puppet Labs 日本語マニュアル
+Puppet Labs 日本語マニュアルについて
 -------
 
 Puppet Labs 日本語マニュアルサイトへようこそ。こちらでPuppet およびPuppet Enterpriseに関するユーザー向けマニュアルの日本語版をご覧いただけます。こちらのマニュアルはPuppetユーザーコミュニティメンバーの方々に提供していただいたものです。提供いただいた方々にお礼申し上げます。
@@ -15,18 +15,21 @@ Puppet Labsでは、次の２つの製品を提供しています。
 
 * Puppet Enterprise --- Puppetを強化したエンタープライズ・ソリューションで、追加の設定機能、グラフィカル・ユーザーインターフェース、サポートが備わっています。Puppet Enterpriseは１０ライセンスまで無料で利用可能です。ダウンロードは[こちら](http://puppetlabs.com/download-puppet-enterprise)。追加のライセンスについては、[当社の営業部](sales@puppetlabs.com)までご連絡ください。
 
-日本語のマニュアル、リソース
+日本語のマニュアル
 -----
 
-**[Learning Puppet](/learning/introduction_ja.html)**
------
+###[Learning Puppet](/learning/introduction_ja.html)
 Learning Puppetは、Puppetを使いお客様のシステム管理を自動化する基礎について説明するPuppetのガイドツアーです。Learning Puppet 日本語版はNTT OSS センタの菅原亮氏が、同センタの長谷部ジュン氏の協力を得て翻訳されたものです。
 Learning Puppetの翻訳に多大なご尽力をいただき、ユーザーコミュニティと共有していただいた菅原、長谷部両氏に改めて感謝いたします。
 
-
-**[@IT 記事「環境構築自動化の手順と評価検証、Puppetの基礎知識」（菅原亮氏）](http://www.atmarkit.co.jp/ait/kw/auto_infra.html)**
+日本語の記事
 -----
+
+###[@IT 記事「環境構築自動化の手順と評価検証、Puppetの基礎知識」（菅原亮氏）](http://www.atmarkit.co.jp/ait/articles/1406/16/news017.html)
 NTT OSS センタの菅原亮氏による記事。Puppetを使ったシステム設定、展開の基礎について説明されています。
+
+###[@IT 記事「Puppetのインストールと動作確認、トラブル対処法」（菅原亮氏）](http://www.atmarkit.co.jp/ait/articles/1410/08/news016.html)
+NTT OSS センタの菅原亮氏による記事。サーバー構築の自動化で利用される技術、自動化ツールとして「Kickstart」「Puppet」を紹介し、構築から運用まで、システムライフサイクル全体にわたる運用管理の自動化についても説明します。
 
 翻訳へのご協力
 -----
