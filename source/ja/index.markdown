@@ -13,7 +13,7 @@ Puppet Labsでは、次の２つの製品を提供しています。
 
 * Puppet --- パワフルなオープンソースのシステム管理ツールで、仮想・オンプレミスシステム上のマシン、デバイスの設定と継続的管理を自動化します。
 
-* Puppet Enterprise --- Puppetを強化したエンタープライズ・ソリューションで、追加の設定機能、グラフィカル・ユーザーインターフェース、サポートが備わっています。Puppet Enterpriseは１０ライセンスまで無料で利用可能です。ダウンロードは[こちら](http://puppetlabs.com/download-puppet-enterprise)。追加のライセンスについては、[当社の営業部](sales@puppetlabs.com)までご連絡ください。
+* Puppet Enterprise --- Puppetを強化したエンタープライズ・ソリューションで、追加の設定機能、グラフィカル・ユーザーインターフェース、サポートが備わっています。Puppet Enterpriseは１０ライセンスまで無料で利用可能です。ダウンロードは[こちら](http://puppetlabs.com/download-puppet-enterprise)。追加のライセンスについては、<sales@puppetlabs.com>までご連絡ください。
 
 日本語のマニュアル
 -----
@@ -35,7 +35,7 @@ NTT OSS センタの菅原亮氏による記事。サーバー構築の自動化
 -----
 
 Puppet Labsでは、日本のユーザーの方々のサポートに尽力しております。皆様がPuppet、Puppet Enterpriseについて学び、実装する上でお役に立てるよう、今後このページにさらにリソースを追加していく予定です。
-マニュアルを日本語に翻訳してくださる方を常に募集しております。Puppetのマニュアル和訳への協力に関心をお持ちの方は、[こちら](localization@puppetlabs.com)までご連絡ください。
+マニュアルを日本語に翻訳してくださる方を常に募集しております。Puppetのマニュアル和訳への協力に関心をお持ちの方は、<localization@puppetlabs.com>までご連絡ください。
 
 その他のリソース
 -----
