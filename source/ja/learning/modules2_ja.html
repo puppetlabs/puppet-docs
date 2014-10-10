@@ -1,0 +1,225 @@
+---
+layout: default
+title: "Class Parameters ～ クラスパラメータ"
+canonical: "/ja/learning/modules2_ja.html"
+toc: false
+---
+
+<!-- copy from here -->
+
+<div class="translation-notes">
+  <p>訳注：このドキュメントは以下のURLにある&quot;Learning Puppet&quot;を日本語訳したものです。<br />
+    <a href="http://docs.puppetlabs.com/learning/modules2.html">http://docs.puppetlabs.com/learning/modules2.html</a><br />
+     Hieraはキー・バリュー型のコンフィグレーションデータ検索ツールで、Puppet v3で標準搭載されました。</p>
+</div>
+
+
+
+              <nav class="in-page" id="page-nav">
+<ol class="toc">
+  <li class="toc-lv2"><a href="#begin">Begin ～ はじめに</a></li>
+  <li class="toc-lv2"><a href="#investigating-vs-asking-for-help">Investigating vs. Asking For Help ～ 自分で調べるか、誰かに聞くか</a></li>
+  <li class="toc-lv2"><a href="#class-parameters">Class Parameters ～ クラスパラメータ</a>
+    <ol class="toc">
+   <li class="toc-lv3"><a href="#default-values">Default Values ～ デフォルト値</a></li>
+   <li class="toc-lv3"><a href="#the-deal-with-resource-like-class-declarations">The Deal With Resource-Like Class Declarations ～ リソースライクなクラス宣言</a></li>
+   <li class="toc-lv3"><a href="#older-ways-to-configure-classes">Older Ways to Configure Classes ～ 旧来のクラス設定方法</a></li>
+</ol></li>
+  <li class="toc-lv2"><a href="#example-ntp-again">Example: NTP (Again) ～ 例：NTP(再び)</a></li>
+  <li class="toc-lv2"><a href="#module-documentation">Module Documentation ～ モジュールドキュメント</a></li>
+  <li class="toc-lv2"><a href="#next">Next ～ 次に</a></li>
+</ol></nav>
+              <h2 id="begin">Begin ～ はじめに</h2>
+
+<div class="highlight"><pre><code class="ruby">    <span class="k">class</span> <span class="n">echo_class</span> <span class="p">(</span><span class="vg">$to_echo</span> <span class="o">=</span> <span class="s2">&quot;default value&quot;</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">notify</span> <span class="p">{</span><span class="s2">&quot;What are we echoing? ${to_echo}.&quot;</span><span class="p">:}</span>
+    <span class="p">}</span>
+
+    <span class="k">class</span> <span class="p">{</span><span class="s1">&#39;echo_class&#39;</span><span class="p">:</span>
+      <span class="n">to_echo</span> <span class="o">=&gt;</span> <span class="s1">&#39;Custom value&#39;</span><span class="p">,</span>
+    <span class="p">}</span>
+</code></pre>
+</div>
+
+<p>この変数には何か違いがあります。</p>
+<h2 id="investigating-vs-asking-for-help">Investigating vs. Asking For Help ～ 自分で調べるか、誰かに聞くか</h2>
+
+<p>システムが違えばクラスも何かしら違う動作をしなければなりません。既にその方法をいくつか知っています。これまで記述してきたモジュールは全てシステムのfactsをみて挙動を切り替えていました。これを“調査する”と言いましょう。この場合情報は決められた場所にあり、(例えばfactsの場合はグローバルスコープ変数にある)、必要な時に探しに行くことを想定しています。</p>
+<p>しかしこれが常にベストな方法というわけではなく、モジュールの挙動を切り替える必要がある情報のシステムfactsがきれいにマッピングされていない時は分析からはじめることになります。これはデータベースサーバですか？ローカルのNTPサーバですか？テストノードですか？商用ノードですか？これらの情報は必ずしもfactsとして得られる情報ではなく、たいていの場合人間が決めたことです。</p>
+<p>これらのケースでは、クラスを設定だけしておき、宣言する際に必要な情報を伝えてあげるのが、たいていの場合最良の方法です。この方法を実現するためには、クラスが外部の世界に情報を問い合わせる手段が必要です。</p>
+
+<h2 id="class-parameters">Class Parameters ～ クラスパラメータ</h2>
+
+<p>クラスを定義する際、<strong>パラメータ</strong>のリストを渡す事ができます。パラメータはクラス名と波括弧{}の間に、オプションの括弧()を付けて記載します。それぞれのパラメータは変数名で、オプションでデフォルト値を持つ事もできます。またそれぞれのパラメータはカンマによって区切ります。</p>
+
+<div class="highlight"><pre><code class="ruby">    <span class="k">class</span> <span class="n">mysql</span> <span class="p">(</span><span class="vg">$user</span> <span class="o">=</span> <span class="s1">&#39;mysql&#39;</span><span class="p">,</span> <span class="vg">$port</span> <span class="o">=</span> <span class="mi">3306</span><span class="p">)</span> <span class="p">{</span>
+      <span class="o">.</span><span class="n">.</span><span class="o">.</span>
+    <span class="p">}</span>
+</code></pre>
+</div>
+
+<p>パラメータはクラスに情報を渡す玄関口となります。</p>
+
+<div class="highlight"><pre><code class="ruby">    <span class="k">class</span> <span class="p">{</span><span class="s1">&#39;mysql&#39;</span><span class="p">:</span>
+      <span class="n">user</span> <span class="o">=&gt;</span> <span class="n">mysqlserver</span><span class="p">,</span>
+    <span class="p">}</span>
+</code></pre>
+</div>
+
+<ul>
+  <li><a href="./modules1_ja.html#resource-like-class-declarations">リソースライクなクラス宣言</a>では、パラメータは<strong>リソース属性</strong>として利用可能です。</li>
+  <li><code>include</code>を使ったクラス宣言(もしくはリソースライクなクラス宣言でいくつかのパラメータを省略した場合)では、Puppetは<a href="http://docs.puppetlabs.com/hiera/1/">Hiera(英文)</a>データからパラメータの<a href="http://docs.puppetlabs.com/hiera/1/puppet.html#automatic-parameter-lookup">値を自動的に探します(英文)</a>。</li>
+  <li>クラス定義の中でパラメータは<strong>ローカル変数</strong>のように見えます</li>
+</ul>
+
+<h3 id="default-values">Default Values ～ デフォルト値</h3>
+
+<p>クラスを定義する際、パラメータにはデフォルト値を与える事ができます。これによりクラスを宣言する際はパラメータ指定をオプションとする事ができます。もしパラメータの値を指定しない時は、デフォルト値が使われます。デフォルト値のないパラメータは、クラス宣言の際に必ず値を指定しなければなりません。</p>
+
+<h3 id="the-deal-with-resource-like-class-declarations">The Deal With Resource-Like Class Declarations ～ リソースライクなクラス宣言の扱い</h3>
+
+<h4 id="in-puppet-enterprise-2x">Puppet Enterprise 2.xの場合</h4>
+
+<p>Puppet 2.7はPuppet Enterprise 2.xシリーズで使われており、クラスのパラメータを指定したい時は <a href="http://docs.puppetlabs.com/puppet/latest/reference/lang_classes.html#using-resource-like-declarations">リソースライクなクラス宣言(英文)</a>を使う必要があります。<code>include</code>やPuppet Enterprise Webコンソールではパラメータを指定できません。もし全てのパラメータにデフォルト値があり、上書きする必要が無ければ、<code>include</code>でクラスを宣言できます。そうでなければリソースライクなクラス宣言が必須になります。</p>
+
+<p>リソースライクなクラス宣言では<code>include</code>ではうまく動きませんし、同じクラスを2回以上宣言することもできませんのでマニフェストを整理する必要があります。これは伝統的な課題ですが、それでもクラスパラメータは旧来のクラス設定よりも優れています。またPuppet 2.7シリーズの過程で開発されたベストプラクティスでは、それらをより簡単に扱う事ができます。</p>
+
+<p>Puppet Enterprise 2.xでクラスパラメータを扱うのに最良の方法は、機能クラスをより完全なノード記述に結合した“role”および“profile”モジュールを作る事です。あなた自身が複数ノードをPuppetで管理する事になったら、Puppet Labsのサービスエンジニアによって使われたベストプラクティスである<a href="http://www.craigdunn.org/2012/05/239/">Craig Dunn’の “Roles and Profiles”(英文)</a>を読むべきです。</p>
+
+<p>roleとprofileを作ってより柔軟にし、繰り返しの作業を避けるため、masterノードに<a href="http://docs.puppetlabs.com/hiera/1/">Hiera(英文)</a>もインストール・設定できます。そしてクラスパラメータの値として<a href="http://docs.puppetlabs.com/hiera/1/puppet.html#hiera-lookup-functions">Hiera lookup関数(英文)</a>を指定します。</p>
+
+<h4 id="in-puppet-enterprise-3x">Puppet Enterprise 3.xの場合</h4>
+
+<p>Puppet Enterprise 3.xシリーズで使われているPuppet3以降では、指定がないクラスパラメータを探すため、自動的に<a href="http://docs.puppetlabs.com/hiera/1/">Hiera(英文)</a>データを参照します。これはHieraで値を指定している限り、任意のクラス（値の指定が必須のパラメータを持つクラスも含む)で安全に<code>include</code>やPuppet Enterpriseのコンソールが使えることを意味しています。</p>
+
+<p>あなた自身が複数ノードをPuppetで管理する事になったら、<a href="http://docs.puppetlabs.com/hiera/1/puppet.html#automatic-parameter-lookup">Hieraのマニュアルにあるパラメータ自動探索(英文)</a>のセクションを読むべきです。またPuppet Enterprise 2.xユーザにお勧めの<a href="http://www.craigdunn.org/2012/05/239/">roleとprofileのデザインパターン(英文)</a>は、Puppet Enterprise 3.xでも健在です。</p>
+
+<p>Puppet Enterpriseコンソールで、クラスのパラメータを直接指定する事もできます。しかしながら、少数のクラスで少数のノードを対象にしている間はよいですが、中規模から大規模なデプロイ向けにはHieraの自動探索とroleとprofileのデザインパターンの使用を推奨します。</p>
+<h4 id="why-include-cant-directly-take-class-parameters">なぜ <code>include</code> はクラスパラメータを直接受け取れないか</h4>
+
+<p>この問題はクラスがシングルトンであること、パラメータはクラスの挙動を設定する方法であること、<code>include</code>は同じクラスを1回以上宣言できる事に由来します。</p>
+
+<p>もしクラスを複数回異なるパラメータで宣言したのであれば、どの値が使われるべきでしょうか？その質問には正しい回答を持ち合わせていません。<a href="#older-ways-to-configure-classes">マジック変数を使った古いメソッド(英文)</a>でも同じ問題を抱えていました。これは解析する順番によっては、値を供給される複数の異なるスコープチェインができることで、実際にランダムな値が得られるからです。</p>
+
+<p>この問題に対するPuppetデザイナーの解決策は、パラメータの値は明白で衝突しない（リソース的なクラス宣言での制限事項）か、どこかPuppetの外部から値を持ってくることで、Puppetがパースを開始した時点では既に解決されている（Puppet 3の<a href="http://docs.puppetlabs.com/hiera/1/puppet.html#automatic-parameter-lookup">automatic parameter lookup(英文)</a>）のいずれか、という事に落ち着きました。</p>
+
+<h3 id="older-ways-to-configure-classes">Older Ways to Configure Classes ～ 旧来のクラス設定方法</h3>
+
+<p>クラスパラメータは標準的な可視化方法への要望に対応するため、Puppetのバージョン2.6.0で新たに追加されました。</p>
+
+<p>それ以前のバージョンでは、任意のユニークな外部変数名を選択することや、<a href="http://docs.puppetlabs.com/guides/scope_and_puppet.html">動的スコープ変数探索(英文)</a>で変数を取得することでクラスを設定するのが一般的でした。</p>
+
+<pre><code>$some_variable
+include some_class
+# This class will reach outside its own scope, and hope
+# it finds a value for $some_variable.
+</code></pre>
+
+<p>しかし、この方法にはいくつかの問題がありました：</p>
+
+<ul>
+  <li>全てのクラスがグローバル名前空間で変数名を競合させたので、不運にもユニークではない変数名をマジック変数として使ってしまうと、予期せぬことが起きる場合がありました。</li>
+  <li>公開目的でモジュールを作る場合、全てのマジック変数についてとても注意深くドキュメント化する必要がありました。クラスが必要としているデータを確認できる標準的な場所がありませんでした。</li>
+  <li>非常に多くの利用者が、めったに利用されず、利用者をとにかく混乱させるような失敗をする傾向にあったノード継承を使って複雑なデータ階層の構築に挑戦するようになってしまいました。</li>
+</ul>
+
+<h2 id="example-ntp-again">Example: NTP (Again) ～ サンプル：NTP(再び)</h2>
+
+<p>それではNTPモジュールの話に戻りましょう。当初より複数サーバの設定をしたいとお伝えしていましたので、NTPモジュールははじめの一歩に最適です。まずはパラメータを追加します。</p>
+
+<div class="highlight"><pre><code class="ruby">    <span class="k">class</span> <span class="n">ntp</span> <span class="p">(</span><span class="vg">$servers</span> <span class="o">=</span> <span class="k">undef</span><span class="p">)</span> <span class="p">{</span>
+      <span class="o">.</span><span class="n">.</span><span class="o">.</span>
+</code></pre>
+</div>
+
+<p>次に、テンプレートが使っている<code>$_servers</code>変数の設定方法を変更します。</p>
+
+<div class="highlight"><pre><code class="ruby">      <span class="k">if</span> <span class="vg">$servers</span> <span class="o">==</span> <span class="k">undef</span> <span class="p">{</span>
+        <span class="vg">$_servers</span> <span class="o">=</span> <span class="vg">$default_servers</span>
+      <span class="p">}</span>
+      <span class="k">else</span> <span class="p">{</span>
+        <span class="vg">$_servers</span> <span class="o">=</span> <span class="vg">$servers</span>
+      <span class="p">}</span>
+</code></pre>
+</div>
+
+<p>もしNTPサーバの情報を格納した配列を指定できるならそれを使いますが、そうでなければデフォルト値を使います。</p>
+
+<p>そして・・・いや、これで全部でした。もしクラスを属性無しで宣言するなら、以下のようになります。</p>
+
+<div class="highlight"><pre><code class="ruby">    <span class="kp">include</span> <span class="n">ntp</span>
+</code></pre>
+</div>
+
+<p>これは以前と同じ動作をします。もし<code>servers</code>属性にNTPサーバの情報を格納した配列（<code>iburst</code>と<code>dynamic</code>文は任意で付加）を指定して宣言するなら、以下のようになります。</p>
+
+<div class="highlight"><pre><code class="ruby">    <span class="k">class</span> <span class="p">{</span><span class="s1">&#39;ntp&#39;</span><span class="p">:</span>
+      <span class="n">servers</span> <span class="o">=&gt;</span> <span class="o">[</span> <span class="s2">&quot;ntp1.example.com dynamic&quot;</span><span class="p">,</span> <span class="s2">&quot;ntp2.example.com dynamic&quot;</span><span class="p">,</span> <span class="o">]</span><span class="p">,</span>
+    <span class="p">}</span>
+</code></pre>
+</div>
+
+<p>これはntp.confファイルにあるデフォルトサーバの情報を上書きします。</p>
+
+<p>少しだけ注意すべきトリックがあります。 変数もしくはパラメータとして<code>undef</code>を設定するのはおかしく見えるかも知れませんが、パラメータ指定無しの時はデフォルトのサーバを取得したいので、あえてそうしています（パラメータは明示的なデフォルト値がないものは省略できないことを思い出してください）。（訳注：これはパラメータのデフォルト値を<code>undef</code>とし、パラメータが<code>undef</code>の場合の処理を<code>if</code>文で定義することで、パラメータの指定を省略できるようにするテクニックです）</p>
+
+<p>また<code>$_servers</code>変数の役割を覚えていますか。Puppet言語は同一のスコープ内で<code>$servers</code>変数への再割り当てを許しません。もしデフォルト値がOSに関係なく同じならば、単にパラメータのデフォルト値として利用できましたが、OS毎のデフォルト値を融通する、という追加ロジックは、変数のコピーを作成することを意味しています。（訳注：Puppet言語は同一スコープの一度代入した変数に対して再度の代入はできないため、別の変数名<code>$_servers</code>を使うことで制限を回避しています）</p>
+
+<p>NTPモジュールの作業をしていた時、他には何をパラメータにできましたか？さて、NTPデーモンが他ノードのサーバから使われるのを防ぎたい時がある、としましょう。あるいはNTPをインストールして設定したいが、デーモンの稼働は保持しないとしましょう。これらをクラスの追加パラメータとしてマニフェストやテンプレートから利用するように変更することができました。</p>
+<p>これら全ての変更はフリーのpuppetlabs/ntpモジュールでの判断をベースにしています。<a href="https://github.com/puppetlabs/puppetlabs-ntp">このモジュールのソースを閲覧(英文)</a>して、どうやってこれらの追加パラメータがどのようにマニフェストやテンプレートの中で展開しているか見る事ができます。</p>
+<h2 id="module-documentation">Module Documentation ～ モジュールのドキュメント</h2>
+
+<p>この時点でかなり機能的なNTPモジュールを手に入れました。あと不足しているのは幾つかのドキュメントだけです。</p>
+
+<div class="highlight"><pre><code class="ruby">    <span class="c1"># = Class: ntp</span>
+    <span class="c1">#</span>
+    <span class="c1"># This class installs/configures/manages NTP. It can optionally disable NTP</span>
+    <span class="c1"># on virtual machines. Only supported on Debian-derived and Red Hat-derived OSes.</span>
+    <span class="c1">#</span>
+    <span class="c1"># == Parameters:</span>
+    <span class="c1">#</span>
+    <span class="c1"># $servers:: An array of NTP servers, with or without +iburst+ and</span>
+    <span class="c1">#            +dynamic+ statements appended. Defaults to the OS&#39;s defaults.</span>
+    <span class="c1"># $enable::  Whether to start the NTP service on boot. Defaults to true. Valid</span>
+    <span class="c1">#            values: true and false.</span>
+    <span class="c1"># $ensure::  Whether to run the NTP service. Defaults to running. Valid values:</span>
+    <span class="c1">#            running and stopped.</span>
+    <span class="c1">#</span>
+    <span class="c1"># == Requires:</span>
+    <span class="c1">#</span>
+    <span class="c1"># Nothing.</span>
+    <span class="c1">#</span>
+    <span class="c1"># == Sample Usage:</span>
+    <span class="c1">#</span>
+    <span class="c1">#   class {&#39;ntp&#39;:</span>
+    <span class="c1">#     servers =&gt; [ &quot;ntp1.example.com dynamic&quot;,</span>
+    <span class="c1">#                  &quot;ntp2.example.com dynamic&quot;, ],</span>
+    <span class="c1">#   }</span>
+    <span class="c1">#   class {&#39;ntp&#39;:</span>
+    <span class="c1">#     enable =&gt; false,</span>
+    <span class="c1">#     ensure =&gt; stopped,</span>
+    <span class="c1">#   }</span>
+    <span class="c1">#</span>
+    <span class="k">class</span> <span class="n">ntp</span> <span class="p">(</span><span class="vg">$servers</span> <span class="o">=</span> <span class="k">undef</span><span class="p">,</span> <span class="vg">$enable</span> <span class="o">=</span> <span class="kp">true</span><span class="p">,</span> <span class="vg">$ensure</span> <span class="o">=</span> <span class="n">running</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">case</span> <span class="vg">$operatingsystem</span> <span class="p">{</span> <span class="o">.</span><span class="n">.</span><span class="o">.</span>
+      <span class="o">.</span><span class="n">.</span><span class="o">.</span>
+</code></pre>
+</div>
+
+<p>トルストイのような文豪になる必要はありませんが、少なくともパラメータがどんなもので、どういったデータを受け取るのかは記述すべきです。将来の自分から感謝されるでしょう。<a href="http://links.puppetlabs.com/rdoc_markup">RDoc(英文)</a>フォーマットでドキュメントを書いて、クラス定義の最初に対応したコメントブロックに置けば、全てのモジュール情報を持ったRDoc形式で閲覧できるサイトを自動的に生成できます。実際に試してみましょう。</p>
+
+<pre><code># puppet doc --mode rdoc --outputdir ~/moduledocs --modulepath /etc/puppetlabs/puppet/modules
+</code></pre>
+
+<p>（<code>~/moduledocs</code>ディレクトリをHTTP アクセス可能な場所にアップロードするか、SFTP 経由でディレクトリごと持ってきてください）</p>
+
+<h2 id="next">Next ～ 次に</h2>
+<p><strong>次の演習:</strong></p>
+
+<p>クラスにパラメータを渡して挙動を変える事ができるようになりました。すばらしい!しかしクラスはまだ常にシングルトンです。1つ以上の宣言ができないので、2つの異なる振る舞いを同時に宣言することができませんが、次第にそうしたくなってくるでしょう！それはWebサーバ用の仮想ホストの定義、複製されたGitリポジトリ、グループに紐付けられたユーザアカウントをの管理、SSH鍵、ホームディレクトリのコンテンツ、sudoersのエントリ、<code>.bashrc</code>、<code>.vimrc</code>などのリソースの集合を持っていた場合どうなるでしょうか。1つ以上のGitリポジトリを管理をしたい場合や、ユーザアカウントや単一マシン上の仮想ホストではどうなるでしょうか。</p>
+<p><a href="./definedtypes_ja.html">リソース定義型</a>を使ってみたくなりましたね。</p>
+<p><strong>Off-Road:</strong></p>
+
+<p>HieraデータとPuppet Enterpriseコンソールを使ってクラスをどのように設定するかを見た事があるでしょう。あなた自身のシステムにモジュールを入手し設定してみませんか?<a href="http://info.puppetlabs.com/download-pe.html">Puppet Enterprise for freeをダウンロード</a>して、<a href="http://docs.puppetlabs.com/pe/latest/quick_start.html">the quick start guide</a>に従いインストール済の小さな環境を入手します。そしてPuppet Forgeからモジュール(<a href="http://forge.puppetlabs.com/puppetlabs/ntp">puppetlabs/ntp</a>あたり?)をインストールして、コンソールからノードにモジュールをアサインしてみましょう。<a href="http://docs.puppetlabs.com/pe/latest/console_classes_groups.html#editing-class-parameters-on-nodes">パラメータを追加</a>するのをお忘れなく。</p>
+
+<!-- to here -->

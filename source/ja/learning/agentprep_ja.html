@@ -1,0 +1,207 @@
+---
+layout: default
+title: "Preparing an Agent VM ～ Agent用VMの準備"
+canonical: "/ja/learning/agentprep_ja.html"
+toc: false
+---
+
+<!-- copy from here -->
+
+<div class="translation-notes">
+<p>訳注：このドキュメントは以下のURLにある&quot;Learning Puppet&quot;を日本語訳したものです。<br />
+<a href="http://docs.puppetlabs.com/learning/agentprep.html">http://docs.puppetlabs.com/learning/agentprep.html</a></p>
+</div>
+
+<nav class="in-page" id="page-nav">
+<ol class="toc">
+  <li class="toc-lv2"><a href="#step-0-get-the-latest-vm">Step 0: Get the Latest VM ～ ステップ0：最新のVMをゲットする</a>
+    <ol class="toc">
+   <li class="toc-lv3"><a href="#download-the-latest-vm">Download the Latest VM ～ 最新のVMをダウンロードする</a></li>
+   <li class="toc-lv3"><a href="#or-upgrade-pe-on-your-existing-vm">Or: Upgrade PE on Your Existing VM ～ もしくは既存のPuppet EnterpriseのVMをアップグレードする</a></li>
+</ol></li>
+  <li class="toc-lv2"><a href="#step-1-duplicate-your-existing-vm">Step 1: Duplicate Your Existing VM ～ ステップ1：既存のVMを複製する</a>
+    <ol class="toc">
+   <li class="toc-lv3"><a href="#with-vmware-fusion">With VMware Fusion ～ VMware Fusionの場合</a></li>
+   <li class="toc-lv3"><a href="#with-virtualbox">With VirtualBox　～ VirtualBoxの場合</a></li>
+</ol></li>
+  <li class="toc-lv2"><a href="#step-2-reconfigure-the-new-node-with-puppet">Step 2: Reconfigure the New Node With Puppet ～ ステップ2：新しいノードにPuppetを再構成する</a></li>
+  <li class="toc-lv2"><a href="#step-3-make-sure-the-vms-can-communicate">Step 3: Make Sure the VMs Can Communicate ～ ステップ3：VMが通信できることを確認する</a>
+    <ol class="toc">
+   <li class="toc-lv3"><a href="#ensure-the-vms-can-reach-each-other-by-ip">Ensure the VMs Can Reach Each Other by IP ～ VM同士がIPアドレスでアクセスできるようにする</a></li>
+   <li class="toc-lv3"><a href="#ensure-the-vms-can-reach-the-master-by-name">Ensure the VMs Can Reach the Master by Name ～VMがMasterノードに名前でアクセスできるようにする</a> </li>
+   <li class="toc-lv3"><a href="#ensure-the-firewalls-are-down">Ensure the Firewalls are Down ～ ファイアウォールを止める</a></li>
+   <li class="toc-lv3"><a href="#ensure-both-vms-know-the-time">Ensure Both VMs Know the Time ～ VMの時刻を同期させる</a></li>
+</ol></li>
+  <li class="toc-lv2"><a href="#next">Next ～ 次に</a></li>
+</ol></nav>
+<p>ここからはmasterノードと１つ以上のagentノードを対象とした演習になります。このセクションのほとんどで１つ以上のノードでの操作が必要になります。ここで２つのノードを設定しましょう。そうすればこの後の章の助けになります。</p>
+
+<h2 id="step-0-get-the-latest-vm">Step 0: Get the Latest VM ～ 最新のVMをゲットする</h2>
+
+<p>最初のLerning Puppet VMを配布した時からかなり変更がありました。手順のシンプルさを保つため、システム全てがPuppet Enterprise 2.0以降で動作していると想定します。Puppet Enterpriseのバージョンは以下のコマンドラインでチェックできます：</p>
+
+<pre><code>[root@learn ~]# puppet --version
+2.7.9 (Puppet Enterprise 2.0.1)
+</code></pre>
+
+<p>もしアップデート済でしたら以下の手順は<a href="#step-1-duplicate-your-existing-vm">スキップ</a>してください。もしこれよりも古いバージョンを動かしているのでしたら以下の手順を実施してください：</p>
+
+<h3 id="download-the-latest-vm">Download the Latest VM ～ 最新のVMをダウンロードする</h3>
+
+<p><a href="http://info.puppetlabs.com/learning-puppet-vm">最新版のLearning Puppet VMはこちら</a>にあります。相変わらず500MBくらいありますが、どなたでも無料でダウンロード可能です。</p>
+
+<p>VMを入れ替える前に、マニフェストやモジュールを抜き出しておいてください（マニフェストやモジュールを取り出し、どこかに移して戻してすぐに使えるというのもPuppet全体の特徴です）。</p>
+
+<h3 id="or-upgrade-pe-on-your-existing-vm">Or: Upgrade PE on Your Existing VM ～ もしくは既存のPuppet EnterpriseのVMをアップグレードする</h3>
+
+<p>もし新しいVMを丸ごとダウンロードできないのでしたら以下のようにできます：</p>
+
+<ul>
+  <li><a href="http://info.puppetlabs.com/download-pe.html">最新版のPuppet Enterpriseをダウンロード</a>してください。「EL 5 for i386 installer」を選択してください。おおよそ50MBあります。</li>
+  <li>インストーラのtarballをお使いのVMにコピーし、<a href="http://docs.puppetlabs.com/pe/latest/install_upgrading.html">Puppet Enterprise 2ユーザーズガイドに従ってアップグレード(英文)</a>してください。</li>
+</ul>
+
+<p>特にPuppet Enterprise 1.0か1.1からアップグレードするなら、単に現行版のVMをダウンロードするよりも進化しています。またプロセスを明確にするためドキュメント化を試みています。master/consoleを組み合わせたサーバのアップグレード手順に従ってください。</p>
+
+<h2 id="step-1-duplicate-your-existing-vm">Step 1: Duplicate Your Existing VM ～ 既存のVMを複製する</h2>
+
+<p>次のステップのためにagent VMを作成する方法はいくつもありますが、一番早くて簡単な方法は、単純に既存のVMをコピーして再構成する方法です（再構成は難しいかも知れませんが、そのためのモジュールが用意されています）。</p>
+
+<p>以下にVMware FusiionとVirtualBox上でのVMコピー手順を示します。</p>
+
+<h3 id="with-vmware-fusion">With VMware Fusion ～ VMware Fusionの場合</h3>
+
+<p><em>（メモ. VMware Workstationについて全手順は示しませんが、手順は大体同じです）</em></p>
+
+<ol>
+  <li>
+    <p>もしまだダウンロードしたままのVMのZIPアーカイブがあるのであれば、展開して新規のコピーを作成します。</p>
+
+    <p>そうでなければrootとしてログインし、<code>shutdown -h now</code>を実行してVMをシャットダウンします。システムが停止したら、フォルダかVMXファイルを含むフォルダかバンドルを選択します。Virtual Machineライブラリウィンドウでエントリを右クリックして“Show in Finder”を選択し、ディレクトリ全体を複製することができます。</p>
+
+    <p><img src="./images/dupe_vmware_show.png" alt="Show in finder menu item" /> <img src="./images/dupe_vmware_duplicate.png" alt="Duplicate folder menu item" /></p>
+  </li>
+  <li>
+    <p>複製したファイル（再度展開した、もしくは既存を複製したかどうかは問わず）はVMXファイルを含んでいますので、これをFusionのVirtual Machineライブラリウィンドウ上に<strong>ドラッグ＆ドロップ</strong>します。もしウィンドウが表示されていなければ、Fusionの“Window”メニューから表示できます。VMのメモリ設定を変更するため、VMを自動起動しないことが重要です。（起動してしまったとしても、後からいつでもメモリ容量を変更できます）。</p>
+  </li>
+  <li>
+    <p>FusionにVMが登録されているのでしたら、エントリを右クリックすることでライブラリウィンドウを開けるので、そこで“Setting”メニューを選択して消費するメモリ量を変更できます（設定ウィンドウの“Processors & RAM”セクションを使用してください）。オリジナル(puppet Master)のVMは少なくとも512MBのメモリを必要としますが、Agentなら256MBまで安全に落とせます。</p>
+    <p>ネットワークの設定はデフォルトでNATモードになっていますが変更すべきではありません。これはホストのネットワーク環境を利用してVMがインターネットやホスト、VM同士でのアクセス可能にします。もし他のネットワークにあるノードにVMがアクセスする必要があるのでしたら、ネットワークはブリッジモードにしてください。</p>
+  </li>
+  <li>
+    <p>VMが最初に起動した際にはFusionが移動するかコピーするか尋ねてくるので、コピーを選択してください。</p>
+  </li>
+</ol>
+
+<h3 id="with-virtualbox">With VirtualBox ～ VirtualBoxの場合</h3>
+
+<ol>
+  <li>
+    <p>もしオリジナルのOVFファイルがまだあるなら、VirtualBoxに新規VMとして再インポートできます。</p>
+
+    <p>そうでなければrootとしてログインし、<code>shutdown -h now</code>を実行してVMをシャットダウンします。システムが停止したら、VirtualBox Managerウィンドウ上のVMエントリを右クリックし、“Clone”を選択してください。ウィザードが表示されます。</p>
+
+    <p><img src="./images/dupe_vbox_clone.png" alt="Clone menu item" /></p>
+
+    <ol>
+      <li>
+        <p>最初のダイアログではVMにつける新しい名前を選択します。“Reinitialize the MAC address of all network cards”のチェックボックスにチェックがあることを確認してください。</p>
+
+        <p><img src="./images/dupe_vbox_reinit.png" alt="Reinitialize checkbox" /></p>
+      </li>
+      <li>
+        <p>次のダイアログでは“Full Clone”を選択します。</p>
+
+        <p><img src="./images/dupe_vbox_fullclone.png" alt="Full clone radio button" /></p>
+      </li>
+    </ol>
+  </li>
+  <li>
+    <p>VMの準備ができたら、<a href="http://docs.puppetlabs.com/learning/index.html#with-virtualbox">ネットワークアダプタの設定を“Bridged Adapter”モード</a>にします。そうしないとPuppet Masterと通信ができないかも知れません。（“bridged mode”の代わりに2つのNICを持たせる設定も可能ですが、これは上級者向けなので多くのユーザにとってはすべきでない設定です）。</p>
+  </li>
+  <li>
+    <p>“System”設定をクリックし、メモリ容量をVMが消費している所まで下げます。Agentノードはわずか256MBのメモリで十分でしょう。</p>
+  </li>
+</ol>
+
+<h2 id="step-2-reconfigure-the-new-node-with-puppet">Step 2: Reconfigure the New Node With Puppet ～ 新しいノードにPuppetを再構成する</h2>
+
+<p>Agent VMに<a href="http://docs.puppetlabs.com/files/learningpuppet.tar.gz">このleaningpuppetモジュール</a>をインストールし、<code>learningpuppet::makeagent</code>クラスを適用します。</p>
+
+<pre><code># wget http://docs.puppetlabs.com/learning/files/learningpuppet.tar.gz
+# tar -xzf learningpuppet.tar.gz
+# mv learningpuppet /etc/puppetlabs/puppet/modules/
+# puppet apply -e "class {'learningpuppet::makeagent':}"
+</code></pre>
+
+<p>もしクラスに<code>newname</code>属性を指定しなければ、デフォルトで<code>agent1</code>を希望された事になります。</p>
+
+<h2 id="step-3-make-sure-the-vms-can-communicate">Step 3: Make Sure the VMs Can Communicate ～ VM同士が通信できることを確認する</h2>
+
+<p>Puppetが正しく動作するためには２つのVMが以下を満たさなくてはなりません：</p>
+
+<ul>
+  <li>VM同士がIPアドレスでアクセスできること</li>
+  <li>masterノードに名前でアクセスできること</li>
+  <li>VMのファイアウォールがオフになっていること</li>
+  <li>時計が同期していること</li>
+</ul>
+
+<h3 id="ensure-the-vms-can-reach-each-other-by-ip">Ensure the VMs Can Reach Each Other by IP ～ VM同士がIPアドレスでアクセスできるようにする</h3>
+
+<h4 id="with-vmware-fusion-1">VMware Fusionの場合</h4>
+
+<p>VMは<code>eth0</code>のIPアドレスを介して通信します。それぞれのシステムで<code>facter ipaddress_eth0</code>を実行して確認し、他のVMのIPアドレスに対してpingしてみます。</p>
+
+<p>もしVMが通信不能であれば、それぞれのVMの設定を見直してください：</p>
+
+<ul>
+  <li>ネットワーキングモードはNATかBridgeのどちらかにします。</li>
+  <li>両方のVMは<em>同じ</em>ネットワーキングモードでなければなりません。</li>
+</ul>
+
+<h4 id="with-virtualbox-1">VirtualBoxの場合</h4>
+
+<p>もし両方のVMが単一のNICを持っていてブリッジモード（推奨）で動作しているなら、VM間は各々の<code>eth0</code>のIPアドレスを使用して通信します。facterを動作させて各々の<code>facter ipaddress_eth0</code>を取得できたら、他のVMのIPアドレスに対してpingしてみましょう。</p>
+
+<p>もしVMで２つのNICを使うなら設定を確認してください。VMは“Host Only”モードに設定されたアダプタを介して通信します。<code>facter ipaddress_&lt;ADAPTER&gt;</code>でIPアドレスが解ります。</p>
+
+<h3 id="ensure-the-vms-can-reach-the-master-by-name">Ensure the VMs Can Reach the Master by Name ～ VMがmasterノードに名前でアクセスできるようにする</h3>
+
+<p>双方のVMの<code>/etc/hosts</code>ファイルに以下の行を記述してください：</p>
+
+<pre><code>172.16.158.151  learn.localdomain   learn puppet.localdomain puppet # This host is required for Puppet's name resolution to work correctly.
+</code></pre>
+
+<p>IPアドレスは前のステップで取得したmasterノードのIPアドレスです。</p>
+
+<p>修正が終わったら、双方のVMがFQDNとエイリアスの両方でpingできることを確認します。</p>
+
+<pre><code>[root@agent1]# ping learn.localdomain
+[root@agent1]# ping puppet
+</code></pre>
+
+<p>もし動作しなければ<code>/etc/hosts</code>ファイルで重複している定義がないか確認します。masterノードのホスト名が記述された行は唯一でなければなりません。もし<code>/etc/hosts</code>の設定に誤りがなければ、DNSキャッシュをクリアしてみてください。</p>
+
+<pre><code># nscd --invalidate=hosts
+</code></pre>
+
+<h3 id="ensure-the-firewalls-are-down">Ensure the Firewalls are Down ～ ファイアウォールを止める</h3>
+
+<p>VMを公開する際にiptablesはオフにしてありますが、オフであることを確認するのは意味があります：</p>
+
+<pre><code># service iptables status
+Firewall is stopped.
+</code></pre>
+
+<p>（実際の環境ではファイアウォールを無効にするのではなくPuppetに関するルールを追加しましょう）</p>
+<h3 id="ensure-both-vms-know-the-time">Ensure Both VMs Know the Time ～ VMの時刻を同期させる</h3>
+
+<p><code>date -u</code>を双方のVMで実行し、出力結果を比較してください。時間差はおおよそ１分以内とすべきです。</p>
+
+<h2 id="next">Next ～ 次に</h2>
+
+<p>これでVMを使う準備は整いました。このまま<a href="./agent_master_basic_ja.html">agent/masterのワークフロー</a>を読んでください。</p>
+
+
+<!-- to here -->

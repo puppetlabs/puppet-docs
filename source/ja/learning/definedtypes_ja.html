@@ -1,0 +1,332 @@
+---
+layout: default
+title: "Defined Types ～ 定義型"
+canonical: "/ja/learning/definedtypes_ja.html"
+toc: false
+---
+
+<!-- copy from here -->
+
+<div class="translation-notes">
+  <p>訳注：このドキュメントは以下のURLにある&quot;Learning Puppet&quot;を日本語訳したものです。<br />
+    <a href="http://docs.puppetlabs.com/learning/definedtypes.html">http://docs.puppetlabs.com/learning/definedtypes.html</a></p>
+</div>
+
+
+
+              <nav class="in-page" id="page-nav">
+<ol class="toc">
+  <li class="toc-lv2"><a href="#beyond-singletons">Beyond Singletons ～ シングルトンを超えて</a></li>
+  <li class="toc-lv2"><a href="#defining-a-type">Defining a Type ～ 型の定義</a></li>
+  <li class="toc-lv2"><a href="#special-little-flowers">Special Little Flowers ～ 取り扱いは丁寧に</a></li>
+  <li class="toc-lv2"><a href="#defined-types-in-modules">Defined Types in Modules ～ モジュール内での型定義</a>
+    <ol class="toc">
+   <li class="toc-lv3"><a href="#resource-references-and-namespaced-types">Resource References and Namespaced Types ～ リソース参照と名前空間で分割された型</a></li>
+</ol></li>
+  <li class="toc-lv2"><a href="#an-example-apache-vhosts">An Example: Apache Vhosts ～ 例：Apache仮想ホスト</a></li>
+  <li class="toc-lv2"><a href="#exercises">Exercises ～ 演習</a></li>
+  <li class="toc-lv2"><a href="#one-last-tip">One Last Tip ～ 最終ヒント</a></li>
+  <li class="toc-lv2"><a href="#next">Next ～ 次に</a></li>
+</ol></nav>
+
+<h2 id="beyond-singletons">Beyond Singletons ～ シングルトンを越えて</h2>
+
+<p>パラメータを受け取って、個々のApache仮想ホストを設定するPuppetコードを書いたとします。そして、クラスで実装します。それは正しく動作しますが、クラスはシングルトンなのでPuppetは複数の仮想ホストの宣言をさせてくれません。</p>
+
+<p>リソース型と似たものが欲しいはずです。同じリソースは2回宣言できませんが、fileやuserは好きなだけ宣言できます。</p>
+
+<div class="highlight"><pre><code class="ruby">    <span class="n">apache</span><span class="o">::</span><span class="n">vhost</span> <span class="p">{</span><span class="s1">&#39;users.example.com&#39;</span><span class="p">:</span>
+      <span class="n">port</span>    <span class="o">=&gt;</span> <span class="mi">80</span><span class="p">,</span>
+      <span class="n">docroot</span> <span class="o">=&gt;</span> <span class="s1">&#39;/var/www/personal&#39;</span><span class="p">,</span>
+      <span class="n">options</span> <span class="o">=&gt;</span> <span class="s1">&#39;Indexes MultiViews&#39;</span><span class="p">,</span>
+    <span class="p">}</span>
+</code></pre>
+</div>
+
+<p>これは簡単であることがわかります。GitリポジトリやApache仮想ホストの設定のように、繰り返し可能な設定のかたまりを形成する時に<strong>定義されたリソース型</strong>を使うべきです。</p>
+
+<p>定義型は普通のリソースのように振る舞い、同じ方法で宣言できますが、それ自体は他のリソースで構成されています。</p>
+
+<h2 id="defining-a-type">Defining a Type ～ 型の定義</h2>
+
+<p><strong>defineキーワードを使うと型を定義できます</strong>。この定義はほぼパラメータ付きのクラスに見えます。以下、型定義に必要な項目です。</p>
+
+<ul>
+  <li><code>define</code>キーワード</li>
+  <li>型の<strong>名前 </strong></li>
+  <li> <strong>パラメータ </strong>のリスト（名前の後ろに括弧で囲う）</li>
+    <ul>
+      <li>
+        <p>定義型は常に自動的に特別な<code>$title</code>パラメータを取得します。この値は常にリソースインスタンスのタイトルとして設定されます。（<code>$name</code>パラメータも同じように振る舞いますので、<code>$title</code>の別名として扱えます）。</p>
+        <p>クラスも<code>$title</code>パラメータと<code>$name</code>パラメータも同様に取得しますが、クラスでは1つの名前しか持たないのでそれほど有用ではありません。</p>
+      </li>
+    </ul>
+  </li>
+  <li><strong>Puppetコードのブロック</strong></li>
+</ul>
+
+<p>以下のようになります：</p>
+
+<div class="highlight"><pre><code class="ruby">    <span class="n">define</span> <span class="n">planfile</span> <span class="p">(</span><span class="vg">$user</span> <span class="o">=</span> <span class="vg">$title</span><span class="p">,</span> <span class="vg">$content</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">file</span> <span class="p">{</span><span class="s2">&quot;/home/${user}/.plan&quot;</span><span class="p">:</span>
+        <span class="k">ensure</span>  <span class="o">=&gt;</span> <span class="n">file</span><span class="p">,</span>
+        <span class="n">content</span> <span class="o">=&gt;</span> <span class="vg">$content</span><span class="p">,</span>
+        <span class="n">mode</span>    <span class="o">=&gt;</span> <span class="mo">0644</span><span class="p">,</span>
+        <span class="n">owner</span>   <span class="o">=&gt;</span> <span class="vg">$user</span><span class="p">,</span>
+        <span class="nb">require</span> <span class="o">=&gt;</span> <span class="no">User</span><span class="o">[</span><span class="vg">$user</span><span class="o">]</span><span class="p">,</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="n">user</span> <span class="p">{</span><span class="s1">&#39;nick&#39;</span><span class="p">:</span>
+      <span class="k">ensure</span>     <span class="o">=&gt;</span> <span class="n">present</span><span class="p">,</span>
+      <span class="n">managehome</span> <span class="o">=&gt;</span> <span class="kp">true</span><span class="p">,</span>
+      <span class="n">uid</span>        <span class="o">=&gt;</span> <span class="mi">517</span><span class="p">,</span>
+    <span class="p">}</span>
+    <span class="n">planfile</span> <span class="p">{</span><span class="s1">&#39;nick&#39;</span><span class="p">:</span>
+      <span class="n">content</span> <span class="o">=&gt;</span> <span class="s2">&quot;Working on new Learning Puppet chapters. Tomorrow: upgrading the LP virtual machine.&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+</code></pre>
+</div>
+
+<p>このようにとても簡単です（実際にこれは基本的にマクロのようなものです）。これは2つのパラメータを持っており、そのうち1つはオプション（デフォルト値はリソースのタイトル）で、内容は1つのfileリソースを宣言しているだけです。</p>
+
+<h2 id="special-little-flowers">Special Little Flowers ～ 取り扱いは丁寧に</h2>
+
+<p>とても簡単ですね。クラス定義にそっくりです。<strong>違い</strong>は1つの追加要求があるくらいです。ユーザはいくつもの定義型のインスタンスを宣言するでしょうから、<strong>同じリソースを複数回宣言しない</strong>よう注意して実装する必要があります。</p>
+
+<p>最初に出てきた定義を少しだけ変えたバージョンで考えてみましょう：</p>
+
+<div class="highlight"><pre><code class="ruby">    <span class="n">define</span> <span class="n">planfile</span> <span class="p">(</span><span class="vg">$user</span> <span class="o">=</span> <span class="vg">$title</span><span class="p">,</span> <span class="vg">$content</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">file</span> <span class="p">{</span><span class="s1">&#39;.plan&#39;</span><span class="p">:</span>
+        <span class="n">path</span>    <span class="o">=&gt;</span> <span class="s2">&quot;/home/${user}/.plan&quot;</span><span class="p">,</span>
+        <span class="k">ensure</span>  <span class="o">=&gt;</span> <span class="n">file</span><span class="p">,</span>
+        <span class="n">content</span> <span class="o">=&gt;</span> <span class="vg">$content</span><span class="p">,</span>
+        <span class="n">mode</span>    <span class="o">=&gt;</span> <span class="mo">0644</span><span class="p">,</span>
+        <span class="n">owner</span>   <span class="o">=&gt;</span> <span class="vg">$user</span><span class="p">,</span>
+        <span class="nb">require</span> <span class="o">=&gt;</span> <span class="no">User</span><span class="o">[</span><span class="vg">$user</span><span class="o">]</span><span class="p">,</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+</code></pre>
+</div>
+
+<p>fileリソースのタイトルが定義用のパラメータのどれとも結びついていないことを確かめてください。</p>
+
+<div class="highlight"><pre><code class="ruby">    <span class="n">planfile</span> <span class="p">{</span><span class="s1">&#39;nick&#39;</span><span class="p">:</span>
+      <span class="n">content</span> <span class="o">=&gt;</span> <span class="s2">&quot;Working on new Learning Puppet chapters. Tomorrow: upgrading the LP virtual machine.&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="n">planfile</span> <span class="p">{</span><span class="s1">&#39;chris&#39;</span><span class="p">:</span>
+      <span class="n">content</span> <span class="o">=&gt;</span> <span class="s2">&quot;Resurrecting a very dead laptop.&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+</code></pre>
+</div>
+
+<pre><code># puppet apply planfiles.pp
+Duplicate definition: File[.plan] is already defined in file /root/manifests/planfile.pp at line 9; cannot redefine at /root/manifests/planfile.pp:9 on node puppet.localdomain
+</code></pre>
+
+<p>うーん。でもこれのどこが悪いのかわかりますね。planfileのインスタンス内にあるリソースは毎回宣言されますので、<code>File['.plan']</code>も毎回宣言される事になり、Puppetは同じリソースを複数回宣言しようとしたとみなしてコンパイルを停止してしまいます。</p>
+
+<p><img src="./images/defined_type_collision.png" alt="Tragedy vs. comedy - a diagram showing a resource being declared by two defined type instances, and a diagram showing unique resources being declared by each instance." /></p>
+
+<p>これを避けるため、定義の中にある<strong>全てのリソース</strong>中の<strong>タイトルと名前</strong>（もしくはnamevar）<strong>双方</strong>が、なんとかして定義型の<strong>ユニークなパラメータ</strong>（大抵の場合、<code>$title</code>）から派生されていることを確かめなければなりません。（例えば、1人以上のユーザが同じ.planテキストを書くかも知れませんので、<code>planfile</code>リソースの<code>$content</code>からタイトルを派生させることはできません。）</p>
+
+<p>もし任意の定義型のインスタンスが動作するために存在しなければならないシングルトンリソースであれば、以下のようにすべきです：</p>
+
+<ul>
+  <li>そのリソースをクラスに入れます</li>
+  <li>型定義の中で<code>include</code>を使ってクラスを宣言します</li>
+  <li>
+    <p>型定義の内部でもまた、以下のような方法で順序依存性を作ります：</p>
+
+    <pre><code>  # Make sure compilation will fail if 'myclass' doesn't get declared:
+  Class['myclass'] -&gt; Apache::Vhost["$title"]
+</code></pre>
+
+    <p>一般的に、リソース内部から直接要求するよりも、クラスレベルで順序関係を作るほうがよいです。</p>
+  </li>
+</ul>
+
+<h2 id="defined-types-in-modules">Defined Types in Modules～モジュール内での型定義</h2>
+
+<p>定義型もクラスのように自動ロードされますので、マニフェストのどこででも使う事ができます。<a href="./modules1_ja.html#module-structure">クラスのように</a>それぞれの定義型はモジュールの<code>manifests/</code>ディレクトリで自分が所有するファイルに内包されるべきであり、名前空間と同じルールが適用されます（よって<code>apache::vhost</code>型についても<code>/etc/puppetlabs/puppet/modules/apache/manifests/vhost.pp</code>のような場所に移しましょう。また、もし<code>planfile<code></code></code>型も保持するなら、<code>/etc/puppetlabs/puppet/modules/planfile/manifests/init.pp</code>に入るでしょう）。</p>
+
+<h3 id="resource-references-and-namespaced-types">Resource References and Namespaced Types ～ リソース参照と名前空間で分割された型</h3>
+
+<p>既にお気づきかも知れませんが、定義型インスタンスへの<a href="http://docs.puppetlabs.com/puppet/latest/reference/lang_datatypes.html#resource-references">リソースを参照(英文)</a>する時は、型名の<strong><a href="http://docs.puppetlabs.com/puppet/latest/reference/lang_namespaces.html">名前空間セグメント(英文)</a>それぞれの名称の先頭を大文字</strong>にします。つまり<code>foo::bar::baz</code>型なら、参照する時は<code>Foo::Bar::Baz['mybaz']</code>となります。</p>
+
+<h2 id="an-example-apache-vhosts">An Example: Apache Vhosts～サンプル：Apache仮想ホスト</h2>
+
+<p>この.planマクロ自体は大したものでありませんが、それでも1分間くらいは本気で取り組んでみましょう。何章か前の<a href="./modules1_ja.html#exercises">Apacheモジュール</a>を覚えてますか?これを仮想ホストの宣言が簡単にできるように拡張しましょう。このサンプルコードは<a href="https://github.com/puppetlabs/puppetlabs-apache">puppetlabs-apacheモジュール</a>から借用したものです。</p>
+<div class="highlight"><pre><code class="ruby">    <span class="c1"># Definition: apache::vhost</span>
+    <span class="c1">#</span>
+    <span class="c1"># This class installs Apache Virtual Hosts</span>
+    <span class="c1">#</span>
+    <span class="c1"># Parameters:</span>
+    <span class="c1"># - The $port to configure the host on</span>
+    <span class="c1"># - The $docroot provides the DocumentationRoot variable</span>
+    <span class="c1"># - The $template option specifies whether to use the default template or override</span>
+    <span class="c1"># - The $priority of the site</span>
+    <span class="c1"># - The $serveraliases of the site</span>
+    <span class="c1"># - The $options for the given vhost</span>
+    <span class="c1"># - The $vhost_name for name based virtualhosting, defaulting to *</span>
+    <span class="c1">#</span>
+    <span class="c1"># Actions:</span>
+    <span class="c1"># - Install Apache Virtual Hosts</span>
+    <span class="c1">#</span>
+    <span class="c1"># Requires:</span>
+    <span class="c1"># - The apache class</span>
+    <span class="c1">#</span>
+    <span class="c1"># Sample Usage:</span>
+    <span class="c1">#  apache::vhost { &#39;site.name.fqdn&#39;:</span>
+    <span class="c1">#    priority =&gt; &#39;20&#39;,</span>
+    <span class="c1">#    port     =&gt; &#39;80&#39;,</span>
+    <span class="c1">#    docroot  =&gt; &#39;/path/to/docroot&#39;,</span>
+    <span class="c1">#  }</span>
+    <span class="c1">#</span>
+    <span class="n">define</span> <span class="n">apache</span><span class="o">::</span><span class="n">vhost</span><span class="p">(</span>
+        <span class="vg">$port</span><span class="p">,</span>
+        <span class="vg">$docroot</span><span class="p">,</span>
+        <span class="vg">$template</span>      <span class="o">=</span> <span class="s1">&#39;apache/vhost-default.conf.erb&#39;</span><span class="p">,</span>
+        <span class="vg">$priority</span>      <span class="o">=</span> <span class="s1">&#39;25&#39;</span><span class="p">,</span>
+        <span class="vg">$servername</span>    <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+        <span class="vg">$serveraliases</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+        <span class="vg">$options</span>       <span class="o">=</span> <span class="s2">&quot;Indexes FollowSymLinks MultiViews&quot;</span><span class="p">,</span>
+        <span class="vg">$vhost_name</span>    <span class="o">=</span> <span class="s1">&#39;*&#39;</span>
+      <span class="p">)</span> <span class="p">{</span>
+
+      <span class="kp">include</span> <span class="n">apache</span>
+
+      <span class="c1"># Below is a pre-2.6.5 idiom for having a parameter default to the title,</span>
+      <span class="c1"># but you could also just declare $servername = &quot;$title&quot; in the parameters</span>
+      <span class="c1"># list and change srvname to servername in the template.</span>
+
+      <span class="k">if</span> <span class="vg">$servername</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span> <span class="p">{</span>
+        <span class="vg">$srvname</span> <span class="o">=</span> <span class="vg">$title</span>
+      <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="vg">$srvname</span> <span class="o">=</span> <span class="vg">$servername</span>
+      <span class="p">}</span>
+      <span class="k">case</span> <span class="vg">$operatingsystem</span> <span class="p">{</span>
+        <span class="s1">&#39;centos&#39;</span><span class="p">,</span> <span class="s1">&#39;redhat&#39;</span><span class="p">,</span> <span class="s1">&#39;fedora&#39;</span><span class="p">:</span> <span class="p">{</span> <span class="vg">$vdir</span>   <span class="o">=</span> <span class="s1">&#39;/etc/httpd/conf.d&#39;</span>
+                                        <span class="vg">$logdir</span> <span class="o">=</span> <span class="s1">&#39;/var/log/httpd&#39;</span><span class="p">}</span>
+        <span class="s1">&#39;ubuntu&#39;</span><span class="p">,</span> <span class="s1">&#39;debian&#39;</span><span class="p">:</span>           <span class="p">{</span> <span class="vg">$vdir</span>   <span class="o">=</span> <span class="s1">&#39;/etc/apache2/sites-enabled&#39;</span>
+                                        <span class="vg">$logdir</span> <span class="o">=</span> <span class="s1">&#39;/var/log/apache2&#39;</span><span class="p">}</span>
+        <span class="n">default</span><span class="p">:</span>                      <span class="p">{</span> <span class="vg">$vdir</span>   <span class="o">=</span> <span class="s1">&#39;/etc/apache2/sites-enabled&#39;</span>
+                                        <span class="vg">$logdir</span> <span class="o">=</span> <span class="s1">&#39;/var/log/apache2&#39;</span><span class="p">}</span>
+      <span class="p">}</span>
+      <span class="n">file</span> <span class="p">{</span>
+        <span class="s2">&quot;${vdir}/${priority}-${name}.conf&quot;</span><span class="p">:</span>
+          <span class="n">content</span> <span class="o">=&gt;</span> <span class="n">template</span><span class="p">(</span><span class="vg">$template</span><span class="p">),</span>
+          <span class="n">owner</span>   <span class="o">=&gt;</span> <span class="s1">&#39;root&#39;</span><span class="p">,</span>
+          <span class="n">group</span>   <span class="o">=&gt;</span> <span class="s1">&#39;root&#39;</span><span class="p">,</span>
+          <span class="n">mode</span>    <span class="o">=&gt;</span> <span class="s1">&#39;755&#39;</span><span class="p">,</span>
+          <span class="nb">require</span> <span class="o">=&gt;</span> <span class="no">Package</span><span class="o">[</span><span class="s1">&#39;httpd&#39;</span><span class="o">]</span><span class="p">,</span>
+          <span class="n">notify</span>  <span class="o">=&gt;</span> <span class="no">Service</span><span class="o">[</span><span class="s1">&#39;httpd&#39;</span><span class="o">]</span><span class="p">,</span>
+      <span class="p">}</span>
+
+    <span class="p">}</span>
+</code></pre>
+</div>
+
+<div class="highlight"><pre><code class="erb"><span class="x">    # /etc/puppetlabs/modules/apache/templates/vhost-default.conf.erb</span>
+
+<span class="x">    # ************************************</span>
+<span class="x">    # Default template in module puppetlabs-apache</span>
+<span class="x">    # Managed by Puppet</span>
+<span class="x">    # ************************************</span>
+
+<span class="x">    Listen </span><span class="cp">&lt;%=</span> <span class="n">port</span> <span class="cp">%&gt;</span><span class="x"></span>
+<span class="x">    NameVirtualHost </span><span class="cp">&lt;%=</span> <span class="n">vhost_name</span> <span class="cp">%&gt;</span><span class="x">:</span><span class="cp">&lt;%=</span> <span class="n">port</span> <span class="cp">%&gt;</span><span class="x"></span>
+<span class="x">    &lt;VirtualHost </span><span class="cp">&lt;%=</span> <span class="n">vhost_name</span> <span class="cp">%&gt;</span><span class="x">:</span><span class="cp">&lt;%=</span> <span class="n">port</span> <span class="cp">%&gt;</span><span class="x">&gt;</span>
+<span class="x">      ServerName </span><span class="cp">&lt;%=</span> <span class="n">srvname</span> <span class="cp">%&gt;</span><span class="x"></span>
+<span class="x">    </span><span class="cp">&lt;%</span> <span class="k">if</span> <span class="n">serveraliases</span><span class="o">.</span><span class="n">is_a?</span> <span class="nb">Array</span> <span class="cp">-%&gt;</span><span class="x"></span>
+<span class="x">    </span><span class="cp">&lt;%</span> <span class="n">serveraliases</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="nb">name</span><span class="o">|</span> <span class="cp">-%&gt;&lt;%=</span> <span class="s2">&quot;  ServerAlias </span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="cp">%&gt;&lt;%</span> <span class="k">end</span> <span class="cp">-%&gt;</span><span class="x"></span>
+<span class="x">    </span><span class="cp">&lt;%</span> <span class="k">elsif</span> <span class="n">serveraliases</span> <span class="o">!=</span> <span class="s1">&#39;&#39;</span> <span class="cp">-%&gt;</span><span class="x"></span>
+<span class="x">    </span><span class="cp">&lt;%=</span> <span class="s2">&quot;  ServerAlias </span><span class="si">#{</span><span class="n">serveraliases</span><span class="si">}</span><span class="s2">&quot;</span> <span class="cp">-%&gt;</span><span class="x"></span>
+<span class="x">    </span><span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">-%&gt;</span><span class="x"></span>
+<span class="x">      DocumentRoot </span><span class="cp">&lt;%=</span> <span class="n">docroot</span> <span class="cp">%&gt;</span><span class="x"></span>
+<span class="x">      &lt;Directory </span><span class="cp">&lt;%=</span> <span class="n">docroot</span> <span class="cp">%&gt;</span><span class="x">&gt;</span>
+<span class="x">        Options </span><span class="cp">&lt;%=</span> <span class="n">options</span> <span class="cp">%&gt;</span><span class="x"></span>
+<span class="x">        AllowOverride None</span>
+<span class="x">        Order allow,deny</span>
+<span class="x">        allow from all</span>
+<span class="x">      &lt;/Directory&gt;</span>
+<span class="x">      ErrorLog </span><span class="cp">&lt;%=</span> <span class="n">logdir</span> <span class="cp">%&gt;</span><span class="x">/</span><span class="cp">&lt;%=</span> <span class="nb">name</span> <span class="cp">%&gt;</span><span class="x">_error.log</span>
+<span class="x">      LogLevel warn</span>
+<span class="x">      CustomLog </span><span class="cp">&lt;%=</span> <span class="n">logdir</span> <span class="cp">%&gt;</span><span class="x">/</span><span class="cp">&lt;%=</span> <span class="nb">name</span> <span class="cp">%&gt;</span><span class="x">_access.log combined</span>
+<span class="x">      ServerSignature Off</span>
+<span class="x">    &lt;/VirtualHost&gt;</span>
+</code></pre>
+</div>
+
+<p>これは少なからずラッパーとして機能しています。マニフェストを以下のように適用できます：</p>
+
+<div class="highlight"><pre><code class="ruby">    <span class="n">apache</span><span class="o">::</span><span class="n">vhost</span> <span class="p">{</span><span class="s1">&#39;testhost&#39;</span><span class="p">:</span>
+      <span class="n">port</span>       <span class="o">=&gt;</span> <span class="mi">8081</span><span class="p">,</span>
+      <span class="n">docroot</span>    <span class="o">=&gt;</span> <span class="s1">&#39;/var/www-testhost&#39;</span><span class="p">,</span>
+      <span class="n">priority</span>   <span class="o">=&gt;</span> <span class="mi">25</span><span class="p">,</span>
+      <span class="n">servername</span> <span class="o">=&gt;</span> <span class="s1">&#39;puppet&#39;</span><span class="p">,</span>
+    <span class="p">}</span>
+</code></pre>
+</div>
+
+<p>…また（ディレクトリが存在する限りは）、即座に新しい仮想ホストへアクセスできるようになるでしょう：</p>
+
+<pre><code># curl http://puppet:8081
+</code></pre>
+
+<p>この方法はいまだ1つの<code>file</code>リソースしか使っていませんが、最初の例よりも少しだけ洗練されています。そしてテンプレートを使う事でさらに<strong>ものすごく</strong>パワフルになりました。またどれくらいの時間を節約できたかこれまでに見ることができました。それであなたがより多くの型を作ったかのように見せかける事ができます。ファイアウォールのルールを制御するカスタム型をお持ちでしたら、例えば以下のようのにルールに定義を追加できます。</p>
+
+<pre><code>firewall {"0100-INPUT ACCEPT $port":
+    jump  =&gt; 'ACCEPT',
+    dport =&gt; "$port",
+    proto =&gt; 'tcp'
+}
+</code></pre>
+
+<h2 id="exercises">Exercises ～ 演習</h2>
+
+<p>反復可能なリソースグループの作成に慣れるため、さらにいくつかの定義型を作りましょう。</p>
+
+<ul>
+  <li>.bashrcファイルとそれらのアカウントの1つ以上の<code>ssh_authorized_key</code>リソースを管理している<code>human::user</code>型の<code>user</code>リソースをラップしてみましょう。</li>
+  <li>もしgitをよく御存じでしたら、ネットワーク上のリポジトリから複製可能な<code>git::repo</code>型を書く時のスタブを持ってきましょう（作業用のコピーを特定のブランチとしてアップデートしたほうがいいでしょう）。gitが使える事を確かめるための<code>git</code>クラスを作らなければいけないし、少なくとも1つずつの<code>file</code>リソース（<code>ensure =&gt; directory</code>）と<code>exec</code>リソースを使わなくてはならないので、難しいでしょう。execリソースはトリッキーな場合があるので、必要な時に限って使うように心がけてください。</li>
+</ul>
+
+<h2 id="one-last-tip">One Last Tip ～ 最終ヒント</h2>
+
+<p>定義型はパラメータを受け取りますが、そのデータは正しくない場合があります。そのため、正しいデータ型であることを確かめるための検査をしたいかも知れませんし、システムに定義されていない不正なデータを書き込んでいるなら早い段階で失敗させたいかも知れません。</p>
+
+<p>入力値のバリデーションを実践したいなら、Puppet Labsにある<code>stdlib</code>モジュールのバリデーション関数を使えば、あなた自身が多大な労力を払う必要がなくなります。Puppet Enterprise 2.0用に<code>stdlib</code>を公開していますし、<a href="https://github.com/puppetlabs/puppetlabs-stdlib/">GitHub</a>や<a href="http://forge.puppetlabs.com/puppetlabs/stdlib">the module forge</a>から無料でダウンロードする事もできます。入力チェック関数は以下のものがあります：</p>
+
+<ul>
+  <li><code>validate_array</code> (配列のバリデート)</li>
+  <li><code>validate_bool</code> (ブール値のバリデート)</li>
+  <li><code>validate_hash</code> (ハッシュ値のバリデート)</li>
+  <li><code>validate_re</code> (正規表現のバリデート)</li>
+  <li><code>validate_string</code> (文字列のバリデート)</li>
+</ul>
+
+<p>どのようにこれらの関数を使うかは<code>puppet doc --reference function | less</code>を<code>modulepath</code>に<code>stdlib</code>がインストール済みのシステム上で実行するか、それぞれの関数ファイルのディレクトリにあるドキュメントで学べます。モジュールの<code>lib/puppet/parser/functions</code>ディレクトリをご覧ください。</p>
+
+<h2 id="next">Next ～ 次に</h2>
+
+<p><strong>次の演習：</strong></p>
+
+<p>モジュールについてさらに言う事があります。まだデータの分割、読みやすいモジュールを作るためのパターン、モジュールの合成についてはカバーできていませんが、より重要な事は進行中のビジネスにあります。あなたのVM達（そう、複数です）をagent/master Puppet方式にする準備のため、<a href="./agentprep_ja.html">読み進めてください</a>。</p>
+
+<p><strong>Off-Road:</strong></p>
+
+<p>既にいくつかApacheの例を見てきました。また本当にあなた自身のインフラ上にある、少なくとも1つのWebサーバで動作させている事でしょう。利用可能な既成モジュールを使ってみましょう。そしてまたあなた自身の設定を自動化手法で再現できるか見てみましょう。</p>
+
+<p><a href="http://info.puppetlabs.com/download-pe.html">Puppet Enterprise for freeをダウンロード</a>して、<a href="http://docs.puppetlabs.com/pe/latest/quick_start.html">the quick start guide</a>に従いテストマシン数台に小さな環境をインストールしましょう。そうしたら以下のモジュールの1つをインストールしてください。<p>
+
+<ul>
+  <li><a href="http://forge.puppetlabs.com/puppetlabs/apache">puppetlabs/apache</a></li>
+  <li><a href="http://forge.puppetlabs.com/simondean/iis">simondean/iis</a> (for IIS on Windows Server)</li>
+  <li><a href="http://forge.puppetlabs.com/modules?utf-8=%E2%9C%93&amp;q=nginx&amp;LeadSource=Web+-+Organic&amp;Lead_Source_Description__c=google+-+%28not+provided%29&amp;utm_source__c=google&amp;utm_medium__c=organic&amp;utm_term__c=%28not+provided%29&amp;utm_content__c=null&amp;utm_campaign__c=%28organic%29&amp;utm_adgroup__c=null&amp;gclid=">Any of the many Nginx modules</a></li>
+</ul>
+
+<p>モジュールのドキュメントを読んで使い方を確認したら、あなたが手動で設定した環境にマッチするようにサービスや関連する仮想ホストを管理してみましょう。</p>
+
+
