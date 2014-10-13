@@ -63,7 +63,7 @@ You can also make additional config sections for environments. If available, Pup
       dns_alt_names = puppetmaster1.example.com,puppetmaster1,puppet.example.com,puppet
       autosign = false
     [test]
-      modulepath = $confdir/environments/test/modules:$condfir/modules:/usr/share/puppet/modules
+      modulepath = $confdir/environments/test/modules:$confdir/modules:/usr/share/puppet/modules
       manifest = $confdir/environments/test/manifests
       config_version = /usr/bin/git --git-dir $confdir/environments/test/.git rev-parse HEAD
 
