@@ -224,7 +224,7 @@ The Puppet master is just like any other application you run from your infrastru
          }
       
          firewall { '100 allow ActiveMQ MCollective access':
-           port   => '8140',
+           port   => '61613',
            proto  => tcp,
            action => accept,
          }
