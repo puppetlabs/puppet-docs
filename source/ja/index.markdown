@@ -19,8 +19,8 @@ Puppet Labsでは、次の２つの製品を提供しています。
 -----
 
 ###[Learning Puppet](/ja/learning/introduction_ja.html)
-Learning Puppetは、Puppetを使いお客様のシステム管理を自動化する基礎について説明するPuppetのガイドツアーです。Learning Puppet 日本語版はNTT OSS センタの菅原亮氏が、同センタの長谷部ジュン氏の協力を得て翻訳されたものです。
-Learning Puppetの翻訳に多大なご尽力をいただき、ユーザーコミュニティと共有していただいた菅原、長谷部両氏に改めて感謝いたします。
+Learning Puppetは、Puppetを使いお客様のシステム管理を自動化する基礎について説明するPuppetのガイドツアーです。Learning Puppet 日本語版はNTT OSS センタの菅原亮氏が、同センタの長谷部潤氏の協力を得て翻訳されたものです。
+Learning Puppetの翻訳に多大なご尽力をいただき、またユーザーコミュニティと共有していただいた菅原、長谷部両氏に改めて感謝いたします。
 
 日本語の記事
 -----
@@ -28,8 +28,11 @@ Learning Puppetの翻訳に多大なご尽力をいただき、ユーザーコ�
 ###[@IT 記事「環境構築自動化の手順と評価検証、Puppetの基礎知識」（菅原亮氏）](http://www.atmarkit.co.jp/ait/articles/1406/16/news017.html)
 NTT OSS センタの菅原亮氏による記事。Puppetを使ったシステム設定、展開の基礎について説明されています。
 
+###[@IT 記事「PXE＋Kickstartで動かすVirtualBox＋CentOS環境自動構築サーバーの作り方」（菅原亮氏）](http://www.atmarkit.co.jp/ait/articles/1407/17/news010.html)
+NTT OSS センタの菅原亮氏による記事。PXEとKickstartを使い、VirtualBox＋CentOS環境を自動でインストールするためのサーバーの作り方について説明します。
+
 ###[@IT 記事「Puppetのインストールと動作確認、トラブル対処法」（菅原亮氏）](http://www.atmarkit.co.jp/ait/articles/1410/08/news016.html)
-NTT OSS センタの菅原亮氏による記事。サーバー構築の自動化で利用される技術、自動化ツールとして「Kickstart」「Puppet」を紹介し、構築から運用まで、システムライフサイクル全体にわたる運用管理の自動化についても説明します。
+NTT OSS センタの菅原亮氏による記事。agent／master型のPuppetのセットアップ方法を順に解説してインターネットに接続できない環境や証明書の不整合の解決法も説明します。
 
 翻訳へのご協力
 -----
@@ -40,4 +43,4 @@ Puppet Labsでは、日本のユーザーの方々のサポートに尽力して
 その他のリソース
 -----
 
-完全な英語版の文書は、[https://docs.puppetlabs.com](https://docs.puppetlabs.com)でご覧いただけます。
+完全な英語版のマニュアルは、[https://docs.puppetlabs.com](https://docs.puppetlabs.com)でご覧いただけます。
