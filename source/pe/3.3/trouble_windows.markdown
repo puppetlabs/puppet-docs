@@ -30,7 +30,7 @@ Puppet's windows service component also writes to the `windows.log` within the s
 
 ### Installation
 
-The Puppet MSI package will not overwrite an existing entry in the puppet.conf file.  As a result, if you uninstall the package, then reinstall the package using a different puppet master hostname, Puppet won't actually apply the new value if the previous value still exists in [`<data directory>`][datadirectory]`\etc\puppet.conf`.
+The Puppet MSI package will overwrite an existing entry in the puppet.conf file.  As a result, if you uninstall the package, then reinstall the package using a different puppet master hostname, Puppet will apply the new value in [`<data directory>`][datadirectory]`\etc\puppet.conf`. Be sure to use the same master hostname when installing/upgrading.
 
 In general, we've taken the approach of preserving configuration data on the system when doing an upgrade, uninstall or reinstall.
 
