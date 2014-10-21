@@ -226,7 +226,7 @@ Be sure to read our [tips on upgrading](./upgrading.html) before upgrading your 
 
 To upgrade to the latest version of Puppet, download the new MSI package and run the installer again. The installer will automatically restart the puppet agent service.
 
-As noted above, there are several settings that will be remembered by the installer if they were set during the install. If you used those MSI properties in a previous installation and later changed those settings in puppet.conf, you will need to specify your new values when upgrading.
+As noted above, there are several settings that will be remembered by the installer if they were set during the install. If you used those MSI properties in a previous installation and later changed those settings in puppet.conf, the new values will remain unless changed during the upgrade process.
 
 > **Note:** If you installed Puppet into a custom directory and are upgrading to a different architecture, be sure to see the note above [in the `INSTALLDIR` section.](#installdir)
 
