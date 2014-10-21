@@ -24,7 +24,7 @@ NTP is one of the most crucial, yet easiest, services to configure and manage wi
 
 Using this guide, you will:
 
-* [install the `puppetlabs-ntp` module](#install-the-puppet-labs-ntp-module).
+* [install the `puppetlabs-ntp` module](#install-the-puppetlabs-ntp-module).
 * [use the PE console to add classes from the NTP module to your agent nodes](#use-the-pe-console-to-add-classes-from-the-ntp-module). 
 * [use the PE console event inspector to view changes to your infrastructure made by the main NTP class](#use-the-console-event-inspector-to-view-changes-made-by-the-ntp-class).
 * [use the PE console to edit parameters of the main NTP class](#use-the-pe-console-to-edit-parameters-of-the-ntp-class).
