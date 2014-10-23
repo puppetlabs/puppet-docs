@@ -8,6 +8,12 @@ To enable the repository:
 
 For example, to enable the repository for Ubuntu 12.04 Precise Pangolin:
 
-    $ wget https://apt.puppetlabs.com/puppetlabs-release-precise.deb
-    $ sudo dpkg -i puppetlabs-release-precise.deb
-    $ sudo apt-get update
+    wget https://apt.puppetlabs.com/puppetlabs-release-precise.deb
+    sudo dpkg -i puppetlabs-release-precise.deb
+    sudo apt-get update
+
+To enable the repository for Ubuntu 14.04 Trusty Tahr:
+
+    wget https://apt.puppetlabs.com/puppetlabs-release-trusty.deb
+    sudo dpkg -i puppetlabs-release-trusty.deb
+    sudo apt-get update
