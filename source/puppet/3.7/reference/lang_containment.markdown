@@ -96,9 +96,9 @@ To contain classes that are declared with the resource-like declaration syntax, 
     }
 {% endhighlight %}
 
-### Faux Containment (for Compatibility With Puppet ≤ 3.4.0)
+### Anchor Pattern Containment (for Compatibility With Puppet ≤ 3.4.0)
 
-Versions prior to Puppet 3.4.0 and Puppet Enterprise 3.2 do not ship with the `contain` function. To support these versions, you must mimic containment with the **anchor pattern.**
+Versions prior to Puppet 3.4.0 and Puppet Enterprise 3.2 do not ship with the `contain` function. If your code needs to support these versions, it should contain classes with the **anchor pattern.**
 
 > **Note:** To use the anchor pattern, [the `puppetlabs/stdlib` module][stdlib] must be installed. This module includes the dummy `anchor` resource type.
 
@@ -117,7 +117,10 @@ In an example NTP module where service configuration is moved out into its own c
         notify  => Class['ntp::service'],
       }
       include ntp::service
+
+      # roughly equivalent to "contain ntp::service":
       anchor { 'ntp_first': } -> Class['ntp::service'] -> anchor { 'ntp_last': }
+
       package { 'ntp':
         ...
       }
@@ -129,5 +132,5 @@ In an example NTP module where service configuration is moved out into its own c
     }
 {% endhighlight %}
 
-In this case, the `ntp::service` class still isn't technically contained, but any resource can safely form a relationship with the `ntp` class and be assured that the relationship will propagate into all relevant resources.
+In this case, the `ntp::service` class will behave like it's contained by the `ntp` class. Resources like the timestamp `exec` can form relationships with the `ntp` class and be assured that no relevant resources will float out of order.
 
