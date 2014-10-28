@@ -11,6 +11,7 @@ defaultnav:
   /facter/2.0: facter20.html
   /facter/2.1: facter21.html
   /facter/2.2: facter22.html
+  /facter/2.3: facter23.html
   /guides/deployment_guide: deploy_guide.html
   /guides/install_puppet: puppet_general.html
   /hiera/1: hiera1.html
