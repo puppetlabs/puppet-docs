@@ -116,7 +116,7 @@ Only supports Linux 2.6+ at this time, due to the reliance on sysfs.
 
 **Purpose**:
 
-Return a comma separated list of block devices.
+Return a comma-separated list of block devices.
 
 **Resolution**:
 
@@ -140,7 +140,7 @@ Return the public key(s) for CFengine.
 
 **Resolution**:
 
-Tries each file of standard `localhost.pub` and `cfkey.pub` locations, checks if they appear to be a public key, and then join them all together.
+Tries each file of standard `localhost.pub` and `cfkey.pub` locations, checks if they appear to be a public key, and then joins them all together.
 
 
 ([↑ Back to top](#page-nav))
@@ -177,7 +177,7 @@ Return the host's primary DNS domain name.
 
 **Resolution**:
 
-* On UNIX (excluding Darwin), first try and use the hostname fact, which uses the `hostname` system command, and then parse the output of that.
+* On UNIX (excluding Darwin), first tries to use the hostname fact, which uses the `hostname` system command, and then parses the output of that.
 * Failing that, it tries the `dnsdomainname` system command.
 * Failing that, it uses `/etc/resolv.conf` and takes the domain from that, or as a final resort, the search from that.
 * Otherwise returns `nil`.
@@ -193,7 +193,7 @@ Return the host's primary DNS domain name.
 
 **Purpose**:
 
-Returns info retrieved in bulk from the EC2 API. The names of these facts should be self explanatory, and they are otherwise undocumented. The full list of these facts is: ec2_ami_id, ec2_ami_launch_index, ec2_ami_manifest_path, ec2_block_device_mapping_ami, ec2_block_device_mapping_ephemeral0, ec2_block_device_mapping_root, ec2_hostname, ec2_instance_id, ec2_instance_type, ec2_kernel_id, ec2_local_hostname, ec2_local_ipv4, ec2_placement_availability_zone, ec2_profile, ec2_public_hostname, ec2_public_ipv4, ec2_public_keys_0_openssh_key, ec2_reservation_id, and ec2_security_groups.
+Return info retrieved in bulk from the EC2 API. The names of these facts should be self explanatory, and they are otherwise undocumented. The full list of these facts is: ec2_ami_id, ec2_ami_launch_index, ec2_ami_manifest_path, ec2_block_device_mapping_ami, ec2_block_device_mapping_ephemeral0, ec2_block_device_mapping_root, ec2_hostname, ec2_instance_id, ec2_instance_type, ec2_kernel_id, ec2_local_hostname, ec2_local_ipv4, ec2_placement_availability_zone, ec2_profile, ec2_public_hostname, ec2_public_ipv4, ec2_public_keys_0_openssh_key, ec2_reservation_id, and ec2_security_groups.
 
 **Resolution**:
 
@@ -209,7 +209,7 @@ Directly queries the EC2 metadata endpoint.
 
 **Purpose**:
 
-Returns the version of the facter module.
+Return the version of the facter module.
 
 **Resolution**:
 
@@ -225,7 +225,7 @@ Uses the `Facter.version` method.
 
 **Purpose**:
 
-This fact provides an alphabetic list of usable file systems that can be used for block devices like hard drives, media cards, etc.
+Provide an alphabetic list of usable file systems that can be used for block devices like hard drives, media cards, etc.
 
 **Resolution**:
 
@@ -245,7 +245,7 @@ Only supports Linux.
 
 **Purpose**:
 
-Returns the fully-qualified domain name of the host.
+Return the fully-qualified domain name of the host.
 
 **Resolution**:
 
@@ -260,12 +260,28 @@ No attempt is made to check that the two facts are accurate or that the two fact
 
 * * *
 
+## `gce`
+
+
+**Purpose**:
+
+Return metadata for Google compute engine.
+
+**Resolution**:
+
+Queries the HTTP endpoint and processes the resulting data.
+
+
+([↑ Back to top](#page-nav))
+
+* * *
+
 ## `gid`
 
 
 **Purpose**:
 
-Return the GID (group identifier) of the user running puppet.
+Return the GID (group identifier) of the user running Puppet.
 
 
 ([↑ Back to top](#page-nav))
@@ -333,7 +349,7 @@ Return the system's short hostname.
 
 **Purpose**:
 
-Internal fact used to specity the program to return the currently running user ID.
+Return the currently running user ID.
 
 **Resolution**:
 
@@ -350,16 +366,7 @@ Internal fact used to specity the program to return the currently running user I
 
 **Purpose**:
 
-Returns a comma-separated list of the system's network interfaces.
-
-In addition to the main `interfaces` fact, this code will generate the
-following facts for each interface:
-
-* `ipaddress_<INTERFACE>`
-* `ipaddress6_<INTERFACE>`
-* `macaddress_<INTERFACE>`
-* `netmask_<INTERFACE>`
-* `mtu_<INTERFACE>`
+Generates the following facts on supported platforms: `<interface>_ipaddress`, `<interface>_ipaddress6`, `<interface>_macaddress`, `<interface>_netmask`, and `<interface>_mtu`.
 
 
 ([↑ Back to top](#page-nav))
@@ -375,10 +382,10 @@ Return the main IP address for a host.
 
 **Resolution**:
 
-* On the Unixes does an ifconfig, and returns the first non 127.0.0.0/8 subnetted IP it finds.
+* On the Unixes, does an ifconfig and returns the first non 127.0.0.0/8 subnetted IP it finds.
 * On Windows, it attempts to use the socket library and resolve the machine's hostname via DNS.
 * On LDAP based hosts it tries to use either the win32/resolv library to resolve the hostname to an IP address, or on Unix, it uses the resolv library.
-* As a fall back for undefined systems, it tries to run the "host" command to resolve the machine's hostname using the system DNS.
+* As a fallback for undefined systems, it tries to run the "host" command to resolve the machine's hostname using the system DNS.
 
 **Caveats**:
 
@@ -427,11 +434,11 @@ Uses either the scutil program to get the localhost name, or parses output of if
 
 **Purpose**:
 
-Returns the operating system's name.
+Return the operating system's name.
 
 **Resolution**:
 
-Uses Ruby's RbConfig to find host_os, if that is a Windows derivative, then returns `windows`, otherwise returns the output of `uname -s` verbatim.
+Uses Ruby's RbConfig to find host_os; if that is a Windows derivative, then returns `windows`, otherwise returns the output of `uname -s` verbatim.
 
 
 ([↑ Back to top](#page-nav))
@@ -707,9 +714,9 @@ Return information about memory and swap usage.
 
 * On Linuxes, uses `Facter::Memory.meminfo_number` from `facter/util/memory.rb`
 * On AIX, parses `swap -l` for swap values only.
-* On OpenBSD, it parses `swapctl -l` for swap values, `vmstat` via a module for free memory, and `sysctl hw.physmem` for maximum memory.
-* On FreeBSD, it parses `swapinfo -k` for swap values, and parses `sysctl` for maximum memory.
-* On Solaris, use `swap -l` for swap values, and parsing `prtconf` for maximum memory, and again, the `vmstat` module for free memory.
+* On OpenBSD, parses `swapctl -l` for swap values, `vmstat` via a module for free memory, and `sysctl hw.physmem` for maximum memory.
+* On FreeBSD, parses `swapinfo -k` for swap values, and parses `sysctl` for maximum memory.
+* On Solaris, uses `swap -l` for swap values, parsing `prtconf` for maximum memory, and again, the `vmstat` module for free memory.
 
 **Caveats**:
 
@@ -822,10 +829,10 @@ Return various facts related to the machine's operating system.
 
 **Resolution**:
 
-* For operatingsystem, if the kernel is a Linux kernel, check for the existence of a selection of files in `/etc` to find the specific flavor.
-* On SunOS based kernels, attempt to determine the flavor, otherwise return Solaris.
-* On systems other than Linux, use the kernel value.
-* For operatingsystemrelease, on RedHat derivatives, we return their `/etc/<varient>-release` file.
+* For operatingsystem, if the kernel is a Linux kernel, checks for the existence of a selection of files in `/etc` to find the specific flavor.
+* On SunOS-based kernels, attempts to determine the flavor, otherwise returns Solaris.
+* On systems other than Linux, uses the kernel value.
+* For operatingsystemrelease, on RedHat derivatives, returns their `/etc/<varient>-release` file.
 * On Debian, returns `/etc/debian_version`.
 * On Ubuntu, parses `/etc/lsb-release` for the release version
 * On Suse and derivatives, parses `/etc/SuSE-release` for a selection of version information.
@@ -839,7 +846,7 @@ Return various facts related to the machine's operating system.
 
 * Lsb facts only work on Linux (and the kfreebsd derivative) systems.
 * Requires the `lsb_release` program, which may not be installed by default.
-* It is only as accurate as the ourput of lsb_release.
+* It is only as accurate as the output of lsb_release.
 
 
 ([↑ Back to top](#page-nav))
@@ -875,7 +882,7 @@ Return the details of the disk partitions.
 
 **Resolution**:
 
-Parse the contents of `/sys/block/<device>/size` to receive the size (multiplying by 512 to correct for blocks-to-bytes).
+Parses the contents of `/sys/block/<device>/size` to receive the size (multiplying by 512 to correct for blocks-to-bytes).
 
 **Caveats**:
 
@@ -923,11 +930,11 @@ Uses the physicalprocessorcount key of the processors structured fact, which its
 
 **Purpose**:
 
-Additional Facts about the machine's CPUs.
+Provide additional facts about the machine's CPUs.
 
 **Resolution**:
 
-Utilizes values from the processors structured fact, which itself uses various methods to collect CPU information, with implementation dependent upon the OS of the system in question.
+Utilizes values from the processors structured fact, which itself uses various methods to collect CPU information, with implementation dependent on the OS of the system in question.
 
 
 ([↑ Back to top](#page-nav))
@@ -943,8 +950,8 @@ Additional facts about the machine's CPU's, including processor lists, models, c
 
 **Resolution**:
 
-* Each kernel utilizes its own implementation object to collect processor data. Linux and kFreeBSD parse `/proc/cpuinfo` for each processor. AIX parses the output of `lsdev` for its processor section.
-* For Solaris, we parse the output of `kstat` for each processor. OpenBSD uses the sysctl variables 'hw.model' and 'hw.ncpu' for the CPU model and the CPU count respectively. Darwin utilizes the system profiler to collect the physical CPU count and speed.
+* Each kernel uses its own implementation object to collect processor data. Linux and kFreeBSD parse `/proc/cpuinfo` for each processor. AIX parses the output of `lsdev` for its processor section.
+* For Solaris, we parse the output of `kstat` for each processor. OpenBSD uses the sysctl variables 'hw.model' and 'hw.ncpu' for the CPU model and the CPU count respectively. Darwin uses the system profiler to collect the physical CPU count and speed.
 
 
 ([↑ Back to top](#page-nav))
@@ -972,11 +979,11 @@ Assumes `ps -ef` for all operating systems other than BSD derivatives, where it 
 
 **Purpose**:
 
-Return the version of puppet installed.
+Return the version of Puppet installed.
 
 **Resolution**:
 
-Requires puppet via Ruby and returns the value of its version constant.
+Requires Puppet via Ruby and returns the value of its version constant.
 
 
 ([↑ Back to top](#page-nav))
@@ -997,6 +1004,22 @@ If this is a Rackspace Cloud instance, populates `rsc_` facts: `is_rsc`, `rsc_re
 **Caveats**:
 
 Depends on Xenstore.
+
+
+([↑ Back to top](#page-nav))
+
+* * *
+
+## `rubyplatform`
+
+
+**Purpose**:
+
+Returns the platform of Ruby that Facter is running under.
+
+**Resolution**:
+
+Returns the value of the `RUBY_PLATFORM` constant.
 
 
 ([↑ Back to top](#page-nav))
@@ -1024,7 +1047,7 @@ Uses the RbConfig module.
 
 **Purpose**:
 
-Returns the version of Ruby that facter is running under.
+Returns the version of Ruby that Facter is running under.
 
 **Resolution**:
 
@@ -1044,7 +1067,7 @@ Determine whether SE Linux is enabled on the node.
 
 **Resolution**:
 
-Checks for the existence of the enforce file under the SE Linux mount point (e.g. `/selinux/enforce`) and returns true if `/proc/self/attr/current` does not contain the kernel.
+Checks for the existence of the enforce file under the SE Linux mount point (e.g., `/selinux/enforce`) and returns true if `/proc/self/attr/current` does not contain the kernel.
 
 
 ([↑ Back to top](#page-nav))
@@ -1092,7 +1115,7 @@ Returns whether SE Linux is enabled (`true`) or not (`false`).
 
 **Resolution**:
 
-Returns the value found in the `enforce` file under the SE Linux mount point (e.g. `/selinux/enforce`).
+Returns the value found in the `enforce` file under the SE Linux mount point (e.g., `/selinux/enforce`).
 
 
 ([↑ Back to top](#page-nav))
@@ -1127,16 +1150,28 @@ Gather facts related to SSH.
 
 * * *
 
+## `system32`
+
+
+**Purpose**:
+
+Returns the directory of the native system32 directory.
+
+
+([↑ Back to top](#page-nav))
+
+* * *
+
 ## `system_uptime`
 
 
 **Purpose**:
 
-Return the system uptime in a hash in the forms of seconds, hours, days and a general, human readable uptime.
+Return the system uptime in a hash in the forms of seconds, hours, days, and a general, human readable uptime.
 
 **Resolution**:
 
-Does basic math on the get_uptime_seconds utility to calculate seconds, hours and days.
+Does basic math on the get_uptime_seconds utility to calculate seconds, hours, and days.
 
 
 ([↑ Back to top](#page-nav))
@@ -1153,6 +1188,18 @@ Return the machine's time zone.
 **Resolution**:
 
 Uses Ruby's Time module.
+
+
+([↑ Back to top](#page-nav))
+
+* * *
+
+## `uniqueid`
+
+
+**Purpose**:
+
+Return the output of the `hostid` command.
 
 
 ([↑ Back to top](#page-nav))
@@ -1229,7 +1276,7 @@ Return just the number of seconds of uptime.
 
 **Purpose**:
 
-Determine if the system's hardware is real or virtualized.
+Determine if the system's hardware is physical or virtualized.
 
 **Resolution**:
 
@@ -1297,12 +1344,48 @@ On a Xen Dom0 host, return a list of Xen domains using the `util/xendomains` lib
 
 * * *
 
+## `zfs_version`
+
+
+**Purpose**:
+
+Return the version of zfs in use on the system.
+
+**Resolution**:
+
+Uses the output of `zfs upgrade -v`.
+
+
+([↑ Back to top](#page-nav))
+
+* * *
+
+## `zonename`
+
+
+**Purpose**:
+
+Return the name of the Solaris zone.
+
+**Resolution**:
+
+Uses `zonename` to return the name of the Solaris zone.
+
+**Caveats**:
+
+No support for Solaris 9 and below, where zones are not available.
+
+
+([↑ Back to top](#page-nav))
+
+* * *
+
 ## `zones_<ZONE>`
 
 
 **Purpose**:
 
-Return the list of zones on the system and add one zones_ fact for each zone with its state e.g. `running`, `incomplete`, or `installed`.
+Return the list of zones on the system and add one zones_ fact for each zone with its state e.g., `running`, `incomplete`, or `installed`.
 
 **Resolution**:
 
@@ -1311,6 +1394,22 @@ Uses `usr/sbin/zoneadm list -cp` to get the list of zones in separate parsable l
 **Caveats**:
 
 Only supported on Solaris 10 and up.
+
+
+([↑ Back to top](#page-nav))
+
+* * *
+
+## `zpool_version`
+
+
+**Purpose**:
+
+Return the version number for the ZFS storage pool.
+
+**Resolution**:
+
+Uses `zpool upgrade -v` to return the ZFS storage pool version number.
 
 
 ([↑ Back to top](#page-nav))
