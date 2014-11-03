@@ -121,7 +121,7 @@ Your metadata.json will look something like
       "license": "Licensed under (Apache 2.0)",
       "summary": "A module for a thing",
       "source": "https://github.com/examplecorp/examplecorp-mymodule",
-      "project_page": "(https://forge.puppetlabs.com/examplecorp/mymodule)",
+      "project_page": "https://forge.puppetlabs.com/examplecorp/mymodule",
       "issues_url": "",
       "tags": ["things", "stuff"],
       "operatingsystem_support": [
