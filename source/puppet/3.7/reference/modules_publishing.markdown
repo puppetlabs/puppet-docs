@@ -122,7 +122,7 @@ Your metadata.json will look something like
       "summary": "A module for a thing",
       "source": "https://github.com/examplecorp/examplecorp-mymodule",
       "project_page": "https://forge.puppetlabs.com/examplecorp/mymodule",
-      "issues_url": "",
+      "issues_url": "https://github.com/examplecorp/examplecorp-mymodule/issues",
       "tags": ["things", "stuff"],
       "operatingsystem_support": [
         {
