@@ -37,6 +37,76 @@ We always recommend that you **upgrade your puppet master servers before upgradi
 If you're upgrading from Puppet 2.x, please [learn about major upgrades of Puppet first!][upgrade] We have important advice about upgrade plans and package management practices. The short version is: test first, roll out in stages, give yourself plenty of time to work with. Also, read the [release notes for Puppet 3][puppet_3] for a list of all the breaking changes made between the 2.x and 3.x series.
 
 
+## Puppet 3.7.3
+
+Released November 4, 2014.
+
+Puppet 3.7.3 is a bug fix release in the Puppet 3.7 series. It gives Windows users the useful new `$system32` fact (due to packages now pulling in Facter 2.3), and fixes some bugs with directory environments, the `PATH` variable on Windows, and the future parser. It also lays groundwork for some future Puppet Server improvements.
+
+### New `$system32` Fact on Windows --- No More Fussing With `sysnative`
+
+The Puppet installer for Windows now includes [Facter 2.3.0](/facter/2.3/release_notes.html), which introduced two new facts to improve life on Windows:
+
+* [`$system32`](/facter/latest/core_facts.html#system32) is the path to the **native** system32 directory, regardless of Ruby and system architecture.
+* [`$rubyplatform`](/facter/latest/core_facts.html#rubyplatform) reports the value of Ruby's `RUBY_PLATFORM` constant.
+
+The `$system32` fact makes it much easier to write cross-architecture Puppet code for Windows. Previously, you couldn't write Puppet code to reliably manage system files on all three possible architecture mixtures (64-bit Windows with the 64-bit Puppet installer, 64-bit Win and 32-bit Puppet, and 32-bit/32-bit), so you had to know which Puppet installer your nodes were using and write architecture-specific resources. But now you can do something like:
+
+{% highlight ruby %}
+file { "$system32/myfile.txt":
+  ensure => file
+}
+{% endhighlight %}
+
+This will resolve to `c:/windows/system32/myfile.txt` on 64-bit/64-bit and 32-bit/32-bit, and to `c:/windows/sysnative/myfile.txt` on 64-bit/32-bit.
+
+The `$rubyplatform` fact is meant for working around more complicated architecture issues. For most users, the `$system32` fact should be enough, but if you're doing anything strange you can fall back on `$rubyplatform` for full control.
+
+* [PUP-3601: Bump facter dependency to 2.3.0](https://tickets.puppetlabs.com/browse/PUP-3601)
+
+### Fix for Expanding Environment Variables in Windows `PATH` Variable
+
+This bug was introduced in Puppet 3.7.0.
+
+The value of the Windows `PATH` variable can usually only include static directory paths, like `C:\Windows\system32`. However, if you manually change the PATH variable's type to `REG_EXPAND_SZ` (<a href="http://msdn.microsoft.com/en-us/library/ms724884%28v=vs.85%29.aspx">relevant Windows docs</a>), you can make Windows allow environment variables like `%systemroot%` in the `PATH`. (Installing certain software can also do this.)
+
+If you had done this and added environment variables to your `PATH`, the 32-bit Windows Puppet installer would expand those variables and rewrite your `PATH` with static directory paths instead. We've fixed it so it won't do that anymore.
+
+If you were using environment variables in your `PATH` and have run an earlier Puppet 3.7.x release, you may need to re-set your `PATH` after upgrading to 3.7.3. Most Windows users shouldn't be affected by this, though.
+
+* [PUP-3471: Windows Puppet x86 Installer Expands Environment Variables in Path](https://tickets.puppetlabs.com/browse/PUP-3471)
+
+### Directory Environment Fixes
+
+This release fixes a gnarly bug where using certain settings (including `certname`) could interfere with the use of directory environments. Plus another bug where using `puppet resource file <PATH> source=<PUPPET URL>` to interactively overwrite a file would fail if directory environments were enabled.
+
+* [PUP-3302: Puppet resource broken when directory environments enabled](https://tickets.puppetlabs.com/browse/PUP-3302)
+* [PUP-3500: Adding a setting to puppet.conf that has a :hook handled on define preloads incorrect directory environment settings.](https://tickets.puppetlabs.com/browse/PUP-3500)
+
+### Future Language Fixes
+
+This release fixes a bug with parameters whose names match the name of a top-scope variable, some uninformative error messages, a bug with multi-byte characters, and a bug where MD5 sums might get compared as floating point numbers.
+
+* [PUP-3505: Future parser handling undef's incorrectly](https://tickets.puppetlabs.com/browse/PUP-3505)
+* [PUP-3514: Future parser not showing line/column for error](https://tickets.puppetlabs.com/browse/PUP-3514)
+* [PUP-3558: Future parser, square brackets in references cause syntax errors related to non-ASCII characters](https://tickets.puppetlabs.com/browse/PUP-3558)
+* [PUP-3602: Do not convert strings that are on the form "0e<digits>" to floating point](https://tickets.puppetlabs.com/browse/PUP-3602)
+
+### Groundwork for Future Puppet Server Improvements
+
+If you're running [Puppet Server](https://github.com/puppetlabs/puppet-server) and have environments with long [`environment_timeout`](./environments_configuring.html#environmenttimeout) values, there's a period of potential inconsistency every time you change code in those environments, since each of Puppet Server's JRuby interpreters started their timeout counters at different times. To make changes take effect immediately, you must restart the whole Puppet Server process. (And since Puppet Server takes longer to start than a Rack-based Puppet master, this can result in a short period of failed requests.)
+
+We're not fixing that in this release, because it's complicated. But we did lay some mandatory groundwork for the real fix.
+
+You can track the related work at [SERVER-92](https://tickets.puppetlabs.com/browse/SERVER-92).
+
+* [PUP-3555: introduce override-able factory pattern for constructing environment cache entries](https://tickets.puppetlabs.com/browse/PUP-3555)
+
+### All Resolved Issues for 3.7.3
+
+Our ticket tracker has the list of [all issues resolved in Puppet 3.7.3.](https://tickets.puppetlabs.com/secure/ReleaseNote.jspa?projectId=10102&version=12001)
+
+
 Puppet 3.7.2
 -----
 
