@@ -82,9 +82,15 @@ Strings surrounded by single quotes `'like this'` do not interpolate variables. 
 
 ## File System Redirection (When Running 32-Bit Puppet on 64-Bit Windows)
 
-With some combinations of Windows and Puppet versions, Windows will redirect Puppet's access to the `C:\Windows\system32` directory. If you are running Puppet in one of these configurations and are managing files in the system directory, you will need to watch out for this and compensate.
+Managing files in the `C:\Windows\system32` directory can be problematic. The short version is:
+
+* If you are using **Puppet 3.7.3 or later,** use [the `$system32` fact](/facter/latest/core_facts.html#system32) whenever you need to access the `system32` directory. Easy and reliable.
+* If you are using **Puppet 3.7.0 through 3.7.2** but are only using architecture-appropriate packages (32-bit on 32-bit systems, and 64-bit on 64-bit systems), you can access the `system32` directory directly. As soon as is practical, you should upgrade to 3.7.3 and start using the `$system32` fact.
+* If you are using **Puppet 3.7.0 through 3.7.2** and are installing the 32-bit package on 64-bit systems, continue reading.
 
 ### Summary
+
+With some combinations of Windows and Puppet versions, Windows will redirect Puppet's access to the `C:\Windows\system32` directory. If you are running Puppet in one of these configurations and are managing files in the system directory, you will need to watch out for this and compensate.
 
 <table>
 
@@ -136,16 +142,20 @@ Additionally, the `ProgramFiles` environment variable resolves to `C:\Program Fi
 There are three cases where you might be dealing with mixed Puppet/Windows architectures:
 
 * You deliberately installed a 32-bit package on a 64-bit system, to maintain compatibility for certain modules until you're able to update their code for 64-bit Puppet.
-* You are running a 64-bit version Windows Server 2003 or 2003 R2, which is not supported by the 64-bit Puppet installer.
+* You are running a 64-bit version of Windows Server 2003 or 2003 R2, which is not supported by the 64-bit Puppet installer.
 * You are writing code that must support older versions of Puppet, which did not have 64-bit packages available.
 
 ### Compensating for Redirection
 
-On systems affected by file system redirection, you can use the `sysnative` alias in place of `system32` whenever you need to access files in the system directory. (For example: `C:\Windows\sysnative\inetsrv\config\application Host.config` will point to `C:\Windows\system32\inetsrv\config\application Host.config`, not `C:\Windows\SysWOW64\inetsrv\config\application Host.config`.)
+In Puppet code, the easy way to access `system32` is to use [the `$system32` fact,](/facter/latest/core_facts.html#system32) available in **Puppet 3.7.3 and later.** It automatically compensates for file system redirection wherever necessary.
 
-**However,** note that `sysnative` is **only** a valid path when used within a 32-bit process running on a 64-bit Windows version. It **does not exist** when running an architecture-appropriate Puppet package. This means you can't simply use `sysnative` everywhere to access the correct files; you'll need to detect Puppet's run environment, then decide which path to use.
+Prior to 3.7.3, you can manually compensate. On systems affected by file system redirection, you can use the `sysnative` alias in place of `system32` whenever you need to access files in the system directory. (For example: `C:\Windows\sysnative\inetsrv\config\application Host.config` will point to `C:\Windows\system32\inetsrv\config\application Host.config`, not `C:\Windows\SysWOW64\inetsrv\config\application Host.config`.)
 
-In Ruby plugin code, this is fairly straightforward. Do something like [this example from the puppetlabs/powershell module](https://github.com/puppetlabs/puppetlabs-powershell/blob/master/lib/puppet/provider/exec/powershell.rb#L6-L13):
+**However,** note that `sysnative` is **only** a valid path when used within a 32-bit process running on a 64-bit Windows version. It **does not exist** when running an architecture-appropriate Puppet package. This means you can't simply use `sysnative` everywhere to access the correct files; you'll need to use different file paths depending on Puppet's run environment.
+
+Prior to 3.7.3, there's no easy way for Puppet manifests to detect whether `sysnative` is available or necessary. Authors of public modules can choose to only support 3.7.3+, or can ship a renamed version of the `$system32` fact to support older versions. Private users can predict the mix of OS versions and architectures where their code will be run, and simply do the right thing for that environment.
+
+Finally, it's possible to automatically detect which directory to use in Ruby plugin code. Do something like [this example from the puppetlabs/powershell module](https://github.com/puppetlabs/puppetlabs-powershell/blob/master/lib/puppet/provider/exec/powershell.rb#L6-L13):
 
 {% highlight ruby %}
     commands :powershell =>
@@ -158,7 +168,6 @@ In Ruby plugin code, this is fairly straightforward. Do something like [this exa
       end
 {% endhighlight %}
 
-However, in Puppet code there is not currently an easy way to detect whether you should be using `sysnative` to access the `system32` directory. If you can predict the mix of OS versions and architectures where your code will be run, you can simply do the right thing for that environment, but authors of public modules may need to create a custom fact to help handle this transition.
 
 ## Errata
 
