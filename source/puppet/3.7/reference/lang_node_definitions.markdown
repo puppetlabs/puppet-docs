@@ -110,6 +110,8 @@ The name `default` (without quotes) is a special value for node names. If no nod
 
 [Regular expressions (regexes)][regex] can be used as node names. This is another method for writing a single node statement that matches multiple nodes.
 
+> **Note:** Make sure all of your node regexes match non-overlapping sets of node names. If a node's name matches more than one regex, Puppet makes no guarantee about which matching definition it will get.
+
 {% highlight ruby %}
     node /^www\d+$/ {
       include common
@@ -127,7 +129,6 @@ digits.
 
 The above example would match `foo.example.com` and `bar.example.com`, but no other nodes.
 
-> Make sure that node regexes do not overlap. If more than one regex statement matches a given node, the one it gets will be parse-order dependent.
 
 Behavior
 -----
@@ -139,18 +140,18 @@ If site.pp contains at least one node definition, it must have one for **every**
 A given node will only get the contents of **one** node definition, even if two node statements could match a node's name. Puppet will do the following checks in order when deciding which definition to use:
 
 1. If there is a node definition with the node's exact name, Puppet will use it.
-2. If there is at least one regular expression node statement that matches the node's whole name, Puppet will use the first one it finds.
+2. If there is a regular expression node statement that matches the node's name, Puppet will use it. (If more than one regex node matches, Puppet will use one of them, with no guarantee as to which.)
 3. If the node's name looks like a fully qualified domain name (i.e. multiple period-separated groups of letters, numbers, underscores and dashes), Puppet will chop off the final group and start again at step 1. (That is, if a definition for `www01.example.com` isn't found, Puppet will look for a definition matching `www01.example`.)
 4. Puppet will use the `default` node.
 
 Thus, for the node `www01.example.com`, Puppet would try the following, in order:
 
 * `www01.example.com`
-* The first regex matching `www01.example.com`
+* A regex that matches `www01.example.com`
 * `www01.example`
-* The first regex matching `www01.example`
+* A regex that matches `www01.example`
 * `www01`
-* The first regex matching `www01`
+* A regex that matches `www01`
 * `default`
 
 You can turn off this fuzzy name matching by changing the Puppet master's [`strict_hostname_checking`][strict] setting to `true`. This will cause Puppet to skip step 3 and only use the node's full name before resorting to `default`.
@@ -178,7 +179,7 @@ Although ENCs and node definitions can work together, we recommend that most use
 
 ### Inheritance
 
-In earlier versions of Puppet, nodes could inherit from other nodes using the `inherits` keyword. This feature is deprecated in Puppet 3.7. Node inheritance often caused complications and ambiguities --- classes and defined types are more effective strategies for reuse. As of Puppet 3.7, node inheritance causes a deprecation warning in the current parser and an error in the future parser.
+In earlier versions of Puppet, nodes could inherit from other nodes using the `inherits` keyword. **This feature is deprecated in Puppet 3.7,** and will be removed in Puppet 4. Node inheritance often caused complications and ambiguities --- classes and defined types are more effective strategies for reuse. As of Puppet 3.7, node inheritance causes a deprecation warning in the current parser and an error in the future parser.
 
 
 > #### Alternatives to Node Inheritance
