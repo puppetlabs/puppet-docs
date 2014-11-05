@@ -69,7 +69,11 @@ Windows (PE and FOSS)     | `$confdir\modules`
 
 ### Examples of Default Modulepaths
 
-Puppet Enterprise, no environments, default settings:
+Default settings for a new installation of Puppet Enterprise 3.7 and higher:
+
+`/etc/puppetlabs/puppet/environments/production/modules:/opt/puppet/share/puppet/modules`
+
+Default settings for Puppet Enterprise 3.3 and lower or upgrades to Puppet Enterprise 3.7:
 
 `/etc/puppetlabs/puppet/modules:/opt/puppet/share/puppet/modules`
 
