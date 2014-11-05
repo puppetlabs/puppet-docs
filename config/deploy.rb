@@ -1,7 +1,6 @@
 set :application, "docs.puppetlabs.com"
 set :repository, "git://github.com/puppetlabs/puppet-docs.git"
 set :user, "docsdeploy"
-set :previewuser, "deploy"
 
 task :mirror0 do
     set :domain,    "#{user}@staticweb1-prod.puppetlabs.com"
@@ -9,17 +8,17 @@ task :mirror0 do
 end
 
 task :preview1 do
-    set :domain,    "#{previewuser}@docspreview1.puppetlabs.lan"
+    set :domain,    "#{user}@docspreview1.puppetlabs.lan"
     set :deploy_to, "/opt/docspreview1"
 end
 
 task :preview2 do
-    set :domain,    "#{previewuser}@docspreview2.puppetlabs.lan"
+    set :domain,    "#{user}@docspreview2.puppetlabs.lan"
     set :deploy_to, "/opt/docspreview2"
 end
 
 task :preview3 do
-    set :domain,    "#{previewuser}@docspreview3.puppetlabs.lan"
+    set :domain,    "#{user}@docspreview3.puppetlabs.lan"
     set :deploy_to, "/opt/docspreview3"
 end
 
