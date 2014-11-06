@@ -16,7 +16,9 @@ canonical: "/puppet/latest/reference/modules_installing.html"
 
 Installing Modules
 =====
-
+>**Puppet Enterprise Users Note**
+>For a complete guide to installing and managing modules, you'll need to go to the [Installing Modules page](https://docs.puppetlabs.com/pe/3.7/modules_installing.html) 
+>
 
 ![Windows note](/images/windows-logo-small.jpg)
 
@@ -202,6 +204,8 @@ By default, the tool won't uninstall a module which other modules depend on or w
 
 ### Errors
 
+#### Upgrade/Uninstall
+
 The PMT from Puppet 3.7 has a known issue wherein modules that were published to the Puppet Forge that had not performed the [migration steps](/puppet/latest/reference/modules_publishing.html#build-your-module) before publishing will have erroneous checksum information in their metadata.json. These checksums will cause errors that prevent you from upgrading or uninstalling the module.
 
 To determine if a module you're using has this issue, run `puppet module changes <path to module>`. If your module has this checksum issue, you will see that the metadata.json has been modified. If you try to upgrade or uninstall a module with this issue, your action will fail and you will receive warning similar to that below.
@@ -221,3 +225,20 @@ The workaround for this issue is:
 4. Run `puppet module changes <path to module>` to determine whether the fix was successful. A successful fix will return: `Notice: No modified files`. An unsuccessful fix will show modified files.
 5. Retry your upgrade/uninstall action.
 
+#### PE-only modules
+
+If you received an error while attempting to install a module from the Forge that looks like:
+
+~~~
+ # puppet module install puppetlabs-mssql
+Notice: Preparing to install into /etc/puppetlabs/puppet/modules ...
+Notice: Downloading from https://forgeapi.puppetlabs.com ...
+Error: Request to Puppet Forge failed.
+  The server being queried was https://forgeapi.puppetlabs.com/v3/releases?module=puppetlabs-mssql&module_groups=base+pe_only
+  The HTTP response we received was '403 Forbidden'
+  The message we received said 'You must have a valid Puppet Enterprise license on this node in order to download puppetlabs-mssql. If you have a Puppet Enterprise license, please see https://docs.puppetlabs.com/forge/pe-only-modules for more information.'
+~~~
+
+it is because the module you are trying to download is only available to Puppet Enterprise users. To use this module, download [Puppet Enterprise](http://puppetlabs.com/puppet/puppet-enterprise). 
+
+If you are a Puppet Enterprise user, use the [troubleshooting guide](https://docs.puppetlabs.com/pe/3.7/modules_installing.html#errors).
