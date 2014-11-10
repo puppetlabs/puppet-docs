@@ -150,13 +150,13 @@ To add additional directories containing global modules, you can set your own va
 
 ### `default_manifest`
 
-In previous versions of Puppet, the default [main manifest][] for an environment that didn't specify one in [environment.conf][] was always `<ENVIRONMENTS DIRECTORY>/<ENVIRONMENT NAME>/manifests`. Starting in Puppet 3.7, the default is configurable.
+The default [main manifest][] to use for environments that don't specify one in [environment.conf][].
 
-The default value of `default_manifest` is `./manifests` --- that is, the environment's own `manifests` directory.
+The default value of `default_manifest` is `./manifests` --- that is, the environment's own `manifests` directory. (In Puppet versions prior to 3.7, this wasn't configurable.)
 
 The value of this setting can be:
 
-* An absolute path to a manifest that all environments will share
+* An absolute path to one manifest that all environments will share
 * A relative path to a file or directory inside each environment's directory
 
 ### `disable_per_environment_manifest`
