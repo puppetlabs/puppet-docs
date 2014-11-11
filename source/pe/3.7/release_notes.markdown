@@ -29,13 +29,13 @@ For instructions on adding additional Puppet masters, refer to [Additional Puppe
 
 PE 3.7.0 introduces the rules-based node classifier, which is the first part of the Node Manager app that was announced in September. The node classifier provides a powerful and flexible new way to organize and configure your nodes. We’ve built a robust, API-driven backend service and an intuitive new GUI that encourages a modern, cattle-not-pets approach to managing your infrastructure. Classes are now assigned at the group level, and nodes are dynamically matched to groups based on user-defined rules.
 
-For a detailed overview of the new node classifier, refer to the [User's Guide](./console_classes_groups_getting_started.html).
+For a detailed overview of the new node classifier, refer to the [PE user's guide](./console_classes_groups_getting_started.html).
 
 ### Role-Based Access Control
 
 With RBAC, PE nodes can now be segmented so that tasks can be safely delegated to the right people. For example, RBAC allows segmenting of infrastructure across application teams so that they can manage their own servers without affecting other applications. Plus, to ease the administration of users and authentication, RBAC connects directly with standard directory services including Microsoft Active Directory and OpenLDAP.
 
-For detailed information to get started with RBAC, see the [RBAC user guide](./rbac_intro.html).
+For detailed information to get started with RBAC, see the [PE user's guide](./rbac_intro.html).
 
 ### Adding MCollective Hub and Spokes
 
