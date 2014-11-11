@@ -72,22 +72,7 @@ If you already have a Puppet module with the [correct directory layout][fundamen
 
 Alternately, you can use the `puppet module generate` action to generate a template layout. Generating a module will provide you with a sample README and a copy of the `spec_helper` tool for writing [rspec-puppet][rspec] tests. It will also launch a series of questions that will create your metadata.json file. If you decided to construct a module on your own first, you will need to manually copy that module's files into the generated module.
 
-To generate a new module, run `puppet module generate <USERNAME>-<MODULE NAME>`. For example:
-
-    # puppet module generate examplecorp-mymodule
-    Generating module at /Users/Pat/Development/examplecorp-mymodule
-    examplecorp-mymodule
-    examplecorp-mymodule/manifests
-    examplecorp-mymodule/manifests/init.pp
-    examplecorp-mymodule/metadata.json
-    examplecorp-mymodule/Rakefile
-    examplecorp-mymodule/README.md
-    examplecorp-mymodule/spec
-    examplecorp-mymodule/spec/classes
-    examplecorp-mymodule/spec/classes/init_spec.rb
-    examplecorp-mymodule/spec/spec_helper.rb
-    examplecorp-mymodule/tests
-    examplecorp-mymodule/tests/init.pp
+Follow the directions to [generate a new module](https://docs.puppetlabs.com/puppet/latest/reference/modules_fundamentals.html#writing-modules)
 
 ###Set files to be ignored
 

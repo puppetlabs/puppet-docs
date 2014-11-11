@@ -16,7 +16,9 @@ canonical: "/puppet/latest/reference/modules_installing.html"
 
 Installing Modules
 =====
-
+>**Puppet Enterprise Users Note**
+>For a complete guide to installing and managing modules, you'll need to go to the [Installing Modules page](https://docs.puppetlabs.com/pe/3.7/modules_installing.html) 
+>
 
 ![Windows note](/images/windows-logo-small.jpg)
 
@@ -127,15 +129,6 @@ Make sure to use the `--ignore-dependencies` flag if you cannot currently reach 
 
     # puppet module install ~/puppetlabs-apache-0.10.0.tar.gz --ignore-dependencies
 
-### Installing PE Supported Modules
-
-PE 3.2 introduced [supported modules](http://forge.puppetlabs.com/supported), which  includes an additional field in the modules' metadata.json files to indicate compatibility with PE versions. The puppet module tool (PMT) has been updated to look for PE version requirements in the metadata.
-
-If you are running PE 3.2 or greater, please note that if a version of the module matches the installed version of PE, non-matching versions will be filtered out. The `--force` flag will prevent this filtering, and will either install the most recent version of the module if no version is specified or install the specified version. Note that the `--force` flag will ignore dependencies and checksums, as well as overwrite installed modules with the same modulename. The `--debug` flag will show whether a module is being filtered or not. If no PE version metadata is present in any version, all available versions of the module will be displayed.
-
-*Note:*
-It is possible that some community modules may also include this `requirements` metadata. **We stongly reccomend against including the `requirements` field in modules that are not Puppet Labs supported modules.**
-
 Finding Modules
 -----
 
@@ -202,9 +195,11 @@ By default, the tool won't uninstall a module which other modules depend on or w
 
 ### Errors
 
-The PMT from Puppet 3.7 has a known issue wherein modules that were published to the Puppet Forge that had not performed the [migration steps](/puppet/latest/reference/modules_publishing.html#build-your-module) before publishing will have erroneous checksum information in their metadata.json. These checksums will cause errors that prevent you from upgrading or uninstalling the module.
+#### Upgrade/Uninstall
 
-To determine if a module you're using has this issue, run `puppet module changes <path to module>`. If your module has this checksum issue, you will see that the metadata.json has been modified. If you try to upgrade or uninstall a module with this issue, your action will fail and you will receive warning similar to that below.
+The PMT from Puppet 3.6 has a known issue wherein modules that were published to the Puppet Forge that had not performed the [migration steps](/puppet/latest/reference/modules_publishing.html#build-your-module) before publishing will have erroneous checksum information in their metadata.json. These checksums will cause errors that prevent you from upgrading or uninstalling the module.
+
+If you see an error similar to the following when upgrading or uninstalling,
 
 ~~~
 Notice: Preparing to upgrade 'puppetlabs-motd' ...
@@ -213,11 +208,22 @@ Error: Could not upgrade module 'puppetlabs-motd' (v1.0.0 -> latest)
   Installed module has had changes made locally
 ~~~
 
-The workaround for this issue is:
+you can workaround it by upgrading or uninstalling using the `--ignore-changes` option.
 
-1. Navigate to the module.
-2. Open the checksums.json file in your editor if it is present and delete the line: "metadata.json": [some checksum here]
-3. If there is no checksums.json, open the metadata.json file in your editor and delete the entire 'checksums' field.
-4. Run `puppet module changes <path to module>` to determine whether the fix was successful. A successful fix will return: `Notice: No modified files`. An unsuccessful fix will show modified files.
-5. Retry your upgrade/uninstall action.
+#### PE-only modules
 
+If you received an error while attempting to install a module from the Forge that looks like:
+
+~~~
+ # puppet module install puppetlabs-mssql
+Notice: Preparing to install into /etc/puppetlabs/puppet/modules ...
+Notice: Downloading from https://forgeapi.puppetlabs.com ...
+Error: Request to Puppet Forge failed.
+  The server being queried was https://forgeapi.puppetlabs.com/v3/releases?module=puppetlabs-mssql&module_groups=base+pe_only
+  The HTTP response we received was '403 Forbidden'
+  The message we received said 'You must have a valid Puppet Enterprise license on this node in order to download puppetlabs-mssql. If you have a Puppet Enterprise license, please see https://docs.puppetlabs.com/forge/pe-only-modules for more information.'
+~~~
+
+it is because the module you are trying to download is only available to Puppet Enterprise users. To use this module, download [Puppet Enterprise](http://puppetlabs.com/puppet/puppet-enterprise). 
+
+If you are a Puppet Enterprise user, use the [troubleshooting guide](https://docs.puppetlabs.com/pe/3.7/modules_installing.html#errors).

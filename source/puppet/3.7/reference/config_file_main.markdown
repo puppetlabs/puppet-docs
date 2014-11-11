@@ -35,12 +35,14 @@ The location of the `confdir` varies; it depends on the OS, Puppet distribution,
 
 ## Example
 
+The below example is something you might see with a fresh install of Puppet Enterprise 3.7.
+
     # Settings in [main] are used if a more specific section doesn't set a value.
     [main]
         certname = puppetmaster01.example.com
         logdir = /var/log/pe-puppet
         rundir = /var/run/pe-puppet
-        modulepath = /etc/puppetlabs/puppet/modules:/opt/puppet/share/puppet/modules
+        basemodulepath = /etc/puppetlabs/puppet/environments/production/modules:/opt/puppet/share/puppet/modules
         server = puppet.example.com
         user  = pe-puppet
         group = pe-puppet
