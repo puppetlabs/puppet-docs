@@ -37,7 +37,7 @@ In this step, you will install the additional Puppet agent on `add.master.exampl
 
 1. SSH into `add.master.example.com` and run `curl -k https://<MASTER.EXAMPLE.COM>:8140/packages/current/install.bash | sudo bash -s main:dns_alt_names=<COMMA-SEPARATED LIST OF ALT NAMES FOR THE PUPPET MASTER> environmentpath=</etc/puppetlabs/puppet/environments OR YOUR MASTER'S ENVIRONMENT PATH>`. 
 
-   **Note**: The `dns\_alt_names` value should be set to a comma-separated list of any alternative names that may be used by Puppet agents to connect to the master. The installation uses "puppet" by default.
+   **Note**: The `dns_alt_names` value should be set to a comma-separated list of any alternative names that may be used by Puppet agents to connect to the master. The installation uses "puppet" by default.
 
    This will install and configure the PE agent on `add.master.example.com`. 
 
@@ -55,7 +55,7 @@ In this step, you will install the additional Puppet agent on `add.master.exampl
 
 In this step, you will use the PE console to classify `add.master.example.com` so that it can function as a Puppet master.
 
-**Important**: For fresh installations of PE 3.7.0, node groups in the classifier are created and configured during the installation process. For upgrades, these groups are created but no classes are added to them. This is done to help prevent errors during the upgrade process. If you’re performing these steps after an upgrade to 3.7.0, refer to [the PE Master group preconfiguration docs] (./console_classes_groups_preconfigured_groups.html#the-pe-master-group) for a list of classes to add to the PE Master group to ensure your new Puppet master is properly classified.
+**Important**: For fresh installations of PE 3.7.0, node groups in the classifier are created and configured during the installation process. For upgrades, these groups are created but no classes are added to them. This is done to help prevent errors during the upgrade process. If you’re performing these steps after an upgrade to 3.7.0, refer to [the PE Master group preconfiguration docs](./console_classes_groups_preconfigured_groups.html#the-pe-master-group) for a list of classes to add to the PE Master group to ensure your new Puppet master is properly classified.
 
 **To classify the new master node**: 
 

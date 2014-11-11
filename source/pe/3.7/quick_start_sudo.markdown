@@ -76,7 +76,7 @@ Modules are directory trees. For this task, you'll create the following files:
 
         class privileges {
           user { 'root':
-            ensure   => 'present',
+            ensure   => present,
             password => '$1$oST1TkX7$p21hU2qzMkR4Iy7HK6zWq0',
             shell    => '/bin/bash',
             uid      => '0',
