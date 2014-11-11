@@ -6,13 +6,13 @@ canonical: "/pe/latest/rbac_ldap.html"
 ---
 
 ## Overview
-Puppet Enterprise (PE) can now connect with directory services, specifically OpenLDAP and Active Directory, by means of role-based access control (RBAC).  This connection enables PE to authenticate lightweight directory access protocol (LDAP) groups and to manage user roles, which means you don’t have to create users in two separate locations.
+Puppet Enterprise (PE) can now connect with directory services, specifically OpenLDAP and Active Directory, by means of role-based access control (RBAC).  This connection enables PE to authenticate lightweight directory access protocol (LDAP) users and to manage user roles, which means you don’t have to create users in two separate locations.
 
-User accounts that originate from an LDAP service are referred to as *remote users*. Those users that are created in PE are *local users*. You can assign roles directly to both remote and local users. However, remote users are also assigned to user roles via the LDAP groups they belong to. When an LDAP group is imported into PE and assigned to roles, the users that belong to that group are also assigned to that role. LDAP groups imported into PE are called *user groups*.
+User accounts that originate from an LDAP service are referred to as *remote users*. Those users that are created in PE are *local users*. You can assign roles directly to both remote and local users. However, remote users are also assigned to user roles via the LDAP groups they belong to. When an LDAP group is imported into PE and assigned to roles, the users that belong to that group are also assigned to those roles. LDAP groups imported into PE are called *user groups*.
 
-LDAP users or groups are not bulk imported from the directory service into PE. Instead, you explicitly import user groups from a directory service. Remote users must log into PE before they can be seen and managed in RBAC.
+LDAP users are not bulk imported from the directory service into PE. Instead, you explicitly import user groups from a directory service. Remote users must log into PE before they can be seen and managed in RBAC.
 
-If LDAP users aren’t assigned to a group on the directory service, they can still be added to user roles in PE. In those cases, the users must still log in to create an initial RBAC record before they can be added to roles.
+If LDAP users aren’t assigned to a group in the directory service, they can still be added to user roles in PE. In those cases, the users must still log in to create an initial RBAC record before they can be added to roles.
 
 This section describes how to connect PE to your external directory service. See [Working with User Roles](./rbac_user_roles.html) for information about managing users and groups. In particular, find out how to [work with users and user groups from an external directory service](./rbac_user_roles.html#working-with-users-and-user-groups-from-an-external-directory-service).
 
@@ -62,6 +62,6 @@ You connect to an external directory service by providing the information descri
 | Group relative distinguished name  | The base distinguished name for looking up groups.  | cn=Groups |
 
 
-Once you’ve filled in the **External directory** form, click **Test connection** to ensure that the connection has been established. If you’re successful, a green **Success** message will be displayed at the top of the form.
+Once you’ve filled in the **External directory** form, click **Test connection** to ensure that the connection has been established. If you’re successful, a green **Success** message will be displayed at the top of the form. Save your settings after you have successfully tested them.
 
 Next, see [Working with Users and User Groups from an External Directory Service](./rbac_user_roles.html#working-with-users-and-user-groups-from-an-external-directory-service).
