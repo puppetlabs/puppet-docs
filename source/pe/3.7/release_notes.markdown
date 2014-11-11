@@ -25,17 +25,23 @@ This release supports the ability to add additional Puppet masters to large PE d
 
 For instructions on adding additional Puppet masters, refer to [Additional Puppet Master Installation](./install_multimaster.html).
 
-### Adding MCollective Hub and Spokes
-
-PE 3.7.0 provides the ability to add additional ActiveMQ hubs and spokes to large PE deployments managing more than 1500 agent nodes. Building out your ActiveMQ brokers will provide efficient load balancing of network connections for relaying MCollective messages through your PE infrastructure.
-
-For instructions on adding additional ActiveMQ Hubs and Spokes, refer to [Additional ActiveMQ Hub and Spoke Installation](./install_add_activemq.html).
-
 ### Rules-Based Node Classifier
 
 PE3.7.0 introduces a powerful and flexible new way to organize and configure your nodes. We’ve built a robust, API-driven backend service and an intuitive new GUI that encourages a modern, cattle-not-pets approach to managing your infrastructure. Classes are now assigned at the group level, and nodes are dynamically added to groups based on user-defined rules.
 
 For a detailed overview of the new node classifier, refer to the [User's Guide](./console_classes_groups_getting_started.html).
+
+### Role-Based Access Control
+
+With RBAC, PE nodes can now be segmented so that tasks can be safely delegated to the right people. For example, RBAC allows segmenting of infrastructure across application teams so that they can manage their own servers without affecting other applications. Plus, to ease the administration of users and authentication, RBAC connects directly with standard directory services including Microsoft Active Directory and OpenLDAP.
+
+For detailed information to get started with RBAC, see the [RBAC user guide](./rbac_intro.html).
+
+### Adding MCollective Hub and Spokes
+
+PE 3.7.0 provides the ability to add additional ActiveMQ hubs and spokes to large PE deployments managing more than 1500 agent nodes. Building out your ActiveMQ brokers will provide efficient load balancing of network connections for relaying MCollective messages through your PE infrastructure.
+
+For instructions on adding additional ActiveMQ Hubs and Spokes, refer to [Additional ActiveMQ Hub and Spoke Installation](./install_add_activemq.html).
 
 ### Upgrades to Directory Environments
 
