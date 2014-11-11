@@ -157,6 +157,20 @@ For example, this fact changed from: `12` to `12.04`
 
 This change affects Ubuntu and Amazon Linux. See the [Facter documentation for more information](./facter/2.2/release_notes.html#significant-changes-to-existing-facts)
 
+### Puppet Expands Variables in Windows Systems Path
+
+Puppet will automatically expand variables in a system path.
+
+For example, this path:
+
+	PATH=%SystemRoot%\System32
+
+Will be expanded, as follows:
+
+	PATH=C:\Windows\System32
+
+This should not cause any problems.
+
 ### Enabling NIO and Stomp for ActiveMQ Performance Improvements will Introduce Security Issues
 
 Enabling ActiveMQ's use of the NIO protocol in PE can improve the speed at which orchestration messages are sent across your deployment. However, when this is enabled, any parameters that you define for which SSL protocols to use will be ignored, and SSL version 3 will be enabled. Apache has fixed this bug, but they have not yet released a version of ActiveMQ that contains the fix. For more information, refer to their [public ticket](https://issues.apache.org/jira/browse/AMQ-5407).
