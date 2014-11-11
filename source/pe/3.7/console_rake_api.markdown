@@ -11,7 +11,7 @@ The Puppet Enterprise console provides rake tasks that can add classes, nodes, a
 Invoking Console Rake Tasks
 -----
 
->**Note**: In the PE 3.7 series, console rake tasks use the node classifier instead of the puppet-dashboard. For more information, refer to the [node classifier documentation](/.console_classes_groups_getting_started.html) and the [node classifier REST API](to do: add link).
+>**Note**: In the PE 3.7 series, console rake tasks use the node classifier instead of the puppet-dashboard. For more information, refer to the [node classifier documentation](/.console_classes_groups_getting_started.html) and the [node classifier REST API](./nc_index.html).
 
 * Console rake tasks must be invoked from the command line on the console server.
 * They should be invoked by a user account with sufficient `sudo` privileges to modify items owned by the `puppet-dashboard` user.
@@ -94,7 +94,7 @@ Each task has specific names that must be used for its arguments; the arguments 
 Node Tasks: Getting Info
 -----
 
->**Note**: In the PE 3.7 series, these rake tasks operate against nodes that have been pinned to a group. See the [node classifier documentation](to do: add link) for details about groups and pinned nodes.
+>**Note**: In the PE 3.7 series, these rake tasks operate against nodes that have been pinned to a group. See the [node classifier documentation](./console_classes_groups_getting_started.html) for details about groups and pinned nodes.
 
 ### `node:list[(match)]`
 
@@ -142,7 +142,7 @@ List variables for a node.
 Node Tasks: Modifying Info
 -----
 
->**Note**: In the PE 3.7 series, these rake tasks operate against nodes that have been pinned to a group. See the [node classifier documentation](to do: add link) for details about groups and pinned nodes.
+>**Note**: In the PE 3.7 series, these rake tasks operate against nodes that have been pinned to a group. See the [node classifier documentation](.console_classes_groups_getting_started.html) for details about groups and pinned nodes.
 
 ### `node:add[name,(groups),(classes),(onexists)]`
 

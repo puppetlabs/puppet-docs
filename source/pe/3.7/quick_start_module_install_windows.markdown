@@ -25,7 +25,7 @@ The process for installing a module is the same on both Windows and *nix operati
         NAME                 DESCRIPTION               AUTHOR        KEYWORDS
         puppetlabs-registry  This module provides...   @puppetlabs   type registry
 
-   The module you want is `puppetlabs-registy`. You can view detailed info about the module in the "ReadMe" on the Puppet Forge. [to do: link]
+   The module you want is `puppetlabs-registy`. You can view detailed info about the module in the ["ReadMe" on the Puppet Forge](https://forge.puppetlabs.com/puppetlabs/registry).
 
 2. To install the module, run `puppet module install puppetlabs-registry`. Here’s what happens:
 
