@@ -37,7 +37,7 @@ Facter offers a few methods of loading facts:
  * The environment variable 'FACTERLIB'
  * Facts distributed using pluginsync
 
-You can use these methods of loading facts do to things like test files locally
+You can use these methods of loading facts to do things like test files locally
 before distributing them, or you can arrange to have a specific set of facts available on certain
 machines.
 
@@ -186,7 +186,7 @@ gets executed. Otherwise, each subsequent resolution would override the one befo
 and you might not get the value that you want.
 
 The way that Facter decides the issue of precedence is the weight property.
-Once Facter rules out any resolutions that are excluded because of `confine` statments,
+Once Facter rules out any resolutions that are excluded because of `confine` statements,
 the resolution with the highest weight will be executed. If that resolution doesn't return
 a value, Facter will move on to the next resolution (by descending weight) until it gets
 a suitable value for the fact.
@@ -245,7 +245,7 @@ While the norm is for a fact to return a single string, Facter 2.0 introduced **
 
 ## Aggregate Resolutions
 
-If your fact combines the output of multiple commands, it may make sense to use **aggregate resolutions**. An aggregate resolution is split into "chunks," each one responsible for resolving one piece of the fact. After all of the chunks hae been resolved separately, they're combined into a single flat or structured fact and returned.
+If your fact combines the output of multiple commands, it may make sense to use **aggregate resolutions**. An aggregate resolution is split into "chunks", each one responsible for resolving one piece of the fact. After all of the chunks have been resolved separately, they're combined into a single flat or structured fact and returned.
 
 Aggregate resolutions have several key differences compared to simple resolutions, beginning with the fact declaration. To introduce an aggregate resolution, you'll need to add the `:type => :aggregate` parameter:
 
