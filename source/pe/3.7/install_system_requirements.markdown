@@ -31,7 +31,8 @@ Oracle Linux                 | 4, 5, 6, & 7                                   | 
 Scientific Linux             | 4, 5 & 6                                   | x86 & x86\_64 | all (Scientific Linux 4 supports agent only)
 SUSE Linux Enterprise Server | 10 (SP4 only) & 11 (SP1 and later)                      | x86 & x86\_64 (SLES 10 also i386) | all (SLES 10 supports agent only)
 Solaris                      | 10 (Update 9 or later) & 11          | SPARC & i386   | agent
-Microsoft Windows            | 2003, 2003R2, 2008, 2008R2, 7 Ultimate SP1, 8 Pro, 8.1 Pro, 2012, & 2012R2| x86 & x86\_64 | agent
+Microsoft Windows            | 2008, 2008R2, 7 Ultimate SP1, 8 Pro, 8.1 Pro, 2012, & 2012R2| x86 & x64 | agent
+Microsoft Windows            | 2003, 2003R2,                           | x86           | agent
 AIX                          | 5.3, 6.1, & 7.1                         | Power         | agent
 Mac OS X                     | Mavericks (10.9)                        | x86_64         | agent
 
@@ -148,7 +149,7 @@ libjpeg      |           | x            |               | x                     
 libtool-ltdl |           | x            | x             |                          |
 unixODBC     |           | x            | x             |                          |
 libxslt      |           |              |               |                          | x
-zlib         | x         |              |               |                          |  
+zlib         | x         |              |               |                          |
 
 <br>
 
@@ -174,7 +175,7 @@ libjpeg      |           | x            |               | x                     
 libtool-ltdl (RHEL 7) |  | x            | x             |                          |
 unixODBC (RHEL 7) |      | x            | x             |                          |
 libxslt      |           |              |               |                          | x
-zlib         | x         |              |               |                          |  
+zlib         | x         |              |               |                          |
 
   <br>
 
@@ -194,7 +195,7 @@ curl         |           | x            | x             |                       
 libjpeg      |           | x            |               | x                        |
 db43         |           | x            | x             |                          |
 unixODBC     |           | x            | x             |                          |
-zlib         | x         |              |               |                          |  
+zlib         | x         |              |               |                          |
 
  <br>
 
@@ -226,7 +227,7 @@ libcurl3 (Debian 7) |    | x            | x             |                       
 libxml2-dev (Debian 7) | | x            | x             | x                        |
 locales-all (Debian 7) | |              |               | x                        |
 libxslt1.1   |           |              |               |                          | x
-zlib         | x         |              |               |                          |  
+zlib         | x         |              |               |                          |
 
 <br>
 
@@ -260,9 +261,9 @@ libgtk2.0-0  |           | x            | x             | x                     
 ca-certificates-java |   | x            | x             | x                        |
 openjdk-7-jre-headless* | | x            | x             | x                        |
 libossp-uuid16 |         | x            | x             | x                        |
-zlib         | x         |              |               |                          |  
+zlib         | x         |              |               |                          |
 
-*For Ubuntu 10.04 and Debian 6, use openjdk-6-jre-headless. 
+*For Ubuntu 10.04 and Debian 6, use openjdk-6-jre-headless.
 
 <br>
 
