@@ -22,8 +22,8 @@ For more information about Puppet agents, as well as the components that make up
 
 Choose one of the following scenarios:
 
-- My Puppet agent node has the same OS and architecture as my Puppet master. [to do: link]
-- My Puppet agent node has a different OS and architecture than my Puppet master. [to do: link]
+- My Puppet agent node has the [same OS and architecture as my Puppet master](#installing-agents-with-the-same-os-and-architecture-as-the-puppet-master).
+- My Puppet agent node has a [different OS and architecture than my Puppet master](#installing-agents-with-different-os-and-architecture-than-the-puppet-master).
 
 
 #### Installing Agents with the Same OS and Architecture as the Puppet Master
@@ -35,7 +35,7 @@ This script detects the OS on which the agent is running, sets up an apt, yum, o
 
 > **Important**: After installation is complete, you need to approve your new agent node’s certificate request in the console. Continue on to [Approving the Certificate Request](todo: link) to do so.
 
-#### Installing Agents with Different OS and Architecture from the Puppet Master
+#### Installing Agents with Different OS and Architecture than the Puppet Master
 
 [classification_selector]: ./images/quick/classification_selector.png
 [add_repo]: ./images/quick/add_repo.png
