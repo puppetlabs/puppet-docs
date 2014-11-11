@@ -196,7 +196,7 @@ This page can help you find syntax elements when you can't remember their names.
 
 
 {% highlight ruby %}
-    if $is_virtual == 'true' {
+    if str2bool("$is_virtual") {
       warning( 'Tried to include class ntp on virtual machine; this node may be misclassified.' )
     }
     elsif $operatingsystem == 'Darwin' {
