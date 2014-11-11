@@ -20,6 +20,7 @@ defaultnav:
   /learning: learning_nav.html
   /mcollective: mcollective_menu.html
   /mcollective1.2: mcollective_1.2.html
+  /pe/3.7: pe37.html
   /pe/3.3: pe33.html
   /pe/3.2: pe32.html
   /pe/3.1: pe31.html
