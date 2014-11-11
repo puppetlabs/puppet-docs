@@ -17,7 +17,9 @@ In this guide, you'll create a new node group, apply rules to the group to defin
 [assign_rule]: ./images/quick/assign_rule.png
 [role_views_node_group]: ./images/quick/role_views_node_group.png
 
-> **Prerequisites**: This guide assumes you've already [installed a monolithic PE deployment](./quick_start_install_mono.html), and have installed at least one [*nix agent node](./quick_start_install_agents_nix.html) or one [Windows node](./quick_start_install_agents_windows.html). It also assumes you’ve installed a [*nix](./quick_start_module_install_nix.html) or [Windows](./quick_start_module_install_windows.html) module. Finally, you must have admin permissions to complete these steps, which include assigning a user to a role.
+> **Prerequisites**: This guide assumes you've already [installed a monolithic PE deployment](./quick_start_install_mono.html), and have installed at least one [*nix agent node](./quick_start_install_agents_nix.html) or one [Windows node](./quick_start_install_agents_windows.html). 
+>
+> It also assumes you’ve installed a [*nix](./quick_start_module_install_nix.html) or [Windows](./quick_start_module_install_windows.html) module. Finally, you must have admin permissions to complete these steps, which include assigning a user to a role.
 
 
 ###Create a New Node Group
