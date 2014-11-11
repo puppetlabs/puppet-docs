@@ -149,6 +149,14 @@ Due to a known issue in PE 3.7.0, you can select the SLES 12 `pe::repo` class fr
 
 Support for SLES 12 will be added in a future release.
 
+### Change to `lsbmajdistrelease` Fact Affects Some Manifests
+
+In Facter 2.2.0, the `lsbmajdistrelease` fact changed its value from the first two numbers to the full two-number.two-number version on Ubuntu systems. This might break manifests that were based on the previous behavior.
+
+For example, this fact changed from: `12` to `12.04`
+
+This change affects Ubuntu and Amazon Linux. See the [Facter documentation for more information](./facter/2.2/release_notes.html#significant-changes-to-existing-facts)
+
 ### Enabling NIO and Stomp for ActiveMQ Performance Improvements will Introduce Security Issues
 
 Enabling ActiveMQ's use of the NIO protocol in PE can improve the speed at which orchestration messages are sent across your deployment. However, when this is enabled, any parameters that you define for which SSL protocols to use will be ignored, and SSL version 3 will be enabled. Apache has fixed this bug, but they have not yet released a version of ActiveMQ that contains the fix. For more information, refer to their [public ticket](https://issues.apache.org/jira/browse/AMQ-5407).
