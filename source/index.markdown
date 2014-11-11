@@ -34,7 +34,7 @@ Nearly all of the main Puppet and MCollective documentation also applies to Pupp
 - [The quick start guide](/pe/latest/quick_start.html), which walks you through building and managing a small deployment that can be used as a learning tool, or first steps to creating your company's deployment.
 - [The PE download page](http://info.puppetlabs.com/download-pe.html)
 
-The current version of PE is 3.3. Documentation for previous versions can be found [here](/pe/index.html).
+The current version of PE is 3.7. Documentation for previous versions can be found [here](/pe/index.html).
 
 [MCollective](/mcollective)
 -----
