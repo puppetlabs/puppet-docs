@@ -25,9 +25,9 @@ This release supports the ability to add additional Puppet masters to large PE d
 
 For instructions on adding additional Puppet masters, refer to [Additional Puppet Master Installation](./install_multimaster.html).
 
-### Rules-Based Node Classifier
+### Node Manager
 
-PE3.7.0 introduces a powerful and flexible new way to organize and configure your nodes. We’ve built a robust, API-driven backend service and an intuitive new GUI that encourages a modern, cattle-not-pets approach to managing your infrastructure. Classes are now assigned at the group level, and nodes are dynamically added to groups based on user-defined rules.
+PE 3.7.0 introduces the rules-based node classifier, which is the first part of the Node Manager app that was announced in September. The node classifier provides a powerful and flexible new way to organize and configure your nodes. We’ve built a robust, API-driven backend service and an intuitive new GUI that encourages a modern, cattle-not-pets approach to managing your infrastructure. Classes are now assigned at the group level, and nodes are dynamically matched to groups based on user-defined rules.
 
 For a detailed overview of the new node classifier, refer to the [User's Guide](./console_classes_groups_getting_started.html).
 
