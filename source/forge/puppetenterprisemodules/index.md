@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Puppet Enterprise Modules"
-canonical: "/forge/puppetenterprisemodules.html"
+canonical: "/forge/puppetenterprisemodules/index.html"
 ---
 
 #Puppet Enterprise Modules
