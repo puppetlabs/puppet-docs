@@ -23,7 +23,7 @@ RBAC functionality is handled in a large part by the RBAC and activity services.
 
 See the following sections for information and steps to work with RBAC:
 
-* [Connecting Puppet Enterprise with LDAP Services](/.rbac_ldap.html)
+* [Connecting Puppet Enterprise with LDAP Services](./rbac_ldap.html)
 * [RBAC Permissions](./rbac_permissions.html)
 * [Working with User Roles](./rbac_user_roles.html)
 	* [Creating Custom Roles](./rbac_user_roles.html#create-a-new-user-role)
