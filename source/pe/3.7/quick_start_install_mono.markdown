@@ -81,7 +81,7 @@ The installer will then install and configure Puppet Enterprise. It may also nee
 To log in to the console, you can select the **Start Using Puppet Enterprise Now** button that appears at the end of the web-based installer or follow the steps below.
 
 1. **On your control workstation**, open a web browser and point it to the address supplied by the installer; for example, https://master.example.com.
-   You will receive a warning about an untrusted certificate. This is because _you_ were the signing authority for the console's certificate, and your Puppet Enterprise deployment is not known to the major browser vendors as a valid signing authority. **Ignore the warning and accept the certificate**. The steps to do this [vary by browser][console_cert].
+   You will receive a warning about an untrusted certificate. This is because _you_ were the signing authority for the console's certificate, and your Puppet Enterprise deployment is not known to the major browser vendors as a valid signing authority. **Ignore the warning and accept the certificate**. The steps to do this [vary by browser](./console_accessing.html).
 2. On the login page for the console, **log in** with the username **admin** and the password you provided when installing the puppet master.
 
    The console GUI loads in your browser.
