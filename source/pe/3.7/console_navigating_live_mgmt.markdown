@@ -16,7 +16,7 @@ Related pages:
 * [See the Orchestration: Overview page](./orchestration_overview.html) for background information about the orchestration engine.
 * [See the Orchestration: Invoking Actions page](./orchestration_invoke_cli.html) to invoke the same orchestration actions on the command line.
 
-> **Notes**: To invoke orchestration actions, you must be logged in as a [read-write or admin level user](./console_auth.html#user-access-and-privileges). Read-only users can browse resources, but cannot invoke actions.
+> **Notes**: To invoke orchestration actions, you must be logged in as a read-write or admin level user. See [RBAC Permissions for more information](./rbac_permissions.html). Read-only users can browse resources, but cannot invoke actions.
 >
 > Since the live management page queries information directly from your nodes rather than using the console's cached reports, it responds more slowly than other parts of the console.
 
@@ -26,7 +26,7 @@ Related pages:
 
 ### Disabling/Enabling Live Management
 
-In some cases, after you install PE, you may find that your workflow requires live management to be disabled. You can disable/enable live management at any time by editing the `disable_live_management` setting in `/etc/puppetlabs/puppet-dashboard/settings.yml` on the puppet master. Note that after making your change, you must run `sudo /etc/init.d/pe-httpd restart` to complete the process. 
+In some cases, after you install PE, you may find that your workflow requires live management to be disabled. You can disable/enable live management at any time by editing the `disable_live_management` setting in `/etc/puppetlabs/puppet-dashboard/settings.yml` on the puppet master. Note that after making your change, you must run `sudo /etc/init.d/pe-httpd restart` to complete the process.
 
 By default, `disable_live_managment` is set to `false`, but you can also configure your [answer file installations][install_automated] or [upgrades][install_upgrading] to disable/enable live management as needed during installation or upgrade.
 

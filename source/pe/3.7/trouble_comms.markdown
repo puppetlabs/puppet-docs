@@ -32,7 +32,7 @@ The puppet master depends on the console for the names of the classes an agent n
 
 Check the [puppet agent logs](/pe/latest/install_what_and_where.html#puppet-agent-logs) on your nodes, or run `puppet agent --test` on one of them; if you see something like `err: Could not retrieve catalog from remote server: Error 400 on SERVER: Could not find node 'agent01.example.com'; cannot compile`, the master may be failing to find the console.
 
-To fix this, make sure that the console is alive by [navigating to its web interface](./console_navigating.html). If it can't be reached, make sure DNS is set up correctly for the console server and ensure that the `pe-httpd` service on it is running.
+To fix this, make sure that the console is alive by [navigating to its web interface](./console_accessing.html). If it can't be reached, make sure DNS is set up correctly for the console server and ensure that the `pe-httpd` service on it is running.
 
 If the console is alive and reachable from the master but the master can't retrieve node info from it, the master may be configured with the wrong console hostname. You'll need to:
 

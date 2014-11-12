@@ -11,7 +11,7 @@ When nodes fetch their configurations from the Puppet master, they send back inv
 Node States
 -----
 
-Depending on how its last Puppet run went, every node is in one of six states. Each state is indicated by a specific color in graphs and the [node state summary](./console_navigating.html#the-sidebar), and by an icon beside the report or the node name in a report list or node list view.
+Depending on how its last Puppet run went, every node is in one of six states. Each state is indicated by a specific color in graphs and the node state summary, and by an icon beside the report or the node name in a report list or node list view.
 
 - <span style="font-family: Helvetica, Arial, Verdana; color: #818285;">Unresponsive:</span> The node hasn't reported to the Puppet master recently; something may be wrong. The cutoff for considering a node unresponsive defaults to one hour, and can be configured in `settings.yml` with the `no_longer_reporting_cutoff` setting. Represented by dark grey text. This state has no icon; the node retains whatever icon the last report used.
 - <span style="font-family: Helvetica, Arial, Verdana; color: #D93129;">Failed:</span> During its last Puppet run, this node encountered some error from which it couldn't recover. Something is probably wrong, and investigation is recommended. Represented by red text or the ![failed][failed] failed icon.
@@ -39,7 +39,7 @@ Each **node detail page** has a pair of graphs: a histogram showing the number o
 
 ![The pair of graphs on a node page][reports_graphs]
 
-The daily run status histogram uses the following colors: 
+The daily run status histogram uses the following colors:
 
 * red for failed runs
 * orange for pending runs (where a change would have been made, but the resource to be changed was marked as no-op)
@@ -100,4 +100,4 @@ You can export the inventory and report tables to a CSV file using the __Export 
 
 * * *
 
-- [Next: Managing Users](./console_auth.html)
+- [Next: Inventory Search](./console_inventory_search.html)

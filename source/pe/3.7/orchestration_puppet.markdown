@@ -14,7 +14,6 @@ canonical: "/pe/latest/orchestration_puppet.html"
 [tags]: /puppet/3.7/reference/lang_tags.html
 [batch]: ./orchestration_invoke_cli.html#batching
 [data_plugins]: ./orchestration_invoke_cli.html#data-plugins
-[console_user]: ./console_auth.html#user-access-and-privileges
 [tab]: ./console_navigating_live_mgmt.html#the-control-puppet-tab
 [select_nodes]: ./console_navigating_live_mgmt.html#the-node-list
 [advanced_tasks]: ./console_navigating_live_mgmt.html#the-advanced-tasks-tab
@@ -89,7 +88,7 @@ Use the `runonce` action to trigger an immediate Puppet run on a few nodes. If y
 
 ### In the Console
 
-While logged in as a [read/write or admin user][console_user], navigate to the [Control Puppet][tab] tab, [filter and select your nodes][select_nodes], and click the __runonce__ action. Enter any arguments, and click the red __Run__ button.
+While logged in as a read/write or admin user, navigate to the [Control Puppet][tab] tab, [filter and select your nodes][select_nodes], and click the __runonce__ action. Enter any arguments, and click the red __Run__ button.
 
 ![The runonce action with its arguments][live_puppet_runonce_arguments]
 

@@ -62,14 +62,24 @@ In PE versions earlier than 3.2, you could run the external node script (`/etc/p
 Recovering from a Lost Console Admin Password
 -----
 
-If you have forgotten the password of the console's initial admin user, you can [create a new admin user](./console_auth.html#working-with-users-from-the-command-line) and use it to reset the original admin user's password.
+In RBAC, one of the built-in users is the admin, a superuser with all available read/write privileges. In the event you need to reset the admin password for console access, you'll have to run a utility script located in the [PE 3.7.0 installer tarball](http://puppetlabs.com/misc/pe-files). Note that it might have moved to the [previous releases page](http://puppetlabs.com/misc/pe-files/previous-releases).
 
-On the console server, run the following commands:
+This script uses a series of API calls authenticated with a whitelisted certificate to reset the built-in admin's password.
 
-    $ cd /opt/puppet/share/puppet-dashboard
-    $ sudo /opt/puppet/bin/bundle exec /opt/puppet/bin/rake -s -f /opt/puppet/share/console-auth/Rakefile db:create_user USERNAME=<adminuser@example.com> PASSWORD=<password> ROLE="Admin" RAILS_ENV=production
+The script can only be invoked under these conditions:
 
-You can now log in to the console as the user you just created, and use the normal admin tools to reset other users' passwords.
+* It must be run from the command line of the console system. In a split install, it cannot be run from the Puppet master.
+* It is not directly executable. It must be invoked using the version of Ruby shipped with PE, using `/opt/puppet/bin/ruby`.
+* A console-services whitelisted certificate must be specified in order to run the command. The example command below dynamically specifies the correct certificate.
+
+The reset script:
+
+    q_puppet_enterpriseconsole_auth_password=newpassword q_puppetagent_certname=$(puppet config print certname) /opt/puppet/bin/ruby u\pdate-superuser-password.rb
+
+
+The script is not installed onto the system by default. The two environment arguments in the script come from the [installation answers file](./install_answer_file_reference.html), and have the same meaning and semantics.
+
+Admins have root access to the systems and therefore access to the whitelisted certificates needed to reset the admin password through the API.
 
 `Puppet resource` Generates Ruby Errors After Connecting `puppet apply` to PuppetDB
 -----

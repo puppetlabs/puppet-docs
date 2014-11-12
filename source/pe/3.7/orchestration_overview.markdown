@@ -93,8 +93,8 @@ The orchestration engine in Puppet Enterprise 3.0 uses the same security model a
 
 In short, all commands and replies are encrypted in transit, and only a few authorized clients are permitted to send commands. By default, PE allows orchestration commands to be sent by:
 
-- [Read/write and admin users of the PE console](./console_auth.html#user-access-and-privileges)
-- Users able to log in to the puppet master server with full administrator `sudo` privileges
+- Read/write and admin users of the PE console
+- Users able to log in to the Puppet master server with full administrator `sudo` privileges
 
 If you extend orchestration by [integrating external applications][integrate], you can limit the actions each application has access to by distributing policy files; [see the Configuring Orchestration page][config] for more details.
 

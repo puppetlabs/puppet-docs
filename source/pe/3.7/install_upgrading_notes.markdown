@@ -39,7 +39,7 @@ The [preconfigured groups doc](./console_classes_groups_preconfigured_groups.htm
 
 ### Upgrading to Role-Based Access Control (RBAC)
 
-After upgrading to PE 3.7.0, you will need to set up your directory service and users and groups. Note that when you upgrade, PE doesn't migrate any existing users or groups. In addition, PE doesn't preserve your username and password. You'll now log in with "admin" as your username.
+After upgrading to PE 3.7.0, you will need to set up your directory service and users and groups. Note that when you upgrade, PE doesn't migrate any existing users. In addition, PE doesn't preserve your username and password. You'll now log in with "admin" as your username.
 
 For more information about RBAC, refer to [Working with Role-Based Access Control](./rbac_intro.html).
 

@@ -97,11 +97,11 @@ Click the __Continue to this website (not recommended)__ link on the warning pag
 Logging In
 -----
 
-For security, accessing the console requires a user name and password. PE allows three different levels of user access: read, read-write, and admin. If you are an admin setting up the console or accessing it for the first time, use the user and password you chose when you installed the console. Otherwise, you will need to get credentials from your site's administrator. See the [User Management page](./console_auth.html) for more information on managing console user accounts.
+For security, accessing the console requires a user name and password. PE allows three different levels of user access: read, read-write, and admin. If you are an admin setting up the console or accessing it for the first time, use the user and password you chose when you installed the console. Otherwise, you will need to get credentials from your site's administrator. See the [user management information](./rbac_user_roles.html#troubleshooting-admin-and-user-access-the-console) for more information on managing console user accounts.
 
 Since the console is the main point of control for your infrastructure, you will probably want to decline your browser's offer to remember its password.
 
 
 * * *
 
-- [Next: Navigating the Console](./console_navigating.html)
+- [Next: Navigating the Live Management Page](./console_navigating_live_mgmt.html)
