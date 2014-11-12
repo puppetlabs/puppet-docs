@@ -123,6 +123,10 @@ The following issues affect the currently shipped version of PE and all prior re
 
 ### Issues Related to Puppet Server
 
+#### Upgrading to PE 3.7.0 Will Fail If `basemodulepath` Is Not Set In `[main]` Section of `puppet.conf`.
+
+This only affects users who are upgradign from PE 3.3.x who have enabled directory environments.  If the `basemodulepath` is set in `[master]` then the parts of the upgrader that use `puppet apply` will fail due to not being able to find the PE specific modules. To prevent this, ensure that `basemodulepath` is set in the `[main]` section of `puppet.conf` prior to beginning the upgrade.
+
 #### SSL Termination Configuration Not Currently Supported
 
 Previous to PE 3.7.0, it was possible to configure your environment to handle SSL termination on a hardware load balancer. This situation was handled by supporting some custom HTTP headers where the client certificate information could be stored when the SSL was terminated, thus making it possible for Puppet to continue to perform authorization checks based on the client certificate data, even when communicating via HTTP instead of HTTPS. This configuration is not yet supported, but we intend to support it in a future release.
