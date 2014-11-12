@@ -17,7 +17,7 @@ title: "Configuring Directory Environments"
 [disable_per_environment_manifest]: /references/3.7.latest/configuration.html#disableperenvironmentmanifest
 [main manifest]: ./dirs_manifest.html
 
-> **Note:** This page refers to Puppet 3.7, which will be included in a future version of Puppet Enterprise. Puppet Enterprise 3.3 users should refer to [the Puppet 3.6 version of this page.](/puppet/3.6/reference/environments_configuring.html)
+> **Note:** This page refers to Puppet 3.7, which is included with Puppet Enterprise 3.7.
 
 Before you can use directory environments, you have to configure Puppet to enable them. After enabling them, you can:
 

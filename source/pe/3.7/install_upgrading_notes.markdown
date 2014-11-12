@@ -13,7 +13,7 @@ PE 3.7.0 introduces the Puppet server, running the Puppet Master, which function
 
 Directory environments are enabled by default in PE 3.7.0. Before upgrading be sure to read [Important Information about Upgrades to PE 3.7 and Directory Environments](./install_upgrading_dir_env_notes.html).
 
->**Warning**: If you enabled directory environments in pe 3.3.x and are upgrading to pe 3.7.0, ensure there is no `default_manifest` parameter in `puppet.conf` **before** upgrading. Upgrades will fail if this change is not made. 
+>**Warning**: If you enabled directory environments in pe 3.3.x and are upgrading to pe 3.7.0, ensure there is no `default_manifest` parameter in `puppet.conf` **before** upgrading. Upgrades will fail if this change is not made.
 
 ### Upgrading to the Node Classifier
 
@@ -35,11 +35,15 @@ For example, if you have an agent node for which the `[agent]` section of `puppe
 
 For fresh installations of PE 3.7.0, node groups in the classifier are created and configured during the installation process. For upgrades, these groups are created but no classes are added to them. This is done to help prevent errors during upgrade process.
 
-The [preconfigured groups doc](./console_classes_groups_preconfigured_groups.html) has a list of groups and their classes that get installed on fresh upgrades. 
+The [preconfigured groups doc](./console_classes_groups_preconfigured_groups.html) has a list of groups and their classes that get installed on fresh upgrades.
 
 ### Upgrading to Role-Based Access Control (RBAC)
 
-After upgrading to PE 3.7.0, you will need to set up your directory service and users and groups. For more information about RBAC, refer to [Working with Role-Based Access Control](./rbac_intro.html).
+After upgrading to PE 3.7.0, you will need to set up your directory service and users and groups. Note that when you upgrade, PE doesn't migrate any existing users or groups. In addition, PE doesn't preserve your username and password. You'll now log in with "admin" as your username.
+
+For more information about RBAC, refer to [Working with Role-Based Access Control](./rbac_intro.html).
+
+
 
 ### Before Upgrading, Back Up Your Databases and Other PE Files
 
@@ -61,10 +65,10 @@ After upgrading to PE 3.7.0, you will need to set up your directory service and 
 
 ### A Note about RBAC, Node Classifier, and External PostgreSQL
 
-If you are using an external PostgreSQL instance that is not managed by PE, please note the following: 
+If you are using an external PostgreSQL instance that is not managed by PE, please note the following:
 
 1. You will need to create databases for RBAC, activity service, and the node classifier before upgrading.
-2. You will need to have the [citext extension](http://www.postgresql.org/docs/9.2/static/citext.html) enabled on the RBAC database. 
+2. You will need to have the [citext extension](http://www.postgresql.org/docs/9.2/static/citext.html) enabled on the RBAC database.
 
 ### You Might Need to Upgrade puppetlabs-inifile to Version 1.1.0 or Later
 
