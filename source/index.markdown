@@ -111,6 +111,13 @@ Geppetto is an integrated development environment (IDE) for Puppet. It provides 
 
 * [The Geppetto Manual](/geppetto/latest/index.html) has installation and usage instructions.
 
+[Puppet Forge](/forge/index.html)
+-----
+
+The [Puppet Forge](forge.puppetlabs.com) is where you go to get pre-made modules created by Puppet Labs and the Puppet community. Modules on the Forge cover everything from NTP and Registry to Apache and PostgreSQL, and make it easy to instal, configure, and manage all kinds of technology with Puppet. You can access the Forge online or through the Puppet module tool, which is your in-Puppet way of interfacing with the Forge from the command line.
+
+* [Puppet Enterprise Modules](/forge/puppetenterprisemodules/index.html) will tell you everything you need to know about working with PE-specific modules from the Forge.
+
 Razor
 -----
 
