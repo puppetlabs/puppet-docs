@@ -45,7 +45,7 @@ For instructions on adding additional ActiveMQ Hubs and Spokes, refer to [Additi
 
 ### Upgrades to Directory Environments
 
-Puppet Enterprise 3.7.0 introduces full support for directory environments, which will be enabled by default.
+PE 3.7.0 introduces full support for directory environments, which will be enabled by default.
 
 Environments are isolated groups of puppet agent nodes. This frees you to use different versions of the same modules for different populations of nodes, which is useful for testing changes to your Puppet code before implementing them on production machines. Directory environments let you add a new environment by simply adding a new directory of config data.
 
