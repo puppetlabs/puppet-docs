@@ -79,13 +79,15 @@ For any number of reasons, you might need to either reset the admin password for
 
 ### Reset the Admin Password
 
-In RBAC, one of the built-in users is the admin, a superuser with all available read/write privileges. In the event you need to reset the admin password for console access, you'll have to run a utility script located in the installer tarball. This script uses a series of API calls authenticated with a whitelisted certificate to reset the built-in admin's password.
+In RBAC, one of the built-in users is the admin, a superuser with all available read/write privileges. In the event you need to reset the admin password for console access, you'll have to run a utility script located in the [PE 3.7.0 installer tarball](http://puppetlabs.com/misc/pe-files). Note that it might have moved to the [previous releases page](http://puppetlabs.com/misc/pe-files/previous-releases).
+
+This script uses a series of API calls authenticated with a whitelisted certificate to reset the built-in admin's password.
 
 The script can only be invoked under these conditions:
 
 * It must be run from the command line of the console system. In a split install, it cannot be run from the Puppet master.
-* It is not directly executable. It must be invoked using Ruby.
-* The correct certificate name can be dynamically determined.
+* It is not directly executable. It must be invoked using the version of Ruby shipped with PE, using `/opt/puppet/bin/ruby`.
+* A console-services whitelisted certificate must be specified in order to run the command. The example command below dynamically specifies the correct certificate.
 
 The reset script:
 
