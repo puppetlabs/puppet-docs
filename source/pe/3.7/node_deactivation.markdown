@@ -27,8 +27,6 @@ From time to time, you may need to completely deactivate an agent node in your P
 
 5. Delete the node from the console. In the console, click **Nodes**. Click the node that you want to delete and click the __Delete__ button. 
 
-   Alternatively, you can also run `/opt/puppet/bin/rake -f /opt/puppet/share/puppet-dashboard/Rakefile RAILS_ENV=production node:del[node name]`.
-
    This action does **NOT** disable MCollective/live management on the node. 
    
    **Note**: If you delete a node from the node view without first deactivating the node, the node will be absent from the node list in the console, but the license count will not decrease, and on the next puppet run, the node will be listed in the console. 
