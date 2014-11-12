@@ -14,6 +14,8 @@ Puppet Enterprise 3.7
 Previous Versions
 -----
 
+> **Note:** We skipped from PE 3.3 to PE 3.7 to make the Puppet Enterprise version numbers consistent with Puppet version numbers. There was no PE 3.4, PE 3.5, or PE 3.6.
+
 Please select your version of Puppet Enterprise:
 
 * [Puppet Enterprise 3.3](./3.3)
