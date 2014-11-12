@@ -6,16 +6,19 @@ toc: false
 
 Puppet Enterprise is the best-of-breed distribution for the Puppet family of systems automation tools.
 
-Puppet Enterprise 3.3
+Puppet Enterprise 3.7
 -----
 
-* [Puppet Enterprise 3.3 User's Guide](./3.3)
+* [Puppet Enterprise 3.7 User's Guide](./3.7)
 
 Previous Versions
 -----
 
+> **Note:** We skipped from PE 3.3 to PE 3.7 to make the Puppet Enterprise version numbers consistent with Puppet version numbers. There was no PE 3.4, PE 3.5, or PE 3.6.
+
 Please select your version of Puppet Enterprise:
 
+* [Puppet Enterprise 3.3](./3.3)
 * [Puppet Enterprise 3.2](./3.2)
 * [Puppet Enterprise 3.1](./3.1)
 * [Puppet Enterprise 3.0](./3.0)

@@ -11,6 +11,7 @@ defaultnav:
   /facter/2.0: facter20.html
   /facter/2.1: facter21.html
   /facter/2.2: facter22.html
+  /facter/2.3: facter23.html
   /forge: forge.html
   /guides/deployment_guide: deploy_guide.html
   /guides/install_puppet: puppet_general.html
@@ -20,6 +21,7 @@ defaultnav:
   /learning: learning_nav.html
   /mcollective: mcollective_menu.html
   /mcollective1.2: mcollective_1.2.html
+  /pe/3.7: pe37.html
   /pe/3.3: pe33.html
   /pe/3.2: pe32.html
   /pe/3.1: pe31.html

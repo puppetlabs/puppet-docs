@@ -64,7 +64,7 @@ Note that this process **destroys the certificate authority and all other certif
    The Puppet agent will also try to do a full Puppet run, which will fail. This is as expected, so don't worry about it.
 
    If the master doesn't autosign the certificate in this step, you may have changed its autosign configuration. You'll need to manually sign the certificate ([see below][agent_certs]).
-8. Regenerate the certs and security credentials for PuppetDB with `sudo /opt/puppet/sbin/puppetdb-ssl-setup -f`.
+8. Regenerate the certs and security credentials for PuppetDB with `sudo /opt/puppet/sbin/puppetdb ssl-setup -f`.
 9. Start the PuppetDB service with `sudo puppet resource service pe-puppetdb ensure=running`.
 10. Re-start the puppet agent service with `sudo puppet resource service pe-puppet ensure=running`.
 

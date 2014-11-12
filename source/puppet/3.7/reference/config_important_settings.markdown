@@ -23,12 +23,12 @@ canonical: "/puppet/latest/reference/config_important_settings.html"
 [puppetdb_install]: /puppetdb/latest/connect_puppet_master.html
 [static_compiler]: /references/3.7.latest/indirection.html#staticcompiler-terminus
 [ssl_autosign]: ./ssl_autosign.html
+[structured_facts]: ./lang_facts_and_builtin_vars.html#data-types
 
 [trusted_node_data]: /references/3.7.latest/configuration.html#trustednodedata
 [immutable_node_data]: /references/3.7.latest/configuration.html#immutablenodedata
 [strict_variables]: /references/3.7.latest/configuration.html#strictvariables
 [stringify_facts]: /references/3.7.latest/configuration.html#stringifyfacts
-[structured_facts]: /references/3.7.latest/configuration.html#structuredfacts
 [ordering]: /references/3.7.latest/configuration.html#ordering
 [reports]: /references/3.7.latest/configuration.html#reports
 [parser]: /references/3.7.latest/configuration.html#parser
@@ -92,10 +92,11 @@ We've added improved behavior to Puppet over the course of the 3.x series, but s
 
 ### Recommended and Safe
 
+> **Note:** All three of these features are **enabled by default in Puppet Enterprise 3.7.**
+
 * [`trusted_node_data = true`][trusted_node_data] (puppet master/apply only) --- This enables [the `$trusted` and `$facts` hashes][trusted_and_facts], so you can start using them in your own code.
-    * And then the `$facts` variable can be independently disabled with the [`immutable_node_data`][immutable_node_data] setting, but you probably want both.
-* [`stringify_facts = false`][stringify_facts] (all nodes) --- This enables [structured facts][structured_facts], allowing facts to contain arrays, hashes, and booleans instead of just strings. This requires Facter 2.0, and none of the core facts use this yet, but enabling it will let you take advantage of structured facts as they are gradually released.
-* [`ordering = manifest`][ordering] (all nodes) --- This causes unrelated resources to be applied in the order they are written, instead of in effectively random order. It allows you to be "lazy" in small classes and write resources in chronological order instead of specifying dependencies. But be careful when writing manifests like this, since it makes it harder to share code with other users.
+* [`stringify_facts = false`][stringify_facts] (all nodes) --- This enables [full data type support for facts][structured_facts], allowing facts to contain arrays, hashes, and booleans instead of just strings. This requires Facter ≥ 2.0.
+* [`ordering = manifest`][ordering] (all nodes) --- This causes unrelated resources to be applied in the order they are written, instead of in effectively random order. You should still specify dependencies, but this reduces frustration if you forget one.
 
 ### Possibly Disruptive
 

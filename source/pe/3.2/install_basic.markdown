@@ -365,6 +365,8 @@ Simply SSH into the node where you want to install the PE agent, and run `curl -
 
 This script will detect the OS on which it is running, set up an apt, yum, or zipper repo that refers back to the Puppet master, and then pull down and install the `pe-agent` packages. It will also create a basic `puppet.conf`, and kick off a puppet run.
 
+Note that you can replace `current` in the script with a specific PE version number, in the form of `3.x.x`.
+
 > After the installation is complete, continue on to [Signing Agent Certificates](#signing-agent-certificates)
 
 **Scenario 2**: The OS/architecture of the Puppet master and the agent node are different.  

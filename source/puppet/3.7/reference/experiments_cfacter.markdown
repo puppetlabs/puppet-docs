@@ -19,7 +19,7 @@ Native Facter 0.2.0 supports OSX and Linux; Native Facter 0.3.0 will support Win
 
 Installing Native Facter
 -----
-We don't yet have packages available for Native Facter, so to try it out, you'll need to build the package and then install it. The project's [readme](cfacter_readme) has the most current information about packaging and installation for various systems.
+We don't yet have packages available for Native Facter, so to try it out, you'll need to build the package and then install it. The project's [README][cfacter_readme] has the most current information about packaging and installation for various systems.
 
 Enabling Native Facter
 -----

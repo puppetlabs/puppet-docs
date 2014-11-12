@@ -17,7 +17,7 @@ title: "Configuring Directory Environments"
 [disable_per_environment_manifest]: /references/3.7.latest/configuration.html#disableperenvironmentmanifest
 [main manifest]: ./dirs_manifest.html
 
-> **Note:** This page refers to Puppet 3.7, which will be included in a future version of Puppet Enterprise. Puppet Enterprise 3.3 users should refer to [the Puppet 3.6 version of this page.](/puppet/3.6/reference/environments_configuring.html)
+> **Note:** This page refers to Puppet 3.7, which is included with Puppet Enterprise 3.7.
 
 Before you can use directory environments, you have to configure Puppet to enable them. After enabling them, you can:
 
@@ -150,13 +150,13 @@ To add additional directories containing global modules, you can set your own va
 
 ### `default_manifest`
 
-In previous versions of Puppet, the default [main manifest][] for an environment that didn't specify one in [environment.conf][] was always `<ENVIRONMENTS DIRECTORY>/<ENVIRONMENT NAME>/manifests`. Starting in Puppet 3.7, the default is configurable.
+The default [main manifest][] to use for environments that don't specify one in [environment.conf][].
 
-The default value of `default_manifest` is `./manifests` --- that is, the environment's own `manifests` directory.
+The default value of `default_manifest` is `./manifests` --- that is, the environment's own `manifests` directory. (In Puppet versions prior to 3.7, this wasn't configurable.)
 
 The value of this setting can be:
 
-* An absolute path to a manifest that all environments will share
+* An absolute path to one manifest that all environments will share
 * A relative path to a file or directory inside each environment's directory
 
 ### `disable_per_environment_manifest`
@@ -167,14 +167,16 @@ This requires `default_manifest` to be an absolute path.
 
 ### `environment_timeout`
 
-The puppet master loads environments on request, and it caches data associated with them to give faster service to other nodes in that environment. Cached environments will time out and be discarded after a while, after which they'll be loaded on request again.
+How long the Puppet master should cache the data it loads from an environment. You can set a default for this in [puppet.conf][], and can also set per-environment values in [environment.conf][].
 
-You can configure environment cache timeouts with [the `environment_timeout` setting.][environment_timeout] This can be set globally in [puppet.conf][], and can also be overridden per-environment in [environment.conf][]. See [the description of the `environment_timeout` setting][environment_timeout] for details on allowed values. The default cache timeout is **three minutes.**
+Defaults to three minutes. This setting can be a time interval in seconds (`30` or `30s`), minutes (`30m`), hours (`6h`), days (`2d`), or years (`5y`). This setting can also be set to `unlimited`, which causes the environment to be cached until the master is restarted.
 
-Most users should be fine with the default. To get more performance from your puppet master, you may want to tune the timeout for your most heavily used environments. Getting the most benefit involves a tradeoff between speed, memory usage, and responsiveness to changed files. The general best practice is:
+> **Note:** If an environment has a timeout of more than a few minutes, you should restart your Puppet master service whenever you change that environment. [We explain further here.](./environments_limitations.html#changing-an-environment-with-a-long-timeout-requires-a-service-restart)
 
-- Long-lived, slowly changing, relatively homogenous, highly populated environments (like `production`) will give the most benefit from longer timeouts. You might be able to set this to hours, or `unlimited` if you're content to let cache stick around until your Rack server kills a given puppet master process.
+Most users should be fine with the default of three minutes. To get more performance from your puppet master, you can tune the timeout for your most heavily used environments. Getting the most benefit involves a tradeoff between speed, memory usage, and responsiveness to changed files. The general best practice is:
+
+- Long-lived, slowly changing, relatively homogenous, highly populated environments (like `production` at most sites) will give the most benefit from longer timeouts. If you only make changes to an environment once or twice a day, you can set its timeout to `unlimited` and restart the Puppet master service whenever you deploy code.
 - Rapidly changing dev environments should have short timeouts: a few seconds, or `0` if you don't want to wait.
-- Sparsely populated environments should have short-ish timeouts, which are just long enough to help out if a cluster of nodes all hit the master at once, but won't clog your RAM with a bunch of rarely used data. Three minutes is fine.
-- Extremely heterogeneous environments --- where you have a lot of modules and each node uses a different tiny subset --- will sometimes perform _worse_ with a long timeout. (This can cause excessive memory usage and garbage collection without giving back any performance boost.) Give these short timeouts of 5-10 seconds.
+- Sparsely populated environments should have short-ish timeouts: just long enough to help out if a cluster of nodes all hit the master at once, but short enough to not waste the server's memory. `3m` is fine.
+- Extremely heterogeneous environments --- where you have a lot of modules and each node uses a different tiny subset --- will sometimes perform _worse_ with a long timeout. (This can cause excessive memory usage and garbage collection without giving back any performance boost.) Give these short timeouts of `5s` to `10s`.
 

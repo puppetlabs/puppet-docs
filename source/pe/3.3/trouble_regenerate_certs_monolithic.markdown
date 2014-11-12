@@ -57,7 +57,7 @@ Note that this process **destroys the certificate authority and all other certif
 
 1. Stop the PuppetDB service with `sudo puppet resource service pe-puppetdb ensure=stopped`.
 2. Clear the certs and security credentials from the PuppetDB SSL directory with `sudo rm -r /etc/puppetlabs/puppetdb/ssl/*`.
-3. Regenerate the certs and security credentials for PuppetDB with `sudo /opt/puppet/sbin/puppetdb-ssl-setup -f`.
+3. Regenerate the certs and security credentials for PuppetDB with `sudo /opt/puppet/sbin/puppetdb ssl-setup -f`.
 4. Start the PuppetDB service with `sudo puppet resource service pe-puppetdb ensure=running`.
 
 > At this point:
