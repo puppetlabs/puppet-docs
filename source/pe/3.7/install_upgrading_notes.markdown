@@ -13,7 +13,7 @@ PE 3.7.0 introduces the Puppet server, running the Puppet Master, which function
 
 Directory environments are enabled by default in PE 3.7.0. Before upgrading be sure to read [Important Information about Upgrades to PE 3.7 and Directory Environments](./install_upgrading_dir_env_notes.html).
 
->**Warning**: If you enabled directory environments in pe 3.3.x and are upgrading to pe 3.7.0, ensure there is no `default_manifest` parameter in `puppet.conf` **before** upgrading. Upgrades will fail if this change is not made.
+>**Warning**: If you enabled directory environments in PE 3.3.x and are upgrading to PE 3.7.0, ensure there is no `default_manifest` parameter in `puppet.conf` **before** upgrading. Upgrades will fail if this change is not made.
 
 ### Upgrading to the Node Classifier
 
