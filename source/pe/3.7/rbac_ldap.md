@@ -52,7 +52,7 @@ You connect to an external directory service by providing the information descri
 | Connect using SSL | Choose whether to use secure socket layer or not. | select or leave unchecked |
 | Base distinguished name | Where in the LDAP tree to find groups and users. | dc=puppetlabs,dc=com |
 | User login attribute | Value for users who log in. | cn |
-| User email address  | Email address of user | ries@rg-bank.com |
+| User email address  | Email address of user | ries@example.com |
 | User full name  | User’s full name. | displayName |
 | User relative distinguished name  | The base distinguished name for querying users.  | cn=Users |
 | Group object class  | The kind of object that represents groups.  | group  |
