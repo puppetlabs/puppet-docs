@@ -17,7 +17,7 @@ The following document provides a detailed look at the changes you may encounter
 
 For your reference, the Puppet docs provide more information about [creating directory environments](/puppet/3.7/reference/environments_creating.html). 
 
->**Warning**: If you enabled directory environments in PE 3.3.x and are upgrading to pe 3.7.0, ensure there is no `default_manifest` parameter in `puppet.conf` **before** upgrading. Upgrades will fail if this change is not made. 
+>**Warning**: If you enabled directory environments in PE 3.3.x and are upgrading to PE 3.7.0, ensure there is no `default_manifest` parameter in `puppet.conf` **before** upgrading. Upgrades will fail if this change is not made. 
 
 
 ### Scenario 1: Upgrading from Dynamic and/or Config File (Static) Environments
