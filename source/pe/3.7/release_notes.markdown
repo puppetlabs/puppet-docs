@@ -121,6 +121,10 @@ To find out which of these issues may affect you, run `/opt/puppet/bin/puppet --
 
 The following issues affect the currently shipped version of PE and all prior releases through the 3.x.x series, unless otherwise stated.
 
+### Upgrade Warning for Users of Directory Environments in PE 3.3.x 
+
+If the `basemodulepath` is set in the `[master]` section of `puppet.conf`, the upgrader will fail due to not being able to find PE-specific modules. To prevent this, ensure that `basemodulepath` is set in the `[main]` section of `puppet.conf` before upgrading.
+
 ### Issues Related to Puppet Server
 
 #### SSL Termination Configuration Not Currently Supported
