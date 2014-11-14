@@ -24,7 +24,7 @@ The [yum.puppetlabs.com](https://yum.puppetlabs.com) repository supports the fol
 
 {% include platforms_redhat_like.markdown %}
 
-Enabling this repository will let you install Puppet in Enterprise Linux 5 without requiring any other external repositories like EPEL. For Enterprise Linux 6, you will need to [enable the Optional Channel](https://access.redhat.com/site/documentation/en-US/OpenShift_Enterprise/1/html/Client_Tools_Installation_Guide/Installing_Using_the_Red_Hat_Enterprise_Linux_Optional_Channel.html) for the rubygems dependency.
+Enabling this repository will let you install Puppet in Enterprise Linux 5 without requiring any other external repositories like EPEL. For Enterprise Linux 6, we recommend that you enable the [Optional Channel](https://access.redhat.com/site/documentation/en-US/OpenShift_Enterprise/2/html/Client_Tools_Installation_Guide/Installing_Using_the_Red_Hat_Enterprise_Linux_Optional_Channel.html) for dependencies.
 
 {% include repo_el.markdown %}
 
