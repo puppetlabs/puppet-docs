@@ -73,13 +73,13 @@ Alternatively, you can create a new user role.
 2. Click **Member groups**, and then on the **Group name** drop-down list, select the user group you want to add to the user role.
 3. Click **Add group**, and then click the commit button.
 
-## Troubleshooting Admin and User Access the Console
+## Troubleshooting Admin and User Access to the Console
 
 For any number of reasons, you might need to either reset the admin password for PE console access, or the passwords of other users. The process is different in each case.
 
 ### Reset the Admin Password
 
-In RBAC, one of the built-in users is the admin, a superuser with all available read/write privileges. In the event you need to reset the admin password for console access, you'll have to run a utility script located in the [PE 3.7.0 installer tarball](http://puppetlabs.com/misc/pe-files). Note that it might have moved to the [previous releases page](http://puppetlabs.com/misc/pe-files/previous-releases).
+In RBAC, one of the built-in users is the admin, a superuser with all available read/write privileges. In the event you need to reset the admin password for console access, you'll have to run a utility script located in the [PE 3.7.0 installer tarball](http://puppetlabs.com/misc/pe-files). Note that the PE 3.7 tarball might have moved to the [previous releases page](http://puppetlabs.com/misc/pe-files/previous-releases).
 
 This script uses a series of API calls authenticated with a whitelisted certificate to reset the built-in admin's password.
 
