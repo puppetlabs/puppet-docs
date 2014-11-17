@@ -19,7 +19,7 @@ This section describes how to connect PE to your external directory service. See
 ###About LDAP Queries
 Queries are constructed using the LDAP Data Interchange Format (LDIF). They consist of relevant relative distinguished name (RDN) + the base DN as a search base, and then filtering by the "lookup" (or "login") attribute.
 
-For example, when querying for a user, Bob, to authenticate, the user RDN (for example, `cn=bob,ou=users`) is concatenated with the base DN (for example, `dc=puppetlabs,dc=com`) to form the search base: `cn=bob,ou=users,dc=puppetlabs,dc=com`. Then the results are filtered to find an entity that has the user lookup attribute. This lookup must return only one entity or the search (for importation, authentication, or syncing) will fail. These same rules apply to the importation of groups.
+For example, when querying for a user, Bob, to authenticate, the user RDN (for example, `ou=bob,ou=users`) is concatenated with the base DN (for example, `dc=puppetlabs,dc=com`) to form the search base: `ou=bob,ou=users,dc=puppetlabs,dc=com`. Then the results are filtered to find an entity that has the user lookup attribute. This lookup must return only one entity or the search (for importation, authentication, or syncing) will fail. These same rules apply to the importation of groups.
 
 There is currently an issue where group importation does not respect the group
 object class setting, but the group membership syncing does. This means that
@@ -44,9 +44,9 @@ You connect to an external directory service by providing the information descri
 | ---                         | ---                      | ---          |
 | Directory name    | Used to refer to the service anywhere it’s mentioned in the UI. | MyActiveDirectory |
 | Login help (optional) | Static link for LDAP login assistance | https://myweb.com/ldaploginhelp |
-| Hostname | FQDN of the directory service. | devi.delivery.puppetlabs.net |
+| Hostname | FQDN of the directory service. | myhost.delivery.exampleservice.net |
 | Port | The port that PE will use to access the directory service. | 636 |
-| Lookup User | Distinguished name of the user to perform directory lookups. | cn=admin,dc=delivery,dc=puppetlabs,dc=net |
+| Lookup User | Distinguished name of the user to perform directory lookups. | ou=admin,dc=delivery,dc=puppetlabs,dc=net |
 | Lookup password | Password of the user who performs lookups. | <password>
 | Connection timeout | Number of seconds before the connection will time out. | 10 |
 | Connect using SSL | Choose whether to use secure socket layer or not. | select or leave unchecked |
@@ -54,12 +54,12 @@ You connect to an external directory service by providing the information descri
 | User login attribute | Value for users who log in. | cn |
 | User email address  | Email address of user | ries@example.com |
 | User full name  | User’s full name. | displayName |
-| User relative distinguished name  | The base distinguished name for querying users.  | cn=Users |
+| User relative distinguished name  | The base distinguished name for querying users.  | ou=Users |
 | Group object class  | The kind of object that represents groups.  | group  |
 | Group membership field  | The way to fetch group membership information. | member  |
 | Group name attribute  | The display name for a group.  | name  |
 | Group lookup attribute | cn is the default. | cn |
-| Group relative distinguished name  | The base distinguished name for looking up groups.  | cn=Groups |
+| Group relative distinguished name  | The base distinguished name for looking up groups.  | ou=Groups |
 
 
 Once you’ve filled in the **External directory** form, click **Test connection** to ensure that the connection has been established. If you’re successful, a green **Success** message will be displayed at the top of the form. Save your settings after you have successfully tested them.
