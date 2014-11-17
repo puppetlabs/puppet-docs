@@ -59,7 +59,7 @@ Next, set up some node groups of your own.
 		<dd><p>The environment determines the classes and parameters that are available to the node group. Select the environment that you want to apply to this node group. If you haven’t <a href="/puppet/3.7/reference/environments.html">set up any environments</a> yet, you will only see the default <code>production</code> environment.</p>
 
 <p><strong>Note:</strong> <code>Agent-specified</code> omits the environment specification when the agent reports back to the master for catalog compilation. Use this environment if you need to preserve an agent-specified environment in your installation. For more information about the agent-specified environment, see the <a href="./install_upgrading_notes.html#about-the-agent-specified-group">upgrading notes</a>.</p>
-<p><strong>Note:</strong> If you’ve set classes in the **default group**, as described in [Getting Started With Classification](./console_classes_groups_getting_started.html#adding-classes-that-apply-to-all-nodes), you will not be able to set the agent-specified environment until you remove the classes from the **default group**.</p>
+<p><strong>Note:</strong> If you’ve set classes in the **default group**, as described in [Getting Started With Classification](./console_classes_groups_getting_started.html#adding-classes-that-apply-to-all-nodes), you will not be able to set the agent-specified environment until you remove the classes from the <strong>default group</strong>.</p>
 </dd>
 </dl>
 </li>
