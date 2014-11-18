@@ -48,8 +48,6 @@ When separating the roles across nodes, you should install in the following orde
   4. Cloud Provisioner Role
   5. Agents
 
-The [Puppet Enterprise Deployment Guide](/guides/deployment_guide/index.html) contains more information about the installation process and how to set up the various roles.
-
 With that knowledge in hand, the installation process on each node is as follows:
 
 * Unarchive the installer tarball, usually with `tar -xzf <TARBALL FILE>`.
@@ -60,7 +58,7 @@ With that knowledge in hand, the installation process on each node is as follows
 * Answer the interview questions to [select and configure PE's roles](#selecting-roles).
 * Log into the puppet master server and [sign the new node's certificate](#signing-agent-certificates).
 * If you have purchased PE and are installing the puppet master, [copy your license key into place](#verifying-your-license).
-* Wait 30 minutes for the next puppet run, or kick off a run manually, to get all the agents checked in.  
+* Wait 30 minutes for the next puppet run, or kick off a run manually, to get all the agents checked in.
 
 Note that after the installer has finished installing and configuring PE, it will save your interview answers to a file called `answers.lastrun`. This file can be used as the basis for future, automated installations. For details [see the chapter on automated installation][automated].
 
