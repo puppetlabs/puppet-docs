@@ -54,5 +54,5 @@ The installer must be run with elevated privileges. Installing Puppet **does not
 * Puppet is automatically added to the machine's PATH environment variable. This means you can open any command line and call `puppet`, `facter` and the few other batch files that are in the `bin` directory of the [Puppet installation](#program-directory). This will also add necessary items for the Puppet environment to the shell, but only for the duration of execution of each of the particular commands.
 
 ----------------------
-Next: [Installing Modules (Windows)](./quick_start_module_install_windows.html)
+Next: [Hello, World!](./quick_start_helloworld.html)
 

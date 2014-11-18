@@ -55,7 +55,7 @@ Some modules can be large, complex, and require a significant amount of trial an
 
 > #### A Quick Note about Modules Directories
 >
->The first thing to know is that, by default, the modules you use to manage nodes are located in `/etc/puppetlabs/puppet/modules`---this includes modules installed by PE, those that you download from the Forge, and those you write yourself.
+>The first thing to know is that, by default, the modules you use to manage nodes are located in `/etc/puppetlabs/puppet/environments/production/modules`---this includes modules installed by PE, those that you download from the Forge, and those you write yourself.
 >
 >**Note**: PE also installs modules in `/opt/puppet/share/puppet/modules`, but don’t modify anything in this directory or add modules of your own to it.
 >
@@ -71,8 +71,7 @@ Modules are directory trees. For this task, you'll create the following files:
 
 1. From the command line on the Puppet master, navigate to the modules directory (`cd /etc/puppetlabs/puppet/modules`).
 2. Run `mkdir -p privileges/manifests` to create the new module directory and its manifests directory.
-3. Use your text editor to create the `privileges/manifests/init.pp` file.
-4. Edit the `init.pp` file so it contains the following Puppet code.
+3. From the `manifests` directory, use your text editor to create the `init.pp` file, and edit it so it contains the following Puppet code.
 
         class privileges {
           user { 'root':

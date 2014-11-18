@@ -39,7 +39,7 @@ Some modules can be large, complex, and require a significant amount of trial an
 
 > #### A Quick Note about Module Directories
 >
->The first thing to know is that, by default, the modules you use to manage nodes are located in `/etc/puppetlabs/puppet/modules`---this includes modules installed by PE, those that you download from the Forge, and those that you write yourself.
+>The first thing to know is that, by default, the modules you use to manage nodes are located in `/etc/puppetlabs/puppet/environments/production/modules`---this includes modules installed by PE, those that you download from the Forge, and those that you write yourself.
 >
 >**Note**: PE also installs modules in `/opt/puppet/share/puppet/modules`, but don’t modify anything in this directory or add modules of your own to it.
 >

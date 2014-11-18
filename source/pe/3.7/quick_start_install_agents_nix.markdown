@@ -107,6 +107,6 @@ During this walkthrough, you’ll run the Puppet agent interactively. By default
 
 
 ---------------
-Next: [Installing Modules](./quick_start_module_install_nix.html)
+Next: [Hello, World!](./quick_start_helloworld.html)
 
 
