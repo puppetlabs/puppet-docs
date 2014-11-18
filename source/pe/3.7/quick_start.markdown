@@ -17,6 +17,9 @@ Follow these instructions to quickly install a Puppet agent. A computer running 
 
 Instructions are available for [Windows](./quick_start_install_agents_windows.html) and [*nix](./quick_start_install_agents_nix.html) users. These instructions include how to sign the agent cert request in the console.
 
+### Hello, World!
+The instructions in [this guide](./quick_start_helloworld.html) lead you through the fundamentals of Puppet module writing. You'll write a very simple module that contains classes to manage your motd (message of the day) and create a Hello, World! notification on the command line. 
+
 ### Install a Module
 Follow these instructions to install a Puppet Labs module. Modules contain [classes](../puppet/3/reference/lang_classes.html), which are named chunks of puppet code and are the primary means by which Puppet Enterprise configures and manages nodes.
 
