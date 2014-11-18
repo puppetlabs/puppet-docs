@@ -121,7 +121,16 @@ To find out which of these issues may affect you, run `/opt/puppet/bin/puppet --
 
 The following issues affect the currently shipped version of PE and all prior releases through the 3.x.x series, unless otherwise stated.
 
-### Upgrade Warning for Users of Directory Environments in PE 3.3.x 
+### Important Factors in Connecting to an External Directory Service
+
+The following requirements affect how you connect your existing LDAP to PE:
+
+   * User and group RDNs are currently required as part of the directory service settings. A simple query from the provided base DN is not supported.
+   * Use of multiple user RDNs or group RDNs is not supported.
+   * Cyclical group relationships in Active Directory will prevent a user from logging in.
+
+
+### Upgrade Warning for Users of Directory Environments in PE 3.3.x
 
 If the `basemodulepath` is set in the `[master]` section of `puppet.conf`, the upgrader will fail due to not being able to find PE-specific modules. To prevent this, ensure that `basemodulepath` is set in the `[main]` section of `puppet.conf` before upgrading.
 

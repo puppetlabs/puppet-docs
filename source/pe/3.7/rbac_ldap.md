@@ -35,6 +35,10 @@ You connect to an external directory service by providing the information descri
 
 >**Note**: At present, PE only supports a single Base DN.
 >
+>  * User and group RDNs are currently required as part of the directory service settings. A simple query from the provided base DN is not supported.
+>  * Use of multiple user RDNs or group RDNs is not supported.
+>  * Cyclical group relationships in Active Directory will prevent a user from logging in.
+>
 >**Additionally**: To connect to an LDAP server, RBAC needs to store the username and password configured here, not just a hash of the password. This password must be recoverable in the context of PE. The password is stored in the database in plain text without obfuscation. To guarantee its security, ensure that other processes do not have OS-level read permissions for PE's database or configuration files.
 
 1. From the console, click **Access Control**, and then click **External directory**.
