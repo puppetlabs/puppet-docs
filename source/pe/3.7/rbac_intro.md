@@ -19,7 +19,7 @@ PE now connects with external directories, which means you only have to manage y
 ### RBAC and Activity Services
 RBAC functionality is handled in a large part by the RBAC and activity services. The RBAC service gets user, group, and permission information . The activity service logs events on the **Activity** pages for user roles, users, and user groups.
 
->**Note**: Resetting the admin password for console access relies on a utility script that's located in the installer tarball. See [Troubleshooting User Access to the Console](./rbac_uer_roles.html) for steps to reset the admin password.
+>**Note**: Resetting the admin password for console access relies on a utility script that's located in the installer tarball. See [Troubleshooting User Access to the Console](./rbac_user_roles.html) for steps to reset the admin password.
 
 See the following sections for information and steps to work with RBAC:
 
