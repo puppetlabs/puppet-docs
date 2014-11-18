@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "PE 3.7 » Quick Start » Helloworld"
-subtitle: "Helloworld Quick Start Guide"
+subtitle: "Hello World! Quick Start Guide"
 canonical: "/pe/latest/quick_start_helloworld.html" 
 ---
 
