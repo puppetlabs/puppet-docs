@@ -21,7 +21,7 @@ Directory environments are enabled by default in PE 3.7.0. Before upgrading be s
 
 PE 3.7.0 introduces the new node classifier, which replaces previous versions of the PE console node classifier and changes the way you classify agent nodes.
 
-During the upgrade process, each agent node---including any node you've grouped and classified in previous versions---will be pinned to its own group; meaning that if you have an agent node named `agent1.example.com`, after the upgrade, that node will belong to a group called `agent1.example.com` (and, possibly, the [agent-specified group](#about-the-agent-specified-group). Since node groups will not be maintained during the upgrade process, you will need to use the new node classifier to regroup your nodes.
+During the upgrade process, each agent node---including any node you've grouped and classified in previous versions---will be pinned to its own group; meaning that if you have an agent node named `agent1.example.com`, after the upgrade, that node will belong to a group called `agent1.example.com` (and, possibly, the [agent-specified group](#about-the-agent-specified-group)). Since node groups will not be maintained during the upgrade process, you will need to use the new node classifier to regroup your nodes.
 
 In addition, as part of the upgrade process, all nodes will be assigned, by default, to the "production" environment.
 
