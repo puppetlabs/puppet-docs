@@ -48,7 +48,6 @@ After upgrading to PE 3.7.0, you will need to set up your directory service and 
 For more information about RBAC, refer to [Working with Role-Based Access Control](./rbac_intro.html).
 
 
-
 ### Before Upgrading, Back Up Your Databases and Other PE Files
 
    We recommend that you back up the following databases and PE files.
@@ -73,6 +72,10 @@ If you are using an external PostgreSQL instance that is not managed by PE, plea
 
 1. You will need to create databases for RBAC, activity service, and the node classifier before upgrading.
 2. You will need to have the [citext extension](http://www.postgresql.org/docs/9.2/static/citext.html) enabled on the RBAC database.
+
+### Before Upgrading, Correct Invalid Entries in `autosign.conf`
+
+Any entries in `/etc/puppetlabs/puppet/autosign.conf` that don't conform to the [autosign requirements](/puppet/3.7/reference/ssl_autosign.html#the-autosignconf-file) will cause the upgrade to fail to configure the PE console. Please correct any invalid entries before upgrading to PE 3.7.0.
 
 ### You Might Need to Upgrade puppetlabs-inifile to Version 1.1.0 or Later
 

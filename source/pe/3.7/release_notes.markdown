@@ -134,6 +134,10 @@ The following requirements affect how you connect your existing LDAP to PE:
 
 If the `basemodulepath` is set in the `[master]` section of `puppet.conf`, the upgrader will fail due to not being able to find PE-specific modules. To prevent this, ensure that `basemodulepath` is set in the `[main]` section of `puppet.conf` before upgrading.
 
+### Before Upgrading to PE 3.7.0, Correct Invalid Entries in `autosign.conf`
+
+Any entries in `/etc/puppetlabs/puppet/autosign.conf` that don't conform to the [autosign requirements](/puppet/3.7/reference/ssl_autosign.html#the-autosignconf-file) will cause the upgrade to fail to configure the PE console. Please correct any invalid entries before upgrading.
+
 ### Issues Related to Puppet Server
 
 #### SSL Termination Configuration Not Currently Supported
