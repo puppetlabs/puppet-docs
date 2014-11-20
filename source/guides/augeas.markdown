@@ -66,7 +66,7 @@ reasons, run `augtool print /augeas//error`:
     /augeas/files/etc/hosts.allow/error/lens = "/usr/share/augeas/lenses/dist/hosts_access.aug:93.10-.46:"
     /augeas/files/etc/hosts.allow/error/message = "Iterated lens matched less than it should"
 
-The first is a permissions error, the second is a parse error.  See the Augeas wiki page on [tracking down errors](http://augeas.net/page/Tracking_down_errors) for more information.
+The first is a permissions error, the second is a parse error.  See the Augeas wiki page on [tracking down errors](https://github.com/hercules-team/augeas/wiki/Tracking-down-errors) for more information.
 
 The easiest way to understand how Augeas handles a particular file is to examine it using `augtool ls` and/or `augtool print`. In fact, you might want to make your changes by hand in a text editor, then use `augtool print` to give you an idea what the final result should look like.
 
@@ -300,7 +300,7 @@ You can use complicated paths like this to modify existing values, but unfortuna
 
 In cases like this, you will need to revert back to using a combination of `last()` and "onlyif" if using versions of Puppet older than 2.7.0 without `mv` support (see #6494).  At that point you can create the whole tree and them move it into place.
 
-[pe]: http://augeas.net/page/Path_expressions
+[pe]: https://github.com/hercules-team/augeas/wiki/Path-expressions
 
 ## Loading generic lenses for non-standard files
 Augeas lenses have a list of files that are "autoloaded" when Augeas is initialised.  To edit a file stored in a non-default location, or a file that isn't yet listed in the autoload list, then the `lens` and `incl` parameters of the Puppet `augeas` type can be used.
@@ -628,7 +628,7 @@ Because this template is evaluated during catalog compilation, you unfortunately
 
 ### Dynamically adding numbered children -- libvirtd.conf: sasl_allowed_usernames_list
 
-Here is another example that uses [Puppet ERB templating](/guides/templating.html) to populate an Augeas node's numbered children. Quoting from [http://augeas.net/page/Adding_nodes_to_the_tree](http://augeas.net/page/Adding_nodes_to_the_tree):
+Here is another example that uses [Puppet ERB templating](/guides/templating.html) to populate an Augeas node's numbered children. Quoting from [https://github.com/hercules-team/augeas/wiki/Adding-nodes-to-the-tree](https://github.com/hercules-team/augeas/wiki/Adding-nodes-to-the-tree):
 
 <blockquote>
 For nodes whose children are numbered sequentially (like the children of /files/etc/hosts), you need to invent a new label for the new child. You can either try to find out how many children /files/etc/hosts actually has, and then use the next number in the sequence. A much simpler way to generate a new unique numbered label is to use numbers that start with 0; since Augeas treats labels as strings, 01 and 1 are different, and since it will never use such a label, it's guaranteed to be unique:
