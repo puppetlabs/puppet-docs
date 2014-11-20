@@ -132,6 +132,8 @@ See the [installation overview](./install_basic.html#downloading-puppet-enterpri
    
    - the activity database password
    
+   > **Important**: After installing PE, refer to the [SSL for PE and PostgreSQL documentation](./install_ssl_postgresql.html) to enable SSL between PE and your external PostgreSQL instance. 
+   
    >**Note**: You will also need to make sure the databases and users you've entered actually exist. The SQL commands you need to create PuppetDB and the console databases resemble the following:
    >
    >     CREATE TABLESPACE "pe-console" LOCATION '/opt/puppet/var/lib/pgsql/9.2/console';

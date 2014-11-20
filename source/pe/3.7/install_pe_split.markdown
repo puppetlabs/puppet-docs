@@ -156,6 +156,8 @@ If you plan on managing more than 1500 nodes, follow these split install instruc
    - the activity database user (default is "activity")
    
    - the activity database password
+   
+   > **Important**: After installing PE, refer to the [SSL for PE and PostgreSQL documentation](./install_ssl_postgresql.html) to enable SSL between PE and your external PostgreSQL instance. 
 
    > **Note**: You will also need to make sure the databases and users you've entered actually exist. The SQL commands you need to create PuppetDB and the console databases resemble the following:
    >
