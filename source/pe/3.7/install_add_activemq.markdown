@@ -119,7 +119,7 @@ In this step, you'll use the the PE console to configure connections between you
 
 1. From the __Classification__ page, click the __PE Infrastructure__ group. 
 2. Click the __Classes__ tab.
-3. Under __Class: puppet_enterprise::profile::mcollective::agent__, from the __Parameter__ drop-down menu, select __activemq_brokers__.
+3. Under __Class: puppet_enterprise::profile::mcollective::agent__, from the __Parameter__ drop-down list, select __activemq_brokers__.
 4. In the value field, set value to ["master.example.com", "activemq.spoke1.example.com", "activemq.spoke2.example.com"]
 5. Click __Add parameter__, and then __Commit change__.
 6. Run Puppet on the ActiveMQ hub and spokes (including the Puppet master) and on any PE agents, or wait for a scheduled run.

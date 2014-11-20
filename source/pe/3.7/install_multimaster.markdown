@@ -14,10 +14,12 @@ In addition, please note the following about this guide:
 - These instructions reference a split installation (separate servers for the Puppet master, PE console, and PuppetDB), which is the recommended installation type for managing more than 500 agent nodes.
 - It’s assumed all servers are running the same OS and architecture.
 - The following hostnames are used:
-   - **Puppet master**: `master.example.com`.
+   - **Puppet master/CA server**: `master.example.com`.
    - **PE console**: `console.example.com`.
    - **PuppetDB**: `puppetdb.example.com`.
    - **Additional Puppet master**: `add.master.example.com`.
+
+> **Note**: In this scenario, `master.example.com` functions as both the initial Puppet master and the CA server for this deployment.    
 
 > **Prerequisite**: You need to be able to resolve hostnames between machines. 
 
@@ -41,7 +43,7 @@ In this step, you will install the additional Puppet agent on `add.master.exampl
 
    This will install and configure the PE agent on `add.master.example.com`. 
 
-2. From the command line of `master.example.com`, run `puppet cert --allow-dns-alt-names sign add.<MASTER.EXAMPLE.COM>`. 
+2. From the command line of `master.example.com`, run `puppet cert --allow-dns-alt-names sign add.master.example.com`. 
 
    **Note**: You cannot use the console to sign certs for nodes with DNS alt names. 
 
@@ -94,7 +96,31 @@ In this step, you will need to run Puppet in the order specified so that certifi
 
 ### A Note About Load Balancers
 
-Load balancing is a critical need for PE deployments using multiple Puppet masters. Unfortunately, load balancer integration is beyond the scope of this document. However, when configuring load balancers with your PE masters, you need to ensure traffic can pass through port **8140**---this is the port that handles Puppet master and CA traffic.  
+Load balancing is a critical need for PE deployments using multiple Puppet masters. Unfortunately, load balancer integration is beyond the scope of this document. However, when configuring load balancers with your PE masters, you need to ensure traffic can pass through port **8140**---this is the port that handles Puppet master and CA traffic. 
+
+#### Using Load Balancers for Agent Installation
+
+If you use a load balancer in your multi-master deployment, you may want to point the agent installation script at the load balancer when installing new agents. In order to do this, you'll need to edit a parameter of the `pe_repo` class and point the agent install script at the CA server. The following procedure details this process.
+
+1. From the console, click __Classification__ in the top navigation bar.
+2. From the __Classification page__, select the __PE Master__ group.
+3. Click the __Classes__ tab, and find the `pe_repo` class. 
+4. From the __Parameter__ drop-down list, select __Master__. 
+5. In the __value__field, enter the FQDN of your load balancer (e.g., `LOADBALANCER.EXAMPLE.COM`). 
+6. Click __Add parameter__ and then the Commit change button.
+7. From the command line of the agent node, run `curl -k https://<LOADBALANCER.EXAMPLE.COM>:8140/packages/current/install.bash | sudo bash -s main:ca_server=<THE HOSTNAME of the PUPPET MASTER SERVING AS YOUR CA SERVER>`.
+
+The flag `-s main:ca_server=<THE HOSTNAME of the PUPPET MASTER SERVING AS YOUR CA SERVER>` ensures that the agent will retrieve its CA configuration from the correct CA server. Remember, in the examples in this guide, the CA server is the original Puppet master (i.e., `master.example.com`).
+
+#### Using Load Balancers for Additional Puppet Master Installation
+
+Installing additional Puppet masters when using a load balancer uses the same procedure outlined in Steps 2 - 4 of this guide, save for two changes to the installation script.
+
+You need to add `main:ca_server=ca` and `agent:server=ca`. These additions to the install script ensure the new Puppet master will draw its configuration from the original Puppet master, which is configured as the CA server. (Remember, in this guide, the CA server is the original master, or `master.example.com`.)
+
+The following example shows the full script: 
+
+`curl -k https://<MASTER.EXAMPLE.COM>:8140/packages/current/install.bash | sudo bash -s main:dns_alt_names=<COMMA-SEPARATED LIST OF ALT NAMES FOR THE PUPPET MASTER> main:environmentpath=</etc/puppetlabs/puppet/environments OR YOUR MASTER'S ENVIRONMENT PATH> main:ca_server=ca agent:server=ca`
 
 ### A Note About File Syncing
 
