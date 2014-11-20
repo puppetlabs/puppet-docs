@@ -138,6 +138,10 @@ If the `basemodulepath` is set in the `[master]` section of `puppet.conf`, the u
 
 Any entries in `/etc/puppetlabs/puppet/autosign.conf` that don't conform to the [autosign requirements](/puppet/3.7/reference/ssl_autosign.html#the-autosignconf-file) will cause the upgrade to fail to configure the PE console. Please correct any invalid entries before upgrading.
 
+### Upgrading Requires You to Manually Configure Default Node Groups
+
+Puppet Enterprise automatically creates a number of special node groups for managing your deployment. In a new install, these node groups come with some default classes. If you’re upgrading, only the MCollective node group comes with classes. For the others, you must manually add the individual classes and configure the parameters, as described on the page, [Preconfigured Node Groups](./console_classes_groups_preconfigured_groups.html#preconfigured-node-groups).
+
 ### Issues Related to Puppet Server
 
 #### SSL Termination Configuration Not Currently Supported
@@ -153,7 +157,7 @@ In some cases (especially for RHEL 7 installations) if the `/tmp/` directory is 
     Nov 12 17:46:12 fqdn.com java[56495]: Failed to load feature test for posix: can't find user for 0
     Nov 12 17:46:12 fqdn.com java[56495]: Cannot run on Microsoft Windows without the win32-process, win32-dir and win32-service gems: Win32API only supported on win32
     Nov 12 17:46:12 fqdn.com java[56495]: Puppet::Error: Cannot determine basic system flavour
-    
+
 To work around this issue, you can either mount the `/tmp/` directory without `noexec`, or you can choose a different directory to use as the temporary directory for the Puppet Server process. If you want to use a different directory, you can add an extra argument to the `$java_args` parameter of the `puppet_enterprise::profile::master` class using the PE console. Add `-Djava.io.tmpdir=/etc/puppet/tmp` as the value for the `$java_args` parameter. Refer to [Editing Parameters](./console_classes_groups_making_changes.html#editing-parameters) for instructions on editing parameters in the console.
 
 #### No Config Reload Handling Requests
