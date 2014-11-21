@@ -157,7 +157,8 @@ See the [installation overview](./install_basic.html#downloading-puppet-enterpri
    		CREATE USER "pe-rbac" PASSWORD 'password';
    		CREATE DATABASE "pe-rbac" OWNER "pe-rbac" TABLESPACE "pe-rbac" ENCODING 'utf8' LC_CTYPE 'en_US.utf8' LC_COLLATE 'en_US.utf8' template template0;
 
-   	Consult the [PostgreSQL documentation](http://www.postgresql.org/docs/) for more info.
+
+   Consult the [PostgreSQL documentation](http://www.postgresql.org/docs/) for more info.
 
    >**Note**: If you are using an external PostgreSQL instance that is not managed by PE:
    >
