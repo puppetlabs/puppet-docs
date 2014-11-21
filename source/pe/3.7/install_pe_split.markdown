@@ -156,8 +156,8 @@ If you plan on managing more than 1500 nodes, follow these split install instruc
    - the activity database user (default is "activity")
 
    - the activity database password
-   
-   > **Important**: After installing PE, refer to the [SSL for PE and PostgreSQL documentation](./install_ssl_postgresql.html) to enable SSL between PE and your external PostgreSQL instance. 
+
+   > **Important**: After installing PE, refer to the [SSL for PE and PostgreSQL documentation](./install_ssl_postgresql.html) to enable SSL between PE and your external PostgreSQL instance.
 
    > **Note**: You will also need to make sure the databases and users you've entered actually exist. The SQL commands you need to create PuppetDB and the console databases resemble the following:
    >
@@ -171,8 +171,9 @@ If you plan on managing more than 1500 nodes, follow these split install instruc
    >Consult the [PostgreSQL documentation](http://www.postgresql.org/docs/) for more info.
    >
    >**Also Note**: If you are using an external PostgreSQL instance that is not managed by PE:
+   >
    > 1. You must create databases for RBAC, activity service, and the node classifier before installing.
-   > 2. You must enable the citext extension on the RBAC database. To do so, install the `postgresql-contrib` package, and then from inside the RBAC database, run the command `create extension citext`.
+   > 2. You must enable the [citext extension](http://www.postgresql.org/docs/9.2/static/citext.html) on the RBAC database. To do so, install the `postgresql-contrib` package, and then from inside the RBAC database, run the command `create extension citext`.
 
 8. Provide the following information about the PE console administrator user:
 
