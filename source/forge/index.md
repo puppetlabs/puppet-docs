@@ -30,3 +30,4 @@ The [Puppet Forge](https://forge.puppetlabs.com/) is a repository of modules for
 ###Resources
 
 * [Style Guide](https://docs.puppetlabs.com/guides/style_guide.html)
+* [Contributing to Puppet Labs modules](https://docs.puppetlabs.com/forge/contributing.html)
