@@ -98,6 +98,8 @@ See the [installation overview](./install_basic.html#downloading-puppet-enterpri
 
    b. **Use an Existing PostgreSQL instance**: if you already have a PostgreSQL instance you'd like to use, you'll need to provide the following information:
 
+   > **Important**: After installing PE, refer to the [SSL for PE and PostgreSQL documentation](./install_ssl_postgresql.html) to enable SSL between PE and your external PostgreSQL instance.
+
    - the PostgreSQL server DNS name
 
    - the port number used by the PostgreSQL server (default is 5432)
@@ -132,20 +134,31 @@ See the [installation overview](./install_basic.html#downloading-puppet-enterpri
 
    - the activity database password
 
-   > **Important**: After installing PE, refer to the [SSL for PE and PostgreSQL documentation](./install_ssl_postgresql.html) to enable SSL between PE and your external PostgreSQL instance.
+   You will also need to make sure the databases and users you've entered actually exist. The SQL commands to create the databases resemble the following:
 
-   >**Note**: You will also need to make sure the databases and users you've entered actually exist. The SQL commands you need to create PuppetDB and the console databases resemble the following:
-   >
-   >     CREATE TABLESPACE "pe-console" LOCATION '/opt/puppet/var/lib/pgsql/9.2/console';
-   >     CREATE USER "console" PASSWORD 'password';
-   >     CREATE DATABASE "console" OWNER "console" TABLESPACE "pe-console" ENCODING 'utf8' LC_CTYPE 'en_US.utf8' LC_COLLATE 'en_US.utf8' template template0;
-   >     CREATE TABLESPACE "pe-puppetdb" LOCATION '/opt/puppet/var/lib/pgsql/9.2/puppetdb';
-   >     CREATE USER "pe-puppetdb" PASSWORD 'password';
-   >     CREATE DATABASE "pe-puppetdb" OWNER "pe-puppetdb" TABLESPACE "pe-puppetdb" ENCODING 'utf8' LC_CTYPE 'en_US.utf8' LC_COLLATE 'en_US.utf8' template template0;
-   >
-   > Consult the [PostgreSQL documentation](http://www.postgresql.org/docs/) for more info.
-   >
-   >**Also Note**: If you are using an external PostgreSQL instance that is not managed by PE:
+   		CREATE TABLESPACE "pe-console" LOCATION '/opt/puppet/var/lib/pgsql/9.2/console';
+   		CREATE USER "console" PASSWORD 'password';
+   		CREATE DATABASE "console" OWNER "console" TABLESPACE "pe-console" ENCODING 'utf8' LC_CTYPE 'en_US.utf8' LC_COLLATE 'en_US.utf8' template template0;
+
+   		CREATE TABLESPACE "pe-puppetdb" LOCATION '/opt/puppet/var/lib/pgsql/9.2/puppetdb';
+   		CREATE USER "pe-puppetdb" PASSWORD 'password';
+   		CREATE DATABASE "pe-puppetdb" OWNER "pe-puppetdb" TABLESPACE "pe-puppetdb" ENCODING 'utf8' LC_CTYPE 'en_US.utf8' LC_COLLATE 'en_US.utf8' template template0;
+
+   		CREATE TABLESPACE "pe-activity" LOCATION '/opt/puppet/var/lib/pgsql/9.2/activity';
+   		CREATE USER "pe-activity" PASSWORD 'password';
+   		CREATE DATABASE "pe-activity" OWNER "pe-activity" TABLESPACE "pe-activity" ENCODING 'utf8' LC_CTYPE 'en_US.utf8' LC_COLLATE 'en_US.utf8' template template0;
+
+   		CREATE TABLESPACE "pe-classifier" LOCATION '/opt/puppet/var/lib/pgsql/9.2/classifier';
+   		CREATE USER "pe-classifier" PASSWORD 'password';
+   		CREATE DATABASE "pe-classifier" OWNER "pe-classifier" TABLESPACE "pe-classifier" ENCODING 'utf8' LC_CTYPE 'en_US.utf8' LC_COLLATE 'en_US.utf8' template template0;
+
+   		CREATE TABLESPACE "pe-rbac" LOCATION '/opt/puppet/var/lib/pgsql/9.2/rbac';
+   		CREATE USER "pe-rbac" PASSWORD 'password';
+   		CREATE DATABASE "pe-rbac" OWNER "pe-rbac" TABLESPACE "pe-rbac" ENCODING 'utf8' LC_CTYPE 'en_US.utf8' LC_COLLATE 'en_US.utf8' template template0;
+
+	Consult the [PostgreSQL documentation](http://www.postgresql.org/docs/) for more info.
+
+   >**Note**: If you are using an external PostgreSQL instance that is not managed by PE:
    >
    > 1. You must create databases for RBAC, activity service, and the node classifier before installing.
    > 2. You must enable the [citext extension](http://www.postgresql.org/docs/9.2/static/citext.html) on the RBAC database. To do so, install the `postgresql-contrib` package, and then from inside the RBAC database, run the command `create extension citext`.
