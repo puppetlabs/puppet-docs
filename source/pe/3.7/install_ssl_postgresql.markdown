@@ -5,7 +5,6 @@ subtitle: "Enabling SSL on PE and External PostgreSQL"
 canonical: "/pe/latest/install_ssl_postgresql.html"
 ---
 
-## Enable SSL on PostgreSQL and Puppet Enterprise
 
 If you are using an external PostgreSQL instance instead of the one PE installs, there are some additional steps you'll need to take after installing PE to ensure SSL is correctly configured between PE and your PostgreSQL database.  
 
