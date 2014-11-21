@@ -141,21 +141,21 @@ If you plan on managing more than 1500 nodes, follow these split install instruc
 
    - the console database password
 
-   - the role-based access control database name (default is "console")
+   - the role-based access control database name (default is "pe-rbac")
 
-   - the role-based access control database user (default is "console")
+   - the role-based access control database user (default is "pe-rbac")
 
    - the role-based access control database password
 
-   - the node classifier database name (default is "classifier")
+   - the node classifier database name (default is "pe-classifier")
 
-   - the node classifier database user (default is "classifier")
+   - the node classifier database user (default is "pe-classifier")
 
    - the node classifier database password
 
-   - the activity database name (default is "activity")
+   - the activity database name (default is "pe-activity")
 
-   - the activity database user (default is "activity")
+   - the activity database user (default is "pe-activity")
 
    - the activity database password
 
@@ -181,7 +181,7 @@ If you plan on managing more than 1500 nodes, follow these split install instruc
    		CREATE USER "pe-rbac" PASSWORD 'password';
    		CREATE DATABASE "pe-rbac" OWNER "pe-rbac" TABLESPACE "pe-rbac" ENCODING 'utf8' LC_CTYPE 'en_US.utf8' LC_COLLATE 'en_US.utf8' template template0;
 
-  Consult the [PostgreSQL documentation](http://www.postgresql.org/docs/) for more info.
+   	Consult the [PostgreSQL documentation](http://www.postgresql.org/docs/) for more info.
 
    >**Note**: If you are using an external PostgreSQL instance that is not managed by PE:
    >
