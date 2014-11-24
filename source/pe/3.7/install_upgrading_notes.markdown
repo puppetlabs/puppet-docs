@@ -70,7 +70,7 @@ For more information about RBAC, refer to [Working with Role-Based Access Contro
 
 If you are using an external PostgreSQL instance that is not managed by PE, please note the following:
 
-1. You will need to create databases for RBAC, activity service, and the node classifier before upgrading.
+1. You will need to create databases for RBAC, activity service, and the node classifier before upgrading. Instructions on creating these databases are documented in the web-based installation instructions for both [monolithic](./install_pe_mono.html) and [split](./install_pe_split.html) installs. 
 2. You will need to have the [citext extension](http://www.postgresql.org/docs/9.2/static/citext.html) enabled on the RBAC database.
 
 ### Before Upgrading, Correct Invalid Entries in `autosign.conf`
