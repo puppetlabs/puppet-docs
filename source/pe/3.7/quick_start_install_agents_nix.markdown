@@ -33,7 +33,7 @@ If your Puppet agent node is the same OS and architecture as the Puppet master, 
 
 This script detects the OS on which the agent is running, sets up an apt, yum, or zipper repo that refers back to the Puppet master, and then pulls down and installs the `pe-agent` packages.
 
-> **Important**: After installation is complete, you need to approve your new agent node’s certificate request in the console. Continue on to [Approving the Certificate Request](todo: link) to do so.
+> **Important**: After installation is complete, you need to approve your new agent node’s certificate request in the console. Continue on to [Approving the Certificate Request](#approving-the-certificate-request) to do so.
 
 #### Installing Agents with Different OS and Architecture than the Puppet Master
 
