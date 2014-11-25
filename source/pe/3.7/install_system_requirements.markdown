@@ -54,30 +54,53 @@ Mac OS X                     | Mavericks (10.9)                        | x86_64 
 Hardware Requirements
 -----
 
-Puppet Enterprise's hardware requirements depend on the type of installation you have and on the function a machine performs.
+Puppet Enterprise's hardware requirements depend on the size of the environment you have.  
 
-### Monolithic (all-in-one) Installation
+### Evaluation Environment
 
-Monolithic installs are suitable for deployments up to 500 nodes. We recommend that your hardware meets the following:
+An evaluation environment is run on a monolithic installation and is suitable for evaluating PE on 250 or fewer nodes. We recommend that your hardware meets the following: 
 
-- The **puppet master**, **PE console**, and **PuppetDB** node: at least 4-8 processor cores, 8 GB RAM
-- **Puppet agent** nodes: any hardware able to run the supported operating system
-- All machines require very accurate timekeeping
-- For `/var/`, at least 1 GB of free space for each PE component on a given node
-- For PE-installed PostgreSQL, at least 100 GB of free space in `/opt/` for data gathering
-- For no PE-installed PostgreSQL, `/opt/` needs at least 1 GB of disk space available
+- A 4-core server with 4GB of RAM and high-performance disk space
+- At least 100GB of free storage in `/opt` for PuppetDB
 
-### Split Installation
+### Small Environment
 
-For larger deployments (500-1000, or more nodes), we recommend a split install. We recommend that your hardware meets the following:
+A small environment is run on a monolithic installation and is suitable for running PE on 500 nodes. We recommend that your hardware meets the following: 
 
-- **Puppet master**, **PE console**, and **PuppetDB** nodes: at least 8 processor cores, 8 GB RAM, and high-performance disk space (per node)
-- **Puppet agent** nodes: any hardware able to run the supported operating system
-- All machines require very accurate timekeeping
-- For `/var/`, at least 1 GB of free space for each PE component on a given node
-- For PE-installed PostgreSQL, at least 100 GB of free space in `/opt/` for data gathering
-- For no PE-installed PostgreSQL, `/opt/` needs at least 1 GB of disk space available
+- 4-core server with 16GB of RAM and high-performance disk space for the Puppet master, PE console, and PuppetDB nodes 
+  - Amazon EC2 m3.xlarge instances are adequate for each of these servers.
+- At least 100GB of free space in `/opt` on the PuppetDB node
+- At least 1GB of free space in `/var` on each node 
 
+### Medium Environment
+
+A medium environment is run on a split installation and is suitable for running PE on up to 1,000 nodes. We recommend that your hardware meets the following: 
+
+- 4-core servers with 16GB of RAM and high-performance disk space for the Puppet master, PE console, and PuppetDB nodes 
+  - Amazon EC2 m3.xlarge instances are adequate for each of these servers
+- At least 100GB of free space in `/opt` on the PuppetDB node
+- At least 1GB of free space in `/var` on each node
+
+### Large Environment
+
+A large environment is run on a split/large environment installation and is suitable for running PE on 1,000 or more nodes. We recommend that your hardware meets the following:
+
+- **Puppet masters**: Four 4-core servers with 16GB of RAM and 40GB of high-performance disk space each 
+   - Amazon EC2 m3.xlarge instances are adequate for servers in this role. 
+- **Console Server**: An 8-core server with 30GB of RAM and 40GB of high-performance disk space
+   - Amazon EC2 m3.2xlarge instances are adequate for servers in this role.
+- **PuppetDB**: An 8-core server with 30GB of RAM and 100GB of high-performance disk space 
+   - Amazon EC2 m3.2xlarge instances are adequate for servers in this role.
+   
+For large environments with more than 2,000 nodes under management, it may be necessary to add ActiveMQ resources:
+
+- **ActiveMQ Hub**: 4-8 cores, 8GB of RAM, and 10GB of disk space 
+- **ActiveMQ Spokes**: 4 cores, 4GB of RAM, and 10GB of disk space
+
+It may be desirable to move the certificate authority (CA) role to a separate node. 
+
+- **Certificate Authority**: 4 cores, 4GB of RAM, 40GB of storage
+ 
 Supported Browsers
 -----
 
