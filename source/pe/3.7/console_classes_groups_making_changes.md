@@ -27,7 +27,7 @@ There are three options for deleting a node:
 </ol>
 </dd>
 <dt>Deactivate</dt>
-<dd>Completely deactivates the node and frees up the license assigned to the node. Any deactivated node will be reactivated if PuppetDB receives new catalogs or facts for it. For details, see <a href="./node_deactivation">Deactivating a PE agent node</a>.</dd>
+<dd>Completely deactivates the node and frees up the license assigned to the node. Any deactivated node will be reactivated if PuppetDB receives new catalogs or facts for it. For details, see <a href="./node_deactivation.html">Deactivating a PE agent node</a>.</dd>
 </dl>
 
 ## Editing Node Groups
