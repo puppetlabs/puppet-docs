@@ -74,7 +74,7 @@ The script can only be invoked under these conditions:
 
 The reset script:
 
-    q_puppet_enterpriseconsole_auth_password=newpassword q_puppetagent_certname=$(puppet config print certname) /opt/puppet/bin/ruby u\pdate-superuser-password.rb
+    q_puppet_enterpriseconsole_auth_password=newpassword q_puppetagent_certname=$(puppet config print certname) /opt/puppet/bin/ruby update-superuser-password.rb
 
 
 The script is not installed onto the system by default. The two environment arguments in the script come from the [installation answers file](./install_answer_file_reference.html), and have the same meaning and semantics.
