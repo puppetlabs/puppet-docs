@@ -5,6 +5,8 @@ subtitle: "Configuring the Puppet Enterprise Console to Use a Custom SSL Certifi
 canonical: "/pe/latest/custom_console_cert.html"
 ---
 
+> **Important**: The procedures in this document apply to 3.3.x versions of Puppet Enterprise. PE 3.7.0 users should not perform these steps as certificate functionality has changed between versions. 
+
 The PE console uses a certificate signed by PE's built-in certificate authority (CA). Since this CA is specific to PE, web browsers don't know it or trust it, and you have to add a security exception in order to access the console. You may find that this is not an acceptable scenario and want to use a custom CA to create the console's certificate. However, because several elements of the PE infrastructure are authenticated with certificates signed by PE's built-in CA, you must bundle the custom CA with the built-in CA.
 
 #### About the CA Bundle

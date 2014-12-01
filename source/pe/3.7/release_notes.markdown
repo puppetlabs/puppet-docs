@@ -121,6 +121,10 @@ To find out which of these issues may affect you, run `/opt/puppet/bin/puppet --
 
 The following issues affect the currently shipped version of PE and all prior releases through the 3.x.x series, unless otherwise stated.
 
+### Custom Console Cert Configuration Documentation not Available for PE 3.7.0
+
+"Configuring the Puppet Enterprise Console to Use a Custom SSL Certificate" documentation available in previous versions of PE has not been updated for the change in certificate functionality in PE 3.7.0. Documentation for the 3.7.0 line will be available in a future release.
+
 ### Important Factors in Connecting to an External Directory Service
 
 The following requirements affect how you connect your existing LDAP to PE:
