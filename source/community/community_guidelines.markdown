@@ -97,6 +97,7 @@ Remember, when you post to a community mailing list, you are, in effect, asking 
 * [Puppet-Dev](https://groups.google.com/group/puppet-dev): The Puppet-dev mailing list, for all public discussions related to the development of the puppet codebase.
 * [Puppet-Razor](https://groups.google.com/group/puppet-razor): The mailing list for any and all questions about the Razor project.
 * [Puppet-Announce](https://groups.google.com/group/puppet-announce) (Read-Only): A list for announcements related to Puppet, e.g.; major version releases
+* [Puppet-Security](https://groups.google.com/forum/#!forum/puppet-security-announce) (Read-Only): A list for announcements of security-related releases of Puppet Labs software.
 * [Puppet Bugs](http://groups.google.com/group/puppet-bugs) (Read-Only): An automated list that gets a copy of all project ticket activity.
 * [Puppet Commit](http://groups.google.com/group/puppet-commit) (Read-Only): An automated list that gets a copy of all git source code commits.
 
