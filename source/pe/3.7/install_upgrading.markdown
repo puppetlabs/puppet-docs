@@ -10,7 +10,7 @@ canonical: "/pe/latest/install_upgrading.html"
 
 > **Important**: Before upgrading, please review [Important Information about Upgrades to PE 3.7 and Directory Environments](./install_upgrading_dir_env_notes.html), as some user action is required. Please also review [Upgrading Puppet Enterprise: Notes and Warnings](install_upgrading_notes.html), which includes important information about upgrading to the new node classifier and the new Puppet Server running on the Puppet master.
 >
-> Currently upgrades to PE 3.7.0 are only supported from the 3.3.x line.
+> Currently upgrades to PE 3.7.0 are only supported from 3.3.2.
 >
 > We generally recommend updating your PE deployments in full before upgrading to a new version. 
 
