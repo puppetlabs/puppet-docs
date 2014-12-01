@@ -117,7 +117,7 @@ In this step, you'll use the PE console to add `activemq.spoke1.example.com` and
 
 In this step, you'll use the the PE console to configure connections between your ActiveMQ spokes and MCollective. 
 
-1. From the __Classification__ page, click the __PE Infrastructure__ group. 
+1. From the __Classification__ page, click the __PE MCollective__ group. 
 2. Click the __Classes__ tab.
 3. Under __Class: puppet_enterprise::profile::mcollective::agent__, from the __Parameter__ drop-down list, select __activemq_brokers__.
 4. In the value field, set value to ["master.example.com", "activemq.spoke1.example.com", "activemq.spoke2.example.com"]
