@@ -129,7 +129,7 @@ In this step, you'll use the the PE console to configure connections between you
 
 You're just about finished! The following steps will help you verify all connections have been correctly established. 
 
-1. To verify the __MCollective__ group is correctly set up, go to `master.example.com and run `su peadmin` and then `mco ping`.
+1. To verify the __MCollective__ group is correctly set up, go to `master.example.com` and run `su peadmin` and then `mco ping`.
 
    You should see the ActiveMQ hub and spokes (including the Puppet master) and any PE agents listed. 
    
