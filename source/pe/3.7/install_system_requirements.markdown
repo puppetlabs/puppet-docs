@@ -151,7 +151,13 @@ Port Number: **8081**
 
 - PuppetDB accepts traffic/requests on this port.   
 - The Puppet master and PE console send traffic to PuppetDB on this port.   
-- Classifier group: “PE PuppetDB"     
+- Classifier group: “PE PuppetDB"
+
+Port Number: **61613**
+
+- MCollective uses this port to accept inbound traffic/requests from Puppet agents for orchestration.
+- Any host used to invoke orchestration commands must be able to reach MCollective on this port.
+- Classifier group: “PE ActiveMQ Broker”     
 
 #### For split installs                                                                                                             
 
