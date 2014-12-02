@@ -91,16 +91,22 @@ To backup the databases, run:
     su - pe-postgres -s /bin/bash
         
     pg_dump pe-puppetdb -f /tmp/pe-puppetdb.backup --create
+    pg_dump pe-classifier -f /tmp/pe-classfier.backup --create
+    pg_dump pe-rbac -f /tmp/pe-rbac.backup --create
+    pg_dump pe-activity -f /tmp/pe-activity.backup --create
     pg_dump console -f /tmp/console.backup --create
-    pg_dump console_auth -f /tmp/console_auth.backup --create
+    
 
 To restore the databases, run:
 
     su - pe-postgres -s /bin/bash
         
     psql -f /tmp/pe-puppetdb.backup
+    psql -f /tmp/pe-classifier.backup
+    psql -f /tmp/pe-rbac.backup
+    psql -f /tmp/pe-activity.backup
     psql -f /tmp/console.backup
-    psql -f /tmp/console_auth.backup
+    
 
 Changing the Console's Database User/Password
 -----

@@ -19,7 +19,7 @@ To properly back up your PE installation, the following databases and PE files s
 
  - `/etc/puppetlabs/`
  - `/opt/puppet/share/puppet-dashboard/certs`
- - [The PuppetDB, console, and console_auth databases](./maintain_console-db.html#database-backups)
+ - [The PuppetDB, console, and other PE databases](./maintain_console-db.html#database-backups)
  - The modulepath——if you've configured it to be outside the PE default of `modulepath = /etc/puppetlabs/puppet/module:/opt/puppet/share/puppet/modules` in `puppet.conf`.
  
 > **Note**: If you have any custom Simple RPC agents, you will want to back these up. These are located in the `libdir` configured in `/etc/puppetlabs/mcollective/server.cfg`. 
@@ -30,7 +30,7 @@ On a split install (master, console, PuppetDB/PostgreSQL each on a separate node
 
    - `/etc/puppetlabs/`: different versions of this directory can be found on the server assigned to the puppet master component, the server assigned to the console component, and the server assigned to the PuppetDB/PostgreSQL component. You should back up each version.
    - `/opt/puppet/share/puppet-dashboard/certs`: located on the server assigned to the console component. 
-   - The console and console_auth databases: located on the server assigned to the PuppetDB/PostgreSQL component.
+   - The console, pe-classifier, pe-rbac, and pe-activity databases: located on the server assigned to the PuppetDB/PostgreSQL component.
    - The PuppetDB database: located on the server assigned to the PuppetDB/PostgreSQL component. 
 
 ### Purge the Puppet Enterprise Installation (Optional)
@@ -77,7 +77,11 @@ For more information about using the PE uninstaller, refer to [Uninstalling Pupp
    
    b. `drop database console;`
    
-   c. `drop database console_auth;`
+   c. `drop database pe-classifier;`
+   
+   d. `drop database pe-rbac;`
+   
+   c. `drop database pe-activity;`
    
    d. `drop database "pe-puppetdb";`
    
@@ -92,14 +96,14 @@ For more information about using the PE uninstaller, refer to [Uninstalling Pupp
    - `/etc/puppetlabs/puppet/puppet.conf`
    - `/etc/puppetlabs/puppet/ssl` (fully replace with backup, do not leave existing ssl data)
    - `/opt/puppet/share/puppet-dashboard/certs`
-   - [The PuppetDB, console, and console_auth databases](./maintain_console-db.html#database-backups)
+   - [The PuppetDB, console, and other PE databases](./maintain_console-db.html#database-backups)
    - The modulepath——if you've configured it to be something other than the PE default. 
    
    For a split install, these files and databases should be replaced on the various servers assigned to these PE components.
 
    - `/etc/puppetlabs/`: as noted earlier, there is a different version of this directory for the puppet master component, the console component, and the database support component (i.e., PuppetDB and PostgreSQL). You should replace each version.
    - `/opt/puppet/share/puppet-dashboard/certs`: located on the server assigned to the console component. 
-   - The console and console_auth databases: located on the server assigned to the database support component.
+   - The console, pe-classifier, pe-rbac, and pe-activity databases: located on the server assigned to the database support component.
    - The PuppetDB database: located on the server assigned to the database support component. 
    - The modulepath: located on the server assigned to assigned to the puppet master component.  
    
