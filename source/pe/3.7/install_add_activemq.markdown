@@ -125,6 +125,8 @@ In this step, you'll use the the PE console to configure connections between you
 6. Run Puppet on the ActiveMQ hub and spokes (including the Puppet master) and on any PE agents, or wait for a scheduled run.
 7. Continue to [Step 6: Verify Connections](#step-6-verify-connections). 
 
+> Note: Depending on the scale of your infrastructure and security requirements, the __activemq_brokers__ parameter might need to be set for nodes in each data center, location, or subnet you have.
+
 ### Step 6: Verify Connections 
 
 You're just about finished! The following steps will help you verify all connections have been correctly established. 
