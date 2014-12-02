@@ -54,7 +54,7 @@ Mac OS X                     | Mavericks (10.9)                        | x86_64 
 Hardware Requirements
 -----
 
-Puppet Enterprise's hardware requirements depend on the size of the environment you have.  
+Puppet Enterprise's hardware requirements depend on the size of your environment.  
 
 ### Evaluation Environment
 
