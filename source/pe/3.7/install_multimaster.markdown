@@ -89,8 +89,8 @@ In this step, you will need to run Puppet in the order specified so that certifi
    **Tip**: To determine when the run is complete, click **return to action list**, then click **status**, then click **run**. The **message** parameter will indicate if PE is currently applying a catalog or is running. 
 
 
-7. Repeat steps 3 - 6 to run Puppet only on `puppetDB.example.com`.
-8. Repeat steps 3 - 6 to run Puppet only on `console.example.com`.
+7. Repeat steps 3 - 6 of this section to run Puppet only on `puppetDB.example.com`.
+8. Repeat steps 3 - 6 of this section to run Puppet only on `console.example.com`.
 
 > **Done!** `add.master.example.com` is now a Puppet master node. To start using it, you will first need to add it to your load balancer. 
 
