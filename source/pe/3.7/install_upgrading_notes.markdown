@@ -73,6 +73,10 @@ If you are using an external PostgreSQL instance that is not managed by PE, plea
 1. You will need to create databases for RBAC, activity service, and the node classifier before upgrading. Instructions on creating these databases are documented in the web-based installation instructions for both [monolithic](./install_pe_mono.html) and [split](./install_pe_split.html) installs. 
 2. You will need to have the [citext extension](http://www.postgresql.org/docs/9.2/static/citext.html) enabled on the RBAC database.
 
+### `q_database_host` Cannot be an Alt Name For Upgrades to 3.7.0 
+
+PostgreSQL does not support alt names when set to `verify_full`. If you are upgrading to 3.7 with an answer file, make sure `q_database_host` is set as the puppet agent certname for the database node and not set as an alt name.
+
 ### Before Upgrading, Correct Invalid Entries in `autosign.conf`
 
 Any entries in `/etc/puppetlabs/puppet/autosign.conf` that don't conform to the [autosign requirements](/puppet/3.7/reference/ssl_autosign.html#the-autosignconf-file) will cause the upgrade to fail to configure the PE console. Please correct any invalid entries before upgrading to PE 3.7.0.

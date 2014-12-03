@@ -142,6 +142,10 @@ If the `basemodulepath` is set in the `[master]` section of `puppet.conf`, the u
 
 Any entries in `/etc/puppetlabs/puppet/autosign.conf` that don't conform to the [autosign requirements](/puppet/3.7/reference/ssl_autosign.html#the-autosignconf-file) will cause the upgrade to fail to configure the PE console. Please correct any invalid entries before upgrading.
 
+### `q_database_host` Cannot be an Alt Name For Upgrades or Installs of 3.7.0 
+
+PostgreSQL does not support alt names when set to `verify_full`. If you are upgrading to or installing 3.7 with an answer file, make sure `q_database_host` is set as the Puppet agent certname for the database node and not set as an alt name.
+
 ### Upgrading Requires You to Manually Configure Default Node Groups
 
 Puppet Enterprise automatically creates a number of special node groups for managing your deployment. In a new install, these node groups come with some default classes. If you’re upgrading, only the MCollective node group comes with classes. For the others, you must manually add the individual classes and configure the parameters, as described on the page, [Preconfigured Node Groups](./console_classes_groups_preconfigured_groups.html#preconfigured-node-groups).
