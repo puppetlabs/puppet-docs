@@ -236,9 +236,22 @@ If you attempt to install and start Samba using PE resource management, you will
 
 To workaround this issue, install and start Samba with the following commands:
 
-    puppet resource package samba ensure=present
     puppet resource service smbd provider=init enable=true ensure=running
     puppet resource service nmbd provider=init enable=true ensure=running
+
+Or, in a Puppet manifest:
+
+    service { 'smbd':
+      ensure   => running,
+      enable   => true,
+      provider => 'init',
+    }
+    
+    service { 'nmbd':
+      ensure   => running,
+      enable   => true,
+      provider => 'init',
+    }
 
 ### Errors Not Issued for Unprivileged Non-root Agent Actions on Windows
 
