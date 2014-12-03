@@ -147,12 +147,6 @@ Port Number: **443**
 - The PE console accepts traffic from the Puppet master on this port.  
 - Classifier group: “PE Console”                                                                                                                       
 
-Port Number: **8081**           
-
-- PuppetDB accepts traffic/requests on this port.   
-- The Puppet master and PE console send traffic to PuppetDB on this port.   
-- Classifier group: “PE PuppetDB"
-
 Port Number: **61613**
 
 - MCollective uses this port to accept inbound traffic/requests from Puppet agents for orchestration.
