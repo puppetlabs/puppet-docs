@@ -31,7 +31,7 @@ In addition, please note the following about this guide:
 
 ### Step 2: Install Additional Puppet Master Node
 
-In this step, you will install the additional Puppet agent on `add.master.example.com`. You must perform this step to install the Puppet agent one the new Puppet master node. 
+In this step, you will install the additional Puppet agent on `add.master.example.com`. You must perform this step to install the Puppet agent on the new Puppet master node. 
 
 **Warning**: This machine (e.g., the new Puppet master) should NOT already have a Puppet agent installed. 
 
