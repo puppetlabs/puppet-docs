@@ -22,7 +22,7 @@ Every module contains one or more **classes**. [Classes](/puppet/3.7/reference/l
 2. In the __Node group name__ field, name your group (e.g., **apache_example**).
 3. Click __Add group__.
 4. Click the __apache_example__ group.
-5. From the __Rules__ tab, in the _Certname_area, in the __Node name__ field, enter the name of the PE-managed node you'd like to add to this group.
+5. From the __Rules__ tab, in the _Certname_ area, in the __Node name__ field, enter the name of the PE-managed node you'd like to add to this group.
 6. Click __Pin node__.
 7. Click __Commit 1 change__.
 
