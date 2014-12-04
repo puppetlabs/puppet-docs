@@ -91,6 +91,7 @@ For example:
 #### `INSTALLDIR`
 
 Where Puppet and its dependencies should be installed.
+
 >**Note**: If you’re installing on a 32-bit OS, you have to run 32-bit Puppet. If you’re installing on a 64-bit OS, you can run either 32 or 64-bit Puppet. However, if you’re installing Puppet on Windows 2003, then you must install 32-bit Puppet, even if it’s a 64-bit version of Windows.
 
 **Default:**
@@ -194,9 +195,9 @@ If you have installed into a custom location, that location will not be rerouted
 Switching to an Older Version of PE
 -----
 
-If you’re downgrading from PE 3.7.x  to an older version, we recommend that you uninstall PE 3.7 first, and then install the version of your choice. This guarantees the cleanest install. .
+If you’re downgrading from PE 3.7.x  to an older version, we recommend that you uninstall PE 3.7 first, and then install the version of your choice. This guarantees the cleanest install.
 
-You can also use the Windows MSI to switch versions. It, which will add PEuppet to the system path, with the following caveats:
+You can also use the Windows MSI to switch versions. It will add PE to the system path, with the following caveats:
 
 * Processes that were already running will not see the change until they are restarted.
 * Puppet will expand your variables. This is a problem if the path looks like this: `PATH = %SystemRoot\System32`. Puppet will change this to `PATH = c:\Windows\System32`. This is a known issue.
