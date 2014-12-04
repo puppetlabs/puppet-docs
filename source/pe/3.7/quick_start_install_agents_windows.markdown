@@ -29,7 +29,7 @@ The PE Windows installer is a standard Windows .msi package and will run as a gr
 
 The installer must be run with elevated privileges. Installing Puppet **does not** require a system reboot.
 
-1. [Download][pedownloads] and run the installer.
+1. [Download][downloadpe] and run the installer.
 
 2. When prompted by the install dialog, provide the hostname of your Puppet master server.
 
@@ -55,4 +55,3 @@ The installer must be run with elevated privileges. Installing Puppet **does not
 
 ----------------------
 Next: [Hello, World!](./quick_start_helloworld.html)
-
