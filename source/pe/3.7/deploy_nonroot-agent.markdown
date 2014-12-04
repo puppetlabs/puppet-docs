@@ -5,6 +5,8 @@ subtitle: "Running PE Agents without Root Privileges"
 canonical: "/pe/latest/deploy_nonroot-agent.html"
 ---
 
+**Warning**: This information is currently out-of-date for this version of Puppet Enterprise. We are working on an update and will publish it as soon as possible. 
+
 
 **IMPORTANT**: these procedures assume some degree of experience with Puppet Enterprise (PE). If you are new to PE, we strongly recommend you work through the [Quick Start Guide](./quick_start.html) and some of our other educational resources before attempting to implement non-root agent capability.
 
