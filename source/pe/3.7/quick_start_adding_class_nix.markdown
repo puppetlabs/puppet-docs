@@ -11,7 +11,7 @@ canonical: "/pe/latest/quick_start_adding_class_nix.html"
 [classification_selector]: ./images/quick/classification_selector.png
 [apache_add_group]: ./images/quick/apache_add_group.png
 
-Every module contains one or more **classes**. [Classes](/puppet/3.7/reference/lang_classes.html) are named chunks of puppet code and are the primary means by which Puppet Enterprise configures nodes. The puppetlabs-apache module you installed in the [Module Installation QSG](./quick_start_module_install_nix.html) contains a class called `apache`. In this example, you'll use the `apache` class to launch the default Apache virtual host. You'll create a group called __apache_example_ and add the `apache` class to it.
+Every module contains one or more **classes**. [Classes](/puppet/3.7/reference/lang_classes.html) are named chunks of puppet code and are the primary means by which Puppet Enterprise configures nodes. The puppetlabs-apache module you installed in the [Module Installation QSG](./quick_start_module_install_nix.html) contains a class called `apache`. In this example, you'll use the `apache` class to launch the default Apache virtual host. You'll create a group called _apache_example_ and add the `apache` class to it.
 
 > **Prerequisites**: This guide assumes you've already [installed a monolithic PE deployment](./quick_start_install_mono.html), and have installed at least one [*nix agent node](./quick_start_install_agents_nix.html) and the [puppetlabs-apache module](./quick_start_module_install_nix.html).
 
@@ -82,4 +82,3 @@ You can use the console to set or edit the values of a class's parameters withou
 ----------
 
 Next: [Quick Start: Classifying Nodes and Assigning User Permissions](./quick_start_nc_rbac.html)
-
