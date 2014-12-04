@@ -16,9 +16,9 @@ For supported versions of Windows, [see the System Requirements page](./install_
 
 Windows nodes in Puppet Enterprise:
 
-* Can fetch configurations from a puppet master and apply manifests locally
+* Can fetch configurations from a Puppet master and apply manifests locally
 * Can respond to live management or orchestration commands
-* Cannot serve as a puppet master, console, or database support server
+* Cannot serve as a Puppet master, console, or database support server
 
 See [the main Puppet on Windows documentation](/windows/) for details on [running Puppet on Windows](/windows/running.html) and [writing manifests for Windows](/windows/writing.html).
 
@@ -36,7 +36,7 @@ To install Puppet Enterprise on a Windows node, simply [download][pedownloads] a
 
 The installer must be run with elevated privileges. Installing Puppet **does not** require a system reboot.
 
-The only information you need to specify during installation is **the hostname of your puppet master server:**
+The only information you need to specify during installation is **the hostname of your Puppet master server:**
 
 ![Puppet master hostname selection][server]
 
@@ -44,8 +44,8 @@ The only information you need to specify during installation is **the hostname o
 
 Once the installer finishes:
 
-* Puppet agent will be running as a Windows service, and will fetch and apply configurations every 30 minutes (by default). You can now assign classes to the node as normal; [see "Puppet: Assigning Configurations to Nodes" for more details](./puppet_assign_configurations.html). After the first puppet run, the MCollective service will also be running and the node can now be controlled with live management and orchestration. The puppet agent service and the MCollective service can be started and stopped independently using either the service control manager GUI or the command line `sc.exe` utility; see [Running Puppet on Windows](/windows/running.html#configuring-the-agent-service) for more details.
-* The Start Menu will contain a Puppet folder, with shortcuts for running puppet agent manually, running Facter, and opening a command prompt for use with the Puppet tools. See [Running Puppet on Windows][running] for more details.
+* Puppet agent will be running as a Windows service, and will fetch and apply configurations every 30 minutes (by default). You can now assign classes to the node as normal; [see "Puppet: Assigning Configurations to Nodes" for more details](./puppet_assign_configurations.html). After the first Puppet run, the MCollective service will also be running and the node can now be controlled with live management and orchestration. The Puppet agent service and the MCollective service can be started and stopped independently using either the service control manager GUI or the command line `sc.exe` utility; see [Running Puppet on Windows](/windows/running.html#configuring-the-agent-service) for more details.
+* The Start Menu will contain a Puppet folder, with shortcuts for running Puppet agent manually, running Facter, and opening a command prompt for use with the Puppet tools. See [Running Puppet on Windows][running] for more details.
 
     ![Start Menu icons][startmenu]
 * Puppet is automatically added to the machine's PATH environment variable. This means you can open any command line and call `puppet`, `facter` and the few other batch files that are in the `bin` directory of the [Puppet installation](#program-directory). This will also add necessary items for the Puppet environment to the shell, but only for the duration of execution of each of the particular commands.
@@ -91,15 +91,19 @@ For example:
 #### `INSTALLDIR`
 
 Where Puppet and its dependencies should be installed.
+>**Note**: If you’re installing on a 32-bit OS, you have to run 32-bit Puppet. If you’re installing on a 64-bit OS, you can run either 32 or 64-bit Puppet. However, if you’re installing Puppet on Windows 2003, then you must install 32-bit Puppet, even if it’s a 64-bit version of Windows.
 
 **Default:**
 
-OS type  | Default Install Path
----------|---------------------
-32-bit   | `C:\Program Files\Puppet Labs\Puppet`
-64-bit   | `C:\Program Files (x86)\Puppet Labs\Puppet`
+Puppet Install Type  | OS Type | Default Install Path
+-------------|--------------------|---------------------
+32-bit  | 32-bit  | `C:\Program Files\Puppet Labs\Puppet`
+32-bit  | 64-bit  | `C:\Program Files (x86)\Puppet Labs\Puppet`
+64-bit  | 64-bit |  `C:\Program Files \Puppet Labs\Puppet`
 
-The Program Files directory can be located using the `PROGRAMFILES` environment variable on 32-bit versions of Windows or the `PROGRAMFILES(X86)` variable on 64-bit versions.
+
+
+See the **Program Directory** section below for information related to the Program Files directory.
 
 #### `PUPPET_MASTER_SERVER`
 
@@ -174,11 +178,29 @@ The domain of puppet agent's user account. See the notes about users above.
 Upgrading
 -----
 
-
 Puppet can be upgraded by installing a new version of the MSI package. No extra steps are required, and the installer will handle stopping and re-starting the puppet agent service.
 
 When upgrading, the installer will not replace any settings in the main puppet.conf configuration file, but it can add previously unspecified settings if they are provided on the command line.
 
+The following version upgrades are supported:
+
+* 32-bit to PE 3.7 32-bit. Program data is the same, for example c:\programData\Puppet Labs
+* 32-bit PE to 64-bit PE. You can only do this upgrade from PE 3.3 to PE 3.7.  This upgrade changes the default so it goes from:
+
+c:\Program Files(86)\ to c:\Program Files \
+
+If you have installed into a custom location, that location will not be rerouted.
+
+Switching to an Older Version of PE
+-----
+
+If you’re downgrading from PE 3.7.x  to an older version, we recommend that you uninstall PE 3.7 first, and then install the version of your choice. This guarantees the cleanest install. .
+
+You can also use the Windows MSI to switch versions. It, which will add PEuppet to the system path, with the following caveats:
+
+* Processes that were already running will not see the change until they are restarted.
+* Puppet will expand your variables. This is a problem if the path looks like this: `PATH = %SystemRoot\System32`. Puppet will change this to `PATH = c:\Windows\System32`. This is a known issue.
+* In some cases, files from the newer version will be left on your machine.
 
 Uninstalling
 -----
@@ -197,25 +219,27 @@ Installation Details
 
 ### What Gets Installed
 
-In order to provide a self-contained installation, the Puppet installer includes all of Puppet's dependencies, including Ruby, Gems, and Facter.  (Puppet redistributes the 32-bit Ruby application from [rubyinstaller.org](http://rubyinstaller.org).) MCollective is also installed.
+In order to provide a self-contained installation, the Puppet installer includes all of Puppet's dependencies, including Ruby, Gems, and Facter.  (Puppet redistributes the 32-bit Ruby application from [rubyinstaller.org](http://rubyinstaller.org). It also distributes 64-bit Ruby with Puppet 3.7.x and going forward.) MCollective is also installed.
 
 These prerequisites are used only for Puppet Enterprise components and do not interfere with other local copies of Ruby.
 
 
 ### Program Directory
 
-Unless overridden during installation, Puppet and its dependencies are installed into the standard Program Files directory (on 32-bit Windows systems) or the Program Files(x86) directory (on 64-bit Windows systems).
-
-Puppet Enterprise's default installation path is:
+Unless they are overridden during installation, PE and its dependencies are installed into the following default installation paths:
 
 
-OS type  | Default Install Path
----------|--------------------
-32-bit   | `C:\Program Files\Puppet Labs\Puppet Enterprise`
-64-bit   | `C:\Program Files (x86)\Puppet Labs\Puppet Enterprise`
+Puppet Install Type  | OS Type | Default Install Path
+-------------|--------------------|---------------------
+32-bit  | 32-bit  | `C:\Program Files\Puppet Labs\Puppet`
+32-bit  | 64-bit  | `C:\Program Files (x86)\Puppet Labs\Puppet`
+64-bit  | 64-bit |  `C:\Program Files \Puppet Labs\Puppet`
 
 
-The Program Files directory can be located using the `PROGRAMFILES` environment variable on 32-bit versions of Windows or the `PROGRAMFILES(X86)` variable on 64-bit versions.
+You can locate the Program Files directory using the `PROGRAMFILES` variable or the `PROGRAMFILES(X86)` variable. See “Default Install Path” in the table above to determine which variable to use.
+
+>**Note**: As mentioned, if you’re installing on a 32-bit OS you have to run 32-bit Puppet. If you’re installing on a 64-bit OS, you can run either 32 or 64-bit Puppet. However, if you’re installing Puppet on Windows 2003, then you must install 32-bit Puppet, even if it’s a 64-bit version of Windows.
+
 
 Puppet's program directory contains the following subdirectories:
 
@@ -272,3 +296,6 @@ For more details about using Puppet on Windows, see:
 * * *
 
 - [Next: Upgrading](./install_upgrading.html)
+
+
+

@@ -67,6 +67,16 @@ This release provides support for SLES 10 for agent only installation.
 
 For more information, see the [system requirements](./install_system_requirements.html).
 
+### Improvements to Windows User Experience
+
+PE 3.7 includes a number of improvements for Windows agents:
+
+####Two useful new facts (due to packages now pulling in Facter 2.3), and a fix to the PATH variable.
+
+	* [`$system32`](/facter/latest/core_facts.html#system32) is the path to the **native** system32 directory, regardless of Ruby and system architecture.
+	* [`$rubyplatform`](/facter/latest/core_facts.html#rubyplatform) reports the value of Ruby's `RUBY_PLATFORM` constant.
+
+For details on these improvements, see the [Puppet 3.7.3 Release Notes](./puppet/latest/reference/release_notes.html#puppet-373).
 
 ## Security Fixes
 
@@ -208,7 +218,7 @@ Will be expanded, as follows:
 
 	PATH=C:\Windows\System32
 
-This should not cause any problems.
+This should not cause any problems, and has been fixed in Puppet 3.7.3, which has not yet been included with PE.
 
 ### Enabling NIO and Stomp for ActiveMQ Performance Improvements will Introduce Security Issues
 
