@@ -11,7 +11,7 @@ canonical: "/pe/latest/quick_start_adding_class_nix.html"
 [classification_selector]: ./images/quick/classification_selector.png
 [apache_add_group]: ./images/quick/apache_add_group.png
 
-Every module contains one or more **classes**. [Classes](/puppet/3.7/reference/lang_classes.html) are named chunks of puppet code and are the primary means by which Puppet Enterprise configures nodes. The puppetlabs-apache module you installed in the [Module Installation QSG](./quick_start_module_install_nix.html) contains a class called `apache`. In this example, you'll use the `apache` class to launch the default Apache virtual host. You'll create a group called __apache_example_ and add the `apache` class to it.
+Every module contains one or more **classes**. [Classes](/puppet/3.7/reference/lang_classes.html) are named chunks of puppet code and are the primary means by which Puppet Enterprise configures nodes. The puppetlabs-apache module you installed in the [Module Installation QSG](./quick_start_module_install_nix.html) contains a class called `apache`. In this example, you'll use the `apache` class to launch the default Apache virtual host. You'll create a group called _apache_example_ and add the `apache` class to it.
 
 > **Prerequisites**: This guide assumes you've already [installed a monolithic PE deployment](./quick_start_install_mono.html), and have installed at least one [*nix agent node](./quick_start_install_agents_nix.html) and the [puppetlabs-apache module](./quick_start_module_install_nix.html).
 
@@ -22,7 +22,7 @@ Every module contains one or more **classes**. [Classes](/puppet/3.7/reference/l
 2. In the __Node group name__ field, name your group (e.g., **apache_example**).
 3. Click __Add group__.
 4. Click the __apache_example__ group.
-5. From the __Rules__ tab, in the _Certname_area, in the __Node name__ field, enter the name of the PE-managed node you'd like to add to this group.
+5. From the __Rules__ tab, in the _Certname_ area, in the __Node name__ field, enter the name of the PE-managed node you'd like to add to this group.
 6. Click __Pin node__.
 7. Click __Commit 1 change__.
 
