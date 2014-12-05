@@ -69,11 +69,11 @@ You can use the console to set or edit the values of a class's parameters withou
 2. From the __Classification page__, click the __apache_example__ group.
 3. Click the __Classes__ tab, and find `apache` in the list of classes.
 
-4. From the __parameter__ drop-down menu, choose the parameter you’d like to edit.
+4. From the __Parameter Name__ drop-down menu, choose the parameter you’d like to edit. For this example, we will use `docroot`.
 
    **Note**: The grey text that appears as values for some parameters is the default value, which can be either a literal value or a Puppet variable. You can restore this value by selecting __Discard changes__ after you have added the parameter.
 
-5. In the __Value__ field, enter `{"PermitRootLogin"=>"no"}`.
+5. In the __Value__ field, enter `"/var/www"`.
 6. Click __Add parameter__.
 7. Click __Commit 1 change__.
 8. Navigate to the Live Management page, and select the __Control Puppet__ tab.
@@ -82,4 +82,3 @@ You can use the console to set or edit the values of a class's parameters withou
 ----------
 
 Next: [Quick Start: Classifying Nodes and Assigning User Permissions](./quick_start_nc_rbac.html)
-
