@@ -10,7 +10,7 @@ canonical: "/pe/latest/quick_start_install_mono.html"
 
 To get you started using Puppet Enterprise (PE) relatively quickly and efficiently, this guide walks you through the steps of a monolithic install. A monolithic deployment is best suited for users who want to evaluate PE, or for users managing a small number of puppet agent nodes (up to 500 nodes). For larger installations, you’ll need to perform a [split install](./install_pe_split.html).
 
-A monolithic PE deployment entails installing the puppet master, the PE console, and PuppetDB all on one node. Puppet agent nodes are installed later as part of the agent installation quick start guide [todo: link].
+A monolithic PE deployment entails installing the puppet master, the PE console, and PuppetDB all on one node. Puppet agent nodes are installed later as part of the [agent installation quick start guide for *nix](./quick_start_install_agents_nix.html) or the [agent installation quick start guide for Windows](./quick_start_install_agents_windows.html).
 
 For more information about the components that make up your PE deployment, visit the [installation overview](./install_basic.html) in the PE docs.
 
