@@ -57,7 +57,7 @@ canonical: "/pe/latest/puppet_assign_configurations.html"
 [facts]: /puppet/3.7/reference/lang_variables.html#facts-and-built-in-variables
 [plugins_in_modules]: /guides/plugins_in_modules.html
 [external_facts]: /guides/custom_facts.html#external-facts
-[rest_api]: ./nc_index
+[rest_api]: ./nc_index.html
 
 
 Summary
