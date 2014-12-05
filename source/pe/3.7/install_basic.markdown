@@ -171,7 +171,7 @@ PE 3.7.0 introduces the rules-based node classifier, which is the first part of 
 
 For a detailed overview of the new node classifier, refer to the [PE user's guide](./console_classes_groups_getting_started.html).
 
->**Note**: Like PuppetDB and the database support components, RBAC and node classifier databases run on PostgreSQL, and you can use an existing PostgreSQL instance of have one created for you when you install PE. Note that if you are using an existing PostgreSQL instance, you will need the host name, user name, and user password for accessing these databases.
+>**Note**: Like PuppetDB and the database support components, RBAC and node classifier databases run on PostgreSQL, and you can use an existing PostgreSQL instance or have one created for you when you install PE. Note that if you are using an existing PostgreSQL instance, you will need the host name, user name, and user password for accessing these databases.
 
 ### The Console Databases
 
