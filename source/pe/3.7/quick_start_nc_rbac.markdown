@@ -17,7 +17,7 @@ In this guide, you'll create a new node group, apply rules to the group to defin
 [assign_rule]: ./images/quick/assign_rule.png
 [role_views_node_group]: ./images/quick/role_views_node_group.png
 
-> **Prerequisites**: This guide assumes you've already [installed a monolithic PE deployment](./quick_start_install_mono.html), and have installed at least one [*nix agent node](./quick_start_install_agents_nix.html) or one [Windows node](./quick_start_install_agents_windows.html). 
+> **Prerequisites**: This guide assumes you've already [installed a monolithic PE deployment](./quick_start_install_mono.html), and have installed at least one [*nix agent node](./quick_start_install_agents_nix.html) or one [Windows node](./quick_start_install_agents_windows.html).
 >
 > It also assumes you’ve installed a [*nix](./quick_start_module_install_nix.html) or [Windows](./quick_start_module_install_windows.html) module. Finally, you must have admin permissions to complete these steps, which include assigning a user to a role.
 
@@ -50,7 +50,7 @@ Now that you've created a node group, you'll add classes to give the matching no
 1. On your **web_app_servers** page, click the **Classes** tab.
 2. In the **Add new class** field, if you’re a *nix user, select `apache`. If you’re a Windows user, select `registry`.
 3. Click **Add class**.
-4. In the **Parameter** box, click **Parameter name** and select a parameter from the drop-down list, such as `apache_version`. Note that for many parameters, the **Value"** field is automatically populated.
+4. In the **Parameter** box, click **Parameter name** and select a parameter from the drop-down list, such as `apache_version`. Note that for many parameters, the **Value** field is automatically populated.
 5. Click **Add parameter**, and then click the commit button.
 
 You can check these changes by clicking **Nodes**, then clicking one of the nodes from your node group. In the **Classes** list, you'll see the `apache` class with the **Source group** `web_app_servers`.
@@ -91,6 +91,3 @@ Now, you have given members of the `Web developers` role permission to view the 
 ----------
 
 Next: [Writing Modules (Windows)](./quick_start_module_install_windows.html) or [Writing Modules (*nix)](./quick_writing_nix.html)
-
-
-
