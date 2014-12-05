@@ -5,9 +5,6 @@ subtitle: "Running PE Agents without Root Privileges"
 canonical: "/pe/latest/deploy_nonroot-agent.html"
 ---
 
-**Warning**: This information is currently out-of-date for this version of Puppet Enterprise. We are working on an update and will publish it as soon as possible. 
-
-
 **IMPORTANT**: these procedures assume some degree of experience with Puppet Enterprise (PE). If you are new to PE, we strongly recommend you work through the [Quick Start Guide](./quick_start.html) and some of our other educational resources before attempting to implement non-root agent capability.
 
 Configuring Non-root Agent Access: Overview
@@ -33,55 +30,70 @@ To properly configure non-root agent access, you will need to:
 
 #### Install and Configure a Monolithic Master
 
-1. As a root user, install and configure a monolithic PE master. Use the [standard installation method](./install_basic.html#monolithic-puppet-enterprise-installation), or use [an answer file](./install_automated.html) to automate your installation.
+1. As a root user, install and configure a monolithic PE master. Use the [monolithic installation method](./install_pe_mono.html), or use [an answer file](./install_automated.html) to automate your installation.
 2. Disable live management (MCollective).
 
-   This can be done by adding `q_disable_live_management=y` to your answer file if you're performing an answer file installation. Otherwise you can edit `/etc/puppetlabs/puppet-dashboard/settings.yml` and set the `disable_live_management` setting to `true`.
+   This can be done by adding `q_disable_live_management=y` to your answer file if you're performing an answer file installation. Otherwise, after installation, you can edit `/etc/puppetlabs/puppet-dashboard/settings.yml` and set the `disable_live_management` setting to `true`. Note that you will need to run `service pe-httpd restart` after editing `settings.yml`.  
 
 3. After the installation is complete, log into the console and verify that the **Live Management** tab is NOT present in the main, top nav bar.
-4. Make sure no new agents can get added to the MCollective group.
+4. Use the PE console to make sure no new agents can get added to the MCollective group.
 
-   a. Click the **Groups** tab, select the **default** group, and click **Edit**.
+   a. From the navigation bar, click **Classification**.
 
-   b. Add the **no mcollective** group and click **Update**.
+   b. From the **Classificiation** page, click **PE_MCollective**.
+   
+   c. Click the **Rules** tab. 
+   
+   d. Under **Fact**, locate **pe_version** and click **Remove**.
+   
+   e. Click the Commit change button. 
 
-![Add the No MCO Group][add_no_mco_group]
+![Remove the pe_version rule][remove_pe_version]
 
 #### Install and Configure PE Agents and Create Non-Root Users
 
 1. On each agent node, install a PE agent while logged in as a root user. Refer to the [instructions for installing agents](/pe/latest/install_basic.html#installing-agents).
 
-2. Log in to an agent node as a root user, and add the non-root user with `puppet resource user <unique non-root username> ensure=present managehome=true`.
+2. As **a root user**, log in to an agent node, and add the non-root user with `puppet resource user <UNIQUE NON-ROOT USERNAME> ensure=present managehome=true`.
 
    >**Note**: Each and every non-root user *must* have a unique name.
 
-3. As a root user, still on the agent node, set the non-root user’s password. For example, on most *nix systems you would run `passwd <username>`.
+3. As **a root user**, still on the agent node, set the non-root user’s password. For example, on most *nix systems you would run `passwd <USERNAME>`.
 
-4. By default, the `pe-puppet` service runs automatically as a root user, so it needs to be disabled. As a root user on the agent node, stop the service by running `puppet resource service pe-puppet ensure=stopped enable=false`.
+4. By default, the `pe-puppet` service runs automatically as a root user, so it needs to be disabled. As **a root user** on the agent node, stop the service by running `puppet resource service pe-puppet ensure=stopped enable=false`.
+   
+5. Disable the MCollective service on the agent node. **As a root user**, run `puppet resource service pe-mcollective ensure=stopped enable=false`. 
 
-   >**Tip**: If you wish to use `su - nonrootuser` to switch between accounts, make sure to use the `-` (`-l` in some unix variants) argument so that full login privileges are correctly granted. Otherwise you may see "permission denied" errors when trying to apply a catalog.
+6. Change to the non-root user.
 
-5. As the non-root user, generate and submit the cert for the agent node. Log into the agent node and execute the following command:
+   >**Tip**: If you wish to use `su - <NON-ROOT USERNAME>` to switch between accounts, make sure to use the `-` (`-l` in some unix variants) argument so that full login privileges are correctly granted. Otherwise you may see "permission denied" errors when trying to apply a catalog.
+   
+5. As the **non-root user**, generate and submit the cert for the agent node. From the agent node, execute the following command:
 
-    `puppet agent -t --certname "<unique non-root username.hostname>" --server "<master hostname>"`
+    `puppet agent -t --certname "<UNIQUE NON-ROOT USERNAME.HOSTNAME>" --server "<PUPPET MASTER HOSTNAME>"`
 
     This puppet run will submit a cert request to the master and will create a `~/.puppet` directory structure in the non-root user’s home directory.
-
-6. As the non-root user, create a Puppet configuration file (`~/.puppet/puppet.conf`) to specify the agent certname and the hostname of the master:
-
-		[main]
-		 certname = <unique non-root username.hostname>
-		 server = <master hostname>
-
+    
 7. Log into the console, navigate to the [pending node requests](./console_cert_mgmt.html), and accept the requests from non-root user agents.
 
     **Note**: It is possible to also sign the root user certificate in order to allow that user to also manage the node. However, you should do so only with great caution as this introduces the possibility of unwanted behavior and potential security issues. For example, if your site.pp has no default node configuration, running agent as non-admin could lead to unwanted node definitions getting generated using alt hostnames, which is a potential security issue. In general, if you deploy this scenario, you should ensure that the root and non-root users never try to manage the same resources,ensure that they have clear-cut node definitions, and ensure that classes scope correctly.
+   
+
+7. As the **non-root user**, run `puppet config set certname <UNIQUE NON-ROOT USERNAME.HOSTNAME> --section agent`.
+8. As the **non-root user**, run `puppet config set server <PUPPET MASTER HOSTNAME> --section agent`.
+
+   Steps 7 and 8 create and set the configuration for the non-root agent's `puppet.conf`, created in `/.puppet` in the non-root user's home directory.
+
+		[main]
+		 certname = <UNIQUE NON-ROOT USERNAME.HOSTNAME>
+		 server = <PUPPET MASTER HOSTNAME>
+
 
 8. You can now connect the non-root agent node to the master and get PE to configure it. Log into the agent node as the non-root user and run `puppet agent -t`.
 
    PE should now run and apply the configuration specified in the catalog. Keep an eye on the output from the run——if you see Facter facts being created in the non-root user’s home directory, you know that you have successfully created a functional non-root agent.
-
-![non-root user first run output][nonrootuser_first_run]
+   
+   ![non-root user first run output][nonrootuser_first_run]
 
 #### Verify the Non-Root Configuration
 
@@ -89,10 +101,7 @@ Check the following to make sure the agent is properly configured and functionin
 
 - The non-root agent node should be able to request certificates and be able to download and apply the catalog from the master without issue when a non-privileged user executes `puppet agent -t`.
 - The puppet agent service should not be running. Check it with `service pe-puppet status`.
-- The non-root agent node should not receive the “pe-mcollective” class. You can check the console to ensure that `nonrootuser` is part of the `no mcollective` group.
-
-![non-root node not in mcollective group][nonroot_no_mco_group]
-
+- You can check the PE console to ensure that the non-root user node is not listed in the **PE MCollective** group.
 - Non-privileged users should be able to collect existing facts by running `facter` on agents, and they should be able to define new, external Facter facts.
 
 #### Install and Configure Windows Agents and Their Certificates
@@ -169,7 +178,7 @@ You should also be able to inspect the following resource types (use `puppet res
  `Notice: /Stage[main]/Main/Node[nonrootuser]/Cron[illegal_action]/ensure: created must be privileged to use -u`
 
 
-[add_no_mco_group]: ./images/console/add_no_mco_group.png
+[remove_pe_version]: ./images/console/remove_pe_version.png
 [nonrootuser_first_run]: ./images/console/nonrootuser_first_run.png
 [nonroot_no_mco_group]: ./images/console/nonroot_no_mco_group.png
 
