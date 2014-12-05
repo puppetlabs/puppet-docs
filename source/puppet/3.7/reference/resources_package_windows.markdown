@@ -102,6 +102,13 @@ It's a good idea to use the hash notation for file path arguments since they may
 install_options => [ { 'INSTALLDIR' => "${packagedir}" } ]
 {% endhighlight %}
 
+## Hidden Packages Aren't Yet Supported
+
+Right now, Puppet can't manage packages that hide themselves from the list of installed programs. (That is, packages that set their `SystemComponent` registry value to 1, like `SQL Server 2008 R2 SP2 Common Files`.)
+
+If you try to manage a hidden package, Puppet will try to install it every time it runs. We plan to improve this behavior in the future; it's being tracked as issue [PUP-400][].
+
+[pup-400]: https://tickets.puppetlabs.com/browse/PUP-400
 
 ## Errata
 
