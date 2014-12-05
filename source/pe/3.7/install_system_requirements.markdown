@@ -32,7 +32,7 @@ Scientific Linux             | 4, 5 & 6                                   | x86 
 SUSE Linux Enterprise Server | 10 (SP4 only) & 11 (SP1 and later)                      | x86 & x86\_64 (SLES 10 also i386) | all (SLES 10 supports agent only)
 Solaris                      | 10 (Update 9 or later) & 11          | SPARC & i386   | agent
 Microsoft Windows            | 2008, 2008R2, 7 Ultimate SP1, 8 Pro, 8.1 Pro, 2012, & 2012R2| x86 & x64 | agent
-Microsoft Windows            | 2003, 2003R2,                           | x86           | agent
+Microsoft Windows            | 2003, 2003R2                            | x86           | agent
 AIX                          | 5.3, 6.1, & 7.1                         | Power         | agent
 Mac OS X                     | Mavericks (10.9)                        | x86_64         | agent
 
@@ -224,7 +224,7 @@ OpenSSL is a dependency required for PE. For Solaris 10 and all versions of RHEL
 pciutils     | x         |              |               |                          |
 system-logos | x         |              |               |                          |
 which        | x         |              |               |                          |
-libxml2      | x         |              |               |                          | x
+libxml2      | x         |              |               |                          | 
 dmidecode    | x         |              |               |                          |
 net-tools    | x         |              |               |                          |
 virt-what    | x         |              |               |                          |
@@ -247,7 +247,7 @@ zlib         | x         |              |               |                       
 pciutils     | x         |              |               |                          |
 system-logos | x         |              |               |                          |
 which        | x         |              |               |                          |
-libxml2      | x         |              |               |                          | x
+libxml2      | x         |              |               |                          | 
 dmidecode    | x         |              |               |                          |
 net-tools    | x         |              |               |                          |
 cronie (RHEL 6, 7) | x      |              |               |                          |
@@ -273,7 +273,7 @@ zlib         | x         |              |               |                       
 pciutils     | x         |              |               |                          |
 pmtools      | x         |              |               |                          |
 cron         | x         |              |               |                          |
-libxml2      | x         |              |               |                          | x
+libxml2      | x         |              |               |                          | 
 net-tools    | x         |              |               |                          |
 libxslt      | x         | x            |               |                          |
 libapr1      |           | x            | x             |                          |
@@ -293,7 +293,7 @@ zlib         | x         |              |               |                       
 pciutils     | x         |              |               |                          |
 dmidecode    | x         |              |               |                          |
 cron         | x         |              |               |                          |
-libxml2      | x         |              |               |                          | x
+libxml2      | x         |              |               |                          | 
 hostname     | x         |              |               |                          |
 libldap-2.4-2 | x        |              |               |                          |
 libreadline5 | x         |              |               |                          |
@@ -326,7 +326,7 @@ zlib         | x         |              |               |                       
 pciutils     | x         |              |               |                          |
 dmidecode    | x         |              |               |                          |
 cron         | x         |              |               |                          |
-libxml2      | x         |              |               |                          | x
+libxml2      | x         |              |               |                          | 
 hostname     | x         |              |               |                          |
 libldap-2.4-2 | x        |              |               |                          |
 libreadline5 | x         |              |               |                          |
