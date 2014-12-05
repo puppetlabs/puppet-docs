@@ -68,19 +68,19 @@ To properly configure non-root agent access, you will need to:
 
    >**Tip**: If you wish to use `su - <NON-ROOT USERNAME>` to switch between accounts, make sure to use the `-` (`-l` in some unix variants) argument so that full login privileges are correctly granted. Otherwise you may see "permission denied" errors when trying to apply a catalog.
    
-5. As the **non-root user**, generate and submit the cert for the agent node. From the agent node, execute the following command:
+7. As the **non-root user**, generate and submit the cert for the agent node. From the agent node, execute the following command:
 
     `puppet agent -t --certname "<UNIQUE NON-ROOT USERNAME.HOSTNAME>" --server "<PUPPET MASTER HOSTNAME>"`
 
     This puppet run will submit a cert request to the master and will create a `~/.puppet` directory structure in the non-root user’s home directory.
     
-7. Log into the console, navigate to the [pending node requests](./console_cert_mgmt.html), and accept the requests from non-root user agents.
+8. **As an admin user**, log into the console, navigate to the [pending node requests](./console_cert_mgmt.html), and accept the requests from non-root user agents.
 
     **Note**: It is possible to also sign the root user certificate in order to allow that user to also manage the node. However, you should do so only with great caution as this introduces the possibility of unwanted behavior and potential security issues. For example, if your site.pp has no default node configuration, running agent as non-admin could lead to unwanted node definitions getting generated using alt hostnames, which is a potential security issue. In general, if you deploy this scenario, you should ensure that the root and non-root users never try to manage the same resources,ensure that they have clear-cut node definitions, and ensure that classes scope correctly.
    
 
-7. As the **non-root user**, run `puppet config set certname <UNIQUE NON-ROOT USERNAME.HOSTNAME> --section agent`.
-8. As the **non-root user**, run `puppet config set server <PUPPET MASTER HOSTNAME> --section agent`.
+9. As the **non-root user**, run `puppet config set certname <UNIQUE NON-ROOT USERNAME.HOSTNAME> --section agent`.
+10. As the **non-root user**, run `puppet config set server <PUPPET MASTER HOSTNAME> --section agent`.
 
    Steps 7 and 8 create and set the configuration for the non-root agent's `puppet.conf`, created in `/.puppet` in the non-root user's home directory.
 
@@ -89,7 +89,7 @@ To properly configure non-root agent access, you will need to:
 		 server = <PUPPET MASTER HOSTNAME>
 
 
-8. You can now connect the non-root agent node to the master and get PE to configure it. Log into the agent node as the non-root user and run `puppet agent -t`.
+11. You can now connect the non-root agent node to the master and get PE to configure it. Log into the agent node as the non-root user and run `puppet agent -t`.
 
    PE should now run and apply the configuration specified in the catalog. Keep an eye on the output from the run——if you see Facter facts being created in the non-root user’s home directory, you know that you have successfully created a functional non-root agent.
    
@@ -116,25 +116,27 @@ If you need to run agents without admin privileges on nodes running a Windows OS
 
 3. While still connected as an admin user, disable the pe-puppet service with `puppet resource service pe-puppet ensure=stopped enable=false`.
 
-4. Log out of the Windows agent machine and log back in as the non-admin user, and then run the following command:
+4. While still connected as **an admin user**, disable the pe-mcollective service with `puppet resource service pe-mcollective ensure=stopped enable=false`. 
+
+5. Log out of the Windows agent machine and log back in as the non-admin user, and then run the following command:
 
    `puppet agent -t --certname "<unique non-privileged username>" --server "<master hostname>"`
 
    This puppet run will submit a cert request to the master and will create a `~/.puppet` directory structure in the non-root user’s home directory.
 
-5. As the non-admin user, create a Puppet configuration file (`%USERPROFILE%/.puppet/puppet.conf`) to specify the agent certname and the hostname of the master:
+6. As the non-admin user, create a Puppet configuration file (`%USERPROFILE%/.puppet/puppet.conf`) to specify the agent certname and the hostname of the master:
 
         [main]
         certname = <unique non-privileged username.hostname>
         server = <master hostname>
 
-6. While still connected as the non-admin user, send a cert request to the master by running puppet with `puppet agent -t`.
+7. While still connected as the non-admin user, send a cert request to the master by running puppet with `puppet agent -t`.
 
-7. On the master node, as an admin user, sign the non-root certificate request using the console or by running `puppet cert sign nonrootuser`.
+8. On the master node, as an admin user, sign the non-root certificate request using the console or by running `puppet cert sign nonrootuser`.
 
     **Note**: It is possible to also sign the root user certificate in order to allow that user to also manage the node. However, you should do so only with great caution as this introduces the possibility of unwanted behavior and potential security issues. For example, if your site.pp has no default node configuration, running agent as non-admin could lead to unwanted node definitions getting generated using alt hostnames, a potential security issue. In general, then, if you deploy this scenario you should be careful to ensure the root and non-root users never try to manage the same resources, have clear-cut node definitions, ensure that classes scope correctly, and so forth.
 
-8. On the agent node, verify that the agent is connected and working by again starting a puppet run while logged in as the non-admin user. Running `puppet agent -t` should download and process the catalog from the master without issue.
+9. On the agent node, verify that the agent is connected and working by again starting a puppet run while logged in as the non-admin user. Running `puppet agent -t` should download and process the catalog from the master without issue.
 
 ###Usage
 
