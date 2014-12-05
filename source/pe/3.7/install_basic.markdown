@@ -13,7 +13,7 @@ canonical: "/pe/latest/install_basic.html"
 Installing Puppet Enterprise
 -----
 
-Your PE installation will go more smoothly if you know a few things in advance. Puppet Enterprise's functions are spread across several different components which get installed and configured when you run the installer. You can choose to install multiple components on a single node (a "monolithic install") or spread the components across multiple nodes (a "split install"), but you should note that the "agent" component gets installed on every node. 
+Your PE installation will go more smoothly if you know a few things in advance. Puppet Enterprise's functions are spread across several different components which get installed and configured when you run the installer. You can choose to install multiple components on a single node (a "monolithic install") or spread the components across multiple nodes (a "split install"), but you should note that the "agent" component gets installed on every node.
 
 You should decide on your deployment needs before starting the install process. For each node where you will be installing a PE component, you should know the fully qualified domain name where that node can be reached and you should ensure that firewall rules are set up to allow access to the [required ports](./install_system_requirements.html#firewall-configuration).
 
@@ -35,7 +35,7 @@ Before you begin, choose an installation method. We've provided a few paths to c
 
    * [Split installation](./install_pe_split.html) (for 500-1500 nodes)
 
-- Use the web-based interface to create an answer file that you can then add as an argument to the installer script to perform an installation (e.g., `sudo ./puppet-enterprise-installer -a ~/my_answers.txt`). Refer to [Installing with an Answer File](./install_automated.html), which provides an overview on installing PE with an answer file. 
+- Use the web-based interface to create an answer file that you can then add as an argument to the installer script to perform an installation (e.g., `sudo ./puppet-enterprise-installer -a ~/my_answers.txt`). Refer to [Installing with an Answer File](./install_automated.html), which provides an overview on installing PE with an answer file.
 
 - Write your own answer file or use the answer file(s) provided in the PE installation tarball. Check the [Answer File Reference Overview](./install_answer_file_reference.html) to get started.
 
@@ -78,14 +78,14 @@ The result should be similar to
     gpg: key 4BD6EC30: public key "Puppet Labs Release Key (Puppet Labs Release Key) <info@puppetlabs.com>" imported
     gpg: Total number processed: 1
     gpg:               imported: 1  (RSA: 1)
-    
-To print the fingerprint of our key, run: 
-  
-    gpg --fingerprint 0x1054b7a24bd6ec30    
-    
+
+To print the fingerprint of our key, run:
+
+    gpg --fingerprint 0x1054b7a24bd6ec30
+
 You should also see an exact match of the fingerprint of our key, which is printed on the verification:
 
-    Primary key fingerprint: 47B3 20EB 4C7C 375A A9DA  E1A0 1054 B7A2 4BD6 EC30    
+    Primary key fingerprint: 47B3 20EB 4C7C 375A A9DA  E1A0 1054 B7A2 4BD6 EC30
 
 Next, verify the release signature on the tarball by running:
 
@@ -107,13 +107,13 @@ This warning is generated because you have not created a trust path to certify w
 About Puppet Enterprise Components
 ---------
 
-Before beginning installation, you should familiarize yourself with the following PE components. 
+Before beginning installation, you should familiarize yourself with the following PE components.
 
-### The Puppet Agent 
+### The Puppet Agent
 
 The puppet agent is most easily installed using a package manager (see [installing agents](./install_agents.html)). On platforms (Windows) that do not support remote package repos, you can use the installer script.
 
-This component should be installed on **every node** in your deployment. When you install the puppet master, PuppetDB, or console components, the puppet agent component will be installed automatically on the machines assigned to those components. 
+This component should be installed on **every node** in your deployment. When you install the puppet master, PuppetDB, or console components, the puppet agent component will be installed automatically on the machines assigned to those components.
 
 Nodes with the puppet agent component can:
 
@@ -121,9 +121,9 @@ Nodes with the puppet agent component can:
 * listen for orchestration messages and invoke orchestration actions.
 * send data to the master for use by PuppetDB.
 
-### The Puppet Master 
+### The Puppet Master
 
-In most deployments, you should install this component on **one node** (installing multiple puppet masters requires additional configuration that is beyond the scope of this guide). The puppet master must be a robust, dedicated server; see the [system requirements](./install_system_requirements.html) for details. 
+In most deployments, you should install this component on **one node** (installing multiple puppet masters requires additional configuration that is beyond the scope of this guide). The puppet master must be a robust, dedicated server; see the [system requirements](./install_system_requirements.html) for details.
 
 The puppet master server can:
 
@@ -135,7 +135,7 @@ The puppet master server can:
 
 ### PuppetDB and Database Support
 
-The PuppetDB component uses an instance of PostgreSQL that is either installed by PE or manually configured by you. In a monolithic installation, PuppetDB is installed on the same node as the console and puppet master components. In a split install, PuppetDB is installed on its own server. During installation, you will be asked if you want this PostgreSQL instance to be installed by PE or if you want to use one you've already configured. 
+The PuppetDB component uses an instance of PostgreSQL that is either installed by PE or manually configured by you. In a monolithic installation, PuppetDB is installed on the same node as the console and puppet master components. In a split install, PuppetDB is installed on its own server. During installation, you will be asked if you want this PostgreSQL instance to be installed by PE or if you want to use one you've already configured.
 
 Database support for the console, role-based access control (RBAC), and the node classifier runs on the same instance of PostgreSQL as PuppetDB.
 
@@ -147,24 +147,29 @@ PuppetDB stores:
 * the most recent catalog for every node.
 * fourteen days (configurable) of event reports for every node (an optional, configurable setting).
 
-If you want to set up a PuppetDB database manually, the [PuppetDB configuration documentation](/puppetdb/1.6/configure.html#using-postgresql) has more information. 
+If you want to set up a PuppetDB database manually, the [PuppetDB configuration documentation](/puppetdb/1.6/configure.html#using-postgresql) has more information.
 
 ### The PE Console
 
-For a split installation, you install the console on its own dedicated server, but if you have a monolithic installation, you install it on the same server as all of the other PE components. 
+For a split installation, you install the console on its own dedicated server, but if you have a monolithic installation, you install it on the same server as all of the other PE components.
 
 The console server can:
 
 * serve the console web interface, which enables administrators to directly edit resources on nodes, trigger immediate Puppet runs, group and assign classes to nodes, view reports and graphs, view inventory information, and invoke orchestration actions.
 * collect reports from and serve node information to the puppet master.
 
-#### Role-based Access Control (RBAC) 
+#### Role-based Access Control (RBAC)
 
-[todo: short description]
+With RBAC, PE nodes can now be segmented so that tasks can be safely delegated to the right people. For example, RBAC allows segmenting of infrastructure across application teams so that they can manage their own servers without affecting other applications. Plus, to ease the administration of users and authentication, RBAC connects directly with standard directory services including Microsoft Active Directory and OpenLDAP.
+
+For detailed information to get started with RBAC, see the [PE user's guide](./rbac_intro.html).
+
 
 #### Node Classifier (NC)
 
-[todo: short description]
+PE 3.7.0 introduces the rules-based node classifier, which is the first part of the Node Manager app that was announced in September. The node classifier provides a powerful and flexible new way to organize and configure your nodes. We’ve built a robust, API-driven backend service and an intuitive new GUI that encourages a modern, cattle-not-pets approach to managing your infrastructure. Classes are now assigned at the group level, and nodes are dynamically matched to groups based on user-defined rules.
+
+For a detailed overview of the new node classifier, refer to the [PE user's guide](./console_classes_groups_getting_started.html).
 
 >**Note**: Like PuppetDB and the database support components, RBAC and node classifier databases run on PostgreSQL, and you can use an existing PostgreSQL instance of have one created for you when you install PE. Note that if you are using an existing PostgreSQL instance, you will need the host name, user name, and user password for accessing these databases.
 
@@ -172,13 +177,13 @@ The console server can:
 
 As indicated in the "Database Support" section above, the console database relies on data provided by a PostgreSQL database. You will either have PE install this database or configure one manually on your own. You only need to create the database instances---the console will populate them.
 
->**IMPORTANT**: If you are using an existing PostgreSQL instance, you will need the host name and port of the node you intend to use to provide database support, and you will also need the user passwords for accessing the databases. 
+>**IMPORTANT**: If you are using an existing PostgreSQL instance, you will need the host name and port of the node you intend to use to provide database support, and you will also need the user passwords for accessing the databases.
 >
 >When performing split installations using an answer file, install the database support component before you install the console, so that you have access to the database users' passwords during installation of the console.
-  
+
 ### The Cloud Provisioner
 
-This component is automatically installed when you install PE using the web-based installation method. You can opt out of the cloud provisioning tools by performing an installation with an answers file. If you wish to use cloud provisioning, you should install PE on a system where administrators have shell access. Since it requires confidential information about your cloud accounts to function, it should be installed on a secure system. 
+This component is automatically installed when you install PE using the web-based installation method. You can opt out of the cloud provisioning tools by performing an installation with an answers file. If you wish to use cloud provisioning, you should install PE on a system where administrators have shell access. Since it requires confidential information about your cloud accounts to function, it should be installed on a secure system.
 
 Administrators can use the cloud provisioner tools to:
 
@@ -193,7 +198,7 @@ Notes, Warnings, and Tips
 
 When you purchased Puppet Enterprise, you should have been sent a `license.key` file that lists how many nodes you can deploy. For PE to run without logging license warnings, you should copy this file to the puppet master node as `/etc/puppetlabs/license.key`. If you don't have your license key file, please email <sales@puppetlabs.com> and we'll re-send it.
 
-Note that you can download and install Puppet Enterprise on up to ten nodes at no charge. No license key is needed to run PE on up to ten nodes. 
+Note that you can download and install Puppet Enterprise on up to ten nodes at no charge. No license key is needed to run PE on up to ten nodes.
 
 ### Setting Puppet in Your Default Path
 
