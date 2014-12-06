@@ -227,8 +227,9 @@ Variables set in the console become [top-scope variables available to all Puppet
 
 2. Click **Matching nodes**. 
 
-   You will see the number of nodes that match the node group’s rules, along with a list of the names of matching nodes. The matching nodes list is updated as rules are added, deleted, and edited. Don’t forget that [nodes must match rules in ancestor node groups](./console_classes_groups_inheritance.html#how-does-inheritance-work?) as well as the rules of the current node group before they are actually considered to be a matching node.
-
+   You will see the number of nodes that match the node group’s rules, along with a list of the names of matching nodes. The matching nodes list is updated as rules are added, deleted, and edited. Don’t forget that [nodes must match rules in ancestor node groups](./console_classes_groups_inheritance.html#how-does-inheritance-work?) as well as the rules of the current node group before they are actually considered to be a matching node. 
+   
+> **Note**: If you have not set any rules for this node group yet, there will not be any matching nodes.
 
 ### Viewing Node Information
 Each node in a PE deployment has its own node details page in the PE console. This is where you can view a list of the node groups that a node currently matches, and the classes and top-scope variables that are currently assigned to a node. To view this page:
