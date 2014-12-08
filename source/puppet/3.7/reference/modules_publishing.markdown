@@ -103,7 +103,7 @@ Your metadata.json will look something like
       "name": "examplecorp-mymodule",
       "version": "0.0.1",
       "author": "Pat",
-      "license": "Licensed under (Apache 2.0)",
+      "license": "Licensed under (Apache-2.0)",
       "summary": "A module for a thing",
       "source": "https://github.com/examplecorp/examplecorp-mymodule",
       "project_page": "https://forge.puppetlabs.com/examplecorp/mymodule",
@@ -130,7 +130,7 @@ Your metadata.json will look something like
 * `name` --- REQUIRED. The **full name** of your module, including the username (e.g. "username-module" --- [see note above](#a-note-on-module-names)).
 * `version` --- REQUIRED. The current version of your module. This should be a [semantic version](http://semver.org/).
 * `author` --- REQUIRED. The person who gets credit for creating the module. If not provided, this field will default to the username portion of the `name` field.
-* `license` --- REQUIRED. The license under which your module is made available.
+* `license` --- REQUIRED. The license under which your module is made available. License metadata should match an identifier provided by [SPDX](http://spdx.org/licenses/).
 * `summary` --- REQUIRED. A one-line description of your module.
 * `source` --- REQUIRED. The source repository for your module.
 * `dependencies` --- REQUIRED. A list of the other modules that your module depends on to function. See [Dependencies in metadata.json](#dependencies-in-metadatajson) below for more details.
