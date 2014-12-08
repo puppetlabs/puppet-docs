@@ -2,6 +2,7 @@
 layout: frontpage
 title: Puppet Labs Documentation
 canonical: "/"
+toc: false
 ---
 
 Welcome to the Puppet Labs documentation site. The documentation posted here is also available as a set of PDFs, which can be found [here](http://info.puppetlabs.com/download-pdfs.html). You can also [download the current version of this entire website](./puppetdocs-latest.tar.gz) as a zipped archive; unzip it and follow the instructions in the README.txt file to view the site offline.
