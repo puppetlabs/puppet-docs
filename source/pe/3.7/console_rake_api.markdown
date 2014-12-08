@@ -5,13 +5,17 @@ subtitle: "Rake API for Querying and Modifying Console Data"
 canonical: "/pe/latest/console_rake_api.html"
 ---
 
-The Puppet Enterprise console provides rake tasks that can add classes, nodes, and groups, and edit the configuration data assigned to nodes and groups. You can use these tasks as a minimal API to automate workflows, import or export data, or bypass the console’s GUI when performing large tasks.
+The Puppet Enterprise (PE) console provides rake tasks that can add classes, nodes, and groups, and edit the configuration data assigned to nodes and groups. You can use these tasks as a minimal API to automate workflows, import or export data, or bypass the console’s GUI when performing large tasks.
 
 
 Invoking Console Rake Tasks
 -----
 
->**Note**: In the PE 3.7 series, console rake tasks use the node classifier instead of the puppet-dashboard. For more information, refer to the [node classifier documentation](/.console_classes_groups_getting_started.html) and the [node classifier REST API](./nc_index.html).
+>**Note**: In the PE 3.7 series, console rake tasks use the node classifier instead of the puppet-dashboard. For more information, refer to the [node classifier documentation](./console_classes_groups_getting_started.html) and the [node classifier REST API](./nc_index.html).
+
+>**Note**: For information on the older invocation style with named arguments expressed as environment variables, refer to the [documentation for the previous version of PE](/pe/3.3/console_rake_api_old.html). Note that when you have finished reviewing this documentation, you will need to navigate back to the PE3.7 documentation.
+
+> **Deprecation note:** Invoking tasks like this will cause deprecation warnings, but it will continue to work for the duration of the Puppet Enterprise 3.x series, with removal tentatively planned for Puppet Enterprise 4.0.
 
 * Console rake tasks must be invoked from the command line on the console server.
 * They should be invoked by a user account with sufficient `sudo` privileges to modify items owned by the `puppet-dashboard` user.
@@ -88,7 +92,7 @@ Specifically, you should provide:
     * An equals sign (`=`)
     * The value of the argument, as a quoted or unquoted string
 
-Each task has specific names that must be used for its arguments; the arguments may be specified in any order. For the names of each task's arguments, [see the list of rake API tasks with environment variable argument names](./console_rake_api_old.html), which is maintained on a different page.
+Each task has specific names that must be used for its arguments. The arguments may be specified in any order. For the names of each task's arguments, [see the list of rake API tasks with environment variable argument names](/pe/3.3/console_rake_api_old.html), which is maintained on a different page.
 
 
 Node Tasks: Getting Info
@@ -142,7 +146,7 @@ List variables for a node.
 Node Tasks: Modifying Info
 -----
 
->**Note**: In the PE 3.7 series, these rake tasks operate against nodes that have been pinned to a group. See the [node classifier documentation](.console_classes_groups_getting_started.html) for details about groups and pinned nodes.
+>**Note**: In the PE 3.7 series, these rake tasks operate against nodes that have been pinned to a group. See the [node classifier documentation](./console_classes_groups_getting_started.html) for details about groups and pinned nodes.
 
 ### `node:add[name,(groups),(classes),(onexists)]`
 
