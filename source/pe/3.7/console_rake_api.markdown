@@ -13,8 +13,6 @@ Invoking Console Rake Tasks
 
 >**Note**: In the PE 3.7 series, console rake tasks use the node classifier instead of the puppet-dashboard. For more information, refer to the [node classifier documentation](./console_classes_groups_getting_started.html) and the [node classifier REST API](./nc_index.html).
 
->**Note**: For information on the older invocation style with named arguments expressed as environment variables, refer to the [documentation for the previous version of PE](/pe/3.3/console_rake_api_old.html). Note that when you have finished reviewing this documentation, you will need to navigate back to the PE3.7 documentation.
-
 > **Deprecation note:** Invoking tasks like this will cause deprecation warnings, but it will continue to work for the duration of the Puppet Enterprise 3.x series, with removal tentatively planned for Puppet Enterprise 4.0.
 
 * Console rake tasks must be invoked from the command line on the console server.
@@ -26,6 +24,8 @@ Invoking Console Rake Tasks
     The `<TASK AND ARGUMENTS>` placeholder is the only part that will differ between the various tasks; the rest is boilerplate that should be used with every task.
 
 There are two ways to specify arguments for a task. PE 3.0.1 and later can use both styles; PE 3.0.0 (and the PE 2.x series) can only use the environment variable style.
+
+>**Note**: For information on the older invocation style with named arguments expressed as environment variables, refer to the [documentation for the previous version of PE](/pe/3.3/console_rake_api_old.html). Note that when you have finished reviewing this documentation, you will need to navigate back to the PE3.7 documentation.
 
 ### Task Arguments as Parameters (`task[argument,argument,...]`)
 
