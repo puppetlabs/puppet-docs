@@ -15,8 +15,16 @@ By default, the node classifier service listens on port 4433 and all endpoints a
 
 ## Authentication
 
-If you have RBAC enabled, you'll need to make requests using a certificate associated with a valid user. See the [RBAC documentation](./rbac_intro.html) for specifics.
+You'll need to authenticate requests to the Node Classifier's API using a certificate listed in RBAC's certificate whitelist, located at `/etc/puppetlabs/console-services/rbac-certificate-whitelist`. Note that if you edit this file, you'll need to restart the `pe-console-services` service for it to take effect.
+
+You do not need to use an agent certificate for authentication; you may also use `puppet cert generate` to create a new cert specifically for use with the API.
 
 ## Content-Type Required
 
 All PUT and POST requests with non-empty bodies should have the `Content-Type` header to be set to `application/json`.
+
+## Example Query
+
+The following query will return a list of all groups that exist in the node classifier, along with their associated metadata.
+
+`curl https://<DNS NAME OF CONSOLE>:4433/classifier-api/v1/groups --cert /etc/puppetlabs/puppet/ssl/certs/<WHITELISTED CERTNAME>.pem --key /etc/puppetlabs/puppet/ssl/private_keys/<WHITELISTED CERTNAME>.pem --cacert /etc/puppetlabs/puppet/ssl/certs/ca.pem -H "Content-Type: application/json"`
