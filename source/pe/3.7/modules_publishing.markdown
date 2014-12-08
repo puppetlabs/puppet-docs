@@ -105,7 +105,7 @@ Your metadata.json will look something like this:
       "name": "examplecorp-mymodule",
       "version": "0.0.1",
       "author": "Pat",
-      "license": "Licensed under (Apache-2.0)",
+      "license": "Apache-2.0",
       "summary": "A module for a thing",
       "source": "https://github.com/examplecorp/examplecorp-mymodule",
       "project_page": "(https://forge.puppetlabs.com/examplecorp/mymodule)",
