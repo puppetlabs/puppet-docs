@@ -5,7 +5,7 @@ subtitle: "Mapping to the Node Classifier and RBAC APIs"
 canonical: "/pe/latest/nc_mapping.html"
 ---
 
-The Node Classifier's REST API is a more flexible alternative to the [Console Rake API](./console_rake_api.html). This page provides a mapping between the Console Rake API and the Node Classifier REST endpoints that most closely replicate their functionality.
+The Node Classifier's REST API is a more flexible alternative to the [Console Rake API](./console_rake_api.html). This page provides a mapping from the Console Rake API to the Node Classifier and RBAC REST endpoints that most closely replicates its functionality.
 
 Rake				                   | REST				| Description
 ------------------------------------------ | ----------------- | --------------------
