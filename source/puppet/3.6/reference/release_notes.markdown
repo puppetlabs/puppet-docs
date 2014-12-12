@@ -29,8 +29,8 @@ Puppet 3.6.2
 -----
 
 [deprecated config-file environments]: #deprecation-config-file-environments-and-the-global-manifestmodulepathconfigversion-settings
-[CVE-2014-3248]: http://puppetlabs.com/security/cve/CVE-2014-3248
-[CVE-2014-3253]: http://puppetlabs.com/security/cve/cve-2014-3253
+[CVE-2014-3248]: http://puppetlabs.com/security/cve/cve-2014-3248
+[CVE-2014-3250]: http://puppetlabs.com/security/cve/cve-2014-3250
 
 Released June 10, 2014.
 
@@ -42,7 +42,7 @@ Puppet 3.6.2 is a security and bug fix release in the Puppet 3.6 series. It addr
 
 On platforms running Ruby 1.9.1 and earlier, previous code would load Ruby source files from the current working directory. This could lead to the execution of arbitrary code during puppet runs.
 
-#### [CVE-2014-3253 (Apache 2.4+ does not enforce CRL checks by default)][CVE-2014-3253]
+#### [CVE-2014-3250 (Information Leakage Vulnerability)][CVE-2014-3250]
 
 Apache 2.4+ uses the `SSLCARevocationCheck` setting to determine how to check the certificate revocation list (CRL) when establishing a connection. Unfortunately, the default setting is `none`, so a puppet master running Apache 2.4+ and Passenger will ignore the CRL by default. This release updates the Apache vhost settings to enable CRL checking.
 
