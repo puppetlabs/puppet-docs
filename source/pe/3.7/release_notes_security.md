@@ -1,4 +1,13 @@
-## Security Fixes
+---
+title: "PE 3.7.1 » Release Notes >> Security Fixes"
+layout: default
+subtitle: "Security Fixes"
+canonical: "/pe/latest/release_notes_security.html"
+---
+
+This page contains information about security fixes in the latest Puppet Enterprise (PE) release. 
+
+For more information about this release, also see the [Known Issues](./release_notes_known_issues.html) and [New Featutes](./release_notes.html). 
 
 ### OpenSSL Security Vulnerabilities
 

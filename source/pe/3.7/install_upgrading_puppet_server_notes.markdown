@@ -8,7 +8,7 @@ canonical: "/pe/latest/puppet_server_notes.html"
 
 PE 3.7.0 introduces Puppet Server, a replacement for the former Apache/Passenger Puppet master stack. However, due to this change in the underlying architecture of the Puppet master, there are a few changes you'll notice after upgrading that we'd like to point out.
 
-This page details some items that are intentionally different between Puppet Server and the old Apache/Passenger stack. Additionally, there are [a few known issues related to Puppet Server](./release_notes.html#issues-related-to-puppet-server) which  we expect to fix in future releases.
+This page details some items that are intentionally different between Puppet Server and the old Apache/Passenger stack. Additionally, there are [a few known issues related to Puppet Server](./release_notes_known_issues.html#known-issues-related-to-puppet-server) which  we expect to fix in future releases.
 
 ### Service Name Changed From `pe-httpd` to `pe-puppetserver`
 

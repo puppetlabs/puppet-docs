@@ -18,7 +18,7 @@ This user's guide will help you start using Puppet Enterprise 3.7, and will serv
 > For Returning Users
 > -----
 >
-> See the [release notes](./release_notes.html). Here you can find detailed information about [new features](./release_notes.html#new-features) in the 3.7.x series.
+> See the [release notes](./release_notes.html). Here you can find detailed information about [new features](./release_notes.html) in the 3.7.x series.
 
 About Puppet Enterprise
 -----

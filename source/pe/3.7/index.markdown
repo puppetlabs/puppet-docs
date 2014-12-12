@@ -13,7 +13,7 @@ Welcome! This is the user's guide for Puppet Enterprise 3.7.
     * [Installing PE](./install_basic.html)
     * [Installing Windows Agents](./install_windows.html)
     * [Puppet Enterprise Downloads](http://info.puppetlabs.com/download-pe.html)
-* To see what's new since the last release, see [the new features list in the release notes](./release_notes.html#new-features).
+* To see what's new since the last release, see [the new features list in the release notes](./release_notes.html).
 
 Otherwise, use the **navigation to the left** to move between this guide's sections and chapters.
 
