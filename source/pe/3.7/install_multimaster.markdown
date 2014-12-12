@@ -112,16 +112,6 @@ If you use a load balancer in your multi-master deployment, you may want to poin
 
 The flag `-s main:ca_server=<THE HOSTNAME of the PUPPET MASTER SERVING AS YOUR CA SERVER>` ensures that the agent will retrieve its CA configuration from the correct CA server. Remember, in the examples in this guide, the CA server is the original Puppet master (i.e., `master.example.com`).
 
-#### Using Load Balancers for Additional Puppet Master Installation
-
-Installing additional Puppet masters when using a load balancer uses the same procedure outlined in Steps 2 - 4 of this guide, save for two changes to the installation script.
-
-You need to add `main:ca_server=ca` and `agent:server=ca`. These additions to the install script ensure the new Puppet master will draw its configuration from the original Puppet master, which is configured as the CA server. (Remember, in this guide, the CA server is the original master, or `master.example.com`.)
-
-The following example shows the full script: 
-
-`curl -k https://<MASTER.EXAMPLE.COM>:8140/packages/current/install.bash | sudo bash -s main:dns_alt_names=<COMMA-SEPARATED LIST OF ALT NAMES FOR THE PUPPET MASTER> main:environmentpath=</etc/puppetlabs/puppet/environments OR YOUR MASTER'S ENVIRONMENT PATH> main:ca_server=ca agent:server=ca`
-
 ### A Note About File Syncing
 
 In a multi-master environment, you want to make sure your manifests, modules, and any Hiera data are properly synced between Puppet masters.  Depending on your security and infrastructure needs, there are a range of options for setting up file syncing between your Puppet masters. We recommend choosing from one of the following methods: 
