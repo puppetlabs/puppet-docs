@@ -76,7 +76,7 @@ A small environment is run on a monolithic installation and is suitable for runn
 
 A medium environment is run on a split installation and is suitable for running PE on up to 1,000 nodes. We recommend that your hardware meets the following: 
 
-- 4-core servers with 16 GB of RAM and high-performance disk space for the Puppet master, PE console, and PuppetDB nodes 
+- 4-core servers with 16 GB of RAM  
   - Amazon EC2 m3.xlarge instances are adequate for each of these servers
 - At least 100 GB of free space in `/opt` on the PuppetDB node
 - At least 1 GB of free space in `/var` on each node
