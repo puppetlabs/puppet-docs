@@ -5,9 +5,9 @@ subtitle: "Security Fixes"
 canonical: "/pe/latest/release_notes_security.html"
 ---
 
-This page contains information about security fixes in the latest Puppet Enterprise (PE) release. 
+This page contains information about security fixes in the latest Puppet Enterprise (PE) release.
 
-For more information about this release, also see the [Known Issues](./release_notes_known_issues.html) and [New Featutes](./release_notes.html). 
+For more information about this release, also see the [Known Issues](./release_notes_known_issues.html) and [New Featutes](./release_notes.html).
 
 ### OpenSSL Security Vulnerabilities
 
@@ -38,6 +38,7 @@ Puppet Enterprise 3.7.0
 
 ### CVE-2014-3566 - POODLE SSLv3 Vulnerability
 
+Posted November 11, 2014
 Assessed Risk Level: Medium
 
 On October 14th, the OpenSSL project announced CVE-2014-3566, the POODLE attack vulnerability in the SSLv3 protocol. Fixes for this vulnerability disable SSLv3 protocol negotiation to prevent fallback to the insecure protocol.
@@ -48,3 +49,17 @@ Manual remediation provided for Puppet Enterprise 3.3
 Puppet 3.7.2, Puppet-Server 0.3.0, PuppetDB 2.2, MCollective 2.6.1
 
 Users of Puppet Enterprise 3.3 who cannot upgrade can follow the remediation instructions in our [impact assessment](http://puppetlabs.com/blog/impact-assessment-sslv3-vulnerability-poodle-attack).
+
+### CVE-2014-9355 - Information Leakage in Puppet Enterprise Console
+
+Posted December 16, 2014
+Assessed Risk Level: Medium
+
+In Puppet Enterprise 3.7.0, an authenticated Puppet Enterprise console user with no permissions could access certain API endpoints that provide information about PE licensing and certificate signing requests.
+
+This issue affected Puppet Enterprise 3.7.0. It has been fixed for Puppet Enterprise 3.7.1.
+
+CVSS v2 Score: 4.0
+Vector AV:N/AC:L/Au:S/C:P/I:N/A:N/E:H/RL:U/RC:C
+
+For information on previous releases, see the [Archived Release Notes](./release_notes_archive.html).
