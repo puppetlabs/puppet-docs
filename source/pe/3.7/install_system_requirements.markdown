@@ -60,46 +60,46 @@ Puppet Enterprise's hardware requirements depend on the size of your environment
 
 An evaluation environment is run on a monolithic installation and is suitable for evaluating PE on 250 or fewer nodes. We recommend that your hardware meets the following: 
 
-- A 4-core server with 4GB of RAM and high-performance disk space
-- At least 100GB of free storage in `/opt` for PuppetDB
+- A 4-core server with 4 GB of RAM 
+- At least 100 GB of free storage in `/opt` for PuppetDB
 
 ### Small Environment
 
 A small environment is run on a monolithic installation and is suitable for running PE on 500 nodes. We recommend that your hardware meets the following: 
 
-- 4-core server with 16GB of RAM and high-performance disk space for the Puppet master, PE console, and PuppetDB nodes 
+- 4-core server with 16 GB of RAM 
   - Amazon EC2 m3.xlarge instances are adequate for each of these servers.
-- At least 100GB of free space in `/opt` on the PuppetDB node
-- At least 1GB of free space in `/var` on each node 
+- At least 100 GB of free space in `/opt` on the PuppetDB node
+- At least 1 GB of free space in `/var` on each node 
 
 ### Medium Environment
 
 A medium environment is run on a split installation and is suitable for running PE on up to 1,000 nodes. We recommend that your hardware meets the following: 
 
-- 4-core servers with 16GB of RAM and high-performance disk space for the Puppet master, PE console, and PuppetDB nodes 
+- 4-core servers with 16 GB of RAM and high-performance disk space for the Puppet master, PE console, and PuppetDB nodes 
   - Amazon EC2 m3.xlarge instances are adequate for each of these servers
-- At least 100GB of free space in `/opt` on the PuppetDB node
-- At least 1GB of free space in `/var` on each node
+- At least 100 GB of free space in `/opt` on the PuppetDB node
+- At least 1 GB of free space in `/var` on each node
 
 ### Large Environment
 
 A large environment is run on a split/large environment installation and is suitable for running PE on 1,000 or more nodes. We recommend that your hardware meets the following:
 
-- **Puppet masters**: Four 4-core servers with 16GB of RAM and 40GB of high-performance disk space each 
+- **Puppet masters**: Four 4-core servers with 16 GB of RAM and 40 GB of disk space each 
    - Amazon EC2 m3.xlarge instances are adequate for servers in this role. 
-- **Console Server**: An 8-core server with 30GB of RAM and 40GB of high-performance disk space
+- **Console Server**: An 8-core server with 30 GB of RAM and 40 GB of disk space
    - Amazon EC2 m3.2xlarge instances are adequate for servers in this role.
-- **PuppetDB**: An 8-core server with 30GB of RAM and 100GB of high-performance disk space 
+- **PuppetDB**: An 8-core server with 30 GB of RAM and 100 GB of high-performance disk space with write caching enabled 
    - Amazon EC2 m3.2xlarge instances are adequate for servers in this role.
    
 For large environments with more than 2,000 nodes under management, it may be necessary to add ActiveMQ resources:
 
-- **ActiveMQ Hub**: 4-8 cores, 8GB of RAM, and 10GB of disk space 
-- **ActiveMQ Spokes**: 4 cores, 4GB of RAM, and 10GB of disk space
+- **ActiveMQ Hub**: 4-8 cores, 8 GB of RAM, and 10 GB of disk space 
+- **ActiveMQ Spokes**: 4 cores, 4 GB of RAM, and 10 GB of disk space
 
 It may be desirable to move the certificate authority (CA) role to a separate node. 
 
-- **Certificate Authority**: 4 cores, 4GB of RAM, 40GB of storage
+- **Certificate Authority**: 4 cores, 4 GB of RAM, 40 GB of storage
  
 Supported Browsers
 -----
