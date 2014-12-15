@@ -5,7 +5,7 @@ subtitle: "Upgrading Puppet Enterprise: Notes and Warnings"
 canonical: "/pe/latest/install_upgrading_notes.html"
 ---
 
->**Important**: A complete list of known issues is provided in the [PE 3.7.0 release notes](./release_notes.html#known-issues). Please review this list before upgrading. 
+>**Important**: A complete list of known issues is provided in the [PE 3.7.1 release notes](./release_notes_known_issues.html). Please review this list before upgrading. 
 
 ### Upgrading to the Puppet Server (on the Puppet Master)
 
