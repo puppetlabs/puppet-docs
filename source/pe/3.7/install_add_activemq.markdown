@@ -54,6 +54,8 @@ In this step, you'll install the Puppet agent on `activemq-hub.example.com`, `ac
 
 In this step, you'll use the PE console to create the ActiveMQ Hub group.
 
+> **Important**: For fresh installations of PE 3.7.0, node groups in the classifier are created and configured during the installation process. For upgrades, these groups are created but no classes are added to them. This is done to help prevent errors during the upgrade process. If you’re performing these steps after an upgrade to 3.7.0, refer to [the PE Master group preconfiguration docs](./console_classes_groups_preconfigured_groups.html#the-pe-master-group) for a list of classes to add to ensure your new groups are properly classified.
+
 [classification_selector]: ./images/quick/classification_selector.png
 
 **To create the ActiveMQ Hub group**:
