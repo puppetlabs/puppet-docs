@@ -5,6 +5,8 @@ subtitle: "Upgrading Puppet Enterprise: Notes and Warnings"
 canonical: "/pe/latest/install_upgrading_notes.html"
 ---
 
+>**Important**: A complete list of known issues is provided in the [PE 3.7.0 release notes](./release_notes.html#known-issues). Please review this list before upgrading. 
+
 ### Upgrading to the Puppet Server (on the Puppet Master)
 
 PE 3.7.0 introduces the Puppet server, running the Puppet Master, which functions as a seamless drop-in replacement for the former Apache/Passenger Puppet master stack. However, due to this change in the underlying architecture of the Puppet master, there are a few changes you'll notice after upgrading that we'd like to point out. Refer to [About the Puppet Server](./install_upgrading_puppet_server_notes.html) for more information.

@@ -131,18 +131,42 @@ To find out which of these issues may affect you, run `/opt/puppet/bin/puppet --
 
 The following issues affect the currently shipped version of PE and all prior releases through the 3.x.x series, unless otherwise stated.
 
-### Custom Console Cert Configuration Documentation not Available for PE 3.7.0
+### Known Issues Related to Upgrading 
 
-"Configuring the Puppet Enterprise Console to Use a Custom SSL Certificate" documentation available in previous versions of PE has not been updated for the change in certificate functionality in PE 3.7.0. Documentation for the 3.7.0 line will be available in a future release.
+#### puppet_enterprise Module Missing Values for Several PuppetDB Attributes
 
-### Important Factors in Connecting to an External Directory Service
+PE 3.7.0 contains a version of the puppet_enterprise module that does not have the parameters to manage several important PuppetDB attributes, such as `gc-interval`, `node-ttl`, `node-purge-ttl`, and `report-ttl`. This will be fixed in PE 3.7.1.
 
-The following requirements affect how you connect your existing LDAP to PE:
+#### `puppet_enterprise::master` Does Not Allow Multiple DNS Alt Names
 
-   * User and group RDNs are currently required as part of the directory service settings. A simple query from the provided base DN is not supported.
-   * Use of multiple user RDNs or group RDNs is not supported.
-   * Cyclical group relationships in Active Directory will prevent a user from logging in.
+The resource that manages the `dns_alt_names` entry for `puppet.conf` does not operate correctly with arrays, and the first element of the array is only used. This is will be fixed in PE 3.7.1. 
 
+#### A Modified `auth.conf` File Will Cause Upgrade Failure
+
+If your `auth.conf` file has been modified, you may experience a failure when upgrading to the 3.7.x line. To prevent an upgrade failure, before running the upgrade, edit `auth.conf` so that the `resource_type` path contains `pe-internal-classifier`, as shown in the following example:
+
+    ...
+    
+    path /resource_type
+    method find, search
+    auth yes
+    allow pe-internal-dashboard, pe-internal-classifier
+    
+#### Incorrect Unmask Value Can Cause Upgrade/Installation to Fail
+
+To prevent potential failures, you should set an unmask value of 0022 on your Puppet Master. 
+
+#### New PostgreSQL Databases Needed on Upgrade/Install (for External PostgreSQL Users)
+
+If you are using an external PostgreSQL instance that is not managed by PE, please note that you will need to make a few changes for the new databases included in PE 3.7.x. See [A Note about RBAC, Node Classifier, and External PostgreSQL](./install_upgrading_notes.html#a-note-about-rbac-node-classifier-and-external-postgresql). 
+
+#### Additional Puppet Masters in Large Environment Installations Cannot Be Upgraded
+
+If you've installed additional Puppet masters (i.e., secondary or compile masters) in a version of PE before 3.7.x, you cannot upgrade these Puppet masters. To re-install and enable compile masters in 3.7.x, refer to the [Additional Puppet Master Installation documentation](./install_multimaster.html).
+
+#### stdlib No Longer Installed with Puppet Enterprise
+
+If necessary, you can install stdlib after installing/upgrading by running `puppet module install puppetlabs-stdlib`.
 
 ### Upgrade Warning for Users of Directory Environments in PE 3.3.x
 
@@ -159,6 +183,29 @@ PostgreSQL does not support alt names when set to `verify_full`. If you are upgr
 ### Upgrading Requires You to Manually Configure Default Node Groups
 
 Puppet Enterprise automatically creates a number of special node groups for managing your deployment. In a new install, these node groups come with some default classes. If you’re upgrading, only the MCollective node group comes with classes. For the others, you must manually add the individual classes and configure the parameters, as described on the page, [Preconfigured Node Groups](./console_classes_groups_preconfigured_groups.html#preconfigured-node-groups).
+
+#### PuppetDB Load Balancing Errors with Puppet Server 
+
+Due to the way Puppet Server handles SSL connections, services such as PuppetDB cannot be run with a load balancer out of the box. The following steps provide a workaround to this issue. 
+
+1. On the Puppet master, generate a certificate for your PuppetDB nodes (e.g., `pe-internal-puppetdb`) with the appropriate DNS alt names. Note that you will want to add the load balancer hostnames as DNS alt names. 
+2. Sign the certificate for the new cert. 
+3. On each PuppetDB node, copy the private key and cert (e.g., `pe-internal-puppetdb`) to the `private_keys` and `certs` directories in the SSL configuration directory. 
+4. On each PuppetDB node, run `opt/puppet/sbin/puppetdb-ssl-setup`. 
+ 
+
+### Custom Console Cert Configuration Documentation not Available for PE 3.7.0
+
+"Configuring the Puppet Enterprise Console to Use a Custom SSL Certificate" documentation available in previous versions of PE has not been updated for the change in certificate functionality in PE 3.7.0. Documentation for the 3.7.0 line will be available in a future release.
+
+### Important Factors in Connecting to an External Directory Service
+
+The following requirements affect how you connect your existing LDAP to PE:
+
+   * User and group RDNs are currently required as part of the directory service settings. A simple query from the provided base DN is not supported.
+   * Use of multiple user RDNs or group RDNs is not supported.
+   * Cyclical group relationships in Active Directory will prevent a user from logging in.
+
 
 ### Issues Related to Puppet Server
 
