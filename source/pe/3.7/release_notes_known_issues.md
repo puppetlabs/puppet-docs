@@ -14,7 +14,46 @@ To find out which of these issues may affect you, run `/opt/puppet/bin/puppet --
 
 The following issues affect the currently shipped version of PE and all prior releases through the 3.x.x series, unless otherwise stated.
 
-## Know Issues Related to Installation/Upgrades
+## Know Issues Related to Installation/Upgrades 
+
+### A Modified `auth.conf` File Will Cause Upgrade Failure
+
+If your `auth.conf` file has been modified, you may experience a failure when upgrading to the 3.7.x line. To prevent an upgrade failure, before running the upgrade, edit `auth.conf` so that the `resource_type` path contains `pe-internal-classifier`, as shown in the following example:
+
+    ...
+    
+    path /resource_type
+    method find, search
+    auth yes
+    allow pe-internal-dashboard, pe-internal-classifier
+    
+### Incorrect Unmask Value Can Cause Upgrade/Installation to Fail
+
+To prevent potential failures, you should set an unmask value of 0022 on your Puppet Master. 
+
+### New PostgreSQL Databases Needed on Upgrade/Install (for External PostgreSQL Users)
+
+If you are using an external PostgreSQL instance that is not managed by PE, please note that you will need to make a few changes for the new databases included in PE 3.7.x. See [A Note about RBAC, Node Classifier, and External PostgreSQL](./install_upgrading_notes.html#a-note-about-rbac-node-classifier-and-external-postgresql). 
+
+### Additional Puppet Masters in Large Environment Installations Cannot Be Upgraded
+
+If you've installed additional Puppet masters (i.e., secondary or compile masters) in a version of PE before 3.7.x, you cannot upgrade these Puppet masters. To re-install and enable compile masters in 3.7.x, refer to the [Additional Puppet Master Installation documentation](./install_multimaster.html).
+
+### stdlib No Longer Installed with Puppet Enterprise
+
+If necessary, you can install stdlib after installing/upgrading by running `puppet module install puppetlabs-stdlib`.
+
+
+### PuppetDB Load Balancing Errors with Puppet Server 
+
+Due to the way Puppet Server handles SSL connections, services such as PuppetDB cannot be run with a load balancer out of the box. The following steps provide a workaround to this issue. 
+
+1. On the Puppet master, generate a certificate for your PuppetDB nodes (e.g., `pe-internal-puppetdb`) with the appropriate DNS alt names. Note that you will want to add the load balancer hostnames as DNS alt names. 
+2. Sign the certificate for the new cert. 
+3. On each PuppetDB node, copy the private key and cert (e.g., `pe-internal-puppetdb`) to the `private_keys` and `certs` directories in the SSL configuration directory. 
+4. On each PuppetDB node, run `opt/puppet/sbin/puppetdb-ssl-setup`. 
+
+This affects all version on the 3.7.x line. 
 
 ### Upgrade Warning for Users of Directory Environments in PE 3.3.x
 
@@ -101,10 +140,6 @@ If you encounter these errors, simply re-start the `pe-postgresql` service.
 
 
 ## Know Issues Related to PE console/pe-console-services
-
-### Custom Console Cert Configuration Documentation not Available for PE 3.7.0
-
-"Configuring the Puppet Enterprise Console to Use a Custom SSL Certificate" documentation available in previous versions of PE has not been updated for the change in certificate functionality in PE 3.7.0. Documentation for the 3.7.0 line will be available in a future release.
 
 ### Important Factors in Connecting to an External Directory Service
 
