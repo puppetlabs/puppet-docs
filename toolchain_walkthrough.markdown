@@ -53,7 +53,7 @@ If you have a very small change to make, just make sure your master branch is up
 
 [Jekyll][] is a static site generator. It takes a directory full of files written in HTML or Markdown and generates a site of static HTML. If you're used to dealing with a content management system such as WordPress or Drupal elsewhere, these things are worth knowing:
 
-- Jekyll doesn't allow you to edit content on a live site: You have to make your changes to the Markdown file, save them, then generate the site.
+- Jekyll doesn't allow you to edit content on a live site: you have to make your changes to the Markdown file, save them, then generate the site.
 - Jekyll has to regenerate the entire site every time it's generated. That includes all the navigation elements and pages.
 - Jekyll __does not use__ the remote Github repository to generate the site. It uses what's in the git branch you're working on. You should generally use the [git workflow](#git-workflow) outlined above to make sure you're not generating a site with bits that aren't ready for primetime.
 
