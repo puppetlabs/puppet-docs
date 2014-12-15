@@ -17,6 +17,8 @@ There are two ways to assign nodes to a different environment:
 * Via your [ENC][] or [node terminus][]
 * Via each agent node's puppet.conf
 
+> **Note:** If you have Puppet Enterprise (PE), you can use the PE console to [set the environment for each node group](/pe/latest/console_classes_groups_getting_started.html#creating-new-node-groups). 
+
 The value from the ENC is authoritative, if it exists. If the ENC doesn't specify an environment, the node's config value is used.
 
 ## Assigning Environments Via an ENC
