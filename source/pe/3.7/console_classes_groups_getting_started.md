@@ -37,7 +37,10 @@ PE comes preconfigured with a number of [special node groups](./console_classes_
 >
 > 1. The node classifier needs to retrieve classes from the master (by default, the node classifier retrieves classes from the master every 15 minutes).
 > 
-> 2. The [environment cache needs to refresh](/references/latest/configuration.html#environmenttimeout) (by default, the environment cache refreshes every 3 minutes).  
+> 2. The [environment cache needs to refresh](/references/latest/configuration.html#environmenttimeout) (by default, the environment cache refreshes every 3 minutes).
+>
+> To force the node classifier to retrieve the classes from the master immediately, click the **Refresh** button. 
+  
 5. Whenever you make a change in the node classifier, you need to commit the change. At the lower right of the page, click the commit button. On the next Puppet run, all nodes will be classified with the `ntp` class.
 
    **Note:** Unlike other node groups, you cannot change the rules or the metadata for the default node group.   
@@ -153,7 +156,9 @@ The next thing you’ll want to do is add classes to your node group. [Classes][
 > 1. The node classifier needs to retrieve classes from the master. (By default, the node classifier retrieves classes from the master every 15 minutes.)
 > 
 > 2. The [environment cache needs to refresh](/references/latest/configuration.html#environmenttimeout). (By default, the environment cache refreshes every 3 minutes.)
-
+>
+> To force the node classifier to retrieve the classes from the master immediately, click the **Refresh** button. 
+  
 [Removing Classes From a Node Group](./console_classes_groups_making_changes.html#removing-classes-from-a-group)
 
 ### Defining the Data Used by Classes
