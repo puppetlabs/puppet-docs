@@ -275,7 +275,7 @@ Puppet Enterprise and its components store settings (`puppet.conf`), manifests, 
 * `etc` (the `$confdir`) contains configuration files, manifests, certificates, and other important files
 * `var` (the `$vardir`) contains generated data and logs
 
-When run with elevated privileges --- Puppet's intended state --- the data directory is located in the [`COMMON_APPDATA`](http://msdn.microsoft.com/en-us/library/windows/desktop/bb762494\(v=vs.85\).aspx) folder. This folder's location varies by Windows version:
+When run with elevated privileges --- Puppet's intended state --- the data directory is located in the [`COMMON_APPDATA`](http://msdn.microsoft.com/en-us/library/aa367992(v=vs.85).aspx) folder. This folder's location varies by Windows version:
 
 OS Version| Path                                            | Default
 ----------|-------------------------------------------------|---------
