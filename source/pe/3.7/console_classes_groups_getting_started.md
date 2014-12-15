@@ -35,7 +35,7 @@ PE comes preconfigured with a number of [special node groups](./console_classes_
  
 	> **Note:** If you recently created a new class, it may not appear in the list of available classes yet. There are two things that need to happen before the class appears in the list:
 >
-> 1. The node classifier needs to retrieve classes from the master (by default, the node classifier retrieves classes from the master every 15 minutes).
+> 1. The node classifier needs to retrieve classes from the master (by default, the node classifier retrieves classes from the master every 3 minutes).
 > 
 > 2. The [environment cache needs to refresh](/references/latest/configuration.html#environmenttimeout) (by default, the environment cache refreshes every 3 minutes).
 >
@@ -153,7 +153,7 @@ The next thing you’ll want to do is add classes to your node group. [Classes][
 
 > **Note:** If you recently created a new class, it may not appear in the list of available classes yet. There are two things that need to happen before the class appears in the list:
 >
-> 1. The node classifier needs to retrieve classes from the master. (By default, the node classifier retrieves classes from the master every 15 minutes.)
+> 1. The node classifier needs to retrieve classes from the master. (By default, the node classifier retrieves classes from the master every 3 minutes.)
 > 
 > 2. The [environment cache needs to refresh](/references/latest/configuration.html#environmenttimeout). (By default, the environment cache refreshes every 3 minutes.)
 >
