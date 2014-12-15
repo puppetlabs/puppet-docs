@@ -127,14 +127,6 @@ List classparams for a node/class pair.
 - `name` --- node name
 - `class` --- class name
 
-### `node:listgroups[name]`
-
-List groups for a node.
-
-**Parameters:**
-
-- `name` --- node name
-
 ### `node:variables[name]`
 
 List variables for a node.
@@ -161,7 +153,7 @@ Add a new node. Classes and groups can be specified as [comma-separated lists](#
 
 ### `node:del[name]`
 
-Delete a node.
+Delete the node group to which the node is pinned.
 
 **Parameters:**
 
@@ -169,12 +161,12 @@ Delete a node.
 
 ### `node:classes[name,classes]`
 
-**Replace** the list of classes assigned to a node. This task **will destroy existing data.** Classes must be specified as a [comma-separated list](#escaping).
+**Replace** the list of classes assigned to the node group to which the node is pinned. This task **will destroy existing data.** Classes must be specified as a [comma-separated list](#escaping).
 
 **Parameters:**
 
 - `name` --- node name
-- `classes` --- classes to assign to the node
+- `classes` --- classes to assign to the node group
 
 ### `node:groups[name,groups]`
 
@@ -187,7 +179,7 @@ Delete a node.
 
 ### `node:addclass[name,class]`
 
-Add a class to a node.
+Add a class to the node group to which the node is pinned.
 
 **Parameters:**
 
@@ -196,7 +188,7 @@ Add a class to a node.
 
 ### `node:addclassparam[name,class,param,value]`
 
-Add a classparam to a node. If the parameter already exists its value is overwritten.
+Add a classparam to the node group to which the node is pinned. If the parameter already exists its value is overwritten.
 
 **Parameters:**
 
@@ -205,18 +197,9 @@ Add a classparam to a node. If the parameter already exists its value is overwri
 - `param` --- parameter name
 - `value` --- parameter value
 
-### `node:addgroup[name,group]`
-
-Add a group to a node.
-
-**Parameters:**
-
-- `name` --- node name
-- `group` --- group to add to the node
-
 ### `node:delclassparam[name,class,param]`
 
-Remove a class param from a node.
+Remove a class param from the node group to which the node is pinned.
 
 **Parameters:**
 
@@ -307,7 +290,7 @@ Delete a node group.
 
 ### `nodegroup:add_all_nodes[name]`
 
-In the PE 3.7 series, this rake task is no longer valid; running these task will result in a no operation with a removal warning. 
+In the PE 3.7 series, this rake task is no longer valid. Running this task will result in a no operation with a removal warning. 
 
 ### `nodegroup:addclass[name,class]`
 
@@ -329,7 +312,7 @@ Assign a class to a group without overwriting its existing classes.
 
 ### `nodegroup:addclassparam[name,class,param,value]`
 
-Add classparam to a nodegroup. If the parameter already exists its value is overwritten.
+Add a class parameter to a node group. If the parameter already exists its value is overwritten.
 
 - `name` --- group name
 - `class` --- class (already assigned to the node)
@@ -338,7 +321,7 @@ Add classparam to a nodegroup. If the parameter already exists its value is over
 
 ### `nodegroup:addgroup[name,group]`
 
-Add a child group to a nodegroup.
+Add a child group to a node group.
 
 **Parameters:**
 
@@ -366,7 +349,7 @@ Remove a class param from a node group.
 
 ### `nodegroup:delgroup[name,group]`
 
-Remove a child group from a nodegroup.
+Resets the parent node group to the `default` group.
 
 **Parameters:**
 
@@ -375,7 +358,7 @@ Remove a child group from a nodegroup.
 
 ### `nodegroup:variables[name,variables]`
 
-Add (or edit, if they exist) variables for a node group. Variables must be specified as a comma-separated list of variable=value pairs; the list must be quoted and [the commas must be escaped](#escaping).
+Add (or edit, if they exist) variables for a node group. Variables must be specified as a comma-separated list of variable=value pairs. The list must be quoted and [the commas must be escaped](#escaping).
 
 **Parameters:**
 
