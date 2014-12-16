@@ -1,11 +1,11 @@
 ---
-title: "PE 3.7.1 » Release Notes >> Known Issues"
+title: "PE 3.7 » Release Notes >> Known Issues"
 layout: default
 subtitle: "Known Issues"
 canonical: "/pe/latest/release_notes_known_issues.html"
 ---
 
-As we discover them, this page will be updated with known issues in Puppet Enterprise 3.7.1 and earlier. Fixed issues will be removed from this page and noted above in the release notes. If you find new problems yourself, please file bugs in Puppet [here][puppetissues] and bugs specific to Puppet Enterprise [here][peissues].
+As we discover them, this page will be updated with known issues in Puppet Enterprise 3.7.x releases. Fixed issues will be removed from this page and noted Bug Fixes section of the release notes. If you find new problems yourself, please file bugs specific to Puppet Enterprise [here][peissues] and for Puppet [here][puppetissues].
 
 To find out which of these issues may affect you, run `/opt/puppet/bin/puppet --version`, the output of which will look something like `3.6.2 (Puppet Enterprise 3.7.0)`. To upgrade to a newer version of Puppet Enterprise, see the [chapter on upgrading](install_upgrading.html).
 
@@ -14,26 +14,26 @@ To find out which of these issues may affect you, run `/opt/puppet/bin/puppet --
 
 The following issues affect the currently shipped version of PE and all prior releases through the 3.x.x series, unless otherwise stated.
 
-## Know Issues Related to Installation/Upgrades 
+## Installation/Upgrades Known Issues
 
 ### A Modified `auth.conf` File Will Cause Upgrade Failure
 
 If your `auth.conf` file has been modified, you may experience a failure when upgrading to the 3.7.x line. To prevent an upgrade failure, before running the upgrade, edit `auth.conf` so that the `resource_type` path contains `pe-internal-classifier`, as shown in the following example:
 
     ...
-    
+
     path /resource_type
     method find, search
     auth yes
     allow pe-internal-dashboard, pe-internal-classifier
-    
+
 ### Incorrect Unmask Value Can Cause Upgrade/Installation to Fail
 
-To prevent potential failures, you should set an unmask value of 0022 on your Puppet Master. 
+To prevent potential failures, you should set an unmask value of 0022 on your Puppet Master.
 
 ### New PostgreSQL Databases Needed on Upgrade/Install (for External PostgreSQL Users)
 
-If you are using an external PostgreSQL instance that is not managed by PE, please note that you will need to make a few changes for the new databases included in PE 3.7.x. See [A Note about RBAC, Node Classifier, and External PostgreSQL](./install_upgrading_notes.html#a-note-about-rbac-node-classifier-and-external-postgresql). 
+If you are using an external PostgreSQL instance that is not managed by PE, please note that you will need to make a few changes for the new databases included in PE 3.7.x. See [A Note about RBAC, Node Classifier, and External PostgreSQL](./install_upgrading_notes.html#a-note-about-rbac-node-classifier-and-external-postgresql).
 
 ### Additional Puppet Masters in Large Environment Installations Cannot Be Upgraded
 
@@ -44,26 +44,22 @@ If you've installed additional Puppet masters (i.e., secondary or compile master
 If necessary, you can install stdlib after installing/upgrading by running `puppet module install puppetlabs-stdlib`.
 
 
-### PuppetDB Load Balancing Errors with Puppet Server 
+### PuppetDB Load Balancing Errors with Puppet Server
 
-Due to the way Puppet Server handles SSL connections, services such as PuppetDB cannot be run with a load balancer out of the box. The following steps provide a workaround to this issue. 
+Due to the way Puppet Server handles SSL connections, services such as PuppetDB cannot be run with a load balancer out of the box. The following steps provide a workaround to this issue.
 
-1. On the Puppet master, generate a certificate for your PuppetDB nodes (e.g., `pe-internal-puppetdb`) with the appropriate DNS alt names. Note that you will want to add the load balancer hostnames as DNS alt names. 
-2. Sign the certificate for the new cert. 
-3. On each PuppetDB node, copy the private key and cert (e.g., `pe-internal-puppetdb`) to the `private_keys` and `certs` directories in the SSL configuration directory. 
-4. On each PuppetDB node, run `opt/puppet/sbin/puppetdb-ssl-setup`. 
+1. On the Puppet master, generate a certificate for your PuppetDB nodes (e.g., `pe-internal-puppetdb`) with the appropriate DNS alt names. Note that you will want to add the load balancer hostnames as DNS alt names.
+2. Sign the certificate for the new cert.
+3. On each PuppetDB node, copy the private key and cert (e.g., `pe-internal-puppetdb`) to the `private_keys` and `certs` directories in the SSL configuration directory.
+4. On each PuppetDB node, run `opt/puppet/sbin/puppetdb-ssl-setup`.
 
-This affects all version on the 3.7.x line. 
-
-### Upgrade Warning for Users of Directory Environments in PE 3.3.x
-
-If the `basemodulepath` is set in the `[master]` section of `puppet.conf`, the upgrader will fail due to not being able to find PE-specific modules. To prevent this, ensure that `basemodulepath` is set in the `[main]` section of `puppet.conf` before upgrading.
+This affects all version on the 3.7.x line.
 
 ### Before Upgrading to PE 3.7.0, Correct Invalid Entries in `autosign.conf`
 
 Any entries in `/etc/puppetlabs/puppet/autosign.conf` that don't conform to the [autosign requirements](/puppet/3.7/reference/ssl_autosign.html#the-autosignconf-file) will cause the upgrade to fail to configure the PE console. Please correct any invalid entries before upgrading.
 
-### `q_database_host` Cannot be an Alt Name For Upgrades or Installs of 3.7.0 
+### `q_database_host` Cannot be an Alt Name For Upgrades or Installs of 3.7.0
 
 PostgreSQL does not support alt names when set to `verify_full`. If you are upgrading to or installing 3.7 with an answer file, make sure `q_database_host` is set as the Puppet agent certname for the database node and not set as an alt name.
 
@@ -77,7 +73,7 @@ PE will automatically update your version of puppetlabs-inifile as part of the u
 	Error: Could not retrieve catalog from remote server: Error 400 on SERVER: Invalid parameter quote_char on Ini_subsetting['-Xmx'] on node master
 	Warning: Not using cache on failed catalog
 	Error: Could not retrieve catalog; skipping run
-	
+
 ### A Note about Symlinks and Installation
 
 The answer file no longer gives the option of whether to install symlinks. These are now automatically installed by packages. To allow the creation of symlinks, you need to ensure that `/usr/local` is writable.
@@ -87,8 +83,7 @@ The answer file no longer gives the option of whether to install symlinks. These
 Any SMTP server that requires authentication, TLS, or runs over any port other than 25 needs to be explicitly added to an answers file. See the [advanced configuration page](./console_config.html#allowing-anonymous-console-access) for details.
 
 
-
-## Known Issues Related to Puppet Server
+## Puppet Server Known Issues
 
 ### SSL Termination Configuration Not Currently Supported
 
@@ -117,7 +112,7 @@ Refer to [SERVER-15](https://tickets.puppetlabs.com/browse/SERVER-15).
 When configuring the Puppet server to use a report processor that involves HTTPS requests (e.g. to Foreman), there can be compatibility issues between the JVM HTTPS client and certain server HTTPS implementations (e.g. very recent versions of Apache `mod_ssl`). See [SERVER-17](https://tickets.puppetlabs.com/browse/SERVER-17) for known workarounds.
 
 
-## Known Issues Related to PuppetDB/PostgreSQL
+## PuppetDB/PostgreSQL Known Issues
 
 ### PostgreSQL Buffer Memory Issue Can Cause PE Install to Fail on Machines with Large Amounts of RAM
 
@@ -139,7 +134,7 @@ or, when attempting to request a catalog:
 If you encounter these errors, simply re-start the `pe-postgresql` service.
 
 
-## Know Issues Related to PE console/pe-console-services
+## PE console/pe-console-services
 
 ### Important Factors in Connecting to an External Directory Service
 
@@ -148,7 +143,7 @@ The following requirements affect how you connect your existing LDAP to PE:
    * User and group RDNs are currently required as part of the directory service settings. A simple query from the provided base DN is not supported.
    * Use of multiple user RDNs or group RDNs is not supported.
    * Cyclical group relationships in Active Directory will prevent a user from logging in.
-   
+
 ### Console Session Timeout Issue
 
 The default session timeout for the PE console is 30 minutes. However, due to an issue that has not yet been resolved, console users will be logged out after thirty minutes even if they are currently active.
@@ -221,8 +216,7 @@ These steps will remove the node's certificate, purge information about the node
 For instructions on completely deactivating an agent node, refer to [Deactivating a PE Agent Node](./node_deactivation.html).
 
 
-
-## Known Issues Related to PE services/Puppet Core
+## PE services/Puppet Core Known Issues
 
 ### Change to `lsbmajdistrelease` Fact Affects Some Manifests
 
@@ -261,7 +255,7 @@ Man pages generated with the `puppet man` subcommand are not formatted as proper
 To improve the display of Puppet man pages, you can use your system `gem` command to install the `ronn` gem:
 
     $ sudo gem install ronn
-    
+
 ### The Puppet Module Tool (PMT) Does Not Support Solaris 10
 
 When attempting to use the PMT on Solaris 10, you'll get an error like the following:
@@ -273,7 +267,7 @@ When attempting to use the PMT on Solaris 10, you'll get an error like the follo
 
 This error occurs because there is no CA-cert bundle on Solaris 10 to trust the Puppet Labs Forge certificate. To work around this issue, we recommend that you download directly from the Forge website and then use the puppet module tool to [install from a local tarball](./puppet/latest/reference/modules_installing.html#installing-from-a-release-tarball).
 
-## Known Issues Related to Puppet on Windows
+## PE on Windows Known Issues
 
 ### Puppet Expands Variables in Windows Systems Path
 
@@ -305,7 +299,7 @@ An issue with MCollective prevents correct uninstallation of packages on nodes r
 
 The issue is being tracked on [this support ticket](https://tickets.puppetlabs.com/browse/MCOP-14).
 
-## Known Issues Related to Supported Platforms
+## Supported Platforms Known Issues
 
 ### Readline Version Issues on AIX Agents
 
@@ -336,7 +330,7 @@ To workaround this issue, install and start Samba with the following commands:
     puppet resource package samba ensure=present
     puppet resource service smbd provider=init enable=true ensure=running
     puppet resource service nmbd provider=init enable=true ensure=running
-    
+
 ### Augeas File Access Issue
 
 On AIX agents, the Augeas lens is unable to access or modify `etc/services`. There is no known workaround.
@@ -358,7 +352,7 @@ For a complete guide to the Puppet language, visit [the reference manual](/puppe
 
 - [Next: Getting Support](./overview_getting_support.html)
 
-    
+
 
 
 

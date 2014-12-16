@@ -1,13 +1,13 @@
 ---
 layout: default
-title: "PE 3.7.1 » Release Notes"
-subtitle: "Puppet Enterprise 3.7.0 Release Notes"
+title: "PE 3.7 » Release Notes"
+subtitle: "Puppet Enterprise 3.7 Release Notes"
 canonical: "/pe/latest/release_notes.html"
 ---
 
-This page contains information about new features in the latest Puppet Enterprise (PE) release. 
+This page contains information about new features and general improvements in the latest Puppet Enterprise (PE) release.
 
-For more information about this release, also see the [Known Issues](./release_notes_known_issues.html) and [Security Fixes](./release_notes_security.html). 
+For more information about this release, also see the [Known Issues](./release_notes_known_issues.html) and [Security Fixes](./release_notes_security.html).
 
 ## New Features in 3.7.1
 
@@ -16,6 +16,30 @@ For more information about this release, also see the [Known Issues](./release_n
 This release provides full support for SLES 12 on all PE components, including the Puppet master.
 
 For more information, see the [system requirements](./install_system_requirements.html).
+
+### Node Classifier Improvements
+
+The default sync time for the node classifier has been changed from 15 minutes to 3 minutes to be the same as the default refresh time for the environment cache. This means that, by default, the node classifier now retrieves new classes from the master every 3 minutes. For more information, see the [Getting Started With Classification](./console_classes_groups_getting_started.html#adding-classes-that-apply-to-all-nodes) page.
+
+In addition, PE 3.7.1 has a **Refresh** button in the **Classes** page that allows you to manually retrieve new classes from the master without waiting for the 3 minute sync period. The timestamp to the left of the **Refresh** button shows the time that has elapsed since the last sync.
+
+### Improvements to the Windows User Experience
+
+Puppet 3.7.3 provided Windows users with two useful new facts, as well as a fix to the PATH variable that are now available to PE users.
+
+These are the new facts:
+
+* [`$system32`](/facter/latest/core_facts.html#system32) is the path to the **native** system32 directory, regardless of Ruby and system architecture. This means that inside a 32-bit Puppet/Ruby on Windows x64, this fact typically resolves to `c:\windows\sysnative`. On a 64-bit Puppet/Ruby on Windows x64, this fact typically resolves to `c:\windows\system32`. In other words, this always gets the `system32` directory with binaries that are the same bitness as the current OS.
+* [`$rubyplatform`](/facter/latest/core_facts.html#rubyplatform) reports the value of Ruby's `RUBY_PLATFORM` constant.
+
+For details on these improvements, see the [Puppet 3.7.3 Release Notes](./puppet/latest/reference/release_notes.html#puppet-373).
+
+In addition, all of the **Windows versions of Puppet Enterprise supported modules** have been updated to support 64-bit as well as 32-bit Ruby runtime. For more information about supported modules, see the [Supported Modules page in the Forge documentation](https://forge.puppetlabs.com/supported).
+
+**Scheduled tasks** have also been improved for this release in the following ways:
+
+* An error message will notify you when the task scheduler is disabled. Previously, the Win32-taskscheduler gem 0.2.2 crashed.
+* The Windows scheduled task (scheduled_task) provider was generating spurious messages during Puppet runs that suggested that scheduled task resources were being reapplied during each run even when the task was present and its associated resource had not been modified. This has been fixed. For more information, see the information on [scheduled tasks on Windows](./puppet/3.7/reference/resources_scheduled_task_windows.html) in the **Puppet** documentation.
 
 ## New Features in 3.7.0
 
