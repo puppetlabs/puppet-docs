@@ -134,6 +134,11 @@ List variables for a node.
 **Parameters:**
 
 - `name` --- node name
+- `variables` --- 
+
+### `node:listgroups[name]`
+
+In the PE 3.7 series, this rake task is no longer valid. Running this task will result in a no operation with a removal warning.
 
 Node Tasks: Modifying Info
 -----
@@ -157,7 +162,7 @@ Delete the node group to which the node is pinned.
 
 **Parameters:**
 
-- `name` --- node name
+- `name` --- node group name (should be the same as the name of the pinned node)
 
 ### `node:classes[name,classes]`
 
@@ -165,7 +170,7 @@ Delete the node group to which the node is pinned.
 
 **Parameters:**
 
-- `name` --- node name
+- `name` --- node group name (should be the same as the name of the pinned node)
 - `classes` --- classes to assign to the node group
 
 ### `node:groups[name,groups]`
@@ -183,7 +188,7 @@ Add a class to the node group to which the node is pinned.
 
 **Parameters:**
 
-- `name` --- node name
+- `name` --- node group name (should be the same as the name of the pinned node)
 - `class` --- classes to add to the node
 
 ### `node:addclassparam[name,class,param,value]`
@@ -192,10 +197,14 @@ Add a classparam to the node group to which the node is pinned. If the parameter
 
 **Parameters:**
 
-- `name` --- node name
+- `name` --- node group name (should be the same as the name of the pinned node)
 - `class` --- class (already assigned to the node)
 - `param` --- parameter name
 - `value` --- parameter value
+
+### `node:addgroup[name,group]`
+
+In the PE 3.7 series, this rake task is no longer valid. Running this task will result in a no operation with a removal warning.
 
 ### `node:delclassparam[name,class,param]`
 
@@ -203,17 +212,17 @@ Remove a class param from the node group to which the node is pinned.
 
 **Parameters:**
 
-- `name` --- node name
+- `name` --- node group name (should be the same as the name of the pinned node)
 - `class` --- class name
 - `param` --- parameter name
 
 ### `node:variables[name,variables]`
 
-Add (or edit, if they exist) variables for a node. Variables must be specified as a comma-separated list of variable=value pairs; the list must be quoted and [the commas must be escaped](#escaping).
+Add (or edit, if they exist) variables to the node group to which the node is pinned. Variables must be specified as a comma-separated list of variable=value pairs. The list must be quoted and [the commas must be escaped](#escaping).
 
 **Parameters:**
 
-- `name` --- node name
+- `name` --- node group name (should be the same as the name of the pinned node)
 - `variables` --- variables specified as "&lt;VARIABLE&gt;=&lt;VALUE&gt;,&lt;VARIABLE&gt;=&lt;VALUE&gt;,..."
 
 
@@ -253,11 +262,7 @@ List classparams for a nodegroup/class pair.
 
 ### `nodegroup:listgroups[name]`
 
-List child groups that belong to a node group.
-
-**Parameters:**
-
-- `name` --- group name
+In the PE 3.7 series, this rake task is no longer valid. Running this task will result in a no operation with a removal warning.
 
 ### `nodegroup:variables[name]`
 
