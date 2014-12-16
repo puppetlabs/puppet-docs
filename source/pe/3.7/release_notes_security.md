@@ -49,6 +49,12 @@ This is fixed. Now, the `puppet resource` call explicitly sets its modulepath, s
 
 This was listed as a Known Issue for PE 3.7.0.
 
+#### Changing the ssl-host to `0.0.0.0` Caused the Upgrade to Change Other Settings, Making PuppetDB Unusable
+
+During an upgrade, the installer used the value of ssl-host in `/etc/puppetlabs/puppetdb/conf.d/jetty.ini` to determine the value of `q_puppetdb_hostname`. If you changed the ssl-host to `0.0.0.0` so that PuppetDB could listen on any interface, the upgrade changed other settings that were filled in with `q_puppetdb_hostname` that made PuppetDB unusable after an upgrade in a monolithic installation.
+
+This has been fixed. Now, the agent certname is used to figure out the PuppetDB hostname, since those two things have to match.
+
 ## Puppet Enterprise 3.7.0 (11/11/14)
 
 ### Security Fixes
@@ -104,8 +110,4 @@ When upgrading from those earlier versions to a later version, on the master nod
 
 This meant that if you were coming from one of the older PE 2.x versions you had this file lying around on your console node that didn't actually configure anything. This has been fixed.
 
-#### Changing the ssl-host to `0.0.0.0` Caused the Upgrade to Change Other Settings, Making PuppetDB Unusable
 
-During an upgrade, the installer used the value of ssl-host in `/etc/puppetlabs/puppetdb/conf.d/jetty.ini` to determine the value of `q_puppetdb_hostname`. If you changed the ssl-host to `0.0.0.0` so that PuppetDB could listen on any interface, the upgrade changed other settings that were filled in with `q_puppetdb_hostname` that made PuppetDB unusable after an upgrade in a monolithic installation.
-
-This has been fixed. Now, the agent certname is used to figure out the PuppetDB hostname, since those two things have to match.
