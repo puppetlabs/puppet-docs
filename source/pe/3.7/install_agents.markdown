@@ -123,7 +123,7 @@ If your PE infrastructure does not have access to the outside internet, you will
 
 * **Option 1**
 
-    If you would like to use the PE-provided repo, you can copy the agent tarball into the `/opt/staging/pe_repo` directory on your master, and then follow the steps in [Using the PE Agent Package Installation Script](#using-the-pe-agent-package-installation-script) to complete the process.  
+    If you would like to use the PE-provided repo, you can copy the agent tarball into the `/opt/staging/pe_repo` directory on your master, and then follow the steps in [Using the PE Agent Package Installation Script](#using-the-pe-agent-package-installation-script) to complete the process. 
 
     Note that if you upgrade your server at any point, you will need to perform this task again for the new version.
 
