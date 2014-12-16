@@ -27,17 +27,22 @@ Vector AV:N/AC:L/Au:S/C:P/I:N/A:N/E:H/RL:U/RC:C
 
 For information on previous releases, see the [Archived Release Notes](./release_notes_archive.html).
 
-#### CVE-2014-7818 Rails Action Pack Vulnerability Allows Arbitrary File Existence Disclosure
+#### CVE-2014-7818 and CVE-2014-7829 Rails Action Pack Vulnerabilities Allow Arbitrary File Existence Disclosure
 
 Posted December 16, 2014
 Assessed Risk Level: Medium
 
-A vulnerability in Rails Action Pack allows an attacker to determine the existence of files outside the Rails application root directory. The files will not be served, but attackers can determine whether or not specific files exist.
+Vulnerabilities in Rails Action Pack allow an attacker to determine the existence of files outside the Rails application root directory. The files will not be served, but attackers can determine whether or not specific files exist.
 
 This issue affected Puppet Enterprise 3.x. It is resolved in Puppet Enterprise 3.7.1.
 
+CVE-2014-7818:
 Upstream CVSS v2 Score: 4.3
 Vector: AV:N/AC:L/Au:N/C:P/I:N/A:N/E:POC/RL:W/RC:C
+
+CVE-2014-7829:
+Upstream CVSS v2 Score: 5.0
+Vector: AV:N/AC:L/Au:N/C:P/I:N/A:N
 
 ### Bug Fixes
 
