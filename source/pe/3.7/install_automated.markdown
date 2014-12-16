@@ -73,4 +73,6 @@ Once you have your answer file, simply run the installer with the `-a` or `-A` o
     $ sudo ./puppet-enterprise-installer -a ~/my_answers.txt
 
 * Installing with the `-a` option will fail if any required question variables are not set.
-* Installing with the `-A` option will prompt the user for any missing answers to question variables. 
+* Installing with the `-A` option will prompt the user for any missing answers to question variables.
+
+**Note**: For security reasons, when the installer runs, the answer file gets permissions changes. The permissions get set to owner `root`, permissions `600`. 
