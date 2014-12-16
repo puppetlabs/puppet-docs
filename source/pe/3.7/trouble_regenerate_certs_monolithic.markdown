@@ -92,11 +92,11 @@ Note that this process **destroys the certificate authority and all other certif
 
 4. Copy the PE agent cert and security credentials to the console-services cert directory. Run the following commands:
 
-   a. Run, `cp /etc/puppetlabs/puppet/ssl/certs/<CERT NAME>.pem /opt/puppet/share/console-services/certs/<CERT NAME>.cert.pem`
+   a. `cp /etc/puppetlabs/puppet/ssl/certs/<CERT NAME>.pem /opt/puppet/share/console-services/certs/<CERT NAME>.cert.pem`
 
-   b. Run, `cp /etc/puppetlabs/puppet/ssl/public_keys/<CERT NAME>.pem /opt/puppet/share/console-services/certs/<CERT NAME>.public_key.pem`
+   b. `cp /etc/puppetlabs/puppet/ssl/public_keys/<CERT NAME>.pem /opt/puppet/share/console-services/certs/<CERT NAME>.public_key.pem`
 
-   c. Run, `cp /etc/puppetlabs/puppet/ssl/private_keys/<CERT NAME>.pem /opt/puppet/share/console-services/certs/<CERT NAME>.private_key.pem` 
+   c. `cp /etc/puppetlabs/puppet/ssl/private_keys/<CERT NAME>.pem /opt/puppet/share/console-services/certs/<CERT NAME>.private_key.pem` 
 
 5. Copy the pe-internal-classifier cert and security credentials to the console-services cert directory. Run the following commands: 
 
@@ -108,11 +108,11 @@ Note that this process **destroys the certificate authority and all other certif
    
 6. Copy the pe-internal-dashboard cert and security credentials to the console-services cert directory. Run the following commands:
 
-   a. Run, `cp /etc/puppetlabs/puppet/ssl/certs/pe-internal-dashboard.pem /opt/puppet/share/console-services/certs/pe-internal-dashboard.cert.pem`
+   a. `cp /etc/puppetlabs/puppet/ssl/certs/pe-internal-dashboard.pem /opt/puppet/share/console-services/certs/pe-internal-dashboard.cert.pem`
 
-   b. Run, `cp /etc/puppetlabs/puppet/ssl/public_keys/pe-internal-dashboard.pem /opt/puppet/share/console-services/certs/pe-internal-dashboard.public_key.pem`
+   b. `cp /etc/puppetlabs/puppet/ssl/public_keys/pe-internal-dashboard.pem /opt/puppet/share/console-services/certs/pe-internal-dashboard.public_key.pem`
 
-   c. Run, `cp /etc/puppetlabs/puppet/ssl/private_keys/pe-internal-dashboard.pem /opt/puppet/share/console-services/certs/pe-internal-dashboard.private_key.pem`
+   c. `cp /etc/puppetlabs/puppet/ssl/private_keys/pe-internal-dashboard.pem /opt/puppet/share/console-services/certs/pe-internal-dashboard.private_key.pem`
 
 7. Ensure the console can access the new credentials with `sudo chown -R pe-console-services:pe-console-services /opt/puppet/share/console-services/certs`
 

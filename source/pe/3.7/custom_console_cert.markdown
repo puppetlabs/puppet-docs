@@ -21,14 +21,23 @@ Please note that if your custom cert is issued by an intermediate CA, the CA bun
 3. Use the PE console to set the edit the parameters of the `puppet_enterprise_profile_console` class.
 
    a. Click __Classification__ in the top navigation bar. 
+   
    b. From the __Classification page__, select the __PE Console__ group. 
+   
    c. Click the __Classes__ tab, and find `puppet_enterprise_profile_console` in the list of classes. 
+   
    d. From the parameter drop-down list, choose `browser_ssl_cert`, and in the value field, enter `opt/puppet/share/console-services/certs/public-console.cert.pem`.
+   
    e. Click __Add parameter__.
+   
    f. From the parameter drop-down list, choose `browser_ssl_private_key`, and in the value field, enter `opt/puppet/share/console-services/certs/public-console.private_key.pem`.
+   
    g. Click __Add parameter__.
+   
    h. From the parameter drop-down list, choose `browser_ssl_cert_chain`, and in the value field, enter `opt/puppet/share/console-services/certs/public-console.ca_cert.pem`.
+   
    i. Click __Add parameter__.
+   
    j. Click the Commit change button. 
 
 4. Kick off a Puppet run. (Note that if you have a split install, the Puppet run needs to happen on the PE console node.)  
