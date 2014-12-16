@@ -119,11 +119,11 @@ The script can be found at `https://<master hostname>:8140/packages/current/<pla
 
 When installing agents on a platform that is different from the puppet master platform, the agent install script attempts to connect to the internet to download the appropriate agent tarball after you classify the puppet master, as described in [Installing Agents Using PE Package Management](#installing-agents-using-pe-package-management).
 
-If your PE infrastructure does not have access to the outside internet, you will not be able to fully use the agent installation instructions.  Instead, you will need to [download](http://puppetlabs.com/misc/pe-files/agent-downloads) the appropriate agent tarball in advance and use the option below that corresponds to your deployment needs. 
+If your PE infrastructure does not have access to the outside internet, you will not be able to fully use the agent installation instructions. Instead, you will need to [download](http://puppetlabs.com/misc/pe-files/agent-downloads) the appropriate agent tarball in advance and use the option below that corresponds to your deployment needs. 
 
 * **Option 1**
 
-    If you would like to use the PE-provided repo, you can copy the agent tarball into the `/opt/staging/pe_repo` directory on your master.
+    If you would like to use the PE-provided repo, you can copy the agent tarball into the `/opt/staging/pe_repo` directory on your master, and then follow the steps in [Using the PE Agent Package Installation Script](#using-the-pe-agent-package-installation-script) to complete the process.  
 
     Note that if you upgrade your server at any point, you will need to perform this task again for the new version.
 
