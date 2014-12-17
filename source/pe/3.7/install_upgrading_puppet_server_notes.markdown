@@ -20,7 +20,7 @@ In PE 3.7 the Puppet master service is now `pe-puppetserver`, and you can restar
 
 Although Puppet Server honors nearly all settings in `puppet.conf`, it moves some the configuration of some features (mostly web server configuration and setting up an external CA) to a group of new config files.
 
-For details about these files, see [Configuring Puppet Server.](./puppet_server_config_files.html)
+For details about these files, see [Configuring Puppet Server](./puppet_server_config_files.html) in the Puppet Core section of the docs.
 
 ## Certain Changes Require Service Restarts
 
@@ -32,9 +32,17 @@ You should also restart when making changes to [environments with a long or unli
 
 Puppet Server takes a bit longer to start up than the Apache/Passenger stack. You’ll  see significant performance improvements after start up, but the initial start up is definitely a bit slower. 
 
-### Puppet Server Configuration Files
+### Other Changes to Services
 
-Information about [Puppet Server configuration files](./puppet_server_config_files.html) can be found in the Puppet Core section of the docs.
+A few other changes/additions have been made to the services running ont the Puppet master due to the introduction of Puppet Server. You can read about these in the [Puppet Server docs](puppetserver/1.0/services_master_puppetserver.html#puppet's-services:-puppet-server).
+
+Notable changes include: 
+
+* Changes to the [Ruby interpreter running on the Puppet master](/puppetserver/1.0/services_master_puppetserver.html#jruby-interpreters)
+
+* Changes to the [certificate authority service](/puppetserver/1.0/services_master_puppetserver.html#certificate-authority-service)
+
+
         
 
 
