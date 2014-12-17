@@ -48,7 +48,7 @@ You may also wish to review the [basics of Puppet classes and configuration](./p
 Installing Puppet
 -----------------
 
-Use the `puppet node install` command to install PE components onto the new instances.
+Use the `puppet node install` command to install PE components onto the new instances you created.
 
     $ puppet node install --install-script=puppet-enterprise --keyfile=~/.ssh/mykey.pem --login=root ec2-50-19-207-181.compute-1.amazonaws.com
     notice: Waiting for SSH response ...
@@ -59,15 +59,15 @@ Use the `puppet node install` command to install PE components onto the new inst
 
 This command's options specify:
 
-* The PE Installer script should be used.
-* The path to a private SSH key that can be used log in to the VM, specified with the `--keyfile` option. The `install` action uses SSH to connect to the host and so needs access to an SSH key. For Amazon EC2 or GCE, point to the private key from the key pair you used to create the instance. In most cases, the private key is in the `~/.ssh` directory. (Note that for VMware, the public key should have been loaded onto the template you used to create your virtual machine.)
-* The local user account used to log in, specified with the `--login` option.
+* The install script used to install PE, using the `--install-script` option. Note that you must specify `puppet-enterprise`, as the default `puppet node install` script installs open source Puppet.
+* The path to a private SSH key that can be used to log in to the VM, using the `--keyfile` option. The `install` action uses SSH to connect to the host and so needs access to an SSH key. For Amazon EC2 or GCE, point to the private key from the key pair you used to create the instance. In most cases, the private key is in the `~/.ssh` directory. (Note that for VMware, the public key should have been loaded onto the template you used to create your virtual machine.)
+* The name of the local user account used to log in, using the `--login` option.
 
-For the command's argument, specify the name of the node on which you're installing Puppet Enterprise.
+For the command's argument, specify the name of the node on which you're installing Puppet Enterprise. In our example, we're using the host's fully qualified domain name, `ec2-50-19-207-181.compute-1.amazonaws.com`.
 
-For the default installation, the `install` action uses the installation packages provided by Puppet Labs and stored in Amazon S3 storage.  You can also specify packages located on a local host or on a share in your local network. Use `puppet help node install` or `puppet man node` to see more details.
+For the default installation, the `install` action uses the installation packages provided by Puppet Labs and stored in Amazon S3 storage. You can also specify packages located on a local host or a share in your local network. For more details, view the commands' help content and man pages by running `puppet help node install` or `puppet man node`.
 
-In addition to these default configuration options, you can specify a number of additional options to control how and what we install on the host. You can control the version of Facter to install, the specific answers file to use to configure Puppet Enterprise, the certificate name of the agent to be installed, and a variety of other options. To see a full list of the available options, use the `puppet help node install` command.
+In addition to these default configuration options, you can also specify additional options to control how and what we install on the host. For instance, you can control the version of Facter to install, the specific answers file used to configure Puppet Enterprise, and the certificate name of the agent to be installed. For a full list of available options, use the `puppet help node install` command.
 
 The process of installing Puppet on a node is demonstrated in detail in the following video:
 
