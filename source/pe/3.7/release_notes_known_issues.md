@@ -16,6 +16,10 @@ The following issues affect the currently shipped version of PE and all prior re
 
 ## Installation/Upgrades Known Issues
 
+###  New PE 3.7.x MCO Server is Not Connecting With Older MCollective agents (posted 12/17/14)
+
+Customers are experiencing problems connecting new MCO servers with older MCO agents, specifically 3.3.2 agents. We're working aggressively on this issue, and expect to release a workaround or fix imminently.
+
 ### A Modified `auth.conf` File Will Cause Upgrade Failure
 
 If your `auth.conf` file has been modified, you may experience a failure when upgrading to the 3.7.x line. To prevent an upgrade failure, before running the upgrade, edit `auth.conf` so that the `resource_type` path contains `pe-internal-classifier`, as shown in the following example:
