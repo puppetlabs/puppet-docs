@@ -32,9 +32,9 @@ You should also restart when making changes to [environments with a long or unli
 
 Puppet Server takes a bit longer to start up than the Apache/Passenger stack. You’ll  see significant performance improvements after start up, but the initial start up is definitely a bit slower. 
 
-### Other Changes to Services
+### Other Changes to Puppet Services
 
-A few other changes/additions have been made to the services running ont the Puppet master due to the introduction of Puppet Server. You can read about these in the [Puppet Server docs](puppetserver/1.0/services_master_puppetserver.html#puppet's-services:-puppet-server).
+A few other changes/additions have been made to the services running ont the Puppet master due to the introduction of Puppet Server. You can read about these in the [Puppet Server docs](/puppetserver/1.0/services_master_puppetserver.html#puppet's-services:-puppet-server).
 
 Notable changes include: 
 
