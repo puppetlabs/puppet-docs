@@ -20,8 +20,6 @@ If you are using an ENC, you can classify nodes and add them to a console group 
 
 **Note** - With `classify` and `init`, you need to specify the `--insecure` option because the PE console uses the internal certificate name, `pe-internal-dashboard`, which fails verification because it doesn't match the host name of the host where the console is running.
 
-**Note** - With `classify` and `init`, you need to specify the `--insecure` option because the PE console uses the internal certificate name, `pe-internal-dashboard`, which fails verification because it doesn't match the host name of the host where the console is running.
-
     $ puppet node classify \
     --insecure \
     --node-group=appserver_pool \
