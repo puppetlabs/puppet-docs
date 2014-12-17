@@ -9,6 +9,8 @@ This page provides details about the configuration files and settings specific t
 
 > **Tip**: More information about Puppet Server can be found in the [Puppet Server docs](/puppetserver/1.0/services_master_puppetserver.html). Differences between PE and open source Puppet are typically called out. 
 
+### `conf.d` Directory
+
 At start up, Puppet Server will read all of the `.conf` files found in the `conf.d` directory (`/etc/puppetserver/conf.d`). This directory contains the following files:
 
 - `ca.conf`
