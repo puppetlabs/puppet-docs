@@ -87,7 +87,7 @@ The Razor client is installed as a Ruby gem.
 		
 2. You can verify that the Razor client is installed by printing Razor help:
 
-		razor -u http://${$RAZOR_HOSTNAME}:${RAZOR_PORT}/api
+		razor -u http://${RAZOR_HOSTNAME}:${RAZOR_PORT}/api
 
 3. You'll likely get this warning message about JSON: "MultiJson is using the default adapter (ok_json). We recommend loading a different JSON library to improve performance."  This message is harmless, but you can disble it with this command:
 
