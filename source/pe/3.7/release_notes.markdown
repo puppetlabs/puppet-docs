@@ -32,14 +32,14 @@ These are the new facts:
 * [`$system32`](/facter/latest/core_facts.html#system32) is the path to the **native** system32 directory, regardless of Ruby and system architecture. This means that inside a 32-bit Puppet/Ruby on Windows x64, this fact typically resolves to `c:\windows\sysnative`. On a 64-bit Puppet/Ruby on Windows x64, this fact typically resolves to `c:\windows\system32`. In other words, this always gets the `system32` directory with binaries that are the same bitness as the current OS.
 * [`$rubyplatform`](/facter/latest/core_facts.html#rubyplatform) reports the value of Ruby's `RUBY_PLATFORM` constant.
 
-For details on these improvements, see the [Puppet 3.7.3 Release Notes](./puppet/latest/reference/release_notes.html#puppet-373).
+For details on these improvements, see the [Puppet 3.7.3 Release Notes](/puppet/3.7/reference/release_notes.html#puppet-373).
 
 In addition, all of the **Windows versions of Puppet Enterprise supported modules** have been updated to support 64-bit as well as 32-bit Ruby runtime. For more information about supported modules, see the [Supported Modules page in the Forge documentation](https://forge.puppetlabs.com/supported).
 
 **Scheduled tasks** have also been improved for this release in the following ways:
 
 * An error message will notify you when the task scheduler is disabled. Previously, the Win32-taskscheduler gem 0.2.2 crashed.
-* The Windows scheduled task (scheduled_task) provider was generating spurious messages during Puppet runs that suggested that scheduled task resources were being reapplied during each run even when the task was present and its associated resource had not been modified. This has been fixed. For more information, see the information on [scheduled tasks on Windows](./puppet/3.7/reference/resources_scheduled_task_windows.html) in the **Puppet** documentation.
+* The Windows scheduled task (scheduled_task) provider was generating spurious messages during Puppet runs that suggested that scheduled task resources were being reapplied during each run even when the task was present and its associated resource had not been modified. This has been fixed. For more information, see the information on [scheduled tasks on Windows](/puppet/3.7/reference/resources_scheduled_task_windows.html) in the **Puppet** documentation.
 
 ## New Features in 3.7.0
 
@@ -85,11 +85,11 @@ Environments are isolated groups of puppet agent nodes. This frees you to use di
 
 For your reference, we've provided some notes on what you may experience during upgrades from a previous version of PE. See [Important Information about Upgrades to PE 3.7 and Directory Environments](./install_upgrading_dir_env_notes.html).
 
-Before getting started, visit the Puppet docs to read up on the [Structure of an  Environment](puppet/3.7/reference/environments_creating.html#structure-of-an-environment), [Global Settings for Configuring Environments](puppet/3.7/latest/reference/environments_configuring.html#global-settings-for-configuring-environments), and [creating directory environments](/puppet/3.7/reference/environments_creating.html).
+Before getting started, visit the Puppet docs to read up on the [Structure of an  Environment](/puppet/3.7/reference/environments_creating.html#structure-of-an-environment), [Global Settings for Configuring Environments](/puppet/3.7/latest/reference/environments_configuring.html#global-settings-for-configuring-environments), and [creating directory environments](/puppet/3.7/reference/environments_creating.html).
 
 #### A Note about `environment_timeout` in PE 3.7.0
 
-The [environment_timeout](puppet/3.7/reference/environments_configuring.html#environmenttimeout) defaults to 3 minutes. This means that code changes you make might not appear until after that timeout has been reached. In addition it's possible that back to back runs of Puppet could flip between the new code and the old code until the `environment_timeout` is reached.
+The [environment_timeout](/puppet/3.7/reference/environments_configuring.html#environmenttimeout) defaults to 3 minutes. This means that code changes you make might not appear until after that timeout has been reached. In addition it's possible that back to back runs of Puppet could flip between the new code and the old code until the `environment_timeout` is reached.
 
 ### Support Script Improvements
 
