@@ -140,7 +140,7 @@ The `db:raw:optimize` Rake task does not work in PE 3.7.0 because the ownership 
 
 To re-index and vacuum the console database, you can use the following PostgreSQL commands:
 
-`su - pe-postgres -s /bin/bash -c "reindexdb console" su - pe-postgres -s /bin/bash -c "vacuumdb --ful --verbose console"`
+`su - pe-postgres -s /bin/bash -c "reindexdb console"; su - pe-postgres -s /bin/bash -c "vacuumdb --full --verbose console"`
 
 ## PE console/pe-console-services
 

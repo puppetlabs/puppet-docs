@@ -207,8 +207,7 @@ For PE versions 3.0.x, the Puppet Labs PostgreSQL module (included in the PE tar
 
 To re-index and vacuum the console database, you can use the following PostgreSQL commands:
 
-`su - pe-postgres -s /bin/bash -c "reindexdb console"`
-`su - pe-postgres -s /bin/bash -c "vacuumdb --ful --verbose console"`
+`su - pe-postgres -s /bin/bash -c "reindexdb console"; su - pe-postgres -s /bin/bash -c "vacuumdb --full --verbose console"`
 
 The default mode of the db:raw:optimize rake task runs re-index and vacuum in the same command. This task is fixed in PE 3.0.1.
 
