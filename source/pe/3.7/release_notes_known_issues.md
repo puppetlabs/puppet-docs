@@ -134,6 +134,14 @@ or, when attempting to request a catalog:
 If you encounter these errors, simply re-start the `pe-postgresql` service.
 
 
+### `db:raw:optimize` Rake Task does not Work in PE 3.7.x
+
+The `db:raw:optimize` Rake task does not work in PE 3.7.0 because the ownership of the database was changed from `console` to `pe-postgres`.
+
+To re-index and vacuum the console database, you can use the following PostgreSQL commands:
+
+`su - pe-postgres -s /bin/bash -c "reindexdb console" su - pe-postgres -s /bin/bash -c "vacuumdb --ful --verbose console"`
+
 ## PE console/pe-console-services
 
 ### Important Factors in Connecting to an External Directory Service
