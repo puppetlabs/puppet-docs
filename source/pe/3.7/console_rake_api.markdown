@@ -134,7 +134,6 @@ List variables for a node.
 **Parameters:**
 
 - `name` --- node name
-- `variables` --- 
 
 ### `node:listgroups[name]`
 
