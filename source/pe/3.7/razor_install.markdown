@@ -71,7 +71,7 @@ Razor provides a specific iPXE boot image to ensure you're using a compatible ve
 		
 ###Verify the Razor Server 
 
-Test the new Razor configuration: `wget http://${$RAZOR_HOSTNAME}:${RAZOR_PORT}/api -O test.out`.
+Test the new Razor configuration: `wget http://${RAZOR_HOSTNAME}:${RAZOR_PORT}/api -O test.out`.
 	
 The command should execute successfully, and the output JSON file `test.out` should contain a list of available Razor commands.
 
