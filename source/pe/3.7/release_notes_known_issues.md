@@ -89,11 +89,7 @@ Any SMTP server that requires authentication, TLS, or runs over any port other t
 
 ## Puppet Server Known Issues
 
-### SSL Termination Configuration Not Currently Supported
-
-Previous to PE 3.7.0, it was possible to configure your environment to handle SSL termination on a hardware load balancer. This situation was handled by supporting some custom HTTP headers where the client certificate information could be stored when the SSL was terminated, thus making it possible for Puppet to continue to perform authorization checks based on the client certificate data, even when communicating via HTTP instead of HTTPS. This configuration is not yet supported, but we intend to support it in a future release.
-
-See [SERVER-18](https://tickets.puppetlabs.com/browse/SERVER-18).
+> **Tip**: More information about Puppet Server can be found in the [Puppet Server docs](/puppetserver/1.0/services_master_puppetserver.html). Differences between PE and open source versions of Puppet Server are typically called out. 
 
 ### Puppet Server Run Issue when `/tmp/` Directory Mounted `noexec`
 

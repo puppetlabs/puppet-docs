@@ -10,6 +10,8 @@ PE 3.7.0 introduces Puppet Server, a replacement for the former Apache/Passenger
 
 This page details some items that are intentionally different between Puppet Server and the old Apache/Passenger stack. Additionally, there are [a few known issues related to Puppet Server](./release_notes_known_issues.html#known-issues-related-to-puppet-server) which  we expect to fix in future releases.
 
+> **Tip**: More information about Puppet Server can be found in the [Puppet Server docs](/puppetserver/1.0/services_master_puppetserver.html). Differences between PE and open source versions of Puppet Server are typically called out. 
+
 ### Service Name Changed From `pe-httpd` to `pe-puppetserver`
 
 Previously, the service that acted as the Puppet master was called `pe-httpd`. (So to restart the Puppet master, you would run `service httpd restart`.) 

@@ -7,7 +7,7 @@ canonical: "/pe/latest/puppet_server_config_files.html"
  
 This page provides details about the configuration files and settings specific to Puppet Server. 
 
-> **Tip**: More information about Puppet Server can be found in the [Puppet Server docs](/puppetserver/1.0/services_master_puppetserver.html). Differences between PE and open source Puppet are typically called out. 
+> **Tip**: More information about Puppet Server can be found in the [Puppet Server docs](/puppetserver/1.0/services_master_puppetserver.html). Differences between PE and open source versions of Puppet Server are typically called out. 
 
 ### `conf.d` Directory
 
