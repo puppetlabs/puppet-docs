@@ -46,6 +46,14 @@ Vector: AV:N/AC:L/Au:N/C:P/I:N/A:N
 
 ### Bug Fixes
 
+#### puppet_enterprise Module Was Missing Values for Several PuppetDB Attributes
+
+PE 3.7.0 contained a version of the puppet_enterprise module that does not have the parameters to manage several important PuppetDB attributes, such as `gc-interval`, `node-ttl`, `node-purge-ttl`, and `report-ttl`. This was fixed in PE 3.7.1.
+
+#### `puppet_enterprise::master` Did Not Allow Multiple DNS Alt Names
+
+The resource that manages the `dns_alt_names` entry for `puppet.conf` did not operate correctly with arrays, and only the first element of the array was used. This was fixed in PE 3.7.1.
+
 #### Upgrader Failed If `basemodulepath` Was Changed
 
 If you changed your config so that `/opt/puppet/share/puppet/modules` wasn't in your modulepath anymore, one of the `puppet resource` calls in the upgrader would fail because it couldn't find the module it needed.

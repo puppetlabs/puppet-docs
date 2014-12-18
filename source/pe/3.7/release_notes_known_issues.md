@@ -337,11 +337,25 @@ If you attempt to install and start Samba using PE resource management, you will
     Error: /Service[smb]: Could not evaluate: Could not find init script or upstart conf file for 'smb'`
     Error: Could not run: Could not find init script or upstart conf file for 'smb'`
 
-To workaround this issue, install and start Samba with the following commands:
+To work around this issue, install and start Samba with the following commands:
 
-    puppet resource package samba ensure=present
     puppet resource service smbd provider=init enable=true ensure=running
     puppet resource service nmbd provider=init enable=true ensure=running
+
+Or, add the following to a Puppet manifest:
+
+	service { 'smbd':
+  		ensure   => running,
+  		enable   => true,
+  		provider => 'init',
+	}
+
+	service { 'nmbd':
+  		ensure   => running,
+  		enable   => true,
+  		provider => 'init',
+	}
+
 
 ### Augeas File Access Issue
 
