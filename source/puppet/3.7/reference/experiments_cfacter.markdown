@@ -31,7 +31,7 @@ Alternately, for one-off tests, you can set `--cfacter` on the command line when
 Native Facter Works Like Facter
 -----
 
-We've implemented as much of Facter 2.2 functionality as possible. Native Facter supports all core facts as well as external facts and Ruby custom facts. The [Native Facter extensibility features](cfacter_features) page contains the latest feature information.
+We've implemented as much of Facter 2.2 functionality as possible. Native Facter supports all core facts as well as external facts and Ruby custom facts. The [Native Facter extensibility features][cfacter_features] page contains the latest feature information.
 
 ### Unsupported Features
 
