@@ -114,7 +114,7 @@ Note that this process **destroys the certificate authority and all other certif
 
    `puppet agent --test --no-daemonize --noop`
    
-   > **Note**: This agent run will not complete successfully, but it is necessary to setup the agent certificate for the node. You will see some errors about node definition and the inability to submit facts due to PuppetDB being offline. You can ignore these. 
+   > **Note**: This agent run will not complete successfully, but it is necessary to set up the agent certificate for the node. You will see some errors about node definition and the inability to submit facts due to PuppetDB being offline. You can ignore these. 
 
 4. Delete puppetdb’s SSL cert and security credentials.
 
@@ -159,7 +159,7 @@ Note that this process **destroys the certificate authority and all other certif
 
    `puppet agent --test --no-daemonize --noop`
    
-   > **Note**: This agent run will not complete successfully, but it is necessary to setup the agent certificate for the node. You will see some errors about node definition and the inability to submit facts due to PuppetDB being offline. You can ignore these.
+   > **Note**: This agent run will not complete successfully, but it is necessary to set up the agent certificate for the node. You will see some errors about node definition and the inability to submit facts due to PuppetDB being offline. You can ignore these.
   
 4. Create the pe-internal-classifier and pe-internal-dashboard certs.  
 
