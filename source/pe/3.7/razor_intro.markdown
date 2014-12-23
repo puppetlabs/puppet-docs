@@ -63,7 +63,7 @@ The node is now installed and managed by Puppet Enterprise.
 
 Provisioning with Razor generally entails these steps:
 
-+ [Set up a virtual environment for Razor](./razor_prereqs)
++ [Set up a virtual environment for Razor](./razor_prereqs.html)
 + [Install and set up a Razor server and Razor client](./razor_install.html)
 + [Create Razor objects and provision machines](./razor_using.html)
 
@@ -81,4 +81,4 @@ In addition to the above processes, you can learn more about:
  * * *
 
 
-[Next: Set Up a Virtual Environment for Razor](./razor_prereqs)
+[Next: Set Up a Virtual Environment for Razor](./razor_prereqs.html)
