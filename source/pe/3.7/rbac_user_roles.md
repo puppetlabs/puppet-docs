@@ -23,6 +23,15 @@ These steps add a local user. To add a user from an external directory, see [Wor
 3. In the **Login** field, type the user's login information.
 4. Click **Add local user**.
 
+### Enable a New User to Log in
+When you create new local users, you need to send them a password reset token so that they can log in for the first time.
+
+1. Click the new local user in the **Users** list.
+The new user's page opens.
+2. On the upper-right of the page, click **Generate password reset**. A **Password reset link** message box opens.
+3. *Copy the link* provided in the message and send it to the new user. Then you can close the message.
+
+
 ### Create a New User Role
 Users with the appropriate permissions, for example, Administrators, can define custom roles. Only users who are allowed all permissions should be given the permission to edit user roles; otherwise, the user will be capable of privilege escalation.
 
