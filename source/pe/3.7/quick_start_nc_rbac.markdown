@@ -72,9 +72,19 @@ These steps demonstrate how to create a new local user. See [Adding LDAP Users t
 2. In the **Full name** field, type in a user name.
 3. In the **Login** field, type the user's login information.
 4. Click **Add local user**.
+
+	**Note**: When you create new local users, you need to send them a login token. Do this by clicking the new user's name in the **User** list and then on the upper-right of the user's page, click **Generate password reset**. A message opens with a link that you must copy and send to the new user.
+
 5. Click **User Roles** and then click **Web developers**.
 6. On the **Member users** tab, on the **User name** list, select the new user you created, and then click **Add user** and click the commit button.
 
+### Enable a User to Log in
+When you create new local users, you need to send them a password reset token so that they can log in for the first time.
+
+1. Click the new local user in the **Users** list.
+The new user's page opens.
+2. On the upper-right of the page, click **Generate password reset**. A **Password reset link** message box opens.
+3. *Copy the link* provided in the message and send it to the new user. Then you can close the message.
 
 ### Give Your New Role Access to the Node Group You Created
 
