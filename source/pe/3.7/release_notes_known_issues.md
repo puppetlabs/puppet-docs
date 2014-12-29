@@ -91,7 +91,7 @@ Due to the way Puppet Server handles SSL connections, services such as PuppetDB 
 
 7. On each PuppetDB node and the Puppet master, kick off a Puppet run. 
 
-This affects all version on the 3.7.x line.
+This affects all versions on the 3.7.x line.
 
 ### Before Upgrading to PE 3.7.0, Correct Invalid Entries in `autosign.conf`
 

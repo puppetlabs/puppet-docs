@@ -106,8 +106,8 @@ If you use a load balancer in your multi-master deployment, you may want to poin
 2. From the __Classification page__, select the __PE Master__ group.
 3. Click the __Classes__ tab, and find the `pe_repo` class. 
 4. From the __Parameter__ drop-down list, select __Master__. 
-5. In the __value__field, enter the FQDN of your load balancer (e.g., `LOADBALANCER.EXAMPLE.COM`). 
-6. Click __Add parameter__ and then the Commit change button.
+5. In the __Value__ field, enter the FQDN of your load balancer (e.g., `LOADBALANCER.EXAMPLE.COM`). 
+6. Click __Add parameter__ and then the __Commit change__ button.
 7. From the command line of the agent node, run `curl -k https://<LOADBALANCER.EXAMPLE.COM>:8140/packages/current/install.bash | sudo bash -s main:ca_server=<THE HOSTNAME of the PUPPET MASTER SERVING AS YOUR CA SERVER>`.
 
 The flag `-s main:ca_server=<THE HOSTNAME of the PUPPET MASTER SERVING AS YOUR CA SERVER>` ensures that the agent will retrieve its CA configuration from the correct CA server. Remember, in the examples in this guide, the CA server is the original Puppet master (i.e., `master.example.com`).
