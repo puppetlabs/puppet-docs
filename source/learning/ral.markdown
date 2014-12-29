@@ -102,7 +102,7 @@ Puppet uses its own language to describe and manage resources:
       ensure     => present,
       uid        => '507',
       gid        => 'admin',
-      shell      => '/bin/zsh',
+      shell      => '/bin/ksh',
       home       => '/home/dave',
       managehome => true,
     }
@@ -202,14 +202,14 @@ Usage of puppet resource is as follows:
 >
 > Setting a new desired state for a resource:
 >
->     # puppet resource user katie ensure=present shell="/bin/zsh" home="/home/katie" managehome=true
+>     # puppet resource user katie ensure=present shell="/bin/bash" home="/home/katie" managehome=true
 >
 >     notice: /User[katie]/ensure: created
 >
 >     user { 'katie':
 >       ensure => 'present',
 >       home   => '/home/katie',
->       shell  => '/bin/zsh'
+>       shell  => '/bin/bash'
 >     }
 
 
