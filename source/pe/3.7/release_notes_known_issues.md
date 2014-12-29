@@ -56,10 +56,40 @@ If necessary, you can install stdlib after installing/upgrading by running `pupp
 
 Due to the way Puppet Server handles SSL connections, services such as PuppetDB cannot be run with a load balancer out of the box. The following steps provide a workaround to this issue.
 
-1. On the Puppet master, generate a certificate for your PuppetDB nodes (e.g., `pe-internal-puppetdb`) with the appropriate DNS alt names. Note that you will want to add the load balancer hostnames as DNS alt names.
-2. Sign the certificate for the new cert.
-3. On each PuppetDB node, copy the private key and cert (e.g., `pe-internal-puppetdb`) to the `private_keys` and `certs` directories in the SSL configuration directory.
-4. On each PuppetDB node, run `opt/puppet/sbin/puppetdb-ssl-setup`.
+**Warning**: If you use this workaround, you will not be able to use `/opt/puppet/sbin/puppetdb ssl-setup` to address issues with PuppetDB. 
+
+1. On the Puppet master that serves as the CA, generate a certificate for your PuppetDB nodes with the load balancer hostname as a DNS alt names. In this example, we use `pe-internal-puppetdb`.
+
+   `puppet cert generate <pe-internal-puppetdb> --dns_alt_names=<LOAD BALANCER HOSTNAME>`
+
+2. Move the new cert from the Puppet master SSL cert directory (`/etc/puppetlabs/puppet/ssl/certs/pe-internal-puppetdb.pem`) to the SSL directory on each PuppetDB node (`/etc/puppetlabs/puppetdb/ssl/pe-internal-puppetdb.cert.pem`). 
+3. Move the new private key from Puppet Master SSL private key directory (`/etc/puppetlabs/puppet/ssl/private_keys/pe-internal-puppetdb.pem`) to the SSL directory on each PuppetDB node (`/etc/puppetlabs/puppetdb/ssl/pe-internal-puppetdb.private_key.pem`).
+4. Move the new public key from Puppet master SSL public key directory (`/etc/puppetlabs/puppet/ssl/public_keys/pe-internal-puppetdb.pem`) to the SSL directory on each PuppetDB node (`/etc/puppetlabs/puppetdb/ssl/pe-internal-puppetdb.public_key.pem`). 
+5. In the PE console, configure the `puppet_enterprise::profile::puppetdb` class to use the new `pe-internal-puppetdb` certname.
+
+   a. Click **Classification** in the top navigation bar.
+   
+   b. From the **Classification** page, select the **PE PuppetDB** group.
+   
+   c. Click the **Classes** tab, and find the `puppet_enterprise::profile::puppetdb` class.
+   
+   d. From the **Parameter** drop-down list, select **certname**. 
+   
+   e. In the **Value** field, enter `pe-internal-puppetdb`. 
+   
+   f. Click **Add parameter** and the **Commit change** button. 
+   
+6. Add the hostname of the load balancer to the **PE Infrastructure** class. 
+
+   a. Navigate to the **PE Infrastructure** group.
+   
+   b. Click the **Classes** tab, and find the `puppet_enterprise` class.
+   
+   c. For the **puppetdb_host** entry, edit the value to reflect the hostname of your load balancer.
+   
+   d. Click the **Commit change** button. 
+
+7. On each PuppetDB node and the Puppet master, kick off a Puppet run. 
 
 This affects all version on the 3.7.x line.
 
