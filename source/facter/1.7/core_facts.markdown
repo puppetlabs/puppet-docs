@@ -586,23 +586,6 @@ Parses the lsbdistrelease fact for numbers followed by a period and returns thos
 
 * * *
 
-## `lsbminordistrelease`
-
-
-Returns the minor version of the operation system version as gleaned from the lsbdistrelease fact.
-
-**Resolution:**
-
-Parses the lsbdistrelease fact for numbers preceded by a period and returns those. If there is no match, the fact is not present.
-
-**Caveats:**
-
-If the version number has three components (e.g., '1.2.3'), only the second will be included in the fact.
-
-([↑ Back to top](#page-nav))
-
-* * *
-
 ## `lsbrelease`
 
 
