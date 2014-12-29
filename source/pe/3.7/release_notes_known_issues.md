@@ -9,8 +9,8 @@ As we discover them, this page will be updated with known issues in Puppet Enter
 
 To find out which of these issues may affect you, run `/opt/puppet/bin/puppet --version`, the output of which will look something like `3.6.2 (Puppet Enterprise 3.7.0)`. To upgrade to a newer version of Puppet Enterprise, see the [chapter on upgrading](install_upgrading.html).
 
-[peissues]: http://projects.puppetlabs.com/projects/puppet-enterprise/issues
-[puppetissues]: http://projects.puppetlabs.com/projects/puppet/issues
+[peissues]: https://tickets.puppetlabs.com/browse/ENTERPRISE/
+[puppetissues]: https://tickets.puppetlabs.com/browse/PUP/
 
 The following issues affect the currently shipped version of PE and all prior releases through the 3.x.x series, unless otherwise stated.
 
