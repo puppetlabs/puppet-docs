@@ -259,6 +259,11 @@ For instructions on completely deactivating an agent node, refer to [Deactivatin
 
 ## PE services/Puppet Core Known Issues
 
+### PE 3.7.0 Agent Can't Compile Against PE 3.7.1 Master If Future Parser Is installed
+
+If you upgrade or install a PE 3.7.1 master, sign the certificate, and run Puppet on a 3.7.0 agent node, that should succeed. However, if you enable future parser, restart pe-puppetserver, and then run Puppet on the agent again, you'll get a server error. This error doesn't happen if you enable future parser with a PE 3.7.0 master and agent, or a PE 3.7.1 master and agent, only a 3.7.1 master with a 3.7.0 agent.
+
+
 ### Change to `lsbmajdistrelease` Fact Affects Some Manifests
 
 In Facter 2.2.0, the `lsbmajdistrelease` fact changed its value from the first two numbers to the full two-number.two-number version on Ubuntu systems. This might break manifests that were based on the previous behavior.
