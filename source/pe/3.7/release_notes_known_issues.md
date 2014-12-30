@@ -120,10 +120,6 @@ The answer file no longer gives the option of whether to install symlinks. These
 
 Any SMTP server that requires authentication, TLS, or runs over any port other than 25 needs to be explicitly added to an answers file. See the [advanced configuration page](./console_config.html#allowing-anonymous-console-access) for details.
 
-### When Upgrading, Manually Remove Old Versions of the PE
-
-When you upgrade PE, older versions are left in your `/opt/puppet/packages/public` folder. We recommend removing old PE files that are no longer needed from this folder.
-
 ## Puppet Server Known Issues
 
 > **Tip**: More information about Puppet Server can be found in the [Puppet Server docs](/puppetserver/1.0/services_master_puppetserver.html). Differences between PE and open source versions of Puppet Server are typically called out.

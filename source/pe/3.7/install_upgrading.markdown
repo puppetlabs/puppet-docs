@@ -12,14 +12,16 @@ canonical: "/pe/latest/install_upgrading.html"
 >
 > Currently upgrades to PE 3.7.0 are only supported from 3.3.2.
 >
-> We generally recommend updating your PE deployments in full before upgrading to a new version. 
+> We generally recommend updating your PE deployments in full before upgrading to a new version.
 
 The Puppet Installer script is used to perform both installations and upgrades. The script will check for a prior version and run as upgrader or installer as needed. You start by [downloading][downloading] and unpacking a tarball with the appropriate version of the PE packages for your system. Then, when you run the `puppet-enterprise-installer` script, the script will check for a prior installation of PE and, if it detects one, will ask if you want to proceed with the upgrade. The installer will then upgrade all the PE components (master, agent, etc.) it finds on the node to version 3.7.
 
-#### Upgrading a Monolithic Installation
-If you have a monolithic installation (with the master, PE console, and database components all on the same node), the installer will upgrade each component in the correct order, automatically. 
+>**Note**: When you upgrade PE, older versions are left in your `/opt/puppet/packages/public` folder. We recommend removing old PE files that are no longer needed from this folder.
 
-> **Note**: The new node classifier and role-based access control (RBAC) will be installed as part of the PE console. 
+#### Upgrading a Monolithic Installation
+If you have a monolithic installation (with the master, PE console, and database components all on the same node), the installer will upgrade each component in the correct order, automatically.
+
+> **Note**: The new node classifier and role-based access control (RBAC) will be installed as part of the PE console.
 
 #### Upgrading a Split Installation
 If you have a split installation (with the master, PE console, and database components on different nodes), the process involves the following steps, which **must be performed in the following order**:
@@ -29,7 +31,7 @@ If you have a split installation (with the master, PE console, and database comp
 3. Upgrade the PE Console
 4. Upgrade Puppet agent nodes
 
-> **Note**: When upgrading to PE 3.7.x, the node classifier and role-based access control (RBAC) will be installed on the PE console node. 
+> **Note**: When upgrading to PE 3.7.x, the node classifier and role-based access control (RBAC) will be installed on the PE console node.
 
 
 > ![windows logo](./images/windows-logo-small.jpg) To upgrade Windows agents, simply download and run the new MSI package as described in [Installing Windows Agents](./install_windows.html). However, be sure to upgrade your master, console, and database nodes first.
@@ -62,7 +64,7 @@ The upgrade script will run and provide detailed information as to what it insta
 
 #### Step 2: Upgrade PuppetDB
 
-On the node you provisioned for PuppetDB before starting the upgrade, unpack the PE 3.7 tarball and run the `puppet-enterprise-installer` script. 
+On the node you provisioned for PuppetDB before starting the upgrade, unpack the PE 3.7 tarball and run the `puppet-enterprise-installer` script.
 
 #### Step 3: Upgrade the Console
 
@@ -75,14 +77,14 @@ The installer will also ask for the following information:
 
 **Important**: If you will be using your own instance of PostgreSQL (as opposed to the instance PE can install) for the console and PuppetDB, it must be version 9.2 or higher.
 
-In addition if you are using an external PostgreSQL instance that is not managed by PE, please note the following: 
+In addition if you are using an external PostgreSQL instance that is not managed by PE, please note the following:
 
 1. You will need to create databases for RBAC, activity service, and the node classifier before upgrading.
-2. The databases you create need to have the citext extension enabled. 
+2. The databases you create need to have the citext extension enabled.
 
 > **Disabling/Enabling Live Management During an Upgrade**
 >
->The status of live management is not managed during an upgrade of PE unless you specifically indicate a change is needed in an answer file. In other words, if your previous version of PE had live management enabled (the PE default), it will remain enabled after you upgrade unless you add or change `q_disable_live_manangement={y|n}` in your answer file. 
+>The status of live management is not managed during an upgrade of PE unless you specifically indicate a change is needed in an answer file. In other words, if your previous version of PE had live management enabled (the PE default), it will remain enabled after you upgrade unless you add or change `q_disable_live_manangement={y|n}` in your answer file.
 >
 >Depending on your answer, the `disable_live_management` setting in `/etc/puppetlabs/puppet-dashboard/settings.yml` on the puppet master (or console node in a split install) will be set to either `true` or `false` after the upgrade is complete.
 >
@@ -92,7 +94,7 @@ In addition if you are using an external PostgreSQL instance that is not managed
 
 The simplest way to upgrade agents is to upgrade the `pe-agent` package in the repo your package manager (e.g., Satellite) is using. Similarly, if you are using the PE package repo hosted on the master, it will get upgraded when you upgrade the master. You can then [use the agent install script](./install_basic.html#installing-agents-using-pe-package-management) as usual to upgrade your agent.
 
-For nodes running an OS that doesn't support remote package repos (e.g., Windows) you'll need to use the installer script on the PE tarball as you did for the master, etc. On each node with a puppet agent, unpack the PE 3.7 tarball and run the `puppet-enterprise-installer` script. The installer will detect the version from which you are upgrading and answer as many installer questions as possible based on your existing deployment. Note that the agents on your puppet master, PE console, and PuppetDB nodes will have been updated already when you upgraded those nodes. 
+For nodes running an OS that doesn't support remote package repos (e.g., Windows) you'll need to use the installer script on the PE tarball as you did for the master, etc. On each node with a puppet agent, unpack the PE 3.7 tarball and run the `puppet-enterprise-installer` script. The installer will detect the version from which you are upgrading and answer as many installer questions as possible based on your existing deployment. Note that the agents on your puppet master, PE console, and PuppetDB nodes will have been updated already when you upgraded those nodes.
 
 PE services should restart automatically after the upgrade. But if you want to check that everything is working correctly, you can run `puppet agent -t` on your agents to ensure that everything is behaving as it was before upgrading. Generally speaking, it's a good idea to run puppet right away after an upgrade to make sure everything is hooked and has the latest configuration.
 
