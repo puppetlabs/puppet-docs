@@ -76,8 +76,6 @@ If this setting isn't set, the modulepath for the environment will be:
 
 That is, Puppet will add the environment's `modules` directory to the value of the [`basemodulepath` setting][basemodulepath] from [puppet.conf][], with the environment's modules getting priority. If the `modules` directory is empty or absent, Puppet will only use modules from directories in the `basemodulepath`. A directory environment will never use the global `modulepath` from [puppet.conf][].
 
-**Note:** If you are using Puppet Enterprise 3.3, you **must** ensure that `/opt/puppet/share/puppet/modules` is included in the modulepath. ([See the note on the Creating Directory Environments page.][pe_reqs])
-
 [pe_reqs]: ./environments_creating.html#puppet-enterprise-requirements
 
 ### `manifest`
@@ -85,8 +83,6 @@ That is, Puppet will add the environment's `modules` directory to the value of t
 The [main manifest][] the Puppet master will use when compiling catalogs for this environment. This can be one file or a directory of manifests to be evaluated in alphabetical order. Puppet manages this path as a directory if one exists or if the path ends with a / or .
 
 If this setting isn't set, Puppet will use the environment's `manifests` directory as the main manifest, even if it is empty or absent. A directory environment will never use the global `manifest` from [puppet.conf][].
-
-**Note:** If you are using Puppet Enterprise 3.3, you **must** ensure that the default filebucket resource is included in the main manifest. ([See the note on the Creating Directory Environments page.][pe_reqs])
 
 ### `config_version`
 
