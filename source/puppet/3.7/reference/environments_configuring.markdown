@@ -29,47 +29,7 @@ For more info about what environments do, see [About Directory Environments.][ab
 Enabling Directory Environments in Puppet Enterprise
 -----
 
-Directory environments are disabled by default in Puppet Enterprise. To enable them, you must:
-
-* Edit the config file
-* Create at least one directory environment
-
-### Edit puppet.conf
-
-Make sure the following settings are present in your [puppet.conf][] file:
-
-    [main]
-        environmentpath = $confdir/environments
-        default_manifest = $confdir/manifests
-        basemodulepath = $confdir/modules:/opt/puppet/share/puppet/modules
-
-The `environmentpath` setting can also be set to [another value of your choice][inpage_environmentpath].
-
-The `default_manifest` setting allows you to omit the `manifests` directory in the environments you create later.
-
-The `basemodulepath` setting is already present in fresh installations of Puppet Enterprise 3.3, but if you upgraded from a previous version of PE, you must set it manually.
-
-**The basemodulepath must include the `/opt/puppet/share/puppet/modules` directory.** Puppet Enterprise uses modules from this directory to configure orchestration and other features. You can also specify other directories with global modules that should be available in all environments; see the section below about settings for more details.
-
-Once you edit puppet.conf, directory environments will be enabled and config file environments will be disabled.
-
-### Create a Directory Environment
-
-You must have a directory environment for **every** environment that **any** nodes are assigned to. At minimum, you should have a `production` environment. Nodes assigned to nonexistent environments cannot fetch their catalogs.
-
-To create your first environment:
-
-* Create a directory named `/etc/puppetlabs/puppet/environments/production` (as well as the `environments` directory, if you haven't already).
-
-Once the `production` environment is created, you can add modules, additional [main manifest][main manifest] files, and an [environment.conf][] file to it.
-
-**Note:** In Puppet Enterprise 3.3, there are two statements that **must** exist in every environment's main manifest: a `filebucket` resource, and a `File` resource default.
-
-* See [the page on creating directory environments][create_environment] for full details.
-
-### Restart the Puppet Master
-
-Restart the `pe-httpd` service to make sure the Puppet master picks up its changed configuration.
+Directory environments are enabled by default in PE 3.7. If you are using an earlier version of PE, you will need to [enable them](/puppet/3.6/reference/environments_configuring.html#enabling-directory-environments-in-puppet-enterprise). 
 
 Enabling Directory Environments in Open Source Puppet
 -----
