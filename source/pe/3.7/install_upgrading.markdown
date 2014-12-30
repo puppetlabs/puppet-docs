@@ -16,7 +16,7 @@ canonical: "/pe/latest/install_upgrading.html"
 
 The Puppet Installer script is used to perform both installations and upgrades. The script will check for a prior version and run as upgrader or installer as needed. You start by [downloading][downloading] and unpacking a tarball with the appropriate version of the PE packages for your system. Then, when you run the `puppet-enterprise-installer` script, the script will check for a prior installation of PE and, if it detects one, will ask if you want to proceed with the upgrade. The installer will then upgrade all the PE components (master, agent, etc.) it finds on the node to version 3.7.
 
->**Note**: When you upgrade PE, older versions are left in your `/opt/puppet/packages/public` folder. We recommend removing old PE files that are no longer needed from this folder.
+>**Note**: When you upgrade PE, older versions are left in your `/opt/puppet/packages/public` folder. They won't cause any problems, but if you want to save space, you can remove the old PE files that are no longer needed from this folder.
 
 #### Upgrading a Monolithic Installation
 If you have a monolithic installation (with the master, PE console, and database components all on the same node), the installer will upgrade each component in the correct order, automatically.
