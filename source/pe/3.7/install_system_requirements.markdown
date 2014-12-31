@@ -23,17 +23,17 @@ Puppet Enterprise 3.7 supports the following systems:
 
 Operating system             | Version(s)                              | Arch          | Component(s)
 -----------------------------|-----------------------------------------|---------------|----------------------------
-Red Hat Enterprise Linux     | 4, 5, 6, & 7                                   |x86\_64 | all (RHEL 4 supports agent only)
-CentOS                       | 4, 5, 6, & 7                                 | x86 & x86\_64 | all (CentOS 4 supports agent only)
-Ubuntu LTS                   | 10.04, 12.04, & 14.04                           | i386 & amd64  | all
-Debian                       | Squeeze (6) & Wheezy (7)                | i386 & amd64  | all
-Oracle Linux                 | 4, 5, 6, & 7                                   | x86 & x86\_64 | all (Oracle Linux 4 supports agent only)
-Scientific Linux             | 4, 5 & 6                                   | x86 & x86\_64 | all (Scientific Linux 4 supports agent only)
-SUSE Linux Enterprise Server | 10 (SP4 only), 11 (SP1 and later), & 12                      | x86 & x86\_64 (10 also i386; 12 x86\_64 only) | all (SLES 10 supports agent only)
-Solaris                      | 10 (Update 9 or later) & 11          | SPARC & i386   | agent
-Microsoft Windows            | 2008, 2008R2, 7 Ultimate SP1, 8 Pro, 8.1 Pro, 2012, & 2012R2| x86 & x64 | agent
+Red Hat Enterprise Linux     | 4, 5, 6, 7                                   |x86\_64 | all (RHEL 4 supports agent only)
+CentOS                       | 4, 5, 6, 7                                 | x86 & x86\_64 | all (CentOS 4 supports agent only)
+Ubuntu LTS                   | 10.04, 12.04, 14.04                           | i386 & amd64  | all
+Debian                       | Squeeze (6), Wheezy (7)                | i386 & amd64  | all
+Oracle Linux                 | 4, 5, 6, 7                                   | x86 & x86\_64 | all (Oracle Linux 4 supports agent only)
+Scientific Linux             | 4, 5, 6                                   | x86 & x86\_64 | all (Scientific Linux 4 supports agent only)
+SUSE Linux Enterprise Server | 10 (SP4 only), 11 (SP1 and later), 12                      | x86 & x86\_64 (10 also i386; 12 x86\_64 only) | all (SLES 10 supports agent only)
+Solaris                      | 10 (Update 9 or later), 11          | SPARC & i386   | agent
+Microsoft Windows            | 2008, 2008R2, 7 Ultimate SP1, 8 Pro, 8.1 Pro, 2012, 2012R2| x86 & x64 | agent
 Microsoft Windows            | 2003, 2003R2                            | x86           | agent
-AIX                          | 5.3, 6.1, & 7.1                         | Power         | agent
+AIX                          | 5.3, 6.1, 7.1                         | Power         | agent
 Mac OS X                     | Mavericks (10.9)                        | x86_64         | agent
 
 
@@ -68,7 +68,7 @@ An evaluation environment is run on a monolithic installation and is suitable fo
 A small environment is run on a monolithic installation and is suitable for running PE on 500 nodes. We recommend that your hardware meets the following: 
 
 - 4-core server with 16 GB of RAM 
-  - Amazon EC2 m3.xlarge instances are adequate for each of these servers.
+  - Amazon EC2 m3.xlarge instance is adequate for this environment
 - At least 100 GB of free space in `/opt` on the PuppetDB node
 - At least 1 GB of free space in `/var` on each node 
 
