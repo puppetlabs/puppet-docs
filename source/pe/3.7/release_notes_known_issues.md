@@ -14,15 +14,15 @@ To find out which of these issues may affect you, run `/opt/puppet/bin/puppet --
 
 The following issues affect the currently shipped version of PE and all prior releases through the 3.x.x series, unless otherwise stated.
 
-## Installation/Upgrades Known Issues
+## Installation/Upgrade Known Issues
 
 ###  New PE 3.7.x MCO Server is Not Connecting With Older MCollective agents (posted 12/17/14)
 
 Customers are experiencing problems connecting PE 3.7 MCO clients, such as Live Management, with older MCO servers (Puppet agents). Specifically, any MCO servers running on PE 3.3.2 agents and older. To fix this problem, if you're using Hiera, add the following line to the Hiera data source that will affect these Puppet Agents. After you add this line, run Puppet on your agents:
 
 	puppet_enterprise::mcollective::server::activemq_heartbeat_interval: 0
-	
-If you're not using Hiera, you need to set it up. See the [Hiera documentation](/hiera/1/) for information.	
+
+If you're not using Hiera, you need to set it up. See the [Hiera documentation](/hiera/1/) for information.
 
 ### A Modified `auth.conf` File Will Cause Upgrade Failure
 
@@ -123,7 +123,7 @@ Any SMTP server that requires authentication, TLS, or runs over any port other t
 
 ## Puppet Server Known Issues
 
-> **Tip**: More information about Puppet Server can be found in the [Puppet Server docs](/puppetserver/1.0/services_master_puppetserver.html). Differences between PE and open source versions of Puppet Server are typically called out. 
+> **Tip**: More information about Puppet Server can be found in the [Puppet Server docs](/puppetserver/1.0/services_master_puppetserver.html). Differences between PE and open source versions of Puppet Server are typically called out.
 
 ### Puppet Server Run Issue when `/tmp/` Directory Mounted `noexec`
 
@@ -135,15 +135,15 @@ In some cases (especially for RHEL 7 installations) if the `/tmp/` directory is 
 
 To work around this issue, you can either mount the `/tmp/` directory without `noexec`, or you can choose a different directory to use as the temporary directory for the Puppet Server process. If you want to use a different directory, you can add an extra argument to the `$java_args` parameter of the `puppet_enterprise::profile::master` class using the PE console. Add `{"Djava.io.tmpdir=/var/tmp":""}` as the value for the `$java_args` parameter. Refer to [Editing Parameters](./console_classes_groups_making_changes.html#editing-parameters) for instructions on editing parameters in the console.
 
-### No Config Reload Handling Requests
+### No Config Reload Requests
 
-In the Puppet server servie, there is no signal handling mechanism that allows you to request a config reload and service refresh. In order to clear out the Ruby environments and reload the config, you must restart the service.
+The Puppet Server service doesn't have a non-disruptive way to request a reload of its configuration files. In order to reload its config, you must restart the service.
 
 Refer to [SERVER-15](https://tickets.puppetlabs.com/browse/SERVER-15).
 
-### Diffie-Helman HTTPS Client Issues
+### HTTPS Client Issues With Newer Apache `mod_ssl` Servers
 
-When configuring the Puppet server to use a report processor that involves HTTPS requests (e.g. to Foreman), there can be compatibility issues between the JVM HTTPS client and certain server HTTPS implementations (e.g. very recent versions of Apache `mod_ssl`). See [SERVER-17](https://tickets.puppetlabs.com/browse/SERVER-17) for known workarounds.
+When configuring the Puppet server to use a report processor that involves HTTPS requests (e.g. to Foreman), there can be compatibility issues between the JVM HTTPS client and certain server HTTPS implementations (e.g. very recent versions of Apache `mod_ssl`). This is usually indicated by a `Could not generate DH keypair` error in Puppet Server's logs. See [SERVER-17](https://tickets.puppetlabs.com/browse/SERVER-17) for known workarounds.
 
 
 ## PuppetDB/PostgreSQL Known Issues
