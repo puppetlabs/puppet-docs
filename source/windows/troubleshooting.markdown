@@ -190,7 +190,9 @@ Windows services support a short name and a display name. Make sure to use the s
 
 * "`err: /Stage[main]//Group[mygroup]/members: change from     to Administrators failed: Add OLE error code:8007056B in <Unknown> <No Description> HRESULT error code:0x80020009 Exception occurred.`"
 
-    This error will occur when attempting to add a group as a member of another local group, i.e. nesting groups. Although Active Directory supports <a href="http://msdn.microsoft.com/en-us/library/cc246068(v=prot.13).aspx">nested groups</a> for certain types of domain group accounts, Windows does not support nesting of local group accounts. As a result, you must only specify user accounts as members of a group.
+    This error will occur when attempting to add a group as a member of another local group, i.e. nesting groups.
+
+    This only applies to Puppet versions prior to 3.4.0. If you get this error, upgrade Puppet to a newer version.
 
 * "`err: /Stage[main]//Package[7zip]/ensure: change from absent to present failed: Execution of 'msiexec.exe /qn /norestart /i "c:\\7z920.exe"' returned 1620: T h i s   i n s t a l l a t i o n   p a c k a g e   c o u l d   n o t   b e   o p e n e d .  C o n t a c t   t h e   a p p l i c a t i o n   v e n d o r   t o   v e r i f y   t h a t   t h i s   i s  a   v a l i d   W i n d o w s   I n s t a l l e r   p a c k a g e .`"
 
