@@ -197,6 +197,8 @@ Support for SLES 12 will be added in a future release.
 
 ### Safari Certificate Handling May Prevent Console Access
 
+[client_cert_dialog]: ./images/client_cert_dialog.png
+
 Due to [Apache bug 53193](https://issues.apache.org/bugzilla/show_bug.cgi?id=53193) and the way Safari handles certificates, Puppet Labs recommends that PE 3.7 users avoid using Safari to access the PE console.
 
 If you need to use Safari, you may encounter the following dialog box the first time you attempt to access the console after installing/upgrading PE 3.7:
