@@ -101,4 +101,6 @@ This release provides support for SLES 10 for agent only installation.
 
 For more information, see the [system requirements](./install_system_requirements.html).
 
+### Enhanced Security For Using HTTP CA API Endpoints
 
+To use the Puppet master's `certificate_status` API endpoint, you now need to add your client to the whitelist in [`ca.conf`](/puppetserver/1.0/configuration.html#caconf). After you add your client to the whitelist, restart Puppet Server using `service pe-puppetserver restart`.
