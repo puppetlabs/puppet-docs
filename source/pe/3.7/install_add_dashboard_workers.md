@@ -11,8 +11,6 @@ It's fairly trivial to take advantage of this functionality. You simply need to 
 
 > **Note**: If you are performing this procedure after upgrading to PE 3.7.1, you'll need to set some parameters in the `puppet_enterprise` class in the **PE Infrastructure** node group. Check the [preconfigured PE Infrastructure Node Group](./console_classes_groups_preconfigured_groups.html#the-pe-infrastructure-node-group) for details. 
 
-console_classes_groups_preconfigured_groups.html#the-pe-infrastructure-node-group
-
 ### Step 1: Set up nodes
 
 Install PE Agent on Nodes
