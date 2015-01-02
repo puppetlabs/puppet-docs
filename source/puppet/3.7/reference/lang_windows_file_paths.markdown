@@ -28,7 +28,7 @@ The following guidelines will help you use backslashes safely in Windows file pa
 
 ### When to Use Each Kind of Slash
 
-If Puppet itself is interpreting the file path, forward slashes are generally okay. If the file path is being passed directly to a Windows program, backslashes may be mandatory. If the file path is meant for the puppet master, forward-slashes may be mandatory.
+If Puppet itself is interpreting the file path, forward slashes are generally okay. If the file path is being passed directly to a Windows program, backslashes may be mandatory. If the file path is meant for the Puppet master, forward-slashes may be mandatory.
 
 The most notable instances of each kind of path are listed below.
 

@@ -20,7 +20,7 @@ We recommend installing [Process Explorer](http://en.wikipedia.org/wiki/Process_
 
 ### Logging
 
-As of Puppet 2.7.x, messages from the `puppetd` log file are available via the Windows Event Viewer (choose __Windows Logs__ > __Application__). To enable debugging, stop the puppet service and restart it as:
+As of Puppet 2.7.x, messages from the `puppetd` log file are available via the Windows Event Viewer (choose __Windows Logs__ > __Application__). To enable debugging, stop the Puppet service and restart it as:
 
     c:\>sc stop puppet && sc start puppet --debug --trace
 
@@ -30,7 +30,7 @@ Puppet's windows service component also writes to the `windows.log` within the s
 
 ### Installation
 
-The Puppet MSI package will not overwrite an existing entry in the puppet.conf file.  As a result, if you uninstall the package, then reinstall the package using a different puppet master hostname, Puppet won't actually apply the new value if the previous value still exists in [`<data directory>`][datadirectory]`\etc\puppet.conf`.
+The Puppet MSI package will not overwrite an existing entry in the puppet.conf file.  As a result, if you uninstall the package, then reinstall the package using a different Puppet master hostname, Puppet won't actually apply the new value if the previous value still exists in [`<data directory>`][datadirectory]`\etc\puppet.conf`.
 
 In general, we've taken the approach of preserving configuration data on the system when doing an upgrade, uninstall or reinstall.
 
@@ -86,7 +86,7 @@ UNC paths are not currently supported. However, the path can be mapped as a netw
 
 ### Case-insensitivity
 
-Several resources are case-insensitive on Windows (file, user, group). When establishing dependencies among resources, make sure to specify the case consistently. Otherwise, puppet may not be able to resolve dependencies correctly. For example, applying the following manifest will fail, because puppet does not recognize that FOOBAR and foobar are the same user:
+Several resources are case-insensitive on Windows (file, user, group). When establishing dependencies among resources, make sure to specify the case consistently. Otherwise, Puppet may not be able to resolve dependencies correctly. For example, applying the following manifest will fail, because Puppet does not recognize that FOOBAR and foobar are the same user:
 
     file { 'c:\foo\bar':
       ensure => directory,
@@ -123,7 +123,7 @@ But this is not:
       group  => 'Adminstrators',
     }
 
-The latter case will remove any permissions the Administrators group previously had to the file, resulting in the effective permissions of 0700. And since puppet runs as a service under the "SYSTEM" account, not "Administrator," Puppet itself will not be able to manage the file the next time it runs!
+The latter case will remove any permissions the Administrators group previously had to the file, resulting in the effective permissions of 0700. And since Puppet runs as a service under the "SYSTEM" account, not "Administrator," Puppet itself will not be able to manage the file the next time it runs!
 
 To get out of this state, have Puppet execute the following (with an exec resource) to reset the file permissions:
 
@@ -170,11 +170,11 @@ By default, powershell enforces a restricted execution policy which prevents the
 
 ### Package
 
-The source of an MSI package must be a file on either a local filesystem or on a network mapped drive. It does not support URI-based sources, though you can achieve a similar result by defining a file whose source is the puppet master and then defining a package whose source is the local file.
+The source of an MSI package must be a file on either a local filesystem or on a network mapped drive. It does not support URI-based sources, though you can achieve a similar result by defining a file whose source is the Puppet master and then defining a package whose source is the local file.
 
 ### Service
 
-Windows services support a short name and a display name. Make sure to use the short name in puppet manifests. For example use `wuauserv`, not `Automatic Updates`. You can use `sc query` to get a list of services and their various names.
+Windows services support a short name and a display name. Make sure to use the short name in Puppet manifests. For example use `wuauserv`, not `Automatic Updates`. You can use `sc query` to get a list of services and their various names.
 
 ## Error Messages
 
@@ -191,7 +191,7 @@ Windows services support a short name and a display name. Make sure to use the s
 
 * "`Service 'Puppet Agent' (puppet) failed to start. Verify that you have sufficient privileges to start system services.`"
 
-    This can occur when installing puppet on a UAC system from a non-elevated account. Although the installer displays the UAC prompt to install puppet, it does not elevate when trying to start the service. Make sure to run from an elevated `cmd.exe` process when installing the MSI.
+    This can occur when installing Puppet on a UAC system from a non-elevated account. Although the installer displays the UAC prompt to install puppet, it does not elevate when trying to start the service. Make sure to run from an elevated `cmd.exe` process when installing the MSI.
 
 * "`Cannot run on Microsoft Windows without the sys-admin, win32-process, win32-dir, win32-service and win32-taskscheduler gems.`"
 
@@ -203,7 +203,7 @@ Windows services support a short name and a display name. Make sure to use the s
 
 * "`err: /Stage[main]//Exec[C:/tmp/foo.exe]/returns: change from notrun to 0 failed: CreateProcess() failed: Access is denied.`"
 
-    This error can occur when requesting an executable from a remote puppet master that cannot be executed. For a file to be executable on Windows, set the user/group executable bits accordingly on the puppet master (or alternatively, specify the mode of the file as it should exist on the Windows host):
+    This error can occur when requesting an executable from a remote Puppet master that cannot be executed. For a file to be executable on Windows, set the user/group executable bits accordingly on the Puppet master (or alternatively, specify the mode of the file as it should exist on the Windows host):
 
         file { "C:/tmp/foo.exe":
           source => "puppet:///modules/foo/foo.exe",
@@ -223,7 +223,7 @@ Windows services support a short name and a display name. Make sure to use the s
 
 * "`err: Could not request certificate: The certificate retrieved from the master does not match the agent's private key.`"
 
-    This error is usually a sign that the master has already issued a certificate to the agent. This can occur if the agent's SSL directory is deleted after it has retrieved a certificate from the master, or when running the agent in two different security contexts. For example, running puppet agent as a service and then trying to run `puppet agent` from the command line with non-elevated security. Specifically, this would happen if you've selected `Start Command Prompt with Puppet` but did not elevate privileges using `Run as Administrator`.
+    This error is usually a sign that the master has already issued a certificate to the agent. This can occur if the agent's SSL directory is deleted after it has retrieved a certificate from the master, or when running the agent in two different security contexts. For example, running Puppet agent as a service and then trying to run `puppet agent` from the command line with non-elevated security. Specifically, this would happen if you've selected `Start Command Prompt with Puppet` but did not elevate privileges using `Run as Administrator`.
 
 * "`err: Could not evaluate: Could not retrieve information from environment production source(s) puppet://puppet.domain.com/plugins.`"
 

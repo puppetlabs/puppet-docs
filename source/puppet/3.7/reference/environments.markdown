@@ -14,15 +14,15 @@ canonical: "/puppet/latest/reference/environments.html"
 [dir_env_configure]: ./environments_configuring.html
 [dir_env_create]: ./environments_creating.html
 
-Environments are isolated groups of puppet agent nodes. A puppet master server can serve each environment with completely different [main manifests][manifest_dir] and [modulepaths][modulepath].
+Environments are isolated groups of Puppet agent nodes. A Puppet master server can serve each environment with completely different [main manifests][manifest_dir] and [modulepaths][modulepath].
 
-This frees you to use different versions of the same modules for different populations of nodes, which is useful for testing changes to your Puppet code before implementing them on production machines. (You could also do this by running a separate puppet master for testing, but using environments is often easier.)
+This frees you to use different versions of the same modules for different populations of nodes, which is useful for testing changes to your Puppet code before implementing them on production machines. (You could also do this by running a separate Puppet master for testing, but using environments is often easier.)
 
 
 Directory Environments vs. Config File Environments
 -----
 
-There are two ways to set up environments on a puppet master: [**directory environments,**][dir_env_configure] and [**config file environments.**][config_file_envs] Note that these **are mutually exclusive** --- enabling one will completely disable the other.
+There are two ways to set up environments on a Puppet master: [**directory environments,**][dir_env_configure] and [**config file environments.**][config_file_envs] Note that these **are mutually exclusive** --- enabling one will completely disable the other.
 
 Directory environments are easier to use and will eventually replace config file environments completely.
 
@@ -36,7 +36,7 @@ For details, see [the page on assigning nodes to environments.][assign]
 Referencing the Environment in Manifests
 -----
 
-In Puppet manifests, you can get the name of the current environment by using the `$environment` variable, which is [set by the puppet master.][env_var]
+In Puppet manifests, you can get the name of the current environment by using the `$environment` variable, which is [set by the Puppet master.][env_var]
 
 
 About Directory Environments
@@ -56,7 +56,7 @@ To start using directory environments, do the following:
 
 ### Unconfigured Environments Aren't Allowed
 
-If a node is assigned to an environment which doesn't exist --- that is, there is no directory of that name in any of the `environmentpath` directories --- the puppet master will fail compilation of its catalog.
+If a node is assigned to an environment which doesn't exist --- that is, there is no directory of that name in any of the `environmentpath` directories --- the Puppet master will fail compilation of its catalog.
 
 ### They Disable Config File Environments
 

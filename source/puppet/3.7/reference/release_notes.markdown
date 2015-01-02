@@ -32,7 +32,7 @@ How to Upgrade
 
 Before upgrading, **look at the table of contents above and see if there are any "UPGRADE WARNING" or "Upgrade Note" items for the new version.** Although it's usually safe to upgrade from any 3.x version to any later 3.x version, there are sometimes special conditions that can cause trouble.
 
-We always recommend that you **upgrade your puppet master servers before upgrading the agents they serve.**
+We always recommend that you **upgrade your Puppet master servers before upgrading the agents they serve.**
 
 If you're upgrading from Puppet 2.x, please [learn about major upgrades of Puppet first!][upgrade] We have important advice about upgrade plans and package management practices. The short version is: test first, roll out in stages, give yourself plenty of time to work with. Also, read the [release notes for Puppet 3][puppet_3] for a list of all the breaking changes made between the 2.x and 3.x series.
 
@@ -389,7 +389,7 @@ As part of this expanded Windows support, Puppet on Windows now uses Ruby 2.0. W
 * [PUP-2881: Upgrade win32-taskscheduler (or replace)](https://tickets.puppetlabs.com/browse/PUP-2881)
 * [PUP-2889: Upgrade win32-eventlog](https://tickets.puppetlabs.com/browse/PUP-2889)
 * [PUP-3060: Remove Warning on Ruby 2.0 / Windows about "DL is deprecated, please use Fiddle"](https://tickets.puppetlabs.com/browse/PUP-3060)
-* [PUP-1884: Move puppet dependencies on windows into the puppet repo](https://tickets.puppetlabs.com/browse/PUP-1884)
+* [PUP-1884: Move Puppet dependencies on windows into the Puppet repo](https://tickets.puppetlabs.com/browse/PUP-1884)
 
 ### Feature: Early Support For New Compiled Facter Implementation
 
@@ -403,7 +403,7 @@ Currently, the natively compiled Facter only supports Linux and OS X.
 
 [cfacter]: https://github.com/puppetlabs/cfacter
 
-* [PUP-2104: Make puppet able to configure a facter implementation to use](https://tickets.puppetlabs.com/browse/PUP-2104)
+* [PUP-2104: Make Puppet able to configure a facter implementation to use](https://tickets.puppetlabs.com/browse/PUP-2104)
 
 ### Feature: Agent-Side Pre-Run Resource Validation
 
@@ -647,7 +647,7 @@ When running `puppet master --compile`, Puppet master used to ignore its `--logd
 
 The bug affecting module builds is resolved; no more workaround is required. You can now exclude files from your module build using either `.gitignore` or `.pmtignore` files. You can also use `--ignorechanges` flag to ignore any changes made to a module's metadata.json file when upgrading or uninstalling the module. And, finally, symlinks are no longer allowed in modules. The module build command will error on a module with symlinks.
 
-* [PUP-1186: puppet module tool on windows will (sometimes) create a PaxHeader directory](https://tickets.puppetlabs.com/browse/PUP-1186)
+* [PUP-1186: Puppet module tool on windows will (sometimes) create a PaxHeader directory](https://tickets.puppetlabs.com/browse/PUP-1186)
 * [PUP-2078: Puppet module install --force does not re-install dependencies](https://tickets.puppetlabs.com/browse/PUP-2078)
 * [PUP-2079: puppet module generate can't copy template files without parsing/renaming them](https://tickets.puppetlabs.com/browse/PUP-2079)
 * [PUP-2691: Real-world module skeletons still use the 'description' metadata property](https://tickets.puppetlabs.com/browse/PUP-2691)
@@ -682,7 +682,7 @@ In other performance news: Puppet no longer searches the disk in a situation whe
 
 * [PUP-744: Persistent HTTP(S) connections](https://tickets.puppetlabs.com/browse/PUP-744)
 * [PUP-2924: Puppet searches disk for whit classes](https://tickets.puppetlabs.com/browse/PUP-2924)
-* [PUP-2860: Optimize startup of puppet apply (future parser)](https://tickets.puppetlabs.com/browse/PUP-2860)
+* [PUP-2860: Optimize startup of Puppet apply (future parser)](https://tickets.puppetlabs.com/browse/PUP-2860)
 * [PUP-3032: Setting to cache `load_library` failures](https://tickets.puppetlabs.com/browse/PUP-3032)
 * [PUP-1044: FileBucket should not keep files in memory](https://tickets.puppetlabs.com/browse/PUP-1044)
 
@@ -712,10 +712,10 @@ Relevant tickets:
 
 We've improved Puppet's behavior and error messages when trying to use an environment that doesn't exist. Also, the [`v2.0/environments` API endpoint][env_api] now includes the `config_version` and `environment_timeout` settings.
 
-* [PUP-2214: Many puppet commands fail when using a configured or requested directory environment that doesn't exist.](https://tickets.puppetlabs.com/browse/PUP-2214)
+* [PUP-2214: Many Puppet commands fail when using a configured or requested directory environment that doesn't exist.](https://tickets.puppetlabs.com/browse/PUP-2214)
 * [PUP-2426: Puppet's v2 environment listing does not display config_version and environment_timeout as well.](https://tickets.puppetlabs.com/browse/PUP-2426)
 * [PUP-2519: Settings catalog should create the default environment if environmentpath set.](https://tickets.puppetlabs.com/browse/PUP-2519)
-* [PUP-2631: Running the puppet agent against a nonexistent environment produces an overly verbose error message.](https://tickets.puppetlabs.com/browse/PUP-2631)
+* [PUP-2631: Running the Puppet agent against a nonexistent environment produces an overly verbose error message.](https://tickets.puppetlabs.com/browse/PUP-2631)
 
 
 ### Miscellaneous Bug Fixes
@@ -727,7 +727,7 @@ The `puppet` command now exits 1 when given an invalid subcommand, instead of ex
 * [PUP-2506: Error when evaluating #type in Puppet::Error message interpolation for Puppet::Resource::Ral](https://tickets.puppetlabs.com/browse/PUP-2506)
 * [PUP-2622: Exit code 0 on wrong command](https://tickets.puppetlabs.com/browse/PUP-2622)
 * [PUP-2831: Puppet does not work with RGen 0.7.0](https://tickets.puppetlabs.com/browse/PUP-2831)
-* [PUP-2994: puppet parser validate shouldn't puke on exported resources](https://tickets.puppetlabs.com/browse/PUP-2994)
+* [PUP-2994: Puppet parser validate shouldn't puke on exported resources](https://tickets.puppetlabs.com/browse/PUP-2994)
 * [PUP-1843: 3.4.0 broke compatibility with plugins using the hiera indirector terminus](https://tickets.puppetlabs.com/browse/PUP-1843)
 * [PUP-3153: Need to guard against `nil` when calling `Uniquefile#close!` in `ensure` blocks](https://tickets.puppetlabs.com/browse/PUP-3153)
 

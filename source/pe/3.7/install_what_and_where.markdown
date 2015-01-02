@@ -11,7 +11,7 @@ canonical: "/pe/latest/install_what_and_where.html"
 
 Your PE license file (which was emailed to you when you purchased Puppet Enterprise) should be placed in `/etc/puppetlabs/license.key`.
 
-Puppet Enterprise can be evaluated with a complementary ten-node license; beyond that, a commercial per-node license is required for use. A license key file will have been emailed to you after your purchase, and the puppet master will look for this key at `/etc/puppetlabs/license.key`. Puppet will log warnings if the license is expired or exceeded, and you can view the status of your license by running `puppet license` at the command line on the puppet master.
+Puppet Enterprise can be evaluated with a complementary ten-node license; beyond that, a commercial per-node license is required for use. A license key file will have been emailed to you after your purchase, and the Puppet master will look for this key at `/etc/puppetlabs/license.key`. Puppet will log warnings if the license is expired or exceeded, and you can view the status of your license by running `puppet license` at the command line on the Puppet master.
 
 To purchase a license, please see the [Puppet Enterprise pricing page](http://www.puppetlabs.com/puppet/how-to-buy/), or contact Puppet Labs at <sales@puppetlabs.com> or (877) 575-9775. For more information on licensing terms, please see [the licensing FAQ](http://www.puppetlabs.com/licensing-faq/). If you have misplaced or never received your license key, please contact <sales@puppetlabs.com>.
 
@@ -41,7 +41,7 @@ On \*nix nodes, all PE software (excluding config files and generated data) is i
 On Windows nodes, all PE software is installed in the "Puppet Enterprise" subdirectory of [the standard 32-bit applications directory](./install_windows.html#program-directory)
 
 * Executable binaries on \*nix are in `/opt/puppet/bin` and `/opt/puppet/sbin`.
-* The Puppet modules included with PE are installed on the puppet master server in `/opt/puppet/share/puppet/modules`. Don't modify anything in this directory or add modules of your own. Instead, install them in `/etc/puppetlabs/puppet/environments/<environment>/modules`.
+* The Puppet modules included with PE are installed on the Puppet master server in `/opt/puppet/share/puppet/modules`. Don't modify anything in this directory or add modules of your own. Instead, install them in `/etc/puppetlabs/puppet/environments/<environment>/modules`.
 * Orchestration plugins are installed in `/opt/puppet/libexec/mcollective/mcollective` on \*nix and in [`<COMMON_APPDATA>`](./install_windows.html#data-directory)`\PuppetLabs\mcollective\etc\plugins\mcollective` on Windows. If you are adding new plugins to your PE agent nodes, you should [distribute them via Puppet as described in the "Adding Actions" page of this manual](./orchestration_adding_actions.html).
 
 ### Dependencies
@@ -71,16 +71,16 @@ The software distributed with Puppet Enterprise generates the following log file
 
 #### Puppet Master Logs
 
-The puppet master service's logging are contained in two files:
+The Puppet master service's logging are contained in two files:
 
 * `/var/log/pe-puppetserver/puppetserver.log`: the Puppet master application logs its activity here; this is where things like compilation errors and deprecation warnings can be found.
 * `/var/log/pe-puppetserver/pe-puppetserver-daemon.log`: this is where fatal errors or crash reports can be found. 
 
 #### Puppet Agent Logs
 
-On *nix nodes, the puppet agent service logs its activity to the syslog service. Your syslog configuration dictates where these messages will be saved, but the default location is `/var/log/messages` on Linux, `/var/log/system.log` on Mac OS X, and `/var/adm/messages` on Solaris.
+On *nix nodes, the Puppet agent service logs its activity to the syslog service. Your syslog configuration dictates where these messages will be saved, but the default location is `/var/log/messages` on Linux, `/var/log/system.log` on Mac OS X, and `/var/adm/messages` on Solaris.
 
-On Windows nodes, the puppet agent service logs its activity to the Windows Event Log. You can view its logs by browsing the Event Viewer. (Control Panel → System and Security → Administrative Tools → Event Viewer)
+On Windows nodes, the Puppet agent service logs its activity to the Windows Event Log. You can view its logs by browsing the Event Viewer. (Control Panel → System and Security → Administrative Tools → Event Viewer)
 
 #### ActiveMQ Logs
 
@@ -170,13 +170,13 @@ For more details, you can also refer to the man page for a given command or subc
 
 PE uses the following services:
 
-- **`pe-activemq`** --- The ActiveMQ message server, which passes messages to the MCollective servers on agent nodes. Runs on servers with the puppet master component.
+- **`pe-activemq`** --- The ActiveMQ message server, which passes messages to the MCollective servers on agent nodes. Runs on servers with the Puppet master component.
 - **`pe-console-services`** --- Manages and serves the PE console.
-- **`pe-puppetserver`** --- The puppet master server, which manages the puppet master component.
+- **`pe-puppetserver`** --- The Puppet master server, which manages the Puppet master component.
 - **`pe-httpd`** --- Apache 2, serves as a reverse-proxy to the PE console.
 - **`pe-mcollective`** --- The orchestration (MCollective) daemon, which listens for orchestration messages and invokes actions. Runs on every agent node.
-- **`pe-memcached`** --- The puppet memcached daemon. Runs on the same node as the PE console.
-- **`pe-puppet`** (on EL and Debian-based platforms) --- The puppet agent daemon. Runs on every agent node.
+- **`pe-memcached`** --- The Puppet memcached daemon. Runs on the same node as the PE console.
+- **`pe-puppet`** (on EL and Debian-based platforms) --- The Puppet agent daemon. Runs on every agent node.
 - **`pe-puppet-dashboard-workers`** --- A supervisor that manages the console's background processes. Runs on servers with the console component.
 - **`pe-puppetdb`** and **`pe-postgresql`** --- Daemons that manage and serve the database components. Note that pe-postgresql is only created if we install and manage PostgreSQL for you.
 
@@ -184,8 +184,8 @@ PE uses the following services:
 
 PE creates the following users:
 
-- **`peadmin`** --- An administrative account which can invoke orchestration actions. This is the only PE user account intended for use in a login shell. See [the "Invoking Orchestration Actions" page of this manual](./orchestration_invoke_cli.html) for more about this user. This user exists on servers with the puppet master component.
-- **`pe-puppet`**  --- A system user that runs the puppet master processes spawned by Passenger.
+- **`peadmin`** --- An administrative account which can invoke orchestration actions. This is the only PE user account intended for use in a login shell. See [the "Invoking Orchestration Actions" page of this manual](./orchestration_invoke_cli.html) for more about this user. This user exists on servers with the Puppet master component.
+- **`pe-puppet`**  --- A system user that runs the Puppet master processes spawned by Passenger.
 - **`pe-apache`** --- A system user that runs Apache (`pe-httpd`).
 - **`pe-activemq`** --- A system user that runs the ActiveMQ message bus used by MCollective.
 - **`puppet-dashboard`** --- A system user that runs the console processes spawned by Passenger.
@@ -200,7 +200,7 @@ PE creates the following users:
 PE creates the following groups:
 
 - **`peadmin`** --- An administrative group which can invoke orchestration actions.
-- **`pe-puppet`** --- A system group that runs the puppet master processes spawned by Passenger.
+- **`pe-puppet`** --- A system group that runs the Puppet master processes spawned by Passenger.
 - **`pe-apache`** --- A system group that runs Apache (`pe-httpd`).
 - **`pe-activemq`** --- A system group that runs the ActiveMQ message bus used by MCollective.
 - **`puppet-dashboard`** --- A system group that runs the console processes spawned by Passenger.
@@ -214,12 +214,12 @@ PE creates the following groups:
 
 During install, PE generates the following certificates (can be found at `/etc/puppetlabs/puppet/ssl/certs`):
 
-- **`pe-internal-dashboard`** ---  The certificate for the puppet dashboard.
+- **`pe-internal-dashboard`** ---  The certificate for the Puppet Dashboard.
 - **`<user-entered console certname>`** ---  The certificate for the PE console. Only generated if the user has chosen to install the console in a split component configuration.
 - **`<user entered PuppetDB certname>`** ---  The certificate for the database component. Only generated if the user has chosen to install the database in a split component configuration.
-- **` <user-entered master certname> `** --- This certificate is either generated at install if the puppet master and console are the same machine or is signed by the master if the console is on a separate machine.
-- **`pe-internal-mcollective-servers`** --- A shared certificate generated on the puppet master and shared to all agent nodes.
-- **`pe-internal-peadmin-mcollective-client`** --- The orchestration certificate for the peadmin account on the puppet master.
+- **` <user-entered master certname> `** --- This certificate is either generated at install if the Puppet master and console are the same machine or is signed by the master if the console is on a separate machine.
+- **`pe-internal-mcollective-servers`** --- A shared certificate generated on the Puppet master and shared to all agent nodes.
+- **`pe-internal-peadmin-mcollective-client`** --- The orchestration certificate for the peadmin account on the Puppet master.
 - **`pe-internal-puppet-console-mcollective-client`** --- The orchestration certificate for the PE console/live management
 - **`pe-internal-classifier`** --- The certificate for the node classifier. 
 

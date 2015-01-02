@@ -7,7 +7,7 @@ canonical: "/pe/latest/console_accessing.html"
 
 The console is Puppet Enterprise's web GUI. Use it to:
 
-* Manage node requests to join the puppet deployment
+* Manage node requests to join the Puppet deployment
 * Assign Puppet classes to nodes and groups
 * View reports and activity graphs
 * Trigger Puppet runs on demand

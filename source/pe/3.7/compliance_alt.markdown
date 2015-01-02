@@ -15,7 +15,7 @@ Compliance Alternate Workflow
 #### Workflow In Brief
 
  - _Instead of writing audit manifests:_ Write manifests that describe the desired baseline state(s). This is identical to writing Puppet manifests to _manage_ systems: you use the resource declaration syntax to describe the desired state of each significant resource.
- - _Instead of running puppet agent in its default mode:_ Make it sync the significant resources in **no-op mode,** which can be done for the entire Puppet run, or per-resource. (See below.) This causes Puppet to detect changes and _simulate_ changes, without automatically enforcing the desired state.
+ - _Instead of running Puppet agent in its default mode:_ Make it sync the significant resources in **no-op mode,** which can be done for the entire Puppet run, or per-resource. (See below.) This causes Puppet to detect changes and _simulate_ changes, without automatically enforcing the desired state.
  - _In the console:_ Look for "pending" events and node status. "Pending" is how the console represents detected differences and simulated changes.
 
 #### Controlling Your Manifests
@@ -36,7 +36,7 @@ Compliance Alternate Workflow
          }
 
      This allows you to mix enforced resources and no-op resources in the same Puppet run.
- * To do an entire Puppet run in no-op, set [the `noop` setting](/references/3.7.latest/configuration.html#no-op) to `true`. This can be done in the `[agent]` block of puppet.conf, or as a `--noop` command-line flag. If you are running puppet agent in the default daemon mode, you would set no-op in puppet.conf.
+ * To do an entire Puppet run in no-op, set [the `noop` setting](/references/3.7.latest/configuration.html#no-op) to `true`. This can be done in the `[agent]` block of puppet.conf, or as a `--noop` command-line flag. If you are running Puppet agent in the default daemon mode, you would set no-op in puppet.conf.
 
 #### In the Console
 
@@ -62,7 +62,7 @@ Compliance Alternate Workflow
 
  When a Puppet node reports no-op events, this means someone has made changes to a no-op resource that has a desired state desribed. Generally, this either means an unauthorized change has been made, or an authorized change was made but the manifests have not yet been updated to contain the change. You will need to either:
 
- * Revert the system to the desired state (possibly by running puppet agent with `--no-noop`).
+ * Revert the system to the desired state (possibly by running Puppet agent with `--no-noop`).
  * Edit your manifests to contain the new desired state, and check the changed manifests into version control.
 
 #### Before Detection

@@ -117,7 +117,7 @@ For more information, and instructions on changing the `ordering` setting, refer
 
 The latest version of the Puppet core (Puppet 3.6) deprecates the classic [config-file environments][config_envir] in favor of the new and improved [directory environments][dir_environments]. Over time, both Puppet open source and Puppet Enterprise will make more extensive use of this pattern.
 
-Environments are isolated groups of puppet agent nodes. This frees you to use different versions of the same modules for different populations of nodes, which is useful for testing changes to your Puppet code before implementing them on production machines. (You could also do this by running a separate puppet master for testing, but using environments is often easier.)
+Environments are isolated groups of Puppet agent nodes. This frees you to use different versions of the same modules for different populations of nodes, which is useful for testing changes to your Puppet code before implementing them on production machines. (You could also do this by running a separate Puppet master for testing, but using environments is often easier.)
 
 In this release of PE, please note that if you define environment blocks or use any of the `modulepath`, `manifest`, and `config_version` settings in `puppet.conf`, you will see deprecation warnings intended to prepare you for these changes. Configuring PE to use *no* environments will also produce deprecation warnings.
 
@@ -150,7 +150,7 @@ Using the `modulepath`, `manifest`, or `config_version` settings will raise a de
     Warning: Setting config_version is deprecated in puppet.conf. See http://links.puppetlabs.com/env-settings-deprecations
         (at /usr/lib/ruby/site_ruby/1.8/puppet/settings.rb:1065:in `each')
 
-> **Note**: Executing puppet commands will raise the `modulepath` deprecation warning.
+> **Note**: Executing Puppet commands will raise the `modulepath` deprecation warning.
 
 > **About Disabling Deprecation Warnings**
 >
@@ -184,7 +184,7 @@ This release provides full support for Ubuntu 14.04 LTS for all applicable PE fe
 
 ### Support for Mac OS X (Agent Only)
 
-The puppet agent can now be installed on nodes running Mac OS X Mavericks (10.9). Other components (e.g., master) are not supported. For more information, see the [system requirements](./install_system_requirements.html) and the [Mac OS X installation instructions](./install_osx.html).
+The Puppet agent can now be installed on nodes running Mac OS X Mavericks (10.9). Other components (e.g., master) are not supported. For more information, see the [system requirements](./install_system_requirements.html) and the [Mac OS X installation instructions](./install_osx.html).
 
 ### Support for Windows 2012 R2 (Agent Only)
 

@@ -7,7 +7,7 @@ canonical: "/pe/latest/quick_start_module_install_nix.html"
 
 ### Overview
 
-In this guide, you'll install the puppetlabs-apache module, a Puppet Enterprise supported module. Modules contain [classes](../puppet/3/reference/lang_classes.html), which are named chunks of puppet code and are the primary means by which Puppet Enterprise configures and manages nodes.  While you can use any module available on the Forge, PE customers can take advantage of [supported modules](http://forge.puppetlabs.com/supported); these modules--designed to make common services easier--are tested, and maintained by Puppet Labs.
+In this guide, you'll install the puppetlabs-apache module, a Puppet Enterprise supported module. Modules contain [classes](../puppet/3/reference/lang_classes.html), which are named chunks of Puppet code and are the primary means by which Puppet Enterprise configures and manages nodes.  While you can use any module available on the Forge, PE customers can take advantage of [supported modules](http://forge.puppetlabs.com/supported); these modules--designed to make common services easier--are tested, and maintained by Puppet Labs.
 
 In the [Module Writing Basics for Linux QSG](./quick_writing_nix.html) you'll learn more about modules, including customizing and writing your own modules on either [Windows](./quick_writing_windows.html) or [*nix](./quick_writing_nix.html) platforms.
 

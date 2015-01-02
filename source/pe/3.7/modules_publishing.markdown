@@ -80,7 +80,7 @@ Follow the directions to [generate a new module](https://docs.puppetlabs.com/pup
 
 It's not unusual to have some files in your module that you want to exclude from your build. You may exclude files by including them in .gitgnore or .pmtignore. To be read during the build process, your .pmtignore or .gitignore file must be in the module's root directory.
 
-If you have both a .pmtignore and a .gitignore file, the puppet module tool will read the .pmtignore file over the .gitignore.
+If you have both a .pmtignore and a .gitignore file, the Puppet module tool will read the .pmtignore file over the .gitignore.
 
 ###Remove Symlinks
 

@@ -66,7 +66,7 @@ You can also [allow your site's custom applications to invoke orchestration acti
 
 In addition to the main action invocation interfaces, Puppet Enterprise provides special interfaces for two of the most useful orchestration tasks:
 
-* [Remotely controlling the puppet agent and triggering Puppet runs](./orchestration_puppet.html)
+* [Remotely controlling the Puppet agent and triggering Puppet runs](./orchestration_puppet.html)
 * [Browsing and comparing resources across your nodes](./orchestration_resources.html)
 
 
@@ -77,9 +77,9 @@ Orchestration Internals
 
 The orchestration engine consists of the following parts:
 
-- The `pe-activemq` service (which runs on the puppet master server) routes all orchestration-related messages.
+- The `pe-activemq` service (which runs on the Puppet master server) routes all orchestration-related messages.
 - The `pe-mcollective` service (which runs on every agent node) listens for authorized commands and invokes actions in response. It relies on the available agent plugins for its set of possible actions.
-- The `mco` command (available to the `peadmin` user account on the puppet master server) and the live management page of the PE console can issue authorized orchestration commands to any number of nodes.
+- The `mco` command (available to the `peadmin` user account on the Puppet master server) and the live management page of the PE console can issue authorized orchestration commands to any number of nodes.
 
 ### Configuration
 
@@ -98,11 +98,11 @@ In short, all commands and replies are encrypted in transit, and only a few auth
 
 If you extend orchestration by [integrating external applications][integrate], you can limit the actions each application has access to by distributing policy files; [see the Configuring Orchestration page][config] for more details.
 
-You can also allow additional users to log in as the `peadmin` user on the puppet master, usually by distributing standard SSH public keys.
+You can also allow additional users to log in as the `peadmin` user on the Puppet master, usually by distributing standard SSH public keys.
 
 ### Network Traffic
 
-Every node (including all agent nodes, the puppet master server, and the console) needs the ability to initiate connections to the puppet master server over TCP port 61613. See the [notes on firewall configuration in the "System Requirements" chapter of this guide](./install_system_requirements.html#firewall-configuration) for more details about PE's network traffic.
+Every node (including all agent nodes, the Puppet master server, and the console) needs the ability to initiate connections to the Puppet master server over TCP port 61613. See the [notes on firewall configuration in the "System Requirements" chapter of this guide](./install_system_requirements.html#firewall-configuration) for more details about PE's network traffic.
 
 
 * * *

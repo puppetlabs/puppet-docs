@@ -33,14 +33,14 @@ canonical: "/puppet/latest/reference/environments_classic.html"
 >
 > When you have time, you should read up on [directory environments][directory_environments] and start using them.
 
-Environments are isolated groups of puppet agent nodes. A puppet master server can serve each environment with completely different [main manifests][manifest_dir] and [modulepaths][modulepath].
+Environments are isolated groups of Puppet agent nodes. A Puppet master server can serve each environment with completely different [main manifests][manifest_dir] and [modulepaths][modulepath].
 
-This frees you to use different versions of the same modules for different populations of nodes, which is useful for testing changes to your Puppet code before implementing them on production machines. (You could also do this by running a separate puppet master for testing, but using environments is often easier.)
+This frees you to use different versions of the same modules for different populations of nodes, which is useful for testing changes to your Puppet code before implementing them on production machines. (You could also do this by running a separate Puppet master for testing, but using environments is often easier.)
 
 > Directory Environments vs. Config File Environments
 > -----
 >
-> There are two ways to set up environments on a puppet master: [**directory environments,**][directory_environments] and **config file environments.**
+> There are two ways to set up environments on a Puppet master: [**directory environments,**][directory_environments] and **config file environments.**
 >
 > This page is about config file environments, which are deprecated and are more complex to use. You should consider moving to directory environments soon.
 
@@ -51,7 +51,7 @@ Puppet's config file provides two ways to configure environments: per-environmen
 
 ### Environment Config Sections
 
-The [puppet.conf file][puppet.conf] has four primary [config sections][config_sections]. The puppet master application will usually use settings from the `master` section, and will fall back to the `main` section for settings that aren't defined in `master`.
+The [puppet.conf file][puppet.conf] has four primary [config sections][config_sections]. The Puppet master application will usually use settings from the `master` section, and will fall back to the `main` section for settings that aren't defined in `master`.
 
 You can also make additional config sections for environments. If available, Puppet will use settings from an environment config section when serving nodes assigned to that environment. If an environment-specific section doesn't exist or doesn't set values for some settings, Puppet will fall back to the `master` and then `main` sections as normal.
 
@@ -67,7 +67,7 @@ You can also make additional config sections for environments. If available, Pup
       manifest = $confdir/environments/test/manifests
       config_version = /usr/bin/git --git-dir $confdir/environments/test/.git rev-parse HEAD
 
-In this example, the `test` environment has its own separate values for the `modulepath`, `manifest`, and `config_version` settings, and Puppet will use those when serving nodes in that environment. When serving nodes in other environments, the puppet master will use the global values for those settings, which in this example are left to their defaults.
+In this example, the `test` environment has its own separate values for the `modulepath`, `manifest`, and `config_version` settings, and Puppet will use those when serving nodes in that environment. When serving nodes in other environments, the Puppet master will use the global values for those settings, which in this example are left to their defaults.
 
 #### Usable Settings
 
@@ -126,7 +126,7 @@ Similarly, if the global `manifest` or `modulepath` use `$environment`, any conf
 
 ### Unconfigured Environments → Global Settings
 
-If a node is assigned to an environment for which a config section doesn't exist, or if the config section does not specify a value for one or more settings, the puppet master will use the global [`manifest`][manifest_setting] and [`modulepath`][modulepath_setting] settings to serve that node.
+If a node is assigned to an environment for which a config section doesn't exist, or if the config section does not specify a value for one or more settings, the Puppet master will use the global [`manifest`][manifest_setting] and [`modulepath`][modulepath_setting] settings to serve that node.
 
 If the values of the `manifest` or `modulepath` settings point to any files or directories that don't exist (due to interpolating `$environment` for an unexpected environment name), Puppet will act as though those directories were empty.
 
@@ -134,7 +134,7 @@ If the values of the `manifest` or `modulepath` settings point to any files or d
 Referencing the Environment in Manifests
 -----
 
-In Puppet manifests, you can get the name of the current environment by using the `$environment` variable, which is [set by the puppet master.][env_var]
+In Puppet manifests, you can get the name of the current environment by using the `$environment` variable, which is [set by the Puppet master.][env_var]
 
 Tuning Environment Caching
 -----

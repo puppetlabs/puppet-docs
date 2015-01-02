@@ -30,7 +30,7 @@ Modules are directory trees. For this task, you'll create the following files:
 
 **To write the `helloworld` class**:
 
-1. From the command line on the puppet master, navigate to the modules directory (`cd /etc/puppetlabs/puppet/environments/production/modules`).
+1. From the command line on the Puppet master, navigate to the modules directory (`cd /etc/puppetlabs/puppet/environments/production/modules`).
 2. Run `mkdir -p helloworld/manifests` to create the new module directory and its manifests directory.
 3. In the `manifests` directory, use your text editor to create the `init.pp` file, and edit it so that it contains the following Puppet code.
 
@@ -84,7 +84,7 @@ The **default** group contains all the nodes in your deployment (including the P
 
 7. Click the Commit changes button.
 
-   **Note**: The classes now appear in the list of classes for the __default__ group, but they have not yet been configured on your nodes. For that to happen, you need to kick off a puppet run. 
+   **Note**: The classes now appear in the list of classes for the __default__ group, but they have not yet been configured on your nodes. For that to happen, you need to kick off a Puppet run. 
    
 8. From the command line on the Puppet master, run `puppet agent -t`. 
 

@@ -27,17 +27,17 @@ The interface to set the environment for a node will be different for each ENC. 
 
 When writing an ENC, simply ensure that the `environment:` key is set in the YAML output that the ENC returns. [See the documentation on writing ENCs for details.][enc_environment]
 
-If the environment key isn't set in the ENC's YAML output, the puppet master will just use the environment requested by the agent.
+If the environment key isn't set in the ENC's YAML output, the Puppet master will just use the environment requested by the agent.
 
 ## Assigning Environments Via the Agent's Config File
 
-In [puppet.conf][] on each agent node, you can set [the `environment` setting][env_setting] in either the `agent` or `main` config section. When that node requests a catalog from the puppet master, it will request that environment.
+In [puppet.conf][] on each agent node, you can set [the `environment` setting][env_setting] in either the `agent` or `main` config section. When that node requests a catalog from the Puppet master, it will request that environment.
 
 If you are using an ENC and it specifies an environment for that node, it will override whatever is in the config file.
 
 ## Nonexistant Environments
 
-**With directory environments,** nodes **can't** be assigned to unconfigured environments. If a node is assigned to an environment which doesn't exist --- that is, there is no directory of that name in any of the `environmentpath` directories --- the puppet master will fail compilation of its catalog.
+**With directory environments,** nodes **can't** be assigned to unconfigured environments. If a node is assigned to an environment which doesn't exist --- that is, there is no directory of that name in any of the `environmentpath` directories --- the Puppet master will fail compilation of its catalog.
 
 The one exception is if the default `production` environment doesn't exist. In this case, the agent will successfully retrieve an empty catalog.
 

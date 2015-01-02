@@ -9,14 +9,14 @@ canonical: "/puppet/latest/reference/system_requirements.html"
 Hardware
 -----
 
-The puppet agent service has no particular hardware requirements and can run on nearly anything.
+The Puppet agent service has no particular hardware requirements and can run on nearly anything.
 
-However, the puppet master service is fairly resource intensive, and should be installed on a robust dedicated server.
+However, the Puppet master service is fairly resource intensive, and should be installed on a robust dedicated server.
 
-* At minimum, your puppet master server should have two processor cores and at least 1 GB RAM.
+* At minimum, your Puppet master server should have two processor cores and at least 1 GB RAM.
 * To comfortably serve at least 1000 nodes, it should have 2-4 processor cores and at least 4 GB RAM.
 
-The demands on the puppet master will vary widely between different deployments. The total needs are affected by the number of agents being served, how frequently those agents check in, how many resources are being managed on each agent, and the complexity of the manifests and modules in use.
+The demands on the Puppet master will vary widely between different deployments. The total needs are affected by the number of agents being served, how frequently those agents check in, how many resources are being managed on each agent, and the complexity of the manifests and modules in use.
 
 Platforms With Packages
 -----

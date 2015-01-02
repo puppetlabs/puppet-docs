@@ -76,7 +76,7 @@ Basics of Assigning and Configuring Classes
 
 _Assigning_ a class to a node (also called _declaring_ a class, when it's done in a Puppet manifest) causes Puppet to evaluate the resources in that class and add them to that node's configuration catalog.
 
-Before you can assign a class, it must first be available to the puppet master. This means it must be present in an installed module.
+Before you can assign a class, it must first be available to the Puppet master. This means it must be present in an installed module.
 
 Puppet Enterprise has several methods for assigning classes; these are described in the section on **data sources** below.
 
@@ -104,7 +104,7 @@ Instead of defining class parameters, classes may also look up [top-scope][topsc
 
 Classes written this way should clearly state which variables to set in their documentation.
 
-Top-scope variables can be set in the PE console, site.pp, and the puppet agent (in the form of facts). You must make sure that any given variable will **only come from one data source.**
+Top-scope variables can be set in the PE console, site.pp, and the Puppet agent (in the form of facts). You must make sure that any given variable will **only come from one data source.**
 
 The site.pp file is in a unique position, as it can convert arbitrary data from Hiera, PuppetDB, or an external CMDB into top-scope variables.
 
@@ -121,7 +121,7 @@ In PE, Puppet will use the following **data sources** to configure classes and a
 
 > #### Accessibility Note: Description of Diagram
 >
-> The diagram above shows seven different data sources providing varying kinds of data to the puppet master. Clockwise from the upper left:
+> The diagram above shows seven different data sources providing varying kinds of data to the Puppet master. Clockwise from the upper left:
 >
 > 1. [site.pp (site manifest)](#assigning-configuration-data-with-the-site-manifest-sitepp). Can assign **classes, class parameters,** and **variables.** It is unique in that it can also declare resources outside any class.
 > 2. [Hiera](#assigning-configuration-data-with-hiera), which is composed of several levels of hierarchical data sources. Can assign **classes** and **class parameters,** and provide **arbitrary data.**
@@ -150,7 +150,7 @@ Assigning Configuration Data with the Site Manifest (site.pp)
 
 ### Characteristics
 
-The site manifest (`/etc/puppetlabs/puppet/manifests/site.pp` on the puppet master server) is a primary data source. It can:
+The site manifest (`/etc/puppetlabs/puppet/manifests/site.pp` on the Puppet master server) is a primary data source. It can:
 
 * Assign classes
 * Configure classes with parameters
@@ -158,9 +158,9 @@ The site manifest (`/etc/puppetlabs/puppet/manifests/site.pp` on the puppet mast
 * Convert arbitrary data from other sources into class parameters or variables
 * Declare lone resources, outside any class
 
-Site.pp is a normal manifest written in the Puppet language, and is the entry point for the puppet master server --- catalog compilation always starts with this file. It's the original Puppet data source, predating nearly everything else about Puppet, and it remains very useful for certain use cases.
+Site.pp is a normal manifest written in the Puppet language, and is the entry point for the Puppet master server --- catalog compilation always starts with this file. It's the original Puppet data source, predating nearly everything else about Puppet, and it remains very useful for certain use cases.
 
-Site.pp should be managed with version control and deployed to the puppet master server using a controlled release process. Access to configuration data in site.pp is managed by your organization's specific version control and code deployment procedures.
+Site.pp should be managed with version control and deployed to the Puppet master server using a controlled release process. Access to configuration data in site.pp is managed by your organization's specific version control and code deployment procedures.
 
 > ### Recommendations
 >
@@ -244,7 +244,7 @@ The Puppet code in site.pp can access data from several other data sources and t
 
 Unlike most other data sources, site.pp allows you to declare individual resources outside any class. Simply [use normal resource declarations][resource_declarations] outside any node definition, and those resources will be managed on every node in the deployment. Resources inside a node definition will only be managed on the node(s) that match it.
 
-This is mostly useful for resources used to manage Puppet itself, such as a main filebucket or a [puppet agent cron job][agent_cron]. Other resources should generally go in [classes][].
+This is mostly useful for resources used to manage Puppet itself, such as a main filebucket or a [Puppet agent cron job][agent_cron]. Other resources should generally go in [classes][].
 
 
 
@@ -323,7 +323,7 @@ Unlike the PE console, Hiera isn't immediately usable upon install; you must fir
 
 Hiera lets you construct a dynamic hierarchy, which gets resolved for each agent node based on the facts it submits. This allows you to specify configuration data at several levels of the hierarchy, making it easy to maintain default configurations with multiple overrides where necessary.
 
-Hiera's data should be managed with version control and deployed to the puppet master server using a controlled release process. Access to configuration data in Hiera is managed by your organization’s specific version control and code deployment procedures.
+Hiera's data should be managed with version control and deployed to the Puppet master server using a controlled release process. Access to configuration data in Hiera is managed by your organization’s specific version control and code deployment procedures.
 
 > ### Recommendations
 >
@@ -343,7 +343,7 @@ In order to use Hiera, you must do the following:
 
 #### Edit Hiera.yaml
 
-Edit the `/etc/puppetlabs/puppet/hiera.yaml` file on your puppet master server, and make the following changes. For complete documentation about this file, see [the Configuring Hiera page][hiera_config] and [the Hierarchies page][hiera_hierarchies] in the Hiera documentation.
+Edit the `/etc/puppetlabs/puppet/hiera.yaml` file on your Puppet master server, and make the following changes. For complete documentation about this file, see [the Configuring Hiera page][hiera_config] and [the Hierarchies page][hiera_hierarchies] in the Hiera documentation.
 
 1. Choose a main data backend --- YAML or JSON --- and configure it in [the `:backends` setting](/hiera/1/configuring.html#backends).
 2. Choose a data directory for your Hiera data source files, and configure it in [the `:datadir` sub-setting](/hiera/1/configuring.html#yaml-and-json) under the `yaml` or `json` settings:
@@ -508,7 +508,7 @@ Once you have a function that can query your CMDB, you can [use it in site.pp][s
 Using Puppet Agent's Facts as Hints for Configuration Data
 -----
 
-When requesting catalogs, agent nodes submit a collection of [facts][], which the puppet master can use as top-scope variables when compiling the catalog.
+When requesting catalogs, agent nodes submit a collection of [facts][], which the Puppet master can use as top-scope variables when compiling the catalog.
 
 One strategy for classifying nodes is to use facts to determine what configuration data should be assigned to the node. This is most often seen with Hiera, which can use facts in its dynamic hierarchy, but you can also use conditional statements in site.pp or role/profile modules to determine which classes to declare and which parameters to assign.
 
@@ -517,7 +517,7 @@ If the [built-in core facts][core_facts] aren't sufficient for classifying your 
 * Create [custom facts][custom_facts] and [put them in modules][plugins_in_modules]. Custom facts are small, easy pieces of Ruby code, and are distributed to all nodes.
 * Distribute [external facts][external_facts] to your nodes. External facts are either static text files or small scripts.
 
-By pre-seeding new nodes with external facts when you deploy them, it's possible to invert control of node classification --- a node can use a special "role fact" to tell the puppet master what kind of server it was meant to be, and if the Hiera hierarchy or conditional statements in site.pp support it, the node will receive that configuration.
+By pre-seeding new nodes with external facts when you deploy them, it's possible to invert control of node classification --- a node can use a special "role fact" to tell the Puppet master what kind of server it was meant to be, and if the Hiera hierarchy or conditional statements in site.pp support it, the node will receive that configuration.
 
 > **Note:** Facts are not trusted data, and can be spoofed by a rogue agent node. Inverting control can be useful for some deployment processes, but it's generally best to not allow nodes to choose what pieces of sensitive information they will receive. If you're inverting control with role facts, be careful with the types of configuration you allow nodes to request.
 

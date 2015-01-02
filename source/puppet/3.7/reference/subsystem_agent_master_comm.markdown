@@ -13,7 +13,7 @@ canonical: "/puppet/latest/reference/subsystem_agent_master_comm.html"
 
 
 
-The puppet agent and the puppet master server communicate via HTTPS over host-verified SSL.
+The Puppet agent and the Puppet master server communicate via HTTPS over host-verified SSL.
 
 > **Note on verification:** If the agent does not yet have its own certificate, it will make several unverified requests before it can switch to verified mode. In these requests, the agent doesn't identify itself to the master and doesn't check the master's cert against the CA. In the descriptions below, assume every request is host-verified unless stated otherwise.
 
@@ -21,7 +21,7 @@ The agent/master HTTP interface is REST-like, but varies from strictly RESTful d
 
 ## Diagram
 
-This flow diagram illustrates the pattern of agent-side checks and HTTPS requests to the puppet master during a single Puppet run.
+This flow diagram illustrates the pattern of agent-side checks and HTTPS requests to the Puppet master during a single Puppet run.
 
 [See below the image for a textual description of this process](#check-for-keys-and-certificates), which explains the illustrated steps in more detail.
 
@@ -32,14 +32,14 @@ This flow diagram illustrates the pattern of agent-side checks and HTTPS request
 1. Does the agent have a private key at `$ssldir/private_keys/<name>.pem`?
     * If no, generate one.
 2. Does the agent have a copy of the CA certificate at `$ssldir/certs/ca.pem`?
-    * If no, fetch it. (Unverified GET request to `/certificate/ca`. Since the agent is retrieving the foundation for all future trust over an untrusted link, this could be vulnerable to MITM attacks, but it's also just a convenience; you can make this step unnecessary by distributing the CA cert as part of your server provisioning process, so that agents never ask for a CA cert over the network. If you do this, an attacker could temporarily deny Puppet service to brand new nodes, but would be unable to take control of them with a rogue puppet master.)
+    * If no, fetch it. (Unverified GET request to `/certificate/ca`. Since the agent is retrieving the foundation for all future trust over an untrusted link, this could be vulnerable to MITM attacks, but it's also just a convenience; you can make this step unnecessary by distributing the CA cert as part of your server provisioning process, so that agents never ask for a CA cert over the network. If you do this, an attacker could temporarily deny Puppet service to brand new nodes, but would be unable to take control of them with a rogue Puppet master.)
 3. Does the agent have a signed certificate at `$ssldir/certs/<name>.pem`?
     * If yes, skip the following section and continue to "request node object."
     * (If it has a cert but it doesn't match the private key, bail with an error.)
 
 ## Obtain a Certificate (if necessary)
 
-Note that if the agent has submitted a certificate signing request, an admin user will need to run `puppet cert sign <name>` on the CA puppet master before the agent can fetch a signed certificate. (Unless autosign is enabled.) Since incoming CSRs are unverified, you can use fingerprints to prove them, by comparing `puppet agent --fingerprint` on the agent to `puppet cert list` on the CA master.
+Note that if the agent has submitted a certificate signing request, an admin user will need to run `puppet cert sign <name>` on the CA Puppet master before the agent can fetch a signed certificate. (Unless autosign is enabled.) Since incoming CSRs are unverified, you can use fingerprints to prove them, by comparing `puppet agent --fingerprint` on the agent to `puppet cert list` on the CA master.
 
 1. Try to fetch an already-signed certificate from the master. (Unverified GET request to `/certificate/<name>`.)
     * If it gets one, skip the rest of this section and continue to "request node object."
@@ -78,16 +78,16 @@ If `pluginsync` is enabled on the agent:
 
 ## Make File Source Requests While Applying Catalog
 
-[File][] resources can specify file contents as either a `content` or `source` attribute. Content attributes go into the catalog, and puppet agent needs no additional data. Source attributes only put references into the catalog, and may require additional HTTPS requests.
+[File][] resources can specify file contents as either a `content` or `source` attribute. Content attributes go into the catalog, and Puppet agent needs no additional data. Source attributes only put references into the catalog, and may require additional HTTPS requests.
 
-If you are using the normal compiler, then for each file source, puppet agent will:
+If you are using the normal compiler, then for each file source, Puppet agent will:
 
 1. Do a GET request to `/file_metadata/<something>`.
 2. Compare the metadata to the state of the file on disk.
     * If it is in sync, move on to the next file source.
     * If it is out of sync, do a GET request to `/file_content/<something>` for the current content.
 
-If you are using the [static compiler][static], all file metadata is embedded in the catalog. For each file source, puppet agent will:
+If you are using the [static compiler][static], all file metadata is embedded in the catalog. For each file source, Puppet agent will:
 
 1. Compare the embedded metadata to the state of the file on disk.
     * If it is in sync, move on to the next file source.

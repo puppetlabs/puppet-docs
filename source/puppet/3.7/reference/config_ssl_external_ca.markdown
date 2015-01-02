@@ -26,7 +26,7 @@ This version of Puppet supports _some_ external CA configurations, but not every
 2. [Single, intermediate CA issued by a root self-signed CA.](#option-2-single-intermediate-ca)  The intermediate
    CA directly issues SSL certificates; the root CA doesn't.
 3. [Two intermediate CAs, both issued by the same root self-signed CA.](#option-3-two-intermediate-cas-issued-by-one-root-ca)
-    * One intermediate CA issues SSL certificates for puppet master servers.
+    * One intermediate CA issues SSL certificates for Puppet master servers.
     * The other intermediate CA issues SSL certificates for agent nodes.
     * Agent certificates can't act as servers, and master certificates can't act as clients.
 
@@ -45,7 +45,7 @@ General Notes and Requirements
 
 ### Rack Webserver is Required
 
-The puppet master must be running inside of a Rack-enabled web server, not the built-in Webrick server.
+The Puppet master must be running inside of a Rack-enabled web server, not the built-in Webrick server.
 
 In practice, this means Apache or Nginx.  We fully support any web server that can:
 
@@ -61,11 +61,11 @@ Puppet always expects its SSL credentials to be in `.pem` format.
 
 ### Normal Puppet Master Certificate Requirements Still Apply
 
-Any puppet master certificate must contain the DNS name at which agent nodes will attempt to contact that master, either as the subject CN or as a Subject Alternative Name (DNS).
+Any Puppet master certificate must contain the DNS name at which agent nodes will attempt to contact that master, either as the subject CN or as a Subject Alternative Name (DNS).
 
 ### Format of X-Client-DN Request Header
 
-Rack web servers must set a client request header, which the puppet master will check based on the [`ssl_client_header` setting](/references/3.7.latest/configuration.html#sslclientheader).
+Rack web servers must set a client request header, which the Puppet master will check based on the [`ssl_client_header` setting](/references/3.7.latest/configuration.html#sslclientheader).
 
 This header should conform to the following specifications:
 
@@ -122,7 +122,7 @@ manner.
 ### Puppet Master
 
 {% capture master_basic %}
-Configure the puppet master in four steps:
+Configure the Puppet master in four steps:
 
 1. Disable the internal CA service
 2. Ensure that the certname will never change
@@ -314,7 +314,7 @@ An example of this configuration for Apache:
 
 ### Puppet Agent
 
-With an intermediate CA, puppet agent needs a modified value for [the `ssl_client_ca_auth` setting][ca_auth] in its puppet.conf:
+With an intermediate CA, Puppet agent needs a modified value for [the `ssl_client_ca_auth` setting][ca_auth] in its puppet.conf:
 
     [agent]
     ssl_client_ca_auth = $certdir/issuer.pem
@@ -335,9 +335,9 @@ Intermediate CA certificate       | `puppet agent --configprint ssl_client_ca_au
 Option 3: Two Intermediate CAs Issued by One Root CA
 -----
 
-This configuration uses different CAs to issue puppet master certificates and puppet agent
-certificates.  This makes them easily distinguishable, and prevents any agent certificate from being
-usable for a puppet master.
+This configuration uses different CAs to issue Puppet master certificates and Puppet agent
+certificates. This makes them easily distinguishable, and prevents any agent certificate from being
+usable for a Puppet master.
 
 
 
@@ -365,11 +365,11 @@ usable for a puppet master.
       +-----------------+                +----------------+
 
 
-In this configuration puppet agents are configured to only authenticate peer
+In this configuration Puppet agents are configured to only authenticate peer
 certificates issued by the Master CA.  Puppet masters are configured to only
 authenticate peer certificates issued by the Agent CA.
 
-> **Note:** If you're using this configuration, you can't use the ActiveRecord inventory service backend with multiple puppet master servers. Use [PuppetDB][] for the inventory service instead.
+> **Note:** If you're using this configuration, you can't use the ActiveRecord inventory service backend with multiple Puppet master servers. Use [PuppetDB][] for the inventory service instead.
 
 ### Puppet Master
 
@@ -432,7 +432,7 @@ An example of this configuration for Apache:
 
 ### Puppet Agent
 
-With split CAs, puppet agent needs a modified value for [the `ssl_client_ca_auth` setting][ca_auth] in its puppet.conf:
+With split CAs, Puppet agent needs a modified value for [the `ssl_client_ca_auth` setting][ca_auth] in its puppet.conf:
 
     [agent]
     ssl_client_ca_auth = $certdir/ca_master.pem

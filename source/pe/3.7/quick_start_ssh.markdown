@@ -121,7 +121,7 @@ After you apply the `ssh` class and run Puppet, the public key for each agent no
 
 6. Click __Commit 1 change__.
 
-   **Note**: The `ssh` class now appears in the list of classes for the __ssh_example__ group, but it has not yet been configured on your nodes. For that to happen, you need to kick off a puppet run. 
+   **Note**: The `ssh` class now appears in the list of classes for the __ssh_example__ group, but it has not yet been configured on your nodes. For that to happen, you need to kick off a Puppet run. 
    
 7. Navigate to the live management page, and select the __Control Puppet__ tab. 
 
@@ -182,7 +182,7 @@ Changing this parameter of the `ssh` class can be accomplished in a few steps us
 6. Click __Add parameter__. 
 7. Click __Commit 1 change__. 
 8. Navigate to the live management page, and select the __Control Puppet__ tab. 
-9. Click the __runonce__ action and then __Run__ to trigger a puppet run to have Puppet Enterprise create the new configuration. 
+9. Click the __runonce__ action and then __Run__ to trigger a Puppet run to have Puppet Enterprise create the new configuration. 
 10. Attempt to SSH from one agent to another. Note that root login permissions are now denied over SSH. 
 
 > Puppet Enterprise is now managing the root login parameter for your SSH configuration. You can see this setting in `/etc/ssh/sshd_config`. For fun, change the `PermitRootLogin` parameter to `yes`, run PE, and then recheck this file. As long as the parameter is set to `no` in the PE console, the parameter in this file will be set back to `no` on every Puppet run if it is ever changed.

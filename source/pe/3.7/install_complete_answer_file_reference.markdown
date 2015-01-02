@@ -36,14 +36,14 @@ These answers are only used in some cases, such as when upgrading or reinstallin
 : This option is no longer used, upgrades will be detected automatically.
 
 `q_continue_or_reenter_master_hostname`
-: **C or R** --- Used if the installer cannot reach the puppet master. If C, the installer will continue; if R, the installer will ask for a new puppet master hostname. (This answer applies to all roles except for the master role.)
+: **C or R** --- Used if the installer cannot reach the Puppet master. If C, the installer will continue; if R, the installer will ask for a new Puppet master hostname. (This answer applies to all roles except for the master role.)
 
 ### Roles
 
 These answers are always needed.
 
 `q_puppetmaster_install`
-: **Y or N** --- Whether to install the puppet master role.
+: **Y or N** --- Whether to install the Puppet master role.
 
 `q_puppetdb_install`
 : **Y or N** --- Whether to install the database support (the console Postgres server and PuppetDB) role.
@@ -52,7 +52,7 @@ These answers are always needed.
 : **Y or N** --- Whether to install the console role.
 
 `q_puppetagent_install`
-: **Y or N** --- Whether to install the puppet agent role.
+: **Y or N** --- Whether to install the Puppet agent role.
 
 `q_puppet_cloud_install`
 : **Y or N** --- Whether to install the cloud provisioner role.
@@ -66,35 +66,35 @@ These answers are always needed.
 : **String** --- An identifying string for this agent node. This per-node ID must be unique across your entire site. Fully qualified domain names are often used as agent certnames.
 
 `q_puppetagent_server`
-: **String** --- The hostname of the puppet master server. For the agent to trust the master's certificate, this must be one of the valid DNS names you chose when installing the puppet master.
+: **String** --- The hostname of the Puppet master server. For the agent to trust the master's certificate, this must be one of the valid DNS names you chose when installing the Puppet master.
 
 `q_fail_on_unsuccessful_master_lookup`
-: **Y or N** --- Whether to quit the install if the puppet master cannot be reached.
+: **Y or N** --- Whether to quit the install if the Puppet master cannot be reached.
 
 `q_skip_master_verification`
 : **Y or N** --- This is a silent install option, default is N. When set to Y, the installer will skip master verification which allows the user to deploy agents when they know the master won't be available.
 
 `q_puppet_agent_first_run`
-: **Y or N** --- Controls whether or not the puppet agent should run after being installed. 
+: **Y or N** --- Controls whether or not the Puppet agent should run after being installed. 
 
 ### Puppet Master Answers
 
-These answers are generally needed if you are installing the puppet master role.
+These answers are generally needed if you are installing the Puppet master role.
 
 `q_all_in_one_install`
 : **Y or N** --- Whether or not the installation is an all-in-one installation, (i.e., are puppetdb and the console also being installed on this node).
 
 `q_puppetmaster_certname`
-: **String** --- An identifying string for the puppet master. This ID must be unique across your entire site. The server's fully qualified domain name is often used as the puppet master's certname.
+: **String** --- An identifying string for the Puppet master. This ID must be unique across your entire site. The server's fully qualified domain name is often used as the Puppet master's certname.
 
 `q_puppetmaster_dnsaltnames`
-: **String** --- Valid DNS names at which the puppet master can be reached. Must be a comma-separated list. In a normal installation, defaults to `<hostname>,<hostname.domain>,puppet,puppet.<domain>`.
+: **String** --- Valid DNS names at which the Puppet master can be reached. Must be a comma-separated list. In a normal installation, defaults to `<hostname>,<hostname.domain>,puppet,puppet.<domain>`.
 
 `q_puppetmaster_enterpriseconsole_hostname`
-: **String** --- The hostname of the server running the console role. Only needed if you are _not_ installing the console role on the puppet master server.
+: **String** --- The hostname of the server running the console role. Only needed if you are _not_ installing the console role on the Puppet master server.
 
 `q_puppetmaster_enterpriseconsole_port`
-: **Integer** --- The port on which to contact the console server. Only needed if you are _not_ installing the console role on the puppet master server.
+: **Integer** --- The port on which to contact the console server. Only needed if you are _not_ installing the console role on the Puppet master server.
 
 `q_pe_check_for_updates`
 : **y or n; MUST BE LOWERCASE** --- Whether to check for updates whenever the `pe-httpd` service restarts. To get the correct update info, the server will pass some basic, anonymous info to Puppet Labs' servers. Specifically, it will transmit:
@@ -126,7 +126,7 @@ These answers are generally needed if you are installing the console role.
 : **Y or N** --- Whether to have the Postgres server for the console installed by PE or to manage it yourself. Used for classifying PuppetDB in the console, so it knows whether or not to manage the database.
 
 `q_puppet_enterpriseconsole_master_hostname`
-: **String** --- The hostname of the server running the master role. Only needed if you are _not_ installing the console role on the puppet master server.
+: **String** --- The hostname of the server running the master role. Only needed if you are _not_ installing the console role on the Puppet master server.
 
 `q_puppet_enterpriseconsole_httpd_port`
 : **Integer** --- The port on which to serve the console. The default is port 443, which will allow access to the console from a web browser without manually specifying a port. If port 443 is not available, the installer will try port 3000, 3001, 3002, 3003, 3004, and 3005.

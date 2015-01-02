@@ -105,7 +105,7 @@ Defaults to three minutes. This setting can be a time interval in seconds (`30` 
 > **Note:** If an environment has a timeout of more than a few minutes, you should restart your Puppet master service whenever you change that environment. [We explain further here.](./environments_limitations.html#changing-an-environment-with-a-long-timeout-requires-a-service-restart)
 
 
-Most users should be fine with the default of three minutes. To get more performance from your puppet master, you can tune the timeout for your most heavily used environments. Getting the most benefit involves a tradeoff between speed, memory usage, and responsiveness to changed files. The general best practice is:
+Most users should be fine with the default of three minutes. To get more performance from your Puppet master, you can tune the timeout for your most heavily used environments. Getting the most benefit involves a tradeoff between speed, memory usage, and responsiveness to changed files. The general best practice is:
 
 - Long-lived, slowly changing, relatively homogenous, highly populated environments (like `production` at most sites) will give the most benefit from longer timeouts. If you only make changes to an environment once or twice a day, you can set its timeout to `unlimited` and restart the Puppet master service whenever you deploy code.
 - Rapidly changing dev environments should have short timeouts: a few seconds, or `0` if you don't want to wait.

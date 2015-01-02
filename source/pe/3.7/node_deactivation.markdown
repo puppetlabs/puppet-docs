@@ -21,7 +21,7 @@ From time to time, you may need to completely deactivate an agent node in your P
 
 4. Complete the agent’s certificate revocation. On the master, run `service pe-puppetserver restart`. 
 
-   The certificate is only revoked after running `service pe-puppetserver restart`. In addition, the puppet server process won't re-read the certificate revocation list until the service is restarted. If you don't run `service pe-puppetserver restart`, the node will check in again on the next puppet run and re-register with puppetDB, which will increment the license count again. 
+   The certificate is only revoked after running `service pe-puppetserver restart`. In addition, the Puppet server process won't re-read the certificate revocation list until the service is restarted. If you don't run `service pe-puppetserver restart`, the node will check in again on the next Puppet run and re-register with puppetDB, which will increment the license count again. 
    
    > **Tip**: You will need to run `service pe-puppetserver restart` on any load-balanced masters in your system. 
 
@@ -29,9 +29,9 @@ From time to time, you may need to completely deactivate an agent node in your P
 
    This action does **NOT** disable MCollective/live management on the node. 
    
-   **Note**: If you delete a node from the node view without first deactivating the node, the node will be absent from the node list in the console, but the license count will not decrease, and on the next puppet run, the node will be listed in the console. 
+   **Note**: If you delete a node from the node view without first deactivating the node, the node will be absent from the node list in the console, but the license count will not decrease, and on the next Puppet run, the node will be listed in the console. 
 
-6. To disable MCollective/live management on the node, [uninstall the puppet agent](./install_uninstalling.html), stop the pe-mcollective service (on the agent, run `service pe-mcollective stop`), or destroy the agent node altogether. 
+6. To disable MCollective/live management on the node, [uninstall the Puppet agent](./install_uninstalling.html), stop the pe-mcollective service (on the agent, run `service pe-mcollective stop`), or destroy the agent node altogether. 
 
 7. On the agent node, remove the node certificates in `/etc/puppetlabs/mcollective/ssl/clients`. 
 

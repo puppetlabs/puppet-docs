@@ -34,7 +34,7 @@ When you finish this section, go on to [Install and Set Up Razor](./razor_instal
 
 ###Install PE in Your Virtual Environment
 
-In your virtual testing environment, set up a puppet master running a standard install of Puppet Enterprise 3.7. For more information, see [Installing Puppet Enterprise](./install_basic.html).
+In your virtual testing environment, set up a Puppet master running a standard install of Puppet Enterprise 3.7. For more information, see [Installing Puppet Enterprise](./install_basic.html).
 
 **Note**: We're finding that VirtualBox 4.3.6 gets to the point of downloading the microkernel from the Razor server and hangs at 0% indefinitely. We don't have this problem with VirtualBox 4.2.22. 
 

@@ -146,7 +146,7 @@ To terminate an instance, use the `node_aws terminate` action.
 Demos
 -------
 
-The following demos show how to install a puppet master and a puppet agent in EC2, as well as how to deploy a web app with Puppet Enterprise.
+The following demos show how to install a Puppet master and a Puppet agent in EC2, as well as how to deploy a web app with Puppet Enterprise.
 
 * [AWS EC2 Part 1](https://www.youtube.com/watch?v=Drl35Bpc6OE): Spin up a virtual machine and install Puppet Enterprise.
 * [AWS EC2 Part 2](https://www.youtube.com/watch?v=_Cq-dzR3-v4): Spin up a new node in EC2 and then install a Puppet agent.

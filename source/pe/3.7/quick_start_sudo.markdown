@@ -111,7 +111,7 @@ You will add this class at the same time you add the saz-sudo module.
 
 [classification_selector]: ./images/quick/classification_selector.png
 
-The saz-sudo module contains several **classes**. [Classes](../puppet/3/reference/lang_classes.html) are named chunks of puppet code and are the primary means by which Puppet Enterprise configures nodes. For this procedure, you're going to add the `sudo` class to the **default** group. 
+The saz-sudo module contains several **classes**. [Classes](../puppet/3/reference/lang_classes.html) are named chunks of Puppet code and are the primary means by which Puppet Enterprise configures nodes. For this procedure, you're going to add the `sudo` class to the **default** group. 
 
 The **default** group contains all the nodes in your deployment (including the Puppet master), but you can [create your own group](./console_classes_groups_getting_started.html#creating-new-node-groups) or add the classes to individual nodes, depending on your needs. 
 
@@ -131,7 +131,7 @@ The **default** group contains all the nodes in your deployment (including the P
 
 6. Click __Commit 1 change__.
 
-   **Note**: The `sudo` class now appears in the list of classes for the __default__ group, but it has not yet been configured on your nodes. For that to happen, you need to kick off a puppet run. 
+   **Note**: The `sudo` class now appears in the list of classes for the __default__ group, but it has not yet been configured on your nodes. For that to happen, you need to kick off a Puppet run. 
    
 7. Repeat steps 4 - 6 to add the `privileges` class. 
 

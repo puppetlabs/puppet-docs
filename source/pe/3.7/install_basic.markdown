@@ -21,7 +21,7 @@ With that knowledge in hand, the installation process will proceed in **three st
 
 1. You will choose an installation method.
 
-2. You will install the main components of PE—the puppet master, PuppetDB, database support, and the PE console. (Note that the Cloud Provisioner is installed by default when you run the web-based installer. If you plan on performing an installation with an answer file, you can disable the Cloud Provisioner installation.)
+2. You will install the main components of PE—the Puppet master, PuppetDB, database support, and the PE console. (Note that the Cloud Provisioner is installed by default when you run the web-based installer. If you plan on performing an installation with an answer file, you can disable the Cloud Provisioner installation.)
 
 3. You will install the PE agent on all the nodes you wish to manage with PE. Refer to the [agent installation instructions](./install_agents.html)
 
@@ -111,31 +111,31 @@ Before beginning installation, you should familiarize yourself with the followin
 
 ### The Puppet Agent
 
-The puppet agent is most easily installed using a package manager (see [installing agents](./install_agents.html)). On platforms (Windows) that do not support remote package repos, you can use the installer script.
+The Puppet agent is most easily installed using a package manager (see [installing agents](./install_agents.html)). On platforms (Windows) that do not support remote package repos, you can use the installer script.
 
-This component should be installed on **every node** in your deployment. When you install the puppet master, PuppetDB, or console components, the puppet agent component will be installed automatically on the machines assigned to those components.
+This component should be installed on **every node** in your deployment. When you install the Puppet master, PuppetDB, or console components, the Puppet agent component will be installed automatically on the machines assigned to those components.
 
 Nodes with the puppet agent component can:
 
-* run the puppet agent daemon, which receives and applies configurations from the puppet master.
+* run the Puppet agent daemon, which receives and applies configurations from the Puppet master.
 * listen for orchestration messages and invoke orchestration actions.
 * send data to the master for use by PuppetDB.
 
 ### The Puppet Master
 
-In most deployments, you should install this component on **one node** (installing multiple puppet masters requires additional configuration that is beyond the scope of this guide). The puppet master must be a robust, dedicated server; see the [system requirements](./install_system_requirements.html) for details.
+In most deployments, you should install this component on **one node** (installing multiple Puppet masters requires additional configuration that is beyond the scope of this guide). The Puppet master must be a robust, dedicated server; see the [system requirements](./install_system_requirements.html) for details.
 
-The puppet master server can:
+The Puppet master server can:
 
-* compile and serve configuration catalogs to puppet agent nodes.
+* compile and serve configuration catalogs to Puppet agent nodes.
 * route orchestration messages through its ActiveMQ server.
 * issue valid orchestration commands (from an administrator logged in as the `peadmin` user).
 
->**Note**: By default, the puppet master will check for the availability of updates whenever the `pe-puppetserver` service restarts. In order to retrieve the correct update information, the master will pass some basic, anonymous information to Puppet Labs' servers. This behavior can be disabled. You can find the details on what is collected and how to disable upgrade checking in the correct answer file reference. If an update is available, a message will alert you.
+>**Note**: By default, the Puppet master will check for the availability of updates whenever the `pe-puppetserver` service restarts. In order to retrieve the correct update information, the master will pass some basic, anonymous information to Puppet Labs' servers. This behavior can be disabled. You can find the details on what is collected and how to disable upgrade checking in the correct answer file reference. If an update is available, a message will alert you.
 
 ### PuppetDB and Database Support
 
-The PuppetDB component uses an instance of PostgreSQL that is either installed by PE or manually configured by you. In a monolithic installation, PuppetDB is installed on the same node as the console and puppet master components. In a split install, PuppetDB is installed on its own server. During installation, you will be asked if you want this PostgreSQL instance to be installed by PE or if you want to use one you've already configured.
+The PuppetDB component uses an instance of PostgreSQL that is either installed by PE or manually configured by you. In a monolithic installation, PuppetDB is installed on the same node as the console and Puppet master components. In a split install, PuppetDB is installed on its own server. During installation, you will be asked if you want this PostgreSQL instance to be installed by PE or if you want to use one you've already configured.
 
 Database support for the console, role-based access control (RBAC), and the node classifier runs on the same instance of PostgreSQL as PuppetDB.
 
@@ -156,7 +156,7 @@ For a split installation, you install the console on its own dedicated server, b
 The console server can:
 
 * serve the console web interface, which enables administrators to directly edit resources on nodes, trigger immediate Puppet runs, group and assign classes to nodes, view reports and graphs, view inventory information, and invoke orchestration actions.
-* collect reports from and serve node information to the puppet master.
+* collect reports from and serve node information to the Puppet master.
 
 #### Role-based Access Control (RBAC)
 
@@ -196,7 +196,7 @@ Notes, Warnings, and Tips
 
 ### Verifying Your License
 
-When you purchased Puppet Enterprise, you should have been sent a `license.key` file that lists how many nodes you can deploy. For PE to run without logging license warnings, you should copy this file to the puppet master node as `/etc/puppetlabs/license.key`. If you don't have your license key file, please email <sales@puppetlabs.com> and we'll re-send it.
+When you purchased Puppet Enterprise, you should have been sent a `license.key` file that lists how many nodes you can deploy. For PE to run without logging license warnings, you should copy this file to the Puppet master node as `/etc/puppetlabs/license.key`. If you don't have your license key file, please email <sales@puppetlabs.com> and we'll re-send it.
 
 Note that you can download and install Puppet Enterprise on up to ten nodes at no charge. No license key is needed to run PE on up to ten nodes.
 

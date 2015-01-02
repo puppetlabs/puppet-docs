@@ -33,7 +33,7 @@ These answers are optional.
 These answers are always needed.
 
 `q_puppetmaster_install=y`
-: **Y** or **N** --- Whether to install the puppet master component.
+: **Y** or **N** --- Whether to install the Puppet master component.
 
 `q_all_in_one_install=y`
 : **Y** or **N** --- Whether or not the installation is an all-in-one installation, (i.e., are PuppetDB and the console also being installed on this node). 
@@ -46,7 +46,7 @@ These answers are always needed.
 These answers are optional.
 
 `q_puppetagent_install`
-: **Y** or **N** --- Whether to install the puppet agent component.
+: **Y** or **N** --- Whether to install the Puppet agent component.
 
 ### Puppet Agent Answers
 
@@ -57,13 +57,13 @@ These answers are always needed.
 
 ### Puppet Master Answers
 
-These answers are generally needed if you are installing the puppet master component.
+These answers are generally needed if you are installing the Puppet master component.
 
 `q_puppetmaster_certname=pe-puppet.<your local domain>`
-: **String** --- An identifying string for the puppet master. This ID must be unique across your entire site. The server’s fully qualified domain name is often used as the puppet master’s certname.
+: **String** --- An identifying string for the Puppet master. This ID must be unique across your entire site. The server’s fully qualified domain name is often used as the Puppet master’s certname.
 
 `q_puppetmaster_dnsaltnames=pe-puppet,pe-puppet.<your local domain>`
-: **String** --- Valid DNS names at which the puppet master can be reached. Must be a comma-separated list. In a normal installation, defaults to `<hostname>,<hostname.domain>,puppet,puppet.<domain>`.
+: **String** --- Valid DNS names at which the Puppet master can be reached. Must be a comma-separated list. In a normal installation, defaults to `<hostname>,<hostname.domain>,puppet,puppet.<domain>`.
 
 `q_pe_check_for_updates=n`
 : **y** or **n**; **MUST BE LOWERCASE** --- Whether to check for updates whenever the `pe-puppetserver` service restarts. To get the correct update info, the server will pass some basic, anonymous info to Puppet Labs’ servers. Specifically, it will transmit:

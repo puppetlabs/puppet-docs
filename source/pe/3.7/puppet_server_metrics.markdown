@@ -73,7 +73,7 @@ The `/etc/puppetlabs/puppetserver/conf.d/metrics.conf` file controls Puppet Serv
 
 6. Click **Commit 3 changes**.
 7. Navigate to the live management page, ensure your Puppet master and agent nodes are selected, and select the **Control Puppet** tab.
-8. Click the **runonce** action and then **Run** to trigger a puppet run and apply the new configuration. 
+8. Click the **runonce** action and then **Run** to trigger a Puppet run and apply the new configuration. 
 
    You may have to wait a while for Puppet Server to restart before metrics begin appearing in your dashboard.
 

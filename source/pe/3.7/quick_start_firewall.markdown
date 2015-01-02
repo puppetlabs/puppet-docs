@@ -193,7 +193,7 @@ The puppetlabs-firewall module is already installed as part of the PE installati
 
    ![committing class change][firewall_commit_change]
 
-   **Note**: The `my_firewall` class now appears in the list of classes for the __firewall_example__ group, but it has not yet been configured on your nodes. For that to happen, you need to kick off a puppet run. 
+   **Note**: The `my_firewall` class now appears in the list of classes for the __firewall_example__ group, but it has not yet been configured on your nodes. For that to happen, you need to kick off a Puppet run. 
    
 7. Navigate to the live management page, and select the __Control Puppet__ tab. 
 

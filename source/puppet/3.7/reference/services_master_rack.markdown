@@ -24,15 +24,15 @@ A Rack server is one of two recommended ways to run the Puppet master service; t
 
 > Puppet Enterprise 3.7 uses Puppet Server instead of Rack; previous versions configure Rack for you. You do not need to manually configure a Rack server under Puppet Enterprise.
 
-This page describes the generic requirements and run environment for running under Rack; for practical configuration instructions, see [the guide to configuring a Passenger + Apache puppet master.][passenger_guide]
+This page describes the generic requirements and run environment for running under Rack; for practical configuration instructions, see [the guide to configuring a Passenger + Apache Puppet master.][passenger_guide]
 
-For details about invoking the puppet master command, see [the puppet master man page](/references/3.7.latest/man/master.html).
+For details about invoking the Puppet master command, see [the puppet master man page](/references/3.7.latest/man/master.html).
 
 ## Supported Platforms
 
-The Rack puppet master will run on any \*nix platform, including all Linux variants and OS X. It requires a **multi-process** (_not_ threaded) Rack web server.
+The Rack Puppet master will run on any \*nix platform, including all Linux variants and OS X. It requires a **multi-process** (_not_ threaded) Rack web server.
 
-You cannot run a puppet master on Windows.
+You cannot run a Puppet master on Windows.
 
 ### Rack Web Servers
 
@@ -40,15 +40,15 @@ There are a lot of Rack web server stacks available. Puppet should work with any
 
 > Note that Puppet **will not** work with **threaded** Rack servers like Puma. Puppet's code isn't thread-safe, and it expects to be isolated in a single process.
 
-If you don't have any particular preference, you should start with [Passenger][] and Apache, since it's the most familiar and most thoroughly tested stack in the Puppet community. We have [a detailed guide to configuring Passenger for Puppet.][passenger_guide] Additionally, some OSes have packages that automatically configure a puppet master with Passenger.
+If you don't have any particular preference, you should start with [Passenger][] and Apache, since it's the most familiar and most thoroughly tested stack in the Puppet community. We have [a detailed guide to configuring Passenger for Puppet.][passenger_guide] Additionally, some OSes have packages that automatically configure a Puppet master with Passenger.
 
 The Unicorn + Nginx stack is also fairly popular, but it has more pieces that you'll need to assemble and configure.
 
 ## Controlling the Service
 
-Under Rack, the puppet master processes are started and managed by your Rack web server. The way to start and stop the puppet master will depend on your specific web server stack.
+Under Rack, the Puppet master processes are started and managed by your Rack web server. The way to start and stop the Puppet master will depend on your specific web server stack.
 
-If your Rack stack isn't running any other applications or sites, you can simply start and stop the whole server process; if it also provides other services, as a Passenger/Apache stack sometimes does, you may need to disable the puppet master's virtual host and do a graceful restart.
+If your Rack stack isn't running any other applications or sites, you can simply start and stop the whole server process; if it also provides other services, as a Passenger/Apache stack sometimes does, you may need to disable the Puppet master's virtual host and do a graceful restart.
 
 ## The Rack Puppet Master's Run Environment
 
@@ -127,7 +127,7 @@ You should have already initialized a CA and created the Puppet master's credent
 
 Your SSL termination must be configured as follows:
 
-* It must use a set of cyphers and protocols compatible with the version(s) of OpenSSL that your puppet agent nodes are using.
+* It must use a set of cyphers and protocols compatible with the version(s) of OpenSSL that your Puppet agent nodes are using.
 * It must trust the Puppet CA certificate as its CA. (If you are using an intermediate or split external CA, this is somewhat more complicated; see [the external CA reference][external_ca] for details.)
 * It must identify itself to clients using the Puppet master's certificate and private key.
 * It must have [client authentication][] enabled but optional.

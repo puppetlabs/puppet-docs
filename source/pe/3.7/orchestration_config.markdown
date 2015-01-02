@@ -12,7 +12,7 @@ Disabling Orchestration on Some Nodes
 
 By default, Puppet Enterprise enables and configures orchestration on all agent nodes. This is generally desirable, but the Puppet code that manages this will not work on non-PE agent nodes, and will cause Puppet run failures on them.
 
-Since the puppet master server supports managing non-PE agent nodes (including things like network devices), you should disable orchestration when adding non-PE nodes.
+Since the Puppet master server supports managing non-PE agent nodes (including things like network devices), you should disable orchestration when adding non-PE nodes.
 
 To disable orchestration for a node, in the PE console, create a rule in the `mcollective` group that excludes the node. This will prevent PE from attempting to enable orchestration on that node. [See here for instructions on including nodes in node groups in the console.][group]
 
@@ -71,7 +71,7 @@ Again, this process is _unsupported_ and may require additional work during a fu
 
 Using multiple orchestration [subcollectives][] with Puppet Enterprise is not currently supported, and requires modifying PE's internal modules. If you enable this feature, your changes will be reverted by future PE upgrades, and you will need to re-apply your changes after upgrading.
 
-If you choose to enable this unsupported feature, you will need to modify, at minimum, the `/opt/puppet/share/puppet/modules/pe_mcollective/templates/server.cfg.erb` and `/opt/puppet/share/puppet/modules/pe_mcollective/templates/activemq.xml.erb` files on your puppet master server(s). Any such modifications will be reverted during a future PE upgrade.
+If you choose to enable this unsupported feature, you will need to modify, at minimum, the `/opt/puppet/share/puppet/modules/pe_mcollective/templates/server.cfg.erb` and `/opt/puppet/share/puppet/modules/pe_mcollective/templates/activemq.xml.erb` files on your Puppet master server(s). Any such modifications will be reverted during a future PE upgrade.
 
 
 Configuring Performance
@@ -79,7 +79,7 @@ Configuring Performance
 
 ### ActiveMQ Heap Usage (Puppet Master Server Only)
 
-The puppet master node runs an ActiveMQ server to route orchestration commands. By default, its process uses a Java heap size of 512 MB; this is the best value for mid-sized deployments, but can be a problem when building small proof-of-concept deployments on memory-starved VMs.
+The Puppet master node runs an ActiveMQ server to route orchestration commands. By default, its process uses a Java heap size of 512 MB; this is the best value for mid-sized deployments, but can be a problem when building small proof-of-concept deployments on memory-starved VMs.
 
 You can set a new heap size by doing the following:
 

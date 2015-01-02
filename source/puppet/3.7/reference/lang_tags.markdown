@@ -98,7 +98,7 @@ Tags can be used as an attribute in the [search expression][collector_search] of
 
 ### Restricting Catalog Runs
 
-Puppet agent and puppet apply can use [the `tags` setting][tags_setting] to only apply a subset of the node's [catalog][]. This is useful when refactoring modules, and allows you to only apply a single class on a test node.
+Puppet agent and Puppet apply can use [the `tags` setting][tags_setting] to only apply a subset of the node's [catalog][]. This is useful when refactoring modules, and allows you to only apply a single class on a test node.
 
 The `tags` setting can be set in `puppet.conf` (to permanently restrict the catalog) or on the command line (to temporarily restrict it):
 

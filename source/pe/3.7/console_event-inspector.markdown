@@ -35,7 +35,7 @@ You can export data in the right pane to a CSV file using the __Export table as 
 
 ### Events
 
-An "event" is PE’s attempt to modify an individual property of a given resource. During a Puppet run, Puppet compares the _current state_ of each property on each resource to the _desired state_ for that property. If Puppet successfully compares them and the property is already in sync (the current state is the desired state), Puppet moves on to the next without noting anything. Otherwise, it will attempt some action and record an event, which will appear in the report it sends to the puppet master at the end of the run. These reports provide the data event inspector presents.
+An "event" is PE’s attempt to modify an individual property of a given resource. During a Puppet run, Puppet compares the _current state_ of each property on each resource to the _desired state_ for that property. If Puppet successfully compares them and the property is already in sync (the current state is the desired state), Puppet moves on to the next without noting anything. Otherwise, it will attempt some action and record an event, which will appear in the report it sends to the Puppet master at the end of the run. These reports provide the data event inspector presents.
 
 There are four kinds of events, all of which are shown in event inspector:
 
@@ -96,14 +96,14 @@ You bookmark this page and email the link to your team so they can see the speci
 
 ![Failed Resource Detail view][resource-detail]
 
-You now know the cause of the failure and which line of which manifest you need to edit to resolve the issue. If you need help figuring out the issue with your code, you might wish to try [Geppetto](/geppetto/4.0/index.html), an IDE that can help diagnose puppet code issues. You'll probably also be having a word with your colleagues regarding the importance of remembering the target OS when working on a module!
+You now know the cause of the failure and which line of which manifest you need to edit to resolve the issue. If you need help figuring out the issue with your code, you might wish to try [Geppetto](/geppetto/4.0/index.html), an IDE that can help diagnose Puppet code issues. You'll probably also be having a word with your colleagues regarding the importance of remembering the target OS when working on a module!
 
 Tips & Issues
 -----
 
 #### Runs that Restart PuppetDB Not Displayed
 
-If a given puppet run restarts PuppetDB, puppet will not be able to submit a run report from that run to PuppetDB since, obviously, PuppetDB is not available. Because event inspector relies on data from PuppetDB, and PuppetDB reports are not queued, event inspector will not display any events from that run. Note that in such cases, a run report *will* be available via the console's __Reports__ tab. Having a puppet run restart PuppetDB is an unlikely scenario, but one that could arise in cases where some change to, say, a parameter in the `puppetdb` class causes the `pe-puppetdb` service to restart. This is a known issue that will be fixed in a future release.
+If a given Puppet run restarts PuppetDB, Puppet will not be able to submit a run report from that run to PuppetDB since, obviously, PuppetDB is not available. Because event inspector relies on data from PuppetDB, and PuppetDB reports are not queued, event inspector will not display any events from that run. Note that in such cases, a run report *will* be available via the console's __Reports__ tab. Having a Puppet run restart PuppetDB is an unlikely scenario, but one that could arise in cases where some change to, say, a parameter in the `puppetdb` class causes the `pe-puppetdb` service to restart. This is a known issue that will be fixed in a future release.
 
 #### Runs Without Events Not Displayed
 
@@ -111,7 +111,7 @@ If a run encounters a catastrophic failure where an error prevents a catalog fro
 
 #### Time Sync is Important
 
-Keeping time synchronized across your deployment will help event inspector produce accurate information and keep it running smoothly. Consider running NTP or similar across your deployment. As a bonus, NTP is easily managed with PE and doing so is an excellent way to learn puppet and PE if you are new to them. The [PE Deployment Guide](/guides/deployment_guide/dg_define_infrastructure.html#thing-one-ntp) can walk you through one simple method of NTP automation.
+Keeping time synchronized across your deployment will help event inspector produce accurate information and keep it running smoothly. Consider running NTP or similar across your deployment. As a bonus, NTP is easily managed with PE and doing so is an excellent way to learn Puppet and PE if you are new to them. The [PE Deployment Guide](/guides/deployment_guide/dg_define_infrastructure.html#thing-one-ntp) can walk you through one simple method of NTP automation.
 
 #### Scheduled Resources Log Skips
 
@@ -119,7 +119,7 @@ If the `schedule` metaparameter is set for a given resource, and the scheduled t
 
 #### Simplified Display for Some Resource Types
 
-For resource types that take the `ensure` property, (e.g. user or file resource types), when the resource is first created, event inspector will only display a single event. This is because puppet has only changed one property (`ensure`) which sets all the baseline properties of that resource at once. For example, all of the properties of a given user are created when the user is added, just as they would be if the user was added manually. If a PE run changes properties of that user resource later, each individual property change will be shown as a separate event.
+For resource types that take the `ensure` property, (e.g. user or file resource types), when the resource is first created, event inspector will only display a single event. This is because Puppet has only changed one property (`ensure`) which sets all the baseline properties of that resource at once. For example, all of the properties of a given user are created when the user is added, just as they would be if the user was added manually. If a PE run changes properties of that user resource later, each individual property change will be shown as a separate event.
 
 
 [eventtab]: ./images/console/event_inspector/event_tab.png

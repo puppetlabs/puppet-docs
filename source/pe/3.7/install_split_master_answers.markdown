@@ -5,7 +5,7 @@ subtitle: "Split Puppet Enterprise Install, Puppet Master Answer File Reference"
 canonical: "/pe/latest/install_split_console_answers.html"
 ---
 
-The following answers can be used as a baseline to perform an automated split installation of PE on the node assigned to the puppet master component. 
+The following answers can be used as a baseline to perform an automated split installation of PE on the node assigned to the Puppet master component. 
 
 A .txt file version can be found in the `answers` directory of the PE installer tarball.
 
@@ -37,7 +37,7 @@ These answers are optional.
 These answers are always needed.
 
 `q_puppetmaster_install=y`
-: **Y** or **N** --- Whether to install the puppet master component.
+: **Y** or **N** --- Whether to install the Puppet master component.
 
 `q_puppetdb_install=n`
 : **Y** or **N** --- Whether to install the database support (the console Postgres server and PuppetDB) component.
@@ -50,34 +50,34 @@ These answers are always needed.
 These answers are optional.
 
 `q_puppetagent_install`
-: **Y** or **N** --- Whether to install the puppet agent component.
+: **Y** or **N** --- Whether to install the Puppet agent component.
 
 ### Puppet Agent Answers
 These answers are always needed.
 
 `q_fail_on_unsuccessful_master_lookup`
-: **Y** or **N** --- Whether to quit the install if the puppet master cannot be reached.
+: **Y** or **N** --- Whether to quit the install if the Puppet master cannot be reached.
 
 `q_skip_master_verification=n`
 : **Y** or **N** --- This is a silent install option, default is N. When set to "Y", the installer will skip master verification which allows the user to deploy agents when they know the master won’t be available.
 
 ### Puppet Master Answers
-These answers are generally needed if you are installing the puppet master component.
+These answers are generally needed if you are installing the Puppet master component.
 
 `q_all_in_one_install=n`
 : **Y** or **N** --- Whether or not the installation is an all-in-one installation, (i.e., are puppetdb and the console also being installed on this node).
 
 `q_puppetmaster_certname=pe-master.<your local domain>`
-: **String** --- An identifying string for the puppet master. This ID must be unique across your entire site. The server’s fully qualified domain name is often used as the puppet master’s certname.
+: **String** --- An identifying string for the Puppet master. This ID must be unique across your entire site. The server’s fully qualified domain name is often used as the Puppet master’s certname.
 
 `q_puppetmaster_dnsaltnames=pe-master,pe-master.<your local domain>`
-: **String** --- Valid DNS names at which the puppet master can be reached. Must be a comma-separated list. In a normal installation, defaults to <hostname>,<hostname.domain>,puppet,puppet.<domain>.
+: **String** --- Valid DNS names at which the Puppet master can be reached. Must be a comma-separated list. In a normal installation, defaults to <hostname>,<hostname.domain>,puppet,puppet.<domain>.
 
 `q_puppetmaster_enterpriseconsole_hostname=pe-console.<your local domain>`
-: **String** --- The hostname of the server running the console component. Only needed if you are not installing the console component on the puppet master server.
+: **String** --- The hostname of the server running the console component. Only needed if you are not installing the console component on the Puppet master server.
 
 `q_puppetmaster_enterpriseconsole_port=443`
-: **Integer** --- The port on which to contact the console server. Only needed if you are not installing the console component on the puppet master server.
+: **Integer** --- The port on which to contact the console server. Only needed if you are not installing the console component on the Puppet master server.
 
 `q_pe_check_for_updates=n`
 : **y** or **n**; **MUST BE LOWERCASE** --- Whether to check for updates whenever the `pe-puppetserver` service restarts. To get the correct update info, the server will pass some basic, anonymous info to Puppet Labs’ servers. Specifically, it will transmit:

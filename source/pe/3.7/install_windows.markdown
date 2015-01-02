@@ -22,7 +22,7 @@ Windows nodes in Puppet Enterprise:
 
 See [the main Puppet on Windows documentation](/windows/) for details on [running Puppet on Windows](/windows/running.html) and [writing manifests for Windows](/windows/writing.html).
 
-In particular, note that puppet *must* be run with elevated privileges (a.k.a., "Run as administrator"), as explained in this [section on Windows Security Context](/windows/running.html#security-context).
+In particular, note that Puppet *must* be run with elevated privileges (a.k.a., "Run as administrator"), as explained in this [section on Windows Security Context](/windows/running.html#security-context).
 
 [running]: /windows/running.html
 
@@ -108,7 +108,7 @@ See the **Program Directory** section below for information related to the Progr
 
 #### `PUPPET_MASTER_SERVER`
 
-The hostname where the puppet master server can be reached. This will set a value for [the `server` setting][s] in the `[main]` section of [puppet.conf][].
+The hostname where the Puppet master server can be reached. This will set a value for [the `server` setting][s] in the `[main]` section of [puppet.conf][].
 
 **Default:** `puppet`
 
@@ -116,7 +116,7 @@ The hostname where the puppet master server can be reached. This will set a valu
 
 #### `PUPPET_CA_SERVER`
 
-The hostname where the CA puppet master server can be reached, if you are using multiple masters and only one of them is acting as the CA. This will set a value for [the `ca_server` setting][c] in the `[main]` section of [puppet.conf][].
+The hostname where the CA Puppet master server can be reached, if you are using multiple masters and only one of them is acting as the CA. This will set a value for [the `ca_server` setting][c] in the `[main]` section of [puppet.conf][].
 
 **Default:** the value of the `PUPPET_MASTER_SERVER` property
 
@@ -142,16 +142,16 @@ The node's [environment][]. This will set a value for [the `environment` setting
 
 #### `PUPPET_AGENT_STARTUP_MODE`
 
-Whether the puppet agent service should run (or be allowed to run). Allowed values:
+Whether the Puppet agent service should run (or be allowed to run). Allowed values:
 
-* `Automatic` (**default**) --- puppet agent will start with Windows and stay running in the background.
-* `Manual` --- puppet agent won't run by default, but can be started in the services console or with `net start` on the command line.
-* `Disabled` --- puppet agent will be installed but disabled. You will have to change its start up type in the services console before you can start the service.
+* `Automatic` (**default**) --- Puppet agent will start with Windows and stay running in the background.
+* `Manual` --- Puppet agent won't run by default, but can be started in the services console or with `net start` on the command line.
+* `Disabled` --- Puppet agent will be installed but disabled. You will have to change its start up type in the services console before you can start the service.
 
 
 #### `PUPPET_AGENT_ACCOUNT_USER`
 
-Which Windows user account the puppet agent service should use. This is important if puppet agent will need to access files on UNC shares, since the default `LocalService` account cannot access these network resources.
+Which Windows user account the Puppet agent service should use. This is important if Puppet agent will need to access files on UNC shares, since the default `LocalService` account cannot access these network resources.
 
 * This user account **must already exist,** and may be a local or domain user. (The installer will allow domain users even if they have not accessed this machine before.)
 * If the user isn't already a local administrator, the installer will add it to the `Administrators` group.
@@ -165,13 +165,13 @@ This property should be combined with `PUPPET_AGENT_ACCOUNT_PASSWORD` and `PUPPE
 
 #### `PUPPET_AGENT_ACCOUNT_PASSWORD`
 
-The password to use for puppet agent's user account. See the notes about users above.
+The password to use for Puppet agent's user account. See the notes about users above.
 
 **Default:** no value.
 
 #### `PUPPET_AGENT_ACCOUNT_DOMAIN`
 
-The domain of puppet agent's user account. See the notes about users above.
+The domain of Puppet agent's user account. See the notes about users above.
 
 **Default:** `.`
 
@@ -179,7 +179,7 @@ The domain of puppet agent's user account. See the notes about users above.
 Upgrading
 -----
 
-Puppet can be upgraded by installing a new version of the MSI package. No extra steps are required, and the installer will handle stopping and re-starting the puppet agent service.
+Puppet can be upgraded by installing a new version of the MSI package. No extra steps are required, and the installer will handle stopping and re-starting the Puppet agent service.
 
 When upgrading, the installer will not replace any settings in the main puppet.conf configuration file, but it can add previously unspecified settings if they are provided on the command line.
 
@@ -212,7 +212,7 @@ To uninstall from the command line, you must have the original MSI file or know 
 
     msiexec /qn /x [puppet.msi|product-code]
 
-Uninstalling will remove Puppet's program directory, the puppet agent service, and all related registry keys. It will leave the [data directory](#data-directory) intact, including any SSL keys. To completely remove Puppet from the system, the data directory can be manually deleted.
+Uninstalling will remove Puppet's program directory, the Puppet agent service, and all related registry keys. It will leave the [data directory](#data-directory) intact, including any SSL keys. To completely remove Puppet from the system, the data directory can be manually deleted.
 
 
 Installation Details
@@ -253,7 +253,7 @@ mcollective         | MCollective source
 mcollective_plugins | plugins used by MCollective
 misc                | resources
 puppet              | Puppet source
-service             | code to run puppet agent as a service
+service             | code to run Puppet agent as a service
 sys                 | Ruby and other tools
 
 ### Agent Startup Mode
@@ -262,7 +262,7 @@ The agent is set to `Automatic` startup by default, but allows for you to pass `
 
 * `Automatic` means that the Puppet agent will start with windows and be running all the time in the background. This is the what you would choose when you want to run Puppet with a master.
 * `Manual` means that the agent will start up only when it is started in the services console or through `net start` on the command line. Typically this used in advanced usages of Puppet.
-* `Disabled` means that the agent will be installed but disabled and will not be able to start in the services console (unless you change the start up type in the services console first). This is desirable when you want to install puppet but you only want to invoke it as you specify and not use it with a master.
+* `Disabled` means that the agent will be installed but disabled and will not be able to start in the services console (unless you change the start up type in the services console first). This is desirable when you want to install Puppet but you only want to invoke it as you specify and not use it with a master.
 
 ### Agent Account
 

@@ -38,7 +38,7 @@ When a Puppet command or service is started, you can specify any setting as a co
 
 Settings from the command line have top priority, and **will always override settings from the config file.**
 
-(When running under Rack, the puppet master service can have command line options set in its `config.ru` file. For the puppet agent service, you can often edit the init script to add command line options. In both cases, this is really only useful for the `confdir` and `vardir` settings, which can't be set in puppet.conf.)
+(When running under Rack, the Puppet master service can have command line options set in its `config.ru` file. For the Puppet agent service, you can often edit the init script to add command line options. In both cases, this is really only useful for the `confdir` and `vardir` settings, which can't be set in puppet.conf.)
 
 #### Basic Settings
 

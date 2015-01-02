@@ -93,7 +93,7 @@ Puppet manifests can use conditional logic to describe many nodes' configuration
 
 Catalogs are static documents which contain resources and relationships. At various stages of a Puppet run, a catalog will be in memory as a Ruby object, transmitted as JSON, and persisted to disk as YAML. The catalog format used by this version of Puppet is not documented  and does not have a spec.
 
-In the standard agent/master architecture, nodes request catalogs from a puppet master server, which compiles and serves them to nodes as needed. When running Puppet standalone with puppet apply, catalogs are compiled locally and applied immediately.
+In the standard agent/master architecture, nodes request catalogs from a Puppet master server, which compiles and serves them to nodes as needed. When running Puppet standalone with Puppet apply, catalogs are compiled locally and applied immediately.
 
 Agent nodes cache their most recent catalog. If they request a catalog and the master fails to compile one, they will re-use their cached catalog. This recovery behavior is governed by the [`usecacheonfailure`][usecacheonfailure] setting in [puppet.conf][config]. When testing updated manifests, you can save time by turning it off.
 
@@ -127,7 +127,7 @@ The following short manifest manages NTP. It uses [package][], [file][], and [se
       ensure  => file,
       require => Package['ntp'],
       source  => "puppet:///modules/ntp/ntp.conf",
-      # This source file would be located on the puppet master at
+      # This source file would be located on the Puppet master at
       # /etc/puppetlabs/puppet/modules/ntp/files/ntp.conf (in Puppet Enterprise)
       # or
       # /etc/puppet/modules/ntp/files/ntp.conf (in open source Puppet)

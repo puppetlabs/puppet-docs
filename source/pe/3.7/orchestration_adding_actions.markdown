@@ -41,11 +41,11 @@ MCollective agent plugins consist of two parts:
 * A `.rb` file containing the MCollective agent code
 * A `.ddl` file containing a description of plugin's actions, inputs, and outputs
 
-Every **agent node** that will be using this plugin needs **both** files. The **puppet master node** and **console node** each need the `.ddl` file.
+Every **agent node** that will be using this plugin needs **both** files. The **Puppet master node** and **console node** each need the `.ddl` file.
 
 > **Note:** Additionally, some MCollective agent plugins may be part of a bundle of related plugins, which may include new subcommands, data plugins, and more.
 >
-> [A full list of plugin types and the nodes they should be installed on is available here.][plugin_types] Note that in MCollective terminology, "servers" refers to Puppet Enterprise agent nodes and "clients" refers to the puppet master and console nodes.
+> [A full list of plugin types and the nodes they should be installed on is available here.][plugin_types] Note that in MCollective terminology, "servers" refers to Puppet Enterprise agent nodes and "clients" refers to the Puppet master and console nodes.
 
 #### Distribution
 
@@ -101,8 +101,8 @@ This page assumes that you are **familiar with the Puppet language** and have **
 To install a new agent plugin, you must write a Puppet module that does the following things:
 
 * On agent nodes: copy the plugin's `.rb` and `.ddl` files into the `mcollective/agent` subdirectory of MCollective's libdir. This directory's location varies between \*nix and Windows nodes.
-* On the console and puppet master nodes: if you will not be installing this plugin on _every_ agent node, copy the plugin's `.ddl` file into the `mcollective/agent` subdirectory of MCollective's libdir.
-* If there are any other associated plugins included (such as data or validator plugins), copy them into the proper libdir subdirectories on agent nodes, the console node, and the puppet master node.
+* On the console and Puppet master nodes: if you will not be installing this plugin on _every_ agent node, copy the plugin's `.ddl` file into the `mcollective/agent` subdirectory of MCollective's libdir.
+* If there are any other associated plugins included (such as data or validator plugins), copy them into the proper libdir subdirectories on agent nodes, the console node, and the Puppet master node.
 * If any of these files change, restart the `pe-mcollective` service, which is managed by the `pe_mcollective` module.
 
 To accomplish these, you will need to write some limited interaction with the `pe_mcollective` module, which is part of Puppet Enterprise's implementation. We have kept these interactions as minimal as possible; if any of them change in a future version of Puppet Enterprise, we will provide a warning in the upgrade notes for that version's documentation.
@@ -112,7 +112,7 @@ To accomplish these, you will need to write some limited interaction with the `p
 You have several options for laying this out:
 
 * **One class for all of your custom plugins.** This works fine if you have a limited number of plugins and will be installing them on every agent node.
-* **One module with several classes for individual plugins or groups of plugins.** This is good for installing certain plugins on only some of your agent nodes --- you can split specialized plugins into a pair of `mcollective_plugins::<name>::agent` and `mcollective_plugins::<name>::client` classes, and assign the former to the affected agent nodes and the latter to the console and puppet master nodes.
+* **One module with several classes for individual plugins or groups of plugins.** This is good for installing certain plugins on only some of your agent nodes --- you can split specialized plugins into a pair of `mcollective_plugins::<name>::agent` and `mcollective_plugins::<name>::client` classes, and assign the former to the affected agent nodes and the latter to the console and Puppet master nodes.
 * **A new module for each plugin.** This is maximally flexible, but can sometimes get cluttered.
 
 Once the module is created, **put the plugin files into its `files/` directory.**
@@ -221,7 +221,7 @@ These files should be named for the agent plugin they apply to, and should go in
 
 [The policy file format is documented here.][actionpolicy] When configuring caller IDs in policy files, note that PE uses the following two IDs by default:
 
-* `cert=peadmin-public` --- the command line orchestration client, as used by the `peadmin` user on the puppet master server.
+* `cert=peadmin-public` --- the command line orchestration client, as used by the `peadmin` user on the Puppet master server.
 * `cert=puppet-dashboard-public` --- the live management page in the PE console.
 
 Example: This code would completely disable the package plugin's `update` option, to force users to do package upgrades through your centralized Puppet code:
@@ -247,7 +247,7 @@ For plugins you are only distributing to **some** agent nodes, you must do the f
 
 * Create two Puppet classes for the plugin: a main class that installs everything, and a "client" class that only installs the `.ddl` file and the supporting plugins.
 * Assign the main class to any agent nodes that should be running the plugin.
-* Assign the "client" class to the `puppet_console` and `puppet_master` groups in the console. (These special groups contain all of the console and puppet master nodes in your deployment, respectively.)
+* Assign the "client" class to the `puppet_console` and `puppet_master` groups in the console. (These special groups contain all of the console and Puppet master nodes in your deployment, respectively.)
 
 ### Step 6: Run Puppet
 

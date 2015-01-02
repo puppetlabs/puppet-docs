@@ -51,18 +51,18 @@ Note that versions of fog newer than 0.7.2 may not be fully compatible with Clou
 
 #### Accessing Puppet Master Endpoint
 
-For automatic signing to work, the computer running Cloud Provisioner (i.e. the CP control node) needs to be able to access the puppet master's `certificate_status` REST endpoint. This can be done in the master's [auth.conf](/guides/rest_auth_conf.html) file as follows:
+For automatic signing to work, the computer running Cloud Provisioner (i.e. the CP control node) needs to be able to access the Puppet master's `certificate_status` REST endpoint. This can be done in the master's [auth.conf](/guides/rest_auth_conf.html) file as follows:
 
      path /certificate_status
      method save
      auth yes
      allow {certname}
 
-Note that if the CP control node is on a machine other than the puppet master, it must be able to reach the puppet master over port 8140.
+Note that if the CP control node is on a machine other than the Puppet master, it must be able to reach the Puppet master over port 8140.
 
 #### Generating Per-user Certificates
 
-The CP control node needs to have a certificate that is signed by the puppet master's CA. While it's possible to use an existing certificate (if, say, the control node was or is an agent node), it's preferable to generate a per-user certificate for a clearer, more explicit security policy.
+The CP control node needs to have a certificate that is signed by the Puppet master's CA. While it's possible to use an existing certificate (if, say, the control node was or is an agent node), it's preferable to generate a per-user certificate for a clearer, more explicit security policy.
 
 Start by running the following on the control node:
 `puppet certificate generate {certname} --ca-location remote`

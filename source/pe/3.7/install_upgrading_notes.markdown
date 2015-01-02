@@ -54,7 +54,7 @@ For more information about RBAC, refer to [Working with Role-Based Access Contro
 
    We recommend that you back up the following databases and PE files.
 
-   On a monolithic (all-in-one) install, the databases and PE files will all be located on the same node as the puppet master.
+   On a monolithic (all-in-one) install, the databases and PE files will all be located on the same node as the Puppet master.
 
    - `/etc/puppetlabs/`
    - `/opt/puppet/share/puppet-dashboard/certs`
@@ -63,7 +63,7 @@ For more information about RBAC, refer to [Working with Role-Based Access Contro
 
    On a split install, the databases and PE files will be located across the various components assigned to your servers.
 
-   - `/etc/puppetlabs/`: different versions of this directory can be found on the server assigned to the puppet master component, the server assigned to the console component, and the server assigned to the database support component (i.e., PuppetDB and PostgreSQL). You should back up each version.
+   - `/etc/puppetlabs/`: different versions of this directory can be found on the server assigned to the Puppet master component, the server assigned to the console component, and the server assigned to the database support component (i.e., PuppetDB and PostgreSQL). You should back up each version.
    - `/opt/puppet/share/puppet-dashboard/certs`: located on the server assigned to the console component.
    - The console and console_auth databases: located on the server assigned to the database support component.
    - The PuppetDB database: located on the server assigned to the database support component.
@@ -77,7 +77,7 @@ If you are using an external PostgreSQL instance that is not managed by PE, plea
 
 ### `q_database_host` Cannot be an Alt Name For Upgrades to 3.7.0 
 
-PostgreSQL does not support alt names when set to `verify_full`. If you are upgrading to 3.7 with an answer file, make sure `q_database_host` is set as the puppet agent certname for the database node and not set as an alt name.
+PostgreSQL does not support alt names when set to `verify_full`. If you are upgrading to 3.7 with an answer file, make sure `q_database_host` is set as the Puppet agent certname for the database node and not set as an alt name.
 
 ### Before Upgrading, Correct Invalid Entries in `autosign.conf`
 

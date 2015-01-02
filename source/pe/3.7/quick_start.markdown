@@ -10,10 +10,10 @@ Welcome to the Puppet Enterprise Quick Start Guide. Whether you’re setting up 
 The following guides present tasks in the order that you would most likely perform them. See the prerequisite sections in each guide to ensure you have the correct setup to perform the steps as they're provided:
 
 ### Install a Monolithic Puppet Enterprise Deployment
-Follow [these instructions](./quick_start_install_mono.html) to quickly install a monolithic PE deployment on a linux machine. A monolithic PE deployment entails installing the puppet master, the PE console, and PuppetDB all on one node. Note you will need to review some prerequisites.
+Follow [these instructions](./quick_start_install_mono.html) to quickly install a monolithic PE deployment on a linux machine. A monolithic PE deployment entails installing the Puppet master, the PE console, and PuppetDB all on one node. Note you will need to review some prerequisites.
 
 ### Install the Puppet Agent
-Follow these instructions to quickly install a Puppet agent. A computer running the puppet agent is usually referred to as an “agent node”. The Puppet agent regularly pulls configuration catalogs from a Puppet master and applies them to the local system.
+Follow these instructions to quickly install a Puppet agent. A computer running the Puppet agent is usually referred to as an “agent node”. The Puppet agent regularly pulls configuration catalogs from a Puppet master and applies them to the local system.
 
 Instructions are available for [Windows](./quick_start_install_agents_windows.html) and [*nix](./quick_start_install_agents_nix.html) users. These instructions include how to sign the agent cert request in the console.
 
@@ -21,7 +21,7 @@ Instructions are available for [Windows](./quick_start_install_agents_windows.ht
 The instructions in [this guide](./quick_start_helloworld.html) lead you through the fundamentals of Puppet module writing. You'll write a very simple module that contains classes to manage your motd (message of the day) and create a Hello, World! notification on the command line. 
 
 ### Install a Module
-Follow these instructions to install a Puppet Labs module. Modules contain [classes](../puppet/3/reference/lang_classes.html), which are named chunks of puppet code and are the primary means by which Puppet Enterprise configures and manages nodes.
+Follow these instructions to install a Puppet Labs module. Modules contain [classes](../puppet/3/reference/lang_classes.html), which are named chunks of Puppet code and are the primary means by which Puppet Enterprise configures and manages nodes.
 
 Instructions are available for [Windows](./quick_start_module_install_windows.html) and [*nix](./quick_start_module_install_nix.html) users.
 

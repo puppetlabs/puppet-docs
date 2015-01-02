@@ -23,7 +23,7 @@ PuppetDB is a built-in part of PE 3.0 and later.
 PuppetDB stores up-to-date copies of every node's **facts,** **resource catalogs,** and **run reports** as part of each Puppet run. External tools can easily query and search all of this data over a stable, versioned HTTP query API. This is a more full-featured replacement for Puppet's older Inventory Service interface, and it enables entirely new functionality like class, resource, and event searches.
 
 * [See the documentation for PuppetDB's query API here.][puppetdb_api]
-* Since PuppetDB receives all facts for all nodes, you can extend its data with [custom facts](/guides/custom_facts.html) on your puppet master server.
+* Since PuppetDB receives all facts for all nodes, you can extend its data with [custom facts](/guides/custom_facts.html) on your Puppet master server.
 
 [puppetdb_api]: /puppetdb/2.2/api/index.html
 
@@ -37,7 +37,7 @@ Puppet Run Report Service
 
 The Puppet Run Report Service provides push access to the reports that every node submits after each Puppet run. By writing a custom report processor, you can divert these reports to any custom service, which can use them to determine whether a Puppet run was successful, or dig deeply into the specific changes for each and every resource under management for every node.
 
-You can also write out-of-band report processors that consume the YAML files written to disk by the puppet master's default report handler.
+You can also write out-of-band report processors that consume the YAML files written to disk by the Puppet master's default report handler.
 
 [Learn more about the Puppet Run Report Service here](/guides/reporting.html).
 

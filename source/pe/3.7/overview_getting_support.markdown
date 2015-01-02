@@ -44,14 +44,14 @@ The information collected by the support script includes:
 - the OS and kernel
 - a list of installed packages
 - the current process list
-- a listing of puppet certs
+- a listing of Puppet certs
 - a listing of all services (except on Debian, which lacks the equivalent command)
 - current environment variables
-- whether the puppet master is reachable
+- whether the Puppet master is reachable
 - the output of `mco ping` and `mco inventory`
 - a list of all modules on the system
 - the output of `puppet module changes` (shows if any modules installed by PE have been modified)
-- the output of `/nodes.csv` from the console (includes a list of known nodes and metadata about their most recent puppet runs)
+- the output of `/nodes.csv` from the console (includes a list of known nodes and metadata about their most recent Puppet runs)
 - a listing (no content) of the files in 
    - `/opt/puppet`
    - `/var/opt/lib`

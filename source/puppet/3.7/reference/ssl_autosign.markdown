@@ -11,11 +11,11 @@ canonical: "/puppet/latest/reference/ssl_autosign.html"
 CSRs, Certificates, and Autosigning
 -----
 
-Before puppet agent nodes can retrieve their configuration catalogs, they need a signed certificate from the local Puppet certificate authority (CA). When using Puppet's built-in CA (that is, not [using an external CA][external_ca]), agents will submit a certificate signing request (CSR) to the CA puppet master and will retrieve a signed certificate once one is available.
+Before Puppet agent nodes can retrieve their configuration catalogs, they need a signed certificate from the local Puppet certificate authority (CA). When using Puppet's built-in CA (that is, not [using an external CA][external_ca]), agents will submit a certificate signing request (CSR) to the CA Puppet master and will retrieve a signed certificate once one is available.
 
 By default, these CSRs must be manually signed by an admin user, using either the `puppet cert` command or the "node requests" page of the Puppet Enterprise console.
 
-Alternately, you can configure the CA puppet master to automatically sign certain CSRs to speed up the process of bringing new agent nodes into the deployment.
+Alternately, you can configure the CA Puppet master to automatically sign certain CSRs to speed up the process of bringing new agent nodes into the deployment.
 
 
 > **Important security note:** Autosigning CSRs will change the nature of your deployment's security, and you should be sure you understand the implications before configuring it. Each kind of autosigning has its own security impact.
@@ -24,9 +24,9 @@ Alternately, you can configure the CA puppet master to automatically sign certai
 Disabling Autosigning
 -----
 
-By default, the CA puppet master will use the `$confdir/autosign.conf` file as a whitelist; [see "Basic Autosigning" below][inpage_basic]. Since this file doesn't exist by default, autosigning is implicitly disabled, and the CA will not autosign any certificates.
+By default, the CA Puppet master will use the `$confdir/autosign.conf` file as a whitelist; [see "Basic Autosigning" below][inpage_basic]. Since this file doesn't exist by default, autosigning is implicitly disabled, and the CA will not autosign any certificates.
 
-To _explicitly_ disable autosigning, you can set `autosign = false` in the `[master]` section of the CA puppet master's puppet.conf. This will cause the CA to never autosign even if an autosign.conf file is written later.
+To _explicitly_ disable autosigning, you can set `autosign = false` in the `[master]` section of the CA Puppet master's puppet.conf. This will cause the CA to never autosign even if an autosign.conf file is written later.
 
 Naïve Autosigning
 -----
@@ -35,7 +35,7 @@ Naïve autosigning causes the CA to autosign **all** CSRs.
 
 ### Enabling Naïve Autosigning
 
-To enable naïve autosigning, set `autosign = true` in the `[master]` section of the CA puppet master's puppet.conf.
+To enable naïve autosigning, set `autosign = true` in the `[master]` section of the CA Puppet master's puppet.conf.
 
 ### Security Implications of Naïve Autosigning
 
@@ -50,7 +50,7 @@ In basic autosigning, the CA uses a config file containing a whitelist of certif
 
 ### Enabling Basic Autosigning
 
-To enable basic autosigning, set `autosign = <whitelist file>` in the `[master]` section of the CA puppet master's puppet.conf. The whitelist file must **not** be executable by the same user as the puppet master; otherwise it will be treated as a policy executable.
+To enable basic autosigning, set `autosign = <whitelist file>` in the `[master]` section of the CA Puppet master's puppet.conf. The whitelist file must **not** be executable by the same user as the Puppet master; otherwise it will be treated as a policy executable.
 
 > **Note:** Basic autosigning is enabled by default and looks for a whitelist located at `$confdir/autosign.conf`. For more info, see [the page on the confdir](./dirs_confdir.html).
 
@@ -66,9 +66,9 @@ Note that domain name globs do not function as normal globs: an asterisk can onl
 
 ### Security Implications of Basic Autosigning
 
-Since any host can provide any certname when requesting a certificate, basic autosigning should only be used in situations where you fully trust any computer able to connect to the puppet master.
+Since any host can provide any certname when requesting a certificate, basic autosigning should only be used in situations where you fully trust any computer able to connect to the Puppet master.
 
-With basic autosigning enabled, an attacker able to guess an unused certname allowed by `autosign.conf` would be able to obtain a signed agent certificate from the puppet master. They would then be able to obtain a configuration catalog, which may or may not contain sensitive information (depending on your deployment's Puppet code and node classification).
+With basic autosigning enabled, an attacker able to guess an unused certname allowed by `autosign.conf` would be able to obtain a signed agent certificate from the Puppet master. They would then be able to obtain a configuration catalog, which may or may not contain sensitive information (depending on your deployment's Puppet code and node classification).
 
 
 Policy-Based Autosigning
@@ -78,13 +78,13 @@ In policy-based autosigning, the CA will run an external policy executable every
 
 ### Enabling Policy-Based Autosigning
 
-To enable policy-based autosigning, set `autosign = <policy executable file>` in the `[master]` section of the CA puppet master's puppet.conf.
+To enable policy-based autosigning, set `autosign = <policy executable file>` in the `[master]` section of the CA Puppet master's puppet.conf.
 
-The policy executable file **must be executable by the same user as the puppet master.** If not, it will be treated as a certname whitelist file.
+The policy executable file **must be executable by the same user as the Puppet master.** If not, it will be treated as a certname whitelist file.
 
 ### Custom Policy Executables
 
-A custom policy executable can be written in any programming language; it just has to be executable in a \*nix-like environment. The puppet master will pass it the certname of the request (as a command line argument) and the PEM-encoded CSR (on stdin), and will expect a `0` (approved) or non-zero (rejected) exit code.
+A custom policy executable can be written in any programming language; it just has to be executable in a \*nix-like environment. The Puppet master will pass it the certname of the request (as a command line argument) and the PEM-encoded CSR (on stdin), and will expect a `0` (approved) or non-zero (rejected) exit code.
 
 Once it has the CSR, a policy executable can extract information from it and decide whether to approve the certificate for autosigning. This is most useful if you are [embedding additional information in the CSR][csr_attributes] when you provision your nodes.
 
@@ -105,16 +105,16 @@ As you can see, you must think things through carefully when designing your CSR 
 The API for policy executables is as follows:
 
 * **Run environment:** The executable will be run once for each incoming CSR.
-    * It will be executed by the puppet master process and will run as the same user as the puppet master.
-    * The puppet master process will _block until the executable finishes running._ We expect policy executables to finish in a timely fashion; if they do not, it's possible for them to tie up all available puppet master threads and deny service to other agent nodes. If an executable needs to perform network requests or other potentially expensive operations, the author is in charge of implementing any necessary timeouts, possibly bailing and exiting non-zero in the event of failure.
-    * (Note that under a Rack server like Passenger, there are generally multiple puppet master processes available at any given time, so policy executables have a little bit of leeway.)
+    * It will be executed by the Puppet master process and will run as the same user as the Puppet master.
+    * The Puppet master process will _block until the executable finishes running._ We expect policy executables to finish in a timely fashion; if they do not, it's possible for them to tie up all available Puppet master threads and deny service to other agent nodes. If an executable needs to perform network requests or other potentially expensive operations, the author is in charge of implementing any necessary timeouts, possibly bailing and exiting non-zero in the event of failure.
+    * (Note that under a Rack server like Passenger, there are generally multiple Puppet master processes available at any given time, so policy executables have a little bit of leeway.)
 * **Arguments:** The executable must allow a single command line argument. This argument will be the Subject CN (certname) of the incoming CSR.
     * No other command line arguments should be provided.
-    * The puppet master should never fail to provide this argument.
+    * The Puppet master should never fail to provide this argument.
 * **Stdin:** The executable will receive the entirety of the incoming CSR on its stdin stream. The CSR will be encoded in PEM format.
     * The stdin stream will contain nothing but the complete CSR.
-    * The puppet master should never fail to provide the CSR on stdin.
+    * The Puppet master should never fail to provide the CSR on stdin.
 * **Exit status:** The executable must exit with a status of `0` if the certificate should be autosigned; it must exit with a non-zero status if it should not be autosigned.
-    * The puppet master will treat all non-zero exit statuses as equivalent.
-* **Stdout and stderr:** Anything the executable emits on stdout or stderr will be copied to the puppet master's log output at the `debug` log level. Puppet will otherwise ignore the executable's output; only the exit code is considered significant.
+    * The Puppet master will treat all non-zero exit statuses as equivalent.
+* **Stdout and stderr:** Anything the executable emits on stdout or stderr will be copied to the Puppet master's log output at the `debug` log level. Puppet will otherwise ignore the executable's output; only the exit code is considered significant.
 

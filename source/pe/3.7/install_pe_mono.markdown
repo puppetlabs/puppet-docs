@@ -76,15 +76,15 @@ See the [installation overview](./install_basic.html#downloading-puppet-enterpri
 2. On the start page, click **Let's get started**.
 3. Next, you'll be asked to choose your deployment type. Select **Monolithic**.
 4. Choose whether you want to install PE on the server you're running the installer from or on another server. The choices are **Install on this server** or **Install on another server**.
-5. Provide the following information about the puppet master server:
+5. Provide the following information about the Puppet master server:
 
    > Note that if you selected **Install on this server**, you will only be prompted for steps a - b.
 
-   a. **Puppet master FQDN**: provide the fully qualified domain name of the server you're installing PE on. It will be the name of the puppet master certificate. This FQDN must be resolvable from the machine on which you're running the installer.
+   a. **Puppet master FQDN**: provide the fully qualified domain name of the server you're installing PE on. It will be the name of the Puppet master certificate. This FQDN must be resolvable from the machine on which you're running the installer.
 
    b. **DNS aliases**: provide a comma-separated list of static, valid DNS names (default is "puppet"), so agents can trust the master if they contact it. You should make sure that this static list contains the DNS name or alias you’ll be configuring your agents to contact.
 
-   c. **SSH username**: provide the username to use when connecting to the puppet master. This field defaults to `root`. This user must either be root or have sudo access.
+   c. **SSH username**: provide the username to use when connecting to the Puppet master. This field defaults to `root`. This user must either be root or have sudo access.
 
    d. **SSH password**: if used, provide the password for the SSH username provided. This password will also be used if the user requires a password for sudo access.
 

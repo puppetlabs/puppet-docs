@@ -45,7 +45,7 @@ By default, a new installation of PE will serve the console on the default SSL p
 2. Select the PE Console node group.
 3. In the Classes tab, find the `puppet_enterprise::profile::console Class`.
 4. Add a new value for the `console_ssl_listen_port` parameter.
-5. Trigger a puppet run.
+5. Trigger a Puppet run.
 
 The console should now be available on the port you provided.
 

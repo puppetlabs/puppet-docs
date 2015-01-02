@@ -6,7 +6,7 @@ canonical: "/puppet/latest/reference/config_file_puppetdb.html"
 
 
 
-The `puppetdb.conf` file contains the hostname and port of the [PuppetDB](/puppetdb/latest/) server. It is only used if you are using PuppetDB and have [connected your puppet master to it](/puppetdb/latest/connect_puppet_master.html).
+The `puppetdb.conf` file contains the hostname and port of the [PuppetDB](/puppetdb/latest/) server. It is only used if you are using PuppetDB and have [connected your Puppet master to it](/puppetdb/latest/connect_puppet_master.html).
 
 ## Location
 

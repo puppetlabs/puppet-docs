@@ -63,7 +63,7 @@ You should see output similar to the following:
 
 [classification_selector]: ./images/quick/classification_selector.png
 
-The NTP module contains several **classes**. [Classes](../puppet/3/reference/lang_classes.html) are named chunks of puppet code and are the primary means by which Puppet Enterprise configures nodes. The NTP module contains the following classes:
+The NTP module contains several **classes**. [Classes](../puppet/3/reference/lang_classes.html) are named chunks of Puppet code and are the primary means by which Puppet Enterprise configures nodes. The NTP module contains the following classes:
  
 * `ntp`: the main class; this class includes all other classes (including the classes in this list).
 * `ntp::install`: this class handles the installation packages.
@@ -90,7 +90,7 @@ We're going to add the `ntp` class to the **default** node group. Depending on y
 
 6. Click __Commit 1 change__.
 
-   **Note**: The `ntp` class now appears in the list of classes for the __default__ group, but it has not yet been configured on your nodes. For that to happen, you need to kick off a puppet run. 
+   **Note**: The `ntp` class now appears in the list of classes for the __default__ group, but it has not yet been configured on your nodes. For that to happen, you need to kick off a Puppet run. 
    
 7. Navigate to the live management page, and select the __Control Puppet__ tab. 
 
@@ -114,13 +114,13 @@ Click __With Changes__ in the __Classes: with events__ summary view. The main pa
 
 ![Viewing a successful change][EI-class_change]
 
-The further you drill down, the more detail you'll receive. Eventually, you will end up at a run summary that shows you the details of the event. For example, you can see exactly which piece of puppet code was responsible for generating the event; in this case, it was line 15 of the `service.pp` manifest and line 21 of the `config.pp` manifest from the `puppetlabs-ntp` module.
+The further you drill down, the more detail you'll receive. Eventually, you will end up at a run summary that shows you the details of the event. For example, you can see exactly which piece of Puppet code was responsible for generating the event; in this case, it was line 15 of the `service.pp` manifest and line 21 of the `config.pp` manifest from the `puppetlabs-ntp` module.
 
 ![Event detail][EI-detail]
 
 If there had been a problem applying this class, this information would tell you exactly which piece of code you need to fix. In this case, event inspector simply lets you confirm that PE is now managing NTP.
 
-In the upper right corner of the detail pane is a link to a run report which contains information about the puppet run that made the change, including logs and metrics about the run. Visit the [reports page](./console_reports.html#reading-reports) for more information.
+In the upper right corner of the detail pane is a link to a run report which contains information about the Puppet run that made the change, including logs and metrics about the run. Visit the [reports page](./console_reports.html#reading-reports) for more information.
 
 For more information about using the PE console event inspector, check out the [event inspector docs](./console_event_inspector). 
 
@@ -147,7 +147,7 @@ Changing the server parameter of the `ntp` class can be accomplished in a few st
 6. Click __Add parameter__. 
 7. Click __Commit 1 change__. 
 8. Navigate to the live management page, and select the __Control Puppet__ tab. 
-9. Click the __runonce__ action and then __Run__ to trigger a puppet run to have Puppet Enterprise create the new configuration. 
+9. Click the __runonce__ action and then __Run__ to trigger a Puppet run to have Puppet Enterprise create the new configuration. 
 
 > Puppet Enterprise will now use the NTP server you've specified for that node.
 >

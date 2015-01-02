@@ -219,7 +219,7 @@ Allowed values are `true` and `false`; defaults to `false`.
 
 Specifies the data store to use for accounts and groups.
 
-When set to `namespace`, data will be read from the puppet class specified in the `data_namespace` parameter.  When set to `yaml`, data will be read from specially-named YAML files in the `/etc/puppetlabs/puppet/data` directory. (If you have changed your `$confdir`, it will look in `$confdir/data`.) Example YAML files are provided in the `ext/data/` directory of this module.
+When set to `namespace`, data will be read from the Puppet class specified in the `data_namespace` parameter.  When set to `yaml`, data will be read from specially-named YAML files in the `/etc/puppetlabs/puppet/data` directory. (If you have changed your `$confdir`, it will look in `$confdir/data`.) Example YAML files are provided in the `ext/data/` directory of this module.
 
 Allowed values are `yaml` and `namespace`; defaults to `namespace`.
 

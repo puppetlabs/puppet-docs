@@ -49,7 +49,7 @@ Many modules, including Apache, contain directories other than `manifests` and `
 
 This simplified exercise modifies a template from the Puppet Labs Apache module, specifically `'vhost.conf.erb`. You'll edit the template to include some simple variables that will be populated by facts (using PE's implementation of Facter) about your node.
 
-1. **On the puppet master,** navigate to the modules directory by running `cd /etc/puppetlabs/puppet/modules`.
+1. **On the Puppet master,** navigate to the modules directory by running `cd /etc/puppetlabs/puppet/modules`.
 2. Run `ls` to view the currently installed modules; note that `apache` is present.
 3. Open `apache/templates/vhosts.conf.erb`, using the text editor of your choice (vi, nano, etc.). Avoid using Notepad since it can introduce errors.
       `vhosts.conf.erb` contains the following header:
@@ -76,9 +76,9 @@ This simplified exercise modifies a template from the Puppet Labs Apache module,
         # ************************************
 
 6. **On the console**, add `apache` to the available classes, and then add that class to your agent node. Refer to [the introductory section of this guide if you need help adding classes in the console](./quick_start#using_modules_in_the_pe_console).
-7. Use live management to kick off a puppet run.
+7. Use live management to kick off a Puppet run.
 
-At this point, puppet configures apache and starts the httpd service. When this happens, a default apache vhost is created based on the contents of `vhosts.conf.erb`.
+At this point, Puppet configures apache and starts the httpd service. When this happens, a default apache vhost is created based on the contents of `vhosts.conf.erb`.
 
 8. **On the agent node**, navigate to one of the following locations based on your operating system:
    - Redhat-based: `/etc/httpd/conf.d`
@@ -109,9 +109,9 @@ Puppet Labs modules save time, but at some point you may that you'll need to wri
 
 During this exercise, you will create a class called `pe_quickstart_app` that will manage a PHP-based web app running on an Apache virtual host.
 
-1. **On the puppet master**, make sure you're still in the modules directory (`cd /etc/puppetlabs/puppet/modules`) and then run `mkdir -p pe_quickstart_app/manifests` to create the new module directory and its manifests directory.
+1. **On the Puppet master**, make sure you're still in the modules directory (`cd /etc/puppetlabs/puppet/modules`) and then run `mkdir -p pe_quickstart_app/manifests` to create the new module directory and its manifests directory.
 2. Use your text editor to create and open the `pe_quickstart_app/manifests/init.pp` file.
-3. Edit the `init.pp` file so it contains the following puppet code, and then save it and exit the editor:
+3. Edit the `init.pp` file so it contains the following Puppet code, and then save it and exit the editor:
 
         class pe_quickstart_app {
 
@@ -158,11 +158,11 @@ For more information about writing classes, refer to the following documentation
 1. **On the console**, click the __Add classes__ button, choose the `pe_quickstart_app` class from the list, and then click the __Add selected classes__ button to make it available, just as in the [previous example](./quick_start.html#using-modules-in-the-console). You may need to wait a moment or two for the class to show up in the list.
 2. Navigate to the node view page for your agent node, and use the __Edit__ button to add the `pe_quickstart_app` class to your agent node, and remove the `apache` class you previously added.
 
-   >**Note**: Since the `pe_quickstart_app` includes the `apache` class, you need to remove the first `apache` class you added the master node, as puppet will only allow you to declare a class once.
+   >**Note**: Since the `pe_quickstart_app` includes the `apache` class, you need to remove the first `apache` class you added the master node, as Puppet will only allow you to declare a class once.
 
 3. Use live management to run the __runonce__ action your agent node.
 
-     When the puppet run is complete, you will see in the node's log that a vhost for the app has been created and the Apache service (httpd) has been started.
+     When the Puppet run is complete, you will see in the node's log that a vhost for the app has been created and the Apache service (httpd) has been started.
 
 4. Use a browser to navigate to port 80 of the IP address for your node; e.g, `http://<yournodeip>:80`.
 
@@ -177,7 +177,7 @@ You have created a new class from scratch and used it to launch a Apache PHP-bas
 1. **On the agent node**, open `/var/www/pe_quickstart_app/index.php`, and change the content; change it to something like, "THIS APP IS MANAGED BY PUPPET!"
 2. Refresh your browser, and notice that the PHP info page has been replaced with your new message.
 3. **On the console**, use live management to run the __runonce__ action on your node.
-4. Refresh your browser, and notice that puppet has reset your web app to display the PHP info page. (You can also see that the contents of `/var/www/pe_quickstart_app/index.php` has been reset to what was specified in your manifest.)
+4. Refresh your browser, and notice that Puppet has reset your web app to display the PHP info page. (You can also see that the contents of `/var/www/pe_quickstart_app/index.php` has been reset to what was specified in your manifest.)
 
 Using a Site Module
 -----
@@ -190,7 +190,7 @@ Many users create a "site" module. Instead of describing smaller units of a conf
 
 Site modules hide complexity so you can more easily divide labor at your site. System architects can create the site classes, and junior admins can create new machines and assign a single "role" class to them in the console. In this workflow, the console controls policy, not fine-grained implementation.
 
-* **On the puppet master**, create `/etc/puppetlabs/puppet/modules/site/manifests/basic.pp`, and edit the file to contain the following:
+* **On the Puppet master**, create `/etc/puppetlabs/puppet/modules/site/manifests/basic.pp`, and edit the file to contain the following:
 
 
         class site::basic {
@@ -203,7 +203,7 @@ Site modules hide complexity so you can more easily divide labor at your site. S
         }
 
 
-This class declares other classes with the `include` function. Note the "if" conditional that sets different classes for different kernels using the `$kernel` fact. In this example, if an agent node is a Linux machine, puppet will apply your `pe_quickstart_app` class; if it is a window machines, puppet will apply the `registry::compliance_example` class. For more information about declaring classes, see the [modules and classes chapters of Learning Puppet](/learning/modules1.html).
+This class declares other classes with the `include` function. Note the "if" conditional that sets different classes for different kernels using the `$kernel` fact. In this example, if an agent node is a Linux machine, Puppet will apply your `pe_quickstart_app` class; if it is a window machines, Puppet will apply the `registry::compliance_example` class. For more information about declaring classes, see the [modules and classes chapters of Learning Puppet](/learning/modules1.html).
 
 1. **On the console**, remove all of the previous example classes from your nodes and groups, using the __Edit__ button in each node or group page. Be sure to leave the `pe_*` classes in place.
 2. Add the `site::basic` class to the console with the __Add classes__ button in the sidebar as before.

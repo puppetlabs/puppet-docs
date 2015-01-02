@@ -55,7 +55,7 @@ Modules are directory trees. For this task, you'll create the following files:
 
 **To write the `resolver` class**:
 
-1. From the command line on the puppet master, navigate to the modules directory (`cd /etc/puppetlabs/puppet/modules`).
+1. From the command line on the Puppet master, navigate to the modules directory (`cd /etc/puppetlabs/puppet/modules`).
 2. Run `mkdir -p resolver/manifests` to create the new module directory and its manifests directory.
 3. From the `manifests` directory, use your text editor to create the `init.pp` file, and edit it so it contains the following Puppet code.
 
@@ -119,7 +119,7 @@ The **default** group contains all the nodes in your deployment (including the P
 
 6. Click __Commit 1 change__.
 
-   **Note**: The `resolver` class now appears in the list of classes for the __default__ group, but it has not yet been configured on your nodes. For that to happen, you need to kick off a puppet run. 
+   **Note**: The `resolver` class now appears in the list of classes for the __default__ group, but it has not yet been configured on your nodes. For that to happen, you need to kick off a Puppet run. 
    
 7. Navigate to the live management page, and select the __Control Puppet__ tab. 
 
@@ -144,7 +144,7 @@ You can add class parameter values to the code in your module, but it’s easier
 6. Click __Add parameter__. 
 7. Click __Commit 1 change__. 
 8. Navigate to the live management page, and select the __Control Puppet__ tab. 
-9. Click the __runonce__ action and then __Run__ to trigger a puppet run to have Puppet Enterprise create the new configuration. 
+9. Click the __runonce__ action and then __Run__ to trigger a Puppet run to have Puppet Enterprise create the new configuration. 
 10. Navigate to `/etc/resolv.conf`. This file now contains the contents of the `resolv.conf.erb` template and the nameserver IP address you added in step 4. 
 
 > Success! Puppet Enterprise will now use the nameserver IP address you've specified for that node. 
@@ -155,7 +155,7 @@ You can add class parameter values to the code in your module, but it’s easier
 >
 >The further you drill down in event inspector, the more detail you'll receive. If there had been a problem applying the `resolver` class, this information would tell you exactly where that problem occurred or which piece of code you need to fix. 
 >
->In the upper right corner of the screen is a link to a run report, which contains information about the changes made during puppet runs, including logs and metrics about the run. Visit the [reports page](./console_reports.html#reading-reports) for more info.
+>In the upper right corner of the screen is a link to a run report, which contains information about the changes made during Puppet runs, including logs and metrics about the run. Visit the [reports page](./console_reports.html#reading-reports) for more info.
 >
 >For more information about using the PE console event inspector, check out the [event inspector docs](./console_event_inspector). 
  
@@ -166,7 +166,7 @@ Finally, let's take a look at how PE will ensure the desired state of the `resol
 1. On any agent node to which you applied the `resolv.conf` class, edit `/etc/resolv.conf` to be any  nameserver IP address other than the one you desire to use. 
 2. Save and exit the file.
 2. From the console, navigate to the live management page, and select the __Control Puppet__ tab.
-3. Click the __runonce__ action and then __Run__ to trigger a puppet run. 
+3. Click the __runonce__ action and then __Run__ to trigger a Puppet run. 
 8. Navigate to `/etc/resolv.conf`, and notice that PE has enforced the desired state you specified for the nameserver IP address. 
 
 > That's it --- PE has enforced the desired state of your agent node!

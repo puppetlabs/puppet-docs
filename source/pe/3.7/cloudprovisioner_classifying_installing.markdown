@@ -5,7 +5,7 @@ subtitle: "Classifying New Nodes and Remotely Installing Puppet"
 canonical: "/pe/latest/cloudprovisioner_classifying_installing.html"
 ---
 
-Nodes in a cloud infrastructure can be classified and managed as easily as any other machine in a Puppet Enterprise deployment. You can install a puppet agent (or other component) on them and add new nodes to pre-existing console groups, further classify and configure those nodes, and manipulate them with live management.
+Nodes in a cloud infrastructure can be classified and managed as easily as any other machine in a Puppet Enterprise deployment. You can install a Puppet agent (or other component) on them and add new nodes to pre-existing console groups, further classify and configure those nodes, and manipulate them with live management.
 
 Many of these tasks are accomplished using the `puppet node` subcommand. While `puppet node` can be applied to physical or virtual machines, several actions have been created specifically for working with virtual machine instances in the cloud. For complete details, view the `puppet node` man page.
 
@@ -39,7 +39,7 @@ The above example adds an AWS EC2 instance to the console. Note that you use the
 
 **Important:** All ENC connections to cloud nodes now require SSL support.
 
-Note that until the first puppet run is performed on this node, Puppet itself will not yet be installed. (Unless one of the "wrapper" commands has been used. [See below](#installing-puppet).)
+Note that until the first Puppet run is performed on this node, Puppet itself will not yet be installed. (Unless one of the "wrapper" commands has been used. [See below](#installing-puppet).)
 
 To see additional help for node classification, run `puppet help node classify`. For more about how the console groups and classifies nodes, [see the section on grouping and classifying](./console_classes_groups.html).
 
@@ -112,7 +112,7 @@ The invocation above will connect to the console, classify the node in the `apps
 
 ### Using `autosign.conf`
 
-Alternatively, if your CA puppet master has the `autosign` setting configured, it can sign certificates automatically. While this can greatly simplify the process, there are some security issues associated with going this route, so be sure you are comfortable with the process and know the risks.
+Alternatively, if your CA Puppet master has the `autosign` setting configured, it can sign certificates automatically. While this can greatly simplify the process, there are some security issues associated with going this route, so be sure you are comfortable with the process and know the risks.
 
 * * *
 

@@ -25,7 +25,7 @@ Regardless of your situation, regenerating your certificates involves the follow
 
 Note that this process **destroys the certificate authority and all other certificates.** It is meant for use in the event of a total compromise of your site, or some other unusual circumstance. If you just need to replace a few agent certificates, you can use the `puppet cert clean` command on your Puppet master and then follow step five for any agent certs that need to be replaced.
 
->**Notes**: In the following instructions, when `<CERTNAME>` is used, it refers to the puppet agent's certname. To find this value, run `puppet config print certname` before starting.
+>**Notes**: In the following instructions, when `<CERTNAME>` is used, it refers to the Puppet agent's certname. To find this value, run `puppet config print certname` before starting.
 >
 > You must be logged in as a root, (or in the case of Windows agents, as an account with Administrator Privileges) to make these changes.
 
@@ -124,7 +124,7 @@ Note that this process **destroys the certificate authority and all other certif
 
 ## Step 4:  Clear and Regenerate Certs for the PE Console 
 
-**On your monolithic puppet master server**:
+**On your monolithic Puppet master server**:
 
 1. Remove all credentials in the puppet-dashboard and console-services certificate directories.
 
@@ -184,7 +184,7 @@ Now that all the certs are in place, you will need to restart the PE services yo
       puppet resource service pe-mcollective ensure=running
       puppet resource service pe-puppet ensure=running
 
-Kick off a Puppet run. A successful puppet run on the master is necessary to ensure that the PE orchestration service and ActiveMQ is configured properly.
+Kick off a Puppet run. A successful Puppet run on the master is necessary to ensure that the PE orchestration service and ActiveMQ is configured properly.
 
 ## Step 6: Clear and Regenerate Certs for PE Agents
 
@@ -197,7 +197,7 @@ To replace the certs on agents, you'll need to log into each agent node and do t
 
    If something goes wrong, you may need to restore these directories so your deployment can stay functional. **However,** if you needed to regenerate your certs for security reasons and couldn't, you should contact Puppet Labs support as soon as you restore service so we can help you secure your site.
 
-2. Stop the puppet agent service.
+2. Stop the Puppet agent service.
 
    `puppet resource service pe-puppet ensure=stopped`
 
@@ -208,11 +208,11 @@ To replace the certs on agents, you'll need to log into each agent node and do t
 4. Delete the agent's SSL directory. On \*nix nodes, run `rm -r /etc/puppetlabs/puppet/ssl`. On Windows nodes, delete the `$confdir\ssl` directory, using the Administrator confdir. [See here for more information on locating the confdir.][confdir]
 5. Remove the cached catalog. on \*nix nodes, run `rm -f /var/opt/lib/pe-puppet/client_data/catalog/<CERT NAME>.json`. On Windows nodes, delete the `$client_datadir\catalog\<CERTNAME>.json` file, using the Administrator confdir. [See here for more information on locating the confdir.][confdir]
 
-6. Re-start the puppet agent service.
+6. Re-start the Puppet agent service.
    
    `puppet resource service pe-puppet ensure=running`
 
-   Once puppet agent starts, it will automatically generate keys and request a new certificate from the CA Puppet master.
+   Once Puppet agent starts, it will automatically generate keys and request a new certificate from the CA Puppet master.
    
 7. If you are not using autosigning, you will need to sign each agent node's certificate request. You can do this [with the PE console's request manager][request_manager], or by logging into the CA Puppet master server, running `puppet cert list` to see pending requests, and running `puppet cert sign <NAME>` to sign requests.
 

@@ -41,7 +41,7 @@ Directory environments are disabled by default. To enable them, you must:
 
 ### Edit puppet.conf
 
-To enable directory environments, set `environmentpath = $confdir/environments` (or [the value of your choice][inpage_environmentpath]) in the puppet master's [puppet.conf][] (in the `[main]` or `[master]` section).
+To enable directory environments, set `environmentpath = $confdir/environments` (or [the value of your choice][inpage_environmentpath]) in the Puppet master's [puppet.conf][] (in the `[main]` or `[master]` section).
 
 Optionally, you can also:
 
@@ -56,7 +56,7 @@ Once you edit puppet.conf, directory environments will be enabled and config fil
 
 You must have a directory environment for **every** environment that **any** nodes are assigned to. At minimum, you should have a `production` environment. Nodes assigned to nonexistent environments cannot fetch their catalogs.
 
-To create your first environment, create a directory named `production` in your environmentpath. (If a `production` directory doesn't exist, the puppet master will try to create one when it starts up.) Once it is created, you can add modules, a [main manifest,][main manifest] and an [environment.conf][] file to it.
+To create your first environment, create a directory named `production` in your environmentpath. (If a `production` directory doesn't exist, the Puppet master will try to create one when it starts up.) Once it is created, you can add modules, a [main manifest,][main manifest] and an [environment.conf][] file to it.
 
 * See [the page on creating directory environments][create_environment] for full details.
 
@@ -80,7 +80,7 @@ Puppet uses five settings from [puppet.conf][] to configure the behavior of dire
 
 [inpage_environmentpath]: #about-environmentpath
 
-The puppet master will only look for environments in certain directories, listed by [the `environmentpath` setting][environmentpath] in puppet.conf. The recommended value for `environmentpath` is `$confdir/environments`. ([See here for info on the confdir][confdir].)
+The Puppet master will only look for environments in certain directories, listed by [the `environmentpath` setting][environmentpath] in puppet.conf. The recommended value for `environmentpath` is `$confdir/environments`. ([See here for info on the confdir][confdir].)
 
 If `environmentpath` isn't set, directory environments will be disabled completely.
 
@@ -133,7 +133,7 @@ Defaults to three minutes. This setting can be a time interval in seconds (`30` 
 
 > **Note:** If an environment has a timeout of more than a few minutes, you should restart your Puppet master service whenever you change that environment. [We explain further here.](./environments_limitations.html#changing-an-environment-with-a-long-timeout-requires-a-service-restart)
 
-Most users should be fine with the default of three minutes. To get more performance from your puppet master, you can tune the timeout for your most heavily used environments. Getting the most benefit involves a tradeoff between speed, memory usage, and responsiveness to changed files. The general best practice is:
+Most users should be fine with the default of three minutes. To get more performance from your Puppet master, you can tune the timeout for your most heavily used environments. Getting the most benefit involves a tradeoff between speed, memory usage, and responsiveness to changed files. The general best practice is:
 
 - Long-lived, slowly changing, relatively homogenous, highly populated environments (like `production` at most sites) will give the most benefit from longer timeouts. If you only make changes to an environment once or twice a day, you can set its timeout to `unlimited` and restart the Puppet master service whenever you deploy code.
 - Rapidly changing dev environments should have short timeouts: a few seconds, or `0` if you don't want to wait.

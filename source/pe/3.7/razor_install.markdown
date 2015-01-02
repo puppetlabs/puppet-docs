@@ -16,7 +16,7 @@ If you're not a PE user, you can install the [open source version of Razor manua
 ###Before You Begin
 Things you should know before you set up provisioning:
 
-+ **Do not** install Razor on the puppet master.
++ **Do not** install Razor on the Puppet master.
 + The default port for Razor is 8080. This is also the default port for PuppetDB, so you cannot have PuppetDB and Razor installed on the same node.
 + Razor has been specifically validated on RHEL/CentOS 6.4, but it should work on all 6.x versions. See the [CentOS site](http://isoredirect.centos.org/centos/6/isos/x86_64/) for options.
 
@@ -50,7 +50,7 @@ If you don't have access to the internet or would like to pull the PE tarball fr
 			include pe_razor
 		}
 	
-2. On the Razor server, run puppet with: `puppet agent -t` (otherwise you have to wait for the scheduled agent run).
+2. On the Razor server, run Puppet with: `puppet agent -t` (otherwise you have to wait for the scheduled agent run).
 
 
 ###Load iPXE Software

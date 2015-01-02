@@ -47,7 +47,7 @@ The `configuration.yaml` file declares what parameters the user must specify whe
       description: "The locally unique name for this node."
       required: true
     server:
-      description: "The puppet master server to request configurations from."
+      description: "The Puppet master server to request configurations from."
       required: true
     environment:
       description: "On agent nodes, the environment to request configuration in."

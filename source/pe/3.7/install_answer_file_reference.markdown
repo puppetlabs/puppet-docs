@@ -29,7 +29,7 @@ To set it to a UUID:
 Sample Answer Files
 -------------------
 
-PE includes a collection of sample answer files in the `answers` directory of your distribution tarball. Sample answer file references are available for monolithic (all-in-one) and split installations. For split installations, the answer file references are broken out across the various components you will install; there is an answer file for the puppet master, the console, and the PuppetDB components.
+PE includes a collection of sample answer files in the `answers` directory of your distribution tarball. Sample answer file references are available for monolithic (all-in-one) and split installations. For split installations, the answer file references are broken out across the various components you will install; there is an answer file for the Puppet master, the console, and the PuppetDB components.
 
 In addition to the answer file references for monolithic and split installations, we've included a reference for all possible answers that you can include in an answer file. 
 

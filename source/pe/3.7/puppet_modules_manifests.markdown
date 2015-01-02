@@ -56,10 +56,10 @@ This page covers the first part of that process: writing manifests and modules. 
 >
 > ### Geppetto IDE
 >
-> Geppetto is an integrated development environment (IDE) for Puppet. It provides a toolset for developing puppet modules and manifests that includes syntax highlighting, content assistance, error tracing/debugging, and code completion features. Geppetto also provides integration with git, enabling side-by-side comparison of code from a given repo complete with highlighting, code validation, syntax error parsing, and expression troubleshooting. 
+> Geppetto is an integrated development environment (IDE) for Puppet. It provides a toolset for developing Puppet modules and manifests that includes syntax highlighting, content assistance, error tracing/debugging, and code completion features. Geppetto also provides integration with git, enabling side-by-side comparison of code from a given repo complete with highlighting, code validation, syntax error parsing, and expression troubleshooting. 
 >
 >In addition, Geppetto provides tools that integrate with Puppet products. It includes an interface to the Puppet Forge, which allows you to create modules from existing modules on the Forge as well as easily upload your custom modules. 
-> Geppetto also provides PE integration by parsing PuppetDB error reporting. This allows you to quickly find the problems with your puppet code that are causing configuration failures. For complete information, visit the [Geppetto documentation][geppetto].
+> Geppetto also provides PE integration by parsing PuppetDB error reporting. This allows you to quickly find the problems with your Puppet code that are causing configuration failures. For complete information, visit the [Geppetto documentation][geppetto].
 >
 >
 > ### Printable References
@@ -108,7 +108,7 @@ When a resource depends on another resource, you should explicitly state the rel
 >
 >You most likely expect that resources will be executed in the order you wrote them in your manifest files—if there were no dependencies specified. If you’re an experienced user and have been using this kind of explicit ordering in your codebase, you'll be able to use manifest ordering without any problems.
 >
->We know that for new PE users learning the puppet language, one of the first stumbling blocks is figuring out how to order resources so they’re evaluated correctly when puppet runs. We anticipate that manifest ordering will help mitigate your struggles and help get you writing more effective puppet code. And as you’re learning, we definitely recommend you study up on [relationships and ordering in Puppet](/puppet/3.7/reference/lang_relationships.html). 
+>We know that for new PE users learning the Puppet language, one of the first stumbling blocks is figuring out how to order resources so they’re evaluated correctly when Puppet runs. We anticipate that manifest ordering will help mitigate your struggles and help get you writing more effective Puppet code. And as you’re learning, we definitely recommend you study up on [relationships and ordering in Puppet](/puppet/3.7/reference/lang_relationships.html). 
 >
 >The following values are allowed for the `ordering` setting:
 >
@@ -120,7 +120,7 @@ When a resource depends on another resource, you should explicitly state the rel
 >
 >#### Changing the Resource Ordering Setting
 >
->By default, the `ordering` setting is configured for `manifest` ordering, but you will not see this displayed in `puppet.conf` (located at `/etc/puppetlabs/puppet/puppet.conf` on the puppet master). 
+>By default, the `ordering` setting is configured for `manifest` ordering, but you will not see this displayed in `puppet.conf` (located at `/etc/puppetlabs/puppet/puppet.conf` on the Puppet master). 
 >
 >To toggle the setting to `random` or `title-hash`, you will need to add it to the `agent` section; for example:
 >
@@ -173,7 +173,7 @@ Groups of resource declarations and conditional statements can be wrapped up int
     }
 {% endhighlight %}
 
-Classes are named blocks of Puppet code that can be assigned to nodes. They should be stored in modules so that the puppet master can locate them by name.
+Classes are named blocks of Puppet code that can be assigned to nodes. They should be stored in modules so that the Puppet master can locate them by name.
 
 **Defined resources** (i.e., defined resource types) extend the capability of classes and are stored in the module structure. They cannot be assigned directly to nodes but can enable you to build much more sophisticated classes.
 
@@ -183,7 +183,7 @@ Classes are named blocks of Puppet code that can be assigned to nodes. They shou
 Puppet Modules
 -----
 
-**Modules** are a convention for arranging Puppet manifests so that they can be automatically located and loaded by the puppet master. They can also contain plugins, static files for nodes to download, and templates.
+**Modules** are a convention for arranging Puppet manifests so that they can be automatically located and loaded by the Puppet master. They can also contain plugins, static files for nodes to download, and templates.
 
 Modules can contain many Puppet classes. Generally, the classes in a given module are all somewhat related. (For example, an `apache` module might have a class that installs and enables Apache, a class that enables PHP with Apache, a class that turns on `mod_rewrite`, etc.)
 
@@ -191,9 +191,9 @@ A module is:
 
 * A directory...
 * ...with a specific internal layout...
-* ...which is located in one of the puppet master's **modulepath** directories.
+* ...which is located in one of the Puppet master's **modulepath** directories.
 
-In Puppet Enterprise, the main modulepath directory for users is located at `/etc/puppetlabs/puppet/modules` on the puppet master server.
+In Puppet Enterprise, the main modulepath directory for users is located at `/etc/puppetlabs/puppet/modules` on the Puppet master server.
 
 ### Module Structure
 
@@ -225,14 +225,14 @@ You can search for pre-built modules on [the Puppet Forge][forge] and use them i
 
 * Use the `puppet module search` command to locate modules, or [browse the Puppet Forge's web interface][forge].
 * Along with the standard modules you can find on the Forge, Puppet Labs also provides Puppet Enterprise supported modules; these supported modules are rigorously tested with PE, supported via the usual [support channels](http://puppetlabs.com/services/customer-support), maintained for a long-term lifecycle, and are compatible with multiple platforms and architectures. 
-* On your puppet master server, use the `puppet module install` command to install modules from the Forge.
+* On your Puppet master server, use the `puppet module install` command to install modules from the Forge.
 * See [the Installing Modules page][install] for details about installing pre-built modules.
 
 
 Catalogs and Compilation
 -----
 
-In standard master/agent Puppet, agents never see the manifests and modules that comprise their configuration. Instead, the puppet master **compiles** the manifests down into a document called a **catalog,** and serves the catalog to the agent node.
+In standard master/agent Puppet, agents never see the manifests and modules that comprise their configuration. Instead, the Puppet master **compiles** the manifests down into a document called a **catalog,** and serves the catalog to the agent node.
 
 As mentioned above, manifests can contain conditional logic, as well as things like templates and functions, all of which can use variables to change what the manifest manages on a system. A catalog has none of these things; it contains only resources and relationships.
 

@@ -22,11 +22,11 @@ Installing Modules
 
 ![Windows note](/images/windows-logo-small.jpg)
 
-* Windows nodes that pull configurations from a Linux or Unix puppet master can use any Forge modules installed on the master. Continue reading to learn how to use the module tool on your puppet master.
-* If you are getting SSL errors or cannot get the puppet module tool to work, check out our [error messages documentation][errors].
+* Windows nodes that pull configurations from a Linux or Unix Puppet master can use any Forge modules installed on the master. Continue reading to learn how to use the module tool on your Puppet master.
+* If you are getting SSL errors or cannot get the Puppet module tool to work, check out our [error messages documentation][errors].
 
 **Solaris Note**
-To use the puppet module tool on Solaris systems, you must first install gtar.
+To use the Puppet module tool on Solaris systems, you must first install gtar.
 
 The [Puppet Forge][forge] is a **repository of pre-existing modules,** written and contributed by users. These modules solve a wide variety of problems so using them can save you time and effort.
 
@@ -34,7 +34,7 @@ The `puppet module` subcommand, which ships with Puppet, is a tool for finding a
 
 * Continue reading to learn how to install and manage modules from the Puppet Forge.
 * [See "Module Fundamentals"][fundamentals] to learn how to use and write Puppet modules.
-* [See "Publishing Modules"][publishing] to learn how to contribute your own modules to the Forge, including information about the puppet module tool's `build` and `generate` actions.
+* [See "Publishing Modules"][publishing] to learn how to contribute your own modules to the Forge, including information about the Puppet module tool's `build` and `generate` actions.
 * [See "Using Plugins"][plugins] for how to arrange plugins (like custom facts and custom resource types) in modules and sync them to agent nodes.
 * [See "Documenting Modules"][documentation] for a README template and information on providing directions for your module.
 
@@ -60,12 +60,12 @@ The `puppet module` subcommand has several **actions.** The main actions used fo
       # puppet module search apache
 
 `uninstall`
-: Uninstall a puppet module.
+: Uninstall a Puppet module.
 
       # puppet module uninstall puppetlabs-apache
 
 `upgrade`
-: Upgrade a puppet module.
+: Upgrade a Puppet module.
 
       # puppet module upgrade puppetlabs-apache --version 0.0.3
 
@@ -73,7 +73,7 @@ If you have used a command line package manager tool (like `gem`, `apt-get`, or 
 
 ###Using the Module Tool Behind a Proxy
 
-In order to use the puppet module tool behind a proxy, you need to set the following:
+In order to use the Puppet module tool behind a proxy, you need to set the following:
 
 	export http_proxy=http://10.187.255.9:8080
 	export https_proxy=http://10.187.255.9:8080
@@ -93,7 +93,7 @@ The `puppet module install` action will install a module and all of its dependen
 * Use the `--environment` option to install into a different environment.
 * Use the `--modulepath` option to manually specify which directory to install into. Note: To avoid duplicating modules installed as dependencies, you may need to specify the modulepath as a list of directories; see [the documentation for setting the modulepath][modulepath] for details.
 * Use the `--ignore-dependencies` option to skip installing any modules required by this module.
-* Use the `--debug` option to see additional information about what the puppet module tool is doing.
+* Use the `--debug` option to see additional information about what the Puppet module tool is doing.
 
 
 >**A note about installing**
@@ -125,7 +125,7 @@ After setting the repository, follow the instructions above for installing from 
 
 To install a module from a release tarball, specify the path to the tarball instead of the module name.
 
-Make sure to use the `--ignore-dependencies` flag if you cannot currently reach the Puppet Forge or are installing modules that have not yet been published to the Forge. This flag will tell the puppet module tool not to try to resolve dependencies by connecting to the Forge. Be aware that in this case you must manually install any dependencies.
+Make sure to use the `--ignore-dependencies` flag if you cannot currently reach the Puppet Forge or are installing modules that have not yet been published to the Forge. This flag will tell the Puppet module tool not to try to resolve dependencies by connecting to the Forge. Be aware that in this case you must manually install any dependencies.
 
     # puppet module install ~/puppetlabs-apache-0.10.0.tar.gz --ignore-dependencies
 

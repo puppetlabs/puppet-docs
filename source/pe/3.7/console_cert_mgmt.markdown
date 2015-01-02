@@ -7,7 +7,7 @@ canonical: "/pe/latest/console_cert_mgmt.html"
 
 
 ### Intro/Overview
-Node request management allows sysadmins to view and respond to node requests graphically, from within the console. This means nodes can be approved for addition to the deployment without needing access to the puppet master or using the CLI. For further security, node request management supports the console's user management system: only users with read/write privileges can take action on node requests.
+Node request management allows sysadmins to view and respond to node requests graphically, from within the console. This means nodes can be approved for addition to the deployment without needing access to the Puppet master or using the CLI. For further security, node request management supports the console's user management system: only users with read/write privileges can take action on node requests.
 
 Once the console has been properly configured to point at the appropriate Certificate Authority (CA), it will display all of the nodes that have generated Certificate Signing Requests (CSRs). You can then approve or deny the requests, individually or in a batch.
 
@@ -31,7 +31,7 @@ If there are no pending node requests, you will see some instructions for adding
 
 The ability to respond to node requests is linked to your user privileges. You must be logged in to the console as a user with read/write privileges before you can respond to requests.
 
-Use the buttons to accept or reject nodes, singly or all at once. Note that once a node request is approved, the node will not show up in the console until the next puppet run takes place. This could be as long as 30 minutes, depending on how you have set up your puppet master. Depending on how many nodes you have in your site total, and on the number of pending requests, it can also take up to two seconds per request for "Reject All" or "Accept All" to finish processing.
+Use the buttons to accept or reject nodes, singly or all at once. Note that once a node request is approved, the node will not show up in the console until the next Puppet run takes place. This could be as long as 30 minutes, depending on how you have set up your Puppet master. Depending on how many nodes you have in your site total, and on the number of pending requests, it can also take up to two seconds per request for "Reject All" or "Accept All" to finish processing.
 
 ![request management view](./images/console/request_mgmt_view.png)
 
@@ -58,7 +58,7 @@ For more information on working with certificates from the CLI, see the [Puppet 
 
 ### Configuration Details
 
-* By default, the location of the CA is set to the location of PE's puppet master. If the CA is in a custom location (as in cases where there are multiple puppet masters), you will have to set the `ca_server` and `ca_port` settings in the `/opt/puppet/share/puppet-dashboard/config/settings.yml` file.
+* By default, the location of the CA is set to the location of PE's Puppet master. If the CA is in a custom location (as in cases where there are multiple Puppet masters), you will have to set the `ca_server` and `ca_port` settings in the `/opt/puppet/share/puppet-dashboard/config/settings.yml` file.
 
 * When upgrading PE from a version before 2.7.0, the upgrader will convert the currently installed auth.conf file to one that is fully managed by Puppet and which includes a new rule for request management. *However*, if auth.conf has been manually modified prior to the upgrade, the upgrader will NOT convert the file. Consequently, to get it working, you will need to add the new rule manually by adding the code below into `/etc/puppetlabs/puppet/auth.conf`:
 

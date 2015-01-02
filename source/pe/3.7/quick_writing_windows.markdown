@@ -18,9 +18,9 @@ Welcome to the writing modules section of the Quick Start Guide (QSG) series. Th
 
 ### Getting Started
 
-First, you'll need to [install the puppet agent](./install_windows.html) on a node running a [supported version](./install_system_requirements.html#operating-system) of Windows. Once the agent is installed, sign its certificate to add it to the console. (You can find instructions for installing Windows agents and signing their certificates in the [Windows agent installation instructions](./quick_start_install_agents_windows.html).
+First, you'll need to [install the Puppet agent](./install_windows.html) on a node running a [supported version](./install_system_requirements.html#operating-system) of Windows. Once the agent is installed, sign its certificate to add it to the console. (You can find instructions for installing Windows agents and signing their certificates in the [Windows agent installation instructions](./quick_start_install_agents_windows.html).
 
-Next, install the [Puppet Labs Registry module](https://forge.puppetlabs.com/puppetlabs/registry) on your puppet master. Follow the steps in the [install the registry module installation quick start guide](./quick_start_install_module_windows.html). Once the module has been installed, add its class as you did in the [adding classes quick start guide](./quick_start_adding_classes_windows.html).
+Next, install the [Puppet Labs Registry module](https://forge.puppetlabs.com/puppetlabs/registry) on your Puppet master. Follow the steps in the [install the registry module installation quick start guide](./quick_start_install_module_windows.html). Once the module has been installed, add its class as you did in the [adding classes quick start guide](./quick_start_adding_classes_windows.html).
 
 #### Module Basics
 
@@ -53,9 +53,9 @@ Puppet Labs modules save time, but at some point most users will also need to wr
 
 During this exercise, you will create a class called `critical_policy` that will manage a collection of important settings and options in your Windows registry, most notably the legal caption and text users will see before the login screen.
 
-1. **On the puppet master**, make sure you're still in the modules directory, `cd /etc/puppetlabs/puppet/modules`, and then run `mkdir -p critical_policy/manifests` to create the new module directory and its manifests directory.
+1. **On the Puppet master**, make sure you're still in the modules directory, `cd /etc/puppetlabs/puppet/modules`, and then run `mkdir -p critical_policy/manifests` to create the new module directory and its manifests directory.
 2. Use your text editor to create and open the `critical_policy/manifests/init.pp` file.
-3. Edit the init.pp file so it contains the following puppet code, and then save it and exit the editor:
+3. Edit the init.pp file so it contains the following Puppet code, and then save it and exit the editor:
 
         class critical_policy {
 
@@ -130,7 +130,7 @@ Many users create a "site" module. Instead of describing smaller units of a conf
 
 Site modules hide complexity so you can more easily divide labor at your site. System architects can create the site classes, and junior admins can create new machines and assign a single "role" class to them in the console. In this workflow, the console controls policy, not fine-grained implementation.
 
-* **On the puppet master,** create the `/etc/puppetlabs/puppet/modules/site/manifests/basic.pp` file, and edit it to contain the following:
+* **On the Puppet master,** create the `/etc/puppetlabs/puppet/modules/site/manifests/basic.pp` file, and edit it to contain the following:
 
 
         class site::basic {
@@ -144,7 +144,7 @@ Site modules hide complexity so you can more easily divide labor at your site. S
         }
 
 
-This class declares other classes with the `include` function. Note the "if" conditional that sets different classes for different OS's using the `$osfamily` fact. In this example, if an agent node is not a Windows agent, puppet will apply the `motd` and `core_permissions` classes. For more information about declaring classes, see the [modules and classes chapters of Learning Puppet](/learning/modules1.html).
+This class declares other classes with the `include` function. Note the "if" conditional that sets different classes for different OS's using the `$osfamily` fact. In this example, if an agent node is not a Windows agent, Puppet will apply the `motd` and `core_permissions` classes. For more information about declaring classes, see the [modules and classes chapters of Learning Puppet](/learning/modules1.html).
 
 1. **On the console,** remove all of the previous example classes from your nodes and groups, using the __Edit__ button in each node or group page. Be sure to leave the `pe_*` classes in place.
 2. Add the `site::basic` class to the console with the __Add classes__ button in the sidebar as before.

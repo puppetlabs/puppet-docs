@@ -26,7 +26,7 @@ Related pages:
 
 ### Disabling/Enabling Live Management
 
-In some cases, after you install PE, you may find that your workflow requires live management to be disabled. You can disable/enable live management at any time by editing the `disable_live_management` setting in `/etc/puppetlabs/puppet-dashboard/settings.yml` on the puppet master. Note that after making your change, you must run `sudo /etc/init.d/pe-httpd restart` to complete the process.
+In some cases, after you install PE, you may find that your workflow requires live management to be disabled. You can disable/enable live management at any time by editing the `disable_live_management` setting in `/etc/puppetlabs/puppet-dashboard/settings.yml` on the Puppet master. Note that after making your change, you must run `sudo /etc/init.d/pe-httpd restart` to complete the process.
 
 By default, `disable_live_managment` is set to `false`, but you can also configure your [answer file installations][install_automated] or [upgrades][install_upgrading] to disable/enable live management as needed during installation or upgrade.
 
@@ -97,7 +97,7 @@ The live management page is split into three **tabs**.
 ![The live management tabs][live_nav_tabs]
 
 - [The **Browse Resources** tab](./orchestration_resources.html) lets you browse, search, inspect, and compare resources on any subset of your nodes.
-- [The **Control Puppet** tab](./orchestration_puppet.html) lets you invoke Puppet-related actions on your nodes. These include telling any node to immediately fetch and apply its configuration, temporarily disabling puppet agent on some nodes, and more.
+- [The **Control Puppet** tab](./orchestration_puppet.html) lets you invoke Puppet-related actions on your nodes. These include telling any node to immediately fetch and apply its configuration, temporarily disabling Puppet agent on some nodes, and more.
 - The **Advanced Tasks** tab lets you invoke orchestration actions on your nodes. It can invoke both the [built-in actions](./orchestration_actions.html) and any [custom actions](./orchestration_adding_actions.html) you've installed.
 
 ### The Browse Resources Tab

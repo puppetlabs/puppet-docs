@@ -159,7 +159,7 @@ The available keys in the `$trusted` hash are:
 
 * `authenticated` --- an indication of whether the catalog request was authenticated, as well as how it was authenticated. The value will be one of:
     * `remote` for authenticated remote requests (as with agent/master Puppet configurations)
-    * `local` for all local requests (as with standalone puppet apply nodes)
+    * `local` for all local requests (as with standalone Puppet apply nodes)
     * `false` for unauthenticated remote requests (generally only possible if you've configured auth.conf to allow unauthenticated catalog requests)
 * `certname` --- the node's subject CN, as listed in its certificate. (When first requesting its certificate, the node requests a subject CN matching the value of its `certname` setting.)
     * If `authenticated` is `remote`, this is the subject CN extracted from the node's certificate.
@@ -199,22 +199,22 @@ Here's a snippet of example Puppet code using a [certificate extension][extensio
 
 ### Puppet Agent Facts
 
-Puppet agent and puppet apply both add several extra pieces of info to their facts before requesting or compiling a catalog. Like other facts, these are available as either top-scope variables or elements in the `$facts` hash.
+Puppet agent and Puppet apply both add several extra pieces of info to their facts before requesting or compiling a catalog. Like other facts, these are available as either top-scope variables or elements in the `$facts` hash.
 
 * `$clientcert` --- the value of the node's [`certname` setting][certname]. (This is self-reported; for the verified certificate name, use `$trusted['certname']`.)
-* `$clientversion` --- the current version of puppet agent.
+* `$clientversion` --- the current version of Puppet agent.
 * `$clientnoop` --- the value of the node's [`noop` setting][noop] (true or false) at the time of the run.
 
 ### Puppet Master Variables
 
-Several variables are set by the puppet master. These are most useful when managing Puppet with Puppet. (For example, managing puppet.conf with a template.)
+Several variables are set by the Puppet master. These are most useful when managing Puppet with Puppet. (For example, managing puppet.conf with a template.)
 
 These are **not** available in the `$facts` hash.
 
 * `$environment` (also available to `puppet apply`) --- the agent node's [environment][].
-* `$servername` --- the puppet master's fully-qualified domain name. (Note that this information is gathered from the puppet master by Facter, rather than read from the config files; even if the master's certname is set to something other than its fully-qualified domain name, this variable will still contain the server's fqdn.)
-* `$serverip` --- the puppet master's IP address.
-* `$serverversion` --- the current version of puppet on the puppet master.
+* `$servername` --- the Puppet master's fully-qualified domain name. (Note that this information is gathered from the Puppet master by Facter, rather than read from the config files; even if the master's certname is set to something other than its fully-qualified domain name, this variable will still contain the server's fqdn.)
+* `$serverip` --- the Puppet master's IP address.
+* `$serverversion` --- the current version of Puppet on the Puppet master.
 * `$settings::<name of setting>` (also available to `puppet apply`) --- the value of any of the master's [settings](./config_about_settings.html). This is implemented as a special namespace and these variables must be referred to by their qualified names. Note that, other than `$environment` and `$clientnoop`, the agent node's settings are **not** available in manifests. If you wish to expose them to the master in this version of Puppet, you will have to create a custom fact.
 
 ### Parser Variables

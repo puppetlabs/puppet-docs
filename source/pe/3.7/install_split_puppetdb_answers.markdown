@@ -37,7 +37,7 @@ These answers are optional.
 These answers are always needed.
 
 `q_puppetmaster_install=n`
-: **Y** or **N** --- Whether to install the puppet master component.
+: **Y** or **N** --- Whether to install the Puppet master component.
 
 `q_puppetdb_install=y`
 : **Y** or **N** --- Whether to install the database support (the console Postgres server and PuppetDB) component.
@@ -50,7 +50,7 @@ These answers are always needed.
 These answers are optional.
 
 `q_puppetagent_install`
-: **Y** or **N** --- Whether to install the puppet agent component.
+: **Y** or **N** --- Whether to install the Puppet agent component.
 
 ### Puppet Agent Answers
 These answers are always needed.
@@ -59,19 +59,19 @@ These answers are always needed.
 : **String** --- An identifying string for this agent node. This per-node ID must be unique across your entire site. Fully qualified domain names are often used as agent certnames.
 
 `q_puppetagent_server=pe-master.<your local domain>`
-: **String** --- The hostname of the puppet master server. For the agent to trust the master’s certificate, this must be one of the valid DNS names you chose when installing the puppet master.
+: **String** --- The hostname of the Puppet master server. For the agent to trust the master’s certificate, this must be one of the valid DNS names you chose when installing the Puppet master.
 
 `q_fail_on_unsuccessful_master_lookup=y`
-: **Y** or **N** --- Whether to quit the install if the puppet master cannot be reached.
+: **Y** or **N** --- Whether to quit the install if the Puppet master cannot be reached.
 
 `q_skip_master_verification=n`
 : **Y** or **N** --- This is a silent install option, default is "N". When set to "Y", the installer will skip master verification which allows the user to deploy agents when they know the master won’t be available.
 
 ### Puppet Master Answers
-These answers are generally needed if you are installing the puppet master role.
+These answers are generally needed if you are installing the Puppet master role.
 
 `q_puppetmaster_certname=${q_puppetagent_server}`
-: **String** --- An identifying string for the puppet master. This ID must be unique across your entire site. The server’s fully qualified domain name is often used as the puppet master’s certname.
+: **String** --- An identifying string for the puppet master. This ID must be unique across your entire site. The server’s fully qualified domain name is often used as the Puppet master’s certname.
 
 `q_puppet_enterpriseconsole_database_name=console`
 : **String** --- The database the console will use. Note that if you are not installing the database support role, this database must already exist on the PostgreSQL server.

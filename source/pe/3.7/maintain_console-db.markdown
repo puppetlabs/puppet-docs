@@ -11,7 +11,7 @@ If PE's console becomes sluggish or begins taking up too much disk space, there 
 Pruning the Console Database with a Cron Job
 -------------
 
-For new PE installs (3.7 and later), a cron job, managed by a class in the `puppetlabs-pe_console_prune` module, is installed that will prevent bloating in the console database by deleting old data (mainly uploaded puppet run reports) after a set number of days. You can tweak the parameters of this class as needed, primarily the `prune_upto` parameter, which sets the time to keep records in the database. This parameter is set to 30 days by default.
+For new PE installs (3.7 and later), a cron job, managed by a class in the `puppetlabs-pe_console_prune` module, is installed that will prevent bloating in the console database by deleting old data (mainly uploaded Puppet run reports) after a set number of days. You can tweak the parameters of this class as needed, primarily the `prune_upto` parameter, which sets the time to keep records in the database. This parameter is set to 30 days by default.
 
 However, to prevent users from deleting data without notice, the cron job is not installed on upgrades from versions earlier than 3.7.
 
@@ -133,7 +133,7 @@ The same procedure is also used for the PuppetDB user's password, except you'll 
 Changing PuppetDB’s Parameters
 ------------------------------
 
-PuppetDB parameters are set in the `jetty.ini` file, which is contained in the pe-puppetdb module. Jetty.ini is managed by PE, so if you change any PuppetDB parameters directly in the file, those changes will be overwritten on the next puppet run.
+PuppetDB parameters are set in the `jetty.ini` file, which is contained in the pe-puppetdb module. Jetty.ini is managed by PE, so if you change any PuppetDB parameters directly in the file, those changes will be overwritten on the next Puppet run.
 
 Instead, you should use the console to make changes to the parameters of the `pe-puppetdb` class. For example, the [PuppetDB performance dashboard](/puppetdb/1.6/maintain_and_tune.html) requires the `listen_address` parameter to be set to “0.0.0.0”. So, in the console, you would edit the `pe_puppetdb` class so that the value of the `listen_address` parameter is set to “0.0.0.0”.
 

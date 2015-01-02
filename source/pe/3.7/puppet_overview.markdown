@@ -22,7 +22,7 @@ Puppet breaks configuration management out into four major areas of activity:
 
 1. The user [describes re-usable pieces of configuration][step1] by creating or downloading Puppet modules.
 2. The user [assigns (and configures) classes][step2] to each machine in the PE deployment.
-3. Each node [fetches and applies its complete configuration][step3] from the puppet master server, either on a recurring schedule or on demand. This configuration includes all of the classes that have been assigned to that node. Applying a configuration enforces the desired state that was defined by the user, and submits a report about any changes that had to be made.
+3. Each node [fetches and applies its complete configuration][step3] from the Puppet master server, either on a recurring schedule or on demand. This configuration includes all of the classes that have been assigned to that node. Applying a configuration enforces the desired state that was defined by the user, and submits a report about any changes that had to be made.
 4. The user may view aggregate and individual reports to monitor what resources have been changed by Puppet.
 
 Continue reading this page for an overview of the first three activities and links to deeper info. See [the Viewing Reports and Inventory Data page](./console_reports.html) to learn how to monitor Puppet's activity from the PE console.
@@ -59,7 +59,7 @@ Puppet Enterprise has a default schedule and behavior for each node's configurat
 
 In a default PE deployment:
 
-* Each agent node runs the puppet agent service (`pe-puppet`) as a daemon. This service idles in the background and does a configuration run at regular intervals.
+* Each agent node runs the Puppet agent service (`pe-puppet`) as a daemon. This service idles in the background and does a configuration run at regular intervals.
 * The default run interval is every 30 minutes, as configured by the `runinterval` setting in the node's puppet.conf file.
 * Additional on-demand runs can be triggered when necessary; see [the Controlling Puppet page in the orchestration section][orch] for details.
 
@@ -86,11 +86,11 @@ You can change the run interval by setting a new value for [the `runinterval` se
 
 On \*nix nodes, the `pe-puppet` daemon process can sometimes use more memory than is desired. This was a common problem in PE 2.x which is largely solved in PE 3, but some users may still wish to disable it.
 
-You can [turn off the daemon][stop] and still get scheduled runs by creating a cron task for puppet agent on your \*nix nodes. An example snippet of Puppet code, which would create this task on non-Windows nodes:
+You can [turn off the daemon][stop] and still get scheduled runs by creating a cron task for Puppet agent on your \*nix nodes. An example snippet of Puppet code, which would create this task on non-Windows nodes:
 
 {% highlight ruby %}
-    # Place in /etc/puppetlabs/puppet/manifests/site.pp on the puppet master node, outside any node statement.
-    # Run puppet agent hourly (with splay) on non-Windows nodes:
+    # Place in /etc/puppetlabs/puppet/manifests/site.pp on the Puppet master node, outside any node statement.
+    # Run Puppet agent hourly (with splay) on non-Windows nodes:
     if $osfamily != windows {
       cron { 'puppet_agent':
         ensure  => 'present',

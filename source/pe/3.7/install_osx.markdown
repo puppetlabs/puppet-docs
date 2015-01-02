@@ -34,7 +34,7 @@ To install the agent on a node running Mac OS X using Finder:
 
 1. Download the [OS X PE agent package](http://puppetlabs.com/download-puppet-enterprise).
 2. Open the PE .dmg and click the installer .pkg.
-3. Follow the instructions in the installer dialog. You will need to include the puppet master's hostname and the agent's certname.
+3. Follow the instructions in the installer dialog. You will need to include the Puppet master's hostname and the agent's certname.
 
    The installer automatically generates a certificate and contacts the master to request that the certificate be signed.
   
@@ -54,5 +54,5 @@ To install the agent on a node running Mac OS X using the command line:
 
    **Tip**: Run `PATH=/opt/puppet/bin:$PATH;export PATH` to add the PE binaries to your path. 
 
-7. Using the instructions in [Configuring Agents](./install_agents.html#configuring-agents), point the OS X agent at the correct puppet master and set the agent's certname.
-8. Kick off a puppet run using `sudo puppet agent -t`. This will create a certificate signing request that you will need to [sign](#signing-agent-certificates).
+7. Using the instructions in [Configuring Agents](./install_agents.html#configuring-agents), point the OS X agent at the correct Puppet master and set the agent's certname.
+8. Kick off a Puppet run using `sudo puppet agent -t`. This will create a certificate signing request that you will need to [sign](#signing-agent-certificates).

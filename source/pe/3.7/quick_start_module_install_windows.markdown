@@ -19,7 +19,7 @@ The process for installing a module is the same on both Windows and *nix operati
 
 ### Installing a Forge Module
 
-1. **On the puppet master**, run `puppet module search registry`. This searches for modules from the Puppet Forge with `registry` in their names or descriptions and results in something like:
+1. **On the Puppet master**, run `puppet module search registry`. This searches for modules from the Puppet Forge with `registry` in their names or descriptions and results in something like:
 
         Searching http://forgeapi.puppetlabs.com ...
         NAME                 DESCRIPTION               AUTHOR        KEYWORDS

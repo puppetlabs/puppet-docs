@@ -8,9 +8,9 @@ canonical: "/pe/latest/install_system_requirements.html"
 Before installing Puppet Enterprise:
 
 * Ensure that your nodes are running a supported operating system.
-* Ensure that your puppet master and console servers are sufficiently powerful (see the [hardware section](#hardware-requirements) below).
+* Ensure that your Puppet master and console servers are sufficiently powerful (see the [hardware section](#hardware-requirements) below).
 * Ensure that your network, firewalls, and name resolution are configured correctly and all target servers are communicating.
-* Plan to install the puppet master server before the console server, and the console server before any agent nodes. If you are separating components, install them in this order:
+* Plan to install the Puppet master server before the console server, and the console server before any agent nodes. If you are separating components, install them in this order:
     1. Puppet Master
     2. PuppetDB and PostgreSQL
     3. Console
@@ -119,14 +119,14 @@ Before installing Puppet Enterprise at your site, you should make sure that your
 
 ### Timekeeping
 
-We recommend using NTP or an equivalent service to ensure that time is in sync between your puppet master and any puppet agent nodes. If time drifts out of sync in your PE infrastructure, you may encounter issues such as nodes disappearing from live manangement in the console. A service like NTP ([available as a Puppet Labs supported module](https://forge.puppetlabs.com/puppetlabs/ntp)) will ensure accurate timekeeping.
+We recommend using NTP or an equivalent service to ensure that time is in sync between your Puppet master and any Puppet agent nodes. If time drifts out of sync in your PE infrastructure, you may encounter issues such as nodes disappearing from live manangement in the console. A service like NTP ([available as a Puppet Labs supported module](https://forge.puppetlabs.com/puppetlabs/ntp)) will ensure accurate timekeeping.
 
 ### Name Resolution
 
-* Decide on a preferred name or set of names agent nodes can use to contact the puppet master server.
-* Ensure that the puppet master server can be reached via domain name lookup by all of the future puppet agent nodes at the site.
+* Decide on a preferred name or set of names agent nodes can use to contact the Puppet master server.
+* Ensure that the Puppet master server can be reached via domain name lookup by all of the future Puppet agent nodes at the site.
 
-You can also simplify configuration of agent nodes by using a CNAME record to make the puppet master reachable at the hostname `puppet`. (This is the default puppet master hostname that is automatically suggested when installing an agent node.)
+You can also simplify configuration of agent nodes by using a CNAME record to make the Puppet master reachable at the hostname `puppet`. (This is the default Puppet master hostname that is automatically suggested when installing an agent node.)
 
 ### Firewall Configuration
 
@@ -356,7 +356,7 @@ zlib         | x         |              |               |                       
 
 ***AIX***
 
-In order to run the puppet agent on AIX systems, you'll need to ensure the following are installed *before* attempting to install the puppet agent:
+In order to run the Puppet agent on AIX systems, you'll need to ensure the following are installed *before* attempting to install the Puppet agent:
 
 * bash
 * zlib

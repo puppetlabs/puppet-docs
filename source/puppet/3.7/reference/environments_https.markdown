@@ -15,7 +15,7 @@ Puppet's environments interact in several ways with Puppet's HTTPS interface.
 Environments are Embedded in Puppet's HTTPS Requests
 -----
 
-Puppet's agent and master applications communicate via an HTTP API. All of the URLs used today by puppet agent (the [v1 API][]) start with an environment. See the [HTTP API reference][http_api] for details.
+Puppet's agent and master applications communicate via an HTTP API. All of the URLs used today by Puppet agent (the [v1 API][]) start with an environment. See the [HTTP API reference][http_api] for details.
 
 For some endpoints, making a request "in" an environment is meaningless; for others, it influences which modules and manifests the configuration data will come from. Regardless, the API dictates that an environment always be included.
 
@@ -26,7 +26,7 @@ Endpoints where the requested environment can be overridden by the ENC/node term
 Endpoints where the requested environment is always used:
 
 - [File content](/references/3.7.latest/developer/file.http_file_content.html) and [file metadata](/references/3.7.latest/developer/file.http_file_metadata.html) --- Files in modules, including plugins like custom facts and resource types, will always be served from the requested environment. Puppet agent has to account for this when fetching files; it does so by fetching its node object (see "node" below), then resetting the environment it will request to whatever the ENC specified and using that new environment for all subsequent requests. (Since custom facts might influence the decision of the ENC, the agent will repeat this process up to three times before giving up.)
-- [Resource type](/references/3.7.latest/developer/file.http_resource_type.html) --- Puppet agent doesn't use this; it's just for extensions. The puppet master will always respond with information for the requested environment.
+- [Resource type](/references/3.7.latest/developer/file.http_resource_type.html) --- Puppet agent doesn't use this; it's just for extensions. The Puppet master will always respond with information for the requested environment.
 
 Endpoints where environment makes no difference:
 
@@ -39,7 +39,7 @@ Endpoints where environment makes no difference:
 
 ### Controlling HTTPS Access Based on Environment
 
-The puppet master's [auth.conf file][] can use the environment of a request to help decide whether to authorize a request. This generally isn't necessary or useful, but it's there if the need arises. See the [auth.conf documentation][auth.conf file] for details.
+The Puppet master's [auth.conf file][] can use the environment of a request to help decide whether to authorize a request. This generally isn't necessary or useful, but it's there if the need arises. See the [auth.conf documentation][auth.conf file] for details.
 
 You Can Query Environment Info via the Master's HTTP API
 -----

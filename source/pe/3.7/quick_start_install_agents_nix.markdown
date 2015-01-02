@@ -63,7 +63,7 @@ To install an agent with a different OS from the Puppet master, you first add th
 
 6. Click __Commit 1 change__.
 
-   **Note**: The class you selected now appears in the list of classes for the __PE Master__ group, but it has not yet been configured on your nodes. For that to happen, you need to kick off a puppet run.
+   **Note**: The class you selected now appears in the list of classes for the __PE Master__ group, but it has not yet been configured on your nodes. For that to happen, you need to kick off a Puppet run.
 
 7. Click _Live Management_, and click __Control Puppet__.
 

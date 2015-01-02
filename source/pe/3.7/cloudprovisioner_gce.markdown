@@ -73,7 +73,7 @@ Once run, you'll get the message, "Creating the VM is pending." When it's comple
 
 ### Using `bootstrap`
 
-The `node_gce bootstrap` subcommand creates and installs a puppet agent. 
+The `node_gce bootstrap` subcommand creates and installs a Puppet agent. 
 
 It includes the following options:
 

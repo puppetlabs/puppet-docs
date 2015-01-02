@@ -17,7 +17,7 @@ About This Page
 Puppet Enterprise (PE) has two ways to invoke orchestration actions:
 
 * The live management page of the PE console
-* The Linux command line on the puppet master server
+* The Linux command line on the Puppet master server
 
 This page covers only the command line. See [the Navigating Live Management page of this manual][nav_live] for instructions on using live management to invoke actions.
 
@@ -35,7 +35,7 @@ This page covers basic CLI usage and all PE-specific information; for more detai
 Logging In as `peadmin`
 -----
 
-To run orchestration commands, you must log in to [the puppet master server][master_server] as the special `peadmin` user account, which is created during installation.
+To run orchestration commands, you must log in to [the Puppet master server][master_server] as the special `peadmin` user account, which is created during installation.
 
 > **Note:** Puppet Enterprise 3.0 does not support adding more orchestration user accounts.
 >
@@ -45,15 +45,15 @@ By default, the `peadmin` account cannot log in with a password. We recommend tw
 
 ### Using Sudo
 
-Anyone able to log into the puppet master server as an admin user with full root `sudo` privileges can become the `peadmin` user by running:
+Anyone able to log into the Puppet master server as an admin user with full root `sudo` privileges can become the `peadmin` user by running:
 
     $ sudo -i -u peadmin
 
-This is the default way to log in as the `peadmin` user. It means that orchestration commands can only be issued by the group of users who can fully control the puppet master.
+This is the default way to log in as the `peadmin` user. It means that orchestration commands can only be issued by the group of users who can fully control the Puppet master.
 
 ### Adding SSH Keys
 
-If you wish to allow other users to run orchestration commands without giving them full control over the puppet master, you can add their public SSH keys to `peadmin`'s authorized keys file.
+If you wish to allow other users to run orchestration commands without giving them full control over the Puppet master, you can add their public SSH keys to `peadmin`'s authorized keys file.
 
 You can use Puppet's [`ssh_authorized_key` resource type](/references/3.7.latest/type.html#sshauthorizedkey) to do this, or add keys manually to the `/var/lib/peadmin/.ssh/authorized_keys` file.
 
@@ -264,7 +264,7 @@ By default, orchestration actions run **simultaneously** on all of the targeted 
 
 * Sometimes you want the option to cancel out of an action with control-C before all nodes have run it.
 * Sometimes, like when retrieving inventory data, you want to run a command on just a sample of nodes and don't need to see the results from everything that matches the filter.
-* Certain actions may consume limited capacity on a shared resource (such as the puppet master server), and invoking them on a "thundering herd" of nodes can disrupt that resource.
+* Certain actions may consume limited capacity on a shared resource (such as the Puppet master server), and invoking them on a "thundering herd" of nodes can disrupt that resource.
 
 In these cases, you can **batch** actions, to run all of the matching nodes in a controlled series, or **limit** them, to run only a subset of the matching nodes.
 

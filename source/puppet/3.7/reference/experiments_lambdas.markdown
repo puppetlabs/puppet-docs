@@ -52,7 +52,7 @@ Let's look at what we just did:
 * After the list of arguments we gave it a _lambda_:
     * The lambda's parameters are declared within _pipes_ (`|`) (just like parameters are specified for a define).
     * We declared the lambda to have one parameter, and we named it `$value` (we could have called it whatever we wanted; `$x`, or `$a_unicorn`, etc.)
-    * The lambda's body is enclosed in braces `{ }`, where you can place any puppet logic except class, define, or node statements.
+    * The lambda's body is enclosed in braces `{ }`, where you can place any Puppet logic except class, define, or node statements.
 
 Available Functions
 -----

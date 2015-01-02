@@ -22,7 +22,7 @@ Since Windows systems work differently, there are a few extra things to keep in 
 Supported Commands
 -----
 
-Not all of Puppet's commands work on Windows. Notably, Windows nodes can't run the puppet master or puppet cert commands.
+Not all of Puppet's commands work on Windows. Notably, Windows nodes can't run the Puppet master or Puppet cert commands.
 
 The following commands are designed for use on Windows:
 
@@ -101,7 +101,7 @@ This shortcut automatically requests UAC elevation, then runs [Facter][] in a co
 
 ### Run Puppet Agent
 
-This shortcut automatically requests UAC elevation, then performs a single puppet agent run in a command prompt window with administrator privileges.
+This shortcut automatically requests UAC elevation, then performs a single Puppet agent run in a command prompt window with administrator privileges.
 
 ### Start Command Prompt with Puppet
 
