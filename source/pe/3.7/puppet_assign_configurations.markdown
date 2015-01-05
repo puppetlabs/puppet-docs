@@ -26,12 +26,12 @@ canonical: "/pe/latest/puppet_assign_configurations.html"
 [hash]: /puppet/3.7/reference/lang_datatypes.html#hashes
 [console_add]: ./console_classes_groups.html#classes
 [console_assign]: ./console_classes_groups.html#assigning-classes-and-groups-to-nodes
-[console_params]: ./console_classes_groups_getting_started.html#setting-class-parameters
-[console_vars]: ./console_classes_groups_getting_started.html#setting-variables
+[console_params]: ./console_classes_groups.html#setting-class-parameters
+[console_vars]: ./console_classes_groups.html#setting-variables
 [enc]: /guides/external_nodes.html
 [rake_api]: ./console_rake_api.html
 [console_auth]: ./rbac_intro.html
-[console_classes]: ./console_classes_groups_getting_started.html
+[console_classes]: ./console_classes_groups.html
 [forge]: https://forge.puppetlabs.com
 [import]: /puppet/3.7/reference/lang_import.html
 [hiera_config]: /hiera/1/configuring.html

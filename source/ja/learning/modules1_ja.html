@@ -314,7 +314,7 @@ notice: /Stage[main]/Ntp/Service[ntp]/ensure: ensure changed 'stopped' to 'runni
         <p>これらの挙動は異なります。<code>include</code>関数よりもリソースに近い振る舞いをします。前の章で同じリソースを複数宣言できなかったことを思い出してください。リソースライクなクラス宣言も同様の制限を持ちます。もしPuppetが評価しようとしたものが既に宣言されたクラスならば<strong>コンパイルはエラーで失敗するでしょう</strong>。</p>
         <p>しかしながら<code>include</code>とは異なり、リソースライクな宣言はクラスにパラメータを指定する事ができます。それについては<a href="./modules2_ja.html">後の章</a>で説明します。またリソースライクな宣言は何故制限があるのかの詳細にも触れます。</p>
         <h3 id="the-pe-console">The PE Console ～ Puppet Enterprise Webコンソール</h3>
-        <p>Puppet EnterpriseのWebコンソールを使って、特定のノードにクラスをアサインする事ができます。<a href="http://docs.puppetlabs.com/pe/latest/console_classes_groups.html#adding-a-new-class">クラスをコンソールに追加(英文)</a>し、ノードのページに移ってから<a href="http://docs.puppetlabs.com/pe/latest/console_classes_groups.html#assigning-classes-and-groups-to-nodes">そのノードにクラスをアサイン(英文)</a>してください。</p>
+        <p>Puppet EnterpriseのWebコンソールを使って、特定のノードにクラスをアサインする事ができます。<a href="http://docs.puppetlabs.com/pe/latest/console_classes_groups.html#adding-classes-to-a-node-group">クラスをコンソールに追加(英文)</a>し、ノードのページに移ってから<a href="http://docs.puppetlabs.com/pe/latest/console_classes_groups.html#adding-classes-to-a-node-group">そのノードにクラスをアサイン(英文)</a>してください。</p>
         <p>後ほど複数のノードで動作させる方法の詳細を説明します。</p>
         <h2 id="module-structure-part-2">Module Structure, Part 2 ～ モジュールの構造パート2</h2>
         <p>このモジュールはまだまだ終わった訳ではありません。コンフィグファイルの<code>source</code>属性がどのように任意のローカルパスを指しているかに注目してください。モジュールの中でこれらのファイルを移動し、全て自己完結型にすることができます。</p>

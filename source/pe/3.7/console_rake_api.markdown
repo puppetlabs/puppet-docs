@@ -11,7 +11,7 @@ The Puppet Enterprise (PE) console provides rake tasks that can add classes, nod
 Invoking Console Rake Tasks
 -----
 
->**Note**: In the PE 3.7 series, console rake tasks use the node classifier instead of the puppet-dashboard. For more information, refer to the [node classifier documentation](./console_classes_groups_getting_started.html) and the [node classifier REST API](./nc_index.html).
+>**Note**: In the PE 3.7 series, console rake tasks use the node classifier instead of the puppet-dashboard. For more information, refer to the [node classifier documentation](./console_classes_groups.html) and the [node classifier REST API](./nc_index.html).
 
 > **Deprecation note:** Invoking tasks like this will cause deprecation warnings, but it will continue to work for the duration of the Puppet Enterprise 3.x series, with removal tentatively planned for Puppet Enterprise 4.0.
 
@@ -98,7 +98,7 @@ Each task has specific names that must be used for its arguments. The arguments 
 Node Tasks: Getting Info
 -----
 
->**Note**: In the PE 3.7 series, these rake tasks operate against nodes that have been pinned to a group. See the [node classifier documentation](./console_classes_groups_getting_started.html) for details about groups and pinned nodes.
+>**Note**: In the PE 3.7 series, these rake tasks operate against nodes that have been pinned to a group. See the [node classifier documentation](./console_classes_groups.html) for details about groups and pinned nodes.
 
 ### `node:list[(match)]`
 
@@ -142,7 +142,7 @@ In the PE 3.7 series, this rake task is no longer valid. Running this task will 
 Node Tasks: Modifying Info
 -----
 
->**Note**: In the PE 3.7 series, these rake tasks operate against nodes that have been pinned to a group. See the [node classifier documentation](./console_classes_groups_getting_started.html) for details about groups and pinned nodes.
+>**Note**: In the PE 3.7 series, these rake tasks operate against nodes that have been pinned to a group. See the [node classifier documentation](./console_classes_groups.html) for details about groups and pinned nodes.
 
 ### `node:add[name,(groups),(classes),(onexists)]`
 

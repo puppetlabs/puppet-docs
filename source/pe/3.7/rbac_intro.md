@@ -33,7 +33,7 @@ See the following sections for information and steps to work with RBAC:
 * [RBAC Service Endpoints](./rbac_serviceindex.html)
 * [Activity Service Endpoints](./rbac_activityapis.html)
 
-For more information about working with nodes, see [Grouping and Classifying Nodes](./console_classes_groups_getting_started.html).
+For more information about working with nodes, see [Grouping and Classifying Nodes](./console_classes_groups.html).
 
 
 

@@ -29,7 +29,7 @@ In addition, as part of the upgrade process, all nodes will be assigned, by defa
 
 Please note that factors such as the size of your deployment and the complexity of your classifications will determine how much time and/or planning you will need before upgrading to PE 3.7.0.  
 
-For more information about the node classifier, refer to [Grouping and Classifying Nodes](./console_classes_groups.html).
+For more information about the node classifier, refer to [Getting Started With Classification](./console_classes_groups_getting_started.html).
 
 #### About the Agent-specified Group
 

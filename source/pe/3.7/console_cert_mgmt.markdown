@@ -88,4 +88,4 @@ environment | environments to allow     | string        |               | no
 
 * * *
 
-- [Next: Grouping and Classifying Nodes](./console_classes_groups.html)
+- [Next: Grouping and Classifying Nodes](./console_classes_groups_getting_started.html)

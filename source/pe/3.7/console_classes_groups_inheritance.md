@@ -16,7 +16,7 @@ Node groups inherit classes, class parameter values, variables, and rules from p
 <dd>A node group can only match nodes that all of its ancestors also match. Specifying rules in a child node group is a way of narrowing down the nodes in the parent node group to apply classes to a specific subset of nodes.</dd>
 </dl>
 
-**Note:** If you use different values when classifying a node with the same class, parameter, or variable in another node group that shares inheritance, a conflict occurs. This conflict will cause the next Puppet run to fail. The [**Nodes** page](./console_classes_groups_getting_started.html#viewing-node-information) shows the classes and variables that have been assigned to a node through other node groups.
+**Note:** If you use different values when classifying a node with the same class, parameter, or variable in another node group that shares inheritance, a conflict occurs. This conflict will cause the next Puppet run to fail. The [**Nodes** page](./console_classes_groups.html#viewing-node-information) shows the classes and variables that have been assigned to a node through other node groups.
 
 * * *
 

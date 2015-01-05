@@ -19,7 +19,7 @@ For more information, see the [system requirements](./install_system_requirement
 
 ### Node Classifier Improvements
 
-The default sync time for the node classifier has been changed from 15 minutes to 3 minutes to be the same as the default refresh time for the environment cache. This means that, by default, the node classifier now retrieves new classes from the master every 3 minutes. For more information, see the [Getting Started With Classification](./console_classes_groups_getting_started.html#adding-classes-that-apply-to-all-nodes) page.
+The default sync time for the node classifier has been changed from 15 minutes to 3 minutes to be the same as the default refresh time for the environment cache. This means that, by default, the node classifier now retrieves new classes from the master every 3 minutes. For more information, see the [Getting Started With Classification](./console_classes_groups.html#adding-classes-that-apply-to-all-nodes) page.
 
 In addition, PE 3.7.1 has a **Refresh** button in the **Classes** page that allows you to manually retrieve new classes from the master without waiting for the 3 minute sync period. The timestamp to the left of the **Refresh** button shows the time that has elapsed since the last sync.
 
@@ -63,7 +63,7 @@ For instructions on adding additional Puppet masters, refer to [Additional Puppe
 
 PE 3.7.0 introduces the rules-based node classifier, which is the first part of the Node Manager app that was announced in September. The node classifier provides a powerful and flexible new way to organize and configure your nodes. We’ve built a robust, API-driven backend service and an intuitive new GUI that encourages a modern, cattle-not-pets approach to managing your infrastructure. Classes are now assigned at the group level, and nodes are dynamically matched to groups based on user-defined rules.
 
-For a detailed overview of the new node classifier, refer to the [PE user's guide](./console_classes_groups_getting_started.html).
+For a detailed overview of the new node classifier, refer to the [PE user's guide](./console_classes_groups.html).
 
 ### Role-Based Access Control
 

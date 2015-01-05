@@ -41,7 +41,7 @@ If you don't have access to the internet or would like to pull the PE tarball fr
 
 1. Manually add the `pe-razor` class in the PE console. 
 
-   In the console, click **Classification**. Click the node group you will use to assign the `pe-razor` class to nodes. Click **Classes** and, in **Class name**, type in "pe-razor". Click **Add class**. For information about adding a  class and classifying the Razor server using the PE console, see the [Adding Nodes to a Node Group](./console_classes_groups_getting_started.html#adding-nodes-to-a-node-group) and [Adding New Classes](./console_classes_groups_getting_started.html#adding-classes-to-a-node-group) sections of this guide. 
+   In the console, click **Classification**. Click the node group you will use to assign the `pe-razor` class to nodes. Click **Classes** and, in **Class name**, type in "pe-razor". Click **Add class**. For information about adding a  class and classifying the Razor server using the PE console, see the [Adding Nodes to a Node Group](./console_classes_groups.html#adding-nodes-to-a-node-group) and [Adding New Classes](./console_classes_groups.html#adding-classes-to-a-node-group) sections of this guide. 
 
 
 	**Note**: You can also add the following to site.pp:

@@ -14,7 +14,7 @@ Classifying nodes
 
 Once you have created instances for your cloud infrastructure, you need to start configuring them and adding the files, settings, and/or services needed for their intended purposes. The fastest and easiest way to do this is to add them to your existing console groups.  
 
-If you are using the node classifier that comes with PE, use the [rules-based engine to add nodes to groups](/console_classes_groups.html). 
+If you are using the node classifier that comes with PE, use the [rules-based engine to add nodes to groups](./console_classes_groups_getting_started.html). 
 
 If you are using an ENC, you can classify nodes and add them to a console group by running `puppet node classify` as follows.
 
@@ -41,7 +41,7 @@ The above example adds an AWS EC2 instance to the console. Note that you use the
 
 Note that until the first Puppet run is performed on this node, Puppet itself will not yet be installed. (Unless one of the "wrapper" commands has been used. [See below](#installing-puppet).)
 
-To see additional help for node classification, run `puppet help node classify`. For more about how the console groups and classifies nodes, [see the section on grouping and classifying](./console_classes_groups.html).
+To see additional help for node classification, run `puppet help node classify`. For more about how the console groups and classifies nodes, [see the section on grouping and classifying](./console_classes_groups_getting_started.html).
 
 You may also wish to review the [basics of Puppet classes and configuration](./puppet_overview.html) to help you understand how groups and classes interact.
 

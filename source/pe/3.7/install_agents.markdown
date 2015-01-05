@@ -135,7 +135,7 @@ If your PE infrastructure does not have access to the outside internet, you will
 
 * **Option 3**
 
-    If your deployment has multiple masters and you don't wish to copy the agent tarball to each one, you can specify a path to the agent tarball. This can be done with an [answer file](./install_automated.html), by setting `q_tarball_server` to an accessible server containing the tarball, or by [using the console](./console_classes_groups_getting_started.html#defining-the-data-used-by-classes) to set the `base_path` parameter of the `pe_repo` class to an accessible server containing the tarball.
+    If your deployment has multiple masters and you don't wish to copy the agent tarball to each one, you can specify a path to the agent tarball. This can be done with an [answer file](./install_automated.html), by setting `q_tarball_server` to an accessible server containing the tarball, or by [using the console](./console_classes_groups.html#defining-the-data-used-by-classes) to set the `base_path` parameter of the `pe_repo` class to an accessible server containing the tarball.
 
 ### Installing Agents Using Your Package Management Tools
 

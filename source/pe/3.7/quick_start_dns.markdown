@@ -101,7 +101,7 @@ Modules are directory trees. For this task, you'll create the following files:
 
 For this procedure, you're going to add the `resolver` class to the **default** group. 
 
-The **default** group contains all the nodes in your deployment (including the Puppet master), but you can [create your own group](./console_classes_groups_getting_started.html#creating-new-node-groups) or add the classes to individual nodes, depending on your needs. 
+The **default** group contains all the nodes in your deployment (including the Puppet master), but you can [create your own group](./console_classes_groups.html#creating-new-node-groups) or add the classes to individual nodes, depending on your needs. 
 
 **To add the** `resolver` **class to the default group**:
 

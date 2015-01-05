@@ -16,7 +16,7 @@ Since the Puppet master server supports managing non-PE agent nodes (including t
 
 To disable orchestration for a node, in the PE console, create a rule in the `mcollective` group that excludes the node. This will prevent PE from attempting to enable orchestration on that node. [See here for instructions on including nodes in node groups in the console.][group]
 
-[group]: ./console_classes_groups_getting_started.html#adding-nodes-to-a-node-group
+[group]: ./console_classes_groups.html#adding-nodes-to-a-node-group
 
 
 Adding Actions

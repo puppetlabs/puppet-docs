@@ -169,7 +169,7 @@ For detailed information to get started with RBAC, see the [PE user's guide](./r
 
 PE 3.7.0 introduces the rules-based node classifier, which is the first part of the Node Manager app that was announced in September. The node classifier provides a powerful and flexible new way to organize and configure your nodes. We’ve built a robust, API-driven backend service and an intuitive new GUI that encourages a modern, cattle-not-pets approach to managing your infrastructure. Classes are now assigned at the group level, and nodes are dynamically matched to groups based on user-defined rules.
 
-For a detailed overview of the new node classifier, refer to the [PE user's guide](./console_classes_groups_getting_started.html).
+For a detailed overview of the new node classifier, refer to the [PE user's guide](./console_classes_groups.html).
 
 >**Note**: Like PuppetDB and the database support components, RBAC and node classifier databases run on PostgreSQL, and you can use an existing PostgreSQL instance or have one created for you when you install PE. Note that if you are using an existing PostgreSQL instance, you will need the host name, user name, and user password for accessing these databases.
 
