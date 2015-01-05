@@ -9,6 +9,8 @@ The PE console uses a certificate signed by PE's built-in certificate authority 
 
 Please note that if your custom cert is issued by an intermediate CA, the CA bundle (e.g. `public-console.ca_cert.pem` in this example) needs to contain a complete chain, including the applicable root CA.
 
+>**Note**: The following procedure is only compatible with PE 3.7.1 or higher. 
+
 ### Set up Custom Certs and Security Credentials
 
 1. Retrieve the custom certificate's public and private keys and the customs CA's public key, and, for ease of use, name them as follows:
@@ -18,13 +20,13 @@ Please note that if your custom cert is issued by an intermediate CA, the CA bun
    * `public-console.ca_cert.pem`
    
 2. Add the files from step 1 to `/opt/puppet/share/console-services/certs/`. (Note that if you have a split install, this directory is on the PE console node.) 
-3. Use the PE console to set the edit the parameters of the `puppet_enterprise_profile_console` class.
+3. Use the PE console to set the edit the parameters of the `puppet_enterprise::profile::console` class.
 
    a. Click __Classification__ in the top navigation bar. 
    
    b. From the __Classification page__, select the __PE Console__ group. 
    
-   c. Click the __Classes__ tab, and find `puppet_enterprise_profile_console` in the list of classes. 
+   c. Click the __Classes__ tab, and find `puppet_enterprise::profile::console` in the list of classes. 
    
    d. From the parameter drop-down list, choose `browser_ssl_cert`, and in the value field, enter `opt/puppet/share/console-services/certs/public-console.cert.pem`.
    

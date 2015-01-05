@@ -26,7 +26,7 @@ If you are using an external PostgreSQL instance instead of the one PE installs,
 
 ### Step 2: Update `postgresql.conf`
 
-1. Navigate to `/opt/puppet/var/lib/pgsql/9.2/data/` and edit `postgresql.conf` with the following values:
+1. Navigate to `/var/lib/pgsql/9.2/data` and edit `postgresql.conf` with the following values:
 
    a. `ssl = on`
    b. `ssl_cert_file = 'certs/<POSTGRESQL HOSTNAME>.cert.pem'`

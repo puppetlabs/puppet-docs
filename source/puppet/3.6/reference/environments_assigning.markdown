@@ -33,7 +33,7 @@ In [puppet.conf][] on each agent node, you can set [the `environment` setting][e
 
 If you are using an ENC and it specifies an environment for that node, it will override whatever is in the config file.
 
-## Nonexistant Environments
+## Non-Existant Environments
 
 **With directory environments,** nodes **can't** be assigned to unconfigured environments. If a node is assigned to an environment which doesn't exist --- that is, there is no directory of that name in any of the `environmentpath` directories --- the puppet master will fail compilation of its catalog.
 
