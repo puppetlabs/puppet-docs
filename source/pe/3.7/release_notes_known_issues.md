@@ -177,6 +177,12 @@ To re-index and vacuum the console database, you can use the following PostgreSQ
 
 ## PE console/pe-console-services
 
+### PE Console Doesn't Display Parent Group Rules
+
+In the console, parent group rules don't show, which makes it easier to create a rule that contradicts an inherited rule. If you create a contradictory rule, then you might find that no nodes match the rule you've created. The **Matching nodes** tab is accurate. If you don't see the nodes you're expecting on this tab, then you need to look up the ancestor rules to identify the contradictory rule.
+
+Matching nodes aren’t showing up.
+
 ### Important Factors in Connecting to an External Directory Service
 
 The following requirements affect how you connect your existing LDAP to PE:
@@ -263,7 +269,7 @@ For instructions on completely deactivating an agent node, refer to [Deactivatin
 
 ### PE 3.7.0 Agent Can't Compile Against PE 3.7.1 Master If Future Parser Is installed
 
-If you upgrade or install a PE 3.7.1 master, sign the certificate, and run Puppet on a 3.7.0 agent node, that should succeed. However, if you enable future parser, restart pe-puppetserver, and then run Puppet on the agent again, you'll get a server error. This error doesn't happen if you enable future parser with a PE 3.7.0 master and agent, or a PE 3.7.1 master and agent, only a 3.7.1 master with a 3.7.0 agent.
+If you upgrade or install a PE 3.7.1 master, sign the certificate, and run Puppet on a 3.7.0 agent node, that should succeed. However, if you enable future parser, restart pe-puppetserver, and then run Puppet on the agent again, you'll get a server error. This error doesn't happen if you enable future parser with a PE 3.7.0 master and agent, or a PE 3.7.1 master and agent, only a 3.7.1 master with a 3.7.0 agent. To avoid this problem, update your agents to match the version of your masters.
 
 
 ### Change to `lsbmajdistrelease` Fact Affects Some Manifests

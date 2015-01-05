@@ -59,6 +59,20 @@ certificate-whitelist will allow access to the RBAC APIs as the
 for the 'api_user' can be changed. By default there is no certificate
 whitelist.
 
+#### Authentication
+
+You need to authenticate requests to the RBAC API using a certificate listed in RBAC's certificate whitelist, located at `/etc/puppetlabs/console-services/rbac-certificate-whitelist`. Note that if you edit this file, you must restart the `pe-console-services` service for your changes to take effect. You can attach the certificate using the command line as demonstrated in the [example curl query](./rbac_config.html#example-query) below. You must have the whitelist certificate name and the private key to run the script.
+
+You do not need to use an agent certificate for authentication. You can use `puppet cert generate` to create a new certificate specifically for use with the API.
+
+#### Example Query
+
+The following query will return a list of all users that exist in the RBAC service, along with their associated metadata. This query shows how to attach the whitelist certificate to authenticate the RBAC API.
+
+In this query, the "whitelisted certname" needs to match a name in the file, `/etc/puppetlabs/console-services/rbac-certificate-whitelist`.
+
+`curl https://<DNS NAME OF CONSOLE>:4433/rbac-api/v1/users --cert /etc/puppetlabs/puppet/ssl/certs/<WHITELISTED CERTNAME>.pem --key /etc/puppetlabs/puppet/ssl/private_keys/<WHITELISTED CERTNAME>.pem --cacert /etc/puppetlabs/puppet/ssl/certs/ca.pem -H "Content-Type: application/json"`
+
 
 RBAC Database Config
 --------------------
