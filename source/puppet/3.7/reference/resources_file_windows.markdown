@@ -104,10 +104,9 @@ The `source` attribute of a file can be a Puppet URL, a local path, or a path to
 
 Windows usually uses CRLF line endings instead of \*nix's LF line endings. In most cases, Puppet **will not** automatically convert line endings when managing files on Windows.
 
-* If a file resource uses the `content` attribute, Puppet will write the content in "binary" mode, using whatever line endings are present in the content.
-    * If the manifest or template file is saved with CRLF line endings, Puppet will use those endings in the destination file.
-    * If the manifest or template file is saved with LF line endings, you can use the `\r\n` escape sequence to create literal CRLFs.
-* If a file resource uses the `source` attribute, Puppet will transfer the file in "binary" mode, leaving the original newlines untouched.
+* If a file resource uses the `content` or `source` attributes, Puppet will write the file in "binary" mode, using whatever line endings are present in the content.
+    * If the manifest, template, or source file is saved with CRLF line endings, Puppet will use those endings in the destination file.
+    * If the manifest, template, or source file is saved with LF line endings, you can use the `\r\n` escape sequence to create literal CRLFs.
 * Non-`file` resource types that make partial edits to a system file (most notably the [`host`](/references/latest/type.html#host) type, which manages the `%windir%\system32\drivers\etc\hosts` file) manage their files in text mode, and will automatically translate between Windows and \*nix line endings.
 
     > Note: When writing your own resource types, you can get this same behavior by using the `flat` filetype.
