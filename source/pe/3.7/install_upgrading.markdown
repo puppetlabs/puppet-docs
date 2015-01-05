@@ -66,7 +66,7 @@ The upgrade script will run and provide detailed information as to what it insta
 
 On the node you provisioned for PuppetDB before starting the upgrade, unpack the PE 3.7 tarball and run the `puppet-enterprise-installer` script.
 
-#### Step 3: Upgrade the Console
+#### Step 3: Upgrade the PE console
 
 On the node serving the console component, unpack the PE 3.7 tarball and run the `puppet-enterprise-installer` script. The installer will detect the version from which you are upgrading and answer as many installer questions as possible based on your existing deployment.
 
@@ -90,9 +90,11 @@ In addition if you are using an external PostgreSQL instance that is not managed
 >
 >(Note that you can enable/disable Live Management at any time during normal operations by editing the aforementioned `settings.yml` and then running `sudo /etc/init.d/pe-httpd restart`.)
 
-#### Upgrade Agents and Complete the Upgrade
+#### Step 4: Upgrade Agents 
 
-The simplest way to upgrade agents is to upgrade the `pe-agent` package in the repo your package manager (e.g., Satellite) is using. Similarly, if you are using the PE package repo hosted on the master, it will get upgraded when you upgrade the master. You can then [use the agent install script](./install_basic.html#installing-agents-using-pe-package-management) as usual to upgrade your agent.
+If you are using the PE package repo hosted on the master, it will get upgraded when you upgrade the Puppet master. After you upgrade the Puppet master, you can then [use the agent install script](./install_basic.html#installing-agents-using-pe-package-management) to upgrade your agent. 
+
+If you are using your own package manager (e.g., Satellite), the simplest way to upgrade agents is to upgrade the `pe-agent` package in the repo your package manager (e.g., Satellite) is using. 
 
 For nodes running an OS that doesn't support remote package repos (e.g., Windows) you'll need to use the installer script on the PE tarball as you did for the master, etc. On each node with a Puppet agent, unpack the PE 3.7 tarball and run the `puppet-enterprise-installer` script. The installer will detect the version from which you are upgrading and answer as many installer questions as possible based on your existing deployment. Note that the agents on your Puppet master, PE console, and PuppetDB nodes will have been updated already when you upgraded those nodes.
 
