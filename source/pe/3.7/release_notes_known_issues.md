@@ -9,12 +9,12 @@ As we discover them, this page will be updated with known issues in Puppet Enter
 
 To find out which of these issues may affect you, run `/opt/puppet/bin/puppet --version`, the output of which will look something like `3.6.2 (Puppet Enterprise 3.7.0)`. To upgrade to a newer version of Puppet Enterprise, see the [chapter on upgrading](install_upgrading.html).
 
-[peissues]: http://projects.puppetlabs.com/projects/puppet-enterprise/issues
-[puppetissues]: http://projects.puppetlabs.com/projects/puppet/issues
+[peissues]: https://tickets.puppetlabs.com/browse/ENTERPRISE/
+[puppetissues]: https://tickets.puppetlabs.com/browse/PUP/
 
 The following issues affect the currently shipped version of PE and all prior releases through the 3.x.x series, unless otherwise stated.
 
-## Installation/Upgrades Known Issues
+## Installation/Upgrade Known Issues
 
 ###  New PE 3.7.x MCO Server is Not Connecting With Older MCollective agents (posted 12/17/14)
 
@@ -52,18 +52,24 @@ If you've installed additional Puppet masters (i.e., secondary or compile master
 If necessary, you can install stdlib after installing/upgrading by running `puppet module install puppetlabs-stdlib`.
 
 
-### PuppetDB Load Balancing Errors with Puppet Server
+### PuppetDB Behind a Load Balancer Causes Puppet Server Errors
 
-Due to the way Puppet Server handles SSL connections, services such as PuppetDB cannot be run with a load balancer out of the box. The following steps provide a workaround to this issue.
+Puppet Server handles outgoing HTTPS connections differently from the older MRI Ruby Puppet master, and has a new restriction on the server certificates it will accept. This affects all Puppet Enterprise versions in the 3.7.x series.
 
-**Warning**: If you use this workaround, you will not be able to use `/opt/puppet/sbin/puppetdb ssl-setup` to address issues with PuppetDB.
+If Puppet Server makes client connections to another HTTPS service, that service must use only one certificate. If that service is behind a load balancer, and the back-end servers use individual certificates, Puppet Server will frequently abort its client connections. For more details, see [this note from the Puppet Server docs.](/puppetserver/1.0/ssl_server_certificate_change_and_virtual_ips.html)
 
-1. On the Puppet master that serves as the CA, generate a certificate for your PuppetDB nodes with the load balancer hostname as a DNS alt names. In this example, we use `pe-internal-puppetdb`.
+Therefore, if are running multiple PuppetDB servers behind a load balancer, you must configure all of them to use the same certificate. You can do this by following the instructions below.
+
+> **Warning**: This is a non-standard configuration that may or may not be supported, depending on what your organization has negotiated with Puppet Labs.
+>
+> Also note that if you use this workaround, you will not be able to use `/opt/puppet/sbin/puppetdb ssl-setup` to repair certificate issues with PuppetDB.
+
+1. On the Puppet master that serves as the CA, generate a certificate for your PuppetDB nodes with the load balancer hostname as one of the DNS alt names. In this example, we use `pe-internal-puppetdb`.
 
    `puppet cert generate <pe-internal-puppetdb> --dns_alt_names=<LOAD BALANCER HOSTNAME>`
 
 2. Move the new cert from the Puppet master SSL cert directory (`/etc/puppetlabs/puppet/ssl/certs/pe-internal-puppetdb.pem`) to the SSL directory on each PuppetDB node (`/etc/puppetlabs/puppetdb/ssl/pe-internal-puppetdb.cert.pem`).
-3. Move the new private key from Puppet Master SSL private key directory (`/etc/puppetlabs/puppet/ssl/private_keys/pe-internal-puppetdb.pem`) to the SSL directory on each PuppetDB node (`/etc/puppetlabs/puppetdb/ssl/pe-internal-puppetdb.private_key.pem`).
+3. Move the new private key from the Puppet master SSL private key directory (`/etc/puppetlabs/puppet/ssl/private_keys/pe-internal-puppetdb.pem`) to the SSL directory on each PuppetDB node (`/etc/puppetlabs/puppetdb/ssl/pe-internal-puppetdb.private_key.pem`).
 4. Move the new public key from Puppet master SSL public key directory (`/etc/puppetlabs/puppet/ssl/public_keys/pe-internal-puppetdb.pem`) to the SSL directory on each PuppetDB node (`/etc/puppetlabs/puppetdb/ssl/pe-internal-puppetdb.public_key.pem`).
 5. In the PE console, configure the `puppet_enterprise::profile::puppetdb` class to use the new `pe-internal-puppetdb` certname.
 
@@ -73,7 +79,7 @@ Due to the way Puppet Server handles SSL connections, services such as PuppetDB 
 
    c. Click the **Classes** tab, and find the `puppet_enterprise::profile::puppetdb` class.
 
-   d. From the **Parameter** drop-down list, select **certname**.
+   d. From the **Parameter** drop-down list, select **`certname`**.
 
    e. In the **Value** field, enter `pe-internal-puppetdb`.
 
@@ -85,13 +91,11 @@ Due to the way Puppet Server handles SSL connections, services such as PuppetDB 
 
    b. Click the **Classes** tab, and find the `puppet_enterprise` class.
 
-   c. For the **puppetdb_host** entry, edit the value to reflect the hostname of your load balancer.
+   c. For the **`puppetdb_host`** entry, edit the value to reflect the hostname of your load balancer.
 
    d. Click the **Commit change** button.
 
 7. On each PuppetDB node and the Puppet master, kick off a Puppet run.
-
-This affects all versions on the 3.7.x line.
 
 ### Before Upgrading to PE 3.7.0, Correct Invalid Entries in `autosign.conf`
 
@@ -134,15 +138,15 @@ In some cases (especially for RHEL 7 installations) if the `/tmp/` directory is 
 
 To work around this issue, you can either mount the `/tmp/` directory without `noexec`, or you can choose a different directory to use as the temporary directory for the Puppet Server process. If you want to use a different directory, you can add an extra argument to the `$java_args` parameter of the `puppet_enterprise::profile::master` class using the PE console. Add `{"Djava.io.tmpdir=/var/tmp":""}` as the value for the `$java_args` parameter. Refer to [Editing Parameters](./console_classes_groups_making_changes.html#editing-parameters) for instructions on editing parameters in the console.
 
-### No Config Reload Handling Requests
+### No Config Reload Requests
 
-In the Puppet server servie, there is no signal handling mechanism that allows you to request a config reload and service refresh. In order to clear out the Ruby environments and reload the config, you must restart the service.
+The Puppet Server service doesn't have a non-disruptive way to request a reload of its configuration files. In order to reload its config, you must restart the service.
 
 Refer to [SERVER-15](https://tickets.puppetlabs.com/browse/SERVER-15).
 
-### Diffie-Helman HTTPS Client Issues
+### HTTPS Client Issues With Newer Apache `mod_ssl` Servers
 
-When configuring the Puppet server to use a report processor that involves HTTPS requests (e.g. to Foreman), there can be compatibility issues between the JVM HTTPS client and certain server HTTPS implementations (e.g. very recent versions of Apache `mod_ssl`). See [SERVER-17](https://tickets.puppetlabs.com/browse/SERVER-17) for known workarounds.
+When configuring the Puppet server to use a report processor that involves HTTPS requests (e.g. to Foreman), there can be compatibility issues between the JVM HTTPS client and certain server HTTPS implementations (e.g. very recent versions of Apache `mod_ssl`). This is usually indicated by a `Could not generate DH keypair` error in Puppet Server's logs. See [SERVER-17](https://tickets.puppetlabs.com/browse/SERVER-17) for known workarounds.
 
 
 ## PuppetDB/PostgreSQL Known Issues

@@ -20,11 +20,11 @@ We recommend installing [Process Explorer](http://en.wikipedia.org/wiki/Process_
 
 ### Logging
 
-As of Puppet 2.7.x, messages from the `puppetd` log file are available via the Windows Event Viewer (choose __Windows Logs__ > __Application__). To enable debugging, stop the Puppet service and restart it as:
+Puppet agent on Windows logs messages to the Windows Event Log. You can view its logs by browsing the Event Viewer. (Control Panel → System and Security → Administrative Tools → Event Viewer) To enable debugging, stop the puppet service and restart it as:
 
     c:\>sc stop puppet && sc start puppet --debug --trace
 
-Puppet's windows service component also writes to the `windows.log` within the same `log` directory and can be used to debug issues with the service.
+Puppet's Windows service component also writes to the `windows.log` within the same `log` directory and can be used to debug issues with the service.
 
 ## Common Issues
 
@@ -225,10 +225,6 @@ Windows services support a short name and a display name. Make sure to use the s
 
     This error is usually a sign that the master has already issued a certificate to the agent. This can occur if the agent's SSL directory is deleted after it has retrieved a certificate from the master, or when running the agent in two different security contexts. For example, running Puppet agent as a service and then trying to run `puppet agent` from the command line with non-elevated security. Specifically, this would happen if you've selected `Start Command Prompt with Puppet` but did not elevate privileges using `Run as Administrator`.
 
-* "`err: Could not evaluate: Could not retrieve information from environment production source(s) puppet://puppet.domain.com/plugins.`"
-
-    This error will be generated when a Windows agent does a pluginsync from the Puppet master server, when the latter does not contain any plugins. Note that pluginsync is enabled by default on Windows. This is a known bug in 2.7.x, see <https://projects.puppetlabs.com/issues/2244>.
-
 * "`err: Could not send report: SSL_connect returned=1 errno=0 state=SSLv3 read server certificate B: certificate verify failed. This is often because the time is out of sync on the server or client.`"
 
     Windows agents that are part of an Active Directory domain should automatically have their time synchronized with AD. For agents that are not part of an AD domain, you may need to enable and add the Windows time service manually:
@@ -240,10 +236,12 @@ Windows services support a short name and a display name. Make sure to use the s
 
 * "`err: You cannot service a running 64-bit operating system with a 32-bit version of DISM. Please use the version of DISM that corresponds to your computer's architecture.`"
 
-    As described in the Installation Guide, 64-bit versions of windows will redirect all file system access from `%windir%\system32` to `%windir%\SysWOW64` instead. When attempting to configure Windows roles and features using `dism.exe`, make sure to use the 64-bit version. This can be done by executing `c:\windows\sysnative\dism.exe`, which will prevent file system redirection. See <https://projects.puppetlabs.com/issues/12980>
+    If you've installed Puppet Enterprise on a 64-bit Windows system using the 32-bit installer, you may end up accessing a wrong or unexpected version of an executable due to file system redirection. For more info, see the Puppet documentation about [handling file paths on Windows.](/puppet/3.7/reference/lang_windows_file_paths.html)
+
+    In the case of this error message, Puppet accessed `c:\windows\SysWOW64\dism.exe` when it was attempting to access `c:\windows\system32\dism.exe`.
 
 * "Error: Could not parse for environment production: Syntax error at '='; expected '}'"
 
-    This error will usually occur if `puppet apply -e` is used from the command line and the supplied command is surrounded with single quotes ('), which will cause `cmd.exe` to interpret any `=>` in the command as a redirect. To solve this surround the command with double quotes (") instead. See <https://projects.puppetlabs.com/issues/20528>.
+    This error will usually occur if `puppet apply -e` is used from the command line and the supplied command is surrounded with single quotes ('), which will cause `cmd.exe` to interpret any `=>` in the command as a redirect. To solve this surround the command with double quotes (") instead.
 
 * * *
