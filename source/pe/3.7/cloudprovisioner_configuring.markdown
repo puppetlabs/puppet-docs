@@ -157,21 +157,6 @@ then click __Apply Rule Changes__ to save.
 
 You should also ensure that your security group allows outbound traffic on ports **8140** and **61613.** These are the ports PE uses to request configurations and listen for orchestration messages.
 
-
-Demonstration
-
------------
-
-The following video demonstrates the setup process and some basic functions:
-
-<object width="560" height="315"><param name="movie"
-value="http://www.youtube.com/v/pc-LFM2-nwQ?version=3&amp;hl=en_US"></param><param
-name="allowFullScreen" value="true"></param><param
-name="allowscriptaccess" value="always"></param><embed
-src="http://www.youtube.com/v/pc-LFM2-nwQ?version=3&amp;hl=en_US"
-type="application/x-shockwave-flash" width="560" height="315"
-allowscriptaccess="always" allowfullscreen="true"></embed></object>
-
 ###Adding Google Compute Engine Credentials
 
 The following steps describe how to create a Google Compute Engine account, obtain a client ID and secret, and register `node_gce` with your GCE account.
@@ -181,7 +166,7 @@ Go to https://cloud.google.com and sign in with your Google credentials.
 Click the **Create Project** button, and give your project a name. This creates your project in the Google Cloud Console. Some options for working with your project are displayed in the left navigation bar.
 
 In the left-hand navigation bar, click **APIs and auth** and then click **Registered Apps**.
- 
+
 Click the **REGISTER APP** button. Give your app a name--it can be whatever you like--and click **Native** as the platform.
 
 Click **Register**. Your app's page opens, and a CLIENT ID and CLIENT SECRET are provided. **Note** You'll need the ID and secret, so capture these for future reference.
