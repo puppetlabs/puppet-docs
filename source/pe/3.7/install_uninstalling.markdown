@@ -61,7 +61,7 @@ Note that if you plan to reinstall any PE component on a node you've run an unin
 
 When you install agent nodes using the [agent installation script](./install_agents.html), PE does not include the `puppet-enterprise-uninstaller` script as part of the agent package. There are a few additional steps you'll need to take to uninstall PE from agent nodes.
 
-1. **On your Puppet master**, navigate to the original directory from which you installed PE. 
+1. **On your Puppet master**, navigate to the original PE installer directory. 
 2. Copy the `puppet-enterprise-uninstaller` and `utilities` scripts to the agent node you're uninstalling PE from. 
 3. **On the agent node**, run sudo `./puppet-enterprise-uninstaller`, and follow the prompts. 
 
