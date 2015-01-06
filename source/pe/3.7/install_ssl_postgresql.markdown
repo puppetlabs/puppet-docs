@@ -16,11 +16,13 @@ If you are using an external PostgreSQL instance instead of the one PE installs,
 2. Copy the the PE SSL cert and private key to the PostgreSQL `certs` directory.
 
    a. Copy `/etc/puppetlabs/puppet/ssl/certs/<POSTGRESQL HOSTNAME>.pem` to `$PGDATA/certs/<POSTGRESQL HOSTNAME>.cert.pem`.
+   
    b. Copy `/etc/puppetlabs/puppet/ssl/private_keys/<POSTGRESQL HOSTNAME>.pem` to `$PGDATA/certs/<POSTGRESQL HOSTNAME>.private_key.pem`.
    
 3. Ensure these files are owned by the Postgres user and the file permissions are only readable by that user. From `$PGDATA/certs/`, run the following commands:
 
    a. `chmod 400 *.pem`.
+   
    b. `chown postgres:postgres *.pem`. 
 
 
@@ -29,11 +31,13 @@ If you are using an external PostgreSQL instance instead of the one PE installs,
 1. Navigate to `/var/lib/pgsql/9.2/data` and edit `postgresql.conf` with the following values:
 
    a. `ssl = on`
+   
    b. `ssl_cert_file = 'certs/<POSTGRESQL HOSTNAME>.cert.pem'`
+   
    c. `ssl_key_file = 'certs/<POSTGRESQL HOSTNAME>.private_key.pem'`
+   
    d. `ssl_ca_file = '/etc/puppetlabs/puppet/ssl/certs/ca.pem'`   
-
-
+   
 2. Make sure the file has no entry resembling `ssl = off`.
 3. Save and exit the file. 
 4. Restart PostgreSQL. 

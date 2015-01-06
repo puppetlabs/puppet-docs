@@ -5,20 +5,10 @@ subtitle: "Uninstalling Puppet Enterprise"
 canonical: "/pe/latest/install_uninstalling.html"
 ---
 
-Use the `puppet-enterprise-uninstaller` script to uninstall PE components on a given node. This script can remove a working PE installation, or undo a partially failed installation to prepare for a re-install.
 
-> **About Mac OS X and Windows Agent Uninstallation** 
->
-> For instructions on uninstalling PE on node running Windows, refer to the [uninstalling section][uninstall_win] of the Windows agent installation instructions.
->
-> To uninstall PE on a node running Mac OS X, simply access the uninstaller .pkg in the original OS X PE agent package you downloaded, and follow the instructions in the uninstall dialog. 
-> 
-> **Warning**: When you use the OS X uninstaller, you will completely remove all aspects of the PE agent from that node.
 
-[uninstall_win]: ./install_windows.html#uninstalling
+### Using the Uninstaller
 
-Using the Uninstaller
------
 
 The `puppet-enterprise-uninstaller` script is installed on the master, the PuppetDB, and the console nodes. In order to uninstall PE, you must run the uninstaller on each node; you can run it with `/opt/puppet/bin/puppet-enterprise-uninstaller`.  
 
@@ -32,7 +22,7 @@ By default, the uninstaller will remove the Puppet Enterprise software, users, l
 
 You can use the following command-line flags to change the uninstaller's behavior:
 
-### Uninstaller Options
+#### Uninstaller Options
 
 `-p`
 : Purge additional files. With this flag, the uninstaller will also remove all configuration files, modules, manifests, certificates, and the home directories of any users created by the PE installer. This will also remove the Puppet Labs public GPG key used for package verification.
@@ -66,6 +56,26 @@ Thus, to remove every trace of PE from a system, you would run:
     $ sudo ./puppet-enterprise-uninstaller -d -p
     
 Note that if you plan to reinstall any PE component on a node you've run an uninstall on, you may need to run `puppet cert clean <node name>` on the master in order to remove any orphaned certificates from the node.
+
+### Uninstalling PE from Agent Nodes
+
+When you install agent nodes using the [agent installation script](./install_agents.html), PE does not include the `puppet-enterprise-uninstaller` script as part of the agent package. There are a few additional steps you'll need to take to uninstall PE from agent nodes.
+
+1. **On your Puppet master**, navigate to the original directory from which you installed PE. 
+2. Copy the `puppet-enterprise-uninstaller` and `utilities` scripts to the agent node you're uninstalling PE from. 
+3. **On the agent node**, run sudo `./puppet-enterprise-uninstaller`, and follow the prompts. 
+
+> **About Mac OS X and Windows Agent Uninstallation** 
+>
+> For instructions on uninstalling PE on nodes running Windows, refer to the [uninstalling section][uninstall_win] of the Windows agent installation instructions.
+>
+> To uninstall PE on a node running Mac OS X, simply access the uninstaller .pkg in the original OS X PE agent package you downloaded, and follow the instructions in the uninstall dialog. 
+> 
+> **Warning**: When you use the OS X uninstaller, you will completely remove all aspects of the PE agent from that node.
+
+[uninstall_win]: ./install_windows.html#uninstalling
+
+
 
 
 

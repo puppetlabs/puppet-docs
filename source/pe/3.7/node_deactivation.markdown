@@ -31,7 +31,7 @@ From time to time, you may need to completely deactivate an agent node in your P
    
    **Note**: If you delete a node from the node view without first deactivating the node, the node will be absent from the node list in the console, but the license count will not decrease, and on the next Puppet run, the node will be listed in the console. 
 
-6. To disable MCollective/live management on the node, [uninstall the Puppet agent](./install_uninstalling.html), stop the pe-mcollective service (on the agent, run `service pe-mcollective stop`), or destroy the agent node altogether. 
+6. To disable MCollective/live management on the node, [uninstall the Puppet agent](./install_uninstalling.html#uninstalling-pe-from-agent-nodes), stop the pe-mcollective service (on the agent, run `service pe-mcollective stop`), or destroy the agent node altogether. 
 
 7. On the agent node, remove the node certificates in `/etc/puppetlabs/mcollective/ssl/clients`. 
 
