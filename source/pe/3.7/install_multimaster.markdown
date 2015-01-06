@@ -55,7 +55,7 @@ In this step, you will install the additional Puppet agent on `add.master.exampl
 
 [classification_selector]: ./images/quick/classification_selector.png
 
-In this step, you will use the PE console to classify `add.master.example.com` so that it can function as a Puppet master.
+In this step, you will use the PE console to classify `add.master.example.com` so that it can function as a Puppet master and proxy requests to the PE certificate authority.
 
 > **Important**: For fresh installations of PE 3.7.0, node groups in the classifier are created and configured during the installation process. For upgrades, these groups are created but no classes are added to them. This is done to help prevent errors during the upgrade process. If you’re performing these steps after an upgrade to 3.7.0, refer to [the PE Master group preconfiguration docs](./console_classes_groups_preconfigured_groups.html#the-pe-master-group) for a list of classes to add to the PE Master group to ensure your new Puppet master is properly classified.
 
@@ -67,9 +67,13 @@ In this step, you will use the PE console to classify `add.master.example.com` s
 
 2. From the __Classification page__, select the __PE Master__ group.
 3. From the __Rules__ tab, in the __Node name__ field, enter `add.master.example.com`.
-4. Click __Pin node__. 
-5. Click __Commit 1 change__. 
-6. Continue to [Step 4: Run Puppet on Selected Nodes](#step-4-run-puppet-on-selected-nodes)
+4. Click __Pin node__.
+5. Click the __Classes__ tab, and find the `puppet_enterprise::profile::master` class.
+6. From the __Parameter__ drop-down list, select __enable_ca_proxy__. 
+7. In the __Value__ field, enter "true".
+8. Click __Add parameter__.  
+9. Click the __Commit changes__ button. 
+10. Continue to [Step 4: Run Puppet on Selected Nodes](#step-4-run-puppet-on-selected-nodes)
 
 ### Step 4: Run Puppet on Selected Nodes
 
@@ -108,9 +112,7 @@ If you use a load balancer in your multi-master deployment, you may want to poin
 4. From the __Parameter__ drop-down list, select __Master__. 
 5. In the __Value__ field, enter the FQDN of your load balancer (e.g., `LOADBALANCER.EXAMPLE.COM`). 
 6. Click __Add parameter__ and then the __Commit change__ button.
-7. From the command line of the agent node, run `curl -k https://<LOADBALANCER.EXAMPLE.COM>:8140/packages/current/install.bash | sudo bash -s main:ca_server=<THE HOSTNAME of the PUPPET MASTER SERVING AS YOUR CA SERVER>`.
-
-The flag `-s main:ca_server=<THE HOSTNAME of the PUPPET MASTER SERVING AS YOUR CA SERVER>` ensures that the agent will retrieve its CA configuration from the correct CA server. Remember, in the examples in this guide, the CA server is the original Puppet master (i.e., `master.example.com`).
+7. From the command line of the agent node, run `curl -k https://<LOADBALANCER.EXAMPLE.COM>:8140/packages/current/install.bash | sudo bash 
 
 ### A Note About File Syncing
 
