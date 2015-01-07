@@ -15,13 +15,13 @@ For new PE installs (3.7 and later), a cron job, managed by a class in the `pupp
 
 However, to prevent users from deleting data without notice, the cron job is not installed on upgrades from versions earlier than 3.7.
 
-To prevent bloating in the console database, we recommend adding the `pe_console_prune` class to the `puppet_console` group after upgrading to PE 3.7.  
+To prevent bloating in the console database, we recommend adding the `pe_console_prune` class to the `PE Console` group after upgrading to PE 3.7.  
 
 To access the `prune_upto` parameter:
 
 1. In the PE console, click **Classification**.
 
-2. Select the `puppet_console` group.
+2. Select the `PE Console` group.
 
 3. Click **Classes**.
 

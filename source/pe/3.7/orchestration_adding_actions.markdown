@@ -241,13 +241,13 @@ Example: This code would completely disable the package plugin's `update` option
 
 ### Step 5: Assign the Class to Nodes
 
-For plugins you are distributing to **all agent nodes,** you can use the PE console to assign your class to the special `mcollective` group. (This group is automatically maintained by the console, and contains all PE nodes which have not been added to the special `no mcollective` group.)
+For plugins you are distributing to **all agent nodes,** you can use the PE console to assign your class to the special `PE MCollective` group. (This group is automatically maintained by the console, and contains all PE nodes which have not been added to the special `no mcollective` group.)
 
 For plugins you are only distributing to **some** agent nodes, you must do the following:
 
 * Create two Puppet classes for the plugin: a main class that installs everything, and a "client" class that only installs the `.ddl` file and the supporting plugins.
 * Assign the main class to any agent nodes that should be running the plugin.
-* Assign the "client" class to the `puppet_console` and `puppet_master` groups in the console. (These special groups contain all of the console and Puppet master nodes in your deployment, respectively.)
+* Assign the "client" class to the `PE Console` and `PE Master` groups in the console. (These special groups contain all of the console and Puppet master nodes in your deployment, respectively.)
 
 ### Step 6: Run Puppet
 

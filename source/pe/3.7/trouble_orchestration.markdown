@@ -34,7 +34,7 @@ To activate the ActiveMQ console:
 
 1. In the PE console, click **Classification**.
 
-2. Select the `puppet_master` group.
+2. Select the `PE Master` group.
 
 3. Click **Classes**.
 
