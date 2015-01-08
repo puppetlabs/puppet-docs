@@ -8,7 +8,6 @@ canonical: "/geppetto/latest/geppetto.html"
 [IDE_overview]: ./images/IDE_overview.png
 [prev]: ./images/geppettoprev.png
 [add]: ./images/geppettoaddpuppetdb.png
-[events]: ./images/geppettoevents.png
 [refresh]: ./images/geppettorefresh.png
 [git_toolbar]: ./images/git_toolbar.png
 [os_metadatajson]: /puppet/latest/reference/modules_publishing.html#operating-system-compatibility-in-metadatajson
@@ -192,27 +191,27 @@ Upon pulling a module from the Puppet Forge, Geppetto will open the metadata.jso
 
 ### Fields in metadata.json:
 
-* `name`: The name of your module. If you are planning to upload your module to the Puppet Forge at any point, your module name should begin with your username, i.e., "username-module". See [our guidelines on module naming](module_names) for more information. 
+* `name`: The name of your module. If you are planning to upload your module to the Puppet Forge at any point, your module name should begin with your username, i.e., "username-module". See [our guidelines on module naming][module_names] for more information. 
 * `version`: Your module's current version number. It is important that you keep this up-to-date, as it affects module dependencies. We highly recommend using [semver](http://semver.org/) to guide your versioning.
 * `author`: The name of the module's author.
 * `license`: Any applicable license guiding the module's use.
-* `summary: A brief description of the module's functionality.
+* `summary`: A brief description of the module's functionality.
 * `source`: The repo where the module lives. If you used Geppetto to create your module, you can ignore this.
 * `project_page`: A link to your module's website. If you are publishing to the Puppet Forge, this link typically points to your module on the Forge.
 * `issues_url`: A link to your module's issue tracker.
-* `operatingsystem_support`: A list of operating systems with which your module is compatible. Please see [operating system compatibility in metadata.json](os_metadatajson) for more information.
+* `operatingsystem_support`: A list of operating systems with which your module is compatible. Please see [operating system compatibility in metadata.json][os_metadatajson] for more information.
 * `tags`: Key words that will help others find your module, such as "mysql", "database", or "monitoring". Tags cannot contain whitespace and are case-insensitive.
 * `dependencies`: If your module requires capabilities or functionality provided by another module in order to run properly, your module is dependent on that other module. 
-You should express such dependencies in this field. For example, the [puppetlabs-postgresql](https://forge.puppetlabs.com/puppetlabs/postgresql) has these dependencies:
+You should express such [dependencies][dependencies_metadata] in this field. For example, the [puppetlabs-postgresql](https://forge.puppetlabs.com/puppetlabs/postgresql) has these dependencies:
 
-  ```
+  ~~~
   "dependencies": [
     { "name": "puppetlabs/stdlib", "version_requirement": ">=3.2.0 <5.0.0" },
     { "name": "puppetlabs/firewall", "version_requirement": ">= 0.0.4" },
     { "name": "puppetlabs/apt", "version_requirement": ">=1.1.0 <2.0.0" },
     { "name": "puppetlabs/concat", "version_requirement": ">= 1.0.0 <2.0.0" }
   ]
-  ```
+  ~~~
   
   For more information, see [Dependencies in metadata.json](dependencies_metadata).
 
