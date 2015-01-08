@@ -69,7 +69,7 @@ You can use the console to set or edit the values of a class's parameters withou
 2. From the __Classification page__, click the __apache_example__ group.
 3. Click the __Classes__ tab, and find `apache` in the list of classes.
 
-4. From the __Parameter Name__ drop-down menu, choose the parameter you’d like to edit. For this example, we will use `docroot`.
+4. From the __Parameter Name__ drop-down list, choose the parameter you’d like to edit. (For this example, we will use `docroot`.)
 
    **Note**: The grey text that appears as values for some parameters is the default value, which can be either a literal value or a Puppet variable. You can restore this value by selecting __Discard changes__ after you have added the parameter.
 
