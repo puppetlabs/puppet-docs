@@ -22,7 +22,7 @@ Every module contains one or more **classes**. [Classes](/puppet/3.7/reference/l
 2. In the __Node group name__ field, name your group (e.g., **apache_example**).
 3. Click __Add group__.
 4. Click the __apache_example__ group.
-5. From the __Rules__ tab, in the _Certname_ area, in the __Node name__ field, enter the name of the PE-managed node you'd like to add to this group.
+5. From the __Rules__ tab, in the __Certname__ area, in the __Node name__ field, enter the name of the PE-managed node you'd like to add to this group.
 6. Click __Pin node__.
 7. Click __Commit 1 change__.
 
@@ -33,7 +33,7 @@ Every module contains one or more **classes**. [Classes](/puppet/3.7/reference/l
 
 ### Add the `apache` Class to the Example Group
 
-Unless you have navigated elsewhere in the console, the _apache example_ node group should still be displayed in the __Classification__ area.
+Unless you have navigated elsewhere in the console, the __apache example__ node group should still be displayed in the __Classification__ area.
 
 **To add the `apache` class to the example group:**
 
@@ -43,13 +43,13 @@ Unless you have navigated elsewhere in the console, the _apache example_ node gr
 
 3. Click __Add class__ and then click __Commit 1 change__.
 
-   The `apache` class now appears in the list of classes for your agent node. You can see this list by clicking _Nodes_  and then clicking your node in the _Nodes_ list. A page opens with your node's details.
+   The `apache` class now appears in the list of classes for your agent node. You can see this list by clicking __Nodes__ and then clicking your node in the __Nodes__ list. A page opens with your node's details.
 
 4. From your agent node, navigate to `/var/www/html/`, and create a file named `index.html`.
 
 5. Open `index.html` with the text editor of your choice and fill it with some content (e.g., "Hello World").
 
-6. From the console, navigate to the _Live Management_ page, and select the __Control Puppet__ tab.
+6. From the console, navigate to the __Live Management__ page, and select the __Control Puppet__ tab.
 
 7. Click __runonce__ and then __Run__. This will configure the node using the newly-assigned class. Wait one or two minutes.
 
