@@ -7,7 +7,7 @@ canonical: "/pe/latest/rbac_permissions.html"
 
 ## Overview
 
-Puppet Enterprise (PE) offers role-based access control (RBAC). RBAC provides a specific set of roles you can assign to or remove from users and groups. Those roles contain permissions that can be added or removed. RBAC also provides a set of types and actions that can be combined to create new permissions based off the objects you specify. You can add new users to the console, but they can't actually do anything until they're associated with a role either explicitly, via role assignment, or implicitly, via group membership and role inheritance, at which point they receive all of the permissions of that role.
+Puppet Enterprise (PE) offers role-based access control (RBAC). RBAC provides a specific set of roles you can assign to users and groups. Those roles contain permissions that can be added or removed. RBAC also provides a set of types and actions that can be combined to create new permissions based off the objects you specify. You can add new users to the console, but they can't actually do anything until they're associated with a role either explicitly, via role assignment, or implicitly, via group membership and role inheritance, at which point they receive all of the permissions of that role.
 
 Permissions are additive. If a user is associated with multiple roles, something that's permitted in PE, that user will be able to perform all of the actions described by all of the permissions on all of the roles the user is associated with.
 
