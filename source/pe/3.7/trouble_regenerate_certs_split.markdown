@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.7.1 » Deploying PE » Cert Regeneration: Split Deployments"
+title: "PE 3.7.1 » Troubleshooting » Cert Regeneration: Split Deployments"
 subtitle: "Regenerating Certs and Security Credentials in Split Puppet Enterprise Deployments"
 canonical: "/pe/latest/trouble_regenerate_certs_split.html"
 description: "This page explains how to regenerate all SSL certificates in Puppet Enterprise deployments with separate servers for different components. "
