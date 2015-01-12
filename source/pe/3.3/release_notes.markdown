@@ -180,6 +180,10 @@ If you are upgrading to PE 3.2.x or later, `rubycas-server/config.yml` will not 
 
 The `pe_mcollective` module includes a parameter for the ActiveMQ heap size (`activemq_heap_mb`). A bug prevents this parameter from correctly accepting an integer when one is entered in the console. The problem can be avoided by placing the integer inside quote marks (e.g., `"10"`). This will cause Puppet to correctly validate the value when it is passed from the console.
 
+### Custom Console Certs May Break on Upgrade
+
+Upgrades from 3.3.0 to 3.3.1 or 3.3.2 may affect deployments that use a custom console certificate, as certificate functionality has changed between versions. Refer to [Configuring the Puppet Enterprise Console to Use a Custom SSL Certificate](./custom_console_cert.html) for instructions on re-configuring your custom console certificate. 
+
 ### Safari Certificate Handling May Prevent Console Access
 
 Due to [Apache bug 53193](https://issues.apache.org/bugzilla/show_bug.cgi?id=53193) and the way Safari handles certificates, Puppet Labs recommends that PE 3.3 users avoid using Safari to access the PE console.
