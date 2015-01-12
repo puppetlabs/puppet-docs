@@ -1,14 +1,25 @@
 source 'https://rubygems.org/'
 
-gem 'jekyll', :git => 'git://github.com/puppetlabs/jekyll.git', :branch => 'puppetdocs'
-gem 'maruku'
-gem 'kramdown'
 gem 'versionomy'
-gem 'rack'
-gem 'yard'
-gem 'rdoc'
 gem 'rake'
-gem 'vlad'
-gem 'vlad-git'
-gem 'activerecord', '~>3'
-gem 'ronn'
+gem 'rack'
+
+group(:build_site) do
+  gem 'jekyll', :git => 'git://github.com/puppetlabs/jekyll.git', :branch => 'puppetdocs'
+  gem 'kramdown'
+  gem 'vlad'
+  gem 'vlad-git'
+end
+
+group(:generate_references) do
+  gem 'ronn'
+  gem 'yard'
+  gem 'rdoc'
+end
+
+group(:unknown) do
+  gem 'maruku'
+  gem 'activerecord', '~>3'
+end
+
+
