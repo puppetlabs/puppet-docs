@@ -112,7 +112,7 @@ If you use a load balancer in your multi-master deployment, you may want to poin
 4. From the __Parameter__ drop-down list, select __Master__. 
 5. In the __Value__ field, enter the FQDN of your load balancer (e.g., `LOADBALANCER.EXAMPLE.COM`). 
 6. Click __Add parameter__ and then the __Commit change__ button.
-7. From the command line of the agent node, run `curl -k https://<LOADBALANCER.EXAMPLE.COM>:8140/packages/current/install.bash | sudo bash 
+7. From the command line of the agent node, run `curl -k https://<LOADBALANCER.EXAMPLE.COM>:8140/packages/current/install.bash | sudo bash`. 
 
 ### A Note About File Syncing
 
