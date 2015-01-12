@@ -195,6 +195,10 @@ The following requirements affect how you connect your existing LDAP to PE:
    * Use of multiple user RDNs or group RDNs is not supported.
    * Cyclical group relationships in Active Directory will prevent a user from logging in.
 
+### Custom Console Certs May Break on Upgrade
+
+Upgrades to this version of PE may affect deployments that use a custom console certificate, as certificate functionality has changed between versions. Refer to [Configuring the Puppet Enterprise Console to Use a Custom SSL Certificate](./custom_console_cert.html) for instructions on re-configuring your custom console certificate. 
+
 ### Console Session Timeout Issue
 
 The default session timeout for the PE console is 30 minutes. However, due to an issue that has not yet been resolved, console users will be logged out after thirty minutes even if they are currently active.
