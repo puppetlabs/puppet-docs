@@ -361,8 +361,9 @@ In order to run the Puppet agent on AIX systems, you'll need to ensure the follo
 * bash
 * zlib
 * readline
+* curl
 
-All [AIX toolbox packages](http://www-03.ibm.com/systems/power/software/aix/linux/toolbox/alpha.html) are available from IBM.
+All [AIX toolbox packages](http://www-03.ibm.com/systems/power/software/aix/linux/toolbox/alpha.html) are available from IBM.  
 
 To install the packages on your selected node directly, you can run `rpm -Uvh` with the following URLs (note that the RPM package provider on AIX must be run as root):
 
