@@ -130,9 +130,15 @@ You can also simplify configuration of agent nodes by using a CNAME record to ma
 
 ### Firewall Configuration
 
+[mono_port_diagram]: ./images/mono_port_diagram.png
+[split_port_diagram]: ./images/split_port_diagram.png
+
+
 Configure your firewalls to accommodate Puppet Enterprise's network traffic. 
 
 #### For monolithic installs
+
+![mono ports][mono_port_diagram]
 
 Port Number: **8140**
 
@@ -153,7 +159,9 @@ Port Number: **61613**
 - Any host used to invoke orchestration commands must be able to reach MCollective on this port.
 - Classifier group: “PE ActiveMQ Broker”     
 
-#### For split installs                                                                                                             
+#### For split installs
+
+![split ports][split_port_diagram]                                                                                                             
 
 Port Number: **8140**
 
