@@ -17,9 +17,9 @@ If LDAP users aren’t assigned to a group in the directory service, they can st
 This section describes how to connect PE to your external directory service. See [Working with User Roles](./rbac_user_roles.html) for information about managing users and groups. In particular, find out how to [work with users and user groups from an external directory service](./rbac_user_roles.html#working-with-users-and-user-groups-from-an-external-directory-service).
 
 ###About LDAP Queries
-Queries are constructed using the LDAP Data Interchange Format (LDIF). They consist of relevant relative distinguished name (RDN) + the base DN as a search base, and then filtering by the "lookup" (or "login") attribute.
+Queries are constructed using the LDAP Data Interchange Format (LDIF). They consist of the relative distinguished name (RDN) (optional) + the base DN (distinguished name) as a search base, and are then filtered by the "lookup" (or "login") attribute.
 
-For example, when querying for a user, Bob, to authenticate, the user RDN (for example, `ou=bob,ou=users`) is concatenated with the base DN (for example, `dc=puppetlabs,dc=com`) to form the search base: `ou=bob,ou=users,dc=puppetlabs,dc=com`. Then the results are filtered to find an entity that has the user lookup attribute. This lookup must return only one entity or the search (for importation, authentication, or syncing) will fail. These same rules apply to the importation of groups.
+For example, when specifying a user RDN and querying for a user, Bob, to authenticate, the user RDN (for example, `ou=bob,ou=users`) is concatenated with the base DN (for example, `dc=puppetlabs,dc=com`) to form the search base: `ou=bob,ou=users,dc=puppetlabs,dc=com`. Then the results are filtered to find an entity that has the user lookup attribute. This lookup must return only one entity or the search (for importation, authentication, or syncing) will fail. These same rules apply to the importation of groups.
 
 There is currently an issue where group importation does not respect the group
 object class setting, but the group membership syncing does. This means that
@@ -35,14 +35,13 @@ You connect to an external directory service by providing the information descri
 
 >**Note**: At present, PE only supports a single Base DN.
 >
->  * User and group RDNs are currently required as part of the directory service settings. A simple query from the provided base DN is not supported.
 >  * Use of multiple user RDNs or group RDNs is not supported.
 >  * Cyclical group relationships in Active Directory will prevent a user from logging in.
 >
 >**Additionally**: To connect to an LDAP server, RBAC needs to store the username and password configured here, not just a hash of the password. This password must be recoverable in the context of PE. The password is stored in the database in plain text without obfuscation. To guarantee its security, ensure that other processes do not have OS-level read permissions for PE's database or configuration files.
 
 1. From the console, click **Access Control**, and then click **External directory**.
-2. Fill in the directory information as described in the following table. All of the fields except for **Login help** are required.
+2. Fill in the directory information as described in the following table. All of the fields except for **Login help**, **User relative distinguished name**, and **Group relative distinguished name** are required. If you do not enter a **User relative distinguished name** or **Group relative distinguished name**, RBAC will search the entire base DN for the user or group, rather than just the subtree specified by the user or group RDN.
 
 | Field                     | Description        | Example       |
 | ---                         | ---                      | ---          |
