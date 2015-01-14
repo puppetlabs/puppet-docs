@@ -100,7 +100,7 @@ As an example, if your master is on a node running EL6 and you want to add an ag
 
 ON *nix-based systems, you can pass parameters to the end of the install script to specify configuration settings, such as specifying a cert name, which will be added to `puppet.conf`. In this case you would run, `curl -k https://master.example.com:8140/packages/current/install.bash | sudo bash -s agent:certname=<certnameotherthanFQDN>`. 
 
-You can pass as many parameters as you need to; be sure to follow the `section:key=value` pattern and just leave one space between parameters. Vist the [Configuration Reference](/puppet/reference/3.7.latest/configuration.html) for a complete list of values. 
+You can pass as many parameters as you need to; be sure to follow the `section:key=value` pattern and just leave one space between parameters. Vist the [Configuration Reference](/reference/3.7.latest/configuration.html) for a complete list of values. 
    
 #### About the Platform-Specific Install Script
 
