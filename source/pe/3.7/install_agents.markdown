@@ -5,9 +5,6 @@ subtitle: "Installing Puppet Enterprise Agents"
 canonical: "/pe/latest/install_agents.html"
 ---
 
-Installing Agents
------
-
 If you have a supported OS that is capable of using remote package repos, the simplest way to install the PE agent is with standard *nix package management tools. 
 
 > ### About Windows Agent Installation
@@ -16,7 +13,7 @@ If you have a supported OS that is capable of using remote package repos, the si
 >
 > To install the agent on a node running the Windows OS, refer to the [installing Windows agent instructions](./install_windows.html).
 
-### Installing Agents Using PE Package Management
+## Installing Agents Using PE Package Management
 
 If your infrastructure does not currently host a package repository, PE hosts a package repo on the master that corresponds to the OS and architecture of the master node. The repo is created during installation of the master. The repo serves packages over HTTPS using the same port as the Puppet master (8140). This means agents won't require any new ports to be open other than the one they already need to communicate with the master.
 
@@ -30,11 +27,11 @@ Note that if install.bash can't find agent packages corresponding to the agent's
 
 After you’ve installed the agent on the target node, you can configure it using [`puppet config set`][config_set]. See [Configuring Agents](#Configuring-Agents) below.
 
-#### Using the PE Agent Package Installation Script
+### Using the PE Agent Package Installation Script
 
 >**Note**: The `<master hostname>` portion of the installer script--as provided in the following examples--refers to the FQDN of the Puppet master. In a monolithic install, this is the same node on which you installed the Puppet master, console, and PuppetDB components; in a split install, this is the node you assigned to the Puppet master component. Note that if you've already logged into the console, you can find the exact script with the correct master hostname for your installation by clicking on **node requests** in the top right-hand corner of the console. (You do not need to have pending node requests to click.) 
 
-**Scenario 1**: The OS/architecture of the Puppet master and the agent node are the same.
+#### Scenario 1: The OS/architecture of the Puppet master and the agent node are the same.
 
 Simply SSH into the node where you want to install the PE agent, and run `curl -k https://<master hostname>:8140/packages/current/install.bash | sudo bash`.
 
@@ -48,7 +45,7 @@ This script will detect the OS on which it is running, set up an apt, yum, or zi
 
 > After the installation is complete, continue on to [Signing Agent Certificates](#signing-agent-certificates).
 
-**Scenario 2**: The OS/architecture of the Puppet master and the agent node are different. 
+#### Scenario 2: The OS/architecture of the Puppet master and the agent node are different. 
 
 [classification_selector]: ./images/quick/classification_selector.png
 [add_repo]: ./images/quick/add_repo.png
@@ -137,7 +134,7 @@ If your PE infrastructure does not have access to the outside internet, you will
 
     If your deployment has multiple masters and you don't wish to copy the agent tarball to each one, you can specify a path to the agent tarball. This can be done with an [answer file](./install_automated.html), by setting `q_tarball_server` to an accessible server containing the tarball, or by [using the console](./console_classes_groups.html#defining-the-data-used-by-classes) to set the `base_path` parameter of the `pe_repo` class to an accessible server containing the tarball.
 
-### Installing Agents Using Your Package Management Tools
+## Installing Agents Using Your Package Management Tools
 
 If you are currently using native package management, you will need to perform the following steps:
 
@@ -155,7 +152,7 @@ Alternatively, if you have internet access to your master node, you can follow t
 
 After you've installed the agent on the target node, you can configure it using `puppet config set`. See "[Configuring Agents](#Configuring-Agents)" below.
 
-### Signing Agent Certificates
+## Signing Agent Certificates
 
 Before nodes with the Puppet agent component can fetch configurations or appear in the console, an administrator needs to sign their certificate requests. This helps prevent unauthorized nodes from intercepting sensitive configuration data.
 
@@ -187,7 +184,7 @@ After signing a new node's certificate, it may take up to 30 minutes before that
 
 If you need to remove certificates (e.g., during reinstallation of a node), you can use the `puppet cert clean <node name>` command.
 
-### Configuring Agents
+## Configuring Agents
 
 After you follow the installation steps above, your agent should be ready for management with Puppet Enterprise once you sign its certificate. However, if you need to perform additional configurations (e.g., for a Mac OS X installed from the command line), you can configure it (point it at the correct master, assign a certname, etc.) by editing `/etc/puppetlabs/puppet/puppet.conf` directly or by using [the `puppet config set` sub-command][config_set], which will edit `puppet.conf` automatically.
 
