@@ -13,12 +13,12 @@ The User Groups endpoints enable you to get lists of groups, and to add a new re
 ### User Group Keys
 
 | Key | Explanation | Example |
-| --- | ----------- | ------- |
+|--- |--- |--- |
 | `id`          | A UUID string identifying the group. | `"c099d420-5557-11e4-916c-0800200c9a66"` |
 | `login`       | A string used by the user to log in. Must be unique among users and groups. | `"poets"` |
 | `display_name`| The user's name as a string. | `"Poets"` |
 | `role_ids`    | An array of role IDs indicating which roles should be inherited by the group's members. An empty array is valid. This is the only field that can be updated via RBAC; the rest are immutable or synced from the directory service. | `[3 6 5]` |
-| `is_group`,<br />`is_remote`,<br />`is_superuser`| These flags indicate that the group is a group. | `true`, `true, `false`, respectively|
+| `is_group`,<br />`is_remote`,<br />`is_superuser`| These flags indicate that the group is a group. | `true`, `true`, `false`, respectively|
 | `is_revoked`  | Setting this flag to `true` currently does nothing for a group. | `true`/`false` |
 | `user_ids`    | An array of UUIDs indicating which users will inherit roles from this group. | `["3a96d280-54c9-11e4-916c-0800200c9a66"]` |
 
