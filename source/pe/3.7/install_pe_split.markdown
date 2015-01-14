@@ -244,4 +244,4 @@ Finally, click **Start using Puppet Enterprise** to [log into the console](./con
 
 Next: [Installing PE Agents](./install_agents.html)
 
-Related link: [PE Multimaster Installation](./install_mulitmaster.html)
+Related link: [PE Multimaster Installation](./install_multimaster.html)
