@@ -6,13 +6,13 @@ canonical: "/pe/latest/node_deactivation.html"
 ---
 
 
-Deactivating a PE Agent Node
+Deactivating a PE Agent 
 ----------------
 From time to time, you may need to completely deactivate an agent node in your PE deployment. For example, you recently spun up a handful of virtual machines that were only needed for a short time, and now those nodes need to be deactivated. Deactivating a node is not the same as just using the console or terminal to “delete” a node. The following procedure outlines how to properly deactivate an agent node, which includes revoking the node's certificate, removing the node—and it's associated reports—from PuppetDB, deleting the node from the PE console, and stopping MCollective/live management on node. 
 
 **To deactivate a PE agent**:
 
-1. [Stop the agent service on the node you want to deactivate](./orchestration_puppet.html). 
+1. [Stop the agent service on the node you want to deactivate](./orchestration_puppet.html#start-and-stop-the-puppet-agent-service). 
 2. On the Puppet master, deactivate the agent; run `puppet node deactivate <NODE NAME>`. 
 
    This deactivates the agent in PuppetDB. In some cases, the PE license count in the console will not decrease for up to 24 hours, but you can restart the `pe-memcached` service to update the license count sooner. 
