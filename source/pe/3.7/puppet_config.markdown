@@ -5,11 +5,11 @@ subtitle: "Configuring Puppet Core"
 canonical: "/pe/latest/puppet_config.html"
 ---
 
-## Configuration Files
+### Configuration Files
 
 All of puppet's configuration files can be found in `/etc/puppetlabs/puppet/` on *nix systems. On Windows, you can find them in [Puppet's data directory](/guides/install_puppet/install_windows.html#data-directory).
 
-## References
+### References
 
 - For an exhaustive description of puppet's configuration settings and auxiliary configuration files, refer to the [Configuring Puppet Guide](/guides/configuring.html).
 - For details, syntax and options for the available configuration settings, visit the [configuration reference](/references/3.7.latest/configuration.html).
@@ -17,7 +17,7 @@ All of puppet's configuration files can be found in `/etc/puppetlabs/puppet/` on
 
     > **Note:** If you haven't modified the `auth.conf` file, it may occasionally be modified when upgrading between Puppet Enterprise versions. However, if you HAVE modified it, the upgrader will not automatically overwrite your changes, and you may need to manually update `auth.conf` to accomodate new Puppet Enterprise features. Be sure to read the upgrade notes when upgrading your Puppet master to new versions of PE.
 
-## Configuring Hiera
+### Configuring Hiera
 
 Puppet in PE includes full Hiera support, including automatic class parameter lookup.
 
@@ -27,7 +27,7 @@ Puppet in PE includes full Hiera support, including automatic class parameter lo
 
 To learn more about using Hiera, see [the Hiera documentation](/hiera/1).
 
-## Disabling Update Checking
+### Disabling Update Checking
 
 When the Puppet master's web server (`pe-puppetserver`) starts or restarts, it checks for updates. To get the correct update info, the server will pass some basic, anonymous info to Puppet Labs' servers. Specifically, it will transmit:
 
@@ -35,11 +35,19 @@ When the Puppet master's web server (`pe-puppetserver`) starts or restarts, it c
 * the type and version of the client's OS
 * the installed version of PE
 
-If you wish to disable update checks (e.g. if your company policy forbids transmitting this information), you will need to add the following line to the `/etc/puppetlabs/installer/answers.install` file:
+There are two methods to disable update checking (e.g. if your company policy forbids transmitting this information), one of which is specific to platforms using systemd (currently RHEL-7 and SLES-12 only).
 
-    q_pe_check_for_updates=n
+* If your platform **DOES NOT** use systemd, you can disable update checks by adding the following line to the `/etc/puppetlabs/installer/answers.install` file:
 
-Keep in mind that if you delete the `/etc/puppetlabs/installer/answers.install` file, update checking will resume.
+    `q_pe_check_for_updates=n`
+
+   **Note**: if you delete the `/etc/puppetlabs/installer/answers.install` file, update checking will resume.
+
+* If your platform uses systemd, you can disable updates by creating the following file:
+
+    `/etc/puppetlabs/puppetserver/opt-out`
+    
+  As long as this file is present, Puppet Server will not check in for updates. (Note that this method will work on all platforms, not just those using systemd.)
 
 
 * * *
