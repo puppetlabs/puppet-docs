@@ -3,7 +3,10 @@ $( document ).ready( function() {
     var navList = $( "nav.main > div#subCol > ul:not(#doc-navigation)" );
 
     // Find nav links to current page
-    var normalizedLocation = location.pathname.replace(/(\/|\/index.html)$/, "/(index.html)?") + '$'; // handle index pages
+        // To make the regex, we transform the current page's pathname to:
+        // - allow "/latest/" to also match any numerical version
+        // - handle "/" and "/index.html" identically.
+    var normalizedLocation = location.pathname.replace(/\/latest\//, "/(latest|[\\d\\.]+)/").replace(/(\/|\/index.html)$/, "/(index.html)?") + '$';
     var locationTest = new RegExp(normalizedLocation);
     var isLinkToCurrentPage = function(index, element) {
         return locationTest.test( $( element ).prop( "href" ) );
