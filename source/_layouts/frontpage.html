@@ -333,49 +333,77 @@
         <div class="primary-secondary-content">
           <div class="primary-content">
             <section id="newsletter">
-                 <h4>Puppet Labs is Hiring</h4>
-                 <p><a href="https://puppetlabs.com/company/jobs/">Engineers, developers & consultants</a>
-                  <p>
-		<h4>Newsletter</h4>
+              <h4>Puppet Labs is Hiring</h4>
+              <p><a href="https://puppetlabs.com/company/jobs/">Engineers, developers & consultants</a></p>
+              <h4>Newsletter</h4>
 
               <p>Stay up to date on all things puppet</p>
 
-				<form class="lpeRegForm formNotEmpty" method="post" enctype="application/x-www-form-urlencoded" action="https://app-h.marketo.com/index.php/leadCapture/save"; id="mktForm_1013" name="mktForm_1013">
+              <form class="lpeRegForm formNotEmpty" method="post" enctype="application/x-www-form-urlencoded" action="http://info.puppetlabs.com/index.php/leadCapture/save" id="mktForm_1047" name="mktForm_1047">
+                <span class='mktInput'>
+                  <input class='mktFormText mktFormEmail mktFReq' name="Email" id="Email" type='text' value=""  placeholder="enter your email address" maxlength='255' tabIndex='1' />
+                </span>
 
-				<label>Email Address:</label><span class='mktInput'><input class='mktFormText mktFormEmail' name="Email" id="Email" type='email' value="" maxlength='255'  /><span class='mktFormMsg'></span></span>
+                <span class='mktInput'>
+                  <input class='mktFormHidden' name="Form_Name__c" id="Form_Name__c" type='hidden' value="Newsletter" />
+                </span>
+                <span class='mktInput'>
+                  <input class='mktFormHidden' name="Current_Form_Name__c" id="Current_Form_Name__c" type='hidden' value="Newsletter" />
+                </span>
+                <span class='mktInput'>
+                  <input class='mktFormHidden' name="Original_Campaign_ID__c" id="Original_Campaign_ID__c" type='hidden' value="701G0000000F68K" />
+                </span>
+                <span class='mktInput'>
+                 <input class='mktFormHidden' name="campaign_ID__c" id="campaign_ID__c" type='hidden' value="701G0000000F68K" />
+                </span>
+                <span class='mktInput'>
+                 <input class='mktFormHidden' name="Current_Lead_Source__c" id="Current_Lead_Source__c" type='hidden' value="website-corporate" />
+                </span>
+                <span class='mktInput'>
+                  <input class='mktFormHidden' name="LeadSource" id="LeadSource" type='hidden' value="website-corporate" />
+                </span>
+                <span class='mktInput'>
+                  <input class='mktFormHidden' name="Custom_Campaign__c" id="Custom_Campaign__c" type='hidden' value="null" />
+                </span>
+                <span class='mktInput'>
+                  <input class='mktFormHidden' name="Current_Custom_Campaign__c" id="Current_Custom_Campaign__c" type='hidden' value="null" />
+                </span>
+                <span class='mktInput'>
+                  <input class='mktFormHidden' name="honeypot" id="honeypot" type='hidden' value="null" />
+                </span>
+                <span class="icon fa fa-arrow-circle-right">
+                  <input id='mktFrmSubmit' type='submit' class='btn' style="width: auto; overflow: visible; padding-left: .25em; padding-right: .25em;" value='Subscribe' name='submitButton' onclick='formSubmit(document.getElementById("mktForm_1047")); return false;' />
+                </span>
+                <input style='display: none;' id='mktFrmReset' type='reset' value='Clear' name='resetButton' onclick='formReset(document.getElementById("mktForm_1047")); return false;' />
 
-				<input id='mktFrmSubmit' type='submit' class='btn' style="width: auto; overflow: visible; padding-left: .25em; padding-right: .25em;" value='Subscribe' name='submitButton' onclick='formSubmit(document.getElementById("mktForm_1013")); return false;' />
+                <span style="display:none;"><input type="text" name="_marketo_comments" value="" /></span>
+                <input type="hidden" name="lpId" value="-1" />
+                <input type="hidden" name="subId" value="100" />
+                <input type="hidden" name="munchkinId" value="307-QLA-991" />
+                <input type="hidden" name="kw" value="" />
+                <input type="hidden" name="cr" value="" />
+                <input type="hidden" name="searchstr" value="" />
+                <input type="hidden" name="lpurl" value="http://info.puppetlabs.com/newslettersubscribe.html?cr={creative}&kw={keyword}" />
+                <input type="hidden" name="formid" value="1047" />
+                <input type="hidden" name="returnURL" value="http://puppetlabs.com/misc/subscription-thank-you/" />
+                <input type="hidden" name="retURL" value="http://puppetlabs.com/misc/subscription-thank-you/" />
+                <input type="hidden" name="returnLPId" value="-1" />
+                <input type="hidden" name="_mkt_disp" value="return" />
+                <input type="hidden" name="_mkt_trk" value="" />
+              </form>
 
-				<input style='display: none;' id='mktFrmReset' type='reset' value='Clear' name='resetButton' onclick='formReset(document.getElementById("mktForm_1013")); return false;' />
+              <script type="text/javascript" src="//puppetlabs.com/sites/default/files/mktFormSupport.js"></script>
 
-				<span style="display:none;"><input type="text" name="_marketo_comments" value="" /></span>
-				<input type="hidden" name="lpId" value="-1" />
-				<input type="hidden" name="subId" value="100" />
+              <script type="text/javascript">
+                function formSubmit(elt) {
+                  return Mkto.formSubmit(elt);
+                }
+                function formReset(elt) {
+                  return Mkto.formReset(elt);
+                }
+              </script>
 
-				<input type="hidden" name="kw" value="" />
-				<input type="hidden" name="cr" value="" />
-
-				<input type="hidden" name="searchstr" value="" />
-				<input type="hidden" name="lpurl" value="http://info.puppetlabs.com/testsubscription.html?cr={creative}&kw={keyword}"; />
-				<input type="hidden" name="formid" value="1013" />
-				<input type="hidden" name="returnURL" value="https://puppetlabs.com/misc/subscription-thank-you/"; />
-				<input type="hidden" name="retURL" value="https://puppetlabs.com/misc/subscription-thank-you/"; />
-				<input type="hidden" name="_mkt_disp" value="return" />
-				<input type="hidden" name="_mkt_trk" value="" />
-
-				</form>
-				<script type="text/javascript" src="https://puppetlabs.com/sites/default/files/mktFormSupport.js"></script>
-
-				<script type="text/javascript">
-				function formSubmit(elt) {
-				return Mkto.formSubmit(elt);
-				}
-				function formReset(elt) {
-				return Mkto.formReset(elt);
-				}
-				</script>
-
-<a href="http://info.puppetlabs.com/puppet-enterprise" class="fbtn">Try Puppet Enterprise FREE</a>
+              <a href="http://info.puppetlabs.com/puppet-enterprise" class="fbtn">Try Puppet Enterprise FREE</a>
 
             </section>
             <section id="elsewhere">
