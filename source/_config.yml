@@ -143,4 +143,8 @@ symlink_latest:
   - facter
   - pe
   - dashboard/manual
+version_notes:
+  /puppet/: "note for all Puppet versions"
+  /puppet/3.7: "note for current version of Puppet"
+  /puppetdb/master: "Note for master puppetdb. <a href=\"{{ page.canonical }}\">Link to latest version of this page.</a>"
 ---
