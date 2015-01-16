@@ -1,7 +1,7 @@
 ---
 layout: default
-title: "PE 3.7 » Archived Release Notes"
-subtitle: "Archived Puppet Enterprise 3.3.0, 3.3.1, and 3.3.2 Release Notes"
+title: "Archived Release Notes"
+subtitle: "Archived Puppet Enterprise Release Notes"
 canonical: "/pe/latest/release_notes_archived.html"
 ---
 This page contains information about security fixes, bug fixes, and new features for PE 3.3.2, 3.3.1, and PE 3.3.0 releases.
