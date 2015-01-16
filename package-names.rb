@@ -1,151 +1,172 @@
-puppet
-  <td>pe-agent</td>
-  <td>pe-puppet</td>
-  <td>pup-puppet</td>
-  <td>pe-puppetserver-common</td>
+package_name_variations = {
 
-facter
-  <td>pe-facter</td>
-  <td>pup-facter</td>
+'Puppet' => [
+  'pe-agent',
+  'pe-puppet',
+  'pup-puppet',
+  'pe-puppetserver-common'
+],
 
+'Facter' => [
+  'pe-facter',
+  'pup-facter'
+],
 
-hiera
-  <td>pe-hiera</td>
-  <td>pup-hiera</td>
+'Hiera' => [
+  'pe-hiera',
+  'pup-hiera'
+],
 
-
-
-mcollective
-  <td>pe-mcollective</td>
-  <td>pe-mcollective-client</td>
-  <td>pe-mcollective-common</td>
-  <td>pup-mcollective</td>
-
-NXOS agent
-  <td>puppet-enterprise-nxos-1-i386</td>
-  <td>puppet-enterprise-nxos-1-x86_64</td>
-
-
-PuppetDB
-  <td>pe-puppetdb</td>
-  <td>pe-puppetdb-terminus</td>
-
-Puppet Server
-  <td>pe-puppetserver</td>
-
-Razor server
-  <td>pe-razor-server</td>
-
-razor libs
-  <td>pe-razor-libs</td>
+'Mcollective' => [
+  'pe-mcollective',
+  'pe-mcollective-client',
+  'pe-mcollective-common',
+  'pup-mcollective'
+],
 
 
-Ruby
-  <td>pe-ruby</td>
-  <td>pup-ruby</td>
-
-apache
-  <td>pe-httpd</td>
-  <td>pe-httpd-mpm-event</td>
-  <td>pe-httpd-mpm-itk</td>
-  <td>pe-httpd-mpm-prefork</td>
-  <td>pe-httpd-mpm-worker</td>
-  <td>pe-httpd-prefork-dev</td>
-  <td>pe-httpd-threaded-dev</td>
-
-ActiveMQ
-  <td>pe-activemq</td>
+'NXOS agent' => [
+  'puppet-enterprise-nxos-1-i386',
+  'puppet-enterprise-nxos-1-x86_64'
+],
 
 
-PostgreSQL
-  <td>pe-postgresql</td>
-  <td>pe-postgresql-contrib</td>
-  <td>pe-postgresql-devel</td>
-  <td>pe-postgresql-server</td>
+'PuppetDB' => [
+  'pe-puppetdb',
+  'pe-puppetdb-terminus'
+],
+
+'Puppet Server' => [
+  'pe-puppetserver'
+],
+
+'Razor server' => [
+  'pe-razor-server'
+],
+
+'Razor libs' => [
+  'pe-razor-libs'
+],
 
 
-Passenger
-  <td>pe-passenger</td>
+'Ruby' => [
+  'pe-ruby',
+  'pup-ruby'
+],
 
-MySQL
+'Apache' => [
+  'pe-httpd',
+  'pe-httpd-mpm-event',
+  'pe-httpd-mpm-itk',
+  'pe-httpd-mpm-prefork',
+  'pe-httpd-mpm-worker',
+  'pe-httpd-prefork-dev',
+  'pe-httpd-threaded-dev'
+],
 
-
-OpenSSL
-  <td>pe-openssl</td>
-  <td>pup-openssl</td>
-
-Java
-  <td>pe-java</td>
-
-LibAPR (seems to be just EL and SLES)
-  <td>pe-libapr</td>
-  <td>pe-libaprutil</td>
-
-Misc libs and ruby gems
-  <td>pe-ruby-augeas</td>
-  <td>pe-ruby-ldap</td>
-  <td>pe-ruby-mysql</td>
-  <td>pe-ruby-rgen</td>
-  <td>pe-ruby-selinux</td>
-  <td>pe-ruby-shadow</td>
-  <td>pe-ruby-stomp</td>
-  <td>pe-rubygem-activerecord</td>
-  <td>pe-rubygem-activesupport</td>
-  <td>pe-rubygem-deep-merge</td>
-  <td>pe-rubygem-gem2rpm</td>
-  <td>pe-rubygem-net-http-unix</td>
-  <td>pe-rubygem-net-ssh</td>
-  <td>pe-rubygem-rack</td>
-  <td>pe-rubygem-sequel</td>
-  <td>pe-rubygem-sinatra</td>
-  <td>pe-rubygem-stomp</td>
-  <td>pup-ruby-augeas</td>
-  <td>pup-ruby-rgen</td>
-  <td>pup-ruby-shadow</td>
-  <td>pe-libevent</td>
-  <td>pe-libevent-devel</td>
-  <td>pe-libldap</td>
-  <td>pe-libyaml</td>
-  <td>pe-virt-what</td>
-  <td>pup-deep-merge</td>
-  <td>pup-libyaml</td>
-  <td>pe-deep-merge</td>
-  <td>pe-cfpropertylist</td>
-  <td>pe-bundler</td>
-  <td>pe-activerecord</td>
-  <td>pe-activesupport</td>
-
-Misc other
-  <td>pe-cloud-provisioner</td>
-  <td>pe-cloud-provisioner-libs</td>
-  <td>pe-installer</td>
-  <td>pe-license</td>
-  <td>pe-license-status</td>
-  <td>pe-puppet-enterprise-release</td>
-  <td>pe-puppet-license-cli</td>
-  <td>pup-puppet-enterprise-release</td>
+'ActiveMQ' => [
+  'pe-activemq'
+],
 
 
-Augeas
-  <td>pe-augeas</td>
-  <td>pup-augeas</td>
+'PostgreSQL' => [
+  'pe-postgresql',
+  'pe-postgresql-contrib',
+  'pe-postgresql-devel',
+  'pe-postgresql-server'
+],
 
-stomp
-  <td>pe-stomp</td>
-  <td>pup-stomp</td>
+
+'Passenger' => [
+  'pe-passenger'
+],
+
+'MySQL' => [
+],
 
 
-console stuff
-  <td>pe-certificate-manager</td>
-  <td>pe-certificate-manager-test</td>
-  <td>pe-console</td>
-  <td>pe-console-auth</td>
-  <td>pe-console-services</td>
-  <td>pe-console-services-termini</td>
-  <td>pe-console-test</td>
-  <td>pe-event-inspector</td>
-  <td>pe-live-management</td>
-  <td>pe-memcached</td>
-  <td>pe-memcached-devel</td>
-  <td>pe-puppet-dashboard</td>
+'OpenSSL' => [
+  'pe-openssl',
+  'pup-openssl'
+],
+
+'Java' => [
+  'pe-java'
+],
+
+'LibAPR' => [
+  'pe-libapr',
+  'pe-libaprutil'
+]
+
+}
+
+
+# Misc libs and ruby gems
+#   'pe-ruby-augeas',
+#   'pe-ruby-ldap',
+#   'pe-ruby-mysql',
+#   'pe-ruby-rgen',
+#   'pe-ruby-selinux',
+#   'pe-ruby-shadow',
+#   'pe-ruby-stomp',
+#   'pe-rubygem-activerecord',
+#   'pe-rubygem-activesupport',
+#   'pe-rubygem-deep-merge',
+#   'pe-rubygem-gem2rpm',
+#   'pe-rubygem-net-http-unix',
+#   'pe-rubygem-net-ssh',
+#   'pe-rubygem-rack',
+#   'pe-rubygem-sequel',
+#   'pe-rubygem-sinatra',
+#   'pe-rubygem-stomp',
+#   'pup-ruby-augeas',
+#   'pup-ruby-rgen',
+#   'pup-ruby-shadow',
+#   'pe-libevent',
+#   'pe-libevent-devel',
+#   'pe-libldap',
+#   'pe-libyaml',
+#   'pe-virt-what',
+#   'pup-deep-merge',
+#   'pup-libyaml',
+#   'pe-deep-merge',
+#   'pe-cfpropertylist',
+#   'pe-bundler',
+#   'pe-activerecord',
+#   'pe-activesupport',
+
+# Misc other
+#   'pe-cloud-provisioner',
+#   'pe-cloud-provisioner-libs',
+#   'pe-installer',
+#   'pe-license',
+#   'pe-license-status',
+#   'pe-puppet-enterprise-release',
+#   'pe-puppet-license-cli',
+#   'pup-puppet-enterprise-release',
+
+
+# Augeas
+#   'pe-augeas',
+#   'pup-augeas',
+#
+# stomp
+#   'pe-stomp',
+#   'pup-stomp',
+
+
+# console stuff
+#   'pe-certificate-manager',
+#   'pe-certificate-manager-test',
+#   'pe-console',
+#   'pe-console-auth',
+#   'pe-console-services',
+#   'pe-console-services-termini',
+#   'pe-console-test',
+#   'pe-event-inspector',
+#   'pe-live-management',
+#   'pe-memcached',
+#   'pe-memcached-devel',
+#   'pe-puppet-dashboard',
 
