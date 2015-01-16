@@ -290,18 +290,11 @@
     	</div>
     </header>
 
-      <section id="masthead">
-        <div class="site-width">
-          <h1>Docs: <span class="section-name">{{page.title}}</span></h1>
-        </div>
-        <br />
-      </section>
-
       <section id="content">
         <div class="site-width">
           <div class="primary-secondary-content">
             <div class="primary-content">
-              <h1>{% if page.subtitle %}{{page.subtitle}}{% else %}{{page.title}}{% endif %}</h1>
+              <h1>Docs » {% if page.subtitle %}{{page.subtitle}}{% else %}{{page.title}}{% endif %}</h1>
               {% unless page.toc == 'false' or page.toc == false %}<nav class="in-page">{{ content | toc }}</nav>{% endunless %}
               {{ content }}
               <blockquote><p style="font-size: 1.3em; text-align: center;"><a href="#content">↑ Back to top</a></p></blockquote>
