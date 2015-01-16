@@ -1,7 +1,6 @@
 package_name_variations = {
 
 'Puppet' => [
-  'pe-agent',
   'pe-puppet',
   'pup-puppet',
   'pe-puppetserver-common'
@@ -146,6 +145,8 @@ package_name_variations = {
 #   'pe-puppet-license-cli',
 #   'pup-puppet-enterprise-release',
 
+# simplified agent (always just the pe version)
+#   'pe-agent',
 
 # Augeas
 #   'pe-augeas',
