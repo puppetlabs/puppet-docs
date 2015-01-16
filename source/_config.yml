@@ -144,7 +144,9 @@ symlink_latest:
   - pe
   - dashboard/manual
 version_notes:
-  /puppet/: "note for all Puppet versions"
-  /puppet/3.7: "note for current version of Puppet"
-  /puppetdb/master: "Note for master puppetdb. <a href=\"{{ page.canonical }}\">Link to latest version of this page.</a>"
+  /puppet/3.7: "Applies to Puppet Enterprise 3.7"
+  /puppetdb/2.2: "Applies to Puppet Enterprise 3.7"
+  /facter/2.2: "Applies to Puppet Enterprise 3.7"
+  /facter/2.3: '<p class="noisy">Facter 2.3 is not included in Puppet Enterprise 3.7. PE 3.7 users should see <a href="/facter/2.2">the Facter 2.2 docs.</a></p>'
+  /puppetdb/master: '<p class="noisy">This page is for an unreleased version of PuppetDB. PE 3.7 users should see <a href="/puppetdb/2.2/">the PuppetDB 2.2 docs</a>. Other users should see <a href="/puppetdb/latest/">the latest official release</a>.</p>'
 ---
