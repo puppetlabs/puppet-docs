@@ -45,4 +45,4 @@ Additional resources:
 
 * * *
 
-- [Next: Getting Started With Classification](./console_classes_groups_getting_started.html)
+- [Next: Grouping and Classifying Nodes](./console_classes_groups.html)
