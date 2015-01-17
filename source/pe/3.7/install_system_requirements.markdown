@@ -130,8 +130,8 @@ You can also simplify configuration of agent nodes by using a CNAME record to ma
 
 ### Firewall Configuration
 
-[mono_port_diagram]: ./images/mono_port_diagram.png
-[split_port_diagram]: ./images/split_port_diagram.png
+[mono_port_diagram]: ./images/mono_port_diagram.jpg
+[split_port_diagram]: ./images/split_port_diagram.jpg
 
 
 Configure your firewalls to accommodate Puppet Enterprise's network traffic. 
