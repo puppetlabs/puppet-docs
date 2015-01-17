@@ -1268,6 +1268,19 @@ ol.toc > li > ol.toc > li {
   font-weight: bold;
 }
 
+/* The per-document version note div */
+
+div#version-note {
+  color: #d20;
+}
+
+div#version-note > .noisy {
+  border-radius: 1em;
+  border-style: solid;
+  border-width: 1px;
+  padding: 0.5em;
+}
+
 /* New nav ULs for experimental navigation sidebar style (NF 2011.11.07) */
 /* This is prototype work for the PE 2.0 manual only. */
 

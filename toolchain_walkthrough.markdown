@@ -380,7 +380,15 @@ Jekyll expects each page to include YAML frontmatter. It should, at a minimum, i
 	title: "Hiera 1: Command Line Usage"
 	---
 
-In addition, you can include a few other values in the frontmatter: `canonical`, `description`, `toc`, and `subtitle`.
+In addition, you can include a few other values in the frontmatter:
+
+* `canonical`
+* `description`
+* `toc`
+* `subtitle`
+* `munge_header_ids`
+* `nav`
+* `version_note`
 
 **Canonical:** Designates the canonical version of a given page. We use this to generate a canonical link that guides search engines to the most current, most relevant version of a given page. Testing has shown that this is very effective for consolidating search traffic on the most recent version of a given document. Format the canonical value as an absolute path from the docroot:
 
@@ -396,6 +404,13 @@ If you don't designate a description value, the templates will automatically inc
 
 **Subtitle:** By default, the `title` variable will be used in the `<title>` tag, the big title banner in the masthead, and the small title right above the in-page TOC. This will replace the small title if it's present.
 
+**Munge header IDs:** Currently not implemented, but the new-style type reference uses it anyway. The idea is that if we: 1. Build a replacement for Kramdown's auto ID attribute thing for headers, and 2. have some pages with explicit header IDs like `<h3 id="thing">` (like on the new-style type reference), then this could keep the header munger from overwriting those explicit IDs.
+
+**Nav:** This lets you set a sidebar nav snippet, which should be the relative path to a file inside the `_includes` directory. This lets you override the nav snippets set by the `defaultnav` map in the `_config.yml` file.
+
+**Version note:** This lets you set a version note that will appear somewhere on the page (under the page title header and before the in-page TOC, at the time of this writing). This lets you override the per-large-document notes set in `_config.yml` in the `version_notes` map.
+
+Version notes can optionally include a `<p class="noisy">`, which will make the note pop a bit more if it's something we really want users to notice.
 
 ## Reference Links (remove when done with draft)
 [Markdown]: http://daringfireball.net/projects/markdown
