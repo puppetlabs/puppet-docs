@@ -11,10 +11,10 @@ The Razor API is REST-based. For best results, use the following as the base URL
 **Note:** The following sections contain some example URL's that might be structured differently from the URLs your server uses.
 
 ###Common Attributes
-Two attributes are commonly used to identify objects: 
+Two attributes are commonly used to identify objects:
 
 + `id` can be used as a GUID for an object. A `GET` request against a URL with an `id` attribute will produce a representation
-of the object. 
+of the object.
 + `name` is used for a short, human readable reference to an object, generally only unique amongst objects of the same
 type on the same server.
 
@@ -28,7 +28,7 @@ for navigating through the Razor command and query facilities. This is a JSON ob
 
 Each of those keys contains a JSON array, with a sequence of JSON objects that have the following keys:
 
- * `name`: a human-readable label. 
+ * `name`: a human-readable label.
  * `rel`: a "spec URL" that indicates the type of contained data.  Use this to
           discover the endpoint that you want to follow, rather than the `name`.
  * `id`: the URL to follow to get at this content.
@@ -38,7 +38,7 @@ Each of those keys contains a JSON array, with a sequence of JSON objects that h
 The `/svc` namespace is an internal namespace, used for communication with the
 iPXE client, the microkernel, and other internal components of Razor.
 
-This namespace is not enumerated under `/api`. 
+This namespace is not enumerated under `/api`.
 
 ## Commands
 
@@ -48,7 +48,7 @@ commands using the `rel` attribute of each entry in the array, and should
 make their POST requests to the URL given in the `url` attribute.
 
 Any command's help documentation can be queried via a GET (rather than POST
-which executes the command) on the command's endpoint, 
+which executes the command) on the command's endpoint,
 e.g. `GET /api/commands/create-policy`.
 
 Commands are generally asynchronous and return a status code of 202
@@ -58,16 +58,22 @@ when the command has finished.
 
 ### Create new repo (`create-repo`)
 
-There are two flavors of repositories: ones where Razor unpacks ISO's for
-you and serves their contents, and ones that are somewhere else, for
-example, on a mirror you maintain. The first form is created by creating a
-repo with the `iso-url` property; the server will download and unpack the
+There are three flavors of repositories:
+
+* Those where Razor unpacks ISOs for you and serves their contents.
+* Those that are somewhere else (for example, on a mirror you maintain).
+* Those where a stub directory is created and the contents can be entered manually.
+
+Note that the `task` parameter is mandatory for creating all three of these types of repositories. The `task` parameter can be overridden at
+the policy level. If no task is to be used, reference the stock task `noop`.
+
+The first type is created by creating a repo with the `iso-url` property; the server downloads and unpacks the
 ISO image into its file system:
 
     {
       "name": "fedora19",
-      "iso-url": "file:///tmp/Fedora-19-x86_64-DVD.iso",
-      "task": "redhat"
+      "iso-url": "file:///tmp/Fedora-19-x86_64-DVD.iso"
+      "task": "puppet"
     }
 
 The second form is created by providing a `url` property when you create
@@ -76,9 +82,21 @@ nothing will be downloaded onto the Razor server:
 
     {
       "name": "fedora19",
-      "url": "http://mirrors.n-ix.net/fedora/linux/releases/19/Fedora/x86_64/os/",
-      "task": "redhat"
+      "url": "http://mirrors.n-ix.net/fedora/linux/releases/19/Fedora/x86_64/os/"
+      "task": "noop"
     }
+
+The third form is created by providing a `no-content` property when you
+create the repository. This format creates an empty directory in the
+`repo-store` directory where files can be added manually. This is useful
+for ISOs that have issues with being uncompressed normally for such reasons as forward references:
+
+    {
+      "name": "fedora19",
+      "no-content": true
+      "task": "noop"
+    }
+
 
 ### Delete a repo (`delete-repo`)
 
