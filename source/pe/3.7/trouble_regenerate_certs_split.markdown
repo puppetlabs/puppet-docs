@@ -24,7 +24,7 @@ Regardless of your situation, regenerating your certificates involves the follow
 6. Clear and replace certs and security credentials for all agent nodes.
 
 
-Note that this process **destroys the certificate authority and all other certificates.** It is meant for use in the event of a total compromise of your site, or some other unusual circumstance. If you just need to replace a few agent certificates, you can use the `puppet cert clean` command on your Puppet master and then follow step four for any agents that need to be replaced.
+Note that this process **destroys the certificate authority and all other certificates.** It is meant for use in the event of a total compromise of your site, or some other unusual circumstance. If you just need to replace a few agent certificates, you can use the `puppet cert clean` command on your Puppet master and then follow [step six](#step-6-clear-and-regenerate-certs-for-pe-agents) for any agents that need to be replaced.
 
 >**Note** You must be logged in as a root, (or in the case of Windows agents, as an account with Administrator Privileges)  to make these changes.
 
@@ -149,7 +149,7 @@ Note that this process **destroys the certificate authority and all other certif
 
    * `/etc/puppetlabs/puppet/ssl/`
 
-   * `/opt/puppet/share/puppet-dashboard/certs
+   * `/opt/puppet/share/puppet-dashboard/certs`
    
    * `/opt/puppet/share/console-services/certs`
     
