@@ -84,31 +84,34 @@ If you run the `reports:prune` task without any arguments, it will display furth
 Database Backups
 ----------------
 
-You can back up and restore your PE databases by using the standard [PostgreSQL tool, `pg dump`](http://www.postgresql.org/docs/9.2/static/app-pgdump.html). Best practices recommend hourly local backups and backups to a remote system nightly for the `console`, `console_auth` and `puppetdb` databases, or as dictated by your company policy.
+You can back up and restore your PE databases by using the standard [PostgreSQL tool, `pg dump`](http://www.postgresql.org/docs/9.2/static/app-pgdump.html). Best practices recommend hourly local backups and backups to a remote system nightly for PE databases, or as dictated by your company policy.
 
 Providing comprehensive documentation about backing up and restoring PostgreSQL databases is beyond the scope of this guide, but the following commands should provide you enough guidance to perform back ups and restorations of your PE databases.
 
 To backup the databases, run:
 
-    su - pe-postgres -s /bin/bash
-        
-    pg_dump pe-puppetdb -f /tmp/pe-puppetdb.backup --create
-    pg_dump pe-classifier -f /tmp/pe-classfier.backup --create
-    pg_dump pe-rbac -f /tmp/pe-rbac.backup --create
-    pg_dump pe-activity -f /tmp/pe-activity.backup --create
-    pg_dump console -f /tmp/console.backup --create
+    /usr/bin/sudo -u pe-postgres /opt/puppet/bin/pg_dump -Fc -C -c console -f /opt/dump/console_`/bin/date +'%Y%m%d%H%M'`
+    /usr/bin/sudo -u pe-postgres /opt/puppet/bin/pg_dump -Fc -C -c pe-activity -f /opt/dump/activity_`/bin/date +'%Y%m%d%H%M'`
+    /usr/bin/sudo -u pe-postgres /opt/puppet/bin/pg_dump -Fc -C -c pe-classifier -f /opt/dump/classifier_`/bin/date +'%Y%m%d%H%M'`
+    /usr/bin/sudo -u pe-postgres /opt/puppet/bin/pg_dump -Fc -C -c pe-rbac -f /opt/dump/rbac_`/bin/date +'%Y%m%d%H%M'`
+    /usr/bin/sudo -u pe-postgres /opt/puppet/bin/pg_dump -Fc -C -c pe-puppetdb -f /opt/dump/puppetdb_`/bin/date +'%Y%m%d%H%M'`
     
 
 To restore the databases, run:
 
-    su - pe-postgres -s /bin/bash
-        
-    psql -f /tmp/pe-puppetdb.backup
-    psql -f /tmp/pe-classifier.backup
-    psql -f /tmp/pe-rbac.backup
-    psql -f /tmp/pe-activity.backup
-    psql -f /tmp/console.backup
+    /usr/bin/sudo - pe-postgres /opt/puppet/bin/pg_restore -Fc -c -C -d console -f /opt/dump/console_`/bin/date +'%Y%m%d%H%M'`
+    /usr/bin/sudo -u pe-postgres /opt/puppet/bin/pg_restore -Fc -c -C -d pe-activity -f /opt/dump/activity_`/bin/date +'%Y%m%d%H%M'`
+    /usr/bin/sudo -u pe-postgres /opt/puppet/bin/pg_restore -Fc -c -C -d pe-classifier -f /opt/dump/classifier_`/bin/date +'%Y%m%d%H%M'`
+    /usr/bin/sudo -u pe-postgres /opt/puppet/bin/pg_restore -Fc -c -C -d pe-rbac -f /opt/dump/rbac_`/bin/date +'%Y%m%d%H%M'`
+    /usr/bin/sudo -u pe-postgres /opt/puppet/bin/pg_restore -Fc -c -C -d pe-puppetdb -f /opt/dump/puppetdb_`/bin/date +'%Y%m%d%H%M'`
     
+To run a full backup, which should be done periodically, run: 
+
+    /usr/bin/sudo -u pe-postgres /opt/puppet/bin/pg_dumpall -f /opt/dump/dumpall_`/bin/date +'%Y%m%d%H%M'`
+    
+To restore a full backup, run: 
+
+    /usr/bin/sudo -u pe-postgres /opt/puppet/bin/psql -f /opt/dump/dumpall_`/bin/date +'%Y%m%d%H%M'`  
 
 Changing the Console's Database User/Password
 -----
