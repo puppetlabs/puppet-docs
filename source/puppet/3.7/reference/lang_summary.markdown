@@ -66,7 +66,7 @@ Files
 
 Puppet language files are called **manifests,** and are named with the `.pp` file extension. Manifest files:
 
-* Should use UTF8 encoding
+* Must use UTF8 encoding
 * May use Unix (LF) or Windows (CRLF) line breaks (note that the line break format also affects [literal line breaks in strings][string_newline])
 
 Puppet always begins compiling with a single manifest (which may be broken up into several pieces), called the "site manifest" or "main manifest." See [the reference page on the main manifest][site_manifest] for details about this special file/directory.
