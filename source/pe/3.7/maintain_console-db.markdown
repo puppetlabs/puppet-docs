@@ -99,7 +99,7 @@ To backup the databases, run:
 
 To restore the databases, run:
 
-    /usr/bin/sudo - pe-postgres /opt/puppet/bin/pg_restore -Fc -c -C -d console -f /opt/dump/console_`/bin/date +'%Y%m%d%H%M'`
+    /usr/bin/sudo -u pe-postgres /opt/puppet/bin/pg_restore -Fc -c -C -d console -f /opt/dump/console_`/bin/date +'%Y%m%d%H%M'`
     /usr/bin/sudo -u pe-postgres /opt/puppet/bin/pg_restore -Fc -c -C -d pe-activity -f /opt/dump/activity_`/bin/date +'%Y%m%d%H%M'`
     /usr/bin/sudo -u pe-postgres /opt/puppet/bin/pg_restore -Fc -c -C -d pe-classifier -f /opt/dump/classifier_`/bin/date +'%Y%m%d%H%M'`
     /usr/bin/sudo -u pe-postgres /opt/puppet/bin/pg_restore -Fc -c -C -d pe-rbac -f /opt/dump/rbac_`/bin/date +'%Y%m%d%H%M'`
