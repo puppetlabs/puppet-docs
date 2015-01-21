@@ -30,11 +30,14 @@ title: "Puppet's Commands"
 [help_man]: /references/3.7.latest/man/help.html
 [man_man]: /references/3.7.latest/man/man.html
 [all_manpages]: /references/3.7.latest/man/
+[about_server]: /puppetserver/1.0/services_master_puppetserver.html
+[server_vs_passenger]: /puppetserver/1.0/puppetserver_vs_passenger.html
+[subcommands]: puppetserver/1.0/subcommands.html
 
 
 Puppet's command line interface consists of a single `puppet` command with many subcommands.
 
-Puppet's companion utilities, [Facter][facter_cli] and [Hiera][hiera_cli], have their own command line interfaces, which differ slightly from Puppet's.
+[Puppet Server][about_server] and Puppet's companion utilities, [Facter][facter_cli] and [Hiera][hiera_cli], have their own command line interfaces, which differ slightly from Puppet's.
 
 
 Core Services
@@ -55,7 +58,7 @@ For more information, see:
 
 ### Puppet Master
 
-Puppet master compiles and serves configuration catalogs for any number of Puppet agent nodes, using Puppet modules and various other data sources.
+Puppet master compiles and serves configuration catalogs for any number of Puppet agents, using Puppet modules and various other data sources.
 
 For more information, see:
 
@@ -63,6 +66,19 @@ For more information, see:
 * [The Rack Puppet Master][master_rack]
 * [The WEBrick Puppet Master][master_webrick]
 * [Puppet Master's Man Page][master_man]
+
+### Puppet Server
+
+Puppet Server compiles configurations for any number of Puppet agents, using Puppet code and various other data sources. It provides the same services as the classic Puppet master application and is meant to replace an Apache/Passenger Puppet master stack. 
+
+Puppet Server has its own subcommand, `puppetserver`, which isn't prefaced by the usual `puppet` subcommand.
+
+For more information, see:
+
+* [Overview of Puppet's Architecture][arch]
+* [Puppet Server][about_server]
+* [Puppet Server vs. Apache/Passenger master][server_vs_passenger]
+* [Puppet Server Subcommands][subcommands]
 
 ### Puppet Apply
 
