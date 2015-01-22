@@ -1,0 +1,66 @@
+---
+layout: default
+title: "Facter 2.4: Release Notes"
+description: "Facter release notes for all 2.4 versions"
+---
+
+This page documents the history of the Facter 2.4 series. (Elsewhere: release notes for [Facter 2.3](../2.3/release_notes.html), [Facter 2.2](../2.2/release_notes.html), [Facter 2.1](../2.1/release_notes.html), and [Facter 2.0](../2.0/release_notes.html)).
+
+
+## Facter 2.4.0
+
+Facter 2.4.0 is a backward-compatible feature release in the Facter 2 series.
+
+This release has several backend improvements to prepare for Puppet 4.0. It doesn't add any new facts, but does add a new key to the `partitions` fact and improves OS support for a few others.
+
+### Preparation for Puppet 4
+
+Puppet 4.0 is coming soon, and Facter needed some changes to keep up. The current plan is that Facter 2.4.0 will be fully compatible with Puppet 4.
+
+The main change is to the filesystem layout: Puppet 4 will change the directories it uses for configuration and synced plugins, and Facter can now use those new directories (as well as the existing Puppet 3 directories). We also updated the `facter --puppet` feature to account for some removed code, and made it so Puppet 4 can show Facter's error and warning messages in its logs.
+
+* [FACT-779: Facter --puppet fails silently with Puppet 4](https://tickets.puppetlabs.com/browse/FACT-779)
+* [FACT-753: Update FS layout for Facter](https://tickets.puppetlabs.com/browse/FACT-753)
+* [FACT-750: Add pluggable logging](https://tickets.puppetlabs.com/browse/FACT-750)
+
+### Fact Changes or Improvements
+
+The `partitions` fact now includes a `label` key for each partition. Like this:
+
+    partitions:
+      sda1:
+        size: '1953523087'
+        filesystem: ntfs
+      sdb1:
+        size: '2014'
+        label: BIOS boot partition
+      sdb2:
+        uuid: e746c990-fb8d-4449-90ad-c517ccd859f6
+        size: '204800'
+        mount: /boot
+        label: Linux filesystem
+        filesystem: ext2
+
+This release also improves the `ipaddress_<ID>`, `macaddress_<ID>`, `mtu_<ID>`, `netmask_<ID>`, and `network_<ID>` facts on AIX.
+
+* [FACT-776: Display the FS label in the partitions fact](https://tickets.puppetlabs.com/browse/FACT-776)
+* [FACT-770: AIX Network Interfaces Improvements](https://tickets.puppetlabs.com/browse/FACT-770)
+
+### Fact Bugs
+
+This release fixes several bugs with various facts.
+
+* [FACT-755: some xen hosts are not marked as xen](https://tickets.puppetlabs.com/browse/FACT-755)
+* [FACT-546: facter fails when on non standard nic](https://tickets.puppetlabs.com/browse/FACT-546)
+* [FACT-658: facter doesn't parse gnu uptime output](https://tickets.puppetlabs.com/browse/FACT-658)
+* [FACT-697: If NetworkManager is installed but not used facter throws a warning.](https://tickets.puppetlabs.com/browse/FACT-697)
+* [FACT-715: LXC detection code raises errors on old OpenVZ](https://tickets.puppetlabs.com/browse/FACT-715)
+
+
+### Improvements for External Tools
+
+Sometimes, tools like Boxen want to load their own collection of external facts from their own directory, and they generally subclass `Facter::Util::DirectoryLoader` to do it. The Boxen folk also wanted to set a different weight for facts from that directory, but there wasn't a way to do that. Now there is, by passing an optional weight argument to that class's initializer.
+
+* [FACT-766: Facter::Util::DirectoryLoader should have configurable weight](https://tickets.puppetlabs.com/browse/FACT-766)
+
+

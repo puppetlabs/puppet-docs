@@ -12,6 +12,7 @@ defaultnav:
   /facter/2.1: facter21.html
   /facter/2.2: facter22.html
   /facter/2.3: facter23.html
+  /facter/2.4: facter24.html
   /forge: forge.html
   /guides/deployment_guide: deploy_guide.html
   /guides/install_puppet: puppet_general.html
@@ -154,4 +155,5 @@ version_notes:
   /puppetdb/master: '<p class="noisy">This page is for an unreleased version of PuppetDB. PE 3.7 users should see <a href="/puppetdb/2.2/">the PuppetDB 2.2 docs</a>. Other users should see <a href="/puppetdb/latest/">the latest official release</a>.</p>'
   /facter/2.2: "Applies to Puppet Enterprise 3.7"
   /facter/2.3: '<p class="noisy">Facter 2.3 is not included in Puppet Enterprise 3.7. PE 3.7 users should see <a href="/facter/2.2">the Facter 2.2 docs.</a></p>'
+  /facter/2.4: '<p class="noisy">Facter 2.4 is not included in Puppet Enterprise 3.7. PE 3.7 users should see <a href="/facter/2.2">the Facter 2.2 docs.</a></p>'
 ---
