@@ -245,17 +245,17 @@ except in the rare cases where it would improve readability.
 
 {% highlight ruby %}
     file {
-      "/tmp/a":
-        content => "a";
-      "/tmp/b":
-        content => "b";
+      '/tmp/a':
+        content => 'a';
+      '/tmp/b':
+        content => 'b';
     }
 
     exec {
-      "change contents of a":
-        command => "sed -i.bak s/b/B/g /tmp/a";
-      "change contents of b":
-        command => "sed -i.bak s/b/B/g /tmp/b";
+      'change contents of a':
+        command => 'sed -i.bak s/b/B/g /tmp/a';
+      'change contents of b":
+        command => 'sed -i.bak s/b/B/g /tmp/b';
     }
 {% endhighlight %}
 
@@ -341,7 +341,7 @@ unpredictable effects far away from where the default was declared.
       group => 'nogroup',
     }
 
-    class {'ssh::client':
+    class { 'ssh::client':
       ensure => present,
     }
 {% endhighlight %}
@@ -364,7 +364,7 @@ resource declarations.
     }
 
     file { '/tmp/readme.txt':
-       content => "Hello World\n",
+       content => 'Hello World\n',
        mode    => $file_mode,
     }
 {% endhighlight %}
@@ -563,17 +563,17 @@ parameter and conditional relationship declarations:
     class bluetooth($ensure=present, $autoupgrade=false) {
        # Validate class parameter inputs. (Fail early and fail hard)
 
-       if ! ($ensure in [ "present", "absent" ]) {
-         fail("bluetooth ensure parameter must be absent or present")
+       if ! ($ensure in [ 'present', 'absent' ]) {
+         fail('bluetooth ensure parameter must be absent or present')
        }
 
        if ! ($autoupgrade in [ true, false ]) {
-         fail("bluetooth autoupgrade parameter must be true or false")
+         fail('bluetooth autoupgrade parameter must be true or false')
        }
 
        # Set local variables based on the desired state
 
-       if $ensure == "present" {
+       if $ensure == 'present' {
          $service_enable = true
          $service_ensure = running
          if $autoupgrade == true {
@@ -589,27 +589,27 @@ parameter and conditional relationship declarations:
 
        # Declare resources without any relationships in this section
 
-       package { [ "bluez-libs", "bluez-utils"]:
+       package { [ 'bluez-libs', 'bluez-utils']:
          ensure => $package_ensure,
        }
 
-       service { hidd:
+       service { 'hidd':
          enable         => $service_enable,
          ensure         => $service_ensure,
-         status         => "source /etc/init.d/functions; status hidd",
+         status         => 'source /etc/init.d/functions; status hidd',
          hasstatus      => true,
          hasrestart     => true,
       }
 
       # Finally, declare relations based on desired behavior
 
-      if $ensure == "present" {
-        Package["bluez-libs"]  -> Package["bluez-utils"]
-        Package["bluez-libs"]  ~> Service[hidd]
-        Package["bluez-utils"] ~> Service[hidd]
+      if $ensure == 'present' {
+        Package['bluez-libs']  -> Package['bluez-utils']
+        Package['bluez-libs']  ~> Service['hidd']
+        Package['bluez-utils'] ~> Service['hidd']
       } else {
-        Service["hidd"]        -> Package["bluez-utils"]
-        Package["bluez-utils"] -> Package["bluez-libs"]
+        Service['hidd']        -> Package['bluez-utils']
+        Package['bluez-utils'] -> Package['bluez-libs']
       }
     }
 {% endhighlight %}
@@ -669,7 +669,7 @@ defaults).
 {% highlight ruby %}
     class ntp (
       $servers,
-      $options   = "iburst",
+      $options   = 'iburst',
       $multicast = false
     ) {}
 {% endhighlight %}
@@ -678,7 +678,7 @@ defaults).
 
 {% highlight ruby %}
     class ntp (
-      $options   = "iburst",
+      $options   = 'iburst',
       $servers,
       $multicast = false
     ) {}
