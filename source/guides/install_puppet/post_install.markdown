@@ -60,7 +60,7 @@ This will create the CA certificate and the puppet master certificate, with the 
 
 You have two main options:
 
-* Run `puppet cert generate <NAME> --dns-alt-names=<NAME 1>,<NAME 2>,<NAME 3>` on your CA server, then manually copy the new master's cert, private key, and public key into place on the new master. You will also need to give it a copy of the CA's certificate and the CRL. See [the reference page on the ssldir][ssldir] for more info about these files.
+* Run `puppet cert generate <NAME> --dns_alt_names=<NAME 1>,<NAME 2>,<NAME 3>` on your CA server, then manually copy the new master's cert, private key, and public key into place on the new master. You will also need to give it a copy of the CA's certificate and the CRL. See [the reference page on the ssldir][ssldir] for more info about these files.
 * Run `puppet agent --test --ca_server=<SERVER>` to request a certificate. On the CA server, run `puppet cert list` and `puppet cert --allow-dns-alt-names sign <NAME>` to sign the certificate. On the new master, run `puppet agent --test --ca_server=<SERVER>` again to retrieve the cert.
 
 ### Configure Any Necessary Settings
