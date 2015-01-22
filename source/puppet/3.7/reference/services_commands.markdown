@@ -32,7 +32,7 @@ title: "Puppet's Commands"
 [all_manpages]: /references/3.7.latest/man/
 [about_server]: /puppetserver/1.0/services_master_puppetserver.html
 [server_vs_passenger]: /puppetserver/1.0/puppetserver_vs_passenger.html
-[subcommands]: puppetserver/1.0/subcommands.html
+[subcommands]: /puppetserver/1.0/subcommands.html
 
 
 Puppet's command line interface consists of a single `puppet` command with many subcommands.
