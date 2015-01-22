@@ -116,7 +116,7 @@ Only supports Linux 2.6+ at this time, due to the reliance on sysfs.
 
 **Purpose**:
 
-Return a comma-separated list of block devices.
+Return a comma separated list of block devices.
 
 **Resolution**:
 
@@ -140,7 +140,7 @@ Return the public key(s) for CFengine.
 
 **Resolution**:
 
-Tries each file of standard `localhost.pub` and `cfkey.pub` locations, checks if they appear to be a public key, and then joins them all together.
+Tries each file of standard `localhost.pub` and `cfkey.pub` locations, checks if they appear to be a public key, and then join them all together.
 
 
 ([↑ Back to top](#page-nav))
@@ -154,6 +154,7 @@ Tries each file of standard `localhost.pub` and `cfkey.pub` locations, checks if
 
 * Return the DHCP server addresses for all interfaces as a hash.
 * If the interface that is the default gateway is DHCP assigned, there will also be a `"system"` entry in the hash.
+* This fact is structured. Values are returned as a group of key-value pairs.
 
 **Resolution**:
 
@@ -177,7 +178,7 @@ Return the host's primary DNS domain name.
 
 **Resolution**:
 
-* On UNIX (excluding Darwin), first tries to use the hostname fact, which uses the `hostname` system command, and then parses the output of that.
+* On UNIX (excluding Darwin), first try and use the hostname fact, which uses the `hostname` system command, and then parse the output of that.
 * Failing that, it tries the `dnsdomainname` system command.
 * Failing that, it uses `/etc/resolv.conf` and takes the domain from that, or as a final resort, the search from that.
 * Otherwise returns `nil`.
@@ -193,7 +194,7 @@ Return the host's primary DNS domain name.
 
 **Purpose**:
 
-Return info retrieved in bulk from the EC2 API. The names of these facts should be self explanatory, and they are otherwise undocumented. The full list of these facts is: ec2_ami_id, ec2_ami_launch_index, ec2_ami_manifest_path, ec2_block_device_mapping_ami, ec2_block_device_mapping_ephemeral0, ec2_block_device_mapping_root, ec2_hostname, ec2_instance_id, ec2_instance_type, ec2_kernel_id, ec2_local_hostname, ec2_local_ipv4, ec2_placement_availability_zone, ec2_profile, ec2_public_hostname, ec2_public_ipv4, ec2_public_keys_0_openssh_key, ec2_reservation_id, and ec2_security_groups.
+Returns info retrieved in bulk from the EC2 API. The names of these facts should be self explanatory, and they are otherwise undocumented. The full list of these facts is: ec2_ami_id, ec2_ami_launch_index, ec2_ami_manifest_path, ec2_block_device_mapping_ami, ec2_block_device_mapping_ephemeral0, ec2_block_device_mapping_root, ec2_hostname, ec2_instance_id, ec2_instance_type, ec2_kernel_id, ec2_local_hostname, ec2_local_ipv4, ec2_placement_availability_zone, ec2_profile, ec2_public_hostname, ec2_public_ipv4, ec2_public_keys_0_openssh_key, ec2_reservation_id, and ec2_security_groups.
 
 **Resolution**:
 
@@ -209,7 +210,7 @@ Directly queries the EC2 metadata endpoint.
 
 **Purpose**:
 
-Return the version of the facter module.
+Returns the version of the facter module.
 
 **Resolution**:
 
@@ -225,7 +226,7 @@ Uses the `Facter.version` method.
 
 **Purpose**:
 
-Provide an alphabetic list of usable file systems that can be used for block devices like hard drives, media cards, etc.
+This fact provides an alphabetic list of usable file systems that can be used for block devices like hard drives, media cards, etc.
 
 **Resolution**:
 
@@ -245,7 +246,7 @@ Only supports Linux.
 
 **Purpose**:
 
-Return the fully-qualified domain name of the host.
+Returns the fully-qualified domain name of the host.
 
 **Resolution**:
 
@@ -260,28 +261,12 @@ No attempt is made to check that the two facts are accurate or that the two fact
 
 * * *
 
-## `gce`
-
-
-**Purpose**:
-
-Return metadata for Google compute engine.
-
-**Resolution**:
-
-Queries the HTTP endpoint and processes the resulting data.
-
-
-([↑ Back to top](#page-nav))
-
-* * *
-
 ## `gid`
 
 
 **Purpose**:
 
-Return the GID (group identifier) of the user running Puppet.
+Return the GID (group identifier) of the user running puppet.
 
 
 ([↑ Back to top](#page-nav))
@@ -349,7 +334,7 @@ Return the system's short hostname.
 
 **Purpose**:
 
-Return the currently running user ID.
+Internal fact used to specity the program to return the currently running user ID.
 
 **Resolution**:
 
@@ -366,7 +351,8 @@ Return the currently running user ID.
 
 **Purpose**:
 
-Generates the following facts on supported platforms: `<interface>_ipaddress`, `<interface>_ipaddress6`, `<interface>_macaddress`, `<interface>_netmask`, and `<interface>_mtu`.
+* Returns a comma-separated list of the system's network interfaces.
+* In addition to the main `interfaces` fact, this code will generate the following facts for each interface:
 
 
 ([↑ Back to top](#page-nav))
@@ -382,10 +368,10 @@ Return the main IP address for a host.
 
 **Resolution**:
 
-* On the Unixes, does an ifconfig and returns the first non 127.0.0.0/8 subnetted IP it finds.
+* On the Unixes does an ifconfig, and returns the first non 127.0.0.0/8 subnetted IP it finds.
 * On Windows, it attempts to use the socket library and resolve the machine's hostname via DNS.
 * On LDAP based hosts it tries to use either the win32/resolv library to resolve the hostname to an IP address, or on Unix, it uses the resolv library.
-* As a fallback for undefined systems, it tries to run the "host" command to resolve the machine's hostname using the system DNS.
+* As a fall back for undefined systems, it tries to run the "host" command to resolve the machine's hostname using the system DNS.
 
 **Caveats**:
 
@@ -434,11 +420,11 @@ Uses either the scutil program to get the localhost name, or parses output of if
 
 **Purpose**:
 
-Return the operating system's name.
+Returns the operating system's name.
 
 **Resolution**:
 
-Uses Ruby's RbConfig to find host_os; if that is a Windows derivative, then returns `windows`, otherwise returns the output of `uname -s` verbatim.
+Uses Ruby's RbConfig to find host_os, if that is a Windows derivative, then returns `windows`, otherwise returns the output of `uname -s` verbatim.
 
 
 ([↑ Back to top](#page-nav))
@@ -714,9 +700,9 @@ Return information about memory and swap usage.
 
 * On Linuxes, uses `Facter::Memory.meminfo_number` from `facter/util/memory.rb`
 * On AIX, parses `swap -l` for swap values only.
-* On OpenBSD, parses `swapctl -l` for swap values, `vmstat` via a module for free memory, and `sysctl hw.physmem` for maximum memory.
-* On FreeBSD, parses `swapinfo -k` for swap values, and parses `sysctl` for maximum memory.
-* On Solaris, uses `swap -l` for swap values, parsing `prtconf` for maximum memory, and again, the `vmstat` module for free memory.
+* On OpenBSD, it parses `swapctl -l` for swap values, `vmstat` via a module for free memory, and `sysctl hw.physmem` for maximum memory.
+* On FreeBSD, it parses `swapinfo -k` for swap values, and parses `sysctl` for maximum memory.
+* On Solaris, use `swap -l` for swap values, and parsing `prtconf` for maximum memory, and again, the `vmstat` module for free memory.
 
 **Caveats**:
 
@@ -787,8 +773,11 @@ Returns the major release of the operating system.
 
 **Resolution**:
 
-* Uses the releasemajor key of the os structured fact, which itself splits down its operatingsystemrelease key at decimal point for osfamily RedHat derivatives and Debian.
-* Uses operatingsystemrelease key to the first non decimal character for operatingsystem Solaris.
+* Uses the release['major'] entry of the os structured fact, which itself attempts to use its own release['full'] entry to determine the major release value.
+* In RedHat osfamily derivatives and Debian, splits down the release string for a decimal point and uses the first non-decimal character.
+* In Solaris, uses the first non-decimal character of the release string.
+* In Ubuntu, uses the characters before and after the first decimal point, as in '14.04'.
+* In Windows, uses the full release string in the case of server releases, such as '2012 R2', and uses the first non-decimal character in the cases of releases such as '8.1'.
 * This should be the same as lsbmajdistrelease, but on minimal systems there are too many dependencies to use LSB
 
 
@@ -825,14 +814,20 @@ Returns the release of the operating system.
 
 **Purpose**:
 
-Return various facts related to the machine's operating system.
+* Return various facts related to the machine's operating system, including:
+* Name: The name of the operating system.
+* Family: A mapping of the operating system to an operating system family.
+* Release: The release version of the operating system. Includes entries for the major and minor release versions, as well as the full release string.
+* Lsb: Linux Standard Base information for the system.
+* This fact is structured. These values are returned as a group of key-value pairs.
 
 **Resolution**:
 
-* For operatingsystem, if the kernel is a Linux kernel, checks for the existence of a selection of files in `/etc` to find the specific flavor.
-* On SunOS-based kernels, attempts to determine the flavor, otherwise returns Solaris.
-* On systems other than Linux, uses the kernel value.
-* For operatingsystemrelease, on RedHat derivatives, returns their `/etc/<varient>-release` file.
+* For the name entry, if the kernel is a Linux kernel, check for the existence of a selection of files in `/etc` to find the specific flavor.
+* On SunOS based kernels, attempt to determine the flavor, otherwise return Solaris.
+* On systems other than Linux, use the kernel value.
+* For the family entry, map operating systems to operating system families, such as linux distribution derivatives. Adds mappings from specific operating systems to kernels in the case that it is relevant.
+* For the release entry, on RedHat derivatives, returns `/etc/<variant>-release` file.
 * On Debian, returns `/etc/debian_version`.
 * On Ubuntu, parses `/etc/lsb-release` for the release version
 * On Suse and derivatives, parses `/etc/SuSE-release` for a selection of version information.
@@ -840,13 +835,19 @@ Return various facts related to the machine's operating system.
 * On Amazon Linux, returns the lsbdistrelease fact's value.
 * On Mageia, parses `/etc/mageia-release` for the release version.
 * On all remaining systems, returns the kernelrelease fact's value.
-* For the lsb facts, uses the `lsb_release` system command.
+* For the major version, uses the value of the full release string to determine the major release version.
+* In RedHat osfamily derivatives and Debian, splits down the release string for a decimal point and uses the first non-decimal character.
+* In Solaris, uses the first non-decimal character of the release string.
+* In Ubuntu, uses the characters before and after the first decimal point, as in '14.04'.
+* In Windows, uses the full release string in the case of server releases, such as '2012 R2', and uses the first non-decimal character in the cases of releases such as '8.1'.
+* For the minor version, attempts to split the full release version string and return the value of the character after the first decimal.
+* For the lsb entries, uses the `lsb_release` system command.
 
 **Caveats**:
 
-* Lsb facts only work on Linux (and the kfreebsd derivative) systems.
-* Requires the `lsb_release` program, which may not be installed by default.
-* It is only as accurate as the output of lsb_release.
+* The family entry is completely reliant on the name key, and no heuristics are used.
+* The major and minor release sub-facts of the release entry are not currenty supported on all platforms.
+* The lsb entries only work on Linux (and the kfreebsd derivative) systems. Requires the `lsb_release` program, which may not be installed by default. It is only as accurate as the output of `lsb_release`.
 
 
 ([↑ Back to top](#page-nav))
@@ -878,11 +879,12 @@ This fact is completely reliant on the operatingsystem fact, and no heuristics a
 
 **Purpose**:
 
-Return the details of the disk partitions.
+* Return the details of the disk partitions.
+* This fact is structured. Values are returned as a group of key-value pairs.
 
 **Resolution**:
 
-Parses the contents of `/sys/block/<device>/size` to receive the size (multiplying by 512 to correct for blocks-to-bytes).
+Parse the contents of `/sys/block/<device>/size` to receive the size (multiplying by 512 to correct for blocks-to-bytes).
 
 **Caveats**:
 
@@ -930,11 +932,11 @@ Uses the physicalprocessorcount key of the processors structured fact, which its
 
 **Purpose**:
 
-Provide additional facts about the machine's CPUs.
+Additional Facts about the machine's CPUs.
 
 **Resolution**:
 
-Utilizes values from the processors structured fact, which itself uses various methods to collect CPU information, with implementation dependent on the OS of the system in question.
+Utilizes values from the processors structured fact, which itself uses various methods to collect CPU information, with implementation dependent upon the OS of the system in question.
 
 
 ([↑ Back to top](#page-nav))
@@ -946,12 +948,24 @@ Utilizes values from the processors structured fact, which itself uses various m
 
 **Purpose**:
 
-Additional facts about the machine's CPU's, including processor lists, models, counts, and speeds.
+* Provide additional facts about the machine's CPUs, including:
+* Models: A list of processors present on the system.
+* Count:  The number of hardware threads.
+* Physicalcount: The number of physical processors.
+* Speed: The speed of the processors on the system.
+* This fact is structured. These values are returned as a group of key-value pairs.
 
 **Resolution**:
 
-* Each kernel uses its own implementation object to collect processor data. Linux and kFreeBSD parse `/proc/cpuinfo` for each processor. AIX parses the output of `lsdev` for its processor section.
-* For Solaris, we parse the output of `kstat` for each processor. OpenBSD uses the sysctl variables 'hw.model' and 'hw.ncpu' for the CPU model and the CPU count respectively. Darwin uses the system profiler to collect the physical CPU count and speed.
+* Linux and kFreeBSD parse `/proc/cpuinfo` for each processor.
+* AIX parses the output of `lsdev` for its processor section.
+* Solaris parses the output of `kstat` for each processor.
+* OpenBSD uses the sysctl variables `hw.model` and `hw.ncpu` for the CPU model and the CPU count respectively.
+* Darwin utilizes the system profiler to collect the physical CPU count and speed.
+
+**Caveats**:
+
+The 'speed' sub-fact is not currently supported on all platforms.
 
 
 ([↑ Back to top](#page-nav))
@@ -979,11 +993,11 @@ Assumes `ps -ef` for all operating systems other than BSD derivatives, where it 
 
 **Purpose**:
 
-Return the version of Puppet installed.
+Return the version of puppet installed.
 
 **Resolution**:
 
-Requires Puppet via Ruby and returns the value of its version constant.
+Requires puppet via Ruby and returns the value of its version constant.
 
 
 ([↑ Back to top](#page-nav))
@@ -1015,7 +1029,7 @@ Depends on Xenstore.
 
 **Purpose**:
 
-Returns the platform of Ruby that Facter is running under.
+Returns the platform of Ruby that facter is running under.
 
 **Resolution**:
 
@@ -1047,7 +1061,7 @@ Uses the RbConfig module.
 
 **Purpose**:
 
-Returns the version of Ruby that Facter is running under.
+Returns the version of Ruby that facter is running under.
 
 **Resolution**:
 
@@ -1067,7 +1081,7 @@ Determine whether SE Linux is enabled on the node.
 
 **Resolution**:
 
-Checks for the existence of the enforce file under the SE Linux mount point (e.g., `/selinux/enforce`) and returns true if `/proc/self/attr/current` does not contain the kernel.
+Checks for the existence of the enforce file under the SE Linux mount point (e.g. `/selinux/enforce`) and returns true if `/proc/self/attr/current` does not contain the kernel.
 
 
 ([↑ Back to top](#page-nav))
@@ -1115,7 +1129,7 @@ Returns whether SE Linux is enabled (`true`) or not (`false`).
 
 **Resolution**:
 
-Returns the value found in the `enforce` file under the SE Linux mount point (e.g., `/selinux/enforce`).
+Returns the value found in the `enforce` file under the SE Linux mount point (e.g. `/selinux/enforce`).
 
 
 ([↑ Back to top](#page-nav))
@@ -1167,11 +1181,12 @@ Returns the directory of the native system32 directory.
 
 **Purpose**:
 
-Return the system uptime in a hash in the forms of seconds, hours, days, and a general, human readable uptime.
+* Return the system uptime in a hash in the forms of seconds, hours, days and a general, human readable uptime.
+* This fact is structured. These values are returned as a group of key-value pairs.
 
 **Resolution**:
 
-Does basic math on the get_uptime_seconds utility to calculate seconds, hours, and days.
+Does basic math on the get_uptime_seconds utility to calculate seconds, hours and days.
 
 
 ([↑ Back to top](#page-nav))
@@ -1188,18 +1203,6 @@ Return the machine's time zone.
 **Resolution**:
 
 Uses Ruby's Time module.
-
-
-([↑ Back to top](#page-nav))
-
-* * *
-
-## `uniqueid`
-
-
-**Purpose**:
-
-Return the output of the `hostid` command.
 
 
 ([↑ Back to top](#page-nav))
@@ -1276,7 +1279,7 @@ Return just the number of seconds of uptime.
 
 **Purpose**:
 
-Determine if the system's hardware is physical or virtualized.
+Determine if the system's hardware is real or virtualized.
 
 **Resolution**:
 
@@ -1344,48 +1347,12 @@ On a Xen Dom0 host, return a list of Xen domains using the `util/xendomains` lib
 
 * * *
 
-## `zfs_version`
-
-
-**Purpose**:
-
-Return the version of zfs in use on the system.
-
-**Resolution**:
-
-Uses the output of `zfs upgrade -v`.
-
-
-([↑ Back to top](#page-nav))
-
-* * *
-
-## `zonename`
-
-
-**Purpose**:
-
-Return the name of the Solaris zone.
-
-**Resolution**:
-
-Uses `zonename` to return the name of the Solaris zone.
-
-**Caveats**:
-
-No support for Solaris 9 and below, where zones are not available.
-
-
-([↑ Back to top](#page-nav))
-
-* * *
-
 ## `zones_<ZONE>`
 
 
 **Purpose**:
 
-Return the list of zones on the system and add one zones_ fact for each zone with its state e.g., `running`, `incomplete`, or `installed`.
+Return the list of zones on the system and add one zones_ fact for each zone with its state e.g. `running`, `incomplete`, or `installed`.
 
 **Resolution**:
 
@@ -1394,22 +1361,6 @@ Uses `usr/sbin/zoneadm list -cp` to get the list of zones in separate parsable l
 **Caveats**:
 
 Only supported on Solaris 10 and up.
-
-
-([↑ Back to top](#page-nav))
-
-* * *
-
-## `zpool_version`
-
-
-**Purpose**:
-
-Return the version number for the ZFS storage pool.
-
-**Resolution**:
-
-Uses `zpool upgrade -v` to return the ZFS storage pool version number.
 
 
 ([↑ Back to top](#page-nav))
