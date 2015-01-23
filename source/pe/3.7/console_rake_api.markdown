@@ -157,6 +157,14 @@ Add a new node. Classes and groups can be specified as [comma-separated lists](#
 
 ### `node:del[name]`
 
+Delete a node.
+
+**Parameters:**
+
+- `name` --- node name
+
+### `node:delgroup[name]`
+
 Delete the node group to which the node is pinned.
 
 **Parameters:**
