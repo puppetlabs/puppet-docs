@@ -76,7 +76,7 @@ For more information about using the PE uninstaller, refer to [Uninstalling Pupp
 
 4. Run the following commands, in the order specified: 
 
-   a. `su - pe-postgres -s /bin/bash -c "psql"`
+   a. `su - pe-postgres -s /bin/bash -c "/opt/puppet/bin/psql"`
    
    b. `drop database console;`
    
