@@ -157,7 +157,7 @@ Add a new node. Classes and groups can be specified as [comma-separated lists](#
 
 ### `node:del[name]`
 
-Delete a node.
+Delete a node. **Note: A node cannot be deleted if the node name contains a parenthesis. To delete a node with a name that contains a parenthesis, you will need to rename the node.**
 
 **Parameters:**
 
@@ -165,7 +165,7 @@ Delete a node.
 
 ### `node:delgroup[name]`
 
-Delete the node group to which the node is pinned.
+Delete the node group to which the node is pinned. **Note: A node group cannot be deleted if the node group name contains a parenthesis. To delete a node group with a name that contains a parenthesis, you will need to rename the node group.**
 
 **Parameters:**
 
