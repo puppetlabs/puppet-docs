@@ -100,7 +100,7 @@ If this setting isn't set, the config version will be the **time** at which the 
 
 How long the Puppet master should cache the data it loads from an environment. If this setting isn't set, Puppet will use the value of `environment_timeout` from [puppet.conf][].
 
-Defaults to three minutes. This setting can be a time interval in seconds (`30` or `30s`), minutes (`30m`), hours (`6h`), days (`2d`), or years (`5y`). This setting can also be set to `unlimited`, which causes the environment to be cached until the master is restarted.
+Defaults to three minutes. This setting can be a time interval in seconds (`30` or `30s`), minutes (`30m`), hours (`6h`), days (`2d`), or years (`5y`). This setting can also be set to `unlimited`, which causes the environment to be cached until manually purged (via a restart or Puppet Server's `environment-cache` endpoint). A value of `0` seconds will disable caching for an environment.
 
 > **Note:** If an environment has a timeout of more than a few minutes, you must force your Puppet master service to reload that environment whenever you change it; otherwise, your nodes may receive inconsistent catalogs.
 >
