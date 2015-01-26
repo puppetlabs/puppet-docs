@@ -224,7 +224,7 @@ Configure your firewalls to accommodate Puppet Enterprise's network traffic.
      <ul>
       <li>MCollective uses this port to accept inbound traffic/requests from Puppet agents for orchestration.</li>
       <li>Any host used to invoke orchestration commands must be able to reach MCollective on this port.</li>
-      Classifier group: “PE ActiveMQ Broker”</li>
+      <li>Classifier group: “PE ActiveMQ Broker”</li>
      </ul> 
     </td>
   </tr>
