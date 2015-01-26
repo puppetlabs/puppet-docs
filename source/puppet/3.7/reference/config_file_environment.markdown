@@ -102,8 +102,14 @@ How long the Puppet master should cache the data it loads from an environment. I
 
 Defaults to three minutes. This setting can be a time interval in seconds (`30` or `30s`), minutes (`30m`), hours (`6h`), days (`2d`), or years (`5y`). This setting can also be set to `unlimited`, which causes the environment to be cached until the master is restarted.
 
-> **Note:** If an environment has a timeout of more than a few minutes, you should restart your Puppet master service whenever you change that environment. [We explain further here.](./environments_limitations.html#changing-an-environment-with-a-long-timeout-requires-a-service-restart)
-
+> **Note:** If an environment has a timeout of more than a few minutes, you must force your Puppet master service to reload that environment whenever you change it; otherwise, your nodes may receive inconsistent catalogs.
+>
+> * If you're using Puppet Server 1.0 or later, [use the `environment-cache` HTTPS endpoint.](/puppetserver/latest/admin-api/v1/environment-cache.html)
+> * If you're using a Rack Puppet master or an earlier version of Puppet Server, restart the Puppet master service.
+>
+> Note that Puppet Enterprise 3.7 uses Puppet Server 0.4, which requires a restart.
+>
+> [We explain further here.](./environments_limitations.html#changing-an-environment-with-a-long-timeout-requires-a-service-restart)
 
 Most users should be fine with the default of three minutes. To get more performance from your Puppet master, you can tune the timeout for your most heavily used environments. Getting the most benefit involves a tradeoff between speed, memory usage, and responsiveness to changed files. The general best practice is:
 
