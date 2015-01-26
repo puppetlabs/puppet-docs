@@ -6,9 +6,9 @@ canonical: "/pe/latest/trouble_regenerate_certs_split.html"
 description: "This page explains how to regenerate all SSL certificates in Puppet Enterprise deployments with separate servers for different components. "
 ---
 
-> **Note:** This page explains how to regenerate all certificates in **a split PE deployment** --- that is, where the Puppet master, PuppetDB, and PE console components are all installed on separate servers. [See this page for instructions on regenerating certificates in a **monolithic PE deployment.**][mono_regen]
+> **Important**: These instructions have only been tested on new installations of PE, which assume the [preconfigured node groups](./console_classes_groups_preconfigured_groups.html) are applied. We will update this page for any changes involving upgrades as soon as possible.
 
-> **Important**: These instructions have only been tested on new installations of PE, which assume the [preconfigured node groups](./console_classes_groups_preconfigured_groups.html) are applied. We will update this page for any changes involving upgrades as soon as possible. 
+> **Note:** This page explains how to regenerate all certificates in **a split PE deployment** --- that is, where the Puppet master, PuppetDB, and PE console components are all installed on separate servers. [See this page for instructions on regenerating certificates in a **monolithic PE deployment.**][mono_regen] 
 
 ## Overview
 
