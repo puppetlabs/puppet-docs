@@ -16,13 +16,6 @@ If you’re trying to profile, be sure to check the `--logdest` and `--debug` op
 
 To find the messages, look for the string PROFILE in the master’s logs — each catalog request will get a unique ID, so you can tell which messages are for which request.
 
-### Increase `PassengerMaxPoolSize` to Decrease Response Times on Node Requests
-
-In some cases, if you perform frequent Puppet runs or manage a large number of nodes, Passenger may get backed up with requests. If this happens, you may see some agents reporting a `Could not retrieve catalog from remote server:execution expired` error. To determine if this is indeed a passenger issue, run `/opt/puppet/bin/passenger-status`, and check `Requests in top-level queue`. If this number is significantly higher than the number of workers you have, you may need to increase the `PassengerMaxPoolSize`.  
-
-To increase the `PassengerMaxPoolSize`, navigate to `/etc/puppetlabs/httpd/conf.d/passenger-extra.conf`, and increase that setting as needed. You must then restart the pe-httpd service by running `sudo /etc/init.d/pe-httpd restart`.
-
-
 * * * 
 
 -  [Next: Orchestration Overview](./orchestration_overview.html)
