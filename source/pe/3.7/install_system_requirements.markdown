@@ -140,75 +140,134 @@ Configure your firewalls to accommodate Puppet Enterprise's network traffic.
 
 ![mono ports][mono_port_diagram]
 
-Port Number: **8140**
-
-- The Puppet master uses this port to accept inbound traffic/requests from Puppet agents.
-- The PE console sends request to the Puppet master on this port. 
-- Certificate requests are passed over this port unless `ca_port` is set differently.
-- Classifier group: “PE Master” 
-
-Port Number: **443**  
-
-- This port provides host access to the PE console.
-- The PE console accepts traffic from the Puppet master on this port.  
-- Classifier group: “PE Console”                                                                                                                       
-
-Port Number: **61613**
-
-- MCollective uses this port to accept inbound traffic/requests from Puppet agents for orchestration.
-- Any host used to invoke orchestration commands must be able to reach MCollective on this port.
-- Classifier group: “PE ActiveMQ Broker”     
+<table>
+  <tr>
+    <th>Port</th>
+    <th>Use</th>
+  </tr>
+  <tr>
+    <td>8140</td>
+    <td>
+     <ul>
+      <li>The Puppet master uses this port to accept inbound traffic/requests from Puppet agents.</li>
+      <li>The PE console sends request to the Puppet master on this port.</li>
+      <li>Certificate requests are passed over this port unless ca_port is set differently.</li>
+      <li>Classifier group: “PE Master”</li>
+     </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>443</td>
+    <td>
+     <ul>
+      <li>This port provides host access to the PE console.</li>
+      <li>The PE console accepts traffic from the Puppet master on this port.</li>
+      <li>Classifier group: “PE Console”</li>
+     </ul> 
+   </td>
+  </tr>
+  <tr>
+    <td>61613</td>
+    <td>
+     <ul>
+      <li>MCollective uses this port to accept inbound traffic/requests from Puppet agents for orchestration.</li>
+      <li>Any host used to invoke orchestration commands must be able to reach MCollective on this port.</li>
+      <li>Classifier group: “PE ActiveMQ Broker”</li>
+     </ul> 
+    </td>
+  </tr>
+</table>
 
 #### For split installs
 
 ![split ports][split_port_diagram]                                                                                                             
 
-Port Number: **8140**
-
-- The Puppet master uses this port to accept inbound traffic/requests from Puppet agents.
-- The PE console sends request to the Puppet master on this port. 
-- Certificate requests are passed over this port unless `ca_port` is set differently.
-- Classifier group: “PE Master” 
-
-Port Number: **443**  
-
-- This port provides host access to the PE console.
-- The PE console accepts traffic from the Puppet master on this port.  
-- Classifier group: “PE Console”                                                                                                                       
-
-Port Number: **8081**           
-
-- PuppetDB accepts traffic/requests on this port.   
-- The Puppet master and PE console send traffic to PuppetDB on this port.   
-- Classifier group: “PE PuppetDB"
-
-Port Number: **61613**
-
-- MCollective uses this port to accept inbound traffic/requests from Puppet agents for orchestration.
-- Any host used to invoke orchestration commands must be able to reach MCollective on this port.
-- Classifier group: “PE ActiveMQ Broker”
-
-Port Number: **5432**
-
-- PostgreSQL runs on this port. The PE console node will need to connect to the PuppetDB node hosting the PostgreSQL database on this port.  
-- Classifier group: “PE PuppetDB”
-
-Port Number: **4433**
-
-- This port is used as a Classifier / Console Services API endpoint. 
-- The Puppet master needs to be able to talk to the Console over this port.
-- Classifier group: “PE Console”
-
-Port Number: **4435**
-
-- This port is used as a report submission endpoint.
-- The Puppet master communicates with the PE console over this port.
-- Classifier group: “PE Console”
-
-Port Number: **61616**
-
-- This port is used for ActiveMQ hub and spoke communication.
-- Classifier group: “PE ActiveMQ Broker”
+<table>
+  <tr>
+    <th>Port</th>
+    <th>Use</th>
+  </tr>
+  <tr>
+    <td>8140</td>
+    <td>
+     <ul>
+      <li>The Puppet master uses this port to accept inbound traffic/requests from Puppet agents.</li>
+      <li>The PE console sends request to the Puppet master on this port.</li>
+      <li>Certificate requests are passed over this port unless ca_port is set differently.</li>
+      <li>Classifier group: “PE Master”</li>
+     </ul> 
+    </td>
+  </tr>
+  <tr>
+    <td>443</td>
+    <td>
+     <ul>
+      <li>This port provides host access to the PE console.</li>
+      <li>The PE console accepts traffic from the Puppet master on this port.</li>
+      <li>Classifier group: “PE Console”</li>
+     </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>8081</td>
+    <td>
+     <ul>
+      <li>PuppetDB accepts traffic/requests on this port.</li>
+      <li>The Puppet master and PE console send traffic to PuppetDB on this port.</li>
+      <li>Classifier group: “PE PuppetDB”</li>
+     </ul> 
+    </td>
+  </tr>
+  <tr>
+    <td>61613</td>
+    <td>
+     <ul>
+      <li>MCollective uses this port to accept inbound traffic/requests from Puppet agents for orchestration.</li>
+      <li>Any host used to invoke orchestration commands must be able to reach MCollective on this port.</li>
+      Classifier group: “PE ActiveMQ Broker”</li>
+     </ul> 
+    </td>
+  </tr>
+  <tr>
+    <td>5432</td>
+    <td>
+     <ul>
+      <li>PostgreSQL runs on this port.</li>
+      <li>The PE console node will need to connect to the PuppetDB node hosting the PostgreSQL database on this port.</li>
+      <li>Classifier group: “PE PuppetDB”</li>
+     </ul> 
+    </td>
+  </tr>
+  <tr>
+    <td>4433</td>
+    <td>
+     <ul>
+      <li>This port is used as a Classifier / Console Services API endpoint.</li>
+      <li>The Puppet master needs to be able to talk to the Console over this port.</li>
+      <li>Classifier group: “PE Console”</li>
+     </ul> 
+    </td>
+  </tr>
+  <tr>
+    <td>4435</td>
+    <td>
+     <ul>
+      <li>This port is used as a report submission endpoint.</li>
+      <li>The Puppet master communicates with the PE console over this port.</li>
+      <li>Classifier group: “PE Console”</li>
+      </ul> 
+     </td>
+  </tr>
+  <tr>
+    <td>61616</td>
+    <td>
+     <ul>
+      <li>This port is used for ActiveMQ hub and spoke communication.</li>
+      <li>Classifier group: “PE ActiveMQ Broker”</li>
+     </ul> 
+   </td>
+  </tr>
+</table>
 
 
 > Note: For split and mono installs: If you are installing PE using the web-based installer, ensure port **3000** is open. You can close this port when the installation is complete. If necessary, instructions for port forwarding to the web-based installer are available in the installation instructions.
