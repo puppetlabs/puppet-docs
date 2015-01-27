@@ -44,7 +44,7 @@ The table below lists the available object types and their permissions, as well 
 | User              | Create                                  | The ability to create new local users. Remote users are "created" by that user authenticating for the first time with RBAC. Object must always be `"*"`. |
 | User              | Reset password                          | The ability to grant password reset tokens to users who have forgotten their passwords. This process also reinstates a user after the use has been revoked. This may be granted per user. |
 | User              | Revoke                                  | The ability to revoke/disable a user. This means the user will no longer be able to authenticate and use the console, node classifier, or RBAC. This may be granted per user. |
-| User              | Edit                                    | The ability to edit a local user's data, such as name or email. This may be granted per user. |
+| User              | Edit                                    | The ability to edit a local user's data, such as name or email, and delete a local or remote user from PE. This may be granted per user. |
 | User group        | Import                                  | The ability to import groups from the directory service for use in RBAC. Object must always be `"*"`. |
 | User role         | Create                                  | The ability to create new roles. Object must always be `"*"`. |
 | User role         | Edit                                    | The ability to edit a role. Object must always be `"*"`. |

@@ -57,6 +57,9 @@ When you add users to a role, the user gains the permissions that are applied to
 2. Click the **Member users** tab.
 3. In the **User name** field, from the drop-down list, select the user you want to add,  click **Add user**, and then click the commit button.
 
+### Delete a User
+To delete a local or remote user from PE, [use the API](./rbac_users.html#delete-userssid).
+
 ## Working with User Groups and Users from an External Directory Service
 
 You import existing LDAP groups to PE explicitly, which means you add the group by name. Once you’ve imported a group, you can assign it to a user role, and then begin assigning permissions to it.

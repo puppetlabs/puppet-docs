@@ -212,3 +212,13 @@ Remote user:
 
 The request should return the user object with the changes made.
 
+### DELETE /users/:sid
+
+Deletes the user with the specified ID, regardless of whether they are a user defined in RBAC or a user defined by the Directory Service. If they are from the Directory Service, while this will remove them from the UI, they will still be able to log in again if they are not revoked (at which point they will be re-added to the UI). Web session authentication required.
+
+**Implemented.**
+
+**Returns:** 
+* **204 No Content** The user was successfully deleted.
+* **403 Forbidden** The user does not have the `users:edit` permission for this user.
+* **404 Not Found** A user with the given identifier does not exist.
