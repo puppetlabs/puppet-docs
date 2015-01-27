@@ -274,7 +274,7 @@ For instructions on completely deactivating an agent node, refer to [Deactivatin
 
 ### Problems with Marking Failed Tasks as Read in the console
 
-Marking failed tasks as read in the console can instead open a security warning, followed by an "unable to connect" message. This is a known issue from PE 3.7.0 and will be fixed in future releases.
+Marking failed tasks as read in the console can instead open a security warning, followed by an "unable to connect" message.
 
 
 ## PE services/Puppet Core Known Issues
