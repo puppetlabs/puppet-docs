@@ -37,6 +37,86 @@ We always recommend that you **upgrade your Puppet master servers before upgradi
 If you're upgrading from Puppet 2.x, please [learn about major upgrades of Puppet first!][upgrade] We have important advice about upgrade plans and package management practices. The short version is: test first, roll out in stages, give yourself plenty of time to work with. Also, read the [release notes for Puppet 3][puppet_3] for a list of all the breaking changes made between the 2.x and 3.x series.
 
 
+## Puppet 3.7.4
+
+Released January 27, 2015.
+
+Puppet 3.7.4 is a bug fix release in the Puppet 3.7 series. In addition to fixing a handful of bugs, it includes some final changes to the future parser to prepare for Puppet 4.0.
+
+
+### Future Parser
+
+This release contains several bug fixes and adjustments in the future parser, in preparation for Puppet 4.0.
+
+#### Language Changes
+
+* When specifying allowed data types for class or defined type parameters, the shorthand for a hash with specific contents has changed.
+
+    Previously, you could provide one argument (`Hash[String]`) to say a hash's _values_ must be a specific type, without saying anything about the keys. Now, you must specify the type of _both the keys and the values_ (`Hash[String,String]`).
+
+    We changed this to be more consistent. The Hash type also has a four-argument form, and the type for values is the _second_ argument; moving that into the first position when you shortened the argument list was too confusing.
+
+    [PUP-3680: The parameter order on the hash type is inconsistent](https://tickets.puppetlabs.com/browse/PUP-3680)
+
+* Quoted numbers are now always strings, and never numbers. [PUP-3615: Remove automatic string to number conversion](https://tickets.puppetlabs.com/browse/PUP-3615)
+
+#### New `scanf` Function
+
+Since the future parser handles numbers more strictly now, we added [a new `scanf` function](/references/3.7.latest/function.html#scanf) that can extract real numbers from strings. If you need to deal with quoted numbers, this is the new right way to handle them.
+
+[PUP-3635: Add a scanf function for string to numeric conversion (and more)](https://tickets.puppetlabs.com/browse/PUP-3635)
+
+#### Bug Fixes
+
+* Heredoc strings can be indented, with the indent removed from the final string. They can also include cosmetic line breaks that don't appear in the final string, if a line ends with a backslash. If you combined those two features, you'd get bogus space characters left over from the indentation. This is now fixed. [PUP-3091: heredoc should trim left margin before joining lines](https://tickets.puppetlabs.com/browse/PUP-3091)
+
+* Add-ons that use information from the parser (like `puppet strings`) were getting slightly wrong metadata about the position of empty items in a file. [PUP-3786: Empty LiteralHash and LiteralList parameters get parsed with positioning information that excludes their closing delimiter](https://tickets.puppetlabs.com/browse/PUP-3786)
+
+* Exported resource collectors are supposed to combine results from PuppetDB and from the current catalog, and empty queries (which should catch every resource of that type) weren't catching anything from the catalog. [PUP-3701: Issue with empty export resources expression in the Puppet future parser](https://tickets.puppetlabs.com/browse/PUP-3701)
+
+* You can specify allowed data types for block parameters, but they weren't working the same way as class and defined type parameters. Now they do. [PUP-3461: Blocks validate parameters incorrectly](https://tickets.puppetlabs.com/browse/PUP-3461)
+
+#### Backstage Work
+
+We re-implemented the code that handles resource collectors. This was one of the last areas of shared code we needed to replace before we could remove the "current" parser in Puppet 4. The new code should work the same way as the old code, so it should cause no observable changes.
+
+* [PUP-2906: Reimplement Collection without 3x AST](https://tickets.puppetlabs.com/browse/PUP-2906)
+
+The following bugs weren't ever released; we fixed them while making sure the re-implemented resource collector code worked correctly.
+
+* [PUP-3665: future parser collector override with Resource reference does not work](https://tickets.puppetlabs.com/browse/PUP-3665)
+* [PUP-3806: Issue with Collectors and the Future Parser](https://tickets.puppetlabs.com/browse/PUP-3806)
+
+
+### Resource Type and Provider Bugs
+
+This release fixes an issue with the service provider in RHEL, where `enabled` services might stop in the wrong order during system shutdown. An issue where the cron type was decrementing the month when a month name was provided (e.g., treating `December` as month 11) is also fixed.
+
+* [PUP-1343: Service provider in RedHat will not create K?? stop scripts](https://tickets.puppetlabs.com/browse/PUP-1343)
+* [PUP-3728: Cron type uses incorrect month when month name is provided](https://tickets.puppetlabs.com/browse/PUP-3728)
+
+
+### Performance
+
+This release greatly improves application startup time if a lot of directory environments (500+) are present. This release also fixes an issue where, in certain cases, environments weren't being cached.
+
+* [PUP-3389: Significant delay in puppet runs with growing numbers of directory environments](https://tickets.puppetlabs.com/browse/PUP-3389)
+* [PUP-3621: Environments::Cached#get! bypasses the environment cache.](https://tickets.puppetlabs.com/browse/PUP-3621)
+
+### Miscellaneous Bugs
+
+This release fixes a bug where, if the default environment was somehow broken, Puppet agent runs in other environments would also fail. We've also fixed an issue where agents with ENC-specified environments received plugins from the wrong environment.
+
+Prior to this release, RHEL 6 with Ruby 1.8.7 wasn't handling HTTP keepalive properly, so we've disabled keepalive completely for 1.8.7. Note that this is a short-term fix and that Puppet 4 will not support Ruby 1.8.7.
+
+This release also fixes a Puppet gem packaging problem for Windows.
+
+* [PUP-3591: Puppet does not plugin sync with the proper environment after agent attempts to resolve environment](https://tickets.puppetlabs.com/browse/PUP-3591)
+* [PUP-3755: Catalogs are transformed to resources outside of node environments](https://tickets.puppetlabs.com/browse/PUP-3755)
+* [PUP-3682: RHEL6 with ruby 1.8.7 and webrick sometimes does not handle HTTP keepalive correctly.](https://tickets.puppetlabs.com/browse/PUP-3682)
+* [PUP-3737: Can't Install Puppet Gem on Windows64 Bit Ruby 1.9.3 and 2.0](https://tickets.puppetlabs.com/browse/PUP-3737)
+
+
 ## Puppet 3.7.3
 
 Released November 4, 2014.
