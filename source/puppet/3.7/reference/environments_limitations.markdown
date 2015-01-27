@@ -22,7 +22,7 @@ If you're interested in the issue, it's being tracked as [PUP-731](https://ticke
 
 If an environment has an `environment_timeout` value of more than a few minutes, you must force your Puppet master service to reload that environment whenever you change it; otherwise, your nodes may receive inconsistent catalogs.
 
-* If you're using Puppet Server 1.0 or later, [use the `environment-cache` HTTPS endpoint.][server_cache]
+* If you're using Puppet Server ≥ 1.0 or Puppet Enterprise ≥ 3.7.1, [use the `environment-cache` HTTPS endpoint.][server_cache]
 * If you're using a Rack Puppet master or an earlier version of Puppet Server, restart the Puppet master service.
 
 [server_cache]: /puppetserver/latest/admin-api/v1/environment-cache.html

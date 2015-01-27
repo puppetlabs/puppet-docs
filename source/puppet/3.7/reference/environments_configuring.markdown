@@ -133,10 +133,8 @@ Defaults to three minutes. This setting can be a time interval in seconds (`30` 
 
 > **Note:** If an environment has a timeout of more than a few minutes, you must force your Puppet master service to reload that environment whenever you change it; otherwise, your nodes may receive inconsistent catalogs.
 >
-> * If you're using Puppet Server 1.0 or later, [use the `environment-cache` HTTPS endpoint.](/puppetserver/latest/admin-api/v1/environment-cache.html)
+> * If you're using Puppet Server ≥ 1.0 or Puppet Enterprise ≥ 3.7.1, [use the `environment-cache` HTTPS endpoint.](/puppetserver/latest/admin-api/v1/environment-cache.html)
 > * If you're using a Rack Puppet master or an earlier version of Puppet Server, restart the Puppet master service.
->
-> Note that Puppet Enterprise 3.7 uses Puppet Server 0.4, which requires a restart.
 >
 > [We explain further here.](./environments_limitations.html#changing-an-environment-with-a-long-timeout-requires-a-service-restart)
 
