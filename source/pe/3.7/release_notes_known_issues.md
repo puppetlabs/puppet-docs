@@ -197,7 +197,7 @@ The following requirements affect how you connect your existing LDAP to PE:
 
 ### Custom Console Certs May Break on Upgrade
 
-Upgrades to this version of PE may affect deployments that use a custom console certificate, as certificate functionality has changed between versions. Refer to [Configuring the Puppet Enterprise Console to Use a Custom SSL Certificate](./custom_console_cert.html) for instructions on re-configuring your custom console certificate. 
+Upgrades to this version of PE may affect deployments that use a custom console certificate, as certificate functionality has changed between versions. Refer to [Configuring the Puppet Enterprise Console to Use a Custom SSL Certificate](./custom_console_cert.html) for instructions on re-configuring your custom console certificate.
 
 ### Console Session Timeout Issue
 
@@ -271,6 +271,10 @@ You can avoid the reappearance of nodes by removing them with the following proc
 These steps will remove the node's certificate, purge information about the node from PuppetDB, and delete the node from the console. The last command is equivalent to logging into the console and deleting the node via the UI.
 
 For instructions on completely deactivating an agent node, refer to [Deactivating a PE Agent Node](./node_deactivation.html).
+
+### Problems with Marking Failed Tasks as Read in the console
+
+Marking failed tasks as read in the console can instead open a security warning, followed by an "unable to connect" message. This is a known issue from PE 3.7.0 and will be fixed in future releases.
 
 
 ## PE services/Puppet Core Known Issues
