@@ -72,8 +72,8 @@ Modules are directory trees. For this task, you'll create the following files:
           }
         }
 
-5. Save and exit the file.
-6. Run `mkdir -p pe_resolver/templates` to create the new module directory and its templates directory.
+4. Save and exit the file.
+5. Run `mkdir -p resolver/templates` to create the new module directory and its templates directory.
 6. Use your text editor to create the `resolver/templates/resolv.conf.erb` file. 
 7. Edit the `resolv.conf.erb` file so that it contains the following ruby code.
 
