@@ -19,6 +19,18 @@ The Puppet agent and the Puppet master server communicate via HTTPS over host-ve
 
 The agent/master HTTP interface is REST-like, but varies from strictly RESTful design in several ways. The endpoints used by the agent are detailed in the [HTTP API reference][rest_api]. Note that all HTTP endpoints are preceded by the environment being used. Note also that access to each individual endpoint is controlled by [auth.conf][authconf] on the master.
 
+## Persistent Connections / Keepalive
+
+When acting as an HTTPS client, Puppet will try to re-use connections in order to reduce TLS overhead, by sending `Connection: Keep-Alive` in the HTTP request. This helps improve performance for runs with dozens of HTTPS requests.
+
+Puppet will only cache verified HTTPS connections, so it excludes the unverified connections a new agent makes to request a new certificate. Puppet also will not cache connections when a custom HTTP connection class has been specified. (This is an esoteric use case that most users will never see.)
+
+You can use [the `http_keepalive_timeout` setting][keepalive_setting] to configure the keepalive duration. It must be shorter than the maximum keepalive allowed by the Puppet master web server.
+
+An HTTP server may disable persistent connections ([Apache example](http://httpd.apache.org/docs/current/mod/core.html#keepalive)). If so, Puppet will request that the connection be kept open as usual, but the server will decline by sending `Connection: close` in the HTTP response and Puppet will start a new connection for its next request. (In Puppet 3.7.4 and up, WEBrick Puppet masters running on Ruby 1.8.7 will close connections to work around a Ruby bug.)
+
+[keepalive_setting]: /references/3.7.latest/configuration.html#httpkeepalivetimeout
+
 ## Diagram
 
 This flow diagram illustrates the pattern of agent-side checks and HTTPS requests to the Puppet master during a single Puppet run.
