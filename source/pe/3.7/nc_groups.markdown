@@ -250,8 +250,10 @@ Update the name, environment, parent, rule, classes, class parameters, and varia
 
 The request body must be JSON object describing the delta to be applied to the node group.
 
-The `classes`, `variables`, and `rule` keys of the delta will be merged with the node group, and then any keys of the resulting object that have a null value will be deleted.
-This allows you to remove classes, class parameters, variables, or the rule from the node group by setting them to null in the delta.
+The `classes` and `variables` keys of the delta will be merged with the node group, and then any keys of the resulting object that have a null value will be deleted.
+This allows you to change or remove individual classes, class parameters, or variables, from the node group by giving them a new value or setting them to null in the delta.
+
+If the delta has a `rule` key that's set to a new value or nil, it will be updated wholesale or removed from the group accordingly.
 
 The `name`, `environment`, `description`, and `parent` keys, if present in the delta, will replace the old values wholesale with their values.
 
