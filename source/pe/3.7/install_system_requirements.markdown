@@ -132,11 +132,12 @@ You can also simplify configuration of agent nodes by using a CNAME record to ma
 
 [mono_port_diagram]: ./images/mono_port_diagram.svg
 [split_port_diagram]: ./images/split_port_diagram.svg
+[lei_port_diagram]: ./images/lei_port_diagram.svg
 
 
 Configure your firewalls to accommodate Puppet Enterprise's network traffic. 
 
-#### For monolithic installs
+#### For Monolithic Installs
 
 ![mono ports][mono_port_diagram]
 
@@ -178,7 +179,7 @@ Configure your firewalls to accommodate Puppet Enterprise's network traffic.
   </tr>
 </table>
 
-#### For split installs
+#### For Split Installs
 
 ![split ports][split_port_diagram]                                                                                                                                                                                            
 
@@ -271,6 +272,12 @@ Configure your firewalls to accommodate Puppet Enterprise's network traffic.
 
 
 > Note: For split and mono installs: If you are installing PE using the web-based installer, ensure port **3000** is open. You can close this port when the installation is complete. If necessary, instructions for port forwarding to the web-based installer are available in the installation instructions.
+
+#### For Large Environment Installations
+
+![lei ports][lei_port_diagram]
+
+See the split installation port/use table for explanations of the ports and their uses. 
 
 ### Dependencies and OS Specific Details
 
