@@ -3,6 +3,7 @@
   <head>
   	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   	<title>{{page.title}} — Documentation — Puppet Labs</title>
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
   	<link rel="alternate" type="application/atom+xml" title="Puppet Labs Documentation Updates" href="https://github.com/puppetlabs/puppet-docs/commits/master.atom">
     <link rel="alternate" type="application/atom+xml" title="Puppet Labs Blog Feed" href="http://puppetlabs.com/feed/">
     <link rel='index' title='Puppet Labs Documentation' href='https://docs.puppetlabs.com' />
@@ -10,6 +11,14 @@
 
      {% capture description %}{% if page.description %}{{ page.description }}{% else %}{{ content | raw_content }}{% endif %}{% endcapture %}
   <meta name="description" content="{{ description | strip_html | strip_newlines | condense_spaces | truncate:150 }}">
+
+      <!--[if gte IE 9]>
+      <style type="text/css">
+          .gradient {
+              filter: none;
+          }
+      </style>
+      <![endif]-->
 
 <!-- Google analytics -->
 <script type="text/javascript">
@@ -77,372 +86,235 @@
     <style type="text/css">h1, h2{ visibility : visible }</style>
   <![endif]-->
 
-  	<header id="header">
-      <div class="site-width">
-    		<h1><a href="https://puppetlabs.com/"><span>Puppet Labs</span></a></h1>
-        <a class="screen-reader-content" href="#content">Skip navigation</a>
-        <nav>
-    		<ul id="global-navigation">
-          <li id="puppet-tab" class="with-submenu">
-            <a href="https://puppetlabs.com/puppet/puppet-enterprise">
-              <span>Products</span>
-              <span class="drop-down-trigger"></span>
-            </a>
-            <ul>
-			<li>
-                <ul>
-                   <a href="https://puppetlabs.com/puppet/what-is-puppet/">What is Puppet?</a>
-                </ul>
-              </li>
-			       <li>
-                <ul>
-                   <a href="https://puppetlabs.com/puppet/puppet-enterprise/">Puppet Enterprise</a>
-                </ul>
-              </li>
-            <li>
-                <ul>
-                   <a href="https://puppetlabs.com/puppet/whats-new/">What's New in 2.5</a>
-                </ul>
-              </li>
-            <li>
-                <ul>
-                   <a href="https://puppetlabs.com/puppet/puppet-open-source/">Puppet Open Source</a>
-                </ul>
-              </li>
-            <li>
-                <ul>
-                   <a href="https://puppetlabs.com/puppet/enterprise-vs-open-source/">Enterprise vs. Open Source</a>
-                </ul>
-              </li>
-              <li>
-                <ul>
-                  <a href="https://forge.puppetlabs.com">Puppet Forge</a>
-                </ul>
-              </li>
-              <li>
-                <ul>
-                  <a href="https://puppetlabs.com/puppet/requirements/">Components &amp; Requirements</a>
-                </ul>
-              </li>
-              <li>
-                <ul>
-                  <a href="https://puppetlabs.com/puppet/faq/">FAQ</a>
-                </ul>
-              </li>
-			  <li>
-                <ul>
-                  <a href="https://puppetlabs.com/puppet/how-to-buy/">How to Buy</a>
-                </ul>
-              </li>
-            </ul>
-          </li>
-          <li id="solutions-tab" class="with-submenu">
-            <a href="https://puppetlabs.com/solutions/">
-              <span>Solutions</span>
-              <span class="drop-down-trigger"></span>
-            </a>
-            <ul>
-              <li class="page_item page-item-12296"><a href="https://puppetlabs.com/solutions/configuration-management/">Configuration Management</a></li>
-<li class="page_item page-item-986"><a href="https://puppetlabs.com/solutions/virtualization-management/">Virtualization Management</a></li>
-<li class="page_item page-item-993"><a href="https://puppetlabs.com/solutions/cloud-management/">Cloud Management</a></li>
-<li class="page_item page-item-996"><a href="https://puppetlabs.com/solutions/it-compliance/">IT Compliance</a></li>
-<li class="page_item page-item-9520"><a href="https://puppetlabs.com/solutions/devops/">DevOps</a></li>
-<li class="page_item page-item-991"><a href="https://puppetlabs.com/solutions/manage-os-x-resources/">OS X Desktops</a></li>
-            </ul>
-          </li>
-          <li id="services-tab" class="with-submenu">
-            <a href="https://puppetlabs.com/services/">
-              <span>Services</span>
-              <span class="drop-down-trigger"></span>
-            </a>
-            <ul>
-              <li class="page_item page-item-783"><a href="https://puppetlabs.com/services/overview/">Overview</a></li>
-<li class="page_item page-item-1052"><a href="https://puppetlabs.com/services/customer-support/">Customer Support</a></li>
-<li class="page_item page-item-11022"><a href="https://puppetlabs.com/services/support-plans/">Support Plans</a></li>
-<li class="page_item page-item-845"><a href="https://puppetlabs.com/services/training-workshops/">On-Site Education</a></li>
-<li class="page_item page-item-4899"><a href="https://puppetlabs.com/services/consulting/">Professional Services</a></li>
-<li class="page_item page-item-849"><a href="https://puppetlabs.com/category/events/upcoming/">Events &amp; Workshops</a></li>
-<li class="page_item page-item-851"><a href="https://puppetlabs.com/services/partners/">Partners</a></li>
-            </ul>
-          </li>
-                    <li id="resources-tab" class="with-submenu">
-            <a href="https://puppetlabs.com/resources/">
-              <span>Resources</span>
-              <span class="drop-down-trigger"></span>
-            </a>
-            <ul>
-              <li class="page_item page-item-1048"><a href="https://puppetlabs.com/resources/overview-2/">Overview</a></li>
-<li class="page_item page-item-1040"><a href="https://docs.puppetlabs.com">Documentation</a></li>
-<li class="page_item page-item-872"><a href="http://info.puppetlabs.com/register-download">Downloads</a></li>
-<li class="page_item page-item-1961"><a href="https://forge.puppetlabs.com">Puppet Forge</a></li>
-<li class="page_item page-item-835"><a href="http://info.puppetlabs.com/download-whitepapers.html">White Papers</a></li>
-<li class="page_item page-item-7279"><a href="https://puppetlabs.com/resources/webinars/">Upcoming Webinars</a></li>
-<li class="page_item page-item-10183"><a href="https://puppetlabs.com/resources/newsletter/">Newsletter</a></li>
-<li class="page_item page-item-12263"><a href="https://puppetlabs.com/resources/tech-notes/">Tech Notes</a></li>
-<li class="page_item page-item-10265"><a href="http://info.puppetlabs.com/pe2-webinar.html">Webinars</a></li>
-            </ul>
-          </li>
-
-          <li id="customers-tab" class="with-submenu">
-            <a href="https://puppetlabs.com/customers/companies/">
-              <span>Customers</span>
-              <span class="drop-down-trigger"></span>
-            </a>
-            <ul>
-			<li>
-                <ul>
-                  <a href="https://puppetlabs.com/customers/companies/">Companies</a>
-                </ul>
-              </li>
-			  <li>
-                <ul>
-                  <a href="https://puppetlabs.com/customers/case-studies/">Case Studies</a>
-                </ul>
-              </li>
-			  <li>
-                <ul>
-                  <a href="https://puppetlabs.com/customers/product-testimonials/">Product Testimonials</a>
-                </ul>
-              </li>
-			    <li>
-                <ul>
-                  <a href="https://puppetlabs.com/customers/what-customers-are-saying/">Service Testimonials</a>
-                </ul>
-              </li>
-            </ul>
-          </li>
-          <li id="community-tab" class="with-submenu">
-            <a href="https://puppetlabs.com/community/">
-              <span>Community</span>
-              <span class="drop-down-trigger"></span>
-            </a>
-
- <ul>
-			<li>
-                <ul>
-                  <a href="https://puppetlabs.com/community/overview/">Overview</a>
-                </ul>
-              </li>
-			<li>
-                <ul>
-                  <a href="https://puppetlabs.com/blog">Blog</a>
-                </ul>
-              </li>
-			  <li>
-                <ul>
-                  <a href="https://puppetlabs.com/community/puppet-camp/">Puppet Camp</a>
-                </ul>
-              </li>
-			  <li>
-                <ul>
-                  <a href="https://puppetlabs.com/community/user-groups-and-devops-groups/">Puppet User Groups & DevOps Groups</a>
-                </ul>
-              </li>
-	          <li>
-                <ul>
-                  <a href="https://puppetlabs.com/community/presentations/">Presentations</a>
-                </ul>
-              </li>
-			    <li>
-                <ul>
-                  <a href="https://puppetlabs.com/community/videos/">Videos</a>
-                </ul>
-              </li>
-            </ul>
-
-          <li id="company-tab" class="with-submenu">
-            <a href="https://puppetlabs.com/company/">
-              <span>Company</span>
-              <span class="drop-down-trigger"></span>
-            </a>
-            <ul>
-              <li class="page_item page-item-2316"><a href="https://puppetlabs.com/company/overview/">Overview</a></li>
-<li class="page_item page-item-2179"><a href="https://puppetlabs.com/company/news/">News</a>
-<ul class='children'>
-	<li class="page_item page-item-2338"><a href="https://puppetlabs.com/company/news/press-releases/">Press Releases</a></li>
-	<li class="page_item page-item-2383"><a href="https://puppetlabs.com/company/news/media-kit/">Media Kit</a></li>
-</ul>
-</li>
-<li class="page_item page-item-1571"><a href="https://puppetlabs.com/company/careers/">Careers</a></li>
-<li class="page_item page-item-10372"><a href="https://puppetlabs.com/company/management/">Management</a></li>
-<li class="page_item page-item-10311"><a href="https://puppetlabs.com/company/board-and-advisors/">Board and Advisors</a></li>
-<li class="page_item page-item-10367"><a href="https://puppetlabs.com/company/investors/">Investors</a></li>
-<li class="page_item page-item-2313"><a href="https://puppetlabs.com/company/contact-us/">Contact Us</a></li>
-<li class="page_item page-item-10579"><a href="https://puppetlabs.com/company/awards/">Awards</a></li>
-            </ul>
-          </li>
-    		</ul>
-          <div id="misc-navigation">
-			  <ul>
-				<li><a href="https://puppetlabs.com/security/">Security</a></li>
-				<li><a href="https://docs.puppetlabs.com">Documentation</a></li>
-				<li><a href="https://puppetlabs.com/resources/customer-support/">Support</a></li>
-			        <li><a href="https://tickets.puppetlabs.com/">Bug Tracker</a></li>
-				<li><a href="https://puppetlabs.com/company/contact/contact-us">Contact Us</a></li>
-				<li><a href="http://info.puppetlabs.com/download-pe2.html" class="gateway">Download</a></li>
-			  </ul>
-			<form action="https://www.google.com/cse" id="cse-search-box">
-			  <div>
-				<input type="hidden" name="cx" value="017668764424496204839:ubligvgbenm" />
-				<input type="hidden" name="ie" value="UTF-8" />
-				<input type="text" name="q" class="gsc-input" size="31" />
-				<input type="submit" name="sa" class="searchbtn" value="Search" />
-			  </div>
-			</form>
-			<script type="text/javascript" src="https://www.google.com/cse/brand?form=cse-search-box&lang=en"></script>
-          </div>
-      </nav>
-    	</div>
-    </header>
-
-      <section id="masthead">
-        <div class="site-width">
-          <h1>Docs: <span class="section-name">{{page.title}}</span></h1>
-        </div>
-        <br />
-      </section>
-
-      <section id="content">
-        <div class="site-width">
-          <div class="primary-secondary-content">
-            <div class="primary-content">
-              <h1>{% if page.subtitle %}{{page.subtitle}}{% else %}{{page.title}}{% endif %}</h1>
-              {% unless page.toc == 'false' or page.toc == false %}<nav class="in-page" id="page-nav">{{ content | toc }}</nav>{% endunless %}
-              {{ content }}
-              <blockquote><p style="font-size: 1.3em; text-align: center;"><a href="#content">↑ Back to top</a></p></blockquote>
-            </div>
-            <nav class="main">
-                  <div id="subCol">
-                      <ul id="doc-navigation">
-                        <li class="with-submenu">
-                          <a href="#">
-                            <span>Docs Quick Nav</span>
-                            <span class="drop-down-trigger"></span>
-                          </a>
-                           {% include quick_nav.html %}
-                        </li>
-                      </ul>
-
-                      {% render_nav %}
-
-                      {% include promotions.html %}
-                  </div>
-            </nav>
-          </div>
-        </div>
-      </section>
-
-		<footer id="footer">
-      <div class="site-width">
-
-        <div class="primary-secondary-content">
-          <div class="primary-content">
-            <section id="newsletter">
-                 <h4>Puppet Labs is Hiring</h4>
-                 <p><a href="https://puppetlabs.com/company/jobs/">Engineers, developers & consultants</a>
-                  <p>
-		<h4>Newsletter</h4>
-
-              <p>Stay up to date on all things puppet</p>
-
-				<form class="lpeRegForm formNotEmpty" method="post" enctype="application/x-www-form-urlencoded" action="https://app-h.marketo.com/index.php/leadCapture/save"; id="mktForm_1013" name="mktForm_1013">
-
-				<label>Email Address:</label><span class='mktInput'><input class='mktFormText mktFormEmail' name="Email" id="Email" type='email' value="" maxlength='255'  /><span class='mktFormMsg'></span></span>
-
-				<input id='mktFrmSubmit' type='submit' class='btn' style="width: auto; overflow: visible; padding-left: .25em; padding-right: .25em;" value='Subscribe' name='submitButton' onclick='formSubmit(document.getElementById("mktForm_1013")); return false;' />
-
-				<input style='display: none;' id='mktFrmReset' type='reset' value='Clear' name='resetButton' onclick='formReset(document.getElementById("mktForm_1013")); return false;' />
-
-				<span style="display:none;"><input type="text" name="_marketo_comments" value="" /></span>
-				<input type="hidden" name="lpId" value="-1" />
-				<input type="hidden" name="subId" value="100" />
-
-				<input type="hidden" name="kw" value="" />
-				<input type="hidden" name="cr" value="" />
-
-				<input type="hidden" name="searchstr" value="" />
-				<input type="hidden" name="lpurl" value="http://info.puppetlabs.com/testsubscription.html?cr={creative}&kw={keyword}"; />
-				<input type="hidden" name="formid" value="1013" />
-				<input type="hidden" name="returnURL" value="https://puppetlabs.com/misc/subscription-thank-you/"; />
-				<input type="hidden" name="retURL" value="https://puppetlabs.com/misc/subscription-thank-you/"; />
-				<input type="hidden" name="_mkt_disp" value="return" />
-				<input type="hidden" name="_mkt_trk" value="" />
-
-				</form>
-				<script type="text/javascript" src="https://puppetlabs.com/sites/default/files/mktFormSupport.js"></script>
-
-				<script type="text/javascript">
-				function formSubmit(elt) {
-				return Mkto.formSubmit(elt);
-				}
-				function formReset(elt) {
-				return Mkto.formReset(elt);
-				}
-				</script>
-
-<a href="http://info.puppetlabs.com/puppet-enterprise" class="fbtn">Try Puppet Enterprise FREE</a>
-
-            </section>
-            <section id="elsewhere">
-              <h4>Get Involved</h4>
-              <ul>
-
-                <li class="chat"><a href="https://webchat.freenode.net/?channels=puppet" rel="external"><span class="indicator"></span><span>Chat with us on IRC</span></a></li>
-		<li class="discussion"><a href="https://groups.google.com/group/puppet-dev" rel="external"><span class="indicator"></span><span>Join the Puppet Developer List</span></a></li>
-                <li class="discussion"><a href="https://groups.google.com/group/puppet-users?pli=1" rel="external"><span class="indicator"></span><span>Join the Puppet User List</span></a></li>
-
-                <li class="linkedin"><a href="http://www.linkedin.com/groups?about=&gid=696467&trk=anet_ug_grppro" rel="external"><span class="indicator"></span><span>Join the Puppet Users LinkedIn group</span></a></li>
-
-              </ul>
-		<p>
-		              		<h4>Follow us&#8230;</h4>
-
-              		<ul class="followus">
-
-
-			<li><a href="http://feeds.feedburner.com/PuppetLabs" target="_blank"><img src="https://puppetlabs.com/wp-content/plugins/my-profiles/images/rss.png" border="0"></a></li>
-			<li><a href="https://www.facebook.com/pages/Puppet-Labs/219089920711" target="_blank"><img src="https://puppetlabs.com/wp-content/plugins/my-profiles/images/facebook.png" border="0"></a></li>
-			<li><a href="https://www.twitter.com/puppetlabs" target="_blank"><img src="https://puppetlabs.com/wp-content/plugins/my-profiles/images/twitter.png" border="0"></a></li>
-			<li><a href="http://www.linkedin.com/groups?about=&amp;gid=696467&amp;trk=anet_ug_grppro" target="_blank"><img src="https://puppetlabs.com/wp-content/uploads/2011/01/LinkedIn_IN_Icon_32px.png" border="0"></a></li>    <li><a href="https://github.com/puppetlabs" target="_blank"><img src="https://puppetlabs.com/wp-content/uploads/2011/01/github_icon.png" border="0"></a></li>
-			<li><a href="https://plus.google.com/112682055028218091774?rel=author" target="_blank"><img src="https://puppetlabs.com/wp-content/uploads/2013/05/google_plus32x32.png" alt="Find Us on Google+" border="0"></a></li>
-					</ul>
-
-              	</p>
-
-            </section>
-          </div>
-          <div class="secondary-content">
-            <section id="book-it">
-              <h4>Get the book!</h4>
-
-              <p>Written by Spencer Krum, Ben Kero, William Van Hevelingen, James Turnbull and Jeff McCune, <a href="http://www.apress.com/9781430260400" rel="nofollow">Pro Puppet, Second Edition</a> is a comprehensive and up-to-date look at Puppet and MCollective. </p>
-              <a href="http://www.apress.com/9781430260400" rel="nofollow"><img src="/images/propuppet2thumb.png" height="161" width="131" alt="Pro Puppet, Second Edition" title="Pro Puppet, Second Edition"/></a>
-            </section>
-          </div>
-        </div>
+  <!-- Hidden Search Field -->
+  <form action="https://www.google.com/cse" id="cse-search-box">
+      <div>
+          <input type="hidden" name="cx" value="017668764424496204839:ubligvgbenm" />
+          <input type="hidden" name="ie" value="UTF-8" />
+          <input type="text" name="q" class="gsc-input" size="31" />
+          <input type="submit" name="sa" class="searchbtn" value="Search" />
       </div>
-		</footer>
+  </form>
 
-    <div id="copyright">
-      <div class="site-width">
-        &copy; 2014 <a href="https://puppetlabs.com/" title="Puppet Labs">Puppet Labs</a> &nbsp;&nbsp;•&nbsp;&nbsp; <a href="https://puppetlabs.com/terms">Terms of Use</a>
-        <span class="vcard">
-         <span class="org"></span>
-         <a class="email" href="mailto:info@puppetlabs.com">info@puppetlabs.com</a>
+  <!-- Rebuild of Site Header -->
+  <header id="site-header">
+      <div id="morebar">
+          <ul>
+              <li class="home">
+                  <a href="/" onclick="_gaq.push(['_trackEvent', 'Toolbar', 'click', 'Home']);">
+                      <img src="/images/svg/icon-home.svg" />
+                      <span>home</span>
+                  </a>
+              </li>
+              <li class="forge">
+                  <a href="http://forge.puppetlabs.com" onclick="_gaq.push(['_trackEvent', 'Toolbar', 'click', 'Forge']);">
+                      <img src="/images/svg/icon-tools.svg" />
+                      <span>forge</span>
+                  </a>
+              </li>
+              <li class="docs">
+                  <a href="http://docs.puppetlabs.com" onclick="_gaq.push(['_trackEvent', 'Toolbar', 'click', 'Docs']);">
+                      <img src="/images/svg/icon-book.svg" />
+                      <span>docs</span>
+                  </a>
+              </li>
+              <li class="learn">
+                  <a href="/learn" onclick="_gaq.push(['_trackEvent', 'Toolbar', 'click', 'Training']);">
+                      <img src="/images/svg/icon-graduation-cap.svg" />
+                      <span>learn</span>
+                  </a>
+              </li>
+              <li class="community">
+                  <a href="/community/overview" onclick="_gaq.push(['_trackEvent', 'Toolbar', 'click', 'Community']);">
+                      <img src="/images/svg/icon-users.svg" />
+                      <span>community</span>
+                  </a>
+              </li>
+              <li class="tickets">
+                  <a href="http://tickets.puppetlabs.com" onclick="_gaq.push(['_trackEvent', 'Toolbar', 'click', 'JIRA']);">
+                      <img src="/images/svg/icon-ticket.svg" />
+                      <span>tickets</span>
+                  </a>
+              </li>
+              <li class="help">
+                  <a href="/help" onclick="_gaq.push(['_trackEvent', 'Toolbar', 'click', 'Help']);">
+                      <img src="/images/svg/icon-help-circled.svg" />
+                      <span>help</span>
+                  </a>
+              </li>
+          </ul>
+      </div>
+      <div id="navbar" class="gradient">
+          <!-- Logo -->
+          <div id="navbar-logo" class="navbar-section">
+              <div class="centered">
+                  <a href="/">
+                      <img src="/images/svg/logo.svg">
+                  </a>
+              </div>
+          </div>
 
-          <span class="adr">
-           <span class="street-address">926 NW 13th Avenue #210</span>
-           /
-           <span class="locality">Portland</span>,
-           <span class="region">OR</span>
-           <span class="postal-code">97209</span>
+          <!-- Title -->
+          <div id="navbar-title" class="navbar-section">
+              <div class="centered">
+                  <a href="http://docs.puppetlabs.com">Documentation</a>
+              </div>
+          </div>
 
-          </span>
+          <!-- Search -->
+          <div id="navbar-search" class="navbar-section">
+              <div class="centered">
+                  <div id="search-container">
+                      <input type="text" placeholder="search" class="gradient">
+                      <input type="submit" value="&#xf002;">
+                  </div>
+              </div>
+          </div>
 
-         <span class="tel">1-877-575-9775</span>
-        </span>
+          <script type="text/javascript">
+
+              // Handle routing of search to real (hidden) search input
+              var search_input = jQuery("#search-container [type='text']");
+              var search_icon = jQuery("#search-container [type='submit']");
+              search_input.keyup(function (e) {
+                  if (e.keyCode == 13) {
+                      jQuery('#cse-search-box [type="text"]').val(search_input.val());
+                      jQuery('#cse-search-box [type="submit"]').click();
+                  }
+              });
+              search_icon.click(function(e) {
+                  jQuery('#cse-search-box [type="text"]').val(search_input.val());
+                  jQuery('#cse-search-box [type="submit"]').click();
+              });
+          </script>
+      </div>
+  </header>
+
+  <section id="masthead">
+    <div class="site-width">
+      <h1>Docs / <span class="section-name">{{page.title}}</span></h1>
+    </div>
+  </section>
+
+  <section id="content">
+    <div class="site-width">
+      <div class="primary-secondary-content">
+        <div class="primary-content">
+          <h1>{% if page.subtitle %}{{page.subtitle}}{% else %}{{page.title}}{% endif %}</h1>
+          {% unless page.toc == 'false' or page.toc == false %}<nav class="in-page" id="page-nav">{{ content | toc }}</nav>{% endunless %}
+          {{ content }}
+          <blockquote><p style="font-size: 1.3em; text-align: center;"><a href="#content">↑ Back to top</a></p></blockquote>
+        </div>
+        <nav class="main">
+              <div id="subCol">
+                  <ul id="doc-navigation">
+                    <li class="with-submenu">
+                      <a href="#">
+                        <span>Docs Quick Nav</span>
+                        <span class="drop-down-trigger"></span>
+                      </a>
+                       {% include quick_nav.html %}
+                    </li>
+                  </ul>
+
+                  {% render_nav %}
+
+                  {% include promotions.html %}
+              </div>
+        </nav>
       </div>
     </div>
+  </section>
+
+
+  <footer id="site-footer">
+      <div class="footer-wrapper">
+          <div class="footer-col footer-col-left">
+              <ul>
+                  <h4>Resources</h4>
+                  <li><a href="/download-puppet-enterprise"  onclick="_gaq.push(['_trackEvent', 'Footer', 'click', 'Download']);">Free Download</a></li>
+                  <li><a href="/blog"  onclick="_gaq.push(['_trackEvent', 'Footer', 'click', 'Blog']);">Blog</a></li>
+                  <li><a href="/security"  onclick="_gaq.push(['_trackEvent', 'Footer', 'click', 'Security']);">Security</a></li>
+                  <li><a href="/sitemap"  onclick="_gaq.push(['_trackEvent', 'Footer', 'click', 'Site Map']);">Site Map</a></li>
+                  <li><a href="http://feeds.feedburner.com/PuppetLabs"  onclick="_gaq.push(['_trackEvent', 'Footer', 'click', 'RSS']);"
+                         target="_blank">RSS</a></li>
+              </ul>
+              <ul>
+                  <h4>Support</h4>
+                  <li><a href="/services/customer-support"  onclick="_gaq.push(['_trackEvent', 'Footer', 'click', 'Support']);">Customer Support</a></li>
+                  <li><a href="http://tickets.puppetlabs.com"  onclick="_gaq.push(['_trackEvent', 'Footer', 'click', 'Tickets']);" target="_blank">Bug Tracker</a></li>
+                  <li><a href="http://ask.puppetlabs.com"  onclick="_gaq.push(['_trackEvent', 'Footer', 'click', 'Ask']);" target="_blank">Puppet Ask</a></li>
+                  <li><a href="http://groups.google.com/group/puppet-users?pli=1"  onclick="_gaq.push(['_trackEvent', 'Footer', 'click', 'Users']);" target="_blank">Puppet Users</a></li>
+                  <li><a href="https://github.com/puppetlabs"  onclick="_gaq.push(['_trackEvent', 'Footer', 'click', 'GitHub']);" target="_blank">GitHub</a></li>
+              </ul>
+              <ul>
+                  <h4>Company</h4>
+                  <li><a href="/about"  onclick="_gaq.push(['_trackEvent', 'Footer', 'click', 'About Us']);">About Us</a></li>
+                  <li><a href="/about/careers"  onclick="_gaq.push(['_trackEvent', 'Footer', 'click', 'Careers']);">Careers</a></li>
+                  <li><a href="/licensing"  onclick="_gaq.push(['_trackEvent', 'Footer', 'click', 'Licensing']);">Licensing</a></li>
+                  <li><a href="/privacy"  onclick="_gaq.push(['_trackEvent', 'Footer', 'click', 'Privacy Policy']);">Privacy Policy</a></li>
+                  <li><a href="/terms"  onclick="_gaq.push(['_trackEvent', 'Footer', 'click', 'Terms of Use']);">Terms of Use</a></li>
+              </ul>
+              <ul>
+                  <h4>Connect</h4>
+                  <li><a href="/contact"  onclick="_gaq.push(['_trackEvent', 'Footer', 'click', 'Contact Us']);">Contact Us</a></li>
+                  <li><a href="/contact-sales"  onclick="_gaq.push(['_trackEvent', 'Footer', 'click', 'Contact Sales']);">Contact Sales</a></li>
+                  <li><a href="https://twitter.com/puppetlabs" target="_blank" onclick="_gaq.push(['_trackEvent', 'Footer', 'click', 'Twitter']);">Twitter</a></li>
+                  <li><a href="https://www.facebook.com/puppetlabs" target="_blank" onclick="_gaq.push(['_trackEvent', 'Footer', 'click', 'Facebook']);">Facebook</a></li>
+                  <li><a href="http://www.linkedin.com/company/621389" target="_blank" onclick="_gaq.push(['_trackEvent', 'Footer', 'click', 'LinkedIn']);">LinkedIn</a></li>
+                  <li><a href="https://plus.google.com/112682055028218091774" target="_blank" onclick="_gaq.push(['_trackEvent', 'Footer', 'click', 'Google+']);">Google+</a></li>
+                  <li><a href="http://webchat.freenode.net/?channels=puppet" target="_blank" onclick="_gaq.push(['_trackEvent', 'Footer', 'click', 'IRC']);">IRC</a></li>
+              </ul>
+          </div>
+          <div class="footer-col footer-col-right">
+              <div class="footer-col-right-container">
+                  <div class="title">Get Puppet Labs News</div>
+                  <div class="email-subscription">
+                      <div id="email-subscription-container">
+                          <form class="lpeRegForm formNotEmpty" method="post" enctype="application/x-www-form-urlencoded" action="https://app-h.marketo.com/index.php/leadCapture/save" id="mktForm_1013" name="mktForm_1013">
+                              <input class='mktFormText mktFormEmail' name="Email" id="Email" type='email' value="" maxlength='255' placeholder="enter your email address">
+                              <input id='mktFrmSubmit' type="submit" value="&#xf0a9;" name='submitButton' onclick='formSubmit(document.getElementById("mktForm_1013")); return false;'>
+                              <span style="display:none;"><input type="text" name="_marketo_comments" value="" /></span>
+                              <input type="hidden" name="lpId" value="-1" />
+                              <input type="hidden" name="subId" value="100" />
+                              <input type="hidden" name="kw" value="" />
+                              <input type="hidden" name="cr" value="" />
+                              <input type="hidden" name="searchstr" value="" />
+                              <input type="hidden" name="lpurl" value="http://info.puppetlabs.com/testsubscription.html?cr={creative}&kw={keyword}" />
+                              <input type="hidden" name="formid" value="1013" />
+                              <input type="hidden" name="returnURL" value="https://puppetlabs.com/misc/subscription-thank-you/" />
+                              <input type="hidden" name="retURL" value="https://puppetlabs.com/misc/subscription-thank-you/" />
+                              <input type="hidden" name="_mkt_disp" value="return" />
+                              <input type="hidden" name="_mkt_trk" value="" />
+                          </form>
+                          <script type="text/javascript" src="https://puppetlabs.com/sites/default/files/mktFormSupport.js"></script>
+                          <script type="text/javascript">
+                              function formSubmit(elt) {
+                                  return Mkto.formSubmit(elt);
+                              }
+                              function formReset(elt) {
+                                  return Mkto.formReset(elt);
+                              }
+                          </script>
+                      </div>
+                      <p>
+                          &copy; 2015 <a href="/about">Puppet Labs</a>
+                          <br>
+                          <a href="tel:877-575-9775" class="tel">877-575-9775</a>
+                      </p>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </footer>
+
+  <script type="text/javascript">
+      jQuery(document).on('ready', function() {
+
+          // Make sure active link in menu doesn't have a hilighted chevron
+          jQuery('.disabled-nav-link').parent().addClass('selected');
+      });
+  </script>
 
   	<style type="text/css">h1, h2, .btn { visibility : visible; }</style>
 
