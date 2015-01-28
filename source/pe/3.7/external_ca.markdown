@@ -14,7 +14,7 @@ However, you may already have your own CA in place and wish to use it instead of
 >
 >- [SSL Configuration: External CA Support](/puppet/3.7/reference/config_ssl_external_ca.html) provides guidance on establshing an external CA that will play nice will Puppet (and therefore PE).
 >
->- [ActiveMQ TLS](/mcollective/reference/integration/activemq_ssl.html) explains MCollective’s security layer.
+>- [Puppet Server: External CA Configuration](/puppetserver/1.0/external_ca_configuration.html) details configurations for Puppet Server when using an external CA. 
 
 ## Locating Certificate Files
 
