@@ -2,6 +2,7 @@
 layout: lvm
 title: Learning Puppet — Index
 toc: false
+nav: fallback_nav.html
 ---
 
 [pe_install]: /pe/latest/install_basic.html
@@ -26,8 +27,8 @@ toc: false
 Don't stop learning when you complete the quests in our new Learning Puppet VM. Take our self-paced courses in the Puppet Labs Workshop, or enroll in one of our training courses. [Keep learning](https://puppetlabs.com/learn).
 
 ### Are you looking for the original learning VM tutorials?
-Don't worry, the original "guided tour" tutorials for the Learning Puppet VM still exist. 
-Continue here: 
+Don't worry, the original "guided tour" tutorials for the Learning Puppet VM still exist.
+Continue here:
 
 [http://docs.puppetlabs.com/learning/introduction.html](/learning/introduction.html)
 
