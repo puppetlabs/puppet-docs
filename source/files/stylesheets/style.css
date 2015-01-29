@@ -1318,6 +1318,7 @@ ol.toc > li > ol.toc > li {
 
 div#version-note {
   color: #d20;
+  margin-top: 0.5em;
 }
 
 div#version-note > .noisy {
