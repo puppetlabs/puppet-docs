@@ -15,7 +15,7 @@ By default, the node classifier service listens on port 4433 and all endpoints a
 
 ## Authentication
 
-You need to authenticate requests to the Node Classifier's API using a certificate listed in RBAC's certificate whitelist, located at `/etc/puppetlabs/console-services/rbac-certificate-whitelist`. Note that if you edit this file, you must restart the `pe-console-services` service for your changes to take effect. You can attach the certificate using the command line as demonstrated in the [example curl query](./nc_forming_requests.html#example-query) below. You must have the whitelist certificate name and the private key to run the script.
+You need to authenticate requests to the Node Classifier's API using a certificate listed in RBAC's certificate whitelist, located at `/etc/puppetlabs/console-services/rbac-certificate-whitelist`. Note that if you edit this file, you must restart the `pe-console-services` service for your changes to take effect (`sudo service pe-console-services restart`). You can attach the certificate using the command line as demonstrated in the [example curl query](./nc_forming_requests.html#example-query) below. You must have the whitelist certificate name and the private key to run the script.
 
 You do not need to use an agent certificate for authentication. You can use `puppet cert generate` to create a new certificate specifically for use with the API.
 
