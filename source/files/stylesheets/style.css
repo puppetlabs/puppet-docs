@@ -2026,7 +2026,7 @@ div.input-label input {
   padding: 30px;
   max-width: 1060px;
   min-width: 940px;
-  width: 90%;
+  width: 80%;
 }
 #site-footer a {
   color: white;
@@ -2038,8 +2038,11 @@ div.input-label input {
 #site-footer .footer-col {
   float: left;
 }
+#site-footer .footer-col-left {
+  width: 70%;
+}
 #site-footer .footer-col-right {
-  float: right;
+  width: 30%;
 }
 #site-footer .footer-col-left ul {
   list-style-type: none;
@@ -2084,14 +2087,13 @@ div.input-label input {
   color: #2f2f6c;
   font-size: 0.9rem;
   width: 100%;
-  min-width: 320px;
-  padding: 6px 35px 6px 6px;
+  max-width: 100% !important;
   margin-bottom: 14px !important;
 }
 #site-footer .footer-col-right input[type="submit"] {
   font-family: FontAwesome !important;
   position: absolute;
-  right: 4px;
+  right: 0px;
   top: 0px;
   background: none;
   border: none;
