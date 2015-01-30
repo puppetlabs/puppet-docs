@@ -1,3 +1,8 @@
+---
+layout: legacy
+title: The Puppet Language Style Guide
+---
+
 The Puppet Language Style Guide
 ===========
 
@@ -275,18 +280,20 @@ Within a manifest, resources should be grouped by logical relationship to each o
 **Bad:**
 
 ~~~
-    file {
-      "/tmp/a":
-        content => "a";
-      "/tmp/b":
-        content => "b";
+    file { '/tmp/dir':
+      ensure => directory,
     }
 
-    exec {
-      "change contents of a":
-        command => "sed -i.bak s/b/B/g /tmp/a";
-      "change contents of b":
-        command => "sed -i.bak s/b/B/g /tmp/b";
+    file { '/tmp/dir2':
+      ensure => directory,,
+    }
+    
+    file { ‘/tmp/dir/a’:
+      content => ‘a’,
+    }
+
+    file { '/tmp/dir2/b':
+      content => ‘b’,
     }
 ~~~
 
@@ -415,7 +422,7 @@ Classes and defines must be structured to accomplish one task. Below is a line-b
 1. Next lines: Should declare resources in the order they need to be processed.
 1. Last lines: Should declare relationships to other classes or defines. (For example: `Class['apache'] -> Class['local_yum']`.)
 
-We recommend that the last two items -- declared resources and declared relationships to other classes/defines -- not occur in the same class or type. For more on relationship declarations, [see below](#10-4-chaining-syntax).
+We recommend that the last two items -- declared resources and declared relationships to other classes/defines -- not occur in the same class or type. For more on relationship declarations, [see below](#104-chaining-arrow-syntax).
 
 The following example follows the recommended style:
 
@@ -577,11 +584,11 @@ class ntp(
     }
 ~~~
 
->Note: We recommend using [inheritance](#11-1-class-inheritance) for class parameter defaults.
+>Note: We recommend using [inheritance](#111-class-inheritance) for class parameter defaults.
 
 When creating parameter defaults, you:
 
-* Must use fully qualified namespace variables when pulling the value from the module params class. This avoids namespace collisions. See [Namespacing Variables](#13-1-namespacing-variables) for more information.
+* Must use fully qualified namespace variables when pulling the value from the module params class. This avoids namespace collisions. See [Namespacing Variables](#131-namespacing-variables) for more information.
 * Should use the `_` prefix to indicate a scope local variable for maintainability over time.
 
 ### 10.8 Exported Resources
