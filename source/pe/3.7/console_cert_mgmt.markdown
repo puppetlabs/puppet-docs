@@ -58,14 +58,7 @@ For more information on working with certificates from the CLI, see the [Puppet 
 
 ### Configuration Details
 
-* By default, the location of the CA is set to the location of PE's Puppet master. If the CA is in a custom location (as in cases where there are multiple Puppet masters), you will have to set the `ca_server` and `ca_port` settings in the `/opt/puppet/share/puppet-dashboard/config/settings.yml` file.
-
-* When upgrading PE from a version before 2.7.0, the upgrader will convert the currently installed auth.conf file to one that is fully managed by Puppet and which includes a new rule for request management. *However*, if auth.conf has been manually modified prior to the upgrade, the upgrader will NOT convert the file. Consequently, to get it working, you will need to add the new rule manually by adding the code below into `/etc/puppetlabs/puppet/auth.conf`:
-
-        path  /certificate_status
-        method find, search, save, destroy
-        auth yes
-        allow pe-internal-dashboard
+By default, the location of the CA is set to the location of PE's Puppet master. If the CA is in a custom location (as in cases where there are multiple Puppet masters), you will have to set the `ca_server` and `ca_port` settings in the `/opt/puppet/share/puppet-dashboard/config/settings.yml` file.
 
 
 ### Request Management Modules
