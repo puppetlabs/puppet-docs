@@ -1,5 +1,5 @@
 ---
-layout: legacy
+layout: default
 title: The Puppet Language Style Guide
 ---
 
