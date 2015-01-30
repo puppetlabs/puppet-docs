@@ -1,27 +1,22 @@
-$(document).ready(function() {
-   $(document).click(function(e) {
-     var clickedElement = $(e.target);
-     var navElement = clickedElement.parent().parent();
+// This JS only handles the quick nav menu in the sidebar.
+$( document ).ready( function() {
+    "use strict";
+    // If your click bubbles up to the actual body of the quick nav menu,
+    // and the menu is visible, prevent the click from closing the menu.
+    $( "li.with-submenu > dl" ).on("click", function(e) {
+        if ( $( this ).parent().hasClass("active") ) { e.stopPropagation(); }
+    });
+    // If you click the label of the quick nav (i.e. outside the body of the nav menu),
+    // toggle visibility of the menu.
+    $( "li.with-submenu" ).on("click", function(e) {
+        $( this ).toggleClass("active");
+        e.stopPropagation();
+    });
 
-     if (!navElement.hasClass('active')) {
-       $('li.with-submenu').removeClass('active');
-     }
+    // If you click anywhere else (that is, the other two things didn't stop
+    // propagation of the event), hide the menu.
+    $( document ).on("click", function(e) {
+        $( "li.with-submenu" ).removeClass("active");
+    });
 
-     if (clickedElement.hasClass('drop-down-trigger') || clickedElement.is('li.with-submenu > a[href="#"] *')) {
-       e.preventDefault();
-       navElement.toggleClass('active');
-       return false;
-     }
-     // navElement.hover(
-     //   function(){},
-     //   function(){
-     //   $(this).removeClass('active');
-     // });
-   });
-
-   // $('li.with-submenu > a').click(function(){
-   //   if ($(this).attr("href") == "#"){
-   //     var navElement = $(this).parent().find('.drop-down-trigger').click();
-   //   }
-   // });
 });
