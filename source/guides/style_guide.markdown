@@ -269,7 +269,7 @@ Within a manifest, resources should be grouped by logical relationship to each o
     }
 
     file { '/tmp/dir2':
-      ensure => directory,,
+      ensure => directory,
     }
 
     file { '/tmp/dir2/b':
@@ -285,7 +285,7 @@ Within a manifest, resources should be grouped by logical relationship to each o
     }
 
     file { '/tmp/dir2':
-      ensure => directory,,
+      ensure => directory,
     }
     
     file { ‘/tmp/dir/a’:
