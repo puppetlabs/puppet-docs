@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.7 » Console »  Configuration"
+title: "PE 3.7 » Configuration"
 subtitle: "Configuring & Tuning the Console & Databases"
 canonical: "/pe/latest/console_config.html"
 ---
@@ -67,4 +67,4 @@ Keep in mind that if you delete the `/etc/puppetlabs/installer/answers.install` 
 
 * * *
 
-- [Next: Puppet Core Overview ](./puppet_overview.html)
+- [Next: Configuring the PE Console to Use a Custom Certificate ](./custom_console_cert.html)
