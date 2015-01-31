@@ -12,9 +12,9 @@ Many of these tasks are accomplished using the `puppet node` subcommand. While `
 Classifying nodes
 -----------------
 
-Once you have created instances for your cloud infrastructure, you need to start configuring them and adding the files, settings, and/or services needed for their intended purposes. The fastest and easiest way to do this is to add them to your existing console groups.  
+Once you have created instances for your cloud infrastructure, you need to start configuring them and adding the files, settings, and/or services needed for their intended purposes. The fastest and easiest way to do this is to add them to your existing console groups.
 
-If you are using the node classifier that comes with PE, use the [rules-based engine to add nodes to groups](./console_classes_groups_getting_started.html). 
+If you are using the node classifier that comes with PE, use the [rules-based engine to add nodes to groups](./console_classes_groups_getting_started.html).
 
 If you are using an ENC, you can classify nodes and add them to a console group by running `puppet node classify` as follows.
 
@@ -67,7 +67,7 @@ For the command's argument, specify the name of the node on which you're install
 
 For the default installation, the `install` action uses the installation packages provided by Puppet Labs and stored in Amazon S3 storage.  You can also specify packages located on a local host or on a share in your local network. Use `puppet help node install` or `puppet man node` to see more details.
 
-In addition to these default configuration options, you can specify a number of additional options to control how and what we install on the host. You can control the version of Facter to install, the specific answers file to use to configure Puppet Enterprise, the certificate name of the agent to be installed, and a variety of other options. To see a full list of the available options, use the `puppet help node install` command.
+In addition to these default configuration options, you can specify a number of additional options to control how and what we install on the host. You can control the specific answers file to use to configure Puppet Enterprise, the certificate name of the agent to be installed, and a variety of other options. To see a full list of the available options, use the `puppet help node install` command.
 
 The process of installing Puppet on a node is demonstrated in detail in the following video:
 
