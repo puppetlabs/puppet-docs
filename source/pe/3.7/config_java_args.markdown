@@ -1,16 +1,15 @@
 ---
 layout: default
-title: "PE 3.7 » Configuration »  Java Heap Size"
-subtitle: "Changing the Java Heap Size"
-canonical: "/pe/latest/config_java_heap.html"
+title: "PE 3.7 » Configuration »  Java Arguments"
+subtitle: "Configuring Java Arguments For PE"
+canonical: "/pe/latest/config_java_args.html"
 ---
 
-Increasing the Java Heap Size For PE Java Services
------
+## Increasing the Java Heap Size For Puppet Enterprise (PE) Java Services
 
-This page provides instructions for increasing the Java heap size for Puppet Enterprise (PE) Java services through the PE console.
+This section provides instructions for increasing the JVM (Java Virtual Machine) memory that is allocated to Java services in PE. This memory allocation is known as the Java heap size. It can be adjusted through the PE console as described below.
 
-## PE Console Service
+### PE Console Service
 
 To increase the Java heap size for `pe-console-services`:
 
@@ -20,7 +19,7 @@ To increase the Java heap size for `pe-console-services`:
 4. Click **Add Parameter**, and then click the commit button.
 5. In the command line on the console node, run `puppet agent -t` to start a Puppet run and apply the change. The console will be unavailable briefly while `pe-console-services` restarts.
 
-## PE Puppet Server Service
+### PE Puppet Server Service
 
 To increase the Java heap size for `pe-puppetserver`:
 
