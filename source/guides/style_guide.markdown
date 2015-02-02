@@ -384,7 +384,7 @@ unpredictable effects far away from where the default was declared.
     concat { $config_file_path:
       notify => Class['Apache::Service'],
       require => Package['httpd'],
-}
+    }
 ~~~
 
 ## 10. Classes and Defines
