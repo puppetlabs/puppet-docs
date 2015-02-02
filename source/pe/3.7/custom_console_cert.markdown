@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.7 » Deploying PE » Custom Console Cert"
+title: "PE 3.7 » Configuration » Custom Console Cert"
 subtitle: "Configuring the Puppet Enterprise Console to Use a Custom SSL Certificate"
 canonical: "/pe/latest/custom_console_cert.html"
 ---
@@ -45,3 +45,7 @@ Please note that if your custom cert is issued by an intermediate CA, the CA bun
 4. Kick off a Puppet run. (Note that if you have a split install, the Puppet run needs to happen on the PE console node.)  
 
 You should now be able to navigate to your console and see the custom certificate in your browser.
+
+* * *
+
+- [Next: Configuring Java Arguments For PE ](./config_java_args.html)
