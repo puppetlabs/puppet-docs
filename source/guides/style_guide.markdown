@@ -8,7 +8,7 @@ The Puppet Language Style Guide
 
 ####Metadata
 
-Puppet Language Style Guide: Version 2.0
+Puppet Language Style Guide: Version 2.0.0
 
 Puppet: Version 3.7+ 
 
