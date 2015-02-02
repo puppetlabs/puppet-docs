@@ -584,7 +584,7 @@ class ntp(
     }
 ~~~
 
->Note: We recommend using [inheritance](#111-class-inheritance) for class parameter defaults.
+>Note: We recommend using [inheritance](#class-inheritance) for class parameter defaults.
 
 When creating parameter defaults, you:
 
