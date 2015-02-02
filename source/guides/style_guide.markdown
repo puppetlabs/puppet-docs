@@ -137,7 +137,7 @@ Every publicly available module must have metadata defined in the metadata.json 
 ~~~
     {
       "name": "examplecorp-mymodule",
-      "version": "0.0.1",
+      "version": "0.1.0",
       "author": "Pat",
       "license": "Apache-2.0",
       "summary": "A module for a thing",
@@ -163,7 +163,7 @@ Every publicly available module must have metadata defined in the metadata.json 
       ],
       "dependencies": [
         { "name": "puppetlabs/stdlib", "version_requirement": ">= 3.2.0 <5.0.0" },
-        { "name": "puppetlabs/firewall", "version_requirement": ">= 0.0.4 <5.0.0" },
+        { "name": "puppetlabs/firewall", "version_requirement": ">= 0.4.0 <5.0.0" },
       ]
     }
 ~~~
