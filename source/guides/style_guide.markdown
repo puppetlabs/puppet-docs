@@ -365,9 +365,9 @@ unpredictable effects far away from where the default was declared.
 ~~~
     # /etc/puppetlabs/puppet/manifests/site.pp:
     File {
-      mode  => '0644',
       owner => 'root',
       group => '0',
+      mode  => '0644',
     }
 ~~~
 
@@ -376,9 +376,9 @@ unpredictable effects far away from where the default was declared.
 ~~~
     # /etc/puppetlabs/puppet/modules/apache/manifests/init.pp
     File {
-      mode  => '0600',
       owner => 'nobody',
       group => 'nogroup',
+      mode  => '0600',
     }
 
     concat { $config_file_path:
