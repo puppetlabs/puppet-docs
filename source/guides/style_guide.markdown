@@ -8,7 +8,7 @@ The Puppet Language Style Guide
 
 ####Metadata
 
-Puppet Language Style Guide: Version 2.0
+Puppet Language Style Guide: Version 2.0.0
 
 Puppet: Version 3.7+ 
 
@@ -137,7 +137,7 @@ Every publicly available module must have metadata defined in the metadata.json 
 ~~~
     {
       "name": "examplecorp-mymodule",
-      "version": "0.0.1",
+      "version": "0.1.0",
       "author": "Pat",
       "license": "Apache-2.0",
       "summary": "A module for a thing",
@@ -163,7 +163,7 @@ Every publicly available module must have metadata defined in the metadata.json 
       ],
       "dependencies": [
         { "name": "puppetlabs/stdlib", "version_requirement": ">= 3.2.0 <5.0.0" },
-        { "name": "puppetlabs/firewall", "version_requirement": ">= 0.0.4 <5.0.0" },
+        { "name": "puppetlabs/firewall", "version_requirement": ">= 0.4.0 <5.0.0" },
       ]
     }
 ~~~
@@ -365,9 +365,9 @@ unpredictable effects far away from where the default was declared.
 ~~~
     # /etc/puppetlabs/puppet/manifests/site.pp:
     File {
-      mode  => '0644',
       owner => 'root',
       group => '0',
+      mode  => '0644',
     }
 ~~~
 
@@ -376,15 +376,15 @@ unpredictable effects far away from where the default was declared.
 ~~~
     # /etc/puppetlabs/puppet/modules/apache/manifests/init.pp
     File {
-      mode  => '0600',
       owner => 'nobody',
       group => 'nogroup',
+      mode  => '0600',
     }
 
     concat { $config_file_path:
-      notify => Class['Apache::Service'],
+      notify  => Class['Apache::Service'],
       require => Package['httpd'],
-}
+    }
 ~~~
 
 ## 10. Classes and Defines
