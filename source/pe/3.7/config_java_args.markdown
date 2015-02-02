@@ -9,6 +9,8 @@ canonical: "/pe/latest/config_java_args.html"
 
 This section provides instructions for increasing the JVM (Java Virtual Machine) memory that is allocated to Java services in PE. This memory allocation is known as the Java heap size. It can be adjusted through the PE console as described below.
 
+> **Note:** Ensure that you have sufficient free memory before increasing the memory that is used by a PE service.
+
 ### PE Console Service
 
 To increase the Java heap size for `pe-console-services`:
@@ -23,11 +25,10 @@ To increase the Java heap size for `pe-console-services`:
 
 To increase the Java heap size for `pe-puppetserver`:
 
-1. Ensure you have enough free memory to increase the memory utilization of `pe-puppetserver`.
-2. From the console, navigate to the **Classification** page and select the **PE Master** node group.
-3. Click **Classes** and scroll down to the `puppet_enterprise::profile::master` class. 
-4. Click the **Parameter name** drop-down list and select `java_args`. Replace the parameter value with the JSON string `{"Xmx": "4096m", "Xms": "4096m"}`. This increases the heap size from the default of 2 GB to 4 GB. 
-5. In the command line on each compile master, run `puppet agent -t` to start a Puppet run and apply the change.
+1. From the console, navigate to the **Classification** page and select the **PE Master** node group.
+2. Click **Classes** and scroll down to the `puppet_enterprise::profile::master` class. 
+3. Click the **Parameter name** drop-down list and select `java_args`. Replace the parameter value with the JSON string `{"Xmx": "4096m", "Xms": "4096m"}`. This increases the heap size from the default of 2 GB to 4 GB. 
+4. In the command line on each compile master, run `puppet agent -t` to start a Puppet run and apply the change.
 
 * * *
 
