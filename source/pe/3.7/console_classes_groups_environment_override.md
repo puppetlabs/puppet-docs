@@ -10,6 +10,8 @@ We recommend the following environment-based workflow for testing new code in th
 
 <a href="./images/console/env_workflow.svg"><img src="./images/console/env_workflow.svg" alt="Environment Workflow" title="Click to enlarge"> (Click to enlarge)</a>
 
+> **Important Note:** This is a design pattern for architecting and laying out node groups to implement the recommended workflow for using environments. The differences illustrated here between environment node groups and classification node groups are purely conventional. The Node Classifier makes no such distinction on a technical level, and does not show them separately. The Node Classifier is only aware of one kind of primitive: a node group. It is up to you to maintain design separation between environment node groups and classification node groups.
+
 ### Creating Environment Node Groups
 
 1. Create a set of node groups that are used exclusively for setting an environment. In these node groups, add rules to match the appropriate nodes to this node group/environment. Do not add any classes to these node groups.
