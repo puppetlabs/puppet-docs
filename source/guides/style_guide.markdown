@@ -39,7 +39,7 @@ We can never cover every possible circumstance you might run into when developin
     
 2. **Scoping and simplicity are key.**
 
-    When in doubt, err on the side of simplicity. A module should contain related resources that enable it to accomplish a task. If you describe the function of your module and you find yourself using the word ‘and,’ it’s time to split the module at the ‘and.’ You should have one goal, with all your classes and parameters focused on achieving it.
+    When in doubt, err on the side of simplicity. A module should contain related resources that enable it to accomplish a task. If you describe the function of your module and you find yourself using the word 'and,' it's time to split the module at the 'and.' You should have one goal, with all your classes and parameters focused on achieving it.
 
 3. **Your module is a piece of software.**
 
@@ -120,14 +120,14 @@ You must use hash comments (`# This is a comment`). Comments should explain the 
 
 ~~~
 # Configures NTP
-file { ‘/etc/ntp.conf’: … }
+file { '/etc/ntp.conf': … }
 ~~~
 
 **Bad:**
 
 ~~~
 /* Creates file /etc/ntp.conf */
-file { ‘/etc/ntp.conf’: … }
+file { '/etc/ntp.conf': … }
 ~~~
 
 ## 8. Module Metadata
@@ -213,11 +213,11 @@ attribute name. Nested blocks must be indented by two spaces, and hash rockets w
       refreshonly => true,
     }
 
-    myresource { ‘test’:
+    myresource { 'test':
       ensure => present,
       myhash => {
-        ‘myhash_key1’ => ‘value1’,
-        ‘key2’        => ‘value2’,
+        'myhash_key1' => 'value1',
+        'key2'        => 'value2',
       },
     }
 ~~~
@@ -264,8 +264,8 @@ Within a manifest, resources should be grouped by logical relationship to each o
       ensure => directory,
     }
 
-    file { ‘/tmp/dir/a’:
-      content => ‘a’,
+    file { '/tmp/dir/a':
+      content => 'a',
     }
 
     file { '/tmp/dir2':
@@ -273,7 +273,7 @@ Within a manifest, resources should be grouped by logical relationship to each o
     }
 
     file { '/tmp/dir2/b':
-      content => ‘b’,
+      content => 'b',
     }
 ~~~
 
@@ -288,12 +288,12 @@ Within a manifest, resources should be grouped by logical relationship to each o
       ensure => directory,
     }
     
-    file { ‘/tmp/dir/a’:
-      content => ‘a’,
+    file { '/tmp/dir/a':
+      content => 'a',
     }
 
     file { '/tmp/dir2/b':
-      content => ‘b’,
+      content => 'b',
     }
 ~~~
 
@@ -432,7 +432,7 @@ The following example follows the recommended style:
       $package_list   = undef,
     ) {
 
-      if $service_ensure in [ ‘running’, ‘stopped’ ] {
+      if $service_ensure in [ 'running', 'stopped' ] {
         $_ensure = $service_ensure
       } else {
         fail('ensure parameter must be running or stopped')
@@ -442,11 +442,11 @@ The following example follows the recommended style:
         $_package_list = $package_list
        } else {
         case $::operatingsystem {
-          ‘centos’: {
+          'centos': {
             $_package_list = 'myservice-centos-package'
           }
-          ‘solaris’: {
-            $_package_list = [ ‘myservice-solaris-package1’, ‘myservice-solaris-package2’ ]
+          'solaris': {
+            $_package_list = [ 'myservice-solaris-package1', 'myservice-solaris-package2' ]
           }
           default: {
             fail("Module ${module_name} does not support ${::operatingsystem}")
@@ -648,58 +648,58 @@ parameter and conditional relationship declarations. For instance,
 
 ~~~
     class bluetooth (
-      $ensure      = ‘present’,
+      $ensure      = 'present',
       $autoupgrade = false,
     ) {
        # Validate class parameter inputs. (Fail early and fail hard)
 
-       if ! ($ensure in [ ‘present’, ‘absent’ ]) {
-         fail(‘bluetooth ensure parameter must be absent or present’)
+       if ! ($ensure in [ 'present', 'absent' ]) {
+         fail('bluetooth ensure parameter must be absent or present')
        }
 
        if ! ($autoupgrade in [ true, false ]) {
-         fail(‘bluetooth autoupgrade parameter must be true or false’)
+         fail('bluetooth autoupgrade parameter must be true or false')
        }
 
        # Set local variables based on the desired state
 
-       if $ensure == ‘present’ {
+       if $ensure == 'present' {
          $service_enable = true
-         $service_ensure = ‘running’
+         $service_ensure = 'running'
          if $autoupgrade {
-           $package_ensure = ‘latest’
+           $package_ensure = 'latest'
          } else {
-           $package_ensure = ‘present’
+           $package_ensure = 'present'
          }
        } else {
          $service_enable = false
-         $service_ensure = ‘stopped’
-         $package_ensure = ‘absent’
+         $service_ensure = 'stopped'
+         $package_ensure = 'absent'
        }
 
        # Declare resources without any relationships in this section
 
-       package { [ ‘bluez-libs’, ‘bluez-utils’]:
+       package { [ 'bluez-libs', 'bluez-utils']:
          ensure => $package_ensure,
        }
 
-       service { ‘hidd’:
+       service { 'hidd':
          enable         => $service_enable,
          ensure         => $service_ensure,
-         status         => ‘source /etc/init.d/functions; status hidd’,
+         status         => 'source /etc/init.d/functions; status hidd',
          hasstatus      => true,
          hasrestart     => true,
       }
 
       # Finally, declare relations based on desired behavior
 
-      if $ensure == ‘present’ {
-        Package[‘bluez-libs’]  -> Package[‘bluez-utils’]
-        Package[‘bluez-libs’]  ~> Service[‘hidd’]
-        Package[‘bluez-utils’] ~> Service[‘hidd’]
+      if $ensure == 'present' {
+        Package['bluez-libs']  -> Package['bluez-utils']
+        Package['bluez-libs']  ~> Service['hidd']
+        Package['bluez-utils'] ~> Service['hidd']
       } else {
-        Service[‘hidd’]        -> Package[‘bluez-utils’]
-        Package[‘bluez-utils’] -> Package[‘bluez-libs’]
+        Service['hidd']        -> Package['bluez-utils']
+        Package['bluez-utils'] -> Package['bluez-libs']
       }
     }
 ~~~
@@ -771,9 +771,9 @@ resource declarations.
 
 ~~~
     $file_mode = $::operatingsystem ? {
-      ‘debian’ => '0007',
-      ‘redhat’ => '0776',
-       default => ‘0700’,
+      'debian' => '0007',
+      'redhat' => '0776',
+       default => '0700',
     }
 
     file { '/tmp/readme.txt':
@@ -790,9 +790,9 @@ resource declarations.
       ensure  => file,
       content => "Hello World\n",
       mode    => $::operatingsystem ? {
-        ‘debian’ => '0777',
-        ‘redhat’ => '0776',
-        default  => ‘0700’,
+        'debian' => '0777',
+        'redhat' => '0776',
+        default  => '0700',
       }
     }
 ~~~
@@ -810,10 +810,10 @@ Selectors should omit default selections only if you explicitly want catalog com
 
 ~~~
     case $::operatingsystem {
-      ‘centos’: {
+      'centos': {
         $version = '1.2.3'
       }
-      ‘solaris’: {
+      'solaris': {
         $version = '3.2.1'
       }
       default: {
