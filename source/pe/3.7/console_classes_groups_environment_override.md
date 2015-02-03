@@ -5,11 +5,10 @@ subtitle: "Working With Environments"
 canonical: "/pe/latest/console_classes_groups_environment_override.html"
 ---
 
-[env_workflow_diagram]: ./images/console/env_workflow.svg
 
 We recommend the following environment-based workflow for testing new code in the node classifier before pushing it to production. In this workflow, you create a set of node groups that are used exclusively for assigning environments to nodes, and another set of node groups that are used for classifying nodes. This workflow avoids the conflicts that can occur if a node is a member of two different node groups, each with a different environment specified.
 
-<a href="<./images/console/env_workflow.svg>"><img src="<./images/console/env_workflow.svg>" alt="<Environment Workflow>" title="Click to enlarge"> (Click to enlarge)</a>
+<a href="./images/console/env_workflow.svg"><img src="./images/console/env_workflow.svg" alt="Environment Workflow" title="Click to enlarge"> (Click to enlarge)</a>
 
 ### Creating Environment Node Groups
 
