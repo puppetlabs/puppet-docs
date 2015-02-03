@@ -171,7 +171,7 @@ A more complete guide to the metadata.json format can be found in the [docs](htt
 
 ### 8.1 Dependencies
 
-Hard dependencies must be declared explicitly in your module's metadata.json file. Soft dependencies should be called out in the README.md, and must not be enforced as a hard requirement in your metadata.json. A soft dependency is a dependency that is only required in a specific set of use cases. (As an example, see the [rabbitmq module](https://github.com/puppetlabs/puppetlabs-rabbitmq#module-dependencies).)
+Hard dependencies must be declared explicitly in your module's metadata.json file. Soft dependencies should be called out in the README.md, and must not be enforced as a hard requirement in your metadata.json. A soft dependency is a dependency that is only required in a specific set of use cases. (As an example, see the [rabbitmq module](https://forge.puppetlabs.com/puppetlabs/rabbitmq#module-dependencies).)
 
 Your hard dependency declarations should not be unbounded.
 
@@ -422,7 +422,7 @@ Classes and defines must be structured to accomplish one task. Below is a line-b
 1. Next lines: Should declare resources in the order they need to be processed.
 1. Last lines: Should declare relationships to other classes or defines. (For example: `Class['apache'] -> Class['local_yum']`.)
 
-We recommend that the last two items -- declared resources and declared relationships to other classes/defines -- not occur in the same class or type. For more on relationship declarations, [see below](#104-chaining-arrow-syntax).
+We recommend that the last two items -- declared resources and declared relationships to other classes/defines -- not occur in the same class or type. For more on relationship declarations, [see below](#chaining-arrow-syntax).
 
 The following example follows the recommended style:
 
@@ -481,7 +481,7 @@ The following example follows the recommended style:
 
 We recommend that you split your module into public and private classes and defines where possible. Public classes or defines should contain the parts of the module meant to be configured or customized by the user, while private classes should contain things you do not expect the user to change via parameters. Separating into public and private classes/defines helps build reusable and readable code.
 
-You should help indicate to the user which classes are which by both calling out the public classes in the README and making sure all public classes have complete [comments](#7-comments).
+You should help indicate to the user which classes are which by both calling out the public classes in the README and making sure all public classes have complete [comments](#comments).
 
 >Note: As of stdlib 4.4.0, there is a `private` function that will cause a failure if a private class is called externally. You can use this to enforce the privacy of private classes.
 
@@ -588,7 +588,7 @@ class ntp(
 
 When creating parameter defaults, you:
 
-* Must use fully qualified namespace variables when pulling the value from the module params class. This avoids namespace collisions. See [Namespacing Variables](#131-namespacing-variables) for more information.
+* Must use fully qualified namespace variables when pulling the value from the module params class. This avoids namespace collisions. See [Namespacing Variables](#namespacing-variables) for more information.
 * Should use the `_` prefix to indicate a scope local variable for maintainability over time.
 
 ### 10.8 Exported Resources
@@ -871,4 +871,4 @@ When contributing new parameters or resources, you should organize them by:
 
 ## 19. Verifying style
 
-This guide helps development of puppet-lint and puppet-metadata-lint[.](http://fc09.deviantart.net/fs70/i/2012/232/0/a/welcome_to_the_internet__please_follow_me_by_sharpwriter-d5buwfu.jpg)
+This guide helps development of [puppet-lint](http://puppet-lint.com/) and [metadata-json-lint](https://github.com/nibalizer/metadata-json-lint)[.](http://fc09.deviantart.net/fs70/i/2012/232/0/a/welcome_to_the_internet__please_follow_me_by_sharpwriter-d5buwfu.jpg)
