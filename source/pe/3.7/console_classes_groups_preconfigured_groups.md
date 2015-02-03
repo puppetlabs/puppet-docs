@@ -14,7 +14,7 @@ canonical: "/pe/latest/console_classes_groups_preconfigured_groups.html"
 [topscope]: /puppet/3.7/reference/lang_scope.html#top-scope
 [environment]: /guides/environment.html
 
-Puppet Enterprise automatically creates a number of special node groups for managing your deployment. In a new install, these node groups will come with some default classes. If you're upgrading, only the **MCollective** node group will come with classes. 
+Puppet Enterprise automatically creates a number of special node groups for managing your deployment. In a new install, these node groups will come with some default classes. If you're upgrading, only the **MCollective** node group will come with classes. For more information on preconfigured node groups when upgrading from an earlier version of Puppet Enterprise (PE), see the [upgrading documentation](./install_upgrading_notes.html#classifying-pe-groups).
 
 **Note:** In general, you should not remove these node groups or delete classes from them.  
 
