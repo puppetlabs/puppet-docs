@@ -35,9 +35,9 @@ If your `auth.conf` file has been modified, you may experience a failure when up
     auth yes
     allow pe-internal-dashboard, pe-internal-classifier
 
-### Incorrect Unmask Value Can Cause Upgrade/Installation to Fail
+### Incorrect Umask Value Can Cause Upgrade/Installation to Fail
 
-To prevent potential failures, you should set an unmask value of 0022 on your Puppet Master.
+To prevent potential failures, you should set an umask value of 0022 on your Puppet Master.
 
 ### New PostgreSQL Databases Needed on Upgrade/Install (for External PostgreSQL Users)
 
