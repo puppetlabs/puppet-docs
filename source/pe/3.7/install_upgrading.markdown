@@ -21,7 +21,11 @@ The Puppet Installer script is used to perform both installations and upgrades. 
 ### Upgrading a Monolithic Installation
 If you have a monolithic installation (with the master, PE console, and database components all on the same node), the installer will upgrade each component in the correct order, automatically.
 
-> **Note**: The new node classifier and role-based access control (RBAC) will be installed as part of the PE console.
+> **Notes**: 
+>
+>- The new node classifier and role-based access control (RBAC) will be installed as part of the PE console.
+>
+>- After upgrading you will need to manually [classify the new PE groups](./install_upgrading_notes.html#classifying-pe-groups).
 
 ### Upgrading a Split Installation
 If you have a split installation (with the master, PE console, and database components on different nodes), the process involves the following steps, which **must be performed in the following order**:
@@ -81,6 +85,8 @@ In addition if you are using an external PostgreSQL instance that is not managed
 
 1. You will need to create databases for RBAC, activity service, and the node classifier before upgrading.
 2. The databases you create need to have the citext extension enabled.
+
+After upgrading you will need to manually [classify the new PE groups](./install_upgrading_notes.html#classifying-pe-groups).
 
 > **Disabling/Enabling Live Management During an Upgrade**
 >
