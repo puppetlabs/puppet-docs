@@ -101,7 +101,7 @@ The general form of an "if" statement is:
 * The `if` keyword
 * A **condition**
 * A pair of curly braces containing any Puppet code
-* **Optionally:** the `elsif` keyword, another condition, and a pair of curly braces containing Puppet code
+* **Optionally:** the `elsif` keyword, another condition, and a pair of curly braces containing Puppet code. The `elsif` part can be repeated.
 * **Optionally:** the `else` keyword and a pair of curly braces containing Puppet code
 
 ### Behavior
@@ -140,6 +140,35 @@ These are not normal variables, and have some special behaviors:
 
 * The values of the numbered variables do not persist outside the code block associated with the pattern that set them.
 * In nested conditionals, each conditional has its own set of values for the set of numbered variables. At the end of an interior statement, the numbered variables are reset to their previous values for the remainder of the outside statement. (This causes conditional statements to act like [local scopes][local], but only with regard to the numbered variables.)
+
+### If as an Expression
+
+**"If"** is really an expression that produces a value and it may be used wherever a value
+is allowed. This means you can write:
+
+{% highlight ruby %}
+    $maxclient = if $memorysize > 1024 { 
+        500 
+      }
+      else {
+        100
+      }
+{% endhighlight %}
+
+Instead of:
+
+{% highlight ruby %}
+    if $memorysize > 1024 { 
+      $maxclient = 500 
+    }
+    else {
+      $maxclient = 100
+    }
+{% endhighlight %}
+
+
+The value of the `if` expression is the value of the last expression in executed block, or undef
+if no block was executed.
 
 "Unless" Statements
 -----
@@ -183,6 +212,10 @@ Static values may also be conditions, although doing this would be pointless.
 
 Although "unless" statements receive regex capture variables like "if" statements, they usually aren't used, since the code in the statement will only be executed if the condition didn't match anything. It's possible to use regex captures in the "else" clause, but it would make more sense to just use an "if" statement.
 
+### Unless as an Expression
+
+**"Unless"** is really an expression that produces a value and it may be used wherever a value
+is allowed. The value of the `unless` expression is the value of the last expression in executed block, or undef if no block was executed.
 
 
 Case Statements
@@ -219,6 +252,7 @@ Puppet compares the **control expression** to each of the **cases,** in the orde
 
 * Basic cases are compared with [the `==` operator][equality] (which is case-insensitive).
 * Regular expression cases are compared with [the `=~` operator][regex_compare] (which is case-sensitive).
+* Type expression cases are compared with [the `=~` operator][regexp_compare]
 * The special `default` case matches anything, but only if none of the other cases match.
 
 If none of the cases match, Puppet will do nothing and move on.
@@ -227,7 +261,7 @@ Case statements will execute a maximum of one code block.
 
 ### Control Expressions
 
-The control expression of a case statement may be any fragment of Puppet code that resolves to a normal value. This includes:
+The control expression of a case statement may be any fragment of Puppet code that resolves to a normal value or type. This includes:
 
 * [Variables][]
 * [Expressions][]
@@ -235,7 +269,7 @@ The control expression of a case statement may be any fragment of Puppet code th
 
 ### Cases
 
-Cases may be any of the following:
+Cases may be any any fragment of Puppet code that resolves to a normal value or type, including the following:
 
 * A literal value (remember to quote strings)
 * A variable
@@ -243,11 +277,9 @@ Cases may be any of the following:
 * A [regular expression][regex]
 * The special bare word value `default`
 
-Note that you cannot use arbitrary [expressions][] or [selectors](#selectors) as cases.
-
 You may use a comma-separated list of cases to associate more than one case with the same block of code.
 
-Normal values are compared to the control expression using [the `==` operator][equality], and regular expressions are compared with [the `=~` operator][regex_compare]. The special `default` case matches any control expression.
+Normal values are compared to the control expression using [the `==` operator][equality], and regular expressions and types are compared with [the `=~` operator][regex_compare]. The special `default` case matches any control expression.
 
 Cases are compared in the order that they are written in the manifest --- if more than one case might match for a given node, the first one will win. The one exception is the special `default` case, which will only be used as a last resort, regardless of its position in the list.
 
@@ -277,15 +309,31 @@ These are not normal variables, and have some special behaviors:
 > * If the rest of your cases are meant to be comprehensive, putting a [`fail('message')`][fail] call in the default case makes your code more robust by protecting against mystery failures due to behavior changes elsewhere in your manifests.
 > * If your cases aren't comprehensive and nodes that match none should do nothing, write a default case with an empty code block (`default: {}`). This makes your intention obvious to the next person who has to maintain your code.
 
+### Case as an Expression
+
+**"Case"** is really an expression that produces a value and it may be used wherever a value
+is allowed. The value of the `case` expression is the value of the last expression in executed block, or undef if no block was executed.
+
+{% highlight ruby %}
+    notice case $hostname {
+      /www(d+)/: { include role::web; "Welcome to web server number ${1}" }
+      default:   { include role::generic; "Generic role selected" }
+    }
+{% endhighlight %}
+
+This example would notice either the `"Welcome to..."` or the `"Generic role..."` messages
+depending what the value of `$hostname` is. This because the respective literal string value
+is last in the case's executed block, and this value becomes the value of the case expression which
+is given to the `notice` function as an argument.
 
 Selectors
 -----
 
-**Selector statements** are similar to case statements, but return a value instead of executing a code block.
+**Selector expressions** are similar to case statements, but only return a value instead of also executing a code block.
 
 ### Location
 
-Selectors must be used at places in the code where a **plain value** is expected. This includes:
+Selectors can be placed wherever a **value** is expected. This includes:
 
 * Variable assignments
 * Resource attributes
@@ -293,11 +341,6 @@ Selectors must be used at places in the code where a **plain value** is expected
 * Resource titles
 * A value in another selector
 * [Expressions][]
-
-Selectors are not legal in:
-
-* A case in another selector
-* A case in a case statement
 
 > #### Aside: Best Practices
 >
@@ -342,7 +385,7 @@ The entire selector statement is **treated as a single value.**
 Puppet compares the value of **control expression** to each of the **cases,** in the order they are listed. When it finds a matching case, it will treat that value as the value of the statement and ignore the remainder of the statement.
 
 * Basic cases are compared with [the `==` operator][equality] (which is case-insensitive).
-* Regular expression cases are compared with [the `=~` operator][regex_compare] (which is case-sensitive).
+* Regular expression and type cases are compared with [the `=~` operator][regex_compare] (which is case-sensitive).
 * The special `default` case matches anything, but only as a last resort if none of the other cases match.
 
 If none of the cases match, Puppet will **fail compilation with a parse error.** Consequently, a default case should be considered mandatory.
@@ -357,7 +400,8 @@ The control expression of a selector may be any fragment of Puppet code that res
 
 ### Cases
 
-Cases may be any of the following:
+Cases may be any any fragment of Puppet code that resolves to a normal value or type including
+the following:
 
 * A literal value (remember to quote strings)
 * A variable
@@ -365,11 +409,10 @@ Cases may be any of the following:
 * A [regular expression][regex]
 * The special bare word value `default`
 
-Note that you cannot use arbitrary [expressions][] or [selectors](#selectors) as cases.
 
-**Unlike in case statements,** you cannot use lists of cases. If you need more than one case associated with a single value, you must use a regular expression.
+**Unlike in case statements,** you cannot use lists of cases. If you need more than one case associated with a single value, you can use a regular expression if the matched value is a string. Otherwise, use a `case` expression instead of the selector expression.
 
-Normal values are compared to the control variable using [the `==` operator][equality], and regular expressions are compared with [the `=~` operator][regex_compare]. The special `default` case matches any control variable.
+Normal values are compared to the control variable using [the `==` operator][equality], and regular expressions and types are compared with [the `=~` operator][regex_compare]. The special `default` case matches any control variable.
 
 Cases are compared in the order that they are written in the manifest. The one exception is the special `default` case, which will only be used as a last resort, regardless of its position in the list.
 
@@ -391,11 +434,10 @@ These are not normal variables, and have some special behaviors:
 
 ### Values
 
-Values may be any of the following:
+Values may be any any fragment of Puppet code that resolves to a normal value or type, including the following:
 
 * Any literal value, with the exception of hash literals
 * A variable
 * A [function][functions] call that returns a value
 * Another selector
 
-Note that you cannot use arbitrary [expressions][] as values.
