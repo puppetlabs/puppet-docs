@@ -18,15 +18,15 @@ canonical: "/forge/assessingmodulequality.html"
 
 #Assessing Module Quality
 
-The [Puppet Forge](forge) has both a codified and a crowd-sourced way of gauging the quality of any module.
+The [Puppet Forge](forge) has both codified and crowd-sourced ways of gauging the quality of any module.
 
 ![module ratings][modulequality]
 
 ##Quality Score
 
-A module's quality score is based on a variety of lint, compatibility, and metadata tests. Individual validations are combined to create the total score. If you are comparing modules to use, a module's quality score will give you some indication of its overall soundness and completeness.
+A module's quality score is based on a variety of lint, compatibility, and metadata tests. Individual validations are combined to create the total score. If you are comparing modules, a module's quality score will give you some indication of its overall soundness and completeness.
 
-For more information about a specific module's quality score, click "details".
+For more information about a specific module's quality score, click **details**.
 
 ![find quality score details][details]
 
@@ -34,14 +34,14 @@ Then scroll down the page and you will see information about the results of the 
 
 ![Quality score details][qualityscoredetail]
 
-You can click "View full results..." for even more detailed information on the scores for each section. It is possible that a module will have a perfect Code Quality score, in which case there will not be additional results to view. Otherwise, you will see some combination of the below flags: 
+You can click **View full results...** for even more detailed information on the scores for each section. It is possible that a module will have a perfect Code Quality score, in which case there will not be additional results to view. Otherwise, you will see some combination of the below flags: 
 
 ![Quality flags][qualityflags]
 
 ###Quality Flags
 
 ####Error
-An error flag indicates a severe problem with the module. The flag will be appended to the line in the module causing the issue, which could be anything from a critical bug to a failure to follow a high-priority [best practice](styleguide). If you are the module's author, an error flag negatively impacts your score most heavily. 
+An error flag indicates a severe problem with the module. The flag will be appended to the line causing the issue, which could be anything from a critical bug to a failure to follow a high-priority [best practice](styleguide). If you are the module's author, an error flag negatively impacts your score most heavily. 
 
 ####Warning
 A warning flag notes a general problem with the module. The flag will be appended to the line in module causing the issue, which could be nonconformance with [best practices](styleguide) or other smaller issue in the module's structure or code. If you are the module's author, a warning flag will negatively impact your score, but is weighted less heavily than an error. 
@@ -50,7 +50,7 @@ A warning flag notes a general problem with the module. The flag will be appende
 A notice flag indicates something in the module that warrants attention. The notice flag is used for both positive and negative things of note, and as such does not impact the module's score.
 
 ####Success
-A success flag highlights information the module covers completely. This flag only applies to Puppet Compatibility and Metadata Quality, and can be used to assess whether the module covers things like listing operating system compatibility and having a verified source url. If you are the module's author, a success flag will positively impact your score.
+A success flag highlights information the module covers completely. This flag only applies to Puppet Compatibility and Metadata Quality. It can be used to assess whether the module covers things like listing operating system compatibility and having a verified source url. If you are the module's author, a success flag will positively impact your score.
 
 ###Updates
 
