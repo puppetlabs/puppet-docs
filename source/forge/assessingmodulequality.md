@@ -36,7 +36,7 @@ Then scroll down the page and you will see information about the results of the 
 
 You can click "View full results..." for even more detailed information on the scores for each section. It is possible that a module will have a perfect Code Quality score, in which case there will not be additional results to view. Otherwise, you will see some combination of the below flags: 
 
-**XX**![Quality flags][qualityflags]
+![Quality flags][qualityflags]
 
 ###Quality Flags
 
