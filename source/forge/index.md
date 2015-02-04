@@ -13,6 +13,7 @@ The [Puppet Forge](https://forge.puppetlabs.com/) is a repository of modules for
 * [Learn about modules.](https://docs.puppetlabs.com/puppet/latest/reference/modules_fundamentals.html)
 * [Install modules with open source Puppet.](https://docs.puppetlabs.com/puppet/latest/reference/modules_installing.html)
 * [Install modules with Puppet Enterprise.](https://docs.puppetlabs.com/pe/latest/modules_installing.html)
+* [Assess the quality of a module on the Puppet Forge.](https://docs.puppetlabs.com/forge/assessingmodulequality.md)
 
 ###Write a Module
 
