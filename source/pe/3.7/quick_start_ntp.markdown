@@ -143,7 +143,7 @@ Changing the server parameter of the `ntp` class can be accomplished in a few st
    
    **Note**: The grey text that appears as values for some parameters is the default value, which can be either a literal value or a Puppet variable. You can restore this value by selecting __Discard changes__ after you have added the parameter.
  
-5. In the __Value__ field, enter the new server name (e.g., `time.apple.com`).
+5. In the __Value__ field, enter the new server name (e.g., `["time.apple.com"]`). Note that this should be an array, in JSON format. 
 6. Click __Add parameter__. 
 7. Click __Commit 1 change__. 
 8. Navigate to the live management page, and select the __Control Puppet__ tab. 
