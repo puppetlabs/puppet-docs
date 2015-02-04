@@ -244,7 +244,7 @@ Each node in a PE deployment has its own node details page in the PE console. Th
 <ol>
 <li>In the top navigation, click <strong>Nodes</strong>.</li>
 
-<li> list of nodes, click the specific node that you want to view.</li>
+<li> From the list of nodes, click the specific node that you want to view.</li>
  
 <dl>
 <dt>Member Groups</dt>
