@@ -18,7 +18,7 @@ canonical: "/forge/assessingmodulequality.html"
 
 #Assessing Module Quality
 
-The [Puppet Forge](forge) has both codified and crowd-sourced ways of gauging the quality of any module.
+The [Puppet Forge (Forge)](forge) has both codified and crowd-sourced ways of gauging the quality of any module.
 
 ![module ratings][modulequality]
 
@@ -34,22 +34,22 @@ Then scroll down the page and you will see information about the results of the 
 
 ![Quality score details][qualityscoredetail]
 
-You can click **View full results...** for even more detailed information on the scores for each section. It is possible that a module will have a perfect Code Quality score, in which case there will not be additional results to view. Otherwise, you will see some combination of the below flags: 
+You can click **View full results...** for even more detailed information on the scores for each section. It is possible that a module will have a perfect Code Quality score, in which case there may not be additional results to view. Otherwise, you will see some combination of the below flags: 
 
 ![Quality flags][qualityflags]
 
 ###Quality Flags
 
-####Error
+#####Error
 An error flag indicates a severe problem with the module. The flag will be appended to the line causing the issue, which could be anything from a critical bug to a failure to follow a high-priority [best practice](styleguide). If you are the module's author, an error flag negatively impacts your score most heavily. 
 
-####Warning
+#####Warning
 A warning flag notes a general problem with the module. The flag will be appended to the line in module causing the issue, which could be nonconformance with [best practices](styleguide) or other smaller issue in the module's structure or code. If you are the module's author, a warning flag will negatively impact your score, but is weighted less heavily than an error. 
 
-####Notice
+#####Notice
 A notice flag indicates something in the module that warrants attention. The notice flag is used for both positive and negative things of note, and as such does not impact the module's score.
 
-####Success
+#####Success
 A success flag highlights information the module covers completely. This flag only applies to Puppet Compatibility and Metadata Quality. It can be used to assess whether the module covers things like listing operating system compatibility and having a verified source url. If you are the module's author, a success flag will positively impact your score.
 
 ###Updates
@@ -61,6 +61,48 @@ When a module has a new release, the quality scoring tests are rerun and a new s
 Or you will see that it has had no change.
 
 ![No quality change since release][noreleasechange]
+
+###Validating Your Module's Score
+
+If you have written a module and would like to know what its quality score will be before you upload it to the Forge, we designed the rating evaluations to be reproducible. 
+
+####Code Quality
+To reproduce the Code Quality score, you will need to install puppet lint and then run it from the module's root.
+
+~~~
+gem install puppet-lint
+
+puppet-lint `find ./manifests -name *.pp`
+~~~
+
+####Puppet Compatibility
+To reproduce the Puppet Compatibility score, you will need to run `puppet parser` from the module's root against the latest release for a specific version of Puppet. 
+
+If you are using Puppet 2.7+:
+
+~~~
+puppet parser validate `find ./manifests -name *.pp`
+~~~
+
+If you are using the future parser:
+
+~~~
+puppet parser validate --parser future `find ./manifests -name *.pp`
+~~~
+
+If you are using Puppet 2.6:
+
+~~~
+puppet --parseonly --ignoreimports `find ./manifests -name *.pp`
+~~~
+
+####Metadata Quality
+To reproduce the Metadata Quality score, you will need to install and run the metadata linter.
+
+~~~
+gem install metadata-json-lint
+metadata-json-lint metadata.json
+~~~
 
 ##Community Rating
 A module's community rating is based on the average of user responses to the questions found on every module page on the Forge:
