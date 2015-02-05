@@ -43,6 +43,8 @@ For fresh installations of PE 3.7.0, node groups in the classifier are created a
 
 The [preconfigured groups doc](./console_classes_groups_preconfigured_groups.html) has a list of groups and their classes that get installed on fresh upgrades.
 
+If you are upgrading to PE 3.7.x, you will need to follow the preconfigured groups doc and manually configure these classes to ensure correct PE functionality. This should be done post-upgrade. 
+
 ### Upgrading to Role-Based Access Control (RBAC)
 
 After upgrading to PE 3.7.0, you will need to set up your directory service and users and groups. Note that when you upgrade, PE doesn't migrate any existing users. In addition, PE doesn't preserve your username and password. You'll now log in with "admin" as your username.
