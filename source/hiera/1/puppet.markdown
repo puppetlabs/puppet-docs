@@ -138,6 +138,10 @@ You could then say `include myclass` for every node, and each node would get its
 
 Automatic parameter lookup is good for writing reusable code because it is **regular and predictable.** Anyone downloading your module can look at the first line of each manifest and easily see which keys they need to set in their own Hiera data. If you use the Hiera functions in the body of a class instead, you will need to clearly document which keys the user needs to set.
 
+#### To Disable
+
+If you need to disable this feature, then you can set `data_binding_terminus = none` in your master's `puppet.conf`
+
 ### Limitations
 
 #### Priority Only
