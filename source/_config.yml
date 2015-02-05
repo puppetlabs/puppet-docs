@@ -17,6 +17,7 @@ defaultnav:
   /guides/deployment_guide: deploy_guide.html
   /guides/install_puppet: puppet_general.html
   /hiera/1: hiera1.html
+  /hiera/2.0: hiera20.html
   /ja: ja_docs.html
   /ja/learning: ja_learning_nav.html
   /learning: learning_nav.html
