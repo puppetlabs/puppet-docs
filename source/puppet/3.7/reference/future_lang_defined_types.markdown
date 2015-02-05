@@ -87,6 +87,11 @@ To declare a resource of the `apache::vhost` type from the example above:
     }
 {% endhighlight %}
 
+<!-- TODO: * => and using a title of default:  -->
+<!-- TODO: resource declaration is a r-value, a Resource reference, and can be
+     placed in an array etc. One reference is produced per title. -->
+<!-- TODO: Dynamic Reference to Resource type e.g. Resource[$type] { } -->
+
 Behavior
 -----
 
