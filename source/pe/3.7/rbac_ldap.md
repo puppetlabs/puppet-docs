@@ -50,7 +50,7 @@ You connect to an external directory service by providing the information descri
 | Login help (optional) | Static link for LDAP login assistance | https://myweb.com/ldaploginhelp |
 | Hostname | FQDN of the directory service. | myhost.delivery.exampleservice.net |
 | Port | The port that PE will use to access the directory service. | 636 |
-| Lookup User | Distinguished name of the user to perform directory lookups. | ou=admin,dc=delivery,dc=puppetlabs,dc=net |
+| Lookup User | Distinguished name of the user to perform directory lookups. | ou=admin,dc=delivery,dc=puppetlabs,dc=com |
 | Lookup password | Password of the user who performs lookups. | <password>
 | Connection timeout | Number of seconds before the connection will time out. | 10 |
 | Connect using SSL | Choose whether to use secure socket layer or not. | select or leave unchecked |
