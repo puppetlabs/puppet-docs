@@ -49,7 +49,7 @@ PE 3.7.0 introduces the Puppet server, built on a JVM stack, which functions as 
 
 For users upgrading from an earlier version of PE, there are a few things you'll notice after upgrading due to changes in the underlying architecture of the Puppet server.
 
-[About the Puppet Server](./install_upgrading_puppet_server_notes.html) details some items that are intentionally different between the Puppet server and the Apache/Passenger stack; you may also be interested in the PE [Known Issues Related to Puppet Server](./release_notes_known_isues.html#puppet-server-known-issues), where we've listed a handful of issues that we expect to fix in future releases.
+[About the Puppet Server](./install_upgrading_puppet_server_notes.html) details some items that are intentionally different between the Puppet server and the Apache/Passenger stack; you may also be interested in the PE [Known Issues Related to Puppet Server](./release_notes_known_issues.html#puppet-server-known-issues), where we've listed a handful of issues that we expect to fix in future releases.
 
 [Graphing Puppet Server Metrics](./puppet_server_metrics.html) provides instructions on setting up a Graphite server running Grafana to track Puppet server performance metrics.
 
