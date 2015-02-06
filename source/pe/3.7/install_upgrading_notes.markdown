@@ -5,7 +5,7 @@ subtitle: "Upgrading Puppet Enterprise: Notes and Warnings"
 canonical: "/pe/latest/install_upgrading_notes.html"
 ---
 
->**Important**: A complete list of known issues is provided in the [PE 3.7.1 release notes](./release_notes_known_issues.html). Please review this list before upgrading. 
+>**Important**: A complete list of known issues is provided in the [PE 3.7.1 release notes](./release_notes_known_issues.html). Please review this list before upgrading.
 
 ### Upgrading to the Puppet Server (on the Puppet Master)
 
@@ -17,17 +17,17 @@ Directory environments are enabled by default in PE 3.7.0. Before upgrading be s
 
 >**Warnings**: If you enabled directory environments in PE 3.3.x and are upgrading to PE 3.7.0, ensure there is no `default_manifest` parameter in `puppet.conf` **before** upgrading. Upgrades will fail if this change is not made.
 >
-> If you enabled directory environents in PE 3.3.x and are upgrading to PE 3.7.0, ensure that the `basemodulepath` parameter in `puppet.conf` is set in the `[main]` section and not in the `[master]` section *before* upgrading. Upgrades will fail if this change is not made. 
+> If you enabled directory environents in PE 3.3.x and are upgrading to PE 3.7.0, ensure that the `basemodulepath` parameter in `puppet.conf` is set in the `[main]` section and not in the `[master]` section *before* upgrading. Upgrades will fail if this change is not made.
 
 ### Upgrading to the Node Classifier
 
 PE 3.7.0 introduces the new node classifier, which replaces previous versions of the PE console node classifier and changes the way you classify agent nodes.
 
-During the upgrade process, each agent node---including any node you've grouped and classified in previous versions---will be pinned to its own group; meaning that if you have an agent node named `agent1.example.com`, after the upgrade, that node will belong to a group called `agent1.example.com` (and, possibly, the [agent-specified group](#about-the-agent-specified-group)). Since node groups will not be maintained during the upgrade process, you will need to use the new node classifier to regroup your nodes. 
+During the upgrade process, each agent node---including any node you've grouped and classified in previous versions---will be pinned to its own group; meaning that if you have an agent node named `agent1.example.com`, after the upgrade, that node will belong to a group called `agent1.example.com` (and, possibly, the [agent-specified group](#about-the-agent-specified-group)). Since node groups will not be maintained during the upgrade process, you will need to use the new node classifier to regroup your nodes.
 
 In addition, as part of the upgrade process, all nodes will be assigned, by default, to the "production" environment.
 
-Please note that factors such as the size of your deployment and the complexity of your classifications will determine how much time and/or planning you will need before upgrading to PE 3.7.0.  
+Please note that factors such as the size of your deployment and the complexity of your classifications will determine how much time and/or planning you will need before upgrading to PE 3.7.0.
 
 For more information about the node classifier, refer to [Getting Started With Classification](./console_classes_groups_getting_started.html).
 
@@ -39,15 +39,15 @@ For example, if you have an agent node for which the `[agent]` section of `puppe
 
 #### Classifying PE Groups
 
-For fresh installations of PE 3.7.0, node groups in the classifier are created and configured during the installation process. For upgrades, these groups are created but no classes are added to them. This is done to help prevent errors during upgrade process.
+For fresh installations of PE 3.7, node groups in the classifier are created and configured during the installation process. For upgrades, these groups are created but no classes are added to them. This helps prevent errors during the upgrade process.
 
 The [preconfigured groups doc](./console_classes_groups_preconfigured_groups.html) has a list of groups and their classes that get installed on fresh upgrades.
 
-If you are upgrading to PE 3.7.x, you will need to follow the preconfigured groups doc and manually configure these classes to ensure correct PE functionality. This should be done post-upgrade. 
+>**Note**: If you are upgrading to PE 3.7, you need to manually configure classes as described in the [preconfigured groups doc](./console_classes_groups_preconfigured_groups.html). You can badly damage your PE installation if you remove these classes. Configuration should be done post-upgrade.
 
 ### Upgrading to Role-Based Access Control (RBAC)
 
-After upgrading to PE 3.7.0, you will need to set up your directory service and users and groups. Note that when you upgrade, PE doesn't migrate any existing users. In addition, PE doesn't preserve your username and password. You'll now log in with "admin" as your username.
+After upgrading to PE 3.7, you will need to set up your directory service and users and groups. Note that when you upgrade, PE doesn't migrate any existing users. In addition, PE doesn't preserve your username and password. You'll now log in with "admin" as your username.
 
 For more information about RBAC, refer to [Working with Role-Based Access Control](./rbac_intro.html).
 
@@ -70,14 +70,16 @@ For more information about RBAC, refer to [Working with Role-Based Access Contro
    - The console and console_auth databases: located on the server assigned to the database support component.
    - The PuppetDB database: located on the server assigned to the database support component.
 
+>**Note**: For large databases, upgrading your Puppet Enterprise console database can significantly increase the amount of time it takes to complete an upgrade. You can reduce the amount of time updates require by [cleaning old reports](./maintain_console-db.html#cleaning-old-reports) and [pruning your database](./maintain_console-db.html#pruning-the-console-database-with-a-cron-job).
+
 ### A Note about RBAC, Node Classifier, and External PostgreSQL
 
 If you are using an external PostgreSQL instance that is not managed by PE, please note the following:
 
-1. You will need to create databases for RBAC, activity service, and the node classifier before upgrading. Instructions on creating these databases are documented in the web-based installation instructions for both [monolithic](./install_pe_mono.html) and [split](./install_pe_split.html) installs. 
+1. You will need to create databases for RBAC, activity service, and the node classifier before upgrading. Instructions on creating these databases are documented in the web-based installation instructions for both [monolithic](./install_pe_mono.html) and [split](./install_pe_split.html) installs.
 2. You will need to have the [citext extension](http://www.postgresql.org/docs/9.2/static/citext.html) enabled on the RBAC database.
 
-### `q_database_host` Cannot be an Alt Name For Upgrades to 3.7.0 
+### `q_database_host` Cannot be an Alt Name For Upgrades to 3.7.0
 
 PostgreSQL does not support alt names when set to `verify_full`. If you are upgrading to 3.7 with an answer file, make sure `q_database_host` is set as the Puppet agent certname for the database node and not set as an alt name.
 
