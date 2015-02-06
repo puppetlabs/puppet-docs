@@ -9,6 +9,14 @@ This page contains information about new features and general improvements in th
 
 For more information about this release, also see the [Known Issues](./release_notes_known_issues.html) and [Security Fixes](./release_notes_security.html).
 
+## New Features in 3.7.2
+
+### RBAC Can Query an Entire Base DN For Users and Groups
+
+Previously, RBAC required an RDN (relative distinguished name) for user and group queries to an external directory. An RDN is no longer required. This means that you can search an entire base DN (distinguished name) for a user or group.
+
+For more information, see [Connecting Puppet Enterprise with LDAP Services](./rbac_ldap.html).
+
 ## New Features in 3.7.1
 
 ### SLES 12 Support (all components)

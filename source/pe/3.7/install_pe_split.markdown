@@ -208,7 +208,7 @@ If you plan on managing more than 1500 nodes, follow these split install instruc
 
 12. On the validation page, the installer will verify various configuration elements (e.g., if SSH credentials are correct, if there is enough disk space, and if the OS is the same for the various components). If there aren't any outstanding issues, click **Deploy now**.
 
-At this point, PE will begin installing your deployment, and you can monitor the installation as it runs by toggling **Log View** and **Summary View** (top-right corner of page). If you notice any errors during the installation, check `/var/log/pe-installer/installer.log` on the machine from which you are running the installer.
+At this point, PE will begin installing your deployment, and you can monitor the installation as it runs by toggling **Log View** and **Summary View** (top-right corner of page). If you notice any errors during the installation, check `/var/log/pe-installer/install_log.lastrun.<hostname>.log` on the machine from which you are running the installer.
 
 You can find the installer answer file at `/opt/puppet/share/installer/answers` on the machine from which you're running the installer, but note that these answers are overwritten each time you run the installer.
 

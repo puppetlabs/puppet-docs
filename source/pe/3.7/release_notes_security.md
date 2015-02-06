@@ -9,6 +9,20 @@ This page contains information about security fixes in Puppet Enterprise (PE) 3.
 
 For more information about this release, also see the [Known Issues](./release_notes_known_issues.html) and [New Featutes](./release_notes.html).
 
+## Puppet Enterprise 3.7.2 (xx/xx/15)
+
+### Security Fixes
+
+### Bug Fixes
+
+#### The `node:del` Rake Task Deleted a Node Group Instead of the Node
+
+In PE 3.7, the behavior of the `node:del` rake task changed so that it deleted the node group to which a specified node was pinned. In PE 3.7.2, this behavior has been reverted to the PE 3.3 behavior so that `node:del` now deletes the specified node from the console database. 
+
+A new rake task, `node:delgroup`, was introduced in PE 3.7.2 for deleting a node group.
+
+For more information, see the [rake API documentation](./console_rake_api.html).
+
 ## Puppet Enterprise 3.7.1 (12/16/14)
 
 ### Security Fixes

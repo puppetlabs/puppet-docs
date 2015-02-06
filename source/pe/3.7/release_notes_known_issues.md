@@ -191,11 +191,9 @@ Matching nodes aren’t showing up.
 
 ### Important Factors in Connecting to an External Directory Service
 
-The following requirements affect how you connect your existing LDAP to PE:
+The following requirement affects how you connect your existing LDAP to PE:
 
-   * User and group RDNs are currently required as part of the directory service settings. A simple query from the provided base DN is not supported.
    * Use of multiple user RDNs or group RDNs is not supported.
-   * Cyclical group relationships in Active Directory will prevent a user from logging in.
 
 ### Custom Console Certs May Break on Upgrade
 
