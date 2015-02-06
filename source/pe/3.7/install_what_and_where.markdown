@@ -33,6 +33,7 @@ All functional components of PE, excluding configuration files. You are not like
  * MCollective
  * Hiera
  * Puppet Dashboard
+ * Puppet Server
 
 #### Where
 
