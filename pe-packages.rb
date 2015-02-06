@@ -3,7 +3,7 @@
 require 'json'
 require 'pp'
 
-packagedata = JSON.load( File.read( '/Users/nick/Desktop/packages.json' ) )
+packagedata = JSON.load( File.read( './packages.json' ) )
 # this is like { platformname: { packagename: { version: version, md5: md5 }, packagename: {...} }, platformname: {......} }
 
 package_name_variations = {

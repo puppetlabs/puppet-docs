@@ -1,0 +1,5498 @@
+{
+  "debian-6-amd64": {
+    "pe-virt-what": {
+      "version": "1.14-1puppet1",
+      "md5": "2b9628036d735bc040cddcd360348b36"
+    },
+    "pe-rubygem-sequel": {
+      "version": "3.47.0-1puppet1",
+      "md5": "47bb9410430b8a255c79bc0710eb86e3"
+    },
+    "pe-agent": {
+      "version": "3.7.1-1puppet1",
+      "md5": "9f872116bd8f61c6a04fbe2396b58529"
+    },
+    "pe-augeas": {
+      "version": "1.2.0-1puppet1",
+      "md5": "bbcded4edc45d6fabcb676f91a01d2e8"
+    },
+    "pe-license": {
+      "version": "0.1.3.7-1puppet1",
+      "md5": "d1b3250039992697e75a0fb01c1c771c"
+    },
+    "pe-certificate-manager": {
+      "version": "0.5.1.36-1puppet1",
+      "md5": "91005cd163ced33e85383a07c192092c"
+    },
+    "pe-postgresql": {
+      "version": "9.2.7-1puppet7",
+      "md5": "9ecf44728d611157d8537ae4b5448340"
+    },
+    "pe-bundler": {
+      "version": "1.3.5-1puppet2",
+      "md5": "bc9d74edc542799bb61b9d1805ba788d"
+    },
+    "pe-hiera": {
+      "version": "1.3.4.2-1puppet1",
+      "md5": "3a9901142072533bf730c8cfe9f36c4f"
+    },
+    "pe-httpd": {
+      "version": "2.2.27-1puppet19",
+      "md5": "3cc26c46825abc5f5719a9bb2f29b3f5"
+    },
+    "pe-activerecord": {
+      "version": "2.3.17-1puppet2",
+      "md5": "3621bff13d1270016dafc85be2c84327"
+    },
+    "pe-live-management": {
+      "version": "1.3.1.45-1puppet1",
+      "md5": "73e552346d3050e86f60e18530106318"
+    },
+    "pe-activemq": {
+      "version": "5.9.0-1puppet7",
+      "md5": "139b83b7b08982a9dfd1a09153e40d39"
+    },
+    "pe-httpd-mpm-worker": {
+      "version": "2.2.27-1puppet19",
+      "md5": "4adb98dede9cc6f9c1551d947a3fcf15"
+    },
+    "pe-memcached": {
+      "version": "1.4.7-1puppet6",
+      "md5": "7fe7d0f3f7bc702d65a9027cae9d1727"
+    },
+    "pe-mcollective": {
+      "version": "2.6.0.5-1puppet1",
+      "md5": "8b7ea7daa451d065f34ffd1ea88151f2"
+    },
+    "pe-console-auth": {
+      "version": "1.3.1.20-1puppet1",
+      "md5": "b4edb12a20f14c92c5b3afc9b3f637d8"
+    },
+    "pe-puppet-enterprise-release": {
+      "version": "3.7.1.0-1puppet1",
+      "md5": "6548f7df033e2d801e584f004cc9787e"
+    },
+    "pe-postgresql-server": {
+      "version": "9.2.7-1puppet7",
+      "md5": "337defc5c115fb4b788275f3c4c41032"
+    },
+    "pe-rubygem-stomp": {
+      "version": "1.2.9-1puppet1",
+      "md5": "dff1024b7be547b4e7a0f062710171d2"
+    },
+    "pe-ruby-mysql": {
+      "version": "2.8.2-1puppet2",
+      "md5": "8a60680fa2f66c904eb755fb670d0512"
+    },
+    "pe-puppetdb": {
+      "version": "2.2.1.1-1puppet1",
+      "md5": "4e2dde412e749978f8c7ae46a685e716"
+    },
+    "pe-rubygem-deep-merge": {
+      "version": "1.0.0-1puppet1",
+      "md5": "617ce83e2993eafb27fb4b33d13a21c5"
+    },
+    "pe-activesupport": {
+      "version": "2.3.17-1puppet2",
+      "md5": "b1b75c087dcf571681d73ac6c42ec90f"
+    },
+    "pe-libevent-devel": {
+      "version": "2.0.13-1puppet4",
+      "md5": "3ccccece74ab792c2ee66c876a0e7319"
+    },
+    "pe-facter": {
+      "version": "2.3.0.0-1puppet1",
+      "md5": "febaadf1276a338f68c7ea2adaae581c"
+    },
+    "pe-cloud-provisioner": {
+      "version": "1.1.7-1puppet1",
+      "md5": "4143eb8c0c78dfc2e92d9689c571c817"
+    },
+    "pe-cloud-provisioner-libs": {
+      "version": "0.3.2-1puppet1",
+      "md5": "2dec047503203f45fb763fae59fb6589"
+    },
+    "pe-ruby-rgen": {
+      "version": "0.6.5-1puppet1",
+      "md5": "6e8ec954ee9f17b4f6044db4f4c13524"
+    },
+    "pe-httpd-mpm-itk": {
+      "version": "2.2.27-1puppet19",
+      "md5": "1e837192418d36b84f6d8c173e2351f7"
+    },
+    "pe-puppet-dashboard": {
+      "version": "2.1.6.1.166-1puppet1",
+      "md5": "44dd78637b3c9b44578562d1ccbfd14a"
+    },
+    "pe-rubygem-rack": {
+      "version": "1.4.5-1puppet2",
+      "md5": "64ea2f799a63bd7daa612535a6ccc0df"
+    },
+    "pe-passenger": {
+      "version": "4.0.37-1puppet1",
+      "md5": "2b828125102a6077b938d6498e88413d"
+    },
+    "pe-httpd-mpm-event": {
+      "version": "2.2.27-1puppet19",
+      "md5": "e2e1b9d84f05d7d494df405ce4ae1be1"
+    },
+    "pe-ruby-shadow": {
+      "version": "2.2.0-1puppet3",
+      "md5": "3c927fae47bc713f26adafb3c1c312a5"
+    },
+    "pe-httpd-mpm-prefork": {
+      "version": "2.2.27-1puppet19",
+      "md5": "d13a87c4d97c1a30e03c45707adda8fd"
+    },
+    "pe-mcollective-client": {
+      "version": "2.6.0.5-1puppet1",
+      "md5": "f46662e307504bd278ad531f35caf9d8"
+    },
+    "pe-puppetdb-terminus": {
+      "version": "2.2.1.1-1puppet1",
+      "md5": "d79eba222201519285818fbaee89cf1d"
+    },
+    "pe-rubygem-net-ssh": {
+      "version": "2.1.4-1puppet2",
+      "md5": "b76bd6e395dc51066e6adeb67a15aaf8"
+    },
+    "pe-ruby-stomp": {
+      "version": "1.3.3-1puppet1",
+      "md5": "b40910ee91d9abe9d6f955aab0756358"
+    },
+    "pe-ruby-augeas": {
+      "version": "0.5.0-1puppet2",
+      "md5": "746f08e4bfac22571ef01c79cc9c9bb9"
+    },
+    "pe-license-status": {
+      "version": "0.2.2-1puppet1",
+      "md5": "57e5ee907ca85b9e1f5f92f9a53b6c1d"
+    },
+    "pe-httpd-threaded-dev": {
+      "version": "2.2.27-1puppet19",
+      "md5": "d61a445bd85b3d572e6d3bbb69d73417"
+    },
+    "pe-java": {
+      "version": "1.7.0.71-1puppet1",
+      "md5": "de85be4bae9c0ef84ffa98eb4e992bb2"
+    },
+    "pe-memcached-devel": {
+      "version": "1.4.7-1puppet6",
+      "md5": "cb33342fe30c3547c0c60e293b821344"
+    },
+    "pe-mcollective-common": {
+      "version": "2.6.0.5-1puppet1",
+      "md5": "84798bbeff02394f86dfad0f999bb55d"
+    },
+    "pe-postgresql-contrib": {
+      "version": "9.2.7-1puppet7",
+      "md5": "4c9f4b1a2910e09cff05c1e3b67b941f"
+    },
+    "pe-puppet-license-cli": {
+      "version": "0.1.7.5-1puppet1",
+      "md5": "cd1d1a85d67c198b533f1b23761f0dea"
+    },
+    "pe-ruby": {
+      "version": "1.9.3.484-1puppet11",
+      "md5": "b69c4d8cda10cfa43e783aad20bef892"
+    },
+    "pe-postgresql-devel": {
+      "version": "9.2.7-1puppet7",
+      "md5": "1e4184228632729c9b85059fcd52c200"
+    },
+    "pe-ruby-ldap": {
+      "version": "0.9.12-1puppet2",
+      "md5": "26d6bd684a3231ed43b20290b1aa25cb"
+    },
+    "pe-event-inspector": {
+      "version": "0.2.1.65-1puppet1",
+      "md5": "632f007dad989aab3ac1aa9225f58000"
+    },
+    "pe-console": {
+      "version": "0.4.3-1puppet1",
+      "md5": "d4c09cb83b4ae6193e5ef5465960555b"
+    },
+    "pe-puppet": {
+      "version": "3.7.3.3-1puppet1",
+      "md5": "6d4c9f11034100ddf952b132d35b10e7"
+    },
+    "pe-httpd-prefork-dev": {
+      "version": "2.2.27-1puppet19",
+      "md5": "08deb06196717adf28e085ef2568587e"
+    },
+    "pe-libyaml": {
+      "version": "0.1.6-1puppet2",
+      "md5": "91854903f2ea64af09da91892a6dce37"
+    },
+    "pe-libevent": {
+      "version": "2.0.13-1puppet4",
+      "md5": "efb72791b418b989b81aaaf1357dac28"
+    },
+    "pe-openssl": {
+      "version": "1.0.0o-1puppet1",
+      "md5": "6d1e8b67f99d295dfbe626bde8d65afc"
+    },
+    "pe-installer": {
+      "version": "0.0.2.716-1puppet1",
+      "md5": "35453534ef9fb75bba9b116c7cc3d052"
+    },
+    "pe-console-services": {
+      "version": "0.7.4-1puppet1",
+      "md5": "b3f250b449ace682e8b7d3cd86c27b5c"
+    },
+    "pe-console-services-termini": {
+      "version": "0.7.4-1puppet1",
+      "md5": "21037d36e2c78c6bfb2f36ce219bca40"
+    },
+    "pe-puppetserver": {
+      "version": "0.4.1-1puppet1",
+      "md5": "ce6e999910d7a9368cde03051c54856b"
+    },
+    "pe-puppetserver-common": {
+      "version": "3.7.3.3-1puppet1",
+      "md5": "e28ceeb31950c58ea25cfe202aac3e17"
+    }
+  },
+  "solaris-10-i386": {
+    "pup-libyaml": {
+      "version": "0.1.6-4",
+      "md5": "1193159b07f174dc9c49be505eb12b4e"
+    },
+    "pup-openssl": {
+      "version": "1.0.0.15-2",
+      "md5": "8dddaa0bcaf6ba30ee732a49c8d47a10"
+    },
+    "pup-puppet": {
+      "version": "3.7.3.3-1",
+      "md5": "a4b00b710bbc964f4b699bed93202341"
+    },
+    "pup-deep-merge": {
+      "version": "1.0.0-5",
+      "md5": "957d921df88757991ebb52683a774ab0"
+    },
+    "pup-mcollective": {
+      "version": "2.6.0.5-1",
+      "md5": "2184fc79550fc1a7b4c6dd174309b876"
+    },
+    "pup-ruby-rgen": {
+      "version": "0.6.5-4",
+      "md5": "c4683136a9d7372702a26cf38ce0475d"
+    },
+    "pup-stomp": {
+      "version": "1.3.3-1",
+      "md5": "1a8b8dbc8346e09511db8d8afab08b41"
+    },
+    "pup-ruby-shadow": {
+      "version": "2.3.3-3",
+      "md5": "1a856e04bf51f38a3299b4fd923c06f6"
+    },
+    "pup-augeas": {
+      "version": "1.2.0-3",
+      "md5": "ca2bbe0c3de551d405ae39d460b9064a"
+    },
+    "pup-hiera": {
+      "version": "1.3.4.2-1",
+      "md5": "e78e25bcb12b389c5cb93202463f90ed"
+    },
+    "pup-facter": {
+      "version": "2.3.0.0-1",
+      "md5": "e7472b847d6e48a83c5c456e4efb02ae"
+    },
+    "pup-puppet-enterprise-release": {
+      "version": "3.7.1.0-1",
+      "md5": "257909f0dd927bb1dca12c6c3bd2b19c"
+    },
+    "pup-ruby-augeas": {
+      "version": "0.5.0-10",
+      "md5": "57462712325ca9672027caa5ced0d524"
+    },
+    "pup-ruby": {
+      "version": "1.9.3.484-16",
+      "md5": "d226a3783e0e52781fb35c1c9b791196"
+    }
+  },
+  "solaris-10-sparc": {
+    "pup-libyaml": {
+      "version": "0.1.6-4",
+      "md5": "cfbb6e2c2c2a6fc482bdd1390eec5017"
+    },
+    "pup-openssl": {
+      "version": "1.0.0.15-2",
+      "md5": "129141c806ee147e7b2b58e22c56d4e5"
+    },
+    "pup-puppet": {
+      "version": "3.7.3.3-1",
+      "md5": "e16a46958ce608e37fff94e0c2b4e920"
+    },
+    "pup-deep-merge": {
+      "version": "1.0.0-5",
+      "md5": "692a339af80176d0a018a99b508534ff"
+    },
+    "pup-mcollective": {
+      "version": "2.6.0.5-1",
+      "md5": "61e6069f7a51ca9348194129d9be1aab"
+    },
+    "pup-ruby-rgen": {
+      "version": "0.6.5-4",
+      "md5": "642c5c02625dccf495485eeb915390a6"
+    },
+    "pup-stomp": {
+      "version": "1.3.3-1",
+      "md5": "24d3d1771dde6989d823f953b3a5ad8d"
+    },
+    "pup-ruby-shadow": {
+      "version": "2.3.3-3",
+      "md5": "6c63a19d86019f2d76366c5efcab6c25"
+    },
+    "pup-augeas": {
+      "version": "1.2.0-3",
+      "md5": "d24ffc0b9b2ab4188affc621bf4ef83d"
+    },
+    "pup-hiera": {
+      "version": "1.3.4.2-1",
+      "md5": "bd691d2c783839daaee7b1bab2fd5244"
+    },
+    "pup-facter": {
+      "version": "2.3.0.0-1",
+      "md5": "172d3c8702a6f1e3e0a18a00fb71ffbc"
+    },
+    "pup-puppet-enterprise-release": {
+      "version": "3.7.1.0-1",
+      "md5": "5dab4af3e99c15b701bd71f527608d58"
+    },
+    "pup-ruby-augeas": {
+      "version": "0.5.0-10",
+      "md5": "898b1ef06db7d0a360d7184de5128eeb"
+    },
+    "pup-ruby": {
+      "version": "1.9.3.484-16",
+      "md5": "b44b74cbc985253f702789db0adf13a6"
+    }
+  },
+  "ubuntu-10.04-i386": {
+    "pe-virt-what": {
+      "version": "1.14-1puppet1",
+      "md5": "a33d4545d8f562804c1c4b038ab12ab8"
+    },
+    "pe-rubygem-sequel": {
+      "version": "3.47.0-1puppet1",
+      "md5": "39450f96d9ceb7c9db1aa6626bdd6a7c"
+    },
+    "pe-agent": {
+      "version": "3.7.1-1puppet1",
+      "md5": "8fed2a7fd6a1a6ba4e6e9dce389b09cf"
+    },
+    "pe-augeas": {
+      "version": "1.2.0-1puppet1",
+      "md5": "5b2a39a2e502ed5161ff859ff8253110"
+    },
+    "pe-license": {
+      "version": "0.1.3.7-1puppet1",
+      "md5": "c70c2d36bb12df0a8c0675b904d399fa"
+    },
+    "pe-certificate-manager": {
+      "version": "0.5.1.36-1puppet1",
+      "md5": "7044827e0c3c6e9257964e83ff9f547d"
+    },
+    "pe-postgresql": {
+      "version": "9.2.7-1puppet7",
+      "md5": "663eac5615c55e662d98d9ff367866f7"
+    },
+    "pe-bundler": {
+      "version": "1.3.5-1puppet2",
+      "md5": "bfdab6ad8b9f28593822f4b42bde8ed6"
+    },
+    "pe-hiera": {
+      "version": "1.3.4.2-1puppet1",
+      "md5": "a3bb628dfb22317fc5cecdf499f82cac"
+    },
+    "pe-httpd": {
+      "version": "2.2.27-1puppet19",
+      "md5": "532964b593ae1aa394200d1e8bc6ba8c"
+    },
+    "pe-activerecord": {
+      "version": "2.3.17-1puppet2",
+      "md5": "d29a75e66d7f53bffa2c8b80315a5cd3"
+    },
+    "pe-live-management": {
+      "version": "1.3.1.45-1puppet1",
+      "md5": "08a2a52f11081ab27f03d7349d4ad2a9"
+    },
+    "pe-activemq": {
+      "version": "5.9.0-1puppet7",
+      "md5": "9a3320032510274674c00f0d21883a00"
+    },
+    "pe-httpd-mpm-worker": {
+      "version": "2.2.27-1puppet19",
+      "md5": "3a64c83024d658202afb983c9bb69437"
+    },
+    "pe-memcached": {
+      "version": "1.4.7-1puppet6",
+      "md5": "1684c31348d86f8ea88f59b44e178d98"
+    },
+    "pe-mcollective": {
+      "version": "2.6.0.5-1puppet1",
+      "md5": "84f2239ed12b350934eb3a070686d8dc"
+    },
+    "pe-console-auth": {
+      "version": "1.3.1.20-1puppet1",
+      "md5": "57f838ef1c6f07436470faace3f4a8eb"
+    },
+    "pe-puppet-enterprise-release": {
+      "version": "3.7.1.0-1puppet1",
+      "md5": "c91ea471de47d3ec1c53365971a1bff7"
+    },
+    "pe-postgresql-server": {
+      "version": "9.2.7-1puppet7",
+      "md5": "50298c88a6bfef36f6e0442249e5cf0c"
+    },
+    "pe-rubygem-stomp": {
+      "version": "1.2.9-1puppet1",
+      "md5": "6f7f5dc23959df6b0b4ff98a00b16d2e"
+    },
+    "pe-ruby-mysql": {
+      "version": "2.8.2-1puppet2",
+      "md5": "ff559b05d6f25429cac131dc7b33feba"
+    },
+    "pe-puppetdb": {
+      "version": "2.2.1.1-1puppet1",
+      "md5": "e16e9f6a3761ecd8b0c5c830cf90996d"
+    },
+    "pe-rubygem-deep-merge": {
+      "version": "1.0.0-1puppet1",
+      "md5": "51f3ba2c1d54d92b0eba318eb6efb68a"
+    },
+    "pe-activesupport": {
+      "version": "2.3.17-1puppet2",
+      "md5": "b10b4aa09326b14819ec64df974900e8"
+    },
+    "pe-libevent-devel": {
+      "version": "2.0.13-1puppet4",
+      "md5": "d842015d80100ca4bdf0b5441ad3b8c7"
+    },
+    "pe-facter": {
+      "version": "2.3.0.0-1puppet1",
+      "md5": "fe9df3df8091780614b70c3e51e5d240"
+    },
+    "pe-cloud-provisioner": {
+      "version": "1.1.7-1puppet1",
+      "md5": "5b44e4836f94a9c412c6bc703a01f85b"
+    },
+    "pe-cloud-provisioner-libs": {
+      "version": "0.3.2-1puppet1",
+      "md5": "195bf0754863914dfdb91ae166a9cd45"
+    },
+    "pe-ruby-rgen": {
+      "version": "0.6.5-1puppet1",
+      "md5": "99f5b8fee3ae2aaf9a7fc74d726f20b0"
+    },
+    "pe-httpd-mpm-itk": {
+      "version": "2.2.27-1puppet19",
+      "md5": "f1e1266708513433d8c9fe263af4f776"
+    },
+    "pe-puppet-dashboard": {
+      "version": "2.1.6.1.166-1puppet1",
+      "md5": "de1f7e5aecf1413efedea1d60f76a8bd"
+    },
+    "pe-rubygem-rack": {
+      "version": "1.4.5-1puppet2",
+      "md5": "964ddfff71dcb9aaf92e123c6a7a94bb"
+    },
+    "pe-passenger": {
+      "version": "4.0.37-1puppet1",
+      "md5": "e7cd21357695300ab6bef237fe909442"
+    },
+    "pe-httpd-mpm-event": {
+      "version": "2.2.27-1puppet19",
+      "md5": "8c49ac9e48b36939969f67cff0869886"
+    },
+    "pe-ruby-shadow": {
+      "version": "2.2.0-1puppet3",
+      "md5": "d4ff1771878e06c0a0979ef361db151f"
+    },
+    "pe-httpd-mpm-prefork": {
+      "version": "2.2.27-1puppet19",
+      "md5": "067ffa910db04440570422f4fca6c02a"
+    },
+    "pe-mcollective-client": {
+      "version": "2.6.0.5-1puppet1",
+      "md5": "305379fd9193071c97268b8cefae5c02"
+    },
+    "pe-puppetdb-terminus": {
+      "version": "2.2.1.1-1puppet1",
+      "md5": "bf0ba6b763607b7cfeb021ea8179fe44"
+    },
+    "pe-rubygem-net-ssh": {
+      "version": "2.1.4-1puppet2",
+      "md5": "58232f5339956a2f330ef17b1b60dfd9"
+    },
+    "pe-ruby-stomp": {
+      "version": "1.3.3-1puppet1",
+      "md5": "6e8ec29b1710bab4af5f1430b4ce49ca"
+    },
+    "pe-ruby-augeas": {
+      "version": "0.5.0-1puppet2",
+      "md5": "b9a3800fd3d00fb1469231afe590db45"
+    },
+    "pe-license-status": {
+      "version": "0.2.2-1puppet1",
+      "md5": "e0f1f03647ba338b2318f34f5a814577"
+    },
+    "pe-httpd-threaded-dev": {
+      "version": "2.2.27-1puppet19",
+      "md5": "29367f23990d0ede6f894dd40917fdd1"
+    },
+    "pe-java": {
+      "version": "1.7.0.71-1puppet1",
+      "md5": "ba6b074ec5880b1324308ccd43b0e1c5"
+    },
+    "pe-memcached-devel": {
+      "version": "1.4.7-1puppet6",
+      "md5": "cc0bd74df7af33caabd3c823deabb8ee"
+    },
+    "pe-mcollective-common": {
+      "version": "2.6.0.5-1puppet1",
+      "md5": "65b6fca945db1544958e125485f49182"
+    },
+    "pe-postgresql-contrib": {
+      "version": "9.2.7-1puppet7",
+      "md5": "1870e60d0b4427483777b1c5a1fba3fa"
+    },
+    "pe-puppet-license-cli": {
+      "version": "0.1.7.5-1puppet1",
+      "md5": "cebc68c05ff4ab427a4897463a463a37"
+    },
+    "pe-ruby": {
+      "version": "1.9.3.484-1puppet11",
+      "md5": "01da73ba3c903004f4c1dbf8d980bccc"
+    },
+    "pe-postgresql-devel": {
+      "version": "9.2.7-1puppet7",
+      "md5": "7b840da3a983a6689c3b9e1ebf24668f"
+    },
+    "pe-ruby-ldap": {
+      "version": "0.9.12-1puppet2",
+      "md5": "80c57c6a725f6c192535cb4d97ae9c05"
+    },
+    "pe-event-inspector": {
+      "version": "0.2.1.65-1puppet1",
+      "md5": "71983f757c8dd7748e817b84e017f2ec"
+    },
+    "pe-console": {
+      "version": "0.4.3-1puppet1",
+      "md5": "bdcb13d3f64e61df6290631b2efd0a43"
+    },
+    "pe-puppet": {
+      "version": "3.7.3.3-1puppet1",
+      "md5": "26c534c6b02284b50ffa62ba0038034a"
+    },
+    "pe-httpd-prefork-dev": {
+      "version": "2.2.27-1puppet19",
+      "md5": "f7c18243ec17e3ecffbcc34f4e0c7800"
+    },
+    "pe-libyaml": {
+      "version": "0.1.6-1puppet2",
+      "md5": "1e0eb5cd873442c6c1bb0a0cab03c870"
+    },
+    "pe-libevent": {
+      "version": "2.0.13-1puppet4",
+      "md5": "6142765cc24c07423e0be2064abd8a63"
+    },
+    "pe-openssl": {
+      "version": "1.0.0o-1puppet1",
+      "md5": "2c94e9a7ea6c7f38f15f1c10747d4f26"
+    },
+    "pe-installer": {
+      "version": "0.0.2.716-1puppet1",
+      "md5": "d33bc3968188e9d6a18fce10b83c7a5c"
+    },
+    "pe-console-services": {
+      "version": "0.7.4-1puppet1",
+      "md5": "408cbfeebca289f4091b48a030b9dfea"
+    },
+    "pe-console-services-termini": {
+      "version": "0.7.4-1puppet1",
+      "md5": "bee69cf05d75ba68691abe6b30cee15d"
+    },
+    "pe-puppetserver": {
+      "version": "0.4.1-1puppet1",
+      "md5": "a0e1e8b74e82a65dc66376e81f4c5fcf"
+    },
+    "pe-puppetserver-common": {
+      "version": "3.7.3.3-1puppet1",
+      "md5": "74881e74cb35c4a3d943080a65dc4855"
+    }
+  },
+  "solaris-11-sparc": {
+    "pe-ruby-augeas": {
+      "version": "0.5.0-10",
+      "md5": "25af35f293aadc99da9b82019f49988c"
+    },
+    "pe-puppet": {
+      "version": "3.7.3.3-1",
+      "md5": "81b195f897c59c20d50b6aaf4eb6f9b0"
+    },
+    "pe-mcollective": {
+      "version": "2.6.0.5-1",
+      "md5": "f235b5e5d0d4e4d93af2c46849f632a1"
+    },
+    "pe-stomp": {
+      "version": "1.3.3-1",
+      "md5": "4aa11074ff07b2e9ed15a86ab6f217fb"
+    },
+    "pe-ruby-rgen": {
+      "version": "0.6.5-4",
+      "md5": "54ecc0ac5dba0fbcadf7426d42469385"
+    },
+    "pe-facter": {
+      "version": "2.3.0.0-1",
+      "md5": "ebb167c2d21279d693453769cc1cdfd3"
+    },
+    "pe-deep-merge": {
+      "version": "1.0.0-5",
+      "md5": "bb208a81fb8f9ff59de51aa5de005e38"
+    },
+    "pe-ruby-shadow": {
+      "version": "2.3.3-3",
+      "md5": "22304724e657c66905192fd24faaed00"
+    },
+    "pe-hiera": {
+      "version": "1.3.4.2-1",
+      "md5": "42aae94d5103b82ab2aa881a77f8344e"
+    },
+    "pe-augeas": {
+      "version": "1.2.0-3",
+      "md5": "d28162076316dc881c6746aa245dd62c"
+    },
+    "pe-ruby": {
+      "version": "1.9.3.484-16",
+      "md5": "e9bf0e9c40c737b5b8c3d284c30902c9"
+    },
+    "pe-libyaml": {
+      "version": "0.1.6-4",
+      "md5": "f315319da0742bbc741cb28873db0f70"
+    },
+    "pe-puppet-enterprise-release": {
+      "version": "3.7.1.0-1",
+      "md5": "c822d395a6b863d9663c4d8a4fe35a16"
+    },
+    "pe-openssl": {
+      "version": "1.0.0.15-2",
+      "md5": "74197e48c0bd9fd9606a9374eeb80f1e"
+    }
+  },
+  "debian-7-i386": {
+    "pe-virt-what": {
+      "version": "1.14-1puppet1",
+      "md5": "e8034a12121a025044536070794adb7b"
+    },
+    "pe-rubygem-sequel": {
+      "version": "3.47.0-1puppet1",
+      "md5": "a0f59e083501e4a3fcd21cc6f1d0a06f"
+    },
+    "pe-agent": {
+      "version": "3.7.1-1puppet1",
+      "md5": "66b20ea32f4670f638abc338de07b844"
+    },
+    "pe-augeas": {
+      "version": "1.2.0-1puppet1",
+      "md5": "b4a2c59815e9b5003ce1f91a6bb6b648"
+    },
+    "pe-license": {
+      "version": "0.1.3.7-1puppet1",
+      "md5": "cc262dba55d526853a35de158b076383"
+    },
+    "pe-certificate-manager": {
+      "version": "0.5.1.36-1puppet1",
+      "md5": "e1155385422306abb9760e6b048b1612"
+    },
+    "pe-postgresql": {
+      "version": "9.2.7-1puppet7",
+      "md5": "9ef457b4e651f0443a999747ce136879"
+    },
+    "pe-bundler": {
+      "version": "1.3.5-1puppet2",
+      "md5": "36b0f38ce81b2876327e7eb421e5936e"
+    },
+    "pe-hiera": {
+      "version": "1.3.4.2-1puppet1",
+      "md5": "f497ab315b83a9302f98316012623c21"
+    },
+    "pe-httpd": {
+      "version": "2.2.27-1puppet19",
+      "md5": "220da5099e2e864126315469fd685632"
+    },
+    "pe-activerecord": {
+      "version": "2.3.17-1puppet2",
+      "md5": "0d5b040aca4445728e6efa3105598852"
+    },
+    "pe-live-management": {
+      "version": "1.3.1.45-1puppet1",
+      "md5": "575329f5e00f8987617132a4a90d3835"
+    },
+    "pe-activemq": {
+      "version": "5.9.0-1puppet7",
+      "md5": "44b51f7156e90cccd65083662719519e"
+    },
+    "pe-httpd-mpm-worker": {
+      "version": "2.2.27-1puppet19",
+      "md5": "ee274e8aff242e53f6c0d685206d06be"
+    },
+    "pe-memcached": {
+      "version": "1.4.7-1puppet6",
+      "md5": "bad32ce49e23873e1beb35aac4668fb5"
+    },
+    "pe-mcollective": {
+      "version": "2.6.0.5-1puppet1",
+      "md5": "03695ee6a35300f85bea432eab82f587"
+    },
+    "pe-console-auth": {
+      "version": "1.3.1.20-1puppet1",
+      "md5": "b5ac060e0d0b2a9fa04abcfde3ecfed5"
+    },
+    "pe-puppet-enterprise-release": {
+      "version": "3.7.1.0-1puppet1",
+      "md5": "68e95ccc57a66317f1d07e5df1602883"
+    },
+    "pe-postgresql-server": {
+      "version": "9.2.7-1puppet7",
+      "md5": "0d78b0a98d8996f73dc358aad84f7a43"
+    },
+    "pe-rubygem-stomp": {
+      "version": "1.2.9-1puppet1",
+      "md5": "82594bd98bfac40bc3cb5dd0f18c8fff"
+    },
+    "pe-ruby-mysql": {
+      "version": "2.8.2-1puppet2",
+      "md5": "d01d0e7889da924ed6e47f04758723b3"
+    },
+    "pe-puppetdb": {
+      "version": "2.2.1.1-1puppet1",
+      "md5": "3796fda62becb44bae49b10547f6ab97"
+    },
+    "pe-rubygem-deep-merge": {
+      "version": "1.0.0-1puppet1",
+      "md5": "467cad24ad661fd9066cebbb90a7b7c2"
+    },
+    "pe-activesupport": {
+      "version": "2.3.17-1puppet2",
+      "md5": "93fbbd44564f022bee27125834049c8b"
+    },
+    "pe-libevent-devel": {
+      "version": "2.0.13-1puppet4",
+      "md5": "7dbcd68edab17d478497bb8db7f7af84"
+    },
+    "pe-facter": {
+      "version": "2.3.0.0-1puppet1",
+      "md5": "d2090de3ea42ca5c21aba68720d528ee"
+    },
+    "pe-cloud-provisioner": {
+      "version": "1.1.7-1puppet1",
+      "md5": "372cb2fdcde89bf16471c1bc7a003ded"
+    },
+    "pe-cloud-provisioner-libs": {
+      "version": "0.3.2-1puppet1",
+      "md5": "3b9154238087a5cd9a50128910f00602"
+    },
+    "pe-ruby-rgen": {
+      "version": "0.6.5-1puppet1",
+      "md5": "198ba504bf9581b6b0ff3ed587cfce92"
+    },
+    "pe-httpd-mpm-itk": {
+      "version": "2.2.27-1puppet19",
+      "md5": "19d42ca1997685267159970843b71fb8"
+    },
+    "pe-puppet-dashboard": {
+      "version": "2.1.6.1.166-1puppet1",
+      "md5": "66f86678e68dc8c0087ad4adc9b0adcd"
+    },
+    "pe-rubygem-rack": {
+      "version": "1.4.5-1puppet2",
+      "md5": "858b08ef22553fcca94f9464bb5b4b88"
+    },
+    "pe-passenger": {
+      "version": "4.0.37-1puppet1",
+      "md5": "a75541f5519ebc7984902da815bfdf8e"
+    },
+    "pe-httpd-mpm-event": {
+      "version": "2.2.27-1puppet19",
+      "md5": "ed6726b72bdc5b174789e9b3a61f5d9f"
+    },
+    "pe-ruby-shadow": {
+      "version": "2.2.0-1puppet3",
+      "md5": "c447afea699715d92846c96de3e5a319"
+    },
+    "pe-httpd-mpm-prefork": {
+      "version": "2.2.27-1puppet19",
+      "md5": "287a251a1d2d5e272851a677f086ef3d"
+    },
+    "pe-mcollective-client": {
+      "version": "2.6.0.5-1puppet1",
+      "md5": "d1b393e6686b7414b2d6376f2e1ac757"
+    },
+    "pe-puppetdb-terminus": {
+      "version": "2.2.1.1-1puppet1",
+      "md5": "7805943f31194d9028a846207814e67c"
+    },
+    "pe-rubygem-net-ssh": {
+      "version": "2.1.4-1puppet2",
+      "md5": "d097e764f9b01fb8d02e56ca63393e7b"
+    },
+    "pe-ruby-stomp": {
+      "version": "1.3.3-1puppet1",
+      "md5": "86510a3c0f07979c0d42f58f428bbc05"
+    },
+    "pe-ruby-augeas": {
+      "version": "0.5.0-1puppet2",
+      "md5": "99d785716470ac0d237744a71d88d70f"
+    },
+    "pe-license-status": {
+      "version": "0.2.2-1puppet1",
+      "md5": "240b2729f3d3dab3e07dcaad611be8ee"
+    },
+    "pe-httpd-threaded-dev": {
+      "version": "2.2.27-1puppet19",
+      "md5": "8ac937c002a914785b19f60b0bf83794"
+    },
+    "pe-java": {
+      "version": "1.7.0.71-1puppet1",
+      "md5": "ce30054ef95469af605a0479e10707be"
+    },
+    "pe-memcached-devel": {
+      "version": "1.4.7-1puppet6",
+      "md5": "167d8f7ffea55316e7f79f6fba03c3a5"
+    },
+    "pe-mcollective-common": {
+      "version": "2.6.0.5-1puppet1",
+      "md5": "5b36ab9d12e090f51535438910a1d0fb"
+    },
+    "pe-postgresql-contrib": {
+      "version": "9.2.7-1puppet7",
+      "md5": "9a02938987b5322908db599e018cb874"
+    },
+    "pe-puppet-license-cli": {
+      "version": "0.1.7.5-1puppet1",
+      "md5": "3cc83f19e21b3c109b30deb0ab760d82"
+    },
+    "pe-ruby": {
+      "version": "1.9.3.484-1puppet11",
+      "md5": "fa4869f5d85d4b7c413995a5548a1b41"
+    },
+    "pe-postgresql-devel": {
+      "version": "9.2.7-1puppet7",
+      "md5": "6e85693017a36ba03c0e3335cf560cbe"
+    },
+    "pe-ruby-ldap": {
+      "version": "0.9.12-1puppet2",
+      "md5": "71617c9ef8986c813556e12da688cad5"
+    },
+    "pe-event-inspector": {
+      "version": "0.2.1.65-1puppet1",
+      "md5": "9b20e6443e04b18ccfd30ae467729f95"
+    },
+    "pe-console": {
+      "version": "0.4.3-1puppet1",
+      "md5": "ff1e4f3b84d3b5a5d51191ff09a3785e"
+    },
+    "pe-puppet": {
+      "version": "3.7.3.3-1puppet1",
+      "md5": "b54137fec75cd49ae237b9353cb0b04a"
+    },
+    "pe-httpd-prefork-dev": {
+      "version": "2.2.27-1puppet19",
+      "md5": "ff204c71282122b74a8d7246f55048ea"
+    },
+    "pe-libyaml": {
+      "version": "0.1.6-1puppet2",
+      "md5": "7aa9d08867e81c502ed95a17b28ea95e"
+    },
+    "pe-libevent": {
+      "version": "2.0.13-1puppet4",
+      "md5": "d8a40fc0cb7059e1e3a2b1c28c11fb9c"
+    },
+    "pe-openssl": {
+      "version": "1.0.0o-1puppet1",
+      "md5": "774cbc6250f3d69d4a2edb98381d9961"
+    },
+    "pe-installer": {
+      "version": "0.0.2.716-1puppet1",
+      "md5": "9a54fff887ccf49ff7276e2555f6aa94"
+    },
+    "pe-console-services": {
+      "version": "0.7.4-1puppet1",
+      "md5": "df221bd0a13aeb7ea8b9bff34be2748d"
+    },
+    "pe-console-services-termini": {
+      "version": "0.7.4-1puppet1",
+      "md5": "276323fa464454352b511a42bac8ca97"
+    },
+    "pe-puppetserver": {
+      "version": "0.4.1-1puppet1",
+      "md5": "3886d9ebd1415ac2b66d9f1fc751c950"
+    },
+    "pe-puppetserver-common": {
+      "version": "3.7.3.3-1puppet1",
+      "md5": "e6d91a3e71ffb3051af8db3b3acf2b4a"
+    }
+  },
+  "ubuntu-10.04-amd64": {
+    "pe-virt-what": {
+      "version": "1.14-1puppet1",
+      "md5": "5da887449d8cf6eb81b2212242310fb9"
+    },
+    "pe-rubygem-sequel": {
+      "version": "3.47.0-1puppet1",
+      "md5": "39450f96d9ceb7c9db1aa6626bdd6a7c"
+    },
+    "pe-agent": {
+      "version": "3.7.1-1puppet1",
+      "md5": "8fed2a7fd6a1a6ba4e6e9dce389b09cf"
+    },
+    "pe-augeas": {
+      "version": "1.2.0-1puppet1",
+      "md5": "229d070ecc1dcfe7cfcf7f3e04f5452e"
+    },
+    "pe-license": {
+      "version": "0.1.3.7-1puppet1",
+      "md5": "c70c2d36bb12df0a8c0675b904d399fa"
+    },
+    "pe-certificate-manager": {
+      "version": "0.5.1.36-1puppet1",
+      "md5": "7044827e0c3c6e9257964e83ff9f547d"
+    },
+    "pe-postgresql": {
+      "version": "9.2.7-1puppet7",
+      "md5": "e7b5925cd8fb70059489fd3b2d7b9880"
+    },
+    "pe-bundler": {
+      "version": "1.3.5-1puppet2",
+      "md5": "bfdab6ad8b9f28593822f4b42bde8ed6"
+    },
+    "pe-hiera": {
+      "version": "1.3.4.2-1puppet1",
+      "md5": "a3bb628dfb22317fc5cecdf499f82cac"
+    },
+    "pe-httpd": {
+      "version": "2.2.27-1puppet19",
+      "md5": "752e6b7f3480f09762ba3436a440a9a8"
+    },
+    "pe-activerecord": {
+      "version": "2.3.17-1puppet2",
+      "md5": "d29a75e66d7f53bffa2c8b80315a5cd3"
+    },
+    "pe-live-management": {
+      "version": "1.3.1.45-1puppet1",
+      "md5": "08a2a52f11081ab27f03d7349d4ad2a9"
+    },
+    "pe-activemq": {
+      "version": "5.9.0-1puppet7",
+      "md5": "9a3320032510274674c00f0d21883a00"
+    },
+    "pe-httpd-mpm-worker": {
+      "version": "2.2.27-1puppet19",
+      "md5": "2ef71a7bc12fb15bf5cb5622a45a9efc"
+    },
+    "pe-memcached": {
+      "version": "1.4.7-1puppet6",
+      "md5": "da23ea445dfdd498fc32d5187443380b"
+    },
+    "pe-mcollective": {
+      "version": "2.6.0.5-1puppet1",
+      "md5": "84f2239ed12b350934eb3a070686d8dc"
+    },
+    "pe-console-auth": {
+      "version": "1.3.1.20-1puppet1",
+      "md5": "57f838ef1c6f07436470faace3f4a8eb"
+    },
+    "pe-puppet-enterprise-release": {
+      "version": "3.7.1.0-1puppet1",
+      "md5": "c91ea471de47d3ec1c53365971a1bff7"
+    },
+    "pe-postgresql-server": {
+      "version": "9.2.7-1puppet7",
+      "md5": "3caa887638acc66e9b983628d3c7b977"
+    },
+    "pe-rubygem-stomp": {
+      "version": "1.2.9-1puppet1",
+      "md5": "6f7f5dc23959df6b0b4ff98a00b16d2e"
+    },
+    "pe-ruby-mysql": {
+      "version": "2.8.2-1puppet2",
+      "md5": "dc39975beda9fe12af40ca0497ce7892"
+    },
+    "pe-puppetdb": {
+      "version": "2.2.1.1-1puppet1",
+      "md5": "e16e9f6a3761ecd8b0c5c830cf90996d"
+    },
+    "pe-rubygem-deep-merge": {
+      "version": "1.0.0-1puppet1",
+      "md5": "51f3ba2c1d54d92b0eba318eb6efb68a"
+    },
+    "pe-activesupport": {
+      "version": "2.3.17-1puppet2",
+      "md5": "b10b4aa09326b14819ec64df974900e8"
+    },
+    "pe-libevent-devel": {
+      "version": "2.0.13-1puppet4",
+      "md5": "97350ffff4d6e1b5def65006e1a55810"
+    },
+    "pe-facter": {
+      "version": "2.3.0.0-1puppet1",
+      "md5": "863d568c05bcdb1744cf0152898a266a"
+    },
+    "pe-cloud-provisioner": {
+      "version": "1.1.7-1puppet1",
+      "md5": "5b44e4836f94a9c412c6bc703a01f85b"
+    },
+    "pe-cloud-provisioner-libs": {
+      "version": "0.3.2-1puppet1",
+      "md5": "df60caa3cf415c18b2a6139d9f64091c"
+    },
+    "pe-ruby-rgen": {
+      "version": "0.6.5-1puppet1",
+      "md5": "99f5b8fee3ae2aaf9a7fc74d726f20b0"
+    },
+    "pe-httpd-mpm-itk": {
+      "version": "2.2.27-1puppet19",
+      "md5": "852f610a0104dbbcc32541f941c64703"
+    },
+    "pe-puppet-dashboard": {
+      "version": "2.1.6.1.166-1puppet1",
+      "md5": "fd56a15377c5af1ff2d0b5359f7e2e8d"
+    },
+    "pe-rubygem-rack": {
+      "version": "1.4.5-1puppet2",
+      "md5": "964ddfff71dcb9aaf92e123c6a7a94bb"
+    },
+    "pe-passenger": {
+      "version": "4.0.37-1puppet1",
+      "md5": "19b467323aee18ccd73d37ed4d683e56"
+    },
+    "pe-httpd-mpm-event": {
+      "version": "2.2.27-1puppet19",
+      "md5": "962e0fbd4fd183e9e2863ed93010e5d2"
+    },
+    "pe-ruby-shadow": {
+      "version": "2.2.0-1puppet3",
+      "md5": "32d6577d0db81ef70d499c9f9f10aec5"
+    },
+    "pe-httpd-mpm-prefork": {
+      "version": "2.2.27-1puppet19",
+      "md5": "3ba1ebf6983d156428d014d93b4cad9d"
+    },
+    "pe-mcollective-client": {
+      "version": "2.6.0.5-1puppet1",
+      "md5": "305379fd9193071c97268b8cefae5c02"
+    },
+    "pe-puppetdb-terminus": {
+      "version": "2.2.1.1-1puppet1",
+      "md5": "bf0ba6b763607b7cfeb021ea8179fe44"
+    },
+    "pe-rubygem-net-ssh": {
+      "version": "2.1.4-1puppet2",
+      "md5": "58232f5339956a2f330ef17b1b60dfd9"
+    },
+    "pe-ruby-stomp": {
+      "version": "1.3.3-1puppet1",
+      "md5": "6e8ec29b1710bab4af5f1430b4ce49ca"
+    },
+    "pe-ruby-augeas": {
+      "version": "0.5.0-1puppet2",
+      "md5": "7220a412c5e354c01b64c84d280e97fd"
+    },
+    "pe-license-status": {
+      "version": "0.2.2-1puppet1",
+      "md5": "e0f1f03647ba338b2318f34f5a814577"
+    },
+    "pe-httpd-threaded-dev": {
+      "version": "2.2.27-1puppet19",
+      "md5": "d972a0c9ab92a9c76fa78ce23724a578"
+    },
+    "pe-java": {
+      "version": "1.7.0.71-1puppet1",
+      "md5": "1866e835b011da07933acdc072d40cad"
+    },
+    "pe-memcached-devel": {
+      "version": "1.4.7-1puppet6",
+      "md5": "7bc27ebcb05aab206a3c5f6f5424c960"
+    },
+    "pe-mcollective-common": {
+      "version": "2.6.0.5-1puppet1",
+      "md5": "65b6fca945db1544958e125485f49182"
+    },
+    "pe-postgresql-contrib": {
+      "version": "9.2.7-1puppet7",
+      "md5": "9b003aef2c394632de865ced0c628da6"
+    },
+    "pe-puppet-license-cli": {
+      "version": "0.1.7.5-1puppet1",
+      "md5": "cebc68c05ff4ab427a4897463a463a37"
+    },
+    "pe-ruby": {
+      "version": "1.9.3.484-1puppet11",
+      "md5": "7a06952f00a181d8b899b747e99a3e7a"
+    },
+    "pe-postgresql-devel": {
+      "version": "9.2.7-1puppet7",
+      "md5": "cb91e2a280b7127ebeb8a7bb684d292a"
+    },
+    "pe-ruby-ldap": {
+      "version": "0.9.12-1puppet2",
+      "md5": "496ebddb77437baf54d6d867bc95cb1d"
+    },
+    "pe-event-inspector": {
+      "version": "0.2.1.65-1puppet1",
+      "md5": "71983f757c8dd7748e817b84e017f2ec"
+    },
+    "pe-console": {
+      "version": "0.4.3-1puppet1",
+      "md5": "bdcb13d3f64e61df6290631b2efd0a43"
+    },
+    "pe-puppet": {
+      "version": "3.7.3.3-1puppet1",
+      "md5": "26c534c6b02284b50ffa62ba0038034a"
+    },
+    "pe-httpd-prefork-dev": {
+      "version": "2.2.27-1puppet19",
+      "md5": "6748aebd6489e9ae7e3f11f839c3f364"
+    },
+    "pe-libyaml": {
+      "version": "0.1.6-1puppet2",
+      "md5": "4e750d089ffa641ebe47327050f60400"
+    },
+    "pe-libevent": {
+      "version": "2.0.13-1puppet4",
+      "md5": "5585a05aa52c2112d95c462f7fdfb1b7"
+    },
+    "pe-openssl": {
+      "version": "1.0.0o-1puppet1",
+      "md5": "25aca653b0b905a437f63bd6215c1568"
+    },
+    "pe-installer": {
+      "version": "0.0.2.716-1puppet1",
+      "md5": "31808e119ec1e5053841c9e6d6777048"
+    },
+    "pe-console-services": {
+      "version": "0.7.4-1puppet1",
+      "md5": "408cbfeebca289f4091b48a030b9dfea"
+    },
+    "pe-console-services-termini": {
+      "version": "0.7.4-1puppet1",
+      "md5": "bee69cf05d75ba68691abe6b30cee15d"
+    },
+    "pe-puppetserver": {
+      "version": "0.4.1-1puppet1",
+      "md5": "a0e1e8b74e82a65dc66376e81f4c5fcf"
+    },
+    "pe-puppetserver-common": {
+      "version": "3.7.3.3-1puppet1",
+      "md5": "74881e74cb35c4a3d943080a65dc4855"
+    }
+  },
+  "aix-6.1-power": {
+    "pe-ruby-augeas": {
+      "version": "0.5.0-6.pe",
+      "md5": "d9883b7181646bf576d2c75a56d2dac6"
+    },
+    "pe-puppet": {
+      "version": "3.7.3.3-1.pe",
+      "md5": "8633dd92698b97974b58b47e30136cc3"
+    },
+    "pe-mcollective": {
+      "version": "2.6.0.5-1.pe",
+      "md5": "57e0db65c93e07e8d877ac07cfe0d527"
+    },
+    "pe-mcollective-common": {
+      "version": "2.6.0.5-1.pe",
+      "md5": "c504f2f85f48a61798cbfc33c1f29ea8"
+    },
+    "pe-ruby-rgen": {
+      "version": "0.6.5-2.pe",
+      "md5": "7407435ae754cd406407081e4f112e65"
+    },
+    "pe-facter": {
+      "version": "2.3.0.0-1.pe",
+      "md5": "15bc2e2041437b06ddee9565265f0474"
+    },
+    "pe-hiera": {
+      "version": "1.3.4.2-1.pe",
+      "md5": "fea411737e7fdd6283140b966df3b68c"
+    },
+    "pe-augeas": {
+      "version": "1.2.0-2.pe",
+      "md5": "88dc53e3eca45948cf088b37ca24bcc8"
+    },
+    "pe-rubygem-deep-merge": {
+      "version": "1.0.0-5.pe",
+      "md5": "3b489001de08b316eeb9e2da69797417"
+    },
+    "pe-ruby-stomp": {
+      "version": "1.3.3-1.pe",
+      "md5": "9a7d8cdc340ddb0eb7b14be8fb118bc1"
+    },
+    "pe-ruby": {
+      "version": "1.9.3.484-16.pe",
+      "md5": "be7a7d7db6d6ccda02e28af19ac9093f"
+    },
+    "pe-libyaml": {
+      "version": "0.1.6-2",
+      "md5": "05ec7541733fc0c4ba5f7dacbd06ea10"
+    },
+    "pe-puppet-enterprise-release": {
+      "version": "3.7.1.0-1.pe",
+      "md5": "05d59915f6c5ff2ab61dc5156d7f601b"
+    },
+    "pe-openssl": {
+      "version": "1.0.0o-1.pe",
+      "md5": "ebe0c5a9df1078db3ff45ee212d8843b"
+    }
+  },
+  "ubuntu-12.04-amd64": {
+    "pe-virt-what": {
+      "version": "1.14-1puppet1",
+      "md5": "3f7869be0a9a346456ab41153284aaee"
+    },
+    "pe-rubygem-sequel": {
+      "version": "3.47.0-1puppet1",
+      "md5": "681cd329c4c36f6839ed5777422bb771"
+    },
+    "pe-agent": {
+      "version": "3.7.1-1puppet1",
+      "md5": "6ff9a3ee3e74f21284791f8de9184125"
+    },
+    "pe-augeas": {
+      "version": "1.2.0-1puppet1",
+      "md5": "3b5a5f8f72f9329d073aed62623c297b"
+    },
+    "pe-license": {
+      "version": "0.1.3.7-1puppet1",
+      "md5": "54700c13f9761b1712fabeebbf3e312c"
+    },
+    "pe-certificate-manager": {
+      "version": "0.5.1.36-1puppet1",
+      "md5": "9d5852dc466799ff5d05e3956fbb0aaa"
+    },
+    "pe-postgresql": {
+      "version": "9.2.7-1puppet7",
+      "md5": "a2625d900f012c53ae9b748040164ce4"
+    },
+    "pe-bundler": {
+      "version": "1.3.5-1puppet2",
+      "md5": "8cfd341f89abb4b451c5780c132b3606"
+    },
+    "pe-hiera": {
+      "version": "1.3.4.2-1puppet1",
+      "md5": "c530eee8f87d6470a75b1087097d8734"
+    },
+    "pe-httpd": {
+      "version": "2.2.27-1puppet19",
+      "md5": "55674e8d87d31d3d85773605b7e26484"
+    },
+    "pe-activerecord": {
+      "version": "2.3.17-1puppet2",
+      "md5": "eacf96dec9dc199110505427330cc20c"
+    },
+    "pe-live-management": {
+      "version": "1.3.1.45-1puppet1",
+      "md5": "0422dbca9f3958fe95da60ee1fc62564"
+    },
+    "pe-activemq": {
+      "version": "5.9.0-1puppet7",
+      "md5": "dfcea1bbc4a6aa9ea75e663ec9b1f8e3"
+    },
+    "pe-httpd-mpm-worker": {
+      "version": "2.2.27-1puppet19",
+      "md5": "53a4b8d2f11c14bc9c4d20734de9e586"
+    },
+    "pe-memcached": {
+      "version": "1.4.7-1puppet6",
+      "md5": "fd290672f4e75dca43618527b2335929"
+    },
+    "pe-mcollective": {
+      "version": "2.6.0.5-1puppet1",
+      "md5": "2048a15a5679bc5b8f5a77f610f61873"
+    },
+    "pe-console-auth": {
+      "version": "1.3.1.20-1puppet1",
+      "md5": "1cd543d07fca5b744cb24b7ec4bca221"
+    },
+    "pe-puppet-enterprise-release": {
+      "version": "3.7.1.0-1puppet1",
+      "md5": "92299f7e8b0d67064d0d3b99761df361"
+    },
+    "pe-postgresql-server": {
+      "version": "9.2.7-1puppet7",
+      "md5": "6c96258669a3233a2b8617d7da2adaf3"
+    },
+    "pe-rubygem-stomp": {
+      "version": "1.2.9-1puppet1",
+      "md5": "44f33276cb8ac88d0c16f40e1195bd79"
+    },
+    "pe-ruby-mysql": {
+      "version": "2.8.2-1puppet2",
+      "md5": "bc865552fe5713c460c6e1612c5f8811"
+    },
+    "pe-puppetdb": {
+      "version": "2.2.1.1-1puppet1",
+      "md5": "bd08a51922c58d9495f6d3b0f8de3117"
+    },
+    "pe-rubygem-deep-merge": {
+      "version": "1.0.0-1puppet1",
+      "md5": "8650f586c710f45111cf21bb03a79ba3"
+    },
+    "pe-activesupport": {
+      "version": "2.3.17-1puppet2",
+      "md5": "1d8711bde630802889486080ad711303"
+    },
+    "pe-libevent-devel": {
+      "version": "2.0.13-1puppet4",
+      "md5": "d3112b5e53f86647332a14575ee9fb55"
+    },
+    "pe-facter": {
+      "version": "2.3.0.0-1puppet1",
+      "md5": "ed3c4412fc46a64fe2b064146d22dd3a"
+    },
+    "pe-cloud-provisioner": {
+      "version": "1.1.7-1puppet1",
+      "md5": "525a1b69b8692b04a226b4726f8b4e42"
+    },
+    "pe-cloud-provisioner-libs": {
+      "version": "0.3.2-1puppet1",
+      "md5": "ab04bce2b6f3c353b584e59c75b9bb50"
+    },
+    "pe-ruby-rgen": {
+      "version": "0.6.5-1puppet1",
+      "md5": "04fc8dba137bc8082f5c0aa7b806f1d0"
+    },
+    "pe-httpd-mpm-itk": {
+      "version": "2.2.27-1puppet19",
+      "md5": "6a935809c5635b274cb18d09f82fe344"
+    },
+    "pe-puppet-dashboard": {
+      "version": "2.1.6.1.166-1puppet1",
+      "md5": "f7a491c309d6809c08921c2208d8e582"
+    },
+    "pe-rubygem-rack": {
+      "version": "1.4.5-1puppet2",
+      "md5": "f3cdb4be8c718f38deb5170b72a8dd15"
+    },
+    "pe-passenger": {
+      "version": "4.0.37-1puppet1",
+      "md5": "c77bbc6a7de825a34c781b4fa3ae3955"
+    },
+    "pe-httpd-mpm-event": {
+      "version": "2.2.27-1puppet19",
+      "md5": "1844794776d4ce249add319116a3c3d2"
+    },
+    "pe-ruby-shadow": {
+      "version": "2.2.0-1puppet3",
+      "md5": "f196456d60500c0469ef5471716d3d12"
+    },
+    "pe-httpd-mpm-prefork": {
+      "version": "2.2.27-1puppet19",
+      "md5": "07cdfced3cf20e1a862af9b33da26f3a"
+    },
+    "pe-mcollective-client": {
+      "version": "2.6.0.5-1puppet1",
+      "md5": "4f4d2ced8fec160ae3d039fade2873f2"
+    },
+    "pe-puppetdb-terminus": {
+      "version": "2.2.1.1-1puppet1",
+      "md5": "b9268e27287e2def4450ace921770909"
+    },
+    "pe-rubygem-net-ssh": {
+      "version": "2.1.4-1puppet2",
+      "md5": "49d6e9a8d1a06247b8f0d341d13c50ae"
+    },
+    "pe-ruby-stomp": {
+      "version": "1.3.3-1puppet1",
+      "md5": "60e931a83240a7ede11c3416b12e6e21"
+    },
+    "pe-ruby-augeas": {
+      "version": "0.5.0-1puppet2",
+      "md5": "f8824afa52d43becba879347c9cdd587"
+    },
+    "pe-license-status": {
+      "version": "0.2.2-1puppet1",
+      "md5": "fada6c9f78da4e4e976ffd028912ffe9"
+    },
+    "pe-httpd-threaded-dev": {
+      "version": "2.2.27-1puppet19",
+      "md5": "0c2f1e4486b3320e247b02227db32ee5"
+    },
+    "pe-java": {
+      "version": "1.7.0.71-1puppet1",
+      "md5": "bcda275bb1a3515f1af884c3f6fd3d76"
+    },
+    "pe-memcached-devel": {
+      "version": "1.4.7-1puppet6",
+      "md5": "e0a4c99af0460a3358c17ef281a8c1ec"
+    },
+    "pe-mcollective-common": {
+      "version": "2.6.0.5-1puppet1",
+      "md5": "0e26a61dc7c6ce575a163d0185ca6bcd"
+    },
+    "pe-postgresql-contrib": {
+      "version": "9.2.7-1puppet7",
+      "md5": "e55c7d06901a976f1e4aafcdcdb696b8"
+    },
+    "pe-puppet-license-cli": {
+      "version": "0.1.7.5-1puppet1",
+      "md5": "a33a7647b3ea933c3f132de036b9332f"
+    },
+    "pe-ruby": {
+      "version": "1.9.3.484-1puppet11",
+      "md5": "fec4d082094004cdafc84146645baa9b"
+    },
+    "pe-postgresql-devel": {
+      "version": "9.2.7-1puppet7",
+      "md5": "8736991a501c6e721b34cd89eb93ba2b"
+    },
+    "pe-ruby-ldap": {
+      "version": "0.9.12-1puppet2",
+      "md5": "37e303f9d3836a2da371f6b0667cd931"
+    },
+    "pe-event-inspector": {
+      "version": "0.2.1.65-1puppet1",
+      "md5": "dfb8be3c90559466a150d1679f3c86ea"
+    },
+    "pe-console": {
+      "version": "0.4.3-1puppet1",
+      "md5": "b5a24d1082c874b38f2c865263a02f43"
+    },
+    "pe-puppet": {
+      "version": "3.7.3.3-1puppet1",
+      "md5": "d32f86c685c6b1853a4881eb91e1947d"
+    },
+    "pe-httpd-prefork-dev": {
+      "version": "2.2.27-1puppet19",
+      "md5": "61168635556c665fc3726814747745ea"
+    },
+    "pe-libyaml": {
+      "version": "0.1.6-1puppet2",
+      "md5": "3c2cbc4e49ab25b330d55842966daa5d"
+    },
+    "pe-libevent": {
+      "version": "2.0.13-1puppet4",
+      "md5": "3fd1abfedb8419f66164da11aa729405"
+    },
+    "pe-openssl": {
+      "version": "1.0.0o-1puppet1",
+      "md5": "b802669701400bac4051f013ea546dec"
+    },
+    "pe-installer": {
+      "version": "0.0.2.716-1puppet1",
+      "md5": "5573a05efc83b46108e252761e445b60"
+    },
+    "pe-console-services": {
+      "version": "0.7.4-1puppet1",
+      "md5": "ea795853c1b0a35dcb821461952021b0"
+    },
+    "pe-console-services-termini": {
+      "version": "0.7.4-1puppet1",
+      "md5": "901d4b80ba8c1974b825594349508504"
+    },
+    "pe-puppetserver": {
+      "version": "0.4.1-1puppet1",
+      "md5": "011a9b7b1fdbfef5dfe4c69bea4b8f32"
+    },
+    "pe-puppetserver-common": {
+      "version": "3.7.3.3-1puppet1",
+      "md5": "6173c24db0fb612f989a611d274a4c52"
+    }
+  },
+  "aix-7.1-power": {
+    "pe-ruby-augeas": {
+      "version": "0.5.0-6.pe",
+      "md5": "02a3dc26f3ed2b4b9599d1ddc6bbcefc"
+    },
+    "pe-puppet": {
+      "version": "3.7.3.3-1.pe",
+      "md5": "5a51f2cfcf44b14d2caa0a5f96291d7e"
+    },
+    "pe-mcollective": {
+      "version": "2.6.0.5-1.pe",
+      "md5": "66f91120cce1171fdb8a63db914c0971"
+    },
+    "pe-mcollective-common": {
+      "version": "2.6.0.5-1.pe",
+      "md5": "08415b70e986168cf39d63c931d45b45"
+    },
+    "pe-ruby-rgen": {
+      "version": "0.6.5-2.pe",
+      "md5": "60ab5f46bc9e4527f4904794f8018529"
+    },
+    "pe-facter": {
+      "version": "2.3.0.0-1.pe",
+      "md5": "f210e19eb93a788d5a502567e736edb4"
+    },
+    "pe-hiera": {
+      "version": "1.3.4.2-1.pe",
+      "md5": "ceb97a07554489ab696fed191619bf46"
+    },
+    "pe-augeas": {
+      "version": "1.2.0-2.pe",
+      "md5": "9250da1433149dc3dd5ccf0eeb8baca3"
+    },
+    "pe-rubygem-deep-merge": {
+      "version": "1.0.0-5.pe",
+      "md5": "b7b09723c33ed324b64f5c4d50c98cf3"
+    },
+    "pe-ruby-stomp": {
+      "version": "1.3.3-1.pe",
+      "md5": "04d19a316b5da5b5e5bb306ffbc1e5b3"
+    },
+    "pe-ruby": {
+      "version": "1.9.3.484-16.pe",
+      "md5": "8ac541f3e00490051da33b6f33172312"
+    },
+    "pe-libyaml": {
+      "version": "0.1.6-2",
+      "md5": "863c34825e80b71fb60a7c043fe1d6bc"
+    },
+    "pe-puppet-enterprise-release": {
+      "version": "3.7.1.0-1.pe",
+      "md5": "220bf20fc63ca52ba6079e3b4964310b"
+    },
+    "pe-openssl": {
+      "version": "1.0.0o-1.pe",
+      "md5": "d66a09f78161a2e7bfb6452a0549c7e5"
+    }
+  },
+  "aix-5.3-power": {
+    "pe-ruby-augeas": {
+      "version": "0.5.0-6.pe",
+      "md5": "7cc23ff508a895ec91776f47aec5423f"
+    },
+    "pe-puppet": {
+      "version": "3.7.3.3-1.pe",
+      "md5": "0219285fd4b9f061c9ce3927212ce242"
+    },
+    "pe-mcollective": {
+      "version": "2.6.0.5-1.pe",
+      "md5": "259f7df77fc6a02545a220e69a6e295a"
+    },
+    "pe-mcollective-common": {
+      "version": "2.6.0.5-1.pe",
+      "md5": "7b7f9aad7ae077b36eecd80bc53aa7a4"
+    },
+    "pe-ruby-rgen": {
+      "version": "0.6.5-2.pe",
+      "md5": "92c2d54f71fbe2b04d3d95b4222456ab"
+    },
+    "pe-facter": {
+      "version": "2.3.0.0-1.pe",
+      "md5": "d966d0580b56db3e38be55a539723e86"
+    },
+    "pe-hiera": {
+      "version": "1.3.4.2-1.pe",
+      "md5": "a786928ae2e5e3dd5260f32aa67525c6"
+    },
+    "pe-augeas": {
+      "version": "1.2.0-2.pe",
+      "md5": "a315aaa48e93acd5697d59fe12b4e8a4"
+    },
+    "pe-rubygem-deep-merge": {
+      "version": "1.0.0-5.pe",
+      "md5": "f0699ab4a1f7e903cd87c50a7b0c54c2"
+    },
+    "pe-ruby-stomp": {
+      "version": "1.3.3-1.pe",
+      "md5": "e3014454c9bc5e01cdf70a9f85153f27"
+    },
+    "pe-ruby": {
+      "version": "1.9.3.484-16.pe",
+      "md5": "b0b773a600814657f929b3a5315ca373"
+    },
+    "pe-libyaml": {
+      "version": "0.1.6-2",
+      "md5": "29e55d4679eb28f65264fddb40cd4446"
+    },
+    "pe-puppet-enterprise-release": {
+      "version": "3.7.1.0-1.pe",
+      "md5": "48e30ac7e83ec898c1d4bcec20b444e2"
+    },
+    "pe-openssl": {
+      "version": "1.0.0o-1.pe",
+      "md5": "0e8329dda48876dc1c408908bafc2ea3"
+    }
+  },
+  "debian-6-i386": {
+    "pe-virt-what": {
+      "version": "1.14-1puppet1",
+      "md5": "3f523fcaed1f76660de4eda609ca34ba"
+    },
+    "pe-rubygem-sequel": {
+      "version": "3.47.0-1puppet1",
+      "md5": "47bb9410430b8a255c79bc0710eb86e3"
+    },
+    "pe-agent": {
+      "version": "3.7.1-1puppet1",
+      "md5": "9f872116bd8f61c6a04fbe2396b58529"
+    },
+    "pe-augeas": {
+      "version": "1.2.0-1puppet1",
+      "md5": "e7b2bf53a3b4ccd712d8383a4c1c647d"
+    },
+    "pe-license": {
+      "version": "0.1.3.7-1puppet1",
+      "md5": "d1b3250039992697e75a0fb01c1c771c"
+    },
+    "pe-certificate-manager": {
+      "version": "0.5.1.36-1puppet1",
+      "md5": "91005cd163ced33e85383a07c192092c"
+    },
+    "pe-postgresql": {
+      "version": "9.2.7-1puppet7",
+      "md5": "1d3e209c3f34aa507da4e72087194ba0"
+    },
+    "pe-bundler": {
+      "version": "1.3.5-1puppet2",
+      "md5": "bc9d74edc542799bb61b9d1805ba788d"
+    },
+    "pe-hiera": {
+      "version": "1.3.4.2-1puppet1",
+      "md5": "3a9901142072533bf730c8cfe9f36c4f"
+    },
+    "pe-httpd": {
+      "version": "2.2.27-1puppet19",
+      "md5": "fcb7e9f362552ff0f99415c57772a514"
+    },
+    "pe-activerecord": {
+      "version": "2.3.17-1puppet2",
+      "md5": "3621bff13d1270016dafc85be2c84327"
+    },
+    "pe-live-management": {
+      "version": "1.3.1.45-1puppet1",
+      "md5": "73e552346d3050e86f60e18530106318"
+    },
+    "pe-activemq": {
+      "version": "5.9.0-1puppet7",
+      "md5": "139b83b7b08982a9dfd1a09153e40d39"
+    },
+    "pe-httpd-mpm-worker": {
+      "version": "2.2.27-1puppet19",
+      "md5": "cef628dc1c5983ec3bf5a7beb6b82943"
+    },
+    "pe-memcached": {
+      "version": "1.4.7-1puppet6",
+      "md5": "751e1821493d040c33a65530d84ad7a2"
+    },
+    "pe-mcollective": {
+      "version": "2.6.0.5-1puppet1",
+      "md5": "8b7ea7daa451d065f34ffd1ea88151f2"
+    },
+    "pe-console-auth": {
+      "version": "1.3.1.20-1puppet1",
+      "md5": "b4edb12a20f14c92c5b3afc9b3f637d8"
+    },
+    "pe-puppet-enterprise-release": {
+      "version": "3.7.1.0-1puppet1",
+      "md5": "6548f7df033e2d801e584f004cc9787e"
+    },
+    "pe-postgresql-server": {
+      "version": "9.2.7-1puppet7",
+      "md5": "5f19783966749a4feea396eb5c45dcc5"
+    },
+    "pe-rubygem-stomp": {
+      "version": "1.2.9-1puppet1",
+      "md5": "dff1024b7be547b4e7a0f062710171d2"
+    },
+    "pe-ruby-mysql": {
+      "version": "2.8.2-1puppet2",
+      "md5": "b6d4a09af79d6561efaa898b69e85440"
+    },
+    "pe-puppetdb": {
+      "version": "2.2.1.1-1puppet1",
+      "md5": "4e2dde412e749978f8c7ae46a685e716"
+    },
+    "pe-rubygem-deep-merge": {
+      "version": "1.0.0-1puppet1",
+      "md5": "617ce83e2993eafb27fb4b33d13a21c5"
+    },
+    "pe-activesupport": {
+      "version": "2.3.17-1puppet2",
+      "md5": "b1b75c087dcf571681d73ac6c42ec90f"
+    },
+    "pe-libevent-devel": {
+      "version": "2.0.13-1puppet4",
+      "md5": "fc5cf655e03e800f07628714440c95e8"
+    },
+    "pe-facter": {
+      "version": "2.3.0.0-1puppet1",
+      "md5": "1d5be01cccbd8df2c6eb745a923425db"
+    },
+    "pe-cloud-provisioner": {
+      "version": "1.1.7-1puppet1",
+      "md5": "4143eb8c0c78dfc2e92d9689c571c817"
+    },
+    "pe-cloud-provisioner-libs": {
+      "version": "0.3.2-1puppet1",
+      "md5": "db8a2fcbccedaba9f82b05585974b22e"
+    },
+    "pe-ruby-rgen": {
+      "version": "0.6.5-1puppet1",
+      "md5": "6e8ec954ee9f17b4f6044db4f4c13524"
+    },
+    "pe-httpd-mpm-itk": {
+      "version": "2.2.27-1puppet19",
+      "md5": "5a0caa79be7d83757e9e35d4dab8a2f3"
+    },
+    "pe-puppet-dashboard": {
+      "version": "2.1.6.1.166-1puppet1",
+      "md5": "009752e866762bc54e92d67aa6cd2808"
+    },
+    "pe-rubygem-rack": {
+      "version": "1.4.5-1puppet2",
+      "md5": "64ea2f799a63bd7daa612535a6ccc0df"
+    },
+    "pe-passenger": {
+      "version": "4.0.37-1puppet1",
+      "md5": "8acec81bdb48a08dd35f2d4ef6569e62"
+    },
+    "pe-httpd-mpm-event": {
+      "version": "2.2.27-1puppet19",
+      "md5": "475cadf5cdf95ca6f8ba0ad274acb67a"
+    },
+    "pe-ruby-shadow": {
+      "version": "2.2.0-1puppet3",
+      "md5": "738a59c540655ccf21bf90e093f24d31"
+    },
+    "pe-httpd-mpm-prefork": {
+      "version": "2.2.27-1puppet19",
+      "md5": "69db1e64208b0c05610ee1e6686e9915"
+    },
+    "pe-mcollective-client": {
+      "version": "2.6.0.5-1puppet1",
+      "md5": "f46662e307504bd278ad531f35caf9d8"
+    },
+    "pe-puppetdb-terminus": {
+      "version": "2.2.1.1-1puppet1",
+      "md5": "d79eba222201519285818fbaee89cf1d"
+    },
+    "pe-rubygem-net-ssh": {
+      "version": "2.1.4-1puppet2",
+      "md5": "b76bd6e395dc51066e6adeb67a15aaf8"
+    },
+    "pe-ruby-stomp": {
+      "version": "1.3.3-1puppet1",
+      "md5": "b40910ee91d9abe9d6f955aab0756358"
+    },
+    "pe-ruby-augeas": {
+      "version": "0.5.0-1puppet2",
+      "md5": "69348fb6005c4c4c167a7a048798ba40"
+    },
+    "pe-license-status": {
+      "version": "0.2.2-1puppet1",
+      "md5": "57e5ee907ca85b9e1f5f92f9a53b6c1d"
+    },
+    "pe-httpd-threaded-dev": {
+      "version": "2.2.27-1puppet19",
+      "md5": "9205ed5840481e984f986094fb932128"
+    },
+    "pe-java": {
+      "version": "1.7.0.71-1puppet1",
+      "md5": "6eec70b1a3fec4d4546befa8bb61efc0"
+    },
+    "pe-memcached-devel": {
+      "version": "1.4.7-1puppet6",
+      "md5": "af97539225812fc3e4bb7f0dd0aacb6a"
+    },
+    "pe-mcollective-common": {
+      "version": "2.6.0.5-1puppet1",
+      "md5": "84798bbeff02394f86dfad0f999bb55d"
+    },
+    "pe-postgresql-contrib": {
+      "version": "9.2.7-1puppet7",
+      "md5": "d8f0ee0485fb774a6fc4ada43bb8f324"
+    },
+    "pe-puppet-license-cli": {
+      "version": "0.1.7.5-1puppet1",
+      "md5": "cd1d1a85d67c198b533f1b23761f0dea"
+    },
+    "pe-ruby": {
+      "version": "1.9.3.484-1puppet11",
+      "md5": "6b49002dd09a0b6e8be871640fc37bd1"
+    },
+    "pe-postgresql-devel": {
+      "version": "9.2.7-1puppet7",
+      "md5": "532548f3eb784a1c68142f2fb680c9a3"
+    },
+    "pe-ruby-ldap": {
+      "version": "0.9.12-1puppet2",
+      "md5": "7ddc23a636646ac7c8359e24df92e5c0"
+    },
+    "pe-event-inspector": {
+      "version": "0.2.1.65-1puppet1",
+      "md5": "632f007dad989aab3ac1aa9225f58000"
+    },
+    "pe-console": {
+      "version": "0.4.3-1puppet1",
+      "md5": "d4c09cb83b4ae6193e5ef5465960555b"
+    },
+    "pe-puppet": {
+      "version": "3.7.3.3-1puppet1",
+      "md5": "6d4c9f11034100ddf952b132d35b10e7"
+    },
+    "pe-httpd-prefork-dev": {
+      "version": "2.2.27-1puppet19",
+      "md5": "3eb3a858879d1185e1e7ae2d2c018678"
+    },
+    "pe-libyaml": {
+      "version": "0.1.6-1puppet2",
+      "md5": "188d833dab32cd462ea16774c4a504a8"
+    },
+    "pe-libevent": {
+      "version": "2.0.13-1puppet4",
+      "md5": "bfb9289c955ee190bae901de5b17e994"
+    },
+    "pe-openssl": {
+      "version": "1.0.0o-1puppet1",
+      "md5": "78887566f9808bc5de895af3c207d0c7"
+    },
+    "pe-installer": {
+      "version": "0.0.2.716-1puppet1",
+      "md5": "988ee3ebd5d7ed593e48ee8bd9a47e20"
+    },
+    "pe-console-services": {
+      "version": "0.7.4-1puppet1",
+      "md5": "b3f250b449ace682e8b7d3cd86c27b5c"
+    },
+    "pe-console-services-termini": {
+      "version": "0.7.4-1puppet1",
+      "md5": "21037d36e2c78c6bfb2f36ce219bca40"
+    },
+    "pe-puppetserver": {
+      "version": "0.4.1-1puppet1",
+      "md5": "ce6e999910d7a9368cde03051c54856b"
+    },
+    "pe-puppetserver-common": {
+      "version": "3.7.3.3-1puppet1",
+      "md5": "e28ceeb31950c58ea25cfe202aac3e17"
+    }
+  },
+  "sles-11-x86_64": {
+    "pe-memcached": {
+      "version": "1.4.7-9.pe.sles11",
+      "md5": "e26bae6f9534556f146030a2ecbea16d"
+    },
+    "pe-puppetdb-terminus": {
+      "version": "2.2.1.1-1.sles11",
+      "md5": "9dbdf5c59652c5e4a9be9d1f1b9e38ef"
+    },
+    "pe-ruby-mysql": {
+      "version": "2.8.2-4.pe.sles11",
+      "md5": "22d510dd80c6d372570574c4874a7e36"
+    },
+    "pe-console": {
+      "version": "0.4.3-1.pe.sles11",
+      "md5": "24a7509326e5d1b4ed460d5ae3334905"
+    },
+    "pe-license-status": {
+      "version": "0.2.2-1.pe.sles11",
+      "md5": "f2e59fe19e095927c3ac7459925fca36"
+    },
+    "pe-ruby-augeas": {
+      "version": "0.5.0-4.pe.sles11",
+      "md5": "de89b1d4c9fe1274007b17cd27fae078"
+    },
+    "pe-event-inspector": {
+      "version": "0.2.1.65-1.pe.sles11",
+      "md5": "afd37a1d6825149b0170cda6337826f8"
+    },
+    "pe-rubygem-sinatra": {
+      "version": "1.4.2-1.pe",
+      "md5": "925998fbf19086bcec41dc3bc1e85e9a"
+    },
+    "pe-license": {
+      "version": "0.1.3.7-1.pe.sles11",
+      "md5": "f64e7f1e3af4f9bbbe8e732254145273"
+    },
+    "pe-ruby-ldap": {
+      "version": "0.9.12-7.pe.sles11",
+      "md5": "6a2c14387eba92ee9b582705d4fe2f59"
+    },
+    "pe-activemq": {
+      "version": "5.9.0-13.pe.sles11",
+      "md5": "41cd2091333f3c502190254a8c7f1b08"
+    },
+    "pe-cloud-provisioner-libs": {
+      "version": "0.3.2-2.pe.sles11",
+      "md5": "6a4cd376b2d3eaac73b5179c4c815411"
+    },
+    "pe-console-auth": {
+      "version": "1.3.1.20-1.pe.sles11",
+      "md5": "206bc087d6453d3fce219a1e9acd78d9"
+    },
+    "pe-bundler": {
+      "version": "1.3.5-2.pe",
+      "md5": "e34c1c7d70e0842e6fdb591f621487db"
+    },
+    "pe-puppet": {
+      "version": "3.7.3.3-1.pe.sles11",
+      "md5": "e20975e33d616896432ca6aca4a66017"
+    },
+    "pe-puppet-license-cli": {
+      "version": "0.1.7.5-1.pe.sles11",
+      "md5": "98b5c38184dc2dad027b3a4d205fa326"
+    },
+    "pe-mcollective-client": {
+      "version": "2.6.0.5-1.pe.sles11",
+      "md5": "7fd71fceb518817b26dab737fdeff8fe"
+    },
+    "pe-libevent": {
+      "version": "2.0.13-6.sles11",
+      "md5": "b15cfa0c8a280115e8663c3bd91c258c"
+    },
+    "pe-passenger": {
+      "version": "4.0.37-2.pe.sles11",
+      "md5": "15763c3d6f81a853f29d7ef9a9a16deb"
+    },
+    "pe-agent": {
+      "version": "3.7.1-1.pe.sles11",
+      "md5": "8ffd59678c695c7fd59bf7f9fa3461f9"
+    },
+    "pe-postgresql-contrib": {
+      "version": "9.2.7-14.pe.sles11",
+      "md5": "3a0bdc33bc613b97a1a9fc57b8e20f60"
+    },
+    "pe-rubygem-activesupport": {
+      "version": "2.3.17-3.pe",
+      "md5": "ef6162fa4c17c79f551cd587f7f4234c"
+    },
+    "pe-postgresql": {
+      "version": "9.2.7-14.pe.sles11",
+      "md5": "40e91d2c624efe1d72f0de784bb9a536"
+    },
+    "pe-mcollective": {
+      "version": "2.6.0.5-1.pe.sles11",
+      "md5": "e71d91210b63390349959f163fdb5caf"
+    },
+    "pe-live-management": {
+      "version": "1.3.1.45-1.pe.sles11",
+      "md5": "89e297e86565cc022de38d81f8c6b570"
+    },
+    "pe-mcollective-common": {
+      "version": "2.6.0.5-1.pe.sles11",
+      "md5": "1914d2690fd67035bc389526d2326de6"
+    },
+    "pe-cloud-provisioner": {
+      "version": "1.1.7-1.sles11",
+      "md5": "c00b168b20234b5cb318815ceea2861d"
+    },
+    "pe-ruby-rgen": {
+      "version": "0.6.5-1.pe.sles11",
+      "md5": "54a31b505375e845fc2bc466cfacd8a3"
+    },
+    "pe-rubygem-sequel": {
+      "version": "3.47.0-1.pe",
+      "md5": "9ab3558c10a555bd88bf279e806aae0c"
+    },
+    "pe-facter": {
+      "version": "2.3.0.0-1.pe.sles11",
+      "md5": "12b95f222ec8764d86e777301e224932"
+    },
+    "pe-httpd": {
+      "version": "2.2.27-15.pe.sles11",
+      "md5": "8f9cf8e90b7494c34429324ad7c2240e"
+    },
+    "pe-hiera": {
+      "version": "1.3.4.2-1.pe.sles11",
+      "md5": "f070e03f9e10feb8847034f982f90113"
+    },
+    "pe-rubygem-activerecord": {
+      "version": "2.3.17-3.pe",
+      "md5": "171d5e202348fd08b8ebbe5824e172c6"
+    },
+    "pe-postgresql-devel": {
+      "version": "9.2.7-14.pe.sles11",
+      "md5": "3cd19c0dbc05c7ec0439213d1b7e6a3b"
+    },
+    "pe-memcached-devel": {
+      "version": "1.4.7-9.pe.sles11",
+      "md5": "653c68cb65f590cefa8d842d80e0c07d"
+    },
+    "pe-ruby-shadow": {
+      "version": "2.2.0-3.pe.sles11",
+      "md5": "a6a581c3ff85e63d8ab9a53605b214db"
+    },
+    "pe-libevent-devel": {
+      "version": "2.0.13-6.sles11",
+      "md5": "fe4d77515c07be4f28fd3fcf1ac73b9f"
+    },
+    "pe-postgresql-server": {
+      "version": "9.2.7-14.pe.sles11",
+      "md5": "0e3efcd19295ebd03fbdf0fb18340f5b"
+    },
+    "pe-java": {
+      "version": "1.7.0.71-1.pe.sles11",
+      "md5": "1d7d0e58753a9794a4519ca448347dc3"
+    },
+    "pe-augeas": {
+      "version": "1.2.0-1.pe.sles11",
+      "md5": "f6553bba2898ed49a8f5a5b1b132b919"
+    },
+    "pe-virt-what": {
+      "version": "1.13-1.sles11",
+      "md5": "6096c94a4f05dc81d192f4b868ba67f5"
+    },
+    "pe-rubygem-deep-merge": {
+      "version": "1.0.0-3.pe",
+      "md5": "09d988b06c171944a32980ee2981645e"
+    },
+    "pe-ruby-stomp": {
+      "version": "1.3.3-1.pe.sles11",
+      "md5": "29d6a9d94482a94fba62029c4d2e99cd"
+    },
+    "pe-ruby": {
+      "version": "1.9.3.484-16.pe.sles11",
+      "md5": "0a1a2f2977026535bf575a52ef7acf5b"
+    },
+    "pe-certificate-manager": {
+      "version": "0.5.1.36-1.pe.sles11",
+      "md5": "3f1ffc083a5aa3ced8efc42933c33370"
+    },
+    "pe-rubygem-rack": {
+      "version": "1.4.5-2.pe",
+      "md5": "73356beb9f026ef07683ceaf19a62ada"
+    },
+    "pe-libyaml": {
+      "version": "0.1.6-2.sles11",
+      "md5": "5be5d17e25ee061b3fd72685a405ba36"
+    },
+    "pe-puppet-dashboard": {
+      "version": "2.1.6.1.166-1.pe.sles11",
+      "md5": "cdec52a32383e940a210c96c2fcb9107"
+    },
+    "pe-puppet-enterprise-release": {
+      "version": "3.7.1.0-1.pe.sles11",
+      "md5": "bae25b0ed94ce7c2faec4533356e84de"
+    },
+    "pe-rubygem-net-ssh": {
+      "version": "2.1.4-2.pe",
+      "md5": "218e2385c37cb19fddf9b8556a102de3"
+    },
+    "pe-puppetdb": {
+      "version": "2.2.1.1-1.sles11",
+      "md5": "146bd9633b8d63aaa7ac8b855679ced0"
+    },
+    "pe-openssl": {
+      "version": "1.0.0o-2.pe.sles11",
+      "md5": "c1be067e229268861d2de1caaced7997"
+    },
+    "pe-libldap": {
+      "version": "2.4.39-5.pe.sles11",
+      "md5": "57e77ce849c54bd889afd664ce67da22"
+    },
+    "pe-libapr": {
+      "version": "1.5.1-1.pe.sles11",
+      "md5": "d10aeeaa051aefc71494e057350a582e"
+    },
+    "pe-libaprutil": {
+      "version": "1.5.3-1.pe.sles11",
+      "md5": "4e4bffefa81cd22d6c84f51f3cedddf5"
+    },
+    "pe-installer": {
+      "version": "0.0.2.716-1.pe.sles11",
+      "md5": "d07698120281672a829b4f7b2c0d58e4"
+    },
+    "pe-console-services": {
+      "version": "0.7.4-1.sles11",
+      "md5": "8ea61be9bf38e0a09a155756900cad25"
+    },
+    "pe-console-services-termini": {
+      "version": "0.7.4-1.sles11",
+      "md5": "bda0abf4e988771b19e85b7b36e0168a"
+    },
+    "pe-puppetserver": {
+      "version": "0.4.1-1.sles11",
+      "md5": "aef66c6533ac93350772da88fe0f1e3a"
+    },
+    "pe-puppetserver-common": {
+      "version": "3.7.3.3-1.pe.sles11",
+      "md5": "26fca9ce1563ce5591a1b18c3d6acfbf"
+    }
+  },
+  "ubuntu-12.04-i386": {
+    "pe-virt-what": {
+      "version": "1.14-1puppet1",
+      "md5": "174294e82725f951e4b5713a8a46c86d"
+    },
+    "pe-rubygem-sequel": {
+      "version": "3.47.0-1puppet1",
+      "md5": "681cd329c4c36f6839ed5777422bb771"
+    },
+    "pe-agent": {
+      "version": "3.7.1-1puppet1",
+      "md5": "6ff9a3ee3e74f21284791f8de9184125"
+    },
+    "pe-augeas": {
+      "version": "1.2.0-1puppet1",
+      "md5": "36fb14e8c5dda5b275f04b6c62bbaf3c"
+    },
+    "pe-license": {
+      "version": "0.1.3.7-1puppet1",
+      "md5": "54700c13f9761b1712fabeebbf3e312c"
+    },
+    "pe-certificate-manager": {
+      "version": "0.5.1.36-1puppet1",
+      "md5": "9d5852dc466799ff5d05e3956fbb0aaa"
+    },
+    "pe-postgresql": {
+      "version": "9.2.7-1puppet7",
+      "md5": "57e0be7db25497fb8759ff204d67608f"
+    },
+    "pe-bundler": {
+      "version": "1.3.5-1puppet2",
+      "md5": "8cfd341f89abb4b451c5780c132b3606"
+    },
+    "pe-hiera": {
+      "version": "1.3.4.2-1puppet1",
+      "md5": "c530eee8f87d6470a75b1087097d8734"
+    },
+    "pe-httpd": {
+      "version": "2.2.27-1puppet19",
+      "md5": "bbc2957c8896c42058ffa075d8a9b89a"
+    },
+    "pe-activerecord": {
+      "version": "2.3.17-1puppet2",
+      "md5": "eacf96dec9dc199110505427330cc20c"
+    },
+    "pe-live-management": {
+      "version": "1.3.1.45-1puppet1",
+      "md5": "0422dbca9f3958fe95da60ee1fc62564"
+    },
+    "pe-activemq": {
+      "version": "5.9.0-1puppet7",
+      "md5": "dfcea1bbc4a6aa9ea75e663ec9b1f8e3"
+    },
+    "pe-httpd-mpm-worker": {
+      "version": "2.2.27-1puppet19",
+      "md5": "2a8f31ebd2a7143a0428630f424faf9c"
+    },
+    "pe-memcached": {
+      "version": "1.4.7-1puppet6",
+      "md5": "63d6ee196987e83ac3dd529db2254401"
+    },
+    "pe-mcollective": {
+      "version": "2.6.0.5-1puppet1",
+      "md5": "2048a15a5679bc5b8f5a77f610f61873"
+    },
+    "pe-console-auth": {
+      "version": "1.3.1.20-1puppet1",
+      "md5": "1cd543d07fca5b744cb24b7ec4bca221"
+    },
+    "pe-puppet-enterprise-release": {
+      "version": "3.7.1.0-1puppet1",
+      "md5": "92299f7e8b0d67064d0d3b99761df361"
+    },
+    "pe-postgresql-server": {
+      "version": "9.2.7-1puppet7",
+      "md5": "2e0d5b512dca1c6d689181242b640d58"
+    },
+    "pe-rubygem-stomp": {
+      "version": "1.2.9-1puppet1",
+      "md5": "44f33276cb8ac88d0c16f40e1195bd79"
+    },
+    "pe-ruby-mysql": {
+      "version": "2.8.2-1puppet2",
+      "md5": "b62226f8950aa6be04009995d8dd50fb"
+    },
+    "pe-puppetdb": {
+      "version": "2.2.1.1-1puppet1",
+      "md5": "bd08a51922c58d9495f6d3b0f8de3117"
+    },
+    "pe-rubygem-deep-merge": {
+      "version": "1.0.0-1puppet1",
+      "md5": "8650f586c710f45111cf21bb03a79ba3"
+    },
+    "pe-activesupport": {
+      "version": "2.3.17-1puppet2",
+      "md5": "1d8711bde630802889486080ad711303"
+    },
+    "pe-libevent-devel": {
+      "version": "2.0.13-1puppet4",
+      "md5": "951b681d3e02283dac091dc21100abe5"
+    },
+    "pe-facter": {
+      "version": "2.3.0.0-1puppet1",
+      "md5": "c7d144f3334104ec6dc86e1394acb3d3"
+    },
+    "pe-cloud-provisioner": {
+      "version": "1.1.7-1puppet1",
+      "md5": "525a1b69b8692b04a226b4726f8b4e42"
+    },
+    "pe-cloud-provisioner-libs": {
+      "version": "0.3.2-1puppet1",
+      "md5": "7331de892505fca659f3488190ffcc27"
+    },
+    "pe-ruby-rgen": {
+      "version": "0.6.5-1puppet1",
+      "md5": "04fc8dba137bc8082f5c0aa7b806f1d0"
+    },
+    "pe-httpd-mpm-itk": {
+      "version": "2.2.27-1puppet19",
+      "md5": "3c8b4ccc28b6264f5fa2a75854013a8d"
+    },
+    "pe-puppet-dashboard": {
+      "version": "2.1.6.1.166-1puppet1",
+      "md5": "5a99be158e544ed2274bb8ff54be3023"
+    },
+    "pe-rubygem-rack": {
+      "version": "1.4.5-1puppet2",
+      "md5": "f3cdb4be8c718f38deb5170b72a8dd15"
+    },
+    "pe-passenger": {
+      "version": "4.0.37-1puppet1",
+      "md5": "c5580f7d94d48e4a8b343fccaba42c81"
+    },
+    "pe-httpd-mpm-event": {
+      "version": "2.2.27-1puppet19",
+      "md5": "595cfc8b3f3e4e2bac35a21d6006d445"
+    },
+    "pe-ruby-shadow": {
+      "version": "2.2.0-1puppet3",
+      "md5": "b038cd721f2a5f8784fbe6d10a2c61be"
+    },
+    "pe-httpd-mpm-prefork": {
+      "version": "2.2.27-1puppet19",
+      "md5": "621fe764eeef9c06bbc383dc35bd9e96"
+    },
+    "pe-mcollective-client": {
+      "version": "2.6.0.5-1puppet1",
+      "md5": "4f4d2ced8fec160ae3d039fade2873f2"
+    },
+    "pe-puppetdb-terminus": {
+      "version": "2.2.1.1-1puppet1",
+      "md5": "b9268e27287e2def4450ace921770909"
+    },
+    "pe-rubygem-net-ssh": {
+      "version": "2.1.4-1puppet2",
+      "md5": "49d6e9a8d1a06247b8f0d341d13c50ae"
+    },
+    "pe-ruby-stomp": {
+      "version": "1.3.3-1puppet1",
+      "md5": "60e931a83240a7ede11c3416b12e6e21"
+    },
+    "pe-ruby-augeas": {
+      "version": "0.5.0-1puppet2",
+      "md5": "6ed50cf66265b6be88c608cae18f7dc3"
+    },
+    "pe-license-status": {
+      "version": "0.2.2-1puppet1",
+      "md5": "fada6c9f78da4e4e976ffd028912ffe9"
+    },
+    "pe-httpd-threaded-dev": {
+      "version": "2.2.27-1puppet19",
+      "md5": "0b58c41e53122baec63d80dac9e6f7cc"
+    },
+    "pe-java": {
+      "version": "1.7.0.71-1puppet1",
+      "md5": "4484610c68157aa9393dbaa774403a92"
+    },
+    "pe-memcached-devel": {
+      "version": "1.4.7-1puppet6",
+      "md5": "104333b0170e775c7edccc1fc9cc9394"
+    },
+    "pe-mcollective-common": {
+      "version": "2.6.0.5-1puppet1",
+      "md5": "0e26a61dc7c6ce575a163d0185ca6bcd"
+    },
+    "pe-postgresql-contrib": {
+      "version": "9.2.7-1puppet7",
+      "md5": "efc09c974246d0242356969ff25f6778"
+    },
+    "pe-puppet-license-cli": {
+      "version": "0.1.7.5-1puppet1",
+      "md5": "a33a7647b3ea933c3f132de036b9332f"
+    },
+    "pe-ruby": {
+      "version": "1.9.3.484-1puppet11",
+      "md5": "4630fda4d29e18bc4562d8fa9634eb1d"
+    },
+    "pe-postgresql-devel": {
+      "version": "9.2.7-1puppet7",
+      "md5": "76e63400537b5d420b96d75434ec95a9"
+    },
+    "pe-ruby-ldap": {
+      "version": "0.9.12-1puppet2",
+      "md5": "fb0dc30ad11a610119d7a3657565916a"
+    },
+    "pe-event-inspector": {
+      "version": "0.2.1.65-1puppet1",
+      "md5": "dfb8be3c90559466a150d1679f3c86ea"
+    },
+    "pe-console": {
+      "version": "0.4.3-1puppet1",
+      "md5": "b5a24d1082c874b38f2c865263a02f43"
+    },
+    "pe-puppet": {
+      "version": "3.7.3.3-1puppet1",
+      "md5": "d32f86c685c6b1853a4881eb91e1947d"
+    },
+    "pe-httpd-prefork-dev": {
+      "version": "2.2.27-1puppet19",
+      "md5": "0a34e4295c597208df9e6b6c65a01fb1"
+    },
+    "pe-libyaml": {
+      "version": "0.1.6-1puppet2",
+      "md5": "44fb8d14136688274b69bc503bf6321d"
+    },
+    "pe-libevent": {
+      "version": "2.0.13-1puppet4",
+      "md5": "f30b85658d5ce1b1b2d0de11e71bb02a"
+    },
+    "pe-openssl": {
+      "version": "1.0.0o-1puppet1",
+      "md5": "99b6da0ffbcb4ddd012e3c6cd24d3ed4"
+    },
+    "pe-installer": {
+      "version": "0.0.2.716-1puppet1",
+      "md5": "6ab5fe5a523f7f7fb0787879f2f7d147"
+    },
+    "pe-console-services": {
+      "version": "0.7.4-1puppet1",
+      "md5": "ea795853c1b0a35dcb821461952021b0"
+    },
+    "pe-console-services-termini": {
+      "version": "0.7.4-1puppet1",
+      "md5": "901d4b80ba8c1974b825594349508504"
+    },
+    "pe-puppetserver": {
+      "version": "0.4.1-1puppet1",
+      "md5": "011a9b7b1fdbfef5dfe4c69bea4b8f32"
+    },
+    "pe-puppetserver-common": {
+      "version": "3.7.3.3-1puppet1",
+      "md5": "6173c24db0fb612f989a611d274a4c52"
+    }
+  },
+  "el-5-x86_64": {
+    "pe-memcached": {
+      "version": "1.4.7-9.pe.el5",
+      "md5": "854c9e8f06d2c1c34e672ac55c1d3bc1"
+    },
+    "pe-puppetdb-terminus": {
+      "version": "2.2.1.1-1.el5",
+      "md5": "ba9197f4bba35a4cf6ebe79b87826b77"
+    },
+    "pe-ruby-mysql": {
+      "version": "2.8.2-4.pe.el5",
+      "md5": "2450a50fa9509fa48972dc165f654da4"
+    },
+    "pe-console": {
+      "version": "0.4.3-1.pe.el5",
+      "md5": "5f9cda3e26719b545e429e8db16ee120"
+    },
+    "pe-license-status": {
+      "version": "0.2.2-1.pe.el5",
+      "md5": "c1c9216950411816ca2e3ade220d7aa8"
+    },
+    "pe-ruby-augeas": {
+      "version": "0.5.0-4.pe.el5",
+      "md5": "076f64d7d73855b8dee4527d5597088a"
+    },
+    "pe-event-inspector": {
+      "version": "0.2.1.65-1.pe.el5",
+      "md5": "39d3cd44a895ed8180a660c491247976"
+    },
+    "pe-license": {
+      "version": "0.1.3.7-1.pe.el5",
+      "md5": "5489b1a576e182cdf018e2d294919ae2"
+    },
+    "pe-ruby-ldap": {
+      "version": "0.9.12-7.pe.el5",
+      "md5": "6bf4d688a7344b2325fa0f4823bb0494"
+    },
+    "pe-activemq": {
+      "version": "5.9.0-13.pe.el5",
+      "md5": "20b6bc442c28414a29e0f5812ce22479"
+    },
+    "pe-cloud-provisioner-libs": {
+      "version": "0.3.2-2.pe.el5",
+      "md5": "9cf6aba6a5cb2b1d2781256683ca7b40"
+    },
+    "pe-console-auth": {
+      "version": "1.3.1.20-1.pe.el5",
+      "md5": "2fc1dc8b707a7fbf458d050e18eaec2f"
+    },
+    "pe-bundler": {
+      "version": "1.3.5-2.pe.el5",
+      "md5": "1edd2c39dc0481f22c55d5209f753427"
+    },
+    "pe-puppet": {
+      "version": "3.7.3.3-1.pe.el5",
+      "md5": "662b6bd1f3ca7eefa0e35a2c68360b98"
+    },
+    "pe-puppet-license-cli": {
+      "version": "0.1.7.5-1.pe.el5",
+      "md5": "b9e1be72ffe96a2b75f6a91c6ab45d63"
+    },
+    "pe-mcollective-client": {
+      "version": "2.6.0.5-1.pe.el5",
+      "md5": "53395479843a78350b049b884190da81"
+    },
+    "pe-libevent": {
+      "version": "2.0.13-6.el5",
+      "md5": "3691f289b8bdc370396e328ce639e74f"
+    },
+    "pe-passenger": {
+      "version": "4.0.37-2.pe.el5",
+      "md5": "7cdf2cff3673cb14ccd582e03d2db639"
+    },
+    "pe-agent": {
+      "version": "3.7.1-1.pe.el5",
+      "md5": "56559e3e3ccda4ae567cca5ac77301d3"
+    },
+    "pe-postgresql-contrib": {
+      "version": "9.2.7-14.pe.el5",
+      "md5": "0e771e4bdf452203cd15ac29a1d8d389"
+    },
+    "pe-rubygem-activesupport": {
+      "version": "2.3.17-3.pe.el5",
+      "md5": "a26088e92f62d3ffa6cd5cd9c64c0131"
+    },
+    "pe-postgresql": {
+      "version": "9.2.7-14.pe.el5",
+      "md5": "e1ad9ca22a638e40b06ae6b750eb132c"
+    },
+    "pe-mcollective": {
+      "version": "2.6.0.5-1.pe.el5",
+      "md5": "1e0d1c98f3f0bad37dd40593d3740873"
+    },
+    "pe-live-management": {
+      "version": "1.3.1.45-1.pe.el5",
+      "md5": "104eef2f424aedbaf3c95ece34628976"
+    },
+    "pe-mcollective-common": {
+      "version": "2.6.0.5-1.pe.el5",
+      "md5": "b473745c2459df87faacc76e253e71b7"
+    },
+    "pe-cloud-provisioner": {
+      "version": "1.1.7-1.el5",
+      "md5": "c4ccc0b1800ef5d2ece266fc4bc4991e"
+    },
+    "pe-ruby-rgen": {
+      "version": "0.6.5-1.pe.el5",
+      "md5": "5aab98b89ce8df2482641fd78e49298f"
+    },
+    "pe-rubygem-sequel": {
+      "version": "3.47.0-1.pe.el5",
+      "md5": "d4db6ba18116226af5a482634c08e826"
+    },
+    "pe-facter": {
+      "version": "2.3.0.0-1.pe.el5",
+      "md5": "084f1a2ca1d13e6c0148403427839239"
+    },
+    "pe-httpd": {
+      "version": "2.2.27-15.pe.el5",
+      "md5": "7a82ce8911da66668ffc95b060d7fe5b"
+    },
+    "pe-hiera": {
+      "version": "1.3.4.2-1.pe.el5",
+      "md5": "ede73136464472a3c83cd1588ad67353"
+    },
+    "pe-rubygem-activerecord": {
+      "version": "2.3.17-3.pe.el5",
+      "md5": "d101526cb55e71f6e28ddf175a7830d4"
+    },
+    "pe-postgresql-devel": {
+      "version": "9.2.7-14.pe.el5",
+      "md5": "ff694b8bfda3097d47c52900512f6890"
+    },
+    "pe-memcached-devel": {
+      "version": "1.4.7-9.pe.el5",
+      "md5": "b3d43ee7ae048300a2f4930703a715e4"
+    },
+    "pe-ruby-shadow": {
+      "version": "2.2.0-3.pe.el5",
+      "md5": "15c09cd896b2fc1ba480dcbdf4396212"
+    },
+    "pe-libevent-devel": {
+      "version": "2.0.13-6.el5",
+      "md5": "6462c1cec51a3c1717bcde4ff912c3ab"
+    },
+    "pe-postgresql-server": {
+      "version": "9.2.7-14.pe.el5",
+      "md5": "553ee9d0d7b8e86b9d0632886ff4f26d"
+    },
+    "pe-java": {
+      "version": "1.7.0.71-1.pe.el5",
+      "md5": "23170785cb7ae5d5ef12b24ee3849eb6"
+    },
+    "pe-augeas": {
+      "version": "1.2.0-1.pe.el5",
+      "md5": "77ef2acc09347c1180d00bb8aec538fa"
+    },
+    "pe-virt-what": {
+      "version": "1.13-1.el5",
+      "md5": "673ff2139d546d26f22a9c6c242a3f41"
+    },
+    "pe-rubygem-gem2rpm": {
+      "version": "0.9.2-1.pe.el5",
+      "md5": "82252067c644e5deec9f671f01eb124b"
+    },
+    "pe-rubygem-deep-merge": {
+      "version": "1.0.0-3.pe.el5",
+      "md5": "e6f60b9e781e8364679e85435d8a7efe"
+    },
+    "pe-ruby-stomp": {
+      "version": "1.3.3-1.pe.el5",
+      "md5": "7c23693f757865cc0fb4bc28f3d85ad5"
+    },
+    "pe-ruby-selinux": {
+      "version": "1.33.4-4.pe.el5",
+      "md5": "4109ed1fc930e11934ba93e6d43b7ca6"
+    },
+    "pe-ruby": {
+      "version": "1.9.3.484-16.pe.el5",
+      "md5": "deafdcb29d60714885fa94cbc02d0371"
+    },
+    "pe-certificate-manager": {
+      "version": "0.5.1.36-1.pe.el5",
+      "md5": "b2a1256db37ccbf2071ea1c9670bd835"
+    },
+    "pe-rubygem-rack": {
+      "version": "1.4.5-2.pe.el5",
+      "md5": "005dddc9ad3a9ab1fc6cbbba84559678"
+    },
+    "pe-libyaml": {
+      "version": "0.1.6-2.el5",
+      "md5": "e9eb5d070ae0e30f5178b993a7cd23b5"
+    },
+    "pe-puppet-dashboard": {
+      "version": "2.1.6.1.166-1.pe.el5",
+      "md5": "2bf0fd805a9a93e6c2c91750670fcb3e"
+    },
+    "pe-puppet-enterprise-release": {
+      "version": "3.7.1.0-1.pe.el5",
+      "md5": "0ce437bc8e2e983cca83873b3e623cb1"
+    },
+    "pe-rubygem-net-ssh": {
+      "version": "2.1.4-2.pe.el5",
+      "md5": "c49434ee10be64b18337527a254e7034"
+    },
+    "pe-puppetdb": {
+      "version": "2.2.1.1-1.el5",
+      "md5": "158d2b3b56084e096da42a2101ca1d31"
+    },
+    "pe-openssl": {
+      "version": "1.0.0o-2.pe.el5",
+      "md5": "ea5396979ac4a697bf7e0a857b01ccd3"
+    },
+    "pe-libldap": {
+      "version": "2.4.39-5.pe.el5",
+      "md5": "d045bd8c130545dd7ef1495eb39d7116"
+    },
+    "pe-libapr": {
+      "version": "1.5.1-1.pe.el5",
+      "md5": "469853fa2beb4d6645796374e93371fc"
+    },
+    "pe-libaprutil": {
+      "version": "1.5.3-1.pe.el5",
+      "md5": "e20bbe891add1982d3da1a2244d8ff2a"
+    },
+    "pe-installer": {
+      "version": "0.0.2.716-1.pe.el5",
+      "md5": "5e43419edd38cd7ca2d460caa42df3eb"
+    },
+    "pe-console-services": {
+      "version": "0.7.4-1.el5",
+      "md5": "9a2ce21ffc2851cb443ca5fa3a8b8076"
+    },
+    "pe-console-services-termini": {
+      "version": "0.7.4-1.el5",
+      "md5": "9c395ea45f6a6b5505fbda8c871ddc72"
+    },
+    "pe-puppetserver": {
+      "version": "0.4.1-1.el5",
+      "md5": "25220342e99087762ba462b227231502"
+    },
+    "pe-puppetserver-common": {
+      "version": "3.7.3.3-1.pe.el5",
+      "md5": "bdc8a0eae9ce83a975ed86d2a7f5b4d2"
+    }
+  },
+  "el-6-x86_64": {
+    "pe-memcached": {
+      "version": "1.4.7-9.pe.el6",
+      "md5": "1c1cf40327d4bac12e742b77246fadea"
+    },
+    "pe-puppetdb-terminus": {
+      "version": "2.2.1.1-1.el6",
+      "md5": "1328f0c8978376e0b8fba09e39c2c10f"
+    },
+    "pe-ruby-mysql": {
+      "version": "2.8.2-4.pe.el6",
+      "md5": "22d3a6d870be6f92c5e69ae3fd6053c2"
+    },
+    "pe-console": {
+      "version": "0.4.3-1.pe.el6",
+      "md5": "0209d061416f3f0ceff53261358b9156"
+    },
+    "pe-license-status": {
+      "version": "0.2.2-1.pe.el6",
+      "md5": "a719b82838ac5a66cec4b0d3810ad3cc"
+    },
+    "pe-ruby-augeas": {
+      "version": "0.5.0-4.pe.el6",
+      "md5": "4306848aebde798276a024aa54c930cf"
+    },
+    "pe-event-inspector": {
+      "version": "0.2.1.65-1.pe.el6",
+      "md5": "46b55cd9b7a3ad8d6bd197c113ebd36b"
+    },
+    "pe-license": {
+      "version": "0.1.3.7-1.pe.el6",
+      "md5": "a6a7dbb5f6987d44027a4174f98e5af1"
+    },
+    "pe-ruby-ldap": {
+      "version": "0.9.12-7.pe.el6",
+      "md5": "5dd40e49dc5038de1f8b6d200e863ed0"
+    },
+    "pe-activemq": {
+      "version": "5.9.0-13.pe.el6",
+      "md5": "b1ddba53e51640727cc1e875e17ca034"
+    },
+    "pe-cloud-provisioner-libs": {
+      "version": "0.3.2-2.pe.el6",
+      "md5": "e84982f04757a2a565b707a2c414b806"
+    },
+    "pe-console-auth": {
+      "version": "1.3.1.20-1.pe.el6",
+      "md5": "c02e638ae389a64063be7e467a1f0b65"
+    },
+    "pe-bundler": {
+      "version": "1.3.5-2.pe.el6",
+      "md5": "a20246a6dd1fe1b29f9bf80b3304c1a5"
+    },
+    "pe-puppet": {
+      "version": "3.7.3.3-1.pe.el6",
+      "md5": "baa7b4aadbfc4d1373ab6ae993a5787a"
+    },
+    "pe-puppet-license-cli": {
+      "version": "0.1.7.5-1.pe.el6",
+      "md5": "d9296258bf451b98d9037417d547e152"
+    },
+    "pe-mcollective-client": {
+      "version": "2.6.0.5-1.pe.el6",
+      "md5": "b0ac3a905f51a69a6a0f6288c1bac50d"
+    },
+    "pe-razor-server": {
+      "version": "0.15.1.1.21-1.pe.el6",
+      "md5": "dfea186f48093f558e892d029b438b67"
+    },
+    "pe-libevent": {
+      "version": "2.0.13-6.el6",
+      "md5": "5f495fb434ab6a66d276101077114f9c"
+    },
+    "pe-passenger": {
+      "version": "4.0.37-2.pe.el6",
+      "md5": "4568d9f9e4c88cd29cf220a8f8d7545c"
+    },
+    "pe-agent": {
+      "version": "3.7.1-1.pe.el6",
+      "md5": "5b300b7427ea9d511218b440a679a4d6"
+    },
+    "pe-postgresql-contrib": {
+      "version": "9.2.7-14.pe.el6",
+      "md5": "4a6b04950b4db331bff099e94cec4f66"
+    },
+    "pe-rubygem-activesupport": {
+      "version": "2.3.17-3.pe.el6",
+      "md5": "5ab4477d709fb3739ae09e71cf535825"
+    },
+    "pe-postgresql": {
+      "version": "9.2.7-14.pe.el6",
+      "md5": "227fe13c52242ffa3271d67d9241de57"
+    },
+    "pe-mcollective": {
+      "version": "2.6.0.5-1.pe.el6",
+      "md5": "5b57a71c9312b0bfe622e5b4a1a70ff5"
+    },
+    "pe-live-management": {
+      "version": "1.3.1.45-1.pe.el6",
+      "md5": "47b7bc8a20830ec2860c522ac52c8cf2"
+    },
+    "pe-mcollective-common": {
+      "version": "2.6.0.5-1.pe.el6",
+      "md5": "f10190de19d0e35bcf8a6027d48b313d"
+    },
+    "pe-cloud-provisioner": {
+      "version": "1.1.7-1.el6",
+      "md5": "9d3d892b1ec76f8b8fce81abe3bb9855"
+    },
+    "pe-ruby-rgen": {
+      "version": "0.6.5-1.pe.el6",
+      "md5": "8318c459db2a5f7a407541835d45abac"
+    },
+    "pe-rubygem-sequel": {
+      "version": "3.47.0-1.pe.el6",
+      "md5": "651d9b63bb75c933c1a522fd182512a1"
+    },
+    "pe-facter": {
+      "version": "2.3.0.0-1.pe.el6",
+      "md5": "d9c965b3238bdc8fe155ae939aad7522"
+    },
+    "pe-httpd": {
+      "version": "2.2.27-15.pe.el6",
+      "md5": "251edd8d6b5cce973d4d57b283d0fe91"
+    },
+    "pe-hiera": {
+      "version": "1.3.4.2-1.pe.el6",
+      "md5": "43b2fb82f18f12b3d047c300e2fe8a20"
+    },
+    "pe-rubygem-activerecord": {
+      "version": "2.3.17-3.pe.el6",
+      "md5": "c370fe5f5e308aa492e5edb9d38d18a7"
+    },
+    "pe-postgresql-devel": {
+      "version": "9.2.7-14.pe.el6",
+      "md5": "2b66e53b609f1f64449fbc5879d979ce"
+    },
+    "pe-memcached-devel": {
+      "version": "1.4.7-9.pe.el6",
+      "md5": "115bc8bcfe1f7717d2ac0ea1dd3bd427"
+    },
+    "pe-ruby-shadow": {
+      "version": "2.2.0-3.pe.el6",
+      "md5": "d59bb817cba3f23369f789af95ddd2a3"
+    },
+    "pe-libevent-devel": {
+      "version": "2.0.13-6.el6",
+      "md5": "f96c63cb39e99c922a1e84bb73a9b3ae"
+    },
+    "pe-postgresql-server": {
+      "version": "9.2.7-14.pe.el6",
+      "md5": "e8d8aadc33e719c7f9e6b72bb3bf9005"
+    },
+    "pe-java": {
+      "version": "1.7.0.71-1.pe.el6",
+      "md5": "4868211b1f3ea2151910d8a350cc9ca6"
+    },
+    "pe-augeas": {
+      "version": "1.2.0-1.pe.el6",
+      "md5": "c7a1624fa7e278576956c72c14f39a34"
+    },
+    "pe-virt-what": {
+      "version": "1.13-1.el6",
+      "md5": "b8f313a828e4d0062fd9066abe77bc3d"
+    },
+    "pe-rubygem-gem2rpm": {
+      "version": "0.9.2-1.pe.el6",
+      "md5": "805babb102a08b5897f6e675d7172027"
+    },
+    "pe-razor-libs": {
+      "version": "1.0.1-5.pe.el6",
+      "md5": "d47cf569d4a2ae9275277a02cff2233f"
+    },
+    "pe-rubygem-deep-merge": {
+      "version": "1.0.0-3.pe.el6",
+      "md5": "0e2e510794a96e2a89bf6ac878ce0826"
+    },
+    "pe-ruby-stomp": {
+      "version": "1.3.3-1.pe.el6",
+      "md5": "2134d1775d6c270452f71a3ece39598a"
+    },
+    "pe-ruby-selinux": {
+      "version": "2.0.94-4.pe.el6",
+      "md5": "bcc685279127df1e58d4595bd308b3df"
+    },
+    "pe-ruby": {
+      "version": "1.9.3.484-16.pe.el6",
+      "md5": "aaeac994304d51730c054d9eb7d359dd"
+    },
+    "pe-rubygem-rack": {
+      "version": "1.4.5-2.pe.el6",
+      "md5": "91303016da2c127c0de12fa73f675b54"
+    },
+    "pe-certificate-manager": {
+      "version": "0.5.1.36-1.pe.el6",
+      "md5": "27b9ebdbe7b4f356a7ec828a05c02e6f"
+    },
+    "pe-libyaml": {
+      "version": "0.1.6-2.el6",
+      "md5": "d0e55c945ca0892ca016f9cc88cf29cf"
+    },
+    "pe-puppet-dashboard": {
+      "version": "2.1.6.1.166-1.pe.el6",
+      "md5": "da151ee03321f0711e9c6aab2f52cc53"
+    },
+    "pe-puppet-enterprise-release": {
+      "version": "3.7.1.0-1.pe.el6",
+      "md5": "dcf3fea8b6b4e1df864455d86b294f7d"
+    },
+    "pe-rubygem-net-ssh": {
+      "version": "2.1.4-2.pe.el6",
+      "md5": "317b50c0974651868c99a7c4501823b5"
+    },
+    "pe-puppetdb": {
+      "version": "2.2.1.1-1.el6",
+      "md5": "4bf900dd7436b0c33f1237fc569ea376"
+    },
+    "pe-openssl": {
+      "version": "1.0.0o-2.pe.el6",
+      "md5": "dd259332c2aae6a5ced0b92e4dc0c2d6"
+    },
+    "pe-libldap": {
+      "version": "2.4.39-5.pe.el6",
+      "md5": "779de64438eb90ddc9e0b2a29fedb7c2"
+    },
+    "pe-libapr": {
+      "version": "1.5.1-1.pe.el6",
+      "md5": "96a9fb5e3ced53f15fcadb189c769c78"
+    },
+    "pe-libaprutil": {
+      "version": "1.5.3-1.pe.el6",
+      "md5": "732bf5dc6f8ed123d87c0cb791e446fc"
+    },
+    "pe-installer": {
+      "version": "0.0.2.716-1.pe.el6",
+      "md5": "c10a8d68cbd8da7f58003f502f47ed3c"
+    },
+    "pe-console-services-termini": {
+      "version": "0.7.4-1.el6",
+      "md5": "74cf336d3cc93ff50f23207d89f980bd"
+    },
+    "pe-console-services": {
+      "version": "0.7.4-1.el6",
+      "md5": "3fee8ead117c8dac90e74be156e7c7c6"
+    },
+    "pe-puppetserver": {
+      "version": "0.4.1-1.el6",
+      "md5": "91a44b6d00249564d9a43ffa9f40e99a"
+    },
+    "pe-puppetserver-common": {
+      "version": "3.7.3.3-1.pe.el6",
+      "md5": "6c79b2133f390a60289945af85851052"
+    }
+  },
+  "el-6-i386": {
+    "pe-memcached": {
+      "version": "1.4.7-9.pe.el6",
+      "md5": "2cf64c028c265d87262f93d5d0b3e635"
+    },
+    "pe-puppetdb-terminus": {
+      "version": "2.2.1.1-1.el6",
+      "md5": "1328f0c8978376e0b8fba09e39c2c10f"
+    },
+    "pe-ruby-mysql": {
+      "version": "2.8.2-4.pe.el6",
+      "md5": "7048fe586e7f17e3cb9550551d448d62"
+    },
+    "pe-console": {
+      "version": "0.4.3-1.pe.el6",
+      "md5": "0209d061416f3f0ceff53261358b9156"
+    },
+    "pe-license-status": {
+      "version": "0.2.2-1.pe.el6",
+      "md5": "a719b82838ac5a66cec4b0d3810ad3cc"
+    },
+    "pe-ruby-augeas": {
+      "version": "0.5.0-4.pe.el6",
+      "md5": "33bff548d1fb4a2960d6eb314264ae4f"
+    },
+    "pe-event-inspector": {
+      "version": "0.2.1.65-1.pe.el6",
+      "md5": "46b55cd9b7a3ad8d6bd197c113ebd36b"
+    },
+    "pe-license": {
+      "version": "0.1.3.7-1.pe.el6",
+      "md5": "a6a7dbb5f6987d44027a4174f98e5af1"
+    },
+    "pe-ruby-ldap": {
+      "version": "0.9.12-7.pe.el6",
+      "md5": "de196a41c5dc19adcf0f0fa10446dbc0"
+    },
+    "pe-activemq": {
+      "version": "5.9.0-13.pe.el6",
+      "md5": "8daf040af96dd940ab688b3f7ece00bc"
+    },
+    "pe-cloud-provisioner-libs": {
+      "version": "0.3.2-2.pe.el6",
+      "md5": "731dc670e2cd4dab77dcd73780b8afa2"
+    },
+    "pe-console-auth": {
+      "version": "1.3.1.20-1.pe.el6",
+      "md5": "c02e638ae389a64063be7e467a1f0b65"
+    },
+    "pe-bundler": {
+      "version": "1.3.5-2.pe.el6",
+      "md5": "419611d6bf9d896e8f4c604ea1a4acf5"
+    },
+    "pe-puppet": {
+      "version": "3.7.3.3-1.pe.el6",
+      "md5": "baa7b4aadbfc4d1373ab6ae993a5787a"
+    },
+    "pe-puppet-license-cli": {
+      "version": "0.1.7.5-1.pe.el6",
+      "md5": "d9296258bf451b98d9037417d547e152"
+    },
+    "pe-mcollective-client": {
+      "version": "2.6.0.5-1.pe.el6",
+      "md5": "b0ac3a905f51a69a6a0f6288c1bac50d"
+    },
+    "pe-razor-server": {
+      "version": "0.15.1.1.21-1.pe.el6",
+      "md5": "dfea186f48093f558e892d029b438b67"
+    },
+    "pe-libevent": {
+      "version": "2.0.13-6.el6",
+      "md5": "d43581ef8e49c64769ee3376f72b88f0"
+    },
+    "pe-passenger": {
+      "version": "4.0.37-2.pe.el6",
+      "md5": "11da3feb77edf314c9d774ede0424e55"
+    },
+    "pe-agent": {
+      "version": "3.7.1-1.pe.el6",
+      "md5": "5b300b7427ea9d511218b440a679a4d6"
+    },
+    "pe-postgresql-contrib": {
+      "version": "9.2.7-14.pe.el6",
+      "md5": "ae8191632960b5ab18c954288b89b028"
+    },
+    "pe-rubygem-activesupport": {
+      "version": "2.3.17-3.pe.el6",
+      "md5": "366d77d3ee460b3886e02e35c1c2e187"
+    },
+    "pe-postgresql": {
+      "version": "9.2.7-14.pe.el6",
+      "md5": "38c8cf484cdb8e3a1ff2eb151c0bd2da"
+    },
+    "pe-mcollective": {
+      "version": "2.6.0.5-1.pe.el6",
+      "md5": "5b57a71c9312b0bfe622e5b4a1a70ff5"
+    },
+    "pe-live-management": {
+      "version": "1.3.1.45-1.pe.el6",
+      "md5": "47b7bc8a20830ec2860c522ac52c8cf2"
+    },
+    "pe-mcollective-common": {
+      "version": "2.6.0.5-1.pe.el6",
+      "md5": "f10190de19d0e35bcf8a6027d48b313d"
+    },
+    "pe-cloud-provisioner": {
+      "version": "1.1.7-1.el6",
+      "md5": "79ef94ad2d4004f7936801b221a67264"
+    },
+    "pe-ruby-rgen": {
+      "version": "0.6.5-1.pe.el6",
+      "md5": "8318c459db2a5f7a407541835d45abac"
+    },
+    "pe-rubygem-sequel": {
+      "version": "3.47.0-1.pe.el6",
+      "md5": "90aa571f6acbe12b5fa6fa2c8bd471cc"
+    },
+    "pe-facter": {
+      "version": "2.3.0.0-1.pe.el6",
+      "md5": "927d9626025756c49f1c4c363ba747ea"
+    },
+    "pe-httpd": {
+      "version": "2.2.27-15.pe.el6",
+      "md5": "1df2a35edae32df5247ba4795ba1189f"
+    },
+    "pe-hiera": {
+      "version": "1.3.4.2-1.pe.el6",
+      "md5": "43b2fb82f18f12b3d047c300e2fe8a20"
+    },
+    "pe-rubygem-activerecord": {
+      "version": "2.3.17-3.pe.el6",
+      "md5": "c370fe5f5e308aa492e5edb9d38d18a7"
+    },
+    "pe-postgresql-devel": {
+      "version": "9.2.7-14.pe.el6",
+      "md5": "39c60114b06cd72665351fc474556f6a"
+    },
+    "pe-memcached-devel": {
+      "version": "1.4.7-9.pe.el6",
+      "md5": "d4088954327d9c939c8f0742ef52d320"
+    },
+    "pe-ruby-shadow": {
+      "version": "2.2.0-3.pe.el6",
+      "md5": "c19ddb8f9c27115ec4324ffa9cee0ff3"
+    },
+    "pe-libevent-devel": {
+      "version": "2.0.13-6.el6",
+      "md5": "c27aac6d3603bcdbee25cd9406f69823"
+    },
+    "pe-postgresql-server": {
+      "version": "9.2.7-14.pe.el6",
+      "md5": "06a6d551620e0b212a6187c8eb2f56ef"
+    },
+    "pe-java": {
+      "version": "1.7.0.71-1.pe.el6",
+      "md5": "1340edc15a1ae2cd77bd9654a7db46c2"
+    },
+    "pe-augeas": {
+      "version": "1.2.0-1.pe.el6",
+      "md5": "a826846fe37d45e83b27f935dab6b231"
+    },
+    "pe-virt-what": {
+      "version": "1.13-1.el6",
+      "md5": "1fb071f2c5f3b237a6b6b46c57c9ab4e"
+    },
+    "pe-rubygem-gem2rpm": {
+      "version": "0.9.2-1.pe.el6",
+      "md5": "7e0b5d5861e8b4b5ae21b86037c2ae49"
+    },
+    "pe-razor-libs": {
+      "version": "1.0.1-5.pe.el6",
+      "md5": "9a54706800ceca04986503bbe6685417"
+    },
+    "pe-rubygem-deep-merge": {
+      "version": "1.0.0-3.pe.el6",
+      "md5": "0e2e510794a96e2a89bf6ac878ce0826"
+    },
+    "pe-ruby-stomp": {
+      "version": "1.3.3-1.pe.el6",
+      "md5": "2134d1775d6c270452f71a3ece39598a"
+    },
+    "pe-ruby-selinux": {
+      "version": "2.0.94-4.pe.el6",
+      "md5": "54313f67a4e7da6ee20aa648fcb3fc49"
+    },
+    "pe-ruby": {
+      "version": "1.9.3.484-16.pe.el6",
+      "md5": "fdd32025d047817d4264fe90d0b123e9"
+    },
+    "pe-rubygem-rack": {
+      "version": "1.4.5-2.pe.el6",
+      "md5": "91303016da2c127c0de12fa73f675b54"
+    },
+    "pe-certificate-manager": {
+      "version": "0.5.1.36-1.pe.el6",
+      "md5": "27b9ebdbe7b4f356a7ec828a05c02e6f"
+    },
+    "pe-libyaml": {
+      "version": "0.1.6-2.el6",
+      "md5": "8316712571b6956bbbfdaa8be650e6a3"
+    },
+    "pe-puppet-dashboard": {
+      "version": "2.1.6.1.166-1.pe.el6",
+      "md5": "bd740cd1a9d047b24390cc5c951175d9"
+    },
+    "pe-puppet-enterprise-release": {
+      "version": "3.7.1.0-1.pe.el6",
+      "md5": "dcf3fea8b6b4e1df864455d86b294f7d"
+    },
+    "pe-rubygem-net-ssh": {
+      "version": "2.1.4-2.pe.el6",
+      "md5": "62afcec1e4d24ed7655e89e3931a4908"
+    },
+    "pe-puppetdb": {
+      "version": "2.2.1.1-1.el6",
+      "md5": "4bf900dd7436b0c33f1237fc569ea376"
+    },
+    "pe-openssl": {
+      "version": "1.0.0o-2.pe.el6",
+      "md5": "0d4021c7c8aa49ed8672fa7f96313b34"
+    },
+    "pe-libldap": {
+      "version": "2.4.39-5.pe.el6",
+      "md5": "a9a13336e91314db3e5092c2f82f3b57"
+    },
+    "pe-libapr": {
+      "version": "1.5.1-1.pe.el6",
+      "md5": "7f15215f512606e1d70469265c8055c7"
+    },
+    "pe-libaprutil": {
+      "version": "1.5.3-1.pe.el6",
+      "md5": "ec90d84132c288320b9559d8eff97baf"
+    },
+    "pe-installer": {
+      "version": "0.0.2.716-1.pe.el6",
+      "md5": "e2fdcf9f596a2188aa1ef44f0f55bb36"
+    },
+    "pe-console-services-termini": {
+      "version": "0.7.4-1.el6",
+      "md5": "74cf336d3cc93ff50f23207d89f980bd"
+    },
+    "pe-console-services": {
+      "version": "0.7.4-1.el6",
+      "md5": "3fee8ead117c8dac90e74be156e7c7c6"
+    },
+    "pe-puppetserver": {
+      "version": "0.4.1-1.el6",
+      "md5": "91a44b6d00249564d9a43ffa9f40e99a"
+    },
+    "pe-puppetserver-common": {
+      "version": "3.7.3.3-1.pe.el6",
+      "md5": "6c79b2133f390a60289945af85851052"
+    }
+  },
+  "sles-11-i386": {
+    "pe-memcached": {
+      "version": "1.4.7-9.pe.sles11",
+      "md5": "c35bc82532072fd57204dcf4853b5873"
+    },
+    "pe-puppetdb-terminus": {
+      "version": "2.2.1.1-1.sles11",
+      "md5": "9dbdf5c59652c5e4a9be9d1f1b9e38ef"
+    },
+    "pe-ruby-mysql": {
+      "version": "2.8.2-4.pe.sles11",
+      "md5": "0856ffa336a1509355894daf59d27948"
+    },
+    "pe-console": {
+      "version": "0.4.3-1.pe.sles11",
+      "md5": "24a7509326e5d1b4ed460d5ae3334905"
+    },
+    "pe-license-status": {
+      "version": "0.2.2-1.pe.sles11",
+      "md5": "f2e59fe19e095927c3ac7459925fca36"
+    },
+    "pe-ruby-augeas": {
+      "version": "0.5.0-4.pe.sles11",
+      "md5": "92a1dc4cae819bb7bd14183a094f259d"
+    },
+    "pe-event-inspector": {
+      "version": "0.2.1.65-1.pe.sles11",
+      "md5": "afd37a1d6825149b0170cda6337826f8"
+    },
+    "pe-rubygem-sinatra": {
+      "version": "1.4.2-1.pe",
+      "md5": "77d788e3e2ff51015d2e10e0c4495166"
+    },
+    "pe-license": {
+      "version": "0.1.3.7-1.pe.sles11",
+      "md5": "f64e7f1e3af4f9bbbe8e732254145273"
+    },
+    "pe-ruby-ldap": {
+      "version": "0.9.12-7.pe.sles11",
+      "md5": "47e3922861f7fc86129d4c33c3aa88aa"
+    },
+    "pe-activemq": {
+      "version": "5.9.0-13.pe.sles11",
+      "md5": "8e5f939fbbb3fa79a9d3ea63c4097968"
+    },
+    "pe-cloud-provisioner-libs": {
+      "version": "0.3.2-2.pe.sles11",
+      "md5": "3b8ae7207c361ca2a7c12bb583a855e9"
+    },
+    "pe-console-auth": {
+      "version": "1.3.1.20-1.pe.sles11",
+      "md5": "206bc087d6453d3fce219a1e9acd78d9"
+    },
+    "pe-bundler": {
+      "version": "1.3.5-2.pe",
+      "md5": "e34c1c7d70e0842e6fdb591f621487db"
+    },
+    "pe-puppet": {
+      "version": "3.7.3.3-1.pe.sles11",
+      "md5": "e20975e33d616896432ca6aca4a66017"
+    },
+    "pe-puppet-license-cli": {
+      "version": "0.1.7.5-1.pe.sles11",
+      "md5": "98b5c38184dc2dad027b3a4d205fa326"
+    },
+    "pe-mcollective-client": {
+      "version": "2.6.0.5-1.pe.sles11",
+      "md5": "7fd71fceb518817b26dab737fdeff8fe"
+    },
+    "pe-libevent": {
+      "version": "2.0.13-6.sles11",
+      "md5": "e70153d7ef4b1130291c466e804a2742"
+    },
+    "pe-passenger": {
+      "version": "4.0.37-2.pe.sles11",
+      "md5": "ae43a095d7ed2ffb96f512bd4410b696"
+    },
+    "pe-agent": {
+      "version": "3.7.1-1.pe.sles11",
+      "md5": "8ffd59678c695c7fd59bf7f9fa3461f9"
+    },
+    "pe-postgresql-contrib": {
+      "version": "9.2.7-14.pe.sles11",
+      "md5": "9aac252eba8ea26077cb448e24130ab8"
+    },
+    "pe-rubygem-activesupport": {
+      "version": "2.3.17-3.pe",
+      "md5": "ef6162fa4c17c79f551cd587f7f4234c"
+    },
+    "pe-postgresql": {
+      "version": "9.2.7-14.pe.sles11",
+      "md5": "dbc8507b75c75d1ec728b8f794df0bac"
+    },
+    "pe-mcollective": {
+      "version": "2.6.0.5-1.pe.sles11",
+      "md5": "e71d91210b63390349959f163fdb5caf"
+    },
+    "pe-live-management": {
+      "version": "1.3.1.45-1.pe.sles11",
+      "md5": "89e297e86565cc022de38d81f8c6b570"
+    },
+    "pe-mcollective-common": {
+      "version": "2.6.0.5-1.pe.sles11",
+      "md5": "1914d2690fd67035bc389526d2326de6"
+    },
+    "pe-cloud-provisioner": {
+      "version": "1.1.7-1.sles11",
+      "md5": "c00b168b20234b5cb318815ceea2861d"
+    },
+    "pe-ruby-rgen": {
+      "version": "0.6.5-1.pe.sles11",
+      "md5": "54a31b505375e845fc2bc466cfacd8a3"
+    },
+    "pe-rubygem-sequel": {
+      "version": "3.47.0-1.pe",
+      "md5": "804bb0af9fb3b272569202ff9f8f947b"
+    },
+    "pe-facter": {
+      "version": "2.3.0.0-1.pe.sles11",
+      "md5": "26ae5513440d2aa3c4c8164919b5609e"
+    },
+    "pe-httpd": {
+      "version": "2.2.27-15.pe.sles11",
+      "md5": "7d67012f44391e2ab5dd85018a7f55a3"
+    },
+    "pe-hiera": {
+      "version": "1.3.4.2-1.pe.sles11",
+      "md5": "f070e03f9e10feb8847034f982f90113"
+    },
+    "pe-rubygem-activerecord": {
+      "version": "2.3.17-3.pe",
+      "md5": "a88633715b1433b625be14ec488b382e"
+    },
+    "pe-postgresql-devel": {
+      "version": "9.2.7-14.pe.sles11",
+      "md5": "bdc02228c99ce6959e4ce233f8f2c7e4"
+    },
+    "pe-memcached-devel": {
+      "version": "1.4.7-9.pe.sles11",
+      "md5": "5a82bf7893be682499eb1f1e625a4004"
+    },
+    "pe-ruby-shadow": {
+      "version": "2.2.0-3.pe.sles11",
+      "md5": "ce8e527d6e1f3e310cb0744577c9a68c"
+    },
+    "pe-libevent-devel": {
+      "version": "2.0.13-6.sles11",
+      "md5": "563904384594037acf811a55c337da7c"
+    },
+    "pe-postgresql-server": {
+      "version": "9.2.7-14.pe.sles11",
+      "md5": "864f3a63cfe8681cc6c90b75935f0a19"
+    },
+    "pe-java": {
+      "version": "1.7.0.71-1.pe.sles11",
+      "md5": "d30c8b63135ce5f9b7e1fd918fda9ecb"
+    },
+    "pe-augeas": {
+      "version": "1.2.0-1.pe.sles11",
+      "md5": "96b223f32b135c6fab97a544487d1ca7"
+    },
+    "pe-virt-what": {
+      "version": "1.13-1.sles11",
+      "md5": "f0fd8cac580f331183aa75c37706dfcd"
+    },
+    "pe-rubygem-deep-merge": {
+      "version": "1.0.0-3.pe",
+      "md5": "09d988b06c171944a32980ee2981645e"
+    },
+    "pe-ruby-stomp": {
+      "version": "1.3.3-1.pe.sles11",
+      "md5": "29d6a9d94482a94fba62029c4d2e99cd"
+    },
+    "pe-ruby": {
+      "version": "1.9.3.484-16.pe.sles11",
+      "md5": "db4a2834329c3ad089d8a65079d658b0"
+    },
+    "pe-certificate-manager": {
+      "version": "0.5.1.36-1.pe.sles11",
+      "md5": "3f1ffc083a5aa3ced8efc42933c33370"
+    },
+    "pe-rubygem-rack": {
+      "version": "1.4.5-2.pe",
+      "md5": "73356beb9f026ef07683ceaf19a62ada"
+    },
+    "pe-libyaml": {
+      "version": "0.1.6-2.sles11",
+      "md5": "9bd7777ca52ecc6314f19a20dfd202e2"
+    },
+    "pe-puppet-dashboard": {
+      "version": "2.1.6.1.166-1.pe.sles11",
+      "md5": "b370e893524818028bbb0b6a3b8825e1"
+    },
+    "pe-puppet-enterprise-release": {
+      "version": "3.7.1.0-1.pe.sles11",
+      "md5": "bae25b0ed94ce7c2faec4533356e84de"
+    },
+    "pe-rubygem-net-ssh": {
+      "version": "2.1.4-2.pe",
+      "md5": "218e2385c37cb19fddf9b8556a102de3"
+    },
+    "pe-puppetdb": {
+      "version": "2.2.1.1-1.sles11",
+      "md5": "146bd9633b8d63aaa7ac8b855679ced0"
+    },
+    "pe-openssl": {
+      "version": "1.0.0o-2.pe.sles11",
+      "md5": "43013721c5197efa4189c60af6490dc0"
+    },
+    "pe-libldap": {
+      "version": "2.4.39-5.pe.sles11",
+      "md5": "fdd09f7358e7c02990d003b9931dbc22"
+    },
+    "pe-libapr": {
+      "version": "1.5.1-1.pe.sles11",
+      "md5": "db581a3453d90f2e5ceab9c8ac9ab498"
+    },
+    "pe-libaprutil": {
+      "version": "1.5.3-1.pe.sles11",
+      "md5": "d77916b29ac92876d225395b287aca21"
+    },
+    "pe-installer": {
+      "version": "0.0.2.716-1.pe.sles11",
+      "md5": "1ee3bd9c14d5ec5c265fd10bb2008970"
+    },
+    "pe-console-services": {
+      "version": "0.7.4-1.sles11",
+      "md5": "8ea61be9bf38e0a09a155756900cad25"
+    },
+    "pe-console-services-termini": {
+      "version": "0.7.4-1.sles11",
+      "md5": "bda0abf4e988771b19e85b7b36e0168a"
+    },
+    "pe-puppetserver": {
+      "version": "0.4.1-1.sles11",
+      "md5": "aef66c6533ac93350772da88fe0f1e3a"
+    },
+    "pe-puppetserver-common": {
+      "version": "3.7.3.3-1.pe.sles11",
+      "md5": "26fca9ce1563ce5591a1b18c3d6acfbf"
+    }
+  },
+  "el-5-i386": {
+    "pe-memcached": {
+      "version": "1.4.7-9.pe.el5",
+      "md5": "426fdce309538528f069d814be6fd015"
+    },
+    "pe-puppetdb-terminus": {
+      "version": "2.2.1.1-1.el5",
+      "md5": "ba9197f4bba35a4cf6ebe79b87826b77"
+    },
+    "pe-ruby-mysql": {
+      "version": "2.8.2-4.pe.el5",
+      "md5": "cd1d0b6d5bfbec24afbad376a0dc7d93"
+    },
+    "pe-console": {
+      "version": "0.4.3-1.pe.el5",
+      "md5": "5f9cda3e26719b545e429e8db16ee120"
+    },
+    "pe-license-status": {
+      "version": "0.2.2-1.pe.el5",
+      "md5": "c1c9216950411816ca2e3ade220d7aa8"
+    },
+    "pe-ruby-augeas": {
+      "version": "0.5.0-4.pe.el5",
+      "md5": "70b2fd444fa4029c61bc3474ca513792"
+    },
+    "pe-event-inspector": {
+      "version": "0.2.1.65-1.pe.el5",
+      "md5": "39d3cd44a895ed8180a660c491247976"
+    },
+    "pe-license": {
+      "version": "0.1.3.7-1.pe.el5",
+      "md5": "5489b1a576e182cdf018e2d294919ae2"
+    },
+    "pe-ruby-ldap": {
+      "version": "0.9.12-7.pe.el5",
+      "md5": "202cf11140b34767cd35a2358bc91a04"
+    },
+    "pe-activemq": {
+      "version": "5.9.0-13.pe.el5",
+      "md5": "ed7f0d14189d261b4d0236243fa92cb7"
+    },
+    "pe-cloud-provisioner-libs": {
+      "version": "0.3.2-2.pe.el5",
+      "md5": "f45df45c95bfaf080cfd5cbb1239f867"
+    },
+    "pe-console-auth": {
+      "version": "1.3.1.20-1.pe.el5",
+      "md5": "2fc1dc8b707a7fbf458d050e18eaec2f"
+    },
+    "pe-bundler": {
+      "version": "1.3.5-2.pe.el5",
+      "md5": "1edd2c39dc0481f22c55d5209f753427"
+    },
+    "pe-puppet": {
+      "version": "3.7.3.3-1.pe.el5",
+      "md5": "662b6bd1f3ca7eefa0e35a2c68360b98"
+    },
+    "pe-puppet-license-cli": {
+      "version": "0.1.7.5-1.pe.el5",
+      "md5": "b9e1be72ffe96a2b75f6a91c6ab45d63"
+    },
+    "pe-mcollective-client": {
+      "version": "2.6.0.5-1.pe.el5",
+      "md5": "53395479843a78350b049b884190da81"
+    },
+    "pe-libevent": {
+      "version": "2.0.13-6.el5",
+      "md5": "de87b24d015d99881568e8c7e903e4de"
+    },
+    "pe-passenger": {
+      "version": "4.0.37-2.pe.el5",
+      "md5": "d804c31eb72ae695c294c649174c64a7"
+    },
+    "pe-agent": {
+      "version": "3.7.1-1.pe.el5",
+      "md5": "56559e3e3ccda4ae567cca5ac77301d3"
+    },
+    "pe-postgresql-contrib": {
+      "version": "9.2.7-14.pe.el5",
+      "md5": "e8ce0b3106fa3af19049ddd431151461"
+    },
+    "pe-rubygem-activesupport": {
+      "version": "2.3.17-3.pe.el5",
+      "md5": "f91a90f5d305c3f13ccc6743227a6a7a"
+    },
+    "pe-postgresql": {
+      "version": "9.2.7-14.pe.el5",
+      "md5": "4e1225a9307c49bf202be31fe8577ed1"
+    },
+    "pe-mcollective": {
+      "version": "2.6.0.5-1.pe.el5",
+      "md5": "1e0d1c98f3f0bad37dd40593d3740873"
+    },
+    "pe-live-management": {
+      "version": "1.3.1.45-1.pe.el5",
+      "md5": "104eef2f424aedbaf3c95ece34628976"
+    },
+    "pe-mcollective-common": {
+      "version": "2.6.0.5-1.pe.el5",
+      "md5": "b473745c2459df87faacc76e253e71b7"
+    },
+    "pe-cloud-provisioner": {
+      "version": "1.1.7-1.el5",
+      "md5": "e15601b76a4917444503ebed2923dffb"
+    },
+    "pe-ruby-rgen": {
+      "version": "0.6.5-1.pe.el5",
+      "md5": "5aab98b89ce8df2482641fd78e49298f"
+    },
+    "pe-rubygem-sequel": {
+      "version": "3.47.0-1.pe.el5",
+      "md5": "d4db6ba18116226af5a482634c08e826"
+    },
+    "pe-facter": {
+      "version": "2.3.0.0-1.pe.el5",
+      "md5": "5e2f83a0931cab2f29d6d2f7a22f3888"
+    },
+    "pe-httpd": {
+      "version": "2.2.27-15.pe.el5",
+      "md5": "c18b3871de18ebdf7ff936891d1d4f3d"
+    },
+    "pe-hiera": {
+      "version": "1.3.4.2-1.pe.el5",
+      "md5": "ede73136464472a3c83cd1588ad67353"
+    },
+    "pe-rubygem-activerecord": {
+      "version": "2.3.17-3.pe.el5",
+      "md5": "d101526cb55e71f6e28ddf175a7830d4"
+    },
+    "pe-postgresql-devel": {
+      "version": "9.2.7-14.pe.el5",
+      "md5": "f138af885176fa64f16ba4aea03f1410"
+    },
+    "pe-memcached-devel": {
+      "version": "1.4.7-9.pe.el5",
+      "md5": "89580e5357399aecaa1f55cbb86584b7"
+    },
+    "pe-ruby-shadow": {
+      "version": "2.2.0-3.pe.el5",
+      "md5": "4df5a718ecc74e39e4917a0b50e75762"
+    },
+    "pe-libevent-devel": {
+      "version": "2.0.13-6.el5",
+      "md5": "bb667e0c7735603f7d887ad40285da65"
+    },
+    "pe-postgresql-server": {
+      "version": "9.2.7-14.pe.el5",
+      "md5": "913f29772b4cad6473a2b3fe7744695d"
+    },
+    "pe-java": {
+      "version": "1.7.0.71-1.pe.el5",
+      "md5": "cd9260db3883acf43091c811780b20d0"
+    },
+    "pe-augeas": {
+      "version": "1.2.0-1.pe.el5",
+      "md5": "d8da6cd7ffdb74a4579702b330aaff45"
+    },
+    "pe-virt-what": {
+      "version": "1.13-1.el5",
+      "md5": "8e04354c85b4916f9a5826392ee151a9"
+    },
+    "pe-rubygem-gem2rpm": {
+      "version": "0.9.2-1.pe.el5",
+      "md5": "62b4e78d5c67af4efe20ea59fca9df15"
+    },
+    "pe-rubygem-deep-merge": {
+      "version": "1.0.0-3.pe.el5",
+      "md5": "fc7b6745c890fe9b6b044440c7f12ef7"
+    },
+    "pe-ruby-stomp": {
+      "version": "1.3.3-1.pe.el5",
+      "md5": "7c23693f757865cc0fb4bc28f3d85ad5"
+    },
+    "pe-ruby-selinux": {
+      "version": "1.33.4-4.pe.el5",
+      "md5": "06a393295bf9a15d1bd483129fc5198c"
+    },
+    "pe-ruby": {
+      "version": "1.9.3.484-16.pe.el5",
+      "md5": "bed0c80f241da8dd783880acbe32729b"
+    },
+    "pe-certificate-manager": {
+      "version": "0.5.1.36-1.pe.el5",
+      "md5": "b2a1256db37ccbf2071ea1c9670bd835"
+    },
+    "pe-rubygem-rack": {
+      "version": "1.4.5-2.pe.el5",
+      "md5": "005dddc9ad3a9ab1fc6cbbba84559678"
+    },
+    "pe-libyaml": {
+      "version": "0.1.6-2.el5",
+      "md5": "6c7576b1aa06cc9dcd53dfd918aba744"
+    },
+    "pe-puppet-dashboard": {
+      "version": "2.1.6.1.166-1.pe.el5",
+      "md5": "e1d00d3b74923ae1eb3ab56189c00885"
+    },
+    "pe-puppet-enterprise-release": {
+      "version": "3.7.1.0-1.pe.el5",
+      "md5": "0ce437bc8e2e983cca83873b3e623cb1"
+    },
+    "pe-rubygem-net-ssh": {
+      "version": "2.1.4-2.pe.el5",
+      "md5": "1957c4dbb0f4d072a86afdc55f82a8b4"
+    },
+    "pe-puppetdb": {
+      "version": "2.2.1.1-1.el5",
+      "md5": "158d2b3b56084e096da42a2101ca1d31"
+    },
+    "pe-openssl": {
+      "version": "1.0.0o-2.pe.el5",
+      "md5": "d7386ed0e5f329adde28561c46cddd4f"
+    },
+    "pe-libldap": {
+      "version": "2.4.39-5.pe.el5",
+      "md5": "fcc2c21bd7a902432bd9c231b538c128"
+    },
+    "pe-libapr": {
+      "version": "1.5.1-1.pe.el5",
+      "md5": "1f920c97b24ddd7fc45e3c3bc75b09f0"
+    },
+    "pe-libaprutil": {
+      "version": "1.5.3-1.pe.el5",
+      "md5": "68138eb53ed8bf6ffc53594cffc8ea99"
+    },
+    "pe-installer": {
+      "version": "0.0.2.716-1.pe.el5",
+      "md5": "a477f514ff584d45bff8e800d1e11439"
+    },
+    "pe-console-services": {
+      "version": "0.7.4-1.el5",
+      "md5": "9a2ce21ffc2851cb443ca5fa3a8b8076"
+    },
+    "pe-console-services-termini": {
+      "version": "0.7.4-1.el5",
+      "md5": "9c395ea45f6a6b5505fbda8c871ddc72"
+    },
+    "pe-puppetserver": {
+      "version": "0.4.1-1.el5",
+      "md5": "25220342e99087762ba462b227231502"
+    },
+    "pe-puppetserver-common": {
+      "version": "3.7.3.3-1.pe.el5",
+      "md5": "bdc8a0eae9ce83a975ed86d2a7f5b4d2"
+    }
+  },
+  "el-4-x86_64": {
+    "pe-ruby-augeas": {
+      "version": "0.5.0-4.pe.el4",
+      "md5": "620020578bb43f2cf6eadc935a5a3fce"
+    },
+    "pe-ruby-ldap": {
+      "version": "0.9.12-7.pe.el4",
+      "md5": "ef112effbd5bd8e1dba7a990057abde0"
+    },
+    "pe-puppet": {
+      "version": "3.7.3.3-1.pe.el4",
+      "md5": "08065a1e4e9c4f37a34080945d035051"
+    },
+    "pe-mcollective": {
+      "version": "2.6.0.5-1.pe.el4",
+      "md5": "a2e6d0c0b7d69043f1f65f53144e92f1"
+    },
+    "pe-mcollective-common": {
+      "version": "2.6.0.5-1.pe.el4",
+      "md5": "5d7fe8a8cbb84a7d57cefcd64848a8a7"
+    },
+    "pe-ruby-rgen": {
+      "version": "0.6.5-1.pe.el4",
+      "md5": "ec41ba436d93a9f95d0a3a1451e61829"
+    },
+    "pe-facter": {
+      "version": "2.3.0.0-1.pe.el4",
+      "md5": "759415679873af2940f5bc3f1a7b883f"
+    },
+    "pe-hiera": {
+      "version": "1.3.4.2-1.pe.el4",
+      "md5": "b6321003ace621f397c725770b0ba8c0"
+    },
+    "pe-ruby-shadow": {
+      "version": "2.2.0-3.pe.el4",
+      "md5": "d827a6281ffdba09af2743fd518d46a4"
+    },
+    "pe-augeas": {
+      "version": "1.2.0-1.pe.el4",
+      "md5": "513ddecfd72501d1750f187024712373"
+    },
+    "pe-virt-what": {
+      "version": "1.13-1.el4",
+      "md5": "bba44383f5d19bd7848d575752afd036"
+    },
+    "pe-rubygem-deep-merge": {
+      "version": "1.0.0-4.pe.el4",
+      "md5": "01d45cd61b67c4b97d233cfafd72ce3d"
+    },
+    "pe-ruby-stomp": {
+      "version": "1.3.3-1.pe.el4",
+      "md5": "cf393ba2cac0cc9c331817fb76462b3a"
+    },
+    "pe-ruby": {
+      "version": "1.9.3.484-16.pe.el4",
+      "md5": "e5455cbe7c60943dd500fa3277ab9a8d"
+    },
+    "pe-libyaml": {
+      "version": "0.1.6-2.el4",
+      "md5": "491ddf63f0c112e2ad5596b2a0c48af6"
+    },
+    "pe-puppet-enterprise-release": {
+      "version": "3.7.1.0-1.pe.el4",
+      "md5": "5bb2436f75c57ebb9c62634878b93fd8"
+    },
+    "pe-openssl": {
+      "version": "1.0.0o-2.pe.el4",
+      "md5": "60ff5352f48e9554cd06b55d0811ae83"
+    },
+    "pe-libldap": {
+      "version": "2.4.39-5.pe.el4",
+      "md5": "f4684aeb29788608efd60716439707a1"
+    }
+  },
+  "el-4-i386": {
+    "pe-ruby-augeas": {
+      "version": "0.5.0-4.pe.el4",
+      "md5": "f50a7c003601e120cbc9512548689bc4"
+    },
+    "pe-ruby-ldap": {
+      "version": "0.9.12-7.pe.el4",
+      "md5": "c98dd56ffab74c749b2008bff1577c5d"
+    },
+    "pe-puppet": {
+      "version": "3.7.3.3-1.pe.el4",
+      "md5": "08065a1e4e9c4f37a34080945d035051"
+    },
+    "pe-mcollective": {
+      "version": "2.6.0.5-1.pe.el4",
+      "md5": "a2e6d0c0b7d69043f1f65f53144e92f1"
+    },
+    "pe-mcollective-common": {
+      "version": "2.6.0.5-1.pe.el4",
+      "md5": "5d7fe8a8cbb84a7d57cefcd64848a8a7"
+    },
+    "pe-ruby-rgen": {
+      "version": "0.6.5-1.pe.el4",
+      "md5": "ec41ba436d93a9f95d0a3a1451e61829"
+    },
+    "pe-facter": {
+      "version": "2.3.0.0-1.pe.el4",
+      "md5": "49dca420972ed6a1d0f451ca9b81e146"
+    },
+    "pe-hiera": {
+      "version": "1.3.4.2-1.pe.el4",
+      "md5": "b6321003ace621f397c725770b0ba8c0"
+    },
+    "pe-ruby-shadow": {
+      "version": "2.2.0-3.pe.el4",
+      "md5": "a9b83921ca0e767064a2481a1b2ac0f0"
+    },
+    "pe-augeas": {
+      "version": "1.2.0-1.pe.el4",
+      "md5": "74c18da6a20d2b6514ae68e9d57ace17"
+    },
+    "pe-virt-what": {
+      "version": "1.13-1.el4",
+      "md5": "87ae3b4e365096b62ba37ac700766067"
+    },
+    "pe-rubygem-deep-merge": {
+      "version": "1.0.0-4.pe.el4",
+      "md5": "01d45cd61b67c4b97d233cfafd72ce3d"
+    },
+    "pe-ruby-stomp": {
+      "version": "1.3.3-1.pe.el4",
+      "md5": "c0d70a3663a8d0f1c324714cac4b440c"
+    },
+    "pe-ruby": {
+      "version": "1.9.3.484-16.pe.el4",
+      "md5": "c0ce36d56034d950c16381deb2f22c63"
+    },
+    "pe-libyaml": {
+      "version": "0.1.6-2.el4",
+      "md5": "190455f8dc14e1b9aecdc9fc844d395f"
+    },
+    "pe-puppet-enterprise-release": {
+      "version": "3.7.1.0-1.pe.el4",
+      "md5": "5bb2436f75c57ebb9c62634878b93fd8"
+    },
+    "pe-openssl": {
+      "version": "1.0.0o-2.pe.el4",
+      "md5": "9145de12dcde7cadf61e204f103a2082"
+    },
+    "pe-libldap": {
+      "version": "2.4.39-5.pe.el4",
+      "md5": "419d7fc4dee599ef449117e9b096b842"
+    }
+  },
+  "debian-7-amd64": {
+    "pe-virt-what": {
+      "version": "1.14-1puppet1",
+      "md5": "f760d1d013c4bf2b5a8eeea8d9e5ff22"
+    },
+    "pe-rubygem-sequel": {
+      "version": "3.47.0-1puppet1",
+      "md5": "a0f59e083501e4a3fcd21cc6f1d0a06f"
+    },
+    "pe-agent": {
+      "version": "3.7.1-1puppet1",
+      "md5": "66b20ea32f4670f638abc338de07b844"
+    },
+    "pe-augeas": {
+      "version": "1.2.0-1puppet1",
+      "md5": "64d4525ee1daca3a76568cf1a78e2020"
+    },
+    "pe-license": {
+      "version": "0.1.3.7-1puppet1",
+      "md5": "cc262dba55d526853a35de158b076383"
+    },
+    "pe-certificate-manager": {
+      "version": "0.5.1.36-1puppet1",
+      "md5": "e1155385422306abb9760e6b048b1612"
+    },
+    "pe-postgresql": {
+      "version": "9.2.7-1puppet7",
+      "md5": "78d8a04d7438f903c61ecd853038875f"
+    },
+    "pe-bundler": {
+      "version": "1.3.5-1puppet2",
+      "md5": "36b0f38ce81b2876327e7eb421e5936e"
+    },
+    "pe-hiera": {
+      "version": "1.3.4.2-1puppet1",
+      "md5": "f497ab315b83a9302f98316012623c21"
+    },
+    "pe-httpd": {
+      "version": "2.2.27-1puppet19",
+      "md5": "ba15aa5201b3c9831e6510d7f87a3083"
+    },
+    "pe-activerecord": {
+      "version": "2.3.17-1puppet2",
+      "md5": "0d5b040aca4445728e6efa3105598852"
+    },
+    "pe-live-management": {
+      "version": "1.3.1.45-1puppet1",
+      "md5": "575329f5e00f8987617132a4a90d3835"
+    },
+    "pe-activemq": {
+      "version": "5.9.0-1puppet7",
+      "md5": "44b51f7156e90cccd65083662719519e"
+    },
+    "pe-httpd-mpm-worker": {
+      "version": "2.2.27-1puppet19",
+      "md5": "e95c7c4b4c9d995968ee76ebd6425895"
+    },
+    "pe-memcached": {
+      "version": "1.4.7-1puppet6",
+      "md5": "cf4ebbb91a4e2cf5a194750d13d32480"
+    },
+    "pe-mcollective": {
+      "version": "2.6.0.5-1puppet1",
+      "md5": "03695ee6a35300f85bea432eab82f587"
+    },
+    "pe-console-auth": {
+      "version": "1.3.1.20-1puppet1",
+      "md5": "b5ac060e0d0b2a9fa04abcfde3ecfed5"
+    },
+    "pe-puppet-enterprise-release": {
+      "version": "3.7.1.0-1puppet1",
+      "md5": "68e95ccc57a66317f1d07e5df1602883"
+    },
+    "pe-postgresql-server": {
+      "version": "9.2.7-1puppet7",
+      "md5": "0418661b5f10a5f716b0108d7bd46ea7"
+    },
+    "pe-rubygem-stomp": {
+      "version": "1.2.9-1puppet1",
+      "md5": "82594bd98bfac40bc3cb5dd0f18c8fff"
+    },
+    "pe-ruby-mysql": {
+      "version": "2.8.2-1puppet2",
+      "md5": "62e5a36030cb1f88562a6b0aece36c05"
+    },
+    "pe-puppetdb": {
+      "version": "2.2.1.1-1puppet1",
+      "md5": "3796fda62becb44bae49b10547f6ab97"
+    },
+    "pe-rubygem-deep-merge": {
+      "version": "1.0.0-1puppet1",
+      "md5": "467cad24ad661fd9066cebbb90a7b7c2"
+    },
+    "pe-activesupport": {
+      "version": "2.3.17-1puppet2",
+      "md5": "93fbbd44564f022bee27125834049c8b"
+    },
+    "pe-libevent-devel": {
+      "version": "2.0.13-1puppet4",
+      "md5": "408249944d6536bb176ca34c5020ac10"
+    },
+    "pe-facter": {
+      "version": "2.3.0.0-1puppet1",
+      "md5": "215829b037f1954747f1911c4bac46a0"
+    },
+    "pe-cloud-provisioner": {
+      "version": "1.1.7-1puppet1",
+      "md5": "372cb2fdcde89bf16471c1bc7a003ded"
+    },
+    "pe-cloud-provisioner-libs": {
+      "version": "0.3.2-1puppet1",
+      "md5": "1b24c490ddd5edc4dc082a63efdf4e5a"
+    },
+    "pe-ruby-rgen": {
+      "version": "0.6.5-1puppet1",
+      "md5": "198ba504bf9581b6b0ff3ed587cfce92"
+    },
+    "pe-httpd-mpm-itk": {
+      "version": "2.2.27-1puppet19",
+      "md5": "00deff2e627f8a277c40efb5fd063708"
+    },
+    "pe-puppet-dashboard": {
+      "version": "2.1.6.1.166-1puppet1",
+      "md5": "ff048d853919518c22641577f0e51cc2"
+    },
+    "pe-rubygem-rack": {
+      "version": "1.4.5-1puppet2",
+      "md5": "858b08ef22553fcca94f9464bb5b4b88"
+    },
+    "pe-passenger": {
+      "version": "4.0.37-1puppet1",
+      "md5": "d188222a4d909463df9ae307653ed641"
+    },
+    "pe-httpd-mpm-event": {
+      "version": "2.2.27-1puppet19",
+      "md5": "063783f0be4ad55d807292714cfe66d5"
+    },
+    "pe-ruby-shadow": {
+      "version": "2.2.0-1puppet3",
+      "md5": "4b40ddd87f0a3178e229aea0211a3d5b"
+    },
+    "pe-httpd-mpm-prefork": {
+      "version": "2.2.27-1puppet19",
+      "md5": "d95d821fa43477afc9a6919d6bf40950"
+    },
+    "pe-mcollective-client": {
+      "version": "2.6.0.5-1puppet1",
+      "md5": "d1b393e6686b7414b2d6376f2e1ac757"
+    },
+    "pe-puppetdb-terminus": {
+      "version": "2.2.1.1-1puppet1",
+      "md5": "7805943f31194d9028a846207814e67c"
+    },
+    "pe-rubygem-net-ssh": {
+      "version": "2.1.4-1puppet2",
+      "md5": "d097e764f9b01fb8d02e56ca63393e7b"
+    },
+    "pe-ruby-stomp": {
+      "version": "1.3.3-1puppet1",
+      "md5": "86510a3c0f07979c0d42f58f428bbc05"
+    },
+    "pe-ruby-augeas": {
+      "version": "0.5.0-1puppet2",
+      "md5": "c0d88b4dc38d7d6a7a5d4e2cf7c5c8a7"
+    },
+    "pe-license-status": {
+      "version": "0.2.2-1puppet1",
+      "md5": "240b2729f3d3dab3e07dcaad611be8ee"
+    },
+    "pe-httpd-threaded-dev": {
+      "version": "2.2.27-1puppet19",
+      "md5": "a3feae56f363ed126b415b0cf1990a80"
+    },
+    "pe-java": {
+      "version": "1.7.0.71-1puppet1",
+      "md5": "6827a9c07553f5bd445dbcb453faa81f"
+    },
+    "pe-memcached-devel": {
+      "version": "1.4.7-1puppet6",
+      "md5": "c9c22e4c2d30c02872c9a1925c222c87"
+    },
+    "pe-mcollective-common": {
+      "version": "2.6.0.5-1puppet1",
+      "md5": "5b36ab9d12e090f51535438910a1d0fb"
+    },
+    "pe-postgresql-contrib": {
+      "version": "9.2.7-1puppet7",
+      "md5": "605db7e5ee90d486f5a14babf17c2a78"
+    },
+    "pe-puppet-license-cli": {
+      "version": "0.1.7.5-1puppet1",
+      "md5": "3cc83f19e21b3c109b30deb0ab760d82"
+    },
+    "pe-ruby": {
+      "version": "1.9.3.484-1puppet11",
+      "md5": "b9ad241f5179a4dbc3be61f6b033c1e6"
+    },
+    "pe-postgresql-devel": {
+      "version": "9.2.7-1puppet7",
+      "md5": "36b79ea74c46413d05227a6e6f2fcfce"
+    },
+    "pe-ruby-ldap": {
+      "version": "0.9.12-1puppet2",
+      "md5": "f59aecbadae2729e33494a9626d3168a"
+    },
+    "pe-event-inspector": {
+      "version": "0.2.1.65-1puppet1",
+      "md5": "9b20e6443e04b18ccfd30ae467729f95"
+    },
+    "pe-console": {
+      "version": "0.4.3-1puppet1",
+      "md5": "ff1e4f3b84d3b5a5d51191ff09a3785e"
+    },
+    "pe-puppet": {
+      "version": "3.7.3.3-1puppet1",
+      "md5": "b54137fec75cd49ae237b9353cb0b04a"
+    },
+    "pe-httpd-prefork-dev": {
+      "version": "2.2.27-1puppet19",
+      "md5": "230e2da4bbc9ced990b3e2f2207e0405"
+    },
+    "pe-libyaml": {
+      "version": "0.1.6-1puppet2",
+      "md5": "63489953c9d148e5f90869e8c42d122c"
+    },
+    "pe-libevent": {
+      "version": "2.0.13-1puppet4",
+      "md5": "fcd6af1e7c76773a66171d2ee94147a8"
+    },
+    "pe-openssl": {
+      "version": "1.0.0o-1puppet1",
+      "md5": "443163ad81b5fbda1ca23d40f87bb1c5"
+    },
+    "pe-installer": {
+      "version": "0.0.2.716-1puppet1",
+      "md5": "ad0c6b363e61ab6499ce365cb38de358"
+    },
+    "pe-console-services": {
+      "version": "0.7.4-1puppet1",
+      "md5": "df221bd0a13aeb7ea8b9bff34be2748d"
+    },
+    "pe-console-services-termini": {
+      "version": "0.7.4-1puppet1",
+      "md5": "276323fa464454352b511a42bac8ca97"
+    },
+    "pe-puppetserver": {
+      "version": "0.4.1-1puppet1",
+      "md5": "3886d9ebd1415ac2b66d9f1fc751c950"
+    },
+    "pe-puppetserver-common": {
+      "version": "3.7.3.3-1puppet1",
+      "md5": "e6d91a3e71ffb3051af8db3b3acf2b4a"
+    }
+  },
+  "solaris-11-i386": {
+    "pe-ruby-augeas": {
+      "version": "0.5.0-10",
+      "md5": "1d9430cafb597621cb88b6c25ade8e5a"
+    },
+    "pe-puppet": {
+      "version": "3.7.3.3-1",
+      "md5": "81b195f897c59c20d50b6aaf4eb6f9b0"
+    },
+    "pe-stomp": {
+      "version": "1.3.3-1",
+      "md5": "4aa11074ff07b2e9ed15a86ab6f217fb"
+    },
+    "pe-mcollective": {
+      "version": "2.6.0.5-1",
+      "md5": "f235b5e5d0d4e4d93af2c46849f632a1"
+    },
+    "pe-ruby-rgen": {
+      "version": "0.6.5-4",
+      "md5": "54ecc0ac5dba0fbcadf7426d42469385"
+    },
+    "pe-deep-merge": {
+      "version": "1.0.0-5",
+      "md5": "bb208a81fb8f9ff59de51aa5de005e38"
+    },
+    "pe-facter": {
+      "version": "2.3.0.0-1",
+      "md5": "ebb167c2d21279d693453769cc1cdfd3"
+    },
+    "pe-ruby-shadow": {
+      "version": "2.3.3-3",
+      "md5": "d9ca74845b5f92a4d5fa25e9b86af5ea"
+    },
+    "pe-hiera": {
+      "version": "1.3.4.2-1",
+      "md5": "42aae94d5103b82ab2aa881a77f8344e"
+    },
+    "pe-augeas": {
+      "version": "1.2.0-3",
+      "md5": "4605048e09dcf012cb78f922a7de6028"
+    },
+    "pe-libyaml": {
+      "version": "0.1.6-4",
+      "md5": "906775ba53f55c0c4281a78090df842b"
+    },
+    "pe-ruby": {
+      "version": "1.9.3.484-16",
+      "md5": "1ad5547e41c6da183bbab86dc24f4a60"
+    },
+    "pe-puppet-enterprise-release": {
+      "version": "3.7.1.0-1",
+      "md5": "c822d395a6b863d9663c4d8a4fe35a16"
+    },
+    "pe-openssl": {
+      "version": "1.0.0.15-2",
+      "md5": "b1c30e7bb1578b2157f1c66cdf86ed36"
+    }
+  },
+  "cumulus-1.5-powerpc": {
+    "pe-ruby-augeas": {
+      "version": "0.5.0-1puppet2",
+      "md5": "e6bfe5f6e032bffcad88e4b0f71bd8e5"
+    },
+    "pe-cloud-provisioner-libs": {
+      "version": "0.3.2-1puppet1",
+      "md5": "3d8d2c7c0718da46be3db69e64e87ed7"
+    },
+    "pe-mcollective-client": {
+      "version": "2.5.1.2.8-1puppet1",
+      "md5": "7c584cbbe8565d91ed5675292255743f"
+    },
+    "pe-puppet": {
+      "version": "3.6.0.2.396-1puppet1",
+      "md5": "de98e1149cfb558000fb9e2b85d99a11"
+    },
+    "pe-agent": {
+      "version": "3.4.0-0.1rc1.138puppet1",
+      "md5": "d88e44d09fced1edf80a2a455bd51224"
+    },
+    "pe-ruby-rgen": {
+      "version": "0.6.5-1puppet1",
+      "md5": "c06c582c454409c72579349d5ae30681"
+    },
+    "pe-mcollective-common": {
+      "version": "2.5.1.2.8-1puppet1",
+      "md5": "4870e8efaaeb2899cc0f214665b0bf88"
+    },
+    "pe-mcollective": {
+      "version": "2.5.1.2.8-1puppet1",
+      "md5": "e0bd109f6684025bed30edc0090c90a8"
+    },
+    "pe-cloud-provisioner": {
+      "version": "1.1.5-puppet1",
+      "md5": "a35376119e2f2edd4efc4f5f6b748146"
+    },
+    "pe-facter": {
+      "version": "1.7.5.2.2-1puppet1",
+      "md5": "02e21f34f86d6b0c2a8195b773bd3b0e"
+    },
+    "pe-ruby-shadow": {
+      "version": "2.2.0-1puppet3",
+      "md5": "f8ef0c68df7ae79eaea733a7860b109a"
+    },
+    "pe-hiera": {
+      "version": "1.3.3.1.2-1puppet1",
+      "md5": "8f118c85fe5e560400ee31c7c26a0fd9"
+    },
+    "pe-augeas": {
+      "version": "1.1.0-1puppet6",
+      "md5": "36b6ee7cdbd7324728013a84ff87bc55"
+    },
+    "pe-virt-what": {
+      "version": "1.14-1puppet1",
+      "md5": "e15755956b8da1029f8b613849e42734"
+    },
+    "pe-libyaml": {
+      "version": "0.1.6-1puppet2",
+      "md5": "f487cc603bf90107c09b7650ed695552"
+    },
+    "pe-ruby": {
+      "version": "1.9.3.484-1puppet9",
+      "md5": "3762fe0093f35b1cea537b18623c91e3"
+    },
+    "pe-ruby-stomp": {
+      "version": "1.2.9-1puppet2",
+      "md5": "a0ec1b628329839a4206f46ef799499d"
+    },
+    "pe-rubygem-deep-merge": {
+      "version": "1.0.0-1puppet1",
+      "md5": "c1bd6673aec75615ac84b9412db80955"
+    },
+    "pe-puppet-enterprise-release": {
+      "version": "3.4.0.0.2-1puppet1",
+      "md5": "131dadfd3c8b2468bd66cc0188808605"
+    },
+    "pe-openssl": {
+      "version": "1.0.0m-1puppet1",
+      "md5": "b3fd69c910ba3f24070f47c723a3c90a"
+    },
+    "pe-rubygem-net-ssh": {
+      "version": "2.1.4-1puppet2",
+      "md5": "c6b64d63979297efb7d64835d564f8cd"
+    }
+  },
+  "eos-4-i386": {
+    "pe-ruby-shadow": {
+      "version": "2.2.0-3.pe.eos4",
+      "md5": "efa99e9f2a7fb20fa24c2957e34a1a36"
+    },
+    "pe-ruby-selinux": {
+      "version": "2.0.94-4.pe.eos4",
+      "md5": "7383d0136a6fdc3471f8d52ff47f7bf3"
+    },
+    "pe-puppet-enterprise-release": {
+      "version": "3.7.1.0-1.pe.eos4",
+      "md5": "d80277234c9041ec7fd4a2f81033854a"
+    },
+    "pe-hiera": {
+      "version": "1.3.4.2-1.pe.eos4",
+      "md5": "e3abaff8e10df9c95f2677e404325e30"
+    },
+    "pe-ruby-rgen": {
+      "version": "0.6.5-1.pe.eos4",
+      "md5": "1e7444ce1f0d935be3302dea34e5189b"
+    },
+    "pe-mcollective-common": {
+      "version": "2.6.0.5-1.pe.eos4",
+      "md5": "7e58aaa026a2a790271e95301fd83e00"
+    },
+    "pe-ruby-augeas": {
+      "version": "0.5.0-4.pe.eos4",
+      "md5": "d0809bd290ea057e9314492c4141f524"
+    },
+    "pe-libyaml": {
+      "version": "0.1.6-2.eos4",
+      "md5": "6501d8df386d439aa73f28c7e0640c17"
+    },
+    "pe-virt-what": {
+      "version": "1.14-1.eos4",
+      "md5": "fe5a47b17a13ceb308e5e9e59e6873f0"
+    },
+    "pe-ruby-stomp": {
+      "version": "1.3.3-1.pe.eos4",
+      "md5": "3314c28e0fcfd34aebabcbc683595534"
+    },
+    "pe-rubygem-deep-merge": {
+      "version": "1.0.0-4.pe.eos4",
+      "md5": "ac60d982bdb9130080c986e68ddebc51"
+    },
+    "pe-mcollective": {
+      "version": "2.6.0.5-1.pe.eos4",
+      "md5": "01a4c8e2d84ba112830c459caa560bf0"
+    },
+    "pe-augeas": {
+      "version": "1.2.0-1.pe.eos4",
+      "md5": "9935ffc98847278f262553e54de42d4e"
+    },
+    "pe-facter": {
+      "version": "2.3.0.0-1.pe.eos4",
+      "md5": "eea3f09dd2d145011dfb75b9d6b6ace5"
+    },
+    "pe-ruby": {
+      "version": "1.9.3.484-16.pe.eos4",
+      "md5": "34211205440fe6cc5c71dc5b2c7559f7"
+    },
+    "pe-puppet": {
+      "version": "3.7.3.3-1.pe.eos4",
+      "md5": "371456bc50a699f850fba11ddf312272"
+    },
+    "pe-ruby-ldap": {
+      "version": "0.9.12-4.pe.eos4",
+      "md5": "b46f55b98110ee360148d79c71ca7049"
+    },
+    "pe-openssl": {
+      "version": "1.0.0o-2.pe.eos4",
+      "md5": "5003a4a0434110a8fd42475a32b7ca64"
+    },
+    "pe-agent": {
+      "version": "3.7.1-1.pe.eos4",
+      "md5": "6b28a74f4802b2731ca2af79b014325e"
+    },
+    "pe-rubygem-net-http-unix": {
+      "version": "0.2.0-1.pe.eos4",
+      "md5": "09bac1327a7adfb52487ffea3fb63f5c"
+    }
+  },
+  "el-7-x86_64": {
+    "pe-puppet-enterprise-release": {
+      "version": "3.7.1.0-1.pe.el7",
+      "md5": "7f59285594bb31d21974f647ee3c681d"
+    },
+    "pe-hiera": {
+      "version": "1.3.4.2-1.pe.el7",
+      "md5": "5a68d7be72c2541735efeb8f50fba3ce"
+    },
+    "pe-facter": {
+      "version": "2.3.0.0-1.pe.el7",
+      "md5": "c29e875b3a9bf4c414d8fe14754232cf"
+    },
+    "pe-mcollective-common": {
+      "version": "2.6.0.5-1.pe.el7",
+      "md5": "c015823316b4e85b8f3d2ed93be8c5a1"
+    },
+    "pe-mcollective": {
+      "version": "2.6.0.5-1.pe.el7",
+      "md5": "28b366d1e6a2e91f1d73174ee908678d"
+    },
+    "pe-mcollective-client": {
+      "version": "2.6.0.5-1.pe.el7",
+      "md5": "3c4ca170e3bc7e6a3493cf9fa8ecac93"
+    },
+    "pe-ruby-selinux": {
+      "version": "2.0.94-4.pe.el7",
+      "md5": "5c21ac74519fb339ba97fa1f15041929"
+    },
+    "pe-puppet": {
+      "version": "3.7.3.3-1.pe.el7",
+      "md5": "ce9d4eea96a3739dd04d9c7b81f005c0"
+    },
+    "pe-virt-what": {
+      "version": "1.14-1.el7",
+      "md5": "e524ee4f3d2f7b8dfca8c8145d280679"
+    },
+    "pe-ruby-mysql": {
+      "version": "2.8.2-4.pe.el7",
+      "md5": "1b2eac9e3f93e0907d8c55e7631efa60"
+    },
+    "pe-postgresql-server": {
+      "version": "9.2.7-14.pe.el7",
+      "md5": "26cd65606591b52e221fbeddaaf6acae"
+    },
+    "pe-postgresql-contrib": {
+      "version": "9.2.7-14.pe.el7",
+      "md5": "a79149666de07afb0eae613442fb7577"
+    },
+    "pe-libevent-devel": {
+      "version": "2.0.13-6.el7",
+      "md5": "00dfd56664563275adb412dbb85b7ec2"
+    },
+    "pe-bundler": {
+      "version": "1.3.5-2.pe.el7",
+      "md5": "cdd665dd2c6052595a7cf5ddf0320a14"
+    },
+    "pe-augeas": {
+      "version": "1.2.0-1.pe.el7",
+      "md5": "cb87eb6a78df7bfb4631584fb6c6c420"
+    },
+    "pe-java": {
+      "version": "1.7.0.71-1.pe.el7",
+      "md5": "1e6d932333330721b009d058e28947ed"
+    },
+    "pe-libyaml": {
+      "version": "0.1.6-2.el7",
+      "md5": "4fd6a3cde99a42877d5f036abed71a1d"
+    },
+    "pe-rubygem-rack": {
+      "version": "1.4.5-2.pe.el7",
+      "md5": "fb6245be23e056e155f19d86bfc428ce"
+    },
+    "pe-rubygem-activerecord": {
+      "version": "2.3.17-3.pe.el7",
+      "md5": "5ace6ea430c342a16ef480c4ea0c3967"
+    },
+    "pe-postgresql": {
+      "version": "9.2.7-14.pe.el7",
+      "md5": "b6e74a3015c4ec854aea414bcfabb8d9"
+    },
+    "pe-libevent": {
+      "version": "2.0.13-6.el7",
+      "md5": "ac2513ea1e5ede2f9927059442bb2773"
+    },
+    "pe-activemq": {
+      "version": "5.9.0-13.pe.el7",
+      "md5": "a8a4429562aa7b2960cf8139cacfa26c"
+    },
+    "pe-rubygem-sequel": {
+      "version": "3.47.0-1.pe.el7",
+      "md5": "f1e5844d5659e9a342ec8b73e51ee81a"
+    },
+    "pe-memcached-devel": {
+      "version": "1.4.7-9.pe.el7",
+      "md5": "170cd107c70a16c4b44637ea9723ce2f"
+    },
+    "pe-postgresql-devel": {
+      "version": "9.2.7-14.pe.el7",
+      "md5": "82b1976c5d857ae2042806018786b1fc"
+    },
+    "pe-cloud-provisioner": {
+      "version": "1.1.7-1.el7",
+      "md5": "151c52b4136caf69419e966bbde93699"
+    },
+    "pe-ruby-rgen": {
+      "version": "0.6.5-1.pe.el7",
+      "md5": "60e7ab869573a35db005f11d06a400e3"
+    },
+    "pe-httpd": {
+      "version": "2.2.27-15.pe.el7",
+      "md5": "e509ff2b9825873d9dd9c5cebd328119"
+    },
+    "pe-ruby-augeas": {
+      "version": "0.5.0-4.pe.el7",
+      "md5": "f194a940cd96485106418783a8a54bf0"
+    },
+    "pe-rubygem-gem2rpm": {
+      "version": "0.9.2-1.pe.el7",
+      "md5": "134f261071cf9c2e614f97d04d62423a"
+    },
+    "pe-rubygem-net-ssh": {
+      "version": "2.1.4-2.pe.el7",
+      "md5": "4a95d53cc1949a09be50272ada861be8"
+    },
+    "pe-memcached": {
+      "version": "1.4.7-9.pe.el7",
+      "md5": "74bf0f34cf8cefe6393a8873a3fe4f11"
+    },
+    "pe-passenger": {
+      "version": "4.0.37-2.pe.el7",
+      "md5": "7b68aa8d494243e6101cb137e1fc582b"
+    },
+    "pe-ruby-ldap": {
+      "version": "0.9.12-7.pe.el7",
+      "md5": "65faf5063d27cfd0e14219ff6ba6ee56"
+    },
+    "pe-rubygem-deep-merge": {
+      "version": "1.0.0-4.pe.el7",
+      "md5": "996a550b1eba2567bccb65daeeb21fbc"
+    },
+    "pe-ruby-stomp": {
+      "version": "1.3.3-1.pe.el7",
+      "md5": "929db47253f628fa44ecc3e6ebd18ac4"
+    },
+    "pe-ruby-shadow": {
+      "version": "2.2.0-3.pe.el7",
+      "md5": "2ef7384c45f57544712095ce966bbabe"
+    },
+    "pe-rubygem-activesupport": {
+      "version": "2.3.17-3.pe.el7",
+      "md5": "a3756fef398406dc4ac315293033835b"
+    },
+    "pe-cloud-provisioner-libs": {
+      "version": "0.3.2-2.pe.el7",
+      "md5": "4765e84eb0e8badc1c989e965c83819d"
+    },
+    "pe-agent": {
+      "version": "3.7.1-1.pe.el7",
+      "md5": "e48ff27747f8ee658d9a1c71bd292298"
+    },
+    "pe-puppetdb": {
+      "version": "2.2.1.1-1.el7",
+      "md5": "fc7c5cf9f773280c98c2ccf53045812b"
+    },
+    "pe-puppetdb-terminus": {
+      "version": "2.2.1.1-1.el7",
+      "md5": "928c00908136c6d378e722d96c9bde58"
+    },
+    "pe-license": {
+      "version": "0.1.3.7-1.pe.el7",
+      "md5": "f1a193dc802828e271a0d699873895b4"
+    },
+    "pe-puppet-license-cli": {
+      "version": "0.1.7.5-1.pe.el7",
+      "md5": "e6fcf045cc81a8ba4313f9ff7f07b52b"
+    },
+    "pe-puppet-dashboard": {
+      "version": "2.1.6.1.166-1.pe.el7",
+      "md5": "11d64f6a4d87895806d0298ea9b0f907"
+    },
+    "pe-console-auth": {
+      "version": "1.3.1.20-1.pe.el7",
+      "md5": "5a07bfad4f137af62f712b7324cc4af7"
+    },
+    "pe-console": {
+      "version": "0.4.3-1.pe.el7",
+      "md5": "cccb5f918f402b49568dfa28b9fd064b"
+    },
+    "pe-live-management": {
+      "version": "1.3.1.45-1.pe.el7",
+      "md5": "31aca2ea37fb8bc7b11e8f04c005a201"
+    },
+    "pe-license-status": {
+      "version": "0.2.2-1.pe.el7",
+      "md5": "88caf5ce0d65c0ee051897dc6f6ed109"
+    },
+    "pe-event-inspector": {
+      "version": "0.2.1.65-1.pe.el7",
+      "md5": "33b69245c51d3d8702c0fb76c5dbfdd9"
+    },
+    "pe-certificate-manager": {
+      "version": "0.5.1.36-1.pe.el7",
+      "md5": "c1988ab9db207a9fb0e87f815236d845"
+    },
+    "pe-openssl": {
+      "version": "1.0.0o-2.pe.el7",
+      "md5": "6d564be774a98374d4f12765f354feb3"
+    },
+    "pe-ruby": {
+      "version": "1.9.3.484-16.pe.el7",
+      "md5": "73d51f2984b8fecc1d275fc1a0e5709f"
+    },
+    "pe-libldap": {
+      "version": "2.4.39-5.pe.el7",
+      "md5": "99d8af7b103f7b734b970b078043549c"
+    },
+    "pe-libapr": {
+      "version": "1.5.1-1.pe.el7",
+      "md5": "d6596430fc3bffd4af2937a86930d67b"
+    },
+    "pe-libaprutil": {
+      "version": "1.5.3-1.pe.el7",
+      "md5": "dcba9fa3423e8dc000d59d33ecff9759"
+    },
+    "pe-installer": {
+      "version": "0.0.2.716-1.pe.el7",
+      "md5": "5bac1c6d1c17df1bd263abb1cf8a94b6"
+    },
+    "pe-console-services": {
+      "version": "0.7.4-1.el7",
+      "md5": "5dd3ba8d541f70fca652371a38e05aae"
+    },
+    "pe-console-services-termini": {
+      "version": "0.7.4-1.el7",
+      "md5": "8c14dd05a2499fe11ba758a2be9ef8ab"
+    },
+    "pe-puppetserver": {
+      "version": "0.4.1-1.el7",
+      "md5": "89846887f5044447436afca604716414"
+    },
+    "pe-puppetserver-common": {
+      "version": "3.7.3.3-1.pe.el7",
+      "md5": "a0262dbe1a1a27fe6d23f3169394b62a"
+    }
+  },
+  "ubuntu-14.04-i386": {
+    "pe-puppet-enterprise-release": {
+      "version": "3.7.1.0-1puppet1",
+      "md5": "46c8869730e9ecd320dcd2c9763f2d56"
+    },
+    "pe-virt-what": {
+      "version": "1.14-1puppet1",
+      "md5": "72a07d7eabd2d396fa0bd19e20c48873"
+    },
+    "pe-rubygem-deep-merge": {
+      "version": "1.0.0-1puppet1",
+      "md5": "db64deed8226fa19cc37c3a9c41d7e11"
+    },
+    "pe-ruby": {
+      "version": "1.9.3.484-1puppet11",
+      "md5": "0c50bc86ff5853aebe11c663bf84caa2"
+    },
+    "pe-libyaml": {
+      "version": "0.1.6-1puppet2",
+      "md5": "0c6eb7c7c171c2405f91901026ec75fa"
+    },
+    "pe-ruby-rgen": {
+      "version": "0.6.5-1puppet1",
+      "md5": "63a2d7714c240fa56b00122ec021755e"
+    },
+    "pe-ruby-shadow": {
+      "version": "2.2.0-1puppet3",
+      "md5": "816cbd15b7e67a16306071b7b643ee57"
+    },
+    "pe-httpd-mpm-event": {
+      "version": "2.2.27-1puppet19",
+      "md5": "7dd622a05537fd9d315dd869aaf95452"
+    },
+    "pe-httpd-mpm-itk": {
+      "version": "2.2.27-1puppet19",
+      "md5": "3bfdaf76b0d05ba1fee2ab04553fea07"
+    },
+    "pe-httpd-mpm-prefork": {
+      "version": "2.2.27-1puppet19",
+      "md5": "96e1e63dc165207e8bbe22380d255dfd"
+    },
+    "pe-httpd-mpm-worker": {
+      "version": "2.2.27-1puppet19",
+      "md5": "c6da5bc9ea68d6f8b76e9c508b53d41a"
+    },
+    "pe-httpd-prefork-dev": {
+      "version": "2.2.27-1puppet19",
+      "md5": "6d2888187cb12bca2c2825b504e7bcc4"
+    },
+    "pe-httpd-threaded-dev": {
+      "version": "2.2.27-1puppet19",
+      "md5": "9d74e80daea1e6571cc620992c206904"
+    },
+    "pe-httpd": {
+      "version": "2.2.27-1puppet19",
+      "md5": "add770b80856ffea2f0cbec4f1ea99ad"
+    },
+    "pe-rubygem-rack": {
+      "version": "1.4.5-1puppet2",
+      "md5": "5396ee9ed7367c4101be019083fa198b"
+    },
+    "pe-passenger": {
+      "version": "4.0.37-1puppet1",
+      "md5": "8b4e386543e73143b2c9308bb3ef9773"
+    },
+    "pe-ruby-stomp": {
+      "version": "1.3.3-1puppet1",
+      "md5": "1334c574f0983fe3443ac37f383ed79d"
+    },
+    "pe-augeas": {
+      "version": "1.2.0-1puppet1",
+      "md5": "5a821c91f0a7ce78500708ddb5f28de2"
+    },
+    "pe-bundler": {
+      "version": "1.3.5-1puppet2",
+      "md5": "8b603418bcc4e3485351141ab78d74a5"
+    },
+    "pe-activerecord": {
+      "version": "2.3.17-1puppet2",
+      "md5": "dba4da891d2b88a6f53c8e09fa38707b"
+    },
+    "pe-activesupport": {
+      "version": "2.3.17-1puppet2",
+      "md5": "2fedb43edb3b58a082a638d26337e7ce"
+    },
+    "pe-java": {
+      "version": "1.7.0.71-1puppet1",
+      "md5": "b18049d332d4849974b92098ba3c6b1f"
+    },
+    "pe-libevent-devel": {
+      "version": "2.0.13-1puppet4",
+      "md5": "a8cfde3d1562f4b0d64967cdc6d49ac4"
+    },
+    "pe-libevent": {
+      "version": "2.0.13-1puppet4",
+      "md5": "35062aacbbcb1189aff206f06af1bcd7"
+    },
+    "pe-rubygem-net-ssh": {
+      "version": "2.1.4-1puppet2",
+      "md5": "126368a8c0ef4f690fff935944dcbaed"
+    },
+    "pe-ruby-mysql": {
+      "version": "2.8.2-1puppet2",
+      "md5": "f1c3c7dc825c0142f1a62771c8ebdca7"
+    },
+    "pe-rubygem-sequel": {
+      "version": "3.47.0-1puppet1",
+      "md5": "e7e5043986927c98de144da9e1a97c9d"
+    },
+    "pe-ruby-ldap": {
+      "version": "0.9.12-1puppet2",
+      "md5": "162295294565f6055030f9969b6d8d93"
+    },
+    "pe-ruby-augeas": {
+      "version": "0.5.0-1puppet2",
+      "md5": "d4fd6479c3192160a17b4a8fd68de479"
+    },
+    "pe-cloud-provisioner-libs": {
+      "version": "0.3.2-1puppet1",
+      "md5": "be1dead37bc890fc03c62090c350c740"
+    },
+    "pe-cloud-provisioner": {
+      "version": "1.1.7-1puppet1",
+      "md5": "be188055391e078c49b655b29d68ca11"
+    },
+    "pe-postgresql-contrib": {
+      "version": "9.2.7-1puppet7",
+      "md5": "72bb05ebc92ddef071a5180bbb16dbc2"
+    },
+    "pe-postgresql-devel": {
+      "version": "9.2.7-1puppet7",
+      "md5": "00357b1d739ab93c48e695689e460ce0"
+    },
+    "pe-postgresql-server": {
+      "version": "9.2.7-1puppet7",
+      "md5": "f41ba826ff04f1ac7c1d7c1e178d3d2e"
+    },
+    "pe-postgresql": {
+      "version": "9.2.7-1puppet7",
+      "md5": "c86986bd24a03de63279ff11f47be4f1"
+    },
+    "pe-memcached-devel": {
+      "version": "1.4.7-1puppet6",
+      "md5": "afb7ecbe1b70db0b866272cc3ea8049a"
+    },
+    "pe-memcached": {
+      "version": "1.4.7-1puppet6",
+      "md5": "dfe0a5e1cbf56e8e9c8f939905832037"
+    },
+    "pe-activemq": {
+      "version": "5.9.0-1puppet7",
+      "md5": "5de77e8a8c4aa7ba2f1eb1acb87d2339"
+    },
+    "pe-hiera": {
+      "version": "1.3.4.2-1puppet1",
+      "md5": "789b543642b6a963a2a3afa3c2ed0015"
+    },
+    "pe-facter": {
+      "version": "2.3.0.0-1puppet1",
+      "md5": "1d386028f12d472feefc8fabb20ad9a3"
+    },
+    "pe-mcollective": {
+      "version": "2.6.0.5-1puppet1",
+      "md5": "1545581ce920933f673df4fe59d44c5b"
+    },
+    "pe-mcollective-client": {
+      "version": "2.6.0.5-1puppet1",
+      "md5": "1d944d0b1a92b2b8678ecf24bb31cc09"
+    },
+    "pe-mcollective-common": {
+      "version": "2.6.0.5-1puppet1",
+      "md5": "8cfde74f83f75fd415e124c1614b9b60"
+    },
+    "pe-puppet": {
+      "version": "3.7.3.3-1puppet1",
+      "md5": "e8681b4dc7206e46bccad1821e33c8c7"
+    },
+    "pe-agent": {
+      "version": "3.7.1-1puppet1",
+      "md5": "5265f6a8ee8e9e8e17bf877a97911ee7"
+    },
+    "pe-puppetdb-terminus": {
+      "version": "2.2.1.1-1puppet1",
+      "md5": "be7e5bf65e4ddd675771452285f2273a"
+    },
+    "pe-puppetdb": {
+      "version": "2.2.1.1-1puppet1",
+      "md5": "bc136ca63538bca1255b6ee33a1c361a"
+    },
+    "pe-license": {
+      "version": "0.1.3.7-1puppet1",
+      "md5": "ee5d73b24ef8480928842f73693e5a1f"
+    },
+    "pe-puppet-license-cli": {
+      "version": "0.1.7.5-1puppet1",
+      "md5": "72a5d989ae99f657d9dac52bac687e9a"
+    },
+    "pe-puppet-dashboard": {
+      "version": "2.1.6.1.166-1puppet1",
+      "md5": "1b26d2181c504db27ee38c19e0951216"
+    },
+    "pe-console-auth": {
+      "version": "1.3.1.20-1puppet1",
+      "md5": "04a69996b705b9587e4f1537aa14f820"
+    },
+    "pe-console": {
+      "version": "0.4.3-1puppet1",
+      "md5": "a52b3efebca12571992ceffc4b09252b"
+    },
+    "pe-console-test": {
+      "version": "0.4.2.7-1puppet1",
+      "md5": "74febf3030cd294046d83ae1b7d72abe"
+    },
+    "pe-live-management": {
+      "version": "1.3.1.45-1puppet1",
+      "md5": "b1f2714c6c76fe29de0729f5973b3757"
+    },
+    "pe-license-status": {
+      "version": "0.2.2-1puppet1",
+      "md5": "fe1edf8ee6c0a4730692d4ada6b490c3"
+    },
+    "pe-event-inspector": {
+      "version": "0.2.1.65-1puppet1",
+      "md5": "4f0605f533630a5f894bb5e439db09c0"
+    },
+    "pe-certificate-manager-test": {
+      "version": "0.5.1.28-1puppet1",
+      "md5": "d3a575c2d9fc5aa51c52036dd9ec09ab"
+    },
+    "pe-certificate-manager": {
+      "version": "0.5.1.36-1puppet1",
+      "md5": "60b99df22c4d43345b94bf557046259d"
+    },
+    "pe-openssl": {
+      "version": "1.0.0o-1puppet1",
+      "md5": "3908c84e29001b189560675d2d533301"
+    },
+    "pe-installer": {
+      "version": "0.0.2.716-1puppet1",
+      "md5": "f5d0f3a7a039d733d881b5e8f53575ff"
+    },
+    "pe-console-services": {
+      "version": "0.7.4-1puppet1",
+      "md5": "b0664906d2cf88afc1cdd54dffd473f6"
+    },
+    "pe-console-services-termini": {
+      "version": "0.7.4-1puppet1",
+      "md5": "11cc71e698de63d9311d66458b31eb68"
+    },
+    "pe-puppetserver": {
+      "version": "0.4.1-1puppet1",
+      "md5": "4946577b301f7ea5a529ded1807f85d0"
+    },
+    "pe-puppetserver-common": {
+      "version": "3.7.3.3-1puppet1",
+      "md5": "f3fef279092635836b5f9cb0ac4ed9f0"
+    }
+  },
+  "ubuntu-14.04-amd64": {
+    "pe-puppet-enterprise-release": {
+      "version": "3.7.1.0-1puppet1",
+      "md5": "46c8869730e9ecd320dcd2c9763f2d56"
+    },
+    "pe-virt-what": {
+      "version": "1.14-1puppet1",
+      "md5": "8c330870d424ceec2703de27961786b8"
+    },
+    "pe-rubygem-deep-merge": {
+      "version": "1.0.0-1puppet1",
+      "md5": "db64deed8226fa19cc37c3a9c41d7e11"
+    },
+    "pe-ruby": {
+      "version": "1.9.3.484-1puppet11",
+      "md5": "d0054756c4ce700e5d1b93ff8cbe2f2a"
+    },
+    "pe-libyaml": {
+      "version": "0.1.6-1puppet2",
+      "md5": "ddb308b9c2d19286e1369db516b59ed7"
+    },
+    "pe-ruby-rgen": {
+      "version": "0.6.5-1puppet1",
+      "md5": "63a2d7714c240fa56b00122ec021755e"
+    },
+    "pe-ruby-shadow": {
+      "version": "2.2.0-1puppet3",
+      "md5": "e38add9f26902bbd2509d1a184488c96"
+    },
+    "pe-httpd-mpm-event": {
+      "version": "2.2.27-1puppet19",
+      "md5": "fb3ba98753d10a39db30a26a087f8cb5"
+    },
+    "pe-httpd-mpm-itk": {
+      "version": "2.2.27-1puppet19",
+      "md5": "64342c2d9e70feed7b5bda875dfc11a7"
+    },
+    "pe-httpd-mpm-prefork": {
+      "version": "2.2.27-1puppet19",
+      "md5": "a9e7bc541105b5986b879b7b69cfc153"
+    },
+    "pe-httpd-mpm-worker": {
+      "version": "2.2.27-1puppet19",
+      "md5": "72ef4fb3d10de67c0f2a2aaf39111934"
+    },
+    "pe-httpd-prefork-dev": {
+      "version": "2.2.27-1puppet19",
+      "md5": "c7aa982ab281d769564e072a4bebde1a"
+    },
+    "pe-httpd-threaded-dev": {
+      "version": "2.2.27-1puppet19",
+      "md5": "5513048c4fcfe760de0ee12b7b1367e6"
+    },
+    "pe-httpd": {
+      "version": "2.2.27-1puppet19",
+      "md5": "1e834e39f402c4033635b6741d59fa6b"
+    },
+    "pe-rubygem-rack": {
+      "version": "1.4.5-1puppet2",
+      "md5": "5396ee9ed7367c4101be019083fa198b"
+    },
+    "pe-passenger": {
+      "version": "4.0.37-1puppet1",
+      "md5": "b75eaec07257a42d12e7b49ca7f0bc17"
+    },
+    "pe-ruby-stomp": {
+      "version": "1.3.3-1puppet1",
+      "md5": "1334c574f0983fe3443ac37f383ed79d"
+    },
+    "pe-augeas": {
+      "version": "1.2.0-1puppet1",
+      "md5": "8725b6c321db6d5b764be3a359212de6"
+    },
+    "pe-bundler": {
+      "version": "1.3.5-1puppet2",
+      "md5": "8b603418bcc4e3485351141ab78d74a5"
+    },
+    "pe-activerecord": {
+      "version": "2.3.17-1puppet2",
+      "md5": "dba4da891d2b88a6f53c8e09fa38707b"
+    },
+    "pe-activesupport": {
+      "version": "2.3.17-1puppet2",
+      "md5": "2fedb43edb3b58a082a638d26337e7ce"
+    },
+    "pe-java": {
+      "version": "1.7.0.71-1puppet1",
+      "md5": "fa575ea0d3dbd908dc628c8fdc311f0f"
+    },
+    "pe-libevent-devel": {
+      "version": "2.0.13-1puppet4",
+      "md5": "11d848b1b532f646c8eba28b19ab373b"
+    },
+    "pe-libevent": {
+      "version": "2.0.13-1puppet4",
+      "md5": "29a74f39c35a54da93654df129620055"
+    },
+    "pe-rubygem-net-ssh": {
+      "version": "2.1.4-1puppet2",
+      "md5": "126368a8c0ef4f690fff935944dcbaed"
+    },
+    "pe-ruby-mysql": {
+      "version": "2.8.2-1puppet2",
+      "md5": "d95dec487dc084ad3ac2d123bfad3d5d"
+    },
+    "pe-rubygem-sequel": {
+      "version": "3.47.0-1puppet1",
+      "md5": "e7e5043986927c98de144da9e1a97c9d"
+    },
+    "pe-ruby-ldap": {
+      "version": "0.9.12-1puppet2",
+      "md5": "5f97034902318e6c0b3f1bf839adcdf0"
+    },
+    "pe-ruby-augeas": {
+      "version": "0.5.0-1puppet2",
+      "md5": "963a7ebd8162d9d8485cd80eefbb944e"
+    },
+    "pe-cloud-provisioner-libs": {
+      "version": "0.3.2-1puppet1",
+      "md5": "9313d074884d9226d37df54ce291f046"
+    },
+    "pe-cloud-provisioner": {
+      "version": "1.1.7-1puppet1",
+      "md5": "be188055391e078c49b655b29d68ca11"
+    },
+    "pe-postgresql-contrib": {
+      "version": "9.2.7-1puppet7",
+      "md5": "640e47af4ee2ed6d060ef63ec7dc32bd"
+    },
+    "pe-postgresql-devel": {
+      "version": "9.2.7-1puppet7",
+      "md5": "ed4b328294e7696258bfe57c16bccb24"
+    },
+    "pe-postgresql-server": {
+      "version": "9.2.7-1puppet7",
+      "md5": "15134b11459a8ab4e8861b7a0a1909d4"
+    },
+    "pe-postgresql": {
+      "version": "9.2.7-1puppet7",
+      "md5": "22b2f10f86944ccf12850ee07ddfb64e"
+    },
+    "pe-memcached-devel": {
+      "version": "1.4.7-1puppet6",
+      "md5": "11721145cda3ad361f1baf85c1def2b8"
+    },
+    "pe-memcached": {
+      "version": "1.4.7-1puppet6",
+      "md5": "969fe3c0122682e2984998da133e46b7"
+    },
+    "pe-activemq": {
+      "version": "5.9.0-1puppet7",
+      "md5": "5de77e8a8c4aa7ba2f1eb1acb87d2339"
+    },
+    "pe-hiera": {
+      "version": "1.3.4.2-1puppet1",
+      "md5": "789b543642b6a963a2a3afa3c2ed0015"
+    },
+    "pe-facter": {
+      "version": "2.3.0.0-1puppet1",
+      "md5": "05eb2b3a3ebc8ea5461d4b280872069e"
+    },
+    "pe-mcollective": {
+      "version": "2.6.0.5-1puppet1",
+      "md5": "1545581ce920933f673df4fe59d44c5b"
+    },
+    "pe-mcollective-client": {
+      "version": "2.6.0.5-1puppet1",
+      "md5": "1d944d0b1a92b2b8678ecf24bb31cc09"
+    },
+    "pe-mcollective-common": {
+      "version": "2.6.0.5-1puppet1",
+      "md5": "8cfde74f83f75fd415e124c1614b9b60"
+    },
+    "pe-puppet": {
+      "version": "3.7.3.3-1puppet1",
+      "md5": "e8681b4dc7206e46bccad1821e33c8c7"
+    },
+    "pe-agent": {
+      "version": "3.7.1-1puppet1",
+      "md5": "5265f6a8ee8e9e8e17bf877a97911ee7"
+    },
+    "pe-puppetdb-terminus": {
+      "version": "2.2.1.1-1puppet1",
+      "md5": "be7e5bf65e4ddd675771452285f2273a"
+    },
+    "pe-puppetdb": {
+      "version": "2.2.1.1-1puppet1",
+      "md5": "bc136ca63538bca1255b6ee33a1c361a"
+    },
+    "pe-license": {
+      "version": "0.1.3.7-1puppet1",
+      "md5": "ee5d73b24ef8480928842f73693e5a1f"
+    },
+    "pe-puppet-license-cli": {
+      "version": "0.1.7.5-1puppet1",
+      "md5": "72a5d989ae99f657d9dac52bac687e9a"
+    },
+    "pe-puppet-dashboard": {
+      "version": "2.1.6.1.166-1puppet1",
+      "md5": "35a88de6eef3b00cff9be651128d43df"
+    },
+    "pe-console-auth": {
+      "version": "1.3.1.20-1puppet1",
+      "md5": "04a69996b705b9587e4f1537aa14f820"
+    },
+    "pe-console": {
+      "version": "0.4.3-1puppet1",
+      "md5": "a52b3efebca12571992ceffc4b09252b"
+    },
+    "pe-console-test": {
+      "version": "0.4.2.7-1puppet1",
+      "md5": "74febf3030cd294046d83ae1b7d72abe"
+    },
+    "pe-live-management": {
+      "version": "1.3.1.45-1puppet1",
+      "md5": "b1f2714c6c76fe29de0729f5973b3757"
+    },
+    "pe-license-status": {
+      "version": "0.2.2-1puppet1",
+      "md5": "fe1edf8ee6c0a4730692d4ada6b490c3"
+    },
+    "pe-event-inspector": {
+      "version": "0.2.1.65-1puppet1",
+      "md5": "4f0605f533630a5f894bb5e439db09c0"
+    },
+    "pe-certificate-manager-test": {
+      "version": "0.5.1.28-1puppet1",
+      "md5": "d3a575c2d9fc5aa51c52036dd9ec09ab"
+    },
+    "pe-certificate-manager": {
+      "version": "0.5.1.36-1puppet1",
+      "md5": "60b99df22c4d43345b94bf557046259d"
+    },
+    "pe-openssl": {
+      "version": "1.0.0o-1puppet1",
+      "md5": "deb957d850a2ca6da5ed56a6e03d8ddf"
+    },
+    "pe-installer": {
+      "version": "0.0.2.716-1puppet1",
+      "md5": "0e189f59dd224ece4f166343ac2110e3"
+    },
+    "pe-console-services": {
+      "version": "0.7.4-1puppet1",
+      "md5": "b0664906d2cf88afc1cdd54dffd473f6"
+    },
+    "pe-console-services-termini": {
+      "version": "0.7.4-1puppet1",
+      "md5": "11cc71e698de63d9311d66458b31eb68"
+    },
+    "pe-puppetserver": {
+      "version": "0.4.1-1puppet1",
+      "md5": "4946577b301f7ea5a529ded1807f85d0"
+    },
+    "pe-puppetserver-common": {
+      "version": "3.7.3.3-1puppet1",
+      "md5": "f3fef279092635836b5f9cb0ac4ed9f0"
+    }
+  },
+  "osx-10.9-x86_64": {
+    "pe-augeas": {
+      "version": "1.2.0-1",
+      "md5": "61573537163309b71a434e99b536a45b"
+    },
+    "pe-deep-merge": {
+      "version": "1.0.0-4",
+      "md5": "f4e69e5c7aee9cc665c85e683135da35"
+    },
+    "pe-facter": {
+      "version": "2.3.0.0-1",
+      "md5": "5c6fa2bb0e92d22f06c1ef44c95833f6"
+    },
+    "pe-hiera": {
+      "version": "1.3.4.2-1",
+      "md5": "94f7cc171679dd8532e7634fcb3b1d0b"
+    },
+    "pe-libyaml": {
+      "version": "0.1.6-4",
+      "md5": "3e47eb5e1694a529e42ce54219a7f289"
+    },
+    "pe-mcollective": {
+      "version": "2.6.0.5-1",
+      "md5": "013444f00f3b8501dd899007d078df76"
+    },
+    "pe-openssl": {
+      "version": "1.0.0o-1",
+      "md5": "7906025c888a7c6d55a1b1ee8e109dcb"
+    },
+    "pe-puppet": {
+      "version": "3.7.3.3-1",
+      "md5": "1d6ad28d95b3ad34260a825bf7672fcd"
+    },
+    "pe-puppet-enterprise-release": {
+      "version": "3.7.1.0-1",
+      "md5": "61bac7891a091c449934ec25a5679892"
+    },
+    "pe-ruby": {
+      "version": "1.9.3.484-13",
+      "md5": "e8d6e6c4d47f684e3278a3b9cdd5908f"
+    },
+    "pe-ruby-augeas": {
+      "version": "0.5.0-9",
+      "md5": "b1760852d2c7e6195b24751fa189756f"
+    },
+    "pe-ruby-rgen": {
+      "version": "0.6.5-3",
+      "md5": "e268fc129cf3923eae6f45ef88df7b66"
+    },
+    "pe-ruby-shadow": {
+      "version": "2.3.3-2",
+      "md5": "f480ab323fa5522c3ab7982e62cc3fc7"
+    },
+    "pe-stomp": {
+      "version": "1.3.3-1",
+      "md5": "900ecec6787fe460b397c79eca05e222"
+    },
+    "pe-cfpropertylist": {
+      "version": "2.2.7-1",
+      "md5": "aaf06ee6420745184cbf3325c68b1dd2"
+    }
+  },
+  "sles-10-i386": {
+    "pe-libyaml": {
+      "version": "0.1.6-3.sles10",
+      "md5": "e57116a086ce3aeac6f2dcea0eaee71e"
+    },
+    "pe-openssl": {
+      "version": "1.0.0o-2.pe.sles10",
+      "md5": "b4832562e8453f45a91b99e9a2052094"
+    },
+    "pe-puppet-enterprise-release": {
+      "version": "3.7.1.0-1.pe.sles10",
+      "md5": "0214cf592eb129bf08abe61280a9d782"
+    },
+    "pe-ruby": {
+      "version": "1.9.3.484-16.pe.sles10",
+      "md5": "74ab5d7315abce2e66a0531a71d5bbd4"
+    },
+    "pe-rubygem-deep-merge": {
+      "version": "1.0.0-6.pe.sles10",
+      "md5": "721cb95bb4c4424f9e0759b8b7994b1a"
+    },
+    "pe-ruby-rgen": {
+      "version": "0.6.5-3.pe.sles10",
+      "md5": "473af8b98334b8a3c47279f17297e237"
+    },
+    "pe-augeas": {
+      "version": "1.2.0-5.pe.sles10",
+      "md5": "e7baeb660a3d9bdc1db50020211df05d"
+    },
+    "pe-ruby-augeas": {
+      "version": "0.5.0-6.pe.sles10",
+      "md5": "c1b6bb8b11abe8179c212bf69ffea827"
+    },
+    "pe-ruby-shadow": {
+      "version": "2.2.0-4.pe.sles10",
+      "md5": "2d94afa4e04089ab923ff8d12308089f"
+    },
+    "pe-ruby-stomp": {
+      "version": "1.3.3-1.pe.sles10",
+      "md5": "b6c9334885906d1fb6d2cab12a319009"
+    },
+    "pe-rubygem-net-ssh": {
+      "version": "2.1.4-3.pe.sles10",
+      "md5": "0f9681f100b21c4c573e581d4fefb677"
+    },
+    "pe-virt-what": {
+      "version": "1.14-2.sles10",
+      "md5": "e1fcae02fe6e1bc3800d388f0db17e1c"
+    },
+    "pe-libldap": {
+      "version": "2.4.39-5.pe.sles10",
+      "md5": "87fd84787eef8ed242d3797a928b8c07"
+    },
+    "pe-facter": {
+      "version": "2.3.0.0-1.pe.sles10",
+      "md5": "ce00d15e26a9346171ee4a7f65735ef9"
+    },
+    "pe-hiera": {
+      "version": "1.3.4.2-1.pe.sles10",
+      "md5": "1ab25c46ee19ae27a38dc2d5cc41d34c"
+    },
+    "pe-puppet": {
+      "version": "3.7.3.3-1.pe.sles10",
+      "md5": "ccf00f8fa675e426d7a35945b85ad9c7"
+    },
+    "pe-mcollective-common": {
+      "version": "2.6.0.5-1.pe.sles10",
+      "md5": "4fe4a18711fa03f97d07cb107cb66fb8"
+    },
+    "pe-mcollective-client": {
+      "version": "2.6.0.2-1.pe.sles10",
+      "md5": "fe50592ea94fa955d42f6016f7f1659c"
+    },
+    "pe-mcollective": {
+      "version": "2.6.0.5-1.pe.sles10",
+      "md5": "912b6eb4b2e18fa310d9cca63c36b487"
+    },
+    "pe-agent": {
+      "version": "3.7.1-1.pe.sles10",
+      "md5": "c9064b5dd5536e6afed57083d759f41c"
+    },
+    "pe-ruby-ldap": {
+      "version": "0.9.12-7.pe.sles10",
+      "md5": "0e3ccf4b9af97f67228e05296425037c"
+    },
+    "pe-puppetserver-common": {
+      "version": "3.7.3.3-1.pe.sles10",
+      "md5": "6e7a4e45b81bd61ca555af9fc9572e21"
+    }
+  },
+  "sles-10-x86_64": {
+    "pe-libyaml": {
+      "version": "0.1.6-3.sles10",
+      "md5": "1afa0119d6d1d88b3e395ed55eda2293"
+    },
+    "pe-openssl": {
+      "version": "1.0.0o-2.pe.sles10",
+      "md5": "4371e3a8f7609b4f82f32d64449699d1"
+    },
+    "pe-puppet-enterprise-release": {
+      "version": "3.7.1.0-1.pe.sles10",
+      "md5": "0214cf592eb129bf08abe61280a9d782"
+    },
+    "pe-ruby": {
+      "version": "1.9.3.484-16.pe.sles10",
+      "md5": "b808a7c65ced04465e808657bb8d3f96"
+    },
+    "pe-rubygem-deep-merge": {
+      "version": "1.0.0-6.pe.sles10",
+      "md5": "721cb95bb4c4424f9e0759b8b7994b1a"
+    },
+    "pe-ruby-rgen": {
+      "version": "0.6.5-3.pe.sles10",
+      "md5": "473af8b98334b8a3c47279f17297e237"
+    },
+    "pe-augeas": {
+      "version": "1.2.0-5.pe.sles10",
+      "md5": "5edb2c9ae0d8bed1ecf91baa05f16da4"
+    },
+    "pe-ruby-augeas": {
+      "version": "0.5.0-6.pe.sles10",
+      "md5": "5a55b6a67b1cfcd204b07aa94f84f61f"
+    },
+    "pe-ruby-shadow": {
+      "version": "2.2.0-4.pe.sles10",
+      "md5": "61189e43e47e73f88b2cc5314b16e8ae"
+    },
+    "pe-ruby-stomp": {
+      "version": "1.3.3-1.pe.sles10",
+      "md5": "b6c9334885906d1fb6d2cab12a319009"
+    },
+    "pe-rubygem-net-ssh": {
+      "version": "2.1.4-3.pe.sles10",
+      "md5": "0f9681f100b21c4c573e581d4fefb677"
+    },
+    "pe-virt-what": {
+      "version": "1.14-2.sles10",
+      "md5": "67248eed4743016e992f82df45541f0f"
+    },
+    "pe-libldap": {
+      "version": "2.4.39-5.pe.sles10",
+      "md5": "155765b02f08143765e59df55b95ac71"
+    },
+    "pe-facter": {
+      "version": "2.3.0.0-1.pe.sles10",
+      "md5": "a8f1546eba674ade6a6d782b718ba9a2"
+    },
+    "pe-hiera": {
+      "version": "1.3.4.2-1.pe.sles10",
+      "md5": "1ab25c46ee19ae27a38dc2d5cc41d34c"
+    },
+    "pe-puppet": {
+      "version": "3.7.3.3-1.pe.sles10",
+      "md5": "ccf00f8fa675e426d7a35945b85ad9c7"
+    },
+    "pe-mcollective-common": {
+      "version": "2.6.0.5-1.pe.sles10",
+      "md5": "4fe4a18711fa03f97d07cb107cb66fb8"
+    },
+    "pe-mcollective-client": {
+      "version": "2.6.0.2-1.pe.sles10",
+      "md5": "fe50592ea94fa955d42f6016f7f1659c"
+    },
+    "pe-mcollective": {
+      "version": "2.6.0.5-1.pe.sles10",
+      "md5": "912b6eb4b2e18fa310d9cca63c36b487"
+    },
+    "pe-agent": {
+      "version": "3.7.1-1.pe.sles10",
+      "md5": "c9064b5dd5536e6afed57083d759f41c"
+    },
+    "pe-ruby-ldap": {
+      "version": "0.9.12-7.pe.sles10",
+      "md5": "10a08909ee8a51d5e8e3daf8fc70468a"
+    },
+    "pe-puppetserver-common": {
+      "version": "3.7.3.3-1.pe.sles10",
+      "md5": "6e7a4e45b81bd61ca555af9fc9572e21"
+    }
+  },
+  "nxos-1-i386": {
+    "puppet-enterprise-nxos-1-i386": {
+      "version": "3.4.0.rc1.422.g1aa7ef6",
+      "md5": "dd195b2060ee3323870baeeb8bfb2395"
+    }
+  },
+  "nxos-1-x86_64": {
+    "puppet-enterprise-nxos-1-x86_64": {
+      "version": "3.7.1.rc0.105.ga5b5aec",
+      "md5": "a5ab3f1312de5b5efd096a91a7038869"
+    }
+  },
+  "sles-12-x86_64": {
+    "pe-libyaml": {
+      "version": "0.1.6-4.sles12",
+      "md5": "a06da9f1dc648602350b2862a23941ba"
+    },
+    "pe-puppet-enterprise-release": {
+      "version": "3.7.1.0-1.pe.sles12",
+      "md5": "81cdc10665812297ad35e6e4acee606c"
+    },
+    "pe-openssl": {
+      "version": "1.0.0o-2.pe.sles12",
+      "md5": "9c8adc0098e66fcab6067127fd055759"
+    },
+    "pe-ruby": {
+      "version": "1.9.3.484-16.pe.sles12",
+      "md5": "47b5fbc5dd89962a2323e19cbca31a8a"
+    },
+    "pe-activemq": {
+      "version": "5.9.0-13.pe.sles12",
+      "md5": "fd467bb127b757fc668f9bd686705e48"
+    },
+    "pe-augeas": {
+      "version": "1.2.0-4.pe.sles12",
+      "md5": "f1ebb36b70718a9e91994f6ea64fbb4b"
+    },
+    "pe-bundler": {
+      "version": "1.3.5-3.pe.sles12",
+      "md5": "ae3553a8d0952a26b858e102e6c875ec"
+    },
+    "pe-cloud-provisioner-libs": {
+      "version": "0.3.2-3.pe.sles12",
+      "md5": "5f31f23d0d7da5016063a3dec20412d2"
+    },
+    "pe-cloud-provisioner": {
+      "version": "1.1.7-1.sles12",
+      "md5": "48578fcf759ff12fd48fa576c53b2ef8"
+    },
+    "pe-libapr": {
+      "version": "1.5.1-2.pe.sles12",
+      "md5": "8e52d5dec1c5d00140d6aaf6f5387b6e"
+    },
+    "pe-libldap": {
+      "version": "2.4.39-5.pe.sles12",
+      "md5": "251051662cb66394fe2f132e81475486"
+    },
+    "pe-postgresql": {
+      "version": "9.2.7-14.pe.sles12",
+      "md5": "3014276d0aef334c816c9c486f866fb5"
+    },
+    "pe-postgresql-contrib": {
+      "version": "9.2.7-14.pe.sles12",
+      "md5": "e32dbf9dd9a064c8f41eaddaa3fc1c97"
+    },
+    "pe-postgresql-devel": {
+      "version": "9.2.7-14.pe.sles12",
+      "md5": "85e43fa3ed1008867264f66f33b38bf6"
+    },
+    "pe-postgresql-server": {
+      "version": "9.2.7-14.pe.sles12",
+      "md5": "d5f4657898c413995c52f2b641baa8d2"
+    },
+    "pe-libaprutil": {
+      "version": "1.5.3-2.pe.sles12",
+      "md5": "ae36b858de46674055f0201bae30bddc"
+    },
+    "pe-httpd": {
+      "version": "2.2.27-15.pe.sles12",
+      "md5": "2ebecb3823f56dcfe146473917ea1e10"
+    },
+    "pe-libevent": {
+      "version": "2.0.13-7.sles12",
+      "md5": "c37862ee45d95af14b795bb40282bdb2"
+    },
+    "pe-libevent-devel": {
+      "version": "2.0.13-7.sles12",
+      "md5": "cfbb31a1990eb48b1bf8e7bc825b00dc"
+    },
+    "pe-memcached": {
+      "version": "1.4.7-10.pe.sles12",
+      "md5": "8d0fc48acea32857e30b6a7699e04268"
+    },
+    "pe-memcached-devel": {
+      "version": "1.4.7-10.pe.sles12",
+      "md5": "43226cc24d48ae6b7f564e8a51ea138e"
+    },
+    "pe-ruby-augeas": {
+      "version": "0.5.0-6.pe.sles12",
+      "md5": "1dae8487d7d35f6fdc544ff84eb30379"
+    },
+    "pe-rubygem-activerecord": {
+      "version": "2.3.17-4.pe.sles12",
+      "md5": "2203cb3909f507e5757163ab6114840f"
+    },
+    "pe-rubygem-activesupport": {
+      "version": "2.3.17-4.pe.sles12",
+      "md5": "e341fb03b06777f6b2db27acaa52823f"
+    },
+    "pe-rubygem-deep-merge": {
+      "version": "1.0.0-6.pe.sles12",
+      "md5": "58496b3be25f89cb7c22da0c4884ff04"
+    },
+    "pe-rubygem-net-ssh": {
+      "version": "2.1.4-3.pe.sles12",
+      "md5": "471cc6499f1a837b1a28964ed4224857"
+    },
+    "pe-rubygem-rack": {
+      "version": "1.4.5-3.pe.sles12",
+      "md5": "1f3c9cae813e998722d13c853adcb0d2"
+    },
+    "pe-rubygem-sequel": {
+      "version": "3.47.0-2.pe.sles12",
+      "md5": "8862fada60443f4037524853de385752"
+    },
+    "pe-virt-what": {
+      "version": "1.14-2.sles12",
+      "md5": "f73806780e96b28e38c74da8d17403e9"
+    },
+    "pe-facter": {
+      "version": "2.3.0.0-1.pe.sles12",
+      "md5": "98f1294d4e66c9c515e8d2fa75f97c66"
+    },
+    "pe-hiera": {
+      "version": "1.3.4.2-1.pe.sles12",
+      "md5": "1e36ef56c4e2066df373189849955db9"
+    },
+    "pe-java": {
+      "version": "1.7.0.71-1.pe.sles12",
+      "md5": "adc6eb201c86924b482c7c7f70520170"
+    },
+    "pe-license": {
+      "version": "0.1.3.7-1.pe.sles12",
+      "md5": "1e2ebe9c8b84422ef45940342f1618b4"
+    },
+    "pe-puppet-license-cli": {
+      "version": "0.1.7.5-1.pe.sles12",
+      "md5": "726224dfc5e4c001bb5a1247da7297f8"
+    },
+    "pe-puppet": {
+      "version": "3.7.3.3-1.pe.sles12",
+      "md5": "b802182cf1b6b8966c560df5ad3ee796"
+    },
+    "pe-puppet-dashboard": {
+      "version": "2.1.6.1.166-1.pe.sles12",
+      "md5": "c640661ca808985cffce2ed836a50034"
+    },
+    "pe-ruby-rgen": {
+      "version": "0.6.5-3.pe.sles12",
+      "md5": "54583b1cbd4ac86297a5df456ebbe3ba"
+    },
+    "pe-ruby-shadow": {
+      "version": "2.2.0-4.pe.sles12",
+      "md5": "f8aef1b14511e4f6c97676baa8c786b3"
+    },
+    "pe-console-services": {
+      "version": "0.7.4-1.sles12",
+      "md5": "4b6b3136b9f3a236e736cc22ebc75978"
+    },
+    "pe-console-services-termini": {
+      "version": "0.7.4-1.sles12",
+      "md5": "648b154646f5f19e12b1db368e29bbf7"
+    },
+    "pe-puppetdb-terminus": {
+      "version": "2.2.1.1-1.sles12",
+      "md5": "f38fa3a5851e0a4510895f98b89e2edd"
+    },
+    "pe-puppetdb": {
+      "version": "2.2.1.1-1.sles12",
+      "md5": "3d1525d6016c48ab37989bdb1f2d825b"
+    },
+    "pe-puppetserver": {
+      "version": "0.4.1-1.sles12",
+      "md5": "34f677bf5a1c3b2c19a0e366d98b7c0b"
+    },
+    "pe-passenger": {
+      "version": "4.0.37-4.pe.sles12",
+      "md5": "228d6c8abeeea3a3c4d00372fdef9910"
+    },
+    "pe-ruby-stomp": {
+      "version": "1.3.3-1.pe.sles12",
+      "md5": "2eb0d3bed4036cf6e07ea38ef3abc96f"
+    },
+    "pe-mcollective-client": {
+      "version": "2.6.0.5-1.pe.sles12",
+      "md5": "50446eec6d7f1115feb5ddd0e2a86042"
+    },
+    "pe-mcollective": {
+      "version": "2.6.0.5-1.pe.sles12",
+      "md5": "5be5bd0a86249bc97a5da666816affe2"
+    },
+    "pe-mcollective-common": {
+      "version": "2.6.0.5-1.pe.sles12",
+      "md5": "e07643a353993428f970fcf13c79c29f"
+    },
+    "pe-agent": {
+      "version": "3.7.1-1.pe.sles12",
+      "md5": "9b262ac85b0d76d0b5e998582ce0ab13"
+    },
+    "pe-console": {
+      "version": "0.4.3-1.pe.sles12",
+      "md5": "495b38c223214c4232248202463006eb"
+    },
+    "pe-console-test": {
+      "version": "0.4.2.7-1.pe.sles12",
+      "md5": "4bd8385e43561e36afecebe937acfc9c"
+    },
+    "pe-live-management": {
+      "version": "1.3.1.45-1.pe.sles12",
+      "md5": "ef2b3db22f79ea0d85b36f9f3c410c0c"
+    },
+    "pe-license-status": {
+      "version": "0.2.2-1.pe.sles12",
+      "md5": "410f2887c707b322c234b8e73460feff"
+    },
+    "pe-certificate-manager": {
+      "version": "0.5.1.36-1.pe.sles12",
+      "md5": "82dda683ad1ce3e27e50bf414951b060"
+    },
+    "pe-certificate-manager-test": {
+      "version": "0.5.1.28-1.pe.sles12",
+      "md5": "75d92768c10718825db44676127b50f8"
+    },
+    "pe-installer": {
+      "version": "0.0.2.716-1.pe.sles12",
+      "md5": "adca55affe846257e3aec49a930970f3"
+    },
+    "pe-console-auth": {
+      "version": "1.3.1.20-1.pe.sles12",
+      "md5": "068055995da1b2a1ceab7a4560dc90cf"
+    },
+    "pe-event-inspector": {
+      "version": "0.2.1.65-1.pe.sles12",
+      "md5": "183a6372c17fa1c17e5fbbaea14520ae"
+    },
+    "pe-ruby-ldap": {
+      "version": "0.9.12-7.pe.sles12",
+      "md5": "1ee047629a4c13f2cec08635d0fc65c1"
+    },
+    "pe-puppetserver-common": {
+      "version": "3.7.3.3-1.pe.sles12",
+      "md5": "95aa2689bde6e3043bacfe9588984c1c"
+    }
+  }
+}
