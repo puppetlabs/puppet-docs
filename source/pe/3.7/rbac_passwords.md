@@ -21,8 +21,6 @@ value. The token is generated using a random token generation algorithm that's n
 user for use with the `/auth/reset` endpoint. Web session authentication is
 required.
 
-**Implemented.**
-
 **Returns:**
 
 * **200 OK** With the token in the body of the response.
@@ -40,8 +38,6 @@ body. The token should be obtained via the `/users/:sid/password/reset` endpoint
 The appropriate user is identified in the payload of the token. This
 does not establish a valid logged in session for the user. No authentication is required to use this endpoint.
 
-**Implemented.**
-
 **Example body:**
 
     {"token": "text of token goes here",
@@ -54,8 +50,6 @@ does not establish a valid logged in session for the user. No authentication is 
 ### PUT /users/current/password
 Changes the password for the current user. A payload containing the current
 password must be provided. Web session authentication is required.
-
-**Implemented.**
 
 **Example body:**
 

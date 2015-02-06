@@ -21,8 +21,6 @@ By assigning roles to users, you can manage them in sets that are granted access
 Fetches all roles with user and group ID lists and permission lists. Web
 session authentication is required.
 
-**Implemented**
-
 **Example return:**
 
         [{"id": 123,
@@ -37,8 +35,6 @@ session authentication is required.
 
 ## GET /roles/:rid
 Fetches a single role by its ID. Web session authentication is required.
-
-**Implemented**
 
 **Returns:**
 
@@ -58,8 +54,6 @@ group IDs.
 
 ## POST /roles
 Creates a role, and attaches to it the specified permissions and the specified users and groups. Web session authentication is required.
-
-**Implemented**
 
 **Accepts:** A new role object. Any of the arrays can be empty and "description" can be null.
 
@@ -81,8 +75,6 @@ Creates a role, and attaches to it the specified permissions and the specified u
 
 ## PUT /roles/:sid
 Replace role at the specified ID with a new role object. Web session authentication is required.
-
-**Implemented**
 
 **Accepts:** The modified role object.
 

@@ -10,8 +10,6 @@ RBAC enables you to connect with a directory service and work with users and gro
 ### GET /ds
 Get the connected directory service information. Web session authentication is required.
 
-**Implemented.**
-
 **Returns:**
 
 * **200 OK** An object representing the connection. If the connection settings have not been specified, then an empty JSON object is
@@ -30,8 +28,6 @@ Get the connected directory service information. Web session authentication is r
 ### GET /ds/test
 Runs a connection test for the connected directory service. Web session
 authentication is required.
-
-**Implemented.**
 
 **Returns:**
 
@@ -58,8 +54,6 @@ Run a connection test with the submitted settings. Web session authentication is
 **Accepts:** The full set of directory settings keys with values defined.
 Refer to [the directory settings documentation](./rbac_ldap.html) for the full list of settings.
 
-**Implemented.**
-
 **Example returns:**
 
 If error or timeout:
@@ -72,8 +66,6 @@ If success:
 
 ### PUT /ds
 Replaces current directory service connection settings. Web session authentication is required.
-
-**Implemented.**
 
 **Accepts:** Directory service connection settings. To "disconnect"
   the DS, `PUT` either an empty object ("{}") or the settings structure with all values set to null. Refer to [the directory settings documentation](./rbac_ldap.html) for the full list of settings.
