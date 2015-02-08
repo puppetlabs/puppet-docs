@@ -5,7 +5,7 @@ subtitle: "Security Fixes"
 canonical: "/pe/latest/release_notes_security.html"
 ---
 
-This page contains information about security fixes in Puppet Enterprise (PE) 3.7.x. It also contains a select list of those bug fixes that we believe you'll want to learn about.
+This page contains information about security fixes in Puppet Enterprise (PE) 3.7. It also contains a select list of those bug fixes that we believe you'll want to learn about.
 
 For more information about this release, also see the [Known Issues](./release_notes_known_issues.html) and [New Featutes](./release_notes.html).
 
@@ -17,7 +17,7 @@ For more information about this release, also see the [Known Issues](./release_n
 
 #### The `node:del` Rake Task Deleted a Node Group Instead of the Node
 
-In PE 3.7, the behavior of the `node:del` rake task changed so that it deleted the node group to which a specified node was pinned. In PE 3.7.2, this behavior has been reverted to the PE 3.3 behavior so that `node:del` now deletes the specified node from the console database. 
+In PE 3.7, the behavior of the `node:del` rake task changed so that it deleted the node group to which a specified node was pinned. In PE 3.7.2, this behavior has been reverted to the PE 3.3 behavior so that `node:del` now deletes the specified node from the console database.
 
 A new rake task, `node:delgroup`, was introduced in PE 3.7.2 for deleting a node group.
 
