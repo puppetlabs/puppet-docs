@@ -17,7 +17,7 @@ and defined types. Puppet's explicit parameter type declarations help you:
 
 Unlike compiled languages like C and Haskell, Puppet only checks types *at runtime*. That means they can
 express much more specific requirements (like the minimum or maximum length of a string), but the trade-off
-is that there's no check for type errors ahead of time.
+is that there's no check for type errors ahead of time. 
 
 
 Type Declarations are Simplified Type Assertions
@@ -93,8 +93,7 @@ There are two things to notice about the above code:
 1. The default value for `$param` doesn't match its type (Boolean vs Integer).
 2. The manifest runs anyway, because the default for `$param` gets overridden.
 
-So Puppet's type-checking only ensures that there are no type errors *in a given catalog*. It won't catch errors that, for whatever reason,
-don't affect the catalog in question.
+So Puppet's type-checking only ensures that there are no type errors *in a given catalog*. It won't catch errors that, for whatever reason, don't affect the catalog in question.
 
 ### Writing Your own Error Messages
 
@@ -134,3 +133,27 @@ class {'puppetdb::server':
 {% endhighlight %}
 
 See the documentation for [assert_type](function.html#asserttype) for more information.
+
+### Operations on Types
+
+#### Type Operators
+
+The following operators can be used with types:
+
+* `==`, `!=` --- check for equality, non equality
+* `<`, `>`, `<=`, `>=` --- is one type more general than another type
+* `=~`, `!~` --- is the left operand a value of the type, not value of the type
+
+#### Type in Case and Selector Options
+
+When a type is used as a case or selector option it matches a value of that type.
+
+{% highlight ruby %}
+    $test = 10
+    case $test {
+      Integer[0,9]         : { notice 'integer 0 to 9' }
+      Integer[10, default] : { notice 'integer 10 or more ' }
+    }
+{% endhighlight %}
+
+This would notice 'integer 10 or more'.

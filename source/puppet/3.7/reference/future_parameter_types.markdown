@@ -20,7 +20,7 @@ These are the most specific types available in the Puppet language, representing
 
 ### Integer
 
-- **Matches**: whole numbers of any size within the limits of available memory. The `default` minimum and maximum values are `-Infinity` and `Infinity`, respectively.
+- **Matches**: whole numbers of any size within the limits of available memory. The `default` minimum and maximum values are `-Infinity` and `Infinity`, respectively. Practically the valid range is signed 64 bit integer since this is the range of integer values that can roundtrip safely between the components in the overall system.
 - **Required Parameters**: none.
 - **Optional Parameters**: minimum value, maximum value.
 
@@ -33,7 +33,7 @@ Examples:
 
 ### Float
 
-- **Matches**: floating point numbers within the limitations of Ruby's [Float class](http://www.ruby-doc.org/core-2.1.2/Float.html).
+- **Matches**: floating point numbers within the limitations of Ruby's [Float class](http://www.ruby-doc.org/core-2.1.2/Float.html). Practically this means a 64 bit double precision floating point value.
 - **Required Parameters**: none.
 - **Optional Parameters**: minimum value, maximum value.
 
@@ -111,6 +111,34 @@ Examples:
 * `Hash[Integer, String, 1]` --- same as above, but requires a non-empty hash map.
 * `Hash[Integer, String, 1, 8]` --- same as above, but with a maximum size of eight key-value pairs.
 
+### Resource
+
+The Resource type represents a reference to a puppet resource type, or a user defined resource type. While it matches resources, there are never any variables or other data structures in the Puppet Language that holds such values; only references to such values are used in the Language. In practice this means that to accept a resource reference as a parameter the type must be given as `Type[Resource]` (possible with additional type parameters).
+
+- **Matches**: resource instances (which are not first class values in the Puppet Language)
+- **Required Parameters**: none.
+- **Optional Parameters**: resource type name, resource title.
+
+Examples:
+
+* `Type[Resource]` --- matches all kinds of resource references except classes
+* `Type[Resource[file]]` --- matches all file resource references
+* `Type[Resource[file, '/tmp/foo]]` --- matches only the file resource references with title 'tmp/foo'
+
+### Class
+
+The Class type represents a reference to a puppet class. WHile it matches classes, there are never any variables or other data structures in the Puppet Language that holds such values; only references to classes are used in the Language. In practice this means that to accept a class reference as a parameter the type must be given as Type[Class] (possible with additional type parameters).
+
+- **Matches**: class instances (which are not first class values in the Puppet Language)
+- **Required Parameters**: none.
+- **Optional Parameters**: class name.
+
+Examples:
+
+* `Type[Class]` --- matches references to all classes
+* `Type[Class[myclass]]` --- matches only the reference to the class myclass
+
+
 ## Abstract Types
 
 ### Variant
@@ -142,11 +170,12 @@ Note: the `Numeric` type is equivalent to `Variant[Integer, Float]`.
 
 ### Data
 
-- **Matches**: an instance of `Scalar`, `Array[Data]`, or `Hash[Scalar, Data]`.
+- **Matches**: an instance of `Scalar`, `Array[Data]`, `Hash[Scalar, Data]`, or `Undef`.
 - **Required Parameters**: none.
 - **Optional Parameters**: none.
 
-Note: this type is closely related to the Scalar type, but it also matches arrays of scalars or hashes with scalar/data values. The definition is recursive, so you can nest scalar values in any number of hashes or arrays.
+Note: this type is closely related to the Scalar type, but it also matches arrays of scalars or hashes with scalar/data values. The definition is recursive, so you can nest scalar values in any number of hashes or arrays. This data type is useful as it represents the subset of types that
+can be directly represented in almost all serialization formats (e.g. JSON).
 
 Examples of types that match `Data`:
 
@@ -165,8 +194,9 @@ Examples of types that match `Data`:
 
 Note:
 
-* Additional options like `i` (case insensitive) are not supported.
-* Capture groups are not supported.
+* Additional options like `i` (case insensitive) are not supported by the type, but can be added
+  as parameters inside of the regular expression.
+* Capture groups can be used, but does not set any variables that can be used.
 * `Pattern` is a subtype of `String`, so it will only match strings.
 
 Examples:
@@ -240,6 +270,43 @@ Examples:
 
 * `Optional[String]` --- matches any string or `undef`.
 * `Optional[Array[Integer[0, 10]]]` --- matches an array of integers between 0 and 10, or `undef`.
+
+### Default
+
+- **Matches**: an instance of the special value `default`.
+- **Required Parameters**: none.
+- **Optional Parameters**: none.
+
+Note: the special value `default` is the only value that matches this type. To be meaningful
+it is most often combined with some other data type using a Variant. This gives the ability to handle undef (meaning value is not set), given value (meaning set to this value), or a default value (meaning, please pick a suitable default).
+
+Examples:
+
+* `Variant[String, Default, Undef]` --- matches any string, `undef`, or `default`
+
+### Catalogentry
+
+A Catalogentry is the abstract base type for `Resource` and `Class`. 
+
+- **Matches**: an instance of Resource or Class
+- **Required Parameters**: none.
+- **Optional Parameters**: none.
+
+* `Type[Catalogentry]` --- matches any class or resource reference.
+
+### Type
+
+- **Matches**: an instance of a type
+- **Required Parameters**: none.
+- **Optional Parameters**: a type.
+
+Examples:
+
+* `Type` --- matches any type, such as `Integer`, `String`, `Any`, `Type`.
+* `Type[String]` --- matches only the type `String`.
+* `Type[Resource]` --- matches any `Resource` type (i.e. any resource reference).
+
+Note: the standard lib function `type_of` can return the type of a value e.g. `type_of(3)` returns `Integer[3,3]`.
 
 ### Any
 
