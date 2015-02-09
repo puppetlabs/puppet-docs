@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.7 » "Configuring Your PE Infrastructure"
+title: "PE 3.7 » Configuring Your PE Infrastructure"
 subtitle: "Configuring and Tuning Your PE Infrastructure"
 canonical: "/pe/latest/config_intro.html"
 ---
