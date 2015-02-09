@@ -7,13 +7,53 @@ canonical: "/pe/latest/release_notes_security.html"
 
 This page contains information about security fixes in Puppet Enterprise (PE) 3.7. It also contains a select list of those bug fixes that we believe you'll want to learn about.
 
-For more information about this release, also see the [Known Issues](./release_notes_known_issues.html) and [New Featutes](./release_notes.html).
+For more information about this release, also see the [Known Issues](./release_notes_known_issues.html) and [New Features](./release_notes.html).
 
-## Puppet Enterprise 3.7.2 (xx/xx/15)
+## Puppet Enterprise 3.7.2 (2/10/15)
 
 ### Security Fixes
 
+#### CVE - OpenSSL January 2015 Security Fixes
+
+Posted February 10, 2015
+
+On January 8th, the OpenSSL project announced several security vulnerabilities in OpenSSL. Puppet Enterprise versions prior to 3.7.2 contained vulnerable versions of OpenSSL. Puppet Enterprise 3.7.2 contains updated versions of OpenSSL that have patched the vulnerabilities.
+
+For more information about the OpenSSL vulnerabilities, refer to the [OpenSSL security announcement](https://www.openssl.org/news/secadv_20150108.txt).
+
+OpenSSL issues affected PE 2.x and 3.x. They're resolved in PE 3.7.2.
+
+#### CVE - Oracle Java January 2015 Security Fixes
+
+Posted February 10, 2015
+Assessed Risk Level: Medium
+
+On January 20th, Oracle announced several security vulnerabilities in Java. Puppet Enterprise versions prior to 3.7.2 contained a vulnerable version of Java. Puppet Enterprise 3.7.2 contains an updated version of Java that has patched the vulnerabilities.
+
+For more information about the Java vulnerabilities, refer to the [Oracle security announcement](http://www.oracle.com/technetwork/topics/security/cpujan2015-1972971.html).
+
+This issue affected PE 3.x. It's resolved in PE 3.7.2.
+
+#### CVE - 2015-1426 - Potential Sensitive Information Leakage in Facter's Amazon EC2 Metadata Facts Handling
+
+Posted February 10, 2015
+Assessed Risk Level: Low
+
+An issue exists where sensitive Amazon EC2 IAM instance metadata could be added to an Amazon EC2 node's facts, where a non-privileged local user could access the information via Facter.
+
+Although Amazon’s API allows anyone who can access an EC2 instance to view its instance metadata, facts containing sensitive EC2 instance metadata could be unintentionally exposed through off-host applications that display facts.
+
+CVSS v2 Score: 1.3
+
+Vector AV:L/AC:L/Au:S/C:P/I:N/A:N/E:U/RL:OF/RC:C
+
+This issue affects PE 2.x and 3.x, Facter 1.6.0 - 2.4.0, and CFacter 0.2.0 and earlier. It's resolved in PE 3.7.2 and CFacter 0.3.0.
+
+>**Note**: Non-Puppet Enterprise users of Facter on Amazon EC2 should take precautions to prevent unintended facts disclosure through applications that display facts. The vulnerability will be resolved in a future release of Facter.
+
 ### Bug Fixes
+
+Puppet Enterprise 3.7.2 contains a number of performance and documentation improvements, in addition to the fixes that are highlighted below.
 
 #### The `node:del` Rake Task Deleted a Node Group Instead of the Node
 
@@ -22,6 +62,12 @@ In PE 3.7, the behavior of the `node:del` rake task changed so that it deleted t
 A new rake task, `node:delgroup`, was introduced in PE 3.7.2 for deleting a node group.
 
 For more information, see the [rake API documentation](./console_rake_api.html).
+
+#### Allow LDAP Queries from Base DN and Other Console Services Improvements
+
+Previously, RDNs were required for users and/or groups. Now you can search for an entity under the entire base DN, not just the subtree specified by an RDN.
+
+Other improvements include updating to tk-jetty9 and overall optimizations to improve the experience of importing groups.
 
 ## Puppet Enterprise 3.7.1 (12/16/14)
 
