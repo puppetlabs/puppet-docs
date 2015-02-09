@@ -119,8 +119,8 @@ The chaining arrows accept the following types of operands on either side of the
 * [Resource references][reference], including multi-resource references
 * [Resource declarations][resources]
 * [Resource collectors][collector]
+* Array of [Resource references][reference]
 
-> Note: Arrays of references cannot be chained. To chain multiple resources at once, you must use a multi-resource reference or a collector.
 
 An operand can be shared between two chaining statements, which allows you to link them together into a "timeline:"
 
@@ -165,6 +165,98 @@ This example would apply all yum repository resources before applying any packag
 Both chaining arrows have a reversed form (`<-` and `<~`). As implied by their shape, these forms operate in reverse, causing the resource on their right to be applied before the resource on their left.
 
 > Note: As the majority of Puppet's syntax is written left-to-right, these reversed forms can be confusing and are not recommended.
+
+#### Data Driven Constructs and Iteration (advanced)
+
+In configurations that are primarily data driven it is common to lookup arrays of resources
+and class names and then operate on them to achieve the same result as if a puppet manifest
+had been written with these resource and classes spelled out using regular Puppet statements.
+In earlier versions of Puppet this could lead to difficulties in defining the relationships.
+
+Since Puppet 4.0 (or Puppet 3x with future parser) there are additional features in the language that helps in these situations. These features are:
+
+* A resource declaration of a single titled resource produces a [Resource reference][reference] as its value
+* A resource declaration with multiple titles produces an Array of [Resource references][reference] as its value
+* The last expression evaluated in a block of code becomes the value of that block (why this is of value is demonstrated below).
+
+As an example, this means that you can **create the resources in an Array or Hash** which produces a structure of resource references in addition to adding the resources to the catalog:
+
+{% highlight ruby %}
+    $resources = {
+      package =>
+        package { 'openssh-server':
+          ensure => present,
+        },
+      
+      file => 
+        file { '/etc/ssh/sshd_config':
+          ensure => file,
+          mode   => 600,
+          source => 'puppet:///modules/sshd/sshd_config',
+        },
+        
+      service =>
+        service { 'sshd':
+          ensure => running,
+          enable => true,
+        }
+    }
+    # These can now be linked without knowing the titles of the resources
+    $resources[package] -> $resources[file] ~> $resources[service]
+    
+{% endhighlight %}
+
+If you are creating a sequence of resources, you can **use iteration** that creates and
+adds the resource to the catalog and produces an array of the resource references
+as a value:
+
+{% highlight ruby %}
+
+    $messages = [ 'good morning', 'good day', 'good evening']
+    $notifies = $messages.map |$message| {
+      notify { $message: }
+    }    
+{% endhighlight %}
+
+This would assign an array of notify references to `$notifies` with the content
+`[Notify['good morning'], Notify['good day'], Notify['good evening']]`. Note that the
+`map` function produces an array of equal length to the input but with the result of each iteration
+at each position instead of the original value.
+
+The array (`$notifies`) can then be used - say if we want to link them to be applied in the order they were given:
+
+{% highlight ruby %}
+
+    $notifies.reduce |$result, $notify| { $result -> $notify }
+{% endhighlight %}
+
+The variable $notifies is not really needed - the example can be written as:
+
+{% highlight ruby %}
+
+    $messages = [ 'good morning', 'good day', 'good evening']
+    $messages.map |$message| {
+      notify { $message: }
+    }.reduce | $result, $notify | {
+      $result -> $notify
+    }
+{% endhighlight %}
+
+And as a final example: if you do not care in which order those messages are applied but
+that they must all be applied before a final message, then they can be directly linked like this:
+
+{% highlight ruby %}
+
+    $messages = [ 'good morning', 'good day', 'good evening']
+    $messages.map |$message| {
+      notify { $message: }
+    } ->
+    notify { 'the final message':
+    }
+{% endhighlight %}
+
+This works because `map` produces an Array of references, and the `->` operator produces one relationship between each of the references on the left hand side with each reference on
+the right hand side.
 
 ### The `require` Function
 
@@ -220,9 +312,9 @@ When Puppet is preparing to sync a resource whose type supports autorequire, it 
 
 The [type reference][type] contains information on which types can autorequire other resources. Each type's description should state its autorequire behavior, if any. For an example, see the "Autorequires" section near the end of [the exec type][exec]'s description.
 
-### Parse-Order Independence
+### Evaluation-Order Independence
 
-Relationships are not limited by parse-order. You can declare a relationship with a resource before that resource has been declared.
+Relationships are not limited by evaluation-order. You can declare a relationship with a resource before that resource has been declared.
 
 ### Missing Dependencies
 
