@@ -59,7 +59,7 @@ The general form of a resource declaration is:
 * A colon
 * Optionally, any number of attribute and value pairs, each of which consists of:
     * An attribute name, which is a bare word
-    * A `=>` (arrow, fat comma, or hash rocket)
+    * A `=>` (arrow, a.k.a fat comma, or hash rocket)
     * A value, which can be any [data type][datatype], depending on what the attribute requires
     * A trailing comma (note that the comma is optional after the final attribute/value pair)
 * Optionally, a semicolon, followed by another title, colon, and attribute block
@@ -214,19 +214,124 @@ If you end an attribute block with a semicolon rather than a comma, you may spec
         ensure => directory,
         owner  => 'root',
         group  => 'root',
-        mode   => 0755;
+        mode   => '0755';
 
       '/etc/rc.d/init.d':
         ensure => directory,
         owner  => 'root',
         group  => 'root',
-        mode   => 0755;
+        mode   => '0755';
 
       '/etc/rc.d/rc0.d':
         ensure => directory,
         owner  => 'root',
         group  => 'root',
-        mode   => 0755;
+        mode   => '0755';
+    }
+{% endhighlight %}
+
+### Local Defaults
+
+Local default values for attributes can be defined by adding an attribute block with a title of `default`. These default values have higher priority than those set via  [resource type defaults][resdefaults].
+
+{% highlight ruby %}
+    file {
+      default:
+        ensure => directory,
+        owner  => 'root',
+        group  => 'root',
+        mode   => '0755';
+
+      '/etc/rc.d':        ;
+      '/etc/rc.d/init.d': ;
+      '/etc/rc.d/rc0.d':  ;
+    }
+{% endhighlight %}
+
+### Setting Attributes from a Hash
+
+Attributes can be set from a hash containing attribute name/value entries by using the wildcard
+attribute name `*`. It is illegal to attempt to set an attribute both via the hash and
+explicitly. Wildcard attribute is supported once per attribute block and can be used for both
+regular titled blocks, and default attribute blocks.
+
+{% highlight ruby %}
+    $attributes_hash = {
+        ensure => directory,
+        owner  => 'root',
+        group  => 'root',
+        mode   => '0755'
+        }
+
+    file {
+      default:
+        * => $attributes_hash ;
+
+      '/etc/rc.d':        ;
+      '/etc/rc.d/init.d': ;
+      '/etc/rc.d/rc0.d':  ;
+    }
+{% endhighlight %}
+
+{% highlight ruby %}
+
+    $attributes_hash = {
+        ensure => directory,
+        owner  => 'root',
+        group  => 'root',
+        mode   => '0755'
+        }
+    file {
+      '/etc/rc.d':
+        * => $attributes_hash ;
+
+      '/etc/rc.d/init.d':
+        * => $attributes_hash ;
+
+      '/etc/rc.d/rc0.d':
+        * => $attributes_hash ;
+    }
+{% endhighlight %}
+
+### Specifying Resource Type Indirectly
+
+When using a data driven approach it can be difficult to come up with a design that is
+easy to read since it was not possible in earlier versions of Puppet to control the type of a resource via a variable expression. The solution for older versions were to instead use the function `create_resources`. (This function still exists for backwards compatibility).
+
+Starting with Puppet 4.0 (and in 3x with future parser), it is possible to specify the type
+by using a resource type reference on the form `Resource[type_name]` where type_name is any expression that evaluates to a string name of a resource type.
+
+{% highlight ruby %}
+        
+    $type = file
+    Resource[$type] {
+      '/etc/rc.d':
+        ensure => directory,
+        owner  => 'root',
+        group  => 'root',
+        mode   => '0755'
+    }
+{% endhighlight %}
+
+### Combining Dynamic Features (advanced)
+
+The dynamic features (local defaults, attribute hash, and indirect resource type) provides
+the equivalent functionality of the create_resources function in a way that is easier
+to read, and that allows a gradual progression from everything being explicitly expressed
+to more and more being specified in a variable way. This used to be an all-or-nothing choice; when
+using create_resources everything had to be placed in hashes, now only the variable parts
+needs to be.
+
+Create resources function is basically the same as this:
+
+{% highlight ruby %}
+        
+    Resource[$type] {
+      default: 
+        * => $default_attributes_hash;
+
+      $title_array:
+        * => $attributes_hash;
     }
 {% endhighlight %}
 
@@ -246,18 +351,39 @@ Although you cannot declare the same resource twice, you can add attributes to a
     File['/etc/passwd'] {
       owner => 'root',
       group => 'root',
-      mode  => 0640,
+      mode  => '0640',
     }
 {% endhighlight %}
 
 The general form of a reference attribute block is:
 
-* A [reference][] to the resource in question (or a multi-resource reference)
+* A [reference][] to the resource(s) in question
+  * a single reference
+  * a multi-resource reference
+  * an array of resource references
 * An opening curly brace
 * Any number of attribute => value pairs
 * A closing curly brace
 
 In normal circumstances, this idiom can only be used to add previously unmanaged attributes to a resource; it cannot override already-specified attributes. However, within an [inherited class][inheritance], you **can** use this idiom to override attributes.
+
+A resource reference can be written using the general Resource type as `Resource[type_name, title]`
+which makes it possible to create a reference where the type is given in a variable way. When amending attributes it is also possible to use the wildcard attributes hash.
+
+{% highlight ruby %}
+    file {'/etc/passwd':
+      ensure => file,
+    }
+    $amended_attributes = {
+      owner => 'root',
+      group => 'root',
+      mode  => '0640',
+    }
+    $amended_type = file
+    Resource[$amended_type, '/etc/passwd'] {
+      * => $amended_attributes
+    }
+{% endhighlight %}
 
 ### Amending Attributes With a Collector
 
