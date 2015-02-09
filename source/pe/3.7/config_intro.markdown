@@ -1,6 +1,6 @@
 ---
-layout: default
 title: "PE 3.7 » Configuring Your PE Infrastructure"
+layout: default
 subtitle: "Configuring and Tuning Your PE Infrastructure"
 canonical: "/pe/latest/config_intro.html"
 ---
@@ -35,4 +35,4 @@ You can also configure settings with Hiera. We recommend that you use this optio
 
 In your Hiera .yaml file, add the setting you want to configure. For example, to increase or decrease the number of JRuby instances, you would tune the `jruby_max_active_instances` setting with the following code:
 
-	`puppet_enterprise::master::puppetserver::jruby_max_active_instances:<number of instances>`
+	puppet_enterprise::master::puppetserver::jruby_max_active_instances:<number of instances>
