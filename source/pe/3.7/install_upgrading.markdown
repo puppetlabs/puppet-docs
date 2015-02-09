@@ -33,7 +33,8 @@ If you have a split installation (with the master, PE console, and database comp
 1. Upgrade the Puppet Master
 2. Upgrade PuppetDB
 3. Upgrade the PE Console
-4. Upgrade Puppet agent nodes
+4. Classify the New PE Groups
+5. Upgrade Puppet agent nodes
 
 > **Note**: When upgrading to PE 3.7.x, the node classifier and role-based access control (RBAC) will be installed on the PE console node.
 
@@ -86,6 +87,8 @@ In addition if you are using an external PostgreSQL instance that is not managed
 1. You will need to create databases for RBAC, activity service, and the node classifier before upgrading.
 2. The databases you create need to have the citext extension enabled.
 
+### Step 4: Classify the New PE Groups 
+
 After upgrading you will need to manually [classify the new PE groups](./install_upgrading_notes.html#classifying-pe-groups).
 
 > **Disabling/Enabling Live Management During an Upgrade**
@@ -96,7 +99,7 @@ After upgrading you will need to manually [classify the new PE groups](./install
 >
 >(Note that you can enable/disable Live Management at any time during normal operations by editing the aforementioned `settings.yml` and then running `sudo /etc/init.d/pe-httpd restart`.)
 
-### Step 4: Upgrade Agents
+### Step 5: Upgrade Agents
 
 If you are using the PE package repo hosted on the Puppet master, it will get upgraded when you upgrade the Puppet master.
 
