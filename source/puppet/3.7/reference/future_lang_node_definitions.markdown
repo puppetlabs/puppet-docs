@@ -24,7 +24,7 @@ canonical: "/puppet/latest/reference/future_lang_node_definitions.html"
 [conditional]: ./future_lang_conditional.html
 
 
-A **node definition** or **node statement** is a block of Puppet code that will only be included in one node's [catalog][]. This feature allows you to assign specific configurations to specific nodes.
+A **node definition** or **node statement** is a block of Puppet code that will only be included in matching nodes' [catalogs][catalog]. This feature allows you to assign specific configurations to specific nodes.
 
 Node statements are an **optional feature** of Puppet. They can be replaced by or combined with an [external node classifier][enc], or you can eschew both and use conditional statements with [facts][] to classify nodes.
 
@@ -33,7 +33,8 @@ Unlike more general conditional structures, node statements only match nodes by 
 Location
 -----
 
-Node definitions should go in [the site manifest (site.pp)][sitepp].
+Node definitions should go in [the site manifest (site.pp)][sitepp] or a directory structure of
+manifests appointed by the manifest setting.
 
 Syntax
 -----
@@ -57,7 +58,6 @@ Node definitions look like class definitions. The general form of a node definit
 
 * The `node` keyword
 * The name(s) of the node(s), separated by commas (with an optional final trailing comma)
-* Optionally, the `inherits` keyword followed by the name of another node definition
 * An opening curly brace
 * Any mixture of class declarations, variables, resource declarations, collectors, conditional statements, chaining relationships, and functions
 * A closing curly brace
@@ -86,7 +86,8 @@ A node statement's **name** must be one of the following:
 * The bare word `default`
 * A [regular expression][regex]
 
-You may not create two node statements with the same name.
+You may not create two node statements with the same name. If more than one regular expression
+matches a node name, the first found node statement with a matching regexp will be used.
 
 
 ### Multiple Names
@@ -132,7 +133,7 @@ The above example would match `foo.example.com` and `bar.example.com`, but no ot
 Behavior
 -----
 
-If site.pp contains at least one node definition, it must have one for **every** node; compilation for a node will fail if one cannot be found. (Hence the usefulness of [the `default` node](#the-default-node).) If site.pp contains **no** node definitions, this requirement is dropped.
+If site.pp (or the directory of manifests) contains at least one node definition, it must have one for **every** node; compilation for a node will fail if one cannot be found. (Hence the usefulness of [the `default` node](#the-default-node).) If site.pp (or the directory of manifests) contains **no** node definitions, this requirement is dropped.
 
 ### Matching
 
@@ -178,44 +179,8 @@ Although ENCs and node definitions can work together, we recommend that most use
 
 ### Inheritance
 
-Nodes can inherit from other nodes using the `inherits` keyword. Inheritance works identically to [class inheritance][inherit]. **This feature is not recommended; see the aside below.**
+Node inheritance has been discontinued and can no longer be used.
 
-Example:
-
-{% highlight ruby %}
-    node 'common' {
-      $ntpserver = 'time.example.com'
-      include common
-    }
-    node 'www1.example.com' inherits 'common' {
-      include ntp
-      include apache
-      include squid
-    }
-{% endhighlight %}
-
-In the above example, `www1.example.com` would receive the `common, ntp, apache,` and `squid` classes, and would have an `$ntpserver` of `time.example.com`.
-
-> #### Aside: Best Practices
->
-> You should almost certainly avoid using node inheritance. Many users attempt to do the following:
->
-{% highlight ruby %}
-    node 'common' {
-      $ntpserver = 'time.example.com'
-      include common
-      include ntp
-    }
-    node 'www01.example.com' inherits 'common' {
-      # Override default NTP server:
-      $ntpserver = '0.pool.ntp.org'
-    }
-{% endhighlight %}
->
-> This will have the opposite of the intended effect, because Puppet treats node definitions like classes. It does not mash the two together and then compile the mix; instead, it compiles the base class, **then** compiles the derived class, which gets a parent scope and special permission to modify resource attributes from the base class.
->
-> In the example above, this means that by the time `node www01.example.com` has set its own value for `$ntpserver`, the `ntp` class has **already received** the value it needed and is no longer interested in that variable. For the derived node to override that variable **for classes in the base node,** it would have to be complied **before** the base node, and there is no way for Puppet's current implementation to do that.
->
 > #### Alternatives to Node Inheritance
 >
 > * Most users who need hierarchical data should keep it in an external source and have their manifests look it up. The best solution right now is [Hiera][], which is available by default in Puppet 3 and later. See our [Hiera guides][hiera] for more information about using it.
@@ -224,3 +189,4 @@ In the above example, `www1.example.com` would receive the `common, ntp, apache,
 > * For very small numbers of nodes, you can copy and paste to make complete node definitions for special-case nodes.
 > * With discipline, you can use node inheritance **only** for data lookup. The safest approach is to **only set variables** in the base nodes, then declare **all** classes in the derived nodes. This is less terse than the mix-and-match that most users try first, but is completely reliable.
 
+<!-- TODO: Add links to documentation about data in modules and environments -->
