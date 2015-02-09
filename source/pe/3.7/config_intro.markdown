@@ -17,16 +17,16 @@ Change settings in the PE console as follows.
 
 1. In the console, on the **Classification** page, click the node group that contains the class you want to work with.
 2. Locate the class you added in the list of classes.
-3. Click the **Parameter name** down arrow and select the parameter you want from the list.
+3. Click the **Parameter name** down arrow, and select the parameter you want from the list.
 4. Add a value for the parameter, and then click **Add parameter**.
 
 ### Example: Configure Settings Using the PE Console
 
 The following steps demonstrate how to attach your own certificate.
 
-1. On the **PE Certificate Authority** page, on the **Classes** tab, locate `puppet_enterprise::profile::certificate_authority`.
-2. Under `puppet_enterprise::profile::certificate_authority`, in the **Parameter name** box, select `client_whitelist`.
-3. In the **Value** box, add a value for your certificate, such as `example.puppetlabs.vm`, and then click **Add parameter**.
+1. On the **PE Certificate Authority** node group page, click the **Classes** tab.
+2. Locate `puppet_enterprise::profile::certificate_authority`, and in the **Parameter name** box, select `client_whitelist`.
+3. In the **Value** box, add the name for your certificate, such as `example.puppetlabs.vm`, and then click **Add parameter**.
 4. Click **Commit 1 change**.
 
 ## Configure Settings With Hiera
