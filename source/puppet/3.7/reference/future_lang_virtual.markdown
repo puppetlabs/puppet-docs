@@ -105,9 +105,9 @@ Behavior
 
 By itself, a virtual resource declaration will not add any resources to the catalog. Instead, it makes the virtual resource available to the compiler, which may or may not realize it. A matching resource collector or a call to the `realize` function will cause the compiler to add the resource to the catalog.
 
-### Parse-Order Independence
+### Evaluation-Order Independence
 
-Virtual resources do not depend on parse order. You may realize a virtual resource before the resource has been declared.
+Virtual resources do not depend on evaluation order. You may realize a virtual resource before the resource has been declared.
 
 ### Collectors vs. the `realize` Function
 
