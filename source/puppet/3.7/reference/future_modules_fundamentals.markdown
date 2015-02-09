@@ -23,6 +23,8 @@ process and tags has changed with the introduction of Puppet Strings {% endcomme
 [forge]: http://forge.puppetlabs.com
 [file_function]: /references/3.7.latest/function.html#file
 
+<!-- Information about 4x functions, and support for data in modules and environments is missing.
+  -->
 Puppet Modules
 =====
 
