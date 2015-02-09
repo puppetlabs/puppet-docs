@@ -17,6 +17,10 @@ Previously, RBAC required an RDN (relative distinguished name) for user and grou
 
 For more information, see [Connecting Puppet Enterprise with LDAP Services](./rbac_ldap.html).
 
+### `jruby_max_active_instances` Now Available
+
+This new setting enables you to tune the number of JRuby instances you're running. Doing so helps you control the amount of heap space your infrastructure uses. See [this known issue](./release_notes_known_issues.html#running-pe-puppetserver-on-a-server-with-more-than-four-cores-might-require-tuning) for more information and suggestions for using this setting.
+
 ## New Features in 3.7.1
 
 ### SLES 12 Support (all components)
