@@ -35,7 +35,7 @@ We can never cover every possible circumstance you might run into when developin
     
     If you have to choose between two equally effective alternatives, pick the
     more readable one. While this is subjective, if you can read your
-    own code three months from now, it's a great start.
+    own code three months from now, it's a great start. In particular, code that generates readable diffs is highly prefered.
     
 2. **Scoping and simplicity are key.**
 
@@ -419,10 +419,6 @@ Classes and defines must be structured to accomplish one task. Below is a line-b
 1. Next lines, if applicable: Should declare local variables and perform variable munging.
 1. Next lines: Should declare resource defaults.
 1. Next lines:  Should override resources if necessary.
-1. Next lines: Should declare resources in the order they need to be processed.
-1. Last lines: Should declare relationships to other classes or defines. (For example: `Class['apache'] -> Class['local_yum']`.)
-
-We recommend that the last two items -- declared resources and declared relationships to other classes/defines -- not occur in the same class or type. For more on relationship declarations, [see below](#104-chaining-arrow-syntax).
 
 The following example follows the recommended style:
 
@@ -547,49 +543,20 @@ class dhcp (
 
 When writing a module that accepts class and define parameters, appropriate defaults should be provided for optional parameters. Establishing good defaults gives the end user the option of not explicitly specifying the parameter when declaring the class or define. Provided defaults should be specified with the parameter and not inside the class/define.
 
-**Good:**
-
-~~~
-class ntp(
-  $server = $ntp::params::server,
-) inherits ntp::params {
-
-    notify { 'ntp':
-      message => "server=[$server]",
-    }
-
-}
-~~~
-
-**Bad:**
-
-~~~
-    class ntp(
-      $server = undef,
-    ) {
-
-      include ntp::params
-
-      if $server {
-        $_server = $server
-      } else {
-        $_server = $::ntp::params::server
-      }
-
-
-      notify { 'ntp':
-        message => "server=[$_server]",
-      }
-
-    }
-~~~
-
->Note: We recommend using [inheritance](#class-inheritance) for class parameter defaults.
-
 When creating parameter defaults, you:
 
 * Must use fully qualified namespace variables when pulling the value from the module params class. This avoids namespace collisions. See [Namespacing Variables](#131-namespacing-variables) for more information.
 * Should use the `_` prefix to indicate a scope local variable for maintainability over time.
+
+**Good:**
+~~~
+
+~~~
+
+**Bad:**
+~~~
+
+~~~
 
 ### 10.8 Exported Resources
 Exported resources should be opt-in rather than opt-out. Your module should not be written to use exported resources to function by default unless it is expressly required. When using exported resources, you should name the property `collect_exported`.
@@ -859,15 +826,6 @@ Your module should have a CHANGELOG in .md (or .markdown) format. Your CHANGELOG
 * Have entries for each release. 
 * List bugfixes and features included in the release. 
 * Specifically call out backwards-incompatible changes
-
-## 18. Contributing
-
-When contributing back to someone else's module, you must keep to the main intent. If you find that the modifications you are making really addresses some entirely separate task or software, create a new module.
-
-When contributing new parameters or resources, you should organize them by:
-* order-dependency
-* required before optional
-* alphabetically (where applicable)  
 
 ## 19. Verifying style
 
