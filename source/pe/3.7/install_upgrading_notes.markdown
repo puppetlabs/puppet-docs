@@ -56,7 +56,6 @@ If you classify the node groups in this order, you do not need to stop/restart P
 
 The MCollective node group is configured during upgrade, so you do not need to perform any classification with this group. 
 
-
 **To add a class to a node group:**
 
 1. On the **Classification** page, click the node group that you want to add the class to, and then click **Classes**.
