@@ -55,7 +55,7 @@ The following words are reserved:
 * `undef` --- special value
 * `unless` --- language keyword
 
-Additionally, you cannot use the name of any existing [resource type][type_ref] or [function][func_ref] as the name of a function, and you cannot use the name of any existing [resource type][type_ref] as the name of a defined type.
+Additionally, you cannot use the name of any existing [resource type][type_ref] or [function][func_ref] as the name of a function, and you cannot use the name of any existing [resource type][type_ref] as the name of a defined type. You should not use the name of any existing data type (e.g. integer) as the name of a user defined type as they cannot be directly referenced with only their upper cased name (e.g. `Resource[integer, title]` must then be used to reference such resources instead of just `Integer[title]`).
 
 Reserved Class Names
 -----
@@ -73,7 +73,7 @@ Additionally, the names of data types can't be used as class names:
 * `catalogentry`, `catalogEntry, CatalogEntry`
 * `class`, `Class`
 * `collection`, `Collection`
-* `data`, `Data`
+* `callable`, `Callable`
 * `data`, `Data`
 * `default`, `Default`
 * `enum`, `Enum`
@@ -93,12 +93,13 @@ Additionally, the names of data types can't be used as class names:
 * `undef`, `Undef`
 * `variant`, `Variant`
 
+
 Reserved Variable Names
 -----
 
 The following variable names are reserved, and you **must not** assign values to them:
 
-* Every variable name consisting only of numbers, starting with `$0` --- These [regex capture variables][capture] are automatically set by regular expressions used in [conditional statements][conditional], and their values do not persist outside their associated code block or selector value. Puppet's behavior when these variables are directly assigned a value is undefined.
+* Every variable name consisting only of numbers, starting with `$0` --- These [regex capture variables][capture] are automatically set by regular expressions used in [conditional statements][conditional], and their values do not persist outside their associated code block or selector value. An error is raised if an attempt is made to assign to these variables.
 * Puppet's [built-in variables][built_in] and [facts][facts] are reserved at [top scope][topscope], but can be safely re-used at node or local scope.
 * If [enabled][trusted_on], the `$trusted` and `$facts` variables are reserved for facts and cannot be reassigned at local scopes.
 
@@ -166,7 +167,7 @@ Note that [some class names are reserved](#reserved-class-names), and [reserved 
 Module names obey the same rules as individual class/type namespace segments. That is, they **must begin with a lowercase letter** and can include:
 
 * Lowercase letters
-* Numbers
+* Digits
 * Underscores
 
 Module names should match the following regular expression:
@@ -180,7 +181,7 @@ Note that [reserved words](#reserved-words) and [reserved class names](#reserved
 Class and defined type parameters begin with a `$` (dollar sign), and their first non-`$` character **must be a lowercase letter.** They can include:
 
 * Lowercase letters
-* Numbers
+* Digits
 * Underscores
 
 Parameter names should match the following regular expression:
@@ -192,7 +193,7 @@ Parameter names should match the following regular expression:
 [Tags][] must begin with a lowercase letter, number, or underscore, and can include:
 
 * Lowercase letters
-* Numbers
+* Digits
 * Underscores
 * Colons
 * Periods
