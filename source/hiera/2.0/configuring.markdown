@@ -17,29 +17,22 @@ Hiera will fail with an error if the config file can't be found, although an emp
 Location
 -----
 
-Hiera uses different config file locations depending on how it was invoked.
-
-### From Puppet
-
 By default, the config file is `$confdir/hiera.yaml`, which is usually one of the following:
 
-* `/etc/puppet/hiera.yaml` in \*nix open source Puppet
-* `/etc/puppetlabs/puppet/hiera.yaml` in \*nix Puppet Enterprise
-* [`COMMON_APPDATA`][common_appdata]`\PuppetLabs\puppet\etc\hiera.yaml` on Windows
+* `/etc/puppetlabs/agent/code/hiera.yaml` on \*nix systems.
+* [`COMMON_APPDATA`][common_appdata]`\PuppetLabs\puppet\etc\hiera.yaml` on Windows.
 
-In Puppet 3 or later, you can specify a different config file with [the `hiera_config` setting](/references/latest/configuration.html#hieraconfig) in `puppet.conf`. In Puppet 2.x, you cannot specify a different config file, although you can make `$confdir/hiera.yaml` a symlink to a different file.
+You can specify a different config file for Hiera via Puppet, the command line, or Ruby code.
+
+### In Puppet
+
+In Puppet 3 or later, use [the `hiera_config` setting](/references/latest/configuration.html#hieraconfig) in `puppet.conf` to specify a different config file. In Puppet 2.x, you cannot specify a different config file, although you can make `$confdir/hiera.yaml` a symlink to a different file.
 
 ### From the Command Line
-
-* `/etc/hiera.yaml` on \*nix
-* [`COMMON_APPDATA`][common_appdata]`\PuppetLabs\hiera\etc\hiera.yaml` on Windows
 
 You can specify a different config file with the `-c` (`--config`) option.
 
 ### From Ruby Code
-
-* `/etc/hiera.yaml` on \*nix
-* [`COMMON_APPDATA`][common_appdata]`\PuppetLabs\hiera\etc\hiera.yaml` on Windows
 
 You can specify a different config file or a hash of settings when calling `Hiera.new`.
 
@@ -60,9 +53,9 @@ Each top-level key in the hash **must be a Ruby symbol with a colon (`:`) prefix
   - yaml
   - json
 :yaml:
-  :datadir: /etc/puppet/hieradata
+  :datadir: /etc/puppetlabs/agent/code/hieradata
 :json:
-  :datadir: /etc/puppet/hieradata
+  :datadir: /etc/puppetlabs/agent/code/hieradata
 :hierarchy:
   - "%{::clientcert}"
   - "%{::custom_location}"
@@ -77,7 +70,7 @@ If the config file exists but has no data, the default settings will be equivale
 ---
 :backends: yaml
 :yaml:
-  :datadir: /var/lib/hiera
+  :datadir: /etc/puppetlabs/agent/code/hieradata
 :hierarchy: common
 :logger: console
 {% endhighlight %}
@@ -144,9 +137,9 @@ The following settings are available for the built-in backends:
 
 The directory in which to find data source files. This must be a string.
 
-You can [interpolate variables][interpolate] into the datadir using `%{variable}` interpolation tokens. This allows you to, for example, point it at `"/etc/puppet/hieradata/%{::environment}"` to keep your production and development data entirely separate.
+You can [interpolate variables][interpolate] into the datadir using `%{variable}` interpolation tokens. This allows you to, for example, point it at `"/etc/puppetlabs/agent/code/hieradata/%{::environment}"` to keep your production and development data entirely separate.
 
-**Default value:** `/var/lib/hiera` on \*nix, and [`COMMON_APPDATA`][common_appdata]`\PuppetLabs\Hiera\var` on Windows.
+**Default value:** `/etc/puppetlabs/agent/code/hieradata` on \*nix, and [`COMMON_APPDATA`][common_appdata]`\PuppetLabs\Hiera\var` on Windows.
 
 ### `:puppet`
 
