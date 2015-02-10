@@ -9,6 +9,7 @@ title: "Hiera 2: The hiera.yaml Config File"
 [interpolate]: ./variables.html
 [custom_backends]: ./custom_backends.html
 [puppetserver_gem]: /puppetserver/1.0/gems.html#installing-and-removing-gems
+[deep_merge_gem_docs]: https://github.com/peritor/deep_merge/blob/master/README
 
 Hiera's config file is usually referred to as `hiera.yaml`. Use this file to configure the [hierarchy][], which backend(s) to use, and settings for each backend.
 
@@ -127,6 +128,10 @@ For more details about hash merge lookup strategies, see ["Hash Merge"](./lookup
 ### `:deep_merge_options`
 
 Value is a hash of options to pass to the `deep merge` gem.
+
+`:merge_behavior => :deep, :deep_merge_options => { :knockout_prefix => '-' }`
+
+Available options are documented in [the `deep_merge` gem][deep_merge_gem_docs].
 
 Backend-Specific Settings
 -----
