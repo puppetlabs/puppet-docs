@@ -46,6 +46,8 @@ In the diagram above:
 * Each of the `example::parent, example::other`, and `example::four` classes can access variables and defaults from their own scope, node scope, and top scope.
 * The `example::child` class can access variables and defaults from its own scope, `example::parent`'s scope, node scope, and top scope.
 
+<!-- TODO: it is worth pointing out the parent scope means an inherited scope, not the lexical 
+scope of one class being defined inside of another - which just affects the namespace, not scoping -->
 
 ### Top Scope
 
@@ -184,7 +186,7 @@ This gives approximately the best and most-expected behavior --- variables from 
 
 A class definition creates a **named scope,** whose name is the same as the class's name. Top scope is also a named scope; its name is the empty string (aka, the null string).
 
-Node scope and the local scopes created by defined resources are **anonymous** and cannot be directly referenced.
+Node scope and the local scopes created by defined resources are **anonymous** and cannot be directly referenced. The use of code blocks / lambdas given to functions also create anonymous local scopes.
 
 ### Accessing Out-of-Scope Variables
 
@@ -206,7 +208,7 @@ This example would set the variable `$local_copy` to the value of the `$confdir`
 > * Remember that top scope's name is the empty string (a.k.a, the null string). Thus, `$::my_variable` would always refer to the top-scope value of `$my_variable`, even if `$my_variable` has a different value in local scope.
 > * Note that a class must be [declared][declare_class] in order to access its variables; simply having the class available in your modules is insufficient.
 >
->   This means the availability of out-of-scope variables is **parse order dependent.** You should only access out-of-scope variables if the class accessing them can guarantee that the other class is already declared, usually by explicitly declaring it with `include` before trying to read its variables.
+>   This means the availability of out-of-scope variables is **evaluation order dependent.** You should only access out-of-scope variables if the class accessing them can guarantee that the other class is already declared, usually by explicitly declaring it with `include` before trying to read its variables.
 
 Variables declared in **anonymous scopes** can only be accessed normally and do not have global qualified names.
 
@@ -228,7 +230,7 @@ In **static scope,** parent scopes are **only** assigned by [class inheritance][
 
 > Static scope has the following characteristics:
 >
-> * Scope contents are predictable and do not depend on parse order.
+> * Scope contents are predictable and do not depend on evaluation order.
 > * Scope contents can be determined simply by looking at the relevant class definition(s); the place where a class or type is _declared_ has no effect. (The only exception is node definitions --- if a class is declared outside a node, it does not receive the contents of node scope.)
 
 This version of Puppet uses static scope for looking up variables.
@@ -246,13 +248,12 @@ In **dynamic scope,** parent scopes are assigned by both **inheritance** and **d
 >
 > * A scope's parent cannot be identified by looking at the definition of a class --- you must examine every place where the class or resource may have been declared.
 > * In some cases, you can only determine a scope's contents by executing the code.
-> * Since classes may be declared multiple times with the `include` function, the contents of a given scope are parse-order dependent.
+> * Since classes may be declared multiple times with the `include` function, the contents of a given scope are evaluation-order dependent.
 
-This version of Puppet uses dynamic scope for resource defaults.
+**This version of Puppet uses dynamic scope only for resource defaults.**
 
 Messy Under-the-Hood Details
 -----
 
 * Node scope only exists if there is at least one node definition in the site manifest (or one has been [imported][import] into it). If no node definitions exist, then ENC classes get declared at top scope.
 * Although top scope and node scope are described above as being special scopes, they are actually implemented as part of the chain of parent scopes, with node scope being a child of top scope and the parent of any classes declared inside the node definition. However, since the move to static scoping causes them to behave as little islands of dynamic scoping in a statically scoped world, it's simpler to think of them as special cases.
-* If you ignore best practices and use node [inheritance][], the rules of parent scope assignment treat node definitions like classes; that is, the base node becomes the parent scope of the derived node, and normal dynamic scoping will apply to the classes declared in each of the two definitions. Note that this will usually yield the opposite result of whatever you are trying to achieve.

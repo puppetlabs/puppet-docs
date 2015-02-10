@@ -22,7 +22,7 @@ canonical: "/puppet/latest/reference/future_lang_collectors.html"
 [catalog]: ./future_lang_summary.html#compilation-and-catalogs
 
 
-Resource collectors (AKA the spaceship operator) select a group of resources by searching the attributes of every resource in the [catalog][]. This search is parse-order independent (that is, it even includes resources which haven't yet been declared at the time the collector is written). Collectors realize [virtual resources][virtual], can be used in [chaining statements][chaining], and can override resource attributes.
+Resource collectors (AKA the spaceship operator) select a group of resources by searching the attributes of every resource in the [catalog][]. This search is evaluation-order independent (that is, it even includes resources which haven't yet been declared at the time the collector is written). Collectors realize [virtual resources][virtual], can be used in [chaining statements][chaining], and can override resource attributes.
 
 Collectors have an irregular syntax that lets them function as both a statement and a value.
 
@@ -52,7 +52,7 @@ Collectors can search the values of resource titles and attributes using a speci
 
 A collector with an empty search expression will match **every** resource of the specified type.
 
-Parentheses may be used to improve readability. You can create arbitrarily complex expressions using the following four operators:
+Parentheses may be used to improve readability and to modify the priority/grouping of `and`/`or`. You can create arbitrarily complex expressions using the following four operators:
 
 - [`==`](#equality-search)
 - [`!=`](#non-equality-search)
@@ -85,11 +85,15 @@ Both operands must be valid search expressions.
 
 For a given resource, this operator will **match** if **both** of the operands would match for that resource.
 
+This operator has higher priority than `or`.
+
 #### `or`
 
 Both operands must be valid search expressions.
 
 For a given resource, this operator will **match** if **either** of the operands would match for that resource.
+
+This operator has lower priority than `and`.
 
 Location
 -----
@@ -100,8 +104,8 @@ Notably, collectors **cannot** be used in the following contexts:
 
 - as the value of a resource attribute
 - as the argument of a function
-- within an array
-- as the operand of an expression.
+- within an array or hash
+- as the operand of an expression (other than relationship expressions).
 
 
 Behavior
@@ -141,4 +145,7 @@ The general form of an exported resource collector is:
 Exported resource collectors exist only to import resources that were published by other nodes. To use them, you need to have catalog storage and searching (storeconfigs) enabled. See [Exported Resources][exported] for more details. To enable exported resources, follow the [installation instructions][puppetdb_install] and [Puppet configuration instructions][puppetdb_connect] in [the PuppetDB manual][puppetdb].
 
 Like normal collectors, exported resource collectors can be used with attribute blocks and chaining statements.
+
+Note that the search for exported resources also searches the catalog being compiled to avoid having
+to perform an additional run before finding them in the store of exported resources.
 

@@ -36,6 +36,33 @@ Iteration over arrays and hashes                                                
 [The modulo (`%`) operator][modulo]                                              |        |            |        |                             |                    |     | X                     | X
 [`$trusted` hash][trusted]                                                       |        |            |        |                             |                    |     |                       | X
 
+<!-- TODO: There are *many* new features in 4.0.0 / future parser that are not in the table. Maybe add a new table that stats with 3x (all blank), 3.7.x future parser, then 4.0.
+ Typesystem
+ Numeric data type
+ Local resource defaults
+ Resource attributes hash
+ Dynamic reference to resource type in resource expression
+ Code blocks /iteration
+ Data in modules and environments
+ heredoc
+ epp
+ namespaced functions
+ optionally typed parameters in classes and defines
+ regular expression as a data type
+ array concat with +
+ hash merge with +
+ array delete with -
+ match type with =~
+ type in case options and selector options
+ type in 'in' search
+ substrings of strings
+ 'in' operator search of substring in string
+ arithmetic only on numeric, not on strings
+ empty string is truthy
+ 
+ etc.
+ -->
+
 \* In Puppet 2.7.20+ and 3.0.2+, hyphens in variable names can be reenabled with [the `allow_variables_with_dashes` setting][hv_pref]. This should only be used as a temporary measure while renaming variables.
 
 \*\* Until Puppet 2.6.7, hashes could not be nested and hash members could not be used in selectors.

@@ -109,18 +109,17 @@ Unlike most other languages, Puppet only allows a given variable to be assigned 
 
 In the example above, `$myvar` has several different values, but only one value will apply to any given scope.
 
-### Parse-Order Dependence
+### Evaluation-Order Dependence
 
-Unlike [resource declarations][resource], variable assignments are parse-order dependent. This means you cannot resolve a variable before it has been assigned.
-
-This is the main way in which the Puppet language fails to be fully declarative.
-
+Unlike [resource declarations][resource], variable assignments are evaluation-order dependent. This means you cannot resolve a variable before it has been assigned.
 
 
 Naming
 -----
 
-Variable names are case-sensitive and can include alphanumeric characters and underscores.
+Variable names are case-sensitive and can include alphanumeric characters and underscores. A variable that starts with an underscore cannot be references with a qualified name from another scope. A variable may not start with an upper case letter.
+
+<!--TODO: isn't this defined elsewhere in greater detail? -->
 
 Qualified variable names are prefixed with the name of their scope and the `::` (double colon) namespace separator. (For example, the `$vhostdir` variable from the `apache::params` class would be `$apache::params::vhostdir`.)
 

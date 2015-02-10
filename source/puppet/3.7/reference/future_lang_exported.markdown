@@ -30,6 +30,7 @@ canonical: "/puppet/latest/reference/future_lang_exported.html"
 >
 > (Exported resources can also be enabled by the [deprecated `active_record` storeconfigs][ar_storeconfigs] backend. However, all new users should avoid that and use PuppetDB instead.)
 
+<!-- TODO: active record storeconfigs are removed in puppet 4.0.0 -->
 
 An **exported resource declaration** specifies a desired state for a resource, **does not** manage the resource on the target system, and publishes the resource for use by **other nodes.** Any node (including the node that exported it) can then **collect** the exported resource and manage its own copy of it.
 
