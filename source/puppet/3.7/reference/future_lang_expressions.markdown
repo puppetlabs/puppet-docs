@@ -231,6 +231,7 @@ Arithmetic Operators
 Arithmetic Operators have the following traits:
 
 * They take two [**numeric**][numbers] operands (except unary `-`)
+    * If an operand is a string, it will be converted to numeric form. The operation fails if a string can't be converted.
 * They resolve to [**numeric**][numbers] values
 
 ### `+` (addition)
