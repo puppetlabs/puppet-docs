@@ -253,6 +253,8 @@ Arithmetic Operators
 Arithmetic Operators have the following traits:
 
 * They take two [**numeric**][numbers] operands
+  * if an operand is a string it will be converted to numeric form
+  * the operation fails if a string can't be converted
 * They resolve to [**numeric**][numbers] values
 
 ### `+` (addition)
