@@ -9,7 +9,7 @@ This page contains information about new features and general improvements in th
 
 For more information about this release, also see the [Known Issues](./release_notes_known_issues.html) and [Security Fixes](./release_notes_security.html).
 
-## New Features in 3.7.2
+## New Features in PE 3.7.2
 
 ### RBAC Can Query an Entire Base DN For Users and Groups
 
@@ -21,7 +21,7 @@ For more information, see [Connecting Puppet Enterprise with LDAP Services](./rb
 
 This new setting enables you to tune the number of JRuby instances you're running. Doing so helps you control the amount of heap space your infrastructure uses. See [this known issue](./release_notes_known_issues.html#running-pe-puppetserver-on-a-server-with-more-than-four-cores-might-require-tuning) for more information and suggestions for using this setting.
 
-## New Features in 3.7.1
+## New Features in PE 3.7.1
 
 ### SLES 12 Support (all components)
 
