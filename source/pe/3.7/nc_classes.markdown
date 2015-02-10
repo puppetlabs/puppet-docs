@@ -18,9 +18,9 @@ Each class object contains the following keys:
 
 * `name`: the name of the class (a string).
 * `environment`: the name of the environment that this class exists in.
-                 Note that the same class can exist in different environments with different parameters.
-* `parameters`: an object describing the class's parameters and their default values.
-                The keys of this object are the parameter names (strings), and each value is the associated parameter's default value (which can be any legal JSON value).
+                 Note that the same class can exist in different environments and can have different parameters in each environment.
+* `parameters`: an object describing the parameters and default parameter values for the class.
+                The keys of this object are the parameter names (strings). Each value is the default value for the associated parameter (which can be any legal JSON value). If the value is `null`, then the parameter is required.
 
 Here is an example of a class object:
 
@@ -48,7 +48,7 @@ Retrieve a list of all classes known to the node classifier within the given env
 
 #### Response Format
 
-A JSON array of class objects as explained above.
+A JSON array of class objects as explained [above](#response-format).
 
 #### Error Responses
 
@@ -60,7 +60,7 @@ Retrieve the class with the given name in the given environment.
 
 #### Response Format
 
-If the class exists, the response will be a class object as described above, in JSON format.
+If the class exists, the response will be a class object as described [above](#response-format), in JSON format.
 
 #### Error Responses
 
