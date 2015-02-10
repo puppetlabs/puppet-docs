@@ -5,9 +5,9 @@ subtitle: "Configuring Java Arguments For PE"
 canonical: "/pe/latest/config_java_args.html"
 ---
 
-## Increasing the Java Heap Size For Puppet Enterprise (PE) Java Services
+## Increasing the Java Heap Size For PE Java Services
 
-This section provides instructions for increasing the JVM (Java Virtual Machine) memory that is allocated to Java services in PE. This memory allocation is known as the Java heap size. It can be adjusted through the PE console as described below. 
+This section provides instructions for increasing the JVM (Java Virtual Machine) memory that is allocated to Java services in Puppet Enterprise (PE). This memory allocation is known as the Java heap size. It can be adjusted through the PE console as described below. 
 
 > **Are you upgrading from an earlier version?** This page assumes that you have the preconfigured node groups that come by default with PE 3.7. If you are upgrading from an earlier version of PE and do not have the preconfigured groups, see [Preconfigured Node Groups](./console_classes_groups_preconfigured_groups.html).
 

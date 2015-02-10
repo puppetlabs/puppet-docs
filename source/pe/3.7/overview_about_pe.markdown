@@ -38,6 +38,7 @@ Puppet Enterprise consists of a complete stack of Puppet Labs' technologies, whi
  * MCollective 2.6.0
  * Hiera 1.3.4
  * Dashboard 2.1.6
+ * Puppet Server 1.0.6
 
 The "What Gets Installed Where" page includes a [list of all the major packages that comprise PE 3.7](./install_what_and_where.html#puppet-enterprise-components).
 

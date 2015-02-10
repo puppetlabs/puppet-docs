@@ -33,6 +33,7 @@ All functional components of PE, excluding configuration files. You are not like
  * MCollective
  * Hiera
  * Puppet Dashboard
+ * Puppet Server
 
 #### Where
 
@@ -112,8 +113,10 @@ On Windows nodes, the Puppet agent service logs its activity to the Windows Even
 
 #### Installer Logs
 
-- `/var/log/pe-installer/http.log` contains the web requests sent to the installer; present only on the machine from which the web-based install was performed.
+- `/var/log/pe-installer/http.log` contains the web requests sent to the installer; present only on the machine from which the web-based install was performed
 - `/var/log/pe-installer/installer-<timestamp>.log` contains the operations performed and any errors that occurred during installation
+- `/var/log/pe-installer/answers.install` contains the contents of the answer file used to install PE; passwords are redacted from this file
+- `/var/log/pe-installer/install_log.lastrun.<hostname>.log` contains the contents of the last installer run
 
 #### Database Log
 

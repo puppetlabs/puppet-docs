@@ -105,6 +105,8 @@ These answers are generally needed if you are installing the Puppet master role.
   * the number of nodes licensed and the number of nodes used
 
   If you wish to disable update checks (e.g. if your company policy forbids transmitting this information), you will need to set this to `n`. You can also disable checking after installation by editing the `/etc/puppetlabs/installer/answers.install` file.
+  
+  If you have a platform that uses systemd (currently RHEL-7 and SLES-12 only), there are additional steps to [disable update checking](./puppet_config.html#disabling-update-checking). 
 
 `q_tarball_server`
 : **String** --- The location from which PE agent tarballs will be downloaded before installation. Note that agent tarballs are only available for certain operating systems. For details, see [the PE installation instructions](./install_basic.html)
