@@ -63,11 +63,6 @@ A new rake task, `node:delgroup`, was introduced in PE 3.7.2 for deleting a node
 
 For more information, see the [rake API documentation](./console_rake_api.html).
 
-#### Allow LDAP Queries from Base DN and Other Console Services Improvements
-
-Previously, RDNs were required for users and/or groups. Now you can search for an entity under the entire base DN, not just the subtree specified by an RDN.
-
-Other improvements include updating to tk-jetty9 and overall optimizations to improve the experience of importing groups.
 
 ## Puppet Enterprise 3.7.1 (12/16/14)
 
