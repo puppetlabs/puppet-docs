@@ -53,7 +53,6 @@ You must install both Hiera and the `hiera-puppet` package on your Puppet master
 
 Hiera is not supported with older versions, but you may be able to make it work similarly to Puppet 2.7.
 
-
 Puppet Variables Passed to Hiera
 -----
 
@@ -67,8 +66,9 @@ When doing any Hiera lookup, with both automatic parameter lookup and the Hiera 
 
 * `calling_module` --- The module in which the lookup is written. This has the same value as the [Puppet `$module_name` variable.][module_name]
 * `calling_class` --- The class in which the lookup is evaluated. If the lookup is written in a defined type, this is the class in which the current instance of the defined type is declared.
+* `calling_class_path` --- The name of the class, with `::` replaced by `/` . This enables class-based Hiera data and class Hiera YAML files on Windows, which doesn't permit `:` in path names. Works only with Puppet 4 or later.
 
-Note that these variables are effectively local scope, as they are pseudo-variables that only exist within the context of a specific class, and only inside of hiera. Therefore, they must be called as `%{variable_name}` and never `%{::variable_name}`. They are not top-scope.
+Note that these variables are effectively local scope, as they are pseudo-variables that only exist within the context of a specific class, and only inside of Hiera. Therefore, they must be called as `%{variable_name}` and never `%{::variable_name}`. They are not top-scope.
 
 > **Note:** These variables were broken in some versions of Puppet.
 >
@@ -88,7 +88,7 @@ There are two practices we always recommend when using Puppet's variables in Hie
 - **Do not use local Puppet variables** in Hiera's hierarchy or data sources. Only use [**facts**][facts] and **ENC-set top-scope variables.**
 
     Using local variables can make your hierarchy incredibly difficult to debug.
-- **Use [absolute top-scope notation][absolute_scope]** (i.e. `%{::clientcert}` instead of `%{clientcert}`) in Hiera's config files to avoid accidentally accessing a local variable instead of a top-scope one.
+- **Use [absolute top-scope notation][absolute_scope]** (i.e., `%{::clientcert}` instead of `%{clientcert}`) in Hiera's config files to avoid accidentally accessing a local variable instead of a top-scope one.
 
     Note that this is different from Puppet manifests, where the `$::fact` idiom is [never necessary.](/puppet/latest/reference/lang_facts_and_builtin_vars.html#historical-note-about-) In Puppet, re-using the name of a fact variable in a local scope will only have local consequences. In Hiera, a re-used fact name can have more distant effects, so you still need to defend against it.
 
@@ -190,7 +190,6 @@ Each of these functions takes three arguments. In order:
 1. Key (required): the key to look up in Hiera.
 2. Default (optional): a fallback value to use if Hiera doesn't find anything for that key. If this isn't provided, a lookup failure will cause a compilation failure.
 3. Override (optional): the name of an arbitrary [hierarchy level][hierarchy] to insert at the top of the hierarchy. This lets you use a temporary modified hierarchy for a single lookup. (E.g., instead of a hierarchy of `$clientcert -> $osfamily -> common`, a lookup would use `specialvalues -> $clientcert -> $osfamily -> common`; you would need to be sure to have `specialvalues.yaml` or whatever in your Hiera data.)
-
 
 
 ### Using the Lookup Functions From Templates
