@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Hiera 1: Using Hiera With Puppet"
+title: "Hiera 2: Using Hiera With Puppet"
 ---
 
 [hiera_config]: /references/latest/configuration.html#hieraconfig
@@ -26,9 +26,10 @@ title: "Hiera 1: Using Hiera With Puppet"
 [enc]: /guides/external_nodes.html
 [site_manifest]: /puppet/latest/reference/dirs_manifest.html
 [node_definition]: /puppet/latest/reference/lang_node_definitions.html
+[config_deep_merge]: ./lookup_types.html#deep-merging-in-hiera
 
 
-Puppet can use Hiera to look up data. This helps you disentangle site-specific data from Puppet code, for easier code re-use and easier management of data that needs to differ across your node population.
+Puppet can use Hiera to look up data. This helps you disentangle site-specific data from Puppet code, for easier code reuse and easier management of data that needs to differ across your node population.
 
 
 Enabling and Configuring Hiera for Puppet
@@ -36,14 +37,14 @@ Enabling and Configuring Hiera for Puppet
 
 ### Puppet 3 and Newer
 
-Puppet 3.x and later ship with Hiera support already enabled. You don't need to do anything extra. Hiera data should live on the puppet master(s).
+Puppet 3.x and later ship with Hiera support already enabled. You don't need to do anything extra. Hiera data should live on the Puppet master(s).
 
 * Puppet expects to find the [hiera.yaml file][hiera_yaml] at [`$confdir`][confdir]`/hiera.yaml` (usually `/etc/puppet/hiera.yaml`); you can change this with the [`hiera_config`][hiera_config] setting.
 * Remember to set the [`:datadir`][datadir] setting for any backends you are using. It's generally best to use something within the `/etc/puppet/` directory, so that the data is in the first place your fellow admins expect it.
 
 ### Puppet 2.7
 
-You must install both Hiera and the `hiera-puppet` package on your puppet master(s) before using Hiera with Puppet. Hiera data should live on the puppet master(s).
+You must install both Hiera and the `hiera-puppet` package on your Puppet master(s) before using Hiera with Puppet. Hiera data should live on the Puppet master(s).
 
 * Puppet expects to find the [hiera.yaml file][hiera_yaml] at [`$confdir`][confdir]`/hiera.yaml` (usually `/etc/puppet/hiera.yaml`). This is not configurable in 2.7.
 * Remember to set the [`:datadir`][datadir] setting for any backends you are using. It's generally best to use something within the `/etc/puppet/` directory, so that the data is in the first place your fellow admins expect it.
@@ -51,8 +52,6 @@ You must install both Hiera and the `hiera-puppet` package on your puppet master
 ### Older Versions
 
 Hiera is not supported with older versions, but you may be able to make it work similarly to Puppet 2.7.
-
-
 
 
 Puppet Variables Passed to Hiera
@@ -96,7 +95,7 @@ There are two practices we always recommend when using Puppet's variables in Hie
 Automatic Parameter Lookup
 -----
 
-Puppet will automatically retrieve class parameters from Hiera, using lookup keys like `myclass::parameter_one`.
+Puppet automatically retrieves class parameters from Hiera, using lookup keys like `myclass::parameter_one`.
 
 > **Note:** This feature only exists in Puppet 3 and later.
 
@@ -113,14 +112,14 @@ Puppet [classes][] can optionally include [parameters][] in their definition. Th
     }
 {% endhighlight %}
 
-Parameters can be set several ways, and Puppet will try each of these ways in order when the class is [declared][class_declare] or [assigned by an ENC][enc_assign]:
+Parameters can be set several ways, and Puppet tries each of these ways in order when the class is [declared][class_declare] or [assigned by an ENC][enc_assign]:
 
-1. If it was a [resource-like declaration/assignment][resource_like], Puppet will use any parameters that were explicitly set. These always win if they exist.
-2. **Puppet will automatically look up parameters in Hiera,** using `<CLASS NAME>::<PARAMETER NAME>` as the lookup key. (E.g. `myclass::parameter_one` in the example above.)
-3. If 1 and 2 didn't result in a value, Puppet will use the default value from the class's [definition][class_definition]. (E.g. `"default text"` in the example above.)
+1. If it was a [resource-like declaration/assignment][resource_like], Puppet uses any parameters that were explicitly set. These always win if they exist.
+2. **Puppet automatically looks up parameters in Hiera,** using `<CLASS NAME>::<PARAMETER NAME>` as the lookup key. (E.g. `myclass::parameter_one` in the example above.)
+3. If 1 and 2 didn't result in a value, Puppet uses the default value from the class's [definition][class_definition]. (E.g., `"default text"` in the example above.)
 4. If 1 through 3 didn't result in a value, fail compilation with an error.
 
-Step 2 interests us most here. Because Puppet will always look for parameters in Hiera, you can safely declare **any** class with `include`, even classes with parameters. (This wasn't the case in earlier Puppet versions.) Using the example above, you could have something like the following in your Hiera data:
+Step 2 interests us most here. Because Puppet always looks for parameters in Hiera, you can safely declare **any** class with `include`, even classes with parameters. (This wasn't the case in earlier Puppet versions.) Using the example above, you could have something like the following in your Hiera data:
 
 {% highlight yaml %}
     # /etc/puppet/hieradata/web01.example.com.yaml
@@ -136,7 +135,7 @@ You could then say `include myclass` for every node, and each node would get its
 
 ### Why
 
-Automatic parameter lookup is good for writing reusable code because it is **regular and predictable.** Anyone downloading your module can look at the first line of each manifest and easily see which keys they need to set in their own Hiera data. If you use the Hiera functions in the body of a class instead, you will need to clearly document which keys the user needs to set.
+Automatic parameter lookup is good for writing reusable code because it is **regular and predictable.** Anyone downloading your module can look at the first line of each manifest and easily see which keys they need to set in their own Hiera data. If you use the Hiera functions in the body of a class instead, you need to clearly document which keys the user needs to set.
 
 #### To Disable
 
@@ -169,7 +168,7 @@ You can, however, mimic Puppet 3 behavior in 2.7 by combining parameter defaults
 * This pattern requires that 2.7 users have Hiera installed; it will fail compilation if the Hiera functions aren't present.
 * Since all of your parameters will have defaults, your class will be safely declarable with `include`, even in 2.7.
 * Puppet 2.7 will do Hiera lookups for the same keys that Puppet 3 automatically looks up.
-* Note that this carries a performance penalty, since Puppet 3 will end up doing two Hiera calls for each parameter instead of one.
+* Note that this carries a performance penalty, since Puppet 3 ends up doing two Hiera calls for each parameter instead of one.
 
 
 Hiera Lookup Functions
@@ -184,7 +183,7 @@ Puppet has three lookup functions for retrieving data from Hiera. All of these f
 : Uses an [array merge lookup][array_lookup]. Gets all of the string or array values in the hierarchy for a given key, then flattens them into a single array of unique values.
 
 `hiera_hash`
-: Uses a [hash merge lookup][hash_lookup]. Expects every value in the hierarchy for a given key to be a hash, and merges the top-level keys in each hash into a single hash. Note that this does not do a deep-merge in the case of nested structures.
+: Uses a [hash merge lookup][hash_lookup]. Expects every value in the hierarchy for a given key to be a hash, and merges the top-level keys in each hash into a single hash. Note that this does not do a deep merge in the case of nested structures unless you've installed the `deep merge` gem and [configured deep merging][config_deep_merge].
 
 Each of these functions takes three arguments. In order:
 
@@ -196,7 +195,7 @@ Each of these functions takes three arguments. In order:
 
 ### Using the Lookup Functions From Templates
 
-In general, don't use the Hiera functions from templates. That pattern is too obscure, and will hurt your code's maintainability --- if a co-author of your code needs to change the Hiera invocations and is searching `.pp` files for them, they might miss the extra invocations in the template. Even if only one person is maintaining this code, they're likely to make similar mistakes after a few months have passed.
+In general, don't use the Hiera functions from templates. That pattern is too obscure, and hurts your code's maintainability --- if a co-author of your code needs to change the Hiera invocations and is searching `.pp` files for them, they might miss the extra invocations in the template. Even if only one person is maintaining this code, they're likely to make similar mistakes after a few months have passed.
 
 It's much better to use the lookup functions in a Puppet manifest, assign their value to a local variable, and then reference the variable from the template. This keeps the function calls isolated in one layer of your code, where they'll be easy to find if you need to modify them later or document them for other users.
 

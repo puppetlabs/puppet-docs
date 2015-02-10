@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Hiera 1: Lookup Types"
+title: "Hiera 2: Lookup Types"
 ---
 
 
@@ -43,7 +43,7 @@ For example, given a hierarchy of:
 
 ...an array merge lookup would return a value of `[one, two, three]`.
 
-In this version of Hiera, array merge lookups will fail with an error if any of the values found in the data sources are hashes. It only works with strings, string-like scalar values (booleans, numbers), and arrays.
+In this version of Hiera, array merge lookups fail with an error if any of the values found in the data sources are hashes. It only works with strings, string-like scalar values (booleans, numbers), and arrays.
 
 
 Hash Merge
@@ -51,14 +51,12 @@ Hash Merge
 
 A **hash merge lookup** assembles a value from **every** matching level of the hierarchy. It retrieves **all** of the (hash) values for a given key, then **merges** the hashes into a single hash.
 
-In Hiera 1.x, hash merge lookups will fail with an error if any of the values found in the data sources are strings or arrays. It only works when every value found is a hash.
+Hash merge lookups fail with an error if any of the values found in the data sources are strings or arrays. It only works when every value found is a hash.
 
 
 ### Native Merging
 
-In Hiera 1.0 and 1.1, this is the only available kind of hash merging. In Hiera ≥ 1.2, deep merges are also available (see below).
-
-In a native hash merge, Hiera merges only the **top-level keys and values** in each source hash. If the same key exists in both a lower priority source and a higher priority source, the higher priority value will be used.
+In a native hash merge, Hiera merges only the **top-level keys and values** in each source hash. If the same key exists in both a lower priority source and a higher priority source, the higher priority value is used.
 
 For example, given a hierarchy of:
 
@@ -79,23 +77,25 @@ For example, given a hierarchy of:
       z: "default local value"
 {% endhighlight %}
 
-...a native hash merge lookup would return a value of `{z => "local value", a => "common value", b => "other common value"}`. Note that in cases where two or more source hashes share some keys, higher priority data sources in the hierarchy will override lower ones.
+...a native hash merge lookup would return a value of `{z => "local value", a => "common value", b => "other common value"}`. Note that in cases where two or more source hashes share some keys, higher priority data sources in the hierarchy override lower ones.
 
-### Deep Merging in Hiera ≥ 1.2.0
+### Deep Merging in Hiera
 
-In Hiera 1.2.0 and later, you can also configure hash merge lookups to **recursively merge** hash keys. (Implemented as [Issue 16107](https://projects.puppetlabs.com/issues/16107).) This is intended for users who have moved complex data structures (such as [`create_resources` hashes][create]) into Hiera.
+You can also configure hash merge lookups to **recursively merge** hash keys. (Implemented as [Issue 16107](https://projects.puppetlabs.com/issues/16107).) This is intended for users who have moved complex data structures (such as [`create_resources` hashes][create]) into Hiera.
 
-To configure deep merging, use the [`:merge_behavior` setting][mergebehavior], which can be set to `native`, `deep`, or `deeper`.
+To configure deep merging, use the [`:merge_behavior` setting][mergebehavior], which can be set to `native`, `deep`, or `deeper`. Additionally, you can pass a hash of options to the deep merge gem with [`:deep_merge_options`][deepmerge_options].
 
 > Limitations:
 >
 > * This currently only works with the yaml and json backends.
-> * You must install the `deep_merge` Ruby gem for deep merges to work. If it isn't available, Hiera will fall back to the default `native` merge behavior.
+> * You must install the `deep_merge` Ruby gem for deep merges to work. If it isn't available, Hiera falls back to the default `native` merge behavior. If you're using Puppet Server, you'll need to use the [`puppetserver gem`][puppetserver_gem] command to install the gem.
 > * This configuration is global, not per-lookup.
 
 [create]: /references/latest/function.html#createresources
 [mergebehavior]: ./configuring.html#mergebehavior
 [deepmerge]: https://github.com/peritor/deep_merge
+[puppetserver_gem]: /puppetserver/1.0/gems.html#installing-and-removing-gems
+[deepmerge_options]: ./configuring.html#deepmergeoptions
 
 #### Merge Behaviors
 
@@ -112,7 +112,6 @@ In a `deeper` hash merge, Hiera **recursively** merges keys and values in each s
 * ...an **array** and exists in two or more source hashes, the values from each source are **merged** into a single array and de-duplicated (but not automatically flattened, as in an array merge lookup).
 * ...a **hash** and exists in two or more source hashes, the values from each source are **recursively merged,** as though they were source hashes.
 * **...mismatched** between two or more source hashes, we haven't validated the behavior. It should act as described in the [`deep_merge` gem documentation][deepmerge].
-
 
 In a `deep` hash merge, Hiera behaves as above, except that when a string/number/boolean exists in two or more source hashes, the **lowest priority** value goes into the final hash. As mentioned above, this is generally useless.
 
@@ -243,6 +242,6 @@ With a `deep` merge, you would get:
 
 In this case, deglitch.yaml was able to set the group because common.yaml didn't have a value for it, but where there was a conflict, like the uid, common won. Most users don't want this.
 
-Unfortunately none of these merge behaviors work with data bindings for automatic parameter lookup, because there's no way to specify the lookup type. So instead of any of the above results, automatic data binding lookups will only see results from `deglitch.yaml`. See [Bug #20199](https://projects.puppetlabs.com/issues/20199) to track progress on this.
+Unfortunately none of these merge behaviors work with data bindings for automatic parameter lookup, because there's no way to specify the lookup type. So instead of any of the above results, automatic data binding lookups only see results from `deglitch.yaml`. See [Bug #20199](https://projects.puppetlabs.com/issues/20199) to track progress on this.
 
 

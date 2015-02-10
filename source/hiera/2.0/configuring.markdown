@@ -8,7 +8,7 @@ title: "Hiera 2: The hiera.yaml Config File"
 [hierarchy]: ./hierarchy.html
 [interpolate]: ./variables.html
 [custom_backends]: ./custom_backends.html
-
+[puppetserver_gem]: /puppetserver/1.0/gems.html#installing-and-removing-gems
 
 Hiera's config file is usually referred to as `hiera.yaml`. Use this file to configure the [hierarchy][], which backend(s) to use, and settings for each backend.
 
@@ -120,9 +120,13 @@ Must be one of the following:
 * `deep` --- merge recursively; in the event of conflicting keys, allow **lower priority** values to win. You almost never want this.
 * `deeper` --- merge recursively; in the event of a conflict, allow **higher priority** values to win.
 
-Anything but `native` requires the `deep_merge` Ruby gem to be installed.
+Anything but `native` requires the `deep_merge` Ruby gem to be installed. If you're using Puppet Server, you'll need to use the [`puppetserver gem`][puppetserver_gem] command to install the gem.
 
-Which merge strategy to use when doing a [hash merge lookup](./lookup_types.html#hash-merge). See ["Deep Merging in Hiera ≥ 1.2.0"](./lookup_types.html#deep-merging-in-hiera--120) for more details.
+For more details about hash merge lookup strategies, see ["Hash Merge"](./lookup_types.html#hash-merge) and ["Deep Merging in Hiera"](./lookup_types.html#deep-merging-in-hiera).
+
+### `:deep_merge_options`
+
+Value is a hash of options to pass to the `deep merge` gem.
 
 Backend-Specific Settings
 -----
