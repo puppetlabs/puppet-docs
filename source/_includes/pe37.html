@@ -79,6 +79,7 @@
                    <li><a href="./install_split_puppetdb_answers.html">PuppetDB Answer File Reference</a></li>
                  </ul>
                 </ul>
+          <li><a href="./console_accessing.html">Accessing the Console</a></li>
           <li><strong>Upgrading</strong>
              <ul>
                <li><a href="./install_upgrading.html">Upgrading</a></li>
@@ -99,54 +100,24 @@
       <li><a href="./config_java_args.html">Configuring Java Arguments For PE</a></li>
     </ul>
   </li>
-  <li><strong>The PE Console</strong>
+  <li><strong>Monitoring Your PE Infrastructure</strong>
          <ul>
-           <li><a href="./console_accessing.html">Accessing the Console</a></li>
            <li><a href="./console_navigating_live_mgmt.html">Navigating the Live Management Page</a></li>
-           <li><a href="./console_cert_mgmt.html">Managing Node Requests</a></li>
-           <li><strong>Managing Nodes</strong>
+           <li><a href="./console_event-inspector.html">Using Event Inspector</a></li>
+           <li><a href="./console_reports.html">Viewing Reports & Inventory Data</a></li>
+           <li><a href="./console_inventory_search.html">Inventory Search</a></li>
+					</ul>
+	</li>
+  <li><strong>Managing Nodes</strong>
               <ul>
+                 <li><a href="./console_cert_mgmt.html">Managing Node Requests</a></li>
                  <li><a href="./console_classes_groups_getting_started.html">Getting Started With Classification</a></li>
                  <li><a href="./console_classes_groups.html">Grouping and Classifying Nodes</a></li>
                  <li><a href="./console_classes_groups_making_changes.html">Making Changes in the Node Classifier</a></li>
                  <li><a href="./console_classes_groups_preconfigured_groups.html">Preconfigured Node Groups</a></li>
                  <li><a href="./console_classes_groups_inheritance.html">How Does Inheritance Work?</a></li>
                  <li><a href="./console_classes_groups_environment_override.html">Working With Environments</a></li>
-               </ul>
-           <li><strong>Managing Users</strong>
-               <ul>
-                  <li><a href="./rbac_intro.html">Working with Role-Based Access Control</a></li>
-                  <li><a href="./rbac_ldap.html">Connecting PE with External Directory Services</a></li>
-                  <li><a href="./rbac_permissions.html">About RBAC Permissions</a></li>
-                  <li><a href="./rbac_user_roles.html">Creating and Managing Users and User Roles</a></li>
-                </ul>
-           <li><a href="./console_event-inspector.html">Using Event Inspector</a></li>
-           <li><a href="./console_reports.html">Viewing Reports & Inventory Data</a></li>
-           <li><a href="./console_inventory_search.html">Inventory Search</a></li>
-           <li><strong>API Reference</strong>
-               <ul>
-                 <li><strong>RBAC Service API</strong>
-                  <ul>
-                    <li><a href="./rbac_serviceindex.html">Endpoints</a></li>
-                    <li><a href="./rbac_users.html">Users</a></li>
-                    <li><a href="./rbac_usergroups.html">User Groups</a></li>
-                    <li><a href="./rbac_roles.html">Roles</a></li>
-                    <li><a href="./rbac_permissionsref.html">Permissions</a></li>
-                    <li><a href="./rbac_dsref.html">Directory Service</a></li>
-                    <li><a href="./rbac_passwords.html">Passwords</a></li>
-                    <li><a href="./rbac_serviceerrors.html">Errors</a></li>
-                    <li><a href="./rbac_config.html">Configuration Options</a></li>
-                 </ul>
-               </ul>
-             <ul>
-              <li><strong>Activity Service API</strong>
-               <ul>
-                  <li><a href="./rbac_activityapis.html">Endpoints</a></li>
-                  <li><a href="./rbac_activityreporting.html">Activity Reporting</a></li>
-               </ul>
-            </ul>
-            <ul>
-              <li><strong>Node Classifier Service API</strong>
+                 <li><strong>Node Classifier Service API</strong>
                <ul>
                   <li><a href="./nc_index.html">Endpoints</a></li>
                   <li><a href="./nc_groups.html">Groups</a></li>
@@ -163,13 +134,44 @@
                   <li><a href="./nc_validate.html">Validating Node Classifier Endpoints</a></li>
                   <li><a href="./nc_errors.html">Node Classifier Errors</a></li>
                </ul>
-            </ul>
             <ul>
             	<li><strong>Console Rake API</strong>
             	 <ul>
             	 	<li><a href="./console_rake_api.html">Console Rake API</a></li>
             	 	<li><a href="./nc_mapping.html">Mapping Rake Tasks to Service REST APIs</a></li>
       			 </ul>
+      			 </li>
+      			 </ul>
+      			 </ul>
+      			 </li>
+      	<li><strong>Managing Users</strong>
+               <ul>
+                  <li><a href="./rbac_intro.html">Working with Role-Based Access Control</a></li>
+                  <li><a href="./rbac_ldap.html">Connecting PE with External Directory Services</a></li>
+                  <li><a href="./rbac_permissions.html">About RBAC Permissions</a></li>
+                  <li><a href="./rbac_user_roles.html">Creating and Managing Users and User Roles</a></li>
+                  <li><strong>RBAC Service API</strong>
+                  <ul>
+                    <li><a href="./rbac_serviceindex.html">Endpoints</a></li>
+                    <li><a href="./rbac_users.html">Users</a></li>
+                    <li><a href="./rbac_usergroups.html">User Groups</a></li>
+                    <li><a href="./rbac_roles.html">Roles</a></li>
+                    <li><a href="./rbac_permissionsref.html">Permissions</a></li>
+                    <li><a href="./rbac_dsref.html">Directory Service</a></li>
+                    <li><a href="./rbac_passwords.html">Passwords</a></li>
+                    <li><a href="./rbac_serviceerrors.html">Errors</a></li>
+                    <li><a href="./rbac_config.html">Configuration Options</a></li>
+                 </ul>
+                 <li><strong>Activity Service API</strong>
+            		<ul>
+                  <li><a href="./rbac_activityapis.html">Endpoints</a></li>
+                  <li><a href="./rbac_activityreporting.html">Activity Reporting</a></li>
+               </ul>
+               </ul>
+            <ul>
+                </ul>
+
+
             </ul>
     </ul>
   </li>

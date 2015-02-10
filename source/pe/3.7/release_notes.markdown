@@ -7,7 +7,7 @@ canonical: "/pe/latest/release_notes.html"
 
 This page contains information about new features and general improvements in the latest Puppet Enterprise (PE) release.
 
-For more information about this release, also see the [Known Issues](./release_notes_known_issues.html) and [Security Fixes](./release_notes_security.html).
+For more information about this release, also see the [Known Issues](./release_notes_known_issues.html) and [Security and Bug Fixes](./release_notes_security.html).
 
 ## New Features in PE 3.7.2
 
