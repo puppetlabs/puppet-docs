@@ -150,7 +150,7 @@ If your nodes are running an OS and/or architecture that is different from the m
 
 Alternatively, if you have internet access to your master node, you can follow the instructions above and [use the console](#installing-agents-using-pe-package-management) to classify the master with one of the built-in `pe_repo::platform::<platform>` classes. Once the master is classified and a Puppet run has occurred, the appropriate agent packages will be generated and stored in `/opt/puppet/packages/public/<platform version>`. If your master does not have internet access, you will need to download the agents manually, and choose an option from [Installing Agents in a Puppet Enterprise Infrastructure without Internet Access](#installing-agents-in-a-puppet-enterprise-infrastructure-without-internet-access).
 
-After you've installed the agent on the target node, you can configure it using `puppet config set`. See "[Configuring Agents](#Configuring-Agents)" below.
+After you've installed the agent on the target node, you can configure it using `puppet config set`. See "[Configuring Agents](#configuring-agents)" below.
 
 ## Signing Agent Certificates
 
@@ -192,7 +192,7 @@ For example, to point the agent at a master called "master.example.com," run `pu
 
 >**Warning for Mac OS X users**: When performing a command line install of an agent on an OS X system, you must run  `puppet config set server` and `puppet config set certname` for the agent to function correctly. 
 
-[config_set]: ./config_set.html
+[config_set]: /puppet/3.7/reference/config_set.html
 
 >**Tip**: After you finish installing your agents, follow the instructions in the [NTP Quick Start Guide](./quick_start_ntp.html) to have PE ensure time is in sync across your deployment.
 
