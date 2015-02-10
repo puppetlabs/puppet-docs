@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Hiera 1: Interpolation Tokens, Variables, and Lookup Functions"
+title: "Hiera 2: Interpolation Tokens, Variables, and Lookup Functions"
 ---
 
 [config]: ./configuring.html
@@ -64,8 +64,6 @@ Notes on this syntax:
 
 ### The `hiera()` Lookup Function
 
-**Only available in Hiera 1.3 and later.**
-
 The `hiera()` lookup function performs a Hiera lookup, using its input as the lookup key. The result of the lookup must be a string; any other result will cause an error.
 
 This can be very powerful in Hiera's data sources. By storing a fragment of data in one place and then using sub-lookups wherever it needs to be used, you can avoid repetition and make it easier to change your data.
@@ -78,14 +76,31 @@ The value looked up by the `hiera()` function may itself contain a `hiera()` loo
 
 ### The `scope()` Lookup Function
 
-**Only available in Hiera 1.3 and later.**
-
 The `scope()` lookup function interpolates variables; it works identically to variable interpolation as described above. The function's input is the name of a variable surrounded by single or double quotes.
 
 The following two values would be identical:
 
     smtpserver: "mail.%{::domain}"
     smtpserver: "mail.%{scope('::domain')}"
+
+### The `alias()` Lookup Function
+
+The `alias()` function allows you to make one key in Hiera data act as an alias for another. This is different than just interpolating another key, since that results in a string.
+
+~~~
+original:
+  - 'a'
+  - 'b'
+aliased: "%{alias('original')}"
+~~~
+
+This returns an array with `['a', 'b']` for both the original and the aliased keys. The data entry that uses the alias function cannot combine it with post/prefix text.
+
+### The `literal()` Lookup Function
+
+The literal lookup function allows you to escape '%{}' in Hiera data. This is useful when you have data containing this literal string, as with some Apache variables like '%{SERVER_NAME}' or '%{QUERY_STRING}'.
+
+With this function, `%{literal('%')}{sekrit}` returns `%{sekrit}`.
 
 
 Where to Interpolate Data
