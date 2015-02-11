@@ -1,154 +1,120 @@
 ---
 layout: default
-title: "Hiera 1: Release Notes"
+title: "Hiera 2: Release Notes"
 ---
 
 
-Hiera 1.3.4
------
+## Hiera 2.0.0
 
-Released June 10, 2014.
+Released (~~ TODO ~~).
 
-Hiera 1.3.4 is a security fix release in the Hiera 1.3 series. It has no other bug fixes or new features.
+Hiera 2.0.0 is a new major version of Hiera, which includes several new features and one breaking change. Please read the section below labeled "BREAK," because you may need to edit your configuration and/or move some files around.
 
-### Security Fix
+### BREAK: New Default Locations for Config File and Data Directory
 
-#### [CVE-2014-3248 (An attacker could convince an administrator to unknowingly execute malicious code on platforms with Ruby 1.9.1 and earlier)](http://www.puppetlabs.com/security/cve/cve-2014-3248/)
+On \*nix systems, this release changes the default locations for the config file and the data directory used by the YAML and JSON backends. If you were relying on the old default behavior, you'll need to either move your files or configure Hiera to use non-default locations.
 
-Platforms running Ruby 1.9.1 or earlier would load Ruby source files from the current working directory during a Hiera lookup. This could lead to the execution of arbitrary code.
+* `hiera.yaml` is now at `/etc/puppetlabs/agent/code/hiera.yaml`
+    * (was: `/etc/hiera.yaml` or `/etc/puppetlabs/puppet/hiera.yaml` or `/etc/puppet/hiera.yaml`)
+* `:datadir` is now at `/etc/puppetlabs/agent/code/hieradata/`
+    * (was: `/var/lib/hiera`)
 
-Hiera 1.3.3
------
+Also, Hiera will now always use the _same_ default location, whether you're using it from the CLI, as a Ruby library, or via Puppet.
 
-Released May 22, 2014.
+Note that the default locations on Windows haven't changed.
 
-Hiera 1.3.3 is a backward-compatible performance and fixes release in the 1.3 series. It provides a substantial speed increase for lookups compared to Hiera 1.3.2. This release also adds support for Ubuntu 14.04 (Trusty Tahr) and discontinues support for Fedora 18 and Ubuntu 13.04 (Raring Ringtail).
+* [HI-298: Update FS layout for hiera](https://tickets.puppetlabs.com/browse/HI-298)
+* [HI-50: pe-hiera unit tests check incorrect etc path](https://tickets.puppetlabs.com/browse/HI-50)
 
-### Performance Improvements
+### API Change for Custom Backends (Backwards Compatible)
 
-* [HI-239](https://tickets.puppetlabs.com/browse/HI-239): Backport speed improvement to 1.3.x codebase, resulting in a substantial speed increase in lookups compared to Hiera 1.3.2.
+In order to fix infinite interpolation recursion and forgotten order overrides, we made a change to the backend API.
 
-### Operating System Support
+This change is optional for custom backends: they'll continue to work without an update, but they'll remain vulnerable to [HI-328](https://tickets.puppetlabs.com/browse/HI-328) and [HI-304](https://tickets.puppetlabs.com/browse/HI-304) until they're updated.
 
-* [HI-149](https://tickets.puppetlabs.com/browse/HI-149): Remove Fedora 18 from default build targets
-* [HI-236](https://tickets.puppetlabs.com/browse/HI-236): Remove Raring (Ubuntu 13.04) from build_defaults, it is EOL
-* [HI-185](https://tickets.puppetlabs.com/browse/HI-185): Add Trusty (Ubuntu 14.04) support
+To update to the new API, you'll need to:
+
+* Change your backend's `lookup` method to accept an additional argument at the end, named `context`.
+    * When the `lookup` method is called, this context hash will contain a key named `:recurse_guard`. You never need to call methods on this object, but you'll need to pass it along later.
+* Change any calls to the `Backend.parse_answer` or `Backend.parse_string` helper methods. Whenever your backend calls these methods:
+    * It should always provide an explicit value for the `extra_data` argument. Use an empty hash `{}` if you're not providing any extra data.
+    * It should provide an additional argument at the end. This argument should be a hash with two keys:
+        * `:recurse_guard` --- the value should be `context[:recurse_guard]`.
+        * `:order_override` --- the value should be the `order_override` value that was passed to your `lookup` method (as its third argument).
+
+### New Feature: Lookups Can Index Into Data Structures
+
+Previously, you could only look up top-level keys in Hiera, and it would return the entire value of that key. Sometimes, especially when the value was a large hash or array, that would be more data than you wanted, and you would have to manipulate the data structure after receiving the entire thing.
+
+Now, you can use sub-keys to request only part of a data structure. For example, `hiera('user.uid')` or `hiera('user.groups.0')`.
+
+For details, see the docs about [performing lookups.](./lookup_types.html)
+
+* [HI-14: Allow access to structured data](https://tickets.puppetlabs.com/browse/HI-14)
+
+### New Feature: `literal()` Function --- Escape `%` Signs in Data
+
+Some pieces of data need to include literal text that looks like a Hiera interpolation token, without triggering interpolation. This was previously impossible, but you can now escape percent signs to put things like Apache variables in Hiera data. You'll need to escape each literal `%` with `%{literal('%')}`.
+
+So to get a final string that looks like this:
+
+    http://%{SERVER_NAME}/
+
+Write the Hiera value like this:
+
+    "http://%{literal('%')}{SERVER_NAME}/"
+
+For more info, see the docs about [lookup functions in interpolation tokens.](./variables.html#using-lookup-functions)
+
+* [HI-127: PR (185) Allow escaping %{...} in hiera data so that hiera does not try to perform a replacement](https://tickets.puppetlabs.com/browse/HI-127)
+
+### New Feature: `alias()` Function --- Make Key an Alias For Other Key
+
+Previously, you could re-use strings from other pieces of Hiera data by using the `hiera()` lookup function in an interpolation token, but you couldn't re-use hashes or arrays. Now, Hiera will treat a string containing an `%{alias('key_name')}` token as the value of `key_name`, no matter what kind of data it is. For more details, see the docs about [lookup functions in interpolation tokens.](./variables.html#using-lookup-functions)
+
+* [HI-183: Really need the ability to lookup hashes and arrays from other parts of Hiera.](https://tickets.puppetlabs.com/browse/HI-183)
+
+
+### New Feature: Pass Options to Deep Merge Gem
+
+The `deep_merge` gem has several options that can modify its behavior, but Hiera was unable to take advantage of them. Now, there's a new setting in `hiera.yaml` that can pass options to the gem. For details, see [the configuration page](./configuring.html) and the docs about [hash merge lookups.](./lookup_types.html#hash-merge)
+
+* [HI-230: Allow options to be passed to deep merge](https://tickets.puppetlabs.com/browse/HI-230)
+
+### New Feature: Output YAML on Command Line
+
+You can now run `hiera -f yaml` to get YAML-formatted data.
+
+* [HI-129: PR (172): Add output format to CLI - mrbanzai](https://tickets.puppetlabs.com/browse/HI-129)
+* [HI-281: Add YAML output format to CLI](https://tickets.puppetlabs.com/browse/HI-281)
+
 
 ### Bug Fixes
 
-* [HI-232](https://tickets.puppetlabs.com/browse/HI-232): Hiera should conflict/provide/replace ruby-hiera (from Ubuntu)
+* With the `hiera()` lookup function in interpolation tokens, Hiera data can look up other Hiera data, and it could end up in an infinite loop and crash with a `SystemStackError: stack level too deep` error. Now looping lookups will fail early. [HI-328: Hiera does not detect interpolation recursion](https://tickets.puppetlabs.com/browse/HI-328)
+* If you looked up a piece of data that had an interpolated `hiera()` call (e.g. `value: "${hiera('other_lookup_key')}"`), and you [provided a hierarchy override](./puppet.html#hiera-lookup-functions) to the original lookup, Hiera would ignore the override when resolving the secondary lookup. This is now fixed, and overrides will propagate to secondary lookups. Note that custom backends may need an update to accommodate this; see the note above about backend API changes. [HI-304: Override does not propagate to hiera() function in interpolation tokens](https://tickets.puppetlabs.com/browse/HI-304)
+* Empty YAML files will now be ignored instead of causing errors. [HI-65: PR (162): ignore empty yaml files - leinaddm](https://tickets.puppetlabs.com/browse/HI-65)
+* Using the `-m` option on the command line was causing Hiera to throw away any subsequent options. This is fixed now. [HI-306: Hiera CLI optparse problems with -m](https://tickets.puppetlabs.com/browse/HI-306)
 
-Hiera 1.3.2
------
+### Not Quite Bug Fixes
 
-Released February 26, 2014. (RC1: February 11; RC2: February 20.)
+Puppet 4 will pass Hiera a new pseudo-variable named `calling_class_path`, which is the name of the current class with any occurrences of `::` replaced with `/`.
 
-Hiera 1.3.2 is a bug fix release in the 1.3 series. It adds packages for Red Hat Enterprise Linux 7, support for deploying to Solaris and Windows vCloud instances, and fixes a bug on Debian.
+We introduced this because `:` is an illegal character in Windows and OS X file names, and people trying to use `calling_class` in their hierarchies to create class-specific data sources were running into trouble. Now, you can use `calling_class_path` in the hierarchy to convert namespaced class names into a directory structure. (But only in Puppet 4 and higher.)
 
-### RHEL 7 Support
+This isn't a change to Hiera itself, but putting it in the Hiera release notes seems like the best way to point it out to the people who want it.
 
-* [HI-179](https://tickets.puppetlabs.com/browse/HI-179): Add RHEL 7 support for Hiera packaging.
+* [HI-152: %{calling_class} yaml paths do not function on windows](https://tickets.puppetlabs.com/browse/HI-152)
 
-### Bug Fixes
+### Operating System Support and Packaging
 
-* [HI-176](https://tickets.puppetlabs.com/browse/HI-176): Hiera would fail to find the correct ruby binary on Debian when an alternative version was installed. Hiera now uses `/usr/bin/ruby`, which fixes the issue.
-* [HI-178](https://tickets.puppetlabs.com/browse/HI-178): Acceptance tests have been added for Solaris and Windows vCloud machines.
-* [HI-115](https://tickets.puppetlabs.com/browse/HI-115): Hiera would show an incorrect `recursive_guard` warning if the same variable was interpolated twice in a hierarchy definition, even if the usage was not recursive.
+This release included some routine work to improve support on new platforms and drop old ones.
 
-Hiera 1.3.1
------
-
-Released January 23, 2014. (RC1: December 12, 2013.)
-
-Hiera 1.3.1 is a bug fix release in the 1.3 series. It fixes one bug:
-
-[HI-65](https://tickets.puppetlabs.com/browse/HI-65): Empty YAML files can raise an exception (backported to stable as [HI-71](https://tickets.puppetlabs.com/browse/HI-71))
-
-Hiera 1.3.0
------
-
-Released November 21, 2013. (RC1: never published; RC2: November 8, 2013.)
-
-Hiera 1.3.0 contains three new features, including Hiera lookups in interpolation tokens. It also contains bug fixes and packaging improvements.
-
-Most of the features contributed to Hiera 1.3 are intended to provide more power by allowing new kinds of value interpolation.
-
-### Feature: Hiera Sub-Lookups from Within Interpolation Tokens
-
-In addition to interpolating variables into strings, you can now interpolate the value of another Hiera lookup. This uses a new lookup function syntax, which looks like `"%{hiera('lookup_key')}"`. [See the docs on using interpolation tokens for more details.](./variables.html#interpolation-tokens)
-
-* [Feature #21367](http://projects.puppetlabs.com/issues/21367): Add support for a hiera variable syntax which interpolates data by performing a hiera lookup
-
-### Feature: Values Can Now Be Interpolated Into Hash Keys
-
-Hashes within a data source can now use interpolation tokens in their key names. This is mostly useful for advanced `create_resources` tricks. [See the docs on interpolating values into data for more details.](./variables.html#in-data)
-
-* [Feature #20220](http://projects.puppetlabs.com/issues/20220): Interpolate hash keys
-
-### Feature: Pretty-Print Arrays and Hashes on Command Line
-
-This happens automatically and makes CLI results more readable.
-
-* [Feature #20755](http://projects.puppetlabs.com/issues/20755): Add Pretty Print to command line hiera output
-
-### Bug Fixes
-
-Most of these fixes are error handling changes to improve silent or unattributable error messages.
-
-* [Bug #17094](http://projects.puppetlabs.com/issues/17094): hiera can end up in and endless loop with malformed lookup variables
-* [Bug #20519](http://projects.puppetlabs.com/issues/20519): small fix in hiera/filecache.rb
-* [Bug #20645](http://projects.puppetlabs.com/issues/20645): syntax error cause nil
-* [Bug #21669](http://projects.puppetlabs.com/issues/21669): Hiera.yaml will not interpolate variables if datadir is specified as an array
-* [Bug #22777](http://projects.puppetlabs.com/issues/22777): YAML and JSON backends swallow errors
-* [Feature #21211](http://projects.puppetlabs.com/issues/21211): Hiera crashes with an unfriendly error if it doesn't have permission to read a yaml file
-
-### Build/Packaging Fixes and Improvements
-
-We are now building Hiera packages for Ubuntu Saucy, which previously was
-unable to use Puppet because a matching Hiera package couldn't be built.
-Fedora 17 is no longer supported, and hardcoded hostnames in build_defaults.yaml
-were removed.
-
-* [Bug #22166](http://projects.puppetlabs.com/issues/22166): Remove hardcoded hostname dependencies
-* [Bug #22239](http://projects.puppetlabs.com/issues/22239): Remove Fedora 17 from build_defaults.yaml
-* [Bug #22905](http://projects.puppetlabs.com/issues/22905): Quilt not needed in debian packaging
-* [Bug #22924](http://projects.puppetlabs.com/issues/22924): Update packaging workflow to use install.rb
-* [Feature #14520](http://projects.puppetlabs.com/issues/14520): Hiera should have an install.rb
-
-
-## Hiera 1.2.1
-
-Hiera 1.2.1 contains one bug fix.
-
-* [Issue 20137: Test for Puppet robustly](http://projects.puppetlabs.com/issues/20137)
-
-## Hiera 1.2.0
-
-Hiera 1.2.0 contains new features and bug fixes.
-
-### Features
-
-* Deep-merge feature for hash merge lookups. See [the section of this manual on hash merge lookups](./lookup_types.html#hash-merge) for details.
-* [(#16644)](http://projects.puppetlabs.com/issues/16644) New generic file cache. This expands performance improvements in the YAML backend to cover the JSON backend, and is relevant to those who write custom backends. It is implemented in the Hiera::Filecache class.
-* [(#18718)](http://projects.puppetlabs.com/issues/18718) New logger to handle fallback. Sometimes a logger has been configured, but is not suitable for being used. An example of this is when the puppet logger has been configured, but Hiera is not being used inside Puppet. This adds a FallbackLogger that will choose among the provided loggers for one that is suitable.
-
-### Bug Fixes
-
-* [(#17434)](http://projects.puppetlabs.com/issues/17434) Detect loops in recursive lookup
-
-  The recursive lookup functionality was vulnerable to infinite recursion
-  when the values ended up referring to each other. This keeps track of
-  the names that have been seen in order to stop a loop from occurring. The
-  behavior for this was extracted to a class so that it didn't clutter the
-  logic of variable interpolation. The extracted class also specifically
-  pushes and pops on an internal array in order to limit the amount of
-  garbage created during these operations. This modification should be
-  safe so long a new Hiera::RecursiveLookup is used for every parse that
-  is done and it doesn't get shared in any manner.
-* [(#17434)](http://projects.puppetlabs.com/issues/17434) Support recursive interpolation
-
-  The original code for interpolation had, hidden somewhere in its depths,
-  supported recursive expansion of interpolations. This adds that support
-  back in.
+* [HI-273: Support Bundler workflow on x64](https://tickets.puppetlabs.com/browse/HI-273)
+* [HI-126: Build windows sphecific gem](https://tickets.puppetlabs.com/browse/HI-126)
+* [HI-185: Add Trusty (Ubuntu 14.04) support](https://tickets.puppetlabs.com/browse/HI-185)
+* [HI-285: Remove saucy from build_defaults.yaml](https://tickets.puppetlabs.com/browse/HI-285)
+* [HI-277: Remove sid and unstable from build_defaults](https://tickets.puppetlabs.com/browse/HI-277)
+* [HI-303: Add optional dependency deep_merge to Gemfile](https://tickets.puppetlabs.com/browse/HI-303)
 
 
