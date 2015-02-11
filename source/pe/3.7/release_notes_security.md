@@ -63,6 +63,48 @@ A new rake task, `node:delgroup`, was introduced in PE 3.7.2 for deleting a node
 
 For more information, see the [rake API documentation](./console_rake_api.html).
 
+#### SLES 10 Agent Upgrade Failed
+
+Upgrades of SLES 10 agents from PE 3.7.1 to PE 3.7.2 failed. This is fixed.
+
+#### PE PostgreSQL Was Started After Services That Depended On It
+
+Services like PuppetDB and Console Services were started before PostgreSQL and then were dead after a reboot. This is fixed.
+
+#### PE Installer Did Not Create the Symlink for the PE Java cacerts File
+
+This issue made `puppetserver gem imstall` fail with the error "Certificate verify failed." It also caused the error, "Could not find a valid gem 'hiera-eyaml'".
+
+#### A Handful of Node Manager Service Fixes
+
+Many improvements and fixes were made, including these:
+* Environments are removed from the classifier when they are no longer populated.
+* In PE console service, changes to logback.xml are now dynamically taken up.
+* Escaping DNs is now in place for searching for group membership
+
+#### `puppet_enterprise::packages` Was Overriding Package Resource Defaults
+
+This was a problem because if `pe_gem` was installed, it would become the preferred provider over Zypper and cause package installs to fail.
+
+#### Puppet Server Was Coercing Request Data to UTF-8
+
+The fix means is that Puppet Server handles arbitrary character encodings, including raw binary.
+
+#### PE Installer Did Not Check Permissions on Untarred Folders
+
+This caused the installer to fail.
+
+####Additional Bug Fixes
+
+The following issues were also fixed for PE 3.7.2
+
+* Classifier synchronization failed if an environment couldn't be loaded
+* `pe-puppet` failed to upgrade on RHEL 4
+* Automatic classification broke in IE 10 and 11 due to aggressive caching
+* When resetting the admin password in RBAC, it wasn't obfuscated
+* Removed the `pe_accounts` "examples" directory, which broke RDoc
+* Agent install did not normalize FQDN for certname
+
 
 ## Puppet Enterprise 3.7.1 (12/16/14)
 
