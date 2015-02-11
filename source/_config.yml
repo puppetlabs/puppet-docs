@@ -19,6 +19,7 @@ defaultnav:
   /hiera/1: hiera1.html
   /ja: ja_docs.html
   /ja/learning: ja_learning_nav.html
+  /ja/puppet/3.7/reference: ja_puppet_3_7.html
   /learning: learning_nav.html
   /mcollective: mcollective_menu.html
   /mcollective1.2: mcollective_1.2.html
