@@ -28,15 +28,15 @@ Please note that if your custom cert is issued by an intermediate CA, the CA bun
    
    c. Click the __Classes__ tab, and find `puppet_enterprise::profile::console` in the list of classes. 
    
-   d. From the parameter drop-down list, choose `browser_ssl_cert`, and in the value field, enter `opt/puppet/share/console-services/certs/public-console.cert.pem`.
+   d. From the parameter drop-down list, choose `browser_ssl_cert`, and in the value field, enter `/opt/puppet/share/console-services/certs/public-console.cert.pem`.
    
    e. Click __Add parameter__.
    
-   f. From the parameter drop-down list, choose `browser_ssl_private_key`, and in the value field, enter `opt/puppet/share/console-services/certs/public-console.private_key.pem`.
+   f. From the parameter drop-down list, choose `browser_ssl_private_key`, and in the value field, enter `/opt/puppet/share/console-services/certs/public-console.private_key.pem`.
    
    g. Click __Add parameter__.
    
-   h. From the parameter drop-down list, choose `browser_ssl_cert_chain`, and in the value field, enter `opt/puppet/share/console-services/certs/public-console.ca_cert.pem`.
+   h. From the parameter drop-down list, choose `browser_ssl_cert_chain`, and in the value field, enter `/opt/puppet/share/console-services/certs/public-console.ca_cert.pem`.
    
    i. Click __Add parameter__.
    
