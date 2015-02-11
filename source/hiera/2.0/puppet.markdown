@@ -27,6 +27,7 @@ title: "Hiera 2: Using Hiera With Puppet"
 [site_manifest]: /puppet/latest/reference/dirs_manifest.html
 [node_definition]: /puppet/latest/reference/lang_node_definitions.html
 [config_deep_merge]: ./lookup_types.html#deep-merging-in-hiera
+[lookup_keys]: ./lookup_types.html#lookup-keys
 
 
 Puppet can use Hiera to look up data. This helps you disentangle site-specific data from Puppet code, for easier code reuse and easier management of data that needs to differ across your node population.
@@ -35,23 +36,12 @@ Puppet can use Hiera to look up data. This helps you disentangle site-specific d
 Enabling and Configuring Hiera for Puppet
 -----
 
-### Puppet 3 and Newer
+### Puppet 4
 
-Puppet 3.x and later ship with Hiera support already enabled. You don't need to do anything extra. Hiera data should live on the Puppet master(s).
+Puppet 4 and later ships with Hiera support already enabled. You don't need to do anything extra. Hiera data should live on the Puppet master(s).
 
 * Puppet expects to find the [hiera.yaml file][hiera_yaml] at [`$confdir`][confdir]`/hiera.yaml` (usually `/etc/puppet/hiera.yaml`); you can change this with the [`hiera_config`][hiera_config] setting.
 * Remember to set the [`:datadir`][datadir] setting for any backends you are using. It's generally best to use something within the `/etc/puppet/` directory, so that the data is in the first place your fellow admins expect it.
-
-### Puppet 2.7
-
-You must install both Hiera and the `hiera-puppet` package on your Puppet master(s) before using Hiera with Puppet. Hiera data should live on the Puppet master(s).
-
-* Puppet expects to find the [hiera.yaml file][hiera_yaml] at [`$confdir`][confdir]`/hiera.yaml` (usually `/etc/puppet/hiera.yaml`). This is not configurable in 2.7.
-* Remember to set the [`:datadir`][datadir] setting for any backends you are using. It's generally best to use something within the `/etc/puppet/` directory, so that the data is in the first place your fellow admins expect it.
-
-### Older Versions
-
-Hiera is not supported with older versions, but you may be able to make it work similarly to Puppet 2.7.
 
 Puppet Variables Passed to Hiera
 -----
@@ -62,22 +52,13 @@ Hiera can then use any of these variables in the [interpolation tokens][variable
 
 ### Special Pseudo-Variables
 
-When doing any Hiera lookup, with both automatic parameter lookup and the Hiera functions, Puppet sets two variables that aren't available in regular Puppet manifests:
+When doing any Hiera lookup, with both automatic parameter lookup and the Hiera functions, Puppet sets three variables that aren't available in regular Puppet manifests:
 
 * `calling_module` --- The module in which the lookup is written. This has the same value as the [Puppet `$module_name` variable.][module_name]
 * `calling_class` --- The class in which the lookup is evaluated. If the lookup is written in a defined type, this is the class in which the current instance of the defined type is declared.
 * `calling_class_path` --- The name of the class, with `::` replaced by `/` . This enables class-based Hiera data and class Hiera YAML files on Windows, which doesn't permit `:` in path names. Works only with Puppet 4 or later.
 
 Note that these variables are effectively local scope, as they are pseudo-variables that only exist within the context of a specific class, and only inside of Hiera. Therefore, they must be called as `%{variable_name}` and never `%{::variable_name}`. They are not top-scope.
-
-> **Note:** These variables were broken in some versions of Puppet.
->
-> Version                                        | Status
-> -----------------------------------------------|-----------
-> Puppet 2.7.x / PE 2.x                          | **Good**
-> Puppet 3.0.x -- 3.3.x / PE 3.0 -- 3.1          | **Broken**
-> Puppet 3.4.x and later / PE 3.2                | **Good**
-
 
 [module_name]: /puppet/latest/reference/lang_variables.html#parser-set-variables
 
@@ -96,8 +77,6 @@ Automatic Parameter Lookup
 -----
 
 Puppet automatically retrieves class parameters from Hiera, using lookup keys like `myclass::parameter_one`.
-
-> **Note:** This feature only exists in Puppet 3 and later.
 
 Puppet [classes][] can optionally include [parameters][] in their definition. This lets the class ask for data to be passed in at the time that it's declared, and it can use that data as normal variables throughout its definition.
 
@@ -151,25 +130,6 @@ This means that, although it **can** receive any type of data from Hiera (string
 
 If you need to merge arrays or merge hashes from multiple hierarchy levels, you will have to use the `hiera_array` or `hiera_hash` functions in the body of your classes.
 
-#### No Puppet 2.7 Support
-
-Relying on automatic parameter lookup means writing code for Puppet 3 and later only.
-
-You can, however, mimic Puppet 3 behavior in 2.7 by combining parameter defaults and Hiera function calls:
-
-{% highlight ruby %}
-    class myclass (
-      $parameter_one = hiera('myclass::parameter_one', 'default text')
-    ) {
-      # ...
-    }
-{% endhighlight %}
-
-* This pattern requires that 2.7 users have Hiera installed; it will fail compilation if the Hiera functions aren't present.
-* Since all of your parameters will have defaults, your class will be safely declarable with `include`, even in 2.7.
-* Puppet 2.7 will do Hiera lookups for the same keys that Puppet 3 automatically looks up.
-* Note that this carries a performance penalty, since Puppet 3 ends up doing two Hiera calls for each parameter instead of one.
-
 
 Hiera Lookup Functions
 -----
@@ -203,7 +163,8 @@ Nevertheless, you can, of course, [use the `scope.function_` prefix][template_fu
 Interacting With Structured Data from Hiera
 -----
 
-The lookup functions and the automatic parameter lookup always return the values of **top-level keys** in your Hiera data --- they cannot descend into deeply nested data structures and return only a portion of them. To do this, you need to first store the whole structure as a variable, then index into the structure from your Puppet code or template.
+The lookup functions and the automatic parameter lookup return values of top-level keys in your Hiera data. As of Hiera 2.0, you can also use qualified [lookup keys][lookup_keys] to look up specific elements.
+
 
 Example:
 
@@ -217,7 +178,7 @@ Example:
         ipaddress: 192.168.22.28
 {% endhighlight %}
 
-Good:
+
 
 {% highlight ruby %}
     # Get the structured data:
@@ -226,11 +187,9 @@ Good:
     $use_ip = $proxies[1]['ipaddress'] # will be 192.168.22.28
 {% endhighlight %}
 
-Bad:
-
 {% highlight ruby %}
-    # Try to skip a step, and give Hiera something it doesn't understand:
-    $use_ip = hiera( 'proxies'[1]['ipaddress'] ) # will explode
+    # get only what you need from Hiera
+    $use_ip = hiera( 'proxies.1.ipaddress' ) 
 {% endhighlight %}
 
 
@@ -245,7 +204,7 @@ You can use Hiera to assign classes to nodes with the special `hiera_include` fu
     * The value of each `classes` key should be an **array.**
     * Each value in the array should be **the name of a class.**
 
-Once you do these steps, Puppet will automatically assign classes from Hiera to every node. Note that the `hiera_include` function uses an [array merge lookup][array_lookup] to retrieve the `classes` array; this means every node will get **every** class from its hierarchy.
+Once you do these steps, Puppet automatically assigns classes from Hiera to every node. Note that the `hiera_include` function uses an [array merge lookup][array_lookup] to retrieve the `classes` array; this means every node gets **every** class from its hierarchy.
 
 Example:
 
@@ -291,4 +250,4 @@ Assuming a hierarchy of:
 - security
 - mcollective
 
-In Puppet 3, each of these classes would then automatically look up any required parameters in Hiera.
+Each of these classes would then automatically look up any required parameters in Hiera.

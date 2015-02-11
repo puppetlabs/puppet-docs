@@ -3,7 +3,6 @@ layout: default
 title: "Hiera 2: Lookup Types"
 ---
 
-
 Hiera always takes a lookup key and returns a single value (of some simple or complex data type), but it has several methods for extracting/assembling that one value from the hierarchy. We refer to these as "lookup methods."
 
 All of these lookup methods are available via Hiera's Puppet functions, command line interface, and Ruby API.
@@ -18,6 +17,36 @@ Priority lookups can retrieve values of any data type (strings, arrays, hashes),
 
 This is Hiera's default lookup method.
 
+## Lookup Keys
+
+Priority lookup accepts top-level lookup keys, which return the entire value of the key, or qualified keys, which return just the specified part of a value. Qualified keys are composed of a lookup key along with any number of additional subkeys, separated by dots. 
+
+For example, to look up an element in a hash:
+
+~~~
+$ hiera user
+{"name"=>"kim", "home"=>"/home/kim"}
+
+$ hiera user.name
+kim
+~~~
+
+Or, to look up an element in an array:
+
+~~~
+$ hiera ssh_users
+["root", "jeff", "gary", "hunter"]
+
+$ hiera ssh_users.0
+root
+~~~
+
+The subkey can be an integer if the value is an array, or a key name if it's a hash. You can also chain subkeys together for deeply nested structures. Qualified keys can be used in interpolated values just like a normal key, so `%{'user.name'}` is valid.
+
+If no matching key or subkey is found, Hiera returns a `nil` result. If the lookup key is an unexpected type (e.g., you used an array key to search a hash), an exception is returned.
+
+### A note about resolution_type
+Hiera doesn't support the use of `:hash` or `:array` as the resolution type for qualified keys. For those types, you must use a non-segmented key to get the first hash or array, and then manipulate the data.
 
 Array Merge
 -----
@@ -94,7 +123,7 @@ To configure deep merging, use the [`:merge_behavior` setting][mergebehavior], w
 [create]: /references/latest/function.html#createresources
 [mergebehavior]: ./configuring.html#mergebehavior
 [deepmerge]: https://github.com/peritor/deep_merge
-[puppetserver_gem]: /puppetserver/1.0/gems.html#installing-and-removing-gems
+[puppetserver_gem]: /puppetserver/latest/gems.html#installing-and-removing-gems
 [deepmerge_options]: ./configuring.html#deepmergeoptions
 
 #### Merge Behaviors
