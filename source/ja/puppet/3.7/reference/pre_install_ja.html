@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+  <head>
+  	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  	<title>Installing Puppet: Pre-Install Tasks — Documentation — Puppet Labs</title>
+  	<link rel="alternate" type="application/atom+xml" title="Puppet Labs Documentation Updates" href="https://github.com/puppetlabs/puppet-docs/commits/master.atom">
+    <link rel="alternate" type="application/atom+xml" title="Puppet Labs Blog Feed" href="http://puppetlabs.com/feed/">
+    <link rel='index' title='Puppet Labs Documentation' href='https://docs.puppetlabs.com' />
+    <link rel='icon' href='/favicon.ico' />
+
+     
+  <meta name="description" content="  Note: This document covers open source releases of Puppet. See here for instructions on installing Puppet Enterprise.Before you install Puppet, y...">
+
+<!-- Google analytics -->
+<!-- End Google analytics -->
+
+
+    <!-- FIXME: absolute paths -->
+
+
+    <!-- All in One SEO Pack 1.6.10.1 by Michael Torbert of Semper Fi Web Design[127,146] -->
+    <meta name="keywords" content="Puppet, puppet labs, reductive labs, open source, system administrator, ruby, data center, automation, support" />
+    <!-- /all in one seo pack -->
+
+    <!-- Give us the option of setting a canonical URL in yaml frontmatter -NF -->
+    <link rel="canonical" href="https://docs.puppetlabs.com/guides/install_puppet/pre_install.html" />
+
+    <!-- FIXME: absolute paths -->
+
+    <link rel="stylesheet" type="text/css" href="./style.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="./syntax.css" media="screen"> <!-- index -->
+
+    <!--[if IE 7]>
+	  <link rel="stylesheet" type="text/css" href="./ie_7.css" media="screen"> <!-- index -->
+    <![endif]-->
+
+    <!--[if IE 8]>
+	    <link rel="stylesheet" type="text/css" href="./ie_8.css" media="screen"> <!-- index -->
+    <![endif]-->
+
+    <!-- Code for hover anchor links on headers begins. Relies on jQuery. Code comes from https://github.com/bryanbraun/anchorjs -->
+<link rel="stylesheet" href="./anchor.css">
+<!-- Code for hover anchor links ends -->
+
+</head>
+
+
+
+
+  <body id="puppetlabsdocs" class="docs">
+  <!-- Google Tag Manager -->
+  <!-- End Google Tag Manager -->
+  <style type="text/css">h1, h2{ visibility : hidden }</style>
+  <!--[if IE 8]>
+    <style type="text/css">h1, h2{ visibility : visible }</style>
+  <![endif]-->
+
+
+      <section id="content">
+        <div class="site-width">
+          <div class="primary-secondary-content">
+            <div class="primary-content">
+              <h1>Installing Puppet: Pre-Install Tasks ~ Puppetのインストール: インストール前のタスク</h1>
+              <nav class="in-page" id="page-nav">
+<ol class="toc">
+  <li class="toc-lv2"><a href="#decide-on-a-deployment-type">Decide on a Deployment Type ~ デプロイの方法を決める</a>
+<ol class="toc">
+   <li class="toc-lv3"><a href="#agentmaster-puppet">Agent/Master Puppet ~ Agent/Master型</a></li>
+   <li class="toc-lv3"><a href="#standalone-puppet">Standalone Puppet ~ スタンドアローン型</a></li>
+</ol></li>
+  <li class="toc-lv2"><a href="#check-os-versions-and-system-requirements">Check OS Versions and System Requirements ~ OSのバージョンとシステム要件の確認</a></li>
+  <li class="toc-lv2"><a href="#check-your-network-configuration">Check Your Network Configuration ~ ネットワーク設定の確認</a></li>
+  <li class="toc-lv2"><a href="#check-timekeeping-on-your-puppet-master-server">Check Timekeeping on Your Puppet Master Server ~ Puppet Masterサーバの時刻確認</a></li>
+  <li class="toc-lv2"><a href="#next-install-puppet">Next: Install Puppet ~ Next: Puppetのインストール</a></li>
+</ol></nav>
+
+
+<blockquote>
+  <p><strong>Note:</strong> このドキュメントはOSS版Puppetについて記述しています。<a href="/pe/latest/install_basic.html">Puppet Enterpriseのインストールはこちらを参照してください。</a></p>
+</blockquote>
+
+<p>Puppetをインストールする前に、以下のタスクを実施してください。</p>
+
+<h2 id="decide-on-a-deployment-type">Decide on a Deployment Type ~ デプロイの方法を決める</h2>
+
+<p>インストールの前にデプロイの方法を決めてください:</p>
+
+<h3 id="agentmaster-puppet">Agent/Master Puppet ~ Agent/Master型</h3>
+
+<p>ほとんどの方にagent/master型を推奨します。ただし中央にサーバが必要になります。この方式は設定をアップデートする際の利便性や、レポートや外部データソースの利用が容易であるなどのアドバンテージがあります。</p>
+
+<p>agent/master型では中央に全ての設定データをコンパイルするためのpuppet masterサーバ（単独もしくは複数台）を動かします。他のノードでは定期的に自身の設定データをmasterから取得するpuppet agentサービスを動作させます。それぞれのagentは自分自身の設定だけ取得でき、他ノードの設定データがどうなっているか参照する事はできません。</p>
+
+<h4 id="choose-your-puppet-master-servers">Puppet master用サーバの選定</h4>
+
+<p>Puppetをインストールする前に、どのサーバ機（１台もしくは複数台）をpuppet masterにするか決めます。</p>
+
+<p>agentノードをインストールするより前にmasterのインストールと設定を完了していなくてはなりません。masterはUNIX系OSで動作します。Windowsマシンをmasterにする事はできません。</p>
+
+<p>masterは高速なプロセッサ、大容量メモリ、高速なディスクを搭載した専用のサーバ機とするのを推奨します。また信頼できるホスト名で疎通できなくてはなりません。agentをセットアップする時間を削減できるよう、masterのホスト名はデフォルトで<code>puppet</code>としています。.</p>
+
+<h3 id="standalone-puppet">Standalone Puppet ~ スタンドアローン型</h3>
+
+<p>スタンドアローン型の場合、全ノードが定期的にpuppet applyコマンドを使い、全てのPuppetモジュールとマニフェストを使って自身の設定をコンパイルして適用します。言い換えると、agent/master型のmasterで要求されるファイルおよびデータと同じものが、それぞれのノードで必要になるという事です。</p>
+
+<p>数台のmasterサーバ上に集中させるのではなく、コンパイルの負担を分散してmasterサービスが稼働し応答を返す状態を保持しなくてもよくなります。設定のアップデートがより扱いにくくなる事、レポートや外部ソースの集中化がうまくできない事、全てのノードが他のノードの設定がどうなっているか閲覧できるというデメリットがあります。これらは特定の場面（2、3ノードしかない場合、10000ノードある場合、ネットワークアクセスが制限されたDMZの場合）ではデメリットとのトレードオフができますが、デフォルトでagent/master型によるデプロイを推奨します。</p>
+
+<p>後々それぞれのノードに分散したマニフェスト、モジュール、データをアップデートする手法を考える必要に迫られるでしょう。</p>
+
+<h2 id="check-os-versions-and-system-requirements">Check OS Versions and System Requirements ~ OSのバージョンとシステム要件の確認</h2>
+
+<p>インストールしようとするPuppetバージョンの<a href="/puppet/latest/reference/system_requirements_ja.html">システム要件</a>を参照し、以下の項目について検討してください:</p>
+
+<ul>
+  <li>masterは管理するagent数に見合う数（一台もしくは複数台）の堅牢な専用サーバにする事を推奨します。</li>
+  <li>ひとつのOSバージョンのオフィシャルパッケージで動作している全てのコンピュータは、インストールが簡単でしょう。</li>
+  <li>Puppetが未サポートのOSが動作している全てのコンピュータは、適切なバージョンのRubyと依存モジュールがインストールされている限り動作するでしょう。詳細は<a href="/puppet/latest/reference/system_requirements_ja.html#basic-requirements">サポートしているRubyバージョンと依存モジュールのリスト</a>を参照してください。</li>
+</ul>
+
+<h2 id="check-your-network-configuration">Check Your Network Configuration ~ ネットワーク設定の確認</h2>
+
+<p>agent/master型の場合はPuppetの通信用ネットワークを準備しなくてはなりません。</p>
+
+<ul>
+
+  <li><strong>ファイアウォール:</strong> masterサーバは8140/tcpへの接続を許可している必要があります。またagentノードはmasterの8140/tcpからの接続を許可する必要があります。</li>
+
+  <li><strong>名前解決:</strong> すべてのノードはユニークなホスト名を持っていなくてはなりません。また<strong>DNSの正引き逆引き</strong>双方で正しく引けるよう設定されていなければなりません。（DNSの設定を説明するのはこのガイドの範囲を超えていますので、DNSが無い場合は各ノードの<code>/etc/hosts</code>ファイルを記述してください）
+    <ul>
+
+      <li><strong>Note:</strong> masterのホスト名はデフォルトで<code>puppet</code>になっています。そのためこのホスト名を解決した結果がmasterサーバになるようにすれば、agentノードがより速く使えるようになります。</li>
+
+    </ul>
+  </li>
+</ul>
+
+<h2 id="check-timekeeping-on-your-puppet-master-server">Check Timekeeping on Your Puppet Master Server ~ Puppet Masterサーバの時刻確認</h2>
+
+<p>Puppet Masterサーバでは証明書を認証しますので、システムの時刻が正確でなければなりません。そのためNTPの利用を推奨します。</p>
+
+<p>（もし正しく設定しないと、過去もしくは未来のagent証明書が発行できてしまう事になるので、他のノードではこれを有効でないものとして扱います）</p>
+
+<h2 id="next-install-puppet">Next: Install Puppet ~ Next: Puppetのインストール</h2>
+
+<p>ここまでのタスクが完了すれば、Puppetのインストールが可能です。インストール先で利用しているOSに合うリンクをクリックしてください:</p>
+
+<ul>
+  <li><a href="./install_el.html">Red Hat Enterprise Linux (and Derivatives)</a></li>
+  <li><a href="./install_debian_ubuntu.html">Debian and Ubuntu</a></li>
+  <li><a href="./install_fedora.html">Fedora</a></li>
+  <li><a href="./install_osx.html">Mac OS X</a></li>
+  <li><a href="./install_windows.html">Microsoft Windows</a></li>
+  <li><a href="./install_gem.html">On Misc *nix With Gems</a> (for otherwise unsupported systems)</li>
+  <li><a href="./install_tarball.html">On Misc *nix With a Tarball</a> (for otherwise unsupported systems)</li>
+</ul>
+
+<p>インストールの後は<a href="./post_install.html">インストール後のタスク</a>になります。</p>
+
+              <blockquote><p style="font-size: 1.3em; text-align: center;"><a href="#content">↑ Back to top</a></p></blockquote>
+            </div>
+
+
+
+          </div>
+        </div>
+      </section>
+
+
+
+  	<style type="text/css">h1, h2, .btn { visibility : visible; }</style>
+
+
+<!-- BEGIN: MARKETO TRACKING -->
+<!-- Per Alanna, this must be directly before the closing body tag. -->
+ <!-- END: MARKETO TRACKING -->
+	</body>
+</html>

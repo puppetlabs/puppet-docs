@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+  <head>
+  	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  	<title>Overview of Puppet's Architecture — Documentation — Puppet Labs</title>
+  	<link rel="alternate" type="application/atom+xml" title="Puppet Labs Documentation Updates" href="https://github.com/puppetlabs/puppet-docs/commits/master.atom">
+    <link rel="alternate" type="application/atom+xml" title="Puppet Labs Blog Feed" href="http://puppetlabs.com/feed/">
+    <link rel='index' title='Puppet Labs Documentation' href='https://docs.puppetlabs.com' />
+    <link rel='icon' href='/favicon.ico' />
+
+     
+  <meta name="description" content="Puppet usually uses an agent/master (client/server) architecture for configuring systems, using the puppet agent and puppet master applications. It...">
+
+<!-- Google analytics -->
+<!-- End Google analytics -->
+
+
+    <!-- FIXME: absolute paths -->
+
+
+    <!-- All in One SEO Pack 1.6.10.1 by Michael Torbert of Semper Fi Web Design[127,146] -->
+    <meta name="keywords" content="Puppet, puppet labs, reductive labs, open source, system administrator, ruby, data center, automation, support" />
+    <!-- /all in one seo pack -->
+
+    <!-- Give us the option of setting a canonical URL in yaml frontmatter -NF -->
+    <link rel="canonical" href="https://docs.puppetlabs.com/puppet/3.7/reference/architecture.html" />
+
+    <!-- FIXME: absolute paths -->
+
+    <link rel="stylesheet" type="text/css" href="./style.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="./syntax.css" media="screen"> <!-- index -->
+
+    <!--[if IE 7]>
+	  <link rel="stylesheet" type="text/css" href="/files/stylesheets/ie_7.css" media="screen"> <!-- index -->
+    <![endif]-->
+
+    <!--[if IE 8]>
+	    <link rel="stylesheet" type="text/css" href="/files/stylesheets/ie_8.css" media="screen"> <!-- index -->
+    <![endif]-->
+
+    <!-- Code for hover anchor links on headers begins. Relies on jQuery. Code comes from https://github.com/bryanbraun/anchorjs -->
+<link rel="stylesheet" href="./anchor.css">
+<!-- Code for hover anchor links ends -->
+
+</head>
+
+
+
+
+  <body id="puppetlabsdocs" class="docs">
+  <!-- Google Tag Manager -->
+  <!-- End Google Tag Manager -->
+  <style type="text/css">h1, h2{ visibility : hidden }</style>
+  <!--[if IE 8]>
+    <style type="text/css">h1, h2{ visibility : visible }</style>
+  <![endif]-->
+
+
+
+
+      <section id="content">
+        <div class="site-width">
+          <div class="primary-secondary-content">
+            <div class="primary-content">
+              <h1>Puppetのアーキテクチャ概要</h1>
+              <nav class="in-page" id="page-nav">
+<ol class="toc">
+  <li class="toc-lv2"><a href="#note-two-stages-for-configuration-management">Note: Two Stages for Configuration Management ~ Note: 設定管理の2つのステージ</a>
+<ol class="toc">
+   <li class="toc-lv3"><a href="#what-is-a-catalog">What is a Catalog? ~ カタログとは?</a></li>
+</ol></li>
+  <li class="toc-lv2"><a href="#the-agentmaster-architecture">The Agent/Master Architecture ~ Agent/Master型アーキテクチャ</a>
+<ol class="toc">
+   <li class="toc-lv3"><a href="#basics">Basics ~ アーキテクチャの基本</a></li>
+   <li class="toc-lv3"><a href="#about-the-puppet-services">About the Puppet Services ~ Puppetのサービスについて</a></li>
+   <li class="toc-lv3"><a href="#communications-and-security">Communications and Security ~ 通信とセキュリティ</a></li>
+</ol></li>
+  <li class="toc-lv2"><a href="#the-stand-alone-architecture">The Stand-Alone Architecture ~ スタンドアローンのアーキテクチャ</a>
+<ol class="toc">
+   <li class="toc-lv3"><a href="#basics-1">Basics ~ アーキテクチャの基本</a></li>
+   <li class="toc-lv3"><a href="#about-the-puppet-apply-application">About the Puppet Apply Application ~ Puppet Applyアプリケーションについて</a></li>
+</ol></li>
+  <li class="toc-lv2"><a href="#note-differences-between-agentmaster-and-puppet-apply">Note: Differences Between Agent/Master and Puppet Apply ~ Note: Agent/Master と Puppet Apply の違い</a></li>
+</ol></nav>
+
+
+<p>Puppetは通常agent/master型(クライアント/サーバ型)で利用します。<strong>puppet agent</strong>と<strong>puppet master</strong>のアプリケーションを使います。また単独で動作する形態として<strong>puppet apply</strong>アプリケーションもあります。</p>
+
+
+<blockquote>
+  <h2 id="note-two-stages-for-configuration-management">Note: 設定管理の2つのステージ</h2>
+
+  <p>Puppetがシステムを設定する際は2つのステージがあります:</p>
+
+  <ol>
+    <li>カタログのコンパイル</li>
+    <li>カタログの適用</li>
+  </ol>
+
+  <h3 id="what-is-a-catalog">カタログとは?</h3>
+
+  <p>カタログは特定のコンピュータに対するシステムの状態を記述した“ドキュメント”です。カタログには管理すべき全てのリソースと、それらのリソース間の依存関係が記述されています。</p>
+
+  <p>カタログをコンパイルするのにPuppetはいくつかの情報源を使います。さらなる情報は<a href="./lang_summary_ja.html">basics of the Puppet language</a> と <a href="./subsystem_catalog_compilation_ja.html">catalog compilation</a>を参照してください。</p>
+</blockquote>
+
+<h2 id="the-agentmaster-architecture">The Agent/Master Architecture ~ >Agent/Master型アーキテクチャ</h2>
+
+<p>Puppetは通常agent/master型のアーキテクチャで動作します。Puppet masterでは重要な設定情報や、agentノードが要求するノード個別の設定情報が入っている“カタログ”を管理しています。</p>
+
+
+<h3 id="basics">Basics ~ アーキテクチャの基本</h3>
+
+<p>このアーキテクチャは管理されるノード上で<strong>puppet agent</strong>アプリケーションを実行するというものです。通常はバックグラウンドのサービスとして動作します。1つ以上のサーバ上で<strong>puppet master</strong>アプリケーションを実行します。通常はWebサーバによって管理される<a href="./services_master_rack_ja.html">Rackアプリケーション</a>のようになります。</p>
+
+<p>Puppet agentは定期的にfactsをPuppet masterに送信してカタログを要求します。Puppet masterは自身がアクセス可能な複数の情報ソースも利用してノードのカタログをコンパイルして、それをノードに返します。</p>
+
+<p>カタログを受け取ると、Puppet agentはカタログに記述されている<a href="./lang_resources_ja.html">リソース</a>をそれぞれ確認します。も記述されている“あるべき状態”とは異なるリソースを見つけたら、それらを正しい状態になるよう変更します（no-opモードの場合は変更が必要である事をレポートします）。</p>
+
+<p>カタログを適用した後、Puppet agentはPuppet masterに対してレポートを送信します。</p>
+
+<h3 id="about-the-puppet-services">About the Puppet Services ~ Puppetのサービスについて</h3>
+
+
+<ul>
+  <li><a href="./services_agent_unix_ja.html">Puppet Agent on *nix Systems</a></li>
+  <li><a href="./services_agent_windows_ja.html">Puppet Agent on Windows Systems</a></li>
+  <li><a href="./services_master_rack_ja.html">The Rack Puppet Master</a></li>
+  <li><a href="./services_master_webrick_ja.html">The WEBrick Puppet Master</a></li>
+</ul>
+
+<h3 id="communications-and-security">Communications and Security ~ 通信とセキュリティ</h3>
+
+
+<p>Puppet agentノードとPuppet masterはクライアント認証有りのHTTPSで通信します。</p>
+
+<p>Puppet masterはHTTPインタフェースを、<a href="/references/3.7.latest/developer/file.http_api_index.html">さまざまなエンドポイント</a>を提供します。Puppet masterに対してリクエストしたり何かしら送信する際、Puppet agentはそれらエンドポイントのひとつにHTTPSで投げます。</a>
+
+<p>詳細はこちら:</p>
+
+<ul>
+  <li><a href="./subsystem_agent_master_comm.html">A walkthrough of Puppet’s HTTPS communications</a></li>
+  <li><a href="/references/3.7.latest/developer/file.http_api_index.html">The puppet master’s HTTP API</a></li>
+  <li><a href="./config_file_auth.html">The puppet master’s auth.conf file</a></li>
+</ul>
+
+<p>クライアント認証されたHTTPはPuppet masterとagentそれぞれにSSL証明書を持たなければなりません。そして相手側の証明書を調べて情報をやり取りしてよいか判断する事になるでしょう。</p>
+
+<p>Puppetはビルトインで証明書を管理する認証局(CA)を持っています。Puppet agentはPuppet masterのHTTP API経由で証明書を要求します。ユーザ側では<strong>puppet cert</strong>コマンドによりリクエストを調査して新しい証明書にサインをし、サインされた証明書をPuppet agentにダウンロードさせることができます。</p>
+
+<p>一般的なSSLの情報については<a href="/background/ssl/">our background reference on SSL and HTTPS</a>をご覧ください。</p>
+
+
+<h2 id="the-stand-alone-architecture">The Stand-Alone Architecture ~ スタンドアローンのアーキテクチャ</h2>
+
+<p>Puppetは管理するサーバそれぞれに設定情報をコピーしておき、サーバが自分自身でカタログをコンパイルする“スタンドアローン”動作もできます。</p>
+
+<h3 id="basics-1">Basics ~ アーキテクチャの基本</h3>
+
+<p>このアーキテクチャでは、管理するノードで<strong>puppet apply</strong>アプリケーションを実行します。通常cronジョブのようなスケジュールされたタスクとして実行します。（サーバの初期構築時の必要に応じた実行や、もっと小さな設定作業においても利用する事ができます）</p>
+
+<p>Puppet masterアプリケーションと同様に、puppet applyも管理ノード上でカタログをコンパイルするために使う設定データを複数の情報源から取得する必要があります。</p>
+
+
+<p>puppet applyがカタログをコンパイルした後、それぞれの<a href="./lang_resources_ja.html">リソース</a>がカタログに記述されている通りか即座に確認します。 もし“あるべき状態”ではないリソースを発見した時は、それらを正しい状態へと変更します（no-opモードの場合は変更が必要である事をレポートします）。</p>
+<p>カタログ適用後、puppet applyはレポートをディスクに格納します。レポートは集中管理しているサーバに送信する事もできます。</p>
+
+<h3 id="about-the-puppet-apply-application">About the Puppet Apply Application ~ Puppet Applyアプリケーションについて</h3>
+
+<ul>
+  <li><a href="./services_apply_ja.html">The Puppet Apply Application</a></li>
+</ul>
+
+<blockquote>
+  <h2 id="note-differences-between-agentmaster-and-puppet-apply">Note: Differences Between Agent/Master and Puppet Apply ~ Note: Agent/Master と Puppet Apply の違い</h2>
+
+  <p>一般的にpuppet applyはpuppet agentとpuppet masterの組み合わせで使うのと同じ事ができます。ただしセキュリティ周りと特定機能の簡素化といういくつかの点でトレードオフになっています。</p>
+
+  <p>特にこだわりが無いのでしたら、標準であるagent/master型で利用すべきです。もし疑問がありましたら、以下トレードオフとなるものの一覧をご覧になれば決断の助けになるでしょう。</p>
+
+
+  <ul>
+
+    			   <li><strong>最小特権の原則：</strong>agent/master型の場合、agentはそれぞれ自分自身の設定を取得する事しかしません。また他ノードの設定を参照する事はできません。puppet applyの場合これを実現するのは非現実的なため、それぞれのノードがサイトの設定に関する完全なナレッジにアクセスできてしまいます。この権限の水平的昇格（訳注：一般ユーザが他の一般ユーザの権限を取得）をされる潜在的リスクがどうなるかはシステムの設定次第になります。</li>
+
+
+    <li><strong>レポートとインベントリ情報の集中管理を簡素化：</strong>デフォルトでagentはmasterにレポートを送信します。またmasterは<a href="/references/3.7.latest/report.html">レポートハンドラ</a>を設定し他のサービスにレポートを渡す事も可能です。インベントリや履歴データを検索する用途にパワフルなツールである<a href="/puppetdb/latest">PuppetDB</a>へ接続する事もできます。puppet applyを使うノードでは自身で情報をハンドルします。もしPuppetDBを使っている、もしくはレポートを他のサービスに送信しているのであれば、<em>それぞれの</em>ノードで設定と接続認証が個別に必要です。</li>
+
+    <li><strong>アップデート時の設定簡略化：</strong>Puppet masterサーバ（１台もしくは複数台）だけがPuppetモジュール、メインのマニフェスト、その他カタログのコンパイルに必要な情報を持っています。これはシステムのアップデート設定時に１台（もしくは複数台）のサーバのコンテンツだけをアップデートすればよい事を意味します。集中管理していないpuppet applyのデプロイ形態の場合は、全ノードに対して新しい設定コードとデータを同期する必要があります。</li>
+
+
+    <li><strong>マシン管理で使うCPUとメモリ：</strong>puppet agentは自身でカタログをコンパイルしないため、自身で管理しているマシンよりも少ないリソース消費となり、ノード自身の本来の用途向けにリソースをより多く残す事ができます。</li>
+
+
+    <li><strong>master専用のサーバが必要：</strong>puppet masterは全てのカタログをコンパイルするのに負荷が掛かるため、高速なプロセッサ、大容量メモリ、高速なディスクを搭載した専用のサーバ機とするのを推奨します。このサーバ機を設置する事を望まない（設置できない）方は、puppet applyでしたらサーバ機を設置しなくてもよくなります。</li>
+
+    <li><strong>良好なネットワークの接続性が必要：</strong>agentは自身を設定するためにmasterに対して信頼できるホスト名で到達できる必要があります。もしデグレードもしくは孤立したネットワーク環境にシステムが居る場合は、必要なものを調達しなければなりません。</li>
+
+    <li><strong>セキュリティのオーバーヘッド：</strong>agentとmasterはHTTPSプロトコルを使った通信でお互いに認証します。また関連する全てのシステムもSSL証明書が必要です。Puppetはビルトインで認証局を持っており簡単に証明書を管理できますが、そもそも証明書を管理しないほうがより簡単なのは言うまでもありません。（おそらくRsyncなどを使って全てのノードにあるPuppetのコンテンツをアップデートされようとするでしょう。ですがこの場合においてもセキュリティ管理は依然として必要です）</li>
+
+  </ul>
+</blockquote>
+
+              <blockquote><p style="font-size: 1.3em; text-align: center;"><a href="#content">↑ Back to top</a></p></blockquote>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+
+  	<style type="text/css">h1, h2, .btn { visibility : visible; }</style>
+
+
+<!-- BEGIN: MARKETO TRACKING -->
+<!-- Per Alanna, this must be directly before the closing body tag. -->
+ <!-- END: MARKETO TRACKING -->
+	</body>
+</html>
