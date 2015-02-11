@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+  <head>
+  	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  	<title>Installing Puppet: Pre-Install Tasks — Documentation — Puppet Labs</title>
+  	<link rel="alternate" type="application/atom+xml" title="Puppet Labs Documentation Updates" href="https://github.com/puppetlabs/puppet-docs/commits/master.atom">
+    <link rel="alternate" type="application/atom+xml" title="Puppet Labs Blog Feed" href="http://puppetlabs.com/feed/">
+    <link rel='index' title='Puppet Labs Documentation' href='https://docs.puppetlabs.com' />
+    <link rel='icon' href='/favicon.ico' />
+
+     
+  <meta name="description" content="  Note: This document covers open source releases of Puppet. See here for instructions on installing Puppet Enterprise.Before you install Puppet, y...">
+
+<!-- Google analytics -->
+<!-- End Google analytics -->
+
+
+    <!-- FIXME: absolute paths -->
+
+
+    <!-- All in One SEO Pack 1.6.10.1 by Michael Torbert of Semper Fi Web Design[127,146] -->
+    <meta name="keywords" content="Puppet, puppet labs, reductive labs, open source, system administrator, ruby, data center, automation, support" />
+    <!-- /all in one seo pack -->
+
+    <!-- Give us the option of setting a canonical URL in yaml frontmatter -NF -->
+    <link rel="canonical" href="https://docs.puppetlabs.com/guides/install_puppet/pre_install.html" />
+
+    <!-- FIXME: absolute paths -->
+
+    <link rel="stylesheet" type="text/css" href="./style.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="./syntax.css" media="screen"> <!-- index -->
+
+    <!--[if IE 7]>
+	  <link rel="stylesheet" type="text/css" href="./ie_7.css" media="screen"> <!-- index -->
+    <![endif]-->
+
+    <!--[if IE 8]>
+	    <link rel="stylesheet" type="text/css" href="./ie_8.css" media="screen"> <!-- index -->
+    <![endif]-->
+
+    <!-- Code for hover anchor links on headers begins. Relies on jQuery. Code comes from https://github.com/bryanbraun/anchorjs -->
+<link rel="stylesheet" href="./anchor.css">
+<!-- Code for hover anchor links ends -->
+
+</head>
+
+
+
+
+  <body id="puppetlabsdocs" class="docs">
+  <!-- Google Tag Manager -->
+  <!-- End Google Tag Manager -->
+  <style type="text/css">h1, h2{ visibility : hidden }</style>
+  <!--[if IE 8]>
+    <style type="text/css">h1, h2{ visibility : visible }</style>
+  <![endif]-->
+
+
+      <section id="content">
+        <div class="site-width">
+          <div class="primary-secondary-content">
+            <div class="primary-content">
+              <h1>Installing Puppet: Pre-Install Tasks</h1>
+              <h1>Puppetのインストール: インストール前のタスク</h1>
+              <nav class="in-page" id="page-nav">
+<ol class="toc">
+  <li class="toc-lv2"><a href="#decide-on-a-deployment-type">Decide on a Deployment Type</a>
+<ol class="toc">
+   <li class="toc-lv3"><a href="#agentmaster-puppet">Agent/Master Puppet</a></li>
+   <li class="toc-lv3"><a href="#standalone-puppet">Standalone Puppet</a></li>
+</ol></li>
+  <li class="toc-lv2"><a href="#check-os-versions-and-system-requirements">Check OS Versions and System Requirements</a></li>
+  <li class="toc-lv2"><a href="#check-your-network-configuration">Check Your Network Configuration</a></li>
+  <li class="toc-lv2"><a href="#check-timekeeping-on-your-puppet-master-server">Check Timekeeping on Your Puppet Master Server</a></li>
+  <li class="toc-lv2"><a href="#next-install-puppet">Next: Install Puppet</a></li>
+</ol></nav>
+
+              <nav class="in-page" id="page-nav">
+<ol class="toc">
+  <li class="toc-lv2"><a href="#decide-on-a-deployment-type">デプロイの方法を決める</a>
+<ol class="toc">
+   <li class="toc-lv3"><a href="#agentmaster-puppet">Agent/Master型</a></li>
+   <li class="toc-lv3"><a href="#standalone-puppet">スタンドアローン型</a></li>
+</ol></li>
+  <li class="toc-lv2"><a href="#check-os-versions-and-system-requirements">OSのバージョンとシステム要件の確認</a></li>
+  <li class="toc-lv2"><a href="#check-your-network-configuration">ネットワーク設定の確認</a></li>
+  <li class="toc-lv2"><a href="#check-timekeeping-on-your-puppet-master-server">Puppet Masterサーバの時刻確認</a></li>
+  <li class="toc-lv2"><a href="#next-install-puppet">Next: Puppetのインストール</a></li>
+</ol></nav>
+
+
+<blockquote>
+  <p><strong>Note:</strong> This document covers open source releases of Puppet. <a href="/pe/latest/install_basic.html">See here for instructions on installing Puppet Enterprise.</a></p>
+  <p><strong>Note:</strong> このドキュメントはOSS版Puppetについて記述しています。<a href="/pe/latest/install_basic.html">Puppet Enterpriseのインストールはこちらを参照してください。</a></p>
+</blockquote>
+
+<p>Before you install Puppet, you should do the following tasks.</p>
+<p>Puppetをインストールする前に、以下のタスクを実施してください。</p>
+
+<h2 id="decide-on-a-deployment-type">Decide on a Deployment Type</h2>
+<h2 id="decide-on-a-deployment-type">デプロイの方法を決める</h2>
+
+<p>Decide on a deployment type before installing:</p>
+<p>インストールの前にデプロイの方法を決めてください:</p>
+
+<h3 id="agentmaster-puppet">Agent/Master Puppet</h3>
+<h3 id="agentmaster-puppet">Agent/Master型</h3>
+
+<p>Most people should use agent/master Puppet. Although it requires a central server, it’s more convenient when updating configurations and can more easily take advantage of reporting and external data sources.</p>
+<p>ほとんどの方にagent/master型を推奨します。ただし中央にサーバが必要になります。この方式は設定をアップデートする際の利便性や、レポートや外部データソースの利用が容易であるなどのアドバンテージがあります。</p>
+
+<p>In agent/master Puppet, you run a central puppet master server (or servers) that hosts and compiles all of your configuration data. Other nodes run the puppet agent service, which periodically pulls their configurations from the master. Each agent will only get its own configuration, and will be unable to see how other nodes are configured.</p>
+<p>agent/master型では中央に全ての設定データをコンパイルするためのpuppet masterサーバ（単独もしくは複数台）を動かします。他のノードでは定期的に自身の設定データをmasterから取得するpuppet agentサービスを動作させます。それぞれのagentは自分自身の設定だけ取得でき、他ノードの設定データがどうなっているか参照する事はできません。</p>
+
+<h4 id="choose-your-puppet-master-servers">Choose Your Puppet Master Server(s)</h4>
+<h4 id="choose-your-puppet-master-servers">Puppet master用サーバの選定</h4>
+
+<p>Before installing Puppet everywhere, decide which server(s) will act as your puppet master(s).</p>
+<p>Puppetをインストールする前に、どのサーバ機（１台もしくは複数台）をpuppet masterにするか決めます。</p>
+
+<p>You should completely install and configure Puppet on any puppet masters before installing on any agent nodes. The master must be running some kind of *nix; Windows machines can’t be masters.</p>
+<p>agentノードをインストールするより前にmasterのインストールと設定を完了していなくてはなりません。masterはUNIX系OSで動作します。Windowsマシンをmasterにする事はできません。</p>
+
+<p>A puppet master should be a dedicated machine with a fast processor, lots of RAM, and a fast disk. It must also be reachable at a reliable hostname. You can reduce setup time on your agents by making sure the master is available at the default hostname of <code>puppet</code>.</p>
+<p>masterは高速なプロセッサ、大容量メモリ、高速なディスクを搭載した専用のサーバ機とするのを推奨します。また信頼できるホスト名で疎通できなくてはなりません。agentをセットアップする時間を削減できるよう、masterのホスト名はデフォルトで<code>puppet</code>としています。.</p>
+
+
+<h3 id="standalone-puppet">Standalone Puppet</h3>
+<h3 id="standalone-puppet">スタンドアローン型</h3>
+
+<p>In standalone Puppet, every node periodically uses the puppet apply command to compile and apply its own configuration, using a full set of Puppet modules and manifests. In other words, each node requires the same files and data that the puppet master requires in agent/master Puppet.</p>
+
+<p>スタンドアローン型の場合、全ノードが定期的にpuppet applyコマンドを使い、全てのPuppetモジュールとマニフェストを使って自身の設定をコンパイルして適用します。言い換えると、agent/master型のmasterで要求されるファイルおよびデータと同じものが、それぞれのノードで必要になるという事です。</p>
+
+<p>This distributes the burden of compilation instead of concentrating it on a few puppet master servers, and it doesn’t require keeping the puppet master service available and responsive. The cost is that it’s more unwieldy to update your configurations, it doesn’t play as well with central reporting and external data sources, and every node can see how other nodes are configured. These tradeoffs can be worth it in certain situations (two or three nodes, 10,000 nodes, DMZ with limited LAN access), but you should consider the agent/master deployment the default.</p>
+
+<p>数台のmasterサーバ上に集中させるのではなく、コンパイルの負担を分散してmasterサービスが稼働し応答を返す状態を保持しなくてもよくなります。設定のアップデートがより扱いにくくなる事、レポートや外部ソースの集中化がうまくできない事、全てのノードが他のノードの設定がどうなっているか閲覧できるというデメリットがあります。これらは特定の場面（2、3ノードしかない場合、10000ノードある場合、ネットワークアクセスが制限されたDMZの場合）ではデメリットとのトレードオフができますが、デフォルトでagent/master型によるデプロイを推奨します。</p>
+
+<p>You will need to come up with your own solution for distributing updated manifests, modules, and data to each node.</p>
+<p>後々それぞれのノードに分散したマニフェスト、モジュール、データをアップデートする手法を考える必要に迫られるでしょう。</p>
+
+<h2 id="check-os-versions-and-system-requirements">Check OS Versions and System Requirements</h2>
+<h2 id="check-os-versions-and-system-requirements">OSのバージョンとシステム要件の確認</h2>
+
+<p>See the <a href="/puppet/latest/reference/system_requirements.html">system requirements</a> for the version of Puppet you are installing, and consider the following:</p>
+<p>インストールしようとするPuppetバージョンの<a href="/puppet/latest/reference/system_requirements_ja.html">システム要件</a>を参照し、以下の項目について検討してください:</p>
+
+<ul>
+  <li>Your puppet master(s) should be robust dedicated servers that can handle the amount of agents they’ll need to serve.</li>
+  <li>masterは管理するagent数に見合う数（一台もしくは複数台）の堅牢な専用サーバにする事を推奨します。</li>
+  <li>Any computers running an OS version with official packages will have an easier install path.</li>
+  <li>ひとつのOSバージョンのオフィシャルパッケージで動作している全てのコンピュータは、インストールが簡単でしょう。</li>
+  <li>Any computers running an unsupported OS may still be able to run Puppet, as long as the version of Ruby is suitable and the prerequisites are installed. See the <a href="/puppet/latest/reference/system_requirements.html#basic-requirements">list of supported Ruby versions and prerequisites.</a> You’ll also need to follow a more complex install path.</li>
+  <li>Puppetが未サポートのOSが動作している全てのコンピュータは、適切なバージョンのRubyと依存モジュールがインストールされている限り動作するでしょう。詳細は<a href="/puppet/latest/reference/system_requirements_ja.html#basic-requirements">サポートしているRubyバージョンと依存モジュールのリスト</a>を参照してください。</li>
+</ul>
+
+<h2 id="check-your-network-configuration">Check Your Network Configuration</h2>
+<h2 id="check-your-network-configuration">ネットワーク設定の確認</h2>
+
+<p>In an agent/master deployment, you must prepare your network for Puppet’s traffic.</p>
+<p>agent/master型の場合はPuppetの通信用ネットワークを準備しなくてはなりません。</p>
+
+<ul>
+  <li><strong>Firewalls:</strong> The puppet master server must allow incoming connections on port 8140, and agent nodes must be able to connect to the master on that port.</li>
+  <li><strong>ファイアウォール:</strong> masterサーバは8140/tcpへの接続を許可している必要があります。またagentノードはmasterの8140/tcpからの接続を許可する必要があります。</li>
+  
+  <li><strong>Name resolution:</strong> Every node must have a unique hostname. <strong>Forward and reverse DNS</strong> must both be configured correctly. (Instructions for configuring DNS are beyond the scope of this guide. If your site lacks DNS, you must write an <code>/etc/hosts</code> file on each node.)</li>
+  <li><strong>名前解決:</strong> すべてのノードはユニークなホスト名を持っていなくてはなりません。また<strong>DNSの正引き逆引き</strong>双方で正しく引けるよう設定されていなければなりません。（DNSの設定を説明するのはこのガイドの範囲を超えていますので、DNSが無い場合は各ノードの<code>/etc/hosts</code>ファイルを記述してください）
+    <ul>
+      <li><strong>Note:</strong> The default puppet master hostname is <code>puppet</code>. Your agent nodes can be ready sooner if this hostname resolves to your puppet master.</li>
+      <li><strong>Note:</strong> masterのホスト名はデフォルトで<code>puppet</code>になっています。そのためこのホスト名を解決した結果がmasterサーバになるようにすれば、agentノードがより速く使えるようになります。</li>
+
+    </ul>
+  </li>
+</ul>
+
+<h2 id="check-timekeeping-on-your-puppet-master-server">Check Timekeeping on Your Puppet Master Server</h2>
+<h2 id="check-timekeeping-on-your-puppet-master-server">Puppet Masterサーバの時刻確認</h2>
+
+<p>The puppet master server that will be acting as the certificate authority should have its system time set accurately. You should probably use NTP.</p>
+<p>Puppet Masterサーバでは証明書を認証しますので、システムの時刻が正確でなければなりません。そのためNTPの利用を推奨します。</p>
+
+<p>(If it doesn’t, it may mistakenly issue agent certificates from the distant past or future, which other nodes will treat as expired.)</p>
+<p>（もし正しく設定しないと、過去もしくは未来のagent証明書が発行できてしまう事になるので、他のノードではこれを有効でないものとして扱います）</p>
+
+<h2 id="next-install-puppet">Next: Install Puppet</h2>
+<h2 id="next-install-puppet">Next: Puppetのインストール</h2>
+
+<p>Once these tasks are complete, you can install Puppet. Pick the link appropriate to the operating system(s) you’ll be installing on:</p>
+<p>ここまでのタスクが完了すれば、Puppetのインストールが可能です。インストール先で利用しているOSに合うリンクをクリックしてください:</p>
+
+<ul>
+  <li><a href="./install_el.html">Red Hat Enterprise Linux (and Derivatives)</a></li>
+  <li><a href="./install_debian_ubuntu.html">Debian and Ubuntu</a></li>
+  <li><a href="./install_fedora.html">Fedora</a></li>
+  <li><a href="./install_osx.html">Mac OS X</a></li>
+  <li><a href="./install_windows.html">Microsoft Windows</a></li>
+  <li><a href="./install_gem.html">On Misc *nix With Gems</a> (for otherwise unsupported systems)</li>
+  <li><a href="./install_tarball.html">On Misc *nix With a Tarball</a> (for otherwise unsupported systems)</li>
+</ul>
+
+<p>After installing, you’ll want to do the <a href="./post_install.html">post-install tasks</a></p>
+<p>インストールの後は<a href="./post_install.html">インストール後のタスク</a>になります。</p>
+
+              <blockquote><p style="font-size: 1.3em; text-align: center;"><a href="#content">↑ Back to top</a></p></blockquote>
+            </div>
+
+
+
+          </div>
+        </div>
+      </section>
+
+
+
+  	<style type="text/css">h1, h2, .btn { visibility : visible; }</style>
+
+
+<!-- BEGIN: MARKETO TRACKING -->
+<!-- Per Alanna, this must be directly before the closing body tag. -->
+ <!-- END: MARKETO TRACKING -->
+	</body>
+</html>
