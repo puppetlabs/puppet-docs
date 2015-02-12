@@ -86,9 +86,9 @@ Many improvements and fixes were made, including these:
 
 This was a problem because if `pe_gem` was installed, it would become the preferred provider over Zypper and cause package installs to fail.
 
-#### Puppet Server Was Coercing Request Data to UTF-8
+#### Puppet Server Was Aggressively Transforming Request Data to UTF-8
 
-The fix means is that Puppet Server handles arbitrary character encodings, including raw binary.
+The Clojure code that processed requests for delivery to JRuby aggressively transformed the request body to UTF-8. This altered the data contained in the request body and was not appropriate for all requests submitted to a Puppet Master. Notably, file bucket uploads failed if the file content being saved was not strictly UTF-8. The fix is that Puppet Server handles arbitrary character encodings, including raw binary.
 
 #### PE Installer Did Not Check Permissions on Untarred Folders
 
