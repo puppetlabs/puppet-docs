@@ -49,11 +49,30 @@ Vector AV:L/AC:L/Au:S/C:P/I:N/A:N/E:U/RL:OF/RC:C
 
 This issue affects PE 2.x and 3.x, Facter 1.6.0 - 2.4.0, and CFacter 0.2.0 and earlier. It's resolved in PE 3.7.2 and CFacter 0.3.0.
 
->**Note**: Non-Puppet Enterprise users of Facter on Amazon EC2 should take precautions to prevent unintended facts disclosure through applications that display facts. The vulnerability will be resolved in a future release of Facter.
-
 ### Bug Fixes
 
 Puppet Enterprise 3.7.2 contains a number of performance and documentation improvements, in addition to the fixes that are highlighted below.
+
+#### Install and Upgrade Fixes
+
+* PE installer did not create the symlink for the PE Java cacerts file
+This issue made `puppetserver gem imstall` fail with the error "Certificate verify failed." It also caused the error, "Could not find a valid gem 'hiera-eyaml'".
+* PE installer did not check permissions on untarred folders, which caused the installer to fail.
+* `pe-puppet` failed to upgrade on RHEL 4.
+* Agent install did not normalize FQDN for certname.
+
+#### A Handful of Node Manager Service Fixes
+
+Many improvements and fixes were made, including these:
+
+* Environments are removed from the classifier when they are no longer populated.
+* In PE console service, changes to logback.xml are now dynamically taken up.
+* Escaping DNs is now in place for searching for group membership.
+
+#### Role-Based Access Control Fixes
+
+* Previously, when tracing back an LDAP or Active Directory user's group membership, if one of the groups had a DN with a special character in it, the search would break. Now that search has been updated and should properly escape all special characters.
+* When resetting the admin password in RBAC, it wasn't obfuscated. It's now obfuscated.
 
 #### The `node:del` Rake Task Deleted a Node Group Instead of the Node
 
@@ -63,6 +82,27 @@ A new rake task, `node:delgroup`, was introduced in PE 3.7.2 for deleting a node
 
 For more information, see the [rake API documentation](./console_rake_api.html).
 
+#### PE PostgreSQL Was Started After Services That Depended On It
+
+Services like PuppetDB and Console Services were started before PostgreSQL and then were dead after a reboot.
+
+#### `puppet_enterprise::packages` Was Overriding Package Resource Defaults
+
+This was a problem because if `pe_gem` was installed, it would become the preferred provider over Zypper and cause package installs to fail.
+
+#### Puppet Server Was Aggressively Transforming Request Data to UTF-8
+
+The Clojure code that processed requests for delivery to JRuby aggressively transformed the request body to UTF-8. This altered the data contained in the request body and was not appropriate for all requests submitted to a Puppet Master. Notably, file bucket uploads failed if the file content being saved was not strictly UTF-8. The fix is that Puppet Server handles arbitrary character encodings, including raw binary.
+
+####Additional Bug Fixes
+
+The following issues were also fixed for PE 3.7.2
+
+* Classifier synchronization failed if an environment couldn't be loaded.
+* Automatic classification broke in IE 10 and 11 due to aggressive caching.
+* The `pe_accounts` "examples" directory broke RDoc; it's been removed.
+* The MCO cron sent spam to the root email account.
+* Confusing and unnecessary settings were removed from the `master` section of `puppet.conf`.
 
 ## Puppet Enterprise 3.7.1 (12/16/14)
 
