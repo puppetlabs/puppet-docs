@@ -18,7 +18,7 @@ defaultnav:
   /guides/install_puppet: puppet_general.html
   /hiera/1: hiera1.html
   /ja: ja_docs.html
-  /ja/guides/install_puppet: puppet_general_ja.html
+  /ja/guides/install_puppet: ja_puppet_general.html
   /ja/learning: ja_learning_nav.html
   /ja/puppet/3.7/reference: ja_puppet_3_7.html
   /learning: learning_nav.html
