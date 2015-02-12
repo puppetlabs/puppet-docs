@@ -130,6 +130,10 @@ Any SMTP server that requires authentication, TLS, or runs over any port other t
 
 > **Tip**: More information about Puppet Server can be found in the [Puppet Server docs](/puppetserver/1.0/services_master_puppetserver.html). Differences between PE and open source versions of Puppet Server are typically called out.
 
+### Updating Puppet Master Gems 
+
+After upgrading to PE 3.7.2, you need to update the Ruby gems used by your Puppet Master with `puppetserrver gem install <GEM NAME>`. After updating the gems, you need to restart the Puppet master with `service pe-puppetserver restart`. You should do this **before** doing any Puppet agent runs. 
+
 ### Puppet Server Run Issue when `/tmp/` Directory Mounted `noexec`
 
 In some cases (especially for RHEL 7 installations) if the `/tmp/` directory is mounted as `noexec`, Puppet Server may fail to run correctly, and you may see an error in the Puppet Server logs similar to the following:
