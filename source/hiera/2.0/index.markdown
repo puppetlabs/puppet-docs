@@ -1,5 +1,5 @@
 ---
-title: "Hiera 1: Overview"
+title: "Hiera 2: Overview"
 layout: default
 ---
 
