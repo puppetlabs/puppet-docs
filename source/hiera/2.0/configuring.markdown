@@ -76,6 +76,8 @@ If the config file exists but has no data, the default settings will be equivale
   :datadir: /etc/puppetlabs/code/hieradata
 :hierarchy: common
 :logger: console
+:merge_behavior: native
+:deep_merge_options: {}
 {% endhighlight %}
 
 Global Settings
@@ -129,11 +131,15 @@ For more details about hash merge lookup strategies, see ["Hash Merge"](./lookup
 
 ### `:deep_merge_options`
 
-Value is a hash of options to pass to the `deep merge` gem.
+Must be a hash of options to pass to the `deep merge` gem, if `:merge_behavior` is set to `deeper` or `deep`. For example:
 
-`:merge_behavior => :deep, :deep_merge_options => { :knockout_prefix => '-' }`
+    :merge_behavior: deeper
+    :deep_merge_options:
+      :knockout_prefix => '--'
 
 Available options are documented in [the `deep_merge` gem][deep_merge_gem_docs].
+
+**Default value:** An empty hash of options.
 
 Backend-Specific Settings
 -----
