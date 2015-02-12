@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Hiera 1: Complete Example"
+title: "Hiera 2: Complete Example"
 description: "Learn how to use Hiera to pull site-specific data out of your manifests with this walkthrough."
 ---
 
@@ -55,7 +55,7 @@ For purposes of this walkthrough, we'll assume a situation that looks something 
 
 ### Our Environment Before Hiera
 
-How did things look before we decided to use Hiera? Classes are assigned to nodes via the puppet site manifest (`/etc/puppet/manifests/sites.pp` for Puppet open source), so here's how our site manifest might have looked:
+How did things look before we decided to use Hiera? Classes are assigned to nodes via the Puppet site manifest (`/etc/puppet/manifests/sites.pp` for Puppet open source), so here's how our site manifest might have looked:
 
 {% highlight ruby %}
 	node "kermit.example.com" {
@@ -106,7 +106,7 @@ Step-by-step:
 
 `:hierarchy:` configures the data sources Hiera should consult. Puppet users commonly separate their hierarchies into directories to make it easier to get a quick top-level sense of how the hierarchy is put together. In this case, we're keeping it simple:
 
-- A single `node/` directory will contain any number of files named after some node's `fqdn` (fully qualified domain name) fact. (E.g. `/etc/puppet/hieradata/node/grover.example.com.yaml`) This lets us specifically configure any given node with Hiera. Not every node needs to have a file in `node/` --- if it's not there, Hiera will just move onto the next hierarchy level.
+- A single `node/` directory will contain any number of files named after some node's `fqdn` (fully qualified domain name) fact. (E.g., `/etc/puppet/hieradata/node/grover.example.com.yaml`) This lets us specifically configure any given node with Hiera. Not every node needs to have a file in `node/` --- if it's not there, Hiera will just move onto the next hierarchy level.
 - Next, the `common` data source (the `/etc/puppet/hieradata/common.yaml` file) will provide any common or default values we want to use when Hiera can't find a match for a given key elsewhere in our hierarchy. In this case, we're going to use it to set common ntp servers and default configuration options for the ntp module.
 
 > **Hierarchy and facts note:** When constructing a hierarchy, keep in mind that most of the useful Puppet variables are [**facts.**][facts] Since facts are submitted by the agent node itself, they _aren't necessarily trustworthy._ We don't recommend using facts as the sole deciding factor for distributing sensitive credentials.
@@ -115,12 +115,12 @@ Step-by-step:
 
 [facts]: /puppet/latest/reference/lang_variables.html#facts-and-built-in-variables
 
-> **Puppet master note:** If you modify `hiera.yaml` between agent runs, you'll have to restart your puppet master for your changes to take effect.
+> **Puppet master note:** If you modify `hiera.yaml` between agent runs, you'll have to restart your Puppet master for your changes to take effect.
 
 ### Configuring for the Command Line
 
 The [Hiera command line tool][] is useful when you're in the process of designing and testing your hierarchy. You can use it to mock in
-facts for Hiera to look up without having to go through cumbersome trial-and-error puppet runs. Since the `hiera` command expects to find
+facts for Hiera to look up without having to go through cumbersome trial-and-error Puppet runs. Since the `hiera` command expects to find
 `hiera.yaml` at `/etc/hiera.yaml`, you should set a symbolic link from your `hiera.yaml` file to `/etc/hiera.yaml`:
 
 	$ ln -s /etc/puppet/hiera.yaml /etc/hiera.yaml
@@ -190,7 +190,7 @@ That's just the array of outside ntp servers and options, which we expressed as 
 > - You've put a symlink to `hiera.yaml` where the command line tool expects to find it (`/etc/hiera.yaml`)
 > - You've saved your `kermit.example.com` data source file with a `.yaml` extension
 > - Your data source file's YAML is well formed
-> - You restarted your puppet master if you modified `hiera.yaml`
+> - You restarted your Puppet master if you modified `hiera.yaml`
 {: #something-went-wrong }
 
 Provided everything works and you get back that array of ntp servers, you're ready to configure another node.

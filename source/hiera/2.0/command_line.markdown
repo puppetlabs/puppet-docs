@@ -1,13 +1,13 @@
 ---
 layout: default
-title: "Hiera 1: Command Line Usage"
+title: "Hiera 2: Command Line Usage"
 ---
 
 [priority_lookup]: ./lookup_types.html#priority-default
 [hash_lookup]: ./lookup_types.html#hash-merge
 [array_lookup]: ./lookup_types.html#array-merge
 
-Hiera provides a command line tool that's useful for verifying that your hierarchy is constructed correctly and that your data sources are returning the values you expect. You'll typically run the Hiera command line tool on a puppet master, making up the facts agents would normally provide the puppet master using a variety of [fact sources](#fact-sources).
+Hiera provides a command line tool that's useful for verifying that your hierarchy is constructed correctly and that your data sources are returning the values you expect. You'll typically run the Hiera command line tool on a Puppet master, making up the facts agents would normally provide the Puppet master using a variety of [fact sources](#fact-sources).
 
 ## Invocation
 
@@ -21,7 +21,7 @@ A more standard invocation will provide a set of variables for Hiera to use, so 
 
 ## Configuration File Location
 
-The Hiera command line tool looks for its configuration in `/etc/hiera.yaml`, which is different from both Puppet Enterprise and open source Puppet. You can use the `--config` argument to specify a different configuration file. See the documentation on Hiera's [configuration file](configuring.html#location) for notes on where to find this file depending on your Puppet version and operating system, and consider either reconfiguring Puppet to use `/etc/hiera.yaml` (Puppet 3) or set a symlink to `/etc/hiera.yaml` (Puppet 2.7).
+The Hiera command line tool looks for its configuration in `/etc/puppetlabs/code/hiera.yaml`. You can use the `--config` argument to specify a different configuration file. See the documentation on Hiera's [configuration file](configuring.html#location) for details about this file.
 
 ### Order of Arguments
 
@@ -54,9 +54,9 @@ Argument                              | Use
 
 When used from Puppet, Hiera automatically receives all of the facts it needs. On the command line, you'll need to manually pass it those facts.
 
-You'll typically run the Hiera command line tool on your puppet master node, where it will expect the facts to be either:
+You'll typically run the Hiera command line tool on your Puppet master node, where it will expect the facts to be either:
 
-* Included on the command line as variables (e.g. `::operatingsystem=Debian`)
+* Included on the command line as variables (e.g., `::operatingsystem=Debian`)
 * Given as a [YAML or JSON scope file](#json-and-yaml-scopes)
 * Retrieved on the fly from [MCollective](#mcollective) data
 * Looked up from [Puppet's inventory service](#inventory-service)
@@ -65,7 +65,7 @@ Descriptions of these choices are below.
 
 ### Command Line Variables
 
-Hiera accepts facts from the command line in the form of `variable=value` pairs, e.g. `hiera ntp_server ::osfamily=Debian clientcert="web01.example.com"`. Variables on the command line must be specified in a way that matches how they appear in `hiera.yaml`, including the leading `::` for facts and other top-scope variables. Variable values must be strings and must be quoted if they contain spaces.
+Hiera accepts facts from the command line in the form of `variable=value` pairs, e.g., `hiera ntp_server ::osfamily=Debian clientcert="web01.example.com"`. Variables on the command line must be specified in a way that matches how they appear in `hiera.yaml`, including the leading `::` for facts and other top-scope variables. Variable values must be strings and must be quoted if they contain spaces.
 
 This is useful if the values you're testing only rely on a few facts. It can become unweildy if your hierarchy is large or you need to test values for many nodes at once. In these cases, you should use one of the other options below.
 
@@ -120,7 +120,7 @@ Note that you must be running the Hiera command from a user account that is auth
 
 #### Puppet Enterprise Example
 
-In Puppet Enterprise 2.x or 3.x, you can do Hiera lookups with MCollective by switching to the `peadmin` account on the puppet master server, which is authorized to issue orchestration commands.
+In Puppet Enterprise 2.x or 3.x, you can do Hiera lookups with MCollective by switching to the `peadmin` account on the Puppet master server, which is authorized to issue orchestration commands.
 
     # sudo -iu peadmin
     $ hiera ntp_server -m balancer01.example.com
@@ -129,30 +129,25 @@ Make sure that the `peadmin` user is allowed to read the Hiera config and data f
 
 ### Inventory Service
 
-If your puppet master is connected to a PuppetDB server (or has the older ActiveRecord inventory service enabled), you can get Hiera lookups using the actual facts reported by an actual puppet agent node. This goes through Puppet's [inventory service](/guides/inventory_service.html) API.
+If your Puppet master is connected to a PuppetDB server (or has the older ActiveRecord inventory service enabled), you can get Hiera lookups using the actual facts reported by an actual Puppet agent. This goes through Puppet's [inventory service](/guides/inventory_service.html) API.
 
 To do this, use the `-i` or `--inventory_service` flag and give it the name of a Puppet node as an argument:
 
     $ hiera ntp_server -i balancer01.example.com
-
-> #### Note: Known Bug With Puppet 3.x
->
-> In Hiera 1.3 and earlier, inventory lookups will fail when Puppet 3.x is present. This is a bug in Hiera, which will be fixed in a future release.
-
 
 
 #### Allowing Lookups on the Puppet Master
 
 [authconf]: /guides/rest_auth_conf.html
 
-Before you can do Hiera lookups via the inventory, you'll need to enable access in [the puppet master's `auth.conf` file.][authconf] You must ensure that the node you will be doing lookups from can call the `find` method on the `/facts` path. This will probably look something like this:
+Before you can do Hiera lookups via the inventory, you'll need to enable access in [the Puppet master's `auth.conf` file.][authconf] You must ensure that the node you will be doing lookups from can call the `find` method on the `/facts` path. This will probably look something like this:
 
     path  /facts
     method find, search
     auth yes
     allow pe-internal-dashboard, puppet.example.com
 
-When choosing the name and certificate to use when contacting the puppet master, Hiera uses the existing puppet.conf and agent certificate on the node. If you are running as root, it will impersonate the agent node you are running on; if you are running as another user, it will use configuration and credentials in `~/.puppet/` instead.
+When choosing the name and certificate to use when contacting the Puppet master, Hiera uses the existing puppet.conf and agent certificate on the node. If you are running as root, it will impersonate the agent node you are running on; if you are running as another user, it will use configuration and credentials in `~/.puppet/` instead.
 
 To run as a different user, you may need to request a separate certificate, since the master won't sign two certificates with the same certname. To do this:
 
