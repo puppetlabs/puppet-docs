@@ -73,11 +73,12 @@ Services like PuppetDB and Console Services were started before PostgreSQL and t
 
 #### PE Installer Did Not Create the Symlink for the PE Java cacerts File
 
-This issue made `puppetserver gem imstall` fail with the error "Certificate verify failed." It also caused the error, "Could not find a valid gem 'hiera-eyaml'".
+This issue made `puppetserver gem install` fail with the error "Certificate verify failed." It also caused the error, "Could not find a valid gem 'hiera-eyaml'".
 
 #### A Handful of Node Manager Service Fixes
 
 Many improvements and fixes were made, including these:
+
 * Environments are removed from the classifier when they are no longer populated.
 * In PE console service, changes to logback.xml are now dynamically taken up.
 * Escaping DNs is now in place for searching for group membership
