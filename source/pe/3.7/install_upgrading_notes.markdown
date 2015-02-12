@@ -11,6 +11,10 @@ canonical: "/pe/latest/install_upgrading_notes.html"
 
 PE 3.7.0 introduces the Puppet server, running the Puppet Master, which functions as a seamless drop-in replacement for the former Apache/Passenger Puppet master stack. However, due to this change in the underlying architecture of the Puppet master, there are a few changes you'll notice after upgrading that we'd like to point out. Refer to [About the Puppet Server](./install_upgrading_puppet_server_notes.html) for more information.
 
+#### Updating Puppet Master Gems 
+
+After upgrading to PE 3.7.2, you need to update the Ruby gems used by your Puppet Master with `puppetserrver gem install <GEM NAME>`. After updating the gems, you need to restart the Puppet master with `service pe-puppetserver restart`. You should do this **before** doing any Puppet agent runs. 
+
 ### Upgrading to Directory Environments
 
 Directory environments are enabled by default in PE 3.7.0. Before upgrading be sure to read [Important Information about Upgrades to PE 3.7 and Directory Environments](./install_upgrading_dir_env_notes.html).

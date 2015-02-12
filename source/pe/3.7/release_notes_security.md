@@ -74,17 +74,19 @@ Many improvements and fixes were made, including these:
 * Previously, when tracing back an LDAP or Active Directory user's group membership, if one of the groups had a DN with a special character in it, the search would break. Now that search has been updated and should properly escape all special characters.
 * When resetting the admin password in RBAC, it wasn't obfuscated. It's now obfuscated.
 
-#### The `node:del` Rake Task Deleted a Node Group Instead of the Node
+Services like PuppetDB and Console Services were started before PostgreSQL and then were dead after a reboot. This is fixed.
 
-In PE 3.7, the behavior of the `node:del` rake task changed so that it deleted the node group to which a specified node was pinned. In PE 3.7.2, this behavior has been reverted to the PE 3.3 behavior so that `node:del` now deletes the specified node from the console database.
+#### PE Installer Did Not Create the Symlink for the PE Java cacerts File
 
-A new rake task, `node:delgroup`, was introduced in PE 3.7.2 for deleting a node group.
+This issue made `puppetserver gem install` fail with the error "Certificate verify failed." It also caused the error, "Could not find a valid gem 'hiera-eyaml'".
 
-For more information, see the [rake API documentation](./console_rake_api.html).
+#### A Handful of Node Manager Service Fixes
 
 #### PE PostgreSQL Was Started After Services That Depended On It
 
 Services like PuppetDB and Console Services were started before PostgreSQL and then were dead after a reboot.
+* In PE console service, changes to logback.xml are now dynamically taken up.
+* Escaping DNs is now in place for searching for group membership
 
 #### `puppet_enterprise::packages` Was Overriding Package Resource Defaults
 
@@ -94,11 +96,16 @@ This was a problem because if `pe_gem` was installed, it would become the prefer
 
 The Clojure code that processed requests for delivery to JRuby aggressively transformed the request body to UTF-8. This altered the data contained in the request body and was not appropriate for all requests submitted to a Puppet Master. Notably, file bucket uploads failed if the file content being saved was not strictly UTF-8. The fix is that Puppet Server handles arbitrary character encodings, including raw binary.
 
+#### PE Installer Did Not Check Permissions on Untarred Folders
+
+This caused the installer to fail.
+
 ####Additional Bug Fixes
 
 The following issues were also fixed for PE 3.7.2
 
 * Classifier synchronization failed if an environment couldn't be loaded.
+* `pe-puppet` failed to upgrade on RHEL 4
 * Automatic classification broke in IE 10 and 11 due to aggressive caching.
 * The `pe_accounts` "examples" directory broke RDoc; it's been removed.
 * The MCO cron sent spam to the root email account.
