@@ -14,9 +14,9 @@ Hiera 2.0.0 is a new major version of Hiera, which includes several new features
 
 On \*nix systems, this release changes the default locations for the config file and the data directory used by the YAML and JSON backends. If you were relying on the old default behavior, you'll need to either move your files or configure Hiera to use non-default locations.
 
-* `hiera.yaml` is now at `/etc/puppetlabs/agent/code/hiera.yaml`
+* `hiera.yaml` is now at `/etc/puppetlabs/code/hiera.yaml`
     * (was: `/etc/hiera.yaml` or `/etc/puppetlabs/puppet/hiera.yaml` or `/etc/puppet/hiera.yaml`)
-* `:datadir` is now at `/etc/puppetlabs/agent/code/hieradata/`
+* `:datadir` is now at `/etc/puppetlabs/code/hieradata/`
     * (was: `/var/lib/hiera`)
 
 Also, Hiera will now always use the _same_ default location, whether you're using it from the CLI, as a Ruby library, or via Puppet.

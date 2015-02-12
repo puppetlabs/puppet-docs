@@ -18,22 +18,24 @@ Hiera will fail with an error if the config file can't be found, although an emp
 Location
 -----
 
-By default, the config file is `$confdir/hiera.yaml`, which is usually one of the following:
+By default, the config file is:
 
-* `/etc/puppetlabs/agent/code/hiera.yaml` on \*nix systems.
-* [`COMMON_APPDATA`][common_appdata]`\PuppetLabs\puppet\etc\hiera.yaml` on Windows.
+* `/etc/puppetlabs/code/hiera.yaml` on \*nix systems
+* [`COMMON_APPDATA`][common_appdata]`\PuppetLabs\puppet\etc\hiera.yaml` on Windows
+
+### Changing the Config File Location
 
 You can specify a different config file for Hiera via Puppet, the command line, or Ruby code.
 
-### In Puppet
+#### In Puppet
 
-In Puppet 3 or later, use [the `hiera_config` setting](/references/latest/configuration.html#hieraconfig) in `puppet.conf` to specify a different config file. In Puppet 2.x, you cannot specify a different config file, although you can make `$confdir/hiera.yaml` a symlink to a different file.
+You can use [the `hiera_config` setting](/references/latest/configuration.html#hieraconfig) in `puppet.conf` to specify a different config file.
 
-### From the Command Line
+#### From the Command Line
 
 You can specify a different config file with the `-c` (`--config`) option.
 
-### From Ruby Code
+#### From Ruby Code
 
 You can specify a different config file or a hash of settings when calling `Hiera.new`.
 
@@ -54,9 +56,9 @@ Each top-level key in the hash **must be a Ruby symbol with a colon (`:`) prefix
   - yaml
   - json
 :yaml:
-  :datadir: /etc/puppetlabs/agent/code/hieradata
+  :datadir: /etc/puppetlabs/code/hieradata
 :json:
-  :datadir: /etc/puppetlabs/agent/code/hieradata
+  :datadir: /etc/puppetlabs/code/hieradata
 :hierarchy:
   - "%{::clientcert}"
   - "%{::custom_location}"
@@ -71,7 +73,7 @@ If the config file exists but has no data, the default settings will be equivale
 ---
 :backends: yaml
 :yaml:
-  :datadir: /etc/puppetlabs/agent/code/hieradata
+  :datadir: /etc/puppetlabs/code/hieradata
 :hierarchy: common
 :logger: console
 {% endhighlight %}
@@ -146,9 +148,9 @@ The following settings are available for the built-in backends:
 
 The directory in which to find data source files. This must be a string.
 
-You can [interpolate variables][interpolate] into the datadir using `%{variable}` interpolation tokens. This allows you to, for example, point it at `"/etc/puppetlabs/agent/code/hieradata/%{::environment}"` to keep your production and development data entirely separate.
+You can [interpolate variables][interpolate] into the datadir using `%{variable}` interpolation tokens. This allows you to, for example, point it at `"/etc/puppetlabs/code/hieradata/%{::environment}"` to keep your production and development data entirely separate.
 
-**Default value:** `/etc/puppetlabs/agent/code/hieradata` on \*nix, and [`COMMON_APPDATA`][common_appdata]`\PuppetLabs\Hiera\var` on Windows.
+**Default value:** `/etc/puppetlabs/code/hieradata` on \*nix, and [`COMMON_APPDATA`][common_appdata]`\PuppetLabs\Hiera\var` on Windows.
 
 ### `:puppet`
 
