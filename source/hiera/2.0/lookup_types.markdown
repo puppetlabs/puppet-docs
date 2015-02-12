@@ -17,9 +17,14 @@ Priority lookups can retrieve values of any data type (strings, arrays, hashes),
 
 This is Hiera's default lookup method.
 
-## Lookup Keys
+### Lookup Keys
 
-Priority lookup accepts top-level lookup keys, which return the entire value of the key, or qualified keys, which return just the specified part of a value. Qualified keys are composed of a lookup key along with any number of additional subkeys, separated by dots. 
+Unlike the other lookup types, priority lookup accepts two kinds of key:
+
+* **Top-level lookup keys,** which return the entire value of the key.
+* **Qualified keys,** which return just the specified part of a value.
+
+Qualified keys are composed of a top-level lookup key along with any number of additional subkeys, separated by dots.
 
 For example, to look up an element in a hash:
 
@@ -41,12 +46,13 @@ $ hiera ssh_users.0
 root
 ~~~
 
-The subkey can be an integer if the value is an array, or a key name if it's a hash. You can also chain subkeys together for deeply nested structures. Qualified keys can be used in interpolated values just like a normal key, so `%{'user.name'}` is valid.
+The subkey can be an integer if the value is an array, or a key name if it's a hash. You can also chain subkeys together for deeply nested structures. Qualified keys can be used in interpolated values just like a normal key, so `%{hiera('user.name')}` is valid.
 
-If no matching key or subkey is found, Hiera returns a `nil` result. If the lookup key is an unexpected type (e.g., you used an array key to search a hash), an exception is returned.
+If no matching key or subkey is found, Hiera returns a `nil` result. If a subkey is an unexpected type (e.g., you tried to use an integer as a hash key or a string as an array index), an exception is returned.
 
-### A note about resolution_type
-Hiera doesn't support the use of `:hash` or `:array` as the resolution type for qualified keys. For those types, you must use a non-segmented key to get the first hash or array, and then manipulate the data.
+#### Note About Other Lookup Methods
+
+Hiera doesn't support using qualified keys with array merge or hash merge lookups. If you're looking up merged data, you must use a non-segmented key to get the entire merged hash or array and then manipulate the data as needed.
 
 Array Merge
 -----
