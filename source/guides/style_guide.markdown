@@ -8,7 +8,7 @@ The Puppet Language Style Guide
 
 ####Metadata
 
-Puppet Language Style Guide: Version 2.0.0
+Puppet Language Style Guide: Version 2.0.1
 
 Puppet: Version 3.7+ 
 
@@ -171,7 +171,7 @@ A more complete guide to the metadata.json format can be found in the [docs](htt
 
 ### 8.1 Dependencies
 
-Hard dependencies must be declared explicitly in your module's metadata.json file. Soft dependencies should be called out in the README.md, and must not be enforced as a hard requirement in your metadata.json. A soft dependency is a dependency that is only required in a specific set of use cases. (As an example, see the [rabbitmq module](https://github.com/puppetlabs/puppetlabs-rabbitmq#module-dependencies).)
+Hard dependencies must be declared explicitly in your module's metadata.json file. Soft dependencies should be called out in the README.md, and must not be enforced as a hard requirement in your metadata.json. A soft dependency is a dependency that is only required in a specific set of use cases. (As an example, see the [rabbitmq module](https://forge.puppetlabs.com/puppetlabs/rabbitmq#module-dependencies).)
 
 Your hard dependency declarations should not be unbounded.
 
@@ -495,7 +495,7 @@ The following example follows the recommended style:
 
 We recommend that you split your module into public and private classes and defines where possible. Public classes or defines should contain the parts of the module meant to be configured or customized by the user, while private classes should contain things you do not expect the user to change via parameters. Separating into public and private classes/defines helps build reusable and readable code.
 
-You should help indicate to the user which classes are which by both calling out the public classes in the README and making sure all public classes have complete [comments](#7-comments).
+You should help indicate to the user which classes are which by both calling out the public classes in the README and making sure all public classes have complete [comments](#comments).
 
 >Note: As of stdlib 4.4.0, there is a `private` function that will cause a failure if a private class is called externally. You can use this to enforce the privacy of private classes.
 
@@ -563,7 +563,7 @@ When writing a module that accepts class and define parameters, appropriate defa
 
 When creating parameter defaults, you:
 
-* Must use fully qualified namespace variables when pulling the value from the module params class. This avoids namespace collisions. See [Namespacing Variables](#131-namespacing-variables) for more information.
+* Must use fully qualified namespace variables when pulling the value from the module params class. This avoids namespace collisions. See [Namespacing Variables](#namespacing-variables) for more information.
 * Should use the `_` prefix to indicate a scope local variable for maintainability over time.
 
 **Good:**
@@ -695,7 +695,7 @@ Class inheritance should only be used for `myclass::params` parameter defaults. 
 
 ### 11.2 A Note About Publicly Available Modules
 
-Although the `include` function technically allows multiple declarations of classes, using it in publicly available modules can result in non-deterministic scoping issues due to the way parent scopes are assigned.
+When declaring classes in publicly available modules, you should use `include`, `contain`, or `require` rather than class resource declaration. This avoids duplicate class declarations and vendor lock-in.
 
 
 ## 12. Defined Resource Types (Defines)
@@ -703,6 +703,27 @@ Although the `include` function technically allows multiple declarations of clas
 ### 12.1. Uniqueness
 
 Since defined resource types (defines) can have multiple instances, resource names must have a unique variable to avoid duplicate declarations.
+
+**Good:**
+
+~~~
+define apache::listen {
+  $listen_addr_port = $name
+
+  # Template uses: $listen_addr_port
+  concat::fragment { "Listen ${listen_addr_port}":
+    ensure  => present,
+    target  => $::apache::ports_file,
+    content => template('apache/listen.erb'),
+  }
+}
+~~~
+
+**Bad:**
+
+~~~
+
+~~~
 
 ## 13. Variables
 
@@ -847,4 +868,4 @@ Your module should have a CHANGELOG in .md (or .markdown) format. Your CHANGELOG
 
 ## 19. Verifying style
 
-This guide helps development of puppet-lint and puppet-metadata-lint[.](http://fc09.deviantart.net/fs70/i/2012/232/0/a/welcome_to_the_internet__please_follow_me_by_sharpwriter-d5buwfu.jpg)
+This guide helps development of [puppet-lint](http://puppet-lint.com/) and [metadata-json-lint](https://github.com/nibalizer/metadata-json-lint)[.](http://fc09.deviantart.net/fs70/i/2012/232/0/a/welcome_to_the_internet__please_follow_me_by_sharpwriter-d5buwfu.jpg)
