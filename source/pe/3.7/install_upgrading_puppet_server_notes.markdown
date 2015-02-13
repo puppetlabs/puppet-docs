@@ -20,7 +20,11 @@ In PE 3.7 the Puppet master service is now `pe-puppetserver`, and you can restar
 
 ### Updating Puppet Master Gems 
 
-After upgrading to PE 3.7.2, you need to update the Ruby gems used by your Puppet Master with `puppetserrver gem install <GEM NAME>`. After updating the gems, you need to restart the Puppet master with `service pe-puppetserver restart`. You should do this **before** doing any Puppet agent runs. 
+After upgrading to PE 3.7.2, you need to update the Ruby gems used by your Puppet Master with `/opt/puppet/bin/puppetserver gem install <GEM NAME>`. 
+
+For instance, in PE 3.7.2, the deep_merge gem is no longer installed by default. If you previously used this gem, you will need to reinstall it after upgrading. 
+
+After updating the gems, you need to restart the Puppet master with `service pe-puppetserver restart`. You should do this **before** doing any Puppet agent runs. 
 
 ### New Config Files
 

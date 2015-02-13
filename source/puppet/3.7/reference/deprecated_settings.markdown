@@ -106,6 +106,22 @@ The inventory service could do a fraction of what PuppetDB does, and with a slow
 Other Settings
 -----
 
+### `parser`
+
+* [`parser`](/references/3.7.latest/configuration.html#parser)
+
+#### Now
+
+This setting switches between the `current` (3.x) and `future` (4.0) parsers.
+
+#### In Puppet 4.0
+
+The parser currently known as `future` is the only available parser, and the `parser` setting is removed.
+
+#### Detecting and Updating
+
+If this is set in puppet.conf on your master(s), you'll need to delete it. Additionally, many people use the corresponding `--parser` option on the command line for certain tasks; if you do, you'll need to remove it from the affected commands.
+
 ### `allow_variables_with_dashes`
 
 * [`allow_variables_with_dashes`](/references/3.7.latest/configuration.html#allowvariableswithdashes)
