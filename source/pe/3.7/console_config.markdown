@@ -5,8 +5,7 @@ subtitle: "Configuring & Tuning the Console & Databases"
 canonical: "/pe/latest/console_config.html"
 ---
 
-Configuring Console Access Control
------
+## Configuring Console Access Control
 
 ### Changing Session Duration
 
@@ -26,8 +25,7 @@ To change these defaults, add a new file to the `/etc/puppetlabs/console-service
 
 Then restart pe-console-services (`sudo service pe-console-services restart`)
 
-Tuning the PostgreSQL Buffer Pool Size
------
+## Tuning the PostgreSQL Buffer Pool Size
 
 If you are experiencing performance issues or instability with the console, you may need to adjust the buffer memory settings for PostgreSQL. The most important PostgreSQL memory settings for PE are `shared_buffers` and `work_mem`.  Generally speaking, you should allocate about 25% of your hardware's RAM to `shared_buffers`. If you have a large and/or complex deployment you will probably need to increase `work_mem` from the default of 1mb. For more detail, see in the [PostgreSQL documentation](http://www.postgresql.org/docs/9.2/static/runtime-config-resource.html).
 
@@ -36,8 +34,7 @@ After changing any of these settings, you should restart the PostgreSQL server:
     $ sudo /etc/init.d/pe-postgresql restart
 
 
-Changing the Console's Port
------
+## Changing the Console's Port
 
 By default, a new installation of PE will serve the console on the default SSL port, 443. If you wish to change the port the console is available on:
 
@@ -49,8 +46,7 @@ By default, a new installation of PE will serve the console on the default SSL p
 
 The console should now be available on the port you provided.
 
-Disabling Update Checking
------
+## Disabling Update Checking
 
 When the console's web server (`pe-httpd`) starts or restarts, it checks for updates. To get the correct update info, the server will pass some basic, anonymous info to Puppet Labs' servers. Specifically, it will transmit:
 
