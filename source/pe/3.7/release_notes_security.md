@@ -59,7 +59,6 @@ Puppet Enterprise 3.7.2 contains a number of performance and documentation impro
 This issue made `puppetserver gem imstall` fail with the error "Certificate verify failed." It also caused the error, "Could not find a valid gem 'hiera-eyaml'".
 * PE installer did not check permissions on untarred folders, which caused the installer to fail.
 * `pe-puppet` failed to upgrade on RHEL 4.
-* Agent install did not normalize FQDN for certname.
 
 #### A Handful of Node Manager Service Fixes
 
@@ -72,6 +71,12 @@ This issue made `puppetserver gem imstall` fail with the error "Certificate veri
 
 * Previously, when tracing back an LDAP or Active Directory user's group membership, if one of the groups had a DN with a special character in it, the search would break. Now that search has been updated and should properly escape all special characters.
 * When resetting the admin password in RBAC, it wasn't obfuscated. It's now obfuscated.
+
+#### Agent Install Did Not Normalize FQDN for Certname
+
+Previously, if an agent was installed on a node with capital letters in the FQDN, then that FQDN with capital letters would be placed directly into the certname in puppet.conf.  Due to an older issue in Puppet, mixed-case certnames allow a certificate to be created and signed that is lowercase and that does not match the certname in puppet.conf.
+
+This mismatch was addressed by a fix to the PE 3.7.2 agent installer that downcases the entire certname before placing it in puppet.conf.
 
 #### PE PostgreSQL Was Started After Services That Depended On It
 
