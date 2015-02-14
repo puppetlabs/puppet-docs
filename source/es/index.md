@@ -12,27 +12,34 @@
 
 Bienvenidos al sitio de documentación de Puppet Labs. La documentación publicada aquí también está disponible en un set de PDFs que puedes encontrar [aquí](http://info.puppetlabs.com/download-pdfs.html). También es posible [bajar la versión actual de todo este sitio] como archivo zipeado; descomprímelo y sigue las instrucciones del archivo README.txt para ver el sitio offline.
 
+##Contributing
+This documentation has been kindly contributed by the Puppet user community. In particular, we would like to give special thanks to Edrans, a Puppet partner based in Argentina, for their generous contribution to the translation of Puppet Labs user documentation into Spanish.
+
+Puppet Labs is committed to supporting our Spanish-speaking users. We plan to continue adding more Spanish resources to help you learn and implement Puppet and Puppet Enterprise. 
+
+We are always looking for more help with translating our documentation into Spanish. If you would like to contribute to the translation of Puppet documentation, please [email us](localization@puppetlabs.com).
+
 ##Puppet
 Puppet maneja tus servidores: Describes la configuración en un lenguaje declarativo de fácil lectura, y Puppet llevará tus sistemas al estado deseado y los mantendrá allí.
 
 [Mira el índice de la documentación Puppet aquí](http://docs.puppetlabs.com/puppet/), o ve directamente a una de las páginas más populares:
 
-+ [La serie de aprendizaje para Puppet](http://docs.puppetlabs.com/learning/) es un tutorial guiado para usuarios nuevos, el cual incluye una VM gratuita para  hacer ejercicios y experimentar, y puedas ir desde  *“¿Qué es esto?”* a un *“¡Puedo hacerlo!”* en solo un par de horas. 
++ [La serie de aprendizaje para Puppet](http://docs.puppetlabs.com/learning/) es un tutorial guiado para usuarios nuevos, el cual incluye una VM gratuita para hacer ejercicios y experimentar, y puedas ir desde  *“¿Qué es esto?”* a un *“¡Puedo hacerlo!”* en solo un par de horas. 
 + [La guía de instalación](http://docs.puppetlabs.com/guides/installation.html) te ayudará a instalar y configurar la versión actual de Puppet open source.
-+ [El manual de referencia para Puppet 3](http://docs.puppetlabs.com/puppet/3/reference/)
-+ [El manual de referencia para Puppet 2.7](http://docs.puppetlabs.com/puppet/2.7/reference/)
++ [El manual de referencia para Puppet 3.7](http://docs.puppetlabs.com/puppet/3.7/reference/)
++ [El manual de referencia para Puppet 3.6](http://docs.puppetlabs.com/puppet/3.6/reference/), [Puppet 3.5](http://docs.puppetlabs.com/puppet/3.5/reference/), [Puppet 3.0-3.4](http://docs.puppetlabs.com/puppet/3/reference/) y [Puppet 2.7](http://docs.puppetlabs.com/puppet/2.7/reference/).
 + [Referencia de tipos](http://docs.puppetlabs.com/references/latest/type.html) cubre todos los tipos de recursos integrados y sus atributos disponibles. Los usuarios nuevos deberían empezar por otra parte, pero los experimentados pasarán la mayoría del tiempo solamente en esta página.
 + [El glosario](http://docs.puppetlabs.com/references/glossary.html) explica la terminología que encontrarás leyendo sobre Puppet.
 
 #Puppet Enterprise
-Puppet Enterprise es Puppet y más; incluye soporte profesional, un stack de puppet  listo para producción, una consola web para analizar reportes y controlar tu infraestructura, poderosas ventajas de orquestación, y herramientas para provisionar en la nube (cloud).
+Puppet Enterprise es Puppet y más; incluye soporte profesional, un stack de puppet listo para producción, una consola web para analizar reportes y controlar tu infraestructura, poderosas ventajas de orquestación, y herramientas para provisionar en la nube (cloud).
 Casi toda la documentación de Puppet también se aplica para Puppet Enterprise. Para más detalles sobre otras características de PE y su entorno de ejecución ligeramente distinto, mira a [la *Guía para el usuario* actual de PE](http://docs.puppetlabs.com/pe/latest/), o ve directamente a: 
 
 + [Requerimientos del sistema](http://docs.puppetlabs.com/pe/latest/install_system_requirements.html)
 + [Instrucciones para la instalación](http://docs.puppetlabs.com/pe/latest/install_basic.html) o [Instrucciones de actualización](http://docs.puppetlabs.com/pe/latest/install_upgrading.html)
 + [La guía para comenzar rápido](http://docs.puppetlabs.com/pe/latest/quick_start.html), la cual te llevará a través de la construcción y gestión de una pequeña prueba de concepto de utilización para comenzar a usar PE.
 + [La guía de utilización](http://docs.puppetlabs.com/guides/deployment_guide/dg_intro_install.html) tiene mucha información para ayudarte a preparar y hacer uso de PE de acuerdo con los mejores ensayos y métodos usados por los ingenieros de servicios profesionales en Puppet Labs.
-+ [El sitio de downloads de PE](http://info.puppetlabs.com/download-pe.html) La versión actual de PE es 2.7; la documentación para versiones anteriores puedes encontrarla [aquí](http://docs.puppetlabs.com/pe/index.html).
++ [El sitio de downloads de PE](http://info.puppetlabs.com/download-pe.html) La versión actual de PE es 3.7; la documentación para versiones anteriores puedes encontrarla [aquí](http://docs.puppetlabs.com/pe/index.html).
 
 #MCollective
 MCollective es un poderoso framework de orquestación. Puedes ejecutar acciones en miles de servidores simultáneamente, usando plugins existentes o escribiendo plugins propios.
@@ -78,9 +85,29 @@ Hiera es una herramienta de búsqueda de pares clave/valor para configurar datos
 #Facter
 Facter es la biblioteca multiplataforma de perfilado de sistemas utilizado por Puppet. Descubre y reporta *datos particulares de cada nodo* (fact), los cuales están disponibles en tus Manifiestos de Puppet como variables.
 
-+ [La lista de facts fundamentales](http://docs.puppetlabs.com/facter/1.6/core_facts.html) enumera y describe cada fact que se incluye por defecto en Facter .
++ [La lista de facts fundamentales](http://docs.puppetlabs.com/facter/latest/core_facts.html) enumera y describe cada fact que se incluye por defecto en Facter .
 + [La guía de facts customizados](http://docs.puppetlabs.com/guides/custom_facts.html), explica cómo escribir y distribuir tus propios facts.
 
+[Geppetto](/geppetto/latest/index.html)
+-----
+
+Geppetto is an integrated development environment (IDE) for Puppet. It provides a toolset for developing puppet modules and manifests that includes syntax highlighting, error tracing/debugging, and code completion features. Geppetto also adds PE integration by parsing PuppetDB error reporting. This allows you to quickly find the problems with your puppet code that are causing configuration failures.
+
+* [The Geppetto Manual](/geppetto/latest/index.html) has installation and usage instructions.
+
+[Puppet Forge](/forge/index.html)
+-----
+
+The [Puppet Forge](https://forge.puppetlabs.com) is where you go to get pre-made modules created by Puppet Labs and the Puppet community. Modules on the Forge cover everything from NTP and Registry to Apache and PostgreSQL, and make it easy to instal, configure, and manage all kinds of technology with Puppet. You can access the Forge online or through the Puppet module tool, which is your in-Puppet way of interfacing with the Forge from the command line.
+
+* [Puppet Enterprise Modules](/forge/puppetenterprisemodules/index.html) will tell you everything you need to know about working with PE-specific modules from the Forge.
+
+Razor
+-----
+
+Razor is an advanced provisioning application that can deploy both bare metal and virtual systems. For information about the Razor integration with PE, see [Bare Metal Provisioning with Razor](/pe/latest/razor_intro.html).
+
+[Razor is also available as an open source project](https://github.com/puppetlabs/razor-server). See the [Razor wiki](https://github.com/puppetlabs/razor-server/wiki) for further information.
 #Comunidad
 Puppet tiene una gran comunidad y muchos recursos para usuarios.
 
@@ -95,6 +122,4 @@ Los documentos debajo pertenecen a la comunidad y están bajo licencia de *Creat
 Este trabajo está bajo licencia de [Creative Commons Attribution-Share Alike 3.0 United States License]( (http://creativecommons.org/licenses/by-sa/3.0/us/).
 Para sugerencias o correcciones menores, puedes enviar un correo a: faq@puppetlabs.com. Para aportar texto o sugerencias mayores, mira las [instrucciones para contribuciones](http://docs.puppetlabs.com/contribute.html). Si quisieras presentar tu propio material, puedes crear un *fork* del proyecto en github, haz cambios, y envíanos un *pull request*. Mira los archivos README del proyecto para más información acerca de cómo generar y visualizar una copia del sitio web.
 
-#Versión de la documentación
-Esta versión de la documentación fue generada en base a la revisión d9581f0b01a295492c2cbb3d14e1706e22f12c21 de  [puppet-docs Git repo](https://github.com/puppetlabs/puppet-docs) el 22 de abril del 2013.
-Volver arriba.
+
