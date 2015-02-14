@@ -1396,9 +1396,8 @@ differently, including Windows. For detailed ACL controls on Windows,
 you can leave `mode` unmanaged and use
 [the puppetlabs/acl module.](https://forge.puppetlabs.com/puppetlabs/acl)
 
-Numeric modes should use the standard four-digit octal notation of
-`<setuid/setgid/sticky><owner><group><other>` (e.g. 0644). Each of the
-"owner," "group," and "other" digits should be a sum of the
+Numeric modes should use octal notation of `<setuid/setgid/sticky><owner><group><other>` (e.g. 0644). 
+Each of the "owner," "group," and "other" digits should be a sum of the
 permissions for that class of users, where read = 4, write = 2, and
 execute/search = 1. When setting numeric permissions for
 directories, Puppet sets the search permission wherever the read
