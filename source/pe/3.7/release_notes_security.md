@@ -56,7 +56,7 @@ Puppet Enterprise 3.7.2 contains a number of performance and documentation impro
 #### Install and Upgrade Fixes
 
 * PE installer did not create the symlink for the PE Java cacerts file.
-This issue made `puppetserver gem imstall` fail with the error "Certificate verify failed." It also caused the error, "Could not find a valid gem 'hiera-eyaml'".
+This issue made `puppetserver gem install` fail with the error "Certificate verify failed." It also caused the error, "Could not find a valid gem 'hiera-eyaml'".
 * PE installer did not check permissions on untarred folders, which caused the installer to fail.
 * `pe-puppet` failed to upgrade on RHEL 4.
 
