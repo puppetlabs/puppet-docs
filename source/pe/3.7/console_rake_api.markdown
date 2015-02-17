@@ -157,7 +157,11 @@ Add a new node. Classes and groups can be specified as [comma-separated lists](#
 
 ### `node:del[name]`
 
-Delete a node. **Note: A node cannot be deleted if the node name contains a parenthesis. To delete a node with a name that contains a parenthesis, you will need to rename the node.**
+Delete a node. 
+
+**Note:** A node cannot be deleted if the node name contains a parenthesis. To delete a node with a name that contains a parenthesis, you will need to rename the node.
+
+**Note:** You will need the PE 3.7.2 release of Puppet Enterprise to use this rake task. 
 
 **Parameters:**
 
