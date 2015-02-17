@@ -15,7 +15,7 @@ There are a few options that can be configured for access control:
 - `session-timeout`  This parameter is a positive integer that specifies how long a user's session should last, in minutes. This session is the same across node classification, RBAC, and the console. The default value is 60.
 - `failed-attempts-lockout`  This parameter is a positive integer that specifies how many failed login attempts are allowed on an account before that account is revoked. The default value is 10.
 
-To change these defaults, add a new file to the `/etc/puppetlabs/console-services/conf.d` directory. The file name is arbitrary, but the file format is [HOCON](https://github.com/typesafehub/config).
+To change these defaults, add a new file to the `/etc/puppetlabs/console-services/conf.d` directory. The file name is arbitrary, but the file format is [HOCON](https://github.com/typesafehub/config#using-hocon-the-json-superset).
 
     rbac: {
      password-reset-expiration: 24
