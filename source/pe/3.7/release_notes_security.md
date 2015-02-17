@@ -60,6 +60,14 @@ This issue made `puppetserver gem imstall` fail with the error "Certificate veri
 * PE installer did not check permissions on untarred folders, which caused the installer to fail.
 * `pe-puppet` failed to upgrade on RHEL 4.
 
+#### The `node:del` Rake Task Deleted a Node Group Instead of the Node
+
+In PE 3.7, the behavior of the `node:del` rake task changed so that it deleted the node group to which a specified node was pinned. In PE 3.7.2, this behavior has been reverted to the PE 3.3 behavior so that `node:del` now deletes the specified node from the console database. 
+
+A new rake task, `node:delgroup`, was introduced in PE 3.7.2 for deleting a node group.
+
+For more information, see the [rake API documentation](./console_rake_api.html).
+
 #### A Handful of Node Manager Service Fixes
 
 * Environments are now removed from the classifier when they are no longer populated.
