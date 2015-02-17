@@ -1425,6 +1425,9 @@ Generally unused.
 The shell search path.  Defaults to whatever is inherited
 from the parent process.
 
+This setting can only be set in the `[main]` section of puppet.conf; it cannot
+be set in `[master]`, `[agent]`, or an environment config section.
+
 - *Default*: none
 
 ### pidfile
