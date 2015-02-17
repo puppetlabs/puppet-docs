@@ -14,7 +14,7 @@ This section provides instructions for increasing the JVM (Java Virtual Machine)
 
 ### PE Console Service
 
-> **Note:** Ensure that you have sufficient free memory before increasing the memory that is used by a PE service.
+> **Note:** Ensure that you have sufficient free memory before increasing the memory that is used by a PE service. The increase shown below is only an example.
 
 To increase the Java heap size for `pe-console-services`:
 
@@ -26,7 +26,7 @@ To increase the Java heap size for `pe-console-services`:
 
 ### PE Puppet Server Service
 
-> **Note:** Ensure that you have sufficient free memory before increasing the memory that is used by a PE service.
+> **Note:** Ensure that you have sufficient free memory before increasing the memory that is used by a PE service. The increase shown below is only an example.
 
 To increase the Java heap size for `pe-puppetserver`:
 
