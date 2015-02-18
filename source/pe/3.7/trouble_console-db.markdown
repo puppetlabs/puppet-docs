@@ -101,29 +101,6 @@ In earlier versions of PE 3.x, failed delayed jobs did not get properly deleted.
 
 Note, however, that this will not remove old failed/delayed jobs. You can clean these out by running `/opt/puppet/bin/bundle exec rails runner 'Delayed::Job.delete_all("attempts >= 3")'` on the console node. This command should be run from `/opt/puppet/share/puppet-dashboard`.
 
-Console Account Confirmation Emails Have Incorrect Links
------
-
-This can happen if the console's authentication layer thinks it lives on a hostname that isn't accessible to the rest of the world. The authentication system's hostname is automatically detected during installation, and the installer can sometimes choose an internal-only hostname.
-
-To fix this:
-
-1. Open the `/etc/puppetlabs/console-auth/cas_client_config.yml` file for editing. Locate the `cas_host` line, which is likely commented-out:
-
-        authentication:
-
-          ## Use this configuration option if the CAS server is on a host different
-          ## from the console-auth server.
-          # cas_host: console.example.com:443
-
-    Change its value to contain the **public hostname** of the console server, including the correct port.
-2. Open the `/etc/puppetlabs/console-auth/config.yml` file for editing. Locate the `console_hostname` line:
-
-        authentication:
-          console_hostname: console.example.com
-
-    Change its value if necessary. If you are serving the console on a port other than 443, be sure to add the port. (For example: `console.example.com:3000`)
-
 Correcting Broken URLs in the Console
 ----------------
 
