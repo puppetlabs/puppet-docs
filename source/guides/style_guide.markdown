@@ -8,7 +8,7 @@ The Puppet Language Style Guide
 
 ####Metadata
 
-Puppet Language Style Guide: Version 2.0.0
+Puppet Language Style Guide: Version 2.0.1
 
 Puppet: Version 3.7+ 
 
@@ -35,7 +35,7 @@ We can never cover every possible circumstance you might run into when developin
     
     If you have to choose between two equally effective alternatives, pick the
     more readable one. While this is subjective, if you can read your
-    own code three months from now, it's a great start.
+    own code three months from now, it's a great start. In particular, code that generates readable diffs is highly prefered.
     
 2. **Scoping and simplicity are key.**
 
@@ -171,7 +171,7 @@ A more complete guide to the metadata.json format can be found in the [docs](htt
 
 ### 8.1 Dependencies
 
-Hard dependencies must be declared explicitly in your module's metadata.json file. Soft dependencies should be called out in the README.md, and must not be enforced as a hard requirement in your metadata.json. A soft dependency is a dependency that is only required in a specific set of use cases. (As an example, see the [rabbitmq module](https://github.com/puppetlabs/puppetlabs-rabbitmq#module-dependencies).)
+Hard dependencies must be declared explicitly in your module's metadata.json file. Soft dependencies should be called out in the README.md, and must not be enforced as a hard requirement in your metadata.json. A soft dependency is a dependency that is only required in a specific set of use cases. (As an example, see the [rabbitmq module](https://forge.puppetlabs.com/puppetlabs/rabbitmq#module-dependencies).)
 
 Your hard dependency declarations should not be unbounded.
 
@@ -328,15 +328,10 @@ Symbolic links must be declared with an ensure value of `ensure => link` and exp
 **Good:**
 
 ~~~
-    file { '/var/log/syslog':
+  file { '/var/log/syslog':
       ensure => file,
-      mode   => '0644',
-    }
-
-    file { '/var/log/syslog':
-      ensure => file,
-      mode   => 'u=rw,g=r,o=r',
-    }
+      mode   => 'o-rwx',
+  }
 ~~~
 
 **Bad:**
@@ -419,10 +414,6 @@ Classes and defines must be structured to accomplish one task. Below is a line-b
 1. Next lines, if applicable: Should declare local variables and perform variable munging.
 1. Next lines: Should declare resource defaults.
 1. Next lines:  Should override resources if necessary.
-1. Next lines: Should declare resources in the order they need to be processed.
-1. Last lines: Should declare relationships to other classes or defines. (For example: `Class['apache'] -> Class['local_yum']`.)
-
-We recommend that the last two items -- declared resources and declared relationships to other classes/defines -- not occur in the same class or type. For more on relationship declarations, [see below](#104-chaining-arrow-syntax).
 
 The following example follows the recommended style:
 
@@ -499,7 +490,7 @@ The following example follows the recommended style:
 
 We recommend that you split your module into public and private classes and defines where possible. Public classes or defines should contain the parts of the module meant to be configured or customized by the user, while private classes should contain things you do not expect the user to change via parameters. Separating into public and private classes/defines helps build reusable and readable code.
 
-You should help indicate to the user which classes are which by both calling out the public classes in the README and making sure all public classes have complete [comments](#7-comments).
+You should help indicate to the user which classes are which by both calling out the public classes in the README and making sure all public classes have complete [comments](#comments).
 
 >Note: As of stdlib 4.4.0, there is a `private` function that will cause a failure if a private class is called externally. You can use this to enforce the privacy of private classes.
 
@@ -565,49 +556,33 @@ class dhcp (
 
 When writing a module that accepts class and define parameters, appropriate defaults should be provided for optional parameters. Establishing good defaults gives the end user the option of not explicitly specifying the parameter when declaring the class or define. Provided defaults should be specified with the parameter and not inside the class/define.
 
+When creating parameter defaults, you:
+
+* Must use fully qualified namespace variables when pulling the value from the module params class. This avoids namespace collisions. See [Namespacing Variables](#namespacing-variables) for more information.
+* Should use the `_` prefix to indicate a scope local variable for maintainability over time.
+
 **Good:**
 
 ~~~
-class ntp(
-  $server = $ntp::params::server,
-) inherits ntp::params {
-
-    notify { 'ntp':
-      message => "server=[$server]",
-    }
-
-}
+class my_module (
+  $source = $my_module::params::source,
+  $config = $my_module::params::config,
+){}
 ~~~
 
 **Bad:**
 
 ~~~
-    class ntp(
-      $server = undef,
-    ) {
-
-      include ntp::params
-
-      if $server {
-        $_server = $server
-      } else {
-        $_server = $::ntp::params::server
-      }
-
-
-      notify { 'ntp':
-        message => "server=[$_server]",
-      }
-
-    }
+class my_module (
+  $source = undef,
+) {
+  if $source {
+    $_source = $source
+  } else {
+    $_source = $my_module::params::source
+  }
+}
 ~~~
-
->Note: We recommend using [inheritance](#class-inheritance) for class parameter defaults.
-
-When creating parameter defaults, you:
-
-* Must use fully qualified namespace variables when pulling the value from the module params class. This avoids namespace collisions. See [Namespacing Variables](#131-namespacing-variables) for more information.
-* Should use the `_` prefix to indicate a scope local variable for maintainability over time.
 
 ### 10.8 Exported Resources
 Exported resources should be opt-in rather than opt-out. Your module should not be written to use exported resources to function by default unless it is expressly required. When using exported resources, you should name the property `collect_exported`.
@@ -728,7 +703,7 @@ Class inheritance should only be used for `myclass::params` parameter defaults. 
 
 ### 11.2 A Note About Publicly Available Modules
 
-Although the `include` function technically allows multiple declarations of classes, using it in publicly available modules can result in non-deterministic scoping issues due to the way parent scopes are assigned.
+When declaring classes in publicly available modules, you should use `include`, `contain`, or `require` rather than class resource declaration. This avoids duplicate class declarations and vendor lock-in.
 
 
 ## 12. Defined Resource Types (Defines)
@@ -736,6 +711,30 @@ Although the `include` function technically allows multiple declarations of clas
 ### 12.1. Uniqueness
 
 Since defined resource types (defines) can have multiple instances, resource names must have a unique variable to avoid duplicate declarations.
+
+**Good:**
+
+~~~
+define apache::listen {
+  $listen_addr_port = $name
+
+  # Template uses: $listen_addr_port
+  concat::fragment { "Listen ${listen_addr_port}":
+    ensure  => present,
+    target  => $::apache::ports_file,
+    content => template('apache/listen.erb'),
+  }
+}
+~~~
+
+**Bad:**
+
+~~~
+file { 'Required VHost directory':
+  path   => '/etc/apache/vhost/corpsite',
+  ensure => directory,
+}
+~~~
 
 ## 13. Variables
 
@@ -878,15 +877,6 @@ Your module should have a CHANGELOG in .md (or .markdown) format. Your CHANGELOG
 * List bugfixes and features included in the release. 
 * Specifically call out backwards-incompatible changes
 
-## 18. Contributing
-
-When contributing back to someone else's module, you must keep to the main intent. If you find that the modifications you are making really addresses some entirely separate task or software, create a new module.
-
-When contributing new parameters or resources, you should organize them by:
-* order-dependency
-* required before optional
-* alphabetically (where applicable)  
-
 ## 19. Verifying style
 
-This guide helps development of puppet-lint and puppet-metadata-lint[.](http://fc09.deviantart.net/fs70/i/2012/232/0/a/welcome_to_the_internet__please_follow_me_by_sharpwriter-d5buwfu.jpg)
+This guide helps development of [puppet-lint](http://puppet-lint.com/) and [metadata-json-lint](https://github.com/nibalizer/metadata-json-lint)[.](http://fc09.deviantart.net/fs70/i/2012/232/0/a/welcome_to_the_internet__please_follow_me_by_sharpwriter-d5buwfu.jpg)
