@@ -157,7 +157,7 @@ Every publicly available module must have metadata defined in the metadata.json 
           "operatingsystem": "Ubuntu",
           "operatingsystemrelease": [ 
             "12.04",
-           "10.04"
+            "10.04"
          ]
         }
       ],
