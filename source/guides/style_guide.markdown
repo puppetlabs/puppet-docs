@@ -328,15 +328,10 @@ Symbolic links must be declared with an ensure value of `ensure => link` and exp
 **Good:**
 
 ~~~
-    file { '/var/log/syslog':
+  file { '/var/log/syslog':
       ensure => file,
-      mode   => '0644',
-    }
-
-    file { '/var/log/syslog':
-      ensure => file,
-      mode   => 'u=rw,g=r,o=r',
-    }
+      mode   => 'o-rwx',
+  }
 ~~~
 
 **Bad:**
@@ -567,13 +562,26 @@ When creating parameter defaults, you:
 * Should use the `_` prefix to indicate a scope local variable for maintainability over time.
 
 **Good:**
-~~~
 
+~~~
+class my_module (
+  $source = $my_module::params::source,
+  $config = $my_module::params::config,
+){}
 ~~~
 
 **Bad:**
-~~~
 
+~~~
+class my_module (
+  $source = undef,
+) {
+  if $source {
+    $_source = $source
+  } else {
+    $_source = $my_module::params::source
+  }
+}
 ~~~
 
 ### 10.8 Exported Resources
@@ -722,7 +730,10 @@ define apache::listen {
 **Bad:**
 
 ~~~
-
+file { 'Required VHost directory':
+  path   => '/etc/apache/vhost/corpsite',
+  ensure => directory,
+}
 ~~~
 
 ## 13. Variables
