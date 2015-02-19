@@ -195,8 +195,6 @@ Here's a snippet of example Puppet code using a [certificate extension][extensio
 {% endhighlight %}
 
 
-#### List of Trusted Facts
-
 ### Puppet Agent Facts
 
 Puppet agent and Puppet apply both add several extra pieces of info to their facts before requesting or compiling a catalog. Like other facts, these are available as either top-scope variables or elements in the `$facts` hash.
