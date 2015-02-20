@@ -60,8 +60,10 @@ Puppet Enterprise's hardware requirements depend on the size of your environment
 
 An evaluation environment is run on a monolithic installation and is suitable for evaluating PE on 250 or fewer nodes. We recommend that your hardware meets the following:
 
-- A 4-core server with 4 GB of RAM
+- A 4-core server with 6 GB of RAM
 - At least 100 GB of free storage in `/opt` for PuppetDB
+
+We strongly recommend that users on systems with 4 GB of RAM upgrading or migrating to PE 3.7 from PE 3.3 or earlier upgrade to 6 GB of RAM before attempting to upgrade or migrate their PE installation.
 
 ### Small Environment
 
