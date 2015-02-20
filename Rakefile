@@ -23,10 +23,11 @@ references = %w(configuration function indirection metaparameter report type dev
 top_dir = Dir.pwd
 
 source_dir = "#{top_dir}/source"
+output_dir = "#{top_dir}/output"
 stash_dir = "#{top_dir}/_stash"
 preview_dir = "#{top_dir}/_preview"
 
-version_file = 'output/VERSION.txt'
+version_file = '#{output_dir}/VERSION.txt'
 
 desc "Stash all directories but one in a temporary location. Run a preview server on localhost:4000."
 task :preview, :filename do |t, args|
@@ -148,13 +149,13 @@ namespace :externalsources do
     externalsources = load_externalsources
     externalsources.each do |name, info|
       # Have to use absolute paths for the source, since we have no idea how deep in the hierarchy info['url'] is (and thus how many ../..s it would need).
-      FileUtils.ln_sf "#{top_dir}/externalsources/#{name}/#{info['subdirectory']}", "source#{info['url']}"
+      FileUtils.ln_sf "#{top_dir}/externalsources/#{name}/#{info['subdirectory']}", "#{source_dir}#{info['url']}"
     end
   end
 
   # "Clean up any external source symlinks from the source directory" # In the current implementation, all external sources are symlinks and there are no other symlinks in the source. This means we can naively kill all symlinks in ./source.
   task :clean do
-    allsymlinks = FileList.new('source/**/*').select{|f| File.symlink?(f)}
+    allsymlinks = FileList.new("#{source_dir}/**/*").select{|f| File.symlink?(f)}
     allsymlinks.each do |f|
       File.delete(f)
     end
@@ -166,11 +167,11 @@ task :generate do
   Rake::Task['externalsources:update'].invoke # Create external sources if necessary, and check out the required working directories
   Rake::Task['externalsources:link'].invoke # Link docs folders from external sources into the source at the appropriate places.
 
-  system("mkdir -p output")
-  system("rm -rf output/*")
-  system("mkdir output/references")
-  Dir.chdir("source") do
-    system("bundle exec jekyll  ../output")
+  system("mkdir -p #{output_dir}")
+  system("rm -rf #{output_dir}/*")
+  system("mkdir #{output_dir}/references")
+  Dir.chdir(source_dir) do
+    system("bundle exec jekyll  #{output_dir}")
   end
 
   Rake::Task['references:symlink'].invoke
@@ -185,10 +186,10 @@ task :symlink_latest_versions do
   require 'yaml'
   require 'versionomy'
   require 'pathname'
-  all_config = YAML.load(File.open("source/_config.yml"))
+  all_config = YAML.load(File.open("#{source_dir}/_config.yml"))
   all_config['symlink_latest'].each do |project|
     # this bit is snipped from PuppetDocs::Reference
-    subdirs = Pathname.new(top_dir + "/output/#{project}").children.select do |child|
+    subdirs = Pathname.new("#{output_dir}/#{project}").children.select do |child|
       child.directory? && !child.symlink?
     end
     versions = []
@@ -201,7 +202,7 @@ task :symlink_latest_versions do
       end
     end
     versions.sort! # sorts into ascending order, so most recent is last
-    Dir.chdir "output/#{project}" do
+    Dir.chdir "#{output_dir}/#{project}" do
       FileUtils.ln_sf versions.last.to_s, 'latest'
     end
   end
@@ -223,7 +224,7 @@ task :generate_pdf do
   require 'yaml'
   system("rm -rf pdf_source")
   system("rm -rf pdf_output")
-  system("cp -rf source pdf_source")
+  system("cp -rf #{source_dir} pdf_source")
   system("cp -rf pdf_mask/* pdf_source") # Copy in and/or overwrite differing files
   # The point being, this way we don't have to maintain separate copies of the actual source files, and it's clear which things are actually different for the PDF version of the page.
   Dir.chdir("pdf_source") do
@@ -323,8 +324,8 @@ task :check_git_dirty_status do
 end
 
 task :check_build_version do
-  abort "No site build found! Run 'rake build' before releasing." unless File.directory?('output')
-  abort "Site build is empty! Run 'rake build' before releasing." if (Dir.entries('output') - %w{ . .. }).empty?
+  abort "No site build found! Run 'rake build' before releasing." unless File.directory?(output_dir)
+  abort "Site build is empty! Run 'rake build' before releasing." if (Dir.entries(output_dir) - %w{ . .. }).empty?
   if File.directory?('.git')
     if File.exists?(version_file)
       head = `git rev-parse HEAD`.strip
@@ -379,7 +380,7 @@ namespace :references do
   task :symlink do
     require 'puppet_docs'
     PuppetDocs::Reference.special_versions.each do |name, (version, source)|
-      Dir.chdir 'output/references' do
+      Dir.chdir "#{output_dir}/references" do
         FileUtils.ln_sf version.to_s, name.to_s
       end
     end
@@ -404,7 +405,7 @@ namespace :references do
 
     # "Generate a stub index for VERSION"
     task :stub => 'references:check_version' do
-      filename = Pathname.new('source/references') + ENV['VERSION'] + 'index.markdown'
+      filename = Pathname.new("#{source_dir}/references") + ENV['VERSION'] + 'index.markdown'
       filename.parent.mkpath
       filename.open('w') do |f|
         f.puts "---"
