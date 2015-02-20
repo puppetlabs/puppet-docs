@@ -152,10 +152,10 @@ version_notes:
   /puppetdb/: '<p class="noisy">This page is about an old version of PuppetDB. If you use the current version of PuppetDB or of Puppet Enterprise, see <a href="/puppetdb/latest">the current PuppetDB docs.</a></p>'
   /facter/: '<p class="noisy">This page is about an old version of Facter. If you use the current version of Facter, see <a href="/facter/latest">the latest version of the docs.</a> If you use Puppet Enterprise 3.7, see <a href="/facter/2.2">the Facter 2.2 docs.</a></p>'
   # Version-specific notes:
-  /puppet/3.7: "Applies to Puppet Enterprise 3.7"
-  /puppetdb/2.2: "Applies to Puppet Enterprise 3.7"
+  /puppet/3.7: "This is the version of Puppet included in Puppet Enterprise 3.7."
+  /puppetdb/2.2: "This is the version of PuppetDB included in Puppet Enterprise 3.7. It also applies to open source Puppet."
   /puppetdb/master: '<p class="noisy">This page is for an unreleased version of PuppetDB. PE 3.7 users should see <a href="/puppetdb/2.2/">the PuppetDB 2.2 docs</a>. Other users should see <a href="/puppetdb/latest/">the latest official release</a>.</p>'
-  /facter/2.2: "Applies to Puppet Enterprise 3.7"
+  /facter/2.2: 'This is the version of Facter included in Puppet Enterprise 3.7. Open source Puppet users should see <a href="/facter/latest">the latest version of the docs</a>.'
   /facter/2.3: '<p class="noisy">Facter 2.3 is not included in Puppet Enterprise 3.7. PE 3.7 users should see <a href="/facter/2.2">the Facter 2.2 docs.</a></p>'
   /facter/2.4: '<p class="noisy">Facter 2.4 is not included in Puppet Enterprise 3.7. PE 3.7 users should see <a href="/facter/2.2">the Facter 2.2 docs.</a></p>'
 ---
