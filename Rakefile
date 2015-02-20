@@ -27,7 +27,7 @@ output_dir = "#{top_dir}/output"
 stash_dir = "#{top_dir}/_stash"
 preview_dir = "#{top_dir}/_preview"
 
-version_file = '#{output_dir}/VERSION.txt'
+version_file = "#{output_dir}/VERSION.txt"
 
 config_data = YAML.load(File.read("#{source_dir}/_config.yml"))
 
