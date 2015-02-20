@@ -333,7 +333,8 @@ task :check_git_dirty_status do
 end
 
 task :check_build_version do
-  abort "No site build found! Run 'rake build' before releasing." unless File.directory?('output') # TODO: check whether it's empty
+  abort "No site build found! Run 'rake build' before releasing." unless File.directory?('output')
+  abort "Site build is empty! Run 'rake build' before releasing." if (Dir.entries('output') - %w{ . .. }).empty?
   if File.directory?('.git')
     if File.exists?(version_file)
       head = `git rev-parse HEAD`.strip
