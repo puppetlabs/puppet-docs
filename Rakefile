@@ -304,16 +304,6 @@ task :compile_pdf do
   end
 end
 
-desc "Create tarball of documentation"
-task :tarball do
-  tarball_name = "puppetdocs-latest.tar.gz"
-  FileUtils.cd('output') do
-    sh "tar -czf #{tarball_name} *"
-    FileUtils.mv tarball_name, '..'
-  end
-  sh "git rev-parse HEAD > #{tarball_name}.version" if File.directory?('.git') # Record the version of this tarball, but only if we're in a git repo.
-end
-
 task :write_version do
   if File.directory?('.git')
     current_commit = `git rev-parse HEAD`.strip

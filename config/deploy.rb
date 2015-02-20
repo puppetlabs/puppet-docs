@@ -24,24 +24,6 @@ end
 
 namespace :vlad do
 
-task :check_tarball do
-  tarball_name = "puppetdocs-latest.tar.gz"
-  abort "No site tarball found! Run 'rake build' before releasing." unless File.exists?(tarball_name)
-  if File.directory?('.git')
-    if File.exists?("#{tarball_name}.version")
-      head = `git rev-parse HEAD`.chomp
-      tarball_version = File.open("#{tarball_name}.version", 'r') {|f| f.gets.chomp}
-      if head != tarball_version
-        STDOUT.puts "Site tarball wasn't built from HEAD and may be outdated. Deploy anyway? (y/n)"
-        abort "Aborting." unless STDIN.gets.strip.downcase == ('y' or 'yes')
-      end
-    else
-      STDOUT.puts "Can't tell age of site tarball; it's probably outdated. Deploy anyway? (y/n)"
-      abort "Aborting." unless STDIN.gets.strip.downcase == ('y' or 'yes')
-    end
-  end
-end
-
 desc "Release the documentation site"
 remote_task :release do
   Rake::Task['check_build_version'].invoke
