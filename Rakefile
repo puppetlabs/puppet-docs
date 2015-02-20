@@ -26,6 +26,7 @@ source_dir = "#{top_dir}/source"
 stash_dir = "#{top_dir}/_stash"
 preview_dir = "#{top_dir}/_preview"
 
+version_file = 'output/VERSION.txt'
 
 desc "Stash all directories but one in a temporary location. Run a preview server on localhost:4000."
 task :preview, :filename do |t, args|
@@ -311,6 +312,41 @@ task :tarball do
     FileUtils.mv tarball_name, '..'
   end
   sh "git rev-parse HEAD > #{tarball_name}.version" if File.directory?('.git') # Record the version of this tarball, but only if we're in a git repo.
+end
+
+task :write_version do
+  if File.directory?('.git')
+    current_commit = `git rev-parse HEAD`.strip
+    File.open(version_file, 'w') do |f|
+      f.print(current_commit)
+    end
+  end
+end
+
+task :check_git_dirty_status do
+  if File.directory?('.git')
+    if `git status --porcelain 2> /dev/null | tail -n1` != ''
+      STDOUT.puts "The working directory has uncommitted changes. They're probably either \n  incomplete changes you don't want to release, or important changes you \n  don't want lost; in either case, you might want to deal with them before \n  you build and deploy the site. Continue anyway? (y/n)"
+      abort "Aborting." unless STDIN.gets.strip.downcase =~ /^y/
+    end
+  end
+end
+
+task :check_build_version do
+  abort "No site build found! Run 'rake build' before releasing." unless File.directory?('output') # TODO: check whether it's empty
+  if File.directory?('.git')
+    if File.exists?(version_file)
+      head = `git rev-parse HEAD`.strip
+      build_version = File.read(version_file)
+      if head != build_version
+        STDOUT.puts "This build wasn't built from HEAD and may be outdated. Continue anyway? (y/n)"
+        abort "Aborting." unless STDIN.gets.strip.downcase =~ /^y/
+      end
+    else
+      STDOUT.puts "Can't tell age of site build; it's probably outdated. Continue anyway? (y/n)"
+      abort "Aborting." unless STDIN.gets.strip.downcase =~ /^y/
+    end
+  end
 end
 
 desc "Build the documentation site and tar it for deployment"
