@@ -349,10 +349,11 @@ task :check_build_version do
   end
 end
 
-desc "Build the documentation site and tar it for deployment"
+desc "Build the documentation site and prepare it for deployment"
 task :build do
+  Rake::Task['check_git_dirty_status'].invoke
   Rake::Task['generate'].invoke
-  Rake::Task['tarball'].invoke
+  Rake::Task['write_version'].invoke
 end
 
 desc "Build all references for a new Puppet version"
