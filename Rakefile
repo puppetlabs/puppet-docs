@@ -4,7 +4,7 @@ require 'bundler/setup'
 require 'rake'
 require 'pathname'
 require 'fileutils'
-
+require 'yaml'
 
 Dir.glob(File.join("vendor", "gems", "*", "lib")).each do |lib|
   $LOAD_PATH.unshift(File.expand_path(lib))
@@ -28,6 +28,8 @@ stash_dir = "#{top_dir}/_stash"
 preview_dir = "#{top_dir}/_preview"
 
 version_file = '#{output_dir}/VERSION.txt'
+
+config_data = YAML.load(File.read("#{source_dir}/_config.yml"))
 
 desc "Stash all directories but one in a temporary location. Run a preview server on localhost:4000."
 task :preview, :filename do |t, args|
@@ -93,13 +95,6 @@ namespace :externalsources do
     Dir.mkdir("externalsources")
   end
 
-  # For now, we're using things in the _config.yml, just... because it's there I guess.
-  def load_externalsources
-    require 'yaml'
-    all_config = YAML.load(File.open("source/_config.yml"))
-    return all_config['externalsources']
-  end
-
   # Returns the short name of a repo, which would be the directory name if you did a `git clone` without specifying a directory name. This isn't used anymore, but I left it around in case it's useful later.
   def repo_name(repo_url)
     repo_url.split('/')[-1].sub(/\.git$/, '')
@@ -113,9 +108,8 @@ namespace :externalsources do
   # "Update all working copies defined in source/_config.yml"
   task :update do
     Rake::Task['externalsources:clone'].invoke
-    externalsources = load_externalsources
     Dir.chdir("externalsources") do
-      externalsources.each do |name, info|
+      config_data['externalsources'].each do |name, info|
         unless File.directory?(name)
           puts "Making new working directory for #{name}"
           system ("\"#{top_dir}/vendor/bin/git-new-workdir\" '#{repo_unique_id(info['repo'])}' '#{name}' '#{info['commit']}'")
@@ -130,9 +124,8 @@ namespace :externalsources do
 
   # "Clone any external documentation repos (from externalsources in source/_config.yml) that don't yet exist"
   task :clone do
-    externalsources = load_externalsources
     repos = []
-    externalsources.each do |name, info|
+    config_data['externalsources'].each do |name, info|
       repos << info['repo']
     end
     Dir.chdir("externalsources") do
@@ -146,8 +139,7 @@ namespace :externalsources do
   task :link do
     Rake::Task['externalsources:clean'].invoke # Bad things happen if any of these symlinks already exist, and Jekyll will run FOREVER
     Rake::Task['externalsources:clean'].reenable
-    externalsources = load_externalsources
-    externalsources.each do |name, info|
+    config_data['externalsources'].each do |name, info|
       # Have to use absolute paths for the source, since we have no idea how deep in the hierarchy info['url'] is (and thus how many ../..s it would need).
       FileUtils.ln_sf "#{top_dir}/externalsources/#{name}/#{info['subdirectory']}", "#{source_dir}#{info['url']}"
     end
@@ -183,11 +175,9 @@ end
 
 desc "Symlink latest versions of several projects; see symlink_latest list in _config.yml"
 task :symlink_latest_versions do
-  require 'yaml'
   require 'versionomy'
   require 'pathname'
-  all_config = YAML.load(File.open("#{source_dir}/_config.yml"))
-  all_config['symlink_latest'].each do |project|
+  config_data['symlink_latest'].each do |project|
     # this bit is snipped from PuppetDocs::Reference
     subdirs = Pathname.new("#{output_dir}/#{project}").children.select do |child|
       child.directory? && !child.symlink?
@@ -221,7 +211,6 @@ task :generate_pdf do
   Rake::Task['externalsources:update'].invoke # Create external sources if necessary, and check out the required working directories
   Rake::Task['externalsources:link'].invoke # Link docs folders from external sources into the source at the appropriate places.
 
-  require 'yaml'
   system("rm -rf pdf_source")
   system("rm -rf pdf_output")
   system("cp -rf #{source_dir} pdf_source")
@@ -262,7 +251,6 @@ end
 
 desc "Temporary task for debugging PDF compile failures"
 task :reshuffle_pdf do
-  require 'yaml'
   Dir.chdir("pdf_output") do
     pdf_targets = YAML.load(File.open("../pdf_mask/pdf_targets.yaml"))
     pdf_targets.each do |target, pages|
@@ -296,7 +284,6 @@ end
 
 desc "Use a series of wkhtmltopdf commands to compile PDF targets"
 task :compile_pdf do
-  require 'yaml'
   fail("wkhtmltopdf doesn't appear to be installed") unless File.executable?(%x{which wkhtmltopdf}.chomp)
   pdf_targets = YAML.load(File.open("pdf_mask/pdf_targets.yaml"))
   pdf_targets.keys.each do |target|
