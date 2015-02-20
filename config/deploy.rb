@@ -44,17 +44,17 @@ end
 
 desc "Release the documentation site"
 remote_task :release do
-  Rake::Task['vlad:check_tarball'].invoke # When deploying to multiple mirrors in a single wrapper rake task, this will only run once.
+  Rake::Task['check_build_version'].invoke
   puts "DEPLOYING TO: #{domain}"
   tarball_name = "puppetdocs-latest.tar.gz"
   staging_dir = "~/puppetdocs_deploy"
 #  rsync tarball_name, "~/"
-  sh "rsync -av --progress #{tarball_name} #{domain}:~/#{tarball_name}"
+  sh "rsync -av --delete output/ #{domain}:#{deploy_to}/"
   run "rm -rf #{staging_dir}"
-  run "mkdir -p #{staging_dir}"
-  run "cp ~/#{tarball_name} #{staging_dir}/"
-  run "cd #{staging_dir} && tar -xzf #{tarball_name}"
-  run "rsync -av --delete #{staging_dir}/ #{deploy_to}/" # This is strictly local, so we can't use vlad's rsync helper.
+  run "cp -R #{deploy_to} #{staging_dir}"
+
+  run "cd #{staging_dir} && ruby ./linkmunger.rb && tar -czf #{tarball_name} *"
+  run "mv #{staging_dir}/#{tarball_name} #{deploy_to}/#{tarball_name}"
 end
 
 end
