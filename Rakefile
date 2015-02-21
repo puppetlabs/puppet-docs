@@ -206,91 +206,6 @@ end
 desc "Generate docs and serve locally"
 task :run => [:generate, :serve]
 
-desc "Generate the documentation in a flat format for later PDF generation"
-task :generate_pdf do
-  Rake::Task['externalsources:update'].invoke # Create external sources if necessary, and check out the required working directories
-  Rake::Task['externalsources:link'].invoke # Link docs folders from external sources into the source at the appropriate places.
-
-  system("rm -rf pdf_source")
-  system("rm -rf pdf_output")
-  system("cp -rf #{source_dir} pdf_source")
-  system("cp -rf pdf_mask/* pdf_source") # Copy in and/or overwrite differing files
-  # The point being, this way we don't have to maintain separate copies of the actual source files, and it's clear which things are actually different for the PDF version of the page.
-  Dir.chdir("pdf_source") do
-    system("rm _plugins/sitemap_generator.rb") # For some reason, this explodes. I am going to be lazy and just kill it in our temp copy of the source.
-    system("bundle exec jekyll ../pdf_output")
-  end
-  Rake::Task['references:symlink:for_pdf'].invoke
-  Dir.chdir("pdf_output") do
-    pdf_targets = YAML.load(File.open("../pdf_mask/pdf_targets.yaml"))
-    pdf_targets.each do |target, pages|
-      system("cat #{pages.join(' ')} > #{target}")
-      if target == 'puppetdb1.html'
-        content = File.read('puppetdb1.html')
-        content.gsub!('-puppetdb-1-install_from_source-html-step-3-option-b-manually-create-a-keystore-and-truststore', '-puppetdb-1-install_from_source-html-step-3-option-b-manuallu-create-a-keystore-and-truststore')
-        File.open('puppetdb1.html', "w") {|pdd1| pdd1.print(content)}
-        # Yeah, so, I found the magic string that, when used as an element ID and then
-        # linked to from elsewhere in the document, causes wkhtmltopdf to think an
-        # unthinkable thought and corrupt the output file.
-        # Your guess is as good as mine. #doomed #sorcery #wat
-        # >:|
-        # -NF
-      end
-    end
-  end
-#   system("cat `cat ../pdf_source/page_order.txt` > rebuilt_index.html")
-#   system("mv index.html original_index.html")
-#   system("mv rebuilt_index.html index.html")
-
-  Rake::Task['externalsources:clean'].invoke # The opposite of externalsources:link. Delete all symlinks in the source.
-  Rake::Task['externalsources:clean'].reenable
-
-  puts "Remember to run rake serve_pdf"
-  puts "Remember to run rake compile_pdf (while serving on localhost:9292)"
-end
-
-desc "Temporary task for debugging PDF compile failures"
-task :reshuffle_pdf do
-  Dir.chdir("pdf_output") do
-    pdf_targets = YAML.load(File.open("../pdf_mask/pdf_targets.yaml"))
-    pdf_targets.each do |target, pages|
-      system("cat #{pages.join(' ')} > #{target}")
-      if target == 'puppetdb1.html'
-        content = File.read('puppetdb1.html')
-        content.gsub!('-puppetdb-1-install_from_source-html-step-3-option-b-manually-create-a-keystore-and-truststore', '-puppetdb-1-install_from_source-html-step-3-option-b-manuallu-create-a-keystore-and-truststore')
-        File.open('puppetdb1.html', "w") {|pdd1| pdd1.print(content)}
-        # Yeah, so, I found the magic string that, when used as an element ID and then
-        # linked to from elsewhere in the document, causes wkhtmltopdf to think an
-        # unthinkable thought and corrupt the output file.
-        # Your guess is as good as mine. #doomed #sorcery #wat
-        # >:|
-        # -NF
-      end
-    end
-  end
-
-  Rake::Task['externalsources:clean'].invoke # The opposite of externalsources:link. Delete all symlinks in the source.
-  Rake::Task['externalsources:clean'].reenable
-
-  puts "Remember to run rake serve_pdf"
-  puts "Remember to run rake compile_pdf (while serving on localhost:9292)"
-end
-
-
-desc "Serve generated flat-for-PDF output on port 9292"
-task :serve_pdf do
-  system("rackup config_pdf.ru")
-end
-
-desc "Use a series of wkhtmltopdf commands to compile PDF targets"
-task :compile_pdf do
-  fail("wkhtmltopdf doesn't appear to be installed") unless File.executable?(%x{which wkhtmltopdf}.chomp)
-  pdf_targets = YAML.load(File.open("pdf_mask/pdf_targets.yaml"))
-  pdf_targets.keys.each do |target|
-    puts "Generating #{target}..."
-    system(%Q^wkhtmltopdf --margin-bottom 17mm --margin-top 17mm --margin-left 15mm --footer-left "[doctitle] • [section]" --footer-right "[page]/[topage]" --footer-line --footer-font-name "Lucida Grande" --footer-font-size 10 --footer-spacing 2 cover http://localhost:9292/cover_#{target} http://localhost:9292/#{target} #{target.gsub('.html', '')}.pdf^)
-  end
-end
 
 task :write_version do
   if File.directory?('.git')
@@ -341,7 +256,6 @@ task :references => [ 'references:check_version', 'references:index:stub', 'refe
 namespace :references do
 
   namespace :symlink do
-
     # "Show the versions that will be symlinked"
     task :versions do
       require 'puppet_docs'
@@ -349,18 +263,6 @@ namespace :references do
         puts "#{name}: #{version}"
       end
     end
-
-    # "Symlink the latest & stable directories when generating a flat page for PDFing"
-    task :for_pdf do
-      require 'puppet_docs'
-      PuppetDocs::Reference.special_versions.each do |name, (version, source)|
-        Dir.chdir 'pdf_output/references' do
-          FileUtils.ln_sf version.to_s, name.to_s
-        end
-      end
-
-    end
-
   end
 
   # "Symlink the latest & stable directories"
