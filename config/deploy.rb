@@ -30,11 +30,11 @@ remote_task :release do
   puts "DEPLOYING TO: #{domain}"
   tarball_name = "puppetdocs-latest.tar.gz"
   staging_dir = "~/puppetdocs_deploy"
-#  rsync tarball_name, "~/"
+
   sh "rsync -av --delete output/ #{domain}:#{deploy_to}/"
+
   run "rm -rf #{staging_dir}"
   run "cp -R #{deploy_to} #{staging_dir}"
-
   run "cd #{staging_dir} && ruby ./linkmunger.rb && tar -czf #{tarball_name} *"
   run "mv #{staging_dir}/#{tarball_name} #{deploy_to}/#{tarball_name}"
 end
