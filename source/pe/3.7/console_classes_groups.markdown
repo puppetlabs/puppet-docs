@@ -176,17 +176,72 @@ Classes will automatically use default parameters and values, or parameters and 
 
 2. When you select a parameter, the **Value** field is automatically populated with the default value. To change the value, type the new value in the **Value** field.
 
-> **Note**: Class parameters can be structured as JSON. If they cannot be parsed as JSON, they will be treated as strings.
+> ##### Tips on specifying parameter and variable values
 > 
-> Specifically, class parameters can be specified using the following data types and syntax:
+> Parameters and variables can be structured as JSON. If they cannot be parsed as JSON, they will be treated as strings.
 > 
->    * Strings (e.g., "centos")
->    * Booleans (e.g., true or false)
->    * Numbers (e.g., 123)
->    * Hashes (e.g., `{"a": 1}`
->    * Arrays (e.g., ["1","2.3"]
+> Parameters and variables can be specified using the following data types and syntax:
 > 
-> Regular expressions, resource references, and other keywords (such as ‘undef’) are not supported.
+>    * Strings (e.g. `"centos"`)
+>    * Booleans (e.g. `true` or `false`)
+>    * Numbers (e.g. `123`)
+>    * Hashes (e.g. `{"a": 1}`)
+>    * Arrays (e.g. `["1","2.3"]`)
+>    * Variable-style syntax (e.g. `"I live at $ipaddress."`)
+>    * Expression-style syntax (e.g. `${$os["release"]["full"]}`)
+> 
+> **Variable-style syntax**
+> 
+> If your value includes a variable, specify it using variable-style syntax. Variable-style syntax is a dollar sign ($) followed by a Puppet variable name. 
+> 
+> Example: `"I live at $ipaddress"` 
+> 
+> Variable-style syntax is interpolated as the value of the fact. For example, `$ipaddress` resolves to `ipaddress`. 
+> 
+> Indexing cannot be used in variable-style syntax because the indices are treated as part of the string literal. For example, given the following fact:
+> 
+> `processors => {"count"=>4, "physicalcount"=>1}`, 
+> 
+> if you use variable-style syntax to specify `$processors[count]`, the value of the `processors` fact is interpolated but it is followed by a literal "[count]". After interpolation, this example becomes `{"count"=>4,"physicalcount"=>1[count]`.
+> 
+> **Note:** When specifying variables in the PE console, do not use the `::` top-level scope indication. 
+> 
+> **Expression-style syntax**
+> 
+> If you need to index variables, refer to trusted facts, or delimit variable names from strings in your parameter values, use expression-style syntax. 
+> 
+> The following is an example of using expression-style syntax to access the full release number of an operating system:
+> 
+> <a href="./images/expression_syntax.svg"><img src="./images/expression_syntax.svg" alt="Expression-Style Syntax" title="Click to enlarge"> (Click to enlarge)</a>
+> 
+> Indices in expression-style syntax can be used to access individual fields of structured facts, or to refer to trusted facts. Use strings in an index if you want to access the keys of a hashmap. If you want to access a particular item or character in an array or string based on the order in which it is listed, you can use an integer (zero-indexed). 
+> 
+> Examples of legal expression-style interpolation:
+> 
+> * `${os}`
+> * `${$os}`
+> * `${$os[release]}`
+> * `${$os['release']}`
+> * `${$os["release"]}`
+> * `${$os[2]}` (accesses the value of the third (zero-indexed) key-value pair in the `os` variable) 
+> * `${$os[release][2]}` (accesses the value of the third key-value pair in the `release` key)
+> 
+> In the PE console, an index can only be simple string literals or decimal integer literals. An index cannot include variables or operations (such as string concatenation or integer arithmetic). 
+>
+> Examples of illegal expression-style interpolation:
+> 
+> * `${$::os}`
+> * `{$os[$release]}`
+> * `${$os[0xff]}`
+> * `${$os[6/3]}`
+> * `${$os[$family + $release]}`
+> * `${$os + $release}`
+>  
+> **Trusted facts**
+>
+> Trusted facts are considered to be keys of a hashmap called `trusted`. This means that all trusted facts must be interpolated using expression-style syntax. For example, the certname trusted fact would be expressed like this: `"My name is ${trusted[certname]}"`. Any trusted facts that are themselves structured facts can have further index expressions to access individual fields of that trusted fact. For an overview of trusted facts, see the [Puppet Reference Manual](/puppet/latest/reference/lang_facts_and_builtin_vars.html#trusted-facts).
+> 
+> **Note:** Regular expressions, resource references, and other keywords (such as ‘undef’) are not supported.
 
 [Editing Parameters](./console_classes_groups_making_changes.html#editing-parameters)
 
@@ -208,17 +263,7 @@ Variables set in the console become [top-scope variables available to all Puppet
 
 5. Click **Add variable**, and then click the commit button.
 
-> **Note**: Variables can be structured as JSON. If they cannot be parsed as JSON, they will be treated as strings.
-> 
-> Specifically, variables can be specified using the following data types and syntax:
-> 
->    * Strings (e.g., "centos")
->    * Booleans (e.g., true or false)
->    * Numbers (e.g., 123)
->    * Hashes (e.g., `{"a": 1}`
->    * Arrays (e.g., ["1","2.3"]
-> 
-> Regular expressions, resource references, and other keywords (such as ‘undef’) are not supported.
+> **Note**: For information on the permitted syntax for specifying variable values, see "Tips on specifying parameter and variable values" in [Setting Class Parameters](#setting-class-parameters).
 
 > **Note:** Nodes can match multiple node groups, and node groups are not necessarily arranged in a strict hierarchy. It is therefore possible for two equal node groups to contribute conflicting values for variables and class parameters. Conflicting values will cause a Puppet run on an agent to fail.
 
