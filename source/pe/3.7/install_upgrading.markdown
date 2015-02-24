@@ -87,17 +87,19 @@ In addition if you are using an external PostgreSQL instance that is not managed
 1. You will need to create databases for RBAC, activity service, and the node classifier before upgrading.
 2. The databases you create need to have the citext extension enabled.
 
+#### Disabling/Enabling Live Management During an Upgrade
+
+The status of live management is not managed during an upgrade of PE unless you specifically indicate a change is needed in an answer file. In other words, if your previous version of PE had live management enabled (the PE default), it will remain enabled after you upgrade unless you add or change `q_disable_live_manangement={y|n}` in your answer file.
+
+Depending on your answer, the `disable_live_management` setting in `/etc/puppetlabs/puppet-dashboard/settings.yml` on the Puppet master (or console node in a split install) will be set to either `true` or `false` after the upgrade is complete.
+
+(Note that you can enable/disable Live Management at any time during normal operations by editing the aforementioned `settings.yml` and then running `sudo /etc/init.d/pe-httpd restart`.)
+
 ### Step 4: Classify the New PE Groups 
 
-After upgrading you will need to manually [classify the new PE groups](./install_upgrading_notes.html#classifying-pe-groups).
+**Warning**: After upgrading you must [classify the new PE groups](./install_upgrading_notes.html#classifying-pe-groups).
 
-> **Disabling/Enabling Live Management During an Upgrade**
->
->The status of live management is not managed during an upgrade of PE unless you specifically indicate a change is needed in an answer file. In other words, if your previous version of PE had live management enabled (the PE default), it will remain enabled after you upgrade unless you add or change `q_disable_live_manangement={y|n}` in your answer file.
->
->Depending on your answer, the `disable_live_management` setting in `/etc/puppetlabs/puppet-dashboard/settings.yml` on the Puppet master (or console node in a split install) will be set to either `true` or `false` after the upgrade is complete.
->
->(Note that you can enable/disable Live Management at any time during normal operations by editing the aforementioned `settings.yml` and then running `sudo /etc/init.d/pe-httpd restart`.)
+Information about the preconfigured node groups can found in the [preconfigured node groups](./console_classes_groups_preconfigured_groups.html) doc.
 
 ### Step 5: Upgrade Agents
 
