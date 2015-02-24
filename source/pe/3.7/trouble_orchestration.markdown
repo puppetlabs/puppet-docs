@@ -23,8 +23,18 @@ If you alter an agent's name in `puppet.conf` or make other changes that affect 
     securityprovider           = ssl
     plugin.ssl_server_private = /etc/puppetlabs/mcollective/ssl/mcollective-private.pem
  
->**Tip**: You should also run NTP to verify that time is in sync across your deployment.  
+>**Tip**: You should also run NTP to verify that time is in sync across your deployment.
 
+Increasing the ulimit for the `pe-activemq` User
+--------
+
+The ulimit controls the number of processes and file handles that the `pe-activemq` user can open/process. To increase the ulimit for the `pe-activemq` user, edit `/etc/security/limits.conf` so that it contains the following: 
+
+    pe-activemq   soft     nproc  8192
+    pe-activemq   hard     nproc  8192
+    pe-activemq   soft     nofile 16384
+    pe-activemq   hard     nofile 16384   
+  
 Accessing the ActiveMQ Console
 ----------
 

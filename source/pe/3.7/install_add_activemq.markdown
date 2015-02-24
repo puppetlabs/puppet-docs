@@ -139,6 +139,8 @@ You're just about finished! The following steps will help you verify all connect
    
 2. To verify the ActiveMQ hub's connections are correctly established, go to `activemq-hub.example.com` and run `netstat -an | grep '61616'`.
 
-   You should see that the ActiveMQ hub has connections set up between the ActiveMQ broker nodes.  
+   You should see that the ActiveMQ hub has connections set up between the ActiveMQ broker nodes. 
+   
+> **Tip**: if you need to increase the number of processes the `pe-activemq` user can open/process, refer to [Increasing the ulimit for the `pe-activemq` User](./trouble_orchestration.html#increasing-the-ulimit-for-the-pe-activemq-user) for instructions. 
 
 
