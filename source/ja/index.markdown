@@ -17,10 +17,16 @@ Puppet Labsでは、次の２つの製品を提供しています。
 
 日本語のマニュアル
 -----
+下記のマニュアルはコミュニティのRyo氏とJun氏が翻訳されたものです。 マニュアルの翻訳に多大なご尽力をいただき、またユーザーコミュニティに共有していただいたRyo氏、Jun氏に改めて感謝いたします。
 
 ###[Learning Puppet](/ja/learning/introduction_ja.html)
-Learning Puppetは、Puppetを使いお客様のシステム管理を自動化する基礎について説明するPuppetのガイドツアーです。Learning Puppet 日本語版はコミュニティのRyo氏とJun氏が翻訳されたものです。
-Learning Puppetの翻訳に多大なご尽力をいただき、またユーザーコミュニティに共有していただいたRyo氏、Jun氏に改めて感謝いたします。
+Learning Puppetは、Puppetを使いお客様のシステム管理を自動化する基礎について説明するPuppetのガイドツアーです。
+
+###[Puppetリファレンスマニュアル](/ja/puppet/3.7/reference/index_ja.html)
+PuppetリファレンスマニュアルはオープンソースPuppetに関するアーキテクチャ概要などの参考情報があるマニュアルです。
+
+###[Puppetインストレーションガイド](/ja/guides/install_puppet/pre_install_ja.html)
+PuppetインストレーションガイドはPuppetのインストール方法、インストール前と後の重要ステップなどがあるマニュアルです。
 
 日本語の記事
 -----
