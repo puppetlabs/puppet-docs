@@ -183,36 +183,43 @@ Classes will automatically use default parameters and values, or parameters and 
 > Parameters and variables can be specified using the following data types and syntax:
 > 
 >    * Strings (e.g. `"centos"`)
+		- Variable-style syntax, which interpolates the result of referencing a fact (e.g. `"I live at $ipaddress."`) 
+		- Expression-style syntax, which interpolates the result of evaluating the embedded expression (e.g. `${$os["release"]["full"]}`)
 >    * Booleans (e.g. `true` or `false`)
 >    * Numbers (e.g. `123`)
 >    * Hashes (e.g. `{"a": 1}`)
 >    * Arrays (e.g. `["1","2.3"]`)
->    * Variable-style syntax (e.g. `"I live at $ipaddress."`)
->    * Expression-style syntax (e.g. `${$os["release"]["full"]}`)
 > 
 > **Variable-style syntax**
 > 
-> If your value includes a variable, specify it using variable-style syntax. Variable-style syntax is a dollar sign ($) followed by a Puppet variable name. 
+> Variable-style syntax uses a dollar sign ($) followed by a Puppet fact name. 
 > 
 > Example: `"I live at $ipaddress"` 
 > 
-> Variable-style syntax is interpolated as the value of the fact. For example, `$ipaddress` resolves to `ipaddress`. 
+> Variable-style syntax is interpolated as the value of the fact. For example, `$ipaddress` resolves to the value of the `ipaddress` fact. 
 > 
 > Indexing cannot be used in variable-style syntax because the indices are treated as part of the string literal. For example, given the following fact:
 > 
-> `processors => {"count"=>4, "physicalcount"=>1}`, 
+> `processors => {"count" => 4, "physicalcount" => 1}`, 
 > 
-> if you use variable-style syntax to specify `$processors[count]`, the value of the `processors` fact is interpolated but it is followed by a literal "[count]". After interpolation, this example becomes `{"count"=>4,"physicalcount"=>1[count]`.
+> if you use variable-style syntax to specify `$processors[count]`, the value of the `processors` fact is interpolated but it is followed by a literal "[count]". After interpolation, this example becomes `{"count" => 4,"physicalcount" => 1}[count]`.
 > 
-> **Note:** When specifying variables in the PE console, do not use the `::` top-level scope indication. 
+> **Note:** Do not use the `::` top-level scope indication because the console is not aware of Puppet's variable scope. 
 > 
 > **Expression-style syntax**
 > 
-> If you need to index variables, refer to trusted facts, or delimit variable names from strings in your parameter values, use expression-style syntax. 
+> Use expression-style syntax when you need to index into a fact (`${$os[release]}`), refer to trusted facts (`"My name is ${trusted[certname]}"`), or delimit fact names from strings (`"My ${os} release"`). 
 > 
 > The following is an example of using expression-style syntax to access the full release number of an operating system:
 > 
-> <a href="./images/expression_syntax.svg"><img src="./images/expression_syntax.svg" alt="Expression-Style Syntax" title="Click to enlarge"> (Click to enlarge)</a>
+> 		${$os["release"]["full"]}
+>
+> Expression-style syntax uses:
+> 
+> * an initial dollar sign and curly brace (`${`), followed by 
+> * a legal Puppet fact name preceded by an optional dollar sign, followed by 
+> * any number of index expressions (the quotations around indices are optional but are required if the index string contains spaces or square brackets), followed by 
+> * a closing curly brace (`}`).
 > 
 > Indices in expression-style syntax can be used to access individual fields of structured facts, or to refer to trusted facts. Use strings in an index if you want to access the keys of a hashmap. If you want to access a particular item or character in an array or string based on the order in which it is listed, you can use an integer (zero-indexed). 
 > 
@@ -223,8 +230,8 @@ Classes will automatically use default parameters and values, or parameters and 
 > * `${$os[release]}`
 > * `${$os['release']}`
 > * `${$os["release"]}`
-> * `${$os[2]}` (accesses the value of the third (zero-indexed) key-value pair in the `os` variable) 
-> * `${$os[release][2]}` (accesses the value of the third key-value pair in the `release` key)
+> * `${$os[2]}` (accesses the value of the third (zero-indexed) key-value pair in the `os` hash) 
+> * `${$os[release][2]}` (accesses the value of the third key-value pair in the `release` hash)
 > 
 > In the PE console, an index can only be simple string literals or decimal integer literals. An index cannot include variables or operations (such as string concatenation or integer arithmetic). 
 >
