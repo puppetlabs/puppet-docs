@@ -11,13 +11,13 @@ canonical: "/pe/latest/install_upgrading_notes.html"
 
 PE 3.7.0 introduces the Puppet server, running the Puppet Master, which functions as a seamless drop-in replacement for the former Apache/Passenger Puppet master stack. However, due to this change in the underlying architecture of the Puppet master, there are a few changes you'll notice after upgrading that we'd like to point out. Refer to [About the Puppet Server](./install_upgrading_puppet_server_notes.html) for more information.
 
-#### Updating Puppet Master Gems 
+#### Updating Puppet Master Gems
 
-After upgrading to PE 3.7.2, you need to update the Ruby gems used by your Puppet Master with `/opt/puppet/bin/puppetserver gem install <GEM NAME>`. 
+After upgrading to PE 3.7.2, you need to update the Ruby gems used by your Puppet Master with `/opt/puppet/bin/puppetserver gem install <GEM NAME>`.
 
-For instance, in PE 3.7.2, the deep_merge gem is no longer installed by default. If you previously used this gem, you will need to reinstall it after upgrading. 
+For instance, in PE 3.7.2, the deep_merge gem is no longer installed by default. If you previously used this gem, you will need to reinstall it after upgrading.
 
-After updating the gems, you need to restart the Puppet master with `service pe-puppetserver restart`. You should do this **before** doing any Puppet agent runs. 
+After updating the gems, you need to restart the Puppet master with `service pe-puppetserver restart`. You should do this **before** doing any Puppet agent runs.
 
 ### Upgrading to Directory Environments
 
@@ -47,29 +47,29 @@ For example, if you have an agent node for which the `[agent]` section of `puppe
 
 #### Classifying PE Groups
 
-For fresh installations of PE 3.7, node groups in the classifier are created and configured during the installation process. For upgrades, these groups are created but no classes are added to them. This helps prevent errors during the upgrade process.
+For fresh installations of PE 3.7, node groups in the classifier are created and configured during the installation process. For upgrades, these groups are created but no classes are added to them. This helps prevent errors during the upgrade process, but it means that if you're upgrading, you have to manually add classes to each node.
 
 The [preconfigured groups doc](./console_classes_groups_preconfigured_groups.html) has a list of groups and their classes that get installed on fresh upgrades.
 
 We recommend that you perform the manual classification in this order:
 
-1. The PE Infrastructure node group 
+1. The PE Infrastructure node group
 2. The PE Certificate Authority node group
 3. The PE Master node group
 4. The PuppetDB node group
 5. The PE Console node group
 6. The PE ActiveMQ Broker node group
 
-If you classify the node groups in this order, you do not need to stop/restart Puppet. 
+If you classify the node groups in this order, you do not need to stop/restart Puppet.
 
-The MCollective node group is configured during upgrade, so you do not need to perform any classification with this group. 
+The MCollective node group is configured during upgrade, so you do not need to perform any classification with this group.
 
 **To add a class to a node group:**
 
 1. On the **Classification** page, click the node group that you want to add the class to, and then click **Classes**.
 
-2. Under **Add new class**, click the **Class name** field. 
-   
+2. Under **Add new class**, click the **Class name** field.
+
    A list of classes appears. These are the classes that the Puppet master knows about and are available in the environment that you have set for the node group. The list filters as you type. Filtering is not limited to the start of a class name, you can also type substrings from anywhere within the class name. Select the class when it appears in the list.
 
 3. Click **Add class** and then click the commit change button.
