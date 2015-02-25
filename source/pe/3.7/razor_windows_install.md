@@ -14,7 +14,7 @@ The Windows installer support has been tested with:
 
 ## Prerequisites
 
-Before you begin, ensure that your DHCP server and your Razor server are on the same IP address, or that you HTTP forward on port 8080 from the DHCP server to the Razor server. If your DHCP server and Razor server are not on the same IP Address, you must hard code the IP Address or FQDN in the razor-client.ps1 file before building your WinPE image.
+Before you begin, ensure that your DHCP server and your Razor server are on the same IP address, or that you HTTP forward on port 8150 from the DHCP server to the Razor server. If your DHCP server and Razor server are not on the same IP Address, you must hard code the IP Address or FQDN in the razor-client.ps1 file before building your WinPE image.
 
 ## Setting Up a Windows Installation
 
@@ -39,7 +39,7 @@ Razor will emit log messages indicating that the task of unpacking the repositor
 2. Have a normal installation of Razor ready to go, up to the point that you are ready to create the Windows repository. Make sure creating a repository is working correctly, for example, by creating a repository with a Linux CD or DVD image.
 3. Run the `create-repo` command again but with the `--no-content` argument rather than `--iso-url` or `--url`. This creates a blank repo directory and skips the `libarchive` unpacking stage. Keep the rest of the details (for example, the repo's name) the same.
 4. Install the `p7zip` or `p7zip-full` package for your platform, with ISO image support.
-Alternatively, anything that can unzip the ISO file will do. For example, you could mount the CD or DVD image using the standard mount Linux command, and then use CP to copy the files into the repository, or you could use another tool to extract the content of the image.
+Alternatively, anything that can unzip the ISO file will do. For example, you could mount(1) the CD or DVD image using the standard mount Linux command, and then use cp(1) to copy the files into the repository, or you could use another tool to extract the content of the image.
 5. Unpack the Windows image into the repo directory, for example, using the command, `7z x .../windows.iso`. To find the directory, look in your config.yaml for the `repo_store_root` directory. The repo's directory should match the repo's name.
 6. Copy the WinPE WIM you created earlier to the root of your repo, located by default at `/var/lib/razor/repo-store/<repo name>` and rename the image to `razor-winpe.wim`.
 7. Test an install of Windows.
@@ -74,4 +74,4 @@ Finally, [create your policies](./razor_using.html#create-policies) as normal.  
 
 # Using Your Windows Installation
 
-Once you have policies set up, your Windows installation should just work if your policy binds a node.  You should watch the console -- error handling favors "drop to a cmd prompt" -- while testing it out.
+Once you have policies set up, your Windows installation should just work if your policy binds a node.  If provisioning fails, you'll get a message at the command prompt.
