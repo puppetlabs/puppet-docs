@@ -36,7 +36,7 @@ Puppet Enterprise now supports agents running on Arista EOS network switches. Th
 
 4. On the EOS instance, run the following command, `puppet agent -t`.
 
-   The Puppet agent will retrieve it's catalog and will now be fully functional. You'll see a message similar to the following: 
+   The Puppet agent will retrieve its catalog and will now be fully functional. You'll see a message similar to the following: 
 
        Info: Retrieving pluginfacts
        Info: Retrieving plugin
