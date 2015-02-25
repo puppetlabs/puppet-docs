@@ -42,7 +42,6 @@ Razor will emit log messages indicating that the task of unpacking the repositor
 Alternatively, anything that can unzip the ISO file will do. For example, you could mount(1) the CD or DVD image using the standard mount Linux command, and then use cp(1) to copy the files into the repository, or you could use another tool to extract the content of the image.
 5. Unpack the Windows image into the repo directory, for example, using the command, `7z x .../windows.iso`. To find the directory, look in your config.yaml for the `repo_store_root` directory. The repo's directory should match the repo's name.
 6. Copy the WinPE WIM you created earlier to the root of your repo, located by default at `/var/lib/razor/repo-store/<repo name>` and rename the image to `razor-winpe.wim`.
-7. Test an install of Windows.
 
 ### Create SMB Share
 
