@@ -34,6 +34,20 @@ After changing any of these settings, you should restart the PostgreSQL server:
     $ sudo /etc/init.d/pe-postgresql restart
 
 
+## Fine-tuning the `delayed_job` Queue
+
+The PE console uses a [`delayed_job`](https://github.com/collectiveidea/delayed_job/) queue to asynchronously process resource-intensive tasks such as report generation. Although the console won't lose any data sent by Puppet masters if these jobs don't run, you'll need to be running at least two delayed job workers per CPU core to get the full benefit of the console's UI.
+
+You can increase the number of workers by editing a class in the **PE Console** group.
+
+1. In the PE console, navigate to the **Classification** page. 
+2. Click the **PE Console** group.
+3. In the **PE Console** group page, click the **Classes** tab. 
+4. Locate the **puppet_enterprise::profile::console** class, and from the **Parameter** drop-down list, select **delayed_job_workers**. 
+5. In the **Value** field, enter 2. 
+6. Click **Add parameter**, and then the **Commit change** button. 
+
+
 ## Changing the Console's Port
 
 By default, a new installation of PE will serve the console on the default SSL port, 443. If you wish to change the port the console is available on:
