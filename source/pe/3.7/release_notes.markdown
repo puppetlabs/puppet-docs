@@ -11,9 +11,9 @@ For more information about this release, also see the [Known Issues](./release_n
 
 ## New Features in PE 3.8.0
 
-### Extended Support For Fact Interpolation in Parameters and Variables
+### Support For String Interpolation in the PE Console
 
-Previously in the PE console, the values for parameters and variables could be specified using strings, booleans, numbers, hashes, and arrays. The supported syntax for specifying strings has been extended beyond literal strings, and now also includes "variable-style" syntax and "expression-style" syntax. Variable-style syntax allows you to specify values such as `"I live at $ipaddress"`, which interpolates the result of referencing the `$ipaddress` fact. Expression-style syntax allows you to specify values such as `${$os["release"]["full"]}`, which interpolates the result of evaluating the embedded expression.
+Values for parameters and variables can be specified in the console using strings, booleans, numbers, hashes, and arrays. The supported syntax for specifying strings has been extended beyond literal strings, and now also includes limited support for string interpolation of fact values. You can now specify values such as `"I live at $ipaddress"`, which interpolates the result of referencing the `$ipaddress` fact, as well as values such as `${$os["release"]["full"]}`, which interpolates the result of the embedded expression.
 
-For more information, see [Tips on specifying parameter and variable values](./console_classes_groups.markdown#setting-class-parameters).
+For more information on the syntax and restrictions for string interpolation in the console, see [Tips on specifying parameter and variable values](./console_classes_groups.markdown#setting-class-parameters).
 
