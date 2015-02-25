@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "PE 3.7 » Installing » Installing Arista EOS Agents"
-subtitle: "Installing Puppet Enterprise Agents"
+subtitle: "Installing Arista EOS Agents"
 canonical: "/pe/latest/install_eos.html"
 ---
 
