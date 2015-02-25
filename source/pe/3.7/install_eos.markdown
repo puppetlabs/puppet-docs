@@ -5,7 +5,7 @@ subtitle: "Installing Arista EOS Agents"
 canonical: "/pe/latest/install_eos.html"
 ---
 
-Puppet Enterprise can manage Puppet agents running on Arista EOS network switches. This  provides instructions for installing the Puppet agent on an Arista EOS network switch. These instructions assume you've already [installed Puppet Enterprise](./install_basic.html) and have installed an EOS instance following the Arista documentation. 
+Puppet Enterprise now supports agents running on Arista EOS network switches. This  provides instructions for installing the Puppet agent on an Arista EOS network switch. These instructions assume you've already [installed Puppet Enterprise](./install_basic.html) and have installed an EOS instance following the Arista documentation. 
 
 
 ## Install the Puppet Agent on the EOS Instance
