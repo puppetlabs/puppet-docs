@@ -70,6 +70,8 @@ You may also have to set your SMB server to "share" level security, as follows:
 
 Finally, [create your policies](./razor_using.html#create-policies) as normal.  You can use a noop broker, but it doesn't matter what you bind it to. The current installer does not do any broker activity after the first boot.
 
+>**Note**: The Windows installer assumes that the default drive for a fresh install is D: when setting the broker to run.
+
 # Using Your Windows Installation
 
 Once you have policies set up, your Windows installation should just work if your policy binds a node.  You should watch the console -- error handling favors "drop to a cmd prompt" -- while testing it out.
