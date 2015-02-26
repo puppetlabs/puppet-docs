@@ -130,13 +130,15 @@ Any SMTP server that requires authentication, TLS, or runs over any port other t
 
 > **Tip**: More information about Puppet Server can be found in the [Puppet Server docs](/puppetserver/1.0/services_master_puppetserver.html). Differences between PE and open source versions of Puppet Server are typically called out.
 
-### Updating Puppet Master Gems 
+### Updating Puppet Master Gems
 
-After upgrading to PE 3.7.2, you need to update the Ruby gems used by your Puppet Master with `/opt/puppet/bin/puppetserver gem install <GEM NAME>`. 
+After upgrading to PE 3.7.2, you need to update the Ruby gems used by your Puppet Master with `/opt/puppet/bin/puppetserver gem install <GEM NAME>`.
 
-For instance, in PE 3.7.2, the deep_merge gem is no longer installed by default. If you previously used this gem, you will need to reinstall it after upgrading. 
+For instance, in PE 3.7.2, the deep_merge gem is no longer installed by default. If you previously used this gem, you will need to reinstall it after upgrading.
 
-After updating the gems, you need to restart the Puppet master with `service pe-puppetserver restart`. You should do this **before** doing any Puppet agent runs. 
+After updating the gems, you need to restart the Puppet master with `service pe-puppetserver restart`. You should do this **before** doing any Puppet agent runs.
+
+>**Note**: Installing `puppetserver` gems fails when run unprivileged. You might get a "no such file or directory" error. Instead, install as root.
 
 ### Puppet Server Run Issue when `/tmp/` Directory Mounted `noexec`
 
@@ -301,13 +303,11 @@ Marking failed tasks as read in the console can instead open a security warning,
 If you upgrade or install a PE 3.7.1 master, sign the certificate, and run Puppet on a 3.7.0 agent node, that should succeed. However, if you enable future parser, restart pe-puppetserver, and then run Puppet on the agent again, you'll get a server error. This error doesn't happen if you enable future parser with a PE 3.7.0 master and agent, or a PE 3.7.1 master and agent, only a 3.7.1 master with a 3.7.0 agent. To avoid this problem, update your agents to match the version of your masters.
 
 
-### Change to `lsbmajdistrelease` Fact Affects Some Manifests
+### Factor 2.2 Known Issues
 
-In Facter 2.2.0, the `lsbmajdistrelease` fact changed its value from the first two numbers to the full two-number.two-number version on Ubuntu systems. This might break manifests that were based on the previous behavior.
-
-For example, this fact changed from: `12` to `12.04`
-
-This change affects Ubuntu and Amazon Linux. See the [Facter documentation for more information](/facter/2.2/release_notes.html#significant-changes-to-existing-facts)
+* PE 3.7.x uses Factor 2.2, which turned off `stringify_facts` and turned on structured facts from the agents. This means that facts that were previously strings are now structured. Perhaps more importantly, facts that were previously strings like "true", "false" are now actual booleans. This causes situations where an `if` statement such as, `if $is_virtual == 'true'`, hits the `else` condition because the boolean value for true is not the same thing as the string "true".
+* Change to `lsbmajdistrelease` fact affects some manifests. This is because In Facter 2.2.0, the `lsbmajdistrelease` fact changed its value from the first two numbers to the full two-number.two-number version on Ubuntu systems. This might break manifests that were based on the previous behavior. For example, this fact changed from: `12` to `12.04`
+This change affects Ubuntu and Amazon Linux. See the [Facter documentation for more information](/facter/2.2/release_notes.html#significant-changes-to-existing-facts).
 
 ### Enabling NIO and Stomp for ActiveMQ Performance Improvements will Introduce Security Issues
 
@@ -349,6 +349,10 @@ When attempting to use the PMT on Solaris 10, you'll get an error like the follo
     	The CA bundle included with OpenSSL may not be valid or up to date
 
 This error occurs because there is no CA-cert bundle on Solaris 10 to trust the Puppet Labs Forge certificate. To work around this issue, we recommend that you download directly from the Forge website and then use the Puppet module tool to [install from a local tarball](./puppet/latest/reference/modules_installing.html#installing-from-a-release-tarball).
+
+### Tagmail Isn't Sending Email Notifications
+
+Tagmail doesn't work out of the box in PE 3.7. The [Tagmail module](https://forge.puppetlabs.com/mrpuppet/tagmail), while not a PE supported module, is the recommended workaround.
 
 ## PE on Windows Known Issues
 

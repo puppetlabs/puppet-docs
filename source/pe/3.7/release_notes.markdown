@@ -103,6 +103,10 @@ Before getting started, visit the Puppet docs to read up on the [Structure of an
 
 The [environment_timeout](/puppet/3.7/reference/environments_configuring.html#environmenttimeout) defaults to 3 minutes. This means that code changes you make might not appear until after that timeout has been reached. In addition it's possible that back to back runs of Puppet could flip between the new code and the old code until the `environment_timeout` is reached.
 
+#### Factor 2.2
+
+PE 3.7.0 includes Factor 2.2. This provides a number of improvements that are detailed in the [Factor 2.2 release notes](./facter/2.2/release_notes.html). However, it also resulted in some changes to the behavior of facts, which are detailed in the [known issues](/release_notes_known_issues.html).
+
 ### Support Script Improvements
 
 PE 3.7.0 includes several improvements to the support script, which is bundle in the PE tarball. Check out the [Getting Support page](./overview_getting_support.html#the-pe-support-script) for more information about the support script.
