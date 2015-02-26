@@ -32,7 +32,7 @@ Variables! You've almost definitely used variables before in some other programm
     * A long fully-qualified name
 
     Fully qualified variables look like `$scope::variable`. Top scope variables are the same, but their scope is nameless. (For example: `$::top_scope_variable`.)
-* If you reference a variable with its short name and it isn't present in the local scope, Puppet will also check the global top scope; this means you can almost always refer to global variables with just their short names. You can see more about this in the scope chapter of the Puppet reference manual: [scope in Puppet Enterprise 2.x and Puppet 2.7](/puppet/2.7/reference/lang_scope.html), [scope in Puppet 3](/puppet/latest/reference/lang_scope.html)
+* If you reference a variable with its short name and it isn't present in the local scope, Puppet will also check the global top scope; this means you can almost always refer to global variables with just their short names. You can see more about this in the scope chapter of the Puppet reference manual: [scope in Puppet 2.7](/puppet/2.7/reference/lang_scope.html), [scope in Puppet 3](/puppet/latest/reference/lang_scope.html)
 * You can only assign the same variable **once** in a given scope. In this way, they're more like constants from other programming languages.
 
 {% highlight ruby %}
@@ -50,14 +50,9 @@ Pretty easy.
 >
 > People who write manifests to share with the public often adopt the habit of always using the `$::variable` notation when referring to facts.
 >
-> As mentioned above, the double-colon prefix specifies that a given variable should be found at top scope. This isn't actually necessary, since variable lookup will always reach top scope anyway. (See [the scope chapter of the Puppet reference manual](/puppet/latest/reference/lang_scope.html).)
+> As mentioned above, the double-colon prefix specifies that a given variable should be found at top scope. This isn't actually necessary, since variable lookup will always reach top scope anyway unless you reassign that variable in the local scope. (See [the scope chapter of the Puppet reference manual](/puppet/latest/reference/lang_scope.html).)
 >
-> However, explicitly asking for top scope helps work around two issues that can make public code behave unpredictably. One issue affects all versions of Puppet 2.x, and the other affected earlier versions of Puppet 2.7.x:
->
-> * In Puppet 2.x: if a user declares a class from a public module inside one of their own classes, and their personal class sets a variable whose name matches the name of a fact that the public class is trying to access, the public class will get the local variable instead of the fact. This will generally cause the public class to fail or do something really strange.
-> * In earlier versions of Puppet 2.7.x: the dynamic scope deprecation warnings would sometimes be improperly triggered when manifests accessed top scopes variables without the double-colon prefix. This was fixed in later versions, but was very annoying for a while.
->
-> Neither of these issues are relevant as of Puppet 3, but not everyone is using Puppet 3 yet, and a Puppet 3-based version of Puppet Enterprise is still forthcoming later this year. Since a lot of people are still writing public code meant to be used with Puppet 2.7, you still see this idiom a lot.
+> Using an explicit top-scope lookup used to help protect from certain classes of failures, but now it's just used to indicate to readers of your code that you're referencing a fact variable. See [this note in the Puppet reference manual for more about referencing facts.](/puppet/latest/reference/lang_facts_and_builtin_vars.html#historical-note-about-)
 
 
 Facts
