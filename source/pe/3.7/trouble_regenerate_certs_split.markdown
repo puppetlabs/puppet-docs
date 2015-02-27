@@ -26,7 +26,11 @@ Regardless of your situation, regenerating your certificates involves the follow
 
 Note that this process **destroys the certificate authority and all other certificates.** It is meant for use in the event of a total compromise of your site, or some other unusual circumstance. If you just need to replace a few agent certificates, you can use the `puppet cert clean` command on your Puppet master and then follow [step six](#step-6-clear-and-regenerate-certs-for-pe-agents) for any agents that need to be replaced.
 
->**Note** You must be logged in as a root, (or in the case of Windows agents, as an account with Administrator Privileges)  to make these changes.
+>**Important Notes and Warnings**
+> 
+> - You must be logged in as a root, (or in the case of Windows agents, as an account with Administrator Privileges) to make these changes.
+>
+> - If you encounter any errors during steps that involve `service stop/start`, `rm`, `cp`, or `chmod` commands, you should diagnose these before continuing, as the success each step is very important to the success of the next step.
 
 ## Step 1: Shut down all PE-related services
 
