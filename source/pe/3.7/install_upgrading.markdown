@@ -132,6 +132,14 @@ Depending on your answer, the `disable_live_management` setting in `/etc/puppetl
 
 (Note that you can enable/disable Live Management at any time during normal operations by editing the aforementioned `settings.yml` and then running `sudo /etc/init.d/pe-httpd restart`.)
 
+### Classify PE Groups
+
+Please see [section on classifying PE groups](#classify-the-new-pe-groups) below.  
+
+### Upgrade Puppet Agents
+
+Please see [section on upgrading Puppet agents](#upgrade-agents).
+
 ## Classify the New PE Groups 
 
 **Warning**: After upgrading to 3.7.x from 3.3, you must classify the new PE groups. **This applies to both split and monolithic upgrades.
