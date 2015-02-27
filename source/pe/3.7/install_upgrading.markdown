@@ -55,7 +55,7 @@ The upgrade script will run and provide detailed information as to what it insta
 > **Notes**: 
 >
 > - The new node classifier and role-based access control (RBAC) will be installed as part of the PE console.
-> - If necessary, after upgrading, see the instructions for [Disabling/Enabling Live Management During an Upgrade](#disabling-enabling-live-management-during-an-upgrade).
+> - If necessary, after upgrading, see the instructions for [Disabling/Enabling Live Management During an Upgrade](#disablingenabling-live-management-during-an-upgrade).
 
 ### Classify PE Groups
 
