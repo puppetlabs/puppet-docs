@@ -22,8 +22,6 @@ During installation, Puppet Enterprise (PE) automatically creates a number of pr
 > 
 > For more information on preconfigured node groups when upgrading from an earlier version of Puppet Enterprise (PE), see the [upgrading documentation](./install_upgrading_notes.html#classifying-pe-groups).
 
-For more information on preconfigured node groups when upgrading from an earlier version of Puppet Enterprise (PE), see the [upgrading documentation](./install_upgrading_notes.html#classifying-pe-groups).
-
 >**Note:** In general, you should not remove these node groups or delete classes from them.
 
 The default settings for each node group are shown below.
