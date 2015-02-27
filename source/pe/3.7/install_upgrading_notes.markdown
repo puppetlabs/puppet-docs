@@ -51,7 +51,7 @@ For fresh installations of PE 3.7, node groups in the classifier are created and
 
 The [preconfigured groups doc](./console_classes_groups_preconfigured_groups.html) has a list of groups and their classes that get installed on fresh upgrades.
 
-After upgrading you must classify the new PE groups. We recommend that you perform the manual classification in this order:
+**After upgrading, you must classify the new PE groups**. We recommend that you perform the manual classification in the following order and use the [preconfigured groups doc]((./console_classes_groups_preconfigured_groups.html) to determine which classes to apply to the PE node groups. The ordered specified is as follows:
 
 1. The PE Infrastructure node group
 2. The PE Certificate Authority node group
