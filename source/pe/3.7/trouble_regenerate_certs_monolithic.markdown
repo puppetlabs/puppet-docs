@@ -102,7 +102,7 @@ Note that this process **destroys the certificate authority and all other certif
 
    `rm -rf /etc/puppetlabs/puppetdb/ssl/*`
  
-2. Copy the certs and security credentials generated in step 1 for the master node to the PuppetDB SSL directory. 
+2. Copy the certs and security credentials generated in step 2.5 for the Puppet master node to the PuppetDB SSL directory. 
 
    Note that the Puppet master, PuppetDB, and PE console share the same agent cert and security credentials.  
    
@@ -115,7 +115,7 @@ Note that this process **destroys the certificate authority and all other certif
 
    `rm -rf /opt/puppet/var/lib/pgsql/9.2/data/certs/*`
 
-4. Copy the certs and security credentials generated in step 1 for the master node to the PostgreSQL certs directory. 
+4. Copy the certs and security credentials generated in step 2.5 for the Puppet master to the PostgreSQL certs directory. 
 
         cp /etc/puppetlabs/puppet/ssl/certs/<CERTNAME>.pem /opt/puppet/var/lib/pgsql/9.2/data/certs/<CERTNAME>.cert.pem
         cp /etc/puppetlabs/puppet/ssl/public_keys/<CERTNAME>.pem /opt/puppet/var/lib/pgsql/9.2/data/certs/<CERTNAME>.public_key.pem
@@ -206,7 +206,7 @@ To replace the certs on agents, you'll need to log into each agent node and do t
 
    `puppet resource service pe-mcollective ensure=stopped`
    
-4. Delete the agent's SSL directory. On \*nix nodes, run `rm -r /etc/puppetlabs/puppet/ssl`. On Windows nodes, delete the `$confdir\ssl` directory, using the Administrator confdir. [See here for more information on locating the confdir.][confdir]
+4. Delete the agent's SSL directory. On \*nix nodes, run `rm -rf /etc/puppetlabs/puppet/ssl`. On Windows nodes, delete the `$confdir\ssl` directory, using the Administrator confdir. [See here for more information on locating the confdir.][confdir]
 5. Remove the cached catalog. on \*nix nodes, run `rm -f /var/opt/lib/pe-puppet/client_data/catalog/<CERT NAME>.json`. On Windows nodes, delete the `$client_datadir\catalog\<CERTNAME>.json` file, using the Administrator confdir. [See here for more information on locating the confdir.][confdir]
 
 6. Re-start the Puppet agent service.
