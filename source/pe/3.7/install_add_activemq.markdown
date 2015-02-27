@@ -5,7 +5,7 @@ subtitle: "Additional ActiveMQ Hub and Spoke Installation"
 canonical: "/pe/latest/install_add_activemq.html"
 ---
 
-The following guide provides instructions for adding additional ActiveMQ hubs and spokes to large Puppet Enterprise deployments managing more than 1500 agent nodes. Building out your ActiveMQ brokers will provide efficient load balancing of network connections for relaying MCollective messages through your PE infrastructure.
+The following guide provides instructions for adding additional ActiveMQ hubs and spokes to large Puppet Enterprise deployments (those managing more than 1000 agent nodes). Building out your ActiveMQ brokers will provide efficient load balancing of network connections for relaying MCollective messages through your PE infrastructure.
 
 Adding ActiveMQ hubs and spokes can be done in addition to, or independent from, adding [additional Puppet masters](./install_multimaster.html) to large deployments.
 

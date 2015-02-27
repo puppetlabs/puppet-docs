@@ -5,7 +5,7 @@ subtitle: "Additional Puppet Master Installation"
 canonical: "/pe/latest/install_multimaster.html"
 ---
 
-The following guide provides instructions for adding additional Puppet masters to large Puppet Enterprise deployments managing more than 1500 agent nodes. Using additional Puppet masters in such scenarios will provide quicker, more efficient compilation times as multiple masters can share request load when agent nodes run. 
+The following guide provides instructions for adding additional Puppet masters to large Puppet Enterprise deployments (those managing more than 1000 agent nodes). Using additional Puppet masters in such scenarios will provide quicker, more efficient compilation times as multiple masters can share request load when agent nodes run. 
  
 Please be sure to review these procedures before beginning, as performing these steps out of order can cause problems for your configurations. 
 
