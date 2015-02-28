@@ -9,11 +9,13 @@ canonical: "/pe/latest/console_classes_groups_environment_override.html"
 In order to prevent conflicts between node groups, we recommend the idea of “environment groups” and “classification groups”.
 
 "Environment groups" should:
+
 1. Set the environment
 2. Have the **Override all other environments** checkbox selected
 3. Not include any classes
 
 "Classification groups" should:
+
 1. Include classes
 2. **Never** have the **Override all other environments** checkbox selected
 3. Use the environment if you want to filter classes and parameters by environment
