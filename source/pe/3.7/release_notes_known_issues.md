@@ -303,9 +303,9 @@ Marking failed tasks as read in the console can instead open a security warning,
 If you upgrade or install a PE 3.7.1 master, sign the certificate, and run Puppet on a 3.7.0 agent node, that should succeed. However, if you enable future parser, restart pe-puppetserver, and then run Puppet on the agent again, you'll get a server error. This error doesn't happen if you enable future parser with a PE 3.7.0 master and agent, or a PE 3.7.1 master and agent, only a 3.7.1 master with a 3.7.0 agent. To avoid this problem, update your agents to match the version of your masters.
 
 
-### Factor 2.2 Known Issues
+### Facter 2.2 Known Issues
 
-* PE 3.7.x uses Factor 2.2, which turned off `stringify_facts` and turned on structured facts from the agents. This means that facts that were previously strings are now structured. Perhaps more importantly, facts that were previously strings like "true", "false" are now actual booleans. This causes situations where an `if` statement such as, `if $is_virtual == 'true'`, hits the `else` condition because the boolean value for true is not the same thing as the string "true".
+* PE 3.7.x uses Facter 2.2, which turned off `stringify_facts` and turned on structured facts from the agents. This means that facts that were previously strings are now structured. Perhaps more importantly, facts that were previously strings like "true", "false" are now actual booleans. This causes situations where an `if` statement such as, `if $is_virtual == 'true'`, hits the `else` condition because the boolean value for true is not the same thing as the string "true".
 * Change to `lsbmajdistrelease` fact affects some manifests. This is because In Facter 2.2.0, the `lsbmajdistrelease` fact changed its value from the first two numbers to the full two-number.two-number version on Ubuntu systems. This might break manifests that were based on the previous behavior. For example, this fact changed from: `12` to `12.04`
 This change affects Ubuntu and Amazon Linux. See the [Facter documentation for more information](/facter/2.2/release_notes.html#significant-changes-to-existing-facts).
 
