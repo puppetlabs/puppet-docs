@@ -92,10 +92,12 @@ following directories:
 
 ## Enabling Pluginsync
 
-After setting up the directory structure, we then need to turn on pluginsync in our puppet.conf configuration file on both the master and the clients:
+After setting up the directory structure, we then need to turn on `pluginsync` in our `puppet.conf` configuration file on the agents:
 
     [main]
     pluginsync = true
+
+This is not necessary for agents with versions above `3.0.0`, which use this setting by default.
 
 ## Note on Usage for Server Custom Functions
 
