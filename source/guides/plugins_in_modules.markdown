@@ -100,9 +100,9 @@ After setting up the directory structure, we then need to turn on pluginsync in 
 ## Note on Usage for Server Custom Functions
 
 Functions are executed on the server while compiling the manifest.
-A module defined in the manifest can include functions in the
+A module defined in the manifest can invoke functions from the
 plugins directory. The custom function will need to be placed in
-the proper location within the manifest first:
+the proper location within the module first:
 
     {modulepath}/{module}/lib/puppet/parser/functions
 
