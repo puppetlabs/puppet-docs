@@ -92,33 +92,18 @@ following directories:
 
 ## Enabling Pluginsync
 
-After setting up the directory structure, we then need to turn on pluginsync in our puppet.conf configuration file on both the master and the clients:
+After setting up the directory structure, we then need to turn on `pluginsync` in our `puppet.conf` configuration file on the agents:
 
     [main]
     pluginsync = true
 
+This is not necessary for agents with versions above `3.0.0`, which use this setting by default.
+
 ## Note on Usage for Server Custom Functions
 
 Functions are executed on the server while compiling the manifest.
-A module defined in the manifest can include functions in the
+A module defined in the manifest can invoke functions from the
 plugins directory. The custom function will need to be placed in
-the proper location within the manifest first:
+the proper location within the module first:
 
     {modulepath}/{module}/lib/puppet/parser/functions
-
-Note that this location is not within the puppetmaster's $libdir
-path. Placing the custom function within the module plugins
-directory will not result in the puppetmasterd loading the new
-custom function. The puppet client can be used to help deploy the
-custom function by copying it from
-modulepath/module/lib/puppet/parser/functions to the
-proper $libdir location. To do so run the puppet client on the
-server. When the client runs it will download the custom function
-from the module's lib directory and deposit it within the
-correct location in $libdir. The next invocation of the Puppet master
-by a client will autoload the custom function.
-
-As always custom functions are loaded once by the Puppet master. Simply
-replacing a custom function with a new version will not cause
-Puppet master to automatically reload the function. You must
-restart the Puppet master.
