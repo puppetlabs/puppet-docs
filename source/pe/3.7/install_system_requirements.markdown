@@ -19,7 +19,7 @@ Before installing Puppet Enterprise:
 Operating System
 -----
 
-Puppet Enterprise 3.7 supports the following systems:
+Puppet Enterprise 3.7 supports the following operating systems:
 
 Operating system             | Version(s)                              | Arch          | Component(s)
 -----------------------------|-----------------------------------------|---------------|----------------------------
@@ -50,6 +50,15 @@ Mac OS X                     | Mavericks (10.9)                        | x86_64 
 >4. [Install PE](/pe/latest/install_basic.html).
 >
 >5. [Restore](./maintain_backup_restore.html#restore-your-database-and-puppet-enterprise-files) your backup.
+
+Network Devices
+-----
+
+Puppet Enterprise 3.7 supports running Puppet agents on the following networking devices/operating systems:
+
+- Arista EOS. Refer the [aristanetworks/netdev_stdlib_eos module](https://forge.puppetlabs.com/aristanetworks/netdev_stdlib_eos#limitations) on the Puppet Forge for system requirements and dependencies.
+
+
 
 Hardware Requirements
 -----
