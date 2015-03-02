@@ -10,7 +10,7 @@
 9. [Ayúdanos a mejorar este sitio](http://docs.puppetlabs.com/#help-improve-this-site)
 10. [Versiones de la documentación](http://docs.puppetlabs.com/#documentation-version)
 
-Bienvenidos al sitio de documentación de Puppet Labs. La documentación publicada aquí también está disponible en un set de PDFs que puedes encontrar [aquí](http://info.puppetlabs.com/download-pdfs.html). También es posible [bajar la versión actual de todo este sitio] como archivo zipeado; descomprímelo y sigue las instrucciones del archivo README.txt para ver el sitio offline.
+Bienvenidos al sitio de documentación de Puppet Labs. Es posible [bajar la versión actual de todo este sitio] como archivo zipeado; descomprímelo y sigue las instrucciones del archivo README.txt para ver el sitio offline.
 
 ##Contributing
 This documentation has been kindly contributed by the Puppet user community. In particular, we would like to give special thanks to [Edrans](www.edrans.com), a Puppet partner based in Argentina, for their generous contribution to the translation of Puppet Labs user documentation into Spanish.
