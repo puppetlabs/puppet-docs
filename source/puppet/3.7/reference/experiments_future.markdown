@@ -132,8 +132,8 @@ Assignments may thus also be used where expressions are.
 
 Calling a function in interpolation now works:
 
-    notice "This is a random number: ${fqdn_rand(30)}
-
+    notice "This is a random number: ${fqdn_rand(30)}"
+	
 This has mysterious result in the regular parser since it is interpreted as
 
     ${$fqdn_rand(30)}
