@@ -150,15 +150,6 @@ In some cases (especially for RHEL 7 installations) if the `/tmp/` directory is 
 
 To work around this issue, you can either mount the `/tmp/` directory without `noexec`, or you can choose a different directory to use as the temporary directory for the Puppet Server process. If you want to use a different directory, you can add an extra argument to the `$java_args` parameter of the `puppet_enterprise::profile::master` class using the PE console. Add `{"Djava.io.tmpdir=/var/tmp":""}` as the value for the `$java_args` parameter. Refer to [Editing Parameters](./console_classes_groups_making_changes.html#editing-parameters) for instructions on editing parameters in the console.
 
-### Running `pe-puppetserver` on a Server With More Than Four Cores Might Require Tuning
-
-The more JRuby instances you run, the more heap space you'll require.  You have two options:
-
-* Reduce the number of JRuby instances. For more information about configuring settings like these, see [Configuring Your PE Infrastructure](./config_intro.html).
-* Increase the JVM heap size for puppet server. See the PE Puppet Server Service section of [Configuring Java Arguments For PE](./config_java_args.html).
-
-Generally speaking, we recommend starting your tuning with six JRuby instances and then tuning memory from there. If you want more throughput, you need to increase JRuby instances and heap space concurrently after you've found a steady state.
-
 ### No Config Reload Requests
 
 The Puppet Server service doesn't have a non-disruptive way to request a reload of its configuration files. In order to reload its config, you must restart the service.
