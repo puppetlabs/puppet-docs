@@ -21,7 +21,7 @@ Location
 By default, the config file is:
 
 * `/etc/puppetlabs/code/hiera.yaml` on \*nix systems
-* [`COMMON_APPDATA`][common_appdata]`\PuppetLabs\puppet\etc\hiera.yaml` on Windows
+* [`COMMON_APPDATA`][common_appdata]`\PuppetLabs\code\hiera.yaml` on Windows
 
 ### Changing the Config File Location
 
@@ -91,7 +91,7 @@ Must be a **string** or an **array of strings,** where each string is the name o
 
 The data sources in the hierarchy are checked in order, top to bottom.
 
-**Default value:** `"common"` (i.e. a single-element hierarchy whose only level is named "common.")
+**Default value:** `"common"` (i.e., a single-element hierarchy whose only level is named "common.")
 
 ### `:backends`
 
@@ -156,7 +156,7 @@ The directory in which to find data source files. This must be a string.
 
 You can [interpolate variables][interpolate] into the datadir using `%{variable}` interpolation tokens. This allows you to, for example, point it at `"/etc/puppetlabs/code/hieradata/%{::environment}"` to keep your production and development data entirely separate.
 
-**Default value:** `/etc/puppetlabs/code/hieradata` on \*nix, and [`COMMON_APPDATA`][common_appdata]`\PuppetLabs\Hiera\var` on Windows.
+**Default value:** `/etc/puppetlabs/code/hieradata` on \*nix, and [`COMMON_APPDATA`][common_appdata]`\PuppetLabs\code\hieradata` on Windows.
 
 ### `:puppet`
 

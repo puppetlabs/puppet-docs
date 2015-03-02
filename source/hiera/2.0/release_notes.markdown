@@ -12,16 +12,22 @@ Hiera 2.0.0 is a new major version of Hiera, which includes several new features
 
 ### BREAK: New Default Locations for Config File and Data Directory
 
-On \*nix systems, this release changes the default locations for the config file and the data directory used by the YAML and JSON backends. If you were relying on the old default behavior, you'll need to either move your files or configure Hiera to use non-default locations.
+This release changes the default locations for the config file and the data directory used by the YAML and JSON backends. If you were relying on the old default behavior, you'll need to either move your files or configure Hiera to use non-default locations.
 
+On *nix systems:
 * `hiera.yaml` is now at `/etc/puppetlabs/code/hiera.yaml`
     * (was: `/etc/hiera.yaml` or `/etc/puppetlabs/puppet/hiera.yaml` or `/etc/puppet/hiera.yaml`)
 * `:datadir` is now at `/etc/puppetlabs/code/hieradata/`
     * (was: `/var/lib/hiera`)
 
-Also, Hiera will now always use the _same_ default location, whether you're using it from the CLI, as a Ruby library, or via Puppet.
+On Windows systems: 
 
-Note that the default locations on Windows haven't changed.
+* `hiera.yaml` is now at `\PuppetLabs\code\hiera.yaml`
+  * (was: `COMMON_APPDATA\PuppetLabs\puppet\etc\hiera.yaml`)
+* `:datadir` is now at `\PuppetLabs\code\hieradata`
+  * (was: `COMMON_APPDATA\PuppetLabs\Hiera\var`)
+  
+Also, Hiera will now always use the _same_ default location, whether you're using it from the CLI, as a Ruby library, or via Puppet.
 
 * [HI-298: Update FS layout for hiera](https://tickets.puppetlabs.com/browse/HI-298)
 * [HI-50: pe-hiera unit tests check incorrect etc path](https://tickets.puppetlabs.com/browse/HI-50)
@@ -111,7 +117,7 @@ This isn't a change to Hiera itself, but putting it in the Hiera release notes s
 This release included some routine work to improve support on new platforms and drop old ones.
 
 * [HI-273: Support Bundler workflow on x64](https://tickets.puppetlabs.com/browse/HI-273)
-* [HI-126: Build windows sphecific gem](https://tickets.puppetlabs.com/browse/HI-126)
+* [HI-126: Build windows specific gem](https://tickets.puppetlabs.com/browse/HI-126)
 * [HI-185: Add Trusty (Ubuntu 14.04) support](https://tickets.puppetlabs.com/browse/HI-185)
 * [HI-285: Remove saucy from build_defaults.yaml](https://tickets.puppetlabs.com/browse/HI-285)
 * [HI-277: Remove sid and unstable from build_defaults](https://tickets.puppetlabs.com/browse/HI-277)
