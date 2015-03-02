@@ -23,7 +23,24 @@ To change these defaults, add a new file to the `/etc/puppetlabs/console-service
      failed-attempts-lockout: 10
     }
 
-Then restart pe-console-services (`sudo service pe-console-services restart`)
+Then restart pe-console-services (`sudo service pe-console-services restart`).
+
+### Tuning `max threads` on the PE Console and Console API
+
+This sets the maximum number of threads assigned to respond to HTTP and HTTPS requests, effectively changing how many concurrent requests can be made to the PE console server and console API at one time. The default setting is 100 max threads. This should be increased to 150 max threads for nodes where `$::processorcount` is greater than 32.
+
+To increase the max threads for the PE console and console API, edit your default Hiera `.yaml` file with the following code:
+
+     puppet_enterprise::profile::console::console_services_config::tk_jetty_max_threads_api: <number of threads>
+     puppet_enterprise::profile::console::console_services_config::tk_jetty_max_threads_console: <number of threads>
+
+> **Note**: This setting is only available in PE 3.7.2 and later.
+
+### Tuning Java Args for the PE Console
+ 
+You can increase the JVM (Java Virtual Machine) memory that is allocated to Java services running on the PE console. This memory allocation is known as the Java heap size.
+
+Instructions for using the PE console to increase the Jave heap size are detailed on on the [Configuring Java Arguments for PE](/config_java_args.html#pe-console-service) page. 
 
 ## Tuning the PostgreSQL Buffer Pool Size
 
