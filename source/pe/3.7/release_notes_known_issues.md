@@ -140,6 +140,10 @@ After updating the gems, you need to restart the Puppet master with `service pe-
 
 >**Note**: Installing `puppetserver` gems fails when run unprivileged. You might get a "no such file or directory" error. Instead, install as root.
 
+### A Note About Gems with Native (C) Extensions for JRuby on the Puppet Server
+
+Please see the Puppet Server documentation for a description of this issue, [Gems with Native (C) Extensions](/puppetserver/1.0/gems.html#gems-with-native-c-extensions).
+
 ### Puppet Server Run Issue when `/tmp/` Directory Mounted `noexec`
 
 In some cases (especially for RHEL 7 installations) if the `/tmp/` directory is mounted as `noexec`, Puppet Server may fail to run correctly, and you may see an error in the Puppet Server logs similar to the following:
