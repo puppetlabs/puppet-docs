@@ -5,21 +5,6 @@ canonical: "/es/index.html"
 toc: false
 ---
 
-1. [Contribuir](http://docs.puppetlabs.com/#contributing)
-2. [Puppet](http://docs.puppetlabs.com/#puppetpuppet)
-3. [Puppet Enterprise](http://docs.puppetlabs.com/#puppet-enterprisepelatest)
-4. [MCollective](http://docs.puppetlabs.com/#mcollectivemcollective)
-5. [Puppet Dashboard](http://docs.puppetlabs.com/#puppet-dashboarddashboardmanual12)
-6. [PuppetDB](http://docs.puppetlabs.com/#puppetdbpuppetdblatest)
-7. [Hiera](http://docs.puppetlabs.com/#hierahiera1)
-8. [Facter](http://docs.puppetlabs.com/#facterfacter16corefactshtml)
-9. [Geppetto](http://docs.puppetlabs.com/#geppetto)
-10. [Puppet Forge](http://docs.puppetlabs.com/#forge)
-11. [Razor](http://docs.puppetlabs.com/#razor)
-12. [Comunidad](http://docs.puppetlabs.com/#community)
-13. [Ayúdanos a mejorar este sitio](http://docs.puppetlabs.com/#help-improve-this-site)
-14. [Versiones de la documentación](http://docs.puppetlabs.com/#documentation-version)
-
 Bienvenidos al sitio de documentación de Puppet Labs. Es posible [bajar la versión actual de todo este sitio](https://docs.puppetlabs.com/puppetdocs-latest.tar.gz) como archivo zipeado; descomprímelo y sigue las instrucciones del archivo README.txt para ver el sitio offline.
 
 ##Contribuir
