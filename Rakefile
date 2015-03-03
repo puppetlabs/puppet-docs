@@ -218,6 +218,9 @@ end
 
 task :check_git_dirty_status do
   if File.directory?('.git')
+    Rake::Task['externalsources:clean'].invoke # Don't let leftover symlinks from a cancelled build mark the tree as dirty.
+    Rake::Task['externalsources:clean'].reenable
+
     if `git status --porcelain 2> /dev/null | tail -n1` != ''
       STDOUT.puts "The working directory has uncommitted changes. They're probably either \n  incomplete changes you don't want to release, or important changes you \n  don't want lost; in either case, you might want to deal with them before \n  you build and deploy the site. Continue anyway? (y/n)"
       abort "Aborting." unless STDIN.gets.strip.downcase =~ /^y/
