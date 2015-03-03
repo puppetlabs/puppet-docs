@@ -1,4 +1,10 @@
-#Documentación de Puppet Labs
+---
+layout: frontpage
+title: Documentación de Puppet Labs
+canonical: "/es/index.html"
+toc: false
+---
+
 1. [Contribuir](http://docs.puppetlabs.com/#contributing)
 2. [Puppet](http://docs.puppetlabs.com/#puppetpuppet)
 3. [Puppet Enterprise](http://docs.puppetlabs.com/#puppet-enterprisepelatest)
