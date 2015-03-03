@@ -138,6 +138,10 @@ For instance, in PE 3.7.2, the deep_merge gem is no longer installed by default.
 
 After updating the gems, you need to restart the Puppet master with `service pe-puppetserver restart`. You should do this **before** doing any Puppet agent runs. 
 
+### A Note About Gems with Native (C) Extensions for JRuby on the Puppet Server
+
+Please see the Puppet Server documentation for a description of this issue, [Gems with Native (C) Extensions](/puppetserver/1.0/gems.html#gems-with-native-c-extensions).
+
 ### Puppet Server Run Issue when `/tmp/` Directory Mounted `noexec`
 
 In some cases (especially for RHEL 7 installations) if the `/tmp/` directory is mounted as `noexec`, Puppet Server may fail to run correctly, and you may see an error in the Puppet Server logs similar to the following:
