@@ -1,5 +1,5 @@
 ---
-layout: frontpage
+layout: default
 title: Documentación de Puppet Labs
 canonical: "/es/index.html"
 toc: false
@@ -8,11 +8,11 @@ toc: false
 Bienvenidos al sitio de documentación de Puppet Labs. Es posible [bajar la versión actual de todo este sitio](https://docs.puppetlabs.com/puppetdocs-latest.tar.gz) como archivo zipeado; descomprímelo y sigue las instrucciones del archivo README.txt para ver el sitio offline.
 
 ##Contribuir
-Este documento ha sido contribuido amablemente por la comunidad de usuarios de Puppet. En particular nos gustaría agradecer especialente a [Edrans](www.edrans.com), partner de Puppet basado en Argentina, por su generosa contribución a la traducción de la documentación de Puppet Labs al Español.
+Este documento ha sido contribuido amablemente por la comunidad de usuarios de Puppet. En particular nos gustaría agradecer especialente a [Edrans](http://www.edrans.com), partner de Puppet basado en Argentina, por su generosa contribución a la traducción de la documentación de Puppet Labs al Español.
 
 Puppet Labs está comprometido a dar soporte a nuestros usuarios hispanoparlantes. Estamos planeando agregar más recursos en Español para ayudarles a aprender e implementar Puppet y Puppet Enterprise.
 
-Siempre estamos buscando más ayuda en la traducción de nuestra documentación al Español. Si te interesa contribuir a la traducción de documentación de Puppet, por favor envíanos un [email](localization@puppetlabs.com).
+Siempre estamos buscando más ayuda en la traducción de nuestra documentación al Español. Si te interesa contribuir a la traducción de documentación de Puppet, por favor envíanos un email <localization@puppetlabs.com>.
 
 ##Puppet
 Puppet maneja tus servidores: Describes la configuración en un lenguaje declarativo de fácil lectura, y Puppet llevará tus sistemas al estado deseado y los mantendrá allí.
