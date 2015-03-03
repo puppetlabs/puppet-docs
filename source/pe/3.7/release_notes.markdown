@@ -5,7 +5,7 @@ subtitle: "Puppet Enterprise 3.8 Release Notes"
 canonical: "/pe/latest/release_notes.html"
 ---
 
-This page contains information about new features and general improvements in the latest Puppet Enterprise (PE) release.
+This page contains information about new features and general improvements and changes in the latest Puppet Enterprise (PE) release.
 
 For more information about this release, also see the [Known Issues](./release_notes_known_issues.html) and [Security and Bug Fixes](./release_notes_security.html).
 
@@ -17,3 +17,14 @@ Values for parameters and variables can be specified in the console using string
 
 For more information on the syntax and restrictions for string interpolation in the console, see [Tips on specifying parameter and variable values](./console_classes_groups.markdown#setting-class-parameters).
 
+## Significant Changes in PE 3.8.0
+
+### Cloud Provisioner is Deprecated
+
+Cloud Provisioner is deprecated in this release and will eventually be removed from Puppet Enterprise. For this reason, Cloud Provisioner is not installed by default as in previous versions of PE. If you have been using Cloud Provisioner in your existing PE infrastructure and would like to continue using it upon upgrading, you can install it separately, as described in the [Installing section of Cloud Provisioner documentation](./cloudprovisioner_configuring.html#installing).
+
+Instead of Cloud Provisioner, we recommend using the AWS Supported Module going forward.
+
+### Live Management is Deprecated
+
+Live Management is deprecated in PE 3.8.0 and will be replaced by improved resource management functionality in future releases. For this reason, Live Management is not installed by default as in previous versions of PE. If you have been using Live Management in your existing PE infrastructure and would like to continue using it with PE 3.8, see the instructions for installing Live Management in the PE documentation.
