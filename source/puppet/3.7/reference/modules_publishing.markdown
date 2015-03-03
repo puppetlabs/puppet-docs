@@ -177,6 +177,10 @@ The version requirement in a dependency isn't limited to a single version; you c
 * `>= 3.2.x`
 * `< 4.x`
 
+#####DEPRECATED
+
+* `versionRequirement`--- Another way of specifying `version_requirement`, `versionRequirement` was never officially supported and is slated for removal in Puppet 4. Please use `version_requirement` as noted above instead. 
+
 ###Operating system compatibility in metadata.json
 
 If you are publishing your module to the Puppet Forge, we highly recommend that you include `operatingsystem_support` in your metadata.json. Even if you do not intend to publish your module, including this information can be helpful for tracking your work.
