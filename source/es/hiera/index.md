@@ -1,14 +1,11 @@
-#Hiera 1: Vista general
-
-1. Comenzar a usar Hiera
-	+ Aprender con el ejemplo
-2. ¿Por qué Hiera?
-	+ Mejorar Puppet
-	+ Evitar repeticiones
+---
+title: "Hiera 1: Vista general"
+layout: default
+---
 
 Hiera es una herramienta de búsqueda de pares clave/valor para configurar información, hecha para **mejorar [Puppet](http://docs.puppetlabs.com/puppet/)** y permitirte establecer los datos específicos del nodo sin repeticiones. Mira [¿Por qué Hiera? en el punto 2](http://docs.puppetlabs.com/hiera/1/index.html#why-hiera) para más información, o comienza a usarlo directamente:
 
-#Comenzar a usar Hiera
+## Comenzar a usar Hiera
 Para comenzar con Hiera, necesitarás hacer lo siguiente:
 
 + [Instalar Hiera](http://docs.puppetlabs.com/hiera/1/installing.html) si todavía no lo hiciste.
@@ -19,11 +16,11 @@ Para comenzar con Hiera, necesitarás hacer lo siguiente:
 
 Luego de tener Hiera funcionando, puedes ajustar tu información y tus jerarquías cuando necesites hacerlo. También puedes [probar Hiera desde la línea de comando](http://docs.puppetlabs.com/hiera/1/command_line.html) para asegurarte que está trayendo la información correcta para cada nodo. 
 
-## Aprender con el ejemplo
+### Aprender con el ejemplo
 Si aprendes mejor con un ejemplo, comienza con [este tutorial Hiera y Puppet simple de principio a fin](http://docs.puppetlabs.com/hiera/1/complete_example.html). Para aprender más, poder volver y leer las secciones enlazadas antes.
 
-#¿Por qué Hiera?
-## Mejorar Puppet
+## ¿Por qué Hiera?
+### Mejorar Puppet
 Hiera mejora Puppet al **mantener la información específica fuera de tus manifiestos**. Las clases de Puppet pueden solicitar toda la información que necesiten, y tus datos de Hiera actuarán como un archivo de configuración que abarca todo el sitio.
 
 Esto tiene muchas ventajas:
@@ -32,7 +29,7 @@ Esto tiene muchas ventajas:
 + Facilita la reutilización de los módulos públicos de Puppet: No edites el código, sólo coloca la información necesaria en Hiera.
 + Facilita la publicación de tus propios módulos para colaboración: No necesitas preocuparte de limpiar tu información antes de mostrar el módulo. No más choques entre nombres de variables.
 
-## Evitar repeticiones
+### Evitar repeticiones
 Con Hiera, puedes:
 
 + Escribir información común para la *mayoría* de los nodos.
