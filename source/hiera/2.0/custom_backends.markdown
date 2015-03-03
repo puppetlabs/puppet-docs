@@ -53,22 +53,23 @@ If you have any setup to do in your backend before you can look up data --- for 
 
 ### `lookup` Method
 
-Every backend must define a `lookup(key, scope, order_override, resolution_type)` method, which must return either a single value or `nil`. The returned value can be a string, number, boolean, array, or hash. If no value is found, it should return `nil`.
+Every backend must define a `lookup(key, scope, order_override, resolution_type, context)` method, which must return either a single value or `nil`. The returned value can be a string, number, boolean, array, or hash. If no value is found, it should return `nil`.
 
-The lookup method can do basically anything to acquire its value, but will usually use [the `Backend.datasources` method][datasources] to iterate over the hierarchy (see below).
+The lookup method can do basically anything to acquire its value, but usually uses [the `Backend.datasources` method][datasources] to iterate over the hierarchy (see below).
 
-When Hiera calls the lookup method, it will pass four pieces of data as arguments:
+When Hiera calls the lookup method, it passes five pieces of data as arguments:
 
-* `key` is the lookup key
-* `scope` is the set of [variables](./variables.html) available to make decisions about the hierarchy and perform data interpolation
-* `order_override` is a requested first hierarchy level, which can optionally be inserted at the top of the hierarchy
-* `resolution_type` is the requested [lookup type](./lookup_types.html)
+* `key` is the lookup key.
+* `scope` is the set of [variables](./variables.html) available to make decisions about the hierarchy and perform data interpolation.
+* `order_override` is a requested first hierarchy level, which can optionally be inserted at the top of the hierarchy.
+* `resolution_type` is the requested [lookup type](./lookup_types.html).
+* `context` is a hash that contains a key named `:recurse_guard`. You never need to call methods on this object, but you'll need to pass it along later if you make any calls to `Backend.parse_answer` or `Backend.parse_string`. This parameter helps Hiera correctly propagate the order_override and the recursion guard used for detecting endless lookup recursions in interpolated values. 
 
 {% highlight ruby %}
     class Hiera
       module Backend
         class File_backend
-          def lookup(key, scope, order_override, resolution_type)
+          def lookup(key, scope, order_override, resolution_type, context)
             answer = nil
             # ...
             return answer
@@ -86,16 +87,17 @@ Index of methods:
 - [`Backend.datasources`][datasources]
 - [`Backend.datafile`][datafile]
 - [`Backend.parse_answer`][parse_answer]
+- ['Backend.parse_string`][parse_string]
 - [`Backend.merge_answer`][merge_answer]
 - [`Hiera.debug` and `Hiera.warn`][logging]
 
 A backend's lookup method can construct its own arbitrary hierarchy and do anything to retrieve data. However:
 
-* You will usually want to iterate over Hiera's normal configured [hierarchy](./hierarchy.html).
-* You may want to locate data files in a directory.
-* You may want to allow values in the looked-up data to [interpolate dynamic values](./variables.html#in-data).
-* You may want to accommodate hash merge lookups.
-* You may want to log messages to assist debugging.
+* You usually want to iterate over Hiera's normal configured [hierarchy](./hierarchy.html).
+* You might want to locate data files in a directory.
+* You might want to allow values in the looked-up data to [interpolate dynamic values](./variables.html#in-data).
+* You might want to accommodate hash merge lookups.
+* You might want to log messages to assist debugging.
 
 The Hiera::Backend module provides helper methods for the first four, and the Hiera class provides logging methods.
 
@@ -116,7 +118,7 @@ When doing a priority lookup, you should generally use a `break` statement in yo
     class Hiera
       module Backend
         class File_backend
-          def lookup(key, scope, order_override, resolution_type)
+          def lookup(key, scope, order_override, resolution_type, context)
             answer = nil
             Backend.datasources(scope, order_override) do |source|
               # ...
@@ -139,7 +141,7 @@ The `Backend.datafile` method returns a string, representing the complete path t
 It is optional, and is only useful when your backend is searching files on disk. It provides facilities similar to those in the `yaml` and `json` backends. To use this, you must set a `:datadir` setting in hiera.yaml under a key named for your backend:
 
     :file:
-      :datadir: /etc/puppet/hieradata
+      :datadir: /etc/puppetlabs/code/hieradata/
 
 The arguments you must provide are the **name of the backend** (as a symbol), the **scope** (usually just passed on from the lookup method's arguments), the **current hierarchy level** (usually passed to the current block by the `Backend.datasources` method), and the **file extension** to expect.
 
@@ -147,7 +149,7 @@ The arguments you must provide are the **name of the backend** (as a symbol), th
     class Hiera
       module Backend
         class File_backend
-          def lookup(key, scope, order_override, resolution_type)
+          def lookup(key, scope, order_override, resolution_type, context)
             answer = nil
             Backend.datasources(scope, order_override) do |source|
               file = Backend.datafile(:file, scope, source, "d") or next
@@ -165,7 +167,7 @@ The arguments you must provide are the **name of the backend** (as a symbol), th
 {% endhighlight %}
 
 
-#### `Backend.parse_answer(data, scope, [extra_data])`
+#### `Backend.parse_answer(data, scope, extra_data={}, context={:recurse_guard => nil, :order_override => nil})`
 
 [parse_answer]: #backendparseanswerdata-scope
 
@@ -175,7 +177,7 @@ The `Backend.parse_answer` method returns its first argument, but with any [inte
     class Hiera
       module Backend
         class File_backend
-          def lookup(key, scope, order_override, resolution_type)
+          def lookup(key, scope, order_override, resolution_type, context)
             answer = nil
             Backend.datasources(scope, order_override) do |source|
               file = Backend.datafile(:file, scope, source, "d") or next
@@ -183,7 +185,7 @@ The `Backend.parse_answer` method returns its first argument, but with any [inte
               next unless File.exist?(path)
               data = File.read(path)
               next unless data
-              break if answer = Backend.parse_answer(data, scope)
+              break if answer = Backend.parse_answer(data, scope, extra_data, context)
             end
             return answer
           end
@@ -192,7 +194,23 @@ The `Backend.parse_answer` method returns its first argument, but with any [inte
     end
 {% endhighlight %}
 
-You can also pass a hash of extra data as an optional third argument. This hash will be used like the scope to provide variables for interpolation, but _only_ if the scope fails to produce a match for that variable. Your backend can use this to provide fallback data from some other source.
+You can also pass a hash of extra data as an optional third argument. This hash is used like the scope to provide variables for interpolation, but _only_ if the scope fails to produce a match for that variable. Your backend can use this to provide fallback data from some other source.
+
+Context is an optional hash with two keys --- `:recurse_guard` and `:order_override`. This allows your backend to take advantage of bug fixes that preserve your order override and prevent recurse loops. Your lookup method should have already received a partial context hash, plus a separate `order_override` argument, so you should be able to just add that `order_override` to the existing hash:
+
+	`context[:order_override] = order_override`
+	
+Note that the `context` parameter must be the fourth argument called on this helper, so if you use it, you'll also need to use the `extra_data` parameter, even if you just give `extra_data` an empty hash.
+
+#### `Backend.parse_string(data, scope, extra_data={}, context={:recurse_guard => nil, :order_override => nil})`
+
+[parse_string]: #backendparsestringdata-scope
+
+You won't normally need to call the `Backend.parse_string` method. Instead, if you pass a string argument to `Backend.parse_answer`, it delegates that call to `Backend.parse_string` for resolution. (If the value is an array or a hash, then `Backend.parse_answer` iterates and recursively calls itself for each element. This ensures that all interpolations are found and resolved, even if the string is deeply nested into hashes and arrays.)
+
+The `Backend.parse_string` method resolves interpolated strings. For example, 'Hello %{somekey}' becomes 'Hello world' if a lookup with the key 'somekey' yields the string 'world'. A Hiera lookup can produce values that are strings, hashes, arrays, booleans, or numbers, but only values of type string can be passed to `Backend.parse_string`.
+
+If you do need to explicitly call `Backend.parse_string` for some reason, you'll want to use the context parameter as described in [Backend.parse_answer][parse_answer] above.
 
 #### `Backend.merge_answer(new_answer,answer)`
 
@@ -203,7 +221,7 @@ The `Backend.merge_answer` method expects two hashes, and returns a merged hash 
 From the json backend:
 
 {% highlight ruby %}
-    new_answer = Backend.parse_answer(data[key], scope)
+    new_answer = Backend.parse_answer(data[key], scope, extra_data{}, context[:recurse_guard])
     case resolution_type
     when :array
       raise Exception, "Hiera type mismatch: expected Array and got #{new_answer.class}" unless new_answer.kind_of? Array or new_answer.kind_of? String
@@ -236,7 +254,7 @@ Tips
 
 ### Handling Lookup Types
 
-Your backend should generally support all three [lookup types](./lookup_types.html). In Hiera 1, the lookup type passed to your `lookup` method (as the fourth argument) will always be one of:
+Your backend should generally support all three [lookup types](./lookup_types.html). In Hiera 2, the lookup type passed to your `lookup` method (as the fourth argument) will always be one of:
 
 - `:priority`
 - `:array`
@@ -278,7 +296,7 @@ class Hiera
         Hiera.debug("Hiera File backend starting")
       end
 
-      def lookup(key, scope, order_override, resolution_type)
+      def lookup(key, scope, order_override, resolution_type, context)
         answer = nil
 
         Hiera.debug("Looking up #{key} in File backend")
@@ -290,7 +308,7 @@ class Hiera
           next unless File.exist?(path)
           data = File.read(path)
           next unless data
-          break if answer = Backend.parse_answer(data, scope)
+          break if answer = Backend.parse_answer(data, scope, extra_data, context)
         end
         return answer
       end
@@ -343,7 +361,7 @@ class Hiera
       end
 
       # The lookup function is the most important part of a custom backend.
-      # The lookup function takes four arguments which are:
+      # The lookup function takes five arguments which are:
       #
       # @param key [String]             The lookup key specified by the user
       #
@@ -373,7 +391,14 @@ class Hiera
       #                                 resolution types, and will only do
       #                                 priority lookups.
       #
-      def lookup(key, scope, order_override, resolution_type)
+      # @param context [Hash]           Contains a key named `:recurse_guard`. This hash   
+      #                                 is passed to `Backend.parse_answer` and 
+      #                                 `Backend.parse_string` to help Hiera correctly
+      #                                 propagate the order_override and prevent endless
+      #                                 lookup recursions in interpolated values.
+      #                                 
+     
+      def lookup(key, scope, order_override, resolution_type, context)
 
         # Set the default answer. Returning nil from the lookup() method
         # indicates that no value was found. In this example hiera backend,
@@ -500,7 +525,7 @@ class Hiera
           # with the value from the scope. Finally, the "break" statement is
           # used to stop traversing datasources, as we have found and set our
           # answer.
-          break if answer = Backend.parse_answer(data, scope)
+          break if answer = Backend.parse_answer(data, scope, extra_data, context)
         end
         # The return value of this method is the result of the hiera lookup.
         return answer
