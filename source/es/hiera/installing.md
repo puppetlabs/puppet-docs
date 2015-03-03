@@ -1,3 +1,10 @@
+---
+layout: default
+title: "Hiera 1: Instalación"
+canonical: "/es/hiera/installing.html"
+toc: false
+---
+
 #Hiera 1: Instalación
 
 1. Prerrequisitos
