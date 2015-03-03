@@ -136,21 +136,21 @@ These files may or may not be present.
 
 PE 3.7 includes the following major software components:
 
- * Puppet 3.7.1
+ * Puppet 3.7.4
  * PuppetDB 2.2.1
- * Facter 2.2.0
+ * Facter 2.3.0
  * MCollective 2.6.0
  * ActiveMQ 5.9.0
  * Live Management: 1.3.1
  * Cloud Provisioner 1.1.7
  * Hiera 1.3.4
  * Dashboard 2.1.6
- * PostgreSQL 9.2.7
+ * PostgreSQL 9.2.10
  * Ruby 1.9.3
  * Augeas 1.2.0
  * Passenger 4.0.37
  * Java 1.7.0
- * OpenSSL 1.0.0o
+ * OpenSSL 1.0.q
 
 ### Additional Puppet Enterprise Components
 
