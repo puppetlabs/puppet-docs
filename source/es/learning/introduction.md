@@ -1,12 +1,9 @@
-# Aprende Puppet – Índice
-1. [Bienvenidos]()
-2. [Obtén la VM]()
-	+ [Información de login]()
-3. [Contenidos]()
-4. [Tips para la VM]()
-	+ [Importar la VM a VirtualBox]()
-	+ [Importar la VM a Parallels Desktop]()
-	+ [Configurar las redes virtuales]()
+---
+layout: default
+title: "Aprende Puppet – Índice"
+canonical: "/es/learning/introduction.html"
+toc: false
+---
 
 #Bienvenidos
  Esto es **Aprende Puppet**, una serie de clases acerca del manejo de configuración de sistemas con Puppet Enterprise. Las [instrucciones de instalación](http://docs.puppetlabs.com/pe/latest/install_basic.html) y [referencias al lenguaje de Puppet](http://docs.puppetlabs.com/puppet/latest/reference/lang_summary.html) están disponibles en otra parte el sitio. La idea de esto es brindarte un tour guiado para construir cosas con Puppet. Si tienes buenas referencias acerca de Puppet pero no sabes por dónde empezar, éste es el lugar.
