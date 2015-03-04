@@ -1,4 +1,9 @@
-#Hiera 1: Crear jerarquías
+---
+layout: default
+title: "Hiera 1: Crear jerarquías"
+canonical: "/es/hiera/hierarchy.html"
+toc: false
+---
 
 1. [Ubicación y sintaxis](http://docs.puppetlabs.com/hiera/1/hierarchy.html#location-and-syntax)
 2. [Comportamiento](http://docs.puppetlabs.com/hiera/1/hierarchy.html#behavior)

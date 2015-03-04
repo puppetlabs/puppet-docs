@@ -1,18 +1,9 @@
-#Hiera 1: Ejemplo completo
-
-1. ¿Qué podemos hacer con Hiera?
-	1. Expresar Información Organizacional
-	2. Clasificar nodos con Hiera.
-2. Descripción de nuestro entorno
-	1. Nuestro entorno antes de Hiera
-3. Configuración de Hiera y armado de la jerarquía
-	1. Configuración de la línea de comandos
-4. Escribir fuentes de datos
-	1. Identificación de parámetros
-	2. Tomar decisiones y expresarlas en Hiera
-5. Asignar una clase a un nodo con Hiera
-	1. Usar hiera_include
-6. Explorar Hiera más a fondo
+---
+layout: default
+title: "Hiera 1: Ejemplo completo"
+canonical: "/es/hiera/complete_example.html"
+toc: false
+---
 
 En este ejemplo, usaremos el popular [Módulo NTP de Puppet Labs](http://forge.puppetlabs.com/puppetlabs/ntp) un ejemplo del patrón de diseño *paquete/archivo/servicio*, de uso común en la comunidad de usuarios de Puppet. Comenzaremos de manera simple, usando Hiera para proveer el módulo ntp con datos de parámetros basados en nodos particulares de tu organización.  Luego, usaremos Hiera para asignar la clase *ntp* proporcionada por el módulo a nodos específicos.
 
