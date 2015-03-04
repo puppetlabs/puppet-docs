@@ -35,7 +35,7 @@ We can never cover every possible circumstance you might run into when developin
     
     If you have to choose between two equally effective alternatives, pick the
     more readable one. While this is subjective, if you can read your
-    own code three months from now, it's a great start. In particular, code that generates readable diffs is highly prefered.
+    own code three months from now, it's a great start. In particular, code that generates readable diffs is highly preferred.
     
 2. **Scoping and simplicity are key.**
 
