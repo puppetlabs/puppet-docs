@@ -1,21 +1,9 @@
-﻿#Aprende Puppet – Manifiestos
-
-1. Comienzo
-2. Manifiestos
-3. Puppet Apply
-4. Declaraciones de recurso
-    + Hints de sintaxis
-5. Una vez más!
-    + Nuevos valores para ensure, estados diferentes
-    + Títulos y namevars
-    + Atributos faltantes: “Estado deseado=lo que sea”
-    + Permisos de directorio: 644=755
-6. Destinos, no viajes
-7. Nota aparte: Compilación
-8. El manifiesto del sitio y el agente de Puppet
-    + Ejercicio: Utiliza Puppet Agente/Master para aplicar la misma configuración
-    + Ejercicio: Clave autorizada de SSH
-9. Siguiente paso
+﻿---
+layout: default
+title: "Aprende Puppet – Manifiestos"
+canonical: "/es/learning/manifests.html"
+toc: false
+---
 
 #Comienzo
 Has hecho los ejercicios de **puppet resource** del [capítulo anterior]()? Borremos la cuenta que creaste.

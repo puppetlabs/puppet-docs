@@ -1,19 +1,9 @@
-#Aprende Puppet: Variables, condicionales y facts
-1. Comienzo
-2. Variables
-    + Nota aparte: ¿Por qué todos los manifiestos parecen utilizar $::ipaddress?
-3. Facts
-    + Qué son estas variables de Ipaddress y Hostname?
-    + Otras variables integradas
-4. Declaraciones condicionales
-    + If
-    + Nota aparte: Ten cuidado con el “False” falso!
-    + Case
-    + Selectores
-5. Ejercicios
-    + Ejercicio: Entorno de compilación
-    + Ejercicio: NTP simple
-6. Siguiente paso
+---
+layout: default
+title: "Aprende Puppet – Variables, condicionales y facts"
+canonical: "/es/learning/variables.html"
+toc: false
+---
 
 #Comienzo
 

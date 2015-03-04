@@ -1,26 +1,9 @@
-#Aprende Puppet: Módulos y clases
-1. [Comienzo]()
-2. [El fin de un gran manifiesto]()
-3. [Clases]()
-	+ [Definir una clase]()
-	+ [Declarar]()
-4. [Módulos]()
-	+ [El modulepath]()
-	+ [Estructura de un módulo]()
-	+ [Declarar clases desde módulos]()
-5. [Más acerca de la declaración de clases]()
-	+ [Include]()
-	+ [Declaraciones de clase tipo recurso]()
-	+ [La consola de PE]()
-6. [Estructura de un módulo, Parte 2]()
-	+ [Los otros subdirectorios]()
-	+ [Organizar y hacer referencia a manifiestos]()
-	+ [Organizar y hacer referencia a archivos]()
-7. [Puppet Forge: Cómo evitar escribir módulos]()
-	+ [El subcomando de Puppet Module]()
-8. [Ejercicios]()
-	+ [Ejercicio: Apache nuevamente]()
-9. [Siguiente paso]()
+---
+layout: default
+title: "Aprende Puppet – Módulos y clases"
+canonical: "/es/learning/modules1.html"
+toc: false
+---
 
 #Comienzo
 

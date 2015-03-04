@@ -1,13 +1,9 @@
-#Aprende Puppet: Parámetros de clase
-1. [Comienzo]()
-2. [Investigar vs. Pedir ayuda]()
-3. [Parámetros de clase]()
-	+ [Valores por defecto]()
-	+ [Qué pasa con declaraciones de clase tipo recurso]()
-	+ [Formas antiguas de configurar clases]()
-4. [Ejemplo: NTP (otra vez)]()
-5. [Documentación del módulo]()
-6. [Próxima clase]()
+---
+layout: default
+title: "Aprende Puppet – Parámetros de clase"
+canonical: "/es/learning/modules2.html"
+toc: false
+---
 
 #Comienzo
 

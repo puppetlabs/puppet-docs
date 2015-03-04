@@ -1,17 +1,9 @@
-#Aprende Puppet: Recursos y la RAL
-1. [Comienzo]()
-    + [¿Qué ha pasado?]()
-2. [Recursos]()
-3. [Abstracción]()
-4. [Anatomía de un recurso]()
-5. [Tipos de recursos]()
-    + [Hoja de referencia]()
-    + [Referencia de tipos]()
-    + [Puppet Describe]()
-6. [Explorar e inspeccionar recursos]()
-    + [“Live Management” en la consola de PE]()
-    + [El comando Puppet Resource]()
-7. [Siguiente paso]()
+---
+layout: default
+title: "Aprende Puppet - Recursos y la RAL"
+canonical: "/es/learning/ral.html"
+toc: false
+---
 
 ¡Bienvenidos a *Aprende Puppet*! Esta serie abarca el contenido básico para escribir código Puppet y utilizar Puppet Enterprise. Ya deberías tener una copia de la VM de *Aprende Puppet*, si no la tienes, puedes [bajarla aquí](http://info.puppetlabs.com/download-learning-puppet-VM.html).
 

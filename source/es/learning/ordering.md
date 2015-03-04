@@ -1,19 +1,9 @@
-#Aprende Puppet: Orden de recursos
-1. Desorden
-	+ Sumario de esta página
-2. Metaparámetros, Referencias de recursos y orden
-	+ Before y Require
-	+ Notify y Subscribe
-3. Flechas de encadenamiento
-4. Autorequire
-5. Ejemplo: sshd
-	+ Prepara
-	+ Administra
-	+ Rompe
-	+ Repara
-6. Paquete/Archivo/Servicio
-	+ Ejercicio: Apache
-7. Siguiente Paso
+---
+layout: default
+title: "Aprende Puppet – Orden de recursos"
+canonical: "/es/learning/ordering.html"
+toc: false
+---
 
 #Desorden
 

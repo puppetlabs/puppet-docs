@@ -1,19 +1,9 @@
-#Aprende Puppet: Templates
-1. [Comienzo]()
-2. [Frena la explosión de contenido estático]()
-3. [Archivos de templates]()
-4. [Rendering de templates]()
-	+ [Hacer referencia a archivos de template en módulos]()
-	+ [Templates Inline]()
-	+ [Nota aparte: Funciones en general]()
-5. [Variables en templates]()
-6. [El lenguaje de templating ERB]()
-	+ [Tags no imprimibles]()
-	+ [Imprimir una expresión]()
-	+ [Comentarios]()
-	+ [Suprimir saltos de línea y espacios al comienzo de una línea]()
-7. [Un ejemplo: NTP nuevamente]()
-8. [Próximo paso]()
+---
+layout: default
+title: "Aprende Puppet – Templates"
+canonical: "/es/learning/templates.html"
+toc: false
+---
 
 #Comienzo
 Hagamos un pequeño ajuste al módulo NTP del capítulo anterior: quita el atributo **source** del recurso de archivo, y reemplázalo con un atributo **content** utilizando una nueva función. Recuerda que **source** especifica el contenido del archivo como un archivo, y **content** especifica el contenido del archivo como un *string*.

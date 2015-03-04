@@ -1,3 +1,10 @@
+---
+layout: default
+title: "Aprende Puppet – Tipos de recurso definidos"
+canonical: "/es/learning/definedtypes.html"
+toc: false
+---
+
 #Aprende Puppet
 1. [Más allá de los singletons]()
 2. [Definir un tipo]()
