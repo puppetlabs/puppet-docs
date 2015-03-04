@@ -1,4 +1,9 @@
-#Hiera : El archivo de configuración hiera.yaml
+---
+layout: default
+title: "El archivo de configuración hiera.yaml"
+canonical: "/es/hiera/configuring.html"
+toc: false
+---
 
 1. Ubicación
 	+ Desde Puppet

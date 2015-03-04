@@ -1,19 +1,9 @@
-#Hiera 1: Usar Hiera con Puppet
-
-1. [Habilitar y configurar Hiera para Puppet](http://docs.puppetlabs.com/hiera/1/puppet.html#enabling-and-configuring-hiera-for-puppet)
-	+ [Puppet 3 y superior](http://docs.puppetlabs.com/hiera/1/puppet.html#puppet-3-and-newer)
-	+ [Puppet 2.7](http://docs.puppetlabs.com/hiera/1/puppet.html#puppet-27)
-	+ [Versiones anteriores](http://docs.puppetlabs.com/hiera/1/puppet.html#older-versions)
-2. [Variables de Puppet pasadas a Hiera](http://docs.puppetlabs.com/hiera/1/puppet.html#puppet-variables-passed-to-hiera)
-	+ [Pseudo-variables especiales](http://docs.puppetlabs.com/hiera/1/puppet.html#special-pseudo-variables)
-	+ [Buenas prácticas](http://docs.puppetlabs.com/hiera/1/puppet.html#best-practices)
-3. [Búsqueda automática de parámetros](http://docs.puppetlabs.com/hiera/1/puppet.html#automatic-parameter-lookup)
-	+ [¿Por qué?]( ttp://docs.puppetlabs.com/hiera/1/puppet.html#why)
-	+ [Limitaciones](http://docs.puppetlabs.com/hiera/1/puppet.html#limitations)
-4. [Funciones de búsqueda de Hiera](http://docs.puppetlabs.com/hiera/1/puppet.html#hiera-lookup-functions)
-	+ [Usar las herramientas de búsqueda desde templates](http://docs.puppetlabs.com/hiera/1/puppet.html#using-the-lookup-functions-from-templates)
-5. [Interactuar con información estructurada de Hiera](http://docs.puppetlabs.com/hiera/1/puppet.html#interacting-with-structured-data-from-hiera)
-6. [Asignar clases a los nodos con Hiera (hiera_include)](http://docs.puppetlabs.com/hiera/1/puppet.html#assigning-classes-to-nodes-with-hiera-hierainclude)
+---
+layout: default
+title: "Hiera 1: Usar Hiera con Puppet"
+canonical: "/es/hiera/puppet.html"
+toc: false
+---
 
 Puppet puede utilizar Hiera para  buscar información. Esto te ayuda a separar información específica del sitio, del código Puppet; para reutilizar más fácilmente un código y facilitar la gestión de información que hay que diferir a través de tu población de nodos.
 
