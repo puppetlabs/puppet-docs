@@ -56,11 +56,11 @@ That the `task` parameter is mandatory for creating all three of these types of 
 
 #### Have Razor Unpack an ISO
 
-To have Razor unpack an ISO for you and serve its contents, create your repo with the `iso-url` property. The server downloads and unpacks the ISO image into its file system:
+To have Razor unpack an ISO for you and serve its contents, create your repo with the `iso-_url` property. The server downloads and unpacks the ISO image into its file system:
 
     {
       "name": "fedora19",
-      "iso-url": "file:///tmp/Fedora-19-x86_64-DVD.iso"
+      "iso_url": "file:///tmp/Fedora-19-x86_64-DVD.iso"
       "task": "puppet"
     }
 
@@ -76,11 +76,11 @@ To make a repo that merely points to an existing resource without loading anythi
 
 ####Create a Stub Directory
 
-To create a stub directory in `repo-store` and load it manually, create your repo with the `no-content` property. This is useful for ISOs that you can't extract normally, e.g. due to forward references:
+To create a stub directory in `repo-store` and load it manually, create your repo with the `no_content` property. This is useful for ISOs that you can't extract normally, e.g. due to forward references:
 
     {
       "name": "fedora19",
-      "no-content": true
+      "no_content": true
       "task": "noop"
     }
 
@@ -132,10 +132,10 @@ To create a broker, post the following to the `create-broker` URL:
          "server": "puppet.example.org",
          "environment": "production"
       },
-      "broker-type": "puppet"
+      "broker_type": "puppet"
     }
 
-The `broker-type` must correspond to a broker that is present on the
+The `broker_type` must correspond to a broker that is present on the
 `broker_path` set in `config.yaml`.
 
 The permissible settings for the `configuration` hash depend on the broker type and are declared in the broker type's `configuration.yaml`.
@@ -196,10 +196,10 @@ If the tag is used by any policies, the update is only performed if you set the 
       "task": "redhat6",
       "broker": "puppet",
       "hostname": "host${id}.example.com",
-      "root-password": "secret",
-      "max-count": 20,
+      "root_password": "secret",
+      "max_count": 20,
       "before"|"after": "other policy",
-      "node-metadata": { "key1": "value1", "key2": "value2" },
+      "node_metadata": { "key1": "value1", "key2": "value2" },
       "tags": ["existing_tag", "another_tag"]
     }
 
@@ -207,11 +207,11 @@ Tags, repos, tasks, and brokers are referenced by name.
 
 The `hostname` parameter defines a simple pattern for the hostnames of nodes bound to your policy. The "${id}" references each node's DB id.
 
-The `max-count` parameter sets an upper limit on how many nodes can be bound to your policy at a time. You can specify a positive integer, or make it unlimited by setting it to `nil`.
+The `max_count` parameter sets an upper limit on how many nodes can be bound to your policy at a time. You can specify a positive integer, or make it unlimited by setting it to `nil`.
 
 Razor considers each policy sequentially, based on its order in a table. By default, new policies go at the end of the table. To override the default order, include a `before` or `after` argument referencing an existing policy by name.
 
-The `node-metadata` parameter lets your policy apply metadata to a node when it binds. This is NON AUTHORITATIVE in that it does not overwrite existing metadata; it only adds keys that are missing.
+The `node_metadata` parameter lets your policy apply metadata to a node when it binds. This is NON AUTHORITATIVE in that it does not overwrite existing metadata; it only adds keys that are missing.
 
 ### Move policy (`move-policy`)
 
@@ -232,13 +232,13 @@ To keep a policy from being matched against any nodes, disable it with the `disa
       "name": "a policy"
     }
 
-### Modify the max-count for a policy (`modify-policy-max-count`)
+### Modify the max_count for a policy (`modify-policy-max-count`)
 
 The command `modify-policy-max-count` lets you set the maximum number of nodes that can be bound to a specific policy. The body of the request should be of the form:
 
     {
       "name": "a policy"
-      "max-count": new-count
+      "max_count": new-count
     }
 
 The `new-count` can be an integer, which must be greater than the number of nodes that are currently bound to the policy, or `null` to make the policy unbounded.
@@ -286,13 +286,13 @@ To create a new hook, use the `create-hook` command with a body like this:
 
     {
       "name": "myhook",
-      "hook-type": "some_hook",
+      "hook_type": "some_hook",
       "configuration": {"foo": 7, "bar": "rhubarb"}
     }
 
-The `hook-type` parameter refers to a .hook file in the Razor server's `hooks` directory. The above example would point to `hooks/some_hook.hook`.
+The `hook_type` parameter refers to a .hook file in the Razor server's `hooks` directory. The above example would point to `hooks/some_hook.hook`.
 
-The optional `configuration` parameter lets you provide a starting configuration corresponding to that hook-type.
+The optional `configuration` parameter lets you provide a starting configuration corresponding to that hook_type.
 
 For more on, see [Razor Hooks](./razor_hooks).
 
@@ -334,9 +334,9 @@ The structure of a request is:
 
     {
       "name": "node17",
-      "ipmi-hostname": "bmc17.example.com",
-      "ipmi-username": null,
-      "ipmi-password": "sekretskwirrl"
+      "ipmi_hostname": "bmc17.example.com",
+      "ipmi_username": null,
+      "ipmi_password": "sekretskwirrl"
     }
 
 This command only works with remote IPMI targets, not locally; therefore, you *must* provide an IPMI hostname if you provide either a username or a password.
