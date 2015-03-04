@@ -5,6 +5,8 @@ subtitle: "A High Level Look at Puppet's Cloud Provisioning Tools"
 canonical: "/pe/latest/cloudprovisioner_overview.html"
 ---
 
+>**Important**: Cloud Provisioner is deprecated in PE 3.8, and will be removed in future versions of PE. We recommend that you see the AWS supported module for cloud provisioning.
+
 Puppet Enterprise includes a suite of command-line tools you can use for provisioning new virtual nodes when building or maintaining cloud computing infrastructures based on VMware vSphere, Amazon EC2 and Google Compute Engine. You can use these tools to:
 
 * Create and destroy virtual machine instances
@@ -17,7 +19,7 @@ See the sections on [VMware](./cloudprovisioner_vmware.html), [AWS](./cloudprovi
 
 The cloud provisioning tools can be added during an installation of Puppet Enterprise. If you have already installed PE and you want to install the cloud provisioning tools, simply run the upgrader again.
 
-**Note for Puppet users** Most of the information in these sections applies to Puppet as well as PE. However, provisioning on VMWare is only supported by Puppet Enterprise. 
+**Note for Puppet users** Most of the information in these sections applies to Puppet as well as PE. However, provisioning on VMWare is only supported by Puppet Enterprise.
 
 Tools
 -----

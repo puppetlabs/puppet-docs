@@ -5,6 +5,8 @@ subtitle: "Installing and Configuring Cloud Provisioning"
 canonical: "/pe/latest/cloudprovisioner_configuring.html"
 ---
 
+>**Important**: Cloud Provisioner is deprecated in PE 3.8, and will be removed in future versions of PE. We recommend that you see the AWS supported module for cloud provisioning.
+
 There are many options and actions associated with the main cloud provisioning sub-commands: `node`, `node_vmware`, `node_aws` and `node_gce`. This page provides an overview, but check the man pages for all the details (`puppet man node_aws`, etc.).
 
 Prerequisites
@@ -22,9 +24,7 @@ The following services and credentials are required:
 Installing
 ----------
 
-Cloud provisioning tools are installed automatically as part of the web-based PE install. If you don't want to install the cloud provisioning tools, then use an answer file with your Puppet Enterprise installation, and set the `q_puppet_cloud_install` option to `N`.
-
-If you install PE without installing the cloud provisioning tools, and then decide you want to install them, you can do so using the package manager of your choice (Yum, APT, etc.). The packages you need are: pe-cloud-provisioner and pe-cloud-provisioner-libs. They can be found in the packages directory of the installer tarball.
+Cloud provisioning tools are no longer installed automatically as part of the web-based PE install. If you decide you want to install cloud provisioner, you can do so using the package manager of your choice (Yum, APT, etc.). The packages you need are: `pe-cloud-provisioner` and `pe-cloud-provisioner-libs`. They can be found in the packages directory of the installer tarball.
 
 Configuring
 -----------

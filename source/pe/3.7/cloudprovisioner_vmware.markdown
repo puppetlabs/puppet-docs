@@ -5,6 +5,8 @@ subtitle: "Provisioning With VMware"
 canonical: "/pe/latest/cloudprovisioner_vmware.html"
 ---
 
+>**Important**: Cloud Provisioner is deprecated in PE 3.8, and will be removed in future versions of PE. We recommend that you see the AWS supported module for cloud provisioning.
+
 Puppet Enterprise provides support for working with VMware virtual machine instances using vSphere and vCenter. Using actions of the `puppet node_vmware` sub-command, you can create new machines, view information about existing machines, classify and configure machines, and tear machines down when they're no longer needed.
 
 The main actions used for vSphere cloud provisioning include:
@@ -25,10 +27,10 @@ Here's a fix:
 If you're new to VMware vSphere, you should start by looking at the [vSphere
 documentation](http://pubs.vmware.com/vsphere-50/index.jsp).
 
-Permissions Required for Provisioning with VMWare 
+Permissions Required for Provisioning with VMWare
 -----
 
-The following are the permissions needed to provision with VMWare, listed according to subcommand. In addition, you should have full admin access to your vSphere pool. 
+The following are the permissions needed to provision with VMWare, listed according to subcommand. In addition, you should have full admin access to your vSphere pool.
 
 
 + `list` – Lists any VM with read-only permissions or better.
@@ -47,7 +49,7 @@ server.  You do this by running the `puppet node_vmware list` command:
 
     $ puppet node_vmware list
 
-If you haven't yet [confirmed your vSphere server's public key hash in your `~/.fog` file](./cloudprovisioner_configuring.html#adding-vmware-credentials), you'll receive an error message containing said hash: 
+If you haven't yet [confirmed your vSphere server's public key hash in your `~/.fog` file](./cloudprovisioner_configuring.html#adding-vmware-credentials), you'll receive an error message containing said hash:
 
     $ puppet node_vmware list
     notice: Connecting ...·
@@ -146,7 +148,7 @@ To start a virtual machine:
     $ puppet node_vmware start /Datacenters/Solutions/vm/newpuppetmaster
 
 You can see we've specified the path to the virtual machine we wish to start,
-in this case `/Datacenters/Solutions/vm/newpuppetmaster`.  
+in this case `/Datacenters/Solutions/vm/newpuppetmaster`.
 
 To stop a virtual machine, use:
 
@@ -180,7 +182,7 @@ The `puppet node_vmware` command has extensive in-line help and a man page.
 To see the available actions and command line options, run:
 
     $ puppet help node_vmware
-    USAGE: puppet node_vmware <action> 
+    USAGE: puppet node_vmware <action>
 
     This subcommand provides a command line interface to work with VMware vSphere
     Virtual Machine instances.  The goal of these actions is to easily create
@@ -212,6 +214,6 @@ For example:
 
 
 
-* * * 
+* * *
 
-- [Next: Provisioning with GCE](./cloudprovisioner_gce.html) 
+- [Next: Provisioning with GCE](./cloudprovisioner_gce.html)

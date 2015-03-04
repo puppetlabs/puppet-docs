@@ -5,6 +5,8 @@ subtitle: "Provisioning With Amazon Web Services"
 canonical: "/pe/latest/cloudprovisioner_aws.html"
 ---
 
+>**Important**: Cloud Provisioner is deprecated in PE 3.8, and will be removed in future versions of PE. We recommend that you see the AWS supported module for cloud provisioning.
+
 Puppet Enterprise provides support for working with Elastic Compute Cloud (EC2) virtual machine instances using Amazon Web Services. Using the `puppet node_aws` sub-command, you can create new machines, view information about existing machines, classify and configure machines, and tear machines down when they're no longer needed.
 
 The main actions used for AWS cloud provisioning include:
@@ -102,11 +104,11 @@ In addition to the three options required by `create` (see above), `bootstrap` a
 
 The example below will bootstrap a node using the ami--0530e66c image, located in the US East region and running as a t1.micro machine type.
 
-    puppet node_aws bootstrap 
-    --region us-east-1 
-    --image ami-0530e66c 
-    --login root --keyfile ~/.ec2/ccaum_rsa.pem 
-    --keyname ccaum_rsa  
+    puppet node_aws bootstrap
+    --region us-east-1
+    --image ami-0530e66c
+    --login root --keyfile ~/.ec2/ccaum_rsa.pem
+    --keyname ccaum_rsa
     --type t1.micro
 
 
@@ -135,7 +137,7 @@ Terminating an EC2 instance
 Once you've finished with an EC2 instance, you can easily terminate it.
 Terminating an instance destroys the instance entirely and is a destructive, permanent
 action that should only be performed when you are confident the instance, and its data, are no longer needed.
- 
+
 To terminate an instance, use the `node_aws terminate` action.
 
     $ puppet node_aws terminate ec2-50-18-93-82.us-east-1.compute.amazonaws.com
@@ -196,7 +198,7 @@ For example,
 
 
 
-* * * 
+* * *
 
 - [Next: Classifying Cloud Nodes and Remotely Installing Puppet](./cloudprovisioner_classifying_installing.html)
 
