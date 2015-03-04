@@ -1,16 +1,9 @@
-#Hiera 1: Uso en la línea de comandos
-1. Invocación
-	+ Orden de los argumentos
-	+ Opciones
-2. Ubicación del archivo de configuración
-3. Fuentes de facts
-	+ Variables de línea de comandos
-	+ Scopes JSON y YAML
-	+ MCollective
-	+ Servicio de inventario
-4. Tipos de búsquedas
-	+ Merge de array
-	+ Hash
+---
+layout: default
+title: "Hiera 1: Uso en la línea de comandos"
+canonical: "/es/hiera/command_line.html"
+toc: false
+---
 
 Hiera proporciona una herramienta de línea de comandos útil para verificar que la jerarquía esté correctamente construida y que las fuentes de información estén devolviendo los valores esperados. Seguramente ejecutarás la herramienta de línea de comandos de Hiera en un puppet master, haciendo una maqueta de los facts que los agentes normalmente proveen al puppet master usando variadas [fuentes de facts](http://docs.puppetlabs.com/hiera/1/command_line.html#fact-sources).
 

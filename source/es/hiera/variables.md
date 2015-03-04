@@ -1,13 +1,9 @@
-#Hiera 1: Variables e Interpolación
-
-1. Insertar valores de variables
-	+ En fuentes de información
-	+ En otras configuraciones
-	+ En información
-2. Pasar variables a Hiera
-	+ Desde Puppet
-	+ Desde la línea de comandos
-	+ Desde Ruby
+---
+layout: default
+title: "Hiera 1: Variables e Interpolación"
+canonical: "/es/hiera/variables.html"
+toc: false
+---
 
 Hiera recibe un conjunto de variables cada vez que sea invocado, y el [archivo de configuración](http://docs.puppetlabs.com/hiera/1/configuring.html) y [las fuentes de información](http://docs.puppetlabs.com/hiera/1/data_sources.html) pueden insertar estas variables en la configuración y en los datos. Esto te permite generar fuentes de información dinámicas en la [jerarquía](http://docs.puppetlabs.com/hiera/1/hierarchy.html), y evitar repeticiones cuando escribes datos.
 

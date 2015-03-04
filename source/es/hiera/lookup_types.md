@@ -1,10 +1,9 @@
-Hiera 1: Tipos de búsqueda
-
-1. [Prioridad (por defecto)](http://docs.puppetlabs.com/hiera/1/lookup_types.html#priority-default)
-2. [Merge en array](http://docs.puppetlabs.com/hiera/1/lookup_types.html#array-merge)
-3. [Merge en hash](http://docs.puppetlabs.com/hiera/1/lookup_types.html#hash-merge)
-	+ [Merge nativo](http://docs.puppetlabs.com/hiera/1/lookup_types.html#native-merging)
-	+ [Merge en profundidad en Hiera ≥ 1.2.0](http://docs.puppetlabs.com/hiera/1/lookup_types.html#deep-merging-in-hiera--120)
+---
+layout: default
+title: "Hiera 1: Tipos de búsqueda"
+canonical: "/es/hiera/lookup_types.html"
+toc: false
+---
 
 Hiera siempre toma una clave de búsqueda y devuelve un valor simple (de algún tipo de información simple o complejo), pero tiene varios métodos de extracción / ensamble de ese valor a partir de la jerarquía. Nos referimos a eso como “métodos de búsqueda”.
 

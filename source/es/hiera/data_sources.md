@@ -1,14 +1,9 @@
-#Hiera 1: Escribir fuentes de información
-
-1. YAML
-	+ Sumario
-	+ Formato de la información
-	+ Ejemplo
-2. JSON
-	+ Sumario
-	+ Formato de la información
-	+ Ejemplo
-3. Puppet
+---
+layout: default
+title: "Hiera 1: Escribir fuentes de información"
+canonical: "/es/hiera/data_sources.html"
+toc: false
+---
 
 Hiera puede usar diferentes backends de información, incluyendo dos backends integrados y otros opcionales. Cada backend usa un formato diferente para sus fuentes de información.
 
