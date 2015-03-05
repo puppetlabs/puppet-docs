@@ -75,7 +75,7 @@ Por ejemplo una jerarquía determinada de:
 
 En Hiera 1.2.0 y superiores, también es posible configurar las búsquedas de merge de hashes para combinar de forma recursiva las claves de los hashes, implementado como [Issue 16107](https://projects.puppetlabs.com/issues/16107). Esto está pensado para los usuarios que han trasladado estructuras complejas de datos (por ejemplo [hashes para *create_resources*](http://docs.puppetlabs.com/references/latest/function.html#createresources) a Hiera.
 
-Para configurar el merge en profunidad, utiliza la [opción de configuración **:merge_behavior**](http://docs.puppetlabs.com/hiera/1/configuring.html#mergebehavior), el cual puede ser configurado para que sea **native, deep** o **deeper**.
+Para configurar el merge en profunidad, utiliza la [opción de configuración **:merge_behavior**](http://docs.puppetlabs.com/es/hiera/configuring.html#mergebehavior), el cual puede ser configurado para que sea **native, deep** o **deeper**.
 
 Limitaciones:
 

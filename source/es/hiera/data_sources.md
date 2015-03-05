@@ -13,7 +13,7 @@ Esta página describe los backends integrados **yaml** y **json**, que al igual 
 
 ##Sumario
 
-El backend **yaml** busca fuentes de información en disco, en el directorio especificado en su [opción de configuración  **:datadir**](http://docs.puppetlabs.com/hiera/1/configuring.html#datadir)). Espera que cada fuente de información sea un archivo de texto que contenga información en formato YAML válido, con extensión **.yaml**. No está permitida ninguna otra extensión de nombre de archivo, por ejemplo: **.yml**.
+El backend **yaml** busca fuentes de información en disco, en el directorio especificado en su [opción de configuración  **:datadir**](http://docs.puppetlabs.com/es/hiera/configuring.html#datadir)). Espera que cada fuente de información sea un archivo de texto que contenga información en formato YAML válido, con extensión **.yaml**. No está permitida ninguna otra extensión de nombre de archivo, por ejemplo: **.yml**.
 
 ##Formato de la información
 
@@ -54,7 +54,7 @@ Los tipos de información de Hiera se asignan a los tipos de datos YAML nativos 
  </tbody>
 </table>
 
-Cualquier string puede incluir cualquier número de [símbolo de interpolación variable](http://docs.puppetlabs.com/hiera/1/variables.html)
+Cualquier string puede incluir cualquier número de [símbolo de interpolación variable](http://docs.puppetlabs.com/es/hiera/variables.html)
 
 ##Ejemplo
 
@@ -86,7 +86,7 @@ Cualquier string puede incluir cualquier número de [símbolo de interpolación 
 
 ##Sumario
 
-El backend **json** busca fuentes de información en disco, en el directorio especificado en su [opción de configuración  **:datadir**](http://docs.puppetlabs.com/hiera/1/configuring.html#datadir). Espera que cada fuente de información sea un archivo de texto que contenga información en JSON válida, con extensión **.json**. No está permitida ninguna otra extensión de nombre de archivo.
+El backend **json** busca fuentes de información en disco, en el directorio especificado en su [opción de configuración  **:datadir**](http://docs.puppetlabs.com/es/hiera/configuring.html#datadir). Espera que cada fuente de información sea un archivo de texto que contenga información en JSON válida, con extensión **.json**. No está permitida ninguna otra extensión de nombre de archivo.
 
 ##Formato de información
 
@@ -125,7 +125,7 @@ El objetivo principal de cada fuente de información JSON debe ser un *objeto JS
  </tbody>
 </table>
 
-Cualquier string puede incluir cualquier número de [símbolos de interpolación variables](http://docs.puppetlabs.com/hiera/1/variables.html).
+Cualquier string puede incluir cualquier número de [símbolos de interpolación variables](http://docs.puppetlabs.com/es/hiera/variables.html).
 
 ##Ejemplo
 

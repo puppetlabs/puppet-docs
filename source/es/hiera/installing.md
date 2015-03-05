@@ -13,7 +13,7 @@ toc: false
 	+ Paso 2: Instalar las funciones de Puppet
 3. A continuación
 
-Nota: Si estás usando Puppet 3 o superior, probablemente ya tengas instalado Hiera. Puedes saltearte estos pasos, e ir directamente a [configurar Hiera](http://docs.puppetlabs.com/hiera/1/configuring.html)
+Nota: Si estás usando Puppet 3 o superior, probablemente ya tengas instalado Hiera. Puedes saltearte estos pasos, e ir directamente a [configurar Hiera](http://docs.puppetlabs.com/es/hiera/configuring.html)
 
 #Prerrequisitos
 
@@ -48,4 +48,4 @@ O, en sistemas sin paquetes nativos:
 **Nota:** Puppet 3 no necesita el paquete **hiera-puppet**,  y quizás su presencia impida la instalación. Lo puedes borrar sin problemas en el proceso de actualización de Puppet 3.
 
 #A continuación
-Esto es todo: Hiera está instalado. Ahora, [configura Hiera con el archivo de configuración **hiera.yaml**](http://docs.puppetlabs.com/hiera/1/configuring.html)
+Esto es todo: Hiera está instalado. Ahora, [configura Hiera con el archivo de configuración **hiera.yaml**](http://docs.puppetlabs.com/es/hiera/configuring.html)

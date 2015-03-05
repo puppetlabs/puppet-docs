@@ -5,23 +5,15 @@ canonical: "/es/hiera/hierarchy.html"
 toc: false
 ---
 
-1. [Ubicación y sintaxis](http://docs.puppetlabs.com/hiera/1/hierarchy.html#location-and-syntax)
-2. [Comportamiento](http://docs.puppetlabs.com/hiera/1/hierarchy.html#behavior)
-	+ [Orden](http://docs.puppetlabs.com/hiera/1/hierarchy.html#ordering)
-	+ [Backends múltiples](http://docs.puppetlabs.com/hiera/1/hierarchy.html#multiple-backends)
-3. [Ejemplo](http://docs.puppetlabs.com/hiera/1/hierarchy.html#example)
-	+ [web01.example.com](http://docs.puppetlabs.com/hiera/1/hierarchy.html#web01examplecom)
-	+ [db01.example.com](http://docs.puppetlabs.com/hiera/1/hierarchy.html#db01examplecom)
-
 Hiera utiliza una jerarquía ordenada para buscar información. Esto te permite obtener una gran cantidad de información común y sustituir cantidades más pequeñas de lo que sea necesario.
 
 #Ubicación y sintaxis
 
-Hiera carga la jerarquía desde el [archivo de configuración Hiera.yaml](http://docs.puppetlabs.com/hiera/1/configuring.html). La jerarquía debe ser el valor de nivel superior de la clave **:hierarchy**
+Hiera carga la jerarquía desde el [archivo de configuración Hiera.yaml](http://docs.puppetlabs.com/es/hiera/configuring.html). La jerarquía debe ser el valor de nivel superior de la clave **:hierarchy**
 
 La jerarquía debe ser un **array**; otra alternativa es que sea un string, que será considerada como un array de un solo elemento.
 
-Cada elemento en la jerarquía debe ser un **string**, el cual puede incluir o no un [símbolo de interpolación de variable](http://docs.puppetlabs.com/hiera/1/variables.html). Hiera tratará a los elementos de la jerarquía como **el nombre de una [fuente de información](http://docs.puppetlabs.com/hiera/1/data_sources.html)**.
+Cada elemento en la jerarquía debe ser un **string**, el cual puede incluir o no un [símbolo de interpolación de variable](http://docs.puppetlabs.com/es/hiera/variables.html). Hiera tratará a los elementos de la jerarquía como **el nombre de una [fuente de información](http://docs.puppetlabs.com/hiera/1/data_sources.html)**.
 
 	# /etc/hiera.yaml
 	---
@@ -39,18 +31,18 @@ Usamos estos dos términos dentro de los documentos de Hiera y en varios otros l
 
 #Comportamiento
 ##Orden
-Cada elemento de la jerarquía tiene el nombre de una [fuente de información](http://docs.puppetlabs.com/hiera/1/data_sources.html). Hiera chequeará esas fuentes **en orden**, comenzando por la primera.
+Cada elemento de la jerarquía tiene el nombre de una [fuente de información](http://docs.puppetlabs.com/es/hiera/data_sources.html). Hiera chequeará esas fuentes **en orden**, comenzando por la primera.
 
 + Si la fuente de información no existe en la jerarquía, Hiera irá a la próxima fuente de información.
 + Si la fuente de información existe, pero no tiene la pieza de información que Hiera está buscando, irá a la próxima fuente de información. Como el objetivo es ayudar a no cometer repeticiones, Hiera espera que la mayoría de las fuentes de información no existan o no contengan la información.
 + Si el valor es encontrado:
-	- En una búsqueda normal [(búsqueda de prioridad)](http://docs.puppetlabs.com/hiera/1/lookup_types.html#priority-default), Hiera se detendrá en la primera fuente de información que contenga la información solicitada y devolverá ese valor.
-	- En una búsqueda de [array](http://docs.puppetlabs.com/hiera/1/lookup_types.html#array-merge), Hiera continuará y luego devolverá todos los valores descubiertos como un array plano. Los valores de más importancia en la jerarquía serán los primeros elementos en el array, y los de menos importancia, luego.
-	- En una búsqueda de [hash](http://docs.puppetlabs.com/hiera/1/lookup_types.html#hash-merge), Hiera continuará, **esperando que todos los valores sean un hash** y dando error si algún valor que no sea un hash fuese descubierto. Luego, combinará todos los hashes descubiertos y devolverá el resultado, permitiendo que valores con mayor jerarquía sean reemplazados por valores de menor jerarquía.
+	- En una búsqueda normal [(búsqueda de prioridad)](http://docs.puppetlabs.com/es/hiera/lookup_types.html#priority-default), Hiera se detendrá en la primera fuente de información que contenga la información solicitada y devolverá ese valor.
+	- En una búsqueda de [array](http://docs.puppetlabs.com/es/hiera/lookup_types.html#array-merge), Hiera continuará y luego devolverá todos los valores descubiertos como un array plano. Los valores de más importancia en la jerarquía serán los primeros elementos en el array, y los de menos importancia, luego.
+	- En una búsqueda de [hash](http://docs.puppetlabs.com/es/hiera/lookup_types.html#hash-merge), Hiera continuará, **esperando que todos los valores sean un hash** y dando error si algún valor que no sea un hash fuese descubierto. Luego, combinará todos los hashes descubiertos y devolverá el resultado, permitiendo que valores con mayor jerarquía sean reemplazados por valores de menor jerarquía.
 + Si Hiera atraviesa toda la jerarquía sin encontrar ningún valor, usará el valor por defecto si lo tiene, o fallará si no lo tiene.
 
 ##Backends múltiples
-Puedes [especificar múltiples backends como un array en hiera.yaml](http://docs.puppetlabs.com/hiera/1/configuring.html). Si lo haces, funcionarán como una **segunda jerarquía**.
+Puedes [especificar múltiples backends como un array en hiera.yaml](http://docs.puppetlabs.com/es/hiera/configuring.html). Si lo haces, funcionarán como una **segunda jerarquía**.
 
 Hiera le dará prioridad al primer backend, y **chequeará cada nivel de la jerarquía** en él antes de ir al segundo backend. Esto significa que, con el siguiente **hiera.yaml**:
 

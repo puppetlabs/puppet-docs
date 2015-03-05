@@ -10,16 +10,16 @@ Hiera es una herramienta de búsqueda de pares clave/valor para configurar infor
 ## Comenzar a usar Hiera
 Para comenzar con Hiera, necesitarás hacer lo siguiente:
 
-+ [Instalar Hiera](http://docs.puppetlabs.com/hiera/1/installing.html) si todavía no lo hiciste.
-+ [Hacer un archivo de configuración hiera.yaml](http://docs.puppetlabs.com/hiera/1/configuring.html) 
-+ [Organizar una jerarquía](http://docs.puppetlabs.com/hiera/1/hierarchy.html) que se adapte a tu sitio y tus datos.
-+ [Escribir fuentes de información](http://docs.puppetlabs.com/hiera/1/data_sources.html)
-+ [Usar tus datos de Hiera en Puppet](http://docs.puppetlabs.com/hiera/1/puppet.html) (o en cualquier otra herramienta)
++ [Instalar Hiera](http://docs.puppetlabs.com/es/hiera/installing.html) si todavía no lo hiciste.
++ [Hacer un archivo de configuración hiera.yaml](http://docs.puppetlabs.com/es/hiera/configuring.html) 
++ [Organizar una jerarquía](http://docs.puppetlabs.com/es/hiera/hierarchy.html) que se adapte a tu sitio y tus datos.
++ [Escribir fuentes de información](http://docs.puppetlabs.com/es/hiera/data_sources.html)
++ [Usar tus datos de Hiera en Puppet](http://docs.puppetlabs.com/es/hiera/puppet.html) (o en cualquier otra herramienta)
 
-Luego de tener Hiera funcionando, puedes ajustar tu información y tus jerarquías cuando necesites hacerlo. También puedes [probar Hiera desde la línea de comando](http://docs.puppetlabs.com/hiera/1/command_line.html) para asegurarte que está trayendo la información correcta para cada nodo. 
+Luego de tener Hiera funcionando, puedes ajustar tu información y tus jerarquías cuando necesites hacerlo. También puedes [probar Hiera desde la línea de comando](http://docs.puppetlabs.com/es/hiera/command_line.html) para asegurarte que está trayendo la información correcta para cada nodo. 
 
 ### Aprender con el ejemplo
-Si aprendes mejor con un ejemplo, comienza con [este tutorial Hiera y Puppet simple de principio a fin](http://docs.puppetlabs.com/hiera/1/complete_example.html). Para aprender más, poder volver y leer las secciones enlazadas antes.
+Si aprendes mejor con un ejemplo, comienza con [este tutorial Hiera y Puppet simple de principio a fin](http://docs.puppetlabs.com/es/hiera/complete_example.html). Para aprender más, poder volver y leer las secciones enlazadas antes.
 
 ## ¿Por qué Hiera?
 

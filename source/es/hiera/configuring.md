@@ -21,7 +21,7 @@ toc: false
 	+ :yaml y :json
 	+ :puppet
 
-*Archivo de configuración Hiera* generalmente refiere a **hiera.yaml**. Usa este archivo para configurar la [jerarquía](http://docs.puppetlabs.com/hiera/1/hierarchy.html), qué backend(s) usar, y la configuración para cada backend.
+*Archivo de configuración Hiera* generalmente refiere a **hiera.yaml**. Usa este archivo para configurar la [jerarquía](http://docs.puppetlabs.com/es/hiera/hierarchy.html), qué backend(s) usar, y la configuración para cada backend.
 
 Hiera fallará si no puede encontrar el archivo de configuración aunque está permitido un archivo de configuración vacío.
 
@@ -53,7 +53,7 @@ Puedes especificar un archivo de configuración diferente, o un *hash* de config
 
 #Formato
 La configuración de Hiera debe ser un hash [YAML](http://www.yaml.org/YAML_for_ruby.html). El archivo debe ser YAML válido, pero puede no contener información.
-Cada clave de alto nivel en el hash **debe ser un símbolo Ruby con un prefijo de dos puntos (:)**. Las configuraciones disponibles están en una lista debajo, en [“Configuraciones Globales”](http://docs.puppetlabs.com/hiera/1/configuring.html#global-settings) y [“Configuraciones específicas para backends”](http://docs.puppetlabs.com/hiera/1/configuring.html#backend-specific-settings).
+Cada clave de alto nivel en el hash **debe ser un símbolo Ruby con un prefijo de dos puntos (:)**. Las configuraciones disponibles están en una lista debajo, en [“Configuraciones Globales”](http://docs.puppetlabs.com/es/hiera/configuring.html#global-settings) y [“Configuraciones específicas para backends”](http://docs.puppetlabs.com/es/hiera/configuring.html#backend-specific-settings).
 
 ##Ejemplo de archivo de configuración 
 
@@ -84,15 +84,15 @@ Si el archivo de configuración existe pero no contiene información, la configu
 El archivo de configuración Hiera puede contener cualquiera de las siguientes configuraciones. En su ausencia, tendrá valores por defecto. **Ten en cuenta que cada opción de configuración debe ser un símbolo Ruby con un prefijo de dos puntos (:)**
 
 ###**:hierarchy**
-Debe ser un **string** o un **array de strings** donde cada string es el nombre para una fuente de información estática o dinámica. Una fuente dinámica es simplemente una que contiene un símbolo de interpolación **%{variable}** (Mira [“Crear jerarquías”](http://docs.puppetlabs.com/hiera/1/hierarchy.html) para más detalles). Las fuentes de información en la jerarquía son chequeadas en orden, de arriba hacia abajo.
+Debe ser un **string** o un **array de strings** donde cada string es el nombre para una fuente de información estática o dinámica. Una fuente dinámica es simplemente una que contiene un símbolo de interpolación **%{variable}** (Mira [“Crear jerarquías”](http://docs.puppetlabs.com/es/hiera/hierarchy.html) para más detalles). Las fuentes de información en la jerarquía son chequeadas en orden, de arriba hacia abajo.
 
 **Valor por defecto: “common”** (es decir, una jerarquía de un sólo elemento cuyo único nivel se llama *"common"*)
 
 ###**:backends**
 Debe ser un **string** o un **array de strings** donde cada string es el nombre para un backend disponible de Hiera. Los backends integrados son **yaml** y **json**; hay un backend adicional de **puppet** disponible cuando usas Hiera con Puppet. Los backends adicionales están disponibles como complemento.
 
-**Backends personalizados**: Mira [“Escribir backends personalizados”](http://docs.puppetlabs.com/hiera/1/custom_backends.html) para más detalles sobre cómo escribir un nuevo backend. Los backends personalizados pueden interactuar con casi cualquier data store existente.
-La lista de backends es procesada en orden: en el [ejemplo debajo](http://docs.puppetlabs.com/hiera/1/configuring.html#example-config-file), Hiera chequearía la jerarquía completa en el backend **yaml** antes de comenzar nuevamente con el backend **json**.
+**Backends personalizados**: Mira [“Escribir backends personalizados”](http://docs.puppetlabs.com/es/hiera/custom_backends.html) para más detalles sobre cómo escribir un nuevo backend. Los backends personalizados pueden interactuar con casi cualquier data store existente.
+La lista de backends es procesada en orden: en el [ejemplo debajo](http://docs.puppetlabs.com/es/hiera/configuring.html#example-config-file), Hiera chequearía la jerarquía completa en el backend **yaml** antes de comenzar nuevamente con el backend **json**.
 
 **Valor por defecto: “yaml”**
 
@@ -120,7 +120,7 @@ Debe ser uno de los siguientes:
 
 Cualquiera de estas opciones a excepción de **native** requiere que el Gem **deep_merge** esté instalado.
 
-¿Qué estrategia de combinación usar cuándo estamos haciendo una [búsqueda combinada de hash?](http://docs.puppetlabs.com/hiera/1/lookup_types.html#hash-merge). Mira [“Deep merging” en Hiera≥1.2.0”](http://docs.puppetlabs.com/hiera/1/lookup_types.html#deep-merging-in-hiera--120) para más detalles.
+¿Qué estrategia de combinación usar cuándo estamos haciendo una [búsqueda combinada de hash?](http://docs.puppetlabs.com/es/hiera/lookup_types.html#hash-merge). Mira [“Deep merging” en Hiera≥1.2.0”](http://docs.puppetlabs.com/es/hiera/lookup_types.html#deep-merging-in-hiera--120) para más detalles.
 
 #Opciones de configuración específicas para Backends
 Todos los backends pueden definir sus propias opciones de configuración y leerlas desde el archivo de configuración de Hiera. Si existe, el valor de una clave de un backend determinado debe ser un **hash**, cuyas claves son los valores de configuración que usa.
@@ -131,7 +131,7 @@ Las siguientes opciones de configuración están disponibles para backends integ
 **datadir**
 El directorio en el cual encontrarás los archivos de fuentes de información.
 
-Puedes [interpolar variables](http://docs.puppetlabs.com/hiera/1/variables.html) en el *datadir* usando símbolos  de interpolación del tipo **%{variable}**. Esto te permite, por ejemplo, apuntarlo en **/etc/puppet/hieradata/%{::environment}** para mantener la información de desarrollo y producción completamente separadas.
+Puedes [interpolar variables](http://docs.puppetlabs.com/es/hiera/variables.html) en el *datadir* usando símbolos  de interpolación del tipo **%{variable}**. Esto te permite, por ejemplo, apuntarlo en **/etc/puppet/hieradata/%{::environment}** para mantener la información de desarrollo y producción completamente separadas.
 
 **Valor por defecto**: **/var/lib/hiera ** en \*nix, y **[COMMON_APPDATA](http://docs.puppetlabs.com/windows/installing.html#the-commonappdata-folder)\PuppetLabs\Hiera\var** ) en Windows.
 
