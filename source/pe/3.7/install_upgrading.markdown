@@ -70,9 +70,9 @@ Please see [section on upgrading Puppet agents](#upgrade-agents).
 
 If you have a split installation (with the master, PE console, and database components on different nodes), the process involves the following steps, which **must be performed in the following order**:
 
-1. [Upgrade the Puppet Master](#step-1-upgrading-the-puppet-master)
-2. [Upgrade PuppetDB](#step-2-upgrade-puppetdb)
-3. [Upgrade the PE Console](#step-3-upgrade-the-pe-console)
+1. [Upgrade the Puppet Master](#upgrade-the-puppet-master)
+2. [Upgrade PuppetDB](#upgrade-puppetdb)
+3. [Upgrade the PE Console](#upgrade-the-pe-console)
 4. [Classify the PE groups](#classify-the-new-pe-groups)
 5. [Upgrade Puppet agent nodes](#upgrade-agents)
 
@@ -104,7 +104,7 @@ On the node you provisioned for PuppetDB before starting the upgrade, unpack the
 
     sudo ./puppet-enterprise-installer
 
-### Upgrade the PE console
+### Upgrade the PE Console
 
 On the node serving the console component, unpack the PE 3.7 tarball and run the `puppet-enterprise-installer` script. From the PE installer directory, run the following command:
 
