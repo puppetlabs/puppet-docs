@@ -113,7 +113,7 @@ Class['myclass'] -> Apache::Vhost["$title"]
 Establecer relaciones de orden en el nivel de clase generalmente es mejor que pedir directamente uno de los recursos dentro de ella.
 
 #Tipos definidos en módulos
-Los tipos definidos pueden ser cargados automáticamente como las clases, y en consecuencia, utilizados desde cualquier parte en tus manifiestos. [Como con las clases](http://docs.puppetlabs.com/learning/modules1.html#module-structure), **cada tipo definido debe ir en su propio archivo** en el directorio **manifests/** del módulo. **Se aplican las mismas reglas para el namespace**. Entonces, el tipo **apache::vhost** debe ir en algún lugar como **/etc/puppetlabs/puppet/modules/apache/manifests/vhost.pp**, y si vamos a mantener el tipo **planfile**, debe ir en **/etc/puppetlabs/puppet/modules/planfile/manifests/init.pp**.
+Los tipos definidos pueden ser cargados automáticamente como las clases, y en consecuencia, utilizados desde cualquier parte en tus manifiestos. [Como con las clases](http://docs.puppetlabs.com/es/learning/modules1.html#module-structure), **cada tipo definido debe ir en su propio archivo** en el directorio **manifests/** del módulo. **Se aplican las mismas reglas para el namespace**. Entonces, el tipo **apache::vhost** debe ir en algún lugar como **/etc/puppetlabs/puppet/modules/apache/manifests/vhost.pp**, y si vamos a mantener el tipo **planfile**, debe ir en **/etc/puppetlabs/puppet/modules/planfile/manifests/init.pp**.
 
 ##Referencias de recurso y tipos con namespace
 
@@ -121,7 +121,7 @@ Quizás ya sabías esto que hablamos antes, pero: cuando haces una [referencia d
 
 #Ejemplo: Vhosts de Apache 
 
-No es que mi macro *.plan* no sea genial, pero pongámonos serios por un minuto. Recuerdas el [módulo Apache](http://docs.puppetlabs.com/learning/modules1.html#exercises) de hace unos capítulos atrás? Vamos a extenderlo para poder declarar vhosts fácilmente. Este ejemplo de código lo tomamos prestado del [módulo puppetlabs-apache](https://github.com/puppetlabs/puppetlabs-apache).
+No es que mi macro *.plan* no sea genial, pero pongámonos serios por un minuto. Recuerdas el [módulo Apache](http://docs.puppetlabs.com/es/learning/modules1.html#exercises) de hace unos capítulos atrás? Vamos a extenderlo para poder declarar vhosts fácilmente. Este ejemplo de código lo tomamos prestado del [módulo puppetlabs-apache](https://github.com/puppetlabs/puppetlabs-apache).
 
 	    # Definition: apache::vhost
 	    #
@@ -267,7 +267,7 @@ Puedes aprender cómo utilizarlas ejecutando **puppet doc --reference function |
 #Siguiente paso
 **Próxima clase**
 
-Hay mucho más para decir acerca de módulos; aún no hemos hablado de separación de información, patrones para hacer más legibles a los módulos o la composición de módulos; pero tenemos pendiente un asunto más importante. [Continúa leyendo](http://docs.puppetlabs.com/learning/agentprep.html) para preparar tus VMs (sí, plural) para Puppet master/agente.
+Hay mucho más para decir acerca de módulos; aún no hemos hablado de separación de información, patrones para hacer más legibles a los módulos o la composición de módulos; pero tenemos pendiente un asunto más importante. [Continúa leyendo](http://docs.puppetlabs.com/es/learning/agentprep.html) para preparar tus VMs (sí, plural) para Puppet master/agente.
 
 **Nota aparte**:
 

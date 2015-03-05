@@ -234,7 +234,7 @@ Escribe un manifiesto que instale y configure NTP para sistemas Linux basados en
 
 #Paso Siguiente
 **Próxima clase:**
-Ahora que tus manifiestos se pueden adaptar a los diferentes tipos de sistemas, es momento de comenzar a agrupar recursos y condicionales en unidades significativas. Sigamos adelante hacia las [clases, tipos de recurso definidos y módulos](http://docs.puppetlabs.com/learning/modules1.html)!
+Ahora que tus manifiestos se pueden adaptar a los diferentes tipos de sistemas, es momento de comenzar a agrupar recursos y condicionales en unidades significativas. Sigamos adelante hacia las [clases, tipos de recurso definidos y módulos](http://docs.puppetlabs.com/es/learning/modules1.html)!
 
 **Nota aparte:**
 Como los facts de cada nodo aparecen en la consola, Puppet Enterprise puede ser una poderosa herramienta de inventario. [Descarga gratis Puppet Enterprise](http://info.puppetlabs.com/download-pe.html), sigue [la guía de comienzo rápido](http://docs.puppetlabs.com/pe/latest/quick_start.html) para obtener un pequeño entorno instalado y luego navega por el inventario de la consola para obtener una visión central de las versiones de tu sistema operativo, perfiles de hardware y más.

@@ -37,7 +37,7 @@ Esto es una puerta para pasar información a una clase:
 	      user => mysqlserver,
 	    }
 
-+ Si declaras la clase con una [declaración de clase tipo recurso](http://docs.puppetlabs.com/learning/modules1.html#resource-like-class-declarations), los parámetros están disponibles como **atributos de recurso**.
++ Si declaras la clase con una [declaración de clase tipo recurso](http://docs.puppetlabs.com/es/learning/modules1.html#resource-like-class-declarations), los parámetros están disponibles como **atributos de recurso**.
 + Dentro de la definición de la clase, aparecen como **variables locales**.
 
 ##Valores por defecto
@@ -57,7 +57,7 @@ Para volver tus roles y perfiles más flexibles y evitar repeticiones, también 
 
 El problema es que las clases son Singletons, los parámetros configuran la forma en que se comportan, e **include** puede declarar la misma clase más de una vez.
 
-Si fueras a declarar una clase muchas veces con diferentes valores de parámetros, qué conjunto de valores debería ganar? La pregunta no parece tener una respuesta satisfactoria. El [método antiguo de utilizar variables mágicas](http://docs.puppetlabs.com/learning/modules2.html#older-ways-to-configure-classes) también tenía este problema: dependiendo del orden de parseo, podían ser varias cadenas de scope diferentes que proveían un valor determinado, y la que tú tenías era efectivamente al azar. Horrible.
+Si fueras a declarar una clase muchas veces con diferentes valores de parámetros, qué conjunto de valores debería ganar? La pregunta no parece tener una respuesta satisfactoria. El [método antiguo de utilizar variables mágicas](http://docs.puppetlabs.com/es/learning/modules2.html#older-ways-to-configure-classes) también tenía este problema: dependiendo del orden de parseo, podían ser varias cadenas de scope diferentes que proveían un valor determinado, y la que tú tenías era efectivamente al azar. Horrible.
 
 La solución que los diseñadores de Puppet establecieron fue que los valores de los parámetros o bien tenían que ser explícitos y no conflictivos, o venir de algún lugar de *afuera* de Puppet y estar ya resueltos al momento que el parseo de Puppet comenzara ([La búsqueda automática de parámetros de Puppet 3](http://docs.puppetlabs.com/hiera/1/puppet.html#automatic-parameter-lookup)).
 
@@ -164,4 +164,4 @@ Ok, ahora podemos pasar parámetros a clases y cambiar su comportamiento. Fantá
 
 Qué pasa si tienes una colección de recursos que crea una definición de host virtual para un servidor web; o clona un repositorio Git; o maneja una cuenta de usuario completa con un grupo, clave SSH, contenidos del home, entradas de sudoers, y archivos *.bashrc/.vimrc/etc.*? Qué pasa si quieres más de un repositorio Git, una cuenta de usuario o vhost en una sola máquina?
 
-Bueno, deberías [armar un tipo de recurso definido](http://docs.puppetlabs.com/learning/definedtypes.html).
+Bueno, deberías [armar un tipo de recurso definido](http://docs.puppetlabs.com/es/learning/definedtypes.html).

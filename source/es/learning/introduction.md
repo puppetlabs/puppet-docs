@@ -12,7 +12,7 @@ toc: false
 Puppet puede configurar o desconfigurar casi cualquier aspecto de un sistema, entonces, mientras aprendes a utilizarlo es mejor si tienes sistemas de prueba contigo. Para ayudarte en esto, vamos a darte una máquina virtual con Puppet instalado para que puedas experimentar sin miedo!
 
 [Obtén la VM de *Aprende Puppet*](http://info.puppetlabs.com/download-learning-puppet-VM.html)
-Mientras esto se baja, ve al [primer capítulo de *Aprende Puppet*](http://docs.puppetlabs.com/learning/ral.html). Si tienes problemas para ejecutar la VM, mira [los “Tips para la VM” a continuación]().
+Mientras esto se baja, ve al [primer capítulo de *Aprende Puppet*](http://docs.puppetlabs.com/es/learning/ral.html). Si tienes problemas para ejecutar la VM, mira [los “Tips para la VM” a continuación]().
 La VM de *Aprende Puppet* está disponible en formato .vmx de VMWare y en formato multiplataforma OVF, y ha sido testeada con VMWare Fusion y VirtualBox.
 
 ###Información de login
@@ -27,18 +27,18 @@ Para comenzar, no necesitarás separar VMs agente y master, esta VM puede cumpli
 
 #Contenidos
 + **Parte uno: Puppet sin servidor**
-	+ [Recursos y la RAL](http://docs.puppetlabs.com/learning/ral.html): Aprende sobre los bloques fundamentales de construcción de la configuración de sistemas.
-	+ [Manifiestos](http://docs.puppetlabs.com/learning/manifests.html): Comienza a controlar tu sistema escribiendo código “real” de Puppet.
-	+ [Orden](http://docs.puppetlabs.com/learning/ordering.html): Aprende sobre las dependencias y eventos de refresh, controla las relaciones entre recursos, y descubre el patrón de diseño fundamental de Puppet.
-	+ [Variables, condicionales y facts](http://docs.puppetlabs.com/learning/variables.html): Haz a tus manifiestos más versátiles leyendo la información del sistema. 
-	+ [Módulos y clases (parte uno)](http://docs.puppetlabs.com/learning/modules1.html): Comienza a construir tus manifiestos en módulos autocontenidos.
-	+ [Templates](http://docs.puppetlabs.com/learning/templates.html): Utiliza ERB para hacer tus archivos de configuración tan flexibles como tus manifiestos.
-	+ [Clases parametrizadas (Módulos, parte dos)](http://docs.puppetlabs.com/learning/modules2.html): Aprende cómo pasar parámetros a clases y hacer más adaptables tus módulos.
-	+ [Tipos definidos](http://docs.puppetlabs.com/learning/definedtypes.html): Modela trozos repetibles de configuración agrupando recursos básicos en super-recursos.
+	+ [Recursos y la RAL](http://docs.puppetlabs.com/es/learning/ral.html): Aprende sobre los bloques fundamentales de construcción de la configuración de sistemas.
+	+ [Manifiestos](http://docs.puppetlabs.com/es/learning/manifests.html): Comienza a controlar tu sistema escribiendo código “real” de Puppet.
+	+ [Orden](http://docs.puppetlabs.com/es/learning/ordering.html): Aprende sobre las dependencias y eventos de refresh, controla las relaciones entre recursos, y descubre el patrón de diseño fundamental de Puppet.
+	+ [Variables, condicionales y facts](http://docs.puppetlabs.com/es/learning/variables.html): Haz a tus manifiestos más versátiles leyendo la información del sistema. 
+	+ [Módulos y clases (parte uno)](http://docs.puppetlabs.com/es/learning/modules1.html): Comienza a construir tus manifiestos en módulos autocontenidos.
+	+ [Templates](http://docs.puppetlabs.com/es/learning/templates.html): Utiliza ERB para hacer tus archivos de configuración tan flexibles como tus manifiestos.
+	+ [Clases parametrizadas (Módulos, parte dos)](http://docs.puppetlabs.com/es/learning/modules2.html): Aprende cómo pasar parámetros a clases y hacer más adaptables tus módulos.
+	+ [Tipos definidos](http://docs.puppetlabs.com/es/learning/definedtypes.html): Modela trozos repetibles de configuración agrupando recursos básicos en super-recursos.
 
 + **Parte dos: Puppet Master/Agente**
-	+ [Preparar una VM agente](http://docs.puppetlabs.com/learning/agentprep.html): Prepara tus herramientas para los próximos capítulos con el tutorial paso a paso.
-	+ [Puppet Agent/Master básico](http://docs.puppetlabs.com/learning/agent_master_basic.html): Recorre el workflow de agente/master: firma un certificado de nodo agente, elige las clases de cada nodo, obtiene y aplica un catálogo.
+	+ [Preparar una VM agente](http://docs.puppetlabs.com/es/learning/agentprep.html): Prepara tus herramientas para los próximos capítulos con el tutorial paso a paso.
+	+ [Puppet Agent/Master básico](http://docs.puppetlabs.com/es/learning/agent_master_basic.html): Recorre el workflow de agente/master: firma un certificado de nodo agente, elige las clases de cada nodo, obtiene y aplica un catálogo.
 
 #Tips para la VM
 ##Importar la VM a VirtualBox
