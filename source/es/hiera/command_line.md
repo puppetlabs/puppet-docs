@@ -2,12 +2,11 @@
 layout: default
 title: "Hiera 1: Uso en la línea de comandos"
 canonical: "/es/hiera/command_line.html"
-toc: false
 ---
 
 Hiera proporciona una herramienta de línea de comandos útil para verificar que la jerarquía esté correctamente construida y que las fuentes de información estén devolviendo los valores esperados. Seguramente ejecutarás la herramienta de línea de comandos de Hiera en un puppet master, haciendo una maqueta de los facts que los agentes normalmente proveen al puppet master usando variadas [fuentes de facts](http://docs.puppetlabs.com/es/hiera/command_line.html#fact-sources).
 
-#Invocación
+## Invocación
 El comando más simple de Hiera toma un sólo argumento (la clave de búsqueda) y busca el valor de la clave usando las [fuentes de información](http://docs.puppetlabs.com/es/hiera/data_sources.html) estáticas en la [jerarquía](http://docs.puppetlabs.com/es/hiera/hierarchy.html).
 
 	**$ hiera ntp_server**
@@ -16,7 +15,11 @@ Una invocación estándar proveerá un conjunto de variables para que use Hiera,
 
 	**$ hiera ntp_server --yaml web01.example.com.yaml**
 
-##Orden de los argumentos
+## Ubicación del archivo de configuración
+
+La herramienta de línea de comandos de Hiera busca su configuración en **/etc/hiera.yaml**. Puedes usar el argumento **--config** para especificar un archivo de configuración diferente. Mira la documentación de [archivo de configuración](http://docs.puppetlabs.com/es/hiera/configuring.html#location) de Hiera para saber dónde encontrar este archivo para la versión de Puppet que tengas y tu sistema operativo. Considera reconfigurar Puppet para usar **/etc/hiera.yaml** (Puppet 3) o establece un link simbólico a **/etc/hiera.yaml** (Puppet 2.7).
+
+### Orden de los argumentos
 Hiera es sensible a la posición de sus argumentos en la línea de comandos:
 
 + El primer valor es siempre la clave de búsqueda
@@ -24,7 +27,7 @@ Hiera es sensible a la posición de sus argumentos en la línea de comandos:
 + Recuerda que los argumentos deben ser pares **variable=valor**.
 + Las **opciones** pueden estar en cualquier lugar.
 
-##Opciones
+### Opciones
 Hiera acepta las siguientes opciones de línea de comando:
 
 <table>
@@ -74,11 +77,8 @@ Hiera acepta las siguientes opciones de línea de comando:
  </tbody>
 </table>
 
-#Ubicación del archivo de configuración
 
-La herramienta de línea de comandos de Hiera busca su configuración en **/etc/hiera.yaml**. Puedes usar el argumento **--config** para especificar un archivo de configuración diferente. Mira la documentación de [archivo de configuración](http://docs.puppetlabs.com/es/hiera/configuring.html#location) de Hiera para saber dónde encontrar este archivo para la versión de Puppet que tengas y tu sistema operativo. Considera reconfigurar Puppet para usar **/etc/hiera.yaml** (Puppet 3) o establece un link simbólico a **/etc/hiera.yaml** (Puppet 2.7).
-
-#Fuentes de facts
+## Fuentes de facts
 Cuando lo utilizas desde Puppet, Hiera recibe automáticamente todos los facts que necesita. En la línea de comandos necesitarás pasar manualmente esos facts.
 
 Seguramente ejecutarás la herramienta de línea de comandos de Hiera en tu nodo puppet master, donde se espera que los facts correspondan a alguna de las siguientes posibilidades:
@@ -89,7 +89,7 @@ Seguramente ejecutarás la herramienta de línea de comandos de Hiera en tu nodo
 + Buscados en el [servicio de inventario de Puppet](http://docs.puppetlabs.com/es/hiera/command_line.html#inventory-service)
 Las descripciones de estas opciones puedes encontrarlas a continuación.
 
-#Variables de línea de comandos
+### Variables de línea de comandos
 
 Hiera acepta facts en la línea de comandos en forma de pares **variable=valor**, por ejemplo,  **hiera ntp_server osfamily=Debian clientcert="web01.example.com"**. Los valores de las variables debe ser strings y deben estar entre comillas en caso de tener espacios.
 
@@ -104,7 +104,7 @@ Dado este comando, utilizando asignación de variables de línea de comandos:
 
 Los siguientes ejemplos en YAML y JSON devuelven los mismos resultados:
 
-###Ejemplo de Scope YAML
+#### Ejemplo de Scope YAML
 	**$ hiera ntp_server -y facts.yaml**
 
 	# facts.yaml
@@ -112,7 +112,7 @@ Los siguientes ejemplos en YAML y JSON devuelven los mismos resultados:
 	osfamily: Debian
 	timezone: CST
 
-###Ejemplo de Scope JSON
+#### Ejemplo de Scope JSON
 
 	**$ hiera ntp_server -j facts.json**
 
@@ -122,23 +122,23 @@ Los siguientes ejemplos en YAML y JSON devuelven los mismos resultados:
   	"timezone" : "CST"
 	}
 
-##MCollective
+### MCollective
 
 Si estás usando Hiera en una máquina en la que está permitida la emisión de comandos MCollective, puedes pedirle a cualquier nodo que ejecute MCollective para enviarte sus facts. Hiera usará esos facts para conducir la búsqueda.
 
 Próximamente tendremos un ejemplo de esto.
 
-## Servicio de inventario
+### Servicio de inventario
 
 Si utilizas el [servicio de inventario](http://docs.puppetlabs.com/guides/inventory_service.html) de Puppet, puedes consultar el puppet master por facts de cualquier nodo. Hiera usará esos facts para conducir la búsqueda.
 
 Próximamente tendremos un ejemplo de esto.
 
-#Tipos de búsqueda
+## Tipos de búsqueda
 
 Por defecto, la herramienta de línea de comandos de Hiera usará una [búsqueda de prioridad](http://docs.puppetlabs.com/es/hiera/lookup_types.html#priority-default) la cual devolverá un valor simple, el primero que encuentre en la jerarquía. Existen otros dos tipos de búsqueda disponibles: Merge en array y Merge en Hash.
 
-##Merge de array
+### Merge de array
 
 Una búsqueda de merge de array arma un valor combinando cada valor que encuentra en la jerarquía en un array aplanado de valores únicos. [Mira “Búsqueda de merge en array”](http://docs.puppetlabs.com/es/hiera/lookup_types.html#array-merge) para más detalles.
 
@@ -146,7 +146,7 @@ Usa la opción **--array** para hacer una búsqueda de merge de array.
 
 Si alguno de los valores encontrados en las fuentes de información es un hash, la opción  **--array** hará que Hiera devuelva un error.
 
-##Hash
+### Hash
 
 Una búsqueda de merge de hash arma un valor combinando las claves de nivel superior de cada hash que encuentre en la jerarquía en un hash simple. [Mira “Búsqueda de merge de hash”](http://docs.puppetlabs.com/es/hiera/lookup_types.html#hash-merge) para más detalles.
 

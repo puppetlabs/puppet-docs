@@ -2,15 +2,14 @@
 layout: default
 title: "Hiera 1: Ejemplo completo"
 canonical: "/es/hiera/complete_example.html"
-toc: false
 ---
 
 En este ejemplo, usaremos el popular [Módulo NTP de Puppet Labs](http://forge.puppetlabs.com/puppetlabs/ntp) un ejemplo del patrón de diseño *paquete/archivo/servicio*, de uso común en la comunidad de usuarios de Puppet. Comenzaremos de manera simple, usando Hiera para proveer el módulo ntp con datos de parámetros basados en nodos particulares de tu organización.  Luego, usaremos Hiera para asignar la clase *ntp* proporcionada por el módulo a nodos específicos.
 
-#¿Qué podemos hacer con Hiera?
+## ¿Qué podemos hacer con Hiera?
 Comencemos observando el módulo de ntp.  Realiza todo su trabajo en una sola clase **ntp**, la cual vive en [el manifiesto **init.pp**](https://github.com/puppetlabs/puppetlabs-ntp/blob/master/manifests/init.pp). La clase **ntp** también evalúa algunos templates ERB almacenados en el [directorio de templates](https://github.com/puppetlabs/puppetlabs-ntp/tree/master/templates). Entonces, ¿qué podemos hacer con Hiera?
 
-##Expresar Información organizacional
+### Expresar Información organizacional
 La clase **NTP** toma cinco parámetros:
 
 + servers
@@ -23,17 +22,18 @@ La mayoría de estos parámetros reflejan decisiones que tenemos que tomar sobre
 Sin Hiera, nos encontraríamos agregando datos organizacionales al código de nuestro módulo como valores de los parámetros por defecto, reduciendo la portabilidad del módulo.  Nos encontraríamos repitiendo los datos de configuración en nuestros manifiestos para cubrir las diferencias menores en la configuración entre nodos.
 Con Hiera, podemos mudar estas decisiones a una jerarquía construida en base a los facts que conducen estas decisiones, incrementar la portabilidad y reducir la repetición de código.
 
-## Clasificar nodos con Hiera
+### Clasificar nodos con Hiera
 También podemos usar Hiera para asignar clases a los nodos, usando la función [hiera_include](http://docs.puppetlabs.com/es/hiera/puppet.html#assigning-classes-to-nodes-with-hiera-hierainclude), agregando una sóla línea a nuestro manifiesto **site.pp**, luego asignando clases a los nodos dentro de Hiera, en lugar de hacerlo dentro de nuestro manifiesto site.pp. Esto puede ser un atajo muy útil cuando asignamos explícitamente clases a nodos específicos dentro de Hiera, pero se vuelve muy poderoso cuando asignamos clases implícitamente basadas en una característica del nodo. En otras palabras, te mostraremos cómo no tienes que saber el nombre de cada huésped de VMWare  en tu organización para asegurarte que todos tengan instalada la versión actual de las herramientas de VMWare.
 
-#Descripción de nuestro entorno
+## Descripción de nuestro entorno
 A los efectos de este tutorial, vamos a asumir esta situación:
 
 + Tenemos dos servidores ntp en la organización que tienen permiso para conectarse con servidores ntp externos. Otro servidor ntp obtiene sus datos de tiempo de estos dos servidores.
 +Uno de nuestros servidores ntp primarios está configurado muy cautelosamente (no nos podemos permitir testeo previo, así que no está permitida la actualización automática del paquete de este servidor ntp sin pruebas). El otro servidor está configurado con más permisos.
 + Tenemos un número de otros servidores ntp que usarán nuestros dos servidores primarios.
 + Tenemos un número de  Sistemas operativos hospedados en VMWare que necesitan tener las herramientas VMWare instaladas.
-##Nuestro entorno antes de Hiera
+
+### Nuestro entorno antes de Hiera
 
 ¿Cómo se veían las cosas antes de que decidiéramos utilizar Hiera? Las clases eran asignadas a los nodos vía el manifiesto del sitio (**/etc/puppet/manifests/sites.pp** para Puppet open source); así que aquí está cómo nuestro site.pp podría haber sido:
 
@@ -64,7 +64,7 @@ A los efectos de este tutorial, vamos a asumir esta situación:
 	  }
 	}
 
-#Configuración de Hiera y armado de la jerarquía
+## Configuración de Hiera y armado de la jerarquía
 
 Toda la configuración de Hiera comienza con el archivo**hiera.yaml**. Puedes leer [una discusión completa sobre este archivo](http://docs.puppetlabs.com/es/hiera/configuring.html), incluido dónde deberías colocarlo dependiendo de la versión de Puppet que estés usando.  Aquí está la que usaremos en este tutorial:
 
@@ -93,16 +93,16 @@ En este ejemplo, usamos el fact **fqdn** para identificar nodos específicos; la
 
 **Nota de Puppet Master**: Si modificas **hiera.yaml** entre ejecuciones de agentes, tendrás que reiniciar tu Puppet master para que los cambios tengan efecto.
 
-##Configuración de la línea de comando
+### Configuración de la línea de comando
 La [Herramienta de línea de comando de Hiera](http://docs.puppetlabs.com/es/hiera/command_line.html) es útil cuando estás en proceso de diseñar y testear tu jerarquía. Puedes usarla para imitar facts para que Hiera busque sin tener que pasar por engorrosas acciones de prueba y error de Puppet. Como el comando **hiera** espera encontrar **hiera.yaml** en **/etc/hiera.yaml**,  debes configurar un link simbólico desde tu  archivo **hieral.yaml** a **/etc/hiera.yaml**:
 
 	$ ln -s /etc/puppet/hiera.yaml /etc/hiera.yaml	
 
-#Escribir Fuentes de información 
+## Escribir Fuentes de información 
 Ahora que tenemos Hiera configurado, estamos listos para volver al módulo ntp y mirar los parámetros de la clase **ntp**. 
 **Aprende acerca de las fuentes de información de Hiera**: Este ejemplo no cubrirá todos los tipos de información que quizás quieras usar, y nosotros  estamos usando sólo uno de los dos backends integrados (JSON). Para una mirada completa de las fuentes de información, por favor mira nuestra guía para [escribir fuentes de información de Hiera](http://docs.puppetlabs.com/es/hiera/data_sources.html) que incluye ejemplos más completos, escritos en JSON y YAML.
 
-##Identificar parámetros
+### Identificar parámetros
 Tenemos que empezar por averiguar los parámetros requeridos por la clase ntp; Observemos [el manifiesto **init.pp** del módulo ntp]( https://github.com/puppetlabs/puppetlabs-ntp/blob/master/manifests/init.pp) dónde encontramos cinco de ellos:
 
 *Servers*:
@@ -122,26 +122,25 @@ El nombre del template que se utiliza en la configuración del servicio NTP. Est
 
 + [Mira las referencias del lenguaje Puppet para más información acerca de los parámetros de clase](http://docs.puppetlabs.com/puppet/latest/reference/lang_classes.html#class-parameters-and-variables)
 
-##Tomar decisiones y expresarlas en Hiera
+### Tomar decisiones y expresarlas en Hiera
 Ahora que conocemos los parámetros  que la clase NTP espera, podemos comenzar a tomar decisiones acerca de los nodos en nuestro sistema y luego expresarlas como datos Hiera. Comencemos con *Kermit* y *Grover*:  son dos nodos en nuestra organización a los que le permitimos conectarse con el mundo externo a los fines de mantener actualizado el tiempo.
 
-**kermit.example.com.json**
+#### `kermit.example.com.yaml`
 
-Queremos que uno de esos dos nodos, **kermit.expample.com**,  actúe como servidor primario de tiempo en la organización. Queremos que consulte servidores de tiempo externos, no vamos a querer que actualice su paquete de servidor NTP por defecto; y definitivamente, queremos inicie  el servicio NTP en el arranque. Entonces, vamos a escribir eso en JSON, asegurándonos de expresar nuestras variables como parte del namespace de NTP para asegurarnos que Hiera los tome como parte de su [búsqueda automática de parámetros](http://docs.puppetlabs.com/es/hiera/puppet.html#automatic-parameter-lookup)
+Queremos que uno de esos dos nodos, **kermit.expample.com**,  actúe como servidor primario de tiempo en la organización. Queremos que consulte servidores de tiempo externos, no vamos a querer que actualice su paquete de servidor NTP por defecto; y definitivamente, queremos inicie  el servicio NTP en el arranque. Entonces, vamos a escribir eso en YAML, asegurándonos de expresar nuestras variables como parte del namespace de NTP para asegurarnos que Hiera los tome como parte de su [búsqueda automática de parámetros](http://docs.puppetlabs.com/es/hiera/puppet.html#automatic-parameter-lookup)
 
-	{
-   	"ntp::restrict" : false,
-   	"ntp::autoupdate" : false,
-   	"ntp::enable" : true,
-   	"ntp::servers" : [
-		   "0.us.pool.ntp.org iburst",
-	   	"1.us.pool.ntp.org iburst",
-	   	"2.us.pool.ntp.org iburst",
-	   	"3.us.pool.ntp.org iburst"
-	   ]
-	}
+    ---
+    ntp::restrict:
+      -
+    ntp::autoupdate: false
+    ntp::enable: true
+    ntp::servers:
+      - 0.us.pool.ntp.org iburst
+      - 1.us.pool.ntp.org iburst
+      - 2.us.pool.ntp.org iburst
+      - 3.us.pool.ntp.org iburst
 
-Como queremos proveer esta información para un nodo específico, y como usamos el fact **fqdn** para identificar nodos únicos en nuestra jerarquía, necesitamos salvar esta información en el directorio **/etc/puppet/hiera/node** como **kermit.example.com.json**.
+Como queremos proveer esta información para un nodo específico, y como usamos el fact **fqdn** para identificar nodos únicos en nuestra jerarquía, necesitamos salvar esta información en el directorio **/etc/puppet/hiera/node** como **kermit.example.com.yaml**.
 Una vez salvado, haremos una prueba rápida usando [La herramienta de línea de comando de Hiera](http://docs.puppetlabs.com/es/hiera/command_line.html)
 
 	$ hiera ntp::servers fqdn=kermit.example.com
@@ -150,59 +149,56 @@ Y tú debes ver esto:
 
 	["0.us.pool.ntp.org iburst", "1.us.pool.ntp.org iburst", "2.us.pool.ntp.org iburst", "3.us.pool.ntp.org iburst"]
 
-Esto es sólo una *array* (matriz) de servidores NTP externos y sus opciones, que están expresados como un array JSON, y Hiera la convierte en un array de Puppet. El módulo la usará cuando genere archivos de configuración de estos templates.
+Esto es sólo una *array* (matriz) de servidores NTP externos y sus opciones, que están expresados como un array YAML, y Hiera la convierte en un array de Puppet. El módulo la usará cuando genere archivos de configuración de estos templates.
 
 **¿Algo falló?**: Si por el contrario tienes **nil**, **false**, o algo completamente distinto, debes volver a tu configuración Hiera y asegurarte que:
 
 + Tu archivo **hiera.yaml** coincide con el ejemplo que te dimos.
 + Has colocado un link simbólico en **hiera.yaml** donde la herramienta de línea de comando pueda encontrarla (**/etc/hiera.yaml**)
-+  Has salvado tu archivo de fuente de información **kermit.example.com** con extensión **.json**
++  Has salvado tu archivo de fuente de información **kermit.example.com** con extensión **.yaml**
 + El JSON de tu archivo de fuente de información está bien escrito. Un olvido o mala colocación de una *coma*, causará que el parser de JSON falle.
 + Has reiniciado tu Puppet Master si modificaste **hiera.yaml**
 
 Si todo funciona y obtienes ese array de servidores NTP, estás listo para configurar otro nodo.
 
-**grover.example.com.json**.
+#### `grover.example.com.yaml`
 
-Nuestro próximo nodo NTP, **grover.example.com** es un poco menos crítico que kermit en nuestra infraestructura, así que podemos ser un poco más permisivos en esta configuración. Está bien si el paquete NTP de grover se actualiza automáticamente. También queremos que grover use kermit como servidor NTP primario. Expresemos eso en JSON:
+Nuestro próximo nodo NTP, **grover.example.com** es un poco menos crítico que kermit en nuestra infraestructura, así que podemos ser un poco más permisivos en esta configuración. Está bien si el paquete NTP de grover se actualiza automáticamente. También queremos que grover use kermit como servidor NTP primario. Expresemos eso en YAML:
 
-    {
-   	"ntp::restrict" : false,
-   	"ntp::autoupdate" : true,
-   	"ntp::enable" : true,
-   	"ntp::servers" : [
-		"kermit.example.com iburst",
-	   	"0.us.pool.ntp.org iburst",
-	   	"1.us.pool.ntp.org iburst",
-	   	"2.us.pool.ntp.org iburst",
-	   	]
-	}
+    ---
+    ntp::restrict:
+      -
+    ntp::autoupdate: true
+    ntp::enable: true
+    ntp::servers:
+      - kermit.example.com iburst
+      - 0.us.pool.ntp.org iburst
+      - 1.us.pool.ntp.org iburst
+      - 2.us.pool.ntp.org iburst
 
-Como con **kermit.example.com** queremos salvar la fuente de información Hiera de grover en el directorio **/etc/puppet/hiera/nodes** usando el fact **fqdn** para el nombre de archivo **grover.example.com.json**. Lo podemos probar una y otra vez con esta herramienta de línea de comando de Hiera:
+Como con **kermit.example.com** queremos salvar la fuente de información Hiera de grover en el directorio **/etc/puppet/hiera/nodes** usando el fact **fqdn** para el nombre de archivo **grover.example.com.yaml**. Lo podemos probar una y otra vez con esta herramienta de línea de comando de Hiera:
 
-	$ hiera ntp::servers fqdn=grover.example.com
+	$ hiera ntp::servers ::fqdn=grover.example.com
 	["kermit.example.com iburst", "0.us.pool.ntp.org iburst", "1.us.pool.ntp.org iburst", "2.us.pool.ntp.org iburst"]
 
-**common.json**
+#### `common.yaml`
 
-Así, hemos configurado los dos nodos en nuestra organización que podemos actualizar desde servidores NTP externos. Sin embargo todavía tenemos algunos nodos para tener en cuenta que también proveen servicios NTP. Dependen de kermit y grover para obtener el tiempo correcto, y para nosotros no es importante si se actualizan a sí mismos. Escribamos esto en JSON:
+Así, hemos configurado los dos nodos en nuestra organización que podemos actualizar desde servidores NTP externos. Sin embargo todavía tenemos algunos nodos para tener en cuenta que también proveen servicios NTP. Dependen de kermit y grover para obtener el tiempo correcto, y para nosotros no es importante si se actualizan a sí mismos. Escribamos esto en YAML:
 
-    {
-   	"ntp::restrict" : true,
-   	"ntp::autoupdate" : true,
-   	"ntp::enable" : true,
-   	"ntp::servers" : [
-		"grover.example.com iburst",
-	   	"kermit.example.com iburst"
-	  	]
-	}
+    ---
+    ntp::autoupdate: true
+    ntp::enable: true
+    ntp::servers:
+      - grover.example.com iburst
+      - kermit.example.com iburst
 
-A diferencia de kermit y grover, para los cuales para los cuales necesitábamos configuraciones ligeramente distintas pero específicas para cada nodo, confiamos en dejar que cualquier otro nodo que use clase NTP use estos datos de configuración genéricos. En lugar de crear una fuente de información específica para cada nodo posible en nuestra red que necesitara usar el módulo NTP, vamos a almacenar esta información en **/etc/puppet/hiera/common.json**. Con nuestra jerarquía simple, la cual por ahora sólo busca por el fact **fqdn**; cualquier nodo con un **fqdn** que no coincida con los nodos de los que tenemos fuentes de información, podrán obtenerla en **common.json**. Hagamos una prueba con uno de esos nodos:
+A diferencia de kermit y grover, para los cuales para los cuales necesitábamos configuraciones ligeramente distintas pero específicas para cada nodo, confiamos en dejar que cualquier otro nodo que use clase NTP use estos datos de configuración genéricos. En lugar de crear una fuente de información específica para cada nodo posible en nuestra red que necesitara usar el módulo NTP, vamos a almacenar esta información en **/etc/puppet/hiera/common.yaml**. Con nuestra jerarquía simple, la cual por ahora sólo busca por el fact **fqdn**; cualquier nodo con un **fqdn** que no coincida con los nodos de los que tenemos fuentes de información, podrán obtenerla en **common.yaml**. Hagamos una prueba con uno de esos nodos:
 
 	$ hiera ntp::servers fqdn=snuffie.example.com
 	["kermit.example.com iburst", "grover.example.com iburst"]
 
-#Modifica nuestro Manifiesto **site.pp**
+#### `Modifica nuestro Manifiesto `site.pp``
+
 Ahora que todo ha sido probado desde la línea de comando, es hora de obtener algún beneficio de este trabajo en producción.
 Recordando  nuestra configuración pre-Hiera, verás que declarábamos un número de parámetros para la clase NTP en nuestro manifiesto **site.pp** de esta forma:
 
@@ -232,10 +228,10 @@ Como Hiera está proporcionando automáticamente información de parámetros des
 
 Si estás interesado en avanzar, usando las habilidades para la toma de decisiones que has recogido de este ejemplo para elegir qué nodos tienen clase particular, entonces continuemos.
 
-#Asignar una clase a un nodo con Hiera 
+## Asignar una clase a un nodo con Hiera 
 En la primera parte de nuestro ejemplo, estuvimos enfocados en cómo usar Hiera para proporcionar información a una clase parametrizada, pero asignando las clases a nodos con el método tradicional de Puppet: Haciendo declaraciones de **clase** para cada nodo en nuestro manifiesto **site.pp**. Gracias a la función **hiera_include**, puedes asignar nodos a las clases de la misma forma que puedes asignar valores para clasificar parámetros: Tomando un *fact* en el cual quieres basar una decisión, agregándolo a la jerarquía en tu archivo **hiera.yaml** y luego escribiendo las fuentes de información.
 
-#Uso de **hiera_include**
+### Uso de **hiera_include**
 Hasta donde vimos, nuestro manifiesto **site.pp**  estaba bastante vacío. Con la función **hiera_include** podemos reducir las cosas aún más eligiendo una clave para utilizar en las clases (recomendamos utilizar la clave **clases**) y luego declarándola en nuestro manifiesto **site.pp**:
 
 	hiera_include('classes')
@@ -285,7 +281,7 @@ Podemos testear qué clases hemos asignado a un nodo determinado con la herramie
 
 Nota: La función **hiera_include** hará una [Busqueda *Array merge*](http://docs.puppetlabs.com/es/hiera/lookup_types.html#array-merge) que permite que las fuentes de datos más específicas se **sumen** a las fuentes comunes en lugar de **reemplazarlas**. Esto te ayuda a evitar repeticiones.
 
-##Uso de facts para conducir la asignación de clase
+#### Uso de facts para conducir la asignación de clase
 Esto demuestra un caso muy simple para **hiera_include**, donde sabemos que queremos asignar una clase particular a un host específico por el nombre. Pero al usar el fact **fqdn** para elegir qué nodo recibirá valores de parámetro específico, podemos usar ese o cualquier otro fact para conducir las asignaciones de clase. En otras palabras, puedes asignar clases a los nodos basándote en características que no son tan obvias como sus nombres, creando la posibilidad de configurar nodos basados en características más complejas.
 
 Algunas organizaciones pordrían elegir asegurarse que todas sus Macs tengan instalado *Homebrew*, o asignar una clase **postfix** a los nodos que tengan el rol de servidores de mail expresados en un fact personalizado, o asignar una clase **vmware_tool** como valor para este fact **virtual**.
@@ -364,7 +360,7 @@ Una vez que tienes todo esto configurado, continúa el proceso testeando la herr
 
 Si todo funciona, buenísimo; Si no, [consulta la lista de verificación que te dimos antes](http://docs.puppetlabs.com/es/hiera/complete_example.html#something-went-wrong) e intenta nuevamente.
 
-#Explora Hiera más allá
+## Explora Hiera más allá
 Esperamos que este tutorial te haya dado una buena impresión acerca de las cosas que puedes hacer con Hiera. Pero hay algunas cosas de las que no hablamos:
 
 + No hemos discutido acerca de cómo usar Hiera en módulos de manifiesto, prefiriendo resaltar esta habilidad de proveer información a clases parametrizadas. Hiera también provee una [colección de funciones](http://docs.puppetlabs.com/es/hiera/puppet.html#hiera-lookup-functions) que te permiten usar Hiera dentro de un módulo. Pero presta mucha atención aquí: Una vez que comiences a usar Hiera para que tu módulo funcione, reducirás su portabilidad y, potencialmente, se la cerrarás a algunos usuarios.

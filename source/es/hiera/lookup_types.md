@@ -2,14 +2,13 @@
 layout: default
 title: "Hiera 1: Tipos de búsqueda"
 canonical: "/es/hiera/lookup_types.html"
-toc: false
 ---
 
 Hiera siempre toma una clave de búsqueda y devuelve un valor simple (de algún tipo de información simple o complejo), pero tiene varios métodos de extracción / ensamble de ese valor a partir de la jerarquía. Nos referimos a eso como “métodos de búsqueda”.
 
 Todos estos métodos de búsqueda están disponibles vía las funciones Puppet de Hiera, interfaces de líneas de comando, y las API de Ruby.
 
-#Prioridad (por defecto)
+## Prioridad (por defecto)
 
 Una **búsqueda prioritaria** obtiene un valor del nivel de coincidencia más específico de la jerarquía (el primero en coincidir) que sea consultado.
 
@@ -17,7 +16,7 @@ Las búsquedas prioritarias pueden recuperar valores de cualquier tipo de inform
 
 Esto es el método de búsqueda por defecto de Hiera.
 
-#Merge de array
+## Merge de array
 
 Una **búsqueda de merge de arrays**  ensambla un valor de **todos** los niveles de coincidencia de la jerarquía.  Recupera **todos** los valores (string o array) para una clave determinada, luego los aplana en un array de valores únicos. Si la búsqueda prioritaria puede ser pensada como un patrón “por defecto con overrides”, la búsqueda de merge de arrays puede ser pensada como “por defecto con adiciones”.
 
@@ -40,13 +39,13 @@ Una búsqueda de merge de arrays devolvería un valor de **[uno, dos, tres]**.
 
 En esta versión de Hiera, la búsqueda de merge de arrays fallará si alguno de los valores encontrados en las fuentes de información es un hash. Sólo funciona con strings, valores escalares similares a strings (booleanos y números) y arrays.
 
-#Merge de hash
+## Merge de hash
 
 Una búsqueda de merge de hash ensambla un valor usando **todos** los niveles de coincidencia de la jerarquía. Recupera **todos** los valores (del hash) de una clave determinada, luego **fusiona** los hashes en un solo hash.
 
 En Hiera 1.x, la búsqueda de merge de hash fallará si alguno de los valores encontrados en las fuentes de información es un string o un array. Sólo funciona cuando todos los valores encontrados son hashes.
 
-## Merge nativo
+### Merge nativo
 
 En Hiera 1.0 y 1.1, ésta es la única clase disponible de merge de hash. En Hiera ≥ 1.2, también están disponibles el merge en profunidad (mira la explicación debajo).
 
@@ -71,7 +70,7 @@ Por ejemplo una jerarquía determinada de:
 
 ... una búsqueda de merge de hash nativo devolvería un valor **{z => "local value", a => "common value", b => "other common value"}**. Ten en cuenta que en casos donde dos o más hashes fuente compartan algunas claves, la fuente de información de mayor prioridad en la jerarquía sustituirá a la de menor.
 
-## Merge en profundidad en Hiera ≥ 1.2.0
+### Merge en profundidad en Hiera ≥ 1.2.0
 
 En Hiera 1.2.0 y superiores, también es posible configurar las búsquedas de merge de hashes para combinar de forma recursiva las claves de los hashes, implementado como [Issue 16107](https://projects.puppetlabs.com/issues/16107). Esto está pensado para los usuarios que han trasladado estructuras complejas de datos (por ejemplo [hashes para *create_resources*](http://docs.puppetlabs.com/references/latest/function.html#createresources) a Hiera.
 
@@ -83,7 +82,7 @@ Limitaciones:
 + Debes instalar el gem de Ruby **deep_merge** para que funcionen los merge en profundidad. Si esta opción no está disponible, Hiera recurrirá al comportamiento por defecto del merge nativo.
 + Esta configuración es global, no para cada búsqueda.
 
-##Comportamientos del merge 
+#### Comportamientos del merge 
 
 Hay tres comportamientos disponibles para el merge.
 
@@ -101,7 +100,7 @@ En un merge de hash **deeper**, Hiera fusiona claves y valores en cada hash de o
 
 En un merge de hash **deep**, Hiera se comporta como lo descrito arriba, excepto cuando existe un string/número/booleano en dos o más hashes de origen, que el valor de **prioridad más baja** entra en el hash final. Como ya hemos mencionado, esto suele ser inútil.
 
-##Ejemplo
+#### Ejemplo
 
 Un caso típico de uso de hashes en Hiera es la construcción de una estructura de datos que se le pasa a la función **create_resources**. Este ejemplo implementa las siguientes reglas de negocio que dicen:
 
