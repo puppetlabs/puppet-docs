@@ -2,38 +2,37 @@
 layout: default
 title: "Hiera 1: Usar Hiera con Puppet"
 canonical: "/es/hiera/puppet.html"
-toc: false
 ---
 
 Puppet puede utilizar Hiera para  buscar información. Esto te ayuda a separar información específica del sitio, del código Puppet; para reutilizar más fácilmente un código y facilitar la gestión de información que hay que diferir a través de tu población de nodos.
 
-# Habilitar y configurar Hiera para Puppet
+## Habilitar y configurar Hiera para Puppet
 
-##Puppet 3 y superior
+### Puppet 3 y superior
 
 Puppet 3.x y versiones superiores vienen con soporte para Hiera ya habilitado. No necesitas hacer nada extra. La información de Hiera debería existir en el o los puppet master(s).
 
 + Puppet espera encontrar el [archivo hiera.yaml](http://docs.puppetlabs.com/es/hiera/configuring.html) en **$confdir/hiera.yaml** (normalmente **/etc/puppet/hiera.yaml**); puedes modificar esto con las opciones de configuración **hiera_config**.
 + Recuerda configurar los valores de **:datadir** para todos los backends que uses. Generalmente lo mejor es utilizar algo dentro del directorio **/etc/puppet/** ya que es en el primer lugar que tus colegas administradores esperan encontrar la información.
 
-## Puppet 2.7
+### Puppet 2.7
 
 Debes instalar Hiera y el paquete **hiera-puppet** en tus puppet master(s) antes de usar Hiera con Puppet. La información de Hiera debería existir en el o los puppet master(s).
 
 + Puppet espera encontrar el [archivo hiera.yaml](http://docs.puppetlabs.com/es/hiera/configuring.html) en **$confdir/hiera.yaml** (normalmente **/etc/puppet/hiera.yaml**); Esto no es configurable en 2.7.
 + Recuerda configurar los valores de **:datadir** para todos los backends que uses. Generalmente lo mejor es utilizar algo dentro del directorio **/etc/puppet/** ya que es en el primer lugar que tus colegas administradores esperan encontrar información. 
 
-## Versiones anteriores
+### Versiones anteriores
 
 Hiera no es compatible con versiones anteriores, pero podría ser posible hacerlo funcionar de forma similar a Puppet 2.7.
 
-# Variables de Puppet pasadas a Hiera
+## Variables de Puppet pasadas a Hiera
 
 En el momento que una búsqueda de Hiera se dispara desde Puppet, Hiera recibe una copia de **todas** las variables actualmente disponibles para Puppet, incluyendo variables locales y de top scope (top scope, ver [Referencia del lenguaje](http://docs.puppetlabs.com/puppet/3/reference/lang_scope.html) .
 
 Entonces Hiera puede usar cualquiera de estas variables en los [símbolos de interpolación de variables](http://docs.puppetlabs.com/es/hiera/variables.html) desperdigados por toda la [jerarquía](http://docs.puppetlabs.com/es/hiera/hierarchy.html) y [fuentes de información](http://docs.puppetlabs.com/es/hiera/data_sources.html). Puedes habilitar jerarquías más flexibles creando [facts personalizados](http://docs.puppetlabs.com/guides/custom_facts.html) para cosas como la ubicación de datacenters y el propósito de los servidores. 
 
-##Pseudo-variables especiales
+### Pseudo-variables especiales
 
 Cuando realizas cualquier búsqueda de Hiera, sea con la búsqueda automática de parámetros o con las funciones de Hiera, Puppet configura dos variables que no están disponibles en manifiestos normales:
 
@@ -46,7 +45,7 @@ Cuando realizas cualquier búsqueda de Hiera, sea con la búsqueda automática d
 + Puppet 3.0.x and 3.1.x: **Rotas**
 + Puppet 3.2.x y superiores: **Funcionan**
 
-##Buenas prácticas
+### Buenas prácticas
 **No uses variables locales de Puppet** en jerarquías de Hiera o fuentes de información. Sólo usa [facts](http://docs.puppetlabs.com/puppet/latest/reference/lang_variables.html#facts-and-built-in-variables) y **variables top-scope definidas por un ENC**. Usa [notación de top-scope absoluta](http://docs.puppetlabs.com/puppet/latest/reference/lang_variables.html#accessing-out-of-scope-variables) (por ejemplo: **%{::clientcert}** en lugar de **%{clientcert}**) en la configuración de archivos de Hiera para evitar usar accidentalmente una variable local en lugar de una *top-scope*.
 
 Esta no es una regla estricta, existen excepciones; pero casi siempre te arrepentirás si la rompes, y eso sucede porque la función de Hiera es separar la información del código, y establecer información jerárquica específica de cada nodo que no depende del orden de análisis de Puppet.
@@ -55,7 +54,7 @@ Si Hiera sólo depende de variables que están configuradas **antes que Puppet c
 
 Por otro lado, hacer depender a Hiera de variables locales establecidas por el parser de Puppet significa que aún estás, básicamente, incorporando datos en el código y todavía tienes todos los problemas que Hiera pretende resolver.
 
-# Búsqueda automática de parámetros
+## Búsqueda automática de parámetros
 
 Puppet recuperará automáticamente los parámetros de clase desde Hiera, usando claves de búsqueda como **myclass::parameter_one**.
 
@@ -91,19 +90,19 @@ El paso 2 es el que más nos interesa aquí. Como Puppet siempre buscará parám
 
 Podrías entonces declarar **include myclass** para cada nodo, y cada nodo obtendría su propia información adecuada para la clase.
 
-##¿Por qué?
+### ¿Por qué?
 La búsqueda automática de parámetros es buena para escribir código reutilizable porque es **normal y predecible**. Cualquiera que baje tu módulo podrá ver la primera línea de cada manifiesto y ver fácilmente qué claves necesitan establecer en sus propios datos Hiera.
 
 Si por el contrario, utilizas las funciones de Hiera en el cuerpo de una clase, necesitarás documentar claramente qué claves necesita establecer el usuario.
 
-##Limitaciones
+### Limitaciones
 
-###Sólo prioridad
+#### Sólo prioridad
 La búsqueda automática de parámetros sólo puede usar el método de búsqueda de [prioridad](http://docs.puppetlabs.com/es/hiera/lookup_types.html#priority-default). Esto significa que, si bien **puede** recibir cualquier tipo de información desde Hiera (strings, arrays, hashes) **no puede** combinar valores desde múltiples niveles de jerarquía. Sólo obtendrás el valor del nivel de jerarquía más específico.
 
 Si necesitas combinar arrays o hashes de niveles de jerarquía múltiples, deberás usar las funciones **hiera_array** o **hiera_hash** en el cuerpo de las clases.
 
-###No soportado en Puppet 2.7
+#### No soportado en Puppet 2.7
 Basarse en la búsqueda automática de parámetros significa escribir código solamente para Puppet 3 y superiores. De todos modos puedes imitar el comportamiento de Puppet 3 en 2.7 combinando parámetros por defecto y funciones de llamadas de Hiera.
 
 	class myclass (
@@ -117,7 +116,7 @@ Basarse en la búsqueda automática de parámetros significa escribir código so
 + Puppet 2.7 hará las búsquedas de Hiera para las mismas claves que puppet 3 busca automáticamente.
 + Ten en cuenta que esto acarrea una disminución de la performance, porque Puppet 3 terminará haciendo dos llamadas a Hiera para cada parámetro en lugar de sólo una.
 
-#Funciones de búsqueda de Hiera
+## Funciones de búsqueda de Hiera
 Puppet tiene tres funciones de búsqueda para recuperar datos desde Hiera. Todas esas funciones devuelven un sólo valor (pero ten en cuenta que este valor puede ser una estructura compuesta de información de forma arbitraria y compleja) y puede usarse en cualquier lugar en que Puppet acepte valores de ese tipo (atributos de recursos, títulos de recursos, los valores de las variables, etc.).
 
 **hiera**
@@ -135,14 +134,14 @@ Cada una de estas funciones toma tres argumentos en el siguiente orden:
 2. Default (opcional): Valor para usar si Hiera no encuentra nada para esa clave. Si no se provee este valor, se producirá una falla en la búsqueda que causará una falla en la compilación.
 3. Sustitución (opcional): El nombre de un [nivel de jerarquía](http://docs.puppetlabs.com/es/hiera/hierarchy.html) arbitrario para insertar al tope de la jerarquía. Esto te permite usar una jerarquía modificada temporalmente para una búsqueda particular (por ejemplo: en lugar de una jerarquía de **$clientcert -> $osfamily -> common**, la búsqueda usaría **specialvalues -> $clientcert -> $osfamily -> common**; necesitarías estar seguro de tener **specialvalues.yaml** o similar en tus datos de Hiera).
 
-##Usar las funciones de búsqueda desde Templates
+### Usar las funciones de búsqueda desde Templates
 En general, no utilices las funciones de Hiera desde templates. Ese patrón es poco legible y *lastimará* el mantenimiento de tu código. Si un coautor de tu código necesita cambiar las invocaciones de Hiera y busca archivos **.pp** para esto, podrían perderse invocaciones extra en este template. Incluso si sólo una persona hace el mantenimiento de este código, es probable que cometa errores similares luego de algunos meses.
 
 Es mucho mejor usar las funciones de búsqueda en manifiestos puppet, asignar su valor a una variable local y luego hacer la referencia de la variable desde el template. Esto mantiene las llamadas a funciones  aisladas en una capa de tu código, donde serán fáciles de encontrar si necesitas modificarlas o documentarlas para otros usuarios.
 
 Sin embargo puedes, por supuesto, [usar el prefijo **scope.function**](http://docs.puppetlabs.com/guides/templating.html#using-functions-within-templates) para llamar a cualquiera de las funciones Hiera desde un template.
 
-#Interactuar con información estructurada desde Hiera
+## Interactuar con información estructurada desde Hiera
 
 Las funciones de búsqueda y la búsqueda automática de parámetros siempre devuelve valores de **claves de nivel superior** en tus datos de Hiera, no pueden descender a estructuras de información profundamente compuestas y devolver sólo una porción de ello. Para realizar esto, necesitas en primer lugar, almacenar la estructura completa como una variable, luego indexarla dentro de la estructura desde tu código Puppet o template:
 
@@ -169,7 +168,7 @@ Malo:
     $use_ip = hiera( 'proxies'[1]['ipaddress'] ) # esto va a explotar
 
 
-#Asignar clases a los nodos con Hiera (**hiera_include**)
+## Asignar clases a los nodos con Hiera (**hiera_include**)
 Puedes usar Hiera para asignar clases a nodos con la función especial **hiera_include**. Esto te permite asignar clases en gran detalle sin repeticiones. Esto es esencialmente lo que la gente intentó hacer, sin éxito, al usar herencia de nodos.  Puede darte los beneficios de un [clasificador de nodos externo](http://docs.puppetlabs.com/guides/external_nodes.html) rudimentario sin tener que escribir en el ENC real.
 
 1. Elige un nombre de clave para usar para las clases. Debajo, asumiremos que estás utilizando **classes**.

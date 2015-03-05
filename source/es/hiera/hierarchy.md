@@ -2,12 +2,11 @@
 layout: default
 title: "Hiera 1: Crear jerarquías"
 canonical: "/es/hiera/hierarchy.html"
-toc: false
 ---
 
 Hiera utiliza una jerarquía ordenada para buscar información. Esto te permite obtener una gran cantidad de información común y sustituir cantidades más pequeñas de lo que sea necesario.
 
-#Ubicación y sintaxis
+## Ubicación y sintaxis
 
 Hiera carga la jerarquía desde el [archivo de configuración Hiera.yaml](http://docs.puppetlabs.com/es/hiera/configuring.html). La jerarquía debe ser el valor de nivel superior de la clave **:hierarchy**
 
@@ -23,14 +22,14 @@ Cada elemento en la jerarquía debe ser un **string**, el cual puede incluir o n
 	- virtual_%{::is_virtual}
 	- common
 
-**Terminología:**
+## Terminología
 Usamos estos dos términos dentro de los documentos de Hiera y en varios otros lugares.
 
 + **Fuente de información estática** – Es un elemento de la jerarquía **sin** ningún símbolo de interpolación. La fuente de información estática será la misma para cada nodo. En el ejemplo debajo, **common** es una fuente de información estática. Una máquina virtual llamada **web01** y una física llamada **db01**, ambas deberán usar **common**.
 + **Fuente de información dinámica:** Un elemento de jerarquía con, al menos, un símbolo de interpolación. Si dos nodos tienen diferentes valores para las variables a las que hacen referencia, la fuente de información dinámica usará dos fuentes de información diferentes para esos nodos. En el ejemplo debajo, la variable especial de Puppet **$::clientcert** tiene un valor único para cada nodo. Una máquina llamada **web01** deberá tener una fuente de información llamada **web01** en el nivel superior de su jerarquía. Mientras que una máquina llamada **db01** deberá tener **db01**.
 
-#Comportamiento
-##Orden
+## Comportamiento
+### Orden
 Cada elemento de la jerarquía tiene el nombre de una [fuente de información](http://docs.puppetlabs.com/es/hiera/data_sources.html). Hiera chequeará esas fuentes **en orden**, comenzando por la primera.
 
 + Si la fuente de información no existe en la jerarquía, Hiera irá a la próxima fuente de información.
@@ -41,7 +40,7 @@ Cada elemento de la jerarquía tiene el nombre de una [fuente de información](h
 	- En una búsqueda de [hash](http://docs.puppetlabs.com/es/hiera/lookup_types.html#hash-merge), Hiera continuará, **esperando que todos los valores sean un hash** y dando error si algún valor que no sea un hash fuese descubierto. Luego, combinará todos los hashes descubiertos y devolverá el resultado, permitiendo que valores con mayor jerarquía sean reemplazados por valores de menor jerarquía.
 + Si Hiera atraviesa toda la jerarquía sin encontrar ningún valor, usará el valor por defecto si lo tiene, o fallará si no lo tiene.
 
-##Backends múltiples
+### Backends múltiples
 Puedes [especificar múltiples backends como un array en hiera.yaml](http://docs.puppetlabs.com/es/hiera/configuring.html). Si lo haces, funcionarán como una **segunda jerarquía**.
 
 Hiera le dará prioridad al primer backend, y **chequeará cada nivel de la jerarquía** en él antes de ir al segundo backend. Esto significa que, con el siguiente **hiera.yaml**:
@@ -64,7 +63,7 @@ Hiera le dará prioridad al primer backend, y **chequeará cada nivel de la jera
 + **two.json**
 + **three.json**
 
-#Ejemplo
+## Ejemplo
 
 Asume la siguiente jerarquía:
 
@@ -89,34 +88,34 @@ Asume la siguiente jerarquía:
 … y el único backend **yaml**
 Dados dos nodos diferentes con variables Puppet diferentes, aquí tienes dos maneras en las que la jerarquía puede ser interpretada:
 
-##web01.example.com
-###Variables
+### web01.example.com
+#### Variables
 
 + **::clientcert** =** web01.example.com**
 + **::environment** =** production**
 + **::is_virtual** = **true**
 
-### Resolución de la fuente de información
+#### Resolución de la fuente de información
 ![](img/datasource-resolution01.png)
 
-###Jerarquía final
+#### Jerarquía final
 
 + web01.example.com.yaml
 + production.yaml
 + virtual_true.yaml
 + common.yaml
 
-##db01.example.com
-###Variables
+### db01.example.com
+#### Variables
 
 + **::clientcert** =**db01.example.com**
 + **::environment** = **development**
 + **::is_virtual** = **false**
 
-###Resolución de la fuente de información
+#### Resolución de la fuente de información
 ![](img/datasource-resolution02.png)
 
-###Jerarquía final
+#### Jerarquía final
 
 + db01.example.com.yaml
 + development.yaml
