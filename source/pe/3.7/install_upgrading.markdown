@@ -32,7 +32,7 @@ Before starting the upgrade, all of the components (agents, master, console, etc
 
 If you have a monolithic installation (with the master, PE console, and database components all on the same node), the process involves the following steps, which **must be performed in the following order**:
 
-1. [Upgrade the monolithic PE server](#step-1-upgrade-the-monolithic-pe-server)
+1. [Upgrade the monolithic PE server](#upgrade-the-monolithic-pe-server)
 2. [Classify the new PE groups](#classify-the-new-pe-groups)
 3. [Upgrade Puppet agent nodes](#upgrade-agents)
 
