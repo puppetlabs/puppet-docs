@@ -2,12 +2,11 @@
 layout: default
 title: "Aprende Puppet - Recursos y la RAL"
 canonical: "/es/learning/ral.html"
-toc: false
 ---
 
 ¡Bienvenidos a *Aprende Puppet*! Esta serie abarca el contenido básico para escribir código Puppet y utilizar Puppet Enterprise. Ya deberías tener una copia de la VM de *Aprende Puppet*, si no la tienes, puedes [bajarla aquí](http://info.puppetlabs.com/download-learning-puppet-VM.html).
 
-#Comienzo
+## Comienzo
 
 Loguéate en la VM de Learning Puppet como root, y ejecuta el siguiente comando:
 
@@ -34,7 +33,7 @@ Loguéate en la VM de Learning Puppet como root, y ejecuta el siguiente comando:
 
 ¡Listo! Has conocido tu primer recurso de Puppet.
 
-## ¿Qué ha pasado?
+### ¿Qué ha pasado?
 
 + **puppet**: La mayoría de las funciones de Puppet vienen de un sólo comando de **puppet**, el cual tiene muchos subcomandos.
 + **resource**: El subcomando **resource** puede inspeccionar y modificar recursos de forma interactiva.
@@ -42,7 +41,7 @@ Loguéate en la VM de Learning Puppet como root, y ejecuta el siguiente comando:
 
 Juntos, estos comandos inspeccionan cada servicio en el sistema, ya sea en ejecución o parado.
 
-#Recursos
+## Recursos
 
 Imagina una configuración de sistema como una colección de muchas unidades atómicas independientes llamadas **”recursos”**; estas piezas varían en tamaño, complejidad y vida útil. Cualquiera de las siguientes (y muchas más) pueden ser modeladas como un solo recurso:
 
@@ -61,7 +60,7 @@ Cualquiera de estos recursos es muy similar a un grupo de recursos relacionados:
 
 La implementación podría diferir, por ejemplo, necesitas un comando para iniciar o detener un servicio en Windows y uno diferente si es en Linux, e incluso entre las distribuciones de Linux hay algunas diferencias. Pero, conceptualmente, en ambas inicias o paras un servicio, independientemente de lo que tipees en la consola.
 
-#Abstracción
+## Abstracción
 
 Si piensas en los recursos de esta manera, puedes inferir dos cosas:
 
@@ -74,7 +73,7 @@ A éstas, Puppet agrega una tercera:
 
 Estas tres cosas forman la capa de abstracción de recursos de Puppet (Resource Abstracion Layer - RAL). La RAL consiste en **tipos** (modelos de nivel superior) y **proveedores** (implementaciones específicas para cada plataforma) que al estar separados, te permite describir estados deseados de recursos en una forma que no esté atada a un OS específico.
 
-#Anatomía de un recurso
+## Anatomía de un recurso
 
 En Puppet, cada recurso es una instancia de un **tipo de recurso** y está identificado con un **título**; tiene una cierta cantidad de **atributos** que están definidos por tipo, y cada atributo tiene un **valor**.
 
@@ -98,17 +97,17 @@ Intenta identificar cada una de las cuatro partes de la declaración de recurso 
 + Atributos
 + Valores
 
-#Tipos de recursos
+## Tipos de recursos
 
 Como hemos mencionado antes, cada recurso tiene un **tipo**.
 
 Puppet tiene muchos tipos de recursos integrados, y tú puedes instalar aún más en forma de plugins. Cada tipo puede comportarse de forma distinta y tiene un conjunto diferente de atributos disponibles.
 
-##Hoja de referencia
+### Hoja de referencia
 
 No todos los tipos de recursos son igual de comunes o igual de útiles, con lo cual, hemos creado una *hoja de referencia* para que imprimas, que describe los ocho tipos más útiles. [Puedes bajar de aquí la hoja de referencia de tipos básicos](http://docs.puppetlabs.com/puppet_core_types_cheatsheet.pdf).
 
-##Referencia de tipos
+### Referencia de tipos
 
 Los usuarios de Puppet experimentados, pasan mucho tiempo en la página de [referencia de tipos](http://docs.puppetlabs.com/references/latest/type.html).
 
@@ -116,7 +115,7 @@ Esta página es una lista detallada de *todos* los tipos de recursos integrados.
 
 Generamos una nueva referencia de tipos para cada nueva versión de Puppet para asegurarnos de que las descripciones se mantengan precisas.
 
-##Puppet Describe
+### Puppet Describe
 
 El subcomando **puppet describe** puede realizar una lista de tipos de recursos que están actualmente instalados en una máquina determinada. A diferencia de la referencia de tipos, detecta plugins instalados por el usuario además de los tipos integrados.
 
@@ -124,14 +123,14 @@ El subcomando **puppet describe** puede realizar una lista de tipos de recursos 
 + **puppet describe –s <TIPO>**: Imprime información breve acerca de un tipo, sin describir cada atributo.
 + **puppet describe <TIPO>**: Imprime información completa, algo similar a lo que aparece en la [referencia de tipos](http://docs.puppetlabs.com/references/latest/type.html).
 
-#Explorar e inspeccionar recursos
+## Explorar e inspeccionar recursos
 
 En los próximos capítulos hablaremos acerca del uso del lenguaje de Puppet para administrar recursos. Pero por ahora sólo echaremos un vistazo.
 
-## “Live Management” en la consola de PE
+### “Live Management” en la consola de PE
 Puppet Enterprise incluye una consola web para controlar muchas de estas características. Una de las cosas que puedes hacer, es explorar e inspeccionar recursos en cualquier sistema con Puppet Enterprise que la consola pueda detectar. Esto soporta un número limitado de tipos de recursos, pero tiene algunas características de comparación muy útiles para correlacionar información en una gran cantidad de nodos.
 
-###Loguearse
+#### Loguearse
 
 Cuando iniciaste tu VM, debería darte la URL, el nombre de usuario y contraseña para acceder a la consola. El usuario y contraseña siempre debe ser **puppet@example.com** y **learningpuppet** respectivamente. La URL, **http://<DIRECCION IP>**. Puedes obtener la IP de la VM ejecutando **facter ipaddress** en la línea de comandos.
 
@@ -139,7 +138,7 @@ Una vez logueado, ve a “Live Management” en la barra de menú superior y cli
 
 Como estás utilizando un solo nodo, no verás mucho para comparar pero sí podrás ver los estados actuales de los paquetes, cuentas de usuarios, etc.
 
-##El comando Puppet Resource
+### El comando Puppet Resource
 
 Puppet incluye un comando llamado **puppet resource**, el cual puede inspeccionar de forma interactiva y modificar recursos en un solo sistema.
 
@@ -152,7 +151,7 @@ Debes utilizar *puppet resource* de esta manera:
 + Luego del nombre, puedes especificar cualquier número de atributos y valores (opcional). Esto sincronizará aquellos atributos con el estado deseado, luego inspecciona el estado final del recurso.
 + Otra alternativa es, si especificas un nombre de recurso y utilizas la opción **--edit**, poder cambiar ese recurso en tu editor de texto. Luego que el buffer esté guardado y cerrado, Puppet modificará el recurso para actualizar tus cambios.
 
-###Ejercicios
+#### Ejercicios
 
 Inspecciona un solo recurso:
 
@@ -182,7 +181,7 @@ Establece un nuevo estado deseado para un recurso
       shell  => '/bin/zsh'
     }
 
-#Siguiente paso
+## Siguiente paso
 
 **Próxima clase:**
 

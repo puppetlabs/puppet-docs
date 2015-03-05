@@ -2,21 +2,9 @@
 layout: default
 title: "Aprende Puppet – Tipos de recurso definidos"
 canonical: "/es/learning/definedtypes.html"
-toc: false
 ---
 
-#Aprende Puppet
-1. [Más allá de los singletons]()
-2. [Definir un tipo]()
-3. [Las clases: Florcitas especiales]()
-4. [Tipos definidos en módulos]()
-	+ [Referencias de recursos y tipos con namespaces]()
-5. [Ejemplo: Vhosts de Apache]() 
-6. [Ejercicios]()
-7. [Un último consejo]()
-8. [Próxima clase]() 
-
-#Más allá de los singletons
+## Más allá de los singletons
 
 Digamos que escribiste un trozo de código Puppet que toma parámetros y configura un virtual host Apache individual.  Lo colocas en una clase; funciona bien, pero como las clases son singletons, Puppet nunca te dejará declarar más de un vhost.
 
@@ -33,7 +21,7 @@ Esto resulta ser fácil: Para modelar trozos *repetibles* de configuración, com
 
 Los tipos definidos actúan como tipos de recursos normales y son declarados de la misma forma, pero están compuestos por otros recursos.
 
-#Definir un tipo
+## Definir un tipo
 
 **Defines un tipo con la palabra clave _define_**, y la definición es prácticamente igual a una clase con parámetros. Necesitas:
 
@@ -66,7 +54,7 @@ Así:
 
 Éste es bastante simple. De hecho es, básicamente, una macro. Tiene dos parámetros, uno de los cuales es opcional (asume por defecto el título del recurso), y el grupo de recursos que declara es un solo recurso de archivo.
 
-# Las clases: Florcitas especiales
+## Las clases: Florcitas especiales
 Entonces, es fácil, no? Igual que definir una clase? **Casi:** hay un requerimiento extra. Como el usuario puede declarar cualquier número de instancias de un tipo definido, tienes que asegurarte que la implementación **nunca declarará el mismo recurso dos veces**.
 
 Veamos una versión algo diferente de aquella primera definición:
@@ -107,19 +95,20 @@ Si hay un recurso singleton que tiene que existir para que cualquier instancia d
 + Dentro de una definición de tipo, utiliza **include** para declarar esa clase.
 + También dentro de la definición de tipo, utiliza algo como lo que veremos a continuación para establecer una orden de dependencias: 
 
-# Asegúrate que la compilación falle si 'myclass' no se declara:
-Class['myclass'] -> Apache::Vhost["$title"]
+> \# Asegúrate que la compilación falle si 'myclass' no se declara:
+> 
+> Class['myclass'] -> Apache::Vhost["$title"]
 
 Establecer relaciones de orden en el nivel de clase generalmente es mejor que pedir directamente uno de los recursos dentro de ella.
 
-#Tipos definidos en módulos
+## Tipos definidos en módulos
 Los tipos definidos pueden ser cargados automáticamente como las clases, y en consecuencia, utilizados desde cualquier parte en tus manifiestos. [Como con las clases](http://docs.puppetlabs.com/es/learning/modules1.html#module-structure), **cada tipo definido debe ir en su propio archivo** en el directorio **manifests/** del módulo. **Se aplican las mismas reglas para el namespace**. Entonces, el tipo **apache::vhost** debe ir en algún lugar como **/etc/puppetlabs/puppet/modules/apache/manifests/vhost.pp**, y si vamos a mantener el tipo **planfile**, debe ir en **/etc/puppetlabs/puppet/modules/planfile/manifests/init.pp**.
 
-##Referencias de recurso y tipos con namespace
+### Referencias de recurso y tipos con namespace
 
 Quizás ya sabías esto que hablamos antes, pero: cuando haces una [referencia de recurso](http://docs.puppetlabs.com/puppet/latest/reference/lang_datatypes.html#resource-references) a una instancia de un tipo definido, tienes que **capitalizar cada [segmento de namespace](http://docs.puppetlabs.com/puppet/latest/reference/lang_namespaces.html)** en el nombre de tipo. Es decir que a una instancia del tipo **foo::bar::baz** se debe hacer referencia como ** Foo::Bar::Baz['mybaz']**.
 
-#Ejemplo: Vhosts de Apache 
+## Ejemplo: Vhosts de Apache 
 
 No es que mi macro *.plan* no sea genial, pero pongámonos serios por un minuto. Recuerdas el [módulo Apache](http://docs.puppetlabs.com/es/learning/modules1.html#exercises) de hace unos capítulos atrás? Vamos a extenderlo para poder declarar vhosts fácilmente. Este ejemplo de código lo tomamos prestado del [módulo puppetlabs-apache](https://github.com/puppetlabs/puppetlabs-apache).
 
@@ -242,7 +231,7 @@ En cierto modo, esto es sólo un poco más sofisticado que el primer ejemplo, pe
 	    proto => 'tcp'
 	}
 
-#Ejercicios 
+## Ejercicios 
 
 Tómate un minuto para hacer algunos tipos definidos más para acostumbrarte a modelar grupos de recursos repetibles.
 
@@ -250,7 +239,7 @@ Tómate un minuto para hacer algunos tipos definidos más para acostumbrarte a m
 
 + Si estás familiarizado con Git, intenta escribir un tipo **git::repo** que pueda clonar un repositorio en la red (y quizás también mantener actualizada la copia  de una rama específica!) Esto será difícil y probablemente tendrás que hacer una clase **git** para asegurar que git esté disponible, y tendrás que utilizar al menos un **file** (**ensure => directory**) y un recurso **exec**. Recuerda que los exec pueden ser tramposos ya que tienes que asegurarte que sólo se ejecuten cuando sea necesario.
 
-#Un último consejo
+## Un último consejo
 
 Los tipos definidos tienen input, y el input puede ser algo “sucio”o inesperado. Puede que quieras chequear los parámetros para asegurarte que son el tipo de dato correcto, y generar un error temprano si no funcionan en lugar de escribir cosas sin definir en el sistema.
 
@@ -264,7 +253,7 @@ Si estás por poner en prácticala validación de tus entradas (hint: hazlo!), p
 
 Puedes aprender cómo utilizarlas ejecutando **puppet doc --reference function | less** en un sistema donde **stdlib** esté instalado en su **modulepath**, o puedes leer la documentación directamente en cada archivo de función. Busca en el directorio **lib/puppet/parser/functions** del módulo.
 
-#Siguiente paso
+## Siguiente paso
 **Próxima clase**
 
 Hay mucho más para decir acerca de módulos; aún no hemos hablado de separación de información, patrones para hacer más legibles a los módulos o la composición de módulos; pero tenemos pendiente un asunto más importante. [Continúa leyendo](http://docs.puppetlabs.com/es/learning/agentprep.html) para preparar tus VMs (sí, plural) para Puppet master/agente.

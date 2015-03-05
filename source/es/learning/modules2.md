@@ -2,10 +2,9 @@
 layout: default
 title: "Aprende Puppet – Parámetros de clase"
 canonical: "/es/learning/modules2.html"
-toc: false
 ---
 
-#Comienzo
+## Comienzo
 
 	    class echo_class ($to_echo = "default value") {
 	      notify {"What are we echoing? ${to_echo}.":}
@@ -17,14 +16,14 @@ toc: false
 
 Hay algo diferente acerca de esta variable.
 
-#Investigar vs. pedir ayuda
+## Investigar vs. pedir ayuda
 La mayoría de las clases tienen que hacer cosas ligeramente diferentes en sistemas diferentes. Ya conoces algunas maneras de hacerlo, todos los módulos que has escrito hasta ahora han cambiado su comportamiento buscando facts de sistema. Digamos que “investigan”: Esperan que la información esté en determinado lugar (en el caso de los facts, una variable top-scope), y la buscan cuando la necesitan.
 
 Pero no siempre es la mejor manera de hacerlo, y comienza a fallar una vez que necesitas cambiar el comportamiento de un módulo basándote en información que no se relaciona claramente con los facts de sistema. Es un servidor de base de datos? Un servidor NTP local? Un nodo de prueba? Un nodo de producción? Estos no son necesariamente facts; generalmente son decisiones tomadas por humanos.
 
 En estos casos, lo mejor suele ser *configurar* la clase y decirle lo que necesita saber cuando la declaras. Para permitir esto, las clases necesitan alguna forma de pedir información del mundo externo.
 
-#Parámetros de clase
+## Parámetros de clase
 Cuando defines una clase, puedes darle una lista de *parámetros*. Los parámetros van en un conjunto opcional de paréntesis, entre el nombre y la primera llave. Cada parámetro es un nombre de variable y puede tener un valor por defecto opcional. Cada parámetro está separado del siguiente por una coma.
 
 	    class mysql ($user = 'mysql', $port = 3306) {
@@ -40,12 +39,12 @@ Esto es una puerta para pasar información a una clase:
 + Si declaras la clase con una [declaración de clase tipo recurso](http://docs.puppetlabs.com/es/learning/modules1.html#resource-like-class-declarations), los parámetros están disponibles como **atributos de recurso**.
 + Dentro de la definición de la clase, aparecen como **variables locales**.
 
-##Valores por defecto
+### Valores por defecto
 Cuando defines la clase, puedes darle un valor por defecto a cualquier parámetro. Esto lo hace opcional cuando declaras la clase; si no especificas un valor, utilizará el que tiene por defecto. Los parámetros sin default se vuelven obligatorios cuando declaras la clase.
 
-##Qué pasa con las declaraciones de clase tipo recurso
+### Qué pasa con las declaraciones de clase tipo recurso
 
-###En Puppet Entreprise 2.x
+#### En Puppet Entreprise 2.x
 
 En Puppet 2.7, que es utilizado en la serie Puppet Entreprise 2.x, debes utilizar [declaraciones de clase tipo recurso](http://docs.puppetlabs.com/puppet/latest/reference/lang_classes.html#using-resource-like-declarations) si quieres especificar parámetros de clase; no puedes especificar parámetros con **include** o en la consola de PE. Si cada parámetro tiene un default y no necesitas sobreescribir ninguno de ellos, puedes declarar la clase con **include**; de lo contrario, debes utilizar declaraciones de clase tipo recurso.
 
@@ -53,7 +52,7 @@ Las declaraciones tipo recurso no cooperan del todo con **include**, y si las es
 
 Para volver tus roles y perfiles más flexibles y evitar repeticiones, también puedes instalar y configurar [Hiera](http://docs.puppetlabs.com/hiera/1/) en tu Puppet Master y especificar las [funciones de búsqueda de Hiera](http://docs.puppetlabs.com/hiera/1/puppet.html#hiera-lookup-functions) como valores de parámetros de clase.
 
-###Por qué **include** no puede tomar parámetros de clase directamente
+#### Por qué `include` no puede tomar parámetros de clase directamente
 
 El problema es que las clases son Singletons, los parámetros configuran la forma en que se comportan, e **include** puede declarar la misma clase más de una vez.
 
@@ -61,7 +60,7 @@ Si fueras a declarar una clase muchas veces con diferentes valores de parámetro
 
 La solución que los diseñadores de Puppet establecieron fue que los valores de los parámetros o bien tenían que ser explícitos y no conflictivos, o venir de algún lugar de *afuera* de Puppet y estar ya resueltos al momento que el parseo de Puppet comenzara ([La búsqueda automática de parámetros de Puppet 3](http://docs.puppetlabs.com/hiera/1/puppet.html#automatic-parameter-lookup)).
 
-##Antiguas formas de configurar clases
+### Antiguas formas de configurar clases
 
 Los parámetros de clase se agregaron a Puppet en la versión 2.6.0, para hacer frente a la necesidad de una forma estándar y visible de configurar clases.
 
@@ -78,7 +77,7 @@ Había algunos problemas con esto:
 + Cuando se escribían módulos para compartir con el mundo, debían ser muy cuidadosos de documentar todas las variables mágicas; no había un lugar estándar que el usuario pudiera chequear para ver qué información necesitaba una clase.
 + Esto inspiró a mucha gente a intentar hacer jerarquías de información complejas con herencia de nodo, lo que raramente funcionaba y tendía a fallar de forma dramática y confusa.
 
-#Ejemplo: NTP (otra vez)
+## Ejemplo: NTP (otra vez)
 Entonces, volvamos al módulo NTP. La primera cosa de la que hablamos acerca de esperar para configurar fue el conjunto de servidores, es un buen lugar para comenzar. Primero, agrega un parámetro:
 
 	    class ntp ($servers = undef) {
@@ -115,7 +114,7 @@ Mientras estamos en el módulo NTP, qué más podemos transformar en un parámet
 
 Todos esos cambios están basados en decisiones desde el módulo puppetlabs/ntp. [Puedes ver el código fuente de este módulo](https://github.com/puppetlabs/puppetlabs-ntp) y ver cómo estos parámetros extra evolucionan en manifiestos y templates.
 
-#Documentación del módulo
+## Documentación del módulo
 En este momento tienes un módulo NTP bastante funcional, faltaría la documentación:
 
 	    # = Class: ntp
@@ -157,7 +156,7 @@ También! Si escribes tu documentación en formato [RDoc]() y la colocas en un b
 
 	# puppet doc --mode rdoc --outputdir ~/moduledocs --modulepath /etc/puppetlabs/puppet/modules
 
-#Siguiente paso
+## Siguiente paso
 **Próxima clase**
 
 Ok, ahora podemos pasar parámetros a clases y cambiar su comportamiento. Fantástico! Pero las clases siguen siendo singletons, no puedes declarar más de una copia y obtener dos conjuntos diferentes de comportamiento en simultáneo, pero eventualmente querrás hacerlo!

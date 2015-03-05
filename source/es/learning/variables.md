@@ -2,17 +2,16 @@
 layout: default
 title: "Aprende Puppet – Variables, condicionales y facts"
 canonical: "/es/learning/variables.html"
-toc: false
 ---
 
-#Comienzo
+## Comienzo
 
     $my_variable = "A bunch of text"
     notify {$my_variable:}
 
 Sí, eso es una variable. Bien.
 
-#Variables
+## Variables
 
 Variables! Seguramente ya usaste variables en otro lenguaje de programación o scripting, así que cubriremos los conceptos básicos rápidamente. Hay una explicación más completa acerca de la sintaxis y el comportamiento de las variables disponible en [el capítulo de variables en el manual de referencia de Puppet](http://docs.puppetlabs.com/puppet/latest/reference/lang_variables.html).
 
@@ -39,7 +38,7 @@ El nombre completo de las variables se ven así: **$scope::variable**. Las varia
 
 Simple.
 
-##Nota aparte: ¿Por qué todos los manifiestos parecen utilizar $::ipaddress?
+### Nota aparte: ¿Por qué todos los manifiestos parecen utilizar $::ipaddress?
 
 La gente que escribe manifiestos para compartir con otros, a menudo tiene el hábito de utilizar siempre la notación **$::variable** cuando hacen referencia a facts.
 
@@ -52,7 +51,7 @@ Sin embargo, pedir explícitamente el top scope ayuda a esquivar dos cuestione
 
 Ninguna de estas cuestiones son relevantes en Puppet 3, pero no todos lo utilizan todavía y una versión de Puppet Enterprise basada en Puppet 3 llegará a fin de año. Como mucha gente todavía escribe código público utilizando Puppet 2.7, todavía verás mucho estas frases.
 
-#Facts
+## Facts
 Puppet tiene un montón de variables integradas pre asignadas que puedes utilizar. Fíjate:
 
 
@@ -92,7 +91,7 @@ Puppet tiene un montón de variables integradas pre asignadas que puedes utiliza
 
 Los manifiestos se vuelven más flexibles, sin necesidad de una inversión de tiempo de nuestra parte.
 
-##Qué son estas variables de IPaddress y Hostname?
+### Qué son estas variables de IPaddress y Hostname?
 
 Y de dónde vienen?
 
@@ -103,12 +102,13 @@ Son [“facts”](http://docs.puppetlabs.com/puppet/latest/reference/lang_variab
 + También puedes ver el resto de los facts de cualquier nodo en tu implementación de Puppet Enterprise ingresando a la página de ese nodo en la consola y [yendo a la información de inventario](http://docs.puppetlabs.com/pe/latest/console_reports.html#viewing-inventory-data)
 + También puedes agregar nuevos facts customizados a Puppet; mira [la guía de facts customizados](http://docs.puppetlabs.com/guides/custom_facts.html) para más información.
 
-##Otras variables integradas
+### Otras variables integradas
 Además de los facts de Facter, Puppet tiene algunas variables integradas más. Puedes ver la lista en [el capítulo de variables del manual de referencia de Puppet](http://docs.puppetlabs.com/puppet/latest/reference/lang_variables.html#facts-and-built-in-variables).
 
-#Declaraciones condicionales
+## Declaraciones condicionales
 Puppet tiene varios tipos de declaraciones condicionales. Puedes ver información más completa acerca de esto en [el capítulo de declaraciones condicionales del manual de referencia de Puppet](http://docs.puppetlabs.com/puppet/latest/reference/lang_conditional.html). Utilizando facts como condiciones, puedes pedirle fácilmente a Puppet que realice diferentes cosas en diferentes tipos de sistemas.
-## If
+
+### If
 
 Comencemos con la declaración más básica: [**if**](http://docs.puppetlabs.com/puppet/latest/reference/lang_conditional.html#if-statements). Igual que siempre:
 
@@ -146,7 +146,7 @@ Un ejemplo de declaración **if**:
           }
         }
 
-###Nota aparte: Cuidado con el “False” falso!
+### Nota aparte: Cuidado con el “False” falso!
 En el ejemplo anterior, vimos algo nuevo: ** str2bool("$is_virtual")**.
 
 La condición para una declaración **if** tiene que resolver a un valor booleano verdadero/falso. Sin embargo, todos los facts son [strings](http://docs.puppetlabs.com/puppet/latest/reference/lang_datatypes.html#strings), y todos los strings que no estén vacíos, incluyendo el string **”False”**, son verdaderos. Esto significa que los facts que sean “false” tienen que ser transformados antes que Puppet los pueda interpretarlos como falsos.
@@ -160,7 +160,7 @@ La [función](http://docs.puppetlabs.com/puppet/latest/reference/lang_functions.
 
 También es posible utilizar la expresión **$is_virtual == 'true'**, la cual resolvería a *true* si el fact **is_virtual** tiene el valor verdadero, y *false* en caso contrario. 
 
-## Case
+### Case
 
 Otro tipo de condicional es la [declaración de *case*](http://docs.puppetlabs.com/puppet/latest/reference/lang_conditional.html#case-statements), (o *switch*, o como se diga en tu lenguaje preferido).
 
@@ -181,7 +181,7 @@ En lugar de probar una condición al principio, **case** compara una variable co
 
 En este ejemplo, también vemos la [función **fail**](http://docs.puppetlabs.com/references/latest/function.html#fail). A diferencia de la función **str2bool** que vimos antes, **fail** no resuelve a un valor; por el contrario, se produce inmediatamente un error de compilación con un mensaje de error.
 
-## Coincidencia de casos
+#### Coincidencia de casos
 
 Los casos coincidentes pueden ser strings simples como los anteriores, [expresiones regulares](http://docs.puppetlabs.com/puppet/latest/reference/lang_datatypes.html#regular-expressions), o listas de uno u otro separadas por comas.
 
@@ -205,7 +205,7 @@ Y aquí un exemplo con regex:
 
 La coincidencia de strings no distingue entre mayúsculas y minúsculas, como [el operador de comparación ==](http://docs.puppetlabs.com/puppet/latest/reference/lang_expressions.html#equality). Las expresiones regulares se denotan entre barras (/), como se hace en Perl y Ruby; las cuales por defecto tampoco distinguen entre mayúsculas y minúsculas, pero puedes utilizar los switches **(?i)** y **(?-i)** para activar y desactivar esta distinción dentro del patrón. Las coincidencias de regex también asignan subpatrones capturados a **$1**, **$2**, etc. dentro del bloque de código asociado, con **$0** conteniendo todo el string coincidente. Mira [la sección de expresiones regulares en la página de tipos de datos del manual de referencia de Puppet ](http://docs.puppetlabs.com/puppet/latest/reference/lang_datatypes.html#regular-expressions) para más detalles.
 
-##Selectores
+### Selectores
 Los selectores te pueden parecer menos familiares, son algo así como el [operador ternario](http://en.wikipedia.org/wiki/%3F:) común y también como la declaración de *case*.
 
 En lugar de elegir entre un conjunto de bloques de código, los selectores eligen entre un grupo de valores posibles. No puedes utilizarlos solos; por el contrario, generalmente se utilizan para asignar una variable.
@@ -223,16 +223,17 @@ Esto puede parecer un poco incómodo, pero hay muchas situaciones donde ésta es
 
 Los selectores también pueden utilizarse directamente como valores para un atributo de recurso, pero trata de no hacerlo porque se complica rápidamente.
 
-#Ejercicios
-###Ejercicio: Entorno de compilación
+## Ejercicios
+### Ejercicio: Entorno de compilación
 
 
 Utiliza el fact $operatingsystem para escribir un manifiesto que instale un entorno de compilación de C en máquinas basadas en Debian (“debian”, “ubuntu”) y Enterprise Linux (“centos”, “redhat”). Ambos tipos de sistemas requieren el paquete **gcc**, los sistemas tipo Debian también requieren **build-essential**.
 
-###Ejercicio: NTP simple
+### Ejercicio: NTP simple
 Escribe un manifiesto que instale y configure NTP para sistemas Linux basados en Debian y Entreprise Linux. Será un patrón paquete/archivo/servicio donde ambos tipos de sistemas utilicen el mismo nombre de paquete (**ntp**), pero tu enviarás archivos de configuración diferentes ([versión Debian](http://docs.puppetlabs.com/learning/files/examples/modules/ntp/files/ntp.conf.debian), [versión RedHat](http://docs.puppetlabs.com/learning/files/examples/modules/ntp/files/ntp.conf.el)- recuerda el atributo “source” del tipo de archivo) y utilizarás diferentes nombres de servicio (**ntp** y **ntpd** respectivamente).
 
-#Paso Siguiente
+##  
+Paso Siguiente
 **Próxima clase:**
 Ahora que tus manifiestos se pueden adaptar a los diferentes tipos de sistemas, es momento de comenzar a agrupar recursos y condicionales en unidades significativas. Sigamos adelante hacia las [clases, tipos de recurso definidos y módulos](http://docs.puppetlabs.com/es/learning/modules1.html)!
 
