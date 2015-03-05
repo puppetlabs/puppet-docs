@@ -13,14 +13,14 @@ Puppet puede utilizar Hiera para  buscar información. Esto te ayuda a separar i
 
 Puppet 3.x y versiones superiores vienen con soporte para Hiera ya habilitado. No necesitas hacer nada extra. La información de Hiera debería existir en el o los puppet master(s).
 
-+ Puppet espera encontrar el [archivo hiera.yaml](http://docs.puppetlabs.com/hiera/1/configuring.html) en **$confdir/hiera.yaml** (normalmente **/etc/puppet/hiera.yaml**); puedes modificar esto con las opciones de configuración **hiera_config**.
++ Puppet espera encontrar el [archivo hiera.yaml](http://docs.puppetlabs.com/es/hiera/configuring.html) en **$confdir/hiera.yaml** (normalmente **/etc/puppet/hiera.yaml**); puedes modificar esto con las opciones de configuración **hiera_config**.
 + Recuerda configurar los valores de **:datadir** para todos los backends que uses. Generalmente lo mejor es utilizar algo dentro del directorio **/etc/puppet/** ya que es en el primer lugar que tus colegas administradores esperan encontrar la información.
 
 ## Puppet 2.7
 
 Debes instalar Hiera y el paquete **hiera-puppet** en tus puppet master(s) antes de usar Hiera con Puppet. La información de Hiera debería existir en el o los puppet master(s).
 
-+ Puppet espera encontrar el [archivo hiera.yaml](http://docs.puppetlabs.com/hiera/1/configuring.html) en **$confdir/hiera.yaml** (normalmente **/etc/puppet/hiera.yaml**); Esto no es configurable en 2.7.
++ Puppet espera encontrar el [archivo hiera.yaml](http://docs.puppetlabs.com/es/hiera/configuring.html) en **$confdir/hiera.yaml** (normalmente **/etc/puppet/hiera.yaml**); Esto no es configurable en 2.7.
 + Recuerda configurar los valores de **:datadir** para todos los backends que uses. Generalmente lo mejor es utilizar algo dentro del directorio **/etc/puppet/** ya que es en el primer lugar que tus colegas administradores esperan encontrar información. 
 
 ## Versiones anteriores
@@ -31,7 +31,7 @@ Hiera no es compatible con versiones anteriores, pero podría ser posible hacerl
 
 En el momento que una búsqueda de Hiera se dispara desde Puppet, Hiera recibe una copia de **todas** las variables actualmente disponibles para Puppet, incluyendo variables locales y de top scope (top scope, ver [Referencia del lenguaje](http://docs.puppetlabs.com/puppet/3/reference/lang_scope.html) .
 
-Entonces Hiera puede usar cualquiera de estas variables en los [símbolos de interpolación de variables](http://docs.puppetlabs.com/hiera/1/variables.html) desperdigados por toda la [jerarquía](http://docs.puppetlabs.com/hiera/1/hierarchy.html) y [fuentes de información](http://docs.puppetlabs.com/hiera/1/data_sources.html). Puedes habilitar jerarquías más flexibles creando [facts personalizados](http://docs.puppetlabs.com/guides/custom_facts.html) para cosas como la ubicación de datacenters y el propósito de los servidores. 
+Entonces Hiera puede usar cualquiera de estas variables en los [símbolos de interpolación de variables](http://docs.puppetlabs.com/es/hiera/variables.html) desperdigados por toda la [jerarquía](http://docs.puppetlabs.com/es/hiera/hierarchy.html) y [fuentes de información](http://docs.puppetlabs.com/es/hiera/data_sources.html). Puedes habilitar jerarquías más flexibles creando [facts personalizados](http://docs.puppetlabs.com/guides/custom_facts.html) para cosas como la ubicación de datacenters y el propósito de los servidores. 
 
 ##Pseudo-variables especiales
 
@@ -99,7 +99,7 @@ Si por el contrario, utilizas las funciones de Hiera en el cuerpo de una clase, 
 ##Limitaciones
 
 ###Sólo prioridad
-La búsqueda automática de parámetros sólo puede usar el método de búsqueda de [prioridad](http://docs.puppetlabs.com/hiera/1/lookup_types.html#priority-default). Esto significa que, si bien **puede** recibir cualquier tipo de información desde Hiera (strings, arrays, hashes) **no puede** combinar valores desde múltiples niveles de jerarquía. Sólo obtendrás el valor del nivel de jerarquía más específico.
+La búsqueda automática de parámetros sólo puede usar el método de búsqueda de [prioridad](http://docs.puppetlabs.com/es/hiera/lookup_types.html#priority-default). Esto significa que, si bien **puede** recibir cualquier tipo de información desde Hiera (strings, arrays, hashes) **no puede** combinar valores desde múltiples niveles de jerarquía. Sólo obtendrás el valor del nivel de jerarquía más específico.
 
 Si necesitas combinar arrays o hashes de niveles de jerarquía múltiples, deberás usar las funciones **hiera_array** o **hiera_hash** en el cuerpo de las clases.
 
@@ -124,16 +124,16 @@ Puppet tiene tres funciones de búsqueda para recuperar datos desde Hiera. Todas
 Búsqueda estándar de prioridad. Obtiene el valor más específico para una clave determinada. Esto puede devolver valores de cualquier tipo (strings, arrays, hashes) desde Hiera.
 
 **hiera_array**
-Utiliza una [búsqueda de merge de array](http://docs.puppetlabs.com/hiera/1/lookup_types.html#array-merge). Obtiene todo de los valores de strings o arrays en la jerarquía para una clave determinada, y luego las aplana en un array simple de valores únicos.
+Utiliza una [búsqueda de merge de array](http://docs.puppetlabs.com/es/hiera/lookup_types.html#array-merge). Obtiene todo de los valores de strings o arrays en la jerarquía para una clave determinada, y luego las aplana en un array simple de valores únicos.
 
 **hiera_hash**
-Utiliza una [búsqueda de merge de hash](http://docs.puppetlabs.com/hiera/1/lookup_types.html#hash-merge). Espera que cada valor en la jerarquía de una clave determinada sea un hash y combina las claves de valor superior en cada hash, en un único hash. Ten en cuenta que esto no realiza un merge en profundidad en estructuras compuestas.
+Utiliza una [búsqueda de merge de hash](http://docs.puppetlabs.com/es/hiera/lookup_types.html#hash-merge). Espera que cada valor en la jerarquía de una clave determinada sea un hash y combina las claves de valor superior en cada hash, en un único hash. Ten en cuenta que esto no realiza un merge en profundidad en estructuras compuestas.
 
 Cada una de estas funciones toma tres argumentos en el siguiente orden:
 
 1. Clave (requerido): La clave de búsqueda en Hiera.
 2. Default (opcional): Valor para usar si Hiera no encuentra nada para esa clave. Si no se provee este valor, se producirá una falla en la búsqueda que causará una falla en la compilación.
-3. Sustitución (opcional): El nombre de un [nivel de jerarquía](http://docs.puppetlabs.com/hiera/1/hierarchy.html) arbitrario para insertar al tope de la jerarquía. Esto te permite usar una jerarquía modificada temporalmente para una búsqueda particular (por ejemplo: en lugar de una jerarquía de **$clientcert -> $osfamily -> common**, la búsqueda usaría **specialvalues -> $clientcert -> $osfamily -> common**; necesitarías estar seguro de tener **specialvalues.yaml** o similar en tus datos de Hiera).
+3. Sustitución (opcional): El nombre de un [nivel de jerarquía](http://docs.puppetlabs.com/es/hiera/hierarchy.html) arbitrario para insertar al tope de la jerarquía. Esto te permite usar una jerarquía modificada temporalmente para una búsqueda particular (por ejemplo: en lugar de una jerarquía de **$clientcert -> $osfamily -> common**, la búsqueda usaría **specialvalues -> $clientcert -> $osfamily -> common**; necesitarías estar seguro de tener **specialvalues.yaml** o similar en tus datos de Hiera).
 
 ##Usar las funciones de búsqueda desde Templates
 En general, no utilices las funciones de Hiera desde templates. Ese patrón es poco legible y *lastimará* el mantenimiento de tu código. Si un coautor de tu código necesita cambiar las invocaciones de Hiera y busca archivos **.pp** para esto, podrían perderse invocaciones extra en este template. Incluso si sólo una persona hace el mantenimiento de este código, es probable que cometa errores similares luego de algunos meses.
