@@ -9,7 +9,7 @@ The following example answers can be used to perform an automated monolithic (al
 
 A .txt file version can be found in the `answers` directory of the PE installer tarball.
 
-See the [Answer File Overview](./install_answer_file_reference.html) and [Installing with an answer file](./install_automated.html) for more details. In addition, [the Complete Answer File Reference](./install_complete_answer_file_reference.html) contains all answers that you can use to install PE.
+See [Installing with an answer file](./install_automated.html) for more details. In addition, [the Complete Answer File Reference](./install_complete_answer_file_reference.html) contains all answers that you can use to install PE.
 
 ### Global Answers
 
