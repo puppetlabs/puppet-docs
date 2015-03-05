@@ -267,7 +267,7 @@ Ya hemos visto que las clases se comportan de forma diferente para diferentes ti
 
 Pero a veces, no es suficiente con los facts; hay momentos en los que un humano tiene que decidir que diferencia a una máquina, porque esa diferencia es una cuestión de *póliza*; por ejemplo, la diferencia entre un servidor de prueba y uno de producción.
 
-En estos casos necesitamos tener una forma de cambiar manualmente nosotros mismos la forma en que funciona una clase. Podemos hacer esto pasando información con [parámetros de clase](http://docs.puppetlabs.com/learning/modules2.html).
+En estos casos necesitamos tener una forma de cambiar manualmente nosotros mismos la forma en que funciona una clase. Podemos hacer esto pasando información con [parámetros de clase](http://docs.puppetlabs.com/es/learning/modules2.html).
 
 **Nota aparte:**
 Todavía estás manejando alguna configuración en tu infraestructura real? Ya has aprendido mucho, así que por qué no [descargas gratis Puppet Enterprise](http://info.puppetlabs.com/download-pe.html), sigues [la guía de comienzo rápido](http://docs.puppetlabs.com/pe/latest/quick_start.html) para obtener un pequeño entorno instalado y comienzas a automatizar?

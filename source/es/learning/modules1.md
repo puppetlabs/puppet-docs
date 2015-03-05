@@ -91,7 +91,7 @@ Nota: Puedes descargar algunos archivos básicos de configuración aquí: [versi
 
 [Los nombres de clase](http://docs.puppetlabs.com/puppet/latest/reference/lang_reserved.html#classes-and-types) deben comenzar con minúscula y pueden contener minúscula, letras, números y subrayado.
 
-Los nombres de clase también pueden utilizar cuatro puntos **(::)** como separador de namespace. Esto debe [sonarte conocido](http://docs.puppetlabs.com/learning/variables.html#variables).
+Los nombres de clase también pueden utilizar cuatro puntos **(::)** como separador de namespace. Esto debe [sonarte conocido](http://docs.puppetlabs.com/es/learning/variables.html#variables).
 
 Los namespaces se deben corresponder con el layout del módulo, del cual hablaremos luego.
 
@@ -296,7 +296,7 @@ Se comportan de forma diferente, actúan más como recursos que como la función
 
 ¿Recuerdas que vimos que no puedes declarar el mismo recurso más de una vez? Lo mismo se puede decir de las declaraciones de clase tipo recurso. Si Puppet intenta evaluar una, y la clase ya ha sido declarada, fallará la compilación con un error.
 
-Sin embargo, a diferencia de **include**, las declaraciones tipo recurso te permiten especificar *parámetros de clase*. Hablaremos de esto en otro [capítulo más adelante](http://docs.puppetlabs.com/learning/modules2.html), y ahondaremos en por qué las declaraciones tipo recurso son tan estrictas.
+Sin embargo, a diferencia de **include**, las declaraciones tipo recurso te permiten especificar *parámetros de clase*. Hablaremos de esto en otro [capítulo más adelante](http://docs.puppetlabs.com/es/learning/modules2.html), y ahondaremos en por qué las declaraciones tipo recurso son tan estrictas.
 
 ##La consola de PE
 También puedes asignar clases a nodos específicos utilizando la consola web de Puppet Enterprise. Tienes que [agregar la clase a la consola](http://docs.puppetlabs.com/pe/latest/console_classes_groups.html#adding-a-new-class), luego ir a la página del nodo y [asignar la clase a ese nodo](http://docs.puppetlabs.com/pe/latest/console_classes_groups.html#assigning-classes-and-groups-to-nodes).
@@ -327,7 +327,7 @@ Hemos visto dos de los subdirectorios en un módulo, pero hay muchos más dispon
 
 + **manifests/**: Contiene todos los manifiestos del módulo.
 + **files/**: Contiene archivos estáticos que los nodos administrados por Puppet pueden descargar.
-+ **templates/**: Contiene templates, a los que se puede hacer referencia desde los manifiestos del módulo. [Luego hablaremos más acerca de templates](http://docs.puppetlabs.com/learning/templates.html).
++ **templates/**: Contiene templates, a los que se puede hacer referencia desde los manifiestos del módulo. [Luego hablaremos más acerca de templates](http://docs.puppetlabs.com/es/learning/templates.html).
 + **lib/**: Contiene plugins como facts customizados y tipos de recurso customizados.
 + **tests/** o **examples/**: Contienen ejemplos de manifiestos que muestran cómo declarar las clases del módulo y tipos definidos.
 + **spec/**: Contienen archivos de prueba escritos con rspec-puppet.
@@ -409,7 +409,7 @@ Construyendo sobre el trabajo que has hecho dos capítulos atrás, crea un módu
 #Siguiente paso
 **Próxima clase**
 
-¿Qué pasa con esa carpeta **templates/** en la estructura del módulo? ¿Podemos hacer algo más interesante con los archivos de configuración que reemplazarlos con contenido estático? [Averígualo en el capítulo de Templates](http://docs.puppetlabs.com/learning/templates.html).
+¿Qué pasa con esa carpeta **templates/** en la estructura del módulo? ¿Podemos hacer algo más interesante con los archivos de configuración que reemplazarlos con contenido estático? [Averígualo en el capítulo de Templates](http://docs.puppetlabs.com/es/learning/templates.html).
 
 **Nota aparte:**
 
