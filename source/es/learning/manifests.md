@@ -2,10 +2,9 @@
 layout: default
 title: "Aprende Puppet – Manifiestos"
 canonical: "/es/learning/manifests.html"
-toc: false
 ---
 
-#Comienzo
+## Comienzo
 Has hecho los ejercicios de **puppet resource** del [capítulo anterior]()? Borremos la cuenta que creaste.
 
 En un editor de texto (**vim, emac** o **nano**) crea un archivo con este contenido y nombre:
@@ -29,17 +28,17 @@ Ejecútalo de nuevo:
 
 Genial! Has escrito y aplicado tu primer manifiesto de Puppet.
 
-#Manifiestos
+## Manifiestos
 Los programas de Puppet son llamados “manifiestos”, y utilizan la extensión **.pp**. El núcleo del lenguaje de Puppet es la *declaración de recurso*. Una declaración de recurso describe un *estado deseado* para un recurso.
 
 Los manifiestos también pueden utilizar varios tipos de lógica: condicional,  colecciones de recursos, funciones para generar texto, etc. Hablaremos de esto luego.
 
-#Puppet Apply
+## Puppet Apply
 Como **resource** en el capítulo anterior, **apply** es un subcomando. Toma el nombre de un archivo de manifiesto como su argumento, y aplica el ado descrmanifiesto.
 
 Lo utilizaremos a continuación para probar pequeños manifiestos, pero también puede ser utilizado para trabajos más grandes. De hecho, puede hacer casi todo lo que un entorno agente/master de Puppet puede hacer.
 
-#Declaraciones de recurso
+## Declaraciones de recurso
 Comencemos observando un solo recurso:
 
             # /root/examples/file-1.pp
@@ -84,7 +83,7 @@ Y si ejecutas el manifiesto nuevamente, verás que Puppet no hace nada; si un re
 
 **Ejercicio**: Declara otro recurso de archivo en un manifiesto y aplícalo. Intenta establecer un nuevo estado deseado para un archivo existente, por ejemplo, cambia el mensaje de login definiendo el contenido de **/etc/motd**. Puedes [ver los atributos disponibles para el tipo de archivo aquí]().
 
-##Hints de Sintaxis
+### Hints de Sintaxis
 Observa estos errores frecuentes:
 
 + No olvides las comas y los dos puntos! Si los olvidas causarás errores del tipo **Could not parse for environment production: Syntax error at 'mode'; expected '}' at /root/manifests/1.file.pp:6 on node learn.localdomain**.
@@ -95,7 +94,7 @@ Observa estos errores frecuentes:
 
 También ten en cuenta que Puppet te permite usar espacios en blanco para hacer más legible tus manifiestos. Nosotros sugerimos alinear las flechas **=>** ya que esto facilita entender un manifiesto a simple vista. Los plugins de Vim en la VM de Aprende Puppet harán esto automáticamente mientras tipees.
 
-#Una vez más!
+## Una vez más!
 Ahora que conoces las declaraciones de recurso, juguemos un poco más con el tipo de archivo:
 
 + Pondremos múltiples recursos de tipos diferentes en el mismo manifiesto
@@ -144,7 +143,7 @@ Aplica:
 
 Genial. Qué ha pasado?
 
-##Nuevos valores para ensure, estados diferentes
+### Nuevos valores para ensure, estados diferentes
 El atributo **ensure** es algo especial. Está disponible en casi todos los tipos de recursos y controla si existe el recurso, siendo la definición “existe” algo local.
 
 Con archivos, hay varias maneras de existir:
@@ -169,14 +168,14 @@ Un chequeo rápido muestra cómo se desarrolla el manifiesto
         # cat /tmp/test3
         Hi.
 
-##Títulos y namevars
+### Títulos y namevars
 ¿Has notado que el recurso de archivo original tenía un atributo **path** pero, los siguientes tres lo omitieron?
 
 Casi todo tipo de recurso tiene un atributo cuyo valor se asume por defecto como el título del recurso. Para el recurso **file**, ese atributo es **path**. La mayoría de las veces (**user**, **group**, **package**…) es **name**. 
 
 Estos atributos se llaman **namevars**; son generalmente el atributo que corresponde a la *identidad* del recurso, la única cosa que siempre debería ser única. Si omites el namevar de un recurso, Puppet reutilizará el título como su valor. En caso que especifiques un valor para un namevar, el título del recurso puede ser cualquier cosa.
 
-###Identidad e identidad
+#### Identidad e identidad
 Entonces, para qué tener un namevar si Puppet puede reutilizar un título?
 
 Hay dos tipos de identidad que Puppet reconoce:
@@ -190,24 +189,24 @@ También hay casos (generalmente recursos **exec**) donde la identidad del siste
 
 Al permitirte separar el título y el namevar, Puppet facilita el manejo de esos casos. Hablaremos de esto luego cuando lleguemos a las declaraciones condicionales.
 
-###Unicidad
+#### Unicidad
 Ten en cuenta que no puedes declarar el mismo recurso dos veces. Puppet nunca permite duplicar *títulos* dentro de un tipo determinado, y generalmente tampoco permite duplicar *valores de namevar* en un tipo.
 
 Esto es porque las declaraciones de recursos representan estados deseados finales, y no queda para nada claro lo que debe suceder si declaras dos estados en conflicto. Entonces Puppet generará un error en lugar de hacer algo mal por accidente en el sistema.
 
-##Atributos faltantes: “Estado deseado=Lo que sea”
+### Atributos faltantes: “Estado deseado=Lo que sea”
 En el archivo **/tmp/test1** omitimos los atributos **mode** y **owner**, entre otros. Cuando omitimos atributos, Puppet no los maneja, y se asume un valor cualquiera como estado deseado.
 
 Si un archivo no existe, Puppet lo creará por defecto con modo de permisos 0644, pero si cambias ese modo, Puppet no lo volverá a cambiar.
 
 Ten en cuenta que incluso puedes omitir el atributo **ensure** siempre que no especifiques **content** o **source**. Esto te permite manejar los permisos de un archivo existente, no pero te permite crearlo si no existe.
 
-##Permisos de directorio: 644 = 755
+### Permisos de directorio: 644 = 755
 Dijimos que **/tmp/test2/** debe tener un modo de permiso 0644, pero **ls –lah** muestra el modo 0755. Esto se debe a que Puppet agrupa el bit de lectura y el bit de traverso de directorios.
 
 Esto ayuda al manejo de directorios (con **recurse => true**), con lo que puedes permitir el recorrido de los directorios sin hacer ejecutable todo el contenido del directorio.
 
-#Destinos, no viajes
+## Destinos, no viajes
 Ya sabes que hablamos mucho acerca de “estados deseados”, en lugar de hablar de cambios en el sistema. Esto es el fundamento del pensamiento del usuario de Puppet.
 
 Si estuvieras escribiendo una explicación para otra persona sobre cómo llevar un sistema a un estado deseado utilizando las herramientas que OS tiene por defecto, escribirías algo como “Chequea que el modo del archivo sudoers sea 0440, usando **ls –l** Si con eso es suficiente, ve al siguiente paso; de lo contrario, ejecuta **chmod 0440 /etc/sudoers**.
@@ -216,7 +215,7 @@ Internamente, Puppet está haciendo lo mismo, con algunas de las mismas herramie
 
 El efecto es ese: en lugar de escribir un script bash que parece un paso a paso para un principiante, puedes escribir manifiestos de Puppet que se vean como notas para un experto.
 
-#Nota aparte: Compilación
+## Nota aparte: Compilación
 Los manifiestos no son usados directamente cuando Puppet sincroniza recursos. Por el contrario, el flujo de una ejecución de Puppet es más o menos así: 
 
 ![](img/manifest_to_defined_state_unified.png)
@@ -229,7 +228,7 @@ Con Puppet Apply, la distinción no es importante, pero en un entorno master/age
 + Por defecto, los nodos agentes sólo pueden recuperar su propio catálogo; no pueden ver información destinada a otros nodos. Esta separación mejora la seguridad.
 + Como los catálogos son tan poco ambiguos, es posible *simular* la ejecución de un catálogo sin hacer ningún cambio en el sistema; esto se realiza generalmente ejecutando **puppet agent --test –noop** Puedes incluso utilizar herramientas de diff especiales para comparar dos catálogos y ver las diferencias.
 
-#El manifiesto del sitio y el agente de Puppet
+## El manifiesto del sitio y el agente de Puppet
 Hemos visto cómo utilizar Puppet Apply para aplicar en forma directa manifiestos en un sistema. Los servicios de master/agente de Puppet funcionan de manera muy similar, pero con algunas diferencias clave:
 
 **Puppet apply**:
@@ -249,7 +248,7 @@ Hemos visto cómo utilizar Puppet Apply para aplicar en forma directa manifiesto
 
 De esta forma, puedes tener muchas máquinas configuradas por Puppet con sólo mantener tus manifiestos en uno o varios servidores. Esto también te da seguridad extra, como fue descrito antes en “Compilación”.
 
-###Ejercicio: Utiliza Puppet Master/Agente para aplicar la misma configuración
+### Ejercicio: Utiliza Puppet Master/Agente para aplicar la misma configuración
 Para ver cómo funciona el mismo código de manifiesto con el agente de Puppet:
 
 + Edita **/etc/puppetlabs/puppet/manifests/site.pp** y pega los tres recursos de archivo del manifiesto anterior.
@@ -258,7 +257,7 @@ Para ver cómo funciona el mismo código de manifiesto con el agente de Puppet:
 + Ejecuta **puppet agent --test**, el cual activará solo una ejecución agente puppet en primer plano para que puedas ver que está haciendo en tiempo real.
 + Chequea **/tmp** y fíjate que los archivos volvieron a su estado deseado.
 
-###Ejercicio: Clave autorizada SSH
+### Ejercicio: Clave autorizada SSH
 Escribe y aplica un manifiesto que utilice el [tipo ssh\_authorized\_key]() para que te permita loguearte en la VM de práctica como *root* sin contraseña.
 
 **Trabajo extra**: Intenta ponerlo directamente en el manifiesto del sitio, en lugar de utilizar Puppet Apply, [utiliza la consola para activar la ejecución del agente de Puppet]() y [chequea los reportes en la consola]() para ver si ha funcionado el manifiesto.
@@ -266,7 +265,7 @@ Escribe y aplica un manifiesto que utilice el [tipo ssh\_authorized\_key]() para
 + Necesitarás tener un par de claves de SSH, una aplicación de terminal en tu servidor, y conocimientos básicos acerca del funcionamiento de SSH. Puedes obtener esto investigando un poco.
 + Cuidado: No puedes pegar la línea de **id_rsa.pub** en el atributo **clave** del recurso. Necesitarás separar sus componentes en atributos múltiples. Lee la documentación del tipo **ssh\_authorized\_key** para enterarte cómo.
 
-#Siguiente
+## Siguiente
 **Próxima clase:**
 Sabes cómo utilizar los bloques de construcción fundamentales de código Puppet. Así que ahora es momento de aprender cómo combinarlos.
 

@@ -2,10 +2,9 @@
 layout: default
 title: "Aprende Puppet – Módulos y clases"
 canonical: "/es/learning/modules1.html"
-toc: false
 ---
 
-#Comienzo
+## Comienzo
 
     class my_class {
       notify {"This actually did something":}
@@ -23,7 +22,7 @@ Este manifiesto no hace nada.
 Este sí hace algo.
 ¿Puedes ver la diferencia?
 
-#El fin de un gran manifiesto
+## El fin de un gran manifiesto
 
 Ya puedes escribir manifiestos bonitos y sofisticados a esta altura, pero hasta ahora los has puesto en un solo archivo (**/etc/puppetlabs/puppet/manifests/site.pp** o uno de un sólo uso con puppet apply)
 
@@ -31,7 +30,7 @@ Con más de 4 o 5 recursos, esto se pone difícil de manejar. Probablemente ya p
 
 Las **clases** son la forma de Puppet de separar trozos de código, y los **módulos** son la forma de Puppet de organizar clases para que puedas referirte a ellas por su nombre.
 
-#Clases
+## Clases
 Las clases son bloques de código Puppet con nombre, y pueden crearse en un lugar e invocarse en cualquier otro.
 
 + **Definir** una clase la pone a disposición por su nombre, pero no evalúa automáticamente el código dentro de ella.
@@ -39,7 +38,7 @@ Las clases son bloques de código Puppet con nombre, y pueden crearse en un luga
 
 Por los próximos cinco minutos, vamos a trabajar en un solo archivo de manifiesto: uno de un solo uso, o bien site.pp. Dentro de algunos párrafos comenzaremos a separar código en archivos adicionales.
 
-##Definir una clase
+### Definir una clase
 Antes que puedas utilizar una clase, debes **definirla**, lo que se hace con la palabra clave **class**, un nombre, llaves y un bloque de código:
 
 
@@ -102,7 +101,7 @@ Cada definición de clase introduce un nuevo scope de variables. Esto quiere dec
 + Una variable asignada dentro de una clase no estará disponible con su nombre corto fuera de la clase; para acceder a ella, deberás usar su nombre completo (por ejemplo, **$ntp::service_name**, en el ejemplo anterior).
 + Puedes asignar valores locales nuevos a nombres de variables que ya han sido usados en el top scope, por ejemplo, puedes especificar un valor local para $fqdn.
 
-##Declarar
+### Declarar
 Ok, recuerdas que dijimos que *definir* pone a disposición a la clase y *declarar* la evalúa? Podemos ver eso en acción intentando aplicar nuestro manifiesto anterior:
 
 	# puppet apply /root/examples/modules1-ntp1.pp
@@ -157,7 +156,7 @@ Esta vez, Puppet aplicará todos esos recursos:
 
 Clases: Primero definirlas, luego declararlas.
 
-#Módulos
+## Módulos
 Ya sabes cómo definir y declarar clases, pero seguimos haciendo todo en un sólo manifiesto, lo que no es muy útil.
 
 Para ayudarte a partir tus manifiestos en una estructura más simple de entender, Puppet utiliza **módulos** y la **carga automática de módulos**.
@@ -180,7 +179,7 @@ Esto significa que puedes tener una pila de módulos con código Puppet sofistic
 
 Al esconder la *implementación* de una característica en un módulo, tu manifiesto principal puede volverse mucho más pequeño, más legible y enfocado en las pólizas. Puedes ver a primera vista qué se configurará en tus nodos y si necesitas detalles de implementación de cualquier cosa, puedes ahondar en el módulo.
 
-#El Modulepath
+### El Modulepath
 Antes de hacer un módulo, necesitamos saber dónde colocarlo; así que buscaremos nuestro modulepath, el conjunto de directorios donde Puppet busca módulos.
 
 El archivo de configuración de Puppet se llama puppet.conf, y en Puppet Entreprise se encuentra en **/etc/puppetlabs/puppet/puppet.conf**:
@@ -214,7 +213,7 @@ La primera, **/etc/puppetlabs/puppet/modules**, es el directorio principal de m�
 También puedes obtener el valor del modulepath ejecutando **puppet master --configprint modulepath**. La opción **--configprint** te permite obtener el valor de cualquier [opción de configuración](http://docs.puppetlabs.com/references/latest/configuration.html) de Puppet, utilizando el subcomando **master**, nos aseguraremos de obtener el valor que el puppet master utilizará.
 
 
-# Estructura de un módulo
+### Estructura de un módulo
 
 + Un módulo es un directorio
 + El nombre del módulo debe ser el nombre del directorio
@@ -263,7 +262,7 @@ Edita el archivo init.pp y pega la definición de la clase NTP en él. Asegúrat
 	    }
 
 
-##Declarar clases desde módulos
+### Declarar clases desde módulos
 Ahora que tenemos un módulo funcionando, puedes editar el archivo site.pp: Si queda algún recurso relacionado a NTP en él, asegúrate de borrarlo, y luego agrega esta línea:
 
 	include ntp
@@ -277,17 +276,17 @@ Apaga el servicio NTP y luego ejecuta el agente en el foreground para ver la acc
 
 ¡Funcionó!
 
-#Más acerca de declarar clases
+## Más acerca de declarar clases
 Una vez que una clase se almacena en un módulo, existen varias formas de declarar o asignarlas. Debes intentar cada una de estas ahora mismo: apagas manualmente el servicio ntpd, declaras o asignas la clase y ejecuta el agente de Puppet en el foreground.
 
-##Include
+### Include
 Ya hemos visto esto: Puedes declarar clases colocando **include ntp** en el manifiesto principal.
 
 La función **include** declara una clase si ésta no ha sido declarada en otro lugar. Si una YA HA SIDO declarada, **include** lo notará y no hará nada.
 
 Esto te permite declarar una clase de manera segura en varios lugares. Si alguna clase depende de algo en otra clase, se puede declarar esa clase sin problemas si también se declara en site.pp.
 
-## Declaraciones de clase tipo recurso
+### Declaraciones de clase tipo recurso
 Éstas parecen declaraciones de recurso, pero con un tipo de recurso de “clase”:
 
 	    class {'ntp':}
@@ -298,12 +297,12 @@ Se comportan de forma diferente, actúan más como recursos que como la función
 
 Sin embargo, a diferencia de **include**, las declaraciones tipo recurso te permiten especificar *parámetros de clase*. Hablaremos de esto en otro [capítulo más adelante](http://docs.puppetlabs.com/es/learning/modules2.html), y ahondaremos en por qué las declaraciones tipo recurso son tan estrictas.
 
-##La consola de PE
+### La consola de PE
 También puedes asignar clases a nodos específicos utilizando la consola web de Puppet Enterprise. Tienes que [agregar la clase a la consola](http://docs.puppetlabs.com/pe/latest/console_classes_groups.html#adding-a-new-class), luego ir a la página del nodo y [asignar la clase a ese nodo](http://docs.puppetlabs.com/pe/latest/console_classes_groups.html#assigning-classes-and-groups-to-nodes).
 
 Más adelante hablaremos con más detalle acerca del trabajo con múltiples nodos.
 
-# Estructura de un módulo, Parte 2
+## Estructura de un módulo, Parte 2
 Todavía no hemos terminado con este módulo. ¿Te has dado cuenta de que el atributo **source** del archivo de configuración apunta a una ruta local arbitraria? Podemos mover esos archivos dentro del módulo, y volver todo más independiente:
 
 	# mkdir /etc/puppetlabs/puppet/modules/ntp/files
@@ -322,7 +321,7 @@ Luego, edita el manifiesto init.pp; utilizaremos el formato de URL especial **pu
 
 Ahora, todo lo que el módulo necesita está en un solo lugar. Mejor aún, ahora un puppet master puede servir esos archivos a nodos agentes en la red. Al utilizar las rutas **/root/examples/etc...**, Puppet sólo encontraría la fuente de los archivos si éstos ya existieran en la máquina de destino.
 
-##Los otros subdirectorios
+### Los otros subdirectorios
 Hemos visto dos de los subdirectorios en un módulo, pero hay muchos más disponibles:
 
 + **manifests/**: Contiene todos los manifiestos del módulo.
@@ -336,7 +335,7 @@ La [hoja de repaso de *módulo*](http://docs.puppetlabs.com/module_cheat_sheet.p
 
 Es un buen momento para explicar más acerca de cómo funcionan los directorios **manifests** y **files**:
 
-##Organizar y hacer referencia a manifiestos
+### Organizar y hacer referencia a manifiestos
 Cada manifiesto en un módulo debe contener exactamente una clase o tipo definido (más detalle luego acerca de *tipos definidos*).
 
 El nombre de cada manifiesto se debe corresponder con el nombre de la clase o tipo definido que contiene. El archivo init.pp que utilizamos antes, es especial: siempre contiene una clase o tipo definido con el mismo nombre que el módulo. El resto de los archivos deben contener una clase o tipo definido así:
@@ -354,7 +353,7 @@ Entonces, por ejemplo, si tenemos un módulo apache que contiene una clase mod_p
 
 Puedes ver más acerca de esta correspondencia en [la página de namespaces y carga automática (autoloading) del manual de referencia de Puppet](http://docs.puppetlabs.com/puppet/latest/reference/lang_namespaces.html).
 
-##Organizar y hacer referencia a archivos
+### Organizar y hacer referencia a archivos
 Los archivos estáticos pueden ser ordenados en cualquier estructura de directorio dentro del directorio **files/**. Cuando haces referencia a estos archivos en los manifiestos Puppet, como los atributos de **source** de recursos de archivos, debes utilizar la URL **puppet:///**.  Deben estar estructurados de cierta forma:
 
 <table>
@@ -380,12 +379,12 @@ Los archivos estáticos pueden ser ordenados en cualquier estructura de director
 
 Ten en cuenta que el segmento final de la URL comienza dentro del directorio **files/** del módulo. Si hay otros subdirectorios, funcionan como esperas, así que puede que tengas algo parecido a **puppet:///modules/ntp/config_files/linux/ntp.conf.el**.
 
-# Puppet Forge: Cómo evitar escribir módulos
+## Puppet Forge: Cómo evitar escribir módulos
 Ahora que sabes cómo funcionan los módulos, puedes utilizar módulos escritos por otros usuarios.
 
 [Puppet forge](http://forge.puppetlabs.com/) es un repositorio de módulos gratuitos que puedes instalar y utilizar. La mayoría son open source, y puedes contribuir con actualizaciones y cambios para mejorarlos. Así como también puedes aportar tus propios módulos.
 
-# El subcomando de Puppet Module
+### El subcomando de Puppet Module
 Puppet viene con un subcomando para instalar y manejar módulos desde Puppet Forge. Puedes encontrar instrucciones detalladas para utilizarlo en [la página “Instalar módulos” del manual de referencia de Puppet](http://docs.puppetlabs.com/puppet/latest/reference/modules_installing.html). Aquí, algunos ejemplos:
 
 	$ sudo puppet module install puppetlabs-mysql
@@ -400,13 +399,13 @@ Los módulos de Puppet Forge tienen un prefijo de nombre de usuario en sus nombr
 
 El subcomando **puppet module** maneja estos prefijos de nombre de usuario automáticamente, esto los preserva como metadatos, pero instala el módulo con su nombre común. Esto significa que tus manifiestos de Puppet deberían hacer referencia al módulo **mysql** y no a **puppetlabs-mysql**.
 
-#Ejercicios
-###Ejercicio: Otra vez Apache
+## Ejercicios
+### Ejercicio: Otra vez Apache
 Construyendo sobre el trabajo que has hecho dos capítulos atrás, crea un módulo Apache y una clase que asegure que Apache está instalado, en ejecución y manejando su archivo de configuración. 
 
 **Trabajo extra**: Haz que Puppet maneje la carpeta DocumentRoot, coloque una página 404 customizada y un index.html por defecto en ese lugar. También puedes utilizar declaraciones condicionales para establecer cualquier archivo o nombres paquete/servicio que puedan variar según el sistema operativo. Si no quieres investigar los nombres utilizados por otros sistemas operativos, puedes hacer que la clase falle si no se utiliza en CentOS.
 
-#Siguiente paso
+## Siguiente paso
 **Próxima clase**
 
 ¿Qué pasa con esa carpeta **templates/** en la estructura del módulo? ¿Podemos hacer algo más interesante con los archivos de configuración que reemplazarlos con contenido estático? [Averígualo en el capítulo de Templates](http://docs.puppetlabs.com/es/learning/templates.html).

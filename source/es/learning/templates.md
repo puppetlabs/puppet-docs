@@ -2,10 +2,9 @@
 layout: default
 title: "Aprende Puppet – Templates"
 canonical: "/es/learning/templates.html"
-toc: false
 ---
 
-#Comienzo
+## Comienzo
 Hagamos un pequeño ajuste al módulo NTP del capítulo anterior: quita el atributo **source** del recurso de archivo, y reemplázalo con un atributo **content** utilizando una nueva función. Recuerda que **source** especifica el contenido del archivo como un archivo, y **content** especifica el contenido del archivo como un *string*.
 
 	    # /etc/puppetlabs/puppet/modules/ntp/manifests/init.pp
@@ -32,7 +31,7 @@ Luego, copia los archivos de configuración en el directorio de templates:
 
 El módulo debe funcionar de la misma manera que ha estado funcionando, pero los archivos de configuración ya no son archivos estáticos, ahora son templates.
 
-#Frena la explosión de contenido estático
+## Frena la explosión de contenido estático
 
 Considera el módulo NTP.
 
@@ -47,10 +46,10 @@ Los templates son documentos que contienen una mezcla de contenido *estático* y
 
 Para más detalles acerca del comportamiento de los templates de Puppet, mira [la guía para utilizar templates de Puppet](http://docs.puppetlabs.com/guides/templating.html), donde encontrarás una explicación básica.
 
-#Archivos de templates
+## Archivos de templates
 Los templates son salvados como archivos con extensión .erb, y se deben guardar en el directorio **templates/** de cualquier módulo. Puede haber cualquier cantidad de subdirectorios dentro de **templates/**.
 
-#Rendering de templates
+## Rendering de templates
 
 Para utilizar un template, lo tienes que renderizar para producir un string de salida. Para hacer esto, utiliza la [función de **template**](http://docs.puppetlabs.com/references/stable/function.html#template) integrada. Esta función toma un path a uno o más archivos de templates y devuelve un string de salida.
 
@@ -63,7 +62,7 @@ Para utilizar un template, lo tienes que renderizar para producir un string de s
 
 Ten en cuenta que estamos utilizando el string de salida como el valor del atributo **content**. No funcionaría con el atributo **source**, el cual espera una URL en lugar del contenido real para un archivo.
 
-##Hacer referencia a archivos de templates en módulos
+### Hacer referencia a archivos de templates en módulos
 
 La función **template** espera que las rutas de archivos tengan un formato específico:
 
@@ -72,12 +71,12 @@ La función **template** espera que las rutas de archivos tengan un formato espe
 Esto significa que **template(‘foo/foo.conf.erb’)** apuntaría al archivo **/etc/puppetlabs/puppet/modules/foo/templates/foo.conf.erb**.
 Ten en cuenta que la ruta al template no utiliza la misma semántica que la ruta en la URL **puppet:///**. Disculpas por la inconsistencia.
 
-#Templates inline
+### Templates inline
 
 Otra alternativa es utilizar la [función **inline_template**](http://docs.puppetlabs.com/references/stable/function.html#inlinetemplate), que toma un string que contiene un template y devuelve un string de salida.
 Esto no es útil tan frecuentemente, pero si tienes un template muy pequeño lo puedes insertar en el manifiesto en lugar de hacer un archivo nuevo para esto.
 
-###Nota aparte: Funciones en general
+### Nota aparte: Funciones en general
 Ya hemos visto varias funciones, incluyendo **include**, **template**, **fail**, y **str2bool**; así que este es un buen momento para explicar qué son.
 
 Puppet tiene dos tipos de funciones:
@@ -104,20 +103,20 @@ Los templates son poderosos porque tienen acceso a todas las variables de Puppet
 + Los **facts, variables globales**, y **variables locales del scope actual** están disponibles para un template como *variables de instancia de Ruby*; en lugar de los prefijos de Puppet **$**, tienen el prefijo **@**, por ejemplo, **@fqdn, @memoryfree, @operatingsystem**, etc.
 + Se puede acceder a las variables de otros scopes con el método **scope.lookupvar**, que toma un nombre de variable completo sin el prefijo **$**, por ejemplo, **scope.lookupvar(‘apache::user’)**.
 
-# El lenguaje de templating ERB
+## El lenguaje de templating ERB
 
 Puppet no tiene lenguaje de templating propio sino que utiliza ERB, un lenguaje común de template basado en Ruby. El framework de Rails utiliza ERB al igual que otros projectos.
 
 Los templates ERB parecen archivos de configuración normales, con el ocasional **<% tag conteniendo código Ruby %>**.  [La sintaxis de ERB está documentada aquí](http://docs.puppetlabs.com/guides/templating.html#erb-template-syntax), pero como los tags pueden contener *cualquier* código Ruby, es posible que los templates se vuelvan un poco complicados. En general, recomendamos mantener simples a los templates: te mostraremos cómo imprimir variables, hacer declaraciones condicionales e iterar en arrays, lo que debería ser suficiente para la mayoría de las tareas.
 
-#Tags no imprimibles
+## Tags no imprimibles
 Los tags de ERB están delimitados por símbolos menor y mayor con signos de porcentaje dentro. No existe ningún concepto del tipo HTML para abrir o cerrar tags.
  
 	   <% document = "" %>
 
 Los tags contienen una o más líneas de código Ruby, que pueden establecer variables, manipular información, implementar control de flujo, o, de hecho, prácticamente cualquier cosa excepto imprimir texto en el output renderizado.
 
-#Imprimir una expresión 
+### Imprimir una expresión 
 
 Para eso, necesitas utilizar un tag de impresión que parece un tag normal con un signo igual después del separador de apertura:
 
@@ -126,7 +125,7 @@ Para eso, necesitas utilizar un tag de impresión que parece un tag normal con u
 	      environment = <%= gitrevision[0,5] %>
 
 
-##Comentarios
+### Comentarios
 
 Un tag con una marca de hash después del separador de apertura puede contener comentarios que no son interpretados como código y no se muestran en el output renderizado.
 
@@ -134,7 +133,7 @@ Un tag con una marca de hash después del separador de apertura puede contener c
 
 
 
-# Suprimir saltos de línea y espacios al comienzo de una línea
+### Suprimir saltos de línea y espacios al comienzo de una línea
 
 Los tags comunes no imprimen nada, pero si mantienes a cada tag de lógica en su propia línea, el salto de línea que utilizas aparecerá como un grupo de espacios en blanco en el archivo final.
 
@@ -148,13 +147,13 @@ Si esto no te gusta, también puedes:
 
 	    <%- documento += estalínea -%>
 
-#Un Ejemplo: NTP otra vez
+## Un Ejemplo: NTP otra vez
 
 Hagamos más inteligentes a los templates de tu módulo NTP.
 
 Primero, asegúrate de haber cambiado el recurso de archivo para utilizar un template, como vimos al principio de esta clase. También debes asegurarte de haber copiado los archivos de configuración al directorio **templates/** y de haberles dado la extensión .erb.
 
-##Ajustar el manifiesto
+### Ajustar el manifiesto
 
 Luego, moveremos a los servidores NTP por defecto fuera del archivo de configuración y dentro del manifiesto:
 
@@ -204,7 +203,7 @@ Luego, moveremos a los servidores NTP por defecto fuera del archivo de configura
 
 Tenemos los servidores almacenados en un array, así que podemos mostrar cómo iterar dentro de un template. En este momento, no le estamos dando la capacidad de cambiar la lista de servidores, pero estamos preparando el camino para hacerlo en el próximo capítulo.
 
-##Editar los templates
+### Editar los templates
 
 Primero, haz que cada template utilice la variable **$servers_real** para crear una lista de declaraciones de **server**.
 
@@ -259,7 +258,7 @@ Luego, **debajo** del ciclo que hicimos para las declaraciones de servidor, agre
 Utilizando facts para encender o apagar de forma condicional partes del archivo de configuración, podemos reaccionar fácilmente de acuerdo al tipo de máquina que estamos manejando.
 
 
-#Siguiente paso
+## Siguiente paso
 
 **Próxima clase**:
 
