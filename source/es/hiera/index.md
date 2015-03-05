@@ -2,7 +2,6 @@
 title: "Hiera 1: Vista general"
 layout: default
 canonical: "/es/hiera/index.html"
-toc: false
 ---
 
 Hiera es una herramienta de búsqueda de pares clave/valor para configurar información, hecha para **mejorar [Puppet](http://docs.puppetlabs.com/puppet/)** y permitirte establecer los datos específicos del nodo sin repeticiones. Mira [¿Por qué Hiera? en el punto 2](http://docs.puppetlabs.com/hiera/1/index.html#why-hiera) para más información, o comienza a usarlo directamente:
