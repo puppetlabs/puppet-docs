@@ -100,19 +100,22 @@ Once you have your answer file, simply run the installer with the `-a` or `-A` o
 When you run the installer with an answer file, the full answer file of what was actually installed can be found in the directory from where you ran the installer, at `answers.lastrun.<HOSTNAME>`.
 
 
-
 ### Answer File Options
 
 You can add the following additional flags when you run the installer: 
 
-- `-a <PATH_to_ANSWER_FILE>`: The installer reads answers from the answer file and quits with error if an answer is missing.
-- `-A <PATH_to_ANSWER_FILE>`: The installer reads answers from the answer file and prompts for input if an answer is missing. 
+- `-a <PATH to ANSWER FILE>`: The installer reads answers from the answer file and quits with error if an answer is missing.
+- `-A <PATH to ANSWER FILE>`: The installer reads answers from the answer file and prompts for input if an answer is missing. 
 - `-D`: The installer will display debugging information. This option must be run with the `-a` or  `-A` flags.
 - `-h`: The installer will display help information.
-- `-l`: The installer will log commands and their results the installer log file. This option must be run with the `-a` or  `-A` flags.
+- `-l <PATH to LOG FILE>`: The installer will log commands and their results the installer log file. This option must be run with the `-a` or  `-A` flags.
 - `-n`: The installer will run in 'no-op' mode; the installer's output will show commands that would have been run during installation without running them. This option must be run with the `-a` or `-A` flags.
 - `-q`: The installer will run in quiet mode; the installation process wil not be displayed. This option must be run with the `-a` or  `-A` flags.
 - `-V`: The installer will display very verbose debugging information. This option must be run with the `-a` or  `-A` flags.
+
+> **Note**: The `-D`, `q`, `-l`, `-n`, and `-V` flags will fail with errors if they are not used in conjunction with `-a` or `-A` flags. 
+>
+> In addition the `-q` flag will fail with an error if any errors occur during installation.
 
 ## Sample Answer Files
 
