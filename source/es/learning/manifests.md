@@ -1,4 +1,4 @@
-﻿---
+---
 layout: default
 title: "Aprende Puppet – Manifiestos"
 canonical: "/es/learning/manifests.html"
@@ -65,7 +65,7 @@ Intenta aplicar el pequeño manifiesto anterior:
         notice: /Stage[main]//File[testfile]/ensure: created
         notice: Finished catalog run in 0.05 seconds
 
-Esto es lo contrario a lo que hemos visto antes cuando borramos la cuenta de usuario: Puppet sabía que ese archivo no existía y lo creó. Estableció el contenido y modo deseado al mismo tiempo. 
+Esto es lo contrario a lo que hemos visto antes cuando borramos la cuenta de usuario: Puppet sabía que ese archivo no existía y lo creó. Estableció el contenido y modo deseado al mismo tiempo.
 
         # cat /tmp/testfile
         I'm a test file.
@@ -111,21 +111,21 @@ Ahora que conoces las declaraciones de recurso, juguemos un poco más con el tip
       ensure  => file,
       content => "Hi.",
     }
-    
+
     file {'/tmp/test2':
       ensure => directory,
       mode   => 0644,
     }
-    
+
     file {'/tmp/test3':
       ensure => link,
       target => '/tmp/test1',
     }
-    
+
     user {'katie':
       ensure => absent,
     }
-    
+
     notify {"I'm notifying you.":}
     notify {"So am I!":}
 
@@ -171,7 +171,7 @@ Un chequeo rápido muestra cómo se desarrolla el manifiesto
 ### Títulos y namevars
 ¿Has notado que el recurso de archivo original tenía un atributo **path** pero, los siguientes tres lo omitieron?
 
-Casi todo tipo de recurso tiene un atributo cuyo valor se asume por defecto como el título del recurso. Para el recurso **file**, ese atributo es **path**. La mayoría de las veces (**user**, **group**, **package**…) es **name**. 
+Casi todo tipo de recurso tiene un atributo cuyo valor se asume por defecto como el título del recurso. Para el recurso **file**, ese atributo es **path**. La mayoría de las veces (**user**, **group**, **package**…) es **name**.
 
 Estos atributos se llaman **namevars**; son generalmente el atributo que corresponde a la *identidad* del recurso, la única cosa que siempre debería ser única. Si omites el namevar de un recurso, Puppet reutilizará el título como su valor. En caso que especifiques un valor para un namevar, el título del recurso puede ser cualquier cosa.
 
@@ -216,7 +216,7 @@ Internamente, Puppet está haciendo lo mismo, con algunas de las mismas herramie
 El efecto es ese: en lugar de escribir un script bash que parece un paso a paso para un principiante, puedes escribir manifiestos de Puppet que se vean como notas para un experto.
 
 ## Nota aparte: Compilación
-Los manifiestos no son usados directamente cuando Puppet sincroniza recursos. Por el contrario, el flujo de una ejecución de Puppet es más o menos así: 
+Los manifiestos no son usados directamente cuando Puppet sincroniza recursos. Por el contrario, el flujo de una ejecución de Puppet es más o menos así:
 
 ![](img/manifest_to_defined_state_unified.png)
 
