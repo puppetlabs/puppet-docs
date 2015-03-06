@@ -5,14 +5,14 @@ subtitle: "Install and Set Up Razor"
 canonical: "/pe/latest/razor_install.html"
 
 ---
-A Razor module is included with Puppet Enterprise 3.7 . To install and configure a Razor server, you must [set up your Razor test environment](./razor_prereqs.html), and then classify the pe_razor node. When PE runs and applies this Razor classification, the Razor server and a PostgreSQL database will be installed and configured.   
+A Razor module is included with Puppet Enterprise. To install and configure a Razor server, you must [set up your Razor test environment](./razor_prereqs.html), and then classify the pe_razor node. When PE runs and applies this Razor classification, the Razor server and a PostgreSQL database will be installed and configured.
 
-In addition to the Razor server, the Razor client can be installed as a Ruby gem on any machine you want to use for interacting with Razor. The client makes interacting with the server from the command line easier. It lets you explore what the server knows about your infrastructure, for example, it infers types, and enables you to modify how machines are provisioned by interacting with the Razor server API.
+In addition to the Razor server, the Razor client can be installed as a Ruby gem on any machine you want to use for interacting with Razor. The client makes interacting with the server from the command line easier. It lets you explore what the server knows about your infrastructure; for example, it infers types, and enables you to modify how machines are provisioned by interacting with the Razor server API.
 
-If you're not a PE user, you can install the [open source version of Razor manually](https://github.com/puppetlabs/razor-server/wiki/Installation). 
- 
-**Important**: Because Razor is a Tech Preview, we highly recommend that you set it up in a completely isolated test environment. This environment must have access to the internet. See [Set Up a Virtual Environment for Razor](./razor_prereqs.html) for details.
-	 
+If you're not a PE user, you can install the [open source version of Razor manually](https://github.com/puppetlabs/razor-server/wiki/Installation).
+
+**Important**: We highly recommend that you set Razor up in a completely isolated test environment before you run it on your production environment. This environment must have access to the internet. See [Set Up a Virtual Environment for Razor](./razor_prereqs.html) for details.
+
 ###Before You Begin
 Things you should know before you set up provisioning:
 
@@ -22,34 +22,34 @@ Things you should know before you set up provisioning:
 
 >**Hint**: With the `export` command, you can avoid having to repeatedly replace placeholder text. The steps for installing assume you have declared a server name and the port to use for Razor with this command:
 >
->     export RAZOR_HOSTNAME=<server name> 
+>     export RAZOR_HOSTNAME=<server name>
 >     export RAZOR_PORT=8080
->    
-> For example: 
 >
->	  export RAZOR_HOSTNAME=centos6.4 
->	  export RAZOR_PORT=8080	
->	
+> For example:
+>
+>	  export RAZOR_HOSTNAME=centos6.4
+>	  export RAZOR_PORT=8080
+>
 > The steps below therefore use `$RAZOR_HOSTNAME` and `$RAZOR_PORT` for brevity.
 
 Install the Razor Server
 -------------
 
-The actual Razor software is stored in an external online location, so you need an internet connection. When you classify a node with the pe_razor module, the software is downloaded. This process can take several minutes. 
+The actual Razor software is stored in an external online location, so you need an internet connection. When you classify a node with the pe_razor module, the software is downloaded. This process can take several minutes.
 
-If you don't have access to the internet or would like to pull the PE tarball from your own location, you can use the class parameter `pe_tarball_base_url` and stipulate your own URL. Note that the code assumes that the tarball still has the same name format as on our server. 
+If you don't have access to the internet or would like to pull the PE tarball from your own location, you can use the class parameter `pe_tarball_base_url` and stipulate your own URL. Note that the code assumes that the tarball still has the same name format as on our server.
 
-1. Manually add the `pe-razor` class in the PE console. 
+1. Manually add the `pe-razor` class in the PE console.
 
-   In the console, click **Classification**. Click the node group you will use to assign the `pe-razor` class to nodes. Click **Classes** and, in **Class name**, type in "pe-razor". Click **Add class**. For information about adding a  class and classifying the Razor server using the PE console, see the [Adding Nodes to a Node Group](./console_classes_groups.html#adding-nodes-to-a-node-group) and [Adding New Classes](./console_classes_groups.html#adding-classes-to-a-node-group) sections of this guide. 
+   In the console, click **Classification**. Click the node group you will use to assign the `pe-razor` class to nodes. Click **Classes** and, in **Class name**, type in "pe-razor". Click **Add class**. For information about adding a  class and classifying the Razor server using the PE console, see the [Adding Nodes to a Node Group](./console_classes_groups.html#adding-nodes-to-a-node-group) and [Adding New Classes](./console_classes_groups.html#adding-classes-to-a-node-group) sections of this guide.
 
 
 	**Note**: You can also add the following to site.pp:
-	
+
 		node <AGENT_CERT>{
 			include pe_razor
 		}
-	
+
 2. On the Razor server, run Puppet with: `puppet agent -t` (otherwise you have to wait for the scheduled agent run).
 
 
@@ -57,34 +57,34 @@ If you don't have access to the internet or would like to pull the PE tarball fr
 
 You must set your machines to PXE boot. Without PXE booting, Razor has no way to interact with a system. This is OK if the node has already been enrolled with Razor and is installed, but it will prevent any changes on the server (for example, an attempt to reinstall the system) from having any effect on the node. Razor relies on "seeing" when a machine boots and starts all its interactions with a node when that node boots.
 
-Razor provides a specific iPXE boot image to ensure you're using a compatible version. 
+Razor provides a specific iPXE boot image to ensure you're using a compatible version.
 
 1. Download the iPXE boot image [undionly-20140116.kpxe](http://links.puppetlabs.com/pe-razor-ipxe-firmare-3.3).
 2. Copy the image to `/var/lib/tftpboot`: `cp undionly-20140116.kpxe /var/lib/tftpboot`.
-	
-3. Download the iPXE bootstrap script from the Razor server to the `/var/lib/tftpboot` directory: 
+
+3. Download the iPXE bootstrap script from the Razor server to the `/var/lib/tftpboot` directory:
 
 		wget http://${RAZOR_HOSTNAME}:${RAZOR_PORT}/api/microkernel/bootstrap?nic_max=1 -O /var/lib/tftpboot/bootstrap.ipxe
-		
- **Note**: Make sure you don't use `localhost` as the name of the Razor host. The bootstrap script chain-loads the next iPXE script from the Razor server. This means that it has to contain the correct hostname for clients to try and fetch that script from, or it isn't going to work.	
-		
-		
-###Verify the Razor Server 
+
+ **Note**: Make sure you don't use `localhost` as the name of the Razor host. The bootstrap script chain-loads the next iPXE script from the Razor server. This means that it has to contain the correct hostname for clients to try and fetch that script from, or it isn't going to work.
+
+
+###Verify the Razor Server
 
 Test the new Razor configuration: `wget http://${RAZOR_HOSTNAME}:${RAZOR_PORT}/api -O test.out`.
-	
+
 The command should execute successfully, and the output JSON file `test.out` should contain a list of available Razor commands.
 
 
 Install and Set Up the Razor Client
 -------------
 
-The Razor client is installed as a Ruby gem. 
+The Razor client is installed as a Ruby gem.
 
 1. Install the client:
 
 		gem install pe-razor-client --version 0.15.2
-		
+
 2. You can verify that the Razor client is installed by printing Razor help:
 
 		razor -u http://${RAZOR_HOSTNAME}:${RAZOR_PORT}/api
