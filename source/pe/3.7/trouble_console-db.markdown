@@ -18,6 +18,51 @@ Live management is enabled in the console by default when you install PE, but yo
 [install_upgrading]: ./install_upgrading.html#disabling/enabling-live-management-during-an-upgrade
 [normal_operations]: ./console_navigating_live_mgmt.html#disabling/enabling-live-management
 
+Using curl to Troubleshoot Classification Info in the PE Console
+--------
+
+
+In past versions, you could run an external node script to reach the PE console node classifier (NC) to troubleshoot node and group classification information in the console. Due to changes in console authentication, that external node script was removed. However, you can now curl the console to troubleshoot the NC. Consider the following examples:
+
+#### Determine what node groups the NC has and what data they contain
+
+Execute the following curl command from the Puppet master (monolithic install) or from the PE console (split install):
+
+    curl \
+    --cacert /etc/puppetlabs/puppet/ssl/certs/ca.pem \
+    --cert /opt/puppet/share/puppet-dashboard/certs/pe-internal-dashboard.cert.pem \
+    --key /opt/puppet/share/puppet-dashboard/certs/pe-internal-dashboard.private_key.pem \
+    https://$(hostname -f):4433/classifier-api/v1/groups > classifier_groups.json
+
+This will generate a file called `classifier_groups.json`. The JSON file is described in the [groups portion](./nc_groups.html#get-v1groups) of the NC API docs. 
+
+#### Determine what data the NC will generate for a given node name 
+
+**NOTE**: In the examples below replace `<SOME NODE NAME>` with the FQDN of the node you are interested in.
+
+Execute the following curl command from the Puppet master (monolithic install) or from the PE console (split install):
+
+     curl -X POST -H 'Content-Type: application/json' \
+     --cacert /etc/puppetlabs/puppet/ssl/certs/ca.pem \
+     --cert /opt/puppet/share/puppet-dashboard/certs/pe-internal-dashboard.cert.pem \
+     --key /opt/puppet/share/puppet-dashboard/certs/pe-internal-dashboard.private_key.pem \
+     https://$(hostname -f):4433/classifier-api/v1/classified/nodes/<SOME NODE NAME> > node_classification.json
+      
+This will generate a file called `node_classification.json`. The JSON file is described in the [classificatiopn portion](./nc_classification.html#post-v1classifiednodesname) of the NC API docs. 
+
+However, note that the above query will only return classification data for nodes that are [statically pinned](./console_classes_groups.html#adding-nodes-statically) to node groups. 
+
+To get classification data for [dynamically grouped nodes](./console_classes_groups.html#adding-nodes-dynamically), a JSON object containing facts will need to be submitted during the POST request. 
+
+     curl -X POST -H 'Content-Type: application/json' \
+     --data '{"fact":{"pe_version": "3.7.0"}}' \
+     --cacert /etc/puppetlabs/puppet/ssl/certs/ca.pem \
+     --cert /opt/puppet/share/puppet-dashboard/certs/pe-internal-dashboard.cert.pem \
+     --key /opt/puppet/share/puppet-dashboard/certs/pe-internal-dashboard.private_key.pem \
+     https://$(hostname -f):4433/classifier-api/v1/classified/nodes/<SOME NODE NAME> > node_classification.json
+    
+See the [classificatiopn portion](./nc_classification.html#post-v1classifiednodesname) of the NC API docs for more information on how to supply facts when making classification requests.
+
 PostgreSQL is Taking Up Too Much Space
 -----
 
