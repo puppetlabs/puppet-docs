@@ -41,7 +41,7 @@ Answer files are simply shell scripts that declare variables used by the install
 To obtain an answer file, you can:
 
 * Use one of the example files provided in the installer's `answers` directory.
-* Retrieve the `answers.lastrun` file from a node on which you've already installed PE.
+* Retrieve the `answers.lastrun.<HOSTNAME>` file from a node on which you've already installed PE. This file will be in the same directory from which you ran the installer.
 * Write one by hand.
 
 >**Tip**: If you want to use the answer file created from the web-based installer, you can find it at `/opt/puppet/share/installer/answers` on the machine from which you’re running the installer, but note that these answers are overwritten each time you run the installer.
@@ -95,17 +95,24 @@ Once you have your answer file, simply run the installer with the `-a` or `-A` o
 
 **Note**: For security reasons, when the installer runs, the answer file gets permissions changes. The permissions get set to owner `root`, permissions `600`.
 
+### After Installation---Answer File Retrieval
+
+When you run the installer with an answer file, the full answer file of what was actually installed can be found in the directory from where you ran the installer, at `answers.lastrun.<HOSTNAME>`.
+
+
+
 ### Answer File Options
 
--a ANSWER_FILE Read answers from file and quit with error if an answer is missing.
--A ANSWER_FILE Read answers from file and prompt for input if an answer is missing. Full answer file is saved at <unpacked tarball dir>/answers.lastrun.<hostname>
--D Display debugging information.  Must be run with the "-a" or  "-A" flag.
--h Display this help.
--l LOG_FILE Log commands and results to file.  Must be run with the "-a" or  "-A" flag.
--n Run in 'noop' mode; show commands that would have been run
-during installation without running them.  Must be run with the "-a" or  "-A" flag.
--q Run in quiet mode; the installation process is not displayed. Must be run with the "-a" flag.
--V Display very verbose debugging information. Must be run with the "-a" or  "-A" flag.
+You can add the following additional flags when you run the installer: 
+
+- `-a <PATH_to_ANSWER_FILE>`: The installer reads answers from the answer file and quits with error if an answer is missing.
+- `-A <PATH_to_ANSWER_FILE>`: The installer reads answers from the answer file and prompts for input if an answer is missing. 
+- `-D`: The installer will display debugging information. This option must be run with the `-a` or  `-A` flags.
+- `-h`: The installer will display help information.
+- `-l`: The installer will log commands and their results the installer log file. This option must be run with the `-a` or  `-A` flags.
+- `-n`: The installer will run in 'no-op' mode; the installer's output will show commands that would have been run during installation without running them. This option must be run with the `-a` or `-A` flags.
+- `-q`: The installer will run in quiet mode; the installation process wil not be displayed. This option must be run with the `-a` or  `-A` flags.
+- `-V`: The installer will display very verbose debugging information. This option must be run with the `-a` or  `-A` flags.
 
 ## Sample Answer Files
 
