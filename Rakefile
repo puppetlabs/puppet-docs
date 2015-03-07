@@ -326,7 +326,7 @@ end
 
 desc "Deploy the site to the production servers"
 task :deploy do
-  mirrors = ['mirror0']
+  mirrors = ['mirror0','mirror1']
   Rake::Task['build'].invoke
   mirrors.each do |mirror|
     sh "rake #{mirror} vlad:release"
