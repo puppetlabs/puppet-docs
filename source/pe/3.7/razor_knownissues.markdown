@@ -1,6 +1,6 @@
 ---
 layout: default
-title: " PE 3.7 » Razor » Setup Recommendations and Known Issues"
+title: " PE 3.8 » Razor » Setup Recommendations and Known Issues"
 subtitle: "Setup Information and Known Issues"
 canonical: "/pe/latest/razor_knownissues.html"
 

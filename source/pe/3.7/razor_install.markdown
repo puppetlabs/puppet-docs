@@ -1,6 +1,6 @@
 ---
 layout: default
-title: " PE 3.7 » Razor » Install Razor"
+title: " PE 3.8 » Razor » Install Razor"
 subtitle: "Install and Set Up Razor"
 canonical: "/pe/latest/razor_install.html"
 
@@ -17,18 +17,18 @@ If you're not a PE user, you can install the [open source version of Razor manua
 Things you should know before you set up provisioning:
 
 + **Do not** install Razor on the Puppet master.
-+ The default port for Razor is 8080. This is also the default port for PuppetDB, so you cannot have PuppetDB and Razor installed on the same node.
++ The default port for Razor is 8150. This is also the default port for PuppetDB, so you cannot have PuppetDB and Razor installed on the same node.
 + Razor has been specifically validated on RHEL/CentOS 6.4, but it should work on all 6.x versions. See the [CentOS site](http://isoredirect.centos.org/centos/6/isos/x86_64/) for options.
 
 >**Hint**: With the `export` command, you can avoid having to repeatedly replace placeholder text. The steps for installing assume you have declared a server name and the port to use for Razor with this command:
 >
 >     export RAZOR_HOSTNAME=<server name>
->     export RAZOR_PORT=8080
+>     export RAZOR_PORT=8150
 >
 > For example:
 >
 >	  export RAZOR_HOSTNAME=centos6.4
->	  export RAZOR_PORT=8080
+>	  export RAZOR_PORT=8150
 >
 > The steps below therefore use `$RAZOR_HOSTNAME` and `$RAZOR_PORT` for brevity.
 

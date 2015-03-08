@@ -1,6 +1,6 @@
 ---
 layout: default
-title: " PE 3.7 » Razor » Tags"
+title: " PE 3.8 » Razor » Tags"
 subtitle: "Using Razor Tags"
 canonical: "/pe/latest/razor_tags.html"
 

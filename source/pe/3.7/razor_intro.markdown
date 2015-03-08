@@ -1,6 +1,6 @@
 ---
 layout: default
-title: " PE 3.7 » Razor » Overview"
+title: " PE 3.8 » Razor » Overview"
 subtitle: "Bare-Metal Provisioning with Razor"
 canonical: "/pe/latest/razor_intro.html"
 
@@ -14,17 +14,11 @@ canonical: "/pe/latest/razor_intro.html"
 
 ##Introducing Razor
 
-Razor is an advanced provisioning application that can deploy both bare metal and virtual systems. Razor makes it easy to provision a node with no previously installed operating system and bring it under the management of Puppet Enterprise (PE). 
+Razor is an advanced provisioning application that can deploy both bare metal and virtual systems. Razor makes it easy to provision a node with no previously installed operating system and bring it under the management of Puppet Enterprise (PE).
 
-Razor's policy-based bare-metal provisioning lets you inventory and manage the lifecycle of your physical machines. With Razor, you can automatically discover bare-metal hardware, dynamically configure operating systems and/or hypervisors, and hand nodes off to PE for workload configuration. 
+Razor's policy-based bare-metal provisioning lets you inventory and manage the lifecycle of your physical machines. With Razor, you can automatically discover bare-metal hardware, dynamically configure operating systems and/or hypervisors, and hand nodes off to PE for workload configuration.
 
-Razor policies use discovered characteristics of the underlying hardware and user-provided data to make provisioning decisions. 
-
-####Razor As Tech Preview
-
-This is a Tech Preview release of Razor. This means you are getting early access to Razor technology so you can test the functionality and provide feedback. However, this Tech Preview version of Razor is not intended for production use because Puppet Labs cannot guarantee Razor's stability. As Razor is further developed, functionality might be added, removed or changed in a way that is not backward compatible with this Tech Preview version.
-
-For details about Tech Preview software from Puppet Labs, visit [Tech Preview Features Support Scope](http://puppetlabs.com/services/tech-preview).
+Razor policies use discovered characteristics of the underlying hardware and user-provided data to make provisioning decisions.
 
 
 ##How Razor Works

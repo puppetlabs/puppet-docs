@@ -1,12 +1,12 @@
 ---
 layout: default
-title: " PE 3.7 » Razor » Command Reference"
+title: " PE 3.8 » Razor » Command Reference"
 subtitle: "Razor API Reference"
 canonical: "/pe/latest/razor_reference.html"
 
 ---
 
-The Razor API is REST-based. For best results, use the following as the base URL for your calls:  `http://razor:8080/api`.
+The Razor API is REST-based. For best results, use the following as the base URL for your calls:  `http://razor:8150/api`.
 
 **Note:** The following sections contain some example URLs that might be structured differently from the URLs your server uses.
 
@@ -17,7 +17,7 @@ Two attributes are commonly used to identify objects:
 + `name` is used for a short, human-readable reference to an object, generally only unique amongst objects of the same type on the same server.
 
 ### `/api` reference
-The base URL `http://razor:8080/api` fetches the top-level entry point for navigating through the Razor command and query facilities. This is a JSON object with the following keys:
+The base URL `http://razor:8150/api` fetches the top-level entry point for navigating through the Razor command and query facilities. This is a JSON object with the following keys:
 
   * `collections`: read-only queries available on this server.
   * `commands`: the commands available on this server.
@@ -464,14 +464,14 @@ Different types of objects might specify other properties by defining additional
 
     [
       {
-        "spec": "http://localhost:8080/spec/object/tag",
-        "id": "http://localhost:8080/api/collections/objects/14",
+        "spec": "http://localhost:8150/spec/object/tag",
+        "id": "http://localhost:8150/api/collections/objects/14",
         "name": "virtual",
         "rule": [ "=", [ "fact", "is_virtual" ], true ]
       },
       {
-        "spec": "http://localhost:8080/spec/object/tag",
-        "id": "http://localhost:8080/api/collections/objects/27",
+        "spec": "http://localhost:8150/spec/object/tag",
+        "id": "http://localhost:8150/api/collections/objects/27",
         "name": "group 4",
         "rule": [
           "in", [ "fact", "dhcp_mac" ],

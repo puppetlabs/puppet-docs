@@ -1,6 +1,6 @@
 ---
 layout: default
-title: " PE 3.7 » Razor » Brokers"
+title: " PE 3.8 » Razor » Brokers"
 subtitle: "Writing Broker Types"
 canonical: "/pe/latest/razor_brokertypes.html"
 

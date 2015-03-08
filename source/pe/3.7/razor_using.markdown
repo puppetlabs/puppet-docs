@@ -1,6 +1,6 @@
 ---
 layout: default
-title: " PE 3.7 » Razor » Provisioning Setup"
+title: " PE 3.8 » Razor » Provisioning Setup"
 subtitle: "Set Up Razor Provisioning"
 canonical: "/pe/latest/razor_using.html"
 
@@ -120,7 +120,7 @@ Next, verify that your machine can PXE boot from the Razor server and register i
 
 	Identify a node in the list of registered nodes. The format should look like this:
 
-		id: "http://localhost:8080/api/collections/nodes/node1"
+		id: "http://localhost:8150/api/collections/nodes/node1"
 		name: "node1"
 		spec: "/razor/v1/collections/nodes/member"
 

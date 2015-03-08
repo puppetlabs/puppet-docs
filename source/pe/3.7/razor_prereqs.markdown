@@ -1,16 +1,16 @@
 ---
 layout: default
-title: " PE 3.7 » Razor » Set Up a Virtual Environment for Razor"
-subtitle: "Install and Set Up a Virtual Environment for Testing Razor"
+title: " PE 3.8 » Razor » Set Up a Razor Environment"
+subtitle: "Install and Set Up an Environment for Razor"
 canonical: "/pe/latest/razor_prereqs.html"
 
 ---
 
-Razor is a powerful tool created to automatically discover bare-metal hardware and dynamically configure operating systems and/or hypervisors. With this power comes the responsibility to test Razor carefully. Razor is also currently a [Tech Preview release](http://puppetlabs.com/services/tech-preview). For these reasons, we highly recommend that you install and test Razor in a completely isolated test environment.
+Razor is a powerful tool created to automatically discover bare-metal hardware and dynamically configure operating systems and/or hypervisors. Because Razor will install on any eligible system, we highly recommend that you test Razor in an isolated test environment before you install it in your production environment.
 
-The following sections provide the steps for a basic setup that you can use to evaluate Razor. The setup steps below use dnsmasq; however, you can use any DHCP and TFTP service with Razor.
+The following sections describe the environment necessary for running Razor. This set up   uses dnsmasq; however, you can use any DHCP and TFTP service with Razor.
 
->**Warning**: Proceed with caution. We recommend testing on a completely isolated test environment because running a second DHCP server on your company's network could bring down the network. In addition, running a second DHCP server that will boot into the Razor microkernel and register with the server has a bigger risk. In such a case, if someone has established a policy that node matches, a simple reboot could cause Razor to replace a server with a fresh OS install.
+>**Warning**: We recommend first testing Razor on a completely isolated test environment because running a second DHCP server on your company's network could bring down the network. In addition, running a second DHCP server that will boot into the Razor microkernel and register with the server has a bigger risk. In such a case, if someone has established a policy that node matches, a simple reboot could cause Razor to replace a server with a fresh OS install.
 
 ###Before You Begin
 
@@ -19,9 +19,9 @@ Things you should know before you set up provisioning:
 + Razor has been specifically validated on RHEL/CentOS 6.4, but it should work on all 6.x versions. See the [CentOS site](http://isoredirect.centos.org/centos/6/isos/x86_64/) for options.
 + The Razor microkernel is 64-bit only. Razor can only provision 64-bit machines.
 
-##Install Overview
+##Installation Overview
 
-Below are the essential steps to create a virtual test environment. Each of these steps is described in more detail in the following sections.
+Below are the essential steps . Each of these steps is described in more detail in the following sections.
 
 1. Install PE in your virtual environment.
 2. Install and configure DHCP/DNS/TFTP service.
@@ -34,7 +34,7 @@ When you finish this section, go on to [Install and Set Up Razor](./razor_instal
 
 ###Install PE in Your Virtual Environment
 
-In your virtual testing environment, set up a Puppet master running a standard install of Puppet Enterprise 3.7. For more information, see [Installing Puppet Enterprise](./install_basic.html).
+In your virtual testing environment, set up a Puppet master running a standard install of Puppet Enterprise 3.8. For more information, see [Installing Puppet Enterprise](./install_basic.html).
 
 **Note**: We're finding that VirtualBox 4.3.6 gets to the point of downloading the microkernel from the Razor server and hangs at 0% indefinitely. We don't have this problem with VirtualBox 4.2.22.
 
