@@ -17,6 +17,10 @@ Values for parameters and variables can be specified in the console using string
 
 For more information on the syntax and restrictions for string interpolation in the console, see [Tips on specifying parameter and variable values](./console_classes_groups.markdown#setting-class-parameters).
 
+### Verifying Certificates For External LDAP Directories
+
+In this release, we added the ability to verify an SSL certificate for a directory server when configuring the RBAC service to connect to an external directory server. For more information, see the [RBAC documentation](./rbac_ldap.html#Verify-Directory-Server-Certificates).
+
 ## Significant Changes in PE 3.8.0
 
 ### Cloud Provisioner is Deprecated
