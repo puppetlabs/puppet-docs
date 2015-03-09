@@ -26,12 +26,15 @@ Related pages:
 
 ### Disabling/Enabling Live Management
 
-In some cases, after you install PE, you may find that your workflow requires live management to be disabled. You can disable/enable live management at any time by editing the `disable_live_management` setting in `/etc/puppetlabs/puppet-dashboard/settings.yml` on the Puppet master. Note that after making your change, you must run `sudo /etc/init.d/pe-httpd restart` to complete the process.
+Live Management is deprecated in PE 3.8.0 and will be replaced by improved resource management functionality in future releases. For this reason, Live Management is not enabled by default as in previous versions of PE.
 
-By default, `disable_live_managment` is set to `false`, but you can also configure your [answer file installations][install_automated] or [upgrades][install_upgrading] to disable/enable live management as needed during installation or upgrade.
+However, if you install PE with [an answer file][install_automated], and set `q_disable_live_management` to "n", Live Management will be enabled. (Note that the default to `q_disable_live_management` is "y".) Enabling Live Management via the web-based installer is not available. 
+
+Upgrades to 3.8 will not affect the status of Live Management in the pre-upgraded version unless `q_disable_live_management=y` is explicitly set in an answer file during the upgrade. 
+
+You can enable/disable Live Management at any time during normal operations by editing the `disable_live_management` setting in `/etc/puppetlabs/puppet-dashboard/settings.yml` on the Puppet master (for mono installs) or on the PE console (for split installs). Note that after making your change, you must run `sudo /etc/init.d/pe-httpd restart` to complete the process.
 
 [install_automated]: ./install_automated.html
-[install_upgrading]: ./install_upgrading.html#enabling_disabling-live-management-during-an-upgrade
 
 The Node List
 -----

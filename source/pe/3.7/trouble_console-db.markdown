@@ -13,7 +13,7 @@ Below are some common issues that can cause trouble with the databases that supp
 Disabling/Enabling Live Management
 -------
 
-Live management is enabled in the console by default when you install PE, but you can configure your installation to disable it. In addition, live management can be disabled/enabled during [upgrades][install_upgrade] or [normal operations][normal_operations].
+Live Management is deprecated in PE 3.8.0 and will be replaced by improved resource management functionality in future releases. For this reason, Live Management is not enabled by default as in previous versions of PE, but you can configure your installation to enable it. Live Management can be disabled/enabled during [upgrades][install_upgrade] or during [normal operations][normal_operations].
 
 [install_upgrading]: ./install_upgrading.html#disabling/enabling-live-management-during-an-upgrade
 [normal_operations]: ./console_navigating_live_mgmt.html#disabling/enabling-live-management
