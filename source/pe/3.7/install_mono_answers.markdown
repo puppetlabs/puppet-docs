@@ -75,8 +75,8 @@ These answers are generally needed if you are installing the Puppet master compo
 
 If you wish to disable update checks (e.g. if your company policy forbids transmitting this information), you will need to set this to "n". You can also disable checking after installation by editing the `/etc/puppetlabs/installer/answers.install` file.
 
-`q_disable_live_manangement=n`
-: **Y** or **N** --- Whether to disable or enable live management in the console. Note that you need to manually add this question to your answer to file before an installation or upgrade.
+`q_disable_live_manangement=y`
+: **Y** or **N** --- Whether to disable or enable live management in the console. Note that you need to manually add this question to your answer to file before an installation or upgrade. In fresh installs of PE 3.8.0, Live Management is disabled by default.
 
 `q_puppet_enterpriseconsole_httpd_port=443`
 : **Integer** --- The port on which to serve the console. The default is port 443, which will allow access to the console from a web browser without manually specifying a port. If port 443 is not available, the installer will try port 3000, 3001, 3002, 3003, 3004, and 3005.
