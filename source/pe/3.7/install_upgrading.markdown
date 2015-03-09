@@ -126,9 +126,9 @@ In addition if you are using an external PostgreSQL instance that is not managed
 
 #### Disabling/Enabling Live Management During an Upgrade
 
-Live Management is deprecated in PE 3.8.0 and will be replaced by improved resource management functionality in future releases. However, the status of Live Management is not managed during an upgrade of PE unless you specifically indicate a change is needed in an answer file. In other words, if your pre-upgrade version of PE has live management enabled, it will remain enabled after you upgrade unless you explicitly add `q_disable_live_manangement=y` in an answer file.
+Live Management is deprecated in PE 3.8.0 and will be replaced by improved resource management functionality in future releases. However, the status of Live Management is not managed during an upgrade of PE unless you specifically indicate a change is needed in an answer file. In other words, if your pre-upgrade version of PE has Live Management enabled, it will remain enabled after you upgrade unless you explicitly add `q_disable_live_manangement=y` in an answer file.
 
-The `disable_live_management` setting in `/etc/puppetlabs/puppet-dashboard/settings.yml` on the Puppet master (or PE console node in a split install) controls the enabling/disabling of live management, and it can be set to either `true` or `false`. You can enable/disable Live Management at any time during normal operations by editing this setting and then running `sudo /etc/init.d/pe-httpd restart`.
+The `disable_live_management` setting in `/etc/puppetlabs/puppet-dashboard/settings.yml` on the Puppet master (or PE console node in a split install) controls the enabling/disabling of Live Management, and it can be set to either `true` or `false`. You can enable/disable Live Management at any time during normal operations by editing this setting and then running `sudo /etc/init.d/pe-httpd restart`.
 
 ### Classify PE Groups
 
