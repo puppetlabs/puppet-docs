@@ -7,7 +7,9 @@ canonical: "/pe/latest/puppet_config.html"
 
 ### Configuration Files
 
-All of puppet's configuration files can be found in `/etc/puppetlabs/puppet/` on *nix systems. On Windows, you can find them in [Puppet's data directory](/guides/install_puppet/install_windows.html#data-directory).
+All of puppet's configuration files can be found in `/etc/puppetlabs/puppet/` on *nix systems. This is PE's default `$confdir`. **Do not change this `$confdir` location,** as doing so will will break the functionality of your PE infrastructure. 
+
+On Windows, you can find them in [Puppet's data directory](/guides/install_puppet/install_windows.html#data-directory).
 
 ### References
 

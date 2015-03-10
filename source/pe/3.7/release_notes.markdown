@@ -17,6 +17,10 @@ Values for parameters and variables can be specified in the console using string
 
 For more information on the syntax and restrictions for string interpolation in the console, see [Tips on specifying parameter and variable values](./console_classes_groups.markdown#setting-class-parameters).
 
+### Verifying Certificates For External LDAP Directories
+
+In this release, we added the ability to verify an SSL certificate for a directory server when configuring the RBAC service to connect to an external directory server. For more information, see the [RBAC documentation](./rbac_ldap.html#Verify-Directory-Server-Certificates).
+
 ## Significant Changes in PE 3.8.0
 
 ### Cloud Provisioner is Deprecated
@@ -27,7 +31,7 @@ Instead of Cloud Provisioner, we recommend using the AWS Supported Module going 
 
 ### Live Management is Deprecated
 
-Live Management is deprecated in PE 3.8.0 and will be replaced by improved resource management functionality in future releases. For this reason, Live Management is not installed by default as in previous versions of PE. If you have been using Live Management in your existing PE infrastructure and would like to continue using it with PE 3.8, see the instructions for installing Live Management in the PE documentation.
+Live Management is deprecated in PE 3.8.0 and will be replaced by improved resource management functionality in future releases. For this reason, Live Management is not enabled by default as in previous versions of PE. If you have been using Live Management in your existing PE infrastructure and would like to continue using it with PE 3.8, see the instructions for [enabling Live Management](./console_navigating_live_mgmt.html#disabling/enabling-live-management) in the PE documentation.
 
 ### Some Master Platforms are Deprecated
 

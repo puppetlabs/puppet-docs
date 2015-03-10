@@ -75,8 +75,8 @@ These answers are always needed.
 ### Puppet Master Answers
 These answers are generally needed if you are installing the Puppet master component.
 
-`q_disable_live_manangement=n`
-: **Y** or **N** --- Whether to disable or enable live management in the console. Note that you need to manually add this question to your answer to file before an installation or upgrade.
+`q_disable_live_manangement=y`
+: **Y** or **N** --- Whether to disable or enable live management in the console. Note that you need to manually add this question to your answer to file before an installation or upgrade. In fresh installs of PE 3.8.0, Live Management is disabled by default.
 
 `q_pe_database=y`
 : **Y** or **N** --- Whether to have the PostgreSQL server for the console managed by PE or to manage it yourself. Set to "Y" if you're using PE-managed PostgreSQL.
