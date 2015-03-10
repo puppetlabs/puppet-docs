@@ -233,7 +233,7 @@ Assuming a hierarchy of:
       - base::linux
       - localrepos::apt
 
-    # web01.example.com
+    # web01.example.com.yaml
     ---
     classes:
       - apache
