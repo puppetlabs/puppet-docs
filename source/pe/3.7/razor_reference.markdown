@@ -322,7 +322,7 @@ To remove a node's association with any policy and clear its `installed` flag, p
       "name": "node17"
     }
 
-Once the node reboots, it boots back into the Microkernel, goes through discovery and tag matching, and can be bound to another policy. This command does not change the node's metadata or facts.
+Once the node reboots, it boots back into the microkernel, goes through discovery and tag matching, and can be bound to another policy. This command does not change the node's metadata or facts.
 
 ### Set node IPMI credentials (`set-node-ipmi-credentials`)
 
