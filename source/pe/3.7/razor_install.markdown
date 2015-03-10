@@ -17,8 +17,8 @@ If you're not a PE user, you can install the [open source version of Razor manua
 Things you should know before you set up provisioning:
 
 + **Do not** install Razor on the Puppet master.
-+ The default port for Razor is 8150. This is also the default port for PuppetDB, so you cannot have PuppetDB and Razor installed on the same node.
-+ Razor has been specifically validated on RHEL/CentOS 6.4, but it should work on all 6.x versions. See the [CentOS site](http://isoredirect.centos.org/centos/6/isos/x86_64/) for options.
++ The default port for Razor is 8150.
++ Razor has been validated on RHEL/CentOS 6.x and 7.x versions.
 
 >**Hint**: With the `export` command, you can avoid having to repeatedly replace placeholder text. The steps for installing assume you have declared a server name and the port to use for Razor with this command:
 >
