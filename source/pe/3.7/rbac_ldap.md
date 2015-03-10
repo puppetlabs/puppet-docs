@@ -73,6 +73,17 @@ If you select **Connect using SSL** when setting up your external directory conn
 
 The RBAC service verifies directory server certificates using a trust store file, in Java Key Store (JKS) or PKCS12 format, that contains the chain of trust for the directory server's certificate. This file needs to exist on disk in a location that is readable by the user running the RBAC service.
 
-To turn on verification, set the value of the `ds-trust-store` key in `/etc/puppetlabs/console-services/conf.d/rbac.conf` to be the absolute path to the trust store file. Once this value is set, the directory server's certificate will be verified whenever RBAC is configured to connect to the directory server using SSL.
+To turn on verification, set the value of the `ds-trust-chain` key in `/etc/puppetlabs/console-services/conf.d/rbac.conf` to be the absolute path to the trust store file. Once this value is set, the directory server's certificate will be verified whenever RBAC is configured to connect to the directory server using SSL.
+
+Example of `rbac.conf`:
+
+
+	rbac: {
+  	certificate-whitelist: "/etc/puppetlabs/console-services/rbac-certificate-whitelist"
+  	token-private-key: "/opt/puppet/share/console-services/certs/ubuntu1404.private_key.pem"
+  	token-public-key: "/opt/puppet/share/console-services/certs/ubuntu1404.cert.pem"
+  	ds-trust-chain: "/opt/puppet/share/console-services/certs/example.pem"
+	}
+
 
 Next, see [Working with Users and User Groups from an External Directory Service](./rbac_user_roles.html#working-with-users-and-user-groups-from-an-external-directory-service).
