@@ -16,7 +16,7 @@ The following sections describe the environment necessary for running Razor. Thi
 
 Things you should know before you set up provisioning:
 
-+ Razor has been specifically validated on RHEL/CentOS 6.4, but it should work on all 6.x versions. See the [CentOS site](http://isoredirect.centos.org/centos/6/isos/x86_64/) for options.
++ Razor has been validated on RHEL/CentOS 6.x and 7.x versions.
 + The Razor microkernel is 64-bit only. Razor can only provision 64-bit machines.
 
 ##Installation Overview

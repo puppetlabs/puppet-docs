@@ -8,6 +8,7 @@ canonical: "/pe/latest/razor_windows_install.html"
 Before you can provision machines with Windows, you must create the Windows install. For licensing reasons, you need to have your own copies of Windows available: both the installer content, and the [Windows Assessment and Deployment](http://msdn.microsoft.com/en-us/library/windows/hardware/hh825486.aspx) toolkit, containing the Windows Preinstallation Environment (WinPE) that's used to automate the Windows installer.
 
 The Windows installer support has been tested with:
+
  * WinPE 4 AMD64 built on Windows 8.0 AMD64
  * VMWare Fusion virtual machine
  * Windows 8 Professional installed to virtual machine
