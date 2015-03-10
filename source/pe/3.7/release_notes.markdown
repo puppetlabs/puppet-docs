@@ -25,7 +25,7 @@ In this release, we added the ability to verify an SSL certificate for a directo
 
 ### Cloud Provisioner is Deprecated
 
-Cloud Provisioner is deprecated in this release and will eventually be removed from Puppet Enterprise. For this reason, Cloud Provisioner is not installed by default as in previous versions of PE. If you have been using Cloud Provisioner in your existing PE infrastructure and would like to continue using it upon upgrading, you can install it separately, as described in the [Installing section of Cloud Provisioner documentation](./cloudprovisioner_configuring.html#installing).
+Cloud Provisioner is deprecated in this release and will eventually be removed from Puppet Enterprise. For this reason, Cloud Provisioner is not installed by default as in previous versions of PE. If you have been using Cloud Provisioner in your existing PE infrastructure and would like to continue using it, you can install it separately, as described in the [Installing section of Cloud Provisioner documentation](./cloudprovisioner_configuring.html#installing).
 
 Instead of Cloud Provisioner, we recommend using the AWS Supported Module going forward.
 

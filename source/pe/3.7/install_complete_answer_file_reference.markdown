@@ -55,7 +55,7 @@ These answers are always needed.
 : **Y or N** --- Whether to install the Puppet agent role.
 
 `q_puppet_cloud_install`
-: **Y or N** --- Whether to install the cloud provisioner role.
+: **Y or N** --- Whether to install the cloud provisioner role. In fresh installs of PE 3.8.0, Cloud Provisioner is not installed.
 
 
 ### Puppet Agent Answers
@@ -122,7 +122,7 @@ These answers are generally needed if you are installing the console role.
 : **Integer** --- The port where the PostgreSQL server that supports the console can be reached.
 
 `q_disable_live_manangement`
-: **Y or N** --- Whether to disable or enable live management in the console. Note that you need to manually add this question to your answer to file before an installation or upgrade.
+: **Y or N** --- Whether to disable or enable live management in the console. Note that you need to manually add this question to your answer to file before an installation or upgrade. In fresh installs of PE 3.8.0, Live Management is disabled by default.
 
 `q_pe_database`
 : **Y or N** --- Whether to have the Postgres server for the console installed by PE or to manage it yourself. Used for classifying PuppetDB in the console, so it knows whether or not to manage the database.

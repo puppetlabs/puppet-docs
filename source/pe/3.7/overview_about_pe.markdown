@@ -67,8 +67,9 @@ PE's console is the web front-end for managing your systems. The console can:
 About the Cloud Provisioning Tools
 -----
 
-PE includes command line tools for building new nodes, which can create new VMware, Google Compute Engine, Openstack, and Amazon EC2 instances, install PE on any virtual or physical machine, and classify newly provisioned nodes within your Puppet infrastructure.
+Cloud Provisioner is deprecated in this release and will eventually be removed from Puppet Enterprise. For this reason, Cloud Provisioner is not installed by default as in previous versions of PE. If you have been using Cloud Provisioner in your existing PE infrastructure and would like to continue using it you can install it separately, as described in the [Installing section of Cloud Provisioner documentation](./cloudprovisioner_configuring.html#installing).
 
+Instead of Cloud Provisioner, we recommend using the AWS Supported Module going forward.
 
 Licensing
 -----

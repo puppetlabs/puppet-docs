@@ -183,13 +183,9 @@ As indicated in the "Database Support" section above, the console database relie
 
 ### The Cloud Provisioner
 
-This component is automatically installed when you install PE using the web-based installation method. You can opt out of the cloud provisioning tools by performing an installation with an answers file. If you wish to use cloud provisioning, you should install PE on a system where administrators have shell access. Since it requires confidential information about your cloud accounts to function, it should be installed on a secure system.
+Cloud Provisioner is deprecated in this release and will eventually be removed from Puppet Enterprise. For this reason, Cloud Provisioner is not installed by default as in previous versions of PE. If you have been using Cloud Provisioner in your existing PE infrastructure and would like to continue using it you can install it separately, as described in the [Installing section of Cloud Provisioner documentation](./cloudprovisioner_configuring.html#installing).
 
-Administrators can use the cloud provisioner tools to:
-
-* create new VMware and Amazon EC2 virtual machine instances.
-* install Puppet Enterprise on any virtual or physical system.
-* add newly provisioned nodes to a group in the console.
+Instead of Cloud Provisioner, we recommend using the AWS Supported Module going forward.
 
 Notes, Warnings, and Tips
 ---------

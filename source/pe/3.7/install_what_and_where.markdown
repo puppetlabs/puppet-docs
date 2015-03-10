@@ -142,7 +142,6 @@ PE 3.7 includes the following major software components:
  * MCollective 2.6.0
  * ActiveMQ 5.9.0
  * Live Management: 1.3.1
- * Cloud Provisioner 1.1.7
  * Hiera 1.3.4
  * Dashboard 2.1.6
  * PostgreSQL 9.2.10
