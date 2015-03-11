@@ -6,7 +6,7 @@ canonical: "/pe/latest/razor_reference.html"
 
 ---
 
-The Razor API is REST-based. For best results, use the following as the base URL for your calls:  `http://razor:8150/api`.
+The Razor API is REST-based. The recommended base URL for your calls is  `https://razor:8151/api`.
 
 **Note:** The following sections contain some example URLs that might be structured differently from the URLs your server uses.
 
@@ -17,7 +17,7 @@ Two attributes are commonly used to identify objects:
 + `name` is used for a short, human-readable reference to an object, generally only unique amongst objects of the same type on the same server.
 
 ### `/api` reference
-The base URL `http://razor:8150/api` fetches the top-level entry point for navigating through the Razor command and query facilities. This is a JSON object with the following keys:
+By default, API calls are sent over HTTPS with TSL/SSL. The base URL is `https://razor:8151/api`. This fetches the top-level entry point for navigating through the Razor command and query facilities. This is a JSON object with the following keys:
 
   * `collections`: read-only queries available on this server.
   * `commands`: the commands available on this server.
@@ -30,7 +30,9 @@ Each of those keys contains a JSON array, with a sequence of JSON objects that h
 
 ### `/svc` URLs
 
-The `/svc` namespace is an internal namespace, used for communication with the iPXE client, the microkernel, and other internal components of Razor.
+The `/svc` namespace is an internal namespace, used for communication with the iPXE client, the microkernel, and other internal components of Razor. Since Razor deals with installing machines from scratch, there are no existing security considerations in place when making `/svc` calls.
+
+Therefore, for `/svc` namespace messages, use the base URL `http://razor:8150/svc`.
 
 This namespace is not enumerated under `/api`.
 
