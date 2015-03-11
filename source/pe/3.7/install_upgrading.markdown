@@ -8,15 +8,17 @@ canonical: "/pe/latest/install_upgrading.html"
 
 ## Upgrading Overview
 
-> **Important**: Before upgrading, please review [Important Information about Upgrades to PE 3.7 and Directory Environments](./install_upgrading_dir_env_notes.html), as some user action is required. Please also review [Upgrading Puppet Enterprise: Notes and Warnings](install_upgrading_notes.html), which includes important information about upgrading to the new node classifier and the new Puppet Server running on the Puppet master.
->
-> Currently upgrades to PE 3.7.0 are only supported from 3.3.2.
->
-> We generally recommend updating your PE deployments in full before upgrading to a new version. We also recommend [cleaning old reports](./maintain_console-db.html#cleaning-old-reports) and [pruning your database](./maintain_console-db.html#pruning-the-console-database-with-a-cron-job), to reduce the time it takes to upgrade.
+> **IMPORTANT**: **READ BEFORE UPGRADING**: If you are upgrading and you use the PE console for node classification, follow the steps in the [node classification migration process doc](./install_upgrade_migration_tool.html) **BEFORE** performing your upgrade. The steps in the migration process doc provide a smooth upgrade path from PE 3.3.2 to PE 3.8.   
+
+Before upgrading, please review [Important Information about Upgrades to PE 3.7 and Directory Environments](./install_upgrading_dir_env_notes.html), as some user action is required. Please also review [Upgrading Puppet Enterprise: Notes and Warnings](install_upgrading_notes.html), which includes important information about upgrading to the new node classifier and the new Puppet Server running on the Puppet master.
 
 The Puppet Installer script is used to perform both installations and upgrades. The script will check for a prior version and run as upgrader or installer as needed. You start by [downloading][downloading] and unpacking a tarball with the appropriate version of the PE packages for your system. Then, when you run the `puppet-enterprise-installer` script, the script will check for a prior installation of PE and, if it detects one, will ask if you want to proceed with the upgrade. The installer will then upgrade all the PE components (master, agent, etc.) it finds on the node to version 3.7.
 
->**Note**: When you upgrade PE, older versions are left in your `/opt/puppet/packages/public` folder. They won't cause any problems, but if you want to save space, you can remove the old PE files that are no longer needed from this folder.
+>**Notes**: 
+>
+>We generally recommend updating your PE deployments in full before upgrading to a new version. We also recommend [cleaning old reports](./maintain_console-db.html#cleaning-old-reports) and [pruning your database](./maintain_console-db.html#pruning-the-console-database-with-a-cron-job), to reduce the time it takes to upgrade.
+>
+>When you upgrade PE, older versions are left in your `/opt/puppet/packages/public` folder. They won't cause any problems, but if you want to save space, you can remove the old PE files that are no longer needed from this folder.
 
 ## Download PE
 
@@ -27,6 +29,24 @@ If you haven't done so already, you will need a Puppet Enterprise tarball approp
 Once downloaded, copy the appropriate tarball to each node you'll be upgrading.
 
 Before starting the upgrade, all of the components (agents, master, console, etc.) in your current deployment should be correctly configured and communicating with each other, and live management should be up and running with all nodes connected.
+
+## Back Up Your Databases and Other PE Files
+
+   Before proceeding with your upgrade, we recommend that you back up the following databases and PE files.
+
+   On a monolithic install, the databases and PE files will all be located on the same node as the puppet master.
+
+   - `/etc/puppetlabs/`
+   - `/opt/puppet/share/puppet-dashboard/certs`
+   - [The console and console_auth databases](./maintain_console-db.html#database-backups)
+   - [The PuppetDB database](/puppetdb/1.6/migrate.html#exporting-data-from-an-existing-puppetdb-database)
+
+   On a split install, the databases and PE files will be located across the various components assigned to your servers.
+
+   - `/etc/puppetlabs/`: different versions of this directory can be found on the server assigned to the puppet master component, the server assigned to the console component, and the server assigned to the database support component (i.e., PuppetDB and PostgreSQL). You should back up each version.
+   - `/opt/puppet/share/puppet-dashboard/certs`: located on the server assigned to the console component.
+   - The console and console_auth databases: located on the server assigned to the database support component.
+   - The PuppetDB database: located on the server assigned to the database support component.
 
 ## Upgrading a Monolithic Installation
 
