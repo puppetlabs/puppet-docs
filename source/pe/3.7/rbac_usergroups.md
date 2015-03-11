@@ -147,3 +147,13 @@ are ignored.
 **Returns:**
 
 * **200 OK** The group object with updated roles.
+
+### DELETE /groups/:sid
+Deletes the user group with the specified ID from RBAC without making any
+changes to the directory service. Web session authentication required.
+
+**Returns:**
+
+* **204 No Content** The user group was successfully deleted.
+* **403 Forbidden** The user does not have the "user_groups:delete" permission for this user group.
+* **404 Not Found** A user group with the given identifier does not exist.
