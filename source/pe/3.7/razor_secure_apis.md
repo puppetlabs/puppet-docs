@@ -8,7 +8,7 @@ canonical: "/pe/latest/razor_secure_apis.html"
 
 This section describes how to set up your Razor configuration to make all `/api` calls on port 8151 over HTTPS with TLS/SSL. This is already the default configuration if you're a Puppet Enterprise (PE) user using Razor on a Puppet-managed node; no configuration is required in that case. These steps are intended for those using Razor in an environment that's not Puppet managed, or who want to insert their own CA certificate.
 
-Since Razor deals with installing machines from scratch, there are no existing security considerations in place. Therefore, messages to the `/svc` namespace, the internal namespace used for communication with the iPXE client, the microkernel, and other internal components of Razor, are not secured. `/api` calls, however, are allowed to change the
+Since Razor deals with installing machines from scratch, there are no existing security considerations in place for the early stages of provisioning. Therefore, messages to the `/svc` namespace, the internal namespace used for communication with the iPXE client, the microkernel, and other internal components of Razor, are not secured. `/api` calls, however, are allowed to change the
 Razor server and are eligible for some basic security measures.
 
 To take advantage of this security option, we recommended this setup:
@@ -22,14 +22,14 @@ The following sections describe how to set this configuration on your Razor serv
 
 1. In your config.yaml file, make sure that `secure_api` is set to `true`.
 This will disallow insecure access to `/api` because `secure_api` is a config property that determines whether calls to `/api` must be secure in order to be processed.
-2. Self-sign a certificate. There are several ways to do this; the most basic is to use the Java `keytool` command, which creates a certificate file called `keystore.jks` in the current working directory. The default password in that command is simply `password`. Fill in the properties as follows:
+2. Self-sign a certificate or use your own ".jks" or ".ks" file. There are several ways to self-sign your own certificate; the most basic is to use the Java `keytool` command, which creates a certificate file called `keystore.jks` in the current working directory. The default password in that command is simply `password`. Fill in the properties as follows:
 
    		keytool -genkey -keyalg RSA -alias selfsigned -keystore keystore.jks -storepass password -keypass password -validity 3600 -keysize 2048 -dname "CN=Unknown, OU=Unknown, O=Unknown, L=Unknown, S=Unknown, C=Unknown"
 
 
 3. Configure Torquebox using the file, `standalone.xml`, to accomplish two things:
 
-	* Add a web connector for HTTPS.
+	* Add a web connector for HTTPS that uses the .jks/.ks file from the previous step.
 	* Add a socket binding to the existing socket binding group.
 
 	The exact location of this file might vary. The command `find / -name standalone.xml` should locate it.
@@ -41,7 +41,7 @@ This will disallow insecure access to `/api` because `secure_api` is a config pr
            	<ssl name="https" key-alias="selfsigned" password="password" certificate-key-file="$PATH_TO_FILE" />
        	</connector>
 
-	The `$PATH_TO_FILE` should be modified to a permanent location for the `keystore.jks` file. `selfsigned` and `password` are both from the command above and may need to change.
+	The `$PATH_TO_FILE` should be modified to a permanent location for the `keystore.jks` or other .jks/.ks file. `selfsigned` and `password` are both from the command above and may need to change.
 
    To add a socket binding to the existing socket binding group, include these two lines:
 
