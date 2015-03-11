@@ -9,8 +9,8 @@
     <link rel='index' title='Puppet Labs Documentation' href='https://docs.puppetlabs.com' />
     <link rel='icon' href='/favicon.ico' />
 
-     {% capture description %}{% if page.description %}{{ page.description }}{% else %}{{ content }}{% endif %}{% endcapture %}
-  <meta name="description" content="{{ description | strip_html | strip_newlines | condense_spaces | truncate:150 }}">
+     {% capture description %}{% if page.description %}{{ page.description }}{% else %}{{ content | truncate:300 | strip_html | strip_newlines | condense_spaces }}{% endif %}{% endcapture %}
+  <meta name="description" content="{{ description }}">
 
       <!--[if gte IE 9]>
       <style type="text/css">
