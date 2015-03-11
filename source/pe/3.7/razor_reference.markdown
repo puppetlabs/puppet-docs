@@ -32,8 +32,6 @@ Each of those keys contains a JSON array, with a sequence of JSON objects that h
 
 The `/svc` namespace is an internal namespace, used for communication with the iPXE client, the microkernel, and other internal components of Razor. Since Razor deals with installing machines from scratch, there are no existing security considerations in place when making `/svc` calls.
 
-Therefore, for `/svc` namespace messages, use the base URL `http://razor:8150/svc`.
-
 This namespace is not enumerated under `/api`.
 
 ## Commands
@@ -466,14 +464,14 @@ Different types of objects might specify other properties by defining additional
 
     [
       {
-        "spec": "http://localhost:8150/spec/object/tag",
-        "id": "http://localhost:8150/api/collections/objects/14",
+        "spec": "http://api.puppetlabs.com/razor/v1/collections/tags/member",
+        "id": "https://localhost:8151/api/collections/objects/14",
         "name": "virtual",
         "rule": [ "=", [ "fact", "is_virtual" ], true ]
       },
       {
-        "spec": "http://localhost:8150/spec/object/tag",
-        "id": "http://localhost:8150/api/collections/objects/27",
+        "spec": "http://api.puppetlabs.com/razor/v1/collections/tags/member",
+        "id": "https://localhost:8151/api/collections/objects/27",
         "name": "group 4",
         "rule": [
           "in", [ "fact", "dhcp_mac" ],

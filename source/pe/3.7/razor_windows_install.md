@@ -24,7 +24,7 @@ Making Windows installable by Razor is a multi-step process. Licensing on WinPE 
 1. Install the [Windows Assessment and Deployment](http://msdn.microsoft.com/en-us/library/windows/hardware/hh825486.aspx) in the default location.
 2. Copy the `build-winpe` directory content to a Windows machine.
 3. Change into that directory, for example, `c:\build`.
-4. Run this build script: `powershell -executionpolicy bypass -noninteractive -file build-razor-winpe.ps1`
+4. Run this build script: `powershell -executionpolicy bypass -noninteractive -file build-razor-winpe.ps1 -razorurl http://razor:8150/svc`
 
 It takes a while for the build script to run. Eventually, an image will be output that matches `razor-winpe\*.wim` under the current working directory.  This is your custom WinPE image with the required components to work with the Razor server.
 

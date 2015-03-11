@@ -6,6 +6,8 @@ canonical: "/pe/latest/razor_secure_apis.html"
 
 ---
 
+This section describes how to set up your Razor configuration to make all `/api` calls on port 8151 over HTTPS with TLS/SSL. This is already the default configuration if you're a Puppet Enterprise (PE) user using Razor on a Puppet-managed node; no configuration is required in that case. These steps are intended for those using Razor in an environment that's not Puppet managed, or who want to insert their own CA certificate.
+
 Since Razor deals with installing machines from scratch, there are no existing security considerations in place. Therefore, messages to the `/svc` namespace, the internal namespace used for communication with the iPXE client, the microkernel, and other internal components of Razor, are not secured. `/api` calls, however, are allowed to change the
 Razor server and are eligible for some basic security measures.
 
@@ -16,9 +18,9 @@ To take advantage of this security option, we recommended this setup:
 
 The following sections describe how to set this configuration on your Razor server and client.
 
-## Configure You Razor Server
+## Configure Your Razor Server
 
-1. In your config.yaml file, set `secure_api` to `true`.
+1. In your config.yaml file, make sure that `secure_api` is set to `true`.
 This will disallow insecure access to `/api` because `secure_api` is a config property that determines whether calls to `/api` must be secure in order to be processed.
 2. Self-sign a certificate. There are several ways to do this; the most basic is to use the Java `keytool` command, which creates a certificate file called `keystore.jks` in the current working directory. The default password in that command is simply `password`. Fill in the properties as follows:
 
@@ -26,6 +28,7 @@ This will disallow insecure access to `/api` because `secure_api` is a config pr
 
 
 3. Configure Torquebox using the file, `standalone.xml`, to accomplish two things:
+
 	* Add a web connector for HTTPS.
 	* Add a socket binding to the existing socket binding group.
 
