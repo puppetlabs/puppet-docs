@@ -144,6 +144,16 @@ After updating the gems, you need to restart the Puppet master with `service pe-
 
 Please see the Puppet Server documentation for a description of this issue, [Gems with Native (C) Extensions](/puppetserver/1.0/gems.html#gems-with-native-c-extensions).
 
+### Running `pe-puppetserver` on a Server With More Than Four Cores Might Require Tuning
+
+The more JRuby instances you run, the more heap space you'll require.  You have two options:
+
+* Reduce the number of JRuby instances. For more information about configuring settings like these, see [Configuring and Tuning Puppet Server](./config_puppetserver.html).
+* Increase the JVM heap size for puppet server. See the PE Puppet Server Service section of [Configuring Java Arguments For PE](./config_java_args.html).
+
+Generally speaking, we recommend starting your tuning with six JRuby instances and then tuning memory from there. If you want more throughput, you need to increase JRuby instances and heap space concurrently after you've found a steady state.
+
+
 ### Puppet Server Run Issue when `/tmp/` Directory Mounted `noexec`
 
 In some cases (especially for RHEL 7 installations) if the `/tmp/` directory is mounted as `noexec`, Puppet Server may fail to run correctly, and you may see an error in the Puppet Server logs similar to the following:
