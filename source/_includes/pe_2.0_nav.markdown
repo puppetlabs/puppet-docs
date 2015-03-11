@@ -2,84 +2,84 @@
 
 
 <ul>
-  <li><strong>Welcome to Puppet Enterprise</strong> 
+  <li><strong>Welcome to Puppet Enterprise</strong>
     <ul>
-      <li>{% iflink "Getting Started", "./welcome_getting_started.html" %}</li>
-      <li>{% iflink "Components and Roles", "./welcome_roles.html" %}</li>
-      <li>{% iflink "New Features and Release Notes", "./welcome_whats_new.html" %}</li>
-      <li>{% iflink "Known Issues", "./welcome_known_issues.html" %}</li>
-      <li>{% iflink "Getting Support", "./welcome_getting_support.html" %}</li>
+      <li><a href="./welcome_getting_started.html">Getting Started</a></li>
+      <li><a href="./welcome_roles.html">Components and Roles</a></li>
+      <li><a href="./welcome_whats_new.html">New Features and Release Notes</a></li>
+      <li><a href="./welcome_known_issues.html">Known Issues</a></li>
+      <li><a href="./welcome_getting_support.html">Getting Support</a></li>
     </ul>
   </li>
-  <li><strong>Installing Puppet Enterprise</strong> 
+  <li><strong>Installing Puppet Enterprise</strong>
     <ul>
-      <li>{% iflink "System Requirements", "./install_system_requirements.html" %}</li>
-      <li>{% iflink "Preparing to Install", "./install_preparing.html" %}</li>
-      <li>{% iflink "Basic Installation", "./install_basic.html" %}</li>
-      <li>{% iflink "Upgrading", "./install_upgrading.html" %}</li>
-      <li>{% iflink "Uninstalling", "./install_uninstalling.html" %}</li>
-      <li>{% iflink "Automated Installation", "./install_automated.html" %}</li>
-      <li>{% iflink "Answer File Reference", "./install_answer_file_reference.html" %}</li>
-      <li>{% iflink "What gets installed where?", "./install_what_and_where.html" %}</li>
+      <li><a href="./install_system_requirements.html">System Requirements</a></li>
+      <li><a href="./install_preparing.html">Preparing to Install</a></li>
+      <li><a href="./install_basic.html">Basic Installation</a></li>
+      <li><a href="./install_upgrading.html">Upgrading</a></li>
+      <li><a href="./install_uninstalling.html">Uninstalling</a></li>
+      <li><a href="./install_automated.html">Automated Installation</a></li>
+      <li><a href="./install_answer_file_reference.html">Answer File Reference</a></li>
+      <li><a href="./install_what_and_where.html">What gets installed where?</a></li>
     </ul>
   </li>
-  <li><strong>The Console</strong> 
+  <li><strong>The Console</strong>
     <ul>
-      <li>{% iflink "Accessing the Console", "./console_accessing.html" %}</li>
-      <li>{% iflink "Navigating the Console", "./console_navigating.html" %}</li>
-      <li>{% iflink "Viewing Reports and Inventory Data", "./console_reports.html" %}</li>
-      <li>{% iflink "Grouping and Classifying Nodes", "./console_classes_groups.html" %}</li>
-      <li>{% iflink "Live Management", "./console_live.html" %}</li>
-      <li>{% iflink "Live Management: Managing Resources", "./console_live_resources.html" %}</li>
-      <li>{% iflink "Live Management: Controlling Puppet", "./console_live_puppet.html" %}</li>
-      <li>{% iflink "Live Management: Advanced Tasks", "./console_live_advanced.html" %}</li>
+      <li><a href="./console_accessing.html">Accessing the Console</a></li>
+      <li><a href="./console_navigating.html">Navigating the Console</a></li>
+      <li><a href="./console_reports.html">Viewing Reports and Inventory Data</a></li>
+      <li><a href="./console_classes_groups.html">Grouping and Classifying Nodes</a></li>
+      <li><a href="./console_live.html">Live Management</a></li>
+      <li><a href="./console_live_resources.html">Live Management: Managing Resources</a></li>
+      <li><a href="./console_live_puppet.html">Live Management: Controlling Puppet</a></li>
+      <li><a href="./console_live_advanced.html">Live Management: Advanced Tasks</a></li>
     </ul>
   </li>
-  <li><strong>Puppet For New PE Users</strong> 
+  <li><strong>Puppet For New PE Users</strong>
     <ul>
-      <li>{% iflink "Overview", "./puppet_overview.html" %}</li>
-      <li>{% iflink "Your First Module", "./puppet_first_module.html" %}</li>
-      <li>{% iflink "Assigning a Class to a Node", "./puppet_classifying.html" %}</li>
-      <li>{% iflink "Next Steps", "./puppet_next_steps.html" %}</li>
+      <li><a href="./puppet_overview.html">Overview</a></li>
+      <li><a href="./puppet_first_module.html">Your First Module</a></li>
+      <li><a href="./puppet_classifying.html">Assigning a Class to a Node</a></li>
+      <li><a href="./puppet_next_steps.html">Next Steps</a></li>
     </ul>
   </li>
-  <li><strong>Orchestration For New PE Users</strong> 
+  <li><strong>Orchestration For New PE Users</strong>
     <ul>
-      <li>{% iflink "Overview", "./orchestration_overview.html" %}</li>
-      <li>{% iflink "Usage and Examples", "./orchestration_usage.html" %}</li>
+      <li><a href="./orchestration_overview.html">Overview</a></li>
+      <li><a href="./orchestration_usage.html">Usage and Examples</a></li>
     </ul>
   </li>
-  <li><strong>Cloud Provisioning</strong> 
+  <li><strong>Cloud Provisioning</strong>
     <ul>
-      <li>{% iflink "Overview", "./cloudprovisioner_overview.html" %}</li>
-      <li>{% iflink "Configuring and Troubleshooting", "./cloudprovisioner_configuring.html" %}</li>
-      <li>{% iflink "Provisioning with VMware", "./cloudprovisioner_vmware.html" %}</li>
-      <li>{% iflink "Provisioning with AWS", "./cloudprovisioner_aws.html" %}</li>
-      <li>{% iflink "Classifying Nodes and Remotely Installing PE", "./cloudprovisioner_classifying_installing.html" %}</li>
-      <li>{% iflink "Man Page: puppet node_vmware", "./cloudprovisioner_man_node_vmware.html" %}</li>
-      <li>{% iflink "Man Page: puppet node_aws", "./cloudprovisioner_man_node_aws.html" %}</li>
-      <li>{% iflink "Man Page: puppet node", "./cloudprovisioner_man_node.html" %}</li>
+      <li><a href="./cloudprovisioner_overview.html">Overview</a></li>
+      <li><a href="./cloudprovisioner_configuring.html">Configuring and Troubleshooting</a></li>
+      <li><a href="./cloudprovisioner_vmware.html">Provisioning with VMware</a></li>
+      <li><a href="./cloudprovisioner_aws.html">Provisioning with AWS</a></li>
+      <li><a href="./cloudprovisioner_classifying_installing.html">Classifying Nodes and Remotely Installing PE</a></li>
+      <li><a href="./cloudprovisioner_man_node_vmware.html">Man Page: puppet node_vmware</a></li>
+      <li><a href="./cloudprovisioner_man_node_aws.html">Man Page: puppet node_aws</a></li>
+      <li><a href="./cloudprovisioner_man_node.html">Man Page: puppet node</a></li>
     </ul>
   </li>
-  <li><strong>The Compliance Workflow</strong> 
+  <li><strong>The Compliance Workflow</strong>
     <ul>
-      <li>{% iflink "Basics and UI", "./compliance_basics.html" %}</li>
-      <li>{% iflink "Using the Compliance Workflow", "./compliance_using.html" %}</li>
-      <li>{% iflink "Tutorial", "./compliance_tutorial.html" %}</li>
+      <li><a href="./compliance_basics.html">Basics and UI</a></li>
+      <li><a href="./compliance_using.html">Using the Compliance Workflow</a></li>
+      <li><a href="./compliance_tutorial.html">Tutorial</a></li>
     </ul>
   </li>
-  <li><strong>The PE Accounts Module</strong> 
+  <li><strong>The PE Accounts Module</strong>
     <ul>
-      <li>{% iflink "The pe_accounts::user Type", "./accounts_user_type.html" %}</li>
-      <li>{% iflink "The pe_accounts Class", "./accounts_class.html" %}</li>
+      <li><a href="./accounts_user_type.html">The pe_accounts::user Type</a></li>
+      <li><a href="./accounts_class.html">The pe_accounts Class</a></li>
     </ul>
   </li>
-  <li><strong>Maintenance and Troubleshooting</strong> 
+  <li><strong>Maintenance and Troubleshooting</strong>
     <ul>
-      <li>{% iflink "Common Configuration Errors", "./maint_common_config_errors.html" %}</li>
-      <li>{% iflink "Console Maintenance Tasks", "./maint_maintaining_console.html" %}</li>
-      <li>{% iflink "Installing Additional Components", "./maint_installing_additional.html" %}</li>
-      <li>{% iflink "Reconfiguring Complex Settings", "./maint_reconfiguring.html" %}</li>
+      <li><a href="./maint_common_config_errors.html">Common Configuration Errors</a></li>
+      <li><a href="./maint_maintaining_console.html">Console Maintenance Tasks</a></li>
+      <li><a href="./maint_installing_additional.html">Installing Additional Components</a></li>
+      <li><a href="./maint_reconfiguring.html">Reconfiguring Complex Settings</a></li>
     </ul>
   </li>
 </ul>
