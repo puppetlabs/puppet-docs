@@ -9,19 +9,19 @@ This page contains information about new features and general improvements in th
 
 For more information about this release, also see the [Known Issues](./release_notes_known_issues.html) and [Security Fixes](./release_notes_security.html).
 
-## New Features in This Release
-
-### Deleting a Role From RBAC
-
-In this release, there is a new end point in the Role-Based Access Control API that allows you to delete a local or remote user from PE. For more information, see the [API documentation](./rbac_users.html#delete-userssid).
-
-## New Features in 3.7.2
-
 This page contains information about new features and general improvements and changes in the latest Puppet Enterprise (PE) release.
 
 For more information about this release, also see the [Known Issues](./release_notes_known_issues.html) and [Security and Bug Fixes](./release_notes_security.html).
 
 ## New Features in PE 3.8.0
+
+### Deleting a User From RBAC
+
+In this release, there is a new endpoint in the Role-Based Access Control API that allows you to delete a local or remote user from PE. For more information, see the [API documentation](./rbac_users.html#delete-userssid).
+
+### Deleting a User Group From RBAC
+
+In this release, there is a new endpoint in the Role-Based Access Control API that allows you to delete a local or remote user group from PE. For more information, see the [API documentation](./rbac_usergroups.html#delete-groupssid).
 
 ### Support For String Interpolation in the PE Console
 
