@@ -193,7 +193,7 @@ Local user:
 Remote user:
 
         {"id": "3271fde0-588a-11e4-8ed6-0800200c9a66",
-         "login": "thoma",
+         "login": "thomas",
          "email": "thomas@example.com",
          "display_name": "Thomas Davenport",
          **"role_ids": [4, 1],**
@@ -216,7 +216,7 @@ The request should return the user object with the changes made.
 
 Deletes the user with the specified ID, regardless of whether they are a user defined in RBAC or a user defined by the Directory Service. If they are from the Directory Service, while this will remove them from the UI, they will still be able to log in again if they are not revoked (at which point they will be re-added to the UI). Web session authentication required.
 
-**Implemented.**
+**Note:** The `admin` user and the `api_user` cannot be deleted.
 
 **Returns:** 
 * **204 No Content** The user was successfully deleted.
