@@ -16,7 +16,7 @@ canonical: "/puppet/latest/reference/ssl_attributes_extensions.html"
 Summary
 -----
 
-When Puppet agent nodes request their certificates, the certificate signing request (CSR) usually just contains their certname and the necessary cryptographic information. However, agents can also embed more data in their CSR. This extra data can be useful for [policy-based autosigning][autosign_policy]. In future Puppet versions, extensions may also be passed to the compiler as trusted facts.
+When Puppet agent nodes request their certificates, the certificate signing request (CSR) usually just contains their certname and the necessary cryptographic information. However, agents can also embed more data in their CSR. This extra data can be useful for [policy-based autosigning][autosign_policy].
 
 ### Status as of Early 2014
 
