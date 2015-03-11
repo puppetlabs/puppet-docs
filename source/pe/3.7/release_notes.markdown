@@ -33,6 +33,10 @@ For more information on the syntax and restrictions for string interpolation in 
 
 In this release, we added the ability to verify an SSL certificate for a directory server when configuring the RBAC service to connect to an external directory server. For more information, see the [RBAC documentation](./rbac_ldap.html#Verify-Directory-Server-Certificates).
 
+### New RBAC Permission to Edit Parameters and Variables
+
+This permission allows a user in the given user role to tune classification by editing parameters and variables in a class, without giving the user permission to add or delete classes.
+
 ## Significant Changes in PE 3.8.0
 
 ### Cloud Provisioner is Deprecated
