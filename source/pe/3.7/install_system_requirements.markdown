@@ -36,20 +36,24 @@ Microsoft Windows            | 2003, 2003R2                            | x86    
 AIX                          | 5.3, 6.1, 7.1                         | Power         | agent
 Mac OS X                     | Mavericks (10.9)                        | x86_64         | agent
 
+>**Puppet Master Platform Deprecations**: The following Puppet master platforms are deprecated in PE 3.8, and will be removed in future versions of PE:
+>
+>* All 32-bit versions
+>* All Debian versions
+>* EL 5 (RHEL, CentOS, Scientific, Oracle)
+>* Ubuntu 10.4
 
->**Note**: Some operating systems require an active subscription with the vendor's package management system to install dependencies, such as Red Hat Network.
+>**Note**: Some operating systems require an active subscription with the vendor's package management system (e.g., the Red Hat Network) to install dependencies.
 
->**Note**: In addition, upgrading your OS while PE is installed can cause problems with PE. To perform an OS upgrade, you’ll need to uninstall PE, perform the OS upgrade, and then reinstall PE as follows:
->
->1. [Back up](./maintain_backup_restore.html#back-up-your-database-and-puppet-enterprise-files) your databases and other PE files.
->
->2. Perform a complete [uninstall](./install_uninstalling.html) (including the -p -d uninstaller option).
->
->3. Upgrade your OS.
->
->4. [Install PE](/pe/latest/install_basic.html).
->
->5. [Restore](./maintain_backup_restore.html#restore-your-database-and-puppet-enterprise-files) your backup.
+### About OS Upgrades
+
+Upgrading your OS while PE is installed can cause problems with PE. To perform an OS upgrade, you’ll need to:
+
+1. [Back up](./maintain_backup_restore.html#back-up-your-database-and-puppet-enterprise-files) your databases and other PE files.
+2. Perform a complete [uninstall](./install_uninstalling.html) (including the -p -d uninstaller option).
+3. Upgrade your OS.
+4. [Install PE](/pe/latest/install_basic.html).
+5. [Restore](./maintain_backup_restore.html#restore-your-database-and-puppet-enterprise-files) your backup.
 
 Network Devices
 -----
