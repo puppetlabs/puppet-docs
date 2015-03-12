@@ -102,6 +102,8 @@ Note that this process **destroys the certificate authority and all other certif
    
 ## Step 3: Clear and Regenerate Certs for PuppetDB
 
+>**Notes**: In the following instructions, when `<CERTNAME>` is used, it refers to the Puppet agent's certname. To find this value, run `puppet config print certname` before starting.
+
 **On your PuppetDB server**:
 
 1. Back up the following directories:
@@ -122,11 +124,11 @@ Note that this process **destroys the certificate authority and all other certif
    
    > **Note**: This agent run will not complete successfully, but it is necessary to set up the agent certificate for the node. You will see some errors about node definition and the inability to submit facts due to PuppetDB being offline. You can ignore these. 
 
-4. Delete puppetdb’s SSL cert and security credentials.
+4. Delete puppetDB’s SSL cert and security credentials.
 
    `rm -rf /etc/puppetlabs/puppetdb/ssl/*`
    
-5. Copy the certs and security credentials to the PuppetDB SSL directory. 
+5. Copy the Puppet agent's certs and security credentials to the PuppetDB SSL directory. 
 
        cp /etc/puppetlabs/puppet/ssl/certs/<CERTNAME>.pem /etc/puppetlabs/puppetdb/ssl/<CERTNAME>.cert.pem
        cp /etc/puppetlabs/puppet/ssl/public_keys/<CERTNAME>.pem /etc/puppetlabs/puppetdb/ssl/<CERTNAME>.public_key.pem

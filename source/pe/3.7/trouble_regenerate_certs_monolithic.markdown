@@ -119,7 +119,7 @@ Note that this process **destroys the certificate authority and all other certif
 
    `rm -rf /opt/puppet/var/lib/pgsql/9.2/data/certs/*`
 
-4. Copy the certs and security credentials generated in step 2.5 for the Puppet master to the PostgreSQL certs directory. 
+4. Copy the Puppet agent's certs and security credentials generated in step 2.5 for the Puppet master to the PostgreSQL certs directory. 
 
         cp /etc/puppetlabs/puppet/ssl/certs/<CERTNAME>.pem /opt/puppet/var/lib/pgsql/9.2/data/certs/<CERTNAME>.cert.pem
         cp /etc/puppetlabs/puppet/ssl/public_keys/<CERTNAME>.pem /opt/puppet/var/lib/pgsql/9.2/data/certs/<CERTNAME>.public_key.pem
@@ -142,7 +142,7 @@ Note that this process **destroys the certificate authority and all other certif
         cp /etc/puppetlabs/puppet/ssl/public_keys/pe-internal-classifier.pem /opt/puppet/share/console-services/certs/pe-internal-classifier.public_key.pem
         cp /etc/puppetlabs/puppet/ssl/private_keys/pe-internal-classifier.pem /opt/puppet/share/console-services/certs/pe-internal-classifier.private_key.pem
 
-3. Copy the PE agent cert and security credentials to the console-services cert directory.
+3. Copy the Puppet agent's cert and security credentials to the console-services cert directory.
 
         cp /etc/puppetlabs/puppet/ssl/certs/<CERTNAME>.pem /opt/puppet/share/console-services/certs/<CERTNAME>.cert.pem
         cp /etc/puppetlabs/puppet/ssl/public_keys/<CERTNAME>.pem /opt/puppet/share/console-services/certs/<CERTNAME>.public_key.pem
@@ -158,7 +158,7 @@ Note that this process **destroys the certificate authority and all other certif
 
         chown -R pe-console-services:pe-console-services /opt/puppet/share/console-services/certs
 
-6. Copy the agent cert and security credentials to the puppet-dashboard cert directory. 
+6. Copy the Puppet agent's cert and security credentials to the puppet-dashboard cert directory. 
 
    Note that the Puppet master, PuppetDB, and PE console share the same agent cert and security credentials.
    
