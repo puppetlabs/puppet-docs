@@ -221,7 +221,9 @@ The following requirement affects how you connect your existing LDAP to PE:
 
 ### Custom Console Certs May Break on Upgrade
 
-Upgrades to this version of PE may affect deployments that use a custom console certificate, as certificate functionality has changed between versions. Refer to [Configuring the Puppet Enterprise Console to Use a Custom SSL Certificate](./custom_console_cert.html) for instructions on re-configuring your custom console certificate.
+Upgrades to this version of PE may affect deployments that use a custom console certificate, as certificate functionality has changed between versions. 
+
+In addition, the document [Configuring the Puppet Enterprise Console to Use a Custom SSL Certificate](./custom_console_cert.html) does not work for this version of PE. This document, as well as custom console cert functionality, will be fixed in PE 3.8.0.
 
 ### Console Session Timeout Issue
 
