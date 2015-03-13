@@ -7,21 +7,21 @@ canonical: "/pe/latest/rbac_intro.html"
 
 ##Overview
 
-Puppet Enterprise (PE) provides role-based access control (RBAC). RBAC enables you to manage users' privileges, essentially answering the question, "Is this user allowed to perform these actions?" For example, "can this user grant password reset tokens to other users who have forgotten their passwords?" Or, "can that user edit a local user's data?" Permissions are used to define what actions users can perform on designated objects.
+In Puppet Enterprise (PE), you can use role-based access control (RBAC) to manage user permissions. Permissions define what actions users can perform on designated objects. For example, "can this user grant password reset tokens to other users who have forgotten their passwords?" Or, "can that user edit a local user's metadata?" 
 
-*User roles* are a set of permissions you can assign to multiple users. Users are assigned to user roles, and that way, they inherit the permissions that are designated for that role. PE ships with three default user roles: Administrators, Operators, and Viewers. In addition, you can create custom roles.
+Permissions are managed through *user roles*. To grant a permission to a user, you first need to assign the user to one or more user roles. Users inherit all of the permissions from each user role they are in. PE ships with three default user roles: Administrators, Operators, and Viewers. In addition, you can create custom roles.
 
-You manage user access by assigning specific users to roles. Permissions can be set for the activity log, console, directory service, node groups, user groups, user roles, and users. For example, you might want to create a user role that grants users permission to view but not edit a specific subset of node groups. Or you might want to divide up administrative privileges so that one user role is able to reset passwords while another can edit roles and create users.
+Permissions can be set for the activity log, console, directory service, node groups, user groups, user roles, and users. For example, you might want to create a user role that grants users permission to view but not edit a specific subset of node groups. Or you might want to divide up administrative privileges so that one user role is able to reset passwords while another can edit roles and create users. A full list of available permissions is available in [About RBAC Permissions](./rbac_permissions.html).
 
 ###External Directories
-PE now connects with external directories, which means you only have to manage your users in one location instead of across both PE and your directory. Currently, OpenLDAP and Active Directory are supported. If you have pre-defined groups in your Active Directory or OpenLDAP instances, you can import them into the PE console and assign roles to them. Any user in the imported group will inherit membership of the role to which the group was assigned. And if new users are added to the group in the external directory, they also inherit membership of the role to which that group belongs.
+PE can connect to external LDAP directories. This means that you can create and manage users locally in PE, import users and groups from an existing directory, or do a combination of both. PE supports OpenLDAP and Active Directory. If you have predefined groups in your Active Directory or OpenLDAP directory, you can import the groups into the PE console and assign user roles to them. Users in an imported group will inherit the permissions specified in assigned user roles. If new users are added to the group in the external directory, they also inherit the permissions of the role to which that group belongs.
 
 ### RBAC and Activity Services
-RBAC functionality is handled in a large part by the RBAC and activity services. The RBAC service gets user, group, and permission information . The activity service logs events on the **Activity** pages for user roles, users, and user groups.
+RBAC functionality is handled in large part by the RBAC and activity services. The RBAC service gets user, group, and permission information. The activity service logs events on the **Activity** pages for user roles, users, and user groups.
 
 >**Note**: Resetting the admin password for console access relies on a utility script that's located in the installer tarball. See [Troubleshooting User Access to the Console](./rbac_user_roles.html) for steps to reset the admin password.
 
-See the following sections for information and steps to work with RBAC:
+For more information about using RBAC, see:
 
 * [Connecting Puppet Enterprise with LDAP Services](./rbac_ldap.html)
 * [RBAC Permissions](./rbac_permissions.html)
@@ -33,7 +33,7 @@ See the following sections for information and steps to work with RBAC:
 * [RBAC Service Endpoints](./rbac_serviceindex.html)
 * [Activity Service Endpoints](./rbac_activityapis.html)
 
-For more information about working with nodes, see [Grouping and Classifying Nodes](./console_classes_groups.html).
+For more information about classifying nodes, see [Grouping and Classifying Nodes](./console_classes_groups.html).
 
 
 
