@@ -14,7 +14,6 @@ Small documents for getting help fast.
 
 * [Core Types Cheat Sheet](/puppet_core_types_cheatsheet.pdf) --- A double-sided reference to the most common resource types. ([HTML version](http://projects.puppetlabs.com/projects/puppet/wiki/Core_Types_Cheat_Sheet/))
 * [Module Cheat Sheet](/module_cheat_sheet.pdf) --- A one-page reference to Puppet module layout, covering classes and defined types, files, templates, and plugins. ([HTML version](/module_cheat_sheet.html))
-* [Frequently Asked Questions](/guides/faq.html)
 * [Glossary](/references/glossary.html)
 
 * * *
