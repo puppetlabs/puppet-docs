@@ -68,12 +68,8 @@ In this step, you will use the PE console to classify `add.master.example.com` s
 2. From the __Classification page__, select the __PE Master__ group.
 3. From the __Rules__ tab, in the __Node name__ field, enter `add.master.example.com`.
 4. Click __Pin node__.
-5. Click the __Classes__ tab, and find the `puppet_enterprise::profile::master` class.
-6. From the __Parameter__ drop-down list, select __enable_ca_proxy__. 
-7. In the __Value__ field, enter "true".
-8. Click __Add parameter__.  
-9. Click the __Commit changes__ button. 
-10. Continue to [Step 4: Run Puppet on Selected Nodes](#step-4-run-puppet-on-selected-nodes)
+5. Click the __Commit changes__ button. 
+6. Continue to [Step 4: Run Puppet on Selected Nodes](#step-4-run-puppet-on-selected-nodes)
 
 ### Step 4: Run Puppet on Selected Nodes
 
