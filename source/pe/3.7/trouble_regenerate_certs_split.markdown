@@ -8,7 +8,9 @@ description: "This page explains how to regenerate all SSL certificates in Puppe
 
 > **Warning**: Do not perform these cert regeneration steps if you have upgraded to PE 3.7.x and not yet [classified the new PE groups](./install_upgrading_notes.html#classifying-pe-groups). You can perform these cert regen steps after classifying those groups.
 
-> **Note**: This page explains how to regenerate all certificates in **a split PE deployment** --- that is, where the Puppet master, PuppetDB, and PE console components are all installed on separate servers. [See this page for instructions on regenerating certificates in a **monolithic PE deployment.**][mono_regen] 
+> **Note**: This page explains how to regenerate all certificates in **a split PE deployment** --- that is, where the Puppet master, PuppetDB, and PE console components are all installed on separate servers. [See this page for instructions on regenerating certificates in a **monolithic PE deployment.**][mono_regen] >
+>
+>If you don't need to regenerate certs for **all** components in your deployment, you can choose instructions for just [the Puppet master](./regenerate_certs_master.html), [the PE console](./regenerate_certs_console.html), or [PuppetDB](./regenerate_certs_puppetdb.html). 
 
 > **Tip**: If you just need to regenerate certs and security credentials for an individual PE component, and do not need to recreate your CA, refer to the cert regen docs for the Puppet master, PuppetDB, or the PE console.  
 
