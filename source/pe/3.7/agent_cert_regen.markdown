@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.7 » Deploying PE » Agent Cert Regen"
+title: "PE 3.7 » Security and SSL"
 subtitle: "Regenerating a Puppet Agent Certificate"
 canonical: "/pe/latest/agent_cert_regen.html"
 ---

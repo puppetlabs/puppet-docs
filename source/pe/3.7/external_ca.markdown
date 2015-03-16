@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.7 » Deploying PE » External CA"
+title: "PE 3.7 » Security and SSL"
 subtitle: "Using an External Certificate Authority with Puppet Enterprise"
 canonical: "/pe/latest/external_ca.html"
 ---

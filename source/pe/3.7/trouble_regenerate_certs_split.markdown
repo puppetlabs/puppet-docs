@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.7.1 » Troubleshooting » Cert Regeneration: Split Deployments"
+title: "PE 3.7.1 » Security and SSL » Cert Regeneration: Split Deployments"
 subtitle: "Regenerating Certs and Security Credentials in Split Puppet Enterprise Deployments"
 canonical: "/pe/latest/trouble_regenerate_certs_split.html"
 description: "This page explains how to regenerate all SSL certificates in Puppet Enterprise deployments with separate servers for different components. "
@@ -8,7 +8,9 @@ description: "This page explains how to regenerate all SSL certificates in Puppe
 
 > **Warning**: Do not perform these cert regeneration steps if you have upgraded to PE 3.7.x and not yet [classified the new PE groups](./install_upgrading_notes.html#classifying-pe-groups). You can perform these cert regen steps after classifying those groups.
 
-> **Note:** This page explains how to regenerate all certificates in **a split PE deployment** --- that is, where the Puppet master, PuppetDB, and PE console components are all installed on separate servers. [See this page for instructions on regenerating certificates in a **monolithic PE deployment.**][mono_regen] 
+> **Note**: This page explains how to regenerate all certificates in **a split PE deployment** --- that is, where the Puppet master, PuppetDB, and PE console components are all installed on separate servers. [See this page for instructions on regenerating certificates in a **monolithic PE deployment.**][mono_regen] 
+
+> **Tip**: If you just need to regenerate certs and security credentials for an individual PE component, and do not need to recreate your CA, refer to the cert regen docs for the Puppet master, PuppetDB, or the PE console.  
 
 ## Overview
 
