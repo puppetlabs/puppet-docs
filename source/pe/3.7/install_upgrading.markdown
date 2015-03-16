@@ -75,6 +75,7 @@ The upgrade script will run and provide detailed information as to what it insta
 >
 > - The new node classifier and role-based access control (RBAC) will be installed as part of the PE console.
 > - If necessary, after upgrading, see the instructions for [Disabling/Enabling Live Management During an Upgrade](#disablingenabling-live-management-during-an-upgrade).
+> - During the upgrade, you will be asked if you want to enable the Puppet 4 language parser. The Puppet 4 language parser gives you valuable language features, makes debugging easier, and will help keep your Puppet code compatible with future releases in the next major series. Recommended for all **NEW** Puppet users. If you'll be using Puppet code you did **NOT** create with the Puppet 4 language parser, **DO NOT** enable this feature. See the [Puppet 4 language parser docs](http://links.puppetlabs.com/future_parser) for instructions on enabling the parser in a test environment to ensure it works with your existing Puppet code.
 
 ### Classify PE Groups
 
@@ -114,6 +115,8 @@ As with installation, the script will also check for any missing dependent vendo
 Lastly, the script will summarize the upgrade plan and ask you to go ahead and perform the upgrade. Your answers to the script will be saved as usual in `/etc/puppetlabs/installer/answers.install`.
 
 The upgrade script will run and provide detailed information as to what it installs, what it updates and what it replaces. It will preserve existing certificates and `puppet.conf` files.
+
+During the upgrade, you will be asked if you want to enable the Puppet 4 language parser. The Puppet 4 language parser gives you valuable language features, makes debugging easier, and will help keep your Puppet code compatible with future releases in the next major series. Recommended for all **NEW** Puppet users. If you'll be using Puppet code you did **NOT** create with the Puppet 4 language parser, **DO NOT** enable this feature. See the [Puppet 4 language parser docs](http://links.puppetlabs.com/future_parser) for instructions on enabling the parser in a test environment to ensure it works with your existing Puppet code.
 
 ### Upgrade PuppetDB
 

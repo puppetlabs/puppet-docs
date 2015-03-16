@@ -133,6 +133,8 @@ The Puppet master server can:
 
 >**Note**: By default, the Puppet master will check for the availability of updates whenever the `pe-puppetserver` service restarts. In order to retrieve the correct update information, the master will pass some basic, anonymous information to Puppet Labs' servers. This behavior can be disabled. You can find the details on what is collected and how to disable upgrade checking in the correct answer file reference. If an update is available, a message will alert you.
 
+During the installation, you will be asked if you want to enable the Puppet 4 language parser. The Puppet 4 language parser gives you valuable language features, makes debugging easier, and will help keep your Puppet code compatible with future releases in the next major series. Recommended for all **NEW** Puppet users. If you'll be using Puppet code you did **NOT** create with the Puppet 4 language parser, **DO NOT** enable this feature. See the [Puppet 4 language parser docs](http://links.puppetlabs.com/future_parser) for instructions on enabling the parser in a test environment to ensure it works with your existing Puppet code.
+
 ### PuppetDB and Database Support
 
 The PuppetDB component uses an instance of PostgreSQL that is either installed by PE or manually configured by you. In a monolithic installation, PuppetDB is installed on the same node as the console and Puppet master components. In a split install, PuppetDB is installed on its own server. During installation, you will be asked if you want this PostgreSQL instance to be installed by PE or if you want to use one you've already configured.
