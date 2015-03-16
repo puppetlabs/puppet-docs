@@ -815,7 +815,7 @@ on the CLI.
 
 ### graph
 
-Whether to create .dot graph files, which you can use visualize the
+Whether to create .dot graph files, which let you visualize the
 dependency and containment relationships in Puppet's catalog. You
 can load and view these files with tools like
 [OmniGraffle](http://www.omnigroup.com/applications/omnigraffle/) (OS X)
@@ -830,7 +830,7 @@ previous .dot files with new ones every time it applies a catalog.
 
 See your graphing software's documentation for details on opening .dot
 files. If you're using GraphViz's `dot` command, you can do a quick PNG
-render with `dot -Tpng <FILE> -o <OUTPUT FILE>`.
+render with `dot -Tpng <DOT FILE> -o <OUTPUT FILE>`.
 
 - *Default*: false
 
