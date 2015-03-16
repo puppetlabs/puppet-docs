@@ -21,7 +21,7 @@ To increase or decrease the number of JRuby instances, you need to edit your Hie
 
 ### Tuning `max threads` on Puppet Server
 
-This sets the maximum number of threads assigned to respond to HTTP and HTTPS requests, effectively changing how many concurrent requests can be made to Puppet Server at one time. The default setting is 100 max threads. This should be increased to 150 max threads for nodes where `$::processorcount` is greater than 32.
+This sets the maximum number of threads assigned to respond to HTTP and HTTPS requests, effectively changing how many concurrent requests can be made to Puppet Server at one time. This setting should be increased to 150 max threads for nodes where `$::processorcount` is greater than 32.
 
 To increase the max threads, edit your Hiera default `.yaml` file with the following code:
 
