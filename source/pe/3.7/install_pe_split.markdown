@@ -116,8 +116,14 @@ If you plan on managing more than 1500 nodes, follow these split install instruc
    d. **SSH key file path**: if a SSH password is not used, provide the absolute path to the SSH key on the machine you are performing the installation from. Defaults to the root SSH key path.
 
    e. **SSH key passphrase**: provide if your SSH key is protected with a passphrase.
+   
+7. Select whether or not to enable the Puppet 4 language parser.
 
-7. Provide the following information about database support (PuppetDB and the PE console databases):
+   The Puppet 4 language parser gives you valuable language features, makes debugging easier, and will help keep your Puppet code compatible with future releases in the next major series. Recommended for all **NEW** Puppet users.
+   
+   If you'll be using Puppet code you did **NOT** create with the Puppet 4 language parser, **DO NOT** enable this feature. See the [Puppet 4 language parser docs](http://links.puppetlabs.com/future_parser) for instructions on enabling the parser in a test environment to ensure it works with your existing Puppet code.   
+
+8. Provide the following information about database support (PuppetDB and the PE console databases):
 
    a. **Install PostgreSQL on the PuppetDB host for me**: (default) PE will install a PostgreSQL instance for the databases on the same node as PuppetDB. This will use PE-generated default names and usernames for the databases. The passwords can be retrieved from `/etc/puppetlabs/installer/database_info.install` when the installation is complete.
 
@@ -188,25 +194,25 @@ If you plan on managing more than 1500 nodes, follow these split install instruc
    > 1. You must create databases for RBAC, activity service, and the node classifier before installing.
    > 2. You must enable the [citext extension](http://www.postgresql.org/docs/9.2/static/citext.html) on the RBAC database. To do so, install the `postgresql-contrib` package, and then from inside the RBAC database, run the command `create extension citext`.
 
-8. Provide the following information about the PE console administrator user:
+9. Provide the following information about the PE console administrator user:
 
    **Console superuser password**: create a password for the console login; the password must be at least eight characters.
 
    **Note**: the user name for the console administrator user is __admin__.
 
-9. Provide the following information about the PE console mail server:
+10. Provide the following information about the PE console mail server:
 
    - **SMTP hostname**: the console requires access to an SMTP server in order to email account information to users. If necessary, this can be configured after installation.
 
    To add more information about the SMTP host, select **Advanced SMTP options**. Here you can add the SMTP port, username, and passwords.
 
-10. Click **Submit**.
+11. Click **Submit**.
 
-11. On the confirm plan page, review the information you provided, and, if it looks correct, click **Continue**.
+12. On the confirm plan page, review the information you provided, and, if it looks correct, click **Continue**.
 
     If you need to make any changes, click **Go Back** and make whatever changes are required.
 
-12. On the validation page, the installer will verify various configuration elements (e.g., if SSH credentials are correct, if there is enough disk space, and if the OS is the same for the various components). If there aren't any outstanding issues, click **Deploy now**.
+13. On the validation page, the installer will verify various configuration elements (e.g., if SSH credentials are correct, if there is enough disk space, and if the OS is the same for the various components). If there aren't any outstanding issues, click **Deploy now**.
 
 At this point, PE will begin installing your deployment, and you can monitor the installation as it runs by toggling **Log View** and **Summary View** (top-right corner of page). If you notice any errors during the installation, check `/var/log/pe-installer/install_log.lastrun.<hostname>.log` on the machine from which you are running the installer.
 

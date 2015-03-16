@@ -38,6 +38,9 @@ These answers are only used in some cases, such as when upgrading or reinstallin
 `q_continue_or_reenter_master_hostname`
 : **C or R** --- Used if the installer cannot reach the Puppet master. If C, the installer will continue; if R, the installer will ask for a new Puppet master hostname. (This answer applies to all roles except for the master role.)
 
+`q_enable_future_parser`
+: **Y or N** --- Whether or not to enable the Puppet 4 language parser. This is recommended for all **NEW** Puppet users. **DO NOT** enable this feature if you'll be using Puppet code you did **NOT** create with the Puppet 4 language parser. 
+
 ### Roles
 
 These answers are always needed.
