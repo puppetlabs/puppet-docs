@@ -89,7 +89,7 @@ For more information about RBAC, refer to [Working with Role-Based Access Contro
    - `/etc/puppetlabs/`
    - `/opt/puppet/share/puppet-dashboard/certs`
    - [The console and console_auth databases](./maintain_console-db.html#database-backups)
-   - [The PuppetDB database](/puppetdb/1.6/migrate.html#exporting-data-from-an-existing-puppetdb-database)
+   - [The PuppetDB database](/puppetdb/2.2/migrate.html#exporting-data-from-an-existing-puppetdb-database)
 
    On a split install, the databases and PE files will be located across the various components assigned to your servers.
 
