@@ -5,10 +5,9 @@ subtitle: "Upgrading Puppet Enterprise"
 canonical: "/pe/latest/install_upgrading.html"
 ---
 
+> **IMPORTANT**: **READ BEFORE UPGRADING**: If you are upgrading and you use the PE console for node classification, follow the steps in the [node classification migration process doc](./install_upgrade_migration_tool.html) to perform your upgrade to PE 3.8.   
 
 ## Upgrading Overview
-
-> **IMPORTANT**: **READ BEFORE UPGRADING**: If you are upgrading and you use the PE console for node classification, follow the steps in the [node classification migration process doc](./install_upgrade_migration_tool.html) **BEFORE** performing your upgrade. The steps in the migration process doc provide a smooth upgrade path from PE 3.3.2 to PE 3.8.   
 
 Before upgrading, please review [Important Information about Upgrades to PE 3.7 and Directory Environments](./install_upgrading_dir_env_notes.html), as some user action is required. Please also review [Upgrading Puppet Enterprise: Notes and Warnings](install_upgrading_notes.html), which includes important information about upgrading to the new node classifier and the new Puppet Server running on the Puppet master.
 
