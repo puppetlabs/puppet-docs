@@ -233,6 +233,8 @@ In addition, the document [Configuring the Puppet Enterprise Console to Use a Cu
 
 The default session timeout for the PE console is 30 minutes. However, due to an issue that has not yet been resolved, console users will be logged out after thirty minutes even if they are currently active.
 
+This issue was resolved in PE 3.7.1.
+
 ### SLES 12 `pe::repo` Class Available in PE Console but SLES 12 not Supported in PE 3.7.0
 
 Due to a known issue in PE 3.7.0, you can select the SLES 12 `pe::repo` class from the PE console, but this class will not work. SLES 12 is not supported in PE 3.7.0, and no tarballs for SLES 12 are shipped in this version.
