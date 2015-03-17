@@ -44,8 +44,6 @@ The script can be found at `https://<master hostname>:8140/packages/current/<pla
 
 >**Note**: The `<master hostname>` portion of the installer script--as provided in the following examples--refers to the FQDN of the Puppet master. In a monolithic install, this is the same node on which you installed the Puppet master, console, and PuppetDB components; in a split install, this is the node you assigned to the Puppet master component. Note that if you've already logged into the console, you can find the exact script with the correct master hostname for your installation by clicking on **node requests** in the top right-hand corner of the console. (You do not need to have pending node requests to click.) 
 
-
-
 ### Scenario 1: The OS/architecture of the Puppet master and the agent node are the same.
 
 Simply SSH into the node where you want to install the PE agent, and run `curl -k https://<master hostname>:8140/packages/current/install.bash | sudo bash`.
