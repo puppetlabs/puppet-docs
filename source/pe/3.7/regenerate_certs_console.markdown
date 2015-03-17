@@ -66,8 +66,8 @@ Regenerating certificates and security credentials for the PE console involves t
    
 6. **On the Puppet master, or CA server**, remove the certs for the pe-internal-classifier and pe-internal-dashboard.
      
-        puppet cert clean pe-internal-classifier`
-        puppet cert clean pe-internal-dashboard`
+        puppet cert clean pe-internal-classifier
+        puppet cert clean pe-internal-dashboard
   
 7. Create the pe-internal-classifier and pe-internal-dashboard certs.
 
