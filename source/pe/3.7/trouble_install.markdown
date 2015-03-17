@@ -67,7 +67,7 @@ If you are installing the console and the Puppet master on separate servers and 
 
 ### Do You Need to Install Agents But Have No Internet Access?
 
-Refer to [Installing Agents in a Puppet Enterprise Infrastructure without Internet Access](./install_agents.html#installing-agents-in-a-puppet-enterprise-infrastructure-without-internet-access)
+Refer to [Installing Agents in a Puppet Enterprise Infrastructure without Internet Access](./install_agents.html#installing-agents-in-a-puppet-enterprise-infrastructure-without-internet-access).
 
 ### How Do I Recover From a Failed Install?
 
