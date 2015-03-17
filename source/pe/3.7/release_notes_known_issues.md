@@ -213,10 +213,6 @@ The following requirement affects how you connect your existing LDAP to PE:
 
 Upgrades to this version of PE may affect deployments that use a custom console certificate, as certificate functionality has changed between versions. Refer to [Configuring the Puppet Enterprise Console to Use a Custom SSL Certificate](./custom_console_cert.html) for instructions on re-configuring your custom console certificate.
 
-### Console Session Timeout Issue
-
-The default session timeout for the PE console is 30 minutes. However, due to an issue that has not yet been resolved, console users will be logged out after thirty minutes even if they are currently active.
-
 ### SLES 12 `pe::repo` Class Available in PE Console but SLES 12 not Supported in PE 3.7.0
 
 Due to a known issue in PE 3.7.0, you can select the SLES 12 `pe::repo` class from the PE console, but this class will not work. SLES 12 is not supported in PE 3.7.0, and no tarballs for SLES 12 are shipped in this version.
