@@ -26,9 +26,6 @@ These answers are always needed.
 `q_vendor_packages_install=y`
 : **Y** or **N** --- Whether the installer has permission to install additional packages from the OS’s repositories. If this is set to N, the installation will fail if the installer detects missing dependencies.
 
-`q_enable_future_parser`
-: **Y or N** --- Whether or not to enable the Puppet 4 language parser. This is recommended for all **NEW** Puppet users. **DO NOT** enable this feature if you'll be using Puppet code you did **NOT** create with the Puppet 4 language parser. 
-
 #### Additional Global Answers
 
 These answers are optional.
@@ -47,6 +44,9 @@ These answers are always needed.
 
 `q_puppet_cloud_install=n`
 : **Y** or **N** --- Whether to install the cloud provisioner component.
+
+`q_enable_future_parser`
+: **Y or N** --- Whether or not to enable the Puppet 4 language parser. This is recommended for all **NEW** Puppet users. **DO NOT** enable this feature if you'll be using Puppet code you did **NOT** create with the Puppet 4 language parser. 
 
 ### Additional Component Answers
 
