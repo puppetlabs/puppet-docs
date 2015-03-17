@@ -11,7 +11,7 @@ We recommend tuning the following settings as needed to improve the performance 
 
 The Puppet master runs an ActiveMQ server to route orchestration commands. You can increase the JVM (Java Virtual Machine) memory that is allocated to Java services running on the Puppet master. This memory allocation is known as the Java heap size.
 
-Instructions for using the PE console to increase the Java heap size are detailed on on the [Configuring Java Arguments for PE](/config_java_args.html#pe-puppet-server-service) page. 
+Instructions for using the PE console to increase the Java heap size are detailed on on the [Configuring Java Arguments for PE](./config_java_args.html#pe-puppet-server-service) page. 
 
 
 ### Increasing the ulimit for the `pe-activemq` User
