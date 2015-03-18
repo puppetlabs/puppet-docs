@@ -17,11 +17,22 @@ canonical: "/puppet/latest/reference/modules_publishing.html"
 [forgenewrelease]: ./images/forge_new_release.png
 [documentation]: ./modules_documentation.html
 [errors]: ./modules_installing.html#errors
+[yourmodules]: ./images/yourmodules.png
+[selectrelease]: ./images/selectrelease.png
+[deletebutton]: ./images/deletebutton.png
+[deletionpage]: ./images/deletionpage.png
+[deleteconfirmation]: ./images/deleteconfirmation.png
+[deletedrelease]: ./images/deletedrelease.png
+[delteddownloadwarning]: ./images/delteddownloadwarning.png
+[onereleasesearch]: ./images/onereleasesearch.png
+[noreleasesearch]: ./images/noreleasesearch.png
+[noreleasesearchfilter]: ./images/noreleasesearchfilter.png
+
 
 Publishing Modules on the Puppet Forge
 =====
 
-The Puppet Forge is a community repository of modules, written and contributed by  Puppet Open Source and Puppet Enterprise users. Using the Puppet Forge (Forge) is a great way to build on the work others have done and get updates and expansions on your own module work. This document describes how to publish your own modules to the Forge so that other users can [install][installing] them.
+The Puppet Forge is a community repository of modules, written and contributed by  Puppet Open Source and Puppet Enterprise users. Using the Puppet Forge (Forge) is a great way to build on the work others have done and get updates and expansions on your own module work. This document describes how to publish your own modules to the Forge so that other users can [install][installing] them, as well as how to maintain your releases once published.
 
 
 * Continue reading to learn how to publish your modules to the Puppet Forge.
@@ -248,3 +259,72 @@ Whether you are uploading a brand new module or a new release of an existing mod
 1. You must make sure that your [metadata](#write-a-metadatajson-file) is correct and entirely located in metadata.json, otherwise your module will either not display correctly on the Forge or will error out during upload.
 2. When you release a new version of an already published module, you must increment the `version` field in the metadata.json file (ensuring you use a valid [semantic version](http://semver.org/)).
 3. You are highly encouraged to fix any problems or mistakes with your module by issuing another release.
+
+Delete a Release
+----
+
+At some point, you may want to delete a release of your module. You can accomplish this easily from the Forge's web interface. 
+
+>**Note**
+>
+>A deleted release will still be downloadable via the Forge page or Puppet module tool (PMT) if a user requests the module by specific version. **You cannot delete a released version and upload a new version of the same release.**
+
+Follow the steps below to delete your release:
+
+1. In your web browser, navigate [to the Puppet Forge][forge] and log in.
+
+2. Click **Your Modules**.
+
+
+   ![your modules button][yourmodules]
+
+3. Go to the module page of the module whose release you want to delete.
+ 
+4. Locate **Select another release**, choose the release you want from the drop down, and click **Delete**.
+
+
+   ![select the release to delete][selectrelease]
+
+
+   ![delete][deletebutton]
+
+5. You will be taken to a new page. On that page, you must supply a reason for the deletion. **Note:** Your reason will be visible to users on the Forge.
+
+
+   ![deletion page][deletionpage]
+
+6. Click **Yes, delete it.**
+
+7. On your module page, you will see a banner confirmation of the deletion. 
+
+
+   ![confirmation banner][deleteconfirmation]
+
+
+Once you receive the confirmation banner, your release is officially deleted! 
+
+##Downloading a Deleted Release
+
+It is still possible to download a specific release of a module, even if it has been deleted. If you check the **Select another release** drop down, the release is still an option in the menu, but is marked as deleted. 
+
+   ![the deleted release is still there][deletedrelease]
+
+If you select the deleted release, a warning banner will appear on the page with the reason for deletion. However, you can still download the deleted release using the PMT or by clicking **Download**.
+
+   ![download deleted release][delteddownloadwarning]
+
+##Searching For a Deleted Module
+
+If the only release of a module is deleted, or if all the releases of a module are deleted, the module will still show up in the Forge's search under some circumstances.
+
+For example, puppetlabs-appdirector has only one release. It is the only result when we search for the word 'appdirector'.
+
+   ![one module one release][onereleasesearch]
+
+If that one release is deleted and we search for the word 'appdirector', no results are found. 
+
+   ![no module][noreleasesearch]
+
+However, if we check the box to **Include deleted modules** in our search, the appdirector module is found.
+
+  ![there it is][noreleasesearchfilter]
