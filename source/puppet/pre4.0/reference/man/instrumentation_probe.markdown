@@ -1,6 +1,5 @@
 ---
 layout: default
-nav: references_man.html
 title: puppet instrumentation_probe Man Page
 ---
 

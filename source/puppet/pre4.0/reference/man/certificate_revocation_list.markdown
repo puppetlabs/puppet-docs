@@ -1,6 +1,5 @@
 ---
 layout: default
-nav: references_man.html
 title: puppet certificate_revocation_list Man Page
 ---
 

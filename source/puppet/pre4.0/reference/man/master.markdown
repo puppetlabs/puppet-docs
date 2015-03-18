@@ -1,6 +1,5 @@
 ---
 layout: default
-nav: references_man.html
 title: puppet master Man Page
 ---
 
