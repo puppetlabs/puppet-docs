@@ -55,10 +55,11 @@ The Puppet master runs an ActiveMQ server to route orchestration commands. By de
 
 **To increase the ActiveMQ heap size**:
 
-1. From the console, navigate to the **Classification** page.
-2. Click the `PE Master` group.
-3. Click the __Variables__ tab. In the __key__ field, add `activemq_heap_mb`, and in the __value__ field add a new heap size to use (in MB).
-4. Click **Add variable** and then click the commit button.
+1. From the console, navigate to the **Classification** page and select the PE **ActiveMQ Broker** group.
+2. Click **Classes** and locate the `puppet_enterprise::profile::amq::broker` class.
+3. Click the **Parameter name** drop-down list, select `heap_mb`, and in the __value__ field, add a new heap size to use (in MB).
+4. Click **Add Parameter**, and then click the commit button.
+
 
 You can later delete the variable to revert to the default setting.
  
