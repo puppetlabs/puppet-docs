@@ -48,6 +48,7 @@ defaultnav:
   /puppetdb/2.0: puppetdb2.0.html
   /puppetdb/2.1: puppetdb2.1.html
   /puppetdb/2.2: puppetdb2.2.html
+  /puppetdb/2.3: puppetdb2.3.html
   /puppetdb/master: puppetdb_master.html
   /puppet/0.24/reference: puppet_0_24.html
   /puppet/0.25/reference: puppet_0_25.html
@@ -110,6 +111,11 @@ externalsources:
     url: /puppetdb/2.1
     repo: git://github.com/puppetlabs/puppetdb.git
     commit: origin/2.1.x
+    subdirectory: documentation
+  puppetdb_2.3:
+    url: /puppetdb/2.3
+    repo: git://github.com/puppetlabs/puppetdb.git
+    commit: origin/stable
     subdirectory: documentation
   puppetdb_2.2:
     url: /puppetdb/2.2
