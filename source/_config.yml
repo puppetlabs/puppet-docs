@@ -57,7 +57,7 @@ defaultnav:
   /puppet/3.5/reference: puppet_3_5.html
   /puppet/3.6/reference: puppet_3_6.html
   /puppet/3.7/reference: puppet_3_7.html
-  /puppet/pre4.0: puppet-pre_40.html
+  /puppet/pre4.0: puppet_pre_40.html
   /puppetserver/1.0: puppet_3_7.html
   /references: references_general.html
 destination: ../output
