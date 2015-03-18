@@ -115,7 +115,7 @@ Step 1: Enable agent installation via your load balancer
 2. From the __Classification page__, select the __PE Master__ group.
 3. Click the __Classes__ tab, and find the `pe_repo` class. 
 4. From the __Parameter__ drop-down list, select __Master__. 
-5. In the __Value__ field, enter the FQDN of your load balancer (e.g., `LOADBALANCER.EXAMPLE.COM`). 
+5. In the __Value__ field, enter the FQDN of your load balancer (e.g., `loadbalancer.example.com`). 
 6. Click __Add parameter__ and then the __Commit change__ button.
 7. From the command line of the agent node, run `curl -k https://<LOADBALANCER.EXAMPLE.COM>:8140/packages/current/install.bash | sudo bash`. 
 
@@ -123,12 +123,13 @@ Step 2: Enable additional compile master installation
 
 1. From the console, click __Classification__ in the top navigation bar.
 2. From the __Classification page__, in the __Node group name__ field, enter a name for the compile masters node group (e.g., __Compile Masters__).
-3. From the __Parent name__ drop-down list, select the __PE Master__ group.
-3. Select the __Compile Masters__ group, click the __Classes__ tab, and in the __Add new class__ field, enter `pe_repo`. 
-4. From the __Parameter__ drop-down list, select __Master__. 
-5. In the __Value__ field, enter the FQDN of your original Puppet master/CA server (e.g. in the examples above, `MASTER.EXAMPLE.COM`). 
-6. Click __Add parameter__ and then the __Commit change__ button.
-7. From the command line of the new compile master, run `curl -k https://<MASTER.EXAMPLE.COM>:8140/packages/current/install.bash | sudo bash`. 
+3. From the __Parent name__ drop-down list, select the __PE Master__ group, and then click __Add group__.
+4. Select the __Compile Masters__ group, and from the __Rules__ tab, in the __Node name__ field, enter the FQDNs of your compile master(s).
+5. Click the __Classes__ tab, and in the __Add new class__ field, enter `pe_repo`. 
+6. From the __Parameter__ drop-down list, select __Master__. 
+7. In the __Value__ field, enter the FQDN of your original Puppet master/CA server (e.g. in the examples above, `master.example.com`). 
+8. Click __Add parameter__ and then the __Commit change__ button.
+9. From the command line of the new compile master, run `curl -k https://<MASTER.EXAMPLE.COM>:8140/packages/current/install.bash | sudo bash`. 
 
 ### A Note About File Syncing
 
