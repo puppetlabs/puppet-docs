@@ -135,9 +135,11 @@ The **default** group contains all the nodes in your deployment (including the P
    
 7. Repeat steps 4 - 6 to add the `privileges` class. 
 
-8. Navigate to the live management page, and select the __Control Puppet__ tab. 
+8. From the CLI of your Puppet master, run `puppet agent -t`.
 
-9. Click the __runonce__ action and then __Run__. This will configure the nodes using the newly-assigned classes. Wait one or two minutes.
+9. From the CLI of your PE-managed node(s), run `puppet agent -t`. 
+
+   This will configure the nodes using the newly-assigned classes. Wait one or two minutes.
 
 > Congratulations! You’ve just created the `privileges` class that you can use to define and enforce a sudoers configuration across your PE-managed infrastructure. 
 

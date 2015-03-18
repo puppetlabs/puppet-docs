@@ -54,21 +54,27 @@ Note: This guide assumes that you’ll install a monolithic PE deployment as `ro
     a. **Puppet master FQDN**: provide the fully qualified domain name of the server you're installing PE on; for example, `master.example.com`.
 
     b. **DNS aliases**: provide a comma-separated list of aliases agent nodes can use to reach to the master; for example `master`.
+    
+12. Select whether or not to enable the Puppet 4 language parser.
 
-12. When prompted about database support, choose the default option **Install PostgreSQL for me**.
+   The Puppet 4 language parser gives you valuable language features, makes debugging easier, and will help keep your Puppet code compatible with future releases in the next major series. Recommended for all **NEW** Puppet users.
+   
+   If you'll be using Puppet code you did **NOT** create with the Puppet 4 language parser, **DO NOT** enable this feature.     
 
-13. Provide the following information about the PE console administrator user:
+13. When prompted about database support, choose the default option **Install PostgreSQL for me**.
+
+14. Provide the following information about the PE console administrator user:
 
     **Console superuser password**: create a password for the console login; the password must be at least eight characters.
 
     **Note**: the user name for the console administrator user is __admin__.
 
-14. Click **Submit**.
-15. On the confirm plan page, review the information you provided, and, if it looks correct, click **Continue**.
+15. Click **Submit**.
+16. On the confirm plan page, review the information you provided, and, if it looks correct, click **Continue**.
 
     If you need to make any changes, click **Go Back** and make whatever changes are required.
 
-16. On the validation page, the installer will verify various configuration elements (e.g., if SSH credentials are correct, if there is enough disk space, and if the OS is the same for the various components). If there aren't any outstanding issues, click **Deploy now**.
+17. On the validation page, the installer will verify various configuration elements (e.g., if SSH credentials are correct, if there is enough disk space, and if the OS is the same for the various components). If there aren't any outstanding issues, click **Deploy now**.
 
 The installer will then install and configure Puppet Enterprise. It may also need to install additional packages from your OS's repository. **This process may take up to 10-15 minutes.** When the installation is complete, the installer script that was running in the terminal will close itself.
 

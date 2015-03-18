@@ -92,9 +92,11 @@ We're going to add the `ntp` class to the **default** node group. Depending on y
 
    **Note**: The `ntp` class now appears in the list of classes for the __default__ group, but it has not yet been configured on your nodes. For that to happen, you need to kick off a Puppet run. 
    
-7. Navigate to the live management page, and select the __Control Puppet__ tab. 
+7. From the CLI of your Puppet master, run `puppet agent -t`.
 
-8. Click the __runonce__ action and then __Run__. This will configure the nodes using the newly-assigned classes. 
+8. From the CLI of your PE-managed node(s), run `puppet agent -t`. 
+
+   This will configure the nodes using the newly-assigned classes. 
 
 > **Success!** Puppet Enterprise is now managing NTP on the nodes in the __default__ group. So, for example, if you forget to restart the NTP service on one of those nodes after running `ntpdate`, PE will automatically restart it on the next Puppet Enterprise run. 
 
@@ -146,8 +148,10 @@ Changing the server parameter of the `ntp` class can be accomplished in a few st
 5. In the __Value__ field, enter the new server name (e.g., `["time.apple.com"]`). Note that this should be an array, in JSON format. 
 6. Click __Add parameter__. 
 7. Click __Commit 1 change__. 
-8. Navigate to the live management page, and select the __Control Puppet__ tab. 
-9. Click the __runonce__ action and then __Run__ to trigger a Puppet run to have Puppet Enterprise create the new configuration. 
+8. From the CLI of your Puppet master, run `puppet agent -t`.
+9. From the CLI of your PE-managed node(s), run `puppet agent -t`.  
+
+   This will trigger a Puppet run to have Puppet Enterprise create the new configuration. 
 
 > Puppet Enterprise will now use the NTP server you've specified for that node.
 >

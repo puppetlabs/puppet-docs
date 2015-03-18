@@ -121,9 +121,11 @@ The **default** group contains all the nodes in your deployment (including the P
 
    **Note**: The `resolver` class now appears in the list of classes for the __default__ group, but it has not yet been configured on your nodes. For that to happen, you need to kick off a Puppet run. 
    
-7. Navigate to the live management page, and select the __Control Puppet__ tab. 
+7. From the CLI of your Puppet master, run `puppet agent -t`.
 
-8. Click the __runonce__ action and then __Run__. This will configure the nodes using the newly-assigned classes. Wait one or two minutes.
+8. From the CLI of your PE-managed node(s), run `puppet agent -t`. 
+
+   This will configure the nodes using the newly-assigned classes. Wait one or two minutes.
 
 > Not done just yet! The `resolver` class now appears in the list of classes for agent1.example.com, but it has not yet been fully configured---you still need to add the nameserver IP address parameter for the `resolver` class to use. You can do this by adding a parameter right in the console. 
      
@@ -143,8 +145,11 @@ You can add class parameter values to the code in your module, but it’s easier
    
 6. Click __Add parameter__. 
 7. Click __Commit 1 change__. 
-8. Navigate to the live management page, and select the __Control Puppet__ tab. 
-9. Click the __runonce__ action and then __Run__ to trigger a Puppet run to have Puppet Enterprise create the new configuration. 
+8. From the CLI of your Puppet master, run `puppet agent -t`.
+9. From the CLI of your PE-managed node(s), run `puppet agent -t`. 
+
+   This will trigger a Puppet run to have Puppet Enterprise create the new configuration. 
+
 10. Navigate to `/etc/resolv.conf`. This file now contains the contents of the `resolv.conf.erb` template and the nameserver IP address you added in step 4. 
 
 > Success! Puppet Enterprise will now use the nameserver IP address you've specified for that node. 

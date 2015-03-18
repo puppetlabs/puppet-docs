@@ -160,7 +160,7 @@ For more information about writing classes, refer to the following documentation
 
    >**Note**: Since the `pe_quickstart_app` includes the `apache` class, you need to remove the first `apache` class you added the master node, as Puppet will only allow you to declare a class once.
 
-3. Use live management to run the __runonce__ action your agent node.
+3. From the CLI on your agent node, run `puppet agent -t`.
 
      When the Puppet run is complete, you will see in the node's log that a vhost for the app has been created and the Apache service (httpd) has been started.
 

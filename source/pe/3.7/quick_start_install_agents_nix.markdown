@@ -65,9 +65,9 @@ To install an agent with a different OS from the Puppet master, you first add th
 
    **Note**: The class you selected now appears in the list of classes for the __PE Master__ group, but it has not yet been configured on your nodes. For that to happen, you need to kick off a Puppet run.
 
-7. Click _Live Management_, and click __Control Puppet__.
+7. From the CLI on the Puppet master, run `puppet agent -t`.
 
-8. Click __runonce__  and then click __Run__. This configures the Puppet master node using the newly-assigned class.
+   This configures the Puppet master node using the newly-assigned class.
 
    The new repo is created in `/opt/puppet/packages/public`. It’s called `puppet-enterprise-3.7.0-<os-version-architecture>-agent`.
 

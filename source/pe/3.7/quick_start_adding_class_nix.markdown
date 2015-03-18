@@ -49,9 +49,11 @@ Unless you have navigated elsewhere in the console, the __apache example__ node 
 
 5. Open `index.html` with the text editor of your choice and fill it with some content (e.g., "Hello World").
 
-6. From the console, navigate to the __Live Management__ page, and select the __Control Puppet__ tab.
+6. From the CLI of your Puppet master, run `puppet agent -t`.
 
-7. Click __runonce__ and then __Run__. This will configure the node using the newly-assigned class. Wait one or two minutes.
+7. From the CLI of your PE-managed node(s), run `puppet agent -t`. 
+
+   This will configure the node using the newly-assigned class. Wait one or two minutes.
 
 8. Open a browser and enter the IP address for the agent node, adding port 80 on the end (e.g., `www.myagentnodeIP:80`).
 
@@ -76,8 +78,10 @@ You can use the console to set or edit the values of a class's parameters withou
 5. In the __Value__ field, enter `"/var/www"`.
 6. Click __Add parameter__.
 7. Click __Commit 1 change__.
-8. Navigate to the Live Management page, and select the __Control Puppet__ tab.
-9. Click __runonce__  and then __Run__ to trigger a Puppet run to have Puppet Enterprise create the new configuration.
+8. From the CLI of your Puppet master, run `puppet agent -t`.
+9. From the CLI of your PE-managed node(s), run `puppet agent -t`. 
+
+   This will trigger a Puppet run to have Puppet Enterprise create the new configuration.
 
 ----------
 
