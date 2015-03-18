@@ -7,7 +7,13 @@ canonical: "/pe/latest/rbac_intro.html"
 
 ##Overview
 
-In Puppet Enterprise (PE), you can use role-based access control (RBAC) to manage user permissions. Permissions define what actions users can perform on designated objects. For example, "can the user grant password reset tokens to other users who have forgotten their passwords?" Or, "can the user edit a local user's metadata?" Or "can the user edit class parameters in a node group?"
+In Puppet Enterprise (PE), you can use role-based access control (RBAC) to manage user permissions. Permissions define what actions users can perform on designated objects. For example:
+
+*Can the user grant password reset tokens to other users who have forgotten their passwords?*
+
+*Can the user edit a local user's metadata?*
+
+*Can the user edit class parameters in a node group?*
 
 Permissions are managed through *user roles*. To grant a permission to a user, you first need to assign the user to one or more user roles. Users inherit all of the permissions from each user role they are in. PE ships with three default user roles: Administrators, Operators, and Viewers. In addition, you can create custom roles.
 
