@@ -113,7 +113,7 @@ externalsources:
   puppetdb_2.2:
     url: /puppetdb/2.2
     repo: git://github.com/puppetlabs/puppetdb.git
-    commit: origin/stable
+    commit: origin/2.2.x
     subdirectory: documentation
   puppetdb_master:
     url: /puppetdb/master
