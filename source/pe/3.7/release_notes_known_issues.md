@@ -118,9 +118,11 @@ PE will automatically update your version of puppetlabs-inifile as part of the u
 	Warning: Not using cache on failed catalog
 	Error: Could not retrieve catalog; skipping run
 
-### A Note about Symlinks and Installation
+### A Note about Symlinks and Installation/Upgrade
 
 The answer file no longer gives the option of whether to install symlinks. These are now automatically installed by packages. To allow the creation of symlinks, you need to ensure that `/usr/local` is writable.
+
+However, please note that we do not recommend employing symlinks in the place of `/opt` for database storage, as doing so can lead to databases not being seen.
 
 ### Answer File Required for Some SMTP Servers
 
