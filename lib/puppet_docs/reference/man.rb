@@ -42,7 +42,7 @@ module PuppetDocs
 
         # Write files
         man_strings.each do |name, man_string|
-          headerstring = "---\nlayout: default\nnav: references_man.html\ntitle: puppet #{name} Man Page\n---\n\n"
+          headerstring = "---\nlayout: default\nnav: /_includes/references_man.html\ntitle: puppet #{name} Man Page\n---\n\n"
 
           ronn = IO.popen("bundle exec ronn --pipe -f", "r+")
           ronn.write(man_string)
