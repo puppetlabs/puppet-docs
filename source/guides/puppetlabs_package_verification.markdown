@@ -1,7 +1,7 @@
 ---
 title: "Verifying Signatures for Puppet Labs Packages"
 layout: default
-nav: puppet_general.html
+nav: /_includes/puppet_general.html
 ---
 
 

@@ -1,6 +1,6 @@
 ---
 layout: default
-nav: best_practice_guides.html
+nav: /_includes/best_practice_guides.html
 title: Beginner's Guide to Modules
 ---
 

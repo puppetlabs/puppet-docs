@@ -1,7 +1,7 @@
 ---
 title: Puppet Man Pages
 layout: default
-nav: references_man.html
+nav: /_includes/references_man.html
 ---
 
 Puppet's command line tools consist of a single `puppet` binary with many subcommands. The following subcommands are available in this version of Puppet:

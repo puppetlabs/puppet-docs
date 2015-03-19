@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Configuration: Changing Settings on the Command Line"
-nav: puppet_3.html
+nav: /_includes/puppet_3.html
 ---
 
 [puppet.conf]: /puppet/3.6/reference/config_file_main.html

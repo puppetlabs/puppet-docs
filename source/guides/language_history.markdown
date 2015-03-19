@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "History of Puppet Language Features"
-nav: "puppet_general.html"
+nav: /_includes/puppet_general.html
 ---
 
 The Puppet language has changed significantly over time, with many features being added and some features being removed. This page tracks a subset of those changes, showing how the language has evolved and when various features became available.

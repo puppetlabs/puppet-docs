@@ -1,6 +1,6 @@
 ---
 layout: default
-nav: fallback_nav.html
+nav: /_includes/fallback_nav.html
 title: "Puppet » Troubleshooting » Remediating Heartbleed"
 subtitle: "Remediation for Recovering from the Heartbleed Bug"
 canonical: "/trouble_remediate_heartbleed_overview.html"
