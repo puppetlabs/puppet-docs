@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Puppet 2.6: Report Formats"
-nav: puppet_2_6.html
+nav: /_includes/puppet_2_6.html
 ---
 
 The Puppet 2.6 series uses the following report formats:

@@ -2,7 +2,7 @@
 layout: lvm
 title: Learning Puppet — Index
 toc: false
-nav: fallback_nav.html
+nav: /_includes/fallback_nav.html
 ---
 
 [pe_install]: /pe/latest/install_basic.html

@@ -1,24 +1,28 @@
 module Jekyll
-  # Call it version 3.
-  # This is largely a rip of Jekyll's include tag. It takes no arguments and
-  # renders the _includes fragment identified in the "nav" key of a page's yaml
+  # Call it version 4.
+  # This works a lot like Jekyll's include tag. It takes no arguments and
+  # renders the fragment identified in the "nav" key of a page's yaml
   # frontmatter.
-  
+
   # If the page doesn't have a specific nav fragment, it will render the MOST
   # SPECIFIC default fragment specified in the "defaultnav" hash in _config.yml.
   # Which means you can do things like have a default nav fragment for /pe URLs,
-  # but override it for /pe/2.5 URLs. Defaultnav hash should look like this: 
+  # but override it for /pe/2.5 URLs. Defaultnav hash should look like this:
 
-  # defaultnav: 
-  #   /: quick_nav.html
-  #   /mcollective: mcollective_menu.html
-  #   /pe/2.5: pe25.html
-  #   /pe/2.0: pe_2.0_nav.markdown
+  # defaultnav:
+  #   /: /_includes/quick_nav.html
+  #   /mcollective: /_includes/mcollective_menu.html
+  #   /pe/2.5: /_includes/pe25.html
+  #   /pe/2.0: /_includes/pe_2.0_nav.markdown
 
-  # New in version 3: You can do partial directory names, like /references/3.
-  # This allows us to easily set a custom nav for a set of pages.
-  # -NF 2012
+  # New in version 4: You can put nav fragments anywhere in the source
+  # directory. The cost is that you need to use the full path (with `/` mapped
+  # to `source/`), but the benefit is that we can keep nav fragments next to the
+  # content they govern.
+  # -NF 2015
   class RenderNavTag < Liquid::Tag
+    require 'pathname'
+
     def initialize(tag_name, something_bogus, tokens)
       super
     end
@@ -39,7 +43,7 @@ module Jekyll
 #       end
 #       best_match
 #     end
-    
+
     # Given a path and an array of directory names, get the most specific directory that matches.
     # Can also handle partial names on the final directory segment.
     def pick_best_default(path, defaults_array)
@@ -59,7 +63,7 @@ module Jekyll
         return current_match
       end
     end
-    
+
     def render(context)
       nav_fragment = ''
       if context.environments.first['page']['nav']
@@ -74,22 +78,21 @@ module Jekyll
       if nav_fragment == ''
         return "Blank navigation filename! Something went wrong. Check the nav variable in this file, then check the defaultnav hash in _config.yml."
       end
-      if nav_fragment !~ /^[a-zA-Z0-9_\/\.-]+$/ || nav_fragment =~ /\.\// || nav_fragment =~ /\/\./
-        return "Include file name '#{nav_fragment}' contains invalid characters or sequences"
+
+      requested_path = Pathname.new(nav_fragment)
+      cwd            = Pathname.new(context.environments.first["page"]["url"]).parent
+      sourcedir      = Pathname.new(context.registers[:site].source)
+      root           = Pathname.new('/')
+
+      absolute_url = cwd + requested_path # if it's already absolute, abs1 + abs2 = abs2.
+      real_file = sourcedir + absolute_url.relative_path_from(root)
+
+      source = real_file.read
+      partial = Liquid::Template.parse(source)
+      context.stack do
+        partial.render(context)
       end
 
-      Dir.chdir(File.join(context.registers[:site].source, '_includes')) do
-        choices = Dir['**/*'].reject { |x| File.symlink?(x) }
-        if choices.include?(nav_fragment)
-          source = File.read(nav_fragment)
-          partial = Liquid::Template.parse(source)
-          context.stack do
-            partial.render(context)
-          end
-        else
-          "Included file '#{nav_fragment}' not found in _includes directory"
-        end
-      end
     end
   end
 end
