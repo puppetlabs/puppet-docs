@@ -13,7 +13,7 @@ The `puppetdb.conf` file configures how Puppet should connect to one or more [Pu
 
 If you're using PuppetDB 3.0 or higher (unreleased as of this writing), [`puppetdb.conf` is documented in the PuppetDB docs.][puppetdb_connection]
 
-## PuppetDB 2.2 and Earlier
+## PuppetDB 2.3 and Earlier
 
 The following description does **not** apply to PuppetDB 3.0 and later. If you're using a newer version, see [the PuppetDB docs][puppetdb_connection] instead, as the file format has changed.
 
