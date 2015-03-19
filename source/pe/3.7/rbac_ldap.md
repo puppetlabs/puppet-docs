@@ -67,4 +67,4 @@ You connect to an external directory service by providing the information descri
 
 Once you’ve filled in the **External directory** form, click **Test connection** to ensure that the connection has been established. If you’re successful, a green **Success** message will be displayed at the top of the form. Save your settings after you have successfully tested them.
 
-Next, see [Working with Users and User Groups from an External Directory Service](./rbac_user_roles.html#working-with-users-and-user-groups-from-an-external-directory-service).
+Next, see [Working with Users and User Groups from an External Directory Service](./rbac_user_roles.html#working-with-user-groups-and-users-from-an-external-directory-service).
