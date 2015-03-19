@@ -44,6 +44,8 @@ e.g. `GET /api/commands/create-policy`.
 Commands are generally asynchronous and return a status code of `202
 Accepted` on success. The `url` property of the response generally refers to an entity that is affected by the command and can be queried to determine when the command has finished.
 
+## Repo Commands
+
 ### Create new repo (`create-repo`)
 
 There are three flavors of repositories:
@@ -93,6 +95,8 @@ The `delete-repo` command accepts a single repo name:
       "name": "fedora16"
     }
 
+## Task Commands
+
 ### Create task (`create-task`)
 
 Razor supports both tasks stored in the filesystem and tasks stored in the database.
@@ -122,6 +126,8 @@ description | Human-readable description
 boot_seq    | A hash mapping the boot counter or 'default' to a template
 templates   | A hash mapping template names to the actual ERB template text
 
+## Broker Commands
+
 ### Create broker (`create-broker`)
 
 To create a broker, post the following to the `create-broker` URL:
@@ -149,6 +155,8 @@ To delete a broker, post its name to the `/spec/delete_broker` command:
     }
 
 You can't delete a broker if it's being used by a policy.
+
+## Tag Commands
 
 ### Create tag (`create-tag`)
 
@@ -187,6 +195,8 @@ To change the rule for a tag, post the following to the
 This changes the rule of the given tag to the new rule. Razor then reevaluates the tag against all nodes and updates each node's tag attribute to reflect whether the tag now matches or not.
 
 If the tag is used by any policies, the update is only performed if you set the optional `force` parameter to `true`. Otherwise, the command returns status code 400.
+
+## Policy Commands
 
 ### Create policy (`create-policy`)
 
@@ -269,6 +279,18 @@ To remove tags from a policy, supply the name of a policy and the name of the ta
       "tag" : "a-tag-name",
     }
 
+### Update a Policy's Specified task (`update-policy-task`)
+
+Ensure that a specified policy uses the task it specifies, and sets the task if necessary. If a node is currently provisioning against the policy when you run this command, it can cause errors.
+
+The following shows how to update a policy's task to a task called "other_task".
+
+	{
+	"node": "node1",
+	"policy": "my_policy",
+	"task": "other_task"
+	}
+
 ### Delete policy (`delete-policy`)
 
 To delete a policy, supply the name of a single policy:
@@ -279,6 +301,8 @@ To delete a policy, supply the name of a single policy:
 
 Note that this does not affect the `installed` status of a node, and
 therefore can't, by itself, make a node bind to another policy upon reboot.
+
+## Hook Commands
 
 ### Create hook (`create-hook`)
 
@@ -303,6 +327,8 @@ To delete a single hook, provide its name:
     {
       "name": "my-hook"
     }
+
+## Node Commands
 
 ### Delete node (`delete-node`)
 
