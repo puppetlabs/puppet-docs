@@ -281,7 +281,7 @@ To remove tags from a policy, supply the name of a policy and the name of the ta
 
 ### Update a Policy's Specified task (`update-policy-task`)
 
-Ensure that a specified policy uses the task it specifies, and sets the task if necessary. If a node is currently provisioning against the policy when you run this command, it can cause errors.
+Ensures that a policy uses the task it specifies. If necessary, `update-policy-task` sets the task, for example if a policy has already been created and you want to add a task to it. Note that if a node is currently provisioning against the policy when you run this command, it can cause errors.
 
 The following shows how to update a policy's task to a task called "other_task".
 
