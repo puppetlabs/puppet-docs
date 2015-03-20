@@ -279,7 +279,7 @@ To remove tags from a policy, supply the name of a policy and the name of the ta
       "tag" : "a-tag-name",
     }
 
-### Update a Policy's Specified task (`update-policy-task`)
+### Update a Policy's Specified Task (`update-policy-task`)
 
 Ensures that a policy uses the task it specifies. If necessary, `update-policy-task` sets the task, for example if a policy has already been created and you want to add a task to it. Note that if a node is currently provisioning against the policy when you run this command, it can cause errors.
 
@@ -454,7 +454,7 @@ or
         "all"  : true,     # Removes all keys
     }
 
-## Set Node Hardware Info (`set-node-hardware-info`)
+### Set Node Hardware Info (`set-node-hardware-info`)
 
 When a node's hardware changes, such as a network card being replaced, the Razor server needs to be informed so it can correctly match the new hardware to the existing node definition.
 
