@@ -94,7 +94,7 @@ Keep in mind that if you delete the `/etc/puppetlabs/installer/answers.install` 
 Fine Tuning Live Management Node Discovery
 -----
 
-If you're running live management on a network that's slow or that has intermittent connectivity issues, you might need to tweak the timeouts for node discovery.
+If you're running live management on a network that's slow or has intermittent connectivity issues, you might need to tweak the timeouts for node discovery.
 
 The following steps provide an example of configuring `LM_DISCOVERY_TIMEOUT`:
 
@@ -102,7 +102,7 @@ The following steps provide an example of configuring `LM_DISCOVERY_TIMEOUT`:
 
 		:datadir: '/etc/puppetlabs/puppet/hieradata'
 
-2. Add a global.yaml file to the folder you created (`/etc/puppetlabs/puppet/hieradata`) and add these lines to increase the timeout time from 4 to 45 seconds, and to increase the number of retries from 3 to 10:
+2. Add a global.yaml file to the folder you created (`/etc/puppetlabs/puppet/hieradata`), and add these lines to increase the timeout time from 4 to 45 seconds and to increase the number of retries from 3 to 10:
 
 		---
 		puppet_enterprise::console::lm_discovery_timeout: 45
