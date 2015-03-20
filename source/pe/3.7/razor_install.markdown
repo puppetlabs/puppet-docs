@@ -110,4 +110,4 @@ To uninstall the Razor client:
 
 * * *
 
-[Next: Razor Provisioning Setup](./razor_using.html)
+[Next: Making Razor API Calls Secure](./razor_secure_apis.html)
