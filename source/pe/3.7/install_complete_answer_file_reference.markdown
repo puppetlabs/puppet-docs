@@ -115,7 +115,7 @@ These answers are generally needed if you are installing the Puppet master role.
 : **String** --- The location from which PE agent tarballs will be downloaded before installation. Note that agent tarballs are only available for certain operating systems. For details, see [the PE installation instructions](./install_basic.html)
 
 `q_accepted_auth_conf`
-: **Y** or **N** --- (Upgrade only) Whether to accept the presence of a modified auth.conf file when upgrading. For details see [modified auth.conf files](./install_upgrading_dir_env_notes.html#upgrading-to-38-with-a-modified-authconf-file).
+: **Y** or **N** --- (Upgrade only) Whether to accept the presence of a modified auth.conf file when upgrading. For details see [modified auth.conf files](./install_upgrading_notes.html#upgrading-to-38-with-a-modified-authconf-file).
 
 ### Console Answers
 

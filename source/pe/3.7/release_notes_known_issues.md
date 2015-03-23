@@ -105,7 +105,7 @@ Any entries in `/etc/puppetlabs/puppet/autosign.conf` that don't conform to the 
 
 ## Upgrading to 3.8 with a Modified `auth.conf` File
 
-This issue is documented in the [notes and warnings for upgrading](./install_upgrading_dir_env_notes.html#upgrading-to-38-with-a-modified-authconf-file).
+This issue is documented in the [notes and warnings for upgrading](./install_upgrading_notes.html#upgrading-to-38-with-a-modified-authconf-file).
 
 ### `q_database_host` Cannot be an Alt Name For Upgrades or Installs of 3.7.0
 
