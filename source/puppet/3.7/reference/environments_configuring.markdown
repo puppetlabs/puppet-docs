@@ -17,9 +17,12 @@ title: "Configuring Directory Environments"
 [disable_per_environment_manifest]: /references/3.7.latest/configuration.html#disableperenvironmentmanifest
 [main manifest]: ./dirs_manifest.html
 
-> **Note:** This page refers to Puppet 3.7, which is included with Puppet Enterprise 3.7.
 
-Before you can use directory environments, you have to configure Puppet to enable them. After enabling them, you can:
+Before you can use directory environments, you have to configure Puppet to enable them.
+
+For performance reasons, many users will also want to [set `environment_timeout` to `unlimited`][inpage_timeout] and refresh the Puppet master when deploying code.
+
+After enabling environments, you can:
 
 * [Create environments][create_environment]
 * [Assign environments to your nodes][assign]
@@ -68,7 +71,7 @@ Restart the web server that manages your Puppet master, to make sure the Puppet 
 Global Settings for Configuring Environments
 -----
 
-Puppet uses five settings from [puppet.conf][] to configure the behavior of directory environments:
+Puppet uses five settings in [puppet.conf][] to configure the behavior of directory environments:
 
 * [`environmentpath`][environmentpath] is the list of directories where Puppet will look for environments.
 * [`basemodulepath`][basemodulepath] lists directories of global modules that all environments can access by default.
@@ -110,6 +113,8 @@ To add additional directories containing global modules, you can set your own va
 
 ### `default_manifest`
 
+[(See also: Full description of `default_manifest` setting.)](/references/3.7.latest/configuration.html#defaultmanifest)
+
 The default [main manifest][] to use for environments that don't specify one in [environment.conf][].
 
 The default value of `default_manifest` is `./manifests` --- that is, the environment's own `manifests` directory. (In Puppet versions prior to 3.7, this wasn't configurable.)
@@ -127,21 +132,26 @@ This requires `default_manifest` to be an absolute path.
 
 ### `environment_timeout`
 
-How long the Puppet master should cache the data it loads from an environment. You can set a default for this in [puppet.conf][], and can also set per-environment values in [environment.conf][].
+[inpage_timeout]: #environmenttimeout
+[puppetserver.conf]: /puppetserver/latest/configuration.html#puppetserverconf
+[environment-cache]: /puppetserver/latest/admin-api/v1/environment-cache.html
 
-Defaults to three minutes. This setting can be a time interval in seconds (`30` or `30s`), minutes (`30m`), hours (`6h`), days (`2d`), or years (`5y`). This setting can also be set to `unlimited`, which causes the environment to be cached until manually purged (via a restart or Puppet Server's `environment-cache` endpoint). A value of `0` seconds will disable caching for an environment.
+[(See also: Full description of `environment_timeout` setting.)](/references/3.7.latest/configuration.html#environmenttimeout)
 
-> **Note:** If an environment has a timeout of more than a few minutes, you must force your Puppet master service to reload that environment whenever you change it; otherwise, your nodes may receive inconsistent catalogs.
->
-> * If you're using Puppet Server ≥ 1.0 or Puppet Enterprise ≥ 3.7.1, [use the `environment-cache` HTTPS endpoint.](/puppetserver/latest/admin-api/v1/environment-cache.html)
-> * If you're using a Rack Puppet master or an earlier version of Puppet Server, restart the Puppet master service.
->
-> [We explain further here.](./environments_limitations.html#changing-an-environment-with-a-long-timeout-requires-a-service-restart)
+How long the Puppet master should cache the data it loads from an environment. **For performance reasons, we recommend changing this setting.**
 
-Most users should be fine with the default of three minutes. To get more performance from your Puppet master, you can tune the timeout for your most heavily used environments. Getting the most benefit involves a tradeoff between speed, memory usage, and responsiveness to changed files. The general best practice is:
+The value defaults to `0` (caching disabled), which lowers the performance of your Puppet master but makes it easy for new users to deploy updated Puppet code.
 
-- Long-lived, slowly changing, relatively homogenous, highly populated environments (like `production` at most sites) will give the most benefit from longer timeouts. If you only make changes to an environment once or twice a day, you can set its timeout to `unlimited` and restart the Puppet master service whenever you deploy code.
-- Rapidly changing dev environments should have short timeouts: a few seconds, or `0` if you don't want to wait.
-- Sparsely populated environments should have short-ish timeouts: just long enough to help out if a cluster of nodes all hit the master at once, but short enough to not waste the server's memory. `3m` is fine.
-- Extremely heterogeneous environments --- where you have a lot of modules and each node uses a different tiny subset --- will sometimes perform _worse_ with a long timeout. (This can cause excessive memory usage and garbage collection without giving back any performance boost.) Give these short timeouts of `5s` to `10s`.
+> **Note:** This default changed in Puppet 3.7.5. In 3.7.0 through 3.7.4, it was `3m`.
 
+For best performance, you should set `environment_timeout = unlimited` in puppet.conf, and explicitly refresh your Puppet master every time you deploy updated code.
+
+* With Puppet Server, refresh environments by [calling the `environment-cache` API endpoint.][environment-cache] You may need to allow access in [puppetserver.conf][]'s `puppet-admin` section.
+* With a Rack Puppet master, restart the web server or the
+  application server. Passenger lets you touch a `restart.txt` file to
+  refresh an application without restarting Apache; see the Passenger docs
+  for details.
+
+This setting can be overridden per-environment in [environment.conf][], but most users should avoid doing that.
+
+> **Note:** We don't recommend using any value other than `0` or `unlimited`, since most Puppet masters use a pool of Ruby interpreters which all have their own cache timers. When these timers drift out of sync, agents can be served inconsistent catalogs.
