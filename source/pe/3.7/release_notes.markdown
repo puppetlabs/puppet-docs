@@ -52,9 +52,10 @@ Live Management is deprecated in PE 3.8.0 and will be replaced by improved resou
 ### Some Puppet Master Platforms are Deprecated
 
 The following Puppet master platforms are deprecated in PE 3.8, and will be removed in future versions of PE:
+
 * All 32-bit versions
 * All Debian versions
 * EL 5 (RHEL, CentOS, Scientific, Oracle)
 * Ubuntu 10.4
 
-See the [system requirements](./install_system_requirements.html) for more information and recommendations.
+See the [system requirements](./install_system_requirements.html) for a list of supported platforms.
