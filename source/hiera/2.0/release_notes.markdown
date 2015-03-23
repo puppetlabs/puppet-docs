@@ -20,13 +20,13 @@ On *nix systems:
 * `:datadir` is now at `/etc/puppetlabs/code/hieradata/`
     * (was: `/var/lib/hiera`)
 
-On Windows systems: 
+On Windows systems:
 
-* `hiera.yaml` is now at `\PuppetLabs\code\hiera.yaml`
-  * (was: `COMMON_APPDATA\PuppetLabs\puppet\etc\hiera.yaml`)
-* `:datadir` is now at `\PuppetLabs\code\hieradata`
-  * (was: `COMMON_APPDATA\PuppetLabs\Hiera\var`)
-  
+* `hiera.yaml` is now at `<COMMON_APPDATA>\PuppetLabs\code\hiera.yaml`
+  * (was: `<COMMON_APPDATA>\PuppetLabs\puppet\etc\hiera.yaml`)
+* `:datadir` is now at `<COMMON_APPDATA>\PuppetLabs\code\hieradata`
+  * (was: `<COMMON_APPDATA>\PuppetLabs\Hiera\var`)
+
 Also, Hiera will now always use the _same_ default location, whether you're using it from the CLI, as a Ruby library, or via Puppet.
 
 * [HI-298: Update FS layout for hiera](https://tickets.puppetlabs.com/browse/HI-298)
