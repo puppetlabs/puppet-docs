@@ -133,7 +133,7 @@ fail, complaining that `File[foo]` is defined twice:
         define basket($arg) {
                 file{'foo':
                         ensure  => present,
-                        content => "$arg",
+                        content => $arg,
                         }
                 }
         @basket { 'fruit': arg => 'apple' }
@@ -144,9 +144,9 @@ fail, complaining that `File[foo]` is defined twice:
 Here's a working example:
 
         define basket($arg) {
-            file{"$name":
+            file{$name:
                 ensure  => present,
-                content => "$arg",
+                content => $arg,
                 }
             }
         @basket { 'fruit': arg => 'apple' }
