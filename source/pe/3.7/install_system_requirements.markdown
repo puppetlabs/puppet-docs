@@ -16,8 +16,7 @@ Before installing Puppet Enterprise:
     3. Console
     4. Agents
 
-Operating System
------
+## Operating System
 
 Puppet Enterprise 3.7 supports the following operating systems:
 
@@ -55,8 +54,8 @@ Upgrading your OS while PE is installed can cause problems with PE. To perform a
 4. [Install PE](/pe/latest/install_basic.html).
 5. [Restore](./maintain_backup_restore.html#restore-your-database-and-puppet-enterprise-files) your backup.
 
-Network Devices
------
+## Network Devices
+
 
 Puppet Enterprise 3.7 supports running Puppet agents on the following networking devices/operating systems:
 
@@ -64,8 +63,7 @@ Puppet Enterprise 3.7 supports running Puppet agents on the following networking
 
 
 
-Hardware Requirements
------
+## Hardware Requirements
 
 Puppet Enterprise's hardware requirements depend on the size of your environment.
 
@@ -116,10 +114,9 @@ It may be desirable to move the certificate authority (CA) role to a separate no
 
 - **Certificate Authority**: 4 cores, 4 GB of RAM, 40 GB of storage
 
-Supported Browsers
------
+## Supported Browsers
 
-The following browsers are supported for use with the console:
+The following browsers are supported for use with the PE console:
 
 * Chrome: Current version, as of release
 * Firefox: Current version, as of release
@@ -127,8 +124,8 @@ The following browsers are supported for use with the console:
 * Safari: 7
 
 
-System Configuration
------
+## System Configuration
+
 
 Before installing Puppet Enterprise at your site, you should make sure that your nodes and network are properly configured.
 
@@ -294,19 +291,19 @@ Configure your firewalls to accommodate Puppet Enterprise's network traffic.
 
 See the split installation port/use table for explanations of the ports and their uses.
 
-### Dependencies and OS Specific Details
+## Dependencies and OS Specific Details
 
 This section details the packages that are installed from the various OS repos.  Unless you do not have internet access, you shouldn't need to worry about installing these manually, they will be set up during PE installation.
 
-#### PostgreSQL Requirement
+### PostgreSQL Requirement
 
 If you will be using your own instance of PostgreSQL (as opposed to the instance PE can install) for the console and PuppetDB, it must be version 9.1 or higher.
 
-#### OpenSSL Requirement
+### OpenSSL Requirement
 
 OpenSSL is a dependency required for PE. For Solaris 10 and all versions of RHEL, Debian, Ubuntu, Windows, and AIX nodes, OpenSSL is included with PE; for all other platforms it is installed directly from the system repositories.
 
-***Centos***
+### Centos
 
  &nbsp;      | All Nodes | Master Nodes | Console Nodes | Console/Console DB Nodes | Cloud Provisioner Nodes
 -------------|:---------:|:------------:|:-------------:|:------------------------:|:----------------------:
@@ -327,9 +324,8 @@ unixODBC     |           | x            | x             |                       
 libxslt      |           |              |               |                          | x
 zlib         | x         |              |               |                          |
 
-<br>
 
-***RHEL***
+### RHEL
 
  &nbsp;      | All Nodes | Master Nodes | Console Nodes | Console/Console DB Nodes | Cloud Provisioner Nodes
 -------------|:---------:|:------------:|:-------------:|:------------------------:|:----------------------:
@@ -353,9 +349,8 @@ unixODBC (RHEL 7) |      | x            | x             |                       
 libxslt      |           |              |               |                          | x
 zlib         | x         |              |               |                          |
 
-  <br>
 
-***SLES***
+### SLES
 
  &nbsp;      | All Nodes | Master Nodes | Console Nodes | Console/Console DB Nodes | Cloud Provisioner Nodes
 -------------|:---------:|:------------:|:-------------:|:------------------------:|:----------------------:
@@ -373,9 +368,8 @@ db43         |           | x            | x             |                       
 unixODBC     |           | x            | x             |                          |
 zlib         | x         |              |               |                          |
 
- <br>
 
-***Debian***
+### Debian
 
  &nbsp;      | All Nodes | Master Nodes | Console Nodes | Console/Console DB Nodes | Cloud Provisioner Nodes
 -------------|:---------:|:------------:|:-------------:|:------------------------:|:----------------------:
@@ -405,9 +399,8 @@ locales-all (Debian 7) | |              |               | x                     
 libxslt1.1   |           |              |               |                          | x
 zlib         | x         |              |               |                          |
 
-<br>
 
-***Ubuntu***
+### Ubuntu
 
 
  &nbsp;      | All Nodes | Master Nodes | Console Nodes | Console/Console DB Nodes | Cloud Provisioner Nodes
@@ -441,9 +434,8 @@ zlib         | x         |              |               |                       
 
 *For Ubuntu 10.04 and Debian 6, use openjdk-6-jre-headless.
 
-<br>
 
-***AIX***
+### AIX
 
 In order to run the Puppet agent on AIX systems, you'll need to ensure the following are installed *before* attempting to install the Puppet agent:
 
@@ -467,7 +459,7 @@ To install the packages on your selected node directly, you can run `rpm -Uvh` w
 
 The PE AIX implementation supports the NIM, BFF, and RPM package providers. Check the [Type Reference](/references/3.4.latest/type.html#package) for technical details on these providers.
 
-***Solaris***
+### Solaris
 
 Solaris support is agent only.
 
