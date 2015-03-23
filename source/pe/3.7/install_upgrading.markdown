@@ -9,15 +9,13 @@ canonical: "/pe/latest/install_upgrading.html"
 
 ## Upgrading Overview
 
-Before upgrading, please review [Important Information about Upgrades to PE 3.7 and Directory Environments](./install_upgrading_dir_env_notes.html), as some user action is required. Please also review [Upgrading Puppet Enterprise: Notes and Warnings](install_upgrading_notes.html), which includes important information about upgrading to the new node classifier and the new Puppet Server running on the Puppet master.
+Before upgrading, please review: 
+
+- [Important Information about Upgrades to PE 3.7 and Directory Environments](./install_upgrading_dir_env_notes.html), as some user action is required. 
+
+- [Upgrading Puppet Enterprise: Notes and Warnings](install_upgrading_notes.html), which includes important information about the new Puppet Server, [upgrading to the new node classifier and classifying PE groups](./install_upgrading_dir_env_notes.html#classifying-pe-groups), and [modified auth.conf files](./install_upgrading_notes.html#upgrading-to-38-with-a-modified-authconf-file).
 
 The Puppet Installer script is used to perform both installations and upgrades. The script will check for a prior version and run as upgrader or installer as needed. You start by [downloading][downloading] and unpacking a tarball with the appropriate version of the PE packages for your system. Then, when you run the `puppet-enterprise-installer` script, the script will check for a prior installation of PE and, if it detects one, will ask if you want to proceed with the upgrade. The installer will then upgrade all the PE components (master, agent, etc.) it finds on the node to version 3.7.
-
->**Notes**: 
->
->We generally recommend updating your PE deployments in full before upgrading to a new version. We also recommend [cleaning old reports](./maintain_console-db.html#cleaning-old-reports) and [pruning your database](./maintain_console-db.html#pruning-the-console-database-with-a-cron-job), to reduce the time it takes to upgrade.
->
->When you upgrade PE, older versions are left in your `/opt/puppet/packages/public` folder. They won't cause any problems, but if you want to save space, you can remove the old PE files that are no longer needed from this folder.
 
 ## Download PE
 
@@ -46,6 +44,8 @@ Before starting the upgrade, all of the components (agents, master, console, etc
    - `/opt/puppet/share/puppet-dashboard/certs`: located on the server assigned to the console component.
    - The console and console_auth databases: located on the server assigned to the database support component.
    - The PuppetDB database: located on the server assigned to the database support component.
+   
+>**Note**: For large databases, upgrading your Puppet Enterprise console database can significantly increase the amount of time it takes to complete an upgrade. You can reduce the amount of time updates require by [cleaning old reports](./maintain_console-db.html#cleaning-old-reports) and [pruning your database](./maintain_console-db.html#pruning-the-console-database-with-a-cron-job).
 
 ## Upgrading a Monolithic Installation
 
