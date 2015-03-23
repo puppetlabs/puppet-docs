@@ -63,7 +63,8 @@ When Hiera calls the lookup method, it passes five pieces of data as arguments:
 * `scope` is the set of [variables](./variables.html) available to make decisions about the hierarchy and perform data interpolation.
 * `order_override` is a requested first hierarchy level, which can optionally be inserted at the top of the hierarchy.
 * `resolution_type` is the requested [lookup type](./lookup_types.html).
-* `context` is a hash that contains a key named `:recurse_guard`. You never need to call methods on this object, but you'll need to pass it along later if you make any calls to `Backend.parse_answer` or `Backend.parse_string`. This parameter helps Hiera correctly propagate the order_override and the recursion guard used for detecting endless lookup recursions in interpolated values. 
+    TODO JEAN: make it so this describes what the different `resolution_type` values can be. basically, either a symbol (list the available symbols) or a hash like `{:behavior => 'deeper', 'knockout_prefix' => 'xx'}`. See here: https://github.com/puppetlabs/pre-docs/blob/a862f246dc1885efe02f3a9503791a2b3141ca07/hiera/lookup-2.x-api.md#ability-to-pass-deep-merge-options-in-each-lookup-call
+* `context` is a hash that contains a key named `:recurse_guard`. You never need to call methods on this object, but you'll need to pass it along later if you make any calls to `Backend.parse_answer` or `Backend.parse_string`. This parameter helps Hiera correctly propagate the order_override and the recursion guard used for detecting endless lookup recursions in interpolated values.
 
 {% highlight ruby %}
     class Hiera
@@ -199,7 +200,7 @@ You can also pass a hash of extra data as an optional third argument. This hash 
 Context is an optional hash with two keys --- `:recurse_guard` and `:order_override`. This allows your backend to take advantage of bug fixes that preserve your order override and prevent recurse loops. Your lookup method should have already received a partial context hash, plus a separate `order_override` argument, so you should be able to just add that `order_override` to the existing hash:
 
 	`context[:order_override] = order_override`
-	
+
 Note that the `context` parameter must be the fourth argument called on this helper, so if you use it, you'll also need to use the `extra_data` parameter, even if you just give `extra_data` an empty hash.
 
 #### `Backend.parse_string(data, scope, extra_data={}, context={:recurse_guard => nil, :order_override => nil})`
@@ -215,6 +216,8 @@ If you do need to explicitly call `Backend.parse_string` for some reason, you'll
 #### `Backend.merge_answer(new_answer,answer)`
 
 [merge_answer]: #backendmergeanswernewansweranswer
+
+TODO JEAN: Add the third optional parameter, and note that you just pass on the `resolution_type` value you received in your `lookup` method. see here: https://github.com/puppetlabs/pre-docs/blob/a862f246dc1885efe02f3a9503791a2b3141ca07/hiera/lookup-2.x-api.md#ability-to-pass-deep-merge-options-in-each-lookup-call
 
 The `Backend.merge_answer` method expects two hashes, and returns a merged hash using the [configured hash merge behavior](./lookup_types.html#hash-merge). If your backend supports hash merge lookups, you should always use this helper method to do the merging.
 
@@ -391,13 +394,13 @@ class Hiera
       #                                 resolution types, and will only do
       #                                 priority lookups.
       #
-      # @param context [Hash]           Contains a key named `:recurse_guard`. This hash   
-      #                                 is passed to `Backend.parse_answer` and 
+      # @param context [Hash]           Contains a key named `:recurse_guard`. This hash
+      #                                 is passed to `Backend.parse_answer` and
       #                                 `Backend.parse_string` to help Hiera correctly
       #                                 propagate the order_override and prevent endless
       #                                 lookup recursions in interpolated values.
-      #                                 
-     
+      #
+
       def lookup(key, scope, order_override, resolution_type, context)
 
         # Set the default answer. Returning nil from the lookup() method
