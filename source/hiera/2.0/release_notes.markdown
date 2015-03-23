@@ -42,6 +42,7 @@ To update to the new API, you'll need to:
 
 * Change your backend's `lookup` method to accept an additional argument at the end, named `context`.
     * When the `lookup` method is called, this context hash will contain a key named `:recurse_guard`. You never need to call methods on this object, but you'll need to pass it along later.
+* Change your `lookup` method to call `throw(:no_such_key)` when it doesn't find a match, instead of returning `nil`. (`nil` is now a normal value that backends can return.)
 * Change any calls to the `Backend.parse_answer` or `Backend.parse_string` helper methods. Whenever your backend calls these methods:
     * It should always provide an explicit value for the `extra_data` argument. Use an empty hash `{}` if you're not providing any extra data.
     * It should provide an additional argument at the end. This argument should be a hash with two keys:

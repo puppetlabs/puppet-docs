@@ -61,7 +61,11 @@ If you have any setup to do in your backend before you can look up data --- for 
 
 ### `lookup` Method
 
-Every backend must define a `lookup(key, scope, order_override, resolution_type, context)` method, which must return either a single value or `nil`. The returned value can be a string, number, boolean, array, or hash. If no value is found, it should return `nil`.
+Every backend must define a `lookup(key, scope, order_override, resolution_type, context)` method, which must either return a value or throw the symbol `:no_such_key`.
+
+The returned value can be a string, number, boolean, array, hash, or `nil`.
+
+If no value is found, the lookup method should call `throw(:no_such_key)` to indicate this.
 
 The lookup method can do basically anything to acquire its value, but usually uses [the `Backend.datasources` method][datasources] to iterate over the hierarchy (see below).
 
