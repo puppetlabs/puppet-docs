@@ -12,7 +12,6 @@ $( document ).ready( function() {
         return locationTest.test( $( element ).prop( "href" ) );
     };
     var navLinksToCurrentPage = navList.find("a").filter( isLinkToCurrentPage );
-    navLinksToCurrentPage = navLinksToCurrentPage.add( navList.find( "span.currentpage" ) ); // add old-style spans
 
     var navSections = navList.find( "li:has(ul)" ); // an LI that contains a label followed by a list of contents
     var navSectionLabels = navSections.children( "strong" );

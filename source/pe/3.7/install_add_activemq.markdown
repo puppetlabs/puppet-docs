@@ -5,7 +5,7 @@ subtitle: "Additional ActiveMQ Hub and Spoke Installation"
 canonical: "/pe/latest/install_add_activemq.html"
 ---
 
-The following guide provides instructions for adding additional ActiveMQ hubs and spokes to large Puppet Enterprise deployments managing more than 1500 agent nodes. Building out your ActiveMQ brokers will provide efficient load balancing of network connections for relaying MCollective messages through your PE infrastructure.
+The following guide provides instructions for adding additional ActiveMQ hubs and spokes to large Puppet Enterprise deployments (those managing more than 1000 agent nodes). Building out your ActiveMQ brokers will provide efficient load balancing of network connections for relaying MCollective messages through your PE infrastructure.
 
 Adding ActiveMQ hubs and spokes can be done in addition to, or independent from, adding [additional Puppet masters](./install_multimaster.html) to large deployments.
 
@@ -91,7 +91,7 @@ In this step, you'll use the PE console to add `activemq.spoke1.example.com` and
 
 > **Important**: For fresh installations of PE 3.7.0, node groups in the classifier are created and configured during the installation process. For upgrades, these groups are created but no classes are added to them. This is done to help prevent errors during the upgrade process. If you’re performing these steps after an upgrade to 3.7.0, refer to [the PE Master group preconfiguration docs](./console_classes_groups_preconfigured_groups.html#the-pe-master-group) for a list of classes to add to ensure your new groups are properly classified.
 
-**To add additional spokes to __PE ActiveMQ Broker__ group**:  
+**To add additional spokes to PE ActiveMQ Broker group**:  
 
 1. From the __Classification__ page, click the __PE ActiveMQ Broker__ group.
 2. Ensure you've selected the __Rules__ tab.
@@ -119,10 +119,10 @@ In this step, you'll use the PE console to add `activemq.spoke1.example.com` and
 
 In this step, you'll use the the PE console to configure connections between your ActiveMQ spokes and MCollective. 
 
-1. From the __Classification__ page, click the __PE MCollective__ group. 
+1. From the __Classification__ page, click the __PE Infrastructure__ group. 
 2. Click the __Classes__ tab.
-3. Under __Class: puppet_enterprise::profile::mcollective::agent__, from the __Parameter__ drop-down list, select __activemq_brokers__.
-4. In the value field, set value to ["master.example.com", "activemq.spoke1.example.com", "activemq.spoke2.example.com"]
+3. Under __Class: puppet_enterprise__ locate the __mcollective_middleware_hosts__ parameter.
+4. In the value field, set the value to ["master.example.com", "activemq.spoke1.example.com", "activemq.spoke2.example.com"].
 5. Click __Add parameter__, and then __Commit change__.
 6. Run Puppet on the ActiveMQ hub and spokes (including the Puppet master) and on any PE agents, or wait for a scheduled run.
 7. Continue to [Step 6: Verify Connections](#step-6-verify-connections). 
@@ -139,6 +139,8 @@ You're just about finished! The following steps will help you verify all connect
    
 2. To verify the ActiveMQ hub's connections are correctly established, go to `activemq-hub.example.com` and run `netstat -an | grep '61616'`.
 
-   You should see that the ActiveMQ hub has connections set up between the ActiveMQ broker nodes.  
+   You should see that the ActiveMQ hub has connections set up between the ActiveMQ broker nodes. 
+   
+> **Tip**: if you need to increase the number of processes the `pe-activemq` user can open/process, refer to [Increasing the ulimit for the `pe-activemq` User](./trouble_orchestration.html#increasing-the-ulimit-for-the-pe-activemq-user) for instructions. 
 
 

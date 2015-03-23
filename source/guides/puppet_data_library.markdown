@@ -49,4 +49,4 @@ The Puppet Resource Dependency Graph provides a complete, mathematical graph of 
 
 > EXAMPLE:  Using the Puppet Resource Dependency Graph and Gephi, a visualization tool, a customer identified unknown dependencies within a complicated set of configuration modules.  They used this knowledge to re-write parts of the modules to get better performance.
 
-[Learn more about the Puppet Resource Dependency Graph here](/guides/faq.html#how-do-i-use-puppets-graphing-support)
+[Learn more about the Puppet Resource Dependency Graph here](/references/latest/configuration.html#graph)

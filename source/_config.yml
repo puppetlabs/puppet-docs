@@ -3,58 +3,65 @@ pygments: true
 markdown: kramdown
 include: _index.html
 defaultnav:
-  /: fallback_nav.html
-  /background/ssl: background_ssl.html
-  /community: community_nav.html
-  /facter/1.6: facter16.html
-  /facter/1.7: facter17.html
-  /facter/2.0: facter20.html
-  /facter/2.1: facter21.html
-  /facter/2.2: facter22.html
-  /facter/2.3: facter23.html
-  /facter/2.4: facter24.html
-  /forge: forge.html
-  /guides/deployment_guide: deploy_guide.html
-  /guides/install_puppet: puppet_general.html
-  /hiera/1: hiera1.html
-  /hiera/2.0: hiera20.html
-  /ja: ja_docs.html
-  /ja/learning: ja_learning_nav.html
-  /learning: learning_nav.html
-  /mcollective: mcollective_menu.html
-  /mcollective1.2: mcollective_1.2.html
-  /pe/3.7: pe37.html
-  /pe/3.3: pe33.html
-  /pe/3.2: pe32.html
-  /pe/3.1: pe31.html
-  /pe/3.0: pe30.html
-  /pe/2.8: pe28.html
-  /pe/2.7: pe27.html
-  /pe/2.6: pe26.html
-  /pe/2.5: pe25.html
-  /pe/2.0: pe_2.0_nav.markdown
-  /puppetdb/0.9: puppetdb0.9.html
-  /puppetdb/1: puppetdb1.html
-  /puppetdb/1.1: puppetdb1.1.html
-  /puppetdb/1.2: puppetdb1.2.html
-  /puppetdb/1.3: puppetdb1.3.html
-  /puppetdb/1.4: puppetdb1.4.html
-  /puppetdb/1.5: puppetdb1.5.html
-  /puppetdb/1.6: puppetdb1.6.html
-  /puppetdb/2.0: puppetdb2.0.html
-  /puppetdb/2.1: puppetdb2.1.html
-  /puppetdb/2.2: puppetdb2.2.html
-  /puppetdb/master: puppetdb_master.html
-  /puppet/0.24/reference: puppet_0_24.html
-  /puppet/0.25/reference: puppet_0_25.html
-  /puppet/2.6/reference: puppet_2_6.html
-  /puppet/2.7/reference: puppet_2_7.html
-  /puppet/3/reference: puppet_3.html
-  /puppet/3.5/reference: puppet_3_5.html
-  /puppet/3.6/reference: puppet_3_6.html
-  /puppet/3.7/reference: puppet_3_7.html
-  /puppetserver/1.0: puppet_3_7.html
-  /references: references_general.html
+  /: /_includes/fallback_nav.html
+  /background/ssl: /_includes/background_ssl.html
+  /community: /_includes/community_nav.html
+  /facter/1.6: /_includes/facter16.html
+  /facter/1.7: /_includes/facter17.html
+  /facter/2.0: /_includes/facter20.html
+  /facter/2.1: /_includes/facter21.html
+  /facter/2.2: /_includes/facter22.html
+  /facter/2.3: /_includes/facter23.html
+  /facter/2.4: /_includes/facter24.html
+  /forge: /_includes/forge.html
+  /guides/deployment_guide: /_includes/deploy_guide.html
+  /guides/install_puppet: /_includes/puppet_general.html
+  /hiera/1: /_includes/hiera1.html
+  /hiera/2.0: /_includes/hiera20.html
+  /es: /_includes/es_docs.html
+  /es/hiera: /_includes/es_hiera1.html
+  /es/learning: /_includes/es_learning_nav.html
+  /ja: /_includes/ja_docs.html
+  /ja/guides/install_puppet: /_includes/ja_puppet_general.html
+  /ja/learning: /_includes/ja_learning_nav.html
+  /ja/puppet/3.7/reference: /_includes/ja_puppet_3_7.html
+  /learning: /_includes/learning_nav.html
+  /mcollective: /_includes/mcollective_menu.html
+  /mcollective1.2: /_includes/mcollective_1.2.html
+  /pe/3.7: /_includes/pe37.html
+  /pe/3.3: /_includes/pe33.html
+  /pe/3.2: /_includes/pe32.html
+  /pe/3.1: /_includes/pe31.html
+  /pe/3.0: /_includes/pe30.html
+  /pe/2.8: /_includes/pe28.html
+  /pe/2.7: /_includes/pe27.html
+  /pe/2.6: /_includes/pe26.html
+  /pe/2.5: /_includes/pe25.html
+  /pe/2.0: /_includes/pe_2.0_nav.markdown
+  /puppetdb/0.9: /_includes/puppetdb0.9.html
+  /puppetdb/1: /_includes/puppetdb1.html
+  /puppetdb/1.1: /_includes/puppetdb1.1.html
+  /puppetdb/1.2: /_includes/puppetdb1.2.html
+  /puppetdb/1.3: /_includes/puppetdb1.3.html
+  /puppetdb/1.4: /_includes/puppetdb1.4.html
+  /puppetdb/1.5: /_includes/puppetdb1.5.html
+  /puppetdb/1.6: /_includes/puppetdb1.6.html
+  /puppetdb/2.0: /_includes/puppetdb2.0.html
+  /puppetdb/2.1: /_includes/puppetdb2.1.html
+  /puppetdb/2.2: /_includes/puppetdb2.2.html
+  /puppetdb/2.3: /puppetdb/2.3/_puppetdb_nav.html
+  /puppetdb/master: /_includes/puppetdb_master.html
+  /puppet/0.24/reference: /_includes/puppet_0_24.html
+  /puppet/0.25/reference: /_includes/puppet_0_25.html
+  /puppet/2.6/reference: /_includes/puppet_2_6.html
+  /puppet/2.7/reference: /_includes/puppet_2_7.html
+  /puppet/3/reference: /_includes/puppet_3.html
+  /puppet/3.5/reference: /_includes/puppet_3_5.html
+  /puppet/3.6/reference: /_includes/puppet_3_6.html
+  /puppet/3.7/reference: /_includes/puppet_3_7.html
+  /puppet/pre4.0: /_includes/puppet_pre_40.html
+  /puppetserver/1.0: /_includes/puppet_3_7.html
+  /references: /_includes/references_general.html
 destination: ../output
 url: "http://docs.puppetlabs.com"
 #Anatomy of an external source:
@@ -106,10 +113,15 @@ externalsources:
     repo: git://github.com/puppetlabs/puppetdb.git
     commit: origin/2.1.x
     subdirectory: documentation
+  puppetdb_2.3:
+    url: /puppetdb/2.3
+    repo: git://github.com/puppetlabs/puppetdb.git
+    commit: origin/stable
+    subdirectory: documentation
   puppetdb_2.2:
     url: /puppetdb/2.2
     repo: git://github.com/puppetlabs/puppetdb.git
-    commit: origin/stable
+    commit: origin/2.2.x
     subdirectory: documentation
   puppetdb_master:
     url: /puppetdb/master
@@ -149,12 +161,14 @@ version_notes:
   # Default notes for upstreams. Tweak these whenever latest de-syncs or re-syncs with PE!
   /puppet/: '<p class="noisy">This page is about an old version of Puppet. If you use the current version of Puppet or of Puppet Enterprise, see <a href="/puppet/latest/index.html">the current Puppet docs.</a></p>'
   /puppetdb/: '<p class="noisy">This page is about an old version of PuppetDB. If you use the current version of PuppetDB or of Puppet Enterprise, see <a href="/puppetdb/latest">the current PuppetDB docs.</a></p>'
-  /facter/: '<p class="noisy">This page is about an old version of Facter. If you use the current version of Facter, see <a href="/puppet/latest">the latest version of the docs.</a> If you use Puppet Enterprise 3.7, see <a href="/facter/2.2">the Facter 2.2 docs.</a></p>'
+  /facter/: '<p class="noisy">This page is about an old version of Facter. If you use the current version of Facter, see <a href="/facter/latest">the latest version of the docs.</a> If you use Puppet Enterprise 3.7, see <a href="/facter/2.2">the Facter 2.2 docs.</a></p>'
   # Version-specific notes:
-  /puppet/3.7: "Applies to Puppet Enterprise 3.7"
-  /puppetdb/2.2: "Applies to Puppet Enterprise 3.7"
+  /puppet/3.7: "This is the version of Puppet included in Puppet Enterprise 3.7."
+  /puppet/pre4.0: "<p class=\"noisy\">This page is about a version of Puppet that isn't released yet. If you use the current version of Puppet or of Puppet Enterprise, see <a href=\"/puppet/latest/index.html\">the current Puppet docs.</a></p>"
+  /puppetdb/2.2: "This is the version of PuppetDB included in Puppet Enterprise 3.7. If you're using the open source release, there's a <a href=\"/puppetdb/latest/\">newer version</a> available."
+  /puppetdb/2.3: '<p class="noisy">PuppetDB 2.3 is not included in Puppet Enterprise 3.7. PE 3.7 users should see <a href="/puppetdb/2.2/">the PuppetDB 2.2 docs</a>.</p>'
   /puppetdb/master: '<p class="noisy">This page is for an unreleased version of PuppetDB. PE 3.7 users should see <a href="/puppetdb/2.2/">the PuppetDB 2.2 docs</a>. Other users should see <a href="/puppetdb/latest/">the latest official release</a>.</p>'
-  /facter/2.2: "Applies to Puppet Enterprise 3.7"
+  /facter/2.2: 'This is the version of Facter included in Puppet Enterprise 3.7. Open source Puppet users should see <a href="/facter/latest">the latest version of the docs</a>.'
   /facter/2.3: '<p class="noisy">Facter 2.3 is not included in Puppet Enterprise 3.7. PE 3.7 users should see <a href="/facter/2.2">the Facter 2.2 docs.</a></p>'
   /facter/2.4: '<p class="noisy">Facter 2.4 is not included in Puppet Enterprise 3.7. PE 3.7 users should see <a href="/facter/2.2">the Facter 2.2 docs.</a></p>'
   /hiera/2.0: '<p class="noisy">Hiera 2.0 is not included in Puppet Enterprise 3.7. PE 3.7 users should see <a href="/hiera/1.0">the Hiera 1.0 docs.</a></p>'

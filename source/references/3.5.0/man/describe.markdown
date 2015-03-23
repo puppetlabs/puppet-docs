@@ -1,6 +1,6 @@
 ---
 layout: default
-nav: references_man.html
+nav: /_includes/references_man.html
 title: puppet describe Man Page
 ---
 

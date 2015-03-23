@@ -1,14 +1,12 @@
-This copy of the Puppet Labs documentation comes with its own bare-bones webserver, which
-can be used to view and navigate the entire site offline. To use it:
+Thanks for downloading the offline version of the Puppet Labs documentation
+site.
 
-1. Ensure you have the rack gem installed. Run:
+This is just like the version of the docs available at
+https://docs.puppetlabs.com, except most absolute links have been changed to
+relative ones to make offline browsing easier. To begin reading, open any .html
+file in this archive in your web browser.
 
-    $ sudo gem install rack
-
-2. Navigate to this directory in your terminal.
-3. Run:
-
-    $ rackup
-
-4. In your web browser, navigate to http://localhost:9292
-5. When finished, you can stop the webserver by returning to the original terminal window and hitting ctrl-C.
+Note that some conveniences provided by web servers (like translating
+`<DIRECTORY>/` to `<DIRECTORY>/index.html`) aren't available, and on some
+systems, links that include `/latest/` may not work quite right; you can get
+around this by browsing manually to any affected files.

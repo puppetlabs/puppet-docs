@@ -27,8 +27,6 @@ RBAC enables you to manage local users as well as those who are created remotely
 Fetches all users, both local and remote (including the superuser). Supports
 filtering by ID through query parameters. Web session authentication is required.
 
-**Implemented.**
-
 **Example:**
 
 Request all the users.
@@ -107,8 +105,6 @@ GET /users?id=fe62d770-5886-11e4-8ed6-0800200c9a66,1cadd0e0-5887-11e4-8ed6-08002
 ### GET /users/:sid
 Fetches a single user by its subject ID. Web session authentication is required.
 
-**Implemented.**
-
 **Returns:** For all users, the user will contain an ID, a login, an email, a
 display name, a list of role-ids the user is directly assigned to, and the last
 login time in UTC-based ISO-8601 format (YYYY-MM-DDThh:mm:ssZ), or null if the
@@ -148,13 +144,9 @@ Fetches the data about the current authenticated user, with the exact same
 behavior as GET /users/:sid, except that `:sid` is assumed from the logged in
 context. Web session authentication is required.
 
-**Implemented.**
-
 ### POST /users
 Creates a new (local) user. Attach to it any roles specified in its
 roles list. Web session authentication is required.
-
-**Implemented.**
 
 **Accepts:** A JSON body containing entries for "email", "display_name",
 "login", and "role_ids". The created account will not be useful until the
@@ -176,8 +168,6 @@ resource.
 ### PUT /users/:sid
 Replaces the user with the specified ID with a new user object. Web session
 authentication is required.
-
-**Implemented.**
 
 **Accepts:** An updated user object with all keys provided when the object is
 received from the API. The behavior varies based on user type. All types will

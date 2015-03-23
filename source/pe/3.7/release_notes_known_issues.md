@@ -118,17 +118,47 @@ PE will automatically update your version of puppetlabs-inifile as part of the u
 	Warning: Not using cache on failed catalog
 	Error: Could not retrieve catalog; skipping run
 
-### A Note about Symlinks and Installation
+### A Note about Symlinks and Installation/Upgrade
 
 The answer file no longer gives the option of whether to install symlinks. These are now automatically installed by packages. To allow the creation of symlinks, you need to ensure that `/usr/local` is writable.
+
+However, please note that we do not recommend employing symlinks in the place of `/opt` for database storage, as doing so can lead to databases not being seen. In addition, if `/opt/puppet` is symlink, the `-d` flag will not function correctly during an uninstall. 
 
 ### Answer File Required for Some SMTP Servers
 
 Any SMTP server that requires authentication, TLS, or runs over any port other than 25 needs to be explicitly added to an answers file. See the [advanced configuration page](./console_config.html#allowing-anonymous-console-access) for details.
 
+### Installing Agents in a PE Infrastructure with No Internet Access
+
+Refer to [Installing Agents in a Puppet Enterprise Infrastructure without Internet Access](./install_agents.html#installing-agents-in-a-puppet-enterprise-infrastructure-without-internet-access).
+
 ## Puppet Server Known Issues
 
 > **Tip**: More information about Puppet Server can be found in the [Puppet Server docs](/puppetserver/1.0/services_master_puppetserver.html). Differences between PE and open source versions of Puppet Server are typically called out.
+
+### Updating Puppet Master Gems
+
+After upgrading to PE 3.7.2, you need to update the Ruby gems used by your Puppet Master with `/opt/puppet/bin/puppetserver gem install <GEM NAME>`.
+
+For instance, in PE 3.7.2, the deep_merge gem is no longer installed by default. If you previously used this gem, you will need to reinstall it after upgrading.
+
+After updating the gems, you need to restart the Puppet master with `service pe-puppetserver restart`. You should do this **before** doing any Puppet agent runs.
+
+>**Note**: Installing `puppetserver` gems fails when run unprivileged. You might get a "no such file or directory" error. Instead, install as root.
+
+### A Note About Gems with Native (C) Extensions for JRuby on the Puppet Server
+
+Please see the Puppet Server documentation for a description of this issue, [Gems with Native (C) Extensions](/puppetserver/1.0/gems.html#gems-with-native-c-extensions).
+
+### Running `pe-puppetserver` on a Server With More Than Four Cores Might Require Tuning
+
+The more JRuby instances you run, the more heap space you'll require.  You have two options:
+
+* Reduce the number of JRuby instances. For more information about configuring settings like these, see [Configuring and Tuning Puppet Server](./config_puppetserver.html).
+* Increase the JVM heap size for puppet server. See the PE Puppet Server Service section of [Configuring Java Arguments For PE](./config_java_args.html).
+
+Generally speaking, we recommend starting your tuning with six JRuby instances and then tuning memory from there. If you want more throughput, you need to increase JRuby instances and heap space concurrently after you've found a steady state.
+
 
 ### Puppet Server Run Issue when `/tmp/` Directory Mounted `noexec`
 
@@ -191,19 +221,21 @@ Matching nodes aren’t showing up.
 
 ### Important Factors in Connecting to an External Directory Service
 
-The following requirements affect how you connect your existing LDAP to PE:
+The following requirement affects how you connect your existing LDAP to PE:
 
-   * User and group RDNs are currently required as part of the directory service settings. A simple query from the provided base DN is not supported.
    * Use of multiple user RDNs or group RDNs is not supported.
-   * Cyclical group relationships in Active Directory will prevent a user from logging in.
 
 ### Custom Console Certs May Break on Upgrade
 
-Upgrades to this version of PE may affect deployments that use a custom console certificate, as certificate functionality has changed between versions. Refer to [Configuring the Puppet Enterprise Console to Use a Custom SSL Certificate](./custom_console_cert.html) for instructions on re-configuring your custom console certificate.
+Upgrades to this version of PE may affect deployments that use a custom console certificate, as certificate functionality has changed between versions. 
+
+In addition, the document [Configuring the Puppet Enterprise Console to Use a Custom SSL Certificate](./custom_console_cert.html) does not work for this version of PE. This document, as well as custom console cert functionality, will be fixed in PE 3.8.0.
 
 ### Console Session Timeout Issue
 
 The default session timeout for the PE console is 30 minutes. However, due to an issue that has not yet been resolved, console users will be logged out after thirty minutes even if they are currently active.
+
+This issue was resolved in PE 3.7.1.
 
 ### SLES 12 `pe::repo` Class Available in PE Console but SLES 12 not Supported in PE 3.7.0
 
@@ -286,13 +318,11 @@ Marking failed tasks as read in the console can instead open a security warning,
 If you upgrade or install a PE 3.7.1 master, sign the certificate, and run Puppet on a 3.7.0 agent node, that should succeed. However, if you enable future parser, restart pe-puppetserver, and then run Puppet on the agent again, you'll get a server error. This error doesn't happen if you enable future parser with a PE 3.7.0 master and agent, or a PE 3.7.1 master and agent, only a 3.7.1 master with a 3.7.0 agent. To avoid this problem, update your agents to match the version of your masters.
 
 
-### Change to `lsbmajdistrelease` Fact Affects Some Manifests
+### Facter 2.2 Known Issues
 
-In Facter 2.2.0, the `lsbmajdistrelease` fact changed its value from the first two numbers to the full two-number.two-number version on Ubuntu systems. This might break manifests that were based on the previous behavior.
-
-For example, this fact changed from: `12` to `12.04`
-
-This change affects Ubuntu and Amazon Linux. See the [Facter documentation for more information](./facter/2.2/release_notes.html#significant-changes-to-existing-facts)
+* PE 3.7.x uses Facter 2.2, which turned off `stringify_facts` and turned on structured facts from the agents. This means that facts that were previously strings are now structured. Perhaps more importantly, facts that were previously strings like "true", "false" are now actual booleans. This causes situations where an `if` statement such as, `if $is_virtual == 'true'`, hits the `else` condition because the boolean value for true is not the same thing as the string "true".
+* Change to `lsbmajdistrelease` fact affects some manifests. This is because In Facter 2.2.0, the `lsbmajdistrelease` fact changed its value from the first two numbers to the full two-number.two-number version on Ubuntu systems. This might break manifests that were based on the previous behavior. For example, this fact changed from: `12` to `12.04`
+This change affects Ubuntu and Amazon Linux. See the [Facter documentation for more information](/facter/2.2/release_notes.html#significant-changes-to-existing-facts).
 
 ### Enabling NIO and Stomp for ActiveMQ Performance Improvements will Introduce Security Issues
 
@@ -334,6 +364,10 @@ When attempting to use the PMT on Solaris 10, you'll get an error like the follo
     	The CA bundle included with OpenSSL may not be valid or up to date
 
 This error occurs because there is no CA-cert bundle on Solaris 10 to trust the Puppet Labs Forge certificate. To work around this issue, we recommend that you download directly from the Forge website and then use the Puppet module tool to [install from a local tarball](./puppet/latest/reference/modules_installing.html#installing-from-a-release-tarball).
+
+### Tagmail Isn't Sending Email Notifications
+
+Tagmail doesn't work out of the box in PE 3.7. The [Tagmail module](https://forge.puppetlabs.com/mrpuppet/tagmail), while not a PE supported module, is the recommended workaround.
 
 ## PE on Windows Known Issues
 

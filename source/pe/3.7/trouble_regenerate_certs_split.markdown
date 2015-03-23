@@ -1,14 +1,16 @@
 ---
 layout: default
-title: "PE 3.7.1 » Troubleshooting » Cert Regeneration: Split Deployments"
+title: "PE 3.7.1 » Security and SSL » Cert Regeneration: Split Deployments"
 subtitle: "Regenerating Certs and Security Credentials in Split Puppet Enterprise Deployments"
 canonical: "/pe/latest/trouble_regenerate_certs_split.html"
 description: "This page explains how to regenerate all SSL certificates in Puppet Enterprise deployments with separate servers for different components. "
 ---
 
-> **Important**: These instructions have only been tested on new installations of PE, which assume the [preconfigured node groups](./console_classes_groups_preconfigured_groups.html) are applied. We will update this page for any changes involving upgrades as soon as possible.
+> **Warning**: Do not perform these cert regeneration steps if you have upgraded to PE 3.7.x and not yet [classified the new PE groups](./install_upgrading_notes.html#classifying-pe-groups). You can perform these cert regen steps after classifying those groups.
 
-> **Note:** This page explains how to regenerate all certificates in **a split PE deployment** --- that is, where the Puppet master, PuppetDB, and PE console components are all installed on separate servers. [See this page for instructions on regenerating certificates in a **monolithic PE deployment.**][mono_regen] 
+> **Note**: This page explains how to regenerate all certificates in **a split PE deployment** --- that is, where the Puppet master, PuppetDB, and PE console components are all installed on separate servers. [See this page for instructions on regenerating certificates in a **monolithic PE deployment.**][mono_regen] >
+>
+>If you don't need to regenerate certs for **all** components in your deployment, you can choose instructions for just [the Puppet master](./regenerate_certs_master.html), [the PE console](./regenerate_certs_console.html), or [PuppetDB](./regenerate_certs_puppetdb.html). 
 
 ## Overview
 
@@ -26,7 +28,11 @@ Regardless of your situation, regenerating your certificates involves the follow
 
 Note that this process **destroys the certificate authority and all other certificates.** It is meant for use in the event of a total compromise of your site, or some other unusual circumstance. If you just need to replace a few agent certificates, you can use the `puppet cert clean` command on your Puppet master and then follow [step six](#step-6-clear-and-regenerate-certs-for-pe-agents) for any agents that need to be replaced.
 
->**Note** You must be logged in as a root, (or in the case of Windows agents, as an account with Administrator Privileges)  to make these changes.
+>**Important Notes and Warnings**
+> 
+> - You must be logged in as a root, (or in the case of Windows agents, as an account with Administrator Privileges) to make these changes.
+>
+> - If you encounter any errors during steps that involve `service stop/start`, `rm`, `cp`, or `chmod` commands, you should diagnose these before continuing, as the success each step is very important to the success of the next step.
 
 ## Step 1: Shut down all PE-related services
 
@@ -98,6 +104,8 @@ Note that this process **destroys the certificate authority and all other certif
    
 ## Step 3: Clear and Regenerate Certs for PuppetDB
 
+>**Notes**: In the following instructions, when `<CERTNAME>` is used, it refers to the Puppet agent's certname. To find this value, run `puppet config print certname` before starting.
+
 **On your PuppetDB server**:
 
 1. Back up the following directories:
@@ -118,11 +126,11 @@ Note that this process **destroys the certificate authority and all other certif
    
    > **Note**: This agent run will not complete successfully, but it is necessary to set up the agent certificate for the node. You will see some errors about node definition and the inability to submit facts due to PuppetDB being offline. You can ignore these. 
 
-4. Delete puppetdb’s SSL cert and security credentials.
+4. Delete puppetDB’s SSL cert and security credentials.
 
    `rm -rf /etc/puppetlabs/puppetdb/ssl/*`
    
-5. Copy the certs and security credentials to the PuppetDB SSL directory. 
+5. Copy the Puppet agent's certs and security credentials to the PuppetDB SSL directory. 
 
        cp /etc/puppetlabs/puppet/ssl/certs/<CERTNAME>.pem /etc/puppetlabs/puppetdb/ssl/<CERTNAME>.cert.pem
        cp /etc/puppetlabs/puppet/ssl/public_keys/<CERTNAME>.pem /etc/puppetlabs/puppetdb/ssl/<CERTNAME>.public_key.pem

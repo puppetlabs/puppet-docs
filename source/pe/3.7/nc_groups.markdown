@@ -160,43 +160,86 @@ The keys allowed in this object are:
              The keys are the parameter names (strings), and each value is the parameter's value, which can be any kind of JSON value.
              The `classes` key is _not_ optional; if it is missing, a 400 Bad Request response will be returned by the server.
 
-#### Response Format
+### Error Responses
 
-If the node group was successfully created, the server will return a 303 See Other response, with the path to retrieve the created node group in the "location" header of the response.
+#### `schema-violation`
 
-#### Error Responses
+If any of the required keys are missing or the values of any of the defined keys do not match the required type, the server will return a 400 Bad Request response with the following keys: 
 
-If any of the required keys are missing, or if the values of any of the defined keys do not match the required type, or if the request's body could not be parsed as JSON, the server will return a 400 Bad Request response.
-In all cases, the response will contain an error object as described in the [errors documentation](./nc_errors.html).
-In the first two cases, the `kind` key will be "schema-violation", and the  `details` key of the error will be an object with `submitted`, `schema`, and `error` keys which respectively describe the submitted object, the schema that object should conform to, and how the submitted object failed to conform to the schema.
-In the last case, the `kind` key will be "malformed-request" and the `details` key will be an object with `body` and `error` keys, which respectively hold the request body as received and the error message encountered while trying to parse the JSON.
+* `kind`: "schema-violation"
+* `details`: an object that contains three keys:
 
-If attempting to create the node group violates uniqueness constraints (such as the constraint that each group name's must be unique within its environment), the server will return a 422 Unprocessable Entity response.
-The `kind` key of the error object will be "uniqueness-violation", and the `msg` will describe which fields of the node group caused the constraint to be violated, along with their values.
-The `details` key will contain an object that itself has two keys:
+  * `submitted`: describes the submitted object
+  * `schema`: describes the schema that object should conform to
+  * `error`: describes how the submitted object failed to conform to the schema
 
-* `conflict`: an object whose keys are the fields of the node group that violated the constraint and whose values are the corresponding field values.
-* `constraintName`: the name of the database constraint that was violated.
+#### `malformed-request`
 
-If any classes or class parameters defined by by the node group or inherited by the node group from its parents do not exist in the submitted node group's environment, the server will return a 422 Unprocessable Entity response.
-In both cases the response object's `kind` key will be "missing-referents" and the `msg` key will describe the number of missing referents.
-The `details` key of the error object will be an array of objects, where each object describes a single missing referent, and has the following keys:
+If the request's body could not be parsed as JSON, the server will return a 400 Bad Request response with the following keys: 
 
-* `kind`: "missing-class" or "missing-parameter", depending on whether the entire class doesn't exist, or the class just doesn't have the parameter.
-* `missing`: The name of the missing class or class parameter.
-* `environment`: The environment that the class or parameter is missing from; i.e. the environment of the node group where the error was encountered.
-* `group`: The name of the node group where the error was encountered.
-           Note that this may not be the group where the class or parameter was defined due to inheritance.
-* `defined_by`: The name of the node group that defines the class or parameter.
+* `kind`: "malformed-request" 
+* `details`: an object that contains two keys:
 
-If the parent of the node group does not exist the server will return a 422 Unprocessable Entity response.
-The `kind` key will be "missing-parent" and the `msg` key will include the parent UUID that did not exist.
-The `details` key will contain the full submitted node group.
+  * `body`: holds the request body that was received
+  * `error`: the error message encountered while trying to parse the JSON
 
-If the request would cause an inheritance cycle to be created the server will return a 422 Unprocessable Entity response.
-The response will contain a [error object](./nc_errors.html) whose `kind` key will be "inheritance-cycle".
-The `details` key will be an array of node group objects, and will contain each node group involved in the cycle.
-The `msg` key will contain a shortened description of the cycle, including a list of the node group names with each followed by its parent until the first node group is repeated.
+#### `uniqueness-violation`
+
+The server will return a 422 Unprocessable Entity response if your attempt to create the node group violates uniqueness constraints (such as the constraint that each node group name must be unique within its environment). The response object will have the following keys:
+
+* `kind`: "uniqueness-violation"
+* `msg`: describes which fields of the node group caused the constraint to be violated, along with their values
+* `details`: contains an object that has two keys:
+
+  * `conflict`: an object whose keys are the fields of the node group that violated the constraint and whose values are the corresponding field values
+  * `constraintName`: the name of the database constraint that was violated
+
+#### `missing-referents`
+
+The server will return a 422 Unprocessable Entity response if classes or class parameters defined by the node group, or inherited by the node group from its parent, do not exist in the submitted node group's environment. In both cases the response object will have the following keys:
+
+* `kind`: "missing-referents"
+* `msg`: describes the error and lists the missing classes and/or parameters
+* `details`: an array of objects, where each object describes a single missing referent, and has the following keys:
+
+  * `kind`: "missing-class" or "missing-parameter", depending on whether the entire class doesn't exist, or the class just doesn't have the parameter
+  * `missing`: the name of the missing class or class parameter
+  * `environment`: the environment that the class or parameter is missing from; i.e. the environment of the node group where the error was encountered
+  * `group`: the name of the node group where the error was encountered
+           Note that, due to inheritance, this may not be the group where the parameter was defined.
+  * `defined_by`: the name of the node group that defines the class or parameter
+
+#### `unspecified-parameters`
+
+The server will return a 422 Unprocessable Entity response if a required parameter is missing. The response object will have the following keys:
+
+* `kind`: "unspecified-parameters"
+* `msg`: shows the classes that have required parameters, and lists the required parameters for each of the classes
+* `details`: an array of objects, where each object describes a single unspecified referent, and has the following keys:
+
+  * `kind`: "unspecified-parameters"
+  * `group`: the name of the node group where the error was encountered
+           Note that, due to inheritance, this may not be the group where the parameter was defined.
+  * `environment`: the environment that the parameter is required in. This is the environment of the node group where the error was encountered
+  * `class`: the class that the parameter is required in
+  * `unspecified`: an array of the names of parameters that are required but have not been specified
+  * `defined_by`: the name of the node group that defines the parameter
+
+#### `missing-parent`
+
+The server will return a 422 Unprocessable Entity response if the parent of the node group does not exist. The response object will have the following keys:
+
+* `kind`: "missing-parent"
+* `msg`: shows the parent UUID that did not exist
+* `details`: the full submitted node group
+
+#### `inheritance-cycle`
+
+The server will return a 422 Unprocessable Entity response if the request would cause an inheritance cycle to be created. The response object will have the following keys:
+
+* `kind`: "inheritance-cycle"
+* `details`: an array of node group objects that includes each node group involved in the cycle
+* `msg`: a shortened description of the cycle, including a list of the node group names with each followed by its parent until the first node group is repeated.
 
 ### GET /v1/groups/\<id\>
 

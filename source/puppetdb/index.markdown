@@ -7,7 +7,7 @@ PuppetDB is the fast, scalable, and reliable data warehouse for Puppet. It cache
 
 Stable Puppet Enterprise Versions
 -----
-
+* [PE 3.7.x (PuppetDB 2.2)](./2.2)
 * [PE 3.3.x (PuppetDB 1.6)](./1.6)
 * [PE 3.2.x (PuppetDB 1.5)](./1.5)
 * [PE 3.1.x (PuppetDB 1.5)](./1.5)
@@ -15,13 +15,14 @@ Stable Puppet Enterprise Versions
 Stable Community Versions
 -----
 
-* [PuppetDB 2.2](./2.2)
+* [PuppetDB 2.3](./2.3)
 
 Legacy Community Versions
 -----
 
 The following community versions are no longer actively maintained. You should upgrade to the latest revision of PuppetDB to benefit from the latest bug fixes, features and documentation.
 
+* [PuppetDB 2.2](./2.2)
 * [PuppetDB 2.1](./2.1)
 * [PuppetDB 2.0](./2.0)
 * [PuppetDB 1.6](./1.6)

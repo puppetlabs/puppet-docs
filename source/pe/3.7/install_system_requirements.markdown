@@ -19,7 +19,7 @@ Before installing Puppet Enterprise:
 Operating System
 -----
 
-Puppet Enterprise 3.7 supports the following systems:
+Puppet Enterprise 3.7 supports the following operating systems:
 
 Operating system             | Version(s)                              | Arch          | Component(s)
 -----------------------------|-----------------------------------------|---------------|----------------------------
@@ -51,32 +51,43 @@ Mac OS X                     | Mavericks (10.9)                        | x86_64 
 >
 >5. [Restore](./maintain_backup_restore.html#restore-your-database-and-puppet-enterprise-files) your backup.
 
+Network Devices
+-----
+
+Puppet Enterprise 3.7 supports running Puppet agents on the following networking devices/operating systems:
+
+- Arista EOS. Refer the [aristanetworks/netdev_stdlib_eos module](https://forge.puppetlabs.com/aristanetworks/netdev_stdlib_eos#limitations) on the Puppet Forge for system requirements and dependencies.
+
+
+
 Hardware Requirements
 -----
 
-Puppet Enterprise's hardware requirements depend on the size of your environment.  
+Puppet Enterprise's hardware requirements depend on the size of your environment.
 
 ### Evaluation Environment
 
-An evaluation environment is run on a monolithic installation and is suitable for evaluating PE on 250 or fewer nodes. We recommend that your hardware meets the following: 
+An evaluation environment is run on a monolithic installation and is suitable for evaluating PE on 250 or fewer nodes. We recommend that your hardware meets the following:
 
-- A 4-core server with 4 GB of RAM 
+- A 4-core server with 6 GB of RAM
 - At least 100 GB of free storage in `/opt` for PuppetDB
+
+We strongly recommend that users on systems with 4 GB of RAM upgrading or migrating to PE 3.7 from PE 3.3 or earlier upgrade to 6 GB of RAM before attempting to upgrade or migrate their PE installation.
 
 ### Small Environment
 
-A small environment is run on a monolithic installation and is suitable for running PE on 500 nodes. We recommend that your hardware meets the following: 
+A small environment is run on a monolithic installation and is suitable for running PE on 500 nodes. We recommend that your hardware meets the following:
 
-- 4-core server with 16 GB of RAM 
+- 4-core server with 16 GB of RAM
   - Amazon EC2 m3.xlarge instance is adequate for this environment
 - At least 100 GB of free space in `/opt` on the PuppetDB node
-- At least 1 GB of free space in `/var` on each node 
+- At least 1 GB of free space in `/var` on each node
 
 ### Medium Environment
 
-A medium environment is run on a split installation and is suitable for running PE on up to 1,000 nodes. We recommend that your hardware meets the following: 
+A medium environment is run on a split installation and is suitable for running PE on up to 1,000 nodes. We recommend that your hardware meets the following:
 
-- 4-core servers with 16 GB of RAM  
+- 4-core servers with 16 GB of RAM
   - Amazon EC2 m3.xlarge instances are adequate for each of these servers
 - At least 100 GB of free space in `/opt` on the PuppetDB node
 - At least 1 GB of free space in `/var` on each node
@@ -85,22 +96,22 @@ A medium environment is run on a split installation and is suitable for running 
 
 A large environment is run on a split/large environment installation and is suitable for running PE on 1,000 or more nodes. We recommend that your hardware meets the following:
 
-- **Puppet masters**: Four 4-core servers with 16 GB of RAM and 40 GB of disk space each 
-   - Amazon EC2 m3.xlarge instances are adequate for servers in this role. 
+- **Puppet masters**: Four 4-core servers with 16 GB of RAM and 40 GB of disk space each
+   - Amazon EC2 m3.xlarge instances are adequate for servers in this role.
 - **Console Server**: An 8-core server with 30 GB of RAM and 40 GB of disk space
    - Amazon EC2 m3.2xlarge instances are adequate for servers in this role.
-- **PuppetDB**: An 8-core server with 30 GB of RAM and 100 GB of high-performance disk space with write caching enabled 
+- **PuppetDB**: An 8-core server with 30 GB of RAM and 100 GB of high-performance disk space with write caching enabled
    - Amazon EC2 m3.2xlarge instances are adequate for servers in this role.
-   
+
 For large environments with more than 2,000 nodes under management, it may be necessary to add ActiveMQ resources:
 
-- **ActiveMQ Hub**: 4-8 cores, 8 GB of RAM, and 10 GB of disk space 
+- **ActiveMQ Hub**: 4-8 cores, 8 GB of RAM, and 10 GB of disk space
 - **ActiveMQ Spokes**: 4 cores, 4 GB of RAM, and 10 GB of disk space
 
-It may be desirable to move the certificate authority (CA) role to a separate node. 
+It may be desirable to move the certificate authority (CA) role to a separate node.
 
 - **Certificate Authority**: 4 cores, 4 GB of RAM, 40 GB of storage
- 
+
 Supported Browsers
 -----
 
@@ -135,7 +146,7 @@ You can also simplify configuration of agent nodes by using a CNAME record to ma
 [lei_port_diagram]: ./images/lei_port_diagram.svg
 
 
-Configure your firewalls to accommodate Puppet Enterprise's network traffic. 
+Configure your firewalls to accommodate Puppet Enterprise's network traffic.
 
 #### For Monolithic Installs
 
@@ -164,7 +175,7 @@ Configure your firewalls to accommodate Puppet Enterprise's network traffic.
       <li>This port provides host access to the PE console.</li>
       <li>The PE console accepts traffic from the Puppet master on this port.</li>
       <li>Classifier group: “PE Console”</li>
-     </ul> 
+     </ul>
    </td>
   </tr>
   <tr>
@@ -174,14 +185,14 @@ Configure your firewalls to accommodate Puppet Enterprise's network traffic.
       <li>MCollective uses this port to accept inbound traffic/requests from Puppet agents for orchestration.</li>
       <li>Any host used to invoke orchestration commands must be able to reach MCollective on this port.</li>
       <li>Classifier group: “PE ActiveMQ Broker”</li>
-     </ul> 
+     </ul>
     </td>
   </tr>
 </table>
 
 #### For Split Installs
 
-![split ports][split_port_diagram]                                                                                                                                                                                            
+![split ports][split_port_diagram]
 
 <table>
   <tr>
@@ -196,7 +207,7 @@ Configure your firewalls to accommodate Puppet Enterprise's network traffic.
       <li>The PE console sends request to the Puppet master on this port.</li>
       <li>Certificate requests are passed over this port unless ca_port is set differently.</li>
       <li>Classifier group: “PE Master”</li>
-     </ul> 
+     </ul>
     </td>
   </tr>
   <tr>
@@ -216,7 +227,7 @@ Configure your firewalls to accommodate Puppet Enterprise's network traffic.
       <li>PuppetDB accepts traffic/requests on this port.</li>
       <li>The Puppet master and PE console send traffic to PuppetDB on this port.</li>
       <li>Classifier group: “PE PuppetDB”</li>
-     </ul> 
+     </ul>
     </td>
   </tr>
   <tr>
@@ -226,7 +237,7 @@ Configure your firewalls to accommodate Puppet Enterprise's network traffic.
       <li>MCollective uses this port to accept inbound traffic/requests from Puppet agents for orchestration.</li>
       <li>Any host used to invoke orchestration commands must be able to reach MCollective on this port.</li>
       <li>Classifier group: “PE ActiveMQ Broker”</li>
-     </ul> 
+     </ul>
     </td>
   </tr>
   <tr>
@@ -236,7 +247,7 @@ Configure your firewalls to accommodate Puppet Enterprise's network traffic.
       <li>PostgreSQL runs on this port.</li>
       <li>The PE console node will need to connect to the PuppetDB node hosting the PostgreSQL database on this port.</li>
       <li>Classifier group: “PE PuppetDB”</li>
-     </ul> 
+     </ul>
     </td>
   </tr>
   <tr>
@@ -246,7 +257,7 @@ Configure your firewalls to accommodate Puppet Enterprise's network traffic.
       <li>This port is used as a Classifier / Console Services API endpoint.</li>
       <li>The Puppet master needs to be able to talk to the Console over this port.</li>
       <li>Classifier group: “PE Console”</li>
-     </ul> 
+     </ul>
     </td>
   </tr>
   <tr>
@@ -256,7 +267,7 @@ Configure your firewalls to accommodate Puppet Enterprise's network traffic.
       <li>This port is used as a report submission endpoint.</li>
       <li>The Puppet master communicates with the PE console over this port.</li>
       <li>Classifier group: “PE Console”</li>
-      </ul> 
+      </ul>
      </td>
   </tr>
   <tr>
@@ -265,7 +276,7 @@ Configure your firewalls to accommodate Puppet Enterprise's network traffic.
      <ul>
       <li>This port is used for ActiveMQ hub and spoke communication.</li>
       <li>Classifier group: “PE ActiveMQ Broker”</li>
-     </ul> 
+     </ul>
    </td>
   </tr>
 </table>
@@ -277,7 +288,7 @@ Configure your firewalls to accommodate Puppet Enterprise's network traffic.
 
 ![lei ports][lei_port_diagram]
 
-See the split installation port/use table for explanations of the ports and their uses. 
+See the split installation port/use table for explanations of the ports and their uses.
 
 ### Dependencies and OS Specific Details
 
@@ -298,7 +309,7 @@ OpenSSL is a dependency required for PE. For Solaris 10 and all versions of RHEL
 pciutils     | x         |              |               |                          |
 system-logos | x         |              |               |                          |
 which        | x         |              |               |                          |
-libxml2      | x         |              |               |                          | 
+libxml2      | x         |              |               |                          |
 dmidecode    | x         |              |               |                          |
 net-tools    | x         |              |               |                          |
 virt-what    | x         |              |               |                          |
@@ -321,7 +332,7 @@ zlib         | x         |              |               |                       
 pciutils     | x         |              |               |                          |
 system-logos | x         |              |               |                          |
 which        | x         |              |               |                          |
-libxml2      | x         |              |               |                          | 
+libxml2      | x         |              |               |                          |
 dmidecode    | x         |              |               |                          |
 net-tools    | x         |              |               |                          |
 cronie (RHEL 6, 7) | x      |              |               |                          |
@@ -347,7 +358,7 @@ zlib         | x         |              |               |                       
 pciutils     | x         |              |               |                          |
 pmtools      | x         |              |               |                          |
 cron         | x         |              |               |                          |
-libxml2      | x         |              |               |                          | 
+libxml2      | x         |              |               |                          |
 net-tools    | x         |              |               |                          |
 libxslt      | x         | x            |               |                          |
 libapr1      |           | x            | x             |                          |
@@ -367,7 +378,7 @@ zlib         | x         |              |               |                       
 pciutils     | x         |              |               |                          |
 dmidecode    | x         |              |               |                          |
 cron         | x         |              |               |                          |
-libxml2      | x         |              |               |                          | 
+libxml2      | x         |              |               |                          |
 hostname     | x         |              |               |                          |
 libldap-2.4-2 | x        |              |               |                          |
 libreadline5 | x         |              |               |                          |
@@ -400,7 +411,7 @@ zlib         | x         |              |               |                       
 pciutils     | x         |              |               |                          |
 dmidecode    | x         |              |               |                          |
 cron         | x         |              |               |                          |
-libxml2      | x         |              |               |                          | 
+libxml2      | x         |              |               |                          |
 hostname     | x         |              |               |                          |
 libldap-2.4-2 | x        |              |               |                          |
 libreadline5 | x         |              |               |                          |
@@ -437,7 +448,7 @@ In order to run the Puppet agent on AIX systems, you'll need to ensure the follo
 * readline
 * curl
 
-All [AIX toolbox packages](http://www-03.ibm.com/systems/power/software/aix/linux/toolbox/alpha.html) are available from IBM.  
+All [AIX toolbox packages](http://www-03.ibm.com/systems/power/software/aix/linux/toolbox/alpha.html) are available from IBM.
 
 To install the packages on your selected node directly, you can run `rpm -Uvh` with the following URLs (note that the RPM package provider on AIX must be run as root):
 

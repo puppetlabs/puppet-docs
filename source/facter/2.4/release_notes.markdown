@@ -7,7 +7,37 @@ description: "Facter release notes for all 2.4 versions"
 This page documents the history of the Facter 2.4 series. (Elsewhere: release notes for [Facter 2.3](../2.3/release_notes.html), [Facter 2.2](../2.2/release_notes.html), [Facter 2.1](../2.1/release_notes.html), and [Facter 2.0](../2.0/release_notes.html)).
 
 
+## Facter 2.4.1
+
+Released February 10, 2015.
+
+Facter 2.4.1 is a security fix release in the Facter 2.4 series. It also fixes one non-security bug.
+
+### SECURITY FIX: Leaking EC2 IAM Tokens
+
+If an EC2 instance had an IAM (Identity and Access Management) role assigned to it, Facter's output would include that node's temporary security credentials, which could be used to perform requests against the AWS APIs. (To use the credentials, an attacker would need to obtain Facter output for that node.)
+
+Since these credentials aren't meant to leave the node they're installed on, Facter now filters them out when making facts from EC2 instance data.
+
+These temporary credentials expire relatively quickly and are automatically replaced with new ones. Once they've expired, no further remediation should be needed.
+
+* [FACT-800: facter returns sensitive information about EC2 IAM tokens](https://tickets.puppetlabs.com/browse/FACT-800)
+
+
+### KVM Not Detected When Running Facter as Non-Root User
+
+When Facter was run as a non-root user, the `virtual` fact wasn't properly detecting machines running under KVM, which could prevent evaluation of other facts (including EC2 data).
+
+* [FACT-797: Virtual fact on Linux does not work](https://tickets.puppetlabs.com/browse/FACT-797)
+
+### Full List of Issues
+
+[See Jira for a full list of issues resolved in Facter 2.4.1.](https://tickets.puppetlabs.com/browse/FACT/fixforversion/12625/)
+
+
 ## Facter 2.4.0
+
+Released January 22, 2015.
 
 Facter 2.4.0 is a backward-compatible feature release in the Facter 2 series.
 
@@ -64,3 +94,6 @@ Sometimes, tools like Boxen want to load their own collection of external facts 
 * [FACT-766: Facter::Util::DirectoryLoader should have configurable weight](https://tickets.puppetlabs.com/browse/FACT-766)
 
 
+### Full List of Issues
+
+[See Jira for a full list of issues resolved in Facter 2.4.0.](https://tickets.puppetlabs.com/browse/FACT/fixforversion/12021/)

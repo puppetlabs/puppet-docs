@@ -22,8 +22,6 @@ Lists the objects that integrate with RBAC and demonstrates the permissions
 that can be constructed, by picking the appropriate `object_type`, `action`,
 and `instance` triple. Web session authentication is required.
 
-**Implemented.**
-
 The `has_instances` flag indicates that the action permission is instance-specific
 if `true`, or `false` if this action permission does not require instance
 specification.
@@ -64,8 +62,6 @@ given action. This takes into account the full evaluation of permissions,
 including inherited roles and matching general permissions against more
 specific queries. A query for `users:edit:1` will return `true` if the subject
 has `users:edit:1` and/or `users:edit:*`.
-
-**Implemented.**
 
 **Example Body:**
 

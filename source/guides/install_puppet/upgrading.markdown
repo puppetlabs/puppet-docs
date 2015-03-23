@@ -1,6 +1,6 @@
 ---
 layout: default
-nav: puppet_general.html
+nav: /_includes/puppet_general.html
 title: "Upgrading Puppet"
 ---
 

@@ -11,6 +11,14 @@ canonical: "/pe/latest/install_upgrading_notes.html"
 
 PE 3.7.0 introduces the Puppet server, running the Puppet Master, which functions as a seamless drop-in replacement for the former Apache/Passenger Puppet master stack. However, due to this change in the underlying architecture of the Puppet master, there are a few changes you'll notice after upgrading that we'd like to point out. Refer to [About the Puppet Server](./install_upgrading_puppet_server_notes.html) for more information.
 
+#### Updating Puppet Master Gems
+
+After upgrading to PE 3.7.2, you need to update the Ruby gems used by your Puppet Master with `/opt/puppet/bin/puppetserver gem install <GEM NAME>`.
+
+For instance, in PE 3.7.2, the deep_merge gem is no longer installed by default. If you previously used this gem, you will need to reinstall it after upgrading.
+
+After updating the gems, you need to restart the Puppet master with `service pe-puppetserver restart`. You should do this **before** doing any Puppet agent runs.
+
 ### Upgrading to Directory Environments
 
 Directory environments are enabled by default in PE 3.7.0. Before upgrading be sure to read [Important Information about Upgrades to PE 3.7 and Directory Environments](./install_upgrading_dir_env_notes.html).
@@ -39,15 +47,37 @@ For example, if you have an agent node for which the `[agent]` section of `puppe
 
 #### Classifying PE Groups
 
-For fresh installations of PE 3.7.0, node groups in the classifier are created and configured during the installation process. For upgrades, these groups are created but no classes are added to them. This is done to help prevent errors during upgrade process.
+For fresh installations of PE 3.7, node groups in the classifier are created and configured during the installation process. For upgrades, these groups are created but no classes are added to them. This helps prevent errors during the upgrade process, but it means that if you're upgrading, you have to manually add classes to each node.
 
 The [preconfigured groups doc](./console_classes_groups_preconfigured_groups.html) has a list of groups and their classes that get installed on fresh upgrades.
 
-If you are upgrading to PE 3.7.x, you will need to follow the preconfigured groups doc and manually configure these classes to ensure correct PE functionality. This should be done post-upgrade. 
+**After upgrading, you must classify the new PE groups**. We recommend that you perform the manual classification in the following order and use the [preconfigured groups doc]((./console_classes_groups_preconfigured_groups.html) to determine which classes to apply to the PE node groups. The ordered specified is as follows:
+
+1. The PE Infrastructure node group
+2. The PE Certificate Authority node group
+3. The PE Master node group
+4. The PuppetDB node group
+5. The PE Console node group
+6. The PE ActiveMQ Broker node group
+
+If you classify the node groups in this order, you do not need to stop/restart Puppet.
+
+The MCollective node group is configured during upgrade, so you do not need to perform any classification with this group.
+
+**To add a class to a node group:**
+
+1. On the **Classification** page, click the node group that you want to add the class to, and then click **Classes**.
+
+2. Under **Add new class**, click the **Class name** field.
+
+   A list of classes appears. These are the classes that the Puppet master knows about and are available in the environment that you have set for the node group. The list filters as you type. Filtering is not limited to the start of a class name, you can also type substrings from anywhere within the class name. Select the class when it appears in the list.
+
+3. Click **Add class** and then click the commit change button.
+
 
 ### Upgrading to Role-Based Access Control (RBAC)
 
-After upgrading to PE 3.7.0, you will need to set up your directory service and users and groups. Note that when you upgrade, PE doesn't migrate any existing users. In addition, PE doesn't preserve your username and password. You'll now log in with "admin" as your username.
+After upgrading to PE 3.7, you will need to set up your directory service and users and groups. Note that when you upgrade, PE doesn't migrate any existing users. In addition, PE doesn't preserve your username and password. You'll now log in with "admin" as your username.
 
 For more information about RBAC, refer to [Working with Role-Based Access Control](./rbac_intro.html).
 
@@ -61,7 +91,7 @@ For more information about RBAC, refer to [Working with Role-Based Access Contro
    - `/etc/puppetlabs/`
    - `/opt/puppet/share/puppet-dashboard/certs`
    - [The console and console_auth databases](./maintain_console-db.html#database-backups)
-   - [The PuppetDB database](/puppetdb/1.6/migrate.html#exporting-data-from-an-existing-puppetdb-database)
+   - [The PuppetDB database](/puppetdb/2.2/migrate.html#exporting-data-from-an-existing-puppetdb-database)
 
    On a split install, the databases and PE files will be located across the various components assigned to your servers.
 

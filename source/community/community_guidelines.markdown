@@ -56,8 +56,7 @@ Puppet has a relatively long history and open development process for an open-so
 2. Join the [puppet-users google group](http://groups.google.com/group/puppet-users) and use the search box on the group page to search the mailing list. this eliminates duplicate hits from ML mirrors like nabble and lets you order results by date so you aren’t getting confused by a bug that was fixed three versions ago.
 3. Use correct Puppet-specific terminology for your problem like yum provider, file resource, and manifest.
 
-
-Many general questions about Puppet and Puppet Labs are answered in the [Frequently Asked Questions](/guides/faq.html). Otherwise, the [Documentation Start](/) is the place to go. Also available is [“Pulling Strings with Puppet”](http://www.amazon.com/gp/product/1590599780?ie=UTF8&tag=puppet0e-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=1590599780) by James Turnbull which is the first book to be written about Puppet, and its sequel [“Pro Puppet”](http://www.apress.com/9781430260400).
+In general, we suggest searching the documentation site, or browsing from the [front page of the docs.](/).
 
 We also provide various [commercial services](http://puppetlabs.com/services/overview/) around Puppet (training, professional services, support, certification and more) for people who want a little extra help.
 

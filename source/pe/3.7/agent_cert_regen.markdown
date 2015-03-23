@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.7 » Deploying PE » Agent Cert Regen"
+title: "PE 3.7 » Security and SSL"
 subtitle: "Regenerating a Puppet Agent Certificate"
 canonical: "/pe/latest/agent_cert_regen.html"
 ---
@@ -11,7 +11,7 @@ The following steps explain how to regenerate a certificate for a Puppet agent n
 
 1. On the Puppet master, run `puppet cert clean <node name>`.
 
-2. On the Puppet master, run `puppet service pe-puppetserver restart.`
+2. On the Puppet master, run `service pe-puppetserver restart`.
 
      Restarting `pe-puppetserver` will prevent the old cert from being used. 
 

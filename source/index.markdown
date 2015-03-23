@@ -5,22 +5,7 @@ canonical: "/"
 toc: false
 ---
 
-Welcome to the Puppet Labs documentation site. The documentation posted here is also available as a set of PDFs, which can be found [here](http://info.puppetlabs.com/download-pdfs.html). You can also [download the current version of this entire website](./puppetdocs-latest.tar.gz) as a zipped archive; unzip it and follow the instructions in the README.txt file to view the site offline.
-
-[Puppet](/puppet)
------
-
-Puppet manages your servers: you describe machine configurations in an easy-to-read declarative language, and Puppet will bring your systems into the desired state and keep them there.
-
-[See the index for Puppet's documentation here](/puppet), or go directly to one of the most popular pages:
-
-- [The Learning Puppet series](/learning) is a guided tutorial for new users, which includes a free VM to run exercises on and experiment with. Go from "What's that?" to "I can do it" in just a few hours.
-- [The installation guide](/guides/install_puppet/pre_install.html) can help you install and configure the current open-source Puppet releases.
-- [The Puppet 3.7 Reference Manual](/puppet/3.7/reference)
-    - (Older reference manuals: [Puppet 3.6](/puppet/3.6/reference), [Puppet 3.5](/puppet/3.5/reference), [Puppet 3.0-3.4](/puppet/3/reference), [Puppet 2.7](/puppet/2.7/reference)
-- [The latest type reference](/references/latest/type.html) covers all of the built-in resource types and their available attributes. New users should start elsewhere, but experienced users will spend most of their time in this one page.
-- [The glossary](/references/glossary.html) explains the terminology you'll encounter when reading about Puppet.
-
+Welcome to the Puppet Labs documentation site. You can [download the current version of this entire website](./puppetdocs-latest.tar.gz) as a zipped archive; unzip it and follow the instructions in the README.txt file to view the site offline.
 
 [Puppet Enterprise](/pe/latest)
 -----
@@ -36,6 +21,20 @@ Nearly all of the main Puppet and MCollective documentation also applies to Pupp
 - [The PE download page](http://info.puppetlabs.com/download-pe.html)
 
 The current version of PE is 3.7. Documentation for previous versions can be found [here](/pe/index.html).
+
+[Puppet](/puppet)
+-----
+
+Puppet manages your servers: you describe machine configurations in an easy-to-read declarative language, and Puppet will bring your systems into the desired state and keep them there.
+
+[See the index for Puppet's documentation here](/puppet), or go directly to one of the most popular pages:
+
+- [The Learning Puppet series](/learning) is a guided tutorial for new users, which includes a free VM to run exercises on and experiment with. Go from "What's that?" to "I can do it" in just a few hours.
+- [The installation guide](/guides/install_puppet/pre_install.html) can help you install and configure the current open-source Puppet releases.
+- [The Puppet 3.7 Reference Manual](/puppet/3.7/reference)
+    - (Older reference manuals: [Puppet 3.6](/puppet/3.6/reference), [Puppet 3.5](/puppet/3.5/reference), [Puppet 3.0-3.4](/puppet/3/reference), [Puppet 2.7](/puppet/2.7/reference)
+- [The latest type reference](/references/latest/type.html) covers all of the built-in resource types and their available attributes. New users should start elsewhere, but experienced users will spend most of their time in this one page.
+- [The glossary](/references/glossary.html) explains the terminology you'll encounter when reading about Puppet.
 
 [MCollective](/mcollective)
 -----

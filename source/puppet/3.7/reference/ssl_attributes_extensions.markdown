@@ -10,13 +10,13 @@ canonical: "/puppet/latest/reference/ssl_attributes_extensions.html"
 [autosign_policy]: ./ssl_autosign.html#policy-based-autosigning
 [autosign_basic]: ./ssl_autosign.html#basic-autosigning-autosignconf
 [puppet_oids]: #puppet-specific-registered-ids
-[trusted_hash]: ./lang_variables.html#trusted-node-data
+[trusted_hash]: ./lang_facts_and_builtin_vars.html#trusted-facts
 [enable_trusted]: ./config_important_settings.html#getting-new-features-early
 
 Summary
 -----
 
-When Puppet agent nodes request their certificates, the certificate signing request (CSR) usually just contains their certname and the necessary cryptographic information. However, agents can also embed more data in their CSR. This extra data can be useful for [policy-based autosigning][autosign_policy]. In future Puppet versions, extensions may also be passed to the compiler as trusted facts.
+When Puppet agent nodes request their certificates, the certificate signing request (CSR) usually just contains their certname and the necessary cryptographic information. However, agents can also embed more data in their CSR. This extra data can be useful for [policy-based autosigning][autosign_policy] and for adding new [trusted facts.][trusted_hash]
 
 ### Status as of Early 2014
 

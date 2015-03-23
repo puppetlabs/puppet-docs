@@ -21,8 +21,6 @@ By assigning roles to users, you can manage them in sets that are granted access
 Fetches all roles with user and group ID lists and permission lists. Web
 session authentication is required.
 
-**Implemented**
-
 **Example return:**
 
         [{"id": 123,
@@ -37,8 +35,6 @@ session authentication is required.
 
 ## GET /roles/:rid
 Fetches a single role by its ID. Web session authentication is required.
-
-**Implemented**
 
 **Returns:**
 
@@ -59,8 +55,6 @@ group IDs.
 ## POST /roles
 Creates a role, and attaches to it the specified permissions and the specified users and groups. Web session authentication is required.
 
-**Implemented**
-
 **Accepts:** A new role object. Any of the arrays can be empty and "description" can be null.
 
 **Returns:**
@@ -79,10 +73,8 @@ Creates a role, and attaches to it the specified permissions and the specified u
           "display_name": "A role",
           "description": "Edit node group rules"}
 
-## PUT /roles/:sid
+## PUT /roles/:rid
 Replace role at the specified ID with a new role object. Web session authentication is required.
-
-**Implemented**
 
 **Accepts:** The modified role object.
 
@@ -101,3 +93,12 @@ Replace role at the specified ID with a new role object. Web session authenticat
 
 * **200 OK** The modified role object.
 * **409 Conflict** If the role has a name that collides with another existing role.
+
+## DELETE /roles:rid
+Deletes the role identified by the role ID (`:rid`). Users with this role will lose the role and all permissions granted by it immediately, but their session will be otherwise unaffected. Access to the next request that the user makes will be determined by the new set of permissions the user has without this role.
+
+**Returns**
+
+* **200 OK** The role identified by `:rid` has been deleted.
+* **404 Not Found** No role exists for id `:rid`.
+* **403 Forbidden** The current user lacks permission to delete the role identified by `:rid`.

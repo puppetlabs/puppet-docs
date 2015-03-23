@@ -7,9 +7,21 @@ canonical: "/pe/latest/release_notes.html"
 
 This page contains information about new features and general improvements in the latest Puppet Enterprise (PE) release.
 
-For more information about this release, also see the [Known Issues](./release_notes_known_issues.html) and [Security Fixes](./release_notes_security.html).
+For more information about this release, also see the [Known Issues](./release_notes_known_issues.html) and [Security and Bug Fixes](./release_notes_security.html).
 
-## New Features in 3.7.1
+## New Features in PE 3.7.2
+
+### RBAC Can Query an Entire Base DN For Users and Groups
+
+Previously, RBAC required an RDN (relative distinguished name) for user and group queries to an external directory. An RDN is no longer required. This means that you can search an entire base DN (distinguished name) for a user or group.
+
+For more information, see [Connecting Puppet Enterprise with LDAP Services](./rbac_ldap.html).
+
+### `jruby_max_active_instances` Now Available
+
+This new setting enables you to tune the number of JRuby instances you're running. Doing so helps you control the amount of heap space your infrastructure uses. See [this known issue](./release_notes_known_issues.html#running-pe-puppetserver-on-a-server-with-more-than-four-cores-might-require-tuning) for more information and suggestions for using this setting.
+
+## New Features in PE 3.7.1
 
 ### SLES 12 Support (all components)
 
@@ -49,7 +61,7 @@ PE 3.7.0 introduces the Puppet server, built on a JVM stack, which functions as 
 
 For users upgrading from an earlier version of PE, there are a few things you'll notice after upgrading due to changes in the underlying architecture of the Puppet server.
 
-[About the Puppet Server](./install_upgrading_puppet_server_notes.html) details some items that are intentionally different between the Puppet server and the Apache/Passenger stack; you may also be interested in the PE [Known Issues Related to Puppet Server](./release_notes_known_isues.html#puppet-server-known-issues), where we've listed a handful of issues that we expect to fix in future releases.
+[About the Puppet Server](./install_upgrading_puppet_server_notes.html) details some items that are intentionally different between the Puppet server and the Apache/Passenger stack; you may also be interested in the PE [Known Issues Related to Puppet Server](./release_notes_known_issues.html#puppet-server-known-issues), where we've listed a handful of issues that we expect to fix in future releases.
 
 [Graphing Puppet Server Metrics](./puppet_server_metrics.html) provides instructions on setting up a Graphite server running Grafana to track Puppet server performance metrics.
 
@@ -90,6 +102,10 @@ Before getting started, visit the Puppet docs to read up on the [Structure of an
 #### A Note about `environment_timeout` in PE 3.7.0
 
 The [environment_timeout](/puppet/3.7/reference/environments_configuring.html#environmenttimeout) defaults to 3 minutes. This means that code changes you make might not appear until after that timeout has been reached. In addition it's possible that back to back runs of Puppet could flip between the new code and the old code until the `environment_timeout` is reached.
+
+#### Factor 2.2
+
+PE 3.7.0 includes Factor 2.2. This provides a number of improvements that are detailed in the [Factor 2.2 release notes](./facter/2.2/release_notes.html). However, it also resulted in some changes to the behavior of facts, which are detailed in the [known issues](/release_notes_known_issues.html).
 
 ### Support Script Improvements
 

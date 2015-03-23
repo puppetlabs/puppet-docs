@@ -1,12 +1,12 @@
 ---
 layout: default
-title: "PE 3.7.1 » Troubleshooting » Cert Regeneration: Monolithic Deployments"
+title: "PE 3.7.1 » Security and SSL » Cert Regeneration: Monolithic Deployments"
 subtitle: "Regenerating Certs and Security Credentials in Monolithic Puppet Enterprise Deployments"
 canonical: "/pe/latest/trouble_regenerate_certs_monolithic.html"
 description: "This page explains how to regenerate all SSL certificates in monolithic Puppet Enterprise deployments."
 ---
 
-> **Important**: These instructions have only been tested on new installations of PE, which assume the [preconfigured node groups](./console_classes_groups_preconfigured_groups.html) are applied. We will update this page for any changes involving upgrades as soon as possible.
+> **Warning**: Do not perform these cert regeneration steps if you have upgraded to PE 3.7.x and not yet [classified the new PE groups](./install_upgrading_notes.html#classifying-pe-groups). You can perform these cert regen steps after classifying those groups.  
 
 > **Note**: This page explains how to regenerate all certificates in **a monolithic PE deployment** --- that is, where the Puppet master, PuppetDB, and PE console components are all installed on the same server. [See this page for instructions on regenerating certificates in a **split PE deployment**](./trouble_regenerate_certs_split.html).
  
@@ -26,9 +26,13 @@ Regardless of your situation, regenerating your certificates involves the follow
 
 Note that this process **destroys the certificate authority and all other certificates.** It is meant for use in the event of a total compromise of your site, or some other unusual circumstance. If you just need to replace a few agent certificates, you can use the `puppet cert clean` command on your Puppet master and then follow step five for any agent certs that need to be replaced.
 
->**Notes**: In the following instructions, when `<CERTNAME>` is used, it refers to the Puppet agent's certname. To find this value, run `puppet config print certname` before starting.
+>**Important Notes and Warnings**
+> 
+>- In the following instructions, when `<CERTNAME>` is used, it refers to the Puppet agent's certname. To find this value, run `puppet config print certname` before starting.
 >
-> You must be logged in as a root, (or in the case of Windows agents, as an account with Administrator Privileges) to make these changes.
+> - You must be logged in as a root, (or in the case of Windows agents, as an account with Administrator Privileges) to make these changes.
+>
+> - If you encounter any errors during steps that involve `service stop/start`, `rm`, `cp`, or `chmod` commands, you should diagnose these before continuing, as the success each step is very important to the success of the next step.
 
 
 ## Step 1: Shut down all PE-related services
@@ -102,7 +106,7 @@ Note that this process **destroys the certificate authority and all other certif
 
    `rm -rf /etc/puppetlabs/puppetdb/ssl/*`
  
-2. Copy the certs and security credentials generated in step 1 for the master node to the PuppetDB SSL directory. 
+2. Copy the certs and security credentials generated in step 2.5 for the Puppet master node to the PuppetDB SSL directory. 
 
    Note that the Puppet master, PuppetDB, and PE console share the same agent cert and security credentials.  
    
@@ -115,7 +119,7 @@ Note that this process **destroys the certificate authority and all other certif
 
    `rm -rf /opt/puppet/var/lib/pgsql/9.2/data/certs/*`
 
-4. Copy the certs and security credentials generated in step 1 for the master node to the PostgreSQL certs directory. 
+4. Copy the Puppet agent's certs and security credentials generated in step 2.5 for the Puppet master to the PostgreSQL certs directory. 
 
         cp /etc/puppetlabs/puppet/ssl/certs/<CERTNAME>.pem /opt/puppet/var/lib/pgsql/9.2/data/certs/<CERTNAME>.cert.pem
         cp /etc/puppetlabs/puppet/ssl/public_keys/<CERTNAME>.pem /opt/puppet/var/lib/pgsql/9.2/data/certs/<CERTNAME>.public_key.pem
@@ -138,7 +142,7 @@ Note that this process **destroys the certificate authority and all other certif
         cp /etc/puppetlabs/puppet/ssl/public_keys/pe-internal-classifier.pem /opt/puppet/share/console-services/certs/pe-internal-classifier.public_key.pem
         cp /etc/puppetlabs/puppet/ssl/private_keys/pe-internal-classifier.pem /opt/puppet/share/console-services/certs/pe-internal-classifier.private_key.pem
 
-3. Copy the PE agent cert and security credentials to the console-services cert directory.
+3. Copy the Puppet agent's cert and security credentials to the console-services cert directory.
 
         cp /etc/puppetlabs/puppet/ssl/certs/<CERTNAME>.pem /opt/puppet/share/console-services/certs/<CERTNAME>.cert.pem
         cp /etc/puppetlabs/puppet/ssl/public_keys/<CERTNAME>.pem /opt/puppet/share/console-services/certs/<CERTNAME>.public_key.pem
@@ -154,7 +158,7 @@ Note that this process **destroys the certificate authority and all other certif
 
         chown -R pe-console-services:pe-console-services /opt/puppet/share/console-services/certs
 
-6. Copy the agent cert and security credentials to the puppet-dashboard cert directory. 
+6. Copy the Puppet agent's cert and security credentials to the puppet-dashboard cert directory. 
 
    Note that the Puppet master, PuppetDB, and PE console share the same agent cert and security credentials.
    
@@ -206,7 +210,7 @@ To replace the certs on agents, you'll need to log into each agent node and do t
 
    `puppet resource service pe-mcollective ensure=stopped`
    
-4. Delete the agent's SSL directory. On \*nix nodes, run `rm -r /etc/puppetlabs/puppet/ssl`. On Windows nodes, delete the `$confdir\ssl` directory, using the Administrator confdir. [See here for more information on locating the confdir.][confdir]
+4. Delete the agent's SSL directory. On \*nix nodes, run `rm -rf /etc/puppetlabs/puppet/ssl`. On Windows nodes, delete the `$confdir\ssl` directory, using the Administrator confdir. [See here for more information on locating the confdir.][confdir]
 5. Remove the cached catalog. on \*nix nodes, run `rm -f /var/opt/lib/pe-puppet/client_data/catalog/<CERT NAME>.json`. On Windows nodes, delete the `$client_datadir\catalog\<CERTNAME>.json` file, using the Administrator confdir. [See here for more information on locating the confdir.][confdir]
 
 6. Re-start the Puppet agent service.

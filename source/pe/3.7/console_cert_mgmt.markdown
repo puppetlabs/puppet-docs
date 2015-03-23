@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.7 » Console » Node Request Management"
+title: "PE 3.7 » Node Request Management"
 subtitle: "Working with Node Requests"
 canonical: "/pe/latest/console_cert_mgmt.html"
 ---
@@ -59,24 +59,6 @@ For more information on working with certificates from the CLI, see the [Puppet 
 ### Configuration Details
 
 By default, the location of the CA is set to the location of PE's Puppet master. If the CA is in a custom location (as in cases where there are multiple Puppet masters), you will have to set the `ca_server` and `ca_port` settings in the `/opt/puppet/share/puppet-dashboard/config/settings.yml` file.
-
-
-### Request Management Modules
-
-PE installs three modules needed for node request management: `puppetlabs-request_manager`, `puppetlabs-auth_conf`, and `puppetlabs-concat`. These are installed in the `/opt/puppet/share/puppet/modules/` directory, and usually shouldn't be modified.
-
-The `puppetlabs-auth_conf` module contains a new defined type: `auth_conf::acl`. The type takes the following parameters:
-
-
-parameter   | description               | value types   | default value | required
-------------|---------------------------|---------------|---------------|---------
-path        | URL path of ACL           | string        | $title        | no
-acl_method  | find, search save, delete | string, array |               | no
-auth        | yes, no, any              | sring         | yes           | no
-allow       | certnames to access path  | array         | [ ]           | no
-order       | order in auth.conf file   | string        | 99            | no
-regex       | is the path a regex?      | bool          | false         | no
-environment | environments to allow     | string        |               | no
 
 
 * * *

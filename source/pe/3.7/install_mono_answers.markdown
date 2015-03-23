@@ -5,11 +5,11 @@ subtitle: "Monolithic Puppet Enterprise Install Answer File Reference"
 canonical: "/pe/latest/install_mono_answers.html"
 ---
 
-The following answers can be used to perform an automated monolithic (all-in-one) installation of PE. 
+The following example answers can be used to perform an automated monolithic (all-in-one) installation of PE. 
 
 A .txt file version can be found in the `answers` directory of the PE installer tarball.
 
-See the [Answer File Overview](./install_answer_file_reference.html) and the section on [installing with an answer file](./install_automated.html) for more details.
+See the [Answer File Overview](./install_answer_file_reference.html) and [Installing with an answer file](./install_automated.html) for more details. In addition, [the Complete Answer File Reference](./install_complete_answer_file_reference.html) contains all answers that you can use to install PE.
 
 ### Global Answers
 

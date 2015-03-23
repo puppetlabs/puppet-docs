@@ -17,10 +17,16 @@ Puppet Labsでは、次の２つの製品を提供しています。
 
 日本語のマニュアル
 -----
+下記のマニュアルはコミュニティのRyo氏とJun氏が翻訳されたものです。 マニュアルの翻訳に多大なご尽力をいただき、またユーザーコミュニティに共有していただいたRyo氏、Jun氏に改めて感謝いたします。
 
 ###[Learning Puppet](/ja/learning/introduction_ja.html)
-Learning Puppetは、Puppetを使いお客様のシステム管理を自動化する基礎について説明するPuppetのガイドツアーです。Learning Puppet 日本語版はコミュニティのRyo氏とJun氏が翻訳されたものです。
-Learning Puppetの翻訳に多大なご尽力をいただき、またユーザーコミュニティに共有していただいたRyo氏、Jun氏に改めて感謝いたします。
+Learning Puppetは、Puppetを使いお客様のシステム管理を自動化する基礎について説明するPuppetのガイドツアーです。
+
+###[Puppetリファレンスマニュアル](/ja/puppet/3.7/reference/index_ja.html)
+PuppetリファレンスマニュアルはオープンソースPuppetに関するアーキテクチャ概要などの参考情報があるマニュアルです。
+
+###[Puppetインストレーションガイド](/ja/guides/install_puppet/pre_install_ja.html)
+PuppetインストレーションガイドはPuppetのインストール方法、インストール前と後の重要ステップなどがあるマニュアルです。
 
 日本語の記事
 -----
@@ -33,6 +39,9 @@ NTT OSS センタの菅原亮氏による記事です。PXEとKickstartを使い
 
 ###[@IT 記事「Puppetのインストールと動作確認、トラブル対処法」（菅原亮氏）](http://www.atmarkit.co.jp/ait/articles/1410/08/news016.html)
 NTT OSS センタの菅原亮氏による記事です。agent／master型のPuppetのセットアップ方法を順に解説してインターネットに接続できない環境や証明書の不整合の解決法も説明します。
+
+###[@IT 記事「作業手順書はもういらない！ Puppetにおける自動化の定義書「マニフェスト」の書き方と基礎文法まとめ」（菅原亮氏）](http://www.atmarkit.co.jp/ait/articles/1501/23/news012.html)
+NTT OSS センタの菅原亮氏による記事です。構築から運用まで、システムライフサイクル全体にわたる運用管理の自動化について説明されています。
 
 翻訳へのご協力
 -----

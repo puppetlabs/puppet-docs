@@ -84,7 +84,7 @@ If you run the `reports:prune` task without any arguments, it will display furth
 Database Backups
 ----------------
 
-You can back up and restore your PE databases by using the standard [PostgreSQL tool, `pg dump`](http://www.postgresql.org/docs/9.2/static/app-pgdump.html). Best practices recommend hourly local backups and backups to a remote system nightly for PE databases, or as dictated by your company policy.
+You can back up and restore your PE databases by using the standard [PostgreSQL tool, `pg dump`](http://www.postgresql.org/docs/9.2/static/app-pgdump.html). At a minimum, we recommend nightly backups to a remote system for the console and PuppetDB databases, or as dictated by your company policy.
 
 Providing comprehensive documentation about backing up and restoring PostgreSQL databases is beyond the scope of this guide, but the following commands should provide you enough guidance to perform back ups and restorations of your PE databases.
 
@@ -129,8 +129,6 @@ The console uses a database user account to access its PostgreSQL database. If t
 
         $ sudo /etc/init.d/pe-httpd start
         
-You will use the same procedure to change the console_auth database user's password, except you will need to edit both the `/opt/puppet/share/console-auth/db/database.yml` and `/opt/puppet/share/rubycas-server/config.yml` files.
-
 The same procedure is also used for the PuppetDB user's password, except you'll edit `/etc/puppetlabs/puppetdb/conf.d/database.ini` and will restart the `pe-puppetdb` service.
 
 Changing PuppetDB’s Parameters

@@ -18,6 +18,51 @@ Live management is enabled in the console by default when you install PE, but yo
 [install_upgrading]: ./install_upgrading.html#disabling/enabling-live-management-during-an-upgrade
 [normal_operations]: ./console_navigating_live_mgmt.html#disabling/enabling-live-management
 
+Using curl to Troubleshoot Classification Info in the PE Console
+--------
+
+
+In past versions, you could run an external node script to reach the PE console node classifier (NC) to troubleshoot node and group classification information in the console. Due to changes in console authentication, that external node script was removed. However, you can now curl the console to troubleshoot the NC. Consider the following examples:
+
+#### Determine what node groups the NC has and what data they contain
+
+Execute the following curl command from the Puppet master (monolithic install) or from the PE console (split install):
+
+    curl \
+    --cacert /etc/puppetlabs/puppet/ssl/certs/ca.pem \
+    --cert /opt/puppet/share/puppet-dashboard/certs/pe-internal-dashboard.cert.pem \
+    --key /opt/puppet/share/puppet-dashboard/certs/pe-internal-dashboard.private_key.pem \
+    https://$(hostname -f):4433/classifier-api/v1/groups > classifier_groups.json
+
+This will generate a file called `classifier_groups.json`. The JSON file is described in the [groups portion](./nc_groups.html#get-v1groups) of the NC API docs. 
+
+#### Determine what data the NC will generate for a given node name 
+
+**NOTE**: In the examples below replace `<SOME NODE NAME>` with the FQDN of the node you are interested in.
+
+Execute the following curl command from the Puppet master (monolithic install) or from the PE console (split install):
+
+     curl -X POST -H 'Content-Type: application/json' \
+     --cacert /etc/puppetlabs/puppet/ssl/certs/ca.pem \
+     --cert /opt/puppet/share/puppet-dashboard/certs/pe-internal-dashboard.cert.pem \
+     --key /opt/puppet/share/puppet-dashboard/certs/pe-internal-dashboard.private_key.pem \
+     https://$(hostname -f):4433/classifier-api/v1/classified/nodes/<SOME NODE NAME> > node_classification.json
+      
+This will generate a file called `node_classification.json`. The JSON file is described in the [classificatiopn portion](./nc_classification.html#post-v1classifiednodesname) of the NC API docs. 
+
+However, note that the above query will only return classification data for nodes that are [statically pinned](./console_classes_groups.html#adding-nodes-statically) to node groups. 
+
+To get classification data for [dynamically grouped nodes](./console_classes_groups.html#adding-nodes-dynamically), a JSON object containing facts will need to be submitted during the POST request. 
+
+     curl -X POST -H 'Content-Type: application/json' \
+     --data '{"fact":{"pe_version": "3.7.0"}}' \
+     --cacert /etc/puppetlabs/puppet/ssl/certs/ca.pem \
+     --cert /opt/puppet/share/puppet-dashboard/certs/pe-internal-dashboard.cert.pem \
+     --key /opt/puppet/share/puppet-dashboard/certs/pe-internal-dashboard.private_key.pem \
+     https://$(hostname -f):4433/classifier-api/v1/classified/nodes/<SOME NODE NAME> > node_classification.json
+    
+See the [classificatiopn portion](./nc_classification.html#post-v1classifiednodesname) of the NC API docs for more information on how to supply facts when making classification requests.
+
 PostgreSQL is Taking Up Too Much Space
 -----
 
@@ -45,19 +90,6 @@ PuppetDB's Default Port Conflicts with Another Service
 
 By default, PuppetDB communicates over port 8081. In some cases, this may conflict with existing services (e.g., McAfee's ePO). You can work around this issue by installing with an answer file that specifies a different port with `q_puppetdb_port`. For more information on using answer files, take a look at the [documentation for automated installs](./install_automated.html)
 
-New Script to curl the PE Console ENC
---------
-
-In PE versions earlier than 3.2, you could run the external node script (`/etc/puppetlabs/puppet-dashboard/external_node`) to reach the console ENC. PE 3.2 introduced changes in console authentication and the external node script was removed. You can now curl the console ENC using the following script (but be sure to replace \<NODE NAME> with an actual node name from your deployment):
-
-    CERT=$(puppet master --configprint hostcert)
-    CACERT=$(puppet master --configprint localcacert)
-    PRVKEY=$(puppet master --configprint hostprivkey)
-    CERT_OPTIONS="--cert ${CERT} --cacert ${CACERT} --key ${PRVKEY}"
-    CONSOLE=$(awk '/server =/{print $NF}' /etc/puppetlabs/puppet/console.conf)
-    MASTER="https://${CONSOLE}:443"
-
-    curl -k -X GET -H "Accept: text/yaml" ${CERT_OPTIONS} "${MASTER}/nodes/<NODE NAME>"
 
 Recovering from a Lost Console Admin Password
 -----
@@ -100,29 +132,6 @@ Old "Pending Tasks" Never Expire
 In earlier versions of PE 3.x, failed delayed jobs did not get properly deleted. If a report for a job failed to upload (due to a problem with the report itself), a pending task would be displayed in the console in perpetuity. This has been fixed in PE 3.1. The __Background Tasks__ pane in the console (upper left corner) now displays a red alert icon when a report fails to upload. Clicking the icon displays a view with information about the failure and a backtrace. You can stop the reports from showing the alert by marking them as read with the __Mark all as read__ button.
 
 Note, however, that this will not remove old failed/delayed jobs. You can clean these out by running `/opt/puppet/bin/bundle exec rails runner 'Delayed::Job.delete_all("attempts >= 3")'` on the console node. This command should be run from `/opt/puppet/share/puppet-dashboard`.
-
-Console Account Confirmation Emails Have Incorrect Links
------
-
-This can happen if the console's authentication layer thinks it lives on a hostname that isn't accessible to the rest of the world. The authentication system's hostname is automatically detected during installation, and the installer can sometimes choose an internal-only hostname.
-
-To fix this:
-
-1. Open the `/etc/puppetlabs/console-auth/cas_client_config.yml` file for editing. Locate the `cas_host` line, which is likely commented-out:
-
-        authentication:
-
-          ## Use this configuration option if the CAS server is on a host different
-          ## from the console-auth server.
-          # cas_host: console.example.com:443
-
-    Change its value to contain the **public hostname** of the console server, including the correct port.
-2. Open the `/etc/puppetlabs/console-auth/config.yml` file for editing. Locate the `console_hostname` line:
-
-        authentication:
-          console_hostname: console.example.com
-
-    Change its value if necessary. If you are serving the console on a port other than 443, be sure to add the port. (For example: `console.example.com:3000`)
 
 Correcting Broken URLs in the Console
 ----------------

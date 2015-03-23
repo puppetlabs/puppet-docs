@@ -33,6 +33,7 @@ All functional components of PE, excluding configuration files. You are not like
  * MCollective
  * Hiera
  * Puppet Dashboard
+ * Puppet Server
 
 #### Where
 
@@ -112,8 +113,10 @@ On Windows nodes, the Puppet agent service logs its activity to the Windows Even
 
 #### Installer Logs
 
-- `/var/log/pe-installer/http.log` contains the web requests sent to the installer; present only on the machine from which the web-based install was performed.
+- `/var/log/pe-installer/http.log` contains the web requests sent to the installer; present only on the machine from which the web-based install was performed
 - `/var/log/pe-installer/installer-<timestamp>.log` contains the operations performed and any errors that occurred during installation
+- `/var/log/pe-installer/answers.install` contains the contents of the answer file used to install PE; passwords are redacted from this file
+- `/var/log/pe-installer/install_log.lastrun.<hostname>.log` contains the contents of the last installer run
 
 #### Database Log
 
@@ -133,21 +136,21 @@ These files may or may not be present.
 
 PE 3.7 includes the following major software components:
 
- * Puppet 3.7.1
+ * Puppet 3.7.4
  * PuppetDB 2.2.1
- * Facter 2.2.0
+ * Facter 2.3.0
  * MCollective 2.6.0
  * ActiveMQ 5.9.0
  * Live Management: 1.3.1
  * Cloud Provisioner 1.1.7
  * Hiera 1.3.4
  * Dashboard 2.1.6
- * PostgreSQL 9.2.7
+ * PostgreSQL 9.2.10
  * Ruby 1.9.3
  * Augeas 1.2.0
  * Passenger 4.0.37
  * Java 1.7.0
- * OpenSSL 1.0.0o
+ * OpenSSL 1.0.q
 
 ### Additional Puppet Enterprise Components
 

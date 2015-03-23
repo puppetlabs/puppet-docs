@@ -16,7 +16,8 @@ canonical: "/references/latest/configuration.html"
 * Each of these settings can be specified in `puppet.conf` or on the
   command line.
 * When using boolean settings on the command line, use `--setting` and
-  `--no-setting` instead of `--setting (true|false)`.
+  `--no-setting` instead of `--setting (true|false)`. (Using `--setting false`
+  results in "Error: Could not parse application options: needless argument".)
 * Settings can be interpolated as `$variables` in other settings; `$environment`
   is special, in that puppet master will interpolate each agent node's
   environment instead of its own.
@@ -184,7 +185,7 @@ The binder configuration file. Puppet reads this file on each request to configu
 If set to nil (the default), a $confdir/binder_config.yaml is optionally loaded. If it does not exists, a default configuration
 is used. If the setting :binding_config is specified, it must reference a valid and existing yaml file.
 
-- *Default*: 
+- *Default*:
 
 ### bucketdir
 
@@ -271,7 +272,7 @@ The CA public key.
 
 How to store cached catalogs. Valid values are 'json', 'msgpack' and 'yaml'. The agent application defaults to 'json'.
 
-- *Default*: 
+- *Default*:
 
 ### catalog_format
 
@@ -783,7 +784,7 @@ a file (such as manifests or templates) has changed on disk. This setting can be
 
 The authorization key to connect to the Puppet Forge. Leave blank for unauthorized or license based connections
 
-- *Default*: 
+- *Default*:
 
 ### freeze_main
 
@@ -814,15 +815,28 @@ on the CLI.
 
 ### graph
 
-Whether to create dot graph files for the different
-configuration graphs.  These dot files can be interpreted by tools
-like OmniGraffle or dot (which is part of ImageMagick).
+Whether to create .dot graph files, which let you visualize the
+dependency and containment relationships in Puppet's catalog. You
+can load and view these files with tools like
+[OmniGraffle](http://www.omnigroup.com/applications/omnigraffle/) (OS X)
+or [graphviz](http://www.graphviz.org/) (multi-platform).
+
+Graph files are created when _applying_ a catalog, so this setting
+should be used on nodes running `puppet agent` or `puppet apply`.
+
+The `graphdir` setting determines where Puppet will save graphs. Note
+that we don't save graphs for historical runs; Puppet will replace the
+previous .dot files with new ones every time it applies a catalog.
+
+See your graphing software's documentation for details on opening .dot
+files. If you're using GraphViz's `dot` command, you can do a quick PNG
+render with `dot -Tpng <DOT FILE> -o <OUTPUT FILE>`.
 
 - *Default*: false
 
 ### graphdir
 
-Where to store dot-outputted graphs.
+Where to save .dot-format graphs (when the `graph` setting is enabled).
 
 - *Default*: $statedir/graphs
 
@@ -1155,7 +1169,7 @@ Default logging level for messages from Puppet. Allowed values are:
 
 The directory in which to store log files
 
-- *Default*: 
+- *Default*:
 
 ### manage_internal_file_permissions
 
@@ -1256,7 +1270,7 @@ Whether to create the necessary user and group that puppet agent will run as.
 
 Extra module groups to request from the Puppet Forge
 
-- *Default*: 
+- *Default*:
 
 ### module_repository
 
@@ -1295,7 +1309,7 @@ http://docs.puppetlabs.com/puppet/latest/reference/environments.html
 The name of the application, if we are running as one.  The
 default is essentially $0 without the path or `.rb`.
 
-- *Default*: 
+- *Default*:
 
 ### node_cache_terminus
 
@@ -1303,7 +1317,7 @@ How to store cached nodes.
 Valid values are (none), 'json', 'msgpack', 'yaml' or write only yaml ('write_only_yaml').
 The master application defaults to 'write_only_yaml', all others to none.
 
-- *Default*: 
+- *Default*:
 
 ### node_name
 
@@ -1424,6 +1438,9 @@ Generally unused.
 The shell search path.  Defaults to whatever is inherited
 from the parent process.
 
+This setting can only be set in the `[main]` section of puppet.conf; it cannot
+be set in `[master]`, `[agent]`, or an environment config section.
+
 - *Default*: none
 
 ### pidfile
@@ -1505,7 +1522,7 @@ values.  The priority can also be specified as an integer value and
 will be passed as is, e.g. -5.  Puppet must be running as a privileged
 user in order to increase scheduling priority.
 
-- *Default*: 
+- *Default*:
 
 ### privatedir
 
@@ -1708,7 +1725,7 @@ This should match how often the hosts report back to the server. This setting ca
 
 Where Puppet PID files are kept.
 
-- *Default*: 
+- *Default*:
 
 ### runinterval
 
@@ -1807,7 +1824,7 @@ considered authentic unless they possess a certificate issued by an authority
 listed in this file.  If this setting has no value then the Puppet master's CA
 certificate (localcacert) will be used.
 
-- *Default*: 
+- *Default*:
 
 ### ssl_client_header
 
@@ -1845,7 +1862,7 @@ considered authentic unless they possess a certificate issued by an authority
 listed in this file.  If this setting has no value then the Puppet master's CA
 certificate (localcacert) will be used.
 
-- *Default*: 
+- *Default*:
 
 ### ssldir
 

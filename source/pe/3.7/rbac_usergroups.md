@@ -26,8 +26,6 @@ The User Groups endpoints enable you to get lists of groups, and to add a new re
 Fetches all groups. Supports filtering by ID through query parameters. Web
 session authentication is required.
 
-**Implemented.**
-
 **Example:**
 
 The following requests all the groups
@@ -90,8 +88,6 @@ GET /groups?id=65a068a0-588a-11e4-8ed6-0800200c9a66,75370a30-588a-11e4-8ed6-0800
 ### GET /groups/:sid
 Fetches a single group by its subject ID. Web session authentication is required.
 
-**Implemented.**
-
 **Returns:** The response contains an id for the group and a list of role_ids the group is directly assigned to.
 
 For user groups, the response contains the display name, the login field, a
@@ -116,8 +112,6 @@ group data.
 Creates a new remote group. Attach to it any roles specified in its
 roles list. Web session authentication is required.
 
-**Implemented.**
-
 **Accepts:** A JSON body containing an entry for "login", and an array of role_ids to assign to the group initially.
 
 **Example:**
@@ -133,8 +127,6 @@ roles list. Web session authentication is required.
 ### PUT /groups/:sid
 Replaces the group with the specified ID with a new group object. Web
 session authentication is required.
-
-**Implemented.**
 
 **Accepts:**
 An updated group object containing all the keys that were received

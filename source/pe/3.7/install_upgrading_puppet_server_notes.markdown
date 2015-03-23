@@ -18,6 +18,14 @@ Previously, the service that acted as the Puppet master was called `pe-httpd`. (
 
 In PE 3.7 the Puppet master service is now `pe-puppetserver`, and you can restart it with `service pe-puppetserver restart`. 
 
+### Updating Puppet Master Gems 
+
+After upgrading to PE 3.7.2, you need to update the Ruby gems used by your Puppet Master with `/opt/puppet/bin/puppetserver gem install <GEM NAME>`. 
+
+For instance, in PE 3.7.2, the deep_merge gem is no longer installed by default. If you previously used this gem, you will need to reinstall it after upgrading. 
+
+After updating the gems, you need to restart the Puppet master with `service pe-puppetserver restart`. You should do this **before** doing any Puppet agent runs. 
+
 ### New Config Files
 
 Although Puppet Server honors nearly all settings in `puppet.conf`, it moves some the configuration of some features (mostly web server configuration and setting up an external CA) to a group of new config files.

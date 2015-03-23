@@ -5,9 +5,107 @@ subtitle: "Security Fixes"
 canonical: "/pe/latest/release_notes_security.html"
 ---
 
-This page contains information about security fixes in Puppet Enterprise (PE) 3.7.x. It also contains a select list of those bug fixes that we believe you'll want to learn about.
+This page contains information about security fixes in Puppet Enterprise (PE) 3.7. It also contains a select list of those bug fixes that we believe you'll want to learn about.
 
-For more information about this release, also see the [Known Issues](./release_notes_known_issues.html) and [New Featutes](./release_notes.html).
+For more information about this release, also see the [Known Issues](./release_notes_known_issues.html) and [New Features](./release_notes.html).
+
+## Puppet Enterprise 3.7.2 (2/10/15)
+
+### Security Fixes
+
+#### CVE - OpenSSL January 2015 Security Fixes
+
+Posted February 10, 2015
+
+On January 8th, the OpenSSL project announced several security vulnerabilities in OpenSSL. Puppet Enterprise versions prior to 3.7.2 contained vulnerable versions of OpenSSL. Puppet Enterprise 3.7.2 contains updated versions of OpenSSL that have patched the vulnerabilities.
+
+For more information about the OpenSSL vulnerabilities, refer to the [OpenSSL security announcement](https://www.openssl.org/news/secadv_20150108.txt).
+
+OpenSSL issues affected PE 2.x and 3.x. They're resolved in PE 3.7.2.
+
+#### CVE - Oracle Java January 2015 Security Fixes
+
+Posted February 10, 2015
+Assessed Risk Level: Medium
+
+On January 20th, Oracle announced several security vulnerabilities in Java. Puppet Enterprise versions prior to 3.7.2 contained a vulnerable version of Java. Puppet Enterprise 3.7.2 contains an updated version of Java that has patched the vulnerabilities.
+
+For more information about the Java vulnerabilities, refer to the [Oracle security announcement](http://www.oracle.com/technetwork/topics/security/cpujan2015-1972971.html).
+
+This issue affected PE 3.x. It's resolved in PE 3.7.2.
+
+#### CVE - 2015-1426 - Potential Sensitive Information Leakage in Facter's Amazon EC2 Metadata Facts Handling
+
+Posted February 10, 2015
+Assessed Risk Level: Low
+
+An issue exists where sensitive Amazon EC2 IAM instance metadata could be added to an Amazon EC2 node's facts, where a non-privileged local user could access the information via Facter.
+
+Although Amazon’s API allows anyone who can access an EC2 instance to view its instance metadata, facts containing sensitive EC2 instance metadata could be unintentionally exposed through off-host applications that display facts.
+
+CVSS v2 Score: 1.3
+
+Vector AV:L/AC:L/Au:S/C:P/I:N/A:N/E:U/RL:OF/RC:C
+
+This issue affects PE 2.x and 3.x, Facter 1.6.0 - 2.4.0, and CFacter 0.2.0 and earlier. It's resolved in PE 3.7.2 and CFacter 0.3.0.
+
+### Bug Fixes
+
+Puppet Enterprise 3.7.2 contains a number of performance and documentation improvements, in addition to the fixes that are highlighted below.
+
+#### Install and Upgrade Fixes
+
+* PE installer did not create the symlink for the PE Java cacerts file.
+This issue made `puppetserver gem install` fail with the error "Certificate verify failed." It also caused the error, "Could not find a valid gem 'hiera-eyaml'".
+* PE installer did not check permissions on untarred folders, which caused the installer to fail.
+* `pe-puppet` failed to upgrade on RHEL 4.
+
+#### The `node:del` Rake Task Deleted a Node Group Instead of the Node
+
+In PE 3.7, the behavior of the `node:del` rake task changed so that it deleted the node group to which a specified node was pinned. In PE 3.7.2, this behavior has been reverted to the PE 3.3 behavior so that `node:del` now deletes the specified node from the console database.
+
+A new rake task, `node:delgroup`, was introduced in PE 3.7.2 for deleting a node group.
+
+For more information, see the [rake API documentation](./console_rake_api.html).
+
+#### Additional Node Manager Service Fixes
+
+* Environments are now removed from the classifier when they are no longer populated.
+* In PE console service, changes to logback.xml are now dynamically taken up.
+* Escaping DNs is now in place for searching for group membership.
+* Classifier synchronization failed if an environment couldn't be loaded.
+
+#### Role-Based Access Control Fixes
+
+* Previously, when tracing back an LDAP or Active Directory user's group membership, if one of the groups had a DN with a special character in it, the search would break. Now that search has been updated and should properly escape all special characters.
+* When resetting the admin password in RBAC, it wasn't obfuscated. It's now obfuscated.
+
+#### Agent Install Did Not Normalize FQDN for Certname
+
+Previously, if an agent was installed on a node with capital letters in the FQDN, then that FQDN with capital letters would be placed directly into the certname in puppet.conf.  Due to an older issue in Puppet, mixed-case certnames allow a certificate to be created and signed that is lowercase and that does not match the certname in puppet.conf.
+
+This mismatch was addressed by a fix to the PE 3.7.2 agent installer that downcases the entire certname before placing it in puppet.conf.
+
+#### PE PostgreSQL Was Started After Services That Depended On It
+
+Services like PuppetDB and Console Services were started before PostgreSQL and then were dead after a reboot.
+
+#### `puppet_enterprise::packages` Was Overriding Package Resource Defaults
+
+This was a problem because if `pe_gem` was installed, it would become the preferred provider over Zypper and cause package installs to fail.
+
+#### Puppet Server Was Aggressively Transforming Request Data to UTF-8
+
+The Clojure code that processed requests for delivery to JRuby aggressively transformed the request body to UTF-8. This altered the data contained in the request body and was not appropriate for all requests submitted to a Puppet Master. Notably, file bucket uploads failed if the file content being saved was not strictly UTF-8. The fix is that Puppet Server handles arbitrary character encodings, including raw binary.
+
+####Additional Bug Fixes
+
+The following issues were also fixed for PE 3.7.2
+
+* Automatic classification broke in IE 10 and 11 due to aggressive caching.
+* The `pe_accounts` "examples" directory broke RDoc; it's been removed.
+* The MCO cron sent spam to the root email account.
+* Confusing and unnecessary settings were removed from the `master` section of `puppet.conf`.
 
 ## Puppet Enterprise 3.7.1 (12/16/14)
 
