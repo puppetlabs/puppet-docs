@@ -68,7 +68,7 @@ These answers are generally needed if you are installing the Puppet master compo
 `q_puppetmaster_dnsaltnames=pe-puppet,pe-puppet.<your local domain>`
 : **String** --- Valid DNS names at which the Puppet master can be reached. Must be a comma-separated list. In a normal installation, defaults to `<hostname>,<hostname.domain>,puppet,puppet.<domain>`.
 
-`q_pe_check_for_updates=n`
+`q_pe_check_for_updates=y`
 : **y** or **n**; **MUST BE LOWERCASE** --- Whether to check for updates whenever the `pe-puppetserver` service restarts. To get the correct update info, the server will pass some basic, anonymous info to Puppet Labs’ servers. Specifically, it will transmit:
 
    * the IP address of the client
