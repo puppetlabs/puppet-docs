@@ -103,6 +103,10 @@ Therefore, if you are running multiple PuppetDB servers behind a load balancer, 
 
 Any entries in `/etc/puppetlabs/puppet/autosign.conf` that don't conform to the [autosign requirements](/puppet/3.7/reference/ssl_autosign.html#the-autosignconf-file) will cause the upgrade to fail to configure the PE console. Please correct any invalid entries before upgrading.
 
+## Upgrading to 3.8 with a Modified `auth.conf` File
+
+This issue is documented in the [notes and warnings for upgrading](./install_upgrading_dir_env_notes.html#upgrading-to-38-with-a-modified-authconf-file).
+
 ### `q_database_host` Cannot be an Alt Name For Upgrades or Installs of 3.7.0
 
 PostgreSQL does not support alt names when set to `verify_full`. If you are upgrading to or installing 3.7 with an answer file, make sure `q_database_host` is set as the Puppet agent certname for the database node and not set as an alt name.
