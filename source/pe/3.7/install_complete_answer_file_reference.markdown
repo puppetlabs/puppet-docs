@@ -96,7 +96,7 @@ These answers are generally needed if you are installing the Puppet master role.
 `q_puppetmaster_enterpriseconsole_port`
 : **Integer** --- The port on which to contact the console server. Only needed if you are _not_ installing the console role on the Puppet master server.
 
-`q_pe_check_for_updates`
+`q_pe_check_for_updates=y`
 : **y or n; MUST BE LOWERCASE** --- Whether to check for updates whenever the `pe-puppetserver` service restarts. To get the correct update info, the server will pass some basic, anonymous info to Puppet Labs' servers. Specifically, it will transmit:
 
   * the IP address of the client
