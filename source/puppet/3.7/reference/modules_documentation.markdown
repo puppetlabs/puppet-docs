@@ -156,20 +156,17 @@ Then, list the parameters, providers, or features for each thing:
 ####Parameters
 
 #####`purr` 
-Enables purring in your cat. Valid options: 'true' or 'false'. Default: 
-'true'.
+Enables purring in your cat. Valid options: 'true' or 'false'. Default: 'true'.
 
 #####`meow`
-Enables vocalization in your cat. Valid options: 'string'. Default: 
-'medium-loud'.
+Enables vocalization in your cat. Valid options: 'string'. Default: 'medium-loud'.
 
 ####`laser`
-Specifies the type, duration, and timing of your cat's laser show. 
-Default: undef
+Specifies the type, duration, and timing of your cat's laser show. Default: undef
 
 Valid options: A hash with the following keys:
 
-* `pattern` - accepts 'random', 'line', or a string mapped to a custom         laser_program, defaults to 'random'.
+* `pattern` - accepts 'random', 'line', or a string mapped to a custom laser_program, defaults to 'random'.
 * `duration` - accepts an integer in seconds, defaults to '5'.
 * `frequency` - accepts an integer, defaults to 1.
 * `start_time` - accepts an integer specifying the 24-hr formatted start time for the program.
