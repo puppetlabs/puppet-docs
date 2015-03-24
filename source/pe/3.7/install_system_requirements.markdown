@@ -41,6 +41,8 @@ Mac OS X                     | Mavericks (10.9)                        | x86_64 
 >* All Debian versions
 >* EL 5 (RHEL, CentOS, Scientific, Oracle)
 >* Ubuntu 10.4
+>
+> See the release notes for a [detailed list](./release_notes.html#some-puppet-master-platforms-are-deprecated) of deprecated platforms.
 
 >**Note**: Some operating systems require an active subscription with the vendor's package management system (e.g., the Red Hat Network) to install dependencies.
 
