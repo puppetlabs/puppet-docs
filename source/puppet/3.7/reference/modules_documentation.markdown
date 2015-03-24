@@ -60,7 +60,8 @@ Assume **Overview** is one of the first things a user will read. It should very 
 ~~~
 ##Overview
 
-The cat module installs, configures, and maintains your cat in both apartment and residential house settings.
+The cat module installs, configures, and maintains your cat in both 
+apartment and residential house settings.
 ~~~
 
 For modules used internally, the overview section may be omitted.
@@ -70,7 +71,10 @@ For modules used internally, the overview section may be omitted.
 ~~~
 ##Module Description
 
-The cat module automates the installation of a cat to your apartment or house, and then provides options for configuring the cat to fit your environment's needs. Once installed and configured, the cat module automates maintenance of your cat through a series of types and providers.
+The cat module automates the installation of a cat to your apartment or 
+house, and then provides options for configuring the cat to fit your 
+environment's needs. Once installed and configured, the cat module 
+automates maintenance of your cat through a series of types and providers.
 ~~~
 
 ##Setup
@@ -82,7 +86,7 @@ The **What (Modulename) Affects** section should only be used IF: 1.) the module
 ~~~
 ##Setup
 
-###What [Modulename] affects
+###What cat affects
 
 * Your dog door may be overwritten if not secured before installation.
 ~~~
@@ -92,7 +96,7 @@ The **Setup Requirements** section is becoming increasingly unnecessary as Puppe
 The **Beginning with [Modulename]** section should cover the minimum steps required to get the module up and running in a user's environment. (Note: This does not necessarily mean it should be running in production. This step most often covers basic Proof of Concept use cases.) It's entirely OK if this section is just "Declare the main `::cat` class." For very simple modules, this will often be the case. 
 
 ~~~
-###Beginning with [Modulename]
+###Beginning with cat
 
 Declare the main `::cat` class.
 ~~~
@@ -106,7 +110,8 @@ How you structure this section will depend on the structure of the module and ho
 ~~~
 ##Usage
 
-All interaction with your cat can be done through the main cat class. With the default options, a basic cat will be installed with no optimizations.
+All interaction with your cat can be done through the main cat class. With 
+the default options, a basic cat will be installed with no optimizations.
 
 ###I just want cat, what's the minimum I need?
 
@@ -114,7 +119,8 @@ All interaction with your cat can be done through the main cat class. With the d
 
 ###I want to configure my lasers
 
-Use the following to configure your lasers for a random-pattern, 20 minute playtime at 3AM local time.
+Use the following to configure your lasers for a random-pattern, 20 minute 
+playtime at 3AM local time.
 
     class { 'cat':
       laser => {
@@ -158,12 +164,12 @@ Enables vocalization in your cat. Valid options: 'string'. Default: 'medium-loud
 ####`laser`
 Specifies the type, duration, and timing of your cat's laser show. Default: undef
 
-Valid options: A hash with the following keys
+Valid options: A hash with the following keys:
 
 * `pattern` - accepts 'random', 'line', or a string mapped to a custom laser_program, defaults to 'random'.
-*  `duration` - accepts an integer in seconds, defaults to '5'.
-*  `frequency` - accepts an integer, defaults to 1.
-*  `start_time` - accepts an integer specifying the 24-hr formatted start time for the program.
+* `duration` - accepts an integer in seconds, defaults to '5'.
+* `frequency` - accepts an integer, defaults to 1.
+* `start_time` - accepts an integer specifying the 24-hr formatted start time for the program.
 ~~~
 
 ##Limitations and Development
