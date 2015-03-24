@@ -12,8 +12,6 @@ You can run the Puppet Enterprise installer while logged into the target server 
 
 The flag will cause the installer to read your choices from the answer file and act on them immediately instead of interviewing a user to customize the installation.
 
-Installing with an answer file can greatly speed up large deployments and is crucial when [installing PE with the cloud provisioning tools](./cloudprovisioner_classifying_installing.html#installing-puppet). 
-
 However, please note that an answer file installation requires you to run the installer with an answer file on each node on which you are installing a PE component. In other words, a monolithic installation will require you to run the installer with an answer file on one node, but a split installation will require you to run the installer with an answer file on three nodes. 
 
 >**Warning**: If you're performing a split installation of PE using an answer file, install the components in the following order:
@@ -40,7 +38,7 @@ Answer files are simply shell scripts that declare variables used by the install
 
 To obtain an answer file, you can:
 
-* Use one of the example files provided in the installer's `answers` directory.
+* Use/edit one of the example files provided in the installer's `answers` directory.
 * Retrieve the `answers.lastrun.<HOSTNAME>` file from a node on which you've already installed PE. This file will be in the same directory from which you ran the installer.
 
 >**Tip**: If you want to use the answer file created from the web-based installer, you can find it at `/opt/puppet/share/installer/answers` on the machine from which you’re running the installer, but note that these answers are overwritten each time you run the installer.

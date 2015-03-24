@@ -37,7 +37,7 @@ Before you begin, choose an installation method. We've provided a few paths to c
 
 - Use the web-based interface to create an answer file that you can then add as an argument to the installer script to perform an installation (e.g., `sudo ./puppet-enterprise-installer -a ~/my_answers.txt`). Refer to [Installing with an Answer File](./install_automated.html), which provides an overview on installing PE with an answer file.
 
-- Write your own answer file or use the answer file(s) provided in the PE installation tarball. Check [Installing with an Answer File](./install_automated.html) to get started.
+- Edit an answer file provided in the PE installation tarball. Check [Installing with an Answer File](./install_automated.html) to get started.
 
 See the [system requirements](./install_system_requirements.html) for any hardware-related specifications.
 
