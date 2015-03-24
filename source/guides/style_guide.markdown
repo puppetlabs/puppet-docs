@@ -61,7 +61,6 @@ Module manifests:
 * Must have trailing commas after all resource attributes and parameter definitions,
 * Should not exceed a 140-character line width,
 * Should leave one empty line between resources, except when using dependency chains, and
-* Should align hash rockets (`=>`) within blocks of attributes, remembering to arrange hashes for maximum readability first.
 
 ## 6. Quoting
 
@@ -195,9 +194,9 @@ All resource titles must be quoted. If you are using an array of titles you must
 
 ### 9.2. Arrow Alignment
 
-All of the hash rockets (`=>`) in a resource's attribute/value list should
-be aligned. The hash rockets should be placed one space ahead of the longest
-attribute name. Nested blocks must be indented by two spaces, and hash rockets within a nested block should be aligned (one space ahead of the longest attribute name).
+All of the hash rockets (`=>`) in a resource's attribute/value do not have to 
+be aligned. The hash rockets can be aligned one space ahead of the longest
+attribute name. Nested blocks can be indented by two spaces, and hash rockets within a nested block should be aligned (one space ahead of the longest attribute name). Or hash rockets can be placed one space from their attribute name and one space from their value. Organizations should, however, pick one system and stick to it.
  
 
 **Good:**
@@ -222,6 +221,20 @@ attribute name. Nested blocks must be indented by two spaces, and hash rockets w
     }
 ~~~
 
+**Also Good:**
+
+~~~
+    exec { 'hambone':
+      path => '/usr/bin',
+      cwd => '/tmp',
+    }
+
+    exec { 'test':
+      subscribe => File['/etc/test'],
+      refreshonly => true,
+    }
+~~~
+
 **Bad:**
 
 ~~~
@@ -231,7 +244,7 @@ attribute name. Nested blocks must be indented by two spaces, and hash rockets w
     }
 
     exec { 'test':
-      subscribe => File['/etc/test'],
+      subscribe =>   File['/etc/test'],
       refreshonly => true,
     }
 ~~~
