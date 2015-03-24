@@ -138,19 +138,21 @@ This requires `default_manifest` to be an absolute path.
 
 [(See also: Full description of `environment_timeout` setting.)](/references/3.7.latest/configuration.html#environmenttimeout)
 
-How long the Puppet master should cache the data it loads from an environment. **For performance reasons, we recommend changing this setting.**
+How long the Puppet master should cache the data it loads from an environment. For performance reasons, we recommend changing this setting once you have a mature code deployment process.
 
-The value defaults to `0` (caching disabled), which lowers the performance of your Puppet master but makes it easy for new users to deploy updated Puppet code.
+This setting defaults to `0` (caching disabled), which lowers the performance of your Puppet master but makes it easy for new users to deploy updated Puppet code.
 
 > **Note:** This default changed in Puppet 3.7.5. In 3.7.0 through 3.7.4, it was `3m`.
 
-For best performance, you should set `environment_timeout = unlimited` in puppet.conf, and explicitly refresh your Puppet master every time you deploy updated code.
+For best performance, you should:
 
-* With Puppet Server, refresh environments by [calling the `environment-cache` API endpoint.][environment-cache] You may need to allow access in [puppetserver.conf][]'s `puppet-admin` section.
-* With a Rack Puppet master, restart the web server or the
-  application server. Passenger lets you touch a `restart.txt` file to
-  refresh an application without restarting Apache; see the Passenger docs
-  for details.
+* Set `environment_timeout = unlimited` in puppet.conf.
+* Change your code deployment process to refresh the Puppet master whenever you deploy updated code. (For example, set a `postrun` command in your r10k config or add a step to your CI job.)
+    * With Puppet Server, refresh environments by [calling the `environment-cache` API endpoint.][environment-cache] You may need to allow access in [puppetserver.conf][]'s `puppet-admin` section.
+    * With a Rack Puppet master, restart the web server or the
+      application server. Passenger lets you touch a `restart.txt` file to
+      refresh an application without restarting Apache; see the Passenger docs
+      for details.
 
 This setting can be overridden per-environment in [environment.conf][], but most users should avoid doing that.
 
