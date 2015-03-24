@@ -140,7 +140,7 @@ Your metadata.json will look something like
 * `summary` --- REQUIRED. A one-line description of your module.
 * `source` --- REQUIRED. The source repository for your module.
 * `dependencies` --- REQUIRED. A list of the other modules that your module depends on to function. See [Dependencies in metadata.json](#dependencies-in-metadatajson) below for more details.
-* `project_page` --- A link to your module's website. This will typically be the Puppet Forge.
+* `project_page` --- A link to your module's website that will be linked on the Forge.
 * `issues_url` --- A link to your module's issue tracker.
 * `operatingsystem_support` --- A list of operating system compatibility for your module. See [Operating system compatibility in metadata.json](#operating-system-compatibility-in-metadatajson) below for more details.
 * `tags` --- A list of key words that will help others find your module (not case sensitive)(e.g. [“msyql”, “database”, “monitoring”]). Tags cannot contain whitespace. We recommend using four to six tags. Note that certain tags are prohibited, including profanity and anything resembling the `$::operatingsystem` fact, including, but not necessarily limited to: `redhat`, `centos`, `rhel`, `debian`, `ubuntu`, `solaris`, `sles`, `aix`, `windows`, `darwin`, and `osx`. Use of prohibited tags will lower your module's quality score on the Forge.
@@ -199,6 +199,8 @@ You can express this field through an array of hashes, classified under `operati
         ]
       }
     ]
+
+Since the numeric values corresponding to `operatingsystemrelease` are strings, they can be formatted in any way that makes sense to the operating system in question. Setting `operatingsystemrelease` to '6' indicates that your module is compatible with the entire 6.x series of that operating system.  If you know it to be incompatible with versions in that series you should be more specific (for example, Ubuntu 14.04 and 14.10 are two different major releases).
 
 ###A Note on Semantic Versioning
 

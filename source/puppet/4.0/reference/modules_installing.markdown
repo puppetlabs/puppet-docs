@@ -115,7 +115,7 @@ To install a module from the Puppet Forge, simply identify the desired module by
 
 ### Installing From Another Module Repository
 
-The module tool can install modules from other repositories that mimic the Forge's interface. To do this, change the [`module_repository`](/references/latest/configuration.html#modulerepository) setting in [`puppet.conf`](/guides/configuring.html), or specify a repository on the command line with the `--module_repository` option. The value of this setting should be the base URL of the repository; the default value, which uses the Forge, is `http://forge.puppetlabs.com`.
+The module tool can install modules from other repositories that mimic the Forge's interface. To do this, change the [`module_repository`](/references/latest/configuration.html#modulerepository) setting in [`puppet.conf`](/guides/configuring.html), or specify a repository on the command line with the `--module_repository` option. The value of this setting should be the base URL of the repository; the default value, which uses the Forge, is `https://forgeapi.puppetlabs.com`.
 
 After setting the repository, follow the instructions above for installing from the Forge.
 
