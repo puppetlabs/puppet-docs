@@ -169,12 +169,9 @@ You can specify an executable script that will determine an environment's config
 The `environment.conf` File
 -----
 
-An environment can contain an `environment.conf` file, which can override values for the following settings:
+An environment can contain an `environment.conf` file, which can override values for certain settings.
 
-* `modulepath`
-* `manifest`
-* `config_version`
-* `environment_timeout`
+{% partial ./_environment_conf_settings.md %}
 
 See [the page on `environment.conf` for more details.][environment.conf]
 

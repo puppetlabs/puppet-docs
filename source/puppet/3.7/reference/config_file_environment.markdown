@@ -59,12 +59,7 @@ The most useful variables to interpolate into environment.conf settings are:
 Allowed Settings
 -----
 
-In this version of Puppet, the environment.conf file is only allowed to override four settings:
-
-* `modulepath`
-* `manifest`
-* `config_version`
-* `environment_timeout`
+{% partial ./_environment_conf_settings.md %}
 
 ### `modulepath`
 
@@ -83,6 +78,14 @@ That is, Puppet will add the environment's `modules` directory to the value of t
 The [main manifest][] the Puppet master will use when compiling catalogs for this environment. This can be one file or a directory of manifests to be evaluated in alphabetical order. Puppet manages this path as a directory if one exists or if the path ends with a / or .
 
 If this setting isn't set, Puppet will use the environment's `manifests` directory as the main manifest, even if it is empty or absent. A directory environment will never use the global `manifest` from [puppet.conf][].
+
+### `parser`
+
+Whether to use the 3.x parser (`current`) or the 4.x parser (`future`). If present, this will override the value of `parser` from [puppet.conf][].
+
+This is useful when preparing for a migration to Puppet 4: you can switch a limited test environment to using the Puppet 4 version of the Puppet language, and catch any failures or behavior changes without affecting your main production environments.
+
+More info: [full description of the `parser` setting.](/references/3.7.latest/configuration.html#parser)
 
 ### `config_version`
 
