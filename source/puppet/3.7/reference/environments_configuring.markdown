@@ -156,4 +156,4 @@ For best performance, you should:
 
 This setting can be overridden per-environment in [environment.conf][], but most users should avoid doing that.
 
-> **Note:** We don't recommend using any value other than `0` or `unlimited`, since most Puppet masters use a pool of Ruby interpreters which all have their own cache timers. When these timers drift out of sync, agents can be served inconsistent catalogs.
+> **Note:** We don't recommend using any value other than `0` or `unlimited`, since most Puppet masters use a pool of Ruby interpreters which all have their own cache timers. When these timers drift out of sync, agents can be served inconsistent catalogs. To avoid that inconsistency, you have to refresh your Puppet master when deploying anyway, which means there's no benefit to not using `unlimited`.
