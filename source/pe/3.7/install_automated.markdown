@@ -42,7 +42,6 @@ To obtain an answer file, you can:
 
 * Use one of the example files provided in the installer's `answers` directory.
 * Retrieve the `answers.lastrun.<HOSTNAME>` file from a node on which you've already installed PE. This file will be in the same directory from which you ran the installer.
-* Write one by hand.
 
 >**Tip**: If you want to use the answer file created from the web-based installer, you can find it at `/opt/puppet/share/installer/answers` on the machine from which you’re running the installer, but note that these answers are overwritten each time you run the installer.
 
