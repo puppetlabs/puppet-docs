@@ -307,30 +307,30 @@ OpenSSL is a dependency required for PE. For Solaris 10 and all versions of RHEL
 
 ### Centos
 
- &nbsp;      | All Nodes | Master Nodes | Console Nodes | Console/Console DB Nodes | Cloud Provisioner Nodes
--------------|:---------:|:------------:|:-------------:|:------------------------:|:----------------------:
-pciutils     | x         |              |               |                          |
-system-logos | x         |              |               |                          |
-which        | x         |              |               |                          |
-libxml2      | x         |              |               |                          |
-dmidecode    | x         |              |               |                          |
-net-tools    | x         |              |               |                          |
-virt-what    | x         |              |               |                          |
-apr    		 |           | x            | x             |                          |
-apr-util     |           | x            | x             |                          |
-curl         |           | x            | x             |                          |
-mailcap      |           | x            | x             |                          |
-libjpeg      |           | x            |               | x                        |
-libtool-ltdl |           | x            | x             |                          |
-unixODBC     |           | x            | x             |                          |
-libxslt      |           |              |               |                          | x
-zlib         | x         |              |               |                          |
+ &nbsp;      | All Nodes | Master Nodes | Console Nodes | Console/Console DB Nodes 
+-------------|:---------:|:------------:|:-------------:|:------------------------:
+pciutils     | x         |              |               |                          
+system-logos | x         |              |               |                          
+which        | x         |              |               |                          
+libxml2      | x         |              |               |                          
+dmidecode    | x         |              |               |                          
+net-tools    | x         |              |               |                          
+virt-what    | x         |              |               |                          
+apr    		 |           | x            | x             |                          
+apr-util     |           | x            | x             |                          
+curl         |           | x            | x             |                          
+mailcap      |           | x            | x             |                          
+libjpeg      |           | x            |               | x                        
+libtool-ltdl |           | x            | x             |                          
+unixODBC     |           | x            | x             |                          
+libxslt      |           |              |               |                           
+zlib         | x         |              |               |                          
 
 
 ### RHEL
 
- &nbsp;      | All Nodes | Master Nodes | Console Nodes | Console/Console DB Nodes | Cloud Provisioner Nodes
--------------|:---------:|:------------:|:-------------:|:------------------------:|:----------------------:
+ &nbsp;      | All Nodes | Master Nodes | Console Nodes | Console/Console DB Nodes | 
+-------------|:---------:|:------------:|:-------------:|:------------------------:|
 pciutils     | x         |              |               |                          |
 system-logos | x         |              |               |                          |
 which        | x         |              |               |                          |
@@ -348,14 +348,14 @@ mailcap      |           | x            | x             |                       
 libjpeg      |           | x            |               | x                        |
 libtool-ltdl (RHEL 7) |  | x            | x             |                          |
 unixODBC (RHEL 7) |      | x            | x             |                          |
-libxslt      |           |              |               |                          | x
+libxslt      |           |              |               |                          | 
 zlib         | x         |              |               |                          |
 
 
 ### SLES
 
- &nbsp;      | All Nodes | Master Nodes | Console Nodes | Console/Console DB Nodes | Cloud Provisioner Nodes
--------------|:---------:|:------------:|:-------------:|:------------------------:|:----------------------:
+ &nbsp;      | All Nodes | Master Nodes | Console Nodes | Console/Console DB Nodes | 
+-------------|:---------:|:------------:|:-------------:|:------------------------:|
 pciutils     | x         |              |               |                          |
 pmtools      | x         |              |               |                          |
 cron         | x         |              |               |                          |
@@ -373,8 +373,8 @@ zlib         | x         |              |               |                       
 
 ### Debian
 
- &nbsp;      | All Nodes | Master Nodes | Console Nodes | Console/Console DB Nodes | Cloud Provisioner Nodes
--------------|:---------:|:------------:|:-------------:|:------------------------:|:----------------------:
+ &nbsp;      | All Nodes | Master Nodes | Console Nodes | Console/Console DB Nodes | 
+-------------|:---------:|:------------:|:-------------:|:------------------------:|
 pciutils     | x         |              |               |                          |
 dmidecode    | x         |              |               |                          |
 cron         | x         |              |               |                          |
@@ -398,15 +398,15 @@ libjpeg62    |           | x            |               | x                     
 libcurl3 (Debian 7) |    | x            | x             |                          |
 libxml2-dev (Debian 7) | | x            | x             | x                        |
 locales-all (Debian 7) | |              |               | x                        |
-libxslt1.1   |           |              |               |                          | x
+libxslt1.1   |           |              |               |                          | 
 zlib         | x         |              |               |                          |
 
 
 ### Ubuntu
 
 
- &nbsp;      | All Nodes | Master Nodes | Console Nodes | Console/Console DB Nodes | Cloud Provisioner Nodes
--------------|:---------:|:------------:|:-------------:|:------------------------:|:----------------------:
+ &nbsp;      | All Nodes | Master Nodes | Console Nodes | Console/Console DB Nodes | 
+-------------|:---------:|:------------:|:-------------:|:------------------------:|
 pciutils     | x         |              |               |                          |
 dmidecode    | x         |              |               |                          |
 cron         | x         |              |               |                          |
@@ -427,7 +427,7 @@ libaprutil1  |           | x            | x             |                       
 libaprutil1-dbd-sqlite3 | | x           | x             |                          |
 libaprutil1-ldap |       | x            | x             |                          |
 libjpeg62    |           | x            |               | x                        |
-libxslt1.1   |           |              |               |                          | x
+libxslt1.1   |           |              |               |                          | 
 libgtk2.0-0  |           | x            | x             | x                        |
 ca-certificates-java |   | x            | x             | x                        |
 openjdk-7-jre-headless* | | x            | x             | x                        |
