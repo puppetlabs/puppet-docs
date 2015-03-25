@@ -80,11 +80,11 @@ For more information about using the PE uninstaller, refer to [Uninstalling Pupp
 
    b. `drop database console;`
 
-   c. `drop database pe-classifier;`
+   c. `drop database "pe-classifier";`
 
-   d. `drop database pe-rbac;`
+   d. `drop database "pe-rbac";`
 
-   c. `drop database pe-activity;`
+   c. `drop database "pe-activity";`
 
    d. `drop database "pe-puppetdb";`
 
