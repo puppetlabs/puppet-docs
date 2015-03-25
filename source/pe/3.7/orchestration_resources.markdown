@@ -5,6 +5,8 @@ subtitle: "Orchestration: Browsing and Comparing Resources"
 canonical: "/pe/latest/orchestration_resources.html"
 ---
 
+>**Important**: Live Management is deprecated in PE 3.8, and will be replaced with improved resource management capabilities in future versions of PE. For more information, see the [PE 3.8 release notes](./release_notes.html#live-management-is-deprecated).
+
 Use the live management page's __Browse Resources__ tab to browse the resources on your nodes and inspect their current state.
 
 [live]: ./console_navigating_live_mgmt.html

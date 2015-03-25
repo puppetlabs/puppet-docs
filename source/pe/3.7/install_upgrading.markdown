@@ -5,13 +5,13 @@ subtitle: "Upgrading Puppet Enterprise"
 canonical: "/pe/latest/install_upgrading.html"
 ---
 
-> **IMPORTANT**: **READ BEFORE UPGRADING**: If you are upgrading from PE 3.3 and you use the PE console for node classification, follow the steps in the [node classification migration process doc](./install_upgrade_migration_tool.html) to perform your upgrade to PE 3.8.   
+> **IMPORTANT**: **READ BEFORE UPGRADING**: If you are upgrading from PE 3.3 and you use the PE console for node classification, follow the steps in the [node classification migration process doc](./install_upgrade_migration_tool.html) to perform your upgrade to PE 3.8.
 
 ## Upgrading Overview
 
-Before upgrading, please review: 
+Before upgrading, please review:
 
-- [Important Information about Upgrades to PE 3.7 and Directory Environments](./install_upgrading_dir_env_notes.html), as some user action is required. 
+- [Important Information about Upgrades to PE 3.7 and Directory Environments](./install_upgrading_dir_env_notes.html), as some user action is required.
 
 - [Upgrading Puppet Enterprise: Notes and Warnings](install_upgrading_notes.html), which includes important information about the new Puppet Server, [upgrading to the new node classifier and classifying PE groups](./install_upgrading_dir_env_notes.html#classifying-pe-groups), and [modified auth.conf files](./install_upgrading_notes.html#upgrading-to-38-with-a-modified-authconf-file).
 
@@ -25,7 +25,7 @@ If you haven't done so already, you will need a Puppet Enterprise tarball approp
 
 Once downloaded, copy the appropriate tarball to each node you'll be upgrading.
 
-Before starting the upgrade, all of the components (agents, master, console, etc.) in your current deployment should be correctly configured and communicating with each other, and live management should be up and running with all nodes connected.
+Before starting the upgrade, all of the components (agents, master, console, etc.) in your current deployment should be correctly configured and communicating with each other.
 
 ## Back Up Your Databases and Other PE Files
 
@@ -44,7 +44,7 @@ Before starting the upgrade, all of the components (agents, master, console, etc
    - `/opt/puppet/share/puppet-dashboard/certs`: located on the server assigned to the console component.
    - The console and console_auth databases: located on the server assigned to the database support component.
    - The PuppetDB database: located on the server assigned to the database support component.
-   
+
 >**Note**: For large databases, upgrading your Puppet Enterprise console database can significantly increase the amount of time it takes to complete an upgrade. You can reduce the amount of time updates require by [cleaning old reports](./maintain_console-db.html#cleaning-old-reports) and [pruning your database](./maintain_console-db.html#pruning-the-console-database-with-a-cron-job).
 
 ## Upgrading a Monolithic Installation
@@ -71,15 +71,14 @@ Lastly, the script will summarize the upgrade plan and ask you to go ahead and p
 
 The upgrade script will run and provide detailed information as to what it installs, what it updates and what it replaces. It will preserve existing certificates and `puppet.conf` files.
 
-> **Notes**: 
+> **Notes**:
 >
 > - The new node classifier and role-based access control (RBAC) will be installed as part of the PE console.
-> - If necessary, after upgrading, see the instructions for [Disabling/Enabling Live Management During an Upgrade](#disablingenabling-live-management-during-an-upgrade).
 > - During the upgrade, you will be asked if you want to enable the Puppet 4 language parser. The Puppet 4 language parser gives you valuable language features, makes debugging easier, and will help keep your Puppet code compatible with future releases in the next major series. Recommended for all **NEW** Puppet users. If you'll be using Puppet code you did **NOT** create with the Puppet 4 language parser, **DO NOT** enable this feature. See the [Puppet 4 language parser docs](http://links.puppetlabs.com/future_parser) for instructions on enabling the parser in a test environment to ensure it works with your existing Puppet code.
 
 ### Classify PE Groups
 
-Please see [section on classifying PE groups](#classify-the-new-pe-groups) below.  
+Please see [section on classifying PE groups](#classify-the-new-pe-groups) below.
 
 ### Upgrade Puppet Agents
 
@@ -148,19 +147,19 @@ In addition if you are using an external PostgreSQL instance that is not managed
 
 #### Disabling/Enabling Live Management During an Upgrade
 
-Live Management is deprecated in PE 3.8.0 and will be replaced by improved resource management functionality in future releases. However, the status of Live Management is not managed during an upgrade of PE unless you specifically indicate a change is needed in an answer file. In other words, if your pre-upgrade version of PE has Live Management enabled, it will remain enabled after you upgrade unless you explicitly add `q_disable_live_manangement=y` in an answer file.
+Live Management is deprecated in PE 3.8 and will be replaced by improved resource management functionality in future releases. However, the status of Live Management is not managed during an upgrade of PE unless you specifically indicate a change is needed in an answer file. In other words, if your pre-upgrade version of PE has Live Management enabled, it will remain enabled after you upgrade unless you explicitly add `q_disable_live_manangement=y` in an answer file.
 
 The `disable_live_management` setting in `/etc/puppetlabs/puppet-dashboard/settings.yml` on the Puppet master (or PE console node in a split install) controls the enabling/disabling of Live Management, and it can be set to either `true` or `false`. You can enable/disable Live Management at any time during normal operations by editing this setting and then running `sudo /etc/init.d/pe-httpd restart`.
 
 ### Classify PE Groups
 
-Please see [section on classifying PE groups](#classify-the-new-pe-groups) below.  
+Please see [section on classifying PE groups](#classify-the-new-pe-groups) below.
 
 ### Upgrade Puppet Agents
 
 Please see [section on upgrading Puppet agents](#upgrade-agents).
 
-## Classify the New PE Groups 
+## Classify the New PE Groups
 
 **Warning**: After upgrading to 3.7.x from 3.3, you must classify the new PE groups. **This applies to both split and monolithic upgrades.
 

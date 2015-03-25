@@ -43,6 +43,8 @@ The orchestration engine can control Puppet from the **PE console** and from the
 
 In the console, most of these tasks use [the __Control Puppet__ tab of the live management page][puppet_tab], which behaves much like the __Advanced Tasks__ tab. On the command line, most of these tasks use the `mco puppet` subcommand.
 
+>**Note**: Live Management is deprecated in PE 3.8, and will be replaced with improved resource management capabilities in future versions of PE. See the [PE 3.8 release notes](./release_notes.html#live-management-is-deprecated).
+
 ![The control puppet tab][live_puppet_main]
 
 [cli]: ./orchestration_invoke_cli.html

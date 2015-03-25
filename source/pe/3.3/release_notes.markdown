@@ -82,7 +82,7 @@ This issue is fixed in PE 3.3.2.
 
 ## Known Issues
 
-As we discover them, this page will be updated with known issues in Puppet Enterprise 3.3 and earlier. Fixed issues will be removed from this list and noted above in the release notes. If you find new problems yourself, please file bugs in Puppet [here][puppetissues] and bugs specific to Puppet Enterprise [here][peissues].
+As we discover them, this page will be updated with known issues in Puppet Enterprise 3.3 and earlier. Fixed issues will be removed from this list and noted above in the release notes. If you find new problems yourself, please file bugs in [our issue tracker](https://tickets.puppetlabs.com).
 
 To find out which of these issues may affect you, run `/opt/puppet/bin/puppet --version`, the output of which will look something like `3.6.2 (Puppet Enterprise 3.3.0)`. To upgrade to a newer version of Puppet Enterprise, see the [chapter on upgrading](install_upgrading.html).
 
@@ -182,7 +182,7 @@ The `pe_mcollective` module includes a parameter for the ActiveMQ heap size (`ac
 
 ### Custom Console Certs May Break on Upgrade
 
-Upgrades from 3.3.0 to 3.3.1 or 3.3.2 may affect deployments that use a custom console certificate, as certificate functionality has changed between versions. Refer to [Configuring the Puppet Enterprise Console to Use a Custom SSL Certificate](./custom_console_cert.html) for instructions on re-configuring your custom console certificate. 
+Upgrades from 3.3.0 to 3.3.1 or 3.3.2 may affect deployments that use a custom console certificate, as certificate functionality has changed between versions. Refer to [Configuring the Puppet Enterprise Console to Use a Custom SSL Certificate](./custom_console_cert.html) for instructions on re-configuring your custom console certificate.
 
 ### Safari Certificate Handling May Prevent Console Access
 

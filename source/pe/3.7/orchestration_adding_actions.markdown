@@ -30,6 +30,8 @@ You can extend Puppet Enterprise (PE)'s orchestration engine by adding new **act
 > * To invoke actions on the command line, see [Invoking Actions](./orchestration_invoke_cli.html).
 > * For a list of built-in actions, see [List of Built-In Orchestration Actions](./orchestration_actions.html).
 
+>**Note**: Live Management is deprecated in PE 3.8, and will be replaced in future PE versions. See the [PE 3.8 release notes](./release_notes.html#live-management-is-deprecated) for more information.
+
 [fundamentals]: ./orchestration_overview.html#orchestration-fundamentals
 
 ### About MCollective Agent Plugins

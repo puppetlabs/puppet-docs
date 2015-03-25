@@ -6,6 +6,8 @@ canonical: "/pe/latest/console_navigating_live_mgmt.html"
 ---
 
 
+>**Important**: Live Management is deprecated in PE 3.8, and will be replaced with improved resource management capabilities in future versions of PE. For more information about these changes, see the [PE 3.8 release notes](./release_notes.html#live-management-is-deprecated).
+
 What is Live Management?
 -----
 
@@ -28,7 +30,7 @@ Related pages:
 
 Live Management is deprecated in PE 3.8.0 and will be replaced by improved resource management functionality in future releases. For this reason, Live Management is not enabled by default as in previous versions of PE.
 
-However, if you install PE with [an answer file][install_automated], and set `q_disable_live_management` to "n", Live Management will be enabled. (Note that the default to `q_disable_live_management` is "y".) Enabling Live Management via the web-based installer is not available. 
+However, if you install PE with [an answer file][install_automated], and set `q_disable_live_management` to "n", Live Management will be enabled. (Note that the default to `q_disable_live_management` is "y".) Enabling Live Management via the web-based installer is not available.
 
 The status of Live Management is not managed during an upgrade of PE unless you specifically indicate a change is needed in an answer file. In other words, if your pre-upgrade version of PE has Live Management enabled, it will remain enabled after you upgrade unless you explicitly add `q_disable_live_manangement=y` in an answer file.
 

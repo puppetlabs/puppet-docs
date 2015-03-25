@@ -13,7 +13,7 @@ Below are some common issues that can cause trouble with the databases that supp
 Disabling/Enabling Live Management
 -------
 
-Live Management is deprecated in PE 3.8.0 and will be replaced by improved resource management functionality in future releases. For this reason, Live Management is not enabled by default as in previous versions of PE, but you can configure your installation to enable it. Live Management can be disabled/enabled during [upgrades][install_upgrade] or during [normal operations][normal_operations].
+Live Management is deprecated in PE 3.8 and will be replaced by improved resource management functionality in future releases. For this reason, Live Management is not enabled by default as in previous versions of PE, but you can configure your installation to enable it. Live Management can be disabled/enabled during [upgrades][install_upgrade] or during [normal operations][normal_operations].
 
 [install_upgrading]: ./install_upgrading.html#disabling/enabling-live-management-during-an-upgrade
 [normal_operations]: ./console_navigating_live_mgmt.html#disabling/enabling-live-management
@@ -34,9 +34,9 @@ Execute the following curl command from the Puppet master (monolithic install) o
     --key /opt/puppet/share/puppet-dashboard/certs/pe-internal-dashboard.private_key.pem \
     https://$(hostname -f):4433/classifier-api/v1/groups > classifier_groups.json
 
-This will generate a file called `classifier_groups.json`. The JSON file is described in the [groups portion](./nc_groups.html#get-v1groups) of the NC API docs. 
+This will generate a file called `classifier_groups.json`. The JSON file is described in the [groups portion](./nc_groups.html#get-v1groups) of the NC API docs.
 
-#### Determine what data the NC will generate for a given node name 
+#### Determine what data the NC will generate for a given node name
 
 **NOTE**: In the examples below replace `<SOME NODE NAME>` with the FQDN of the node you are interested in.
 
@@ -47,12 +47,12 @@ Execute the following curl command from the Puppet master (monolithic install) o
      --cert /opt/puppet/share/puppet-dashboard/certs/pe-internal-dashboard.cert.pem \
      --key /opt/puppet/share/puppet-dashboard/certs/pe-internal-dashboard.private_key.pem \
      https://$(hostname -f):4433/classifier-api/v1/classified/nodes/<SOME NODE NAME> > node_classification.json
-      
-This will generate a file called `node_classification.json`. The JSON file is described in the [classificatiopn portion](./nc_classification.html#post-v1classifiednodesname) of the NC API docs. 
 
-However, note that the above query will only return classification data for nodes that are [statically pinned](./console_classes_groups.html#adding-nodes-statically) to node groups. 
+This will generate a file called `node_classification.json`. The JSON file is described in the [classificatiopn portion](./nc_classification.html#post-v1classifiednodesname) of the NC API docs.
 
-To get classification data for [dynamically grouped nodes](./console_classes_groups.html#adding-nodes-dynamically), a JSON object containing facts will need to be submitted during the POST request. 
+However, note that the above query will only return classification data for nodes that are [statically pinned](./console_classes_groups.html#adding-nodes-statically) to node groups.
+
+To get classification data for [dynamically grouped nodes](./console_classes_groups.html#adding-nodes-dynamically), a JSON object containing facts will need to be submitted during the POST request.
 
      curl -X POST -H 'Content-Type: application/json' \
      --data '{"fact":{"pe_version": "3.7.0"}}' \
@@ -60,7 +60,7 @@ To get classification data for [dynamically grouped nodes](./console_classes_gro
      --cert /opt/puppet/share/puppet-dashboard/certs/pe-internal-dashboard.cert.pem \
      --key /opt/puppet/share/puppet-dashboard/certs/pe-internal-dashboard.private_key.pem \
      https://$(hostname -f):4433/classifier-api/v1/classified/nodes/<SOME NODE NAME> > node_classification.json
-    
+
 See the [classificatiopn portion](./nc_classification.html#post-v1classifiednodesname) of the NC API docs for more information on how to supply facts when making classification requests.
 
 PostgreSQL is Taking Up Too Much Space

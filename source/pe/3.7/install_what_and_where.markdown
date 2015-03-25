@@ -75,7 +75,7 @@ The software distributed with Puppet Enterprise generates the following log file
 The Puppet master service's logging are contained in two files:
 
 * `/var/log/pe-puppetserver/puppetserver.log`: the Puppet master application logs its activity here; this is where things like compilation errors and deprecation warnings can be found.
-* `/var/log/pe-puppetserver/pe-puppetserver-daemon.log`: this is where fatal errors or crash reports can be found. 
+* `/var/log/pe-puppetserver/pe-puppetserver-daemon.log`: this is where fatal errors or crash reports can be found.
 
 #### Puppet Agent Logs
 
@@ -98,7 +98,7 @@ On Windows nodes, the Puppet agent service logs its activity to the Windows Even
 #### Console Logs
 
 - `/var/log/pe-httpd/error.log` contains errors related to Passenger. Console errors that don't get logged anywhere else can be found in this log. If you have problems with the console or Puppet, this log may be useful.
-- `/var/log/pe-httpd/puppetdashboard.access.log` 
+- `/var/log/pe-httpd/puppetdashboard.access.log`
 - `/var/log/pe-httpd/puppetdashboard.error.log`
 - `/var/log/pe-puppet-dashboard/certificate_manager.log`
 - `/var/log/pe-puppet-dashboard/delayed_job.log`
@@ -134,14 +134,14 @@ These files may or may not be present.
 
 ### Puppet Enterprise Software Components
 
-PE 3.7 includes the following major software components:
+PE 3.8 includes the following major software components:
 
  * Puppet 3.7.4
  * PuppetDB 2.2.1
  * Facter 2.3.0
  * MCollective 2.6.0
  * ActiveMQ 5.9.0
- * Live Management: 1.3.1
+ * Live Management: 1.3.1 (deprecated)
  * Hiera 1.3.4
  * Dashboard 2.1.6
  * PostgreSQL 9.2.10
@@ -162,7 +162,7 @@ PE installs several suites of tools to help you work with the major components o
 - **Puppet Tools** --- Tools that control basic functions of Puppet such as `puppet master,` `puppet apply` and `puppet cert.`
     See the [Tools section](/guides/tools.html) of the Puppet Manual for more information.
 - **Cloud Provisioning Tools** --- Tools used to provision new nodes. Mostly based around the `node` subcommand, these tools are used for tasks such as creating or destroying virtual machines, classifying new nodes, etc. See the [Cloud Provisioning section](./cloudprovisioner_overview.html)  for more information.
-- **Orchestration Tools** --- Tools used to orchestrate simultaneous actions across a number of nodes. These tools are built on the MCollective framework and are accessed either via the `mco` command or via the __Live Management__ page of the PE console. See the [Orchestration section](./orchestration_overview.html) for more information.
+- **Orchestration Tools** --- Tools used to orchestrate simultaneous actions across a number of nodes. These tools are built on the MCollective framework and are accessed either via the `mco` command or via the __Live Management__ page of the PE console. See the [Orchestration documentation](./orchestration_overview.html) for more information.
 - **Module Tools** --- The Module tool is used to access and create Puppet Modules, which are reusable chunks of Puppet code users have written to automate configuration and deployment tasks. For more information, and to access modules, visit the [Puppet Forge](http://forge.puppetlabs.com/).
 - **Console** --- The console is Puppet Enterprise's GUI web interface. The console provides tools to view and edit resources on your nodes, view reports and activity graphs, trigger Puppet runs, etc. See the [Console section](./console_accessing.html) of the Puppet Manual for more information.
 
@@ -223,7 +223,7 @@ During install, PE generates the following certificates (can be found at `/etc/p
 - **`pe-internal-mcollective-servers`** --- A shared certificate generated on the Puppet master and shared to all agent nodes.
 - **`pe-internal-peadmin-mcollective-client`** --- The orchestration certificate for the peadmin account on the Puppet master.
 - **`pe-internal-puppet-console-mcollective-client`** --- The orchestration certificate for the PE console/live management
-- **`pe-internal-classifier`** --- The certificate for the node classifier. 
+- **`pe-internal-classifier`** --- The certificate for the node classifier.
 
 A fresh PE install should thus give the following list of certificates:
 
