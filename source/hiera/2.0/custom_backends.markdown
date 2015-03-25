@@ -74,8 +74,7 @@ When Hiera calls the lookup method, it passes five pieces of data as arguments:
 * `key` is the lookup key.
 * `scope` is the set of [variables](./variables.html) available to make decisions about the hierarchy and perform data interpolation.
 * `order_override` is a requested first hierarchy level, which can optionally be inserted at the top of the hierarchy.
-* `resolution_type` is the requested [lookup type](./lookup_types.html).
-    TODO JEAN: make it so this describes what the different `resolution_type` values can be. basically, either a symbol (list the available symbols) or a hash like `{:behavior => 'deeper', 'knockout_prefix' => 'xx'}`. See here: https://github.com/puppetlabs/pre-docs/blob/a862f246dc1885efe02f3a9503791a2b3141ca07/hiera/lookup-2.x-api.md#ability-to-pass-deep-merge-options-in-each-lookup-call
+* `resolution_type` is the requested [lookup type](./lookup_types.html). Values can be either a Symbol (`:priority` or `:array`) or a hash like `{:behavior => 'deeper', 'knockout_prefix' => 'xx'}`. If you pass a hash, the configured values for `:merge_behavior` and `:deep_merge_options` will be ignored. This allows you to give deep merge options on a per-call basis.
 * `context` is a hash that contains a key named `:recurse_guard`. You never need to call methods on this object, but you'll need to pass it along later if you make any calls to `Backend.parse_answer` or `Backend.parse_string`. This parameter helps Hiera correctly propagate the order_override and the recursion guard used for detecting endless lookup recursions in interpolated values.
 
 {% highlight ruby %}
@@ -225,13 +224,13 @@ The `Backend.parse_string` method resolves interpolated strings. For example, 'H
 
 If you do need to explicitly call `Backend.parse_string` for some reason, you'll want to use the context parameter as described in [Backend.parse_answer][parse_answer] above.
 
-#### `Backend.merge_answer(new_answer,answer)`
+#### `Backend.merge_answer(new_answer, answer, resolution_type=nil)`
 
 [merge_answer]: #backendmergeanswernewansweranswer
 
-TODO JEAN: Add the third optional parameter, and note that you just pass on the `resolution_type` value you received in your `lookup` method. see here: https://github.com/puppetlabs/pre-docs/blob/a862f246dc1885efe02f3a9503791a2b3141ca07/hiera/lookup-2.x-api.md#ability-to-pass-deep-merge-options-in-each-lookup-call
-
 The `Backend.merge_answer` method expects two hashes, and returns a merged hash using the [configured hash merge behavior](./lookup_types.html#hash-merge). If your backend supports hash merge lookups, you should always use this helper method to do the merging.
+
+`Backend.merge_answer` can also take an optional third parameter, `resolution_type`. If you're using `resolution_type`, you'll need to pass the `resolution_type` value you received in your `lookup` method. This allows you to set deep merge behavior on a per-call basis, rather than always using your configuration values. If no value is passed for `resolution_type`, the merge behavior from the Hiera config is used.
 
 From the json backend:
 
@@ -245,7 +244,7 @@ From the json backend:
     when :hash
       raise Exception, "Hiera type mismatch: expected Hash and got #{new_answer.class}" unless new_answer.kind_of? Hash
       answer ||= {}
-      answer = Backend.merge_answer(new_answer,answer)
+      answer = Backend.merge_answer(new_answer,answer, resolution_type=nil)
     else
       answer = new_answer
       break

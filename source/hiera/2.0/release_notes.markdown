@@ -6,7 +6,7 @@ title: "Hiera 2: Release Notes"
 
 ## Hiera 2.0.0
 
-Released (~~ TODO ~~).
+Released March 25, 2015.
 
 Hiera 2.0.0 is a new major version of Hiera, which includes several new features and one breaking change. Please read the section below labeled "BREAK," because you may need to edit your configuration and/or move some files around.
 
@@ -109,6 +109,7 @@ You can now run `hiera -f yaml` to get YAML-formatted data.
 * If you looked up a piece of data that had an interpolated `hiera()` call (e.g. `value: "${hiera('other_lookup_key')}"`), and you [provided a hierarchy override](./puppet.html#hiera-lookup-functions) to the original lookup, Hiera would ignore the override when resolving the secondary lookup. This is now fixed, and overrides will propagate to secondary lookups. Note that custom backends may need an update to accommodate this; see the note above about backend API changes. [HI-304: Override does not propagate to hiera() function in interpolation tokens](https://tickets.puppetlabs.com/browse/HI-304)
 * Empty YAML files will now be ignored instead of causing errors. [HI-65: PR (162): ignore empty yaml files - leinaddm](https://tickets.puppetlabs.com/browse/HI-65)
 * Using the `-m` option on the command line was causing Hiera to throw away any subsequent options. This is fixed now. [HI-306: Hiera CLI optparse problems with -m](https://tickets.puppetlabs.com/browse/HI-306)
+*  If a deep merge is requested, but the deep merge gem is not present, an error is given. Previously, only a warning was given and unexpected data was returned. [HI-274: :merge_behavior with deep_merge gem missing should error instead of falling back](https://tickets.puppetlabs.com/browse/HI-274)
 
 ### Not Quite Bug Fixes
 
