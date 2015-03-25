@@ -16,7 +16,7 @@ If you're not a PE user, you can install the [open source version of Razor manua
 ###Before You Begin
 Things you should know before you set up provisioning:
 
-+ The default port for Razor is 8150.
++ The default port for Razor is 8150. You can change the port by editing `RAZOR_PORT` in `/etc/sysconfig/pe-razor-server`.
 + Razor has been validated on RHEL/CentOS 6.x and 7.x versions.
 
 >**Hint**: With the `export` command, you can avoid having to repeatedly replace placeholder text. The steps for installing assume you have declared a server name and the port to use for Razor with this command:
