@@ -26,7 +26,7 @@ Some permissions added to the Administrator user role might look like this:
 |Node groups  | View          | PE Master    | Gives permission to view the PE Master node group.|
 |User roles   | Edit          | All          | Gives permission to edit all user roles. |
 
-When no object is specified, a permission will apply to all objects of that type. In those cases, the object is “All”. However, this is be denoted by a “*” in the API.
+When no object is specified, a permission will apply to all objects of that type. In those cases, the object is “All”. This is denoted by a “*” in the API.
 
 In both the console and the API, a “*” is used to express a permission for which an object doesn’t make sense, such as when creating users.
 
