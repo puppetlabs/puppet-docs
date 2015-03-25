@@ -155,7 +155,7 @@ The next thing you’ll want to do is add classes to your node group. [Classes][
 
 > **Note:** If you created a new class within the last three minutes, it may not appear in the list of available classes yet. There are two things that need to happen before the class appears in the list:
 >
-> 1. The node classifier needs to retrieve classes from the master. (By default, the node classifier retrieves classes from the master every 3 minutes.)
+> 1. The node classifier needs to retrieve classes from the master. (By default, the node classifier retrieves classes from the master every 10 minutes. To change the default setting, see [Configuring and Tuning the Console](./console_config.html#tuning-the-classifier-synchronization-period)).
 > 
 > 2. The [environment cache needs to refresh](/references/latest/configuration.html#environmenttimeout). (By default, the environment cache refreshes every 3 minutes.)
 >
