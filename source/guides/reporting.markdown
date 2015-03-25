@@ -82,7 +82,7 @@ the built-in reports. Put the report into the `lib/puppet/reports` directory of 
 The report processor API is as follows:
 
 * The name of a report processor should contain only alphanumeric characters, and should start with a letter. (More liberal names haven't been tested; underscores might be okay as well.)
-* Each report processor must be in its own Ruby file, named `lib/puppet/reponts/<NAME>.rb`.
+* Each report processor must be in its own Ruby file, named `lib/puppet/reports/<NAME>.rb`.
 * The Ruby file must have `require 'puppet'` at the top.
 * It must contain a call to the `Puppet::Reports.register_report(:NAME)` method. This method takes the name of the report (as a Symbol) and a mandatory block of code; the block takes no arguments.
 * The block provided to the `register_report` method must contain the following:

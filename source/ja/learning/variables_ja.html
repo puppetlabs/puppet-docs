@@ -1,0 +1,325 @@
+---
+layout: default
+title: "Variables, Conditionals, and Facts ～ 変数、条件、facts"
+canonical: "/ja/learning/variables_ja.html"
+toc: false
+---
+
+<!-- copy from here -->
+
+<div class="translation-notes">
+  <p>訳注：このドキュメントは以下のURLにある&quot;Learning Puppet&quot;を日本語訳したものです。<br />
+    <a href="http://docs.puppetlabs.com/learning/variables.html">http://docs.puppetlabs.com/learning/variables.html</a><br />
+     Facterによって取得できる値のセットをfact(s)と呼びますが、日本語訳ではfactsで統一して表記します。</p>
+
+</div>
+
+<nav class="in-page" id="page-nav">
+<ol class="toc">
+  <li class="toc-lv2"><a href="#begin">Begin ～ はじめに</a></li>
+  <li class="toc-lv2"><a href="#variables">Variables ～ 変数</a>
+    <ol class="toc">
+   <li class="toc-lv3"><a href="#aside-why-do-everyones-manifests-seem-to-use-ipaddress">Aside: Why Do Everyone’s Manifests Seem to Use $::ipaddress? ～ 余談：$::ipaddressを使う訳</a></li>
+</ol></li>
+  <li class="toc-lv2"><a href="#facts">Facts</a>
+<ol class="toc">
+   <li class="toc-lv3"><a href="#what-are-these-hostname-and-ipaddress-variables">What Are These Hostname and IPaddress Variables?　～ これらのホスト名やIPアドレスの変数は何でしょうか</a> </li>
+   <li class="toc-lv3"><a href="#other-built-in-variables">Other Built-In Variables ～ その他のビルトイン変数</a></li>
+</ol></li>
+  <li class="toc-lv2"><a href="#conditional-statements">Conditional Statements ～ 条件文</a>
+    <ol class="toc">
+   <li class="toc-lv3"><a href="#if">If ～ if文</a></li>
+   <li class="toc-lv3"><a href="#aside-beware-of-the-fake-false">Aside: Beware of the Fake False!～余談：文字列の”false”には気を付けて！</a></li>
+   <li class="toc-lv3"><a href="#case">Case ～ case文</a></li>
+   <li class="toc-lv3"><a href="#selectors">Selectors ～ セレクタ</a></li>
+</ol></li>
+  <li class="toc-lv2"><a href="#exercises">Exercises ～ 演習</a>
+    <ol class="toc">
+   <li class="toc-lv3"><a href="#exercise-build-environment">Exercise: Build Environment ～ 演習：環境の構築</a></li>
+   <li class="toc-lv3"><a href="#exercise-simple-ntp">Exercise: Simple NTP ～ シンプルなNTP</a></li>
+</ol></li>
+  <li class="toc-lv2"><a href="#next">Next ～ 次に</a></li>
+</ol></nav>
+
+<h2 id="begin">Begin ～ はじめに</h2>
+
+<div class="highlight"><pre><code class="ruby">    <span class="vg">$my_variable</span> <span class="o">=</span> <span class="s2">&quot;A bunch of text&quot;</span>
+    <span class="n">notify</span> <span class="p">{</span><span class="vg">$my_variable</span><span class="p">:}</span>
+</code></pre>
+</div>
+
+<p>はい、これが変数です。</p>
+
+<h2 id="variables">Variables ～ 変数</h2>
+
+<p>変数は他の言語やスクリプトで利用したことがあると思いますので、駆け足で基本をおさらいします。 詳細は<a href="http://docs.puppetlabs.com/puppet/latest/reference/lang_variables.html">Puppet言語リファレンス(英文)</a>をご覧ください。</p>
+
+<ul>
+  <li>変数は<code>$variables</code> のように常に”$”で始まります。変数には”<code>=</code>”演算子で代入します。</li>
+  <li>変数は文字列、数値、ブール値、配列、ハッシュ、特殊な<code>undef</code>値などを保持できます。詳細は<a href="http://docs.puppetlabs.com/puppet/latest/reference/lang_variables.html">Puppet言語リファレンス(英文)</a>をご覧ください。</li>
+  <li>初期化していない変数であっても利用することができます。その場合、値は<code>undef</code>になるでしょう。</li>
+  <li>変数をあらゆるリソースの属性やタイトルとして利用できます。</li>
+  <li>ダブルクォートで囲まれた文字列中で変数を置き換えることができます。変数と周囲のテキストを区別するには波括弧で変数名を括ります。 (<code>"This is the ${variable} name."</code>) 変数名を波括弧で括るのは必須ではありませんが、推奨します。</li>
+  <li>全ての変数は2つの呼び方ができます。
+    <ul>
+      <li>短いローカル名</li>
+      <li>長い完全修飾名</li>
+    </ul>
+
+    <p>完全修飾の変数は <code>$scope::variable</code>のようになります。グローバル変数でも考え方は同じですが、スコープ名はありません。(例: <code>$::top_scope_variable</code>)</p>
+  </li>
+  <li>もし短い変数名を参照し、それがローカルスコープに存在しなかった場合、Puppetはグローバルスコープを確認します。つまり、大抵は短い変数名だけでグローバル変数を参照できる、ということです。詳細はPuppet言語リファレンスの<a href="http://docs.puppetlabs.com/puppet/2.7/reference/lang_scope.html">scope in Puppet Enterprise 2.x and Puppet 2.7</a>, <a href="http://docs.puppetlabs.com/puppet/latest/reference/lang_scope.html">scope in Puppet 3(英文)</a>をご覧ください。</li>
+  <li>同一のスコープ内では同じ変数に<strong>1回</strong>しか代入できません。他のプログラミング言語でいうところの定数（const）に近いです。</li>
+</ul>
+
+<div class="highlight"><pre><code class="ruby">    <span class="vg">$longthing</span> <span class="o">=</span> <span class="s2">&quot;Imagine I have something really long in here. Like an SSH key, let&#39;s say.&quot;</span>
+
+    <span class="n">file</span> <span class="p">{</span><span class="s1">&#39;authorized_keys&#39;</span><span class="p">:</span>
+      <span class="n">path</span>    <span class="o">=&gt;</span> <span class="s1">&#39;/root/.ssh/authorized_keys&#39;</span><span class="p">,</span>
+      <span class="n">content</span> <span class="o">=&gt;</span> <span class="vg">$longthing</span><span class="p">,</span>
+    <span class="p">}</span>
+</code></pre>
+</div>
+
+<p>本当に簡単ですね。</p>
+
+<blockquote>
+  <h3 id="aside-why-do-everyones-manifests-seem-to-use-ipaddress">Aside: Why Do Everyone’s Manifests Seem to Use $::ipaddres? ～ 余談： $::ipaddressを使う訳</h3>
+
+  <p>公開されているマニフェストを書く人たちは、factsを参照する際、常に<code>$::variable</code>という書き方をしていることが多いです。</p>
+
+  <p>前述のとおり、<code>::</code>プレフィックスは指定された変数がグローバルスコープで見つかることを意味してします。しかし実のところ変数を探す時は必ずグローバルスコープまでたどり着きますので、これは必須とは言えません。(<a href="http://docs.puppetlabs.com/puppet/latest/reference/lang_scope.html">Puppet言語リファレンス(英文)</a>をご覧ください)</p>
+
+  <p>しかし、明示的にグローバルスコープを指定することは、公開コードを利用することで起きる2つの予測不能な挙動の問題を回避するために役立ちます。1つ目の問題はPuppet 2.xの全バージョンで影響します。もう1つはPuppet 2.7.xの初期バージョンで影響します。</p>
+
+  <ul>
+    <li>Puppet 2.x：ユーザがパブリックモジュールの中で自身のクラスを宣言し、かつユーザ個別のクラスでfactsの名前と一致する変数を設定してしまうと、パブリックなモジュールでユーザが宣言したクラスは、factsではなくユーザが作成したクラスのローカル変数にアクセスしてしまいます。この結果、パブリックなモジュールでユーザが宣言したクラスは失敗するか、何かしらおかしな動作をしてしまいます。</li>
+    <li>初期のPuppet 2.7.x ：マニフェストが <code>::</code>プレフィックス無しでグローバルスコープ変数にアクセスした際、時々動的スコープが非推奨である旨の警告が不適切に出力されます。後のバージョンでは修正されましたが、しばらくの間とても迷惑でした。</li>
+  </ul>
+
+  <p>この2つの問題はどちらもPuppet 3で関連しませんが、全ての人が既にPuppet 3を使っている訳でありませんし、Puppet 3をベースにしたPuppet Enterpriseも今年後半の予定でまだ出ていません。よって多くの方がパブリックなコードを書く時に、いまだPuppet 2.7で使う事を想定しているので、このイディオムをよく見かけるのです。</p>
+</blockquote>
+
+<h2 id="facts">Facts</h2>
+
+<p>Puppetは予め定義されたビルトイン変数セットを持っています。<br />
+以下を見てください。</p>
+
+<div class="highlight"><pre><code class="ruby">    <span class="c1"># /root/examples/motd.pp</span>
+
+    <span class="n">file</span> <span class="p">{</span><span class="s1">&#39;motd&#39;</span><span class="p">:</span>
+      <span class="k">ensure</span>  <span class="o">=&gt;</span> <span class="n">file</span><span class="p">,</span>
+      <span class="n">path</span>    <span class="o">=&gt;</span> <span class="s1">&#39;/etc/motd&#39;</span><span class="p">,</span>
+      <span class="n">mode</span>    <span class="o">=&gt;</span> <span class="mo">0644</span><span class="p">,</span>
+      <span class="n">content</span> <span class="o">=&gt;</span> <span class="s2">&quot;This Learning Puppet VM&#39;s IP address is ${ipaddress}. It thinks its</span>
+<span class="s2">    hostname is ${fqdn}, but you might not be able to reach it there</span>
+<span class="s2">    from your host machine. It is running ${operatingsystem} ${operatingsystemrelease} and</span>
+<span class="s2">    Puppet ${puppetversion}.</span>
+<span class="s2">    Web console login:</span>
+<span class="s2">      URL: https://${ipaddress_eth0}</span>
+<span class="s2">      User: puppet@example.com</span>
+<span class="s2">      Password: learningpuppet</span>
+<span class="s2">    &quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+</code></pre>
+</div>
+
+<pre><code># puppet apply /root/examples/motd.pp
+
+notice: /Stage[main]//Host[puppet]/ensure: created
+notice: /Stage[main]//File[motd]/ensure: defined content as '{md5}bb1a70a2a2ac5ed3cb83e1a8caa0e331'
+
+# cat /etc/motd
+This Learning Puppet VM's IP address is 172.16.52.135. It thinks its
+hostname is learn.localdomain, but you might not be able to reach it there
+from your host machine. It is running CentOS 5.7 and
+Puppet 2.7.21 (Puppet Enterprise 2.8.1).
+Web console login:
+  URL: https://172.16.52.135
+  User: puppet@example.com
+  Password: learningpuppet
+</code></pre>
+
+<p>ビルトイン変数を利用することで、自分ではほとんど何もしなくても、マニフェストはより柔軟になります。</p>
+
+<h3 id="what-are-these-hostname-and-ipaddress-variables">What Are These Hostname and IPaddress Variables? ～ これらのホスト名やIPアドレスの変数は何でしょうか</h3>
+
+<p>これら変数はいったいどこから来たのでしょうか？</p>
+
+<p>この正体は<a href="http://docs.puppetlabs.com/puppet/latest/reference/lang_variables.html#facts-and-built-in-variables">“facts(英文)”</a>です。Puppetは、システム情報を取得して変数セットに正規化してPuppetに引き渡す、Facterと呼ばれるツールを使っています。Puppetのコンパイラは、マニフェストを読む際にfactsへアクセスしています。</p>
+
+<ul>
+  <li><a href="http://docs.puppetlabs.com/facter/latest/core_facts.html">Facterに最初から組み込まれているfactsのリストはこちらをご覧ください(英文)。</a>ほとんどのfactsはどんな環境のPuppetからでも利用できますが、特定のシステムにしかないfactsもあります。</li>
+  <li>動作中のシステムで利用可能なfactsを調べるには、コマンドラインから<code>facter</code>コマンドを実行してください。</li>
+  <li>Puppet Enterprise developmentのコンソールにあるノードページを下にスクロールしていくと<a href="http://docs.puppetlabs.com/pe/latest/console_reports.html#viewing-inventory-data">インベントリ情報</a>があり、任意のノードで利用可能な全てのfactsを確認する事ができます。</li>
+  <li>新たにユーザ側でカスタムfactsを追加する事もできます。詳細は<a href="http://docs.puppetlabs.com/guides/custom_facts.html">カスタムfactsガイド(英文)</a>をご覧ください。</li>
+</ul>
+
+
+<h3 id="other-built-in-variables">Other Built-In Variables ～ その他のビルトイン変数</h3>
+
+<p>Facter由来のfactsに加え、Puppetはさらにいくつかの追加ビルトイン変数を持っています。詳細は<a href="http://docs.puppetlabs.com/puppet/latest/reference/lang_variables.html#facts-and-built-in-variables">Puppet言語リファレンス(英文)</a>をご覧ください。</p>
+
+<h2 id="conditional-statements">Conditional Statements ～ 条件文</h2>
+
+<p>Puppetは幾つかの条件文を持っています。詳細は<a href="http://docs.puppetlabs.com/puppet/latest/reference/lang_conditional.html">Puppet言語リファレンス(英文)</a>をご覧ください。</p>
+<p>factsを条件として利用することで、Puppetがシステム種別ごとに異なった動作をするように簡単に設定できます。</p>
+<h3 id="if">If ～ if文</h3>
+
+<p>基本的な<a href="http://docs.puppetlabs.com/puppet/latest/reference/lang_conditional.html#if-statements"><code>if</code>文(英文)</a>から開始します。他の言語と同じ使い方です。</p>
+
+<pre><code>if condition {
+  block of code
+}
+elsif condition {
+  block of code
+}
+else {
+  block of code
+}
+</code></pre>
+
+<ul>
+  <li><code>else</code>と任意の数の <code>elsif</code> はオプションです。</li>
+  <li>それぞれの条件ブロックは、Puppetコードを含むことができます。</li>
+  <li>条件はtrue/falseのブール値、<a href="http://docs.puppetlabs.com/puppet/latest/reference/lang_expressions.html">式(英文)</a>、値を返す<a href="http://docs.puppetlabs.com/puppet/latest/reference/lang_functions.html">関数(英文)</a>、変数など、Puppetコードの断片でも構いません。式および関数のより詳細な説明はリンク先をご覧ください。</li></ul>
+
+<p><code>if</code>文の例：</p>
+
+<div class="highlight"><pre><code class="ruby">    <span class="k">if</span> <span class="n">str2bool</span><span class="p">(</span><span class="s2">&quot;$is_virtual&quot;</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">service</span> <span class="p">{</span><span class="s1">&#39;ntpd&#39;</span><span class="p">:</span>
+        <span class="k">ensure</span> <span class="o">=&gt;</span> <span class="n">stopped</span><span class="p">,</span>
+        <span class="n">enable</span> <span class="o">=&gt;</span> <span class="kp">false</span><span class="p">,</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="p">{</span>
+      <span class="n">service</span> <span class="p">{</span> <span class="s1">&#39;ntpd&#39;</span><span class="p">:</span>
+        <span class="nb">name</span>       <span class="o">=&gt;</span> <span class="s1">&#39;ntpd&#39;</span><span class="p">,</span>
+        <span class="k">ensure</span>     <span class="o">=&gt;</span> <span class="n">running</span><span class="p">,</span>
+        <span class="n">enable</span>     <span class="o">=&gt;</span> <span class="kp">true</span><span class="p">,</span>
+        <span class="n">hasrestart</span> <span class="o">=&gt;</span> <span class="kp">true</span><span class="p">,</span>
+        <span class="nb">require</span> <span class="o">=&gt;</span> <span class="no">Package</span><span class="o">[</span><span class="s1">&#39;ntp&#39;</span><span class="o">]</span><span class="p">,</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+</code></pre>
+</div>
+<blockquote>
+  <h3 id="aside-beware-of-the-fake-false">余談：文字列の”false”には気を付けて！</h3>
+  
+  <p>前述の例では、<code>str2bool("$is_virtual")</code>という新しいコードが出てきます。.</p>
+  
+  <p><code>if</code>文の条件は真偽値であるtrueかfalseとして解決される必要があります。しかし、全てのfactsは<a href="http://docs.puppetlabs.com/puppet/latest/reference/lang_datatypes.html#strings">文字列</a>であり、さらに全ての空ではない文字列は（文字列“false”であっても）trueとして評価されます。そのためfactsが返す文字列の“false”はPuppetでブール値のfalseとして扱えるように変換する必要があります。</p>
+  
+  <p>このようなケースでは：</p>
+  
+  <ul>
+    <li>変数をダブルクォートで囲います。もしその変数が何らかの理由により実際に真偽値を含んでいた時（普通はありませんが）、文字列に変換されます。</li>
+    <li>文字列を<code>str2bool</code>関数に通すことで、真偽値っぽいものを本物のtrue値もしくはfalse値に変換します。</li>
+    </ul>
+  
+  <p><code>str2bool</code><a href="http://docs.puppetlabs.com/puppet/latest/reference/lang_functions.html">関数(英文)</a>は<a href="http://forge.puppetlabs.com/puppetlabs/stdlib">puppetlabs/stdlib(英文)</a>モジュールの一部で、Puppet Enterpriseに含まれています。オープンソース版のPuppetを利用している場合は、<code>sudo puppet module install puppetlabs/stdlib</code>を実行することでインストールできます。</p>
+
+  <p>代わりに<code>$is_virtual == 'true'</code>という式を使うこともできます。<code>is_virtual</code> factsがtrueであればtrueを返し、それ以外はfalseを返します。</p>
+</blockquote>
+
+<h3 id="case">Case ～ case文</h3>
+
+<p>他の条件文として<a href="http://docs.puppetlabs.com/puppet/latest/reference/lang_conditional.html#case-statements">case</a>文があります。（switch文など言語によって表現は違います）</p>
+
+<div class="highlight"><pre><code class="ruby">    <span class="k">case</span> <span class="vg">$operatingsystem</span> <span class="p">{</span>
+      <span class="n">centos</span><span class="p">:</span> <span class="p">{</span> <span class="vg">$apache</span> <span class="o">=</span> <span class="s2">&quot;httpd&quot;</span> <span class="p">}</span>
+      <span class="c1"># Note that these matches are case-insensitive.</span>
+      <span class="n">redhat</span><span class="p">:</span> <span class="p">{</span> <span class="vg">$apache</span> <span class="o">=</span> <span class="s2">&quot;httpd&quot;</span> <span class="p">}</span>
+      <span class="n">debian</span><span class="p">:</span> <span class="p">{</span> <span class="vg">$apache</span> <span class="o">=</span> <span class="s2">&quot;apache2&quot;</span> <span class="p">}</span>
+      <span class="n">ubuntu</span><span class="p">:</span> <span class="p">{</span> <span class="vg">$apache</span> <span class="o">=</span> <span class="s2">&quot;apache2&quot;</span> <span class="p">}</span>
+      <span class="n">default</span><span class="p">:</span> <span class="p">{</span> <span class="nb">fail</span><span class="p">(</span><span class="s2">&quot;Unrecognized operating system for webserver&quot;</span><span class="p">)</span> <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="n">package</span> <span class="p">{</span><span class="s1">&#39;apache&#39;</span><span class="p">:</span>
+      <span class="nb">name</span>   <span class="o">=&gt;</span> <span class="vg">$apache</span><span class="p">,</span>
+      <span class="k">ensure</span> <span class="o">=&gt;</span> <span class="n">latest</span><span class="p">,</span>
+    <span class="p">}</span>
+</code></pre>
+</div>
+
+<p>冒頭で条件を評価する代わりに、<code>case</code>文では値の候補と変数のマッチングを行います。<strong><code>default</code>は特殊な値</strong>で、その名のとおりいずれの候補ともマッチしなかった場合のデフォルト動作を規定しています。</p>
+
+<p>この例では <a href="http://docs.puppetlabs.com/references/latest/function.html#fail"><code>fail</code>関数(英文)</a>も使っています。前述の<code>str2bool</code>関数とは異なり、<code>fail</code>関数では値の評価をせず、代わりにエラーメッセージを出力してコンパイルを即座に失敗させます。</p>
+
+<h4 id="case-matching">ケースマッチング</h4>
+
+<p><code>case</code>文は(前述したような)単純な文字列、<a href="http://docs.puppetlabs.com/puppet/latest/reference/lang_datatypes.html#regular-expressions">正規表現(英文)</a>、カンマ区切りの文字列リストとマッチングできます。</p>
+
+<p>ここでは前述の例をカンマ区切りの文字列リストに書き換えてみます。</p>
+
+<div class="highlight"><pre><code class="ruby">    <span class="k">case</span> <span class="vg">$operatingsystem</span> <span class="p">{</span>
+      <span class="n">centos</span><span class="p">,</span> <span class="n">redhat</span><span class="p">:</span> <span class="p">{</span> <span class="vg">$apache</span> <span class="o">=</span> <span class="s2">&quot;httpd&quot;</span> <span class="p">}</span>
+      <span class="n">debian</span><span class="p">,</span> <span class="n">ubuntu</span><span class="p">:</span> <span class="p">{</span> <span class="vg">$apache</span> <span class="o">=</span> <span class="s2">&quot;apache2&quot;</span> <span class="p">}</span>
+      <span class="n">default</span><span class="p">:</span> <span class="p">{</span> <span class="nb">fail</span><span class="p">(</span><span class="s2">&quot;Unrecognized operating system for webserver&quot;</span><span class="p">)</span> <span class="p">}</span>
+    <span class="p">}</span>
+</code></pre>
+</div>
+
+<p>そして正規表現の例です。</p>
+
+<div class="highlight"><pre><code class="ruby">    <span class="k">case</span> <span class="vg">$ipaddress_eth0</span> <span class="p">{</span>
+      <span class="sr">/^127[\d.]+$/</span><span class="p">:</span> <span class="p">{</span>
+        <span class="n">notify</span> <span class="p">{</span><span class="s1">&#39;misconfig&#39;</span><span class="p">:</span>
+          <span class="n">message</span> <span class="o">=&gt;</span> <span class="s2">&quot;Possible network misconfiguration: IP address of $0&quot;</span><span class="p">,</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+</code></pre>
+</div>
+
+<p>文字列マッチングでは大文字小文字を区別せず、 <a href="http://docs.puppetlabs.com/puppet/latest/reference/lang_expressions.html#equality">比較演算子<code>==</code>(英文)</a>のように振る舞います。正規表現はスラッシュで区切られたPerlやRubyと同様の表記になります。それらはデフォルトで大文字小文字を区別しますが、<code>(?i)</code> および <code>(?-i) </code>スイッチにより、パターンの中で区別する／しないを切り替えられます。正規表現エンジンRegexはブロック内でマッチしたサブパターンを<code>$1</code>や<code>$2</code>などに割り当てる事が可能で、さらに<code>$0</code>はマッチング文字列全体を含みます。詳細は<a href="http://docs.puppetlabs.com/puppet/latest/reference/lang_datatypes.html#regular-expressions">Puppet言語リファレンス(英文)</a>をご覧ください。</p>
+
+
+
+<h3 id="selectors">Selectors ～ セレクタ</h3>
+
+<p>セレクタはあまり馴染みがないでしょう。これは <a href="http://en.wikipedia.org/wiki/%3F:">三項演算子(英文)</a>に似た演算子でcase文にも似ています。</p>
+
+<p>セレクタはコードブロックを選択する代わりに、値を選択します。またセレクタはそのまま利用することはできません。通常は変数へ値を代入するために利用します。</p>
+
+<div class="highlight"><pre><code class="ruby">    <span class="vg">$apache</span> <span class="o">=</span> <span class="vg">$operatingsystem</span> <span class="p">?</span> <span class="p">{</span>
+      <span class="n">centos</span>                <span class="o">=&gt;</span> <span class="s1">&#39;httpd&#39;</span><span class="p">,</span>
+      <span class="n">redhat</span>                <span class="o">=&gt;</span> <span class="s1">&#39;httpd&#39;</span><span class="p">,</span>
+      <span class="sr">/(?i)(ubuntu|debian)/</span> <span class="o">=&gt;</span> <span class="s1">&#39;apache2&#39;</span><span class="p">,</span>
+      <span class="n">default</span>               <span class="o">=&gt;</span> <span class="k">undef</span><span class="p">,</span>
+    <span class="p">}</span>
+</code></pre>
+</div>
+
+<p>この条件文は慎重に記述してください。 <code>$apache = $operatingsystem</code>と言っているようですが違います。クエスチョンマークは <code>$operatingsystem</code> をセレクタ文の制御変数とするフラグであり、実際の値は<code>$operatingsystem</code>の内容とマッチした値から取得して代入します。またcase文との文法的な違いにも注意してください。<code>=></code>(ハッシュロケット)と行末のカンマをコロンとブロックの代わりに使っており、またリストをマッチ対象として使えません（もしリストに対してマッチさせたければ、正規表現で代用しましょう）。</p>
+
+<p>少し厄介に見えるかもしれませんが、多くの場面において、整理した値を取得するためのもっとも簡潔な記述方法になります。もしこの記述に慣れないのであれば、値を割り当てるためだけにcase文を使うこともできます。</p>
+
+<p>セレクタは直接リソース属性の値として利用することも可能ですが、見難いソースになるので推奨しません。 </p>
+
+
+
+<h2 id="exercises">Exercises ～ 演習</h2>
+
+<blockquote>
+  <h3 id="exercise-build-environment">Exercise: Build Environment ～ 演習：環境の構築</h3>
+
+  <p>$operatingsystem factsを使ってDebianベース(debian、ubuntu)とRHELベース(centos、redhat)の双方に対応した、C言語用のビルド環境をインストールするマニフェストを記述してください。(双方のシステムとも<code>gcc</code>パッケージを要求します。Debianベースのシステムは<code>build-essential</code>も要求します)</p>
+</blockquote>
+
+<blockquote>
+  <h3 id="exercise-simple-ntp">Exercise: Simple NTP ～ 演習：シンプルなNTP</h3>
+
+  <p>DebianベースとRHELベースの双方に対応したNTPをインストールおよび設定するマニフェストを記述してください。両方の種類のシステムともに前述の<code>package</code>、<code>file</code>、<code>service</code>リソースのパターンとなり、またパッケージ名は双方同じ(<code>ntp</code>)ですが、異なるコンフィグファイル(<a href="http://docs.puppetlabs.com/learning/files/examples/modules/ntp/files/ntp.conf.debian">Debian版(英文)</a>と<a href="http://docs.puppetlabs.com/learning/files/examples/modules/ntp/files/ntp.conf.el">RHEL版(英文)</a> - <code>file</code>リソースの&quot;source&quot;属性を思い出してください)を配布し、サービス名はそれぞれ別のものを利用します(それぞれ<code>ntp</code>、<code>ntpd</code>となります）。</p>
+</blockquote>
+
+<h2 id="next">Next ～ 次に</h2>
+
+<p><strong>次の演習：</strong></p>
+
+<p>これでマニフェストが種類の異なる複数のシステムに対応する事ができるようになりました。いよいよリソースと条件を有意な単位でグループ化する段階です。次は<a href="./modules1_ja.html">クラス、リソース型の定義、モジュール(英文)</a>です！</p>
+
+<p><strong>Off-Road:</strong></p>
+
+<p>全てのノードのfactsがコンソール上に表示されているので、Puppet Enterpriseは強力なインベントリツールとなります。<a href="http://info.puppetlabs.com/download-pe.html">Puppet Enterprise for free</a>をダウンロードして、<a href="http://docs.puppetlabs.com/pe/latest/quick_start.html">クイックスタートガイド(英文)</a>に従いインストール済の小さな環境を入手します。そしてコンソールでインベントリのセントラルビューで、OSバージョン、ハードウェアプロファイルなどを確認してみましょう。</p>
+
+<!-- to here -->

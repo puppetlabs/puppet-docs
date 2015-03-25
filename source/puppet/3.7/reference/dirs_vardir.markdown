@@ -49,7 +49,7 @@ Depending on the run environment, Puppet will use either a system-wide vardir or
 
 * When Puppet is running as a non-root user, it defaults to a vardir in that user's home directory.
 * The system vardir is used when Puppet is running as root or Administrator, either directly or via `sudo`. (Puppet agent generally runs as root or Administrator when managing a system.)
-    * The system vardir is also used when Puppet is started as root before switching users and dropping privileges, which is what a WEBrick puppet master does. Note that when puppet master is running as a Rack application, the `config.ru` file must explicitly set `--vardir` to the system vardir. The example `config.ru` file provided with the Puppet source does this.
+    * The system vardir is also used when Puppet is started as root before switching users and dropping privileges, which is what a WEBrick Puppet master does. Note that when Puppet master is running as a Rack application, the `config.ru` file must explicitly set `--vardir` to the system vardir. The example `config.ru` file provided with the Puppet source does this.
 
 The system vardir is the most common, since Puppet generally runs as a service with administrator privileges and the admin commands (like `puppet cert`) must be run with `sudo`.
 
@@ -77,7 +77,7 @@ The default layout of the vardir is as follows. Most of the files and directorie
 * [`lib/facter` (`factpath`)][factpath]
 * [`facts` (`factpath`)][factpath]
 * [`facts.d` (`pluginfactdest`)][pluginfactdest]
-* [`lib` (`libdir`)][libdir] (also [plugindest][]) --- Puppet uses this as a cache for plugins (custom facts, types and providers, functions) synced from a puppet master. It shouldn't be directly modified by the user. It can be safely deleted, and the plugins will be restored on the next Puppet run.
+* [`lib` (`libdir`)][libdir] (also [plugindest][]) --- Puppet uses this as a cache for plugins (custom facts, types and providers, functions) synced from a Puppet master. It shouldn't be directly modified by the user. It can be safely deleted, and the plugins will be restored on the next Puppet run.
 * [`puppet-module` (`module_working_dir`)][module_working_dir]
     * [`skeleton` (`module_skeleton_dir`)][module_skeleton_dir]
 * [`log` (`logdir`)][logdir]
@@ -85,7 +85,7 @@ The default layout of the vardir is as follows. Most of the files and directorie
     * [`masterhttp.log` (`masterhttplog`)][masterhttplog]
     * [`puppetmaster.log` (`masterlog`)][masterlog]
     * [`puppetd.log` (`puppetdlog`)][puppetdlog]
-* [`reports` (`reportdir`)][reportdir] --- When the `store` report is enabled, a puppet master will store all reports received from agents as YAML files in this directory. These can be easily mined for analysis by an out-of-band process.
+* [`reports` (`reportdir`)][reportdir] --- When the `store` report is enabled, a Puppet master will store all reports received from agents as YAML files in this directory. These can be easily mined for analysis by an out-of-band process.
 * [`rrd` (`rrddir`)][rrddir]
 * [`run` (`rundir`)][rundir]
     * [`${run_mode}.pid` (`pidfile`)][pidfile]

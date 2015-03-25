@@ -423,7 +423,7 @@ Native types have lower-level access to the target system than defined types, an
 
 A named placeholder in a [manifest](#manifest) that represents a value. Variables in Puppet are similar to variables in other programming languages, and are indicated with a dollar sign (e.g. `$operatingsystem`) and assigned with the equals sign (e.g. `$myvariable = "something"`). Once assigned, variables cannot be reassigned within the same [scope](#scope); however, other local scopes can assign their own value to any variable name.
 
-[Facts](#fact) from [agent nodes](#agent) are represented as variables within Puppet manifests, and are automatically pre-assigned before compilation begins. There are also [several other special pre-assigned variables](/guides/faq.html#are-there-variables-available-other-than-those-provided-by-facter).
+[Facts](#fact) from [agent nodes](#agent) are represented as variables within Puppet manifests, and are automatically pre-assigned before compilation begins. There are also [several other special pre-assigned variables](/puppet/latest/reference/lang_facts_and_builtin_vars.html).
 
 ### variable scoping
 

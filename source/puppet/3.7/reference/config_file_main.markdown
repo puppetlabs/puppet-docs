@@ -15,7 +15,7 @@ canonical: "/puppet/latest/reference/config_file_main.html"
 [ssldir]: /references/3.7.latest/configuration.html#ssldir
 [dir_environments]: ./environments.html
 
-The `puppet.conf` file is Puppet's main config file. It configures all of the Puppet commands and services, including puppet agent, puppet master, puppet apply, and puppet cert. Nearly all of the settings listed in the [configuration reference][conf_ref] can be set in puppet.conf.
+The `puppet.conf` file is Puppet's main config file. It configures all of the Puppet commands and services, including Puppet agent, Puppet master, Puppet apply, and Puppet cert. Nearly all of the settings listed in the [configuration reference][conf_ref] can be set in puppet.conf.
 
 It resembles a standard INI file, with a few syntax extensions. Settings may go into application-specific sections, or into a `[main]` section that affects all applications.
 
@@ -35,19 +35,21 @@ The location of the `confdir` varies; it depends on the OS, Puppet distribution,
 
 ## Example
 
+The below example is something you might see with a fresh install of Puppet Enterprise 3.7.
+
     # Settings in [main] are used if a more specific section doesn't set a value.
     [main]
         certname = puppetmaster01.example.com
         logdir = /var/log/pe-puppet
         rundir = /var/run/pe-puppet
-        modulepath = /etc/puppetlabs/puppet/modules:/opt/puppet/share/puppet/modules
+        basemodulepath = /etc/puppetlabs/puppet/environments/production/modules:/opt/puppet/share/puppet/modules
         server = puppet.example.com
         user  = pe-puppet
         group = pe-puppet
         archive_files = true
         archive_file_server = puppet.example.com
 
-    # This section is used by the puppet master and puppet cert applications.
+    # This section is used by the Puppet master and Puppet cert applications.
     [master]
         certname = puppetmaster01.example.com
         dns_alt_names = puppetmaster01,puppetmaster01.example.com,puppet,puppet.example.com
@@ -62,7 +64,7 @@ The location of the `confdir` varies; it depends on the OS, Puppet distribution,
         storeconfigs = true
         autosign = true
 
-    # This section is used by the puppet agent application.
+    # This section is used by the Puppet agent application.
     [agent]
         report = true
         classfile = $vardir/classes.txt
@@ -95,9 +97,9 @@ As soon as a new config section `[name]` appears in the file, the former config 
 Puppet uses four **primary config sections:**
 
 * `main` is the global section used by all commands and services. It can be overridden by the other sections.
-* `master` is used by the puppet master service and the puppet cert command.
-* `agent` is used by the puppet agent service.
-* `user` is used by the puppet apply command, as well as many of the less common [Puppet subcommands][subcommands].
+* `master` is used by the Puppet master service and the Puppet cert command.
+* `agent` is used by the Puppet agent service.
+* `user` is used by the Puppet apply command, as well as many of the less common [Puppet subcommands][subcommands].
 
 Puppet will prefer to use settings from one of the three application-specific sections (`master`, `agent`, or `user`). If it doesn't find a setting in the application section, it will use the value from `main`. (If `main` doesn't set one, it will fall back to the default value.)
 
@@ -109,7 +111,7 @@ Puppet will prefer to use settings from one of the three application-specific se
 
 If you are using [config file environments][conf_environments], each environment can have its own config section. See the [page on config file environments][conf_environments] for details.
 
-If it exists, the environment config section for the active environment always has highest priority. That is, it will override settings from the `master` section while the puppet master is serving agents assigned to that environment.
+If it exists, the environment config section for the active environment always has highest priority. That is, it will override settings from the `master` section while the Puppet master is serving agents assigned to that environment.
 
 ### Comment Lines
 
@@ -160,7 +162,7 @@ You generally shouldn't do this, as the defaults are good for most users. Howeve
 The allowed keys in the hash are `owner`, `group`, and `mode`. There are only two valid values for the `owner` and `group` keys:
 
 * `root` --- the root or Administrator user or group should own the file.
-* `service` --- the user or group that the Puppet service is running as should own the file. (The service's user and group are specified by the `user` and `group` settings. On a puppet master running open source Puppet, these default to `puppet`;  on Puppet Enterprise they default to `pe-puppet`.)
+* `service` --- the user or group that the Puppet service is running as should own the file. (The service's user and group are specified by the `user` and `group` settings. On a Puppet master running open source Puppet, these default to `puppet`;  on Puppet Enterprise they default to `pe-puppet`.)
 
 ### Interpolating Variables in Settings
 

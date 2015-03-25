@@ -4,7 +4,7 @@ title: "Configuration: Changing Settings on the Command Line"
 canonical: "/puppet/latest/reference/config_set.html"
 ---
 
-<!-- TODO: replace these -->
+
 [config_sections]: ./config_file_main.html
 
 [puppet.conf]: ./config_file_main.html

@@ -30,7 +30,7 @@ Puppet's windows service component also writes to the `windows.log` within the s
 
 ### Installation
 
-The Puppet MSI package will not overwrite an existing entry in the puppet.conf file.  As a result, if you uninstall the package, then reinstall the package using a different puppet master hostname, Puppet won't actually apply the new value if the previous value still exists in [`<data directory>`][datadirectory]`\etc\puppet.conf`.
+The Puppet MSI package will overwrite an existing entry in the puppet.conf file.  As a result, if you uninstall the package, then reinstall the package using a different puppet master hostname, Puppet will apply the new value in [`<data directory>`][datadirectory]`\etc\puppet.conf`. Be sure to use the same master hostname when installing/upgrading.
 
 In general, we've taken the approach of preserving configuration data on the system when doing an upgrade, uninstall or reinstall.
 
@@ -184,7 +184,7 @@ Windows services support a short name and a display name. Make sure to use the s
 
     The Puppet Forge uses an SSL certificate signed by the GeoTrust Global CA certificate. Newly provisioned Windows nodes may not have that CA in their root CA store yet.
 
-    To resolve this and enable the `puppet module` subcommand on Windows nodes, do _one_ of the following:
+    **You have two options for fixing this. Choose one:**
 
     * Run Windows Update and fetch all available updates, then visit <https://forge.puppetlabs.com> in your web browser. The web browser will notice that the GeoTrust CA is whitelisted for automatic download, and will add it to the root CA store.
     * Download the "GeoTrust Global CA" certificate from [GeoTrust's list of root certificates](https://www.geotrust.com/resources/root-certificates/) and manually install it by running `certutil -addstore Root GeoTrust_Global_CA.pem`.
@@ -216,10 +216,6 @@ Windows services support a short name and a display name. Make sure to use the s
 * "`err: getaddrinfo: The storage control blocks were destroyed.`"
 
     This error can occur when the agent cannot resolve a DNS name into an IP address (for example the `server`, `ca_server`, etc properties). To verify that there is a DNS issue, check that you can run `nslookup <dns>`. If this fails, there is a problem with the DNS settings on the Windows agent (for example, the primary dns suffix is not set). See <http://technet.microsoft.com/en-us/library/cc959322.aspx>
-
-* "`err: /Stage[main]//Group[mygroup]/members: change from     to Administrators failed: Add OLE error code:8007056B in <Unknown> <No Description> HRESULT error code:0x80020009 Exception occurred.`"
-
-    This error will occur when attempting to add a group as a member of another local group, i.e. nesting groups. Although Active Directory supports <a href="http://msdn.microsoft.com/en-us/library/cc246068(v=prot.13).aspx">nested groups</a> for certain types of domain group accounts, Windows does not support nesting of local group accounts. As a result, you must only specify user accounts as members of a group.
 
 * "`err: /Stage[main]//Package[7zip]/ensure: change from absent to present failed: Execution of 'msiexec.exe /qn /norestart /i "c:\\7z920.exe"' returned 1620: T h i s   i n s t a l l a t i o n   p a c k a g e   c o u l d   n o t   b e   o p e n e d .  C o n t a c t   t h e   a p p l i c a t i o n   v e n d o r   t o   v e r i f y   t h a t   t h i s   i s  a   v a l i d   W i n d o w s   I n s t a l l e r   p a c k a g e .`"
 

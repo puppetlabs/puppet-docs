@@ -76,7 +76,7 @@ The Inventory Service
 
 ### Now
 
-It's possible to query fact information from the Puppet master using the [inventory service][] API. This requires you to connect the puppet master to a database using [several related settings](./deprecated_settings.html#inventory-service-settings), and open some routes in [auth.conf][]. Once you've done that, you can:
+It's possible to query fact information from the Puppet master using the [inventory service][] API. This requires you to connect the Puppet master to a database using [several related settings](./deprecated_settings.html#inventory-service-settings), and open some routes in [auth.conf][]. Once you've done that, you can:
 
 - Use the `/facts` and `/facts_search` HTTP API endpoints
 - Use the [`puppet facts upload`](./deprecated_command.html#puppet-facts-upload) and [`puppet facts find --terminus rest`](./deprecated_command.html#puppet-facts-find---terminus-rest) commands
@@ -131,7 +131,7 @@ YAML in HTTP API Calls
 
 ### Now
 
-Although Puppet agent only uses JSON (or PSON) when communicating with the Puppet master server, the master's HTTPS API will accept requests from other clients that expect YAML (including older puppet agent versions).
+Although Puppet agent only uses JSON (or PSON) when communicating with the Puppet master server, the master's HTTPS API will accept requests from other clients that expect YAML (including older Puppet agent versions).
 
 * The master will gracefully handle requests that set a `Content-Type: yaml` header and include a YAML data payload.
 * If a request sets the `Accept: yaml` header, the master will respond with YAML data.

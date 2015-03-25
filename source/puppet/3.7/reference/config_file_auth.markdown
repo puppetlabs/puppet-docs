@@ -11,7 +11,7 @@ Access to Puppet's HTTPS API is configured in `auth.conf`.
 
 ## About Puppet's HTTPS API
 
-When running in the standard agent/master arrangement, puppet agent nodes receive all of their configurations by contacting the puppet master over HTTPS. In general, a single configuration run includes:
+When running in the standard agent/master arrangement, Puppet agent nodes receive all of their configurations by contacting the Puppet master over HTTPS. In general, a single configuration run includes:
 
 * Fetching a node object (to read the node's environment)
 * Fetching plugins
@@ -19,9 +19,9 @@ When running in the standard agent/master arrangement, puppet agent nodes receiv
 * Fetching file metadata and contents while applying the catalog
 * Submitting a report after applying the catalog
 
-All of these are provided as HTTPS services (sometimes called "endpoints") by the puppet master server. Additionally, the puppet master provides other services, some of which are used less frequently by agent nodes (such as the CA services) and some of which shouldn't be used by agent nodes at all (such as the `certificate_status` service, which can sign and revoke certificates).
+All of these are provided as HTTPS services (sometimes called "endpoints") by the Puppet master server. Additionally, the Puppet master provides other services, some of which are used less frequently by agent nodes (such as the CA services) and some of which shouldn't be used by agent nodes at all (such as the `certificate_status` service, which can sign and revoke certificates).
 
-Since not all agent nodes should have access to all services, and since certain services should have restricted access (for example, nodes should not be able to request some other node's configuration catalog), the puppet master keeps a list of access rules for all of its HTTPS services. These rules can be edited in `auth.conf`.
+Since not all agent nodes should have access to all services, and since certain services should have restricted access (for example, nodes should not be able to request some other node's configuration catalog), the Puppet master keeps a list of access rules for all of its HTTPS services. These rules can be edited in `auth.conf`.
 
 ## Location
 

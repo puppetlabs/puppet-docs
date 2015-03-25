@@ -85,7 +85,7 @@ If you run the `reports:prune` task without any arguments, it will display furth
 Database Backups
 ----------------
 
-You can back up and restore your PE databases by using the standard [PostgreSQL tool, `pg dump`](http://www.postgresql.org/docs/9.2/static/app-pgdump.html). Best practices recommend hourly local backups and backups to a remote system nightly for the `console`, `console_auth` and `puppetdb` databases, or as dictated by your company policy.
+You can back up and restore your PE databases by using the standard [PostgreSQL tool, `pg dump`](http://www.postgresql.org/docs/9.2/static/app-pgdump.html). At a minimum, we recommend nightly backups to a remote system for the console, console_auth, and PuppetDB databases, or as dictated by your company policy.
 
 Providing comprehensive documentation about backing up and restoring PostgreSQL databases is beyond the scope of this guide, but the following commands should provide you enough guidance to perform back ups and restorations of your PE databases.
 
@@ -134,7 +134,7 @@ Instead, you should use the console to make changes to the parameters of the `pe
 
 > **Warning**: This procedure will enable insecure access to the PuppetDB instance on your server.
 
-If you are unfamiliar with editing class parameters in the console, refer to [Editing Class Parameters on Nodes](/pe/latest/console_classes_groups.html#editing-class-parameters-on-nodes).
+If you are unfamiliar with editing class parameters in the console, refer to [Editing Class Parameters on Nodes](./console_classes_groups.html#editing-class-parameters-on-nodes).
 
 
 * * * 

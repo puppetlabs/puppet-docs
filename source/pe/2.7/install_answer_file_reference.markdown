@@ -117,13 +117,7 @@ These answers are only needed if you are installing the console role.
 : **String** --- The password for the console's admin user. Must be longer than eight characters.
 
 `q_puppet_enterpriseconsole_smtp_host`
-: **String** -- The SMTP server with which to email account activation codes to new console users. <!-- These related answers all appear to be inert, and are never read by the installer:
-q_puppet_enterpriseconsole_smtp_password
-q_puppet_enterpriseconsole_smtp_port
-q_puppet_enterpriseconsole_smtp_use_tls
-q_puppet_enterpriseconsole_smtp_user_auth
-q_puppet_enterpriseconsole_smtp_username
--->
+: **String** -- The SMTP server with which to email account activation codes to new console users. 
 
 `q_puppet_enterpriseconsole_inventory_certname`
 : **String** --- An identifying string for the inventory service. This ID must be unique across your entire site. Only needed if you are _not_ installing the puppet master role on the console server.

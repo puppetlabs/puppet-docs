@@ -1,0 +1,342 @@
+---
+layout: default
+title: "Resource Ordering ～ リソースの順序性"
+canonical: "/ja/learning/ordering_ja.html"
+toc: false
+---
+
+<!-- copy from here -->
+
+<div class="translation-notes">
+  <p>訳注：このドキュメントは以下のURLにある&quot;Learning Puppet&quot;を日本語訳したものです。<br />
+    <a href="http://docs.puppetlabs.com/learning/ordering.html">http://docs.puppetlabs.com/learning/ordering.html</a></p>
+</div>
+
+
+<nav class="in-page" id="page-nav">
+<ol class="toc">
+  <li class="toc-lv2"><a href="#disorder">Disorder ～ 順不同</a>
+    <ol class="toc">
+   <li class="toc-lv3"><a href="#summary-of-this-page">Summary of This Page ～ まとめ</a></li>
+</ol></li>
+  <li class="toc-lv2"><a href="#metaparameters-resource-references-and-ordering">Metaparameters, Resource References, and Ordering ～ メタパラメータ、リソースの参照、リソースの順序性</a>
+    <ol class="toc">
+   <li class="toc-lv3"><a href="#before-and-require">Before and Require ～ BeforeとRequire</a></li>
+   <li class="toc-lv3"><a href="#notify-and-subscribe">Notify and Subscribe ～ NotifyとSubscribe</a></li>
+</ol></li>
+  <li class="toc-lv2"><a href="#chaining-arrows">Chaining Arrows ～ チェイニングアロー</a></li>
+  <li class="toc-lv2"><a href="#autorequire">Autorequire ～ 暗黙的な依存関係</a></li>
+  <li class="toc-lv2"><a href="#unrelated-resources-and-the-ordering-setting">Unrelated Resources and the ordering Setting ～ 関連のないリソースと順序設定</a></li>
+  <li class="toc-lv2"><a href="#example-sshd">Example: sshd　～ 例：sshd</a>
+    <ol class="toc">
+   <li class="toc-lv3"><a href="#prepare">Prepare　～ 準備</a></li>
+   <li class="toc-lv3"><a href="#manage">Manage ～ 管理</a></li>
+   <li class="toc-lv3"><a href="#break">Break ～ 破壊</a></li>
+   <li class="toc-lv3"><a href="#fix">Fix ～ 修復</a></li>
+</ol></li>
+  <li class="toc-lv2"><a href="#packagefileservice">Package/File/Service ～ パッケージ/ファイル/サービス</a>
+    <ol class="toc">
+   <li class="toc-lv3"><a href="#exercise-apache">Exercise: Apache ～ 例：Apache</a></li>
+</ol></li>
+  <li class="toc-lv2"><a href="#next">Next ～ 次に</a></li>
+</ol></nav>   
+    
+    
+ <h2 id="disorder">Disorder ～ 順不同</h2>
+
+<p>前章のマニフェストを振り返ってみましょう。</p>
+
+<div class="highlight"><pre><code class="ruby">    <span class="c1"># /root/training-manifests/2.file.pp</span>
+
+    <span class="n">file</span> <span class="p">{</span><span class="s1">&#39;/tmp/test1&#39;</span><span class="p">:</span>
+      <span class="k">ensure</span>  <span class="o">=&gt;</span> <span class="n">present</span><span class="p">,</span>
+      <span class="n">content</span> <span class="o">=&gt;</span> <span class="s2">&quot;Hi.&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="n">file</span> <span class="p">{</span><span class="s1">&#39;/tmp/test2&#39;</span><span class="p">:</span>
+      <span class="k">ensure</span> <span class="o">=&gt;</span> <span class="n">directory</span><span class="p">,</span>
+      <span class="n">mode</span>   <span class="o">=&gt;</span> <span class="mi">644</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="n">file</span> <span class="p">{</span><span class="s1">&#39;/tmp/test3&#39;</span><span class="p">:</span>
+      <span class="k">ensure</span> <span class="o">=&gt;</span> <span class="n">link</span><span class="p">,</span>
+      <span class="n">target</span> <span class="o">=&gt;</span> <span class="s1">&#39;/tmp/test1&#39;</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="n">notify</span> <span class="p">{</span><span class="s2">&quot;I&#39;m notifying you.&quot;</span><span class="p">:}</span>
+    <span class="n">notify</span> <span class="p">{</span><span class="s2">&quot;So am I!&quot;</span><span class="p">:}</span>
+</code></pre>
+</div>
+
+<p>このマニフェストを実行した時、リソースは記述した順番どおりには実行されず、例えば<code>/tmp/test1</code>, <code>/tmp/test3</code>, <code>/tmp/test2</code>, <code>So am I!</code>, そして <code>I'm notifying you.</code>の順になってしまいました。</p>
+
+<p>前章で言及したように、Puppetはリソース毎に“状態の確認”と“問題の解消”のセットになっています。各リソースは1つの完結した文になっているので、同じ実行結果をもたらすスクリプトに比べると記載順序を重要視していません。</p>
+
+<p>より正確に言えば、リソースは独立しており互いに関連性がないため、順番を気にする必要自体がないのです。ただし、例外として他のリソースに依存するリソースも存在しています。例えばパッケージによってインストールされるサービスは、順番を考慮しなければなりません。それはパッケージがインストールされていなければ、サービスをあるべき状態にする事は不可能だからです。このサービスはパッケージに対して<em>依存関係</em>を持っていると言えます。</p>
+
+<p>そのため、Puppetではリソースの依存関係を表現する方法を提供しています。</p>
+
+<blockquote>
+  <h3 id="summary-of-this-page">Summary of This Page まとめ</h3>
+  
+  <ul>
+    <li>リソースの依存関係を<code>before</code>, <code>require</code>, <code>notify</code>, <code>subscribe</code>メタパラメータで組み込めるようになります。.</li>
+    <li>リソースの外側に<code>-&gt;</code> と <code>~&gt;</code>  の連鎖する矢印(チェイニングアロー）を用いることでも、依存関係を宣言できます。</li>
+    <li>依存関係は実施順序の制約(Bを実施する前にAを実施する)と、通知付き実施順序の制約（Bを実施する前にAを実施し、Aが変更したかどうかBに通知する)のいずれかになります。</li>
+    <li>Puppetの依存関係に関する挙動や文法は<a href="http://docs.puppetlabs.com/puppet/latest/reference/lang_relationships.html">Puppet言語リファレンス(英文)</a>にドキュメント化しています。</li>
+    <li><code>puppet.conf</code>にある<code>ordering</code>の項目では、依存関係の無いリソースが適用された際の実施順序を規定しています。</li>
+
+    </ul>
+</blockquote>
+
+<h2 id="metaparameters-resource-references-and-ordering">Metaparameters, Resource References, and Ordering ～ メタパラメータ、リソースの参照、リソースの順序性</h2>
+
+<p>ここに<code>file</code>リソースに依存した<code>notify</code>(通知)リソースがあります：</p>
+
+<div class="highlight"><pre><code class="ruby">    <span class="n">file</span> <span class="p">{</span><span class="s1">&#39;/tmp/test1&#39;</span><span class="p">:</span>
+      <span class="k">ensure</span>  <span class="o">=&gt;</span> <span class="n">present</span><span class="p">,</span>
+      <span class="n">content</span> <span class="o">=&gt;</span> <span class="s2">&quot;Hi.&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="n">notify</span> <span class="p">{</span><span class="s1">&#39;/tmp/test1 has already been synced.&#39;</span><span class="p">:</span>
+      <span class="nb">require</span> <span class="o">=&gt;</span> <span class="no">File</span><span class="o">[</span><span class="s1">&#39;/tmp/test1&#39;</span><span class="o">]</span><span class="p">,</span>
+    <span class="p">}</span>
+</code></pre>
+</div>
+
+<p>各リソース型は、それぞれが独自の属性セットを持っていますが、メタパラメータと呼ばれる全てのリソースで使える別の属性セットも持っています。(なぜ”メタ”なのかというと、Puppetの実行後にシステム上でなんらかの変化があるような属性ではなく、Puppetがどのように動作すべきかを記述するものだからです。)</p>
+
+<p>メタパラメータはリソースの適用順序別に４種類あります。</p>
+
+<ul>
+  <li><code>before</code></li>
+  <li><code>require</code></li>
+  <li><code>notify</code></li>
+  <li><code>subscribe</code></li>
+</ul>
+<p>これらは全て<a href="http://docs.puppetlabs.com/puppet/latest/reference/lang_datatypes.html#resource-references">リソースの参照(英文)</a>（もしくはその<a href="http://docs.puppetlabs.com/puppet/latest/reference/lang_datatypes.html#arrays">配列(英文)</a>）を値として受け入れます。リソースの参照は以下のように記述します。</p>
+
+<div class="highlight"><pre><code class="ruby">    <span class="no">Type</span><span class="o">[</span><span class="s1">&#39;title&#39;</span><span class="o">]</span>
+</code></pre>
+</div>
+
+<p>（“［］”で括ることと、リソース型の先頭を大文字とすることに注意してください！）</p>
+
+<blockquote>
+  <h4 id="aside-when-to-capitalize">Aside: When to Capitalize ～ 余談：いつ大文字で始めるか</h4>
+
+  <p>「小文字から型名を始めるのは新しいリソースを宣言する時だけ」と覚えましょう。その他の場面では常に大文字で始めます。<br />
+  </p>
+</blockquote>
+
+<h3 id="before-and-require">Before and Require ～ BeforeとRequire</h3>
+
+<p><code>before</code>と<code>require</code>はあるリソースが適用される前に適用しなければならないリソースを定義することで、単純な依存関係を構築します。  <code>before</code>は前段となるリソースで使用し、そのリソース「に」依存しているリソースを列挙します。  <code>require</code>は後段となるリソースで使用し、そのリソース「が」依存しているリソースを列挙します。</p>
+<p>これら二つのメタパラメータは同じ関係を違う書き方で表しているだけなので、
+  前述のサンプルを以下のように簡単に書くこともできます。</p>
+
+<div class="highlight"><pre><code class="ruby">    <span class="n">file</span> <span class="p">{</span><span class="s1">&#39;/tmp/test1&#39;</span><span class="p">:</span>
+      <span class="k">ensure</span>  <span class="o">=&gt;</span> <span class="n">present</span><span class="p">,</span>
+      <span class="n">content</span> <span class="o">=&gt;</span> <span class="s2">&quot;Hi.&quot;</span><span class="p">,</span>
+      <span class="n">before</span>  <span class="o">=&gt;</span> <span class="no">Notify</span><span class="o">[</span><span class="s1">&#39;/tmp/test1 has already been synced.&#39;</span><span class="o">]</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="n">notify</span> <span class="p">{</span><span class="s1">&#39;/tmp/test1 has already been synced.&#39;</span><span class="p">:}</span>
+</code></pre>
+</div>
+
+<h3 id="notify-and-subscribe">Notify and Subscribe ～ NotifyとSubscribe</h3>
+
+<p>いくつかのリソース型 (<code>service</code>、<code>exec</code>および<code>mount</code>)は<strong>リフレッシュ動作</strong>が可能です。このリフレッシュ動作はリソースによる環境の変更に反応して呼び出されます。	<code>service</code>リソースであれば、コンフィグファイルが変更された場合に再起動されることを意味します。<code>exec</code>リソースであれば、任意のユーザアカウントが変更された場合に実行されることを意味しているかもしれません。（なおリフレッシュ動作はPuppetによって実行されるので、Puppetが実行されている場合のみ実施されることに注意してください。）</p>
+<p><code>notify</code>と<code>subscribe</code>メタパラメータは<code>before</code>と<code>require</code>と同じ方法で依存関係を作りますが、<strong>通知関係</strong>も同時に作ります。前段となるリソースが最初に同期されるだけでなく、Puppetが何かの変更をリソースに加えた場合も、それに従って動作する後段となるリソースにもリフレッシュイベントを通知します。</p>
+<p>通知関係の例です。</p>
+
+<div class="highlight"><pre><code class="ruby">    <span class="n">file</span> <span class="p">{</span> <span class="s1">&#39;/etc/ssh/sshd_config&#39;</span><span class="p">:</span>
+      <span class="k">ensure</span> <span class="o">=&gt;</span> <span class="n">file</span><span class="p">,</span>
+      <span class="n">mode</span>   <span class="o">=&gt;</span> <span class="mi">600</span><span class="p">,</span>
+      <span class="n">source</span> <span class="o">=&gt;</span> <span class="s1">&#39;puppet:///modules/ssh/sshd_config&#39;</span><span class="p">,</span>
+    <span class="p">}</span>
+    <span class="n">service</span> <span class="p">{</span> <span class="s1">&#39;sshd&#39;</span><span class="p">:</span>
+      <span class="k">ensure</span>    <span class="o">=&gt;</span> <span class="n">running</span><span class="p">,</span>
+      <span class="n">enable</span>    <span class="o">=&gt;</span> <span class="kp">true</span><span class="p">,</span>
+      <span class="n">subscribe</span> <span class="o">=&gt;</span> <span class="no">File</span><span class="o">[</span><span class="s1">&#39;/etc/ssh/sshd_config&#39;</span><span class="o">]</span><span class="p">,</span>
+    <span class="p">}</span>
+</code></pre>
+</div>
+
+<p>この例では、Puppetがコンフィグファイルを編集した場合に<code>sshd</code>サービスがリスタートされます。</p>
+<h2 id="chaining-arrows">Chaining Arrows ～ チェイニングアロー</h2>
+
+<p>依存関係を宣言する最後の方法です。リソースの連鎖的な参照は<a href="http://docs.puppetlabs.com/puppet/latest/reference/lang_relationships.html#chaining-arrows">順序“-&gt;”と通知“~&gt;”(~はチルダです)(英文)</a>のチェイニングアロー(連鎖）によって記述されます。この矢印は時間の流れを表していると考えてください。矢印の後ろにあるリソースは、矢印が指しているリソースよりも先に同期されます。</p>
+
+<p>この例は前述の似たような例と同じ依存関係を作ります。</p>
+
+<div class="highlight"><pre><code class="ruby">    <span class="n">file</span> <span class="p">{</span><span class="s1">&#39;/tmp/test1&#39;</span><span class="p">:</span>
+      <span class="k">ensure</span>  <span class="o">=&gt;</span> <span class="n">present</span><span class="p">,</span>
+      <span class="n">content</span> <span class="o">=&gt;</span> <span class="s2">&quot;Hi.&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="n">notify</span> <span class="p">{</span><span class="s1">&#39;after&#39;</span><span class="p">:</span>
+      <span class="n">message</span> <span class="o">=&gt;</span> <span class="s1">&#39;/tmp/test1 has already been synced.&#39;</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="no">File</span><span class="o">[</span><span class="s1">&#39;/tmp/test1&#39;</span><span class="o">]</span> <span class="o">-&gt;</span> <span class="no">Notify</span><span class="o">[</span><span class="s1">&#39;after&#39;</span><span class="o">]</span>
+</code></pre>
+</div>
+
+<p>チェイニングアローは指し示す対象を複数の方法で指定することができます。この例では「リソースの参照」を使用していますが、同時に「リソース宣言」や<a href="http://docs.puppetlabs.com/puppet/latest/reference/lang_collectors.html">「リソースコレクタ」</a>を使う事もできます。</p>
+
+<p>Puppetでホワイトスペースは自由に調整できます。また、チェイニングアローもリソース宣言の間に使う事ができます。つまりチェイニングアローを間に挟むだけで、書かれた順番にリソースを同期させることができるということです。</p>
+
+<div class="highlight"><pre><code class="ruby">    <span class="n">file</span> <span class="p">{</span><span class="s1">&#39;/tmp/test1&#39;</span><span class="p">:</span>
+      <span class="k">ensure</span>  <span class="o">=&gt;</span> <span class="n">present</span><span class="p">,</span>
+      <span class="n">content</span> <span class="o">=&gt;</span> <span class="s2">&quot;Hi.&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+    <span class="o">-&gt;</span>
+    <span class="n">notify</span> <span class="p">{</span><span class="s1">&#39;after&#39;</span><span class="p">:</span>
+      <span class="n">message</span> <span class="o">=&gt;</span> <span class="s1">&#39;/tmp/test1 has already been synced.&#39;</span><span class="p">,</span>
+    <span class="p">}</span>
+</code></pre>
+</div>
+
+<p>再度前に見たのと同じ依存関係を作成してみましょう。</p>
+
+<h2 id="autorequire">Autorequire ～ 暗黙的な依存関係</h2>
+
+<p>いくつかのリソース型では、インスタンスが他のリソースに依存する事を通知して、暗黙的に依存関係を設定しています。一番よく利用するのはファイルと親ディレクトリの依存関係でしょう。ファイルとその親ディレクトリの両方がリソースとして管理される場合、Puppetはファイルを同期する前に必ず親ディレクトリを同期します。<strong>ここで新たなリソースが作成される事はありません</strong>。既に管理されているリソースの依存関係を追加するだけです。（訳注. 暗黙的な依存関係を設定するために、<strong>宣言していない親ディレクトリのリソースを自動的に作成する事は無い</strong>という意味で、暗黙的な依存関係は両方が宣言され管理されているのが条件です）</p>
+<p>暗黙的に依存関係が設定されることについてはあまり悩む必要はありません。これはかなり保守的なところなので、深く考えず、お決まりの手順に則ってください。暗黙的な依存があることを忘れて明示的に依存関係を記載してしまっても、Puppetコードは動作するでしょう。もし明示的な依存関係と暗黙的な依存関係が競合した場合、明示的な依存関係が優先されます。</p>
+<h2 id="unrelated-resources-and-the-ordering-setting">Unrelated Resources and the ordering Setting～関連のないリソースと順序設定</h2>
+
+<p>メタパラメータ、チェイニングアロー、及び暗黙的な依存関係のないリソースについては、どのような順序で適用しても問題ないものとみなしています。リソースの実行順序に関する論理的な制約は明示的に宣言されるべきものであり、例えば、単にマニフェストに現れた順番によって暗黙的に決められるようなものではない、という考え方です。</p>
+<p>これは <code>/etc/puppetlabs/puppet/puppet.conf</code>に<code>ordering = manifest</code>を設定する事で、明示的に依存関係が設定されていないリソースはPuppetのリソース適用の順番をマニフェストの<strong>記述順</strong>にできるという事です。前述のメタパラメータは全ての記述されたとおりに動作しますが、もしリソースの優先順位が与えられなかった場合（訳注.メタパラメータで依存関係を記述していない場合）は、マニフェストの最初に記述されたリソースが最初に適用されます。</p>
+
+
+
+<h2 id="example-sshd">Example: sshd ～ 例：sshd</h2>
+
+<p>ここまでの内容、ご理解頂けたことを期待していますが、かなり抽象的な内容だったと思います。いくつかの“hello world”的な具体的な事例で確実に理解して身につけましょう。それでは何か壊してみましょう！</p>
+<p>みなさんは学習用VMへ使い慣れたターミナルソフトを使ってSSHで接続しているでしょう。 ではもっとも悪いケースを想定したシナリオにしてみましょう。誰かが誤って間違った人(つまり、私たちのことですが)にsudoの権限を付与してしまい、このVMにSSHで接続するroot権限を失ってしまったとします。</p>
+<h3 id="prepare">Prepare～準備</h3>
+
+<p>では現在のsshdのコンフィグファイルをコピーしましょう。今後はこのコピーしたファイルを使用します。</p>
+
+<pre><code># cp /etc/ssh/sshd_config ~/examples/
+</code></pre>
+
+<p>このファイルを管理するためのPuppetコードを記述しましょう。</p>
+
+<div class="highlight"><pre><code class="ruby">    <span class="c1"># /root/examples/break_ssh.pp (incomplete)</span>
+    <span class="n">file</span> <span class="p">{</span> <span class="s1">&#39;/etc/ssh/sshd_config&#39;</span><span class="p">:</span>
+      <span class="k">ensure</span> <span class="o">=&gt;</span> <span class="n">file</span><span class="p">,</span>
+      <span class="n">mode</span>   <span class="o">=&gt;</span> <span class="mi">600</span><span class="p">,</span>
+      <span class="n">source</span> <span class="o">=&gt;</span> <span class="s1">&#39;/root/examples/sshd_config&#39;</span><span class="p">,</span>
+      <span class="c1"># And yes, that&#39;s the first time we&#39;ve used the &quot;source&quot; attribute. It accepts</span>
+      <span class="c1"># absolute local paths and puppet:/// URLs, which we&#39;ll say more about later.</span>
+    <span class="p">}</span>
+</code></pre>
+</div>
+
+<p>けれども、これでは必要な作業の半分しか満たしていません。コンフィグファイルを変更しても、サービスが再起動されるまでは反映されないからです。もしかすると反映されるのは今から数年後かもしれません・・・</p>
+
+<p>設定が変更される度にサービスの再起動を行うため、Puppetに<code>sshd</code>サービスを管理し、コンフィグファイルを反映するように伝えなければなりません。</p>
+
+<div class="highlight"><pre><code class="ruby">    <span class="c1"># /root/examples/break_ssh.pp</span>
+    <span class="n">file</span> <span class="p">{</span> <span class="s1">&#39;/etc/ssh/sshd_config&#39;</span><span class="p">:</span>
+      <span class="k">ensure</span> <span class="o">=&gt;</span> <span class="n">file</span><span class="p">,</span>
+      <span class="n">mode</span>   <span class="o">=&gt;</span> <span class="mi">600</span><span class="p">,</span>
+      <span class="n">source</span> <span class="o">=&gt;</span> <span class="s1">&#39;/root/examples/sshd_config&#39;</span><span class="p">,</span>
+    <span class="p">}</span>
+    <span class="n">service</span> <span class="p">{</span> <span class="s1">&#39;sshd&#39;</span><span class="p">:</span>
+      <span class="k">ensure</span>     <span class="o">=&gt;</span> <span class="n">running</span><span class="p">,</span>
+      <span class="n">enable</span>     <span class="o">=&gt;</span> <span class="kp">true</span><span class="p">,</span>
+      <span class="n">subscribe</span>  <span class="o">=&gt;</span> <span class="no">File</span><span class="o">[</span><span class="s1">&#39;/etc/ssh/sshd_config&#39;</span><span class="o">]</span><span class="p">,</span>
+    <span class="p">}</span>
+</code></pre>
+</div>
+
+<h3 id="manage">Manage ～ 管理</h3>
+
+<p>Puppetコードが作成できました。<code>/etc/puppetlabs/puppet/manifests/site.pp</code>にペーストし、Puppet agentがこれらのリソースを管理できるようにしましょう。</p>
+
+<h3 id="break">Break ～ 破壊</h3>
+
+<p>次にオリジナルの<code>/etc/ssh/sshd_config</code>ファイルを編集します。<code>#PermitRootLogin yes</code>というコメントアウトされた行を見つけて、コメントを削除してyesからnoに変更します。</p>
+
+<pre><code>PermitRootLogin no
+</code></pre>
+
+<p>それでは手動でsshdサービスを再起動しましょう。</p>
+
+<pre><code># service sshd restart
+</code></pre>
+
+<p>ここまでできたらログアウトします。するとrootとしてSSH経由でのログインができなくなります。確認してみましょう。（ただし仮想化ソフトウェアのコンソール経由でのログインは可能です）</p>
+
+<h3 id="fix">Fix ～ 修復</h3>
+
+<p>さきほどsite.ppに追加したリソースにより、Puppetは30分以内に自動的に問題を修復します。待ちきれないようなら、<a href="./ral_ja.html#logging-in">Puppet EnterpriseのWebコンソールにログイン</a>して、live managementのページで<a href="http://docs.puppetlabs.com/pe/latest/orchestration_puppet.html">puppet agent run(英文)</a>を実行してください。</p>
+
+<p><code>puppet run</code>コマンドが完了した後はコンソールでレポートが見れるようになります（変更ができた時は青のアイコンが表示されます）。SSH経由で再びrootとしてログインできるはずです。勝利です。</p>
+
+<blockquote>
+  <h4 id="no-changes-no-refresh">No Changes? No Refresh ～ 変更なければ反映なし</h4>
+
+  <p>最終的なマニフェストを適用する前にコンフィグファイルの変更を適用してしまうと、<br>
+    奇妙な状況に陥る場合があります。</p>
+  <p>Puppetは実行中、通知すべきリソースに変更があった場合のみリフレッシュイベントを送信します。<br>
+    そのためコンフィグファイルに変更を加えるfileリソースを記述し、一度マニフェストを適用してしまう(コンフィグファイルが変更済みになる)と、再度マニフェストを修正してもfileリソースに変更がない限りはリフレッシュされなくなってしまうのです。</p>
+  <p>これは通常、商用環境ではなく事前にマニフェストをテストしている環境でのみ起こり得ることです。もしこの状況に陥ってしまったのなら、<a href="http://docs.puppetlabs.com/pe/latest/console_navigating_live_mgmt.html#the-advanced-tasks-tab">Puppet Enterpriseのコンソールのlive managementページにある“Advanced Tasks”(英文)</a>から、”service tasks”セクションの“restart”アクションを使う事で、サービスを手動で再起動できます。</p>
+</blockquote>
+
+<h2 id="packagefileservice">Package/File/Service</h2>
+
+<p>今の例は商用のPuppetマニフェストのパターンでよく見られる典型的なPuppetコードにとても近いですが、まだ足りないところがあります。それではマニフェストを完成させましょう。 </p>
+<div class="highlight"><pre><code class="ruby">    <span class="c1"># /root/examples/break_ssh.pp</span>
+    <span class="n">package</span> <span class="p">{</span> <span class="s1">&#39;openssh-server&#39;</span><span class="p">:</span>
+      <span class="k">ensure</span> <span class="o">=&gt;</span> <span class="n">present</span><span class="p">,</span>
+      <span class="n">before</span> <span class="o">=&gt;</span> <span class="no">File</span><span class="o">[</span><span class="s1">&#39;/etc/ssh/sshd_config&#39;</span><span class="o">]</span><span class="p">,</span>
+    <span class="p">}</span>
+    <span class="n">file</span> <span class="p">{</span> <span class="s1">&#39;/etc/ssh/sshd_config&#39;</span><span class="p">:</span>
+      <span class="k">ensure</span> <span class="o">=&gt;</span> <span class="n">file</span><span class="p">,</span>
+      <span class="n">mode</span>   <span class="o">=&gt;</span> <span class="mi">600</span><span class="p">,</span>
+      <span class="n">source</span> <span class="o">=&gt;</span> <span class="s1">&#39;/root/examples/sshd_config&#39;</span><span class="p">,</span>
+    <span class="p">}</span>
+    <span class="n">service</span> <span class="p">{</span> <span class="s1">&#39;sshd&#39;</span><span class="p">:</span>
+      <span class="k">ensure</span>     <span class="o">=&gt;</span> <span class="n">running</span><span class="p">,</span>
+      <span class="n">enable</span>     <span class="o">=&gt;</span> <span class="kp">true</span><span class="p">,</span>
+      <span class="n">subscribe</span>  <span class="o">=&gt;</span> <span class="no">File</span><span class="o">[</span><span class="s1">&#39;/etc/ssh/sshd_config&#39;</span><span class="o">]</span><span class="p">,</span>
+    <span class="p">}</span>
+</code></pre>
+</div>
+
+<p>このpackage/file/serviceの組み合わせはPuppetでもっともよく使われるパターンのひとつです。<code>package</code>リソースはソフトウェアと、そのコンフィグファイルがインストールされていることを確認し、コンフィグファイルは<code>package</code>リソースに依存し、<code>service</code>リソースはコンフィグファイルの変更を反映するための記述を行います。</p>
+<p>このパターンの重要性を誇張して伝えるのは難しいですが、もしここで学ぶのをやめてしまっても、多くの作業ができるでしょう。</p>
+
+<blockquote>
+  <h3 id="exercise-apache">Exercise: Apache ～ 演習：Apache</h3>
+  
+  <p>Apacheの<a href="http://docs.puppetlabs.com/references/latest/type.html#package">パッケージ</a>をインストールするマニフェストを作成してみましょう。そしてApacheの<a href="http://docs.puppetlabs.com/references/latest/type.html#package">サービス</a>が動作している事を確認してください。ホストOSのWebブラウザから接続してApache welcome pageが表示される事を証明しましょう。</p>
+
+  <p><strong>追加課題：</strong>httpd.confを管理し、サービスに通知するようにしましょう。Apacheに特定バージョンを維持するように強制します。（メモ：これはOSのバージョン文字列のフォーマットを調べて、そのバージョンが有効になるようにします）。</p>
+  
+  <p>ヒント：</p>
+  
+  <ul>
+    <li>従来のRed Hat系（あなたのVM）とDebian系のLinuxシステムでは、OSのAptもしくはYumリポジトリからパッケージがインストールされます。システムツールはパッケージをどのように見つけてインストールするか知っていますが（特定バージョンのパッケージに限定することすらできます）、Puppetが知るべきは<code>ensure => installed</code>だけです。パッケージがどこにあるかは必要ありません。</li>
+    <li>パッケージおよび「serviceリソース」の名称はOSのネーミング規則に依存します。これはよくある話ですが、マニフェストを記述する前にそれぞれのローカル名称を調べる必要があるという事です。例えばApacheパッケージとサービスの名称はお使いのVMに乗っているCentOSではパッケージおよびサービスの名称は双方とも<code>httpd</code>です。</li>
+    <li>それぞれのリソース型で<code>ensure</code>の値を正しく使ってください。<code>package</code>、<code>file</code>、<code>service</code>の使い方は同じではありません。</li>
+    <li><a href="http://docs.puppetlabs.com/puppet_core_types_cheatsheet.pdf">虎の巻(英文)</a>と<a href="http://docs.puppetlabs.com/references/stable/type.html">型リファレンス(英文)</a>は役に立ちます。</li>
+    </ul>
+</blockquote>
+
+<h2 id="next">Next ～ 次に</h2>
+
+<p><strong>次の課題：</strong></p>
+
+<p>ここまでの学習でリソース間の依存関係を表現できるようになりました。<a href="./variables_ja.html">変数、facts、条件</a>によって外部の世界を意識したマニフェストを記述してみましょう。</p>
+
+<p><strong>Off-Road:</strong></p>
+
+<p>ここまででサービスの上から下まで管理できるようになりましたので、あなたのテスト用システム上にある重要なサービスを管理するのに挑戦してみましょう。<a href="http://info.puppetlabs.com/download-pe.html">Puppet Enterprise for freeをダウンロード</a>して、<a href="http://docs.puppetlabs.com/pe/latest/quick_start.html">the quick start guide</a>に従いインストール済の小さな環境を入手します。そしてpackage/file/serviceのパターンをpuppet masterの<code>/etc/puppetlabs/puppet/manifests/site.pp</code>ファイルで構築してみましょう。MySQL、Memcached、何にするかはあなたが決めてください。</p>
+
+<!-- to here -->

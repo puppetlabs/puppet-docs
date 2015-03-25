@@ -1,0 +1,414 @@
+---
+layout: default
+title: "Modules and Classes ～ モジュールとクラス"
+canonical: "/ja/learning/modules1_ja.html"
+toc: false
+---
+
+        <!-- copy from here -->
+        <div class="translation-notes">
+          <p>訳注：このドキュメントは以下のURLにある&quot;Learning Puppet&quot;を日本語訳したものです。<br />
+            <a href="http://docs.puppetlabs.com/learning/modules1.html">http://docs.puppetlabs.com/learning/modules1.html</a></p>
+        </div>
+        <nav class="in-page" id="page-nav">
+          <ol class="toc">
+            <li class="toc-lv2"><a href="#begin">Begin ～ はじめに</a></li>
+            <li class="toc-lv2"><a href="#the-end-of-the-one-huge-manifest">The End of the One Huge Manifest ～ 巨大マニフェストの終焉</a></li>
+            <li class="toc-lv2"><a href="#classes">Classes ～ クラス</a>
+              <ol class="toc">
+                <li class="toc-lv3"><a href="#defining-a-class">Defining a Class ～ クラスの定義</a></li>
+                <li class="toc-lv3"><a href="#declaring">Declaring ～ 宣言</a></li>
+              </ol>
+            </li>
+            <li class="toc-lv2"><a href="#modules">Modules ～ モジュール</a>
+              <ol class="toc">
+                <li class="toc-lv3"><a href="#the-modulepath">The Modulepath ～ モジュールパス</a></li>
+                <li class="toc-lv3"><a href="#module-structure">Module Structure ～ モジュール構造</a></li>
+                <li class="toc-lv3"><a href="#declaring-classes-from-modules">Declaring Classes From Modules ～ モジュールからのクラス宣言</a></li>
+              </ol>
+            </li>
+            <li class="toc-lv2"><a href="#more-about-declaring-classes">More About Declaring Classes ～ クラス宣言の補足</a>
+              <ol class="toc">
+                <li class="toc-lv3"><a href="#include">Include ～ インクルード</a></li>
+                <li class="toc-lv3"><a href="#resource-like-class-declarations">Resource-Like Class Declarations ～ リソースライクなクラス宣言</a></li>
+                <li class="toc-lv3"><a href="#the-pe-console">The PE Console ～ Puppet Enterprise Webコンソール</a></li>
+              </ol>
+            </li>
+            <li class="toc-lv2"><a href="#module-structure-part-2">Module Structure, Part 2 ～ モジュール構造パート2</a>
+              <ol class="toc">
+                <li class="toc-lv3"><a href="#the-other-subdirectories">The Other Subdirectories ～ その他のサブディレクトリ</a></li>
+                <li class="toc-lv3"><a href="#organizing-and-referencing-manifests">Organizing and Referencing Manifests ～ マニフェストの参照と構成</a></li>
+                <li class="toc-lv3"><a href="#organizing-and-referencing-files">Organizing and Referencing Files ～ ファイルの参照と構成</a></li>
+              </ol>
+            </li>
+            <li class="toc-lv2"><a href="#the-puppet-forge-how-to-avoid-writing-modules">The Puppet Forge: How to Avoid Writing Modules ～ Puppet Forge：モジュールを書かないために</a>
+              <ol class="toc">
+                <li class="toc-lv3"><a href="#the-puppet-module-subcommand">The Puppet Module Subcommand ～ Puppet Moduleコマンド</a></li>
+              </ol>
+            </li>
+            <li class="toc-lv2"><a href="#exercises">Exercises ～ 演習</a>
+              <ol class="toc">
+                <li class="toc-lv3"><a href="#exercise-apache-again">Exercise: Apache Again ～ 演習：Apache再び</a></li>
+              </ol>
+            </li>
+            <li class="toc-lv2"><a href="#next">Next ～ 次に</a></li>
+          </ol>
+        </nav>
+        <h2 id="begin">Begin ～ はじめに</h2>
+        <div class="highlight">
+          <pre><code class="ruby">    <span class="k">class</span> <span class="n">my_class</span> <span class="p">{</span>
+      <span class="n">notify</span> <span class="p">{</span><span class="s2">&quot;This actually did something&quot;</span><span class="p">:}</span>
+    <span class="p">}</span>
+</code></pre>
+        </div>
+        <p>このマニフェストは何もしません。</p>
+        <div class="highlight">
+          <pre><code class="ruby">    <span class="k">class</span> <span class="n">my_class</span> <span class="p">{</span>
+      <span class="n">notify</span> <span class="p">{</span><span class="s2">&quot;This actually did something&quot;</span><span class="p">:}</span>
+    <span class="p">}</span>
+
+    <span class="kp">include</span> <span class="n">my_class</span>
+</code></pre>
+        </div>
+        <p>こちらは実際に何かをしました。</p>
+        <p>どこが違うのでしょうか。</p>
+        <h2 id="the-end-of-the-one-huge-manifest">The End of the One Huge Manifest　～ 巨大マニフェストの終焉</h2>
+        <p>今の段階でもある程度はきれいで洗練されたマニフェストを書くことができますが、今まではそれらを1つのファイルに全て詰め込んでいました（<code>/etc/puppetlabs/puppet/manifests/site.pp</code>や、<code>puppet apply</code>コマンドで1回限りで使うマニフェストのいずれもそうでした）。</p>
+        <p>このやり方では、リソースの規模が大きくなるにつれて段々扱いづらくなってしまいます。3000行ものマニフェストをメンテナンスする姿が思い浮かんでいるかもしれませんが、そんな苦行は誰もしたくありません。論理的に関連したコードごとにファイルを分割し、必要に応じて名前で参照するほうがはるかに良い方法です。</p>
+        <p>Puppetにおいて、<strong>クラス</strong>はコードの塊を分割するための手法であり、<strong>モジュール</strong>はクラスを組織化して名前で参照するための手法です。</p>
+        <h2 id="classes">Classes ～ クラス</h2>
+        <p>クラスとは、1度作っておけば他の場所から呼び出すことができる、Puppetコードの名前付きブロックです。</p>
+        <ul>
+          <li>クラスを<strong>定義</strong>すると名前で利用できるようになりますが、その時点で自動的に内部のコードを評価するわけではありません。</li>
+          <li>クラスを<strong>宣言</strong>すると内部のコードを評価し、全てのリソースを適用します。</li>
+        </ul>
+        <p>もう少し単一のマニフェストファイル(1回限りのものかsite.ppのいずれか)で作業します。その後でコードを分割して追加のファイルにいれていきます。</p>
+        <h3 id="defining-a-class">Defining a Class ～ クラスの定義</h3>
+        <p>まずはクラスを<strong>定義</strong>しなければいけません。クラスは<code>class</code>キーワード、クラス名、波括弧、およびコードのブロックで構成します。</p>
+        <pre><code>class my_class {
+  ... puppet code ...
+}
+</code></pre>
+        <p>このコードブロックには何が入っているでしょうか。前章のNTP演習での解答はどうでしたか。少しだけ似ているべきです：</p>
+        <div class="highlight">
+          <pre><code class="ruby">    <span class="c1"># /root/examples/modules1-ntp1.pp</span>
+
+    <span class="k">class</span> <span class="n">ntp</span> <span class="p">{</span>
+      <span class="k">case</span> <span class="vg">$operatingsystem</span> <span class="p">{</span>
+        <span class="n">centos</span><span class="p">,</span> <span class="n">redhat</span><span class="p">:</span> <span class="p">{</span>
+          <span class="vg">$service_name</span> <span class="o">=</span> <span class="s1">&#39;ntpd&#39;</span>
+          <span class="vg">$conf_file</span>    <span class="o">=</span> <span class="s1">&#39;ntp.conf.el&#39;</span>
+        <span class="p">}</span>
+        <span class="n">debian</span><span class="p">,</span> <span class="n">ubuntu</span><span class="p">:</span> <span class="p">{</span>
+          <span class="vg">$service_name</span> <span class="o">=</span> <span class="s1">&#39;ntp&#39;</span>
+          <span class="vg">$conf_file</span>    <span class="o">=</span> <span class="s1">&#39;ntp.conf.debian&#39;</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+
+      <span class="n">package</span> <span class="p">{</span> <span class="s1">&#39;ntp&#39;</span><span class="p">:</span>
+        <span class="k">ensure</span> <span class="o">=&gt;</span> <span class="n">installed</span><span class="p">,</span>
+      <span class="p">}</span>
+      <span class="n">file</span> <span class="p">{</span> <span class="s1">&#39;ntp.conf&#39;</span><span class="p">:</span>
+        <span class="n">path</span>    <span class="o">=&gt;</span> <span class="s1">&#39;/etc/ntp.conf&#39;</span><span class="p">,</span>
+        <span class="k">ensure</span>  <span class="o">=&gt;</span> <span class="n">file</span><span class="p">,</span>
+        <span class="nb">require</span> <span class="o">=&gt;</span> <span class="no">Package</span><span class="o">[</span><span class="s1">&#39;ntp&#39;</span><span class="o">]</span><span class="p">,</span>
+        <span class="n">source</span>  <span class="o">=&gt;</span> <span class="s2">&quot;/root/examples/answers/${conf_file}&quot;</span>
+      <span class="p">}</span>
+      <span class="n">service</span> <span class="p">{</span> <span class="s1">&#39;ntp&#39;</span><span class="p">:</span>
+        <span class="nb">name</span>      <span class="o">=&gt;</span> <span class="vg">$service_name</span><span class="p">,</span>
+        <span class="k">ensure</span>    <span class="o">=&gt;</span> <span class="n">running</span><span class="p">,</span>
+        <span class="n">enable</span>    <span class="o">=&gt;</span> <span class="kp">true</span><span class="p">,</span>
+        <span class="n">subscribe</span> <span class="o">=&gt;</span> <span class="no">File</span><span class="o">[</span><span class="s1">&#39;ntp.conf&#39;</span><span class="o">]</span><span class="p">,</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+</code></pre>
+        </div>
+        <p>これでクラスの定義はできました!</p>
+        <blockquote>
+          <p>Note: こちらからNTPの基本的なコンフィグファイルをダウンロードできます： <a href="http://docs.puppetlabs.com/learning/files/examples/modules/ntp/files/ntp.conf.debian">Debianバージョン</a>, <a href="http://docs.puppetlabs.com/learning/files/examples/modules/ntp/files/ntp.conf.el">Red Hatバージョン</a></p>
+        </blockquote>
+        <blockquote>
+          <h4 id="aside-class-names">余談：クラス名</h4>
+          <p><a href="http://docs.puppetlabs.com/puppet/latest/reference/lang_reserved.html#classes-and-types">クラス名(英文)</a>は小文字から開始して、小文字、数字、アンダースコアを名前に含む事ができます。</p>
+          <p>クラス名はまたダブルコロン(<code>::</code>)を名前空間を分けることもできます（これは<a href="./variables_ja.html#variables">見覚えがある</a>でしょう）。名前空間は後述するモジュールレイアウトにマッピングする必要があります。</p>
+        </blockquote>
+        <blockquote>
+          <h4 id="aside-variable-scope">余談：変数のスコープ</h4>
+          <p>クラス定義は新たな変数のスコープを提供します。これは以下の2点を意味しています。</p>
+          <ul>
+            <li>クラスにアサインされた全ての変数は、クラスの外から短い変数名でアクセスする事はできません。クラスの外からクラス内の変数にアクセスするには完全修飾の変数名を使わなくてはなりません（例えば前述のntpクラスの場合は <code>$ntp::service_name</code>）。</li>
+            <li>既にグローバルスコープで使われている変数名を新しいローカル変数に割り当てる事ができます。例えば<code>$fqdn</code>という名前の新しいローカル変数が使えます。</li>
+          </ul>
+        </blockquote>
+        <h3 id="declaring">Declaring ～ 宣言</h3>
+        <p><em>定義</em>によるクラスの有効化と<em>宣言</em>によるクラスの評価について、どのように説明したか思い出してください。前述のマニフェストを適用してみれば、その動きが見られます。</p>
+        <pre><code># puppet apply /root/examples/modules1-ntp1.pp
+notice: Finished catalog run in 0.04 seconds
+</code></pre>
+        <p>…これは何もしませんでした。なぜならクラスを定義しただけだからです。</p>
+        <p>クラスを<strong>宣言</strong>するには、クラスの名前を指定して<code>include</code>関数を使います。</p>
+        <div class="highlight">
+          <pre><code class="ruby">    <span class="c1"># /root/examples/modules1-ntp2.pp</span>
+
+    <span class="k">class</span> <span class="n">ntp</span> <span class="p">{</span>
+      <span class="k">case</span> <span class="vg">$operatingsystem</span> <span class="p">{</span>
+        <span class="n">centos</span><span class="p">,</span> <span class="n">redhat</span><span class="p">:</span> <span class="p">{</span>
+          <span class="vg">$service_name</span> <span class="o">=</span> <span class="s1">&#39;ntpd&#39;</span>
+          <span class="vg">$conf_file</span>    <span class="o">=</span> <span class="s1">&#39;ntp.conf.el&#39;</span>
+        <span class="p">}</span>
+        <span class="n">debian</span><span class="p">,</span> <span class="n">ubuntu</span><span class="p">:</span> <span class="p">{</span>
+          <span class="vg">$service_name</span> <span class="o">=</span> <span class="s1">&#39;ntp&#39;</span>
+          <span class="vg">$conf_file</span>    <span class="o">=</span> <span class="s1">&#39;ntp.conf.debian&#39;</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+
+      <span class="n">package</span> <span class="p">{</span> <span class="s1">&#39;ntp&#39;</span><span class="p">:</span>
+        <span class="k">ensure</span> <span class="o">=&gt;</span> <span class="n">installed</span><span class="p">,</span>
+      <span class="p">}</span>
+      <span class="n">file</span> <span class="p">{</span> <span class="s1">&#39;ntp.conf&#39;</span><span class="p">:</span>
+        <span class="n">path</span>    <span class="o">=&gt;</span> <span class="s1">&#39;/etc/ntp.conf&#39;</span><span class="p">,</span>
+        <span class="k">ensure</span>  <span class="o">=&gt;</span> <span class="n">file</span><span class="p">,</span>
+        <span class="nb">require</span> <span class="o">=&gt;</span> <span class="no">Package</span><span class="o">[</span><span class="s1">&#39;ntp&#39;</span><span class="o">]</span><span class="p">,</span>
+        <span class="n">source</span>  <span class="o">=&gt;</span> <span class="s2">&quot;/root/examples/answers/${conf_file}&quot;</span>
+      <span class="p">}</span>
+      <span class="n">service</span> <span class="p">{</span> <span class="s1">&#39;ntp&#39;</span><span class="p">:</span>
+        <span class="nb">name</span>      <span class="o">=&gt;</span> <span class="vg">$service_name</span><span class="p">,</span>
+        <span class="k">ensure</span>    <span class="o">=&gt;</span> <span class="n">running</span><span class="p">,</span>
+        <span class="n">enable</span>    <span class="o">=&gt;</span> <span class="kp">true</span><span class="p">,</span>
+        <span class="n">subscribe</span> <span class="o">=&gt;</span> <span class="no">File</span><span class="o">[</span><span class="s1">&#39;ntp.conf&#39;</span><span class="o">]</span><span class="p">,</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="kp">include</span> <span class="n">ntp</span>
+</code></pre>
+        </div>
+        <p>今回、Puppetは全てのリソースを実際に適用します。</p>
+        <pre><code># puppet apply /root/examples/ntp-class2.pp
+
+notice: /Stage[main]/Ntp/File[ntp.conf]/content: content changed '{md5}5baec8bdbf90f877a05f88ba99e63685' to '{md5}dc20e83b436a358997041a4d8282c1b8'
+notice: /Stage[main]/Ntp/Service[ntp]/ensure: ensure changed 'stopped' to 'running'
+notice: /Stage[main]/Ntp/Service[ntp]: Triggered 'refresh' from 1 events
+notice: Finished catalog run in 0.76 seconds
+</code></pre>
+        <p>クラスは定義され、宣言されました。</p>
+        <h2 id="modules">Modules ～ モジュール</h2>
+        <p>ここまでクラスをどのように定義して宣言するかを学んできましたが、まだ一つのマニフェストに全てを詰め込んでいるので、とても使いにくいです。</p>
+        <p>マニフェストを分割して理解しやすい構造にする手助けのため、Puppetはモジュールと<strong>モジュールの自動ローダー</strong>を使っています。</p>
+        <p>自動ローダーは以下のように動作します。</p>
+        <ul>
+          <li>モジュールとはあらかじめ決められたフォーマットに整形され、特定の場所に配置された、ファイルを含む単なるディレクトリです。モジュールに含まれるマニフェストファイルは命名規約に従っています。</li>
+          <li>Puppetは特定の場所（もしくは場所のリスト）にあるモジュールを探します。このディレクトリセットは<a href="http://docs.puppetlabs.com/references/stable/configuration.html#modulepath">構成可能な設定(英文)</a>である<code>modulepath</code>として知られています。</li>
+          <li>クラスがモジュール内で定義されると、あらゆるマニフェストの中でそのクラスを名前で宣言する事ができます。Puppetは自動的にクラス定義に含まれるマニフェストを見つけて読み込みます。</li>
+        </ul>
+        <p>これはたくさんのモジュールを洗練されたPuppetコードで持てる事を意味しており、site.ppマニフェストは以下のようになります。</p>
+        <div class="highlight">
+          <pre><code class="ruby">    <span class="c1"># /etc/puppetlabs/puppet/manifests/site.pp</span>
+    <span class="kp">include</span> <span class="n">ntp</span>
+    <span class="kp">include</span> <span class="n">apache</span>
+    <span class="kp">include</span> <span class="n">mysql</span>
+    <span class="kp">include</span> <span class="n">mongodb</span>
+    <span class="kp">include</span> <span class="n">build_essential</span>
+</code></pre>
+        </div>
+        <p>機能の実装をモジュールに押し込めることで、メインのマニフェストをとても小さく、より読みやすく、またポリシーに焦点が当てられノードで何が設定されているのか一目瞭然なものにすることができます。また、もし何かしら詳細な実装が必要ならば、モジュールを掘り下げていく事ができます。</p>
+        <h3 id="the-modulepath">The Modulepath ～ モジュールパス</h3>
+        <p>モジュールを作成する前に、モジュールをどこに置くのか知っておく必要があります。Puppetがモジュールを探すためのディレクトリセットである<code>modulepath</code>を見つけましょう。</p>
+        <p>Puppetのコンフィグファイルはpuppet.confと呼ばれ、Puppet Enterpriseでは<code>/etc/puppetlabs/puppet/puppet.conf</code>に配置されています。</p>
+        <pre><code># less /etc/puppetlabs/puppet/puppet.conf
+
+[main]
+    vardir = /var/opt/lib/pe-puppet
+    logdir = /var/log/pe-puppet
+    rundir = /var/run/pe-puppet
+    modulepath = /etc/puppetlabs/puppet/modules:/opt/puppet/share/puppet/modules
+    user = pe-puppet
+    group = pe-puppet
+    archive_files = true
+    archive_file_server = learn.localdomain
+
+[master]
+    ... etc.
+</code></pre>
+        <p>puppet.confのフォーマットは<a href="http://docs.puppetlabs.com/guides/configuring.html">構成ガイド(英文)</a>に解説があります。簡単に言えば、<code>[main]</code>セクションの設定は(<code>puppet master</code>コマンド、 <code>puppet apply</code>コマンド、 <code>puppet agent</code>コマンドなど)全てに対して適用される設定で、<code>modulepath</code>の値をコロンで区切られた2つのディレクトリに設定します。</p>
+        <ul>
+          <li><code>/etc/puppetlabs/puppet/modules</code></li>
+          <li><code>/opt/puppet/share/puppet/modules</code></li>
+        </ul>
+        <p>最初の<code>/etc/puppetlabs/puppet/modules</code>が主に使うモジュールのディレクトリです（もう1つはPuppet Enterpriseで使う機能の特別なモジュールが含まれています。これらを見る事はできますが、中身を変更したり追加したりすべきではありません）。</p>
+        <blockquote>
+          <h4 id="aside-configprint">余談：Configprintオプション</h4>
+          <p><code>modulepath</code>の値は<code>puppet master --configprint modulepath</code>コマンドを実行しても取得できます。この<code>--configprint</code>オプションPuppetに<a href="http://docs.puppetlabs.com/references/latest/configuration.html">設定(英文)</a>されている任意の値を取得できます。<code>master</code>サブコマンドを使って<code>puppet master</code>コマンドが使う値を取得できることを確認しておきましょう。</p>
+        </blockquote>
+        <h3 id="module-structure">Module Structure ～ モジュールの構造</h3>
+        <ul>
+          <li>モジュールはディレクトリです。</li>
+          <li>モジュールの名前はディレクトリの名前である必要があります。</li>
+          <li>ディレクトリには<code>manifests</code>ディレクトリがあり、そこには幾つもの.ppファイルを入れることができます。</li>
+          <li><code>manifests</code>ディレクトリには<code>init.pp</code>ファイルを常に配置すべきです。</li>
+          <ul>
+            <li>このファイルはただ一つのクラス定義を含まなくてはなりません。そのクラス名はモジュール名と同じでなくてはなりません。</li>
+          </ul>
+        </ul>
+        <p>もっと知りたい事があるかも知れませんが、これだけで始められます。それではntpクラスを実際のモジュールにしましょう。</p>
+        <pre><code># cd /etc/puppetlabs/puppet/modules
+# mkdir -p ntp/manifests
+# touch ntp/manifests/init.pp
+</code></pre>
+        <p>このinit.ppファイルを編集して、ntpクラスの定義をペーストしてください。<code>include</code>ステーメントはここでは必要ありませんのでペーストしないように注意してください。</p>
+        <div class="highlight">
+          <pre><code class="ruby">    <span class="c1"># /etc/puppetlabs/puppet/modules/ntp/manifests/init.pp</span>
+
+    <span class="k">class</span> <span class="n">ntp</span> <span class="p">{</span>
+      <span class="k">case</span> <span class="vg">$operatingsystem</span> <span class="p">{</span>
+        <span class="n">centos</span><span class="p">,</span> <span class="n">redhat</span><span class="p">:</span> <span class="p">{</span>
+          <span class="vg">$service_name</span> <span class="o">=</span> <span class="s1">&#39;ntpd&#39;</span>
+          <span class="vg">$conf_file</span>    <span class="o">=</span> <span class="s1">&#39;ntp.conf.el&#39;</span>
+        <span class="p">}</span>
+        <span class="n">debian</span><span class="p">,</span> <span class="n">ubuntu</span><span class="p">:</span> <span class="p">{</span>
+          <span class="vg">$service_name</span> <span class="o">=</span> <span class="s1">&#39;ntp&#39;</span>
+          <span class="vg">$conf_file</span>    <span class="o">=</span> <span class="s1">&#39;ntp.conf.debian&#39;</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+
+      <span class="n">package</span> <span class="p">{</span> <span class="s1">&#39;ntp&#39;</span><span class="p">:</span>
+        <span class="k">ensure</span> <span class="o">=&gt;</span> <span class="n">installed</span><span class="p">,</span>
+      <span class="p">}</span>
+      <span class="n">file</span> <span class="p">{</span> <span class="s1">&#39;ntp.conf&#39;</span><span class="p">:</span>
+        <span class="n">path</span>    <span class="o">=&gt;</span> <span class="s1">&#39;/etc/ntp.conf&#39;</span><span class="p">,</span>
+        <span class="k">ensure</span>  <span class="o">=&gt;</span> <span class="n">file</span><span class="p">,</span>
+        <span class="nb">require</span> <span class="o">=&gt;</span> <span class="no">Package</span><span class="o">[</span><span class="s1">&#39;ntp&#39;</span><span class="o">]</span><span class="p">,</span>
+        <span class="n">source</span>  <span class="o">=&gt;</span> <span class="s2">&quot;/root/examples/answers/${conf_file}&quot;</span>
+      <span class="p">}</span>
+      <span class="n">service</span> <span class="p">{</span> <span class="s1">&#39;ntp&#39;</span><span class="p">:</span>
+        <span class="nb">name</span>      <span class="o">=&gt;</span> <span class="vg">$service_name</span><span class="p">,</span>
+        <span class="k">ensure</span>    <span class="o">=&gt;</span> <span class="n">running</span><span class="p">,</span>
+        <span class="n">enable</span>    <span class="o">=&gt;</span> <span class="kp">true</span><span class="p">,</span>
+        <span class="n">subscribe</span> <span class="o">=&gt;</span> <span class="no">File</span><span class="o">[</span><span class="s1">&#39;ntp.conf&#39;</span><span class="o">]</span><span class="p">,</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+</code></pre>
+        </div>
+        <h3 id="declaring-classes-from-modules">Declaring Classes From Modules ～ モジュールからのクラス宣言</h3>
+        <p>これで動作するモジュールが手に入りましたので、site.ppファイルを編集できます。もしsite.ppに何かしらのNTPに関連したリソースが残っていたら必ず削除して、以下の1行だけを追加してください。</p>
+        <pre><code>include ntp
+</code></pre>
+        <p>NTPサービスを止めてから<code>puppet agent</code>コマンドをフォアグラウンドで実行すると実際の動作が見られます。</p>
+        <pre><code># service ntpd stop
+# puppet agent --test
+
+notice: /Stage[main]/Ntp/Service[ntp]/ensure: ensure changed 'stopped' to 'running'
+</code></pre>
+        <p>動きましたね！</p>
+        <h2 id="more-about-declaring-classes">More About Declaring Classes ～ クラス宣言の補足</h2>
+        <p>一度モジュールに組み込まれたクラスは、複数の手段で宣言やアサイン(後述)できます。今すぐ手動でNTPサービスを停止して、それぞれの方法を試すべきです。クラスを宣言もしくはアサインし、Puppetをフォアグラウンドで実行します。</p>
+        <h3 id="include">Include</h3>
+        <p>これは見たことがありますね。メインのマニフェストに<code>include ntp</code>と記載することでクラスを宣言できます。</p>
+        <p>もし他のどこかで既に宣言していなければ、<code>include</code>関数はクラスを宣言します。もし既に宣言済みならば、<code>include</code>はその旨を通知し、何もしません。</p>
+        <p>これは複数の場所で安全にクラスを宣言できる仕組みです。もしクラスが何かしら他のクラスに依存するのであれば、site.ppで既に宣言されているかどうか、気にせずに宣言できます。</p>
+        <h3 id="resource-like-class-declarations">Resource-Like Class Declarations ～ リソースライクなクラス宣言</h3>
+        <p>“class:”というリソース型であることを除けば、リソース宣言にそっくりです。</p>
+        <div class="highlight">
+          <pre><code class="ruby">    <span class="k">class</span> <span class="p">{</span><span class="s1">&#39;ntp&#39;</span><span class="p">:}</span>
+</code></pre>
+        </div>
+        <p>これらの挙動は異なります。<code>include</code>関数よりもリソースに近い振る舞いをします。前の章で同じリソースを複数宣言できなかったことを思い出してください。リソースライクなクラス宣言も同様の制限を持ちます。もしPuppetが評価しようとしたものが既に宣言されたクラスならば<strong>コンパイルはエラーで失敗するでしょう</strong>。</p>
+        <p>しかしながら<code>include</code>とは異なり、リソースライクな宣言はクラスにパラメータを指定する事ができます。それについては<a href="./modules2_ja.html">後の章</a>で説明します。またリソースライクな宣言は何故制限があるのかの詳細にも触れます。</p>
+        <h3 id="the-pe-console">The PE Console ～ Puppet Enterprise Webコンソール</h3>
+        <p>Puppet EnterpriseのWebコンソールを使って、特定のノードにクラスをアサインする事ができます。<a href="http://docs.puppetlabs.com/pe/latest/console_classes_groups.html#adding-classes-to-a-node-group">クラスをコンソールに追加(英文)</a>し、ノードのページに移ってから<a href="http://docs.puppetlabs.com/pe/latest/console_classes_groups.html#adding-classes-to-a-node-group">そのノードにクラスをアサイン(英文)</a>してください。</p>
+        <p>後ほど複数のノードで動作させる方法の詳細を説明します。</p>
+        <h2 id="module-structure-part-2">Module Structure, Part 2 ～ モジュールの構造パート2</h2>
+        <p>このモジュールはまだまだ終わった訳ではありません。コンフィグファイルの<code>source</code>属性がどのように任意のローカルパスを指しているかに注目してください。モジュールの中でこれらのファイルを移動し、全て自己完結型にすることができます。</p>
+        <pre><code># mkdir /etc/puppetlabs/puppet/modules/ntp/files
+# mv /root/examples/answers/ntp.conf.* /etc/puppetlabs/puppet/modules/ntp/files/
+</code></pre>
+        <p>それではinit.ppマニフェストを編集しましょう。Puppetに対してどこにファイルがあるのか通知する、特別な<code>puppet:///</code> URLフォーマットを使う事できます。</p>
+        <div class="highlight">
+          <pre><code class="ruby">    <span class="c1"># ...</span>
+      <span class="n">file</span> <span class="p">{</span> <span class="s1">&#39;ntp.conf&#39;</span><span class="p">:</span>
+        <span class="n">path</span>    <span class="o">=&gt;</span> <span class="s1">&#39;/etc/ntp.conf&#39;</span><span class="p">,</span>
+        <span class="k">ensure</span>  <span class="o">=&gt;</span> <span class="n">file</span><span class="p">,</span>
+        <span class="nb">require</span> <span class="o">=&gt;</span> <span class="no">Package</span><span class="o">[</span><span class="s1">&#39;ntp&#39;</span><span class="o">]</span><span class="p">,</span>
+        <span class="n">source</span>  <span class="o">=&gt;</span> <span class="s2">&quot;puppet:///modules/ntp/${conf_file}&quot;</span><span class="p">,</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+</code></pre>
+        </div>
+        <p>今、モジュールが必要な全てが1か所に集まりました。さらに良いことに、masterノードはネットワーク経由でこれらのファイルをagentノードに提供できるようになりました。<code>/root/examples/etc...</code>形式のパスでは、対象のマシンにそのファイルが存在しないと見つけることができませんから。</p>
+        <h3 id="the-other-subdirectories">The Other Subdirectories ～ その他のサブディレクトリ</h3>
+        <p>モジュールの中の2つのサブディレクトリを見てきましたが、実際はもっとディレクトリがあります。</p>
+        <ul>
+          <li><code>manifests/</code> — 全てのマニフェストファイルを格納しています。</li>
+          <li><code>files/</code> — 管理ノードからダウンロード可能な静的ファイルを格納しています。</li>
+          <li><code>templates/</code> — モジュールのマニフェストから参照できるテンプレートを格納します。テンプレートの詳細は<a href="./templates_ja.html">後ほど</a>説明します。</li>
+          <li><code>lib/</code> — カスタムfactsやカスタムリソース型などのプラグインを格納します。</li>
+          <li><code>tests/</code> or <code>examples/</code> — モジュールのクラスや定義された型を宣言する方法を示すマニフェストのサンプルを格納します。</li>
+          <li><code>spec/</code> — rspec-puppetで記述されたテストファイルを格納します。</li>
+        </ul>
+        <blockquote>
+          <p>印刷可能な<a href="http://docs.puppetlabs.com/module_cheat_sheet.pdf">モジュール虎の巻(英文)</a>は、どのようにモジュールをレイアウトし、マニフェスト内の名前が基盤となるファイルにマッピングされているのかを説明しています。虎の巻はモジュールを扱い始める際に、とても良いクイックリファレンスとなります。Puppet リファレンスマニュアルもまた、<a href="http://docs.puppetlabs.com/puppet/latest/reference/modules_fundamentals.html">モジュールのレイアウトに関する説明(英文)</a>があります。</p>
+        </blockquote>
+        <p>それでは、<code>manifests</code>や<code>files</code>ディレクトリでの作業の仕方を詳しく説明しましょう。</p>
+        <h3 id="organizing-and-referencing-manifests">Organizing and Referencing Manifests ～ マニフェストの参照と構成</h3>
+        <p>モジュールのマニフェストは、それぞれ正確に1つのクラスか定義された型を含むべきです（定義された型については後程説明します）。</p>
+        <p>それぞれのマニフェストのファイル名は、含まれているクラスか定義された型の名前にマッピングされなければなりません。前述のinit.ppファイルは特別で、常にモジュールと同名のクラス（もしくは定義された型）を含んでいます。その他全てのファイルはクラス（もしくは定義された型）を以下のように含まなくてはなりません。</p>
+        <p><code>&lt;MODULE NAME&gt;::&lt;FILENAME&gt;</code></p>
+        <p>…もしくは、もし<code>manifests/</code>ディレクトリのサブディレクトリにファイルがあるのならば、以下のように名前を付けるべきです。</p>
+        <p><code>&lt;MODULE NAME&gt;::&lt;SUBDIRECTORY NAME&gt;::&lt;FILENAME&gt;</code></p>
+        <p>例えば、apacheモジュールがmod_passengerクラスを含むのであれば以下のようになります。</p>
+        <ul>
+          <li>ディスク上のファイル： <code>apache/manifests/mod_passenger.pp</code></li>
+          <li>ファイル内のクラス名： <code>apache::mod_passenger</code></li>
+        </ul>
+        <p>このマッピングの詳細については<a href="http://docs.puppetlabs.com/puppet/latest/reference/lang_namespaces.html">Puppet言語リファレンス(英文)</a>をご覧ください。</p>
+        <h3 id="organizing-and-referencing-files">Organizing and Referencing Files ～ ファイルの参照と構成</h3>
+        <p>静的なファイルは<code>files/</code>ディレクトリ配下に任意のディレクトリ構造で配置します。</p>
+        <p>これらのファイルをPuppetマニフェストのfileリソースの<code>source</code>属性で参照する時は、<code>puppet:///</code> URLを使います。これは決められた方法で組み立てなければいけません。</p>
+        <table>
+          <thead>
+            <tr>
+              <th>プロトコル</th>
+              <th>スラッシュ3つ</th>
+              <th>“modules”/</th>
+              <th>モジュール名/</th>
+              <th>ファイル名</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>puppet:</code></td>
+              <td><code>///</code></td>
+              <td><code>modules/</code></td>
+              <td><code>ntp/</code></td>
+              <td><code>ntp.conf.el</code></td>
+            </tr>
+          </tbody>
+        </table>
+        <p>URLの末尾のセグメントは、モジュールディレクトリの<code>files/</code>ディレクトリから始めたパスであることに注意してください。もしさらにサブディレクトリがある場合、期待したとおりの動きをさせるには、<code>puppet:///modules/ntp/config_files/linux/ntp.conf.el</code>のようにします。</p>
+        <h2 id="the-puppet-forge-how-to-avoid-writing-modules">The Puppet Forge: How to Avoid Writing Modules ～Puppet Forge：モジュールを書かないために</h2>
+        <p>モジュールがどのように動作しているのか学びました。これは他のユーザが作成したモジュールを使う事もできるということです。</p>
+        <p><a href="http://forge.puppetlabs.com">Puppet Forge(英文)</a>はフリーのモジュールのリポジトリで、これをインストールして利用する事ができます。ほとんどのモジュールはオープンソースなので、あなたも簡単にアップデートやモジュールの機能アップに貢献できます。また、あなた自身のモジュールで貢献する事もできます。</p>
+        <h3 id="the-puppet-module-subcommand">The Puppet Module Subcommand ～ Puppet Moduleコマンド</h3>
+        <p>Puppetは<code>module</code>サブコマンドによりPuppet Forgeからモジュールをインストールして管理する事ができます。詳細な利用方法については<a href="http://docs.puppetlabs.com/puppet/latest/reference/modules_installing.html">Puppet言語リファレンス(英文)</a>をご覧ください。いくつか簡単な例を紹介します。</p>
+        <p>puppetlabs-mysqlモジュールのインストール：</p>
+        <pre><code>$ sudo puppet module install puppetlabs-mysql
+</code></pre>
+        <p>全インストール済みモジュールリストの表示：</p>
+        <pre><code>$ sudo puppet module list
+</code></pre>
+        <blockquote>
+          <h4 id="user-name-prefixes">ユーザ名のプレフィックス</h4>
+          <p>Puppet Forgeにあるモジュールは、モジュール名にユーザ名のプレフィックスが付いています。これはモジュール間で名前の衝突を避けるためのものです。例としてはPuppet Forgeの全Apacheモジュールを見てください。</p>
+          <p><code>puppet module</code>コマンドはユーザ名のプレフィックスを自動的に扱います。これはメタデータとして保持していますが、モジュールをインストールする時は一般的な名前で実施します。つまり、マニフェストからは<code>puppetlabs-mysql</code>モジュールではなく、<code>mysql</code>モジュールとして参照してください。</p>
+        </blockquote>
+        <h2 id="exercises">Exercises ～ 演習</h2>
+        <blockquote>
+          <h3 id="exercise-apache-again">Exercise: Apache Again ～ 演習：Apache再び</h3>
+          <p>2章前の演習で作成したマニフェストを踏まえ、Apacheがインストールされて稼働中である事を保証し、またコンフィグファイルを管理するApacheモジュールとクラスを作成してください。</p>
+          <p><strong>追加演習：</strong> PuppetにDocumentRootフォルダを管理させ、またカスタマイズされた404ページとデフォルトのindex.htmlを配置しましょう。OSによって変わるであろうファイルやパッケージ、サービス名を使うため、条件文も使います。もし他のOSで使われている名前を調べたくないなら、CentOS以外の時はクラスが失敗を返すだけで構いません。</p>
+        </blockquote>
+        <h2 id="next">Next ～ 次に</h2>
+        <p><strong>次の演習：</strong></p>
+        <p>モジュール構造にある<code>templates/</code>フォルダとは何でしょうか。またコンフィグファイルに対して、静的なファイルと入れ替えるよりも面白い事ができないのでしょうか?その答えは<a href="./templates_ja.html">Templatesで見つけましょう</a>。  
+        <p><strong>Off-Road:</strong></p>
+        <p>Puppet Forgeからフリーのモジュールをインストールする方法や、そのモジュールにあるクラスを宣言する方法がわかりました。あなたのインフラで使えそうなモジュールを探してみましょう。<a href="http://info.puppetlabs.com/download-pe.html">Puppet Enterprise for freeをダウンロード</a>して、<a href="http://docs.puppetlabs.com/pe/latest/quick_start.html">クイックスタートガイド(英文)</a>に従いインストール済の小さな環境を入手します。そしていくつかのテストノードにある複雑なサービスを管理してみましょう。</p>
+        <!-- to here -->

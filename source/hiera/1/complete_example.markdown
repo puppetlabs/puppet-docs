@@ -42,7 +42,7 @@ With Hiera, we can move these decisions into a hierarchy built around the facts 
 
 ### Classify Nodes With Hiera
 
-We can also use Hiera to assign classes to nodes using the [hiera_include][] function, adding a single line to our `site.pp` manifest, then assigning classes to nodes within Hiera instead of within our site manifests. This can be a useful shortcut when we're explicitly assigning classes to specific nodes within Hiera, but it becomes very powerful when we implicitly assign classes based on a node's characteristics. In other words, we'll show you how you don't need to know the name of very VMWare guest in your organization to make sure they all have a current version of VMWare Tools installed.
+We can also use Hiera to assign classes to nodes using the [hiera_include][] function, adding a single line to our `site.pp` manifest, then assigning classes to nodes within Hiera instead of within our site manifests. This can be a useful shortcut when we're explicitly assigning classes to specific nodes within Hiera, but it becomes very powerful when we implicitly assign classes based on a node's characteristics. In other words, we'll show you how you don't need to know the name of every VMWare guest in your organization to make sure they all have a current version of VMWare Tools installed.
 
 ## Describing Our Environment
 

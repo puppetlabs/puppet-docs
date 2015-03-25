@@ -10,13 +10,13 @@ canonical: "/puppet/latest/reference/ssl_attributes_extensions.html"
 [autosign_policy]: ./ssl_autosign.html#policy-based-autosigning
 [autosign_basic]: ./ssl_autosign.html#basic-autosigning-autosignconf
 [puppet_oids]: #puppet-specific-registered-ids
-[trusted_hash]: ./lang_variables.html#trusted-node-data
+[trusted_hash]: ./lang_facts_and_builtin_vars.html#trusted-facts
 [enable_trusted]: ./config_important_settings.html#getting-new-features-early
 
 Summary
 -----
 
-When puppet agent nodes request their certificates, the certificate signing request (CSR) usually just contains their certname and the necessary cryptographic information. However, agents can also embed more data in their CSR. This extra data can be useful for [policy-based autosigning][autosign_policy]. In future Puppet versions, extensions may also be passed to the compiler as trusted facts.
+When Puppet agent nodes request their certificates, the certificate signing request (CSR) usually just contains their certname and the necessary cryptographic information. However, agents can also embed more data in their CSR. This extra data can be useful for [policy-based autosigning][autosign_policy] and for adding new [trusted facts.][trusted_hash]
 
 ### Status as of Early 2014
 
@@ -39,11 +39,11 @@ If your deployment doesn't match one of these descriptions, you may not need thi
 Timing: When Data Can be Added to CSRs / Certificates
 -----
 
-When puppet agent starts the process of requesting a catalog, it first checks whether it has a valid signed certificate. If it does not, it will generate a key pair, craft a CSR, and submit it to the certificate authority (CA) puppet master. The steps are [covered in more detail in the reference page about agent/master HTTPS traffic][cert_request].
+When Puppet agent starts the process of requesting a catalog, it first checks whether it has a valid signed certificate. If it does not, it will generate a key pair, craft a CSR, and submit it to the certificate authority (CA) Puppet master. The steps are [covered in more detail in the reference page about agent/master HTTPS traffic][cert_request].
 
 Once a certificate is signed, it is, for all practical purposes, locked and immutable. Thus, for any data to persist in the certificate, it has to be added to the CSR before the CA signs the certificate.
 
-This means **any desired extra data must be present before puppet agent attempts to request its catalog for the first time.**
+This means **any desired extra data must be present before Puppet agent attempts to request its catalog for the first time.**
 
 Practically speaking, you should populate any extra data when provisioning the node. If you mess up, see [Recovering From Failed Data Embedding](#recovering-from-failed-data-embedding) below.
 
@@ -218,11 +218,11 @@ In order to start over, you'll need to do the following:
 
 **On the test node:**
 
-* Turn off puppet agent, if it's running.
+* Turn off Puppet agent, if it's running.
 * Check whether a CSR is present; it will be at `$ssldir/certificate_requests/<name>.pem`. If it exists, delete it.
 * Check whether a certificate is present; it will be at `$ssldir/certs/<name>.pem`. If it exists, delete it.
 
-**On the CA puppet master:**
+**On the CA Puppet master:**
 
 * Check whether a signed certificate exists; use `puppet cert list --all` to see the complete list. If it exists, revoke and delete it with `puppet cert clean <name>`.
 * Check whether a CSR for the node exists; it will be in `$ssldir/ca/requests/<name>.pem`. If it exists, delete it.

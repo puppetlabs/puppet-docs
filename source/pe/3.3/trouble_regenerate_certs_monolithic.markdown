@@ -6,7 +6,9 @@ canonical: "/pe/latest/trouble_regenerate_certs_monolithic.html"
 description: "This page explains how to regenerate all SSL certificates in monolithic Puppet Enterprise deployments."
 ---
 
-> **Note:** If you're visiting this page to remediate your Puppet Enterprise deployment due to [CVE-2014-0160][cve], a.k.a. "Heartbleed," [please see this announcement][blog] for additional information and links to more resources before using this guide. Before applying these instructions, please bear in mind that this is a non-trivial operation that contains some manual steps and will require you to replace certificates on  every agent node managed by your puppet master.
+> **Important**: The procedures in this document apply to 3.3.x versions of Puppet Enterprise. Any issues in PE due to [CVE-2014-0160][cve], a.k.a. "Heartbleed," have been fixed in PE 3.7.0. PE 3.7.0 users should not perform these steps as certificate functionality has changed between versions. 
+
+> **Note:** If you're visiting this page to remediate your Puppet Enterprise deployment due to "Heartbleed," [please see this announcement][blog] for additional information and links to more resources before using this guide. Before applying these instructions, please bear in mind that this is a non-trivial operation that contains some manual steps and will require you to replace certificates on every agent node managed by your puppet master.
 
 [blog]: http://puppetlabs.com/blog/heartbleed-security-bug-update-puppet-users
 [cve]: https://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2014-0160
@@ -57,7 +59,7 @@ Note that this process **destroys the certificate authority and all other certif
 
 1. Stop the PuppetDB service with `sudo puppet resource service pe-puppetdb ensure=stopped`.
 2. Clear the certs and security credentials from the PuppetDB SSL directory with `sudo rm -r /etc/puppetlabs/puppetdb/ssl/*`.
-3. Regenerate the certs and security credentials for PuppetDB with `sudo /opt/puppet/sbin/puppetdb-ssl-setup -f`.
+3. Regenerate the certs and security credentials for PuppetDB with `sudo /opt/puppet/sbin/puppetdb ssl-setup -f`.
 4. Start the PuppetDB service with `sudo puppet resource service pe-puppetdb ensure=running`.
 
 > At this point:

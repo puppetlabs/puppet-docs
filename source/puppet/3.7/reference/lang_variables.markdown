@@ -16,7 +16,7 @@ canonical: "/puppet/latest/reference/lang_variables.html"
 [scope]: ./lang_scope.html
 
 
-<!-- Preserve links to old headers --> <a id="facts"><a id="trusted-node-data"><a id="agent-set-variables"><a id="master-set-variables"><a id="parser-set-variables">
+ <a id="facts"><a id="trusted-node-data"><a id="agent-set-variables"><a id="master-set-variables"><a id="parser-set-variables">
 
 > Facts and Built-In Variables
 > -----

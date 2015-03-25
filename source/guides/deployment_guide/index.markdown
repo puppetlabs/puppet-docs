@@ -4,32 +4,25 @@ title: "PE Deployment Guide"
 subtitle: "Introduction and Installation"
 ---
 
-Back to the [PE user guide](/pe/latest/index.html).
-
 Introduction
 -----
 
+> **Note:** This guide applies to Puppet Enterprise 3.1. It's no longer under active development, and we're providing it here until references to it in the Puppet Enterprise documentation can be redirected to more helpful information. If you're just getting started out with Puppet Enterprise, we strongly recommend you take a look at the [Puppet Enterprise Quick Start Guide][qsg] for documentation on how to install and deploy Puppet Enterprise and then use it to automate a number of common tasks.
+
+
 [pe_dl]: http://info.puppetlabs.com/download-pe.html
+[qsg]: http://docs.puppetlabs.com/pe/latest/quick_start.html
+
 
 You've just [downloaded a shiny new tarball][pe_dl] containing Puppet Enterprise (PE) and are wondering to yourself, "now what?" This guide will help you answer that question. Based on the collective decades of experience of Puppet Labs' professional services engineers and support staff, this guide will help you discover the best practices for initially deploying Puppet Enterprise in your infrastructure. It will also help you avoid common errors and pitfalls, and will point to detailed instructions for completing typical and important tasks you'll encounter during deployment.
 
 Because there is so much variation in the infrastructures where PE is used, we will focus on some standard things most sysadmins typically manage. Hopefully, learning how to automate basic services such as NTP will provide you with the knowledge you need to understand how and why PE's automation is so powerful.  Armed with this knowledge, you'll be ready to take care of more specialized needs -- such as automating the configuration of application servers -- and you'll be able to take your infrastructure to the next level of performance, reliability and visibility.
 
-The guide will be released in chapters.
-
-* This first chapter covers initial architecture decisions you'll need to make, and other best practices for installation and preparation.
-* The next chapter will look at setting up your work environment with version control, best practices for hardening your installation, and managing users and security.
-* The third chapter gets to the meat of the matter by demonstrating how and why automation can help you do your job better and faster. You'll follow a fictional sysadmin while she sets up automation for some simple services, configurations, and other things that a typical admin might want to first start managing with PE. This chapter will cover using the console and the forge, will introduce you to writing manifests, and will recommend some modules to help you get automation up and running quickly. We'll also discuss some methods for testing your work before going live.
-* The fourth chapter will move on to more advanced automation tasks and will explore manifest writing and the puppet language in more detail.
-* The fifth chapter will discuss some of the regular maintenance tasks  and troubleshooting tips you'll want to know about to keep things humming along smoothly.
-* The final chapter will discuss different resources for reporting so you can stay on top of performance metrics and discover issues early before they become problems.
-
 So warm up your keyboard, grab a fresh cup of coffee and let's get PE up and running.
 
 Installing PE
 -----
-
-First of all, if you are entirely new to PE and puppet, we strongly recommend you work your way through our [Quick Start Guide](/pe/latest/quick_start.html), if you haven't done so already. It will familiarize you with basic concepts and components and give you a jump on creating a solid deployment and making good decisions.
+First of all, if you are entirely new to PE and Puppet, we strongly recommend you work your way through our [Quick Start Guide](/pe/latest/quick_start.html), if you haven't done so already. It will familiarize you with basic concepts and components and give you a jump on creating a solid deployment and making good decisions.
 
 The [installing PE  page](/pe/latest/install_basic.html) provides detailed instructions for downloading and installing PE.  If you haven't yet downloaded a fresh production copy of PE, that page also provides links and instructions for how to choose the version of PE best suited for your environment. Once you have a copy and are ready to install, the first major decision involves where and how to set up the various roles that make up PE.
 
@@ -72,7 +65,7 @@ The puppet master compiles and serves configuration catalogs to puppet agent nod
 
 Start by installing the master. Typically, the puppet master is installed on a single node. However, under certain circumstances it may be preferable to run another master. For example, you may wish to run another master in order to provide HA or failover protection.
 
-> **Note:** Generally speaking, running multiple masters only becomes necessary when your infrastructure grows to a certain size. What that size is precisely will vary depending on how complex your infrastructure is, the number of classes and resources, etc. in your manifests, and so on. As a general rule of thumb, however, once you get to 800 nodes you will probably want to start separating out the various functions of the master, and once you get to 1200 nodes or so you will likely want to use multiple masters. In any case, you may wish to defer deploying multiple masters if you are just starting out with PE and want to keep your learning environment simple and straightforward.
+> **Note:** Generally speaking, running multiple masters only becomes necessary when your infrastructure grows to a certain size. What that size is precisely will vary depending on how complex your infrastructure is, the number of classes and resources, etc. in your manifests, and so on. As a general rule of thumb, however, once you get to 800 nodes you will probably want to start separating out the various functions of the master, and once you get to 1200 nodes or so you will likely want to use multiple masters. In any case, you may wish to defer deploying multiple masters if you are just starting out with PE and want to keep your learning environment simple and straightforward. When you're ready to set up multiple masters, see [Using Multiple Puppet Masters](/guides/scaling_multiple_masters.html).
 
 Make sure that any machine you select for the master conforms to the [hardware system requirements](/pe/latest/install_system_requirements.html#hardware) and, in particular, ensure you have plenty of disk space, especially if you will be running the console and database roles on the same hardware.
 
@@ -138,7 +131,7 @@ The easiest way to manage node requests is with the request management capabilit
 
 If you'd prefer to manage certificates from the command line, refer to [these instructions](/pe/latest/install_basic.html#signing-agent-certificates).
 
-Auto-signing certificates can be useful, but should be done very carefully since it potentially introduces major security liabilities. By default, auto-signing is managed by the `/etc/puppetlabs/puppet/autosign.conf` file, which is empty in a new PE installation. [This reference page](/puppet/latest/reference/config_file_autosign.html) has more information about adding entries to `autosign.conf`. Alternately, you can (but shouldn't) set `autosign = true` in `/etc/puppetlabs/puppet/puppet.conf` to auto-sign all requests.
+Auto-signing certificates can be useful, but should be done very carefully since it potentially introduces major security liabilities. By default, auto-signing is managed by the `/etc/puppetlabs/puppet/autosign.conf` file, which is empty in a new PE installation. [This guide](/guides/configuring.html#autosignconf) has more information about adding entries to `autosign.conf`. Alternately, you can (but shouldn't) set `autosign = true` in `/etc/puppetlabs/puppet/puppet.conf` to auto-sign all requests.
 
 Note that if your institution prefers or requires you to use externally purchased SSL certs, you can do it, but you should back up your original, PE generated certs first, just in case of unforeseen circumstances. To use external certs you'll need to edit several lines in `/etc/puppetlabs/httpd/conf.d/puppetdashboard.conf` as follows:
 

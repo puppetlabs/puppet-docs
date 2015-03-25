@@ -14,7 +14,6 @@ Small documents for getting help fast.
 
 * [Core Types Cheat Sheet](/puppet_core_types_cheatsheet.pdf) --- A double-sided reference to the most common resource types. ([HTML version](http://projects.puppetlabs.com/projects/puppet/wiki/Core_Types_Cheat_Sheet/))
 * [Module Cheat Sheet](/module_cheat_sheet.pdf) --- A one-page reference to Puppet module layout, covering classes and defined types, files, templates, and plugins. ([HTML version](/module_cheat_sheet.html))
-* [Frequently Asked Questions](/guides/faq.html)
 * [Glossary](/references/glossary.html)
 
 * * *
@@ -42,41 +41,18 @@ A concise reference to Puppet 3.7's usage and internals. Use the left sidebar of
 - [Modules](/puppet/3.7/reference/modules_fundamentals.html)
 
 
-### [Puppet 3.6 Reference Manual](/puppet/3.6/reference)
+### Older Puppet Reference Manuals
 
-A concise reference to Puppet 3.6's usage and internals. Use the left sidebar of any reference manual page to navigate between pages.
+* [Puppet 3.6 Reference Manual](/puppet/3.6/reference)
+* [Puppet 3.5 Reference Manual](/puppet/3.5/reference)
+* [Puppet 3.0–3.4 Reference Manual](/puppet/3/reference)
+* [Puppet 2.7 Reference Manual](/puppet/2.7/reference)
 
-- [Overview](/puppet/3.6/reference)
-- [Language](/puppet/3.6/reference/lang_summary.html)
-- [Modules](/puppet/3.6/reference/modules_fundamentals.html)
+### Puppet Server Documentation
 
+Puppet Server is the next-generation application for managing Puppet agents.
 
-### [Puppet 3.5 Reference Manual](/puppet/3.5/reference)
-
-A concise reference to Puppet 3.5's usage and internals. Use the left sidebar of any reference manual page to navigate between pages.
-
-- [Overview](/puppet/3.5/reference)
-- [Language](/puppet/3.5/reference/lang_summary.html)
-- [Modules](/puppet/3.5/reference/modules_fundamentals.html)
-
-
-### [Puppet 3 Reference Manual](/puppet/3/reference)
-
-A concise reference to Puppet 3's usage and internals. Use the left sidebar of any reference manual page to navigate between pages.
-
-- [Overview](/puppet/3/reference)
-- [Language](/puppet/3/reference/lang_summary.html)
-- [Modules](/puppet/3/reference/modules_fundamentals.html)
-
-
-### [Puppet 2.7 Reference Manual](/puppet/2.7/reference)
-
-A concise reference to Puppet 2.7's usage and internals. Use the left sidebar of any reference manual page to navigate between pages.
-
-- [Table of Contents](/puppet/2.7/reference)
-- [Language](/puppet/2.7/reference/lang_summary.html) --- A complete reference to the Puppet language.
-- [Modules](/puppet/2.7/reference/modules_fundamentals.html)
-
+You can browse Puppet Server's documentation with the navigation sidebar in the latest version of the [Puppet reference manual](/puppet/latest/reference). Alternately, you can start from an [index of all Puppet Server docs.](/puppetserver/latest)
 
 ### Miscellaneous References
 

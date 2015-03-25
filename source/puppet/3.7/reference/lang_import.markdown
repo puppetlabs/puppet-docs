@@ -16,7 +16,7 @@ The `import` keyword causes Puppet to compile more than one manifest without aut
 > Deprecation Notice
 > -----
 >
-> The `import` keyword is deprecated. Using it will cause deprecation warnings to be logged on the puppet master, and we plan to remove `import` completely in Puppet 4.
+> The `import` keyword is deprecated. Using it will cause deprecation warnings to be logged on the Puppet master, and we plan to remove `import` completely in Puppet 4.
 >
 > ### What to Use Instead
 >
@@ -81,11 +81,11 @@ The behavior of `import` within autoloaded manifests is **undefined,** and may v
 
 ### Inability to Reload
 
-The puppet master service monitors its main [site manifest][site_manifest] and modules and will reload the files whenever they are edited. However, because it only evaluates file globs when the parent file containing them is reloaded, it cannot tell when imported manifests have been changed.
+The Puppet master service monitors its main [site manifest][site_manifest] and modules and will reload the files whenever they are edited. However, because it only evaluates file globs when the parent file containing them is reloaded, it cannot tell when imported manifests have been changed.
 
 Thus, if you use `import` statements, you must manually cause your files to be reloaded whenever you edit your imported manifests. You can do this by:
 
-* Restarting the puppet master
+* Restarting the Puppet master
 * Editing (or `touch`ing) site.pp to trigger a reload
 
 

@@ -218,7 +218,7 @@ Whether to manage a set of `accounts::user` resources. If true, your data store 
 
 ### `manage_sudoers`
 
-Whether to add sudo rules to the node's `sudoers` file. If true, the class will add <!-- TK why the % sign --> `%sudo` and `%sudonopw` groups to the `sudoers` file and give them full sudo and passwordless sudo privileges respectively. You will need to make sure that the `sudo` and `sudonopw` groups exist in the groups hash, and that your chosen users have those groups in their `groups` arrays. Managing `sudoers` is not supported on Solaris.
+Whether to add sudo rules to the node's `sudoers` file. If true, the class will add  `%sudo` and `%sudonopw` groups to the `sudoers` file and give them full sudo and passwordless sudo privileges respectively. You will need to make sure that the `sudo` and `sudonopw` groups exist in the groups hash, and that your chosen users have those groups in their `groups` arrays. Managing `sudoers` is not supported on Solaris.
 
 Allowed values are `true` and `false`; defaults to `false`.
 

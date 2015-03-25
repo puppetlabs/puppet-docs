@@ -16,9 +16,7 @@ title: "Background Reference: X.509 Certificate Anatomy"
 [ca_name]: /references/latest/configuration.html#caname
 [wiki_x509]: http://en.wikipedia.org/wiki/X.509
 
-<!-- The following references are not used in the text:
-[pem]:
--->
+
 
 > This article is [part of a series][index].
 
@@ -186,7 +184,7 @@ Certificate:
         a6:6e:85:74:45:fd:e0:34:7b:5f:09:ef:ba:3d:a2:be:9c:da:
         12:5d:54:06:58:e1:15:0b:0d:0d:d1:7d:12:4d:2a:a6:80:ef:
         90:e4:9a:fc:c3:22:a6:e1
-</code></pre> <!-- for some reason, the markdown processor doesn't like this block. -->
+</code></pre> 
 
 In the sections below, we will cover some of the notable features of this output:
 

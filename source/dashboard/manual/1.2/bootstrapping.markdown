@@ -122,7 +122,7 @@ On Debian-based systems, install Puppet Dashboard via Apt:
 
 ### Installing from Git
 
-If you're unable to use the Dashboard packages on your system, the next best way to install Dashboard is from the Puppet Labs Git repo. In the directory where you want Dashboard installed (we suggest `/opt/` or `/usr/share/`), run: <!-- Version number below -->
+If you're unable to use the Dashboard packages on your system, the next best way to install Dashboard is from the Puppet Labs Git repo. In the directory where you want Dashboard installed (we suggest `/opt/` or `/usr/share/`), run: 
 
     git clone git://github.com/puppetlabs/puppet-dashboard.git
     cd puppet-dashboard
@@ -136,7 +136,7 @@ If you haven't installed Dashboard from a package, **you must create a user and 
 
 ### Installing from Source Tarballs
 
-If you prefer not to use Git, you can simply download the most recent release of Puppet Dashboard and extract it into your install location: <!-- Version number below -->
+If you prefer not to use Git, you can simply download the most recent release of Puppet Dashboard and extract it into your install location: 
 
     wget http://puppetlabs.com/downloads/dashboard/puppet-dashboard-1.2.0.tar.gz
     tar -xzvf puppet-dashboard-1.2.0.tar.gz

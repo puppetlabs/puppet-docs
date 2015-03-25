@@ -66,7 +66,7 @@ You should see output similar to the following:
 
 ### Create SSH Group
 
-Groups let you assign classes and variables to many nodes at once. Nodes can belong to many groups and will inherit classes and variables from all of them. Groups can also be members of other groups and inherit configuration information from their parent group the same way nodes do. PE automatically creates several groups in the console, which you can read more about in the [PE docs](https://docs.puppetlabs.com/pe/latest/console_classes_groups.html#special-groups).
+Groups let you assign classes and variables to many nodes at once. Nodes can belong to many groups and will inherit classes and variables from all of them. Groups can also be members of other groups and inherit configuration information from their parent group the same way nodes do. PE automatically creates several groups in the console, which you can read more about in the [PE docs](./console_classes_groups.html#special-groups).
 
 In this procedure, you’ll create a simple group called, __ssh_example__, but you can add the `ssh` class to any existing group, or create your own group.  
 

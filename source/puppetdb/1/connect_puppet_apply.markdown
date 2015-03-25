@@ -38,7 +38,7 @@ PuppetDB requires client authentication for its SSL connections and the PuppetDB
 2. Install a general purpose web server (like Apache or Nginx) on the PuppetDB server.
 3. Configure the web server to listen on port 8081 with SSL enabled and proxy all traffic to `localhost:8080` (or whatever unencrypted hostname and port were set in [jetty.ini][jetty]). The proxy server can use any certificate --- as long as Puppet has never downloaded a CA cert from a puppet master, it will not verify the proxy server's certificate. If your nodes have downloaded CA certs, you must either make sure the proxy server's cert was signed by the same CA, or delete the CA cert. 
 
-<!--TODO-->More detailed instructions for setting up this proxy will be added to this guide at a later date.
+More detailed instructions for setting up this proxy will be added to this guide at a later date.
 
 ### Option B: Issue Certificates to All Puppet Nodes
 

@@ -4,9 +4,10 @@ title: "PE Deployment Guide"
 subtitle: "First Steps: Setting Up Your Environment"
 ---
 
-Back to the [PE user guide](/pe/latest/index.html).
-
 [pe_dl]: http://info.puppetlabs.com/download-pe.html
+[qsg]: http://docs.puppetlabs.com/pe/latest/quick_start.html
+
+> **Note:** This guide applies to Puppet Enterprise 3.1. It is no longer under active development, and we're providing it here until  references to it in the Puppet Enterprise documentation can be redirected to more helpful information. If you're just getting started out with Puppet Enterprise, we strongly recommend you take a look at the [Puppet Enterprise Quick Start Guide][qsg] for documentation on how to install and deploy Puppet Enterprise and then use it to automate a number of common tasks.
 
 Once you've [downloaded Puppet Enterprise][pe_dl], completed installation, and verified that all the parts are talking to each other, there are a few things you'll want to do to set up your working environment.
 
@@ -30,7 +31,7 @@ A course in using Git is well beyond the scope of this guide, but there are many
 
 ### Git Workflows and Your Infrastructure
 
-While there are many ways to map Git workflows to infrastructure, one of the most popular patterns is to set up Git branches to map to puppet [environments](/puppet/latest/reference/environments.html). For example, you can set up Git branches to correspond to the **development**, **testing**, and **production** environments favored by many companies' workflows. You can even set things up to create environments dynamically as workflows change. For a detailed discussion and examples of this, refer to this [blog post on git workflows and puppet environments](http://puppetlabs.com/blog/git-workflow-and-puppet-environments/).
+While there are many ways to map Git workflows to infrastructure, one of the most popular patterns is to set up Git branches to map to puppet [environments](http://docs.puppetlabs.com/guides/environment.html). For example, you can set up Git branches to correspond to the **development**, **testing**, and **production** environments favored by many companies' workflows. You can even set things up to create environments dynamically as workflows change. For a detailed discussion and examples of this, refer to this [blog post on git workflows and puppet environments](http://puppetlabs.com/blog/git-workflow-and-puppet-environments/).
 
 If you are already familiar with Git and have some workflows and branch structures in place already, you can probably just bring your Puppet manifests into your usual controls. There's no need to reinvent the wheel. If you're setting up version control for the first time, and the above example using environments is too involved, there is a good overview of a fairly basic Puppet/Git workflow available [here](http://weblog.etherized.com/posts/184). Please note that the paths in this example refer to open source Puppet - modules in Puppet Enterprise are located in `/etc/puppetlabs/puppet/modules`.
 
@@ -44,9 +45,9 @@ There are several resources you can turn to in order to test your manifests and 
 
 * A third approach can actually let you get two things done. If you're like most sysadmins, you have a backlog of things people have asked you for that are not for essential purposes. For example, a team has asked you for a server to test some new tool on, or to try out some new database/application/file server. Build up this server using PE.
 
-[This guide](/guides/tests_smoke.html) will give you some basic ideas for simple smoke testing of manifests and modules. Below we'll briefly list a few tools and resources which can help you further test your PE implementation. For a more in-depth discussion, take a look at this [blog post on syntax checking and automated testing](http://puppetlabs.com/blog/verifying-puppet-checking-syntax-and-writing-automated-tests/).
+[This guide](http://docs.puppetlabs.com/guides/tests_smoke.html) will give you some basic ideas for simple smoke testing of manifests and modules. Below we'll briefly list a few tools and resources which can help you further test your PE implementation. For a more in-depth discussion, take a look at this [blog post on syntax checking and automated testing](http://puppetlabs.com/blog/verifying-puppet-checking-syntax-and-writing-automated-tests/).
 
-However, all of that said, when you are first deploying Puppet, your best bet is to rely heavily on modules you can get from [the Puppet Forge](http://forge.puppetlabs.com). Forge modules, especially those officially supported by Puppet Labs are proven solutions for the most common things sysadmins need to automate, and they can save you a ton of time. Puppet Enterprise supported modules are rigorously tested with PE and are supported by Puppet Labs via the usual [support channels](http://puppetlabs.com/services/customer-support).
+However, all of that said, when you are first deploying Puppet, your best bet is to rely heavily on modules you can get from [the Puppet Forge](http://forge.puppetlabs.com). Forge modules, especially those officially supported by Puppet Labs are proven solutions for the most common things sysadmins need to automate, and they can save you a ton of time. Puppet Enterprise supported modules are rigorously tested with PE and are supported by Puppet Labs via the usual [support channels](http://puppetlabs.com/services/customer-support). 
 
 ### No-op
 
@@ -76,7 +77,7 @@ We really don't need to explain how or why you should back up your manifests and
 
 Access to modules and manifests is controlled by your version control system and code deployment processes. Access to the PE console is controlled by its own system of users and permissions.
 
-Figure out who at your institution should have access to PE and with what privileges. You can add and define users manually in the console, or you can access an existing directory via LDAP, etc. For more information, see the PE manual page on [user management](/pe/latest/console_auth.html).	Initially, you will probably want to limit access to a select group, possibly a group of one.
+Figure out who at your institution should have access to PE and with what privileges. You can add and define users manually in the console, or you can access an existing directory via LDAP, etc. For more information, see the PE manual page on [user management](http://docs.puppetlabs.com/pe/latest/console_auth.html).	Initially, you will probably want to limit access to a select group, possibly a group of one.
 
 ## Ad Hoc Change Tools
 

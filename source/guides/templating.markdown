@@ -246,7 +246,7 @@ Conditionals
 The ERB templating supports conditionals.  The following construct is
 a quick and easy way to conditionally put content into a file:
 
-    <% if broadcast != "NONE" %>        broadcast <%= broadcast %> <% end %>
+    <% if @broadcast != "NONE" %>        broadcast <%= @broadcast %> <% end %>
 
 Access to Tags and Declared Classes
 -----

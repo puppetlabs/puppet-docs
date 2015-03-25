@@ -52,7 +52,7 @@ If you installed it with APT:
     $ sudo apt-get update
     $ sudo apt-get install puppet-dashboard
 
-<!-- version numbers below -->
+
 If you installed it from an RPM package file:
 
     $ sudo rpm -Uvh puppet-dashboard-1.2.0.noarch.rpm
@@ -74,7 +74,7 @@ Before checking out the new release, make sure that you haven't made any changes
     $ git status
 
 Dashboard's `.gitignore` file should ensure that your configuration files, certificates, temp files, and logs will be untouched by the upgrade, but if the status command shows any new or modified files, you'll need to preserve them. You could just copy them outside the directory, but the easiest path is to use git stash:
-<!-- version numbers below -->
+
 
     $ git add {list of modified files}
     $ git stash save "Modified files prior to 1.2.0 upgrade"
@@ -100,7 +100,7 @@ Finally, re-chown all Dashboard files to the puppet-dashboard user:
 If you originally installed Dashboard from a source tarball, you'll need to either pick out all of your modified or created files and transplant them into the new installation, or convert your installation to Git; either way, you should back up the entire installation first.
 
 To convert an existing Dashboard installation to a Git repo, do something like the following, replacing {version tag} with the version of Dashboard you originally installed: 
-<!-- version numbers below -->
+
 
     git init
     rm .gitignore

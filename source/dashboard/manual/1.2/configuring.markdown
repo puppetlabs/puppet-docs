@@ -69,7 +69,7 @@ Then, edit Dashboard's `config/settings.yml` to set `enable_inventory_service` t
 
 With the filebucket viewer, Dashboard can display the contents of different file versions when you click on MD5 checksums in reports. 
 
-**Requirements:** To use the filebucket viewer, you must be using Puppet 2.6.5 or later <!-- TK check accuracy --> and your agent nodes must be configured to back up all files to a remote filebucket; this is done in your puppet master's `site.pp` manifest, where you must define a filebucket resource named "main"... 
+**Requirements:** To use the filebucket viewer, you must be using Puppet 2.6.5 or later  and your agent nodes must be configured to back up all files to a remote filebucket; this is done in your puppet master's `site.pp` manifest, where you must define a filebucket resource named "main"... 
 
     filebucket { "main":
       server => "{your puppet master}",
@@ -82,7 +82,7 @@ With the filebucket viewer, Dashboard can display the contents of different file
 
 If you are using inspect reports for a compliance workflow, you must also set `archive_files = true` in each agent's `puppet.conf`. 
 
-<!-- Best current info: http://groups.google.com/group/puppet-users/tree/browse_frm/thread/30ea08611484d014/1fcda157a4654e20?rnum=1&_done=%2Fgroup%2Fpuppet-users%2Fbrowse_frm%2Fthread%2F30ea08611484d014%2F1fcda157a4654e20%3Ftvc%3D1%26#doc_524b16680064e610 -- TK check this for accuracy and completeness at some later date. -->
+
 
 Once the site manifest has been properly configured, edit Dashboard's `config/settings.yml` to set `use_file_bucket_diffs` to `true` and point `file_bucket_server` and `file_bucket_port` to your puppet master. Restart Dashboard, and you should be able to view the contents of any file mentioned in a report by clicking on its MD5 checksum. Diffs are not currently enabled, but will appear in a future version of Dashboard. 
 
@@ -148,7 +148,7 @@ After this, the plugin should be available and functioning. If you've been using
 
 ### Uninstalling Plugins
 
-This section will be filled in at a later date. <!-- TK -->
+This section will be filled in at a later date. 
 
 * * * 
 

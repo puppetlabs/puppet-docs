@@ -27,10 +27,11 @@ description: Links to Puppet and Puppet Enterprise release notes
 
 ### Current Release
 
-- [Puppet Enterprise 3.3][pe3.3]
+- [Puppet Enterprise 3.7](/pe/3.7/release_notes.html)
 
 ### Maintenance and Security Branches
 
+- [Puppet Enterprise 3.3][pe3.3]
 - [Puppet Enterprise 3.2][pe3.2]
 - [Puppet Enterprise 3.1][pe3.1]
 - [Puppet Enterprise 3.0][pe3.0]
@@ -42,23 +43,27 @@ description: Links to Puppet and Puppet Enterprise release notes
 - [Puppet Enterprise 1.2][pe1.2] (receiving security fixes until April, 2013)
 
 
-## About Puppet Releases
+## About Version Numbers
 
-### Understanding Puppet Versions
+### Puppet Labs's Open Source Projects
 
-Puppet Labs has adopted [semantic versioning ("SemVer")][semver]. The SemVer specification provides a way for developers to communicate the impact of new releases through the version numbering scheme, which in turn helps users assess the benefits and potential drawbacks of upgrading their software.
+All of our open source projects --- including Puppet, PuppetDB, Facter, and Hiera --- use [semantic versioning ("semver")][semver] for their version numbers. This means that in an `x.y.z` version number, the "y" will increase if new features are introduced and the "x" will increase if existing features change or get removed.
 
-In Puppet Open Source versions prior to 3.0.0 and in Puppet Enterprise versions prior to 2.5.3, release numbering did not comply with the SemVer specification.
+Our semver promises only refer to the code in a single project; it's possible for packaging or interactions with new "y" releases of other projects to cause new behavior in a "z" upgrade of Puppet.
 
-In versions released prior to the introduction of semantic versioning it is especially important to consult all the release notes when upgrading: Version numbers for these releases do not make any guarantees about backward compatibility.
+Historical note: In Puppet versions prior to 3.0.0 and Facter versions prior to 1.7.0, we weren't using semantic versioning.
 
-### Upgrading Puppet
+### Puppet Enterprise
 
-We strongly recommend ensuring your master and agents are the same version.
+Since Puppet Enterprise bundles a lot of interrelated software together, it doesn't use semantic versioning. In an `x.y.z` version number, the "z" will increase for patch releases that make only minor changes to capabilities, and the "x.y" portion will increase for major new releases.
 
-We also strongly recommend that you upgrade your master first and then your agents: Earlier agent versions usually work with later masters, but frequently have issues with earlier masters.
+## Upgrading Puppet
 
-### Finding Specific Fixes
+Before upgrading, you should skim our [page of advice about upgrading Puppet](/guides/install_puppet/upgrading.html).
+
+The short version is that you should upgrade when you're ready to upgrade, skim the release notes first, reserve some time for testing, upgrade the Puppet master first, and roll out upgrades in stages.
+
+## Finding Specific Fixes
 
 The [Roadmap Tracker](https://tickets.puppetlabs.com/browse/PUP#selectedTab=com.atlassian.jira.plugin.system.project%3Aversions-panel) lists tickets closed for each release.
 
@@ -67,11 +72,10 @@ The [Roadmap Tracker](https://tickets.puppetlabs.com/browse/PUP#selectedTab=com.
 [3.6]: /puppet/3.6/reference/release_notes.html
 [3.5]: /puppet/3.5/reference/release_notes.html
 [3.x]: /puppet/3/reference/release_notes.html
-[pe3.0]: /pe/3.0/appendix.html#release-notes
-[pe3.1]: /pe/3.1/appendix.html#release-notes
 [pe3.3]: /pe/3.3/release_notes.html
 [pe3.2]: /pe/3.2/appendix.html#release-notes
 [pe3.1]: /pe/3.1/appendix.html#release-notes
+[pe3.0]: /pe/3.0/appendix.html#release-notes
 [pe2.8]: /pe/2.8/appendix.html#release-notes
 [pe2.7]: /pe/2.7/appendix.html#release-notes
 [pe2.6]: /pe/2.6/appendix.html#release-notes

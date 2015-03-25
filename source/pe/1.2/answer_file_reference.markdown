@@ -90,7 +90,7 @@ Allowed Variables In Answer Files
 : _String (Default: the node's fully-qualified domain name)_ --- Sets the unique identifier ("certname") for this puppet agent node's SSL certificate.
 
 `q_puppetagent_server`
-: *String (Default: "puppet"; however, if `q_puppetmaster_install` = y, this will default to the value of `q_puppetmaster_certname`.)* <!-- Pending checkin of bug #5574 --> --- Sets the hostname of the puppet master.
+: *String (Default: "puppet"; however, if `q_puppetmaster_install` = y, this will default to the value of `q_puppetmaster_certname`.)*  --- Sets the hostname of the puppet master.
 
 `q_puppetagent_pluginsync`
 : _Y or N (Default: Y)_ --- Sets whether to sync executable Ruby code (e.g. custom facts, types, and providers) from the puppet master. 

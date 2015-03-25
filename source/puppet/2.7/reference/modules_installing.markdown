@@ -77,7 +77,7 @@ The `puppet module install` action will install a module and all of its dependen
 * Use the `--modulepath` option to manually specify which directory to install into. Note: To avoid duplicating modules installed as dependencies, you may need to specify the modulepath as a list of directories; see [the documentation for setting the modulepath][modulepath] for details.
 * Use the `--ignore-dependencies` option to skip installing any modules required by this module.
 
-<!-- TODO: change this if the behavior of --dir/--target-dir changes; for now, we aren't mentioning it -->
+
 
 ### Installing From the Puppet Forge
 
@@ -85,29 +85,9 @@ To install a module from the Puppet Forge, simply identify the desired module by
 
     # puppet module install puppetlabs-apache
 
-{% comment %}
-
-### Installing From Another Module Repository
-
-The module tool can install modules from other repositories that mimic the Forge's interface. To do this, change the [`module_repository`](/references/2.7.latest/configuration.html#modulerepository) setting in [`puppet.conf`](/puppet/3.6/reference/config_file_main.html) or specify a repository on the command line with the `--module_repository` option. The value of this setting should be the base URL of the repository; the default value, which uses the Forge, is `http://forge.puppetlabs.com`.
-
-After setting the repository, follow the instructions above for installing from the Forge.
-
-    # puppet module install --module_repository http://dev-forge.example.com puppetlabs-apache
-
-{% endcomment %}
-
 ### Installing From a Release Tarball
 
 At this time, the module subcommand cannot properly install from local tarball files. [Follow issue #13542](http://projects.puppetlabs.com/issues/13542) for more details about the progress of this feature.
-
-{% comment %} Uncomment this when we finally fix the bug.
-To install a module from a release tarball, specify the path to the tarball instead of the module name:
-
-    # puppet module install ~/pmtacceptance-apache-0.0.1.tar.gz
-
-This is useful when installing modules downloaded directly from the developer's site, or local modules which haven't yet been published to the forge.
-{% endcomment %}
 
 Finding Modules
 -----

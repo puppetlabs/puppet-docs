@@ -36,7 +36,7 @@ The baseline compliance plugin requires Puppet Dashboard 1.2 (or a pre-release t
 Puppet Dashboard and the baseline compliance plugin require the following system packages:
 
 * ruby
-* ruby(abi) <!-- Should this be listed separately? -->
+* ruby(abi) 
 * rubygems
 * rubygem(rake)
 * make
@@ -45,7 +45,7 @@ Puppet Dashboard and the baseline compliance plugin require the following system
 Additionally, the following packages from the [EPEL](http://fedoraproject.org/wiki/EPEL) repository are required:
 
 * ruby-mysql
-* puppet <!-- Is this still required? It looks like only the baseline plugin wants it. -->
+* puppet 
 
 Additionally, you'll need to install the following library using Ruby's `gem` package command:
 
@@ -98,12 +98,12 @@ Each puppet agent node will need to be configured to run puppet inspect at least
       minute  => 0,
     }
 {% endhighlight %}
-<!-- Check that this is right. -->
+
 
 If you want to be able to view and diff file contents, you'll also need to ensure that each agent node's puppet.conf file contains `archive_files = true` in its `[main]` or `[agent]` block.
 
 With this, the baseline plugin should be fully operational and ready for normal use; the first compliance reports should appear the next day.
-<!-- Verify the timing on this. -->
+
 
 ### Writing Compliance Manifests
 
@@ -132,7 +132,7 @@ As with any Puppet site design, you'll need to classify your nodes with a site m
 
 You do not need to create baselines for your nodes.
 
-Baselines are created automatically for each node that has submitted at least one inspect report during the first run of the baseline plugin's maintenance task. This initial baseline will be identical to the most recent <!-- Check this; it might change. --> inspect report, and the same goes for any new nodes when they submit their first inspections. That is to say, **we operate on the assumption that the infrastructure is in a compliant state when the baseline plugin is bootstrapped, and we expect new nodes to be in a compliant state when they are added to the infrastructure.**
+Baselines are created automatically for each node that has submitted at least one inspect report during the first run of the baseline plugin's maintenance task. This initial baseline will be identical to the most recent  inspect report, and the same goes for any new nodes when they submit their first inspections. That is to say, **we operate on the assumption that the infrastructure is in a compliant state when the baseline plugin is bootstrapped, and we expect new nodes to be in a compliant state when they are added to the infrastructure.**
 
 Before baselines are created, there's nothing to compare against, and changes to the audited systems can't be reviewed. When viewing a group or a node in the compliance pages, you can tell whether a baseline has been created by checking whether the summary lists "N/A" or "0" in its categories; nodes and groups with no baselines will be reported as "N/A."
 

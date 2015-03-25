@@ -76,25 +76,13 @@ The `puppet module install` action will install a module and all of its dependen
 * Use the `--modulepath` option to manually specify which directory to install into. Note: To avoid duplicating modules installed as dependencies, you may need to specify the modulepath as a list of directories; see [the documentation for setting the modulepath][modulepath] for details.
 * Use the `--ignore-dependencies` option to skip installing any modules required by this module.
 
-<!-- TODO: change this if the behavior of --dir/--target-dir changes; for now, we aren't mentioning it -->
+
 
 ### Installing From the Puppet Forge
 
 To install a module from the Puppet Forge, simply identify the desired module by its full name. **The full name of a Forge module is formatted as "username-modulename."**
 
     # puppet module install puppetlabs-apache
-
-{% comment %}
-
-### Installing From Another Module Repository
-
-The module tool can install modules from other repositories that mimic the Forge's interface. To do this, change the [`module_repository`](/references/latest/configuration.html#modulerepository) setting in [`puppet.conf`](./config_file_main.html) or specify a repository on the command line with the `--module_repository` option. The value of this setting should be the base URL of the repository; the default value, which uses the Forge, is `http://forge.puppetlabs.com`.
-
-After setting the repository, follow the instructions above for installing from the Forge.
-
-    # puppet module install --module_repository http://dev-forge.example.com puppetlabs-apache
-
-{% endcomment %}
 
 ### Installing From a Release Tarball
 

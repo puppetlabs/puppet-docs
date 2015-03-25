@@ -30,11 +30,14 @@ title: "Puppet's Commands"
 [help_man]: /references/3.7.latest/man/help.html
 [man_man]: /references/3.7.latest/man/man.html
 [all_manpages]: /references/3.7.latest/man/
+[about_server]: /puppetserver/1.0/services_master_puppetserver.html
+[server_vs_passenger]: /puppetserver/1.0/puppetserver_vs_passenger.html
+[subcommands]: /puppetserver/1.0/subcommands.html
 
 
 Puppet's command line interface consists of a single `puppet` command with many subcommands.
 
-Puppet's companion utilities, [Facter][facter_cli] and [Hiera][hiera_cli], have their own command line interfaces, which differ slightly from Puppet's.
+[Puppet Server][about_server] and Puppet's companion utilities, [Facter][facter_cli] and [Hiera][hiera_cli], have their own command line interfaces, which differ slightly from Puppet's.
 
 
 Core Services
@@ -44,7 +47,7 @@ The following subcommands are the main applications Puppet uses to manage system
 
 ### Puppet Agent
 
-Puppet agent manages systems, with the help of a puppet master. It requests a configuration catalog from a puppet master server, then ensures that all resources in that catalog are in their desired state.
+Puppet agent manages systems, with the help of a Puppet master. It requests a configuration catalog from a Puppet master server, then ensures that all resources in that catalog are in their desired state.
 
 For more information, see:
 
@@ -55,7 +58,7 @@ For more information, see:
 
 ### Puppet Master
 
-Puppet master compiles and serves configuration catalogs for any number of puppet agent nodes, using Puppet modules and various other data sources.
+Puppet master compiles and serves configuration catalogs for any number of Puppet agents, using Puppet modules and various other data sources.
 
 For more information, see:
 
@@ -64,9 +67,22 @@ For more information, see:
 * [The WEBrick Puppet Master][master_webrick]
 * [Puppet Master's Man Page][master_man]
 
+### Puppet Server
+
+Puppet Server compiles configurations for any number of Puppet agents, using Puppet code and various other data sources. It provides the same services as the classic Puppet master application and is meant to replace an Apache/Passenger Puppet master stack. 
+
+Puppet Server has its own subcommand, `puppetserver`, which isn't prefaced by the usual `puppet` subcommand.
+
+For more information, see:
+
+* [Overview of Puppet's Architecture][arch]
+* [Puppet Server][about_server]
+* [Puppet Server vs. Apache/Passenger master][server_vs_passenger]
+* [Puppet Server Subcommands][subcommands]
+
 ### Puppet Apply
 
-Puppet apply manages systems without needing to contact a puppet master server. It compiles its own configuration catalog, using Puppet modules and various other data sources, then immediately applies the catalog.
+Puppet apply manages systems without needing to contact a Puppet master server. It compiles its own configuration catalog, using Puppet modules and various other data sources, then immediately applies the catalog.
 
 For more information, see:
 
@@ -80,7 +96,7 @@ Administrative Tools
 
 ### Puppet Cert
 
-Puppet cert helps manage Puppet's built-in certificate authority (CA). It runs on the same server as the puppet master application. You can use it to sign and revoke agent certificates.
+Puppet cert helps manage Puppet's built-in certificate authority (CA). It runs on the same server as the Puppet master application. You can use it to sign and revoke agent certificates.
 
 For more information, see:
 
@@ -132,7 +148,7 @@ For more information, see:
 
 ### Puppet Help and Puppet Man
 
-Puppet help and puppet man can display online help for Puppet's other subcommands.
+Puppet help and Puppet man can display online help for Puppet's other subcommands.
 
 For more information, see:
 

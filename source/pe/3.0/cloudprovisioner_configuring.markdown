@@ -13,7 +13,7 @@ Prerequisites
 ### Software
 
 - The cloud provisioning tools ship with Puppet Enterprise; they are an optional role in the PE installer. You must specifically choose to install cloud provisioner in order to run the cloud provisioner commands.
-<!-- - OpenStack tools can be installed separately. TODO need download link -->
+
 
 ### Services
 

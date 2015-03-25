@@ -185,7 +185,7 @@ Basically, to get a fact's or variable's value, you just call
 ## Calling Functions from Functions
 
 Functions can be accessed from other functions by
-calling `Puppet::Parser::Functions.autoloader.loadall` at the beginning of your new function, then prepending `function_` to the name of the function you are trying to call.  Alternatively, you can load a specific function by calling `Puppet::Parser::Functions.function('myfunc1')`
+prepending `function_` to the name of the function you are trying to call. This will cause Puppet to automatically locate and load the function; you shouldn't need to call any special methods to make a function available.
 
 Also keep in mind that when calling a puppet function from the puppet DSL, arguments are all passed in as an anonymous array.  This is not the case when calling the function from within Ruby.  To work around this, you must create the anonymous array yourself by putting the arguments (even if there is only one argument) inside square brackets like this:
 
@@ -198,7 +198,6 @@ Also keep in mind that when calling a puppet function from the puppet DSL, argum
 {% highlight ruby %}
     module Puppet::Parser::Functions
       newfunction(:myfunc2, :type => :rvalue) do |args|
-        Puppet::Parser::Functions.autoloader.loadall
         function_myfunc1( [ arg1, arg2, ... ] )
       end
     end
@@ -212,34 +211,6 @@ manner to the `fail()` function:
 {% highlight ruby %}
     raise Puppet::ParseError, "my error"
 {% endhighlight %}
-
-## Troubleshooting Functions
-
-If you're experiencing problems with your functions loading,
-there's a couple of things you can do to see what might be causing
-the issue:
-
-1 - Make sure your function is parsing correctly, by running:
-
-    ruby -rpuppet my_funct.rb
-
-This should return nothing if the function is parsing correctly,
-otherwise you'll get an exception which should help troubleshoot
-the problem.
-
-2 - Check that the function is available to Puppet:
-
-    irb
-    > require 'puppet'
-    > require '/path/to/puppet/functions/my_funct.rb'
-    > Puppet::Parser::Functions.function(:my_funct)
-    => "function_my_funct"
-
-Substitute `:my_funct` with the name of your function, and it should
-return something similar to "`function_my_funct`" if the function
-is seen by Puppet. Otherwise it will just return false, indicating
-that you still have a problem (and you'll more than likely get a
-"Unknown Function" error on your clients).
 
 ## Referencing Custom Functions In Templates
 

@@ -50,7 +50,7 @@ Depending on the run environment, Puppet will use either a system-wide confdir o
 
 * When Puppet is running as a non-root user, it defaults to a confdir in that user's home directory.
 * The system confdir is used when Puppet is running as root or Administrator, either directly or via `sudo`. (Puppet agent generally runs as root or Administrator when managing a system.)
-    * The system confdir is also used when Puppet is started as root before switching users and dropping privileges, which is what a WEBrick puppet master does. Note that when puppet master is running as a Rack application, the `config.ru` file must explicitly set `--confdir` to the system confdir. The example `config.ru` file provided with the Puppet source does this.
+    * The system confdir is also used when Puppet is started as root before switching users and dropping privileges, which is what a WEBrick Puppet master does. Note that when Puppet master is running as a Rack application, the `config.ru` file must explicitly set `--confdir` to the system confdir. The example `config.ru` file provided with the Puppet source does this.
 
 The system confdir is the most common, since Puppet generally runs as a service with administrator privileges and the admin commands (like `puppet cert`) must be run with `sudo`.
 
@@ -69,7 +69,7 @@ Puppet's confdir contains several config files and several directories of data a
 
 Since the contents of the confdir are Puppet's most important files, each one has its own page of documentation.
 
-Items labeled "master only" below may also be present on standalone puppet apply nodes, since they act as both masters and agents.
+Items labeled "master only" below may also be present on standalone Puppet apply nodes, since they act as both masters and agents.
 
 ### Code and Data Directories
 
@@ -81,7 +81,7 @@ Items labeled "master only" below may also be present on standalone puppet apply
 ### Config Files
 
 * [`puppet.conf`](./config_file_main.html) --- Puppet's main config file. (All nodes.)
-* [`auth.conf`](./config_file_auth.html) --- access control rules for the puppet master's network services. (Master only, unless [`listen`][listen] is enabled.)
+* [`auth.conf`](./config_file_auth.html) --- access control rules for the Puppet master's network services. (Master only, unless [`listen`][listen] is enabled.)
 * [`autosign.conf`](./config_file_autosign.html) --- a list of pre-approved certificate requests. (CA master only.)
 * [`csr_attributes.yaml`](./config_file_csr_attributes.html) --- optional data to be inserted into new certificate requests. (All nodes.)
 * [`device.conf`](./config_file_device.html) --- configuration for network devices managed by the `puppet device` command. (All nodes.)

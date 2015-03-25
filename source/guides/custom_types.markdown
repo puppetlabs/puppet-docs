@@ -76,13 +76,12 @@ Types are created by calling the `newtype` method on the `Puppet::Type` class:
 
 > #### Options
 >
-> When creating a type, you may also specify options after the name. There are currently two options available, and neither is frequently used.
+> When creating a type, you may also specify options after the name. There is currently only one option available.
 >
 > Options must be specified as a hash, although Ruby method arguments allow you to leave the curly braces off of hashes.
 >
 > * `:self_refresh => true` --- Cause resources of this type to **refresh** (as if they had received an event via a notify/subscribe relationship) whenever a change is made to the resource. Most notably used in the core `mount` type.
-> * `:parent => <CLASS>` --- A parent class to use for the type; if not specified, `Puppet::Type` is used
-> as the parent class. Alternate parent classes are not used anywhere in the core Puppet types, and we are not providing examples of it at this time.
+
 
 ### Type Documentation
 

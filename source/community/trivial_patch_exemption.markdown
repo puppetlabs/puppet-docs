@@ -44,5 +44,5 @@ A patch containing the following items would be trivial if less than 10 lines, a
 * Moving source files from one directory or package to another, with no changes in code.
 * Breaking a source files into multiple source files, or consolidating multiple source files into one source file, with no code changes
 
-There are many gray areas. If it doesn't fall into one of the above categories, please check with Deepak Giridharagopal, Jeff McCune, or Andy Parker. Any one of them can make a final determination.
+There are many gray areas. If it doesn't fall into one of the above categories, please check with faq@puppetlabs.com.
 

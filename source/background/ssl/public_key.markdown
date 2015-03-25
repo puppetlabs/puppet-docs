@@ -37,6 +37,8 @@ Thus, if two parties have each others' public keys, they can each send messages 
 Key Pairs Can Sign Information
 -----
 
+> (Note: This only applies to RSA key pairs; DSA key pairs can't sign data.)
+
 If you have the _private_ part of a given key pair, you can **digitally sign** a message. This involves combining the message and the private key to create a string of unique nonsense (a "signature"), which could only have been created by that specific private key.
 
 Later, anyone in possession of the corresponding _public_ key can use the public key and the original message to analyze the signature. This allows them to:

@@ -4,7 +4,7 @@ title: "Language: Resource Defaults"
 canonical: "/puppet/latest/reference/lang_defaults.html"
 ---
 
-<!-- TODO: need better link for site.pp -->
+
 [sitemanifest]: ./lang_summary.html#files
 [dynamic_scope]: ./lang_scope.html#scope-lookup-rules
 [resource]: ./lang_resources.html

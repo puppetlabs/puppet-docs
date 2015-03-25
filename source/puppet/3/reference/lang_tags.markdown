@@ -54,10 +54,6 @@ For example, a file resource in class `apache::ssl` would get the tags `file`, `
 
 Class tags are generally the most useful, especially when setting up [tagmail][] or testing refactored manifests.
 
-{% comment %} <!-- Actually, there's some bugginess where tags obey the old 0.25.x containment behavior. Issue #15945. I am leaving this deliberately undocumented because yeah.
-
-Also, you get auto-tagged with the title of the specific defined type instance containing the resource, but only if it is a single-word title! That is also too fuzzy (and useless) to want to document. --> {% endcomment %}
-
 ### Containment
 
 Like [relationships][] and most metaparameters, tags are passed along by [containment][]. This means a resource will receive all of the tags from the class and/or defined type that contains it. In the case of nested containment (e.g. a class that declares a defined resource, or a defined type that declares other defined resources), a resource will receive tags from all of its containers.

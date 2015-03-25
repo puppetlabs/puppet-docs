@@ -329,8 +329,8 @@ You can also assign classes to specific nodes using PE's web console. You'll hav
 
 We'll go into more detail later about working with multiple nodes.
 
-[pe_classes]: /pe/latest/console_classes_groups.html#adding-a-new-class
-[pe_node_class]: /pe/latest/console_classes_groups.html#assigning-classes-and-groups-to-nodes
+[pe_classes]: /pe/latest/console_classes_groups.html#adding-classes-to-a-node-group
+[pe_node_class]: /pe/latest/console_classes_groups.html#adding-classes-to-a-node-group
 
 
 

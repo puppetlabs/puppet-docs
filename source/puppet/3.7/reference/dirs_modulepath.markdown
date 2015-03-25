@@ -17,7 +17,7 @@ title: "Directories: The Modulepath (Default Config)"
 [puppet.conf]: ./config_file_main.html
 [environment.conf]: ./config_file_environment.html
 
-The puppet master service and the puppet apply command both load most of their content from modules. (See the page on [module structure and behavior][module_fundamentals] for more details.)
+The Puppet master service and the Puppet apply command both load most of their content from modules. (See the page on [module structure and behavior][module_fundamentals] for more details.)
 
 Puppet automatically loads modules from one or more directories. The list of directories Puppet will find modules in is called the **modulepath.**
 
@@ -69,7 +69,11 @@ Windows (PE and FOSS)     | `$confdir\modules`
 
 ### Examples of Default Modulepaths
 
-Puppet Enterprise, no environments, default settings:
+Default settings for a new installation of Puppet Enterprise 3.7 and higher:
+
+`/etc/puppetlabs/puppet/environments/production/modules:/opt/puppet/share/puppet/modules`
+
+Default settings for Puppet Enterprise 3.3 and lower or upgrades to Puppet Enterprise 3.7:
 
 `/etc/puppetlabs/puppet/modules:/opt/puppet/share/puppet/modules`
 
@@ -96,7 +100,7 @@ Puppet will use modules from every directory in the modulepath.
 
 Directories in the modulepath may be empty, and may even be absent. In both cases, this is not an error; it just means no modules will be loaded from that directory.
 
-If no modules are present across the entire modulepath, or if modules are present but none of them contains a `lib` directory, then puppet agent will log an error when attempting to sync plugins from the puppet master. This error is benign and will not prevent the rest of the puppet run.
+If no modules are present across the entire modulepath, or if modules are present but none of them contains a `lib` directory, then Puppet agent will log an error when attempting to sync plugins from the Puppet master. This error is benign and will not prevent the rest of the Puppet run.
 
 ### Duplicate or Conflicting Modules and Content
 
@@ -112,9 +116,9 @@ For most content, this earliest-module-wins behavior is on an all-or-nothing, **
 
 > **However,** Puppet occasionally shows problematic behavior with **Ruby plugins loaded directly from modules.** This includes:
 >
-> - Plugins used by the puppet master (custom resource types, custom functions)
-> - Plugins used by puppet apply
-> - Plugins that happen to be present in puppet agent's modulepath (which should generally be empty, but may not be when running puppet agent on a node that is also a puppet master server)
+> - Plugins used by the Puppet master (custom resource types, custom functions)
+> - Plugins used by Puppet apply
+> - Plugins that happen to be present in Puppet agent's modulepath (which should generally be empty, but may not be when running Puppet agent on a node that is also a Puppet master server)
 >
 > With these plugins, the earlier module still wins, but the plugins are handled on a **per-file** basis instead of per-module. This means that if a duplicate module in a later directory has **additional** plugin files that don't exist in the winning module, those extra files will be loaded, and Puppet will use a mixture of files from the winning and duplicate modules.
 >

@@ -1,3 +1,5 @@
+{% capture puppetdb_version %}master{% endcapture %}
+
 <h2 id="puppetdb">PuppetDB NEXT</h2>
 
 <p class="versionnote">This documentation is for an unreleased version of PuppetDB! If you are running PuppetDB from source on the master branch, this is the documentation for you; otherwise, please see the documentation for the <a href="/puppetdb/latest/">latest official release</a>.</p>
@@ -5,122 +7,89 @@
 <ul>
   <li><strong>General Information</strong>
     <ul>
-      <li>{% iflink "Overview & Requirements", "/puppetdb/master/index.html" %}</li>
-      <li>{% iflink "Frequently Asked Questions", "/puppetdb/master/puppetdb-faq.html" %}</li>
-      <li>{% iflink "Release Notes", "/puppetdb/master/release_notes.html" %}</li>
-      <li>{% iflink "Versioning Policy", "/puppetdb/master/versioning_policy.html" %}</li>
-      <li>{% iflink "Known Issues", "/puppetdb/master/known_issues.html" %}</li>
-      <li>{% iflink "Community Add-ons", "/puppetdb/master/community_add_ons.html" %}</li>
+      <li><a href="/puppetdb/{{ puppetdb_version }}/index.html">Overview & Requirements</a></li>
+      <li><a href="/puppetdb/{{ puppetdb_version }}/puppetdb-faq.html">Frequently Asked Questions</a></li>
+      <li><a href="/puppetdb/{{ puppetdb_version }}/release_notes.html">Release Notes</a></li>
+      <li><a href="/puppetdb/{{ puppetdb_version }}/versioning_policy.html">Versioning Policy</a></li>
+      <li><a href="/puppetdb/{{ puppetdb_version }}/known_issues.html">Known Issues</a></li>
+      <li><a href="/puppetdb/{{ puppetdb_version }}/community_add_ons.html">Community Add-ons</a></li>
     </ul>
   </li>
   <li><strong>Installation</strong>
     <ul>
-      <li>{% iflink "Migrating Existing Data", "/puppetdb/master/migrate.html" %}</li>
-      <li>{% iflink "Installing via Puppet Module", "/puppetdb/master/install_via_module.html" %}</li>
-      <li>{% iflink "Installing From Packages", "/puppetdb/master/install_from_packages.html" %}</li>
-      <li>{% iflink "Installing from Source", "/puppetdb/master/install_from_source.html" %}</li>
-      <li>{% iflink "Upgrading PuppetDB", "/puppetdb/master/upgrade.html" %}</li>
-      <li>{% iflink "Connecting Puppet Masters", "/puppetdb/master/connect_puppet_master.html" %}</li>
-      <li>{% iflink "Connecting Standalone Puppet", "/puppetdb/master/connect_puppet_apply.html" %}</li>
+      <li><a href="/puppetdb/{{ puppetdb_version }}/migrate.html">Migrating Existing Data</a></li>
+      <li><a href="/puppetdb/{{ puppetdb_version }}/install_via_module.html">Installing via Puppet Module</a></li>
+      <li><a href="/puppetdb/{{ puppetdb_version }}/install_from_packages.html">Installing From Packages</a></li>
+      <li><a href="/puppetdb/{{ puppetdb_version }}/install_from_source.html">Installing from Source</a></li>
+      <li><a href="/puppetdb/{{ puppetdb_version }}/upgrade.html">Upgrading PuppetDB</a></li>
+      <li><a href="/puppetdb/{{ puppetdb_version }}/connect_puppet_master.html">Connecting Puppet Masters</a></li>
+      <li><a href="/puppetdb/{{ puppetdb_version }}/connect_puppet_apply.html">Connecting Standalone Puppet</a></li>
     </ul>
   </li>
   <li><strong>Configuration</strong>
     <ul>
-      <li>{% iflink "Configuring PuppetDB", "/puppetdb/master/configure.html" %}</li>
-      <li>{% iflink "Setting Up SSL for PostgreSQL", "/puppetdb/master/postgres_ssl.html" %}</li>
+      <li><a href="/puppetdb/{{ puppetdb_version }}/configure.html">Configuring PuppetDB</a></li>
+      <li><a href="/puppetdb/{{ puppetdb_version }}/puppetdb_connection.html">puppetdb.conf: Configuring a Puppet/PuppetDB Connection</a></li>
+      <li><a href="/puppetdb/{{ puppetdb_version }}/postgres_ssl.html">Setting Up SSL for PostgreSQL</a></li>
     </ul>
   <li><strong>Usage/Admin</strong>
     <ul>
-      <li>{% iflink "Using PuppetDB", "/puppetdb/master/using.html" %}</li>
-      <li>{% iflink "Maintaining and Tuning", "/puppetdb/master/maintain_and_tune.html" %}</li>
-      <li>{% iflink "Migrating Data", "/puppetdb/master/migrate.html" %}</li>
-      <li>{% iflink "Anonymizing Data", "/puppetdb/master/anonymization.html" %}</li>
-      <li>{% iflink "Scaling Recommendations", "/puppetdb/master/scaling_recommendations.html" %}</li>
-      <li>{% iflink "Debugging with Remote REPL", "/puppetdb/master/repl.html" %}</li>
-      <li>{% iflink "Load Testing", "/puppetdb/master/load_testing_tool.html" %}</li>
+      <li><a href="/puppetdb/{{ puppetdb_version }}/using.html">Using PuppetDB</a></li>
+      <li><a href="/puppetdb/{{ puppetdb_version }}/maintain_and_tune.html">Maintaining and Tuning</a></li>
+      <li><a href="/puppetdb/{{ puppetdb_version }}/migrate.html">Migrating Data</a></li>
+      <li><a href="/puppetdb/{{ puppetdb_version }}/anonymization.html">Anonymizing Data</a></li>
+      <li><a href="/puppetdb/{{ puppetdb_version }}/scaling_recommendations.html">Scaling Recommendations</a></li>
+      <li><a href="/puppetdb/{{ puppetdb_version }}/repl.html">Debugging with Remote REPL</a></li>
+      <li><a href="/puppetdb/{{ puppetdb_version }}/load_testing_tool.html">Load Testing</a></li>
     </ul>
   </li>
   <li><strong>Troubleshooting</strong>
     <ul>
-      <li>{% iflink "KahaDB Corruption", "/puppetdb/master/trouble_kahadb_corruption.html" %}</li>
-      <li>{% iflink "Low Catalog Duplication", "/puppetdb/master/trouble_low_catalog_duplication.html" %}</li>
+      <li><a href="/puppetdb/{{ puppetdb_version }}/trouble_kahadb_corruption.html">KahaDB Corruption</a></li>
+      <li><a href="/puppetdb/{{ puppetdb_version }}/trouble_low_catalog_duplication.html">Low Catalog Duplication</a></li>
     </ul>
   </li>
   <li><strong>API</strong>
     <ul>
-      <li>{% iflink "Overview", "/puppetdb/master/api/index.html" %}</li>
-      <li>{% iflink "Query Tutorial", "/puppetdb/master/api/query/tutorial.html" %}</li>
-      <li>{% iflink "Curl Tips", "/puppetdb/master/api/query/curl.html" %}</li>
-      <li>{% iflink "Command API", "/puppetdb/master/api/commands.html" %}</li>
+      <li><a href="/puppetdb/{{ puppetdb_version }}/api/index.html">Overview</a></li>
+      <li><a href="/puppetdb/{{ puppetdb_version }}/api/query/tutorial.html">Query Tutorial</a></li>
+      <li><a href="/puppetdb/{{ puppetdb_version }}/api/query/curl.html">Curl Tips</a></li>
+      <li><a href="/puppetdb/{{ puppetdb_version }}/api/commands.html">Command API</a></li>
     </ul>
   </li>
-  <li><strong>Query API Version 4 (experimental)</strong>
+  <li><strong>Query API Version 4</strong>
     <ul>
-      <li>{% iflink "Query Structure", "/puppetdb/master/api/query/v4/query.html" %}</li>
-      <li>{% iflink "Available Operators", "/puppetdb/master/api/query/v4/operators.html" %}</li>
-      <li>{% iflink "Query Paging", "/puppetdb/master/api/query/v4/paging.html" %}</li>
-      <li>{% iflink "Nodes Endpoint", "/puppetdb/master/api/query/v4/nodes.html" %}</li>
-      <li>{% iflink "Environments Endpoint", "/puppetdb/master/api/query/v4/environments.html" %}</li>
-      <li>{% iflink "Factsets Endpoint", "/puppetdb/master/api/query/v4/factsets.html" %}</li>
-      <li>{% iflink "Facts Endpoint", "/puppetdb/master/api/query/v4/facts.html" %}</li>
-      <li>{% iflink "Fact-Names Endpoint", "/puppetdb/master/api/query/v4/fact-names.html" %}</li>
-      <li>{% iflink "Fact-Paths Endpoint", "/puppetdb/master/api/query/v4/fact-paths.html" %}</li>
-      <li>{% iflink "Fact-Contents Endpoint", "/puppetdb/master/api/query/v4/fact-contents.html" %}</li>
-      <li>{% iflink "Catalogs Endpoint", "/puppetdb/master/api/query/v4/catalogs.html" %}</li>
-      <li>{% iflink "Resources Endpoint", "/puppetdb/master/api/query/v4/resources.html" %}</li>
-      <li>{% iflink "Reports Endpoint", "/puppetdb/master/api/query/v4/reports.html" %}</li>
-      <li>{% iflink "Events Endpoint", "/puppetdb/master/api/query/v4/events.html" %}</li>
-      <li>{% iflink "Event Counts Endpoint", "/puppetdb/master/api/query/v4/event-counts.html" %}</li>
-      <li>{% iflink "Aggregate Event Counts Endpoint", "/puppetdb/master/api/query/v4/aggregate-event-counts.html" %}</li>
-      <li>{% iflink "Metrics Endpoint", "/puppetdb/master/api/query/v4/metrics.html" %}</li>
-      <li>{% iflink "Server Time Endpoint", "/puppetdb/master/api/query/v4/server-time.html" %}</li>
-      <li>{% iflink "Version Endpoint", "/puppetdb/master/api/query/v4/version.html" %}</li>
+      <li><a href="/puppetdb/{{ puppetdb_version }}/api/query/v4/upgrading-from-v3.html">Upgrading from Version 3</a></li>
+      <li><a href="/puppetdb/{{ puppetdb_version }}/api/query/v4/query.html">Query Structure</a></li>
+      <li><a href="/puppetdb/{{ puppetdb_version }}/api/query/v4/operators.html">Available Operators</a></li>
+      <li><a href="/puppetdb/{{ puppetdb_version }}/api/query/v4/paging.html">Query Paging</a></li>
+      <li><a href="/puppetdb/{{ puppetdb_version }}/api/query/v4/nodes.html">Nodes Endpoint</a></li>
+      <li><a href="/puppetdb/{{ puppetdb_version }}/api/query/v4/environments.html">Environments Endpoint</a></li>
+      <li><a href="/puppetdb/{{ puppetdb_version }}/api/query/v4/factsets.html">Factsets Endpoint</a></li>
+      <li><a href="/puppetdb/{{ puppetdb_version }}/api/query/v4/facts.html">Facts Endpoint</a></li>
+      <li><a href="/puppetdb/{{ puppetdb_version }}/api/query/v4/fact-names.html">Fact-Names Endpoint</a></li>
+      <li><a href="/puppetdb/{{ puppetdb_version }}/api/query/v4/fact-paths.html">Fact-Paths Endpoint</a></li>
+      <li><a href="/puppetdb/{{ puppetdb_version }}/api/query/v4/fact-contents.html">Fact-Contents Endpoint</a></li>
+      <li><a href="/puppetdb/{{ puppetdb_version }}/api/query/v4/catalogs.html">Catalogs Endpoint</a></li>
+      <li><a href="/puppetdb/{{ puppetdb_version }}/api/query/v4/resources.html">Resources Endpoint</a></li>
+      <li><a href="/puppetdb/{{ puppetdb_version }}/api/query/v4/reports.html">Reports Endpoint</a></li>
+      <li><a href="/puppetdb/{{ puppetdb_version }}/api/query/v4/events.html">Events Endpoint</a></li>
+      <li><a href="/puppetdb/{{ puppetdb_version }}/api/query/v4/event-counts.html">Event Counts Endpoint</a></li>
+      <li><a href="/puppetdb/{{ puppetdb_version }}/api/query/v4/aggregate-event-counts.html">Aggregate Event Counts Endpoint</a></li>
+      <li><a href="/puppetdb/{{ puppetdb_version }}/api/query/v4/server-time.html">Server Time Endpoint</a></li>
+      <li><a href="/puppetdb/{{ puppetdb_version }}/api/query/v4/version.html">Version Endpoint</a></li>
     </ul>
   </li>
-  <li><strong>Query API Version 3</strong>
+  <li><strong>Metrics API Version 1</strong>
     <ul>
-      <li>{% iflink "Query Structure", "/puppetdb/master/api/query/v3/query.html" %}</li>
-      <li>{% iflink "Available Operators", "/puppetdb/master/api/query/v3/operators.html" %}</li>
-      <li>{% iflink "Query Paging", "/puppetdb/master/api/query/v3/paging.html" %}</li>
-      <li>{% iflink "Nodes Endpoint", "/puppetdb/master/api/query/v3/nodes.html" %}</li>
-      <li>{% iflink "Facts Endpoint", "/puppetdb/master/api/query/v3/facts.html" %}</li>
-      <li>{% iflink "Fact-Names Endpoint", "/puppetdb/master/api/query/v3/fact-names.html" %}</li>
-      <li>{% iflink "Catalogs Endpoint", "/puppetdb/master/api/query/v3/catalogs.html" %}</li>
-      <li>{% iflink "Resources Endpoint", "/puppetdb/master/api/query/v3/resources.html" %}</li>
-      <li>{% iflink "Reports Endpoint", "/puppetdb/master/api/query/v3/reports.html" %}</li>
-      <li>{% iflink "Events Endpoint", "/puppetdb/master/api/query/v3/events.html" %}</li>
-      <li>{% iflink "Event Counts Endpoint", "/puppetdb/master/api/query/v3/event-counts.html" %}</li>
-      <li>{% iflink "Aggregate Event Counts Endpoint", "/puppetdb/master/api/query/v3/aggregate-event-counts.html" %}</li>
-      <li>{% iflink "Metrics Endpoint", "/puppetdb/master/api/query/v3/metrics.html" %}</li>
-      <li>{% iflink "Server Time Endpoint", "/puppetdb/master/api/query/v3/server-time.html" %}</li>
-      <li>{% iflink "Version Endpoint", "/puppetdb/master/api/query/v3/version.html" %}</li>
-    </ul>
-  </li>
-  <li><strong>Query API Version 2 (Deprecated)</strong>
-    <ul>
-      <li>{% iflink "Query Structure", "/puppetdb/master/api/query/v2/query.html" %}</li>
-      <li>{% iflink "Available Operators", "/puppetdb/master/api/query/v2/operators.html" %}</li>
-      <li>{% iflink "Nodes Endpoint", "/puppetdb/master/api/query/v2/nodes.html" %}</li>
-      <li>{% iflink "Facts Endpoint", "/puppetdb/master/api/query/v2/facts.html" %}</li>
-      <li>{% iflink "Fact-Names Endpoint", "/puppetdb/master/api/query/v2/fact-names.html" %}</li>
-      <li>{% iflink "Resources Endpoint", "/puppetdb/master/api/query/v2/resources.html" %}</li>
-      <li>{% iflink "Metrics Endpoint", "/puppetdb/master/api/query/v2/metrics.html" %}</li>
+      <li><a href="/puppetdb/{{ puppetdb_version }}/api/metrics/v1/index.html">Metrics Endpoint</a></li>
     </ul>
   </li>
   <li><strong>Wire Formats</strong>
     <ul>
-      <li>{% iflink "Catalog Wire Format - v5", "/puppetdb/master/api/wire_format/catalog_format_v5.html" %}</li>
-      <li>{% iflink "Facts Wire Format - v3", "/puppetdb/master/api/wire_format/facts_format_v3.html" %}</li>
-      <li>{% iflink "Report Wire Format - v3", "/puppetdb/master/api/wire_format/report_format_v3.html" %}</li>
-    </ul>
-  </li>
-  <li><strong>Wire Formats - Deprecated</strong>
-    <ul>
-      <li>{% iflink "Catalog Wire Format - v4", "/puppetdb/master/api/wire_format/catalog_format_v4.html" %}</li>
-      <li>{% iflink "Catalog Wire Format - v1", "/puppetdb/master/api/wire_format/catalog_format_v1.html" %}</li>
-      <li>{% iflink "Facts Wire Format - v2", "/puppetdb/master/api/wire_format/facts_format_v2.html" %}</li>
-      <li>{% iflink "Facts Wire Format - v1", "/puppetdb/master/api/wire_format/facts_format_v1.html" %}</li>
-      <li>{% iflink "Report Wire Format - v1", "/puppetdb/master/api/wire_format/report_format_v1.html" %}</li>
+      <li><a href="/puppetdb/{{ puppetdb_version }}/api/wire_format/catalog_format_v6.html">Catalog Wire Format - v6</a></li>
+      <li><a href="/puppetdb/{{ puppetdb_version }}/api/wire_format/facts_format_v4.html">Facts Wire Format - v4</a></li>
+      <li><a href="/puppetdb/{{ puppetdb_version }}/api/wire_format/report_format_v5.html">Report Wire Format - v5</a></li>
     </ul>
   </li>
 </ul>

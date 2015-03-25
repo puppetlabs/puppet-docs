@@ -39,7 +39,7 @@ Background Info
 
 ### What's a catalog?
 
-When configuring a node, puppet agent uses a document called a **catalog,** which it downloads from a puppet master server. The catalog describes the [desired state for each resource][resource_declaration] that should be managed, and may specify [dependency information][relationships] for resources that should be managed in a certain order.
+When configuring a node, Puppet agent uses a document called a **catalog,** which it downloads from a Puppet master server. The catalog describes the [desired state for each resource][resource_declaration] that should be managed, and may specify [dependency information][relationships] for resources that should be managed in a certain order.
 
 ### Why is it used?
 
@@ -50,9 +50,9 @@ Puppet manifests are concise because they can express variation between nodes wi
 * **Simulate changes:** Since the agent is just checking resources and not running arbitrary code, it has the option of simulating changes. If you do a Puppet run in _noop_ mode, the agent will check against its current state and report on what _would_ have changed without actually making any changes.
 * **Record and query configurations:** If you use PuppetDB, you can [query it for information about managed resources on any node](/puppetdb/latest/api/index.html).
 
-### What about puppet apply?
+### What about Puppet apply?
 
-Puppet apply compiles its own catalog and then applies it, so it plays the role of both puppet master and puppet agent.
+Puppet apply compiles its own catalog and then applies it, so it plays the role of both Puppet master and Puppet agent.
 
 
 Information Sources
@@ -64,14 +64,14 @@ Puppet compiles a catalog using three main sources of configuration info:
 * External data
 * Puppet manifests (and associated templates and file sources)
 
-All of these sources are used by both agent/master deployments and by stand-alone puppet apply nodes.
+All of these sources are used by both agent/master deployments and by stand-alone Puppet apply nodes.
 
 ### Agent-Provided Data
 
-When agents request a catalog, they send four pieces of information to the puppet master:
+When agents request a catalog, they send four pieces of information to the Puppet master:
 
 * Their **name,** which is embedded in the request URL. (e.g. `/production/catalog/web01.example.com`) This is almost always the same as the [certname][].
-* Their **certificate,** which contains their [certname][] and possibly some [extra information][cert_extensions]. (This is the one item not used by puppet apply.)
+* Their **certificate,** which contains their [certname][] and possibly some [extra information][cert_extensions]. (This is the one item not used by Puppet apply.)
 * Their [**facts.**][facts]
 * Their requested [environment][], which is embedded in the request URL. (e.g. `/production/catalog/web01.example.com`) Before requesting a catalog, agents will ask the master which environment they should be in, but they will use the environment in their own config file if the master doesn't have an opinion.
 
@@ -101,15 +101,15 @@ The Process of Catalog Compilation
 
 This description is simplified. It doesn't delve into the internals of the parser, model, evaluator, etc., and some items are presented out of order for the sake of conceptual clarity.
 
-For practical purposes, you can treat puppet apply nodes as simply a combined agent and master.
+For practical purposes, you can treat Puppet apply nodes as simply a combined agent and master.
 
 This process begins after the catalog request has been received.
 
 ### Step 1: Retrieve the Node Object
 
-Once the puppet master has the agent-provided information for this request, it asks its configured **[node terminus][]** for a node object.
+Once the Puppet master has the agent-provided information for this request, it asks its configured **[node terminus][]** for a node object.
 
-By default, puppet master uses the [`plain` node terminus][plain_node], which just returns a blank node object. This results in only manifests and agent-provided info being used in compilation.
+By default, Puppet master uses the [`plain` node terminus][plain_node], which just returns a blank node object. This results in only manifests and agent-provided info being used in compilation.
 
 The next most common node terminus is the [`exec` node terminus][exec_node], which will request data from an [external node classifier (ENC)][enc]. This may return classes, variables, and/or an environment, depending on how the ENC is designed.
 
@@ -127,7 +127,7 @@ All of these variables will be available for use by any manifest or template dur
 
 ### Step 3: Evaluate the Main Manifest
 
-Puppet now parses the [main manifest][]. The node's [environment][] may specify a main manifest to use; if it doesn't, the puppet master will use the main manifest from its config file.
+Puppet now parses the [main manifest][]. The node's [environment][] may specify a main manifest to use; if it doesn't, the Puppet master will use the main manifest from its config file.
 
 The main manifest can contain any arbitrary Puppet code. The way it is evaluated is:
 

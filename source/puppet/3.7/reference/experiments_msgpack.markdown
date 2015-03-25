@@ -15,7 +15,7 @@ Puppet agents and masters communicate over HTTPS, exchanging structured data in 
 
 [Msgpack](http://msgpack.org/) is an efficient (in space and time) serialization protocol that behaves similarly to JSON. It should provide faster and more robust serialization for agent/master communications, without requiring many changes in our code.
 
-When msgpack is enabled, the puppet master and agent will communicate using msgpack instead of PSON or YAML.
+When msgpack is enabled, the Puppet master and agent will communicate using msgpack instead of PSON or YAML.
 
 
 Enabling Msgpack Serialization
@@ -27,4 +27,4 @@ Enabling msgpack is easy, but enabling it requires a change on both the master a
     * If you are using a Puppet Enterprise test environment, be sure to use PE's gem command instead of the system gem command. On \*nix nodes, use `/opt/puppet/bin/gem install msgpack`. On Windows 32-bit systems, use `"C:\Program Files\Puppet Labs\Puppet\sys\ruby\bin\gem" install msgpack`; on 64-bit systems, substitute `Program Files (x86)` for `Program Files`.
 2. On any number of agent nodes, set [the `preferred_serialization_format` setting](/references/3.7.latest/configuration.html#preferredserializationformat) to `msgpack` (in the `[agent]` or `[main]` section of puppet.conf).
 
-Once this is configured, the puppet master server(s) will use msgpack when serving any agents that have `preferred_serialization_format` set to `msgpack`. Any agents without that setting will continue to receive PSON as normal.
+Once this is configured, the Puppet master server(s) will use msgpack when serving any agents that have `preferred_serialization_format` set to `msgpack`. Any agents without that setting will continue to receive PSON as normal.

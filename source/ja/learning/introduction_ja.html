@@ -1,0 +1,135 @@
+---
+layout: default
+title: "Puppetを学ぶ — 序文"
+canonical: "/ja/learning/introduction_ja.html"
+toc: false
+---
+
+<!-- copy from here -->
+
+<div class="translation-notes">
+  <p>訳注：このドキュメントは以下のURLにある&quot;Learning Puppet&quot;を日本語訳したものです。<br />
+    <a href="http://docs.puppetlabs.com/learning/introduction.html">http://docs.puppetlabs.com/learning/introduction.html</a></p>
+</div>
+
+<nav class="in-page" id="page-nav">
+<ol class="toc">
+  <li class="toc-lv2"><a href="#welcome">Welcome ～ ようこそ</a></li>
+  <li class="toc-lv2"><a href="#get-the-free-vm">Get the Free VM ～ 無料のVMをゲットしよう</a>　
+    <ol class="toc">
+   <li class="toc-lv3"><a href="#login-info">Login Info ～ ログイン情報</a></li>
+</ol></li>
+  <li class="toc-lv2"><a href="#contents">Contents ～ コンテンツ</a></li>
+  <li class="toc-lv2"><a href="#vm-tips">VM Tips ～ VM Tips</a>
+    <ol class="toc">
+   <li class="toc-lv3"><a href="#importing-the-vm-into-virtualbox">Importing the VM into VirtualBox ～ VirtualBoxへのVMインポート</a></li>
+   <li class="toc-lv3"><a href="#importing-the-vm-into-parallels-desktop">Importing the VM into Parallels Desktop ～ Parallels DesktopへのVMインポート</a></li>
+   <li class="toc-lv3"><a href="#configuring-virtual-networking">Configuring Virtual Networking ～ 仮想ネットワークの設定</a></li>
+</ol></li>
+</ol></nav>
+
+
+<h2 id="welcome">Welcome ～ ようこそ</h2>
+
+<p><strong>Learning Puppet</strong>はPuppet Enterpriseによるシステム設定の管理手法を学ぶためのテキストです。<br />
+Puppetの<a href="http://docs.puppetlabs.com/pe/latest/install_basic.html">インストール手順(英文)</a>と<a href="http://docs.puppetlabs.com/pe/latest/install_basic.html">Puppet言語リファレンス(英文)</a>はリンク先をご覧ください。本テキストはPuppetを使ってシステムを構築するためのガイド付きツアーとなっています。</p>
+<p>本テキストはPuppetの良い噂を聞いたものの、何から手を付ければ良いかわからない方に最適です。</p>
+
+<h2 id="get-the-free-vm">Get the Free VM ～ 無料のVMをゲットしよう</h2>
+
+<p>Puppetはシステムのほぼ全てを、正しくも正しくなくも設定できます。そのためPuppetを学ぶ際は検証用の機器を使いましょう。<br />
+学習をお手伝いするため、以下のURLでPuppetがインストール済みの仮想マシンを配布しています。怖がらずに試してみましょう！</p>
+
+<p><a href="http://info.puppetlabs.com/download-learning-puppet-VM.html" class="btn">Learning PuppetのVMを取得する</a></p>
+
+<p>仮想マシンをダウンロードしている間に<a href="ral_ja.html">Learning Puppetの最初の章</a>に移りましょう。もしVMが上手く動作しない場合は下記の<a href="#vm-tips">&quot;VM Tips&quot;</a>をご覧ください。</p>
+<p>Learning Puppet VMは、VMWareの.vmx形式とクロスプラットフォームOVF形式で提供しており、VMWare FusionとVirtualBoxで動作を確認しています。</p>
+
+<blockquote>
+<h3 id="login-info">Login Info ～ ログイン情報</h3>
+  <ul>
+    <li><code>root</code>としてログインしてください。パスワードは「<code>puppet</code>」です。</li>
+    <li>VMは現在のIPアドレスを起動の約10秒後にログインスクリーンに表示するよう設定されています。<br />
+      SSH接続の方が良ければ、IPアドレスが表示されるのを待って<code>root@&lt;ログイン後に表示されたIPアドレス&gt;</code>に接続してください。</li>
+    <li>Puppet EnterpriseのWebコンソールを表示する場合は、ブラウザで「<strong>https://(VMのIPアドレス)</strong>」にアクセスしてください。「<code>puppet@example.com</code>」でログインできます。パスワードは「<code>learningpuppet</code>」です。</li>
+    <li><strong>Note：</strong>Webコンソールで新しいユーザアカウントを作成した場合、確認用のEメールに間違ったリンクが含まれてしまいます。Webブラウザにコピー＆ペーストし、エンターキーを押す前にホスト名を修正することで、この問題を回避できます。もしくはWebコンソールが信頼できるホスト名で利用可能な場合は、<a href="http://docs.puppetlabs.com/pe/latest/trouble_console-db.html#console-account-confirmation-emails-have-incorrect-links">認証ホスト名を変更する手順に従ってください(英文)</a>。</li>
+  </ul>
+</blockquote>
+
+<p>VMはダウンロードするよりも自分で作る派、というこだわりの方も簡単に準備することができます。最小構成のCentOSに&quot;learn.localdomain&quot;というホスト名を設定し、<a href="http://puppetlabs.com/puppet/puppet-enterprise/">Puppet Enterprise</a>をインストールし、<code>iptables</code>を無効にすればよいのです。(他にPuppet言語モードがインストールされたVimとEmacsがインストールされていますが、これは必須ではありません。)</p>
+
+<p>最初はagentとmasterのVMを分ける必要はありません。このVMは両方の役割で動作できます。agent/master演習にたどり着いたら、新たにagentノードのシステムを複製する方法を説明します。</p>
+<h2 id="contents">Contents ～ 目次</h2>
+
+<ul>
+  <li><strong>Part one: Serverless Puppet - パート1：サーバレス方式のPuppet</strong>
+    <ul>
+      <li><a href="ral_ja.html">Resources and the RAL ～ リソースとRAL</a> - システム設定の基本構造について学びます。</li>
+      <li><a href="manifests_ja.html">Manifests ～ マニフェスト</a> - 実際にPuppetのコードを記述してシステムを制御します。</li>
+      <li><a href="ordering_ja.html">Ordering ～ 順序性</a> - 依存関係、リフレッシュイベント、リソース間のリレーションシップ管理について学ぶことで基本的なPuppetのデザインパターンを見つけます。</li>
+      <li><a href="variables_ja.html">Variables, Conditionals, and Facts ～ 変数、条件、Facts</a> - システム情報を読み取ることで、マニフェストを多環境に対応させます。</li>
+      <li><a href="modules1_ja.html">Modules and Classes (Part One) ～ モジュールとクラス(パート1)</a> - 作成したマニフェストを自己完結したモジュール化します。</li>
+      <li><a href="templates_ja.html">Templates ～ テンプレート</a> - ERBを使用することで、コンフィグファイルをPuppetマニフェストのように柔軟にします。</li>
+      <li><a href="modules2_ja.html">Parameterized Classes (Modules, Part Two)</a><a href="modules2_ja.html"></a> ～ パラメータ化クラス(パート2)</a> - クラスにパラメータを渡す方法を学び、モジュールをより適合しやすくします。</li>
+      <li><a href="definedtypes_ja.html">Defined Types ～ 定義型</a> - 基本的なリソースを親リソースでグルーピングすることで、繰り返し利用できるコンフィグ群を形成します。</li>
+    </ul>
+  </li>
+  <li><strong>Part two: Master/Agent Puppet - パート2：Master/Agent方式のPuppet</strong>
+    <ul>
+      <li><a href="agentprep_ja.html">Preparing an Agent VM ～ Agent用VMの準備</a> - 着実に攻略していくことで次章以降で使用するツールを準備します。</li>
+      <li><a href="agent_master_basic_ja.html">Basic Agent/Master Puppet ～ Agent/Master方式Puppetの基礎</a> agentノードの認証、特定ノードへの適用クラスの取得、カタログ適用など、agent/master方式におけるワークフローを学びます。</li>
+    </ul>
+  </li>
+</ul>
+
+<blockquote>
+<h2 id="vm-tips">VM Tips</h2>
+<h3 id="importing-the-vm-into-virtualbox">VirtualBoxへのVMインポート</h3>
+
+<p>VirtualBoxにVMをインポートするにはいくつかの注意事項があります。</p>
+
+<ul>
+  <li>
+    <p>VirtualBoxをOVFバージョンのVMで使用している場合は、[ファイル]メニューから“仮想アプライアンスのインポート”を選択し、ダウンロードしたパッケージに含まれる<code>.ovf</code>ファイルを選択してください。VirtualBoxのメインウィンドウにドラッグ＆ドロップすることもできます。</p>
+  <p><strong>注)</strong> ”新規仮想マシンの作成ウィザード”で、パッケージに含まれている<code>.vmdk</code>ファイルをディスクとして<strong>選択しないでください</strong>。この方法で作成してしまうと、起動時にKernel Panicを起こしてしまいます。</p></li>
+  <li>もしブート時に&quot;registered protocol family 2&quot;メッセージでハングアップする場合は、[設定]-[システム]で&quot;I/O APICを有効化&quot;オプションをチェックしてください（多くの方はこのオプションは無効のままで問題ありません。現時点では何が問題を起こしているのかわかっていません）。</li>
+
+  <li>VirtualBoxバージョン4.xならVMの設定を変更しなくても動作すると思いますが、バージョン3.xでは”Failed to import appliance. Error reading ‘filename.ovf’: unknown resource type 1 in hardware item, line 95.”のようなエラーが表示され、OVFファイルのインポートに失敗することがあります。このエラーが表示される場合には、VirtualBoxをアップデートするか、回避策として<a href="http://mattiasgeniar.be/2012/03/31/importing-the-puppet-learning-vm-into-virtualbox-unknown-resource-type-in-hardware-item">ここに記載されているように</a>OVFファイルを編集してSHA1ハッシュ値を再計算してください。この回避策を知らせてくれたMattiasに感謝します。</li>
+</ul>
+
+<h3 id="importing-the-vm-into-parallels-desktop">Parallels DesktopへのVMインポート</h3>
+
+<p>OS X上のParallels Desktop 7ではVMX形式のVMをインポートできますが、動作させるためには追加設定が必要です。</p>
+
+<ol>
+  <li>VMをコンバートします。ここではまだVMを起動しないでください。</li>
+  <li>仮想マシンメニューから[仮想マシン]メニューの[構成]-&gt;[ハードウェア]-&gt;[ハードディスク1]を選択し、ロケーションをSATAからIDE(例えばIDE 0:1)に変更してください。</li>
+  <li>これでVMが起動できます。</li>
+</ol>
+<p>VMのディスク配置を変更せずに起動してしまうと、おそらくKernel Panicを起こします。</p>
+<h3 id="configuring-virtual-networking">仮想ネットワークの設定</h3>
+<h4 id="with-vmware">VMWareの場合</h4>
+
+<p>もしVMWare製品を利用する場合は、仮想ネットワーク設定をデフォルトのNATモードのままにしてください。このモードのVMは、ホストPC、NATモードで動作する他のVM、ローカルネットワーク、およびインターネットに接続できます。ただしホストPC外部からVMに対しての接続はできません。もし今後VMに対して他のコンピュータからの接続が必要になった場合は、仮想ネットワーク設定をブリッジモードにしてください。</p>
+
+<h4 id="with-virtualbox">VirtualBoxの場合</h4>
+
+<p>VirtualBoxのNATモードは制限が厳しいため、後半のagent/master演習ができません。そのため<strong>VMの初回起動前にネットワークアダプターの割り当てをブリッジアダプターに変更してください。</strong></p>
+
+<p><img width="640" height="529" alt="How to open a VirtualBox VM's network settings" src="./images/vbox_network.png"><br />
+</p>
+
+<p><img width="589" height="485" alt="A VirtualBox VM's network settings being changed to bridged" src="./images/vbox_network_bridged.png"></p>
+
+<p>もしなんらかの理由でVMをネットワーク上に出せない場合、もしくはネットワーク上にDHCPサーバが無い場合は、VMにネットワークアダプターを<strong>2つ</strong>持たせなくてはなりません。一つはNATモード（ローカルネットワークおよびインターネットアクセス用）、もう一つはホストオンリーアダプターモード（ホストPCと他のVMとの通信用）にします。ホストオンリーアダプターに対しては手動でIPアドレスを割り当てるか、VirtualBoxのDHCPサーバを動作するように設定します。</p>
+<p><a href="http://www.virtualbox.org/manual/ch06.html">さらに詳しいVirtualBoxのネットワークモード(英文)</a>と<a href="http://www.virtualbox.org/manual/ch08.html#vboxmanage-dhcpserver">VirtualBoxのDHCPサーバに関する情報(英文)</a>をご覧ください。</p>
+
+<p>ホストオンリーアダプターに対するIPアドレスの手動割り当て：</p>
+
+<ul>
+  <li>ホストPCのIPアドレスをVirtualBoxの[ファイル]-[環境設定]で確認します。[ネットワーク]セクションをクリックし、[ホストオンリーネットワーク]をクリックします。&quot;VirtualBox Host-Only Ehternet Adapter&quot;をダブルクリックし、[IPv4アドレス]フィールドをメモしておきます。</li>
+  <li>一度VMを動作させてログインし、コンソールから<code>ifconfig eth1 &lt;新IPアドレス&gt;</code>と入力します。<code>&lt;新IPアドレス&gt;</code>はホストオンリーアダプターの属するサブネットで使われていないものを割り当てます。</li>
+</ul>
+</blockquote>
+
+<!-- to here -->

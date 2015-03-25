@@ -24,7 +24,7 @@ Puppet's windows service component also writes to the `windows.log` within the s
 
 ### Installation
 
-The Puppet MSI package will not overwrite an existing entry in the puppet.conf file.  As a result, if you uninstall the package, then reinstall the package using a different puppet master hostname, Puppet won't actually apply the new value if the previous value still exists in [`$confdir`][confdir]`\puppet.conf`.
+The Puppet MSI package will overwrite an existing entry in the puppet.conf file.  As a result, if you uninstall the package, then reinstall the package using a different puppet master hostname, Puppet will apply the new value in [`$confdir`][confdir]`\puppet.conf`. Be sure to use the same master hostname when installing/upgrading.
 
 In general, we've taken the approach of preserving configuration data on the system when doing an upgrade, uninstall or reinstall.
 
@@ -153,7 +153,7 @@ Windows services support a short name and a display name. Make sure to use the s
 
     The Puppet Forge uses an SSL certificate signed by the GeoTrust Global CA certificate. Newly provisioned Windows nodes may not have that CA in their root CA store yet.
 
-    To resolve this and enable the `puppet module` subcommand on Windows nodes, do _one_ of the following:
+    **You have two options for fixing this. Choose one:**
 
     * Run Windows Update and fetch all available updates, then visit <https://forge.puppetlabs.com> in your web browser. The web browser will notice that the GeoTrust CA is whitelisted for automatic download, and will add it to the root CA store.
     * Download the "GeoTrust Global CA" certificate from [GeoTrust's list of root certificates](https://www.geotrust.com/resources/root-certificates/) and manually install it by running `certutil -addstore Root GeoTrust_Global_CA.pem`.
@@ -190,7 +190,9 @@ Windows services support a short name and a display name. Make sure to use the s
 
 * "`err: /Stage[main]//Group[mygroup]/members: change from     to Administrators failed: Add OLE error code:8007056B in <Unknown> <No Description> HRESULT error code:0x80020009 Exception occurred.`"
 
-    This error will occur when attempting to add a group as a member of another local group, i.e. nesting groups. Although Active Directory supports <a href="http://msdn.microsoft.com/en-us/library/cc246068(v=prot.13).aspx">nested groups</a> for certain types of domain group accounts, Windows does not support nesting of local group accounts. As a result, you must only specify user accounts as members of a group.
+    This error will occur when attempting to add a group as a member of another local group, i.e. nesting groups.
+
+    This only applies to Puppet versions prior to 3.4.0. If you get this error, upgrade Puppet to a newer version.
 
 * "`err: /Stage[main]//Package[7zip]/ensure: change from absent to present failed: Execution of 'msiexec.exe /qn /norestart /i "c:\\7z920.exe"' returned 1620: T h i s   i n s t a l l a t i o n   p a c k a g e   c o u l d   n o t   b e   o p e n e d .  C o n t a c t   t h e   a p p l i c a t i o n   v e n d o r   t o   v e r i f y   t h a t   t h i s   i s  a   v a l i d   W i n d o w s   I n s t a l l e r   p a c k a g e .`"
 
@@ -215,7 +217,7 @@ Windows services support a short name and a display name. Make sure to use the s
 
 * "`err: You cannot service a running 64-bit operating system with a 32-bit version of DISM. Please use the version of DISM that corresponds to your computer's architecture.`"
 
-  If you are running a 32-bit version of Puppet on a 64-bit versions of Windows, Windows will redirect all file system access from `%windir%\system32` to `%windir%\SysWOW64` instead. This happens if you are using Windows Server 2003, which is compatible only with 32-bit Puppet, or if you are using a version of Puppet older than 3.7. 
+  If you are running a 32-bit version of Puppet on a 64-bit versions of Windows, Windows will redirect all file system access from `%windir%\system32` to `%windir%\SysWOW64` instead. This happens if you are using Windows Server 2003, which is compatible only with 32-bit Puppet, or if you are using a version of Puppet older than 3.7.
 
   When attempting to configure Windows roles and features using `dism.exe`, make sure to use the 64-bit version. This can be done by executing `c:\windows\sysnative\dism.exe`, which will prevent file system redirection. See [Language: Handling File Paths on Windows](/puppet/latest/reference/lang_windows_file_paths.html) for more information about file system redirection in Windows 2003.
 

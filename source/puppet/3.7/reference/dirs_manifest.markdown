@@ -36,7 +36,7 @@ Puppet apply does not use the `manifest` setting or environment-specific manifes
 
 The location of the main manifest depends on how Puppet is configured. See the sections below for details.
 
-To check the actual manifest your puppet master will use for a given environment, [run `puppet config print manifest --section master --environment <ENVIRONMENT>`][print_settings].
+To check the actual manifest your Puppet master will use for a given environment, [run `puppet config print manifest --section master --environment <ENVIRONMENT>`][print_settings].
 
 The main manifest may be a single file or a directory of `.pp` files.
 

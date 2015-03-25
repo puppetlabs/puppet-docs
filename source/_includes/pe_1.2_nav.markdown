@@ -1,40 +1,4 @@
-{% comment %}
 
-#### Navigation
-
-- [Introduction](./intro.html)
-- [Overview](./overview.html)
-- [Installing](./installing.html)
-- [Upgrading](./upgrading.html)
-- [Using Puppet Enterprise](./using.html)
-- The Accounts Module
-    - [The `accounts::user` Type](./accounts_user_type.html)
-    - [The `accounts` Class](./accounts_class.html)
-- Puppet Compliance
-    - [Puppet Compliance Basics and UI](./compliance_basics.html)
-    - [Using the Puppet Compliance Workflow](./using_compliance.html)
-    - [Compliance Workflow Tutorial](./compliance_tutorial.html)
-- [Known Issues](./known_issues.html)
-- [Troubleshooting](./troubleshooting.html)
-- [Answer File Reference](./answer_file_reference.html)
-
-Menus with conditional links have to be statically generated with a plain old regex find+replace before you generate the site. This only needs to be re-done if you're changing the text of the menu. 
-
-MARKDOWN VERSION:
-find:
-^(\s*- )(\[([^\]]+)\]\(\./([\w_]+\.html)\))
-
-replace:
-\1{% if page.url contains '\4' %}**\3**{% else %}\2{% endif %}
-
-HTML VERSION:
-find:
-(?<=^<li>)(<a href="\./([\w_]+\.html)">(.+?)</a>)(?=</li>)
-
-replace:
-{% if page.url contains '\2' %}<strong>\3</strong>{% else %}\1{% endif %}
-
-{% endcomment %}
 
 {% include warnings/old_pe_version.html %}
 

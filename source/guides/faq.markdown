@@ -80,15 +80,6 @@ would limit any assurance that the interface was declarative
 --- one process might treat an XML configuration differently from
 another.
 
-As for just using Ruby as the input format, Puppet 2.6.0 actually added
-this functionality, and manifests can now be written in pure Ruby. However,
-this capability should be used carefully and avoided where possible:
-the full grammar of Ruby is often _too_ much functionality,
-and we believe systems administrators should be
-able to model their datacenters in a higher-level system. Writing manifests in
-the Puppet DSL and separating needed Ruby extensions out into redistributable
-custom functions, facts, types, and providers is usually the best balance of
-power and maintainability.
 
 ### Why is Puppet written in Ruby?
 

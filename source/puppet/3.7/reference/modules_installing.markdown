@@ -16,15 +16,17 @@ canonical: "/puppet/latest/reference/modules_installing.html"
 
 Installing Modules
 =====
-
+>**Puppet Enterprise Users Note**
+>For a complete guide to installing and managing modules, you'll need to go to the [Installing Modules page](https://docs.puppetlabs.com/pe/3.7/modules_installing.html) 
+>
 
 ![Windows note](/images/windows-logo-small.jpg)
 
-* Windows nodes that pull configurations from a Linux or Unix puppet master can use any Forge modules installed on the master. Continue reading to learn how to use the module tool on your puppet master.
-* If you are getting SSL errors or cannot get the puppet module tool to work, check out our [error messages documentation][errors].
+* Windows nodes that pull configurations from a Linux or Unix Puppet master can use any Forge modules installed on the master. Continue reading to learn how to use the module tool on your Puppet master.
+* If you are getting SSL errors or cannot get the Puppet module tool to work, check out our [error messages documentation][errors].
 
 **Solaris Note**
-To use the puppet module tool on Solaris systems, you must first install gtar.
+To use the Puppet module tool on Solaris systems, you must first install gtar.
 
 The [Puppet Forge][forge] is a **repository of pre-existing modules,** written and contributed by users. These modules solve a wide variety of problems so using them can save you time and effort.
 
@@ -32,7 +34,7 @@ The `puppet module` subcommand, which ships with Puppet, is a tool for finding a
 
 * Continue reading to learn how to install and manage modules from the Puppet Forge.
 * [See "Module Fundamentals"][fundamentals] to learn how to use and write Puppet modules.
-* [See "Publishing Modules"][publishing] to learn how to contribute your own modules to the Forge, including information about the puppet module tool's `build` and `generate` actions.
+* [See "Publishing Modules"][publishing] to learn how to contribute your own modules to the Forge, including information about the Puppet module tool's `build` and `generate` actions.
 * [See "Using Plugins"][plugins] for how to arrange plugins (like custom facts and custom resource types) in modules and sync them to agent nodes.
 * [See "Documenting Modules"][documentation] for a README template and information on providing directions for your module.
 
@@ -58,12 +60,12 @@ The `puppet module` subcommand has several **actions.** The main actions used fo
       # puppet module search apache
 
 `uninstall`
-: Uninstall a puppet module.
+: Uninstall a Puppet module.
 
       # puppet module uninstall puppetlabs-apache
 
 `upgrade`
-: Upgrade a puppet module.
+: Upgrade a Puppet module.
 
       # puppet module upgrade puppetlabs-apache --version 0.0.3
 
@@ -71,7 +73,7 @@ If you have used a command line package manager tool (like `gem`, `apt-get`, or 
 
 ###Using the Module Tool Behind a Proxy
 
-In order to use the puppet module tool behind a proxy, you need to set the following:
+In order to use the Puppet module tool behind a proxy, you need to set the following:
 
 	export http_proxy=http://10.187.255.9:8080
 	export https_proxy=http://10.187.255.9:8080
@@ -91,9 +93,9 @@ The `puppet module install` action will install a module and all of its dependen
 * Use the `--environment` option to install into a different environment.
 * Use the `--modulepath` option to manually specify which directory to install into. Note: To avoid duplicating modules installed as dependencies, you may need to specify the modulepath as a list of directories; see [the documentation for setting the modulepath][modulepath] for details.
 * Use the `--ignore-dependencies` option to skip installing any modules required by this module.
-* Use the `--debug` option to see additional information about what the puppet module tool is doing.
+* Use the `--debug` option to see additional information about what the Puppet module tool is doing.
 
-<!-- TODO: change this if the behavior of --dir/--target-dir changes; for now, we aren't mentioning it -->
+
 >**A note about installing**
 >
 >As of Puppet 3.6, if any module in your /etc/puppetlabs/puppet/modules directory has incorrect versioning (anything other than major.minor.patch), attempting to install a module will result in this warning. 
@@ -123,18 +125,9 @@ After setting the repository, follow the instructions above for installing from 
 
 To install a module from a release tarball, specify the path to the tarball instead of the module name.
 
-Make sure to use the `--ignore-dependencies` flag if you cannot currently reach the Puppet Forge or are installing modules that have not yet been published to the Forge. This flag will tell the puppet module tool not to try to resolve dependencies by connecting to the Forge. Be aware that in this case you must manually install any dependencies.
+Make sure to use the `--ignore-dependencies` flag if you cannot currently reach the Puppet Forge or are installing modules that have not yet been published to the Forge. This flag will tell the Puppet module tool not to try to resolve dependencies by connecting to the Forge. Be aware that in this case you must manually install any dependencies.
 
     # puppet module install ~/puppetlabs-apache-0.10.0.tar.gz --ignore-dependencies
-
-### Installing PE Supported Modules
-
-PE 3.2 introduced [supported modules](http://forge.puppetlabs.com/supported), which  includes an additional field in the modules' metadata.json files to indicate compatibility with PE versions. The puppet module tool (PMT) has been updated to look for PE version requirements in the metadata.
-
-If you are running PE 3.2 or greater, please note that if a version of the module matches the installed version of PE, non-matching versions will be filtered out. The `--force` flag will prevent this filtering, and will either install the most recent version of the module if no version is specified or install the specified version. Note that the `--force` flag will ignore dependencies and checksums, as well as overwrite installed modules with the same modulename. The `--debug` flag will show whether a module is being filtered or not. If no PE version metadata is present in any version, all available versions of the module will be displayed.
-
-*Note:*
-It is possible that some community modules may also include this `requirements` metadata. **We stongly reccomend against including the `requirements` field in modules that are not Puppet Labs supported modules.**
 
 Finding Modules
 -----
@@ -202,9 +195,11 @@ By default, the tool won't uninstall a module which other modules depend on or w
 
 ### Errors
 
-The PMT from Puppet 3.7 has a known issue wherein modules that were published to the Puppet Forge that had not performed the [migration steps](/puppet/latest/reference/modules_publishing.html#build-your-module) before publishing will have erroneous checksum information in their metadata.json. These checksums will cause errors that prevent you from upgrading or uninstalling the module.
+#### Upgrade/Uninstall
 
-To determine if a module you're using has this issue, run `puppet module changes <path to module>`. If your module has this checksum issue, you will see that the metadata.json has been modified. If you try to upgrade or uninstall a module with this issue, your action will fail and you will receive warning similar to that below.
+The PMT from Puppet 3.6 has a known issue wherein modules that were published to the Puppet Forge that had not performed the [migration steps](/puppet/latest/reference/modules_publishing.html#build-your-module) before publishing will have erroneous checksum information in their metadata.json. These checksums will cause errors that prevent you from upgrading or uninstalling the module.
+
+If you see an error similar to the following when upgrading or uninstalling,
 
 ~~~
 Notice: Preparing to upgrade 'puppetlabs-motd' ...
@@ -213,11 +208,22 @@ Error: Could not upgrade module 'puppetlabs-motd' (v1.0.0 -> latest)
   Installed module has had changes made locally
 ~~~
 
-The workaround for this issue is:
+you can workaround it by upgrading or uninstalling using the `--ignore-changes` option.
 
-1. Navigate to the module.
-2. Open the checksums.json file in your editor if it is present and delete the line: "metadata.json": [some checksum here]
-3. If there is no checksums.json, open the metadata.json file in your editor and delete the entire 'checksums' field.
-4. Run `puppet module changes <path to module>` to determine whether the fix was successful. A successful fix will return: `Notice: No modified files`. An unsuccessful fix will show modified files.
-5. Retry your upgrade/uninstall action.
+#### PE-only modules
 
+If you received an error while attempting to install a module from the Forge that looks like:
+
+~~~
+ # puppet module install puppetlabs-mssql
+Notice: Preparing to install into /etc/puppetlabs/puppet/modules ...
+Notice: Downloading from https://forgeapi.puppetlabs.com ...
+Error: Request to Puppet Forge failed.
+  The server being queried was https://forgeapi.puppetlabs.com/v3/releases?module=puppetlabs-mssql&module_groups=base+pe_only
+  The HTTP response we received was '403 Forbidden'
+  The message we received said 'You must have a valid Puppet Enterprise license on this node in order to download puppetlabs-mssql. If you have a Puppet Enterprise license, please see https://docs.puppetlabs.com/forge/pe-only-modules for more information.'
+~~~
+
+it is because the module you are trying to download is only available to Puppet Enterprise users. To use this module, download [Puppet Enterprise](http://puppetlabs.com/puppet/puppet-enterprise). 
+
+If you are a Puppet Enterprise user, use the [troubleshooting guide](https://docs.puppetlabs.com/pe/3.7/modules_installing.html#errors).

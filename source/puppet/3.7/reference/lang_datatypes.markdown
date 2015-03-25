@@ -15,7 +15,8 @@ canonical: "/puppet/latest/reference/lang_datatypes.html"
 [if]: ./lang_conditional.html#if-statements
 [comparison]: ./lang_expressions.html#comparison-operators
 [stdlib]: http://forge.puppetlabs.com/puppetlabs/stdlib
-[facts]: ./lang_variables.html#facts
+[facts]: ./lang_facts_and_builtin_vars.html
+[fact_datatypes]: ./lang_facts_and_builtin_vars.html#data-types
 [reserved]: ./lang_reserved.html#reserved-words
 [attribute_override]: ./lang_resources.html#adding-or-modifying-attributes
 [resourcedefault]: ./lang_defaults.html
@@ -38,7 +39,7 @@ The condition of an ["if" statement][if] is a boolean value. All of Puppet's [co
 If a non-boolean value is used where a boolean is required, it will be automatically converted to a boolean as follows:
 
 Strings
-: Empty strings are false; all other strings are true. That means the string `"false"` actually resolves as true. **Warning: all [facts][] are strings in this version of Puppet, so "boolean" facts must be handled carefully.**
+: Empty strings are false; all other strings are true. That means the string `"false"` actually resolves as true. **Warning: Puppet may be configured to treat all [facts][] as strings,** which can make using boolean facts tricky. See [the docs on fact data types][fact_datatypes] for more info.
 
   > Note: the [puppetlabs-stdlib][stdlib] module includes a `str2bool` function which converts strings to boolean values more intelligently.
 

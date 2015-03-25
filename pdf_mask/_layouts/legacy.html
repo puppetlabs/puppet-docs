@@ -1,5 +1,0 @@
-{% capture clean_page_id %}{{ page.url | sanitizeid }}{% endcapture %}
-{% capture page_url %}{{ page.url }}{% endcapture %}
-<div class="individual-page" id="{{ clean_page_id }}">
-    {{ content | singlepagifylinks: page_url }}
-</div>

@@ -109,7 +109,7 @@ If the same change was made on several nodes in a group, you can accept or rejec
 
 ![group_different_changes][]
 
-If different changes were made to the same resource on several nodes, the changes will be grouped for easy comparison. You can accept or reject each of these sub-groups of changes individually. <!-- This does not match the text on the page but seems to match the behavior. Investigate. -->
+If different changes were made to the same resource on several nodes, the changes will be grouped for easy comparison. You can accept or reject each of these sub-groups of changes individually. 
 
 #### Convergence of differing baselines
 
@@ -124,7 +124,7 @@ The compliance plugin can also generate custom reports which compare an entire g
 
 ![core_group_custom_report][]
 
-Custom reports can only <!-- Is this design or happenstance? --> be generated from Dashboard's core group pages. To generate a report, choose which baseline to compare against and press the generate button; the report will be queued and a progress indicator will display. (The indicator is static HTML rather than AJAX, so reload the page periodically until the report is finished.) 
+Custom reports can only  be generated from Dashboard's core group pages. To generate a report, choose which baseline to compare against and press the generate button; the report will be queued and a progress indicator will display. (The indicator is static HTML rather than AJAX, so reload the page periodically until the report is finished.) 
 
 Once generated, custom reports can be viewed from Dashboard's core group pages, the main compliance page, and the compliance group pages. 
 

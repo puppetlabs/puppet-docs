@@ -107,7 +107,7 @@ If the same change was made on several nodes in a group, you can:
 If **different** changes were made to the **same resource** on several nodes, the changes will be grouped for easy comparison. You can:
 
 - Accept or reject **each cluster** of changes
-- View the individual node pages to approve or reject the changes selectively <!-- TK This does not match the text on the page but seems to match the behavior. Investigate. -->
+- View the individual node pages to approve or reject the changes selectively 
 
 #### Convergence of differing baselines
 

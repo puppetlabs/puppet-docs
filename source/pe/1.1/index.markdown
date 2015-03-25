@@ -477,7 +477,7 @@ A variable can be omitted if another answer ensures that it won't be used (i.e. 
 : _String (Default: {computer's fully-qualified domain name})_ --- Sets the unique identifier ("certname") for this puppet agent node's SSL certificate.
 
 `q_puppetagent_server`
-: *String (Default: puppet; however, if `q_puppetmaster_install` = y, this will default to the value of `q_puppetmaster_certname`.)* <!-- Pending checkin of bug #5574 --> --- Sets the hostname of the puppet master.
+: *String (Default: puppet; however, if `q_puppetmaster_install` = y, this will default to the value of `q_puppetmaster_certname`.)*  --- Sets the hostname of the puppet master.
 
 `q_puppetagent_pluginsync`
 : _Y or N (Default: Y)_ --- Sets whether to sync executable Ruby code (e.g. custom facts, types, and providers) from the puppet master. 
@@ -498,4 +498,4 @@ A variable can be omitted if another answer ensures that it won't be used (i.e. 
 : _Y or N (Default: Y)_ --- Sets whether the installation should occur. Setting this to "n" is not considered useful for non-interactive installation.
 
 
-<!-- Revision 1.0 -->
+

@@ -1,0 +1,250 @@
+---
+layout: default
+title: "Basic Agent/Master Puppet ～ Agent/Master方式Puppetの基礎"
+canonical: "/ja/learning/agent_master_basic_ja.html"
+toc: false
+---
+
+<!-- copy from here -->
+
+<div class="translation-notes">
+訳注：このドキュメントは以下のURLにある&quot;Learning Puppet&quot;を日本語訳したものです。<br />
+<a href="http://docs.puppetlabs.com/learning/agent_master_basic.html">http://docs.puppetlabs.com/learning/agent_master_basic.html</a></p>
+</div>
+
+<nav class="in-page" id="page-nav">
+<ol class="toc">
+  <li class="toc-lv2"><a href="#introduction">Introduction ～ 序章</a>
+<ol class="toc">
+   <li class="toc-lv3"><a href="#how-do-agents-get-configurations">How Do Agents Get Configurations? ～ Agentはどうやって設定を取得するのか?</a></li>
+   <li class="toc-lv3"><a href="#what-do-agents-do-and-what-do-masters-do">What Do Agents Do, and What Do Masters Do? ～ AgentとMasterは何をしているか?</a></li>
+</ol></li>
+  <li class="toc-lv2"><a href="#the-agent-subcommand">The Agent Subcommand ～ Agentサブコマンド</a></li>
+  <li class="toc-lv2"><a href="#saying-hi">Saying Hi ～ ちょっとお試し</a>
+<ol class="toc">
+   <li class="toc-lv3"><a href="#what-happened">What Happened? ～ 何が起きたのか?</a></li>
+   <li class="toc-lv3"><a href="#troubleshooting">Troubleshooting ～ トラブルシューティング</a></li>
+</ol></li>
+  <li class="toc-lv2"><a href="#signing-the-certificate">Signing the Certificate ～ 署名</a>
+<ol class="toc">
+   <li class="toc-lv3"><a href="#what-happened-1">What Happened? ～ 何が起きたのか?</a></li>
+</ol></li>
+  <li class="toc-lv2"><a href="#serving-a-real-configuration">Serving a Real Configuration ～ 実際に設定する</a>
+<ol class="toc">
+   <li class="toc-lv3"><a href="#sitepp">Site.pp</a></li>
+   <li class="toc-lv3"><a href="#node-definitions">Node Definitions ～ ノード定義</a></li>
+   <li class="toc-lv3"><a href="#pulling-the-new-configuration">Pulling the New Configuration ～ 新しい設定の取得</a></li>
+</ol></li>
+  <li class="toc-lv2"><a href="#more-installments-coming-later">More Installments Coming Later ～ 続きは近日中に</a></li>
+</ol></nav>
+              
+<p>このガイドは<a href="./agentprep_ja.html">前章のチュートリアル</a>に沿ったVMの準備が完了しており、また新しいagentノードのVMと、オリジナルのmasterノードのVMがネットワーク上で疎通している事を前提としています。両方のVMを動作させて、rootでログインしておいてください。</p>
+
+<h2 id="introduction">Introduction ～ 序章</h2>
+
+<h3 id="how-do-agents-get-configurations">How Do Agents Get Configurations? ～ Agentはどうやって設定を取得するのか?</h3>
+
+<p>Puppetのagent/masterモードは<strong>プル型</strong>での動作をベースとしています。agentノードはmasterノードから定期的にカタログを取得し、適用するように設定されています。またmasterノードは送付するカタログをコントロールしています（けれども、この先の演習ではしばらく手動で動作させます）。</p>
+
+<h3 id="what-do-agents-do-and-what-do-masters-do">What Do Agents Do, and What Do Masters Do? ～ AgentとMasterは何をしているか?</h3>
+
+<p>この図を<a href="./manifests_ja.html#aside-compilation">最初</a>のほうでご覧になっているでしょう。この図はどのようにPuppetがマニフェストをコンパイルし適用するかの流れです：</p>
+
+<p><img src="./images/manifest_to_defined_state_unified.png" alt="Diagram of manifests being compiled into a catalog, which gets applied to enforce a defined system state." /></p>
+
+<p>Puppetをagent/masterモードで動作させた時も同じ流れになります。一番大きな違いはマニフェストとそのコンパイルはmasterノード側で実行される事です。agentノードは最後までマニフェストファイルを見る必要はありませんし、自身の設定情報以外のカタログにアクセスする事はありません。</p>
+
+<p><img src="./images/manifest_to_defined_state_split.png" alt="Diagram of an agent requesting a catalog, which gets compiled and served by a puppet master and applied by the agent" /></p>
+
+<h2 id="the-agent-subcommand">The Agent Subcommand ～ Agentサブコマンド</h2>
+
+<p><code>puppet agent</code>コマンドはmasterノードから設定情報を取得します。これは２つのモードがあります：</p>
+
+<ol>
+  <li>デーモンとして動作し、設定情報を３０分毎に取得する（デフォルト）</li>
+  <li>一度だけ動作して終了する</li>
+</ol>
+
+<p>ここで使うのは何が起きているのかが見える２つ目のモードです。agentプログラムをデーモン化したまま何が起きているのか詳細な情報を出力したい場合は<code>--test</code>オプションを利用します。</p>
+
+<p>もしagentサブコマンドを<code>--test</code>オプション無しで実行してしまうと、デーモンとしてバックグラウンドで動作します。それではagentプログラムがバックグラウンドで動作しているか確認するため、以下を実行してください：
+<pre><code># /etc/init.d/pe-puppet status
+</code></pre>
+
+<p>agentサービスを停止させるためには以下を実行してください：</p>
+
+<pre><code># /etc/init.d/pe-puppet stop
+</code></pre>
+
+<h2 id="saying-hi">Saying Hi ～ ちょっとお試し</h2>
+
+<p>動かす時がきました! <strong>agent VM上 </strong>でpuppet agent初めての起動です：</p>
+
+<pre><code>[root@agent1 ~]# puppet agent --test
+info: Creating a new SSL key for agent1.localdomain
+warning: peer certificate won't be verified in this SSL session
+info: Caching certificate for ca
+warning: peer certificate won't be verified in this SSL session
+warning: peer certificate won't be verified in this SSL session
+info: Creating a new SSL certificate request for agent1.localdomain
+info: Certificate Request fingerprint (md5): FD:E7:41:C9:2C:B7:5C:27:11:0C:8F:9C:1D:F6:F9:46
+warning: peer certificate won't be verified in this SSL session
+warning: peer certificate won't be verified in this SSL session
+warning: peer certificate won't be verified in this SSL session
+Exiting; no certificate found and waitforcert is disabled
+</code></pre>
+
+<p>何かおかしいですね。</p>
+
+<h3 id="what-happened">What Happened? ～ 何が起きたのか?</h3>
+
+<p>agentノードはmasterノードを見つけましたが、証明書をブロックされてしまいました。これは設定情報を取得するための認証ができてないため、masterノードに拒否されてしまったのです。</p>
+
+<h3 id="troubleshooting">Troubleshooting ～ トラブルシューティング</h3>
+
+<p>先述のレスポンスが表示されないようにすることは可能です。原因がいくつかあります。<a href="./agentprep_ja.html">前章でagent VMの作成手順</a>を読み返し、何かミスしてないか確認しましょう。確認すべき典型的なミスは以下の通りです：</p>
+
+<ul>
+  <li>VM同士でそれぞれお互いにpingが通じること</li>
+  <li>agentノードはmasterノードのホストを名前解決できること</li>
+  <li>agentノードの<code>/etc/puppetlabs/puppet/puppet.conf</code>ファイルのサーバ設定（<code>[agent]</code>ブロックにあります）が<code>puppet</code>もしくは<code>learn.localdomain</code>になっていること</li>
+  <li>全VMの時計が同期していること</li>
+</ul>
+
+<h2 id="signing-the-certificate">Signing the Certificate ～ 署名</h2>
+
+<p>それでは認証してみましょう。<strong>masterノードVM上</strong>で保留中の証明書リクエストのリストを<code>puppet cert list</code>コマンドを使って見てみます（コマンドの詳細は後程）。</p>
+
+<pre><code>[root@learn ~]# puppet cert list
+  agent1.localdomain (FD:E7:41:C9:2C:B7:5C:27:11:0C:8F:9C:1D:F6:F9:46)
+</code></pre>
+
+<p><em>agentノード</em>がありますね。またリクエストのフィンガープリントも一致しています。このノードはagentノードであるのは確かなので、先に進みましょう。この証明書に対して <code>puppet cert sign</code>コマンドで署名します：</p>
+
+<pre><code>[root@learn ~]# puppet cert sign agent1.localdomain
+notice: Signed certificate request for agent1.localdomain
+notice: Removing file Puppet::SSL::CertificateRequest agent1.localdomain at '/etc/puppetlabs/puppet/ssl/ca/requests/agent1.localdomain.pem'
+</code></pre>
+
+<p>これで証明書は認証されましたので、<strong>agentノードVMに戻って</strong>から<code>puppet agent</code>コマンドを再度実行してみましょう：<p/>。
+
+<pre><code>[root@agent1 ~]# puppet agent --test
+warning: peer certificate won't be verified in this SSL session
+info: Caching certificate for agent1.localdomain
+info: Retrieving plugin
+info: Caching certificate_revocation_list for ca
+info: Loading facts in facter_dot_d
+info: Loading facts in facter_dot_d
+info: Loading facts in facter_dot_d
+info: Loading facts in facter_dot_d
+info: Caching catalog for agent1.localdomain
+info: Applying configuration version '1326210629'
+notice: Finished catalog run in 0.11 seconds
+</code></pre>
+
+<p>動きました。Puppet実行は成功しましたが、まだ何も適用すべきものはありませんでした。</p>
+
+<h3 id="what-happened-1">What Happened? ～ 何が起きたのか?</h3>
+
+<p>PuppetはSSL証明書を利用してagentノードとmasterノード間の通信を保護しています。agentノードは証明書無しでは全てを実行する事はできないため、agentノードは問合せを行い、リクエストが承認まで待たねばなりません。</p>
+
+<p>SSLの詳細については後述します。</p>
+
+<h2 id="serving-a-real-configuration">Serving a Real Configuration ～ 実際に設定する</h2>
+
+<p>agentノードに何か実行させてみたくありませんか?既に便利なクラスをいくつか作成済みであり、これらはmasterノードで実行可能です。（もしまだ古いVMからモジュールをコピーしていないのでしたら、<code>/etc/puppetlabs/puppet/modules</code>ディレクトリにありますのでしてください）。</p>
+
+<p>でもどうやってagentノードのカタログにするクラスを指定すればよいのでしょう?</p>
+
+<h3 id="sitepp">Site.pp</h3>
+
+<p><code>puppet apply</code>コマンドを実行したときは、そのファイル中に適用したいクラスやリソースを全て宣言したマニフェストファイルを指定しました。</p>
+
+<p>masterノードも同様であり、<strong>常に同じマニフェストファイルを読み込む</strong>ような場合を除き、通常はsite.ppを参照します。Puppet Enterpriseではデフォルトで<code>/etc/puppetlabs/puppet/manifests/site.pp</code>に配置されていますが、<a href="http://docs.puppetlabs.com/references/latest/configuration.html#manifest"><code>manifest</code>の設定(英文)</a>で場所を変更できます。</p>
+
+<p>指定したディレクトリのsite.pp中にクラスやリソースを宣言する事もできますが、全てのノードが同じリソースを取得するカタログを作ってしまいますので、これは限定的な利用方法です。通常は<strong>node定義</strong>で宣言したいクラスを隠します。</p>
+
+<h3 id="node-definitions">Node Definitions ～ ノード定義</h3>
+
+<p>ノード定義はクラス定義とほとんど同じです：</p>
+
+<div class="highlight"><pre><code class="ruby">    <span class="c1"># Append this at the bottom of /etc/puppetlabs/puppet/manifests/site.pp</span>
+
+    <span class="n">node</span> <span class="s1">&#39;agent1.localdomain&#39;</span> <span class="p">{</span>
+
+      <span class="c1"># Note the quotes around the name! Node names can have characters that</span>
+      <span class="c1"># aren&#39;t legal for class names, so you can&#39;t always use bare, unquoted</span>
+      <span class="c1"># strings like we do with classes.</span>
+
+      <span class="c1"># Any resource or class declaration can go inside here. For now:</span>
+
+      <span class="kp">include</span> <span class="n">apache</span>
+
+      <span class="k">class</span> <span class="p">{</span><span class="s1">&#39;ntp&#39;</span><span class="p">:</span>
+        <span class="n">servers</span> <span class="o">=&gt;</span> <span class="o">[</span> <span class="s2">&quot;ntp1.example.com dynamic&quot;</span><span class="p">,</span> <span class="s2">&quot;ntp2.example.com dynamic&quot;</span><span class="p">,</span> <span class="o">]</span><span class="p">,</span>
+      <span class="p">}</span>
+
+    <span class="p">}</span>
+</code></pre>
+</div>
+
+<p>ノードがクラスと異なるのは、ノードの場合はノードの<strong>名前</strong>を基準としてカタログがコンパイルされて自動的に宣言されるということです。<strong>ただ1つ</strong>のノード定義がカタログに追加されるので、他のノード定義は効果的に隠されます。</p>
+
+<p>agentノードの<strong>名前</strong>はほぼ毎回<a href="http://docs.puppetlabs.com/references/latest/configuration.html#certname"><code>certname</code>の設定(英文)</a>から読み込まれます。これはインストール時に設定されますが、後から変更もできます。<code>certname</code>は通常ノード名のFQDN（でも絶対ではありません）になっています。</p>
+
+<p>ノード定義の詳細は別の手段でクラスをノードに割り当てる方法と共に後述します。</p>
+
+<h3 id="pulling-the-new-configuration">Pulling the New Configuration ～ 新しい設定の取得</h3>
+
+<p>それでは先ほど保存しましたagentノードVM名と一致したノード定義が入っているsite.ppで、<code>puppet agent</code>コマンドを再度実行してみましょう：
+
+<pre><code>[root@agent1 ~]# puppet agent --test
+info: Retrieving plugin
+info: Loading facts in facter_dot_d
+info: Loading facts in facter_dot_d
+info: Loading facts in facter_dot_d
+info: Loading facts in facter_dot_d
+info: Caching catalog for agent1.localdomain
+info: Applying configuration version '1326416535'
+notice: /Stage[main]/Ntp/Package[ntp]/ensure: created
+--- /etc/ntp.conf   2011-11-18 13:21:25.000000000 +0000
++++ /tmp/puppet-file20120113-5967-56l9xy-0  2012-01-13 01:02:23.000000000 +0000
+@@ -14,6 +14,8 @@
+
+ # Use public servers from the pool.ntp.org project.
+ # Please consider joining the pool (http://www.pool.ntp.org/join.html).
++
++# Managed by puppet class { "ntp": servers =&gt; [ ... ] }
+ server 0.centos.pool.ntp.org
+ server 1.centos.pool.ntp.org
+ server 2.centos.pool.ntp.org
+info: /Stage[main]/Ntp/File[ntp.conf]: Filebucketed /etc/ntp.conf to main with sum 5baec8bdbf90f877a05f88ba99e63685
+notice: /Stage[main]/Ntp/File[ntp.conf]/content: content changed '{md5}5baec8bdbf90f877a05f88ba99e63685' to '{md5}35ea00fd40740faf3fd6d1708db6ad65'
+notice: /Stage[main]/Apache/Package[apache]/ensure: created
+notice: /Stage[main]/Apache/Service[apache]/ensure: ensure changed 'stopped' to 'running'
+info: ntp.conf: Scheduling refresh of Service[ntp]
+notice: /Stage[main]/Ntp/Service[ntp]: Triggered 'refresh' from 1 events
+notice: Finished catalog run in 32.74 seconds
+</code></pre>
+
+<p>成功です!実際に何か設定を取得してきました。</p>
+
+<p>もしsite.ppのノード定義を変更すると、次回のagentプログラム動作時に新しい設定を取得します（通常の環境では変更から30分以内）。</p>
+
+<h2 id="more-installments-coming-later">More Installments Coming Later ～ 続きは近日中に</h2>
+
+<p>以下の内容を学習しました：</p>
+
+<ul>
+  <li><code>puppet agent</code>コマンドを対話式で実行するには<code>--test</code>オプションを付けます</li>
+  <li>masterノードから設定を取得するため、新しいagentノードを認証します</li>
+  <li>site.ppのnode定義によって、特定ノードのカタログに入れるクラスが決められます</li>
+</ul>
+
+<p>しかし、いくつかの重要な内容で省略しているものがあります。将来的に、証明書とノードの分類についてさらに解説する予定です。</p>
+
+<!-- [Next](./agent_master_explained.html), -->
+
+
+
+<!-- to here -->

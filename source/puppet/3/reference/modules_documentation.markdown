@@ -8,7 +8,7 @@ canonical: "/puppet/latest/reference/modules_documentation.html"
 [fundamentals]: ./modules_fundamentals.html
 [plugins]: /guides/plugins_in_modules.html
 [publishing]: ./modules_publishing.html
-[template]: ./READMEtemplate.markdown
+[template]: ./READMEtemplate.txt
 [forge]: https://forge.puppetlabs.com/
 
 Documenting Modules

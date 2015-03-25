@@ -43,7 +43,7 @@ Windows NTFS filesystems are case-insensitive (albeit case-preserving); Puppet i
 
 ## Make Sure Puppet's User Account Has Appropriate Permissions
 
-<!-- TODO link to run environment reference stuff -->
+
 
 To manage files properly, Puppet needs the "Create symbolic links" (Vista/2008 and up), "Back up files and directories," and "Restore files and directories" privileges. The easiest way to handle this is:
 
@@ -52,7 +52,7 @@ To manage files properly, Puppet needs the "Create symbolic links" (Vista/2008 a
 
 ## Always Block Source Permissions on Windows
 
-If you set [the `source` attribute](/references/latest/type.html#file-attribute-source), Puppet defaults to applying the ownership and permissions that the source files have on the puppet master server.
+If you set [the `source` attribute](/references/latest/type.html#file-attribute-source), Puppet defaults to applying the ownership and permissions that the source files have on the Puppet master server.
 
 This is **almost never what you want** when managing files on Windows, and the default behavior is now deprecated, scheduled for change in a future version of Puppet.
 
@@ -98,16 +98,15 @@ When you manage permissions with the `mode` attribute, it has the following side
 
 ## File Sources
 
-The `source` attribute of a file can be a puppet URL, a local path, or a path to a file on a mapped drive.
+The `source` attribute of a file can be a Puppet URL, a local path, or a path to a file on a mapped drive.
 
 ## Handling Line Endings
 
 Windows usually uses CRLF line endings instead of \*nix's LF line endings. In most cases, Puppet **will not** automatically convert line endings when managing files on Windows.
 
-* If a file resource uses the `content` attribute, Puppet will write the content in "binary" mode, using whatever line endings are present in the content.
-    * If the manifest or template file is saved with CRLF line endings, Puppet will use those endings in the destination file.
-    * If the manifest or template file is saved with LF line endings, you can use the `\r\n` escape sequence to create literal CRLFs.
-* If a file resource uses the `source` attribute, Puppet will transfer the file in "binary" mode, leaving the original newlines untouched.
+* If a file resource uses the `content` or `source` attributes, Puppet will write the file in "binary" mode, using whatever line endings are present in the content.
+    * If the manifest, template, or source file is saved with CRLF line endings, Puppet will use those endings in the destination file.
+    * If the manifest, template, or source file is saved with LF line endings, you can use the `\r\n` escape sequence to create literal CRLFs.
 * Non-`file` resource types that make partial edits to a system file (most notably the [`host`](/references/latest/type.html#host) type, which manages the `%windir%\system32\drivers\etc\hosts` file) manage their files in text mode, and will automatically translate between Windows and \*nix line endings.
 
     > Note: When writing your own resource types, you can get this same behavior by using the `flat` filetype.
@@ -121,4 +120,4 @@ Prior to Puppet 3.4 / Puppet Enterprise 3.2, the `file` type had several limitat
 
 * If an `owner` or `group` are specified for a file, **you must also specify a `mode`.** Failing to do so can render a file inaccessible to Puppet. [See here for more details](./troubleshooting.html#file-pre-340).
 * Setting a permissions mode can prevent the SYSTEM user from accessing the file (if SYSTEM isn't the file's owner or part of its group). This can make it so Puppet can access the file when run by a user, but can't access it when run as a service. In 3.4 and later, this is fixed, and Puppet will always ensure the SYSTEM user has the `FULL_CONTROL` access right (unless SYSTEM is specified as the owner or group for that file, in which case it will have the rights specified by the permissions mode).
-* Puppet will copy file permissions from the remote `source`; this isn't ideal, since the \*nix permissions on the puppet master are unlikely to match what you want on your Windows machines. The only way to prevent this is to specify ownership, group, and mode for every file (or with a resource default). In 3.4 and up, the `source_permissions` attribute provides a way to turn this behavior off.
+* Puppet will copy file permissions from the remote `source`; this isn't ideal, since the \*nix permissions on the Puppet master are unlikely to match what you want on your Windows machines. The only way to prevent this is to specify ownership, group, and mode for every file (or with a resource default). In 3.4 and up, the `source_permissions` attribute provides a way to turn this behavior off.

@@ -2,9 +2,25 @@
 layout: frontpage
 title: Puppet Labs Documentation
 canonical: "/"
+toc: false
 ---
 
-Welcome to the Puppet Labs documentation site. The documentation posted here is also available as a set of PDFs, which can be found [here](http://info.puppetlabs.com/download-pdfs.html). You can also [download the current version of this entire website](./puppetdocs-latest.tar.gz) as a zipped archive; unzip it and follow the instructions in the README.txt file to view the site offline.
+Welcome to the Puppet Labs documentation site. You can [download the current version of this entire website](./puppetdocs-latest.tar.gz) as a zipped archive; unzip it and follow the instructions in the README.txt file to view the site offline.
+
+[Puppet Enterprise](/pe/latest)
+-----
+
+Puppet Enterprise is a complete configuration management platform, with an optimized set of components proven to work well together. It combines Puppet (including a preconfigured production-grade puppet master stack), a web console for analyzing reports and controlling your infrastructure, powerful orchestration features, cloud provisioning tools, and professional support.
+
+Nearly all of the main Puppet and MCollective documentation also applies to Puppet Enterprise. For details about PE's configuration:
+
+- [Puppet Enterprise user's guide](/pe/latest/)
+- [The system requirements](/pe/latest/install_system_requirements.html)
+- [The installation instructions](/pe/latest/install_basic.html) or [the upgrade instructions](/pe/latest/install_upgrading.html)
+- [The quick start guide](/pe/latest/quick_start.html), which walks you through building and managing a small deployment that can be used as a learning tool, or first steps to creating your company's deployment.
+- [The PE download page](http://info.puppetlabs.com/download-pe.html)
+
+The current version of PE is 3.7. Documentation for previous versions can be found [here](/pe/index.html).
 
 [Puppet](/puppet)
 -----
@@ -19,23 +35,6 @@ Puppet manages your servers: you describe machine configurations in an easy-to-r
     - (Older reference manuals: [Puppet 3.6](/puppet/3.6/reference), [Puppet 3.5](/puppet/3.5/reference), [Puppet 3.0-3.4](/puppet/3/reference), [Puppet 2.7](/puppet/2.7/reference)
 - [The latest type reference](/references/latest/type.html) covers all of the built-in resource types and their available attributes. New users should start elsewhere, but experienced users will spend most of their time in this one page.
 - [The glossary](/references/glossary.html) explains the terminology you'll encounter when reading about Puppet.
-
-
-[Puppet Enterprise](/pe/latest)
------
-
-Puppet Enterprise is a complete configuration management platform, with an optimized set of components proven to work well together. It combines Puppet (including a preconfigured production-grade puppet master stack), a web console for analyzing reports and controlling your infrastructure, powerful orchestration features, cloud provisioning tools, and professional support.
-
-Nearly all of the main Puppet and MCollective documentation also applies to Puppet Enterprise. For details about PE's configuration:
-
-- [Puppet Enterprise user's guide](/pe/latest/)
-- [The system requirements](/pe/latest/install_system_requirements.html)
-- [The installation instructions](/pe/latest/install_basic.html) or [the upgrade instructions](/pe/latest/install_upgrading.html)
-- [The quick start guide](/pe/latest/quick_start.html), which walks through building and managing a small proof-of-concept deployment.
-- [The deployment guide](./guides/deployment_guide/index.html) has a ton of information to help you set up and deploy Puppet Enterprise in accordance with the best practices and methods used by Puppet Labs' professional services engineers.
-- [The PE download page](http://puppetlabs.com/download-puppet-enterprise)
-
-The current version of PE is 3.3. Documentation for previous versions can be found [here](/pe/index.html).
 
 [MCollective](/mcollective)
 -----
@@ -111,6 +110,13 @@ Geppetto is an integrated development environment (IDE) for Puppet. It provides 
 
 * [The Geppetto Manual](/geppetto/latest/index.html) has installation and usage instructions.
 
+[Puppet Forge](/forge/index.html)
+-----
+
+The [Puppet Forge](https://forge.puppetlabs.com) is where you go to get pre-made modules created by Puppet Labs and the Puppet community. Modules on the Forge cover everything from NTP and Registry to Apache and PostgreSQL, and make it easy to instal, configure, and manage all kinds of technology with Puppet. You can access the Forge online or through the Puppet module tool, which is your in-Puppet way of interfacing with the Forge from the command line.
+
+* [Puppet Enterprise Modules](/forge/puppetenterprisemodules/index.html) will tell you everything you need to know about working with PE-specific modules from the Forge.
+
 Razor
 -----
 
@@ -143,7 +149,7 @@ Help Improve This Site
 
 These documents belong to the community and are licensed under the Creative Commons. You can help improve them!
 
-<a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/us/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/3.0/us/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/us/">Creative Commons Attribution-Share Alike 3.0 United States License</a>.
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/us/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/3.0/us/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/us/">Creative Commons Attribution-Share Alike 3.0 United States License</a>.
 
 For suggestions or minor corrections, just email <faq@puppetlabs.com>. To contribute text or make larger-scale suggestions, see the [instructions for contributing](./contribute.html).  If you would like to submit your own content, you can fork the project on <A HREF="http://github.com/puppetlabs/puppet-docs">github</A>, make changes, and send us a pull request.  See the README files in the project for more information about how to generate and view a copy of the website.
 
@@ -154,4 +160,4 @@ Documentation Version
 ---------------------
 
 This release of the documentation was generated from revision {% gitrevision %} of the [puppet-docs Git repo](http://github.com/puppetlabs/puppet-docs) on {{ 'now' | date: "%B %d, %Y" }}.
-<!-- This used to be hardcoded as the sha of "master", since shenanigans with the "release" branch made HEAD unreliable. But now we can accurately call out the source version even when generating from a topic branch. -->
+

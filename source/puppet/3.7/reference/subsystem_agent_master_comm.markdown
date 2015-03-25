@@ -11,17 +11,29 @@ canonical: "/puppet/latest/reference/subsystem_agent_master_comm.html"
 [file]: /references/3.7.latest/type.html#file
 [static]: /references/3.7.latest/indirection.html#catalog
 
-<!-- TODO insert info about the CRL at the appropriate locations. Does the agent check it, these days? -->
 
-The puppet agent and the puppet master server communicate via HTTPS over host-verified SSL.
+
+The Puppet agent and the Puppet master server communicate via HTTPS over host-verified SSL.
 
 > **Note on verification:** If the agent does not yet have its own certificate, it will make several unverified requests before it can switch to verified mode. In these requests, the agent doesn't identify itself to the master and doesn't check the master's cert against the CA. In the descriptions below, assume every request is host-verified unless stated otherwise.
 
 The agent/master HTTP interface is REST-like, but varies from strictly RESTful design in several ways. The endpoints used by the agent are detailed in the [HTTP API reference][rest_api]. Note that all HTTP endpoints are preceded by the environment being used. Note also that access to each individual endpoint is controlled by [auth.conf][authconf] on the master.
 
+## Persistent Connections / Keepalive
+
+When acting as an HTTPS client, Puppet will try to re-use connections in order to reduce TLS overhead, by sending `Connection: Keep-Alive` in the HTTP request. This helps improve performance for runs with dozens of HTTPS requests.
+
+Puppet will only cache verified HTTPS connections, so it excludes the unverified connections a new agent makes to request a new certificate. Puppet also will not cache connections when a custom HTTP connection class has been specified. (This is an esoteric use case that most users will never see.)
+
+You can use [the `http_keepalive_timeout` setting][keepalive_setting] to configure the keepalive duration. It must be shorter than the maximum keepalive allowed by the Puppet master web server.
+
+An HTTP server may disable persistent connections ([Apache example](http://httpd.apache.org/docs/current/mod/core.html#keepalive)). If so, Puppet will request that the connection be kept open as usual, but the server will decline by sending `Connection: close` in the HTTP response and Puppet will start a new connection for its next request. (In Puppet 3.7.4 and up, WEBrick Puppet masters running on Ruby 1.8.7 will close connections to work around a Ruby bug.)
+
+[keepalive_setting]: /references/3.7.latest/configuration.html#httpkeepalivetimeout
+
 ## Diagram
 
-This flow diagram illustrates the pattern of agent-side checks and HTTPS requests to the puppet master during a single Puppet run.
+This flow diagram illustrates the pattern of agent-side checks and HTTPS requests to the Puppet master during a single Puppet run.
 
 [See below the image for a textual description of this process](#check-for-keys-and-certificates), which explains the illustrated steps in more detail.
 
@@ -31,15 +43,15 @@ This flow diagram illustrates the pattern of agent-side checks and HTTPS request
 
 1. Does the agent have a private key at `$ssldir/private_keys/<name>.pem`?
     * If no, generate one.
-2. Does the agent have a copy of the CA certificate at `$ssldir/certs/ca.pem`? <!-- TODO this might be out of order. -->
-    * If no, fetch it. (Unverified GET request to `/certificate/ca`. Since the agent is retrieving the foundation for all future trust over an untrusted link, this could be vulnerable to MITM attacks, but it's also just a convenience; you can make this step unnecessary by distributing the CA cert as part of your server provisioning process, so that agents never ask for a CA cert over the network. If you do this, an attacker could temporarily deny Puppet service to brand new nodes, but would be unable to take control of them with a rogue puppet master.)
+2. Does the agent have a copy of the CA certificate at `$ssldir/certs/ca.pem`?
+    * If no, fetch it. (Unverified GET request to `/certificate/ca`. Since the agent is retrieving the foundation for all future trust over an untrusted link, this could be vulnerable to MITM attacks, but it's also just a convenience; you can make this step unnecessary by distributing the CA cert as part of your server provisioning process, so that agents never ask for a CA cert over the network. If you do this, an attacker could temporarily deny Puppet service to brand new nodes, but would be unable to take control of them with a rogue Puppet master.)
 3. Does the agent have a signed certificate at `$ssldir/certs/<name>.pem`?
     * If yes, skip the following section and continue to "request node object."
     * (If it has a cert but it doesn't match the private key, bail with an error.)
 
 ## Obtain a Certificate (if necessary)
 
-Note that if the agent has submitted a certificate signing request, an admin user will need to run `puppet cert sign <name>` on the CA puppet master before the agent can fetch a signed certificate. (Unless autosign is enabled.) Since incoming CSRs are unverified, you can use fingerprints to prove them, by comparing `puppet agent --fingerprint` on the agent to `puppet cert list` on the CA master.
+Note that if the agent has submitted a certificate signing request, an admin user will need to run `puppet cert sign <name>` on the CA Puppet master before the agent can fetch a signed certificate. (Unless autosign is enabled.) Since incoming CSRs are unverified, you can use fingerprints to prove them, by comparing `puppet agent --fingerprint` on the agent to `puppet cert list` on the CA master.
 
 1. Try to fetch an already-signed certificate from the master. (Unverified GET request to `/certificate/<name>`.)
     * If it gets one, skip the rest of this section and continue to "request node object."
@@ -78,16 +90,16 @@ If `pluginsync` is enabled on the agent:
 
 ## Make File Source Requests While Applying Catalog
 
-[File][] resources can specify file contents as either a `content` or `source` attribute. Content attributes go into the catalog, and puppet agent needs no additional data. Source attributes only put references into the catalog, and may require additional HTTPS requests.
+[File][] resources can specify file contents as either a `content` or `source` attribute. Content attributes go into the catalog, and Puppet agent needs no additional data. Source attributes only put references into the catalog, and may require additional HTTPS requests.
 
-If you are using the normal compiler, then for each file source, puppet agent will:
+If you are using the normal compiler, then for each file source, Puppet agent will:
 
 1. Do a GET request to `/file_metadata/<something>`.
 2. Compare the metadata to the state of the file on disk.
     * If it is in sync, move on to the next file source.
     * If it is out of sync, do a GET request to `/file_content/<something>` for the current content.
 
-If you are using the [static compiler][static], all file metadata is embedded in the catalog. For each file source, puppet agent will:
+If you are using the [static compiler][static], all file metadata is embedded in the catalog. For each file source, Puppet agent will:
 
 1. Compare the embedded metadata to the state of the file on disk.
     * If it is in sync, move on to the next file source.

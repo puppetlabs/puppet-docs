@@ -28,7 +28,7 @@ Puppet supports "if" and "unless" statements, case statements, and selectors.
 An "if" statement:
 
 {% highlight ruby %}
-    if $is_virtual == 'true' {
+    if str2bool("$is_virtual") {
       warning('Tried to include class ntp on virtual machine; this node may be misclassified.')
     }
     elsif $operatingsystem == 'Darwin' {
@@ -83,7 +83,7 @@ A selector:
 ### Syntax
 
 {% highlight ruby %}
-    if $is_virtual == 'true' {
+    if str2bool("$is_virtual") {
       # Our NTP module is not supported on virtual machines:
       warning( 'Tried to include class ntp on virtual machine; this node may be misclassified.' )
     }

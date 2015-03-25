@@ -139,7 +139,7 @@ To do this, use the `-i` or `--inventory_service` flag and give it the name of a
 >
 > In Hiera 1.3 and earlier, inventory lookups will fail when Puppet 3.x is present. This is a bug in Hiera, which will be fixed in a future release.
 
-<!-- https://tickets.puppetlabs.com/browse/HI-69 -->
+
 
 #### Allowing Lookups on the Puppet Master
 

@@ -9,14 +9,14 @@ canonical: "/puppet/latest/reference/system_requirements.html"
 Hardware
 -----
 
-The puppet agent service has no particular hardware requirements and can run on nearly anything.
+The Puppet agent service has no particular hardware requirements and can run on nearly anything.
 
-However, the puppet master service is fairly resource intensive, and should be installed on a robust dedicated server.
+However, the Puppet master service is fairly resource intensive, and should be installed on a robust dedicated server.
 
-* At minimum, your puppet master server should have two processor cores and at least 1 GB RAM.
+* At minimum, your Puppet master server should have two processor cores and at least 1 GB RAM.
 * To comfortably serve at least 1000 nodes, it should have 2-4 processor cores and at least 4 GB RAM.
 
-The demands on the puppet master will vary widely between different deployments. The total needs are affected by the number of agents being served, how frequently those agents check in, how many resources are being managed on each agent, and the complexity of the manifests and modules in use.
+The demands on the Puppet master will vary widely between different deployments. The total needs are affected by the number of agents being served, how frequently those agents check in, how many resources are being managed on each agent, and the complexity of the manifests and modules in use.
 
 Platforms With Packages
 -----
@@ -54,15 +54,15 @@ Puppet and its prerequisites are known to run on the following platforms, but we
 
 - SUSE Linux Enterprise Server, version 11 and higher
 - Gentoo Linux
-- Mandriva Corporate Server 4 <!-- Version not checked recently -->
+- Mandriva Corporate Server 4 
 - ArchLinux
 
 ### Other Unix
 
 - Oracle Solaris, version 10 and higher (Puppet Labs performs limited automated testing on Solaris 11.)
 - AIX, version 5.3 and higher
-- FreeBSD 4.7 and later <!-- Version not checked recently -->
-- OpenBSD 4.1 and later <!-- Version not checked recently -->
+- FreeBSD 4.7 and later 
+- OpenBSD 4.1 and later 
 - HP-UX
 
 Basic Requirements

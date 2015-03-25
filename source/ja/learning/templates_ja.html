@@ -1,0 +1,341 @@
+---
+layout: default
+title: "Templates ～ テンプレート"
+canonical: "/ja/learning/templates_ja.html"
+toc: false
+---
+
+<!-- copy from here -->
+
+<div class="translation-notes">
+  <p>訳注：このドキュメントは以下のURLにある&quot;Learning Puppet&quot;を日本語訳したものです。<br />
+    <a href="http://docs.puppetlabs.com/learning/templates.html">http://docs.puppetlabs.com/learning/templates.html</a></p>
+</div>
+
+
+              <nav class="in-page" id="page-nav">
+<ol class="toc">
+  <li class="toc-lv2"><a href="#begin">Begin ～ はじめに</a></li>
+  <li class="toc-lv2"><a href="#stopping-the-static-content-explosion">Stopping the Static Content Explosion ～ 静的コンテンツの肥大化を食い止める</a></li>
+  <li class="toc-lv2"><a href="#template-files">Template Files ～ テンプレートファイル</a></li>
+  <li class="toc-lv2"><a href="#rendering-templates">Rendering Templates ～ テンプレートファイルの書き出し</a>
+    <ol class="toc">
+   <li class="toc-lv3"><a href="#refererring-to-template-files-in-modules">Refererring to Template Files in Modules ～ モジュール内テンプレートファイルへの参照</a></li>
+   <li class="toc-lv3"><a href="#inline-templates">Inline Templates ～ インラインテンプレート</a></li>
+   <li class="toc-lv3"><a href="#aside-functions-in-general">Aside: Functions in General ～ 余談：よく使う関数</a></li>
+</ol></li>
+  <li class="toc-lv2"><a href="#variables-in-templates">Variables in Templates ～ テンプレート内変数</a></li>
+  <li class="toc-lv2"><a href="#the-erb-templating-language">The ERB Templating Language ～ ERBテンプレート言語</a>
+    <ol class="toc">
+   <li class="toc-lv3"><a href="#non-printing-tags">Non-Printing Tags ～ 非表示のタグ</a></li>
+   <li class="toc-lv3"><a href="#printing-an-expression">Printing an Expression ～ 式の表示</a></li>
+   <li class="toc-lv3"><a href="#comments">Comments ～ コメント</a></li>
+   <li class="toc-lv3"><a href="#suppressing-line-breaks-and-leading-space">Suppressing Line Breaks and Leading Space ～ 改行と空白の抑制</a></li>
+</ol></li>
+  <li class="toc-lv2"><a href="#an-example-ntp-again">An Example: NTP Again ～ 例：NTP再び</a>
+    <ol class="toc">
+   <li class="toc-lv3"><a href="#adjusting-the-manifest">Adjusting the Manifest ～ マニフェストの調整</a></li>
+   <li class="toc-lv3"><a href="#editing-the-templates">Editing the Templates ～ テンプレートの編集</a></li>
+</ol></li>
+  <li class="toc-lv2"><a href="#next">Next ～ 次に</a></li>
+</ol></nav>
+              
+<h2 id="begin">Begin ～ はじめに</h2>
+
+<p>前章で作成したNTPモジュールを少し調整してみましょう。<code>file</code>リソースから<code>source</code>属性を削除し、新しい関数を利用した<code>content</code>属性に置き換えてみます。（<code>source</code>属性ではfileコンテンツをファイルとして扱い、<code>content</code>属性ではfileコンテンツを<strong>文字列</strong>として扱うことを覚えてください。）</p>
+
+<div class="highlight"><pre><code class="ruby">    <span class="c1"># /etc/puppetlabs/puppet/modules/ntp/manifests/init.pp</span>
+
+    <span class="k">class</span> <span class="n">ntp</span> <span class="p">{</span>
+      <span class="c1">#...</span>
+      <span class="c1">#...</span>
+      <span class="c1">#...</span>
+      <span class="n">file</span> <span class="p">{</span> <span class="s1">&#39;ntp.conf&#39;</span><span class="p">:</span>
+        <span class="n">path</span>    <span class="o">=&gt;</span> <span class="s1">&#39;/etc/ntp.conf&#39;</span><span class="p">,</span>
+        <span class="k">ensure</span>  <span class="o">=&gt;</span> <span class="n">file</span><span class="p">,</span>
+        <span class="nb">require</span> <span class="o">=&gt;</span> <span class="no">Package</span><span class="o">[</span><span class="s1">&#39;ntp&#39;</span><span class="o">]</span><span class="p">,</span>
+        <span class="n">content</span> <span class="o">=&gt;</span> <span class="n">template</span><span class="p">(</span><span class="s2">&quot;ntp/${conf_file}.erb&quot;</span><span class="p">),</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+</code></pre>
+</div>
+
+<p>それでは設定ファイルを<code>templates/</code>ディレクトリにコピーしましょう:</p>
+
+<pre><code># cd /etc/puppetlabs/puppet/modules/ntp
+# mkdir templates
+# cp files/ntp.conf.el templates/ntp.conf.el.erb
+# cp files/ntp.conf.debian templates/ntp.conf.debian.erb
+</code></pre>
+
+<p>モジュールはこれまでと同じ方法で動作すべきですが、このコンフィグファイルはもはや静的ファイルではなくなりました。これらのファイルがテンプレートです。</p>
+
+<h2 id="stopping-the-static-content-explosion">Stopping the Static Content Explosion ～ 静的コンテンツの肥大化を食い止める</h2>
+
+<p>先ほどのNTPモジュールについて考えてみましょう。</p>
+
+<p>現在、Red Hat系OSおよびDebian系OSのデフォルト設定に近い2つの異なるコンフィグファイルを提供しています。もし幾つかの小さくとも合理的な変更をしたいとしたらどうなるのでしょうか。例えば以下のようなものです。</p>
+
+<ul>
+  <li>少数のマシンで異なるNTPサーバを使いたい</li>
+  <li>時間が飛んでもNTPが落ちないように仮想マシン上の設定を調整したい</li>
+</ul>
+
+<p>このままでは8つ以上の異なるコンフィグファイルをメンテナンスする羽目になりかねません！そうならないようにしましょう。コンフィグファイルの代りに、1つか2つの<strong>テンプレートファイル</strong>で小さな差分の山を管理できます。</p>
+
+<p>テンプレートは静的・動的な内容が混在したドキュメントです。少しの条件ロジックと変数を展開する事で、1つのソースドキュメントをメンテナンスするだけで、幾つもの最終ドキュメントを書き出す事ができるのです。</p>
+
+<p>さらに詳細なPuppetテンプレートの挙動については、<a href="http://docs.puppetlabs.com/guides/templating.html">the guide for Using Puppet Templates(英文)</a>をご覧ください。ここでは基礎的な部分だけ説明します。</p>
+
+<h2 id="template-files">Template Files ～ テンプレートファイル</h2>
+
+<p>テンプレートは.erbの拡張子を持つファイルとして、各モジュールの<code>templates/</code>ディレクトリ内に保存します。<code>templates/</code>ディレクトリには任意の数のサブディレクトリを作成できます。</p>
+
+<h2 id="rendering-templates">Rendering Templates ～ テンプレートの書き出し</h2>
+
+<p>テンプレートを使うためには、文字列を生成するための<strong>書き出し</strong>を行う必要があります。それにはPuppetのビルトイン<a href="http://docs.puppetlabs.com/references/stable/function.html#template"><code>template</code>関数(英文)</a>を使います。この関数は1つ以上のテンプレートファイルへのパスを持ち、文字列を返り値として出力します。</p>
+
+<div class="highlight"><pre><code class="ruby">    <span class="n">file</span> <span class="p">{</span><span class="s1">&#39;/etc/foo.conf&#39;</span><span class="p">:</span>
+      <span class="k">ensure</span>  <span class="o">=&gt;</span> <span class="n">file</span><span class="p">,</span>
+      <span class="nb">require</span> <span class="o">=&gt;</span> <span class="no">Package</span><span class="o">[</span><span class="s1">&#39;foo&#39;</span><span class="o">]</span><span class="p">,</span>
+      <span class="n">content</span> <span class="o">=&gt;</span> <span class="n">template</span><span class="p">(</span><span class="s1">&#39;foo/foo.conf.erb&#39;</span><span class="p">),</span>
+    <span class="p">}</span>
+</code></pre>
+</div>
+
+<p>出力された文字列を<code>content</code>属性の値として使用していることに注意してください。これはファイルの内容そのものではないので、URLを想定している<code>source</code>属性では動作しません。</p>
+
+<h3 id="refererring-to-template-files-in-modules">Refererring to Template Files in Modules ～ モジュール内テンプレートファイルへの参照</h3>
+
+<p><code>template</code>関数はファイルへのパスが規定のフォーマットで記載されていることを想定しています。</p>
+
+<p><code>&lt;モジュール名&gt;/&lt;templatesディレクトリ起点の相対パスファイル名&gt;</code></p>
+
+<p>つまり<code>template('foo/foo.conf.erb')</code>の場合、実際のファイルは<code>/etc/puppetlabs/puppet/modules/foo/templates/foo.conf.erb</code>を指しています。</p>
+
+<blockquote>
+  <p>テンプレートへのパスに<code>puppet:///</code> URLへのパスの考え方を使用していないことに注意してください。矛盾していて申し訳ありません。</p>
+</blockquote>
+
+<h3 id="inline-templates">Inline Templates ～ インラインテンプレート</h3>
+
+<p>別の方法として<a href="http://docs.puppetlabs.com/references/stable/function.html#inlinetemplate"><code>inline_template</code>関数</a>を使う事もできます。これはテンプレートを含む文字列を受け取り、返り値として文字列を出力します。</p>
+
+<p>使い時は限られますが、非常に小さいテンプレートがある場合、この関数を使えば新規のファイルを作らずマニフェストにテンプレートを組み込む事ができます。</p>
+
+<blockquote>
+  <h3 id="aside-functions-in-general">Aside: Functions in General ～ 余談：よく使う関数</h3>
+
+  <p>これまで<code>include</code>、<code>template</code>、<code>fail</code>、<code>str2bool</code>など、既にいくつもの関数を見てきましたので、これらが何であるかを説明するちょうど良いタイミングです。</p>
+
+  <p>Puppetは2種類の関数を持っています。</p>
+
+  <ul>
+    <li>値を返す関数</li>
+    <li>何かしら実行するが値は返さない関数</li>
+  </ul>
+
+  <p><code>template</code>および<code>str2boot</code>関数は両方とも値を返します。これらの関数は正しい種類の返り値を返す場面なら、どこでも使う事ができます。<code>include</code>および<code>fail</code>関数は値を返さず、それぞれクラスの宣言、カタログのコンパイル停止を行います。</p>
+
+  <p>全ての関数はカタログのコンパイル中に実行されます。これは全ての関数はpuppet master上で動作するものであり、agentノードにあるファイルや設定にアクセスしない事を意味しています。</p>
+
+  <p>関数はカンマで区切られた任意の数の引数を受け取ることができ、オプションを括弧で囲う事ができます。</p>
+
+  <p><code>function(argument, argument, argument)</code></p>
+
+  <p>関数はプラグインです。そのため、沢山のカスタムプラグインをモジュールの中で利用することができます。</p>
+
+  <p>関数に関する完全なドキュメントは<a href="http://docs.puppetlabs.com/puppet/latest/reference/lang_functions.html">Puppet言語リファレンス(英文)</a>と<a href="http://docs.puppetlabs.com/references/stable/function.html">ビルトイン関数リスト(英文)</a>にあります。</p>
+</blockquote>
+
+<h2 id="variables-in-templates">Variables in Templates ～ テンプレート内変数</h2>
+
+<p>テンプレートを評価してファイルを生成する際、テンプレートはPuppetが持つ全ての変数にアクセスできるので強力です。</p>
+
+<ul>
+  <li><strong>Facts、グローバル変数、現在のスコープにあるローカル変数</strong>がRubyのインスタンス変数としてテンプレートに利用できます。テンプレートの変数はPuppetの<code>$</code>プレフィックスの代わりに<code>@</code>プレフィックスを持っています（例えば<code>@fqdn, @memoryfree, @operatingsystem</code>などです）</li>
+  <li>他スコープの変数には<code>scope.lookupvar</code>メソッドによりアクセスできます。これは<code>$</code>プレフィックスの付かない長い変数名で指定します（例. <code>scope.lookupvar('apache::user')</code>）</li>
+</ul>
+
+<h2 id="the-erb-templating-language">The ERB Templating Language ～ ERBテンプレート言語</h2>
+
+<p>Puppet自身はテンプレート用の言語を持っていません。その代り一般的なRubyベースのテンプレート言語を使っています（RailフレームワークはERBを使っており、他のいくつかのプロジェクトでも使われています）。</p>
+
+<p>ERBテンプレートには時折<code>&lt;% tag containing Ruby code %&gt;</code>というタグが入ってはいますが、ほとんど普通のコンフィグファイルと変わりません。<a href="http://docs.puppetlabs.com/guides/templating.html#erb-template-syntax">ERBの文法はこちらにドキュメント(英文)</a>がありますが、ERBは任意のRubyコードを含める事ができるため、テンプレートを非常に複雑なものにする事も可能です。</p>
+
+<p>一般的に、テンプレートは可能な限りシンプルにする事を推奨します。ここでは変数の表示の仕方、条件文の使い方、配列の反復処理について説明しますが、ほとんどのタスクはこれだけで十分でしょう。</p>
+
+<h3 id="non-printing-tags">Non-Printing Tags - 非表示タグ</h3>
+
+<p>ERBタグはすぐ内側に<code>%</code>を付けた山括弧です（タグの開閉に関してHTMLのような開始タグと終了タグの考え方はありません）。</p>
+
+<div class="highlight"><pre><code class="erb"><span class="x">    </span><span class="cp">&lt;%</span> <span class="n">document</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span> <span class="cp">%&gt;</span><span class="x"></span>
+</code></pre>
+</div>
+
+<p>タグは1行以上のRubyコードを含んでおり、そこでは変数への代入、データの変換、コントロールフローの実装など、既に書き出されテキストにさらに文字列を表示する以外なら、とてもたくさんの事ができます。</p>
+
+<h3 id="printing-an-expression">Printing an Expression - 表示式</h3>
+
+<p>これは通常の開始タグ<code><span class="cp">&lt;%</span></code>の後にイコールを付けただけに見えますが、表示に必要なタグです。</p>
+
+<div class="highlight"><pre><code class="erb"><span class="x">    </span><span class="cp">&lt;%=</span> <span class="n">sectionheader</span> <span class="cp">%&gt;</span><span class="x"></span>
+<span class="x">      environment = </span><span class="cp">&lt;%=</span> <span class="n">gitrevision</span><span class="o">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="o">]</span> <span class="cp">%&gt;</span><span class="x"></span>
+</code></pre>
+</div>
+
+<p>表示する式は単純な変数の値、もしくは任意の複雑なRubyの式を使う事ができます。</p>
+
+<h3 id="comments">Comments - コメント</h3>
+
+<p>開始タグ<code><span class="cp">&lt;%</span></code>の後ろにハッシュマーク<code>#</code>を付けたものはコードとして解釈されず、出力結果にも表示されないコメントとして保持します。</p>
+
+<div class="highlight"><pre><code class="erb"><span class="x">    </span><span class="cp">&lt;%#</span><span class="c"> This comment will be ignored. </span><span class="cp">%&gt;</span><span class="x"></span>
+</code></pre>
+</div>
+
+<h3 id="suppressing-line-breaks-and-leading-space">Suppressing Line Breaks and Leading Space - 改行と空白の抑制</h3>
+
+<p>通常のタグでは何も表示しませんが、もしタグの中にロジックを含む場合、改行を使うと帯状の空白として最終的な出力ファイルに入ります。同様にもし可読性を良くするためインデントを入れると、インデントの空白で生成する出力を台無しにしてしまいます。</p>
+
+<p>そうなる事を望まれないのであれば以下のようにします。</p>
+
+<ul>
+  <li>終了タグ<code><span class="cp">%&gt;</span></code>の前にハイフンを入れる事で改行を取り除きます</li>
+  <li>開始タグ<code><span class="cp">&lt;%</span></code>の前にハイフンを入れる事で先頭の空白を取り除きます</li>
+</ul>
+
+<div class="highlight"><pre><code class="erb"><span class="x">    </span><span class="cp">&lt;%-</span> <span class="n">document</span> <span class="o">+=</span> <span class="n">thisline</span> <span class="cp">-%&gt;</span><span class="x"></span>
+</code></pre>
+</div>
+
+<h2 id="an-example-ntp-again">An Example: NTP Again ～ 例：NTP再び</h2>
+
+<p>以前作成したNTPモジュールにテンプレートを作成して、少しだけ賢くしてみましょう。</p>
+
+<p>まず、このページの冒頭でご覧になったように、<code>file</code>リソースでテンプレートを使うように変更してください。また<code>templates/</code>ディレクトリに設定ファイルをコピーし、それらに拡張子.erbを付与する必要があります。</p>
+
+<h3 id="adjusting-the-manifest">Adjusting the Manifest ～ マニフェストの調整</h3>
+
+<p>次に、デフォルトのNTPサーバの設定をコンフィグファイルから、マニフェストに移します。</p>
+
+<div class="highlight"><pre><code class="ruby">    <span class="c1"># /etc/puppetlabs/puppet/modules/ntp/manifests/init.pp</span>
+
+    <span class="k">class</span> <span class="n">ntp</span> <span class="p">{</span>
+      <span class="k">case</span> <span class="vg">$operatingsystem</span> <span class="p">{</span>
+        <span class="n">centos</span><span class="p">,</span> <span class="n">redhat</span><span class="p">:</span> <span class="p">{</span>
+          <span class="vg">$service_name</span>    <span class="o">=</span> <span class="s1">&#39;ntpd&#39;</span>
+          <span class="vg">$conf_file</span>   <span class="o">=</span> <span class="s1">&#39;ntp.conf.el&#39;</span>
+          <span class="vg">$default_servers</span> <span class="o">=</span> <span class="o">[</span> <span class="s2">&quot;0.centos.pool.ntp.org&quot;</span><span class="p">,</span>
+                               <span class="s2">&quot;1.centos.pool.ntp.org&quot;</span><span class="p">,</span>
+                               <span class="s2">&quot;2.centos.pool.ntp.org&quot;</span><span class="p">,</span> <span class="o">]</span>
+        <span class="p">}</span>
+        <span class="n">debian</span><span class="p">,</span> <span class="n">ubuntu</span><span class="p">:</span> <span class="p">{</span>
+          <span class="vg">$service_name</span>    <span class="o">=</span> <span class="s1">&#39;ntp&#39;</span>
+          <span class="vg">$conf_file</span>   <span class="o">=</span> <span class="s1">&#39;ntp.conf.debian&#39;</span>
+          <span class="vg">$default_servers</span> <span class="o">=</span> <span class="o">[</span> <span class="s2">&quot;0.debian.pool.ntp.org iburst&quot;</span><span class="p">,</span>
+                               <span class="s2">&quot;1.debian.pool.ntp.org iburst&quot;</span><span class="p">,</span>
+                               <span class="s2">&quot;2.debian.pool.ntp.org iburst&quot;</span><span class="p">,</span>
+                               <span class="s2">&quot;3.debian.pool.ntp.org iburst&quot;</span><span class="p">,</span> <span class="o">]</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+
+      <span class="vg">$_servers</span> <span class="o">=</span> <span class="vg">$default_servers</span>
+
+      <span class="n">package</span> <span class="p">{</span> <span class="s1">&#39;ntp&#39;</span><span class="p">:</span>
+        <span class="k">ensure</span> <span class="o">=&gt;</span> <span class="n">installed</span><span class="p">,</span>
+      <span class="p">}</span>
+
+      <span class="n">service</span> <span class="p">{</span> <span class="s1">&#39;ntp&#39;</span><span class="p">:</span>
+        <span class="nb">name</span>      <span class="o">=&gt;</span> <span class="vg">$service_name</span><span class="p">,</span>
+        <span class="k">ensure</span>    <span class="o">=&gt;</span> <span class="n">running</span><span class="p">,</span>
+        <span class="n">enable</span>    <span class="o">=&gt;</span> <span class="kp">true</span><span class="p">,</span>
+        <span class="n">subscribe</span> <span class="o">=&gt;</span> <span class="no">File</span><span class="o">[</span><span class="s1">&#39;ntp.conf&#39;</span><span class="o">]</span><span class="p">,</span>
+      <span class="p">}</span>
+
+      <span class="n">file</span> <span class="p">{</span> <span class="s1">&#39;ntp.conf&#39;</span><span class="p">:</span>
+        <span class="n">path</span>    <span class="o">=&gt;</span> <span class="s1">&#39;/etc/ntp.conf&#39;</span><span class="p">,</span>
+        <span class="k">ensure</span>  <span class="o">=&gt;</span> <span class="n">file</span><span class="p">,</span>
+        <span class="nb">require</span> <span class="o">=&gt;</span> <span class="no">Package</span><span class="o">[</span><span class="s1">&#39;ntp&#39;</span><span class="o">]</span><span class="p">,</span>
+        <span class="n">content</span> <span class="o">=&gt;</span> <span class="n">template</span><span class="p">(</span><span class="s2">&quot;ntp/${conf_file}.erb&quot;</span><span class="p">),</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+</code></pre>
+</div>
+
+<p>NTPサーバを配列に格納していますので、テンプレート内でどのように反復処理するのかお見せできます。まだサーバのリストを変更する機能を提供していませんが、それは次章で説明します。</p>
+
+<h3 id="editing-the-templates">Editing the Templates ～ テンプレートの編集</h3>
+
+<p>まず、それぞれのテンプレートで<code>server</code>ステートメントを生成するのに<code>$_servers</code>変数を使うようにします。</p>
+
+<div class="highlight"><pre><code class="erb"><span class="x">    </span><span class="cp">&lt;%#</span><span class="c"> /etc/puppetlabs/puppet/modules/ntp/templates/ntp </span><span class="cp">%&gt;</span><span class="x"></span>
+
+<span class="x">    # Managed by Class[&#39;ntp&#39;]</span>
+<span class="x">    </span><span class="cp">&lt;%</span> <span class="vi">@_servers</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">this_server</span><span class="o">|</span> <span class="cp">-%&gt;</span><span class="x"></span>
+<span class="x">    server </span><span class="cp">&lt;%=</span> <span class="n">this_server</span> <span class="cp">%&gt;</span><span class="x"></span>
+<span class="x">    </span><span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">-%&gt;</span><span class="x"></span>
+
+<span class="x">    # ...</span>
+</code></pre>
+</div>
+
+<p>これは何をしているのでしょう?</p>
+
+<ul>
+  <li>Rubyの非表示タグでループを開始しています。Puppetの変数<code>$_servers</code>を<code>@_servers</code>で参照していますので、Rubyの<code>each</code>メソッドで呼び出せます。<code>do |server| -%&gt;</code>から<code>&lt;% end -%&gt;</code>タグの間は、一時的に<code>this_server</code>変数に<code>$_servers</code>配列の値を代入しながら<code>$_servers</code>配列のアイテム数分だけ繰り返されます。</li>
+  <li>ループの中では<code>server</code>という文字の後ろにその時点の配列の値を挿入しながら出力します。</li>
+</ul>
+
+<p>この部分は以下のような内容を生成します。</p>
+
+<pre><code># Managed by Class['ntp']
+server 0.centos.pool.ntp.org
+server 1.centos.pool.ntp.org
+server 2.centos.pool.ntp.org
+</code></pre>
+
+<p>次に<code>$is_virtual</code> factsを利用して、仮想マシンの場合にNTPのパフォーマンスが向上するようにします。ファイルの冒頭に以下を追加します。</p>
+
+
+<div class="highlight"><pre><code class="erb"><span class="x">    </span><span class="cp">&lt;%</span> <span class="k">if</span> <span class="vi">@is_virtual</span> <span class="o">==</span> <span class="s2">&quot;true&quot;</span> <span class="cp">-%&gt;</span><span class="x"></span>
+<span class="x">    # Keep ntpd from panicking in the event of a large clock skew</span>
+<span class="x">    # when a VM guest is suspended and resumed.</span>
+<span class="x">    tinker panic 0</span>
+
+<span class="x">    </span><span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">-%&gt;</span><span class="x"></span>
+</code></pre>
+</div>
+
+<p>続いてserverステートメントのループの下に、以下を追加します（Red Hat系のテンプレートのようなセクションと入れ替えます）。</p>
+
+<div class="highlight"><pre><code class="erb"><span class="x">    </span><span class="cp">&lt;%</span> <span class="k">if</span> <span class="vi">@is_virtual</span> <span class="o">==</span> <span class="s2">&quot;false&quot;</span> <span class="cp">-%&gt;</span><span class="x"></span>
+<span class="x">    # Undisciplined Local Clock. This is a fake driver intended for backup</span>
+<span class="x">    # and when no outside source of synchronized time is available.</span>
+<span class="x">    server 127.127.1.0 # local clock</span>
+<span class="x">    fudge 127.127.1.0 stratum 10</span>
+
+<span class="x">    </span><span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">-%&gt;</span><span class="x"></span>
+</code></pre>
+</div>
+
+<p>factsをコンフィグファイルの条件分岐のON/OFFを表すパーツとして使う事で、管理しているマシンのタイプに簡単に反応する事ができます。</p>
+
+<h2 id="next">Next ～ 次に</h2>
+
+<p><strong>次の演習：</strong></p>
+
+<p>これまでにクラスがシステムの種類に合わせて違う挙動をする必要があることを理解しています。そして、factsを使ってマニフェストとテンプレートの双方で条件分岐を理解しました。</p>
+
+<p>factsだけでは不十分な時もあるでしょう。それはポリシーの問題で人間によってマシンが異なる構成にされる場合があるからです（例を挙げるとテストサーバと商用サーバは異なります）。</p>
+
+<p>これらのケースではクラスの動作を手動で変えられる必要があります。これは、<a href="modules2_ja.html">クラスパラメータ</a>としてデータを渡す事で実現できます。</p>
+
+<p><strong>Off-Road:</strong></p>
+
+<p>もう実際に、あなた自身のインフラ設定を管理してみましたか?これまでに多くの事を学びましたので、<a href="http://info.puppetlabs.com/download-pe.html">Puppet Enterprise for free</a>をダウンロードして、<a href="http://docs.puppetlabs.com/pe/latest/quick_start.html">the quick start guide</a>に従いインストール済の小さな環境を入手して、自動化を始めてみてはいかがでしょう?</p>
+
+
+
+
+<!-- to here -->

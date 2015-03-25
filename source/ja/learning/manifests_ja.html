@@ -1,0 +1,402 @@
+---
+layout: default
+title: "Manifests ～ マニフェスト"
+canonical: "/ja/learning/manifests_ja.html"
+toc: false
+---
+
+<!-- copy from here -->
+
+<div class="translation-notes">
+  <p>訳注：このドキュメントは以下のURLにある&quot;Learning Puppet&quot;を日本語訳したものです。<br />
+    <a href="http://docs.puppetlabs.com/learning/manifests.html">http://docs.puppetlabs.com/learning/manifests.html</a></p>
+</div>
+
+<nav class="in-page" id="page-nav">
+  <ol class="toc">
+  <li class="toc-lv2"><a href="#begin">Begin ～ はじめに</a></li>
+  <li class="toc-lv2"><a href="#manifests">Manifests ～ マニフェスト</a></li>
+  <li class="toc-lv2"><a href="#puppet-apply">Puppet Apply ～ Puppet Applyコマンド</a></li>
+  <li class="toc-lv2"><a href="#resource-declarations">Resource Declarations ～ リソース宣言</a>
+    <ol class="toc">
+   <li class="toc-lv3"><a href="#syntax-hints">Syntax Hints　～ 文法のヒント</a></li>
+</ol></li>
+  <li class="toc-lv2"><a href="#once-more-with-feeling">Once More, With Feeling! ～ さらにもう1つ</a>
+    <ol class="toc">
+   <li class="toc-lv3"><a href="#new-ensure-values-different-states">New Ensure Values, Different States ～ 新しいEnsureの値と別の状態</a></li>
+   <li class="toc-lv3"><a href="#titles-and-namevars">Titles and Namevars ～ タイトル属性とNamevar属性</a></li>
+   <li class="toc-lv3"><a href="#missing-attributes-desired-state--whatever">Missing Attributes: “Desired State = Whatever ～ ”失われた属性：&quot;あるべき状態＝何でもいい&quot;</a></li>
+   <li class="toc-lv3"><a href="#directory-permissions-644--755">Directory Permissions: 644 = 755 ～ ディレクトリのパーミッション：644 = 755</a></li>
+</ol></li>
+  <li class="toc-lv2"><a href="#destinations-not-journeys">Destinations, Not Journeys ～ 過程ではない。結果だ。</a></li>
+  <li class="toc-lv2"><a href="#aside-compilation">Aside: Compilation ～ 余談：比較</a></li>
+  <li class="toc-lv2"><a href="#the-site-manifest-and-puppet-agent">The Site Manifest and Puppet Agent ～ サイトマニフェストとPuppet Agent</a>
+    <ol class="toc">
+   <li class="toc-lv3"><a href="#exercise-use-puppet-agentmaster-to-apply-the-same-configuration">Exercise: Use Puppet Agent/Master to Apply the Same Configuration～演習：Puppet Agent/Masterを使って同じ設定を適用してみよう</a></li>
+   <li class="toc-lv3"><a href="#exercise-ssh-authorized-key">Exercise: SSH Authorized Key ～ 演習：SSH認証鍵</a></li>
+</ol></li>
+  <li class="toc-lv2"><a href="#next">Next ～ 次に</a></li>
+</ol></nav>
+
+<h2 id="begin">Begin ～ はじめに</h2>
+
+<p><a href="./ral_ja.html">前章</a>、<code>puppet resource</code>コマンドの演習は実施しましたか？　それでは先ほど作成したユーザアカウントを削除してみましょう。</p>
+
+<p><code>vim</code>、<code>emacs</code>、<code>nano</code>等のテキストエディタを利用し、以下のファイル名と内容で新規ファイルを作成します：</p>
+
+<div class="highlight"><pre><code class="ruby">    <span class="c1"># /root/examples/user-absent.pp</span>
+    <span class="n">user</span> <span class="p">{</span><span class="s1">&#39;katie&#39;</span><span class="p">:</span>
+      <span class="k">ensure</span> <span class="o">=&gt;</span> <span class="n">absent</span><span class="p">,</span>
+    <span class="p">}</span>
+</code></pre>
+</div>
+
+<p>保存してエディタを閉じてから実行してみましょう：</p>
+
+<pre><code># puppet apply /root/examples/user-absent.pp
+notice: /Stage[main]//User[katie]/ensure: removed
+notice: Finished catalog run in 0.07 seconds
+</code></pre>
+
+<p>試しにもう一度実行してみましょう。この場合は既に反映されているので何も起こりません：</p>
+
+<pre><code># puppet apply /root/examples/user-absent.pp
+notice: Finished catalog run in 0.03 seconds
+</code></pre>
+
+<p>素晴らしい。これで最初のPuppetマニフェストが完成しました。</p>
+
+
+
+<h2 id="manifests">Manifests ～ マニフェスト</h2>
+
+<p>Puppet言語のプログラムは“マニフェスト”と呼ばれ、拡張子は“<code>.pp</code>”となっています。</p>
+
+<p>Puppet言語の肝はリソース宣言です。１つのリソース宣言は1つのリソースのあるべき姿を記載します。</p>
+<p>(後ほど説明しますが、マニフェストは条件文、リソースの集合、テキストを生成する関数など、さまざまな種類のロジックを利用できます。)</p>
+
+<h2 id="puppet-apply">Puppet Apply ～ Puppet Applyコマンド</h2>
+
+<p>前章の<code>resource</code>サブコマンドと同じく、<code>apply</code>はPuppetのサブコマンドです。マニフェストのファイル名を引数とし、マニフェストに記載されたあるべき状態に変更します。</p>
+
+<p>小規模マニフェストでテストしますが、大きなジョブを動作させる時でも同じです。実際、agent/master方式のPuppet環境ができることとほぼ同じことができます。</p>
+
+<h2 id="resource-declarations">Resource Declarations ～ リソース宣言</h2>
+
+<p>それでは以下のように、単一のリソースを宣言する事から始めましょう。</p>
+
+<div class="highlight"><pre><code class="ruby">    <span class="c1"># /root/examples/file-1.pp</span>
+
+    <span class="n">file</span> <span class="p">{</span><span class="s1">&#39;testfile&#39;</span><span class="p">:</span>
+      <span class="n">path</span>    <span class="o">=&gt;</span> <span class="s1">&#39;/tmp/testfile&#39;</span><span class="p">,</span>
+      <span class="k">ensure</span>  <span class="o">=&gt;</span> <span class="n">present</span><span class="p">,</span>
+      <span class="n">mode</span>    <span class="o">=&gt;</span> <span class="mo">0640</span><span class="p">,</span>
+      <span class="n">content</span> <span class="o">=&gt;</span> <span class="s2">&quot;I&#39;m a test file.&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+</code></pre>
+</div>
+
+<p>詳細な文法とリソース宣言の振る舞いは<a href="http://docs.puppetlabs.com/puppet/latest/reference/lang_resources.html">Puppet言語リファレンス(英文)</a>にありますが、簡単に言うと以下のとおりです。</p>
+
+<ul>
+  <li><strong>型</strong> (ここでは<code>file</code>)</li>
+  <li>開き波括弧 (<code>{</code>)
+    <ul>
+      <li><strong>タイトル</strong> (<code>testfile</code>)</li>
+      <li>コロン(<code>:</code>)</li>
+      <li>カンマで区切られた<strong>属性 <code>=&gt;</code> 値</strong> のペア (<code>path =&gt; '/tmp/testfile',</code> etc.)</li>
+    </ul>
+  </li>
+  <li>閉じ波括弧 (<code>}</code>)</li>
+</ul>
+
+
+
+<p>上記の簡単なマニフェストを適用してみましょう。</p>
+
+<pre><code># puppet apply /root/examples/file-1.pp
+notice: /Stage[main]//File[testfile]/ensure: created
+notice: Finished catalog run in 0.05 seconds
+</code></pre>
+
+
+
+
+
+<p>これは先ほどユーザーアカウントを削除したのと、ちょうど逆の操作です。Puppetは目的のファイルが存在していない事を通知し、作成しました。ここではファイルの内容と属性を同時に設定しています。</p>
+<pre><code># cat /tmp/testfile
+I'm a test file.
+# ls -lah /tmp/testfile
+-rw-r----- 1 root root 16 Feb 23 13:15 /tmp/testfile
+</code></pre>
+
+<p>ファイルの属性を変更しても、マニフェストを再実行すればPuppetは元の状態に戻します。</p>
+
+<pre><code># chmod 0666 /tmp/testfile
+# puppet apply /root/examples/file-1.pp
+notice: /Stage[main]//File[testfile]/mode: mode changed '0666' to '0640'
+notice: Finished catalog run in 0.04 seconds
+</code></pre>
+
+<p>同じマニフェストを2回実行しても、2回目にはPuppetは何もしません。リソースが既にあるべき状態になっている時は、Puppetは何もせずに終了するのです。</p>
+
+<blockquote>
+  <p><strong>演習：</strong> マニフェストで別のファイルリソースを宣言して適用してください。既存のファイルに新たな状態を設定してみましょう。例として/etc/motdを変更する事により、ログインメッセージを変更してみてください。既存のファイルに新たな状態を設定してみましょう。例として<code>/etc/motd</code>の内容を設定し、ログインメッセージを変更してみましょう。 <a href="/references/latest/type.html#file"><code>file</code>リソースに設定できる属性についてはこちらを参照(英文)</a>してください。</p>
+</blockquote>
+
+<h3 id="syntax-hints">Syntax Hints ～ 文法のヒント</h3>
+
+<p>以下の一般的なエラーに注意してください。</p>
+
+<ul>
+  <li>カンマとコロンを忘れないでください!これらを忘れると<code>Could not parse for environment production: Syntax error at 'mode'; expected '}' at /root/manifests/1.file.pp:6 on node learn.localdomain.</code>のようなエラーを起こします。</li>
+  <li>大文字小文字は重要です。リソース型と属性名は常に小文字であるべきです。</li>
+  <li>タイトルや属性には通常<a href="http://docs.puppetlabs.com/puppet/latest/reference/lang_datatypes.html#strings">文字列(英文)</a>を使いますが、文字列はクォートで囲むべきです。<a href="http://docs.puppetlabs.com/puppet/latest/reference/lang_datatypes.html">Puppetのデータ型</a>についてはこちらをご覧ください。</li>
+    <ul>
+      <li>Puppetのクォートには2種類あります。シングルクォート(<code>'</code>)とダブルクォート(<code>"</code>)です。大きな違いはダブルクォートの場合は変数を展開するということです。これは別のレッスンで触れます。</li>
+      <li>属性名(<code>path</code>、<code>ensure</code>など)は特別なキーワードのため文字列ではありません。これらはクォートで囲わないでください。</li>
+    </ul>
+  </li>
+</ul>
+
+<p>また、Puppetではホワイトスペースを自由に使ってマニフェストを読みやすくする事ができることに注意してください。<code>=></code>矢印のインデントを揃えることを推奨します。マニフェストが一目で理解しやすくなるからです。(Learning Puppet VMではVimのプラグインが自動的にこの動作をします)</p>
+
+
+
+
+
+<h2 id="once-more-with-feeling">Once More, With Feeling! ～ ついでにもう1つ！</h2>
+
+<p>リソースの宣言について学びましたので、もう少しファイル型のリソースで遊んでみましょう。</p>
+
+<ul>
+  <li>型の異なる複数のリソースを同じマニフェストに記述しましょう。</li>
+  <li><code>ensure</code>属性に新たな値を設定しましょう。</li>
+  <li>リソースのタイトルと特別な関係を持つ属性を見つけましょう。</li>
+  <li>特定の属性を抜いた時に何が起きるか見てみましょう。</li>
+  <li>ディレクトリに対するパーミッションの自動補正を見てみましょう。</li>
+
+</ul>
+
+<div class="highlight"><pre><code class="ruby">    <span class="c1"># /root/examples/file-2.pp</span>
+
+    <span class="n">file</span> <span class="p">{</span><span class="s1">&#39;/tmp/test1&#39;</span><span class="p">:</span>
+      <span class="k">ensure</span>  <span class="o">=&gt;</span> <span class="n">file</span><span class="p">,</span>
+      <span class="n">content</span> <span class="o">=&gt;</span> <span class="s2">&quot;Hi.</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="n">file</span> <span class="p">{</span><span class="s1">&#39;/tmp/test2&#39;</span><span class="p">:</span>
+      <span class="k">ensure</span> <span class="o">=&gt;</span> <span class="n">directory</span><span class="p">,</span>
+      <span class="n">mode</span>   <span class="o">=&gt;</span> <span class="mo">0644</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="n">file</span> <span class="p">{</span><span class="s1">&#39;/tmp/test3&#39;</span><span class="p">:</span>
+      <span class="k">ensure</span> <span class="o">=&gt;</span> <span class="n">link</span><span class="p">,</span>
+      <span class="n">target</span> <span class="o">=&gt;</span> <span class="s1">&#39;/tmp/test1&#39;</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="n">user</span> <span class="p">{</span><span class="s1">&#39;katie&#39;</span><span class="p">:</span>
+      <span class="k">ensure</span> <span class="o">=&gt;</span> <span class="n">absent</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="n">notify</span> <span class="p">{</span><span class="s2">&quot;I&#39;m notifying you.&quot;</span><span class="p">:}</span>
+    <span class="n">notify</span> <span class="p">{</span><span class="s2">&quot;So am I!&quot;</span><span class="p">:}</span>
+</code></pre>
+</div>
+
+<p>これを適用します：</p>
+
+<pre><code># puppet apply /root/examples/file-2.pp
+notice: /Stage[main]//File[/tmp/test1]/ensure: created
+notice: /Stage[main]//File[/tmp/test3]/ensure: created
+notice: /Stage[main]//File[/tmp/test2]/ensure: created
+notice: So am I!
+notice: /Stage[main]//Notify[So am I!]/message: defined 'message' as 'So am I!'
+notice: I'm notifying you.
+notice: /Stage[main]//Notify[I'm notifying you.]/message: defined 'message' as 'I'm notifying you.'
+notice: Finished catalog run in 0.05 seconds
+</code></pre>
+
+<p>適用はうまくできましたが、ここではいったい何をしたのでしょうか。</p>
+
+
+
+
+<h3 id="new-ensure-values-different-states">New Ensure Values, Different States ～ <code>ensure</code>属性とリソースの状態</h3>
+
+<p><code>ensure</code>属性は少しだけ特別な存在です。これは(全てではありませんが)ほとんどのリソース型にありますが、リソース毎に少しずつ異なる定義でリソースの”ありかた”をコントロールしています。</p>
+
+<p>ファイルの場合、以下の複数の形でリソースの”ありかた”を表現しています。</p>
+
+<ul>
+  <li>通常のファイルとして(<code>ensure =&gt; file</code>)</li>
+  <li>ディレクトリとして (<code>ensure =&gt; directory</code>)</li>
+  <li>シンボリックリンクとして (<code>ensure =&gt; link</code>)</li>
+  <li>既存のものとして (<code>ensure =&gt; present</code>)</li>
+  <li>存在しない(削除された)ものとして (<code>ensure =&gt; absent</code>).</li>
+</ul>
+
+<p>マニフェストを動かした後にどうなるか、簡単に確認してみましょう。</p>
+
+
+<pre><code># ls -lah /tmp/test*
+-rw-r--r--  1 root root    3 Feb 23 15:54 test1
+lrwxrwxrwx  1 root root   10 Feb 23 15:54 test3 -&gt; /tmp/test1
+
+/tmp/test2:
+total 16K
+drwxr-xr-x 2 root root 4.0K Feb 23 16:02 .
+drwxrwxrwt 5 root root 4.0K Feb 23 16:02 ..
+
+# cat /tmp/test3
+Hi.
+</code></pre>
+
+<h3 id="titles-and-namevars">Titles and Namevars ～ Title属性とNamevar</h3>
+
+<p>オリジナルの<code>file</code>リソース(file-1.pp)がどのように<code>path</code>属性を持ち、後の3つ(file-2.ppの各<code>file</code>リソース)で省略しているか、に注意してください。</p>
+<p>たいていのリソース型はリソースのタイトルをデフォルト値とした1つの属性を持ちます。<code>file</code>リソースならば<code>path</code>属性です。その他のリソースの時 (<code>user</code>, <code>group</code>, <code>package</code>…)は<code>name</code>属性です。</p>
+<p>これらの属性は“<strong>namevar</strong>”と呼ばれています。namevarは一般的にはリソースの識別名でとして使われているので、常にユニークであるべきものの1つです。</p>
+<p>もしnamevarをリソースから取り除いてしまうと、Puppetはタイトルをnamevarのデフォルト値として再利用します。特定の値をnamevarに指定したなら、リソースのタイトルは何でも構いません。</p>
+
+
+
+<blockquote>
+  <h4 id="identity-and-identity">2つの識別名</h4>
+
+  <p>なぜTitle属性が再利用できるのにNamevar属性まで用意されているのでしょうか?</p>
+  <p>Puppetが認識する識別名は2種類あります。</p>
+
+  <ul>
+    <li>Puppetの中での識別名</li>
+    <li>対象システム上での識別名</li>
+  </ul>
+
+  <p>ほとんどの場合これらは同一ですが、たまに異なる事があります。例を挙げるとNTPサービスはプラットフォームによって名称が異なります。Red Hat系のシステムでは<code>ntpd</code>、Debian系のシステムでは<code>ntp</code>です。これらは論理的には同じリソースですが、識別名としては対象のシステムによって異なるのです。</p>
+<p>また、システムの識別名が明確な意味を持っていない場合(主に<code>exec</code>リソース)、Title属性にわかりやすい識別名を入れる事で、このリソースが何を行っているのかあなたの同僚（もしくは2か月後のあなた自身）に伝える助けになります。</p>
+  <p>Title属性とnamevar属性の分離を可能とすることで、Puppetはこれらのケースを容易に取り扱うことができます。このことは、条件構文の説明の時に補足します。</p>
+
+  <h4 id="uniqueness">ユニーク性</h4>
+  <p>同じリソースは2回宣言できないことを覚えてください。Puppetは同一の型でTitle属性を複製することを常に認めていませんし、通常は同じ型でNamevar属性を複製することも認めていません。</p>
+  <p>なぜならリソース宣言は最終的なあるべき状態を表しているからです。また、矛盾した2つの状態を定義してしまうと、実際に動作させた時にどうなってしまうのか予測がつきません。そのため、Puppetは何かしらシステムに悪影響を出す前にコンパイルエラーで失敗します。</p>
+</blockquote>
+
+<h3 id="missing-attributes-desired-state--whatever">Missing Attributes: “Desired State = Whatever” ～ 失われた属性：“あるべき状態=何でもいい”</h3>
+
+<p><code>/tmp/test1</code>ファイルで<code>mode</code>と<code>owner</code>属性を省略しました。省略された属性はPuppetの管理対象外となるため、いかなる値でもあるべき状態として受付られます。</p>
+
+<p>ファイルが存在しない場合、Puppetはデフォルトのパーミッションモード0644でファイルを作成します。ファイルが既に存在する場合、パーミッションモードを変更していてもPuppetは元に戻しません。</p>
+
+<p> <code>content</code>もしくは<code>source</code>を指定しない限りはensure属性を省略できることを覚えてください。この場合、ファイルが存在すればパーミッションを管理しますが、ファイルが存在しないからと言ってファイルは作成しません。</p>
+
+<h3 id="directory-permissions-644--755">Directory Permissions: 644 = 755</h3>
+
+<p><code>/tmp/test2/</code>ディレクトリのパーミッションは0644であるべきと記述しましたが、<code>ls -lah</code>で見てみると0755になっています。これはPuppetはディレクトリに対して読み込みとトラバースの権限をグループ化しているからです。</p>
+<blockquote>
+  <p><strong>詳細：</strong> ディレクトリは、誰がディレクトリのリストを見れるかどうかの4bitと、誰がファイルにアクセスできるかの1bitの制御を含んでいます。
+  <p>通常はこれらの属性の組を一緒にします。しかしながら<code>recurce</code>属性によって再帰的なディレクトリを管理する場合、全てのパーミッションを0755にしたくないかも知れません。ディレクトリに任意のファイルが含まれていた場合に実行可能になってしまうからです。また、Puppetが自動的にディレクトリのパーミッションを補正せず、再帰的にパーミッションを0644に設定してしまったら、ディレクトリに含まれるファイルはアクセス可能であるべきユーザからもアクセスできなくなります。</p>
+  <p>これらのパーミッションを自動的にグループ化することで、ディレクトリのパーミッション設定と含まれているファイルのパーミッション設定を簡単に一致させることができるのです。</p>
+</blockquote>
+
+<h2 id="destinations-not-journeys">Destinations, Not Journeys ～ 過程ではない。結果だ。</h2>
+
+<p>これまで「システムの変更」ではなく、「あるべき状態」と何度も書いてきました。この考え方はPuppetを利用する際の肝となっています。</p>
+<p>他人にシステムをあるべき状態にする方法を説明する場合、OSの標準的なツールを使って「sudoersファイルのモードが0440か<code>ls -l</code>で確認する。もし既になっているのなら次のステップに、そうでなければ<code>chmod 0440 /etc/sudoers</code>を実行してください」のようにすると思います。</p>
+<p>実際、水面下でPuppetはOSの標準的なツールを使って同じような事をしていますが、“確認”ステップと“必要なら修正”ステップを一緒にまとめて、それらを単一のインタフェースとして提供しています。</p>
+<p>その効果として、初心者のユーザ向けにステップ-バイ-ステップで書かれたようなbashスクリプトの代わりに、熟練ユーザ向けの速記メモのようなPuppetマニフェストを書く事になります。</p>
+
+<blockquote>
+  <h2 id="aside-compilation">Aside: Compilation ～ 余談：コンパイル</h2>
+
+  <p>マニフェストはPuppetがリソースを同期する際に直接利用されるわけではありません。その代わりにPuppetは以下のように動作します。</p>
+
+  <p><img src="images/manifest_to_defined_state_unified.png" alt="Diagram: Manifests are compiled into a catalog, which is then applied to yield the desired system state." width=252 height=480></p>
+
+  <p>前述のように、マニフェストは条件構文、変数、関数、その他の形式のロジックを含むことができます。しかし適用する前にマニフェストは“<strong>カタログ</strong>”と呼ばれるドキュメントにコンパイルされます。これはリソースと同期すべき順番についてのヒントだけを所持しています。</p>
+  <p><code>puppet apply</code>コマンドではこの違いにあまり意味はありません。ですがmaster/agentのPuppet環境では重要です。それはagentはカタログしか見ないからです。</p>
+
+
+  <ul>
+    <li>ロジックを使うことで、マニフェストは柔軟になり、一度に多くのシステムを記載することができます。カタログには<strong>1つのシステム</strong>のあるべき状態だけが記述されています。</li>
+    <li>デフォルトでagentノードは自分自身のカタログだけを受け取れます。それはagentノードは他のノードの情報を見る事が出来ない事を意味します。この分離によりセキュリティが向上します。</li>
+    <li>カタログは非常に明瞭なので、システムを一切変更する事なくカタログの実行をシミュレートする事ができます（通常<code>puppet agent --test --noop</code>により実行されます）。さらに特別なdiffツールによって2つのカタログの違いを比較し、差分を見る事ができます。</li>
+
+    </ul>
+</blockquote>
+
+<h2 id="the-site-manifest-and-puppet-agent">The Site Manifest and Puppet Agent ～ サイトマニフェストとPuppet Agent</h2>
+
+<p>これまで、1つのシステム上で、<code>puppet apply</code>コマンドによって直接マニフェストを適用する方法を見てきました。puppet master/agentサービスの働きは似ていますがいくつかのキーとなる違いがあります。</p>
+
+
+<p><strong>Puppet apply:</strong></p>
+
+<ul>
+  <li>ユーザがコマンドを実行することでPuppetが動きます。</li>
+  <li>puppet applyは渡されたマニフェストを読んでカタログにコンパイルし、そのカタログを適用します。</li>
+</ul>
+
+<p><strong>Puppet agent/master:</strong></p>
+
+<ul>
+  <li>puppet agentはサービスとして動作し、(設定変更できますが)約30分毎にPuppet runを実行します。
+    <ul>
+      <li>Puppet Enterpriseが動作しているVMでは、agentサービスは<code>pe-puppet</code>という名称です（puppet agentはサービスの代わりにcronで動作するようにも設定できます）。</li>
+    </ul>
+  </li>
+  <li>puppet agentはマニフェストへのアクセス手段を何ら持ちません。その代りにプレコンパイルされているカタログをmasterサーバに要求します。
+    <ul>
+      <li>VM上ではpuppet masterは<code>pe-httpd</code>サービスとなっています。Passengerを組み込んだApacheをサンドボックス化したコピーがpuppet masterアプリケーションを管理し、必要に応じて新たなコピーを作成したり消したりしています。</li>
+    </ul>
+  </li>
+  <li>Puppet masterは常に“サイトマニフェスト”もしくはsite.ppと呼ばれるただ1つの特別なマニフェストを読み込みます。このマニフェストをコンパイルしてagentにカタログを送り返します。
+    <ul>
+      <li>VMではサイトマニフェストは<code> /etc/puppetlabs/puppet/manifests/site.pp</code>です。</li>
+    </ul>
+  </li>
+  <li>カタログを取得した後、agentは取得したカタログを適用します。</li>
+</ul>
+
+<p>この方法では、一台（もしくは複数台）のサーバのマニフェストをメンテナンスするだけで、多くのマシンをメンテナンスすることができます。また、コンパイルして配布する事は、先ほど「余談：コンパイル」に記載したように、セキュリティ向上にもつながります。</p>
+
+<blockquote>
+  <h3 id="exercise-use-puppet-agentmaster-to-apply-the-same-configuration">Exercise: Use Puppet Agent/Master to Apply the Same Configuration　～ 演習：Puppet Agent/Masterを使って同じ設定を適用してみよう</h3>
+
+  <p>puppet agentで同じマニフェストがどのように動いているのか見てみましょう。</p>
+
+  <ul>
+    <li><code>/etc/puppetlabs/puppet/manifests/site.pp</code>を編集し、先のマニフェストにある3つのファイルリソースを貼り付けます。
+      <ul>
+        <li>site.ppにある既存の<code>node</code>ステーメントを壊さないように注意しましょう。ファイルリソースの一番下に貼り付けるのがいいでしょう。</li>
+      </ul>
+    </li>
+    <li><code>/tmp</code>に作成したいくつかのファイルとディレクトリを削除します。</li>
+    <li><code>puppet agent --test</code>は、puppet agentを1度だけフォアグランドで実行するので、何が起こっているのかリアルタイムで確認することができます。</li>
+    <li><code>/tmp</code>の中身とファイルがあるべき状態に戻ったという通知を確認しましょう。</li>
+  </ul>
+</blockquote>
+
+<blockquote>
+  <h3 id="exercise-ssh-authorized-key">Exercise: SSH Authorized Key ～ 演習：SSH認証鍵</h3>
+  <p><a href="http://docs.puppetlabs.com/references/stable/type.html#sshauthorizedkey"><code>ssh_authorized_key</code>型</a>を利用し、learning VMにパスワード無しでrootでログインするマニフェストを記述して適用してみましょう。</p>
+  <p><strong>追加演習：</strong> このマニフェストを<code>puppet apply</code>コマンドを使う代わりにサイトマニフェストに直接挿入してみましょう。<a href="http://docs.puppetlabs.com/pe/latest/orchestration_puppet.html">コンソールからpuppet agentを実行し</a>、<a href="http://docs.puppetlabs.com/pe/latest/console_reports.html">Webコンソールに表示されるレポートを確認</a>してマニフェストが動作したか見てみましょう。</p>
+
+  <ul>
+    <li>SSH鍵のペアが必要ですので、お使いのホストシステムの端末アプリケーション、およびSSHの動作についてある程度の基本知識が必要です。少しだけ外部サイトを調べれば全ての知識が得られます。</li>
+    <li>注意：リソースの<code>key</code>属性に直接<code>id_rsa.pub</code>ペーストする事はできません。コンポーネントを複数の属性に分割する必要があります。やり方は<code>ssh_authorized_key</code>型のドキュメントを参照してください。</li>
+  </ul>
+</blockquote>
+
+<h2 id="next">Next ～ 次に</h2>
+
+<p>次の演習：</p>
+
+<p>これでPuppetコードの基礎的なブロックの構築手順がわかりました。<a href="./ordering_ja.html">次はそれらのブロックをどのように組み合わせていくか</a>学びます。</p>
+
+<p><strong>Off-Road:</strong></p>
+
+<p>あなたは既にPuppetの使い方を少しだけ知っています。またファイルの所有権とパーミッションの管理の重要さも知っています。</p>
+<p>あなたのシステムには同期を維持するのに苦心しているファイルがありませんか?もうそんな作業を止めるための知識があるはずです。<a href="http://info.puppetlabs.com/download-pe.html">Puppet Enterprise for freeをダウンロード</a>して、<a href="http://docs.puppetlabs.com/pe/latest/quick_start.html">クイックスタートガイド(英文)</a>に従いインストール済の小さな環境を入手しましょう。そしていくつかのファイルリソースをpuppet masterの<code>site.pp</code>の一番下に記載して、全てのマシンでそのファイルを管理してみましょう。</p>
+
+
+<!-- to here -->

@@ -7,7 +7,7 @@ title: "Hiera 1: Creating Hierarchies"
 [variables]: ./variables.html
 [data]: ./data_sources.html
 
-<!-- TODO: better links for the lookup types -->
+
 [priority]: ./lookup_types.html#priority-default
 [array]: ./lookup_types.html#array-merge
 [hash]: ./lookup_types.html#hash-merge

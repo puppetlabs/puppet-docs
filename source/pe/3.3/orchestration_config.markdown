@@ -10,15 +10,19 @@ The Puppet Enterprise (PE) orchestration engine can be configured to enable new 
 Disabling Orchestration on Some Nodes
 -----
 
-By default, Puppet Enterprise enables and configures orchestration on all agent nodes. This is generally desirable, but the Puppet code that manages this will not work on non-PE agent nodes, and will cause Puppet run failures on them.
+By default, Puppet Enterprise enables and configures orchestration on all agent nodes (including non-PE agents and devices). This is generally desirable, but the Puppet code that manages orchestration does not work on non-PE agent nodes, and will result in Puppet run failures on these nodes.
 
-Since the puppet master server supports managing non-PE agent nodes (including things like network devices), you should disable orchestration when adding non-PE nodes.
+It is possible to disable orchestration when adding non-PE nodes. **Note: Disabling orchestration on non-PE agents is not a supported configuration. To maintain a supported configuration, connect non-PE agents to a separate (unsupported) master.**
 
-To disable orchestration for a node, **add that node to the special `no mcollective` group in the PE console.** This will prevent PE from attempting to enable orchestration on that node. [See here for instructions on adding nodes to groups in the console.][group]
+To disable orchestration for a node, add the node to the special `no mcollective` group in the PE console. This will prevent PE from attempting to enable orchestration on that node. [See here for instructions on adding nodes to groups in the console.][group]
 
-(The corresponding `mcollective` group is automatically managed --- it contains all nodes that have **not** been added to the `no mcollective` group.)
+(The corresponding `mcollective` group is automatically managed — it contains all nodes that have *not* been added to the `no mcollective` group.)
+
+If your infrastructure includes [non-root agents][non-root_agent], you also need to [disable orchestration on these nodes][exclude_non-root].
 
 [group]: ./console_classes_groups.html#adding-nodes-to-a-group
+[non-root_agent]: ./deploy_nonroot-agent.html
+[exclude_non-root]: ./deploy_nonroot-agent.html#add-non-root-agents-to-the-no-mcollective-group
 
 
 Adding Actions
@@ -121,18 +125,7 @@ To disable SSL:
 You can later delete the variable to revert to the default setting.
 
 
-<!--
-Scaling: Multiple Orchestration Message Brokers
------
 
-$::activemq_brokers
-
-should be comma-sep'd list (NO SPACES), can be set as a console variable.
-Must set it individually on EACH activemq server, with that server's own name excluded. the module doesn't use special smarts to reject the local one.
-
-Still need to know what classes to apply, etc., as well as how to comply with the reference architecture.
-
--->
 
 * * *
 

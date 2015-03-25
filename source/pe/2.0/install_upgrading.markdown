@@ -13,22 +13,22 @@ canonical: "/pe/latest/install_upgrading.html"
 Upgrading Puppet Enterprise
 =====
 
-To upgrade from a previous version of Puppet Enterprise, use the same installer tarball as in a basic installation, but **don't** run the `puppet-enterprise-installer` script. Instead, run `puppet-enterprise-upgrader`. 
+To upgrade from a previous version of Puppet Enterprise, use the same installer tarball as in a basic installation, but **don't** run the `puppet-enterprise-installer` script. Instead, run `puppet-enterprise-upgrader`.
 
-Depending on the version you upgrade from, **you may need to take extra steps** after running the upgrader. See below for your specific version. 
+Depending on the version you upgrade from, **you may need to take extra steps** after running the upgrader. See below for your specific version.
 
 {% capture slowbigdatabase %}**Note that if your console database is very large, the upgrader may take a long time on the console node, possibly thirty minutes or more.** This is due to a resource-intensive database migration that must be run. Make sure that you schedule your upgrade appropriately, and avoid interrupting the upgrade process.{% endcapture %}{{ slowbigdatabase }}
 
 > **NOTE: PE 1.2.5 cannot be upgraded to this version of PE.** Systems running PE 1.2.5 can only upgrade to PE 2.6.1 or higher.
 >
-> This is because PE 1.2.5 includes some packages that are newer than those in PE 2.0. This is known to block upgrades on SLES systems, and may cause more subtle failures on other platforms. If you run into an upgrade failure, it can be fixed by running the 2.6.1 upgrader. 
+> This is because PE 1.2.5 includes some packages that are newer than those in PE 2.0. This is known to block upgrades on SLES systems, and may cause more subtle failures on other platforms. If you run into an upgrade failure, it can be fixed by running the 2.6.1 upgrader.
 
 
 {% capture locktableissue %}
 
 > ### IMPORTANT NOTE
-> 
-> Due to [a known issue](./welcome_known_issues.html#upgrades-may-fail-with-mysql-errors) that can potentially cause upgrade failures, all users should increase the size of their MySQL server's `innodb_buffer_pool_size` before upgrading the console server node. [See here for details and instructions](./welcome_known_issues.html#upgrades-may-fail-with-mysql-errors), including how to recover from a failed upgrade. 
+>
+> Due to [a known issue](./welcome_known_issues.html#upgrades-may-fail-with-mysql-errors) that can potentially cause upgrade failures, all users should increase the size of their MySQL server's `innodb_buffer_pool_size` before upgrading the console server node. [See here for details and instructions](./welcome_known_issues.html#upgrades-may-fail-with-mysql-errors), including how to recover from a failed upgrade.
 
 {% endcapture %}{{ locktableissue }}
 
@@ -38,7 +38,7 @@ Checking For Updates
 
 [Check here][updateslink] to find out what the latest maintenance release of Puppet Enterprise is. You can run `puppet --version` at the command line to see the version of PE you are currently running.
 
-{% comment %} This link is the same one as the console's help -> version information link. We only have to change the one to update both. {% endcomment %}
+
 [updateslink]: http://links.puppetlabs.com/puppet_enterprise_console_2.0_information
 
 Downloading PE
@@ -98,11 +98,11 @@ The upgrader will ask you the following questions:
 
 ### Cloud Provisioner
 
-PE 2 includes a cloud provisioner tool that can be installed on trusted nodes where administrators have shell access. On every node you upgrade, you'll be asked whether to install the cloud provisioner role. 
+PE 2 includes a cloud provisioner tool that can be installed on trusted nodes where administrators have shell access. On every node you upgrade, you'll be asked whether to install the cloud provisioner role.
 
 ### Vendor Packages
 
-If PE 2.0 needs any packages from your OS's repositories, it will ask permission to install them. 
+If PE 2.0 needs any packages from your OS's repositories, it will ask permission to install them.
 
 ### Puppet Master Options
 
@@ -110,7 +110,7 @@ If PE 2.0 needs any packages from your OS's repositories, it will ask permission
 
 The `mco` user from PE 1.2 gets deleted during the upgrade, and is replaced with the `peadmin` user.
 
-If the `mco` user had any preference files or documents you need, you should tell the upgrader to preserve the `mco` user's home directory; otherwise, it will be deleted. 
+If the `mco` user had any preference files or documents you need, you should tell the upgrader to preserve the `mco` user's home directory; otherwise, it will be deleted.
 
 #### Installing Wrapper Modules
 
@@ -131,21 +131,21 @@ Final Steps: From an Earlier PE 2.0 Release
 Final Steps: From PE 1.2
 -----
 
-**No extra steps** are needed when upgrading from PE 1.2.x to PE 2.0.1 or later. 
+**No extra steps** are needed when upgrading from PE 1.2.x to PE 2.0.1 or later.
 
-**Note that some features may not be available until puppet agent has run once on every node.** In normal installations, this means all features will be available within 30 minutes after upgrading all nodes. 
+**Note that some features may not be available until puppet agent has run once on every node.** In normal installations, this means all features will be available within 30 minutes after upgrading all nodes.
 
 Final Steps: From PE 1.1 or 1.0
 -----
 
-**Important note: Upgrades from some configurations of PE 1.1 and 1.0 aren't fully supported.** To upgrade from PE 1.1 or 1.0, **you must have originally installed the puppet master and Puppet Dashboard roles on the same node.** Contact Puppet Labs support for help with other configurations on a case-by-case basis, and see [issue #10872](http://projects.puppetlabs.com/issues/10872) for more information. 
+**Important note: Upgrades from some configurations of PE 1.1 and 1.0 aren't fully supported.** To upgrade from PE 1.1 or 1.0, **you must have originally installed the puppet master and Puppet Dashboard roles on the same node.** Contact Puppet Labs support for help with other configurations on a case-by-case basis, and see [issue #10872](http://projects.puppetlabs.com/issues/10872) for more information.
 
 After running the upgrader on the puppet master/Dashboard (now console) node, you must:
 
 * Stop the `pe-httpd` service
 * Create a new database for the inventory service and grant all permissions on it to the console's MySQL user.
 * Manually edit the puppet master's `puppet.conf`, `auth.conf`, `site.pp`, and `settings.yml` files
-* Generate and sign certificates for the console, to enable inventory and filebucket viewing. 
+* Generate and sign certificates for the console, to enable inventory and filebucket viewing.
 * Edit `passenger-extra.conf`
 * Restart the `pe-httpd` service.
 
@@ -155,16 +155,16 @@ You can upgrade agent nodes after upgrading the puppet master and console. After
 
 ### Stop `pe-httpd`
 
-For the duration of these manual steps, Puppet Enterprise's web server should be stopped. 
+For the duration of these manual steps, Puppet Enterprise's web server should be stopped.
 
     $ sudo /etc/init.d/pe-httpd stop
 
 ### Create a New Inventory Database
 
-To support the inventory service, you must manually create a new database for puppet master to store node facts in. To do this, use the `mysql` client on the node running the database server. (This will almost always be the same server running the puppet master and console.) 
+To support the inventory service, you must manually create a new database for puppet master to store node facts in. To do this, use the `mysql` client on the node running the database server. (This will almost always be the same server running the puppet master and console.)
 
     # mysql -uroot -p
-    Enter password: 
+    Enter password:
     mysql> CREATE DATABASE console_inventory_service;
     mysql> GRANT ALL PRIVILEGES ON console_inventory_service.* TO '<USER>'@'localhost';
 
@@ -172,7 +172,7 @@ Replace `<USER>` with the MySQL user name you gave Dashboard during your origina
 
 ### Edit Puppet Master's `/etc/puppetlabs/puppet/puppet.conf`
 
-* To support the inventory service, you must configure Puppet to save facts to a MySQL database. 
+* To support the inventory service, you must configure Puppet to save facts to a MySQL database.
 
         [master]
             # ...
@@ -183,7 +183,7 @@ Replace `<USER>` with the MySQL user name you gave Dashboard during your origina
             dbpassword = <PASSWORD FOR CONSOLE'S MYSQL USER>
             dbserver = localhost
 
-    If you chose a different MySQL user name for Puppet Dashboard when you originally installed PE, use that user name as the `dbuser` instead of "dashboard". If the database is served by a remote machine, use that server's hostname instead of "localhost". 
+    If you chose a different MySQL user name for Puppet Dashboard when you originally installed PE, use that user name as the `dbuser` instead of "dashboard". If the database is served by a remote machine, use that server's hostname instead of "localhost".
 * If you configured the puppet master to not send reports to the Dashboard, you must configure it to report to the console now:
 
         [master]
@@ -203,24 +203,24 @@ Replace `<USER>` with the MySQL user name you gave Dashboard during your origina
 To support the inventory service, you must add the following two stanzas to your puppet master's [`auth.conf`](/guides/rest_auth_conf.html) file:
 
     # Allow the console to retrieve inventory facts:
-    
+
     path /facts
     auth yes
     method find, search
     allow pe-internal-dashboard
-    
+
     # Allow puppet master to save facts to the inventory:
-    
+
     path /facts
     auth yes
     method save
     allow <PUPPET MASTER'S CERTNAME>
 
 These stanzas **must** be inserted **before** the final stanza, which looks like this:
-    
+
     path /
     auth any
-    
+
 If you paste the new stanzas after this final stanza, they will not take effect.
 
 ### Edit `/etc/puppetlabs/puppet/manifests/site.pp`
@@ -232,7 +232,7 @@ You must add the following lines to site.pp in order to view file contents in th
       server => '<puppet master's hostname>',
       path => false,
     }
-    
+
     File { backup => 'main' }
 
 ### Edit `/etc/puppetlabs/puppet-dashboard/settings.yml`
@@ -273,7 +273,7 @@ Next, create a keypair and request a certificate:
     $ sudo /opt/puppet/bin/rake cert:create_key_pair
     $ sudo /opt/puppet/bin/rake cert:request
 
-Next, sign the certificate request: 
+Next, sign the certificate request:
 
     $ sudo /opt/puppet/bin/puppet cert sign dashboard
 
@@ -291,7 +291,7 @@ Finally, chown the certificates directory to `puppet-dashboard`:
 
 #### Troubleshooting
 
-If these rake tasks fail with errors like `can't convert nil into String`, you may be missing a certificate-related setting from the settings.yml file. Go back to the previous section and make sure all of the required settings exist. 
+If these rake tasks fail with errors like `can't convert nil into String`, you may be missing a certificate-related setting from the settings.yml file. Go back to the previous section and make sure all of the required settings exist.
 
 ### Start `pe-httpd`
 

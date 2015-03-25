@@ -43,7 +43,7 @@ Some modules can be large, complex, and require a significant amount of trial an
 >
 >**Note**: PE also installs modules in `/opt/puppet/share/puppet/modules`, but don’t modify anything in this directory or add modules of your own to it.
 >
->There are plenty of resources about modules and the creation of modules that you can reference. Check out [Modules and Manifests](./puppet_modules_manifests.html), the [Beginner's Guide to Modules](./guides/module_guides/bgtm.html), and the [Puppet Forge](https://forge.puppetlabs.com/).
+>There are plenty of resources about modules and the creation of modules that you can reference. Check out [Modules and Manifests](./puppet_modules_manifests.html), the [Beginner's Guide to Modules](/guides/module_guides/bgtm.html), and the [Puppet Forge](https://forge.puppetlabs.com/).
 
 Modules are directory trees. For this task, you'll create the following files:
 
@@ -140,7 +140,7 @@ Modules are directory trees. For this task, you'll create the following files:
 
 ### Create the firewall_example Group
 
-Groups let you assign classes and variables to many nodes at once. Nodes can belong to many groups and inherit classes and variables from all of them. Groups can also be members of other groups and inherit configuration information from their parent group the same way nodes do. PE automatically creates several groups in the console, which you can read more about in the [PE docs](https://docs.puppetlabs.com/pe/latest/console_classes_groups.html#special-groups).
+Groups let you assign classes and variables to many nodes at once. Nodes can belong to many groups and inherit classes and variables from all of them. Groups can also be members of other groups and inherit configuration information from their parent group the same way nodes do. PE automatically creates several groups in the console, which you can read more about in the [PE docs](./console_classes_groups.html#special-groups).
 
 In this procedure, you’ll create a simple group called __firewall_example__, but you can add the `my_firewall` class to any existing group, or you can create your own group.  
 
@@ -224,7 +224,7 @@ The Puppet master is just like any other application you run from your infrastru
          }
       
          firewall { '100 allow ActiveMQ MCollective access':
-           port   => '8140',
+           port   => '61613',
            proto  => tcp,
            action => accept,
          }

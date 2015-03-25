@@ -21,7 +21,7 @@ Orchestration means invoking actions in parallel across any number of nodes at o
 PE's orchestration features are built on the MCollective framework, which consists of the following components: 
 
 * **Client interfaces** can issue orchestration commands to some or all of your nodes. The console's live management tools are one client interface, and the `mco` command line tool is another. 
-* **Orchestration agents** <!-- TODO: decide whether we want to expose "agent" --> are plugins that live on agent nodes and provide orchestration actions.
+* **Orchestration agents**  are plugins that live on agent nodes and provide orchestration actions.
 * The **MCollective service** runs on every agent node and listens for orchestration commands. If a command is legit, relevant to the node, and for a supported action, the service will trigger the action and send back results.
 * The **message broker** is a central server that routes orchestration messages between client interfaces and nodes running the MCollective service. (PE's ActiveMQ message server runs on the puppet master node.)
 

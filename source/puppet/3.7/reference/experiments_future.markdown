@@ -23,9 +23,9 @@ Enabling the Future Parser
 
 To enable the future parser:
 
-* On your puppet master(s) (or all nodes, if running puppet apply), ensure the `rgen` gem is installed. If you installed Puppet from the official packages, this was already installed as a dependency; otherwise, you may need to install it manually.
-* On your puppet master(s) (or each node, if running puppet apply), set [`parser = future`][parser_setting] in the `[master]` or `[main]` section of puppet.conf. (In a masterless "puppet apply" deployment, use `[main]`.)
-    * Alternately, for one-off tests, you can set `--parser future` on the command line when running puppet apply.
+* On your Puppet master(s) (or all nodes, if running Puppet apply), ensure the `rgen` gem is installed. If you installed Puppet from the official packages, this was already installed as a dependency; otherwise, you may need to install it manually.
+* On your Puppet master(s) (or each node, if running Puppet apply), set [`parser = future`][parser_setting] in the `[master]` or `[main]` section of puppet.conf. (In a masterless "Puppet apply" deployment, use `[main]`.)
+    * Alternately, for one-off tests, you can set `--parser future` on the command line when running Puppet apply.
 
 Lambdas and Iteration
 -----
@@ -56,7 +56,7 @@ An expression such as...
 
 ### Array/Hash Literals are Now Allowed Anywhere Arrays/Hashes are Allowed
 
-In Puppet 3, if you wanted to operate on a literal array or hash, you typically had to assign it to a variable first. This was due to how the internal grammar for the language was organized. You can now use literal arrays and hashes more naturally in a puppet manifest.
+In Puppet 3, if you wanted to operate on a literal array or hash, you typically had to assign it to a variable first. This was due to how the internal grammar for the language was organized. You can now use literal arrays and hashes more naturally in a Puppet manifest.
 
     notice([1, 2][1])
     # produces the output
@@ -132,8 +132,8 @@ Assignments may thus also be used where expressions are.
 
 Calling a function in interpolation now works:
 
-    notice "This is a random number: ${fqdn_rand(30)}
-
+    notice "This is a random number: ${fqdn_rand(30)}"
+	
 This has mysterious result in the regular parser since it is interpreted as
 
     ${$fqdn_rand(30)}
@@ -152,7 +152,7 @@ This is illegal:
 
     $3 = 'hello'
 
-In some puppet versions this produces strange effects, and in some it is silently ignored.
+In some Puppet versions this produces strange effects, and in some it is silently ignored.
 
 As a consequence it is also illegal to name parameters in defines, and parameterized classes with numeric names.
 

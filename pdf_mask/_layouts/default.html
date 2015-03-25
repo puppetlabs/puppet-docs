@@ -1,6 +1,0 @@
-{% capture clean_page_id %}{{ page.url | sanitizeid }}{% endcapture %}
-{% capture page_url %}{{ page.url }}{% endcapture %}
-<div class="individual-page" id="{{ clean_page_id }}">
-    <h1>{% if page.subtitle %}{{page.subtitle}}{% else %}{{page.title}}{% endif %}</h1>
-    {{ content | singlepagifylinks: page_url }}
-</div>

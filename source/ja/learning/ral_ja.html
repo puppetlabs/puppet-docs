@@ -1,0 +1,265 @@
+---
+layout: default
+title: "Resources and the RAL ～ リソースとRAL"
+canonical: "/ja/learning/ral_ja.html"
+toc: false
+---
+
+<!-- copy from here -->
+
+<div class="translation-notes">
+  <p>訳注：このドキュメントは以下のURLにある&quot;Learning Puppet&quot;を日本語訳したものです。<br />
+    <a href="http://docs.puppetlabs.com/learning/ral.html">http://docs.puppetlabs.com/learning/ral.html</a></p>
+</div>
+
+
+<nav class="in-page" id="page-nav">
+<ol class="toc">
+  <li class="toc-lv2"><a href="#begin">Begin ～ はじめに</a>
+    <ol class="toc">
+   <li class="toc-lv3"><a href="#what-just-happened">What Just Happened? ～ 何が起きたのか？</a></li>
+</ol></li>
+  <li class="toc-lv2"><a href="#resources">Resources ～ リソース</a></li>
+  <li class="toc-lv2"><a href="#abstraction">Abstraction ～ 抽象化</a></li>
+  <li class="toc-lv2"><a href="#anatomy-of-a-resource">Anatomy of a Resource ～ リソースの解剖</a></li>
+  <li class="toc-lv2"><a href="#resource-types">Resource Types ～ リソース型</a> 
+    <ol class="toc">
+   <li class="toc-lv3"><a href="#the-cheat-sheet">The Cheat Sheet ～ 虎の巻</a></li>
+   <li class="toc-lv3"><a href="#the-type-reference">The Type Reference ～ 型リファレンス</a></li>
+   <li class="toc-lv3"><a href="#puppet-describe">Puppet Describe ～　Puppet Describeコマンド</a></li>
+</ol></li>
+  <li class="toc-lv2"><a href="#browsing-and-inspecting-resources">Browsing and Inspecting Resources ～ リソースの閲覧と確認</a>
+    <ol class="toc">
+   <li class="toc-lv3"><a href="#live-management-in-the-console">Live Management in the Console ～ WebコンソールのLive Management機能</a></li>
+   <li class="toc-lv3"><a href="#the-puppet-resource-command">The Puppet Resource Command ～ Puppet Resourceコマンド</a></li>
+</ol></li>
+  <li class="toc-lv2"><a href="#next">Next ～ 次に</a></li>
+</ol></nav>
+
+<p>
+Learning Puppetへようこそ！ このシリーズはPuppetコードの記述と、およびPuppet Enterpriseを使うための基本を網羅しています。もしまだLearning Puppet VMをお持ちでなかったら、<a href="http://info.puppetlabs.com/download-learning-puppet-VM.html">無料でダウンロード</a>できます。
+
+</p>
+
+<h2 id="begin">Begin ～ はじめに</h2>
+
+<p>Learning Puppet VMにrootでログインして、<code>puppet resource service</code>コマンドを実行してください。このコマンドは以下のような結果を返します。</p>
+
+<pre><code>service { 'NetworkManager':
+  ensure =&gt; 'stopped',
+  enable =&gt; 'false',
+}
+service { 'acpid':
+  ensure =&gt; 'running',
+  enable =&gt; 'true',
+}
+service { 'anacron':
+  ensure =&gt; 'stopped',
+  enable =&gt; 'true',
+}
+service { 'apmd':
+  ensure =&gt; 'running',
+  enable =&gt; 'true',
+}
+...
+... (etc.)
+</code></pre>
+
+<p>はい！たった今、最初のPuppetリソースに出会いました。</p>
+
+<blockquote>
+  <h3 id="what-just-happened">What Just Happened? ～ 何か起きたのか？</h3>
+
+  <ul>
+    <li><code>puppet</code>: ほとんどの機能は、多くのサブコマンドを持つ<code>puppet</code>コマンド1つに集約されています。</li>
+    <li><code>resource</code>: <code>resource</code>サブコマンドはリソースの状態を表示したり、インタラクティブに編集することができます。</li>
+    <li><code>service</code>: <code>puppet resource</code>コマンドの最初の引数は<strong>リソース型</strong>でなければなりません。リソース型についてはこの後学んでいきます。全ての型のリストは <a href="http://docs.puppetlabs.com/references/latest/type.html">Puppet型リファレンス(英文)</a>で見つけられます。</li>
+  </ul>
+
+  <p>つまり、このコマンドはシステムにある全てのサービスにおける動作/停止状態を調べるコマンドとなるわけです。</p>
+</blockquote>
+
+<h2 id="resources">Resources ～ リソース</h2>
+
+<p>システムの設定情報とは多くの独立したユニットの“集合体”である、と想像してください。これを<strong>“リソース”</strong>と呼びます。</p>
+<p>個々のリソースは様々なサイズ、複雑さ、寿命を持っています。下記のリソースは、単一のリソースとして形成できるものの一例です。</p>
+
+<ul>
+  <li>ユーザアカウント</li>
+  <li>特定のファイル</li>
+  <li>ファイルディレクトリ</li>
+  <li>ソフトウェアパッケージ</li>
+  <li>実行中のサービス</li>
+  <li>スケジュールされたcronのジョブ</li>
+  <li>条件が満たされた際に実行されるシェルコマンド</li>
+</ul>
+
+<p>単一のリソースは全て、関連したリソースグループととてもよく似ています。</p>
+
+<ul>
+  <li>全てのファイルはパスと所有者を持っています。</li>
+  <li>全てのユーザは名前とUID、グループを持っています。</li>
+</ul>
+
+<p>この実装は環境によって異なるかもしれません。例えばWindows上のサービスとLinux上のサービスを起動もしくは停止しようとすれば、異なるコマンドが必要でしょうし、Linuxのディストリビューション間ですら違いがあります。しかし、概念的にはサービスを開始しているか停止しているかは、コンソールでの入力内容とは関係ありません。</p>
+
+<h2 id="abstraction">Abstraction ～ 抽象化</h2>
+
+<p>この方法でリソースについて考えると、2つの注目すべきポイントがあります。</p>
+
+<ul>
+  <li><em>似ているリソースは型でグループ化できます。</em> 多様なサービスがあってもそれはサービスとしてグループ化でき、多様なユーザがいてもそれはユーザとしてグループ化できる、という事です。</li>
+  <li><em>リソース型の記述はその実装から切り離すことができます。</em>それはつまり、サービスが開始したという事を話すのに、どのようにサービスを開始すればよいかの知識は必要ないという事です。</li>
+</ul>
+
+<p>Puppetは、さらに3つめのポイントを加えました。</p>
+
+<ul>
+  <li>リソース型をきちんと書けば、リソースのあるべき状態を宣言する事が可能になります。つまり「このサービスを開始するコマンドを実行せよ」と言う代わりに、「このサービスが実行している事を保証せよ」と言うのです。</li>
+</ul>
+
+<p>これら3つのポイントはPuppetのresource abstraction layer (RAL)を形作っています。RALは型（全てのプラットフォームで共通の概念）とプロバイダ（プラットフォーム別の実装）で構成されています。2つに分離する事で、あるべきリソースの状態を特定のOSに縛られる事の無い方法で記述する事ができるようになっています。</p>
+
+
+<h2 id="anatomy-of-a-resource">Anatomy of a Resource ～ リソースの解剖</h2>
+
+<p>Puppetでは、全てのリソースは、<strong>リソース型</strong>のインスタンスであり、<strong>タイトル</strong>で識別されます。リソースは複数の<strong>属性</strong>（リソース型で定義されたもの）を持ち、それぞれの属性は<strong>値</strong>を持っています。</p>
+
+<p>Puppet言語ではリソースを以下のように表現します。</p>
+
+<div class="highlight"><pre><code class="ruby">    <span class="n">user</span> <span class="p">{</span> <span class="s1">&#39;dave&#39;</span><span class="p">:</span>
+      <span class="k">ensure</span>     <span class="o">=&gt;</span> <span class="n">present</span><span class="p">,</span>
+      <span class="n">uid</span>        <span class="o">=&gt;</span> <span class="s1">&#39;507&#39;</span><span class="p">,</span>
+      <span class="n">gid</span>        <span class="o">=&gt;</span> <span class="s1">&#39;admin&#39;</span><span class="p">,</span>
+      <span class="n">shell</span>      <span class="o">=&gt;</span> <span class="s1">&#39;/bin/zsh&#39;</span><span class="p">,</span>
+      <span class="n">home</span>       <span class="o">=&gt;</span> <span class="s1">&#39;/home/dave&#39;</span><span class="p">,</span>
+      <span class="n">managehome</span> <span class="o">=&gt;</span> <span class="kp">true</span><span class="p">,</span>
+    <span class="p">}</span>
+</code></pre>
+</div>
+
+
+<p>この構文は<strong>リソース宣言</strong>と呼ばれています。<code>Puppet resource service</code>コマンドを実行した際に既に見ていますが、これがPuppet言語の心臓部です。リソース宣言では過程は気にせず、リソースのあるべき状態だけを記載します。</p>
+
+<blockquote>
+  <p>リソースを宣言する4つの項目を理解してください。</p>
+
+  <ul>
+    <li>型(Type)</li>
+    <li>タイトル(Title)</li>
+    <li>属性(Attributes)</li>
+    <li>値(Values)</li>
+  </ul>
+</blockquote>
+<h2 id="resource-types">Resource Types ～ リソース型</h2>
+<p>先に言及した通り、全てのリソースは<strong>型(type)</strong>を持っています。</p>
+
+<p>Puppetは多くのビルトインのリソース型を持っており、さらに新しい型をプラグインとしてインストールする事ができます。それぞれの型は挙動が少しずつ異なり、また利用できる属性のセットも異なります。</p>
+
+<p>リソース型の情報を得るにはいくつかの方法があります。</p>
+
+<h3 id="the-cheat-sheet">The Cheat Sheet ～ 虎の巻</h3>
+
+<p>全てのリソース型が共通化されている訳ではありませんので、最も使われる8つの型について説明した印刷可能な虎の巻を作成しています。<a href="http://docs.puppetlabs.com/puppet_core_types_cheatsheet.pdf">虎の巻はこちらからダウンロードできます(英文)。</a></p>
+
+<h3 id="the-type-reference">The Type Reference ～ Puppet型リファレンス</h3>
+
+<p>経験豊富なPuppetユーザは、多くの時間を<a href="http://docs.puppetlabs.com/references/latest/type.html">Puppet型リファレンス(英文)</a>に費やします。</p>
+
+<p>そこにはPuppetが持つ全てのビルトインリソース型について、非常に詳しく書かれています。新規ユーザは少し圧倒されてしまいますが、日常的にPuppetコードを書く際に必要な、ほとんどの情報が載っています。</p>
+
+<p>Puppet LabsではPuppetの新バージョンが出る度に新しいPuppet型リファレンスを作成しており、正確な記述を続けられるように努めています。</p>
+
+<h3 id="puppet-describe">Puppet Describe ～ Puppet Describe コマンド</h3>
+
+<p><code>puppet describe</code>コマンドはその時点でインストールされているリソース型の情報を提供します。これは<a href="http://docs.puppetlabs.com/references/latest/type.html">Puppet型リファレンス(英文)</a>と異なり、ビルトイン型だけでなくユーザによってインストールされたプラグインの情報までもが対象になります。
+</p>
+
+<ul>
+  <li><code>puppet describe -l</code> — 対象のシステムで有効なリソース全てのリストを表示します。</li>
+  <li><code>puppet describe -s &lt;TYPE&gt;</code> — 個々の属性の情報を除く、型に関する簡易な情報を表示します。</li>
+  <li><code>puppet describe &lt;TYPE&gt;</code> — <a href="http://docs.puppetlabs.com/references/latest/type.html">Puppet型リファレンス(英文)</a>にあるような詳細な情報を表示します。</li>
+</ul>
+
+
+<h2 id="browsing-and-inspecting-resources">Browsing and Inspecting Resources ～ リソースの閲覧と確認</h2>
+
+<p>次章以降で、Puppet言語を使ってリソースを管理する方法を説明します。今のところはもう少し中を見てみましょう。</p>
+
+<h3 id="live-management-in-the-console">Live Management in the Console ～ WebコンソールのLive Management機能</h3>
+
+<p>Puppet Enterpriseは多くの機能をコントロールするためのWebコンソールを持っています。Webコンソールができることの1つとして、Webコンソールが到達できる範囲のPuppet Enterpriseシステムのリソースの閲覧と確認が挙げられます。サポートするリソース型の種類は限られますが、大量のノードに渡って相関するデータの比較を行うための便利な機能があります。</p>
+
+<blockquote>
+  <h4 id="logging-in">ログイン</h4>
+
+  <p>VMの初回起動時、WebコンソールにアクセスするためのURL、ユーザ名、パスワードを提供しました。ユーザ名とパスワードは常に<code>puppet@example.com</code>と<code>learningpuppet</code>です。URLは<code>https://&lt;IPアドレス&gt;</code>です。VMのIPアドレスはコマンドラインから<code>facter ipaddress</code>コマンドを実行すれば取得できます。
+</blockquote>
+
+<p>ログインした後、画面上のメニューバーにある“Live Management”から“Browse Resources”タブをクリックします。ここから <a href="http://docs.puppetlabs.com/pe/3.0/orchestration_resources.html">オーケストレーション機能を利用してリソースの検索と確認</a>ができます。</p>
+
+<p>単一のノードしかないシステムだけを利用しているうちは多くの比較方法を試してみることはできませんが、それでも現時点のパッケージ、ユーザアカウントなどの状態などを閲覧することができます。</p>
+
+<h3 id="the-puppet-resource-command">The Puppet Resource Command ～ Puppet Resourceコマンド</h3>
+
+<p>Puppetには単独のシステム上でインタラクティブにリソースの確認と編集ができる <code>puppet resource</code>と呼ばれるツールが付属しています。</p>
+
+<p><code>puppet resource</code>コマンドの使用方法は以下のとおりです。</p>
+
+<pre><code># puppet resource &lt;TYPE&gt; [&lt;NAME&gt;] [ATTRIBUTE=VALUE ...]
+</code></pre>
+
+<ul>
+  <li>最初の引数はリソース型でなければなりません。他に引数を指定しない場合は、指定されたリソース型から得られる全てのリソースを確認します。</li>
+  <li>2番目の引数（オプション）はリソースの名前です。他に引数を指定しない場合は、この引数で指定したリソースを確認します。</li>
+  <li>リソース名の後に、特定の属性とその属性値を任意の数だけ指定できます。あるべき状態として指定した属性で同期し、リソースの最新の状態を確認します。</li>
+  <li>上記の代わりに、リソース名を特定して<code>--edit</code>フラグを使えば、テキストエディタで編集が可能です。バッファが保存され、閉じられた後、Puppetは修正した内容をリソースに反映します。</li>
+</ul>
+
+<blockquote>
+  <h4 id="exercises">演習</h4>
+
+  <p>単一のリソースを確認してみましょう。</p>
+
+  <pre><code># puppet resource user root
+
+user { 'root':
+  ensure           =&gt; 'present',
+  comment          =&gt; 'root',
+  gid              =&gt; '0',
+  groups           =&gt; ['root', 'bin', 'daemon', 'sys', 'adm', 'disk', 'wheel'],
+  home             =&gt; '/root',
+  password         =&gt; '$1$jrm5tnjw$h8JJ9mCZLmJvIxvDLjw1M/',
+  password_max_age =&gt; '99999',
+  password_min_age =&gt; '0',
+  shell            =&gt; '/bin/bash',
+  uid              =&gt; '0',
+}
+</code></pre>
+
+  <p>リソースに対して、新しい「あるべき状態」を設定してみましょう。</p>
+
+  <pre><code># puppet resource user katie ensure=present shell="/bin/zsh" home="/home/katie" managehome=true
+
+notice: /User[katie]/ensure: created
+
+user { 'katie':
+  ensure =&gt; 'present',
+  home   =&gt; '/home/katie',
+  shell  =&gt; '/bin/zsh'
+}
+</code></pre>
+</blockquote>
+
+
+<h2 id="next">Next ～ 次に</h2>
+
+<p><strong>次の演習：</strong></p>
+
+
+<p><code>puppet resource</code>コマンドは単発でも使えるものですが、Puppetはもっと大きな目的を持って生みだされました。<a href="manifests_ja.html">今度はマニフェストを記述してみましょう</a>。</p>
+<p><strong>Off-Road:</strong></p>
+
+<p>Learning Puppet VMは簡易なサンドボックスシステムのため、多くの事はできません。もし実際のサーバに近い開発用マシンがあるなら、<a href="http://info.puppetlabs.com/download-pe.html">Puppet Enterprise for free(英文)</a>をダウンロードして試してみてください。<a href="http://docs.puppetlabs.com/pe/latest/quick_start.html">クイックスタートガイド(英文)</a>従って小規模なインストール済み環境を手に入れたら、Webコンソールを使って一度に多くのシステムのリソースを確認してみてください。</p>
+
+<!-- to here -->

@@ -14,7 +14,7 @@ Prerequisites
 
 * Hiera works on \*nix and Windows systems.
 * It requires Ruby 1.8.5 or later.
-* To work with Puppet, it requires Puppet 2.7.x or later.  <!-- TODO check this -->
+* To work with Puppet, it requires Puppet 2.7.x or later.  
 * If used with Puppet 2.7.x, it also requires the additional `hiera-puppet` package; see below.
 
 

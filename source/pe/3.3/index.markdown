@@ -16,7 +16,6 @@ Welcome! This is the user's guide for Puppet Enterprise 3.3.
     * [Installing Windows Agents](./install_windows.html)
     * [Puppet Enterprise Downloads](http://info.puppetlabs.com/download-pe.html)
 * To see what's new since the last release, see [the new features list in the release notes](./release_notes.html#new-features).
-* The [Deployment Guide](/guides/deployment_guide/index.html) has a ton of information to help you set up and deploy Puppet Enterprise in accordance with the best practices and methods used by Puppet Labs' professional services engineers.
 
 Otherwise, use the **navigation to the left** to move between this guide's sections and chapters.
 

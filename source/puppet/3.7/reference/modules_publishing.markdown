@@ -72,28 +72,13 @@ If you already have a Puppet module with the [correct directory layout][fundamen
 
 Alternately, you can use the `puppet module generate` action to generate a template layout. Generating a module will provide you with a sample README and a copy of the `spec_helper` tool for writing [rspec-puppet][rspec] tests. It will also launch a series of questions that will create your metadata.json file. If you decided to construct a module on your own first, you will need to manually copy that module's files into the generated module.
 
-To generate a new module, run `puppet module generate <USERNAME>-<MODULE NAME>`. For example:
-
-    # puppet module generate examplecorp-mymodule
-    Generating module at /Users/Pat/Development/examplecorp-mymodule
-    examplecorp-mymodule
-    examplecorp-mymodule/manifests
-    examplecorp-mymodule/manifests/init.pp
-    examplecorp-mymodule/metadata.json
-    examplecorp-mymodule/Rakefile
-    examplecorp-mymodule/README.md
-    examplecorp-mymodule/spec
-    examplecorp-mymodule/spec/classes
-    examplecorp-mymodule/spec/classes/init_spec.rb
-    examplecorp-mymodule/spec/spec_helper.rb
-    examplecorp-mymodule/tests
-    examplecorp-mymodule/tests/init.pp
+Follow the directions to [generate a new module](https://docs.puppetlabs.com/puppet/latest/reference/modules_fundamentals.html#writing-modules)
 
 ###Set files to be ignored
 
 It's not unusual to have some files in your module that you want to exclude from your build. You may exclude files by including them in .gitgnore or .pmtignore. To be read during the build process, your .pmtignore or .gitignore file must be in the module's root directory.
 
-If you have both a .pmtignore and a .gitignore file, the puppet module tool will read the .pmtignore file over the .gitignore.
+If you have both a .pmtignore and a .gitignore file, the Puppet module tool will read the .pmtignore file over the .gitignore.
 
 ###Remove symlinks
 
@@ -118,11 +103,11 @@ Your metadata.json will look something like
       "name": "examplecorp-mymodule",
       "version": "0.0.1",
       "author": "Pat",
-      "license": "Licensed under (Apache 2.0)",
+      "license": "Apache-2.0",
       "summary": "A module for a thing",
       "source": "https://github.com/examplecorp/examplecorp-mymodule",
-      "project_page": "(https://forge.puppetlabs.com/examplecorp/mymodule)",
-      "issues_url": "",
+      "project_page": "https://forge.puppetlabs.com/examplecorp/mymodule",
+      "issues_url": "https://github.com/examplecorp/examplecorp-mymodule/issues",
       "tags": ["things", "stuff"],
       "operatingsystem_support": [
         {
@@ -133,10 +118,10 @@ Your metadata.json will look something like
         "operatingsystem": "Ubuntu",
         "operatingsystemrelease": [ "12.04", "10.04" ]
         }
-       ]
+       ],
       "dependencies": [
         { "name": "puppetlabs/stdlib", "version_requirement": ">=3.2.0 <5.0.0" },
-        { "name": "puppetlabs/firewall", "version_requirement": ">= 0.0.4" },
+        { "name": "puppetlabs/firewall", "version_requirement": ">= 0.0.4" }
       ]
     }
 
@@ -145,19 +130,21 @@ Your metadata.json will look something like
 * `name` --- REQUIRED. The **full name** of your module, including the username (e.g. "username-module" --- [see note above](#a-note-on-module-names)).
 * `version` --- REQUIRED. The current version of your module. This should be a [semantic version](http://semver.org/).
 * `author` --- REQUIRED. The person who gets credit for creating the module. If not provided, this field will default to the username portion of the `name` field.
-* `license` --- REQUIRED. The license under which your module is made available.
+* `license` --- REQUIRED. The license under which your module is made available. License metadata should match an identifier provided by [SPDX](http://spdx.org/licenses/).
 * `summary` --- REQUIRED. A one-line description of your module.
 * `source` --- REQUIRED. The source repository for your module.
 * `dependencies` --- REQUIRED. A list of the other modules that your module depends on to function. See [Dependencies in metadata.json](#dependencies-in-metadatajson) below for more details.
 * `project_page` --- A link to your module's website. This will typically be the Puppet Forge.
 * `issues_url` --- A link to your module's issue tracker.
 * `operatingsystem_support` --- A list of operating system compatibility for your module. See [Operating system compatibility in metadata.json](#operating-system-compatibility-in-metadatajson) below for more details.
-* `tags` --- A list of key words that will help others find your module (not case sensitive)(e.g. [“msyql”, “database”, “monitoring”]). Tags cannot contain whitespace. We recommend using four to six tags.
+* `tags` --- A list of key words that will help others find your module (not case sensitive)(e.g. [“msyql”, “database”, “monitoring”]). Tags cannot contain whitespace. We recommend using four to six tags. Note that certain tags are prohibited including profanity, and anything resembling the `$::operatingsystem` fact, including, but not necessarily limited to: `redhat`, `centos`, `rhel`, `debian`, `ubuntu`, `solaris`, `sles`, `aix`, `windows`, `darwin`, and `osx`. Use of prohibited tags will lower your module's quality score on the Forge.
+
 
 #####DEPRECATED
 
-* `types` --- Resource type documentation generated by the puppet module tool as part of `puppet module build`. **You should remove this field from your metadata.json.**
-* `checksums`--- File checksums generated by the puppet module tool as part of `puppet module build`. **You should remove this field from your metadata.json.** 
+* `checksums`--- File checksums generated by the Puppet module tool as part of `puppet module build`. **You should remove this field from your metadata.json.**
+* `description` --- Legacy field used to describe the purpose of the module. You should use the `summary` field instead.
+* `types` --- Resource type documentation generated by the Puppet module tool as part of `puppet module build`. **You should remove this field from your metadata.json.**
 
 ###Dependencies in metadata.json
 
@@ -190,6 +177,10 @@ The version requirement in a dependency isn't limited to a single version; you c
 * `>= 3.2.x`
 * `< 4.x`
 
+#####DEPRECATED
+
+* `versionRequirement`--- Another way of specifying `version_requirement`, `versionRequirement` was never officially supported and is slated for removal in Puppet 4. Please use `version_requirement` as noted above instead. 
+
 ###Operating system compatibility in metadata.json
 
 If you are publishing your module to the Puppet Forge, we highly recommend that you include `operatingsystem_support` in your metadata.json. Even if you do not intend to publish your module, including this information can be helpful for tracking your work.
@@ -217,7 +208,7 @@ You can express this field through an array of hashes, classified under `operati
 > Many other users already use semantic versioning, and you can take advantage of this in your modules' dependencies. For example, if you depend on puppetlabs/stdlib and want to allow updates while avoiding breaking changes, you could write the following line in your metadata.json (assuming a current stdlib version of 4.2.1):
 >
 >     "dependencies": [
->       { "name": "puppetlabs/stdlib", "version_requirement": "4.x" },       
+>       { "name": "puppetlabs/stdlib", "version_requirement": "4.x" },
 >     ]
 
 Build Your Module
@@ -234,11 +225,11 @@ In order for your module to be successfully uploaded to and displayed on the For
 
 ###Brand new module
 
-If you used Puppet 3.6+ to run puppet module generate to create your module, your metadata.json file was created for you! To build your module:
+If you used Puppet 3.6+ to run Puppet module generate to create your module, your metadata.json file was created for you! To build your module:
 
 1. Run `# puppet module build <MODULE DIRECTORY>`. A .tar.gz package will be generated and saved in the module’s pkg/ subdirectory. For example:
 
-~~~    
+~~~
 # puppet module build /etc/puppetlabs/puppet/modules/mymodule
 Building /etc/puppetlabs/puppet/modules/mymodule for release
 /etc/puppetlabs/puppet/modules/mymodule/pkg/examplecorp-mymodule-0.0.1.tar.gz
