@@ -91,7 +91,7 @@ For more information about RBAC, refer to [Working with Role-Based Access Contro
 
 The [`auth.conf`](/puppet/latest/reference/config_file_auth.html) file manages access to Puppet's HTTPS API.  
 
-If we find a modified `auth.conf` found during the 3.8 upgrade process, we will attempt create a diff between your modified version and the 3.8 version (reliant on the presence of a diff executable on your Puppet master server). Depending on your needs, you may need to modify your `auth.conf` to address the differences, as this file is not managed by PE. While you do not need to change your modified `auth.conf`, we recommend that you consider and address the changes, as some functionality (e.g., console services) may not be available after upgrade if the endpoints aren't authorized. 
+If we find a modified `auth.conf` during the 3.8 upgrade process, we will attempt to create a diff between your modified version and the 3.8 version (reliant on the presence of a diff executable on your Puppet master server). You may need to modify your `auth.conf` to address the differences, as this file is not managed by PE. We recommend that you consider and address the changes, as some functionality (e.g., console services) may not be available after upgrade if the endpoints aren't authorized. 
 
 Here are some notable changes that have been made to the endpoints in `auth.conf`:
 
