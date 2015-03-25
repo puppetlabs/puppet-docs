@@ -78,7 +78,7 @@ A small environment is run on a monolithic installation and is suitable for runn
 
 - 4-core server with 16 GB of RAM
   - Amazon EC2 m3.xlarge instance is adequate for this environment
-- At least 100 GB of free space in `/opt` 
+- At least 100 GB of free space in `/opt` for PuppetDB
 - At least 4 GB of free space in `/var` 
 
 ### Medium Environment
