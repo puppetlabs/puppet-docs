@@ -516,15 +516,29 @@ name   | a human-readable name for the object
 
 If the reference object is in an array, the `obj_id` field serves as a unique identifier within the array.
 
-## Querying the node collection
+## Querying the Node Collection
 
 You can query nodes based on the following criteria:
-* `hostname`: a regular expression to match against hostnames. The results include partial matches, so `hostname=foo` returns all nodes whose hostnames include `foo`.
-* Hardware info (`mac`, `serial`, `asset`, and `uuid`) as stored in `hw_info`.
 
-## Other things
+* `hostname`: a regular expression to match against hostnames. The results include partial matches, so `hostname=example` returns all nodes whose hostnames include `example`.
+* fields stored in `hw_info`: `mac`, `serial`, `asset`, and `uuid`.
 
-### The default bootstrap iPXE file
+For example, the following queries the UUID to return the associated node:
+
+	/api/collections/nodes?uuid=9ad1e079-b9e3-347c-8b13-9b42cbf53a14'
+
+	{
+ 	 "items": [
+    	{
+       	 	"id": "https://razor.example.com:8150/api/collections/nodes/node14",
+        	"name": "node14",
+        	"spec": "http://api.puppetlabs.com/razor/v1/collections/nodes/member"
+    	}],
+  	"spec": "http://api.puppetlabs.com/razor/v1/collections/nodes"
+	}
+
+
+## The Default Bootstrap iPXE File
 
 A GET request to `/api/microkernel/bootstrap` returns an iPXE script that can be used to bootstrap nodes that have just PXE booted (it culminates in chain loading from the Razor server).
 

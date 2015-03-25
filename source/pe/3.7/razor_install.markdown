@@ -16,7 +16,6 @@ If you're not a PE user, you can install the [open source version of Razor manua
 ###Before You Begin
 Things you should know before you set up provisioning:
 
-+ **Do not** install Razor on the Puppet master.
 + The default port for Razor is 8150.
 + Razor has been validated on RHEL/CentOS 6.x and 7.x versions.
 
