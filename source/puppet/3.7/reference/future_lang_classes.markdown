@@ -302,7 +302,7 @@ The `include` function uses [include-like behavior][include-like]. (Multiple dec
 The `require` function (not to be confused with the [`require` metaparameter][relationships]) declares one or more classes, then causes them to become a [dependency][relationships] of the surrounding container.
 
 {% highlight ruby %}
-    define apache::vhost (String $port, String $docroot, String $servername, String $vhost_name) {
+    define apache::vhost (Integer $port, String $docroot, String $servername, String $vhost_name) {
       require apache
       ...
     }
@@ -341,12 +341,6 @@ The `contain` function uses [include-like behavior][include-like]. (Multiple dec
 * A single class
 * A comma-separated list of classes
 * An array of classes
-
-> **Bug note:** In this version of Puppet, some uses of the `contain` function are affected by bug [PUP-1597](https://tickets.puppetlabs.com/browse/PUP-1597). This bug prevents `contain` from accepting class names with an absolute `::` prefix (for example, `::ntp::service`).
->
-> This bug can also cause `Error: undefined method 'ref' for nil:NilClass` errors. These occur when `contain` is given a class name that would  have been affected by [accidental relative name lookup.](./future_lang_namespaces.html#relative-name-lookup-and-incorrect-name-resolution)
->
-> [PUP-1597](https://tickets.puppetlabs.com/browse/PUP-1597) will be fixed in Puppet 3.7.
 
 ### Using `hiera_include`
 
@@ -426,21 +420,21 @@ This design pattern can make for significantly cleaner code while enabling some 
     # /etc/puppet/modules/webserver/manifests/params.pp
 
     class webserver::params {
-     $packages = $operatingsystem ? {
-       /(?i-mx:ubuntu|debian)/        => 'apache2',
-       /(?i-mx:centos|fedora|redhat)/ => 'httpd',
-     }
-     $vhost_dir = $operatingsystem ? {
-       /(?i-mx:ubuntu|debian)/        => '/etc/apache2/sites-enabled',
-       /(?i-mx:centos|fedora|redhat)/ => '/etc/httpd/conf.d',
-     }
+      $packages = $operatingsystem ? {
+        /(?i-mx:ubuntu|debian)/        => 'apache2',
+        /(?i-mx:centos|fedora|redhat)/ => 'httpd',
+      }
+      $vhost_dir = $operatingsystem ? {
+        /(?i-mx:ubuntu|debian)/        => '/etc/apache2/sites-enabled',
+        /(?i-mx:centos|fedora|redhat)/ => '/etc/httpd/conf.d',
+      }
     }
 
     # /etc/puppet/modules/webserver/manifests/init.pp
 
     class webserver(
-     String $packages  = $webserver::params::packages,
-     String $vhost_dir = $webserver::params::vhost_dir
+      String $packages  = $webserver::params::packages,
+      String $vhost_dir = $webserver::params::vhost_dir
     ) inherits webserver::params {
 
      package { $packages: ensure => present }
