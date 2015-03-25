@@ -10,6 +10,8 @@ Released March 25, 2015.
 
 Hiera 2.0.0 is a new major version of Hiera, which includes several new features and one breaking change. Please read the section below labeled "BREAK," because you may need to edit your configuration and/or move some files around.
 
+Hiera 2.0.0 is available as a gem (run `gem install hiera`) or a tarball (download from [http://downloads.puppetlabs.com/hiera/](http://downloads.puppetlabs.com/hiera/)). Official delivery of Hiera 2.0.0 will be via the puppet-agent package with Puppet 4, which is currently going through release candidates.
+
 ### BREAK: New Default Locations for Config File and Data Directory
 
 This release changes the default locations for the config file and the data directory used by the YAML and JSON backends. If you were relying on the old default behavior, you'll need to either move your files or configure Hiera to use non-default locations.
