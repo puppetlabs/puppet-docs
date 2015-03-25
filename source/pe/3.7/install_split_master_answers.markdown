@@ -79,12 +79,13 @@ These answers are generally needed if you are installing the Puppet master compo
 `q_puppetmaster_enterpriseconsole_port=443`
 : **Integer** --- The port on which to contact the console server. Only needed if you are not installing the console component on the Puppet master server.
 
-`q_pe_check_for_updates=n`
+`q_pe_check_for_updates=y`
 : **y** or **n**; **MUST BE LOWERCASE** --- Whether to check for updates whenever the `pe-puppetserver` service restarts. To get the correct update info, the server will pass some basic, anonymous info to Puppet Labs’ servers. Specifically, it will transmit:
    * the IP address of the client
    * the type and version of the client’s OS
    * the installed version of PE
    * the number of nodes licensed and the number of nodes used
+   
 If you wish to disable update checks (e.g. if your company policy forbids transmitting this information), you will need to set this to n. You can also disable checking after installation by editing the /etc/puppetlabs/installer/answers.install file.
 
 `q_public_hostname=`

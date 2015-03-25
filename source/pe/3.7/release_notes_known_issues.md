@@ -5,12 +5,9 @@ subtitle: "Known Issues"
 canonical: "/pe/latest/release_notes_known_issues.html"
 ---
 
-As we discover them, this page will be updated with known issues in Puppet Enterprise 3.7.x releases. Fixed issues will be removed from this page and noted Bug Fixes section of the release notes. If you find new problems yourself, please file bugs specific to Puppet Enterprise [here][peissues] and for Puppet [here][puppetissues].
+As we discover them, this page will be updated with known issues in Puppet Enterprise 3.7.x releases. Fixed issues will be removed from this page and noted Bug Fixes section of the release notes. If you find new problems yourself, please file bugs in [our issue tracker](https://tickets.puppetlabs.com).
 
 To find out which of these issues may affect you, run `/opt/puppet/bin/puppet --version`, the output of which will look something like `3.6.2 (Puppet Enterprise 3.7.0)`. To upgrade to a newer version of Puppet Enterprise, see the [chapter on upgrading](install_upgrading.html).
-
-[peissues]: https://tickets.puppetlabs.com/browse/ENTERPRISE/
-[puppetissues]: https://tickets.puppetlabs.com/browse/PUP/
 
 The following issues affect the currently shipped version of PE and all prior releases through the 3.x.x series, unless otherwise stated.
 
@@ -122,7 +119,7 @@ PE will automatically update your version of puppetlabs-inifile as part of the u
 
 The answer file no longer gives the option of whether to install symlinks. These are now automatically installed by packages. To allow the creation of symlinks, you need to ensure that `/usr/local` is writable.
 
-However, please note that we do not recommend employing symlinks in the place of `/opt` for database storage, as doing so can lead to databases not being seen. In addition, if `/opt/puppet` is symlink, the `-d` flag will not function correctly during an uninstall. 
+However, please note that we do not recommend employing symlinks in the place of `/opt` for database storage, as doing so can lead to databases not being seen. In addition, if `/opt/puppet` is symlink, the `-d` flag will not function correctly during an uninstall.
 
 ### Answer File Required for Some SMTP Servers
 
@@ -227,7 +224,7 @@ The following requirement affects how you connect your existing LDAP to PE:
 
 ### Custom Console Certs May Break on Upgrade
 
-Upgrades to this version of PE may affect deployments that use a custom console certificate, as certificate functionality has changed between versions. 
+Upgrades to this version of PE may affect deployments that use a custom console certificate, as certificate functionality has changed between versions.
 
 In addition, the document [Configuring the Puppet Enterprise Console to Use a Custom SSL Certificate](./custom_console_cert.html) does not work for this version of PE. This document, as well as custom console cert functionality, will be fixed in PE 3.8.0.
 
@@ -413,6 +410,12 @@ The issue is being tracked on [this support ticket](https://tickets.puppetlabs.c
         rpm -Uvh readline-6.1-1.aix6.1.ppc.rpm
 
 If you see an error message after running this, you can disregard it. Readline-6 should be successfully installed, and you can proceed with the installation or upgrade (you can verify the installation with  `rpm -q readline`).
+
+### Solaris Updates May Break Puppet Install
+
+We've seen an issue in which Puppet agents on Solaris platforms have quit responding after the core Solaris OS was updated. Essential Puppet configuration files were erased from the `/etc/` directory (which includes SSL certs needed to communicate with the Puppet master), and the `/etc/hosts` file was reverted.
+
+If you encounter this issue, log in to the Puppet master and clear the agent cert from the Solaris machine (`puppet cert clean <HOSTNAME>`), and then re-install [the Puppet agent](.//install_agents.html).
 
 ### Debian/Ubuntu Local Hostname Issue
 

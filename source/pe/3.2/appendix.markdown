@@ -192,7 +192,7 @@ Assessed Risk Level: medium. Unauthenticated read access to the node endpoint in
 Known Issues
 -----
 
-As we discover them, this page will be updated with known issues in Puppet Enterprise 3.2 and earlier. Fixed issues will be removed from this list and noted above in the release notes. If you find new problems yourself, please file bugs in Puppet [here][puppetissues] and bugs specific to Puppet Enterprise [here][peissues].
+As we discover them, this page will be updated with known issues in Puppet Enterprise 3.2 and earlier. Fixed issues will be removed from this list and noted above in the release notes. If you find new problems yourself, please file bugs in [our issue tracker](https://tickets.puppetlabs.com).
 
 To find out which of these issues may affect you, run `/opt/puppet/bin/puppet --version`, the output of which will look something like `3.2.0 (Puppet Enterprise 3.2)`. To upgrade to a newer version of Puppet Enterprise, see the [chapter on upgrading](install_upgrading.html).
 
