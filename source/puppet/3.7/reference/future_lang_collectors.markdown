@@ -37,7 +37,8 @@ Syntax
 
 The general form of a resource collector is:
 
-* The resource type, capitalized
+* The resource type, capitalized.
+    * This cannot be `Class`, and there is no way to collect classes.
 * `<|` --- An opening angle bracket (less-than sign) and pipe character
 * Optionally, a search expression ([see below](#search-expressions))
 * `|>` --- A pipe character and closing angle bracket (greater-than sign)
@@ -98,10 +99,10 @@ Resource collectors may be used as independent statements, as the operand of a [
 
 Notably, collectors **cannot** be used in the following contexts:
 
-- as the value of a resource attribute
-- as the argument of a function
-- within an array
-- as the operand of an expression.
+- As the value of a resource attribute
+- As the argument of a function
+- Within an array or hash
+- As the operand of an expression other than a chaining statement
 
 
 Behavior
