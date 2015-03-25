@@ -1,0 +1,194 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>
+  File: CONTRIBUTING
+  
+    &mdash; Documentation by YARD 0.8.7.6
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '';
+  framesUrl = "frames.html#!file.CONTRIBUTING.html";
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index</a> &raquo; 
+    <span class="title">File: CONTRIBUTING</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><div id='filecontents'><h1>How to contribute</h1>
+
+<p>Third-party patches are essential for keeping puppet great. We simply can't
+access the huge number of platforms and myriad configurations for running
+puppet. We want to keep it as easy as possible to contribute changes that
+get things working in your environment. There are a few guidelines that we
+need contributors to follow so that we can have a chance of keeping on
+top of things.</p>
+
+<h2>Getting Started</h2>
+
+<ul>
+<li>Make sure you have a <a href="http://tickets.puppetlabs.com">Jira account</a></li>
+<li>Make sure you have a <a href="https://github.com/signup/free">GitHub account</a></li>
+<li>Submit a ticket for your issue, assuming one does not already exist.
+
+<ul>
+<li>Clearly describe the issue including steps to reproduce when it is a bug.</li>
+<li>Make sure you fill in the earliest version that you know has the issue.</li>
+</ul>
+</li>
+<li>Fork the repository on GitHub</li>
+</ul>
+
+
+<h2>Making Changes</h2>
+
+<ul>
+<li>Create a topic branch from where you want to base your work.
+
+<ul>
+<li>This is usually the master branch.</li>
+<li>Only target release branches if you are certain your fix must be on that
+branch.</li>
+<li>To quickly create a topic branch based on master; <code>git checkout -b
+fix/master/my_contribution master</code>. Please avoid working directly on the
+<code>master</code> branch.</li>
+</ul>
+</li>
+<li>Make commits of logical units.</li>
+<li>Check for unnecessary whitespace with <code>git diff --check</code> before committing.</li>
+<li>Make sure your commit messages are in the proper format.</li>
+</ul>
+
+
+<pre class="code ruby"><code class="ruby">    (PUP-1234) Make the example in CONTRIBUTING imperative and concrete
+
+    Without this patch applied the example commit message in the CONTRIBUTING
+    document is not a concrete example.  This is a problem because the
+    contributor is left to imagine what the commit message should look like
+    based on a description rather than an example.  This patch fixes the
+    problem by making the example concrete and imperative.
+
+    The first line is a real life imperative statement with a ticket number
+    from our issue tracker.  The body describes the behavior without the patch,
+    why this is a problem, and how the patch fixes the problem when applied.
+</code></pre>
+
+<ul>
+<li>Make sure you have added the necessary tests for your changes.</li>
+<li>Run <em>all</em> the tests to assure nothing else was accidentally broken.</li>
+</ul>
+
+
+<h2>Making Trivial Changes</h2>
+
+<h3>Documentation</h3>
+
+<p>For changes of a trivial nature to comments and documentation, it is not
+always necessary to create a new ticket in Jira. In this case, it is
+appropriate to start the first line of a commit with '(doc)' instead of
+a ticket number.</p>
+
+<pre class="code ruby"><code class="ruby">    (doc) Add documentation commit example to CONTRIBUTING
+
+    There is no example for contributing a documentation commit
+    to the Puppet repository. This is a problem because the contributor
+    is left to assume how a commit of this nature may appear.
+
+    The first line is a real life imperative statement with &#39;(doc)&#39; in
+    place of what would have been the ticket number in a
+    non-documentation related commit. The body describes the nature of
+    the new documentation or comments added.
+</code></pre>
+
+<h2>Submitting Changes</h2>
+
+<ul>
+<li>Sign the <a href="http://links.puppetlabs.com/cla">Contributor License Agreement</a>.</li>
+<li>Push your changes to a topic branch in your fork of the repository.</li>
+<li>Submit a pull request to the repository in the puppetlabs organization.</li>
+<li>Update your Jira ticket to mark that you have submitted code and are ready for it to be reviewed (Status: Ready for Merge).
+
+<ul>
+<li>Include a link to the pull request in the ticket.</li>
+</ul>
+</li>
+<li>The core team looks at Pull Requests on a regular basis in a weekly triage
+meeting that we hold in a public Google Hangout. The hangout is announced in
+the weekly status updates that are sent to the puppet-dev list. Notes are
+posted to the <a href="https://github.com/puppet-community/community-triage/tree/master/core/notes">Puppet Community community-triage
+repo</a>
+and include a link to a YouTube recording of the hangout.</li>
+<li>After feedback has been given we expect responses within two weeks. After two
+weeks we may close the pull request if it isn't showing any activity.</li>
+</ul>
+
+
+<h1>Additional Resources</h1>
+
+<ul>
+<li><a href="http://docs.puppetlabs.com/community/community_guidelines.html">Puppet Labs community guildelines</a></li>
+<li><a href="http://tickets.puppetlabs.com">Bug tracker (Jira)</a></li>
+<li><a href="http://links.puppetlabs.com/cla">Contributor License Agreement</a></li>
+<li><a href="http://help.github.com/">General GitHub documentation</a></li>
+<li><a href="http://help.github.com/send-pull-requests/">GitHub pull request documentation</a></li>
+<li><h1>puppet-dev IRC channel on freenode.org (<a href="https://botbot.me/freenode/puppet-dev/">Archive</a>)</h1></li>
+<li><a href="https://groups.google.com/forum/#!forum/puppet-dev">puppet-dev mailing list</a></li>
+<li><a href="https://github.com/puppet-community/community-triage/tree/master/core/notes">Community PR Triage notes</a></li>
+</ul>
+
+</div></div>
+
+    <div id="footer">
+  Generated on Tue Mar 24 17:52:18 2015 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.6 (ruby-2.0.0).
+</div>
+
+  </body>
+</html>

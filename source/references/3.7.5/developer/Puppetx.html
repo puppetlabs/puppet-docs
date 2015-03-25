@@ -1,0 +1,199 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Module: Puppetx
+  
+    &mdash; Documentation by YARD 0.8.7.6
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '';
+  framesUrl = "frames.html#!Puppetx.html";
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index (P)</a> &raquo;
+    
+    
+    <span class="title">Puppetx</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><h1>Module: Puppetx
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r1 last">Defined in:</dt>
+    <dd class="r1 last">lib/puppetx.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p>The Puppet Extensions Module.</p>
+
+<p>Submodules of this module should be named after the publisher (e.g. 'user' part of a Puppet Module name).
+The submodule <span class='object_link'><a href="Puppetx/Puppet.html" title="Puppetx::Puppet (module)">Puppet</a></span> contains the puppet extension points.</p>
+
+<p>This module also contains constants that are used when defining extensions.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><h2>Defined Under Namespace</h2>
+<p class="children">
+  
+    
+      <strong class="modules">Modules:</strong> <span class='object_link'><a href="Puppetx/Puppet.html" title="Puppetx::Puppet (module)">Puppet</a></span>, <span class='object_link'><a href="Puppetx/Puppetlabs.html" title="Puppetx::Puppetlabs (module)">Puppetlabs</a></span>
+    
+  
+    
+  
+</p>
+
+  <h2>Constant Summary</h2>
+  
+    <dl class="constants">
+      
+        <dt id="SYNTAX_CHECKERS-constant" class="">SYNTAX_CHECKERS =
+          <div class="docstring">
+  <div class="discussion">
+    <p>The lookup <strong>key</strong> for the multibind containing syntax checkers used to syntax check embedded string in non
+puppet DSL syntax.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>puppetx::puppet::syntaxcheckers</span><span class='tstring_end'>&#39;</span></span></pre></dd>
+      
+        <dt id="SYNTAX_CHECKERS_TYPE-constant" class="">SYNTAX_CHECKERS_TYPE =
+          <div class="docstring">
+  <div class="discussion">
+    <p>The lookup <strong>type</strong> for the multibind containing syntax checkers used to syntax check embedded string in non
+puppet DSL syntax.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Puppetx::Puppet::SyntaxChecker</span><span class='tstring_end'>&#39;</span></span></pre></dd>
+      
+        <dt id="BINDINGS_SCHEMES-constant" class="">BINDINGS_SCHEMES =
+          <div class="docstring">
+  <div class="discussion">
+    <p>The lookup <strong>key</strong> for the multibind containing a map from scheme name to scheme handler class for bindings schemes.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>puppetx::puppet::bindings::schemes</span><span class='tstring_end'>&#39;</span></span></pre></dd>
+      
+        <dt id="BINDINGS_SCHEMES_TYPE-constant" class="">BINDINGS_SCHEMES_TYPE =
+          <div class="docstring">
+  <div class="discussion">
+    <p>The lookup <strong>type</strong> for the multibind containing a map from scheme name to scheme handler class for bindings schemes.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Puppetx::Puppet::BindingsSchemeHandler</span><span class='tstring_end'>&#39;</span></span></pre></dd>
+      
+    </dl>
+  
+
+
+
+
+
+
+
+
+
+</div>
+
+    <div id="footer">
+  Generated on Tue Mar 24 17:52:18 2015 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.6 (ruby-2.0.0).
+</div>
+
+  </body>
+</html>
