@@ -74,7 +74,7 @@ When Hiera calls the lookup method, it passes five pieces of data as arguments:
 * `key` is the lookup key.
 * `scope` is the set of [variables](./variables.html) available to make decisions about the hierarchy and perform data interpolation.
 * `order_override` is a requested first hierarchy level, which can optionally be inserted at the top of the hierarchy.
-* `resolution_type` is the requested [lookup type](./lookup_types.html). Values can be either a Symbol (`:priority` or `:array`) or a hash like `{:behavior => 'deeper', 'knockout_prefix' => 'xx'}`. If you pass a hash, the configured values for `:merge_behavior` and `:deep_merge_options` will be ignored. This allows you to give deep merge options on a per-call basis.
+* `resolution_type` is the requested [lookup type](./lookup_types.html). Values can be either a Symbol (`:priority`, `:array`, or `:hash`) or a Hash like `{:behavior => 'deeper', 'knockout_prefix' => 'xx'}`. If you pass a Hash, the configured values for `:merge_behavior` and `:deep_merge_options` will be ignored. Passing a Hash gives you the same `resolution_type` as `:hash`, but with the option to allow the deep_merge options on a per-call basis.
 * `context` is a hash that contains a key named `:recurse_guard`. You never need to call methods on this object, but you'll need to pass it along later if you make any calls to `Backend.parse_answer` or `Backend.parse_string`. This parameter helps Hiera correctly propagate the order_override and the recursion guard used for detecting endless lookup recursions in interpolated values.
 
 {% highlight ruby %}
@@ -228,9 +228,9 @@ If you do need to explicitly call `Backend.parse_string` for some reason, you'll
 
 [merge_answer]: #backendmergeanswernewansweranswer
 
-The `Backend.merge_answer` method expects two hashes, and returns a merged hash using the [configured hash merge behavior](./lookup_types.html#hash-merge). If your backend supports hash merge lookups, you should always use this helper method to do the merging.
+The `Backend.merge_answer` method expects three arguments, and returns a merged hash using the [configured hash merge behavior](./lookup_types.html#hash-merge). If your backend supports hash merge lookups, you should always use this helper method to do the merging.
 
-`Backend.merge_answer` can also take an optional third parameter, `resolution_type`. If you're using `resolution_type`, you'll need to pass the `resolution_type` value you received in your `lookup` method. This allows you to set deep merge behavior on a per-call basis, rather than always using your configuration values. If no value is passed for `resolution_type`, the merge behavior from the Hiera config is used.
+In passing `resolution_type` to `Backend.merge_answer`, you'll need to pass, verbatim, the `resolution_type` value you received in your `lookup` method. 
 
 From the json backend:
 
