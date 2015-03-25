@@ -5,7 +5,7 @@ subtitle: "Known Issues"
 canonical: "/pe/latest/release_notes_known_issues.html"
 ---
 
-As we discover them, this page will be updated with known issues in Puppet Enterprise 3.7.x releases. Fixed issues will be removed from this page and noted Bug Fixes section of the release notes. If you find new problems yourself, please file bugs specific to Puppet Enterprise [here][peissues] and for Puppet [here][puppetissues].
+As we discover them, this page will be updated with known issues in Puppet Enterprise 3.7.x releases. Fixed issues will be removed from this page and noted Bug Fixes section of the release notes. If you find new problems yourself, please file bugs in [our issue tracker](https://tickets.puppetlabs.com).
 
 To find out which of these issues may affect you, run `/opt/puppet/bin/puppet --version`, the output of which will look something like `3.6.2 (Puppet Enterprise 3.7.0)`. To upgrade to a newer version of Puppet Enterprise, see the [chapter on upgrading](install_upgrading.html).
 
@@ -126,7 +126,7 @@ PE will automatically update your version of puppetlabs-inifile as part of the u
 
 The answer file no longer gives the option of whether to install symlinks. These are now automatically installed by packages. To allow the creation of symlinks, you need to ensure that `/usr/local` is writable.
 
-However, please note that we do not recommend employing symlinks in the place of `/opt` for database storage, as doing so can lead to databases not being seen. In addition, if `/opt/puppet` is symlink, the `-d` flag will not function correctly during an uninstall. 
+However, please note that we do not recommend employing symlinks in the place of `/opt` for database storage, as doing so can lead to databases not being seen. In addition, if `/opt/puppet` is symlink, the `-d` flag will not function correctly during an uninstall.
 
 ### Answer File Required for Some SMTP Servers
 
@@ -140,11 +140,11 @@ Refer to [Installing Agents in a Puppet Enterprise Infrastructure without Intern
 
 > **Tip**: More information about Puppet Server can be found in the [Puppet Server docs](/puppetserver/1.0/services_master_puppetserver.html). Differences between PE and open source versions of Puppet Server are typically called out.
 
-### Updating Puppet Master Gems 
+### Updating Puppet Master Gems
 
-After upgrading to PE 3.7.2, you need to update the Ruby gems used by your Puppet Master with `/opt/puppet/bin/puppetserver gem install <GEM NAME>`. 
+After upgrading to PE 3.7.2, you need to update the Ruby gems used by your Puppet Master with `/opt/puppet/bin/puppetserver gem install <GEM NAME>`.
 
-After updating the gems, you need to restart the Puppet master with `service pe-puppetserver restart`. You should do this **before** doing any Puppet agent runs. 
+After updating the gems, you need to restart the Puppet master with `service pe-puppetserver restart`. You should do this **before** doing any Puppet agent runs.
 
 ### A Note About Gems with Native (C) Extensions for JRuby on the Puppet Server
 
@@ -396,7 +396,7 @@ If you see an error message after running this, you can disregard it. Readline-6
 
 ### Solaris Updates May Break Puppet Install
 
-We've seen an issue in which Puppet agents on Solaris platforms have quit responding after the core Solaris OS was updated. Essential Puppet configuration files were erased from the `/etc/` directory (which includes SSL certs needed to communicate with the Puppet master), and the `/etc/hosts` file was reverted. 
+We've seen an issue in which Puppet agents on Solaris platforms have quit responding after the core Solaris OS was updated. Essential Puppet configuration files were erased from the `/etc/` directory (which includes SSL certs needed to communicate with the Puppet master), and the `/etc/hosts` file was reverted.
 
 If you encounter this issue, log in to the Puppet master and clear the agent cert from the Solaris machine (`puppet cert clean <HOSTNAME>`), and then re-install [the Puppet agent](.//install_agents.html).
 
