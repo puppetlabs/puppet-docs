@@ -42,6 +42,21 @@ You can increase the JVM (Java Virtual Machine) memory that is allocated to Java
 
 Instructions for using the PE console to increase the Jave heap size are detailed on on the [Configuring Java Arguments for PE](/config_java_args.html#pe-console-service) page.
 
+### Tuning the Classifier Synchronization Period
+
+This synchronization period controls how long it takes the node classifier (NC) to retrieve classes from the Puppet master, which essentially dictates how soon you can see your changes appear in the NC. By default this value is set to 600 seconds (10 minutes). Depending on the size of your environment(s) this may or may not be a suitable amount of time. 
+
+You can change this value in the PE console.
+
+1. In the PE console, navigate to the **Classification** page.
+2. Click the **PE Console** group.
+3. In the **PE Console** group page, click the **Classes** tab.
+4. Locate the **puppet_enterprise::profile::console** class, and from the **Parameter** drop-down list, select **classifier_synchronization_period**.
+5. In the **Value** field, adjust the period, in seconds.
+6. Click **Add parameter**, and then the **Commit change** button.
+
+You can also force the NC to retrieve classes from the master immediately, by clicking the **Refresh** button.
+
 ## Tuning the PostgreSQL Buffer Pool Size
 
 If you are experiencing performance issues or instability with the console, you may need to adjust the buffer memory settings for PostgreSQL. The most important PostgreSQL memory settings for PE are `shared_buffers` and `work_mem`.  Generally speaking, you should allocate about 25% of your hardware's RAM to `shared_buffers`. If you have a large and/or complex deployment you will probably need to increase `work_mem` from the default of 1mb. For more detail, see in the [PostgreSQL documentation](http://www.postgresql.org/docs/9.2/static/runtime-config-resource.html).
