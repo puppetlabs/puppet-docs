@@ -60,10 +60,6 @@ Puppet Enterprise can invoke orchestration actions in two places:
 
 >**Note**: Live Management is deprecated in PE 3.8 and will be replaced in future versions of PE. See the [PE 3.8 release notes](./release_notes.html#live-management-is-deprecated) for more information.
 
-You can also [allow your site's custom applications to invoke orchestration actions][integrate].
-
-[integrate]: ./orchestration_integrating.html
-
 ### Special Interfaces: Puppet Runs and Resources
 
 In addition to the main action invocation interfaces, Puppet Enterprise provides special interfaces for two of the most useful orchestration tasks:
