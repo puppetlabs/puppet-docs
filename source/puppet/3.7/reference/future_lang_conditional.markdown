@@ -23,12 +23,12 @@ Conditional statements let your Puppet code behave differently in different situ
 Summary
 -----
 
-Puppet supports "if" and "unless" statements, "case" statements, and selectors.
+Puppet supports "if" and "unless" statements, case statements, and selectors.
 
 An "if" statement:
 
 {% highlight ruby %}
-    if $is_virtual == 'true' {
+    if str2bool("$is_virtual") {
       warning('Tried to include class ntp on virtual machine; this node may be misclassified.')
     }
     elsif $operatingsystem == 'Darwin' {
@@ -83,12 +83,12 @@ A selector:
 ### Syntax
 
 {% highlight ruby %}
-    if $is_virtual == 'true' {
+    if str2bool("$is_virtual") {
       # Our NTP module is not supported on virtual machines:
-      warn( 'Tried to include class ntp on virtual machine; this node may be misclassified.' )
+      warning( 'Tried to include class ntp on virtual machine; this node may be misclassified.' )
     }
     elsif $operatingsystem == 'Darwin' {
-      warn ( 'This NTP module does not yet work on our Mac laptops.' )
+      warning( 'This NTP module does not yet work on our Mac laptops.' )
     }
     else {
       # Normal node, include the class.
