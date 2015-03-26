@@ -221,6 +221,8 @@ These variables are set in every [local scope][scope] by the parser during compi
 
 These are **not** available in the `$facts` hash.
 
+As of Puppet 3.7.5: These variables are always defined (by the standards of the `strict_variables` setting), but their value is `undef` whenever no other value is applicable.
+
 * `$module_name` --- the name of the module that contains the current class or defined type.
 * `$caller_module_name` --- the name of the module in which the **specific instance** of the surrounding defined type was declared. This is only useful when creating versatile defined types which will be re-used by several modules.
 

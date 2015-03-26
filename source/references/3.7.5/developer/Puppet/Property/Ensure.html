@@ -1,0 +1,220 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Class: Puppet::Property::Ensure
+  
+    &mdash; Documentation by YARD 0.8.7.6
+  
+</title>
+
+  <link rel="stylesheet" href="../../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '../../';
+  framesUrl = "../../frames.html#!Puppet/Property/Ensure.html";
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../../_index.html">Index (E)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../Property.html" title="Puppet::Property (class)">Property</a></span></span>
+     &raquo; 
+    <span class="title">Ensure</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../../class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="../../method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="../../file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><h1>Class: Puppet::Property::Ensure
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName"><span class='object_link'><a href="../Property.html" title="Puppet::Property (class)">Puppet::Property</a></span></span>
+      
+        <ul class="fullTree">
+          <li><span class='object_link'>Object</span></li>
+          
+            <li class="next"><span class='object_link'><a href="../Parameter.html" title="Puppet::Parameter (class)">Puppet::Parameter</a></span></li>
+          
+            <li class="next"><span class='object_link'><a href="../Property.html" title="Puppet::Property (class)">Puppet::Property</a></span></li>
+          
+            <li class="next">Puppet::Property::Ensure</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">lib/puppet/property/ensure.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p>This property is automatically added to any <span class='object_link'><a href="../Type.html" title="Puppet::Type (class)">Type</a></span> that responds
+to the methods 'exists?', 'create', and 'destroy'.</p>
+
+<p>Ensure defaults to having the wanted <em>(should)</em> value <code>:present</code>.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+  <h2>Constant Summary</h2>
+  
+
+
+
+
+
+
+  <h2>Instance Attribute Summary</h2>
+  
+  <h3 class="inherited">Attributes inherited from <span class='object_link'><a href="../Parameter.html" title="Puppet::Parameter (class)">Puppet::Parameter</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="../Parameter.html#parent-instance_method" title="Puppet::Parameter#parent (method)">#parent</a></span></p>
+
+
+
+  
+  
+  
+  
+  
+  
+  <h2>Method Summary</h2>
+  
+  <h3 class="inherited">Methods inherited from <span class='object_link'><a href="../Property.html" title="Puppet::Property (class)">Puppet::Property</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="../Property.html#call_provider-instance_method" title="Puppet::Property#call_provider (method)">#call_provider</a></span>, <span class='object_link'><a href="../Property.html#call_valuemethod-instance_method" title="Puppet::Property#call_valuemethod (method)">#call_valuemethod</a></span>, <span class='object_link'><a href="../Property.html#initialize-instance_method" title="Puppet::Property#initialize (method)">#initialize</a></span>, <span class='object_link'><a href="../Property.html#insync%3F-instance_method" title="Puppet::Property#insync? (method)">#insync?</a></span>, <span class='object_link'><a href="../Property.html#method_added-class_method" title="Puppet::Property.method_added (method)">method_added</a></span>, <span class='object_link'><a href="../Property.html#newvalue-class_method" title="Puppet::Property.newvalue (method)">newvalue</a></span>, <span class='object_link'><a href="../Property.html#safe_insync%3F-instance_method" title="Puppet::Property#safe_insync? (method)">#safe_insync?</a></span>, <span class='object_link'><a href="../Property.html#set-instance_method" title="Puppet::Property#set (method)">#set</a></span>, <span class='object_link'><a href="../Property.html#should-instance_method" title="Puppet::Property#should (method)">#should</a></span>, <span class='object_link'><a href="../Property.html#should%3D-instance_method" title="Puppet::Property#should= (method)">#should=</a></span>, <span class='object_link'><a href="../Property.html#unsafe_validate-instance_method" title="Puppet::Property#unsafe_validate (method)">#unsafe_validate</a></span>, <span class='object_link'><a href="../Property.html#validate_features_per_value-instance_method" title="Puppet::Property#validate_features_per_value (method)">#validate_features_per_value</a></span>, <span class='object_link'><a href="../Property.html#value%3D-instance_method" title="Puppet::Property#value= (method)">#value=</a></span>, <span class='object_link'><a href="../Property.html#value_name-class_method" title="Puppet::Property.value_name (method)">value_name</a></span>, <span class='object_link'><a href="../Property.html#value_option-class_method" title="Puppet::Property.value_option (method)">value_option</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods inherited from <span class='object_link'><a href="../Parameter.html" title="Puppet::Parameter (class)">Puppet::Parameter</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="../Parameter.html#aliasvalue-class_method" title="Puppet::Parameter.aliasvalue (method)">aliasvalue</a></span>, <span class='object_link'><a href="../Parameter.html#defaultto-class_method" title="Puppet::Parameter.defaultto (method)">defaultto</a></span>, <span class='object_link'><a href="../Parameter.html#desc-class_method" title="Puppet::Parameter.desc (method)">desc</a></span>, <span class='object_link'><a href="../Parameter.html#doc-class_method" title="Puppet::Parameter.doc (method)">doc</a></span>, <span class='object_link'><a href="../Parameter.html#initialize-instance_method" title="Puppet::Parameter#initialize (method)">#initialize</a></span>, <span class='object_link'><a href="../Parameter.html#initvars-class_method" title="Puppet::Parameter.initvars (method)">initvars</a></span>, <span class='object_link'><a href="../Parameter.html#isnamevar-class_method" title="Puppet::Parameter.isnamevar (method)">isnamevar</a></span>, <span class='object_link'><a href="../Parameter.html#isnamevar%3F-class_method" title="Puppet::Parameter.isnamevar? (method)">isnamevar?</a></span>, <span class='object_link'><a href="../Parameter.html#isrequired-class_method" title="Puppet::Parameter.isrequired (method)">isrequired</a></span>, <span class='object_link'><a href="../Parameter.html#log-instance_method" title="Puppet::Parameter#log (method)">#log</a></span>, <span class='object_link'><a href="../Parameter.html#munge-class_method" title="Puppet::Parameter.munge (method)">munge</a></span>, <span class='object_link'><a href="../Parameter.html#newvalues-class_method" title="Puppet::Parameter.newvalues (method)">newvalues</a></span>, <span class='object_link'><a href="../Parameter.html#nodefault-class_method" title="Puppet::Parameter.nodefault (method)">nodefault</a></span>, <span class='object_link'><a href="../Parameter.html#pathbuilder-instance_method" title="Puppet::Parameter#pathbuilder (method)">#pathbuilder</a></span>, <span class='object_link'><a href="../Parameter.html#proxymethods-class_method" title="Puppet::Parameter.proxymethods (method)">proxymethods</a></span>, <span class='object_link'><a href="../Parameter.html#required%3F-class_method" title="Puppet::Parameter.required? (method)">required?</a></span>, <span class='object_link'><a href="../Parameter.html#unmunge-class_method" title="Puppet::Parameter.unmunge (method)">unmunge</a></span>, <span class='object_link'><a href="../Parameter.html#unsafe_munge-instance_method" title="Puppet::Parameter#unsafe_munge (method)">#unsafe_munge</a></span>, <span class='object_link'><a href="../Parameter.html#unsafe_validate-instance_method" title="Puppet::Parameter#unsafe_validate (method)">#unsafe_validate</a></span>, <span class='object_link'><a href="../Parameter.html#validate-class_method" title="Puppet::Parameter.validate (method)">validate</a></span>, <span class='object_link'><a href="../Parameter.html#validate-instance_method" title="Puppet::Parameter#validate (method)">#validate</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'>Util</span></h3>
+  <p class="inherited"><span class='object_link'><a href="../Util.html#exit_on_fail-class_method" title="Puppet::Util.exit_on_fail (method)">exit_on_fail</a></span>, <span class='object_link'><a href="../Util.html#exit_on_fail-instance_method" title="Puppet::Util#exit_on_fail (method)">#exit_on_fail</a></span>, <span class='object_link'><a href="../Util.html#which-class_method" title="Puppet::Util.which (method)">which</a></span>, <span class='object_link'><a href="../Util.html#which-instance_method" title="Puppet::Util#which (method)">#which</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <p class="notice">This class inherits a constructor from <span class='object_link'><a href="../Property.html#initialize-instance_method" title="Puppet::Property#initialize (method)">Puppet::Property</a></span></p>
+  
+</div>
+
+
+</div>
+
+    <div id="footer">
+  Generated on Tue Mar 24 17:52:24 2015 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.6 (ruby-2.0.0).
+</div>
+
+  </body>
+</html>

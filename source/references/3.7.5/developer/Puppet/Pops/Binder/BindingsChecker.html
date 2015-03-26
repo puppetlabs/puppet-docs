@@ -1,0 +1,1858 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Class: Puppet::Pops::Binder::BindingsChecker
+  
+    &mdash; Documentation by YARD 0.8.7.6
+  
+</title>
+
+  <link rel="stylesheet" href="../../../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../../../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '../../../';
+  framesUrl = "../../../frames.html#!Puppet/Pops/Binder/BindingsChecker.html";
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../../../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../../../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../../../_index.html">Index (B)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../../../Puppet.html" title="Puppet (module)">Puppet</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../../Pops.html" title="Puppet::Pops (module)">Pops</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../Binder.html" title="Puppet::Pops::Binder (module)">Binder</a></span></span>
+     &raquo; 
+    <span class="title">BindingsChecker</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../../../class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="../../../method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="../../../file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><h1>Class: Puppet::Pops::Binder::BindingsChecker
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName"><span class='object_link'>Object</span></span>
+      
+        <ul class="fullTree">
+          <li><span class='object_link'>Object</span></li>
+          
+            <li class="next">Puppet::Pops::Binder::BindingsChecker</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">lib/puppet/pops/binder/bindings_checker.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p>A validator/checker of a bindings model</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+  <h2>Constant Summary</h2>
+  
+
+
+
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#binding_parent-instance_method" title="#binding_parent (instance method)">- (Object) <strong>binding_parent</strong>(p) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#check-instance_method" title="#check (instance method)">- (Object) <strong>check</strong>(b) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'><p>Performs binding validity check.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#check_ArrayMultibindProducerDescriptor-instance_method" title="#check_ArrayMultibindProducerDescriptor (instance method)">- (Object) <strong>check_ArrayMultibindProducerDescriptor</strong>(p) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'><p>Checks that the type declared in the binder is a PArrayType.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#check_Binding-instance_method" title="#check_Binding (instance method)">- (Object) <strong>check_Binding</strong>(b) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'><p>Checks that a binding has a producer and a type.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#check_Bindings-instance_method" title="#check_Bindings (instance method)">- (Object) <strong>check_Bindings</strong>(b) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'><p>Checks that the bindings object contains at least one binding.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#check_ConstantProducerDescriptor-instance_method" title="#check_ConstantProducerDescriptor (instance method)">- (Object) <strong>check_ConstantProducerDescriptor</strong>(p) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'><p>Checks that a constant value has been declared in the producer and that the type of the value is compatible with the type declared in the binding.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#check_EvaluatingProducerDescriptor-instance_method" title="#check_EvaluatingProducerDescriptor (instance method)">- (Object) <strong>check_EvaluatingProducerDescriptor</strong>(p) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'><p>Checks that an expression has been declared in the producer.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#check_Expression-instance_method" title="#check_Expression (instance method)">- (Object) <strong>check_Expression</strong>(t) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#check_HashLookupProducerDescriptor-instance_method" title="#check_HashLookupProducerDescriptor (instance method)">- (Object) <strong>check_HashLookupProducerDescriptor</strong>(p) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'><p>Checks that a key has been declared, then calls producer_LookupProducerDescriptor to perform checks associated with the super class.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#check_HashMultibindProducerDescriptor-instance_method" title="#check_HashMultibindProducerDescriptor (instance method)">- (Object) <strong>check_HashMultibindProducerDescriptor</strong>(p) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'><p>Checks that the type declared in the binder is a PHashType.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#check_InstanceProducerDescriptor-instance_method" title="#check_InstanceProducerDescriptor (instance method)">- (Object) <strong>check_InstanceProducerDescriptor</strong>(p) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'><p>Checks that a class name has been declared in the producer.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#check_LayeredBindings-instance_method" title="#check_LayeredBindings (instance method)">- (Object) <strong>check_LayeredBindings</strong>(b) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'><p>Checks that the binding has layers and that each layer has a name and at least one binding.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#check_LookupProducerDescriptor-instance_method" title="#check_LookupProducerDescriptor (instance method)">- (Object) <strong>check_LookupProducerDescriptor</strong>(p) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'><p>Checks that a type and a name has been declared.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#check_Multibinding-instance_method" title="#check_Multibinding (instance method)">- (Object) <strong>check_Multibinding</strong>(b) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'><p>Checks that the producer is a Multibind producer and that the type is a PCollectionType.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#check_NamedBindings-instance_method" title="#check_NamedBindings (instance method)">- (Object) <strong>check_NamedBindings</strong>(b) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'><p>Checks that a name has been associated with the bindings.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#check_NamedLayer-instance_method" title="#check_NamedLayer (instance method)">- (Object) <strong>check_NamedLayer</strong>(l) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'><p>Check layer has a name.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#check_NonCachingProducerDescriptor-instance_method" title="#check_NonCachingProducerDescriptor (instance method)">- (Object) <strong>check_NonCachingProducerDescriptor</strong>(p) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'><p>Checks that the non caching producer has a producer to delegate to.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#check_PAnyType-instance_method" title="#check_PAnyType (instance method)">- (Object) <strong>check_PAnyType</strong>(t) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#check_ProducerProducerDescriptor-instance_method" title="#check_ProducerProducerDescriptor (instance method)">- (Object) <strong>check_ProducerProducerDescriptor</strong>(p) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'><p>Checks that the producer that this producer delegates to is declared.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#has_chars%3F-instance_method" title="#has_chars? (instance method)">- (Boolean) <strong>has_chars?</strong>(s) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'><p>Returns true if the argument is a non empty string.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#has_entries%3F-instance_method" title="#has_entries? (instance method)">- (Boolean) <strong>has_entries?</strong>(s) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">- (BindingsChecker) <strong>initialize</strong>(diagnostics_producer) </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>A new instance of BindingsChecker.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#validate-instance_method" title="#validate (instance method)">- (Object) <strong>validate</strong>(b) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Validates the entire model by visiting each model element and calling <code>check</code>.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+<div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <h3 class="signature first" id="initialize-instance_method">
+  
+    - (<tt><span class='object_link'><a href="" title="Puppet::Pops::Binder::BindingsChecker (class)">BindingsChecker</a></span></tt>) <strong>initialize</strong>(diagnostics_producer) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Returns a new instance of BindingsChecker</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+13
+14
+15
+16
+17
+18</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/bindings_checker.rb', line 13</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_diagnostics_producer'>diagnostics_producer</span><span class='rparen'>)</span>
+  <span class='cvar'>@@check_visitor</span>     <span class='op'>||=</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Pops</span><span class='op'>::</span><span class='const'>Visitor</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='kw'>nil</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>check</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='int'>0</span><span class='comma'>,</span> <span class='int'>0</span><span class='rparen'>)</span>
+  <span class='ivar'>@type_calculator</span>      <span class='op'>=</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Pops</span><span class='op'>::</span><span class='const'>Types</span><span class='op'>::</span><span class='const'>TypeCalculator</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='rparen'>)</span>
+  <span class='ivar'>@expression_validator</span> <span class='op'>=</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Pops</span><span class='op'>::</span><span class='const'>Validation</span><span class='op'>::</span><span class='const'>ValidatorFactory_4_0</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_checker'>checker</span><span class='lparen'>(</span><span class='id identifier rubyid_diagnostics_producer'>diagnostics_producer</span><span class='rparen'>)</span>
+  <span class='ivar'>@acceptor</span>             <span class='op'>=</span> <span class='id identifier rubyid_diagnostics_producer'>diagnostics_producer</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="binding_parent-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>binding_parent</strong>(p) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/bindings_checker.rb', line 186</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_binding_parent'>binding_parent</span><span class='lparen'>(</span><span class='id identifier rubyid_p'>p</span><span class='rparen'>)</span>
+  <span class='kw'>begin</span>
+    <span class='id identifier rubyid_x'>x</span> <span class='op'>=</span> <span class='id identifier rubyid_p'>p</span><span class='period'>.</span><span class='id identifier rubyid_eContainer'>eContainer</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_x'>x</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+      <span class='id identifier rubyid_acceptor'>acceptor</span><span class='period'>.</span><span class='id identifier rubyid_accept'>accept</span><span class='lparen'>(</span><span class='const'>Issues</span><span class='op'>::</span><span class='const'>MODEL_OBJECT_IS_UNBOUND</span><span class='comma'>,</span> <span class='id identifier rubyid_p'>p</span><span class='rparen'>)</span>
+      <span class='kw'>return</span> <span class='kw'>nil</span>
+    <span class='kw'>end</span>
+    <span class='id identifier rubyid_p'>p</span> <span class='op'>=</span> <span class='id identifier rubyid_x'>x</span>
+  <span class='kw'>end</span> <span class='kw'>while</span> <span class='op'>!</span><span class='id identifier rubyid_p'>p</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Bindings</span><span class='op'>::</span><span class='const'>AbstractBinding</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_p'>p</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="check-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>check</strong>(b) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>Performs binding validity check</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+33
+34
+35</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/bindings_checker.rb', line 33</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_check'>check</span><span class='lparen'>(</span><span class='id identifier rubyid_b'>b</span><span class='rparen'>)</span>
+  <span class='cvar'>@@check_visitor</span><span class='period'>.</span><span class='id identifier rubyid_visit_this_0'>visit_this_0</span><span class='lparen'>(</span><span class='kw'>self</span><span class='comma'>,</span> <span class='id identifier rubyid_b'>b</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="check_ArrayMultibindProducerDescriptor-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>check_ArrayMultibindProducerDescriptor</strong>(p) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>Checks that the type declared in the binder is a PArrayType</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+144
+145
+146
+147</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/bindings_checker.rb', line 144</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_check_ArrayMultibindProducerDescriptor'>check_ArrayMultibindProducerDescriptor</span><span class='lparen'>(</span><span class='id identifier rubyid_p'>p</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_b'>b</span> <span class='op'>=</span> <span class='id identifier rubyid_binding_parent'>binding_parent</span><span class='lparen'>(</span><span class='id identifier rubyid_p'>p</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_acceptor'>acceptor</span><span class='period'>.</span><span class='id identifier rubyid_accept'>accept</span><span class='lparen'>(</span><span class='const'>Issues</span><span class='op'>::</span><span class='const'>MULTIBIND_INCOMPATIBLE_TYPE</span><span class='comma'>,</span> <span class='id identifier rubyid_p'>p</span><span class='comma'>,</span> <span class='lbrace'>{</span><span class='symbol'>:binding</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_b'>b</span><span class='comma'>,</span> <span class='symbol'>:actual_type</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_b'>b</span><span class='period'>.</span><span class='id identifier rubyid_type'>type</span><span class='rbrace'>}</span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='id identifier rubyid_b'>b</span><span class='period'>.</span><span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Types</span><span class='op'>::</span><span class='const'>PArrayType</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="check_Binding-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>check_Binding</strong>(b) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>Checks that a binding has a producer and a type</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+39
+40
+41
+42
+43
+44
+45</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/bindings_checker.rb', line 39</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_check_Binding'>check_Binding</span><span class='lparen'>(</span><span class='id identifier rubyid_b'>b</span><span class='rparen'>)</span>
+  <span class='comment'># Must have a type
+</span>  <span class='id identifier rubyid_acceptor'>acceptor</span><span class='period'>.</span><span class='id identifier rubyid_accept'>accept</span><span class='lparen'>(</span><span class='const'>Issues</span><span class='op'>::</span><span class='const'>MISSING_TYPE</span><span class='comma'>,</span> <span class='id identifier rubyid_b'>b</span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='id identifier rubyid_b'>b</span><span class='period'>.</span><span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Types</span><span class='op'>::</span><span class='const'>PAnyType</span><span class='rparen'>)</span>
+
+  <span class='comment'># Must have a producer
+</span>  <span class='id identifier rubyid_acceptor'>acceptor</span><span class='period'>.</span><span class='id identifier rubyid_accept'>accept</span><span class='lparen'>(</span><span class='const'>Issues</span><span class='op'>::</span><span class='const'>MISSING_PRODUCER</span><span class='comma'>,</span> <span class='id identifier rubyid_b'>b</span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='id identifier rubyid_b'>b</span><span class='period'>.</span><span class='id identifier rubyid_producer'>producer</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Bindings</span><span class='op'>::</span><span class='const'>ProducerDescriptor</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="check_Bindings-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>check_Bindings</strong>(b) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>Checks that the bindings object contains at least one binding. Then checks each binding in turn</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+63
+64
+65</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/bindings_checker.rb', line 63</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_check_Bindings'>check_Bindings</span><span class='lparen'>(</span><span class='id identifier rubyid_b'>b</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_acceptor'>acceptor</span><span class='period'>.</span><span class='id identifier rubyid_accept'>accept</span><span class='lparen'>(</span><span class='const'>Issues</span><span class='op'>::</span><span class='const'>MISSING_BINDINGS</span><span class='comma'>,</span> <span class='id identifier rubyid_b'>b</span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='id identifier rubyid_has_entries?'>has_entries?</span><span class='lparen'>(</span><span class='id identifier rubyid_b'>b</span><span class='period'>.</span><span class='id identifier rubyid_bindings'>bindings</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="check_ConstantProducerDescriptor-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>check_ConstantProducerDescriptor</strong>(p) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>Checks that a constant value has been declared in the producer and that the type
+of the value is compatible with the type declared in the binding</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/bindings_checker.rb', line 95</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_check_ConstantProducerDescriptor'>check_ConstantProducerDescriptor</span><span class='lparen'>(</span><span class='id identifier rubyid_p'>p</span><span class='rparen'>)</span>
+  <span class='comment'># the product must be of compatible type
+</span>  <span class='comment'># TODO: Likely to change when value becomes a typed Puppet Object
+</span>  <span class='id identifier rubyid_b'>b</span> <span class='op'>=</span> <span class='id identifier rubyid_binding_parent'>binding_parent</span><span class='lparen'>(</span><span class='id identifier rubyid_p'>p</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_p'>p</span><span class='period'>.</span><span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+    <span class='id identifier rubyid_acceptor'>acceptor</span><span class='period'>.</span><span class='id identifier rubyid_accept'>accept</span><span class='lparen'>(</span><span class='const'>Issues</span><span class='op'>::</span><span class='const'>MISSING_VALUE</span><span class='comma'>,</span> <span class='id identifier rubyid_p'>p</span><span class='comma'>,</span> <span class='lbrace'>{</span><span class='symbol'>:binding</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_b'>b</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='kw'>else</span>
+    <span class='id identifier rubyid_infered'>infered</span> <span class='op'>=</span> <span class='id identifier rubyid_type_calculator'>type_calculator</span><span class='period'>.</span><span class='id identifier rubyid_infer'>infer</span><span class='lparen'>(</span><span class='id identifier rubyid_p'>p</span><span class='period'>.</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
+    <span class='kw'>unless</span> <span class='id identifier rubyid_type_calculator'>type_calculator</span><span class='period'>.</span><span class='id identifier rubyid_assignable?'>assignable?</span><span class='lparen'>(</span><span class='id identifier rubyid_b'>b</span><span class='period'>.</span><span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='id identifier rubyid_infered'>infered</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_acceptor'>acceptor</span><span class='period'>.</span><span class='id identifier rubyid_accept'>accept</span><span class='lparen'>(</span><span class='const'>Issues</span><span class='op'>::</span><span class='const'>INCOMPATIBLE_TYPE</span><span class='comma'>,</span> <span class='id identifier rubyid_p'>p</span><span class='comma'>,</span> <span class='lbrace'>{</span><span class='symbol'>:binding</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_b'>b</span><span class='comma'>,</span> <span class='symbol'>:expected_type</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_b'>b</span><span class='period'>.</span><span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='symbol'>:actual_type</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_infered'>infered</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="check_EvaluatingProducerDescriptor-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>check_EvaluatingProducerDescriptor</strong>(p) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>Checks that an expression has been declared in the producer</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+111
+112
+113
+114
+115</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/bindings_checker.rb', line 111</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_check_EvaluatingProducerDescriptor'>check_EvaluatingProducerDescriptor</span><span class='lparen'>(</span><span class='id identifier rubyid_p'>p</span><span class='rparen'>)</span>
+  <span class='kw'>unless</span> <span class='id identifier rubyid_p'>p</span><span class='period'>.</span><span class='id identifier rubyid_expression'>expression</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Pops</span><span class='op'>::</span><span class='const'>Model</span><span class='op'>::</span><span class='const'>Expression</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_acceptor'>acceptor</span><span class='period'>.</span><span class='id identifier rubyid_accept'>accept</span><span class='lparen'>(</span><span class='const'>Issues</span><span class='op'>::</span><span class='const'>MISSING_EXPRESSION</span><span class='comma'>,</span> <span class='id identifier rubyid_p'>p</span><span class='comma'>,</span> <span class='lbrace'>{</span><span class='symbol'>:binding</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_binding_parent'>binding_parent</span><span class='lparen'>(</span><span class='id identifier rubyid_p'>p</span><span class='rparen'>)</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="check_Expression-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>check_Expression</strong>(t) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+165
+166
+167</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/bindings_checker.rb', line 165</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_check_Expression'>check_Expression</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='rparen'>)</span>
+  <span class='ivar'>@expression_validator</span><span class='period'>.</span><span class='id identifier rubyid_validate'>validate</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="check_HashLookupProducerDescriptor-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>check_HashLookupProducerDescriptor</strong>(p) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>Checks that a key has been declared, then calls producer_LookupProducerDescriptor to perform
+checks associated with the super class</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+137
+138
+139
+140</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/bindings_checker.rb', line 137</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_check_HashLookupProducerDescriptor'>check_HashLookupProducerDescriptor</span><span class='lparen'>(</span><span class='id identifier rubyid_p'>p</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_acceptor'>acceptor</span><span class='period'>.</span><span class='id identifier rubyid_accept'>accept</span><span class='lparen'>(</span><span class='const'>Issues</span><span class='op'>::</span><span class='const'>MISSING_KEY</span><span class='comma'>,</span> <span class='id identifier rubyid_p'>p</span><span class='comma'>,</span> <span class='lbrace'>{</span><span class='symbol'>:binding</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_binding_parent'>binding_parent</span><span class='lparen'>(</span><span class='id identifier rubyid_p'>p</span><span class='rparen'>)</span><span class='rbrace'>}</span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='id identifier rubyid_has_chars?'>has_chars?</span><span class='lparen'>(</span><span class='id identifier rubyid_p'>p</span><span class='period'>.</span><span class='id identifier rubyid_key'>key</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_check_LookupProducerDescriptor'>check_LookupProducerDescriptor</span><span class='lparen'>(</span><span class='id identifier rubyid_p'>p</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="check_HashMultibindProducerDescriptor-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>check_HashMultibindProducerDescriptor</strong>(p) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>Checks that the type declared in the binder is a PHashType</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+151
+152
+153
+154</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/bindings_checker.rb', line 151</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_check_HashMultibindProducerDescriptor'>check_HashMultibindProducerDescriptor</span><span class='lparen'>(</span><span class='id identifier rubyid_p'>p</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_b'>b</span> <span class='op'>=</span> <span class='id identifier rubyid_binding_parent'>binding_parent</span><span class='lparen'>(</span><span class='id identifier rubyid_p'>p</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_acceptor'>acceptor</span><span class='period'>.</span><span class='id identifier rubyid_accept'>accept</span><span class='lparen'>(</span><span class='const'>Issues</span><span class='op'>::</span><span class='const'>MULTIBIND_INCOMPATIBLE_TYPE</span><span class='comma'>,</span> <span class='id identifier rubyid_p'>p</span><span class='comma'>,</span> <span class='lbrace'>{</span><span class='symbol'>:binding</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_b'>b</span><span class='comma'>,</span> <span class='symbol'>:actual_type</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_b'>b</span><span class='period'>.</span><span class='id identifier rubyid_type'>type</span><span class='rbrace'>}</span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='id identifier rubyid_b'>b</span><span class='period'>.</span><span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Types</span><span class='op'>::</span><span class='const'>PHashType</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="check_InstanceProducerDescriptor-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>check_InstanceProducerDescriptor</strong>(p) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>Checks that a class name has been declared in the producer</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+119
+120
+121</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/bindings_checker.rb', line 119</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_check_InstanceProducerDescriptor'>check_InstanceProducerDescriptor</span><span class='lparen'>(</span><span class='id identifier rubyid_p'>p</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_acceptor'>acceptor</span><span class='period'>.</span><span class='id identifier rubyid_accept'>accept</span><span class='lparen'>(</span><span class='const'>Issues</span><span class='op'>::</span><span class='const'>MISSING_CLASS_NAME</span><span class='comma'>,</span> <span class='id identifier rubyid_p'>p</span><span class='comma'>,</span> <span class='lbrace'>{</span><span class='symbol'>:binding</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_binding_parent'>binding_parent</span><span class='lparen'>(</span><span class='id identifier rubyid_p'>p</span><span class='rparen'>)</span><span class='rbrace'>}</span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='id identifier rubyid_has_chars?'>has_chars?</span><span class='lparen'>(</span><span class='id identifier rubyid_p'>p</span><span class='period'>.</span><span class='id identifier rubyid_class_name'>class_name</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="check_LayeredBindings-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>check_LayeredBindings</strong>(b) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>Checks that the binding has layers and that each layer has a name and at least one binding</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+82
+83
+84</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/bindings_checker.rb', line 82</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_check_LayeredBindings'>check_LayeredBindings</span><span class='lparen'>(</span><span class='id identifier rubyid_b'>b</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_acceptor'>acceptor</span><span class='period'>.</span><span class='id identifier rubyid_accept'>accept</span><span class='lparen'>(</span><span class='const'>Issues</span><span class='op'>::</span><span class='const'>MISSING_LAYERS</span><span class='comma'>,</span> <span class='id identifier rubyid_b'>b</span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='id identifier rubyid_has_entries?'>has_entries?</span><span class='lparen'>(</span><span class='id identifier rubyid_b'>b</span><span class='period'>.</span><span class='id identifier rubyid_layers'>layers</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="check_LookupProducerDescriptor-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>check_LookupProducerDescriptor</strong>(p) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>Checks that a type and a name has been declared. The type must be assignable to the type
+declared in the binding. The name can be an empty string to denote 'no name'</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+126
+127
+128
+129
+130
+131
+132</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/bindings_checker.rb', line 126</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_check_LookupProducerDescriptor'>check_LookupProducerDescriptor</span><span class='lparen'>(</span><span class='id identifier rubyid_p'>p</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_b'>b</span> <span class='op'>=</span> <span class='id identifier rubyid_binding_parent'>binding_parent</span><span class='lparen'>(</span><span class='id identifier rubyid_p'>p</span><span class='rparen'>)</span>
+  <span class='kw'>unless</span> <span class='id identifier rubyid_type_calculator'>type_calculator</span><span class='period'>.</span><span class='id identifier rubyid_assignable'>assignable</span><span class='lparen'>(</span><span class='id identifier rubyid_b'>b</span><span class='period'>.</span><span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='id identifier rubyid_p'>p</span><span class='period'>.</span><span class='id identifier rubyid_type'>type</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_acceptor'>acceptor</span><span class='period'>.</span><span class='id identifier rubyid_accept'>accept</span><span class='lparen'>(</span><span class='const'>Issues</span><span class='op'>::</span><span class='const'>INCOMPATIBLE_TYPE</span><span class='comma'>,</span> <span class='id identifier rubyid_p'>p</span><span class='comma'>,</span> <span class='lbrace'>{</span><span class='symbol'>:binding</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_b'>b</span><span class='comma'>,</span> <span class='symbol'>:expected_type</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_b'>b</span><span class='period'>.</span><span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='symbol'>:actual_type</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_p'>p</span><span class='period'>.</span><span class='id identifier rubyid_type'>type</span> <span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+  <span class='id identifier rubyid_acceptor'>acceptor</span><span class='period'>.</span><span class='id identifier rubyid_accept'>accept</span><span class='lparen'>(</span><span class='const'>Issues</span><span class='op'>::</span><span class='const'>MISSING_NAME</span><span class='comma'>,</span> <span class='id identifier rubyid_p'>p</span><span class='comma'>,</span> <span class='lbrace'>{</span><span class='symbol'>:binding</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_b'>b</span><span class='rbrace'>}</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_p'>p</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='comment'># empty string is OK
+</span><span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="check_Multibinding-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>check_Multibinding</strong>(b) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>Checks that the producer is a Multibind producer and that the type is a PCollectionType</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/bindings_checker.rb', line 49</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_check_Multibinding'>check_Multibinding</span><span class='lparen'>(</span><span class='id identifier rubyid_b'>b</span><span class='rparen'>)</span>
+  <span class='comment'># id is optional (empty id blocks contributions)
+</span>
+  <span class='comment'># A multibinding must have PCollectionType
+</span>  <span class='id identifier rubyid_acceptor'>acceptor</span><span class='period'>.</span><span class='id identifier rubyid_accept'>accept</span><span class='lparen'>(</span><span class='const'>Issues</span><span class='op'>::</span><span class='const'>MULTIBIND_TYPE_ERROR</span><span class='comma'>,</span> <span class='id identifier rubyid_b'>b</span><span class='comma'>,</span> <span class='lbrace'>{</span><span class='symbol'>:actual_type</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_b'>b</span><span class='period'>.</span><span class='id identifier rubyid_type'>type</span><span class='rbrace'>}</span><span class='rparen'>)</span>  <span class='kw'>unless</span> <span class='id identifier rubyid_b'>b</span><span class='period'>.</span><span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Types</span><span class='op'>::</span><span class='const'>PCollectionType</span><span class='rparen'>)</span>
+
+  <span class='comment'># if the producer is nil, a suitable producer will be picked automatically
+</span>  <span class='kw'>unless</span> <span class='id identifier rubyid_b'>b</span><span class='period'>.</span><span class='id identifier rubyid_producer'>producer</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>||</span> <span class='id identifier rubyid_b'>b</span><span class='period'>.</span><span class='id identifier rubyid_producer'>producer</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Bindings</span><span class='op'>::</span><span class='const'>MultibindProducerDescriptor</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_acceptor'>acceptor</span><span class='period'>.</span><span class='id identifier rubyid_accept'>accept</span><span class='lparen'>(</span><span class='const'>Issues</span><span class='op'>::</span><span class='const'>MULTIBIND_NOT_COLLECTION_PRODUCER</span><span class='comma'>,</span> <span class='id identifier rubyid_b'>b</span><span class='comma'>,</span> <span class='lbrace'>{</span><span class='symbol'>:actual_producer</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_b'>b</span><span class='period'>.</span><span class='id identifier rubyid_producer'>producer</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="check_NamedBindings-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>check_NamedBindings</strong>(b) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>Checks that a name has been associated with the bindings</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+69
+70
+71
+72</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/bindings_checker.rb', line 69</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_check_NamedBindings'>check_NamedBindings</span><span class='lparen'>(</span><span class='id identifier rubyid_b'>b</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_acceptor'>acceptor</span><span class='period'>.</span><span class='id identifier rubyid_accept'>accept</span><span class='lparen'>(</span><span class='const'>Issues</span><span class='op'>::</span><span class='const'>MISSING_BINDINGS_NAME</span><span class='comma'>,</span> <span class='id identifier rubyid_b'>b</span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='id identifier rubyid_has_chars?'>has_chars?</span><span class='lparen'>(</span><span class='id identifier rubyid_b'>b</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_check_Bindings'>check_Bindings</span><span class='lparen'>(</span><span class='id identifier rubyid_b'>b</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="check_NamedLayer-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>check_NamedLayer</strong>(l) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>Check layer has a name</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+76
+77
+78</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/bindings_checker.rb', line 76</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_check_NamedLayer'>check_NamedLayer</span><span class='lparen'>(</span><span class='id identifier rubyid_l'>l</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_acceptor'>acceptor</span><span class='period'>.</span><span class='id identifier rubyid_accept'>accept</span><span class='lparen'>(</span><span class='const'>Issues</span><span class='op'>::</span><span class='const'>MISSING_LAYER_NAME</span><span class='comma'>,</span> <span class='id identifier rubyid_binding_parent'>binding_parent</span><span class='lparen'>(</span><span class='id identifier rubyid_l'>l</span><span class='rparen'>)</span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='id identifier rubyid_has_chars?'>has_chars?</span><span class='lparen'>(</span><span class='id identifier rubyid_l'>l</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="check_NonCachingProducerDescriptor-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>check_NonCachingProducerDescriptor</strong>(p) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>Checks that the non caching producer has a producer to delegate to</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+88
+89
+90</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/bindings_checker.rb', line 88</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_check_NonCachingProducerDescriptor'>check_NonCachingProducerDescriptor</span><span class='lparen'>(</span><span class='id identifier rubyid_p'>p</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_acceptor'>acceptor</span><span class='period'>.</span><span class='id identifier rubyid_accept'>accept</span><span class='lparen'>(</span><span class='const'>Issues</span><span class='op'>::</span><span class='const'>PRODUCER_MISSING_PRODUCER</span><span class='comma'>,</span> <span class='id identifier rubyid_p'>p</span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='id identifier rubyid_p'>p</span><span class='period'>.</span><span class='id identifier rubyid_producer'>producer</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Bindings</span><span class='op'>::</span><span class='const'>ProducerDescriptor</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="check_PAnyType-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>check_PAnyType</strong>(t) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+170
+171
+172</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/bindings_checker.rb', line 170</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_check_PAnyType'>check_PAnyType</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='rparen'>)</span>
+  <span class='comment'># Do nothing
+</span><span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="check_ProducerProducerDescriptor-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>check_ProducerProducerDescriptor</strong>(p) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>Checks that the producer that this producer delegates to is declared</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+158
+159
+160
+161
+162</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/bindings_checker.rb', line 158</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_check_ProducerProducerDescriptor'>check_ProducerProducerDescriptor</span><span class='lparen'>(</span><span class='id identifier rubyid_p'>p</span><span class='rparen'>)</span>
+  <span class='kw'>unless</span> <span class='id identifier rubyid_p'>p</span><span class='period'>.</span><span class='id identifier rubyid_producer'>producer</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Bindings</span><span class='op'>::</span><span class='const'>ProducerDescriptor</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_acceptor'>acceptor</span><span class='period'>.</span><span class='id identifier rubyid_accept'>accept</span><span class='lparen'>(</span><span class='const'>Issues</span><span class='op'>::</span><span class='const'>PRODUCER_MISSING_PRODUCER</span><span class='comma'>,</span> <span class='id identifier rubyid_p'>p</span><span class='comma'>,</span> <span class='lbrace'>{</span><span class='symbol'>:binding</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_binding_parent'>binding_parent</span><span class='lparen'>(</span><span class='id identifier rubyid_p'>p</span><span class='rparen'>)</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="has_chars?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>has_chars?</strong>(s) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>Returns true if the argument is a non empty string</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+176
+177
+178</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/bindings_checker.rb', line 176</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_has_chars?'>has_chars?</span><span class='lparen'>(</span><span class='id identifier rubyid_s'>s</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_s'>s</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>String</span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='op'>!</span><span class='id identifier rubyid_s'>s</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="has_entries?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>has_entries?</strong>(s) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+181
+182
+183</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/bindings_checker.rb', line 181</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_has_entries?'>has_entries?</span><span class='lparen'>(</span><span class='id identifier rubyid_s'>s</span><span class='rparen'>)</span>
+  <span class='op'>!</span><span class='lparen'>(</span><span class='id identifier rubyid_s'>s</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>||</span> <span class='id identifier rubyid_s'>s</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="validate-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>validate</strong>(b) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Validates the entire model by visiting each model element and calling <code>check</code>.
+The result is collected (or acted on immediately) by the configured diagnostic provider/acceptor
+given when creating this Checker.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+26
+27
+28
+29</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/bindings_checker.rb', line 26</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_validate'>validate</span><span class='lparen'>(</span><span class='id identifier rubyid_b'>b</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_check'>check</span><span class='lparen'>(</span><span class='id identifier rubyid_b'>b</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_b'>b</span><span class='period'>.</span><span class='id identifier rubyid_eAllContents'>eAllContents</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_c'>c</span><span class='op'>|</span> <span class='id identifier rubyid_check'>check</span><span class='lparen'>(</span><span class='id identifier rubyid_c'>c</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+    <div id="footer">
+  Generated on Tue Mar 24 17:52:33 2015 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.6 (ruby-2.0.0).
+</div>
+
+  </body>
+</html>

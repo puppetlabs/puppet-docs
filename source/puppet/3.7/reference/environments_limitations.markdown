@@ -18,32 +18,15 @@ This has to do with the way Ruby loads code, and we're not sure if it can be fix
 
 If you're interested in the issue, it's being tracked as [PUP-731](https://tickets.puppetlabs.com/browse/PUP-731).
 
-## After Changing an Environment With a Long Timeout, You Must Kick the Puppet Master
+## For Best Performance, You Might Have to Change Your Deploy Process
 
-If an environment has an `environment_timeout` value of more than a few minutes, you must force your Puppet master service to reload that environment whenever you change it; otherwise, your nodes may receive inconsistent catalogs.
+[configuring_timeout]: ./environments_configuring.html#environmenttimeout
 
-* If you're using Puppet Server ≥ 1.0 or Puppet Enterprise ≥ 3.7.1, [use the `environment-cache` HTTPS endpoint.][server_cache]
-* If you're using a Rack Puppet master or an earlier version of Puppet Server, restart the Puppet master service.
+The default value of [the `environment_timeout` setting][configuring_timeout] has to be `0`, because anything else risks frustrating new users. The only problem with that value is that it wastes a lot of effort on your Puppet master.
 
-[server_cache]: /puppetserver/latest/admin-api/v1/environment-cache.html
+For best performance, you should set `environment_timeout = unlimited`, but this requires a change to your code deployment process, because you'll need to refresh the Puppet master to make it notice the new code.
 
-> ### Why This is Necessary
->
-> The Puppet master loads an environment's data the first time it gets a request for that environment, then caches that data. Cached environments will time out and be discarded after a while, after which they'll be loaded on request again.
->
-> This sounds simple, but in practice it's complicated, because your Puppet master service usually runs multiple Ruby interpreters to handle parallel requests. (Puppet Server uses multiple JRuby interpreters, and Apache with Passenger uses multiple MRI Ruby processes.)
->
-> In short, it goes like this:
->
-> * Each Ruby interpreter keeps its own separate timeout counter for each environment.
->     * Each of these timers starts at a different time, since they load environments on demand.
-> * When you change an environment's files, the interpreter whose timeout counter started first will get the updated files before the others.
->     * This means there's a period where some interpreters have new manifests and others still have the stale ones cached.
-> * When an agent makes a catalog request, there's no way to predict which interpreter will respond to it. (Puppet Server is more unpredictable than Passenger, since it distributes work more evenly among its interpreters. This is why most people only started seeing this issue after switching to Puppet Server; as long as Passenger's load was low, it was unlikely to send an agent to different interpreters in consecutive runs.)
-> * So if an agent checks in twice during the interval of potential inconsistency, it might churn back and forth between old and new versions of its environment, sometimes resulting in unwanted configurations.
->
-> Thus: whenever you change any environment whose timeout is more than a few minutes, you must manually tell your Puppet master service to drop the cached environments in all of its Ruby interpreters. Version 1.0 of Puppet Server added [a fast HTTPS endpoint for this specific purpose.][server_cache] With Rack Puppet masters and earlier versions of Puppet Server, a restart is the only way to force a reload of environments.
-
+For more info, see [the timeout section of the Configuring Environments page.][configuring_timeout]
 
 ## Hiera Configuration Can't be Specified Per Environment
 

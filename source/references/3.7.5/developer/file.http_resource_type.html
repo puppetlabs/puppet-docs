@@ -1,0 +1,305 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>
+  File: http_resource_type
+  
+    &mdash; Documentation by YARD 0.8.7.6
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '';
+  framesUrl = "frames.html#!file.http_resource_type.html";
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index</a> &raquo; 
+    <span class="title">File: http_resource_type</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><div id='filecontents'><h1>Resource Type</h1>
+
+<p>The <code>resource_type</code> and <code>resource_types</code> endpoints return information about the
+following kinds of objects available to the puppet master:</p>
+
+<ul>
+<li>Classes (<code>class myclass { ... }</code>)</li>
+<li>Defined types (<code>define mytype ($parameter) { ... }</code>)</li>
+<li>Node definitions (<code>node 'web01.example.com' { ... }</code>)</li>
+</ul>
+
+
+<p>For an object to be available to the puppet master, it must be present in the
+site manifest (configured by the <code>manifest</code> setting) or in a module located in
+the modulepath (configured by the <code>modulepath</code> setting; classes and defined
+types only).</p>
+
+<p>Note that this endpoint does <strong>not</strong> return information about native resource
+types written in Ruby.</p>
+
+<p>See the end of this page for the source manifest used to generate all example
+responses.</p>
+
+<h2>Find</h2>
+
+<p>Get info about a specific class, defined type, or node, by name. Returns a
+single resource_type response object (see "Schema" below).</p>
+
+<pre class="code ruby"><code class="ruby">GET /:environment/resource_type/:nodename
+</code></pre>
+
+<blockquote><p><strong>Note:</strong> Although no two classes or defined types may have the same name,
+it's possible for a node definition to have the same name as a class or
+defined type. If this happens, the class or defined type will be returned
+instead of the node definition. The order in which kinds of objects are
+searched is classes, then defined types, then node definitions.</p></blockquote>
+
+<h3>Supported HTTP Methods</h3>
+
+<p>GET</p>
+
+<h3>Supported Formats</h3>
+
+<p>PSON</p>
+
+<h3>Parameters</h3>
+
+<p>None</p>
+
+<h3>Responses</h3>
+
+<h4>Resource Type Found</h4>
+
+<pre class="code ruby"><code class="ruby">GET /env/resource_type/athing
+
+HTTP 200 OK
+Content-Type: text/pson
+
+{
+  &quot;line&quot;: 7,
+  &quot;file&quot;: &quot;/etc/puppet/manifests/site.pp&quot;,
+  &quot;name&quot;:&quot;athing&quot;,
+  &quot;kind&quot;:&quot;class&quot;
+}
+</code></pre>
+
+<h4>Resource Type Not Found</h4>
+
+<pre class="code ruby"><code class="ruby">GET /env/resource_type/resource_type_does_not_exist
+
+HTTP 404 Not Found
+Content-Type: text/plain
+
+Not Found: Could not find resource_type resource_type_does_not_exist
+</code></pre>
+
+<h4>No Resource Type Name Given</h4>
+
+<pre class="code ruby"><code class="ruby">GET /env/resource_type/
+
+HTTP/1.1 400 Bad Request
+Content-Type: text/plain
+
+No request key specified in /env/resource_type/
+</code></pre>
+
+<h2>Search</h2>
+
+<p>List all resource types matching a regular expression. Returns an array of
+resource_type response objects (see "Schema" below).</p>
+
+<pre class="code ruby"><code class="ruby">GET /:environment/resource_types/:search_string
+</code></pre>
+
+<p>The <code>search_string</code> is required. It must be either a Ruby regular expression or
+the string <code>*</code> (which will match all resource types). Surrounding slashes are
+stripped. Note that if you want to use the <code>?</code> character in a regular
+expression, it must be escaped as <code>%3F</code>.</p>
+
+<h3>Supported HTTP Methods</h3>
+
+<p>GET</p>
+
+<h3>Supported Formats</h3>
+
+<p>Accept: pson, text/pson</p>
+
+<h3>Parameters</h3>
+
+<ul>
+<li><code>kind</code>: Optional. Filter the returned resource types by the <code>kind</code> field.
+Valid values are <code>class</code>, <code>node</code>, and <code>defined_type</code>.</li>
+</ul>
+
+
+<h3>Responses</h3>
+
+<h4>Search With Results</h4>
+
+<pre class="code ruby"><code class="ruby">GET /env/resource_types/*
+
+HTTP 200 OK
+Content-Type: text/pson
+
+[
+  {
+    &quot;file&quot;: &quot;/etc/puppet/manifests/site.pp&quot;,
+    &quot;kind&quot;: &quot;class&quot;,
+    &quot;line&quot;: 7,
+    &quot;name&quot;: &quot;athing&quot;
+  },
+  {
+    &quot;doc&quot;: &quot;An example class\n&quot;,
+    &quot;file&quot;: &quot;/etc/puppet/manifests/site.pp&quot;,
+    &quot;kind&quot;: &quot;class&quot;,
+    &quot;line&quot;: 11,
+    &quot;name&quot;: &quot;bthing&quot;,
+    &quot;parent&quot;: &quot;athing&quot;
+  },
+  {
+    &quot;file&quot;: &quot;/etc/puppet/manifests/site.pp&quot;,
+    &quot;kind&quot;: &quot;defined_type&quot;,
+    &quot;line&quot;: 1,
+    &quot;name&quot;: &quot;hello&quot;,
+    &quot;parameters&quot;: {
+      &quot;a&quot;: &quot;{key2 =&gt; \&quot;val2\&quot;, key =&gt; \&quot;val\&quot;}&quot;,
+      &quot;message&quot;: &quot;$title&quot;
+    }
+  },
+  {
+    &quot;file&quot;: &quot;/etc/puppet/manifests/site.pp&quot;,
+    &quot;kind&quot;: &quot;node&quot;,
+    &quot;line&quot;: 14,
+    &quot;name&quot;: &quot;web01.example.com&quot;
+  },
+  {
+    &quot;file&quot;: &quot;/etc/puppet/manifests/site.pp&quot;,
+    &quot;kind&quot;: &quot;node&quot;,
+    &quot;line&quot;: 17,
+    &quot;name&quot;: &quot;default&quot;
+  }
+]
+</code></pre>
+
+<h4>Search Not Found</h4>
+
+<pre class="code ruby"><code class="ruby">GET /env/resource_types/pattern.that.finds.no.resources
+
+HTTP/1.1 404 Not Found: Could not find instances in resource_type with &#39;pattern.that.finds.no.resources&#39;
+Content-Type: text/plain
+
+Not Found: Could not find instances in resource_type with &#39;pattern.that.finds.no.resources&#39;
+</code></pre>
+
+<h4>No Search Term Given</h4>
+
+<pre class="code ruby"><code class="ruby">GET /env/resource_types/
+
+HTTP/1.1 400 Bad Request
+Content-Type: text/plain
+
+No request key specified in /env/resource_types/
+</code></pre>
+
+<h4>Search Term Is an Invalid Regular Expression</h4>
+
+<p>Searching on <code>[-</code> for instance.</p>
+
+<pre class="code ruby"><code class="ruby">GET /env/resource_types/%5b-
+
+HTTP/1.1 400 Bad Request
+Content-Type: text/plain
+
+Invalid regex &#39;[-&#39;: premature end of char-class: /[-/
+</code></pre>
+
+<h3>Examples</h3>
+
+<p>List all classes:</p>
+
+<pre class="code ruby"><code class="ruby">GET /:environment/resource_types/*?kind=class
+</code></pre>
+
+<p>List matching a regular expression:</p>
+
+<pre class="code ruby"><code class="ruby">GET /:environment/resource_types/foo.*bar
+</code></pre>
+
+<h2>Schema</h2>
+
+<p>A <code>resource_type</code> response body conforms to the schema at <a href="file.resource_type.html" title="api/schemas/resource_type.json">api/schemas/resource_type.json</a>.</p>
+
+<h2>Source</h2>
+
+<p>Example site.pp used to generate all the responses in this file:</p>
+
+<pre class="code ruby"><code class="ruby">define hello ($message = $title, $a = { key =&gt; &#39;val&#39;, key2 =&gt; &#39;val2&#39; }) {
+  notify {$message: }
+}
+
+hello { &quot;there&quot;: }
+
+class athing {
+}
+
+# An example class
+class bthing inherits athing {
+}
+
+node &#39;web01.example.com&#39; {}
+node default {}
+</code></pre>
+</div></div>
+
+    <div id="footer">
+  Generated on Tue Mar 24 17:52:18 2015 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.6 (ruby-2.0.0).
+</div>
+
+  </body>
+</html>

@@ -1,0 +1,1911 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Class: Puppet::Pops::Types::TypeParser
+  
+    &mdash; Documentation by YARD 0.8.7.6
+  
+</title>
+
+  <link rel="stylesheet" href="../../../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../../../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '../../../';
+  framesUrl = "../../../frames.html#!Puppet/Pops/Types/TypeParser.html";
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../../../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../../../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../../../_index.html">Index (T)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../../../Puppet.html" title="Puppet (module)">Puppet</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../../Pops.html" title="Puppet::Pops (module)">Pops</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../Types.html" title="Puppet::Pops::Types (module)">Types</a></span></span>
+     &raquo; 
+    <span class="title">TypeParser</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../../../class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="../../../method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="../../../file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><h1>Class: Puppet::Pops::Types::TypeParser
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName"><span class='object_link'>Object</span></span>
+      
+        <ul class="fullTree">
+          <li><span class='object_link'>Object</span></li>
+          
+            <li class="next">Puppet::Pops::Types::TypeParser</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">lib/puppet/pops/types/type_parser.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p>This class provides parsing of Type Specification from a string into the Type
+Model that is produced by the Puppet::Pops::Types::TypeFactory.</p>
+
+<p>The Type Specifications that are parsed are the same as the stringified forms
+of types produced by the <span class='object_link'><a href="TypeCalculator.html" title="Puppet::Pops::Types::TypeCalculator (class)">TypeCalculator</a></span>.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+  <h2>Constant Summary</h2>
+  
+    <dl class="constants">
+      
+        <dt id="TYPES-constant" class="">TYPES =
+          <div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This constant is part of a private API.</strong>
+  You should avoid using this constant if possible, as it may be removed or be changed in the future.
+</p>
+
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Pops</span><span class='op'>::</span><span class='const'>Types</span><span class='op'>::</span><span class='const'>TypeFactory</span></pre></dd>
+      
+    </dl>
+  
+
+
+
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">- (TypeParser) <strong>initialize</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>A new instance of TypeParser.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#interpret-instance_method" title="#interpret (instance method)">- (Object) <strong>interpret</strong>(ast) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#interpret_AccessExpression-instance_method" title="#interpret_AccessExpression (instance method)">- (Object) <strong>interpret_AccessExpression</strong>(parameterized_ast) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#interpret_any-instance_method" title="#interpret_any (instance method)">- (Object) <strong>interpret_any</strong>(ast) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#interpret_LiteralDefault-instance_method" title="#interpret_LiteralDefault (instance method)">- (Object) <strong>interpret_LiteralDefault</strong>(o) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#interpret_LiteralFloat-instance_method" title="#interpret_LiteralFloat (instance method)">- (Object) <strong>interpret_LiteralFloat</strong>(o) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#interpret_LiteralHash-instance_method" title="#interpret_LiteralHash (instance method)">- (Object) <strong>interpret_LiteralHash</strong>(o) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#interpret_LiteralInteger-instance_method" title="#interpret_LiteralInteger (instance method)">- (Object) <strong>interpret_LiteralInteger</strong>(o) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#interpret_LiteralString-instance_method" title="#interpret_LiteralString (instance method)">- (Object) <strong>interpret_LiteralString</strong>(o) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#interpret_Object-instance_method" title="#interpret_Object (instance method)">- (Object) <strong>interpret_Object</strong>(o) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#interpret_Program-instance_method" title="#interpret_Program (instance method)">- (Object) <strong>interpret_Program</strong>(o) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#interpret_QualifiedName-instance_method" title="#interpret_QualifiedName (instance method)">- (Object) <strong>interpret_QualifiedName</strong>(o) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#interpret_QualifiedReference-instance_method" title="#interpret_QualifiedReference (instance method)">- (Object) <strong>interpret_QualifiedReference</strong>(name_ast) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#interpret_String-instance_method" title="#interpret_String (instance method)">- (Object) <strong>interpret_String</strong>(o) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#parse-instance_method" title="#parse (instance method)">- (Puppet::Pops::Types::PAnyType) <strong>parse</strong>(string) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Produces a <em>puppet type</em> based on the given string.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+<div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <h3 class="signature first" id="initialize-instance_method">
+  
+    - (<tt><span class='object_link'><a href="" title="Puppet::Pops::Types::TypeParser (class)">TypeParser</a></span></tt>) <strong>initialize</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Returns a new instance of TypeParser</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+13
+14
+15
+16</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_parser.rb', line 13</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span>
+  <span class='ivar'>@parser</span> <span class='op'>=</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Pops</span><span class='op'>::</span><span class='const'>Parser</span><span class='op'>::</span><span class='const'>Parser</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='rparen'>)</span>
+  <span class='ivar'>@type_transformer</span> <span class='op'>=</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Pops</span><span class='op'>::</span><span class='const'>Visitor</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='kw'>nil</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>interpret</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='int'>0</span><span class='comma'>,</span> <span class='int'>0</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="interpret-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>interpret</strong>(ast) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+47
+48
+49
+50
+51
+52</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_parser.rb', line 47</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_interpret'>interpret</span><span class='lparen'>(</span><span class='id identifier rubyid_ast'>ast</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='ivar'>@type_transformer</span><span class='period'>.</span><span class='id identifier rubyid_visit_this_0'>visit_this_0</span><span class='lparen'>(</span><span class='kw'>self</span><span class='comma'>,</span> <span class='id identifier rubyid_ast'>ast</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='id identifier rubyid_result'>result</span><span class='period'>.</span><span class='id identifier rubyid_body'>body</span> <span class='kw'>if</span> <span class='id identifier rubyid_result'>result</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Pops</span><span class='op'>::</span><span class='const'>Model</span><span class='op'>::</span><span class='const'>Program</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_raise_invalid_type_specification_error'>raise_invalid_type_specification_error</span> <span class='kw'>unless</span> <span class='id identifier rubyid_result'>result</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Pops</span><span class='op'>::</span><span class='const'>Types</span><span class='op'>::</span><span class='const'>PAnyType</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_result'>result</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="interpret_AccessExpression-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>interpret_AccessExpression</strong>(parameterized_ast) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_parser.rb', line 200</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_interpret_AccessExpression'>interpret_AccessExpression</span><span class='lparen'>(</span><span class='id identifier rubyid_parameterized_ast'>parameterized_ast</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_parameters'>parameters</span> <span class='op'>=</span> <span class='id identifier rubyid_parameterized_ast'>parameterized_ast</span><span class='period'>.</span><span class='id identifier rubyid_keys'>keys</span><span class='period'>.</span><span class='id identifier rubyid_collect'>collect</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_param'>param</span><span class='op'>|</span> <span class='id identifier rubyid_interpret_any'>interpret_any</span><span class='lparen'>(</span><span class='id identifier rubyid_param'>param</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
+
+  <span class='kw'>unless</span> <span class='id identifier rubyid_parameterized_ast'>parameterized_ast</span><span class='period'>.</span><span class='id identifier rubyid_left_expr'>left_expr</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Pops</span><span class='op'>::</span><span class='const'>Model</span><span class='op'>::</span><span class='const'>QualifiedReference</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_raise_invalid_type_specification_error'>raise_invalid_type_specification_error</span>
+  <span class='kw'>end</span>
+
+  <span class='kw'>case</span> <span class='id identifier rubyid_parameterized_ast'>parameterized_ast</span><span class='period'>.</span><span class='id identifier rubyid_left_expr'>left_expr</span><span class='period'>.</span><span class='id identifier rubyid_value'>value</span>
+  <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>array</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>case</span> <span class='id identifier rubyid_parameters'>parameters</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span>
+    <span class='kw'>when</span> <span class='int'>1</span>
+    <span class='kw'>when</span> <span class='int'>2</span>
+      <span class='id identifier rubyid_size_type'>size_type</span> <span class='op'>=</span>
+      <span class='kw'>if</span> <span class='id identifier rubyid_parameters'>parameters</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Pops</span><span class='op'>::</span><span class='const'>Types</span><span class='op'>::</span><span class='const'>PIntegerType</span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_parameters'>parameters</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_copy'>copy</span>
+      <span class='kw'>else</span>
+        <span class='id identifier rubyid_assert_range_parameter'>assert_range_parameter</span><span class='lparen'>(</span><span class='id identifier rubyid_parameters'>parameters</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+        <span class='const'>TYPES</span><span class='period'>.</span><span class='id identifier rubyid_range'>range</span><span class='lparen'>(</span><span class='id identifier rubyid_parameters'>parameters</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='symbol'>:default</span><span class='rparen'>)</span>
+      <span class='kw'>end</span>
+    <span class='kw'>when</span> <span class='int'>3</span>
+      <span class='id identifier rubyid_assert_range_parameter'>assert_range_parameter</span><span class='lparen'>(</span><span class='id identifier rubyid_parameters'>parameters</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_assert_range_parameter'>assert_range_parameter</span><span class='lparen'>(</span><span class='id identifier rubyid_parameters'>parameters</span><span class='lbracket'>[</span><span class='int'>2</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_size_type'>size_type</span> <span class='op'>=</span> <span class='const'>TYPES</span><span class='period'>.</span><span class='id identifier rubyid_range'>range</span><span class='lparen'>(</span><span class='id identifier rubyid_parameters'>parameters</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_parameters'>parameters</span><span class='lbracket'>[</span><span class='int'>2</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+    <span class='kw'>else</span>
+      <span class='id identifier rubyid_raise_invalid_parameters_error'>raise_invalid_parameters_error</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Array</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>1 to 3</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_parameters'>parameters</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+    <span class='id identifier rubyid_assert_type'>assert_type</span><span class='lparen'>(</span><span class='id identifier rubyid_parameters'>parameters</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_t'>t</span> <span class='op'>=</span> <span class='const'>TYPES</span><span class='period'>.</span><span class='id identifier rubyid_array_of'>array_of</span><span class='lparen'>(</span><span class='id identifier rubyid_parameters'>parameters</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_t'>t</span><span class='period'>.</span><span class='id identifier rubyid_size_type'>size_type</span> <span class='op'>=</span> <span class='id identifier rubyid_size_type'>size_type</span> <span class='kw'>if</span> <span class='id identifier rubyid_size_type'>size_type</span>
+    <span class='id identifier rubyid_t'>t</span>
+
+  <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>hash</span><span class='tstring_end'>&quot;</span></span>
+    <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='kw'>case</span> <span class='id identifier rubyid_parameters'>parameters</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span>
+    <span class='kw'>when</span> <span class='int'>2</span>
+      <span class='id identifier rubyid_assert_type'>assert_type</span><span class='lparen'>(</span><span class='id identifier rubyid_parameters'>parameters</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_assert_type'>assert_type</span><span class='lparen'>(</span><span class='id identifier rubyid_parameters'>parameters</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+      <span class='const'>TYPES</span><span class='period'>.</span><span class='id identifier rubyid_hash_of'>hash_of</span><span class='lparen'>(</span><span class='id identifier rubyid_parameters'>parameters</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_parameters'>parameters</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+    <span class='kw'>when</span> <span class='int'>3</span>
+      <span class='id identifier rubyid_size_type'>size_type</span> <span class='op'>=</span>
+      <span class='kw'>if</span> <span class='id identifier rubyid_parameters'>parameters</span><span class='lbracket'>[</span><span class='int'>2</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Pops</span><span class='op'>::</span><span class='const'>Types</span><span class='op'>::</span><span class='const'>PIntegerType</span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_parameters'>parameters</span><span class='lbracket'>[</span><span class='int'>2</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_copy'>copy</span>
+      <span class='kw'>else</span>
+        <span class='id identifier rubyid_assert_range_parameter'>assert_range_parameter</span><span class='lparen'>(</span><span class='id identifier rubyid_parameters'>parameters</span><span class='lbracket'>[</span><span class='int'>2</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+        <span class='const'>TYPES</span><span class='period'>.</span><span class='id identifier rubyid_range'>range</span><span class='lparen'>(</span><span class='id identifier rubyid_parameters'>parameters</span><span class='lbracket'>[</span><span class='int'>2</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='symbol'>:default</span><span class='rparen'>)</span>
+      <span class='kw'>end</span>
+      <span class='id identifier rubyid_assert_type'>assert_type</span><span class='lparen'>(</span><span class='id identifier rubyid_parameters'>parameters</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_assert_type'>assert_type</span><span class='lparen'>(</span><span class='id identifier rubyid_parameters'>parameters</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+      <span class='const'>TYPES</span><span class='period'>.</span><span class='id identifier rubyid_hash_of'>hash_of</span><span class='lparen'>(</span><span class='id identifier rubyid_parameters'>parameters</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_parameters'>parameters</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+    <span class='kw'>when</span> <span class='int'>4</span>
+      <span class='id identifier rubyid_assert_range_parameter'>assert_range_parameter</span><span class='lparen'>(</span><span class='id identifier rubyid_parameters'>parameters</span><span class='lbracket'>[</span><span class='int'>2</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_assert_range_parameter'>assert_range_parameter</span><span class='lparen'>(</span><span class='id identifier rubyid_parameters'>parameters</span><span class='lbracket'>[</span><span class='int'>3</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_size_type'>size_type</span> <span class='op'>=</span> <span class='const'>TYPES</span><span class='period'>.</span><span class='id identifier rubyid_range'>range</span><span class='lparen'>(</span><span class='id identifier rubyid_parameters'>parameters</span><span class='lbracket'>[</span><span class='int'>2</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_parameters'>parameters</span><span class='lbracket'>[</span><span class='int'>3</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_assert_type'>assert_type</span><span class='lparen'>(</span><span class='id identifier rubyid_parameters'>parameters</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_assert_type'>assert_type</span><span class='lparen'>(</span><span class='id identifier rubyid_parameters'>parameters</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+      <span class='const'>TYPES</span><span class='period'>.</span><span class='id identifier rubyid_hash_of'>hash_of</span><span class='lparen'>(</span><span class='id identifier rubyid_parameters'>parameters</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_parameters'>parameters</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+    <span class='kw'>else</span>
+      <span class='id identifier rubyid_raise_invalid_parameters_error'>raise_invalid_parameters_error</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Hash</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>2 to 4</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_parameters'>parameters</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+    <span class='id identifier rubyid_result'>result</span><span class='period'>.</span><span class='id identifier rubyid_size_type'>size_type</span> <span class='op'>=</span> <span class='id identifier rubyid_size_type'>size_type</span> <span class='kw'>if</span> <span class='id identifier rubyid_size_type'>size_type</span>
+    <span class='id identifier rubyid_result'>result</span>
+
+  <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>collection</span><span class='tstring_end'>&quot;</span></span>
+    <span class='id identifier rubyid_size_type'>size_type</span> <span class='op'>=</span> <span class='kw'>case</span> <span class='id identifier rubyid_parameters'>parameters</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span>
+    <span class='kw'>when</span> <span class='int'>1</span>
+      <span class='kw'>if</span> <span class='id identifier rubyid_parameters'>parameters</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Pops</span><span class='op'>::</span><span class='const'>Types</span><span class='op'>::</span><span class='const'>PIntegerType</span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_parameters'>parameters</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_copy'>copy</span>
+      <span class='kw'>else</span>
+        <span class='id identifier rubyid_assert_range_parameter'>assert_range_parameter</span><span class='lparen'>(</span><span class='id identifier rubyid_parameters'>parameters</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+        <span class='const'>TYPES</span><span class='period'>.</span><span class='id identifier rubyid_range'>range</span><span class='lparen'>(</span><span class='id identifier rubyid_parameters'>parameters</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='symbol'>:default</span><span class='rparen'>)</span>
+      <span class='kw'>end</span>
+    <span class='kw'>when</span> <span class='int'>2</span>
+      <span class='id identifier rubyid_assert_range_parameter'>assert_range_parameter</span><span class='lparen'>(</span><span class='id identifier rubyid_parameters'>parameters</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_assert_range_parameter'>assert_range_parameter</span><span class='lparen'>(</span><span class='id identifier rubyid_parameters'>parameters</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+      <span class='const'>TYPES</span><span class='period'>.</span><span class='id identifier rubyid_range'>range</span><span class='lparen'>(</span><span class='id identifier rubyid_parameters'>parameters</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_parameters'>parameters</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+    <span class='kw'>else</span>
+      <span class='id identifier rubyid_raise_invalid_parameters_error'>raise_invalid_parameters_error</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Collection</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>1 to 2</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_parameters'>parameters</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+    <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='const'>TYPES</span><span class='period'>.</span><span class='id identifier rubyid_collection'>collection</span>
+    <span class='id identifier rubyid_result'>result</span><span class='period'>.</span><span class='id identifier rubyid_size_type'>size_type</span> <span class='op'>=</span> <span class='id identifier rubyid_size_type'>size_type</span>
+    <span class='id identifier rubyid_result'>result</span>
+
+  <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>class</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_parameters'>parameters</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='op'>!=</span> <span class='int'>1</span>
+      <span class='id identifier rubyid_raise_invalid_parameters_error'>raise_invalid_parameters_error</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Class</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='int'>1</span><span class='comma'>,</span> <span class='id identifier rubyid_parameters'>parameters</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+    <span class='const'>TYPES</span><span class='period'>.</span><span class='id identifier rubyid_host_class'>host_class</span><span class='lparen'>(</span><span class='id identifier rubyid_parameters'>parameters</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+
+  <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>resource</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_parameters'>parameters</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='op'>==</span> <span class='int'>1</span>
+      <span class='const'>TYPES</span><span class='period'>.</span><span class='id identifier rubyid_resource'>resource</span><span class='lparen'>(</span><span class='id identifier rubyid_parameters'>parameters</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+    <span class='kw'>elsif</span> <span class='id identifier rubyid_parameters'>parameters</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='op'>!=</span> <span class='int'>2</span>
+      <span class='id identifier rubyid_raise_invalid_parameters_error'>raise_invalid_parameters_error</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Resource</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>1 or 2</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_parameters'>parameters</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='rparen'>)</span>
+    <span class='kw'>else</span>
+      <span class='const'>TYPES</span><span class='period'>.</span><span class='id identifier rubyid_resource'>resource</span><span class='lparen'>(</span><span class='id identifier rubyid_parameters'>parameters</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_parameters'>parameters</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+
+  <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>regexp</span><span class='tstring_end'>&quot;</span></span>
+    <span class='comment'># 1 parameter being a string, or regular expression
+</span>    <span class='id identifier rubyid_raise_invalid_parameters_error'>raise_invalid_parameters_error</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Regexp</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>1</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_parameters'>parameters</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='id identifier rubyid_parameters'>parameters</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='op'>==</span> <span class='int'>1</span>
+    <span class='const'>TYPES</span><span class='period'>.</span><span class='id identifier rubyid_regexp'>regexp</span><span class='lparen'>(</span><span class='id identifier rubyid_parameters'>parameters</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+
+  <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>enum</span><span class='tstring_end'>&quot;</span></span>
+    <span class='comment'># 1..m parameters being strings
+</span>    <span class='id identifier rubyid_raise_invalid_parameters_error'>raise_invalid_parameters_error</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Enum</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>1 or more</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_parameters'>parameters</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='id identifier rubyid_parameters'>parameters</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='op'>&gt;=</span> <span class='int'>1</span>
+    <span class='const'>TYPES</span><span class='period'>.</span><span class='id identifier rubyid_enum'>enum</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_parameters'>parameters</span><span class='rparen'>)</span>
+
+  <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>pattern</span><span class='tstring_end'>&quot;</span></span>
+    <span class='comment'># 1..m parameters being strings or regular expressions
+</span>    <span class='id identifier rubyid_raise_invalid_parameters_error'>raise_invalid_parameters_error</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Pattern</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>1 or more</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_parameters'>parameters</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='id identifier rubyid_parameters'>parameters</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='op'>&gt;=</span> <span class='int'>1</span>
+    <span class='const'>TYPES</span><span class='period'>.</span><span class='id identifier rubyid_pattern'>pattern</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_parameters'>parameters</span><span class='rparen'>)</span>
+
+  <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>variant</span><span class='tstring_end'>&quot;</span></span>
+    <span class='comment'># 1..m parameters being strings or regular expressions
+</span>    <span class='id identifier rubyid_raise_invalid_parameters_error'>raise_invalid_parameters_error</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Variant</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>1 or more</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_parameters'>parameters</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='id identifier rubyid_parameters'>parameters</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='op'>&gt;=</span> <span class='int'>1</span>
+    <span class='const'>TYPES</span><span class='period'>.</span><span class='id identifier rubyid_variant'>variant</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_parameters'>parameters</span><span class='rparen'>)</span>
+
+  <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>tuple</span><span class='tstring_end'>&quot;</span></span>
+    <span class='comment'># 1..m parameters being types (last two optionally integer or literal default
+</span>    <span class='id identifier rubyid_raise_invalid_parameters_error'>raise_invalid_parameters_error</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Tuple</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>1 or more</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_parameters'>parameters</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='id identifier rubyid_parameters'>parameters</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='op'>&gt;=</span> <span class='int'>1</span>
+    <span class='id identifier rubyid_length'>length</span> <span class='op'>=</span> <span class='id identifier rubyid_parameters'>parameters</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span>
+    <span class='kw'>if</span> <span class='const'>TYPES</span><span class='period'>.</span><span class='id identifier rubyid_is_range_parameter?'>is_range_parameter?</span><span class='lparen'>(</span><span class='id identifier rubyid_parameters'>parameters</span><span class='lbracket'>[</span><span class='op'>-</span><span class='int'>2</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+      <span class='comment'># min, max specification
+</span>      <span class='id identifier rubyid_min'>min</span> <span class='op'>=</span> <span class='id identifier rubyid_parameters'>parameters</span><span class='lbracket'>[</span><span class='op'>-</span><span class='int'>2</span><span class='rbracket'>]</span>
+      <span class='id identifier rubyid_min'>min</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='id identifier rubyid_min'>min</span> <span class='op'>==</span> <span class='symbol'>:default</span> <span class='op'>||</span> <span class='id identifier rubyid_min'>min</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>default</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='op'>?</span> <span class='int'>0</span> <span class='op'>:</span> <span class='id identifier rubyid_min'>min</span>
+      <span class='id identifier rubyid_assert_range_parameter'>assert_range_parameter</span><span class='lparen'>(</span><span class='id identifier rubyid_parameters'>parameters</span><span class='lbracket'>[</span><span class='op'>-</span><span class='int'>1</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_max'>max</span> <span class='op'>=</span> <span class='id identifier rubyid_parameters'>parameters</span><span class='lbracket'>[</span><span class='op'>-</span><span class='int'>1</span><span class='rbracket'>]</span>
+      <span class='id identifier rubyid_max'>max</span> <span class='op'>=</span> <span class='id identifier rubyid_max'>max</span> <span class='op'>==</span> <span class='symbol'>:default</span> <span class='op'>?</span> <span class='kw'>nil</span> <span class='op'>:</span> <span class='id identifier rubyid_max'>max</span>
+      <span class='id identifier rubyid_parameters'>parameters</span> <span class='op'>=</span> <span class='id identifier rubyid_parameters'>parameters</span><span class='lbracket'>[</span><span class='int'>0</span><span class='comma'>,</span> <span class='id identifier rubyid_length'>length</span><span class='op'>-</span><span class='int'>2</span><span class='rbracket'>]</span>
+    <span class='kw'>elsif</span> <span class='const'>TYPES</span><span class='period'>.</span><span class='id identifier rubyid_is_range_parameter?'>is_range_parameter?</span><span class='lparen'>(</span><span class='id identifier rubyid_parameters'>parameters</span><span class='lbracket'>[</span><span class='op'>-</span><span class='int'>1</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_min'>min</span> <span class='op'>=</span> <span class='id identifier rubyid_parameters'>parameters</span><span class='lbracket'>[</span><span class='op'>-</span><span class='int'>1</span><span class='rbracket'>]</span>
+      <span class='id identifier rubyid_min'>min</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='id identifier rubyid_min'>min</span> <span class='op'>==</span> <span class='symbol'>:default</span> <span class='op'>||</span> <span class='id identifier rubyid_min'>min</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>default</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='op'>?</span> <span class='int'>0</span> <span class='op'>:</span> <span class='id identifier rubyid_min'>min</span>
+      <span class='id identifier rubyid_max'>max</span> <span class='op'>=</span> <span class='kw'>nil</span>
+      <span class='id identifier rubyid_parameters'>parameters</span> <span class='op'>=</span> <span class='id identifier rubyid_parameters'>parameters</span><span class='lbracket'>[</span><span class='int'>0</span><span class='comma'>,</span> <span class='id identifier rubyid_length'>length</span><span class='op'>-</span><span class='int'>1</span><span class='rbracket'>]</span>
+    <span class='kw'>end</span>
+    <span class='id identifier rubyid_t'>t</span> <span class='op'>=</span> <span class='const'>TYPES</span><span class='period'>.</span><span class='id identifier rubyid_tuple'>tuple</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_parameters'>parameters</span><span class='rparen'>)</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_min'>min</span> <span class='op'>||</span> <span class='id identifier rubyid_max'>max</span>
+      <span class='const'>TYPES</span><span class='period'>.</span><span class='id identifier rubyid_constrain_size'>constrain_size</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='comma'>,</span> <span class='id identifier rubyid_min'>min</span><span class='comma'>,</span> <span class='id identifier rubyid_max'>max</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+    <span class='id identifier rubyid_t'>t</span>
+
+  <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>callable</span><span class='tstring_end'>&quot;</span></span>
+    <span class='comment'># 1..m parameters being types (last three optionally integer or literal default, and a callable)
+</span>    <span class='const'>TYPES</span><span class='period'>.</span><span class='id identifier rubyid_callable'>callable</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_parameters'>parameters</span><span class='rparen'>)</span>
+
+  <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>struct</span><span class='tstring_end'>&quot;</span></span>
+    <span class='comment'># 1..m parameters being types (last two optionally integer or literal default
+</span>    <span class='id identifier rubyid_raise_invalid_parameters_error'>raise_invalid_parameters_error</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Struct</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>1</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_parameters'>parameters</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='id identifier rubyid_parameters'>parameters</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='op'>==</span> <span class='int'>1</span>
+    <span class='id identifier rubyid_assert_struct_parameter'>assert_struct_parameter</span><span class='lparen'>(</span><span class='id identifier rubyid_parameters'>parameters</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+    <span class='const'>TYPES</span><span class='period'>.</span><span class='id identifier rubyid_struct'>struct</span><span class='lparen'>(</span><span class='id identifier rubyid_parameters'>parameters</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+
+  <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>integer</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_parameters'>parameters</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='op'>==</span> <span class='int'>1</span>
+      <span class='kw'>case</span> <span class='id identifier rubyid_parameters'>parameters</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span>
+      <span class='kw'>when</span> <span class='const'>Integer</span>
+        <span class='const'>TYPES</span><span class='period'>.</span><span class='id identifier rubyid_range'>range</span><span class='lparen'>(</span><span class='id identifier rubyid_parameters'>parameters</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_parameters'>parameters</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+      <span class='kw'>when</span> <span class='symbol'>:default</span>
+        <span class='const'>TYPES</span><span class='period'>.</span><span class='id identifier rubyid_integer'>integer</span> <span class='comment'># unbound
+</span>      <span class='kw'>end</span>
+    <span class='kw'>elsif</span> <span class='id identifier rubyid_parameters'>parameters</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='op'>!=</span> <span class='int'>2</span>
+      <span class='id identifier rubyid_raise_invalid_parameters_error'>raise_invalid_parameters_error</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Integer</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>1 or 2</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_parameters'>parameters</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='rparen'>)</span>
+   <span class='kw'>else</span>
+     <span class='const'>TYPES</span><span class='period'>.</span><span class='id identifier rubyid_range'>range</span><span class='lparen'>(</span><span class='id identifier rubyid_parameters'>parameters</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='symbol'>:default</span> <span class='op'>?</span> <span class='kw'>nil</span> <span class='op'>:</span> <span class='id identifier rubyid_parameters'>parameters</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_parameters'>parameters</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='symbol'>:default</span> <span class='op'>?</span> <span class='kw'>nil</span> <span class='op'>:</span> <span class='id identifier rubyid_parameters'>parameters</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+   <span class='kw'>end</span>
+
+  <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>float</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_parameters'>parameters</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='op'>==</span> <span class='int'>1</span>
+      <span class='kw'>case</span> <span class='id identifier rubyid_parameters'>parameters</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span>
+      <span class='kw'>when</span> <span class='const'>Integer</span><span class='comma'>,</span> <span class='const'>Float</span>
+        <span class='const'>TYPES</span><span class='period'>.</span><span class='id identifier rubyid_float_range'>float_range</span><span class='lparen'>(</span><span class='id identifier rubyid_parameters'>parameters</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_parameters'>parameters</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+      <span class='kw'>when</span> <span class='symbol'>:default</span>
+        <span class='const'>TYPES</span><span class='period'>.</span><span class='id identifier rubyid_float'>float</span> <span class='comment'># unbound
+</span>      <span class='kw'>end</span>
+    <span class='kw'>elsif</span> <span class='id identifier rubyid_parameters'>parameters</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='op'>!=</span> <span class='int'>2</span>
+      <span class='id identifier rubyid_raise_invalid_parameters_error'>raise_invalid_parameters_error</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Float</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>1 or 2</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_parameters'>parameters</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='rparen'>)</span>
+   <span class='kw'>else</span>
+     <span class='const'>TYPES</span><span class='period'>.</span><span class='id identifier rubyid_float_range'>float_range</span><span class='lparen'>(</span><span class='id identifier rubyid_parameters'>parameters</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='symbol'>:default</span> <span class='op'>?</span> <span class='kw'>nil</span> <span class='op'>:</span> <span class='id identifier rubyid_parameters'>parameters</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_parameters'>parameters</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='symbol'>:default</span> <span class='op'>?</span> <span class='kw'>nil</span> <span class='op'>:</span> <span class='id identifier rubyid_parameters'>parameters</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+   <span class='kw'>end</span>
+
+  <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>string</span><span class='tstring_end'>&quot;</span></span>
+    <span class='id identifier rubyid_size_type'>size_type</span> <span class='op'>=</span>
+    <span class='kw'>case</span> <span class='id identifier rubyid_parameters'>parameters</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span>
+    <span class='kw'>when</span> <span class='int'>1</span>
+      <span class='kw'>if</span> <span class='id identifier rubyid_parameters'>parameters</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Pops</span><span class='op'>::</span><span class='const'>Types</span><span class='op'>::</span><span class='const'>PIntegerType</span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_parameters'>parameters</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_copy'>copy</span>
+      <span class='kw'>else</span>
+        <span class='id identifier rubyid_assert_range_parameter'>assert_range_parameter</span><span class='lparen'>(</span><span class='id identifier rubyid_parameters'>parameters</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+        <span class='const'>TYPES</span><span class='period'>.</span><span class='id identifier rubyid_range'>range</span><span class='lparen'>(</span><span class='id identifier rubyid_parameters'>parameters</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='symbol'>:default</span><span class='rparen'>)</span>
+      <span class='kw'>end</span>
+    <span class='kw'>when</span> <span class='int'>2</span>
+      <span class='id identifier rubyid_assert_range_parameter'>assert_range_parameter</span><span class='lparen'>(</span><span class='id identifier rubyid_parameters'>parameters</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_assert_range_parameter'>assert_range_parameter</span><span class='lparen'>(</span><span class='id identifier rubyid_parameters'>parameters</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+      <span class='const'>TYPES</span><span class='period'>.</span><span class='id identifier rubyid_range'>range</span><span class='lparen'>(</span><span class='id identifier rubyid_parameters'>parameters</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_parameters'>parameters</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+    <span class='kw'>else</span>
+      <span class='id identifier rubyid_raise_invalid_parameters_error'>raise_invalid_parameters_error</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>String</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>1 to 2</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_parameters'>parameters</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+    <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='const'>TYPES</span><span class='period'>.</span><span class='id identifier rubyid_string'>string</span>
+    <span class='id identifier rubyid_result'>result</span><span class='period'>.</span><span class='id identifier rubyid_size_type'>size_type</span> <span class='op'>=</span> <span class='id identifier rubyid_size_type'>size_type</span>
+    <span class='id identifier rubyid_result'>result</span>
+
+  <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>optional</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_parameters'>parameters</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='op'>!=</span> <span class='int'>1</span>
+      <span class='id identifier rubyid_raise_invalid_parameters_error'>raise_invalid_parameters_error</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Optional</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='int'>1</span><span class='comma'>,</span> <span class='id identifier rubyid_parameters'>parameters</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+    <span class='id identifier rubyid_assert_type'>assert_type</span><span class='lparen'>(</span><span class='id identifier rubyid_parameters'>parameters</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+    <span class='const'>TYPES</span><span class='period'>.</span><span class='id identifier rubyid_optional'>optional</span><span class='lparen'>(</span><span class='id identifier rubyid_parameters'>parameters</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+
+  <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>any</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>data</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>catalogentry</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>boolean</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>scalar</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>undef</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>numeric</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>default</span><span class='tstring_end'>&quot;</span></span>
+    <span class='id identifier rubyid_raise_unparameterized_type_error'>raise_unparameterized_type_error</span><span class='lparen'>(</span><span class='id identifier rubyid_parameterized_ast'>parameterized_ast</span><span class='period'>.</span><span class='id identifier rubyid_left_expr'>left_expr</span><span class='rparen'>)</span>
+
+  <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>type</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_parameters'>parameters</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='op'>!=</span> <span class='int'>1</span>
+      <span class='id identifier rubyid_raise_invalid_parameters_error'>raise_invalid_parameters_error</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Type</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='int'>1</span><span class='comma'>,</span> <span class='id identifier rubyid_parameters'>parameters</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+    <span class='id identifier rubyid_assert_type'>assert_type</span><span class='lparen'>(</span><span class='id identifier rubyid_parameters'>parameters</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+    <span class='const'>TYPES</span><span class='period'>.</span><span class='id identifier rubyid_type_type'>type_type</span><span class='lparen'>(</span><span class='id identifier rubyid_parameters'>parameters</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+
+  <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>runtime</span><span class='tstring_end'>&quot;</span></span>
+    <span class='id identifier rubyid_raise_invalid_parameters_error'>raise_invalid_parameters_error</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Runtime</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>2</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_parameters'>parameters</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='id identifier rubyid_parameters'>parameters</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='op'>==</span> <span class='int'>2</span>
+    <span class='const'>TYPES</span><span class='period'>.</span><span class='id identifier rubyid_runtime'>runtime</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_parameters'>parameters</span><span class='rparen'>)</span>
+
+  <span class='kw'>else</span>
+    <span class='comment'># It is a resource such a File[&#39;/tmp/foo&#39;]
+</span>    <span class='id identifier rubyid_type_name'>type_name</span> <span class='op'>=</span> <span class='id identifier rubyid_parameterized_ast'>parameterized_ast</span><span class='period'>.</span><span class='id identifier rubyid_left_expr'>left_expr</span><span class='period'>.</span><span class='id identifier rubyid_value'>value</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_parameters'>parameters</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='op'>!=</span> <span class='int'>1</span>
+      <span class='id identifier rubyid_raise_invalid_parameters_error'>raise_invalid_parameters_error</span><span class='lparen'>(</span><span class='id identifier rubyid_type_name'>type_name</span><span class='period'>.</span><span class='id identifier rubyid_capitalize'>capitalize</span><span class='comma'>,</span> <span class='int'>1</span><span class='comma'>,</span> <span class='id identifier rubyid_parameters'>parameters</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+    <span class='const'>TYPES</span><span class='period'>.</span><span class='id identifier rubyid_resource'>resource</span><span class='lparen'>(</span><span class='id identifier rubyid_type_name'>type_name</span><span class='comma'>,</span> <span class='id identifier rubyid_parameters'>parameters</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="interpret_any-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>interpret_any</strong>(ast) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+55
+56
+57</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_parser.rb', line 55</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_interpret_any'>interpret_any</span><span class='lparen'>(</span><span class='id identifier rubyid_ast'>ast</span><span class='rparen'>)</span>
+  <span class='ivar'>@type_transformer</span><span class='period'>.</span><span class='id identifier rubyid_visit_this_0'>visit_this_0</span><span class='lparen'>(</span><span class='kw'>self</span><span class='comma'>,</span> <span class='id identifier rubyid_ast'>ast</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="interpret_LiteralDefault-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>interpret_LiteralDefault</strong>(o) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+89
+90
+91</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_parser.rb', line 89</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_interpret_LiteralDefault'>interpret_LiteralDefault</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='rparen'>)</span>
+  <span class='symbol'>:default</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="interpret_LiteralFloat-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>interpret_LiteralFloat</strong>(o) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+99
+100
+101</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_parser.rb', line 99</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_interpret_LiteralFloat'>interpret_LiteralFloat</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_value'>value</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="interpret_LiteralHash-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>interpret_LiteralHash</strong>(o) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+104
+105
+106
+107
+108
+109
+110</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_parser.rb', line 104</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_interpret_LiteralHash'>interpret_LiteralHash</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+  <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_entries'>entries</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_entry'>entry</span><span class='op'>|</span>
+    <span class='id identifier rubyid_result'>result</span><span class='lbracket'>[</span><span class='ivar'>@type_transformer</span><span class='period'>.</span><span class='id identifier rubyid_visit_this_0'>visit_this_0</span><span class='lparen'>(</span><span class='kw'>self</span><span class='comma'>,</span> <span class='id identifier rubyid_entry'>entry</span><span class='period'>.</span><span class='id identifier rubyid_key'>key</span><span class='rparen'>)</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='ivar'>@type_transformer</span><span class='period'>.</span><span class='id identifier rubyid_visit_this_0'>visit_this_0</span><span class='lparen'>(</span><span class='kw'>self</span><span class='comma'>,</span> <span class='id identifier rubyid_entry'>entry</span><span class='period'>.</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+  <span class='id identifier rubyid_result'>result</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="interpret_LiteralInteger-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>interpret_LiteralInteger</strong>(o) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+94
+95
+96</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_parser.rb', line 94</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_interpret_LiteralInteger'>interpret_LiteralInteger</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_value'>value</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="interpret_LiteralString-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>interpret_LiteralString</strong>(o) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+75
+76
+77</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_parser.rb', line 75</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_interpret_LiteralString'>interpret_LiteralString</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_value'>value</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="interpret_Object-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>interpret_Object</strong>(o) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+60
+61
+62</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_parser.rb', line 60</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_interpret_Object'>interpret_Object</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_raise_invalid_type_specification_error'>raise_invalid_type_specification_error</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="interpret_Program-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>interpret_Program</strong>(o) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+65
+66
+67</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_parser.rb', line 65</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_interpret_Program'>interpret_Program</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_interpret'>interpret</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_body'>body</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="interpret_QualifiedName-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>interpret_QualifiedName</strong>(o) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+70
+71
+72</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_parser.rb', line 70</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_interpret_QualifiedName'>interpret_QualifiedName</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_value'>value</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="interpret_QualifiedReference-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>interpret_QualifiedReference</strong>(name_ast) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_parser.rb', line 113</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_interpret_QualifiedReference'>interpret_QualifiedReference</span><span class='lparen'>(</span><span class='id identifier rubyid_name_ast'>name_ast</span><span class='rparen'>)</span>
+  <span class='kw'>case</span> <span class='id identifier rubyid_name_ast'>name_ast</span><span class='period'>.</span><span class='id identifier rubyid_value'>value</span>
+  <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>integer</span><span class='tstring_end'>&quot;</span></span>
+    <span class='const'>TYPES</span><span class='period'>.</span><span class='id identifier rubyid_integer'>integer</span>
+
+  <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>float</span><span class='tstring_end'>&quot;</span></span>
+    <span class='const'>TYPES</span><span class='period'>.</span><span class='id identifier rubyid_float'>float</span>
+
+  <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>numeric</span><span class='tstring_end'>&quot;</span></span>
+      <span class='const'>TYPES</span><span class='period'>.</span><span class='id identifier rubyid_numeric'>numeric</span>
+
+  <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>string</span><span class='tstring_end'>&quot;</span></span>
+    <span class='const'>TYPES</span><span class='period'>.</span><span class='id identifier rubyid_string'>string</span>
+
+  <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>enum</span><span class='tstring_end'>&quot;</span></span>
+    <span class='const'>TYPES</span><span class='period'>.</span><span class='id identifier rubyid_enum'>enum</span>
+
+  <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>boolean</span><span class='tstring_end'>&quot;</span></span>
+    <span class='const'>TYPES</span><span class='period'>.</span><span class='id identifier rubyid_boolean'>boolean</span>
+
+  <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>pattern</span><span class='tstring_end'>&quot;</span></span>
+    <span class='const'>TYPES</span><span class='period'>.</span><span class='id identifier rubyid_pattern'>pattern</span>
+
+  <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>regexp</span><span class='tstring_end'>&quot;</span></span>
+    <span class='const'>TYPES</span><span class='period'>.</span><span class='id identifier rubyid_regexp'>regexp</span>
+
+  <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>data</span><span class='tstring_end'>&quot;</span></span>
+    <span class='const'>TYPES</span><span class='period'>.</span><span class='id identifier rubyid_data'>data</span>
+
+  <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>array</span><span class='tstring_end'>&quot;</span></span>
+    <span class='const'>TYPES</span><span class='period'>.</span><span class='id identifier rubyid_array_of_data'>array_of_data</span>
+
+  <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>hash</span><span class='tstring_end'>&quot;</span></span>
+    <span class='const'>TYPES</span><span class='period'>.</span><span class='id identifier rubyid_hash_of_data'>hash_of_data</span>
+
+  <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>class</span><span class='tstring_end'>&quot;</span></span>
+    <span class='const'>TYPES</span><span class='period'>.</span><span class='id identifier rubyid_host_class'>host_class</span><span class='lparen'>(</span><span class='rparen'>)</span>
+
+  <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>resource</span><span class='tstring_end'>&quot;</span></span>
+    <span class='const'>TYPES</span><span class='period'>.</span><span class='id identifier rubyid_resource'>resource</span><span class='lparen'>(</span><span class='rparen'>)</span>
+
+  <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>collection</span><span class='tstring_end'>&quot;</span></span>
+    <span class='const'>TYPES</span><span class='period'>.</span><span class='id identifier rubyid_collection'>collection</span><span class='lparen'>(</span><span class='rparen'>)</span>
+
+  <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>scalar</span><span class='tstring_end'>&quot;</span></span>
+    <span class='const'>TYPES</span><span class='period'>.</span><span class='id identifier rubyid_scalar'>scalar</span><span class='lparen'>(</span><span class='rparen'>)</span>
+
+  <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>catalogentry</span><span class='tstring_end'>&quot;</span></span>
+    <span class='const'>TYPES</span><span class='period'>.</span><span class='id identifier rubyid_catalog_entry'>catalog_entry</span><span class='lparen'>(</span><span class='rparen'>)</span>
+
+  <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>undef</span><span class='tstring_end'>&quot;</span></span>
+    <span class='const'>TYPES</span><span class='period'>.</span><span class='id identifier rubyid_undef'>undef</span><span class='lparen'>(</span><span class='rparen'>)</span>
+
+  <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>default</span><span class='tstring_end'>&quot;</span></span>
+    <span class='const'>TYPES</span><span class='period'>.</span><span class='id identifier rubyid_default'>default</span><span class='lparen'>(</span><span class='rparen'>)</span>
+
+  <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>any</span><span class='tstring_end'>&quot;</span></span>
+    <span class='const'>TYPES</span><span class='period'>.</span><span class='id identifier rubyid_any'>any</span><span class='lparen'>(</span><span class='rparen'>)</span>
+
+  <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>variant</span><span class='tstring_end'>&quot;</span></span>
+    <span class='const'>TYPES</span><span class='period'>.</span><span class='id identifier rubyid_variant'>variant</span><span class='lparen'>(</span><span class='rparen'>)</span>
+
+  <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>optional</span><span class='tstring_end'>&quot;</span></span>
+    <span class='const'>TYPES</span><span class='period'>.</span><span class='id identifier rubyid_optional'>optional</span><span class='lparen'>(</span><span class='rparen'>)</span>
+
+  <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>runtime</span><span class='tstring_end'>&quot;</span></span>
+    <span class='const'>TYPES</span><span class='period'>.</span><span class='id identifier rubyid_runtime'>runtime</span><span class='lparen'>(</span><span class='rparen'>)</span>
+
+  <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>type</span><span class='tstring_end'>&quot;</span></span>
+    <span class='const'>TYPES</span><span class='period'>.</span><span class='id identifier rubyid_type_type'>type_type</span><span class='lparen'>(</span><span class='rparen'>)</span>
+
+  <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>tuple</span><span class='tstring_end'>&quot;</span></span>
+    <span class='const'>TYPES</span><span class='period'>.</span><span class='id identifier rubyid_tuple'>tuple</span><span class='lparen'>(</span><span class='rparen'>)</span>
+
+  <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>struct</span><span class='tstring_end'>&quot;</span></span>
+    <span class='const'>TYPES</span><span class='period'>.</span><span class='id identifier rubyid_struct'>struct</span><span class='lparen'>(</span><span class='rparen'>)</span>
+
+  <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>callable</span><span class='tstring_end'>&quot;</span></span>
+    <span class='comment'># A generic callable as opposed to one that does not accept arguments
+</span>    <span class='const'>TYPES</span><span class='period'>.</span><span class='id identifier rubyid_all_callables'>all_callables</span><span class='lparen'>(</span><span class='rparen'>)</span>
+
+  <span class='kw'>else</span>
+    <span class='const'>TYPES</span><span class='period'>.</span><span class='id identifier rubyid_resource'>resource</span><span class='lparen'>(</span><span class='id identifier rubyid_name_ast'>name_ast</span><span class='period'>.</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="interpret_String-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>interpret_String</strong>(o) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+84
+85
+86</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_parser.rb', line 84</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_interpret_String'>interpret_String</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_o'>o</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="parse-instance_method">
+  
+    - (<tt><span class='object_link'><a href="PAnyType.html" title="Puppet::Pops::Types::PAnyType (class)">Puppet::Pops::Types::PAnyType</a></span></tt>) <strong>parse</strong>(string) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Produces a <em>puppet type</em> based on the given string.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <p class="tag_title">Examples:</p>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_parser'>parser</span><span class='period'>.</span><span class='id identifier rubyid_parse'>parse</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Integer</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+<span class='id identifier rubyid_parser'>parser</span><span class='period'>.</span><span class='id identifier rubyid_parse'>parse</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Array[String]</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+<span class='id identifier rubyid_parser'>parser</span><span class='period'>.</span><span class='id identifier rubyid_parse'>parse</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Hash[Integer, Array[String]]</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>string</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>String</span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>a string with the type expressed in stringified form as produced by the
+<span class='object_link'><a href="TypeCalculator.html#string-instance_method" title="Puppet::Pops::Types::TypeCalculator#string (method)">TypeCalculator#string</a></span> method.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="PAnyType.html" title="Puppet::Pops::Types::PAnyType (class)">Puppet::Pops::Types::PAnyType</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>a specialization of the PAnyType representing the type.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_parser.rb', line 31</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_parse'>parse</span><span class='lparen'>(</span><span class='id identifier rubyid_string'>string</span><span class='rparen'>)</span>
+  <span class='comment'># TODO: This state (@string) can be removed since the parse result of newer future parser
+</span>  <span class='comment'># contains a Locator in its SourcePosAdapter and the Locator keeps the string.
+</span>  <span class='comment'># This way, there is no difference between a parsed &quot;string&quot; and something that has been parsed
+</span>  <span class='comment'># earlier and fed to &#39;interpret&#39;
+</span>  <span class='comment'>#
+</span>  <span class='ivar'>@string</span> <span class='op'>=</span> <span class='id identifier rubyid_string'>string</span>
+  <span class='id identifier rubyid_model'>model</span> <span class='op'>=</span> <span class='ivar'>@parser</span><span class='period'>.</span><span class='id identifier rubyid_parse_string'>parse_string</span><span class='lparen'>(</span><span class='ivar'>@string</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_model'>model</span>
+    <span class='id identifier rubyid_interpret'>interpret</span><span class='lparen'>(</span><span class='id identifier rubyid_model'>model</span><span class='period'>.</span><span class='id identifier rubyid_current'>current</span><span class='rparen'>)</span>
+  <span class='kw'>else</span>
+    <span class='id identifier rubyid_raise_invalid_type_specification_error'>raise_invalid_type_specification_error</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+    <div id="footer">
+  Generated on Tue Mar 24 17:52:30 2015 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.6 (ruby-2.0.0).
+</div>
+
+  </body>
+</html>

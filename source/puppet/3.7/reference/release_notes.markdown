@@ -18,6 +18,7 @@ canonical: "/puppet/latest/reference/release_notes.html"
 [default_manifest]: /references/3.7.latest/configuration.html#defaultmanifest
 [disable_per_environment_manifest]: /references/3.7.latest/configuration.html#disableperenvironmentmanifest
 [directory environments]: ./environments.html
+[future]: ./experiments_future.html
 
 This page tells the history of the Puppet 3.7 series. (Elsewhere: release notes for [Puppet 3.0 -- 3.4][puppet_3], [Puppet 3.5][puppet_35], and [Puppet 3.6][puppet_36].)
 
@@ -35,6 +36,114 @@ Before upgrading, **look at the table of contents above and see if there are any
 We always recommend that you **upgrade your Puppet master servers before upgrading the agents they serve.**
 
 If you're upgrading from Puppet 2.x, please [learn about major upgrades of Puppet first!][upgrade] We have important advice about upgrade plans and package management practices. The short version is: test first, roll out in stages, give yourself plenty of time to work with. Also, read the [release notes for Puppet 3][puppet_3] for a list of all the breaking changes made between the 2.x and 3.x series.
+
+
+## Puppet 3.7.5
+
+Released March 25, 2015.
+
+Puppet 3.7.5 is a bug fix release (with two urgent behavior changes) in the Puppet 3.7 series. In addition to fixing a handful of bugs, it includes some final changes to the future parser to prepare for Puppet 4.0.
+
+### UPGRADE NOTE: One Changed Setting Default, One New Feature
+
+This release breaks semantic versioning slightly, as it includes two changes we'd normally save for a .Y release: a new setting available in `environment.conf`, and a changed default value for the global `environment_timeout` setting. We included the former because it's time-sensitive and relevant to peoples' upcoming Puppet 4 migrations, and the latter because the existing default value basically constituted a bug.
+
+See the two sections below for more details.
+
+### New Default Value: `environment_timeout = 0`
+
+When we first introduced [environment][directory environments] caching, we set a three minute default, because we wanted to give everyone at least some performance benefit. This turned out to be the wrong choice, mostly because cache invalidation is difficult. There were two main problems:
+
+1. The default delay wasn't intuitive, and users got confused and frustrated when they deployed new Puppet code and the Puppet master refused to notice it.
+2. Because most Puppet master servers use multiple Ruby interpreters (all of which initialize their caches at different times), using a simple timer for cache invalidation doesn't actually work in the first place --- depending on how the server manages its interpreters, there's a chance of serving contradictory catalogs for the duration the cache timeout, which is really bad.
+
+These caused enough trouble that changing the behavior in a bug fix release was worth it. The new situation is:
+
+* The default timeout is `0` --- no performance boost, but also won't surprise anyone.
+* For better performance, set `environment_timeout = unlimited` and make refreshing the Puppet master a part of your standard code deployment process. See [the timeout section of the Configuring Environments page][configuring_timeout] for more details.
+* Don't bother with any timeout value other than `0` or `unlimited`. You would need to refresh the master anyway to avoid inconsistent catalogs.
+
+Also, we recommend treating `environment_timeout` as server-wide configuration. Avoid setting it in [environment.conf][] unless you have some specific reason. (For example, if you have one environment where you habitually edit code live on the server.)
+
+[configuring_timeout]: ./environments_configuring.html#environmenttimeout
+
+* [PUP-4094: Default environment_timeout should be 0, not infinity.](https://tickets.puppetlabs.com/browse/PUP-4094)
+
+### New Feature: `parser` Setting in `environment.conf`
+
+As Puppet 4 gets closer, we're trying to reduce barriers to testing your code with [the new version of the Puppet language.][future]
+
+To that end, you can now set the `parser` setting per-environment in [environment.conf][]. This should hopefully make compatibility tests much less disruptive.
+
+* [PUP-4017: Make "parser" an environment specific setting](https://tickets.puppetlabs.com/browse/PUP-4017)
+
+### High-Profile Bug Fixes
+
+When certain modules containing custom resource types (most notably `vcsrepo`) were available in some environments but not `production`, many users were running into a mysterious `invalid parameter provider` error if they specified a value for that resource type's `provider` attribute. (A non-ideal workaround was to add the affected module to the `production` environment.)
+
+The problem was that the Puppet master was loading types from the agent's environment to validate resources, but it was only loading providers from its _own_ environment. This is now fixed.
+
+* [PUP-1515: When compiling a catalog, providers should be loaded from specified environment](https://tickets.puppetlabs.com/browse/PUP-1515)
+
+### Future Parser Fixes and Updates
+
+As of this version, the [future parser][future] should be almost exactly compatible with the Puppet language in the most recent 4.0.0 release candidates.
+
+* [PUP-1806: Varargs support for the new function API](https://tickets.puppetlabs.com/browse/PUP-1806)
+* [PUP-3548: 4x function API's call_function cannot call a 3x function](https://tickets.puppetlabs.com/browse/PUP-3548)
+* [PUP-3863: hiera('some::key', undef) returns empty string](https://tickets.puppetlabs.com/browse/PUP-3863)
+* [PUP-3923: Puppet 4 lexer misinterprets multiple '/' tokens as a regex following a variable.](https://tickets.puppetlabs.com/browse/PUP-3923)
+* [PUP-3936: Injected parameter results in omission of block parameter](https://tickets.puppetlabs.com/browse/PUP-3936)
+* [PUP-3947: Type validation fails when validating hashes using a struct type.](https://tickets.puppetlabs.com/browse/PUP-3947)
+* [PUP-3978: Change how block is passed to avoid confusion with missing optional parameters](https://tickets.puppetlabs.com/browse/PUP-3978)
+* [PUP-3987: Change Closure.call to not take scope](https://tickets.puppetlabs.com/browse/PUP-3987)
+* [PUP-3991: scanf only implemented for future parser](https://tickets.puppetlabs.com/browse/PUP-3991)
+* [PUP-3998: continued shorthand interpolation of numeric variable fails (future parser)](https://tickets.puppetlabs.com/browse/PUP-3998)
+* [PUP-4000: Struct with optional values is not assignable from Hash where key is missing](https://tickets.puppetlabs.com/browse/PUP-4000)
+* [PUP-4008: Inferred type of empty hash not assignable to Hash<String,String>](https://tickets.puppetlabs.com/browse/PUP-4008)
+* [PUP-4047: change wording of 'non productive expression' errors](https://tickets.puppetlabs.com/browse/PUP-4047)
+* [PUP-4064: Internal error from TypeCalculator when function called with incorrect args](https://tickets.puppetlabs.com/browse/PUP-4064)
+* [PUP-4082: unfold of undef should mean unfold nothing](https://tickets.puppetlabs.com/browse/PUP-4082)
+* [PUP-4086: File and line numbers often missing from errors](https://tickets.puppetlabs.com/browse/PUP-4086)
+* [PUP-4133: Future parser error when interpolating name segment starting with underscore](https://tickets.puppetlabs.com/browse/PUP-4133)
+* [PUP-4205: Puppet 4 lexer fails to parse multiple heredocs on the same line](https://tickets.puppetlabs.com/browse/PUP-4205)
+
+
+### Other Language Fixes
+
+Two issues related to variables: [the `defined` function](/references/3.7.latest/function.html#defined) wasn't properly handling variable names like `$::global_var`, and module testing could run into problems when the `strict_variables` setting was enabled. (To fix the latter, we now make sure that the [`$module_name` and `$caller_module_name` variables](./lang_facts_and_builtin_vars.html#parser-variables) are always defined, but they're set to `undef` when they don't have another value.)
+
+* [PUP-4072: defined() function returns wrong value for global variable check](https://tickets.puppetlabs.com/browse/PUP-4072)
+* [PUP-4066: With strict variables turned on, it is difficult to use built in variables when testing module](https://tickets.puppetlabs.com/browse/PUP-4066)
+
+### Resource Type and Provider Fixes
+
+Since the default value of the `package` type's `allow_virtual` attribute will be changing in Puppet 4, we had added a deprecation warning about it, but this turned out to be too noisy to be useful. We're removing the warning... so be sure to read the release notes before you upgrade to Puppet 4! (Also, hi, thanks for reading the release notes.)
+
+We also improved provider detection for Fedora systems that use systemd.
+
+* [PUP-3927: (Regression) Redhat service provider is being used on systemd-based Fedora systems](https://tickets.puppetlabs.com/browse/PUP-3927)
+* [PUP-4076: Remove the 'allow_virtual' warning in the 3.x series](https://tickets.puppetlabs.com/browse/PUP-4076)
+
+### Miscellaneous Fixes
+
+This release fixes some inaccuracies in [dot graphs](/references/3.7.latest/configuration.html#graph), a problem where catalog runs could fail with `current thread not owner` if Puppet agent received a `USR1` signal, a problem where Puppet agent couldn't upgrade Puppet on systems that use Yum and systemd (like CentOS 7), and misleading line numbers in error messages when using the `create_resources` function.
+
+* [PUP-914: expanded_relationship.dot should not have both containment and relationship edges](https://tickets.puppetlabs.com/browse/PUP-914)
+* [PUP-1635: "current thread not owner" after Puppet Agent receives USR1 signal](https://tickets.puppetlabs.com/browse/PUP-1635)
+* [PUP-3931: Upgrading Puppet package within Puppet agent run on EL7 results in bad package state](https://tickets.puppetlabs.com/browse/PUP-3931)
+* [PUP-4054: create_resources() error messages are less useful in 3.x then they were in 2.x](https://tickets.puppetlabs.com/browse/PUP-4054)
+
+### Internal Fixes
+
+No user-facing code ever tripped this bug, but we ran into it in testing and cleaned it up.
+
+* [PUP-3934: Environment used before set in Resource.initialize when this needs access to its type](https://tickets.puppetlabs.com/browse/PUP-3934)
+
+### All Resolved Issues for 3.7.5
+
+Our ticket tracker has the list of [all issues resolved in Puppet 3.7.5.](https://tickets.puppetlabs.com/secure/ReleaseNote.jspa?projectId=10102&version=12507)
+
 
 
 ## Puppet 3.7.4
