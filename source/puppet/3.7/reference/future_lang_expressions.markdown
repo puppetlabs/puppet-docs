@@ -44,11 +44,11 @@ Syntax
 
 Operator expressions take two basic forms:
 
-* **infix operators** appear between two operands: `$a = 1`, `5 < 9`, `$operatingsystem != 'Solaris'`, etc.
-* **prefix operators** appear immediately before a single operand: `*$interfaces`, `!$is_virtual`, etc.
+* **Infix operators** appear between two operands: `$a = 1`, `5 < 9`, `$operatingsystem != 'Solaris'`, etc.
+* **Prefix (or unary) operators** appear immediately before a single operand: `*$interfaces`, `!$is_virtual`, etc.
 
 The vast majority of operators are infixes. Expressions may optionally be surrounded by parentheses, which can help
-make your code clearer: `($operatingsystem == 'Solaris') or ($virtual == 'LXC')`.
+make compound expressions clearer: `($operatingsystem == 'Solaris') or ($virtual == 'LXC')`.
 
 ### Operands
 
@@ -87,9 +87,9 @@ The precedence of operators, from highest to lowest:
 2. `-` (unary: numeric negation)
 3. `*` (unary: array splat)
 4. `in`
-5. `=~` and `!~` (regex matches and non-match)
+5. `=~` and `!~` (regex match and non-match)
 6. `*`, `/`, and `%` (multiplication, division, and modulo)
-7. `+` and `-` (subtraction and addition/concatenation)
+7. `+` and `-` (addition and subtraction)
 8. `<<` and `>>` (left shift/append and right shift)
 9. `==` and `!=` (equal and not equal)
 10. `>=`, `<=`, `>`, and `<` (greater or equal, less or equal, greater than, and less than)
@@ -159,13 +159,18 @@ Resolves to `false` if the left operand [matches][regex_match] the regular expre
 
 Resolves to `true` if the right operand contains the left operand. The exact definition of "contains" here depends on the data type of the right operand.
 
-This operator is **non-transitive** with regard to data types: it accepts a [string][strings] as the left operand, and the following types of right operands:
+This operator is **non-transitive** with regard to data types. It accepts:
+
+* A [string][strings] or [regular expression][regex] as the left operand.
+* A [string][strings], [array][arrays], or [hash][hashes] as the right operand.
+
+If the left operand is a string, an `in` expression checks the right operand as follows:
 
 * [Strings][] --- Tests whether the left operand is a substring of the right, ignoring case.
 * [Arrays][] --- Tests whether one of the members of the array is identical to the left operand (case-sensitive).
 * [Hashes][] --- Tests whether the hash has a **key** identical to the left operand (case-sensitive).
 
-The future parser also supports using a [regular expression][regex] for the left operand, with slightly different behavior depending on the right operand:
+If the left operand is a regular expression, it checks the right operand as follows:
 
 * [Strings][] --- Tests whether the right operand matches the regular expression.
 * [Arrays][] --- Tests whether one of the members of the array matches the regular expression.
@@ -195,8 +200,8 @@ Boolean Operators
 
 Boolean Operators have the following traits:
 
-* They take [**boolean**][boolean] operands; if another data type is given, it will be [automatically converted to boolean][bool_convert]
-* They resolve to [**boolean**][boolean] values
+* They take [**boolean**][boolean] operands; if another data type is given, it will be [automatically converted to boolean][bool_convert].
+* They resolve to [**boolean**][boolean] values.
 
 These expressions are most useful when creating compound expressions.
 
@@ -225,16 +230,18 @@ Arithmetic Operators
 
 Arithmetic Operators have the following traits:
 
-* They take two [**numeric**][numbers] operands
+* They take two [**numeric**][numbers] operands (except unary `-`)
 * They resolve to [**numeric**][numbers] values
 
 ### `+` (addition)
 
 Resolves to the sum of the two operands.
 
-### `-` (subtraction)
+### `-` (subtraction and negation)
 
 Resolves to the difference of the two operands.
+
+There is also a unary form of `-`, which takes one numeric operand and returns the value of subtracting that operand from zero.
 
 ### `/` (division)
 
@@ -256,18 +263,30 @@ Left bitwise shift: shifts the left operand by the number of places specified by
 
 Right bitwise shift: shifts the left operand by the number of places specified by the right operand. This is equivalent to rounding each operand down to the nearest integer and dividing the left operand by 2 to the power of the right operand.
 
-Array Operations
+Array Operators
 -----
 
 ### `*` (splat)
 
-"Unfolds" an array into a series of function arguments. For example:
+This unary operator accepts a single array value. (If given a scalar value, it will convert it to a single-element array.)
+
+"Unfolds" a single array into comma-separated list of values. This lets you use variables in places where, in previous versions of the language, only literal lists were allowed.
+
+For example:
 
 {% highlight ruby %}
     $a = ['vim', 'emacs']
     myfunc($a)    # calls myfunc with a single argument: the array containing 'vim' and 'emacs'
     myfunc(*$a)   # calls myfunc with two arguments: 'vim' and 'emacs'
 {% endhighlight %}
+
+The splat operator is only meaningful in places where a comma-separated list of values is valid. Those places are:
+
+* The arguments of a function call
+* The cases of a case statement
+* The cases of a selector statement
+
+In any other context, splat just resolves to the array it was given.
 
 ### `+` (concatenation)
 
@@ -279,7 +298,7 @@ Resolves to an array containing the elements in the left operand without the ele
 operand may be any data type. This operation **does not change** the operands.
 
 
-Assignment Operations
+Assignment Operators
 -----
 
 ### `=` (assignment)
