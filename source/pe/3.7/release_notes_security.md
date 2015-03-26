@@ -1,5 +1,5 @@
 ---
-title: "PE 3.7 » Release Notes >> Security and Bug Fixes"
+title: "PE 3.8 » Release Notes >> Security and Bug Fixes"
 layout: default
 subtitle: "Security Fixes"
 canonical: "/pe/latest/release_notes_security.html"

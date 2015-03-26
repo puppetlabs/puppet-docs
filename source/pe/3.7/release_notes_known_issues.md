@@ -1,11 +1,11 @@
 ---
-title: "PE 3.7 » Release Notes >> Known Issues"
+title: "PE 3.8 » Release Notes >> Known Issues"
 layout: default
 subtitle: "Known Issues"
 canonical: "/pe/latest/release_notes_known_issues.html"
 ---
 
-As we discover them, this page will be updated with known issues in Puppet Enterprise 3.7.x releases. Fixed issues will be removed from this page and noted Bug Fixes section of the release notes. If you find new problems yourself, please file bugs in [our issue tracker](https://tickets.puppetlabs.com).
+As we discover them, this page will be updated with known issues in Puppet Enterprise 3.8.x releases. Fixed issues will be removed from this page and noted Bug Fixes section of the release notes. If you find new problems yourself, please file bugs in [our issue tracker](https://tickets.puppetlabs.com).
 
 To find out which of these issues may affect you, run `/opt/puppet/bin/puppet --version`, the output of which will look something like `3.6.2 (Puppet Enterprise 3.7.0)`. To upgrade to a newer version of Puppet Enterprise, see the [chapter on upgrading](install_upgrading.html).
 

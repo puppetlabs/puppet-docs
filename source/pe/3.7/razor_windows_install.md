@@ -1,6 +1,6 @@
 ---
 layout: default
-title: " PE 3.7 » Razor » Setting Up and Installing Windows "
+title: " PE 3.8 » Razor » Setting Up and Installing Windows "
 subtitle: "Set Up Windows Installations"
 canonical: "/pe/latest/razor_windows_install.html"
 ---
