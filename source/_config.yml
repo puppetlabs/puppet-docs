@@ -17,6 +17,7 @@ defaultnav:
   /guides/deployment_guide: /_includes/deploy_guide.html
   /guides/install_puppet: /_includes/puppet_general.html
   /hiera/1: /_includes/hiera1.html
+  /hiera/2.0: /_includes/hiera20.html
   /es: /_includes/es_docs.html
   /es/hiera: /_includes/es_hiera1.html
   /es/learning: /_includes/es_learning_nav.html
@@ -170,4 +171,5 @@ version_notes:
   /facter/2.2: 'This is the version of Facter included in Puppet Enterprise 3.7. Open source Puppet users should see <a href="/facter/latest">the latest version of the docs</a>.'
   /facter/2.3: '<p class="noisy">Facter 2.3 is not included in Puppet Enterprise 3.7. PE 3.7 users should see <a href="/facter/2.2">the Facter 2.2 docs.</a></p>'
   /facter/2.4: '<p class="noisy">Facter 2.4 is not included in Puppet Enterprise 3.7. PE 3.7 users should see <a href="/facter/2.2">the Facter 2.2 docs.</a></p>'
+  /hiera/2.0: '<p class="noisy">Hiera 2.0 is not included in Puppet Enterprise 3.7. PE 3.7 users should see <a href="/hiera/1.0">the Hiera 1.0 docs.</a></p>'
 ---

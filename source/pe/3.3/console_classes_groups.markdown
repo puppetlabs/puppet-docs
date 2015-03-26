@@ -291,13 +291,12 @@ These groups are used to manage Puppet Enterprise's [orchestration engine](./orc
 * The `mcollective` group is **automatically** managed by a periodic background task; it contains every node that **is not** a member of the `no mcollective` group. Admin users can add classes to this group if they have any third-party classes that should be assigned to every node that has orchestration enabled. However, you **should not** remove the `pe_mcollective` class from this group.
 
 
-#### The Master, Console, and PuppetDB Groups
+#### The Master and Console Groups
 
 These groups are created when initially setting up a Puppet Enterprise deployment, but are not automatically added to.
 
 * `puppet_master` --- this group contains the original puppet master node.
 * `puppet_console` --- this group contains the original console node.
-* `puppet_puppetdb` --- this group contains the original database support node.
 
 
 ### Adding a New Group

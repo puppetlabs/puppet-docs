@@ -95,15 +95,16 @@ To backup the databases, run:
     /usr/bin/sudo -u pe-postgres /opt/puppet/bin/pg_dump -Fc -C -c pe-classifier -f /opt/dump/classifier_`/bin/date +'%Y%m%d%H%M'`
     /usr/bin/sudo -u pe-postgres /opt/puppet/bin/pg_dump -Fc -C -c pe-rbac -f /opt/dump/rbac_`/bin/date +'%Y%m%d%H%M'`
     /usr/bin/sudo -u pe-postgres /opt/puppet/bin/pg_dump -Fc -C -c pe-puppetdb -f /opt/dump/puppetdb_`/bin/date +'%Y%m%d%H%M'`
-    
+
+Note: The pe-postgres user must have permission to read and write to `/opt/dump`.
 
 To restore the databases, run:
 
-    /usr/bin/sudo -u pe-postgres /opt/puppet/bin/pg_restore -Fc -c -C -d console -f /opt/dump/console_`/bin/date +'%Y%m%d%H%M'`
-    /usr/bin/sudo -u pe-postgres /opt/puppet/bin/pg_restore -Fc -c -C -d pe-activity -f /opt/dump/activity_`/bin/date +'%Y%m%d%H%M'`
-    /usr/bin/sudo -u pe-postgres /opt/puppet/bin/pg_restore -Fc -c -C -d pe-classifier -f /opt/dump/classifier_`/bin/date +'%Y%m%d%H%M'`
-    /usr/bin/sudo -u pe-postgres /opt/puppet/bin/pg_restore -Fc -c -C -d pe-rbac -f /opt/dump/rbac_`/bin/date +'%Y%m%d%H%M'`
-    /usr/bin/sudo -u pe-postgres /opt/puppet/bin/pg_restore -Fc -c -C -d pe-puppetdb -f /opt/dump/puppetdb_`/bin/date +'%Y%m%d%H%M'`
+    /usr/bin/sudo -u pe-postgres /opt/puppet/bin/pg_restore -Fc -c -C -d console /opt/dump/console_<timestamp>
+    /usr/bin/sudo -u pe-postgres /opt/puppet/bin/pg_restore -Fc -c -C -d "pe-activity" /opt/dump/activity_<timestamp>
+    /usr/bin/sudo -u pe-postgres /opt/puppet/bin/pg_restore -Fc -c -C -d "pe-classifier" /opt/dump/classifier_<timestamp>
+    /usr/bin/sudo -u pe-postgres /opt/puppet/bin/pg_restore -Fc -c -C -d "pe-rbac" /opt/dump/rbac_<timestamp>
+    /usr/bin/sudo -u pe-postgres /opt/puppet/bin/pg_restore -Fc -c -C -d "pe-puppetdb" /opt/dump/puppetdb_<timestamp>
     
 To run a full backup, which should be done periodically, run: 
 

@@ -10,8 +10,8 @@ Once you have PE installed, we recommend that you keep regular backups of your P
 To perform a full backup and restore, you will:
 
 1. [Back Up Your Database and Puppet Enterprise Files](#back-up-your-database-and-puppet-enterprise-files)
-2. [Purge the Puppet Enterprise Installation (Optional)](purge-the-puppet-enterprise-installation-(optional\))
-3. [Restore Your Database and Puppet Enterprise Files](Restore Your Database and Puppet Enterprise Files)
+2. [Purge the Puppet Enterprise Installation (Optional)](#purge-the-puppet-enterprise-installation-optional)
+3. [Restore Your Database and Puppet Enterprise Files](#restore-your-database-and-puppet-enterprise-files)
 
 ### Back Up Your Database and Puppet Enterprise Files
 

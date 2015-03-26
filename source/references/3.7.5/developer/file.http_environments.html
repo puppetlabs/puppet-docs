@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>
+  File: http_environments
+  
+    &mdash; Documentation by YARD 0.8.7.6
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '';
+  framesUrl = "frames.html#!file.http_environments.html";
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index</a> &raquo; 
+    <span class="title">File: http_environments</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><div id='filecontents'><h1>Environments</h1>
+
+<p>The <code>environments</code> endpoint allows for enumeration of the environments known to the master. Each environment contains information
+about itself like its modulepath, manifest directory, environment timeout, and the config version.
+This endpoint is by default accessible to any client with a valid certificate, though this may be changed by <code>auth.conf</code>.</p>
+
+<h2>Get</h2>
+
+<p>Get the list of known environments.</p>
+
+<pre class="code ruby"><code class="ruby"><span class='const'>GET</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>v2.0</span><span class='regexp_end'>/environments</span></span>
+</code></pre>
+
+<h3>Parameters</h3>
+
+<p>None</p>
+
+<h3>Example Request &amp; Response</h3>
+
+<pre class="code ruby"><code class="ruby">GET /v2.0/environments
+
+HTTP 200 OK
+Content-Type: application/json
+
+{
+  &quot;search_paths&quot;: [&quot;/etc/puppet/environments&quot;]
+  &quot;environments&quot;: {
+    &quot;production&quot;: {
+      &quot;settings&quot;: {
+        &quot;modulepath&quot;: [&quot;/etc/puppetlabs/puppet/environments/production/modules&quot;, &quot;/etc/puppetlabs/puppet/environments/development/modules&quot;],
+        &quot;manifest&quot;: [&quot;/etc/puppetlabs/puppet/environments/production/manifests&quot;]
+        &quot;environment_timeout&quot;: 180,
+        &quot;config_version&quot;: &quot;/version/of/config&quot;
+      }
+    }
+  }
+}
+</code></pre>
+
+<p>The <code>environment_timeout</code> attribute could also be the string "unlimited".</p>
+
+<h2>Schema</h2>
+
+<p>A environments response body adheres to the <a href="file.environments.html" title="api/schemas/environments.json">api/schemas/environments.json</a> schema.</p>
+</div></div>
+
+    <div id="footer">
+  Generated on Tue Mar 24 17:52:18 2015 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.6 (ruby-2.0.0).
+</div>
+
+  </body>
+</html>

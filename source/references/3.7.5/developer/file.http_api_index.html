@@ -1,0 +1,197 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>
+  File: http_api_index
+  
+    &mdash; Documentation by YARD 0.8.7.6
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '';
+  framesUrl = "frames.html#!file.http_api_index.html";
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index</a> &raquo; 
+    <span class="title">File: http_api_index</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><div id='filecontents'><h2>V1 API Services</h2>
+
+<p>Puppet Agents use various network services which the Puppet Master provides in
+order to manage systems. Other systems can access these services in order to
+put the information that the Puppet Master has to use.</p>
+
+<p>The V1 API is all based off of dispatching to puppet's internal "indirector"
+framework. Every HTTP endpoint in V1 follows the form
+<code>/:environment/:indirection/:key</code>, where
+  * <code>:environment</code> is the name of the environment that should be in effect for
+    the request. Not all endpoints need an environment, but the path component
+    must always be specified.
+  * <code>:indirection</code> is the indirection to dispatch the request to.
+  * <code>:key</code> is the "key" portion of the indirection call.</p>
+
+<p>Using this API requires a significant amount of understanding of how puppet's
+internal services are structured. The following documents provide some
+specification for what is available and the ways in which they can be
+interacted with.</p>
+
+<h3>Configuration Management Services</h3>
+
+<p>These services are all related to how the Puppet Agent is able to manage the
+configuration of a node.</p>
+
+<ul>
+<li><a href="file.http_catalog.html" title="Catalog">Catalog</a></li>
+<li><a href="file.http_file_bucket_file.html" title="File Bucket File">File Bucket File</a></li>
+<li><a href="file.http_file_content.html" title="File Content">File Content</a></li>
+<li><a href="file.http_file_metadata.html" title="File Metadata">File Metadata</a></li>
+<li><a href="file.http_report.html" title="Report">Report</a></li>
+</ul>
+
+
+<h3>Informational Services</h3>
+
+<p>These services all provide extra information that can be used to understand how
+the Puppet Master will be providing configuration management information to
+Puppet Agents.</p>
+
+<ul>
+<li><a href="file.http_facts.html" title="Facts">Facts</a></li>
+<li><a href="file.http_node.html" title="Node">Node</a></li>
+<li><a href="file.http_resource_type.html" title="Resource Type">Resource Type</a></li>
+<li><a href="file.http_status.html" title="Status">Status</a></li>
+</ul>
+
+
+<h3>SSL Certificate Related Services</h3>
+
+<p>These services are all in support of Puppet's PKI system.</p>
+
+<ul>
+<li><a href="file.http_certificate.html" title="Certificate">Certificate</a></li>
+<li><a href="file.http_certificate_request.html" title="Certificate Signing Requests">Certificate Signing Requests</a></li>
+<li><a href="file.http_certificate_status.html" title="Certificate Status">Certificate Status</a></li>
+<li><a href="file.http_certificate_revocation_list.html" title="Certificate Revocation List">Certificate Revocation List</a></li>
+</ul>
+
+
+<h2>V2 HTTP API</h2>
+
+<p>The V2 HTTP API is accessed by prefixing requests with <code>/v2.0</code>. Authorization for
+these endpoints is still controlled with the <code>auth.conf</code> authorization system
+in puppet. When specifying the authorization of the V2 endpoints in <code>auth.conf</code>
+the <code>/v2.0</code> prefix on V2 API paths must be retained; the full request path is used.</p>
+
+<p>The V2 API will only accept payloads formatted as JSON and respond with JSON
+(MIME application/json).</p>
+
+<h3>Endpoints</h3>
+
+<ul>
+<li><a href="file.http_environments.html" title="Environments">Environments</a></li>
+</ul>
+
+
+<h3>Error Responses</h3>
+
+<p>All V2 API endpoints will respond to error conditions in a uniform manner and
+use standard HTTP response code to signify those errors.</p>
+
+<ul>
+<li>When the client submits a malformed request, the API will return a 400 Bad
+Request response.</li>
+<li>When the client is not authorized, the API will return a 403 Not Authorized
+response.</li>
+<li>When the client attempts to use an HTTP method that is not permissible for
+the endpoint, the API will return a 405 Method Not Allowed response.</li>
+<li>When the client asks for a response in a format other than JSON, the API will
+return a 406 Unacceptable response.</li>
+<li>When the server encounters an unexpected error during the handling of a
+request, it will return a 500 Server Error response.</li>
+<li>When the server is unable to find an endpoint handler for the request that
+starts with <code>/v2.0</code>, it will return a 404 Not Found response</li>
+</ul>
+
+
+<p>The V2 API paths are prefixed with <code>/v2.0</code> instead of <code>/v2</code> so that it is able
+to respond with 404, but not interfere with any environments in the V1 API.
+<code>v2</code> is a valid environment name, but <code>v2.0</code> is not.</p>
+
+<p>All error responses will contain a body, except when it is a HEAD request. The
+error responses will uniformly be a JSON object with the following properties:</p>
+
+<ul>
+<li><code>message</code>: [String] A human readable message explaining the error.</li>
+<li><code>issue_kind</code>: [String] A unique label to identify the error class.</li>
+<li><code>stacktrace</code> (only for 5xx errors): [Array<String>] A stacktrace to where the error occurred.</li>
+</ul>
+
+
+<p>A <a href="file.error.html" title="JSON schema for the error objects">JSON schema for the error objects</a> is also available.</p>
+
+<h2>Serialization Formats</h2>
+
+<p>Puppet sends messages using several different serialization formats. Not all
+REST services support all of the formats.</p>
+
+<ul>
+<li><a href="file.pson.html" title="PSON">PSON</a></li>
+<li><a href="http://www.yaml.org/spec/1.2/spec.html" target="_parent" title="YAML">YAML</a></li>
+</ul>
+
+</div></div>
+
+    <div id="footer">
+  Generated on Tue Mar 24 17:52:18 2015 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.6 (ruby-2.0.0).
+</div>
+
+  </body>
+</html>

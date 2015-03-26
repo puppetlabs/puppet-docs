@@ -58,10 +58,6 @@ Puppet Enterprise can invoke orchestration actions in two places:
 * [**In the PE console** (on the live management page)](./console_navigating_live_mgmt.html)
 * [**On the command line**](./orchestration_invoke_cli.html)
 
-You can also [allow your site's custom applications to invoke orchestration actions][integrate].
-
-[integrate]: ./orchestration_integrating.html
-
 ### Special Interfaces: Puppet Runs and Resources
 
 In addition to the main action invocation interfaces, Puppet Enterprise provides special interfaces for two of the most useful orchestration tasks:

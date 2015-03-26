@@ -178,7 +178,7 @@ EOT
 
       def at(ref, &block)
         Dir.chdir(puppet_dir) do
-          %x{git reset --hard #{ref}}
+          %x{git checkout --force #{ref} && git clean --force}
           if $?.success?
             yield if block_given?
           else
@@ -203,8 +203,8 @@ EOT
       def setup_repository!
 
         if File.directory?(puppet_dir)
-          at 'master' do
-            %x{git pull origin master}
+          Dir.chdir(puppet_dir) do
+            %x{git fetch origin}
           end
         else
           puts "Retrieving puppet source."
@@ -212,16 +212,18 @@ EOT
         end
 
         if File.directory?(facter_dir)
-           Dir.chdir(facter_dir)
-            %x{git pull origin master}
+          Dir.chdir(facter_dir) do
+            %x{git fetch origin && git checkout --force origin/2.x && git clean --force}
+          end
         else
           puts "Retrieving facter source."
           %x{git clone git://github.com/puppetlabs/facter.git '#{facter_dir}'}
         end
 
         if File.directory?(hiera_dir)
-             Dir.chdir(hiera_dir)
-            %x{git pull origin master}
+          Dir.chdir(hiera_dir) do
+            %x{git fetch origin && git checkout --force origin/master && git clean --force}
+          end
         else
           puts "Retrieving hiera source."
           %x{git clone git://github.com/puppetlabs/hiera.git '#{hiera_dir}'}
