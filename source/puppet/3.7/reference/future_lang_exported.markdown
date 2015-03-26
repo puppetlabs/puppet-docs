@@ -23,10 +23,10 @@ canonical: "/puppet/latest/reference/future_lang_exported.html"
 [exported_guide]: /guides/exported_resources.html
 [catalog]: ./future_lang_summary.html#compilation-and-catalogs
 
-> **Note:** Exported resources require catalog storage and searching (formerly known as "storeconfigs") to be enabled on your puppet master. Both the catalog storage and the searching (among other features) are provided by [PuppetDB][]. To enable exported resources, follow these instructions:
+> **Note:** Exported resources require catalog storage and searching (formerly known as "storeconfigs") to be enabled on your Puppet master. Both the catalog storage and the searching (among other features) are provided by [PuppetDB][]. To enable exported resources, follow these instructions:
 >
 > * [Install PuppetDB on a server at your site][puppetdb_install]
-> * [Connect your puppet master to PuppetDB][puppetdb_connect]
+> * [Connect your Puppet master to PuppetDB][puppetdb_connect]
 >
 > (Exported resources can also be enabled by the [deprecated `active_record` storeconfigs][ar_storeconfigs] backend. However, all new users should avoid that and use PuppetDB instead.)
 
@@ -98,18 +98,18 @@ See [Exported Resource Collectors][exported_collector] for more detail on the co
 Behavior
 -----
 
-When catalog storage and searching (AKA storeconfigs) are enabled, the puppet master will send a copy of every [catalog][] it compiles to [PuppetDB][]. PuppetDB retains the most recent catalog for every node and provides the puppet master with a search interface to those catalogs.
+When catalog storage and searching (AKA storeconfigs) are enabled, the Puppet master will send a copy of every [catalog][] it compiles to [PuppetDB][]. PuppetDB retains the most recent catalog for every node and provides the Puppet master with a search interface to those catalogs.
 
-Declaring an exported resource causes that resource to be added to the catalog and marked with an "exported" flag, which prevents puppet agent from managing the resource (unless it was collected). When PuppetDB receives the catalog, it also takes note of this flag.
+Declaring an exported resource causes that resource to be added to the catalog and marked with an "exported" flag, which prevents Puppet agent from managing the resource (unless it was collected). When PuppetDB receives the catalog, it also takes note of this flag.
 
-Collecting an exported resource causes the puppet master to send a search query to PuppetDB. PuppetDB will respond with every exported resource that matches the [search expression][search], and the puppet master will add those resources to the catalog.
+Collecting an exported resource causes the Puppet master to send a search query to PuppetDB. PuppetDB will respond with every exported resource that matches the [search expression][search], and the Puppet master will add those resources to the catalog.
 
 ### Timing
 
 An exported resource becomes available to other nodes as soon as PuppetDB finishes storing the catalog that contains it. This is a multi-step process and may not happen immediately:
 
-* The puppet master must have compiled a given node's catalog at least once before its resources become available.
-* When the puppet master submits a catalog to PuppetDB, it is added to a queue and stored as soon as possible. Depending on the PuppetDB server's workload, there may be a slight delay between a node's catalog being compiled and its resources becoming available.
+* The Puppet master must have compiled a given node's catalog at least once before its resources become available.
+* When the Puppet master submits a catalog to PuppetDB, it is added to a queue and stored as soon as possible. Depending on the PuppetDB server's workload, there may be a slight delay between a node's catalog being compiled and its resources becoming available.
 
 ### Uniqueness
 
