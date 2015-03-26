@@ -99,7 +99,7 @@ The general form of a class definition is:
 * An optional **set of parameters,** which consists of:
     * An opening parenthesis
     * A comma-separated list of **parameters,** each of which consists of:
-        * An optional [parameter type][paramtypes] annotation (the default is `Any`)
+        * An optional [parameter type][paramtypes] annotation (defaults to `Any`)
         * A new [variable][] name, including the `$` prefix
         * An optional equals (=) sign and **default value**
     * An optional trailing comma after the last parameter
