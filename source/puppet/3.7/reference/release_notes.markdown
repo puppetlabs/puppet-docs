@@ -40,7 +40,7 @@ If you're upgrading from Puppet 2.x, please [learn about major upgrades of Puppe
 
 ## Puppet 3.7.5
 
-Released March 25, 2015.
+Released March 26, 2015.
 
 Puppet 3.7.5 is a bug fix release (with two urgent behavior changes) in the Puppet 3.7 series. In addition to fixing a handful of bugs, it includes some final changes to the future parser to prepare for Puppet 4.0.
 
