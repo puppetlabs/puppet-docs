@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.7 » Quick Start » Essential Configuration"
+title: "PE 3.8 » Quick Start » Essential Configuration"
 subtitle: "Essential Configuration Tasks for Puppet Enterprise Users"
 canonical: "/pe/latest/quick_start_essential_config.html"
 ---

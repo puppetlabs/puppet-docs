@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.7 » Quick Start » Classifying Agents (*nix)"
+title: "PE 3.8 » Quick Start » Classifying Agents (*nix)"
 subtitle: "Adding Classes Quick Start Guide"
 canonical: "/pe/latest/quick_start_adding_class_nix.html"
 ---
@@ -51,7 +51,7 @@ Unless you have navigated elsewhere in the console, the __apache example__ node 
 
 6. From the CLI of your Puppet master, run `puppet agent -t`.
 
-7. From the CLI of your PE-managed node(s), run `puppet agent -t`. 
+7. From the CLI of your PE-managed node(s), run `puppet agent -t`.
 
    This will configure the node using the newly-assigned class. Wait one or two minutes.
 
@@ -79,7 +79,7 @@ You can use the console to set or edit the values of a class's parameters withou
 6. Click __Add parameter__.
 7. Click __Commit 1 change__.
 8. From the CLI of your Puppet master, run `puppet agent -t`.
-9. From the CLI of your PE-managed node(s), run `puppet agent -t`. 
+9. From the CLI of your PE-managed node(s), run `puppet agent -t`.
 
    This will trigger a Puppet run to have Puppet Enterprise create the new configuration.
 

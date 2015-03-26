@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.7 » Quick Start » Install PE (Monolithic)"
+title: "PE 3.8 » Quick Start » Install PE (Monolithic)"
 subtitle: "PE Install Quick Start Guide"
 canonical: "/pe/latest/quick_start_install_mono.html"
 ---
@@ -54,12 +54,12 @@ Note: This guide assumes that you’ll install a monolithic PE deployment as `ro
     a. **Puppet master FQDN**: provide the fully qualified domain name of the server you're installing PE on; for example, `master.example.com`.
 
     b. **DNS aliases**: provide a comma-separated list of aliases agent nodes can use to reach to the master; for example `master`.
-    
+
 12. Select whether or not to enable the Puppet 4 language parser.
 
    The Puppet 4 language parser gives you valuable language features, makes debugging easier, and will help keep your Puppet code compatible with future releases in the next major series. Recommended for all **NEW** Puppet users.
-   
-   If you'll be using Puppet code you did **NOT** create with the Puppet 4 language parser, **DO NOT** enable this feature.     
+
+   If you'll be using Puppet code you did **NOT** create with the Puppet 4 language parser, **DO NOT** enable this feature.
 
 13. When prompted about database support, choose the default option **Install PostgreSQL for me**.
 

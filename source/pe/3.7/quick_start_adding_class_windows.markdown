@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.7 » Quick Start » Classifying Agents (Windows)"
+title: "PE 3.8 » Quick Start » Classifying Agents (Windows)"
 subtitle: "Adding Classes Quick Start Guide"
 canonical: "/pe/latest/quick_start_adding_class_windows.html"
 ---

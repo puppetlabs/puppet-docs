@@ -1,19 +1,19 @@
 ---
 layout: default
-title: "PE 3.7 » Quick Start » Helloworld"
+title: "PE 3.8 » Quick Start » Helloworld"
 subtitle: "Hello World! Quick Start Guide"
-canonical: "/pe/latest/quick_start_helloworld.html" 
+canonical: "/pe/latest/quick_start_helloworld.html"
 ---
 
 ### Overview
 
-The following quick start guide introduces the essential components of Puppet module writing. In this guide, you will write a simple *nix-based module that contains two classes---one that will manage your motd (message of the day) and one that will create a notification on on the command line when you run Puppet. 
+The following quick start guide introduces the essential components of Puppet module writing. In this guide, you will write a simple *nix-based module that contains two classes---one that will manage your motd (message of the day) and one that will create a notification on on the command line when you run Puppet.
 
-While the module you'll write doesn't have an incredible amount of functionality, you'll learn the basic module directory structure and how to apply classes using the PE console. You'll encounter more complex module writing scenarios in other quick start guides. 
+While the module you'll write doesn't have an incredible amount of functionality, you'll learn the basic module directory structure and how to apply classes using the PE console. You'll encounter more complex module writing scenarios in other quick start guides.
 
 ### Write the `helloworld` Class
 
-Some modules can be large, complex, and require a significant amount of trial and error. This module will be a very simple module to write; it contains just two classes.  
+Some modules can be large, complex, and require a significant amount of trial and error. This module will be a very simple module to write; it contains just two classes.
 
 > #### A Quick Note about Modules
 >
@@ -62,9 +62,9 @@ Modules are directory trees. For this task, you'll create the following files:
 
 [classification_selector]: ./images/quick/classification_selector.png
 
-For this procedure, you're going to add the classes to the **default** group. 
+For this procedure, you're going to add the classes to the **default** group.
 
-The **default** group contains all the nodes in your deployment (including the Puppet master), but you can [create your own group](./console_classes_groups.html#creating-new-node-groups) or add the classes to individual nodes, depending on your needs. 
+The **default** group contains all the nodes in your deployment (including the Puppet master), but you can [create your own group](./console_classes_groups.html#creating-new-node-groups) or add the classes to individual nodes, depending on your needs.
 
 **To add the classes to the default group**:
 
@@ -74,23 +74,23 @@ The **default** group contains all the nodes in your deployment (including the P
 
 2. In the __Classification page__, select the __default__ group.
 
-3. Click the __Classes__ tab. 
-   
-4. In the __Class name__ field, begin typing `helloworld`, and select it from the autocomplete list. 
+3. Click the __Classes__ tab.
 
-5. Click __Add class__. 
+4. In the __Class name__ field, begin typing `helloworld`, and select it from the autocomplete list.
 
-6. Repeat steps 4 and 5 to add the `helloworld::motd` class. 
+5. Click __Add class__.
+
+6. Repeat steps 4 and 5 to add the `helloworld::motd` class.
 
 7. Click the Commit changes button.
 
-   **Note**: The classes now appear in the list of classes for the __default__ group, but they have not yet been configured on your nodes. For that to happen, you need to kick off a Puppet run. 
-   
-8. From the command line on the Puppet master, run `puppet agent -t`. 
+   **Note**: The classes now appear in the list of classes for the __default__ group, but they have not yet been configured on your nodes. For that to happen, you need to kick off a Puppet run.
+
+8. From the command line on the Puppet master, run `puppet agent -t`.
 
 #### Viewing the Results
 
-After you kick off the Puppet run, you should see the following on the command line as the `helloworld` class is applied: 
+After you kick off the Puppet run, you should see the following on the command line as the `helloworld` class is applied:
 
     [root@master manifests]# puppet agent -t
     Info: Retrieving pluginfacts
@@ -101,14 +101,14 @@ After you kick off the Puppet run, you should see the following on the command l
     Notice: hello, world!
     Notice: /Stage[main]/Helloworld/Notify[hello, world!]/message: defined 'message' as 'hello, world!'
     Notice: Finished catalog run in 9.42 seconds
-    
-Now run `cat /etc/motd`. The result should show, `hello, world!`    
+
+Now run `cat /etc/motd`. The result should show, `hello, world!`
 
 ### Other Resources
 
 >There are plenty of resources about modules and the creation of modules that you can reference. Check out [Modules and Manifests](./puppet_modules_manifests.html), the [Beginner's Guide to Modules](/guides/module_guides/bgtm.html), and the [Puppet Forge](https://forge.puppetlabs.com/).
 >
-> Check out the remainder of the [Quick Start Guide series](./quick_start.html) for additional module writing exercises. 
+> Check out the remainder of the [Quick Start Guide series](./quick_start.html) for additional module writing exercises.
 
 ---------
 Next: [Installing Modules (*nix)](./quick_start_module_install_nix.html) or [Installing Modules (Windows)](./quick_start_module_install_windows.html)

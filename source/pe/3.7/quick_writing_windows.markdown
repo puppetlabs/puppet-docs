@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.7 » Quick Start » Writing Modules (Windows)"
+title: "PE 3.8 » Quick Start » Writing Modules (Windows)"
 subtitle: "Module Writing Basics for Windows"
 canonical: "/pe/latest/quick_writing_windows.html"
 ---

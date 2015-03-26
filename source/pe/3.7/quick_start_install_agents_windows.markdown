@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.7 » Quick Start » Agent Install (Windows)"
+title: "PE 3.8 » Quick Start » Agent Install (Windows)"
 subtitle: "Agent Install Quick Start Guide"
 canonical: "/pe/latest/quick_start_install_agents_windows.html"
 ---

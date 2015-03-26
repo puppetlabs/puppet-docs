@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.7 » Quick Start » Classifying Nodes and Assigning User Permissions"
+title: "PE 3.8 » Quick Start » Classifying Nodes and Assigning User Permissions"
 subtitle: "Node Classification and Role-Based Access Control Quick Start Guide"
 canonical: "/pe/latest/quick_start_nc_rbac.html"
 ---

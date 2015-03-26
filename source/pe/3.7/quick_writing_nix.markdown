@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.7 » Quick Start » Writing Modules (*nix)"
+title: "PE 3.8 » Quick Start » Writing Modules (*nix)"
 subtitle: "Module Writing Basics for *nix"
 canonical: "/pe/latest/quick_writing_nix.html"
 ---

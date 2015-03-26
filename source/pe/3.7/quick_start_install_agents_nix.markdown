@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.7 » Quick Start » Agent Install (*nix)"
+title: "PE 3.8 » Quick Start » Agent Install (*nix)"
 subtitle: "Agent Install Quick Start Guide"
 canonical: "/pe/latest/quick_start_install_agents_nix.html"
 ---

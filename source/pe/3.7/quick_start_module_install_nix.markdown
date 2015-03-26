@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.7 » Quick Start » Module Installation (*nix)"
+title: "PE 3.8 » Quick Start » Module Installation (*nix)"
 subtitle: "Module Installation Quick Start Guide"
 canonical: "/pe/latest/quick_start_module_install_nix.html"
 ---
