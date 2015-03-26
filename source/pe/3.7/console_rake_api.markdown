@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.7 » Console » Rake API"
+title: "PE 3.8 » Console » Rake API"
 subtitle: "Rake API for Querying and Modifying Console Data"
 canonical: "/pe/latest/console_rake_api.html"
 ---
@@ -102,7 +102,7 @@ Node Tasks: Getting Info
 
 ### `node:list[(match)]`
 
-List nodes. Can optionally match nodes by regex. 
+List nodes. Can optionally match nodes by regex.
 
 Will do a request against the /v1/nodes endpoint of the node classifier, which will only show nodes that have checked in with the node classifier.
 
@@ -157,11 +157,11 @@ Add a new node. Classes and groups can be specified as [comma-separated lists](#
 
 ### `node:del[name]`
 
-Delete a node. 
+Delete a node.
 
 **Note:** A node cannot be deleted if the node name contains a parenthesis. To delete a node with a name that contains a parenthesis, you will need to rename the node.
 
-**Note:** You will need the PE 3.7.2 release of Puppet Enterprise to use this rake task. 
+**Note:** You will need the PE 3.7.2 release of Puppet Enterprise to use this rake task.
 
 **Parameters:**
 
@@ -240,7 +240,7 @@ Add (or edit, if they exist) variables to the node group to which the node is pi
 Class Tasks
 -----
 
-In the PE 3.7 series, class rake tasks are no longer valid; running these task will result in a no operation with a removal warning. 
+In the PE 3.7 series, class rake tasks are no longer valid; running these task will result in a no operation with a removal warning.
 
 
 Group Tasks: Getting Info
@@ -306,7 +306,7 @@ Delete a node group.
 
 ### `nodegroup:add_all_nodes[name]`
 
-In the PE 3.7 series, this rake task is no longer valid. Running this task will result in a no operation with a removal warning. 
+In the PE 3.7 series, this rake task is no longer valid. Running this task will result in a no operation with a removal warning.
 
 ### `nodegroup:addclass[name,class]`
 

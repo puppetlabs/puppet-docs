@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.7 » Console » Working with Role-Based Access Control"
+title: "PE 3.8 » Console » Working with Role-Based Access Control"
 subtitle: "Role-Based Access Control"
 canonical: "/pe/latest/rbac_intro.html"
 ---

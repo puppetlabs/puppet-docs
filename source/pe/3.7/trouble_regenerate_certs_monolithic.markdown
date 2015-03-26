@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.7.1 » Security and SSL » Cert Regeneration: Monolithic Deployments"
+title: "PE 3.8 » Security and SSL » Cert Regeneration: Monolithic Deployments"
 subtitle: "Regenerating Certs and Security Credentials in Monolithic Puppet Enterprise Deployments"
 canonical: "/pe/latest/trouble_regenerate_certs_monolithic.html"
 description: "This page explains how to regenerate all SSL certificates in monolithic Puppet Enterprise deployments."

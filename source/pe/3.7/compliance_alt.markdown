@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.7 » Compliance » Alternate Workflow"
+title: "PE 3.8 » Compliance » Alternate Workflow"
 subtitle: "Alternate Workflow to Replace Compliance Tool"
 canonical: "/pe/latest/compliance_alt.html"
 toc: false

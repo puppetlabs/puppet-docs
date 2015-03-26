@@ -1,24 +1,24 @@
 ---
 layout: default
-title: "PE 3.7 » Installing » Installing with an Answer File"
+title: "PE 3.8 » Installing » Installing with an Answer File"
 subtitle: "Installing with an Answer File"
 canonical: "/pe/latest/install_automated.html"
 ---
 
 You can run the Puppet Enterprise installer while logged into the target server in an automated mode that requires minimal user interaction. The installer will read pre-selected answers to the install configuration questions from an "answer file." There are two steps to the process:
 
-1. Create an answer file or obtain the answer file created by the web-based installer. You can find the latter at `/opt/puppet/share/installer/answers` on the machine from which you ran the installer. 
+1. Create an answer file or obtain the answer file created by the web-based installer. You can find the latter at `/opt/puppet/share/installer/answers` on the machine from which you ran the installer.
 2. Run the installer with the `-a` or `-A` flag pointed at the answer file.
 
 The flag will cause the installer to read your choices from the answer file and act on them immediately instead of interviewing a user to customize the installation.
 
-However, please note that an answer file installation requires you to run the installer with an answer file on each node on which you are installing a PE component. In other words, a monolithic installation will require you to run the installer with an answer file on one node, but a split installation will require you to run the installer with an answer file on three nodes. 
+However, please note that an answer file installation requires you to run the installer with an answer file on each node on which you are installing a PE component. In other words, a monolithic installation will require you to run the installer with an answer file on one node, but a split installation will require you to run the installer with an answer file on three nodes.
 
 >**Warning**: If you're performing a split installation of PE using an answer file, install the components in the following order:
 >
 > 1. Puppet master
 > 2. Puppet DB and database support (which includes the console database)
-> 3. The PE console 
+> 3. The PE console
 
 ## Obtaining an Answer File
 
@@ -65,7 +65,7 @@ To set it to a UUID:
 
 ## Editing Answer Files
 
-Although you can use literal strings in an answer file for one-off installations, you should fill certain variables dynamically with bash subshells if you want your answer files to be reusable. 
+Although you can use literal strings in an answer file for one-off installations, you should fill certain variables dynamically with bash subshells if you want your answer files to be reusable.
 
 To run a subshell that will return the output of its command, use either the `$()` notation...
 
@@ -77,13 +77,13 @@ To run a subshell that will return the output of its command, use either the `$(
 
 Answer files can also contain arbitrary shell code and control logic, but you will probably be able to get by with a few simple name-discovery commands.
 
-See the [Installing with an Answer File][answerfile] for a complete list of variables and the conditions where they're needed, or simply start editing one of the example files in `answers/`. 
+See the [Installing with an Answer File][answerfile] for a complete list of variables and the conditions where they're needed, or simply start editing one of the example files in `answers/`.
 
 [answerfile]: ./install_automated.html
 
 ## Running the Installer with an Answer File
 
-Once you have your answer file, simply run the installer with the `-a` or `-A` option, providing your answer file as an argument: 
+Once you have your answer file, simply run the installer with the `-a` or `-A` option, providing your answer file as an argument:
 
     $ sudo ./puppet-enterprise-installer -a ~/my_answers.txt
 
@@ -99,10 +99,10 @@ When you run the installer with an answer file, the full answer file of what was
 
 ### Answer File Options
 
-You can add the following additional flags when you run the installer: 
+You can add the following additional flags when you run the installer:
 
 - `-a <PATH to ANSWER FILE>`: The installer reads answers from the answer file and quits with error if an answer is missing.
-- `-A <PATH to ANSWER FILE>`: The installer reads answers from the answer file and prompts for input if an answer is missing. 
+- `-A <PATH to ANSWER FILE>`: The installer reads answers from the answer file and prompts for input if an answer is missing.
 - `-D`: The installer will display debugging information. This option must be run with the `-a` or  `-A` flags.
 - `-h`: The installer will display help information.
 - `-l <PATH to LOG FILE>`: The installer will log commands and their results the installer log file. This option must be run with the `-a` or  `-A` flags.
@@ -110,7 +110,7 @@ You can add the following additional flags when you run the installer:
 - `-q`: The installer will run in quiet mode; the installation process wil not be displayed. This option must be run with the `-a` or  `-A` flags.
 - `-V`: The installer will display very verbose debugging information. This option must be run with the `-a` or  `-A` flags.
 
-> **Note**: The `-D`, `q`, `-l`, `-n`, and `-V` flags will fail with errors if they are not used in conjunction with `-a` or `-A` flags. 
+> **Note**: The `-D`, `q`, `-l`, `-n`, and `-V` flags will fail with errors if they are not used in conjunction with `-a` or `-A` flags.
 >
 > In addition the `-q` flag will fail with an error if any errors occur during installation.
 
@@ -118,7 +118,7 @@ You can add the following additional flags when you run the installer:
 
 PE includes a collection of sample answer files in the `answers` directory of your distribution tarball. Sample answer file references are available for monolithic (all-in-one) and split installations. For split installations, the answer file references are broken out across the various components you will install; there is an answer file for the Puppet master, the console, and the PuppetDB components.
 
-In addition to the answer file references for monolithic and split installations, we've included a reference for all possible answers that you can include in an answer file. 
+In addition to the answer file references for monolithic and split installations, we've included a reference for all possible answers that you can include in an answer file.
 
 Choose from the following:
 
@@ -126,4 +126,4 @@ Choose from the following:
 * [Monolithic (all-in-one) installation](./install_mono_answers.html)
 * [Split installation (puppet master node)](./install_split_master_answers.html)
 * [Split installation (console node)](./install_split_console_answers.html)
-* [Split installation (PuppetDB node)](./install_split_puppetdb_answers.html) 
+* [Split installation (PuppetDB node)](./install_split_puppetdb_answers.html)

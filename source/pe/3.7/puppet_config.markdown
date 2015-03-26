@@ -1,13 +1,13 @@
 ---
 layout: default
-title: "PE 3.7 » Puppet Core » Configuring"
+title: "PE 3.8 » Puppet Core » Configuring"
 subtitle: "Configuring Puppet Core"
 canonical: "/pe/latest/puppet_config.html"
 ---
 
 ### Configuration Files
 
-All of puppet's configuration files can be found in `/etc/puppetlabs/puppet/` on *nix systems. This is PE's default `$confdir`. **Do not change this `$confdir` location,** as doing so will will break the functionality of your PE infrastructure. 
+All of puppet's configuration files can be found in `/etc/puppetlabs/puppet/` on *nix systems. This is PE's default `$confdir`. **Do not change this `$confdir` location,** as doing so will will break the functionality of your PE infrastructure.
 
 On Windows, you can find them in [Puppet's data directory](/guides/install_puppet/install_windows.html#data-directory).
 
@@ -48,7 +48,7 @@ There are two methods to disable update checking (e.g. if your company policy fo
 * If your platform uses systemd, you can disable updates by creating the following file:
 
     `/etc/puppetlabs/puppetserver/opt-out`
-    
+
   As long as this file is present, Puppet Server will not check in for updates. (Note that this method will work on all platforms, not just those using systemd.)
 
 

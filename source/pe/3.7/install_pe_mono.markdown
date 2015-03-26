@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.7 » Installing » Installing PE"
+title: "PE 3.8 » Installing » Installing PE"
 subtitle: "Installing Puppet Enterprise: Monolithic"
 canonical: "/pe/latest/install_pe_mono.html"
 ---
@@ -91,12 +91,12 @@ See the [installation overview](./install_basic.html#downloading-puppet-enterpri
    e. **SSH key file path**: if SSH password is not used, provide the absolute path to the SSH key on the machine you are performing the installation from. Defaults to the root SSH key path.
 
    f. **SSH key passphrase**: provide if your SSH key is protected with a passphrase.
-   
+
 5. Select whether or not to enable the Puppet 4 language parser.
 
    The Puppet 4 language parser gives you valuable language features, makes debugging easier, and will help keep your Puppet code compatible with future releases in the next major series. Recommended for all **NEW** Puppet users.
-   
-   If you'll be using Puppet code you did **NOT** create with the Puppet 4 language parser, **DO NOT** enable this feature. See the [Puppet 4 language parser docs](http://links.puppetlabs.com/future_parser) for instructions on enabling the parser in a test environment to ensure it works with your existing Puppet code.    
+
+   If you'll be using Puppet code you did **NOT** create with the Puppet 4 language parser, **DO NOT** enable this feature. See the [Puppet 4 language parser docs](http://links.puppetlabs.com/future_parser) for instructions on enabling the parser in a test environment to ensure it works with your existing Puppet code.
 
 6. Provide the following information about database support (PuppetDB and PE console databases):
 

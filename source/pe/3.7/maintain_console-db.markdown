@@ -1,12 +1,12 @@
 ---
 layout: default
-title: "PE 3.7 » Maintenance » Console"
+title: "PE 3.8 » Maintenance » Console"
 subtitle: "Maintaining the Console & Databases"
 canonical: "/pe/latest/maintain_console-db.html"
 ---
 
 
-If PE's console becomes sluggish or begins taking up too much disk space, there are several maintenance tasks that can improve its performance. 
+If PE's console becomes sluggish or begins taking up too much disk space, there are several maintenance tasks that can improve its performance.
 
 Pruning the Console Database with a Cron Job
 -------------
@@ -15,7 +15,7 @@ For new PE installs (3.7 and later), a cron job, managed by a class in the `pupp
 
 However, to prevent users from deleting data without notice, the cron job is not installed on upgrades from versions earlier than 3.7.
 
-To prevent bloating in the console database, we recommend adding the `pe_console_prune` class to the `PE Console` group after upgrading to PE 3.7.  
+To prevent bloating in the console database, we recommend adding the `pe_console_prune` class to the `PE Console` group after upgrading to PE 3.7.
 
 To access the `prune_upto` parameter:
 
@@ -25,7 +25,7 @@ To access the `prune_upto` parameter:
 
 3. Click **Classes**.
 
-4. Under the `pe_console_prune` class, edit the parameters as needed.   
+4. Under the `pe_console_prune` class, edit the parameters as needed.
 
 
 
@@ -42,7 +42,7 @@ If the number of pending tasks appears to be growing linearly, the background ta
 
     $ sudo /etc/init.d/pe-puppet-dashboard-workers restart
 
-The number of pending tasks shown in the console should start decreasing rapidly after restarting the workers. 
+The number of pending tasks shown in the console should start decreasing rapidly after restarting the workers.
 
 
 Optimizing the Database
@@ -56,7 +56,7 @@ This task, `rake db:raw:optimize[mode]`,  runs in three modes:
 
   * `reindex` mode will run the REINDEX DATABASE command on the console database. This is also the default mode if no mode is specified.
   * `vacuum` model will run the VACUUM FULL command on the console database.
-  * `reindex+vacuum` will run both of the above commands on the console database. 
+  * `reindex+vacuum` will run both of the above commands on the console database.
 
 To run the task, change your working directory to `/opt/puppet/share/puppet-dashboard` and make sure your PATH variable contains `/opt/puppet/bin` (or use the full path to the rake binary). Then run the task `rake db:raw:optimize[mode]`. You can disregard any error messages about insufficient privileges to vacuum certain system objects because these objects should not require vacuuming. If you believe they do, you can do so manually by logging in to psql (or your tool of choice) as a database superuser.
 
@@ -95,7 +95,7 @@ To backup the databases, run:
     /usr/bin/sudo -u pe-postgres /opt/puppet/bin/pg_dump -Fc -C -c pe-classifier -f /opt/dump/classifier_`/bin/date +'%Y%m%d%H%M'`
     /usr/bin/sudo -u pe-postgres /opt/puppet/bin/pg_dump -Fc -C -c pe-rbac -f /opt/dump/rbac_`/bin/date +'%Y%m%d%H%M'`
     /usr/bin/sudo -u pe-postgres /opt/puppet/bin/pg_dump -Fc -C -c pe-puppetdb -f /opt/dump/puppetdb_`/bin/date +'%Y%m%d%H%M'`
-    
+
 
 To restore the databases, run:
 
@@ -104,14 +104,14 @@ To restore the databases, run:
     /usr/bin/sudo -u pe-postgres /opt/puppet/bin/pg_restore -Fc -c -C -d pe-classifier -f /opt/dump/classifier_`/bin/date +'%Y%m%d%H%M'`
     /usr/bin/sudo -u pe-postgres /opt/puppet/bin/pg_restore -Fc -c -C -d pe-rbac -f /opt/dump/rbac_`/bin/date +'%Y%m%d%H%M'`
     /usr/bin/sudo -u pe-postgres /opt/puppet/bin/pg_restore -Fc -c -C -d pe-puppetdb -f /opt/dump/puppetdb_`/bin/date +'%Y%m%d%H%M'`
-    
-To run a full backup, which should be done periodically, run: 
+
+To run a full backup, which should be done periodically, run:
 
     /usr/bin/sudo -u pe-postgres /opt/puppet/bin/pg_dumpall -f /opt/dump/dumpall_`/bin/date +'%Y%m%d%H%M'`
-    
-To restore a full backup, run: 
 
-    /usr/bin/sudo -u pe-postgres /opt/puppet/bin/psql -f /opt/dump/dumpall_`/bin/date +'%Y%m%d%H%M'`  
+To restore a full backup, run:
+
+    /usr/bin/sudo -u pe-postgres /opt/puppet/bin/psql -f /opt/dump/dumpall_`/bin/date +'%Y%m%d%H%M'`
 
 Changing the Console's Database User/Password
 -----
@@ -128,7 +128,7 @@ The console uses a database user account to access its PostgreSQL database. If t
 4. Start the `pe-httpd` service on the console server:
 
         $ sudo /etc/init.d/pe-httpd start
-        
+
 The same procedure is also used for the PuppetDB user's password, except you'll edit `/etc/puppetlabs/puppetdb/conf.d/database.ini` and will restart the `pe-puppetdb` service.
 
 Changing PuppetDB’s Parameters
@@ -143,6 +143,6 @@ Instead, you should use the console to make changes to the parameters of the `pe
 If you are unfamiliar with editing class parameters in the console, refer to [Editing Class Parameters on Nodes](/pe/latest/console_classes_groups_making_changes.html#editing-parameters).
 
 
-* * * 
+* * *
 
-- [Next: Troubleshooting the Installer](./trouble_install.html) 
+- [Next: Troubleshooting the Installer](./trouble_install.html)

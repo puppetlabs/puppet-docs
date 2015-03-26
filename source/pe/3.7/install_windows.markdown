@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.7 » Installing » Windows Agents"
+title: "PE 3.8 » Installing » Windows Agents"
 subtitle: "Installing Windows Agents"
 canonical: "/pe/latest/install_windows.html"
 ---

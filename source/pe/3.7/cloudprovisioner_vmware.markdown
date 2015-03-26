@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.7 » Cloud Provisioning » VMware Provisioning"
+title: "PE 3.8 » Cloud Provisioning » VMware Provisioning"
 subtitle: "Provisioning With VMware"
 canonical: "/pe/latest/cloudprovisioner_vmware.html"
 ---

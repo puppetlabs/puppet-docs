@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.7 » Console » Working with User Roles"
+title: "PE 3.8 » Console » Working with User Roles"
 subtitle: "Creating and Managing Users and User Roles"
 canonical: "/pe/latest/rbac_user_roles.html"
 ---

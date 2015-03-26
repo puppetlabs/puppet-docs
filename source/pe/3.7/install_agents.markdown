@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.7 » Installing » Installing PE Agents"
+title: "PE 3.8 » Installing » Installing PE Agents"
 subtitle: "Installing Puppet Enterprise Agents"
 canonical: "/pe/latest/install_agents.html"
 ---

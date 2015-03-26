@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.7 » Orchestration » Adding New Actions"
+title: "PE 3.8 » Orchestration » Adding New Actions"
 subtitle: "Adding New Orchestration Actions to Puppet Enterprise"
 canonical: "/pe/latest/orchestration_adding_actions.html"
 ---

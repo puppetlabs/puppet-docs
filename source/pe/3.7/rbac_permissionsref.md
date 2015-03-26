@@ -1,5 +1,5 @@
 ---
-title: "PE 3.7 » RBAC Service 1.0 >> Permission APIs"
+title: "PE 3.8 » RBAC Service 1.0 >> Permission APIs"
 layout: default
 subtitle: "Permissions APIs"
 canonical: "/pe/latest/rbac_permissions.html"

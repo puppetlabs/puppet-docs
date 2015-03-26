@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.7 » Deploying PE » Non-Root Agents"
+title: "PE 3.8 » Deploying PE » Non-Root Agents"
 subtitle: "Running PE Agents without Root Privileges"
 canonical: "/pe/latest/deploy_nonroot-agent.html"
 ---

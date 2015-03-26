@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.7 » Puppet » Assigning Configurations to Nodes"
+title: "PE 3.8 » Puppet » Assigning Configurations to Nodes"
 subtitle: "Puppet: Assigning Configurations to Nodes"
 canonical: "/pe/latest/puppet_assign_configurations.html"
 ---

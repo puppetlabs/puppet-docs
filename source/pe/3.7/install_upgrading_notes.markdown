@@ -1,11 +1,11 @@
 ---
 layout: default
-title: "PE 3.7 » Installing » Upgrading (Important Notes and Warnings)"
+title: "PE 3.8 » Installing » Upgrading (Important Notes and Warnings)"
 subtitle: "Upgrading Puppet Enterprise: Notes and Warnings"
 canonical: "/pe/latest/install_upgrading_notes.html"
 ---
 
-> **IMPORTANT**: **READ BEFORE UPGRADING**: If you are upgrading from PE 3.3 and you use the PE console for node classification, follow the steps in the [node classification migration process doc](./install_upgrade_migration_tool.html) to perform your upgrade to PE 3.8.   
+> **IMPORTANT**: **READ BEFORE UPGRADING**: If you are upgrading from PE 3.3 and you use the PE console for node classification, follow the steps in the [node classification migration process doc](./install_upgrade_migration_tool.html) to perform your upgrade to PE 3.8.
 
 >**Note**: A complete list of known issues is provided in the [PE 3.7.1 release notes](./release_notes_known_issues.html). Please review this list before upgrading.
 
@@ -33,7 +33,7 @@ Directory environments are enabled by default in PE 3.7.0. Before upgrading be s
 
 PE 3.7.0 introduces the new node classifier, which replaces previous versions of the PE console node classifier and changes the way you classify agent nodes.
 
-If you are upgrading and you use the PE console for node classification, follow the steps in the [node classification migration process doc](./install_upgrade_migration_tool.html) **BEFORE** performing your upgrade. The steps in the migration process doc provide a smooth upgrade path from PE 3.3.2 to PE 3.8.   
+If you are upgrading and you use the PE console for node classification, follow the steps in the [node classification migration process doc](./install_upgrade_migration_tool.html) **BEFORE** performing your upgrade. The steps in the migration process doc provide a smooth upgrade path from PE 3.3.2 to PE 3.8.
 
 Please note that factors such as the size of your deployment and the complexity of your classifications will determine how much time and/or planning you will need before upgrading to PE 3.7.0.
 
@@ -89,9 +89,9 @@ For more information about RBAC, refer to [Working with Role-Based Access Contro
 
 ## Upgrading to 3.8 with a Modified `auth.conf` File
 
-The [`auth.conf`](/puppet/latest/reference/config_file_auth.html) file manages access to Puppet's HTTPS API. This file is located at `/etc/puppetlabs/puppet/auth.conf` on the Puppet master. 
+The [`auth.conf`](/puppet/latest/reference/config_file_auth.html) file manages access to Puppet's HTTPS API. This file is located at `/etc/puppetlabs/puppet/auth.conf` on the Puppet master.
 
-If we find a modified `auth.conf` during the 3.8 upgrade process, we will attempt to create a diff between your modified version and the 3.8 version (reliant on the presence of a diff executable on your Puppet master server). You may need to modify your `auth.conf` to address the differences, as this file is not managed by PE. We recommend that you consider and address the changes, as some functionality (e.g., console services) may not be available after upgrade if the endpoints aren't authorized. 
+If we find a modified `auth.conf` during the 3.8 upgrade process, we will attempt to create a diff between your modified version and the 3.8 version (reliant on the presence of a diff executable on your Puppet master server). You may need to modify your `auth.conf` to address the differences, as this file is not managed by PE. We recommend that you consider and address the changes, as some functionality (e.g., console services) may not be available after upgrade if the endpoints aren't authorized.
 
 Here are some notable changes that have been made to the endpoints in `auth.conf`:
 
@@ -101,7 +101,7 @@ Here are some notable changes that have been made to the endpoints in `auth.conf
 
 - The `resource_type` endpoint was modified to allow `classifier_client_certname` (pe-internal-classifier) and `console_client_certname` (pe-internal-dashboard) (3.7.0).
 
-You will need to acknowledge you're aware of the differences when prompted by the upgrader, or pass in an answer file with `q_exit_and_update_auth_conf` in it when running the upgrade. 
+You will need to acknowledge you're aware of the differences when prompted by the upgrader, or pass in an answer file with `q_exit_and_update_auth_conf` in it when running the upgrade.
 
 ## `q_database_host` Cannot be an Alt Name For Upgrades to 3.7.0
 

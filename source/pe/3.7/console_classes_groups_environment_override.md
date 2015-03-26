@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.7 » Console » Grouping and Classifying Nodes"
+title: "PE 3.8 » Console » Grouping and Classifying Nodes"
 subtitle: "Working With Environments"
 canonical: "/pe/latest/console_classes_groups_environment_override.html"
 ---
@@ -26,8 +26,8 @@ We recommend the following environment-based workflow for testing new code in th
 
     4. To commit the change, click the commit button.
 
-    In the **All node groups** view, an **Override** tag is displayed for node groups that      have the environment override set. 
-    
+    In the **All node groups** view, an **Override** tag is displayed for node groups that      have the environment override set.
+
 ### Creating Classification Node Groups
 
 1. Create a set of node groups that are used exclusively for assigning classification to nodes. This is where you will add classes, along with rules that specify which nodes to match. You can leave the environment set to the default `production` environment, or change it to whatever environment you need to validate your classes and parameters against. **Do not set the environment override in any of these groups.**

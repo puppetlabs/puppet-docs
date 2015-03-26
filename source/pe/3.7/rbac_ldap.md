@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.7 » Console » Connecting PE to an External Directory Service"
+title: "PE 3.8 » Console » Connecting PE to an External Directory Service"
 subtitle: "Connecting Puppet Enterprise to an External Directory Service"
 canonical: "/pe/latest/rbac_ldap.html"
 ---
@@ -10,13 +10,13 @@ Puppet Enterprise (PE) can connect to external Lightweight Directory Access Prot
 
 - authenticate external directory users
 - authorize access of external directory users based on RBAC permissions
-- store and retrieve the groups and group membership information that has been set up in your external directory 
+- store and retrieve the groups and group membership information that has been set up in your external directory
 
-The supported directory services are OpenLDAP and Active Directory. 
+The supported directory services are OpenLDAP and Active Directory.
 
 User accounts that originate from an external directory are referred to as *remote users*. Users that are created in PE are referred to as *local users*. Remote users do not appear in the list of users in PE until they log in to PE for the first time.
 
-You can add both remote and local users directly to user roles. In addition, when an external directory group is imported into PE and assigned to a user role, the remote users that belong to that group all become members of the user role. External directory groups that are imported into PE are called *user groups*. Remote user groups are not bulk imported from an external directory service into PE. Instead, you explicitly import specific user groups from the directory service. 
+You can add both remote and local users directly to user roles. In addition, when an external directory group is imported into PE and assigned to a user role, the remote users that belong to that group all become members of the user role. External directory groups that are imported into PE are called *user groups*. Remote user groups are not bulk imported from an external directory service into PE. Instead, you explicitly import specific user groups from the directory service.
 
 **Note:** The connection to your external LDAP directory is read-only. If you want to make changes to remote users or user groups, you need to edit the information directly in the external directory.
 
@@ -30,7 +30,7 @@ To connect PE to your external directory service:
 
 1. From the console, click **Access Control**, and then click **External directory**.
 
-2. Fill in the directory information as described in the following table. Note that the settings shown in the table are examples only. You will need to substitute these example settings with the settings used in your directory service. 
+2. Fill in the directory information as described in the following table. Note that the settings shown in the table are examples only. You will need to substitute these example settings with the settings used in your directory service.
 
 All of the fields are required except for **LOGIN HELP**, **USER RELATIVE DISTINGUISHED NAME**, and **GROUP RELATIVE DISTINGUISHED NAME**. If you do not enter **USER RELATIVE DISTINGUISHED NAME** or **GROUP RELATIVE DISTINGUISHED NAME**, RBAC will search the entire base DN for the user or group, rather than just the subtree specified by the user or group RDN.
 
@@ -60,7 +60,7 @@ Once you’ve filled in the **External directory** form, click **Test connection
 
 ### Explanation of External Directory Settings
 
-**DIRECTORY NAME** 
+**DIRECTORY NAME**
 
 The name that you provide here will be used to refer to the external directory service anywhere it is used in the PE console. For example, when you are viewing a remote user in the PE console, the name that you provide in this field will be listed in the console as the source for that user. Set any name of your choice.
 
@@ -74,7 +74,7 @@ The settings in this section are used by PE to connect to your external director
 
 **HOSTNAME**
 
-This is simply the FQDN of the directory service to which you are connecting.  
+This is simply the FQDN of the directory service to which you are connecting.
 
 **PORT**
 
@@ -82,7 +82,7 @@ This is the port that PE will use to access the directory service. The port is g
 
 **LOOKUP USER**
 
-The distinguished name (DN) of the user account that PE will use to look up users when they log in to the console, and to look up groups when they are imported. This user must have read access for all entries that are to be used in the console. We recommend that this user has read-only access to the directory service. 
+The distinguished name (DN) of the user account that PE will use to look up users when they log in to the console, and to look up groups when they are imported. This user must have read access for all entries that are to be used in the console. We recommend that this user has read-only access to the directory service.
 
 **PASSWORD**
 
@@ -94,25 +94,25 @@ The number of seconds that PE will attempt to connect to the directory server be
 
 **Connect using SSL?**
 
-Select if you want to use SSL to connect to the external directory. If you select this option, make sure you also specify the SSL port in the **PORT** field above. In addition, to ensure that the directory service is properly identified, you need to [configure the `ds-trust-chain` to point to a copy of the public key (PEM format) for the directory service](#verify-directory-server-certificates). 
+Select if you want to use SSL to connect to the external directory. If you select this option, make sure you also specify the SSL port in the **PORT** field above. In addition, to ensure that the directory service is properly identified, you need to [configure the `ds-trust-chain` to point to a copy of the public key (PEM format) for the directory service](#verify-directory-server-certificates).
 **TODO: REMOVE THE ABOVE SENTENCE FOR PE 3.7 DOCS.**
 
 **BASE DISTINGUISHED NAME**
 
-PE uses LDAP Data Interchange Format (LDIF) to construct queries to your external directory (for example to look up user groups or users). Queries consist of the relative distinguished name (RDN) (optional) + the base distinguished name (DN) and are then filtered by lookup/login attributes. For example, if PE wants to authenticate a user named Bob who has the RDN `ou=bob,ou=users`, it sends a query in which the RDN is concatenated with the DN specified in this field (for example, `dc=puppetlabs,dc=com`). This gives a search base of `ou=bob,ou=users,dc=puppetlabs,dc=com`. 
+PE uses LDAP Data Interchange Format (LDIF) to construct queries to your external directory (for example to look up user groups or users). Queries consist of the relative distinguished name (RDN) (optional) + the base distinguished name (DN) and are then filtered by lookup/login attributes. For example, if PE wants to authenticate a user named Bob who has the RDN `ou=bob,ou=users`, it sends a query in which the RDN is concatenated with the DN specified in this field (for example, `dc=puppetlabs,dc=com`). This gives a search base of `ou=bob,ou=users,dc=puppetlabs,dc=com`.
 
-The base DN that you provide in this field specifies where in the directory service tree to search for groups and users. It is the part of the DN that all users and groups that you want to use have in common. It is commonly the root DN (example `dc=example,dc=com`) but in the following LDIF example for Active Directory, you could set the base DN to `ou=Puppet,dc=example,dc=com` since both the group and the user are also under the organizational unit `ou=Puppet`. 
+The base DN that you provide in this field specifies where in the directory service tree to search for groups and users. It is the part of the DN that all users and groups that you want to use have in common. It is commonly the root DN (example `dc=example,dc=com`) but in the following LDIF example for Active Directory, you could set the base DN to `ou=Puppet,dc=example,dc=com` since both the group and the user are also under the organizational unit `ou=Puppet`.
 
-	# A user named Harold 
+	# A user named Harold
 	dn: cn=harold,ou=Users,ou=Puppet,dc=example,dc=com
 	objectClass: organizationalPerson
-	
+
 	cn: harold
 	displayName: Harold J.
 	mail: harold@example.com
 	memberOf: inspectors
 	sAMAccountName: harold11
-	
+
 	# A group Harold is in
 	dn: cn=inspectors,ou=Groups,ou=Puppet,dc=example,dc=com
 	objectClass: group
@@ -122,11 +122,11 @@ The base DN that you provide in this field specifies where in the directory serv
 
 #### Attribute Mappings
 
-These settings tell PE which external directory attributes hold the metadata for users. 
+These settings tell PE which external directory attributes hold the metadata for users.
 
 **USER LOGIN ATTRIBUTE**
 
-This is the directory attribute that the user will use to log in to PE. For example, if you specify `sAMAccountName` as the user login attribute, Harold will log in with the username "harold11" because `sAMAccountName=harold11` in the LDIF example provided above. 
+This is the directory attribute that the user will use to log in to PE. For example, if you specify `sAMAccountName` as the user login attribute, Harold will log in with the username "harold11" because `sAMAccountName=harold11` in the LDIF example provided above.
 
 The value provided by the user login attribute must be unique among all entries under the User RDN + Base DN search base you’ve set up. For example, say you’ve selected the following settings:
 
@@ -144,7 +144,7 @@ This problem can be solved in one of two ways:
 
 **USER EMAIL ADDRESS**
 
-This is the directory attribute to use when displaying the user's email address in PE. 
+This is the directory attribute to use when displaying the user's email address in PE.
 
 **USER FULL NAME**
 
@@ -152,11 +152,11 @@ This is the directory attribute to use when displaying the user's full name in P
 
 #### Querying Users
 
-This setting is used by PE to query the directory service for users. 
+This setting is used by PE to query the directory service for users.
 
 **USER RELATIVE DISTINGUISHED NAME**
 
-The user RDN that you set here is concatenated with the base DN to form the search base when looking up a user. For example, if you specify `ou=users` for the user RDN, and your base DN setting is `ou=Puppet,dc=example,dc=com`, PE will only find users that have `ou=users,ou=Puppet,dc=example,dc=com` in their DN. 
+The user RDN that you set here is concatenated with the base DN to form the search base when looking up a user. For example, if you specify `ou=users` for the user RDN, and your base DN setting is `ou=Puppet,dc=example,dc=com`, PE will only find users that have `ou=users,ou=Puppet,dc=example,dc=com` in their DN.
 
 This setting is optional. If you choose not to set it, PE will search for the user in the base DN (example: `ou=Puppet,dc=example,dc=com`). Setting a user RDN is helpful in the following situations:
 
@@ -165,7 +165,7 @@ This setting is optional. If you choose not to set it, PE will search for the us
 
 #### Querying Groups
 
-These settings are used by PE to query the directory service for groups. 
+These settings are used by PE to query the directory service for groups.
 
 **GROUP OBJECT CLASS**
 
@@ -173,7 +173,7 @@ The name of the class that represents groups.
 
 **GROUP MEMBERSHIP FIELD**
 
-Tells PE how to find which users belong to which groups. This is the name of the attribute in the external directory groups that indicates who the group members are. 
+Tells PE how to find which users belong to which groups. This is the name of the attribute in the external directory groups that indicates who the group members are.
 
 **GROUP NAME ATTRIBUTE**
 
@@ -181,13 +181,13 @@ The attribute that stores the display name for groups. This is used for display 
 
 **GROUP LOOKUP ATTRIBUTE**
 
-The value used to import groups into PE. Given the example LDIF provided above, the group lookup attribute would be `cn`. When specifying the Inspectors group in the console to import it, you would provide the name `inspectors`. 
+The value used to import groups into PE. Given the example LDIF provided above, the group lookup attribute would be `cn`. When specifying the Inspectors group in the console to import it, you would provide the name `inspectors`.
 
 The value for this attribute must be unique under your search base. If you have users with the same login as the lookup of a group that you would like to use, you can narrow the search base, use a value for the lookup attribute that you know to be unique, or specify the **GROUP OBJECT CLASS** that all of your groups have in common but your users do not.
 
 **GROUP RELATIVE DISTINGUISHED NAME**
 
-The group RDN that you set here is concatenated with the base DN to form the search base when looking up a group. For example, if you specify `ou=groups` for the group RDN, and your base DN setting is `ou=Puppet,dc=example,dc=com`, PE will only find groups that have `ou=groups,ou=Puppet,dc=example,dc=com` in their DN. 
+The group RDN that you set here is concatenated with the base DN to form the search base when looking up a group. For example, if you specify `ou=groups` for the group RDN, and your base DN setting is `ou=Puppet,dc=example,dc=com`, PE will only find groups that have `ou=groups,ou=Puppet,dc=example,dc=com` in their DN.
 
 This setting is optional. If you choose not to set it, PE will search for the group in the base DN (example: `ou=Puppet,dc=example,dc=com`). Setting a group RDN is helpful in the following situations:
 
@@ -224,6 +224,6 @@ object class setting, but the group membership syncing does. This means that
 groups can be imported that do not match the specified object class type, and
 as such, those groups will never be associated with their members. If you want to use more than one group object class, to solve this problem, set the group object class to "\*".
 
-See [Working with User Roles](./rbac_user_roles.html) for information about managing users and groups. 
+See [Working with User Roles](./rbac_user_roles.html) for information about managing users and groups.
 
 Next, see [Working with Users and User Groups from an External Directory Service](./rbac_user_roles.html#working-with-users-and-user-groups-from-an-external-directory-service).

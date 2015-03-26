@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.7 » Deploying PE » Deactivating Nodes"
+title: "PE 3.8 » Deploying PE » Deactivating Nodes"
 subtitle: "Deactivating a PE Agent"
 canonical: "/pe/latest/node_deactivation.html"
 ---

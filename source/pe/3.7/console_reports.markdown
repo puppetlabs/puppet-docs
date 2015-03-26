@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.7 » Console » Viewing Reports"
+title: "PE 3.8 » Console » Viewing Reports"
 subtitle: "Viewing Reports and Inventory Data"
 canonical: "/pe/latest/console_reports.html"
 ---

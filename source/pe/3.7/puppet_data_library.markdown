@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.7 » Puppet » Puppet Data Library"
+title: "PE 3.8 » Puppet » Puppet Data Library"
 subtitle: "The Puppet Data Library"
 canonical: "/pe/latest/puppet_data_library.html"
 ---

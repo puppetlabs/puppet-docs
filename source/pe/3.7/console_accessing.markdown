@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.7 » Console » Accessing"
+title: "PE 3.8 » Console » Accessing"
 subtitle: "Accessing the Console"
 canonical: "/pe/latest/console_accessing.html"
 ---

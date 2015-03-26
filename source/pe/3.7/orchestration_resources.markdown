@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.7 » Orchestration » Browsing Resources"
+title: "PE 3.8 » Orchestration » Browsing Resources"
 subtitle: "Orchestration: Browsing and Comparing Resources"
 canonical: "/pe/latest/orchestration_resources.html"
 ---

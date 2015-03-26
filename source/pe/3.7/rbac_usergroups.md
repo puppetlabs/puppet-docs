@@ -1,5 +1,5 @@
 ---
-title: "PE 3.7 » RBAC Service 1.0 >> User Groups APIs"
+title: "PE 3.8 » RBAC Service 1.0 >> User Groups APIs"
 layout: default
 subtitle: "User Groups APIs"
 canonical: "/pe/latest/rbac_usergroups.html"

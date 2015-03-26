@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.7 » Console » RBAC Permissions"
+title: "PE 3.8 » Console » RBAC Permissions"
 subtitle: "About RBAC Permissions"
 canonical: "/pe/latest/rbac_permissions.html"
 ---

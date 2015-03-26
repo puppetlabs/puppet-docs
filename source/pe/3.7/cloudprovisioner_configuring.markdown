@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.7 » Cloud Provisioner » Installation and Configuration"
+title: "PE 3.8 » Cloud Provisioner » Installation and Configuration"
 subtitle: "Installing and Configuring Cloud Provisioning"
 canonical: "/pe/latest/cloudprovisioner_configuring.html"
 ---

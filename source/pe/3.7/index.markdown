@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.7 » Index"
+title: "PE 3.8 » Index"
 subtitle: "Puppet Enterprise User's Guide"
 canonical: "/pe/latest/index.html"
 ---

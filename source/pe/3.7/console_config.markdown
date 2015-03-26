@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.7 » Configuration"
+title: "PE 3.8 » Configuration"
 subtitle: "Configuring & Tuning the Console & Databases"
 canonical: "/pe/latest/console_config.html"
 ---
@@ -44,7 +44,7 @@ Instructions for using the PE console to increase the Jave heap size are detaile
 
 ### Tuning the Classifier Synchronization Period
 
-This synchronization period controls how long it takes the node classifier (NC) to retrieve classes from the Puppet master, which essentially dictates how soon you can see your changes appear in the NC. By default this value is set to 600 seconds (10 minutes). Depending on the size of your environment(s), this may or may not be a suitable amount of time. 
+This synchronization period controls how long it takes the node classifier (NC) to retrieve classes from the Puppet master, which essentially dictates how soon you can see your changes appear in the NC. By default this value is set to 600 seconds (10 minutes). Depending on the size of your environment(s), this may or may not be a suitable amount of time.
 
 You can change this value in the PE console.
 

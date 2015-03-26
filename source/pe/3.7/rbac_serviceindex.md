@@ -1,5 +1,5 @@
 ---
-title: "PE 3.7 » RBAC Service 1.0 >> Endpoints"
+title: "PE 3.8 » RBAC Service 1.0 >> Endpoints"
 layout: default
 subtitle: "RBAC Endpoints"
 canonical: "/pe/latest/rbac_serviceindex.html"

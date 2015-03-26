@@ -1,5 +1,5 @@
 ---
-title: "PE 3.7 » RBAC Service 1.0 >> Directory Service APIs"
+title: "PE 3.8 » RBAC Service 1.0 >> Directory Service APIs"
 layout: default
 subtitle: "Directory Service APIs"
 canonical: "/pe/latest/rbac_dsref.html"

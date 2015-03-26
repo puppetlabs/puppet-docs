@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.7 » Cloud Provisioning » Sample Workflow"
+title: "PE 3.8 » Cloud Provisioning » Sample Workflow"
 subtitle: "A Day in the Life of a Puppet-Powered Cloud Sysadmin"
 canonical: "/pe/latest/cloudprovisioner_workflow.html"
 ---

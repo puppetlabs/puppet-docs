@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.7 » Installing » Installing Split PuppetDB Answer File"
+title: "PE 3.8 » Installing » Installing Split PuppetDB Answer File"
 subtitle: "Split Puppet Enterprise Install, PuppetDB Answer File Reference"
 canonical: "/pe/latest/install_split_puppetdb_answers.html"
 ---
@@ -15,7 +15,7 @@ See [Installing with an answer file](./install_automated.html) for more details.
 >
 > 1. Puppet master
 > 2. Puppet DB and database support (which includes the console database)
-> 3. The PE console 
+> 3. The PE console
 
 ### Global Answers
 These answers are always needed.

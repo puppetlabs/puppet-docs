@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.7 » Console » Navigating Live Management"
+title: "PE 3.8 » Console » Navigating Live Management"
 subtitle: "Navigating Live Management"
 canonical: "/pe/latest/console_navigating_live_mgmt.html"
 ---

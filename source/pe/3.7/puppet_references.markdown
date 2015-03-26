@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.7 » Puppet » References"
+title: "PE 3.8 » Puppet » References"
 subtitle: "Puppet References"
 canonical: "/pe/latest/puppet_references.html"
 ---

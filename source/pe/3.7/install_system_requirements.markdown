@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.7 » Installing » System Requirements"
+title: "PE 3.8 » Installing » System Requirements"
 subtitle: "System Requirements and Pre-Installation"
 canonical: "/pe/latest/install_system_requirements.html"
 ---
@@ -85,7 +85,7 @@ A small environment is run on a monolithic installation and is suitable for runn
 - 4-core server with 16 GB of RAM
   - Amazon EC2 m3.xlarge instance is adequate for this environment
 - At least 100 GB of free space in `/opt` for PuppetDB
-- At least 4 GB of free space in `/var` 
+- At least 4 GB of free space in `/var`
 
 ### Medium Environment
 
@@ -307,29 +307,29 @@ OpenSSL is a dependency required for PE. For Solaris 10 and all versions of RHEL
 
 ### Centos
 
- &nbsp;      | All Nodes | Master Nodes | Console Nodes | Console/Console DB Nodes 
+ &nbsp;      | All Nodes | Master Nodes | Console Nodes | Console/Console DB Nodes
 -------------|:---------:|:------------:|:-------------:|:------------------------:
-pciutils     | x         |              |               |                          
-system-logos | x         |              |               |                          
-which        | x         |              |               |                          
-libxml2      | x         |              |               |                          
-dmidecode    | x         |              |               |                          
-net-tools    | x         |              |               |                          
-virt-what    | x         |              |               |                          
-apr    		 |           | x            | x             |                          
-apr-util     |           | x            | x             |                          
-curl         |           | x            | x             |                          
-mailcap      |           | x            | x             |                          
-libjpeg      |           | x            |               | x                        
-libtool-ltdl |           | x            | x             |                          
-unixODBC     |           | x            | x             |                          
-libxslt      |           |              |               |                           
-zlib         | x         |              |               |                          
+pciutils     | x         |              |               |
+system-logos | x         |              |               |
+which        | x         |              |               |
+libxml2      | x         |              |               |
+dmidecode    | x         |              |               |
+net-tools    | x         |              |               |
+virt-what    | x         |              |               |
+apr    		 |           | x            | x             |
+apr-util     |           | x            | x             |
+curl         |           | x            | x             |
+mailcap      |           | x            | x             |
+libjpeg      |           | x            |               | x
+libtool-ltdl |           | x            | x             |
+unixODBC     |           | x            | x             |
+libxslt      |           |              |               |
+zlib         | x         |              |               |
 
 
 ### RHEL
 
- &nbsp;      | All Nodes | Master Nodes | Console Nodes | Console/Console DB Nodes | 
+ &nbsp;      | All Nodes | Master Nodes | Console Nodes | Console/Console DB Nodes |
 -------------|:---------:|:------------:|:-------------:|:------------------------:|
 pciutils     | x         |              |               |                          |
 system-logos | x         |              |               |                          |
@@ -348,13 +348,13 @@ mailcap      |           | x            | x             |                       
 libjpeg      |           | x            |               | x                        |
 libtool-ltdl (RHEL 7) |  | x            | x             |                          |
 unixODBC (RHEL 7) |      | x            | x             |                          |
-libxslt      |           |              |               |                          | 
+libxslt      |           |              |               |                          |
 zlib         | x         |              |               |                          |
 
 
 ### SLES
 
- &nbsp;      | All Nodes | Master Nodes | Console Nodes | Console/Console DB Nodes | 
+ &nbsp;      | All Nodes | Master Nodes | Console Nodes | Console/Console DB Nodes |
 -------------|:---------:|:------------:|:-------------:|:------------------------:|
 pciutils     | x         |              |               |                          |
 pmtools      | x         |              |               |                          |
@@ -373,7 +373,7 @@ zlib         | x         |              |               |                       
 
 ### Debian
 
- &nbsp;      | All Nodes | Master Nodes | Console Nodes | Console/Console DB Nodes | 
+ &nbsp;      | All Nodes | Master Nodes | Console Nodes | Console/Console DB Nodes |
 -------------|:---------:|:------------:|:-------------:|:------------------------:|
 pciutils     | x         |              |               |                          |
 dmidecode    | x         |              |               |                          |
@@ -398,14 +398,14 @@ libjpeg62    |           | x            |               | x                     
 libcurl3 (Debian 7) |    | x            | x             |                          |
 libxml2-dev (Debian 7) | | x            | x             | x                        |
 locales-all (Debian 7) | |              |               | x                        |
-libxslt1.1   |           |              |               |                          | 
+libxslt1.1   |           |              |               |                          |
 zlib         | x         |              |               |                          |
 
 
 ### Ubuntu
 
 
- &nbsp;      | All Nodes | Master Nodes | Console Nodes | Console/Console DB Nodes | 
+ &nbsp;      | All Nodes | Master Nodes | Console Nodes | Console/Console DB Nodes |
 -------------|:---------:|:------------:|:-------------:|:------------------------:|
 pciutils     | x         |              |               |                          |
 dmidecode    | x         |              |               |                          |
@@ -427,7 +427,7 @@ libaprutil1  |           | x            | x             |                       
 libaprutil1-dbd-sqlite3 | | x           | x             |                          |
 libaprutil1-ldap |       | x            | x             |                          |
 libjpeg62    |           | x            |               | x                        |
-libxslt1.1   |           |              |               |                          | 
+libxslt1.1   |           |              |               |                          |
 libgtk2.0-0  |           | x            | x             | x                        |
 ca-certificates-java |   | x            | x             | x                        |
 openjdk-7-jre-headless* | | x            | x             | x                        |

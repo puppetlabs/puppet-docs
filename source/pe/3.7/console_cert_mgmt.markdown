@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.7 » Node Request Management"
+title: "PE 3.8 » Node Request Management"
 subtitle: "Working with Node Requests"
 canonical: "/pe/latest/console_cert_mgmt.html"
 ---

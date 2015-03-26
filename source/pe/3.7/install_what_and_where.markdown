@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.7 » Installing » Components, Logs, and License Files"
+title: "PE 3.8 » Installing » Components, Logs, and License Files"
 subtitle: "Components, Logs, and License Files: What Gets Installed and Where?"
 canonical: "/pe/latest/install_what_and_where.html"
 ---

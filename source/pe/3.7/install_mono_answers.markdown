@@ -1,11 +1,11 @@
 ---
 layout: default
-title: "PE 3.7 » Installing » Installing Monolithic Answer File"
+title: "PE 3.8 » Installing » Installing Monolithic Answer File"
 subtitle: "Monolithic Puppet Enterprise Install Answer File Reference"
 canonical: "/pe/latest/install_mono_answers.html"
 ---
 
-The following example answers can be used to perform an automated monolithic (all-in-one) installation of PE. 
+The following example answers can be used to perform an automated monolithic (all-in-one) installation of PE.
 
 A .txt file version can be found in the `answers` directory of the PE installer tarball.
 
@@ -22,7 +22,7 @@ These answers are always needed.
 : **Y** or **N** --- Whether the installer has permission to install additional packages from the OS’s repositories. If this is set to N, the installation will fail if the installer detects missing dependencies.
 
 `q_enable_future_parser`
-: **Y or N** --- Whether or not to enable the Puppet 4 language parser. This is recommended for all **NEW** Puppet users. **DO NOT** enable this feature if you'll be using Puppet code you did **NOT** create with the Puppet 4 language parser. 
+: **Y or N** --- Whether or not to enable the Puppet 4 language parser. This is recommended for all **NEW** Puppet users. **DO NOT** enable this feature if you'll be using Puppet code you did **NOT** create with the Puppet 4 language parser.
 
 #### Additional Global Answers
 
@@ -39,7 +39,7 @@ These answers are always needed.
 : **Y** or **N** --- Whether to install the Puppet master component.
 
 `q_all_in_one_install=y`
-: **Y** or **N** --- Whether or not the installation is an all-in-one installation, (i.e., are PuppetDB and the console also being installed on this node). 
+: **Y** or **N** --- Whether or not the installation is an all-in-one installation, (i.e., are PuppetDB and the console also being installed on this node).
 
 `q_puppet_cloud_install=n`
 : **Y** or **N** --- Whether to install the cloud provisioner component.

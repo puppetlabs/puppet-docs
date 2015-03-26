@@ -1,11 +1,11 @@
 ---
-title: "PE 3.7 » Configuring Your PE Infrastructure"
+title: "PE 3.8 » Configuring Your PE Infrastructure"
 layout: default
 subtitle: "Configuring and Tuning Your PE Infrastructure"
 canonical: "/pe/latest/config_intro.html"
 ---
 
-Once you've installed Puppet Enterprise (PE), you'll likely want to configure and tune some settings to get it working optimally for your environment. For example, you might want to add your own certificate to the whitelist, or increase the max-threads setting for `http` and `https` requests, or configure the number of JRuby instances. 
+Once you've installed Puppet Enterprise (PE), you'll likely want to configure and tune some settings to get it working optimally for your environment. For example, you might want to add your own certificate to the whitelist, or increase the max-threads setting for `http` and `https` requests, or configure the number of JRuby instances.
 
 The following pages provide information about settings you might want to tune on the PE components:
 
@@ -44,6 +44,6 @@ The following steps demonstrate how to attach your own certificate.
 
 You can also configure settings with Hiera. We recommend that you use this option in cases where the setting you want is not part of the `puppet_enterprise::profile` class.
 
-In your default Hiera .yaml file, add the setting you want to configure. The default location for the Hiera defaults is `/var/lib/hiera/defaults.yaml`. If you’ve customized your `hierarchy` or `datadir`, you’ll need to access and edit the default `.yaml` file accordingly. 
+In your default Hiera .yaml file, add the setting you want to configure. The default location for the Hiera defaults is `/var/lib/hiera/defaults.yaml`. If you’ve customized your `hierarchy` or `datadir`, you’ll need to access and edit the default `.yaml` file accordingly.
 
 For example, you can use Hiera to [increase or decrease the number of JRuby instances on the Puppet Server](./config_puppetserver.html#tuning-jruby-on-the-puppet-server), or use it to [tune the number of `max threads` that will accept `https` requests on the Puppet Server](./config_puppetserver.html#tuning-max-threads-on-puppet-server).

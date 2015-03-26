@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.7 » Cloud Provisioning » Classifying Nodes and Installing Puppet"
+title: "PE 3.8 » Cloud Provisioning » Classifying Nodes and Installing Puppet"
 subtitle: "Classifying New Nodes and Remotely Installing Puppet"
 canonical: "/pe/latest/cloudprovisioner_classifying_installing.html"
 ---
