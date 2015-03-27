@@ -24,7 +24,7 @@ You can add both remote and local users directly to user roles. In addition, whe
 
 This section describes how to connect PE to your external directory service. PE only connects to the external directory service when a user logs in or when groups are imported. The table below provides examples of the settings you would use to connect to an Active Directory service and an OpenLDAP service. Each setting is explained in more detail below the table.
 
->**Note**: To connect to an external directory service, RBAC needs to store the username and password configured here, not just a hash of the password. The password is stored in the database in plain text without obfuscation. To guarantee its security, ensure that other processes do not have OS-level read permissions for PE's database or configuration files.
+>**Note**: To connect to an external directory service, RBAC stores the lookup user's password in plain text in the database, without obfuscation. For security, ensure that the lookup user has read-only access and carefully consider what other people and software could have access to this password.
 
 To connect PE to your external directory service:
 
@@ -32,7 +32,7 @@ To connect PE to your external directory service:
 
 2. Fill in the directory information as described in the following table. Note that the settings shown in the table are examples only. You will need to substitute these example settings with the settings used in your directory service.
 
-All of the fields are required except for **LOGIN HELP**, **USER RELATIVE DISTINGUISHED NAME**, and **GROUP RELATIVE DISTINGUISHED NAME**. If you do not enter **USER RELATIVE DISTINGUISHED NAME** or **GROUP RELATIVE DISTINGUISHED NAME**, RBAC will search the entire base DN for the user or group, rather than just the subtree specified by the user or group RDN.
+All of the fields are required except for LOGIN HELP, USER RELATIVE DISTINGUISHED NAME, and GROUP RELATIVE DISTINGUISHED NAME. If you do not enter USER RELATIVE DISTINGUISHED NAME or GROUP RELATIVE DISTINGUISHED NAME, RBAC will search the entire base DN for the user or group.
 
 | Field | Example Active Directory Settings | Example OpenLDAP Settings |
 | ---                         | ---                      | ---          |
@@ -40,20 +40,20 @@ All of the fields are required except for **LOGIN HELP**, **USER RELATIVE DISTIN
 | **LOGIN HELP (OPTIONAL)** | https://myweb.com/ldaploginhelp | https://myweb.com/ldaploginhelp |
 | **HOSTNAME** | myhost.delivery.exampleservice.net | myhost.delivery.exampleservice.net |
 | **PORT** | 389 (636 for LDAPS) | 389 (636 for LDAPS) |
-| **LOOKUP USER** | CN=queryuser,CN=Users,DC=puppetlabs,DC=com | cn=admin,dc=delivery,dc=puppetlabs,dc=net |
+| **LOOKUP USER** | cn=queryuser,cn=Users,dc=puppetlabs,dc=com | cn=admin,dc=delivery,dc=puppetlabs,dc=net |
 | **LOOKUP PASSWORD** | The lookup user's password. | The lookup user's password.
 | **CONNECTION TIMEOUT (SECONDS)** | 10 | 10 |
-| **Connect using SSL?** | Select or leave unchecked | Select or leave unchecked |
-| **BASE DISTINGUISHED NAME** | DC=puppetlabs,DC=com | dc=puppetlabs,dc=com |
+| **Connect using SSL?** | Select or leave unchecked (**Note:** To ensure a secure connection, you also need to [set the `ds-trust-chain`](#verify-directory-server-certificates)) | Select or leave unchecked (**Note:** To ensure a secure connection, you also need to [set the `ds-trust-chain`](#verify-directory-server-certificates)) |
+| **BASE DISTINGUISHED NAME** | dc=puppetlabs,dc=com | dc=puppetlabs,dc=com |
 | **USER LOGIN ATTRIBUTE** | sAMAccountName | cn |
 | **USER EMAIL ADDRESS**  | mail | mail |
 | **USER FULL NAME**  | displayName | displayName |
-| **USER RELATIVE DISTINGUISHED NAME**  | CN=Users  | ou=users |
+| **USER RELATIVE DISTINGUISHED NAME**  | cn=Users  | ou=users |
 | **GROUP OBJECT CLASS**  | group  | groupOfUniqueNames  |
 | **GROUP MEMBERSHIP FIELD**  | member | uniqueMember  |
 | **GROUP NAME ATTRIBUTE**  | name  | displayName  |
 | **GROUP LOOKUP ATTRIBUTE** | cn | cn |
-| **GROUP RELATIVE DISTINGUISHED NAME**  | CN=Groups  | ou=groups |
+| **GROUP RELATIVE DISTINGUISHED NAME**  | cn=Groups  | ou=groups |
 
 
 Once you’ve filled in the **External directory** form, click **Test connection** to ensure that the connection has been established. If you’re successful, a green **Success** message will be displayed at the top of the form. Save your settings after you have successfully tested them.
@@ -86,7 +86,8 @@ The distinguished name (DN) of the user account that PE will use to look up user
 
 **PASSWORD**
 
-The lookup user's password. This password is **not** stored securely and may be viewed by anyone with the “View, Edit, and Test” permission for the directory service. This is because the user name and password for the lookup user must be recoverable when connecting to the external directory service.
+The lookup user's password. This password is **not** stored securely and may be viewed by anyone with the “View, Edit, and Test” permission for the directory service. 
+
 
 **CONNECTION TIMEOUT (SECONDS)**
 
@@ -99,14 +100,13 @@ Select if you want to use SSL to connect to the external directory. If you selec
 
 **BASE DISTINGUISHED NAME**
 
-PE uses LDAP Data Interchange Format (LDIF) to construct queries to your external directory (for example to look up user groups or users). Queries consist of the relative distinguished name (RDN) (optional) + the base distinguished name (DN) and are then filtered by lookup/login attributes. For example, if PE wants to authenticate a user named Bob who has the RDN `ou=bob,ou=users`, it sends a query in which the RDN is concatenated with the DN specified in this field (for example, `dc=puppetlabs,dc=com`). This gives a search base of `ou=bob,ou=users,dc=puppetlabs,dc=com`.
+When PE constructs queries to your external directory (for example to look up user groups or users), the queries consist of the relative distinguished name (RDN) (optional) + the base distinguished name (DN), and are then filtered by lookup/login attributes. For example, if PE wants to authenticate a user named Bob who has the RDN `ou=bob,ou=users`, it sends a query in which the RDN is concatenated with the DN specified in this field (for example, `dc=puppetlabs,dc=com`). This gives a search base of `ou=bob,ou=users,dc=puppetlabs,dc=com`. 
 
 The base DN that you provide in this field specifies where in the directory service tree to search for groups and users. It is the part of the DN that all users and groups that you want to use have in common. It is commonly the root DN (example `dc=example,dc=com`) but in the following LDIF example for Active Directory, you could set the base DN to `ou=Puppet,dc=example,dc=com` since both the group and the user are also under the organizational unit `ou=Puppet`.
 
 	# A user named Harold
 	dn: cn=harold,ou=Users,ou=Puppet,dc=example,dc=com
 	objectClass: organizationalPerson
-
 	cn: harold
 	displayName: Harold J.
 	mail: harold@example.com
@@ -130,11 +130,11 @@ This is the directory attribute that the user will use to log in to PE. For exam
 
 The value provided by the user login attribute must be unique among all entries under the User RDN + Base DN search base you’ve set up. For example, say you’ve selected the following settings:
 
-	base DN = `dc=example,dc=com`
-	user RDN = `null`
-	user login attribute = `cn`
+	base DN = dc=example,dc=com
+	user RDN = null
+	user login attribute = cn
 
-When Harold tries to log in, the console searches the external directory for any entries under `dc=example,dc=com` that have the attribute/value pair `cn=harold`. (This attribute/value pair does not need to be contained within the DN). If there is another user with the DN `cn=harold,ou=OtherUsers,dc=example,dc=com`, two results will be returned and the login will not succeed, because the console does not know which entry to use.
+When Harold tries to log in, the console searches the external directory for any entries under `dc=example,dc=com` that have the attribute/value pair `cn=harold`. (This attribute/value pair does not need to be contained within the DN). However, if there is another user named Harold who has the DN `cn=harold,ou=OtherUsers,dc=example,dc=com`, two results will be returned and the login will not succeed because the console does not know which entry to use.
 
 This problem can be solved in one of two ways:
 
@@ -169,7 +169,7 @@ These settings are used by PE to query the directory service for groups.
 
 **GROUP OBJECT CLASS**
 
-The name of the class that represents groups.
+The name of an object class that all groups have.
 
 **GROUP MEMBERSHIP FIELD**
 
@@ -197,7 +197,6 @@ This setting is optional. If you choose not to set it, PE will search for the gr
 >**Note**: At present, PE only supports a single Base DN.
 >
 >  * Use of multiple user RDNs or group RDNs is not supported.
->  * Cyclical group relationships in Active Directory will prevent a user from logging in.
 
 ### Verify Directory Server Certificates
 
@@ -218,11 +217,6 @@ Example of `rbac.conf`:
 	}
 
 **TODO: REMOVE THE SECTION ABOVE FOR PE 3.7 DOCS**
-
-**Note:** There is currently an issue where group importation does not respect the group
-object class setting, but the group membership syncing does. This means that
-groups can be imported that do not match the specified object class type, and
-as such, those groups will never be associated with their members. If you want to use more than one group object class, to solve this problem, set the group object class to "\*".
 
 See [Working with User Roles](./rbac_user_roles.html) for information about managing users and groups.
 
