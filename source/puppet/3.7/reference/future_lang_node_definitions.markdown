@@ -12,7 +12,6 @@ canonical: "/puppet/latest/reference/future_lang_node_definitions.html"
 [topscope]: ./future_lang_scope.html#top-scope
 [extlookup]: /references/latest/function.html#extlookup
 [custom_functions]: /guides/custom_functions.html
-[import]: ./future_lang_import.html
 [regex]: ./future_lang_datatypes.html#regular-expressions
 [strings]: ./future_lang_datatypes.html#strings
 [inherit]: ./future_lang_classes.html#inheritance

@@ -6,7 +6,6 @@ canonical: "/puppet/latest/reference/future_lang_namespaces.html"
 
 [classes]: ./future_lang_classes.html
 [define]: ./future_lang_defined_types.html
-[import]: ./future_lang_import.html
 [variables]: ./future_lang_variables.html
 [modulepath]: ./modules_fundamentals.html#the-modulepath
 [module]: ./modules_fundamentals.html

@@ -14,7 +14,6 @@ canonical: "/puppet/latest/reference/future_lang_scope.html"
 [lookup]: #scope-lookup-rules
 [enc]: /guides/external_nodes.html
 [inheritance]: ./future_lang_classes.html#inheritance
-[import]: ./future_lang_import.html
 [scopedoc]: /guides/scope_and_puppet.html
 [variables]: ./future_lang_variables.html
 [namespace]: ./future_lang_namespaces.html
@@ -253,6 +252,5 @@ This version of Puppet uses dynamic scope for resource defaults.
 Messy Under-the-Hood Details
 -----
 
-* Node scope only exists if there is at least one node definition in the site manifest (or one has been [imported][import] into it). If no node definitions exist, then ENC classes get declared at top scope.
+* Node scope only exists if there is at least one node definition in the main manifest. If no node definitions exist, then ENC classes get declared at top scope.
 * Although top scope and node scope are described above as being special scopes, they are actually implemented as part of the chain of parent scopes, with node scope being a child of top scope and the parent of any classes declared inside the node definition. However, since the move to static scoping causes them to behave as little islands of dynamic scoping in a statically scoped world, it's simpler to think of them as special cases.
-* If you ignore best practices and use node [inheritance][], the rules of parent scope assignment treat node definitions like classes; that is, the base node becomes the parent scope of the derived node, and normal dynamic scoping will apply to the classes declared in each of the two definitions. Note that this will usually yield the opposite result of whatever you are trying to achieve.

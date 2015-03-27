@@ -30,7 +30,6 @@ canonical: "/puppet/latest/reference/future_lang_visual_index.html"
 [defined_resource]: ./future_lang_defined_types.html#declaring-an-instance
 [node]: ./future_lang_node_definitions.html
 [regex_node]: ./future_lang_node_definitions.html#regular-expression-names
-[import]: ./future_lang_import.html
 [comments]: ./future_lang_comments.html
 [if]: ./future_lang_conditional.html#if-statements
 [expressions]: ./future_lang_expressions.html
@@ -180,12 +179,6 @@ This page can help you find syntax elements when you can't remember their names.
 {% endhighlight %}
 
 ↑ A [regular expression node definition][regex_node].
-
-{% highlight ruby %}
-    import nodes/*.pp
-{% endhighlight %}
-
-↑ An [import statement][import]. Should be avoided in all but a few circumstances.
 
 {% highlight ruby %}
     # comment

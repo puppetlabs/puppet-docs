@@ -43,7 +43,7 @@ The following words are reserved:
 * `false` --- boolean value
 * `function` --- reserved for future use
 * `if` --- language keyword
-* `import` --- language keyword
+* `import` --- former language keyword (now removed)
 * `in` --- expression operator
 * `inherits` --- language keyword
 * `node` --- language keyword

@@ -33,7 +33,6 @@ canonical: "/puppet/latest/reference/future_lang_classes.html"
 [metaparameters]: ./future_lang_resources.html#metaparameters
 [catalog]: ./future_lang_summary.html#compilation-and-catalogs
 [facts]: ./future_lang_variables.html#facts-and-built-in-variables
-[import]: ./future_lang_import.html
 [declare]: #declaring-classes
 [setting_parameters]: #include-like-vs-resource-like
 [override]: #using-resource-like-declarations
@@ -131,11 +130,10 @@ Classes should be stored in their module's `manifests/` directory as one class p
 
 > #### Other Locations
 >
-> Most users should **only** load classes from modules. However, you can also put classes in the following additional locations:
+> Most users should **only** load classes from modules. However, it's technically possible to put classes in the following additional locations:
 >
-> * [The main manifest][sitedotpp]. If you do so, they may be placed anywhere in the file and are not parse-order dependent.
-> * [Imported manifests][import]. If you do so, you must [import][] the file containing the class before you may declare it.
-> * Other class definitions. This puts the interior class under the exterior class's [namespace][], causing its real name to be something other than the name with which it was defined. It does not cause the interior class to be automatically declared along with the exterior class. Nested classes cannot be autoloaded; in order for the interior class to be visible to Puppet, the manifest containing it must have been forcibly loaded, either by autoloading the outermost class, using an [import][] statement, or placing the entire nested structure in the site manifest. Although nesting classes is not yet formally deprecated, it is **very much** not recommended.
+> * [The main manifest][sitedotpp]. If you do so, they may be placed anywhere in the main manifest file(s) and are not parse-order dependent.
+> * Other class definitions. This puts the interior class under the exterior class's [namespace][], causing its real name to be something other than the name with which it was defined. It does not cause the interior class to be automatically declared along with the exterior class. Nested classes cannot be autoloaded; in order for the interior class to be visible to Puppet, the manifest containing it must have been forcibly loaded, either by autoloading the outermost class or placing the entire nested structure in the site manifest. Although nesting classes is not yet formally deprecated, it is **very much** not recommended.
 
 ### Containment
 
