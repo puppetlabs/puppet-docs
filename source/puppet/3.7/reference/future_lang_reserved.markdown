@@ -63,7 +63,7 @@ Reserved Class Names
 The following are built-in namespaces used by Puppet and so must not be used as class names:
 
 * `main` --- Puppet automatically creates a `main` [class][], which [contains][] any [resources][] not contained by any other class.
-* `settings` --- The automatically created `settings` namespace contains variables with the [settings][] available to the compiler (that is, the puppet master's settings).
+* `settings` --- The automatically created `settings` namespace contains variables with the [settings][] available to the compiler (that is, the Puppet master's settings).
 
 Additionally, the names of data types can't be used as class names:
 
@@ -125,19 +125,25 @@ Variable names begin with a `$` (dollar sign) and can include:
 
 * Uppercase and lowercase letters
 * Numbers
-* Underscores
+* Underscores (`_`)
 
-The first character after the $ must not be an uppercase letter, and generally may not be an underscore (local variables are the exception). Variable names are case-sensitive. Note that [some variable names are reserved.](#reserved-variable-names)
+The first character after the $ must not be an uppercase letter.
+
+If the first character is an underscore, that variable should only be accessed from its own local scope; using qualified variable names where any namespace segment begins with `_` is deprecated.
+
+Variable names are case-sensitive. Note that [some variable names are reserved.](#reserved-variable-names)
 
 Variable names should match the following regular expression:
 
-    \A\$[a-z0-9][a-zA-Z0-9_]+\Z
+    \A\$[a-z0-9_][a-zA-Z0-9_]+\Z
 
 Variable names can be [fully qualified][qualified_var] to refer to variables from foreign [scopes][]. Qualified variable names look like `$class::name::variable_name`. They begin with `$`, the name of the class that contains the variable, and the `::` (double colon) [namespace][] separator, and end with the variable's local name.
 
+Optionally, the name of the very first namespace may be empty, representing the top namespace. In previous versions of the Puppet language, this was often used to work around bugs, but it's basically never necessary in this version.
+
 Qualified variable names should match the following regular expression:
 
-    \A\$([a-z][a-z0-9_]*)?(::[a-z][a-z0-9_]*)*::[a-z][a-zA-Z0-9_]+\Z
+    \A\$([a-z][a-z0-9_]*)?(::[a-z][a-z0-9_]*)*::[a-zA-Z0-9_]+\Z
 
 ### Classes and Types
 
@@ -160,6 +166,8 @@ Class names with multiple namespaces should match the following regular expressi
     \A([a-z][a-z0-9_]*)?(::[a-z][a-z0-9_]*)*\Z
 
 Note that [some class names are reserved](#reserved-class-names), and [reserved words](#reserved-words) cannot be used as class or type names.
+
+Additionally, you cannot use the name `<MODULE NAME>::init` for a class or defined type. This is because `init.pp` is a reserved filename, which should contain a class named after the module.
 
 ### Modules
 
