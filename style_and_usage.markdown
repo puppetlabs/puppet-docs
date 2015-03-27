@@ -1,9 +1,50 @@
 Style and Usage Guide
 =====================
 
-The documentation project's conventions, best practices, and general habits.
+This guide provides content style guidelines for use by all content creators at Puppet Labs. This guide originated on the Docs team, but folds in style info from Marketing and Education as well. We'll be putting in place a process for contributing style decisions to the guide, and for identifying differences in style across various teams.
+
+##Purpose
+
+*Establish consistency across all Puppet Labs content – As a company, we strive to have consistent voice, structure, terms, format and other style. This consistency makes navigating content and technology easier and more intuitive for users. 
+*Establish best practices for delivering the content that helps users solve problems.
+*Help bring new writers up to speed quickly, without guess work.
 
 * * *
+
+##Writing for Users New to Puppet and PE
+
+* Be straightforward -- don’t rely on implication. Make direct statements. Use conjunctive adverbs to connect ideas and help to bridge connections: “first,” “second,” “and then,” “next,” “therefore,” “also,” etc.
+* Define things. If you’re working with a new feature, explicitly say what it is, and what problems it solves. Similarly, avoid jargon that will make new users feel excluded or frustrated.
+* Use the same terms to refer to the same things. For example, if you title a page “Grouping and Classifying Nodes,” use those terms in the contents of the page.  
+* Focus on the tasks users need to perform. If you’re writing about a new feature, identify what the user will do with that feature, and provide tasks (see Tasks section) that explicitly step the user through each task. Don’t just tell them what to do, but how to do it.
+* Decide what information your users really want and need and provide that first. If you have time, and more information, then add extra pages for a deeper dive.
+* Provide breathing space (white space).
+* Use headings that quickly convey the content.
+* Make content scannable.
+* Use examples. A lot of examples.
+* Use graphics and screenshots to provide another way of learning a thing.
+* Empower the user. Never condescend.  
+
+##Writing for Advanced Users
+Today’s junior IT worker is potentially tomorrow’s automation or operations architect. Users who solve problems feel more confident. They’re encouraged to try new things and grow their skills. Our documentation can support users from basic tasks through to the rich, heady high-level concepts that an expert craves and that we have in good supply.
+
+Writing for more advanced users should always be about providing more complex concepts, not complicated or convoluted prose, or complicated organization of content. No user will be upset if you make it easy for them to find the information they’re looking for or tell them how to do things. If they already know how to perform some of the steps, they will skip them.
+
+###Examples
+Quick Start: http://docs.puppetlabs.com/pe/latest/quick_writing_windows.html
+Facter Overview: http://docs.puppetlabs.com/facter/2.0/fact_overview.html
+
+###Documenting for the New User
+To create new content that addresses the needs of new users, essentially follow the guidelines in the list above.
+Revising Existing Content
+Tips for revising content to meet the needs of new users:
+Identify the basic-level stuff that’s missing and write it.
+Provide summaries or overviews if they’re missing.
+Mention prerequisites or concepts a user should be comfortable with before getting started.
+Identify places within existing content that need to be revised and revise them with the above thoughts in mind to be more accessible.
+As appropriate and technologically possible, make content filterable by user, so advanced users can filter out the basic stuff.
+Provide definitions for terms that a new user might not be familiar with or might misunderstand—like “class,” which is different in the Puppet context than in many others. Do this in the earlier pages of a section of content. Use your judgment about what a new user might or might not know or have seen before getting to this section.
+Glossary. Maybe multiple glossaries.
 
 Link Text and Image Descriptions
 -----
