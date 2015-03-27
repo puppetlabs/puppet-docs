@@ -5,9 +5,9 @@ This guide provides content style guidelines for use by all content creators at 
 
 ##Purpose
 
-*Establish consistency across all Puppet Labs content – As a company, we strive to have consistent voice, structure, terms, format and other style. This consistency makes navigating content and technology easier and more intuitive for users. 
-*Establish best practices for delivering the content that helps users solve problems.
-*Help bring new writers up to speed quickly, without guess work.
+* Establish consistency across all Puppet Labs content – As a company, we strive to have consistent voice, structure, terms, format and other style. This consistency makes navigating content and technology easier and more intuitive for users. 
+* Establish best practices for delivering the content that helps users solve problems.
+* Help bring new writers up to speed quickly, without guess work.
 
 * * *
 
@@ -34,17 +34,16 @@ Writing for more advanced users should always be about providing more complex co
 Quick Start: http://docs.puppetlabs.com/pe/latest/quick_writing_windows.html
 Facter Overview: http://docs.puppetlabs.com/facter/2.0/fact_overview.html
 
-###Documenting for the New User
-To create new content that addresses the needs of new users, essentially follow the guidelines in the list above.
-Revising Existing Content
+## Revising Existing Content
 Tips for revising content to meet the needs of new users:
-Identify the basic-level stuff that’s missing and write it.
-Provide summaries or overviews if they’re missing.
-Mention prerequisites or concepts a user should be comfortable with before getting started.
-Identify places within existing content that need to be revised and revise them with the above thoughts in mind to be more accessible.
-As appropriate and technologically possible, make content filterable by user, so advanced users can filter out the basic stuff.
-Provide definitions for terms that a new user might not be familiar with or might misunderstand—like “class,” which is different in the Puppet context than in many others. Do this in the earlier pages of a section of content. Use your judgment about what a new user might or might not know or have seen before getting to this section.
-Glossary. Maybe multiple glossaries.
+
+* Identify the basic-level stuff that’s missing and write it.
+* Provide summaries or overviews if they’re missing.
+* Mention prerequisites or concepts a user should be comfortable with before getting started.
+* Identify places within existing content that need to be revised and revise them with the above thoughts in mind to be more accessible.
+* As appropriate and technologically possible, make content filterable by user, so advanced users can filter out the basic stuff.
+* Provide definitions for terms that a new user might not be familiar with or might misunderstand—like “class,” which is different in the Puppet context than in many others. Do this in the earlier pages of a section of content. * Use your judgment about what a new user might or might not know or have seen before getting to this section.
+* Glossary. Maybe multiple glossaries.
 
 Link Text and Image Descriptions
 -----
