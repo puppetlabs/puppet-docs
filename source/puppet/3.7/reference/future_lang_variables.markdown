@@ -16,7 +16,7 @@ canonical: "/puppet/latest/reference/future_lang_variables.html"
 [scope]: ./future_lang_scope.html
 
 
-<!-- Preserve links to old headers --> <a id="facts"><a id="trusted-node-data"><a id="agent-set-variables"><a id="master-set-variables"><a id="parser-set-variables">
+ <a id="facts"><a id="trusted-node-data"><a id="agent-set-variables"><a id="master-set-variables"><a id="parser-set-variables">
 
 > Facts and Built-In Variables
 > -----
@@ -34,7 +34,7 @@ Syntax
 
 Variable names are prefixed with a `$` (dollar sign). Values are assigned to them with the `=` (equal sign) assignment operator.
 
-Any value of any of the [data types][datatype] can be assigned to a variable. Any statement that resolves to a normal value (including [expressions][], [functions][], and other variables) can be used in place of a literal value. The variable will contain the value that the statement resolves to, rather than a reference to the statement.
+Variables can be assigned values of any [data type][datatype]. Any statement that resolves to a normal value (including [expressions][], [functions][], and other variables) can be used in place of a literal value. The variable will contain the value that the statement resolves to, rather than a reference to the statement.
 
 Variables can only be assigned using their [short name](#naming). That is, a given [scope][] cannot assign values to variables in a foreign scope.
 
@@ -120,8 +120,4 @@ This is the main way in which the Puppet language fails to be fully declarative.
 Naming
 -----
 
-Variable names are case-sensitive and can include alphanumeric characters and underscores.
-
-Qualified variable names are prefixed with the name of their scope and the `::` (double colon) namespace separator. (For example, the `$vhostdir` variable from the `apache::params` class would be `$apache::params::vhostdir`.)
-
-[See the section on acceptable characters in variable names][acceptable] for more details. Additionally, [several variable names are reserved][reserved].
+{% partial ./_naming_variables.md %}

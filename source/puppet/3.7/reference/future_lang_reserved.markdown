@@ -16,7 +16,6 @@ canonical: "/puppet/latest/reference/future_lang_reserved.html"
 [contains]: ./future_lang_containment.html
 [resources]: ./future_lang_resources.html
 [class]: ./future_lang_classes.html
-[qualified_var]: ./future_lang_variables.html#accessing-out-of-scope-variables
 [type_ref]: /references/latest/type.html
 [func_ref]: /references/latest/function.html
 [environment]: ./environments.html
@@ -121,29 +120,7 @@ Puppet limits the characters you can use when naming language constructs.
 
 ### Variables
 
-Variable names begin with a `$` (dollar sign) and can include:
-
-* Uppercase and lowercase letters
-* Numbers
-* Underscores (`_`)
-
-The first character after the $ must not be an uppercase letter.
-
-If the first character is an underscore, that variable should only be accessed from its own local scope; using qualified variable names where any namespace segment begins with `_` is deprecated.
-
-Variable names are case-sensitive. Note that [some variable names are reserved.](#reserved-variable-names)
-
-Variable names should match the following regular expression:
-
-    \A\$[a-z0-9_][a-zA-Z0-9_]+\Z
-
-Variable names can be [fully qualified][qualified_var] to refer to variables from foreign [scopes][]. Qualified variable names look like `$class::name::variable_name`. They begin with `$`, the name of the class that contains the variable, and the `::` (double colon) [namespace][] separator, and end with the variable's local name.
-
-Optionally, the name of the very first namespace may be empty, representing the top namespace. In previous versions of the Puppet language, this was often used to work around bugs, but it's basically never necessary in this version.
-
-Qualified variable names should match the following regular expression:
-
-    \A\$([a-z][a-z0-9_]*)?(::[a-z][a-z0-9_]*)*::[a-zA-Z0-9_]+\Z
+{% partial ./_naming_variables.md %}
 
 ### Classes and Types
 
