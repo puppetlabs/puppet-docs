@@ -110,7 +110,7 @@ If multiple classes require the same resource, you can use a [class][] or a [vir
 
 ### Events
 
-If Puppet makes any changes to a resource, it will log those changes as events. These events will appear in puppet agent's log and in the run [report][], which is sent to the puppet master and forwarded to any number of report processors.
+If Puppet makes any changes to a resource, it will log those changes as events. These events will appear in Puppet agent's log and in the run [report][], which is sent to the Puppet master and forwarded to any number of report processors.
 
 ### Parse-Order Independence
 
