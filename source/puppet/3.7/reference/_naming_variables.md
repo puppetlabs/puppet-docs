@@ -6,10 +6,9 @@ Variable names begin with a `$` (dollar sign) and are case-sensitive. They can i
 * Numbers
 * Underscores (`_`)
 
-There are some restrictions on the first character after the `$`:
+Regex capture variables are named with numbers alone. All other variable names **must** start with a lowercase letter or an underscore.
 
-* The first character must not be an uppercase letter.
-* If the first character is an underscore, that variable should only be accessed from its own local scope; using qualified variable names where any namespace segment begins with `_` is deprecated.
+If the first character is an underscore, that variable should only be accessed from its own local scope; using qualified variable names where any namespace segment begins with `_` is deprecated.
 
 Note that [some variable names are reserved.](./future_lang_reserved.html#reserved-variable-names)
 
@@ -19,7 +18,7 @@ Note that [some variable names are reserved.](./future_lang_reserved.html#reserv
 
 Optionally, the name of the very first namespace may be empty, representing the top namespace. In previous versions of the Puppet language, this was often used to work around bugs, but it's not necessary in this version. The main use is to indicate to readers that you're accessing a top-scope variable, e.g. `$::is_virtual`.
 
-#### Regular Expressions
+#### Regular Expressions For Variable Names
 
 Short variable names should match the following regular expression:
 
