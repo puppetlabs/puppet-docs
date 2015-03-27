@@ -11,13 +11,13 @@ canonical: "/puppet/latest/reference/future_lang_relationships.html"
 [array]: ./future_lang_datatypes.html#arrays
 [class]: ./future_lang_classes.html
 [event]: ./future_lang_resources.html#behavior
-[service]: /references/latest/type.html#service
-[exec]: /references/latest/type.html#exec
-[type]: /references/latest/type.html
-[mount]: /references/latest/type.html#mount
+[service]: /references/3.7.latest/type.html#service
+[exec]: /references/3.7.latest/type.html#exec
+[type]: /references/3.7.latest/type.html
+[mount]: /references/3.7.latest/type.html#mount
 [metaparameters]: ./future_lang_resources.html#metaparameters
 [require_function]: ./future_lang_classes.html#using-require
-[moar]: /references/latest/configuration.html#ordering
+[moar]: /references/3.7.latest/configuration.html#ordering
 
 
 
@@ -26,7 +26,9 @@ With default settings, the order of [resources][] in a Puppet manifest does not 
 
 If a group of resources should be managed in a specific order, you must explicitly declare the relationships.
 
->****Aside: Manifest Ordering**** Puppet 3.3 added a the ability to turn on [manifest ordering][moar] in the agent's puppet.conf, which causes resources to be applied in the order they are declared in manifests. Beginning in Puppet 4, manifest ordering will be the default setting. Manifest ordering is an intuitive and useful shortcut, but you'll still want to explicitly declare dependencies whenever you can--especially in modules or other places where resources are spread out across multiple manifests.
+> **Aside: Manifest Ordering** Puppet 3.3 added a the ability to turn on [manifest ordering][moar] in the agent's puppet.conf, which causes resources to be applied in the order they are declared in manifests. Beginning in Puppet 4, manifest ordering will be the default setting.
+>
+> While manifest ordering is an intuitive and useful shortcut, you should still explicitly declare dependencies much of the time, especially in modules where resources are spread out across multiple manifests.
 
 
 Syntax
