@@ -49,4 +49,4 @@ name                     | file path
 `apache::mod`            | `<modulepath>/apache/manifests/mod.pp`
 `apache::mod::passenger` | `<modulepath>/apache/manifests/mod/passenger.pp`
 
-Note again that `init.pp` always contains a class or defined type named after the module, and any other `.pp` file contains a class or type with at least two namespace segments. (That is, `apache.pp` would contain a class named `apache::apache`.)
+Note again that `init.pp` always contains a class or defined type named after the module, and any other `.pp` file contains a class or type with at least two namespace segments. (That is, `apache.pp` would contain a class named `apache::apache`.) This also means you can't have a class named `<MODULE NAME>::init`.
