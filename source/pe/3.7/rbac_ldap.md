@@ -32,11 +32,11 @@ To connect PE to your external directory service:
 
 2. Fill in the directory information as described in the following table. Note that the settings shown in the table are examples only. You will need to substitute these example settings with the settings used in your directory service.
 
-All of the fields are required except for LOGIN HELP, USER RELATIVE DISTINGUISHED NAME, and GROUP RELATIVE DISTINGUISHED NAME. If you do not enter USER RELATIVE DISTINGUISHED NAME or GROUP RELATIVE DISTINGUISHED NAME, RBAC will search the entire base DN for the user or group.
+All of the fields are required except for Login Help, User Relative Distinguished Name, and Group Relative Distinguished Name. If you do not enter User Relative Distinguished Name or Group Relative Distinguished Name, RBAC will search the entire base DN for the user or group.
 
 | Field | Example Active Directory Settings | Example OpenLDAP Settings |
 | ---                         | ---                      | ---          |
-| **DIRECTORY NAME**    | MyActiveDirectory | MyOpenLDAPDirectory |
+| **DIRECTORY NAME**    | My Active Directory | My Open LDAP Directory |
 | **LOGIN HELP (OPTIONAL)** | https://myweb.com/ldaploginhelp | https://myweb.com/ldaploginhelp |
 | **HOSTNAME** | myhost.delivery.exampleservice.net | myhost.delivery.exampleservice.net |
 | **PORT** | 389 (636 for LDAPS) | 389 (636 for LDAPS) |
