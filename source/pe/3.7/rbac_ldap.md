@@ -48,12 +48,12 @@ All of the fields are required except for Login Help, User Relative Distinguishe
 | **USER LOGIN ATTRIBUTE** | sAMAccountName | cn |
 | **USER EMAIL ADDRESS**  | mail | mail |
 | **USER FULL NAME**  | displayName | displayName |
-| **USER RELATIVE DISTINGUISHED NAME**  | cn=Users  | ou=users |
+| **USER RELATIVE DISTINGUISHED NAME**  | cn=users  | ou=users |
 | **GROUP OBJECT CLASS**  | group  | groupOfUniqueNames  |
 | **GROUP MEMBERSHIP FIELD**  | member | uniqueMember  |
 | **GROUP NAME ATTRIBUTE**  | name  | displayName  |
 | **GROUP LOOKUP ATTRIBUTE** | cn | cn |
-| **GROUP RELATIVE DISTINGUISHED NAME**  | cn=Groups  | ou=groups |
+| **GROUP RELATIVE DISTINGUISHED NAME**  | cn=groups  | ou=groups |
 
 
 Once you’ve filled in the **External directory** form, click **Test connection** to ensure that the connection has been established. If you’re successful, a green **Success** message will be displayed at the top of the form. Save your settings after you have successfully tested them.
