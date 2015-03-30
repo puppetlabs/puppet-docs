@@ -54,7 +54,11 @@ The following words are reserved:
 * `undef` --- special value
 * `unless` --- language keyword
 
-Additionally, you cannot use the name of any existing [resource type][type_ref] or [function][func_ref] as the name of a function, and you cannot use the name of any existing [resource type][type_ref] as the name of a defined type. You should not use the name of any existing data type (e.g. integer) as the name of a user defined type as they cannot be directly referenced with only their upper cased name (e.g. `Resource[integer, title]` must then be used to reference such resources instead of just `Integer[title]`).
+Additionally:
+
+* You cannot use the name of any existing [resource type][type_ref] or [function][func_ref] as the name of a function.
+* You cannot use the name of any existing [resource type][type_ref] as the name of a defined type.
+* You _shouldn't_ use the name of any existing data type (e.g. integer) as the name of a defined type, as this will make it inconvenient to interact with. (You can't directly reference a resource of that type with only its upper cased name --- instead of writing a resource reference like `Integer[title]`, you would have to use `Resource[integer, title]`.)
 
 Reserved Class Names
 -----
@@ -98,7 +102,7 @@ Reserved Variable Names
 
 The following variable names are reserved, and you **must not** assign values to them:
 
-* Every variable name consisting only of numbers, starting with `$0` --- These [regex capture variables][capture] are automatically set by regular expressions used in [conditional statements][conditional], and their values do not persist outside their associated code block or selector value. An error is raised if an attempt is made to assign to these variables.
+* Every variable name consisting only of digits, starting with `$0` --- These [regex capture variables][capture] are automatically set by regular expressions used in [conditional statements][conditional], and their values do not persist outside their associated code block or selector value. Puppet will raise an error if you try to assign to these variables.
 * Puppet's [built-in variables][built_in] and [facts][facts] are reserved at [top scope][topscope], but can be safely re-used at node or local scope.
 * If [enabled][trusted_on], the `$trusted` and `$facts` variables are reserved for facts and cannot be reassigned at local scopes.
 
@@ -128,7 +132,7 @@ Puppet limits the characters you can use when naming language constructs.
 The names of classes, defined types, and custom types can consist of one or more [namespace segments][namespace]. Each namespace segment **must begin with a lowercase letter** and can include:
 
 * Lowercase letters
-* Numbers
+* Digits
 * Underscores
 
 Namespace segments should match the following regular expression:
@@ -196,10 +200,10 @@ Resource names (or namevars) may be limited by the underlying system being manag
 
 ### Nodes
 
-**The set of characters allowed in node names is undefined** in this version of Puppet. For best future compatibility, you should limit node names to letters, numbers, periods, underscores, and dashes. (That is, node names should match `/\A[a-z0-9._-]+\Z/`.)
+**The set of characters allowed in node names is undefined** in this version of Puppet. For best future compatibility, you should limit node names to letters, digits, periods, underscores, and dashes. (That is, node names should match `/\A[a-z0-9._-]+\Z/`.)
 
 ### Environments
 
-[Environment][] names may contain only numbers and lowercase letters. That is, they must match the following regular expression:
+[Environment][] names may contain only digits and lowercase letters. That is, they must match the following regular expression:
 
     \A[a-z0-9]+\Z
