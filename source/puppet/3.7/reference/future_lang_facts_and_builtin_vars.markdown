@@ -141,7 +141,7 @@ In addition to Facter's core facts and any custom facts, Puppet creates some spe
 * **The `$trusted` hash,** which has trusted data from the node's certificate
 * **Agent facts,** which are set by `puppet agent` or `puppet apply`
 * **Puppet master variables,** which are set by the Puppet master (and sometimes by `puppet apply`)
-* **Parser variables,** which are special local variables set for each scope.
+* **Compiler variables,** which are special local variables set for each scope.
 
 ### Trusted Facts
 
@@ -215,9 +215,9 @@ These are **not** available in the `$facts` hash.
 * `$serverversion` --- the current version of Puppet on the Puppet master.
 * `$settings::<name of setting>` (also available to `puppet apply`) --- the value of any of the master's [settings](./config_about_settings.html). This is implemented as a special namespace and these variables must be referred to by their qualified names. Note that, other than `$environment` and `$clientnoop`, the agent node's settings are **not** available in manifests. If you wish to expose them to the master in this version of Puppet, you will have to create a custom fact.
 
-### Parser Variables
+### Compiler Variables
 
-These variables are set in every [local scope][scope] by the parser during compilation. They are mostly useful when implementing complex [defined types][definedtype].
+These variables are set in every [local scope][scope] by the compiler during compilation. They are mostly useful when implementing complex [defined types][definedtype].
 
 These are **not** available in the `$facts` hash.
 
