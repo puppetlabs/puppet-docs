@@ -102,7 +102,9 @@ Select if you want to use SSL to connect to the external directory. If you selec
 
 When PE constructs queries to your external directory (for example to look up user groups or users), the queries consist of the relative distinguished name (RDN) (optional) + the base distinguished name (DN), and are then filtered by lookup/login attributes. For example, if PE wants to authenticate a user named Bob who has the RDN `ou=bob,ou=users`, it sends a query in which the RDN is concatenated with the DN specified in this field (for example, `dc=puppetlabs,dc=com`). This gives a search base of `ou=bob,ou=users,dc=puppetlabs,dc=com`. 
 
-The base DN that you provide in this field specifies where in the directory service tree to search for groups and users. It is the part of the DN that all users and groups that you want to use have in common. It is commonly the root DN (example `dc=example,dc=com`) but in the following LDIF example for Active Directory, you could set the base DN to `ou=Puppet,dc=example,dc=com` since both the group and the user are also under the organizational unit `ou=Puppet`.
+The base DN that you provide in this field specifies where in the directory service tree to search for groups and users. It is the part of the DN that all users and groups that you want to use have in common. It is commonly the root DN (example `dc=example,dc=com`) but in the following example of a directory service entry, you could set the base DN to `ou=Puppet,dc=example,dc=com` since both the group and the user are also under the organizational unit `ou=Puppet`. 
+
+**Example directory service entry**
 
 	# A user named Harold
 	dn: cn=harold,ou=Users,ou=Puppet,dc=example,dc=com
@@ -126,7 +128,7 @@ These settings tell PE which external directory attributes hold the metadata for
 
 **USER LOGIN ATTRIBUTE**
 
-This is the directory attribute that the user will use to log in to PE. For example, if you specify `sAMAccountName` as the user login attribute, Harold will log in with the username "harold11" because `sAMAccountName=harold11` in the LDIF example provided above.
+This is the directory attribute that the user will use to log in to PE. For example, if you specify `sAMAccountName` as the user login attribute, Harold will log in with the username "harold11" because `sAMAccountName=harold11` in the example directory service entry provided above.
 
 The value provided by the user login attribute must be unique among all entries under the User RDN + Base DN search base you’ve set up. For example, say you’ve selected the following settings:
 
@@ -181,7 +183,7 @@ The attribute that stores the display name for groups. This is used for display 
 
 **GROUP LOOKUP ATTRIBUTE**
 
-The value used to import groups into PE. Given the example LDIF provided above, the group lookup attribute would be `cn`. When specifying the Inspectors group in the console to import it, you would provide the name `inspectors`.
+The value used to import groups into PE. Given the example directory service entry provided above, the group lookup attribute would be `cn`. When specifying the Inspectors group in the console to import it, you would provide the name `inspectors`.
 
 The value for this attribute must be unique under your search base. If you have users with the same login as the lookup of a group that you would like to use, you can narrow the search base, use a value for the lookup attribute that you know to be unique, or specify the **GROUP OBJECT CLASS** that all of your groups have in common but your users do not.
 
