@@ -58,6 +58,12 @@ The information collected by the support script includes:
    - `/var/opt/pe-puppet`
    - `/var/opt/pe-puppetmaster`
 - reports the size of the PostgreSQL databases and relations
+- reports the contents of the following PostgreSQL databases
+   - `console`
+   - `pe-activity`
+   - `pe-classifier`
+   - `pe-rbac`
+   - `pe-puppetdb`
 
 
 It also copies the following files:
