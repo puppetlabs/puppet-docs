@@ -9,8 +9,6 @@ Upgrading your large environment installation (LEI) involves a combination of st
 
 This doc details the steps you’ll need to take to upgrade your LEI from PE 3.7.0 to 3.7.2.
 
-You should  
-
 >### A Note about this Procedure and Load Balancers
 >
 >In this procedure MASTER.EXAMPLE.COM refers to the Puppet Master/CA server, also known as the master of masters (MoM). 
