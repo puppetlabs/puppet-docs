@@ -130,16 +130,23 @@ Classes should be stored in their module's `manifests/` directory as one class p
 
 > #### Other Locations
 >
-> Most users should **only** load classes from modules. However, it's technically possible to put classes in the following additional locations:
+> Most users should **only** put classes in individual files in modules. However, it's technically possible to put classes in the following additional locations and still load the class by name:
 >
 > * [The main manifest][sitedotpp]. If you do so, they may be placed anywhere in the main manifest file(s) and are not parse-order dependent.
-> * Other class definitions. This puts the interior class under the exterior class's [namespace][], causing its real name to be something other than the name with which it was defined. It does not cause the interior class to be automatically declared along with the exterior class. Nested classes cannot be autoloaded; in order for the interior class to be visible to Puppet, the manifest containing it must have been forcibly loaded, either by autoloading the outermost class or placing the entire nested structure in the site manifest. Although nesting classes is not yet formally deprecated, it is **very much** not recommended.
+> * A file in the same module whose corresponding class name is a truncated version of this class's name. That is, the class `first::second::third` could be put in `first::second`'s file, `first/manifests/second.pp`.
+> * Lexically inside another class definition. This puts the interior class under the exterior class's [namespace][], causing its real name to be something other than the name with which it was defined. (For example: in `class first { class second { ... } }`, the interior class's real name is `first::second`.) Note that this doesn't cause the interior class to be automatically declared along with the exterior class.
+>
+> Again: You should basically never do these.
+
+
 
 ### Containment
 
 A class [contains][] all of its resources. This means any [relationships][] formed with the class as a whole will be extended to every resource in the class.
 
 Classes can also contain other classes, but _you must manually specify that a class should be contained._ For details, [see the "Containing Classes" section of the Containment page.][contain_classes]
+
+A contained class is automatically [tagged][tags] with the name of its container.
 
 ### Auto-Tagging
 
@@ -149,7 +156,7 @@ Every resource in a class gets automatically [tagged][tags] with the class's nam
 
 Classes can be derived from other classes using the `inherits` keyword. This allows you to make special-case classes that extend the functionality of a more general "base" class.
 
-> Note: This version of Puppet does not support using parameterized classes for inheritable base classes. The base class **must** have no parameters.
+If a base class has parameters, those parameters must either have default values, or have their values supplied by automatic external data lookup. You can't specify values in the Puppet language for parameters in an inherited class.
 
 Inheritance causes three things to happen:
 
@@ -283,6 +290,8 @@ The `include` [function][] is the standard way to declare classes.
     include base::linux
     include base::linux # no additional effect; the class is only declared once
 
+    include Class['base::linux'] # including a class reference
+
     include base::linux, apache # including a list
 
     $my_classes = ['base::linux', 'apache']
@@ -291,9 +300,9 @@ The `include` [function][] is the standard way to declare classes.
 
 The `include` function uses [include-like behavior][include-like]. (Multiple declarations OK; relies on external data for parameters.) It can accept:
 
-* A single class
-* A comma-separated list of classes
-* An array of classes
+* A single class name (like `apache`) or class reference (like `Class['apache']`)
+* A comma-separated list of class names or class references
+* An array of class names or class references
 
 ### Using `require`
 
@@ -310,9 +319,9 @@ In the above example, Puppet will ensure that every resource in the `apache` cla
 
 The `require` function uses [include-like behavior][include-like]. (Multiple declarations OK; relies on external data for parameters.) It can accept:
 
-* A single class
-* A comma-separated list of classes
-* An array of classes
+* A single class name (like `apache`) or class reference (like `Class['apache']`)
+* A comma-separated list of class names or class references
+* An array of class names or class references
 
 ### Using `contain`
 
@@ -336,9 +345,9 @@ In the above example, any resource that forms a `before` or `require` relationsh
 
 The `contain` function uses [include-like behavior][include-like]. (Multiple declarations OK; relies on external data for parameters.) It can accept:
 
-* A single class
-* A comma-separated list of classes
-* An array of classes
+* A single class name (like `apache`) or class reference (like `Class['apache']`)
+* A comma-separated list of class names or class references
+* An array of class names or class references
 
 ### Using `hiera_include`
 
@@ -405,7 +414,7 @@ However, note that:
 Assigning Classes From an ENC
 -----
 
-Classes can also be assigned to nodes by [external node classifiers][enc] and [LDAP node data][ldap_nodes]. Note that most ENCs assign classes with include-like behavior, and some ENCs assign them with resource-like behaior. See the [documentation of the ENC interface][enc] or the documentation of your specific ENC for complete details.
+Classes can also be assigned to nodes by [external node classifiers][enc] and [LDAP node data][ldap_nodes]. Note that most ENCs assign classes with include-like behavior, and some ENCs assign them with resource-like behavior. See the [documentation of the ENC interface][enc] or the documentation of your specific ENC for complete details.
 
 
 
