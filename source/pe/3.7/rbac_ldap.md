@@ -96,7 +96,6 @@ The number of seconds that PE will attempt to connect to the directory server be
 **Connect using SSL?**
 
 Select if you want to use SSL to connect to the external directory. If you select this option, make sure you also specify the SSL port in the **PORT** field above. In addition, to ensure that the directory service is properly identified, you need to [configure the `ds-trust-chain` to point to a copy of the public key (PEM format) for the directory service](#verify-directory-server-certificates).
-**TODO: REMOVE THE ABOVE SENTENCE FOR PE 3.7 DOCS.**
 
 **BASE DISTINGUISHED NAME**
 
@@ -218,7 +217,6 @@ Example of `rbac.conf`:
   	ds-trust-chain: "/opt/puppet/share/console-services/certs/example.pem"
 	}
 
-**TODO: REMOVE THE SECTION ABOVE FOR PE 3.7 DOCS**
 
 See [Working with User Roles](./rbac_user_roles.html) for information about managing users and groups.
 
