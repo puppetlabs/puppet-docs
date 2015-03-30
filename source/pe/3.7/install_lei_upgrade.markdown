@@ -7,7 +7,7 @@ canonical: "/pe/latest/install_multimaster_upgrade.html"
 
 Upgrading your large environment installation (LEI) involves a combination of steps that you must perform across your core Puppet Enterprise components, your compile masters, and your ActiveMQ hubs and spokes. 
 
-This doc details the steps you’ll need to take to upgrade your LEI from PE 3.7.0 to 3.7.2.
+This doc details the steps you’ll need to take to upgrade your LEI from PE 3.7.2 to 3.8.0.
  
 >### A Note about this Procedure and Load Balancers
 >
