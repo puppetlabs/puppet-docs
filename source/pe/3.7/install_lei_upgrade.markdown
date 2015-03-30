@@ -19,76 +19,80 @@ You should
   
 **To upgrade your large environment installation**:   
 
-Step 1:
+### Step 1: Upgrade PE
 
 Follow the [upgrade instructions](./install_upgrading.html#upgrading-a-split-installation) to upgrade the core PE components (the main Puppet master, PuppetDB, and the PE console). 
 
-2. Upgrade each Puppet compile master.
+### Step 2: Upgrade each Puppet compile master.
 
-   a. SSH into each Puppet compile master, and stop PE-related services with the following commands:
+1. SSH into each Puppet compile master, and stop PE-related services with the following commands:
 
-       puppet resource service pe-puppet ensure=stopped
-       puppet resource service pe-puppetserver ensure=stopped
+        puppet resource service pe-puppet ensure=stopped
+        puppet resource service pe-puppetserver ensure=stopped
         
-   b. On each compile master, upgrade the agent by running the agent install script.
+2. On each compile master, upgrade the agent by running the agent install script.
 
    `curl -k https://<MASTER.EXAMPLE.COM>:8140/packages/current/install.bash | sudo bash`
    
-   c. On each compile master, restart PE-related services and run Puppet on the agent with the following commands:
+3. On each compile master, restart PE-related services and run Puppet on the agent with the following commands:
 
        puppet resource service pe-puppet ensure=running
        puppet resource service pe-puppetserver ensure=running
        puppet agent -t
  
-3. Upgrade each ActiveMQ hub.
+### Step 3: Upgrade each ActiveMQ hub.
 
-   a. SSH into each ActiveMQ hub, and stop PE-related services with the following commands:
+1. SSH into each ActiveMQ hub, and stop PE-related services with the following commands:
 
        puppet resource service pe-puppet ensure=stopped
        puppet resource service pe-activemq ensure=stopped
         
-   b. On each ActiveMQ hub, upgrade the agent by running the agent install script. 
+2. On each ActiveMQ hub, upgrade the agent by running the agent install script. 
    
    `curl -k https://<MASTER.EXAMPLE.COM>:8140/packages/current/install.bash | sudo bash`
    
-   c. On each ActiveMQ hub, restart PE-related services and run Puppet on the agent with the following commands:
+3. On each ActiveMQ hub, restart PE-related services and run Puppet on the agent with the following commands:
 
        puppet resource service pe-puppet ensure=running
        puppet resource service pe-activemq ensure=running
        puppet agent -t
 
-4. Upgrade each ActiveMQ spoke.
+### Step 4: Upgrade each ActiveMQ spoke.
 
-   a. SSH into each ActiveMQ spoke, and stop PE-related services with the following commands:
+1. SSH into each ActiveMQ spoke, and stop PE-related services with the following commands:
 
        puppet resource service pe-puppet ensure=stopped
        puppet resource service pe-activemq ensure=stopped
         
-   b. On each ActiveMQ spoke, upgrade the agent by running the agent install script.
+2. On each ActiveMQ spoke, upgrade the agent by running the agent install script.
 
       `curl -k https://<MASTER.EXAMPLE.COM>:8140/packages/current/install.bash | sudo bash` 
       
-   c. One each ActiveMQ spoke, restart PE-related services and run Puppet on the agent with the following commands:
+3. One each ActiveMQ spoke, restart PE-related services and run Puppet on the agent with the following commands:
 
        puppet resource service pe-puppet ensure=running
        puppet resource service pe-activemq ensure=running
        puppet agent -t
         
-5. If you've installed additional dashboard workers, upgrade each one.
+### Step 5: Upgrade Dashboard Workers
 
-   a. SSH into each additional dashboard worker, and stop PE-related services with the following commands:
+If you've installed additional dashboard workers, upgrade each one.
+
+1. SSH into each additional dashboard worker, and stop PE-related services with the following commands:
 
        puppet resource service pe-puppet ensure=stopped
        puppet resource service pe-puppet-dashboard-workers ensure=stopped
         
-   b. On each dashboard worker, upgrade the agent by running the agent install script.
+2. On each dashboard worker, upgrade the agent by running the agent install script.
 
      `curl -k https://<MASTER.EXAMPLE.COM>:8140/packages/current/install.bash | sudo bash` 
      
-   c. On each dashboard worker, restart PE-related services and run Puppet on the agent with the following commands:
+3. On each dashboard worker, restart PE-related services and run Puppet on the agent with the following commands:
 
        puppet resource service pe-puppet ensure=running
        puppet resource service pe-puppet-dashboard-workers ensure=running
        puppet agent -t
+       
+### Step 6: Upgrade Puppet Agent Nodes
 
-6. Follow the [agent upgrade documentation](./install_agents.html) to upgrade the Puppet agent nodes in your LEI. 
+Follow the [agent upgrade documentation](./install_agents.html) to upgrade the Puppet agent nodes in your LEI. 
