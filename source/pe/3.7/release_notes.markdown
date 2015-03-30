@@ -37,7 +37,7 @@ In this release, we added the ability to verify an SSL certificate for a directo
 
 This permission allows a user in the given user role to tune classification by editing parameters and variables in a class, without giving the user permission to add or delete classes.
 
-## Significant Changes in PE 3.8.0
+## Deprecations in PE 3.8.0
 
 ### Cloud Provisioner is Deprecated
 
