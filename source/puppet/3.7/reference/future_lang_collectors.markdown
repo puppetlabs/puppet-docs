@@ -53,7 +53,7 @@ Collectors can search the values of resource titles and attributes using a speci
 
 A collector with an empty search expression will match **every** resource of the specified type.
 
-Parentheses may be used to improve readability. You can create arbitrarily complex expressions using the following four operators:
+Parentheses may be used to improve readability, and to modify the priority/grouping of `and`/`or`. You can create arbitrarily complex expressions using the following four operators:
 
 - [`==`](#equality-search)
 - [`!=`](#non-equality-search)
@@ -86,11 +86,15 @@ Both operands must be valid search expressions.
 
 For a given resource, this operator will **match** if **both** of the operands would match for that resource.
 
+This operator has higher priority than `or`.
+
 #### `or`
 
 Both operands must be valid search expressions.
 
 For a given resource, this operator will **match** if **either** of the operands would match for that resource.
+
+This operator has lower priority than `and`.
 
 Location
 -----
@@ -143,3 +147,4 @@ Exported resource collectors exist only to import resources that were published 
 
 Like normal collectors, exported resource collectors can be used with attribute blocks and chaining statements.
 
+Note that the search for exported resources also searches the catalog being compiled, to avoid having to perform an additional run before finding them in the store of exported resources.
