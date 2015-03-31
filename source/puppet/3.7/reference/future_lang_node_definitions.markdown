@@ -23,7 +23,7 @@ canonical: "/puppet/latest/reference/future_lang_node_definitions.html"
 [conditional]: ./future_lang_conditional.html
 
 
-A **node definition** or **node statement** is a block of Puppet code that will only be included in one node's [catalog][]. This feature allows you to assign specific configurations to specific nodes.
+A **node definition** or **node statement** is a block of Puppet code that will only be included in matching nodes' [catalogs][]. This feature allows you to assign specific configurations to specific nodes.
 
 Node statements are an **optional feature** of Puppet. They can be replaced by or combined with an [external node classifier][enc], or you can eschew both and use conditional statements with [facts][] to classify nodes.
 
@@ -32,7 +32,7 @@ Unlike more general conditional structures, node statements only match nodes by 
 Location
 -----
 
-Node definitions should go in [the main manifest (site.pp)][sitepp]. The main manifest can be a single file, or a directory containing many files.
+Node definitions should go in [the main manifest][sitepp]. The main manifest can be a single file, or a directory containing many files.
 
 Syntax
 -----
@@ -131,7 +131,7 @@ The above example would match `foo.example.com` and `bar.example.com`, but no ot
 Behavior
 -----
 
-If site.pp contains at least one node definition, it must have one for **every** node; compilation for a node will fail if one cannot be found. (Hence the usefulness of [the `default` node](#the-default-node).) If site.pp contains **no** node definitions, this requirement is dropped.
+If [the main manifest][sitepp] contains at least one node definition, it must have one for **every** node; compilation for a node will fail if one cannot be found. (Hence the usefulness of [the `default` node](#the-default-node).) If the main manifest contains **no** node definitions, this requirement is dropped.
 
 ### Matching
 
