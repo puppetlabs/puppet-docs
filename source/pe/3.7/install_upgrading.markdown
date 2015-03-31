@@ -12,7 +12,6 @@ canonical: "/pe/latest/install_upgrading.html"
 Before upgrading, please review:
 
 - [Important Information about Upgrades to PE 3.7 and Directory Environments](./install_upgrading_dir_env_notes.html), as some user action is required.
-
 - [Upgrading Puppet Enterprise: Notes and Warnings](install_upgrading_notes.html), which includes important information about the new Puppet Server, [upgrading to the new node classifier and classifying PE groups](./install_upgrading_dir_env_notes.html#classifying-pe-groups), and [modified auth.conf files](./install_upgrading_notes.html#upgrading-to-38-with-a-modified-authconf-file).
 
 The Puppet Installer script is used to perform both installations and upgrades. The script will check for a prior version and run as upgrader or installer as needed. You start by [downloading][downloading] and unpacking a tarball with the appropriate version of the PE packages for your system. Then, when you run the `puppet-enterprise-installer` script, the script will check for a prior installation of PE and, if it detects one, will ask if you want to proceed with the upgrade. The installer will then upgrade all the PE components (master, agent, etc.) it finds on the node to version 3.7.
@@ -92,7 +91,7 @@ If you have a split installation (with the master, PE console, and database comp
 1. [Upgrade the Puppet Master](#upgrade-the-puppet-master)
 2. [Upgrade PuppetDB](#upgrade-puppetdb)
 3. [Upgrade the PE Console](#upgrade-the-pe-console)
-4. [Classify the PE groups](#classify-the-new-pe-groups)
+4. [Add nodes to the PE groups](#classify-the-new-pe-groups)
 5. [Upgrade Puppet agent nodes](#upgrade-agents)
 
 > **Note**: When upgrading to PE 3.7.x, the node classifier and role-based access control (RBAC) will be installed on the PE console node.
@@ -151,30 +150,33 @@ Live Management is deprecated in PE 3.8 and will be replaced by improved resourc
 
 The `disable_live_management` setting in `/etc/puppetlabs/puppet-dashboard/settings.yml` on the Puppet master (or PE console node in a split install) controls the enabling/disabling of Live Management, and it can be set to either `true` or `false`. You can enable/disable Live Management at any time during normal operations by editing this setting and then running `sudo /etc/init.d/pe-httpd restart`.
 
-### Classify PE Groups
+### Adding Nodes to PE Groups
 
-Please see [section on classifying PE groups](#classify-the-new-pe-groups) below.
+Please see [section on adding nodes to the new PE groups](#adding-nodes-to-the-new-pe-groups) below.
 
 ### Upgrade Puppet Agents
 
 Please see [section on upgrading Puppet agents](#upgrade-agents).
 
-## Classify the New PE Groups
+## Adding Nodes to the New PE Groups
 
-**Warning**: After upgrading to 3.7.x from 3.3, you must classify the new PE groups. **This applies to both split and monolithic upgrades.
+**Warning**: After upgrading to 3.7.x from 3.3, you must pin your nodes the new PE groups. **This applies to both split and monolithic upgrades**.
 
-For upgrades, these groups are created but no classes are added to them. This helps prevent errors during the upgrade process, but it means that if you're upgrading, you have to manually add classes to each node.
+When upgrading, if these groups do not exist, or do not contain any classes, they will be created and configured but **no nodes will be pinned to them**. This helps prevent errors during the upgrade process, but you must manually pin the correct nodes to each group after you complete the upgrade process. 
 
-The [preconfigured groups doc](./console_classes_groups_preconfigured_groups.html) has a list of groups and their classes that get installed on fresh upgrades.
+The [preconfigured groups doc](./console_classes_groups_preconfigured_groups.html) has a list of groups and their classes that get installed on fresh upgrades, and it also clarifies which nodes should be pinned to which groups.
 
-**After upgrading, you must classify the new PE groups**. We recommend that you perform the manual classification in the following order and use the [preconfigured groups doc](./console_classes_groups_preconfigured_groups.html) to determine which classes to apply to the PE node groups. The ordered specified is as follows:
+If these groups do exist during upgrade and contain all the classes documented in the preconfigured groups doc, they will not be modified during the upgrade process.
 
-1. The PE Infrastructure node group
-2. The PE Certificate Authority node group
-3. The PE Master node group
-4. The PuppetDB node group
-5. The PE Console node group
-6. The PE ActiveMQ Broker node group
+If these groups do exist but only contain **some** of the documented classes, or contain other **unknown classes**, they will not be modified, and the upgrade process will fail. Before upgrading, please ensure that either you have no classes in the PE groups or that they match the preconfigured groups doc.
+
+After upgrading you must pin nodes to the new PE groups. We recommend that you perform the manual pinning in this order:
+
+1. The PE Certificate Authority node group (typically the same as your Puppet master)
+2. The PE Master node group
+3. The PuppetDB node group
+4. The PE Console node group
+5. The PE ActiveMQ Broker node group (typically your Puppet master)
 
 ## Upgrade Agents
 

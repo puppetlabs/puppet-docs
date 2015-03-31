@@ -111,11 +111,12 @@ This issue is documented in the [notes and warnings for upgrading](./install_upg
 
 PostgreSQL does not support alt names when set to `verify_full`. If you are upgrading to or installing 3.7 with an answer file, make sure `q_database_host` is set as the Puppet agent certname for the database node and not set as an alt name.
 
-### Upgrading Requires You to Manually Configure Default Node Groups
+### Upgrading Requires You to Manually Add Nodes to the PE Node Groups
 
-Puppet Enterprise automatically creates a number of special node groups for managing your deployment. In a new install, these node groups come with some default classes. If you’re upgrading, only the MCollective node group comes with classes. For the others, you must manually add the individual classes and configure the parameters, as described on the page, [Preconfigured Node Groups](./console_classes_groups_preconfigured_groups.html#preconfigured-node-groups).
+For fresh installations of PE 3.8.0, node groups in the classifier are created and configured during the installation process. For upgrades, if these groups do not exist, or do not contain any classes, they will be created and configured but **no nodes will be pinned to them**. This helps prevent errors during the upgrade process, but you must manually pin the correct nodes to each group after you complete the upgrade process. For a more detailed explanation refer to [Adding Nodes to the PE Groups](./install_upgrading_notes.html#adding-nodes-to-the-pe-groups) in [Upgrading Puppet Enterprise: Notes and Warnings](./install_upgrading_notes.html).
 
 ### You Might Need to Upgrade puppetlabs-inifile to Version 1.1.0 or Later
+
 PE will automatically update your version of puppetlabs-inifile as part of the upgrade process. However, if you encounter the following error message on your PuppetDB node, then you need to manually upgrade the puppetlabs-inifile module to version 1.1.0 or higher.
 
 	Error: Could not retrieve catalog from remote server: Error 400 on SERVER: Invalid parameter quote_char on Ini_subsetting['-Xmx'] on node master

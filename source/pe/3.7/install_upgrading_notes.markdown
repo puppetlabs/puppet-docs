@@ -48,15 +48,15 @@ If you have agent nodes that specify their own environments, those nodes will be
 
 For example, if you have an agent node for which the `[agent]` section of `puppet.conf` contains `environment=development`, we recommend you use the node classifier to change its group environment to "development" and then unpin it from the "agent-specified" group.
 
-### Classifying PE Groups
+### Adding Nodes to the PE Groups
 
-For fresh installations of PE 3.8, node groups in the classifier are created and configured during the installation process. For upgrades, if these groups do not exist, or do not contain any classes, they will be created and configured but no nodes will be pinned to them. This helps prevent errors during the upgrade process, but you must manually pin the correct nodes to each group after upgrading. 
+For fresh installations of PE 3.8, node groups in the classifier are created and configured during the installation process. For upgrades, if these groups do not exist, or do not contain any classes, they will be created and configured but **no nodes will be pinned to them**. This helps prevent errors during the upgrade process, but you must manually pin the correct nodes to each group after you complete the upgrade process. 
 
-The [preconfigured groups doc](./console_classes_groups_preconfigured_groups.html) has a list of groups and their classes that get installed on fresh upgrades, and it also clarifies what nodes should be pinned to the groups.
+The [preconfigured groups doc](./console_classes_groups_preconfigured_groups.html) has a list of groups and their classes that get installed on fresh upgrades, and it also clarifies which nodes should be pinned to which groups.
 
 If these groups do exist during upgrade and contain all the classes documented in the preconfigured groups doc, they will not be modified during the upgrade process.
 
-If these groups do exist and only contain **some** of the documented classes, or contain other **unknown classes**, they will not be modified, and the upgrade process will fail. Before upgrading, please ensure that either you have no classes in the PE groups or that they match the preconfigured groups doc.
+If these groups do exist but only contain **some** of the documented classes, or contain other **unknown classes**, they will not be modified, and the upgrade process will fail. Before upgrading, please ensure that either you have no classes in the PE groups or that they match the preconfigured groups doc.
 
 After upgrading you must pin nodes to the new PE groups. We recommend that you perform the manual pinning in this order:
 
@@ -67,6 +67,7 @@ After upgrading you must pin nodes to the new PE groups. We recommend that you p
 5. The PE ActiveMQ Broker node group (typically your Puppet master)
 
 If you pin the node groups in this order, you do not need to stop/restart Puppet.
+
 The MCollective node group is configured during upgrade, so you do not need to perform any classification or pinning with this group.
 
 **To add a class to a node group:**
