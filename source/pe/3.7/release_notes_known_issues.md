@@ -18,13 +18,7 @@ The following issues affect the currently shipped version of PE and all prior re
 
 ###  New PE 3.7.x MCO Server is Not Connecting With Older MCollective agents (posted 12/17/14)
 
-Customers are experiencing problems connecting PE 3.7 MCO clients, such as Live Management, with older MCO servers (Puppet agents). Specifically, any MCO servers running on PE 3.3.2 agents and older. To fix this problem, we recommend upgrading your PE agents to 3.7.x so you can continue using activemq heartbeats.
-
-However, if you cannot upgrade all of your agents at this time, you can add the following line to your Hiera data. This will affect all Puppet agents of versions older than 3.7.0. After you add this line and complete a puppet run on your agents, ActiveMQ heartbeats will be disabled.
-
-	puppet_enterprise::mcollective::server::activemq_heartbeat_interval: 0
-
-If you're not using Hiera, you need to set it up. See the [Hiera documentation](/hiera/1/) for information.
+This issue has been fixed in PE 3.8.0. 
 
 ### A Modified `auth.conf` File Will Cause Upgrade Failure
 
