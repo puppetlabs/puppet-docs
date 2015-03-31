@@ -36,7 +36,7 @@ Scopes **do not** limit the reach of:
 
 ![An Euler diagram of several scopes. Top scope contains node scope, which contains the example::other, example::four, and example::parent scopes. Example::parent contains the example::child scope.][diagram]
 
-Any given scope has access to its own contents, and also receives additional contents from its **parent scope,** from node scope, and from top scope.
+Any given scope has access to its own contents, and also receives additional contents from its **parent scope,** from node scope, and from top scope. (The rules for how Puppet determines a local scope's parent are described below in [Scope Lookup Rules.][scope_lookup_rules])
 
 In the diagram above:
 
@@ -181,9 +181,9 @@ This gives approximately the best and most-expected behavior --- variables from 
 
 ### Named Scopes and Anonymous Scopes
 
-A class definition creates a **named scope,** whose name is the same as the class's name. Top scope is also a named scope; its name is the empty string (aka, the null string).
+A class definition creates a **named scope,** whose name is the same as the class's name. Top scope is also a named scope; its name is the empty string.
 
-Node scope and the local scopes created by defined resources are **anonymous** and cannot be directly referenced.
+Node scope and the local scopes created by lambdas and defined resources are **anonymous** and cannot be directly referenced.
 
 ### Accessing Out-of-Scope Variables
 
@@ -202,7 +202,7 @@ This example would set the variable `$local_copy` to the value of the `$confdir`
 
 > Notes:
 >
-> * Remember that top scope's name is the empty string (a.k.a, the null string). Thus, `$::my_variable` would always refer to the top-scope value of `$my_variable`, even if `$my_variable` has a different value in local scope.
+> * Remember that top scope's name is the empty string. Thus, `$::my_variable` would always refer to the top-scope value of `$my_variable`, even if `$my_variable` has a different value in local scope.
 > * Note that a class must be [declared][declare_class] in order to access its variables; simply having the class available in your modules is insufficient.
 >
 >   This means the availability of out-of-scope variables is **parse order dependent.** You should only access out-of-scope variables if the class accessing them can guarantee that the other class is already declared, usually by explicitly declaring it with `include` before trying to read its variables.
@@ -212,6 +212,8 @@ Variables declared in **anonymous scopes** can only be accessed normally and do 
 
 Scope Lookup Rules
 -----
+
+[scope_lookup_rules]: #scope-lookup-rules
 
 The scope lookup rules determine when a local scope becomes the parent of another local scope.
 
@@ -247,7 +249,7 @@ In **dynamic scope,** parent scopes are assigned by both **inheritance** and **d
 > * In some cases, you can only determine a scope's contents by executing the code.
 > * Since classes may be declared multiple times with the `include` function, the contents of a given scope are parse-order dependent.
 
-This version of Puppet uses dynamic scope for resource defaults.
+This version of Puppet uses dynamic scope only for resource defaults.
 
 Messy Under-the-Hood Details
 -----
