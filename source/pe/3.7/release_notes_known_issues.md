@@ -142,7 +142,9 @@ Refer to [Installing Agents in a Puppet Enterprise Infrastructure without Intern
 
 ### Updating Puppet Master Gems
 
-After upgrading to PE 3.7.2, you need to update the Ruby gems used by your Puppet Master with `/opt/puppet/bin/puppetserver gem install <GEM NAME>`.
+If you've installed any additional Ruby gems beyond those installed by PE, they will not be migrated to the Puppet master during the upgrade to PE 3.8. If you have modules that depend on additional gems, you will need to install them on the Puppet master after you complete the upgrade process.
+
+You can update the gems used by your Puppet Master with `/opt/puppet/bin/puppetserver gem install <GEM NAME>`.
 
 After updating the gems, you need to restart the Puppet master with `service pe-puppetserver restart`. You should do this **before** doing any Puppet agent runs.
 
