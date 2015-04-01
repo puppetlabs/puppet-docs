@@ -198,9 +198,15 @@ When you purchased Puppet Enterprise, you should have been sent a `license.key` 
 
 Note that you can download and install Puppet Enterprise on up to ten nodes at no charge. No license key is needed to run PE on up to ten nodes.
 
-### Setting Puppet in Your Default Path
+### PE Binaries and Symlinks
 
-PE installs its binaries in `/opt/puppet/bin` and `/opt/puppet/sbin`, which aren't included in your default `$PATH`. To include these binaries in your default `$PATH`, manually add them to your profile or run `PATH=/opt/puppet/bin:$PATH;export PATH`.
+PE installs its binaries in `/opt/puppet/bin` and `/opt/puppet/sbin`. To make essential Puppet tools available to all users, the installer automatically creates symlinks in `/usr/local/bin` for the `facter`, `puppet`, `pe-man`, `r10k`, `hiera`,  and `mco` binaries. Note that the symlinks will only be created if `/usr/local/bin` is writeable (`/usr/bin` on AIX). 
+
+Other PE binaries, such as `pe-postgresql`, `pe-ruby`, or `pe-openssl`, do not have symlinks created. To include these binaries in your default `$PATH`, manually add them to your profile or run `PATH=/opt/puppet/bin:$PATH;export PATH`.
+
+### PE Symlinks
+
+PE installs its binaries in `/opt/puppet/bin` and `/opt/puppet/sbin`, which aren't included in your default `$PATH`. To make the Puppet tools more visible to all users, the installer automatically creates symlinks in `/usr/local/bin` for the `facter`, `puppet`, `pe-man`, `r10k`, `hiera`,  and `mco` binaries.
 
 Installing Agents
 -----

@@ -47,7 +47,6 @@ If you've installed additional Puppet masters (i.e., secondary or compile master
 
 If necessary, you can install stdlib after installing/upgrading by running `puppet module install puppetlabs-stdlib`.
 
-
 ### PuppetDB Behind a Load Balancer Causes Puppet Server Errors
 
 Puppet Server handles outgoing HTTPS connections differently from the older MRI Ruby Puppet master, and has a new restriction on the server certificates it will accept. This affects all Puppet Enterprise versions in the 3.7.x series.
@@ -119,7 +118,7 @@ PE will automatically update your version of puppetlabs-inifile as part of the u
 
 ### A Note about Symlinks and Installation/Upgrade
 
-The answer file no longer gives the option of whether to install symlinks. These are now automatically installed by packages. To allow the creation of symlinks, you need to ensure that `/usr/local` is writable.
+The answer file no longer gives the option of whether to install symlinks. These are now automatically created during installation. To allow the creation of symlinks, ensure that `/usr/local/bin` is writable (`/usr/bin` on AIX).
 
 However, please note that we do not recommend employing symlinks in the place of `/opt` for database storage, as doing so can lead to databases not being seen. In addition, if `/opt/puppet` is symlink, the `-d` flag will not function correctly during an uninstall.
 
