@@ -48,11 +48,11 @@ If you have agent nodes that specify their own environments, those nodes will be
 
 For example, if you have an agent node for which the `[agent]` section of `puppet.conf` contains `environment=development`, we recommend you use the node classifier to change its group environment to "development" and then unpin it from the "agent-specified" group.
 
-### Adding Nodes to the PE Groups
+### Adding Nodes to Preconfigured PE Groups
 
-For fresh installations of PE 3.8, node groups in the classifier are created and configured during the installation process. For upgrades, if these groups do not exist, or do not contain any classes, they will be created and configured but **no nodes will be pinned to them**. This helps prevent errors during the upgrade process, but you must manually pin the correct nodes to each group after you complete the upgrade process. 
+For fresh installations of PE 3.8, there are some special infrastructure node groups that are created and configured during the installation process. For upgrades, if these groups do not exist, or do not contain any classes, they will be created and configured but **no nodes will be pinned to them**. This helps prevent errors during the upgrade process, but you must manually pin the correct nodes to each group after you complete the upgrade process. 
 
-The [preconfigured groups doc](./console_classes_groups_preconfigured_groups.html) has a list of groups and their classes that get installed on fresh upgrades, and it also clarifies which nodes should be pinned to which groups.
+The [preconfigured groups doc](./console_classes_groups_preconfigured_groups.html) has a list of the preconfigured node groups and classification data that come preconfigured in fresh installs.
 
 If these groups do exist during upgrade and contain all the classes documented in the preconfigured groups doc, they will not be modified during the upgrade process.
 
@@ -70,15 +70,12 @@ If you pin the node groups in this order, you do not need to stop/restart Puppet
 
 The MCollective node group is configured during upgrade, so you do not need to perform any classification or pinning with this group.
 
-**To add a class to a node group:**
+To pin a node to a node group in the PE console:
 
-1. On the **Classification** page, click the node group that you want to add the class to, and then click **Classes**.
+1. In the **Rules** tab, scroll down to the pinned nodes section below the rules.
+2. In the **Certname** field, enter the certname of the node.
+3. Click **Pin node**, and then click the commit button.
 
-2. Under **Add new class**, click the **Class name** field.
-
-   A list of classes appears. These are the classes that the Puppet master knows about and are available in the environment that you have set for the node group. The list filters as you type. Filtering is not limited to the start of a class name, you can also type substrings from anywhere within the class name. Select the class when it appears in the list.
-
-3. Click **Add class** and then click the commit change button.
 
 ## Upgrading to Role-Based Access Control (RBAC)
 
