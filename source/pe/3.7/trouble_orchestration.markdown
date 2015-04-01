@@ -46,7 +46,7 @@ To activate the ActiveMQ console:
 
 1. **On the Puppet master**, navigate to `/etc/puppetlabs/activemq/jetty.xml`. 
 
-2. Edit `jetty.xml` so that the `"host"` value of the `"connectors"` property is set to `"0.0.0."`, as shown in the following example:
+2. Edit `jetty.xml` so that the `"host"` value of the `"connectors"` property is set to `"0.0.0.0"`, as shown in the following example:
 
        <property name="connectors">
                <list>
