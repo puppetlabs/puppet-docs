@@ -18,7 +18,7 @@ canonical: "/puppet/latest/reference/future_lang_relationships.html"
 [metaparameters]: ./future_lang_resources.html#metaparameters
 [require_function]: ./future_lang_classes.html#using-require
 [moar]: /references/3.7.latest/configuration.html#ordering
-
+[lambdas]: ./future_lang_lambdas.html
 
 
 
@@ -31,12 +31,10 @@ If a group of resources should be managed in a specific order, you must explicit
 > While manifest ordering is an intuitive and useful shortcut, you should still explicitly declare dependencies much of the time, especially in modules where resources are spread out across multiple manifests.
 
 
-Syntax
------
-
 Relationships can be declared with the relationship metaparameters, chaining arrows, and the `require` function.
 
-### Relationship Metaparameters
+Syntax: Relationship Metaparameters
+-----
 
 {% highlight ruby %}
     package { 'openssh-server':
@@ -47,17 +45,10 @@ Relationships can be declared with the relationship metaparameters, chaining arr
 
 Puppet uses four [metaparameters][] to establish relationships. Each of them can be set as an attribute in any resource. The value of any relationship metaparameter should be a [resource reference][reference] (or [array][] of references) pointing to one or more **target resources.**
 
-`before`
-: Causes a resource to be applied **before** the target resource.
-
-`require`
-: Causes a resource to be applied **after** the target resource.
-
-`notify`
-: Causes a resource to be applied **before** the target resource. The target resource will refresh if the notifying resource changes.
-
-`subscribe`
-: Causes a resource to be applied **after** the target resource. The subscribing resource will refresh if the target resource changes.
+* `before` --- Causes a resource to be applied **before** the target resource.
+* `require` --- Causes a resource to be applied **after** the target resource.
+* `notify` --- Causes a resource to be applied **before** the target resource. The target resource will refresh if the notifying resource changes.
+* `subscribe` --- Causes a resource to be applied **after** the target resource. The subscribing resource will refresh if the target resource changes.
 
 If two resources need to happen in order, you can either put a `before` attribute in the prior one or a `require` attribute in the subsequent one; either approach will create the same relationship. The same is true of `notify` and `subscribe`.
 
@@ -99,7 +90,8 @@ The two examples below create the same notification relationship:
 {% endhighlight %}
 
 
-### Chaining Arrows
+Syntax: Chaining Arrows
+-----
 
 {% highlight ruby %}
     # ntp.conf is applied first, and will notify the ntpd service if it changes:
@@ -108,21 +100,17 @@ The two examples below create the same notification relationship:
 
 You can create relationships between two resources or groups of resources using the `->` and `~>` operators.
 
-`->` (ordering arrow)
-: Causes the resource on the left to be applied before the resource on the right. Written with a hyphen and a greater-than sign.
+* `->` (ordering arrow) --- Causes the resource on the left to be applied before the resource on the right. Written with a hyphen and a greater-than sign.
+* `~>` (notification arrow) --- Causes the resource on the left to be applied first, and sends a refresh event to the resource on the right if the left resource changes. Written with a tilde and a greater-than sign.
 
-`~>` (notification arrow)
-: Causes the resource on the left to be applied first, and sends a refresh event to the resource on the right if the left resource changes. Written with a tilde and a greater-than sign.
-
-#### Operands
+### Operands
 
 The chaining arrows accept the following types of operands on either side of the arrow:
 
 * [Resource references][reference], including multi-resource references
+* Arrays of resource references
 * [Resource declarations][resources]
 * [Resource collectors][collector]
-
-> Note: Arrays of references cannot be chained. To chain multiple resources at once, you must use a multi-resource reference or a collector.
 
 An operand can be shared between two chaining statements, which allows you to link them together into a "timeline:"
 
@@ -156,19 +144,39 @@ And since collectors can be chained, you can create many-to-many relationships:
 
 This example would apply all yum repository resources before applying any package resources, which protects any packages that rely on custom repos.
 
-> Note: Chained collectors can potentially cause huge [dependency cycles](#dependency-cycles) and should be used carefully. They can also be dangerous when used with [virtual resources][virtual], which are implicitly realized by collectors.
+### Capturing Resource References for Generated Resources
 
-> Note: Although you can usually chain many resources and/or collectors together (`File['one'] -> File['two'] -> File['three']`), the chain can be broken if it includes a collector whose search expression doesn't match any resources. This is [Puppet bug #18399](http://projects.puppetlabs.com/issues/18399).
+In this version of the Puppet language, the _value_ of a resource declaration is a _reference_ to the resource it creates.
 
-> Note: Collectors can only search on attributes which are present in the manifests and cannot see properties that must be read from the target system. For example, if the example above had been written as `Yumrepo <| |> -> Package <| provider == yum |>`, it would only create relationships with packages whose `provider` attribute had been _explicitly_ set to `yum` in the manifests. It would not affect any packages that didn't specify a provider but would end up using Yum.
+You can take advantage of this if you're automatically creating resources whose titles you can't predict, by using the [iteration functions][lambdas] to declare several resources at once or using an array of strings as a resource title. If you assign the resulting resource references to a variable, you can then use them in chaining statements without ever knowing the final title of the affected resources.
 
-#### Reversed Forms
+For example:
+
+* The `map` function iterates over its arguments and returns an array of values, wich each value produced by the last expression in the block. If that last expression is a resource declaration, `map` would produce an array of resource references, which could then be used as an operand for a chaining arrow.
+* The value of a resource declaration whose title is an array is an array of resource references. This can be assigned to a variable and used in a chaining statement.
+
+### Caveats for Chaining Resource Collectors
+
+#### Potential for Dependency Cycles
+
+Chained collectors can potentially cause huge [dependency cycles](#dependency-cycles) and should be used carefully. They can also be dangerous when used with [virtual resources][virtual], which are implicitly realized by collectors.
+
+#### Potential for Breaking Chains
+
+Although you can usually chain many resources and/or collectors together (`File['one'] -> File['two'] -> File['three']`), the chain can be broken if it includes a collector whose search expression doesn't match any resources. This is [Puppet bug PUP-1410](https://tickets.puppetlabs.com/browse/PUP-1410).
+
+#### Implicit Properties Aren't Searchable
+
+Collectors can only search on attributes which are present in the manifests; they cannot see properties that are automatically set or are read from the target system. For example, if the example above had been written as `Yumrepo <| |> -> Package <| provider == yum |>`, it would only create relationships with packages whose `provider` attribute had been _explicitly_ set to `yum` in the manifests. It would not affect any packages that didn't specify a provider but would end up using Yum because it's the default provider for the node's OS.
+
+### Reversed Forms
 
 Both chaining arrows have a reversed form (`<-` and `<~`). As implied by their shape, these forms operate in reverse, causing the resource on their right to be applied before the resource on their left.
 
 > Note: As the majority of Puppet's syntax is written left-to-right, these reversed forms can be confusing and are not recommended.
 
-### The `require` Function
+Syntax: The `require` Function
+-----
 
 [The `require` function][require_function] declares a [class][] and causes it to become a dependency of the surrounding container:
 
