@@ -13,20 +13,15 @@ Released April 1, 2015
 Facter 2.4.3 is an AIO support release in the Facter 2.4 series that also includes two improvements to performance, and multiple bug fixes.
 
 ### AIO External Facts Directory Change
-Changed external facts directory from `/opt/puppetlabs/agent/facts.d` to `/opt/puppetlabs/facter/facts.d` on *nix, Windows is unchanged.
+Changed external facts directory from `/opt/puppetlabs/agent/facts.d` to `/opt/puppetlabs/facter/facts.d` on *nix. Windows is unchanged.
 
 * [FACT-826: Prepend AIO external facts directory for root](https://tickets.puppetlabs.com/browse/FACT-826)
 
-### New Feature
-
-* You can now run Puppet agent inside a container on CoreOS with selected mounts so that the agent can change /etc files and restart `systemd` units.
-  * [FACT-805: use /etc/os-release on CoreOS](https://tickets.puppetlabs.com/browse/FACT-805)
-
 ### Improvements to Performance and Speed
 
-* Reduced calls to `ip link show` for performance. `Facter::Util:IP.get_interface_value` called `get_bonding_interface` for every possible value which could have caused performance issues if many interfaces were being used.
+* Reduced calls to `ip link show` for performance. `Facter::Util:IP.get_interface_value` called `get_bonding_interface` for every possible value, which could have caused performance issues if many interfaces were being used.
 
-* Improved the speed of `puppetversion` in standalone Factor. There is no notable difference when calling Facter while Puppet is already running. Previously, running Facter with `--timing` showed that `puppetversion` was by far the slowest fact. This was not true when executed by Puppet, but gave the impression that Puppet is slow.  
+* Improved the speed of `puppetversion` in standalone Facter. There is no notable difference when calling Facter while Puppet is already running. Previously, running Facter with `--timing` showed that `puppetversion` was by far the slowest fact. This was not true when executed by Puppet, but gave the impression that Puppet is slow.  
 
 ### Bugs
 
@@ -44,13 +39,15 @@ Changed external facts directory from `/opt/puppetlabs/agent/facts.d` to `/opt/p
 
 * [FACT-894: Prepend ~/.puppetlabs/opt/facter/facts.d to external search path for non-root](https://tickets.puppetlabs.com/browse/FACT-894)
 
+* [FACT-805: use /etc/os-release on CoreOS](https://tickets.puppetlabs.com/browse/FACT-805)
+
 ### Full List of Issues
 
 [See Jira for a full list of issues resolved in Facter 2.4.3.](TODO: need final link)
 
 ## Facter 2.4.2
 
-Facter 2.4.2 was not publicly released.
+Facter 2.4.2 was not publicly released, and no packages were provided.
 
 ## Facter 2.4.1
 
