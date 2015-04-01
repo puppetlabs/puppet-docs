@@ -118,7 +118,7 @@ PE will automatically update your version of puppetlabs-inifile as part of the u
 
 ### A Note about Symlinks and Installation/Upgrade
 
-The answer file no longer gives the option of whether to install symlinks. These are now automatically created during installation. To allow the creation of symlinks, ensure that `/usr/local/bin` is writable (`/usr/bin` on AIX).
+The answer file no longer gives the option of whether to install symlinks. These are now automatically created during installation. To allow the creation of symlinks, ensure that `/usr/local/bin` is writable (`/usr/bin` on AIX). For more context, see the note about [PE Binaries and Symlinks](./install_basic.html#puppet-enterprise-binaries-and-symlinks). 
 
 However, please note that we do not recommend employing symlinks in the place of `/opt` for database storage, as doing so can lead to databases not being seen. In addition, if `/opt/puppet` is symlink, the `-d` flag will not function correctly during an uninstall.
 
