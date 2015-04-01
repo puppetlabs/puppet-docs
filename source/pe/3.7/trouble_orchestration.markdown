@@ -38,19 +38,34 @@ The ulimit controls the number of processes and file handles that the `pe-active
 Accessing the ActiveMQ Console
 ----------
 
-In some cases, you may need to access the ActiveMQ console to troubleshoot orchestration messages, which are handled by the `pe-activemq` service. To do this, you will need to enable the ActiveMQ console from within the PE console by editing the `activemq_enable_web_console` parameter of the `pe_mcollective::role::master` class. The ActiveMQ node can be reached from whichever node has the `pe_mcollective::role::master` class. 
+In some cases, you may need to access the ActiveMQ console to troubleshoot orchestration messages, which are handled by the `pe-activemq` service. To do this, you will need to enable the ActiveMQ console from within the PE console by editing the `enable_web_console` parameter of the `puppet_enterprise::profile::amq::broker` class. The ActiveMQ node can be reached from whichever node has the `puppet_enterprise::profile::amq::broker` class. 
 
 To activate the ActiveMQ console:
 
-1. In the PE console, click **Classification**.
+1. **On the Puppet master**, navigate to `/etc/puppetlabs/activemq/jetty.xml`. 
 
-2. Select the `PE Master` group.
+2. Edit `jetty.xml` so that the `"host"` value of the `"connectors"` property is set to `"0.0.0."`, as shown in the following example:
 
-3. Click **Classes**.
+       <property name="connectors">
+               <list>
+                   <bean id="Connector" class="org.eclipse.jetty.server.nio.SelectChannelConnector">
+                       <property name="host" value="0.0.0.0"/>
+                       <property name="port" value="8161" />
+                   </bean>
+               </list>
+           </property>
 
-4. Under the `pe_mcollective::role::master` class, set the `activemq_enable_web_console` parameter to `true`. 
+3. In the PE console, click **Classification**.
 
-You can access the ActiveMQ console on port 8161.
+4. Select the `PE ActiveMQ Rboker` group.
+
+5. Click **Classes**.
+
+6. Under the `puppet_enterprise::profile::amq::broker` class, set the `enable_web_console` parameter to `true`. 
+
+5. Click **Add parameter**, and then click the Commit change button. 
+
+You can reach the the ActiveMQ console from whichever node has the `puppet_enterprise::profile::amq::broker` class on port 8161 with `/admin` (e.g., `http://hostname:8161/admin`). 
 
 
 AIX Agents Not Registering with Live Management After 3.0 Upgrade
