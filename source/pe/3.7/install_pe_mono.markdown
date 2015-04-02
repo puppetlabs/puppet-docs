@@ -172,7 +172,7 @@ See the [installation overview](./install_basic.html#downloading-puppet-enterpri
    > 2. You must enable the [citext extension](http://www.postgresql.org/docs/9.2/static/citext.html) on the RBAC database. To do so, install the `postgresql-contrib` package, and then from inside the RBAC database, run the following commands:
    >
           sudo -u postgres sh
-          psql pe_rbac -c 'create extension citext
+          psql pe_rbac -c 'create extension citext'
           exit
    > 3. You must enable the [`pg_trim` extension](http://www.postgresql.org/docs/9.3/static/pgtrgm.html) on the PuppetDB database. To do so, run the following commands:
    >
