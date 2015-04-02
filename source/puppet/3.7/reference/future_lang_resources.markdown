@@ -26,9 +26,16 @@ canonical: "/puppet/latest/reference/future_lang_resources.html"
 
 > * [See the Type Reference for complete information about Puppet's built-in resource types.][types]
 
-**Resources** are the fundamental unit for modeling system configurations. Each resource describes some aspect of a system, like a service that must be running or a package that must be installed. The block of Puppet code that describes a resource is called a **resource declaration.**
+**Resources** are the fundamental unit for modeling system configurations. Each resource describes some aspect of a system, like a specific service or package.
 
-Declaring a resource instructs Puppet to include it in the [catalog][] and manage its state on the target system. Resource declarations inside a [class definition][class] or [defined type][defined_type] are only added to the catalog once the class or an instance of the defined type is declared. [Virtual resources][virtual] are only added to the catalog once they are [realized][realize].
+A **resource declaration** is an expression in the Puppet language which describes a resource and tells Puppet to add it to the [catalog][].
+
+When Puppet applies a catalog to a target system, it manages all the resources included in the catalog, ensuring that the actual state matches the desired state.
+
+The Puppet language includes some constructs that let you write a resource declaration but delay adding it to the catalog. For example:
+
+* [Class definitions][class] and [defined types][defined_type] contain resources, but their contents are only added to the catalog once the class or an instance of the defined type is _declared._ They make groups of resources available and let you add the whole group to the catalog as needed.
+* [Virtual resources][virtual] are only added to the catalog once they are [realized][realize].
 
 Syntax
 -----
@@ -108,13 +115,19 @@ Puppet uses the [title](#title) and [name/namevar](#namenamevar) to identify dup
 
 If multiple classes require the same resource, you can use a [class][] or a [virtual resource][virtual] to add it to the catalog in multiple places without duplicating it.
 
-### Events
+### Relationships and Ordering
+
+[ordering]: /references/3.7.latest/configuration.html#ordering
+
+By default, the order of resources in a manifest doesn't affect the order in which those resources will be applied. Puppet will apply _unrelated_ resources in a mostly random (but consistent between runs) order.
+
+If a resource must be applied before or after some other resource, you should declare a relationship between them, to make sure Puppet applies them in the right order. You can also make changes in one resource cause a refresh of some other resource. See [the Relationships and Ordering page][relationships] for more information.
+
+You can also change [the `ordering` setting][ordering] to make Puppet apply unrelated resources in manifest order. This will be the new default behavior in Puppet 4.
+
+### Changes, Events, and Reporting
 
 If Puppet makes any changes to a resource, it will log those changes as events. These events will appear in Puppet agent's log and in the run [report][], which is sent to the Puppet master and forwarded to any number of report processors.
-
-### Parse-Order Independence
-
-Resources are not applied to the target system in the order they are written in the manifests --- Puppet will apply the resources in whatever way is most efficient. If a resource must be applied before or after some other resource, you must explicitly say so. [See Relationships for more information.][relationships]
 
 ### Scope Independence
 
@@ -122,24 +135,26 @@ Resources are not subject to [scope][] --- a resource in any scope may be [refer
 
 ### Containment
 
-Resources may be contained by [classes][class] and [defined types][defined_type]. See [Containment][] for more details.
+Resources may be contained by [classes][class] and [defined types][defined_type] --- when something forms a [relationship][relationships] with the container, the contained resources are also affected. See [Containment][] for more details.
 
 Special Attributes
 -----
 
 ### Name/Namevar
 
-Most types have an attribute which identifies a resource _on the target system._ This is referred to as the "namevar," and is often simply called "name." For example, the `name` of a service or package is the name by which the system's service or package tools will recognize it. The `path` of a file is its location on disk.
+Most types have an attribute which identifies a resource _on the target system._ This special attribute is called the "namevar," and the attribute itself is often (but not always) just `name`. For example, the `name` of a service or package is the name by which the system's service or package tools will recognize it. On the other hand, the file type's namevar is `path`, the file's location on disk.
+
+The [type reference][types] lists the namevars for all of the core resource types. For custom resource types, check the documentation for the module that provides the type.
 
 Namevar values **must be unique per resource type,** with only rare exceptions (such as `exec`).
 
-Namevars are not to be confused with the title, which identifies a resource _to Puppet._ However, they often have the same value, since the namevar's value will **default to the title** if it isn't specified. Thus, the `path` of the file example [above](#syntax) is `/etc/passwd`, even though it was never specified.
+Namevars are not to be confused with the **title**, which identifies a resource _to Puppet._ However, they often have the same value, since the namevar's value will default to the title if it isn't specified. Thus, the `path` of the file example [above](#syntax) is `/etc/passwd`, even though we didn't include the `path` attribute in the resource declaration.
 
-The distinction between title and namevar lets you use a single, consistently-titled resource to manage something whose name differs by platform. For example, the NTP service is `ntpd` on Red Hat-derived systems, but `ntp` on Debian and Ubuntu; the service resource could simply be titled "ntp," but could have its name set correctly by platform. Other resources could then form relationships to it without worrying that its title will change.
+The separation between title and namevar lets you use a consistently-titled resource to manage something whose name differs by platform. For example, the NTP service might be `ntpd` on Red Hat-derived systems, but `ntp` on Debian and Ubuntu; to accommodate that, you could title the service "ntp," but set its name according to the OS. Other resources could then form relationships to it without worrying that its title will change.
 
 ### Ensure
 
-Many types have an `ensure` attribute. This generally manages the most fundamental aspect of the resource on the target system --- does the file exist, is the service running or stopped, is the package installed or uninstalled, etc.
+Many types have an `ensure` attribute. This generally manages the most important aspect of the resource on the target system --- does the file exist, is the service running or stopped, is the package installed or uninstalled, etc.
 
 Allowed values for `ensure` vary by type. Most types accept `present` and `absent`, but there may be additional variations. Be sure to check the reference for each type you are working with.
 
