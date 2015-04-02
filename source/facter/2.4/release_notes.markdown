@@ -43,7 +43,7 @@ Changed external facts directory from `/opt/puppetlabs/agent/facts.d` to `/opt/p
 
 ### Full List of Issues
 
-[See Jira for a full list of issues resolved in Facter 2.4.3.](TODO: need final link)
+[See Jira for a full list of issues resolved in Facter 2.4.3.](https://tickets.puppetlabs.com/browse/FACT-596?jql=project%20%3D%20FACT%20AND%20fixVersion%20in%20%20(%22FACT%202.4.3%22%2C%20%22FACT%202.4.2%22)%20ORDER%20BY%20due%20ASC%2C%20priority%20DESC%2C%20created%20ASC)
 
 ## Facter 2.4.2
 
