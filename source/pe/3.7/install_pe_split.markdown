@@ -192,7 +192,16 @@ If you plan on managing more than 1500 nodes, follow these split install instruc
    >**Note**: If you are using an external PostgreSQL instance that is not managed by PE:
    >
    > 1. You must create databases for RBAC, activity service, and the node classifier before installing.
-   > 2. You must enable the [citext extension](http://www.postgresql.org/docs/9.2/static/citext.html) on the RBAC database. To do so, install the `postgresql-contrib` package, and then from inside the RBAC database, run the command `create extension citext`.
+   > 2. You must enable the [citext extension](http://www.postgresql.org/docs/9.2/static/citext.html) on the RBAC database. To do so, install the `postgresql-contrib` package, and then from inside the RBAC database, run the following commands:
+   >
+          sudo -u postgres sh
+          psql pe_rbac -c 'create extension citext
+          exit
+   > 3. You must enable the [`pg_trim` extension](http://www.postgresql.org/docs/9.3/static/pgtrgm.html) on the PuppetDB database. To do so, run the following commands:
+   >
+          sudo -u postgres sh
+          psql puppetdb -c 'create extension pg_trgm'
+          exit  
 
 9. Provide the following information about the PE console administrator user:
 
