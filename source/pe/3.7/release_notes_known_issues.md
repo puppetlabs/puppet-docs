@@ -286,7 +286,7 @@ Marking failed tasks as read in the console can instead open a security warning,
 
 ### `/opt/staging/` is No Longer Used
 
-In PE 3.8, the `/opt/staging/` directory is no longer used. Because users may have used either the `puppetlabs-pe_staging` or `nanliu-staging` modules, we did not feel comfortable deleting it the directory altogether. If you are not using the directory, it is safe to delete it.
+In PE 3.8, the `/opt/staging/` directory is no longer used. Because users may have used either the `puppetlabs-pe_staging` or `nanliu-staging` modules, we did not delete the directory. If you are not using the directory, it is safe to delete it.
 
 ### PE 3.7.x Agent Can't Compile Against PE 3.8.0 Master If Future Parser is Installed
 
