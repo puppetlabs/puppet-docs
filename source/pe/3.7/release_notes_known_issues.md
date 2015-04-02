@@ -20,16 +20,9 @@ The following issues affect the currently shipped version of PE and all prior re
 
 This issue has been fixed in PE 3.8.0. 
 
-### A Modified `auth.conf` File Will Cause Upgrade Failure
+### Review Modified `auth.conf` Files Before Upgrading to 3.8
 
-If your `auth.conf` file has been modified, you may experience a failure when upgrading to the 3.7.x line. To prevent an upgrade failure, before running the upgrade, edit `auth.conf` so that the `resource_type` path contains `pe-internal-classifier`, as shown in the following example:
-
-    ...
-
-    path /resource_type
-    method find, search
-    auth yes
-    allow pe-internal-dashboard, pe-internal-classifier
+Please review [Upgrading to 3.8 with a Modified `auth.conf` File](./install_upgrading_notes.html#upgrading-to-38-with-a-modified-authconf-file) before upgrading. 
 
 ### Incorrect Umask Value Can Cause Upgrade/Installation to Fail
 
