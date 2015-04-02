@@ -22,7 +22,7 @@ This issue has been fixed in PE 3.8.0.
 
 ### Review Modified `auth.conf` Files Before Upgrading to 3.8
 
-Please review [Upgrading to 3.8 with a Modified `auth.conf` File](./install_upgrading_notes.html#upgrading-to-38-with-a-modified-authconf-file) before upgrading. 
+The are have been several changes to `auth.conf` leading up to PE 3.8. If you have a modified `auth.conf` file, you will be prompted by the upgrader to review it and make changes before continuing with your upgrade. For details, please review [Upgrading to 3.8 with a Modified `auth.conf` File](./install_upgrading_notes.html#upgrading-to-38-with-a-modified-authconf-file). 
 
 ### Incorrect Umask Value Can Cause Upgrade/Installation to Fail
 
