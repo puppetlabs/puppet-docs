@@ -8,7 +8,7 @@ This page documents the history of the Facter 2.4 series. (Elsewhere: release no
 
 ## Facter 2.4.3
 
-Released April 1, 2015
+Released April 2, 2015
 
 Facter 2.4.3 is an AIO support release in the Facter 2.4 series that also includes two improvements to performance, and multiple bug fixes.
 
