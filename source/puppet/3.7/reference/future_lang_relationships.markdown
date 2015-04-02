@@ -64,7 +64,7 @@ The two examples below create the same ordering relationship:
 {% highlight ruby %}
     file { '/etc/ssh/sshd_config':
       ensure  => file,
-      mode    => 600,
+      mode    => '0600',
       source  => 'puppet:///modules/sshd/sshd_config',
       require => Package['openssh-server'],
     }
@@ -75,7 +75,7 @@ The two examples below create the same notification relationship:
 {% highlight ruby %}
     file { '/etc/ssh/sshd_config':
       ensure => file,
-      mode   => 600,
+      mode   => '0600',
       source => 'puppet:///modules/sshd/sshd_config',
       notify => Service['sshd'],
     }
@@ -127,7 +127,7 @@ Since resource declarations can be chained, you can use chaining arrows to make 
     } -> # and then:
     file { '/etc/ssh/sshd_config':
       ensure => file,
-      mode   => 600,
+      mode   => '0600',
       source => 'puppet:///modules/sshd/sshd_config',
     } ~> # and then:
     service { 'sshd':
