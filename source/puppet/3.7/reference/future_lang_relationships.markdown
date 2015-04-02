@@ -155,7 +155,7 @@ For example:
 * The `map` function iterates over its arguments and returns an array of values, wich each value produced by the last expression in the block. If that last expression is a resource declaration, `map` would produce an array of resource references, which could then be used as an operand for a chaining arrow.
 * The value of a resource declaration whose title is an array is an array of resource references. This can be assigned to a variable and used in a chaining statement.
 
-### Caveats for Chaining Resource Collectors
+### Caveats when Chaining Resource Collectors
 
 #### Potential for Dependency Cycles
 
