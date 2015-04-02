@@ -168,7 +168,7 @@ See the [installation overview](./install_basic.html#downloading-puppet-enterpri
           sudo -u postgres sh
           psql pe_rbac -c 'create extension citext'
           exit
-   > 3. You must enable the [`pg_trim` extension](http://www.postgresql.org/docs/9.3/static/pgtrgm.html) on the PuppetDB database. To do so, run the following commands:
+   > 3. If you are running PostgreSQL 9.3 or above, you should install the [`pg_trim` extension](http://www.postgresql.org/docs/9.3/static/pgtrgm.html) on the PuppetDB database. This may require the `postgresql-contrib` (or equivalent) package depending on your distribution. To install the extension, run the following commands:
    >
           sudo -u postgres sh
           psql puppetdb -c 'create extension pg_trgm'
