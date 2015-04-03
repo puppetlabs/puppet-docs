@@ -5,6 +5,7 @@ canonical: "/puppet/latest/reference/future_lang_datatypes.html"
 ---
 
 
+[local]: ./future_lang_scope.html#local-scopes
 [conditional]: ./future_lang_conditional.html
 [node]: ./future_lang_node_definitions.html
 [attribute]: ./future_lang_resources.html#syntax
