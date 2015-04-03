@@ -21,19 +21,19 @@ Puppet Enterprise 3.8 contains a number of performance and documentation improve
 
 In PE 3.7.2, the browser would crash when the `users` endpoint for Role-Based Access Control (RBAC) returned a `NULL` value for `inherited_role_ids`. A `NULL` value is returned when you delete the user roles for a user group and then view the user. In PE 3.8, this has been fixed and the browser no longer crashes.
 
-#### Browser Crashing Issue When a Node Instance With a Permission is Deleted
+#### Browser Crashing Issue When Deleting a Node Group That Has a Permission Assigned
 
 In PE 3.7, if you take the following steps:
 
 - create a new user role in RBAC
 - add a permission to the user role that has the **Node groups** permission type
-- select a specific node instance that the permission applies to
-- delete the specific node instance that the permission applies to
+- select a specific node group instance that the permission applies to
+- delete the node group instance that the permission applies to
 - try to go to the **Permissions** tab for the new user role 
 
 the result is that the javascript rendering the page stops prematurely and the page is not rendered completely. 
 
-In PE 3.8, this has been fixed so that the page renders properly. In the PE 3.8 console, if you go to the **Permissions** tab for the new role that was added, the deleted node instance is displayed as a dash in the **Object** column.
+In PE 3.8, this has been fixed so that the page renders properly. In the PE 3.8 console, if you go to the **Permissions** tab for the new role that was added, the deleted node group instance is displayed as a dash in the **Object** column.
 
 ###  New PE 3.7.x MCO Servers Were Not Connecting With Older MCollective Agents (posted 12/17/14)
 
