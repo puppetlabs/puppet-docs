@@ -172,7 +172,7 @@ You can see the full list of all metaparameters in the [Metaparameter Reference]
 Condensed Forms
 -----
 
-There are two ways to compress multiple resource declarations. You can also use [resource defaults][resdefaults] to reduce duplicate typing.
+There are two ways to compress multiple resource declarations. You can also use [resource default statements][resdefaults] to reduce duplicate typing.
 
 ### Array of Titles
 

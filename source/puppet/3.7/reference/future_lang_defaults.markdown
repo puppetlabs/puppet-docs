@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Future Parser: Resource Defaults"
+title: "Future Parser: Resource Default Statements"
 canonical: "/puppet/latest/reference/future_lang_defaults.html"
 ---
 
@@ -10,7 +10,7 @@ canonical: "/puppet/latest/reference/future_lang_defaults.html"
 [definedtypes]: ./future_lang_defined_types.html
 [node]: ./future_lang_node_definitions.html
 
-Resource defaults let you set default attribute values for a given resource type. Any resource declaration within the area of effect that omits those attributes will inherit the default values.
+Resource default statements let you set default attribute values for a given resource type. Any resource declaration within the area of effect that omits those attributes will inherit the default values.
 
 Syntax
 -----
@@ -42,16 +42,16 @@ Attributes that are set explicitly in a resource declaration will always overrid
 
 Resource defaults are **parse-order independent.** A default will affect resource declarations written both above and below it.
 
+### Area of Effect
+
+Puppet still uses dynamic scope for resource defaults, even though it no longer uses dynamic _variable_ lookup. This means that if you use a resource default statement in a class, it has the potential to affect any classes or defined types that class declares. [See here for a full description of scope rules][dynamic_scope].
+
+You can declare _global_ resource defaults in the [site manifest][sitemanifest] outside any [node definition][node].
+
+
 ### Overriding Defaults From Parent Scopes
 
 Resource defaults declared in the local scope will override any defaults received from parent scopes.
 
-Overriding of resource defaults is **per attribute,** not per block of attributes. Thus, local and inherited resource defaults that don't conflict with each other will be merged together.
-
-### Area of Effect
-
-Although Puppet no longer uses dynamic variable lookup, it still uses dynamic scope for resource defaults. [See here for a full description of scope rules][dynamic_scope].
-
-You can declare global resource defaults in the [site manifest][sitemanifest] outside any [node definition][node].
-
+Overriding of resource defaults is **per attribute,** not per block of attributes. Thus, local and parent resource defaults that don't conflict with each other will be merged together.
 
