@@ -94,9 +94,11 @@ Each resource type has its own set of available attributes; see [the type refere
 
 Every attribute you declare must have a value; the [data type][datatype] of the value depends on what the attribute accepts. Most attributes that can take multiple values accept them as an [array][].
 
-#### Parameters
-
-When discussing resources and types, **parameter** is a synonym for attribute. "Parameter" is usually used when discussing a **type,** and "attribute" is usually used when discussing an individual **resource.**
+> #### Synonym Note: Parameters and Properties
+>
+> When discussing resources and types, **parameter** is a synonym for attribute. You might also hear **property,** which has a slightly different meaning when discussing the Ruby implementation of a resource type or provider. (Properties always represent concrete state on the target system. A provider can check the current state of a property, and switch it to new states.)
+>
+> When talking about resource declarations in the Puppet language, you should use either "attribute" or "parameter." We suggest "attribute."
 
 Behavior
 -----
