@@ -5,7 +5,7 @@ subtitle: "Install and Set Up Razor"
 canonical: "/pe/latest/razor_install.html"
 
 ---
-A Razor module is included with Puppet Enterprise. To install and configure a Razor server, you must [set up your Razor test environment](./razor_prereqs.html), and then classify the pe_razor node. When PE runs and applies this Razor classification, the Razor server and a PostgreSQL database will be installed and configured.
+A Razor module is included with Puppet Enterprise. To install and configure a Razor server, you must [set up your Razor environment](./razor_prereqs.html), and then classify the pe_razor node. When PE runs and applies this Razor classification, the Razor server and a PostgreSQL database will be installed and configured.
 
 In addition to the Razor server, the Razor client can be installed as a Ruby gem on any machine you want to use for interacting with Razor. The client makes interacting with the server from the command line easier. It lets you explore what the server knows about your infrastructure; for example, it infers types, and enables you to modify how machines are provisioned by interacting with the Razor server API.
 
@@ -16,7 +16,7 @@ If you're not a PE user, you can install the [open source version of Razor manua
 ###Before You Begin
 Things you should know before you set up provisioning:
 
-+ The default port for Razor is 8150. You can change the port by editing `RAZOR_PORT` in `/etc/sysconfig/pe-razor-server`.
++ The default port for Razor is 8150. You can change this, as described in the "Install the Razor Server" section below.
 + Razor has been validated on RHEL/CentOS 6.x and 7.x versions.
 
 >**Hint**: With the `export` command, you can avoid having to repeatedly replace placeholder text. The steps for installing assume you have declared a server name and the port to use for Razor with this command:
@@ -34,13 +34,13 @@ Things you should know before you set up provisioning:
 Install the Razor Server
 -------------
 
-The actual Razor software is stored in an external online location, so you need an internet connection. When you classify a node with the pe_razor module, the software is downloaded. This process can take several minutes.
+The actual Razor software is stored in an external online location, so you need an internet connection to install it. The process entails classifying a node with the `pe_razor` module. When you do so, the software is downloaded. This process can take several minutes.
 
 If you don't have access to the internet or would like to pull the PE tarball from your own location, you can use the class parameter `pe_tarball_base_url` and stipulate your own URL. Note that the code assumes that the tarball still has the same name format as on our server.
 
-1. Manually add the `pe-razor` class in the PE console.
+1. Manually add the `pe-razor` class in the PE console, as follows:
 
-   In the console, click **Classification**. Click the node group you will use to assign the `pe-razor` class to nodes. Click **Classes** and, in **Class name**, type in "pe-razor". Click **Add class**. For information about adding a  class and classifying the Razor server using the PE console, see the [Adding Nodes to a Node Group](./console_classes_groups.html#adding-nodes-to-a-node-group) and [Adding New Classes](./console_classes_groups.html#adding-classes-to-a-node-group) sections of this guide.
+a. In the console, click **Classification**, and then click the node group you will use to assign the `pe-razor` class to nodes. Click **Classes** and, in **Class name**, type in "pe-razor". Click **Add class**. For information about adding a  class and classifying the Razor server using the PE console, see the [Adding Nodes to a Node Group](./console_classes_groups.html#adding-nodes-to-a-node-group) and [Adding New Classes](./console_classes_groups.html#adding-classes-to-a-node-group) sections of this guide.
 
 
 	**Note**: You can also add the following to site.pp:
@@ -50,6 +50,24 @@ If you don't have access to the internet or would like to pull the PE tarball fr
 		}
 
 2. On the Razor server, run Puppet with: `puppet agent -t` (otherwise you have to wait for the scheduled agent run).
+
+####Changing the Default Razor Port
+
+The `pe_razor` module has the following parameters:
+
+| Parameter | Description |
+|-----------| ------------|
+| `dbpassword` | The database password to use for Razor's database. The password defaults to `razor`. |
+| `pe_tarball_base_url` | The location of the Puppet Enterprise tarball. |
+| `microkernel_url` | The URL from which to fetch the Microkernel. |
+| `server_http_port` | The port for HTTP communications with the Razor server. It defaults to 8150. |
+| `server_https_port` | The port for HTTPS communications with the Razor server. It defaults to 8151. |
+
+If you want to change the default HTTP or HTTPS port, you can make the change in the console, like this:
+
+1. On the **Classification** tab, click the node group that contains the `pe_razor` module.
+2. Click the **Classes** tab. Then, under **pe_razor** in the **Parameters** box, select the parameter you want to change, such as `server_http_port` or `server_https_port`.
+3. In the **Value** box, type the port number you want to use, then click **Add parameter** and the commit change button.
 
 
 ###Load iPXE Software
