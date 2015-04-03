@@ -49,9 +49,9 @@ Instead of Cloud Provisioner, we recommend using the AWS Supported Module going 
 
 Live Management is deprecated in PE 3.8.0 and will be replaced by improved resource management functionality in future releases. For this reason, Live Management is not enabled by default as in previous versions of PE. If you have been using Live Management in your existing PE infrastructure and would like to continue using it with PE 3.8, see the instructions for [enabling Live Management](./console_navigating_live_mgmt.html#disabling/enabling-live-management) in the PE documentation.
 
-### Some Puppet Master Platforms are Deprecated
+### Some Platforms are Deprecated for Core PE Components
 
-A number of master platforms have been deprecated in PE 3.8 and will be removed in future versions of PE. Agents on these platforms will continue. The deprecated platforms include all 32-bit versions, all Debian versions, EL 5 versions, and Ubuntu 10.4. The complete list is as follows:
+A number of platforms have been deprecated in PE 3.8 for the core PE components (the Puppet master, the PE console, and PuppetDB) and will be removed in future versions of PE. Agents on these platforms will continue. The deprecated platforms include all 32-bit versions, all Debian versions, EL 5 versions, and Ubuntu 10.4. The complete list is as follows:
 
 *	centos-5-i386
 *   centos-5-x86_64

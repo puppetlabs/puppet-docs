@@ -35,14 +35,14 @@ Microsoft Windows            | 2003, 2003R2                            | x86    
 AIX                          | 5.3, 6.1, 7.1                         | Power         | agent
 Mac OS X                     | Mavericks (10.9)                        | x86_64         | agent
 
->**Puppet Master Platform Deprecations**: The following Puppet master platforms are deprecated in PE 3.8, and will be removed in future versions of PE:
+>**PE Core Component Deprecations**: The following platforms are deprecated for core PE components (the Puppet master, PE console, and PuppetDB) in PE 3.8, and will be removed in future versions of PE:
 >
 >* All 32-bit versions
 >* All Debian versions
 >* EL 5 (RHEL, CentOS, Scientific, Oracle)
 >* Ubuntu 10.4
 >
-> See the release notes for a [detailed list](./release_notes.html#some-puppet-master-platforms-are-deprecated) of deprecated platforms.
+> See the release notes for a [detailed list](./release_notes.html#some-platforms-are-deprecated-for-core-pe-components) of deprecated platforms.
 
 >**Note**: Some operating systems require an active subscription with the vendor's package management system (e.g., the Red Hat Network) to install dependencies.
 
