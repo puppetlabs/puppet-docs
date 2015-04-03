@@ -5,6 +5,7 @@ canonical: "/puppet/latest/reference/lang_datatypes.html"
 ---
 
 
+[local]: ./lang_scope.html#local-scopes
 [conditional]: ./lang_conditional.html
 [node]: ./lang_node_definitions.html
 [attribute]: ./lang_resources.html#syntax
