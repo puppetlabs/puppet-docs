@@ -13,21 +13,27 @@ For more information about this release, also see the [Known Issues](./release_n
 
 ### Security Fixes
 
-
 ### Bug Fixes
 
 Puppet Enterprise 3.8 contains a number of performance and documentation improvements, in addition to the fixes that are highlighted below.
 
-#### Browser Crashing Issue
+#### Browser Crashing Issue When Returning a Null Value for `inherited_role_ids`
 
 In PE 3.7.2, the browser would crash when the `users` endpoint for Role-Based Access Control (RBAC) returned a `NULL` value for `inherited_role_ids`. A `NULL` value is returned when you delete the user roles for a user group and then view the user. In PE 3.8, this has been fixed and the browser no longer crashes.
 
-#### Page Rendering Issue in the Console
+#### Browser Crashing Issue When a Node Instance With a Permission is Deleted
 
-In PE 3.7, if you create a new user role in RBAC, then add a permission to the user role that has the **Node groups** permission type, and select a specific node instance that the permission applies to, you will subsequently experience the following unexpected behavior if that specific node instance is deleted:
+In PE 3.7, if you take the following steps:
 
-- In the PE console, if you go to the **Permissions** tab for the new role that was added, the deleted node instance is displayed as a dash in the **Object** column.
--  This unexpected value would cause the javascript rendering the page to prematurely stop and the page rendering would be incomplete.
+- create a new user role in RBAC
+- add a permission to the user role that has the **Node groups** permission type
+- select a specific node instance that the permission applies to
+- delete the specific node instance that the permission applies to
+- try to go to the **Permissions** tab for the new user role 
+
+the result is that the javascript rendering the page stops prematurely and the page is not rendered completely. 
+
+In PE 3.8, this has been fixed so that the page renders properly. In the PE 3.8 console, if you go to the **Permissions** tab for the new role that was added, the deleted node instance is displayed as a dash in the **Object** column.
 
 ###  New PE 3.7.x MCO Servers Were Not Connecting With Older MCollective Agents (posted 12/17/14)
 
