@@ -38,9 +38,11 @@ The actual Razor software is stored in an external online location, so you need 
 
 If you don't have access to the internet or would like to pull the PE tarball from your own location, you can use the class parameter `pe_tarball_base_url` and stipulate your own URL. Note that the code assumes that the tarball still has the same name format as on our server.
 
-1. Manually add the `pe-razor` class in the PE console, as follows:
+Manually add the `pe-razor` class in the PE console, as follows.
 
-a. In the console, click **Classification**, and then click the node group you will use to assign the `pe-razor` class to nodes. Click **Classes** and, in **Class name**, type in "pe-razor". Click **Add class**. For information about adding a  class and classifying the Razor server using the PE console, see the [Adding Nodes to a Node Group](./console_classes_groups.html#adding-nodes-to-a-node-group) and [Adding New Classes](./console_classes_groups.html#adding-classes-to-a-node-group) sections of this guide.
+1. In the console, click **Classification**, and then click the node group you will use to assign the `pe-razor` class to nodes.
+2. Click **Classes** and, in **Class name**, type in "pe-razor".
+3. Click **Add class** and click the commit button. For information about adding a  class and classifying the Razor server using the PE console, see the [Adding Nodes to a Node Group](./console_classes_groups.html#adding-nodes-to-a-node-group) and [Adding New Classes](./console_classes_groups.html#adding-classes-to-a-node-group) sections of this guide.
 
 
 	**Note**: You can also add the following to site.pp:
@@ -49,7 +51,7 @@ a. In the console, click **Classification**, and then click the node group you w
 			include pe_razor
 		}
 
-2. On the Razor server, run Puppet with: `puppet agent -t` (otherwise you have to wait for the scheduled agent run).
+4. On the Razor server, run Puppet with: `puppet agent -t` (otherwise you have to wait for the scheduled agent run).
 
 ####Changing the Default Razor Port
 
