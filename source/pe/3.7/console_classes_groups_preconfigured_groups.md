@@ -10,8 +10,8 @@ canonical: "/pe/latest/console_classes_groups_preconfigured_groups.html"
 [lang_classes]: /puppet/3.7/reference/lang_classes.html
 [learn]: /learning/
 [forge]: http://forge.puppetlabs.com
-[modules]: /puppet/4.0/reference/modules_fundamentals.html
-[topscope]: /puppet/4.0/reference/lang_scope.html#top-scope
+[modules]: /puppet/3.7/reference/modules_fundamentals.html
+[topscope]: /puppet/3.7/reference/lang_scope.html#top-scope
 [environment]: /guides/environment.html
 
 During installation, Puppet Enterprise (PE) automatically creates a number of preconfigured node groups. Some of these node groups come with required classification already added and some of them come with rules or pinned nodes. This page provides details of how each of these preconfigured node groups look when you do a new install of PE.
@@ -31,7 +31,7 @@ This node group is used for assigning classes to all nodes. For example, you can
 #### Classes
 No default classes.
 
-> **Note:** If you are using agent-specified environments, any classes in the **default** node group must be removed before you can set the environment. (JOSH - Is this still true? Should I remove this statement now that we have an agent-specified environment node group?)
+> **Note:** If you are using agent-specified environments, any classes in the **default** node group must be removed before you can set the environment. 
 
 #### Matching nodes
 All nodes.
@@ -42,7 +42,7 @@ All nodes.
 
 ## PE Infrastructure-Related Node Groups
 
-These groups help you manage your PE infrastructure. (JOSH - I'd like to add a longer description of what the infrastructure groups do for a user. Can you help me with this? For example, we recommend that you use these groups because...)
+These are the groups that PE uses to manage its own configuration. They should remain in these default states, unless you are adjusting parameters as directed by documentation or Support, or pinning new nodes for documented functions like creating compile masters. Custom classes should not be added to these groups, as they are reserved for internal use. Use of these node groups is optional but highly recommended.
 
 ### The PE Infrastructure Node Group
 
@@ -60,7 +60,7 @@ This node group is the parent to all of the infrastructure-related node groups l
 #### Classes
 * `puppet_enterprise` (sets the default parameters for child node groups)
 
-> Parameters: (JOSH - will PE3.8 come with all of these parameters set up? What happens in an upgrade if the user had set non-defaults for these parameters in PE 3.7?)
+> Parameters:
 >
 > * `mcollective_middleware_hosts = ["<YOUR HOST>"]` (This value must be an array, even if there is only one value, e.g. `mcollective_middleware_hosts = ["master.testing.net"]`)
 > * `database_host = "<YOUR HOST>"`
@@ -79,7 +79,7 @@ This node group is the parent to all of the infrastructure-related node groups l
 
 
 #### Matching Nodes
-There are no nodes pinned to this node group. You will need to add your own rules or pinned nodes.
+Nodes are not pinned to this node group. The PE Infrastructure node group is the parent to other infrastructure node groups, such as PE Master, and is only used to set classification that all child node groups need to inherit. You should never pin nodes directly to this node group.
 
 ### The PE Certificate Authority Node Group
 
@@ -89,10 +89,10 @@ This node group is used to manage the certificate authority.
 * `puppet_enterprise::profile::certificate_authority` (manages the certificate authority on the first master node)
 
 #### Matching Nodes
-The master node is pinned to this node group. (JOSH: I don't think we're pinning the master in PE 3.8, are we?)
+On a new install, the Master node is pinned to this node group. If you are upgrading, you will need to pin the Master node yourself.
 
 #### Notes
-You should *not* add additional nodes to this node group. (JOSH: What are our recommendations for this now?)
+You should *not* add additional nodes to this node group.
 
 ### The PE MCollective Node Group
 
@@ -102,7 +102,7 @@ This node group is used to enable PE's [orchestration engine](./orchestration_ov
 * `puppet_enterprise::profile::mcollective::agent` (manages the MCollective server)
 
 #### Matching Nodes
-All nodes. (JOSH: would it be right to say "All nodes that you want to manage with PE"?)
+All nodes. 
 
 #### Notes
 * You may have some nodes, such as non-root nodes or network devices, that **should not** have orchestration enabled. You can create a rule in this node group to exclude these nodes from orchestration.
@@ -117,7 +117,7 @@ This node group is used to manage Puppet masters and [add additional compile mas
 * `puppet_enterprise::profile::master::mcollective` (manages keys used by MCollective)
 
 #### Matching Nodes
-The master node is pinned to this node group. (JOSH: I don't think we're pinning the master in PE 3.8, are we?)
+On a new install, the Master node is pinned to this node group. If you are upgrading, you will need to pin the Master node yourself.
 
 ### The PE PuppetDB Node Group
 
@@ -127,10 +127,10 @@ This node group is used to manage the database service.
 * `puppet_enterprise::profile::puppetdb` (manages the PuppetDB service)
 
 #### Matching Nodes
-The PuppetDB server node is pinned to this node group. (JOSH: I don't think we're pinning the PuppetDB server in PE 3.8, are we?)
+On a new install, the PuppetDB server node is pinned to this node group. If you are upgrading, you will need to pin the PuppetDB server node yourself.
 
 #### Notes
-* You should *not* add additional nodes to this node group. (TODO: Update based on the question above for Josh)
+* You should *not* add additional nodes to this node group. 
 
 ### The PE Console Node Group
 
@@ -143,7 +143,7 @@ This node group is used to manage the console.
 * `puppet_enterprise::license` (manages the PE license file for the status indicator)
 
 #### Matching Nodes
-The console server node is pinned to this node group. (JOSH: I don't think we're pinning the node in PE 3.8, are we?)
+On a new install, the Console server node is pinned to this node group. If you are upgrading, you will need to pin the Console server node yourself.
 
 #### Notes
 * You should *not* add additional nodes to this node group. (TODO: Update based on the question above for Josh)
@@ -157,11 +157,11 @@ This node group is used to manage the ActiveMQ broker and [add additional Active
 * `puppet_enterprise::profile::amq::broker` (manages the ActiveMQ MCollective broker)
 
 #### Matching Nodes
-The master node is pinned to this node group. (JOSH: I don't think we're pinning the node in PE 3.8, are we?)
+On a new install, the Master server node is pinned to this node group. If you are upgrading, you will need to pin the Master server node yourself.
 
 ### The Agent Node Group
 
-This node group is used to manage your agent configuration (currently the only thing being managed is [symlinks](./install_basic.html#puppet-enterprise-binaries-and-symlinks)).
+This node group is used by PE to manage the configuration of Puppet agents (currently the only thing being managed is [symlinks](./install_basic.html#puppet-enterprise-binaries-and-symlinks)).
 
 #### Classes
 * `puppet_enterprise::profile::agent` (manages your PE agent configuration)
@@ -173,7 +173,7 @@ All nodes being managed by PE are pinned to this node group by default.
 
 These two node groups, the **Production Environment** node group and the **Agent-Specified Environment** node group, are used for the sole purpose of setting environments. They should not contain any classification. In these node groups, the **Environment Override** option is selected so that the environment is forced for any matching nodes, even if those nodes match another node group that has a different environment set. This is a workflow that we highly encourage because it avoids the environment conflicts that can happen when you unintentionally have nodes that match multiple node groups with conflicting environments set (only an issue when the node groups in question are in different branches of the inheritance tree). See the [Environments Workflow page](./console_classes_groups_environment_override.html) for more information about working with environments.
 
-For example, if you have nodes that should always be in the production environment, ensure that they match the **Production Environment** node group by creating a rule that matches the node in the **Production Environment** node group, or by manually pinning the nodes to the **Production Environment** node group. Similarly, do the same in the **Agent-Specified Environment** node group for any nodes that need to always have the agent-specified environment. **Always make sure that the Environment Override button remains selected in both of these environment node groups.** (JOSH: Is this still something the user can configure?)
+For example, if you have nodes that should always be in the production environment, ensure that they match the **Production Environment** node group by creating a rule that matches the node in the **Production Environment** node group, or by manually pinning the nodes to the **Production Environment** node group. Similarly, do the same in the **Agent-Specified Environment** node group for any nodes that need to always have the agent-specified environment. **Always make sure that the Environment Override button remains selected in both of these environment node groups.** 
 
 ### The Agent-Specified Environment Node Group
 
