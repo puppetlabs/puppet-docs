@@ -161,12 +161,13 @@ The master node is pinned to this node group. (JOSH: I don't think we're pinning
 
 ### The Agent Node Group
 
-This node group is used to manage your agent configuration (currently the only thing being managed is symlinks).
+This node group is used to manage your agent configuration (currently the only thing being managed is [symlinks](./install_basic.html#puppet-enterprise-binaries-and-symlinks)).
 
 #### Classes
+* `puppet_enterprise::profile::agent` (manages your PE agent configuration)
 
 #### Matching Nodes
-Asked Josh in PE-8772
+All nodes being managed by PE are pinned to this node group by default.
 
 ## Environment Node Groups
 

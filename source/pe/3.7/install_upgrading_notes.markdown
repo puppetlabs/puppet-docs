@@ -97,6 +97,8 @@ Here are some notable changes that have been made to the endpoints in `auth.conf
 
 - The `resource_type` endpoint was modified to allow `classifier_client_certname` (pe-internal-classifier) and `console_client_certname` (pe-internal-dashboard) (3.7.0).
 
+Note that access to the CA functions of the Puppet master is no longer managed with `auth.conf`; it is now managed by [ca.conf](./puppet_server_config_files.html#caconf) in the Puppet Server configuration files. 
+
 You will need to acknowledge you're aware of the differences when prompted by the upgrader, or pass in an answer file with `q_exit_and_update_auth_conf` in it when running the upgrade.
 
 ## `q_database_host` Cannot be an Alt Name For Upgrades to 3.7.0

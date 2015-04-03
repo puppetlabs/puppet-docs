@@ -20,16 +20,9 @@ The following issues affect the currently shipped version of PE and all prior re
 
 This issue has been fixed in PE 3.8.0. 
 
-### A Modified `auth.conf` File Will Cause Upgrade Failure
+### Review Modified `auth.conf` Files Before Upgrading to 3.8
 
-If your `auth.conf` file has been modified, you may experience a failure when upgrading to the 3.7.x line. To prevent an upgrade failure, before running the upgrade, edit `auth.conf` so that the `resource_type` path contains `pe-internal-classifier`, as shown in the following example:
-
-    ...
-
-    path /resource_type
-    method find, search
-    auth yes
-    allow pe-internal-dashboard, pe-internal-classifier
+The are have been several changes to `auth.conf` leading up to PE 3.8. If you have a modified `auth.conf` file, you will be prompted by the upgrader to review it and make changes before continuing with your upgrade. For details, please review [Upgrading to 3.8 with a Modified `auth.conf` File](./install_upgrading_notes.html#upgrading-to-38-with-a-modified-authconf-file). 
 
 ### Incorrect Umask Value Can Cause Upgrade/Installation to Fail
 
@@ -96,7 +89,7 @@ Therefore, if you are running multiple PuppetDB servers behind a load balancer, 
 
 Any entries in `/etc/puppetlabs/puppet/autosign.conf` that don't conform to the [autosign requirements](/puppet/3.7/reference/ssl_autosign.html#the-autosignconf-file) will cause the upgrade to fail to configure the PE console. Please correct any invalid entries before upgrading.
 
-## Upgrading to 3.8 with a Modified `auth.conf` File
+### Upgrading to 3.8 with a Modified `auth.conf` File
 
 This issue is documented in the [notes and warnings for upgrading](./install_upgrading_notes.html#upgrading-to-38-with-a-modified-authconf-file).
 
@@ -291,9 +284,13 @@ Marking failed tasks as read in the console can instead open a security warning,
 
 ## PE services/Puppet Core Known Issues
 
-### PE 3.7.0 Agent Can't Compile Against PE 3.7.1 Master If Future Parser Is installed
+### `/opt/staging/` is No Longer Used
 
-If you upgrade or install a PE 3.7.1 master, sign the certificate, and run Puppet on a 3.7.0 agent node, that should succeed. However, if you enable future parser, restart pe-puppetserver, and then run Puppet on the agent again, you'll get a server error. This error doesn't happen if you enable future parser with a PE 3.7.0 master and agent, or a PE 3.7.1 master and agent, only a 3.7.1 master with a 3.7.0 agent. To avoid this problem, update your agents to match the version of your masters.
+In PE 3.8, the `/opt/staging/` directory is no longer used. Because users may have used either the `puppetlabs-pe_staging` or `nanliu-staging` modules, we did not delete the directory. If you are not using the directory, it is safe to delete it.
+
+### PE 3.7.x Agent Can't Compile Against PE 3.8.0 Master If Future Parser is Installed
+
+If you upgrade or install a PE 3.8.0 master, sign the certificate, and run Puppet on a 3.7.x agent node, that should succeed. However, if you enable future parser, restart pe-puppetserver, and then run Puppet on the agent again, you'll get a server error. This error doesn't happen if you enable future parser with a PE 3.8.0 master and agent, only a 3.8.0 master with a 3.7.x agent. To avoid this problem, update your agents to match the version of your masters.
 
 
 ### Change to `lsbmajdistrelease` Fact Affects Some Manifests
