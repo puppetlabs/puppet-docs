@@ -39,24 +39,15 @@ The condition of an ["if" statement][if] is a boolean value. All of Puppet's [co
 
 If a non-boolean value is used where a boolean is required, it will be automatically converted to a boolean as follows:
 
-Strings
-: All strings are true, including the empty string (`""`). That means the string `"false"` actually resolves as true. **Warning: Puppet may be configured to treat all [facts][] as strings,** which can make using boolean facts tricky. See [the docs on fact data types][fact_datatypes] for more info.
+- **Strings** --- All strings are true, including the empty string (`""`). That means the string `"false"` actually resolves as true. **Warning: Puppet might be configured to treat all [facts][] as strings,** which can make using boolean facts tricky. See [the docs on fact data types][fact_datatypes] for more info.
 
-  > Note: the [puppetlabs-stdlib][stdlib] module includes a `str2bool` function which converts strings to boolean values more intelligently.
+    > Note: the [puppetlabs-stdlib][stdlib] module includes a `str2bool` function which converts strings to boolean values more intelligently.
+- **Numbers** --- All numbers are true, including zero and negative numbers.
 
-Numbers
-: All numbers are true, including zero and negative numbers.
-
-  > Note: the [puppetlabs-stdlib][stdlib] module includes a `num2bool` function which converts numbers to boolean values more intelligently.
-
-Undef
-: The special data type `undef` is false.
-
-Arrays and Hashes
-: Any array or hash is true, including the empty array and empty hash.
-
-Resource References
-: Any resource reference is true, regardless of whether or not the resource it refers to has been evaluated, whether the resource exists, or whether the type is valid.
+    > Note: the [puppetlabs-stdlib][stdlib] module includes a `num2bool` function which converts numbers to boolean values more intelligently.
+- **Undef** --- The special data type `undef` is false.
+- **Arrays and Hashes** --- Any array or hash is true, including the empty array and empty hash.
+- **Resource References** --- Any resource reference is true, regardless of whether or not the resource it refers to has been evaluated, whether the resource exists, or whether the type is valid.
 
 Regular expressions cannot be converted to boolean values.
 
@@ -76,7 +67,7 @@ When used as a boolean, `undef` is false.
 Strings
 -----
 
-Strings are unstructured text fragments of any length. They may or may not be surrounded by quotation marks. Use single quotes for all strings that do not require variable interpolation, and double quotes for strings that do require variable interpolation.
+Strings are unstructured text fragments of any length. They are often (but not always) surrounded by quotation marks. Use single quotes for all strings that do not require variable interpolation, and double quotes for strings that do require variable interpolation.
 
 ### Bare Words
 
@@ -113,7 +104,7 @@ Any [`$variable`][variables] in a double-quoted string will be replaced with its
 
 > Note: This is not recommended.
 
-In a double-quoted string, you may interpolate the value of an arbitrary [expression][] (which may contain both variables and literal values) by putting it inside `${}` (a pair of curly braces preceded by a dollar sign):
+In a double-quoted string, you can interpolate the value of an arbitrary [expression][] (which can contain both variables and literal values) by putting it inside `${}` (a pair of curly braces preceded by a dollar sign):
 
 {% highlight ruby %}
     file {'config.yml':
@@ -128,8 +119,8 @@ This is of limited use, since most [expressions][expression] resolve to boolean 
 
 Behavioral oddities of interpolated expressions:
 
-* You may not use bare word [strings](#strings) or [numbers](#numbers); all literal string or number values must be quoted. The behavior of bare words in an interpolated expression is undefined.
-* Within the `${}`, you may use double or single quotes without needing to escape them.
+* You cannot use bare word [strings](#strings) or [numbers](#numbers); all literal string or number values must be quoted. The behavior of bare words in an interpolated expression is undefined.
+* Within the `${}`, you can use double or single quotes without needing to escape them.
 
 #### Escape Sequences
 
@@ -146,7 +137,7 @@ The following escape sequences are available:
 
 ### Line Breaks
 
-Quoted strings may continue over multiple lines, and line breaks are preserved as a literal part of the string.
+Quoted strings can continue over multiple lines, and line breaks are preserved as a literal part of the string.
 
 Puppet does not attempt to convert line breaks, which means that the type of line break (Unix/LF or Windows/CRLF) used in the file will be preserved. You can also insert literal foreign line breaks into strings:
 
@@ -157,7 +148,7 @@ Puppet does not attempt to convert line breaks, which means that the type of lin
 
 Puppet treats strings as sequences of bytes. It does not recognize encodings or translate between them, and non-printing characters are preserved.
 
-However, Puppet Labs recommends that all strings be valid UTF8. Future versions of Puppet may impose restrictions on string encoding, and using only UTF8 will protect you in this event. Additionally, PuppetDB will remove invalid UTF8 characters when storing catalogs.
+However, Puppet Labs recommends that all strings be valid UTF8. Future versions of Puppet might impose restrictions on string encoding, and using only UTF8 will protect you in this event. Additionally, PuppetDB will remove invalid UTF8 characters when storing catalogs.
 
 * * *
 
@@ -205,7 +196,7 @@ Numbers
 
 Puppet's arithmetic expressions accept integers and floating point numbers. Internally, Puppet treats numbers like strings until they are used in a numeric context.
 
-Numbers can be written as bare words or quoted strings, and may consist only of digits with an optional negative sign (`-`) and decimal point.
+Numbers can be written as bare words or quoted strings, and can consist only of digits with an optional negative sign (`-`) and decimal point.
 
 {% highlight ruby %}
     $some_number = 8 * -7.992
@@ -368,7 +359,7 @@ Alternate forms of regex quoting are not allowed and Ruby-style variable interpo
 
 ### Regex Options
 
-Regexes in Puppet cannot have options or encodings appended after the final slash. However, you may turn options on or off for portions of the expression using the `(?<ENABLED OPTION>:<SUBPATTERN>)` and `(?-<DISABLED OPTION>:<SUBPATTERN>)` notation. The following example enables the `i` option while disabling the `m` and `x` options:
+Regexes in Puppet cannot have options or encodings appended after the final slash. However, you can turn options on or off for portions of the expression using the `(?<ENABLED OPTION>:<SUBPATTERN>)` and `(?-<DISABLED OPTION>:<SUBPATTERN>)` notation. The following example enables the `i` option while disabling the `m` and `x` options:
 
 {% highlight ruby %}
      $packages = $operatingsystem ? {
