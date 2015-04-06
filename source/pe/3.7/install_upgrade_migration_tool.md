@@ -21,7 +21,7 @@ The major differences between classification in PE 3.3 and PE 3.8 are shown in t
 
 (TODO: Insert differences diagram here)
 
-## What is the PE Node Classification Data Migration Tool?
+## What is the PE Classification Data Migration Tool?
 
 The migration tool is a command line tool that provides a smooth path for migrating classification data from PE 3.3 to PE 3.8. To migrate your classification data, you need to:
 
@@ -40,6 +40,8 @@ To use the migration tool, you must:
 * Be on the 3.3.2 version of PE. The quickest way to check your version is to run `facter puppetversion` in the command line and see what is returned for the Puppet Enterprise version. If you are on an older version of PE, [upgrade to the latest version](./install_upgrading.html).
 * Be using the PE-provided postgres instance. User-provided postgres installations are not supported.
 * Have pe-java installed on any hosts that you install the migration tool on 
+
+**Note:** The migration tool does not support classification that was created using Hiera.
 
 ## Overview of the Migration Process
 
@@ -61,11 +63,16 @@ After successful migration from PE 3.3 to PE 3.8 in the flow shown above, your P
 
 ### What Gets Migrated?
 
-* Node groups with single parents
-* Group membership of nodes
+* Node name
+* Node description
+* Node classification information (which variables, classes and parameters are assigned to the node)
+* Node's group membership
+* Node group name
+* Node group description
+* Group classification information (which variables, classes and parameters are assigned to the group)
+* Group's member nodes
+* Group's parent group
 * Node group hierarchy
-* Node classification, including variables, classes, and parameters
-* Classification for nodes that have classification applied directly and not through a node group will be retained via a “singleton” node group created specifically for that node
 
 ### What Doesn’t Get Migrated? 
 
@@ -88,4 +95,5 @@ If you have a split installation, follow the instructions in [Instructions For U
 * * *
 
 
-- [Next: Migrating a Monolithic Installation](./install_upgrade_migration_monolithic.html)
+- [If you have a monolithic install, proceed to Migrating a Monolithic Installation](./install_upgrade_migration_monolithic.html)
+- [If you have a split install, proceed to Migrating a Split Installation](./install_upgrade_migration_split.html)
