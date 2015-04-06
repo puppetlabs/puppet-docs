@@ -80,10 +80,10 @@ The built-in statement functions are:
 
 #### Catalog Statements
 
-* [`require`](/references/3.7.latest/function.html#require) --- includes given class(es) in the catalog and adds them as a dependency
-* [`realize`](/references/3.7.latest/function.html#realize) --- makes a virtual object real
 * [`include`](/references/3.7.latest/function.html#include) --- includes given class(es) in catalog
-* [`contain`](/references/3.7.latest/function.html#contain) --- contains one or more classes in the current class
+* [`require`](/references/3.7.latest/function.html#require) --- includes given class(es) in the catalog and adds them as a dependency of the current class or defined resource
+* [`contain`](/references/3.7.latest/function.html#contain) --- includes given class(es) in the catalog and contains them in the current class
+* [`realize`](/references/3.7.latest/function.html#realize) --- makes a virtual resource real
 * [`tag`](/references/3.7.latest/function.html#tag) --- adds the specified tag(s) to the containing class or definition
 
 #### Logging Statements
