@@ -21,8 +21,7 @@ After creating these objects, you [register a node on the Razor server](#identif
 As mentioned, to work through these steps, you must already have a Razor server up and running.
 
 
-1. Include Repos
--------------
+## 1. Include Repos
 
 A repo contains all of the actual bits used when installing a node with Razor. The repo is identified by a unique name, such as 'centos-6.4'. The instructions for an installation are contained in *tasks*, which are described below.
 
@@ -33,8 +32,8 @@ For example: `razor create-repo --name=centos-6.4 --iso_url http://mirrors.usc.e
 **Note**: Creating the repo can take five or so minutes, plus however long it takes to download the ISO and unpack the contents. Currently, the best way to find out the status is to check the status of the job: `razor commands` then `razor commands <command number>` using the command number from the list. If there are errors in the job, they will be present in `razor commands <command number> errors`.
 
 
-2. Include Brokers
--------------
+## 2. Include Brokers
+
 
 Brokers are responsible for handing a node off to a config management system like Puppet Enterprise. Brokers consist of two parts: a *broker type* and information that is specific for the broker type.
 
@@ -43,6 +42,7 @@ The broker type is closely tied to the configuration management system that the 
 For the Puppet Enterprise broker type, this information consists of the node's server, and the version of PE that a node should use. The PE version defaults to "latest" unless you stipulate a different version.
 
 You create brokers with the `create-broker` command. For example, the following sets up a simple no-op broker that does nothing:
+
 `razor create-broker --name=noop --broker_type=noop`.
 
 This command sets up the PE broker, which requires the server parameter.
@@ -117,7 +117,13 @@ See [Razor Command Reference](./razor_reference.html) for more information.
 5. Create Hooks (Optional)
 -------------
 
-Hooks enable you to run scripts when certain events occur during the operation of the Razor server. For example, a hook can be set to run when a node is bound to a policy, which means that node tags match the policy tags.
+Hooks enable you to run scripts when certain events occur during the operation of the Razor server. They allow you to both transfer information out of Razor, as well as modify the performance of an install by Razor, and therefore, hooks make it possible to customize tasks, reference outside systems, perform calculations, and more.
+
+Razor comes with one stock hook that counts the number of times a node boots, binds to a policy, and changes its facts. This "counter" hook can be queried using `razor hooks $name`. It keeps track of the last event that a given node performed, which can be queried using `razor nodes $name log`.
+
+
+
+There are a handful of
 
 
 
