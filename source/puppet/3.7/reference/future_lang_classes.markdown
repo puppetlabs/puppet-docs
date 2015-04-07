@@ -128,6 +128,8 @@ Class definitions should be stored in [modules][]. Puppet is **automatically awa
 
 Classes should be stored in their module's `manifests/` directory as one class per file, and each filename should reflect the name of its class; see [Module Fundamentals][modules] and [Namespaces and Autoloading][namespace] for more details.
 
+A class definition statement isn't an expression, and can't be used where a value is expected.
+
 > #### Other Locations
 >
 > Most users should **only** put classes in individual files in modules. However, it's technically possible to put classes in the following additional locations and still load the class by name:

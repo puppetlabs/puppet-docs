@@ -161,6 +161,8 @@ Location
 
 Defined types can (and should) be stored in [modules][]. Puppet is automatically aware of any defined types in a valid module and can autoload them by name. Definitions should be stored in the `manifests/` directory of a module with one definition per file and each filename should reflect the name of its type. See [Module Fundamentals][modules] for more details.
 
+A define statement isn't an expression, and can't be used where a value is expected.
+
 > #### Aside: Best Practices
 >
 > You should usually only load defined types from modules. Although the additional options below this aside will work, they are not recommended.
