@@ -30,7 +30,7 @@ For details about invoking the Puppet agent command, see [the puppet agent man p
 
 This page describes how Puppet agent behaves on \*nix systems. For information about Windows, see [Puppet Agent on Windows Systems][win_agent].
 
-Not all operating systems can manage the same resources with Puppet; some resource types are OS-specific, and other types may have OS-specific features. See the [type reference][] for details.
+Not all operating systems can manage the same resources with Puppet; some resource types are OS-specific, and others may have OS-specific features. See the [resource type reference][] for details.
 
 
 ## Puppet Agent's Run Environment
@@ -47,7 +47,7 @@ Puppet agent can also run as a non-root user, as long as it is started by that u
 
 When running without root permissions, most of Puppet's resource providers cannot use `sudo` to elevate permissions. This means Puppet can only manage resources that its user can modify without using `sudo`.
 
-Out of the core resource types listed in the [type reference][], the following resource types are available to non-root agents:
+Out of the core resource types listed in the [resource type reference][], the following are available to non-root agents:
 
 * `cron` (only non-root cron jobs can be viewed or set)
 * `exec` (cannot run as another user or group)

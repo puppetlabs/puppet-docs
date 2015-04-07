@@ -9,7 +9,7 @@ title: "Resource Tips and Examples: User and Group on Windows"
 
 Puppet's built-in [`user`][user] and [`group`][group] resource types can manage user and group accounts on Windows.
 
-These types were originally developed for \*nix systems, and have a few unusual behaviors on Windows. Here's what you'll want to know before using them.
+These resource types were originally developed for \*nix systems, and have a few unusual behaviors on Windows. Here's what you'll want to know before using them.
 
 ## What Puppet Can Manage
 

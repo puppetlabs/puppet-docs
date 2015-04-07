@@ -10,7 +10,7 @@ In addition to the resource types included with Puppet's core, you can install c
 
 This is especially useful when managing Windows systems, because there are several important Windows-specific resource types that are developed as modules rather than part of Puppet's core. If you're doing heavy management of Windows systems, you may want to check out the following:
 
-> **Note:** plugins from the Puppet Forge may not have the same amount of QA and test coverage as Puppet's core types.
+> **Note:** plugins from the Puppet Forge may not have the same amount of QA and test coverage as Puppet's core resource types.
 
 * [puppetlabs/acl](https://forge.puppetlabs.com/puppetlabs/acl) --- A resource type for managing access control lists (ACLs) on Windows.
 * [puppetlabs/registry](https://forge.puppetlabs.com/puppetlabs/registry) --- A resource type for managing arbitrary registry keys.

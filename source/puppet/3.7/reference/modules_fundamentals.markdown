@@ -39,7 +39,7 @@ Puppet Modules
 Using Modules
 -----
 
-**Modules are how Puppet finds the classes and types it can use** --- it automatically loads any [class][classes] or [defined type][defined_types] stored in its modules. Within a manifest or from an [external node classifier (ENC)][enc], any of these classes or types can be declared by name:
+**Modules are how Puppet finds the classes and defined types it can use** --- it automatically loads any [class][classes] or [defined type][defined_types] stored in its modules. Within a manifest or from an [external node classifier (ENC)][enc], any of these classes or defined types can be declared by name:
 
 {% highlight ruby %}
     # /etc/puppetlabs/puppet/site.pp
@@ -102,7 +102,7 @@ This example module, named "`my_module`," shows the standard module layout in mo
         * `component.epp` --- A manifest can render this template with `epp('my_module/component.epp')`. (The `epp` function is only available with the future parser enabled.)
     * `tests/` --- Contains examples showing how to declare the module's classes and defined types.
         * `init.pp`
-        * `other_class.pp` --- Each class or type should have an example in the tests directory.
+        * `other_class.pp` --- Each class or defined type should have an example in the tests directory.
     * `spec/` --- Contains spec tests for any plugins in the lib directory.
 
 Each of the module's subdirectories has a specific function, as follows.

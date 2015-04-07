@@ -47,7 +47,7 @@ We start with listing the module's name as a Level 1 Heading, followed by a tabl
     5. [Limitations - OS compatibility, etc.](#limitations)
     6. [Development - Guide for contributing to the module](#development)
 
-The table of contents is optional but suggested as best practice, particularly for larger or more complicated modules. 
+The table of contents is optional but suggested as best practice, particularly for larger or more complicated modules.
 
 The section headings for each top-level section (and top-level sections should follow the numbered sections in the TOC) will be Level 2 Headings, with each sub-section decreasing from there
 
@@ -60,7 +60,7 @@ Assume **Overview** is one of the first things a user will read. It should very 
 ~~~
 ##Overview
 
-The cat module installs, configures, and maintains your cat in both 
+The cat module installs, configures, and maintains your cat in both
 apartment and residential house settings.
 ~~~
 
@@ -71,10 +71,10 @@ For modules used internally, the overview section may be omitted.
 ~~~
 ##Module Description
 
-The cat module automates the installation of a cat to your apartment or 
-house, and then provides options for configuring the cat to fit your 
-environment's needs. Once installed and configured, the cat module 
-automates maintenance of your cat through a series of types and providers.
+The cat module automates the installation of a cat to your apartment or
+house, and then provides options for configuring the cat to fit your
+environment's needs. Once installed and configured, the cat module
+automates maintenance of your cat through a series of resource types and providers.
 ~~~
 
 ##Setup
@@ -93,7 +93,7 @@ The **What (Modulename) Affects** section should only be used IF: 1.) the module
 
 The **Setup Requirements** section is becoming increasingly unnecessary as Puppet continues to grow. However, it is still occasionally necessary when a module requires additional software or some tweak to a user's environment to work properly. For instance, the firewall module uses Ruby-based providers which required pluginsync to be enabled.
 
-The **Beginning with [Modulename]** section should cover the minimum steps required to get the module up and running in a user's environment. (Note: This does not necessarily mean it should be running in production. This step most often covers basic Proof of Concept use cases.) It's entirely OK if this section is just "Declare the main `::cat` class." For very simple modules, this will often be the case. 
+The **Beginning with [Modulename]** section should cover the minimum steps required to get the module up and running in a user's environment. (Note: This does not necessarily mean it should be running in production. This step most often covers basic Proof of Concept use cases.) It's entirely OK if this section is just "Declare the main `::cat` class." For very simple modules, this will often be the case.
 
 ~~~
 ###Beginning with cat
@@ -103,14 +103,14 @@ Declare the main `::cat` class.
 
 ##Usage
 
-The **Usage** section should address how to solve some general problems with the module, and include code examples. If your module does a large amount of things, you should put some (3 - 5) examples of the most important or most asked-for tasks a user can accomplish with your module. 
+The **Usage** section should address how to solve some general problems with the module, and include code examples. If your module does a large amount of things, you should put some (3 - 5) examples of the most important or most asked-for tasks a user can accomplish with your module.
 
 How you structure this section will depend on the structure of the module and how it was built to work in the user's environment. Asking yourself questions like, "What problems can users solve with this module?" or "What are a couple basic tasks a user can do to see how this module works in their environment?" will help get you started.
 
 ~~~
 ##Usage
 
-All interaction with your cat can be done through the main cat class. With 
+All interaction with your cat can be done through the main cat class. With
 the default options, a basic cat will be installed with no optimizations.
 
 ###I just want cat, what's the minimum I need?
@@ -119,7 +119,7 @@ the default options, a basic cat will be installed with no optimizations.
 
 ###I want to configure my lasers
 
-Use the following to configure your lasers for a random-pattern, 20 minute 
+Use the following to configure your lasers for a random-pattern, 20 minute
 playtime at 3AM local time.
 
     class { 'cat':
@@ -133,18 +133,18 @@ playtime at 3AM local time.
 
 ##Reference
 
-Generally, unless your module is very small (only 1 - 4 classes or defined types (defines)), the **Reference** section should have a small table of contents that first list the public classes, defines, and types of your module and then list the private classes, defines, and types. You should include a brief description of what these items accomplish in your module. If you are feeling productive, it is nice to provide a link to each listed item.
+Generally, unless your module is very small (only 1 - 4 classes or defined types (defines)), the **Reference** section should have a small table of contents that first list the public classes, defines, and resource types of your module and then list the private classes, defines, and resource types. You should include a brief description of what these items accomplish in your module. If you are feeling productive, it is nice to provide a link to each listed item.
 
 ~~~
 ##Reference
- 
+
 ###Classes
 
-####Public Classes 
+####Public Classes
 *[`pet::cat`](#petcat): Installs and configures a cat in your environment.
 
 ####Private Classes
-*[`pet::cat::install`](#petcatinstall): Handles the cat packages. 
+*[`pet::cat::install`](#petcatinstall): Handles the cat packages.
 *[`pet::cat::configure`](#petcatconfigure): Handles the configuration file.
 ~~~
 
@@ -155,7 +155,7 @@ Then, list the parameters, providers, or features for each thing:
 
 ####Parameters
 
-#####`purr` 
+#####`purr`
 Enables purring in your cat. Valid options: 'true' or 'false'. Default: 'true'.
 
 #####`meow`
@@ -191,7 +191,7 @@ README Style Notes
 
 1. Write for both web and terminal viewing. We highly prefer [markdown](http://daringfireball.net/projects/markdown/syntax). Above all else, your module must be readable and scannable relatively easily.
 2. Limit the number of external links. Linking to anything on the web is limiting the utility of the module, particularly if you publish it to the Forge and a range of users may be using it in various environments. Also, links look gross in plain markdown and will make your README less readable.
-3. Scannability is key. READMEs are formulaic and repetitious for a reason. The repetition means that no matter the module, a user knows where to go to get what information and can easily scan for what they are looking for. 
+3. Scannability is key. READMEs are formulaic and repetitious for a reason. The repetition means that no matter the module, a user knows where to go to get what information and can easily scan for what they are looking for.
 
 ##Style and Formatting
 
@@ -203,12 +203,12 @@ README Style Notes
    ~~~
    Specifies the type of meow the cat service uses at food distribution time. Valid options: 'bark', 'low', 'rumble', 'loud', or 'none'. Default: 'low'
 or
-Sets the food intake limit for your cat service. Determined in grams. Valid options: Integer; maximum = 100g 
+Sets the food intake limit for your cat service. Determined in grams. Valid options: Integer; maximum = 100g
    ~~~
 
 4. Parameters should be listed in alphabetical order. This sounds arbitrary, but it makes updating the module SO MUCH EASIER.
-5. Every parameter should specify what the valid options (or inputs or values) are. This might be a string, integers, an array, or specific values. 
+5. Every parameter should specify what the valid options (or inputs or values) are. This might be a string, integers, an array, or specific values.
 6. When possible you should mark parameters as Required or Optional.
 7. < > do not render in markdown. Ask us how we know.
-8. You don't need to comment out _ because neither GitHub nor the Forge's markdown rendering hides _. 
+8. You don't need to comment out _ because neither GitHub nor the Forge's markdown rendering hides _.
 9. The Forge's markdown rendering is exactly GitHub's rendering.

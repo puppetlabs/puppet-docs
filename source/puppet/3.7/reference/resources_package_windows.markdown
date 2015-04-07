@@ -27,7 +27,7 @@ The `package` type handles a lot of very different packaging systems on many ope
 
 ## Supported Package Types: MSI and EXE
 
-Puppet can install and remove two types of packages on Windows:
+Puppet can install and remove two kinds of packages on Windows:
 
 * MSI packages
 * Executable installers
