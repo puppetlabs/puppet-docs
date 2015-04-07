@@ -26,7 +26,7 @@ Syntax
 
 The general form of resource defaults is:
 
-* The resource type, capitalized. (If the type has a namespace separator (`::`) in its name, every segment must be capitalized. E.g., `Concat::Fragment`.)
+* The resource type, capitalized. (If the resource type has a namespace separator (`::`) in its name, every segment must be capitalized. E.g., `Concat::Fragment`.)
 * An opening curly brace.
 * Any number of attribute and value pairs.
 * A closing curly brace.
@@ -36,7 +36,7 @@ You can specify defaults for any resource type in Puppet, including [defined typ
 Behavior
 -----
 
-Within the [area of effect](#area-of-effect), every resource of the specified type that omits a given attribute will inherit that attribute's default value.
+Within the [area of effect](#area-of-effect), every resource of the specified type that omits a given attribute will use that attribute's default value.
 
 Attributes that are set explicitly in a resource declaration will always override any default value.
 

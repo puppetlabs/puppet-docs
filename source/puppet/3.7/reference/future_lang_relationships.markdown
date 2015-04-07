@@ -105,7 +105,7 @@ You can create relationships between two resources or groups of resources using 
 
 ### Operands
 
-The chaining arrows accept the following types of operands on either side of the arrow:
+The chaining arrows accept the following kinds of operands on either side of the arrow:
 
 * [Resource references][reference], including multi-resource references
 * Arrays of resource references
@@ -205,7 +205,7 @@ Behavior
 
 ### Ordering and Notification
 
-Puppet has two types of resource relationships:
+Puppet has two kinds of resource relationships:
 
 * Ordering
 * Ordering with notification
@@ -218,7 +218,7 @@ If a resource receives multiple refresh events, they will be combined and the re
 
 ### Refreshing
 
-Only certain resource types can refresh themselves. Of the built-in types, these are [service][], [mount][], and [exec][].
+Only certain resource types can refresh themselves. Of the built-in resource types, these are [service][], [mount][], and [exec][].
 
 Service resources refresh by restarting their service. Mount resources refresh by unmounting and then mounting their volume. Exec resources usually do not refresh, but can be made to: setting `refreshonly => true` causes the exec to never fire _unless_ it receives a refresh event. You can also set an additional `refresh` command, which causes the exec to run both commands when it receives a refresh event.
 
@@ -228,7 +228,7 @@ Certain resource types can **autorequire** other resources. This creates an orde
 
 When Puppet is preparing to sync a resource whose type supports autorequire, it will search the catalog for any resources that match certain rules. If it finds any, it will process them _before_ that resource. If Puppet _doesn't_ find any resources that could be autorequired, that's fine; they won't be considered a failed dependency.
 
-The [type reference][type] contains information on which types can autorequire other resources. Each type's description should state its autorequire behavior, if any. For an example, see the "Autorequires" section near the end of [the exec type][exec]'s description.
+The [resource type reference][type] contains information on which resource types can autorequire other resources. Each resource type's description should state its autorequire behavior, if any. For an example, see the "Autorequires" section near the end of [the `exec` type's description.][exec]
 
 ### Parse-Order Independence
 

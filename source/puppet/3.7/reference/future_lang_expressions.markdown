@@ -103,7 +103,7 @@ Most operators are infixes.
 
 ### Operands
 
-The operands in an expression can be any other expression. Anything that resolves to a value of the expected type is allowed.
+Operands in an expression can be any other expression --- that is, anything that resolves to a value of the expected data type is allowed.
 
 Each operator has its own rules for the [data types][datatypes] of its operands. See the list of operators below for details.
 
@@ -164,7 +164,7 @@ Characters are compared based on their encoding. This means that for characters 
 
 ### `==` (equality)
 
-Resolves to `true` if the operands are equal. Accepts the following types of operands:
+Resolves to `true` if the operands are equal. Accepts the following data types as operands:
 
 * [Numbers][] --- Tests simple equality.
 * [Strings][] --- Tests whether two strings are identical, ignoring case (see above).
@@ -253,22 +253,22 @@ If the left operand is a data type, it checks the right operand as follows:
 Examples:
 
 {% highlight ruby %}
-    # Right-hand operand is a string:
+    # Right operand is a string:
     'eat' in 'eaten' # resolves to true
     'Eat' in 'eaten' # resolves to true
 
-    # Right hand operand is an array:
+    # Right operand is an array:
     'eat' in ['eat', 'ate', 'eating'] # resolves to true
     'Eat' in ['eat', 'ate', 'eating'] # resolves to true
 
-    # Right hand operand is a hash:
+    # Right operand is a hash:
     'eat' in { 'eat' => 'present tense', 'ate' => 'past tense'} # resolves to true
     'eat' in { 'present' => 'eat', 'past' => 'ate' }            # resolves to false
 
-    # Left hand operand is a regular expression (with the case-insensitive option "?i")
+    # Left operand is a regular expression (with the case-insensitive option "?i")
     /(?i:EAT)/ in ['eat', 'ate', 'eating'] # resolves to true
 
-    # left hand is a type (an integer between 100-199)
+    # Left operand is a data type (matching integers between 100-199)
     Integer[100, 199] in [1, 2, 125] # resolves to true
     Integer[100, 199] in [1, 2, 25]  # resolves to false
 

@@ -58,7 +58,7 @@ Additionally:
 
 * You cannot use the name of any existing [resource type][type_ref] or [function][func_ref] as the name of a function.
 * You cannot use the name of any existing [resource type][type_ref] as the name of a defined type.
-* You _shouldn't_ use the name of any existing data type (e.g. integer) as the name of a defined type, as this will make it inconvenient to interact with. (You can't directly reference a resource of that type with only its upper cased name --- instead of writing a resource reference like `Integer[title]`, you would have to use `Resource[integer, title]`.)
+* You _shouldn't_ use the name of any existing data type (e.g. integer) as the name of a defined type, as this will make it inconvenient to interact with. (You can't directly reference a resource of that defined type with only its uppercased name --- instead of writing a resource reference like `Integer[title]`, you would have to use `Resource[integer, title]`.)
 
 Reserved Class Names
 -----
@@ -127,9 +127,9 @@ Puppet limits the characters you can use when naming language constructs.
 
 {% partial ./_naming_variables.md %}
 
-### Classes and Types
+### Classes and Defined Types
 
-The names of classes, defined types, and custom types can consist of one or more [namespace segments][namespace]. Each namespace segment **must begin with a lowercase letter** and can include:
+The names of classes and defined types can consist of one or more [namespace segments][namespace]. Each namespace segment **must begin with a lowercase letter** and can include:
 
 * Lowercase letters
 * Digits
@@ -141,19 +141,19 @@ Namespace segments should match the following regular expression:
 
 The one exception is the top namespace, whose name is the empty string.
 
-Multiple namespace segments can be joined together in a class or type name with the `::` (double colon) [namespace][] separator.
+Multiple namespace segments can be joined together in a class or defined type name with the `::` (double colon) [namespace][] separator.
 
 Class names with multiple namespaces should match the following regular expression:
 
     \A([a-z][a-z0-9_]*)?(::[a-z][a-z0-9_]*)*\Z
 
-Note that [some class names are reserved](#reserved-class-names), and [reserved words](#reserved-words) cannot be used as class or type names.
+Note that [some class names are reserved](#reserved-class-names), and [reserved words](#reserved-words) cannot be used as class or defined type names.
 
 Additionally, you cannot use the name `<MODULE NAME>::init` for a class or defined type. This is because `init.pp` is a reserved filename, which should contain a class named after the module.
 
 ### Modules
 
-Module names obey the same rules as individual class/type namespace segments. That is, they **must begin with a lowercase letter** and can include:
+Module names obey the same rules as individual namespace segments (like in a class or defined type name). That is, they **must begin with a lowercase letter** and can include:
 
 * Lowercase letters
 * Digits

@@ -353,7 +353,7 @@ The `contain` function uses [include-like behavior][include-like]. (Multiple dec
 
 ### Using `hiera_include`
 
-The `hiera_include` function requests a list of class names from [Hiera][], then declares all of them. Since it uses the [array resolution type][array_search], it will get a combined list that includes classes from **every level** of the [hierarchy][hiera_hierarchy]. This allows you to abandon [node definitions][node] and use Hiera like a lightweight ENC.
+The `hiera_include` function requests a list of class names from [Hiera][], then declares all of them. Since it uses the [array lookup type][array_search], it will get a combined list that includes classes from **every level** of the [hierarchy][hiera_hierarchy]. This allows you to abandon [node definitions][node] and use Hiera like a lightweight ENC.
 
     # /etc/puppetlabs/puppet/hiera.yaml
     ...

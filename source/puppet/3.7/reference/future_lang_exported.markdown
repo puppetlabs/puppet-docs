@@ -60,7 +60,7 @@ In the example above, every node with the `ssh` class will export its own SSH ho
 
 ### Declaring an Exported Resource
 
-To declare an exported resource, prepend `@@` (a double "at" sign) to the **type** of a standard [resource declaration][resources]:
+To declare an exported resource, prepend `@@` (a double "at" sign) to the **resource type** of a standard [resource declaration][resources]:
 
 {% highlight ruby %}
     @@nagios_service { "check_zfs${hostname}":

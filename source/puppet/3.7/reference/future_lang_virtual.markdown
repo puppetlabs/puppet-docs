@@ -48,7 +48,7 @@ Virtual resources are used in two steps: declaring and realizing.
     # Declare:
     @a2mod { 'rewrite':
       ensure => present,
-    } # note: The a2mod type is from the puppetlabs-apache module.
+    } # note: The a2mod resource type is from the puppetlabs-apache module.
 
     # <modulepath>/wordpress/manifests/init.pp
     ...
@@ -65,7 +65,7 @@ In the example above, the `apache` class declares a virtual resource, and both t
 
 ### Declaring a Virtual Resource
 
-To declare a virtual resource, prepend `@` (the "at" sign) to the **type** of a normal [resource declaration][resources]:
+To declare a virtual resource, prepend `@` (the "at" sign) to the **resource type** of a normal [resource declaration][resources]:
 
 {% highlight ruby %}
     @user {'deploy':

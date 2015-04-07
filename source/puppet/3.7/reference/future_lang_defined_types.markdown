@@ -25,7 +25,7 @@ canonical: "/puppet/latest/reference/future_lang_defined_types.html"
 [contains]: ./future_lang_containment.html
 [catalog]: ./future_lang_summary.html#compilation-and-catalogs
 
-**Defined resource types** (also called **defined types** or **defines**) are blocks of Puppet code that can be evaluated multiple times with different parameters. Once defined, they act like a new resource type: you can cause the block to be evaluated by [declaring a resource][resource] of that new type.
+**Defined resource types** (also called **defined types** or **defines**) are blocks of Puppet code that can be evaluated multiple times with different parameters. Once defined, they act like a new resource type: you can cause the block to be evaluated by [declaring a resource][resource] of that new resource type.
 
 Defines can be used as simple macros or as a lightweight way to develop fairly sophisticated resource types.
 
@@ -33,6 +33,8 @@ Syntax
 -----
 
 ### Defining a Type
+
+You can use a `define` statement to create a new defined resource type.
 
 {% highlight ruby %}
     # /etc/puppetlabs/puppet/modules/apache/manifests/vhost.pp
@@ -52,9 +54,9 @@ Syntax
     }
 {% endhighlight %}
 
-This creates a new type called `apache::vhost`.
+This creates a new resource type called `apache::vhost`.
 
-The general form of a type definition is:
+The general form of a define statement is:
 
 * The `define` keyword
 * The [name][naming] of the defined type
@@ -74,11 +76,11 @@ The definition does not cause the code in the block to be added to the [catalog]
 
 ### Declaring an Instance
 
-Instances of a defined type (often just called "resources") can be declared the same way a [normal resource][resource] is declared. (That is, with a type, title, and set of attribute/value pairs.)
+Instances of a defined type (often just called "resources") can be declared the same way a [normal resource][resource] is declared. (That is, with a resource type, title, and set of attribute/value pairs.)
 
 The **parameters** used when defining the type become the **attributes** (without the `$` prefix) used when declaring resources of that type. Parameters which have a **default value** are optional; if they are left out of the declaration, the default will be used. Parameters without defaults **must** be specified.
 
-To declare a resource of the `apache::vhost` type from the example above:
+To declare a resource of the `apache::vhost` defined type from the example above:
 
 {% highlight ruby %}
     apache::vhost {'homepages':
@@ -90,9 +92,9 @@ To declare a resource of the `apache::vhost` type from the example above:
 Behavior
 -----
 
-If a defined type is present, you can declare resources of that type anywhere in your manifests. See ["Location"](#location) below for details.
+If a defined type is present and loadable (see ["Location"](#location) below), you can declare resources of that defined type anywhere in your manifests.
 
-Declaring a resource of the type will cause Puppet to re-evaluate the block of code in the definition, using different values for the parameters.
+Declaring a new resource of the defined type will make Puppet re-evaluate the block of code in the definition, using different values for the parameters.
 
 ### Parameters and Attributes
 
@@ -154,12 +156,14 @@ Just like with a normal resource type, you can declare [resource defaults][resou
     }
 {% endhighlight %}
 
-In this example, every resource of the type would default to port 80 unless specifically overridden.
+In this example, every `apache::vhost` resource would default to port 80 unless specifically overridden.
 
 Location
 -----
 
-Defined types can (and should) be stored in [modules][]. Puppet is automatically aware of any defined types in a valid module and can autoload them by name. Definitions should be stored in the `manifests/` directory of a module with one definition per file and each filename should reflect the name of its type. See [Module Fundamentals][modules] for more details.
+Defined types can (and should) be stored in [modules][]. Puppet is automatically aware of any defined types in a valid module and can autoload them by name.
+
+Definitions should be stored in the `manifests/` directory of a module with one definition per file, and each filename should reflect the name of its defined type. See [Module Fundamentals][modules] for more details.
 
 A define statement isn't an expression, and can't be used where a value is expected.
 
@@ -167,9 +171,9 @@ A define statement isn't an expression, and can't be used where a value is expec
 >
 > You should usually only load defined types from modules. Although the additional options below this aside will work, they are not recommended.
 
-You can also put type definitions in [the site manifest][sitedotpp]. If you do so, they may be placed anywhere in the file and are not parse-order dependent.
+You can also put define statements in [the site manifest][sitedotpp]. If you do so, they may be placed anywhere in the file and are not parse-order dependent.
 
-Type definitions may also be placed inside class definitions; however, this limits their availability to that class and is not recommended for any purpose. This is not formally deprecated in this version of Puppet, but may become so in a future release.
+Define statements may also be placed inside class definitions; however, this limits their availability to that class and is not recommended for any purpose. This is not formally deprecated in this version of Puppet, but may become so in a future release.
 
 
 Naming

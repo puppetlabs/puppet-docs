@@ -145,7 +145,7 @@ This page can help you find syntax elements when you can't remember their names.
     }
 {% endhighlight %}
 
-↑ A [defined type][defined_type], which makes a new resource type available. Note that the name of the type has two [namespace segments][namespace].
+↑ A [defined type][defined_type], which makes a new resource type available. Note that the name of that resource type has two [namespace segments][namespace].
 
 {% highlight ruby %}
     apache::vhost {'homepages':
@@ -154,7 +154,7 @@ This page can help you find syntax elements when you can't remember their names.
     }
 {% endhighlight %}
 
-↑ Declaring a [defined resource][defined_resource] (or "instance") of the type defined above.
+↑ [Declaring an instance][defined_resource] of the resource type defined above.
 
 {% highlight ruby %}
     Apache::Vhost['homepages']
@@ -260,7 +260,7 @@ This page can help you find syntax elements when you can't remember their names.
     }
 {% endhighlight %}
 
-↑ A [resource default][defaults] for resources of the `exec` type.
+↑ A [resource default][defaults] for the `exec` resource type.
 
 {% highlight ruby %}
     Exec['update_migrations'] {

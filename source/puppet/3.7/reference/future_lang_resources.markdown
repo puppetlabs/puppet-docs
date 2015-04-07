@@ -24,7 +24,7 @@ canonical: "/puppet/latest/reference/future_lang_resources.html"
 [collector]: ./future_lang_collectors.html
 [catalog]: ./future_lang_summary.html#compilation-and-catalogs
 
-> * [See the Type Reference for complete information about Puppet's built-in resource types.][types]
+> * [See the resource type reference for complete information about Puppet's built-in resource types.][types]
 
 **Resources** are the fundamental unit for modeling system configurations. Each resource describes some aspect of a system, like a specific service or package.
 
@@ -50,7 +50,7 @@ Syntax
     }
 {% endhighlight %}
 
-Every resource has a **type,** a **title,** and a set of **attributes:**
+Every resource has a **resource type,** a **title,** and a set of **attributes:**
 
 {% highlight ruby %}
     type {'title':
@@ -74,9 +74,9 @@ The general form of a resource declaration is:
 
 Note that, in the Puppet language, whitespace is fungible.
 
-### Type
+### Resource Type
 
-The type identifies what kind of resource it is. Puppet has a large number of built-in resource types, including files on disk, cron jobs, user accounts, services, and software packages. [See here for a list of built-in resource types][types].
+The resource type identifies what kind of resource it is. Puppet has a large number of built-in resource types, including files on disk, cron jobs, user accounts, services, and software packages. [See here for a list of built-in resource types][types].
 
 Puppet can be extended with additional resource types, written in Ruby or in the Puppet language.
 
@@ -90,7 +90,7 @@ Titles **must be unique per resource type.** You may have a package and a servic
 
 Attributes describe the desired state of the resource; each attribute handles some aspect of the resource.
 
-Each resource type has its own set of available attributes; see [the type reference][types] for a complete list. Most types have a handful of crucial attributes and a larger number of optional ones. Many attributes have a default value that will be used if a value isn't specified.
+Each resource type has its own set of available attributes; see [the resource type reference][types] for a complete list. Most resource types have a handful of crucial attributes and a larger number of optional ones. Many attributes have a default value that will be used if a value isn't specified.
 
 Every attribute you declare must have a value; the [data type][datatype] of the value depends on what the attribute accepts. Most attributes that can take multiple values accept them as an [array][].
 
@@ -144,9 +144,9 @@ Special Attributes
 
 ### Name/Namevar
 
-Most types have an attribute which identifies a resource _on the target system._ This special attribute is called the "namevar," and the attribute itself is often (but not always) just `name`. For example, the `name` of a service or package is the name by which the system's service or package tools will recognize it. On the other hand, the file type's namevar is `path`, the file's location on disk.
+Most resource types have an attribute which identifies a resource _on the target system._ This special attribute is called the "namevar," and the attribute itself is often (but not always) just `name`. For example, the `name` of a service or package is the name by which the system's service or package tools will recognize it. On the other hand, the `file` type's namevar is `path`, the file's location on disk.
 
-The [type reference][types] lists the namevars for all of the core resource types. For custom resource types, check the documentation for the module that provides the type.
+The [resource type reference][types] lists the namevars for all of the core resource types. For custom resource types, check the documentation for the module that provides that resource type.
 
 Namevar values **must be unique per resource type,** with only rare exceptions (such as `exec`).
 
@@ -156,9 +156,9 @@ The separation between title and namevar lets you use a consistently-titled reso
 
 ### Ensure
 
-Many types have an `ensure` attribute. This generally manages the most important aspect of the resource on the target system --- does the file exist, is the service running or stopped, is the package installed or uninstalled, etc.
+Many resource types have an `ensure` attribute. This generally manages the most important aspect of the resource on the target system --- does the file exist, is the service running or stopped, is the package installed or uninstalled, etc.
 
-Allowed values for `ensure` vary by type. Most types accept `present` and `absent`, but there may be additional variations. Be sure to check the reference for each type you are working with.
+Allowed values for `ensure` vary by resource type. Most accept `present` and `absent`, but there may be additional variations. Be sure to check the reference for each resource type you are working with.
 
 ### Metaparameters
 
@@ -223,7 +223,7 @@ Note that you cannot specify a separate namevar with an array of titles, since i
 
 ### Semicolon After Attribute Block
 
-If you end an attribute block with a semicolon rather than a comma, you may specify another title, another colon, and another complete attribute block, instead of closing the curly braces. Puppet will treat this as multiple resources of a single type.
+If you end an attribute block with a semicolon rather than a comma, you may specify another title, another colon, and another complete attribute block, instead of closing the curly braces. Puppet will treat this as multiple resources of a single resource type.
 
 {% highlight ruby %}
     file {

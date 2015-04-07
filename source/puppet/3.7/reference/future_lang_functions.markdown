@@ -50,7 +50,7 @@ The general form of a function call is:
     * Parentheses are optional when calling a built-in statement function with at least one argument (like `include apache`). They're mandatory in all other cases.
 * Any number of **arguments,** separated with commas.
     * Arguments can be any expression that resolves to a value.
-    * The number and type of arguments are controlled by the function. See the function's docs for details.
+    * The number of arguments and their data types are determined by the function. See the function's docs for details.
 * A closing parenthesis, if an open parenthesis was used
 * An optional parameterized code block (lambda) if the function supports this
 
@@ -58,7 +58,7 @@ The general form of a function call is:
 Behavior
 -----
 
-There are two types of Puppet functions:
+There are two kinds of Puppet functions:
 
 * **Rvalues** return values and can be used anywhere a normal value is expected. (This includes resource attributes, variable assignments, conditions, selector values, the arguments of other functions, etc.) These values can come from a variety of places; the `template` function reads and evaluates a template to return a string, and stdlib's `str2bool` and `num2bool` functions convert values from one [data type][datatype] to another.
 * **Statements** stand alone and do some form of work, which can be anything from logging a message (like `notice`), to modifying the catalog in progress (like `include`), to causing the entire compilation to fail (`fail`). Statements always return `undef`.

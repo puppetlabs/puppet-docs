@@ -13,7 +13,7 @@ canonical: "/puppet/latest/reference/future_lang_namespaces.html"
 [include]: ./future_lang_classes.html#using-include
 [PUP-121]: https://tickets.puppetlabs.com/browse/PUP-121
 [inherits]: ./future_lang_classes.html#inheritance
-[allowed]: ./future_lang_reserved.html#classes-and-types
+[allowed]: ./future_lang_reserved.html#classes-and-defined-types
 [relative_below]: #aside-historical-context
 
 
@@ -68,7 +68,7 @@ name                     | file path
 `apache::mod`            | `<MODULE DIRECTORY>/apache/manifests/mod.pp`
 `apache::mod::passenger` | `<MODULE DIRECTORY>/apache/manifests/mod/passenger.pp`
 
-Note again that `init.pp` always contains a class or defined type named after the module, and any other `.pp` file contains a class or type with at least two namespace segments. (That is, `apache.pp` would contain a class named `apache::apache`.) This also means you can't have a class named `<MODULE NAME>::init`.
+Note again that `init.pp` always contains a class or defined type named after the module, and any other `.pp` file contains a class or defined type with at least two namespace segments. (That is, `apache.pp` would contain a class named `apache::apache`.) This also means you can't have a class named `<MODULE NAME>::init`.
 
 ### Handling Missing Files
 

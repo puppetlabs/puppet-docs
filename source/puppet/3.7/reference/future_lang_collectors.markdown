@@ -51,7 +51,7 @@ Collectors can search the values of resource titles and attributes using a speci
 
 > Note: Collectors can only search on attributes which are present in the manifests and cannot read the state of the target system. For example, the collector `Package <| provider == yum |>` would only collect packages whose `provider` attribute had been _explicitly set_ to `yum` in the manifests. It would not match any packages that would default to the `yum` provider based on the state of the target system.
 
-A collector with an empty search expression will match **every** resource of the specified type.
+A collector with an empty search expression will match **every** resource of the specified resource type.
 
 Parentheses may be used to improve readability, and to modify the priority/grouping of `and`/`or`. You can create arbitrarily complex expressions using the following four operators:
 
@@ -112,7 +112,7 @@ Notably, collectors **cannot** be used in the following contexts:
 Behavior
 -----
 
-A resource collector will **always** [realize][] any [virtual resources][virtual] that match its search expression. Note that empty search expressions match every resource of the specified type.
+A resource collector will **always** [realize][] any [virtual resources][virtual] that match its search expression. Note that empty search expressions match every resource of the specified resource type.
 
 In addition to realizing, collectors can function as a value in two places:
 
