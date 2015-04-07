@@ -1,22 +1,27 @@
 ---
 layout: default
-title: " PE 3.8 » Razor » Provisioning Setup"
-subtitle: "Set Up Razor Provisioning"
+title: " PE 3.8 » Razor » Create Objects for Provisioning"
+subtitle: "Create Objects for Provisioning"
 canonical: "/pe/latest/razor_using.html"
 
 ---
 
-This page describes the provisioning setup process. You must first create some initial objects:
+After you've [set up your environment](./razor_prereqs) and [have installed the Razor server and client](./razor_install.html), it's time to create all the objects that enable Razor to find and provision machines with the software and configurations you want.
 
-+ **Repo**: the container for the objects you install with Razor, such as operating systems.
-+ **Broker**: the connector between a node and a configuration management system.
-+ **Tasks**: the installation and configuration instructions.
-+ **Policy**: the instructions that tell Razor which repos, brokers, and tasks to use for provisioning.
+This page describes how to create the objects you need at a high-level. More detail on each page is provided in separate pages. These are the objects you need:
 
-After creating these objects, you register a node on the Razor server. To work through these steps, you must already have a Razor server up and running, as described in [Install and Set Up Razor](./razor_install.html).
++ **Repo**: The container for the objects you use Razor to install on machines, such as operating systems.
++ **Broker**: The connector between a node and a configuration management system, such as Puppet Enterprise.
++ **Tasks**: The installation and configuration instructions.
++ **Policy**: The instructions that tell Razor which repos, brokers, and tasks to use for provisioning.
++ **Hooks**: Hooks are optional. They provide a way to run arbitrary scripts when certain events occur during the operation of the Razor server.
+
+After creating these objects, you [register a node on the Razor server](#identify-and-register-nodes).
+
+As mentioned, to work through these steps, you must already have a Razor server up and running.
 
 
-Include Repos
+1. Include Repos
 -------------
 
 A repo contains all of the actual bits used when installing a node with Razor. The repo is identified by a unique name, such as 'centos-6.4'. The instructions for an installation are contained in *tasks*, which are described below.
@@ -28,7 +33,7 @@ For example: `razor create-repo --name=centos-6.4 --iso_url http://mirrors.usc.e
 **Note**: Creating the repo can take five or so minutes, plus however long it takes to download the ISO and unpack the contents. Currently, the best way to find out the status is to check the status of the job: `razor commands` then `razor commands <command number>` using the command number from the list. If there are errors in the job, they will be present in `razor commands <command number> errors`.
 
 
-Include Brokers
+2. Include Brokers
 -------------
 
 Brokers are responsible for handing a node off to a config management system like Puppet Enterprise. Brokers consist of two parts: a *broker type* and information that is specific for the broker type.
@@ -51,7 +56,7 @@ Razor ships with some stock broker types for your use:  puppet-pe, noop, and pup
 **Note:** The puppet-pe broker type depends on the package-based simplified agent installation method. For details, see  [Installing Agents](./install_basic.html#installing-agents).
 
 
-Include Tasks
+3. Include Tasks
 -------------
 
 Tasks describe a process or collection of actions that should be performed while provisioning machines. They can be used to designate an operating system or other software that should be installed, where to get it, and the configuration details for the installation.
@@ -61,7 +66,7 @@ Tasks are structurally simple. They consist of a YAML metadata file and any numb
 Razor provides a handful of existing tasks, or you can create your own. To learn more about tasks, see [Writing Tasks and Templates](./razor_tasks.html).
 
 
-Create Policies
+4. Create Policies
 -------------
 
 Policies orchestrate repos, brokers, and tasks to tell Razor what bits to install, where to get the bits, how they should be configured, and how to communicate between a node and PE.
@@ -109,8 +114,15 @@ See [Razor Command Reference](./razor_reference.html) for more information.
 2. Edit the options in the `policy.json` template with information specific to  your environment.
 3. Apply the policy by executing:	`razor create-policy --json policy.json`.
 
+5. Create Hooks (Optional)
+-------------
 
-Identify and Register Nodes
+Hooks enable you to run scripts when certain events occur during the operation of the Razor server. For example, a hook can be set to run when a node is bound to a policy, which means that node tags match the policy tags.
+
+
+
+
+6. Identify and Register Nodes
 -------------
 
 Next, verify that your machine can PXE boot from the Razor server and register itself as a node.

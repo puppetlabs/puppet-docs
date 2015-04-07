@@ -32,7 +32,7 @@ Below are the essential steps. Each of these steps is described in more detail i
 
 When you finish this section, go on to [Install and Set Up Razor](./razor_install.html).
 
-###Install PE in Your Virtual Environment
+###Install PE in Your Razor Environment
 
 Set up a Puppet master running a standard install of Puppet Enterprise 3.8. For more information, see [Installing Puppet Enterprise](./install_basic.html).
 
