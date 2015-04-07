@@ -33,30 +33,26 @@ Booleans
 
 The boolean type has two possible values: `true` and `false`. Literal booleans must be one of these two bare words (that is, not quoted).
 
-The condition of an ["if" statement][if] is a boolean value. All of Puppet's [comparison expressions][comparison] return boolean values, as do many [functions][function].
+The condition of an ["if" statement][if] expects a boolean value. All of Puppet's [comparison operators][comparison] resolve to boolean values, as do many [functions][function].
 
 ### Automatic Conversion to Boolean
 
-If a non-boolean value is used where a boolean is required, it will be automatically converted to a boolean as follows:
+If a non-boolean value is used where a boolean is required:
 
-- **Strings** --- All strings are true, including the empty string (`""`). That means the string `"false"` actually resolves as true. **Warning: Puppet might be configured to treat all [facts][] as strings,** which can make using boolean facts tricky. See [the docs on fact data types][fact_datatypes] for more info.
+* The `undef` value is converted to boolean `false`.
+* **All** other values are converted to boolean `true`.
 
-    > Note: the [puppetlabs-stdlib][stdlib] module includes a `str2bool` function which converts strings to boolean values more intelligently.
-- **Numbers** --- All numbers are true, including zero and negative numbers.
+Notably, this means the string values `""` (zero-length string) and `"false"` both resolve to `true`. If Puppet is configured to treat all [facts][] as strings, this can cause unexpected behavior; see [the docs on fact data types][fact_datatypes] for more info.
 
-    > Note: the [puppetlabs-stdlib][stdlib] module includes a `num2bool` function which converts numbers to boolean values more intelligently.
-- **Undef** --- The special data type `undef` is false.
-- **Arrays and Hashes** --- Any array or hash is true, including the empty array and empty hash.
-- **Resource References** --- Any resource reference is true, regardless of whether or not the resource it refers to has been evaluated, whether the resource exists, or whether the type is valid.
+If you want to convert other values to booleans with more permissive rules (`0` as false, `"false"` as false, etc.), the [puppetlabs-stdlib][stdlib] module includes `str2bool` and `num2bool` functions.
 
-Regular expressions cannot be converted to boolean values.
 
 * * *
 
 Undef
 -----
 
-Puppet's special undef value is roughly equivalent to nil in Ruby; variables which have never been declared have a value of `undef`. Literal undef values must be the bare word `undef`.
+Puppet's special undef value is roughly equivalent to `nil` in Ruby; it represents the absence of a value. If the `strict_variables` setting isn't enabled, variables which have never been declared have a value of `undef`. Literal undef values must be the bare word `undef`.
 
 The undef value is usually useful for testing whether a variable has been set. It can also be used as the value of a resource attribute, which can let you un-set any value inherited from a [resource default][resourcedefault] and cause the attribute to be unmanaged.
 
@@ -67,26 +63,29 @@ When used as a boolean, `undef` is false.
 Strings
 -----
 
-Strings are unstructured text fragments of any length. They are often (but not always) surrounded by quotation marks. Use single quotes for all strings that do not require variable interpolation, and double quotes for strings that do require variable interpolation.
+Strings are unstructured text fragments of any length. They are often (but not always) surrounded by quotation marks. Use single quotes for all strings that do not require variable interpolation, and double quotes for strings that do require variable interpolation or where control characters or unicode characters are included via escape sequences.
 
 ### Bare Words
 
 Bare (that is, not quoted) words are usually treated as single-word strings. To be treated as a string, a bare word must:
 
+* Begin with a lower case letter, and contain only letters, digits, hyphens (`-`), and underscores (`_`).
 * Not be a [reserved word][reserved]
-* Begin with a lower case letter, and contain only letters, digits, hyphens (-), and underscores (_).
-  Bare words that begin with upper case letters are interpreted as [resource references](#resource-references).
 
-Bare word strings are usually used with attributes that accept a limited number of one-word values, such as `ensure`.
+Unquoted words that begin with upper case letters are interpreted as [data types](#TODO) or [resource references](#resource-references), not strings.
+
+Bare word strings are usually used with resource attributes that accept a limited number of one-word values.
 
 ### Single-Quoted Strings
 
 Strings surrounded by single quotes `'like this'` do not interpolate variables, and the only escape sequences permitted are `\'` (a literal single quote) and `\\` (a literal backslash). Line breaks within the string are interpreted as literal line breaks.
 
-Lone backslashes are literal backslashes, unless followed by a single quote or another backslash. That is:
+If a backslash isn't followed by a single quote or another backslash, it's treated as a literal backslash.
 
-* When a backslash occurs at the very end of a single-quoted string, a double backslash must be used instead of a single backslash. For example: `path => 'C:\Program Files(x86)\\'`
-* When a literal double backslash is intended, a quadruple backslash must be used.
+Some common things to watch out for:
+
+* To include a backslash at the very end of a single-quoted string, you must use a double backslash instead of a single backslash. For example: `path => 'C:\Program Files(x86)\\'`
+* To include a literal double backslash you must use a quadruple backslash.
 
 ### Double-Quoted Strings
 
@@ -102,8 +101,6 @@ Any [`$variable`][variables] in a double-quoted string will be replaced with its
 
 #### Expression Interpolation
 
-> Note: This is not recommended.
-
 In a double-quoted string, you can interpolate the value of an arbitrary [expression][] (which can contain both variables and literal values) by putting it inside `${}` (a pair of curly braces preceded by a dollar sign):
 
 {% highlight ruby %}
@@ -115,12 +112,6 @@ In a double-quoted string, you can interpolate the value of an arbitrary [expres
     }
 {% endhighlight %}
 
-This is of limited use, since most [expressions][expression] resolve to boolean or numerical values.
-
-Behavioral oddities of interpolated expressions:
-
-* You cannot use bare word [strings](#strings) or [numbers](#numbers); all literal string or number values must be quoted. The behavior of bare words in an interpolated expression is undefined.
-* Within the `${}`, you can use double or single quotes without needing to escape them.
 
 #### Escape Sequences
 
@@ -134,6 +125,7 @@ The following escape sequences are available:
 * `\r` --- carriage return
 * `\t` --- tab
 * `\s` --- space
+* `\uXXXX` --- unicode character number XXXX (a 4 digit hex number)
 
 ### Line Breaks
 
@@ -149,6 +141,45 @@ Puppet does not attempt to convert line breaks, which means that the type of lin
 Puppet treats strings as sequences of bytes. It does not recognize encodings or translate between them, and non-printing characters are preserved.
 
 However, Puppet Labs recommends that all strings be valid UTF8. Future versions of Puppet might impose restrictions on string encoding, and using only UTF8 will protect you in this event. Additionally, PuppetDB will remove invalid UTF8 characters when storing catalogs.
+
+### Indexing / Substrings
+
+You can access substrings of a string by numerical index. Square brackets are used for indexing; the index consists of one integer, optionally followed by a comma and a second integer (e.g. `$string[3]` or `$string[3,10]`).
+
+The first number of the index is the start position.
+
+* Positive numbers will count from the start of the string, starting at `0`.
+* Negative numbers will count back from the end of the string, starting at `-1`.
+
+The second number of the index is the stop position.
+
+* Positive numbers are lengths, counting forward from the start position.
+* Negative numbers are absolute positions, counting back from the end of the string (starting at `-1`).
+
+If the second number is omitted, it defaults to `1` (a single character).
+
+Examples:
+
+{% highlight ruby %}
+    $foo = 'abcdef'
+    notice( $foo[0] )    # resolves to 'a'
+    notice( $foo[0,2] )  # resolves to 'ab'
+    notice( $foo[1,2] )  # resolves to 'bc'
+    notice( $foo[1,-2] ) # resolves to 'bcde'
+    notice( $foo[-3,2] ) # resolves to 'de'
+{% endhighlight %}
+
+Text outside the actual range of the string is treated as an infinite amount of empty string.
+
+{% highlight ruby %}
+    $foo = 'abcdef'
+    notice( $foo[10] )    # resolves to ''
+    notice( $foo[3,10] )  # resolves to 'def'
+    notice( $foo[-10,2] ) # resolves to ''
+    notice( $foo[-10,6] ) # resolves to 'ab'
+{% endhighlight %}
+
+
 
 * * *
 
@@ -172,11 +203,11 @@ The general form of a resource reference is:
 * The **title** of the resource, or a comma-separated list of titles
 * A closing square bracket
 
-Unlike variables, resource references are not parse-order dependent, and can be used before the resource itself is declared.
+Unlike variables, resource references are not evaluation-order dependent, and can be used before the resource itself is declared.
 
 ### Multi-Resource References
 
-Resource references with an **array of titles** or **comma-separated list of titles** refer to multiple resources of the same type:
+Resource references with an **array of titles** or **comma-separated list of titles** refer to multiple resources of the same type. They evaluate to an array of single title resource references.
 
 {% highlight ruby %}
     # A multi-resource reference:
@@ -194,23 +225,68 @@ They can be used wherever an array of references might be used. They can also go
 Numbers
 -----
 
-Puppet's arithmetic expressions accept integers and floating point numbers. Internally, Puppet treats numbers like strings until they are used in a numeric context.
+Puppet's arithmetic expressions accept integers and floating point numbers.
 
-Numbers can be written as bare words or quoted strings, and can consist only of digits with an optional negative sign (`-`) and decimal point.
+Numbers are written without quotation marks, and can consist only of:
+
+* Digits
+* An optional negative sign (`-`; actually [the unary negation operator](./future_lang_expressions.html#subtraction-and-negation))
+    * Explicit positive signs (`+`) aren't allowed.
+* An optional decimal point (which results in a floating point value)
+* A prefix, for octal or hexidecimal bases
+* An optional `e` or `E` for scientific notation of floating point values
+
+### Floats
+
+If an expression includes both integer and float values, the result will be a float
 
 {% highlight ruby %}
-    $some_number = 8 * -7.992
-    $another_number = $some_number / 4
+    $some_number = 8 * -7.992           # evaluates to -63.936
+    $another_number = $some_number / 4  # evaluates to -15.984
 {% endhighlight %}
 
-Numbers **cannot** include explicit positive signs (`+`) or exponents. Numbers between -1 and 1 **cannot** start with a bare decimal point; they must have a leading zero.
+Floating point numbers between -1 and 1 cannot start with a bare decimal point; they must have a zero before the decimal point.
 
 {% highlight ruby %}
-    $product = 8 * +4 # syntax error
-    $product = 8 * 4 # OK
     $product = 8 * .12 # syntax error
     $product = 8 * 0.12 # OK
 {% endhighlight %}
+
+You can express floating point numbers in scientific notation: append `e` or `E` plus an exponent, and the preceding number will be multiplied by 10 to the power of that exponent. Numbers in scientific notation are always floats.
+
+{% highlight ruby %}
+    $product = 8 * 3e5  # evaluates to 240000.0
+{% endhighlight %}
+
+### Octal and Hexadecimal Integers
+
+Integer values can be expressed in decimal notation (base 10), octal notation (base 8), and hexadecimal notation (base 16). Octal values have a prefix of `0`, which can be followed by a sequence of octal digits 0-7. Hexadecimal values have a prefix of `0x` or `0X`, which can be followed by hexadecimal digits 0-9, a-f, or A-F.
+
+Floats can't be expressed in octal or hex.
+
+{% highlight ruby %}
+    # octal
+    $value = 0777   # evaluates to decimal 511
+    $value = 0789   # Error, invalid octal
+    $value = 0777.3 # Error, invalid octal
+
+    # hexadecimal
+    $value = 0x777 # evaluates to decimal 1911
+    $value = 0xdef # evaluates to decimal 3567
+    $value = 0Xdef # same as above
+    $value = 0xDEF # same as above
+    $value = 0xLSD # Error, invalid hex
+{% endhighlight %}
+
+### Converting Numbers to Strings
+
+Numbers are automatically converted to strings when interpolated into a string. The automatic conversion uses decimal (base 10) notation.
+
+If you need to convert numbers to non-decimal string representations, you can use [the `printf` function.](/references/3.7.latest/function.html#printf)
+
+### Converting Strings to Numbers
+
+Strings are never automatically converted to numbers. You can use [the `scanf` function](/references/3.7.latest/function.html#scanf) to convert strings to numbers, accounting for various notations and any surrounding non-numerical text.
 
 * * *
 
@@ -260,6 +336,46 @@ Arrays support negative indexing, with `-1` being the final element of the array
 {% endhighlight %}
 
 The first notice would log `three`, and the second would log `four`.
+
+Note that the opening square bracket must not be preceded by a white space:
+
+{% highlight ruby %}
+    $foo = [ 'one', 'two', 'three', 'four', 'five' ]
+    notice( $foo[2] )  # ok
+    notice( $foo [2] ) # syntax error
+{% endhighlight %}
+
+
+### Array Sectioning
+
+You can also access sections of an array by numerical index. Like indexing, sectioning uses square brackets, but it uses two indexes (separated by a comma) instead of one (e.g. `$array[3,10]`).
+
+The result of an array section is always another array.
+
+The first number of the index is the start position.
+
+* Positive numbers will count from the start of the array, starting at `0`.
+* Negative numbers will count back from the end of the array, starting at `-1`.
+
+The second number of the index is the stop position.
+
+* Positive numbers are lengths, counting forward from the start position.
+* Negative numbers are absolute positions, counting back from the end of the array (starting at `-1`).
+
+{% highlight ruby %}
+    $foo = [ 'one', 'two', 'three', 'four', 'five' ]
+    notice( $foo[2,1] )  # evaluates to ['three']
+    notice( $foo[2,2] )  # evaluates to ['three', 'four']
+    notice( $foo[2,-1] ) # evaluates to ['three', 'four', 'five']
+    notice( $foo[-2,1] ) # evaluates to ['four']
+{% endhighlight %}
+
+### Array Operators
+
+There are three expression operators that can act on array values: `*` (splat), `+` (concatenation), and `-` (removal).
+
+For details, [see the relevant section of the Expressions and Operators page.](./future_lang_expressions.html#array-operators)
+
 
 ### Additional Functions
 
@@ -382,3 +498,7 @@ These are not normal variables, and have some special behaviors:
 
 * The values of the numbered variables do not persist outside the code block associated with the pattern that set them.
 * In nested conditionals, each conditional has its own set of values for the set of numbered variables. At the end of an interior statement, the numbered variables are reset to their previous values for the remainder of the outside statement. (This causes conditional statements to act like [local scopes][local], but only with regard to the numbered variables.)
+
+### Regex Functions
+
+You can use [the `match` function](/references/3.7.latest/function.html#match) to do more advanced regex matching. This function performs matching against strings, and returns an array containing the match's result and any captures.
