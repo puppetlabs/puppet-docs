@@ -220,7 +220,7 @@ If a participant engages in harassing behavior, the event organizers may take an
 
 Event staff will be happy to help participants address concerns. All reports will be treated as confidential. We strongly encourage you to address your issues privately with any of our staff members who are organizing the event. We encourage you to avoid disclosing information about the incident until the staff have had sufficient time in which to address the situation. Please also keep in mind that public shaming can be counter-productive to building a strong community. We do not condone nor participate in such actions.
 
-We value your attendance. If you cannot find a member of the event staff or are not comfortable contacting one of the staff, you can alternatively contact Dawn Foster (dawn at puppetlabs.com) or Kara Sowles (kara at puppetlabs.com).
+We value your attendance. If you cannot find a member of the event staff or are not comfortable contacting one of the staff, you can alternatively contact Kara Sowles (kara at puppetlabs.com).
 
 We expect all participants to follow these rules at all event venues and related social events.
 
