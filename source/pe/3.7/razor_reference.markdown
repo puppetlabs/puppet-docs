@@ -95,6 +95,27 @@ The `delete-repo` command accepts a single repo name:
       "name": "fedora16"
     }
 
+### Update a Repo's Specified Task (update-repo-task)
+
+Ensures that a specified repo uses the task this command specifies, setting the task if necessary. If a node is currently provisioning against the repo when you run this command, provisioning might fail.
+
+The following shows how to update a repo’s task to a task called “other_task”.
+
+	{
+		"node": "node1",
+		"repo": "my_repo",
+		"task": "other_task"
+	}
+
+The following shows how to update a repo’s task to its repo's task.
+
+	{
+		"node": "node1",
+		"repo": "my_repo",
+		"no_task": true
+	}
+
+
 ## Task Commands
 
 ### Create task (`create-task`)
@@ -251,7 +272,12 @@ The command `modify-policy-max-count` lets you set the maximum number of nodes t
       "max_count": new-count
     }
 
-The `new-count` can be an integer, which must be greater than the number of nodes that are currently bound to the policy, or `null` to make the policy unbounded.
+`new-count` can be an integer, which must be greater than the number of nodes that are currently bound to the policy. Alternatively, the `no_max_count` argument makes the policy unbounded:
+
+	{
+  		"name": "a policy"
+  		"no_max_count": true
+	}
 
 ### Add tags to Policy (`add-policy-tag`)
 
@@ -281,7 +307,7 @@ To remove tags from a policy, supply the name of a policy and the name of the ta
 
 ### Update a Policy's Specified Task (`update-policy-task`)
 
-Ensures that a policy uses the task this command specifies. If necessary, `update-policy-task` sets the task, for example if a policy has already been created and you want to add a task to it. Note that if a node is currently provisioning against the policy when you run this command, it can cause provisioning errors.
+Ensures that a policy uses the task this command specifies. If necessary, `update-policy-task` sets the task, for example if a policy has already been created and you want to add a task to it. Note that if a node is currently provisioning against the policy when you run this command, provisioning can fail.
 
 The following shows how to update a policy's task to a task called "other_task".
 
