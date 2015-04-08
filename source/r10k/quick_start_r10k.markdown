@@ -34,7 +34,7 @@ The major steps you'll perform in this guide are as follows:
 - **Step 1**: Prepare the **puppet-control** repo.
 - **Step 2**: Rename the master branch of the **puppet-control** repo.
 - **Step 3**: Configure r10k on the Puppet Master and run the `production` environment.
-- **Step 4**: Version the code in the `helloworld` module and create the `test_message` environment.
+- **Step 4**: Version the code in the Hello, World module and create the `test_message` environment.
 - **Step 5**: Deploy the `test_message` environment.
 - **Step 6**: Test the environments on a Puppet agent node. 
   
@@ -132,7 +132,7 @@ You'll perform the steps in this section on your Puppet master.
    
    >**Tip**: If there are any syntax errors in your Puppet code, you will be warned at this step. If there are errors, you will need to return to your admin machine, correct the Puppet code in the **puppet-helloworld** module, commit the change, gather the commit ID, update `Puppetfile` in the **puppet-control** repo with the commit ID, commit that change, and then re-deploy r10k from the Puppet master.  
 
-### Step 4: Version the code in the `helloworld` module and create the `test_message` environment
+### Step 4: Version the code in the Hello, World module and create the `test_message` environment
 
 In this step, you'll change the Hello, World! module so that it contains a new message for a new environment, and then create a new branch that maps to the new environment.
 
