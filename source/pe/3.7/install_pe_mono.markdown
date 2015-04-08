@@ -137,25 +137,25 @@ See the [installation overview](./install_basic.html#downloading-puppet-enterpri
 
    You will also need to make sure the databases and users you've entered actually exist. The SQL commands to create the databases resemble the following:
 
-   		CREATE TABLESPACE "pe-console" LOCATION '/opt/puppet/var/lib/pgsql/9.2/console';
-   		CREATE USER "console" PASSWORD 'password';
-   		CREATE DATABASE "console" OWNER "console" TABLESPACE "pe-console" ENCODING 'utf8' LC_CTYPE 'en_US.utf8' LC_COLLATE 'en_US.utf8' template template0;
+   	CREATE TABLESPACE "pe-console" LOCATION '/opt/puppet/var/lib/pgsql/9.2/console';
+   	CREATE USER "console" PASSWORD 'password';
+   	CREATE DATABASE "console" OWNER "console" TABLESPACE "pe-console" ENCODING 'utf8' LC_CTYPE 'en_US.utf8' LC_COLLATE 'en_US.utf8' template template0;
 
-   		CREATE TABLESPACE "pe-puppetdb" LOCATION '/opt/puppet/var/lib/pgsql/9.2/puppetdb';
-   		CREATE USER "pe-puppetdb" PASSWORD 'password';
-   		CREATE DATABASE "pe-puppetdb" OWNER "pe-puppetdb" TABLESPACE "pe-puppetdb" ENCODING 'utf8' LC_CTYPE 'en_US.utf8' LC_COLLATE 'en_US.utf8' template template0;
+   	CREATE TABLESPACE "pe-puppetdb" LOCATION '/opt/puppet/var/lib/pgsql/9.2/puppetdb';
+   	CREATE USER "pe-puppetdb" PASSWORD 'password';
+   	CREATE DATABASE "pe-puppetdb" OWNER "pe-puppetdb" TABLESPACE "pe-puppetdb" ENCODING 'utf8' LC_CTYPE 'en_US.utf8' LC_COLLATE 'en_US.utf8' template template0;
 
-   		CREATE TABLESPACE "pe-activity" LOCATION '/opt/puppet/var/lib/pgsql/9.2/activity';
-   		CREATE USER "pe-activity" PASSWORD 'password';
-   		CREATE DATABASE "pe-activity" OWNER "pe-activity" TABLESPACE "pe-activity" ENCODING 'utf8' LC_CTYPE 'en_US.utf8' LC_COLLATE 'en_US.utf8' template template0;
+   	CREATE TABLESPACE "pe-activity" LOCATION '/opt/puppet/var/lib/pgsql/9.2/activity';
+   	CREATE USER "pe-activity" PASSWORD 'password';
+   	CREATE DATABASE "pe-activity" OWNER "pe-activity" TABLESPACE "pe-activity" ENCODING 'utf8' LC_CTYPE 'en_US.utf8' LC_COLLATE 'en_US.utf8' template template0;
 
-   		CREATE TABLESPACE "pe-classifier" LOCATION '/opt/puppet/var/lib/pgsql/9.2/classifier';
-   		CREATE USER "pe-classifier" PASSWORD 'password';
-   		CREATE DATABASE "pe-classifier" OWNER "pe-classifier" TABLESPACE "pe-classifier" ENCODING 'utf8' LC_CTYPE 'en_US.utf8' LC_COLLATE 'en_US.utf8' template template0;
+   	CREATE TABLESPACE "pe-classifier" LOCATION '/opt/puppet/var/lib/pgsql/9.2/classifier';
+   	CREATE USER "pe-classifier" PASSWORD 'password';
+   	CREATE DATABASE "pe-classifier" OWNER "pe-classifier" TABLESPACE "pe-classifier" ENCODING 'utf8' LC_CTYPE 'en_US.utf8' LC_COLLATE 'en_US.utf8' template template0;
 
-   		CREATE TABLESPACE "pe-rbac" LOCATION '/opt/puppet/var/lib/pgsql/9.2/rbac';
-   		CREATE USER "pe-rbac" PASSWORD 'password';
-   		CREATE DATABASE "pe-rbac" OWNER "pe-rbac" TABLESPACE "pe-rbac" ENCODING 'utf8' LC_CTYPE 'en_US.utf8' LC_COLLATE 'en_US.utf8' template template0;
+   	CREATE TABLESPACE "pe-rbac" LOCATION '/opt/puppet/var/lib/pgsql/9.2/rbac';
+   	CREATE USER "pe-rbac" PASSWORD 'password';
+   	CREATE DATABASE "pe-rbac" OWNER "pe-rbac" TABLESPACE "pe-rbac" ENCODING 'utf8' LC_CTYPE 'en_US.utf8' LC_COLLATE 'en_US.utf8' template template0;
 
 
    Consult the [PostgreSQL documentation](http://www.postgresql.org/docs/) for more info.
@@ -163,7 +163,16 @@ See the [installation overview](./install_basic.html#downloading-puppet-enterpri
    >**Note**: If you are using an external PostgreSQL instance that is not managed by PE:
    >
    > 1. You must create databases for RBAC, activity service, and the node classifier before installing.
-   > 2. You must enable the [citext extension](http://www.postgresql.org/docs/9.2/static/citext.html) on the RBAC database. To do so, install the `postgresql-contrib` package, and then from inside the RBAC database, run the command `create extension citext`.
+   > 2. You must enable the [citext extension](http://www.postgresql.org/docs/9.2/static/citext.html) on the RBAC database. To do so, install the `postgresql-contrib` package, and then from inside the RBAC database, run the following commands:
+   >
+          sudo -u postgres sh
+          psql pe_rbac -c 'create extension citext'
+          exit
+   > 3. If you are running PostgreSQL 9.3 or above, you should install the [`pg_trim` extension](http://www.postgresql.org/docs/9.3/static/pgtrgm.html) on the PuppetDB database. This may require the `postgresql-contrib` (or equivalent) package depending on your distribution. To install the extension, run the following commands:
+   >
+          sudo -u postgres sh
+          psql puppetdb -c 'create extension pg_trgm'
+          exit  
 
 6. Provide the following information about the PE console administrator user:
 

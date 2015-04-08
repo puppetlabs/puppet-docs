@@ -8,7 +8,7 @@ layout: default
 We want to keep the Puppet communities awesome, and we need your help to keep it that way. While we have specific guidelines for various tools (see links below), in general, you should:
 
 
-* **Be nice**: Be courteous, respectful and polite to fellow community members: no regional, racial, gender, or other abuse will be tolerated. We like nice people way better than mean ones!
+* **Be nice**: Be courteous, respectful and polite to fellow community members. No offensive comments related to gender, gender identity or expression, sexual orientation, disability, physical appearance, body size, race, religion; no sexual images in public spaces, real or implied violence, intimidation, oppression, stalking, following, harassing photography or recording, sustained disruption of talks or other events, inappropriate physical contact, or unwelcome sexual attention will be tolerated. We like nice people way better than mean ones!
 * **Encourage diversity and participation**: Make everyone in our community feel welcome, regardless of their background, and do everything possible to encourage participation in our community.
 * **Keep it legal**: Basically, don't get us in trouble. Share only content that you own, do not share private or sensitive information, and don't break the law.
 * **Stay on topic**: Make sure that you are posting to the correct online channel and avoid off-topic discussions.  Also remember that nobody likes spam.
@@ -17,7 +17,7 @@ We want to keep the Puppet communities awesome, and we need your help to keep it
 Guideline Violations --- 3 Strikes Method
 -----
 
-The point of this section is not to find opportunities to punish people, but we do need a fair way to deal with people who are making our community suck.
+The point of this section is not to find opportunities to punish people, but we do need a fair way to deal with people who are making our community suck. Extreme violations of a threatening, abusive, destructive or illegal nature will be addressed immediately and are not subject to 3 strikes.
 
 1. **First occurrence**: We’ll give you a friendly, but public reminder that the behavior is inappropriate according to our guidelines.
 2. **Second occurrence**:  We will send you a private message with a warning that any additional violations will result in removal from the community.
@@ -25,12 +25,10 @@ The point of this section is not to find opportunities to punish people, but we 
 
 
 Notes:
-
 * Obvious spammers are banned on first occurrence. If we don’t do this, we’ll have spam all over the place.
 * Violations are forgiven after 6 months of good behavior, and we won’t hold a grudge.
 * People who are committing minor formatting / style infractions will get some education, rather than hammering them in the 3 strikes process.
-* Extreme violations of a threatening, abusive, destructive or illegal nature will be addressed immediately and are not subject to 3 strikes.
-* Contact Dawn Foster to report abuse or appeal violations. In the case of appeals, we know that mistakes happen, and we’ll work with you to come up with a fair solution if there has been a misunderstanding.
+* Contact abuse@puppetlabs.com to report abuse or appeal violations. This email list goes to Kara Sowles, who can also be contacted at kara@puppetlabs.com. In the case of appeals, we know that mistakes happen, and we’ll work with you to come up with a fair solution if there has been a misunderstanding.
 
 
 Activity-Specific Guidelines
@@ -220,7 +218,7 @@ If a participant engages in harassing behavior, the event organizers may take an
 
 Event staff will be happy to help participants address concerns. All reports will be treated as confidential. We strongly encourage you to address your issues privately with any of our staff members who are organizing the event. We encourage you to avoid disclosing information about the incident until the staff have had sufficient time in which to address the situation. Please also keep in mind that public shaming can be counter-productive to building a strong community. We do not condone nor participate in such actions.
 
-We value your attendance. If you cannot find a member of the event staff or are not comfortable contacting one of the staff, you can alternatively contact Dawn Foster (dawn at puppetlabs.com) or Kara Sowles (kara at puppetlabs.com).
+We value your attendance. If you cannot find a member of the event staff or are not comfortable contacting one of the staff, you can alternatively contact abuse@puppetlabs.com or Kara Sowles (kara at puppetlabs.com).
 
 We expect all participants to follow these rules at all event venues and related social events.
 

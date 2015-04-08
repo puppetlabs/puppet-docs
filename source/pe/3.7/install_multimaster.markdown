@@ -1,7 +1,7 @@
 ---
 layout: default
-title: "PE 3.7 » Installing » Additional Puppet Masters"
-subtitle: "Additional Puppet Master Installation"
+title: "PE 3.7 » Installing » LEI Compile Masters"
+subtitle: "Compile Master Installation"
 canonical: "/pe/latest/install_multimaster.html"
 ---
 

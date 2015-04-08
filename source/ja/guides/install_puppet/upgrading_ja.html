@@ -1,0 +1,241 @@
+---
+layout: default
+title: "Upgrading Puppet ~ Puppetのアップグレード"
+canonical: "/ja/guides/install_puppet/upgrading_ja.html"
+toc: false
+---
+
+<ol class="toc">
+  <li class="toc-lv2"><a href="#upgrade-intentionally">意図してアップグレードする</a>
+<ol class="toc">
+   <li class="toc-lv3"><a href="#apt-pinning-example">aptの“ピン止め”例</a></li>
+   <li class="toc-lv3"><a href="#yum-versionlock-example">Yumのバージョンロック例</a></li>
+</ol></li>
+  <li class="toc-lv2"><a href="#always-upgrade-the-puppet-master-first">常にPuppet masterのアップグレードを最初にする</a></li>
+  <li class="toc-lv2"><a href="#use-more-care-with-major-releases">メジャーリリースではより慎重に</a>
+<ol class="toc">
+   <li class="toc-lv3"><a href="#additional-precautions">追加の確認事項</a></li>
+   <li class="toc-lv3"><a href="#versioning-in-puppet-3-and-later">Puppet 3以降のバージョン付与について</a></li>
+   <li class="toc-lv3"><a href="#versioning-in-puppet-2x">Puppet 2.xでのバージョン付与について</a></li>
+</ol></li>
+  <li class="toc-lv2"><a href="#roll-out-in-stages">新バージョンへの段階的な移行</a>
+<ol class="toc">
+   <li class="toc-lv3"><a href="#option-1-spin-up-temporary-puppet-master-or-cull-a-master-from-your-load-balancer-pool">Option 1: テンポラリのPuppet Master、もしくは負荷分散プールのPuppet Masterを1台だけ新バージョンへ移行する</a></li>
+   <li class="toc-lv3"><a href="#option-2-run-two-instances-of-puppet-master-at-once">Option 2: 一度２つのPuppet masterインスタンスを動作させる</a></li>
+   <li class="toc-lv3"><a href="#option-3-upgrade-master-and-roll-back-if-needed">Option 3: Puppet masterをアップグレードし、もし何かあったらロールバックする</a></li>
+</ol></li>
+</ol></nav>
+
+
+<p>
+Puppetによってインフラ基盤を管理するようにした後の<strong>アップグレードは慎重にすべき</strong>です。このページではPuppetをアップグレードする際に推奨する事項を説明します。
+</p>
+
+<h2 id="upgrade-intentionally">意図してアップグレードする</h2>
+
+<p>もしPuppetのパッケージもしくは実行中の大規模なパッケージのアップグレードコマンドに<code>ensure =&gt; latest</code>を利用するのであれば
+期待してない時にPuppetのアップグレードを受け取ってしまうかもしれません。
+特にもし<a href="/guides/puppetlabs_package_repositories.html">Puppet Labsのパッケージリポジトリ</a>を記述しているのであれば、常に最新版のPuppetが含まれる事になります。<strong>意図しないアップグレードは避けるよう強く推奨します。</strong>もちろん私たちも（特にマイナーリリースでは）システムを破壊するような事が無いようベストを尽くしていますが、Puppetは多岐に渡るコードがありますのでバグが混入する余地はあります。</p>
+
+<p>私たちは以下の項目について実施する事を推奨します：</p>
+
+<ul>
+
+  <li>あなた用のパッケージリポジトリをメンテナンスし、新しいバージョンのPuppetを開発用の環境で試験してください。そしてよく確認が取れたバージョンだけを運用中のリポジトリに入れるようにしてください。多くのシステム管理者は、<strong>どんな</strong>ミッションクリティカルなパッケージであっても、これがベストプラクティスであると考えています。</li>
+
+  <li>aptの“ピン止め”機能、もしくはyumのバージョンロックプラグインをPuppetを特定バージョンに固定するために使いましょう。またPuppetのアップグレードは、そのシステムで運用する計画がある時に限るべきです。</li>
+</ul>
+
+<h3 id="apt-pinning-example">aptの“ピン止め”例</h3>
+
+
+<p>パッケージバージョンの“ピン止め”は、あなたのシステムの<code>/etc/apt/preferences.d/</code>ディレクトリにある.prefファイルに記述を追加する事で可能です:</p>
+
+<pre><code># /etc/apt/preferences.d/00-puppet.pref
+Package: puppet puppet-common
+Pin: version 2.7*
+Pin-Priority: 501
+</code></pre>
+
+
+<p>このprefファイルはpuppetおよびpuppet-commonをバージョン2.7系の最新にロックします。新しい2.7.xリリースが追加された時、これらはアップグレードされます。ですが、メジャーバージョンをジャンプしてしまう事はありません。もしPuppet 3系に関するPINのプライオリティが501（デフォルトは500）よりも低いならば、Puppet 3系はPuppet2.7系にダウングレードされます。ファイルを分けてpuppetmasterとpuppetmaster-commonを“ピン止め”に使う事や、パッケージリストを追加する事ができます。</p>
+
+
+<h3 id="yum-versionlock-example">yumのバージョンロック例</h3>
+
+
+<p>残念ながら、yumバージョンロックはaptの“ピン止め”に比べて柔軟性はありません。バグフィックスによるアップグレードを認めることができず、また特定バージョンに固定する事しかできません。これらの理由により、あなた専用のリポジトリをメンテナンスするようにしたほうが、RPMシステム向けには良いでしょう。</p>
+
+
+<pre><code>$ sudo yum install yum-versionlock
+$ sudo yum install puppet-2.7.19
+$ sudo yum versionlock puppet
+</code></pre>
+
+<p>これらのコマンドはバージョンロックプラグインをインストールして、Puppetをバージョン2.7.19に固定するものです。アップグレードを望む時には<code>/etc/yum/pluginconf.d/versionlock.list</code>を編集してPuppetのバージョンロックを外した上で実行する事になります:</p>
+
+
+<pre><code>$ sudo yum install puppet-&lt;desired version&gt;
+$ sudo yum versionlock puppet
+</code></pre>
+
+<h2 id="always-upgrade-the-puppet-master-first">常にPuppet masterのアップグレードを最初にする</h2>
+
+
+<p>古いagentノードは新しいPuppet masterからカタログを取得する事ができますが、逆は常に可能とは限りません。</p>
+
+<h2 id="use-more-care-with-major-releases">メジャーリリースではより慎重に</h2>
+
+<p>新しいメジャーリリースにアップグレードする際は不具合が起きる可能性がさらにあるため、追加の確認を推奨します。</p>
+
+<h3 id="additional-precautions">追加の確認事項</h3>
+
+<p>メジャーバージョンのアップグレードの際は、以下について実施する事を推奨します:</p>
+
+<ul>
+
+  <li>メジャーバージョンを丸ごと飛び越えるようなアップグレードは避けてください。事前にアップグレード先のバージョンを長く使ってマニフェストも修正済みであるような場合を除き、Puppet 2.6をお使いでしたらPuppet 3.xへのアップグレードの前に、Puppet 2.7へアップグレードするようにしてください。</li>
+
+  <li><strong>リリースノートをよく読んでください。</strong> 特に“backwards-incompatible changes（過去バージョンとの非互換）”のセクションはよく確認してください。新バージョンを利用する上で、具体的に推奨されている事項に従ってください（<a href="/puppet/3/reference/release_notes.html">the Puppet 3.x release notes</a>で、Puppet 3.0.xにおける下位互換性が無い変更についての記述された“BREAK”をご覧ください）。</li>
+
+  <li>もしバグフィックスがなされたリリースは全て適用したいのでしたら、メジャーバージョンのそれ以上に保守的な運用計画としてください。</li>
+</ul>
+
+<p>“メジャーリリース”の定義はしばしば変更されます:</p>
+
+<h3 id="versioning-in-puppet-3-and-later">Puppet 3以降のバージョン付与について</h3>
+
+<p>Puppet 3から3種類のPuppetがリリースされるようになりました:</p>
+
+
+<ul>
+
+  <li><strong>バグフィックス</strong>リリースの際、末尾のバージョン番号がインクリメントされます(例. 3.0.<strong>1</strong>.) 。これらは新機能や後方互換性を損なうような変更を含まず、バグフィックスのみを意図しています。これらのリリースは安全にアップグレードできる<strong>はず</strong>ですが、何らかのテストは実施すべきです。</li>
+
+  <li><strong>マイナー</strong>リリースの際、真ん中のバージョン番号がインクリメントされます(例. 3.<strong>1</strong>.0.)。これらは新機能を取り込む場合もありますが、後方互換性を損なうような事はないはずです。</li>
+
+  <li><strong>メジャー</strong>リリースでは最初のバージョン番号がインクリメントされます(例. <strong>3</strong>.0.0.)。
+  これらは新機能やバグフィッスの際、<strong> 意図的に旧バージョンとの後方互換性が無い場合があります</strong> 。</li>
+</ul>
+
+<h3 id="versioning-in-puppet-2x">Puppet 2.xでのバージョン付与について</h3>
+
+<p>Puppet 2.x系の場合:</p>
+
+<ul>
+
+  <li><strong>マイナー</strong>リリースはバグフィックスリリースと区別されません。リリースの際は末尾のバージョン番号がインクリメントされ(例. 2.7.<strong>18</strong>)、新機能が追加されたり、一部後方互換性が損なわれるような場面もあるかも知れません。そのため<a href="/release_notes/">リリースノート</a>の確認は必ず実施してください。</li>
+
+  <li><strong>メジャー</strong>リリースは真ん中のバージョン番号がインクリメントされます(例. 2.<strong>7</strong>.0.)。これらは旧バージョンとの<strong>後方互換性を意図的に無くしています</strong>。また機能追加やバグフィックスも含んでいます。</li>
+
+</ul>
+
+<h2 id="roll-out-in-stages">新バージョンへの段階的な移行</h2>
+
+<p>アップグレードの際、特にメジャーバージョン間のアップグレード場合は、段階的に新バージョンへ移行する事を推奨します。以下３つの選択肢のち１つを使ってください:</p>
+
+<h3 id="option-1-spin-up-temporary-puppet-master-or-cull-a-master-from-your-load-balancer-pool">Option 1: テンポラリのPuppet Master、もしくは負荷分散プールのPuppet Masterを1台だけ新バージョンへ移行する</h3>
+
+<p>一番良いアプローチはテンポラリのPuppet Masterを新バージョンへ移行させ、テスト用ノードで新バージョンをテストする事です。</p>
+
+<ul>
+
+  <li>もし複数masterのサイトで且つPuppet masterを負荷分散プールからテンポラリのテスト用として抜き出すことができるのなら、この方法にしてください。その場合、Puppetのアップグレードは以下のステップ5～10に従って実行してください。</li>
+
+  <li>もし複数masterのサイトで且つ新しいPuppet masterをPuppetを使って設定するのなら、新しいノードを新バージョンへ移行してPuppetを使って設定する事もまた可能です。Puppetのアップグレードをここでする場合は、以下のステップ5～10に従って実行してください。</li>
+  
+  <li>それ以外の場合は、ステップ1～10に従って実行してください。</li>
+
+</ul>
+
+<ol>
+
+  <li>新しいノードを準備して、Puppetをインストールしてください。</li>
+
+  <li>インストールしたノードの<code>server</code>には既存のPuppet masterを指定し、<code>puppet agent --test</code>を使って認証を要求、証明書に署名します。</li>
+
+  <li>準備した新しいPuppet masterへお使いのモジュール、マニフェスト、およびデータの最新版をバージョン管理システムからチェックアウトします。もしENCやPuppetDB、storeconfigsをお使いでしたら、masterがそれらのサービスと会話できるよう設定します。</li>
+
+  <li>ターミナルから <code>puppet master --no-daemonize --verbose</code>を実行します。このコマンドはPuppet masterをフォアグラウンドで実行しますので、簡単にログメッセージや警告の確認ができます。テストノードへの同時接続制限は注意深く実施してください。このWEBrickによるPuppet masterは負荷を持続して制御する事はできません。</li>
+
+  <li>新しいPuppet masterのテストに使うノードを動かすサブネットを選びます。もしくは新しいノードの運用を開始します。それらのPuppetを新しいバージョンにアップグレードし、それらの<code>server</code>設定をテンポラリのPuppet masterを指すようにします。</li>
+
+  <li>全てのテスト用ノードで<code>puppet agent --test</code>を実行します。そうするとログメッセージをターミナルで確認する事ができます。もし期待していない動きがあれば、調査のため<strong>テスト用ノードのリソースが変更されないようにロックします。</strong>もし何かしらの危険性や把握できない事があるなら、<a href="https://groups.google.com/group/puppet-users/">Puppet users list</a>へ投稿するか、Freenode（訳注：IRCのネットワーク）の#puppetで質問してください。</li>
+
+  <li>ターミナル上、もしくはPuppet masterのログファイルからログメッセージを確認します。警告やdeprecate（廃止予定の機能）が無いか確認します。</li>
+
+  <li>テストノード上の設定が実際にどうなっているか確認します。全てが期待通りに動作している事を確実に確認してください。</li>
+
+  <li>もしまだ不明なところがあれば、テスト用ノードでステップ5～8を繰り返し、さらに確認してください。</li>
+
+  <li>全てのテスト用ノードで<code>server</code>の設定を元に戻し、テンポラリのPuppet masterを廃止します。運用中のPuppet masterにて、Webサーバの停止、Puppetパッケージのアップグレード、Webサーバの再起動の順でアップグレードします。そして全ての運用中のノードでアップグレードします（ほとんどのパッケージシステムを使ってPuppetのアップグレードができます）。
+
+</ol>
+
+<h3 id="option-2-run-two-instances-of-puppet-master-at-once">Option 2: 一度２つのPuppet masterインスタンスを動作させる</h3>
+
+<p>運用中のPuppet masterサーバ上で２つ目のインスタンスを動作させて、モジュール、マニフェスト、データ、ENC、SSL設定で同じものを使う事ができます。</p>
+
+
+<blockquote>
+
+  <p><strong>注意:</strong> この手順は一般的に信頼できますが、不正確な結果を返す可能性が少しあります（この問題ですが、この手順の場合メジャーバージョンが設定しているコードパスの削除をしないとならないのですが、コードパスにアクセスしようとしたとしても止まってくれないというものです；ただし今のところこの問題で何かしら引き起こされるという認識はありません）。</p>
+</blockquote>
+
+<ol>
+
+  <li><a href="http://downloads.puppetlabs.com/puppet/">新しいバージョンのPuppetのソースコードをダウンロード</a>します。<strong>通常のRubyライブラリを配置している場所以外へ</strong>展開してください。(<code>tar -xf puppet-&lt;version&gt;</code>)</li>
+
+  <li>rootユーザのターミナルを立ち上げます。これをテスト中は開いたままにしておきます。(<code>sudo -i</code>)</li>
+
+  <li>ソースコードを展開したディレクトリに移動します。(<code>cd puppet-&lt;version&gt;</code>)</li>
+
+  <li>動作中のシェルに環境変数RUBYLIBを設定します。(<code>export RUBYLIB=$(pwd)/lib:$RUBYLIB</code>)</li>
+
+  <li><code>./bin/puppet master --no-daemonize --verbose --masterport 8141</code>を実行します。<strong>通常とは異なるポートで</strong>Puppet masterが起動します。フォアグラウンドで動作しますので、ログメッセージや警告を容易に確認できます。テストノードへの同時接続制限は注意深く実施してください。このWEBrickによるPuppet masterは負荷を持続して制御する事はできません。</li>
+
+  <li>新しいPuppet masterのテストに使うノードを動かすサブネットを選びます。もしくは新しいノードの運用を開始します。それらのPuppetを新しいバージョンにアップグレードし、それらの<code>masterport</code>設定を8141にします。</li>
+
+  <li>全てのテスト用ノードで<code>puppet agent --test</code>を実行します。そうするとログメッセージをターミナルで確認する事ができます。<strong>テスト用ノードのリソースが変更されているか確認し</strong>、もし期待していない動きがあれば調査します。何かしらの危険性や把握できない事がある場合は、<a href="https://groups.google.com/group/puppet-users/">Puppet users list</a>へ投稿するか、Freenode（訳注：IRCのネットワーク）の#puppetで質問してください。</li>
+
+  <li>ターミナル上、もしくはPuppet masterのログファイルからログメッセージを確認します。警告やdeprecate（廃止予定の機能）が無いか確認します。</li>
+
+  <li>テストノード上の設定が実際にどうなっているか確認します。全てが期待通りに動作している事を確実に確認してください。</li>
+
+  <li>もしまだ不明なところがあれば、テスト用ノードでステップ6～9を繰り返し、さらに確認してください。</li>
+
+  <li>全てのテスト用ノードで<code>masterport</code>の設定を元に戻し、テンポラリのPuppet masterプロセスをkill、一時的にコピーしたPuppetのソースコードを削除します。運用中のPuppet masterにて、Webサーバの停止、Puppetパッケージのアップグレード、Webサーバの再起動の順でアップグレードします。そして全ての運用中のノードでアップグレードします（ほとんどのパッケージシステムを使ってPuppetのアップグレードができます）。</li>
+
+</ol>
+
+<h3 id="option-3-upgrade-master-and-roll-back-if-needed">Option 3: Puppet masterをアップグレードし、もし何かあったらロールバックする</h3>
+
+
+<p><strong>マイナーリリースもしくはバグフィックスリリース</strong>向けには、このシンプルな手順が使えます。この手順は全般的に推奨しませんが、多くのユーザが実施しているので残しています。</p>
+
+
+<ol>
+
+  <li>全ての運用中のノードでPuppet agentを停止します。<a href="/mcollective">MCollective</a>と<a href="/mcollective/reference/basic/basic_cli_usage.html#discovering-available-agents">puppetd plugin</a>を使って全ノードのPuppet agentを停止させるのが最も良い方法です。ほんの数秒で全ノードを停止させる事ができます。</li>
+
+
+  <li>Puppet masterサーバを、Webサーバの停止、Puppetパッケージのアップグレード、Webサーバの再起動の順でアップグレードします。</li>
+
+  <li>新しいPuppet masterのテストに使うノードを動かすサブネットを選びます。もしくは新しいノードの運用を開始します。それらのPuppetを新しいバージョンにアップグレードします。</li>
+
+  <li>全てのテスト用ノードで<code>puppet agent --test</code>を実行します。そうするとログメッセージをターミナルで確認する事ができます。<strong>テスト用ノードのリソースが変更されているか確認し</strong>、もし期待していない動きがあれば調査します。何かしらの危険性や把握できない事がある場合は、<a href="https://groups.google.com/group/puppet-users/">Puppet users list</a>へ投稿するか、Freenode（訳注：IRCのネットワーク）の#puppetで質問してください。</li>
+
+  <li>Puppet masterのログファイルを確認し、警告やdeprecate（廃止予定の機能）が無いか確認します。</li>
+
+  <li>テストノード上の設定が実際にどうなっているか確認します。全てが期待通りに動作している事を確実に確認してください。</li>
+  <li>もしまだ不明なところがあれば、テスト用ノードでステップ3～6を繰り返し、さらに確認してください。</li>
+
+  <li>以下のうち１つを実施します:
+    <ul>
+      <li>Puppetをアップグレードし、Puppet agentを運用中の全ノードで起動します。</li>
+      <li>Puppet masterとテスト用ノードを問題なく動作するバージョンにダウングレードします</li>
+
+    </ul>
+  </li>
+</ol>
+

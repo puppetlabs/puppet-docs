@@ -16,7 +16,7 @@ canonical: "/pe/latest/console_classes_groups_preconfigured_groups.html"
 
 During installation, Puppet Enterprise (PE) automatically creates a number of preconfigured node groups for managing your deployment. In a new install, these node groups will come with some classes that are required. 
 
-> **Note:** If you're upgrading, only the **MCollective** node group will come with classes, so you will need to add the classes and parameters shown on this page, in the order in which they appear. Make sure that you add all of these classes and parameters and commit them by clicking the commit button **before** you do a Puppet run. Failure to classify **all** of the node groups before running Puppet on the master will cause problems.
+> **Note:** If you're upgrading, only the **PE MCollective** node group will come with classes, so you will need to add the classes and parameters shown on this page, in the order in which they appear. Make sure that you add all of these classes and parameters and commit them by clicking the commit button **before** you do a Puppet run. Failure to classify **all** of the node groups before running Puppet on the master will cause problems.
 > 
 > For important information regarding the data types and syntax that can be used when specifying parameter values, see the note in [Setting Class Parameters](./console_classes_groups.html#setting-class-parameters). Check the default parameter values in your preconfigured node groups and make sure they comply with the permitted data types and syntax. 
 > 
@@ -94,7 +94,7 @@ The master node is pinned to this node group.
 ### Notes
 You should *not* add additional nodes to this node group.
 
-## The MCollective Node Group
+## The PE MCollective Node Group
 
 ### Role
 This node group is used to enable PE's [orchestration engine](./orchestration_overview.html) on all matching nodes.

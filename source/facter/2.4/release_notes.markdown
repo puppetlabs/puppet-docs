@@ -6,6 +6,48 @@ description: "Facter release notes for all 2.4 versions"
 
 This page documents the history of the Facter 2.4 series. (Elsewhere: release notes for [Facter 2.3](../2.3/release_notes.html), [Facter 2.2](../2.2/release_notes.html), [Facter 2.1](../2.1/release_notes.html), and [Facter 2.0](../2.0/release_notes.html)).
 
+## Facter 2.4.3
+
+Released April 2, 2015
+
+Facter 2.4.3 is an AIO support release in the Facter 2.4 series that also includes two improvements to performance, and multiple bug fixes.
+
+### AIO External Facts Directory Change
+Changed external facts directory from `/opt/puppetlabs/agent/facts.d` to `/opt/puppetlabs/facter/facts.d` on *nix. Windows is unchanged.
+
+* [FACT-826: Prepend AIO external facts directory for root](https://tickets.puppetlabs.com/browse/FACT-826)
+
+### Improvements to Performance and Speed
+
+* Reduced calls to `ip link show` for performance. `Facter::Util:IP.get_interface_value` called `get_bonding_interface` for every possible value, which could have caused performance issues if many interfaces were being used.
+
+* Improved the speed of `puppetversion` in standalone Facter. There is no notable difference when calling Facter while Puppet is already running. Previously, running Facter with `--timing` showed that `puppetversion` was by far the slowest fact. This was not true when executed by Puppet, but gave the impression that Puppet is slow.  
+
+### Bugs
+
+* [FACT-893: selinux_config_policy returns "unknown" on Debian and RHEL7](https://tickets.puppetlabs.com/browse/FACT-893)
+
+* [FACT-596: Fix to selinux_config_policy, always returned "unknown" on Debian and RHEL7.](https://tickets.puppetlabs.com/browse/FACT-596)
+
+* [FACT-825: Default timeout for `prtdiag` in the 'virtual' fact is too low for large Solaris systems](https://tickets.puppetlabs.com/browse/FACT-825)
+
+* [FACT-830: xendomains returning empty on debian hosts](https://tickets.puppetlabs.com/browse/FACT-830)
+
+* [FACT-834: Only load ec2 rest once to avoid double loading warnings](https://tickets.puppetlabs.com/browse/FACT-834)
+
+* [FACT-888: Facter does not properly detect KVM when CPU type is not qenu32/qumu64](https://tickets.puppetlabs.com/browse/FACT-888)
+
+* [FACT-894: Prepend ~/.puppetlabs/opt/facter/facts.d to external search path for non-root](https://tickets.puppetlabs.com/browse/FACT-894)
+
+* [FACT-805: use /etc/os-release on CoreOS](https://tickets.puppetlabs.com/browse/FACT-805)
+
+### Full List of Issues
+
+[See Jira for a full list of issues resolved in Facter 2.4.3.](https://tickets.puppetlabs.com/browse/FACT-596?jql=project%20%3D%20FACT%20AND%20fixVersion%20in%20%20(%22FACT%202.4.3%22%2C%20%22FACT%202.4.2%22)%20ORDER%20BY%20due%20ASC%2C%20priority%20DESC%2C%20created%20ASC)
+
+## Facter 2.4.2
+
+Facter 2.4.2 was not publicly released, and no packages were provided.
 
 ## Facter 2.4.1
 
