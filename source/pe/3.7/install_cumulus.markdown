@@ -19,7 +19,8 @@ Before beginning you will also need to gather:
 1. From an admin machine, [download][downloadpe] the Cumulus Linux Puppet Agent tarball. 
 2. Push the tarball to the `/home/cumulus` directory on the network device (e.g., run `scp puppet-enterprise-3.x.x-cumulus-2.2-amd64.tar cumulus@dell-s6000:/home/cumulus`).  
 3. On the network device, unpack the tarball with `tar xvf puppet-enterprise-3.x.x-cumulus-2.2-amd64.tar`.
-4. Use the Debian package management tool to install the Puppet agent. Run `sudo dpkg -i -R puppet-enterprise-3.x.x-cumulus-2.2-amd64/packages/cumulus-2.2-amd64`.
+4. Navigate to the directory created when you unpacked the PE tarball with `cd puppet-enterprise-3.x.x-cumulus-2.2-amd64.tar`.
+4. Use the PE installer to install the Puppet agent. Run `sudo ./puppet-enterprise-installer`.
 5. Edit `/etc/hosts` so that it includes the IP address of your Puppet master, as well as its FQDN and its default DNS alt name, `puppet`.
 6. Run the Puppet agent on the switch with `sudo /opt/puppet/bin/puppet agent -t`. 
 
