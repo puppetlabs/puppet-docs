@@ -34,13 +34,13 @@ Before beginning you will also need to gather:
 
 1. Remove the Puppet Enterprise packages installed during installation with the following command:
 
-       sudo dpkg -P pe-puppetserver-common pe-agent pe-puppet pe-facter pe-hiera pe-ruby-shadow pe-mcollective-client pe-mcollective pe-mcollective-common pe-rubygem-net-ssh pe-ruby-stomp pe-ruby-rgen pe-ruby-ldap pe-virt-what pe-rubygem-deep-merge pe-ruby-augeas pe-ruby pe-augeas pe-libyaml pe-openssl pe-puppet-enterprise-release 
+        sudo dpkg -P pe-puppetserver-common pe-agent pe-puppet pe-facter pe-hiera pe-ruby-shadow pe-mcollective-client pe-mcollective pe-mcollective-common pe-rubygem-net-ssh pe-ruby-stomp pe-ruby-rgen pe-ruby-ldap pe-virt-what pe-rubygem-deep-merge pe-ruby-augeas pe-ruby pe-augeas pe-libyaml pe-openssl pe-puppet-enterprise-release 
 
 2. Remove the PE-related directories created during installation with the following command:
 
-      sudo rm -rf /var/opt/lib/pe-puppet /etc/puppetlabs /var/log/pe-mcollective /opt/puppet
+        sudo rm -rf /var/opt/lib/pe-puppet /etc/puppetlabs /var/log/pe-mcollective /opt/puppet
       
-3. On the Puppet master, revoke the cert for the Puppet agent with `puppet cert clean <<NETWORK DEVICE'S FQDN>`. 
+3. On the Puppet master, revoke the cert for the Puppet agent with `puppet cert clean <NETWORK DEVICE'S FQDN>`. 
 
    This will revoke the agent certificate and delete related files on the Puppet master. This will prevent SSL collisions should you want to reinstall the Puppet agent on the same device. 
 
