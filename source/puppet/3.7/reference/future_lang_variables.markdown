@@ -14,9 +14,16 @@ canonical: "/puppet/latest/reference/future_lang_variables.html"
 [resource]: ./future_lang_resources.html
 [resource_attribute]: ./future_lang_resources.html#syntax
 [scope]: ./future_lang_scope.html
+[undef]: ./future_lang_datatypes.html#undef
+[strict_variables]: /references/3.7.latest/configuration.html#strictvariables
+[puppet.conf]: ./config_file_main.html
 
 
  <a id="facts"><a id="trusted-node-data"><a id="agent-set-variables"><a id="master-set-variables"><a id="parser-set-variables">
+
+Variables store values so they can be accessed later.
+
+In the Puppet language, variables are actually constants, since they [can't be reassigned](#no-reassignment). But since "variable" is more comfortable and familiar to most people, the name has stuck.
 
 > Facts and Built-In Variables
 > -----
@@ -51,6 +58,8 @@ Variables can only be assigned using their [short name](#naming). That is, a giv
 
 The name of a variable can be used in any place where a value of its data type would be accepted, including [expressions][], [functions][], and [resource attributes][resource_attribute]. Puppet will replace the name of the variable with its value.
 
+By default, unassigned variables have a value of [`undef`][undef]; see [Unassigned Variables and Strict Mode](#unassigned-variables-and-strict-mode) below for more details.
+
 ### Interpolation
 
 {% highlight ruby %}
@@ -83,6 +92,14 @@ You can access out-of-scope variables from named scopes by using their [qualifie
 {% endhighlight %}
 
 Note that the top scope's name is the empty string --- thus, the qualified name of a top scope variable would be, e.g., `$::osfamily`. See [scope][] for details.
+
+### Unassigned Variables and Strict Mode
+
+By default, you can access variables that have never had values assigned to them. If you do, their value will be [`undef`.][undef]
+
+This is usually not what you want, because using an unassigned variable is often an accident or a typo.
+
+If you'd rather have unassigned variable usage throw an error, so you can get warned early and fix the problem, you can enable strict mode. Set [`strict_variables = true`][strict_variables] in [puppet.conf][] on your Puppet master(s) and any nodes that run Puppet apply.
 
 ### No Reassignment
 
