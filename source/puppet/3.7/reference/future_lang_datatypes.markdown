@@ -52,11 +52,13 @@ If you want to convert other values to booleans with more permissive rules (`0` 
 Undef
 -----
 
-Puppet's special undef value is roughly equivalent to `nil` in Ruby; it represents the absence of a value. If the `strict_variables` setting isn't enabled, variables which have never been declared have a value of `undef`. Literal undef values must be the bare word `undef`.
+[undef]: #undef
 
-The undef value is usually useful for testing whether a variable has been set. It can also be used as the value of a resource attribute, which can let you un-set any value inherited from a [resource default][resourcedefault] and cause the attribute to be unmanaged.
+Puppet's special `undef` value is roughly equivalent to `nil` in Ruby; it represents the absence of a value. If the `strict_variables` setting isn't enabled, variables which have never been declared have a value of `undef`. Literal undef values must be the bare word `undef`.
 
-When used as a boolean, `undef` is false.
+The `undef` value is usually useful for testing whether a variable has been set. It can also be used as the value of a resource attribute, which can let you un-set any value inherited from a [resource default][resourcedefault] and cause the attribute to be unmanaged.
+
+When used as a boolean, `undef` is false. When interpolated into a string, `undef` will be converted to the empty string.
 
 * * *
 
@@ -345,6 +347,13 @@ Note that the opening square bracket must not be preceded by a white space:
     notice( $foo [2] ) # syntax error
 {% endhighlight %}
 
+If you try to access an element beyond the bounds of the array, its value will be [`undef`.][undef]
+
+{% highlight ruby %}
+    $foo = [ 'one', 'two', 'three', 'four', 'five' ]
+    $cool_value = $foo[6] # value is undef
+{% endhighlight %}
+
 
 ### Array Sectioning
 
@@ -428,7 +437,11 @@ You can access hash members with their key; square brackets are used for indexin
 
 This manifest would log `some value` as a notice.
 
-> **Note**: Accessing a nonexistent key in a hash returns `undef`.
+If you try to access a nonexistent key from a hash, its value will be [`undef`.][undef]
+
+{% highlight ruby %}
+    $cool_value = $myhash[absent_key] # Value is undef
+{% endhighlight %}
 
 Nested arrays and hashes can be accessed by chaining indexes:
 
