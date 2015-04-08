@@ -28,7 +28,9 @@ Before beginning you will also need to gather:
 7. On the Puppet master, sign the Puppet agent's CSR. Run `puppet cert sign <NETWORK DEVICE'S FQDN>`. 
 8. On the network device, complete the installation by running Puppet with `sudo /opt/puppet/bin/puppet agent -t`.
 
-   The Puppet agent will retrieve its catalog and will now be fully functional. 
+   The Puppet agent will retrieve its catalog and will now be fully functional.
+   
+> **Next Steps**: Now it's time to begin managing ports, licenses, and interfaces on your network device. Refer to the [Cumulus Linux page](https://forge.puppetlabs.com/cumuluslinux/) on the Puppet Forge for information about modules that will get you started. 
    
 ## Uninstall the Cumulus Linux Puppet Agent
 

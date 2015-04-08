@@ -58,11 +58,10 @@ Upgrading your OS while PE is installed can cause problems with PE. To perform a
 
 ## Network Devices
 
-
-Puppet Enterprise 3.7 supports running Puppet agents on the following networking devices/operating systems:
+Puppet Enterprise supports running Puppet agents on the following networking devices/operating systems:
 
 - **Arista EOS**: Refer the [aristanetworks/netdev_stdlib_eos module](https://forge.puppetlabs.com/aristanetworks/netdev_stdlib_eos#limitations) on the Puppet Forge for system requirements and dependencies.
-- **Cumulus Linux**: Refer to the [cumuluslinux/cumulus_ports module](https://forge.puppetlabs.com/cumuluslinux/cumulus_ports/dependencies) on the Puppet Forge for system requirements and dependencies.
+- **Cumulus Linux**: Refer to the [Cumulus Linux page](https://forge.puppetlabs.com/cumuluslinux/) on the Puppet Forge for system requirements and dependencies.
 
 
 ## Hardware Requirements
