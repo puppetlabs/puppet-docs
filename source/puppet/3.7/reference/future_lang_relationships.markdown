@@ -230,9 +230,9 @@ When Puppet is preparing to sync a resource whose type supports autorequire, it 
 
 The [resource type reference][type] contains information on which resource types can autorequire other resources. Each resource type's description should state its autorequire behavior, if any. For an example, see the "Autorequires" section near the end of [the `exec` type's description.][exec]
 
-### Parse-Order Independence
+### Evaluation-Order Independence
 
-Relationships are not limited by parse-order. You can declare a relationship with a resource before that resource has been declared.
+Relationships are not limited by evaluation-order. You can declare a relationship with a resource before that resource has been declared.
 
 ### Missing Dependencies
 

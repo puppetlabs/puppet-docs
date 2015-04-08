@@ -134,7 +134,7 @@ A class definition statement isn't an expression, and can't be used where a valu
 >
 > Most users should **only** put classes in individual files in modules. However, it's technically possible to put classes in the following additional locations and still load the class by name:
 >
-> * [The main manifest][sitedotpp]. If you do so, they may be placed anywhere in the main manifest file(s) and are not parse-order dependent.
+> * [The main manifest][sitedotpp]. If you do so, they may be placed anywhere in the main manifest file(s) and are not evaluation-order dependent. (That is, you can safely declare a class before it's defined.)
 > * A file in the same module whose corresponding class name is a truncated version of this class's name. That is, the class `first::second::third` could be put in `first::second`'s file, `first/manifests/second.pp`.
 > * Lexically inside another class definition. This puts the interior class under the exterior class's [namespace][], causing its real name to be something other than the name with which it was defined. (For example: in `class first { class second { ... } }`, the interior class's real name is `first::second`.) Note that this doesn't cause the interior class to be automatically declared along with the exterior class.
 >
@@ -279,7 +279,7 @@ Resource-like class declarations require that you **only declare a given class o
 
 > **Aside: Why Do Resource-Like Declarations Have to Be Unique?**
 >
-> This is necessary to avoid paradoxical or conflicting parameter values. Since overridden values from the class declaration always win, are computed at compile-time, and do not have a built-in hierarchy for resolving conflicts, allowing repeated overrides would cause catalog compilation to be unreliable and parse-order dependent.
+> This is necessary to avoid paradoxical or conflicting parameter values. Since overridden values from the class declaration always win, are computed at compile-time, and do not have a built-in hierarchy for resolving conflicts, allowing repeated overrides would cause catalog compilation to be unreliable and evaluation-order dependent.
 >
 > This was the original reason for adding external data bindings to include-like declarations: since external data is set **before** compile-time and has a **fixed hierarchy,** the compiler can safely rely on it without risk of conflicts.
 

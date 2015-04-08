@@ -22,7 +22,7 @@ canonical: "/puppet/latest/reference/future_lang_collectors.html"
 [catalog]: ./future_lang_summary.html#compilation-and-catalogs
 
 
-Resource collectors (AKA the spaceship operator) select a group of resources by searching the attributes of every resource in the [catalog][]. This search is parse-order independent (that is, it even includes resources which haven't yet been declared at the time the collector is written). Collectors realize [virtual resources][virtual], can be used in [chaining statements][chaining], and can override resource attributes.
+Resource collectors (AKA the spaceship operator) select a group of resources by searching the attributes of every resource in the [catalog][]. This search is independent of evaluation-order (that is, it even includes resources which haven't yet been declared at the time the collector is written). Collectors realize [virtual resources][virtual], can be used in [chaining statements][chaining], and can override resource attributes.
 
 Collectors have an irregular syntax that lets them function as both a statement and a value.
 

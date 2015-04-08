@@ -205,7 +205,7 @@ This example would set the variable `$local_copy` to the value of the `$confdir`
 > * Remember that top scope's name is the empty string. Thus, `$::my_variable` would always refer to the top-scope value of `$my_variable`, even if `$my_variable` has a different value in local scope.
 > * Note that a class must be [declared][declare_class] in order to access its variables; simply having the class available in your modules is insufficient.
 >
->   This means the availability of out-of-scope variables is **parse order dependent.** You should only access out-of-scope variables if the class accessing them can guarantee that the other class is already declared, usually by explicitly declaring it with `include` before trying to read its variables.
+>   This means the availability of out-of-scope variables is **evaluation order dependent.** You should only access out-of-scope variables if the class accessing them can guarantee that the other class is already declared, usually by explicitly declaring it with `include` before trying to read its variables.
 
 Variables declared in **anonymous scopes** can only be accessed normally and do not have global qualified names.
 
@@ -229,7 +229,7 @@ In **static scope,** parent scopes are **only** assigned by [class inheritance][
 
 > Static scope has the following characteristics:
 >
-> * Scope contents are predictable and do not depend on parse order.
+> * Scope contents are predictable and do not depend on evaluation order.
 > * Scope contents can be determined simply by looking at the relevant class definition(s); the place where a class or defined type is _declared_ has no effect. (The only exception is node definitions --- if a class is declared outside a node, it does not receive the contents of node scope.)
 
 This version of Puppet uses static scope for looking up variables.
@@ -247,7 +247,7 @@ In **dynamic scope,** parent scopes are assigned by both **inheritance** and **d
 >
 > * A scope's parent cannot be identified by looking at the definition of a class --- you must examine every place where the class or resource may have been declared.
 > * In some cases, you can only determine a scope's contents by executing the code.
-> * Since classes may be declared multiple times with the `include` function, the contents of a given scope are parse-order dependent.
+> * Since classes may be declared multiple times with the `include` function, the contents of a given scope are evaluation-order dependent.
 
 This version of Puppet uses dynamic scope only for resource defaults.
 

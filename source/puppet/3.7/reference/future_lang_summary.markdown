@@ -51,7 +51,7 @@ Puppet's language is mostly **declarative:** Rather than listing a series of cha
 
 The resources in a manifest can be freely ordered --- they will not necessarily be applied to the system in the order they are written. This is because Puppet assumes most resources aren't related to each other. If one resource depends on another, [you must say so explicitly][relationships]. (If you want a short section of code to get applied in the order written, you can use [chaining arrows][chaining].)
 
-Although resources can be freely ordered, several parts of the language do depend on parse order. The most notable of these are variables, which must be set before they are referenced.
+Although resources can be freely ordered, several parts of the language do depend on evaluation order. The most notable of these are variables, which must be set before they are referenced.
 
 ### Configurable Ordering
 

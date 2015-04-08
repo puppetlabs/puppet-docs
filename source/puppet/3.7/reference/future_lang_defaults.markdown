@@ -40,7 +40,7 @@ Within the [area of effect](#area-of-effect), every resource of the specified ty
 
 Attributes that are set explicitly in a resource declaration will always override any default value.
 
-Resource defaults are **parse-order independent.** A default will affect resource declarations written both above and below it.
+Resource defaults are **evaluation-order independent** --- that is, a default will affect resource declarations written both above and below it.
 
 ### Area of Effect
 

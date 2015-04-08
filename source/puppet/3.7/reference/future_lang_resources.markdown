@@ -309,4 +309,4 @@ Much like in an [inherited class][inheritance], you can use the special `+>` key
 > * It **can always override** already-specified attributes, regardless of class inheritance.
 > * It can affect large numbers of resources at once.
 > * It will [implicitly realize][realize] any [virtual resources][virtual] that the collector matches. If you are using virtual resources at all, you must use extreme care when constructing collectors that are not intended to realize resources, and would be better off avoiding non-realizing collectors entirely.
-> * Since it ignores class inheritance, you can override the same attribute twice, which results in a parse-order dependent race where the final override wins.
+> * Since it ignores class inheritance, you can override the same attribute twice, which results in a evaluation-order dependent race where the final override wins.

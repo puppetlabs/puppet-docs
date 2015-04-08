@@ -109,9 +109,9 @@ Unlike most other languages, Puppet only allows a given variable to be assigned 
 
 In the example above, `$myvar` has several different values, but only one value will apply to any given scope.
 
-### Parse-Order Dependence
+### Evaluation-Order Dependence
 
-Unlike [resource declarations][resource], variable assignments are parse-order dependent. This means you cannot resolve a variable before it has been assigned.
+Unlike [resource declarations][resource], variable assignments are evaluation-order dependent. This means you cannot resolve a variable before it has been assigned.
 
 This is the main way in which the Puppet language fails to be fully declarative.
 
