@@ -22,7 +22,7 @@ Things you should know before you set up provisioning:
 >**Hint**: With the `export` command, you can avoid having to repeatedly replace placeholder text. The steps for installing assume you have declared a server name and the port to use for Razor with this command:
 >
 >     export RAZOR_HOSTNAME=<server name>
->     export HTTP_PORT=8150  \n export HTTPS_PORT=8151
+>     export HTTP_PORT=8150
 >     export HTTPS_PORT=8151
 >
 > The steps below therefore use `$RAZOR_HOSTNAME`, `$HTTP_PORT` and `$HTTPS_PORT` for brevity.
