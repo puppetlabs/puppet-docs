@@ -5,7 +5,7 @@ subtitle: "Installing Puppet Enterprise: Split"
 canonical: "/pe/latest/install_pe_split.html"
 ---
 
-The following instructions are for installing a split installation of PE. When you perform a split installation of PE, the master, console, and PuppetDB components are all installed on separate machines. This type of installation is recommended for deployments of 500-1000 agent nodes.
+The following instructions are for installing a split installation of PE. When you perform a split installation of PE, the Puppet master, the PE console, and PuppetDB components are installed on three separate machines---one machine for each component. This type of installation is recommended for deployments of 500-1000 agent nodes.
 
 See the [installation overview](./install_basic.html) for instructions on downloading Puppet Enterprise.
 

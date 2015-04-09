@@ -278,7 +278,11 @@ Configure your firewalls to accommodate Puppet Enterprise's network traffic.
 </table>
 
 
-> Note: For split and mono installs: If you are installing PE using the web-based installer, ensure port **3000** is open. You can close this port when the installation is complete. If necessary, instructions for port forwarding to the web-based installer are available in the installation instructions.
+> **Notes about Ports**
+>
+>- For split and mono installs: If you are installing PE using the web-based installer, ensure port **3000** is open. You can close this port when the installation is complete. If necessary, instructions for port forwarding to the web-based installer are available in the installation instructions.
+>
+>- Razor uses port 8150 for HTTP and 8151 for HTTPS. Any node classified as a Razor server must be able to use these ports.
 
 #### For Large Environment Installations
 
