@@ -56,8 +56,7 @@ Razor ships with some stock broker types for your use:  puppet-pe, noop, and pup
 **Note:** The puppet-pe broker type depends on the package-based simplified agent installation method. For details, see  [Installing Agents](./install_basic.html#installing-agents).
 
 
-3. Include Tasks
--------------
+## 3. Include Tasks
 
 Tasks describe a process or collection of actions that should be performed while provisioning machines. They can be used to designate an operating system or other software that should be installed, where to get it, and the configuration details for the installation.
 
@@ -66,8 +65,7 @@ Tasks are structurally simple. They consist of a YAML metadata file and any numb
 Razor provides a handful of existing tasks, or you can create your own. To learn more about tasks, see [Writing Tasks and Templates](./razor_tasks.html).
 
 
-4. Create Policies
--------------
+## 4. Create Policies
 
 Policies orchestrate repos, brokers, and tasks to tell Razor what bits to install, where to get the bits, how they should be configured, and how to communicate between a node and PE.
 
@@ -114,8 +112,7 @@ See [Razor Command Reference](./razor_reference.html) for more information.
 2. Edit the options in the `policy.json` template with information specific to  your environment.
 3. Apply the policy by executing:	`razor create-policy --json policy.json`.
 
-5. Create Hooks (Optional)
--------------
+## 5. Create Hooks (Optional)
 
 Hooks enable you to run scripts when certain events occur during the operation of the Razor server. They allow you to both transfer information out of Razor, as well as modify the performance of an install by Razor, and therefore, hooks make it possible to customize tasks, reference outside systems, perform calculations, and more.
 
@@ -126,8 +123,8 @@ There are a handful of events
 
 
 
-6. Identify and Register Nodes
--------------
+## 6. Identify and Register Nodes
+
 
 Next, verify that your machine can PXE boot from the Razor server and register itself as a node.
 
@@ -136,7 +133,7 @@ Next, verify that your machine can PXE boot from the Razor server and register i
 
 	Identify a node in the list of registered nodes. The format should look like this:
 
-		id: "http://localhost:8151/api/collections/nodes/node1"
+		id: "https://localhost:8151/api/collections/nodes/node1"
 		name: "node1"
 		spec: "/razor/v1/collections/nodes/member"
 

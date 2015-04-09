@@ -556,7 +556,7 @@ For example, the following queries the UUID to return the associated node:
 	{
  	 "items": [
     	{
-       	 	"id": "https://razor.example.com:8150/api/collections/nodes/node14",
+       	 	"id": "https://razor.example.com:8151/api/collections/nodes/node14",
         	"name": "node14",
         	"spec": "http://api.puppetlabs.com/razor/v1/collections/nodes/member"
     	}],
