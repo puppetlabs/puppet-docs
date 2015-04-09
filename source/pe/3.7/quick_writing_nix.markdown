@@ -16,16 +16,19 @@ Welcome to the writing modules section of the Quick Start Guide series. This doc
 
 ### Getting Started
 
-All you need to install for the following exercises is the [Puppet Labs supported Apache module](https://forge.puppetlabs.com/puppetlabs/apache); you can find installation instructions in the  [Apache installation QSG](./quick_start_module_install_nix.html), but just be sure to install the module on your master. Once the module has been installed, use the console to add its class and then classify the master.
+In the [Apache installation QSG](./quick_start_module_install_nix.html), you installed the latest version of the puppetlabs-apache module. However for the exercises in this guide, you'll need a specific version of the module---version 1.2.0. 
+
+To install this version, first remove the previous version of the Apache module if you have it installed. Navigate to `/etc/puppetlabs/puppet/environments/production/modules` and run `puppet module uninstall puppetlabs-apache`.
+
+Next from that same directory run `puppet module install puppetlabs-apache --version 1.2.0`.
 
 ### Editing a Forge Module
-
 
 Although many Forge modules are exact solutions that fit your site, many are *almost* but not quite what you need. Sometimes you will need to edit some of your Forge modules.
 
 #### Module Basics
 
-By default, modules are stored in `/etc/puppetlabs/puppet/modules`. If need be, you can configure this path with the [`modulepath`](/references/3.7.latest/configuration.html#modulepath) setting in `puppet.conf`.)
+By default, modules are stored in `/etc/puppetlabs/puppet/environments/production/modules`. If need be, you can configure this path with the [`modulepath`](/references/3.7.latest/configuration.html#modulepath) setting in `puppet.conf`.)
 
 Modules are directory trees. For these exercises you'll use the following files:
 
@@ -49,7 +52,7 @@ Many modules, including Apache, contain directories other than `manifests` and `
 
 This simplified exercise modifies a template from the Puppet Labs Apache module, specifically `'vhost.conf.erb`. You'll edit the template to include some simple variables that will be populated by facts (using PE's implementation of Facter) about your node.
 
-1. **On the Puppet master,** navigate to the modules directory by running `cd /etc/puppetlabs/puppet/modules`.
+1. **On the Puppet master,** navigate to the modules directory by running `cd /etc/puppetlabs/puppet/environments/production/modules`.
 2. Run `ls` to view the currently installed modules; note that `apache` is present.
 3. Open `apache/templates/vhosts.conf.erb`, using the text editor of your choice (vi, nano, etc.). Avoid using Notepad since it can introduce errors.
       `vhosts.conf.erb` contains the following header:
@@ -109,7 +112,7 @@ Puppet Labs modules save time, but at some point you may that you'll need to wri
 
 During this exercise, you will create a class called `pe_quickstart_app` that will manage a PHP-based web app running on an Apache virtual host.
 
-1. **On the Puppet master**, make sure you're still in the modules directory (`cd /etc/puppetlabs/puppet/modules`) and then run `mkdir -p pe_quickstart_app/manifests` to create the new module directory and its manifests directory.
+1. **On the Puppet master**, make sure you're still in the modules directory (`cd /etc/puppetlabs/puppet/environments/production/modules`) and then run `mkdir -p pe_quickstart_app/manifests` to create the new module directory and its manifests directory.
 2. Use your text editor to create and open the `pe_quickstart_app/manifests/init.pp` file.
 3. Edit the `init.pp` file so it contains the following Puppet code, and then save it and exit the editor:
 
@@ -190,7 +193,7 @@ Many users create a "site" module. Instead of describing smaller units of a conf
 
 Site modules hide complexity so you can more easily divide labor at your site. System architects can create the site classes, and junior admins can create new machines and assign a single "role" class to them in the console. In this workflow, the console controls policy, not fine-grained implementation.
 
-* **On the Puppet master**, create `/etc/puppetlabs/puppet/modules/site/manifests/basic.pp`, and edit the file to contain the following:
+* **On the Puppet master**, create `/etc/puppetlabs/puppet/environments/production/modules/site/manifests/basic.pp`, and edit the file to contain the following:
 
 
         class site::basic {
