@@ -112,7 +112,7 @@ Puppet Labs modules save time, but at some point you may that you'll need to wri
 
 During this exercise, you will create a class called `pe_quickstart_app` that will manage a PHP-based web app running on an Apache virtual host.
 
-1. **On the Puppet master**, make sure you're still in the modules directory (`cd /etc/puppetlabs/puppet/modules`) and then run `mkdir -p pe_quickstart_app/manifests` to create the new module directory and its manifests directory.
+1. **On the Puppet master**, make sure you're still in the modules directory (`cd /etc/puppetlabs/puppet/environments/production/modules`) and then run `mkdir -p pe_quickstart_app/manifests` to create the new module directory and its manifests directory.
 2. Use your text editor to create and open the `pe_quickstart_app/manifests/init.pp` file.
 3. Edit the `init.pp` file so it contains the following Puppet code, and then save it and exit the editor:
 
@@ -193,7 +193,7 @@ Many users create a "site" module. Instead of describing smaller units of a conf
 
 Site modules hide complexity so you can more easily divide labor at your site. System architects can create the site classes, and junior admins can create new machines and assign a single "role" class to them in the console. In this workflow, the console controls policy, not fine-grained implementation.
 
-* **On the Puppet master**, create `/etc/puppetlabs/puppet/modules/site/manifests/basic.pp`, and edit the file to contain the following:
+* **On the Puppet master**, create `/etc/puppetlabs/puppet/environments/production/modules/site/manifests/basic.pp`, and edit the file to contain the following:
 
 
         class site::basic {
