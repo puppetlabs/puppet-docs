@@ -1,8 +1,8 @@
 ---
 layout: default
-title: "PE 3.7 » Installing » Installing Arista EOS Agents"
-subtitle: "Installing Arista EOS Agents"
-canonical: "/pe/latest/install_eos.html"
+title: "PE 3.8 » Installing » Installing Cumulus Linux Agents"
+subtitle: "Installing Cumulus Linux Puppet Agents"
+canonical: "/pe/latest/install_cumulus.html"
 ---
 
 Puppet Enterprise supports the Cumulus Linux operating system as an agent-only platform. There are a number of network devices that run [Cumulus Linux](http://cumulusnetworks.com/support/linux-hardware-compatibility-list/), and these instructions assume you've already installed a supported device, as well as having already [installed Puppet Enterprise](./install_basic.html).
