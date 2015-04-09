@@ -12,7 +12,7 @@ Puppet's parameter types fall into three basic categories:
 * **Collection** types specify arrays and hashes.
 * **Abstract** types are defined in terms of scalar and/or collection types, but add an additional level of flexibility.
 
-Most types accept one or more **parameters** which follow the type name in a comma-separated list wrapped in angle brackets. For example, the `Integer` type takes up to two parameters --- minimum and maximum value --- so `Integer[0, 10]` means "an integer from 0 to 10." Parameters are usually optional, but a few types require them.
+Most types accept one or more **parameters** which follow the type name in a comma-separated list wrapped in angle brackets. For example, the `Integer` type takes up to two parameters --- minimum and maximum value --- so `Integer[0, 10]` means "an integer from 0 to 10." Parameters are usually optional, but a few types require them. (The only situation where you can leave out required parameters is if you're referring to the type itself; that is, `Type[Variant]` is legal, even though `Variant` has required parameters.)
 
 ## Scalar Types
 
@@ -86,9 +86,11 @@ The collection types are the simplest way to match arrays or classes, but also t
 
 Note: Arrays in Puppet can contain any number of distinct types, while the `Array` parameter type only lets you specify one. You can use [abstract types](future_abstract_types.html) to express more nuanced type requirements (see the last two examples below). Another way to define an array that contains multiple types is with the [`Tuple` type](#tuple).
 
+
+
 Examples:
 
-* `Array` --- matches an array of any type or length.
+* `Array` --- matches an array of any length; each element in the array must match `Data`.
 * `Array[String]` --- matches an array of any size that contains only strings.
 * `Array[Integer, 6]` --- matches an array containing at least six integers.
 * `Array[Float, 6, 12]` --- matches an array containing at least six and at most 12 floating-point numbers.
@@ -105,7 +107,7 @@ Note: Hashes in Puppet can contain any number of distinct key-value types, while
 
 Examples:
 
-* `Hash` --- matches any hash map.
+* `Hash` --- matches any hash map whose keys match `Scalar` and values match `Data`.
 * `Hash[String]` --- matches any hash map that uses only strings as keys.
 * `Hash[Integer, String]` --- matches a hash map that uses integers for keys and strings for values.
 * `Hash[Integer, String, 1]` --- same as above, but requires a non-empty hash map.
@@ -189,7 +191,7 @@ Examples of types that match `Data`:
 ### Pattern
 
 - **Matches**: a string that matches at least one of the given regular expressions.
-- **Required Parameters**: one or more regular expressions.
+- **Required Parameters**: one or more regular expressions or stringified regular expressions.
 - **Optional Parameters**: none.
 
 Note:
@@ -223,7 +225,7 @@ Examples:
 - **Required Parameters**: none.
 - **Optional Parameters**: none.
 
-Note: the `Collection` type is equivalent to `Variant[Array, Hash]`.
+Note: the `Collection` type is equivalent to `Variant[Array[Any], Hash[Any, Any]]`.
 
 ### Tuple
 
@@ -271,6 +273,16 @@ Examples:
 * `Optional[String]` --- matches any string or `undef`.
 * `Optional[Array[Integer[0, 10]]]` --- matches an array of integers between 0 and 10, or `undef`.
 
+### Undef
+
+Puppet's special `undef` value, representing the absence of a value. Roughly equivalent to Ruby's `nil`.
+
+- **Matches**: only the value `undef`.
+- **Required Parameters**: none.
+- **Optional Parameters**: none.
+
+Note that the value `undef` can also match `Data` and `Optional`, as well as `Any`.
+
 ### Default
 
 - **Matches**: an instance of the special value `default`.
@@ -286,7 +298,7 @@ Examples:
 
 ### Catalogentry
 
-A Catalogentry is the abstract base type for `Resource` and `Class`. 
+A Catalogentry is the abstract base type for `Resource` and `Class`.
 
 - **Matches**: an instance of Resource or Class
 - **Required Parameters**: none.
@@ -303,7 +315,7 @@ A Catalogentry is the abstract base type for `Resource` and `Class`.
 Examples:
 
 * `Type` --- matches any type, such as `Integer`, `String`, `Any`, `Type`.
-* `Type[String]` --- matches only the type `String`.
+* `Type[String]` --- matches only the type `String` (and any of its more specific instances like `String[3]`).
 * `Type[Resource]` --- matches any `Resource` type (i.e. any resource reference).
 
 Note: the standard lib function `type_of` can return the type of a value e.g. `type_of(3)` returns `Integer[3,3]`.
@@ -315,3 +327,11 @@ Note: the standard lib function `type_of` can return the type of a value e.g. `t
 - **Optional Parameters**: none.
 
 Note: parameters that are not given an explicit type are assumed to by of `Any` type, which will never fail to match.
+
+### Callable
+
+- **Matches**: callable lambdas provided as function arguments.
+- **Required Parameters**: none.
+- **Optional Parameters**: any number of Types, followed by, optionally, a minimum number of arguments, a maximum number of arguments, and a Callable, which is taken as its `block_type`.
+
+There is no way to interact with Callable values in the Puppet language, but Ruby functions written to the modern function API (`Puppet::Functions`) can use it to inspect the lambda provided to the function.
