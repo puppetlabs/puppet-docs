@@ -16,20 +16,16 @@ If you're not a PE user, you can install the [open source version of Razor manua
 ###Before You Begin
 Things you should know before you set up provisioning:
 
-+ The default port for Razor is 8150. You can change this, as described in the "Install the Razor Server" section below.
++ The default port for Razor are 8150 for HTTP and 8151 for HTTPS. You can change this, as described in the "Install the Razor Server" section below.
 + Razor has been validated on RHEL/CentOS 6.x and 7.x versions.
 
 >**Hint**: With the `export` command, you can avoid having to repeatedly replace placeholder text. The steps for installing assume you have declared a server name and the port to use for Razor with this command:
 >
 >     export RAZOR_HOSTNAME=<server name>
->     export RAZOR_PORT=8150
+>     export HTTP_PORT=8150  \n export HTTPS_PORT=8151
+>     export HTTPS_PORT=8151
 >
-> For example:
->
->	  export RAZOR_HOSTNAME=centos6.4
->	  export RAZOR_PORT=8150
->
-> The steps below therefore use `$RAZOR_HOSTNAME` and `$RAZOR_PORT` for brevity.
+> The steps below therefore use `$RAZOR_HOSTNAME`, `$HTTP_PORT` and `$HTTPS_PORT` for brevity.
 
 Install the Razor Server
 -------------
@@ -83,14 +79,14 @@ Razor provides a specific iPXE boot image to ensure you're using a compatible ve
 
 3. Download the iPXE bootstrap script from the Razor server to the `/var/lib/tftpboot` directory:
 
-		wget http://${RAZOR_HOSTNAME}:${RAZOR_PORT}/api/microkernel/bootstrap?nic_max=1 -O /var/lib/tftpboot/bootstrap.ipxe
+		wget https://${RAZOR_HOSTNAME}:${HTTPS_PORT}/api/microkernel/bootstrap?nic_max=1 -O /var/lib/tftpboot/bootstrap.ipxe
 
  **Note**: Make sure you don't use `localhost` as the name of the Razor host. The bootstrap script chain-loads the next iPXE script from the Razor server. This means that it has to contain the correct hostname for clients to try and fetch that script from, or it isn't going to work.
 
 
 ###Verify the Razor Server
 
-Test the new Razor configuration: `wget http://${RAZOR_HOSTNAME}:${RAZOR_PORT}/api -O test.out`.
+Test the new Razor configuration: `wget https://${RAZOR_HOSTNAME}:${HTTPS_PORT}/api -O test.out`.
 
 The command should execute successfully, and the output JSON file `test.out` should contain a list of available Razor commands.
 
@@ -106,7 +102,7 @@ The Razor client is installed as a Ruby gem.
 
 2. You can verify that the Razor client is installed by printing Razor help:
 
-		razor -u http://${RAZOR_HOSTNAME}:${RAZOR_PORT}/api
+		razor -u https://${RAZOR_HOSTNAME}:${HTTPS_PORT}/api
 
 3. You'll likely get this warning message about JSON: "MultiJson is using the default adapter (ok_json). We recommend loading a different JSON library to improve performance."  This message is harmless, but you can disble it with this command:
 
