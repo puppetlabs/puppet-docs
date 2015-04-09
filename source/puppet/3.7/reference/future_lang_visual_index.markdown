@@ -10,7 +10,7 @@ canonical: "/puppet/latest/reference/future_lang_visual_index.html"
 [title]: ./future_lang_resources.html#title
 [attribute]: ./future_lang_resources.html#attributes
 [value]: ./future_lang_resources.html#attributes
-[string]: ./future_lang_datatypes.html#strings
+[string]: ./future_lang_data_string.html
 [function]: ./future_lang_functions.html
 [rvalue]: ./future_lang_functions.html#behavior
 [template_func]: /guides/templating.html
@@ -20,8 +20,8 @@ canonical: "/puppet/latest/reference/future_lang_visual_index.html"
 [refs]: ./future_lang_datatypes.html#resource-references
 [chaining]: ./future_lang_relationships.html#chaining-arrows
 [variable]: ./future_lang_variables.html
-[array]: ./future_lang_datatypes.html#arrays
-[hash]: ./future_lang_datatypes.html#hashes
+[array]: ./future_lang_data_array.html
+[hash]: ./future_lang_data_hash.html
 [interpolation]: ./future_lang_datatypes.html#variable-interpolation
 [class_def]: ./future_lang_classes.html#defining-classes
 [class_decl]: ./future_lang_classes.html#declaring-classes
@@ -35,7 +35,7 @@ canonical: "/puppet/latest/reference/future_lang_visual_index.html"
 [expressions]: ./future_lang_expressions.html
 [built_in]: ./future_lang_variables.html#facts-and-built-in-variables
 [facts]: ./future_lang_variables.html#facts
-[regex]: ./future_lang_datatypes.html#regular-expressions
+[regex]: ./future_lang_data_regex.html
 [regex_match]: ./future_lang_expressions.html#regex-match
 [in]: ./future_lang_expressions.html#in
 [case]: ./future_lang_conditional.html#case-statements

@@ -12,8 +12,8 @@ canonical: "/puppet/latest/reference/future_lang_resources.html"
 [append_attributes]: ./future_lang_classes.html#appending-to-resource-attributes
 [types]: /references/latest/type.html
 [bareword]: ./future_lang_datatypes.html#bare-words
-[string]: ./future_lang_datatypes.html#strings
-[array]: ./future_lang_datatypes.html#arrays
+[string]: ./future_lang_data_string.html
+[array]: ./future_lang_data_array.html
 [datatype]: ./future_lang_datatypes.html
 [inheritance]: ./future_lang_classes.html#inheritance
 [relationships]: ./future_lang_relationships.html

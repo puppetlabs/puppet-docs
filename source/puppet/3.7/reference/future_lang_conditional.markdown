@@ -6,14 +6,14 @@ canonical: "/puppet/latest/reference/future_lang_conditional.html"
 
 
 [local]: ./future_lang_scope.html#local-scopes
-[boolean]: ./future_lang_datatypes.html#booleans
-[regex]: ./future_lang_datatypes.html#regular-expressions
+[boolean]: ./future_lang_data_boolean.html
+[regex]: ./future_lang_data_regex.html
 [facts]: ./future_lang_variables.html#facts
 [equality]: ./future_lang_expressions.html#equality
 [fail]: /references/latest/function.html#fail
 [matching]: ./future_lang_expressions.html#regex-match
 [expressions]: ./future_lang_expressions.html
-[bool_convert]: ./future_lang_datatypes.html#automatic-conversion-to-boolean
+[bool_convert]: ./future_lang_data_boolean.html
 [variables]: ./future_lang_variables.html
 [functions]: ./future_lang_functions.html
 [datatypes]: ./future_lang_datatypes.html

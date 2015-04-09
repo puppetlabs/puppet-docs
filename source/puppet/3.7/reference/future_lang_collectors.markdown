@@ -13,11 +13,11 @@ canonical: "/puppet/latest/reference/future_lang_collectors.html"
 [chaining]: ./future_lang_relationships.html#chaining-arrows
 [attribute]: ./future_lang_resources.html#attributes
 [expressions]: ./future_lang_expressions.html
-[string]: ./future_lang_datatypes.html#strings
-[boolean]: ./future_lang_datatypes.html#booleans
-[number]: ./future_lang_datatypes.html#numbers
+[string]: ./future_lang_data_string.html
+[boolean]: ./future_lang_data_boolean.html
+[number]: ./future_lang_data_number.html
 [reference]: ./future_lang_datatypes.html#resource-references
-[undef]: ./future_lang_datatypes.html#undef
+[undef]: ./future_lang_data_undef.html
 [amend]: ./future_lang_resources.html#amending-attributes-with-a-collector
 [catalog]: ./future_lang_summary.html#compilation-and-catalogs
 

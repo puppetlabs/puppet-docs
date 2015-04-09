@@ -5,17 +5,17 @@ canonical: "/puppet/latest/reference/future_lang_expressions.html"
 ---
 
 [datatypes]: ./future_lang_datatypes.html
-[boolean]: ./future_lang_datatypes.html#booleans
-[numbers]: ./future_lang_datatypes.html#numbers
-[strings]: ./future_lang_datatypes.html#strings
-[arrays]: ./future_lang_datatypes.html#arrays
-[hashes]: ./future_lang_datatypes.html#hashes
-[regex]: ./future_lang_datatypes.html#regular-expressions
+[boolean]: ./future_lang_data_boolean.html
+[numbers]: ./future_lang_data_number.html
+[strings]: ./future_lang_data_string.html
+[arrays]: ./future_lang_data_array.html
+[hashes]: ./future_lang_data_hash.html
+[regex]: ./future_lang_data_regex.html
 [if]: ./future_lang_conditional.html#if-statements
 [case]: ./future_lang_conditional.html#case-statements
 [selector]: ./future_lang_conditional.html#selectors
 [function]: ./future_lang_functions.html
-[bool_convert]: ./future_lang_datatypes.html#automatic-conversion-to-boolean
+[bool_convert]: ./future_lang_data_boolean.html
 [variables]: ./future_lang_variables.html
 [resources]: ./future_lang_resources.html
 [class]: ./future_lang_classes.html

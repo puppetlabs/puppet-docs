@@ -19,7 +19,7 @@ canonical: "/puppet/latest/reference/future_lang_classes.html"
 [function]: ./future_lang_functions.html
 [multi_ref]: ./future_lang_datatypes.html#multi-resource-references
 [add_attribute]: ./future_lang_resources.html#adding-or-modifying-attributes
-[undef]: ./future_lang_datatypes.html#undef
+[undef]: ./future_lang_data_undef.html
 [relationships]: ./future_lang_relationships.html
 [qualified_var]: ./future_lang_variables.html#accessing-out-of-scope-variables
 [variable]: ./future_lang_variables.html
