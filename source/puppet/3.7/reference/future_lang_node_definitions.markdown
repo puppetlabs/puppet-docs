@@ -18,7 +18,7 @@ canonical: "/puppet/latest/reference/future_lang_node_definitions.html"
 [modules]: ./modules_fundamentals.html
 [enc]: /guides/external_nodes.html
 [facts]: ./future_lang_variables.html#facts-and-built-in-variables
-[catalog]: ./future_lang_summary.html#compilation-and-catalogs
+[catalogs]: ./future_lang_summary.html#compilation-and-catalogs
 [strict]: /references/latest/configuration.html#stricthostnamechecking
 [conditional]: ./future_lang_conditional.html
 

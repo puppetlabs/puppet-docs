@@ -260,12 +260,6 @@ Include-like behavior relies on [external data][external_data] and defaults for 
 2. Use the default value.
 3. Fail compilation with an error if no value can be found.
 
-> **Aside: Best Practices**
->
-> **Most** users in **most** situations should use include-like declarations and set parameter values in their external data. However, compatibility with earlier versions of Puppet may require compromises. See [Aside: Writing for Multiple Puppet Versions][aside_history] below for details.
-
-> **Version Note:** Automatic external parameter lookup was a new feature in Puppet 3. Puppet 2.7 and earlier could only use default values or override values from resource-like declarations. [See below for more details.][aside_history]
-
 #### Resource-like Behavior
 
 [resource-like]: #resource-like-behavior
