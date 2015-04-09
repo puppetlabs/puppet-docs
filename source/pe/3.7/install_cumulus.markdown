@@ -12,7 +12,7 @@ In order to install the Cumulus Linux Puppet agent, you must have access to the 
 Before beginning you will also need to gather:
 
 - The IP address and the fully qualified domain name (FQDN) of your Puppet master server.
-- The FQDN of the network device that you're installing the Cumulus Linux on. 
+- The FQDN of the network device that you're installing the Cumulus Linux Puppet agent on. 
 
 ## Install the Cumulus Linux Puppet Agent
 
