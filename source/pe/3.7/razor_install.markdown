@@ -11,7 +11,7 @@ In addition to the Razor server, the Razor client can be installed as a Ruby gem
 
 If you're not a PE user, you can install the [open source version of Razor manually](https://github.com/puppetlabs/razor-server/wiki/Installation).
 
-**Important**: We highly recommend that you set Razor up in a completely isolated test environment before you run it on your production environment. This environment must have access to the internet. See [Set Up a Virtual Environment for Razor](./razor_prereqs.html) for details.
+**Important**: We highly recommend that you set Razor up in a completely isolated test environment before you run it on your production environment. This environment must have access to the internet. See [Install and Set Up an Environment for Razor](./razor_prereqs.html) for details.
 
 ###Before You Begin
 Things you should know before you set up provisioning:
