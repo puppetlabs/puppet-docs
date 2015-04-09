@@ -9,7 +9,8 @@ canonical: "/puppet/latest/reference/future_lang_datatypes.html"
 [conditional]: ./future_lang_conditional.html
 [node]: ./future_lang_node_definitions.html
 [attribute]: ./future_lang_resources.html#syntax
-[regsubst]: /references/latest/function.html#regsubst
+[regsubst]: /references/3.7.latest/function.html#regsubst
+[match]: /references/3.7.latest/function.html#match
 [function]: ./future_lang_functions.html
 [variables]: ./future_lang_variables.html
 [expression]: ./future_lang_expressions.html
@@ -24,7 +25,7 @@ canonical: "/puppet/latest/reference/future_lang_datatypes.html"
 [node_def]: ./future_lang_node_definitions.html
 [relationship]: ./future_lang_relationships.html
 [chaining]: ./future_lang_relationships.html#chaining-arrows
-[mutable]: http://projects.puppetlabs.com/issues/16116
+[ruby_regexp]: http://ruby-doc.org/core/Regexp.html
 
 The Puppet language allows several data types as [variables][], [attribute][] values, and [function][] arguments:
 
@@ -474,9 +475,11 @@ The [puppetlabs-stdlib][stdlib] module contains several additional functions for
 Regular Expressions
 -----
 
-Regular expressions (regexes) are Puppet's one **non-standard** data type. They cannot be assigned to variables, and they can only be used in the few places that specifically accept regular expressions. These places include: the `=~` and `!~` regex match operators, the cases in selectors and case statements, and the names of [node definitions][node_def]. They cannot be passed to functions or used in resource attributes. (Note that the [`regsubst` function][regsubst] takes a stringified regex in order to get around this.)
+A regular expression (sometimes shortened as "regex" or "regexp") is a pattern that can match some set of strings, and optionally capture parts of those strings for further use.
 
-Regular expressions are written as [standard Ruby regular expressions](http://www.ruby-doc.org/core/Regexp.html) (valid for the version of Ruby being used by Puppet) and must be surrounded by forward slashes:
+You can use regular expression values with the `=~` and `!~` match operators, case statements and selectors, node definitions, and certain functions (notably [`regsubst`][regsubst] for editing strings and [`match`][match] for capturing and extracting substrings). Regexes act like any other value, and can be assigned to variables and used in function arguments.
+
+Regular expressions are written as patterns bordered by forward slashes. (Unlike in Ruby, you cannot specify options or encodings after the final slash, like `/node .*/m`.)
 
 {% highlight ruby %}
     if $host =~ /^www(\d+)\./ {
@@ -484,7 +487,11 @@ Regular expressions are written as [standard Ruby regular expressions](http://ww
     }
 {% endhighlight %}
 
-Alternate forms of regex quoting are not allowed and Ruby-style variable interpolation is not available.
+Puppet uses [Ruby's standard regular expression implementation][ruby_regexp] to match patterns.
+
+Alternate forms of regex quoting like Ruby's `%r{^www(\d+)\.}` are not allowed. You cannot interpolate variables or expressions into regex values.
+
+Some places in the language accept both real regex values and stringified regexes --- that is, the same pattern quoted as a string instead of surrounded by slashes.
 
 ### Regex Options
 
@@ -505,13 +512,11 @@ The following options are allowed:
 
 ### Regex Capture Variables
 
-Within [conditional statements][conditional] that use regexes (but **not** [node definitions][node] that use them), any captures from parentheses in the pattern will be available inside the associated value as numbered variables (`$1, $2`, etc.), and the entire match will be available as `$0`.
+Within [conditional statements][conditional] and [node definitions][node], any captured substrings from parentheses in a regular expression will be available as numbered variables (`$1, $2`, etc.) inside the associated code section, and the entire match will be available as `$0`.
 
 These are not normal variables, and have some special behaviors:
 
 * The values of the numbered variables do not persist outside the code block associated with the pattern that set them.
+* You can't manually assign values to a variable with only digits in its name; they can only be set by pattern matching.
 * In nested conditionals, each conditional has its own set of values for the set of numbered variables. At the end of an interior statement, the numbered variables are reset to their previous values for the remainder of the outside statement. (This causes conditional statements to act like [local scopes][local], but only with regard to the numbered variables.)
 
-### Regex Functions
-
-You can use [the `match` function](/references/3.7.latest/function.html#match) to do more advanced regex matching. This function performs matching against strings, and returns an array containing the match's result and any captures.
