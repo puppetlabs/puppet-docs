@@ -121,9 +121,7 @@ Hooks enable you to run scripts when certain events occur during the operation o
 
 Razor comes with one stock hook that counts the number of times a node boots, binds to a policy, and changes its facts. This "counter" hook can be queried using `razor hooks $name`. It keeps track of the last event that a given node performed, which can be queried using `razor nodes $name log`.
 
-
-
-There are a handful of
+There are a handful of events
 
 
 
@@ -138,7 +136,7 @@ Next, verify that your machine can PXE boot from the Razor server and register i
 
 	Identify a node in the list of registered nodes. The format should look like this:
 
-		id: "http://localhost:8150/api/collections/nodes/node1"
+		id: "http://localhost:8151/api/collections/nodes/node1"
 		name: "node1"
 		spec: "/razor/v1/collections/nodes/member"
 
