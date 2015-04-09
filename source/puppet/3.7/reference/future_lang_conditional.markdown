@@ -1,5 +1,5 @@
 ---
-title: "Future Parser: Conditional Statements"
+title: "Future Parser: Conditional Statements and Expressions"
 layout: default
 canonical: "/puppet/latest/reference/future_lang_conditional.html"
 ---
