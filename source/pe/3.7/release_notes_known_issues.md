@@ -135,6 +135,15 @@ You can update the gems used by your Puppet Master with `/opt/puppet/bin/puppets
 
 After updating the gems, you need to restart the Puppet master with `service pe-puppetserver restart`. You should do this **before** doing any Puppet agent runs.
 
+>**Note**: Installing `puppetserver` gems fails when run unprivileged. You might get a "no such file or directory" error. Instead, install as root.
+
+#### Installing Gems when Puppet Server is Behind a Proxy Requires Manual Download of Gems
+
+If you run Puppet Server behind a proxy, the `puppetserver gem install` command will fail. Instead you can install the gems as follows:
+
+1. Use [rubygems.org](https://rubygems.org/pages/download#formats) to search for and download the gem you want to install, and transfer that gem to your Puppet master. 
+2. Run `/opt/puppet/bin/puppetserver gem install --local <PATH to GEM>`.
+
 ### A Note About Gems with Native (C) Extensions for JRuby on the Puppet Server
 
 Please see the Puppet Server documentation for a description of this issue, [Gems with Native (C) Extensions](/puppetserver/1.0/gems.html#gems-with-native-c-extensions).
