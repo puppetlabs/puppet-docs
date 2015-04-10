@@ -1,46 +1,15 @@
 ---
 layout: default
-title: "Future Parser: Data Types"
-canonical: "/puppet/latest/reference/future_lang_datatypes.html"
+title: "Future Parser: Data Types: Resource References"
+canonical: "/puppet/latest/reference/future_lang_data_resource_reference.html"
 ---
 
-
-[local]: ./future_lang_scope.html#local-scopes
-[conditional]: ./future_lang_conditional.html
-[node]: ./future_lang_node_definitions.html
-[attribute]: ./future_lang_resources.html#syntax
-[regsubst]: /references/3.7.latest/function.html#regsubst
-[match]: /references/3.7.latest/function.html#match
-[function]: ./future_lang_functions.html
-[variables]: ./future_lang_variables.html
-[expression]: ./future_lang_expressions.html
-[if]: ./future_lang_conditional.html#if-statements
-[comparison]: ./future_lang_expressions.html#comparison-operators
-[stdlib]: http://forge.puppetlabs.com/puppetlabs/stdlib
-[facts]: ./future_lang_variables.html#facts
-[fact_datatypes]: ./future_lang_facts_and_builtin_vars.html#data-types
-[reserved]: ./future_lang_reserved.html#reserved-words
-[attribute_override]: ./future_lang_resources.html#adding-or-modifying-attributes
-[resourcedefault]: ./future_lang_defaults.html
-[node_def]: ./future_lang_node_definitions.html
 [relationship]: ./future_lang_relationships.html
 [chaining]: ./future_lang_relationships.html#chaining-arrows
-[ruby_regexp]: http://ruby-doc.org/core/Regexp.html
-[undef]: ./future_lang_data_undef.html
-
-The Puppet language allows several data types as [variables][], [attribute][] values, and [function][] arguments:
+[attribute_override]: ./future_lang_resources.html#adding-or-modifying-attributes
 
 
 
-* * *
-
-
-
-
-* * *
-
-Resource References
------
 
 Resource references identify a specific existing Puppet resource by its type and title. Several attributes, such as the [relationship][] metaparameters, require resource references.
 
@@ -74,21 +43,4 @@ Resource references with an **array of titles** or **comma-separated list of tit
 {% endhighlight %}
 
 They can be used wherever an array of references might be used. They can also go on either side of a [chaining arrow][chaining] or receive a [block of additional attributes][attribute_override].
-
-
-* * *
-
-
-
-* * *
-
-
-
-
-* * *
-
-
-
-
-* * *
 
