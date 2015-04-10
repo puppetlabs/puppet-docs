@@ -109,11 +109,13 @@ PE will automatically update your version of puppetlabs-inifile as part of the u
 	Warning: Not using cache on failed catalog
 	Error: Could not retrieve catalog; skipping run
 
-### A Note about Symlinks and Installation/Upgrade
+### Notes about Symlinks and Installation/Upgrade
 
 The answer file no longer gives the option of whether to install symlinks. These are now automatically created during installation. To allow the creation of symlinks, ensure that `/usr/local/bin` is writable (`/usr/bin` on AIX). For more context, see the note about [PE Binaries and Symlinks](./install_basic.html#puppet-enterprise-binaries-and-symlinks). 
 
 However, please note that we do not recommend employing symlinks in the place of `/opt` for database storage, as doing so can lead to databases not being seen. In addition, if `/opt/puppet` is symlink, the `-d` flag will not function correctly during an uninstall.
+
+If you're running Mac OS X agents, note that symlinks are not created until the first successful Puppet that applies the agent's catalog. 
 
 ### Answer File Required for Some SMTP Servers
 

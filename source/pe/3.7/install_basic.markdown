@@ -202,6 +202,8 @@ Note that you can download and install Puppet Enterprise on up to ten nodes at n
 
 PE installs its binaries in `/opt/puppet/bin` and `/opt/puppet/sbin`. To make essential Puppet tools available to all users, the installer automatically creates symlinks in `/usr/local/bin` for the `facter`, `puppet`, `pe-man`, `r10k`, `hiera`,  and `mco` binaries. Note that the symlinks will only be created if `/usr/local/bin` is writeable (`/usr/bin` on AIX). 
 
+If you're running Mac OS X agents, note that symlinks are not created until the first successful Puppet that applies the agent's catalog.
+
 Other PE binaries, such as `pe-postgresql`, `pe-ruby`, or `pe-openssl`, do not have symlinks created. To include these binaries in your default `$PATH`, manually add them to your profile or run `PATH=/opt/puppet/bin:$PATH;export PATH`.
 
 Installing Agents
