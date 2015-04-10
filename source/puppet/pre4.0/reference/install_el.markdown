@@ -22,7 +22,7 @@ title: "Installing Puppet: Red Hat Enterprise Linux (and Derivatives)"
 First
 -----
 
-Before installing Puppet, make sure you've looked at the [pre-install tasks.](./install_pre.html)
+Before installing Puppet, make sure you've read the [pre-install tasks.](./install_pre.html)
 
 **Since this is a pre-release version, you might not want to upgrade your existing systems yet.** Install on test systems first.
 

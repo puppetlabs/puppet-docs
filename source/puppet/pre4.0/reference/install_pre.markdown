@@ -27,16 +27,16 @@ You should completely install and configure Puppet on any Puppet masters before 
 
 A Puppet master should be a dedicated machine with a fast processor, lots of RAM, and a fast disk. It must also be reachable at a reliable hostname.
 
-> Note: agent nodes will default to contacting the master at the hostname `puppet`. If you make sure this hostname resolves to the master, you can skip changing [the `server` setting][server_setting] and reduce your setup time.
+> Note: Agent nodes will default to contacting the master at the hostname `puppet`. If you make sure this hostname resolves to the master, you can skip changing [the `server` setting][server_setting] and reduce your setup time.
 
 
 ## Check OS Versions and System Requirements
 
 See the [system requirements][sysreqs] for the version of Puppet you are installing, and consider the following:
 
-- Your Puppet master(s) should be able to handle the amount of agents they'll need to serve.
-- Systems we provide official packages for will have an easier install path.
-- Systems we don't provide packages for _might_ still be able to run Puppet, as long as the version of Ruby is suitable and the prerequisites are installed. See the [list of supported Ruby versions and prerequisites.][ruby] You'll also need to follow a more complex install path.
+* Your Puppet master(s) should be able to handle the amount of agents they'll need to serve.
+* Systems we provide official packages for will have an easier install path.
+* Systems we don't provide packages for _might_ still be able to run Puppet, as long as the version of Ruby is suitable and the prerequisites are installed. See the [list of supported Ruby versions and prerequisites.][ruby] You'll also need to follow a more complex install path.
 
 ## Check Your Network Configuration
 

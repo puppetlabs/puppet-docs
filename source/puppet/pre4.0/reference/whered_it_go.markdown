@@ -68,7 +68,7 @@ The default `codedir` location is:
 
 * `/etc/puppetlabs/code` on \*nix
 * `C:\ProgramData\PuppetLabs\code` on Windows
-* `<USER DIRECTORY>/.puppet/code` if you're running as a non-root user
+* `<USER DIRECTORY>/.puppetlabs/etc/code` if you're running as a non-root user
 
 The main contents of the `codedir` are:
 
