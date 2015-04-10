@@ -5,9 +5,9 @@ title: "Configuring r10k"
 
 [direnv]: /puppet/4.0/reference/environments.html
 [direnv_setup]: /puppet/4.0/reference/environments_creating.html
-
 [gettingstarted]: ./gettingstarted_r10k.html
 [gettingtoknow]: ./index.html
+[puppetfile]: ./puppetfile.html
 
 #Configuring r10k
 
@@ -16,7 +16,7 @@ Configuring r10k is as easy as updating a .yaml file with the location of your G
 * Continue reading to learn how to configure r10k.
 * [See "Getting To Know r10k"][gettingtoknow] for basic information about r10k.
 * [See "Getting Started with r10k"][gettingstarted] to get r10k up and running.
-* [See "Mananaging Modules"][LINK] to learn how to set up your r10k Puppetfile.
+* [See "Mananaging Modules"][puppetfile] to learn how to set up your r10k Puppetfile.
 * [See "Managing Environments"]
 
 
