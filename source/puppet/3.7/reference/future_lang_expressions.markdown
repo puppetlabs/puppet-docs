@@ -10,7 +10,7 @@ canonical: "/puppet/latest/reference/future_lang_expressions.html"
 [strings]: ./future_lang_data_string.html
 [arrays]: ./future_lang_data_array.html
 [hashes]: ./future_lang_data_hash.html
-[regex]: ./future_lang_data_regex.html
+[regex]: ./future_lang_data_regexp.html
 [if]: ./future_lang_conditional.html#if-statements
 [case]: ./future_lang_conditional.html#case-statements
 [selector]: ./future_lang_conditional.html#selectors

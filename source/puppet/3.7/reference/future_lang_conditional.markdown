@@ -7,7 +7,7 @@ canonical: "/puppet/latest/reference/future_lang_conditional.html"
 
 [local]: ./future_lang_scope.html#local-scopes
 [boolean]: ./future_lang_data_boolean.html
-[regex]: ./future_lang_data_regex.html
+[regex]: ./future_lang_data_regexp.html
 [facts]: ./future_lang_variables.html#facts
 [equality]: ./future_lang_expressions.html#equality
 [fail]: /references/latest/function.html#fail
