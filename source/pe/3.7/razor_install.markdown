@@ -79,7 +79,7 @@ Razor provides a specific iPXE boot image to ensure you're using a compatible ve
 
 3. Download the iPXE bootstrap script from the Razor server to the `/var/lib/tftpboot` directory:
 
-		wget https://${RAZOR_HOSTNAME}:${HTTPS_PORT}/api/microkernel/bootstrap?nic_max=1 -O /var/lib/tftpboot/bootstrap.ipxe
+	wget 	"https://${RAZOR_HOSTNAME}:${HTTPS_PORT}/api/microkernel/bootstrap?nic_max=1&http_port=${HTTP_PORT}" -O /var/lib/tftpboot/bootstrap.ipxe
 
  **Note**: Make sure you don't use `localhost` as the name of the Razor host. The bootstrap script chain-loads the next iPXE script from the Razor server. This means that it has to contain the correct hostname for clients to try and fetch that script from, or it isn't going to work.
 

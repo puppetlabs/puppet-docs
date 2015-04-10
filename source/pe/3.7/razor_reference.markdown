@@ -54,7 +54,7 @@ There are three flavors of repositories:
 * Those that are somewhere else (for example, on a mirror you maintain).
 * Those where a stub directory is created and the contents can be entered manually.
 
-That the `task` parameter is mandatory for creating all three of these types of repositories. The `task` parameter can be overridden at the policy level. If you're not using a task, reference the stock task `noop`.
+The `task` parameter is mandatory for creating all three of these types of repositories. The `task` parameter can be overridden at the policy level. If you're not using a task, reference the stock task `noop`.
 
 #### Have Razor Unpack an ISO
 
@@ -568,4 +568,6 @@ For example, the following queries the UUID to return the associated node:
 
 A GET request to `/api/microkernel/bootstrap` returns an iPXE script that can be used to bootstrap nodes that have just PXE booted (it culminates in chain loading from the Razor server).
 
-The URL accepts the parameter `nic_max` which you should set to the maximum number of network interfaces that respond to DHCP on any given node. It defaults to 4.
+The URL accepts the parameter `nic_max`, which you should set to the maximum number of network interfaces that respond to DHCP on any given node. It defaults to 4.
+
+The URL also accepts an `http_port` parameter, which tells Razor which port its HTTP communications can use. The typical install should use 8150 for this.
