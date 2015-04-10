@@ -6,11 +6,11 @@ canonical: "/pe/latest/console_classes_groups.html"
 ---
 
 
-[lang_classes]: /puppet/3.7/reference/lang_classes.html
+[lang_classes]: /puppet/3.8/reference/lang_classes.html
 [learn]: /learning/
 [forge]: http://forge.puppetlabs.com
-[modules]: /puppet/3.7/reference/modules_fundamentals.html
-[topscope]: /puppet/3.7/reference/lang_scope.html#top-scope
+[modules]: /puppet/3.8/reference/modules_fundamentals.html
+[topscope]: /puppet/3.8/reference/lang_scope.html#top-scope
 
 It’s time to create some node groups and classify your nodes! To get started, go to the PE console and click **Classification**. This takes you to a list of node groups. You can add new node groups here and make changes to existing node groups.
 
@@ -59,7 +59,7 @@ Next, set up some node groups of your own.
 		<dd>Node groups inherit classes, parameters, and variables from their parent node group. By default, the parent node group is the <strong>default</strong> node group. To specify a different parent node group, enter it here.</dd>
 		<dd>You can avoid duplicating class assignments and save yourself a lot of time if you use node groups and their inheritance effectively. For example, if you have a class that needs to be assigned to all of a node group’s child node groups, then you can assign it once in the parent node group and avoid having to assign it multiple times at the child node group level.</dd>
 	<dt>Environment</dt>
-		<dd><p>The environment determines the classes and parameters that are available to the node group. Select the environment that you want to apply to this node group. If you haven’t <a href="/puppet/3.7/reference/environments.html">set up any environments</a> yet, you will only see the default <code>production</code> environment.</p>
+		<dd><p>The environment determines the classes and parameters that are available to the node group. Select the environment that you want to apply to this node group. If you haven’t <a href="/puppet/3.8/reference/environments.html">set up any environments</a> yet, you will only see the default <code>production</code> environment.</p>
 
 <p><strong>Note:</strong> For the recommended workflow when using environments, see  <a href="./console_classes_groups_environment_override.html">Working With Environments</a>.</p>
 
@@ -123,7 +123,7 @@ If you have a node that needs to be in a node group regardless of the rules that
 
 1. In the **Rules** tab, scroll down to the pinned nodes section below the rules.
 
-2. In the **Certname** field, enter the [certname](/references/3.7.0/configuration.html#certname) of the node.
+2. In the **Certname** field, enter the [certname](/references/3.8.latest/configuration.html#certname) of the node.
 
 3. Click **Pin node**, and then click the commit button.
 

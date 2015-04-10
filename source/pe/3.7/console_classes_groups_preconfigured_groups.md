@@ -7,11 +7,11 @@ canonical: "/pe/latest/console_classes_groups_preconfigured_groups.html"
 
 [puppet]: ./puppet_overview.html
 [puppet_assign]: ./puppet_assign_configurations.html
-[lang_classes]: /puppet/3.7/reference/lang_classes.html
+[lang_classes]: /puppet/3.8/reference/lang_classes.html
 [learn]: /learning/
 [forge]: http://forge.puppetlabs.com
-[modules]: /puppet/3.7/reference/modules_fundamentals.html
-[topscope]: /puppet/3.7/reference/lang_scope.html#top-scope
+[modules]: /puppet/3.8/reference/modules_fundamentals.html
+[topscope]: /puppet/3.8/reference/lang_scope.html#top-scope
 [environment]: /guides/environment.html
 
 During installation, Puppet Enterprise (PE) automatically creates a number of preconfigured node groups. Some of these node groups come with required classification already added and some of them come with rules or pinned nodes. This page provides details of how each of these preconfigured node groups look when you do a new install of PE.

@@ -25,4 +25,4 @@ The following steps explain how to regenerate a certificate for a Puppet agent n
 
 5. Finally, you will need to accept the Puppet agent node’s certificate request [with the PE console’s request manager, or from the command line](./console_cert_mgmt.html#rejecting-and-approving-nodes).
 
-Once the Puppet agent node’s certificate is signed, you can either manually kick off a Puppet run from the console or command line, or wait for the agent to run based on the [runinterval](/references/3.7.latest/configuration.html#runinterval), the default of which is 30 minutes. At this point, the agent will perform a full catalog run and can resume its role in your PE deployment.
+Once the Puppet agent node’s certificate is signed, you can either manually kick off a Puppet run from the console or command line, or wait for the agent to run based on the [runinterval](/references/3.8.latest/configuration.html#runinterval), the default of which is 30 minutes. At this point, the agent will perform a full catalog run and can resume its role in your PE deployment.

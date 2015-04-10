@@ -90,7 +90,7 @@ It includes the following options:
 
 With all of these options, the `bootstrap` subcommand looks like this:
 
-	$ puppet node_gce --trace bootstrap --project cloud-provisioner-testing-1 pe-agent n1-standard-1 --image debian-7-wheezy-v20130816 --login myname --install-script puppet-enterprise-http --installer-answers agent_no_cloud.answer.sample --installer-payload 'http://commondatastorage.googleapis.com/pe-install%2Fpuppet-enterprise-3.7.0-rc2-8-g629db7a-debian-7-amd64.tar.gz'
+	$ puppet node_gce --trace bootstrap --project cloud-provisioner-testing-1 pe-agent n1-standard-1 --image debian-7-wheezy-v20130816 --login myname --install-script puppet-enterprise-http --installer-answers agent_no_cloud.answer.sample --installer-payload 'http://commondatastorage.googleapis.com/pe-install%2Fpuppet-enterprise-3.8.0-rc2-8-g629db7a-debian-7-amd64.tar.gz'
 
 In the above example, the installation tarball was uploaded to Google Cloud Storage (shown below) to make the process faster. (**Note**: By selecting the Shared Publicly check box, you can avoid having to sign in while this process runs. Don't forget to clear the check box when you're done.)
 

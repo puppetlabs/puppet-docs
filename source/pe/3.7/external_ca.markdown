@@ -13,7 +13,7 @@ However, you may already have your own CA in place and wish to use it instead of
 
 Setting up an external certificate authority (CA) to use with PE is beyond the scope of this document; in fact, this writing assumes that you already have some knowledge of CA and security credential creation and have the ability to set up your own external CA. This document will lead you through the certs and security credentials you'll need to replace in PE. However, before beginning, we recommend you familiarize yourself with the following docs:
 
-- [SSL Configuration: External CA Support](/puppet/3.7/reference/config_ssl_external_ca.html) provides guidance on establshing an external CA that will play nice will Puppet (and therefore PE).
+- [SSL Configuration: External CA Support](/puppet/3.8/reference/config_ssl_external_ca.html) provides guidance on establshing an external CA that will play nice will Puppet (and therefore PE).
 
 - [Puppet Server: External CA Configuration](/puppetserver/1.0/external_ca_configuration.html) details configurations for Puppet Server when using an external CA.
 

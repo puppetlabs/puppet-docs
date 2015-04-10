@@ -7,14 +7,14 @@ canonical: "/pe/latest/console_classes_groups_getting_started.html"
 
 [puppet]: ./puppet_overview.html
 [puppet_assign]: ./puppet_assign_configurations.html
-[lang_classes]: /puppet/3.7/reference/lang_classes.html
+[lang_classes]: /puppet/3.8/reference/lang_classes.html
 [learn]: /learning/
 [forge]: http://forge.puppetlabs.com
-[modules]: /puppet/3.7/reference/modules_fundamentals.html
-[topscope]: /puppet/3.7/reference/lang_scope.html#top-scope
+[modules]: /puppet/3.8/reference/modules_fundamentals.html
+[topscope]: /puppet/3.8/reference/lang_scope.html#top-scope
 [environment]: /guides/environment.html
 
-The first phase of the new Node Manager app is the powerful, rules-based node classifier in Puppet Enterprise 3.7.
+The first phase of the new Node Manager app is the powerful, rules-based node classifier in Puppet Enterprise 3.8.
 
 ## What is Classification?
 
