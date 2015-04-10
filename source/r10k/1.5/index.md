@@ -12,7 +12,7 @@ R10k does two simple but valuable things. First, it installs Puppet modules usin
 * Continue reading to learn a little more about the basics of r10k, Puppetfile, and Git-based directory environments.
 * [See "Getting Started with r10k"][gettingstarted] to get r10k up and running.
 * [See "Configuring r10k"][configuring] to learn how to set up directory environments with r10k.
-* [See "Mananaging Modules"][LINK] to learn how to set up your r10k Puppetfile.
+* [See "Mananaging Modules"][puppetfile] to learn how to set up your r10k Puppetfile.
 * [See "Managing Environments"]
 
 ##r10k Basics

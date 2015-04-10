@@ -137,7 +137,7 @@ After updating the gems, you need to restart the Puppet master with `service pe-
 
 >**Note**: Installing `puppetserver` gems fails when run unprivileged. You might get a "no such file or directory" error. Instead, install as root.
 
-#### Installing Gems when Puppet Server is Behind a Proxy Requires Manual Download of Gems
+### Installing Gems when Puppet Server is Behind a Proxy Requires Manual Download of Gems
 
 If you run Puppet Server behind a proxy, the `puppetserver gem install` command will fail. Instead you can install the gems as follows:
 
