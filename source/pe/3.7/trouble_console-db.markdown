@@ -55,7 +55,7 @@ However, note that the above query will only return classification data for node
 To get classification data for [dynamically grouped nodes](./console_classes_groups.html#adding-nodes-dynamically), a JSON object containing facts will need to be submitted during the POST request.
 
      curl -X POST -H 'Content-Type: application/json' \
-     --data '{"fact":{"pe_version": "3.7.0"}}' \
+     --data '{"fact":{"pe_version": "3.8.0"}}' \
      --cacert /etc/puppetlabs/puppet/ssl/certs/ca.pem \
      --cert /opt/puppet/share/puppet-dashboard/certs/pe-internal-dashboard.cert.pem \
      --key /opt/puppet/share/puppet-dashboard/certs/pe-internal-dashboard.private_key.pem \
@@ -94,7 +94,7 @@ By default, PuppetDB communicates over port 8081. In some cases, this may confli
 Recovering from a Lost Console Admin Password
 -----
 
-In RBAC, one of the built-in users is the admin, a superuser with all available read/write privileges. In the event you need to reset the admin password for console access, you'll have to run a utility script located in the [PE 3.7.0 installer tarball](http://puppetlabs.com/misc/pe-files). Note that the PE 3.7 tarball might have moved to the [previous releases page](http://puppetlabs.com/misc/pe-files/previous-releases).
+In RBAC, one of the built-in users is the admin, a superuser with all available read/write privileges. In the event you need to reset the admin password for console access, you'll have to run a utility script located in the [PE 3.8.0 installer tarball](http://puppetlabs.com/misc/pe-files). Note that the PE 3.8 tarball might have moved to the [previous releases page](http://puppetlabs.com/misc/pe-files/previous-releases).
 
 This script uses a series of API calls authenticated with a whitelisted certificate to reset the built-in admin's password.
 

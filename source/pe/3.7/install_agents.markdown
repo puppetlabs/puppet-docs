@@ -90,7 +90,7 @@ As an example, if your master is on a node running EL6 and you want to add an ag
 
 7. Run `puppet agent -t` to configure the Puppet master node using the newly assigned class.
 
-   The new repo is created in `/opt/puppet/packages/public`. It’s called `puppet-enterprise-3.7.0-<os-version-architecture>-agent`.
+   The new repo is created in `/opt/puppet/packages/public`. It’s called `puppet-enterprise-3.8.0-<os-version-architecture>-agent`.
 
 9. SSH into the Debian node where you want to install the agent, and run `curl -k https://<master.example.com>:8140/packages/current/install.bash | sudo bash`.
 
@@ -108,7 +108,7 @@ As an example, if your master is on a node running EL6 and you want to add an ag
 
 ON *nix-based systems, you can pass parameters to the end of the install script to specify configuration settings, such as specifying a cert name, which will be added to `puppet.conf`. In this case you would run, `curl -k https://master.example.com:8140/packages/current/install.bash | sudo bash -s agent:certname=<certnameotherthanFQDN>`.
 
-You can pass as many parameters as you need to; be sure to follow the `section:key=value` pattern and just leave one space between parameters. Vist the [Configuration Reference](/references/3.7.latest/configuration.html) for a complete list of values.
+You can pass as many parameters as you need to; be sure to follow the `section:key=value` pattern and just leave one space between parameters. Vist the [Configuration Reference](/references/3.8.latest/configuration.html) for a complete list of values.
 
 ### Installing Agents in a Puppet Enterprise Infrastructure without Internet Access
 
@@ -142,7 +142,7 @@ If you are currently using native package management, you will need to perform t
 
 3. Install the packages as you would any other packages.
 
-Agent packages can be found on the Puppet master, in `/opt/puppet/packages/public`. This directory contains agent packages that correspond to the Puppet master's OS/architecture. For example, if your Puppet master is running on Debian 7, in `/opt/puppet/packages/public`, you will find the directory `puppet-enterprise-3.7.0-debian-7-amd64-agent/debian-7-amd64`, which contains a directory with all the packages needed to install an agent. You will also find a JSON file that lists the versions of those packages. (All agent package repos follow the naming convention `<installed PE version & OS platform>-agent/agent_packages`.)
+Agent packages can be found on the Puppet master, in `/opt/puppet/packages/public`. This directory contains agent packages that correspond to the Puppet master's OS/architecture. For example, if your Puppet master is running on Debian 7, in `/opt/puppet/packages/public`, you will find the directory `puppet-enterprise-3.8.0-debian-7-amd64-agent/debian-7-amd64`, which contains a directory with all the packages needed to install an agent. You will also find a JSON file that lists the versions of those packages. (All agent package repos follow the naming convention `<installed PE version & OS platform>-agent/agent_packages`.)
 
 If your nodes are running an OS and/or architecture that is different from the master, [download the appropriate agent tarball](http://puppetlabs.com/misc/pe-files/agent-downloads), extract the agent packages into the appropriate repo, and then install the agents on your nodes just as you would any other package (e.g., `yum install pe-agent`).
 
@@ -190,7 +190,7 @@ For example, to point the agent at a master called "master.example.com," run `pu
 
 >**Warning for Mac OS X users**: When performing a command line install of an agent on an OS X system, you must run  `puppet config set server` and `puppet config set certname` for the agent to function correctly.
 
-[config_set]: /puppet/3.7/reference/config_set.html
+[config_set]: /puppet/3.8/reference/config_set.html
 
 >**Tip**: After you finish installing your agents, follow the instructions in the [NTP Quick Start Guide](./quick_start_ntp.html) to have PE ensure time is in sync across your deployment.
 

@@ -7,7 +7,7 @@ canonical: "/pe/latest/release_notes_known_issues.html"
 
 As we discover them, this page will be updated with known issues in Puppet Enterprise 3.8.x releases. Fixed issues will be removed from this page and noted Bug Fixes section of the release notes. If you find new problems yourself, please file bugs in [our issue tracker](https://tickets.puppetlabs.com).
 
-To find out which of these issues may affect you, run `/opt/puppet/bin/puppet --version`, the output of which will look something like `3.6.2 (Puppet Enterprise 3.7.0)`. To upgrade to a newer version of Puppet Enterprise, see the [chapter on upgrading](install_upgrading.html).
+To find out which of these issues may affect you, run `/opt/puppet/bin/puppet --version`, the output of which will look something like `3.8.5 (Puppet Enterprise 3.8.0)`. To upgrade to a newer version of Puppet Enterprise, see the [chapter on upgrading](install_upgrading.html).
 
 [peissues]: https://tickets.puppetlabs.com/browse/ENTERPRISE/
 [puppetissues]: https://tickets.puppetlabs.com/browse/PUP/
@@ -30,11 +30,11 @@ To prevent potential failures, you should set an umask value of 0022 on your Pup
 
 ### New PostgreSQL Databases Needed on Upgrade/Install (for External PostgreSQL Users)
 
-If you are using an external PostgreSQL instance that is not managed by PE, please note that you will need to make a few changes for the new databases included in PE 3.7.x. See [A Note about RBAC, Node Classifier, and External PostgreSQL](./install_upgrading_notes.html#a-note-about-rbac-node-classifier-and-external-postgresql).
+If you are using an external PostgreSQL instance that is not managed by PE, please note that you will need to make a few changes for the new databases included in PE 3.8. See [A Note about RBAC, Node Classifier, and External PostgreSQL](./install_upgrading_notes.html#a-note-about-rbac-node-classifier-and-external-postgresql).
 
 ### Additional Puppet Masters in Large Environment Installations Cannot Be Upgraded
 
-If you've installed additional Puppet masters (i.e., secondary or compile masters) in a version of PE before 3.7.x, you cannot upgrade these Puppet masters. To re-install and enable compile masters in 3.7.x, refer to the [Additional Puppet Master Installation documentation](./install_multimaster.html).
+If you've installed additional Puppet masters (i.e., secondary or compile masters) in a version of PE before 3.7.2, you cannot upgrade these Puppet masters. To re-install and enable compile masters in 3.8, refer to the [Additional Puppet Master Installation documentation](./install_multimaster.html).
 
 ### stdlib No Longer Installed with Puppet Enterprise
 
@@ -42,7 +42,7 @@ If necessary, you can install stdlib after installing/upgrading by running `pupp
 
 ### PuppetDB Behind a Load Balancer Causes Puppet Server Errors
 
-Puppet Server handles outgoing HTTPS connections differently from the older MRI Ruby Puppet master, and has a new restriction on the server certificates it will accept. This affects all Puppet Enterprise versions in the 3.7.x series.
+Puppet Server handles outgoing HTTPS connections differently from the older MRI Ruby Puppet master, and has a new restriction on the server certificates it will accept. This affects all Puppet Enterprise versions in the 3.8 series.
 
 If Puppet Server makes client connections to another HTTPS service, that service must use only one certificate. If that service is behind a load balancer, and the back-end servers use individual certificates, Puppet Server will frequently abort its client connections. For more details, see [this note from the Puppet Server docs.](/puppetserver/1.0/ssl_server_certificate_change_and_virtual_ips.html)
 
@@ -85,17 +85,17 @@ Therefore, if you are running multiple PuppetDB servers behind a load balancer, 
 
 7. On each PuppetDB node and the Puppet master, kick off a Puppet run.
 
-### Before Upgrading to PE 3.7.0, Correct Invalid Entries in `autosign.conf`
+### Before Upgrading to PE 3.8, Correct Invalid Entries in `autosign.conf`
 
-Any entries in `/etc/puppetlabs/puppet/autosign.conf` that don't conform to the [autosign requirements](/puppet/3.7/reference/ssl_autosign.html#the-autosignconf-file) will cause the upgrade to fail to configure the PE console. Please correct any invalid entries before upgrading.
+Any entries in `/etc/puppetlabs/puppet/autosign.conf` that don't conform to the [autosign requirements](/puppet/3.8/reference/ssl_autosign.html#the-autosignconf-file) will cause the upgrade to fail to configure the PE console. Please correct any invalid entries before upgrading.
 
 ### Upgrading to 3.8 with a Modified `auth.conf` File
 
 This issue is documented in the [notes and warnings for upgrading](./install_upgrading_notes.html#upgrading-to-38-with-a-modified-authconf-file).
 
-### `q_database_host` Cannot be an Alt Name For Upgrades or Installs of 3.7.0
+### `q_database_host` Cannot be an Alt Name For Upgrades or Installs of 3.8.0
 
-PostgreSQL does not support alt names when set to `verify_full`. If you are upgrading to or installing 3.7 with an answer file, make sure `q_database_host` is set as the Puppet agent certname for the database node and not set as an alt name.
+PostgreSQL does not support alt names when set to `verify_full`. If you are upgrading to or installing 3.8 with an answer file, make sure `q_database_host` is set as the Puppet agent certname for the database node and not set as an alt name.
 
 ### Upgrading Requires You to Manually Add Nodes to the PE Node Groups
 
@@ -193,9 +193,9 @@ or, when attempting to request a catalog:
 If you encounter these errors, simply re-start the `pe-postgresql` service.
 
 
-### `db:raw:optimize` Rake Task does not Work in PE 3.7.x
+### `db:raw:optimize` Rake Task does not Work in PE 3.8
 
-The `db:raw:optimize` Rake task does not work in PE 3.7.0 because the ownership of the database was changed from `console` to `pe-postgres`.
+The `db:raw:optimize` Rake task does not work in PE 3.8 because the ownership of the database was changed from `console` to `pe-postgres`.
 
 To re-index and vacuum the console database, you can use the following PostgreSQL commands:
 
@@ -219,9 +219,9 @@ The following requirement affects how you connect your existing LDAP to PE:
 
 Upgrades to this version of PE may affect deployments that use a custom console certificate, as certificate functionality has changed between versions. Refer to [Configuring the Puppet Enterprise Console to Use a Custom SSL Certificate](./custom_console_cert.html) for instructions on re-configuring your custom console certificate.
 
-### SLES 12 `pe::repo` Class Available in PE Console but SLES 12 not Supported in PE 3.7.0
+### SLES 12 `pe::repo` Class Available in PE Console but SLES 12 not Supported in PE 3.8.0
 
-Due to a known issue in PE 3.7.0, you can select the SLES 12 `pe::repo` class from the PE console, but this class will not work. SLES 12 is not supported in PE 3.7.0, and no tarballs for SLES 12 are shipped in this version.
+Due to a known issue in PE 3.8.0, you can select the SLES 12 `pe::repo` class from the PE console, but this class will not work. SLES 12 is not supported in PE 3.8.0, and no tarballs for SLES 12 are shipped in this version.
 
 Support for SLES 12 will be added in a future release.
 
@@ -229,9 +229,9 @@ Support for SLES 12 will be added in a future release.
 
 [client_cert_dialog]: ./images/client_cert_dialog.png
 
-Due to [Apache bug 53193](https://issues.apache.org/bugzilla/show_bug.cgi?id=53193) and the way Safari handles certificates, Puppet Labs recommends that PE 3.7 users avoid using Safari to access the PE console.
+Due to [Apache bug 53193](https://issues.apache.org/bugzilla/show_bug.cgi?id=53193) and the way Safari handles certificates, Puppet Labs recommends that PE 3.8 users avoid using Safari to access the PE console.
 
-If you need to use Safari, you may encounter the following dialog box the first time you attempt to access the console after installing/upgrading PE 3.7:
+If you need to use Safari, you may encounter the following dialog box the first time you attempt to access the console after installing/upgrading PE 3.8:
 
 ![Safari Certificate Dialog][client_cert_dialog]
 
@@ -316,7 +316,7 @@ This change affects Ubuntu and Amazon Linux. See the [Facter documentation for m
 
 Enabling ActiveMQ's use of the NIO protocol in PE can improve the speed at which orchestration messages are sent across your deployment. However, when this is enabled, any parameters that you define for which SSL protocols to use will be ignored, and SSL version 3 will be enabled. Apache has fixed this bug, but they have not yet released a version of ActiveMQ that contains the fix. For more information, refer to their [public ticket](https://issues.apache.org/jira/browse/AMQ-5407).
 
-Considering security over performance, PE 3.7.0 ships with NIO disabled. You can enable it with the following procedure:
+Considering security over performance, PE 3.8 ships with NIO disabled. You can enable it with the following procedure:
 
 1. From the console, click __Classification__ in the navigation bar.
 2. From the __Classification page__, click the __PE ActiveMQ Broker__ group.

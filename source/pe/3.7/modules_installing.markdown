@@ -88,15 +88,15 @@ The `puppet module install` action will install a module and all of its dependen
 
 ### Modulepath
 
-#### On a fresh installation of Puppet Enterprise 3.7
+#### On a fresh installation of Puppet Enterprise 3.8
 
-If you have freshly installed Puppet Enterprise (PE) 3.7, using `puppet module install` will, by default, install your modules in /etc/puppetlabs/puppet/environments/production/modules. 
+If you have freshly installed Puppet Enterprise (PE) 3.8, using `puppet module install` will, by default, install your modules in /etc/puppetlabs/puppet/environments/production/modules. 
 
-You can change the default location via the [modulepath](https://docs.puppetlabs.com/puppet/3.7/reference/dirs_modulepath.html#configuring-the-modulepath), which will vary depending on whether you are using different environments.
+You can change the default location via the [modulepath](https://docs.puppetlabs.com/puppet/3.8/reference/dirs_modulepath.html#configuring-the-modulepath), which will vary depending on whether you are using different environments.
 
-#### On an upgrade installation of PE 3.7
+#### On an upgrade of PE 3.8
 
-If you have upgraded to PE 3.7 from an earlier version of PE, using `puppet module install` will, by default, install your modules in /etc/puppetlabs/puppet/modules. **However** if you specified a different default path in your earlier version of PE, the upgrader will respect that. 
+If you have upgraded to PE 3.8 from an earlier version of PE, using `puppet module install` will, by default, install your modules in /etc/puppetlabs/puppet/modules. **However** if you specified a different default path in your earlier version of PE, the upgrader will respect that. 
 
 >**A note about installing**
 >
@@ -127,7 +127,7 @@ To install a module from the Puppet Forge, simply identify the desired module by
 
 ### Installing From Another Module Repository
 
-The module tool can install modules from other repositories that mimic the Forge's interface. To do this, change the [`module_repository`](/references/latest/configuration.html#modulerepository) setting in [`puppet.conf`](/puppet/3.7/reference/config_file_main.html) or specify a repository on the command line with the `--module_repository` option. The value of this setting should be the base URL of the repository; the default value, which uses the Forge, is `http://forge.puppetlabs.com`.
+The module tool can install modules from other repositories that mimic the Forge's interface. To do this, change the [`module_repository`](/references/latest/configuration.html#modulerepository) setting in [`puppet.conf`](/puppet/3.8/reference/config_file_main.html) or specify a repository on the command line with the `--module_repository` option. The value of this setting should be the base URL of the repository; the default value, which uses the Forge, is `http://forge.puppetlabs.com`.
 
 After setting the repository, follow the instructions above for installing from the Forge.
 
@@ -143,7 +143,7 @@ Make sure to use the `--ignore-dependencies` flag if you cannot currently reach 
 
 ### Installing Puppet Enterprise Modules
 
-Puppet Enterprise 3.7 introduces modules built exclusively for you, the PE user. To install a [Puppet Enterprise module](https://docs.puppetlabs.com/forge/puppetenterprisemodules) you must:
+Puppet Enterprise 3.8 supports modules built exclusively for you, the PE user. To install a [Puppet Enterprise module](https://docs.puppetlabs.com/forge/puppetenterprisemodules) you must:
 
 * Be logged in as the root user.
 * Use the [Puppet module tool](#using-the-module-tool).
@@ -264,5 +264,5 @@ Check to see if you’re doing one of these things:
 1. Are you logged in as the root user? If not, log in as root and try again.
 2. Are you using either the `puppet module install` or `puppet module upgrade` command? If not, you must use the Puppet module subcommands to install or upgrade Puppet Enterprise modules.
 3. Does the node you're on have a valid Puppet Enterprise license? If not, switch to a node that has a valid PE license on it.
-4. Are you running Puppet Enterprise 3.7? If not, you will not be able to download Puppet Enterprise modules until you upgrade.
+4. Are you running Puppet Enterprise 3.8? If not, you will not be able to download Puppet Enterprise modules until you upgrade.
 5. Do you have access to the internet on the node? If not, you need to switch to a node that has access to the internet.

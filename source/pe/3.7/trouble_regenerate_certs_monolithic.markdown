@@ -6,8 +6,6 @@ canonical: "/pe/latest/trouble_regenerate_certs_monolithic.html"
 description: "This page explains how to regenerate all SSL certificates in monolithic Puppet Enterprise deployments."
 ---
 
-> **Warning**: Do not perform these cert regeneration steps if you have upgraded to PE 3.7.x and not yet [classified the new PE groups](./install_upgrading_notes.html#classifying-pe-groups). You can perform these cert regen steps after classifying those groups.
-
 > **Note**: This page explains how to regenerate all certificates in **a monolithic PE deployment** --- that is, where the Puppet master, PuppetDB, and PE console components are all installed on the same server. [See this page for instructions on regenerating certificates in a **split PE deployment**](./trouble_regenerate_certs_split.html).
 
 ## Overview

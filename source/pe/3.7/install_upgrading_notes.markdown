@@ -7,11 +7,11 @@ canonical: "/pe/latest/install_upgrading_notes.html"
 
 > **IMPORTANT**: **READ BEFORE UPGRADING**: If you are upgrading from PE 3.3 and you use the PE console for node classification, follow the steps in the [node classification migration process doc](./install_upgrade_migration_tool.html) to perform your upgrade to PE 3.8.
 
->**Note**: A complete list of known issues is provided in the [PE 3.7.1 release notes](./release_notes_known_issues.html). Please review this list before upgrading.
+>**Note**: A complete list of known issues is provided in the [PE 3.8 release notes](./release_notes_known_issues.html). Please review this list before upgrading.
 
 ## Upgrading to the Puppet Server (on the Puppet Master)
 
-PE 3.7.0 introduces the Puppet server, running the Puppet Master, which functions as a seamless drop-in replacement for the former Apache/Passenger Puppet master stack. However, due to this change in the underlying architecture of the Puppet master, there are a few changes you'll notice after upgrading that we'd like to point out. Refer to [About the Puppet Server](./install_upgrading_puppet_server_notes.html) for more information.
+PE 3.8 uses the Puppet Server, running the Puppet Master, which functions as a seamless drop-in replacement for the former Apache/Passenger Puppet master stack. However, due to this change in the underlying architecture of the Puppet master, there are a few changes you'll notice after upgrading that we'd like to point out. Refer to [About the Puppet Server](./install_upgrading_puppet_server_notes.html) for more information.
 
 ### Updating Puppet Master Gems
 
@@ -19,19 +19,19 @@ See the [known issue about Ruby gems and upgrades](./release_notes_known_issues.
 
 ## Upgrading to Directory Environments
 
-Directory environments are enabled by default in PE 3.7.0. Before upgrading be sure to read [Important Information about Upgrades to PE 3.7 and Directory Environments](./install_upgrading_dir_env_notes.html).
+Directory environments are enabled by default in PE 3.8.0. Before upgrading be sure to read [Important Information about Upgrades to PE 3.8 and Directory Environments](./install_upgrading_dir_env_notes.html).
 
->**Warnings**: If you enabled directory environments in PE 3.3.x and are upgrading to PE 3.7.0, ensure there is no `default_manifest` parameter in `puppet.conf` **before** upgrading. Upgrades will fail if this change is not made.
+>**Warnings**: If you enabled directory environments in PE 3.3.2 or 3.7.x and are upgrading to PE 3.8.0, ensure there is no `default_manifest` parameter in `puppet.conf` **before** upgrading. Upgrades will fail if this change is not made.
 >
-> If you enabled directory environents in PE 3.3.x and are upgrading to PE 3.7.0, ensure that the `basemodulepath` parameter in `puppet.conf` is set in the `[main]` section and not in the `[master]` section *before* upgrading. Upgrades will fail if this change is not made.
+> If you enabled directory environents in PE 3.3.2 or 3.7.x and are upgrading to PE 3.8.0, ensure that the `basemodulepath` parameter in `puppet.conf` is set in the `[main]` section and not in the `[master]` section *before* upgrading. Upgrades will fail if this change is not made.
 
 ## Upgrading to the Node Classifier
 
-PE 3.7.0 introduces the new node classifier, which replaces previous versions of the PE console node classifier and changes the way you classify agent nodes.
+PE 3.8.0 uses the new node classifier, which replaces previous versions of the PE console node classifier and changes the way you classify agent nodes.
 
 If you are upgrading and you use the PE console for node classification, follow the steps in the [node classification migration process doc](./install_upgrade_migration_tool.html) **BEFORE** performing your upgrade. The steps in the migration process doc provide a smooth upgrade path from PE 3.3.2 to PE 3.8.
 
-Please note that factors such as the size of your deployment and the complexity of your classifications will determine how much time and/or planning you will need before upgrading to PE 3.7.0.
+Please note that factors such as the size of your deployment and the complexity of your classifications will determine how much time and/or planning you will need before upgrading to PE 3.8.
 
 For more information about the node classifier, refer to [Getting Started With Classification](./console_classes_groups_getting_started.html).
 
@@ -79,7 +79,7 @@ To pin a node to a node group in the PE console:
 
 ## Upgrading to Role-Based Access Control (RBAC)
 
-After upgrading to PE 3.7, you will need to set up your directory service and users and groups. Note that when you upgrade, PE doesn't migrate any existing users. In addition, PE doesn't preserve your username and password. You'll now log in with "admin" as your username.
+After upgrading to PE 3.8, you will need to set up your directory service and users and groups. Note that when you upgrade, PE doesn't migrate any existing users. In addition, PE doesn't preserve your username and password. You'll now log in with "admin" as your username.
 
 For more information about RBAC, refer to [Working with Role-Based Access Control](./rbac_intro.html).
 
@@ -101,13 +101,13 @@ Note that access to the CA functions of the Puppet master is no longer managed w
 
 You will need to acknowledge you're aware of the differences when prompted by the upgrader, or pass in an answer file with `q_exit_and_update_auth_conf` in it when running the upgrade.
 
-## `q_database_host` Cannot be an Alt Name For Upgrades to 3.7.0
+## `q_database_host` Cannot be an Alt Name For Upgrades to 3.8
 
-PostgreSQL does not support alt names when set to `verify_full`. If you are upgrading to 3.7 with an answer file, make sure `q_database_host` is set as the Puppet agent certname for the database node and not set as an alt name.
+PostgreSQL does not support alt names when set to `verify_full`. If you are upgrading to 3.8 with an answer file, make sure `q_database_host` is set as the Puppet agent certname for the database node and not set as an alt name.
 
 ## Before Upgrading, Correct Invalid Entries in `autosign.conf`
 
-Any entries in `/etc/puppetlabs/puppet/autosign.conf` that don't conform to the [autosign requirements](/puppet/3.7/reference/ssl_autosign.html#the-autosignconf-file) will cause the upgrade to fail to configure the PE console. Please correct any invalid entries before upgrading to PE 3.7.0.
+Any entries in `/etc/puppetlabs/puppet/autosign.conf` that don't conform to the [autosign requirements](/puppet/3.8/reference/ssl_autosign.html#the-autosignconf-file) will cause the upgrade to fail to configure the PE console. Please correct any invalid entries before upgrading to PE 3.8.
 
 ## You Might Need to Upgrade puppetlabs-inifile to Version 1.1.0 or Later
 

@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "PE 3.8 » Quick Start » Intro"
-subtitle: "Puppet Enterprise Quick Start Guide Series: 3.7.0"
+subtitle: "Puppet Enterprise Quick Start Guide Series: 3.8.0"
 canonical: "/pe/latest/quick_start.html"
 ---
 
@@ -21,7 +21,7 @@ Instructions are available for [Windows](./quick_start_install_agents_windows.ht
 The instructions in [this guide](./quick_start_helloworld.html) lead you through the fundamentals of Puppet module writing. You'll write a very simple module that contains classes to manage your motd (message of the day) and create a Hello, World! notification on the command line.
 
 ### 4. Install a Module
-Follow these instructions to install a Puppet Labs module. Modules contain [classes](./puppet/3.7/reference/lang_classes.html), which are named chunks of Puppet code and are the primary means by which Puppet Enterprise configures and manages nodes.
+Follow these instructions to install a Puppet Labs module. Modules contain [classes](./puppet/3.8/reference/lang_classes.html), which are named chunks of Puppet code and are the primary means by which Puppet Enterprise configures and manages nodes.
 
 Instructions are available for [Windows](./quick_start_module_install_windows.html) and [*nix](./quick_start_module_install_nix.html) users.
 

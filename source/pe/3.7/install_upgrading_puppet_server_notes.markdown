@@ -6,7 +6,7 @@ canonical: "/pe/latest/puppet_server_notes.html"
 ---
 
 
-PE 3.7.0 introduces Puppet Server, a replacement for the former Apache/Passenger Puppet master stack. However, due to this change in the underlying architecture of the Puppet master, there are a few changes you'll notice after upgrading that we'd like to point out.
+PE 3.8 uses Puppet Server, a replacement for the former Apache/Passenger Puppet master stack. However, due to this change in the underlying architecture of the Puppet master, there are a few changes you'll notice after upgrading that we'd like to point out.
 
 This page details some items that are intentionally different between Puppet Server and the old Apache/Passenger stack. Additionally, there are [a few known issues related to Puppet Server](./release_notes_known_issues.html#known-issues-related-to-puppet-server) which  we expect to fix in future releases.
 
@@ -16,15 +16,13 @@ This page details some items that are intentionally different between Puppet Ser
 
 Previously, the service that acted as the Puppet master was called `pe-httpd`. (So to restart the Puppet master, you would run `service httpd restart`.)
 
-In PE 3.7 the Puppet master service is now `pe-puppetserver`, and you can restart it with `service pe-puppetserver restart`.
+In PE 3.8 the Puppet master service is now `pe-puppetserver`, and you can restart it with `service pe-puppetserver restart`.
 
 ### Updating Puppet Master Gems
 
-After upgrading to PE 3.7.2, you need to update the Ruby gems used by your Puppet Master with `/opt/puppet/bin/puppetserver gem install <GEM NAME>`.
+After upgrading to PE 3.8, you need to update the Ruby gems used by your Puppet Master with `/opt/puppet/bin/puppetserver gem install <GEM NAME>`.
 
-For instance, in PE 3.7.2, the deep_merge gem is no longer installed by default. If you previously used this gem, you will need to reinstall it after upgrading.
-
-After updating the gems, you need to restart the Puppet master with `service pe-puppetserver restart`. You should do this **before** doing any Puppet agent runs.
+Refer to [Updating Puppet Master Gems](./release_notes_known_issues.html#updating-puppet-master-gems) for more information. If you're running Puppet Server behind a proxy, refer to the [workaround](./release_notes_known_issues.html#installing-gems-when-puppet-server-is-behind-a-proxy-requires-manual-download-of-gems) in the release notes.
 
 ### New Config Files
 
@@ -36,7 +34,7 @@ For details about these files, see [Configuring Puppet Server](./puppet_server_c
 
 You'll need to restart `pe-puppetserver`  any time you make changes to the config files in `/etc/puppetserver/conf.d`.
 
-You should also restart when making changes to [environments with a long or unlimited `environment_timeout` value.](/puppet/3.7/reference/environments_configuring.html#environmenttimeout) (This is because Puppet Server can have multiple timers running for a given environment --- if a node checks in twice before _all_ of the timers have expired, it can receive inconsistent configurations.)
+You should also restart when making changes to [environments with a long or unlimited `environment_timeout` value.](/puppet/3.8/reference/environments_configuring.html#environmenttimeout) (This is because Puppet Server can have multiple timers running for a given environment --- if a node checks in twice before _all_ of the timers have expired, it can receive inconsistent configurations.)
 
 ### Startup and Restarts Take Longer
 

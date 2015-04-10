@@ -69,7 +69,7 @@ To install an agent with a different OS from the Puppet master, you first add th
 
    This configures the Puppet master node using the newly-assigned class.
 
-   The new repo is created in `/opt/puppet/packages/public`. It’s called `puppet-enterprise-3.7.0-<os-version-architecture>-agent`.
+   The new repo is created in `/opt/puppet/packages/public`. It’s called `puppet-enterprise-3.8.0-<os-version-architecture>-agent`.
 
 9. SSH into the Debian node where you want to install the agent, and run `curl -k https://<master.example.com>:8140/packages/current/install.bash | sudo bash`.
 

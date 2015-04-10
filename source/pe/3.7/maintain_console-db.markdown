@@ -11,11 +11,11 @@ If PE's console becomes sluggish or begins taking up too much disk space, there 
 Pruning the Console Database with a Cron Job
 -------------
 
-For new PE installs (3.7 and later), a cron job, managed by a class in the `puppetlabs-pe_console_prune` module, is installed that will prevent bloating in the console database by deleting old data (mainly uploaded Puppet run reports) after a set number of days. You can tweak the parameters of this class as needed, primarily the `prune_upto` parameter, which sets the time to keep records in the database. This parameter is set to 30 days by default.
+For new PE installs (3.8 and later), a cron job, managed by a class in the `puppetlabs-pe_console_prune` module, is installed that will prevent bloating in the console database by deleting old data (mainly uploaded Puppet run reports) after a set number of days. You can tweak the parameters of this class as needed, primarily the `prune_upto` parameter, which sets the time to keep records in the database. This parameter is set to 30 days by default.
 
-However, to prevent users from deleting data without notice, the cron job is not installed on upgrades from versions earlier than 3.7.
+However, to prevent users from deleting data without notice, the cron job is not installed on upgrades from versions earlier than 3.8.
 
-To prevent bloating in the console database, we recommend adding the `pe_console_prune` class to the `PE Console` group after upgrading to PE 3.7.
+To prevent bloating in the console database, we recommend adding the `pe_console_prune` class to the `PE Console` group after upgrading to PE 3.8.
 
 To access the `prune_upto` parameter:
 
@@ -48,7 +48,7 @@ The number of pending tasks shown in the console should start decreasing rapidly
 Optimizing the Database
 -----
 
-> **Note**: The following task is not available in PE 3.7.x. Refer to the [PostgreSQL workaround](./release_notes_known_issues.html#dbrawoptimize-rake-task-does-not-work-in-pe-37x) provided in the Known Issues.
+> **Note**: The following task is not available in PE 3.8. Refer to the [PostgreSQL workaround](./release_notes_known_issues.html#dbrawoptimize-rake-task-does-not-work-in-pe-37x) provided in the Known Issues.
 
 PostgreSQL should have `autovacuum=on` set by default. If you're having issues with the database growing too large and unwieldy, make sure this setting did not get turned off. In most cases, this should suffice. In some cases, more heavyweight maintenance measures may be needed (e.g. in cases of data corruption from hardware failures). To help with this, PE provides a rake task that performs advanced database maintenance.
 

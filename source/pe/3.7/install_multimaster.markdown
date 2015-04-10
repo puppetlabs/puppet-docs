@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.7 » Installing » LEI Compile Masters"
+title: "PE 3.8 » Installing » LEI Compile Masters"
 subtitle: "Compile Master Installation"
 canonical: "/pe/latest/install_multimaster.html"
 ---
@@ -57,7 +57,7 @@ In this step, you will install the additional Puppet agent on `add.master.exampl
 
 In this step, you will use the PE console to classify `add.master.example.com` so that it can function as a Puppet master and proxy requests to the PE certificate authority.
 
-> **Important**: For fresh installations of PE 3.7.0, node groups in the classifier are created and configured during the installation process. For upgrades, these groups and classes are created but no nodes are pinned to them. This is done to help prevent errors during the upgrade process. If you’re performing these steps after an upgrade to 3.8.0, refer to [the PE Master group preconfiguration docs](./console_classes_groups_preconfigured_groups.html#the-pe-master-group) to ensure the PE Master group has the correct classes .             
+> **Important**: For fresh installations of PE 3.8.0, node groups in the classifier are created and configured during the installation process. For upgrades, these groups and classes are created but no nodes are pinned to them. This is done to help prevent errors during the upgrade process. If you’re performing these steps after an upgrade to 3.8.0, refer to [the PE Master group preconfiguration docs](./console_classes_groups_preconfigured_groups.html#the-pe-master-group) to ensure the PE Master group has the correct classes .             
 
 **To classify the new compile master node**:
 

@@ -1,23 +1,23 @@
 ---
 layout: default
 title: "PE 3.8 » Installing » Upgrading (Directory Environments)"
-subtitle: "Important Information about Upgrades to PE 3.7 and Directory Environments"
+subtitle: "Important Information about Upgrades to PE 3.8 and Directory Environments"
 canonical: "/pe/latest/install_upgrading_dir_env_notes.html"
 ---
 
-Puppet Enterprise 3.7.0 introduces full support for directory environments, which will be enabled by default when you upgrade.
+Puppet Enterprise 3.8.0 uses directory environments, which will be enabled by default when you upgrade.
 
 Environments are isolated groups of Puppet agent nodes. This frees you to use different versions of the same modules for different populations of nodes, which is useful for testing changes to your Puppet code before implementing them on production machines. Directory environments let you add a new environment by simply adding a new directory of config data. For example, directory environments will allow you to efficiently create directories for nodes in production, nodes in testing, and nodes in development.
 
 In this release, the default `production` environment replaces the global `manifest`/`modulepath`/`config_version` settings. More specifically, though, you must have a directory environment for every environment that any nodes are assigned to. Nodes assigned to nonexistent environments cannot fetch their catalogs.
 
-Before you get started, you may want to read up on the [Structure of an Environment](puppet/3.7/reference/environments_creating.html#structure-of-an-environment) and [Global Settings for Configuring Environments](puppet/3.7/reference/environments_configuring.html#global-settings-for-configuring-environments).
+Before you get started, you may want to read up on the [Structure of an Environment](puppet/3.8/reference/environments_creating.html#structure-of-an-environment) and [Global Settings for Configuring Environments](puppet/3.8/reference/environments_configuring.html#global-settings-for-configuring-environments).
 
 The following document provides a detailed look at the changes you may encounter after upgrading.
 
-For your reference, the Puppet docs provide more information about [creating directory environments](/puppet/3.7/reference/environments_creating.html).
+For your reference, the Puppet docs provide more information about [creating directory environments](/puppet/3.8/reference/environments_creating.html).
 
->**Warning**: If you enabled directory environments in PE 3.3.x and are upgrading to PE 3.7.0, ensure there is no `default_manifest` parameter in `puppet.conf` **before** upgrading. Upgrades will fail if this change is not made.
+>**Warning**: If you enabled directory environments in PE 3.3.2 or 3.7.x and are upgrading to PE 3.8.0, ensure there is no `default_manifest` parameter in `puppet.conf` **before** upgrading. Upgrades will fail if this change is not made.
 
 
 ### Scenario 1: Upgrading from Dynamic and/or Config File (Static) Environments

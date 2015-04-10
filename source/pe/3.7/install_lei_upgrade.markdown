@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.7 » Installing » Upgrading LEI"
+title: "PE 3.8 » Installing » Upgrading LEI"
 subtitle: "Upgrading Large Environment Installations"
 canonical: "/pe/latest/install_multimaster_upgrade.html"
 ---

@@ -11,7 +11,7 @@ canonical: "/pe/latest/orchestration_puppet.html"
 [inpage_stop]: #start-and-stop-the-puppet-agent-service
 [filter]: ./orchestration_invoke_cli.html#filtering-actions
 [environment]: /guides/environment.html
-[tags]: /puppet/3.7/reference/lang_tags.html
+[tags]: /puppet/3.8/reference/lang_tags.html
 [batch]: ./orchestration_invoke_cli.html#batching
 [data_plugins]: ./orchestration_invoke_cli.html#data-plugins
 [tab]: ./console_navigating_live_mgmt.html#the-control-puppet-tab

@@ -5,11 +5,9 @@ subtitle: "Adding Dashboard Workers to Your PE Deployment"
 canonical: "/pe/latest/install_add_dashboard_workers.html"
 ---
 
-PE 3.7.x includes the class `puppet_enterprise::profile::console::workers`, which allows you to deploy standalone *dashboard worker* nodes to speed up report processing for the PE console.
+PE 3.8 includes the class `puppet_enterprise::profile::console::workers`, which allows you to deploy standalone *dashboard worker* nodes to speed up report processing for the PE console.
 
 It's fairly trivial to take advantage of this functionality. You simply need to install the PE agent on nodes you want to act as dashboard workers, and then use the PE console to classify those nodes.
-
-> **Note**: If you are performing this procedure after upgrading to PE 3.7.1, you'll need to set some parameters in the `puppet_enterprise` class in the **PE Infrastructure** node group. Check the [preconfigured PE Infrastructure Node Group](./console_classes_groups_preconfigured_groups.html#the-pe-infrastructure-node-group) for details.
 
 ### Step 1: Set up nodes
 

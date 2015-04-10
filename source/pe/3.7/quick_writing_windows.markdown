@@ -24,7 +24,7 @@ Next, install the [Puppet Labs Registry module](https://forge.puppetlabs.com/pup
 
 #### Module Basics
 
-By default, modules are stored in `/etc/puppetlabs/puppet/modules`. You can configure this path with the [`modulepath`](/references/3.7.latest/configuration.html#modulepath) setting in `puppet.conf`.)
+By default, modules are stored in `/etc/puppetlabs/puppet/environments/production/modules`. You can configure this path with the [`modulepath`](/references/3.7.latest/configuration.html#modulepath) setting in `puppet.conf`.)
 
 Modules are directory trees. The manifest directory of the Puppet Labs Registry module contains the following files:
 
@@ -41,7 +41,7 @@ Every manifest (.pp) file contains a single class. File names map to class names
 
 Many modules contain directories other than `manifests`; for simplicity's sake, we will not cover them in this introductory guide.
 
-* For more on how modules work, see [Module Fundamentals](/puppet/3.7/reference/modules_fundamentals.html) in the Puppet documentation.
+* For more on how modules work, see [Module Fundamentals](/puppet/3.8/reference/modules_fundamentals.html) in the Puppet documentation.
 * For more on best practices, methods, and approaches to writing modules, see the [Beginners Guide to Modules](/guides/module_guides/bgtm.html).
 * For a more detailed guided tour, also see [the module chapters of Learning Puppet](/learning/modules1.html).
 
@@ -96,8 +96,8 @@ During this exercise, you will create a class called `critical_policy` that will
 For more information about writing classes, refer to the following documentation:
 
 * To learn how to write resource declarations, conditionals, and classes in a guided tour format, [start at the beginning of Learning Puppet.](/learning/)
-* For a complete but succinct guide to the Puppet language's syntax, [see the Puppet 3 language reference](/puppet/3.7/reference/lang_summary.html).
-* For complete documentation of the available resource types, [see the type reference](/references/3.7.latest/type.html).
+* For a complete but succinct guide to the Puppet language's syntax, [see the Puppet 3 language reference](/puppet/3.8/reference/lang_summary.html).
+* For complete documentation of the available resource types, [see the type reference](/references/3.8.latest/type.html).
 * For short, printable references, see [the modules cheat sheet](/module_cheat_sheet.pdf) and [the core types cheat sheet](/puppet_core_types_cheatsheet.pdf).
 
 #### Using Your Custom Module in the Console
