@@ -3,11 +3,10 @@ layout: default
 title: "Managing Modules"
 ---
 
-[direnv]: /puppet/4.0/reference/environments.html
-[direnv_setup]: /puppet/4.0/reference/environments_creating.html
 [gettingstarted]: ./gettingstarted_r10k.html
 [gettingtoknow]: ./index.html
 [configuring]: ./configuring_r10k.html
+[managingenvirons]:TBD
 
 
 # Managing Modules
@@ -31,9 +30,9 @@ You interact with Puppetfiles both directly and through the `r10k puppetfile` su
 
 ##Configuring your Puppetfile
 
-###Setting the module installation directory
+###Changing the module installation directory
 
-This setting points to the directory where r10k will install your modules. You can specify either an absolute or a relative path in this setting. If you don't specify this setting, r10k will install modules in the Puppetfile's current directory.
+By default, r10k installs modules in the Puppetfile's current directory. Optionally, you can point to another directory for module installation. You can specify either an absolute or a relative path in this setting.
 
 **Note:** If you use this setting, it should always come **before** any modules listed in the Puppetfile.
 
