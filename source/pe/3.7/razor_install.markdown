@@ -49,7 +49,15 @@ Manually add the `pe-razor` class in the PE console, as follows.
 
 #### Installing the Razor Server While You're Offline
 
-If you don't have access to the internet or would like to pull the PE tarball from your own location, you can use the class parameter `pe_tarball_base_url` and stipulate your own URL. Note that the code assumes that the tarball still has the same name format as on our server.
+If you don't have access to the internet or would like to pull the PE tarball from your own location, you can do as follows.
+
+1. In the console, in the **pe_razor** class that you added in the previous section, click the **Parameter name** down arrow, and select **pe_tarball_base_url**.
+2. In the **Value** box, type in your own URL, and click **Add parameter**.
+
+	The code expects that the tarball retains same name format as on our server. The format is generally `puppet-enterprise-<version of PE>-<OS type>-<version and architecture of OS>.tar.gz`. You can see the formats for [different versions of the tarball here](install_basic.html#choosing-an-installer-tarball). Available tarballs are located on the [Puppet Enterprise downloads page](https://puppetlabs.com/misc/pe-files).
+
+3. Add the `microkernel_url` parameter, and for the **Value** add the URL for the microkernel. Commit your changes.
+
 
 #### The `pe_razor` Module
 
