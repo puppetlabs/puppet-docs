@@ -32,12 +32,10 @@ Install the Razor Server
 
 The actual Razor software is stored in an external online location, so you need an internet connection to install it. The process entails classifying a node with the `pe_razor` module. When you do so, the software is downloaded. This process can take several minutes.
 
-If you don't have access to the internet or would like to pull the PE tarball from your own location, you can use the class parameter `pe_tarball_base_url` and stipulate your own URL. Note that the code assumes that the tarball still has the same name format as on our server.
-
 Manually add the `pe-razor` class in the PE console, as follows.
 
 1. In the console, click **Classification**, and then click the node group you will use to assign the `pe-razor` class to nodes.
-2. Click **Classes** and, in **Class name**, type in "pe-razor".
+2. Click **Classes** and, in **Class name**, type "pe_razor".
 3. Click **Add class** and click the commit button. For information about adding a  class and classifying the Razor server using the PE console, see the [Adding Nodes to a Node Group](./console_classes_groups.html#adding-nodes-to-a-node-group) and [Adding New Classes](./console_classes_groups.html#adding-classes-to-a-node-group) sections of this guide.
 
 
@@ -49,7 +47,11 @@ Manually add the `pe-razor` class in the PE console, as follows.
 
 4. On the Razor server, run Puppet with: `puppet agent -t` (otherwise you have to wait for the scheduled agent run).
 
-####Changing the Default Razor Port
+#### Installing the Razor Server While You're Offline
+
+If you don't have access to the internet or would like to pull the PE tarball from your own location, you can use the class parameter `pe_tarball_base_url` and stipulate your own URL. Note that the code assumes that the tarball still has the same name format as on our server.
+
+#### The `pe_razor` Module
 
 The `pe_razor` module has the following parameters:
 
@@ -60,6 +62,9 @@ The `pe_razor` module has the following parameters:
 | `microkernel_url` | The URL from which to fetch the Microkernel. |
 | `server_http_port` | The port for HTTP communications with the Razor server. It defaults to 8150. |
 | `server_https_port` | The port for HTTPS communications with the Razor server. It defaults to 8151. |
+
+
+####Changing the Default Razor Port
 
 If you want to change the default HTTP or HTTPS port, you can make the change in the console, like this:
 
@@ -79,7 +84,7 @@ Razor provides a specific iPXE boot image to ensure you're using a compatible ve
 
 3. Download the iPXE bootstrap script from the Razor server to the `/var/lib/tftpboot` directory:
 
-	wget 	"https://${RAZOR_HOSTNAME}:${HTTPS_PORT}/api/microkernel/bootstrap?nic_max=1&http_port=${HTTP_PORT}" -O /var/lib/tftpboot/bootstrap.ipxe
+	`wget 	"https://${RAZOR_HOSTNAME}:${HTTPS_PORT}/api/microkernel/bootstrap?nic_max=1&http_port=${HTTP_PORT}" -O /var/lib/tftpboot/bootstrap.ipxe`
 
  **Note**: Make sure you don't use `localhost` as the name of the Razor host. The bootstrap script chain-loads the next iPXE script from the Razor server. This means that it has to contain the correct hostname for clients to try and fetch that script from, or it isn't going to work.
 

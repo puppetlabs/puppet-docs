@@ -68,7 +68,7 @@ To have Razor unpack an ISO for you and serve its contents, create your repo wit
 
 #### Point to an Existing Resource
 
-To make a repo that merely points to an existing resource without loading anything onto the Razor server, provide a `url` property when you create the repository:
+To make a repo that points to an existing resource without loading anything onto the Razor server, provide a `url` property when you create the repository:
 
     {
       "name": "fedora19",
