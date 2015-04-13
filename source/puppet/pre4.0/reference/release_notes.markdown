@@ -1,87 +1,6 @@
-~~~YOU CAN IGNORE IT~~~
-=================
+# ~~~INTRO~~~
 
-### Administrivia, Testing, Docs and Specs, Packaging, Internal Clean-ups
-
-* [PUP-2716: ssl_server_ca_chain and ssl_client_ca_chain are dead settings](https://tickets.puppetlabs.com/browse/PUP-2716)
-    the settings were never enabled, the commented-out rough versions were deleted, and other code was referring to values that would never be set. No user-facing impact.
-* [PUP-4004: Remove acceptance workaround that creates the puppetserver cache related directories](https://tickets.puppetlabs.com/browse/PUP-4004)
-* [PUP-2948: Enable rubocop for PRs in Github](https://tickets.puppetlabs.com/browse/PUP-2948)
-* [PUP-2950: Enable rubocop:Style/AndOr for pops](https://tickets.puppetlabs.com/browse/PUP-2950)
-* [PUP-3013: Add acceptance test for PMT build command changes for 3.7](https://tickets.puppetlabs.com/browse/PUP-3013)
-* [PUP-3061: Upgrade win32-eventlog to 0.6.2+](https://tickets.puppetlabs.com/browse/PUP-3061)
-* [PUP-3835: Specify that variables are case sensitive](https://tickets.puppetlabs.com/browse/PUP-3835)
-* [PUP-2366: Replace hosts using Ruby 1.8.7 for Puppet 4.0 Acceptance](https://tickets.puppetlabs.com/browse/PUP-2366)
-* [PUP-3779: Verify spec tests in dev env for Ruby 2.1.5](https://tickets.puppetlabs.com/browse/PUP-3779)
-* [PUP-3780: Verify Ruby 2.1.5 compatibility on Windows 2003](https://tickets.puppetlabs.com/browse/PUP-3780)
-* [PUP-3816: Verify correct gems are in puppet-win32-ruby 2.1.5-x86 and 2.1.5-x64 branches](https://tickets.puppetlabs.com/browse/PUP-3816)
-* [PUP-2343: IPS acceptance tests should be confined to solaris-11 only](https://tickets.puppetlabs.com/browse/PUP-2343)
-* [PUP-2346: Acceptance tests cannot depend on 'readlink' or 'stat' on Solaris 10](https://tickets.puppetlabs.com/browse/PUP-2346)
-* [PUP-3076: Solaris (10) acceptance tests assume that /opt/csw/bin (opencsw) is in the path (necessary for solaris 10)](https://tickets.puppetlabs.com/browse/PUP-3076)
-* [PUP-3818: Execute Windows acceptance pre-suite against Ruby 2.1.5](https://tickets.puppetlabs.com/browse/PUP-3818)
-* [PUP-3915: Remove win32console for Windows Ruby 2.1.5](https://tickets.puppetlabs.com/browse/PUP-3915)
-    this was only needed if you were running under 1.9.x, which we don't anymore.
-* [PUP-3479: Windows ffi dependency fails for Ruby 2.1.3](https://tickets.puppetlabs.com/browse/PUP-3479)
-* [PUP-3850: Two User provider spec tests fail on RedHat systems](https://tickets.puppetlabs.com/browse/PUP-3850)
-* [PUP-3954: Determine failure for already_installed_elsewhere.rb acceptance test](https://tickets.puppetlabs.com/browse/PUP-3954)
-* [PUP-3137: expiry parameter definition in user resource documentation needs update](https://tickets.puppetlabs.com/browse/PUP-3137)
-* [PUP-3070: Include indent file in vim-puppet](https://tickets.puppetlabs.com/browse/PUP-3070)
-* [PUP-3003: Windows MSI contains unneeded files](https://tickets.puppetlabs.com/browse/PUP-3003)
-* [PUP-3016: tests/modules/install/with_version.rb assumes `puppet` is on the path](https://tickets.puppetlabs.com/browse/PUP-3016)
-* [PUP-3603: Update language spec with new String to Float behavior in PUP-3602 and PUP-3615](https://tickets.puppetlabs.com/browse/PUP-3603)
-* [PUP-4033: add puppet-agent path acceptance tests](https://tickets.puppetlabs.com/browse/PUP-4033)
-* [PUP-4152: Try Debian 8 32-bit](https://tickets.puppetlabs.com/browse/PUP-4152)
-* [PUP-4153: Try Debian 8 64-bit](https://tickets.puppetlabs.com/browse/PUP-4153)
-* [PUP-4171: Try Fedora 20 32 bit](https://tickets.puppetlabs.com/browse/PUP-4171)
-* [PUP-4172: Try Fedora 20 64 bit](https://tickets.puppetlabs.com/browse/PUP-4172)
-* [PUP-4173: Try Fedora 21 32 bit](https://tickets.puppetlabs.com/browse/PUP-4173)
-* [PUP-4174: Try Fedora 21 64 bit](https://tickets.puppetlabs.com/browse/PUP-4174)
-* [PUP-4232: add acceptance tests for lookup()](https://tickets.puppetlabs.com/browse/PUP-4232)
-* [PUP-2699: Puppet specs on windows triggers "Excluding C from search path. Fact file paths must be an absolute directory"](https://tickets.puppetlabs.com/browse/PUP-2699)
-* [PUP-4011: Spec test failure on ruby 1.8.7: ProviderSystemd should not be the default provider on rhel4](https://tickets.puppetlabs.com/browse/PUP-4011)
-* [PUP-3969: Puppet acceptance tests need auditing to derive 'host' and 'group' using the Beaker 'puppet' helper](https://tickets.puppetlabs.com/browse/PUP-3969)
-* [PUP-4056: Audit acceptance tests for assumed ruby location](https://tickets.puppetlabs.com/browse/PUP-4056)
-* [PUP-4093: Try out puppet acceptance against aio packages for non-el7 linux platforms](https://tickets.puppetlabs.com/browse/PUP-4093)
-
-
-#### Wontfix
-
-* [PUP-2701: Add acceptance tests for PMT build metadata.json support](https://tickets.puppetlabs.com/browse/PUP-2701)
-* [PUP-3015: Add acceptance test for PMT search command changes for 3.7](https://tickets.puppetlabs.com/browse/PUP-3015)
-* [PUP-528: Line number information missing from 3x AST transformer errors](https://tickets.puppetlabs.com/browse/PUP-528)
-* [PUP-3371: Ensure PSON parser only creates safe Hash and Array object types](https://tickets.puppetlabs.com/browse/PUP-3371)
-* [PUP-3470: Syntax error in test suite on Ruby <= 1.8.7-p352](https://tickets.puppetlabs.com/browse/PUP-3470)
-* [PUP-524: Complete Testing of Relationships](https://tickets.puppetlabs.com/browse/PUP-524)
-* [PUP-739: Profile agent with complex catalog](https://tickets.puppetlabs.com/browse/PUP-739)
-* [PUP-742: Identify components involved in puppet runs](https://tickets.puppetlabs.com/browse/PUP-742)
-* [PUP-743: Retrieving a resource from a catalog](https://tickets.puppetlabs.com/browse/PUP-743)
-* [PUP-2304: Implement "requirements" support for the PMT](https://tickets.puppetlabs.com/browse/PUP-2304)
-* [PUP-2694: Scope replacing webrick with a rack-based lightweight server, e.g. thin](https://tickets.puppetlabs.com/browse/PUP-2694)
-* [PUP-1119: List known environments on CLI](https://tickets.puppetlabs.com/browse/PUP-1119)
-* [PUP-1149: Show environment information on CLI](https://tickets.puppetlabs.com/browse/PUP-1149)
-* [PUP-3554: Validate all of the forge modules using future parser](https://tickets.puppetlabs.com/browse/PUP-3554)
-* [PUP-3188: Puppet module tool no longer processes files starting with a period as erb](https://tickets.puppetlabs.com/browse/PUP-3188)
-* [PUP-1263: Synonyms (title, namevar, name) make it confusing.](https://tickets.puppetlabs.com/browse/PUP-1263)
-
-#### Duplicates
-
-* [PUP-3297: Remove deprecated Puppet::Settings::BaseSetting methods](https://tickets.puppetlabs.com/browse/PUP-3297)
-* [PUP-3824: Ruby 2.1.5 - Puppet-Win32-Ruby - Clean Docs and Fix bin files](https://tickets.puppetlabs.com/browse/PUP-3824)
-* [PUP-280: Variables outside of class definition in module does not produce error when running puppet apply](https://tickets.puppetlabs.com/browse/PUP-280)
-* [PUP-3225: Remove legacy and dynamic environment support.](https://tickets.puppetlabs.com/browse/PUP-3225)
-* [PUP-3499: Remove deprecated 'templatedir' setting](https://tickets.puppetlabs.com/browse/PUP-3499)
-* [PUP-3499: Remove deprecated 'templatedir' setting](https://tickets.puppetlabs.com/browse/PUP-3499)
-* [PUP-3942: Make sure classifier.yaml is under $confdir](https://tickets.puppetlabs.com/browse/PUP-3942)
-* [PUP-3943: Make sure console.conf is under $confdir](https://tickets.puppetlabs.com/browse/PUP-3943)
-* [PUP-3310: Remove warning for copying owner/group to windows](https://tickets.puppetlabs.com/browse/PUP-3310)
-* [PUP-3292: Remove Modulefile support](https://tickets.puppetlabs.com/browse/PUP-3292)
-* [PUP-2804: Remove deprecation warnings introduced into Windows code during FFI](https://tickets.puppetlabs.com/browse/PUP-2804)
-
-#### N/A
-
-* [PUP-2105: Puppet config face and the --configprint option operate directly on environment.conf.](https://tickets.puppetlabs.com/browse/PUP-2105)
-    This was already working for print, and then we decided not to make `config set` act on environment.conf.
-
+These are the release notes for Puppet 4.0, released April 15 2015. There's a lot of information here so it's organized top to bottom by size of impact -- things everyone is going to notice will be at the top and minor bugfixes/improvements are down at the bottom.
 
 ~~~BIG DEAL BREAKING CHANGES~~~
 ===============
@@ -90,12 +9,42 @@
     the epic for a bunch of the above.
 
 ### BREAK: Changes to Platform Support, Repos, and Installation
-
 #### All-in-One Packaging
 
+The first thing you'll notice is that the packaging has changed pretty dramatically. Puppet had gotten complicated enough, and the systems it runs on diverse enough, that it became really difficult to provide the proverbial "one-click install" through our Linux-distribution style packaging. For Puppet 4, we've gone to an All-In-One package (which we refer to as "AIO", like a bad hand in Words With Friends), which includes Puppet 4, both Facter 2.4 and CFacter 0.4, the latest Hiera and Mcollective, as well Ruby 2.1.5, OpenSSL 1.0.0q, and our gem dependencies. The package installs into its own area in `/opt/puppetlabs` and is named `puppet-agent` so it will not auto-upgrade existing systems with the `puppet` package installed (it will, however, _replace_ them if you opt-in to the upgrade). 
+
 * [PUP-4003: Puppet 4.0.0 should update to MCO 2.8.0 and Hiera 2.0.0](https://tickets.puppetlabs.com/browse/PUP-4003)
+* [PUP-3848: Puppet 4.0.0 should update Ruby to 2.1.5 and Facter to 2.4.0](https://tickets.puppetlabs.com/browse/PUP-3848)
 * [PUP-4005: AIO agent CSR extension not compatible with current puppetserver packages](https://tickets.puppetlabs.com/browse/PUP-4005)
 * [PUP-3843: Remove PE / FOSS branching (and branding) logic from puppet_for_the_win](https://tickets.puppetlabs.com/browse/PUP-3843)
+* [PUP-4018: Execute puppet AIO acceptance against puppetserver](https://tickets.puppetlabs.com/browse/PUP-4018)
+* [PUP-4019: Add agent role back to the master](https://tickets.puppetlabs.com/browse/PUP-4019)
+* [PUP-4034: Update MSI for AIO](https://tickets.puppetlabs.com/browse/PUP-4034)
+* [PUP-4037: Windows AIO path changes](https://tickets.puppetlabs.com/browse/PUP-4037)
+* [PUP-3986: Expand predefined OID's for Puppet's extension attributes](https://tickets.puppetlabs.com/browse/PUP-3986)
+* [PUP-4009: Add Cfacter 0.4.0 to Windows MSI](https://tickets.puppetlabs.com/browse/PUP-4009)
+
+#### BREAK: New Locations for Important Files and Directories
+
+Related to the AIO packaging changes, there are new locations on the filesystem for the binaries, configuration, and code. The goals were to make a unified filesystem layout for all Puppet/PE installations and to enable continuous-deployment workflows with r10k. There's a [separate top-level guide](./whered_it_go.html) which summarizes the changes.
+
+* [PUP-3809: Separate code (content?) and configuration directories for AIO packaging](https://tickets.puppetlabs.com/browse/PUP-3809)
+* [PUP-3846: Puppet 4.0 MSI Changes - Windows Unified Installer](https://tickets.puppetlabs.com/browse/PUP-3846)
+* [PUP-3632: Update paths and defaults for the unified FS layout](https://tickets.puppetlabs.com/browse/PUP-3632)
+* [PUP-3944: Make sure puppetdb.conf is under $confdir](https://tickets.puppetlabs.com/browse/PUP-3944)
+* [PUP-4001: Packaging should create default module directories for puppet](https://tickets.puppetlabs.com/browse/PUP-4001)
+
+#### The End of Ruby 1.8.7
+
+One of the benefits of the All-in-One packaging is no longer being dependent on the version of Ruby provided by the different operating system. This let us consolidate on a fast, stable, modern version -- Ruby 2.1.5 -- across all operating systems (including Windows) and remove a ton of hacky work-arounds left over from the Ruby 1.8.7 days.
+
+If you're using the AIO packaging, the whole Puppet toolset (facter, mcollective, etc) will all work out of the box; if you're running from gem or source, however, make sure you're running a recent Ruby interpreter.
+
+* [PUP-3776: Upgrade Windows Ruby to 2.1.5](https://tickets.puppetlabs.com/browse/PUP-3776)
+* [PUP-1805: Drop Ruby 1.8.7 support](https://tickets.puppetlabs.com/browse/PUP-1805)
+* [PUP-2411: Remove 1.8.7 multibyte string support in Lexer2](https://tickets.puppetlabs.com/browse/PUP-2411)
+* [PUP-2563: Remove 1.8.7 support in the ruby code base](https://tickets.puppetlabs.com/browse/PUP-2563)
+* [PUP-2412: Remove 1.8.7 function API support](https://tickets.puppetlabs.com/browse/PUP-2412)
 
 
 #### OS Support
@@ -103,15 +52,11 @@
 * [PUP-3553: Remove support for OSX versions <= 10.6](https://tickets.puppetlabs.com/browse/PUP-3553)
     this mostly relates to setting user passwords and managing services.
 
-#### The End of Ruby 1.8.7
-
-* [PUP-1805: Drop Ruby 1.8.7 support](https://tickets.puppetlabs.com/browse/PUP-1805)
-* [PUP-2411: Remove 1.8.7 multibyte string support in Lexer2](https://tickets.puppetlabs.com/browse/PUP-2411)
-* [PUP-2563: Remove 1.8.7 support in the ruby code base](https://tickets.puppetlabs.com/browse/PUP-2563)
-* [PUP-2412: Remove 1.8.7 function API support](https://tickets.puppetlabs.com/browse/PUP-2412)
-
-
 ### BREAK: Next Version of Puppet Language
+
+By far the most significant user-facing change in Puppet 4 is the completely rewritten parser and evaluator, which are the parts of Puppet that take your modules and transform them into a catalog for each node that checks in. This was originally introduces as an opt-in "Future Parser", and over the last year, community feedback, user research, and engineering time have honed the Future Parser to the point where it's no longer in the realm of the future – it's here.
+
+There's [extensive documentation on the changes](XXX_link_to_doc.html) in the future parser – both new capabilities like iteration and type-checking for variables as well as deprecations and changed behaviour. Most notably, the stricter, more predictable parsing of numbers, empty strings, and "undef"/"nil" comparisons may cause changes to a node's catalog without necessarily producing an error.
 
 * [PUP-410: Complete Implementation of Language based on the EGrammar](https://tickets.puppetlabs.com/browse/PUP-410)
 * [PUP-3274: Remove old parser/evaluator](https://tickets.puppetlabs.com/browse/PUP-3274)
@@ -121,19 +66,12 @@
 * [PUP-3240: Remove ignoreimport setting](https://tickets.puppetlabs.com/browse/PUP-3240)
     (import was removed in future parser in 3.5.0, see PUP-490)
 * [PUP-494: Make future parser/evaluator have acceptable performance](https://tickets.puppetlabs.com/browse/PUP-494)
-
-
-
-
-### BREAK: New Locations for Important Files and Directories
-
-* [PUP-3809: Separate code (content?) and configuration directories for AIO packaging](https://tickets.puppetlabs.com/browse/PUP-3809)
-* [PUP-3632: Update paths and defaults for the unified FS layout](https://tickets.puppetlabs.com/browse/PUP-3632)
-* [PUP-3944: Make sure puppetdb.conf is under $confdir](https://tickets.puppetlabs.com/browse/PUP-3944)
-* [PUP-4001: Packaging should create default module directories for puppet](https://tickets.puppetlabs.com/browse/PUP-4001)
-
+* [PUP-3701: Issue with empty export resources expression in the Puppet future parser](https://tickets.puppetlabs.com/browse/PUP-3701)
+* [PUP-3718: defined function does not handle qualified variable names correctly](https://tickets.puppetlabs.com/browse/PUP-3718)
 
 ### BREAK: Directory Environments Replace Config File Environments
+
+Starting with Puppet 3.6, Directory Environments started taking over from Dynamic Environments as Puppet's mechanism for serving different versions of modules and code. In Puppet 4, they're the default and other environment support is gone. Read more about directory environments in the [environments section of the docs](XXX_link_to_environments.html). 
 
 * [PUP-3268: Remove non-directory environment support](https://tickets.puppetlabs.com/browse/PUP-3268)
 * [PUP-3567: Remove current_environment check in Puppet::Indirector::Request#environment=](https://tickets.puppetlabs.com/browse/PUP-3567)
@@ -141,20 +79,24 @@
 
 ### BREAK: Removed Puppet Kick, ActiveRecord, and Inventory Service
 
+There's been a lot of accumulated technical debt in Puppet's code base: old features which were deprecated but never removed, half-implemented experiments, and interested things that turned out to be really bad ideas. Almost 60,000 lines of code have been removed from the repository, comprising things like the pre-PuppetDB stored configs, `puppet kick`, and an unsupported CouchDB facts terminus. 
+
 * [PUP-2560: Remove inventory service on the master](https://tickets.puppetlabs.com/browse/PUP-2560)
 * [PUP-2559: Remove couchdb facts terminus and associated settings](https://tickets.puppetlabs.com/browse/PUP-2559)
 * [PUP-3249: Remove async_storeconfigs and queue service on the master](https://tickets.puppetlabs.com/browse/PUP-3249)
     see summary in the old deprecations pages. actually that holds true for most of the above.
 * Puppet kick:
     * [PUP-84: Disable unnecessary termini, Puppet::Resource::Ral should never be enabled in the puppet master application](https://tickets.puppetlabs.com/browse/PUP-84)
-        WHOA I forgot about puppet resource --host holy gross
 * [PUP-3267: Remove puppet kick and related agent functionality](https://tickets.puppetlabs.com/browse/PUP-3267)
 * [PUP-3269: Remove network access to the Resource indirection](https://tickets.puppetlabs.com/browse/PUP-3269)
 * [PUP-405: Remove ActiveRecord stored configs](https://tickets.puppetlabs.com/browse/PUP-405)
 * [PUP-2560: Remove inventory service on the master](https://tickets.puppetlabs.com/browse/PUP-2560)
+* [PUP-4074: Remove master settings from puppet.conf](https://tickets.puppetlabs.com/browse/PUP-4074)
 
 
 ### BREAK: HTTP API Changes
+
+An important set of changes in Puppet 4 involve the URLs the agents and master use to communicate with one another over the network. We've standardized the endpoints onto the same namespaced, versioned standard as other Puppet projects like PuppetDB, which should make for much better compatibility guarantees. A side effect of this, however, is that currently Puppet 3 agents cannot talk to Puppet 4 masters; this compatbility layer will be introduced in Puppet-Server 2.1. See the [installation and upgrade docs](XXX_install_and_upgrade.html) for step-by-step instructions to safely update your existing infrastructure.
 
 * [PUP-3641: Changes to Puppet URL structure](https://tickets.puppetlabs.com/browse/PUP-3641)
 * [PUP-3519: Scope URL rework](https://tickets.puppetlabs.com/browse/PUP-3519)
@@ -170,6 +112,20 @@
 * [PUP-3958: Puppet agent requests do not include the X-Puppet-Version header](https://tickets.puppetlabs.com/browse/PUP-3958)
 * [PUP-3355: Remove PSON document_type](https://tickets.puppetlabs.com/browse/PUP-3355)
 
+
+
+
+~~~BIG DEAL ADDITIONS~~~
+===============
+
+### New API for Custom Puppet Functions
+
+* [PUP-2904: Make string/symbol use consistent in new function API](https://tickets.puppetlabs.com/browse/PUP-2904)
+
+
+
+~~~BIG DEAL MODIFICATIONS OR IMPROVEMENTS~~~
+==============
 
 
 
@@ -293,28 +249,6 @@ puppet module stuff
 
 
 
-
-
-
-
-~~~BIG DEAL ADDITIONS~~~
-===============
-
-### New API for Custom Puppet Functions
-
-* [PUP-2904: Make string/symbol use consistent in new function API](https://tickets.puppetlabs.com/browse/PUP-2904)
-
-
-
-~~~BIG DEAL MODIFICATIONS OR IMPROVEMENTS~~~
-==============
-
-
-
-
-
-~~~Y-RELEASE CALIBER ADDITIONS~~~
-===============
 
 
 
@@ -494,6 +428,91 @@ puppet module stuff
 
 
 
+~~~YOU CAN IGNORE IT~~~
+=================
+
+### Administrivia, Testing, Docs and Specs, Packaging, Internal Clean-ups
+
+* [PUP-2716: ssl_server_ca_chain and ssl_client_ca_chain are dead settings](https://tickets.puppetlabs.com/browse/PUP-2716)
+    the settings were never enabled, the commented-out rough versions were deleted, and other code was referring to values that would never be set. No user-facing impact.
+* [PUP-4004: Remove acceptance workaround that creates the puppetserver cache related directories](https://tickets.puppetlabs.com/browse/PUP-4004)
+* [PUP-2948: Enable rubocop for PRs in Github](https://tickets.puppetlabs.com/browse/PUP-2948)
+* [PUP-2950: Enable rubocop:Style/AndOr for pops](https://tickets.puppetlabs.com/browse/PUP-2950)
+* [PUP-3013: Add acceptance test for PMT build command changes for 3.7](https://tickets.puppetlabs.com/browse/PUP-3013)
+* [PUP-3061: Upgrade win32-eventlog to 0.6.2+](https://tickets.puppetlabs.com/browse/PUP-3061)
+* [PUP-3835: Specify that variables are case sensitive](https://tickets.puppetlabs.com/browse/PUP-3835)
+* [PUP-2366: Replace hosts using Ruby 1.8.7 for Puppet 4.0 Acceptance](https://tickets.puppetlabs.com/browse/PUP-2366)
+* [PUP-3779: Verify spec tests in dev env for Ruby 2.1.5](https://tickets.puppetlabs.com/browse/PUP-3779)
+* [PUP-3780: Verify Ruby 2.1.5 compatibility on Windows 2003](https://tickets.puppetlabs.com/browse/PUP-3780)
+* [PUP-3816: Verify correct gems are in puppet-win32-ruby 2.1.5-x86 and 2.1.5-x64 branches](https://tickets.puppetlabs.com/browse/PUP-3816)
+* [PUP-2343: IPS acceptance tests should be confined to solaris-11 only](https://tickets.puppetlabs.com/browse/PUP-2343)
+* [PUP-2346: Acceptance tests cannot depend on 'readlink' or 'stat' on Solaris 10](https://tickets.puppetlabs.com/browse/PUP-2346)
+* [PUP-3076: Solaris (10) acceptance tests assume that /opt/csw/bin (opencsw) is in the path (necessary for solaris 10)](https://tickets.puppetlabs.com/browse/PUP-3076)
+* [PUP-3818: Execute Windows acceptance pre-suite against Ruby 2.1.5](https://tickets.puppetlabs.com/browse/PUP-3818)
+* [PUP-3915: Remove win32console for Windows Ruby 2.1.5](https://tickets.puppetlabs.com/browse/PUP-3915)
+    this was only needed if you were running under 1.9.x, which we don't anymore.
+* [PUP-3479: Windows ffi dependency fails for Ruby 2.1.3](https://tickets.puppetlabs.com/browse/PUP-3479)
+* [PUP-3850: Two User provider spec tests fail on RedHat systems](https://tickets.puppetlabs.com/browse/PUP-3850)
+* [PUP-3954: Determine failure for already_installed_elsewhere.rb acceptance test](https://tickets.puppetlabs.com/browse/PUP-3954)
+* [PUP-3137: expiry parameter definition in user resource documentation needs update](https://tickets.puppetlabs.com/browse/PUP-3137)
+* [PUP-3070: Include indent file in vim-puppet](https://tickets.puppetlabs.com/browse/PUP-3070)
+* [PUP-3003: Windows MSI contains unneeded files](https://tickets.puppetlabs.com/browse/PUP-3003)
+* [PUP-3016: tests/modules/install/with_version.rb assumes `puppet` is on the path](https://tickets.puppetlabs.com/browse/PUP-3016)
+* [PUP-3603: Update language spec with new String to Float behavior in PUP-3602 and PUP-3615](https://tickets.puppetlabs.com/browse/PUP-3603)
+* [PUP-4033: add puppet-agent path acceptance tests](https://tickets.puppetlabs.com/browse/PUP-4033)
+* [PUP-4152: Try Debian 8 32-bit](https://tickets.puppetlabs.com/browse/PUP-4152)
+* [PUP-4153: Try Debian 8 64-bit](https://tickets.puppetlabs.com/browse/PUP-4153)
+* [PUP-4171: Try Fedora 20 32 bit](https://tickets.puppetlabs.com/browse/PUP-4171)
+* [PUP-4172: Try Fedora 20 64 bit](https://tickets.puppetlabs.com/browse/PUP-4172)
+* [PUP-4173: Try Fedora 21 32 bit](https://tickets.puppetlabs.com/browse/PUP-4173)
+* [PUP-4174: Try Fedora 21 64 bit](https://tickets.puppetlabs.com/browse/PUP-4174)
+* [PUP-4232: add acceptance tests for lookup()](https://tickets.puppetlabs.com/browse/PUP-4232)
+* [PUP-2699: Puppet specs on windows triggers "Excluding C from search path. Fact file paths must be an absolute directory"](https://tickets.puppetlabs.com/browse/PUP-2699)
+* [PUP-4011: Spec test failure on ruby 1.8.7: ProviderSystemd should not be the default provider on rhel4](https://tickets.puppetlabs.com/browse/PUP-4011)
+* [PUP-3969: Puppet acceptance tests need auditing to derive 'host' and 'group' using the Beaker 'puppet' helper](https://tickets.puppetlabs.com/browse/PUP-3969)
+* [PUP-4056: Audit acceptance tests for assumed ruby location](https://tickets.puppetlabs.com/browse/PUP-4056)
+* [PUP-4093: Try out puppet acceptance against aio packages for non-el7 linux platforms](https://tickets.puppetlabs.com/browse/PUP-4093)
+
+
+#### Wontfix
+
+* [PUP-2701: Add acceptance tests for PMT build metadata.json support](https://tickets.puppetlabs.com/browse/PUP-2701)
+* [PUP-3015: Add acceptance test for PMT search command changes for 3.7](https://tickets.puppetlabs.com/browse/PUP-3015)
+* [PUP-528: Line number information missing from 3x AST transformer errors](https://tickets.puppetlabs.com/browse/PUP-528)
+* [PUP-3371: Ensure PSON parser only creates safe Hash and Array object types](https://tickets.puppetlabs.com/browse/PUP-3371)
+* [PUP-3470: Syntax error in test suite on Ruby <= 1.8.7-p352](https://tickets.puppetlabs.com/browse/PUP-3470)
+* [PUP-524: Complete Testing of Relationships](https://tickets.puppetlabs.com/browse/PUP-524)
+* [PUP-739: Profile agent with complex catalog](https://tickets.puppetlabs.com/browse/PUP-739)
+* [PUP-742: Identify components involved in puppet runs](https://tickets.puppetlabs.com/browse/PUP-742)
+* [PUP-743: Retrieving a resource from a catalog](https://tickets.puppetlabs.com/browse/PUP-743)
+* [PUP-2304: Implement "requirements" support for the PMT](https://tickets.puppetlabs.com/browse/PUP-2304)
+* [PUP-2694: Scope replacing webrick with a rack-based lightweight server, e.g. thin](https://tickets.puppetlabs.com/browse/PUP-2694)
+* [PUP-1119: List known environments on CLI](https://tickets.puppetlabs.com/browse/PUP-1119)
+* [PUP-1149: Show environment information on CLI](https://tickets.puppetlabs.com/browse/PUP-1149)
+* [PUP-3554: Validate all of the forge modules using future parser](https://tickets.puppetlabs.com/browse/PUP-3554)
+* [PUP-3188: Puppet module tool no longer processes files starting with a period as erb](https://tickets.puppetlabs.com/browse/PUP-3188)
+* [PUP-1263: Synonyms (title, namevar, name) make it confusing.](https://tickets.puppetlabs.com/browse/PUP-1263)
+
+#### Duplicates
+
+* [PUP-3297: Remove deprecated Puppet::Settings::BaseSetting methods](https://tickets.puppetlabs.com/browse/PUP-3297)
+* [PUP-3824: Ruby 2.1.5 - Puppet-Win32-Ruby - Clean Docs and Fix bin files](https://tickets.puppetlabs.com/browse/PUP-3824)
+* [PUP-280: Variables outside of class definition in module does not produce error when running puppet apply](https://tickets.puppetlabs.com/browse/PUP-280)
+* [PUP-3225: Remove legacy and dynamic environment support.](https://tickets.puppetlabs.com/browse/PUP-3225)
+* [PUP-3499: Remove deprecated 'templatedir' setting](https://tickets.puppetlabs.com/browse/PUP-3499)
+* [PUP-3499: Remove deprecated 'templatedir' setting](https://tickets.puppetlabs.com/browse/PUP-3499)
+* [PUP-3942: Make sure classifier.yaml is under $confdir](https://tickets.puppetlabs.com/browse/PUP-3942)
+* [PUP-3943: Make sure console.conf is under $confdir](https://tickets.puppetlabs.com/browse/PUP-3943)
+* [PUP-3310: Remove warning for copying owner/group to windows](https://tickets.puppetlabs.com/browse/PUP-3310)
+* [PUP-3292: Remove Modulefile support](https://tickets.puppetlabs.com/browse/PUP-3292)
+* [PUP-2804: Remove deprecation warnings introduced into Windows code during FFI](https://tickets.puppetlabs.com/browse/PUP-2804)
+
+#### N/A
+
+* [PUP-2105: Puppet config face and the --configprint option operate directly on environment.conf.](https://tickets.puppetlabs.com/browse/PUP-2105)
+    This was already working for print, and then we decided not to make `config set` act on environment.conf.
+
+
 ~~~TOTALLY UNSORTED STILL~~~
 ============
 
@@ -507,8 +526,6 @@ puppet module stuff
     puppetserver related
 * [PUP-3522: Ruby OpenSSL executed implicitly in JVM-Puppet by loading Puppet/Util module](https://tickets.puppetlabs.com/browse/PUP-3522)
     puppetserver related
-* [PUP-3701: Issue with empty export resources expression in the Puppet future parser](https://tickets.puppetlabs.com/browse/PUP-3701)
-* [PUP-3718: defined function does not handle qualified variable names correctly](https://tickets.puppetlabs.com/browse/PUP-3718)
 
 
 New, apr 6
@@ -519,7 +536,6 @@ New, apr 6
 * [PUP-4046: hiera_include broken](https://tickets.puppetlabs.com/browse/PUP-4046)
 * [PUP-4057: Acceptance tests should not rely on the puppetpath beaker option](https://tickets.puppetlabs.com/browse/PUP-4057)
 * [PUP-4070: Deep merge options cannot be passed as options map.](https://tickets.puppetlabs.com/browse/PUP-4070)
-* [PUP-4074: Remove master settings from puppet.conf](https://tickets.puppetlabs.com/browse/PUP-4074)
 * [PUP-4081: lookup should lookup in module when looking up qualified names](https://tickets.puppetlabs.com/browse/PUP-4081)
 * [PUP-4088: update puppet-agent path acceptance for Windows 2003 and 32-bit app on 64-bit OS](https://tickets.puppetlabs.com/browse/PUP-4088)
 * [PUP-4094: Default environment_timeout should be 0, not infinity.](https://tickets.puppetlabs.com/browse/PUP-4094)
@@ -569,8 +585,6 @@ Bug
 
 Epic
 
-* [PUP-3776: Upgrade Windows Ruby to 2.1.5](https://tickets.puppetlabs.com/browse/PUP-3776)
-* [PUP-3846: Puppet 4.0 MSI Changes - Windows Unified Installer](https://tickets.puppetlabs.com/browse/PUP-3846)
 
 Improvement
 
@@ -599,7 +613,6 @@ Improvement
 * [PUP-3842: Ensure that Puppet 4 FOSS MSI includes MCO](https://tickets.puppetlabs.com/browse/PUP-3842)
 * [PUP-3844: Puppet MSI filename should be puppet-agent.msi by default](https://tickets.puppetlabs.com/browse/PUP-3844)
 * [PUP-3845: Windows Unified Installer should track internal component versions](https://tickets.puppetlabs.com/browse/PUP-3845)
-* [PUP-3848: Puppet 4.0.0 should update Ruby to 2.1.5 and Facter to 2.4.0](https://tickets.puppetlabs.com/browse/PUP-3848)
 * [PUP-3912: Update specs to rspec 3](https://tickets.puppetlabs.com/browse/PUP-3912)
 * [PUP-3920: Update Puppet to use HI 2.0.0](https://tickets.puppetlabs.com/browse/PUP-3920)
 * [PUP-3951: Prefer api_types.read_wide_str(length, encoding) in Windows calls](https://tickets.puppetlabs.com/browse/PUP-3951)
@@ -617,14 +630,6 @@ Add
 * [PUP-2995: Proposal for custom trusted oid mapping file](https://tickets.puppetlabs.com/browse/PUP-2995)
 * [PUP-4016: Consider short circuiting data binding if lookup is called as the default value](https://tickets.puppetlabs.com/browse/PUP-4016)
 * [PUP-3997: Audit and update puppet acceptance tests that assume the puppet user and group are present](https://tickets.puppetlabs.com/browse/PUP-3997)
-* [PUP-4009: Add Cfacter 0.4.0 to Windows MSI](https://tickets.puppetlabs.com/browse/PUP-4009)
-* [PUP-4018: Execute puppet AIO acceptance against puppetserver](https://tickets.puppetlabs.com/browse/PUP-4018)
-* [PUP-4019: Add agent role back to the master](https://tickets.puppetlabs.com/browse/PUP-4019)
-* [PUP-4034: Update MSI for AIO](https://tickets.puppetlabs.com/browse/PUP-4034)
-* [PUP-4037: Windows AIO path changes](https://tickets.puppetlabs.com/browse/PUP-4037)
-* [PUP-3986: Expand predefined OID's for Puppet's extension attributes](https://tickets.puppetlabs.com/browse/PUP-3986)
-
-
 
 Task
 
@@ -633,5 +638,6 @@ Task
 * [PUP-3511: Refactor Application.run() for external reuse](https://tickets.puppetlabs.com/browse/PUP-3511)
 * [PUP-3609: Partial revert of PUP-2732](https://tickets.puppetlabs.com/browse/PUP-3609)
 * [PUP-3676: Avoid OpenSSL::X509::Name calls in ssl.rb for Puppet Server](https://tickets.puppetlabs.com/browse/PUP-3676)
+
 
 
