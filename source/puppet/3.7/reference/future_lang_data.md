@@ -32,7 +32,7 @@ Strings are the most common and useful data type, but you'll also have to work w
 
 Although you'll mostly interact with values _of_ the various data types, Puppet also includes values like `String` that _represent_ data types.
 
-Puppet has several places where you can use these special values to examine a piece of data or enforce rules. Most of the time, they act like patterns, similar to a regular expression: given a value and a data type, you can test whether the value _matches_ the data type. (And then either modify your code's behavior accordingly, or raise an error if something has gone wrong.)
+You can use these special values to examine a piece of data or enforce rules. Most of the time, they act like patterns, similar to a regular expression: given a value and a data type, you can test whether the value _matches_ the data type. (And then either adjust your code's behavior accordingly, or raise an error if something has gone wrong.)
 
 For the syntax and behavior of literal data types, see:
 
