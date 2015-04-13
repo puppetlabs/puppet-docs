@@ -6,9 +6,19 @@ canonical: "/puppet/latest/reference/future_lang_data_array.html"
 
 [undef]: ./future_lang_data_undef.html
 [stdlib]: http://forge.puppetlabs.com/puppetlabs/stdlib
+[data type]: ./future_lang_data_type.html
+[tuple]: ./future_lang_data_abstract.html#tuple
+[abstract types]: ./future_lang_data_abstract.html
 
+Arrays are ordered lists of values.
 
-Arrays are written as comma-separated lists of items surrounded by square brackets. An optional trailing comma is allowed between the final value and the closing square bracket.
+Resource attributes which accept multiple values (including the relationship metaparameters) generally expect those values in an array.
+
+Many functions also take arrays, including the iteration functions.
+
+## Syntax
+
+Arrays are written as comma-separated lists of values surrounded by square brackets. An optional trailing comma is allowed between the final value and the closing square bracket.
 
 {% highlight ruby %}
     [ 'one', 'two', 'three' ]
@@ -16,9 +26,8 @@ Arrays are written as comma-separated lists of items surrounded by square bracke
     [ 'one', 'two', 'three', ]
 {% endhighlight %}
 
-The items in an array can be any data type, including hashes or more arrays.
+The values in an array can be any data type.
 
-Resource attributes which can optionally accept multiple values (including the relationship metaparameters) expect those values in an array.
 
 ## Indexing
 
@@ -121,3 +130,41 @@ The [puppetlabs-stdlib][stdlib] module contains several additional functions for
 * `validate_array`
 * `values_at`
 * `zip`
+
+## The `Array` Data Type
+
+The [data type][] of arrays is `Array`.
+
+By default, `Array` matches arrays of any length, as long as any values in the array match the abstract type `Data`.
+
+You can use parameters to restrict which values `Array` will match.
+
+### Parameters
+
+The full signature for `Array` is:
+
+    Array[<CONTENT TYPE>, <MIN SIZE>, <MAX SIZE>]
+
+All of these parameters are optional. They must be listed in order; if you need to specify a later parameter, you must specify values for any prior ones.
+
+Position | Parameter        | Data Type | Default Value | Description
+---------| -----------------|-----------|---------------|------------
+1 | Content type | `Type`    | `Data`   | What kind of values the array contains. You can only specify one data type per array, and _every_ value in the array must match that type. Use an abstract type to allow multiple data types. If the order of elements matters, use the `Tuple` type instead of `Array`.
+2 | Min size     | `Integer` | 0        | The minimum number of elements in the array. This parameter accepts the special value `default`, which will use its default value.
+3 | Max size     | `Integer` | infinite | The maximum number of elements in the array. This parameter accepts the special value `default`, which will use its default value.
+
+
+### Examples
+
+* `Array` --- matches an array of any length; any elements in the array must match `Data`.
+* `Array[String]` --- matches an array of any size that contains only strings.
+* `Array[Integer, 6]` --- matches an array containing at least six integers.
+* `Array[Float, 6, 12]` --- matches an array containing at least six and at most 12 floating-point numbers.
+* `Array[Variant[String, Integer]]` --- matches an array of any size that contains only strings and/or integers.
+* `Array[Any, 2]` --- matches an array containing at least two elements, allowing any data type (including `Type` and `Resource`).
+
+### Related Data Types
+
+The abstract [`Tuple` data type][tuple] lets you specify data types for every element in an array, in order.
+
+Several [abstract types][], including `Variant` and `Enum`, are useful when specifying content type for arrays that might include multiple kinds of data.

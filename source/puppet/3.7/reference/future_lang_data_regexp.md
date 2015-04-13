@@ -10,11 +10,15 @@ canonical: "/puppet/latest/reference/future_lang_data_regexp.html"
 [conditional]: ./future_lang_conditional.html
 [node]: ./future_lang_node_definitions.html
 [local]: ./future_lang_scope.html#local-scopes
+[data type]: ./future_lang_data_type.html
+[pattern]: ./future_lang_data_abstract.html#pattern
 
 
 A regular expression (sometimes shortened as "regex" or "regexp") is a pattern that can match some set of strings, and optionally capture parts of those strings for further use.
 
 You can use regular expression values with the `=~` and `!~` match operators, case statements and selectors, node definitions, and certain functions (notably [`regsubst`][regsubst] for editing strings and [`match`][match] for capturing and extracting substrings). Regexes act like any other value, and can be assigned to variables and used in function arguments.
+
+## Syntax
 
 Regular expressions are written as patterns bordered by forward slashes. (Unlike in Ruby, you cannot specify options or encodings after the final slash, like `/node .*/m`.)
 
@@ -57,3 +61,31 @@ These are not normal variables, and have some special behaviors:
 * You can't manually assign values to a variable with only digits in its name; they can only be set by pattern matching.
 * In nested conditionals, each conditional has its own set of values for the set of numbered variables. At the end of an interior statement, the numbered variables are reset to their previous values for the remainder of the outside statement. (This causes conditional statements to act like [local scopes][local], but only with regard to the numbered variables.)
 
+## The `Regexp` Data Type
+
+The [data type][] of regular expressions is `Regexp`.
+
+By default, `Regexp` matches any regular expression value.
+
+You can use parameters to restrict which values `Regexp` will match.
+
+### Parameters
+
+The full signature for `Regexp` is:
+
+    Regexp[<SPECIFIC REGULAR EXPRESSION>]
+
+This parameter is optional.
+
+Position | Parameter        | Data Type | Default Value | Description
+---------| -----------------|-----------|---------------|------------
+1 | Specific regular expression | `Regexp` | none | If specified, this will result in a data type that only matches one specific regular expression value. This doesn't have any particular practical use.
+
+### Examples
+
+* `Regexp` --- matches any regular expression.
+* `Regexp[/foo/]` --- matches the regular expression `/foo/` only.
+
+### Related Data Types
+
+`Regexp` only matches literal regular expression values. It's not to be confused with [the abstract `Pattern` data type][pattern], which uses a regular expression to match a limited set of `String` values.

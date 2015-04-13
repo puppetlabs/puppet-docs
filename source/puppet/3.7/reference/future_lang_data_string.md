@@ -7,7 +7,9 @@ canonical: "/puppet/latest/reference/future_lang_data_string.html"
 [variables]: ./future_lang_variables.html
 [expression]: ./future_lang_expressions.html
 [reserved]: ./future_lang_reserved.html#reserved-words
-
+[data type]: ./future_lang_data_type.html
+[enum]: ./future_lang_data_abstract.html#enum
+[pattern]: ./future_lang_data_abstract.html#pattern
 
 
 Strings are unstructured text fragments of any length. They are often (but not always) surrounded by quotation marks. Use single quotes for all strings that do not require variable interpolation, and double quotes for strings that do require variable interpolation or where control characters or unicode characters are included via escape sequences.
@@ -125,4 +127,38 @@ Text outside the actual range of the string is treated as an infinite amount of 
     notice( $foo[-10,2] ) # resolves to ''
     notice( $foo[-10,6] ) # resolves to 'ab'
 {% endhighlight %}
+
+## The `String` Data Type
+
+The [data type][] of strings is `String`.
+
+By default, `String` matches strings of any length.
+
+You can use parameters to restrict which values `String` will match.
+
+### Parameters
+
+The full signature for `String` is:
+
+    String[<MIN LENGTH>, <MAX LENGTH>]
+
+All of these parameters are optional. They must be listed in order; if you need to specify a later parameter, you must specify values for any prior ones.
+
+Position | Parameter        | Data Type | Default Value | Description
+---------| -----------------|-----------|---------------|------------
+1 | Min length | `Integer` | 0 | The minimum number of (Unicode) characters in the string. This parameter accepts the special value `default`, which will use its default value.
+2 | Max length | `Integer` | infinite | The maximum number of (Unicode) characters in the string. This parameter accepts the special value `default`, which will use its default value.
+
+### Examples
+
+* `String` --- matches a string of any length.
+* `String[6]` --- matches a string with at least 6 characters.
+* `String[6, 8]` --- matches a string with at least 6 and at most 8 characters.
+
+
+### Related Data Types
+
+The abstract [`Enum` type][enum] matches against a list of specific allowed string values.
+
+The abstract [`Pattern` type][pattern] matches against one or more regular expressions.
 
