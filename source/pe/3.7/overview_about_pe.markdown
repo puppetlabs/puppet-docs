@@ -8,7 +8,7 @@ canonical: "/pe/latest/overview_about_pe.html"
 
 Thank you for choosing Puppet Enterprise (PE), IT automation software that allows system administrators to programmatically provision, configure, and manage servers, network devices and storage, in the data center or in the cloud.
 
-This user's guide will help you start using Puppet Enterprise 3.7, and will serve as a reference as you gain more experience. It covers PE-specific features and offers brief introductions to Puppet and the orchestration engine. Use the **navigation at left** to move between the guide's sections and chapters.
+This user's guide will help you start using Puppet Enterprise 3.8, and will serve as a reference as you gain more experience. It covers PE-specific features and offers brief introductions to Puppet and the orchestration engine. Use the **navigation at left** to move between the guide's sections and chapters.
 
 > For New Users
 > -----
@@ -18,7 +18,7 @@ This user's guide will help you start using Puppet Enterprise 3.7, and will serv
 > For Returning Users
 > -----
 >
-> See the [release notes](./release_notes.html). Here you can find detailed information about [new features](./release_notes.html) in the 3.7.x series.
+> See the [release notes](./release_notes.html). Here you can find detailed information about [new features](./release_notes.html) in the 3.8 series.
 
 About Puppet Enterprise
 -----
@@ -30,7 +30,7 @@ Puppet Enterprise is a comprehensive tool for enterprise systems configuration m
 * Powerful orchestration capabilities.
 * Cloud provisioning tools for creating and configuring new VM instances.
 
-Puppet Enterprise consists of a complete stack of Puppet Labs' technologies, which are automatically installed and connected. Specifically, PE 3.7 includes all of the following Puppet Labs software:
+Puppet Enterprise consists of a complete stack of Puppet Labs' technologies, which are automatically installed and connected. Specifically, PE 3.8 includes all of the following Puppet Labs software:
 
  * Puppet 3.7.4
  * PuppetDB 2.2.1
@@ -40,7 +40,7 @@ Puppet Enterprise consists of a complete stack of Puppet Labs' technologies, whi
  * Dashboard 2.1.6
  * Puppet Server 1.0.6
 
-The "What Gets Installed Where" page includes a [list of all the major packages that comprise PE 3.7](./install_what_and_where.html#puppet-enterprise-components).
+The "What Gets Installed Where" page includes a [list of all the major packages that comprise PE 3.8](./install_what_and_where.html#puppet-enterprise-components).
 
 About Puppet
 -----

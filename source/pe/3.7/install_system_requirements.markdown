@@ -18,7 +18,7 @@ Before installing Puppet Enterprise:
 
 ## Operating System
 
-Puppet Enterprise 3.7 supports the following operating systems:
+Puppet Enterprise 3.8 supports the following operating systems:
 
 Operating system             | Version(s)                              | Arch          | Component(s)
 -----------------------------|-----------------------------------------|---------------|----------------------------
@@ -75,7 +75,7 @@ An evaluation environment is run on a monolithic installation and is suitable fo
 - A 4-core server with 6 GB of RAM
 - At least 100 GB of free storage in `/opt` for PuppetDB
 
-We strongly recommend that users on systems with 4 GB of RAM upgrading or migrating to PE 3.7 from PE 3.3 or earlier upgrade to 6 GB of RAM before attempting to upgrade or migrate their PE installation.
+We strongly recommend that users on systems with 4 GB of RAM upgrading or migrating to PE 3.8 upgrade to 6 GB of RAM before attempting to upgrade or migrate their PE installation.
 
 ### Small Environment
 

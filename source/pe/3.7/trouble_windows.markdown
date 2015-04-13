@@ -236,7 +236,7 @@ Windows services support a short name and a display name. Make sure to use the s
 
 * "`err: You cannot service a running 64-bit operating system with a 32-bit version of DISM. Please use the version of DISM that corresponds to your computer's architecture.`"
 
-    If you've installed Puppet Enterprise on a 64-bit Windows system using the 32-bit installer, you may end up accessing a wrong or unexpected version of an executable due to file system redirection. For more info, see the Puppet documentation about [handling file paths on Windows.](/puppet/3.7/reference/lang_windows_file_paths.html)
+    If you've installed Puppet Enterprise on a 64-bit Windows system using the 32-bit installer, you may end up accessing a wrong or unexpected version of an executable due to file system redirection. For more info, see the Puppet documentation about [handling file paths on Windows.](/puppet/3.8/reference/lang_windows_file_paths.html)
 
     In the case of this error message, Puppet accessed `c:\windows\SysWOW64\dism.exe` when it was attempting to access `c:\windows\system32\dism.exe`.
 

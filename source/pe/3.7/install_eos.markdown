@@ -24,7 +24,7 @@ Puppet Enterprise supports Arista EOS as a platform for running Puppet agents on
 
    > **Note**: If you’re unable to access the outside internet from your EOS instance, you may first need to download the agent package and then transfer it to your instance.
 
-   d. Run the following command, `extension puppet-enterprise-3.7.2-eos-4-i386.swix`. This will install the Puppet agent on the EOS instance.
+   d. Run the following command, `extension puppet-enterprise-<VERSION NUMBER>-eos-4-i386.swix`. This will install the Puppet agent on the EOS instance.
 
    e. Log out as the admin user and log back into the EOS instance as `root`.
 
@@ -53,8 +53,8 @@ Note that if you are uninstalling/reinstalling the Puppet agent for testing purp
 2. Enable Privileged EXEC mode by running the following command `enable`
 3. Run the following commands:
 
-      no extension puppet-enterprise-3.7.2-eos-4-i386.swix
-      delete extension:puppet-enterprise-3.7.2-eos-4-i386.swix
+        no extension puppet-enterprise-<VERSION NUMBER>-eos-4-i386.swix
+        delete extension:puppet-enterprise-<VERSION NUMBER>-eos-4-i386.swix
 
 4. Delete the SSL keys from the EOS instance. Run the following command, `bash sudo rm -rf /persist/sys/etc/puppetlabs/`.
 5. On your Puppet master, revoke the cert for the Puppet agent on the EOS instance. Run the following command, `puppet cert clean <EOS INSTANCE FQDN>`.

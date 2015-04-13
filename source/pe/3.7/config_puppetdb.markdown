@@ -20,4 +20,3 @@ To increase the max threads for the PE console and console API, edit your Hiera 
 
 puppet_enterprise::puppetdb::jetty_ini::tk_jetty_max_threads: 150
 
-> **Note**: This setting is only available in PE 3.7.2 and later.

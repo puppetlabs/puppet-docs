@@ -7,8 +7,8 @@ canonical: "/pe/latest/install_windows.html"
 
 
 [pedownloads]: http://info.puppetlabs.com/download-pe.html
-[puppet.conf]: /puppet/3.7/reference/config_file_main.html
-[environment]: /puppet/3.7/reference/environments.html
+[puppet.conf]: /puppet/3.8/reference/config_file_main.html
+[environment]: /puppet/3.8/reference/environments.html
 
 > ![windows logo](./images/windows-logo-small.jpg) This chapter refers to Windows functionality. To install PE on \*nix nodes, see [Installing Puppet Enterprise](./install_basic.html).
 
@@ -83,10 +83,10 @@ For example:
 
 **Note:** If a value for the `environment` variable already exists in puppet.conf, specifying it during installation will NOT override that value.
 
-[s]: /references/3.7.latest/configuration.html#server
-[c]: /references/3.7.latest/configuration.html#caserver
-[r]: /references/3.7.latest/configuration.html#certname
-[e]: /references/3.7.latest/configuration.html#environment
+[s]: /references/3.8.latest/configuration.html#server
+[c]: /references/3.8.latest/configuration.html#caserver
+[r]: /references/3.8.latest/configuration.html#certname
+[e]: /references/3.8.latest/configuration.html#environment
 
 #### `INSTALLDIR`
 
@@ -185,8 +185,8 @@ When upgrading, the installer will not replace any settings in the main puppet.c
 
 The following version upgrades are supported:
 
-* 32-bit to PE 3.7 32-bit. Program data is the same, for example c:\programData\Puppet Labs
-* 32-bit PE to 64-bit PE. You can only do this upgrade from PE 3.3 to PE 3.7.  This upgrade changes the default so it goes from:
+* 32-bit to PE 3.8 32-bit. Program data is the same, for example c:\programData\Puppet Labs
+* 32-bit PE to 64-bit PE. You can only do this upgrade from PE 3.3.2 or PE 3.7.x to PE 3.8.  This upgrade changes the default so it goes from:
 
 c:\Program Files(86)\ to c:\Program Files \
 
@@ -195,7 +195,7 @@ If you have installed into a custom location, that location will not be rerouted
 Switching to an Older Version of PE
 -----
 
-If you’re downgrading from PE 3.7.x  to an older version, we recommend that you uninstall PE 3.7 first, and then install the version of your choice. This guarantees the cleanest install.
+If you’re downgrading from PE 3.8 to an older version, we recommend that you uninstall PE 3.8 first, and then install the version of your choice. This guarantees the cleanest install.
 
 You can also use the Windows MSI to switch versions. It will add PE to the system path, with the following caveats:
 
@@ -220,7 +220,7 @@ Installation Details
 
 ### What Gets Installed
 
-In order to provide a self-contained installation, the Puppet installer includes all of Puppet's dependencies, including Ruby, Gems, and Facter.  (Puppet redistributes the 32-bit Ruby application from [rubyinstaller.org](http://rubyinstaller.org). It also distributes 64-bit Ruby with Puppet 3.7.x and going forward.) MCollective is also installed.
+In order to provide a self-contained installation, the Puppet installer includes all of Puppet's dependencies, including Ruby, Gems, and Facter.  (Puppet redistributes the 32-bit Ruby application from [rubyinstaller.org](http://rubyinstaller.org). It also distributes 64-bit Ruby with Puppet 3.8.x and going forward.) MCollective is also installed.
 
 These prerequisites are used only for Puppet Enterprise components and do not interfere with other local copies of Ruby.
 

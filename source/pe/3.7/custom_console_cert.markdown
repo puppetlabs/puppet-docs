@@ -13,7 +13,7 @@ Before you get started, you should have a X.509 cert, signed by the custom party
 
 Please note that if your custom cert is issued by an intermediate CA, the CA bundle (e.g. `public-console.ca_cert.pem` in this example) needs to contain a complete chain, including the applicable root CA.
 
->**Note**: The following procedure is only compatible with PE 3.7.1 or higher. If you're upgrading from an earlier version of PE, you can use these steps to re-configure your custom console cert.
+>**Note**: The following procedure is only compatible with PE 3.8 or higher. If you're upgrading from an earlier version of PE, you can use these steps to re-configure your custom console cert.
 
 ## Set up Custom Certs and Security Credentials
 

@@ -34,8 +34,6 @@ To increase the max threads for the PE console and console API, edit your defaul
      puppet_enterprise::profile::console::console_services_config::tk_jetty_max_threads_api: <number of threads>
      puppet_enterprise::profile::console::console_services_config::tk_jetty_max_threads_console: <number of threads>
 
-> **Note**: This setting is only available in PE 3.7.2 and later.
-
 ### Tuning Java Args for the PE Console
 
 You can increase the JVM (Java Virtual Machine) memory that is allocated to Java services running on the PE console. This memory allocation is known as the Java heap size.

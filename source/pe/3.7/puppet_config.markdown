@@ -14,7 +14,7 @@ On Windows, you can find them in [Puppet's data directory](/guides/install_puppe
 ### References
 
 - For an exhaustive description of puppet's configuration settings and auxiliary configuration files, refer to the [Configuring Puppet Guide](/guides/configuring.html).
-- For details, syntax and options for the available configuration settings, visit the [configuration reference](/references/3.7.latest/configuration.html).
+- For details, syntax and options for the available configuration settings, visit the [configuration reference](/references/3.8.latest/configuration.html).
 - For details on how to configure access to Puppet's pseudo-RESTful HTTP API, refer to the [Access Control Guide](/guides/rest_auth_conf.html).
 
     > **Note:** If you haven't modified the `auth.conf` file, it may occasionally be modified when upgrading between Puppet Enterprise versions. However, if you HAVE modified it, the upgrader will not automatically overwrite your changes, and you may need to manually update `auth.conf` to accomodate new Puppet Enterprise features. Be sure to read the upgrade notes when upgrading your Puppet master to new versions of PE.

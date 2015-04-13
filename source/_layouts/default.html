@@ -203,7 +203,9 @@
           <h1>{% if page.subtitle %}{{page.subtitle}}{% else %}{{page.title}}{% endif %}</h1>
           <div id="version-note"> {% render_version_note %} </div>
           {% unless page.toc == 'false' or page.toc == false %}<nav class="in-page" id="page-nav">{{ content | toc }}</nav>{% endunless %}
-          {{ content }}
+	  <div id="rendered-markdown">
+            {{ content }}
+	  </div>
           <blockquote><p style="font-size: 1.3em; text-align: center;"><a href="#content">↑ Back to top</a></p></blockquote>
         </div>
         <nav class="main">

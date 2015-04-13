@@ -89,8 +89,6 @@ In this step, you'll use the PE console to create the ActiveMQ Hub group.
 
 In this step, you'll use the PE console to add `activemq.spoke1.example.com` and `activemq.spoke2.example.com` to the __PE ActiveMQ Broker__ group, which is configured during the installation of PE.
 
-> **Important**: For fresh installations of PE 3.7.0, node groups in the classifier are created and configured during the installation process. For upgrades, these groups are created but no classes are added to them. This is done to help prevent errors during the upgrade process. If you’re performing these steps after an upgrade to 3.7.0, refer to [the PE Master group preconfiguration docs](./console_classes_groups_preconfigured_groups.html#the-pe-master-group) for a list of classes to add to ensure your new groups are properly classified.
-
 **To add additional spokes to PE ActiveMQ Broker group**:
 
 1. From the __Classification__ page, click the __PE ActiveMQ Broker__ group.

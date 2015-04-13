@@ -6,17 +6,17 @@ canonical: "/pe/latest/puppet_modules_manifests.html"
 ---
 
 [assign]: ./puppet_assign_configurations.html
-[lang]: /puppet/3.7/reference/lang_summary.html
-[visual]: /puppet/3.7/reference/lang_visual_index.html
-[resources]: /puppet/3.7/reference/lang_resources.html
-[cond]: /puppet/3.7/reference/lang_conditional.html
-[variables]: /puppet/3.7/reference/lang_variables.html
-[facts]: /puppet/3.7/reference/lang_variables.html#facts-and-built-in-variables
-[rel]: /puppet/3.7/reference/lang_relationships.html
-[classes]: /puppet/3.7/reference/lang_classes.html
-[defined]: /puppet/3.7/reference/lang_defined_types.html
-[fund]: /puppet/3.7/reference/modules_fundamentals.html
-[install]: /puppet/3.7/reference/modules_installing.html
+[lang]: /puppet/3.8/reference/lang_summary.html
+[visual]: /puppet/3.8/reference/lang_visual_index.html
+[resources]: /puppet/3.8/reference/lang_resources.html
+[cond]: /puppet/3.8/reference/lang_conditional.html
+[variables]: /puppet/3.8/reference/lang_variables.html
+[facts]: /puppet/3.8/reference/lang_variables.html#facts-and-built-in-variables
+[rel]: /puppet/3.8/reference/lang_relationships.html
+[classes]: /puppet/3.8/reference/lang_classes.html
+[defined]: /puppet/3.8/reference/lang_defined_types.html
+[fund]: /puppet/3.8/reference/modules_fundamentals.html
+[install]: /puppet/3.8/reference/modules_installing.html
 [forge]: http://forge.puppetlabs.com
 [geppetto]: /geppetto/4.0/index.html
 

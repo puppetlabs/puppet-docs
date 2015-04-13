@@ -169,7 +169,7 @@ For detailed information to get started with RBAC, see the [PE user's guide](./r
 
 #### Node Classifier (NC)
 
-PE 3.7.0 introduces the rules-based node classifier, which is the first part of the Node Manager app that was announced in September. The node classifier provides a powerful and flexible new way to organize and configure your nodes. We’ve built a robust, API-driven backend service and an intuitive new GUI that encourages a modern, cattle-not-pets approach to managing your infrastructure. Classes are now assigned at the group level, and nodes are dynamically matched to groups based on user-defined rules.
+PE 3.8.0 uses the rules-based node classifier, which is the first part of the Node Manager app that was announced in September. The node classifier provides a powerful and flexible new way to organize and configure your nodes. We’ve built a robust, API-driven backend service and an intuitive new GUI that encourages a modern, cattle-not-pets approach to managing your infrastructure. Classes are now assigned at the group level, and nodes are dynamically matched to groups based on user-defined rules.
 
 For a detailed overview of the new node classifier, refer to the [PE user's guide](./console_classes_groups.html).
 
@@ -201,6 +201,8 @@ Note that you can download and install Puppet Enterprise on up to ten nodes at n
 ### Puppet Enterprise Binaries and Symlinks
 
 PE installs its binaries in `/opt/puppet/bin` and `/opt/puppet/sbin`. To make essential Puppet tools available to all users, the installer automatically creates symlinks in `/usr/local/bin` for the `facter`, `puppet`, `pe-man`, `r10k`, `hiera`,  and `mco` binaries. Note that the symlinks will only be created if `/usr/local/bin` is writeable (`/usr/bin` on AIX). 
+
+If you're running Mac OS X agents, note that symlinks are not created until the first successful Puppet run that applies the agents' catalogs.
 
 Other PE binaries, such as `pe-postgresql`, `pe-ruby`, or `pe-openssl`, do not have symlinks created. To include these binaries in your default `$PATH`, manually add them to your profile or run `PATH=/opt/puppet/bin:$PATH;export PATH`.
 
