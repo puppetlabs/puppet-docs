@@ -4,6 +4,8 @@ The primary purpose and benefit of r10k is that it provides a localized place in
 
 In this guide you'll version the code you wrote for the Hello, World! module for two different environments---one you'll call `production` and the other `test_message`. Each of these environments will map to a specific branch named after the environment in a repo called, **puppet-control**. Each branch (that maps to an environment) in the **puppet-control** repo will contain a `Puppetfile` that references the Hello, World! module repo's URL and latest commit ID for the code changes. When you run r10k on the Puppet master, it will read the `Puppetfile` and pull down different versions of the Hello, World! module---in other words, a version of the module for each branch (or environment).
 
+<!--insert image here--!>
+
 This guide is meant to be a simple proof-of-concept primer for getting to know r10k. For more information, see the main [r10k docs](link).
 
 > ## Assumptions and Prerequisites
@@ -33,7 +35,7 @@ The major steps you'll perform in this guide are as follows:
 
 - **Step 1**: Prepare the **puppet-control** repo.
 - **Step 2**: Rename the master branch of the **puppet-control** repo.
-- **Step 3**: Configure r10k on the Puppet Master and run the `production` environment.
+- **Step 3**: Configure r10k on the Puppet Master and deploy the `production` environment.
 - **Step 4**: Version the code in the Hello, World module and create the `test_message` environment.
 - **Step 5**: Deploy the `test_message` environment.
 - **Step 6**: Test the environments on a Puppet agent node. 
@@ -93,7 +95,7 @@ You'll perform the steps in this section on your admin machine.
 
    > **Note**: At this point, in the **puppet-control** repo, you have a `Puppetfile`, a `production` branch with `site.pp`, and a environment config file.
 
-### Step 3: Configure r10k on the Puppet master and run the `production` environment
+### Step 3: Configure r10k on the Puppet master and deploy the `production` environment
 
 You'll perform the steps in this section on your Puppet master.
 
