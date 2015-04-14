@@ -96,7 +96,7 @@ Tasks are stored in the file system. The configuration setting `task_path` deter
 
 ### Task Metadata
 
-Tasks can include the following metadata in the task's YAML file. This file is called  `metadata.yaml` and exists in `tasks/NAME.task` where `NAME` is the task name.
+Tasks can include the following metadata in the task's YAML file. This file is called  `metadata.yaml` and exists in `tasks/<NAME>.task` where `NAME` is the task name. Therefore, the task name looks like this: `tasks/<NAME>.task/metadata.yaml
 
     ---
     description: HUMAN READABLE DESCRIPTION
@@ -112,7 +112,7 @@ Only `os_version` and `boot_sequence` are required. The `base` key allows you to
 
 The `boot_sequence` hash indicates which templates to use when a node using this task boots. In the example above, a node will first boot using `boot_templ1`, then using `boot_templ2`. For every subsequent boot, the node will use `boot_local`.
 
-## Writing Templates
+## Writing Task Templates
 
 Task templates are ERB templates and are searched in all the directories given in the `task_path` configuration setting. Templates are searched in the subdirectories in this order:
 
@@ -123,13 +123,13 @@ Task templates are ERB templates and are searched in all the directories given i
 ####Template Helpers
 Templates can use the following helpers to generate URLs that point back to the server; all of the URLs respond to a `GET` request, even the ones that make changes on the server:
 
-* `file_url(TEMPLATE)`: the URL that will retrieve `TEMPLATE.erb` (after evaluation) from the current node's task.
-* `repo_url(PATH)`: the URL to the file at `PATH` in the current repo.
-* `log_url(MESSAGE, SEVERITY)`: the URL that will log `MESSAGE` in the current node's log.
-* `node_url`: the URL for the current node.
-* `store_url(VARS)`: the URL that will store the values in the hash `VARS` in the node. Currently only changing the node's IP address is supported. Use `store_url("ip" => "192.168.0.1")` for that.
-* `stage_done_url`: the URL that tells the server that this stage of the boot sequence is finished, and that the next boot sequence should begin upon reboot.
-* `broker_install_url`: a URL from which the install script for the node's broker can be retrieved. You can see an example in the script, [os_complete.erb](https://github.com/puppetlabs/razor-server/blob/master/tasks/common/os_complete.erb), which is used by most tasks.
+* `file_url(TEMPLATE)`: The URL that will retrieve `TEMPLATE.erb` (after evaluation) from the current node's task.
+* `repo_url(PATH)`: The URL to the file at `PATH` in the current repo.
+* `log_url(MESSAGE, SEVERITY)`: The URL that will log `MESSAGE` in the current node's log.
+* `node_url`: The URL for the current node.
+* `store_url(VARS)`: The URL that will store the values in the hash `VARS` in the node. Currently only changing the node's IP address is supported. Use `store_url("ip" => "192.168.0.1")` for that.
+* `stage_done_url`: The URL that tells the server that this stage of the boot sequence is finished, and that the next boot sequence should begin upon reboot.
+* `broker_install_url`: A URL from which the install script for the node's broker can be retrieved. You can see an example in the script, [os_complete.erb](https://github.com/puppetlabs/razor-server/blob/master/tasks/common/os_complete.erb), which is used by most tasks.
 
 Each boot (except for the default boot) must culminate in something akin to `curl <%= stage_done_url %>` before the node reboots. Omitting this will cause the node to reboot with the same boot template over and over again.
 
@@ -139,3 +139,79 @@ You use these helpers by causing your script to perform an
 `HTTP GET` against the generated URL. This might mean that you pass an
 argument like `ks=<%= file_url("kickstart")%>` when booting a kernel, or
 that you put `curl <%= log_url("Things work great") %>` in a shell script.
+
+## Policies
+
+Policies orchestrate repos, brokers, and tasks to tell Razor what bits to install, where to get the bits, how they should be configured, and how to communicate between a node and PE.
+
+Policies contain tags, which are named rule-sets that identify which nodes should be bound to a given policy. It's also possible, however, for a node to bind to a policy without matching tags.
+
+A node boots into the microkernel and sends facts to the Razor server. At that point, Razor walks through the policy list in order looking for an eligible policy. If it finds one, it binds to it. If it doesn't find one, the node continues to send facts to the microkernel until it does bind.
+
+With the above, a node could bind to a policy without matching any tags.
+
+Policies are stored in order in Razor. Each policy has several reasons why it might be ineligible for a node to bind to it:
+
+* The policy could be disabled.
+* The policy might already have the maximum number of nodes bound to it.
+* The policy might require tags that the node doesn't have.
+
+Because policies contain a good deal of information, it's handy to save them in a JSON file that you run when you create the policy. Here's an example of a policy called "centos-for-small." This policy stipulates that it should be applied to the first 20 nodes that have no more than two processors that boot.
+
+	{
+		"name": "centos-for-small",
+		"repo": "centos-6.4",
+		"task": "centos",
+		"broker": "noop",
+		"enabled": true,
+		"hostname": "host${id}.example.com",
+		"root_password": "secret",
+		"max_count": 20,
+		"tags": ["small"]
+	}
+
+**Policy Tables**
+You might create multiple policies, and then retrieve the policies collection. The policies are listed in order in a policy table. You can influence the order of policies as follows:
+
++ When you create a policy, you can include a `before` or `after` parameter in the request to indicate where the new policy should appear in the policy table.
++ Using the `move-policy` command with `before` and `after` parameters, you can put an existing policy before or after another one.
+
+### Tags
+
+A tag consists of a unique `name` and a `rule`. The tag matches a node if evaluating it against the tag's facts results in `true`. Note that tag matching is case sensitive.
+
+For example, here is a tag rule:
+
+    ["or",
+     ["=", ["fact", "macaddress"], "de:ea:db:ee:f0:00"]
+     ["=", ["fact", "macaddress"], "de:ea:db:ee:f0:01"]]
+
+The tag could also be written like this:
+
+    ["in", ["fact", "macaddress"], "de:ea:db:ee:f0:00", "de:ea:db:ee:f0:01"]
+
+The syntax for rule expressions is defined in `lib/razor/matcher.rb`. Expressions are of the form `[op arg1 arg2 ... argn]` where `op` is one of the operators below, and `arg1` through `argn` are the arguments for the operator. If they are expressions themselves, they will be evaluated before `op` is evaluated.
+
+The expression language currently supports the following operators:
+
+
+Operator                       |Returns                                          |Aliases
+-------------------------------|-------------------------------------------------|-------
+`["=", arg1, arg2]`            |true if `arg1` and `arg2` are equal |`"eq"`
+`["!=", arg1, arg2]`            |true if `arg1` and `arg2` are not equal |`"neq"`
+`["and", arg1, ..., argn]`     |true if all arguments are true|
+`["or", arg1, ..., argn]`      |true if any argument is true|
+`["not", arg]`                 |logical negation of `arg`, where any value other than `false` and `nil` is considered true|
+`["fact", arg1 (, arg2)]`      |the fact named `arg1` for the current node* |
+`["metadata", arg1 (, arg2)]`  |the metadata entry `arg1` for the current node* |
+`["tag", arg]`                 |the result (a boolean) of evaluating the tag with name `arg` against the current node|
+`["in", arg1, arg2, ..., argn]`|true if `arg1` equals one of `arg2` ... `argn`  |
+`["num", arg1]`                |`arg1` as a numeric value, or raises an error  |
+`[">", arg1, arg2]`            |true if `arg1` is strictly greater than `arg2` |`"gt"`
+`["<", arg1, arg2]`            |true if `arg1` is strictly less than `arg2`    |`"lt"`
+`[">=", arg1, arg2]`           |true if `arg1` is greater than or equal to `arg2`|`"gte"`
+`["<=", arg1, arg2]`           |true if `arg1` is less than or equal to `arg2`   |`"lte"`
+
+
+
+>\* **Note:**  The `fact` and `metadata` operators take an optional second argument. If `arg2` is passed, it is returned if the fact/metadata entry  `arg1` is not found. If the fact/metadata entry `arg1` is not found and no second argument is given, a `RuleEvaluationError` is raised.
