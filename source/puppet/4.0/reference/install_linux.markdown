@@ -3,8 +3,6 @@ layout: default
 title: "Installing Puppet: Linux"
 ---
 
-[nightly_yum]: /guides/puppetlabs_package_repositories.html#enabling-nightly-repos-on-yum-based-systems
-[nightly]: /guides/puppetlabs_package_repositories.html#using-the-nightly-repos
 [master_settings]: /puppet/latest/reference/config_important_settings.html#settings-for-puppet-master-servers
 [agent_settings]: /puppet/latest/reference/config_important_settings.html#settings-for-agents-all-nodes
 [current_install]: /guides/install_puppet/pre_install.html
