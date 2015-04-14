@@ -33,7 +33,7 @@ Supported Versions
 Step 1: Install a Release Package to Enable Puppet Labs Package Repositories
 -----
 
-Release packages configure your system to download and install appropriate versions of the puppetserver and puppetagent packages. 
+Release packages configure your system to download and install appropriate versions of the puppetserver and puppet-agent packages. 
 
 ## Yum-Based
 
@@ -122,10 +122,10 @@ Step 4: Install Puppet on Agent Nodes
 ### A: Install the `puppet-agent` Package
 
 #### For RPM-based systems using yum
-On your Puppet agent node(s), run `sudo yum install puppetagent`. 
+On your Puppet agent node(s), run `sudo yum install puppet-agent`. 
 
 #### For dpkg-based systems using apt-get
-On your Puppet agent node(s), run `apt-get install puppetagent`.
+On your Puppet agent node(s), run `apt-get install puppet-agent`.
 
 **Do not** start the `puppet` service yet.
 
