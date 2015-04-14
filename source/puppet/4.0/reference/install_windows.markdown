@@ -1,133 +1,241 @@
 ---
 layout: default
-title: "Installing Puppet: Windows"
+title: "Installing Puppet: Microsoft Windows"
 ---
 
-[nightly_yum]: /guides/puppetlabs_package_repositories.html#enabling-nightly-repos-on-yum-based-systems
-[nightly]: /guides/puppetlabs_package_repositories.html#using-the-nightly-repos
-[master_settings]: /puppet/latest/reference/config_important_settings.html#settings-for-puppet-master-servers
-[agent_settings]: /puppet/latest/reference/config_important_settings.html#settings-for-agents-all-nodes
-[current_install]: /guides/install_puppet/pre_install.html
+[downloads]: http://downloads.puppetlabs.com/windows
+[peinstall]: /pe/latest/install_windows.html
+[pre_install]: ./pre_install.html
 [where]: ./whered_it_go.html
-[dns_alt_names]: /references/latest/configuration.html#dnsaltnames
-[server_heap]: /puppetserver/latest/install_from_packages.html#memory-allocation
-[puppetserver_confd]: /puppetserver/latest/configuration.html
-[modules]: /puppet/latest/reference/modules_fundamentals.html
-[main manifest]: /puppet/latest/reference/dirs_manifest.html
-[environments]: /puppet/latest/reference/environments.html
+[puppet.conf]: /puppet/latest/reference/config_file_main.html
+[environment]: /puppet/latest/reference/environments.html
+[confdir]: /puppet/latest/reference/dirs_confdir.html
+[vardir]: /puppet/latest/reference/dirs_vardir.html
 
-
-> **Note:** This page is for a pre-release version of Puppet. For current versions, see [the current install guide.][current_install]
+> **Note:** This document covers open source releases of Puppet. [See here for instructions on installing Puppet Enterprise.][peinstall]
 
 First
 -----
 
-Before installing Puppet, make sure you've read the [pre-install tasks.](./install_pre.html)
-
-**Since this is a pre-release version, you might not want to upgrade your existing systems yet.** Install on test systems first.
-
-> **Note:** Puppet 4 changed the locations for a lot of the most important files and directories. [See this page for a summary of the changes.][where]
-
+Before installing Puppet, make sure you've looked at the [pre-install tasks.](./pre_install.html)
 
 Supported Versions
 -----
 
-Currently, the previews of Puppet 4.0 and Puppet Server 2.0 only support RHEL 7, CentOS 7, and derived distros.
+{% include pup40_platforms_windows.markdown %}
 
-We'll be releasing preview packages for other systems as we get closer to a final release.
+To install on other operating systems, see the pages linked in the navigation sidebar.
 
 
-Step 1: Enable Puppet Labs Package Repositories
+Step 1: Configure a Puppet Master Server
 -----
 
-Right now, we're shipping the 4.0 release candidates in our [nightly repos.][nightly] The packages aren't available in release repos yet, and once they are, they'll be in a new separated repo system that makes updates more predictable and conscious.
+Windows machines can't act as puppet master servers. Before installing any Windows agent nodes, be sure that you have a \*nix Puppet master installed and configured, and that you know its permanent hostname.
 
-[Follow the instructions here to enable the nightly repos.][nightly_yum] Note: Unlike with older nightlies, you **do not** have to enable the core Puppet Labs repos.
+If you haven't done this yet, go back to the [pre-install tasks][pre_install], make any necessary decisions, and follow the install instructions and post-install tasks for your puppet master's OS.
 
-There are two repos you must enable:
-
-* `puppet-agent` on all nodes
-* `puppetserver` on the puppet master server(s)
-
-With both of them, you can choose whether to pin your systems to a stable commit, or use the `-latest` shortcut to allow further upgrades.
-
-Step 2: Make Sure You'll Be Able to Run the Puppet Executables
+Step 2: Download Package
 -----
 
-The new location for Puppet's executables is `/opt/puppetlabs/bin/`, which is not in your PATH by default.
+[Puppet Labs' Windows packages can be found here.][downloads] You will need the most recent package for your OS's architecture:
 
-This doesn't matter for the service configs (so `service puppet start` will work fine), but if you're running any interactive `puppet` commands, you'll need to either add them to your PATH or refer to them by full name.
+* 64-bit versions of Windows Vista/2008 and higher should use `puppet-agent-<VERSION>-x64.msi`.
+* 32-bit versions of Windows, as well as the 64-bit version of Windows Server 2003, should use `puppet-agent-<VERSION>.msi`.
 
-See [our page about moved files and directories][where] for more info.
+These packages bundle all of Puppet's prerequisites, so you don't need to download anything else.
 
-Step 3: Install Puppet Server
+The list of Windows packages may include release candidates, whose filenames have something like `-rc1` after the version number. Only use these if you want to test upcoming Puppet versions.
+
+Step 3: Install Puppet
 -----
 
-(Skip this step for a standalone deployment.)
+You can install Puppet [with a graphical wizard](#graphical-installation) or [on the command line](#automated-installation). If you install on the command line, you will have more configuration options.
 
-### A: Install the `puppetserver` Package
+### Graphical Installation
 
-On your Puppet master node(s), run `sudo yum install puppetserver`. This installs Puppet Server, which will install the `puppet-agent` package as a dependency.
+[server]: ./images/wizard_server.png
 
-**Do not** start the `puppetserver` service yet.
+Double-click the MSI package you downloaded, and follow the graphical wizard. The installer must be run with elevated privileges. Installing Puppet does not require a system reboot.
 
-### B: Configure Critical Master Settings
+During installation, you will be asked for the hostname of your puppet master server. This must be a \*nix node configured to act as a puppet master.
 
-At a minimum, you need to:
+For standalone Puppet nodes that won't be connecting to a master, use the default hostname (`puppet`). You may also want to install on the command line and set the agent startup mode to `Disabled`.
 
-* Make sure [the `dns_alt_names` setting][dns_alt_names] in `/etc/puppetlabs/puppet/puppet.conf` includes any DNS names that your agent nodes will use when contacting the server.
-* Make sure the [Java heap size][server_heap] is appropriate for your hardware and for the amount of traffic the service will be handling.
+![Puppet master hostname selection][server]
 
-### C: Configure Other Master Settings
+Once the installer finishes, Puppet will be installed, running, and at least partially configured. You should now [look at the post-install tasks](./post_install.html) --- many of them don't apply to Windows nodes, but you will need to sign node certificates and you may want to configure some additional settings.
+
+### Automated Installation
+
+Use the `msiexec` command to install the Puppet package:
+
+    msiexec /qn /i puppet-agent-<VERSION>.msi
+
+If you don't specify any further options, this is the same as installing graphically with the default puppet master hostname (`puppet`).
+
+You can specify `/l*v install.txt` to log the progress of the installation to a file.
+
+You can also set several MSI properties to pre-configure Puppet as you install it. For example:
+
+    msiexec /qn /i puppet.msi PUPPET_MASTER_SERVER=puppet.example.com
+
+See the next heading for info about these MSI properties.
+
+Once the installer finishes, Puppet will be installed, running, and at least partially configured. You should now [look at the post-install tasks](./post_install.html) --- many of them don't apply to Windows nodes, but you will need to sign node certificates and you may want to configure some additional settings.
+
+### MSI Properties
+
+These options are only available when installing Puppet on the command line (see above).
+
+The following MSI properties are available:
+
+MSI Property                                                   | Puppet Setting     | Introduced in
+---------------------------------------------------------------|--------------------|-------------------------
+[`INSTALLDIR`](#installdir)                                    | n/a                | Puppet 2.7.12 / PE 2.5.0
+[`PUPPET_MASTER_SERVER`](#puppetmasterserver)                  | [`server`][s]      | Puppet 2.7.12 / PE 2.5.0
+[`PUPPET_CA_SERVER`](#puppetcaserver)                          | [`ca_server`][c]   | Puppet 2.7.12 / PE 2.5.0
+[`PUPPET_AGENT_CERTNAME`](#puppetagentcertname)                | [`certname`][r]    | Puppet 2.7.12 / PE 2.5.0
+[`PUPPET_AGENT_ENVIRONMENT`](#puppetagentenvironment)          | [`environment`][e] | Puppet 3.3.1  / PE 3.1.0
+[`PUPPET_AGENT_STARTUP_MODE`](#puppetagentstartupmode)         | n/a                | Puppet 3.4.0  / PE 3.2
+[`PUPPET_AGENT_ACCOUNT_USER`](#puppetagentaccountuser)         | n/a                | Puppet 3.4.0  / PE 3.2
+[`PUPPET_AGENT_ACCOUNT_PASSWORD`](#puppetagentaccountpassword) | n/a                | Puppet 3.4.0  / PE 3.2
+[`PUPPET_AGENT_ACCOUNT_DOMAIN`](#puppetagentaccountdomain)     | n/a                | Puppet 3.4.0  / PE 3.2
+
+[s]: /references/latest/configuration.html#server
+[c]: /references/latest/configuration.html#caserver
+[r]: /references/latest/configuration.html#certname
+[e]: /references/latest/configuration.html#environment
 
 
-You may want to do some other tweaking and configuration before getting Puppet Server online.
 
-* [Relevant puppet.conf settings][master_settings]
-* [Puppet Server conf.d settings][puppetserver_confd]
+#### `INSTALLDIR`
 
-### D: Deploy Puppet Content
+Where Puppet and its dependencies should be installed.
 
-In this version of Puppet, you should deploy your [modules][] and your [main manifest][] to `/etc/puppetlabs/code/environments` ([more about environments][environments]).
+> **Note:** If you installed Puppet into a custom directory and are upgrading from a 32-bit version to a 64-bit version, you must re-specify the `INSTALLDIR` option when upgrading.
+>
+> If you are replacing 64-bit Puppet with a 32-bit version, you should **uninstall** Puppet before installing the new package. Be sure to re-specify any relevant MSI properties when re-installing.
 
-The default environment for nodes that aren't assigned elsewhere is called `production`, and the packages have automatically created that directory for you.
+Puppet's program directory contains the following subdirectories:
 
-You can deploy new content at any time while Puppet Server is running, but you'll probably want to have something ready before you start.
+Directory | Description
+----------|------------
+bin       | scripts for running Puppet and Facter
+facter    | Facter source
+hiera     | Hiera source
+misc      | resources
+puppet    | Puppet source
+service   | code to run puppet agent as a service
+sys       | Ruby and other tools
 
-### F: Start the `puppetserver` Service
+**Default (Puppet 3.7+):**
 
-Use your normal system tools to do this, usually by running `sudo service puppetserver start`.
+When using the architecture-appropriate installer, Puppet will install into the following directories:
 
-If you want to run Puppet Server in the foreground and watch the log messages scroll by, you can run `/opt/puppetlabs/bin/puppetserver foreground`, with or without the `--debug` option.
+OS type                    | Default Install Path
+---------------------------|--------------------------------------------
+Most Windows Versions      | `C:\Program Files\Puppet Labs\Puppet`
+Windows Server 2003 64-bit | `C:\Program Files (x86)\Puppet Labs\Puppet`
+
+The Program Files directory can be located using the `PROGRAMFILES` environment variable. (On Windows Server 2003 64-bit, you should use the `PROGRAMFILES(X86)` variable instead.)
 
 
-Step 4: Install Puppet on Agent Nodes
------
+**Default (Puppet 3.6 and earlier):**
 
-### A: Install the `puppet-agent` Package
+OS type  | Default Install Path
+---------|---------------------
+32-bit   | `C:\Program Files\Puppet Labs\Puppet`
+64-bit   | `C:\Program Files (x86)\Puppet Labs\Puppet`
 
-On every node you'll be managing with Puppet, run `sudo yum install puppet-agent`. This will install the Puppet software, lay down some default config files, and install a service configuration for running puppet agent.
+The Program Files directory can be located using the `PROGRAMFILES` environment variable on 32-bit versions of Windows or the `PROGRAMFILES(X86)` variable on 64-bit versions.
 
-**Do not** start the `puppet` service yet.
+#### `PUPPET_MASTER_SERVER`
 
-### B: Configure Critical Agent Settings
+The hostname where the puppet master server can be reached. This will set a value for [the `server` setting][s] in the `[main]` section of [puppet.conf][].
 
-You probably want to set the `server` setting to your master's hostname. The default value is `server = puppet`, so if your master is reachable at that address, you can skip this.
+**Default:** `puppet`
 
-For other settings you might want to change, see [the list of agent-related settings.][agent_settings]
+**Note:** If you set a _non-default_ value for this property, the installer will **replace** any existing value in puppet.conf. Also, the next time you upgrade, the installer will re-use your previous value for this property unless you set a new value on the command line. So if you've used this property once, you shouldn't change the `server` setting directly in puppet.conf; you should re-run the installer and set a new value there instead.
 
-### C: Start the `puppet` Service
+#### `PUPPET_CA_SERVER`
 
-You can do this with Puppet by running `sudo /opt/puppetlabs/bin/puppet resource service puppet ensure=running enable=true`.
+The hostname where the CA puppet master server can be reached, if you are using multiple masters and only one of them is acting as the CA. This will set a value for [the `ca_server` setting][c] in the `[main]` section of [puppet.conf][].
 
-If you want to watch an agent run happen in the foreground, you can run `sudo /opt/puppetlabs/bin/puppet agent --test`.
+**Default:** the value of the `PUPPET_MASTER_SERVER` property
 
-### D: Sign Certificates (on the CA Master)
+**Note:** If you set a _non-default_ value for this property, the installer will **replace** any existing value in puppet.conf. Also, the next time you upgrade, the installer will re-use your previous value for this property unless you set a new value on the command line. So if you've used this property once, you shouldn't change the `ca_server` setting directly in puppet.conf; you should re-run the installer and set a new value there instead.
 
-As each agent runs for the first time, it will submit a certificate signing request (CSR) to the CA Puppet master. You'll need to log into that server to check for certs and sign them.
+#### `PUPPET_AGENT_CERTNAME`
 
-* Run `sudo /opt/puppetlabs/bin/puppet cert list` to see any outstanding requests.
-* Run `sudo /opt/puppetlabs/bin/puppet cert sign <NAME>` to sign a request.
+The node's certificate name, and the name it uses when requesting catalogs. This will set a value for [the `certname` setting][r] in the `[main]` section of [puppet.conf][].
 
-After an agent node's cert is signed, it will regularly fetch and apply configurations from the Puppet master server.
+For best compatibility, you should limit the value of `certname` to only use lowercase letters, numbers, periods, underscores, and dashes. (That is, it should match `/\A[a-z0-9._-]+\Z/`.)
+
+**Default:** the node's fully-qualified domain name, as discovered by `facter fqdn`.
+
+**Note:** If you set a _non-default_ value for this property, the installer will **replace** any existing value in puppet.conf. Also, the next time you upgrade, the installer will re-use your previous value for this property unless you set a new value on the command line. So if you've used this property once, you shouldn't change the `certname` setting directly in puppet.conf; you should re-run the installer and set a new value there instead.
+
+#### `PUPPET_AGENT_ENVIRONMENT`
+
+The node's [environment][]. This will set a value for [the `environment` setting][e] in the `[main]` section of [puppet.conf][].
+
+**Default:** `production`
+
+**Note:** If you set a _non-default_ value for this property, the installer will **replace** any existing value in puppet.conf. Also, the next time you upgrade, the installer will re-use your previous value for this property unless you set a new value on the command line. So if you've used this property once, you shouldn't change the `environment` setting directly in puppet.conf; you should re-run the installer and set a new value there instead.
+
+#### `PUPPET_AGENT_STARTUP_MODE`
+
+Whether the puppet agent service should run (or be allowed to run). Allowed values:
+
+* `Automatic` (**default**) --- puppet agent will start with Windows and stay running in the background.
+* `Manual` --- puppet agent won't run by default, but can be started in the services console or with `net start` on the command line.
+* `Disabled` --- puppet agent will be installed but disabled. You will have to change its start up type in the services console before you can start the service.
+
+
+#### `PUPPET_AGENT_ACCOUNT_USER`
+
+Which Windows user account the puppet agent service should use. This is important if puppet agent will need to access files on UNC shares, since the default `LocalSystem` account cannot access these network resources.
+
+* This user account **must already exist,** and may be a local or domain user. (The installer will allow domain users even if they have not accessed this machine before.)
+* If the user isn't already a local administrator, the installer will add it to the `Administrators` group.
+* The installer will also grant [`Logon as Service`](http://msdn.microsoft.com/en-us/library/ms813948.aspx) to the user.
+
+This property should be combined with `PUPPET_AGENT_ACCOUNT_PASSWORD` and `PUPPET_AGENT_ACCOUNT_DOMAIN`. For example, to assign the agent to a domain user `ExampleCorp\bob`, you would install with:
+
+    msiexec /qn /i puppet-agent-<VERSION>.msi PUPPET_AGENT_ACCOUNT_DOMAIN=ExampleCorp PUPPET_AGENT_ACCOUNT_USER=bob PUPPET_AGENT_ACCOUNT_PASSWORD=password
+
+**Default:** `LocalSystem`
+
+#### `PUPPET_AGENT_ACCOUNT_PASSWORD`
+
+The password to use for puppet agent's user account. See the notes about users above.
+
+**Default:** no value.
+
+#### `PUPPET_AGENT_ACCOUNT_DOMAIN`
+
+The domain of puppet agent's user account. See the notes about users above.
+
+**Default:** `.`
+
+
+#### Downgrades
+
+If you need to replace a 64-bit version of Puppet with a 32-bit version, you must **uninstall** Puppet before installing the new package. You must also uninstall if you are downgrading from 3.7 or later to 3.6 or earlier.
+
+### Uninstalling
+
+Puppet can be uninstalled through the "Add or Remove Programs" interface or from the command line.
+
+To uninstall from the command line, you must have the original MSI file or know the <a href="http://msdn.microsoft.com/en-us/library/windows/desktop/aa370854(v=vs.85).aspx">ProductCode</a> of the installed MSI:
+
+    msiexec /qn /x puppet-agent-1.0.0.msi
+    msiexec /qn /x <PRODUCT CODE>
+
+Uninstalling will remove Puppet's program directory, the puppet agent service, and all related registry keys. It will leave the [confdir][] and [vardir][] intact, including any SSL keys. To completely remove Puppet from the system, the confdir and vardir can be manually deleted.
+
+Next
+----
+
+Once the installer finishes, Puppet will be installed, running, and at least partially configured. You should now [look at the post-install tasks](./post_install.html) --- many of them don't apply to Windows nodes, but you will need to sign node certificates and you may want to configure some additional settings.
 
