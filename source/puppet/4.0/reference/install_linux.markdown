@@ -39,9 +39,9 @@ Release packages configure your system to download and install appropriate versi
 
 1. Choose the package based on your specific operating system and version:
 
-	The packages are all named with a similar convention of puppetlabs-release-COLLECTION-OS-VERSION.rpm to help you find the correct one. You can find the correct package by searching for your platform name and version at the end of the filename. 
+	The packages are all named with a similar convention of puppetlabs-release-COLLECTION-OS-VERSION.rpm to help you find the correct one. For instance, the package for Puppet Collection 1 on Rhel7 should look like `puppetlabs-release-pc1-rhel-7.rpm`.
 	
- is 
+  
 
 2. Install the package with `rpm -Uhv PACKAGENAME`
 
