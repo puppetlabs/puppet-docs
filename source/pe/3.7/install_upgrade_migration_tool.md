@@ -15,7 +15,7 @@ PE 3.7 introduced major improvements to the node classification process, includi
 
 The node-based classification system used in PE 3.3 and earlier versions does not translate directly to node group classification in PE 3.7 due to some data incompatibility issues. PE 3.8 comes with a tool to help you migrate the classification data that you used in PE 3.3. 
 
-> **Note:** The migration tool **only** assists with upgrades from PE 3.3 to PE 3.8 and is designed to skip PE 3.7. If you are using node classification in PE 3.3 we **do not** recommend upgrading to PE 3.7.
+> **Note:** The migration tool **only** assists with upgrades from **PE 3.3** to **PE 3.8** and is designed to skip PE 3.7. If you are using node classification in PE 3.3 we **do not** recommend upgrading to PE 3.7.
 
 The major differences between classification in PE 3.3 and PE 3.8 are shown in the following diagram.  
 
@@ -47,7 +47,7 @@ To use the migration tool, you must:
 
 ### Flow of the PE 3.3 to PE 3.8 Migration Process 
 
-(TODO: Insert flow diagram here)
+<a href="./images/console/env_workflow.svg"><img src="./images/console/env_workflow.svg" alt="Environment Workflow" title="Click to enlarge"> (Click to enlarge)</a>
 
 After successful migration from PE 3.3 to PE 3.8 in the flow shown above, your PE 3.8 installation will have:
 
