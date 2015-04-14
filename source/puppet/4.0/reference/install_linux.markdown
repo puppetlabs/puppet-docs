@@ -37,7 +37,7 @@ Release packages configure your system to download and install appropriate versi
 
 1. Choose the package based on your specific operating system and version:
 
-	The packages are all named with a similar convention of puppetlabs-release-COLLECTION-OS-VERSION.rpm to help you find the correct one. For instance, the package for Puppet Collection 1 on Rhel7 should look like `puppetlabs-release-pc1-rhel-7.rpm`.
+	The packages are all named with a similar convention of puppetlabs-release-COLLECTION-OS-VERSION.noarch.rpm to help you find the correct one. For instance, the package for Puppet Collection 1 on Rhel7 should look like `puppetlabs-release-pc1-rhel-7.noarch.rpm`.
 	
   
 
@@ -53,8 +53,7 @@ Release packages configure your system to download and install appropriate versi
 ## apt-based
    
 1. Choose the package based on your specific operating system and version:
-** Explain the package naming convention (puppetlabs-release-COLLECTION-OS-VERSION.rpm) **
-`puppetlabs-release-pc1-squeeze.deb`
+	The packages are all named with a similar convention of puppetlabs-release-COLLECTION-OS-VERSION.noarch.rpm to help you find the correct one. For instance, the package for Puppet Collection 1 on Debian 7 should look like `puppetlabs-release-pc1-deb-7.noarch.rpm`.
 
 		root@ksq268o6gv15bwo:~# wget http://apt.puppetlabs.com/puppetlabs-release-pc1-squeeze.deb
 		root@ksq268o6gv15bwo:~# dpkg -i puppetlabs-release-pc1-squeeze.deb
