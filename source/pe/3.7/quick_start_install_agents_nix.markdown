@@ -6,7 +6,7 @@ canonical: "/pe/latest/quick_start_install_agents_nix.html"
 ---
 
 
-### Overview
+## Overview
 
 The following instructions are for installing Puppet agents on nodes running *nix operating systems. Refer to the [Windows agent installation quick start guide](./quick_start_install_agents_windows.html) for instructions on installing Puppet agents on nodes running supported versions of the Windows OS.
 
@@ -18,7 +18,7 @@ For more information about Puppet agents, as well as the components that make up
 
 >**Prerequisites**: This guide assumes you've [installed a monolithic PE deployment](./quick_start_install_mono.html) and have the Puppet master, the PE console, and PuppetDB up and running on one node.
 
-### Installing the Puppet Enterprise Agent
+## Installing the Puppet Enterprise Agent
 
 Choose one of the following scenarios:
 
@@ -26,7 +26,7 @@ Choose one of the following scenarios:
 - My Puppet agent node has a [different OS and architecture than my Puppet master](#installing-agents-with-different-os-and-architecture-than-the-puppet-master).
 
 
-#### Installing Agents with the Same OS and Architecture as the Puppet Master
+### Installing Agents with the Same OS and Architecture as the Puppet Master
 
 If your Puppet agent node is the same OS and architecture as the Puppet master, log into your agent node and run the following command:
  `curl -k https://<master.example.com>:8140/packages/current/install.bash | sudo bash`.
@@ -35,7 +35,7 @@ This script detects the OS on which the agent is running, sets up an apt, yum, o
 
 > **Important**: After installation is complete, you need to approve your new agent node’s certificate request in the console. Continue on to [Approving the Certificate Request](#approving-the-certificate-request) to do so.
 
-#### Installing Agents with Different OS and Architecture than the Puppet Master
+### Installing Agents with Different OS and Architecture than the Puppet Master
 
 [classification_selector]: ./images/quick/classification_selector.png
 [add_repo]: ./images/quick/add_repo.png
