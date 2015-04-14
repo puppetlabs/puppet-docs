@@ -25,9 +25,9 @@ Before installing Puppet, make sure you've read the [pre-install tasks.](./insta
 > **Note:** Puppet 4 changed the locations for a lot of the most important files and directories. [See this page for a summary of the changes.][where]
 
 
-Supported Versions
+Supported Versions and Requirements
 -----
-
+Most Linux systems including CentOS, Redhat, Ubuntu, and Debian have packages. At this time, Mac OS X package for Puppet agent has not been released. For a complete list of supported platforms, view the [system requirements page.](sysreqs)
 
 
 Step 1: Install a Release Package to Enable Puppet Labs Package Repositories
@@ -39,8 +39,9 @@ Release packages configure your system to download and install appropriate versi
 
 1. Choose the package based on your specific operating system and version:
 
-** Explain the package naming convention (puppetlabs-release-COLLECTION-OS-VERSION.rpm) **
-puppetlabs-release-pc1-rhel-7.rpm
+	The packages are all named with a similar convention of puppetlabs-release-COLLECTION-OS-VERSION.rpm to help you find the correct one. You can find the correct package by searching for your platform name and version at the end of the filename. 
+	
+ is 
 
 2. Install the package with `rpm -Uhv PACKAGENAME`
 
