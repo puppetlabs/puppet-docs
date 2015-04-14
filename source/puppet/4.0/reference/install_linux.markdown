@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Installing Puppet: Red Hat Enterprise Linux (and Derivatives)"
+title: "Installing Puppet: Linux"
 ---
 
 [nightly_yum]: /guides/puppetlabs_package_repositories.html#enabling-nightly-repos-on-yum-based-systems
@@ -17,14 +17,10 @@ title: "Installing Puppet: Red Hat Enterprise Linux (and Derivatives)"
 [environments]: /puppet/latest/reference/environments.html
 
 
-> **Note:** This page is for a pre-release version of Puppet. For current versions, see [the current install guide.][current_install]
-
 First
 -----
 
 Before installing Puppet, make sure you've read the [pre-install tasks.](./install_pre.html)
-
-**Since this is a pre-release version, you might not want to upgrade your existing systems yet.** Install on test systems first.
 
 > **Note:** Puppet 4 changed the locations for a lot of the most important files and directories. [See this page for a summary of the changes.][where]
 
@@ -32,24 +28,38 @@ Before installing Puppet, make sure you've read the [pre-install tasks.](./insta
 Supported Versions
 -----
 
-Currently, the previews of Puppet 4.0 and Puppet Server 2.0 only support RHEL 7, CentOS 7, and derived distros.
-
-We'll be releasing preview packages for other systems as we get closer to a final release.
 
 
-Step 1: Enable Puppet Labs Package Repositories
+Step 1: Install a Release Package to Enable Puppet Labs Package Repositories
 -----
 
-Right now, we're shipping the 4.0 release candidates in our [nightly repos.][nightly] The packages aren't available in release repos yet, and once they are, they'll be in a new separated repo system that makes updates more predictable and conscious.
+Release packages configure your system to download and install appropriate versions of the puppetserver and puppetagent packages. 
 
-[Follow the instructions here to enable the nightly repos.][nightly_yum] Note: Unlike with older nightlies, you **do not** have to enable the core Puppet Labs repos.
+## Yum-Based
 
-There are two repos you must enable:
+1. Choose the package based on your specific operating system and version:
 
-* `puppet-agent` on all nodes
-* `puppetserver` on the puppet master server(s)
+** Explain the package naming convention (puppetlabs-release-COLLECTION-OS-VERSION.rpm) **
+puppetlabs-release-pc1-rhel-7.rpm
 
-With both of them, you can choose whether to pin your systems to a stable commit, or use the `-latest` shortcut to allow further upgrades.
+2. Install the package with `rpm -Uhv PACKAGENAME`
+
+    [root@dcc5krb9mp7wfrh ~]# rpm -Uvh http://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm
+    Retrieving http://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm
+    Preparing...                          ################################# [100%]
+    Updating / installing...
+    1:puppetlabs-release-pc1-0.9.2-1.el################################# [100%]
+    
+
+## apt-based
+   
+1. Choose the package based on your specific operating system and version:
+** Explain the package naming convention (puppetlabs-release-COLLECTION-OS-VERSION.rpm) **
+`puppetlabs-release-pc1-squeeze.deb`
+    
+    root@ksq268o6gv15bwo:~# wget http://apt.puppetlabs.com/puppetlabs-release-pc1-squeeze.deb
+    root@ksq268o6gv15bwo:~# dpkg -i puppetlabs-release-pc1-squeeze.deb
+    root@ksq268o6gv15bwo:~# apt-get update
 
 Step 2: Make Sure You'll Be Able to Run the Puppet Executables
 -----
@@ -67,7 +77,12 @@ Step 3: Install Puppet Server
 
 ### A: Install the `puppetserver` Package
 
+#### For RPM-based systems using yum
 On your Puppet master node(s), run `sudo yum install puppetserver`. This installs Puppet Server, which will install the `puppet-agent` package as a dependency.
+
+#### For dpkg-based systems using apt-get
+On your Puppet master node(s), run `apt-get install puppetserver`. This installs Puppet Server, which will install the `puppet-agent` package as a dependency.
+
 
 **Do not** start the `puppetserver` service yet.
 
@@ -106,7 +121,11 @@ Step 4: Install Puppet on Agent Nodes
 
 ### A: Install the `puppet-agent` Package
 
-On every node you'll be managing with Puppet, run `sudo yum install puppet-agent`. This will install the Puppet software, lay down some default config files, and install a service configuration for running puppet agent.
+#### For RPM-based systems using yum
+On your Puppet agent node(s), run `sudo yum install puppetagent`. 
+
+#### For dpkg-based systems using apt-get
+On your Puppet agent node(s), run `apt-get install puppetagent`.
 
 **Do not** start the `puppet` service yet.
 
