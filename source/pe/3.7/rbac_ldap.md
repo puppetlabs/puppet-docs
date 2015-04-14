@@ -211,6 +211,7 @@ To turn on verification:
 2. Click **Classes** and scroll down to the `puppet_enterprise::profile::console` class.
 3. Click the **Parameter name** drop-down list and select `rbac_ds_trust_chain`.
 4. In **Value**, set the absolute path to the trust store file. 
+5. Click **Add parameter** and then click the commit button.
 
 Once this value is set, the directory server's certificate will be verified whenever RBAC is configured to connect to the directory server using SSL.
 
