@@ -173,11 +173,16 @@ task :generate do
   Rake::Task['externalsources:clean'].reenable
 end
 
-desc "Symlink latest versions of several projects; see symlink_latest list in _config.yml"
+desc "Symlink latest versions of several projects; see symlink_latest and lock_latest lists in _config.yml"
 task :symlink_latest_versions do
   require 'versionomy'
   require 'pathname'
+
+  # Auto-link the latest version of every project in symlink_latest
   config_data['symlink_latest'].each do |project|
+    # Skip locked projects
+    next if config_data['lock_latest'].keys.include?(project)
+
     # this bit is snipped from PuppetDocs::Reference
     subdirs = Pathname.new("#{output_dir}/#{project}").children.select do |child|
       child.directory? && !child.symlink?
@@ -194,6 +199,13 @@ task :symlink_latest_versions do
     versions.sort! # sorts into ascending order, so most recent is last
     Dir.chdir "#{output_dir}/#{project}" do
       FileUtils.ln_sf versions.last.to_s, 'latest'
+    end
+  end
+
+  # Manually link the locked "latest" version of every project in lock_latest
+  config_data['lock_latest'].each do |project, version|
+    Dir.chdir "#{output_dir}/#{project}" do
+      FileUtils.ln_sf version.to_s, 'latest'
     end
   end
 end
