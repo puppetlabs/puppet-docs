@@ -218,7 +218,6 @@ The domain of puppet agent's user account. See the notes about users above.
 
 **Default:** `.`
 
-
 #### Downgrades
 
 If you need to replace a 64-bit version of Puppet with a 32-bit version, you must **uninstall** Puppet before installing the new package. You must also uninstall if you are downgrading from 3.7 or later to 3.6 or earlier.
@@ -234,8 +233,5 @@ To uninstall from the command line, you must have the original MSI file or know 
 
 Uninstalling will remove Puppet's program directory, the puppet agent service, and all related registry keys. It will leave the [confdir][] and [vardir][] intact, including any SSL keys. To completely remove Puppet from the system, the confdir and vardir can be manually deleted.
 
-Next
-----
 
-Once the installer finishes, Puppet will be installed, running, and at least partially configured. You should now [look at the post-install tasks](./post_install.html) --- many of them don't apply to Windows nodes, but you will need to sign node certificates and you may want to configure some additional settings.
-
+Once the installer finishes, Puppet will be installed, running, and at least partially configured. 
