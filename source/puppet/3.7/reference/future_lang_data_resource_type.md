@@ -26,7 +26,7 @@ Puppet automatically creates new known [data type][] values for every _resource 
 
 These one-off data types share the name of the resource type they correspond to, with the first letter of every namespace segment capitalized. For example, the `file` type creates a data type called `File`.
 
-Additionally, there is a parent `Resource` data type. All of these one-off data types are subtypes of `Resource`, and there is a `Resource` value with parameters that exactly corresponds to each of them.
+Additionally, there is a parent `Resource` data type. All of these one-off data types are more-specific subtypes of `Resource`.
 
 ## Usage
 
@@ -36,6 +36,31 @@ A resource data type can be used in the following places:
 
 * The resource type slot of a [resource declaration][]
 * The resource type slot of a [resource default statement][]
+
+For example:
+
+{% highlight ruby %}
+    # A resource declaration using a resource data type:
+    File { "/etc/ntp.conf":
+      mode  => "0644",
+      owner => "root",
+      group => "root",
+    }
+
+    # Equivalent to the above:
+    Resource["file"] { "/etc/ntp.conf":
+      mode  => "0644",
+      owner => "root",
+      group => "root",
+    }
+
+    # A resource default:
+    File {
+      mode  => "0644",
+      owner => "root",
+      group => "root",
+    }
+{% endhighlight %}
 
 ### Resource Data Types With Title
 
