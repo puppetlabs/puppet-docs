@@ -41,8 +41,6 @@ Puppet 3.7 and all of its prerequisites will run on the following platforms, and
 
 ### Mac OS X
 
-Although we publish packages for Mac OS X, we do not run automated testing on it.
-
 - A package for Mac OS X, version 10.9 (Mavericks) and higher will be available at a later date.
 
 Platforms Without Packages
