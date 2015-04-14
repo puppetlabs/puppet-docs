@@ -212,6 +212,8 @@ To turn on verification:
 3. Click the **Parameter name** drop-down list and select `rbac_ds_trust_chain`.
 4. In **Value**, set the absolute path to the trust store file. 
 5. Click **Add parameter** and then click the commit button.
+6. To make the change take affect, run Puppet (`puppet agent -t`).
+7. Restart pe-console-services (`sudo service pe-console-services restart`).
 
 Once this value is set, the directory server's certificate will be verified whenever RBAC is configured to connect to the directory server using SSL.
 
