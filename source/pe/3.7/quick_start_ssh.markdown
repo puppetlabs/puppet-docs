@@ -130,6 +130,7 @@ After you apply the `ssh` class and run Puppet, the public key for each agent no
    This will configure the nodes using the newly-assigned classes. Wait one or two minutes.
 
    **Important**: You need to run Puppet a second time due to the round-robin nature of the key sharing. In other words, the first server that ran on the first Puppet run was only able to share its key, but it was not also able to retrieve the keys from the other agents. It will collect the other keys on the second Puppet run.
+   
 ## Use the Puppet Enterprise Console Event Inspector to View Changes Made by the `ssh` Class
 
 
