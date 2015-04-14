@@ -1,0 +1,750 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Module: Puppet::Interface::OptionManager
+  
+    &mdash; Documentation by YARD 0.8.7.6
+  
+</title>
+
+  <link rel="stylesheet" href="../../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '../../';
+  framesUrl = "../../frames.html#!Puppet/Interface/OptionManager.html";
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../../_index.html">Index (O)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../Interface.html" title="Puppet::Interface (class)">Interface</a></span></span>
+     &raquo; 
+    <span class="title">OptionManager</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../../class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="../../method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="../../file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><h1>Module: Puppet::Interface::OptionManager
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+  
+    
+  
+    
+  
+  
+    <dt class="r1">Included in:</dt>
+    <dd class="r1"><span class='object_link'><a href="../Interface.html" title="Puppet::Interface (class)">Puppet::Interface</a></span>, <span class='object_link'><a href="../Interface.html" title="Puppet::Interface (class)">Puppet::Interface</a></span></dd>
+    
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">lib/puppet/interface/option_manager.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p>This class is not actually public API, but the method
+<span class='object_link'><a href="#option-instance_method" title="Puppet::Interface::OptionManager#option (method)">option</a></span> is public when used
+as part of the Faces DSL (i.e. from within a
+<span class='object_link'><a href="../Interface.html#define-class_method" title="Puppet::Interface.define (method)">define</a></span> block).</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+
+
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#add_option-instance_method" title="#add_option (instance method)">- (Object) <strong>add_option</strong>(option) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#display_global_options-instance_method" title="#display_global_options (instance method)">- (Object) <strong>display_global_options</strong>(*args) </a>
+    
+
+    
+      (also: #display_global_option)
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_option-instance_method" title="#get_option (instance method)">- (Object) <strong>get_option</strong>(name, with_inherited_options = true) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#option-instance_method" title="#option (instance method)">- (Object) <strong>option</strong>(*declaration, &amp;block) </a>
+    
+
+    
+  </span>
+  
+  
+  
+    <span class="note title readonly">DSL</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Declare that this app can take a specific option, and provide the code to do so.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#option%3F-instance_method" title="#option? (instance method)">- (Boolean) <strong>option?</strong>(name) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#options-instance_method" title="#options (instance method)">- (Object) <strong>options</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#walk_inheritance_tree-instance_method" title="#walk_inheritance_tree (instance method)">- (Object) <strong>walk_inheritance_tree</strong>(start, sym) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="add_option-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>add_option</strong>(option) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/interface/option_manager.rb', line 46</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_add_option'>add_option</span><span class='lparen'>(</span><span class='id identifier rubyid_option'>option</span><span class='rparen'>)</span>
+  <span class='comment'># @options collects the added options in the order they&#39;re declared.
+</span>  <span class='comment'># @options_hash collects the options keyed by alias for quick lookups.
+</span>  <span class='ivar'>@options</span>      <span class='op'>||=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+  <span class='ivar'>@options_hash</span> <span class='op'>||=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+
+  <span class='id identifier rubyid_option'>option</span><span class='period'>.</span><span class='id identifier rubyid_aliases'>aliases</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_name'>name</span><span class='op'>|</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_conflict'>conflict</span> <span class='op'>=</span> <span class='id identifier rubyid_get_option'>get_option</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span> <span class='kw'>then</span>
+      <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Option </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_option'>option</span><span class='embexpr_end'>}</span><span class='tstring_content'> conflicts with existing option </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_conflict'>conflict</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>end</span>
+
+    <span class='id identifier rubyid_actions'>actions</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_action'>action</span><span class='op'>|</span>
+      <span class='id identifier rubyid_action'>action</span> <span class='op'>=</span> <span class='id identifier rubyid_get_action'>get_action</span><span class='lparen'>(</span><span class='id identifier rubyid_action'>action</span><span class='rparen'>)</span>
+      <span class='kw'>if</span> <span class='id identifier rubyid_conflict'>conflict</span> <span class='op'>=</span> <span class='id identifier rubyid_action'>action</span><span class='period'>.</span><span class='id identifier rubyid_get_option'>get_option</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span> <span class='kw'>then</span>
+        <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Option </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_option'>option</span><span class='embexpr_end'>}</span><span class='tstring_content'> conflicts with existing option </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_conflict'>conflict</span><span class='embexpr_end'>}</span><span class='tstring_content'> on </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_action'>action</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+
+  <span class='ivar'>@options</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_option'>option</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span>
+
+  <span class='id identifier rubyid_option'>option</span><span class='period'>.</span><span class='id identifier rubyid_aliases'>aliases</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_name'>name</span><span class='op'>|</span>
+    <span class='ivar'>@options_hash</span><span class='lbracket'>[</span><span class='id identifier rubyid_name'>name</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_option'>option</span>
+  <span class='kw'>end</span>
+
+  <span class='kw'>return</span> <span class='id identifier rubyid_option'>option</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="display_global_options-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>display_global_options</strong>(*args) &nbsp;<span class="private note title">private</span>
+  
+
+  
+    <span class="aliases">Also known as:
+    <span class="names"><span id='display_global_option-instance_method'>display_global_option</span></span>
+    </span>
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+9
+10
+11
+12
+13
+14
+15
+16
+17</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/interface/option_manager.rb', line 9</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_display_global_options'>display_global_options</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
+  <span class='ivar'>@display_global_options</span> <span class='op'>||=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+  <span class='lbracket'>[</span><span class='id identifier rubyid_args'>args</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_flatten'>flatten</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_refopt'>refopt</span><span class='op'>|</span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Global option </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_refopt'>refopt</span><span class='embexpr_end'>}</span><span class='tstring_content'> does not exist in Puppet.settings</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>unless</span> <span class='const'>Puppet</span><span class='period'>.</span><span class='id identifier rubyid_settings'>settings</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span> <span class='id identifier rubyid_refopt'>refopt</span>
+    <span class='ivar'>@display_global_options</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_refopt'>refopt</span> <span class='kw'>if</span> <span class='id identifier rubyid_refopt'>refopt</span>
+  <span class='kw'>end</span>
+  <span class='ivar'>@display_global_options</span><span class='period'>.</span><span class='id identifier rubyid_uniq!'>uniq!</span>
+  <span class='ivar'>@display_global_options</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="get_option-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>get_option</strong>(name, with_inherited_options = true) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/interface/option_manager.rb', line 80</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_get_option'>get_option</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_with_inherited_options'>with_inherited_options</span> <span class='op'>=</span> <span class='kw'>true</span><span class='rparen'>)</span>
+  <span class='ivar'>@options_hash</span> <span class='op'>||=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+
+  <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='ivar'>@options_hash</span><span class='lbracket'>[</span><span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_to_sym'>to_sym</span><span class='rbracket'>]</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_result'>result</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='kw'>and</span> <span class='id identifier rubyid_with_inherited_options'>with_inherited_options</span> <span class='kw'>then</span>
+    <span class='kw'>if</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Class</span><span class='rparen'>)</span> <span class='kw'>and</span> <span class='id identifier rubyid_superclass'>superclass</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='symbol'>:get_option</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='id identifier rubyid_superclass'>superclass</span><span class='period'>.</span><span class='id identifier rubyid_get_option'>get_option</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+    <span class='kw'>elsif</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='symbol'>:get_option</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_get_option'>get_option</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+
+  <span class='kw'>return</span> <span class='id identifier rubyid_result'>result</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="option-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>option</strong>(*declaration, &amp;block) &nbsp;<span class="note title readonly">DSL</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Declare that this app can take a specific option, and provide the
+code to do so. See <span class='object_link'><a href="ActionBuilder.html#option-instance_method" title="Puppet::Interface::ActionBuilder#option (method)">ActionBuilder#option</a></span> for
+details.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">DSL:</p>
+<ul class="dsl">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'><p>Faces</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+41
+42
+43</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/interface/option_manager.rb', line 41</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_option'>option</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_declaration'>declaration</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_add_option'>add_option</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Interface</span><span class='op'>::</span><span class='const'>OptionBuilder</span><span class='period'>.</span><span class='id identifier rubyid_build'>build</span><span class='lparen'>(</span><span class='kw'>self</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_declaration'>declaration</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="option?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>option?</strong>(name) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+96
+97
+98</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/interface/option_manager.rb', line 96</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_option?'>option?</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_options'>options</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span> <span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_to_sym'>to_sym</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="options-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>options</strong> &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+75
+76
+77</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/interface/option_manager.rb', line 75</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_options'>options</span>
+  <span class='id identifier rubyid_walk_inheritance_tree'>walk_inheritance_tree</span><span class='lparen'>(</span><span class='ivar'>@options</span><span class='comma'>,</span> <span class='symbol'>:options</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="walk_inheritance_tree-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>walk_inheritance_tree</strong>(start, sym) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+25
+26
+27
+28
+29
+30
+31
+32
+33</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/interface/option_manager.rb', line 25</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_walk_inheritance_tree'>walk_inheritance_tree</span><span class='lparen'>(</span><span class='id identifier rubyid_start'>start</span><span class='comma'>,</span> <span class='id identifier rubyid_sym'>sym</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='id identifier rubyid_start'>start</span> <span class='op'>||=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Class</span><span class='rparen'>)</span> <span class='kw'>and</span> <span class='id identifier rubyid_superclass'>superclass</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='id identifier rubyid_sym'>sym</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='id identifier rubyid_superclass'>superclass</span><span class='period'>.</span><span class='id identifier rubyid_send'>send</span><span class='lparen'>(</span><span class='id identifier rubyid_sym'>sym</span><span class='rparen'>)</span> <span class='op'>+</span> <span class='id identifier rubyid_result'>result</span>
+  <span class='kw'>elsif</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='id identifier rubyid_sym'>sym</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_send'>send</span><span class='lparen'>(</span><span class='id identifier rubyid_sym'>sym</span><span class='rparen'>)</span> <span class='op'>+</span> <span class='id identifier rubyid_result'>result</span>
+  <span class='kw'>end</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_result'>result</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+    <div id="footer">
+  Generated on Tue Apr 14 16:47:46 2015 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.6 (ruby-2.0.0).
+</div>
+
+  </body>
+</html>
