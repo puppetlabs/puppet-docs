@@ -44,11 +44,11 @@ puppetlabs-release-pc1-rhel-7.rpm
 
 2. Install the package with `rpm -Uhv PACKAGENAME`
 
-	[root@dcc5krb9mp7wfrh ~]# rpm -Uvh http://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm
-	Retrieving http://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm
-	Preparing...                          ################################# [100%]
-	Updating / installing...
-	1:puppetlabs-release-pc1-0.9.2-1.el################################# [100%]
+		[root@dcc5krb9mp7wfrh ~]# rpm -Uvh http://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm
+		Retrieving http://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm
+		Preparing...                          ################################# [100%]
+		Updating / installing...
+		1:puppetlabs-release-pc1-0.9.2-1.el################################# [100%]
     
 
 ## apt-based
@@ -57,9 +57,9 @@ puppetlabs-release-pc1-rhel-7.rpm
 ** Explain the package naming convention (puppetlabs-release-COLLECTION-OS-VERSION.rpm) **
 `puppetlabs-release-pc1-squeeze.deb`
 
-	root@ksq268o6gv15bwo:~# wget http://apt.puppetlabs.com/puppetlabs-release-pc1-squeeze.deb
-	root@ksq268o6gv15bwo:~# dpkg -i puppetlabs-release-pc1-squeeze.deb
-	root@ksq268o6gv15bwo:~# apt-get update
+		root@ksq268o6gv15bwo:~# wget http://apt.puppetlabs.com/puppetlabs-release-pc1-squeeze.deb
+		root@ksq268o6gv15bwo:~# dpkg -i puppetlabs-release-pc1-squeeze.deb
+		root@ksq268o6gv15bwo:~# apt-get update
 
 Step 2: Make Sure You'll Be Able to Run the Puppet Executables
 -----
