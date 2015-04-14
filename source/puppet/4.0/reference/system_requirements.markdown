@@ -1,10 +1,10 @@
 ---
 layout: default
-title: "Puppet 3.7 System Requirements"
+title: "Puppet 4.0 System Requirements"
 canonical: "/puppet/latest/reference/system_requirements.html"
 ---
 
-> To install Puppet 3.7, see [the Puppet installation guide](/guides/install_puppet/pre_install.html).
+> To install Puppet 4.0, first [view pre-install tasks](/pre_install.html).
 
 Hardware
 -----
@@ -25,25 +25,25 @@ Puppet 3.7 and all of its prerequisites will run on the following platforms, and
 
 ### Red Hat Enterprise Linux (and Derivatives)
 
-{% include platforms_redhat_like.markdown %}
+{% include pup40_platforms_redhat_like.markdown %}
 
 ### Debian and Ubuntu
 
-{% include platforms_debian_like.markdown %}
+{% include pup40_platforms_debian_like.markdown %}
 
 ### Fedora
 
-{% include platforms_fedora.markdown %}
+{% include pup40_platforms_fedora.markdown %}
 
 ### Windows
 
-{% include platforms_windows.markdown %}
+{% include pup40_platforms_windows.markdown %}
 
 ### Mac OS X
 
 Although we publish packages for Mac OS X, we do not run automated testing on it.
 
-- Mac OS X, version 10.9 (Mavericks) and higher
+- A package for Mac OS X, version 10.9 (Mavericks) and higher will be available at a later date.
 
 Platforms Without Packages
 -----
@@ -76,20 +76,19 @@ Puppet 3.7 has the following prerequisites:
 
 Use one of the following versions of MRI (standard) Ruby:
 
-* 2.1.x --- **Note:** We run spec tests for Ruby 2.1, but since none of our tested platforms ship with it yet, we don't run acceptance tests on it. This means we think it's good, but it might have problems we don't know about yet.
+* 2.1.x
 * 2.0.x
 * 1.9.3
-* 1.8.7
 
-Other interpreters and versions of Ruby are not covered by our tests, and may or may not work.
+**Note:** We currently only test and package with 2.1.x versions of Ruby, therefore it is recommended to only use this version. Other interpreters and versions of Ruby are not covered by our tests, and may or may not work.
 
 ### Mandatory Libraries
 
-- [Facter](http://www.puppetlabs.com/puppet/related-projects/facter/) 1.7.0 or later
-- [Hiera](/hiera/latest/) 1.0 or later
+- [Facter](http://www.puppetlabs.com/puppet/related-projects/facter/) 2.4.3 or later
+- [Hiera](/hiera/latest/) 2.0.0 or later
 - The `json` gem (any modern version).
+- The [`rgen` gem](http://ruby-gen.org/downloads) version 0.6.6 or later is now required because Puppet [ `parser = future` is enabled by default](./experiments_future.html).
 
 ### Optional Libraries
 
-- The [`rgen` gem](http://ruby-gen.org/downloads) version 0.6.1 or later is required when using Puppet [with `parser = future` enabled](./experiments_future.html).
 - The `msgpack` gem is required if you are using [msgpack serialization](./experiments_msgpack.html).
