@@ -32,7 +32,7 @@ If you divide two integers, the result _will not_ be a float; instead, Puppet wi
 
 ### Floating Point Numbers
 
-Floating point numbers a
+Floating point numbers ("floats") are numbers that include a fractional value after a decimal point (even if that fractional value is zero, like `2.0`).
 
 If an expression includes both integer and float values, the result will be a float.
 
@@ -58,7 +58,7 @@ You can express floating point numbers in scientific notation: append `e` or `E`
 
 Integer values can be expressed in decimal notation (base 10), octal notation (base 8), and hexadecimal notation (base 16).
 
-* _Nonzero_ decimal integers must not start with a `0`.
+* _Non-zero_ decimal integers must not start with a `0`.
 * Octal values have a prefix of `0`, which can be followed by a sequence of octal digits 0-7.
 * Hexadecimal values have a prefix of `0x` or `0X`, which can be followed by hexadecimal digits 0-9, a-f, or A-F.
 
