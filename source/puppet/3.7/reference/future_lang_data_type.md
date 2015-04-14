@@ -33,6 +33,7 @@ canonical: "/puppet/latest/reference/future_lang_data_type.html"
 [type]: ./future_lang_data_abstract.html#type
 [any]: ./future_lang_data_abstract.html#any
 [callable]: ./future_lang_data_abstract.html#callable
+[stdlib]: https://forge.puppetlabs.com/puppetlabs/stdlib
 
 Each value in the Puppet language has a data type, like "string." There is also a set of values _whose data type is "data type."_
 
@@ -132,6 +133,10 @@ The built-in [`assert_type` function][assert_type] takes a value and a data type
 
 You can also provide data types as both operands for the `==`, `!=`, `<`, `>`, `<=`, and `>=` comparison operators, which tests whether two data types are equal, whether one is a subset of another, etc. This feature doesn't have any particular practical use.
 
+### Obtaining Data Types
+
+[The `puppetlabs/stdlib` module][stdlib] includes a `type_of` function, which can return the type of any value. E.g. `type_of(3)` returns `Integer[3,3]`.
+
 
 ## Known Data Types
 
@@ -174,4 +179,30 @@ Abstract data types let you do more sophisticated or permissive type checking.
 * [`Type`][Type]
 * [`Any`][Any]
 * [`Callable`][Callable]
+
+## The `Type` Data Type
+
+The data type of literal data type values is `Type`.
+
+By default, `Type` matches any value that represents a data type, such as `Integer`, `Integer[0,800]`, `String`, `Enum["running", "stopped"]`, etc.
+
+You can use parameters to restrict which values `Type` will match.
+
+### Parameters
+
+The full signature for `Type` is:
+
+    Type[<ANY DATA TYPE>]
+
+All of these parameters are optional. They must be listed in order; if you need to specify a later parameter, you must specify values for any prior ones.
+
+Position | Parameter        | Data Type | Default Value | Description
+---------| -----------------|-----------|---------------|------------
+1 | Any data type | `Type` | `Any` | A data type, which will cause the resulting `Type` object to only match against _that type_ or _types that are more specific subtypes of that type._
+
+### Examples
+
+* `Type` --- matches any data type, such as `Integer`, `String`, `Any`, or `Type`.
+* `Type[String]` --- matches the data type `String`, as well as any of its more specific subtypes like `String[3]` or `Enum["running", "stopped"]`.
+* `Type[Resource]` --- matches any `Resource` data type --- that is, any resource reference.
 
