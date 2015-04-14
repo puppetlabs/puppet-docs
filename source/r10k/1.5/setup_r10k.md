@@ -1,17 +1,18 @@
 ---
 layout: default
-title: "Getting Started with r10k"
+title: "Setting Up r10k"
 ---
 
 [environ_dir]: /puppet/4.0/reference/environments_configuring.html
+[r10kmod]: https://github.com/acidprime/r10k
 
-#Getting Started with r10k
+#Setting Up r10k
 
 R10k comes packaged with Puppet Enterprise (PE) 3.8, so you don't need to separately download or install it. 
 
-Before you can get started with r10k, you'll need to make sure you've met the requirements.
+Before you can activate r10k, you'll need to make sure you have Git, a Git repository, and a supported version of Ruby.
 
-##Requirements
+##Installing Requirements
 
 #####1. Install/Upgrade Ruby
 R10k supports the following Ruby versions:
@@ -21,7 +22,7 @@ R10k supports the following Ruby versions:
     * 2.0.0
     * 2.1.5
 
-If you already have Ruby installed, please make sure you are running one of the above versions. You can check what version you have by running `$ ruby --version`.
+If you already have Ruby installed, make sure you are running one of the above versions. You can check what version you have by running `ruby --version`.
 
 PE comes packaged with a compatible version of Ruby, if you need it.
  
@@ -33,12 +34,12 @@ Once you've installed Git, [set up at least one repository](http://git-scm.com/b
 
 ##Activating r10k
 
-Once the requirements are met, all you have left to do is activate r10k, but how you activate it will depend on your current situation:
+Once the requirements are met, you can activate r10k, but how you activate it will depend on your current situation:
 
-1. [I've never used r10k and I just installed PE 3.8.]()
+1. [I've never used r10k and just installed PE 3.8.]()
 2. [I was using r10k and just upgraded to PE 3.8 from an earlier version of PE.]()
 3. [I was using the acidprime-r10k module and just upgraded to PE 3.8 from an earlier version of PE.]()
-4. [I was using r10k with Open Source Puppet and just upgraded to PE 3.8.]()
+4. [I was using r10k with open source Puppet and just upgraded to PE 3.8.]()
 
 ###I am brand new to r10k and have a new installation of PE 3.8
 
@@ -46,48 +47,50 @@ If you've never installed or used r10k before and have just installed PE 3.8, yo
 
 ###I was using r10k with an earlier version of PE and just upgraded to PE 3.8
 
-You have two options: keep using Open Source r10k as it is already set up or switch to the version of r10k packaged with PE 3.8.
+You have two options: keep using open source r10k as you already have it set up, or switch to the version of r10k packaged with PE 3.8.
 
-To get r10k ready to run with PE 3.8, you will need to:
+To get r10k ready to run with PE 3.8:
 
 1. Move your r10k.yaml file from the /etc/ directory to the etc/puppetlabs/r10k directory.
 2. Remove the r10k gem from opt/puppet. (This step is recommended but not required.)
-3. Double check that your specified [directory environments](environ_dir) in r10k.yaml are listed in puppet.conf.
+3. Check that your specified [directory environments](environ_dir) in r10k.yaml are listed in puppet.conf.
 4. Delete or rename the r10k.yaml file in /etc if it is still present. Otherwise, you will see the following error:
 
-~~~
-Both /etc/puppetlabs/r10k/r10k.yaml and /etc/r10k.yaml configuration files exist.
-/etc/puppetlabs/r10k/r10k.yaml will be used.
-~~~
+  ~~~
+  Both /etc/puppetlabs/r10k/r10k.yaml and /etc/r10k.yaml configuration files exist.
+  /etc/puppetlabs/r10k/r10k.yaml will be used.
+  ~~~
 
-###I was using the acidprime-r10k module with an earlier version of PE, and just upgraded to PE 3.8
+###I was using the acidprime-r10k module with an earlier version of PE and just upgraded to PE 3.8
 
-You have two options: keep using the module or switch to the version of r10k packaged with PE 3.8. If you want to switch, you need to: 
+You have two options: keep using the module or switch to the version of r10k packaged with PE 3.8. 
+
+If you want to switch: 
 
 1. Locate your current r10k.yaml file. It will likely be in the /etc/ directory.
 2. Move your r10k.yaml file to the etc/puppetlabs/r10k directory.
 3. Remove the r10k gem from opt/puppet. (This step is recommended but not required.)
 4. Delete or rename the r10k.yaml file in /etc/ if it is still present. Otherwise, you will see the following error:
 
-~~~
-Both /etc/puppetlabs/r10k/r10k.yaml and /etc/r10k.yaml configuration files exist.
-/etc/puppetlabs/r10k/r10k.yaml will be used.
-~~~
+  ~~~
+  Both /etc/puppetlabs/r10k/r10k.yaml and /etc/r10k.yaml configuration files exist.
+  /etc/puppetlabs/r10k/r10k.yaml will be used.
+  ~~~
 
-If you would like to keep using the module, you will need to check the module's documentation to find out how to ensure it's compatibile with PE 3.8.
+If you want to keep using the module, check the [module](r10kmod) documentation to find out how to ensure it's compatibile with PE 3.8.
 
 ###I was using r10k with open source Puppet and just upgraded to PE 3.8
 
-You have two options: keep using Open Source r10k as you already have it set up or switch to the version of r10k packaged with PE 3.8.
+You have two options: keep using open source r10k as you already have it set up or switch to the version of r10k packaged with PE 3.8.
 
-To get r10k ready to run with PE 3.8, you will need to:
+To get r10k ready to run with PE 3.8:
 
 1. Move your r10k.yaml file from the /etc/ directory to the etc/puppetlabs/r10k directory.
 2. Remove the r10k gem from opt/puppet. (This step is recommended but not required.)
-3. Double check that your specified [directory environments](environ_dir) in r10k.yaml are listed in puppet.conf.
+3. Check that your specified [directory environments](environ_dir) in r10k.yaml are listed in puppet.conf.
 4. Delete or rename the r10k.yaml file in /etc if it is still present. Otherwise, you will see the following error:
 
-~~~
-Both /etc/puppetlabs/r10k/r10k.yaml and /etc/r10k.yaml configuration files exist.
-/etc/puppetlabs/r10k/r10k.yaml will be used.
-~~~
+  ~~~
+  Both /etc/puppetlabs/r10k/r10k.yaml and /etc/r10k.yaml configuration files exist.
+  /etc/puppetlabs/r10k/r10k.yaml will be used.
+  ~~~

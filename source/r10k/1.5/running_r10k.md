@@ -8,7 +8,7 @@ title: "Running r10k"
 You've [configured][configuring] your r10k.yaml and set up your [Puppetfile][puppetfile]. Now it's time to run r10k!
 
 * Continue reading to learn more about r10k subcommands and using them to manage your environments.
-* [See "Getting Started with r10k"][gettingstarted] to get r10k up and running.
+* [See "Setting up r10k"][gettingstarted] to get r10k up and running.
 * [See "Configuring r10k"][configuring] to learn how to set up directory environments with r10k.
 * [See "Mananaging Modules"][puppetfile] to learn how to set up your r10k Puppetfile.
 * [See "Managing Environments"]
@@ -27,9 +27,9 @@ r10k deploy environment --puppetfile
 ###First-level subcommands
 The following subcommands are available with `r10k`:
 
-* [`deploy`](#deploy): Runs r10k
-* `help`: Generates help man page for `r10k` 
-* [`puppetfile`](#puppetfile): Perform Puppetfile
+* [`deploy`](#deploy): Runs r10k.
+* `help`: Generates help man page for `r10k`.
+* [`puppetfile`](#puppetfile): Perform operations on a Puppetfile.
 * `version` Prints the version of r10k you are using.
 
 
