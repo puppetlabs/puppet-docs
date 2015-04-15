@@ -9,6 +9,8 @@ canonical: "/puppet/latest/reference/future_lang_data_hash.html"
 [data type]: ./future_lang_data_type.html
 [struct]: ./future_lang_data_abstract.html#struct
 [abstract types]: ./future_lang_data_abstract.html
+[data]: ./future_lang_data_abstract.html#data
+[scalar]: ./future_lang_data_abstract.html#scalar
 
 
 Hashes (sometimes called hash maps) are unordered structures that map keys to values.
@@ -74,7 +76,7 @@ The [puppetlabs-stdlib][stdlib] module contains several additional functions for
 
 The [data type][] of hashes is `Hash`.
 
-By default, `Hash` matches hashes of any size, as long as their keys match the abstract type `Scalar` and their values match the abstract type `Data`.
+By default, `Hash` matches hashes of any size, as long as their keys match [the abstract type `Scalar`][scalar] and their values match [the abstract type `Data`.][data]
 
 You can use parameters to restrict which values `Hash` will match.
 

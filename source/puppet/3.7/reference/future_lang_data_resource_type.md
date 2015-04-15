@@ -159,7 +159,7 @@ Position | Parameter        | Data Type | Default Value | Description
 
 ### Examples
 
-* Class["apache"] --- a [class reference][] to class `apache`
+* `Class["apache"]` --- a [class reference][] to class `apache`
 
 Also:
 

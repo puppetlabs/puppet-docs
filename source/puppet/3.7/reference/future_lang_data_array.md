@@ -8,6 +8,7 @@ canonical: "/puppet/latest/reference/future_lang_data_array.html"
 [stdlib]: http://forge.puppetlabs.com/puppetlabs/stdlib
 [data type]: ./future_lang_data_type.html
 [tuple]: ./future_lang_data_abstract.html#tuple
+[data]: ./future_lang_data_abstract.html#data
 [abstract types]: ./future_lang_data_abstract.html
 
 Arrays are ordered lists of values.
@@ -135,7 +136,7 @@ The [puppetlabs-stdlib][stdlib] module contains several additional functions for
 
 The [data type][] of arrays is `Array`.
 
-By default, `Array` matches arrays of any length, as long as any values in the array match the abstract type `Data`.
+By default, `Array` matches arrays of any length, as long as any values in the array match [the abstract type `Data`][data].
 
 You can use parameters to restrict which values `Array` will match.
 
