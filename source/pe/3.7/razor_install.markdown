@@ -54,7 +54,11 @@ If you don't have access to the internet or would like to pull the PE tarball fr
 1. In the console, in the **pe_razor** class that you added in the previous section, click the **Parameter name** down arrow, and select **pe_tarball_base_url**.
 2. In the **Value** box, type in your own URL, and click **Add parameter**.
 
-	The code expects that the tarball retains the same name format as on our server. The format is generally `puppet-enterprise-<version of PE>-<OS type>-<version and architecture of OS>.tar.gz`. You can see the formats for [different versions of the tarball here](install_basic.html#choosing-an-installer-tarball). Available tarballs are located on the [Puppet Enterprise downloads page](https://puppetlabs.com/misc/pe-files).
+	The tarball must retain the same name format as on our server. The default URL is `https://pm.puppetlabs.com/puppet-enterprise/${pe_build}/puppet-enterprise-${pe_build}-${relarch}.tar.gz`. For example, `https://pm.puppetlabs.com/puppet-enterprise/3.7.2/puppet-enterprise-3.7.2-ubuntu-14.04-amd64.tar.gz`.
+
+	Substitute your own hosting for this part of the URL, `https://pm.puppetlabs.com/puppet-enterprise`. The latter part needs to contain the information for the tarball you're using in this format:  `puppet-enterprise-${pe_build}-${relarch}.tar.gz`.
+
+	See a list of [the versions of the tarball](install_basic.html#choosing-an-installer-tarball) for more information. Available tarballs are located on the [Puppet Enterprise downloads page](https://puppetlabs.com/misc/pe-files).
 
 3. Also in the **pe_razor** class area, add the `microkernel_url` parameter, and in the **Value** box, add the URL for the microkernel. The URL might be to your own FTP site. Or, you can copy the microkernel onto the Razor server and then use, `file:///path/to/microkernel.tar` for the URL.
 

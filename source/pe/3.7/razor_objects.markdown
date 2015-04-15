@@ -1,6 +1,6 @@
 ---
 layout: default
-title: " PE 3.8 » Razor » Razor Objects for Provisioning
+title: " PE 3.8 » Razor » Razor Objects for Provisioning"
 subtitle: "Razor Objects Overview"
 canonical: "/pe/latest/razor_objects.html"
 
