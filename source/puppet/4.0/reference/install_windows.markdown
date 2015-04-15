@@ -14,40 +14,34 @@ title: "Installing Puppet: Microsoft Windows"
 
 > **Note:** This document covers open source releases of Puppet. [See here for instructions on installing Puppet Enterprise.][peinstall]
 
-First
------
+## Review the Pre-Install Tasks First
 
 Before installing Puppet, make sure you've looked at the [pre-install tasks.](./pre_install.html)
 
-Supported Versions
------
+## Review Supported Versions
 
 {% include pup40_platforms_windows.markdown %}
 
 To install on other operating systems, see the pages linked in the navigation sidebar.
 
+## Configure a Puppet Master Server
 
-Step 1: Configure a Puppet Master Server
------
-
-Windows machines can't act as puppet master servers. Before installing any Windows agent nodes, be sure that you have a \*nix Puppet master installed and configured, and that you know its permanent hostname.
+Windows machines can't act as Puppet masters. Before installing any Windows agent nodes, be sure that you have a \*nix Puppet master installed and configured, and that you know its permanent hostname.
 
 If you haven't done this yet, go back to the [pre-install tasks][pre_install], make any necessary decisions, and follow the install instructions and post-install tasks for your puppet master's OS.
 
-Step 2: Download Package
------
+## Download the Windows Puppet Package
 
 [Puppet Labs' Windows packages can be found here.][downloads] You will need the most recent package for your OS's architecture:
 
-* 64-bit versions of Windows Vista/2008 and higher should use `puppet-agent-<VERSION>-x64.msi`.
-* 32-bit versions of Windows, as well as the 64-bit version of Windows Server 2003, should use `puppet-agent-<VERSION>.msi`.
+* 64-bit versions of Windows Vista/2008 and higher use `puppet-agent-<VERSION>-x64.msi`.
+* 32-bit versions of Windows, as well as the 64-bit version of Windows Server 2003, use `puppet-agent-<VERSION>.msi`.
 
 These packages bundle all of Puppet's prerequisites, so you don't need to download anything else.
 
 The list of Windows packages may include release candidates, whose filenames have something like `-rc1` after the version number. Only use these if you want to test upcoming Puppet versions.
 
-Step 3: Install Puppet
------
+## Install Puppet
 
 You can install Puppet [with a graphical wizard](#graphical-installation) or [on the command line](#automated-installation). If you install on the command line, you will have more configuration options.
 

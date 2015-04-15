@@ -15,65 +15,67 @@ title: "Installing Puppet: Linux"
 [environments]: /puppet/latest/reference/environments.html
 
 
-First
------
+## Read the Pre-Install Tasks 
 
 Before installing Puppet, make sure you've read the [pre-install tasks.](./install_pre.html)
 
 > **Note:** Puppet 4 changed the locations for a lot of the most important files and directories. [See this page for a summary of the changes.][where]
 
 
-Supported Versions and Requirements
------
-Most Linux systems including CentOS, Redhat, Ubuntu, and Debian have packages. At this time, Mac OS X package for Puppet agent has not been released. For a complete list of supported platforms, view the [system requirements page.](sysreqs)
+## Review Supported Versions and Requirements 
+
+Most Linux systems including CentOS, Redhat, Ubuntu, and Debian have packages. We have not yet released a Mac OS X package. For a complete list of supported platforms, view the [system requirements page.](sysreqs)
 
 
-Step 1: Install a Release Package to Enable Puppet Labs Package Repositories
------
+## Install a Release Package to Enable Puppet Labs Package Repositories
 
 Release packages configure your system to download and install appropriate versions of the puppetserver and puppet-agent packages. 
 
-## Yum-Based
+### Installing Release Packages on yum/RPM Systems
 
-1. Choose the package based on your specific operating system and version:
-
-	The packages are all named with a similar convention of puppetlabs-release-COLLECTION-OS-VERSION.noarch.rpm to help you find the correct one. For instance, the package for Puppet Collection 1 on Rhel7 should look like `puppetlabs-release-pc1-rhel-7.noarch.rpm`.
-	
+First, choose the package based on your specific operating system and version. The packages are all named using the following convention:
   
+`puppetlabs-release-COLLECTION-OS-VERSION.noarch.rpm`
+  
+For instance, the package for Puppet Collection 1 on Red Hat Enterprise Linux 7 is `puppetlabs-release-pc1-rhel-7.noarch.rpm`.
+	
+Second, install the package with `rpm -Uhv PACKAGENAME`:
 
-2. Install the package with `rpm -Uhv PACKAGENAME`
-
-		[root@dcc5krb9mp7wfrh ~]# rpm -Uvh http://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm
+		[root@localhost ~]# rpm -Uvh http://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm
 		Retrieving http://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm
 		Preparing...                          ################################# [100%]
 		Updating / installing...
 		1:puppetlabs-release-pc1-0.9.2-1.el################################# [100%]
     
 
-## apt-based
+### Installing Release Packages apt/dpkg Systems
    
-1. Choose the package based on your specific operating system and version:
-	The packages are all named with a similar convention of puppetlabs-release-COLLECTION-OS-VERSION.noarch.rpm to help you find the correct one. For instance, the package for Puppet Collection 1 on Debian 7 should look like `puppetlabs-release-pc1-deb-7.noarch.rpm`.
+First, choose the package based on your specific operating system and version. The packages are all named using the following convention: 
 
-		root@ksq268o6gv15bwo:~# wget http://apt.puppetlabs.com/puppetlabs-release-pc1-squeeze.deb
-		root@ksq268o6gv15bwo:~# dpkg -i puppetlabs-release-pc1-squeeze.deb
-		root@ksq268o6gv15bwo:~# apt-get update
+`puppetlabs-release-COLLECTION-VERSION.deb`
 
-Step 2: Make Sure You'll Be Able to Run the Puppet Executables
------
+For instance, the package for Puppet Collection 1 on Debian 6 is `puppetlabs-release-pc1-squeeze.deb`.
+
+Second, download the package and install it:
+
+        # wget http://apt.puppetlabs.com/puppetlabs-release-pc1-squeeze.deb
+        # dpkg -i puppetlabs-release-pc1-squeeze.deb
+		
+Finally, make sure to run `apt-get update` after installing the package. 
+
+## Make Sure You'll Be Able to Run the Puppet Executables
 
 The new location for Puppet's executables is `/opt/puppetlabs/bin/`, which is not in your PATH by default.
 
-This doesn't matter for the service configs (so `service puppet start` will work fine), but if you're running any interactive `puppet` commands, you'll need to either add them to your PATH or refer to them by full name.
+This doesn't matter for Puppet services (so `service puppet start` will work fine), but if you're running any interactive `puppet` commands, you'll need to either add them to your PATH or refer to them by full name.
 
 See [our page about moved files and directories][where] for more info.
 
-Step 3: Install Puppet Server
------
+## Install Puppet Server
 
-(Skip this step for a standalone deployment.)
+(You can skip this step for a standalone deployment.)
 
-### A: Install the `puppetserver` Package
+### Install the `puppetserver` Package
 
 #### For RPM-based systems using yum
 On your Puppet master node(s), run `sudo yum install puppetserver`. This installs Puppet Server, which will install the `puppet-agent` package as a dependency.
@@ -81,25 +83,23 @@ On your Puppet master node(s), run `sudo yum install puppetserver`. This install
 #### For dpkg-based systems using apt-get
 On your Puppet master node(s), run `apt-get install puppetserver`. This installs Puppet Server, which will install the `puppet-agent` package as a dependency.
 
-
 **Do not** start the `puppetserver` service yet.
 
-### B: Configure Critical Master Settings
+### Configure Critical Master Settings
 
 At a minimum, you need to:
 
 * Make sure [the `dns_alt_names` setting][dns_alt_names] in `/etc/puppetlabs/puppet/puppet.conf` includes any DNS names that your agent nodes will use when contacting the server.
 * Make sure the [Java heap size][server_heap] is appropriate for your hardware and for the amount of traffic the service will be handling.
 
-### C: Configure Other Master Settings
-
+### Configure Other Master Settings
 
 You may want to do some other tweaking and configuration before getting Puppet Server online.
 
 * [Relevant puppet.conf settings][master_settings]
 * [Puppet Server conf.d settings][puppetserver_confd]
 
-### D: Deploy Puppet Content
+### Deploy Puppet Content
 
 In this version of Puppet, you should deploy your [modules][] and your [main manifest][] to `/etc/puppetlabs/code/environments` ([more about environments][environments]).
 
@@ -107,17 +107,16 @@ The default environment for nodes that aren't assigned elsewhere is called `prod
 
 You can deploy new content at any time while Puppet Server is running, but you'll probably want to have something ready before you start.
 
-### F: Start the `puppetserver` Service
+### Start the `puppetserver` Service
 
 Use your normal system tools to do this, usually by running `sudo service puppetserver start`.
 
 If you want to run Puppet Server in the foreground and watch the log messages scroll by, you can run `/opt/puppetlabs/bin/puppetserver foreground`, with or without the `--debug` option.
 
 
-Step 4: Install Puppet on Agent Nodes
------
+## Install Puppet on Agent Nodes
 
-### A: Install the `puppet-agent` Package
+### Install the `puppet-agent` Package
 
 #### For RPM-based systems using yum
 On your Puppet agent node(s), run `sudo yum install puppet-agent`. 
@@ -127,19 +126,19 @@ On your Puppet agent node(s), run `apt-get install puppet-agent`.
 
 **Do not** start the `puppet` service yet.
 
-### B: Configure Critical Agent Settings
+### Configure Critical Agent Settings
 
 You probably want to set the `server` setting to your master's hostname. The default value is `server = puppet`, so if your master is reachable at that address, you can skip this.
 
 For other settings you might want to change, see [the list of agent-related settings.][agent_settings]
 
-### C: Start the `puppet` Service
+### Start the `puppet` Service
 
 You can do this with Puppet by running `sudo /opt/puppetlabs/bin/puppet resource service puppet ensure=running enable=true`.
 
 If you want to watch an agent run happen in the foreground, you can run `sudo /opt/puppetlabs/bin/puppet agent --test`.
 
-### D: Sign Certificates (on the CA Master)
+### Sign Certificates (on the CA Master)
 
 As each agent runs for the first time, it will submit a certificate signing request (CSR) to the CA Puppet master. You'll need to log into that server to check for certs and sign them.
 
@@ -147,4 +146,3 @@ As each agent runs for the first time, it will submit a certificate signing requ
 * Run `sudo /opt/puppetlabs/bin/puppet cert sign <NAME>` to sign a request.
 
 After an agent node's cert is signed, it will regularly fetch and apply configurations from the Puppet master server.
-

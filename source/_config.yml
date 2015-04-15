@@ -60,7 +60,9 @@ defaultnav:
   /puppet/3.6/reference: /_includes/puppet_3_6.html
   /puppet/3.7/reference: /_includes/puppet_3_7.html
   /puppet/pre4.0: /_includes/puppet_pre_40.html
+  /puppet/4.0/reference: /_includes/puppet_4.html
   /puppetserver/1.0: /_includes/puppet_3_7.html
+  /puppetserver/2.0: /_includes/puppet_3_7.html
   /references: /_includes/references_general.html
 destination: ../output
 url: "http://docs.puppetlabs.com"
@@ -148,6 +150,13 @@ externalsources:
     repo: git://github.com/puppetlabs/puppet-server.git
     commit: origin/stable
     subdirectory: documentation
+
+  puppetserver_2.0:
+    url: /puppetserver/2.0
+    repo: git://github.com/puppetlabs/puppet-server.git
+    commit: origin/master
+    subdirectory: documentation
+
 symlink_latest:
   - puppet
   - puppetdb
@@ -157,6 +166,9 @@ symlink_latest:
   - facter
   - pe
   - dashboard/manual
+lock_latest: {
+  puppet: 3.7
+}
 version_notes:
   # Default notes for upstreams. Tweak these whenever latest de-syncs or re-syncs with PE!
   /puppet/: '<p class="noisy">This page is about an old version of Puppet. If you use the current version of Puppet or of Puppet Enterprise, see <a href="/puppet/latest/index.html">the current Puppet docs.</a></p>'
@@ -164,6 +176,7 @@ version_notes:
   /facter/: '<p class="noisy">This page is about an old version of Facter. If you use the current version of Facter, see <a href="/facter/latest">the latest version of the docs.</a> If you use Puppet Enterprise 3.7, see <a href="/facter/2.2">the Facter 2.2 docs.</a></p>'
   # Version-specific notes:
   /puppet/3.7: "This is the version of Puppet included in Puppet Enterprise 3.7."
+  /puppet/4.0: '<p class="noisy">This is the latest version of Puppet. Puppet Enterprise 3.7 users should see <a href="/puppet/3.7/">the Puppet 3.7 docs</a>.</p>'
   /puppet/pre4.0: "<p class=\"noisy\">This page is about a version of Puppet that isn't released yet. If you use the current version of Puppet or of Puppet Enterprise, see <a href=\"/puppet/latest/index.html\">the current Puppet docs.</a></p>"
   /puppetdb/2.2: "This is the version of PuppetDB included in Puppet Enterprise 3.7. If you're using the open source release, there's a <a href=\"/puppetdb/latest/\">newer version</a> available."
   /puppetdb/2.3: '<p class="noisy">PuppetDB 2.3 is not included in Puppet Enterprise 3.7. PE 3.7 users should see <a href="/puppetdb/2.2/">the PuppetDB 2.2 docs</a>.</p>'

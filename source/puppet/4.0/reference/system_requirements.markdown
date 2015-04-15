@@ -21,7 +21,7 @@ The demands on the Puppet master will vary widely between different deployments.
 Platforms With Packages
 -----
 
-Puppet 3.7 and all of its prerequisites will run on the following platforms, and Puppet Labs provides official packages in [our package repositories.](/guides/puppetlabs_package_repositories.html)
+Puppet 4.0 and all of its prerequisites will run on the following platforms, and Puppet Labs provides official packages in [our package repositories.](/guides/puppetlabs_package_repositories.html)
 
 ### Red Hat Enterprise Linux (and Derivatives)
 
@@ -68,7 +68,7 @@ Basic Requirements
 
 If you're installing Puppet via the official packages, you won't need to worry about these prerequisites; your system's package manager will handle all of them. These are only listed for those running Puppet from source or on unsupported systems.
 
-Puppet 3.7 has the following prerequisites:
+Puppet 4.0 has the following prerequisites:
 
 ### Ruby
 
@@ -78,7 +78,7 @@ Use one of the following versions of MRI (standard) Ruby:
 * 2.0.x
 * 1.9.3
 
-**Note:** We currently only test and package with 2.1.x versions of Ruby, therefore it is recommended to only use this version. Other interpreters and versions of Ruby are not covered by our tests, and may or may not work.
+**Note:** We currently only test and package with 2.1.x versions of Ruby, therefore we recommend you only use this version. Other interpreters and versions of Ruby are not covered by our tests, and may or may not work.
 
 ### Mandatory Libraries
 
