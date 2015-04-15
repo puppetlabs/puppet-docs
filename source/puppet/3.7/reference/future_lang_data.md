@@ -1,13 +1,13 @@
 ---
 layout: default
-title: "Future Parser: Values and Data Types"
+title: "Future Parser: About Values and Data Types"
 canonical: "/puppet/latest/reference/future_lang_data.html"
 ---
 
 
 
 
-## Values
+## Values and Data
 
 Most of the things you can do with the Puppet language involve some form of data.
 
