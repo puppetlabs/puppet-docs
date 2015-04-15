@@ -61,6 +61,7 @@ defaultnav:
   /puppet/3.7/reference: /_includes/puppet_3_7.html
   /puppet/pre4.0: /_includes/puppet_pre_40.html
   /puppetserver/1.0: /_includes/puppet_3_7.html
+  /puppetserver/2.0: /_includes/puppet_3_7.html
   /references: /_includes/references_general.html
 destination: ../output
 url: "http://docs.puppetlabs.com"
@@ -148,6 +149,13 @@ externalsources:
     repo: git://github.com/puppetlabs/puppet-server.git
     commit: origin/stable
     subdirectory: documentation
+
+  puppetserver_2.0:
+    url: /puppetserver/2.0
+    repo: git://github.com/puppetlabs/puppet-server.git
+    commit: origin/master
+    subdirectory: documentation
+
 symlink_latest:
   - puppet
   - puppetdb
