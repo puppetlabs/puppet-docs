@@ -3,7 +3,6 @@ layout: default
 title: "Installing Puppet: Pre-Install Tasks"
 ---
 
-
 [peinstall]: /pe/latest/install_basic.html
 [sysreqs]: /puppet/latest/reference/system_requirements.html
 [ruby]: /puppet/latest/reference/system_requirements.html#basic-requirements
@@ -23,7 +22,7 @@ Puppet usually uses an agent/master (client/server) architecture, but it can als
 
 If you choose the standard agent/master architecture, you'll need to decide which server(s) will act as the Puppet master.
 
-You should completely install and configure Puppet on any Puppet masters before installing on any agent nodes. The master must be running some kind of \*nix; Windows machines can't be masters.
+You should completely install and configure Puppet on any Puppet masters before installing on any agent nodes. The master must be running some kind of \*nix. Windows machines can't be masters.
 
 A Puppet master should be a dedicated machine with a fast processor, lots of RAM, and a fast disk. It must also be reachable at a reliable hostname.
 

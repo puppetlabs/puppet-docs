@@ -1,27 +1,33 @@
 ---
 layout: default
-title: "Puppet 4.0 Preview Docs"
+title: "Puppet 4.0 Reference Manual"
+canonical: "/puppet/latest/reference/index.html"
+toc: false
 ---
 
+Welcome to the Puppet 4.0 Reference Manual. Use the navigation to the left to get around.
 
-Welcome to the preview release of Puppet 4.0, and thanks for helping test the next version! We've posted this set of documents to help testers install the new packages and get oriented. We'll be publishing full documentation for Puppet 4.0 as we get closer to the final release.
+## What Is This?
 
-Use the navigation to the left to browse this section. Most users will want to take a look at the [Where Did Everything Go?](./whered_it_go.html) page and the [updated install instructions.](./install_el.html)
+For an introduction to how Puppet manages systems, see the [Overview of Puppet's Architecture.](./architecture.html) 
 
-What's In This Release?
------
+## Getting Started
 
-Right now, the Puppet 4 release candidate consists of a `puppet-agent` package that installs Puppet 4.0, and a `puppetserver` package that installs Puppet Server 2.0.
+To install Puppet 4.0, see the Puppet installation guides for [Linux](./install_linux.html) and [Windows](./install_windows.html). For general advice on upgrading to Puppet 4.0 from Puppet 3.x, we've prepared two guides:
 
-Notably, we don't have compatible PuppetDB packages yet. If you want to use PuppetDB with the preview release, you'll need to install it (and the terminus plugins) from source.
+* [3.x to 4.0 Agent Upgrades](agent_upgrades.html)
+* [3.x to 4.0 Server Upgrades](server_upgrades.html)
 
-Puppet 3.x agents can't currently talk to a Puppet 4.0 master.
+## Getting Around
 
+* [The Puppet 4.0 Release Notes](./release_notes.html) contain information about Puppet 4.0's new features, and tracks changes from patch releases.
+* If you're an experienced Puppet user, you'll want to take a look at the [Where Did Everything Go?](./whered_it_go.html) page
 
-Supported Versions
------
+## Previous Versions
 
-Currently, the preview of Puppet 4.0 and Puppet Server 2.0 only support RHEL 7, CentOS 7, and derived distros.
+- [Puppet 3.7](/puppet/3.7/reference)
+- [Puppet 3.6](/puppet/3.6/reference)
+- [Puppet 3.5](/puppet/3.5/reference)
+- [Puppet 3.0 through 3.4](/puppet/3/reference)
 
-We'll be releasing preview packages for other systems as we get closer to a final release.
 
