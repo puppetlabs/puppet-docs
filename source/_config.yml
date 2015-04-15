@@ -157,6 +157,9 @@ symlink_latest:
   - facter
   - pe
   - dashboard/manual
+lock_latest: {
+  puppet: 3.7
+}
 version_notes:
   # Default notes for upstreams. Tweak these whenever latest de-syncs or re-syncs with PE!
   /puppet/: '<p class="noisy">This page is about an old version of Puppet. If you use the current version of Puppet or of Puppet Enterprise, see <a href="/puppet/latest/index.html">the current Puppet docs.</a></p>'
