@@ -16,6 +16,14 @@ The following issues affect the currently shipped version of PE and all prior re
 
 ## Installation/Upgrade Known Issues
 
+### Upgrading Requires You to Manually Add Nodes to the PE Node Groups
+
+For fresh installations of PE 3.8.0, node groups in the classifier are created and configured during the installation process. For upgrades, if these groups do not exist, or do not contain any classes, they will be created and configured but **no nodes will be pinned to them**. This helps prevent errors during the upgrade process, but you must manually pin the correct nodes to each group after you complete the upgrade process. For a more detailed explanation refer to [Adding Nodes to the PE Groups](./install_upgrading_notes.html#adding-nodes-to-the-pe-groups) in [Upgrading Puppet Enterprise: Notes and Warnings](./install_upgrading_notes.html).
+
+### Incorrect Credentials for Console Databases will Cause Split Upgrade to Fail
+
+If, during a split upgrade, you supply incorrect database credentials (specifically, incorrect database names, user names, or passwords for the databases associated with the PE console), the upgrade process will fail with a confusing error message. In most cases, ensure you have the correct database credentials and rerun the upgrader. The credentials can be found on the PuppetDB node at `/etc/puppetlabs/installer/database_info.install`.
+
 ### Web-based Installer Fails to Acknowledge Failed Installs due to Low RAM
 
 When a PE installation fails because a system is not provisioned with adequate RAM, the web-based installer stops responding when verifying that PE is functioning on the server, but the installation appears to have succeeded, as the **Start using Puppet Enterprise** button is available. Note that in such cases, the command line shows an "out of memory: Kill process" error. 
@@ -103,10 +111,6 @@ This issue is documented in the [notes and warnings for upgrading](./install_upg
 
 PostgreSQL does not support alt names when set to `verify_full`. If you are upgrading to or installing 3.8 with an answer file, make sure `q_database_host` is set as the Puppet agent certname for the database node and not set as an alt name.
 
-### Upgrading Requires You to Manually Add Nodes to the PE Node Groups
-
-For fresh installations of PE 3.8.0, node groups in the classifier are created and configured during the installation process. For upgrades, if these groups do not exist, or do not contain any classes, they will be created and configured but **no nodes will be pinned to them**. This helps prevent errors during the upgrade process, but you must manually pin the correct nodes to each group after you complete the upgrade process. For a more detailed explanation refer to [Adding Nodes to the PE Groups](./install_upgrading_notes.html#adding-nodes-to-the-pe-groups) in [Upgrading Puppet Enterprise: Notes and Warnings](./install_upgrading_notes.html).
-
 ### You Might Need to Upgrade puppetlabs-inifile to Version 1.1.0 or Later
 
 PE will automatically update your version of puppetlabs-inifile as part of the upgrade process. However, if you encounter the following error message on your PuppetDB node, then you need to manually upgrade the puppetlabs-inifile module to version 1.1.0 or higher.
@@ -117,7 +121,7 @@ PE will automatically update your version of puppetlabs-inifile as part of the u
 
 ### Notes about Symlinks and Installation/Upgrade
 
-The answer file no longer gives the option of whether to install symlinks. These are now automatically created during installation. To allow the creation of symlinks, ensure that `/usr/local/bin` is writable (`/usr/bin` on AIX). For more context, see the note about [PE Binaries and Symlinks](./install_basic.html#puppet-enterprise-binaries-and-symlinks). 
+The answer file no longer gives the option of whether to install symlinks. These are now automatically created during installation. To allow the creation of symlinks, ensure that `/usr/local/bin` is writable. For more context, see the note about [PE Binaries and Symlinks](./install_basic.html#puppet-enterprise-binaries-and-symlinks). Note that AIX users will need to add `/usr/local/bin` to their default path. 
 
 However, please note that we do not recommend employing symlinks in the place of `/opt` for database storage, as doing so can lead to databases not being seen. In addition, if `/opt/puppet` is symlink, the `-d` flag will not function correctly during an uninstall.
 
@@ -223,6 +227,10 @@ To re-index and vacuum the console database, you can use the following PostgreSQ
 In the console, parent group rules don't show, which makes it easier to create a rule that contradicts an inherited rule. If you create a contradictory rule, then you might find that no nodes match the rule you've created. The **Matching nodes** tab is accurate. If you don't see the nodes you're expecting on this tab, then you need to look up the ancestor rules to identify the contradictory rule.
 
 Matching nodes aren’t showing up.
+
+### `pe_console_prune` Class not Added to PE Console Group During Upgrade to 3.8
+
+The `pe_console_prune` class is a class in the PE Console group. However, when upgrading to PE 3.8, this class may be incorrectly added to the singleton group created for the node assigned the PE console component. 
 
 ### Important Factors in Connecting to an External Directory Service
 
