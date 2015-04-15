@@ -1,0 +1,1462 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Class: Puppet::Interface
+  
+    &mdash; Documentation by YARD 0.8.7.6
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '../';
+  framesUrl = "../frames.html#!Puppet/Interface.html";
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../_index.html">Index (I)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../Puppet.html" title="Puppet (module)">Puppet</a></span></span>
+     &raquo; 
+    <span class="title">Interface</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="../method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="../file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><h1>Class: Puppet::Interface
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName"><span class='object_link'>Object</span></span>
+      
+        <ul class="fullTree">
+          <li><span class='object_link'>Object</span></li>
+          
+            <li class="next">Puppet::Interface</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+      <dt class="r2">Extended by:</dt>
+      <dd class="r2"><span class='object_link'><a href="Interface/ActionManager.html" title="Puppet::Interface::ActionManager (module)">ActionManager</a></span>, <span class='object_link'><a href="Interface/OptionManager.html" title="Puppet::Interface::OptionManager (module)">OptionManager</a></span></dd>
+      
+    
+  
+    
+      <dt class="r1">Includes:</dt>
+      <dd class="r1"><span class='object_link'><a href="Interface/ActionManager.html" title="Puppet::Interface::ActionManager (module)">ActionManager</a></span>, <span class='object_link'><a href="Interface/FullDocs.html" title="Puppet::Interface::FullDocs (module)">FullDocs</a></span>, <span class='object_link'><a href="Interface/OptionManager.html" title="Puppet::Interface::OptionManager (module)">OptionManager</a></span></dd>
+      
+    
+  
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">lib/puppet/interface.rb<span class="defines">,<br />
+  lib/puppet/interface/documentation.rb</span>
+</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<div class="docstring">
+  <div class="discussion">
+    
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><h2>Defined Under Namespace</h2>
+<p class="children">
+  
+    
+      <strong class="modules">Modules:</strong> <span class='object_link'><a href="Interface/ActionManager.html" title="Puppet::Interface::ActionManager (module)">ActionManager</a></span>, <span class='object_link'><a href="Interface/DocGen.html" title="Puppet::Interface::DocGen (module)">DocGen</a></span>, <span class='object_link'><a href="Interface/FullDocs.html" title="Puppet::Interface::FullDocs (module)">FullDocs</a></span>, <span class='object_link'><a href="Interface/OptionManager.html" title="Puppet::Interface::OptionManager (module)">OptionManager</a></span>, <span class='object_link'><a href="Interface/TinyDocs.html" title="Puppet::Interface::TinyDocs (module)">TinyDocs</a></span>
+    
+  
+    
+      <strong class="classes">Classes:</strong> <span class='object_link'><a href="Interface/Action.html" title="Puppet::Interface::Action (class)">Action</a></span>, <span class='object_link'><a href="Interface/ActionBuilder.html" title="Puppet::Interface::ActionBuilder (class)">ActionBuilder</a></span>, <span class='object_link'><a href="Interface/Option.html" title="Puppet::Interface::Option (class)">Option</a></span>, <span class='object_link'><a href="Interface/OptionBuilder.html" title="Puppet::Interface::OptionBuilder (class)">OptionBuilder</a></span>
+    
+  
+</p>
+
+  <h2>Constant Summary</h2>
+  
+
+
+
+
+  <h2>Instance Attribute Summary <small>(<a href="#" class="summary_toggle">collapse</a>)</small></h2>
+  <ul class="summary">
+    
+      
+<li class="private ">
+  <span class="summary_signature">
+    
+      <a href="#loader-instance_method" title="#loader (instance method)">- (Puppet::Util::Autoload) <strong>loader</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  <span class="note title private">private</span>
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>The autoloader instance for the face.</p>
+</div></span>
+  
+</li>
+
+    
+      
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#name-instance_method" title="#name (instance method)">- (Symbol) <strong>name</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'><p>The name of the face.</p>
+</div></span>
+  
+</li>
+
+    
+  </ul>
+
+
+
+  
+  
+  <h3 class="inherited">Attributes included from <span class='object_link'><a href="Interface/FullDocs.html" title="Puppet::Interface::FullDocs (module)">FullDocs</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Interface/FullDocs.html#copyright_owner-instance_method" title="Puppet::Interface::FullDocs#copyright_owner (method)">#copyright_owner</a></span>, <span class='object_link'><a href="Interface/FullDocs.html#copyright_years-instance_method" title="Puppet::Interface::FullDocs#copyright_years (method)">#copyright_years</a></span></p>
+
+
+  
+    <h2>
+      Class Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#%5B%5D-class_method" title="[] (class method)">+ (Puppet::Interface) <strong>[]</strong>(name, version) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Retrieves a face by name and version.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="private ">
+  <span class="summary_signature">
+    
+      <a href="#__add_method-class_method" title="__add_method (class method)">+ <strong>__add_method</strong>(name, proc) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  <span class="note title private">private</span>
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#define-class_method" title="define (class method)">+ (Puppet::Interface) <strong>define</strong>(name, version, {|| ... }) </a>
+    
+
+    
+  </span>
+  
+  
+  
+    <span class="note title readonly">DSL</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Defines a new Face.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#face%3F-class_method" title="face? (class method)">+ (Puppet::Interface) <strong>face?</strong>(name, version) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Retrieves a face by name and version.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#register-class_method" title="register (class method)">+ <strong>register</strong>(instance) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'><p>Register a face.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        
+<li class="private ">
+  <span class="summary_signature">
+    
+      <a href="#__add_method-instance_method" title="#__add_method (instance method)">- <strong>__add_method</strong>(name, proc) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  <span class="note title private">private</span>
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="private ">
+  <span class="summary_signature">
+    
+      <a href="#__invoke_decorations-instance_method" title="#__invoke_decorations (instance method)">- <strong>__invoke_decorations</strong>(type, action, passed_args = [], passed_options = {}) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  <span class="note title private">private</span>
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">- (Interface) <strong>initialize</strong>(name, version, &amp;block) </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'><p>A new instance of Interface.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#load_actions-instance_method" title="#load_actions (instance method)">- <strong>load_actions</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'><p>Loads all actions defined in other files.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#synopsis-instance_method" title="#synopsis (instance method)">- (String) <strong>synopsis</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'><p>Returns the synopsis for the face.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="Interface/OptionManager.html" title="Puppet::Interface::OptionManager (module)">OptionManager</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Interface/OptionManager.html#add_option-instance_method" title="Puppet::Interface::OptionManager#add_option (method)">add_option</a></span>, <span class='object_link'><a href="Interface/OptionManager.html#display_global_options-instance_method" title="Puppet::Interface::OptionManager#display_global_options (method)">display_global_options</a></span>, <span class='object_link'><a href="Interface/OptionManager.html#get_option-instance_method" title="Puppet::Interface::OptionManager#get_option (method)">get_option</a></span>, <span class='object_link'><a href="Interface/OptionManager.html#option-instance_method" title="Puppet::Interface::OptionManager#option (method)">option</a></span>, <span class='object_link'><a href="Interface/OptionManager.html#option%3F-instance_method" title="Puppet::Interface::OptionManager#option? (method)">option?</a></span>, <span class='object_link'><a href="Interface/OptionManager.html#options-instance_method" title="Puppet::Interface::OptionManager#options (method)">options</a></span>, <span class='object_link'><a href="Interface/OptionManager.html#walk_inheritance_tree-instance_method" title="Puppet::Interface::OptionManager#walk_inheritance_tree (method)">walk_inheritance_tree</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="Interface/ActionManager.html" title="Puppet::Interface::ActionManager (module)">ActionManager</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Interface/ActionManager.html#action-instance_method" title="Puppet::Interface::ActionManager#action (method)">action</a></span>, <span class='object_link'><a href="Interface/ActionManager.html#action%3F-instance_method" title="Puppet::Interface::ActionManager#action? (method)">action?</a></span>, <span class='object_link'><a href="Interface/ActionManager.html#actions-instance_method" title="Puppet::Interface::ActionManager#actions (method)">actions</a></span>, <span class='object_link'><a href="Interface/ActionManager.html#deactivate_action-instance_method" title="Puppet::Interface::ActionManager#deactivate_action (method)">deactivate_action</a></span>, <span class='object_link'><a href="Interface/ActionManager.html#get_action-instance_method" title="Puppet::Interface::ActionManager#get_action (method)">get_action</a></span>, <span class='object_link'><a href="Interface/ActionManager.html#get_default_action-instance_method" title="Puppet::Interface::ActionManager#get_default_action (method)">get_default_action</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'>Util</span></h3>
+  <p class="inherited"><span class='object_link'><a href="Util.html#exit_on_fail-class_method" title="Puppet::Util.exit_on_fail (method)">exit_on_fail</a></span>, <span class='object_link'><a href="Util.html#exit_on_fail-instance_method" title="Puppet::Util#exit_on_fail (method)">#exit_on_fail</a></span>, <span class='object_link'><a href="Util.html#which-class_method" title="Puppet::Util.which (method)">which</a></span>, <span class='object_link'><a href="Util.html#which-instance_method" title="Puppet::Util#which (method)">#which</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="Interface/FullDocs.html" title="Puppet::Interface::FullDocs (module)">FullDocs</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Interface/FullDocs.html#author%3D-instance_method" title="Puppet::Interface::FullDocs#author= (method)">#author=</a></span>, <span class='object_link'><a href="Interface/FullDocs.html#authors-instance_method" title="Puppet::Interface::FullDocs#authors (method)">#authors</a></span>, <span class='object_link'><a href="Interface/FullDocs.html#copyright-instance_method" title="Puppet::Interface::FullDocs#copyright (method)">#copyright</a></span>, <span class='object_link'><a href="Interface/FullDocs.html#munge_copyright_year-instance_method" title="Puppet::Interface::FullDocs#munge_copyright_year (method)">#munge_copyright_year</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="Interface/DocGen.html" title="Puppet::Interface::DocGen (module)">DocGen</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Interface/DocGen.html#attr_doc-instance_method" title="Puppet::Interface::DocGen#attr_doc (method)">#attr_doc</a></span>, <span class='object_link'><a href="Interface/DocGen.html#strip_whitespace-class_method" title="Puppet::Interface::DocGen.strip_whitespace (method)">strip_whitespace</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="Interface/TinyDocs.html" title="Puppet::Interface::TinyDocs (module)">TinyDocs</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Interface/TinyDocs.html#build_synopsis-instance_method" title="Puppet::Interface::TinyDocs#build_synopsis (method)">#build_synopsis</a></span>, <span class='object_link'><a href="Interface/TinyDocs.html#description-instance_method" title="Puppet::Interface::TinyDocs#description (method)">#description</a></span>, <span class='object_link'><a href="Interface/TinyDocs.html#summary-instance_method" title="Puppet::Interface::TinyDocs#summary (method)">#summary</a></span></p>
+<div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <h3 class="signature first" id="initialize-instance_method">
+  
+    - (<tt><span class='object_link'><a href="" title="Puppet::Interface (class)">Interface</a></span></tt>) <strong>initialize</strong>(name, version, &amp;block) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>Returns a new instance of Interface</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/interface.rb', line 151</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_version'>version</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+  <span class='kw'>unless</span> <span class='const'>SemVer</span><span class='period'>.</span><span class='id identifier rubyid_valid?'>valid?</span><span class='lparen'>(</span><span class='id identifier rubyid_version'>version</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Cannot create face </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span><span class='embexpr_end'>}</span><span class='tstring_content'> with invalid version number &#39;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_version'>version</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39;!</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>end</span>
+
+  <span class='ivar'>@name</span>    <span class='op'>=</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Interface</span><span class='op'>::</span><span class='const'>FaceCollection</span><span class='period'>.</span><span class='id identifier rubyid_underscorize'>underscorize</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+  <span class='ivar'>@version</span> <span class='op'>=</span> <span class='const'>SemVer</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_version'>version</span><span class='rparen'>)</span>
+
+  <span class='comment'># The few bits of documentation we actually demand.  The default license
+</span>  <span class='comment'># is a favour to our end users; if you happen to get that in a core face
+</span>  <span class='comment'># report it as a bug, please. --daniel 2011-04-26
+</span>  <span class='ivar'>@authors</span>  <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+  <span class='ivar'>@license</span>  <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>All Rights Reserved</span><span class='tstring_end'>&#39;</span></span>
+
+  <span class='ivar'>@loader</span> <span class='op'>=</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Util</span><span class='op'>::</span><span class='const'>Autoload</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='ivar'>@name</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>puppet/face/</span><span class='embexpr_beg'>#{</span><span class='ivar'>@name</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_instance_eval'>instance_eval</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_block_given?'>block_given?</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
+    
+      
+      <span id=""></span>
+      <div class="method_details first">
+  <h3 class="signature first" id="loader-instance_method">
+  
+    - (<tt><span class='object_link'>Puppet::Util::Autoload</span></tt>) <strong>loader</strong>  <span class="extras">(readonly, private)</span>&nbsp;<span class="note title private">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>The autoloader instance for the face</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Puppet::Util::Autoload</span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+147
+148
+149</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/interface.rb', line 147</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_loader'>loader</span>
+  <span class='ivar'>@loader</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="name-instance_method">
+  
+    - (<tt><span class='object_link'>Symbol</span></tt>) <strong>name</strong>  <span class="extras">(readonly)</span>&nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>The name of the face</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Symbol</span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+138
+139
+140</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/interface.rb', line 138</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_name'>name</span>
+  <span class='ivar'>@name</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="[]-class_method">
+  
+    + (<tt><span class='object_link'><a href="" title="Puppet::Interface (class)">Puppet::Interface</a></span></tt>) <strong>[]</strong>(name, version) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Retrieves a face by name and version</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>name</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Symbol</span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the name of the face</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>version</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the version of the face</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="" title="Puppet::Interface (class)">Puppet::Interface</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the face</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/interface.rb', line 94</span>
+
+<span class='kw'>def</span> <span class='op'>[]</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_version'>version</span><span class='rparen'>)</span>
+  <span class='kw'>unless</span> <span class='id identifier rubyid_face'>face</span> <span class='op'>=</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Interface</span><span class='op'>::</span><span class='const'>FaceCollection</span><span class='lbracket'>[</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_version'>version</span><span class='rbracket'>]</span>
+    <span class='comment'># REVISIT (#18042) no sense in rechecking if version == :current -- josh
+</span>    <span class='kw'>if</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Interface</span><span class='op'>::</span><span class='const'>FaceCollection</span><span class='lbracket'>[</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='symbol'>:current</span><span class='rbracket'>]</span>
+      <span class='id identifier rubyid_raise'>raise</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Error</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Could not find version </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_version'>version</span><span class='embexpr_end'>}</span><span class='tstring_content'> of </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>else</span>
+      <span class='id identifier rubyid_raise'>raise</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Error</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Could not find Puppet Face </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+
+  <span class='id identifier rubyid_face'>face</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="__add_method-class_method">
+  
+    + <strong>__add_method</strong>(name, proc)  <span class="extras">(private)</span>&nbsp;<span class="note title private">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p class="note returns_void">This method returns an undefined value.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+224
+225
+226
+227</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/interface.rb', line 224</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid___add_method'>__add_method</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_proc'>proc</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_define_method'>define_method</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_proc'>proc</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_instance_method'>instance_method</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="define-class_method">
+  
+    + (<tt><span class='object_link'><a href="" title="Puppet::Interface (class)">Puppet::Interface</a></span></tt>) <strong>define</strong>(name, version, {|| ... }) &nbsp;<span class="note title readonly">DSL</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+  <div class="note todo">
+    <strong>TODO:</strong>
+    <div class='inline'><p>Talk about using Faces DSL inside the block</p>
+</div>
+  </div>
+
+<p>Defines a new Face.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  
+<p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>name</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Symbol</span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the name of the face</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>version</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the version of the face (this should
+conform to <a href="http://semver.org/" target="_parent" title="Semantic Versioning">Semantic Versioning</a>)</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="" title="Puppet::Interface (class)">Puppet::Interface</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The created face</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">DSL:</p>
+<ul class="dsl">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'><p>Faces</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/interface.rb', line 58</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_define'>define</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_version'>version</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_face'>face</span> <span class='op'>=</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Interface</span><span class='op'>::</span><span class='const'>FaceCollection</span><span class='lbracket'>[</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_version'>version</span><span class='rbracket'>]</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_face'>face</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='kw'>then</span>
+    <span class='id identifier rubyid_face'>face</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_version'>version</span><span class='rparen'>)</span>
+    <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Interface</span><span class='op'>::</span><span class='const'>FaceCollection</span><span class='period'>.</span><span class='id identifier rubyid_register'>register</span><span class='lparen'>(</span><span class='id identifier rubyid_face'>face</span><span class='rparen'>)</span>
+    <span class='comment'># REVISIT: Shouldn&#39;t this be delayed until *after* we evaluate the
+</span>    <span class='comment'># current block, not done before? --daniel 2011-04-07
+</span>    <span class='id identifier rubyid_face'>face</span><span class='period'>.</span><span class='id identifier rubyid_load_actions'>load_actions</span>
+  <span class='kw'>end</span>
+
+  <span class='id identifier rubyid_face'>face</span><span class='period'>.</span><span class='id identifier rubyid_instance_eval'>instance_eval</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_block_given?'>block_given?</span>
+
+  <span class='kw'>return</span> <span class='id identifier rubyid_face'>face</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="face?-class_method">
+  
+    + (<tt><span class='object_link'><a href="" title="Puppet::Interface (class)">Puppet::Interface</a></span></tt>) <strong>face?</strong>(name, version) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Retrieves a face by name and version. Use <code>:current</code> for the
+version to get the most recent available version.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>name</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Symbol</span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the name of the face</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>version</span>
+      
+      
+        <span class='type'>(<tt>String</tt>, <tt>:current</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the version of the face</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="" title="Puppet::Interface (class)">Puppet::Interface</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the face</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+82
+83
+84</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/interface.rb', line 82</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_face?'>face?</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_version'>version</span><span class='rparen'>)</span>
+  <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Interface</span><span class='op'>::</span><span class='const'>FaceCollection</span><span class='lbracket'>[</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_version'>version</span><span class='rbracket'>]</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="register-class_method">
+  
+    + <strong>register</strong>(instance) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p class="note returns_void">This method returns an undefined value.</p><p>Register a face</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>instance</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="" title="Puppet::Interface (class)">Puppet::Interface</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The face</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+44
+45
+46</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/interface.rb', line 44</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_register'>register</span><span class='lparen'>(</span><span class='id identifier rubyid_instance'>instance</span><span class='rparen'>)</span>
+  <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Interface</span><span class='op'>::</span><span class='const'>FaceCollection</span><span class='period'>.</span><span class='id identifier rubyid_register'>register</span><span class='lparen'>(</span><span class='id identifier rubyid_instance'>instance</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="__add_method-instance_method">
+  
+    - <strong>__add_method</strong>(name, proc)  <span class="extras">(private)</span>&nbsp;<span class="note title private">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p class="note returns_void">This method returns an undefined value.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+217
+218
+219
+220</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/interface.rb', line 217</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid___add_method'>__add_method</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_proc'>proc</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_meta_def'>meta_def</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_proc'>proc</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_method'>method</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_unbind'>unbind</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="__invoke_decorations-instance_method">
+  
+    - <strong>__invoke_decorations</strong>(type, action, passed_args = [], passed_options = {})  <span class="extras">(private)</span>&nbsp;<span class="note title private">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p class="note returns_void">This method returns an undefined value.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/interface.rb', line 196</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid___invoke_decorations'>__invoke_decorations</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='id identifier rubyid_action'>action</span><span class='comma'>,</span> <span class='id identifier rubyid_passed_args'>passed_args</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_passed_options'>passed_options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='lbracket'>[</span><span class='symbol'>:before</span><span class='comma'>,</span> <span class='symbol'>:after</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_member?'>member?</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='rparen'>)</span> <span class='kw'>or</span> <span class='id identifier rubyid_fail'>fail</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>unknown decoration type </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_type'>type</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+
+  <span class='comment'># Collect the decoration methods matching our pass.
+</span>  <span class='id identifier rubyid_methods'>methods</span> <span class='op'>=</span> <span class='id identifier rubyid_action'>action</span><span class='period'>.</span><span class='id identifier rubyid_options'>options</span><span class='period'>.</span><span class='id identifier rubyid_select'>select</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_name'>name</span><span class='op'>|</span>
+    <span class='id identifier rubyid_passed_options'>passed_options</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span> <span class='id identifier rubyid_name'>name</span>
+  <span class='kw'>end</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_name'>name</span><span class='op'>|</span>
+    <span class='id identifier rubyid_action'>action</span><span class='period'>.</span><span class='id identifier rubyid_get_option'>get_option</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid___decoration_name'>__decoration_name</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+
+  <span class='id identifier rubyid_methods'>methods</span><span class='period'>.</span><span class='id identifier rubyid_reverse!'>reverse!</span> <span class='kw'>if</span> <span class='id identifier rubyid_type'>type</span> <span class='op'>==</span> <span class='symbol'>:after</span>
+
+  <span class='comment'># Exceptions here should propagate up; this implements a hook we can use
+</span>  <span class='comment'># reasonably for option validation.
+</span>  <span class='id identifier rubyid_methods'>methods</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_hook'>hook</span><span class='op'>|</span>
+    <span class='id identifier rubyid_respond_to?'>respond_to?</span> <span class='id identifier rubyid_hook'>hook</span> <span class='kw'>and</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid___send__'>__send__</span><span class='lparen'>(</span><span class='id identifier rubyid_hook'>hook</span><span class='comma'>,</span> <span class='id identifier rubyid_action'>action</span><span class='comma'>,</span> <span class='id identifier rubyid_passed_args'>passed_args</span><span class='comma'>,</span> <span class='id identifier rubyid_passed_options'>passed_options</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="load_actions-instance_method">
+  
+    - <strong>load_actions</strong> &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p class="note returns_void">This method returns an undefined value.</p><p>Loads all actions defined in other files.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+173
+174
+175</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/interface.rb', line 173</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_load_actions'>load_actions</span>
+  <span class='id identifier rubyid_loader'>loader</span><span class='period'>.</span><span class='id identifier rubyid_loadall'>loadall</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="synopsis-instance_method">
+  
+    - (<tt>String</tt>) <strong>synopsis</strong> &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>Returns the synopsis for the face. This shows basic usage and global
+options.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>usage synopsis</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+128
+129
+130</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/interface.rb', line 128</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_synopsis'>synopsis</span>
+  <span class='id identifier rubyid_build_synopsis'>build_synopsis</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>&lt;action&gt;</span><span class='tstring_end'>&#39;</span></span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+    <div id="footer">
+  Generated on Tue Apr 14 16:47:50 2015 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.6 (ruby-2.0.0).
+</div>
+
+  </body>
+</html>

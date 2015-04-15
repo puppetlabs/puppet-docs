@@ -1,0 +1,136 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>
+  File: pson
+  
+    &mdash; Documentation by YARD 0.8.7.6
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '';
+  framesUrl = "frames.html#!file.pson.html";
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index</a> &raquo; 
+    <span class="title">File: pson</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><div id='filecontents'><h1>PSON</h1>
+
+<p>PSON is a variant of <a href="http://json.org" target="_parent" title="JSON">JSON</a> that puppet uses for serializing
+data to transmit across the network or store on disk. Whereas JSON requires
+that the serialized form is valid unicode (usually UTF-8), PSON is 8-bit ASCII,
+which allows it to represent arbitrary byte sequences in strings.</p>
+
+<p>Puppet uses the MIME types "pson" and "text/pson" to refer to PSON.</p>
+
+<h2>Differences from JSON</h2>
+
+<p>PSON does <em>not differ</em> from JSON in its representation of objects, arrays,
+numbers, booleans, and null values. PSON <em>does</em> serialize strings differently
+from JSON.</p>
+
+<p>A PSON string is a sequence of 8-bit ASCII encoded data. It must start and end
+with " (ASCII 0x22) characters. Between these characters it may contain any
+byte sequence. Some individual characters are represented by a sequence of
+characters:</p>
+
+<pre class="code ruby"><code class="ruby">| Byte | ASCII Character | Encoded Sequence | Encoded ASCII Sequence |
+| ---- | --------------- | ---------------- | ---------------------- |
+| 0x22 | &quot;               | 0x5C, 0x22       | \&quot;                     |
+| 0x5c | \               | 0x5C, 0x5C       | \\                     |
+| 0x08 | Backspace       | 0x5C, 0x62       | \b                     |
+| 0x09 | Horizontal Tab  | 0x5C, 0x74       | \t                     |
+| 0x0A | Line Feed       | 0x5C, 0x6E       | \n                     |
+| 0x0C | Form Feed       | 0x5C, 0x66       | \f                     |
+| 0x0D | Carriage Return | 0x5C, 0x72       | \r                     |
+</code></pre>
+
+<p>In addition, any character between 0x00 and 0x1F, (except the ones listed
+above) must be encoded as a six byte sequence of \u followed by four ASCII
+digits of the hex number of the desired character.  For example the ASCII
+Record Separator character (0x1E) is represented as \u001E (0x5C, 0x75, 0x30,
+0x30, 0x31, 0x45).</p>
+
+<h2>Decoding PSON Using JSON Parsers</h2>
+
+<p>Many languages have JSON parsers already, which can often be used to parse PSON
+data. Although JSON requires that it is encoded as unicode most parsers will
+produce usable output from PSON if they are instructed to interpret the input
+as Latin-1 encoding.</p>
+
+<p>In all these examples there is a file available called <code>data.pson</code> that
+contains the ruby structure <code>{ "data" =&gt; "\x07\x08\xC3\xC3" }</code> encoded as
+PSON (the value is an invalid unicode sequence). In bytes the data is:</p>
+
+<pre class="code ruby"><code class="ruby">0x7b 0x22 0x64 0x61 0x74 0x61 0x22 0x3a 0x22 0x5c 0x75 0x30 0x30 0x30 0x37 0x5c 0x62 0xc3 0xc3 0x22 0x7d
+</code></pre>
+
+<p>Python Example:</p>
+
+<pre class="code ruby"><code class="ruby">&gt;&gt;&gt; import json
+&gt;&gt;&gt; json.load(open(&quot;data.pson&quot;), &quot;latin_1&quot;)
+{u&#39;data&#39;: u&#39;\x07\x08\xc3\xc3&#39;}
+</code></pre>
+
+<p>Clojure Example:</p>
+
+<pre class="code ruby"><code class="ruby">user&gt; (parse-string (slurp &quot;data.pson&quot; :encoding &quot;ISO-8859-1&quot;))
+{&quot;data&quot; &quot;^G\bÃÃ&quot;}
+</code></pre>
+</div></div>
+
+    <div id="footer">
+  Generated on Tue Apr 14 16:47:45 2015 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.6 (ruby-2.0.0).
+</div>
+
+  </body>
+</html>
