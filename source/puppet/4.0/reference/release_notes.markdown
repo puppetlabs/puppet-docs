@@ -60,7 +60,7 @@ If you're using the AIO packaging, the whole Puppet toolset (facter, mcollective
 
 By far the most significant user-facing change in Puppet 4 is the completely rewritten parser and evaluator, which are the parts of Puppet that take your modules and transform them into a catalog for each node that checks in. This was originally introduces as an opt-in "Future Parser", and over the last year, community feedback, user research, and engineering time have honed the Future Parser to the point where it's no longer in the realm of the future – it's here.
 
-There's [extensive documentation on the changes](XXX_link_to_doc.html) in the future parser – both new capabilities like iteration and type-checking for variables as well as deprecations and changed behaviour. Most notably, the stricter, more predictable parsing of numbers, empty strings, and "undef"/"nil" comparisons may cause changes to a node's catalog without necessarily producing an error.
+The rewritten parser includes new capabilities like iteration and type-checking for variables as well as deprecations and changed behaviour. Most notably, the stricter, more predictable parsing of numbers, empty strings, and "undef"/"nil" comparisons may cause changes to a node's catalog without necessarily producing an error.
 
 * [PUP-410: Complete Implementation of Language based on the EGrammar](https://tickets.puppetlabs.com/browse/PUP-410)
 * [PUP-3274: Remove old parser/evaluator](https://tickets.puppetlabs.com/browse/PUP-3274)
