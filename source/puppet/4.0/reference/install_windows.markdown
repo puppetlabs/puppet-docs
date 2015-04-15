@@ -118,15 +118,16 @@ Where Puppet and its dependencies should be installed.
 
 Puppet's program directory contains the following subdirectories:
 
-Directory | Description
-----------|------------
-bin       | scripts for running Puppet and Facter
-facter    | Facter source
-hiera     | Hiera source
-misc      | resources
-puppet    | Puppet source
-service   | code to run puppet agent as a service
-sys       | Ruby and other tools
+Directory   | Description
+------------|------------
+bin         | scripts for running Puppet and Facter
+facter      | Facter source
+hiera       | Hiera source
+mcollective | Mcollective source
+misc        | resources
+puppet      | Puppet source
+service     | code to run puppet agent as a service
+sys         | Ruby and other tools
 
 **Default (Puppet 3.7+):**
 
