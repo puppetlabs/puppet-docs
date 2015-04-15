@@ -72,6 +72,6 @@ Read through the [Puppet 4 Release Notes](release_notes.html) for more detail on
 
 There are great instructions in the Puppet Server documentation for getting started with it, but the important thing to note for upgraders is that it won't automatically start up on system boot; you'll need to enable it. Similar to the Puppet agent, you can use a `puppet resource` one-liner to do this regardless of the OS flavor you're running:
 
-    /opt/puppetlabs/puppet/bin/puppet resource service puppetserver ensure=running enable=true
+    /opt/puppetlabs/bin/puppet resource service puppetserver ensure=running enable=true
 
 Watch the logfile in `/var/log/puppetlabs/puppetserver/puppetserver.log` to make sure your agents can check in successfully and you should be good to go.

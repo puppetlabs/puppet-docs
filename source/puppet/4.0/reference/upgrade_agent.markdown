@@ -23,17 +23,17 @@ upgrade instructions](server_upgrade.markdown) on at least one host so the agent
 * Copy your SSL certificate tree from its previous location (from `puppet agent --configprint ssldir` above) to its new 
   AIO path: `/etc/puppetlabs/puppet/ssl`, making sure to preserve permissions and ownership. For example:
 
-	cp -rp /var/lib/puppet/ssl /etc/puppetlabs/puppet/ssl
+    `cp -rp /var/lib/puppet/ssl /etc/puppetlabs/puppet/ssl`
 
 * Run the agent manually and make sure it correctly talks to the server:
 
-	/opt/puppetlabs/bin/puppet agent -tv
+    `/opt/puppetlabs/bin/puppet agent -tv`
 
 * Ensure that Puppet will continue to run automatically. If you used a cron job to periodically run `puppet agent -t`, 
 make sure you update the path to the binary; if you run puppet as a daemon, ensure it's set to start up on system boot.  
 Here's a handy `puppet resource` command to do just that:
 
-	/opt/puppetlabs/bin/puppet resource service puppet ensure=running enable=true
+    `/opt/puppetlabs/bin/puppet resource service puppet ensure=running enable=true`
 
 ## Windows Hosts
 

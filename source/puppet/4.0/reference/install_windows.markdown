@@ -5,18 +5,16 @@ title: "Installing Puppet: Microsoft Windows"
 
 [downloads]: http://downloads.puppetlabs.com/windows
 [peinstall]: /pe/latest/install_windows.html
-[pre_install]: ./pre_install.html
+[pre_install]: ./install_pre.html
 [where]: ./whered_it_go.html
 [puppet.conf]: /puppet/latest/reference/config_file_main.html
 [environment]: /puppet/latest/reference/environments.html
 [confdir]: /puppet/latest/reference/dirs_confdir.html
 [vardir]: /puppet/latest/reference/dirs_vardir.html
 
-> **Note:** This document covers open source releases of Puppet. [See here for instructions on installing Puppet Enterprise.][peinstall]
+## Review the Pre-Install Tasks
 
-## Review the Pre-Install Tasks First
-
-Before installing Puppet, make sure you've looked at the [pre-install tasks.](./pre_install.html)
+Before installing Puppet, make sure you've looked at the [pre-install tasks.](./install_pre.html)
 
 ## Review Supported Versions
 
@@ -34,8 +32,8 @@ If you haven't done this yet, go back to the [pre-install tasks][pre_install], m
 
 [Puppet Labs' Windows packages can be found here.][downloads] You will need the most recent package for your OS's architecture:
 
-* 64-bit versions of Windows Vista/2008 and higher use `puppet-agent-<VERSION>-x64.msi`.
-* 32-bit versions of Windows, as well as the 64-bit version of Windows Server 2003, use `puppet-agent-<VERSION>-x86.msi`.
+* 64-bit versions of Windows Vista/2008 and higher use `puppet-agent-<VERSION>-x64.msi` (recommended) or `puppet-agent-<VERSION>-x86.msi`.
+* 32-bit versions of Windows, as well as the 64-bit version of Windows Server 2003, must use `puppet-agent-<VERSION>-x86.msi`.
 
 These packages bundle all of Puppet's prerequisites, so you don't need to download anything else.
 
