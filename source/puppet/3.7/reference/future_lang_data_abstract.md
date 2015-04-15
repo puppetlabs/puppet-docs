@@ -98,15 +98,6 @@ Note that you can use capture groups in the regular expressions, but they won't 
 * `Pattern[/\A[a-z].*/]` --- matches any string that begins with a lowercase letter.
 * `Pattern[/\A[a-z].*/, /\Anone\Z/]` --- matches the above **or** the exact string `"none"`.
 
-#### Relationship to `String`
-
-`Pattern` is implemented as an alias to the `String` data type with an alternate interface for parameters. In other words, the following comparisons (with the data types, not values of those types) all resolve to true:
-
-* `Pattern == String`
-* `Pattern[/^aoeu.*/] < String`
-* `Pattern[/^aoeu.*/] != String[0, 6]`
-
-If `Pattern` includes a regexp and `String` includes a non-default length restriction, `!=` will be the only true comparison operator; Puppet will assume that they both match some values that the other cannot match.
 
 ### `Enum`
 
@@ -129,16 +120,6 @@ Position | Parameter        | Data Type | Default Value | Description
 
 * `Enum['stopped', 'running']` --- matches the strings `'stopped'` and `'running'`, and no other values.
 * `Enum['true', 'false']` --- matches the strings `'true'` and `'false'`, and no other values. Will not match the [boolean][booleans] values `true` or `false` (without quotes).
-
-#### Relationship to `String`
-
-`Enum` is implemented as an alias to the `String` data type with an alternate interface for parameters. In other words, the following comparisons (with the data types, not values of those types) all resolve to true:
-
-* `Enum == String`
-* `Enum["one", "two"] < String`
-* `Enum["one", "two"] < String[0, 6]`
-
-If `Enum` includes options and `String` includes a non-default length restriction, Puppet will treat `Enum` as a subset of `String` as long as the length restrictions match _every_ option in the `Enum`. Otherwise, `!=` will be the only true comparison operator, as they will both match some values that the other cannot match.
 
 
 ### `Tuple`
