@@ -176,7 +176,7 @@ version_notes:
   /facter/: '<p class="noisy">This page is about an old version of Facter. If you use the current version of Facter, see <a href="/facter/latest">the latest version of the docs.</a> If you use Puppet Enterprise 3.7, see <a href="/facter/2.2">the Facter 2.2 docs.</a></p>'
   # Version-specific notes:
   /puppet/3.7: "This is the version of Puppet included in Puppet Enterprise 3.7."
-  /puppet/4.0: '<p class="noisy">This is the latest version of Puppet. Puppet Enterprise 3.7 users should see <a href="/puppet/3.7/">the Puppet 3.7 docs</a>.</p>'
+  /puppet/4.0: '<p class="noisy">This is the latest version of Puppet. Puppet Enterprise 3.7 users should see <a href="/pe/latest/">the Puppet Enterprise 3.7 docs</a>.</p>'
   /puppet/pre4.0: "<p class=\"noisy\">This page is about a version of Puppet that isn't released yet. If you use the current version of Puppet or of Puppet Enterprise, see <a href=\"/puppet/latest/index.html\">the current Puppet docs.</a></p>"
   /puppetdb/2.2: "This is the version of PuppetDB included in Puppet Enterprise 3.7. If you're using the open source release, there's a <a href=\"/puppetdb/latest/\">newer version</a> available."
   /puppetdb/2.3: '<p class="noisy">PuppetDB 2.3 is not included in Puppet Enterprise 3.7. PE 3.7 users should see <a href="/puppetdb/2.2/">the PuppetDB 2.2 docs</a>.</p>'
