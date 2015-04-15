@@ -32,7 +32,7 @@ Puppet manages your servers: you describe machine configurations in an easy-to-r
 - [The Learning Puppet series](/learning) is a guided tutorial for new users, which includes a free VM to run exercises on and experiment with. Go from "What's that?" to "I can do it" in just a few hours.
 - [The installation guide](/guides/install_puppet/pre_install.html) can help you install and configure the current open-source Puppet releases.
 - [The Puppet 4.0 Reference Manual](/puppet/4.0/reference)
-    - (Older reference manuals: [Puppet 3.7](/puppet/3.7/reference), [Puppet 3.6](/puppet/3.6/reference), [Puppet 3.5](/puppet/3.5/reference), [Puppet 3.0-3.4](/puppet/3/reference), [Puppet 2.7](/puppet/2.7/reference)
+    - (Older reference manuals: [Puppet 3.7](/puppet/3.7/reference), [Puppet 3.6](/puppet/3.6/reference), [Puppet 3.5](/puppet/3.5/reference), [Puppet 3.0-3.4](/puppet/3/reference), [Puppet 2.7](/puppet/2.7/reference))
 - [The latest type reference](/references/latest/type.html) covers all of the built-in resource types and their available attributes. New users should start elsewhere, but experienced users will spend most of their time in this one page.
 - [The glossary](/references/glossary.html) explains the terminology you'll encounter when reading about Puppet.
 

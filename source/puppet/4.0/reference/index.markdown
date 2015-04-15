@@ -28,7 +28,7 @@ In order to get this release into the world as quickly as possible we had to mak
 ## Getting Around
 
 * [The Puppet 4.0 Release Notes](./release_notes.html) contain information about Puppet 4.0's new features, and tracks changes from patch releases.
-* If you're an experienced Puppet user, you'll want to take a look at the [Where Did Everything Go?](./whered_it_go.html) page
+* If you're an experienced Puppet user, you'll want to take a look at the [Where Did Everything Go?](./whered_it_go.html) page.
 
 
 ## Previous Versions

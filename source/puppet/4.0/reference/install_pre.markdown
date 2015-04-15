@@ -4,8 +4,8 @@ title: "Installing Puppet: Pre-Install Tasks"
 ---
 
 [peinstall]: /pe/latest/install_basic.html
-[sysreqs]: /puppet/latest/reference/system_requirements.html
-[ruby]: /puppet/latest/reference/system_requirements.html#basic-requirements
+[sysreqs]: /puppet/4.0/reference/system_requirements.html
+[ruby]: /puppet/4.0/reference/system_requirements.html#basic-requirements
 [architecture]: /puppet/latest/reference/architecture.html
 
 > **Note:** This document covers open source releases of Puppet. [See here for instructions on installing Puppet Enterprise.][peinstall]
@@ -31,7 +31,7 @@ A Puppet master should be a dedicated machine with a fast processor, lots of RAM
 
 ## Check OS Versions and System Requirements
 
-See the [system requirements][sysreqs] for the version of Puppet you are installing, and consider the following:
+See the [system requirements](system_requirements.html) for the version of Puppet you are installing, and consider the following:
 
 * Your Puppet master(s) should be able to handle the amount of agents they'll need to serve.
 * Systems we provide official packages for will have an easier install path.
