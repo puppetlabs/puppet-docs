@@ -32,4 +32,4 @@ Here's a handy `puppet resource` command to do just that:
 
 ## Windows hosts
 
-upgrade instructions TK
+The filesystem paths for configuration and certificates did not change from Puppet 3.x, so the only things Windows upgraders need to look out for are individual settings which may be deprecated or whose defaults have changed. 
