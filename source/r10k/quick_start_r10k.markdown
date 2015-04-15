@@ -2,7 +2,7 @@
 
 The primary purpose and benefit of r10k is that it provides a localized place in Puppet for you to manage the configuration of various environments (such as production, development, or testing), including what specific versions of modules are in each of your environments, based on code in branches of one or more Git repositories. R10k accomplishes this by seamlessly connecting the code in your Git repository's branches with the Puppet environments it has created based on those branches. So the work you do in Git is reflected in your Puppet configuration!
 
-In this guide you'll version the code you wrote for the Hello, World! module for two different environments---one you'll call `production` and the other `test_message`. Each of these environments will map to a specific branch named after the environment in a repo called, **puppet-control**. Each branch (that maps to an environment) in the **puppet-control** repo will contain a `Puppetfile` that references the Hello, World! module repo's URL and latest commit ID for the code changes. When you run r10k on the Puppet master, it will read the `Puppetfile` and pull down different versions of the Hello, World! module---in other words, a version of the module for each branch (or environment).
+In this guide you'll version the code you wrote for the Hello, World! module for two different environments---one you'll call `production` and the other `test_message`. Each of these environments will map to a specific branch named after the environment in a repo called **puppet-control**. Each branch (that maps to an environment) in the **puppet-control** repo will contain a `Puppetfile` that references the Hello, World! module repo's URL and latest commit ID for the code changes. When you run r10k on the Puppet master, it will read the `Puppetfile` and pull down different versions of the Hello, World! module---in other words, a version of the module for each branch (or environment).
 
 <!--insert image here--!>
 
@@ -15,11 +15,11 @@ This guide is meant to be a simple proof-of-concept primer for getting to know r
 >- To follow this guide, we assume the following machines are available:
 >
 >   - A Puppet master running on a monolithic or split installation of PE 3.8 (e.g., `master.example.com`). Note that this guide uses the PE console.
->   - An admin machine for writing Puppet code and versioning it with Git (e.g., `admin.example.com`). Note that this machine does not have to have PE installed on it, but it may be helpful in the case that you want to run the Puppet Parser to evaluate the syntax of your Puppet code. 
->   - A Puppet agent node (e.g., `agent.example.com`) that can communicate with your 3.8 master. You'll need to ensure that time is synced between your Puppet agent node and your Puppet master, and that these machines can reach each other by name. This can be done with a local DNS server, or by editing the `/etc/hosts` file on each machine.
+>   - An admin machine for writing Puppet code and versioning it with Git (e.g., `admin.example.com`). Note that this machine does not have to have PE installed on it, but it might be helpful if you want to run the Puppet parser to evaluate the syntax of your Puppet code. 
+>   - A Puppet agent node (e.g., `agent.example.com`) that can communicate with your 3.8 master. You'll need to ensure that time is synced between your Puppet agent node and your Puppet master, and that these machines can reach each other by name. This can be done with a local DNS server or by editing the `/etc/hosts` file on each machine.
 >
 >- Git should be installed on the admin machine and the Puppet master server.  
->- You have create two version-controlled repositories. Note that this guide assumes the use of Git and Github, but you may wish to use some other system, such as Stash, Bitbucket, or Subversion. This guide relies heavily on some basic knowledge of Git and/or version control. 
+>- You have create two version-controlled repositories. Note that this guide relies heavily on some basic knowledge of Git. 
 >
 >   For ease of use, the repos should be called **puppet-control** and **puppet-helloworld**. The user on the admin machine will need full read/write access to these repos, and the Puppet master will need read access. Git and Github users should see Github's [Generating SSH keys](https://help.github.com/articles/generating-ssh-keys/) for details on setting up SSH access to your repos.
 >- The **puppet-control** and **puppet-helloworld** repos should be cloned to a working directory on the admin machine:
@@ -35,7 +35,7 @@ The major steps you'll perform in this guide are as follows:
 
 - **Step 1**: Prepare the **puppet-control** repo.
 - **Step 2**: Rename the master branch of the **puppet-control** repo.
-- **Step 3**: Configure r10k on the Puppet Master and deploy the `production` environment.
+- **Step 3**: Configure r10k on the Puppet master and run the `production` environment.
 - **Step 4**: Version the code in the Hello, World module and create the `test_message` environment.
 - **Step 5**: Deploy the `test_message` environment.
 - **Step 6**: Test the environments on a Puppet agent node. 

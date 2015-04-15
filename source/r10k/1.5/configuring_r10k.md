@@ -15,8 +15,8 @@ Configuring r10k is as easy as updating a .yaml file with the location of your G
 
 * Continue reading to learn how to configure r10k.
 * [See "Getting To Know r10k"][gettingtoknow] for basic information about r10k.
-* [See "Getting Started with r10k"][gettingstarted] to get r10k up and running.
-* [See "Mananaging Modules"][puppetfile] to learn how to set up your r10k Puppetfile.
+* [See "Setting Up r10k"][setup_r10k] to get r10k up and running.
+* [See "Mananaging Modules"][manage_modules] to learn how to set up your r10k Puppetfile.
 * [See "Managing Environments"]
 
 
