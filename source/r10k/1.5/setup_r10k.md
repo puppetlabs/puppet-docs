@@ -4,7 +4,7 @@ title: "Setting Up r10k"
 ---
 
 [environ_dir]: /puppet/4.0/reference/environments_configuring.html
-[r10kmod]: https://github.com/acidprime/r10k
+[r10kmod]: https://forge.puppetlabs.com/zack/r10k
 
 #Setting Up r10k
 
@@ -38,7 +38,7 @@ Once the requirements are met, you can activate r10k, but how you activate it wi
 
 1. [I've never used r10k and just installed PE 3.8.]()
 2. [I was using r10k and just upgraded to PE 3.8 from an earlier version of PE.]()
-3. [I was using the acidprime-r10k module and just upgraded to PE 3.8 from an earlier version of PE.]()
+3. [I was using the zack-r10k module and just upgraded to PE 3.8 from an earlier version of PE.]()
 4. [I was using r10k with open source Puppet and just upgraded to PE 3.8.]()
 
 ###I am brand new to r10k and have a new installation of PE 3.8
@@ -61,7 +61,7 @@ To get r10k ready to run with PE 3.8:
   /etc/puppetlabs/r10k/r10k.yaml will be used.
   ~~~
 
-###I was using the acidprime-r10k module with an earlier version of PE and just upgraded to PE 3.8
+###I was using the zack-r10k module with an earlier version of PE and just upgraded to PE 3.8
 
 You have two options: keep using the module or switch to the version of r10k packaged with PE 3.8. 
 
