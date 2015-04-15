@@ -86,11 +86,11 @@ Get Puppet up and running at your site.
 
 * [An Introduction to Puppet](/guides/introduction.html)
 * [Supported Platforms](/guides/platforms.html)
-* [Installing Puppet for Linux](/puppet/4.0/install_linux.html)
-* [Installing Puppet for WIndows](/puppet/4.0/install_windows.html)
+* [Installing Puppet for Linux](/puppet/4.0/reference/install_linux.html)
+* [Installing Puppet for Windows](/puppet/4.0/reference/install_windows.html)
 * Upgrading Puppet from 3.x to 4.x
-  * [Upgrading Puppet 3.x Agents](/puppet/4.0/upgrade_agent.html)
-  * [Upgrading Puppet 3.x Servers](/puppet/4.0/upgrade_server.html)
+  * [Upgrading Puppet 3.x Agents](/puppet/4.0/reference/upgrade_agent.html)
+  * [Upgrading Puppet 3.x Servers](/puppet/4.0/reference/upgrade_server.html)
 
 ### Building and Using Modules
 
