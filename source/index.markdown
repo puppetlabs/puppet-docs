@@ -51,19 +51,6 @@ MCollective is a powerful orchestration framework. Run actions on thousands of s
 
 > Note: MCollective is included with Puppet Enterprise.
 
-[Puppet Dashboard](/dashboard/manual/1.2)
------
-
-Puppet Dashboard is an open source web console for Puppet, which can analyze reports, browse inventory data, and assign classes to nodes.
-
-[See the Dashboard 1.2 manual](/dashboard/manual/1.2), or go directly to:
-
-* [The installation instructions](/dashboard/manual/1.2/bootstrapping.html)
-* [The configuration guide](/dashboard/manual/1.2/configuring.html)
-* [The maintenance guide](/dashboard/manual/1.2/maintaining.html)
-
-> Note: Puppet Enterprise's console is based on Puppet Dashboard, and extends it with extra features. PE users should see the PE documentation instead of the Dashboard documentation.
-
 [PuppetDB](/puppetdb/latest)
 -----
 

@@ -32,7 +32,7 @@ Using this guide, you will:
 * [use the PE console to edit root login parameters of the `ssh` class](#use-the-pe-console-to-edit-root-login-parameters-of-the-ssh-class).
 
 
-### Install Puppet Enterprise and the Puppet Enterprise Agent
+## Install Puppet Enterprise and the Puppet Enterprise Agent
 
 If you haven't already done so, you'll need to get PE installed. See the [system requirements][sys_req] for supported platforms. 
 
@@ -41,7 +41,7 @@ If you haven't already done so, you'll need to get PE installed. See the [system
 3. Refer to the [agent installation instructions][agent_install] to determine how you want to install your PE agent(s), and follow the instructions provided.
 
 
-### Install the saz-ssh Module
+## Install the saz-ssh Module
 
 The saz-ssh module, available on the Puppet Forge, is one of many modules written by  members of our user community.  
 
@@ -64,7 +64,7 @@ You should see output similar to the following:
 >
 > Note: the Puppet Labs Standard Library module is listed as a dependency for the saz-ssh module. But it was installed as part of your PE installation. 
 
-### Create SSH Group
+## Create SSH Group
 
 Groups let you assign classes and variables to many nodes at once. Nodes can belong to many groups and will inherit classes and variables from all of them. Groups can also be members of other groups and inherit configuration information from their parent group the same way nodes do. PE automatically creates several groups in the console, which you can read more about in the [PE docs](https://docs.puppetlabs.com/pe/latest/console_classes_groups_preconfigured_groups.html).
 
@@ -87,7 +87,7 @@ In this procedure, you’ll create a simple group called, __ssh_example__, but y
 8. Repeat steps 5-7 for any additional nodes you want to add. 
 
 
-### Use the PE Console to Add Classes from the SSH Module
+## Use the PE Console to Add Classes from the SSH Module
 
 [classification_selector]: ./images/quick/classification_selector.png
 
@@ -133,7 +133,7 @@ After you apply the `ssh` class and run Puppet, the public key for each agent no
 
 > **That’s it!** Puppet Enterprise is now managing SSH known_host files for the agent nodes in your deployment. The next section will use the PE console event inspector to examine the events and SSH configuration files PE is now managing. 
 
-### Use the Puppet Enterprise Console Event Inspector to View Changes Made by the `ssh` Class
+## Use the Puppet Enterprise Console Event Inspector to View Changes Made by the `ssh` Class
 
 [ssh_ei_default]: ./images/quick/ssh_ei_default.png
 [ssh_ei_class_change]: ./images/quick/ssh_ei_class_change.png
@@ -160,7 +160,7 @@ In the upper right corner of the detail pane is a link to a run report which con
 For more information about using the PE console event inspector, check out the [event inspector docs](./console_event_inspector). 
 
  
-### Use the PE Console to Edit Root Login Parameters of the `ssh` Class
+## Use the PE Console to Edit Root Login Parameters of the `ssh` Class
 
 With Puppet Enterprise you can edit or add class parameters directly in the PE console without needing to edit the module code directly. 
 
@@ -190,7 +190,7 @@ Changing this parameter of the `ssh` class can be accomplished in a few steps us
 > You can use the PE console to manage other SSH parameters, such as agent forwarding, X11 forwarding, and password authentication.
 
 
-### Other Resources
+## Other Resources
 
 For a video on automating SSH with Puppet Enterprise, check out [Automate SSH configuration in 5 minutes with Puppet Enterprise](http://puppetlabs.com/resources/video/automate-ssh).
 

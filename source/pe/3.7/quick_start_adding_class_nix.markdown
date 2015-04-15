@@ -6,7 +6,7 @@ canonical: "/pe/latest/quick_start_adding_class_nix.html"
 ---
 
 
-### Overview
+## Overview
 
 [classification_selector]: ./images/quick/classification_selector.png
 [apache_add_group]: ./images/quick/apache_add_group.png
@@ -16,7 +16,7 @@ Every module contains one or more **classes**. [Classes](/puppet/3.7/reference/l
 > **Prerequisites**: This guide assumes you've already [installed a monolithic PE deployment](./quick_start_install_mono.html), and have installed at least one [*nix agent node](./quick_start_install_agents_nix.html) and the [puppetlabs-apache module](./quick_start_module_install_nix.html).
 
 
-### Create the apache_example Group
+## Create the apache_example Group
 
 1. From the console, click __Classification__ in the navigation bar.
 2. In the __Node group name__ field, name your group (e.g., **apache_example**).
@@ -31,7 +31,7 @@ Every module contains one or more **classes**. [Classes](/puppet/3.7/reference/l
 8. Repeat steps 5-7 for any additional nodes you want to add.
 
 
-### Add the `apache` Class to the Example Group
+## Add the `apache` Class to the Example Group
 
 Unless you have navigated elsewhere in the console, the __apache example__ node group should still be displayed in the __Classification__ area.
 
@@ -59,7 +59,7 @@ Unless you have navigated elsewhere in the console, the __apache example__ node 
 
 > Puppet Enterprise is now managing the default Apache vhost on your agent node. At this point, you can check out the Apache "ReadMe" on the Forge to explore options for managing your Apache instances as needed. The [*Nix module writing QSG](./quick_writing_nix.html) discusses how to write your own class that manages a web app running on an Apache virtual host.
 
-### Editing Class Parameters in the Console
+## Editing Class Parameters in the Console
 
 You can use the console to set or edit the values of a class's parameters without needing to edit the module's code directly.
 

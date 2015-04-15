@@ -5,17 +5,17 @@ subtitle: "Hello World! Quick Start Guide"
 canonical: "/pe/latest/quick_start_helloworld.html" 
 ---
 
-### Overview
+## Overview
 
 The following quick start guide introduces the essential components of Puppet module writing. In this guide, you will write a simple *nix-based module that contains two classes---one that will manage your motd (message of the day) and one that will create a notification on on the command line when you run Puppet. 
 
 While the module you'll write doesn't have an incredible amount of functionality, you'll learn the basic module directory structure and how to apply classes using the PE console. You'll encounter more complex module writing scenarios in other quick start guides. 
 
-### Write the `helloworld` Class
+## Write the `helloworld` Class
 
 Some modules can be large, complex, and require a significant amount of trial and error. This module will be a very simple module to write; it contains just two classes.  
 
-> #### A Quick Note about Modules
+> ### A Quick Note about Modules
 >
 >The first thing to know is that, by default, the modules you use to manage nodes are located in `/etc/puppetlabs/puppet/environments/production/modules`---this includes modules installed by PE, those that you download from the Forge, and those you write yourself.
 >
@@ -58,7 +58,7 @@ Modules are directory trees. For this task, you'll create the following files:
 
 > That's it! You've written a module that contains two classes that will, once applied, show a notification message when Puppet runs, and manage the motd on your server---we'll take a closer at these actions after we add the classes. Please note that you'll need to wait a short time for the Puppet server to refresh before the classes are available to add to your nodes.
 
-### Add the `helloworld` and `helloworld::motd` Classes in the Console
+## Add the `helloworld` and `helloworld::motd` Classes in the Console
 
 [classification_selector]: ./images/quick/classification_selector.png
 
@@ -88,7 +88,7 @@ The **default** group contains all the nodes in your deployment (including the P
    
 8. From the command line on the Puppet master, run `puppet agent -t`. 
 
-#### Viewing the Results
+### Viewing the Results
 
 After you kick off the Puppet run, you should see the following on the command line as the `helloworld` class is applied: 
 
@@ -104,7 +104,7 @@ After you kick off the Puppet run, you should see the following on the command l
     
 Now run `cat /etc/motd`. The result should show, `hello, world!`    
 
-### Other Resources
+## Other Resources
 
 >There are plenty of resources about modules and the creation of modules that you can reference. Check out [Modules and Manifests](./puppet_modules_manifests.html), the [Beginner's Guide to Modules](/guides/module_guides/bgtm.html), and the [Puppet Forge](https://forge.puppetlabs.com/).
 >
