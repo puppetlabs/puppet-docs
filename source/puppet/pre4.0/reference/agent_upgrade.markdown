@@ -25,10 +25,10 @@ upgrade instructions](server_upgrade.markdown) on at least one host so the agent
     /opt/puppetlabs/bin/puppet -tv
 
 * Ensure that Puppet will continue to run automatically. If you used a cron job to periodically run `puppet agent -t`, 
-make sure you update the path to the binary; if you run puppet as a daemon, ensure it's set to start up on system boot:
+make sure you update the path to the binary; if you run puppet as a daemon, ensure it's set to start up on system boot.  
+Here's a handy `puppet resource` command to do just that:
 
-   /opt/puppetlabs/bin/puppet resource 
-    
+   /opt/puppetlabs/bin/puppet resource service puppetagent ensure=running enabled=true
 
 ## Windows hosts
 
