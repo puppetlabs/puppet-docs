@@ -1,14 +1,14 @@
-# ~~~INTRO~~~
+---
+layout: default
+title: "Puppet 4.0 Release Notes"
+canonical: "/puppet/4.0/reference/release_notes.html"
+---
 
 These are the release notes for Puppet 4.0, released April 15 2015. There's a lot of information here so it's organized top to bottom by size of impact -- things everyone is going to notice will be at the top and minor bugfixes/improvements are down at the bottom.
 
-~~~BIG DEAL BREAKING CHANGES~~~
-===============
+## BREAK: Changes to Platform Support, Repos, and Installation
 
-
-### BREAK: Changes to Platform Support, Repos, and Installation
-
-#### All-in-One Packaging
+### All-in-One Packaging
 
 The first thing you'll notice is that the packaging has changed pretty dramatically. Puppet had gotten complicated enough, and the systems it runs on diverse enough, that it became really difficult to provide the proverbial "one-click install" through our Linux-distribution style packaging. For Puppet 4, we've gone to an All-In-One package (which we refer to as "AIO", like a bad hand in Words With Friends), which includes Puppet 4, both Facter 2.4 and CFacter 0.4, the latest Hiera and Mcollective, as well Ruby 2.1.5, OpenSSL 1.0.0q, and our gem dependencies. The package installs into its own area in `/opt/puppetlabs` and is named `puppet-agent` so it will not auto-upgrade existing systems with the `puppet` package installed (it will, however, _replace_ them if you opt-in to the upgrade). 
 
@@ -27,7 +27,7 @@ The first thing you'll notice is that the packaging has changed pretty dramatica
 * [PUP-4355: Update per-user directories to ~/.puppetlabs](https://tickets.puppetlabs.com/browse/PUP-4355)
 * [PUP-4189: Add all per-user directories to file_paths specification](https://tickets.puppetlabs.com/browse/PUP-4189)
 
-#### BREAK: New Locations for Important Files and Directories
+### BREAK: New Locations for Important Files and Directories
 
 Related to the AIO packaging changes, there are new locations on the filesystem for the binaries, configuration, and code. The goals were to make a unified filesystem layout for all Puppet/PE installations and to enable continuous-deployment workflows with r10k. There's a [separate top-level guide](./whered_it_go.html) which summarizes the changes.
 
@@ -37,7 +37,7 @@ Related to the AIO packaging changes, there are new locations on the filesystem 
 * [PUP-3944: Make sure puppetdb.conf is under $confdir](https://tickets.puppetlabs.com/browse/PUP-3944)
 * [PUP-4001: Packaging should create default module directories for puppet](https://tickets.puppetlabs.com/browse/PUP-4001)
 
-#### The End of Ruby 1.8.7
+### The End of Ruby 1.8.7
 
 One of the benefits of the All-in-One packaging is no longer being dependent on the version of Ruby provided by the different operating system. This let us consolidate on a fast, stable, modern version -- Ruby 2.1.5 -- across all operating systems (including Windows) and remove a ton of hacky work-arounds left over from the Ruby 1.8.7 days.
 
@@ -50,12 +50,12 @@ If you're using the AIO packaging, the whole Puppet toolset (facter, mcollective
 * [PUP-2412: Remove 1.8.7 function API support](https://tickets.puppetlabs.com/browse/PUP-2412)
 
 
-#### OS Support
+### OS Support
 
 * [PUP-3553: Remove support for OSX versions <= 10.6](https://tickets.puppetlabs.com/browse/PUP-3553)
     this mostly relates to setting user passwords and managing services.
 
-### BREAK: Next Version of Puppet Language
+## BREAK: Next Version of Puppet Language
 
 By far the most significant user-facing change in Puppet 4 is the completely rewritten parser and evaluator, which are the parts of Puppet that take your modules and transform them into a catalog for each node that checks in. This was originally introduces as an opt-in "Future Parser", and over the last year, community feedback, user research, and engineering time have honed the Future Parser to the point where it's no longer in the realm of the future – it's here.
 
@@ -72,7 +72,7 @@ There's [extensive documentation on the changes](XXX_link_to_doc.html) in the fu
 * [PUP-3701: Issue with empty export resources expression in the Puppet future parser](https://tickets.puppetlabs.com/browse/PUP-3701)
 * [PUP-3718: defined function does not handle qualified variable names correctly](https://tickets.puppetlabs.com/browse/PUP-3718)
 
-### BREAK: Directory Environments Replace Config File Environments
+## BREAK: Directory Environments Replace Config File Environments
 
 Starting with Puppet 3.6, Directory Environments started taking over from Dynamic Environments as Puppet's mechanism for serving different versions of modules and code. In Puppet 4, they're the default and other environment support is gone. Read more about directory environments in the [environments section of the docs](XXX_link_to_environments.html). 
 
@@ -83,7 +83,7 @@ Starting with Puppet 3.6, Directory Environments started taking over from Dynami
 * [PUP-4083: Add sample environment.conf to puppet](https://tickets.puppetlabs.com/browse/PUP-4083)
 
 
-### BREAK: Removed Puppet Kick, ActiveRecord, and Inventory Service
+## BREAK: Removed Puppet Kick, ActiveRecord, and Inventory Service
 
 There's been a lot of accumulated technical debt in Puppet's code base: old features which were deprecated but never removed, half-implemented experiments, and interested things that turned out to be really bad ideas. Almost 60,000 lines of code have been removed from the repository, comprising things like the pre-PuppetDB stored configs, `puppet kick`, and an unsupported CouchDB facts terminus. 
 
@@ -101,7 +101,7 @@ There's been a lot of accumulated technical debt in Puppet's code base: old feat
 * [PUP-4074: Remove master settings from puppet.conf](https://tickets.puppetlabs.com/browse/PUP-4074)
 
 
-### BREAK: HTTP API Changes
+## BREAK: HTTP API Changes
 
 An important set of changes in Puppet 4 involve the URLs the agents and master use to communicate with one another over the network. We've standardized the endpoints onto the same namespaced, versioned standard as other Puppet projects like PuppetDB, which should make for much better compatibility guarantees. A side effect of this, however, is that currently Puppet 3 agents cannot talk to Puppet 4 masters; this compatbility layer will be introduced in Puppet-Server 2.1. See the [installation and upgrade docs](XXX_install_and_upgrade.html) for step-by-step instructions to safely update your existing infrastructure.
 
@@ -121,11 +121,7 @@ An important set of changes in Puppet 4 involve the URLs the agents and master u
 
 
 
-
-~~~BIG DEAL ADDITIONS~~~
-===============
-
-### New Language Features
+## New Language Features
 
 In addition to the core language changes, there are some new functions available along with a new function API that's written on top of the 4.x parser. No longer will you have to restart a long-running puppetmaster to get it to pick up new versions of your function code! One of the coolest built-in functions is "EPP", or Embedded Puppet, which enables inline and file-based templates similar to ERB (Embedded Ruby) but written in the Puppet Language directly. This helps reduce the cognitive dissonance of switching back and forth between the Puppet Language and Ruby ("Are my variables prefixed with dollar signs or not?!") and lets you use the Puppet's tooling for templates as well as your manifests. Read more about EPP in the [function reference guide](function.html#epp).
 
@@ -133,10 +129,8 @@ In addition to the core language changes, there are some new functions available
 * [PUP-2531: Provide validation tool for EPP](https://tickets.puppetlabs.com/browse/PUP-2531)
 
 
-~~~BIG DEAL MODIFICATIONS OR IMPROVEMENTS~~~
-==============
 
-### Changes to support Puppet Server and CA
+## Changes to support Puppet Server and CA
 
 * [PUP-3676: Avoid OpenSSL::X509::Name calls in ssl.rb for Puppet Server](https://tickets.puppetlabs.com/browse/PUP-3676)
 * [PUP-3522: Ruby OpenSSL executed implicitly in JVM-Puppet by loading Puppet/Util module](https://tickets.puppetlabs.com/browse/PUP-3522)
@@ -147,19 +141,12 @@ In addition to the core language changes, there are some new functions available
 * [PUP-3560: Add support for properly signed trusted facts](https://tickets.puppetlabs.com/browse/PUP-3560)
 * [PUP-3352: Always attempt to use HTTP compression](https://tickets.puppetlabs.com/browse/PUP-3352)
 
-
-~~~SMALLER BREAKING CHANGES~~~
-=====
-
-
-### BREAK: Changed Defaults for Settings
+## BREAK: Changed Defaults for Settings
 
 * [PUP-2253: Enable manifest ordering by default](https://tickets.puppetlabs.com/browse/PUP-2253)
 * [PUP-1035: Default setting for pluginsource problematic for deployments using SRV records](https://tickets.puppetlabs.com/browse/PUP-1035)
 
-
-
-### BREAK: Puppet Doc and Tagmail Removed from Core, Released as Modules
+## BREAK: Puppet Doc and Tagmail Removed from Core, Released as Modules
 
 For users of `puppet doc`, check out the new [puppetlabs-strings](https://forge.puppetlabs.com/puppetlabs/strings/) module on the Forge. `puppet doc` relied on RDoc behaviours which broke in newer Ruby versions. Similarly, the tagmail report processor didn't work under Puppet Server and it seemed like a good candidate to move into a modules, so it's available at [puppetlabs-tagmail](https://forge.puppetlabs.com/puppetlabs/tagmail) on the Forge.
 
@@ -167,7 +154,7 @@ For users of `puppet doc`, check out the new [puppetlabs-strings](https://forge.
     https://forge.puppetlabs.com/puppetlabs/tagmail
 * [PUP-3638: Remove the manifest handling code from the util/rdoc parsers.](https://tickets.puppetlabs.com/browse/PUP-3638)
 
-### Internal Cleanups and Dead Code Removal
+## Internal Cleanups and Dead Code Removal
 
 Nearly all users can ignore these removals, but we're including them for completeness's sake.
 
@@ -180,7 +167,7 @@ Nearly all users can ignore these removals, but we're including them for complet
 * [PUP-1019: Remove ZAML](https://tickets.puppetlabs.com/browse/PUP-1019)
 
 
-### BREAK: Resource Types/Providers With Changed Behavior
+## BREAK: Resource Types/Providers With Changed Behavior
 
 * [PUP-3719: Group resource non-authoritative by default](https://tickets.puppetlabs.com/browse/PUP-3719)
 * On the SUSE family of Linuxes, the default package provider is now zypper instead of rug. [PUP-2728: zypper should always be the default package provider for Suse osfamily](https://tickets.puppetlabs.com/browse/PUP-2728)
@@ -197,7 +184,7 @@ Nearly all users can ignore these removals, but we're including them for complet
 * [PUP-3308: Remove deprecation warning about cron purge change](https://tickets.puppetlabs.com/browse/PUP-3308)
 
 
-### BREAK: Internal API and Implementation Changes
+## BREAK: Internal API and Implementation Changes
 
 These changes affect Puppet's internal Ruby methods and libraries. Their removal should affect either no one, or a small number of extension authors.
 
@@ -228,13 +215,13 @@ Most of these changes remove code that was previously deprecated.
 * [PUP-3294: Remove support for :parent](https://tickets.puppetlabs.com/browse/PUP-3294) in the custom type and provider API.
 * [PUP-3296: Remove handling and mention of :before and :after for parameters](https://tickets.puppetlabs.com/browse/PUP-3296)
 
-### Stuff a lot of people will notice
+## Stuff a lot of people will notice
 
 A lot of these changes codify defaults changes that were deprecated or on-the-way in Puppet 3.x but couldn't flip over to be the default except on a semver major number boundary. For example, the `stringify_facts` setting (which causes the agent to submit all Facter facts as strings) is gone, because non-stringified-facts are now the default. Similarly, the Modulefile which described puppet module metadata was deprecated in 3.5 in favour of the `metadata.json` file, and now the transitional support for it is gone completely.
 
 Module authors who use the `prefetch` method in custom providers may want to be aware of the changes in PUP-3656. Two things to consider:
-    1. Previously, the prefetch method could throw any exception and puppet would carry on. As discussed above this is the wrong behavior in general, however some module authors may have stumbled across this, allowed/encouraged prefetch to throw exceptions, and let puppet runs succeed. So modules should be examined for this assumption.
-    2. The only two legitimate causes for prefetch to throw an exception now are `LoadError` and (added in this puppet 4.0) `Puppet::MissingCommand`
+  1. Previously, the prefetch method could throw any exception and puppet would carry on. As discussed above this is the wrong behavior in general, however some module authors may have stumbled across this, allowed/encouraged prefetch to throw exceptions, and let puppet runs succeed. So modules should be examined for this assumption.
+  2. The only two legitimate causes for prefetch to throw an exception now are `LoadError` and (added in this puppet 4.0) `Puppet::MissingCommand`
 
 * [PUP-3096: trusted_node_data option should go away (should be always-on)](https://tickets.puppetlabs.com/browse/PUP-3096)
 * [PUP-3678: Invalid module name .DS_Store error running puppet apply](https://tickets.puppetlabs.com/browse/PUP-3678)
@@ -251,7 +238,7 @@ Module authors who use the `prefetch` method in custom providers may want to be 
 * [PUP-3254: Remove all Modulefile functionality in PMT except warnings about ignoring](https://tickets.puppetlabs.com/browse/PUP-3254)
 * [PUP-777: Remove 'versionRequirement' per code comment](https://tickets.puppetlabs.com/browse/PUP-777)
 
-### Stuff nearly nobody will notice
+## Stuff nearly nobody will notice
 
 * [PUP-1467: DIE :undef, DIE!](https://tickets.puppetlabs.com/browse/PUP-1467)
 * [PUP-2741: remove the 'search' function](https://tickets.puppetlabs.com/browse/PUP-2741)
@@ -266,14 +253,7 @@ Module authors who use the `prefetch` method in custom providers may want to be 
 * The `libdir` setting can only be set to a single directory. Previously, you could set it to a list of directories, but only when using Puppet as a library. This was usually used for testing modules with multiple dependencies. If you need to do this in Puppet 4 or later, you should manipulate Ruby's `$LOAD_PATH` instead. [PUP-3336: Puppet is inconsistent about :libdir setting when multiple paths provided](https://tickets.puppetlabs.com/browse/PUP-3336)
 
 
-
-
-
-
-
-=========
-
-### CLI, Faces, and Logging Improvements
+## CLI, Faces, and Logging Improvements
 
 
 * [PUP-3140: Illegal number error should include the faulty number](https://tickets.puppetlabs.com/browse/PUP-3140)
@@ -294,8 +274,7 @@ Module authors who use the `prefetch` method in custom providers may want to be 
 * [PUP-3698: Make find into the default action for the facts face](https://tickets.puppetlabs.com/browse/PUP-3698)
 
 
-~~~PLAIN OL' BUG FIXES~~~
-===============
+## Bug Fixes
 
 * [PUP-3245: Function calls no longer showing up in profile data](https://tickets.puppetlabs.com/browse/PUP-3245)
 * [PUP-3167: node namespaces override class namespaces if they happen to match](https://tickets.puppetlabs.com/browse/PUP-3167)
@@ -355,7 +334,7 @@ Some of these are subtle, some more in-your-face, but for the most part these bu
 * [PUP-4191: Custom gem provider does not issue the right command to uninstall gem](https://tickets.puppetlabs.com/browse/PUP-4191)
 * [PUP-3388: Issue Creating Multiple Mirrors in Zpool Resource](https://tickets.puppetlabs.com/browse/PUP-3388)
 
-#### On OpenBSD
+### On OpenBSD
 
 Thanks to Jasper Lievisse Adriaanse and Zach Leslie for these changes to help Puppet work better on BSDs.
 
@@ -366,7 +345,7 @@ Thanks to Jasper Lievisse Adriaanse and Zach Leslie for these changes to help Pu
 * [PUP-3736: OpenBSD service provider should restart a service when flags are changed](https://tickets.puppetlabs.com/browse/PUP-3736)
 * [PUP-3723: Add support for setting a user's login class](https://tickets.puppetlabs.com/browse/PUP-3723) -- only affects openbsd for now. new `loginclass` attribute.
 
-#### On Windows
+### On Windows
 
 On Windows, `group` resources now respect the `auth_membership` attribute, which lets you control whether `members` is the complete list of members or a minimum list of members. (Previously, Puppet ignored this attribute on Windows.) Note that the default value of this attribute has also changed; see the breaking changes section on resource types. 
 
@@ -387,7 +366,7 @@ Weekly `scheduled_task` resources would attempt to set the trigger on every run,
 * [PUP-3951: Prefer api_types.read_wide_str(length, encoding) in Windows calls](https://tickets.puppetlabs.com/browse/PUP-3951)
 
 
-### Puppet Language, Hiera, and Function Features
+## Puppet Language, Hiera, and Function Features
 
 * [PUP-1515: When compiling a catalog, providers should be loaded from specified environment](https://tickets.puppetlabs.com/browse/PUP-1515)
 * [PUP-1601: functions accepting regexp string should also accept Regexp](https://tickets.puppetlabs.com/browse/PUP-1601)
@@ -400,43 +379,43 @@ Weekly `scheduled_task` resources would attempt to set the trigger on every run,
 * [PUP-4205: Puppet 4 lexer fails to parse multiple heredocs on the same line](https://tickets.puppetlabs.com/browse/PUP-4205)
 * [PUP-3949: Update docs for application/octet-stream and binary Accept value](https://tickets.puppetlabs.com/browse/PUP-3949)
 
-### New Features in Resource Type and Provider API
+## New Features in Resource Type and Provider API
 
 * [PUP-3331: Custom Types should be able to call all levels of auto* relationships.](https://tickets.puppetlabs.com/browse/PUP-3331)
 
 
-### Miscellaneous Improvements and Bug Fixes
+## Miscellaneous Improvements and Bug Fixes
 
 
 * [PUP-3379: Bring back retry action and fix up](https://tickets.puppetlabs.com/browse/PUP-3379)
 * [PUP-1635: "current thread not owner" after Puppet Agent receives USR1 signal](https://tickets.puppetlabs.com/browse/PUP-1635)
 * [PUP-3935: Pluginsync errors when no source is available and modulepath directory is a symlink](https://tickets.puppetlabs.com/browse/PUP-3935)
 
-### Miscellaneous New Features
+## Miscellaneous New Features
 
 * [PUP-3666: Replace 'configtimeout' with separate HTTP connect and read timeout settings](https://tickets.puppetlabs.com/browse/PUP-3666)
 
 
-### Performance Improvements
+## Performance Improvements
 
 * [PUP-3436: Optimize CPU intensitive compiler methods](https://tickets.puppetlabs.com/browse/PUP-3436)
 * [PUP-659: Qualified variable lookups are very slow under Puppet 2.7+ unless prefixed with ::](https://tickets.puppetlabs.com/browse/PUP-659)
 * [PUP-3389: Significant delay in puppet runs with growing numbers of directory environments](https://tickets.puppetlabs.com/browse/PUP-3389)
 
 
-### New Feature: Data Binder
+## New Feature: Data Binder
 
 * [PUP-1640: Provide agnostic mechanism for Hiera Based Data in Modules](https://tickets.puppetlabs.com/browse/PUP-1640)
 * [PUP-3948: Let lookup be the impl for agnostic lookup of data](https://tickets.puppetlabs.com/browse/PUP-3948)
 * [PUP-3900: Data providers cannot be added in modules](https://tickets.puppetlabs.com/browse/PUP-3900)
 * [PUP-4016: Consider short circuiting data binding if lookup is called as the default value](https://tickets.puppetlabs.com/browse/PUP-4016)
 
-### Preparations for Facter 3.0
+## Preparations for Facter 3.0
 
 * [PUP-3821: Use of cfacter on Windows causes error](https://tickets.puppetlabs.com/browse/PUP-3821)
 * [PUP-3679: Drop service dependency on the 'ps' fact](https://tickets.puppetlabs.com/browse/PUP-3679)
 
-### Module Tool Improvements
+## Module Tool Improvements
 
 * [PUP-3569: module skeleton should not require rubygems](https://tickets.puppetlabs.com/browse/PUP-3569)
 * [PUP-3962: Test for module directories starting with '.'](https://tickets.puppetlabs.com/browse/PUP-3962)
@@ -449,10 +428,7 @@ Weekly `scheduled_task` resources would attempt to set the trigger on every run,
 * [PUP-3568: module skeleton should use puppet-lint v1](https://tickets.puppetlabs.com/browse/PUP-3568)
 
 
-~~~YOU CAN IGNORE IT~~~
-=================
-
-### Administrivia, Testing, Docs and Specs, Packaging, Internal Clean-ups
+## Administrivia, Testing, Docs and Specs, Packaging, Internal Clean-ups
 
 
 * [PUP-2733: Puppet squats on the PuppetX::Puppetlabs and PuppetX::Puppet namespaces](https://tickets.puppetlabs.com/browse/PUP-2733)
@@ -519,7 +495,7 @@ Weekly `scheduled_task` resources would attempt to set the trigger on every run,
 * [PUP-4088: update puppet-agent path acceptance for Windows 2003 and 32-bit app on 64-bit OS](https://tickets.puppetlabs.com/browse/PUP-4088)
 
 
-#### Wontfix
+### Wontfix
 
 * [PUP-2701: Add acceptance tests for PMT build metadata.json support](https://tickets.puppetlabs.com/browse/PUP-2701)
 * [PUP-3015: Add acceptance test for PMT search command changes for 3.7](https://tickets.puppetlabs.com/browse/PUP-3015)
@@ -539,7 +515,7 @@ Weekly `scheduled_task` resources would attempt to set the trigger on every run,
 * [PUP-1263: Synonyms (title, namevar, name) make it confusing.](https://tickets.puppetlabs.com/browse/PUP-1263)
 * [PUP-2105: Puppet config face and the --configprint option operate directly on environment.conf.](https://tickets.puppetlabs.com/browse/PUP-2105)
 
-#### Duplicates
+### Duplicates
 
 * [PUP-3297: Remove deprecated Puppet::Settings::BaseSetting methods](https://tickets.puppetlabs.com/browse/PUP-3297)
 * [PUP-3824: Ruby 2.1.5 - Puppet-Win32-Ruby - Clean Docs and Fix bin files](https://tickets.puppetlabs.com/browse/PUP-3824)
