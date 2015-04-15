@@ -4,6 +4,7 @@ title: "Puppet 4.0 Release Notes"
 canonical: "/puppet/4.0/reference/release_notes.html"
 toc: false
 ---
+[refguide]: /references/4.0.0/function.html#epp
 
 These are the release notes for Puppet 4.0, released April 15 2015. There's a lot of information here so it's organized top to bottom by size of impact -- things everyone is going to notice will be at the top and minor bugfixes/improvements are down at the bottom.
 
@@ -124,7 +125,7 @@ An important set of changes in Puppet 4 involve the URLs the agents and master u
 
 ## New Language Features
 
-In addition to the core language changes, there are some new functions available along with a new function API that's written on top of the 4.x parser. No longer will you have to restart a long-running puppetmaster to get it to pick up new versions of your function code! One of the coolest built-in functions is "EPP", or Embedded Puppet, which enables inline and file-based templates similar to ERB (Embedded Ruby) but written in the Puppet Language directly. This helps reduce the cognitive dissonance of switching back and forth between the Puppet Language and Ruby ("Are my variables prefixed with dollar signs or not?!") and lets you use the Puppet's tooling for templates as well as your manifests. Read more about EPP in the [function reference guide](function.html#epp).
+In addition to the core language changes, there are some new functions available along with a new function API that's written on top of the 4.x parser. No longer will you have to restart a long-running puppetmaster to get it to pick up new versions of your function code! One of the coolest built-in functions is "EPP", or Embedded Puppet, which enables inline and file-based templates similar to ERB (Embedded Ruby) but written in the Puppet Language directly. This helps reduce the cognitive dissonance of switching back and forth between the Puppet Language and Ruby ("Are my variables prefixed with dollar signs or not?!") and lets you use the Puppet's tooling for templates as well as your manifests. Read more about EPP in the [function reference guide][refguide].
 
 * [PUP-2904: Make string/symbol use consistent in new function API](https://tickets.puppetlabs.com/browse/PUP-2904)
 * [PUP-2531: Provide validation tool for EPP](https://tickets.puppetlabs.com/browse/PUP-2531)
