@@ -3,6 +3,7 @@ layout: default
 title: " PE 3.8 » Razor » Razor Objects for Provisioning
 subtitle: "Razor Objects Overview"
 canonical: "/pe/latest/razor_objects.html"
+
 ---
 
 In order to provision with Razor, you must create a handful of objects that establish, in very basic terms, what should be provisioned where. These objects are described in detail here. You can try them out on these two pages: XXX and XXX
