@@ -16,6 +16,12 @@ The following issues affect the currently shipped version of PE and all prior re
 
 ## Installation/Upgrade Known Issues
 
+### Web-based Installer Fails to Acknowledge Failed Installs due to Low RAM
+
+When a PE installation fails because a system is not provisioned with adequate RAM, the web-based installer stops responding when verifying that PE is functioning on the server, but the installation appears to have succeeded, as the **Start using Puppet Enterprise** button is available. Note that in such cases, the command line shows an "out of memory: Kill process" error. 
+
+We recommend provisioning the system with adequate RAM and re-running the installation. Refer to the [hardware requirements](./install_system_requirements.html#hardware-requirements). 
+
 ###  New PE 3.7.x MCO Server is Not Connecting With Older MCollective agents (posted 12/17/14)
 
 This issue has been fixed in PE 3.8.0. 
@@ -176,6 +182,11 @@ When configuring the Puppet server to use a report processor that involves HTTPS
 
 
 ## PuppetDB/PostgreSQL Known Issues
+
+### Incorrect Password for Database User(s) Will Cause Install/Upgrade to Fail
+
+If, during installation or upgrade, you supply an incorrect password for one of the PE databases users (RBAC, console, PuppetDB), the install/upgrade will fail. However, in some cases it will appear that the install/upgrade was successful. For example, if the incorrect password is supplied for the console database user, the install/upgrade will continue--and appear to succeed--but the console will not be functional.  
+
 
 ### PostgreSQL Buffer Memory Issue Can Cause PE Install to Fail on Machines with Large Amounts of RAM
 
