@@ -36,7 +36,7 @@ To install on Debian-based systems:
 
 Before upgrading, you need to export your node classification data from PE 3.3. 
 
-**Note:** If any of your classification data is not compatible with PE 3.8 classification, you will have a chance to make modifications in the console and export the modified data in [Step 5](#step-5-review-and-convert-your-pe-33-classification-data). 
+**Note:** If any of your classification data is not compatible with PE 3.8 classification, you will have a chance to make modifications in the console and export the modified data in [Step 5](#step-5-convert-your-pe-33-classification-data). 
 
 The migration tool includes an export command. The export command gathers up your PE 3.3 classification data and exports it as a JSON file. Specifically, the following items get exported.
 
@@ -64,7 +64,7 @@ To run the migration tool and export your classification data:
 
 2. Once the database configuration has been acquired, the migration tool connects to the console database and exports your classification data to a JSON file called `dashboard-classification-export.json` in the current directory. To specify a different output file name and location, include the `--output` option when you run the export command (e.g. `/opt/puppet/bin/nc_migrate export --output <NEW FILE PATH>`.)
 
-## Step 5: Review and Convert Your PE 3.3 Classification Data
+## Step 5: Convert Your PE 3.3 Classification Data
 
 In this step, the migration tool is essentially mapping your exported classification data to a node group hierarchy that is compatible with PE 3.8. The tool first checks the exported classification data for PE 3.8 compatibility issues. If compatibility issues exist, you will have a chance to resolve the issues and export your data again. 
 

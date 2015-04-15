@@ -19,7 +19,7 @@ The node-based classification system used in PE 3.3 and earlier versions does no
 
 The major differences between classification in PE 3.3 and PE 3.8 are shown in the following diagram.  
 
-(TODO: Insert differences diagram here)
+<a href="./images/pe3.8_migration_differences.svg"><img src="./images/pe3.8_migration_differences.svg" alt="Classification Differences" title="Click to enlarge"> (Click to enlarge)</a>
 
 ## What is the PE Classification Data Migration Tool?
 
