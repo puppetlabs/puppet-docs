@@ -7,7 +7,7 @@ canonical: "/puppet/latest/reference/future_lang_relationships.html"
 [virtual]: ./future_lang_virtual.html
 [collector]: ./future_lang_collectors.html
 [resources]: ./future_lang_resources.html
-[reference]: ./future_lang_datatypes.html#resource-references
+[reference]: ./future_lang_data_resource_reference.html
 [array]: ./future_lang_data_array.html
 [class]: ./future_lang_classes.html
 [event]: ./future_lang_resources.html#behavior

@@ -24,7 +24,7 @@ canonical: "/puppet/latest/reference/lang_summary.html"
 [ordering]: ./future_lang_relationships.html#ordering-and-notification
 [notification]: ./future_lang_relationships.html#ordering-and-notification
 [declared]: /references/glossary.html#declare
-[string_newline]: ./future_lang_datatypes.html#line-breaks
+[string_newline]: ./future_lang_data_string.html#line-breaks
 [node]: ./future_lang_node_definitions.html
 [ordering]: /references/3.6.latest/configuration.html#ordering
 [hiera]: /hiera/latest

@@ -21,7 +21,7 @@ canonical: "/puppet/latest/reference/future_lang_facts_and_builtin_vars.html"
 [extensions]: ./ssl_attributes_extensions.html
 [structured_facts_on]: ./config_important_settings.html#getting-new-features-early
 [strings]: ./future_lang_data_string.html
-[datatypes]: ./future_lang_datatypes.html
+[datatypes]: ./future_lang_data.html
 [qualified_var_names]: ./future_lang_variables.html#accessing-out-of-scope-variables
 
 

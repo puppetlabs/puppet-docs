@@ -8,7 +8,7 @@ canonical: "/puppet/latest/reference/future_lang_reserved.html"
 [tags]: ./future_lang_tags.html
 [built_in]: ./future_lang_variables.html#facts-and-built-in-variables
 [facts]: /facter/latest/core_facts.html
-[capture]: ./future_lang_datatypes.html#regex-capture-variables
+[capture]: ./future_lang_data_regexp.html#regex-capture-variables
 [conditional]: ./future_lang_conditional.html
 [topscope]: ./future_lang_scope.html#top-scope
 [namespace]: ./future_lang_namespaces.html

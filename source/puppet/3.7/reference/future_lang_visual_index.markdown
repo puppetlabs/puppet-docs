@@ -17,12 +17,12 @@ canonical: "/puppet/latest/reference/future_lang_visual_index.html"
 [module]: modules_fundamentals.html
 [argument]: ./future_lang_functions.html#arguments
 [relationship_meta]: ./future_lang_relationships.html#relationship-metaparameters
-[refs]: ./future_lang_datatypes.html#resource-references
+[refs]: ./future_lang_data_resource_reference.html
 [chaining]: ./future_lang_relationships.html#chaining-arrows
 [variable]: ./future_lang_variables.html
 [array]: ./future_lang_data_array.html
 [hash]: ./future_lang_data_hash.html
-[interpolation]: ./future_lang_datatypes.html#variable-interpolation
+[interpolation]: ./future_lang_data_string.html#variable-interpolation
 [class_def]: ./future_lang_classes.html#defining-classes
 [class_decl]: ./future_lang_classes.html#declaring-classes
 [defined_type]: ./future_lang_defined_types.html

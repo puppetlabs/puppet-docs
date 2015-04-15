@@ -11,14 +11,13 @@ canonical: "/puppet/latest/reference/future_lang_resources.html"
 [report]: /guides/reporting.html
 [append_attributes]: ./future_lang_classes.html#appending-to-resource-attributes
 [types]: /references/latest/type.html
-[bareword]: ./future_lang_datatypes.html#bare-words
 [string]: ./future_lang_data_string.html
 [array]: ./future_lang_data_array.html
-[datatype]: ./future_lang_datatypes.html
+[datatype]: ./future_lang_data.html
 [inheritance]: ./future_lang_classes.html#inheritance
 [relationships]: ./future_lang_relationships.html
 [resdefaults]: ./future_lang_defaults.html
-[reference]: ./future_lang_datatypes.html#resource-references
+[reference]: ./future_lang_data_resource_reference.html
 [class]: ./future_lang_classes.html
 [defined_type]: ./future_lang_defined_types.html
 [collector]: ./future_lang_collectors.html

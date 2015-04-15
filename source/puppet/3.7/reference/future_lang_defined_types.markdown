@@ -19,7 +19,7 @@ canonical: "/puppet/latest/reference/future_lang_defined_types.html"
 [classes]: ./future_lang_classes.html
 [variable_assignment]: ./future_lang_variables.html#assignment
 [variable]: ./future_lang_variables.html
-[references_namespaced]: ./future_lang_datatypes.html#resource-references
+[references_namespaced]: ./future_lang_data_resource_reference.html
 [attributes]: ./future_lang_resources.html#attributes
 [title]: ./future_lang_resources.html#title
 [contains]: ./future_lang_containment.html

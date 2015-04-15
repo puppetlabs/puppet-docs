@@ -10,7 +10,7 @@ canonical: "/puppet/latest/reference/future_lang_functions.html"
 [stdlib]: http://forge.puppetlabs.com/puppetlabs/stdlib
 [resource]: ./future_lang_resources.html
 [custom_facts]: /facter/latest/custom_facts.html
-[datatype]: ./future_lang_datatypes.html
+[datatype]: ./future_lang_data.html
 [catalog]: ./future_lang_summary.html#compilation-and-catalogs
 
 > * [See the Function Reference for complete info about Puppet's built-in functions.][func_ref]

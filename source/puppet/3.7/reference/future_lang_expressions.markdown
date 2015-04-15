@@ -4,7 +4,7 @@ layout: default
 canonical: "/puppet/latest/reference/future_lang_expressions.html"
 ---
 
-[datatypes]: ./future_lang_datatypes.html
+[datatypes]: ./future_lang_data.html
 [boolean]: ./future_lang_data_boolean.html
 [numbers]: ./future_lang_data_number.html
 [strings]: ./future_lang_data_string.html
@@ -23,7 +23,7 @@ canonical: "/puppet/latest/reference/future_lang_expressions.html"
 [node definitions]: ./future_lang_node_definitions.html
 [resource collectors]: ./future_lang_collectors.html
 [chaining]: ./future_lang_relationships.html#syntax-chaining-arrows
-[literal_types]: ./future_lang_datatypes.html#TODO
+[literal_types]: ./future_lang_data_type.html
 [spec]: https://github.com/puppetlabs/puppet-specifications
 
 

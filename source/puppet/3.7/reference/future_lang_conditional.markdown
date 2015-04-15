@@ -16,7 +16,7 @@ canonical: "/puppet/latest/reference/future_lang_conditional.html"
 [bool_convert]: ./future_lang_data_boolean.html
 [variables]: ./future_lang_variables.html
 [functions]: ./future_lang_functions.html
-[datatypes]: ./future_lang_datatypes.html
+[datatypes]: ./future_lang_data.html
 [splat]: ./future_lang_expressions.html#splat
 
 Conditional statements let your Puppet code behave differently in different situations. They are most helpful when combined with [facts][] or with data retrieved from an external source.

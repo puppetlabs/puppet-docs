@@ -17,14 +17,14 @@ canonical: "/puppet/latest/reference/future_lang_classes.html"
 [contains]: ./future_lang_containment.html
 [contain_classes]: ./future_lang_containment.html#containing-classes
 [function]: ./future_lang_functions.html
-[multi_ref]: ./future_lang_datatypes.html#multi-resource-references
+[multi_ref]: ./future_lang_data_resource_reference.html#multi-resource-references
 [add_attribute]: ./future_lang_resources.html#adding-or-modifying-attributes
 [undef]: ./future_lang_data_undef.html
 [relationships]: ./future_lang_relationships.html
 [qualified_var]: ./future_lang_variables.html#accessing-out-of-scope-variables
 [variable]: ./future_lang_variables.html
 [variable_assignment]: ./future_lang_variables.html#assignment
-[resource_reference]: ./future_lang_datatypes.html#resource-references
+[resource_reference]: ./future_lang_data_resource_reference.html
 [node]: ./future_lang_node_definitions.html
 [resource_declaration]: ./future_lang_resources.html
 [scope]: ./future_lang_scope.html

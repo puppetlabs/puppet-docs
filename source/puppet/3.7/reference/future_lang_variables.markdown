@@ -8,8 +8,8 @@ canonical: "/puppet/latest/reference/future_lang_variables.html"
 [expressions]: ./future_lang_expressions.html
 [acceptable]: ./future_lang_reserved.html#variables
 [reserved]: ./future_lang_reserved.html#reserved-variable-names
-[datatype]: ./future_lang_datatypes.html
-[double_quote]: ./future_lang_datatypes.html#double-quoted-strings
+[datatype]: ./future_lang_data.html
+[double_quote]: ./future_lang_data_string.html#double-quoted-strings
 [functions]: ./future_lang_functions.html
 [resource]: ./future_lang_resources.html
 [resource_attribute]: ./future_lang_resources.html#syntax

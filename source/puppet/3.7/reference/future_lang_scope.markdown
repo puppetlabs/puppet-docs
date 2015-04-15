@@ -5,7 +5,7 @@ canonical: "/puppet/latest/reference/future_lang_scope.html"
 ---
 
 [resources]: ./future_lang_resources.html
-[refs]: ./future_lang_datatypes.html#resource-references
+[refs]: ./future_lang_data_resource_reference.html
 [class]: ./future_lang_classes.html
 [definedtype]: ./future_lang_defined_types.html
 [node]: ./future_lang_node_definitions.html
