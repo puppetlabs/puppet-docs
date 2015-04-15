@@ -75,7 +75,7 @@ The rewritten parser includes new capabilities like iteration and type-checking 
 
 ## BREAK: Directory Environments Replace Config File Environments
 
-Starting with Puppet 3.6, Directory Environments started taking over from Dynamic Environments as Puppet's mechanism for serving different versions of modules and code. In Puppet 4, they're the default and other environment support is gone. Read more about directory environments in the [environments section of the docs](XXX_link_to_environments.html). 
+Starting with Puppet 3.6, Directory Environments started taking over from Dynamic Environments as Puppet's mechanism for serving different versions of modules and code. In Puppet 4, they're the default and other environment support is gone. Read more about directory environments in the [environments section of the docs](/puppet/latest/reference/environments.html).
 
 * [PUP-3268: Remove non-directory environment support](https://tickets.puppetlabs.com/browse/PUP-3268)
 * [PUP-3567: Remove current_environment check in Puppet::Indirector::Request#environment=](https://tickets.puppetlabs.com/browse/PUP-3567)
@@ -104,7 +104,7 @@ There's been a lot of accumulated technical debt in Puppet's code base: old feat
 
 ## BREAK: HTTP API Changes
 
-An important set of changes in Puppet 4 involve the URLs the agents and master use to communicate with one another over the network. We've standardized the endpoints onto the same namespaced, versioned standard as other Puppet projects like PuppetDB, which should make for much better compatibility guarantees. A side effect of this, however, is that currently Puppet 3 agents cannot talk to Puppet 4 masters; this compatbility layer will be introduced in Puppet-Server 2.1. See the [installation and upgrade docs](XXX_install_and_upgrade.html) for step-by-step instructions to safely update your existing infrastructure.
+An important set of changes in Puppet 4 involve the URLs the agents and master use to communicate with one another over the network. We've standardized the endpoints onto the same namespaced, versioned standard as other Puppet projects like PuppetDB, which should make for much better compatibility guarantees. A side effect of this, however, is that currently Puppet 3 agents cannot talk to Puppet 4 masters; this compatbility layer will be introduced in Puppet-Server 2.1. See the upgrade docs for [servers](./upgrade_server.html) and [agents](./upgrade_agent.html) for step-by-step instructions to safely update your existing infrastructure.
 
 * [PUP-3641: Changes to Puppet URL structure](https://tickets.puppetlabs.com/browse/PUP-3641)
 * [PUP-3519: Scope URL rework](https://tickets.puppetlabs.com/browse/PUP-3519)
