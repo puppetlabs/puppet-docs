@@ -99,27 +99,38 @@ Modules are directory trees. For this task, you'll create the following files:
 
 [classification_selector]: ./images/quick/classification_selector.png
 
-For this procedure, you're going to add the `resolver` class to the **default** group.
+For this procedure, you're going to add the `resolver` class to a node group we'll create, called **DNS**, which will contain all of your nodes.
 
-The **default** group contains all the nodes in your deployment (including the Puppet master), but you can [create your own group](./console_classes_groups.html#creating-new-node-groups) or add the classes to individual nodes, depending on your needs.
+The **DNS** group will contain all the nodes in your deployment (including the Puppet master), but you can [create your own groups](./console_classes_groups.html#creating-new-node-groups) or add the classes to individual nodes, depending on your needs.
 
-**To add the** `resolver` **class to the default group**:
+**To create the DNS node group**:
 
 1. From the console, click __Classification__ in the top navigation bar.
 
    ![classification selection][classification_selector]
 
-2. From the __Classification page__, select the __default__ group.
+2. In the **Node group name** field, name your group **DNS**. 
+3. Click **Add group**.
 
-3. Click the __Classes__ tab.
+   **Note**: Leave the **Parent name** and **Environment** values as their defaults (**default** and **production**, respectively).
 
-4. In the __Class name__ field, begin typing `resolver`, and select it from the autocomplete list.
+4. From the __Classification page__, select the __DNS__ group, and click the __Rules_ tab.
+5. In the **Fact** field, enter "name" (without the quotes).
+6. From the **Operator** drop-down list, select **matches regex**.
+7. In the **Value** field, enter ".x" (without the quotes). 
+8. Click **Add rule**.
 
-5. Click __Add class__.
+   This rule will ["dynamically" pin all nodes]((./console_classes_groups.html#adding-nodes-dynamically) to the **DNS** group. (Note that this rule is for testing purposes and that decisions about pinning nodes to groups in a production environment will vary from user to user.) 
 
-6. Click __Commit 1 change__.
+**To add the** `resolver` **class to the DNS group**:
 
-   **Note**: The `resolver` class now appears in the list of classes for the __default__ group, but it has not yet been configured on your nodes. For that to happen, you need to kick off a Puppet run.
+1. From the __Classification page__, select the __DNS__ group.
+2. Click the __Classes__ tab.
+3. In the __Class name__ field, begin typing `resolver`, and select it from the autocomplete list.
+4. Click __Add class__.
+5. Click __Commit 1 change__.
+
+   **Note**: The `resolver` class now appears in the list of classes for the __DNS__ group, but it has not yet been configured on your nodes. For that to happen, you need to kick off a Puppet run.
 
 7. From the CLI of your Puppet master, run `puppet agent -t`.
 
@@ -127,7 +138,7 @@ The **default** group contains all the nodes in your deployment (including the P
 
    This will configure the nodes using the newly-assigned classes. Wait one or two minutes.
 
-> Not done just yet! The `resolver` class now appears in the list of classes for agent1.example.com, but it has not yet been fully configured---you still need to add the nameserver IP address parameter for the `resolver` class to use. You can do this by adding a parameter right in the console.
+> Not done just yet! The `resolver` class now appears in the list of classes for your DNS group, but it has not yet been fully configured---you still need to add the nameserver IP address parameter for the `resolver` class to use. You can do this by adding a parameter right in the console.
 
 #### Add the Nameserver IP Address Parameter in the Console
 
@@ -136,7 +147,7 @@ You can add class parameter values to the code in your module, but it’s easier
 **To edit the server parameter of the** `resolver` **class**:
 
 1. From the console, click __Classification__ in the navigation bar.
-2. From the __Classification page__, select the __default__ group.
+2. From the __Classification page__, select the __DNS__ group.
 3. Click the __Classes__ tab, and find `resolver` in the list of classes.
 4. From the __parameter__ drop-down menu, choose __nameservers__.
 5. In the __Value__ field, enter the nameserver IP address you'd like to use (e.g., `8.8.8.8`).

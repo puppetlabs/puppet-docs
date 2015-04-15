@@ -142,11 +142,11 @@ Modules are directory trees. For this task, you'll create the following files:
 
 Groups let you assign classes and variables to many nodes at once. Nodes can belong to many groups and inherit classes and variables from all of them. Groups can also be members of other groups and inherit configuration information from their parent group the same way nodes do. PE automatically creates several groups in the console, which you can read more about in the [PE docs](https://docs.puppetlabs.com/pe/latest/console_classes_groups_preconfigured_groups.html).
 
-In this procedure, you’ll create a simple group called __firewall_example__, but you can add the `my_firewall` class to any existing group, or you can create your own group.
+In this procedure, you’ll create a simple group called, __firewall_example__, which will contain all of your nodes. Depending on your needs or infrastructure, you may have a different group that you'll assign your firewall class to.
 
 [firewall_add_node]: ./images/quick/firewall_add_node.png
 
-**To create the ssh_example group**:
+**To create the firewall_example group**:
 
 1. From the console, click __Classification__ in the navigation bar.
 2. In the __Node group name__ field, name your group (e.g., **firewall_example**).

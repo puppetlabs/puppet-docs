@@ -24,7 +24,7 @@ Every module contains one or more **classes**. [Classes](/puppet/3.8/reference/l
 4. Click the __apache_example__ group.
 5. From the __Rules__ tab, in the __Certname__ area, in the __Node name__ field, enter the name of the PE-managed node you'd like to add to this group.
 
-   **Notes**: Leave the **Parent name** and **Environment** values as their defaults (**default** and **production**, respectively).  
+   **Note**: Leave the **Parent name** and **Environment** values as their defaults (**default** and **production**, respectively).  
 
 6. Click __Pin node__.
 7. Click __Commit 1 change__.

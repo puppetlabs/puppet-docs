@@ -70,36 +70,52 @@ The NTP module contains several **classes**. [Classes](../puppet/3/reference/lan
 * `ntp::config`: this class handles the configuration file.
 * `ntp::service`: this class handles the service.
 
-We're going to add the `ntp` class to the **default** node group. Depending on your needs or infrastructure, you may have a different group that you'll assign NTP to, but these same instructions would apply.
+We're going to add the `ntp` class to a node group we'll create, called **NTP**, which will contain all of your nodes. Depending on your needs or infrastructure, you may have a different group that you'll assign NTP to, but these same instructions would apply.
 
-**To add the** `ntp` **class to the default group**:
+**To create the NTP node group**:
 
 1. From the console, click __Classification__ in the top navigation bar.
 
    ![classification selection][classification_selector]
 
-2. From the __Classification page__, select the __default__ group.
+2. In the **Node group name** field, name your group **NTP**. 
+3. Click **Add group**.
 
-3. Click the __Classes__ tab.
+   **Note**: Leave the **Parent name** and **Environment** values as their defaults (**default** and **production**, respectively).
 
-4. In the __Class name__ field, begin typing `ntp`, and select it from the autocomplete list.
+4. From the __Classification page__, select the __NTP__ group, and click the __Rules_ tab.
+5. In the **Fact** field, enter "name" (without the quotes).
+6. From the **Operator** drop-down list, select **matches regex**.
+7. In the **Value** field, enter ".x" (without the quotes). 
+8. Click **Add rule**.
+
+   This rule will ["dynamically" pin all nodes]((./console_classes_groups.html#adding-nodes-dynamically) to the **NTP** group. (Note that this rule is for testing purposes and that decisions about pinning nodes to groups in a production environment will vary from user to user.) 
+
+**To add the** `ntp` **class to the NTP group**:
+
+1. From the __Classification page__, select the __NTP_ group.
+
+2. Click the __Classes__ tab.
+
+3. In the __Class name__ field, begin typing `ntp`, and select it from the autocomplete list.
 
    **Tip**: You only need to add the main `ntp` class; it contains the other classes from the module.
 
-5. Click __Add class__.
+4. Click __Add class__.
 
-6. Click __Commit 1 change__.
+5. Click __Commit 1 change__.
 
-   **Note**: The `ntp` class now appears in the list of classes for the __default__ group, but it has not yet been configured on your nodes. For that to happen, you need to kick off a Puppet run.
+   **Note**: The `ntp` class now appears in the list of classes for the __NTP_ group, but it has not yet been configured on your nodes. For that to happen, you need to kick off a Puppet run.
 
 7. From the CLI of your Puppet master, run `puppet agent -t`.
 
 8. From the CLI of your PE-managed node(s), run `puppet agent -t`.
+
 ## Using the PE Console Event Inspector to View Changes Made by the `ntp` Class
 
    This will configure the nodes using the newly-assigned classes.
 
-> **Success!** Puppet Enterprise is now managing NTP on the nodes in the __default__ group. So, for example, if you forget to restart the NTP service on one of those nodes after running `ntpdate`, PE will automatically restart it on the next Puppet Enterprise run.
+> **Success!** Puppet Enterprise is now managing NTP on the nodes in the __NTP__ group. So, for example, if you forget to restart the NTP service on one of those nodes after running `ntpdate`, PE will automatically restart it on the next Puppet Enterprise run.
 
 ### Using the PE Console Event Inspector to View Changes Made by the `ntp` Class
 
@@ -139,7 +155,7 @@ Changing the server parameter of the `ntp` class can be accomplished in a few st
 **To edit the server parameter of the** `ntp` **class**:
 
 1. From the console, click __Classification__ in the navigation bar.
-2. From the __Classification page__, select the __default__ group.
+2. From the __Classification page__, select the __NTP__ group.
 3. Click the __Classes__ tab, and find `ntp` in the list of classes.
 
 4. From the __parameter__ drop-down menu, choose __servers__.

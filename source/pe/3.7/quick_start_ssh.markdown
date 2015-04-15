@@ -68,24 +68,25 @@ You should see output similar to the following:
 
 Groups let you assign classes and variables to many nodes at once. Nodes can belong to many groups and will inherit classes and variables from all of them. Groups can also be members of other groups and inherit configuration information from their parent group the same way nodes do. PE automatically creates several groups in the console, which you can read more about in the [PE docs](https://docs.puppetlabs.com/pe/latest/console_classes_groups_preconfigured_groups.html).
 
-In this procedure, you’ll create a simple group called, __ssh_example__, but you can add the `ssh` class to any existing group, or create your own group.
+In this procedure, you’ll create a simple group called, __ssh_example__, which will contain all of your nodes. Depending on your needs or infrastructure, you may have a different group that you'll assign SSH to.
 
 [ssh_add_node]: ./images/quick/ssh_add_node.png
 
 **To create the ssh_example group**:
 
 1. From the console, click __Classification__ in the navigation bar.
+
+  ![classification selection][classification_selector]
+
 2. In the __Node group name__ field, name your group (e.g., **ssh_example**).
 3. Click __Add group__.
-4. Select the __ssh_example__ group.
-5. From the __Rules__ tab, in the __Node name__ field, enter the name of the PE-managed node you'd like to add to this group.
-6. Click __Pin node__.
-7. Click __Commit 1 change__.
+4. Select the __ssh_example__ group, and click the __Rules__ tab.
+5. In the **Fact** field, enter "name" (without the quotes).
+6. From the **Operator** drop-down list, select **matches regex**.
+7. In the **Value** field, enter ".x" (without the quotes). 
+8. Click **Add rule**.
 
-   ![adding node to ssh group][ssh_add_node]
-
-8. Repeat steps 5-7 for any additional nodes you want to add.
-
+   This rule will ["dynamically" pin all nodes]((./console_classes_groups.html#adding-nodes-dynamically) to the **NTP** group. (Note that this rule is for testing purposes and that decisions about pinning nodes to groups in a production environment will vary from user to user.) 
 
 ## Use the PE Console to Add Classes from the SSH Module
 
@@ -106,8 +107,6 @@ After you apply the `ssh` class and run Puppet, the public key for each agent no
 **To add the** `ssh` **class to the ssh_example group**:
 
 1. From the console, click __Classification__ in the top navigation bar.
-
-   ![classification selection][classification_selector]
 
 2. From the __Classification page__, select the __ssh_example__ group.
 

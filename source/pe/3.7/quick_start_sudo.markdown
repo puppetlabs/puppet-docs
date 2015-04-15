@@ -111,33 +111,49 @@ You will add this class at the same time you add the saz-sudo module.
 
 [classification_selector]: ./images/quick/classification_selector.png
 
-The saz-sudo module contains several **classes**. [Classes](../puppet/3/reference/lang_classes.html) are named chunks of Puppet code and are the primary means by which Puppet Enterprise configures nodes. For this procedure, you're going to add the `sudo` class to the **default** group.
+The saz-sudo module contains several **classes**. [Classes](../puppet/3/reference/lang_classes.html) are named chunks of Puppet code and are the primary means by which Puppet Enterprise configures nodes. 
 
-The **default** group contains all the nodes in your deployment (including the Puppet master), but you can [create your own group](./console_classes_groups.html#creating-new-node-groups) or add the classes to individual nodes, depending on your needs.
+We're going to add the `sudo` class to a node group we'll create, called **Sudo**, which will contain all of your nodes. Note that if you don't want to add this class to all of your nodes you can [pin the nodes "statically"](./console_classes_groups.html#adding-nodes-statically) or write a different rule to [add them "dynamically"](./console_classes_groups.html#adding-nodes-dynamically), depending on your needs. 
 
-**To add the** `sudo` **and** `privileges` **classes to the default group**:
+**To create the Sudo node group**:
 
 1. From the console, click __Classification__ in the top navigation bar.
 
    ![classification selection][classification_selector]
 
-2. From the __Classification page__, select the __default__ group.
+2. In the **Node group name** field, name your group **Sudo**. 
+3. Click **Add group**.
 
-3. Click the __Classes__ tab.
+   **Note**: Leave the **Parent name** and **Environment** values as their defaults (**default** and **production**, respectively).
 
-4. In the __Class name__ field, begin typing `sudo`, and select it from the autocomplete list.
+4. From the __Classification page__, select the __Sudo__ group, and click the __Rules_ tab.
+5. In the **Fact** field, enter "name" (without the quotes).
+6. From the **Operator** drop-down list, select **matches regex**.
+7. In the **Value** field, enter ".x" (without the quotes). 
+8. Click **Add rule**.
 
-5. Click __Add class__.
+   This rule will ["dynamically" pin all nodes]((./console_classes_groups.html#adding-nodes-dynamically) to the **Sudo** group. (Note that this rule is for testing purposes and that decisions about pinning nodes to groups in a production environment will vary from user to user.) 
 
-6. Click __Commit 1 change__.
 
-   **Note**: The `sudo` class now appears in the list of classes for the __default__ group, but it has not yet been configured on your nodes. For that to happen, you need to kick off a Puppet run.
+**To add the** `sudo` **and** `privileges` **classes to the Sudo group**:
 
-7. Repeat steps 4 - 6 to add the `privileges` class.
+1. From the __Classification page__, select the __Sudo__ group.
 
-8. From the CLI of your Puppet master, run `puppet agent -t`.
+2. Click the __Classes__ tab.
 
-9. From the CLI of your PE-managed node(s), run `puppet agent -t`.
+3. In the __Class name__ field, begin typing `sudo`, and select it from the autocomplete list.
+
+4. Click __Add class__.
+
+5. Click __Commit 1 change__.
+
+   **Note**: The `sudo` class now appears in the list of classes for the __sudo__ group, but it has not yet been configured on your nodes. For that to happen, you need to kick off a Puppet run.
+
+8. Repeat steps 4 - 6 to add the `privileges` class.
+
+9. From the CLI of your Puppet master, run `puppet agent -t`.
+
+10. From the CLI of your PE-managed node(s), run `puppet agent -t`.
 
    This will configure the nodes using the newly-assigned classes. Wait one or two minutes.
 
