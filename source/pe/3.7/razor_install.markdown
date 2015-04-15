@@ -54,9 +54,13 @@ If you don't have access to the internet or would like to pull the PE tarball fr
 1. In the console, in the **pe_razor** class that you added in the previous section, click the **Parameter name** down arrow, and select **pe_tarball_base_url**.
 2. In the **Value** box, type in your own URL, and click **Add parameter**.
 
-	The code expects that the tarball retains same name format as on our server. The format is generally `puppet-enterprise-<version of PE>-<OS type>-<version and architecture of OS>.tar.gz`. You can see the formats for [different versions of the tarball here](install_basic.html#choosing-an-installer-tarball). Available tarballs are located on the [Puppet Enterprise downloads page](https://puppetlabs.com/misc/pe-files).
+	The code expects that the tarball retains the same name format as on our server. The format is generally `puppet-enterprise-<version of PE>-<OS type>-<version and architecture of OS>.tar.gz`. You can see the formats for [different versions of the tarball here](install_basic.html#choosing-an-installer-tarball). Available tarballs are located on the [Puppet Enterprise downloads page](https://puppetlabs.com/misc/pe-files).
 
-3. Add the `microkernel_url` parameter, and for the **Value** add the URL for the microkernel. Commit your changes.
+3. Also in the **pe_razor** class area, add the `microkernel_url` parameter, and in the **Value** box, add the URL for the microkernel. The URL might be to your own FTP site. Or, you can copy the microkernel onto the Razor server and then use, `file:///path/to/microkernel.tar` for the URL.
+
+	The microkernel is called [razor-microkernel-latest.tar](http://links.puppetlabs.com/razor-microkernel-latest.tar).
+
+4. Commit your changes.
 
 
 #### The `pe_razor` Module
