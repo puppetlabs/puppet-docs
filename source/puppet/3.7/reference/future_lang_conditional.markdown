@@ -18,6 +18,7 @@ canonical: "/puppet/latest/reference/future_lang_conditional.html"
 [functions]: ./future_lang_functions.html
 [datatypes]: ./future_lang_data.html
 [splat]: ./future_lang_expressions.html#splat
+[literal_types]: ./future_lang_data_type.html
 
 Conditional statements let your Puppet code behave differently in different situations. They are most helpful when combined with [facts][] or with data retrieved from an external source.
 
@@ -262,7 +263,7 @@ Depending on the [data type][datatypes] of a case's value, Puppet will use one o
 
 * **Most data types** (strings, arrays, booleans, etc.) are compared to the control value with [the `==` equality operator][equality], which is case-insensitive when comparing strings.
 * [**Regular expressions**][regex] are compared to the control value with [the `=~` matching operator][matching], which is case-sensitive. Regex cases _only_ match strings.
-* [**Data types**][datatypes] (like `Integer`) are compared to the control value with [the `=~` matching operator][matching]. This tests whether the control value is an instance of that data type.
+* [**Data types**][literal_types] (like `Integer`) are compared to the control value with [the `=~` matching operator][matching]. This tests whether the control value is an instance of that data type.
 * **The special value `default`** matches anything, but is _always tested last,_ regardless of its position in the list.
 {% endcapture %}
 

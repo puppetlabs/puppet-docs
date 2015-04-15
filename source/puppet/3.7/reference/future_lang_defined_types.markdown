@@ -4,7 +4,7 @@ layout: default
 canonical: "/puppet/latest/reference/future_lang_defined_types.html"
 ---
 
-[paramtypes]: ./future_parameter_types.html
+[literal_types]: ./future_lang_data_type.html
 [sitedotpp]: ./dirs_manifest.html
 [namespaces]: ./future_lang_namespaces.html
 [collector]: ./future_lang_collectors.html
@@ -63,7 +63,7 @@ The general form of a define statement is:
 * An optional **set of parameters,** which consists of:
     * An opening parenthesis
     * A comma-separated list of **parameters,** each of which consists of:
-        * An optional [parameter type][paramtypes] annotation (defaults to `Any`)
+        * An optional [data type][literal_types], which will restrict the allowed values (defaults to `Any`)
         * A new [variable][] name, including the `$` prefix
         * An optional equals (=) sign and **default value**
     * An optional trailing comma after the last parameter
@@ -106,6 +106,8 @@ Every parameter of a defined type can be used as a local variable inside the def
       docroot => '/var/www-testhost', # Becomes the value of $docroot
     }
 {% endhighlight %}
+
+In the `define` statement that creates the defined type, each parameter can be preceeded by an optional [**data type**][literal_types]. If you include one, Puppet will check the parameter's value at runtime to make sure that it has the right data type, and raise an error if the value is illegal. If no data type is provided, the parameter will accept values of any data type.
 
 Note that the special variables `$title` and `$name` are both set to the defined type's name automatically, so they can't be used as parameters.
 

@@ -5,10 +5,11 @@ canonical: "/puppet/latest/reference/experiments_lambdas.html"
 ---
 
 [arm2]: https://github.com/puppetlabs/armatures/tree/master/arm-2.iteration
-[array]: /puppet/3/reference/lang_datatypes.html#arrays
+[array]: ./future_lang_data_array.html
 [experimentalmodule]: https://github.com/hlindberg/puppet-network
 [experimentalcommit]: https://github.com/hlindberg/puppet-network/commit/b1665a2da730e31b76a9230796510d01e6a626d7
-[paramtypes]: ./future_parameter_types.html
+[literal_types]: ./future_lang_data_type.html
+[integer]: ./future_lang_data_number.html#the-integer-data-type
 
 > **Warning:** This document describes an **experimental feature,** which is not officially supported and is not considered ready for production. [See here for more information about experimental features in Puppet](./experiments_overview.html), especially if you are using Puppet Enterprise.
 
@@ -53,7 +54,7 @@ Let's look at what we just did:
 * After the list of arguments we gave it a _lambda_:
     * The lambda's parameters are declared within _pipes_ (`|`) (just like parameters are specified for a define).
     * We declared the lambda to have one parameter, and we named it `$value` (we could have called it whatever we wanted; `$x`, or `$a_unicorn`, etc.)
-    * Lambda parameters support [parameter types][paramtypes], so we gave `$value` the [`Integer` type](./future_param_types.html#Integer). This part's optional, and we could easily have left it out.
+    * Lambda parameters support [data types][literal_types], so we gave `$value` the [`Integer` type][integer]. This part's optional, and we could easily have left it out.
     * The lambda's body is enclosed in braces `{ }`, where you can place any puppet logic except class, define, or node statements.
 
 Available Functions

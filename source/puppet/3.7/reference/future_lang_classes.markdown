@@ -4,7 +4,7 @@ title: "Future Parser: Classes"
 canonical: "/puppet/latest/reference/future_lang_classes.html"
 ---
 
-[paramtypes]: ./future_parameter_types.html
+[literal_types]: ./future_lang_data_type.html
 [sitedotpp]: ./dirs_manifest.html
 [collector_override]: ./future_lang_resources.html#amending-attributes-with-a-collector
 [namespace]: ./future_lang_namespaces.html
@@ -98,9 +98,9 @@ The general form of a class definition is:
 * An optional **set of parameters,** which consists of:
     * An opening parenthesis
     * A comma-separated list of **parameters,** each of which consists of:
-        * An optional [parameter type][paramtypes] annotation (defaults to `Any`)
+        * An optional [data type][literal_types], which will restrict the allowed values (defaults to `Any`)
         * A new [variable][] name, including the `$` prefix
-        * An optional equals (=) sign and **default value**
+        * An optional equals (`=`) sign and **default value**
     * An optional trailing comma after the last parameter
     * A closing parenthesis
 * Optionally, the `inherits` keyword followed by a single class name
@@ -114,11 +114,11 @@ The general form of a class definition is:
 
 **Parameters** allow a class to request external data. If a class needs to configure itself with data other than [facts][], that data should usually enter the class via a parameter.
 
-Each class parameter can be used as a normal [variable][] inside the class definition. The values of these variables are not set with [normal assignment statements][variable_assignment] or read from top or node scope; instead, they are [automatically set when the class is declared][setting_parameters].
+Each class parameter can be used as a normal [variable][] inside the class definition. The values of these variables are not set with [normal assignment statements][variable_assignment] or looked up from top or node scope; instead, they are [set based on user input when the class is declared][setting_parameters].
 
 Note that if a class parameter lacks a default value, the user of the module **must** set a value themselves (either in their [external data][external_data] or an [override][]). As such, you should supply defaults wherever possible.
 
-Each parameter may be preceeded by an optional **[parameter type][paramtypes] annotation**. If you include one, puppet will check the parameter *at runtime* to make sure that it has the right type. If no type annotation is provided, the default `Any` type will be assumed.
+Each parameter can be preceeded by an optional [**data type**][literal_types]. If you include one, Puppet will check the parameter's value at runtime to make sure that it has the right data type, and raise an error if the value is illegal. If no data type is provided, the parameter will accept values of any data type.
 
 The special variables `$title` and `$name` are both set to the class name automatically, so they can't be used as parameters.
 
@@ -134,7 +134,7 @@ A class definition statement isn't an expression, and can't be used where a valu
 >
 > Most users should **only** put classes in individual files in modules. However, it's technically possible to put classes in the following additional locations and still load the class by name:
 >
-> * [The main manifest][sitedotpp]. If you do so, they may be placed anywhere in the main manifest file(s) and are not evaluation-order dependent. (That is, you can safely declare a class before it's defined.)
+> * [The main manifest][sitedotpp]. If you do so, they can be placed anywhere in the main manifest file(s) and are not evaluation-order dependent. (That is, you can safely declare a class before it's defined.)
 > * A file in the same module whose corresponding class name is a truncated version of this class's name. That is, the class `first::second::third` could be put in `first::second`'s file, `first/manifests/second.pp`.
 > * Lexically inside another class definition. This puts the interior class under the exterior class's [namespace][], causing its real name to be something other than the name with which it was defined. (For example: in `class first { class second { ... } }`, the interior class's real name is `first::second`.) Note that this doesn't cause the interior class to be automatically declared along with the exterior class.
 >
@@ -240,7 +240,7 @@ Declaring Classes
 
 **Declaring** a class in a Puppet manifest adds all of its resources to the catalog. You can declare classes in [node definitions][node], at top scope in the [site manifest][sitedotpp], and in other classes or [defined types][definedtype]. Declaring classes isn't the only way to add them to the catalog; you can also [assign classes to nodes with an ENC](#assigning-classes-from-an-enc).
 
-Classes are singletons --- although a given class may have very different behavior depending on how its parameters are set, the resources in it will only be evaluated **once per compilation.**
+Classes are singletons --- although a given class can have very different behavior depending on how its parameters are set, the resources in it will only be evaluated **once per compilation.**
 
 ### Include-Like vs. Resource-Like
 
@@ -252,7 +252,7 @@ Puppet has two main ways to declare classes: include-like and resource-like.
 
 [include-like]: #include-like-behavior
 
-The `include`, `require`, `contain`, and `hiera_include` functions let you safely declare a class **multiple times;** no matter how many times you declare it, a class will only be added to the catalog once. This can allow classes or defined types to manage their own dependencies, and lets you create overlapping "role" classes where a given node may have more than one role.
+The `include`, `require`, `contain`, and `hiera_include` functions let you safely declare a class **multiple times;** no matter how many times you declare it, a class will only be added to the catalog once. This can allow classes or defined types to manage their own dependencies, and lets you create overlapping "role" classes where a given node can have more than one role.
 
 Include-like behavior relies on [external data][external_data] and defaults for class parameter values, which allows the external data source to act like cascading configuration files for all of your classes. When a class is declared, Puppet will try the following for each of its parameters:
 
@@ -389,7 +389,7 @@ Resource-like declarations look like [normal resource declarations][resource_dec
     class {'base::linux':}
 {% endhighlight %}
 
-Resource-like declarations use [resource-like behavior][resource-like]. (Multiple declarations prohibited; parameters may be overridden at compile-time.) You can provide a value for any class parameter by specifying it as resource attribute; any parameters not specified will follow the normal external/default/fail lookup path.
+Resource-like declarations use [resource-like behavior][resource-like]. (Multiple declarations prohibited; parameters can be overridden at compile-time.) You can provide a value for any class parameter by specifying it as resource attribute; any parameters not specified will follow the normal external/default/fail lookup path.
 
 In addition to class-specific parameters, you can also specify a value for any [metaparameter][metaparameters]. In such cases, every resource contained in the class will also have that metaparameter:
 
