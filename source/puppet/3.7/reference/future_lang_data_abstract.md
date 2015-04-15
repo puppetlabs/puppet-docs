@@ -101,7 +101,7 @@ Note that you can use capture groups in the regular expressions, but they won't 
 
 ### `Enum`
 
-The `Enum` data type only matches [strings][], but it provides an alternate way to restrict which strings it will match. It takes any number of strings, and results in a data type that matches any string values that exactly match one of those strings.
+The `Enum` data type only matches [strings][], but it provides an alternate way to restrict which strings it will match. It takes any number of strings, and results in a data type that matches any string values that _exactly_ match one of those strings. Unlike the `==` operator, this matching is case-sensitive.
 
 It takes any number of parameters, and requires at least one.
 
@@ -168,7 +168,7 @@ Position | Parameter        | Data Type | Default Value | Description
 ---------| -----------------|-----------|---------------|------------
 1 | Schema hash | `Hash[String, Type]` | none **(mandatory)** | A hash that has all of the allowed keys and data types for the struct.
 
-The schema hash must have the same keys as the hashes that the `Struct` data type will match; only string keys are allowed. The value of each key in the schema hash should be a [data type][types] that matches the values you want to allow for that key.
+The schema hash must have the same keys as the hashes that the `Struct` data type will match; only string keys are allowed. The value for each key in the schema hash must be a [data type][types] that matches the values you want to allow for that key.
 
 Since [accessing a missing key resolves to the value `undef`][hash_missing_key_access], you can make a key optional in a `Struct` by making its data type accept `undef`. (In other words, use `Optional`.)
 
@@ -183,7 +183,7 @@ Since [accessing a missing key resolves to the value `undef`][hash_missing_key_a
 This data type would match hashes like `{mode => 'read', path => '/etc/fstab'}`. Both the `mode` and `path` keys are mandatory; `mode`'s value must be one of `'read', 'write',` or `'update'`, and `path` must be a string of at least one character.
 
 {%highlight ruby %}
-    Struct[{filename => String[1],
+    Struct[{mode => Enum[read, write, update],
             path     => Optional[String [1]]}]
 {% endhighlight %}
 
