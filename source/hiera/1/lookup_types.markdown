@@ -95,7 +95,7 @@ To configure deep merging, use the [`:merge_behavior` setting][mergebehavior], w
 
 [create]: /references/latest/function.html#createresources
 [mergebehavior]: ./configuring.html#mergebehavior
-[deepmerge]: https://github.com/peritor/deep_merge
+[deepmerge]: https://github.com/danielsdeleo/deep_merge
 
 #### Merge Behaviors
 

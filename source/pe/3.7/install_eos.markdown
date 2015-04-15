@@ -5,7 +5,7 @@ subtitle: "Installing Arista EOS Agents"
 canonical: "/pe/latest/install_eos.html"
 ---
 
-Puppet Enterprise now supports agents running on Arista EOS network switches. This guide  provides instructions for installing the Puppet agent on an Arista EOS network switch. These instructions assume you've already [installed Puppet Enterprise](./install_basic.html) and have installed an EOS instance following the Arista documentation. 
+Puppet Enterprise supports Arista EOS as a platform for running Puppet agents on their network switches. This guide provides instructions for installing the Puppet agent on an Arista EOS network switch. These instructions assume you've already [installed Puppet Enterprise](./install_basic.html) and have installed an EOS instance following the Arista documentation. 
 
 
 ## Install the Puppet Agent on the EOS Instance
@@ -59,7 +59,7 @@ Note that if you are uninstalling/reinstalling the Puppet agent for testing purp
 4. Delete the SSL keys from the EOS instance. Run the following command, `bash sudo rm -rf /persist/sys/etc/puppetlabs/`. 
 5. On your Puppet master, revoke the cert for the Puppet agent on the EOS instance. Run the following command, `puppet cert clean <EOS INSTANCE FQDN>`. 
 
-   This will revoke the agent certificate and deleted related files on Puppet Master. You'll see a message similar to the following: 
+   This will revoke the agent certificate and delete related files on Puppet Master. You'll see a message similar to the following: 
    
        Notice: Revoked certificate with serial 10
        Notice: Removing file Puppet::SSL::Certificate <EOS INSTANCE FQDN> at '/etc/puppetlabs/puppet/ssl/ca/signed/<EOS INSTANCE FQDN>.pem'

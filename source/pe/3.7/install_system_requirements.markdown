@@ -55,9 +55,8 @@ Mac OS X                     | Mavericks (10.9)                        | x86_64 
 
 Puppet Enterprise 3.7 supports running Puppet agents on the following networking devices/operating systems:
 
-- Arista EOS. Refer the [aristanetworks/netdev_stdlib_eos module](https://forge.puppetlabs.com/aristanetworks/netdev_stdlib_eos#limitations) on the Puppet Forge for system requirements and dependencies.
-
-
+- **Arista EOS**: Refer the [aristanetworks/netdev_stdlib_eos module](https://forge.puppetlabs.com/aristanetworks/netdev_stdlib_eos#limitations) on the Puppet Forge for system requirements and dependencies.
+- **Cumulus Linux**: Refer to the [Cumulus Linux page](https://forge.puppetlabs.com/cumuluslinux/) on the Puppet Forge for system requirements and dependencies.
 
 ## Hardware Requirements
 
@@ -279,7 +278,11 @@ Configure your firewalls to accommodate Puppet Enterprise's network traffic.
 </table>
 
 
-> Note: For split and mono installs: If you are installing PE using the web-based installer, ensure port **3000** is open. You can close this port when the installation is complete. If necessary, instructions for port forwarding to the web-based installer are available in the installation instructions.
+> **Notes about Ports**
+>
+>- For split and mono installs: If you are installing PE using the web-based installer, ensure port **3000** is open. You can close this port when the installation is complete. If necessary, instructions for port forwarding to the web-based installer are available in the installation instructions.
+>
+>- Razor uses port 8150 for HTTP and 8151 for HTTPS. Any node classified as a Razor server must be able to use these ports.
 
 #### For Large Environment Installations
 

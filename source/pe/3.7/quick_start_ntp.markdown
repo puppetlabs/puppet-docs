@@ -30,7 +30,7 @@ Using this guide, you will:
 * [use the PE console to edit parameters of the main NTP class](#use-the-pe-console-to-edit-parameters-of-the-ntp-class).
 
 
-### Install Puppet Enterprise and the Puppet Enterprise Agent
+## Install Puppet Enterprise and the Puppet Enterprise Agent
 
 If you haven't already done so, you'll need to get PE installed. See the [system requirements][sys_req] for supported platforms. 
 
@@ -41,7 +41,7 @@ If you haven't already done so, you'll need to get PE installed. See the [system
 >**Note**: You can add the NTP service to as many agents as needed. For ease of explanation, our console images or instructions may show only one agent node. 
 
   
-### Install the puppetlabs-ntp Module
+## Install the puppetlabs-ntp Module
 
 The puppetlabs-ntp module is part of the PE [supported modules](http://forge.puppetlabs.com/supported) program; these modules are supported, tested, and maintained by Puppet Labs. You can learn more about the puppetlabs-ntp module by visiting [http://forge.puppetlabs.com/puppetlabs/ntp](http://forge.puppetlabs.com/puppetlabs/ntp). 
 
@@ -59,7 +59,7 @@ You should see output similar to the following:
         
 > That's it! You've just installed the puppetlabs-ntp module. You'll need to wait a short time for the Puppet server to refresh before the classes are available to add to your agent nodes.
 
-### Use the PE Console to Add Classes from the NTP Module
+## Use the PE Console to Add Classes from the NTP Module
 
 [classification_selector]: ./images/quick/classification_selector.png
 
@@ -98,7 +98,7 @@ We're going to add the `ntp` class to the **default** node group. Depending on y
 
 > **Success!** Puppet Enterprise is now managing NTP on the nodes in the __default__ group. So, for example, if you forget to restart the NTP service on one of those nodes after running `ntpdate`, PE will automatically restart it on the next Puppet Enterprise run. 
 
-### Using the PE Console Event Inspector to View Changes Made by the `ntp` Class
+## Using the PE Console Event Inspector to View Changes Made by the `ntp` Class
 
 [EI-default]: ./images/quick/EI_default.png
 [EI-class_change]: ./images/quick/EI_class-change.png
@@ -125,7 +125,7 @@ In the upper right corner of the detail pane is a link to a run report which con
 For more information about using the PE console event inspector, check out the [event inspector docs](./console_event_inspector). 
 
 
-### Use the PE Console to Edit Parameters of the `ntp` Class
+## Use the PE Console to Edit Parameters of the `ntp` Class
 
 With Puppet Enterprise you can edit or add class parameters directly in the PE console without needing to edit the module code directly. 
 
@@ -153,7 +153,7 @@ Changing the server parameter of the `ntp` class can be accomplished in a few st
 >
 > **Hint**: Remember to use the event inspector to be sure the changes were correctly applied to your nodes!
 
-### Other Resources
+## Other Resources
 
 For more information about working with the puppetlabs-ntp module, check out our [Puppetlabs-NTP: A Puppet Enterprise Supported Module](http://puppetlabs.com/blog/puppetlabs-ntp-puppet-enterprise-supported-module) blog post and our [How to Manage NTP](http://puppetlabs.com/webinars/how-manage-ntp) webinar. 
 

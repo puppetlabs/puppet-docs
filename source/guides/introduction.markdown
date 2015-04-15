@@ -77,11 +77,11 @@ machines will apply the configuration often --- by default, every 30
 minutes --- and Puppet will only make any changes to the system if
 the system state does not match the configured state.
 
-If you tell the system to operate in no-op ("aka
-dry-run"), mode, using the `--noop` argument to one of the Puppet
-tools, puppet will guarantee that no work happens on
+If you tell the system to operate in no-op (a.k.a. "dry-run")
+mode by using the `--noop` argument to one of the Puppet
+tools, Puppet will guarantee that no work happens on
 your system. Similarly, if any changes do happen when running
-without that flag, puppet will ensure those changes are logged.
+without that flag, Puppet will ensure those changes are logged.
 
 Because of this, you can use Puppet to manage a machine throughout its
 lifecycle --- from initial installation, to ongoing upgrades, and
@@ -89,8 +89,8 @@ finally to end-of-life, where you move services elsewhere. Unlike
 system install tools like Sun's Jumpstart or Red Hat's Kickstart,
 Puppet configurations can keep machines up to date for years,
 rather than just building them correctly only the first time
-and then neccessitating a rebuild.  Puppet users usually do just enough with
-their host install tools to boostrap Puppet, then they use
+and then necessitating a rebuild.  Puppet users usually do just enough with
+their host install tools to bootstrap Puppet, then they use
 Puppet to do everything else.
 
 ### Cross Platform

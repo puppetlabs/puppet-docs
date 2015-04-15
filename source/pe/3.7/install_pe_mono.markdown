@@ -14,6 +14,8 @@ See the [installation overview](./install_basic.html#downloading-puppet-enterpri
 
 >### General Prerequisites and Notes
 >
+>- If you've previously installed Puppet or PE, make sure that the machine you're installing PE on is totally free of any artifacts left over from the previous installation.
+>
 >- Make sure that DNS is properly configured on the machines you're installing PE on. All nodes must **know their own hostnames.** This can be done by properly configuring reverse DNS on your local DNS server, or by setting the hostname explicitly. Setting the hostname usually involves the `hostname` command and one or more configuration files, while the exact method varies by platform. In addition, all nodes must be able to **reach each other by name.** This can be done with a local DNS server, or by editing the `/etc/hosts` file on each node to point to the proper IP addresses.
 >
 >- You can run the installer from a machine that is part of your PE deployment or from a machine that is outside your deployment. If you want to run the installer from a machine that is part of your deployment, we recommend you run it from the same node assigned the console component (in a split install).

@@ -6,7 +6,7 @@ canonical: "/pe/latest/quick_start_install_mono.html"
 ---
 
 
-### Overview
+## Overview
 
 To get you started using Puppet Enterprise (PE) relatively quickly and efficiently, this guide walks you through the steps of a monolithic install. A monolithic deployment is best suited for users who want to evaluate PE, or for users managing a small number of Puppet agent nodes (up to 500 nodes). For larger installations, you’ll need to perform a [split install](./install_pe_split.html).
 
@@ -16,7 +16,7 @@ For more information about the components that make up your PE deployment, visit
 
 Note: This guide assumes that you’ll install a monolithic PE deployment as `root`.
 
->#### General Prerequisites and Notes
+>### General Prerequisites and Notes
 >
 >- See the [system requirements](./install_system_requirements.html#monolithic-all-in-one-installation) to ensure your hardware needs are met.
 >
@@ -24,7 +24,7 @@ Note: This guide assumes that you’ll install a monolithic PE deployment as `ro
 >
 >- Please ensure that port 3000 is reachable, as the web-based installer uses this port. You can close this port when the installation is complete.
 
-### Installing the Monolithic Puppet Enterprise Deployment
+## Installing the Monolithic Puppet Enterprise Deployment
 
 1. Review the [General Prerequisites](#general-prerequisites-and-notes).
 2. [Download and verify the appropriate PE tarball](./install_basic.html#downloading-puppet-enterprise), and, if needed, copy the tarball to the machine on which you'll be installing PE.

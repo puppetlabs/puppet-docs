@@ -23,7 +23,7 @@ Following this example, you will use this guide to:
 * [write an additional class to open ports for the Puppet master](#open-ports-for-the-puppet-master)
 * [enforce the desired state of the `my_firewall` class](#enforce-the-desired-state-of-the-my-firewall-class).
 
-### Install Puppet Enterprise and the Puppet Enterprise Agent
+## Install Puppet Enterprise and the Puppet Enterprise Agent
 
 If you haven't already done so, you'll need to get PE installed. See the [system requirements][sys_req] for supported platforms. 
 
@@ -33,11 +33,11 @@ If you haven't already done so, you'll need to get PE installed. See the [system
 
 >**Tip**: Follow the instructions in the [NTP Quick Start Guide](./quick_start_ntp.html) to have PE ensure time is in sync across your deployment.
 
-### Write the `my_firewall` Module
+## Write the `my_firewall` Module
 
 Some modules can be large, complex, and require a significant amount of trial and error. This module, however, will be a very simple module to write: it contains just three classes.  
 
-> #### A Quick Note about Module Directories
+> ### A Quick Note about Module Directories
 >
 >The first thing to know is that, by default, the modules you use to manage nodes are located in `/etc/puppetlabs/puppet/environments/production/modules`---this includes modules installed by PE, those that you download from the Forge, and those that you write yourself.
 >
@@ -138,7 +138,7 @@ Modules are directory trees. For this task, you'll create the following files:
 > * `post.pp` defines the rule for the firewall to drop any requests that haven’t met the rules defined by `pre.pp`. 
 > * `init.pp` applies the previous two classes, as well as telling Puppet when to apply the classes in relation to the `main` stage (which ensures the classes are applied in the correct order). 
 
-### Create the firewall_example Group
+## Create the firewall_example Group
 
 Groups let you assign classes and variables to many nodes at once. Nodes can belong to many groups and inherit classes and variables from all of them. Groups can also be members of other groups and inherit configuration information from their parent group the same way nodes do. PE automatically creates several groups in the console, which you can read more about in the [PE docs](https://docs.puppetlabs.com/pe/latest/console_classes_groups_preconfigured_groups.html).
 
@@ -163,7 +163,7 @@ In this procedure, you’ll create a simple group called __firewall_example__, b
 
 8. Repeat steps 5-7 for any additional nodes you want to add. 
 
-### Use the PE Console to Add the `my_firewall` Class
+## Use the PE Console to Add the `my_firewall` Class
 
 [classbutton]: ./images/quick/add_class_button.png
 [add_firewall]: ./images/quick/firewall_add_firewall.png
@@ -201,7 +201,7 @@ The puppetlabs-firewall module is already installed as part of the PE installati
 
 > Congratulations! You’ve just created a firewall class that you can use to define and enforce firewall rules across your PE-managed infrastructure. 
 
-### Open Ports for the Puppet Master
+## Open Ports for the Puppet Master
 
 [master_run_report]: ./images/quick/master_log.png
 [select_master_log]: ./images/quick/select_master_log.png
@@ -253,7 +253,7 @@ The Puppet master is just like any other application you run from your infrastru
 
 > Next, let’s take a look at how PE will manage any configuration drift for these rules by enforcing the desired state of the `my_firewall` class.
 
-### Enforce the Desired State of the `my_firewall` Class
+## Enforce the Desired State of the `my_firewall` Class
 
 Finally, let's take a look at how PE ensures the desired state of the `my_firewall` class on your agent nodes. In the previous task, you applied your firewall class. Now imagine a scenario where a member of your team changes the contents of the `iptables` to allow connections on a random port that was not specified in `my_firewall` . 
 
@@ -267,7 +267,7 @@ Finally, let's take a look at how PE ensures the desired state of the `my_firewa
 
 > That's it---PE has enforced the desired state of your agent node!
 
-### Other Resources
+## Other Resources
 
 The Puppet Labs Firewall module (`puppetlabs-firewall`), is part of the PE [supported modules](http://forge.puppetlabs.com/supported) program; these modules are supported, tested, and maintained by Puppet Labs. You can learn more about the Puppet Labs Firewall module by visiting [the Puppet Forge](http://forge.puppetlabs.com/puppetlabs/firewall). 
 
