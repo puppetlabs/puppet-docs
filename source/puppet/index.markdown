@@ -32,17 +32,16 @@ Learn to use Puppet! New users: start here.
 Reference Shelf
 ---------------
 
-### [Puppet 3.7 Reference Manual](/puppet/3.7/reference)
+### [Puppet 4.0 Reference Manual](/puppet/4.0/reference)
 
-A concise reference to Puppet 3.7's usage and internals. Use the left sidebar of any reference manual page to navigate between pages.
+A concise reference to Puppet 4.0's usage and internals. Use the left sidebar of any reference manual page to navigate between pages.
 
-- [Overview](/puppet/3.7/reference)
-- [Language](/puppet/3.7/reference/lang_summary.html)
-- [Modules](/puppet/3.7/reference/modules_fundamentals.html)
+- [Overview](/puppet/4.0/reference)
 
 
 ### Older Puppet Reference Manuals
 
+* [Puppet 3.7 Reference Manual](/puppet/3.7/reference)
 * [Puppet 3.6 Reference Manual](/puppet/3.6/reference)
 * [Puppet 3.5 Reference Manual](/puppet/3.5/reference)
 * [Puppet 3.0–3.4 Reference Manual](/puppet/3/reference)
@@ -87,8 +86,11 @@ Get Puppet up and running at your site.
 
 * [An Introduction to Puppet](/guides/introduction.html)
 * [Supported Platforms](/guides/platforms.html)
-* [Installing Puppet](/guides/install_puppet/pre_install.html) --- from packages, source, or gems
-* [Upgrading Puppet](/guides/install_puppet/upgrading.html) --- general advice and suggestions for upgrading critical infrastructure
+* [Installing Puppet for Linux](/puppet/4.0/install_linux.html)
+* [Installing Puppet for WIndows](/puppet/4.0/install_windows.html)
+* Upgrading Puppet from 3.x to 4.x
+  * [Upgrading Puppet 3.x Agents](/puppet/4.0/upgrade_agent.html)
+  * [Upgrading Puppet 3.x Servers](/puppet/4.0/upgrade_server.html)
 
 ### Building and Using Modules
 
