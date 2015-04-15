@@ -1,13 +1,18 @@
-# 3.x to 4.0 Agent Upgrade Steps
+---
+layout: default
+title: "Puppet 3.x to 4.x Agent Upgrades"
+canonical: "/puppet/4.0/reference/upgrade_agent.html"
+---
 
-## Linux hosts
+This guide will help you update your Puppet 3.x agents to Puppet 4.0.
 
-If you have currently running Puppet agents that you want to update to Puppet 4, make sure you have followed the [Server 
+## Linux Hosts
+
+If you have currently running Puppet agents that you want to update to Puppet 4, make sure you have followed the [server 
 upgrade instructions](server_upgrade.markdown) on at least one host so the agents will have a Puppet 4 server to talk to.
 
 * Install the puppetlabs-pc1-release package for your OS, per the regular install instructions.
-* Make a note of the current `ssldir` location by running (as root) `puppet agent --configprint ssldir`; you'll need 
-  this to avoid re-issuing certificates.
+* Make a note of the current `ssldir` location by running (as root) `puppet agent --configprint ssldir`; you'll need   this to avoid re-issuing certificates.
 * Disable the previous `products` and `devel` repositories
 * Using your package manager, install the `puppet-agent` package for your operating system.
 * Modify the new, Puppet 4-compatible `/etc/puppetlabs/puppet/puppet.conf` file to include any local customizations from 
@@ -30,6 +35,6 @@ Here's a handy `puppet resource` command to do just that:
 
    /opt/puppetlabs/bin/puppet resource service puppetagent ensure=running enabled=true
 
-## Windows hosts
+## Windows Hosts
 
 The filesystem paths for configuration and certificates did not change from Puppet 3.x, so the only things Windows upgraders need to look out for are individual settings which may be deprecated or whose defaults have changed. 
