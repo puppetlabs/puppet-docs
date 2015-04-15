@@ -4,151 +4,285 @@ title: "Future Parser: Data Types: Abstract Data Types"
 canonical: "/puppet/latest/reference/future_lang_data_abstract.html"
 ---
 
+[types]: ./future_lang_data_type.html
+[data types]: ./future_lang_data.html
+[strings]: ./future_lang_data_string.html
+[regular expressions]: ./future_lang_data_regexp.html
+[booleans]: ./future_lang_data_boolean.html
+[arrays]: ./future_lang_data_array.html
+[hashes]: ./future_lang_data_hash.html
+[hash_missing_key_access]: ./future_lang_data_hash.html#indexing
+[numbers]: ./future_lang_data_number.html
 
-### Variant
+As described in [the Data Type Syntax][types] page, each of Puppet's main [data types][] has a corresponding value that _represents_ that data type, which can be used to match values of that type in several contexts. (For example, `String` or `Array`.)
 
-- **Matches**: anything that matches at least one of the given parameter types.
-- **Required Parameters**: one or more parameter types.
-- **Optional Parameters**: none.
+Each of those core data types will only match a particular set of values. They let you further restrict the values they'll match, but only in limited ways, and there's no way to _expand_ the set of values they'll match.
 
-Examples:
+If you're using data types to match or restrict values and need more flexibility, you can use one of the _abstract data types_ on this page to construct a data type that suits your needs and matches the values you want.
 
-* `Variant[Integer, Float]` --- matches any integer or floating point number (equivalent to `Numeric`).
-* `Variant[Enum['true', 'false'], Boolean]` --- matches `'true'`, `'false'`, `true`, or `false`.
 
-### Scalar
+## Flexible Data Types
 
-- **Matches**: an instance of Integer, Float, String, Boolean, or Regexp.
-- **Required Parameters**: none.
-- **Optional Parameters**: none.
+These abstract data types can match values with a variety of concrete data types. Some of them are similar to a concrete type but offer alternate ways to restrict them (like `Enum`), and some of them let you combine types and match a union of what they would individually match (like `Variant` and `Optional`).
 
-Note: the `Scalar` type is equivalent to `Variant[Integer, Float, String, Boolean, Regexp]`.
 
-### Collection
+### `Optional`
 
-- **Matches**: an instance of Array or Hash.
-- **Required Parameters**: none.
-- **Optional Parameters**: none.
+The `Optional` data type wraps _one_ other data type, and results in a data type that matches anything that type would match _plus_ `undef`.
 
-Note: the `Collection` type is equivalent to `Variant[Array[Any], Hash[Any, Any]]`.
+This is useful for matching values that are allowed to be absent.
 
-### Data
+It takes one mandatory parameter.
 
-- **Matches**: an instance of `Scalar`, `Array[Data]`, `Hash[Scalar, Data]`, or `Undef`.
-- **Required Parameters**: none.
-- **Optional Parameters**: none.
+#### Parameters
 
-Note: this type is closely related to the Scalar type, but it also matches arrays of scalars or hashes with scalar/data values. The definition is recursive, so you can nest scalar values in any number of hashes or arrays. This data type is useful as it represents the subset of types that
-can be directly represented in almost all serialization formats (e.g. JSON).
+The full signature for `Optional` is:
 
-Examples of types that match `Data`:
+    Optional[<DATA TYPE>]
 
-* `Integer`
-* `Array[Integer]`
-* `Array[Array[Integer]]`
-* `Hash[String, Integer]`
-* `Hash[String, Array[Integer]]`
-* `Array[Hash[String, Array[Integer]]]`
+Position | Parameter        | Data Type | Default Value | Description
+---------| -----------------|-----------|---------------|------------
+1 | Data type | `Type` | none **(mandatory)** | The data type to add `undef` to.
 
-### Pattern
+`Optional[<DATA TYPE>]` is equivalent to `Variant[ <DATA TYPE>, Undef ]`
 
-- **Matches**: a string that matches at least one of the given regular expressions.
-- **Required Parameters**: one or more regular expressions or stringified regular expressions.
-- **Optional Parameters**: none.
-
-Note:
-
-* Additional options like `i` (case insensitive) are not supported by the type, but can be added
-  as parameters inside of the regular expression.
-* Capture groups can be used, but does not set any variables that can be used.
-* `Pattern` is a subtype of `String`, so it will only match strings.
-
-Examples:
-
-* `Pattern[/^[a-z].*/]` --- matches any string that begins with a lowercase letter.
-* `Pattern[/^[a-z].*/, /^none$/]` --- matches above **or** the exact string `"none"`.
-
-### Enum
-
-- **Matches**: one of the exact strings given as parameters.
-- **Required Parameters**: one or more strings.
-- **Optional Parameters**: none.
-
-Note: Enum is a subtype of String, so it will only match strings.
-
-Examples:
-
-* `Enum['stopped', 'running']` --- matches a string that is either `'stopped'` or `'running'`.
-* `Enum['true', 'false']` --- matches a string that is either `'true'` or `'false'`. Will not match `true` or `false` (without quotes).
-
-### Tuple
-
-- **Matches**: same as Array, but specifies the type of each element.
-- **Required Parameters**: the type of each element in the array.
-- **Optional Parameters**: minimum size, maximum size. If you specify a minimum size of `1`, then everything after the first element is optional. Supplying a high maximum size means that the last element (and only the last element) may occur a variable number of times.
-
-Examples:
-
-* `Tuple[String, Integer]` --- matches a two-element array containing a string followed by an integer.
-* `Tuple[String, Integer, 1]` --- matches above **or** a one-element array containing only a string.
-* `Tuple[String, Integer, 1, 4]` --- matches an array containing one string followed by 0 to 3 integers.
-* `Tuple[String, Integer, 1, default]` --- matches an array containing one string followed by any number of integers.
-
-### Struct
-
-- **Matches**: same as Hash, but specifies the type of every key and value.
-- **Required Parameters**: a hash containing `key => Type` pairs. In order to validate the input hash, the value of each key must match its type declaration.
-- **Optional Parameters**: none.
-
-Note: Keys that are missing in the input hash are treated as `undef`. That means that it's possible to have optional keys in a Struct, as long as the corresponding type is compatible with `undef` (i.e., `Optional` or `Any`).
-
-Examples:
-
-{%highlight ruby %}
-Struct[{mode => Enum[read, write, update],
-        path => String[1]}]
-{% endhighlight %}
-This matches a hash with both `mode` and `path` keys, the values of which must match `Enum['read', 'write', 'update']` and `String[1]`, respectively.
-
-{%highlight ruby %}
-Struct[{filename => String[1],
-        path     => Optional[String [1]]}]
-{% endhighlight %}
-This matches the same as the previous example, but the `path` key is optional. If present, it must match `String[1]`.
-
-### Optional
-
-- **Matches**: an instance of a given type, or `undef`.
-- **Required Parameters**: a single parameter type.
-- **Optional Parameters**: none.
-
-Examples:
+#### Examples
 
 * `Optional[String]` --- matches any string or `undef`.
 * `Optional[Array[Integer[0, 10]]]` --- matches an array of integers between 0 and 10, or `undef`.
 
-### Catalogentry
 
-A Catalogentry is the abstract base type for `Resource` and `Class`.
+### `Variant`
 
-- **Matches**: an instance of Resource or Class
-- **Required Parameters**: none.
-- **Optional Parameters**: none.
+The `Variant` data type combines any number of other data types, and results in a type that matches the union of what _any_ of those data types would match.
 
-* `Type[Catalogentry]` --- matches any class or resource reference.
+It takes any number of parameters, and requires at least one.
 
-### Any
+#### Parameters
 
-- **Matches**: anything at all, including `undef`.
-- **Required Parameters**: none.
-- **Optional Parameters**: none.
+The full signature for `Variant` is:
 
-Note: parameters that are not given an explicit type are assumed to by of `Any` type, which will never fail to match.
+    Variant[ <DATA TYPE>, (<DATA TYPE, ...) ]
 
-### Callable
+Position | Parameter        | Data Type | Default Value | Description
+---------| -----------------|-----------|---------------|------------
+1–∞ | Data type | `Type` | none **(mandatory)** | A data type to add to the resulting compound data type. You must provide at least one data type parameter, and can provide any number of additional ones.
 
-- **Matches**: callable lambdas provided as function arguments.
-- **Required Parameters**: none.
-- **Optional Parameters**: any number of Types, followed by, optionally, a minimum number of arguments, a maximum number of arguments, and a Callable, which is taken as its `block_type`.
+#### Examples
 
-There is no way to interact with Callable values in the Puppet language, but Ruby functions written to the modern function API (`Puppet::Functions`) can use it to inspect the lambda provided to the function.
+* `Variant[Integer, Float]` --- matches any integer or floating point number (equivalent to `Numeric`).
+* `Variant[Enum['true', 'false'], Boolean]` --- matches `'true'`, `'false'`, `true`, or `false`.
+
+
+### `Pattern`
+
+The `Pattern` data type only matches [strings][], but it provides an alternate way to restrict which strings it will match. It takes any number of [regular expressions][], and results in a data type that matches any strings that would match _any_ of those regular expressions.
+
+It takes any number of parameters, and requires at least one.
+
+#### Parameters
+
+The full signature for `Pattern` is:
+
+    Pattern[ <REGULAR EXPRESSION>, (<REGULAR EXPRESSION>, ...) ]
+
+Position | Parameter        | Data Type | Default Value | Description
+---------| -----------------|-----------|---------------|------------
+1–∞ | Regular expression | `Regexp` | none **(mandatory)** | A regular expression describing some set of strings that the resulting data type should match. You must provide at least one regular expression parameter, and can provide any number of additional ones.
+
+
+Note that you can use capture groups in the regular expressions, but they won't cause any variables like `$1` to be set.
+
+#### Examples:
+
+* `Pattern[/\A[a-z].*/]` --- matches any string that begins with a lowercase letter.
+* `Pattern[/\A[a-z].*/, /\Anone\Z/]` --- matches the above **or** the exact string `"none"`.
+
+#### Relationship to `String`
+
+`Pattern` is implemented as an alias to the `String` data type with an alternate interface for parameters. In other words, the following comparisons (with the data types, not values of those types) all resolve to true:
+
+* `Pattern == String`
+* `Pattern[/^aoeu.*/] < String`
+* `Pattern[/^aoeu.*/] != String[0, 6]`
+
+If `Pattern` includes a regexp and `String` includes a non-default length restriction, `!=` will be the only true comparison operator; Puppet will assume that they both match some values that the other cannot match.
+
+### `Enum`
+
+The `Enum` data type only matches [strings][], but it provides an alternate way to restrict which strings it will match. It takes any number of strings, and results in a data type that matches any string values that exactly match one of those strings.
+
+It takes any number of parameters, and requires at least one.
+
+#### Parameters
+
+The full signature for `Enum` is:
+
+    Enum[ <OPTION>, (<OPTION>, ...) ]
+
+Position | Parameter        | Data Type | Default Value | Description
+---------| -----------------|-----------|---------------|------------
+1–∞ | Option | `String` | none **(mandatory)** | One of the literal string values that the resulting data type should match. You must provide at least one option parameter, and can provide any number of additional ones.
+
+
+#### Examples:
+
+* `Enum['stopped', 'running']` --- matches the strings `'stopped'` and `'running'`, and no other values.
+* `Enum['true', 'false']` --- matches the strings `'true'` and `'false'`, and no other values. Will not match the [boolean][booleans] values `true` or `false` (without quotes).
+
+#### Relationship to `String`
+
+`Enum` is implemented as an alias to the `String` data type with an alternate interface for parameters. In other words, the following comparisons (with the data types, not values of those types) all resolve to true:
+
+* `Enum == String`
+* `Enum["one", "two"] < String`
+* `Enum["one", "two"] < String[0, 6]`
+
+If `Enum` includes options and `String` includes a non-default length restriction, Puppet will treat `Enum` as a subset of `String` as long as the length restrictions match _every_ option in the `Enum`. Otherwise, `!=` will be the only true comparison operator, as they will both match some values that the other cannot match.
+
+
+### `Tuple`
+
+The `Tuple` type only matches [arrays][], but it lets you specify different data types for _every element_ of the array, in order.
+
+It takes any number of parameters, and requires at least one.
+
+#### Parameters
+
+The full signature for `Tuple` is:
+
+    Tuple[ <CONTENT TYPE>, (<CONTENT TYPE>, ..., <MIN SIZE>, <MAX SIZE>) ]
+
+Position | Parameter        | Data Type | Default Value | Description
+---------| -----------------|-----------|---------------|------------
+1–∞ | Content type | `Type` | none **(mandatory)** | What kind of values the array contains _at the given position._ You must provide at least one content type parameter, and can provide any number of additional ones.
+-2 | Min size | `Integer` | # of content types | The minimum number of elements in the array. If this is smaller than the number of content types you provided, any elements beyond the minimum will be optional; however, if present, they must still match the provided content types. This parameter accepts the special value `default`, but this won't use the default value; instead, it means 0 (all elements optional).
+-1 | Max size | `Integer` | # of content types | The maximum number of elements in the array. You cannot specify a max without also specifying a min. If the max is larger than the number of content types you provided, it means the array may contain any number of additional elements, which _all_ must match the _last_ content type. This parameter accepts the special value `default`, but this won't use the default value; instead, it means infinity (any number of elements matching the final content type).
+
+Note that if the max is _smaller_ than the number of content types you provided, it's nonsensical.
+
+#### Examples
+
+* `Tuple[String, Integer]` --- matches a two-element array containing a string followed by an integer, like `["hi", 2]`.
+* `Tuple[String, Integer, 1]` --- matches the above **or** a one-element array containing only a string.
+* `Tuple[String, Integer, 1, 4]` --- matches an array containing one string followed by 0 to 3 integers.
+* `Tuple[String, Integer, 1, default]` --- matches an array containing one string followed by any number of integers.
+
+### `Struct`
+
+The `Struct` type only matches [hashes][], but it lets you specify:
+
+* The name of every allowed key
+* The allowed data type for each of those keys' values
+
+It takes one mandatory parameter.
+
+#### Parameters
+
+The full signature for `Struct` is:
+
+    Struct[<SCHEMA HASH>]
+
+Position | Parameter        | Data Type | Default Value | Description
+---------| -----------------|-----------|---------------|------------
+1 | Schema hash | `Hash[String, Type]` | none **(mandatory)** | A hash that has all of the allowed keys and data types for the struct.
+
+The schema hash must have the same keys as the hashes that the `Struct` data type will match; only string keys are allowed. The value of each key in the schema hash should be a [data type][types] that matches the values you want to allow for that key.
+
+Since [accessing a missing key resolves to the value `undef`][hash_missing_key_access], you can make a key optional in a `Struct` by making its data type accept `undef`. (In other words, use `Optional`.)
+
+
+#### Examples
+
+{%highlight ruby %}
+    Struct[{mode => Enum[read, write, update],
+            path => String[1]}]
+{% endhighlight %}
+
+This data type would match hashes like `{mode => 'read', path => '/etc/fstab'}`. Both the `mode` and `path` keys are mandatory; `mode`'s value must be one of `'read', 'write',` or `'update'`, and `path` must be a string of at least one character.
+
+{%highlight ruby %}
+    Struct[{filename => String[1],
+            path     => Optional[String [1]]}]
+{% endhighlight %}
+
+This data type would match the same values as the previous example, but the `path` key is optional. If present, `path` must match `String[1]`.
+
+
+## Parent Types
+
+These abstract data types are the parents of multiple other types, and match values that would match _any_ of their sub-types. They're mostly useful when you have very loose restrictions but still want to guard against something weird.
+
+### `Scalar`
+
+The `Scalar` data type matches _all_ values of the following concrete data types:
+
+* [Numbers][] (both integers and floats)
+* [Strings][]
+* [Booleans][]
+* [Regular expressions][]
+
+Note that it doesn't match `undef`, `default`, resource references, arrays, or hashes.
+
+It takes no parameters.
+
+`Scalar` is equivalent to `Variant[Integer, Float, String, Boolean, Regexp]`.
+
+### `Data`
+
+The `Data` data type matches any value that would match `Scalar`, but it also matches:
+
+* `undef`
+* [Arrays][] that only contain values that would also match `Data`
+* [Hashes][] whose keys would match `Scalar` and whose values would also match `Data`
+
+Note that it doesn't match `default` or resource references.
+
+It takes no parameters.
+
+`Data` is esepecially useful because it represents the subset of types that can be directly represented in almost all serialization formats (e.g. JSON).
+
+### `Collection`
+
+The `Collection` type matches _any_ array or hash, regardless of what kinds of values (and/or keys) it contains.
+
+Note that this means it only partially overlaps with `Data` --- there are values (like an array of resource references) that match `Collection` but will not match `Data`.
+
+`Collection` is equivalent to `Variant[Array[Any], Hash[Any, Any]]`.
+
+### `Catalogentry`
+
+The `Catalogentry` data type is the parent type of `Resource` and `Class`. This means that, like those types, the Puppet language contains no values that it will ever match. However, the type `Type[Catalogentry]` will match any class reference or resource reference.
+
+It takes no parameters.
+
+### `Any`
+
+The `Any` data type matches _any_ value of _any_ data type.
+
+
+## Unusual Types
+
+These types aren't quite like the others.
+
+### `Callable`
+
+The `Callable` data type matches callable lambdas provided as function arguments.
+
+There is no way to interact with `Callable` values in the Puppet language, but Ruby functions written to the modern function API (`Puppet::Functions`) can use this data type to inspect the lambda provided to the function.
+
+#### Parameters
+
+The full signature for `Callable` is:
+
+    Callable[ (<DATA TYPE>, ...,) <MIN COUNT>, <MAX COUNT>, <BLOCK TYPE> ]
+
+All of these parameters are optional.
+
+Position | Parameter | Data Type | Default Value | Description
+---------|-----------|-----------|---------------|------------
+1–∞      | Data type | `Type`    | none          | Any number of data types, representing the data type of each argument the lambda accepts.
+-3 | Min count | `Integer` | 0 | The minimum number of arguments the lambda accepts. This parameter accepts the special value `default`, which will use its default value.
+-2 | Max count | `Integer` | infinity | The maximum number of arguments the lambda accepts. This parameter accepts the special value `default`, which will use its default value.
+-1 | Block type | `Type[Callable]` | none | The `block_type` of the lambda.
+
