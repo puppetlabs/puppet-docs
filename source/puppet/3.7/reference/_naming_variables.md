@@ -1,12 +1,14 @@
 [qualified_var]: ./future_lang_variables.html#accessing-out-of-scope-variables
 
-Variable names begin with a `$` (dollar sign) and are case-sensitive. They can include:
+Variable names begin with a `$` (dollar sign) and are case-sensitive.
+
+Most variable names **must start** with a lowercase letter or an underscore. The exception is regex capture variables, which are named with only numbers.
+
+Variable names can include:
 
 * Uppercase and lowercase letters
 * Numbers
 * Underscores (`_`)
-
-Regex capture variables are named with numbers alone. All other variable names **must** start with a lowercase letter or an underscore.
 
 If the first character is an underscore, that variable should only be accessed from its own local scope; using qualified variable names where any namespace segment begins with `_` is deprecated.
 
