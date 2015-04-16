@@ -212,7 +212,8 @@ The built-in statement functions are:
 * [`info`](/references/3.7.latest/function.html#info) --- logs message at info level
 * [`notice`](/references/3.7.latest/function.html#notice) --- logs message at notice level
 * [`warning`](/references/3.7.latest/function.html#warning) --- logs message at warning level
-* [`error`](/references/3.7.latest/function.html#error) --- logs message at error level
+
+Although there are a few additional logging functions, they cannot be called as statements.
 
 ### Failure Statements
 
