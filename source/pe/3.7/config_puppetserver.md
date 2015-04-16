@@ -38,5 +38,5 @@ The ulimit controls the number of processes and file handles that the `pe-puppet
 
 You can increase the JVM (Java Virtual Machine) memory that is allocated to Java services running on Puppet Server. This memory allocation is known as the Java heap size.
 
-Instructions for using the PE console to increase the Java heap size are detailed on on the [Configuring Java Arguments for PE](/config_java_args.html#pe-puppet-server-service) page. 
+Instructions for using the PE console to increase the Java heap size are detailed on on the [Configuring Java Arguments for PE](./config_java_args.html#pe-puppet-server-service) page. 
 
