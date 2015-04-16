@@ -3,26 +3,127 @@ layout: default
 title: "Running r10k"
 ---
 
-[puppetfile]: ./puppetfile.html
+[setup]: ./setup_r10k.html
+[r10kyaml]: ./configuring_r10kyaml.html
+[puppetfile]: ./configure_puppetfile.html
+[running]: ./running_r10k.html
 
-You've [configured][configuring] your r10k.yaml and set up your [Puppetfile][puppetfile]. Now it's time to run r10k!
+* [Initial r10k run]
+* [Updating environments]
+* [Deploying modules]
+* [Viewing environments]
 
-* Continue reading to learn more about r10k subcommands and using them to manage your environments.
-* [See "Setting up r10k"][gettingstarted] to get r10k up and running.
-* [See "Configuring r10k"][configuring] to learn how to set up directory environments with r10k.
-* [See "Mananaging Modules"][puppetfile] to learn how to set up your r10k Puppetfile.
-* [See "Managing Environments"]
+You've [configured][r10kyaml] your r10k.yaml and set up your [Puppetfile][puppetfile]. Now it's time to run r10k!
+
+* Continue reading to learn how to deploy your environments and modules with r10k.
+* [See "Getting To Know r10k"][index] for basic information about r10k.
+* [See "Setting Up r10k"][setup] to get r10k up and running.
+* [See "Configuring r10k.yaml"][r10kyaml] to learn how to set up directory environments with r10k.
+* [See "Configuring the Puppetfile"][puppetfile] to learn how to set up your r10k Puppetfile.
 
 -> This is a mess. Use this page to help you: https://github.com/puppetlabs/r10k/blob/master/doc/dynamic-environments/usage.mkd and this: https://github.com/puppetlabs/r10k/blob/master/doc/dynamic-environments/configuration.mkd
 
-##Running r10k for the first time
+##Initial r10k run
+
+The first time you run r10k, you'll update all environments and modules with the following command: 
 
 ~~~
 r10k deploy environment --puppetfile
 ~~~
 
-##Subcommands in r10k
+This command updates all sources, create new environments, delete old environments, and recursively updates all environment modules specified in environment Puppetfiles.
 
+> Note that when running commands to deploy code on a master, r10k needs to have write access to your Puppet environment path. If you're using Puppet Enterprise this account is pe-puppet. To do this, run r10k as the Puppet user itself or as root. Running the user as root requires access control to the root user.
+
+This is the simplest method for running r10k, but it's also the slowest method because r10k does the maximum possible work. Because of this, you'll want to use less resource-intensive commands for most future updates of your environments and modules.
+
+##Updating environments
+
+###Update all environments while avoiding unnecessary recursion:
+
+~~~
+r10k deploy environment
+~~~
+
+This command updates existing environments and recursively creates new environments.
+When an environment is deployed for the first time, it automatically updates all modules as well. For subsequent updates, only the environment itself will be updated.
+
+###Update a single environment
+
+~~~
+r10k deploy environment my_working_environment
+~~~
+
+When you're actively developing on a given environment, this is the best way to
+deploy your changes. When an environment is deployed for the first
+time, it automatically updates all modules as well. For subsequent updates,
+only the environment itself will be updated.
+
+###Update a single environment and its modules
+
+~~~
+r10k deploy environment my_working_environment --puppetfile
+~~~
+
+This updates the given environment and all contained modules. This is
+useful if you want to make sure that a given environment is fully up to date.
+
+
+##Deploying modules
+
+###Update a single module across all environments
+
+~~~
+r10k deploy module apache
+~~~
+
+This is useful for when you're working on a module specified in a Puppetfile and want to update it across all environments.
+
+###Update multiple modules across all environments
+
+~~~
+r10k deploy module apache jenkins java
+~~~
+
+###Update one or more modules in a single environment
+
+~~~
+r10k deploy module -e production apache jenkins java
+~~~
+
+##Viewing environments
+
+###Display all environments being managed by r10k
+
+~~~
+r10k deploy display
+~~~
+
+###Display environments and modules 
+
+To display all r10k-managed environments and Puppetfile modules
+
+~~~
+r10k deploy display -p
+~~~
+
+You can get detailed information about the expected and actual module versions by adding the `--detail` flag to this command: 
+
+~~~
+r10k deploy display -p --detail
+~~~
+
+###Display specific environments and modules
+
+For an explicit list of environments being managed by r10k, and the modules specified in their Puppetfiles along with their expected and actual versions, limit your query with the environment names. For example: 
+
+~~~
+r10k deploy display -p --detail production vmwr webrefactor
+~~~
+
+The above example will display details on the modules for your production, vmwr, and webrefactor environments.
+
+##Subcommands in r10k
 
 ###First-level subcommands
 The following subcommands are available with `r10k`:

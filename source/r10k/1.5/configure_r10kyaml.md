@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Configuring r10k"
+title: "Configuring r10k.yaml"
 ---
 
 [direnv]: /puppet/4.0/reference/environments.html
@@ -76,7 +76,9 @@ The postrun setting can only be set once.
 
 The `sources` key allows the options listed below. You can also implement additional Git-specific options, which you can learn more about through Git's documentation.
 
-* `remote`: Specifies where the source repository should be fetched from. It can be any valid URL that the source can check out or clone. The remote must be able to be fetched without any interactive input; e.g., you cannot be prompted for usernames or passwords in order to fetch the remote.
+#####`remote`
+
+Specifies where the source repository should be fetched from. It can be any valid URL that the source can check out or clone. The remote must be able to be fetched without any interactive input; e.g., you cannot be prompted for usernames or passwords in order to fetch the remote.
 
 ~~~
 sources:
@@ -84,7 +86,9 @@ sources:
     remote: 'git://git-server.site/my-org/main-modules'
 ~~~
 
-* `basedir`: Specifies the path where environments will be created for this source. This directory will be entirely managed by r10k and any contents that r10k did not put there will be removed. 
+#####`basedir`
+
+Specifies the path where environments will be created for this source. This directory will be entirely managed by r10k and any contents that r10k did not put there will be removed. 
 
 ~~~
 sources:
@@ -93,7 +97,9 @@ sources:
     basedir: '/etc/puppet/environments'
 ~~~
 
-* `prefix`: Allows environment names to be prefixed with the short name of the specified source. This prevents collisions when multiple sources are deployed into the same directory.
+#####`prefix`
+
+Allows environment names to be prefixed with the short name of the specified source. This prevents collisions when multiple sources are deployed into the same directory.
 
 ~~~
 sources:
@@ -102,9 +108,12 @@ sources:
     prefix: true # All environments will be prefixed with "mysource_"
 ~~~
 
-* `invalid_branches` - Specifies how branch names that cannot be cleanly mapped to Puppet environments **TODO: More clarity on how this works** are handled. This option accepts three values: 
-* 'correct_and_warn' is the default value and replaces non-word characters with underscores and issues a warning
-* 'correct' replaces non-word characters with underscores without warning
+#####`invalid_branches`
+
+Specifies how branch names that cannot be cleanly mapped to Puppet environments are handled. This option accepts three values:
+
+* 'correct_and_warn' is the default value and replaces non-word characters with underscores and issues a warning.
+* 'correct' replaces non-word characters with underscores without warning.
 * 'error' ignores branches with non-word characters and issues an error.
 
 ~~~
@@ -114,9 +123,9 @@ sources:
     invalid_branches: 'error'
 ~~~
 
-Once you have listed each repo you want to manage with r10k in r10k.yaml,  you are done configuring!
+Once you have listed each repo you want to manage with r10k in r10k.yaml, you're done configuring!
 
-Subsequent changes to the branches will be kept in sync on the filesystem by future r10k runs. You can read more about that in [running r10k][LINKW/REALNAME].
+Subsequent changes to the branches will be kept in sync on the filesystem by future r10k runs. You can read more about that in [running r10k][running].
 
 ###Previous Directory Environment Configurations
 

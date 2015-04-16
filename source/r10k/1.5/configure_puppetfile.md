@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Managing Modules"
+title: "Configuring the Puppetfile"
 ---
 
 [gettingstarted]: ./gettingstarted_r10k.html
