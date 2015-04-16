@@ -95,12 +95,12 @@ The general form of a class definition is:
 
 * The `class` keyword
 * The [name][allowed] of the class
-* An optional **set of parameters,** which consists of:
+* An optional **parameter list,** which consists of:
     * An opening parenthesis
-    * A comma-separated list of **parameters,** each of which consists of:
-        * An optional [data type][literal_types], which will restrict the allowed values (defaults to `Any`)
-        * A new [variable][] name, including the `$` prefix
-        * An optional equals (`=`) sign and **default value**
+    * A comma-separated list of **parameters** (e.g. `String $myparam = "default value"`). Each parameter consists of:
+        * An optional [data type][literal_types], which will restrict the allowed values for the parameter (defaults to `Any`)
+        * A [variable][] name to represent the parameter, including the `$` prefix
+        * An optional equals (`=`) sign and **default value** (which must match the data type, if one was specified)
     * An optional trailing comma after the last parameter
     * A closing parenthesis
 * Optionally, the `inherits` keyword followed by a single class name
