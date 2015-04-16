@@ -1,10 +1,28 @@
 ---
 layout: default
-title: " PE 3.8 » Razor » Create Objects for Provisioning"
+title: " PE 3.8 » Razor » "
 subtitle: "Create Objects for Provisioning"
 canonical: "/pe/latest/razor_using.html"
 
 ---
+
+After you set up your Razor environment with xxx, and have installed the Razor server and client, you're ready to provision a machine. The following steps walk you through the process of creating [Razor objects](./razor_objects) and provisioning a machine with Centos. In order to perform these steps, you should
+
+### Important Info About the Machines You provision
+
+To successfully use a machine with Razor and install an operating system on it, the machine must:
+
++ Be supported by the operating system that you're installing.
++ Be able to successfully boot into the microkernel, which is based on Fedora 19.
++ Be able to successfully boot the iPXE firmware.
+
+In addition:
+
++ The Razor microkernel is 64-bit only. Razor can only provision 64-bit machines.
++ Razor has a minimum RAM requirement of 512MB.
+
+
+
 
 After you've [set up your environment](./razor_prereqs) and [have installed the Razor server and client](./razor_install.html), it's time to create all the objects that enable Razor to find and provision machines with the software and configurations you want.
 

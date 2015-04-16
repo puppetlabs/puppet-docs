@@ -147,9 +147,10 @@ Policies orchestrate repos, brokers, and tasks to tell Razor what bits to instal
 
 Policies contain tags, which are named rule-sets that identify which nodes should be bound to a given policy. It's also possible, however, for a node to bind to a policy without matching tags.
 
-A node boots into the microkernel and sends facts to the Razor server. At that point, Razor walks through the policy list in order looking for an eligible policy. If it finds one, it binds to it. If it doesn't find one, the node continues to send facts to the microkernel until it does bind.
+A node boots into the microkernel and sends facts to the Razor server. At that point, Razor walks through the policy list in order looking for an eligible policy. If it finds one, it binds to it. If it doesn't find one, the node continues to send facts to the microkernel until it does bind. Binding to a policy essentially means that the node will be provisioned according to the policy's directions.
 
-With the above, a node could bind to a policy without matching any tags.
+>**Security Note:** It's important to understand the potential repercussions of policy binding. If you don't manage policies closely, you can inadvertently enable Razor to match with and provision machines that you don't want to provision. In the case of existing servers, this could lead to catastrophic data loss.
+>One of
 
 Policies are stored in order in Razor. Each policy has several reasons why it might be ineligible for a node to bind to it:
 

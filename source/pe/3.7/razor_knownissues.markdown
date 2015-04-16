@@ -7,7 +7,7 @@ canonical: "/pe/latest/razor_knownissues.html"
 ---
 ##Important Setup Information
 
-+ Razor has been tested in the following setups/environments: RHEL/CentOS 6.x and 7.x.
+
 + The Razor microkernel is 64-bit only. Razor can only provision 64-bit machines.
 + Razor has a minimum RAM requirement of 512MB.
 
