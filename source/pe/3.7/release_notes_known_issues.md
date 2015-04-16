@@ -224,7 +224,7 @@ To re-index and vacuum the console database, you can use the following PostgreSQ
 
 ### Node Classifier Ignores Facts That Are False
 
-When creating node matching rules in PE 3.7, the node classifier ignores all facts with a boolean value of false. For example, if you create a rule like `is_virtual` `is` `false`, the rule will never match a node. To avoid this problem, rewrite the rule to be `is_virtual` `is not` `true`.
+When creating node matching rules in PE 3.7, the node classifier ignores all facts with a boolean value of `false`. For example, if you create a rule like `is_virtual` `is` `false`, the rule will never match a node. To avoid this problem, rewrite the rule to be `is_virtual` `is not` `true`.
 
 This issue has been resolved in PE 3.8.
 

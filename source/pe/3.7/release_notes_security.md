@@ -19,7 +19,7 @@ Puppet Enterprise 3.8 contains a number of performance and documentation improve
 
 #### Node Classifier Ignores Facts That Are False
 
-When creating node matching rules in PE 3.7, the node classifier ignored all facts with a boolean value of false. For example, if you created a rule like `is_virtual` `is` `false`, the rule would never match a node. This issue has been resolved in PE 3.8.
+When creating node matching rules in PE 3.7, the node classifier ignored all facts with a boolean value of `false`. For example, if you created a rule like `is_virtual` `is` `false`, the rule would never match a node. This issue has been resolved in PE 3.8.
 
 #### Browser Crashing Issue When Returning a Null Value for `inherited_role_ids`
 
