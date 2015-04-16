@@ -924,7 +924,7 @@ Example Using reduce
 
       # reverse a string
       "abc".reduce |$memo, $char| { "$char$memo" }
-      #=>"cbe"
+      #=>"cba"
 
 It is possible to provide a starting 'memo' as an argument.
 
