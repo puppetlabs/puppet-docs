@@ -1,3 +1,10 @@
+---
+layout: default
+title: "PE 3.8 » Quick Start » r01k"
+subtitle: "r01k Quick Start Guide"
+canonical: "/pe/latest/quick_start_r10k.html"
+---
+
 ## r10k Quick Start Guide
 
 The primary purpose and benefit of r10k is that it provides a localized place in Puppet for you to manage the configuration of various environments (such as production, development, or testing), including what specific versions of modules are in each of your environments, based on code in branches of one or more Git repositories. R10k accomplishes this by seamlessly connecting the code in your Git repository's branches with the Puppet environments it has created based on those branches. So the work you do in Git is reflected in your Puppet configuration!
@@ -68,9 +75,7 @@ Unless otherwise indicated, you'll perform the steps in this section on your adm
 
         modulepath = modules:$basemodulepath
         environment_timeout = 0
-     
- <!--**note**: reference note about environment timeout as nonstandard setting (add link?). modulepath is standard.--!>
-     
+        
 12. From the root of the `puppet-control` directory, run` git status`. This will show you the files that you've created and edited, which are ready to be committed. 
 13. Run `git add --all`, and then run `git commit -m  "this is my initial commit"`.
 14. Run `git push origin master`. This will push your changes to the remote **puppet-control** repo.
@@ -222,25 +227,9 @@ In this section, you'll use the PE console and a Puppet agent (`agent.example.co
 
 7. After the agent run is complete, run `cat /etc/motd` to see your motd for the `production` environment. 
 
+## Next Steps
 
-
-
-
-next steps:
-
-more advanced workflows in the r10k docs?
-
-
-we haven't covered but look into
-
-- r10k employ environment command  can pass just one specific environment r10k
-- pinning, doing a lot of work and adding a lot of changes, remove :ref
-
-- manually triggering r10k on single puppet master; with multiple masters can automate r10k but not scoped for this guide and not supported
-
-- merging with production is not covered
-- deleting the branch and thus the environment is not covered
-
+As we stated at the beginning, we designed this QSG to serve as a primer for getting to know r10k. At this point, you may be ready to consider some more complicated patterns and workflows. Check out the main r10k docs <!--insert link--!>. 
 
 
 
