@@ -121,13 +121,9 @@ PE will automatically update your version of puppetlabs-inifile as part of the u
 
 ### Notes about Symlinks and Installation/Upgrade
 
-The answer file no longer gives the option of whether to install symlinks. These are now automatically created during installation. To allow the creation of symlinks, ensure that `/usr/local/bin` is writable. For more context, see the note about [PE Binaries and Symlinks](./install_basic.html#puppet-enterprise-binaries-and-symlinks). 
+The answer file no longer gives the option of whether to install symlinks. 
 
-Note that AIX and Solaris 10/11 users need to add `/usr/local/bin` to their default path. 
-
-However, please note that we do not recommend employing symlinks in the place of `/opt` for database storage, as doing so can lead to databases not being seen. In addition, if `/opt/puppet` is symlink, the `-d` flag will not function correctly during an uninstall.
-
-If you're running Mac OS X agents, note that symlinks are not created until the first successful Puppet run that applies the agents' catalogs. 
+Review [Puppet Enterprise Binaries and Symlinks](./install_basic.html#puppet-enterprise-binaries-and-symlinks) for more information about the binaries and symlinks installed during normal installations and upgrades.
 
 ### Answer File Required for Some SMTP Servers
 
