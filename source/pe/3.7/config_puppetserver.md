@@ -34,13 +34,13 @@ The ulimit controls the number of processes and file handles that the `pe-puppet
 
 You can increase the JVM (Java Virtual Machine) memory that is allocated to Java services running on Puppet Server. This memory allocation is known as the Java heap size.
 
-Instructions for using the PE console to increase the Java heap size are detailed on on the [Configuring Java Arguments for PE](/config_java_args.html#pe-puppet-server-service) page.
+Instructions for using the PE console to increase the Java heap size are detailed on on the [Configuring Java Arguments for PE](./config_java_args.html#pe-puppet-server-service) page.
 
 ### Tuning the Environment Timeout
 
-The [`environment_timeout`](/reference/config_file_environment.html#environmenttimeout) setting controls how long the Puppet master caches data it loads from an environment. When you make changes to an environment's Puppet code, this setting determines how much time will pass before those changes are reflected in the environment. Please review the `environment_timeout` documentation, as you will probably want to tune this setting per environment depending on your needs.
+The [setting](/puppet/3.7/reference/environments_configuring.html#environmenttimeout) for `environment_timeout` controls how long the Puppet master caches data it loads from an environment. When you make changes to an environment's Puppet code, this setting determines how much time will pass before those changes are reflected in the environment. Please review the `environment_timeout` documentation, as you will probably want to tune this setting per environment depending on your needs.
 
 There is a CPU cost to refresh the environment cache, so when tuning for performance we advise you set `environment_timeout`  to `unlimited`. This will generally improve catalog compilation times by never refreshing the environment cache. As mentioned in the linked docs you will need a way to flush this cache when you want Puppet code updates to take effect.
 
-You can also read more about [environments and their limitations](/reference/environments_limitations.html#environments:-limitations-of-environments).
+You can also read more about [environments and their limitations](/puppet/3.7/reference/environments_limitations.html#environments:-limitations-of-environments).
 
