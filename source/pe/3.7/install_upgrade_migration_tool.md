@@ -47,8 +47,6 @@ To use the migration tool, you must:
 
 ### Flow of the PE 3.3 to PE 3.8 Migration Process 
 
-<a href="./images/console/env_workflow.svg"><img src="./images/console/env_workflow.svg" alt="Environment Workflow" title="Click to enlarge"> (Click to enlarge)</a>
-
 After successful migration from PE 3.3 to PE 3.8 in the flow shown above, your PE 3.8 installation will have:
 
 > <center>
