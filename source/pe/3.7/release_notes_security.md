@@ -68,6 +68,10 @@ A new rake task, `node:delgroup`, was introduced in PE 3.7.2 for deleting a node
 
 For more information, see the [rake API documentation](./console_rake_api.html).
 
+#### Node Classifier Ignores Facts That Are False
+
+When creating node matching rules in PE 3.7, the node classifier ignores all facts with a boolean value of `false`. For example, if you create a rule like `is_virtual` `is` `false`, the rule will never match a node. To avoid this problem, rewrite the rule to be `is_virtual` `is not` `true`.
+
 #### Additional Node Manager Service Fixes
 
 * Environments are now removed from the classifier when they are no longer populated.
