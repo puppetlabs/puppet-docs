@@ -229,7 +229,7 @@ In this section, you'll use the PE console and a Puppet agent (`agent.example.co
 
 ## Next Steps
 
-As we stated at the beginning, we designed this QSG to serve as a primer for getting to know r10k. At this point, you may be ready to consider some more complicated patterns and workflows. Check out the main r10k docs <!--insert link--!>. 
+As we stated at the beginning, we designed this QSG to serve as a primer for getting to know r10k. At this point, you may be ready to consider some more complicated patterns and workflows. Check out the [main r10k docs](/r10k/index.html). 
 
 
 
