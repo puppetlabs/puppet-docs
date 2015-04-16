@@ -54,12 +54,12 @@ First, choose the package based on your specific operating system and version. T
 
 `puppetlabs-release-COLLECTION-VERSION.deb`
 
-For instance, the package for Puppet Collection 1 on Debian 6 is `puppetlabs-release-pc1-squeeze.deb`.
+For instance, the package for Puppet Collection 1 on Debian 7 is `puppetlabs-release-pc1-wheezy.deb`.
 
 Second, download the package and install it:
 
-        # wget http://apt.puppetlabs.com/puppetlabs-release-pc1-squeeze.deb
-        # dpkg -i puppetlabs-release-pc1-squeeze.deb
+        # wget http://apt.puppetlabs.com/puppetlabs-release-pc1-wheezy.deb
+        # dpkg -i puppetlabs-release-pc1-wheezy.deb
 		
 Finally, make sure to run `apt-get update` after installing the package. 
 
