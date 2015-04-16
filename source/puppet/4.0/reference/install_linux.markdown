@@ -24,7 +24,7 @@ Before installing Puppet, make sure you've read the [pre-install tasks.](./insta
 
 ## Review Supported Versions and Requirements 
 
-Most Linux systems including CentOS, Redhat, Ubuntu, and Debian have packages. We have not yet released a Mac OS X package. For a complete list of supported platforms, view the [system requirements page.](sysreqs)
+Most Linux systems including CentOS, Redhat, Ubuntu, and Debian have packages. We have not yet released a Mac OS X package. For a complete list of supported platforms, view the [system requirements page.](./system_requirements.html)
 
 
 ## Install a Release Package to Enable Puppet Labs Package Repositories
