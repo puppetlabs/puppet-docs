@@ -9,13 +9,17 @@ This page contains information about security fixes in Puppet Enterprise (PE) 3.
 
 For more information about this release, also see the [Known Issues](./release_notes_known_issues.html) and [New Features](./release_notes.html).
 
-## Puppet Enterprise 3.8 (??/??/15)
+## Puppet Enterprise 3.8 (??/04/15)
 
 ### Security Fixes
 
 ### Bug Fixes
 
 Puppet Enterprise 3.8 contains a number of performance and documentation improvements, in addition to the fixes that are highlighted below.
+
+#### Node Classifier Ignores Facts That Are False
+
+When creating node matching rules in PE 3.7, the node classifier ignored all facts with a boolean value of false. For example, if you created a rule like `is_virtual` `is` `false`, the rule would never match a node. This issue has been resolved in PE 3.8.
 
 #### Browser Crashing Issue When Returning a Null Value for `inherited_role_ids`
 

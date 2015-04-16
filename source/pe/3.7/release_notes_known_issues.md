@@ -222,6 +222,12 @@ To re-index and vacuum the console database, you can use the following PostgreSQ
 
 ## PE console/pe-console-services
 
+### Node Classifier Ignores Facts That Are False
+
+When creating node matching rules in PE 3.7, the node classifier ignores all facts with a boolean value of false. For example, if you create a rule like `is_virtual` `is` `false`, the rule will never match a node. To avoid this problem, rewrite the rule to be `is_virtual` `is not` `true`.
+
+This issue has been resolved in PE 3.8.
+
 ### PE Console Doesn't Display Parent Group Rules
 
 In the console, parent group rules don't show, which makes it easier to create a rule that contradicts an inherited rule. If you create a contradictory rule, then you might find that no nodes match the rule you've created. The **Matching nodes** tab is accurate. If you don't see the nodes you're expecting on this tab, then you need to look up the ancestor rules to identify the contradictory rule.
