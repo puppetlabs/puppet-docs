@@ -16,8 +16,8 @@ upgrade instructions](server_upgrade.markdown) on at least one host so the agent
 * Disable the previous `products` and `devel` repositories
 * Using your package manager, install the `puppet-agent` package for your operating system.
 * Modify the new, Puppet 4-compatible `/etc/puppetlabs/puppet/puppet.conf` file to include any local customizations from 
-  the old `/etc/puppet/puppet.conf` configuration file, taking note of the (deprecated and changed 
-  settings)[release_notes.html#XXX_Settings_header] which should not be copied over (notably, if you previously set 
+  the old `/etc/puppet/puppet.conf` configuration file, taking note of the [deprecated and changed 
+  settings](release_notes.html#break-changed-defaults-for-settings) which should not be copied over (notably, if you previously set 
   `stringify_facts=false`, this is no longer necessary).  You will need to set the `server` (and `ca_server`, if you've 
   set up a separate Puppet 4 CA) setting to point at the hostname of your new Puppet 4 master.
 * Copy your SSL certificate tree from its previous location (from `puppet agent --configprint ssldir` above) to its new 
