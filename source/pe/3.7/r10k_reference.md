@@ -1,7 +1,10 @@
 ---
 layout: default
 title: "r10k Reference"
+canonical: "/pe/latest/r10k/reference.html"
+description: "Subcommand reference for r10k, a Puppet code management tool."
 ---
+
 #r10k Reference
 
 ##r10k Subcommands

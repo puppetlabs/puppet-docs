@@ -1,6 +1,8 @@
 ---
 layout: default
 title: "Setting Up r10k"
+canonical: "/pe/latest/r10k/setup_r10k.html"
+description: "Installation and setup of r10k, a Puppet code management tool."
 ---
 
 [environ_dir]: /puppet/4.0/reference/environments_configuring.html

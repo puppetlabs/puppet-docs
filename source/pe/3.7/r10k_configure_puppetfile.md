@@ -1,6 +1,8 @@
 ---
 layout: default
 title: "Configuring the Puppetfile"
+canonical: "/pe/latest/r10k/configure_puppetfile.html"
+description: "A guide to configuring the Puppetfile for code management with Puppet."
 ---
 
 [gettingstarted]: ./gettingstarted_r10k.html

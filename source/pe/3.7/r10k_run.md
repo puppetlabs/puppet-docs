@@ -1,6 +1,8 @@
 ---
 layout: default
 title: "Running r10k"
+canonical: "/pe/latest/r10k/running_r10k.html"
+description: "Deploying environments and modules with r10k, a Puppet code management tool."
 ---
 
 [setup]: ./setup_r10k.html

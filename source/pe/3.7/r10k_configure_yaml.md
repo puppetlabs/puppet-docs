@@ -1,6 +1,8 @@
 ---
 layout: default
 title: "Configuring r10k.yaml"
+canonical: "/pe/latest/r10k/configure_r10kyaml.html"
+description: "A guide to configuring the r10k.yaml file for code management with Puppet."
 ---
 
 [direnv]: /puppet/4.0/reference/environments.html
