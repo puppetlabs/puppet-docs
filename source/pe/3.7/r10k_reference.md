@@ -5,8 +5,8 @@ canonical: "/pe/latest/r10k_reference.html"
 description: "Subcommand reference for r10k, a Puppet code management tool."
 ---
 [setup]: ./r10k_setup.html
-[r10kyaml]: ./r10k_configure_yaml.html
-[puppetfile]: ./r10k_configure_puppetfile.html
+[r10kyaml]: ./r10k_yaml.html
+[puppetfile]: ./r10k_puppetfile.html
 [running]: ./r10k_run.html
 [reference]: ./r10k_reference.html
 [r10kindex]: ./r10k.md

@@ -15,7 +15,7 @@ description: "A guide to configuring the r10k.yaml file for code management with
 
 #Configuring r10k
 
-Configuring r10k is as easy as updating a .yaml file with the location of your Git repository (repo) information. This section will go through everything you need to configure r10k to your setup. 
+To configure r10k, you'll need to edit the r10k.yaml file with the location of your Git repository information. This section will go through everything you need to configure r10k to your setup. 
 
 * Continue reading to learn how to configure r10k.
 * [See "Getting To Know r10k"][index] for basic information about r10k.
