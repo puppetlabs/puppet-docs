@@ -1,19 +1,16 @@
 ---
 layout: default
 title: "Running r10k"
-canonical: "/pe/latest/r10k/running_r10k.html"
+canonical: "/pe/latest/r10k_run.html"
 description: "Deploying environments and modules with r10k, a Puppet code management tool."
 ---
 
-[setup]: ./setup_r10k.html
-[r10kyaml]: ./configuring_r10kyaml.html
-[puppetfile]: ./configure_puppetfile.html
-[running]: ./running_r10k.html
-
-* [Initial r10k run]
-* [Updating environments]
-* [Deploying modules]
-* [Viewing environments]
+[setup]: ./r10k_setup.html
+[r10kyaml]: ./r10k_configure_yaml.html
+[puppetfile]: ./r10k_configure_puppetfile.html
+[running]: ./r10k_run.html
+[reference]: ./r10k_reference.html
+[r10kindex]: ./r10k.md
 
 You've [configured][r10kyaml] your r10k.yaml and set up your [Puppetfile][puppetfile]. Now it's time to run r10k!
 
@@ -22,6 +19,7 @@ You've [configured][r10kyaml] your r10k.yaml and set up your [Puppetfile][puppet
 * [See "Setting Up r10k"][setup] to get r10k up and running.
 * [See "Configuring r10k.yaml"][r10kyaml] to learn how to set up directory environments with r10k.
 * [See "Configuring the Puppetfile"][puppetfile] to learn how to set up your r10k Puppetfile.
+* [See "r10k Reference"][reference] for a list of r10k subcommands.
 
 -> This is a mess. Use this page to help you: https://github.com/puppetlabs/r10k/blob/master/doc/dynamic-environments/usage.mkd and this: https://github.com/puppetlabs/r10k/blob/master/doc/dynamic-environments/configuration.mkd
 
@@ -30,7 +28,7 @@ You've [configured][r10kyaml] your r10k.yaml and set up your [Puppetfile][puppet
 The first time you run r10k, you'll update all environments and modules with the following command: 
 
 ~~~
-r10k deploy environment --puppetfile
+r10k deploy environment (for this to work  --puppetfile(don't need this the first time)
 ~~~
 
 This command updates all sources, create new environments, delete old environments, and recursively updates all environment modules specified in environment Puppetfiles.

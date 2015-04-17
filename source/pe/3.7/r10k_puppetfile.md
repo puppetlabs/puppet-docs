@@ -1,14 +1,16 @@
 ---
 layout: default
 title: "Configuring the Puppetfile"
-canonical: "/pe/latest/r10k/configure_puppetfile.html"
+canonical: "/pe/latest/r10k_configure_puppetfile.html"
 description: "A guide to configuring the Puppetfile for code management with Puppet."
 ---
 
-[gettingstarted]: ./gettingstarted_r10k.html
-[gettingtoknow]: ./index.html
-[configuring]: ./configuring_r10k.html
-[managingenvirons]:TBD
+[setup]: ./r10k_setup.html
+[r10kyaml]: ./r10k_configure_yaml.html
+[puppetfile]: ./r10k_configure_puppetfile.html
+[running]: ./r10k_run.html
+[reference]: ./r10k_reference.html
+[r10kindex]: ./r10k.md
 
 
 # Managing Modules
@@ -16,10 +18,11 @@ description: "A guide to configuring the Puppetfile for code management with Pup
 You'll manage your modules through the Puppetfile, in which you'll specify detailed information about what modules r10k should install and where it should install them.
 
 * Continue reading to learn how to configure your Puppetfile.
-* [See "Getting To Know r10k"][gettingtoknow] for basic information about r10k.
-* [See "Configuring r10k"][configuring] to learn how to set up your r10k Puppetfile.
-* [See "Getting Started with r10k"][gettingstarted] to get r10k up and running.
-* [See "Managing Environments"]
+* [See "Getting To Know r10k"][index] for basic information about r10k.
+* [See "Setting Up r10k"][setup] to get r10k up and running.
+* [See "Configuring r10k.yaml"][r10kyaml] to learn how to set up directory environments with r10k.
+* [See "Running r10k"][running] to learn how to deploy r10k.
+* [See "r10k Reference"][reference] for a list of r10k subcommands.
 
 
 ## About the Puppetfile

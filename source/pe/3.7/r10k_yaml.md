@@ -1,27 +1,28 @@
 ---
 layout: default
 title: "Configuring r10k.yaml"
-canonical: "/pe/latest/r10k/configure_r10kyaml.html"
+canonical: "/pe/latest/r10k_yaml.html"
 description: "A guide to configuring the r10k.yaml file for code management with Puppet."
 ---
 
 [direnv]: /puppet/4.0/reference/environments.html
 [direnv_setup]: /puppet/4.0/reference/environments_creating.html
-[gettingstarted]: ./gettingstarted_r10k.html
-[gettingtoknow]: ./index.html
-[puppetfile]: ./puppetfile.html
+[setup]: ./r10k_setup.html
+[puppetfile]: ./r10k_puppetfile.html
+[running]: ./r10k_run.html
+[reference]: ./r10k_reference.html
+[r10kindex]: ./r10k.md
 
 #Configuring r10k
 
 Configuring r10k is as easy as updating a .yaml file with the location of your Git repository (repo) information. This section will go through everything you need to configure r10k to your setup. 
 
 * Continue reading to learn how to configure r10k.
-* [See "Getting To Know r10k"][gettingtoknow] for basic information about r10k.
-* [See "Setting Up r10k"][setup_r10k] to get r10k up and running.
-* [See "Mananaging Modules"][manage_modules] to learn how to set up your r10k Puppetfile.
-* [See "Managing Environments"]
-
-
+* [See "Getting To Know r10k"][index] for basic information about r10k.
+* [See "Setting Up r10k"][setup] to get r10k up and running.
+* [See "Configuring the Puppetfile"][puppetfile] to learn how to set up your r10k Puppetfile.
+* [See "Running r10k"][running] to learn how to deploy r10k.
+* [See "r10k Reference"][reference] for a list of r10k subcommands.
 ##Before You Begin
 
 Before you begin configuring r10k, you will want to ensure that you have a Git repository (repo) with one branch for each environment that you want to establish. 
@@ -33,17 +34,16 @@ Before you begin configuring r10k, you will want to ensure that you have a Git r
 
 ##Connect r10k and Git
 
-R10k uses your existing Git repo's branches to create [directory environments]((direnv)). (Directory environments allow you to designate a node or node group as a specific environment; for example, you could designate one node group as the development environment and another as the production environment.) As you update the code in your Git repo, r10k tracks the state of the repo to keep each environment updated.
+R10k uses your existing Git repo's branches to create [directory environments](direnv). (Directory environments allow you to designate a node or node group as a specific environment; for example, you could designate one node group as the development environment and another as the production environment.) As you update the code in your Git repo, r10k tracks the state of the repo to keep each environment updated.
 
-Each branch of a connected repository is cloned into a directory named after the branch. For instance, if you have a repo named project1 with branches named "production", "test", and "development", r10k will clone the production branch into a production directory, the test branch into a test directory, and the development branch into a development directory.
+Each branch of a connected repository is cloned into a directory named after the branch. For instance, if you have a repo named "myenvironments" with branches named "production", "test", and "development", r10k will clone the production branch into a production directory, the test branch into a test directory, and the development branch into a development directory.
 
->**Warning:** When you connect a Git repo to r10k, r10k will create the directory and **erase** anything that was there before. If you already have directory environments set up, you must read ["Previous Directory Environment Configurations"](#previous-directory-environment-configurations) before you proceed.
-
-In order to run successfully, r10k will need to be able to authenticate with each repo. (Most Git systems support authentication with SSH.)
+>**Warning:** When you connect a Git repo to r10k, r10k will create the directories in the repository and **erase** anything that was there before. If you already have directory environments set up, you must read ["Previous Directory Environment Configurations"](#previous-directory-environment-configurations) before you proceed.
+ 
 
 ###Edit r10k.yaml
 
-You can entirely configure r10k through the r10k.yaml in etc/puppetlabs/r10k/. 
+To connect r10k and Git, you'll edit your r10k.yaml in etc/puppetlabs/r10k/. In order to run successfully, r10k will need to be able to authenticate with each repo. (Most Git systems support authentication with SSH.)
 
 At a minimum, you must specify `cachedir` (the location for storing cached Git repos) and `sources` (the list of Git repos to use). You can use these keys to specify the path where you expect to find either the cache of your Git repo(s) or the directories of the environments being created from your repo's branches.
 
@@ -99,6 +99,10 @@ sources:
     basedir: '/etc/puppet/environments'
 ~~~
 
+#####`git`
+
+TODO: new provider param; Adrien: config > provider+provider documentation; shellgit is as r10k has always behaved; rugged is new
+
 #####`prefix`
 
 Allows environment names to be prefixed with the short name of the specified source. This prevents collisions when multiple sources are deployed into the same directory.
@@ -128,6 +132,10 @@ sources:
 Once you have listed each repo you want to manage with r10k in r10k.yaml, you're done configuring!
 
 Subsequent changes to the branches will be kept in sync on the filesystem by future r10k runs. You can read more about that in [running r10k][running].
+
+###zack-r10k module
+
+Alternatively, you can use the [zack-r10k](https://forge.puppetlabs.com/zack/r10k) module to help you configure the r10k.yaml file. This module and its documentation is available on the the Puppet Forge.
 
 ###Previous Directory Environment Configurations
 
