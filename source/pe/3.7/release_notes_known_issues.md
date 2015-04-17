@@ -221,6 +221,10 @@ To re-index and vacuum the console database, you can use the following PostgreSQ
 
 ## PE console/pe-console-services
 
+#### Node Classifier Returns Activity Service Error When Importing a Large Number of groups
+
+In PE 3.7, an error is returned when importing a large number of groups (for example, when upgrading a large environment to PE 3.7). This error is returned even if the import was successful. In PE 3.8, this error is no longer returned. 
+
 ### PE Console Doesn't Display Parent Group Rules
 
 In the console, parent group rules don't show, which makes it easier to create a rule that contradicts an inherited rule. If you create a contradictory rule, then you might find that no nodes match the rule you've created. The **Matching nodes** tab is accurate. If you don't see the nodes you're expecting on this tab, then you need to look up the ancestor rules to identify the contradictory rule.
