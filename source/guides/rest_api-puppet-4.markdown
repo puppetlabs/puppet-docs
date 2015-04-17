@@ -9,8 +9,8 @@ HTTP API
 Both puppet master and puppet agent have pseudo-RESTful HTTP API's that they use to communicate.
 The basic structure of the url to access this API is
 
-    https://yourpuppetmaster:8140/{environment}/{resource}/{key}
-    https://yourpuppetclient:8139/{environment}/{resource}/{key}
+    https://yourpuppetmaster:8140/{prefix}/{version}/{resource}/{key}?environment={environment}
+    https://yourpuppetclient:8139/{prefix}/{version}/{resource}/{key}?environment={environment}
 
 Details about what resources are available and the formats they return are
 below.
@@ -36,7 +36,7 @@ permit unauthenticated connections from all hosts or a subset of hosts; see the
 An example of how you can use the HTTP API to retrieve the catalog for a node
 can be seen using [curl](http://en.wikipedia.org/wiki/CURL).
 
-    curl --cert /etc/puppet/ssl/certs/mymachine.pem --key /etc/puppet/ssl/private_keys/mymachine.pem --cacert /etc/puppet/ssl/ca/ca_crt.pem -H 'Accept: yaml' https://puppetmaster:8140/production/catalog/mymachine
+    curl --cert /etc/puppet/ssl/certs/mymachine.pem --key /etc/puppet/ssl/private_keys/mymachine.pem --cacert /etc/puppet/ssl/ca/ca_crt.pem -H 'Accept: yaml' https://puppetmaster:8140/puppet/v3/catalog/mymachine?environment=production
 
 Most of this command consists of pointing curl to the appropriate SSL certificates, which
 will be different depending on your ssldir location and your node's certname.
@@ -45,7 +45,7 @@ is specified with the `-k` or `--insecure` flag.
 Insecure connections can be enabled for one or more nodes in the [`rest_authconfig`][authconf]
 file. The above curl invocation without certificates would be as follows:
 
-    curl --insecure -H 'Accept: yaml' https://puppetmaster:8140/production/catalog/mymachine
+    curl --insecure -H 'Accept: yaml' https://puppetmaster:8140/puppet/v3/catalog/mymachine?environment=production
 
 Basically we just send a header specifying the format or formats we want back,
 and the HTTP URI for getting a catalog for mymachine in the production
@@ -61,7 +61,7 @@ Another example to get back the CA Certificate of the puppetmaster doesn't
 require you to be authenticated with your own signed SSL Certificates, since
 that's something you would need before you authenticate.
 
-    curl --insecure -H 'Accept: s' https://puppetmaster:8140/production/certificate/ca
+    curl --insecure -H 'Accept: s' https://puppetmaster:8140/puppet-ca/v1/certificate/ca?environment=production
 
     -----BEGIN CERTIFICATE-----
     MIICHTCCAYagAwIBAgIBATANBgkqhkiG9w0BAQUFADAXMRUwEwYDVQQDDAxwdXBw
@@ -72,25 +72,25 @@ that's something you would need before you authenticate.
 
 Returns a list of resources, like executing `puppet resource` (`ralsh`) on the command line.
 
-GET `/{environment}/resource/{resource_type}/{resource_name}`
+GET `/puppet/v3/resource/{resource_type}/{resource_name}?environment={environment}`
 
-GET `/{environment}/resources/{resource_type}`
+GET `/puppet/v3/resources/{resource_type}?environment={environment}`
 
 Example:
 
-    curl -k -H "Accept: yaml" https://puppetmaster:8140/production/resource/user/puppet
-    curl -k -H "Accept: yaml" https://puppetclient:8139/production/resources/user
+    curl -k -H "Accept: yaml" https://puppetmaster:8140/puppet/v3/resource/user/puppet?environment=production
+    curl -k -H "Accept: yaml" https://puppetclient:8139/puppet/v3/resources/user?environment=production
 
 ### Certificate
 
 Get a certficate or the master's CA certificate.
 
-GET `/certificate/{ca, other}`
+GET `/puppet-ca/v1/certificate/{ca, other}`
 
 Example:
 
-    curl -k -H "Accept: s" https://puppetmaster:8140/production/certificate/ca
-    curl -k -H "Accept: s" https://puppetclient:8139/production/certificate/puppetclient
+    curl -k -H "Accept: s" https://puppetmaster:8140/puppet-ca/v1/certificate/ca?environment=production
+    curl -k -H "Accept: s" https://puppetclient:8139/puppet-ca/v1/certificate/puppetclient?environment=production
 
 ## The master HTTP API
 
@@ -100,37 +100,37 @@ A valid and signed certificate is required to retrieve these resources.
 
 Get a catalog from the node.
 
-GET `/{environment}/catalog/{node certificate name}`
+GET `/puppet/v3/catalog/{node certificate name}?environment={environment}`
 
 Example:
 
-    curl -k -H "Accept: pson" https://puppetmaster:8140/production/catalog/myclient
+    curl -k -H "Accept: pson" https://puppetmaster:8140/puppet/v3/catalog/myclient?environment=production
 
 ### Certificate Revocation List
 
 Get the certificate revocation list.
 
-GET `{environment}/certificate_revocation_list/ca`
+GET `/puppet-ca/v1/certificate_revocation_list/ca?environment={environment}`
 
 Example:
 
-    curl -k -H "Accept: s" https://puppetmaster:8140/production/certificate_revocation_list/ca
+    curl -k -H "Accept: s" https://puppetmaster:8140/puppet-ca/v1/certificate_revocation_list/ca?environment=production
 
 ### Certificate Request
 
 Retrieve or save certificate requests.
 
-GET `/{environment}/certificate_requests/no_key`
+GET `/puppet-ca/v1/certificate_requests/no_key?environment={environment}`
 
-GET `/{environment}/certificate_request/{node certificate name}`
+GET `/puppet-ca/v1/certificate_request/{node certificate name}?environment={environment}`
 
-PUT `/{environment}/certificate_request/no_key`
+PUT `/puppet-ca/v1/certificate_request/no_key?environment={environment}`
 
 Example:
 
-    curl -k -H "Accept: yaml" https://puppetmaster:8140/production/certificate_requests/all
-    curl -k -H "Accept: yaml" https://puppetmaster:8140/production/certificate_request/{agent certname}
-    curl -k -X PUT -H "Content-Type: text/plain" --data-binary @cert_request.csr https://puppetmaster:8140/production/certificate_request/no_key
+    curl -k -H "Accept: yaml" https://puppetmaster:8140/puppet-ca/v1/certificate_requests/all?environment=production
+    curl -k -H "Accept: yaml" https://puppetmaster:8140/puppet-ca/v1/certificate_request/{agent certname}?environment=production
+    curl -k -X PUT -H "Content-Type: text/plain" --data-binary @cert_request.csr https://puppetmaster:8140/puppet-ca/v1/certificate_request/no_key?environment=production
 
 
 To manually generate a CSR from an existing private key:
@@ -145,17 +145,17 @@ The subject can only include a /CN=, nothing else. Puppet master will determine 
 
 Read or alter the status of a certificate or pending certificate request. This endpoint is roughly equivalent to the puppet cert command; rather than returning complete certificates, signing requests, or revocation lists, this endpoint returns information about the various certificates (and potential and former certificates) known to the CA.
 
-GET `/{environment}/certificate_status/{certname}`
+GET `/puppet-ca/v1/certificate_status/{certname}?environment={environment}`
 
 Retrieve a PSON hash containing information about the specified host's
 certificate. Similar to `puppet cert --list {certname}`.
 
-GET `/{environment}/certificate_statuses/no_key`
+GET `/puppet-ca/v1/certificate_statuses/no_key?environment={environment}`
 
 Retrieve a list of PSON hashes containing information about all
 known certificates. Similar to `puppet cert --list --all`.
 
-PUT `/{environment}/certificate_status/{certname}`
+PUT `/puppet-ca/v1/certificate_status/{certname}?environment={environment}`
 
 Change the status of the specified host's certificate. The desired state is sent in the body of the PUT request as a one-item PSON hash; the two allowed complete hashes are `{"desired_state":"signed"}` (for signing a certificate signing request; similar to `puppet cert --sign`) and `{"desired_state":"revoked"}` (for revoking a certificate; similar to `puppet cert --revoke`); see examples below for details.
 
@@ -163,66 +163,66 @@ When revoking certificates, you may wish to use a
 DELETE request instead, which will also clean up other info about the
 host.
 
-DELETE `/{environment}/certificate_status/{hostname}`
+DELETE `/puppet-ca/v1/certificate_status/{hostname}?environment={environment}`
 
 Cause the certificate authority to discard all SSL information regarding a host (including
 any certificates, certificate requests, and keys). This **does not** revoke the certificate if one is present; if you wish to emulate the behavior of `puppet cert --clean`, you must PUT a `desired_state` of revoked before deleting the host's SSL information.
 
 Examples:
 
-    curl -k -H "Accept: pson" https://puppetmaster:8140/production/certificate_status/testnode.localdomain
-    curl -k -H "Accept: pson" https://puppetmaster:8140/production/certificate_statuses/all
-    curl -k -X PUT -H "Content-Type: text/pson" --data '{"desired_state":"signed"}' https://puppetmaster:8140/production/certificate_status/client.network.address
-    curl -k -X PUT -H "Content-Type: text/pson" --data '{"desired_state":"revoked"}' https://puppetmaster:8140/production/certificate_status/client.network.address
-    curl -k -X DELETE -H "Accept: pson" https://puppetmaster:8140/production/certificate_status/client.network.address
+    curl -k -H "Accept: pson" https://puppetmaster:8140/puppet-ca/v1/certificate_status/testnode.localdomain?environment=production
+    curl -k -H "Accept: pson" https://puppetmaster:8140/puppet-ca/v1/certificate_statuses/all?environment=production
+    curl -k -X PUT -H "Content-Type: text/pson" --data '{"desired_state":"signed"}' https://puppetmaster:8140/puppet-ca/v1/certificate_status/client.network.address?environment=production
+    curl -k -X PUT -H "Content-Type: text/pson" --data '{"desired_state":"revoked"}' https://puppetmaster:8140/puppet-ca/v1/certificate_status/client.network.address?environment=production
+    curl -k -X DELETE -H "Accept: pson" https://puppetmaster:8140/puppet-ca/v1/certificate_status/client.network.address?environment=production
 
 ### Reports
 
 Submit a report.
 
-PUT `/{environment}/report/{node certificate name}`
+PUT `/puppet/v3/report/{node certificate name}?environment={environment}`
 
 Example:
 
-    curl -k -X PUT -H "Content-Type: text/yaml" -d "{key:value}" https://puppetclient:8139/production/report/puppetclient
+    curl -k -X PUT -H "Content-Type: text/yaml" -d "{key:value}" https://puppetclient:8139/puppet/v3/report/puppetclient?environment=production
 
 ### Resource Types
 
 Return a list of resources from the master
 
-GET `/{environment}/resource_type/{hostclass,definition,node}`
+GET `/puppet/v3/resource_type/{hostclass,definition,node}?environment={environment}`
 
-GET `/{environment}/resource_types/*`
+GET `/puppet/v3/resource_types/*?environment={environment}`
 
 Example:
 
-    curl -k -H "Accept: yaml" https://puppetmaster:8140/production/resource_type/puppetclient
-    curl -k -H "Accept: yaml" https://puppetmaster:8140/production/resource_types/*
+    curl -k -H "Accept: yaml" https://puppetmaster:8140/puppet/v3/resource_type/puppetclient?environment=production
+    curl -k -H "Accept: yaml" https://puppetmaster:8140/puppet/v3/resource_types/*?environment=production
 
 ### File Bucket
 
 Get or put a file into the file bucket.
 
-GET `/{environment}/file_bucket_file/md5/{checksum}`
+GET `/puppet/v3/file_bucket_file/md5/{checksum}?environment={environment}`
 
-PUT `/{environment}/file_bucket_file/md5/{checksum}`
+PUT `/puppet/v3/file_bucket_file/md5/{checksum}?environment={environment}`
 
-GET `/{environment}/file_bucket_file/md5/{checksum}?diff_with={checksum}` (diff 2 files; **Puppet 2.6.5 and later**)
+GET `/puppet/v3/file_bucket_file/md5/{checksum}?diff_with={checksum}?environment={environment}` (diff 2 files; **Puppet 2.6.5 and later**)
 
-HEAD `/{environment}/file_bucket_file/md5/{checksum}` (determine if a file is present; **Puppet 2.6.5 and later**)
+HEAD `/puppet/v3/file_bucket_file/md5/{checksum}?environment={environment}` (determine if a file is present; **Puppet 2.6.5 and later**)
 
 Examples:
 
-    curl -k -H "Accept: s" https://puppetmaster:8140/production/file_bucket_file/md5/e30d4d879e34f64e33c10377e65bbce6
-    curl -k -X PUT -H "Content-Type: text/plain" Accept: s" https://puppetmaster:8140/production/file_bucket_file/md5/e30d4d879e34f64e33c10377e65bbce6 --data-binary @foo.txt
-    curl -k -H "Accept: s" https://puppetmaster:8140/production/file_bucket_file/md5/e30d4d879e34f64e33c10377e65bbce6?diff_with=6572b5dc4c56366aaa36d996969a8885
-    curl -k -I -H "Accept: s" https://puppetmaster:8140/production/file_bucket_file/md5/e30d4d879e34f64e33c10377e65bbce6
+    curl -k -H "Accept: s" https://puppetmaster:8140/puppet/v3/file_bucket_file/md5/e30d4d879e34f64e33c10377e65bbce6?environment=production
+    curl -k -X PUT -H "Content-Type: text/plain" Accept: s" https://puppetmaster:8140/puppet/v3/file_bucket_file/md5/e30d4d879e34f64e33c10377e65bbce6?environment=production --data-binary @foo.txt
+    curl -k -H "Accept: s" https://puppetmaster:8140/puppet/v3/file_bucket_file/md5/e30d4d879e34f64e33c10377e65bbce6?diff_with=6572b5dc4c56366aaa36d996969a8885?environment=production
+    curl -k -I -H "Accept: s" https://puppetmaster:8140/puppet/v3/file_bucket_file/md5/e30d4d879e34f64e33c10377e65bbce6?environment=production
 
 ### File Server
 
 Get a file from the file server.
 
-GET `/file_{metadata, content}/{file}`
+GET `/puppet/v3/{file}?environment=file_{metadata, content}`
 
 File serving is covered in more depth in the [fileserver configuration documentation](/guides/file_serving.html)
 
@@ -230,38 +230,38 @@ File serving is covered in more depth in the [fileserver configuration documenta
 
 Returns the Puppet::Node information (including facts) for the specified node
 
-GET `/{environment}/node/{node certificate name}`
+GET `/puppet/v3/node/{node certificate name}?environment={environment}`
 
 Example:
 
-    curl -k -H "Accept: yaml" https://puppetmaster:8140/production/node/puppetclient
+    curl -k -H "Accept: yaml" https://puppetmaster:8140/puppet/v3/node/puppetclient?environment=production
 
 ### Status
 
 Just used for testing
 
-GET `/{environment}/status/no_key`
+GET `/puppet/v3/status/no_key?environment={environment}`
 
 Example:
 
-    curl -k -H "Accept: pson" https://puppetmaster:8140/production/status/puppetclient
+    curl -k -H "Accept: pson" https://puppetmaster:8140/puppet/v3/status/puppetclient?environment=production
 
 ### Facts
 
-GET `/{environment}/facts/{node certname}`
+GET `/puppet/v3/facts/{node certname}?environment={environment}`
 
-    curl -k -H "Accept: yaml" https://puppetmaster:8140/production/facts/{node certname}
+    curl -k -H "Accept: yaml" https://puppetmaster:8140/puppet/v3/facts/{node certname}?environment=production
 
-PUT `/{environment}/facts/{node certname}`
+PUT `/puppet/v3/facts/{node certname}?environment={environment}`
 
-    curl -k -X PUT -H 'Content-Type: text/yaml' --data-binary @/var/lib/puppet/yaml/facts/hostname.yaml https://localhost:8140/production/facts/{node certname}
+    curl -k -X PUT -H 'Content-Type: text/yaml' --data-binary @/var/lib/puppet/yaml/facts/hostname.yaml https://localhost:8140/puppet/v3/facts/{node certname}?environment=production
 
 
 ### Facts Search
 
-GET `/{environment}/facts_search/search?{facts search string}`
+GET `/puppet/v3/facts_search/search?{facts search string}?environment={environment}`
 
-    curl -k -H "Accept: pson" https://puppetmaster:8140/production/facts_search/search?facts.processorcount.ge=2&facts.operatingsystem=Ubuntu
+    curl -k -H "Accept: pson" https://puppetmaster:8140/puppet/v3/facts_search/search?facts.processorcount.ge=2&facts.operatingsystem=Ubuntu?environment=production
 
 Facts search strings are constructed as a series of terms separated by `&`; if there is more than one term, the search combines the terms with boolean AND. There is currently no API for searching with boolean OR. Each term is composed as follows:
 
@@ -292,18 +292,18 @@ access to the agent's resources, which isn't permitted by default.
 
 ### Facts
 
-GET `/{environment}/facts/no_key`
+GET `/puppet/v3/facts/no_key?environment={environment}`
 
 Example:
 
-    curl -k -H "Accept: yaml" https://puppetclient:8139/production/facts/no_key
+    curl -k -H "Accept: yaml" https://puppetclient:8139/puppet/v3/facts/no_key?environment=production
 
 ### Run
 
 Cause the client to update like puppetrun or puppet kick
 
-PUT `/{environment}/run/no_key`
+PUT `/puppet/v3/run/no_key?environment={environment}`
 
 Example:
 
-    curl -k -X PUT -H "Content-Type: text/pson" -d "{}" https://puppetclient:8139/production/run/no_key
+    curl -k -X PUT -H "Content-Type: text/pson" -d "{}" https://puppetclient:8139/puppet/v3/run/no_key?environment=production
