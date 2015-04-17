@@ -43,7 +43,7 @@
             <li><a href="./quick_start_sudo.html">Sudo Quick Start Guide</a></li>
             <li><a href="./quick_start_firewall.html">Firewall Quick Start Guide</a></li>
           </ul>
-        <li><a href="./quick_start_r10k.html">r10k Quick Start Guide</a></strong> 
+        <li><a href="./quick_start_r10k.html">r10k Quick Start Guide</a></strong>
       </ul>
   </li>
   <li><strong>Installing Puppet Enterprise</strong>
@@ -123,6 +123,7 @@
            <li><a href="./console_event-inspector.html">Using Event Inspector</a></li>
            <li><a href="./console_reports.html">Viewing Reports & Inventory Data</a></li>
            <li><a href="./console_inventory_search.html">Inventory Search</a></li>
+           <li><a href="./puppet_server_metrics.html">Monitoring Puppet Server</a></li>
 					</ul>
 	</li>
   <li><strong>Managing Nodes</strong>
@@ -134,6 +135,7 @@
                  <li><a href="./console_classes_groups_preconfigured_groups.html">Preconfigured Node Groups</a></li>
                  <li><a href="./console_classes_groups_inheritance.html">How Does Inheritance Work?</a></li>
                  <li><a href="./console_classes_groups_environment_override.html">Working With Environments</a></li>
+                 <li><a href="./node_deactivation.html">Deactivating a PE Agent</a></li>
                  <li><strong>Node Classifier Service API</strong>
                <ul>
                   <li><a href="./nc_index.html">Endpoints</a></li>
@@ -165,6 +167,7 @@
                   <li><a href="./rbac_ldap.html">Connecting PE with External Directory Services</a></li>
                   <li><a href="./rbac_permissions.html">About RBAC Permissions</a></li>
                   <li><a href="./rbac_user_roles.html">Creating and Managing Users and User Roles</a></li>
+                  <li><a href="./deploy_nonroot-agent.html">Running Agents Without Root Privileges</a></li>
                   <li><strong>RBAC Service API</strong>
                   <ul>
                     <li><a href="./rbac_serviceindex.html">Endpoints</a></li>
@@ -189,6 +192,7 @@
     <ul>
       <li><a href="./puppet_overview.html">Overview</a></li>
       <li><a href="./puppet_modules_manifests.html">Modules & Manifests</a></li>
+      <li><a href="../../guides/module_guides/bgtm.html">Beginners Guide to Modules</a></li>
       <li><a href="./puppet_assign_configurations.html">Assigning Configurations to Nodes</a></li>
       <li><a href="./puppet_tools.html">Tools</a></li>
       <li><a href="./puppet_data_library.html">Puppet Data Library</a></li>
@@ -210,14 +214,7 @@
       <li><a href="./orchestration_config.html">Configuring Orchestration</a></li>
     </ul>
 </li>
-<li><strong>Deploying PE</strong>
-    <ul>
-      <li><a href="./deploy_nonroot-agent.html">Running Agents Without Root Privileges</a></li>
-      <li><a href="../../guides/module_guides/bgtm.html">Beginners Guide to Modules</a></li>
-      <li><a href="./node_deactivation.html">Deactivating a PE Agent</a></li>
-      <li><a href="./puppet_server_metrics.html">Puppet Server Metrics</a></li>
-    </ul>
-</li>
+
   <li><strong>Provision With Razor</strong>
     <ul>
       <li><a href="./razor_intro.html">Bare-Metal Provisioning with Razor</a></li>
@@ -245,7 +242,25 @@
       <li><a href="./cloudprovisioner_workflow.html">Sample Workflow</a></li>
     </ul>
   </li>
-  <li><strong>The PE Accounts Module</strong>
+  <li><strong>Code Management with r10K</strong>
+    <ul>
+      <li><a href="./r10k.html">Getting to Know r10K</a></li>
+      <li><a href="./r10k_setup.html">Setting Up r10K</a></li>
+      <li><a href="./r10k_yamlhtml">Configuring r10k.yaml</a></li>
+      <li><a href="./r10k_puppetfile.html">Configuring the Puppetfile</a></li>
+      <li><a href="./r10k_run.html">Running r10K</a></li>
+      <li><a href="./r10k_refernce.html">Subcommand Reference for r10K</a></li>
+    </ul>
+  </li>
+  <li><strong>Deploying PE</strong>
+    <ul>
+      <li><a href="./deploy_nonroot-agent.html">Running Agents Without Root Privileges</a></li>
+      <li><a href="../../guides/module_guides/bgtm.html">Beginners Guide to Modules</a></li>
+      <li><a href="./node_deactivation.html">Deactivating a PE Agent</a></li>
+      <li><a href="./puppet_server_metrics.html">Puppet Server Metrics</a></li>
+    </ul>
+</li>
+<li><strong>The PE Accounts Module</strong>
     <ul>
       <li><a href="./accounts_user_type.html">The pe_accounts::user Type</a></li>
       <li><a href="./accounts_class.html">The pe_accounts Class</a></li>
