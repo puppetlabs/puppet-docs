@@ -37,6 +37,18 @@ In this release, we added the ability to verify an SSL certificate for a directo
 
 This permission allows a user in the given user role to tune classification by editing parameters and variables in a class, without giving the user permission to add or delete classes.
 
+### r10k Quick Start Guide
+
+This [guide](./quick_start_r10k.html) is meant to be a simple proof-of-concept primer for getting to know r10k. In this walkthrough, you'll leverage the code you wrote for the [Hello, World! QSG](./quick_start_helloworld.html) to learn how r10k provides the tools help you deploy different versions of code across different environments. 
+
+### Upgrades for Large Environment Installations
+
+Upgrading your large environment installation (LEI) involves a combination of steps that you must perform across your core Puppet Enterprise components, your compile masters, and your ActiveMQ hubs and spokes. The [LEI upgrade doc](./install_lei_upgrade.html) details the steps you’ll perform to upgrade your LEI from PE 3.7.2 to 3.8.0.
+
+### Puppet Agents on Network Devices
+
+Thanks to a number of partnerships, Puppet Enterprise has been adding support for running Puppet agents on network devices. Currently we support the [Cumulus Linux](./install_cumulus.html) and the [Arista EOS](./install_eos.html) platforms. 
+
 ## Deprecations in PE 3.8.0
 
 ### Cloud Provisioner is Deprecated
