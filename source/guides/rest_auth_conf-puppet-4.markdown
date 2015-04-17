@@ -30,13 +30,13 @@ File Format
 The auth.conf file consists of a series of ACLs (Access Control Lists); ACLs should be separated by double newlines. Lines starting with `#` are interpreted as comments.
 
     # This is a comment
-    path /facts
+    path /puppet/v3/facts
     method find, search
     auth yes
     allow custominventory.site.net, devworkstation.site.net
 
     # A more complicated rule
-    path ~ ^/file_(metadata|content)/user_files/
+    path ~ ^/puppet/v3/file_(metadata|content)/user_files/
     auth yes
     allow /^(.+\.)?example.com$/
     allow_ip 192.168.100.0/24
@@ -63,7 +63,7 @@ Lists of values are comma-separated, with an optional space after the comma.
 
 ### Path
 
-An ACL's `path` is interpreted as either a regular expression (with tilde) or a path prefix (no tilde). The root of the path in an ACL is AFTER the environment in an HTTP API call URL; that is, only put the `/{resource}/{key}` portion of the URL in the path. ACLs without a resource path are not permitted.
+An ACL's `path` is interpreted as either a regular expression (with tilde) or a path prefix (no tilde). ACLs without a resource path are not permitted.
 
 ### Environment
 
@@ -124,13 +124,13 @@ An ACL matches a request only if its path, environment, method, and authenticati
 
 If an ACL's `path` does not start with a tilde and a space, it matches the beginning of the resource path; an ACL with the line:
 
-    path /file
+    path /puppet/v3/file
 
-...will match both `/file_metadata` and `/file_content` resources.
+...will match both `/puppet/v3/file_metadata` and `/puppet/v3/file_content` resources.
 
 Regular expression paths don't have to match from the beginning of the resource path, but it's good practice to use positional anchors.
 
-    path ~ ^/catalog/([^/]+)$
+    path ~ ^/puppet/v3/catalog/([^/]+)$
     method find
     allow $1
 
@@ -151,12 +151,12 @@ Default ACLs
 Puppet appends a list of default ACLs to the ACLs read from auth.conf. However, if any custom ACLs have a path identical to that of a default ACL, that default ACL will be omitted when composing the full list of ACLs. **Note that this is not the same criteria for determining whether the two ACLs match the same requests,** as only the paths are compared:
 
     # A custom ACL
-    path /file
+    path /puppet/v3/file
     auth no
     allow magpie.example.com
 
     # This default ACL will not be appended to the rules
-    path /file
+    path /puppet/v3/file
     allow *
 
 These two ACLs match completely disjoint sets of requests (unauthenticated for the custom one, authenticated for the default one), but since the mechanism that appends default ACLs is not examining the authentication/methods/environments of the ACLs, it considers the one to override the other, even though they're effectively unrelated. Puppet agent will break if you only declare the custom ACL, will work if you manually declare the default ACL, and will work if you only declare the custom one but change its path to `/fil`. When in doubt, manually re-declare all default ACLs in your auth.conf file.
@@ -165,48 +165,48 @@ The following is a list of the default ACLs used by Puppet:
 
     # Allow authenticated nodes to retrieve their own catalogs:
 
-    path ~ ^/catalog/([^/]+)$
+    path ~ ^/puppet/v3/catalog/([^/]+)$
     method find
     allow $1
 
     # allow nodes to retrieve their own node definition
 
-    path ~ ^/node/([^/]+)$
+    path ~ ^/puppet/v3/node/([^/]+)$
     method find
     allow $1
 
     # Allow authenticated nodes to access any file services --- in practice, this results in fileserver.conf being consulted:
 
-    path /file
+    path /puppet/v3/file
     allow *
 
     # Allow authenticated nodes to access the certificate revocation list:
 
-    path /certificate_revocation_list/ca
+    path /puppet-ca/v1/certificate_revocation_list/ca
     method find
     allow *
 
     # Allow authenticated nodes to send reports:
 
-    path /report
+    path /puppet/v3/report
     method save
     allow *
 
     # Allow unauthenticated access to certificates:
 
-    path /certificate/ca
+    path /puppet-ca/v1/certificate/ca
     auth no
     method find
     allow *
 
-    path /certificate/
+    path /puppet-ca/v1/certificate/
     auth no
     method find
     allow *
 
     # Allow unauthenticated nodes to submit certificate signing requests:
 
-    path /certificate_request
+    path /puppet-ca/v1/certificate_request
     auth no
     method find, save
     allow *
