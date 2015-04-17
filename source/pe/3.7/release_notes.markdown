@@ -37,6 +37,10 @@ In this release, we added the ability to verify an SSL certificate for a directo
 
 This permission allows a user in the given user role to tune classification by editing parameters and variables in a class, without giving the user permission to add or delete classes.
 
+### Classification Data Migration Tool For Upgrades From PE 3.3
+
+PE 3.8 comes with a migration tool to help you migrate PE 3.3 classification data across to PE 3.8. In PE 3.7, we introduced some major changes to node classification that allow for greater automation. As a result, some PE 3.3 approaches to node classification are no longer supported in PE 3.7 and up. The migration tool helps you migrate PE 3.3 nodes and classification to the PE 3.8 node classifier and provides guidance on resolving issues with node classification data that is not compatible with PE 3.8. For details about the changes to node classification and important instructions on how to migrate your classification data to PE 3.8, see [the migration tool documentation](./install_upgrade_migration_tool.html).
+
 ### r10k Quick Start Guide
 
 This [guide](./quick_start_r10k.html) is meant to be a simple proof-of-concept primer for getting to know r10k. In this walkthrough, you'll leverage the code you wrote for the [Hello, World! QSG](./quick_start_helloworld.html) to learn how r10k provides the tools help you deploy different versions of code across different environments. 
