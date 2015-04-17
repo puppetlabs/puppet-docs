@@ -39,7 +39,7 @@ This permission allows a user in the given user role to tune classification by e
 
 ### Classification Data Migration Tool For Upgrades From PE 3.3
 
-PE 3.8 comes with a migration tool to help you migrate PE 3.3 classification data across to PE 3.8. In PE 3.7, we introduced some major changes to node classification that allow for greater automation. As a result, some PE 3.3 approaches to node classification are no longer supported in PE 3.7 and up. The migration tool helps you migrate PE 3.3 nodes and classification to the PE 3.8 node classifier and provides guidance on resolving issues with node classification data that is not compatible with PE 3.8. For details about the changes to node classification and important instructions on how to migrate your classification data to PE 3.8, see [the migration tool documentation](./install_upgrade_migration_tool.html).
+PE 3.8 comes with a migration tool to help you migrate PE 3.3 classification data across to PE 3.8. In PE 3.7, we introduced a new node classifier that allows for greater automation. As a result, some PE 3.3 approaches to node classification do not fit with the new model introduced in PE 3.7. The migration tool helps you migrate PE 3.3 nodes and classification to the PE 3.8 node classifier and provides guidance on resolving issues with node classification data that is not compatible with PE 3.8. For details about the changes to node classification and important instructions on how to migrate your classification data to PE 3.8, see [the migration tool documentation](./install_upgrade_migration_tool.html).
 
 ### r10k Quick Start Guide
 
