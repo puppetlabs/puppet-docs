@@ -36,7 +36,7 @@ canonical: "/pe/latest/puppet_assign_configurations.html"
 [import]: /puppet/3.8/reference/lang_import.html
 [hiera_config]: /hiera/1/configuring.html
 [hiera_hierarchies]: /hiera/1/hierarchy.html
-[core_facts]: /facter/2.2/core_facts.html
+[core_facts]: /facter/2.3/core_facts.html
 [p3_special_vars]: /puppet/3.8/reference/lang_variables.html#facts-and-built-in-variables
 [custom_facts]: /guides/custom_facts.html
 [hiera_sources]: /hiera/1/data_sources.html

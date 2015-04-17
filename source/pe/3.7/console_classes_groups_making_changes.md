@@ -20,7 +20,7 @@ There are three options for deleting a node:
 </ol>
 </dd>
 <dt>Delete</dt>
-<dd>Removes all reports and information for the node from the console. The node no longer appears in the list of nodes on the <strong>Nodes</strong> page, but it continues to appear in <strong>Matching nodes</strong> until it is <a href="/puppetdb/2.2/maintain_and_tune.html#deactivate-decommissioned-nodes">purged from PuppetDB</a>. The node will reappear as a new node on the <strong>Nodes</strong> page if it submits a new Puppet run report. To delete a node:
+<dd>Removes all reports and information for the node from the console. The node no longer appears in the list of nodes on the <strong>Nodes</strong> page, but it continues to appear in <strong>Matching nodes</strong> until it is <a href="/puppetdb/2.3/maintain_and_tune.html#deactivate-decommissioned-nodes">purged from PuppetDB</a>. The node will reappear as a new node on the <strong>Nodes</strong> page if it submits a new Puppet run report. To delete a node:
 <ol>
 <li>On the <strong>Nodes</strong> page, click the node.</li>
 <li>Click <strong>Delete</strong>.</li>

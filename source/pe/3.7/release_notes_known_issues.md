@@ -337,7 +337,7 @@ In Facter 2.2.0, the `lsbmajdistrelease` fact changed its value from the first t
 
 For example, this fact changed from: `12` to `12.04`
 
-This change affects Ubuntu and Amazon Linux. See the [Facter documentation for more information](./facter/2.2/release_notes.html#significant-changes-to-existing-facts)
+This change affects Ubuntu and Amazon Linux. See the [Facter documentation for more information](./facter/2.3/release_notes.html#significant-changes-to-existing-facts)
 
 ### Enabling NIO and Stomp for ActiveMQ Performance Improvements will Introduce Security Issues
 

@@ -25,7 +25,7 @@ PuppetDB stores up-to-date copies of every node's **facts,** **resource catalogs
 * [See the documentation for PuppetDB's query API here.][puppetdb_api]
 * Since PuppetDB receives all facts for all nodes, you can extend its data with [custom facts](/guides/custom_facts.html) on your Puppet master server.
 
-[puppetdb_api]: /puppetdb/2.2/api/index.html
+[puppetdb_api]: /puppetdb/2.3/api/index.html
 
 > **EXAMPLE:**  Using the old Puppet Inventory Service, a customer automated the validation and reporting of their servers' warranty status.  Their automation regularly retrieved the serial numbers of all servers in the data center, then checked them against the hardware vendor's warranty database using the vendor's public API to determine the warranty status for each.
 >

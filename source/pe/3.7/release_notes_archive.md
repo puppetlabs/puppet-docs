@@ -152,8 +152,8 @@ Puppet 3.7.3 provided Windows users with two useful new facts, as well as a fix 
 
 These are the new facts:
 
-* [`$system32`](/facter/latest/core_facts.html#system32) is the path to the **native** system32 directory, regardless of Ruby and system architecture. This means that inside a 32-bit Puppet/Ruby on Windows x64, this fact typically resolves to `c:\windows\sysnative`. On a 64-bit Puppet/Ruby on Windows x64, this fact typically resolves to `c:\windows\system32`. In other words, this always gets the `system32` directory with binaries that are the same bitness as the current OS.
-* [`$rubyplatform`](/facter/latest/core_facts.html#rubyplatform) reports the value of Ruby's `RUBY_PLATFORM` constant.
+* [`$system32`](/facter/2.3/core_facts.html#system32) is the path to the **native** system32 directory, regardless of Ruby and system architecture. This means that inside a 32-bit Puppet/Ruby on Windows x64, this fact typically resolves to `c:\windows\sysnative`. On a 64-bit Puppet/Ruby on Windows x64, this fact typically resolves to `c:\windows\system32`. In other words, this always gets the `system32` directory with binaries that are the same bitness as the current OS.
+* [`$rubyplatform`](/facter/2.3/core_facts.html#rubyplatform) reports the value of Ruby's `RUBY_PLATFORM` constant.
 
 For details on these improvements, see the [Puppet 3.7.3 Release Notes](/puppet/3.7/reference/release_notes.html#puppet-373).
 

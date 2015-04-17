@@ -8,7 +8,7 @@ canonical: "/pe/latest/orchestration_invoke_cli.html"
 [master_server]: ./install_basic.html#the-puppet-master
 [install_certname]: ./install_basic.html#puppet-agent-questions
 [console_inventory]: ./console_reports.html#viewing-inventory-data
-[core_facts]: /facter/1.7/core_facts.html
+[core_facts]: /facter/2.3/core_facts.html
 [nav_live]: ./console_navigating_live_mgmt.html
 
 About This Page

@@ -83,7 +83,7 @@ You can also filter by Puppet class or by the value of any fact on your nodes. C
 >
 > ![The common fact names popover][live_nav_factlist]
 
-You can browse the [inventory data](./console_reports.html#viewing-inventory-data) in the console's node views to find fact values to search with; this can help when looking for nodes similar to a specific node. You can also check the [list of core facts](/facter/1.7/core_facts.html) for valid fact names.
+You can browse the [inventory data](./console_reports.html#viewing-inventory-data) in the console's node views to find fact values to search with; this can help when looking for nodes similar to a specific node. You can also check the [list of core facts](/facter/2.3/core_facts.html) for valid fact names.
 
 Filtering by Puppet class can be the most powerful filtering tool on this page, but it requires you to have already assigned classes to your nodes. See the chapter on [grouping and classifying nodes](./console_classes_groups.html) for more details.
 

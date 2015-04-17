@@ -85,7 +85,7 @@ To apply a node group’s environment, classes, parameters, and variables to you
 
 
 #### Adding Nodes Dynamically
-Rules are by far the most powerful and scalable way to include nodes in a node group. You can add many member nodes at once by creating rules that match [node facts](/facter/2.2/core_facts.html).
+Rules are by far the most powerful and scalable way to include nodes in a node group. You can add many member nodes at once by creating rules that match [node facts](/facter/2.3/core_facts.html).
 When nodes no longer match the rules of a group, PE  automatically removes them from the list of member nodes, and the classification settings specified in the group are no longer applied to the node.
 
 > **Note:** Structured facts (arrays and hash map values) are not supported when using the console to enter facts.
@@ -96,7 +96,7 @@ When nodes no longer match the rules of a group, PE  automatically removes them 
 
 2. Select a **Fact**.
 
-    When you click in the **Fact** field, a list of known facts appears. These are the facts that are stored in [PuppetDB](/puppetdb/2.2/#what-data). They include things like the operating system (`operatingsystem`), the amount of memory (`memorytotal`), and the primary IP address (`ipaddress`).
+    When you click in the **Fact** field, a list of known facts appears. These are the facts that are stored in [PuppetDB](/puppetdb/2.3/#what-data). They include things like the operating system (`operatingsystem`), the amount of memory (`memorytotal`), and the primary IP address (`ipaddress`).
 
     > **Tip:** The list of facts uses autosuggest with fuzzy matching. As you type a search string in **Fact**, the list filters to show facts that contain the search string anywhere within the fact name. In other words, if you are looking for `uptime_days`, you can simply type “time.”
 
