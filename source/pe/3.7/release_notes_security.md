@@ -17,6 +17,19 @@ For more information about this release, also see the [Known Issues](./release_n
 
 Puppet Enterprise 3.8 contains a number of performance and documentation improvements, in addition to the fixes that are highlighted below.
 
+#### Static Defaults were Set for TK-Jetty `max threads`
+
+Previously, in PE, tk-jetty `max threads` were set to a static default of 100 threads. We determined this was too low for large environments with high CPU counts. We no longer set a default for `max threads`, and this setting will be undefined and unmanaged unless the user specifies a value. 
+
+#### Fix for Tuning Classifier Synchronization Period
+
+This fix raises the node classifier's default synchronization period from 180 to 600 seconds. It also introduces a [tunable setting](./console_config.html#tuning-the-classifier-synchronization-period) via the PE console. 
+
+#### Setting `https_proxy` Prevented Service Checks during Installation/Upgrade with `curl`
+
+When users ran the PE installer/upgrader behind a proxy, PE could not properly `curl` PE services during installation/upgrade. This fix corrects the issue by unsetting `https_proxy` before performing `curl` commands to PE services during installs/upgrades. 
+ 
+
 #### Node Classifier Ignores Facts That Are False
 
 When creating node matching rules in PE 3.7, the node classifier ignored all facts with a boolean value of `false`. For example, if you created a rule like `is_virtual` `is` `false`, the rule would never match a node. This issue has been resolved in PE 3.8.
