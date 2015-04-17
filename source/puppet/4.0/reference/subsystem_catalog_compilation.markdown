@@ -16,10 +16,10 @@ canonical: "/puppet/latest/reference/subsystem_catalog_compilation.html"
 [functions]: ./lang_functions.html
 [main manifest]: ./dirs_manifest.html
 [modules]: ./modules_fundamentals.html
-[node terminus]: /references/3.7.latest/configuration.html#nodeterminus
-[plain_node]: /references/3.7.latest/indirection.html#plain-terminus
-[exec_node]: /references/3.7.latest/indirection.html#exec-terminus
-[ldap_node]: /references/3.7.latest/indirection.html#ldap-terminus
+[node terminus]: /references/4.0.latest/configuration.html#nodeterminus
+[plain_node]: /references/4.0.latest/indirection.html#plain-terminus
+[exec_node]: /references/4.0.latest/indirection.html#exec-terminus
+[ldap_node]: /references/4.0.latest/indirection.html#ldap-terminus
 [ldap_guide]: /guides/ldap_nodes.html
 [trusted_on]: ./config_important_settings.html#getting-new-features-early
 [facts_builtin]: ./lang_facts_and_builtin_vars.html
@@ -70,10 +70,10 @@ All of these sources are used by both agent/master deployments and by stand-alon
 
 When agents request a catalog, they send four pieces of information to the Puppet master:
 
-* Their **name,** which is embedded in the request URL. (e.g. `/production/catalog/web01.example.com`) This is almost always the same as the [certname][].
+* Their **name,** which is embedded in the request URL. (e.g. `/puppet/v3/catalog/web01.example.com?environment=production`) This is almost always the same as the [certname][].
 * Their **certificate,** which contains their [certname][] and possibly some [extra information][cert_extensions]. (This is the one item not used by Puppet apply.)
 * Their [**facts.**][facts]
-* Their requested [environment][], which is embedded in the request URL. (e.g. `/production/catalog/web01.example.com`) Before requesting a catalog, agents will ask the master which environment they should be in, but they will use the environment in their own config file if the master doesn't have an opinion.
+* Their requested [environment][], which is embedded in the request URL. (e.g. `/puppet/v3/catalog/web01.example.com?environment=production`) Before requesting a catalog, agents will ask the master which environment they should be in, but they will use the environment in their own config file if the master doesn't have an opinion.
 
 
 ### External Data
