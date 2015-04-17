@@ -19,7 +19,7 @@ Puppet Enterprise 3.8 contains a number of performance and documentation improve
 
 #### Static Defaults were Set for TK-Jetty `max threads`
 
-Previously, in PE, tk-jetty `max threads` were set to a static default of 100 threads. We determined this was too low for large environments with high CPU counts. We no longer set a default for `max threads`, and this setting will be undefined and unmanaged unless the user specifies a value. 
+Previously, in PE, tk-jetty `max threads` were set to a static default of 100 threads. We determined this was too low for large environments with high CPU counts. We no longer set a default for `max threads`, and this setting will be undefined and unmanaged unless the user specifies a value. You can tune `max threads` for the [PE console/console API](./console_config.html#tuning-max-threads-on-the-pe-console-and-console-api) or [Puppet Server](./config_puppetserver.html#tuning-max-threads-on-puppet-server) as needed using Hiera. 
 
 #### Fix for Tuning Classifier Synchronization Period
 
@@ -27,7 +27,7 @@ This fix raises the node classifier's default synchronization period from 180 to
 
 #### Setting `https_proxy` Prevented Service Checks during Installation/Upgrade with `curl`
 
-When users ran the PE installer/upgrader behind a proxy, PE could not properly `curl` PE services during installation/upgrade. This fix corrects the issue by unsetting `https_proxy` before performing `curl` commands to PE services during installs/upgrades. 
+When users ran the PE installer/upgrader behind a proxy, PE could not properly `curl` PE services during installation/upgrade. This fix corrects the issue by unsetting `HTTPS_PROXY`, `https_proxy`, `HTTP_PROXY`, and `http_proxy` before performing `curl` commands to PE services during installs/upgrades. 
  
 
 #### Node Classifier Ignores Facts That Are False
