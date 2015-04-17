@@ -18,6 +18,7 @@ canonical: "/puppet/latest/reference/future_lang_scope.html"
 [variables]: ./future_lang_variables.html
 [namespace]: ./future_lang_namespaces.html
 [diagram]: ./images/scope-euler-diagram.png
+[lambda]: ./future_lang_lambdas.html
 
 Scope Basics
 -----
@@ -92,7 +93,7 @@ In this example, node scope can access top scope variables, but not vice-versa.
 
 ### Local Scopes
 
-Code inside a [class definition][class] or [defined type][definedtype] exists in a **local scope.**
+Code inside a [class definition][class], [defined type][definedtype], or [lambda][] exists in a **local scope.**
 
 Variables and defaults declared in a local scope are only available in **that scope and its children.** There are two different sets of rules for when scopes are considered related; see "[scope lookup rules](#scope-lookup-rules)" below.
 
@@ -217,13 +218,17 @@ Scope Lookup Rules
 
 The scope lookup rules determine when a local scope becomes the parent of another local scope.
 
-There are two different sets of scope lookup rules: **static scope** and **dynamic scope.** This version of Puppet uses static scope for variables and dynamic scope for resource defaults.
+There are two different sets of scope lookup rules: **static scope** and **dynamic scope.** This version of Puppet uses:
 
-> **Note:** To help users prepare, Puppet 2.7 will print warnings to its log file whenever a variable's value would be different under static scope in Puppet 3. More details about the elimination of dynamic scope can be found [here][scopedoc].
+* Static scope for [variables][]
+* Dynamic scope for [resource defaults][resourcedefaults]
 
 ### Static Scope
 
-In **static scope,** parent scopes are **only** assigned by [class inheritance][inheritance] (using the `inherits` keyword). Any **derived** class receives the contents of its base class in addition to the contents of node and top scope.
+In **static scope,** parent scopes are only assigned in the following ways:
+
+* Classes can receive parent scopes by [class inheritance][inheritance], using the `inherits` keyword. Any derived class receives the contents of its base class in addition to the contents of node and top scope.
+* A [lambda][]'s parent scope is the local scope in which the lambda is written. It can access variables in that scope by their short names.
 
 **All other** local scopes have no parents --- they only receive their own contents, and the contents of node scope (if applicable) and top scope.
 
