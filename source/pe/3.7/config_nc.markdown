@@ -16,7 +16,6 @@ To change the default number of days:
 3. In the **PE Console** group page, click the **Classes** tab.
 4. Locate the `puppet_enterprise::profile::console` class, and from the Parameter drop-down list, select `classifier_prune_threshold`.
 5. In the **Value** field, enter the number of days that you want to use as the default number.
-6. To make the change take affect, run Puppet (`puppet agent -t`).
-7. Restart pe-console-services (`sudo service pe-console-services restart`).
+6. To make the change take affect, run Puppet (`puppet agent -t`). Running Puppet will restart pe-console-services.
 
 **Note:** If you set the `classifier_prune_threshold` value to 0, the node classifier service will never prune the database.
