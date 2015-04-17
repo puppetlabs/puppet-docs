@@ -60,6 +60,10 @@ In PE 3.7, an error would be returned when importing a large number of groups (f
 
 When you created a new node group in the PE 3.7 console, then immediately created another new node group and tried to select the first node group as the parent, the first node group did not appear in the list of selectable names in the **Parent name** drop-down list. The first node group would appear if you reloaded the page. This issues has been fixed in PE 3.8.
 
+#### Can Only Accept Or Reject One Node at a Time
+
+In PE 3.7, if you had multiple node requests pending, you could accept/reject one node, but if you then tried to accept/reject subsequent nodes a 403 Forbidden error was returned. This meant that if you wanted to accept/reject node requests one at a time, you had to refresh the page after each time you accepted/rejected a node request. In PE 3.8, this issue has been fixed and you will no longer receive a 403 Forbidden error.
+
 ###  New PE 3.7.x MCO Servers Were Not Connecting With Older MCollective Agents (posted 12/17/14)
 
 Some customers experienced problems connecting PE 3.7 MCO clients, such as Live Management, with older MCO servers (Puppet agents). Specifically, any MCO servers running on PE 3.3.2 agents and older. To fix this problem, we recommend upgrading your PE agents to 3.7.x so you can continue using activemq heartbeats.
