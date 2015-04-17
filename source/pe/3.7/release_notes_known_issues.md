@@ -231,6 +231,10 @@ In the console, parent group rules don't show, which makes it easier to create a
 
 Matching nodes aren’t showing up.
 
+### Newly Created Node Group Does Not Appear in List of Parents
+
+When you create a new node group in the console, then immediately create another new node group and try to select the first node group as the parent, the first node group does not appear in the list of selectable names in the **Parent name** drop-down list. The first node group will appear if you reload the page. This issues has been fixed in PE 3.8.
+ 
 ### Important Factors in Connecting to an External Directory Service
 
 The following requirement affects how you connect your existing LDAP to PE:
