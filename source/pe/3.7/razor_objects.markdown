@@ -149,8 +149,7 @@ Policies contain tags, which are named rule-sets that identify which nodes shoul
 
 A node boots into the microkernel and sends facts to the Razor server. At that point, Razor walks through the policy list in order looking for an eligible policy. If it finds one, it binds to it. If it doesn't find one, the node continues to send facts to the microkernel until it does bind. Binding to a policy essentially means that the node will be provisioned according to the policy's directions.
 
->**Security Note:** It's important to understand the potential repercussions of policy binding. If you don't manage policies closely, you can inadvertently enable Razor to match with and provision machines that you don't want to provision. In the case of existing servers, this could lead to catastrophic data loss.
->One of
+>**Security Note:** It's important to understand the potential repercussions of policy binding. If you don't manage policies closely, you can inadvertently enable Razor to match with and provision machines that you don't want to provision. In the case of existing servers, this could lead to catastrophic data loss. See [Provisioning Around Existing Machines](./razor_brownfield.html) for strategies to avoid overwriting existing machines.
 
 Policies are stored in order in Razor. Each policy has several reasons why it might be ineligible for a node to bind to it:
 
@@ -216,4 +215,7 @@ Operator                       |Returns                                         
 
 
 
->\* **Note:**  The `fact` and `metadata` operators take an optional second argument. If `arg2` is passed, it is returned if the fact/metadata entry  `arg1` is not found. If the fact/metadata entry `arg1` is not found and no second argument is given, a `RuleEvaluationError` is raised.
+>**Note:**  The `fact` and `metadata` operators take an optional second argument. If `arg2` is passed, it is returned if the fact/metadata entry  `arg1` is not found. If the fact/metadata entry `arg1` is not found and no second argument is given, a `RuleEvaluationError` is raised.
+
+## Hooks
+

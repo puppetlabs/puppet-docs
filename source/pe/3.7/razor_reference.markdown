@@ -356,6 +356,64 @@ To delete a single hook, provide its name:
 
 ## Node Commands
 
+### Register a Node (`register-node`)
+
+Register a node with Razor before it is discovered, and potentially provisioned.
+
+In order to make brownfield deployments of Razor easier and safer, register your nodes explicitly. The `register-node` command allows you to perform the same
+registration that would happen when a new node checks in, but ahead of time. The `register-node` command uses the `installed` value to indicate that a node has already been installed, which signals to Razor that the node should be ignored.
+
+In order for this command to be effective, `hw_info` must contain enough information
+that the node can successfully be matched during the iPXE boot phase.
+If the node matches an existing node, in keeping with the overall policy of
+commands declaring desired state, the node's `installed` field will be updated to
+match the value in this command.
+
+The final state is that a node with the supplied hardware information, and the
+desired installed state, will be present in the database, regardless of whether it
+existed beforehand or not.
+
+`register-nodes` uses the following values:
+
+
+* `hw_info`, required, provides the hardware information for the node.  This is used to match the node on first boot with the record in the database. The order of MAC address assignment in this data is not significant, as a node with reordered MAC addresses will be treated as the same node.
+* `serial` of type string, provides the DMI serial number of the node.
+* `asset` of type string, provides the DMI asset tag of the node.
+* `uuid` of type string provides the DMI UUID of the node.
+
+**API Example**
+
+Register a machine before you boot it, and note that it already has an OS
+installed, so it should not be subject to policy-based reinstallation:
+
+    {
+      "hw_info": {
+        "net0":   "78:31:c1:be:c8:00",
+        "net1":   "72:00:01:f2:13:f0",
+        "net2":   "72:00:01:f2:13:f1",
+        "serial": "xxxxxxxxxxx",
+        "asset":  "Asset-1234567890",
+        "uuid":   "Not Settable"
+      },
+      "installed": true
+    }
+
+**CLI Example**
+
+Register a machine before you boot it, and note that it already has an OS
+installed, so should not be subject to policy-based reinstallation:
+
+    razor register-node --hw-info net0=78:31:c1:be:c8:00 \\
+        --hw-info net1=72:00:01:f2:13:f0 \\
+        --hw-info net2=72:00:01:f2:13:f1 \\
+        --hw-info serial=xxxxxxxxxxx \\
+        --hw-info asset=Asset-1234567890 \\
+        --hw-info uuid="Not Settable" \\
+        --installed
+
+
+
+
 ### Delete node (`delete-node`)
 
 To remove a single node, provide its name:
