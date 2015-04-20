@@ -75,7 +75,7 @@ Generally, the broker consists of a shell script template and a description of a
 
 For the Puppet Enterprise broker type, this information consists of the node's server, and the version of PE that a node should use. The PE version defaults to "latest" unless you stipulate a different version.
 
-You create brokers with the `create-broker` command. The following example sets up a simple no-op broker that does nothing:
+You create brokers with the `create-broker` command. The following example sets up a simple noop broker that does nothing:
 
 `razor create-broker --name=noop --broker_type=noop`.
 
@@ -83,7 +83,7 @@ And this command sets up the PE broker, which requires the server parameter.
 
 	razor create-broker --name foo --broker_type puppet-pe --configuration '{ "server": "puppet.example.com" }'
 
-Razor ships with some stock broker types for your use:  puppet-pe, noop, and puppet.
+Razor ships with some stock broker types for your use:  puppet-pe, noop, and puppet. In addition, you can create your own. See [Writing Broker Types](./razor_brokertypes.html) for more information.
 
 ## Tasks
 

@@ -10,7 +10,7 @@ Razor is a powerful tool created to automatically discover bare-metal hardware a
 
 The following sections describe the environment necessary for running Razor. This set up   uses dnsmasq; however, you can use any DHCP and TFTP service with Razor.
 
->**Warning**: We recommend first testing Razor on a completely isolated test environment because running a second DHCP server on your company's network could bring down the network. In addition, running a second DHCP server that will boot into the Razor microkernel and register with the server has a bigger risk. In such a case, if someone has established a policy that node matches, a simple reboot could cause Razor to replace a server with a fresh OS install.
+>**Warning**: We recommend first testing Razor on a completely isolated test environment because running a second DHCP server on your company's network could bring down the network. In addition, running a second DHCP server that will boot into the Razor microkernel and register with the server has a bigger risk. In such a case, if someone has established a policy that node matches, a simple reboot could cause Razor to replace a server with a fresh OS install. See [these strategies for provisioning in a brownfield environment](./razor_brownfield.html) for more information.
 
 ###Before You Begin
 
