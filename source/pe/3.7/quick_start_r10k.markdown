@@ -22,7 +22,7 @@ This guide is meant to be a simple proof-of-concept primer for getting to know r
 >- To follow this guide, we assume the following machines are available:
 >
 >   - A Puppet master running on a monolithic or split installation of PE 3.8 (e.g., `master.example.com`). Note that this guide uses the PE console.
->   - An admin machine for writing Puppet code and versioning it with Git (e.g., `admin.example.com`). Note that this machine does not have to have PE installed on it, but it might be helpful if you want to run the Puppet parser to evaluate the syntax of your Puppet code. 
+>   - An admin machine for writing Puppet code and versioning it with Git (e.g., `admin.example.com`).  
 >   - A Puppet agent node (e.g., `agent.example.com`) that can communicate with your 3.8 master. You'll need to ensure that time is synced between your Puppet agent node and your Puppet master, and that these machines can reach each other by name. This can be done with a local DNS server or by editing the `/etc/hosts` file on each machine.
 >
 >- Git should be installed on the admin machine and the Puppet master server.  
@@ -65,7 +65,7 @@ Unless otherwise indicated, you'll perform the steps in this section on your adm
           :git => 'https://github.com/<YOUR GITHUB ORGANIZATION or GITSERVER>/puppet-helloworld.git', 
           :ref => '<COMMIT ID YOU COPIED IN STEP 3>'
           
-    >**Note**: Be sure you avoid any syntax errors. If you've installed PE on the admin machine, you can run `puppet parser validate Puppetfile` to check for accuracy.
+    >**Note**: Be sure you avoid any syntax errors when writing the code. 
       
 7. Save the file.
 8. Still in the `puppet-control` directory, run `mkdir manifests`.
@@ -112,7 +112,7 @@ You'll perform the steps in this section on your Puppet master.
           r10k_basedir => '/etc/puppetlabs/puppet/environments',
         }
         
-   >**Note**: Be sure you avoid any syntax errors when writing the code. If you've installed PE on the admin machine, you can run `puppet parser validate Puppetfile` to check for accuracy.
+   >**Note**: Be sure you avoid any syntax errors when writing the code. 
 
 3. Run `puppet apply <FULL PATH to r10k.pp>`.
 
