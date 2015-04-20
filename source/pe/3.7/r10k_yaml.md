@@ -155,5 +155,5 @@ If you were using directory environments without r10k, you must make sure that a
 
 ###zack-r10k module
 
-Some Puppet users configure r10k.yaml with the help of the [zack-r10k](https://forge.puppetlabs.com/zack/r10k) module. If you choose to use the zack-r10k module, we suggest using only its configuration functions.
+Some Puppet users configure r10k.yaml with the help of the [zack-r10k](https://forge.puppetlabs.com/zack/r10k) module. If you choose to use the zack-r10k module, we suggest using only its configuration functions. Note that this module does not support SLES.
 

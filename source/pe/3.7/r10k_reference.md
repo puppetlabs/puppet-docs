@@ -10,7 +10,7 @@ description: "Subcommand reference for r10k, a Puppet code management tool."
 [running]: ./r10k_run.html
 [r10kindex]: ./r10k.md
 
-* [See "Getting To Know r10k"][index] for basic information about r10k.
+* [See "Getting To Know r10k"][r10kindex] for basic information about r10k.
 * [See "Setting Up r10k"][setup] to get r10k up and running.
 * [See "Configuring Directory Environments in r10k"][r10kyaml] to learn how to set up directory environments in r10k.yaml.
 * [See "Managing Modules with the Puppetfile"][puppetfile] to learn how to set up your r10k Puppetfile.
@@ -28,12 +28,12 @@ The following subcommands are available with `r10k`:
 
 Each subcommand allows the following options:
 
-* **--color**: Enable colored log messages.
-* **-h --help**: Show help for this command.
-* **-t --trace**: Display stack traces on application crash.
-* **-v --verbose**: Set log verbosity. Valid values: fatal, error, warn, notice, info, debug, debug1, debug2.
+* `--color`: Enable colored log messages.
+* `-h`, `--help`: Show help for this command.
+* `-t`, `--trace`: Display stack traces on application crash.
+* `-v`, `--verbose`: Set log verbosity. Valid values: fatal, error, warn, notice, info, debug, debug1, debug2.
  
-    
+ 
 ###`deploy`
 
 The `r10k deploy` command accepts the following subcommands:
