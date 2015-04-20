@@ -5,7 +5,7 @@ canonical: "/es/index.html"
 toc: false
 ---
 
-Bienvenidos al sitio de documentación de Puppet Labs. Es posible [bajar la versión actual de todo este sitio](https://docs.puppetlabs.com/puppetdocs-latest.tar.gz) como archivo zipeado; descomprímelo y sigue las instrucciones del archivo README.txt para ver el sitio offline.
+Bienvenidos al sitio de documentación de Puppet Labs. Es posible [bajar la versión actual de todo este sitio](https://docs.puppetlabs.com/puppetdocs-latest.tar.gz) como archivo comprimido; descomprímelo y sigue las instrucciones del archivo README.txt para ver el sitio offline.
 
 ##Contribuir
 Este documento ha sido contribuido amablemente por la comunidad de usuarios de Puppet. En particular nos gustaría agradecer especialente a [Edrans](http://www.edrans.com), partner de Puppet basado en Argentina, por su generosa contribución a la traducción de la documentación de Puppet Labs al Español.
