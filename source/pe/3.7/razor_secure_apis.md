@@ -70,3 +70,8 @@ To connect to this new server configuration requires a few changes:
 
 After these changes, the `razor` command will communicate with the Razor server
 over TLS/SSL.
+
+* * *
+
+
+[Next: Razor Objects for Provisioning](./razor_objects.html)

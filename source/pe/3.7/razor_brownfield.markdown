@@ -1,6 +1,6 @@
 ---
 layout: default
-title: " PE 3.8 » Razor » Provisioning in a Brownfield Environment"
+title: " PE 3.8 » Razor » Safety Tips for Provisioning in a Brownfield Environment"
 subtitle: "Provisioning in a Brownfield Environment"
 canonical: "/pe/latest/razor_brownfield.html"
 
@@ -32,7 +32,10 @@ It's also possible for a node to be registered via the microkernel, but still si
 
 Policies have a `max count` field that you can set to the number of nodes you want the policy to bind to. Limiting this number helps you keep tighter control over the nodes on your network that might policy match and be provisioned.
 
+* * *
 
+
+[Next: Provision Nodes - How To](./razor_using.html)
 
 
 

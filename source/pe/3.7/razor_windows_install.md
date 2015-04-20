@@ -1,6 +1,6 @@
 ---
 layout: default
-title: " PE 3.8 » Razor » Setting Up and Installing Windows "
+title: " PE 3.8 » Razor » Setting Up and Installing Windows on Nodes"
 subtitle: "Set Up Windows Installations"
 canonical: "/pe/latest/razor_windows_install.html"
 ---
@@ -75,3 +75,8 @@ Finally, [create your policies](./razor_using.html#create-policies) as normal.
 # Using Your Windows Installation
 
 Once you have policies set up, your Windows installation should just work if your policy binds a node.  If provisioning fails, you'll get a message at the command prompt.
+
+* * *
+
+
+[Next: Razor Command Reference](./razor_reference.html)

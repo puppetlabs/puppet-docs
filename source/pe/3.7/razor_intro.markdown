@@ -57,17 +57,21 @@ The node is now installed and managed by Puppet Enterprise.
 
 Provisioning with Razor generally entails these steps:
 
-+ [Set up a Razor environment for Razor](./razor_prereqs.html)
++ [Set up a Razor environment](./razor_prereqs.html)
 + [Install and set up a Razor server and Razor client](./razor_install.html)
-+ [Create Razor objects and provision machines](./razor_using.html)
++ [Learn About Razor Objects](./razor_objects.html)
++ [Create Razor objects and provision a node](./razor_using.html)
 
-See [Setup Information and Known Issues](./razor_knownissues.html) for specific information about this release.
-
-
+The Razor documentation also covers these topics:
++ [Safety Tips for Provisioning in a Brownfield Environment](./razor_brownfield.html)
++ [Make Razor API Calls Secure](./razor_secure_apis.html)
++ [Setting Up and Installing Windows on Nodes](./razor_windows.html)
++ [Writing Broker Types](./razor_brokertypes.html)
++ [Razor Command Reference](./razor_reference.html)
 
 
 
  * * *
 
 
-[Next: Set Up a Virtual Environment for Razor](./razor_prereqs.html)
+[Next: Set Up a Razor Environment](./razor_prereqs.html)

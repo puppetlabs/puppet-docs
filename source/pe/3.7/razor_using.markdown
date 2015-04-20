@@ -136,6 +136,6 @@ The policy is what ties all the Razor objects together and provisions a node whe
 * * *
 
 
-- [Next: Razor Command Reference](./razor_reference.html)
+- [Next: Writing Broker Types](./razor_brokertypes.html)
 
 
