@@ -54,7 +54,7 @@ In PE 3.8, this has been fixed so that the page renders properly. In the PE 3.8 
 
 #### Node Classifier Returns Activity Service Error When Importing a Large Number of groups
 
-In PE 3.7, an error would be returned when importing a large number of groups (for example, when upgrading a large environment to PE 3.7). This error was returned even if the import was successful. In PE 3.8, this error no longer occurs. 
+In PE 3.7, an error indicating that the "index row size exceeds maximum" was returned when importing a large number of groups (for example, when upgrading a large environment to PE 3.7). This error was returned even if the import was successful. In PE 3.8, this error no longer occurs. 
 
 #### Newly Created Node Group Does Not Appear in List of Parents
 
