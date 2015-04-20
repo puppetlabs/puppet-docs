@@ -19,7 +19,35 @@ Puppet Enterprise 3.8 contains a number of performance and documentation improve
 
 #### Static Defaults were Set for TK-Jetty `max threads`
 
-Previously, in PE, tk-jetty `max threads` were set to a static default of 100 threads. We determined this was too low for large environments with high CPU counts. We no longer set a default for `max threads`, and this setting will be undefined and unmanaged unless the user specifies a value. You can tune `max threads` for the [PE console/console API](./console_config.html#tuning-max-threads-on-the-pe-console-and-console-api) or [Puppet Server](./config_puppetserver.html#tuning-max-threads-on-puppet-server) as needed using Hiera. 
+Previously, in PE, tk-jetty `max threads` were set to a static default of 100 threads. We determined this was too low for large environments with high CPU counts. We no longer set a default for `max threads`, and this setting will be undefined and unmanaged unless the user specifies a value. You can tune `max threads` for the [PE console/console API](./console_config.html#tuning-max-threads-on-the-pe-console-and-console-api) or [Puppet Server](./config_puppetserver.html#tuning-max-threads-on-puppet-server) as needed using Hiera.
+
+#### Puppet Enterprise Upgrader Failed when Importing Large Number of Nodes
+
+This PE release corrects an issue in which the upgrader would fail when importing a large number of nodes (250 or more) into the new node classifier. 
+
+#### Custom Console Cert Functionality was Broken in PE 3.7.x
+
+In PE 3.7.x, users could not set custom certificates for the PE console. This release corrects that issue, but if you're upgrading from PE 3.3.2, note that cert functionality has changed in PE 3.8. If needed, refer to [Configuring the Puppet Enterprise Console to Use a Custom SSL Certificate](./custom_console_cert.html) for instructions on re-configuring your custom console certificate.
+
+#### ActiveMQ Spokes Can Be Managed from Profile Level
+
+ActiveMQ spokes (brokers) can now have their collectives set and managed in PE from the profile level, using the `excluded_collectives` and `included_collectives` parameters in the `puppet_enterprise::profile::amq::broker` class. This functionality was not unavailable from the profile level in PE 3.7.x. 
+
+#### Agent Installation No Longer Sets `environment = production` 
+
+This release corrects an issue in which agents' environments were set to `production` during the installation process (in `puppet.conf`). This behavior was undesirable if users set agents' environments with the node classifier. 
+
+#### ActiveMQ/MCollective Network Connections Failed when Sending Commands to Targeted Spokes
+
+Due to a misconfigured setting in PE (`puppet_enterprise::amq::config::network_connector`), ActiveMQ/MCollective network connections failed on occasion. Specifically, the connections failed when a ActiveMQ hub was sending commands to targeted spokes nodes in LEI installations. This is fixed in PE 3.8. 
+
+#### Agent Server Setting Moved to `[main]` in `puppet.conf`
+
+The agent server setting is now set in the `[main]` section of `puppet.conf`; in previous versions, it was set in the `[agent]` section. This fix makes it possible to use the agent installation script to install compile masters and ActiveMQ hubs and spokes in large environment installations. 
+
+#### Changes to ActiveMQ Heap Size did not Restart `pe-activemq` Service
+
+In PE 3.7.x, when users changed the ActiveMQ heap size, the change did not trigger the `pe-activemq` service to restart, and thus PE did not pick up the changes. PE 3.8 corrects this issue, and the service is now restarted when changes are made. 
 
 #### Fix for Tuning Classifier Synchronization Period
 
@@ -29,7 +57,6 @@ This fix raises the node classifier's default synchronization period from 180 to
 
 When users ran the PE installer/upgrader behind a proxy, PE could not properly `curl` PE services during installation/upgrade. This fix corrects the issue by unsetting `HTTPS_PROXY`, `https_proxy`, `HTTP_PROXY`, and `http_proxy` before performing `curl` commands to PE services during installs/upgrades. 
  
-
 #### Node Classifier Ignores Facts That Are False
 
 When creating node matching rules in PE 3.7, the node classifier ignored all facts with a boolean value of `false`. For example, if you created a rule like `is_virtual` `is` `false`, the rule would never match a node. This issue has been resolved in PE 3.8.
