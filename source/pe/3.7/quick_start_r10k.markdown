@@ -55,7 +55,7 @@ Unless otherwise indicated, you'll perform the steps in this section on your adm
  1. If you have not already done so, create a working directory and clone the **puppet-control** and **puppet-helloworld** repos into it. 
  2. Change into the `puppet-helloworld` directory with `cd puppet-helloworld`.
  3. Gather the most recent good commit ID, which is an sha-1 hash that is unique for every Git commit. Run `git rev-parse HEAD` and copy the ID.
- 4. Change into the `puppet-control` directory with `cd puppet-control`.
+ 4. Navigate to the `puppet-control` directory.
  5. In the `puppet-control` directory, create a file called `Puppetfile` (e.g., run `touch Puppetfile`.) (Note that this file **must** have a capital "P"). 
  6. Open `Puppetfile` and edit it so that it contains the following Puppet code:
  
@@ -69,7 +69,7 @@ Unless otherwise indicated, you'll perform the steps in this section on your adm
       
 7. Save the file.
 8. Still in the `puppet-control` directory, run `mkdir manifests`.
-9. **From the Puppet master**, copy `/etc/puppetlabs/puppet/environment/production/manifests/site.pp` and move it into the `manifests` directory created in Step 8 (e.g., run `scp /etc/puppetlabs/puppet/environments/production/manifests/site.pp user@admin.example.com:~/wip/puppet-control/manifests/`).
+9. **From the Puppet master**, copy `/etc/puppetlabs/puppet/environments/production/manifests/site.pp` and move it into the `manifests` directory created in Step 8 (e.g., run `scp /etc/puppetlabs/puppet/environments/production/manifests/site.pp user@admin.example.com:~/wip/puppet-control/manifests/`).
 10. From the root of `puppet-control` create a file called `environment.conf` (e.g. `touch environment.conf`). 
 11. Open `environment.conf` and edit it so that it contains the following Puppet code:
 
@@ -131,7 +131,7 @@ You'll perform the steps in this section on your Puppet master.
 
    This run of r10k will contact the **puppet-control** repo, and will, because of the contents of `Puppetfile`, pull the down the **puppet-helloworld** module that is on the `production` branch.
 
-5. After the run completes, navigate to `/etc/puppetlabs/puppet/environment/` to see the `production` environment and that it contains the **puppet-helloworld** module.
+5. After the run completes, navigate to `/etc/puppetlabs/puppet/environments/` to see the `production` environment and that it contains the **puppet-helloworld** module.
 
 6. Apply the **puppet-helloworld** module to `production` environment. Run `puppet apply -e 'include helloworld' --environment production`.
 
@@ -171,7 +171,7 @@ You'll perform the steps in this section on your Puppet master.
 
    This run of r10k will contact the **puppet-control** repo, and will, because of the contents of `Puppetfile` on each branch, pull the down the **puppet-helloworld** module for the `production` and `test_message` branches.
    
-2. After the Puppet run completes, navigate to `/etc/puppetlabs/puppet/environment/` to see the `production` and `test_message` environments, and that they both contain the **puppet-helloworld** module. (Navigate into the `manifests` directories and note the differences between the `motd.pp` files.)
+2. After the Puppet run completes, navigate to `/etc/puppetlabs/puppet/environments/` to see the `production` and `test_message` environments, and that they both contain the **puppet-helloworld** module. (Navigate into the `manifests` directories and note the differences between the `motd.pp` files.)
 
 3. Apply the **puppet-helloworld** module to the `test_message` environment. Run `puppet apply -e 'include helloworld' --environment test_message`.
 
