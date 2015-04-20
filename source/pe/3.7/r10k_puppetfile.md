@@ -1,8 +1,8 @@
 ---
 layout: default
-title: "Configuring the Puppetfile"
+title: "Managing Modules with the Puppetfile"
 canonical: "/pe/latest/r10k_puppetfile.html"
-description: "A guide to configuring the Puppetfile for code management with Puppet."
+description: "A guide to managing modules with the r10k Puppetfile, for code management with Puppet."
 ---
 
 [setup]: ./r10k_setup.html
@@ -12,18 +12,14 @@ description: "A guide to configuring the Puppetfile for code management with Pup
 [reference]: ./r10k_reference.html
 [r10kindex]: ./r10k.md
 
-
-# Managing Modules
-
 You'll manage your modules through the Puppetfile, in which you'll specify detailed information about what modules r10k should install and where it should install them.
 
-* Continue reading to learn how to configure your Puppetfile.
-* [See "Getting To Know r10k"][index] for basic information about r10k.
+* Continue reading to learn how to manage modules through your Puppetfile.
+* [See "Getting To Know r10k"][r10kindex] for basic information about r10k.
 * [See "Setting Up r10k"][setup] to get r10k up and running.
-* [See "Configuring r10k.yaml"][r10kyaml] to learn how to set up directory environments with r10k.
+* [See "Configuring Directory Environments in r10k"][r10kyaml] to learn how to set up directory environments in r10k.yaml.
 * [See "Running r10k"][running] to learn how to deploy r10k.
 * [See "r10k Reference"][reference] for a list of r10k subcommands.
-
 
 ## About the Puppetfile
 
@@ -31,37 +27,17 @@ The Puppetfile is a text file written in a Ruby-based DSL. This file specifies w
 
 >**Note:** Puppetfiles do NOT include dependency resolution. You must make sure that you have every module needed for all of your specified modules to run.
 
-You interact with Puppetfiles both directly and through the `r10k puppetfile` subcommand. Technically, because the Puppetfile format uses a Ruby DSL, any valid Ruby expression can be used. We strongly suggest that you keep things simple and use the subcommand, as all our examples demonstrate. 
+After you edit the Puppetfile, you can perform Puppetfile operations from the command line through the [`r10k puppetfile`](#running-puppetfile-commands) subcommand. 
 
-##Configuring your Puppetfile
+##Editing your Puppetfile
 
-###Changing the module installation directory
-
-By default, r10k installs modules in the Puppetfile's current directory. Optionally, you can point to another directory for module installation. You can specify either an absolute or a relative path in this setting.
-
-**Note:** If you use this setting, it should always come **before** any modules listed in the Puppetfile.
-
-To install modules to an absolute path:
-
-~~~
-moduledir '/etc/puppet/modules'
-
-mod 'puppetlabs/apache'
-#installs the apache module into '/etc/puppet/modules/apache'
-~~~
-
-To install modules to a relative path:
-
-~~~
-moduledir 'thirdparty'
-
-mod 'puppetlabs/apache' 
-# installs the apache module into 'dirname/path/to/Puppetfile/thirdparty/apache'
-~~~
+You'll need to create a text file called Puppetfile. In this file, you'll list the modules you want r10k to manage by using the **`mod`** setting. Optionally, you can also change the directory in which r10k installs your modules.
 
 ###Declaring modules in your Puppetfile
 
-The **`mod`** setting specifies the module(s) that r10k should install. Specify the module [long name](/puppet/latest/reference/modules_publishing.html#a-note-on-module-names) in a string. You can specify the latest version, either with or without updating that version, or you can specify a particular version of a module to be maintained at that version.
+####`mod`
+
+The `mod` setting specifies the module(s) that r10k should install. Specify the module [long name](/puppet/latest/reference/modules_publishing.html#a-note-on-module-names) in a string. You can specify the latest version, either with or without updating that version, or you can specify a particular version of a module to be maintained at that version.
 
 **Install the latest version of the module, and then keep the module at that version:**
 
@@ -76,21 +52,20 @@ mod 'adrienthebo/thebestmoduleever'
 mod 'puppetlabs/apache', '0.10.0'
 ~~~
 
-**Install the latest available version of a module, and then update that module:""**
+**Install the latest available version of a module, and then update that module:**
 
 ~~~
 mod 'puppetlabs/apache', :latest
 ~~~
 
-####Declaring a Git repo as a module
+#####Declaring a Git repo as a module
 
-You can also specify a Git repo that contains a Puppet module; r10k will clone that repo and use it as a module. In this case, you can specify the module "version" by using the `ref`, `tag`, `commit`, and `branch` options.
+You can also specify a Git repo that contains a Puppet module; r10k will then clone that repo and use it as a module. In this case, you can specify the module "version" by using the `ref`, `tag`, `commit`, and `branch` options.
 
 * `ref`: Determines the type of Git object to check out. Can be used with a Git commit, branch reference, or a tag.
 * `tag`: Directs r10k to clone the repo at a certain tag number.
 * `commit`: Directs r10k to clone the repo at a certain commit.
 * `branch`: Specifies a certain branch of the repo to clone.
-
 
 **Install puppetlabs/apache and keep it up to date with 'master':**
 
@@ -131,7 +106,33 @@ mod 'apache',
   :branch => 'docs_experiment'
 ~~~
 
-##Running Puppetfile commands
+###Changing the module installation directory
+
+By default, r10k installs modules in the Puppetfile's current directory. Optionally, you can point to another directory for module installation. You can specify either an absolute or a relative path in this setting.
+
+**Note:** If you use this setting, it should always come **before** any modules listed in the Puppetfile.
+
+####To install modules to an absolute path:
+
+~~~
+moduledir '/etc/puppet/modules'
+
+mod 'puppetlabs/apache'
+#installs the apache module into '/etc/puppet/modules/apache'
+~~~
+
+####To install modules to a relative path:
+
+~~~
+moduledir 'thirdparty'
+
+mod 'puppetlabs/apache' 
+# installs the apache module into 'dirname/path/to/Puppetfile/thirdparty/apache'
+~~~
+
+After you've specified your modules in the Puppetfile, you're ready to [run r10k](running) or perform Puppetfile operations with the Puppetfile subcommands below.
+
+##Running Puppetfile subcommands
 
 After you've configured your Puppetfile, you'll be able to manage your modules via the `r10k puppetfile` subcommand. This subcommand must be run as the user with write access to the Puppet environment path. It interacts with the Puppetfile in the current working directory, so before running the subcommand, make sure you are in the directory of the Puppetfile you want to use. You can run the `r10k puppetfile` subcommand with following actions:
 
