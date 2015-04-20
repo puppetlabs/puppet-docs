@@ -6,11 +6,12 @@ canonical: "/pe/latest/razor_using.html"
 
 ---
 
-You're ready to provision a node after you've performed the setup described on the pages [Set Up a Razor Environment](./razor_prereq.html) and [Install Razor](./razor_install.html). This means you have three machines or virtual machines:
+You're ready to provision a node after you've performed the setup described on the pages [Set Up a Razor Environment](./razor_prereq.html) and [Install Razor](./razor_install.html). This means you have four machines or virtual machines running the following:
 
-* The first is running a DHCP/DNS/TFTP service with SELinux configured to enable PXE boot.
-* The second is running Puppet Enterprise and the Razor server and client.
-* The third is the node that you'll provision; it should not be booted up when you begin the process.
+* A DHCP/DNS/TFTP service with SELinux configured to enable PXE boot.
+* Puppet Enterprise.
+* The Razor server and client.
+* A node to provision; it should not be booted up when you begin the process.
 
 The following steps walk you through the process of creating [Razor objects](./razor_objects) and provisioning a node with Centos.
 

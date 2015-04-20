@@ -10,7 +10,7 @@ Razor is a powerful tool created to automatically discover bare-metal hardware a
 
 The following sections describe the environment necessary for running Razor. This set up   uses dnsmasq; however, you can use any DHCP and TFTP service with Razor.
 
->**Warning**: We recommend first testing Razor on a completely isolated test environment because running a second DHCP server on your company's network could bring down the network. In addition, running a second DHCP server that will boot into the Razor microkernel and register with the server has a bigger risk. In such a case, if someone has established a policy that node matches, a simple reboot could cause Razor to replace a server with a fresh OS install. See [these strategies for provisioning in a brownfield environment](./razor_brownfield.html) for more information.
+>**Warning**: We recommend first testing Razor on a completely isolated test environment because running a second DHCP server on your company's network could bring down the network. In addition, running a second DHCP server that will boot into the Razor microkernel and register with the server has a bigger risk. In such a case, if someone has established a policy that node matches, a simple reboot could cause Razor to replace a server with a fresh OS install. See [these strategies for provisioning in a brownfield environment](./razor_brownfield.html) for strategies for avoiding data loss.
 
 ###Before You Begin
 
@@ -18,6 +18,7 @@ Things you should know before you set up provisioning:
 
 + Razor has been validated on RHEL/CentOS 6.x and 7.x versions.
 + The Razor microkernel is 64-bit only. Razor can only provision 64-bit machines.
++ Razor must not be installed on your PE master.
 
 ##Installation Overview
 
@@ -28,16 +29,14 @@ Below are the essential steps. Each of these steps is described in more detail i
 	We've chosen dnsmasq for this example setup.
 3. Configure SELinux to enable PXE boot.
 	>**Note**: you'll download iPXE software in the steps for installing and setting up Razor.
-4. Optional: If you installed dnsmasq, then configure dnsmasq for PXE booting and TFTP
-
-When you finish this section, go on to [Install and Set Up Razor](./razor_install.html).
+4. Optional: If you installed dnsmasq, then configure dnsmasq for PXE booting and TFTP.
 
 ###Install PE in Your Razor Environment
 
 Set up a Puppet master running a standard install of Puppet Enterprise 3.8. For more information, see [Installing Puppet Enterprise](./install_basic.html).
 
->**Note**: We recommend using VirtualBox 4.2.22, because we have had the problem that VirtualBox 4.3.6 gets to the point of downloading the microkernel from the Razor server and hangs at 0% indefinitely. We don't have this problem with VirtualBox 4.2.22.
-
+>**Note**: Your Puppet master should not be installed on the same machine as your Razor server and client.
+>**Also**: For virtual environments, we recommend using VirtualBox 4.2.22, because we have had the problem that VirtualBox 4.3.6 gets to the point of downloading the microkernel from the Razor server and hangs at 0% indefinitely. We don't have this problem with VirtualBox 4.2.22.
 
 ###Install and Configure dnsmasq DHCP/TFTP Service
 

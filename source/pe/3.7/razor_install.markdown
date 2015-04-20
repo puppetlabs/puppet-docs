@@ -16,6 +16,7 @@ If you're not a PE user, you can install the [open source version of Razor manua
 ###Before You Begin
 Things you should know before you set up provisioning:
 
++ **Do not** install Razor on your Puppet master.
 + The default ports for Razor are 8150 for HTTP and 8151 for HTTPS. You can change the default, as described in the "Changing the Default Razor Port" section below.
 + Razor has been validated on RHEL/CentOS 6.x and 7.x versions.
 
@@ -75,7 +76,7 @@ The `pe_razor` module has the following parameters:
 |-----------| ------------|
 | `dbpassword` | The database password to use for Razor's database. The password defaults to `razor`. |
 | `pe_tarball_base_url` | The location of the Puppet Enterprise tarball. |
-| `microkernel_url` | The URL from which to fetch the Microkernel. |
+| `microkernel_url` | The URL from which to fetch the microkernel. |
 | `server_http_port` | The port for HTTP communications with the Razor server. It defaults to 8150. |
 | `server_https_port` | The port for HTTPS communications with the Razor server. It defaults to 8151. |
 
@@ -91,7 +92,7 @@ If you want to change the default HTTP or HTTPS port, you can make the change in
 
 ###Load iPXE Software
 
-You must set your machines to PXE boot. Without PXE booting, Razor has no way to interact with a system. This is OK if the node has already been enrolled with Razor and is installed, but it will prevent any changes on the server (for example, an attempt to reinstall the system) from having any effect on the node. Razor relies on "seeing" when a machine boots and starts all its interactions with a node when that node boots.
+You must set your machines to PXE boot. If they don't PXE boot, Razor has no way to interact with a system. When a node has already been enrolled with Razor and is installed, it no longer has to PXE boot, but that will prevent any changes on the server (for example, an attempt to reinstall the system) from having any effect on the node. Razor relies on "seeing" when a machine boots and starts all its interactions with a node when that node boots.
 
 Razor provides a specific iPXE boot image to ensure you're using a compatible version.
 

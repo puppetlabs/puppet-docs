@@ -28,7 +28,7 @@ The broker type is closely tied to the configuration management system that the 
 4. If your broker type requires additional configuration data, add a `configuration.yaml` file to your `sample.broker` directory.
 
 
-To see examples of brokers, have a look at the [stock brokers](https://github.com/puppetlabs/razor-server/tree/master/brokers) (pun intended) that ship with Razor.
+To see examples of brokers, have a look at the [brokers](https://github.com/puppetlabs/razor-server/tree/master/brokers) that ship with Razor.
 
 ## Writing the Broker Install Script
 
