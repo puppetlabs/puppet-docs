@@ -223,7 +223,7 @@ To re-index and vacuum the console database, you can use the following PostgreSQ
 
 #### Node Classifier Returns Activity Service Error When Importing a Large Number of groups
 
-In PE 3.7, an error is returned when importing a large number of groups (for example, when upgrading a large environment to PE 3.7). This error is returned even if the import was successful. In PE 3.8, this error is no longer returned. 
+In PE 3.7, an error indicating that the "index row size exceeds maximum" is returned when importing a large number of groups (for example, when upgrading a large environment to PE 3.7). This error is returned even if the import was successful. In PE 3.8, this error is no longer returned. 
 
 ### PE Console Doesn't Display Parent Group Rules
 
