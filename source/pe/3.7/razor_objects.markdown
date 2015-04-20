@@ -274,7 +274,7 @@ the event's name; that script must be executable by the Razor server. All
 hook scripts for a certain event are run (in an indeterminate order) when
 that event occurs.
 
-## Event scripts
+### Event scripts
 
 The general protocol is that hook event scripts receive a JSON object on
 their `stdin`, and might return a result by printing a JSON object to their
@@ -463,7 +463,7 @@ The input to the hook script will be in JSON, containing a structure like this:
   	  }
 	}
 
-## Sample Hook
+### Sample Hook
 
 Here is an example of a basic hook called `counter` that will count the number of times Razor registers a node. The below also creates a corresponding directory for the hook type, `counter.hook`, inside the `hooks` directory. You can store the current count as a configuration entry with the key `count`. Thus the `configuration.yaml` file might look like this:
 

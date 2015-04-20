@@ -63,6 +63,7 @@ Provisioning with Razor generally entails these steps:
 + [Create Razor objects and provision a node](./razor_using.html)
 
 The Razor documentation also covers these topics:
+
 + [Safety Tips for Provisioning in a Brownfield Environment](./razor_brownfield.html)
 + [Make Razor API Calls Secure](./razor_secure_apis.html)
 + [Setting Up and Installing Windows on Nodes](./razor_windows.html)

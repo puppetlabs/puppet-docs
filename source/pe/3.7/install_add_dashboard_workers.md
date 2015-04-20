@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.8.1 » Installing » Adding Dashboard Workers"
+title: "PE 3.8 » Installing » Adding Dashboard Workers"
 subtitle: "Adding Dashboard Workers to Your PE Deployment"
 canonical: "/pe/latest/install_add_dashboard_workers.html"
 ---
