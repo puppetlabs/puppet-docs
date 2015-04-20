@@ -8,7 +8,7 @@ canonical: "/pe/latest/razor_objects.html"
 
 In order to provision with Razor, you must create a handful of objects that establish, in very basic terms, what should be provisioned where. These objects are described in detail here. You can try them out on these two pages: XXX and XXX
 
-The Razor objects are presented in the order in which they should be created:
+The Razor objects are described here in slightly different order than they're created in the steps for [provisioning a node](./razor_using.html):
 
 + **Repo**: The container for the objects you use Razor to install on machines, such as operating systems.
 + **Broker**: The connector between a node and a configuration management system, such as Puppet Enterprise.

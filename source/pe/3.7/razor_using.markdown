@@ -1,7 +1,7 @@
 ---
 layout: default
-title: " PE 3.8 » Razor » Provision a Node"
-subtitle: "Basic Guide to Provision a Single Node"
+title: " PE 3.8 » Razor » Provision Nodes"
+subtitle: "Basic Guide to Provisioning a Single Node"
 canonical: "/pe/latest/razor_using.html"
 
 ---
@@ -27,7 +27,7 @@ In addition:
 + The Razor microkernel is 64-bit only. Razor can only provision 64-bit machines.
 + Razor has a minimum RAM requirement of 512MB.
 
-## Run the Razor Server and Register a Node
+## 1. Run the Razor Server and Register a Node
 
 1. Run the Razor client.
 2. Type `razor nodes` to see the collection of machines that Razor is managing.
@@ -54,7 +54,7 @@ The first time you run this command, you should see no nodes.
 
 	Now the machine will just sit there and periodically send its facts back to the server. Since you haven't yet set up provisioning objects, the server doesn't yet do anything with the node.
 
-## Create a Tag
+## 2. Create a Tag
 
 1. Create a JSON file for your tag and save it at this location: http://localhost:8150/api/collections/tags/small. Give the tag a name and a rule. For this example, the JSON file is called `tag.json`. The tag is called `small` and the rule says that any machine that has less than one gigabyte of memory should be tagged with this tag.
 
@@ -83,7 +83,7 @@ The first time you run this command, you should see no nodes.
 	The output contains information like the name of the tag and the rule. But also that one node has already been tagged with the tag. This is the node you registered in the previous section. There's also policy information for the tag. Currently, no policies use this tag.
 4. To see the nodes associated with the tag, run `razor tags <tag name> nodes`. For example, `razor tags small nodes`. The result displays the ID, name, and spec for the node registered previously.
 
-## Create a Repository
+## 3. Create a Repository
 
 The repo can be an image on your local machine, or you can download and unpack and ISO, or you can point to an existing resource using its URL.
 
@@ -91,18 +91,20 @@ The repo can be an image on your local machine, or you can download and unpack a
 		razor create-repo --name centos-6.4 --iso-url file:///vagrant/installers/CentOS-6.4-x86_64-bin-DVD1.iso`
 	This command creates a repo for an ISO image for CentOS 6.4. It takes a few minutes for the ISO import to complete.
 
-## Create a broker
+## 4. Create a broker
 
 The broker hands an installed node off to the PE master. PE comes with a few brokers. The settings for configuration depend on the broker type, and are declared in the broker type's configuration.yaml.
 
-1. Run `razor create-broker --name <Puppet master name> --broker-type <broker type> --configuration '{"<configuration info>"}'`. For example:
+* Run `razor create-broker --name <Puppet master name> --broker-type <broker type> --configuration '{"<configuration info>"}'`.
+
+	For example:
 `razor create-broker --name pe --broker-type puppet-pe --configuration '{"server": "puppet-master"}'`
 
 	This example uses the `puppet-pe` broker type.
 
-## Create a Policy
+## 5. Create a Policy and Provision Your Node
 
-The policy is what ties all the Razor objects together and provisions a node that matches the policy. In this exercise, your policy contains a task called `centos` that comes with Razor.
+The policy is what ties all the Razor objects together and provisions a node when it matches the policy. In this exercise, your policy contains a task called `centos` that comes with Razor.
 
 1. Create a JSON file for you policy to make it more manageable. The following example creates a policy called `centos6`. It uses the repo that you just set up, and the `pe` broker that you created previously. It uses a stock Razor task `centos`. The `enabled` field is set to true, because you want to use this policy. The `max_count` limits the number of nodes that can match with the policy, and `tags` identifies any tags associated with the policy.
 

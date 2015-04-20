@@ -1,7 +1,7 @@
 ---
 layout: default
-title: " PE 3.8 » Razor » Provisioning Around Existing Machines"
-subtitle: "Provision in a Brownfield Environment"
+title: " PE 3.8 » Razor » Provisioning in a Brownfield Environment"
+subtitle: "Provisioning in a Brownfield Environment"
 canonical: "/pe/latest/razor_brownfield.html"
 
 ---

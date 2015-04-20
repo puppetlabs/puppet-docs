@@ -26,17 +26,17 @@ If, during a split upgrade, you supply incorrect database credentials (specifica
 
 ### Web-based Installer Fails to Acknowledge Failed Installs due to Low RAM
 
-When a PE installation fails because a system is not provisioned with adequate RAM, the web-based installer stops responding when verifying that PE is functioning on the server, but the installation appears to have succeeded, as the **Start using Puppet Enterprise** button is available. Note that in such cases, the command line shows an "out of memory: Kill process" error. 
+When a PE installation fails because a system is not provisioned with adequate RAM, the web-based installer stops responding when verifying that PE is functioning on the server, but the installation appears to have succeeded, as the **Start using Puppet Enterprise** button is available. Note that in such cases, the command line shows an "out of memory: Kill process" error.
 
-We recommend provisioning the system with adequate RAM and re-running the installation. Refer to the [hardware requirements](./install_system_requirements.html#hardware-requirements). 
+We recommend provisioning the system with adequate RAM and re-running the installation. Refer to the [hardware requirements](./install_system_requirements.html#hardware-requirements).
 
 ###  New PE 3.7.x MCO Server is Not Connecting With Older MCollective agents (posted 12/17/14)
 
-This issue has been fixed in PE 3.8.0. 
+This issue has been fixed in PE 3.8.0.
 
 ### Review Modified `auth.conf` Files Before Upgrading to 3.8
 
-The are have been several changes to `auth.conf` leading up to PE 3.8. If you have a modified `auth.conf` file, you will be prompted by the upgrader to review it and make changes before continuing with your upgrade. For details, please review [Upgrading to 3.8 with a Modified `auth.conf` File](./install_upgrading_notes.html#upgrading-to-38-with-a-modified-authconf-file). 
+The are have been several changes to `auth.conf` leading up to PE 3.8. If you have a modified `auth.conf` file, you will be prompted by the upgrader to review it and make changes before continuing with your upgrade. For details, please review [Upgrading to 3.8 with a Modified `auth.conf` File](./install_upgrading_notes.html#upgrading-to-38-with-a-modified-authconf-file).
 
 ### Incorrect Umask Value Can Cause Upgrade/Installation to Fail
 
@@ -121,7 +121,7 @@ PE will automatically update your version of puppetlabs-inifile as part of the u
 
 ### Notes about Symlinks and Installation/Upgrade
 
-The answer file no longer gives the option of whether to install symlinks. 
+The answer file no longer gives the option of whether to install symlinks.
 
 Review [Puppet Enterprise Binaries and Symlinks](./install_basic.html#puppet-enterprise-binaries-and-symlinks) for more information about the binaries and symlinks installed during normal installations and upgrades.
 
@@ -151,7 +151,7 @@ After updating the gems, you need to restart the Puppet master with `service pe-
 
 If you run Puppet Server behind a proxy, the `puppetserver gem install` command will fail. Instead you can install the gems as follows:
 
-1. Use [rubygems.org](https://rubygems.org/pages/download#formats) to search for and download the gem you want to install, and transfer that gem to your Puppet master. 
+1. Use [rubygems.org](https://rubygems.org/pages/download#formats) to search for and download the gem you want to install, and transfer that gem to your Puppet master.
 2. Run `/opt/puppet/bin/puppetserver gem install --local <PATH to GEM>`.
 
 ### A Note About Gems with Native (C) Extensions for JRuby on the Puppet Server
@@ -166,11 +166,11 @@ In some cases (especially for RHEL 7 installations) if the `/tmp` directory is m
     Nov 12 17:46:12 fqdn.com java[56495]: Cannot run on Microsoft Windows without the win32-process, win32-dir and win32-service gems: Win32API only supported on win32
     Nov 12 17:46:12 fqdn.com java[56495]: Puppet::Error: Cannot determine basic system flavour
 
-To work around this issue, you can either mount the `/tmp` directory without `noexec`, or you can choose a different directory to use as the temporary directory for the Puppet Server process. 
+To work around this issue, you can either mount the `/tmp` directory without `noexec`, or you can choose a different directory to use as the temporary directory for the Puppet Server process.
 
 If you want to use a directory other than `/tmp`, you can add an extra argument to the `$java_args` parameter of the `puppet_enterprise::profile::master` class using the PE console. Add `{"Djava.io.tmpdir=/var/tmp":""}` as the value for the `$java_args` parameter. Refer to [Editing Parameters](./console_classes_groups_making_changes.html#editing-parameters) for instructions on editing parameters in the console.
 
-Note that whether you use `/tmp` or a different directory, you’ll need to set the permissions of the directory to `1777`. This allows the Puppet Server JRuby process to write a file to `/tmp` and then execute it. 
+Note that whether you use `/tmp` or a different directory, you’ll need to set the permissions of the directory to `1777`. This allows the Puppet Server JRuby process to write a file to `/tmp` and then execute it.
 
 ### No Config Reload Requests
 
@@ -187,7 +187,7 @@ When configuring the Puppet server to use a report processor that involves HTTPS
 
 ### Incorrect Password for Database User(s) Will Cause Install/Upgrade to Fail
 
-If, during installation or upgrade, you supply an incorrect password for one of the PE databases users (RBAC, console, PuppetDB), the install/upgrade will fail. However, in some cases it will appear that the install/upgrade was successful. For example, if the incorrect password is supplied for the console database user, the install/upgrade will continue--and appear to succeed--but the console will not be functional.  
+If, during installation or upgrade, you supply an incorrect password for one of the PE databases users (RBAC, console, PuppetDB), the install/upgrade will fail. However, in some cases it will appear that the install/upgrade was successful. For example, if the incorrect password is supplied for the console database user, the install/upgrade will continue--and appear to succeed--but the console will not be functional.
 
 
 ### PostgreSQL Buffer Memory Issue Can Cause PE Install to Fail on Machines with Large Amounts of RAM
@@ -234,7 +234,7 @@ Matching nodes aren’t showing up.
 
 ### `pe_console_prune` Class not Added to PE Console Group During Upgrade to 3.8
 
-The `pe_console_prune` class is a class in the PE Console group. However, when upgrading to PE 3.8, this class may be incorrectly added to the singleton group created for the node assigned the PE console component. 
+The `pe_console_prune` class is a class in the PE Console group. However, when upgrading to PE 3.8, this class may be incorrectly added to the singleton group created for the node assigned the PE console component.
 
 ### Important Factors in Connecting to an External Directory Service
 
@@ -468,10 +468,24 @@ Or, add the following to a Puppet manifest:
 
 On AIX agents, the Augeas lens is unable to access or modify `etc/services`. There is no known workaround.
 
-### Razor Known Issues
+## Razor Known Issues
 
-Please see the page [Razor Setup Recommendations and Known Issues](./razor_knownissues.html).
+###Razor doesn't handle local time jumps
+The Razor server is sensitive to large jumps in the local time, like the one that is experienced by a VM after it has been suspended for some time and then resumed. In that case, the server will stop processing background tasks, such as the creation of repos. To remediate that, restart the server with `service pe-razor-server restart`.
 
+###Razor hangs in VirtualBox 4.3.6
+We're finding that VirtualBox 4.3.6 gets to the point of downloading the microkernel from the Razor server and hangs at 0% indefinitely. We don't have this problem with VirtualBox 4.2.22.
+
+###Temp files aren't removed in a timely manner
+This is due to Ruby code working as designed, and while it takes longer to remove temporary files than you might expect, the files are eventually removed when the object is finalized.
+
+###Updates might be required for VMware ESXi 5.5 igb files
+You might have to update your VMware ESXi 5.5 ISO with updated igb drivers before you can install ESXi with Razor. See this [driver package download page on the VMware site](https://my.vmware.com/web/vmware/details?downloadGroup=DT-ESXI55-INTEL-IGB-42168&productId=353) for the updated igb drivers you need.
+
+###JSON warning
+When you run Razor commands, you might get this warning: "MultiJson is using the default adapter (ok_json). We recommend loading a different JSON library to improve performance."
+
+You can disregard the warning since this situation is completely harmless. However, if you're using Ruby 1.8.7, you can install a separate JSON library, such as json_pure, to prevent the warning from appearing.
 
 
 Puppet Terminology
