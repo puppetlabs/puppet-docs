@@ -21,10 +21,6 @@ Puppet Enterprise 3.8 contains a number of performance and documentation improve
 
 Previously, in PE, tk-jetty `max threads` were set to a static default of 100 threads. We determined this was too low for large environments with high CPU counts. We no longer set a default for `max threads`, and this setting will be undefined and unmanaged unless the user specifies a value. You can tune `max threads` for the [PE console/console API](./console_config.html#tuning-max-threads-on-the-pe-console-and-console-api) or [Puppet Server](./config_puppetserver.html#tuning-max-threads-on-puppet-server) as needed using Hiera.
 
-#### Puppet Enterprise Upgrader Failed when Importing Large Number of Nodes
-
-This PE release corrects an issue in which the upgrader would fail when importing a large number of nodes (250 or more) into the new node classifier. 
-
 #### Custom Console Cert Functionality was Broken in PE 3.7.x
 
 In PE 3.7.x, users could not set custom certificates for the PE console. This release corrects that issue, but if you're upgrading from PE 3.3.2, note that cert functionality has changed in PE 3.8. If needed, refer to [Configuring the Puppet Enterprise Console to Use a Custom SSL Certificate](./custom_console_cert.html) for instructions on re-configuring your custom console certificate.
@@ -79,7 +75,7 @@ the result is that the javascript rendering the page stops prematurely and the p
 
 In PE 3.8, this has been fixed so that the page renders properly. In the PE 3.8 console, if you go to the **Permissions** tab for the new role that was added, the deleted node group instance is displayed as a dash in the **Object** column.
 
-#### Node Classifier Returns Activity Service Error When Importing a Large Number of groups
+#### Node Classifier Returns Activity Service Error When Importing a Large Number of Groups
 
 In PE 3.7, an error indicating that the "index row size exceeds maximum" was returned when importing a large number of groups (for example, when upgrading a large environment to PE 3.7). This error was returned even if the import was successful. In PE 3.8, this error no longer occurs. 
 
