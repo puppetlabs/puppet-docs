@@ -239,6 +239,10 @@ When you create a new node group in the console, then immediately create another
 
 In PE 3.7.2, if you have multiple node requests pending, you can accept/reject one node, but if you then try to accept/reject subsequent nodes a 403 Forbidden error is returned. This means that if you want to accept/reject node requests one at a time, you have to refresh the page after each time you accept/reject a node request. This issues has been fixed in PE 3.8.
 
+### Node Classifier Ignores Facts That Are False
+
+When creating node matching rules in PE 3.7, the node classifier ignores all facts with a boolean value of `false`. For example, if you create a rule like `is_virtual` `is` `false`, the rule will never match a node. To avoid this problem, rewrite the rule to be `is_virtual` `is not` `true`. This issue has been resolved in PE 3.8.
+
 ### Important Factors in Connecting to an External Directory Service
 
 The following requirement affects how you connect your existing LDAP to PE:
