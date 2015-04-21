@@ -87,4 +87,12 @@ When you created a new node group in the PE 3.7 console, then immediately create
 
 In PE 3.7, if you had multiple node requests pending, you could accept/reject one node, but if you then tried to accept/reject subsequent nodes a 403 Forbidden error was returned. This meant that if you wanted to accept/reject node requests one at a time, you had to refresh the page after each time you accepted/rejected a node request. In PE 3.8, this issue has been fixed and you will no longer receive a 403 Forbidden error.
 
+#### User and Group Lookup Attributes Are Case Sensitive
+
+In earlier releases, the RBAC service was case sensitive when specifying lookup attributes for external directories. In PE 3.8, the case is ignored.
+
+###  New PE 3.7.x MCO Servers Were Not Connecting With Older MCollective Agents (posted 12/17/14)
+
+Some customers experienced problems connecting PE 3.7 MCO clients, such as Live Management, with older MCO servers (Puppet agents). Specifically, any MCO servers running on PE 3.3.2 agents and older. To fix this problem, we recommend upgrading your PE agents to 3.7.x so you can continue using activemq heartbeats.
+
 
