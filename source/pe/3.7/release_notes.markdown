@@ -13,29 +13,7 @@ This page contains information about new features and general improvements and c
 
 For more information about this release, also see the [Known Issues](./release_notes_known_issues.html) and [Security and Bug Fixes](./release_notes_security.html).
 
-## New Features in PE 3.8.0
-
-### Deleting a User From RBAC
-
-In this release, there is a new endpoint in the Role-Based Access Control API that allows you to delete a local or remote user from PE. For more information, see the [API documentation](./rbac_users.html#delete-userssid).
-
-### Deleting a User Group From RBAC
-
-In this release, there is a new endpoint in the Role-Based Access Control API that allows you to delete a local or remote user group from PE. For more information, see the [API documentation](./rbac_usergroups.html#delete-groupssid).
-
-### Support For String Interpolation in the PE Console
-
-Values for parameters and variables can be specified in the console using strings, booleans, numbers, hashes, and arrays. The supported syntax for specifying strings has been extended beyond literal strings, and now also includes limited support for string interpolation of fact values. You can now specify values such as `"I live at $ipaddress"`, which interpolates the result of referencing the `$ipaddress` fact, as well as values such as `${$os["release"]["full"]}`, which interpolates the result of the embedded expression.
-
-For more information on the syntax and restrictions for string interpolation in the console, see [Tips on specifying parameter and variable values](./console_classes_groups.markdown#setting-class-parameters).
-
-### Verifying Certificates For External LDAP Directories
-
-In this release, we added the ability to verify an SSL certificate for a directory server when configuring the RBAC service to connect to an external directory server. For more information, see the [RBAC documentation](./rbac_ldap.html#Verify-Directory-Server-Certificates).
-
-### New RBAC Permission to Edit Parameters and Variables
-
-This permission allows a user in the given user role to tune classification by editing parameters and variables in a class, without giving the user permission to add or delete classes.
+## New Features and Improvements in PE 3.8.0
 
 ### Classification Data Migration Tool For Upgrades From PE 3.3
 
@@ -45,15 +23,46 @@ PE 3.8 comes with a migration tool to help you migrate PE 3.3 classification dat
 
 This release adds [r10k](./r10k.html), a code management tool that allows you to manage the configuration of various environments (such as production, development, or testing), including environment-specific modules, based on code in your Git repositories.
 
-The quick start [guide](./quick_start_r10k.html) is a simple proof-of-concept primer for getting to know r10k. In this walkthrough, you'll leverage the code you wrote for the [Hello, World! QSG](./quick_start_helloworld.html) to learn how r10k provides the tools help you deploy different versions of code across different environments. 
+The quick start [guide](./quick_start_r10k.html) is a simple proof-of-concept primer for getting to know r10k. In this walkthrough, you'll leverage the code you wrote for the [Hello, World! QSG](./quick_start_helloworld.html) to learn how r10k provides the tools help you deploy different versions of code across different environments.
 
-### Upgrades for Large Environment Installations
+### Razor Exits Tech Preview
 
-Upgrading your large environment installation (LEI) involves a combination of steps that you must perform across your core Puppet Enterprise components, your compile masters, and your ActiveMQ hubs and spokes. The [LEI upgrade doc](./install_lei_upgrade.html) details the steps you’ll perform to upgrade your LEI from PE 3.7.2 to 3.8.0.
+Razor, our powerful bare-metal provisioner, is now officially supported and enterprise ready. With Razor's policy-based approach, you can automatically discover bare-metal hardware, dynamically configure operating systems and/or hypervisors, and hand nodes off to PE for workload configuration. This process, which used to take hours, now takes a matter of minutes. See the [Razor documentation to learn more about Razor](./razor_intro.html).
 
 ### Puppet Agents on Network Devices
 
-Thanks to a number of partnerships, Puppet Enterprise has been adding support for running Puppet agents on network devices. Currently we support the [Cumulus Linux](./install_cumulus.html) and the [Arista EOS](./install_eos.html) platforms. 
+Thanks to a number of partnerships, Puppet Enterprise has been adding support for running Puppet agents on network devices. Currently we support the [Cumulus Linux](./install_cumulus.html) and the [Arista EOS](./install_eos.html) platforms.
+
+### RBAC improvements
+
+#### Deleting a User From RBAC
+
+In this release, there is a new endpoint in the Role-Based Access Control API that allows you to delete a local or remote user from PE. For more information, see the [API documentation](./rbac_users.html#delete-userssid).
+
+#### Deleting a User Group From RBAC
+
+In this release, there is a new endpoint in the Role-Based Access Control API that allows you to delete a local or remote user group from PE. For more information, see the [API documentation](./rbac_usergroups.html#delete-groupssid).
+
+#### Verifying Certificates For External LDAP Directories
+
+In this release, we added the ability to verify an SSL certificate for a directory server when configuring the RBAC service to connect to an external directory server. For more information, see the [RBAC documentation](./rbac_ldap.html#Verify-Directory-Server-Certificates).
+
+#### New RBAC Permission to Edit Parameters and Variables
+
+This permission allows a user in the given user role to tune classification by editing parameters and variables in a class, without giving the user permission to add or delete classes.
+
+### Other Significant Improvements
+
+#### Support For String Interpolation in the PE Console
+
+Values for parameters and variables can be specified in the console using strings, booleans, numbers, hashes, and arrays. The supported syntax for specifying strings has been extended beyond literal strings, and now also includes limited support for string interpolation of fact values. You can now specify values such as `"I live at $ipaddress"`, which interpolates the result of referencing the `$ipaddress` fact, as well as values such as `${$os["release"]["full"]}`, which interpolates the result of the embedded expression.
+
+For more information on the syntax and restrictions for string interpolation in the console, see [Tips on specifying parameter and variable values](./console_classes_groups.markdown#setting-class-parameters).
+
+#### Upgrades for Large Environment Installations
+
+Upgrading your large environment installation (LEI) involves a combination of steps that you must perform across your core Puppet Enterprise components, your compile masters, and your ActiveMQ hubs and spokes. The [LEI upgrade doc](./install_lei_upgrade.html) details the steps you’ll perform to upgrade your LEI from PE 3.7.2 to 3.8.0.
+
 
 ## Deprecations in PE 3.8.0
 
