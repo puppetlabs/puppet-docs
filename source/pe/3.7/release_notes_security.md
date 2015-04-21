@@ -19,27 +19,27 @@ Puppet Enterprise 3.8 contains a number of performance and documentation improve
 
 #### Static Defaults were Set for TK-Jetty `max threads`
 
-Previously, in PE, tk-jetty `max threads` were set to a static default of 100 threads. We determined this was too low for large environments with high CPU counts. We no longer set a default for `max threads`, and this setting will be undefined and unmanaged unless the user specifies a value. You can tune `max threads` for the [PE console/console API](./console_config.html#tuning-max-threads-on-the-pe-console-and-console-api) or [Puppet Server](./config_puppetserver.html#tuning-max-threads-on-puppet-server) as needed using Hiera.
+Previously, in PE, tk-jetty `max threads` were set to a static default of 100 threads. We determined this was too low for large environments with high CPU counts, and no longer set a default for `max threads`. Unless you specify a value, we will not manage or define this setting. You can tune `max threads` for the [PE console/console API](./console_config.html#tuning-max-threads-on-the-pe-console-and-console-api) or [Puppet Server](./config_puppetserver.html#tuning-max-threads-on-puppet-server) as needed using Hiera.
 
 #### Custom Console Cert Functionality was Broken in PE 3.7.x
 
-In PE 3.7.x, users could not set custom certificates for the PE console. This release corrects that issue, but if you're upgrading from PE 3.3.2, note that cert functionality has changed in PE 3.8. If needed, refer to [Configuring the Puppet Enterprise Console to Use a Custom SSL Certificate](./custom_console_cert.html) for instructions on re-configuring your custom console certificate.
-
-#### ActiveMQ Spokes Can Be Managed from Profile Level
-
-ActiveMQ spokes (brokers) can now have their collectives set and managed in PE from the profile level, using the `excluded_collectives` and `included_collectives` parameters in the `puppet_enterprise::profile::amq::broker` class. This functionality was not unavailable from the profile level in PE 3.7.x. 
+In PE 3.7.x users could not set custom certificates for the PE console. This release corrects that issue, but if you're upgrading from PE 3.3.2, note that cert functionality has changed in PE 3.8. If needed, refer to [Configuring the Puppet Enterprise Console to Use a Custom SSL Certificate](./custom_console_cert.html) for instructions on re-configuring your custom console certificate.
 
 #### Agent Installation No Longer Sets `environment = production` 
 
-This release corrects an issue in which agents' environments were set to `production` during the installation process (in `puppet.conf`). This behavior was undesirable if users set agents' environments with the node classifier. 
-
-#### ActiveMQ/MCollective Network Connections Failed when Sending Commands to Targeted Spokes
-
-Due to a misconfigured setting in PE (`puppet_enterprise::amq::config::network_connector`), ActiveMQ/MCollective network connections failed on occasion. Specifically, the connections failed when a ActiveMQ hub was sending commands to targeted spokes nodes in LEI installations. This is fixed in PE 3.8. 
+This release corrects an issue in which agents' environments were set to `production` during the installation process (in `puppet.conf`). This behavior was undesirable if users wanted to set agents' environments with the node classifier. 
 
 #### Agent Server Setting Moved to `[main]` in `puppet.conf`
 
 The agent server setting is now set in the `[main]` section of `puppet.conf`; in previous versions, it was set in the `[agent]` section. This fix makes it possible to use the agent installation script to install compile masters and ActiveMQ hubs and spokes in large environment installations. 
+
+#### ActiveMQ Spokes Can Be Managed from Profile Level
+
+ActiveMQ spokes (brokers) can now have their collectives set and managed in PE from the profile level, using the `excluded_collectives` and `included_collectives` parameters in the `puppet_enterprise::profile::amq::broker` class. This functionality was not available from the profile level in PE 3.7.x. 
+
+#### ActiveMQ/MCollective Network Connections Failed when Sending Commands to Targeted Spokes
+
+Due to a misconfigured setting in PE (`puppet_enterprise::amq::config::network_connector`), ActiveMQ/MCollective network connections failed on occasion. Specifically, the connections failed when a ActiveMQ hub was sending commands to targeted spokes (brokers) in large environment installations. This is fixed in PE 3.8. 
 
 #### Changes to ActiveMQ Heap Size did not Restart `pe-activemq` Service
 
@@ -86,9 +86,5 @@ When you created a new node group in the PE 3.7 console, then immediately create
 #### Can Only Accept Or Reject One Node at a Time
 
 In PE 3.7, if you had multiple node requests pending, you could accept/reject one node, but if you then tried to accept/reject subsequent nodes a 403 Forbidden error was returned. This meant that if you wanted to accept/reject node requests one at a time, you had to refresh the page after each time you accepted/rejected a node request. In PE 3.8, this issue has been fixed and you will no longer receive a 403 Forbidden error.
-
-###  New PE 3.7.x MCO Servers Were Not Connecting With Older MCollective Agents (posted 12/17/14)
-
-Some customers experienced problems connecting PE 3.7 MCO clients, such as Live Management, with older MCO servers (Puppet agents). Specifically, any MCO servers running on PE 3.3.2 agents and older. To fix this problem, we recommend upgrading your PE agents to 3.7.x so you can continue using activemq heartbeats.
 
 
