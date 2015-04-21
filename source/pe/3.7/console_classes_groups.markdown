@@ -12,7 +12,7 @@ canonical: "/pe/latest/console_classes_groups.html"
 [modules]: /puppet/3.8/reference/modules_fundamentals.html
 [topscope]: /puppet/3.8/reference/lang_scope.html#top-scope
 
-It’s time to create some node groups and classify your nodes! To get started, go to the PE console and click **Classification**. This takes you to a list of node groups. You can add new node groups here and make changes to existing node groups.
+To start classifying your nodes, go to the PE console and click **Classification**. This takes you to a list of node groups. You can add new node groups here and make changes to existing node groups.
 
    ![viewing list of node groups][all_node_groups]
 
@@ -20,37 +20,10 @@ It’s time to create some node groups and classify your nodes! To get started, 
 >
 > The node classifier uses role-based access control (RBAC) to manage access to tasks. To check your access to the tasks described on this page, see the [RBAC documentation](./rbac_intro.html).
 
-### Adding Classes That Apply to All Nodes
-
-PE comes preconfigured with a number of [special node groups](./console_classes_groups_preconfigured_groups.html) that you will see in the list of node groups when you first install. One of these special groups is the **default** node group. This is an important node group to know about because it’s at the root of the node group hierarchy and is a parent to all other node groups. The classes that are assigned to the **default** node group are applied to all of the nodes in your deployment. Use this node group to add classes, such as your basic security policy and your clock synchronization protocol.
-
-**To add the `ntp` class to the **default** **node group:**
-
-   **Note:** If you haven’t already installed the `puppetlabs-ntp` module, you need to do so before it will be available in the console. In the CLI, run `puppet module install puppetlabs-ntp`.
-
-1. In the list of node groups, click **default**. In **Rules**, you can see that a rule has been added to include all nodes.
-2. Click **Classes**.
-3. Under **Add new class**, in the **Class name** field, type “ntp.” You will now be able to see the classes that are available in the NTP module.
-4. Select `ntp` and click **Add class**.
-
-> **Note:** If you created a new class within the last three minutes, it may not appear in the list of available classes yet. There are two things that need to happen before the class appears in the list:
->
-> 1. The node classifier needs to retrieve classes from the master. (By default, the node classifier retrieves classes from the master every 3 minutes.)
->
-> 2. The [environment cache needs to refresh](/references/latest/configuration.html#environmenttimeout). (By default, the environment cache refreshes every 3 minutes.)
->
-> To override the default refresh period and force the node classifier to retrieve the classes from the master immediately, click the **Refresh** button.
-
-5. Whenever you make a change in the node classifier, you need to commit the change. At the lower right of the page, click the commit button. On the next Puppet run, all nodes will be classified with the `ntp` class.
-
-   **Note:** Unlike other node groups, you cannot change the rules or the metadata for the default node group.
-
-Next, set up some node groups of your own.
-
 ### Creating New Node Groups
 
 <ol>
-<li>To add a new node group of your own, in <strong>Classification</strong>, enter the following information in the empty fields at the top of the node group list:
+<li>To add a new node group, in <strong>Classification</strong>, enter the following information in the empty fields at the top of the node group list:
 
 <dl>
 	<dt>Node group name</dt>
@@ -64,7 +37,6 @@ Next, set up some node groups of your own.
 <p><strong>Note:</strong> For the recommended workflow when using environments, see  <a href="./console_classes_groups_environment_override.html">Working With Environments</a>.</p>
 
 <p><strong>Note:</strong> <code>Agent-specified</code> omits the environment specification when the agent reports back to the master for catalog compilation. Use this environment if you need to preserve an agent-specified environment in your installation. For more information about the agent-specified environment, see the <a href="./install_upgrading_notes.html#about-the-agent-specified-group">upgrading notes</a>.</p>
-<p><strong>Note:</strong> If you’ve set classes in the default node group, as described in <a href="./console_classes_groups_getting_started.html#adding-classes-that-apply-to-all-nodes">Getting Started With Classification</a>, you will not be able to set the agent-specified environment until you remove the classes from the default node group.</p>
 </dd>
 </dl>
 </li>
@@ -85,8 +57,9 @@ To apply a node group’s environment, classes, parameters, and variables to you
 
 
 #### Adding Nodes Dynamically
-Rules are by far the most powerful and scalable way to include nodes in a node group. You can add many member nodes at once by creating rules that match [node facts](/facter/2.3/core_facts.html).
-When nodes no longer match the rules of a group, PE  automatically removes them from the list of member nodes, and the classification settings specified in the group are no longer applied to the node.
+Rules are by far the most powerful and scalable way to include nodes in a node group. You can create rules in a node group that are used to match [node facts](/facter/2.3/core_facts.html). When nodes match the rules in a node group, they are classified with all of the classification data (classes, parameters, and variables) that has been set for the node group.
+
+When nodes no longer match the rules of a node group, the classification data for that node group no longer applies to the node.
 
 > **Note:** Structured facts (arrays and hash map values) are not supported when using the console to enter facts.
 
@@ -106,13 +79,15 @@ When nodes no longer match the rules of a group, PE  automatically removes them 
 
     > **Note:** The **greater than**, **greater than or equal to**, **less than**, and **less than or equal to** operators can only be used with facts that have a numeric value.
 
-Once you have entered the **Fact**, **Operator**, and **Value**, the number of nodes that match your new rule will appear under **Node matches**. This is a great way to confirm that you have specified a valid rule.
+    Once you have entered the **Fact**, **Operator**, and **Value**, the number of nodes that match your new rule will appear under **Node matches**. This is a great way to confirm that you have specified a valid rule.
 
-As an example of how you could specify a rule, say that you have set up a **Web Servers** node group and now you want to add all of your web servers to this node group. You can do this by creating a rule similar to:
+    As an example of how you could specify a rule, say that you have set up a **Web Servers** node group and now you want to add all of your web servers to this node group. You can do this by creating a rule similar to:
 
-&nbsp;&nbsp;&nbsp;"hostname"&nbsp;&nbsp;&nbsp;**matches regex**&nbsp;&nbsp;&nbsp;"web"
+    &nbsp;&nbsp;&nbsp;"hostname"&nbsp;&nbsp;&nbsp;**matches regex**&nbsp;&nbsp;&nbsp;"web"
 
-If at any point you change the role of one of the web server nodes and remove “web” from the name, that node no longer matches the rule for being included in the **Web Servers** node group and will no longer be configured with the classes that have been applied by the node group.
+    If at any point you change the role of one of the web server nodes and remove “web” from the name, that node no longer matches the rule for being included in the **Web Servers** node group and will no longer be configured with the classes that have been applied by the node group.
+    
+4. Whenever you make a change in the node classifier, you need to commit the change. At the lower right of the page, click the commit button. 
 
 > **Note**: In the **Rules** tab, there is an option that let’s you select whether your nodes need to match **All** rules before they are added to the node group, or if they should be added when they match **Any** of the rules.
 
@@ -155,7 +130,7 @@ The next thing you’ll want to do is add classes to your node group. [Classes][
 
 > **Note:** If you created a new class within the last three minutes, it may not appear in the list of available classes yet. There are two things that need to happen before the class appears in the list:
 >
-> 1. The node classifier needs to retrieve classes from the master. (By default, the node classifier retrieves classes from the master every 10 minutes. To change the default setting, see [Configuring and Tuning the Console](./console_config.html#tuning-the-classifier-synchronization-period)).
+> 1. The node classifier needs to retrieve classes from the master. (By default, the node classifier retrieves classes from the master every 3 minutes. To change the default setting, see [Configuring and Tuning the Console](./console_config.html#tuning-the-classifier-synchronization-period)).
 >
 > 2. The [environment cache needs to refresh](/references/latest/configuration.html#environmenttimeout). (By default, the environment cache refreshes every 3 minutes.)
 >

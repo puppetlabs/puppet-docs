@@ -14,8 +14,6 @@ canonical: "/pe/latest/console_classes_groups_getting_started.html"
 [topscope]: /puppet/3.8/reference/lang_scope.html#top-scope
 [environment]: /guides/environment.html
 
-The first phase of the new Node Manager app is the powerful, rules-based node classifier in Puppet Enterprise 3.8.
-
 ## What is Classification?
 
 In Puppet Enterprise (PE), you configure your nodes by assigning classes (such as the `apache` class or `ntp` class) and variables to them. This is called *classification*. Classes are blocks of Puppet code that are distributed in the form of modules. You can create your own classes, or you can take advantage of the many classes that have already been created by the amazing Puppet community. To reduce the potential for new bugs and save yourself some time by using the existing classes, see the modules on the [Puppet Forge][forge].

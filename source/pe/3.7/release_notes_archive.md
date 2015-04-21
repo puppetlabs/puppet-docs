@@ -142,7 +142,7 @@ For more information, see the [system requirements](./install_system_requirement
 
 ### Node Classifier Improvements
 
-The default sync time for the node classifier has been changed from 15 minutes to 3 minutes to be the same as the default refresh time for the environment cache. This means that, by default, the node classifier now retrieves new classes from the master every 3 minutes. For more information, see the [Getting Started With Classification](./console_classes_groups.html#adding-classes-that-apply-to-all-nodes) page.
+The default sync time for the node classifier has been changed from 15 minutes to 3 minutes to be the same as the default refresh time for the environment cache. This means that, by default, the node classifier now retrieves new classes from the master every 3 minutes. For more information, see the [Getting Started With Classification](./console_classes_groups.html#adding-classes-to-a-node-group) page.
 
 In addition, PE 3.7.1 has a **Refresh** button in the **Classes** page that allows you to manually retrieve new classes from the master without waiting for the 3 minute sync period. The timestamp to the left of the **Refresh** button shows the time that has elapsed since the last sync.
 
