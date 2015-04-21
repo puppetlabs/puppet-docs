@@ -221,9 +221,9 @@ To re-index and vacuum the console database, you can use the following PostgreSQ
 
 ## PE console/pe-console-services
 
-#### Node Classifier Returns Activity Service Error When Importing a Large Number of groups
+#### Node Classifier Returns Activity Service Error When Importing a Large Number of Groups
 
-In PE 3.7, an error indicating that the "index row size exceeds maximum" is returned when importing a large number of groups (for example, when upgrading a large environment to PE 3.7). This error is returned even if the import was successful. In PE 3.8, this error is no longer returned. 
+In PE 3.7, an error indicating that the "index row size exceeds maximum" is returned when importing a large number of groups (for example, when upgrading a large environment to PE 3.7). This error is returned even if the import was successful. 
 
 ### PE Console Doesn't Display Parent Group Rules
 
@@ -233,15 +233,15 @@ Matching nodes aren’t showing up.
 
 ### Newly Created Node Group Does Not Appear in List of Parents
 
-When you create a new node group in the console, then immediately create another new node group and try to select the first node group as the parent, the first node group does not appear in the list of selectable names in the **Parent name** drop-down list. The first node group will appear if you reload the page. This issues has been fixed in PE 3.8.
+When you create a new node group in the console, then immediately create another new node group and try to select the first node group as the parent, the first node group does not appear in the list of selectable names in the **Parent name** drop-down list. The first node group will appear if you reload the page. 
  
 ### Can Only Accept Or Reject One Node at a Time
 
-In PE 3.7.2, if you have multiple node requests pending, you can accept/reject one node, but if you then try to accept/reject subsequent nodes a 403 Forbidden error is returned. This means that if you want to accept/reject node requests one at a time, you have to refresh the page after each time you accept/reject a node request. This issues has been fixed in PE 3.8.
+In PE 3.7.2, if you have multiple node requests pending, you can accept/reject one node, but if you then try to accept/reject subsequent nodes a 403 Forbidden error is returned. This means that if you want to accept/reject node requests one at a time, you have to refresh the page after each time you accept/reject a node request. 
 
 ### Node Classifier Ignores Facts That Are False
 
-When creating node matching rules in PE 3.7, the node classifier ignores all facts with a boolean value of `false`. For example, if you create a rule like `is_virtual` `is` `false`, the rule will never match a node. To avoid this problem, rewrite the rule to be `is_virtual` `is not` `true`. This issue has been resolved in PE 3.8.
+When creating node matching rules in PE 3.7, the node classifier ignores all facts with a boolean value of `false`. For example, if you create a rule like `is_virtual` `is` `false`, the rule will never match a node. To avoid this problem, rewrite the rule to be `is_virtual` `is not` `true`. 
 
 ### Important Factors in Connecting to an External Directory Service
 
