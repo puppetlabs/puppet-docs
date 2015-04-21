@@ -19,13 +19,6 @@ R10k comes packaged with Puppet Enterprise (PE) 3.8, so you don't need to separa
 
 Before you can get r10k set up, you'll need to make sure you have Git, a Git repository, and a supported version of Ruby.
 
-* Continue reading to learn how to install requirements and activate r10k.
-* [See "Getting To Know r10k"][r10kindex] for basic information about r10k.
-* [See "Configuring Directory Environments in r10k"][r10kyaml] to learn how to set up directory environments in r10k.yaml.
-* [See "Managing Modules with the Puppetfile"][puppetfile] to learn how to specify modules with the Puppetfile.
-* [See "Running r10k"][running] to learn how to deploy your environments.
-* [See "r10k Reference"][reference] for a list of r10k subcommands.
-
 ##Installing Requirements
 
 ###1. Install/Upgrade Ruby

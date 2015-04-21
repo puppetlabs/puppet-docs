@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Configuring Directory Environments in r10k"
+title: "Setting Up Directory Environments in r10k.yaml"
 canonical: "/pe/latest/r10k_yaml.html"
 description: "A guide to configuring environments in the r10k.yaml file, for r10k code management with Puppet."
 ---
@@ -14,13 +14,6 @@ description: "A guide to configuring environments in the r10k.yaml file, for r10
 [r10kindex]: ./r10k.md
 
 To configure environments in r10k, you'll need to edit the r10k.yaml file with information about your Git repository. This section will go through everything you need to configure r10k to your setup. 
-
-* Continue reading to learn how to set up environments with r10k.yaml.
-* [See "Getting To Know r10k"][r10kindex] for basic information about r10k.
-* [See "Setting Up r10k"][setup] to get r10k up and running.
-* [See "Managing Modules with the Puppetfile"][puppetfile] to learn how to specify your modules.
-* [See "Running r10k"][running] to learn how to deploy your environments.
-* [See "r10k Reference"][reference] for a list of r10k subcommands.
 
 ##Before You Begin
 

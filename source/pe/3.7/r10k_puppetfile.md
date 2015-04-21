@@ -14,13 +14,6 @@ description: "A guide to managing modules with the r10k Puppetfile, for code man
 
 You'll manage your modules through the Puppetfile, in which you'll specify detailed information about what modules r10k should install and where it should install them.
 
-* Continue reading to learn how to manage modules through your Puppetfile.
-* [See "Getting To Know r10k"][r10kindex] for basic information about r10k.
-* [See "Setting Up r10k"][setup] to get r10k up and running.
-* [See "Configuring Directory Environments in r10k"][r10kyaml] to learn how to set up directory environments in r10k.yaml.
-* [See "Running r10k"][running] to learn how to deploy r10k.
-* [See "r10k Reference"][reference] for a list of r10k subcommands.
-
 ## About the Puppetfile
 
 The Puppetfile is a text file written in a Ruby-based DSL. This file specifies where r10k should install modules and what modules it should install, including which version of the module and where to fetch the modules from. This allows r10k to install modules into a given environment in your deployment, or it can install a specific set of Puppet modules for local development.

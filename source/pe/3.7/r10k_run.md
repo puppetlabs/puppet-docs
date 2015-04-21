@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Running r10k"
+title: "Deploying Environments"
 canonical: "/pe/latest/r10k_run.html"
 description: "Deploying environments and modules with r10k, a Puppet code management tool."
 ---
@@ -13,13 +13,6 @@ description: "Deploying environments and modules with r10k, a Puppet code manage
 [r10kindex]: ./r10k.md
 
 You've [configured][r10kyaml] your environments in r10k.yaml and declared your modules in [Puppetfile][puppetfile]. Now it's time to run r10k!
-
-* Continue reading to learn how to deploy your environments and modules with r10k.
-* [See "Getting To Know r10k"][r10kindex] for basic information about r10k.
-* [See "Setting Up r10k"][setup] to get r10k up and running.
-* [See "Configuring Directory Environments in r10k"][r10kyaml] to learn how to set up directory environments in r10k.yaml.
-* [See "Managing Modules with the Puppetfile"][puppetfile] to learn how to set up your r10k Puppetfile.
-* [See "r10k Reference"][reference] for a list of r10k subcommands.
 
 ##Initial r10k run
 
