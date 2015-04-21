@@ -220,12 +220,6 @@ To re-index and vacuum the console database, you can use the following PostgreSQ
 
 ## PE console/pe-console-services
 
-### Node Classifier Ignores Facts That Are False
-
-When creating node matching rules in PE 3.7, the node classifier ignores all facts with a boolean value of `false`. For example, if you create a rule like `is_virtual` `is` `false`, the rule will never match a node. To avoid this problem, rewrite the rule to be `is_virtual` `is not` `true`.
-
-This issue has been resolved in PE 3.8.
-
 ### PE Console Doesn't Display Parent Group Rules
 
 In the console, parent group rules don't show, which makes it easier to create a rule that contradicts an inherited rule. If you create a contradictory rule, then you might find that no nodes match the rule you've created. The **Matching nodes** tab is accurate. If you don't see the nodes you're expecting on this tab, then you need to look up the ancestor rules to identify the contradictory rule.
@@ -245,12 +239,6 @@ The following requirement affects how you connect your existing LDAP to PE:
 ### Custom Console Certs May Break on Upgrade
 
 Upgrades to this version of PE may affect deployments that use a custom console certificate, as certificate functionality has changed between versions. Refer to [Configuring the Puppet Enterprise Console to Use a Custom SSL Certificate](./custom_console_cert.html) for instructions on re-configuring your custom console certificate.
-
-### SLES 12 `pe::repo` Class Available in PE Console but SLES 12 not Supported in PE 3.8.0
-
-Due to a known issue in PE 3.8.0, you can select the SLES 12 `pe::repo` class from the PE console, but this class will not work. SLES 12 is not supported in PE 3.8.0, and no tarballs for SLES 12 are shipped in this version.
-
-Support for SLES 12 will be added in a future release.
 
 ### Safari Certificate Handling May Prevent Console Access
 
