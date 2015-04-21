@@ -89,7 +89,7 @@ In PE 3.7, if you had multiple node requests pending, you could accept/reject on
 
 #### User and Group Lookup Attributes Are Case Sensitive
 
-In earlier releases, the RBAC service was case sensitive when specifying lookup attributes for external directories. In PE 3.8, the case is ignored.
+In earlier releases, the RBAC service required you to use the correct case when specifying lookup attributes for external directories. In PE 3.8, lookup attributes are not case sensitive.
 
 ###  New PE 3.7.x MCO Servers Were Not Connecting With Older MCollective Agents (posted 12/17/14)
 
