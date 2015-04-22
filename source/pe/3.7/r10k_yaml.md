@@ -13,7 +13,7 @@ description: "A guide to configuring environments in the r10k.yaml file, for r10
 [reference]: ./r10k_reference.html
 [r10kindex]: ./r10k.md
 
-To configure environments in r10k, you'll need to edit the r10k.yaml file with information about your Git repository. This section will go through everything you need to configure r10k to your setup. 
+To configure environments in r10k, you'll need to edit the r10k.yaml file with information about your Git repository and directory environments location. This section will go through everything you need to configure r10k to your setup. 
 
 ##Before You Begin
 
@@ -25,22 +25,22 @@ Before you begin configuring r10k, you want to ensure that you have a control re
 
 ##r10k and Git
 
-R10k uses your existing Git repository (repo) branches to create [directory environments](direnv). Directory environments allow you to designate a node or node group as a specific environment; for example, you could designate one node group as the development environment and another as the production environment. As you update the code in your control repo, r10k tracks the state of that repo to keep each environment updated.
+R10k uses your existing Git repository (repo) branches to create [directory environments](direnv). Environments allow you to designate a node or node group as a specific environment; for example, you could designate one node group as the development environment and another as the production environment. As you update the code in your control repo, r10k tracks the state of that repo to keep each environment updated.
 
-Each branch of a connected repository is cloned into a directory named after the branch. For instance, if your control repo is called "myenvironments" with branches named "production", "test", and "development", r10k will clone the production branch into a production directory, the test branch into a test directory, and the development branch into a development directory.
+Each branch of a connected repository is copied into a directory named after the branch. For instance, if your control repo is called "myenvironments" with branches named "production", "test", and "development", r10k will copy the production branch into a production directory, the test branch into a test directory, and the development branch into a development directory.
 
->**Warning:** When you connect a Git repo to r10k, r10k will create the directories in the repository and **erase** anything that was there before. If you already have directory environments set up, you must read ["Previous Directory Environment Configurations"](#previous-directory-environment-configurations) before you proceed.
+>**Warning:** When you connect a Git repo to r10k, r10k creates the directories in the directory environments location you specified in r10k.yaml, and **erases** anything that was there before. If you already have directory environments set up, you must read ["Previous Directory Environment Configurations"](#previous-directory-environment-configurations) before you proceed.
 
 
 ##Editing r10k.yaml
 
-To connect r10k and Git, you'll edit your r10k.yaml in etc/puppetlabs/r10k/. In order to run successfully, r10k will need to be able to authenticate with each repo. (Most Git systems support authentication with SSH.)
+To connect r10k and Git, you'll edit the r10k.yaml file in `/etc/puppetlabs/r10k/`. In order to run successfully, r10k will need to be able to authenticate with each repo. (Most Git systems support authentication with SSH.)
 
 At a minimum, you must specify `cachedir` (the location for storing cached Git repos) and `sources` (the list of Git repos to use). You can use these keys to specify the path where you expect to find either the cache of your Git repo(s) or the directories of the environments being created from your repo's branches.
 
 ###`cachedir`
 
-Accepts a string containing a path to the directory where you want the cache of your Git repo(s) to be stored. 
+Accepts a string containing a path to the directory where you want the cache of your Git repo(s) to be stored; for example, `/var/cache/r10k` is typical.
 
 ###`sources`
 
@@ -60,15 +60,15 @@ sources:
     basedir: '/etc/puppetlabs/puppet/environments'
 ~~~
 
-You must make sure that `environmentpath` in your puppet.conf file matches the [`basedir`](#basedir) setting in r10k.yaml.
+Note that for your new directory environments to be accessible to Puppet, you **must** make sure that `environmentpath` in your puppet.conf file matches the [`basedir`](#basedir) setting in r10k.yaml. 
 
 ###`postrun`
 
-An optional setting that causes r10k to run a command after deploying all your environments. The command must be an array of strings that is used as an argument vector, and you can't specify `postrun` more than one time in r10k.yaml.
+An optional setting that causes r10k to run a command after deploying all your environments. The command must be an array of strings that is used as a command line program and its arguments. You can't specify `postrun` more than one time in r10k.yaml.
 
 ~~~
 postrun: ['/usr/bin/curl', '-F', 'deploy=done', 'http://my-app.site/endpoint']
-The postrun setting can only be set once.
+# The postrun setting can only be set once.
 ~~~
 
 ###`git`
@@ -77,13 +77,14 @@ An optional hash containing Git specific settings. You can specify what Git prov
 
 ~~~
 git:
-  provider: rugged # one of shellgit, rugged
+  provider: shellgit
 ~~~
 
 If you specify the rugged provider, you must provide a private key. You can also provide an optional 'username' when the Git remote URL does not provide a username. The rugged provider also requires Ruby 1.9 or greater.
 
 ~~~
 git:
+  provider: rugged
   private_key: '/root/.ssh/id_rsa'
   username: 'git'
 ~~~
@@ -105,7 +106,7 @@ sources:
 
 ####`basedir`
 
-Specifies the path where environments will be created for this source. This directory will be entirely managed by r10k and any contents that r10k did not put there will be removed. Make sure that `environmentpath` in your puppet.conf file matches the `basedir` setting in r10k.yaml. 
+Specifies the path where environments will be created for this source. This directory will be entirely managed by r10k and any contents that r10k did not put there will be removed. Make sure that `environmentpath` in your puppet.conf file matches the `basedir` setting in r10k.yaml, or Puppet won't be able to access your new directory environments. 
 
 ~~~
 sources:
@@ -116,7 +117,7 @@ sources:
 
 ####`prefix`
 
-Allows environment names to be prefixed with the short name of the specified source. This prevents collisions when multiple sources are deployed into the same directory.
+Allows environment names to be prefixed with the short name of the specified source. Prefix can also be a string to be prefixed to the the names of the environments. This prevents collisions when multiple sources are deployed into the same directory. 
 
 ~~~
 sources:
@@ -140,13 +141,18 @@ sources:
     invalid_branches: 'error'
 ~~~
 
-Once you've listed each repo you want to manage with r10k in r10k.yaml, you're ready to specify your modules in your Puppetfile. If you've already done that, then you're ready to [run r10k](running) to sync your environments.
-
 ###Previous Directory Environment Configurations
 
-If you were using directory environments without r10k, you must make sure that any necessary files/code are either committed to the appropriate Git repo or backed up somewhere. Remember that r10k names each new directory after the branch in your Git repo. **If your directory environment has the same name as the one r10k is creating, r10k will erase EVERYTHING in your previous directory.**
+If you were using directory environments without r10k, you must make sure that any necessary files or code are either committed to the appropriate Git repo or backed up somewhere. The directory environments location will be entirely managed by r10k, and any contents that r10k did not put there will be **removed**. 
+
+Remember that r10k names each new directory after the branch in your Git repo. **If your directory environment has the same name as the one r10k is creating, r10k will erase EVERYTHING in your previous directory.**
+
 
 ###zack-r10k module
 
-Some Puppet users configure r10k.yaml with the help of the [zack-r10k](https://forge.puppetlabs.com/zack/r10k) module. If you choose to use the zack-r10k module, we suggest using only its configuration functions. Note that this module does not support SLES.
+The [zack-r10k](https://forge.puppetlabs.com/zack/r10k) module provides some help with configuring r10k. If you choose to use the zack-r10k module, we suggest using only its configuration functions. Note that this module does not support SLES.
+
+## Next Steps
+
+Once you've listed each repo you want to manage with r10k in r10k.yaml, you're ready to specify your modules in your Puppetfile. If you've already done that, then you're ready to [run r10k](running) to sync your environments.
 

@@ -12,36 +12,54 @@ canonical: "/pe/latest/console_classes_groups.html"
 [modules]: /puppet/3.8/reference/modules_fundamentals.html
 [topscope]: /puppet/3.8/reference/lang_scope.html#top-scope
 
-To start classifying your nodes, go to the PE console and click **Classification**. This takes you to a list of node groups. You can add new node groups here and make changes to existing node groups.
+To start classifying your nodes, go to the Puppet Enterprise (PE) console and click **Classification**. This takes you to a list of node groups. 
+
+PE comes with the following preconfigured node groups to help you manage your PE infrastructure. To learn more about these preconfigured node groups, see [Preconfigured Node Groups](./console_classes_groups_preconfigured_groups.html). 
 
    ![viewing list of node groups][all_node_groups]
+
+You should create two different types of node groups in PE: *environment node groups* and *classification node groups*. Environment node groups set the environment that a node should be in. Classification node groups set the classification data that your nodes will receive. You add all of your classes, parameters, and variables to node groups. When your individual nodes match a node group, they receive all of the classification specified for that node group. 
+
+
+In the **Classification** page, you can add your own node groups and make changes to existing node groups.
+
+
 
 > **Important**
 >
 > The node classifier uses role-based access control (RBAC) to manage access to tasks. To check your access to the tasks described on this page, see the [RBAC documentation](./rbac_intro.html).
 
-### Creating New Node Groups
+### Creating Environment Node groups
 
-<ol>
-<li>To add a new node group, in <strong>Classification</strong>, enter the following information in the empty fields at the top of the node group list:
 
-<dl>
-	<dt>Node group name</dt>
-		<dd>Enter a name that describes the function of the nodes in this node group. For example, "web servers."</dd>
-	<dt>Parent name</dt>
-		<dd>Node groups inherit classes, parameters, and variables from their parent node group. By default, the parent node group is the <strong>default</strong> node group. To specify a different parent node group, enter it here.</dd>
-		<dd>You can avoid duplicating class assignments and save yourself a lot of time if you use node groups and their inheritance effectively. For example, if you have a class that needs to be assigned to all of a node group’s child node groups, then you can assign it once in the parent node group and avoid having to assign it multiple times at the child node group level.</dd>
-	<dt>Environment</dt>
-		<dd><p>The environment determines the classes and parameters that are available to the node group. Select the environment that you want to apply to this node group. If you haven’t <a href="/puppet/3.8/reference/environments.html">set up any environments</a> yet, you will only see the default <code>production</code> environment.</p>
 
-<p><strong>Note:</strong> For the recommended workflow when using environments, see  <a href="./console_classes_groups_environment_override.html">Working With Environments</a>.</p>
+### Creating Classification Node Groups (TODO: create a redirect)
 
-<p><strong>Note:</strong> <code>Agent-specified</code> omits the environment specification when the agent reports back to the master for catalog compilation. Use this environment if you need to preserve an agent-specified environment in your installation. For more information about the agent-specified environment, see the <a href="./install_upgrading_notes.html#about-the-agent-specified-group">upgrading notes</a>.</p>
-</dd>
-</dl>
-</li>
-<li>To finish creating the node group, click <strong>Add Group</strong>.</li>
-</ol>
+1. To add a new node group, in **Classification**, enter the following information in the empty fields at the top of the node group list:
+
+    **Node group name**
+    
+    Enter a name that describes the function of the nodes in this node group. For example, "web servers."
+    
+    **Parent name**
+    
+    Node groups inherit classes, parameters, and variables from their parent node group. By default, the parent node group is the **default** node group. To specify a different parent node group, enter it here.
+
+    You can avoid duplicating class assignments and save yourself a lot of time if you use node groups and their inheritance effectively. For example, if you have a class that needs to be assigned to all of a node group’s child node groups, then you can assign it once in the parent node group and avoid having to assign it in each descendent node group.
+    
+    **Environment**
+    
+    If you haven’t [set up any environments](/puppet/3.8/reference/environments.html) yet, you will only see the default **production** environment. If this is the case, you can ignore the **Environment** setting for now. 
+    
+    **Important:** Do not select **This is an environment group**. This option should only be set when you are configuring *environment node groups*. For information on setting up and using environment node groups, see [Working With Environments](./console_classes_groups_environment_override.html).
+    
+    to filter the classes that you can select from in this node group. When you go to add classes in the node group, the auto-complete feature will only show the classes that   The environment determines the classes and parameters that are available to the node group. Select the environment that you want to apply to this node group. 
+
+    **Note:** For the recommended workflow when using environments, see [Working With Environments](./console_classes_groups_environment_override.html).
+
+    **Note:** `Agent-specified` omits the environment specification when the agent reports back to the master for catalog compilation. Use this environment if you need to preserve an agent-specified environment in your installation. For more information about the agent-specified environment, see the [upgrading notes](./install_upgrading_notes.html#about-the-agent-specified-group).
+
+2. To finish creating the node group, click **Add Group**.
 
 [Editing Node Groups](./console_classes_groups_making_changes.html#editing-groups)
 

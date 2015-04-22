@@ -27,9 +27,9 @@ Unused nodes will be deactivated automatically after seven days with no activity
 
 All functional components of PE, excluding configuration files. You are not likely to need to change these components. PE 3.8 includes the following major software components:
 
- * Puppet 3.7.5
+ * Puppet 3.8.0
  * PuppetDB 2.3.2
- * Puppet Server 1.0.7
+ * Puppet Server 1.0.9
  * Facter 2.4.3
  * MCollective 2.7.0
  * ActiveMQ 5.9.1
