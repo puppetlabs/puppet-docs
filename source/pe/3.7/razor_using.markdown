@@ -57,7 +57,7 @@ The first time you run this command, you should see no nodes.
 
 ## 2. Create a Tag
 
-1. Create a JSON file for your tag and save it at this location: http://localhost:8150/api/collections/tags/small. Give the tag a name and a rule. For this example, the JSON file is called `tag.json`. The tag is called `small` and the rule says that any machine that has less than one gigabyte of memory should be tagged with this tag.
+1. Create a JSON file for your tag. Give the tag a name and a rule. For this example, the JSON file is called `tag.json`. The tag is called `small` and the rule says that any machine that has less than one gigabyte of memory should be tagged with this tag.
 
 
 		{
@@ -92,7 +92,7 @@ The repo can be an image on your local machine, or you can download and unpack a
 		razor create-repo --name centos-6.4 --iso-url file:///vagrant/installers/CentOS-6.4-x86_64-bin-DVD1.iso`
 	This command creates a repo for an ISO image for CentOS 6.4. It takes a few minutes for the ISO import to complete.
 
-## 4. Create a broker
+## 4. Create a Broker
 
 The broker hands an installed node off to the PE master. PE comes with a few brokers. The settings for configuration depend on the broker type, and are declared in the broker type's configuration.yaml.
 
@@ -131,7 +131,7 @@ The policy is what ties all the Razor objects together and provisions a node whe
 
 4. Check the node's log. Run `razor nodes <node name> log`. For example, `razor nodes node2 log`. Each node has a log attached that keeps track of when the node rebooted, and the important events during the installation of an operating system. This node's log shows when it initially booted into the microkernel, when it bound to the policy, and then rebooted into the policy. You can also see things like any kickstart files or post-install scripts that are run during the install.
 
-5. When the installation finishes and the node reboots, you can log into it using the password you created during Razor setup. You can also see the node and its details on the PE console. Now, you can manage the node with PE just as you would any other node.
+5. When the installation finishes and the node reboots, you can log into it using the `root_password` of the policy that it has bound to. You can also see the node and its details on the PE console. Now, you can manage the node with PE just as you would any other node.
 
 
 * * *
