@@ -137,6 +137,10 @@ Refer to [Installing Agents in a Puppet Enterprise Infrastructure without Intern
 
 > **Tip**: More information about Puppet Server can be found in the [Puppet Server docs](/puppetserver/1.0/services_master_puppetserver.html). Differences between PE and open source versions of Puppet Server are typically called out.
 
+### Puppet Server Developments Impact Custom Certificate Extensions
+
+A certificate generated with custom extensions in PE 3.8 might not be properly decodable if used in a prior PE release.
+
 ### Updating Puppet Master Gems
 
 If you've installed any additional Ruby gems beyond those installed by PE, they will not be migrated to the Puppet master during the upgrade to PE 3.8. If you have modules that depend on additional gems, you will need to install them on the Puppet master after you complete the upgrade process.
@@ -240,6 +244,10 @@ The following requirement affects how you connect your existing LDAP to PE:
 
 Upgrades to this version of PE may affect deployments that use a custom console certificate, as certificate functionality has changed between versions. Refer to [Configuring the Puppet Enterprise Console to Use a Custom SSL Certificate](./custom_console_cert.html) for instructions on re-configuring your custom console certificate.
 
+### Passenger `permission denied` Log entry
+
+At application startup for Dashboard, Passenger logs a "permission denied" message to the Apache error log concerning the passenger-config executable. This log message only appears once, at application startup, is not repeated, and appears to be cosmetic. The dashboard starts and functions properly.
+
 ### Safari Certificate Handling May Prevent Console Access
 
 [client_cert_dialog]: ./images/client_cert_dialog.png
@@ -306,6 +314,10 @@ For instructions on completely deactivating an agent node, refer to [Deactivatin
 ### Problems with Marking Failed Tasks as Read in the console
 
 Marking failed tasks as read in the console can instead open a security warning, followed by an "unable to connect" message.
+
+### `site.pp` Must Be Duplicated for Each Environment
+
+You can no longer have a universal or global `site.pp`. The default main filebucket is configured as a resource default in `site.pp`. This means that `site.pp` must be duplicated for each environment. See the [Puppet environments documentation for more information](/puppet/latest/reference/environments.html.)
 
 
 ## PE services/Puppet Core Known Issues
@@ -402,6 +414,10 @@ The issue is being tracked on [this support ticket](https://tickets.puppetlabs.c
 
 ## Supported Platforms Known Issues
 
+### Ubuntu Conflict When You're Running on Fusion VM
+
+PE 3.8 cannot be installed on the Ubuntu 14.04 AMD64 platform when you're running on a Fusion VM.
+
 ### Readline Version Issues on AIX Agents
 
 - AIX 5.3 Puppet agents depend on readline-4-3.2 being installed. You can check the installed version of readline by running `rpm -q readline`. If you need to install it, you can [download it from IBM](ftp://ftp.software.ibm.com/aix/freeSoftware/aixtoolbox/RPMS/ppc/readline/readline-4.3-2.aix5.1.ppc.rpm). Install it *before* installing the Puppet agent.
@@ -418,6 +434,10 @@ If you see an error message after running this, you can disregard it. Readline-6
 We've seen an issue in which Puppet agents on Solaris platforms have quit responding after the core Solaris OS was updated. Essential Puppet configuration files were erased from the `/etc/` directory (which includes SSL certs needed to communicate with the Puppet master), and the `/etc/hosts` file was reverted.
 
 If you encounter this issue, log in to the Puppet master and clear the agent cert from the Solaris machine (`puppet cert clean <HOSTNAME>`), and then re-install [the Puppet agent](.//install_agents.html).
+
+### Solaris 10 and 11 Have No Default `symplink` Directory
+
+Solaris 10 and 11 will not by default have the `symlink` directory in their path. Therefore, if you use one of these two platforms,  add `/usr/local/bin` to your default path.
 
 ### Debian/Ubuntu Local Hostname Issue
 
@@ -458,6 +478,13 @@ On AIX agents, the Augeas lens is unable to access or modify `etc/services`. The
 
 ## Razor Known Issues
 
+### Razor Installation Requires an Internet Connection
+The pe_razor module assumes internet connectivity to download the PE installation tarball from pm.puppetlabs.com. The module also assumes it can download the microkernel from pm.puppetlabs.com as well.
+
+### Razor Has Trouble Provisioning a Node With Debian Wheezy
+
+We've had errors when trying to provision a node with Debian Wheezy. In such cases, the image hasn't loaded.
+
 ###Razor doesn't handle local time jumps
 The Razor server is sensitive to large jumps in the local time, like the one that is experienced by a VM after it has been suspended for some time and then resumed. In that case, the server will stop processing background tasks, such as the creation of repos. To remediate that, restart the server with `service pe-razor-server restart`.
 
@@ -474,6 +501,10 @@ You might have to update your VMware ESXi 5.5 ISO with updated igb drivers befor
 When you run Razor commands, you might get this warning: "MultiJson is using the default adapter (ok_json). We recommend loading a different JSON library to improve performance."
 
 You can disregard the warning since this situation is completely harmless. However, if you're using Ruby 1.8.7, you can install a separate JSON library, such as json_pure, to prevent the warning from appearing.
+
+### `pe-razor` Doesn't Allow `java_args` Configuration
+
+Most PE services enable you to configure `java_args` in the console, but Razor requires you to hard code them in the `init` script.
 
 
 Puppet Terminology
