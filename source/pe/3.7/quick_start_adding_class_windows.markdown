@@ -12,7 +12,7 @@ canonical: "/pe/latest/quick_start_adding_class_windows.html"
 
 Every module contains one or more **classes**. [Classes](/puppet/3.8/reference/lang_classes.html) are named chunks of Puppet code and are the primary means by which Puppet Enterprise configures nodes. The Puppet Labs Registry module you installed in the [Module Installation QSG](./quick_start_module_install_windows.html) contains a class called `registry`. In this example, you’ll use the `registry` class to supply the types and providers necessary to create and manage Windows Registry keys and values with Puppet.
 
-In this example, we will create a group called __windows_example_ and add the `registry` class to it.
+In this example, we will create a group called __windows_example__ and add the `registry` class to it.
 
 >**Prerequisites**: This guide assumes you've already [installed a monolithic PE deployment](./quick_start_install_mono.html), and have installed at least one [Windows agent node](./quick_start_install_agents_windows.html) and the [puppetlabs-registry module](./quick_start_module_install_windows.html).
 

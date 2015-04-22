@@ -12,7 +12,7 @@ Welcome to the writing modules section of the Quick Start Guide series. This doc
 * Create a site module that composes other modules into machine roles
 * Apply Puppet classes to groups with the console
 
-> Before starting this walkthrough, you should have completed the [introductory quick start guide](./quick_start.html). You should still be logged in as root or administrator on your nodes.
+> Before starting this walkthrough, you should have completed the previous exercises in the [introductory quick start guide](./quick_start.html). You should still be logged in as root or administrator on your nodes.
 
 ## Getting Started
 
@@ -209,7 +209,7 @@ This class declares other classes with the `include` function. Note the "if" con
 
 1. **On the console**, remove all of the previous example classes from your nodes and groups, using the __Edit__ button in each node or group page. Be sure to leave the `pe_*` classes in place.
 2. Add the `site::basic` class to the console with the __Add classes__ button in the sidebar as before.
-3. Assign the `site::basic` class to the default group.
+3. Assign the `site::basic` class to the **apache_example** group you created in the [Adding Classes QSG](./quick_start_adding_class_nix.html).
 
 > Your nodes are now receiving the same configurations as before, but with a simplified interface in the console. Instead of deciding which classes a new node should receive, you can decide what *type* of node it is and take advantage of decisions you made earlier.
 
