@@ -24,19 +24,18 @@ When you or another user are set up as a non-root user, you will have a reduced 
 
 To properly configure non-root agent access, you will need to:
 
-   * Install a monolithic PE master and modify the "default" group to exclude live management (MCollective). Note that live management is deprecated in PE 3.8. If you are working with a fresh install of PE 3.8 and you have not manually enabled live management, then it won't be displayed in the default group.
+   * Install a monolithic PE master 
    * Install and configure PE agents, disable the `pe-puppet` service on all nodes, and create non-root users
    * Verify the non-root configuration
 
 #### Install and Configure a Monolithic Master
 
 1. As a root user, install and configure a monolithic PE master. Use the [monolithic installation method](./install_pe_mono.html), or use [an answer file](./install_automated.html) to automate your installation.
-2. Disable live management (MCollective).
+2. If you've enabled live management, disable it.
 
-   This can be done by adding `q_disable_live_management=y` to your answer file if you're performing an answer file installation. Otherwise, after installation, you can edit `/etc/puppetlabs/puppet-dashboard/settings.yml` and set the `disable_live_management` setting to `true`. Note that you will need to run `service pe-httpd restart` after editing `settings.yml`.
+   To disable live management, edit `/etc/puppetlabs/puppet-dashboard/settings.yml` and set the `disable_live_management` setting to `true`. Note that you will need to run `service pe-httpd restart` after editing `settings.yml`.
 
-3. After the installation is complete, log into the console and verify that the **Live Management** tab is NOT present in the main, top nav bar.
-4. Use the PE console to make sure no new agents can get added to the MCollective group.
+3. Use the PE console to make sure no new agents can get added to the MCollective group.
 
    a. From the navigation bar, click **Classification**.
 
