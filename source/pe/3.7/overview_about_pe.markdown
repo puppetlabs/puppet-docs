@@ -32,7 +32,7 @@ Puppet Enterprise is a comprehensive tool for enterprise systems configuration m
 
 Puppet Enterprise consists of a complete stack of Puppet Labs' technologies, which are automatically installed and connected. Specifically, PE 3.8 includes all of the following Puppet Labs software:
 
- * Puppet 3.7.5
+ * Puppet 3.8.0
  * Puppet Server 1.0.7
  * PuppetDB 2.3.2
  * Facter 2.4.3
