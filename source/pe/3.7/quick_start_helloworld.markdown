@@ -62,31 +62,48 @@ Modules are directory trees. For this task, you'll create the following files:
 
 [classification_selector]: ./images/quick/classification_selector.png
 
-For this procedure, you're going to add the classes to the **default** group.
+For this procedure, you're going to add the `helloworld` classes to a node group you'll create, called **HelloWorld**, which will contain all of your nodes. Depending on your needs or infrastructure, you may have a different group that you'll assign NTP to, but these same instructions would apply.
 
-The **default** group contains all the nodes in your deployment (including the Puppet master), but you can [create your own group](./console_classes_groups.html#creating-new-node-groups) or add the classes to individual nodes, depending on your needs.
+**To create the HelloWorld node group**:
 
-**To add the classes to the default group**:
-
-1. In the console, click __Classification__ in the top navigation bar.
+1. From the console, click __Classification__ in the top navigation bar.
 
    ![classification selection][classification_selector]
 
-2. In the __Classification page__, select the __default__ group.
+2. In the **Node group name** field, name your group **HelloWorld**. 
+3. Click **Add group**.
 
-3. Click the __Classes__ tab.
+   **Note**: Leave the **Parent name** and **Environment** values as their defaults (**default** and **production**, respectively).
 
-4. In the __Class name__ field, begin typing `helloworld`, and select it from the autocomplete list.
+4. From the __Classification page__, select the __HelloWorld__ group, and click the __Rules_ tab.
+5. In the **Fact** field, enter "name" (without the quotes).
+6. From the **Operator** drop-down list, select **matches regex**.
+7. In the **Value** field, enter ".x" (without the quotes). 
+8. Click **Add rule**.
 
-5. Click __Add class__.
+   This rule will ["dynamically" pin all nodes]((./console_classes_groups.html#adding-nodes-dynamically) to the **HelloWorld** group. (Note that this rule is for testing purposes and that decisions about pinning nodes to groups in a production environment will vary from user to user.) 
 
-6. Repeat steps 4 and 5 to add the `helloworld::motd` class.
+**To add the** `helloworld` **classes to the NTP group**:
 
-7. Click the Commit changes button.
+1. From the __Classification page__, select the __HelloWorld_ group.
 
-   **Note**: The classes now appear in the list of classes for the __default__ group, but they have not yet been configured on your nodes. For that to happen, you need to kick off a Puppet run.
+2. Click the __Classes__ tab.
 
-8. From the command line on the Puppet master, run `puppet agent -t`.
+3. In the __Class name__ field, begin typing `helloworld`, and select it from the autocomplete list.
+
+4. Click __Add class__.
+
+5. Repeat steps 3 and 4 to add the `helloworld::motd` class. 
+
+5. Click the **Commit change** button.
+
+   **Note**: The `helloworld` classes now appear in the list of classes for the __HelloWorld_ group, but they have not yet been configured on your nodes. For that to happen, you need to kick off a Puppet run.
+
+7. From the CLI of your Puppet master, run `puppet agent -t`.
+
+8. From the CLI of your PE-managed node(s), run `puppet agent -t`.
+
+   This will configure the nodes using the newly-assigned classes.
 
 ### Viewing the Results
 

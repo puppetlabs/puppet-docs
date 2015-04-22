@@ -111,8 +111,6 @@ We're going to add the `ntp` class to a node group we'll create, called **NTP**,
 
 8. From the CLI of your PE-managed node(s), run `puppet agent -t`.
 
-## Using the PE Console Event Inspector to View Changes Made by the `ntp` Class
-
    This will configure the nodes using the newly-assigned classes.
 
 > **Success!** Puppet Enterprise is now managing NTP on the nodes in the __NTP__ group. So, for example, if you forget to restart the NTP service on one of those nodes after running `ntpdate`, PE will automatically restart it on the next Puppet Enterprise run.
