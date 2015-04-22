@@ -43,7 +43,7 @@ SSH into each ActiveMQ spoke, and run the following command:
 
 If you've installed additional dashboard workers, upgrade each one.
 
-SSH into each additional dashboard worker, and and run the following command:   
+SSH into each additional dashboard worker, and run the following command:   
 
   `curl -k https://<MASTER.EXAMPLE.COM>:8140/packages/current/upgrade.bash | sudo bash`
        
