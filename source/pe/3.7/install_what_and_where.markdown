@@ -29,7 +29,7 @@ All functional components of PE, excluding configuration files. You are not like
 
  * Puppet 3.8.0
  * PuppetDB 2.3.2
- * Puppet Server 1.0.7
+ * Puppet Server 1.0.9
  * Facter 2.4.3
  * MCollective 2.7.0
  * ActiveMQ 5.9.1
