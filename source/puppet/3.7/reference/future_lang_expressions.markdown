@@ -25,7 +25,7 @@ canonical: "/puppet/latest/reference/future_lang_expressions.html"
 [chaining]: ./future_lang_relationships.html#syntax-chaining-arrows
 [literal_types]: ./future_lang_data_type.html
 [spec]: https://github.com/puppetlabs/puppet-specifications
-
+[lambdas]: ./future_lang_lambdas.html
 
 **Expressions** are statements that resolve to values.
 
@@ -56,12 +56,13 @@ These statements are usually used _only_ for their side effects, with their valu
 
 ### List of Non-Expressions
 
-The following statements are NOT expressions: they don't produce values, and can only be used in certain contexts.
+The following statements are NOT normal expressions: they don't resolve to usable values, and can only be used in certain contexts.
 
 * [Class definitions][class]
 * [Defined types][]
 * [Node definitions][]
 * [Resource collectors][]
+* [Lambdas][]
 
 
 Location
