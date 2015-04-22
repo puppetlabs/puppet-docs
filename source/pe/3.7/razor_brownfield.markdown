@@ -8,11 +8,11 @@ canonical: "/pe/latest/razor_brownfield.html"
 
 Razor provides great power and efficiency when it comes to provisioning machines and bringing them under Puppet Enterprise management. But if you're not careful, you can inadvertently provision existing machines. In the worst cases, this can mean catastrophic data loss. We really want to make sure that doesn't happen.
 
-This page recommends strategies to make your Razor processes safer for use in brownfield environments. Please familiarize yourself with these strategies before you move on to provisioning machines.
+This page recommends strategies to make your Razor processes safer for use in brownfield environments. Please familiarize yourself with these strategies before you move on to provisioning machines in an environment with previously provisioned machines.
 
 ## How Catastrophic Data Loss Can Occur
 
-Before we talk about ways to avoid overwriting your machines, it's a good idea to understand how it can happen. Razor is designed to find and register nodes that boot up on your network. When Razor objects &#8212; repos, brokers, tasks and policies &#8212; have been created and are ready to provision, Razor evaluates the nodes it finds against its policies and determines whether the node is a match for the the policy. If it is, then Razor provisions that node. It won't recognize that a node is already installed unless you register the node (as described below). If a node matches, then it's provisioned.
+Before we talk about ways to avoid overwriting your machines, it's a good idea to understand how it can happen. Razor is designed to find and register nodes that boot up on your network. When Razor objects &#8212; repos, brokers, tasks and policies &#8212; have been created and are ready to provision, Razor evaluates the nodes it finds against its policies and determines whether the node is a match for any of its policies. If it is, then Razor provisions that node. It won't recognize that a node is already installed unless you register the node (as described below). If a node matches a policy, then it's provisioned.
 
 This is why we recommend that you test out Razor on a separate virtual environment before you begin provisioning in your production environment. That way, you'll have a better idea how to manage Razor around your existing machines.
 
@@ -20,9 +20,15 @@ This is why we recommend that you test out Razor on a separate virtual environme
 
 The following strategies will help you avoid accidentally overwriting your brownfield machines.
 
+### Protect New Nodes
+
+By default, Razor considers all new nodes that it discovers as eligible for installation. If you need to be certain that no machine ever gets accidentally reinstalled, set the `protect_new_nodes` configuration setting to `true`. This marks all newly discovered nodes as `installed`. Nodes with this setting will then boot locally and are protected from any modifications by Razor. Razor will only consider those nodes eligible for installation again when they're explicitly marked as available using `reinstall-node`. New nodes will still be inventoried when they boot against Razor for the very first time, but will boot locally thereafter.
+
 ### Register Your Nodes
 
-Register your existing nodes using the `register-nodes` command before you create policies. Using the `register nodes` command notifies Razor that your existing machines are already installed. Then Razor skips over them when attempting to match policies.
+If you are very confident that you know all the machines in your environment that have valuable content, leave `protect_new_nodes` set to `false` and instead, register your existing nodes using the `register-node` command before you create policies. Using the `register-node` command notifies Razor that a specific node is already installed. Then Razor skips over nodes with `installed` set to `true` when attempting to match policies.
+
+#### Two Ways to Register Nodes
 
 Nodes can be registered in two ways: Through the microkernel or through the `register-node` command, but only the `register-node` command uses the `installed` flag to mark the node as installed, which signals to Razor that the node should be ignored.
 
