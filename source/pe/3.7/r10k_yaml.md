@@ -13,7 +13,7 @@ description: "A guide to configuring environments in the r10k.yaml file, for r10
 [reference]: ./r10k_reference.html
 [r10kindex]: ./r10k.md
 
-To configure environments in r10k, you'll need to edit the r10k.yaml file with information about your Git repository and directory environments location. This section will go through everything you need to configure r10k to your setup. 
+To configure environments in r10k, you'll need to edit the r10k.yaml file with information about your Git repository and directory environments location. This section goes through everything you need to configure r10k to your setup. 
 
 ##Before You Begin
 
@@ -27,14 +27,14 @@ Before you begin configuring r10k, you want to ensure that you have a control re
 
 R10k uses your existing Git repository (repo) branches to create [directory environments](direnv). Environments allow you to designate a node or node group as a specific environment; for example, you could designate one node group as the development environment and another as the production environment. As you update the code in your control repo, r10k tracks the state of that repo to keep each environment updated.
 
-Each branch of a connected repository is copied into a directory named after the branch. For instance, if your control repo is called "myenvironments" with branches named "production", "test", and "development", r10k will copy the production branch into a production directory, the test branch into a test directory, and the development branch into a development directory.
+Each branch of a connected repository is copied into a directory named after the branch. For instance, if your control repo is called "myenvironments," with branches named "production", "test", and "development", r10k copies the production branch into a production directory, the test branch into a test directory, and the development branch into a development directory.
 
 >**Warning:** When you connect a Git repo to r10k, r10k creates the directories in the directory environments location you specified in r10k.yaml, and **erases** anything that was there before. If you already have directory environments set up, you must read ["Previous Directory Environment Configurations"](#previous-directory-environment-configurations) before you proceed.
 
 
 ##Editing r10k.yaml
 
-To connect r10k and Git, you'll edit the r10k.yaml file in `/etc/puppetlabs/r10k/`. In order to run successfully, r10k will need to be able to authenticate with each repo. (Most Git systems support authentication with SSH.)
+To connect r10k and Git, you'll edit the r10k.yaml file in `/etc/puppetlabs/r10k/`. In order to run successfully, r10k needs to be able to authenticate with each repo. (Most Git systems support authentication with SSH.)
 
 At a minimum, you must specify `cachedir` (the location for storing cached Git repos) and `sources` (the list of Git repos to use). You can use these keys to specify the path where you expect to find either the cache of your Git repo(s) or the directories of the environments being created from your repo's branches.
 
@@ -46,7 +46,7 @@ Accepts a string containing a path to the directory where you want the cache of 
 
 Accepts a hash where each key contained in the hash is the short name of a specific repo (for instance, "qa" or "web" or "ops") and the corresponding value is a hash of properties for that repo. [Additional options](#additional-options-for-sources) for `sources` are listed below.
 
->Note: R10k will not check to make sure that different sources don't collide in a single base directory; if you are using multiple sources you are responsible for making sure that they do not overwrite each other. See the [`prefix`](#prefix) option for assistance with this.
+>Note: R10k does not check to make sure that different sources don't collide in a single base directory; if you are using multiple sources you are responsible for making sure that they do not overwrite each other. See the [`prefix`](#prefix) option for assistance with this.
 
 ~~~
 cachedir: '/var/cache/r10k'
@@ -106,7 +106,7 @@ sources:
 
 ####`basedir`
 
-Specifies the path where environments will be created for this source. This directory will be entirely managed by r10k and any contents that r10k did not put there will be removed. Make sure that `environmentpath` in your puppet.conf file matches the `basedir` setting in r10k.yaml, or Puppet won't be able to access your new directory environments. 
+Specifies the path where environments will be created for this source. This directory is entirely managed by r10k, and any contents that r10k did not put there will be removed. Make sure that `environmentpath` in your puppet.conf file matches the `basedir` setting in r10k.yaml, or Puppet won't be able to access your new directory environments. 
 
 ~~~
 sources:
@@ -143,14 +143,16 @@ sources:
 
 ###Previous Directory Environment Configurations
 
-If you were using directory environments without r10k, you must make sure that any necessary files or code are either committed to the appropriate Git repo or backed up somewhere. The directory environments location will be entirely managed by r10k, and any contents that r10k did not put there will be **removed**. 
+If you were using directory environments without r10k, you must make sure that any necessary files or code are either committed to the appropriate Git repo or backed up somewhere. The directory environments location is entirely managed by r10k, and any contents that r10k did not put there will be **removed**. 
 
 Remember that r10k names each new directory after the branch in your Git repo. **If your directory environment has the same name as the one r10k is creating, r10k will erase EVERYTHING in your previous directory.**
 
 
 ###zack-r10k module
 
-The [zack-r10k](https://forge.puppetlabs.com/zack/r10k) module provides some help with configuring r10k. If you choose to use the zack-r10k module, we suggest using only its configuration functions. Note that this module does not support SLES.
+The [zack-r10k](https://forge.puppetlabs.com/zack/r10k) module provides some help with configuring r10k. If you choose to use the zack-r10k module, be aware that use of thisx module is beyond the scope of PE 3.8.
+
+Note that the zack-r10k module does not support SLES.
 
 ## Next Steps
 

@@ -36,7 +36,7 @@ You don't have to do anything else with Git right now, but when you edit your [r
 
 ##Preparing r10k
 
-You can now prepare r10k for configuration, but how you do that will depend on your current situation:
+You can now prepare r10k for configuration, but how you do that depends on your current situation:
 
 1. [I've never used r10k and just installed PE 3.8.]()
 2. [I was using r10k and just upgraded to PE 3.8 from an earlier version of PE.]()
@@ -45,13 +45,13 @@ You can now prepare r10k for configuration, but how you do that will depend on y
 
 ###I am brand new to r10k and have a new installation of PE 3.8
 
-If you’ve never installed or used r10k before and have just installed PE 3.8, r10k will be installed for you. Your next step is to [create your own config file](r10kyaml) for r10k in `/etc/puppetlabs/r10k/r10k.yaml`.
+If you’ve never installed or used r10k before and have just installed PE 3.8, r10k is already installed for you. Your next step is to [create your own config file](r10kyaml) for r10k in `/etc/puppetlabs/r10k/r10k.yaml`.
 
 ###I was using r10k with an earlier version of PE and just upgraded to PE 3.8
 
-Puppet Enterprise will automatically install the current PE version of r10k. However, the default location for r10k.yaml has changed, so we recommend moving it to prevent future upgrade issues. To do so:
+Puppet Enterprise automatically installs the current PE version of r10k. However, the default location for r10k.yaml has changed, so we recommend moving it to prevent future upgrade issues. To do so:
 
-1. Locate your current r10k.yaml file. It will likely be in the `/etc/` directory.
+1. Locate your current r10k.yaml file. It is likely in the `/etc/` directory.
 2. Move your r10k.yaml file to the `/etc/puppetlabs/r10k/ directory.
 3. Delete or rename the r10k.yaml file in `/etc/` if it is still present. Otherwise, you will see the following warning:
 
@@ -66,20 +66,20 @@ You have two choices: you can continue using the module or you can switch to r10
 
 ####Continue using the module
 
-If you want to continue using the zack-r10k module with r10k, you can do so. The default location of r10k.yaml has changed, but in PE 3.8, r10k will still read `/etc/r10k.yaml`. To continue using the module, you should **not** move r10k.yaml to its new default location. 
+If you want to continue using the zack-r10k module with r10k, you can do so. The default location of r10k.yaml has changed, but in PE 3.8, r10k still reads `/etc/r10k.yaml`. To continue using the module, you should **not** move r10k.yaml to its new default location. 
 
 ####Use the PE 3.8 default r10k configuration
 
 If you want to use r10k as it ships with PE **without** the zack-r10k module, you should move the location of r10k.yaml:
 
-1. Locate your current r10k.yaml file. It will likely be in the `/etc/` directory.
+1. Locate your current r10k.yaml file. It is likely in the `/etc/` directory.
 2. Move your r10k.yaml file to the `/etc/puppetlabs/r10k` directory.
 3. Delete or rename the r10k.yaml file in `/etc/` if it is still present. Otherwise, you will see the following warning:
 
-```
+~~~
 Both /etc/puppetlabs/r10k/r10k.yaml and /etc/r10k.yaml configuration files exist.
 /etc/puppetlabs/r10k/r10k.yaml will be used.
-```
+~~~
 
 ###I was using r10k with open source Puppet and just upgraded to PE 3.8
 
@@ -90,10 +90,10 @@ Puppet Enterprise automatically installs the current PE version of r10k. However
 3. Remove the r10k gem from `opt/puppet`, if it is still present there.
 4. Delete or rename the r10k.yaml file in `/etc/` if it is still present. Otherwise, you will see the following error:
 
-```
+~~~
 Both /etc/puppetlabs/r10k/r10k.yaml and /etc/r10k.yaml configuration files exist.
 /etc/puppetlabs/r10k/r10k.yaml will be used.
-```
+~~~
   
 ## Next Steps
 

@@ -34,11 +34,12 @@ Each subcommand allows the following options:
 The `r10k deploy` command accepts the following subcommands:
 
 * `display`: Display a list of environments in your deployment.
-  * To display a list of modules in the Puppetfile, add a `-p` to the command.
+  * To display a list of modules in the Puppetfile, add the `-p` flag to the command.
   * To display detailed information, add `--detail` to the command.
-* `environment`: Deploy environments and their dependent modules.
+* `environment`: Deploy environments and their dependent modules. 
+  * To update modules specified in the environment's Puppetfile, add the `-p` flag to the command.
 * `module`: Deploy a module in all environments.
-  * To update the modules in the given environment, add `-e` to the command.
+  * To update the modules in the environment, add the `-e` flag to the command.
 
 ###`puppetfile`
 

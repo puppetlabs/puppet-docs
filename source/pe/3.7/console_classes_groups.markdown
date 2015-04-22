@@ -18,12 +18,7 @@ PE comes with the following preconfigured node groups to help you manage your PE
 
    ![viewing list of node groups][all_node_groups]
 
-You should create two different types of node groups in PE: *environment node groups* and *classification node groups*. Environment node groups set the environment that a node should be in. Classification node groups set the classification data that your nodes will receive. You add all of your classes, parameters, and variables to node groups. When your individual nodes match a node group, they receive all of the classification specified for that node group. 
-
-
-In the **Classification** page, you can add your own node groups and make changes to existing node groups.
-
-
+You should create two different types of node groups in PE: *environment node groups* and *classification node groups*. Environment node groups set the environment that a node should be in. Classification node groups set the classification data that your nodes will receive. You add your classes, parameters, and variables to classification node groups. When your individual nodes match a node group, they receive all of the classification specified for that node group. 
 
 > **Important**
 >
@@ -31,7 +26,20 @@ In the **Classification** page, you can add your own node groups and make change
 
 ### Creating Environment Node groups
 
+The only role of an environment node group is to set the environment that applies to your nodes. Environment node groups should **not** contain any classification data.
 
+PE comes with two preconfigured environment node groups: the **Production environment** node group and the **Agent-specified environment** node group.
+
+The **Production environment** contains a rule that matches all nodes. You should not change this rule. All nodes will have the production environment unless you specify otherwise.
+
+The **Agent-specified environment** node group retains the environment that is set for the node through the node's `puppet.conf` file, and ignores any environments set through the node classifier. For more information, see [The Agent-Specified Environment Node Group](./console_classes_groups_preconfigured_groups.html#the-agent-specified-environment-node-group). 
+
+To create a new environment node group:
+
+1. In the **Node group name** box, enter a name that describes the role of this environment node group, such as "Test environment". 
+2. In the **Parent name** box, set the parent to be **Production Environment**. All environment node groups that you add to PE should have the **Production Environment** as the parent. This is important for two reasons:
+    1. The **Production Environment** contains a rule that matches all nodes. Child groups always match a subset of the nodes that match the parent node group. They are used to specify new settings that apply to the subset of matching nodes and override the settings in the parent group. In the case of environment node groups, the overriding setting is the new environment that you want to set for a subset of nodes.
+    2. As explained below, environment node groups have the **This is an environment group** checkbox selected. When a node matches multiple environment node groups, it is the environment node group at the very bottom of an inheritance branch that wins and ultimately gets to enforce which environment is set for matching nodes. Since the **Production Environment** has a rule that matches all nodes, all additional environment node groups must be children of the **Production Environment** node group 
 
 ### Creating Classification Node Groups (TODO: create a redirect)
 
