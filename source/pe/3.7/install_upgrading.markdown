@@ -5,9 +5,11 @@ subtitle: "Upgrading Puppet Enterprise"
 canonical: "/pe/latest/install_upgrading.html"
 ---
 
-> **IMPORTANT**: **READ BEFORE UPGRADING**: If you are upgrading from PE 3.3 and you use the PE console for node classification, follow the steps in the [node classification migration process doc](./install_upgrade_migration_tool.html) to perform your upgrade to PE 3.8.
+> **IMPORTANT! READ BEFORE UPGRADING**: If you are upgrading from PE 3.3.2 and you use the PE console for node classification, follow the steps in the [node classification migration process doc](./install_upgrade_migration_tool.html) to perform your upgrade to PE 3.8.
 
 ## Upgrading Overview
+
+> **Upgrading to PE 3.8? Make sure you're on the correct version.** Upgrades to PE 3.8 are only supported from PE 3.3.2 or from any version in the 3.7 series.
 
 Before upgrading, please review:
 

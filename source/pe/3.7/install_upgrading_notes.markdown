@@ -9,6 +9,8 @@ canonical: "/pe/latest/install_upgrading_notes.html"
 
 >**Note**: A complete list of known issues is provided in the [PE 3.8 release notes](./release_notes_known_issues.html). Please review this list before upgrading.
 
+> **Upgrading to PE 3.8? Make sure you're on the correct version.** Upgrades to PE 3.8 are only supported from PE 3.3.2 or from any version in the 3.7 series.
+
 ## Upgrading to the Puppet Server (on the Puppet Master)
 
 PE 3.8 uses the Puppet Server, running the Puppet Master, which functions as a seamless drop-in replacement for the former Apache/Passenger Puppet master stack. However, due to this change in the underlying architecture of the Puppet master, there are a few changes you'll notice after upgrading that we'd like to point out. Refer to [About the Puppet Server](./install_upgrading_puppet_server_notes.html) for more information.
