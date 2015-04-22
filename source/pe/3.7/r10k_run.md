@@ -22,7 +22,7 @@ The first time you run r10k, you'll deploy all environments and modules with the
 r10k deploy environment
 ~~~
 
-This command checks the Git repository you've specified in r10k.yaml to see what branches are present. Then r10k maps those branches to the Puppet directory environments it creates in the directory path you specified in r10k.yaml. It then clones your Git repo, and either creates (if this is your first run) or updates (if it is a subsequent run) your directory environments with the contents of your repo.
+This command checks the Git repository you've specified in r10k.yaml to see what branches are present. Then r10k maps those branches to the Puppet directory environments it creates in the directory path you specified in r10k.yaml. It then clones your Git repo, and either creates (if this is your first run) or updates (if it is a subsequent run) your directory environments with the contents of your repo branches.
 
 > Note that when running commands to deploy code on a master, r10k needs to have write access to your Puppet environment path. If you're using Puppet Enterprise this account is pe-puppet. To do this, run r10k as the Puppet user itself or as root. Running the user as root requires access control to the root user.
 
@@ -35,11 +35,11 @@ r10k deploy environment
 ~~~
 
 This command updates existing environments and recursively creates new environments.
-When an environment is deployed for the first time (as in the initial r10k run above), this command automatically updates all modules as well. For subsequent updates, only the environment itself will be updated.
+When an environment is deployed for the first time (as in the initial r10k run above), this command automatically updates all modules as well. For subsequent updates, only the environment itself is updated.
 
 ###Update all environments and modules
 
-To update all environments and modules on subsequent r10k runs, run the above command with the `--puppetfile`:
+To update all environments and modules on subsequent r10k runs, run the above command with the `--puppetfile` flag:
 
 ~~~
 r10k deploy environment --puppetfile
@@ -58,7 +58,7 @@ r10k deploy environment my_working_environment
 When you're actively developing on a given environment, this is the best way to
 deploy your changes. When an environment is deployed for the first
 time, it automatically updates all modules as well. For subsequent updates,
-only the environment itself will be updated.
+only the environment itself is updated.
 
 ###Update a single environment and its modules
 
@@ -69,9 +69,9 @@ r10k deploy environment my_working_environment --puppetfile
 This updates the given environment and all contained modules. This is
 useful if you want to make sure that a given environment is fully up to date.
 
-##Updating modules [TODO: This said Installing and Updating, but it looks like it only updates?)
+##Installing and updating modules
 
-When you use the `r10k deploy` command to update modules, r10k will update the modules as you've specified them in your [Puppetfile](puppetfile). For `r10k puppetfile` commands that you can use to install, verify, and purge modules, see [Running Puppetfile commands](puppetfile#running-puppetfile-commands).
+When you use the `r10k deploy` command to update modules, r10k installs/updates the modules as you've specified them in your [Puppetfile](puppetfile). For `r10k puppetfile` commands that you can use to install, verify, and purge modules, see [Running Puppetfile commands](puppetfile#running-puppetfile-commands).
 
 ###Update a single module across all environments
 
@@ -125,4 +125,5 @@ For an explicit list of environments being managed by r10k, and the modules spec
 r10k deploy display -p --detail production vmwr webrefactor
 ~~~
 
-The above example will display details on the modules for your production, vmwr, and webrefactor environments.
+The above example displays details on the modules for your production, vmwr, and webrefactor environments.
+

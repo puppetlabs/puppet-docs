@@ -53,10 +53,10 @@ mod 'puppetlabs/apache', :latest
 
 #####Declaring a Git repo as a module
 
-You can also specify a Git repo that contains a Puppet module; r10k will then clone that repo and use it as a module. In this case, you can specify the module "version" by using the `ref`, `tag`, `commit`, and `branch` options.
+You can also specify a Git repo that contains a Puppet module; r10k then copies that repo and uses it as a module. In this case, you can specify the module "version" by using the `ref`, `tag`, `commit`, and `branch` options.
 
 * `ref`: Determines the type of Git object to check out. Can be used with a Git commit, branch reference, or a tag.
-* `tag`: Directs r10k to clone the repo at a certain tag number.
+* `tag`: Directs r10k to clone the repo at a certain tag value.
 * `commit`: Directs r10k to clone the repo at a certain commit.
 * `branch`: Specifies a certain branch of the repo to clone.
 
@@ -83,25 +83,30 @@ mod 'apache',
   :tag => '0.9.0'
 ~~~
 
-**Install puppetlabs/apache and pin to the '83401079' commit:**
+**Install puppetlabs/apache and pin to the '8df51aa' commit:**
 
 ~~~
 mod 'apache',
   :git    => 'https://github.com/puppetlabs/puppetlabs-apache',
-  :commit => '83401079053dca11d61945bd9beef9ecf7576cbf'
+  :commit => '8df51aa'
 ~~~
 
-**Install puppetlabs/apache and track the 'docs_experiment' branch:**
+**Install puppetlabs/apache and track the 'proxy_match' branch:**
 
 ~~~
 mod 'apache',
   :git    => 'https://github.com/puppetlabs/puppetlabs-apache',
-  :branch => 'docs_experiment'
+  :branch => 'proxy_match'
 ~~~
 
 ###Changing the module installation directory
 
-By default, r10k installs modules in the Puppetfile's current directory. Optionally, you can point to another directory for module installation. You can specify either an absolute or a relative path in this setting.
+By default, r10k installs modules in a modules directory in the Puppetfile’s current directory. Optionally, you can point to another directory for module installation. You can specify either an absolute or a relative path in this setting.
+
+~~~
+mod 'puppetlabs/apache'
+#installs the apache module into 'dirname/path/to/Puppetfile/modules/apache'
+~~~
 
 **Note:** If you use this setting, it should always come **before** any modules listed in the Puppetfile.
 
@@ -127,7 +132,7 @@ After you've specified your modules in the Puppetfile, you're ready to [run r10k
 
 ##Running Puppetfile subcommands
 
-After you've configured your Puppetfile, you'll be able to manage your modules via the `r10k puppetfile` subcommand. This subcommand must be run as the user with write access to the Puppet environment path. It interacts with the Puppetfile in the current working directory, so before running the subcommand, make sure you are in the directory of the Puppetfile you want to use. You can run the `r10k puppetfile` subcommand with following actions:
+After you've configured your Puppetfile, you'll be able to manage your modules via the `r10k puppetfile` subcommand. This subcommand must be run as the user with write access to the moduledir directory specified by the Puppetfile. It interacts with the Puppetfile in the current working directory, so before running the subcommand, make sure you are in the directory of the Puppetfile you want to use. You can run the `r10k puppetfile` subcommand with following actions:
 
 ### `install`
 
@@ -147,9 +152,12 @@ r10k puppetfile check
 
 ### `purge`
 
-Remove any modules in the ./modules directory that are not specified in the Puppetfile.
+If the moduledir directory specified in the Puppetfile contains modules that are *not* specified in the Puppetfile, `purge` removes them.
 
 ~~~
 r10k puppetfile purge
 ~~~
 
+## Next Steps
+
+Once you've set up your Puppetfile, you're ready to [deploy](running) your environments and modules.
