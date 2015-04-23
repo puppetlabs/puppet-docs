@@ -43,6 +43,7 @@
     <!-- FIXME: absolute paths -->
 
     <link rel="stylesheet" type="text/css" href="/files/stylesheets/style.css" media="screen">
+      <link rel="stylesheet" type="text/css" href="/files/stylesheets/homepage.css" media="screen">
     <link rel="stylesheet" type="text/css" href="/files/stylesheets/syntax.css" media="screen"> <!-- index -->
 
     <!--[if IE 7]>
@@ -177,6 +178,7 @@
       </div>
   </header>
 
+  <!--
   <section id="masthead">
     <div class="site-width">
       <h1>Docs: <span class="section-name">{{page.title}}</span></h1>
@@ -208,6 +210,195 @@
         </nav>
       </div>
     </div>
+  </section>
+  -->
+
+  <section id="content">
+      <div class="site-width">
+
+          <!-- homepage header and language selector -->
+          <div class="homepage-header">
+              <div class="hh-col title">
+                  <h1>Puppet Labs Documentation</h1>
+              </div>
+              <div class="hh-col language">
+                  <select id="language-select">
+                      <option>Select a Language</option>
+                      <option data-language="spanish" data-url="http://docs.puppetlabs.com/es/">Español</option>
+                      <option data-language="japanese" data-url="http://docs.puppetlabs.com/ja/">日本語</option>
+                  </select>
+                  <script type="text/javascript">
+                      jQuery('#language-select').on('change', function() {
+                          var optionSelected = $("option:selected", this);
+                          if (optionSelected.attr('data-language') != 'null') {
+                              window.location = optionSelected.attr('data-url');
+                          }
+                      });
+                  </script>
+              </div>
+          </div>
+
+          <!-- call out boxes -->
+          <div class="homepage-callout">
+              <div class="hc-wrapper">
+                  <div class="hc-col left">
+                      <div class="hc-col-box">
+                          <h2>Puppet Enterprise</h2>
+                          <p>
+                              Body Copy 16 pt Regular #777777. The documentation posted her is also available as a set of
+                              PDFs, which can be found here.
+                          </p>
+                          <a href="#" class="btn homepage">Go to Puppet Enterprise docs</a>
+                          <div class="hc-hr">
+                              <div class="hc-hr-wrapper">
+                                  <hr>
+                                  <div class="img"></div>
+                              </div>
+                          </div>
+                          <div class="hc-col-subtitle">
+                              Browse Topic
+                          </div>
+                          <div class="hc-col-list">
+                              <div class="hc-col-list-col">
+                                  <ul>
+                                      <li>
+                                          <a href="#">Lorem Ipsum</a>
+                                      </li>
+                                      <li>
+                                          <a href="#">Suspendisse Praesent</a>
+                                      </li>
+                                      <li>
+                                          <a href="#">Tincidunt Elit Non</a>
+                                      </li>
+                                      <li>
+                                          <a href="#">Laoreet Vestibulum</a>
+                                      </li>
+                                      <li>
+                                          <a href="#">Macaenus Et Diam</a>
+                                      </li>
+                                      <li>
+                                          <a href="#">Lorem Ipsum</a>
+                                      </li>
+                                      <li>
+                                          <a href="#">Suspendisse Praesent</a>
+                                      </li>
+                                  </ul>
+                              </div>
+                              <div class="hc-col-list-col">
+                                  <ul>
+                                      <li>
+                                          <a href="#">Lorem Ipsum</a>
+                                      </li>
+                                      <li>
+                                          <a href="#">Suspendisse Praesent</a>
+                                      </li>
+                                      <li>
+                                          <a href="#">Tincidunt Elit Non</a>
+                                      </li>
+                                      <li>
+                                          <a href="#">Laoreet Vestibulum</a>
+                                      </li>
+                                      <li>
+                                          <a href="#">Macaenus Et Diam</a>
+                                      </li>
+                                      <li>
+                                          <a href="#">Lorem Ipsum</a>
+                                      </li>
+                                      <li>
+                                          <a href="#">Suspendisse Praesent</a>
+                                      </li>
+                                  </ul>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="hc-col right">
+                      <div class="hc-col-box">
+                          <h2>Puppet Open Source</h2>
+                          <p>
+                              Body Copy 16 pt Regular #777777. The documentation posted her is also available as a set of
+                              PDFs, which can be found here.
+                          </p>
+                          <a href="#" class="btn homepage">Go to Puppet Open Source docs</a>
+                          <div class="hc-hr">
+                              <div class="hc-hr-wrapper">
+                                  <hr>
+                                  <div class="img"></div>
+                              </div>
+                          </div>
+                          <div class="hc-col-subtitle">
+                              Browse Topic
+                          </div>
+                          <div class="hc-col-list">
+                              <div class="hc-col-list-col">
+                                  <ul>
+                                      <li>
+                                          <a href="#">Lorem Ipsum</a>
+                                      </li>
+                                      <li>
+                                          <a href="#">Suspendisse Praesent</a>
+                                      </li>
+                                      <li>
+                                          <a href="#">Tincidunt Elit Non</a>
+                                      </li>
+                                      <li>
+                                          <a href="#">Laoreet Vestibulum</a>
+                                      </li>
+                                      <li>
+                                          <a href="#">Macaenus Et Diam</a>
+                                      </li>
+                                      <li>
+                                          <a href="#">Lorem Ipsum</a>
+                                      </li>
+                                      <li>
+                                          <a href="#">Suspendisse Praesent</a>
+                                      </li>
+                                  </ul>
+                              </div>
+                              <div class="hc-col-list-col">
+                                  <ul>
+                                      <li>
+                                          <a href="#">Lorem Ipsum</a>
+                                      </li>
+                                      <li>
+                                          <a href="#">Suspendisse Praesent</a>
+                                      </li>
+                                      <li>
+                                          <a href="#">Tincidunt Elit Non</a>
+                                      </li>
+                                      <li>
+                                          <a href="#">Laoreet Vestibulum</a>
+                                      </li>
+                                      <li>
+                                          <a href="#">Macaenus Et Diam</a>
+                                      </li>
+                                      <li>
+                                          <a href="#">Lorem Ipsum</a>
+                                      </li>
+                                      <li>
+                                          <a href="#">Suspendisse Praesent</a>
+                                      </li>
+                                  </ul>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+          <!-- hc-footer -->
+          <div class="homepage-sub-footer">
+              <a href="#" class="hsf-link">Lorem Ipsum</a>
+              <span class="bullet hsf-link">&bull;</span>
+              <a href="#" class="hsf-link">Lorem Ipsum</a>
+              <span class="bullet hsf-link">&bull;</span>
+              <a href="#" class="hsf-link">Lorem Ipsum</a>
+              <span class="bullet hsf-link">&bull;</span>
+              <a href="#" class="hsf-link">Lorem Ipsum</a>
+              <span class="bullet hsf-link">&bull;</span>
+              <a href="#" class="hsf-link">Lorem Ipsum</a>
+          </div>
+      </div>
   </section>
 
   <!-- Rebuild of Site Footer -->
