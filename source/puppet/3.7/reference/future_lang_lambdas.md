@@ -13,6 +13,7 @@ canonical: "/puppet/latest/reference/future_lang_lambdas.html"
 [local scope]: ./future_lang_scope.html#local-scopes
 [callable]: ./future_lang_data_abstract.html#callable
 [array]: ./future_lang_data_array.html
+[iteration]: ./future_lang_iteration.html
 
 Lambdas are blocks of Puppet code that can be passed to [functions][]. When a function receives a lambda, it can provide values for the lambda's parameters and evaluate its code.
 
@@ -20,7 +21,7 @@ If you've used other programming languages, you can think of lambdas as simple a
 
 ## Location
 
-_Lambdas can only be used in [function calls][functions]._ While any function can accept a lambda, only some functions will do anything with them.
+_Lambdas can only be used in [function calls][functions]._ While any function can accept a lambda, only some functions will do anything with them. See [the Iteration and Loops page][iteration] for info on some of the most useful lambda-accepting functions.
 
 Lambdas are not valid in any other place in the Puppet language, and cannot be assigned to variables.
 
