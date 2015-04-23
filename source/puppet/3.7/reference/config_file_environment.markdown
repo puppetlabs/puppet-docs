@@ -8,7 +8,7 @@ canonical: "/puppet/latest/reference/config_file_environment.html"
 [environmentpath]: ./environments.html#about-environmentpath
 [modulepath]: /references/3.7.latest/configuration.html#modulepath
 [puppet.conf]: ./config_file_main.html
-[basemodulepath]: /references/3.6.latest/configuration.html#basemodulepath
+[basemodulepath]: /references/3.7.latest/configuration.html#basemodulepath
 [main manifest]: ./dirs_manifest.html
 [configuring_timeout]: ./environments_configuring.html#environmenttimeout
 

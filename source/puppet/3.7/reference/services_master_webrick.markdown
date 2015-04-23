@@ -43,13 +43,13 @@ The WEBrick Puppet master runs as a single Ruby process. This single process doe
 
 The Puppet master process should generally be started as the root user, via `sudo`. Once the process starts, it will drop privileges and start running as the user specified by [the `user` setting][user] (usually `puppet`). Any files and directories the Puppet master uses will need to be readable and writable by this user.
 
-[user]: /references/latest/configuration.html#user
+[user]: /references/3.7.latest/configuration.html#user
 
 ### Ports
 
 By default, Puppet's HTTPS traffic uses port 8140. The OS and firewall must allow the Puppet master's Ruby process to accept incoming connections on this port.
 
-The port can be changed by changing [the `masterport` setting](/references/latest/configuration.html#masterport) across all agents and Puppet masters.
+The port can be changed by changing [the `masterport` setting](/references/3.7.latest/configuration.html#masterport) across all agents and Puppet masters.
 
 ### Logging
 

@@ -65,9 +65,9 @@ If you need to install packages into a directory controlled by a non-root user, 
 
 By default, Puppet's HTTPS traffic uses port 8140. Your OS and firewall must allow Puppet agent to initiate outbound connections on this port.
 
-If you want to use a non-default port, you'll have to change [the `masterport` setting](/references/latest/configuration.html#masterport) on all agent nodes, and ensure that you've changed your Puppet master's port as well.
+If you want to use a non-default port, you'll have to change [the `masterport` setting](/references/3.7.latest/configuration.html#masterport) on all agent nodes, and ensure that you've changed your Puppet master's port as well.
 
-If you are using the deprecated `listen` feature, Puppet agent will also need to listen for incoming connections on port 8139. (Configurable with [`puppetport`](/references/latest/configuration.html#puppetport).)
+If you are using the deprecated `listen` feature, Puppet agent will also need to listen for incoming connections on port 8139. (Configurable with [`puppetport`](/references/3.7.latest/configuration.html#puppetport).)
 
 ### Logging
 

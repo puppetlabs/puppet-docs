@@ -147,7 +147,7 @@ You can also access module files with [the `file` function][file_function]. This
 
 Puppet URLs work transparently in both agent/master mode and standalone mode; in either case, they will retrieve the correct file from a module.
 
-[file]: /references/stable/type.html#file
+[file]: /references/3.7.latest/type.html#file
 
 Puppet URLs are formatted as follows:
 

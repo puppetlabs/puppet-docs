@@ -4,7 +4,7 @@ layout: default
 canonical: "/puppet/latest/reference/lang_functions.html"
 ---
 
-[func_ref]: /references/latest/function.html
+[func_ref]: /references/3.7.latest/function.html
 [forge]: http://forge.puppetlabs.com
 [custom]: /guides/custom_functions.html
 [stdlib]: http://forge.puppetlabs.com/puppetlabs/stdlib

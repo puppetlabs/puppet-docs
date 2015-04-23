@@ -276,7 +276,7 @@ This setting once could specify where the Puppet master logged, but it has not w
 
 ### `stringify_facts = true`
 
-* [`stringify_facts`](/references/latest/configuration.html#stringifyfacts)
+* [`stringify_facts`](/references/3.7.latest/configuration.html#stringifyfacts)
 
 #### Now
 

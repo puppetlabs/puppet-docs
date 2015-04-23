@@ -46,7 +46,7 @@ Puppet agent's user can be a local or domain user. If this user isn't already a 
 
 By default, Puppet's HTTPS traffic uses port 8140. Your OS and firewall must allow Puppet agent to initiate outbound connections on this port.
 
-If you want to use a non-default port, you'll have to change [the `masterport` setting](/references/latest/configuration.html#masterport) on all agent nodes, and ensure that you've changed your Puppet master's port as well.
+If you want to use a non-default port, you'll have to change [the `masterport` setting](/references/3.7.latest/configuration.html#masterport) on all agent nodes, and ensure that you've changed your Puppet master's port as well.
 
 ### Logging
 
