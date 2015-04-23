@@ -230,6 +230,10 @@ In the console, parent group rules don't show, which makes it easier to create a
 
 Matching nodes aren’t showing up.
 
+### The Accept all Option Doesn't Work With Hundreds of New certs
+
+When you install hundreds of agents and attempt to use the **Accept all** option in the console, only some of the certs will be signed before there's an error. This is likely due to timing out.
+
 ### `pe_console_prune` Class not Added to PE Console Group During Upgrade to 3.8
 
 The `pe_console_prune` class is a class in the PE Console group. However, when upgrading to PE 3.8, this class may be incorrectly added to the singleton group created for the node assigned the PE console component.

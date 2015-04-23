@@ -95,6 +95,26 @@ In earlier releases, the RBAC service required you to use the correct case when 
 
 Previously, the MCO puppet agent plugin didn't let a user trigger a remote `noop` run or specify an environment if the `pe-puppet` service was running. It assumed that we were using cron instead of the `pe-puppet` service. Now you can trigger a run while the service is running.
 
+#### Issue Creating Multiple Mirrors in zpool Resource
+
+The fix enables you to differentiate between single and multi-mirror and raidz pools and ensures that `mirror` and `raidz` can be used as subcommands.
+
+#### `/var/lib/peadmin/.mcollective.d` Has the Wrong Permissions
+
+In PE 3.7.0 the `.mcollective.d` directory was assigned a `0400` permission. This created an issue when the client.log was full, and `peadmin` needed to create another one for shifting the logfile. If a logfile was full, and you tried to use MCollective to issue commands, you'd get an error message that said log shifting had failed and permission was denied. The fix sets the permissions to u+rwx for the PE admin user.
+
+#### `pe-mcollective-metadata` Cron Redirected Output to a Path that Was Not Valid on AIX
+
+The fix updated the manifest to use `puppet_enterprise::params::mco_logdir`, which evaluates to the appropriate log directory for AIX. The cron job now points at the correct location, `/opt/freeware/var/log/pe-mcollective`.
+
+#### PE Removed Unmanaged Crontab Entries from Root If Invalid Entries Were Present
+
+Due to this bug, the mcollective metadata cron job was unconditionally laid
+down during PE installation. This caused problems if invalid root crontabs were present. It would then trigger a bug that removed any unmanged cron entries. The fix adds a toggle that allowed the cron job to be unmanaged, to avoid triggering this bug. An exec was
+also added to ensure that the fact cache is present so that
+`pe-mcollective` can start.
+
+
 
 
 
