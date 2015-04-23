@@ -69,7 +69,8 @@ The role of a classification node group is to assign classification (classes, pa
 
 
 ### Adding Nodes to a Node Group
-To apply a node group’s environment, classes, parameters, and variables to your nodes, you need to include the node in that node group. There are two ways to add nodes to a node group:
+
+There are two ways to add nodes to a node group:
 
 1. Create rules that match node facts (dynamic)
 
@@ -126,7 +127,7 @@ If you have a node that needs to be in a node group regardless of the rules that
 
 ### Adding Classes to a Node Group
 
-The next thing you’ll want to do is add classes to your node group. [Classes][lang_classes] are the blocks of Puppet code used to configure your nodes and assign resources to them. To add a class to a group, first create the class in a module. You'll then need to install the module.
+[Classes][lang_classes] are the blocks of Puppet code used to configure your nodes and assign resources to them. To add a class to a node classification group, first create the class in a module. You'll then need to install the module.
 
 > #### Creating Puppet Classes
 >
