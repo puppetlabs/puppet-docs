@@ -11,10 +11,10 @@ canonical: "/puppet/latest/reference/lang_relationships.html"
 [array]: ./lang_datatypes.html#arrays
 [class]: ./lang_classes.html
 [event]: ./lang_resources.html#behavior
-[service]: /references/latest/type.html#service
-[exec]: /references/latest/type.html#exec
-[type]: /references/latest/type.html
-[mount]: /references/latest/type.html#mount
+[service]: /references/3.7.latest/type.html#service
+[exec]: /references/3.7.latest/type.html#exec
+[type]: /references/3.7.latest/type.html
+[mount]: /references/3.7.latest/type.html#mount
 [metaparameters]: ./lang_resources.html#metaparameters
 [require_function]: ./lang_classes.html#using-require
 
@@ -67,7 +67,7 @@ The two examples below create the same ordering relationship:
 {% highlight ruby %}
     file { '/etc/ssh/sshd_config':
       ensure  => file,
-      mode    => 600,
+      mode    => '0600',
       source  => 'puppet:///modules/sshd/sshd_config',
       require => Package['openssh-server'],
     }
@@ -78,7 +78,7 @@ The two examples below create the same notification relationship:
 {% highlight ruby %}
     file { '/etc/ssh/sshd_config':
       ensure => file,
-      mode   => 600,
+      mode   => '0600',
       source => 'puppet:///modules/sshd/sshd_config',
       notify => Service['sshd'],
     }
@@ -133,7 +133,7 @@ Since resource declarations can be chained, you can use chaining arrows to make 
     } -> # and then:
     file { '/etc/ssh/sshd_config':
       ensure => file,
-      mode   => 600,
+      mode   => '0600',
       source => 'puppet:///modules/sshd/sshd_config',
     } ~> # and then:
     service { 'sshd':

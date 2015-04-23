@@ -29,7 +29,7 @@ For details about invoking the Puppet apply command, see [the puppet apply man p
 
 Puppet apply runs similarly on both \*nix and Windows systems.
 
-Not all operating systems can manage the same resources with Puppet; some resource types are OS-specific, and other types may have OS-specific features. See the [type reference][] for details.
+Not all operating systems can manage the same resources with Puppet; some resource types are OS-specific, and others may have OS-specific features. See the [resource type reference][] for details.
 
 ## Puppet Apply's Run Environment
 
@@ -60,7 +60,7 @@ Puppet apply can also run as a non-root user. This will restrict the resources t
 
 When running without root permissions, most of Puppet's resource providers cannot use `sudo` to elevate permissions. This means Puppet can only manage resources that its user can modify without using `sudo`.
 
-Out of the core resource types listed in the [type reference][], the following resource types are available to non-root Puppet apply runs:
+Out of the core resource types listed in the [resource type reference][], the following are available to non-root Puppet apply runs:
 
 * `cron` (only non-root cron jobs can be viewed or set)
 * `exec` (cannot run as another user or group)
@@ -69,7 +69,7 @@ Out of the core resource types listed in the [type reference][], the following r
 * `schedule`
 * `ssh_key`
 * `ssh_authorized_key`
-* `service` (for services that don't require root. You can also use the `start`, `stop`, and `status` attributes to specify how non-root users should control the service; see [the tips and examples for the service type](./resources_service.html) for more info.)
+* `service` (for services that don't require root. You can also use the `start`, `stop`, and `status` attributes to specify how non-root users should control the service; see [the tips and examples for the `service` type](./resources_service.html) for more info.)
 * `augeas`
 
 If you need to install packages into a directory controlled by a non-root user, you can either use an `exec` to unzip a tarball or use a recursive `file` resource to copy a directory into place.

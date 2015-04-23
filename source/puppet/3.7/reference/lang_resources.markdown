@@ -10,7 +10,7 @@ canonical: "/puppet/latest/reference/lang_resources.html"
 [scope]: ./lang_scope.html
 [report]: /guides/reporting.html
 [append_attributes]: ./lang_classes.html#appending-to-resource-attributes
-[types]: /references/latest/type.html
+[types]: /references/3.7.latest/type.html
 [bareword]: ./lang_datatypes.html#bare-words
 [string]: ./lang_datatypes.html#strings
 [array]: ./lang_datatypes.html#arrays
@@ -149,7 +149,7 @@ Some attributes in Puppet can be used with every resource type. These are called
 
 The most commonly used metaparameters are for specifying [order relationships][relationships] between resources.
 
-You can see the full list of all metaparameters in the [Metaparameter Reference](/references/stable/metaparameter.html).
+You can see the full list of all metaparameters in the [Metaparameter Reference](/references/3.7.latest/metaparameter.html).
 
 
 Condensed Forms
@@ -175,7 +175,7 @@ If you specify an array of strings as the title of a resource declaration, Puppe
       ensure => directory,
       owner  => 'root',
       group  => 'root',
-      mode   => 0755,
+      mode   => '0755',
     }
 {% endhighlight %}
 
@@ -197,7 +197,7 @@ This example is the same as declaring each directory as a separate resource with
       ensure => directory,
       owner  => 'root',
       group  => 'root',
-      mode   => 0755,
+      mode   => '0755',
     }
 {% endhighlight %}
 
@@ -214,19 +214,19 @@ If you end an attribute block with a semicolon rather than a comma, you may spec
         ensure => directory,
         owner  => 'root',
         group  => 'root',
-        mode   => 0755;
+        mode   => '0755';
 
       '/etc/rc.d/init.d':
         ensure => directory,
         owner  => 'root',
         group  => 'root',
-        mode   => 0755;
+        mode   => '0755';
 
       '/etc/rc.d/rc0.d':
         ensure => directory,
         owner  => 'root',
         group  => 'root',
-        mode   => 0755;
+        mode   => '0755';
     }
 {% endhighlight %}
 
@@ -246,7 +246,7 @@ Although you cannot declare the same resource twice, you can add attributes to a
     File['/etc/passwd'] {
       owner => 'root',
       group => 'root',
-      mode  => 0640,
+      mode  => '0640',
     }
 {% endhighlight %}
 
@@ -274,7 +274,7 @@ In normal circumstances, this idiom can only be used to add previously unmanaged
     File <| tag == 'base::linux' |> {
       owner => 'root',
       group => 'root',
-      mode  => 0640,
+      mode  => '0640',
     }
 {% endhighlight %}
 

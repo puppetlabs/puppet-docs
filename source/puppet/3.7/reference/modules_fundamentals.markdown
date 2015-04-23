@@ -39,7 +39,7 @@ Puppet Modules
 Using Modules
 -----
 
-**Modules are how Puppet finds the classes and types it can use** --- it automatically loads any [class][classes] or [defined type][defined_types] stored in its modules. Within a manifest or from an [external node classifier (ENC)][enc], any of these classes or types can be declared by name:
+**Modules are how Puppet finds the classes and defined types it can use** --- it automatically loads any [class][classes] or [defined type][defined_types] stored in its modules. Within a manifest or from an [external node classifier (ENC)][enc], any of these classes or defined types can be declared by name:
 
 {% highlight ruby %}
     # /etc/puppetlabs/puppet/site.pp
@@ -99,9 +99,10 @@ This example module, named "`my_module`," shows the standard module layout in mo
     * `facts.d/` --- Contains [external facts][], which are an alternative to Ruby-based [custom facts][]. These will be synced to all agent nodes, so they can submit values for those facts to the Puppet master. (Requires Facter 2.0.1 or later.)
     * `templates/` --- Contains templates, which the module's manifests can use. See ["Templates"][templates] for more details.
         * `component.erb` --- A manifest can render this template with `template('my_module/component.erb')`.
+        * `component.epp` --- A manifest can render this template with `epp('my_module/component.epp')`. (The `epp` function is only available with the future parser enabled.)
     * `tests/` --- Contains examples showing how to declare the module's classes and defined types.
         * `init.pp`
-        * `other_class.pp` --- Each class or type should have an example in the tests directory.
+        * `other_class.pp` --- Each class or defined type should have an example in the tests directory.
     * `spec/` --- Contains spec tests for any plugins in the lib directory.
 
 Each of the module's subdirectories has a specific function, as follows.
@@ -146,7 +147,7 @@ You can also access module files with [the `file` function][file_function]. This
 
 Puppet URLs work transparently in both agent/master mode and standalone mode; in either case, they will retrieve the correct file from a module.
 
-[file]: /references/stable/type.html#file
+[file]: /references/3.7.latest/type.html#file
 
 Puppet URLs are formatted as follows:
 
@@ -158,15 +159,16 @@ So `puppet:///modules/my_module/service.conf` would map to `my_module/files/serv
 
 ### Templates
 
-Any ERB template (see ["Templates"][templates] for more details) can be rendered in a manifest with the `template` function. The output of the template is a simple string, which can be used as the content attribute of a [`file`][file] resource or as the value of a variable.
+Any ERB or EPP template (see ["Templates"][templates] for more details) can be rendered in a manifest with the `template` function (for ERB templates which use Ruby) or the `epp` function (for EPP templates, which use the Puppet language; only available when the future parser is enabled). The output of the template is a string, which can be used as the content attribute of a [`file`][file] resource or as the value of a variable.
 
-**The template function can look up templates identified by shorthand:**
+**The `template` and `epp` functions can look up templates identified by shorthand:**
 
 Template function | (' | Name of module/ | Name of template | ')
 ------------------|----|-----------------|------------------|----
     `template`    |`('`|   `my_module/`  | `component.erb`  |`')`
+    `epp`         |`('`|   `my_module/`  | `component.epp`  |`')`
 
-So `template('my_module/component.erb')` would render the template `my_module/templates/component.erb`.
+So `template('my_module/component.erb')` would render the template `my_module/templates/component.erb`, and `epp('my_module/component.epp')` would render `my_module/templates/component.epp`.
 
 
 Writing Modules
