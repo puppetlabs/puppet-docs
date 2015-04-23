@@ -87,11 +87,11 @@ Puppet Enterprise automatically installs the current PE version of r10k. However
 
 1. Move your r10k.yaml file from the `/etc/` directory to the `/etc/puppetlabs/r10k` directory.
 2. Check that your specified [directory environments](environ_dir) in r10k.yaml are listed in puppet.conf.
-3. Remove the r10k gem from `opt/puppet`, if it is still present there.
+3. Uninstall r10k from your system gems. This will depend on your system, but running `gem uninstall r10k` should be sufficient
 4. Delete or rename the r10k.yaml file in `/etc/` if it is still present. Otherwise, you will see the following error:
 
 ~~~
-Both /etc/puppetlabs/r10k/r10k.yaml and /etc/r10k.yaml configuration files exist.
+Both /etc/puppetlabs/r10k/r10k.yaml and /etc/r10k.yaml configuration files exist.,
 /etc/puppetlabs/r10k/r10k.yaml will be used.
 ~~~
   
