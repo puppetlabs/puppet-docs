@@ -7,11 +7,15 @@ canonical: "/pe/latest/quick_start_r10k.html"
 
 ## r10k Quick Start Guide
 
+[r10k_diagram]: ./images/quick/r10k_qsg.svg
+
 The primary purpose and benefit of r10k is that it provides a localized place in Puppet for you to manage the configuration of various environments (such as production, development, or testing), including what specific versions of modules are in each of your environments, based on code in branches of one or more Git repositories. R10k accomplishes this by seamlessly connecting the code in your Git repository's branches with the Puppet environments it has created based on those branches. So the work you do in Git is reflected in your Puppet configuration!
 
 In this guide you'll version the code you wrote for the Hello, World! module for two different environments---one you'll call `production` and the other `test_message`. Each of these environments will map to a specific branch named after the environment in a repo called **puppet-control**. Each branch (that maps to an environment) in the **puppet-control** repo will contain a `Puppetfile` that references the Hello, World! module repo's URL and latest commit ID for the code changes. When you run r10k on the Puppet master, it will read the `Puppetfile` and pull down different versions of the Hello, World! module---in other words, a version of the module for each branch (or environment).
 
-<!--insert image here--!>
+The following diagram outlines this workflow.
+
+![r10k diagram][r10k_diagram]
 
 This guide is meant to be a simple proof-of-concept primer for getting to know r10k. For more information, see the main [r10k docs](link).
 
