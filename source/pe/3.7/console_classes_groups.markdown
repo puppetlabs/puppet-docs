@@ -24,50 +24,44 @@ You should create two different types of node groups in PE: *environment node gr
 >
 > The node classifier uses role-based access control (RBAC) to manage access to tasks. To check your access to the tasks described on this page, see the [RBAC documentation](./rbac_intro.html).
 
-### Creating Environment Node groups
+### Creating Environment Node Groups
 
-The only role of an environment node group is to set the environment that applies to your nodes. Environment node groups should **not** contain any classification data.
+The only role of an environment node group is to set the environment for your nodes. Environment node groups should **not** contain any classification data.
 
 PE comes with two preconfigured environment node groups: the **Production environment** node group and the **Agent-specified environment** node group.
 
-The **Production environment** contains a rule that matches all nodes. You should not change this rule. All nodes will have the production environment unless you specify otherwise.
+The **Production environment** comes with a rule that matches all nodes. This ensures that your nodes get the production environment, unless specified otherwise.
 
-The **Agent-specified environment** node group retains the environment that is set for the node through the node's `puppet.conf` file, and ignores any environments set through the node classifier. For more information, see [The Agent-Specified Environment Node Group](./console_classes_groups_preconfigured_groups.html#the-agent-specified-environment-node-group). 
+The **Agent-specified environment** node group omits the environment specification when the agent reports back to the master for catalog compilation. Use this environment if you need to preserve an agent-specified environment in your installation. For more information, see [The Agent-Specified Environment Node Group](./console_classes_groups_preconfigured_groups.html#the-agent-specified-environment-node-group). 
 
 To create a new environment node group:
 
 1. In the **Node group name** box, enter a name that describes the role of this environment node group, such as "Test environment". 
-2. In the **Parent name** box, set the parent to be **Production Environment**. All environment node groups that you add to PE should have the **Production Environment** as the parent. This is important for two reasons:
-    1. The **Production Environment** contains a rule that matches all nodes. Child groups always match a subset of the nodes that match the parent node group. They are used to specify new settings that apply to the subset of matching nodes and override the settings in the parent group. In the case of environment node groups, the overriding setting is the new environment that you want to set for a subset of nodes.
-    2. As explained below, environment node groups have the **This is an environment group** checkbox selected. When a node matches multiple environment node groups, it is the environment node group at the very bottom of an inheritance branch that wins and ultimately gets to enforce which environment is set for matching nodes. Since the **Production Environment** has a rule that matches all nodes, all additional environment node groups must be children of the **Production Environment** node group 
+2. In the **Parent name** box, set the parent to be **Production Environment**. All environment node groups that you add to PE should have the **Production Environment** as the parent. This is important because child groups override the settings specified in parent groups. Child groups match a subset of the nodes that are in the parent group (based on the node matching rules you set), and by setting a new environment (and the **This is an environment group** checkbox in see step 5), you will successfully set an overriding environment for the subset of nodes that match the child group.  
+3. In the **Environment** box, specify the environment that you want to enforce for the nodes that match this node group. If you haven’t [set up any environments](/puppet/3.8/reference/environments.html) yet, you will only see the  **production** and **agent-specified** environments in the drop-down list.
+4. Click **Add group** to add the environment node group.
+5. **This step is very important and should not be skipped.** In the list of node groups, find the new group that you just created and click it. Click **Edit node group metadata**. Select the **This is an environment group** checkbox. The environment will not be enforced unless you select this checkbox.
+6. Click the commit button to commit your change.
 
-### Creating Classification Node Groups (TODO: create a redirect)
+**Note:** For more information on using environments, see [Working With Environments](./console_classes_groups_environment_override.html).
+    
+### Creating Classification Node Groups
 
-1. To add a new node group, in **Classification**, enter the following information in the empty fields at the top of the node group list:
+The role of a classification node group is to assign classification (classes, parameters, and variables) to nodes.
 
-    **Node group name**
+1. To add a new classification node group, in the **Node group name** box in the **Classification** page, enter a name that describes the function of the nodes that match this node group. For example, "web servers."
     
-    Enter a name that describes the function of the nodes in this node group. For example, "web servers."
-    
-    **Parent name**
-    
-    Node groups inherit classes, parameters, and variables from their parent node group. By default, the parent node group is the **default** node group. To specify a different parent node group, enter it here.
+2. In the **Parent name** box, select the name of the classification node group that you want to set as the parent to this node group. Classification node groups inherit classes, parameters, and variables from their parent node group. By default, the parent node group is the **default** node group. 
 
-    You can avoid duplicating class assignments and save yourself a lot of time if you use node groups and their inheritance effectively. For example, if you have a class that needs to be assigned to all of a node group’s child node groups, then you can assign it once in the parent node group and avoid having to assign it in each descendent node group.
+    Node group inheritance is an important feature in node classification that can save you a lot of time. For example, if you have a class that needs to be assigned to all of a node group’s descendent node groups, then you can assign it once in the parent node group and avoid having to assign it in each descendent node group. For an overview of node group inheritance, see [How Does Inheritance Work?](./console_classes_groups_inheritance.html).
     
-    **Environment**
-    
-    If you haven’t [set up any environments](/puppet/3.8/reference/environments.html) yet, you will only see the default **production** environment. If this is the case, you can ignore the **Environment** setting for now. 
-    
-    **Important:** Do not select **This is an environment group**. This option should only be set when you are configuring *environment node groups*. For information on setting up and using environment node groups, see [Working With Environments](./console_classes_groups_environment_override.html).
-    
-    to filter the classes that you can select from in this node group. When you go to add classes in the node group, the auto-complete feature will only show the classes that   The environment determines the classes and parameters that are available to the node group. Select the environment that you want to apply to this node group. 
+3. In the **Environment** box, you can specify an environment for filtering the classes and parameters that are available for selection in this node group. You are not actually setting an environment here, you did that when you [set up the environment node groups](#creating-environment-node-groups). 
 
-    **Note:** For the recommended workflow when using environments, see [Working With Environments](./console_classes_groups_environment_override.html).
+    For example, if you want to apply some test classification data to your development web server nodes, you would [add the nodes to your test environment through the environment node group](#creating-environment-node-groups), and then set the test environment here in the classification node group so that only your test classification is available for selection. 
 
-    **Note:** `Agent-specified` omits the environment specification when the agent reports back to the master for catalog compilation. Use this environment if you need to preserve an agent-specified environment in your installation. For more information about the agent-specified environment, see the [upgrading notes](./install_upgrading_notes.html#about-the-agent-specified-group).
+     **Important:** Do not select **This is an environment group**. This option should only be set when you are configuring *environment node groups*. 
 
-2. To finish creating the node group, click **Add Group**.
+4. To finish creating the node group, click **Add Group**.
 
 [Editing Node Groups](./console_classes_groups_making_changes.html#editing-groups)
 
