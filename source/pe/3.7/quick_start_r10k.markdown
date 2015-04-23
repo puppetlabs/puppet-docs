@@ -19,7 +19,7 @@ The following diagram outlines this workflow.
 
 > ## Assumptions and Prerequisites
 >
-> This guide is meant to be a simple proof-of-concept primer for getting to know r10k. For more information, see the main [r10k docs](link).
+> This guide is a simple proof-of-concept primer for getting to know r10k. For more information, see the main [r10k docs](link).
 >
 > Before beginning please review the following assumptions and prerequisites. 
 >
