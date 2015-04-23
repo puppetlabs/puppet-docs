@@ -18,8 +18,8 @@ You can work with numbers using Puppet's [arithmetic operators.][arithmetic]
 Numbers are written without quotation marks, and can consist only of:
 
 * Digits
-* An optional negative sign (`-`; actually [the unary negation operator](./future_lang_expressions.html#subtraction-and-negation))
-    * Explicit positive signs (`+`) aren't allowed.
+* An optional negative sign (`-`; this is actually [the unary negation operator](./future_lang_expressions.html#subtraction-and-negation) rather than part of the number)
+    * Explicit positive signs (`+`) aren't allowed, since there's no unary `+` operator.
 * An optional decimal point (which results in a floating point value)
 * A prefix, for octal or hexidecimal bases
 * An optional `e` or `E` for scientific notation of floating point values
@@ -86,7 +86,12 @@ If you need to convert numbers to non-decimal string representations, you can us
 
 ## Converting Strings to Numbers
 
-Strings are never automatically converted to numbers. You can use [the `scanf` function](/references/3.7.latest/function.html#scanf) to convert strings to numbers, accounting for various notations and any surrounding non-numerical text.
+The [arithmetic operators][arithmetic] will automatically convert strings to numbers.
+
+In all other contexts (resource attributes, function arguments, etc.), Puppet _won't_ automatically convert strings to numbers, but you can:
+
+* Add 0 to manually convert a string to a number. (For example, `$mystring = "85"; $mynum = 0 + mystring`.)
+* Use [the `scanf` function](/references/3.7.latest/function.html#scanf) to manually extract numbers from strings. This function can also account for surrounding non-numerical text.
 
 
 ## The `Integer` Data Type
