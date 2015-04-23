@@ -347,6 +347,8 @@ Right bitwise shift: shifts the left operand by the number of places specified b
 Array Operators
 -----
 
+Array operators take [arrays][] as operands; with the exception of `*` (unary splat), they resolve to array values.
+
 ### `*` (splat)
 
 This unary operator accepts a single [array][arrays] value. (If given a scalar value, it will convert it to a single-element array first.)
@@ -383,7 +385,7 @@ In any other context, splat just resolves to the array it was given.
 
 Resolves to an array containing the elements in the left operand followed by the elements in the right operand.
 
-Both elements should be [arrays][]; if the right operand is a scalar value, it will be converted to a single-element array first. Hash values will be converted to arrays instead of wrapped, so you must wrap them yourself.
+Both operands should be [arrays][]; if the right operand is a scalar value, it will be converted to a single-element array first. Hash values will be converted to arrays instead of wrapped, so you must wrap them yourself.
 
 If the left operand isn't an array, Puppet will interpret `+` as arithmetic addition.
 
@@ -399,7 +401,7 @@ This operator does not change its operands; it only creates a new value.
 
 Resolves to an array containing the elements in the left operand, with _every_ occurrence of any elements in the right operand removed.
 
-Both elements should be [arrays][]; if the right operand is a scalar value, it will be converted to a single-element array first. Hash values aren't automatically wrapped in arrays, so you must always do this yourself.
+Both operands should be [arrays][]; if the right operand is a scalar value, it will be converted to a single-element array first. Hash values aren't automatically wrapped in arrays, so you must always do this yourself.
 
 If the left operand isn't an array, Puppet will interpret `-` as arithmetic subtraction.
 
@@ -408,10 +410,58 @@ If the left operand isn't an array, Puppet will interpret `-` as arithmetic subt
     [1, 2, 3, 4, 5, 1, 1] - [1]  # resolves to [2, 3, 4, 5]
     [1, 2, 3, [1, 2]] - [1, 2]   # resolves to [3, [1, 2]]
     [1, 2, 3, [1, 2]] - [[1, 2]] # resolves to [1, 2, 3]
-
 {% endhighlight %}
 
-This operation does not change its operands; it only creates a new value.
+This operator does not change its operands; it only creates a new value.
+
+Hash Operators
+-----
+
+Hash operators take:
+
+* A [hash][] as their left operand.
+* Various values as their right operand.
+
+They resolve to hash values.
+
+### `+` (merging)
+
+Resolves to a hash containing the keys and values in the left operand _plus_ the keys and values in the right operand; if any keys are present in both operands, the final hash will use the value from the right. It does not merge hashes recursively; it only merges top-level keys.
+
+The right operand can be one of the following:
+
+* A hash
+* An array with an **even** number of elements; the first element of each pair will be used as a key, and the second element will be used as its value.
+
+{% highlight ruby %}
+    {a => 10, b => 20} + {b => 30}  # resolves to {a => 10, b => 30}
+    {a => 10, b => 20} + {c => 30}  # resolves to {a => 10, b => 30, c => 30}
+    {a => 10, b => 20} + [c, 30]    # resolves to {a => 10, b => 20, c => 30}
+    {a => 10, b => 20} + 30         # gives an error
+    {a => 10, b => 20} + [30]       # gives an error
+{% endhighlight %}
+
+This operator does not change its operands; it only creates a new value.
+
+
+### `-` (removal)
+
+Resolves to a hash containing the keys and values in the left operand, minus any keys that are also present in the right operand.
+
+The right operand can be one of the following:
+
+* A hash; any keys present in this hash will be removed from the final hash, regardless of whether that key has the same values in both operands.
+* An array of keys
+* A single key
+
+{% highlight ruby %}
+    {a => first, b => second, c => 17} - c                                # resolves to {a => first, b => second}
+    {a => first, b => second, c => 17} - [c, a]                           # resolves to {b => second}
+    {a => first, b => second, c => 17} - {c => 17, a => "something else"} # resolves to {b => second}
+    {a => first, b => second, c => 17} - {a => a, d => d}                 # resolves to {b => second, c => 17}
+{% endhighlight %}
+
+This operator does not change its operands; it only creates a new value.
 
 
 Assignment Operators
