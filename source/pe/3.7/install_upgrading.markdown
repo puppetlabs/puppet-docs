@@ -53,7 +53,7 @@ Before starting the upgrade, all of the components (agents, master, console, etc
 If you have a monolithic installation (with the master, PE console, and database components all on the same node), the process involves the following steps, which **must be performed in the following order**:
 
 1. [Upgrade the monolithic PE server](#upgrade-the-monolithic-pe-server)
-2. [Classify the new PE groups](#classify-the-new-pe-groups)
+2. [Add nodes to the new PE groups](#adding-nodes-to-pe-groups)
 3. [Upgrade Puppet agent nodes](#upgrade-agents)
 
 ### Upgrade the Monolithic PE Server
@@ -79,7 +79,7 @@ The upgrade script will run and provide detailed information as to what it insta
 
 ### Classify PE Groups
 
-Please see [section on classifying PE groups](#classify-the-new-pe-groups) below.
+Please see the [section on adding nodes to PE groups](#adding-nodes-to-pe-groups) below.
 
 ### Upgrade Puppet Agents
 
@@ -93,7 +93,7 @@ If you have a split installation (with the master, PE console, and database comp
 1. [Upgrade the Puppet Master](#upgrade-the-puppet-master)
 2. [Upgrade PuppetDB](#upgrade-puppetdb)
 3. [Upgrade the PE Console](#upgrade-the-pe-console)
-4. [Add nodes to the PE groups](#classify-the-new-pe-groups)
+4. [Add nodes to the new PE groups](#adding-nodes-to-pe-groups)
 5. [Upgrade Puppet agent nodes](#upgrade-agents)
 
 > **Note**: When upgrading to PE 3.8, the node classifier and role-based access control (RBAC) will be installed on the PE console node.
