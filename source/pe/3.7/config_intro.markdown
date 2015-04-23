@@ -13,8 +13,11 @@ The following pages provide information about settings you might want to tune on
 
 - [Configuring and Tuning PuppetDB](./config_puppetdb.html)
 
+- [Configuring and Tuning Node Classifier](./config_nc.html)
+
 - [Configuring and Tuning Orchestration](./config_orchestration.html)
 
+- [Configuring Java Arguments for PE](./config_java_args.html)
 
 There are two main methods for configuring PE: using the PE console or adding a key to Hiera (this latter approach is sometimes referred to as a Hiera override).
 
