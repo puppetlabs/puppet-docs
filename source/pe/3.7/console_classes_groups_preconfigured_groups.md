@@ -9,9 +9,9 @@ During installation, Puppet Enterprise (PE) automatically creates a number of pr
 
 
 >**Note:** In general, you should not remove these node groups or delete classes from them.
-> 
-> For important information regarding the data types and syntax that can be used when specifying parameter values, see the note in [Setting Class Parameters](./console_classes_groups.html#setting-class-parameters). Check the default parameter values in your preconfigured node groups and make sure they comply with the permitted data types and syntax. 
-> 
+>
+> For important information regarding the data types and syntax that can be used when specifying parameter values, see the note in [Setting Class Parameters](./console_classes_groups.html#setting-class-parameters). Check the default parameter values in your preconfigured node groups and make sure they comply with the permitted data types and syntax.
+>
 > For more information on preconfigured node groups when upgrading from an earlier version of Puppet Enterprise (PE), see the [upgrading documentation](./install_upgrading_notes.html#classifying-pe-groups).
 
 
@@ -90,7 +90,7 @@ This node group is used to enable PE's [orchestration engine](./orchestration_ov
 * `puppet_enterprise::profile::mcollective::agent` (manages the MCollective server)
 
 #### Matching Nodes
-All nodes. 
+All nodes.
 
 #### Notes
 * You may have some nodes, such as non-root nodes or network devices, that **should not** have orchestration enabled. You can create a rule in this node group to exclude these nodes from orchestration.
@@ -118,7 +118,7 @@ This node group is used to manage the database service.
 On a new install, the PuppetDB server node is pinned to this node group. If you are upgrading, you will need to pin the PuppetDB server node yourself.
 
 #### Notes
-* You should *not* add additional nodes to this node group. 
+* You should *not* add additional nodes to this node group.
 
 ### The PE Console Node Group
 
@@ -134,7 +134,7 @@ This node group is used to manage the console.
 On a new install, the Console server node is pinned to this node group. If you are upgrading, you will need to pin the Console server node yourself.
 
 #### Notes
-* You should *not* add additional nodes to this node group. 
+* You should *not* add additional nodes to this node group.
 
 
 ### The PE ActiveMQ Broker Node Group
@@ -149,7 +149,7 @@ On a new install, the Master server node is pinned to this node group. If you ar
 
 ### The Agent Node Group
 
-This node group is used by PE to manage the configuration of Puppet agents (currently the only thing being managed is [symlinks](./install_basic.html#puppet-enterprise-binaries-and-symlinks)).
+This node group is used by PE to manage the configuration of Puppet agents. Currently the only thing being managed is [symlinks](./install_basic.html#puppet-enterprise-binaries-and-symlinks).
 
 #### Classes
 * `puppet_enterprise::profile::agent` (manages your PE agent configuration)
@@ -159,19 +159,34 @@ All nodes being managed by PE are pinned to this node group by default.
 
 ## Environment Node Groups
 
-These two node groups, the **Production Environment** node group and the **Agent-Specified Environment** node group, are used for the sole purpose of setting environments. They should not contain any classification. In these node groups, the **Environment Override** option is selected so that the environment is forced for any matching nodes, even if those nodes match another node group that has a different environment set. This is a workflow that we highly encourage because it avoids the environment conflicts that can happen when you unintentionally have nodes that match multiple node groups with conflicting environments set (only an issue when the node groups in question are in different branches of the inheritance tree). See the [Environments Workflow page](./console_classes_groups_environment_override.html) for more information about working with environments.
+There are two preconfigured environment node groups:
 
-For example, if you have nodes that should always be in the production environment, ensure that they match the **Production Environment** node group by creating a rule that matches the node in the **Production Environment** node group, or by manually pinning the nodes to the **Production Environment** node group. Similarly, do the same in the **Agent-Specified Environment** node group for any nodes that need to always have the agent-specified environment. **Always make sure that the Environment Override button remains selected in both of these environment node groups.** 
+- **Production Environment**
+- **Agent-Specified Environment**
+
+These groups are only used to set environments. They should not contain any classification. See the [Environments Workflow page](./console_classes_groups_environment_override.html) for more information about working with environments.
+
+These node groups have the **Environment Override** option selected, which forces all matching nodes into the group's environment even if those nodes match another node group that specifies a different environment. We highly encourage this workflow because it avoids the environment conflicts that can happen when you unintentionally have nodes that match multiple node groups with conflicting environments set (only an issue when the node groups in question are in different branches of the inheritance tree).
+
+For example, if you have nodes that should always be in the production environment, ensure that they match the **Production Environment** node group, either by creating a rule in the group that matches them or by manually pinning them to the group. Similarly, if you have any nodes that should use the environment from their own config files,ensure that they match the **Agent-Specified Environment** node group.
+
+**Always make sure that the Environment Override button remains selected in both of these environment node groups.**
 
 ### The Agent-Specified Environment Node Group
 
-Normally, the environment that the node classifier sets for a node overrides any environment that you set in the node's puppet.conf file (the agent-specified environment). However, sometimes you may want to ignore the environments that have been set in the node classifier, and use the agent-specified environment, for testing for example. The **Agent-Specified Environment** node group forces the environment that has been specified in the puppet.conf file, ignoring any environments that have been set by the node classifier. If you want to use the agent-specified environment for a node, you should pin the node to this node group, or create a rule in the node group that matches the node. 
+Normally, an environment specified by the node classifier overrides any environment set in a node's own puppet.conf file (the _agent-specified environment_). However, sometimes you might want to let an agent specify its own environment (in testing, for example).
+
+The **Agent-Specified Environment** node group forces the environment specified in a node's puppet.conf file, ignoring any environments that have been set by the node classifier. If you want to use the agent-specified environment for a node, you should pin the node to this node group, or create a rule in the node group that matches the node.
 
 #### Classes
+
 You should never add any classes to this group. This group should only be used to set the agent-specified environment for matching nodes.
 
-#### Matching Nodes 
+#### Matching Nodes
+
 Create rules to match nodes that should be assigned the agent-specified environment. Alternatively, you can manually pin the nodes to the group.
+
+By default, this group matches no nodes.
 
 #### Notes
 
@@ -179,13 +194,17 @@ The **Environment Override** option should be selected in the node group metadat
 
 ### The Production Environment Node Group
 
-Use this node group when you have nodes that should always be assigned the production environment. 
+Nodes in this group will be assigned to the production environment.
 
 #### Classes
+
 You should never add any classes to this group. This group should only be used to set the production environment for matching nodes.
 
-#### Matching Nodes 
+#### Matching Nodes
+
 Create rules to match nodes that should be assigned the production environment. Alternatively, you can manually pin the nodes to the group.
+
+By default, this group matches all nodes.
 
 #### Notes
 
