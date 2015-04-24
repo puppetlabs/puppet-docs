@@ -15,25 +15,30 @@ You're ready to provision a node after you've performed the setup described on t
 
 The following steps walk you through the process of creating [Razor objects](./razor_objects) and provisioning a node with Centos.
 
-### Important Info About the Machines You provision
+### Important Info About the Machines You Provision
 
 To successfully use a machine with Razor and install an operating system on it, the machine must:
 
-+ Be supported by the operating system that you're installing.
-+ Be able to successfully boot into the microkernel, which is based on Fedora 19.
-+ Be able to successfully boot the iPXE firmware.
+* Be supported by the operating system that you're installing.
+* Be able to successfully boot into the microkernel, which is based on Fedora 19.
+* Be able to successfully boot the iPXE firmware.
 
 In addition:
 
-+ The Razor microkernel is 64-bit only. Razor can only provision 64-bit machines.
-+ Razor has a minimum RAM requirement of 512MB.
+* The Razor microkernel is 64-bit only. Razor can only provision 64-bit machines.
+* Razor has a minimum RAM requirement of 512MB.
 
-## 1. Run the Razor Server and Register a Node
+## Step 1: Run the Razor Server and Register a Node
 
 1. Run the Razor client.
 2. Type `razor nodes` to see the collection of machines that Razor is managing.
-The first time you run this command, you should see no nodes.
-3. Create a node to see what happens. To do this, boot your third machine. Without any further setup on the Razor server, the node boots into the microkernel and Razor discovers the node. You'll see the PXE boot working. After the initial PXE boot, the node downloads the microkernel.
+
+   The first time you run this command, you should see no nodes.
+   
+3. Create a node to see what happens. 
+
+   To do this, boot your third machine. Without any further setup on the Razor server, the node boots into the microkernel and Razor discovers the node. You'll see the PXE boot working. After the initial PXE boot, the node downloads the microkernel.
+   
 4. Run `razor nodes` again. Now there's a node in the nodes collection. It looks something like this:
 
 		id: "http://localhost:8150/api/collections/node/node2"
@@ -55,9 +60,11 @@ The first time you run this command, you should see no nodes.
 
 	Now the machine will just sit there and periodically send its facts back to the server. Since you haven't yet set up provisioning objects, the server doesn't yet do anything with the node.
 
-## 2. Create a Tag
+## Step 2: Create a Tag
 
-1. Create a JSON file for your tag. Give the tag a name and a rule. For this example, the JSON file is called `tag.json`. The tag is called `small` and the rule says that any machine that has less than one gigabyte of memory should be tagged with this tag.
+1. Create a JSON file for your tag. Give the tag a name and a rule. 
+
+   For this example, the JSON file is called `tag.json`. The tag is called `small` and the rule says that any machine that has less than one gigabyte of memory should be tagged with this tag.
 
 
 		{
@@ -79,35 +86,41 @@ The first time you run this command, you should see no nodes.
 		  spec: "/razor/v1/collections/tags/member"
 
 
-3. To inspect the tag on the server, run `razor tags <tag name`. For example, `razor tags small`.
+3. To inspect the tag on the server, run `razor tags <tag name>`. For example, `razor tags small`.
 
 	The output contains information like the name of the tag and the rule. But also that one node has already been tagged with the tag. This is the node you registered in the previous section. There's also policy information for the tag. Currently, no policies use this tag.
-4. To see the nodes associated with the tag, run `razor tags <tag name> nodes`. For example, `razor tags small nodes`. The result displays the ID, name, and spec for the node registered previously.
+	
+4. To see the nodes associated with the tag, run `razor tags <tag name> nodes`. For example, `razor tags small nodes`. 
 
-## 3. Create a Repository
+   The result displays the ID, name, and spec for the node registered previously.
 
-The repo can be an image on your local machine, or you can download and unpack and ISO, or you can point to an existing resource using its URL.
+## Step 3: Create a Repository
 
-* Run `razor create-repo --<name of repo> --<type and location of image>. For example:
-		razor create-repo --name centos-6.4 --iso-url file:///vagrant/installers/CentOS-6.4-x86_64-bin-DVD1.iso`
-	This command creates a repo for an ISO image for CentOS 6.4. It takes a few minutes for the ISO import to complete.
+The repo can be an image on your local machine, or you can download and unpack an ISO, or you can point to an existing resource using its URL.
 
-## 4. Create a Broker
+Run `razor create-repo --<name of repo> --<type and location of image>`. 
 
-The broker hands an installed node off to the PE master. PE comes with a few brokers. The settings for configuration depend on the broker type, and are declared in the broker type's configuration.yaml.
+For example: `razor create-repo --name centos-6.4 --iso-url file:///vagrant/installers/CentOS-6.4-x86_64-bin-DVD1.iso`
 
-* Run `razor create-broker --name <Puppet master name> --broker-type <broker type> --configuration '{"<configuration info>"}'`.
+This command creates a repo for an ISO image for CentOS 6.4. It takes a few minutes for the ISO import to complete.
 
-	For example:
-`razor create-broker --name pe --broker-type puppet-pe --configuration '{"server": "puppet-master"}'`
+## Step 4: Create a Broker
 
-	This example uses the `puppet-pe` broker type.
+The broker hands an installed node off to the Puppet master. PE comes with a few brokers. The settings for configuration depend on the broker type, and are declared in the broker type's `configuration.yaml`.
 
-## 5. Create a Policy and Provision Your Node
+Run `razor create-broker --name <Puppet master name> --broker-type <broker type> --configuration '{"<configuration info>"}'`.
+
+For example: `razor create-broker --name pe --broker-type puppet-pe --configuration '{"server": "puppet-master"}'`
+
+This example uses the `puppet-pe` broker type.
+
+## Step 5: Create a Policy and Provision Your Node
 
 The policy is what ties all the Razor objects together and provisions a node when it matches the policy. In this exercise, your policy contains a task called `centos` that comes with Razor.
 
-1. Create a JSON file for you policy to make it more manageable. The following example creates a policy called `centos6`. It uses the repo that you just set up, and the `pe` broker that you created previously. It uses a stock Razor task `centos`. The `enabled` field is set to true, because you want to use this policy. The `max_count` limits the number of nodes that can match with the policy, and `tags` identifies any tags associated with the policy.
+1. Create a JSON file for you policy to make it more manageable. 
+
+   The following example creates a policy called `centos6`. It uses the repo that you just set up, and the `pe` broker that you created previously. It uses a stock Razor task `centos`. The `enabled` field is set to true, because you want to use this policy. The `max_count` limits the number of nodes that can match with the policy, and `tags` identifies any tags associated with the policy.
 
 		{
 		"name": "centos6",
@@ -125,11 +138,15 @@ The policy is what ties all the Razor objects together and provisions a node whe
 
 	>**Note**: When you create the policy, you are essentially setting the policy free on your server to locate and match with nodes.
 
-	When you create the policy, your node, in this example, `node2`, matches. It reboots and begins applying the policy, which in this case is installing CentOS 6.4.
+	When you create the policy, your node, in this example, `node2`, matches the policy. The node reboots and begins applying the policy, which in this case installs CentOS 6.4.
 
-3. Check the node details. Run `razor nodes <node name>`. For example, `razor nodes node2`. The node details now show that there's a policy attached to the node, the `centos6` policy.
+3. Check the node details. Run `razor nodes <node name>`. For example, `razor nodes node2`. 
 
-4. Check the node's log. Run `razor nodes <node name> log`. For example, `razor nodes node2 log`. Each node has a log attached that keeps track of when the node rebooted, and the important events during the installation of an operating system. This node's log shows when it initially booted into the microkernel, when it bound to the policy, and then rebooted into the policy. You can also see things like any kickstart files or post-install scripts that are run during the install.
+   The node details now show that there's a policy attached to the node, the `centos6` policy.
+
+4. Check the node's log. Run `razor nodes <node name> log`. For example, `razor nodes node2 log`. 
+
+   Each node has a log attached that keeps track of when the node rebooted and logs the important events during the installation of an operating system. This node's log shows when it initially booted into the microkernel, when it bound to the policy, and when it rebooted into the policy. You can also see things like any kickstart files or post-install scripts that are run during the install.
 
 5. When the installation finishes and the node reboots, you can log into it using the `root_password` of the policy that it has bound to. You can also see the node and its details on the PE console. Now, you can manage the node with PE just as you would any other node.
 
