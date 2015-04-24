@@ -64,7 +64,11 @@ This script will detect the OS on which it is running, set up an apt, yum, or zi
 [add_repo]: ./images/quick/add_repo.png
 [commit_repo]: ./images/quick/commit_repo.png
 
-As an example, if your master is on a node running EL6 and you want to add an agent node running Debian 6 on AMD64 hardware:
+To install an agent with a different OS than the Puppet master, you first add the appropriate class for the repo that contains the agent packages; you then classify the PE Master node group with that class; and then you run a curl command from the agent to the master to retrieve the necessary packages to install the agent.
+
+As an example, if your Puppet master is on a node running EL6 and you want to add an agent node running Debian 6 on AMD64 hardware, use the follow procedure.
+
+> **Note**: If your Puppet master uses a proxy server to access the internet, refer to [this known issue](./release_notes_known_issues.html#install-agents-with-different-os-when-puppet-master-is-behind-a-proxy) for a workaround.
 
 1. From the console, click __Classification__ in the top navigation bar.
 

@@ -43,7 +43,9 @@ This script detects the OS on which the agent is running, sets up an apt, yum, o
 
 If your Puppet master OS and architecture are different from the agent, follow this example. This example describes adding an agent node running Debian 6 on AMD64 hardware. You can select a different architecture for your agent if you prefer.
 
-To install an agent with a different OS from the Puppet master, you first add the appropriate class for the repo that contains the agent packages, you classify the PE Master node group with that class, and then run a curl command from the agent to the master to retrieve the necessary packages to install the agent.
+To install an agent with a different OS than the Puppet master, you first add the appropriate class for the repo that contains the agent packages; you then classify the PE Master node group with that class; and then you run a curl command from the agent to the master to retrieve the necessary packages to install the agent.
+
+> **Note**: If your Puppet master uses a proxy server to access the internet, refer to [this known issue](./release_notes_known_issues.html#install-agents-with-different-os-when-puppet-master-is-behind-a-proxy) for a workaround.
 
 1. From the console, click __Classification__ in the top navigation bar.
 
