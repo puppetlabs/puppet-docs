@@ -5,7 +5,7 @@ subtitle: "Known Issues"
 canonical: "/pe/latest/release_notes_known_issues.html"
 ---
 
-As we discover them, this page will be updated with known issues in Puppet Enterprise 3.8.x releases. Fixed issues will be removed from this page and noted Bug Fixes section of the release notes. If you find new problems yourself, please file bugs in [our issue tracker](https://tickets.puppetlabs.com).
+As we discover them, this page will be updated with known issues in Puppet Enterprise 3.8.x releases. Fixed issues will be removed from this page and noted in the Bug Fixes section of the release notes. If you find new problems yourself, please file bugs in [our issue tracker](https://tickets.puppetlabs.com).
 
 To find out which of these issues may affect you, run `/opt/puppet/bin/puppet --version`, the output of which will look something like `3.8.5 (Puppet Enterprise 3.8.0)`. To upgrade to a newer version of Puppet Enterprise, see the [chapter on upgrading](install_upgrading.html).
 
@@ -30,17 +30,17 @@ When a PE installation fails because a system is not provisioned with adequate R
 
 We recommend provisioning the system with adequate RAM and re-running the installation. Refer to the [hardware requirements](./install_system_requirements.html#hardware-requirements).
 
-###  New PE 3.7.x MCO Server is Not Connecting With Older MCollective agents (posted 12/17/14)
+###  New PE 3.7.x MCO Server is Not Connecting with Older MCollective agents (posted December 17, 2014)
 
 This issue has been fixed in PE 3.8.0.
 
-### Review Modified `auth.conf` Files Before Upgrading to 3.8
+### Review Modified `auth.conf` Files before Upgrading to 3.8
 
-The are have been several changes to `auth.conf` leading up to PE 3.8. If you have a modified `auth.conf` file, you will be prompted by the upgrader to review it and make changes before continuing with your upgrade. For details, please review [Upgrading to 3.8 with a Modified `auth.conf` File](./install_upgrading_notes.html#upgrading-to-38-with-a-modified-authconf-file).
+There have been several changes to `auth.conf` leading up to PE 3.8. If you have a modified `auth.conf` file, you will be prompted by the upgrader to review it and make changes before continuing with your upgrade. For details, please review [Upgrading to 3.8 with a Modified `auth.conf` File](./install_upgrading_notes.html#upgrading-to-38-with-a-modified-authconf-file).
 
 ### Incorrect Umask Value Can Cause Upgrade/Installation to Fail
 
-To prevent potential failures, you should set an umask value of 0022 on your Puppet Master.
+To prevent potential failures, you should set an umask value of 0022 on your Puppet master.
 
 ### New PostgreSQL Databases Needed on Upgrade/Install (for External PostgreSQL Users)
 
@@ -52,7 +52,7 @@ If you've installed additional Puppet masters (i.e., secondary or compile master
 
 ### stdlib No Longer Installed with Puppet Enterprise
 
-If necessary, you can install stdlib after installing/upgrading by running `puppet module install puppetlabs-stdlib`.
+If necessary, you can install the stdlib module after installing/upgrading by running `puppet module install puppetlabs-stdlib`.
 
 ### PuppetDB Behind a Load Balancer Causes Puppet Server Errors
 
@@ -118,8 +118,9 @@ If your Puppet master uses a proxy server to access the internet, you may not be
 3. Save and exit the file. 
 4. Restart the pe-puppet service with the following commands:
 
-       puppet resource service pe-puppet ensure=stopped 
-       puppet resource service pe-puppet ensure=running
+	puppet resource service pe-puppet ensure=stopped 
+	puppet resource service pe-puppet ensure=running
+
 
 ### `q_database_host` Cannot be an Alt Name For Upgrades or Installs of 3.8.0
 
@@ -127,7 +128,7 @@ PostgreSQL does not support alt names when set to `verify_full`. If you are upgr
 
 ### You Might Need to Upgrade puppetlabs-inifile to Version 1.1.0 or Later
 
-PE will automatically update your version of puppetlabs-inifile as part of the upgrade process. However, if you encounter the following error message on your PuppetDB node, then you need to manually upgrade the puppetlabs-inifile module to version 1.1.0 or higher.
+PE automatically updates your version of puppetlabs-inifile as part of the upgrade process. However, if you encounter the following error message on your PuppetDB node, then you need to manually upgrade the puppetlabs-inifile module to version 1.1.0 or higher.
 
 	Error: Could not retrieve catalog from remote server: Error 400 on SERVER: Invalid parameter quote_char on Ini_subsetting['-Xmx'] on node master
 	Warning: Not using cache on failed catalog
@@ -159,7 +160,7 @@ A certificate generated with custom extensions in PE 3.8 might not be properly d
 
 If you've installed any additional Ruby gems beyond those installed by PE, they will not be migrated to the Puppet master during the upgrade to PE 3.8. If you have modules that depend on additional gems, you will need to install them on the Puppet master after you complete the upgrade process.
 
-You can update the gems used by your Puppet Master with `/opt/puppet/bin/puppetserver gem install <GEM NAME>`.
+You can update the gems used by your Puppet master with `/opt/puppet/bin/puppetserver gem install <GEM NAME>`.
 
 After updating the gems, you need to restart the Puppet master with `service pe-puppetserver restart`. You should do this **before** doing any Puppet agent runs.
 
@@ -169,7 +170,7 @@ After updating the gems, you need to restart the Puppet master with `service pe-
 
 If you run Puppet Server behind a proxy, the `puppetserver gem install` command will fail. Instead you can install the gems as follows:
 
-1. Use [rubygems.org](https://rubygems.org/pages/download#formats) to search for and download the gem you want to install, and transfer that gem to your Puppet master.
+1. Use [rubygems.org](https://rubygems.org/pages/download#formats) to search for and download the gem you want to install, and then transfer that gem to your Puppet master.
 2. Run `/opt/puppet/bin/puppetserver gem install --local <PATH to GEM>`.
 
 ### A Note About Gems with Native (C) Extensions for JRuby on the Puppet Server
@@ -178,7 +179,7 @@ Please see the Puppet Server documentation for a description of this issue, [Gem
 
 ### Puppet Server Run Issue when `/tmp/` Directory Mounted `noexec`
 
-In some cases (especially for RHEL 7 installations) if the `/tmp` directory is mounted as `noexec`, Puppet Server may fail to run correctly, and you may see an error in the Puppet Server logs similar to the following:
+In some cases (especially for RHEL 7 installations) if the `/tmp` directory is mounted as `noexec`, Puppet Server might fail to run correctly, and you might see an error in the Puppet Server logs similar to the following:
 
     Nov 12 17:46:12 fqdn.com java[56495]: Failed to load feature test for posix: can't find user for 0
     Nov 12 17:46:12 fqdn.com java[56495]: Cannot run on Microsoft Windows without the win32-process, win32-dir and win32-service gems: Win32API only supported on win32
@@ -196,25 +197,24 @@ The Puppet Server service doesn't have a non-disruptive way to request a reload 
 
 Refer to [SERVER-15](https://tickets.puppetlabs.com/browse/SERVER-15).
 
-### HTTPS Client Issues With Newer Apache `mod_ssl` Servers
+### HTTPS Client Issues with Newer Apache `mod_ssl` Servers
 
-When configuring the Puppet server to use a report processor that involves HTTPS requests (e.g. to Foreman), there can be compatibility issues between the JVM HTTPS client and certain server HTTPS implementations (e.g. very recent versions of Apache `mod_ssl`). This is usually indicated by a `Could not generate DH keypair` error in Puppet Server's logs. See [SERVER-17](https://tickets.puppetlabs.com/browse/SERVER-17) for known workarounds.
+When configuring the Puppet server to use a report processor that involves HTTPS requests (e.g., to Foreman), there can be compatibility issues between the JVM HTTPS client and certain server HTTPS implementations (e.g., very recent versions of Apache `mod_ssl`). This is usually indicated by a `Could not generate DH keypair` error in Puppet Server's logs. See [SERVER-17](https://tickets.puppetlabs.com/browse/SERVER-17) for known workarounds.
 
 
 ## PuppetDB/PostgreSQL Known Issues
 
-### Incorrect Password for Database User(s) Will Cause Install/Upgrade to Fail
+### Incorrect Password for Database User(s) Causes Install/Upgrade to Fail
 
-If, during installation or upgrade, you supply an incorrect password for one of the PE databases users (RBAC, console, PuppetDB), the install/upgrade will fail. However, in some cases it will appear that the install/upgrade was successful. For example, if the incorrect password is supplied for the console database user, the install/upgrade will continue--and appear to succeed--but the console will not be functional.
-
+If, during installation or upgrade, you supply an incorrect password for one of the PE databases users (RBAC, console, PuppetDB), the install/upgrade will fail. However, in some cases it might appear that the install/upgrade was successful. For example, if the incorrect password is supplied for the console database user, the install/upgrade continues---and appears to succeed---but the console will not be functional.
 
 ### PostgreSQL Buffer Memory Issue Can Cause PE Install to Fail on Machines with Large Amounts of RAM
 
-In some cases, when installing PE on machines with large amounts of RAM, the PostgreSQL database will use more shared buffer memory than is available and will not be able to start. This will prevent PE from installing correctly. For more information and a suggested workaround, refer to [Troubleshooting the Console and Database](./trouble_console-db.html#postgresql-memory-buffer-causes-pe-install-to-fail).
+In some cases, when installing PE on machines with large amounts of RAM, the PostgreSQL database uses more shared buffer memory than is available and will not be able to start. This prevents PE from installing correctly. For more information and a suggested workaround, refer to [Troubleshooting the Console and Database](./trouble_console-db.html#postgresql-memory-buffer-causes-pe-install-to-fail).
 
 ### Errors Related to Stopping `pe-postgresql` Service
 
-If for any reason the `pe-postgresql` service is stopped, agents will receive several different error messages, for example:
+If for any reason the `pe-postgresql` service is stopped, agents receive several different error messages, for example:
 
     Warning: Unable to fetch my node definition, but the agent run will continue:
     Warning: Error 400 on SERVER: (<unknown>): mapping values are not allowed in this context at line 7 column 28
@@ -244,11 +244,11 @@ In the console, parent group rules don't show, which makes it easier to create a
 
 Matching nodes aren’t showing up.
 
-### The Accept all Option Doesn't Work With Hundreds of New certs
+### The "Accept all" Option Doesn't Work with Hundreds of New Certs
 
 When you install hundreds of agents and attempt to use the **Accept all** option in the console, only some of the certs will be signed before there's an error. This is likely due to timing out.
 
-### `pe_console_prune` Class not Added to PE Console Group During Upgrade to 3.8
+### `pe_console_prune` Class Not Added to PE Console Group During Upgrade to 3.8
 
 The `pe_console_prune` class is a class in the PE Console group. However, when upgrading to PE 3.8, this class may be incorrectly added to the singleton group created for the node assigned the PE console component.
 
@@ -260,7 +260,7 @@ The following requirement affects how you connect your existing LDAP to PE:
 
 ### Custom Console Certs May Break on Upgrade
 
-Upgrades to this version of PE may affect deployments that use a custom console certificate, as certificate functionality has changed between versions. Refer to [Configuring the Puppet Enterprise Console to Use a Custom SSL Certificate](./custom_console_cert.html) for instructions on re-configuring your custom console certificate.
+Upgrades to this version of PE can affect deployments that use a custom console certificate, as certificate functionality has changed between versions. Refer to [Configuring the Puppet Enterprise Console to Use a Custom SSL Certificate](./custom_console_cert.html) for instructions on re-configuring your custom console certificate.
 
 ### Passenger `permission denied` Log entry
 
@@ -307,7 +307,7 @@ This will set the order of ciphers to:
     EDH-DSS-DES-CBC3-SHA    SSLv3 Kx=DH       Au=DSS  Enc=3DES(168) Mac=SHA1
     DES-CBC3-SHA            SSLv3 Kx=RSA      Au=RSA  Enc=3DES(168) Mac=SHA1
 
-Note that unless your system contains OpenSSL v1.0.1d (the version that correctly supports TLS1.1 1and 1.2), prioritizing RC4 may leave you vulnerable to other types of attacks.
+Note that unless your system contains OpenSSL v1.0.1d (the version that correctly supports TLS1.1 1and 1.2), prioritizing RC4 might leave you vulnerable to other types of attacks.
 
 ### Inconsistent Counts When Comparing Service Resources in Live Management
 
@@ -329,7 +329,7 @@ These steps will remove the node's certificate, purge information about the node
 
 For instructions on completely deactivating an agent node, refer to [Deactivating a PE Agent Node](./node_deactivation.html).
 
-### Problems with Marking Failed Tasks as Read in the console
+### Problems with Marking Failed Tasks as Read in the Console
 
 Marking failed tasks as read in the console can instead open a security warning, followed by an "unable to connect" message.
 
@@ -338,7 +338,7 @@ Marking failed tasks as read in the console can instead open a security warning,
 You can no longer have a universal or global `site.pp`. The default main filebucket is configured as a resource default in `site.pp`. This means that `site.pp` must be duplicated for each environment. See the [Puppet environments documentation for more information](/puppet/latest/reference/environments.html.)
 
 
-## PE services/Puppet Core Known Issues
+## PE Services/Puppet Core Known Issues
 
 ### `/opt/staging/` is No Longer Used
 
@@ -351,9 +351,7 @@ If you upgrade or install a PE 3.8.0 master, sign the certificate, and run Puppe
 
 ### Change to `lsbmajdistrelease` Fact Affects Some Manifests
 
-In Facter 2.2.0, the `lsbmajdistrelease` fact changed its value from the first two numbers to the full two-number.two-number version on Ubuntu systems. This might break manifests that were based on the previous behavior.
-
-For example, this fact changed from: `12` to `12.04`
+In Facter 2.2.0, the `lsbmajdistrelease` fact changed its value from the first two numbers to the full two-number.two-number version on Ubuntu systems. This might break manifests that were based on the previous behavior. For example, this fact changed from: `12` to `12.04`.
 
 This change affects Ubuntu and Amazon Linux. See the [Facter documentation for more information](./facter/2.3/release_notes.html#significant-changes-to-existing-facts)
 
@@ -447,7 +445,7 @@ PE 3.8 cannot be installed on the Ubuntu 14.04 AMD64 platform when you're runnin
 
 If you see an error message after running this, you can disregard it. Readline-6 should be successfully installed, and you can proceed with the installation or upgrade (you can verify the installation with  `rpm -q readline`).
 
-### Solaris Updates May Break Puppet Install
+### Solaris Updates Might Break Puppet Install
 
 We've seen an issue in which Puppet agents on Solaris platforms have quit responding after the core Solaris OS was updated. Essential Puppet configuration files were erased from the `/etc/` directory (which includes SSL certs needed to communicate with the Puppet master), and the `/etc/hosts` file was reverted.
 
@@ -459,13 +457,13 @@ Solaris 10 and 11 will not by default have the `symlink` directory in their path
 
 ### Debian/Ubuntu Local Hostname Issue
 
-On some versions of Debian/Ubuntu, the default `/etc/hosts` file contains an entry for the machine's hostname with a local IP address of 127.0.1.1. This can cause issues for PuppetDB and PostgreSQL, because binding a service to the hostname will cause it to resolve to the local-only IP address rather than its public IP. As a result, nodes (including the console) will fail to connect to PuppetDB and PostgreSQL.
+On some versions of Debian/Ubuntu, the default `/etc/hosts` file contains an entry for the machine's hostname with a local IP address of 127.0.1.1. This can cause issues for PuppetDB and PostgreSQL, because binding a service to the hostname causes it to resolve to the local-only IP address rather than its public IP. As a result, nodes (including the console) will fail to connect to PuppetDB and PostgreSQL.
 
 To fix this, add an entry to `/etc/hosts` that resolves the machine's FQDN to its *public* IP address. This should be done prior to installing PE. However, if PE has already been installed, restarting the `pe-puppetdb` and `pe-postgresql` services after adding the entry to the hosts file should fix things.
 
 ### Puppet Enterprise Cannot Locate Samba init Script for Ubuntu 14.04
 
-If you attempt to install and start Samba using PE resource management, you will may encounter the following errors:
+If you attempt to install and start Samba using PE resource management, you might encounter the following errors:
 
     Error: /Service[smb]: Could not evaluate: Could not find init script or upstart conf file for 'smb'`
     Error: Could not run: Could not find init script or upstart conf file for 'smb'`
@@ -499,23 +497,28 @@ On AIX agents, the Augeas lens is unable to access or modify `etc/services`. The
 ### Razor Installation Requires an Internet Connection
 The pe_razor module assumes internet connectivity to download the PE installation tarball from pm.puppetlabs.com. The module also assumes it can download the microkernel from pm.puppetlabs.com as well.
 
-### Razor Has Trouble Provisioning a Node With Debian Wheezy
+### Razor has Trouble Provisioning a Node with Debian Wheezy
 
 We've had errors when trying to provision a node with Debian Wheezy. In such cases, the image hasn't loaded.
 
 ###Razor doesn't handle local time jumps
+
 The Razor server is sensitive to large jumps in the local time, like the one that is experienced by a VM after it has been suspended for some time and then resumed. In that case, the server will stop processing background tasks, such as the creation of repos. To remediate that, restart the server with `service pe-razor-server restart`.
 
 ###Razor hangs in VirtualBox 4.3.6
+
 We're finding that VirtualBox 4.3.6 gets to the point of downloading the microkernel from the Razor server and hangs at 0% indefinitely. We don't have this problem with VirtualBox 4.2.22.
 
-###Temp files aren't removed in a timely manner
+###Temp Files aren't Removed in a Timely Manner
+
 This is due to Ruby code working as designed, and while it takes longer to remove temporary files than you might expect, the files are eventually removed when the object is finalized.
 
 ###Updates might be required for VMware ESXi 5.5 igb files
+
 You might have to update your VMware ESXi 5.5 ISO with updated igb drivers before you can install ESXi with Razor. See this [driver package download page on the VMware site](https://my.vmware.com/web/vmware/details?downloadGroup=DT-ESXI55-INTEL-IGB-42168&productId=353) for the updated igb drivers you need.
 
 ###JSON warning
+
 When you run Razor commands, you might get this warning: "MultiJson is using the default adapter (ok_json). We recommend loading a different JSON library to improve performance."
 
 You can disregard the warning since this situation is completely harmless. However, if you're using Ruby 1.8.7, you can install a separate JSON library, such as json_pure, to prevent the warning from appearing.

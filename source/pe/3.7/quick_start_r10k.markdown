@@ -9,7 +9,7 @@ canonical: "/pe/latest/quick_start_r10k.html"
 
 [r10k_diagram]: ./images/quick/r10k_qsg.svg
 
-The primary purpose and benefit of r10k is that it provides a localized place in Puppet for you to manage the configuration of various environments (such as production, development, or testing), including what specific versions of modules are in each of your environments, based on code in branches of one or more Git repositories. R10k accomplishes this by seamlessly connecting the code in your Git repository's branches with the Puppet environments it has created based on those branches. So the work you do in Git is reflected in your Puppet configuration!
+The primary purpose and benefit of r10k is that it provides a localized place in Puppet for you to manage the configuration of various environments (such as production, development, or testing), including what specific versions of modules are in each of your environments, based on code in branches of one or more Git repositories. R10k accomplishes this by seamlessly connecting the code in your Git repository's branches with the Puppet environments it creates based on those branches. So the work you do in Git is reflected in your Puppet configuration!
 
 In this guide you'll version the code you wrote for the Hello, World! module for two different environments---one you'll call `production` and the other `test_message`. Each of these environments will map to a specific branch named after the environment in a repo called **puppet-control**. Each branch (that maps to an environment) in the **puppet-control** repo will contain a `Puppetfile` that references the Hello, World! module repo's URL and latest commit ID for the code changes. When you run r10k on the Puppet master, it will read the `Puppetfile` and pull down different versions of the Hello, World! module---in other words, a version of the module for each branch (or environment).
 
@@ -21,18 +21,18 @@ The following diagram outlines this workflow.
 >
 > This guide is a simple proof-of-concept primer for getting to know r10k. For more information, see the main [r10k docs](link).
 >
-> Before beginning please review the following assumptions and prerequisites. 
+> Before beginning, please review the following assumptions and prerequisites. 
 >
->- To follow this guide, we assume the following machines are available:
+>- For this guide, we assume you have the following machines available:
 >
 >   - A Puppet master running on a monolithic or split installation of PE 3.8 (e.g., `master.example.com`). Note that this guide uses the PE console.
 >   - An admin machine for writing Puppet code and versioning it with Git (e.g., `admin.example.com`).  
 >   - A Puppet agent node (e.g., `agent.example.com`) that can communicate with your 3.8 master. You'll need to ensure that time is synced between your Puppet agent node and your Puppet master, and that these machines can reach each other by name. This can be done with a local DNS server or by editing the `/etc/hosts` file on each machine.
 >
 >- Git should be installed on the admin machine and the Puppet master server.  
->- You have create two version-controlled repositories. Note that this guide relies heavily on some basic knowledge of Git. 
+>- You have created two version-controlled repositories. Note that this guide relies heavily on some basic knowledge of Git. 
 >
->   For ease of use, the repos should be called **puppet-control** and **puppet-helloworld**. The user on the admin machine will need full read/write access to these repos, and the Puppet master will need read access. Git and Github users should see Github's [Generating SSH keys](https://help.github.com/articles/generating-ssh-keys/) for details on setting up SSH access to your repos.
+>   For ease of use, the repos should be called **puppet-control** and **puppet-helloworld**. The user on the admin machine needs full read/write access to these repos, and the Puppet master needs read access. Git and Github users should see Github's [Generating SSH keys](https://help.github.com/articles/generating-ssh-keys/) for details on setting up SSH access to your repos.
 >- The **puppet-control** and **puppet-helloworld** repos should be cloned to a working directory on the admin machine:
 >
 >   - `$working-dir/puppet-control`
@@ -40,7 +40,7 @@ The following diagram outlines this workflow.
 >   - `$working-dir/puppet-helloworld`
 >
 >- You have completed the [Hello, World! Quickstart Guide](/quick_start_helloworld.html), and committed that module to the **puppet-helloworld** repo. 
->- The Puppet master must have the `zack-r10k` module installed on it. (From the Puppet master, run `puppet module install zack-r10k`.)
+>- For this guide, the Puppet master must have the `zack-r10k` module installed on it. (From the Puppet master, run `puppet module install zack-r10k`.)
 
 The major steps you'll perform in this guide are as follows:
 
@@ -74,15 +74,15 @@ Unless otherwise indicated, you'll perform the steps in this section on your adm
 7. Save the file.
 8. Still in the `puppet-control` directory, run `mkdir manifests`.
 9. **From the Puppet master**, copy `/etc/puppetlabs/puppet/environments/production/manifests/site.pp` and move it into the `manifests` directory created in Step 8 (e.g., run `scp /etc/puppetlabs/puppet/environments/production/manifests/site.pp user@admin.example.com:~/wip/puppet-control/manifests/`).
-10. From the root of `puppet-control` create a file called `environment.conf` (e.g. `touch environment.conf`). 
+10. From the root of `puppet-control` create a file called `environment.conf` (e.g., `touch environment.conf`). 
 11. Open `environment.conf` and edit it so that it contains the following Puppet code:
 
         modulepath = modules:$basemodulepath
         environment_timeout = 0
         
-12. From the root of the `puppet-control` directory, run` git status`. This will show you the files that you've created and edited, which are ready to be committed. 
+12. From the root of the `puppet-control` directory, run ` git status`. This shows you the files that you've created and edited, which are ready to be committed. 
 13. Run `git add --all`, and then run `git commit -m  "this is my initial commit"`.
-14. Run `git push origin master`. This will push your changes to the remote **puppet-control** repo.
+14. Run `git push origin master`. This pushes your changes to the remote **puppet-control** repo.
 
 ### Step 2: Rename the master branch of the **puppet-control** repo to production
 
@@ -90,9 +90,9 @@ The default Puppet environment is `production`. You need to rename the **puppet-
 
 You'll perform the steps in this section on your admin machine. 
 
-1. From the `puppet-control` directory create a new branch called `production`. Run `git checkout -b production`. This creates the `production` branch and changes to it.)
+1. From the `puppet-control` directory, create a new branch called `production`. Run `git checkout -b production`. This creates the `production` branch and changes to it.)
 
-   >**Tip**: `git branch` will list all the branches in your repo, and the "*" indicates which branch you're on.
+   >**Tip**: `git branch` lists all the branches in your repo, and the "*" indicates which branch you're on.
     
 2. Push the new `production` branch to the remote **puppet-control** repo. Run `git push origin production:production`. 
 3. Using Github.com, set the default branch to `production`. (See [Setting the default branch](https://help.github.com/articles/setting-the-default-branch/).) 
@@ -120,7 +120,7 @@ You'll perform the steps in this section on your Puppet master.
 
 3. Run `puppet apply <FULL PATH to r10k.pp>`.
 
-   This Puppet run will generate `/etc/puppetlabs/r10k/r10k.yaml`. This file contains the following code:
+   This Puppet run generates `/etc/puppetlabs/r10k/r10k.yaml`. This file contains the following code:
    
        cachedir: '/var/cache/r10k'
 
@@ -133,7 +133,7 @@ You'll perform the steps in this section on your Puppet master.
     
 4. Change into the r10k directory (run `cd /etc/puppetlabs/r10k`), and run `r10k deploy environment -p -v`.
 
-   This run of r10k will contact the **puppet-control** repo, and will, because of the contents of `Puppetfile`, pull the down the **puppet-helloworld** module that is on the `production` branch.
+   This run of r10k contacts the **puppet-control** repo, and because of the contents of `Puppetfile`, pulls the down the **puppet-helloworld** module that is on the `production` branch.
 
 5. After the run completes, navigate to `/etc/puppetlabs/puppet/environments/` to see the `production` environment and that it contains the **puppet-helloworld** module.
 
@@ -141,7 +141,7 @@ You'll perform the steps in this section on your Puppet master.
 
    You'll see the notify appear on the command line. In addition you can run `puppet apply -e 'include helloworld::motd'   --environment production`, and then run ` cat /etc/motd`.
    
-   >**Tip**: If there are any syntax errors in your Puppet code, you will be warned at this step. If there are errors, you will need to return to your admin machine, correct the Puppet code in the **puppet-helloworld** module, commit the change, gather the commit ID, update `Puppetfile` in the **puppet-control** repo with the commit ID, commit that change, and then re-deploy r10k from the Puppet master.  
+   >**Tip**: If there are any syntax errors in your Puppet code, you will be warned at this step. If there are errors, you need to return to your admin machine, correct the Puppet code in the **puppet-helloworld** module, commit the change, gather the commit ID, update `Puppetfile` in the **puppet-control** repo with the commit ID, commit that change, and then re-deploy r10k from the Puppet master.  
 
 ### Step 4: Version the code in the Hello, World module and create the `test_message` environment
 
@@ -160,7 +160,7 @@ You'll perform the steps in this section on your admin machine.
 
    >**Tip**: Run `git branch` to ensure the `test_message` branch was created.
 
-9. Open `Puppetfile`, and for the `ref` line, paste in the commit ID you copied in step 5. (Be sure the commit ID is in single quotes; e.g. `:ref => <'COMMIT ID'>`.)
+9. Open `Puppetfile`, and for the `ref` line, paste in the commit ID you copied in step 5. (Be sure the commit ID is in single quotes; e.g., `:ref => <'COMMIT ID'>`.)
 10. Save and close `Puppetfile.`
 11. Still in the `puppet-control` directory, on the `test_message` branch, run `git add --all`, and then run `git commit -m  "this is a commit to update Puppetfile for the test_message branch"`.  
 12. Run `git push origin test_message:test_message`.
@@ -173,21 +173,21 @@ You'll perform the steps in this section on your Puppet master.
 
 1. Change into the r10k directory (run `cd /etc/puppetlabs/r10k`), and run `r10k deploy environment -p -v`.
 
-   This run of r10k will contact the **puppet-control** repo, and will, because of the contents of `Puppetfile` on each branch, pull the down the **puppet-helloworld** module for the `production` and `test_message` branches.
+   This run of r10k contacts the **puppet-control** repo, and because of the contents of `Puppetfile` on each branch, pulls the down the **puppet-helloworld** module for the `production` and `test_message` branches.
    
-2. After the Puppet run completes, navigate to `/etc/puppetlabs/puppet/environments/` to see the `production` and `test_message` environments, and that they both contain the **puppet-helloworld** module. (Navigate into the `manifests` directories and note the differences between the `motd.pp` files.)
+2. After the Puppet run completes, navigate to `/etc/puppetlabs/puppet/environments/` to see the `production` and `test_message` environments, and see that they both contain the **puppet-helloworld** module. (Navigate into the `manifests` directories and note the differences between the `motd.pp` files.)
 
 3. Apply the **puppet-helloworld** module to the `test_message` environment. Run `puppet apply -e 'include helloworld' --environment test_message`.
 
    On this run, you will see the new message you created for the `test_message` environment. You can also run `puppet apply -e 'include helloworld::motd' --environment test_message` followed by `cat /etc/motd`. Additionally, run the `production` environment again to see the original message. 
    
-   >**Tip**: If there are any syntax errors in your Puppet code, you will be warned at this step. If there are errors, you will need to return to your admin machine, correct the Puppet code in the **puppet-helloworld** module, commit the change, gather the commit ID, update `Puppetfile` in the **puppet-control** repo with the commit ID, commit that change, and then re-deploy the r10k from the Puppet master. 
+   >**Tip**: If there are any syntax errors in your Puppet code, you will be warned at this step. If there are errors, you need to return to your admin machine, correct the Puppet code in the **puppet-helloworld** module, commit the change, gather the commit ID, update `Puppetfile` in the **puppet-control** repo with the commit ID, commit that change, and then re-deploy the r10k from the Puppet master. 
    
    At this point, you're ready to test your environments on a Puppet agent.  
 
 ### Step 6: Test the environments on a Puppet agent node
 
-In this section, you'll use the PE console and a Puppet agent (`agent.example.com`) to verify the work you've done up to this point. Before you test the module on your Puppet agent node, you will need to use the PE console's node classifier to set up a) an environment group for the `test_message` environment and b) a few node groups you'll use to classify your agent node.
+In this section, you'll use the PE console and a Puppet agent (`agent.example.com`) to verify the work you've done up to this point. Before you test the module on your Puppet agent node, you need to use the PE console's node classifier to set up a) an environment group for the `test_message` environment and b) a few node groups you'll use to classify your agent node.
 
 > **Tip**: Instead of using just one Puppet agent node in this section, you could use two and set each node to a different environment per the following instructions. 
 
@@ -219,7 +219,7 @@ In this section, you'll use the PE console and a Puppet agent (`agent.example.co
 
 3. On the Puppet agent node, run `puppet agent -t`.
 
-   When Puppet runs you should see the notify message for the `test_message` environment on the command line.  
+   When Puppet runs, you should see the notify message for the `test_message` environment on the command line.  
 
 4. After the agent run is complete, run `cat /etc/motd` to see your motd for the `test_message` environment. 
 

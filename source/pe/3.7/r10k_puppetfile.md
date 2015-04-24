@@ -45,7 +45,7 @@ mod 'adrienthebo/thebestmoduleever'
 mod 'puppetlabs/apache', '0.10.0'
 ~~~
 
-**Install the latest available version of a module, and then update that module:**
+**Install the latest available version of a module, and then keep that module updated:**
 
 ~~~
 mod 'puppetlabs/apache', :latest
@@ -128,11 +128,11 @@ mod 'puppetlabs/apache'
 # installs the apache module into 'dirname/path/to/Puppetfile/thirdparty/apache'
 ~~~
 
-After you've specified your modules in the Puppetfile, you're ready to [run r10k](running) or perform Puppetfile operations with the Puppetfile subcommands below.
+After you've specified your modules in the Puppetfile, you're ready to [run r10k][running] or perform Puppetfile operations with the Puppetfile subcommands below.
 
-##Running Puppetfile subcommands
+##Running Puppetfile Subcommands
 
-After you've configured your Puppetfile, you'll be able to manage your modules via the `r10k puppetfile` subcommand. This subcommand must be run as the user with write access to the moduledir directory specified by the Puppetfile. It interacts with the Puppetfile in the current working directory, so before running the subcommand, make sure you are in the directory of the Puppetfile you want to use. You can run the `r10k puppetfile` subcommand with following actions:
+After you've configured your Puppetfile, you'll be able to manage your modules via the `r10k puppetfile` subcommand. This subcommand must be run as the user with write access to that environment's `modules` directory (or the moduledir directory, if you specified a different modules directory in the Puppetfile). It interacts with the Puppetfile in the current working directory, so before running the subcommand, make sure you are in the directory of the Puppetfile you want to use. You can run the `r10k puppetfile` subcommand with following actions:
 
 ### `install`
 
@@ -160,4 +160,4 @@ r10k puppetfile purge
 
 ## Next Steps
 
-Once you've set up your Puppetfile, you're ready to [deploy](running) your environments and modules.
+Once you've set up your Puppetfile, you're ready to [deploy][running] your environments and modules.
