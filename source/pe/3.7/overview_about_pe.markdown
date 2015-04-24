@@ -6,7 +6,7 @@ canonical: "/pe/latest/overview_about_pe.html"
 ---
 
 
-Thank you for choosing Puppet Enterprise (PE), IT automation software that allows system administrators to programmatically provision, configure, and manage servers, network devices and storage, in the data center or in the cloud.
+Thank you for choosing Puppet Enterprise (PE), IT automation software that allows system administrators to programmatically provision, configure, and manage servers, network devices, and storage, in a data center or in the cloud.
 
 This user's guide will help you start using Puppet Enterprise 3.8, and will serve as a reference as you gain more experience. It covers PE-specific features and offers brief introductions to Puppet and the orchestration engine. Use the **navigation at left** to move between the guide's sections and chapters.
 
@@ -18,19 +18,19 @@ This user's guide will help you start using Puppet Enterprise 3.8, and will serv
 > For Returning Users
 > -----
 >
-> See the [release notes](./release_notes.html). Here you can find detailed information about [new features](./release_notes.html) in the 3.8 series.
+> See the [release notes](./release_notes.html) for detailed information about new features in the PE 3.8 series.
 
 About Puppet Enterprise
 -----
 
 Puppet Enterprise is a comprehensive tool for enterprise systems configuration management. Specifically, PE offers:
 
-* Configuration management tools that let sysadmins define a desired state for their infrastructure and then automatically enforce that state.
+* Configuration management tools that let you define a desired state for your infrastructure and then automatically enforce that state.
 * A web-based console UI for analyzing events, managing your Puppet systems and users, and editing resources on the fly.
 * Powerful orchestration capabilities.
 * Cloud provisioning tools for creating and configuring new VM instances.
 
-Puppet Enterprise consists of a complete stack of Puppet Labs' technologies, which are automatically installed and connected. Specifically, PE 3.8 includes all of the following Puppet Labs software:
+PE consists of a complete stack of Puppet Labs' technologies, which are automatically installed and connected. Specifically, PE 3.8 includes all of the following Puppet Labs software:
 
  * Puppet 3.8.0
  * Puppet Server 1.0.9
