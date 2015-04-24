@@ -26,18 +26,15 @@ During installation, Puppet Enterprise (PE) automatically creates a number of pr
 
 ## The Default Node Group
 
-This node group is used for assigning classes to all nodes. For example, you can use it to assign the `ntp` class to all nodes.
+This node group is at the top of the hierarchy tree. All other node groups stem from this node group.
 
 #### Classes
-No default classes.
-
-> **Note:** If you are using agent-specified environments, any classes in the **default** node group must be removed before you can set the environment. 
+No default classes. You should generally avoid adding classes to this node group.
 
 #### Matching nodes
 All nodes.
 
 #### Notes
-* You can add and remove classes, parameters, and variables.
 * You cannot modify the preconfigured rule that matches all nodes.
 
 ## PE Infrastructure-Related Node Groups
