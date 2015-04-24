@@ -34,13 +34,13 @@ To install on Debian-based systems:
 
 ## Step 4: Export Your Classification Data
 
-Before upgrading, you need to export your node classification data from PE 3.3. 
+Before upgrading, you need to export your node classification data from PE 3.3.
 
-**Note:** If any of your classification data is not compatible with PE 3.8 classification, you will have a chance to make modifications in the console and export the modified data in [Step 5](#step-5-convert-your-pe-33-classification-data). 
+**Note:** If any of your classification data is not compatible with PE 3.8 classification, you will have a chance to make modifications in the console and export the modified data in [Step 5](#step-5-convert-your-pe-33-classification-data).
 
 The migration tool includes an export command. The export command gathers up your PE 3.3 classification data and exports it as a JSON file. Specifically, the following items get exported.
 
-For nodes: 
+For nodes:
 
 * The node name
 * The node description
@@ -60,13 +60,13 @@ The format for using the migration tool is `nc_migrate <ACTION> <OPTION> <TARGET
 
 To run the migration tool and export your classification data:
 
-1. Type `/opt/puppet/bin/nc_migrate export`. This loads the PE 3.3 console database configuration from the default file, which is `/etc/puppetlabs/puppet-dashboard/database.yml`. If you have changed the default location for the console database configuration file, you will need to specify the new location when you run the export command (e.g. `/opt/puppet/bin/nc_migrate export --database <PATH TO NEW LOCATION>`.)
+1. Type `/opt/puppet/bin/nc_migrate export`. This loads the PE 3.3 console database configuration from the default file, which is `/etc/puppetlabs/puppet-dashboard/database.yml`. If you have changed the default location for the console database configuration file, you need to specify the new location when you run the export command (e.g. `/opt/puppet/bin/nc_migrate export --database <PATH TO NEW LOCATION>`.)
 
-2. Once the database configuration has been acquired, the migration tool connects to the console database and exports your classification data to a JSON file called `dashboard-classification-export.json` in the current directory. To specify a different output file name and location, include the `--output` option when you run the export command (e.g. `/opt/puppet/bin/nc_migrate export --output <NEW FILE PATH>`.)
+2. Once the database configuration has been acquired, the migration tool connects to the console database and exports your classification data to a JSON file called `dashboard-classification-export.json` in the current directory. To specify a different output file name and location, include the `--output` option when you run the export command (e.g. `/opt/puppet/bin/nc_migrate export --output <NEW FILE PATH>`).
 
 ## Step 5: Convert Your PE 3.3 Classification Data
 
-In this step, the migration tool is essentially mapping your exported classification data to a node group hierarchy that is compatible with PE 3.8. The tool first checks the exported classification data for PE 3.8 compatibility issues. If compatibility issues exist, you will have a chance to resolve the issues and export your data again. 
+In this step, the migration tool is essentially mapping your exported classification data to a node group hierarchy that is compatible with PE 3.8. The tool first checks the exported classification data for PE 3.8 compatibility issues. If compatibility issues exist, you will have a chance to resolve the issues and export your data again.
 
 To start the migration process, run the migration tool with the `convert` command and supply the exported configuration file:
 
@@ -89,14 +89,14 @@ If you choose to ignore the conflicts, disregard the remaining instructions on  
 <br>
 The unsupported configurations that cause conflicts are:
 <ul>
-<li>A node group with multiple parent groups</li>
-<li>A node that is a member of a node group but is not a member of all of the node group’s ancestors</li> 
+<li>A node group with multiple parent groups.</li>
+<li>A node that is a member of a node group but is not a member of all of the node group’s ancestors</li>
 <li>A node that has classification applied to it directly and is also a member of a node group</li>
 </ul>
 If any of the above configurations are found, the data conversion process will be aborted. For information on resolving each of these conflicts, see <a href="./install_upgrade_migration_tool_conflicts.html">Resolving Conflicts</a>.
 <br>
 <br>
-<li>If the conversion process is successful, the converted node group hierarchy and classification data is output to a JSON file called <code>converted-dashboard-classification.json</code> in the current directory. 
+<li>If the conversion process is successful, the converted node group hierarchy and classification data is output to a JSON file called <code>converted-dashboard-classification.json</code> in the current directory.
 <br>
 To specify a different output file name and location, include the <code>output</code> option when you run the <code>convert</code> command (e.g. <code>/opt/puppet/bin/nc_migrate convert --input ./dashboard-classification-export.json --output &lt;NEW FILE PATH&gt;</code>.)</li>
 <br>
@@ -105,36 +105,36 @@ To specify a different output file name and location, include the <code>output</
 
 > **Note:** If you have PE 3.3 nodes that are not members of a group and do not have classification, they will not appear in this file. This is normal and expected. As long as the node is active, it will still be present in PE 3.8.
 
-> **Note:** If your Puppet master node for PE 3.8 is not the same node that you designated as the Puppet master in your PE 3.3 installation (e.g., if you are installing PE 3.8 on a new system and migrating your data), you will need to SCP your exported PE 3.3 data to the new Puppet master. 
+> **Note:** If your Puppet master node for PE 3.8 is not the same node that you designated as the Puppet master in your PE 3.3 installation (e.g., if you are installing PE 3.8 on a new system and migrating your data), you will need to SCP your exported PE 3.3 data to the new Puppet master.
 
 ## Step 6: Upgrade to PE 3.8
 
 To upgrade to PE 3.8, follow the instructions in [Upgrading Puppet 	Enterprise](./install_upgrading.html). After you have completed the upgrade, proceed to Step 7 below.
 
 ## Step 7: Import Your Converted Classification Data Into PE 3.8
-If you resolved all conflicts during Step 5, you can use the migration tool to import your converted classification data into PE 3.8. 
+If you resolved all conflicts during Step 5, you can use the migration tool to import your converted classification data into PE 3.8.
 
-> **Note:** The migration tool preserves the PE 3.8 preconfigured node groups that are created by the installer script during upgrade. For a list of these node groups, see [Treatment of PE Infrastructure Groups](./install_upgrade_migration_preconfigured_groups.html). All other node groups will be removed. 
-> 
+> **Note:** The migration tool preserves the PE 3.8 preconfigured node groups that are created by the installer script during upgrade. For a list of these node groups, see [Treatment of PE Infrastructure Groups](./install_upgrade_migration_preconfigured_groups.html). All other node groups will be removed.
+>
 > We strongly recommend that you use the [`/v1/groups` endpoint of the Node Classifier Service API](./nc_groups.html) to back up your PE 3.8 node groups before importing your PE 3.3 classification data, and then save the output from this endpoint to a file. If for any reason you want to restore the state of your PE 3.8 upgrade prior to importing PE 3.3 classification data, you can do so by [POSTing the file to the `/v1/import-hierarchy` endpoint](/nc_import-hierarchy.html). For information about using the Node Classifier Service API, see [Forming Node Classifier Requests](./nc_forming_requests.html).
 
 To import your PE 3.3 classification data:
 
 1. Go to your PE 3.8 Puppet master. (If you run the import command from the Puppet master, it can use Puppet’s configuration to find the location of the Node Classifier Service API and the SSL files needed to communicate with it.)
 
-2. Run the migration tool with the import command: 
+2. Run the migration tool with the import command:
 
     `/opt/puppet/bin/nc_migrate import`
-		
+
     Use the `-i` or `--input` option to specify your input file if your classification data is not in the default file, which is `converted-dashboard-classification.json` in the current directory.
-	
+
 3. The migration tool will import the converted node groups from the default or specified JSON file into PE 3.8.
 
 Other available options when running the import command:
 
 * `--classifier-api-url` The URL to the Node Classifier Service API. Make sure that the URL does **not** include a trailing slash. (Example: `https://console.lan.mycompany.com:4432/node-classifier`)
-* `--ssl-key` The path to a PEM file on disk that has the private SSL key used to connect to the Node Classifier Service API. 
-* `--ssl-cert` The path to a PEM file on disk that has the public SSL key used to connect to the Node Classifier Service API. 
+* `--ssl-key` The path to a PEM file on disk that has the private SSL key used to connect to the Node Classifier Service API.
+* `--ssl-cert` The path to a PEM file on disk that has the public SSL key used to connect to the Node Classifier Service API.
 * `--ssl-ca-cert` The path to a PEM file on disk that has the CA certificate used to connect to the Node Classifier Service API.
 
 > For information about using whitelisted SSL certificates to connect to the Node Classifier Service API, see [Forming Node Classifier Requests](./nc_forming_requests.html#authentication).
