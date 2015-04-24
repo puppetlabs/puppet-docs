@@ -24,8 +24,8 @@ PE comes with several preconfigured node groups to help you manage your PE infra
 
 You should create two different types of node groups in PE:
 
-- *Environment node groups,* which assign environments to nodes
-- *Classification node groups,* which assign classification data to nodes
+- *Environment node groups,* which assign environments to nodes.
+- *Classification node groups,* which assign classification data to nodes.
 
 In other words, a given node group should assign environments _or_ classification data, not both.
 

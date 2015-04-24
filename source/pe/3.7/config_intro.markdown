@@ -23,9 +23,9 @@ There are two main methods for configuring PE: using the PE console or adding a 
 
 In general, only profile classes starting with `puppet_enterprise::profile` should be applied and configured via the node classifier (NC) in the console. Classes that aren't `profile` classes should be applied and configured using Hiera. 
 
-Please also note that when editing or adding any parameters in PE-managed configuration files, use the PE console NC. Parameter values set in the PE console will override those you've manually set in the configuration files.  
+Please also note that when editing or adding any parameters in PE-managed configuration files, use the PE console. Parameter values set in the PE console will override those you've manually set in the configuration files.  
 
->**Note**: Before you make configuration changes, review the information on [preconfigured groups](./console_classes_groups_preconfigured_groups.html). You can badly damage your PE installation if you remove some classes, which are detailed on that page.
+>**Note**: Before you make configuration changes, review the information on [preconfigured node groups](./console_classes_groups_preconfigured_groups.html). You can badly damage your PE installation if you remove some classes, which are detailed on that page.
 
 ## Configure Settings Using the PE Console
 
