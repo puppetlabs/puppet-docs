@@ -15,7 +15,7 @@ Whether you're new to PE or have been here for a while, here are some useful lin
 * [Known Issues](./release_notes_known_issues.html)
 * [Bug and Security Fixes](./release_notes_security.html)
 
-### Installing
+### Installing Puppet Enterprise
 
 * [System Requirements](./install_system_requirements.html)
 * [Monolithic](./install_pe_mono.html) or [Split Installation](./install_pe_split.html) instructions
