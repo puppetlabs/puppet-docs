@@ -5,41 +5,47 @@ subtitle: "Puppet Enterprise 3.8 Release Notes"
 canonical: "/pe/latest/release_notes.html"
 ---
 
-This page contains information about new features and general improvements in the latest Puppet Enterprise (PE) release.
+[environments]: /puppet/3.8/reference/environments.html
 
-For more information about this release, also see the [Known Issues](./release_notes_known_issues.html) and [Security Fixes](./release_notes_security.html).
+This page describes new features and general improvements in the latest Puppet Enterprise (PE) release.
 
-This page contains information about new features and general improvements and changes in the latest Puppet Enterprise (PE) release.
-
-For more information about this release, also see the [Known Issues](./release_notes_known_issues.html) and [Security and Bug Fixes](./release_notes_security.html).
+For more information about this release, see [Known Issues](./release_notes_known_issues.html) and [Security and Bug Fixes](./release_notes_security.html).
 
 ## New Features in PE 3.8.0
 
-### Classification Data Migration Tool For Upgrades From PE 3.3
+### Classification Data Migration Tool for Upgrades From PE 3.3
 
-PE 3.8 comes with a migration tool to help you migrate PE 3.3 classification data across to PE 3.8. In PE 3.7, we introduced a new node classifier that allows for greater automation. As a result, some PE 3.3 approaches to node classification do not fit with the new model introduced in PE 3.7. The migration tool helps you migrate PE 3.3 nodes and classification to the PE 3.8 node classifier and provides guidance on resolving issues with node classification data that is not compatible with PE 3.8. For details about the changes to node classification and important instructions on how to migrate your classification data to PE 3.8, see [the migration tool documentation](./install_upgrade_migration_tool.html).
+PE 3.8 comes with a migration tool to help you migrate PE 3.3 classification data to PE 3.8.
+
+In PE 3.7, we introduced a new node classifier, which allowed for greater automation but wasn't compatible with some of the ways PE 3.3 classified nodes. The migration tool helps you migrate PE 3.3 nodes and classification to the new node classifier, and provides guidance on fixing classifications that aren't compatible with PE 3.8.
+
+For details about the changes to node classification and important instructions on how to migrate your classification data to PE 3.8, see [the migration tool documentation](./install_upgrade_migration_tool.html).
 
 ### r10k Code Management Tool and Quick Start Guide
 
-This release adds [r10k](./r10k.html), a code management tool that allows you to manage the configuration of various environments (such as production, development, or testing), including environment-specific modules, based on code in your Git repositories.
+This release adds [r10k](./r10k.html), a code management tool that lets you use your Git repositories to manage the configuration and contents of your Puppet [environments][] (such as production, development, or testing).
 
-The quick start [guide](./quick_start_r10k.html) is a simple proof-of-concept primer for getting to know r10k. In this walkthrough, you'll leverage the code you wrote for the [Hello, World! QSG](./quick_start_helloworld.html) to learn how r10k provides the tools to help you deploy different versions of code across different environments.
+Read [the r10k quick start guide](./quick_start_r10k.html) to get started. In this walkthrough, you'll use the code you wrote for the [Hello, World! QSG](./quick_start_helloworld.html) to learn how r10k can help you deploy different versions of code across different environments.
 
 ### Razor Now Fully Supported
 
-Razor, Puppet Labs’ bare metal provisioning capability, has moved from tech preview to a fully supported solution for provisioning bare metal servers. With Razor's policy-based approach, you can automatically discover bare-metal hardware, dynamically configure operating systems and/or hypervisors, and hand nodes off to PE for workload configuration. This process, which used to take hours, now takes a matter of minutes. See the [Razor documentation to learn more about Razor](./razor_intro.html).
+[razor]: ./razor_intro.html
 
-### Puppet Agents on Network Devices
+[Razor][], Puppet Labs’ tool for provisioning bare metal servers, has moved from tech preview to a fully supported solution. With Razor's policy-based approach, you can automatically discover bare-metal hardware, dynamically configure operating systems and/or hypervisors, and hand nodes off to PE for workload configuration. What used to take hours of manual work now takes minutes. See the [Razor documentation][razor] to learn more.
 
-Thanks to a number of partnerships, Puppet Enterprise has been adding support for running Puppet agents on network devices. Currently we support the [Cumulus Linux](./install_cumulus.html) and the [Arista EOS](./install_eos.html) platforms.
+### Puppet Agent on Network Devices
+
+Thanks to a number of partnerships, Puppet Enterprise has been adding support for running Puppet agent on network devices. Currently we support the [Cumulus Linux](./install_cumulus.html) and the [Arista EOS](./install_eos.html) platforms.
 
 ## Improvements in PE 3.8.0
 
-#### Support For String Interpolation in the PE Console
+#### String Interpolation in the PE Console
 
-Values for parameters and variables can be specified in the console using strings, booleans, numbers, hashes, and arrays. The supported syntax for specifying strings has been extended beyond literal strings, and now also includes limited support for string interpolation of fact values. You can now specify values such as `"I live at $ipaddress"`, which interpolates the result of referencing the `$ipaddress` fact, as well as values such as `${$os["release"]["full"]}`, which interpolates the result of the embedded expression.
+In prior PE versions, you could only enter literal values for parameters and variables in the console.
 
-For more information on the syntax and restrictions for string interpolation in the console, see [Tips on specifying parameter and variable values](./console_classes_groups.markdown#setting-class-parameters).
+Now, when entering string values for parameters and variables, you can interpolate fact values and limited expressions. This makes it possible to use values like `"I live at $ipaddress"`, which interpolates the value of the `$ipaddress` fact, as well as values such as `${$os["release"]["full"]}`, which interpolates the result of the embedded expression.
+
+For more information on the syntax and restrictions for string interpolation in the console, see [Tips on specifying parameter and variable values](./console_classes_groups.html#setting-class-parameters).
 
 #### Upgrades for Large Environment Installations
 
@@ -47,15 +53,15 @@ Upgrading your large environment installation (LEI) involves a combination of st
 
 #### Deleting a User From RBAC
 
-In this release, there is a new endpoint in the Role-Based Access Control API that allows you to delete a local or remote user from PE. For more information, see the [API documentation](./rbac_users.html#delete-userssid).
+There is a new endpoint in the Role-Based Access Control API that lets you delete a local or remote user from PE. For more information, see the [API documentation](./rbac_users.html#delete-userssid).
 
 #### Deleting a User Group From RBAC
 
-In this release, there is a new endpoint in the Role-Based Access Control API that allows you to delete a local or remote user group from PE. For more information, see the [API documentation](./rbac_usergroups.html#delete-groupssid).
+There is a new endpoint in the Role-Based Access Control API that lets you delete a local or remote user group from PE. For more information, see the [API documentation](./rbac_usergroups.html#delete-groupssid).
 
-#### Verifying Certificates For External LDAP Directories
+#### Verifying Certificates for External LDAP Directories
 
-In this release, we added the ability to verify an SSL certificate for a directory server when configuring the RBAC service to connect to an external directory server. For more information, see the [RBAC documentation](./rbac_ldap.html#Verify-Directory-Server-Certificates).
+When configuring the RBAC service to connect to an external directory server, you can now verify an SSL certificate for the server. For more information, see the [RBAC documentation](./rbac_ldap.html#verify-directory-server-certificates).
 
 #### New RBAC Permission to Edit Parameters and Variables
 
@@ -65,17 +71,17 @@ This permission allows a user in the given user role to tune classification by e
 
 ### Cloud Provisioner is Deprecated
 
-Cloud Provisioner is deprecated in this release and will eventually be removed from Puppet Enterprise. For this reason, Cloud Provisioner is not installed by default as in previous versions of PE. If you have been using Cloud Provisioner in your existing PE infrastructure and would like to continue using it, you can install it separately, as described in the [Installing section of Cloud Provisioner documentation](./cloudprovisioner_configuring.html#installing).
+Cloud Provisioner is deprecated in this release and will eventually be removed from Puppet Enterprise. For this reason, Cloud Provisioner is no longer installed by default. If you have been using Cloud Provisioner in your existing PE infrastructure and would like to continue using it, you can install it separately, as described in the [Installing section of Cloud Provisioner documentation](./cloudprovisioner_configuring.html#installing).
 
-Instead of Cloud Provisioner, we recommend using the AWS Supported Module going forward.
+Instead of Cloud Provisioner, we recommend using the [AWS Supported Module](https://forge.puppetlabs.com/puppetlabs/aws) going forward.
 
 ### Live Management is Deprecated
 
-Live Management is deprecated in PE 3.8.0 and will be replaced by improved resource management functionality in future releases. For this reason, Live Management is not enabled by default as in previous versions of PE. If you have been using Live Management in your existing PE infrastructure and would like to continue using it with PE 3.8, see the instructions for [enabling Live Management](./console_navigating_live_mgmt.html#disabling/enabling-live-management) in the PE documentation.
+Live Management is deprecated in PE 3.8.0 and will be replaced by improved resource management functionality in future releases. For this reason, Live Management is no longer enabled by default. If you have been using Live Management in your existing PE infrastructure and would like to continue using it with PE 3.8, see the instructions for [enabling Live Management](./console_navigating_live_mgmt.html#disablingenabling-live-management).
 
-### Some Platforms are Deprecated for Core PE Components
+### Some Platforms are Deprecated for PE Infrastructure Components
 
-A number of platforms have been deprecated in PE 3.8 for the core PE components (the Puppet master, the PE console, and PuppetDB) and will be removed in future versions of PE. Agents on these platforms will continue. The deprecated platforms include all 32-bit versions, all Debian versions, EL 5 versions, and Ubuntu 10.4. The complete list is as follows:
+A number of platforms have been deprecated in PE 3.8 for PE's infrastructure components (the Puppet master, the PE console, and PuppetDB) and will be removed in future versions of PE. Agents on these platforms will continue. The deprecated platforms include all 32-bit versions, all Debian versions, EL 5 versions, and Ubuntu 10.4. The complete list is as follows:
 
 *	centos-5-i386
 *   centos-5-x86_64
