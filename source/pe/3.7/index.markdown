@@ -5,16 +5,42 @@ subtitle: "Puppet Enterprise User's Guide"
 canonical: "/pe/latest/index.html"
 ---
 
-Welcome! This is the user's guide for Puppet Enterprise 3.7.
+Welcome to the Puppet Enterprise 3.8 User's Guide!
 
-* If you are new to Puppet Enterprise, begin with the [quick start guide](./quick_start.html) to create a small proof-of-concept deployment and experience the core Puppet Enterprise tools and workflows. This guided walkthrough will take approximately 30-60 minutes.
-* To install Puppet Enterprise, see the following pages:
-    * [System Requirements](./install_system_requirements.html)
-    * [Installing PE](./install_basic.html)
-    * [Installing Windows Agents](./install_windows.html)
-    * [Puppet Enterprise Downloads](http://info.puppetlabs.com/download-pe.html)
-* To see what's new since the last release, see [the new features list in the release notes](./release_notes.html).
+Whether you're new to PE or have been here for a while, here are some useful links:
 
-Otherwise, use the **navigation to the left** to move between this guide's sections and chapters.
+### Release Notes
+
+* [New Features](./release_notes.html)
+* [Known Issues](./release_notes_known_issues.html)
+* [Bug and Security Fixes](./release_notes_security.html)
+
+### Installing
+
+* [System Requirements](./install_system_requirements.html)
+* [Monolithic](./install_pe_mono.html) or [Split Installation](./install_pe_split.html) instructions
+* [*nix](./install_agents.html), [Windows](./install_windows.html), or [OS X](./install_osx.html) agent installation 
+* [Upgrading](./install_upgrading)
+
+### Quick Start Guides
+
+For [*nix and Windows](./quick_start.html)
+
+### Node Management
+
+* [Getting Started with Classification](./console_classes_groups_getting_started.html)
+* [PE 3.3 -> PE 3.8 Migration](./install_upgrade_migration_tool.html)
+
+### Code Management with r10K
+
+* [r10k QSG](./quick_start_r10k.html)
+* [Getting to Know r10k](./r10k.html)
+
+### Provisioning with Razor
+
+* [Bare-Metal Provisioning with Razor](./razor_intro.html)
+* [Provision Nodes - How To](./razor_using.html)
+
+Can't find what you're looking for? Use the **navigation to the left** to find additional topics.
 
 If you are using an older version of Puppet Enterprise, you can find [documentation for previous versions here](/pe/index.html).
