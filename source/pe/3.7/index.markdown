@@ -21,15 +21,17 @@ Whether you're new to PE or have been here for a while, here are some useful lin
 * [Monolithic](./install_pe_mono.html) or [Split Installation](./install_pe_split.html) instructions
 * [*nix](./install_agents.html), [Windows](./install_windows.html), or [OS X](./install_osx.html) agent installation 
 * [Upgrading](./install_upgrading)
+* [PE 3.3 -> PE 3.8 Migration](./install_upgrade_migration_tool.html)
 
 ### Quick Start Guides
 
 For [*nix and Windows](./quick_start.html)
 
-### Node Management
+### Node Management and Role-Based Access Control
 
 * [Getting Started with Classification](./console_classes_groups_getting_started.html)
-* [PE 3.3 -> PE 3.8 Migration](./install_upgrade_migration_tool.html)
+* [Working with Role-Based Access Control](./rbac_intro.html)
+
 
 ### Code Management with r10K
 
