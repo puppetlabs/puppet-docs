@@ -21,13 +21,13 @@ Before you begin configuring r10k, you want to ensure that you have a control re
 
 >**Warning!** 
 >
->If you are currently using [directory environments](direnv), skip immediately to ["Previous Directory Environment Configurations"](#previous-directory-environment-configurations). 
+>If you are currently using [directory environments][direnv], skip immediately to ["Previous Directory Environment Configurations"](#previous-directory-environment-configurations). 
 
 ##r10k and Git
 
-R10k uses your existing Git repository (repo) branches to create [directory environments](direnv). Environments allow you to designate a node or node group as a specific environment; for example, you could designate one node group as the development environment and another as the production environment. As you update the code in your control repo, r10k tracks the state of that repo to keep each environment updated.
+R10k uses your existing Git repository (repo) branches to create [directory environments][direnv]. Environments allow you to designate a node or node group as a specific environment; for example, you could designate one node group as the development environment and another as the production environment. As you update the code in your control repo, r10k tracks the state of that repo to keep each environment updated.
 
-Each branch of a connected repository is copied into a directory named after the branch. For instance, if your control repo is called "myenvironments," with branches named "production", "test", and "development", r10k copies the production branch into a production directory, the test branch into a test directory, and the development branch into a development directory.
+Each branch of a connected repository is copied into a directory named after the branch. For instance, if your control repo is called "myenvironments", with branches named "production", "test", and "development", r10k copies the production branch into a production directory, the test branch into a test directory, and the development branch into a development directory.
 
 >**Warning:** When you connect a Git repo to r10k, r10k creates the directories in the directory environments location you specified in r10k.yaml, and **erases** anything that was there before. If you already have directory environments set up, you must read ["Previous Directory Environment Configurations"](#previous-directory-environment-configurations) before you proceed.
 
@@ -64,7 +64,7 @@ Note that for your new directory environments to be accessible to Puppet, you **
 
 ###`postrun`
 
-An optional setting that causes r10k to run a command after deploying all your environments. The command must be an array of strings that is used as a command line program and its arguments. You can't specify `postrun` more than one time in r10k.yaml.
+An optional setting that causes r10k to run a command after deploying all of your environments. The command must be an array of strings that is used as a command line program and its arguments. You can't specify `postrun` more than one time in r10k.yaml.
 
 ~~~
 postrun: ['/usr/bin/curl', '-F', 'deploy=done', 'http://my-app.site/endpoint']
@@ -96,7 +96,7 @@ The `sources` key allows the options listed below. You can also implement additi
 
 ####`remote`
 
-Specifies where the source repository should be fetched from. It can be any valid URL that the source can check out or clone. The remote must be able to be fetched without any interactive input; e.g., you cannot be prompted for usernames or passwords in order to fetch the remote.
+Specifies where the source repository should be fetched from. It can be any valid URL that the source can checkout or clone. The remote must be able to be fetched without any interactive input; e.g., you cannot be prompted for usernames or passwords in order to fetch the remote.
 
 ~~~
 sources:
@@ -123,7 +123,8 @@ Allows environment names to be prefixed with the short name of the specified sou
 sources:
   mysource:
     basedir: '/etc/puppet/environments'
-    prefix: true # All environments will be prefixed with "mysource_"
+    prefix: true
+    # All environments will be prefixed with "mysource_"
 ~~~
 
 ####`invalid_branches`
@@ -150,11 +151,11 @@ Remember that r10k names each new directory after the branch in your Git repo. *
 
 ###zack-r10k module
 
-The [zack-r10k](https://forge.puppetlabs.com/zack/r10k) module provides some help with configuring r10k. If you choose to use the zack-r10k module, be aware that use of thisx module is beyond the scope of PE 3.8.
+The [zack-r10k](https://forge.puppetlabs.com/zack/r10k) module provides some help with configuring r10k. If you choose to use the zack-r10k module, be aware that use of this module is beyond the scope of PE 3.8.
 
 Note that the zack-r10k module does not support SLES.
 
 ## Next Steps
 
-Once you've listed each repo you want to manage with r10k in r10k.yaml, you're ready to specify your modules in your Puppetfile. If you've already done that, then you're ready to [run r10k](running) to sync your environments.
+Once you've listed each repo you want to manage with r10k in r10k.yaml, you're ready to specify your modules in your Puppetfile. If you've already done that, then you're ready to [run r10k][running] to sync your environments.
 
