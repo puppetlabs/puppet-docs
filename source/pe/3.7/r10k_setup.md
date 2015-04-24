@@ -13,7 +13,7 @@ description: "Setup of r10k with Puppet Enterprise for code management."
 [reference]: ./r10k_reference.html
 [r10kindex]: ./r10k.md
 
-R10k comes packaged with Puppet Enterprise (PE) 3.8, so you don't need to separately download or install it. 
+R10k comes packaged with Puppet Enterprise (PE) 3.8, so you don't need to separately download or install it.
 
 To get started, you'll need to decide how r10k should communicate with Git, set up a repository for your code, and prepare r10k for configuration.
 
@@ -24,30 +24,30 @@ For r10k to work, it needs to be able to communicate with Git. You have two opti
 * Use Git installed on your system. This is the default r10k usage.
 * Use the Git library built into r10k. You don't have to install Git on your system for this method, but you do have to provide a private key.
 
-###Use Git on your system
+###Use Git on Your System
 
 If you do not have Git installed, [find out the best way to install it for your setup](http://git-scm.com/book/en/v2/Getting-Started-Installing-Git). After you've installed Git, [set up at least one repository](http://git-scm.com/book/en/v2/Git-Basics-Getting-a-Git-Repository) to act as a control repository for your code.
 
-###Use Git library in r10k
+###Use Git Library in r10k
 
 The Git library is already built into r10k, so you don't have to install Git on your system. You do need to [set up at least one repository](http://git-scm.com/book/en/v2/Git-Basics-Getting-a-Git-Repository) to act as a control repository for your code.
 
-You don't have to do anything else with Git right now, but when you edit your [r10k.yaml](r10k_yaml) file, you'll need to specify 'rugged' in the [`git` parameter](./r10k_yaml#git) and provide your private_key file. 
+You don't have to do anything else with Git right now, but when you edit your [r10k.yaml](r10k_yaml) file, you'll need to specify 'rugged' in the [`git` parameter](./r10k_yaml#git) and provide your private_key file.
 
 ##Preparing r10k
 
 You can now prepare r10k for configuration, but how you do that depends on your current situation:
 
-1. [I've never used r10k and just installed PE 3.8.]()
-2. [I was using r10k and just upgraded to PE 3.8 from an earlier version of PE.]()
-3. [I was using the zack-r10k module and just upgraded to PE 3.8 from an earlier version of PE.]()
-4. [I was using r10k with open source Puppet and just upgraded to PE 3.8.]()
+* [I've never used r10k and just installed PE 3.8.]()
+* [I was using r10k and just upgraded to PE 3.8 from an earlier version of PE.]()
+* [I was using the zack-r10k module and just upgraded to PE 3.8 from an earlier version of PE.]()
+* [I was using r10k with open source Puppet and just upgraded to PE 3.8.]()
 
-###I am brand new to r10k and have a new installation of PE 3.8
+###I Am Brand New to r10k and Have a New Installation of PE 3.8
 
-If you’ve never installed or used r10k before and have just installed PE 3.8, r10k is already installed for you. Your next step is to [create your own config file](r10kyaml) for r10k in `/etc/puppetlabs/r10k/r10k.yaml`.
+If you’ve never installed or used r10k before and have just installed PE 3.8, r10k is already installed for you. Your next step is to [create your own config file](r10k_yaml) for r10k in `/etc/puppetlabs/r10k/r10k.yaml`.
 
-###I was using r10k with an earlier version of PE and just upgraded to PE 3.8
+###I Was Using r10k With an Earlier Version of PE and Just Upgraded to PE 3.8
 
 Puppet Enterprise automatically installs the current PE version of r10k. However, the default location for r10k.yaml has changed, so we recommend moving it to prevent future upgrade issues. To do so:
 
@@ -60,15 +60,15 @@ Both /etc/puppetlabs/r10k/r10k.yaml and /etc/r10k.yaml configuration files exist
 /etc/puppetlabs/r10k/r10k.yaml will be used.
 ```
 
-###I was using the zack-r10k module with an earlier version of PE and just upgraded to PE 3.8
+###I Was Using the zack-r10k Module With an Earlier Version of PE and Just Upgraded to PE 3.8
 
-You have two choices: you can continue using the module or you can switch to r10k as it ships with Puppet Enterprise. 
+You have two choices: you can continue using the module or you can switch to r10k as it ships with Puppet Enterprise.
 
-####Continue using the module
+####Continue Using the Module
 
-If you want to continue using the zack-r10k module with r10k, you can do so. The default location of r10k.yaml has changed, but in PE 3.8, r10k still reads `/etc/r10k.yaml`. To continue using the module, you should **not** move r10k.yaml to its new default location. 
+If you want to continue using the zack-r10k module with r10k, you can do so. The default location of r10k.yaml has changed, but in PE 3.8, r10k still reads `/etc/r10k.yaml`. To continue using the module, you should **not** move r10k.yaml to its new default location.
 
-####Use the PE 3.8 default r10k configuration
+####Use the PE 3.8 Default r10k Configuration
 
 If you want to use r10k as it ships with PE **without** the zack-r10k module, you should move the location of r10k.yaml:
 
@@ -81,20 +81,20 @@ Both /etc/puppetlabs/r10k/r10k.yaml and /etc/r10k.yaml configuration files exist
 /etc/puppetlabs/r10k/r10k.yaml will be used.
 ~~~
 
-###I was using r10k with open source Puppet and just upgraded to PE 3.8
+###I Was Using r10k With Open Source Puppet and Just Upgraded to PE 3.8
 
 Puppet Enterprise automatically installs the current PE version of r10k. However, the default location for r10k.yaml has changed, so we recommend moving it to prevent future upgrade issues. To get r10k ready to go with your Puppet Enterprise upgrade:
 
 1. Move your r10k.yaml file from the `/etc/` directory to the `/etc/puppetlabs/r10k` directory.
 2. Check that your specified [directory environments](environ_dir) in r10k.yaml are listed in puppet.conf.
-3. Uninstall r10k from your system gems. This will depend on your system, but running `gem uninstall r10k` should be sufficient
+3. Uninstall r10k from your system gems. This will depend on your system, but running `gem uninstall r10k` should be sufficient.
 4. Delete or rename the r10k.yaml file in `/etc/` if it is still present. Otherwise, you will see the following error:
 
 ~~~
 Both /etc/puppetlabs/r10k/r10k.yaml and /etc/r10k.yaml configuration files exist.,
 /etc/puppetlabs/r10k/r10k.yaml will be used.
 ~~~
-  
+
 ## Next Steps
 
 After you've prepared r10k, you're ready to configure [r10k.yaml][r10kyaml] and Puppet to use directory environments.
