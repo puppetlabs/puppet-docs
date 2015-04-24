@@ -219,6 +219,7 @@ Deletes the user with the specified ID, regardless of whether they are a user de
 **Note:** The `admin` user and the `api_user` cannot be deleted.
 
 **Returns:**
+
 * **204 No Content** The user was successfully deleted.
 * **403 Forbidden** The user does not have the `users:edit` permission for this user.
 * **404 Not Found** A user with the given identifier does not exist.
