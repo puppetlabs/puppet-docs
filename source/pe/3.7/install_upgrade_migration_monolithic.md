@@ -90,8 +90,8 @@ If you choose to ignore the conflicts, disregard the remaining instructions on  
 The unsupported configurations that cause conflicts are:
 <ul>
 <li>A node group with multiple parent groups</li>
-<li>A node that matches a node group but does not match all of the node group’s ancestors</li> 
-<li>A node that has classification applied to it directly as well as through node groups</li>
+<li>A node that is a member of a node group but is not a member of all of the node group’s ancestors</li> 
+<li>A node that has classification applied to it directly and is also a member of a node group</li>
 </ul>
 If any of the above configurations are found, the data conversion process will be aborted. For information on resolving each of these conflicts, see <a href="./install_upgrade_migration_tool_conflicts.html">Resolving Conflicts</a>.
 <br>

@@ -65,12 +65,12 @@ After successful migration from PE 3.3 to PE 3.8 in the flow shown above, your P
 * Node name
 * Node description
 * Node classification information (which variables, classes and parameters are assigned to the node)
-* Node's group membership
+* Node's node group membership
 * Node group name
 * Node group description
-* Group classification information (which variables, classes and parameters are assigned to the group)
-* Group's member nodes
-* Group's parent group
+* Node group classification information (which variables, classes and parameters are assigned to the group)
+* Node group's member nodes
+* Node group's parent group
 * Node group hierarchy
 
 ### What Doesn’t Get Migrated? 

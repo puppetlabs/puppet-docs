@@ -122,8 +122,8 @@ In this step, the tool is essentially mapping your exported classification data 
     Unsupported configurations that will cause conflicts are:
 
     * A node or node group with multiple parent groups
-    * A node that matches a node group but does not match all of the node group’s ancestors
-    * A node that has classification applied to it directly as well as through node groups
+    * A node that is a member of a node group but is not a member of all of the node group’s ancestors
+    * A node that has classification applied to it directly and is also a member of a node group
 
     If any of the above configurations are found, the data conversion process is aborted. For information on resolving each of these conflicts, see [Resolving Conflicts](./install_upgrade_migration_tool_conflicts.html). 
 
