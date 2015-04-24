@@ -18,7 +18,7 @@ PE comes with the following preconfigured node groups to help you manage your PE
 
    ![viewing list of node groups][all_node_groups]
 
-You should create two different types of node groups in PE: *environment node groups* and *classification node groups*. Environment node groups set the environment that a node should be in. Classification node groups set the classification data that your nodes will receive. You add your classes, parameters, and variables to classification node groups. When your individual nodes match a node group, they receive all of the classification specified for that node group. 
+You should create two different types of node groups in PE: *environment node groups* and *classification node groups*. Environment node groups set the environment that a node should be in. Classification node groups set the classification data that your nodes will receive. 
 
 > **Important**
 >
