@@ -7,7 +7,7 @@ canonical: "/pe/latest/install_upgrade_migration_tool.html"
 
 ## Who Should Use the PE Classification Data Migration Tool?
 
-If you are currently on PE 3.3 and you classify your nodes through the console, you should use the migration tool when upgrading to PE 3.8. 
+If you are currently on PE 3.3.2 or earlier and you classify your nodes through the console, you should use the migration tool when upgrading to PE 3.8. 
 
 ### Why? 
 

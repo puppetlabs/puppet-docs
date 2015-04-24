@@ -24,7 +24,7 @@ Node classification:
 
 During the migration process, the migration tool detects your PE 3.3 infrastructure groups and classification and does not export them. This is because PE 3.8 has a more comprehensive and slightly different set of preconfigured infrastructure groups and classification that get installed when you upgrade to PE 3.8. After you have upgraded to PE 3.8 and imported your PE 3.3 classification data, you can create rules in the PE 3.8 preconfigured node groups to ensure that the appropriate nodes are matched to those groups and classified with the infrastructure classes. For detailed information regarding the preconfigured node groups in PE 3.8, see [Preconfigured Node Groups](/console_classes_groups_preconfigured_groups.html).
 
-> **Note:** Although `pe_repo` is a PE infrastructure-related class that comes preconfigured in PE 3.3, `pe_repo` is not removed from your PE 3.3 node classification during the migration process. If you have added the `pe-repo` class to other nodes besides the PE master node, your other nodes will still get this classification after the migration. 
+> **Note:** Although `pe_repo` is a PE infrastructure-related class that comes preconfigured in PE 3.3, `pe_repo` is not removed from your PE 3.3 node classification during the migration process. If you have added the `pe_repo` class to other nodes besides the PE master node, your other nodes will still get this classification after the migration. 
 
 > **Note:** In PE 3.3, if you have set up any node groups that are descendents of the preconfigured node groups listed above, the descendent node groups will **not** be migrated to PE 3.8.
 
