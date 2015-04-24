@@ -11,64 +11,80 @@ canonical: "/pe/latest/console_classes_groups.html"
 [forge]: http://forge.puppetlabs.com
 [modules]: /puppet/3.8/reference/modules_fundamentals.html
 [topscope]: /puppet/3.8/reference/lang_scope.html#top-scope
+[classifying]: ./console_classes_groups_getting_started.html
+[environments]: /puppet/3.8/reference/environments.html
+[agent_config_assign]: /puppet/3.8/reference/environments_assigning.html#assigning-environments-via-the-agents-config-file
+[creating environments]: /puppet/3.8/reference/environments_creating.html
 
-To start classifying your nodes, go to the Puppet Enterprise (PE) console and click **Classification**. This takes you to a list of node groups. 
+To start [classifying][] your nodes, go to the Puppet Enterprise (PE) console and click **Classification**. This takes you to a list of node groups.
 
-PE comes with the following preconfigured node groups to help you manage your PE infrastructure. To learn more about these preconfigured node groups, see [Preconfigured Node Groups](./console_classes_groups_preconfigured_groups.html). 
+PE comes with several preconfigured node groups to help you manage your PE infrastructure. To learn more about these preconfigured node groups, see [Preconfigured Node Groups](./console_classes_groups_preconfigured_groups.html).
 
-   ![viewing list of node groups][all_node_groups]
+![viewing list of node groups][all_node_groups]
 
-You should create two different types of node groups in PE: *environment node groups* and *classification node groups*. Environment node groups set the environment that a node should be in. Classification node groups set the classification data that your nodes will receive. 
+You should create two different types of node groups in PE:
+
+- *Environment node groups,* which assign environments to nodes
+- *Classification node groups,* which assign classification data to nodes
+
+In other words, a given node group should assign environments _or_ classification data, not both.
 
 > **Important**
 >
-> The node classifier uses role-based access control (RBAC) to manage access to tasks. To check your access to the tasks described on this page, see the [RBAC documentation](./rbac_intro.html).
+> The node classifier uses role-based access control (RBAC) to manage access to tasks, including the tasks described on this page. For info about managing access, see the [RBAC documentation](./rbac_intro.html).
 
-### Creating Environment Node Groups
+## Creating Environment Node Groups
 
 The only role of an environment node group is to set the environment for your nodes. Environment node groups should **not** contain any classification data.
 
+> More on environments from the Puppet reference manual:
+>
+> * [About Environments][environments]
+> * [Creating Environments][]
+> * [The environment.conf File](/puppet/3.8/reference/config_file_environment.html)
+> * [Configuring Environments](/puppet/3.8/reference/environments_configuring.html)
+
 PE comes with two preconfigured environment node groups: the **Production environment** node group and the **Agent-specified environment** node group.
 
-The **Production environment** comes with a rule that matches all nodes. This ensures that your nodes get the production environment, unless specified otherwise.
-
-The **Agent-specified environment** node group omits the environment specification when the agent reports back to the master for catalog compilation. Use this environment if you need to preserve an agent-specified environment in your installation. For more information, see [The Agent-Specified Environment Node Group](./console_classes_groups_preconfigured_groups.html#the-agent-specified-environment-node-group). 
+* The **Production environment** group comes with a rule that matches all nodes, and assigns the **production** environment. This means your nodes will default to the production environment unless you specify otherwise.
+* The **Agent-specified environment** group matches no nodes by default. It doesn't assign an environment, which lets its nodes use the [environment from their config file.][agent_config_assign] Add nodes to this group if you need to preserve an agent-specified environment in your installation. For more information, see [The Agent-Specified Environment Node Group](./console_classes_groups_preconfigured_groups.html#the-agent-specified-environment-node-group).
 
 To create a new environment node group:
 
-1. In the **Node group name** box, enter a name that describes the role of this environment node group, such as "Test environment". 
-2. In the **Parent name** box, set the parent to be **Production Environment**. All environment node groups that you add to PE should have the **Production Environment** as the parent. This is important because child groups override the settings specified in parent groups. Child groups match a subset of the nodes that are in the parent group (based on the node matching rules you set), and by setting a new environment (and the **This is an environment group** checkbox explained in step 5), you will successfully set an overriding environment for the subset of nodes that match the child group.  
-3. In the **Environment** box, specify the environment that you want to enforce for the nodes that match this node group. If you haven’t [set up any environments](/puppet/3.8/reference/environments.html) yet, you will only see the  **production** and **agent-specified** environments in the drop-down list.
+1. In the **Node group name** box, enter a name that describes the role of this environment node group, such as "Test environment".
+2. In the **Parent name** box, set the parent to be **Production environment**. Every environment node group you add must have the **Production environment** group as the parent; otherwise it won't be able to override which environment its nodes are assigned to.
+3. In the **Environment** box, specify the environment you want to assign to the nodes that match this node group. If you haven’t [created any environments][creating environments] yet, you will only see the  **production** and **agent-specified** environments in the drop-down list.
 4. Click **Add group** to add the environment node group.
 5. **This step is very important and should not be skipped.** In the list of node groups, find the new group that you just created and click it. Click **Edit node group metadata**. Select the **This is an environment group** checkbox. The environment will not be enforced unless you select this checkbox.
 6. Click the commit button to commit your change.
 
-**Note:** For more information on using environments, see [Working With Environments](./console_classes_groups_environment_override.html).
-    
-### Creating Classification Node Groups
+**Note:** For more information on using environments in the PE console, see [Working With Environments](./console_classes_groups_environment_override.html).
 
-The role of a classification node group is to assign classification (classes, parameters, and variables) to nodes.
+## Creating Classification Node Groups
+
+The role of a classification node group is to assign classification data (classes, parameters, and variables) to nodes.
 
 1. To add a new classification node group, in the **Node group name** box in the **Classification** page, enter a name that describes the function of the nodes that match this node group. For example, "web servers."
-    
-2. In the **Parent name** box, select the name of the classification node group that you want to set as the parent to this node group. Classification node groups inherit classes, parameters, and variables from their parent node group. By default, the parent node group is the **default** node group. 
+
+2. In the **Parent name** box, select the name of the classification node group that you want to set as the parent to this node group. Classification node groups inherit classes, parameters, and variables from their parent node group. By default, the parent node group is the **default** node group.
 
     Node group inheritance is an important feature in node classification that can save you a lot of time. For example, if you have a class that needs to be assigned to all of a node group’s descendent node groups, then you can assign it once in the parent node group and avoid having to assign it in each descendent node group. For an overview of node group inheritance, see [How Does Inheritance Work?](./console_classes_groups_inheritance.html).
-    
-3. In the **Environment** box, you can specify an environment for filtering the classes and parameters that are available for selection in this node group. You are not actually setting an environment here, you did that when you [set up the environment node groups](#creating-environment-node-groups). 
 
-    For example, if you want to apply some test classification data to your development web server nodes, you would [add the nodes to your test environment through the environment node group](#creating-environment-node-groups), and then set the test environment here in the classification node group so that only your test classification is available for selection. 
+3. In the **Environment** box, you can specify an environment for filtering the classes and parameters that are available for selection in this node group. This _does not_ assign an environment to any nodes; you did that when you [set up the environment node groups](#creating-environment-node-groups).
 
-     **Important:** Do not select **This is an environment group**. This option should only be set when you are configuring *environment node groups*. 
+    For example, if you want to apply some test classification data to your development web server nodes, you would [add the nodes to your test environment through the environment node group](#creating-environment-node-groups), and then set the test environment here in the classification node group so that only your test classification is available for selection.
+
+     **Important:** Do not select **This is an environment group**. This option should only be set when you are configuring *environment node groups*.
 
 4. To finish creating the node group, click **Add Group**.
 
-[Editing Node Groups](./console_classes_groups_making_changes.html#editing-groups)
+To change a classification node group later, see:
 
-[Deleting Node Groups](./console_classes_groups_making_changes.html#deleting-groups)
+* [Editing Node Groups](./console_classes_groups_making_changes.html#editing-groups)
+* [Deleting Node Groups](./console_classes_groups_making_changes.html#deleting-groups)
 
 
-### Adding Nodes to a Node Group
+## Adding Nodes to a Node Group
 
 There are two ways to add nodes to a node group:
 
@@ -77,7 +93,7 @@ There are two ways to add nodes to a node group:
 2. Individually pin nodes to the node group (static)
 
 
-#### Adding Nodes Dynamically
+### Adding Nodes Dynamically
 Rules are by far the most powerful and scalable way to include nodes in a node group. You can create rules in a node group that are used to match [node facts](/facter/2.3/core_facts.html). When nodes match the rules in a node group, they are classified with all of the classification data (classes, parameters, and variables) that has been set for the node group.
 
 When nodes no longer match the rules of a node group, the classification data for that node group no longer applies to the node.
@@ -107,12 +123,12 @@ When nodes no longer match the rules of a node group, the classification data fo
     &nbsp;&nbsp;&nbsp;"hostname"&nbsp;&nbsp;&nbsp;**matches regex**&nbsp;&nbsp;&nbsp;"web"
 
     If at any point you change the role of one of the web server nodes and remove “web” from the name, that node no longer matches the rule for being included in the **Web Servers** node group and will no longer be configured with the classes that have been applied by the node group.
-    
-4. Whenever you make a change in the node classifier, you need to commit the change. At the lower right of the page, click the commit button. 
+
+4. Whenever you make a change in the node classifier, you need to commit the change. At the lower right of the page, click the commit button.
 
 > **Note**: In the **Rules** tab, there is an option that let’s you select whether your nodes need to match **All** rules before they are added to the node group, or if they should be added when they match **Any** of the rules.
 
-#### Adding Nodes Statically
+### Adding Nodes Statically
 If you have a node that needs to be in a node group regardless of the rules that have been specified for that node group, you can *pin* the node to the node group. A pinned node is not affected by rules and will remain in the node group until you manually remove it. Adding a pinned node essentially creates the rule `<the certname of your node>` **is** `<the certname>`, and includes this rule along with the other fact-based rules.
 
 **To pin a node to a node group:**
@@ -125,7 +141,7 @@ If you have a node that needs to be in a node group regardless of the rules that
 
 [Removing Nodes From a Node Group](./console_classes_groups_making_changes.html#removing-nodes-from-group)
 
-### Adding Classes to a Node Group
+## Adding Classes to a Node Group
 
 [Classes][lang_classes] are the blocks of Puppet code used to configure your nodes and assign resources to them. To add a class to a node classification group, first create the class in a module. You'll then need to install the module.
 
@@ -159,10 +175,10 @@ If you have a node that needs to be in a node group regardless of the rules that
 
 [Removing Classes From a Node Group](./console_classes_groups_making_changes.html#removing-classes-from-a-group)
 
-### Defining the Data Used by Classes
+## Defining the Data Used by Classes
 You can use either parameters or variables to define the data used by classes. Parameters are scoped to the class, while variables are scoped to the node group.
 
-#### Setting Class Parameters
+### Setting Class Parameters
 
 Classes will automatically use default parameters and values, or parameters and values inherited from parent node groups. However, if the nodes in a node group need to be an exception to the general case, you can override default and parent values by specifying new parameter values.
 
@@ -250,7 +266,7 @@ Classes will automatically use default parameters and values, or parameters and 
 
 [Deleting Parameters](./console_classes_groups_making_changes.html#deleting-parameters)
 
-#### Setting Variables
+### Setting Variables
 
 Variables set in the console become [top-scope variables available to all Puppet manifests][topscope]. When you define a variable, any class in the node group that references the variable will be given the value that you set here.
 
@@ -274,7 +290,7 @@ Variables set in the console become [top-scope variables available to all Puppet
 
 [Deleting variables](./console_classes_groups_making_changes.html#deleting-variables)
 
-### Viewing the Nodes That Are in a Node Group
+## Viewing the Nodes That Are in a Node Group
 
 **To view all nodes that currently match the rules specified for a node group:**
 
@@ -286,7 +302,7 @@ Variables set in the console become [top-scope variables available to all Puppet
 
 > **Note**: If you have not set any rules for this node group yet, there will not be any matching nodes.
 
-### Viewing Node Information
+## Viewing Node Information
 Each node in a PE deployment has its own node details page in the PE console. This is where you can view a list of the node groups that a node currently matches, and the classes and top-scope variables that are currently assigned to a node. To view this page:
 
 <ol>

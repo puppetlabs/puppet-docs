@@ -6,27 +6,29 @@ canonical: "/pe/latest/razor_reference.html"
 
 ---
 
-The Razor API is REST-based. The recommended base URL for your calls is  `https://razor:8151/api`.
+The Razor API is REST-based. The recommended base URL for your calls is `https://razor:8151/api`.
 
 **Note:** The following sections contain some example URLs that might be structured differently from the URLs your server uses.
 
-###Common Attributes
+### Common Attributes
+
 Two attributes are commonly used to identify objects:
 
-+ `id` can be used as a GUID for an object. A `GET` request against a URL with an `id` attribute produces a representation of the object.
-+ `name` is used for a short, human-readable reference to an object, generally only unique amongst objects of the same type on the same server.
+* `id` can be used as a GUID for an object. A `GET` request against a URL with an `id` attribute produces a representation of the object.
+* `name` is used for a short, human-readable reference to an object, generally only unique amongst objects of the same type on the same server.
 
 ### `/api` reference
+
 By default, API calls are sent over HTTPS with TSL/SSL. The base URL is `https://razor:8151/api`. This fetches the top-level entry point for navigating through the Razor command and query facilities. This is a JSON object with the following keys:
 
-  * `collections`: read-only queries available on this server.
-  * `commands`: the commands available on this server.
+* `collections`: read-only queries available on this server.
+* `commands`: the commands available on this server.
 
 Each of those keys contains a JSON array, with a sequence of JSON objects that have the following keys:
 
- * `name`: a human-readable label.
- * `rel`: a "spec URL" that indicates the type of contained data.  Use this to discover the endpoint that you want to follow, rather than the `name`.
- * `id`: the URL to follow to get at this content.
+* `name`: a human-readable label.
+* `rel`: a "spec URL" that indicates the type of contained data. Use this to discover the endpoint that you want to follow, rather than the `name`.
+* `id`: the URL to follow to get at this content.
 
 ### `/svc` URLs
 
@@ -38,11 +40,9 @@ This namespace is not enumerated under `/api`.
 
 The list of commands that the Razor server supports is returned as part of a request to `GET /api` in the `commands` array. Clients can identify commands using the `rel` attribute of each entry in the array, and should make their POST requests to the URL given in the `url` attribute.
 
-Any command's help documentation can be queried via a GET (rather than POST, which executes the command) on the command's endpoint,
-e.g. `GET /api/commands/create-policy`.
+Any command's help documentation can be queried via a GET (rather than POST, which executes the command) on the command's endpoint, e.g. `GET /api/commands/create-policy`.
 
-Commands are generally asynchronous and return a status code of `202
-Accepted` on success. The `url` property of the response generally refers to an entity that is affected by the command and can be queried to determine when the command has finished.
+Commands are generally asynchronous and return a status code of `202 Accepted` on success. The `url` property of the response generally refers to an entity that is affected by the command and can be queried to determine when the command has finished.
 
 ## Repo Commands
 
@@ -76,7 +76,7 @@ To make a repo that points to an existing resource without loading anything onto
       "task": "noop"
     }
 
-####Create a Stub Directory
+#### Create a Stub Directory
 
 To create a stub directory in `repo-store` and load it manually, create your repo with the `no_content` property. This is useful for ISOs that you can't extract normally, e.g. due to forward references:
 
@@ -85,7 +85,6 @@ To create a stub directory in `repo-store` and load it manually, create your rep
       "no_content": true
       "task": "noop"
     }
-
 
 ### Delete a repo (`delete-repo`)
 
@@ -102,17 +101,17 @@ Ensures that a specified repo uses the task this command specifies, setting the 
 The following shows how to update a repo’s task to a task called “other_task”.
 
 	{
-		"node": "node1",
-		"repo": "my_repo",
-		"task": "other_task"
+	  "node": "node1",
+	  "repo": "my_repo",
+	  "task": "other_task"
 	}
 
 The following shows how to update a repo’s task to its repo's task.
 
 	{
-		"node": "node1",
-		"repo": "my_repo",
-		"no_task": true
+	  "node": "node1",
+	  "repo": "my_repo",
+	  "no_task": true
 	}
 
 
@@ -122,7 +121,7 @@ The following shows how to update a repo’s task to its repo's task.
 
 Razor supports both tasks stored in the filesystem and tasks stored in the database.
 
-For development, we highly recommended storing your tasks in the filesystem. Details about that can be found under [Razor Tasks](/pe/latest/razor_tasks.markdown).
+For development, we highly recommended storing your tasks in the file system. Details about that can be found under [Razor Tasks](/pe/latest/razor_tasks.markdown).
 
 For production setups, it is usually better to store your tasks in the database. To create a task, clients post the following to the `/spec/create_task` URL:
 
@@ -141,11 +140,11 @@ For production setups, it is usually better to store your tasks in the database.
 
 The possible properties in the request are:
 
-name        | The name of the task; must be unique
-os          | The name of the OS; mandatory
-description | Human-readable description
-boot_seq    | A hash mapping the boot counter or 'default' to a template
-templates   | A hash mapping template names to the actual ERB template text
+* `name`: the name of the task; must be unique.
+* `os`: the name of the OS; mandatory.
+* `description`: human-readable description.
+* `boot_seq`: a hash mapping the boot counter or 'default' to a template.
+* `templates`: a hash mapping template names to the actual ERB template text.
 
 ## Broker Commands
 
@@ -162,8 +161,7 @@ To create a broker, post the following to the `create-broker` URL:
       "broker_type": "puppet"
     }
 
-The `broker_type` must correspond to a broker that is present on the
-`broker_path` set in `config.yaml`.
+The `broker_type` must correspond to a broker that is present on the `broker_path` set in `config.yaml`.
 
 The permissible settings for the `configuration` hash depend on the broker type and are declared in the broker type's `configuration.yaml`.
 
@@ -181,8 +179,7 @@ You can't delete a broker if it's being used by a policy.
 
 ### Create tag (`create-tag`)
 
-To create a tag, post the following to the `/spec/create_tag`
-command:
+To create a tag, post the following to the `/spec/create_tag` command:
 
     {
       "name": "small",
@@ -204,8 +201,7 @@ You can't delete a tag while it's being used by a policy, unless you set the opt
 
 ### Update tag (`update-tag`)
 
-To change the rule for a tag, post the following to the
-`/spec/update_tag_rule` command:
+To change the rule for a tag, post the following to the `/spec/update_tag_rule` command:
 
     {
       "name": "small",
@@ -213,7 +209,7 @@ To change the rule for a tag, post the following to the
       "force": true
     }
 
-This changes the rule of the given tag to the new rule. Razor then reevaluates the tag against all nodes and updates each node's tag attribute to reflect whether the tag now matches or not.
+This changes the rule of the given tag to the new rule. Razor then re-evaluates the tag against all nodes and updates each node's tag attribute to reflect whether the tag now matches or not.
 
 If the tag is used by any policies, the update is only performed if you set the optional `force` parameter to `true`. Otherwise, the command returns status code 400.
 
@@ -246,7 +242,7 @@ The `node_metadata` parameter lets your policy apply metadata to a node when it 
 
 ### Move policy (`move-policy`)
 
-This command lets you change the order in which razor considers your policies for matching against nodes. To move an existing policy into a different place in the order, use the `move-policy` command with a body like:
+This command lets you change the order in which Razor considers your policies for matching against nodes. To move an existing policy into a different place in the order, use the `move-policy` command with a body like:
 
     {
       "name": "a policy",
@@ -275,8 +271,8 @@ The command `modify-policy-max-count` lets you set the maximum number of nodes t
 `new-count` can be an integer, which must be greater than the number of nodes that are currently bound to the policy. Alternatively, the `no_max_count` argument makes the policy unbounded:
 
 	{
-  		"name": "a policy"
-  		"no_max_count": true
+      "name": "a policy"
+      "no_max_count": true
 	}
 
 ### Add tags to Policy (`add-policy-tag`)
@@ -298,7 +294,7 @@ To create the tag in addition to adding it to the policy, supply the `rule` argu
 
 ### Remove tags from Policy (`remove-policy-tag`)
 
-To remove tags from a policy, supply the name of a policy and the name of the tag.
+To remove tags from a policy, supply the name of a policy and the name of the tag:
 
     {
       "name": "a-policy-name",
@@ -312,9 +308,9 @@ Ensures that a policy uses the task this command specifies. If necessary, `updat
 The following shows how to update a policy's task to a task called "other_task".
 
 	{
-	"node": "node1",
-	"policy": "my_policy",
-	"task": "other_task"
+	  "node": "node1",
+	  "policy": "my_policy",
+	  "task": "other_task"
 	}
 
 ### Delete policy (`delete-policy`)
@@ -325,8 +321,7 @@ To delete a policy, supply the name of a single policy:
       "name": "my-policy"
     }
 
-Note that this does not affect the `installed` status of a node, and
-therefore can't, by itself, make a node bind to another policy upon reboot.
+Note that this does not affect the `installed` status of a node, and therefore can't, by itself, make a node bind to another policy upon reboot.
 
 ## Hook Commands
 
@@ -340,11 +335,11 @@ To create a new hook, use the `create-hook` command with a body like this:
       "configuration": {"foo": 7, "bar": "rhubarb"}
     }
 
-The `hook_type` parameter refers to a .hook file in the Razor server's `hooks` directory. The above example would point to `hooks/some_hook.hook`.
+The `hook_type` parameter refers to a `.hook` file in the Razor server's `hooks` directory. The above example would point to `hooks/some_hook.hook`.
 
-The optional `configuration` parameter lets you provide a starting configuration corresponding to that hook_type.
+The optional `configuration` parameter lets you provide a starting configuration corresponding to that `hook_type`.
 
-For more on, see [Razor Hooks](./razor_hooks).
+For more on hooks, see [Razor Hooks](./razor_hooks).
 
 ### Delete hook (`delete-hook`)
 
@@ -360,31 +355,22 @@ To delete a single hook, provide its name:
 
 Register a node with Razor before it is discovered, and potentially provisioned.
 
-In order to make brownfield deployments of Razor easier and safer, register your nodes explicitly. The `register-node` command allows you to perform the same
-registration that would happen when a new node checks in, but ahead of time. The `register-node` command uses the `installed` value to indicate that a node has already been installed, which signals to Razor that the node should be ignored.
+In order to make brownfield deployments of Razor easier and safer, register your nodes explicitly. The `register-node` command allows you to perform the same registration that would happen when a new node checks in, but ahead of time. The `register-node` command uses the `installed` value to indicate that a node has already been installed, which signals to Razor that the node should be ignored.
 
-In order for this command to be effective, `hw_info` must contain enough information
-that the node can successfully be matched during the iPXE boot phase.
-If the node matches an existing node, in keeping with the overall policy of
-commands declaring desired state, the node's `installed` field will be updated to
-match the value in this command.
+In order for this command to be effective, `hw_info` must contain enough information that the node can successfully be matched during the iPXE boot phase. If the node matches an existing node, in keeping with the overall policy of commands declaring desired state, the node's `installed` field will be updated to match the value in this command.
 
-The final state is that a node with the supplied hardware information, and the
-desired installed state, will be present in the database, regardless of whether it
-existed beforehand or not.
+The final state is that a node with the supplied hardware information, and the desired installed state, will be present in the database, regardless of whether it existed beforehand or not.
 
 `register-nodes` uses the following values:
 
-
-* `hw_info`, required, provides the hardware information for the node.  This is used to match the node on first boot with the record in the database. The order of MAC address assignment in this data is not significant, as a node with reordered MAC addresses will be treated as the same node.
-* `serial` of type string, provides the DMI serial number of the node.
-* `asset` of type string, provides the DMI asset tag of the node.
-* `uuid` of type string provides the DMI UUID of the node.
+* `hw_info`: required, provides the hardware information for the node.  This is used to match the node on first boot with the record in the database. The order of MAC address assignment in this data is not significant, as a node with reordered MAC addresses will be treated as the same node.
+* `serial`: of type string, provides the DMI serial number of the node.
+* `asset`: of type string, provides the DMI asset tag of the node.
+* `uuid`: of type string provides the DMI UUID of the node.
 
 **API Example**
 
-Register a machine before you boot it, and note that it already has an OS
-installed, so it should not be subject to policy-based reinstallation:
+Register a machine before you boot it, and note that it already has an OS installed, so it should not be subject to policy-based reinstallation:
 
     {
       "hw_info": {
@@ -400,8 +386,7 @@ installed, so it should not be subject to policy-based reinstallation:
 
 **CLI Example**
 
-Register a machine before you boot it, and note that it already has an OS
-installed, so should not be subject to policy-based reinstallation:
+Register a machine before you boot it, and note that it already has an OS installed, so should not be subject to policy-based reinstallation:
 
     razor register-node --hw-info net0=78:31:c1:be:c8:00 \\
         --hw-info net1=72:00:01:f2:13:f0 \\
@@ -410,9 +395,6 @@ installed, so should not be subject to policy-based reinstallation:
         --hw-info asset=Asset-1234567890 \\
         --hw-info uuid="Not Settable" \\
         --installed
-
-
-
 
 ### Delete node (`delete-node`)
 
@@ -459,7 +441,7 @@ If you've associated IPMI credentials with a node, Razor can use IPMI to trigger
       "name": "node1",
     }
 
-The RBAC pattern for this command is: `reboot-node:${node}`
+The RBAC pattern for this command is: `reboot-node:${node}`.
 
 The IPMI communication spec includes some generous internal rate limits to prevent it from overwhelming the network or host server. If an execution slot isn't available on the target node, your `reboot-node` command goes into a background queue, and runs as soon as a slot is available.
 
@@ -491,22 +473,22 @@ Node metadata is a collection of key => value pairs, much like a node's facts. T
 The `modify-node-metadata` command lets you add/update or remove individual metadata keys, or fully clear out a node's metadata:
 
     {
-        "node": "node1",
-        "update": {                         # Add or update these keys
-            "key1": "value1",
-            "key2": "value2",
+      "node": "node1",
+      "update": {                         # Add or update these keys
+          "key1": "value1",
+          "key2": "value2",
             ...
-        }
-        "remove": [ "key3", "key4", ... ],  # Remove these keys
-        "no_replace": true                  # Do not replace keys on
+      }
+      "remove": [ "key3", "key4", ... ],  # Remove these keys
+      "no_replace": true                  # Do not replace keys on
                                             # update. Only add new keys
     }
 
 or
 
     {
-        "node": "node1",
-        "clear": true                       # Clear all metadata
+      "node": "node1",
+      "clear": true                       # Clear all metadata
     }
 
 As above, you can submit multiple updates and/or removes in a single command. However, `clear` only works on its own.
@@ -527,15 +509,15 @@ The `update-node-metadata` command is a shortcut to `modify-node-metadata` that 
 The `remove-node-metadata` command is a shortcut to `modify-node-metadata` that streamlines removing either a single key or all keys on a node via the command line or a GET request:
 
     {
-        "node" : "node1",
-        "key"  : "my_key",
+      "node" : "node1",
+      "key"  : "my_key",
     }
 
 or
 
     {
-        "node" : "node1",
-        "all"  : true,     # Removes all keys
+      "node" : "node1",
+      "all"  : true,     # Removes all keys
     }
 
 ### Set Node Hardware Info (`set-node-hardware-info`)
@@ -560,15 +542,15 @@ The `set-node-hardware-info` command lets you replace the existing hardware data
 
 In addition to the supported commands above, a `GET /api` request returns a list of supported collections in the `collections` array. Each entry contains at minimum the following keys:
 
-`url`  | the endpoint through which the collection can be retrieved (via `GET`)
-`spec` | the 'type' of collection
-`name` | a human-readable name for the collection.
+* `url`: the endpoint through which the collection can be retrieved (via `GET`).
+* `spec`: the 'type' of collection.
+* `name`: a human-readable name for the collection.
 
 A `GET` request to a collection endpoint yields a list of JSON objects, each of which has at minimum the following fields:
 
-id   | a URL that uniquely identifies the object
-spec | a URL that identifies the type of the object
-name | a human-readable name for the object
+* `id`: a URL that uniquely identifies the object.
+* `spec`: a URL that identifies the type of the object.
+* `name`: a human-readable name for the object.
 
 Different types of objects might specify other properties by defining additional key-value pairs. For example, here is a sample tag listing:
 
@@ -594,9 +576,9 @@ Different types of objects might specify other properties by defining additional
 
 In addition, references to other resources are represented as a single JSON object (in the case of a one-to-one relationship) or an array of JSON objects (for a one-to-many or many-to-many relationship). Each JSON object contains the following fields:
 
-url    | a URL that uniquely identifies the object
-obj_id | a short numeric identifier
-name   | a human-readable name for the object
+* `url`: a URL that uniquely identifies the object.
+* `obj_id`: a short numeric identifier.
+* `name`: a human-readable name for the object.
 
 If the reference object is in an array, the `obj_id` field serves as a unique identifier within the array.
 
@@ -612,13 +594,13 @@ For example, the following queries the UUID to return the associated node:
 	/api/collections/nodes?uuid=9ad1e079-b9e3-347c-8b13-9b42cbf53a14'
 
 	{
- 	 "items": [
-    	{
-       	 	"id": "https://razor.example.com:8151/api/collections/nodes/node14",
-        	"name": "node14",
-        	"spec": "http://api.puppetlabs.com/razor/v1/collections/nodes/member"
-    	}],
-  	"spec": "http://api.puppetlabs.com/razor/v1/collections/nodes"
+      "items": [
+       {
+          "id": "https://razor.example.com:8151/api/collections/nodes/node14",
+          "name": "node14",
+          "spec": "http://api.puppetlabs.com/razor/v1/collections/nodes/member"
+        }],
+      "spec": "http://api.puppetlabs.com/razor/v1/collections/nodes"
 	}
 
 
@@ -628,4 +610,4 @@ A GET request to `/api/microkernel/bootstrap` returns an iPXE script that can be
 
 The URL accepts the parameter `nic_max`, which you should set to the maximum number of network interfaces that respond to DHCP on any given node. It defaults to 4.
 
-The URL also accepts an `http_port` parameter, which tells Razor which port its HTTP communications can use. The typical install should use 8150 for this.
+The URL also accepts an `http_port` parameter, which tells Razor which port its HTTP communications can use. The typical install should use port 8150 for this.
