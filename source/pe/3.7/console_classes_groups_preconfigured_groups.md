@@ -143,7 +143,7 @@ This node group is used to manage the console.
 On a new install, the Console server node is pinned to this node group. If you are upgrading, you will need to pin the Console server node yourself.
 
 #### Notes
-* You should *not* add additional nodes to this node group. (TODO: Update based on the question above for Josh)
+* You should *not* add additional nodes to this node group. 
 
 
 ### The PE ActiveMQ Broker Node Group
@@ -174,7 +174,7 @@ For example, if you have nodes that should always be in the production environme
 
 ### The Agent-Specified Environment Node Group
 
-Normally, the environment that the node classifier sets for a node overrides any environment that you set in the node's puppet.conf file (the agent-specified environment). However, sometimes you may want to ignore the environments that have been set in the node classifier, and use the agent-specified environment, for testing for example. The **Agent-Specified Environment** node group forces the environment that has been specified in the puppet.conf file, ignoring any environments that have been set by the node classifier. If you want to use the agent-specified environment for a node, you should pin the node to this node group, or create a rule in the node group that matches the node. (TODO: What do we want to do about selecting the agent-specified environment from the environment metadata in http://docs.puppetlabs.com/pe/latest/console_classes_groups.html#creating-new-node-groups? What do we want to say about putting nodes in this group versus using the agent-specified dropdown)
+Normally, the environment that the node classifier sets for a node overrides any environment that you set in the node's puppet.conf file (the agent-specified environment). However, sometimes you may want to ignore the environments that have been set in the node classifier, and use the agent-specified environment, for testing for example. The **Agent-Specified Environment** node group forces the environment that has been specified in the puppet.conf file, ignoring any environments that have been set by the node classifier. If you want to use the agent-specified environment for a node, you should pin the node to this node group, or create a rule in the node group that matches the node. 
 
 #### Classes
 You should never add any classes to this group. This group should only be used to set the agent-specified environment for matching nodes.
