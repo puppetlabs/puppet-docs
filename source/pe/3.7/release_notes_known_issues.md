@@ -50,6 +50,23 @@ If you've installed additional Puppet masters (i.e., secondary or compile master
 
 If necessary, you can install stdlib after installing/upgrading by running `puppet module install puppetlabs-stdlib`.
 
+### Install Agents With Different OS When Puppet Master is Behind A Proxy
+
+If your Puppet master uses a proxy server to access the internet, you may not be able to download the `pe_repo` packages for the agent. In the case that you're using a proxy, follow this workaround:
+
+**Tip**: The following steps should be performed on your Puppet master (and, if you have a large environment installation, on all your compile masters as well). 
+
+1. From your Puppet master, navigate to `/etc/sysconfig/`, and create a file called `pe-puppet`. 
+2. In `pe-puppet` add the following lines:
+
+       export http_proxy ...
+       export https_proxy ...
+     
+3. Save and exit the file. 
+4. Restart the pe-puppet service with the following commands:
+
+       puppet resource service pe-puppet ensure=stopped 
+       puppet resource service pe-puppet ensure=running
 
 ### PuppetDB Behind a Load Balancer Causes Puppet Server Errors
 
