@@ -36,6 +36,7 @@ Puppet Enterprise consists of a complete stack of Puppet Labs' technologies, whi
  * Puppet Server 1.0.9
  * PuppetDB 2.3.2
  * Facter 2.4.3
+ * Razor 1.0.0
  * MCollective 2.7.0
  * Hiera 1.3.4
  * Dashboard 2.1.6

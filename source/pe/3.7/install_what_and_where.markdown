@@ -31,6 +31,7 @@ All functional components of PE, excluding configuration files. You are not like
  * PuppetDB 2.3.2
  * Puppet Server 1.0.9
  * Facter 2.4.3
+ * Razor 1.0.0
  * MCollective 2.7.0
  * ActiveMQ 5.9.1
  * Live Management: 1.3.1 (deprecated)
@@ -40,7 +41,7 @@ All functional components of PE, excluding configuration files. You are not like
  * Ruby 1.9.3
  * Augeas 1.3.0
  * Passenger 4.0.59
- * Java 1.7.0
+ * Java 1.7.0.79
  * OpenSSL 1.0.0r
 
 ### Where
