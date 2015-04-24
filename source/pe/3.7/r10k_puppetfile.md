@@ -132,7 +132,7 @@ After you've specified your modules in the Puppetfile, you're ready to [run r10k
 
 ##Running Puppetfile subcommands
 
-After you've configured your Puppetfile, you'll be able to manage your modules via the `r10k puppetfile` subcommand. This subcommand must be run as the user with write access to the moduledir directory specified by the Puppetfile. It interacts with the Puppetfile in the current working directory, so before running the subcommand, make sure you are in the directory of the Puppetfile you want to use. You can run the `r10k puppetfile` subcommand with following actions:
+After you've configured your Puppetfile, you'll be able to manage your modules via the `r10k puppetfile` subcommand. This subcommand must be run as the user with write access to that environment's `modules` directory (or the moduledir directory, if you specified a different modules directory in the Puppetfile). It interacts with the Puppetfile in the current working directory, so before running the subcommand, make sure you are in the directory of the Puppetfile you want to use. You can run the `r10k puppetfile` subcommand with following actions:
 
 ### `install`
 
