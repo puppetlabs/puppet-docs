@@ -39,7 +39,7 @@ Thanks to a number of partnerships, Puppet Enterprise has been adding support fo
 
 ## Improvements in PE 3.8.0
 
-#### String Interpolation in the PE Console
+### String Interpolation in the PE Console
 
 In prior PE versions, you could only enter literal values for parameters and variables in the console.
 
@@ -47,23 +47,23 @@ Now, when entering string values for parameters and variables, you can interpola
 
 For more information on the syntax and restrictions for string interpolation in the console, see [Tips on specifying parameter and variable values](./console_classes_groups.html#setting-class-parameters).
 
-#### Upgrades for Large Environment Installations
+### Upgrades for Large Environment Installations
 
 Upgrading your large environment installation (LEI) involves a combination of steps that you must perform across your core Puppet Enterprise components, your compile masters, and your ActiveMQ hubs and spokes. The [LEI upgrade doc](./install_lei_upgrade.html) details the steps you’ll perform to upgrade your LEI from PE 3.7.2 to 3.8.0.
 
-#### Deleting a User From RBAC
+### Deleting a User From RBAC
 
 There is a new endpoint in the Role-Based Access Control API that lets you delete a local or remote user from PE. For more information, see the [API documentation](./rbac_users.html#delete-userssid).
 
-#### Deleting a User Group From RBAC
+### Deleting a User Group From RBAC
 
 There is a new endpoint in the Role-Based Access Control API that lets you delete a local or remote user group from PE. For more information, see the [API documentation](./rbac_usergroups.html#delete-groupssid).
 
-#### Verifying Certificates for External LDAP Directories
+### Verifying Certificates for External LDAP Directories
 
 When configuring the RBAC service to connect to an external directory server, you can now verify an SSL certificate for the server. For more information, see the [RBAC documentation](./rbac_ldap.html#verify-directory-server-certificates).
 
-#### New RBAC Permission to Edit Parameters and Variables
+### New RBAC Permission to Edit Parameters and Variables
 
 This permission allows a user in the given user role to tune classification by editing parameters and variables in a class, without giving the user permission to add or delete classes.
 
