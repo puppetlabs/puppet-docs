@@ -18,7 +18,7 @@ Things you should know before you set up provisioning:
 
 + **Do not** install Razor on your Puppet master.
 + The default ports for Razor are port 8150 for HTTP communication between the server and nodes, and port 8151 for HTTPS, used for accessing the public API. You can change the default, as described in the "Changing the Default Razor Port" section below.
-+ RHEL/CentOS 6.x and 7.x versions are the supported platforms for funning a Razor Server.
++ Running a Razor server is supported on RHEL/CentOS 6.x and 7.x.
 
 >**Hint**: With the `export` command, you can avoid having to repeatedly replace placeholder text. The steps for installing assume you have declared a server name and the port to use for Razor with this command:
 >

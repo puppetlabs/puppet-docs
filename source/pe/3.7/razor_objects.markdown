@@ -58,7 +58,6 @@ unpacks the ISO image onto its file system:
 ~~~
 razor create-repo --name centos-6.6 --task centos
 	--iso-url http://centos.sonn.com/6.6/isos/x86_64/CentOS-6.6-x86_64-bin-DVD1.iso
-
 ~~~
 
 #### Example 2: Point to an Existing Resource
@@ -71,7 +70,6 @@ install media.
 ~~~
 razor create-repo --name centos-6.6 --task centos
 	--url http://mirror.example.org/centos/6.6/
-
 ~~~
 
 
@@ -96,7 +94,6 @@ Once this command completes successfully, log into your Razor server as root and
 # mount -o loop /path/to/windows_server_2012_r2.iso /mnt
 # cp -pr /mnt/* win2012r2
 # umount /mnt
-
 ~~~
 
 For more information on repos, see the
@@ -136,7 +133,7 @@ And this command sets up the PE broker, which requires the server
 parameter.
 
 ~~~
-	razor create-broker --name example1 --broker_type puppet-pe --configuration server=puppet.example.com
+razor create-broker --name example1 --broker_type puppet-pe --configuration server=puppet.example.com
 ~~~
 
 Razor ships with some broker types for your use: puppet-pe, noop, and
@@ -272,14 +269,14 @@ it might be ineligible for a node to bind to it:
 Here's an example of a policy called "centos-for-small." This policy
 stipulates that it should be applied to the first 20 nodes that match the
 `small` tag.
-~~~
 
+~~~
 razor create-policy --name centos-for-small
 	--repo centos-6.6 --broker pe --tag small
     --enabled --hostname "host${id}.example.com"
     --root-password secret --max-count 20
-
 ~~~
+
 **Policy Tables** You might create multiple policies, and then retrieve the
 policies collection with `razor policies`. The policies are listed in order
 in a policy table. You can influence the order of policies as follows:
@@ -299,11 +296,9 @@ matching is case sensitive.
 For example, here is a tag rule:
 
 ~~~
-
   ["or",
    ["=", ["fact", "macaddress"], "de:ea:db:ee:f0:00"]
     ["=", ["fact", "macaddress"], "de:ea:db:ee:f0:01"]]
-
 ~~~
 
 The tag could also be written like this:
@@ -370,7 +365,6 @@ directory and optional event scripts within that directory:
         node-bind-policy
         node-unbind-policy
         ...
-
 ~~~
 
 ### Available events
@@ -396,20 +390,20 @@ These are the events for which hook scripts can be provided:
 The `create-hook` command is used to create a hook object from a hook type:
 
 ~~~
-
-     razor create-hook --name myhook --hook-type some_hook
-        --configuration example1=7 --configuration example2=rhubarb
+razor create-hook --name myhook --hook-type some_hook
+    --configuration example1=7 --configuration example2=rhubarb
 ~~~
 
 The hook object created by this command will be set up with its initial
 configuration set to the JSON document
 
 ~~~
-    {
-      "example1": 7,
-      "example2": "rhubarb"
-    }
+{
+	"example1": 7,
+    "example2": "rhubarb"
+}
 ~~~
+
 Each time an event script for a hook is run, it has an opportunity to
 modify the hook's configuration. These changes to the configuration are
 preserved by the Razor server. The Razor server also makes sure that hooks
