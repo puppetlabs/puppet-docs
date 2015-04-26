@@ -44,7 +44,7 @@ In addition:
 		name: "node2"
 		spec: "/razor/v1/collections/nodes/member"
 
-4. Look at the node details: `razor nodes <node name>`. In addition to the above information, you'll see hardware and DHCP information, the path to the log and a placeholder for tags. It looks like this:
+4. Look at the node details: `razor nodes <node name>`. In addition to the above information, you'll see hardware and DHCP information, the path to the log, and a placeholder for tags. It looks like this:
 
 		hw_info:
 				mac: ["08-00-27-8a-5e-5d"]
@@ -63,7 +63,7 @@ In addition:
 
 1. Create a tag called `small` that matches any machine with less than one gigabyte of memory. Tag rules are currently written as JSON arrays; the following command will do that:
 
-		razor create-tag --name small \
+		razor create-tag --name small
           --rule '["<", ["num", ["fact", "memorysize_mb"]], 1024]'
 
 2. Run the command, `razor`. It will print the response from the server in the following way:
@@ -91,8 +91,11 @@ In addition:
 
 The repo can be an image on your local machine, or you can download and unpack an ISO, or you can point to an existing resource using its URL. For example, this command downloads a Centos 6.6 ISO and creates a repo from it:
 
- 		razor create-repo --name centos-6.6 --task centos \
-            --iso-url http://centos.sonn.com/6.6/isos/x86_64/CentOS-6.6-x86_64-bin-DVD1.iso
+~~~
+razor create-repo --name centos-6.6 --task centos
+	--iso-url http://centos.sonn.com/6.6/isos/x86_64/CentOS-6.6-x86_64-bin-DVD1.iso
+
+~~~
 
 Each repo must be associated with a task, which serves as the default installer for that repo. A task contains all the scripts needed to perform the installation of an operating system. The repo contains the actual bits that should be installed.
 
@@ -100,7 +103,7 @@ Each repo must be associated with a task, which serves as the default installer 
 
 The broker hands an installed node off to the Puppet master. The details of the handoff are handled by the `puppet-pe` [broker type](./razor_brokertypes.html). A broker uses the scripts of a certain broker type, and adds configuration information, such as the hostname of the Puppet master to it. To hand Razor nodes to your Puppet Enterprise master, create a broker with the following command:
 
-     razor create-broker --name pe --broker-type puppet-pe \
+     razor create-broker --name pe --broker-type puppet-pe
          --configuration server=puppet-master.example.com
 
 ## Step 5: Create a Policy and Provision Your Node
@@ -109,10 +112,10 @@ The policy is what ties all the Razor objects together and provisions a node whe
 
 1. Create a policy with the `create-policy` command. You can get more information about the various arguments to this command by running `razor help create-policy`.
 
-     	razor create-policy --name centos-for-small \
-         --repo centos-6.6 --broker pe --tag small \
-         --enabled --hostname "host${id}.example.com" \
-         --root-password secret --max-count 20 \
+     	razor create-policy --name centos-for-small
+         --repo centos-6.6 --broker pe --tag small
+         --enabled --hostname "host${id}.example.com"
+         --root-password secret --max-count 20
 
  2. Check the details of the policy with `razor policies centos-for-small`
  and look at the table of policies with `razor policies`. The order of the
