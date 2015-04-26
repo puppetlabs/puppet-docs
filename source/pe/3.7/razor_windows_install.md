@@ -26,27 +26,47 @@ Making Windows installable by Razor is a multi-step process. Licensing on WinPE 
 3. Change into that directory, for example, `c:\build`.
 4. Run this build script: `powershell -executionpolicy bypass -noninteractive -file build-razor-winpe.ps1 -razorurl http://razor:8150/svc`
 
-It takes a while for the build script to run. Eventually, an image will be output that matches `razor-winpe\*.wim` under the current working directory.  This is your custom WinPE image with the required components to work with the Razor server.
+It takes a while for the build script to run. Eventually, an image will be output that matches `razor-winpe*.wim` under the current working directory.  This is your custom WinPE image with the required components to work with the Razor server.
 
 ### Create a Repo
-Next, create the repository from your Windows installer with the command `razor create-repo --name=<repo name> --iso-url <URL> --task <task name>`.
 
-If your Windows DVD image triggers a bug in `libarchive` that prevents unpacking, you can use a tool like `7zip` to unpack the Windows ISO image without going through libarchive.
+Ordinarily, you would create a repository with the command `razor
+create-repo --name=<repo name> --iso-url <URL> --task <task
+name>`. Unfortunately, Windows DVD images can generally not be unpacked by
+Razor because of a limitation of the `libarchive` library that Razor uses
+for that purpose.
 
-To work around the incompatibility between some Windows DVD images, and the `libarchive` code used in Razor to unpack them, perform the following steps:
+As a workaround, create a stub repository and fill it manually
+with content.
 
-1. First, verify that your Windows image requires this workaround by trying to create a repository using it.
-Razor will emit log messages indicating that the task of unpacking the repository has been pushed into the background. If unpacking fails, the logs say that unpacking needs to be retried. You must delete the repository before you go on to the next steps.
-2. Have a normal installation of Razor ready to go, up to the point that you are ready to create the Windows repository. Make sure creating a repository is working correctly, for example, by creating a repository with a Linux CD or DVD image.
-3. Run the `create-repo` command again but with the `--no_content` argument rather than `--iso-url` or `--url`. This creates a blank repo directory and skips the `libarchive` unpacking stage. Keep the rest of the details (for example, the repo's name) the same.
-4. Install the `p7zip` or `p7zip-full` package for your platform, with ISO image support.
-Alternatively, anything that can unzip the ISO file will do. For example, you could mount(1) the CD or DVD image using the standard mount Linux command, and then use cp(1) to copy the files into the repository, or you could use another tool to extract the content of the image.
-5. Unpack the Windows image into the repo directory, for example, using the command, `7z x .../windows.iso`. To find the directory, look in your config.yaml for the `repo_store_root` directory. The repo's directory should match the repo's name.
-6. Copy the WinPE WIM you created earlier to the root of your repo, located by default at `/var/lib/razor/repo-store/<repo name>` and rename the image to `razor-winpe.wim`.
+1. First, issue the following command with the Razor
+client:
+
+		razor create-repo --name win2012r2 --task windows/2012r2
+           --no-content true
+
+2. Once this command completes successfully, log into your Razor server as
+root and cd into your server's `repo_store_root` set in `config.yaml`. Then
+run:
+
+      # mount -o loop /path/to/windows_server_2012_r2.iso /mnt
+      # cp -pr /mnt/* win2012r2
+      # umount /mnt
+      # chown -R razor: win2012r2
+
+### Add the WinPE image to your repo
+
+Copy the `razor-winpe*.wim` image that you built onto your Razor server
+and place it into the repository directory created in the previous step as
+the file `razor-winpe.wim`.
+
+In the previous example, you would simply run this command:
+
+      # cp /some/where/razor-winpe*.wim win2012r2/razor-winpe.wim
 
 ### Create SMB Share
 
-Next, configure a server message block (SMB) server on the Razor server, exporting the Razor repositories. This is necessary because the WinPE environment can't use an HTTP source for installation, and neither can the Windows 8 installer software.
+Next, configure a server message block (SMB) server on the Razor server, exporting the Razor repositories. This is necessary because the WinPE environment can't use an HTTP source for installation, and neither can the Windows installer.
 
 This is a fairly simple share: allow anonymous access, call it `razor`, and point it to your repo store root, for example, the one from your config.yaml file. The file, smb.conf, at  `/etc/samba/smb.conf`, should look like this:
 
@@ -59,7 +79,6 @@ This is a fairly simple share: allow anonymous access, call it `razor`, and poin
   		writable  = no
   		browsable = yes
 
-
 You may also have to set your SMB server to "share" level security, as follows:
 
 	[global]
@@ -70,11 +89,11 @@ You may also have to set your SMB server to "share" level security, as follows:
 
 Finally, [create your policies](./razor_using.html#create-policies) as normal.
 
->**Note**: When the WinPE image gets booted, the Windows installer assumes that the default drive for a fresh install is D: when setting the broker to run. If this assumed default is wrong, then all you need to modify is the script in second-stage.ps1.erb.
+>**Note**: When the WinPE image gets booted, the Windows installer assumes that the default drive for a fresh install is D: when setting the broker to run. If this assumed default is wrong, you need to modify the script `second-stage.ps1.erb` and rebuild your WinPE image.
 
 # Using Your Windows Installation
 
-Once you have policies set up, your Windows installation should just work if your policy binds a node.  If provisioning fails, you'll get a message at the command prompt.
+Once you have policies set up, your Windows installation should just work if your policy binds a node.
 
 * * *
 

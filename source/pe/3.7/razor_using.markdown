@@ -13,11 +13,13 @@ You're ready to provision a node after you've performed the setup described on t
 * The Razor server and client.
 * A node to provision; it should not be booted up when you begin the process.
 
-The following steps walk you through the process of creating [Razor objects](./razor_objects) and provisioning a node with Centos.
+The following steps walk you through the process of creating
+[Razor objects](./razor_objects) and provisioning a node with Centos.
 
 ### Important Info About the Machines You Provision
 
-To successfully use a machine with Razor and install an operating system on it, the machine must:
+To successfully use a machine with Razor and install an operating system on
+it, the machine must:
 
 * Be supported by the operating system that you're installing.
 * Be able to successfully boot into the microkernel, which is based on [CentOS 7](http://wiki.centos.org/Manuals/ReleaseNotes/CentOS7).
@@ -25,8 +27,8 @@ To successfully use a machine with Razor and install an operating system on it, 
 
 In addition:
 
-* The Razor microkernel is 64-bit only and only supports the [x86-64 Intel architecture](http://en.wikipedia.org/wiki/X86-64).
-* Razor has a minimum RAM requirement of 512MB.
++ The Razor microkernel is 64-bit only and only supports the [x86-64 Intel architecture](http://en.wikipedia.org/wiki/X86-64).
++ Razor has a minimum RAM requirement of 512MB.
 
 ## Step 1: Run the Razor Server and Register a Node
 
@@ -55,49 +57,61 @@ In addition:
 				log => http://localhost:8150/api/collections/node/node2/log
 		tags: []
 
-5. Once the microkernel is running on the machine, it will run Facter and send the facts back to the server. Type `razor nodes <node name>` again, to see the facts associated with the node. This includes standard information about the machine, like network cards, IP address, and block devices.
+5. Once the microkernel is running on the machine, it will run Facter and
+send the facts back to the server. Type `razor nodes <node name>` again, to
+see the facts associated with the node. This includes standard information
+about the machine, like network cards, IP address, and block devices.
 
 	Now the machine will just sit there and periodically send its facts back to the server. Since you haven't yet set up provisioning objects, the server doesn't yet do anything with the node.
 
 ## Step 2: Create a Tag
 
-1. Create a tag called `small` that matches any machine with less than one gigabyte of memory. Tag rules are currently written as JSON arrays; the following command will do that:
+1. Create a tag called `small` that matches any machine with less than one
+gigabyte of memory. Tag rules are currently written as JSON arrays; the
+following command will do that:
 
-		razor create-tag --name small
+      razor create-tag --name small
           --rule '["<", ["num", ["fact", "memorysize_mb"]], 1024]'
 
-2. Run the command, `razor`. It will print the response from the server in the following way:
+2. The `razor` command will print the response from the server in the
+following way:
 
-		 From http://razor:8151/api/collections/tags/small:
-   			name: small
-           	rule: ["<", ["num", ["fact", "memorysize_mb"]], 1024]
-		   nodes: 0
-       	policies: 0
-         command: http://razor:8151/api/collections/commands/75
+      From http://razor:8151/api/collections/tags/small:
+          name: small
+          rule: ["<", ["num", ["fact", "memorysize_mb"]], 1024]
+         nodes: 0
+      policies: 0
+       command: http://razor:8151/api/collections/commands/75
 
-3. To inspect the tag on the server, run `razor tags <tag name>`. For example, `razor tags small` responds with the following:
 
-        From http://razor:8151/api/collections/tags/small:
-            name: small
-            rule: ["<", ["num", ["fact", "memorysize_mb"]], 1024]
-           nodes: 3
-        policies: 0
+3. To inspect the tag on the server, run `razor tags <tag name>`. For
+example, `razor tags small` responds with the following:
 
-	Query additional details with the command, `razor tags small [nodes, policies, rule]`.
+      From http://razor:8151/api/collections/tags/small:
+          name: small
+          rule: ["<", ["num", ["fact", "memorysize_mb"]], 1024]
+         nodes: 3
+      policies: 0
 
-4. To see the nodes associated with the tag, run `razor tags <tag name> nodes`. For example, `razor tags small nodes`. The result displays a table of the nodes matching this tag.
+    Query additional details via: `razor tags small [nodes, policies, rule]`.
 
-## Step 3: Create a Repository
+4. To see the nodes associated with the tag, run `razor tags <tag name>
+nodes`. For example, `razor tags small nodes`. The result displays a table
+of the nodes matching this tag.
 
-The repo can be an image on your local machine, or you can download and unpack an ISO, or you can point to an existing resource using its URL. For example, this command downloads a Centos 6.6 ISO and creates a repo from it:
+## Step 3. Create a Repository
 
-~~~
-razor create-repo --name centos-6.6 --task centos
-	--iso-url http://centos.sonn.com/6.6/isos/x86_64/CentOS-6.6-x86_64-bin-DVD1.iso
+The repo can be an image on your local machine, or you can download and
+unpack and ISO, or you can point to an existing resource using its URL. For
+example, this command downloads a Centos 6.6 ISO and creates a repo from it:
 
-~~~
+		razor create-repo --name centos-6.6 --task centos
+           --iso-url http://centos.sonn.com/6.6/isos/x86_64/CentOS-6.6-x86_64-bin-DVD1.iso
 
-Each repo must be associated with a task, which serves as the default installer for that repo. A task contains all the scripts needed to perform the installation of an operating system. The repo contains the actual bits that should be installed.
+Each repo must be associated with a task, which serves as the default
+installer for that repo. A task contains all the scripts needed to perform
+the installation of an operating system. The repo contains the actual
+bits that should be installed.
 
 ## Step 4: Create a Broker
 
@@ -119,7 +133,7 @@ The policy is what ties all the Razor objects together and provisions a node whe
 
  2. Check the details of the policy with `razor policies centos-for-small`
  and look at the table of policies with `razor policies`. The order of the
- policy table is important since Razor goes through the table in order and
+ policy table is important because Razor goes through the table in order and
  applies the first matching policy to any node. Your table only
  contains one policy so far, so order doesn't really matter yet.
 
@@ -135,12 +149,13 @@ The policy is what ties all the Razor objects together and provisions a node whe
 
    Each node has a log attached that keeps track of when the node rebooted and logs the important events during the installation of an operating system. This node's log shows when it initially booted into the microkernel, when it bound to the policy, and when it rebooted into the policy. You can also see things like any kickstart files or post-install scripts that are run during the install.
 
-5. When the installation finishes and the node reboots, you can log into it using the `root_password` of the policy that it has bound to. You can also see the node and its details on the PE console. Now, you can manage the node with PE just as you would any other node.
+5. When the installation finishes and the node reboots, you can log into it
+using the `root_password` of the policy that it has bound to. You can also
+see the node and its details on the PE console. Now, you can manage the
+node with PE just as you would any other node.
 
 
 * * *
 
 
 - [Next: Writing Broker Types](./razor_brokertypes.html)
-
-

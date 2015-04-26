@@ -17,7 +17,7 @@ If you're not a PE user, you can install the [open source version of Razor manua
 Things you should know before you set up provisioning:
 
 + **Do not** install Razor on your Puppet master.
-+ The default ports for Razor are 8150 for HTTP and 8151 for HTTPS. You can change the default, as described in the "Changing the Default Razor Port" section below.
++ The default ports for Razor are port 8150 for HTTP communication between the server and nodes, and port 8151 for HTTPS, used for accessing the public API. You can change the default, as described in the "Changing the Default Razor Port" section below.
 + Razor has been validated on RHEL/CentOS 6.x and 7.x versions.
 
 >**Hint**: With the `export` command, you can avoid having to repeatedly replace placeholder text. The steps for installing assume you have declared a server name and the port to use for Razor with this command:
@@ -33,7 +33,7 @@ Install the Razor Server
 
 The actual Razor software is stored in an external online location, so you need an internet connection to install it. The process entails classifying a node with the `pe_razor` module. When you do so, the software is downloaded. This process can take several minutes.
 
-Manually add the `pe-razor` class in the PE console, as follows.
+Manually add the `pe_razor` class in the PE console, as follows.
 
 1. In the console, click **Classification**, and then click the node group you will use to assign the `pe-razor` class to nodes.
 2. Click **Classes** and, in **Class name**, type "pe_razor".
@@ -77,8 +77,8 @@ The `pe_razor` module has the following parameters:
 | `dbpassword` | The database password to use for Razor's database. The password defaults to `razor`. |
 | `pe_tarball_base_url` | The location of the Puppet Enterprise tarball. |
 | `microkernel_url` | The URL from which to fetch the microkernel. |
-| `server_http_port` | The port for HTTP communications with the Razor server. It defaults to 8150. |
-| `server_https_port` | The port for HTTPS communications with the Razor server. It defaults to 8151. |
+| `server_http_port` | The port that nodes use to communicate with the server over HTTP. Only URLs starting with /svc need to be available on this port. It defaults to 8150. |
+| `server_https_port` | The port that the client uses to communicate with the server's public API over HTTPS. Only URLs starting with /api need to be available on this port. It defaults to 8151. |
 
 
 ####Changing the Default Razor Port
@@ -120,7 +120,7 @@ The Razor client is installed as a Ruby gem.
 
 1. Install the client:
 
-		gem install pe-razor-client --version 0.15.2
+		gem install pe-razor-client
 
 2. You can verify that the Razor client is installed by printing Razor help:
 
