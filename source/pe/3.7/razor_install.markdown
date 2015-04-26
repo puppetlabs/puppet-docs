@@ -7,7 +7,7 @@ canonical: "/pe/latest/razor_install.html"
 ---
 A Razor module is included with Puppet Enterprise. To install and configure a Razor server, you must [set up your Razor environment](./razor_prereqs.html), and then classify the `pe_razor` node. When PE runs and applies this Razor classification, the Razor server and a PostgreSQL database will be installed and configured.
 
-In addition to the Razor server, the Razor client can be installed as a Ruby gem on any machine you want to use for interacting with Razor. The client makes interacting with the server from the command line easier. It lets you explore what the server knows about your infrastructure; for example, it infers types, and enables you to modify how machines are provisioned by interacting with the Razor server API.
+In addition to the Razor server, the Razor client can be installed as a Ruby gem on any machine you want to use for interacting with Razor. The client makes interacting with the server from the command line easier. It lets you explore what the server knows about your infrastructure; for example, it helps avoid datatype errors, and enables you to modify how machines are provisioned by interacting with the Razor server API.
 
 If you're not a PE user, you can install the [open source version of Razor manually](https://github.com/puppetlabs/razor-server/wiki/Installation).
 
@@ -18,7 +18,7 @@ Things you should know before you set up provisioning:
 
 + **Do not** install Razor on your Puppet master.
 + The default ports for Razor are port 8150 for HTTP communication between the server and nodes, and port 8151 for HTTPS, used for accessing the public API. You can change the default, as described in the "Changing the Default Razor Port" section below.
-+ Razor has been validated on RHEL/CentOS 6.x and 7.x versions.
++ RHEL/CentOS 6.x and 7.x versions are the supported platforms for funning a Razor Server.
 
 >**Hint**: With the `export` command, you can avoid having to repeatedly replace placeholder text. The steps for installing assume you have declared a server name and the port to use for Razor with this command:
 >
@@ -40,7 +40,7 @@ Manually add the `pe_razor` class in the PE console, as follows.
 3. Click **Add class** and click the commit button. For information about adding a  class and classifying the Razor server using the PE console, see the [Adding Nodes to a Node Group](./console_classes_groups.html#adding-nodes-to-a-node-group) and [Adding New Classes](./console_classes_groups.html#adding-classes-to-a-node-group) sections of this guide.
 
 
-	**Note**: You can also add the following to site.pp:
+	**Note**: You can also add the following to site.pp (provide your own agent cert info):
 
 		node <AGENT_CERT>{
 			include pe_razor

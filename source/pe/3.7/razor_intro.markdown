@@ -14,7 +14,7 @@ canonical: "/pe/latest/razor_intro.html"
 
 ##Introducing Razor
 
-Razor is an advanced provisioning application that can deploy both bare metal and virtual systems. Razor makes it easy to provision a node with no previously installed operating system and bring it under the management of Puppet Enterprise (PE).
+Razor is an advanced provisioning application that can deploy bare metal systems. Razor makes it easy to provision a node with no previously installed operating system and bring it under the management of Puppet Enterprise (PE).
 
 Razor's policy-based bare-metal provisioning lets you inventory and manage the lifecycle of your physical machines. With Razor, you can automatically discover bare-metal hardware, dynamically configure operating systems and/or hypervisors, and hand nodes off to PE for workload configuration.
 
@@ -28,7 +28,7 @@ The following steps provide a high-level view of the process for provisioning a 
 
 ![bare node][razor-1]
 
-When a new node appears, Razor discovers its characteristics by booting it with the Razor microkernel and inventorying its facts.
+When a new node appears, Razor discovers its characteristics by booting it with the Razor microkernel and using Facter to inventory its facts.
 
 ###The node is tagged
 

@@ -56,8 +56,8 @@ This repo is created with the `--iso-url` property. The server downloads and
 unpacks the ISO image onto its file system:
 
 ~~~
-		razor create-repo --name centos-6.6 --task centos
-           --iso-url http://centos.sonn.com/6.6/isos/x86_64/CentOS-6.6-x86_64-bin-DVD1.iso
+razor create-repo --name centos-6.6 --task centos
+	--iso-url http://centos.sonn.com/6.6/isos/x86_64/CentOS-6.6-x86_64-bin-DVD1.iso
 
 ~~~
 
@@ -69,8 +69,8 @@ repository. The `url` should be serving the unpacked contents of the
 install media.
 
 ~~~
-		razor create-repo --name centos-6.6 --task centos
-           --url http://mirror.example.org/centos/6.6/
+razor create-repo --name centos-6.6 --task centos
+	--url http://mirror.example.org/centos/6.6/
 
 ~~~
 
@@ -85,15 +85,17 @@ In those cases, it is necessary to first use `create-repo` to set up a stub
 directory on the Razor server, and then manually add content to it. The
 stub directory is created with the following:
 
-		razor create-repo --name win2012r2 --task windows/2012r2 \
-           --no-content true
+~~~
+razor create-repo --name win2012r2 --task windows/2012r2 \
+	--no-content true
+~~~
 
 Once this command completes successfully, log into your Razor server as root and cd into your server's `repo_store_root`. Then run the following:
 
 ~~~
-      # mount -o loop /path/to/windows_server_2012_r2.iso /mnt
-      # cp -pr /mnt/* win2012r2
-      # umount /mnt
+# mount -o loop /path/to/windows_server_2012_r2.iso /mnt
+# cp -pr /mnt/* win2012r2
+# umount /mnt
 
 ~~~
 
@@ -271,10 +273,11 @@ Here's an example of a policy called "centos-for-small." This policy
 stipulates that it should be applied to the first 20 nodes that match the
 `small` tag.
 ~~~
-    razor create-policy --name centos-for-small
-        --repo centos-6.6 --broker pe --tag small
-        --enabled --hostname "host${id}.example.com"
-        --root-password secret --max-count 20
+
+razor create-policy --name centos-for-small
+	--repo centos-6.6 --broker pe --tag small
+    --enabled --hostname "host${id}.example.com"
+    --root-password secret --max-count 20
 
 ~~~
 **Policy Tables** You might create multiple policies, and then retrieve the
@@ -296,9 +299,11 @@ matching is case sensitive.
 For example, here is a tag rule:
 
 ~~~
+
   ["or",
    ["=", ["fact", "macaddress"], "de:ea:db:ee:f0:00"]
     ["=", ["fact", "macaddress"], "de:ea:db:ee:f0:01"]]
+
 ~~~
 
 The tag could also be written like this:
@@ -357,6 +362,7 @@ The two primary components for hooks are:
 
 Similar to brokers and tasks, hook types are defined through a `.hook`
 directory and optional event scripts within that directory:
+
 ~~~
     hooks/
       some.hook/
@@ -366,6 +372,7 @@ directory and optional event scripts within that directory:
         ...
 
 ~~~
+
 ### Available events
 
 These are the events for which hook scripts can be provided:
@@ -387,10 +394,13 @@ These are the events for which hook scripts can be provided:
 ### Creating Hooks
 
 The `create-hook` command is used to create a hook object from a hook type:
+
 ~~~
+
      razor create-hook --name myhook --hook-type some_hook
         --configuration example1=7 --configuration example2=rhubarb
 ~~~
+
 The hook object created by this command will be set up with its initial
 configuration set to the JSON document
 
