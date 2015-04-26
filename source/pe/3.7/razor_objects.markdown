@@ -6,7 +6,7 @@ canonical: "/pe/latest/razor_objects.html"
 
 ---
 
-In order to provision with Razor, you must create a handful of objects that establish, in very basic terms, what should be provisioned where. These objects are described in detail here. You can try them out on these two pages: XXX and XXX
+In order to provision with Razor, you must create a handful of objects that establish, in very basic terms, what should be provisioned where. These objects are described in detail here. You can try them out by following the steps in the [Basic Guide to Provisioning nodes](./razor_using.html).
 
 The Razor objects are described here in slightly different order than they're created in the steps for [provisioning a node](./razor_using.html):
 
@@ -274,7 +274,7 @@ configuration over time.
 
 The `delete-hook` command is used to remove a hook.
 
-**Note:** If a hook's configuration needs to change, it must be deleted then recreated
+>**Note:** If a hook's configuration needs to change, it must be deleted then recreated
 with the updated configuration.
 
 ### Hook Configuration
