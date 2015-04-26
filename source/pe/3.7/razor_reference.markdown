@@ -7,9 +7,7 @@ canonical: "/pe/latest/razor_reference.html"
 ---
 
 The Razor API is REST-based. The default URL for the API entrypoint is
-`https://razor:8151/api`. {{The actual URL depends on configuration
-settings for the server (though users shouldn't really screw around with
-that)}}
+`https://razor:8151/api`.
 
 The Razor API is considered stable, and clients can expect that operations
 that work against this version of the API to continue working against
@@ -30,9 +28,9 @@ The API uses JSON exclusively, and all requests must set the HTTP
 
 Two attributes are commonly used to identify objects:
 
-+ `id` can be used as a GUID for an object. A `GET` request against a URL
+* `id` can be used as a GUID for an object. A `GET` request against a URL
 with an `id` attribute produces a representation of the object.
-+ `name` is used for a short, human-readable reference to an object,
+* `name` is used for a short, human-readable reference to an object,
 generally only unique amongst objects of the same type on the same server.
 
 ### `/api` reference
@@ -57,7 +55,7 @@ Each of those keys contains a JSON array, with a sequence of JSON objects
 that have the following keys:
 
  * `name`: a human-readable label.
- * `rel`: a "spec URL" that indicates the type of contained data.  Use this to discover the endpoint that you want to follow, rather than the `name`. {{Should this go into Common Attributes ?}}
+ * `rel`: a "spec URL" that indicates the type of contained data.  Use this to discover the endpoint that you want to follow, rather than the `name`.
  * `id`: the URL of this entity.
 
 ### `/svc` URLs
@@ -143,8 +141,7 @@ repository:
 
 #### Create a Stub Directory
 
-To create an empty directory in the `repo_store_root`{{do we have a config
-reference ? If so, we should link there}} and later fill it manually,
+To create an empty directory in the `repo_store_root` and later fill it manually,
 create your repo with the `no_content` property.
 
     {
@@ -201,12 +198,10 @@ Razor supports both tasks stored in the filesystem and tasks stored in the
 database.
 
 For development, we highly recommended storing your tasks in the
-filesystem. Details about that can be found under
+file system. Details about that can be found under
 [Razor Tasks](/pe/latest/razor_tasks.markdown). Tasks stored in the file
 system do not need to be created with the `create-task` command. It
-suffices to put their corresponding files {{link to docs about writing
-tasks}} into the right place somewhere on the `task_path`. {{link to entry
-in the config reference}}
+suffices to put their corresponding files into the right place somewhere on the `task_path`.  See [Writing Task Templates](./razor_objects.html#writing-task-templates) for more information.
 
 For production setups, it is usually better to store your tasks in the
 database by using the `create-task` command. The body of the `POST` request
@@ -227,11 +222,11 @@ for this command has the following form:
 
 The possible properties in the request are:
 
-* `name`: the name of the task; must be unique.
-* `os`: the name of the OS; mandatory.
-* `description`: human-readable description.
-* `boot_seq`: a hash mapping the boot counter or 'default' to a template.
-* `templates`: a hash mapping template names to the actual ERB template text.
+* `name`: The name of the task; must be unique.
+* `os`: The name of the OS; mandatory.
+* `description`: Human-readable description.
+* `boot_seq`: A hash mapping the boot counter or 'default' to a template.
+* `templates`: A hash mapping template names to the actual ERB template text.
 
 ## Broker Commands
 
@@ -258,9 +253,9 @@ The permissible settings for the `configuration` hash depend on the broker
 type and are declared in the broker type's `configuration.yaml`. For the
 `puppet-pe` broker type, these are:
 
-server      | The hostname of the Puppet Master
-version     | The agent version to install; this defaults to `current` and should only be used in exceptional circumstances
-windows_download_url | The download URL for a Windows PE agent installer; defaults to a URL derived from the `version` config. This should only be used in exceptional circumstances
+* `server`: The hostname of the Puppet Master
+* `version`: The agent version to install; this defaults to `current` and should only be used in exceptional circumstances
+* `windows_download_url`: The download URL for a Windows PE agent installer; defaults to a URL derived from the `version` config. This should only be used in exceptional circumstances
 
 ### Delete broker (`delete-broker`)
 
@@ -284,8 +279,7 @@ To create a tag, use the following in the body of your `POST` request:
     }
 
 The `name` of the tag must be unique; the `rule` is a match
-expression. {{Do we have a reference for the tag rules ? If so, we should
-link to it from here}}
+expression. For more information on tag rules, [see Tags](./razor_objects.html#tags).
 
 ### Delete tag (`delete-tag`)
 
@@ -322,8 +316,7 @@ status code 400.
 ## Policy Commands
 
 Policies govern how nodes are provisioned depending on how they are
-tagged. Razor maintains an ordered table of policies, and applies the first
-policy in that table whose tags match the node to that node.
+tagged. Razor maintains an ordered table of policies. When a node boots, Razor traverses this table to find the first eligible policy for that node. A policy might be ineligible for binding to a node if the node does not contain all of the tags on the policy, if the policy is disabled, or if the policy has reached its maximum for the number of allowed nodes.
 
 When you list the `policies` collection, the list is in the order in which
 Razor checks policies against nodes.
@@ -345,7 +338,7 @@ Razor checks policies against nodes.
     }
 
 Tags, repos, tasks, and brokers are referenced by name. The `tags` are
-optional; a policy with no tags will never be applied to a node. The `task`
+optional; a policy with no tags can be applied to a node. The `task`
 is also optional; if it is omitted, the `repo`'s task is used. The `repo`
 and `broker` entries are required.
 
@@ -438,7 +431,7 @@ the tag.
       "tag" : "a-tag-name",
     }
 
-A policy with no tags is never applied to any node.
+A policy with no tags can still be applied to any node.
 
 ### Update a Policy's Specified Task (`update-policy-task`)
 
@@ -484,7 +477,7 @@ on the Razor server's `hook_path`.
 The optional `configuration` parameter lets you provide a starting
 configuration corresponding to that hook_type.
 
-For more on hooks, see [Razor Hooks](./razor_hooks).
+For more on hooks, see [Hooks](./razor_objects.html#hooks).
 
 ### Delete hook (`delete-hook`)
 
@@ -520,16 +513,16 @@ includes the MAC addresses of all network interfaces of the node.
 `register-nodes` accepts the following parameters:
 
 
-* `hw_info`, required, provides the hardware information for the node.
+* `hw_info`: Required, provides the hardware information for the node.
   This is used to match the node on first boot with the record in the
   database. The `hw_info` can contain all or a subset of the following
   entries:
-  * `netN` the MAC addresses of each network interface, for example `net0`
-  or `net2`. The order of the MAC addresses is not significant.
-  * `serial` the DMI serial number of the node.
-  * `asset` the DMI asset tag of the node.
-  * `uuid` DMI UUID of the node.
-* `installed` a boolean flag indicating whether this node should be
+  * `netN`: The MAC addresses of each network interface, for example `net0`
+  or `net2`: The order of the MAC addresses is not significant.
+  * `serial`: The DMI serial number of the node.
+  * `asset`: The DMI asset tag of the node.
+  * `uuid`: DMI UUID of the node.
+* `installed`: A boolean flag indicating whether this node should be
   considered installed and therefore not eligible for reprovisioning by
   Razor
 
@@ -549,13 +542,7 @@ protect it from accidental reinstallation by Razor:
 
 ### Set Node Hardware Info (`set-node-hardware-info`)
 
-{{moved this up since it is somewhat related to register-node; maybe we
-should group register-node and set-node-hardware-info into a section
-'Manipulating a node's hardware info' ? I could editorialize a bit and
-include (part of)
-https://github.com/puppetlabs/razor-server/wiki/Node-identity}}
 When a node's hardware changes, such as a network card being replaced, the
-
 Razor server needs to be informed so it can correctly match the new
 hardware to the existing node definition.
 
@@ -595,8 +582,7 @@ flag, provide its name:
     }
 
 Once the node reboots, it boots back into the microkernel, goes through
-discovery and tag matching, and can be bound to another policy and
-reinstalled. This command does not change the node's metadata or facts.
+discovery and tag matching, and can bind to another policy for reinstallation. This command does not change the node's metadata or facts.
 
 ### Set node IPMI credentials (`set-node-ipmi-credentials`)
 
@@ -604,7 +590,7 @@ Razor can store IPMI credentials on a per-node basis. These credentials
 include a hostname (or IP address), username, and password to use when
 contacting the BMC/LOM/IPMI LAN or LANplus service to check or update power
 state and other node data. Once IPMI credentials have been set up for a
-node, you can use the `reboot-node` or `set-node-desired-power-state`
+node, you can use the `reboot-node` and `set-node-desired-power-state`
 commands.
 
 These three data items can only be set or reset together, in a single
@@ -666,10 +652,9 @@ The `to` parameter contains the desired power state to set. Valid values
 are `on`, `off`, or `null` (the JSON NULL/nil value), which reflect "power
 on", "power off", and "do not enforce power state" respectively.
 
-{{Should the node-metadata commands be grouped into their own 'node
-metadata' section ?}}
+## Node Metadata Commands
 
-### Modify node metadata (`modify-node-metadata`)
+### Modify Node Metadata (`modify-node-metadata`)
 
 Node metadata is a collection of key/value pairs, much like a node's
 facts. The difference is that the facts represent what the node tells Razor
@@ -739,9 +724,9 @@ In addition to the supported commands above, a `GET /api` request returns a
 list of supported collections in the `collections` array. Each entry
 contains at minimum the following keys:
 
-`name` | a human-readable name for the collection.
-`id`   | the endpoint through which the collection can be retrieved (via `GET`)
-`rel`  | the type of the collection
+* `name`: A human-readable name for the collection.
+* `id`: The endpoint through which the collection can be retrieved (via `GET`).
+* `rel`: The type of the collection.
 
 A `GET` request to the `id` of a collection returns a JSON object; the
 `spec` property of that object indicates the type of collection, the
@@ -750,9 +735,9 @@ just how many were returned by the query), and `items` is the actual list
 of items in the collection, a JSON array of objects. Each object has the
 following properties:
 
-`id`   | a URL that uniquely identifies the object. A `GET` request to this URL will procide further detail about the object.
-`spec` | a URL that identifies the type of the object
-`name` | a human-readable name for the object
+* `id`: A URL that uniquely identifies the object. A `GET` request to this URL provides further detail about the object.
+* `spec`: A URL that identifies the type of the object.
+* `name`: A human-readable name for the object.
 
 ### Object details
 
@@ -785,16 +770,16 @@ the case of a one-to-one relationship) or an array of JSON objects (for a
 one-to-many or many-to-many relationship). Each JSON object contains the
 following fields:
 
-`id`     | a URL that uniquely identifies the associated object or collection of objects
-`spec`   | the type of the associated object
-`name`   | a human-readable name for the object
-`count`  | the number of objects in the associated collection
+* `id`: A URL that uniquely identifies the associated object or collection of objects.
+* `spec`: The type of the associated object.
+* `name`: A human-readable name for the object.
+* `count`: The number of objects in the associated collection.
 
 ## Querying the Node Collection
 
 You can query nodes based on the following criteria:
 
-* `hostname`: a regular expression to match against hostnames. The results
+* `hostname`: A regular expression to match against hostnames. The results
   include partial matches, so `hostname=example` returns all nodes whose
   hostnames include `example`.
 * fields stored in `hw_info`: `mac`, `serial`, `asset`, and `uuid`.
@@ -819,8 +804,8 @@ The `nodes` and `events` collections are paginated. `GET` requests for them
 
 may include the following parameters to limit the number of items returned:
 
-* `limit`: only return this many items
-* `start`: return items starting at `start`
+* `limit`: Only return this many items.
+* `start`: Return items starting at `start`.
 
 ## The Default Bootstrap iPXE File
 
@@ -836,4 +821,4 @@ node. It defaults to 4.
 
 The URL also accepts an `http_port` parameter, which tells Razor which port
 its internal HTTP communications should use, and the `/svc` URLs must be
-available through that port. The typical install should use 8150 for this.
+available through that port. The default install will use 8150 for this.
