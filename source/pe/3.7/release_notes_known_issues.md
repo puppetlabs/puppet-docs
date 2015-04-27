@@ -276,6 +276,10 @@ In addition, the document [Configuring the Puppet Enterprise Console to Use a Cu
 
 If you have both a PE user and a user group with the exact same name, PE will throw an error when you perform a search that matches both of these entries.
 
+### 400 Error When There Are Over 500 Nodes Pinned to a Node Group and You Click **Load All Nodes**
+
+When there are over 500 nodes pinned to a node group, a **Load All Nodes** button appears in the **Matching nodes** tab for that node group. Clicking the **Load All Nodes** button results in a 400 error.
+
 ### Console Session Timeout Issue
 
 The default session timeout for the PE console is 30 minutes. However, due to an issue that has not yet been resolved, console users will be logged out after thirty minutes even if they are currently active.
