@@ -13,10 +13,6 @@ description: "Setup of r10k with Puppet Enterprise for code management."
 [reference]: ./r10k_reference.html
 [r10kindex]: ./r10k.md
 
-[brandnew]: #i-am-brand-new-to-r10k-and-have-a-new-installation-of-pe-38
-[r10kpeupgrade]: #i-was-using-r10k-with-an-earlier-version-of-pe-and-just-upgraded-to-pe-38
-[zackr10k]: #i-was-using-the-zack-r10k-module-and-just-upgraded-to-pe-38-from-an-earlier-version-of-pe
-[opensourcer10k]: #i-was-using-r10k-with-open-source-puppet-and-just-upgraded-to-pe-38 
 
 R10k comes packaged with Puppet Enterprise (PE) 3.8, so you don't need to separately download or install it.
 
@@ -44,10 +40,10 @@ You don't have to do anything else with Git right now, but when you edit your [r
 
 You can now prepare r10k for configuration, but how you do that depends on your current situation:
 
-* [I've never used r10k and just installed PE 3.8.](brandnew)
-* [I was using r10k and just upgraded to PE 3.8 from an earlier version of PE.](r10kupgrade)
-* [I was using the zack-r10k module and just upgraded to PE 3.8 from an earlier version of PE.](zackr10k)
-* [I was using r10k with open source Puppet and just upgraded to PE 3.8.](opensourcer10k)
+* [I've never used r10k and just installed PE 3.8.](#i-am-brand-new-to-r10k-and-have-a-new-installation-of-pe-38)
+* [I was using r10k and just upgraded to PE 3.8 from an earlier version of PE.](#i-was-using-r10k-with-an-earlier-version-of-pe-and-just-upgraded-to-pe-38)
+* [I was using the zack-r10k module and just upgraded to PE 3.8 from an earlier version of PE.](#i-was-using-the-zack-r10k-module-and-just-upgraded-to-pe-38-from-an-earlier-version-of-pe)
+* [I was using r10k with open source Puppet and just upgraded to PE 3.8.](#i-was-using-r10k-with-open-source-puppet-and-just-upgraded-to-pe-38)
 
 ###I Am Brand New to r10k and Have a New Installation of PE 3.8
 
