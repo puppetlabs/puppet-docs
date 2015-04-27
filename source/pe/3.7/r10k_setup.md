@@ -21,8 +21,8 @@ To get started, you'll need to decide how r10k should communicate with Git, set 
 
 For r10k to work, it needs to be able to communicate with Git. You have two options for setting this up:
 
-* Use Git installed on your system. This is the default r10k usage.
-* Use the Git library built into r10k. You don't have to install Git on your system for this method, but you do have to provide a private key.
+* Use Git installed on your system. This is the default for r10k.
+* Use a Git library built into r10k. You don't have to install Git on your system for this method, but you do have to provide a private key.
 
 ###Use Git on Your System
 

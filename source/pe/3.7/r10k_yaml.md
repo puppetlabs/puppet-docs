@@ -53,10 +53,10 @@ cachedir: '/var/cache/r10k'
 
 sources:
   my-org:
-    remote: 'git@github.com:$<GITHUB ORGANIZATION or GITSERVER>/$<GITHUB/GIT REPO NAME>'
+    remote: 'git@github.com:username1/myenvironments'
     basedir: '/etc/puppetlabs/puppet/environments'
   mysource:
-    remote: 'git@github.com:$<GITHUB ORGANIZATION or GITSERVER>/$<GITHUB/GIT REPO NAME>'
+    remote: 'git@github.com:username2/myenvironments'
     basedir: '/etc/puppetlabs/puppet/environments'
 ~~~
 
@@ -96,7 +96,7 @@ The `sources` key allows the options listed below. You can also implement additi
 
 ####`remote`
 
-Specifies where the source repository should be fetched from. It can be any valid URL that the source can checkout or clone. The remote must be able to be fetched without any interactive input; e.g., you cannot be prompted for usernames or passwords in order to fetch the remote.
+Specifies where the source repository should be fetched from. It can be any valid URL that r10k can check out or clone for this source. The remote must be able to be fetched without any interactive input; e.g., you cannot be prompted for usernames or passwords in order to fetch the remote.
 
 ~~~
 sources:
@@ -117,14 +117,18 @@ sources:
 
 ####`prefix`
 
-Allows environment names to be prefixed with the short name of the specified source. Prefix can also be a string to be prefixed to the the names of the environments. This prevents collisions when multiple sources are deployed into the same directory. 
-
+Allows environment names to be prefixed with a short string specified by this source. If `prefix` is set to 'true', the source's name will be used. If `prefix` is a string, then this string is prefixed to the names of the environments. This prevents collisions when multiple sources are deployed into the same directory.
+    
 ~~~
 sources:
+  myorg:
+    remote: 'git://git-server.site/myorg/main-modules'
+    basedir: '/etc/puppetlabs/puppet/environments'
+    prefix: true # All environments will be prefixed with "myorg_"
   mysource:
-    basedir: '/etc/puppet/environments'
-    prefix: true
-    # All environments will be prefixed with "mysource_"
+    remote: 'git://git-server.site/mysource/main-modules'
+    basedir: '/etc/puppetlabs/puppet/environments'
+    prefix: 'testing' # All environments will be prefixed with "testing_"
 ~~~
 
 ####`invalid_branches`
@@ -140,6 +144,7 @@ sources:
   mysource:
     basedir: '/etc/puppetlabs/puppet/environments'
     invalid_branches: 'error'
+    remote: 'git://git-server.site/mysource/main-modules'
 ~~~
 
 ###Previous Directory Environment Configurations

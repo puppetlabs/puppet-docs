@@ -45,7 +45,7 @@ mod 'adrienthebo/thebestmoduleever'
 mod 'puppetlabs/apache', '0.10.0'
 ~~~
 
-**Install the latest available version of a module, and then keep that module updated:**
+**Install the latest available version of a module, and then continue to update the module on future r10k runs:**
 
 ~~~
 mod 'puppetlabs/apache', :latest
@@ -55,7 +55,7 @@ mod 'puppetlabs/apache', :latest
 
 You can also specify a Git repo that contains a Puppet module; r10k then copies that repo and uses it as a module. In this case, you can specify the module "version" by using the `ref`, `tag`, `commit`, and `branch` options.
 
-* `ref`: Determines the type of Git object to check out. Can be used with a Git commit, branch reference, or a tag.
+* `ref`: Determines the Git reference to check out. Can be any of a tag, commit, or branch.
 * `tag`: Directs r10k to clone the repo at a certain tag value.
 * `commit`: Directs r10k to clone the repo at a certain commit.
 * `branch`: Specifies a certain branch of the repo to clone.
@@ -101,11 +101,11 @@ mod 'apache',
 
 ###Changing the module installation directory
 
-By default, r10k installs modules in a modules directory in the Puppetfile’s current directory. Optionally, you can point to another directory for module installation. You can specify either an absolute or a relative path in this setting.
+By default, r10k installs modules in a modules directory in the current directory. Optionally, you can point to another directory for module installation. You can specify either an absolute or a relative path in this setting.
 
 ~~~
 mod 'puppetlabs/apache'
-#installs the apache module into 'dirname/path/to/Puppetfile/modules/apache'
+#installs the apache module into './modules/apache'
 ~~~
 
 **Note:** If you use this setting, it should always come **before** any modules listed in the Puppetfile.
@@ -113,10 +113,10 @@ mod 'puppetlabs/apache'
 ####To install modules to an absolute path:
 
 ~~~
-moduledir '/etc/puppet/modules'
+moduledir '/a/development/environment/modules'
 
 mod 'puppetlabs/apache'
-#installs the apache module into '/etc/puppet/modules/apache'
+#installs the apache module into '/a/development/environment/modules/apache
 ~~~
 
 ####To install modules to a relative path:
@@ -125,7 +125,7 @@ mod 'puppetlabs/apache'
 moduledir 'thirdparty'
 
 mod 'puppetlabs/apache' 
-# installs the apache module into 'dirname/path/to/Puppetfile/thirdparty/apache'
+# installs the apache module into './thirdparty/apache'
 ~~~
 
 After you've specified your modules in the Puppetfile, you're ready to [run r10k][running] or perform Puppetfile operations with the Puppetfile subcommands below.
