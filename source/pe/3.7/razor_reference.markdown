@@ -823,3 +823,7 @@ node. It defaults to 4.
 The URL also accepts an `http_port` parameter, which tells Razor which port
 its internal HTTP communications should use, and the `/svc` URLs must be
 available through that port. The default install will use 8150 for this.
+
+***
+
+[Next: Provisioning in a Brownfield Environment](./razor_brownfield.html)

@@ -20,6 +20,7 @@ Razor's policy-based bare-metal provisioning lets you inventory and manage the l
 
 Razor policies use discovered characteristics of the underlying hardware and user-provided data to make provisioning decisions.
 
+>**Note**: Be aware that Razor is designed to take over provisioning for your infrastructure, so if you're planning on deploying it into an existing environment, you should read and understand the [caveats](./razor_brownfield.html) first.
 
 ##How Razor Works
 The following steps provide a high-level view of the process for provisioning a node with Razor.
