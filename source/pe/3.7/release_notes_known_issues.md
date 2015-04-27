@@ -278,6 +278,14 @@ When there are over 500 nodes pinned to a node group, a **Load All Nodes** butto
 
 If a large number of nodes is returned when querying the `v1/nodes` endpoint of the classifier service API, the pe-console-services process may exhaust the memory and return a 500 error. This can be resolved by pruning the node check-in data as documented in [Configuring & Tuning Node Classifier](./config_nc.html).
 
+### Not All Environments Are Listed in the PE Console
+
+When the classifier service encounters an environment that has code that will not compile, it marks the environment as deleted. If you later correct the code in the environment, the classifier service does not remove the deleted flag. 
+
+To manually remove the deleted flag for an environment named "test" for example, in the command line, type:
+
+    su - pe-postgres -s /bin/bash -c "/opt/puppet/bin/psql -d 'pe-classifier' -c \"UPDATE environments SET deleted = 'f' WHERE name = 'test';\""
+
 ### Passenger `permission denied` Log entry
 
 At application startup for Dashboard, Passenger logs a "permission denied" message to the Apache error log concerning the passenger-config executable. This log message only appears once, at application startup, is not repeated, and appears to be cosmetic. The dashboard starts and functions properly.
