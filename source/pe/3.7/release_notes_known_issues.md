@@ -284,6 +284,10 @@ Due to a known issue in PE 3.7.0, you can select the SLES 12 `pe::repo` class fr
 
 Support for SLES 12 will be added in a future release.
 
+### Nodes Can Be Pinned an Infinite Number of Times
+
+When pinning a node to a node group in the PE console, if you pin the node multiple times, the console does not resolve this to a single entry. For example, if you pin the same node to a node group ten times and commit it, the console will show that you have ten nodes all with the same node name. 
+
 ### Safari Certificate Handling May Prevent Console Access
 
 [client_cert_dialog]: ./images/client_cert_dialog.png
