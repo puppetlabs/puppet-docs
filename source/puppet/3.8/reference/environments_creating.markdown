@@ -12,9 +12,9 @@ title: "Creating Directory Environments"
 [environment.conf]: ./config_file_environment.html
 [modulepath]: ./dirs_modulepath.html
 [puppet.conf]: ./config_file_main.html
-[basemodulepath]: /references/3.7.latest/configuration.html#basemodulepath
-[default_manifest]: /references/3.7.latest/configuration.html#defaultmanifest
-[disable_per_environment_manifest]: /references/3.7.latest/configuration.html#disableperenvironmentmanifest
+[basemodulepath]: /references/3.8.latest/configuration.html#basemodulepath
+[default_manifest]: /references/3.8.latest/configuration.html#defaultmanifest
+[disable_per_environment_manifest]: /references/3.8.latest/configuration.html#disableperenvironmentmanifest
 
 Once you have [enabled directory environments][enable_dirs], you can:
 
@@ -68,7 +68,7 @@ You should do the following to ensure this is present:
 
 The [modulepath][] **must** include the `/opt/puppet/share/puppet/modules` directory, since PE uses modules in that directory to configure orchestration and other features.
 
-* If you **upgraded** from a previous version of PE instead of doing a fresh install, make sure to set `basemodulepath = $confdir/modules:/opt/puppet/share/puppet/modules` in [puppet.conf][]. This will include the system modules in the **default** modulepath for every environment. If you installed PE 3.7 from scratch, this path is already set by default.
+* If you **upgraded** from a previous version of PE instead of doing a fresh install, make sure to set `basemodulepath = $confdir/modules:/opt/puppet/share/puppet/modules` in [puppet.conf][]. This will include the system modules in the **default** modulepath for every environment. If you installed PE 3.8 from scratch, this path is already set by default.
 * If you use [environment.conf][] to override the modulepath (see below), make sure it includes either `$basemodulepath` or `/opt/puppet/share/puppet/modules`.
 
 
@@ -115,7 +115,7 @@ That is, Puppet will add the environment's `modules` directory to the value of t
 
 You can configure a different modulepath for an environment by setting `modulepath` in its [environment.conf][] file. Note that the global `modulepath` setting from [puppet.conf][] will never be used by a directory environment.
 
-**Note:** The `modulepath` should almost always include `$basemodulepath`, and if you're using PE, it **must** include `/opt/puppet/share/puppet/modules`. ([See above.][inpage_pe]). This path is included in the `basemodulepath` by default in PE 3.7.
+**Note:** The `modulepath` should almost always include `$basemodulepath`, and if you're using PE, it **must** include `/opt/puppet/share/puppet/modules`. ([See above.][inpage_pe]). This path is included in the `basemodulepath` by default in PE 3.8.
 
 #### Checking the Modulepath
 

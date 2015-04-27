@@ -143,7 +143,7 @@ This is the main way in which the Puppet language fails to be fully declarative.
 Naming
 -----
 
-Variable names are case-sensitive and can include alphanumeric characters and underscores. Puppet 3.7 deprecates the use of variable names starting with uppercase letters.
+Variable names are case-sensitive and can include alphanumeric characters and underscores. Puppet 3.8 deprecates the use of variable names starting with uppercase letters.
 
 **Qualified variable names** are prefixed with the name of their scope and the `::` (double colon) namespace separator. (For example, the `$vhostdir` variable from the `apache::params` class would be `$apache::params::vhostdir`.)
 

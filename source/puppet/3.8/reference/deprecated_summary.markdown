@@ -5,9 +5,9 @@ title: "About Deprecations in This Version of Puppet"
 
 [puppet.conf]: ./config_file_main.html
 
-## About Deprecations in Puppet 3.7
+## About Deprecations in Puppet 3.8
 
-We expect Puppet 3.7 to be one of the final releases (if not **the** final release) before Puppet 4.0.
+We expect Puppet 3.8 to be one of the final releases (if not **the** final release) before Puppet 4.0.
 
 Since 4.0 counts as a major version under our versioning scheme, it's a rare opportunity to perform major cleanups of Puppet's code and behavior, and we've spent months identifying things we want to fix.
 
@@ -24,7 +24,7 @@ There are three main kinds of deprecations in this release:
 
 Some features will cause deprecation warnings when you use them. These are the easiest to find.
 
-First, ensure that [the `disable_warnings` setting](/references/3.7.latest/configuration.html#disablewarnings) is not set, on your Puppet master(s) or on any agent nodes.
+First, ensure that [the `disable_warnings` setting](/references/3.8.latest/configuration.html#disablewarnings) is not set, on your Puppet master(s) or on any agent nodes.
 
 Next, reset your Puppet master's web server. (In Puppet Enterprise, you can usually run `sudo service pe-httpd restart` to do this.) This will reset Puppet's automatic suppression of repeated deprecation warnings.
 
@@ -42,7 +42,7 @@ Some deprecated features (mostly the rarest or most obvious ones) have no warnin
 
 ## Complete List of Deprecations
 
-Use the navigation sidebar to the left to browse the lists of deprecated features in Puppet 3.7.
+Use the navigation sidebar to the left to browse the lists of deprecated features in Puppet 3.8.
 
 You may want to print out the following checklist, to use while investigating deprecated feature usage at your site.
 

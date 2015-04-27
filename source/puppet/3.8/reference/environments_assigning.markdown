@@ -7,7 +7,7 @@ title: "Assigning Nodes to Environments"
 [node terminus]: ./subsystem_catalog_compilation.html#step-1-retrieve-the-node-object
 [enc_environment]: /guides/external_nodes.html#environment
 [puppet.conf]: ./config_file_main.html
-[env_setting]: /references/3.7.latest/configuration.html#environment
+[env_setting]: /references/3.8.latest/configuration.html#environment
 
 
 By default, all nodes are assigned to a default environment named `production`.
@@ -17,7 +17,7 @@ There are two ways to assign nodes to a different environment:
 * Via your [ENC][] or [node terminus][]
 * Via each agent node's puppet.conf
 
-> **Note:** If you have Puppet Enterprise (PE), you can use the PE console to [set the environment for each node group](/pe/3.7/console_classes_groups.html#creating-new-node-groups). 
+> **Note:** If you have Puppet Enterprise (PE), you can use the PE console to [set the environment for each node group](/pe/3.8/console_classes_groups.html#creating-new-node-groups). 
 
 The value from the ENC is authoritative, if it exists. If the ENC doesn't specify an environment, the node's config value is used.
 

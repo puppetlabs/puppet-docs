@@ -3,9 +3,9 @@ layout: default
 title: "Resource Tips and Examples: User and Group on Windows"
 ---
 
-[user]: /references/3.7.latest/type.html#user
-[group]: /references/3.7.latest/type.html#group
-[relationships]: /puppet/3.7.latest/reference/lang_relationships.html
+[user]: /references/3.8.latest/type.html#user
+[group]: /references/3.8.latest/type.html#group
+[relationships]: /puppet/3.8.latest/reference/lang_relationships.html
 
 Puppet's built-in [`user`][user] and [`group`][group] resource types can manage user and group accounts on Windows.
 
@@ -27,7 +27,7 @@ A local group can include both local and domain users, so while you can't use Pu
 
 Groups can also include other groups as members.
 
-[members]: /references/3.7.latest/type.html#group-attribute-members
+[members]: /references/3.8.latest/type.html#group-attribute-members
 
 ### Allowed Attributes
 
@@ -35,21 +35,21 @@ The `user` type in particular has a lot of attributes that don't apply to Window
 
 When managing Windows [**user**][user] accounts, you can use the following attributes:
 
-* [`name`](/references/3.7.latest/type.html#user-attribute-name)
-* [`ensure`](/references/3.7.latest/type.html#user-attribute-ensure)
-* [`comment`](/references/3.7.latest/type.html#user-attribute-comment)
-* [`groups`](/references/3.7.latest/type.html#user-attribute-groups) --- note that you can't use the `gid` attribute.
-* [`home`](/references/3.7.latest/type.html#user-attribute-home)
-* [`managehome`](/references/3.7.latest/type.html#user-attribute-managehome)
-* [`password`](/references/3.7.latest/type.html#user-attribute-password) --- note that passwords can only be specified in cleartext, since Windows has no API for setting the password hash.
+* [`name`](/references/3.8.latest/type.html#user-attribute-name)
+* [`ensure`](/references/3.8.latest/type.html#user-attribute-ensure)
+* [`comment`](/references/3.8.latest/type.html#user-attribute-comment)
+* [`groups`](/references/3.8.latest/type.html#user-attribute-groups) --- note that you can't use the `gid` attribute.
+* [`home`](/references/3.8.latest/type.html#user-attribute-home)
+* [`managehome`](/references/3.8.latest/type.html#user-attribute-managehome)
+* [`password`](/references/3.8.latest/type.html#user-attribute-password) --- note that passwords can only be specified in cleartext, since Windows has no API for setting the password hash.
 
 Additionally, the `uid` attribute is available as a read-only property when inspecting a user with `puppet resource user <NAME>`. Its value will be the user's SID (see below).
 
 When managing Windows [**group**][group] accounts, you can use the following attributes:
 
-* [`name`](/references/3.7.latest/type.html#group-attribute-name)
-* [`ensure`](/references/3.7.latest/type.html#group-attribute-ensure)
-* [`members`](/references/3.7.latest/type.html#group-attribute-members)
+* [`name`](/references/3.8.latest/type.html#group-attribute-name)
+* [`ensure`](/references/3.8.latest/type.html#group-attribute-ensure)
+* [`members`](/references/3.8.latest/type.html#group-attribute-members)
 
 Additionally, the `gid` attribute is available as a read-only property when inspecting a group with `puppet resource group <NAME>`. Its value will be the group's SID (see below).
 

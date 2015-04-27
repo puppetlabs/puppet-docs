@@ -5,8 +5,8 @@ canonical: "/puppet/latest/reference/modules_installing.html"
 ---
 
 [forge]: http://forge.puppetlabs.com
-[module_man]: /references/3.7.latest/man/module.html
-[modulepath]: /references/3.7.latest/configuration.html#modulepath
+[module_man]: /references/3.8.latest/man/module.html
+[modulepath]: /references/3.8.latest/configuration.html#modulepath
 
 [publishing]: ./modules_publishing.html
 [fundamentals]: ./modules_fundamentals.html
@@ -17,7 +17,7 @@ canonical: "/puppet/latest/reference/modules_installing.html"
 Installing Modules
 =====
 >**Puppet Enterprise Users Note**
->For a complete guide to installing and managing modules, you'll need to go to the [Installing Modules page](https://docs.puppetlabs.com/pe/3.7/modules_installing.html)
+>For a complete guide to installing and managing modules, you'll need to go to the [Installing Modules page](https://docs.puppetlabs.com/pe/3.8/modules_installing.html)
 >
 
 ![Windows note](/images/windows-logo-small.jpg)
@@ -78,7 +78,7 @@ In order to use the Puppet module tool behind a proxy, you need to set the follo
 	export http_proxy=http://10.187.255.9:8080
 	export https_proxy=http://10.187.255.9:8080
 
-Alternatively, you can set these two proxy settings inside the `user` config section in the `puppet.conf` file: `http_proxy_host` and `http_proxy_port`. For more information, see [Configuration Reference](/references/3.7.latest/configuration.html).
+Alternatively, you can set these two proxy settings inside the `user` config section in the `puppet.conf` file: `http_proxy_host` and `http_proxy_port`. For more information, see [Configuration Reference](/references/3.8.latest/configuration.html).
 
 **Note:** Make sure to set these two proxy settings in the `user` section only. Otherwise, there can be adverse effects.
 
@@ -115,7 +115,7 @@ To install a module from the Puppet Forge, simply identify the desired module by
 
 ### Installing From Another Module Repository
 
-The module tool can install modules from other repositories that mimic the Forge's interface. To do this, change the [`module_repository`](/references/3.7.latest/configuration.html#modulerepository) setting in [`puppet.conf`](/guides/configuring.html) or specify a repository on the command line with the `--module_repository` option. The value of this setting should be the base URL of the repository; the default value, which uses the Forge, is `http://forge.puppetlabs.com`.
+The module tool can install modules from other repositories that mimic the Forge's interface. To do this, change the [`module_repository`](/references/3.8.latest/configuration.html#modulerepository) setting in [`puppet.conf`](/guides/configuring.html) or specify a repository on the command line with the `--module_repository` option. The value of this setting should be the base URL of the repository; the default value, which uses the Forge, is `http://forge.puppetlabs.com`.
 
 After setting the repository, follow the instructions above for installing from the Forge.
 
@@ -226,4 +226,4 @@ Error: Request to Puppet Forge failed.
 
 it is because the module you are trying to download is only available to Puppet Enterprise users. To use this module, download [Puppet Enterprise](http://puppetlabs.com/puppet/puppet-enterprise).
 
-If you are a Puppet Enterprise user, use the [troubleshooting guide](https://docs.puppetlabs.com/pe/3.7/modules_installing.html#errors).
+If you are a Puppet Enterprise user, use the [troubleshooting guide](https://docs.puppetlabs.com/pe/3.8/modules_installing.html#errors).

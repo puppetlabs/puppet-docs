@@ -93,7 +93,7 @@ Puppet 4.0 will not match a regexp against anything but a string.
 
 ### Detecting and Updating
 
-Puppet 3.7 does not give a deprecation warning, but if you enable the future parser, any regexp matched against a non-string value will cause an error.
+Puppet 3.8 does not give a deprecation warning, but if you enable the future parser, any regexp matched against a non-string value will cause an error.
 
 ### Context
 
@@ -135,7 +135,7 @@ Variable names cannot begin with uppercase letters.
 
 ### Detecting and Updating
 
-Puppet 3.7 does not give deprecation warnings for this issue. If you turn on the future parser, you will get errors for variables starting with capital letters.
+Puppet 3.8 does not give deprecation warnings for this issue. If you turn on the future parser, you will get errors for variables starting with capital letters.
 
 ### Context
 
@@ -155,7 +155,7 @@ Class names containing hyphens are actually prohibited.
 
 ### Detecting and Updating
 
-Puppet 3.7 does not give a deprecation warning for this, but if you enable the future parser, any hyphenated class names will cause an error.
+Puppet 3.8 does not give a deprecation warning for this, but if you enable the future parser, any hyphenated class names will cause an error.
 
 ### Context
 

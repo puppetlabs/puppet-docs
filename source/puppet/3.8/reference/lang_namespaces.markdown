@@ -40,7 +40,7 @@ Optionally, class/define names can begin with the top namespace, which is the em
 * `apache::mod` and `::apache::mod`
 * etc.
 
-This is ugly and should be unnecessary, but is occasionally required due to an outstanding design issue. However, you can avoid this issue by enabling the future parser in Puppet 3.7. [See below for details.][relative_below]
+This is ugly and should be unnecessary, but is occasionally required due to an outstanding design issue. However, you can avoid this issue by enabling the future parser in Puppet 3.8. [See below for details.][relative_below]
 
 Autoloader Behavior
 -----
@@ -104,7 +104,7 @@ When asked to `include nagios`, Puppet will first attempt to load `apache::nagio
 
 ### Workaround
 
-Note: You can avoid relative namespace issues --- and this workaround --- by enabling the [future parser](future) in Puppet 3.7.
+Note: You can avoid relative namespace issues --- and this workaround --- by enabling the [future parser](future) in Puppet 3.8.
 
 If a class within another module is blocking the declaration of a top-namespace class, you can force the correct class to load by specifying its name from the top namespace ([as seen above](#syntax)). To specify a name from the top namespace, prepend `::` (double colon) to it:
 

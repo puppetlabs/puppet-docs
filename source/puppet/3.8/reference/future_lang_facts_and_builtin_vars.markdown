@@ -12,8 +12,8 @@ canonical: "/puppet/latest/reference/future_lang_facts_and_builtin_vars.html"
 [customfacts]: /facter/latest/custom_facts.html
 [external facts]: /facter/latest/custom_facts.html#external-facts
 [catalog]: ./future_lang_summary.html#compilation-and-catalogs
-[noop]: /references/3.7.latest/configuration.html#noop
-[certname]: /references/3.7.latest/configuration.html#certname
+[noop]: /references/3.8.latest/configuration.html#noop
+[certname]: /references/3.8.latest/configuration.html#certname
 [puppetdb_facts]: /puppetdb/latest/api/index.html
 [localscope]: ./future_lang_scope.html#local-scopes
 [trusted_on]: ./config_important_settings.html#getting-new-features-early
@@ -49,13 +49,13 @@ Data Types
 
 This version of Puppet **supports fact values of [any data type][datatypes],** but you may need to manually enable them:
 
-Puppet Enterprise 3.7             | Puppet 3.7 (open source release)
+Puppet Enterprise 3.8             | Puppet 3.8 (open source release)
 ----------------------------------|-------
 All data types enabled by default | User must install Facter ≥ 2.0 on all nodes, upgrade to PuppetDB ≥ 2.2, then set `stringify_facts = false` in puppet.conf on all nodes [(details here)][structured_facts_on]
 
 ### Handling String-Only Facts
 
-Older versions of Puppet would always convert all fact values to [strings][]. (Thus, `false` would become `"false"`, and hash or array data structures were impossible.) This is still the default in open source releases of Puppet 3.7.
+Older versions of Puppet would always convert all fact values to [strings][]. (Thus, `false` would become `"false"`, and hash or array data structures were impossible.) This is still the default in open source releases of Puppet 3.8.
 
 When Puppet is configured to use stringified facts, you'll need to take extra care when dealing with boolean facts like `$is_virtual`, since the string `"false"` is actually true when used as the condition of an [`if` statement.](./lang_conditional.html#if-statements)
 
@@ -112,7 +112,7 @@ Example, with the osfamily fact:
 
 This feature may be enabled by default, or you may need to enable it manually:
 
-Puppet Enterprise 3.7             | Puppet 3.7 (open source release)
+Puppet Enterprise 3.8             | Puppet 3.8 (open source release)
 ----------------------------------|-------
 `$facts` hash enabled by default  | User must [set `trusted_node_data = true`][trusted_on]\* in puppet.conf on the Puppet master server
 
@@ -147,7 +147,7 @@ In addition to Facter's core facts and any custom facts, Puppet creates some spe
 
 This feature may be enabled by default, or you may need to enable it manually:
 
-Puppet Enterprise 3.7             | Puppet 3.7 (open source release)
+Puppet Enterprise 3.8             | Puppet 3.8 (open source release)
 ----------------------------------|-------
 Trusted facts enabled by default  | User must [set `trusted_node_data = true`][trusted_on] in puppet.conf on the Puppet master server
 

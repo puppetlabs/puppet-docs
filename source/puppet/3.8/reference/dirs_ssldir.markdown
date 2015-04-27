@@ -5,33 +5,33 @@ canonical: "/puppet/latest/reference/dirs_ssldir.html"
 ---
 
 
-[ssldir]: /references/3.7.latest/configuration.html#ssldir
-[cadir]: /references/3.7.latest/configuration.html#cadir
-[cacrl]: /references/3.7.latest/configuration.html#cacrl
-[cacert]: /references/3.7.latest/configuration.html#cacert
-[cakey]: /references/3.7.latest/configuration.html#cakey
-[capub]: /references/3.7.latest/configuration.html#capub
-[cert_inventory]: /references/3.7.latest/configuration.html#certinventory
-[caprivatedir]: /references/3.7.latest/configuration.html#caprivatedir
-[capass]: /references/3.7.latest/configuration.html#capass
-[csrdir]: /references/3.7.latest/configuration.html#csrdir
-[serial]: /references/3.7.latest/configuration.html#serial
-[signeddir]: /references/3.7.latest/configuration.html#signeddir
-[requestdir]: /references/3.7.latest/configuration.html#requestdir
-[hostcsr]: /references/3.7.latest/configuration.html#hostcsr
-[certdir]: /references/3.7.latest/configuration.html#certdir
-[hostcert]: /references/3.7.latest/configuration.html#hostcert
-[localcacert]: /references/3.7.latest/configuration.html#localcacert
-[hostcrl]: /references/3.7.latest/configuration.html#hostcrl
-[privatedir]: /references/3.7.latest/configuration.html#privatedir
-[passfile]: /references/3.7.latest/configuration.html#passfile
-[privatekeydir]: /references/3.7.latest/configuration.html#privatekeydir
-[hostprivkey]: /references/3.7.latest/configuration.html#hostprivkey
-[publickeydir]: /references/3.7.latest/configuration.html#publickeydir
-[hostpubkey]: /references/3.7.latest/configuration.html#hostpubkey
+[ssldir]: /references/3.8.latest/configuration.html#ssldir
+[cadir]: /references/3.8.latest/configuration.html#cadir
+[cacrl]: /references/3.8.latest/configuration.html#cacrl
+[cacert]: /references/3.8.latest/configuration.html#cacert
+[cakey]: /references/3.8.latest/configuration.html#cakey
+[capub]: /references/3.8.latest/configuration.html#capub
+[cert_inventory]: /references/3.8.latest/configuration.html#certinventory
+[caprivatedir]: /references/3.8.latest/configuration.html#caprivatedir
+[capass]: /references/3.8.latest/configuration.html#capass
+[csrdir]: /references/3.8.latest/configuration.html#csrdir
+[serial]: /references/3.8.latest/configuration.html#serial
+[signeddir]: /references/3.8.latest/configuration.html#signeddir
+[requestdir]: /references/3.8.latest/configuration.html#requestdir
+[hostcsr]: /references/3.8.latest/configuration.html#hostcsr
+[certdir]: /references/3.8.latest/configuration.html#certdir
+[hostcert]: /references/3.8.latest/configuration.html#hostcert
+[localcacert]: /references/3.8.latest/configuration.html#localcacert
+[hostcrl]: /references/3.8.latest/configuration.html#hostcrl
+[privatedir]: /references/3.8.latest/configuration.html#privatedir
+[passfile]: /references/3.8.latest/configuration.html#passfile
+[privatekeydir]: /references/3.8.latest/configuration.html#privatekeydir
+[hostprivkey]: /references/3.8.latest/configuration.html#hostprivkey
+[publickeydir]: /references/3.8.latest/configuration.html#publickeydir
+[hostpubkey]: /references/3.8.latest/configuration.html#hostpubkey
 [vardir]: ./dirs_vardir.html
 [confdir]: ./dirs_confdir.html
-[certname]: /references/3.7.latest/configuration.html#certname
+[certname]: /references/3.8.latest/configuration.html#certname
 [print_settings]: ./config_print.html
 
 

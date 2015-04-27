@@ -10,7 +10,7 @@ canonical: "/puppet/latest/reference/lang_node_definitions.html"
 [classes]: ./lang_classes.html
 [nodescope]: ./lang_scope.html#node-scope
 [topscope]: ./lang_scope.html#top-scope
-[extlookup]: /references/3.7.latest/function.html#extlookup
+[extlookup]: /references/3.8.latest/function.html#extlookup
 [custom_functions]: /guides/custom_functions.html
 [import]: ./lang_import.html
 [regex]: ./lang_datatypes.html#regular-expressions
@@ -20,7 +20,7 @@ canonical: "/puppet/latest/reference/lang_node_definitions.html"
 [enc]: /guides/external_nodes.html
 [facts]: ./lang_variables.html#facts-and-built-in-variables
 [catalog]: ./lang_summary.html#compilation-and-catalogs
-[strict]: /references/3.7.latest/configuration.html#stricthostnamechecking
+[strict]: /references/3.8.latest/configuration.html#stricthostnamechecking
 [conditional]: ./lang_conditional.html
 
 
@@ -179,7 +179,7 @@ Although ENCs and node definitions can work together, we recommend that most use
 
 ### Inheritance
 
-In earlier versions of Puppet, nodes could inherit from other nodes using the `inherits` keyword. **This feature is deprecated in Puppet 3.7,** and will be removed in Puppet 4. Node inheritance often caused complications and ambiguities --- classes and defined types are more effective strategies for reuse. As of Puppet 3.7, node inheritance causes a deprecation warning in the current parser and an error in the future parser.
+In earlier versions of Puppet, nodes could inherit from other nodes using the `inherits` keyword. **This feature is deprecated in Puppet 3.8,** and will be removed in Puppet 4. Node inheritance often caused complications and ambiguities --- classes and defined types are more effective strategies for reuse. As of Puppet 3.7, node inheritance causes a deprecation warning in the current parser and an error in the future parser.
 
 
 > #### Alternatives to Node Inheritance

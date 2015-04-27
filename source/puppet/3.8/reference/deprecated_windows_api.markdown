@@ -4,11 +4,11 @@ title: "Breaking Changes to Private Windows APIs"
 ---
 
 
-In Puppet 3.7, we re-arranged many of Puppet's private Windows-related APIs. These changes were a side effect of 64-bit support for Windows.
+In Puppet 3.8, we re-arranged many of Puppet's private Windows-related APIs. These changes were a side effect of 64-bit support for Windows.
 
 In some places, we were able to add deprecation warnings instead of making hard changes. In other cases, this was impractical and we had to make breaking changes.
 
-These changes shouldn't affect most users, but they **may affect Ruby plugins for Windows that call native code.** If you maintain any Windows-specific resource types and providers, you should read through the changes and deprecations on this page and update your code to support Puppet 3.7 and 4.0.
+These changes shouldn't affect most users, but they **may affect Ruby plugins for Windows that call native code.** If you maintain any Windows-specific resource types and providers, you should read through the changes and deprecations on this page and update your code to support Puppet 3.8 and 4.0.
 
 All of these changes affected code that was not marked as a public API.
 

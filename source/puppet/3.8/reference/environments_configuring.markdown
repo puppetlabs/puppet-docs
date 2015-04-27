@@ -3,18 +3,18 @@ layout: default
 title: "Configuring Directory Environments"
 ---
 
-[environmentpath]: /references/3.7.latest/configuration.html#environmentpath
+[environmentpath]: /references/3.8.latest/configuration.html#environmentpath
 [confdir]: ./dirs_confdir.html
 [puppet.conf]: ./config_file_main.html
 [modulepath]: ./dirs_modulepath.html
-[basemodulepath]: /references/3.7.latest/configuration.html#basemodulepath
+[basemodulepath]: /references/3.8.latest/configuration.html#basemodulepath
 [environment.conf]: ./config_file_environment.html
-[environment_timeout]: /references/3.7.latest/configuration.html#environmenttimeout
+[environment_timeout]: /references/3.8.latest/configuration.html#environmenttimeout
 [create_environment]: ./environments_creating.html
 [about]: ./environments.html
 [assign]: ./environments_assigning.html
-[default_manifest]: /references/3.7.latest/configuration.html#defaultmanifest
-[disable_per_environment_manifest]: /references/3.7.latest/configuration.html#disableperenvironmentmanifest
+[default_manifest]: /references/3.8.latest/configuration.html#defaultmanifest
+[disable_per_environment_manifest]: /references/3.8.latest/configuration.html#disableperenvironmentmanifest
 [main manifest]: ./dirs_manifest.html
 
 
@@ -113,7 +113,7 @@ To add additional directories containing global modules, you can set your own va
 
 ### `default_manifest`
 
-[(See also: Full description of `default_manifest` setting.)](/references/3.7.latest/configuration.html#defaultmanifest)
+[(See also: Full description of `default_manifest` setting.)](/references/3.8.latest/configuration.html#defaultmanifest)
 
 The default [main manifest][] to use for environments that don't specify one in [environment.conf][].
 
@@ -136,7 +136,7 @@ This requires `default_manifest` to be an absolute path.
 [puppetserver.conf]: /puppetserver/latest/configuration.html#puppetserverconf
 [environment-cache]: /puppetserver/latest/admin-api/v1/environment-cache.html
 
-[(See also: Full description of `environment_timeout` setting.)](/references/3.7.latest/configuration.html#environmenttimeout)
+[(See also: Full description of `environment_timeout` setting.)](/references/3.8.latest/configuration.html#environmenttimeout)
 
 How long the Puppet master should cache the data it loads from an environment. For performance reasons, we recommend changing this setting once you have a mature code deployment process.
 

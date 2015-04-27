@@ -17,8 +17,8 @@ canonical: "/puppet/latest/reference/lang_reserved.html"
 [resources]: ./lang_resources.html
 [class]: ./lang_classes.html
 [qualified_var]: ./lang_variables.html#accessing-out-of-scope-variables
-[type_ref]: /references/3.7.latest/type.html
-[func_ref]: /references/3.7.latest/function.html
+[type_ref]: /references/3.8.latest/type.html
+[func_ref]: /references/3.8.latest/function.html
 [environment]: ./environments.html
 
 Reserved Words
@@ -98,7 +98,7 @@ Variable names begin with a `$` (dollar sign) and can include:
 * Numbers
 * Underscores
 
-Puppet 3.7 deprecates the use of uppercase letters for the first non-$ character of a variable name. Variable names are case-sensitive. Note that [some variable names are reserved.](#reserved-variable-names)
+Puppet 3.8 deprecates the use of uppercase letters for the first non-$ character of a variable name. Variable names are case-sensitive. Note that [some variable names are reserved.](#reserved-variable-names)
 
 Variable names should match the following regular expression:
 

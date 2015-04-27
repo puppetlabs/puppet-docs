@@ -5,14 +5,14 @@ canonical: "/puppet/latest/reference/config_file_tagmail.html"
 ---
 
 [tags]: ./lang_tags.html
-[tagmail_reference]: /references/3.7.latest/report.html#tagmail
-[report_server]: /references/3.7.latest/configuration.html#reportserver
-[report]: /references/3.7.latest/configuration.html#report
-[reports]: /references/3.7.latest/configuration.html#reports
-[reportfrom]: /references/3.7.latest/configuration.html#reportfrom
-[smtpserver]: /references/3.7.latest/configuration.html#smtpserver
-[sendmail]: /references/3.7.latest/configuration.html#sendmail
-[tagmap]: /references/3.7.latest/configuration.html#tagmap
+[tagmail_reference]: /references/3.8.latest/report.html#tagmail
+[report_server]: /references/3.8.latest/configuration.html#reportserver
+[report]: /references/3.8.latest/configuration.html#report
+[reports]: /references/3.8.latest/configuration.html#reports
+[reportfrom]: /references/3.8.latest/configuration.html#reportfrom
+[smtpserver]: /references/3.8.latest/configuration.html#smtpserver
+[sendmail]: /references/3.8.latest/configuration.html#sendmail
+[tagmap]: /references/3.8.latest/configuration.html#tagmap
 
 
 The `tagmail.conf` file configures the optional [`tagmail` report processor][tagmail_reference].

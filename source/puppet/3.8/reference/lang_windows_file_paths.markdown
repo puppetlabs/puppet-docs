@@ -5,10 +5,10 @@ canonical: "/puppet/latest/reference/lang_windows_file_paths.html"
 ---
 
 [template]: /guides/templating.html
-[scheduledtask]: /references/3.7.latest/type.html#scheduledtask
-[exec]: /references/3.7.latest/type.html#exec
-[package]: /references/3.7.latest/type.html#package
-[file]: /references/3.7.latest/type.html#file
+[scheduledtask]: /references/3.8.latest/type.html#scheduledtask
+[exec]: /references/3.8.latest/type.html#exec
+[package]: /references/3.8.latest/type.html#package
+[file]: /references/3.8.latest/type.html#file
 
 Several [resource types](./lang_resources.html) (including `file`, `exec`, and `package`) take file paths as values for various attributes.
 
@@ -86,7 +86,7 @@ Strings surrounded by single quotes `'like this'` do not interpolate variables. 
 Managing files in the `C:\Windows\system32` directory can be problematic. The short version is:
 
 * If you are using **Puppet 3.7.3 or later,** use [the `$system32` fact](/facter/latest/core_facts.html#system32) whenever you need to access the `system32` directory. Easy and reliable.
-* If you are using **Puppet 3.7.0 through 3.7.2** but are only using architecture-appropriate packages (32-bit on 32-bit systems, and 64-bit on 64-bit systems), you can access the `system32` directory directly. As soon as is practical, you should upgrade to 3.7.3 and start using the `$system32` fact.
+* If you are using **Puppet 3.7.0 through 3.7.2** but are only using architecture-appropriate packages (32-bit on 32-bit systems, and 64-bit on 64-bit systems), you can access the `system32` directory directly. As soon as is practical, you should upgrade to 3.7.3 or later, and start using the `$system32` fact.
 * If you are using **Puppet 3.7.0 through 3.7.2** and are installing the 32-bit package on 64-bit systems, continue reading.
 
 ### Summary

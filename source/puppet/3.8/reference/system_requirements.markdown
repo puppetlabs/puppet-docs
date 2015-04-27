@@ -1,10 +1,10 @@
 ---
 layout: default
-title: "Puppet 3.7 System Requirements"
+title: "Puppet 3.8 System Requirements"
 canonical: "/puppet/latest/reference/system_requirements.html"
 ---
 
-> To install Puppet 3.7, see [the Puppet installation guide](/guides/install_puppet/pre_install.html).
+> To install Puppet 3.8, see [the Puppet installation guide](/guides/install_puppet/pre_install.html).
 
 Hardware
 -----
@@ -21,7 +21,7 @@ The demands on the Puppet master will vary widely between different deployments.
 Platforms With Packages
 -----
 
-Puppet 3.7 and all of its prerequisites will run on the following platforms, and Puppet Labs provides official packages in [our package repositories.](/guides/puppetlabs_package_repositories.html)
+Puppet 3.8 and all of its prerequisites will run on the following platforms, and Puppet Labs provides official packages in [our package repositories.](/guides/puppetlabs_package_repositories.html)
 
 ### Red Hat Enterprise Linux (and Derivatives)
 
@@ -70,7 +70,7 @@ Basic Requirements
 
 If you're installing Puppet via the official packages, you won't need to worry about these prerequisites; your system's package manager will handle all of them. These are only listed for those running Puppet from source or on unsupported systems.
 
-Puppet 3.7 has the following prerequisites:
+Puppet 3.8 has the following prerequisites:
 
 ### Ruby
 

@@ -8,8 +8,8 @@ title: "Directories: The Modulepath (Default Config)"
 [directory environments]: ./environments.html
 [env_modules]: ./environments.html#setting-up-environments-on-a-puppet-master
 [confdir]: ./dirs_confdir.html
-[basemodulepath_setting]: /references/3.7.latest/configuration.html#basemodulepath
-[modulepath_setting]: /references/3.7.latest/configuration.html#modulepath
+[basemodulepath_setting]: /references/3.8.latest/configuration.html#basemodulepath
+[modulepath_setting]: /references/3.8.latest/configuration.html#modulepath
 [environment config sections]: ./environments_classic.html#environment-config-sections
 [dynamic environments]: ./environments_classic.html#dynamic-environments
 [config_print]: ./config_print.html
@@ -69,11 +69,11 @@ Windows (PE and FOSS)     | `$confdir\modules`
 
 ### Examples of Default Modulepaths
 
-Default settings for a new installation of Puppet Enterprise 3.7 and higher:
+Default settings for a new installation of Puppet Enterprise 3.8 and higher:
 
 `/etc/puppetlabs/puppet/environments/production/modules:/opt/puppet/share/puppet/modules`
 
-Default settings for Puppet Enterprise 3.3 and lower or upgrades to Puppet Enterprise 3.7:
+Default settings for Puppet Enterprise 3.3 and lower or upgrades to Puppet Enterprise 3.8:
 
 `/etc/puppetlabs/puppet/modules:/opt/puppet/share/puppet/modules`
 

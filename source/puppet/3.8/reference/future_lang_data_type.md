@@ -11,7 +11,7 @@ canonical: "/puppet/latest/reference/future_lang_data_type.html"
 [selector expressions]: ./future_lang_conditional.html#selectors
 [match_operator]: ./future_lang_expressions.html#regex-or-data-type-match
 [strings]: ./future_lang_data_string.html
-[assert_type]: /references/3.7.latest/function.html#asserttype
+[assert_type]: /references/3.8.latest/function.html#asserttype
 [number]: ./future_lang_data_number.html
 [boolean]: ./future_lang_data_boolean.html
 [array]: ./future_lang_data_array.html

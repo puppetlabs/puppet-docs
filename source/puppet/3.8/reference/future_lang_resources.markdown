@@ -10,7 +10,7 @@ canonical: "/puppet/latest/reference/future_lang_resources.html"
 [scope]: ./future_lang_scope.html
 [report]: /guides/reporting.html
 [append_attributes]: ./future_lang_classes.html#appending-to-resource-attributes
-[types]: /references/3.7.latest/type.html
+[types]: /references/3.8.latest/type.html
 [string]: ./future_lang_data_string.html
 [array]: ./future_lang_data_array.html
 [datatype]: ./future_lang_data.html
@@ -118,7 +118,7 @@ If multiple classes require the same resource, you can use a [class][] or a [vir
 
 ### Relationships and Ordering
 
-[ordering]: /references/3.7.latest/configuration.html#ordering
+[ordering]: /references/3.8.latest/configuration.html#ordering
 
 By default, the order of resources in a manifest doesn't affect the order in which those resources will be applied. Puppet will apply _unrelated_ resources in a mostly random (but consistent between runs) order.
 
@@ -165,7 +165,7 @@ Some attributes in Puppet can be used with every resource type. These are called
 
 The most commonly used metaparameters are for specifying [order relationships][relationships] between resources.
 
-You can see the full list of all metaparameters in the [Metaparameter Reference](/references/3.7.latest/metaparameter.html).
+You can see the full list of all metaparameters in the [Metaparameter Reference](/references/3.8.latest/metaparameter.html).
 
 
 Condensed Forms
