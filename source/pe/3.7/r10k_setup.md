@@ -83,12 +83,15 @@ Both /etc/puppetlabs/r10k/r10k.yaml and /etc/r10k.yaml configuration files exist
 
 ###I Was Using r10k With Open Source Puppet and Just Upgraded to PE 3.8
 
-Puppet Enterprise automatically installs the current PE version of r10k. However, the default location for r10k.yaml has changed, so we recommend moving it to prevent future upgrade issues. To get r10k ready to go with your Puppet Enterprise upgrade:
+Puppet Enterprise automatically installs the current PE version of r10k. However, the default location for r10k.yaml has changed, so we recommend moving it to prevent future upgrade issues. 
+
+Note that you should have uninstalled your open source r10k gem before you upgraded to PE. If you did not specifically do so before, you can uninstall the open source r10k gem from the system gem location now.
+
+To get r10k ready to go with your Puppet Enterprise upgrade:
 
 1. Move your r10k.yaml file from the `/etc/` directory to the `/etc/puppetlabs/r10k` directory.
 2. Check that your specified [directory environments](environ_dir) in r10k.yaml are listed in puppet.conf.
-3. Uninstall r10k from your system gems. This will depend on your system, but running `gem uninstall r10k` should be sufficient.
-4. Delete or rename the r10k.yaml file in `/etc/` if it is still present. Otherwise, you will see the following error:
+3. Delete or rename the r10k.yaml file in `/etc/` if it is still present. Otherwise, you will see the following error:
 
 ~~~
 Both /etc/puppetlabs/r10k/r10k.yaml and /etc/r10k.yaml configuration files exist.,
