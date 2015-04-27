@@ -126,10 +126,12 @@ The policy is what ties all the Razor objects together and provisions a node whe
 
 1. Create a policy with the `create-policy` command. You can get more information about the various arguments to this command by running `razor help create-policy`.
 
-     	razor create-policy --name centos-for-small
-         --repo centos-6.6 --broker pe --tag small
-         --enabled --hostname "host${id}.example.com"
-         --root-password secret --max-count 20
+~~~
+razor create-policy --name centos-for-small
+    --repo centos-6.6 --broker pe --tag small
+    --enabled --hostname "host${id}.example.com"
+    --root-password secret --max-count 20
+~~~
 
  2. Check the details of the policy with `razor policies centos-for-small`
  and look at the table of policies with `razor policies`. The order of the

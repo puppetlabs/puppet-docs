@@ -273,8 +273,8 @@ stipulates that it should be applied to the first 20 nodes that match the
 ~~~
 razor create-policy --name centos-for-small
 	--repo centos-6.6 --broker pe --tag small
-    --enabled --hostname "host${id}.example.com"
-    --root-password secret --max-count 20
+	--enabled --hostname "host${id}.example.com"
+	--root-password secret --max-count 20
 ~~~
 
 **Policy Tables** You might create multiple policies, and then retrieve the
