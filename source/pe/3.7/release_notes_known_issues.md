@@ -284,7 +284,7 @@ When the classifier service encounters an environment that has code that will no
 
 To manually remove the deleted flag for an environment named "test" for example, in the command line, type:
 
-    su - pe-postgres -s /bin/bash -c "/opt/puppet/bin/psql -d 'pe-classifier' -c \"UPDATE environments SET deleted = 'f' WHERE name = 'test';\""
+    sudo su - pe-postgres -s /bin/bash -c "/opt/puppet/bin/psql -d 'pe-classifier' -c \"UPDATE environments SET deleted = 'f' WHERE name = 'test';\""
 
 ### Passenger `permission denied` Log entry
 
