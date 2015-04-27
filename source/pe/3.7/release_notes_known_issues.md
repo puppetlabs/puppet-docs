@@ -274,6 +274,10 @@ If you have both a PE user and a user group with the exact same name, PE will th
 
 When there are over 500 nodes pinned to a node group, a **Load All Nodes** button appears in the **Matching nodes** tab for that node group. Clicking the **Load All Nodes** button results in a 400 error.
 
+### Querying the Nodes Endpoint of the Classifier Service Can Exhaust Memory 
+
+If a large number of nodes is returned when querying the `v1/nodes` endpoint of the classifier service API, the pe-console-services process may exhaust the memory and return a 500 error. This can be resolved by pruning the node check-in data as documented in [Configuring & Tuning Node Classifier](./config_nc.html).
+
 ### Passenger `permission denied` Log entry
 
 At application startup for Dashboard, Passenger logs a "permission denied" message to the Apache error log concerning the passenger-config executable. This log message only appears once, at application startup, is not repeated, and appears to be cosmetic. The dashboard starts and functions properly.
