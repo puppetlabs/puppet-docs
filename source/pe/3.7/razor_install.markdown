@@ -63,7 +63,7 @@ If you don't have access to the internet or would like to pull the PE tarball fr
 
 3. Also in the **pe_razor** class area, add the `microkernel_url` parameter, and in the **Value** box, add the URL for the microkernel. The URL might be to your own FTP site. Or, you can copy the microkernel onto the Razor server and then use, `file:///path/to/microkernel.tar` for the URL.
 
-	The microkernel is called [razor-microkernel-latest.tar](http://links.puppetlabs.com/razor-microkernel-latest.tar).
+	The microkernel is called [razor-microkernel-latest.tar](https://pm.puppetlabs.com/puppet-enterprise-razor-microkernel-3.8.0.tar).
 
 4. Commit your changes.
 
@@ -120,7 +120,7 @@ The Razor client is installed as a Ruby gem.
 
 1. Install the client:
 
-		gem install pe-razor-client
+		gem install pe-razor-client --version 1.0.0
 
 2. You can verify that the Razor client is installed by printing Razor help:
 
