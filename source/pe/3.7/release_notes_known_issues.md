@@ -286,6 +286,10 @@ To manually remove the deleted flag for an environment named "test" for example,
 
     sudo su - pe-postgres -s /bin/bash -c "/opt/puppet/bin/psql -d 'pe-classifier' -c \"UPDATE environments SET deleted = 'f' WHERE name = 'test';\""
 
+### User Login is Invalid When Less Than Three Characters
+
+The PE RBAC service will not allow you to add a user login that is less than three characters long.
+
 ### Passenger `permission denied` Log entry
 
 At application startup for Dashboard, Passenger logs a "permission denied" message to the Apache error log concerning the passenger-config executable. This log message only appears once, at application startup, is not repeated, and appears to be cosmetic. The dashboard starts and functions properly.
