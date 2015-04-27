@@ -9,9 +9,69 @@ This page contains information about security fixes in Puppet Enterprise (PE) 3.
 
 For more information about this release, also see the [Known Issues](./release_notes_known_issues.html) and [New Features](./release_notes.html).
 
-## Puppet Enterprise 3.8 (??/04/15)
+## Puppet Enterprise 3.8 (28/04/15)
 
 ### Security Fixes
+
+#### CWE - Cross-Frame Scripting (XFS) Vulnerability
+
+Posted April 28, 2015
+
+Some endpoints in the Puppet Enterprise Console are potentially susceptible to Cross-Frame Scripting (XFS) attacks. An exploit would require coercion of a PE user into navigating to an attacker-controlled web page that loaded the Puppet Enterprise console in an HTML frame.
+
+This issue affected PE 3.7.x. It's resolved in PE 3.8.0.
+
+#### OpenSSL March 2015 Security Fixes
+
+Posted April 28, 2015
+
+On March 19, the OpenSSL project announced several security vulnerabilities in OpenSSL. Puppet Enterprise versions prior to 3.8.0 contained vulnerable versions of OpenSSL. Puppet Enterprise 3.8.0 contains updated versions of OpenSSL that have patched the vulnerabilities.
+
+For more information about the OpenSSL vulnerabilities, refer to the [OpenSSL security announcement](https://www.openssl.org/news/secadv_20150319.txt).
+
+These issues affected PE 2.x and 3.x. They're resolved in PE 3.8.0.
+
+#### Oracle Java April 2015 Security Fixes
+
+Posted April 28, 2015
+
+On April 14th, Oracle announced several security vulnerabilities in Java. Puppet Enterprise versions prior to 3.8.0 contained a vulnerable version of Java. Puppet Enterprise 3.8.0 contains an updated version of Java that has patched the vulnerabilities.
+
+For more information about the Java vulnerabilities, refer to the [Oracle security announcement](http://www.oracle.com/technetwork/topics/security/cpuapr2015-2365600.html).
+
+These issues affected PE 3.x. They're resolved in PE 3.8.0.
+
+#### PostgreSQL February 2015 Security Fixes
+
+Posted April 28, 2015
+
+On February 5th, the PostgreSQL project announced several security vulnerabilities in PostgreSQL. The impact of these vulnerabilities includes information leakage, denial of service, SQL injection, and possible privilege escalation. However, all of the vulnerabilities require prior database authentication.
+
+Puppet Enterprise versions prior to 3.8.0 contained a vulnerable version of PostgreSQL. Puppet Enterprise 3.8.0 contains an updated version of PostgreSQL that has patched the vulnerabilities.
+
+For more information on the PostgreSQL vulnerabilities, please see the [PostgreSQL announcement](http://www.postgresql.org/about/news/1569/).
+
+These issues affected PE 3.x. They're resolved in PE 3.8.0.
+
+#### CVE - Ruby OpenSSL Hostname Verification
+
+Posted April 28, 2015
+
+Vulnerabilities in Ruby’s OpenSSL extension allow overly permissive matching of hostnames, particularly when using wildcard SSL certificates.
+
+Puppet Enterprise does not generate wildcard SSL certificates by default. However, if a PE infrastructure has been configured with wildcard SSL certificates, it could theoretically be vulnerable to man-in-the-middle attacks.
+
+For more information on the vulnerability, please see the [Ruby project’s annoucement](https://www.ruby-lang.org/en/news/2015/04/13/ruby-openssl-hostname-matching-vulnerability/).
+
+These issues affected PE 3.x and Puppet-Agent 1.0. They're resolved in PE 3.8.0.
+
+#### CVE - LibYAML vulnerability could allow denial of service
+
+Posted April 28, 2015
+
+A flaw in the LibYAML library’s parsing of wrapped strings could allow an attacker to cause a denial of service by loading a specially crafted YAML document.
+
+This issue affected PE 3.x. It's resolved in PE 3.8.0
 
 ### Bug Fixes
 
