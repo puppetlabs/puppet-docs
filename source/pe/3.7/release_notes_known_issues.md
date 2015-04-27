@@ -272,6 +272,10 @@ Upgrades to this version of PE may affect deployments that use a custom console 
 
 In addition, the document [Configuring the Puppet Enterprise Console to Use a Custom SSL Certificate](./custom_console_cert.html) does not work for this version of PE. This document, as well as custom console cert functionality, will be fixed in PE 3.8.0.
 
+### Error When a PE User and User Group Have the Same Name
+
+If you have both a PE user and a user group with the exact same name, PE will throw an error when you perform a search that matches both of these entries.
+
 ### Console Session Timeout Issue
 
 The default session timeout for the PE console is 30 minutes. However, due to an issue that has not yet been resolved, console users will be logged out after thirty minutes even if they are currently active.
