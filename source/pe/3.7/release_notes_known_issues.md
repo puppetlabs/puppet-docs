@@ -288,6 +288,10 @@ To manually remove the deleted flag for an environment named "test" for example,
 
     su - pe-postgres -s /bin/bash -c "/opt/puppet/bin/psql -d 'pe-classifier' -c \"UPDATE environments SET deleted = 'f' WHERE name = 'test';\""
 
+### User Login is Invalid When Less Than Three Characters
+
+The PE RBAC service will not allow you to add a user login that is less than three characters long.
+
 ### Console Session Timeout Issue
 
 The default session timeout for the PE console is 30 minutes. However, due to an issue that has not yet been resolved, console users will be logged out after thirty minutes even if they are currently active.
