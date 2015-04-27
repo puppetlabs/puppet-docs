@@ -45,6 +45,10 @@ If you'll be using Puppet code you did **NOT** create with the Puppet 4 language
 
 ## Improvements in PE 3.8.0
 
+### PE 3.8 Tagmail Users Should Use the puppetlabs-tagmail Module
+
+If you want to use tagmail in PE 3.8, you need the [puppetlabs-tagmail module](https://forge.puppetlabs.com/puppetlabs/tagmail), available from the Puppet Forge. Puppet 3.8 still includes `tagmail.conf`, but PE users should refer to the module, as the built-in tagmail feature will be completely removed in a future release. 
+
 ### String Interpolation in the PE Console
 
 In prior PE versions, you could only enter literal values for parameters and variables in the console.
