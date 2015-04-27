@@ -24,7 +24,7 @@ After you edit the Puppetfile, you can perform Puppetfile operations from the co
 
 ##Editing your Puppetfile
 
-You'll need to create a text file called Puppetfile. In this file, you'll list the modules you want r10k to manage by using the **`mod`** setting. Optionally, you can also change the directory in which r10k installs your modules.
+You'll need to create a text file called Puppetfile. (Note that the name of this file **must** begin with an uppercase "P".) In this file, you'll list the modules you want r10k to manage by using the **`mod`** setting. Optionally, you can also change the directory in which r10k installs your modules.
 
 ###Declaring modules in your Puppetfile
 

@@ -17,35 +17,35 @@ The following subcommands are available with `r10k`:
 
 * [`deploy`](#deploy): Performs operations on environments.
 * `help`: Generates help page for r10k.
-* [`puppetfile`](#puppetfile): Perform operations on a Puppetfile.
+* [`puppetfile`](#puppetfile): Performs operations on a Puppetfile.
 * `version` Prints the version of r10k you are using.
 
 ##First-level subcommand options
 
 Each subcommand allows the following options:
 
-* `--color`: Enable colored log messages.
-* `-h`, `--help`: Show help for this command.
-* `-t`, `--trace`: Display stack traces on application crash.
-* `-v`, `--verbose`: Set log verbosity. Valid values: fatal, error, warn, notice, info, debug, debug1, debug2.
+* `--color`: Enables colored log messages.
+* `-h`, `--help`: Shows help for this command.
+* `-t`, `--trace`: Displays stack traces on application crash.
+* `-v`, `--verbose`: Sets log verbosity. Valid values: fatal, error, warn, notice, info, debug, debug1, debug2.
  
  
 ###`deploy`
 
 The `r10k deploy` command accepts the following subcommands:
 
-* `display`: Display a list of environments in your deployment.
+* `display`: Displays a list of environments in your deployment.
   * To display a list of modules in the Puppetfile, add the `-p` flag to the command.
   * To display detailed information, add `--detail` to the command.
-* `environment`: Deploy environments and their dependent modules. 
+* `environment`: Deploys environments and their dependent modules. 
   * To update modules specified in the environment's Puppetfile, add the `-p` flag to the command.
-* `module`: Deploy a module in all environments.
+* `module`: Deploys a module in all environments.
   * To update the modules in the environment, add the `-e` flag to the command.
 
 ###`puppetfile`
 
 The `r10k puppetfile` command accepts the following subcommands:
 
-* `check`: Verify the Puppetfile syntax is correct.
-* `install`: Install all modules from a Puppetfile.
-* `purge`: Purge unmanaged modules from a Puppetfile managed directory.
+* `check`: Verifies the Puppetfile syntax is correct.
+* `install`: Installs all modules from a Puppetfile.
+* `purge`: Purges unmanaged modules from a Puppetfile managed directory.
