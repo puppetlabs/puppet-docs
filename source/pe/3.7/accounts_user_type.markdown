@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.8 » Accounts Module » The pe_accounts::user Type"
+title: "PE 3.7 » Accounts Module » The pe_accounts::user Type"
 subtitle: "The pe_accounts::user Type"
 canonical: "/pe/latest/accounts_user_type.html"
 ---

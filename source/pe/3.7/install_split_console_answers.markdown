@@ -1,21 +1,21 @@
 ---
 layout: default
-title: "PE 3.8 » Installing » Installing Split Console Answer File"
+title: "PE 3.7 » Installing » Installing Split Console Answer File"
 subtitle: "Split Puppet Enterprise Install, Console Answer File Reference"
 canonical: "/pe/latest/install_split_console_answers.html"
 ---
 
-The following example answers can be used to perform an automated split installation of PE on the node assigned to the console component.
+The following example answers can be used to perform an automated split installation of PE on the node assigned to the console component. 
 
 A .txt file version can be found in the `answers` directory of the PE installer tarball.
 
-See [Installing with an answer file](./install_automated.html) for more details. In addition, [the Complete Answer File Reference](./install_complete_answer_file_reference.html) contains all answers that you can use to install PE.
+See the [Answer File Overview](./install_answer_file_reference.html) and [Installing with an answer file](./install_automated.html) for more details. In addition, [the Complete Answer File Reference](./install_complete_answer_file_reference.html) contains all answers that you can use to install PE.
 
 >**Warning**: If you're performing a split installation of PE using an answer file, install the components in the following order:
 >
 > 1. Puppet master
 > 2. Puppet DB and database support (which includes the console database)
-> 3. The PE console
+> 3. The PE console 
 
 ### Global Answers
 
@@ -50,9 +50,6 @@ These answers are always needed.
 `q_puppet_cloud_install=n`
 : **Y** or **N** --- Whether to install the cloud provisioner component.
 
-`q_enable_future_parser`
-: **Y or N** --- Whether or not to enable the Puppet 4 language parser. This is recommended for all **NEW** Puppet users. **DO NOT** enable this feature if you'll be using Puppet code you did **NOT** create with the Puppet 4 language parser.
-
 ### Additional Component Answers
 
 These answers are optional.
@@ -78,8 +75,8 @@ These answers are always needed.
 ### Puppet Master Answers
 These answers are generally needed if you are installing the Puppet master component.
 
-`q_disable_live_manangement=y`
-: **Y** or **N** --- Whether to disable or enable live management in the console. Note that you need to manually add this question to your answer to file before an installation or upgrade. In fresh installs of PE 3.8.0, Live Management is disabled by default.
+`q_disable_live_manangement=n`
+: **Y** or **N** --- Whether to disable or enable live management in the console. Note that you need to manually add this question to your answer to file before an installation or upgrade.
 
 `q_pe_database=y`
 : **Y** or **N** --- Whether to have the PostgreSQL server for the console managed by PE or to manage it yourself. Set to "Y" if you're using PE-managed PostgreSQL.
@@ -93,7 +90,7 @@ These answers are generally needed if you are installing the Puppet master compo
 `q_puppet_enterpriseconsole_database_name=console`
 : **String** --- The database the console will use. Note that if you are not installing the database support component, this database must already exist on the PostgreSQL server.
 
-`q_puppet_enterpriseconsole_database_user=console`
+`q_puppet_enterpriseconsole_database_user=console` 
 : **String** --- The PostgreSQL user the console will use. Note that if you are not installing the database support component, this user must already exist on the PostgreSQL server and must be able to edit the console’s database.
 
 `q_puppet_enterpriseconsole_database_password=<your password>`

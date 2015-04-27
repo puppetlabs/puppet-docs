@@ -1,20 +1,18 @@
 ---
 layout: default
-title: "PE 3.8 » Puppet Core » Configuring"
+title: "PE 3.7 » Puppet Core » Configuring"
 subtitle: "Configuring Puppet Core"
 canonical: "/pe/latest/puppet_config.html"
 ---
 
 ### Configuration Files
 
-All of puppet's configuration files can be found in `/etc/puppetlabs/puppet/` on *nix systems. This is PE's default `$confdir`. **Do not change this `$confdir` location,** as doing so will will break the functionality of your PE infrastructure.
-
-On Windows, you can find them in [Puppet's data directory](/guides/install_puppet/install_windows.html#data-directory).
+All of puppet's configuration files can be found in `/etc/puppetlabs/puppet/` on *nix systems. On Windows, you can find them in [Puppet's data directory](/guides/install_puppet/install_windows.html#data-directory).
 
 ### References
 
 - For an exhaustive description of puppet's configuration settings and auxiliary configuration files, refer to the [Configuring Puppet Guide](/guides/configuring.html).
-- For details, syntax and options for the available configuration settings, visit the [configuration reference](/references/3.8.latest/configuration.html).
+- For details, syntax and options for the available configuration settings, visit the [configuration reference](/references/3.7.latest/configuration.html).
 - For details on how to configure access to Puppet's pseudo-RESTful HTTP API, refer to the [Access Control Guide](/guides/rest_auth_conf.html).
 
     > **Note:** If you haven't modified the `auth.conf` file, it may occasionally be modified when upgrading between Puppet Enterprise versions. However, if you HAVE modified it, the upgrader will not automatically overwrite your changes, and you may need to manually update `auth.conf` to accomodate new Puppet Enterprise features. Be sure to read the upgrade notes when upgrading your Puppet master to new versions of PE.
@@ -48,7 +46,7 @@ There are two methods to disable update checking (e.g. if your company policy fo
 * If your platform uses systemd, you can disable updates by creating the following file:
 
     `/etc/puppetlabs/puppetserver/opt-out`
-
+    
   As long as this file is present, Puppet Server will not check in for updates. (Note that this method will work on all platforms, not just those using systemd.)
 
 

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.8 » Installing » System Requirements"
+title: "PE 3.7 » Installing » System Requirements"
 subtitle: "System Requirements and Pre-Installation"
 canonical: "/pe/latest/install_system_requirements.html"
 ---
@@ -18,7 +18,7 @@ Before installing Puppet Enterprise:
 
 ## Operating System
 
-Puppet Enterprise 3.8 supports the following operating systems:
+Puppet Enterprise 3.7 supports the following operating systems:
 
 Operating system             | Version(s)                              | Arch          | Component(s)
 -----------------------------|-----------------------------------------|---------------|----------------------------
@@ -27,7 +27,7 @@ CentOS                       | 4, 5, 6, 7                                 | x86 
 Ubuntu LTS                   | 10.04, 12.04, 14.04                           | i386 & amd64  | all
 Debian                       | Squeeze (6), Wheezy (7)                | i386 & amd64  | all
 Oracle Linux                 | 4, 5, 6, 7                                   | x86 & x86\_64 | all (Oracle Linux 4 supports agent only)
-Scientific Linux             | 4, 5, 6, 7                                   | x86 & x86\_64 | all (Scientific Linux 4 supports agent only)
+Scientific Linux             | 4, 5, 6                                   | x86 & x86\_64 | all (Scientific Linux 4 supports agent only)
 SUSE Linux Enterprise Server | 10 (SP4 only), 11 (SP1 and later), 12                      | x86 & x86\_64 (10 also i386; 12 x86\_64 only) | all (SLES 10 supports agent only)
 Solaris                      | 10 (Update 9 or later), 11          | SPARC & i386   | agent
 Microsoft Windows            | 2008, 2008R2, 7 Ultimate SP1, 8 Pro, 8.1 Pro, 2012, 2012R2| x86 & x64 | agent
@@ -35,33 +35,28 @@ Microsoft Windows            | 2003, 2003R2                            | x86    
 AIX                          | 5.3, 6.1, 7.1                         | Power         | agent
 Mac OS X                     | Mavericks (10.9)                        | x86_64         | agent
 
->**PE Core Component Deprecations**: The following platforms are deprecated for core PE components (the Puppet master, PE console, and PuppetDB) in PE 3.8, and will be removed in future versions of PE:
+
+>**Note**: Some operating systems require an active subscription with the vendor's package management system to install dependencies, such as Red Hat Network.
+
+>**Note**: In addition, upgrading your OS while PE is installed can cause problems with PE. To perform an OS upgrade, you’ll need to uninstall PE, perform the OS upgrade, and then reinstall PE as follows:
 >
->* All 32-bit versions
->* All Debian versions
->* EL 5 (RHEL, CentOS, Scientific, Oracle)
->* Ubuntu 10.4
+>1. [Back up](./maintain_backup_restore.html#back-up-your-database-and-puppet-enterprise-files) your databases and other PE files.
 >
-> See the release notes for a [detailed list](./release_notes.html#some-platforms-are-deprecated-for-core-pe-components) of deprecated platforms.
-
->**Note**: Some operating systems require an active subscription with the vendor's package management system (e.g., the Red Hat Network) to install dependencies.
-
-### About OS Upgrades
-
-Upgrading your OS while PE is installed can cause problems with PE. To perform an OS upgrade, you’ll need to:
-
-1. [Back up](./maintain_backup_restore.html#back-up-your-database-and-puppet-enterprise-files) your databases and other PE files.
-2. Perform a complete [uninstall](./install_uninstalling.html) (including the -p -d uninstaller option).
-3. Upgrade your OS.
-4. [Install PE](/pe/latest/install_basic.html).
-5. [Restore](./maintain_backup_restore.html#restore-your-database-and-puppet-enterprise-files) your backup.
+>2. Perform a complete [uninstall](./install_uninstalling.html) (including the -p -d uninstaller option).
+>
+>3. Upgrade your OS.
+>
+>4. [Install PE](/pe/latest/install_basic.html).
+>
+>5. [Restore](./maintain_backup_restore.html#restore-your-database-and-puppet-enterprise-files) your backup.
 
 ## Network Devices
 
-Puppet Enterprise supports running Puppet agents on the following networking devices/operating systems:
 
-- **Arista EOS**: Refer the [aristanetworks/netdev_stdlib_eos module](https://forge.puppetlabs.com/aristanetworks/netdev_stdlib_eos#limitations) on the Puppet Forge for system requirements and dependencies.
-- **Cumulus Linux**: Refer to the [Cumulus Linux page](https://forge.puppetlabs.com/cumuluslinux/) on the Puppet Forge for system requirements and dependencies.
+Puppet Enterprise 3.7 supports running Puppet agents on the following networking devices/operating systems:
+
+- Arista EOS. Refer the [aristanetworks/netdev_stdlib_eos module](https://forge.puppetlabs.com/aristanetworks/netdev_stdlib_eos#limitations) on the Puppet Forge for system requirements and dependencies.
+
 
 
 ## Hardware Requirements
@@ -75,7 +70,7 @@ An evaluation environment is run on a monolithic installation and is suitable fo
 - A 4-core server with 6 GB of RAM
 - At least 100 GB of free storage in `/opt` for PuppetDB
 
-We strongly recommend that users on systems with 4 GB of RAM upgrading or migrating to PE 3.8 upgrade to 6 GB of RAM before attempting to upgrade or migrate their PE installation.
+We strongly recommend that users on systems with 4 GB of RAM upgrading or migrating to PE 3.7 from PE 3.3 or earlier upgrade to 6 GB of RAM before attempting to upgrade or migrate their PE installation.
 
 ### Small Environment
 
@@ -84,7 +79,7 @@ A small environment is run on a monolithic installation and is suitable for runn
 - 4-core server with 16 GB of RAM
   - Amazon EC2 m3.xlarge instance is adequate for this environment
 - At least 100 GB of free space in `/opt` for PuppetDB
-- At least 4 GB of free space in `/var`
+- At least 4 GB of free space in `/var` 
 
 ### Medium Environment
 
@@ -284,11 +279,7 @@ Configure your firewalls to accommodate Puppet Enterprise's network traffic.
 </table>
 
 
-> **Notes about Ports**
->
->- For split and mono installs: If you are installing PE using the web-based installer, ensure port **3000** is open. You can close this port when the installation is complete. If necessary, instructions for port forwarding to the web-based installer are available in the installation instructions.
->
->- Razor uses port 8150 for HTTP and 8151 for HTTPS. Any node classified as a Razor server must be able to use these ports.
+> Note: For split and mono installs: If you are installing PE using the web-based installer, ensure port **3000** is open. You can close this port when the installation is complete. If necessary, instructions for port forwarding to the web-based installer are available in the installation instructions.
 
 #### For Large Environment Installations
 
@@ -310,30 +301,30 @@ OpenSSL is a dependency required for PE. For Solaris 10 and all versions of RHEL
 
 ### Centos
 
- &nbsp;      | All Nodes | Master Nodes | Console Nodes | Console/Console DB Nodes
--------------|:---------:|:------------:|:-------------:|:------------------------:
-pciutils     | x         |              |               |
-system-logos | x         |              |               |
-which        | x         |              |               |
-libxml2      | x         |              |               |
-dmidecode    | x         |              |               |
-net-tools    | x         |              |               |
-virt-what    | x         |              |               |
-apr    		 |           | x            | x             |
-apr-util     |           | x            | x             |
-curl         |           | x            | x             |
-mailcap      |           | x            | x             |
-libjpeg      |           | x            |               | x
-libtool-ltdl |           | x            | x             |
-unixODBC     |           | x            | x             |
-libxslt      |           |              |               |
-zlib         | x         |              |               |
+ &nbsp;      | All Nodes | Master Nodes | Console Nodes | Console/Console DB Nodes | Cloud Provisioner Nodes
+-------------|:---------:|:------------:|:-------------:|:------------------------:|:----------------------:
+pciutils     | x         |              |               |                          |
+system-logos | x         |              |               |                          |
+which        | x         |              |               |                          |
+libxml2      | x         |              |               |                          |
+dmidecode    | x         |              |               |                          |
+net-tools    | x         |              |               |                          |
+virt-what    | x         |              |               |                          |
+apr    		 |           | x            | x             |                          |
+apr-util     |           | x            | x             |                          |
+curl         |           | x            | x             |                          |
+mailcap      |           | x            | x             |                          |
+libjpeg      |           | x            |               | x                        |
+libtool-ltdl |           | x            | x             |                          |
+unixODBC     |           | x            | x             |                          |
+libxslt      |           |              |               |                          | x
+zlib         | x         |              |               |                          |
 
 
 ### RHEL
 
- &nbsp;      | All Nodes | Master Nodes | Console Nodes | Console/Console DB Nodes |
--------------|:---------:|:------------:|:-------------:|:------------------------:|
+ &nbsp;      | All Nodes | Master Nodes | Console Nodes | Console/Console DB Nodes | Cloud Provisioner Nodes
+-------------|:---------:|:------------:|:-------------:|:------------------------:|:----------------------:
 pciutils     | x         |              |               |                          |
 system-logos | x         |              |               |                          |
 which        | x         |              |               |                          |
@@ -351,14 +342,14 @@ mailcap      |           | x            | x             |                       
 libjpeg      |           | x            |               | x                        |
 libtool-ltdl (RHEL 7) |  | x            | x             |                          |
 unixODBC (RHEL 7) |      | x            | x             |                          |
-libxslt      |           |              |               |                          |
+libxslt      |           |              |               |                          | x
 zlib         | x         |              |               |                          |
 
 
 ### SLES
 
- &nbsp;      | All Nodes | Master Nodes | Console Nodes | Console/Console DB Nodes |
--------------|:---------:|:------------:|:-------------:|:------------------------:|
+ &nbsp;      | All Nodes | Master Nodes | Console Nodes | Console/Console DB Nodes | Cloud Provisioner Nodes
+-------------|:---------:|:------------:|:-------------:|:------------------------:|:----------------------:
 pciutils     | x         |              |               |                          |
 pmtools      | x         |              |               |                          |
 cron         | x         |              |               |                          |
@@ -376,8 +367,8 @@ zlib         | x         |              |               |                       
 
 ### Debian
 
- &nbsp;      | All Nodes | Master Nodes | Console Nodes | Console/Console DB Nodes |
--------------|:---------:|:------------:|:-------------:|:------------------------:|
+ &nbsp;      | All Nodes | Master Nodes | Console Nodes | Console/Console DB Nodes | Cloud Provisioner Nodes
+-------------|:---------:|:------------:|:-------------:|:------------------------:|:----------------------:
 pciutils     | x         |              |               |                          |
 dmidecode    | x         |              |               |                          |
 cron         | x         |              |               |                          |
@@ -401,15 +392,15 @@ libjpeg62    |           | x            |               | x                     
 libcurl3 (Debian 7) |    | x            | x             |                          |
 libxml2-dev (Debian 7) | | x            | x             | x                        |
 locales-all (Debian 7) | |              |               | x                        |
-libxslt1.1   |           |              |               |                          |
+libxslt1.1   |           |              |               |                          | x
 zlib         | x         |              |               |                          |
 
 
 ### Ubuntu
 
 
- &nbsp;      | All Nodes | Master Nodes | Console Nodes | Console/Console DB Nodes |
--------------|:---------:|:------------:|:-------------:|:------------------------:|
+ &nbsp;      | All Nodes | Master Nodes | Console Nodes | Console/Console DB Nodes | Cloud Provisioner Nodes
+-------------|:---------:|:------------:|:-------------:|:------------------------:|:----------------------:
 pciutils     | x         |              |               |                          |
 dmidecode    | x         |              |               |                          |
 cron         | x         |              |               |                          |
@@ -430,7 +421,7 @@ libaprutil1  |           | x            | x             |                       
 libaprutil1-dbd-sqlite3 | | x           | x             |                          |
 libaprutil1-ldap |       | x            | x             |                          |
 libjpeg62    |           | x            |               | x                        |
-libxslt1.1   |           |              |               |                          |
+libxslt1.1   |           |              |               |                          | x
 libgtk2.0-0  |           | x            | x             | x                        |
 ca-certificates-java |   | x            | x             | x                        |
 openjdk-7-jre-headless* | | x            | x             | x                        |

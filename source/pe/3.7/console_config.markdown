@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.8 » Configuration"
+title: "PE 3.7 » Configuration"
 subtitle: "Configuring & Tuning the Console & Databases"
 canonical: "/pe/latest/console_config.html"
 ---
@@ -27,33 +27,20 @@ Then restart pe-console-services (`sudo service pe-console-services restart`).
 
 ### Tuning `max threads` on the PE Console and Console API
 
-This command sets the maximum number of threads assigned to respond to HTTP and HTTPS requests, effectively changing how many concurrent requests can be made to the PE console server and console API at one time. This setting should be increased to 150 max threads for nodes where `$::processorcount` is greater than 32.
+This sets the maximum number of threads assigned to respond to HTTP and HTTPS requests, effectively changing how many concurrent requests can be made to the PE console server and console API at one time. The default setting is 100 max threads. This should be increased to 150 max threads for nodes where `$::processorcount` is greater than 32.
 
 To increase the max threads for the PE console and console API, edit your default Hiera `.yaml` file with the following code:
 
      puppet_enterprise::profile::console::console_services_config::tk_jetty_max_threads_api: <number of threads>
      puppet_enterprise::profile::console::console_services_config::tk_jetty_max_threads_console: <number of threads>
 
-### Tuning Java Args for the PE Console
+> **Note**: This setting is only available in PE 3.7.2 and later.
 
+### Tuning Java Args for the PE Console
+ 
 You can increase the JVM (Java Virtual Machine) memory that is allocated to Java services running on the PE console. This memory allocation is known as the Java heap size.
 
-Instructions for using the PE console to increase the Jave heap size are detailed on on the [Configuring Java Arguments for PE](/config_java_args.html#pe-console-service) page.
-
-### Tuning the Classifier Synchronization Period
-
-This synchronization period controls how long it takes the node classifier (NC) to retrieve classes from the Puppet master, which essentially dictates how soon you can see your changes appear in the NC. By default this value is set to 600 seconds (10 minutes). Depending on the size of your environment(s), this may or may not be a suitable amount of time.
-
-You can change this value in the PE console.
-
-1. In the PE console, navigate to the **Classification** page.
-2. Click the **PE Console** group.
-3. In the **PE Console** group page, click the **Classes** tab.
-4. Locate the **puppet_enterprise::profile::console** class, and from the **Parameter** drop-down list, select **classifier_synchronization_period**.
-5. In the **Value** field, adjust the period, in seconds.
-6. Click **Add parameter**, and then the **Commit change** button.
-
-You can also force the NC to retrieve classes from the master immediately, by clicking the **Refresh** button.
+Instructions for using the PE console to increase the Jave heap size are detailed on on the [Configuring Java Arguments for PE](/config_java_args.html#pe-console-service) page. 
 
 ## Tuning the PostgreSQL Buffer Pool Size
 
@@ -70,12 +57,12 @@ The PE console uses a [`delayed_job`](https://github.com/collectiveidea/delayed_
 
 You can increase the number of workers by editing a class in the **PE Console** group.
 
-1. In the PE console, navigate to the **Classification** page.
+1. In the PE console, navigate to the **Classification** page. 
 2. Click the **PE Console** group.
-3. In the **PE Console** group page, click the **Classes** tab.
-4. Locate the **puppet_enterprise::profile::console** class, and from the **Parameter** drop-down list, select **delayed_job_workers**.
-5. In the **Value** field, enter 2.
-6. Click **Add parameter**, and then the **Commit change** button.
+3. In the **PE Console** group page, click the **Classes** tab. 
+4. Locate the **puppet_enterprise::profile::console** class, and from the **Parameter** drop-down list, select **delayed_job_workers**. 
+5. In the **Value** field, enter 2. 
+6. Click **Add parameter**, and then the **Commit change** button. 
 
 
 ## Changing the Console's Port
@@ -103,26 +90,6 @@ If you wish to disable update checks (e.g. if your company policy forbids transm
     q_pe_check_for_updates=n
 
 Keep in mind that if you delete the `/etc/puppetlabs/installer/answers.install` file, update checking will resume.
-
-Fine Tuning Live Management Node Discovery
------
-
-If you're running live management on a network that's slow or has intermittent connectivity issues, you might need to tweak the timeouts for node discovery.
-
-The following steps provide an example of configuring `LM_DISCOVERY_TIMEOUT`:
-
-1. Configure the `datadir` hiera.yaml to point to a folder, such as `hieradata`:
-
-		:datadir: '/etc/puppetlabs/puppet/hieradata'
-
-2. Add a global.yaml file to the folder you created (`/etc/puppetlabs/puppet/hieradata`), and add these lines to increase the timeout time from 4 to 45 seconds and to increase the number of retries from 3 to 10:
-
-		---
-		puppet_enterprise::console::lm_discovery_timeout: 45
-		puppet_enterprise::console::lm_inventory_retries: 10
-
->**Note**: You might have to restart `pe-puppetserver` for these changes to take effect.
-
 
 
 * * *

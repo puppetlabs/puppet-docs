@@ -1,5 +1,5 @@
 ---
-title: "PE 3.8 » RBAC Service 1.0 >> User APIs"
+title: "PE 3.7 » RBAC Service 1.0 >> User APIs"
 layout: default
 subtitle: "User APIs"
 canonical: "/pe/latest/rbac_users.html"
@@ -193,7 +193,7 @@ Local user:
 Remote user:
 
         {"id": "3271fde0-588a-11e4-8ed6-0800200c9a66",
-         "login": "thomas",
+         "login": "thoma",
          "email": "thomas@example.com",
          "display_name": "Thomas Davenport",
          **"role_ids": [4, 1],**
@@ -212,14 +212,3 @@ Remote user:
 
 The request should return the user object with the changes made.
 
-### DELETE /users/:sid
-
-Deletes the user with the specified ID, regardless of whether they are a user defined in RBAC or a user defined by the Directory Service. If they are from the Directory Service, while this will remove them from the UI, they will still be able to log in again if they are not revoked (at which point they will be re-added to the UI). Web session authentication required.
-
-**Note:** The `admin` user and the `api_user` cannot be deleted.
-
-**Returns:**
-
-* **204 No Content** The user was successfully deleted.
-* **403 Forbidden** The user does not have the `users:edit` permission for this user.
-* **404 Not Found** A user with the given identifier does not exist.

@@ -1,13 +1,13 @@
 ---
 layout: default
-title: "PE 3.8 » Installing » Components, Logs, and License Files"
+title: "PE 3.7 » Installing » Components, Logs, and License Files"
 subtitle: "Components, Logs, and License Files: What Gets Installed and Where?"
 canonical: "/pe/latest/install_what_and_where.html"
 ---
 
 
 
-## License File
+### License File
 
 Your PE license file (which was emailed to you when you purchased Puppet Enterprise) should be placed in `/etc/puppetlabs/license.key`.
 
@@ -15,42 +15,33 @@ Puppet Enterprise can be evaluated with a complementary ten-node license; beyond
 
 To purchase a license, please see the [Puppet Enterprise pricing page](http://www.puppetlabs.com/puppet/how-to-buy/), or contact Puppet Labs at <sales@puppetlabs.com> or (877) 575-9775. For more information on licensing terms, please see [the licensing FAQ](http://www.puppetlabs.com/licensing-faq/). If you have misplaced or never received your license key, please contact <sales@puppetlabs.com>.
 
-### License Files in the Console
+####License Files in the Console
 
 The **licenses** menu shows you the number of nodes that are currently active and the number of nodes still available on your current license. If the number of available licenses is exceeded, a warning will be displayed. The number of licenses used is determined by the number of active nodes known to Puppetdb. This is a change from previous behavior which used the number of unrevoked certs known by the CA to determine used licenses. The menu item provides convenient links to purchase and pricing information.
 
 Unused nodes will be deactivated automatically after seven days with no activity (no new facts, catalog or reports), or you can use `puppet node deactivate` for immediate results. The console will cache license information for some time, so if you have made changes to your license file (e.g. adding or renewing licenses), the changes may not show for up to 24 hours. You can restart the `pe-memcached` service in order to update the license display sooner.
 
-## PE Enterprise Software Components
+### Software
 
-### What 
+#### What
 
-All functional components of PE, excluding configuration files. You are not likely to need to change these components. PE 3.8 includes the following major software components:
+All functional components of PE, excluding configuration files. You are not likely to need to change these components. The following software components are installed:
 
- * Puppet 3.8.0
- * PuppetDB 2.3.2
- * Puppet Server 1.0.9
- * Facter 2.4.3
- * Razor 1.0.0
- * MCollective 2.7.0
- * ActiveMQ 5.9.1
- * Live Management: 1.3.1 (deprecated)
- * Hiera 1.3.4
- * Dashboard 2.1.6
- * PostgreSQL 9.2.10
- * Ruby 1.9.3
- * Augeas 1.3.0
- * Passenger 4.0.59
- * Java 1.7.0.79
- * OpenSSL 1.0.0r
+ * Puppet
+ * PuppetDB
+ * Facter
+ * MCollective
+ * Hiera
+ * Puppet Dashboard
+ * Puppet Server
 
-### Where
+#### Where
 
 On \*nix nodes, all PE software (excluding config files and generated data) is installed under `/opt/puppet`.
 
 On Windows nodes, all PE software is installed in the "Puppet Enterprise" subdirectory of [the standard 32-bit applications directory](./install_windows.html#program-directory)
 
-* Executable binaries on \*nix are in `/opt/puppet/bin` and `/opt/puppet/sbin`. The Installation Overview provides more info about [PE binaries and symlinks](./install_basic.html#puppet-enterprise-binaries-and-symlinks)
+* Executable binaries on \*nix are in `/opt/puppet/bin` and `/opt/puppet/sbin`.
 * The Puppet modules included with PE are installed on the Puppet master server in `/opt/puppet/share/puppet/modules`. Don't modify anything in this directory or add modules of your own. Instead, install them in `/etc/puppetlabs/puppet/environments/<environment>/modules`.
 * Orchestration plugins are installed in `/opt/puppet/libexec/mcollective/mcollective` on \*nix and in [`<COMMON_APPDATA>`](./install_windows.html#data-directory)`\PuppetLabs\mcollective\etc\plugins\mcollective` on Windows. If you are adding new plugins to your PE agent nodes, you should [distribute them via Puppet as described in the "Adding Actions" page of this manual](./orchestration_adding_actions.html).
 
@@ -74,6 +65,7 @@ PE's various components all have subdirectories inside this main data directory:
 
 * Puppet's `confdir` is in the `puppet` subdirectory. This directory contains the [`puppet.conf`](/guides/configuring.html) file, the site manifest (`manifests/site.pp`), and the `modules` directory.
 
+
 ### Log Files
 
 The software distributed with Puppet Enterprise generates the following log files, which can be found as follows.
@@ -83,7 +75,7 @@ The software distributed with Puppet Enterprise generates the following log file
 The Puppet master service's logging are contained in two files:
 
 * `/var/log/pe-puppetserver/puppetserver.log`: the Puppet master application logs its activity here; this is where things like compilation errors and deprecation warnings can be found.
-* `/var/log/pe-puppetserver/pe-puppetserver-daemon.log`: this is where fatal errors or crash reports can be found.
+* `/var/log/pe-puppetserver/pe-puppetserver-daemon.log`: this is where fatal errors or crash reports can be found. 
 
 #### Puppet Agent Logs
 
@@ -102,10 +94,11 @@ On Windows nodes, the Puppet agent service logs its activity to the Windows Even
 - `/var/log/pe-mcollective/mcollective.log` maintained by the orchestration service, which is installed on all nodes.
 - `/var/log/pe-mcollective/mcollective-audit.log` exists on all nodes that have mcollective installed; logs any mcollective actions run on the node, including information about the client that called the node
 
+
 #### Console Logs
 
 - `/var/log/pe-httpd/error.log` contains errors related to Passenger. Console errors that don't get logged anywhere else can be found in this log. If you have problems with the console or Puppet, this log may be useful.
-- `/var/log/pe-httpd/puppetdashboard.access.log`
+- `/var/log/pe-httpd/puppetdashboard.access.log` 
 - `/var/log/pe-httpd/puppetdashboard.error.log`
 - `/var/log/pe-puppet-dashboard/certificate_manager.log`
 - `/var/log/pe-puppet-dashboard/delayed_job.log`
@@ -138,20 +131,45 @@ These files may or may not be present.
 - `/var/log/pe-puppet/masterhttp.log`
 - `/var/log/pe-puppet/rails.log`
 
-### Tools for Working with Puppet Enterprise
+
+### Puppet Enterprise Software Components
+
+PE 3.7 includes the following major software components:
+
+ * Puppet 3.7.4
+ * PuppetDB 2.2.1
+ * Facter 2.3.0
+ * MCollective 2.6.0
+ * ActiveMQ 5.9.0
+ * Live Management: 1.3.1
+ * Cloud Provisioner 1.1.7
+ * Hiera 1.3.4
+ * Dashboard 2.1.6
+ * PostgreSQL 9.2.10
+ * Ruby 1.9.3
+ * Augeas 1.2.0
+ * Passenger 4.0.37
+ * Java 1.7.0
+ * OpenSSL 1.0.q
+
+### Additional Puppet Enterprise Components
+
+PE installs the following additional components.
+
+#### Tools for Working with Puppet Enterprise
 
 PE installs several suites of tools to help you work with the major components of the software. These include:
 
 - **Puppet Tools** --- Tools that control basic functions of Puppet such as `puppet master,` `puppet apply` and `puppet cert.`
     See the [Tools section](/guides/tools.html) of the Puppet Manual for more information.
-- **Cloud Provisioning Tools** (Deprecated) --- Tools used to provision new nodes. Mostly based around the `node` subcommand, these tools are used for tasks such as creating or destroying virtual machines, classifying new nodes, etc. See the [Cloud Provisioning section](./cloudprovisioner_overview.html)  for more information.
-- **Orchestration Tools** --- Tools used to orchestrate simultaneous actions across a number of nodes. These tools are built on the MCollective framework and are accessed either via the `mco` command or via the __Live Management__ page of the PE console. See the [Orchestration documentation](./orchestration_overview.html) for more information.
+- **Cloud Provisioning Tools** --- Tools used to provision new nodes. Mostly based around the `node` subcommand, these tools are used for tasks such as creating or destroying virtual machines, classifying new nodes, etc. See the [Cloud Provisioning section](./cloudprovisioner_overview.html)  for more information.
+- **Orchestration Tools** --- Tools used to orchestrate simultaneous actions across a number of nodes. These tools are built on the MCollective framework and are accessed either via the `mco` command or via the __Live Management__ page of the PE console. See the [Orchestration section](./orchestration_overview.html) for more information.
 - **Module Tools** --- The Module tool is used to access and create Puppet Modules, which are reusable chunks of Puppet code users have written to automate configuration and deployment tasks. For more information, and to access modules, visit the [Puppet Forge](http://forge.puppetlabs.com/).
 - **Console** --- The console is Puppet Enterprise's GUI web interface. The console provides tools to view and edit resources on your nodes, view reports and activity graphs, trigger Puppet runs, etc. See the [Console section](./console_accessing.html) of the Puppet Manual for more information.
 
 For more details, you can also refer to the man page for a given command or subcommand.
 
-### Services
+#### Services
 
 PE uses the following services:
 
@@ -165,7 +183,7 @@ PE uses the following services:
 - **`pe-puppet-dashboard-workers`** --- A supervisor that manages the console's background processes. Runs on servers with the console component.
 - **`pe-puppetdb`** and **`pe-postgresql`** --- Daemons that manage and serve the database components. Note that pe-postgresql is only created if we install and manage PostgreSQL for you.
 
-### User Accounts
+#### User Accounts
 
 PE creates the following users:
 
@@ -180,7 +198,7 @@ PE creates the following users:
 - **`pe-postgres`** --- A system user with access to the pe-postgreSQL instance. Note that this user is only created if we install and manage PostgreSQL for you.
 - **`pe-console-services`** --- A system user that runs the console process.
 
-### Group Accounts
+#### Group Accounts
 
 PE creates the following groups:
 
@@ -195,7 +213,7 @@ PE creates the following groups:
 - **`pe-postgres`** --- A system group with access to the pe-postgreSQL instance. Note that this group is only created if we install and manage PostgreSQL for you.
 - **`pe-console-services`** --- A system group that runs the console process.
 
-### Certificates
+#### Certificates
 
 During install, PE generates the following certificates (can be found at `/etc/puppetlabs/puppet/ssl/certs`):
 
@@ -206,7 +224,7 @@ During install, PE generates the following certificates (can be found at `/etc/p
 - **`pe-internal-mcollective-servers`** --- A shared certificate generated on the Puppet master and shared to all agent nodes.
 - **`pe-internal-peadmin-mcollective-client`** --- The orchestration certificate for the peadmin account on the Puppet master.
 - **`pe-internal-puppet-console-mcollective-client`** --- The orchestration certificate for the PE console/live management
-- **`pe-internal-classifier`** --- The certificate for the node classifier.
+- **`pe-internal-classifier`** --- The certificate for the node classifier. 
 
 A fresh PE install should thus give the following list of certificates:
 

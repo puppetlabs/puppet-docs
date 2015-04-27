@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.8 » Console » Event Inspector"
+title: "PE 3.7 » Console » Event Inspector"
 subtitle: "Using Event Inspector"
 canonical: "/pe/latest/console_event-inspector.html"
 ---

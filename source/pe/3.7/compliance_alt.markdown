@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.8 » Compliance » Alternate Workflow"
+title: "PE 3.7 » Compliance » Alternate Workflow"
 subtitle: "Alternate Workflow to Replace Compliance Tool"
 canonical: "/pe/latest/compliance_alt.html"
 toc: false
@@ -26,7 +26,7 @@ Compliance Alternate Workflow
 
  Puppet resources or catalogs can be marked as "no-op" before they are applied by the agent nodes. This means that the user describes a desired state for the resource, and Puppet will detect and report any divergence from this desired state. Puppet will report what _should_ change to bring the resource into the desired state, but it will not _make_ those changes automatically.
 
- * To set an individual resource as no-op, set [the `noop` metaparameter](/references/3.8.latest/metaparameter.html#noop) to `true`.
+ * To set an individual resource as no-op, set [the `noop` metaparameter](/references/3.7.latest/metaparameter.html#noop) to `true`.
 
          file {'/etc/sudoers':
            owner => root,
@@ -36,7 +36,7 @@ Compliance Alternate Workflow
          }
 
      This allows you to mix enforced resources and no-op resources in the same Puppet run.
- * To do an entire Puppet run in no-op, set [the `noop` setting](/references/3.8.latest/configuration.html#no-op) to `true`. This can be done in the `[agent]` block of puppet.conf, or as a `--noop` command-line flag. If you are running Puppet agent in the default daemon mode, you would set no-op in puppet.conf.
+ * To do an entire Puppet run in no-op, set [the `noop` setting](/references/3.7.latest/configuration.html#no-op) to `true`. This can be done in the `[agent]` block of puppet.conf, or as a `--noop` command-line flag. If you are running Puppet agent in the default daemon mode, you would set no-op in puppet.conf.
 
 #### In the Console
 

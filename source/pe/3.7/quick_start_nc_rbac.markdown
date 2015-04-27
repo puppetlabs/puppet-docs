@@ -1,12 +1,12 @@
 ---
 layout: default
-title: "PE 3.8 » Quick Start » Classifying Nodes and Assigning User Permissions"
+title: "PE 3.7 » Quick Start » Classifying Nodes and Assigning User Permissions"
 subtitle: "Node Classification and Role-Based Access Control Quick Start Guide"
 canonical: "/pe/latest/quick_start_nc_rbac.html"
 ---
 
 
-## Overview
+### Overview
 
 The Puppet Enterprise (PE) console enables you to manage nodes groups and users. You can create node groups and then assign classes to nodes through those node groups. You can connect with an external directory, such as Active Directory or OpenLDAP, and import users and groups, rather than creating users and groups in two locations. You can also create user roles, and assign users to those roles. Roles are granted permissions, such as permission to act on node groups. When you assign roles to users or user groups, you are essentially granting users permissions in a more organized way.
 
@@ -22,14 +22,14 @@ In this guide, you'll create a new node group, apply rules to the group to defin
 > It also assumes you’ve installed a [*nix](./quick_start_module_install_nix.html) or [Windows](./quick_start_module_install_windows.html) module. Finally, you must have admin permissions to complete these steps, which include assigning a user to a role.
 
 
-## Create a New Node Group
+###Create a New Node Group
 
 1. In the PE console, click **Classification**.
 2. In the **Node group name** field, type "web_app_servers".
 3. Leave **default** as the parent to the new node group, and **production** as the environment.
 4. Click **Add Group**.  The **web_app_servers** group is added to the list of node groups.
 
-## Add Nodes to the New Node Group
+### Add Nodes to the New Node Group
 
 To add nodes to a node group, you create rules that define which nodes should be included in the group.
 
@@ -43,7 +43,7 @@ To add nodes to a node group, you create rules that define which nodes should be
 
 4. Click **Add rule**, and then click the commit button.
 
-## Add Classes to the Node Group
+### Add Classes to the Node Group
 
 Now that you've created a node group, you'll add classes to give the matching nodes purpose.
 
@@ -56,7 +56,7 @@ Now that you've created a node group, you'll add classes to give the matching no
 You can check these changes by clicking **Nodes**, then clicking one of the nodes from your node group. In the **Classes** list, you'll see the `apache` class with the **Source group** `web_app_servers`.
 
 
-## Create a New User Role
+### Create a New User Role
 
 Add a user role so you can manage permissions for groups of users at once.
 
@@ -64,7 +64,7 @@ Add a user role so you can manage permissions for groups of users at once.
 2. For **Name**, type "Web developers," and then for **Description**, type a description for the Web developers role, such as "web developers."
 3. Click **Add role**.
 
-## Create a New User and Add the User to Your New Role
+###Create a New User and Add the User to Your New Role
 
 These steps demonstrate how to create a new local user. See [Adding LDAP Users to PE](./rbac_user_roles.html#adding-ldap-users-to-pe) for information about adding existing users from your directory service.
 
@@ -78,7 +78,7 @@ These steps demonstrate how to create a new local user. See [Adding LDAP Users t
 5. Click **User Roles** and then click **Web developers**.
 6. On the **Member users** tab, on the **User name** list, select the new user you created, and then click **Add user** and click the commit button.
 
-## Enable a User to Log in
+### Enable a User to Log in
 When you create new local users, you need to send them a password reset token so that they can log in for the first time.
 
 1. Click the new local user in the **Users** list.
@@ -86,7 +86,7 @@ The new user's page opens.
 2. On the upper-right of the page, click **Generate password reset**. A **Password reset link** message box opens.
 3. *Copy the link* provided in the message and send it to the new user. Then you can close the message.
 
-## Give Your New Role Access to the Node Group You Created
+### Give Your New Role Access to the Node Group You Created
 
 1. From the **Web developer** role page, click the **Permissions** tab.
 2. In the **Type** box, select **Node groups**.

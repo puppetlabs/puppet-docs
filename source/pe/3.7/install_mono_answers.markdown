@@ -1,15 +1,15 @@
 ---
 layout: default
-title: "PE 3.8 » Installing » Installing Monolithic Answer File"
+title: "PE 3.7 » Installing » Installing Monolithic Answer File"
 subtitle: "Monolithic Puppet Enterprise Install Answer File Reference"
 canonical: "/pe/latest/install_mono_answers.html"
 ---
 
-The following example answers can be used to perform an automated monolithic (all-in-one) installation of PE.
+The following example answers can be used to perform an automated monolithic (all-in-one) installation of PE. 
 
 A .txt file version can be found in the `answers` directory of the PE installer tarball.
 
-See [Installing with an answer file](./install_automated.html) for more details. In addition, [the Complete Answer File Reference](./install_complete_answer_file_reference.html) contains all answers that you can use to install PE.
+See the [Answer File Overview](./install_answer_file_reference.html) and [Installing with an answer file](./install_automated.html) for more details. In addition, [the Complete Answer File Reference](./install_complete_answer_file_reference.html) contains all answers that you can use to install PE.
 
 ### Global Answers
 
@@ -20,9 +20,6 @@ These answers are always needed.
 
 `q_vendor_packages_install=y`
 : **Y** or **N** --- Whether the installer has permission to install additional packages from the OS’s repositories. If this is set to N, the installation will fail if the installer detects missing dependencies.
-
-`q_enable_future_parser`
-: **Y or N** --- Whether or not to enable the Puppet 4 language parser. This is recommended for all **NEW** Puppet users. **DO NOT** enable this feature if you'll be using Puppet code you did **NOT** create with the Puppet 4 language parser.
 
 #### Additional Global Answers
 
@@ -39,7 +36,7 @@ These answers are always needed.
 : **Y** or **N** --- Whether to install the Puppet master component.
 
 `q_all_in_one_install=y`
-: **Y** or **N** --- Whether or not the installation is an all-in-one installation, (i.e., are PuppetDB and the console also being installed on this node).
+: **Y** or **N** --- Whether or not the installation is an all-in-one installation, (i.e., are PuppetDB and the console also being installed on this node). 
 
 `q_puppet_cloud_install=n`
 : **Y** or **N** --- Whether to install the cloud provisioner component.
@@ -78,8 +75,8 @@ These answers are generally needed if you are installing the Puppet master compo
 
 If you wish to disable update checks (e.g. if your company policy forbids transmitting this information), you will need to set this to "n". You can also disable checking after installation by editing the `/etc/puppetlabs/installer/answers.install` file.
 
-`q_disable_live_manangement=y`
-: **Y** or **N** --- Whether to disable or enable live management in the console. Note that you need to manually add this question to your answer to file before an installation or upgrade. In fresh installs of PE 3.8.0, Live Management is disabled by default.
+`q_disable_live_manangement=n`
+: **Y** or **N** --- Whether to disable or enable live management in the console. Note that you need to manually add this question to your answer to file before an installation or upgrade.
 
 `q_puppet_enterpriseconsole_httpd_port=443`
 : **Integer** --- The port on which to serve the console. The default is port 443, which will allow access to the console from a web browser without manually specifying a port. If port 443 is not available, the installer will try port 3000, 3001, 3002, 3003, 3004, and 3005.
@@ -99,9 +96,6 @@ These answers are optional.
 
 `q_tarball_server`
 : **String** --- The location from which PE agent tarballs will be downloaded before installation. Note that agent tarballs are only available for certain operating systems. For details, see the [PE agent installation instructions](./install_agents.html).
-
-`q_exit_and_update_auth_conf=y`
-: **Y** or **N** --- (Upgrade only) Whether to accept the presence of a modified auth.conf file when upgrading. For details see [modified auth.conf files](./install_upgrading_notes.html#upgrading-to-38-with-a-modified-authconf-file).
 
 ### Database Support Answers
 

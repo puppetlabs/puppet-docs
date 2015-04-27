@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.8 » Installing » Installing Split PuppetDB Answer File"
+title: "PE 3.7 » Installing » Installing Split PuppetDB Answer File"
 subtitle: "Split Puppet Enterprise Install, PuppetDB Answer File Reference"
 canonical: "/pe/latest/install_split_puppetdb_answers.html"
 ---
@@ -9,13 +9,13 @@ The following example answers can be used as baseline to perform an automated sp
 
 A .txt file version can be found in the `answers` directory of the PE installer tarball.
 
-See [Installing with an answer file](./install_automated.html) for more details. In addition, [the Complete Answer File Reference](./install_complete_answer_file_reference.html) contains all answers that you can use to install PE.
+See the [Answer File Overview](./install_answer_file_reference.html) and [Installing with an answer file](./install_automated.html) for more details. In addition, [the Complete Answer File Reference](./install_complete_answer_file_reference.html) contains all answers that you can use to install PE.
 
 >**Warning**: If you're performing a split installation of PE using an answer file, install the components in the following order:
 >
 > 1. Puppet master
 > 2. Puppet DB and database support (which includes the console database)
-> 3. The PE console
+> 3. The PE console 
 
 ### Global Answers
 These answers are always needed.

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.8 » Overview » Getting Support"
+title: "PE 3.7 » Overview » Getting Support"
 subtitle: "Getting Support for Puppet Enterprise"
 canonical: "/pe/latest/overview_getting_support.html"
 ---
@@ -52,19 +52,13 @@ The information collected by the support script includes:
 - a list of all modules on the system
 - the output of `puppet module changes` (shows if any modules installed by PE have been modified)
 - the output of `/nodes.csv` from the console (includes a list of known nodes and metadata about their most recent Puppet runs)
-- a listing (no content) of the files in
+- a listing (no content) of the files in 
    - `/opt/puppet`
    - `/var/opt/lib`
    - `/var/opt/pe-puppet`
    - `/var/opt/pe-puppetmaster`
 - reports the size of the PostgreSQL databases and relations
-- reports the contents of the following PostgreSQL databases
-   - `console`
-   - `pe-activity`
-   - `pe-classifier`
-   - `pe-rbac`
-   - `pe-puppetdb`
-
+   
 
 It also copies the following files:
 

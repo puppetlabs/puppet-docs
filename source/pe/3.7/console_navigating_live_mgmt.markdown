@@ -1,12 +1,10 @@
 ---
 layout: default
-title: "PE 3.8 » Console » Navigating Live Management"
+title: "PE 3.7 » Console » Navigating Live Management"
 subtitle: "Navigating Live Management"
 canonical: "/pe/latest/console_navigating_live_mgmt.html"
 ---
 
-
->**Important**: Live Management is deprecated in PE 3.8, and will be replaced with improved resource management capabilities in future versions of PE. For more information about these changes, see the [PE 3.8 release notes](./release_notes.html#live-management-is-deprecated).
 
 What is Live Management?
 -----
@@ -28,15 +26,12 @@ Related pages:
 
 ### Disabling/Enabling Live Management
 
-Live Management is deprecated in PE 3.8.0 and will be replaced by improved resource management functionality in future releases. For this reason, Live Management is not enabled by default as in previous versions of PE.
+In some cases, after you install PE, you may find that your workflow requires live management to be disabled. You can disable/enable live management at any time by editing the `disable_live_management` setting in `/etc/puppetlabs/puppet-dashboard/settings.yml` on the Puppet master. Note that after making your change, you must run `sudo /etc/init.d/pe-httpd restart` to complete the process.
 
-However, if you install PE with [an answer file][install_automated], and set `q_disable_live_management` to "n", Live Management will be enabled. (Note that the default to `q_disable_live_management` is "y".) Enabling Live Management via the web-based installer is not available.
-
-The status of Live Management is not managed during an upgrade of PE unless you specifically indicate a change is needed in an answer file. In other words, if your pre-upgrade version of PE has Live Management enabled, it will remain enabled after you upgrade unless you explicitly add `q_disable_live_manangement=y` in an answer file.
-
-You can enable/disable Live Management at any time during normal operations by editing the `disable_live_management` setting in `/etc/puppetlabs/puppet-dashboard/settings.yml` on the Puppet master (for mono installs) or on the PE console (for split installs). Note that after making your change, you must run `sudo /etc/init.d/pe-httpd restart` to complete the process.
+By default, `disable_live_managment` is set to `false`, but you can also configure your [answer file installations][install_automated] or [upgrades][install_upgrading] to disable/enable live management as needed during installation or upgrade.
 
 [install_automated]: ./install_automated.html
+[install_upgrading]: ./install_upgrading.html#enabling_disabling-live-management-during-an-upgrade
 
 The Node List
 -----
@@ -83,7 +78,7 @@ You can also filter by Puppet class or by the value of any fact on your nodes. C
 >
 > ![The common fact names popover][live_nav_factlist]
 
-You can browse the [inventory data](./console_reports.html#viewing-inventory-data) in the console's node views to find fact values to search with; this can help when looking for nodes similar to a specific node. You can also check the [list of core facts](/facter/2.3/core_facts.html) for valid fact names.
+You can browse the [inventory data](./console_reports.html#viewing-inventory-data) in the console's node views to find fact values to search with; this can help when looking for nodes similar to a specific node. You can also check the [list of core facts](/facter/1.7/core_facts.html) for valid fact names.
 
 Filtering by Puppet class can be the most powerful filtering tool on this page, but it requires you to have already assigned classes to your nodes. See the chapter on [grouping and classifying nodes](./console_classes_groups.html) for more details.
 

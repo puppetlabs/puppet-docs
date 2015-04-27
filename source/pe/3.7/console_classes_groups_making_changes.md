@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.8 » Console » Grouping and Classifying Nodes"
+title: "PE 3.7 » Console » Grouping and Classifying Nodes"
 subtitle: "Making Changes in the Node Classifier"
 canonical: "/pe/latest/console_classes_groups_making_changes.html"
 ---
@@ -10,17 +10,17 @@ canonical: "/pe/latest/console_classes_groups_making_changes.html"
 
 ## Deleting Nodes
 
-There are three options for deleting a node:
+There are three options for deleting a node: 
 <dl>
 <dt>Hide</dt>
-<dd>Removes the node from the node list view. To hide a node:
+<dd>Removes the node from the node list view. To hide a node: 
 <ol>
 <li>On the <strong>Nodes</strong> page, click the node.</li>
 <li>Click <strong>Hide</strong>.</li>
 </ol>
 </dd>
 <dt>Delete</dt>
-<dd>Removes all reports and information for the node from the console. The node no longer appears in the list of nodes on the <strong>Nodes</strong> page, but it continues to appear in <strong>Matching nodes</strong> until it is <a href="/puppetdb/2.3/maintain_and_tune.html#deactivate-decommissioned-nodes">purged from PuppetDB</a>. The node will reappear as a new node on the <strong>Nodes</strong> page if it submits a new Puppet run report. To delete a node:
+<dd>Removes all reports and information for the node from the console. The node no longer appears in the list of nodes on the <strong>Nodes</strong> page, but it continues to appear in <strong>Matching nodes</strong> until it is <a href="/puppetdb/2.2/maintain_and_tune.html#deactivate-decommissioned-nodes">purged from PuppetDB</a>. The node will reappear as a new node on the <strong>Nodes</strong> page if it submits a new Puppet run report. To delete a node:
 <ol>
 <li>On the <strong>Nodes</strong> page, click the node.</li>
 <li>Click <strong>Delete</strong>.</li>
@@ -85,19 +85,19 @@ Nodes are automatically removed from a node group when they no longer match the 
 
 3. In **Rules**, find the rule that you want to edit.
 
-4. To delete the rule, click **Remove**.
+4. To delete the rule, click **Remove**. 
 
    You can also click **Remove all** if you want to delete all rules for this node group. The rule stays in the list with a line through it until you commit your changes.
 
 5. When you are ready to commit changes, click the commit button.
 
-    > **Note:** When a node no longer matches the rules of a node group, it is no longer classified with the classes assigned in that node group. However, the resources that were installed by those classes are not removed from the node. For example, if a node group has the `apache` class that installs the Apache package on matching nodes, the Apache package is not removed from the node even when the node no longer matches the node group rules.
+    > **Note:** When a node no longer matches the rules of a node group, it is no longer classified with the classes assigned in that node group. However, the resources that were installed by those classes are not removed from the node. For example, if a node group has the `apache` class that installs the Apache package on matching nodes, the Apache package is not removed from the node even when the node no longer matches the node group rules. 
 
 **To unpin a node:**
 
-1. In **Rules**, find the node that you want to unpin. You will find the pinned nodes under the list of rules.
+1. In **Rules**, find the node that you want to unpin. You will find the pinned nodes under the list of rules. 
 
-2. To unpin the node, click **Unpin**.
+2. To unpin the node, click **Unpin**. 
 
    You can also unpin all pinned nodes by clicking **Unpin all pinned nodes**. The node stays in the list with a line through it until you commit your changes.
 
@@ -114,7 +114,7 @@ Nodes are automatically removed from a node group when they no longer match the 
 
 3. In **Classes**, find the class that you want to remove.
 
-4. To remove the class, at the bottom of the list of parameters, click **Remove this class**.
+4. To remove the class, at the bottom of the list of parameters, click **Remove this class**. 
 
    You can also click **Remove all classes** if you want to remove all classes for this node group. The class stays in the list with a line through it until you commit your changes.
 
@@ -132,7 +132,7 @@ Nodes are automatically removed from a node group when they no longer match the 
 
 3. In **Classes**, find the class and parameter.
 
-4. To edit the parameter, click **Edit** and select another parameter or change the value of the parameter.
+4. To edit the parameter, click **Edit** and select another parameter or change the value of the parameter. 
 
 5. When you are ready to commit changes, click the commit button.
 
@@ -146,7 +146,7 @@ Nodes are automatically removed from a node group when they no longer match the 
 
 3. In **Classes**, find the class and parameter.
 
-4. To delete the parameter, click **Remove**. The parameter stays in the list with a line through it until you commit your changes.
+4. To delete the parameter, click **Remove**. The parameter stays in the list with a line through it until you commit your changes. 
 
 5. When you are ready to commit changes, click the commit button.
 
@@ -174,7 +174,7 @@ Nodes are automatically removed from a node group when they no longer match the 
 
 3. In **Variables**, find the variable.
 
-4. To delete the variable, click **Remove**.
+4. To delete the variable, click **Remove**. 
 
    You can also click **Remove all variables** if you want to remove all variables for this node group.The variable stays in the list with a line through it until you commit your changes.
 

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.8 » Deploying PE » Puppet Server Metrics"
+title: "PE 3.7 » Deploying PE » Puppet Server Metrics"
 subtitle: "Graphing Puppet Server Metrics"
 canonical: "/pe/latest/puppet_server_metrics.html"
 ---
@@ -19,65 +19,65 @@ Install this module on a dedicated PE agent node, not on the Puppet master serve
 
 **To install the Grafana dashboard module**:
 
-1. [Install a *nix PE agent](./install_agents.html) to serve as the graphite server.
+1. [Install a *nix PE agent](./install_agents.html) to serve as the graphite server. 
 
-1. On the Puppet agent node, run `puppet module install cprice404-grafanadash`.
+1. On the Puppet agent node, run `puppet module install cprice404-grafanadash`. 
 2. On the Puppet agent node, run `puppet apply -e 'include grafanadash::dev'`.
 
 **To run Grafana**:
 
-1. In a web browser on a computer that can reach the Puppet agent node, navigate to `http://<AGENT’S HOSTNAME>:10000`.
+1. In a web browser on a computer that can reach the Puppet agent node, navigate to `http://<AGENT’S HOSTNAME>:10000`. 
 
    There, you'll see a test screen that indicates whether Grafana can successfully connect to your graphite server. You may see an error message if Grafana is using a hostname that is not resolvable by the machine the browser is running on. Click **view details** and then the **Requests** tab to determine the hostname Grafana is trying to use; if needed, add the IP address and hostname to the `/etc/hosts` or `C:\Windows\system32\drivers\etc\hosts` file on the machine the browser is running on.
 
 2. Download and edit our [sample metrics dashboard](./sample_metrics_dashboard.json).
 
-   a. Open the JSON file in a text editor, on the same computer whose web browser you’re using.
-
+   a. Open the JSON file in a text editor, on the same computer whose web browser you’re using.  
+   
    b. Throughout the entire file, replace our sample setting of `master.example.com` with the hostname of your Puppet master. (**Note**: This value MUST be used as the `metrics_server_id` setting, configured below).
-
+   
    c. Save the file.
-
-3. In the Grafana UI, click **search** (the folder icon), then **Import**, then **Browse**.
+   
+3. In the Grafana UI, click **search** (the folder icon), then **Import**, then **Browse**. 
 4. Navigate to the JSON file you just edited and confirm your choice.
 
 This will load up a dashboard with six graphs that display various metrics exported to your Graphite server by Puppet Server. (Note that they’ll be empty until you enable Graphite metrics, as described below.)
 
-### Enabling Puppet Server’s Graphite Support
+### Enabling Puppet Server’s Graphite Support 
 
-The `/etc/puppetlabs/puppetserver/conf.d/metrics.conf` file controls Puppet Server’s metrics.  You shouldn’t edit it directly; instead, configure it with the “PE Master” node group in the PE console.
+The `/etc/puppetlabs/puppetserver/conf.d/metrics.conf` file controls Puppet Server’s metrics.  You shouldn’t edit it directly; instead, configure it with the “PE Master” node group in the PE console. 
 
-**To enable the metrics graphs**:
+**To enable the metrics graphs**: 
 
 1. In the PE console, click **Classification** in the navigation bar.
-2. On the **Classification** page, select the **PE Master** group.
-3. Click the **Classes** tab.
-4. Locate the **puppet_enterprise::profile::master** class.
-5. Using the **Parameter name** dropdown list and **Value** fields, set the following parameters to the specified values. (To set a parameter, choose it from the drop-down list, enter the new value, and click **Add parameter**.)
+2. On the **Classification** page, select the **PE Master** group. 
+3. Click the **Classes** tab. 
+4. Locate the **puppet_enterprise::profile::master** class. 
+5. Using the **Parameter name** dropdown list and **Value** fields, set the following parameters to the specified values. (To set a parameter, choose it from the drop-down list, enter the new value, and click **Add parameter**.) 
 
    You should only need to set the first three parameters to non-default values, unless your Graphite server uses a non-standard port.
 
    a. **metrics_graphite_enabled**: set to **true** (**false** is the default value)
-
+   
    b. **metrics_server_id**: enter the Puppet master hostname.
-
+   
    c. **metrics_graphite_host**: enter the hostname for the agent node on which you’re running Graphite and Grafana.
-
+   
    d. **metrics_enabled**: set to **true** (default value).
-
+   
    e. **metrics_jmx_enabled**: set to **true** (default value).
-
-   f. **metrics_graphite_port**: set to **2003** (default value) or the Graphite port on your Graphite server.
-
+   
+   f. **metrics_graphite_port**: set to **2003** (default value) or the Graphite port on your Graphite server. 
+   
    g. **profiler_enabled**: set to **true** (default value).
 
 6. Click **Commit 3 changes**.
 7. Navigate to the live management page, ensure your Puppet master and agent nodes are selected, and select the **Control Puppet** tab.
-8. Click the **runonce** action and then **Run** to trigger a Puppet run and apply the new configuration.
+8. Click the **runonce** action and then **Run** to trigger a Puppet run and apply the new configuration. 
 
    You may have to wait a while for Puppet Server to restart before metrics begin appearing in your dashboard.
 
->**Tip**: In the Grafana UI, make sure you choose the appropriate time window from the drop-down.
+>**Tip**: In the Grafana UI, make sure you choose the appropriate time window from the drop-down. 
 
 #### About the Sample Grafana Dashboard
 

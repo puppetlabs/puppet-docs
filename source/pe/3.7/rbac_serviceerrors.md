@@ -1,5 +1,5 @@
 ---
-title: "PE 3.8 » RBAC Service 1.0 >> Errors"
+title: "PE 3.7 » RBAC Service 1.0 >> Errors"
 layout: default
 subtitle: "RBAC Service Errors"
 canonical: "/pe/latest/rbac_serviceerrors.html"

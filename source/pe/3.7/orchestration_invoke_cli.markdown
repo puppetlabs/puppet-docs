@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.8 » Orchestration » Invoking Actions"
+title: "PE 3.7 » Orchestration » Invoking Actions"
 subtitle: "Invoking Orchestration Actions"
 canonical: "/pe/latest/orchestration_invoke_cli.html"
 ---
@@ -8,7 +8,7 @@ canonical: "/pe/latest/orchestration_invoke_cli.html"
 [master_server]: ./install_basic.html#the-puppet-master
 [install_certname]: ./install_basic.html#puppet-agent-questions
 [console_inventory]: ./console_reports.html#viewing-inventory-data
-[core_facts]: /facter/2.3/core_facts.html
+[core_facts]: /facter/1.7/core_facts.html
 [nav_live]: ./console_navigating_live_mgmt.html
 
 About This Page
@@ -55,7 +55,7 @@ This is the default way to log in as the `peadmin` user. It means that orchestra
 
 If you wish to allow other users to run orchestration commands without giving them full control over the Puppet master, you can add their public SSH keys to `peadmin`'s authorized keys file.
 
-You can use Puppet's [`ssh_authorized_key` resource type](/references/3.8.latest/type.html#sshauthorizedkey) to do this, or add keys manually to the `/var/lib/peadmin/.ssh/authorized_keys` file.
+You can use Puppet's [`ssh_authorized_key` resource type](/references/3.7.latest/type.html#sshauthorizedkey) to do this, or add keys manually to the `/var/lib/peadmin/.ssh/authorized_keys` file.
 
 
 The `mco` Command

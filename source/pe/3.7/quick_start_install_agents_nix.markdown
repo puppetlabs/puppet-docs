@@ -1,12 +1,12 @@
 ---
 layout: default
-title: "PE 3.8 » Quick Start » Agent Install (*nix)"
+title: "PE 3.7 » Quick Start » Agent Install (*nix)"
 subtitle: "Agent Install Quick Start Guide"
 canonical: "/pe/latest/quick_start_install_agents_nix.html"
 ---
 
 
-## Overview
+### Overview
 
 The following instructions are for installing Puppet agents on nodes running *nix operating systems. Refer to the [Windows agent installation quick start guide](./quick_start_install_agents_windows.html) for instructions on installing Puppet agents on nodes running supported versions of the Windows OS.
 
@@ -18,7 +18,7 @@ For more information about Puppet agents, as well as the components that make up
 
 >**Prerequisites**: This guide assumes you've [installed a monolithic PE deployment](./quick_start_install_mono.html) and have the Puppet master, the PE console, and PuppetDB up and running on one node.
 
-## Installing the Puppet Enterprise Agent
+### Installing the Puppet Enterprise Agent
 
 Choose one of the following scenarios:
 
@@ -26,7 +26,7 @@ Choose one of the following scenarios:
 - My Puppet agent node has a [different OS and architecture than my Puppet master](#installing-agents-with-different-os-and-architecture-than-the-puppet-master).
 
 
-### Installing Agents with the Same OS and Architecture as the Puppet Master
+#### Installing Agents with the Same OS and Architecture as the Puppet Master
 
 If your Puppet agent node is the same OS and architecture as the Puppet master, log into your agent node and run the following command:
  `curl -k https://<master.example.com>:8140/packages/current/install.bash | sudo bash`.
@@ -35,7 +35,7 @@ This script detects the OS on which the agent is running, sets up an apt, yum, o
 
 > **Important**: After installation is complete, you need to approve your new agent node’s certificate request in the console. Continue on to [Approving the Certificate Request](#approving-the-certificate-request) to do so.
 
-### Installing Agents with Different OS and Architecture than the Puppet Master
+#### Installing Agents with Different OS and Architecture than the Puppet Master
 
 [classification_selector]: ./images/quick/classification_selector.png
 [add_repo]: ./images/quick/add_repo.png
@@ -43,9 +43,7 @@ This script detects the OS on which the agent is running, sets up an apt, yum, o
 
 If your Puppet master OS and architecture are different from the agent, follow this example. This example describes adding an agent node running Debian 6 on AMD64 hardware. You can select a different architecture for your agent if you prefer.
 
-To install an agent with a different OS than the Puppet master, you first add the appropriate class for the repo that contains the agent packages; you then classify the PE Master node group with that class; and then you run a curl command from the agent to the master to retrieve the necessary packages to install the agent.
-
-> **Note**: If your Puppet master uses a proxy server to access the internet, refer to [this known issue](./release_notes_known_issues.html#install-agents-with-different-os-when-puppet-master-is-behind-a-proxy) for a workaround.
+To install an agent with a different OS from the Puppet master, you first add the appropriate class for the repo that contains the agent packages, you classify the PE Master node group with that class, and then run a curl command from the agent to the master to retrieve the necessary packages to install the agent.
 
 1. From the console, click __Classification__ in the top navigation bar.
 
@@ -67,11 +65,11 @@ To install an agent with a different OS than the Puppet master, you first add th
 
    **Note**: The class you selected now appears in the list of classes for the __PE Master__ group, but it has not yet been configured on your nodes. For that to happen, you need to kick off a Puppet run.
 
-7. From the CLI on the Puppet master, run `puppet agent -t`.
+7. Click _Live Management_, and click __Control Puppet__.
 
-   This configures the Puppet master node using the newly-assigned class.
+8. Click __runonce__  and then click __Run__. This configures the Puppet master node using the newly-assigned class.
 
-   The new repo is created in `/opt/puppet/packages/public`. It’s called `puppet-enterprise-3.8.0-<os-version-architecture>-agent`.
+   The new repo is created in `/opt/puppet/packages/public`. It’s called `puppet-enterprise-3.7.0-<os-version-architecture>-agent`.
 
 9. SSH into the Debian node where you want to install the agent, and run `curl -k https://<master.example.com>:8140/packages/current/install.bash | sudo bash`.
 

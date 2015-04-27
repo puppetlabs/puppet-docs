@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.8 » Console » Working with User Roles"
+title: "PE 3.7 » Console » Working with User Roles"
 subtitle: "Creating and Managing Users and User Roles"
 canonical: "/pe/latest/rbac_user_roles.html"
 ---
@@ -57,9 +57,6 @@ When you add users to a role, the user gains the permissions that are applied to
 2. Click the **Member users** tab.
 3. In the **User name** field, from the drop-down list, select the user you want to add,  click **Add user**, and then click the commit button.
 
-### Delete a User
-To delete a local or remote user from PE, [use the API](./rbac_users.html#delete-userssid).
-
 ## Working with User Groups and Users from an External Directory Service
 
 You import existing LDAP groups to PE explicitly, which means you add the group by name. Once you’ve imported a group, you can assign it to a user role, and then begin assigning permissions to it.
@@ -91,7 +88,7 @@ For any number of reasons, you might need to either reset the admin password for
 
 ### Reset the Admin Password
 
-In RBAC, one of the built-in users is the admin, a superuser with all available read/write privileges. In the event you need to reset the admin password for console access, you'll have to run a utility script located in the [PE 3.8.0 installer tarball](http://puppetlabs.com/misc/pe-files). Note that the PE 3.8 tarball might have moved to the [previous releases page](http://puppetlabs.com/misc/pe-files/previous-releases).
+In RBAC, one of the built-in users is the admin, a superuser with all available read/write privileges. In the event you need to reset the admin password for console access, you'll have to run a utility script located in the [PE 3.7.0 installer tarball](http://puppetlabs.com/misc/pe-files). Note that the PE 3.7 tarball might have moved to the [previous releases page](http://puppetlabs.com/misc/pe-files/previous-releases).
 
 This script uses a series of API calls authenticated with a whitelisted certificate to reset the built-in admin's password.
 

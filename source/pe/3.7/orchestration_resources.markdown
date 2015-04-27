@@ -1,11 +1,9 @@
 ---
 layout: default
-title: "PE 3.8 » Orchestration » Browsing Resources"
+title: "PE 3.7 » Orchestration » Browsing Resources"
 subtitle: "Orchestration: Browsing and Comparing Resources"
 canonical: "/pe/latest/orchestration_resources.html"
 ---
-
->**Important**: Live Management is deprecated in PE 3.8, and will be replaced with improved resource management capabilities in future versions of PE. For more information, see the [PE 3.8 release notes](./release_notes.html#live-management-is-deprecated).
 
 Use the live management page's __Browse Resources__ tab to browse the resources on your nodes and inspect their current state.
 
@@ -34,11 +32,11 @@ The Browse Resources tab contains a **resource type navigation** list in its lef
 
 The Browse Resources tab can inspect the following resource types:
 
-- [group](/references/3.8.latest/type.html#group)
-- [host](/references/3.8.latest/type.html#host)
-- [package](/references/3.8.latest/type.html#package)
-- [service](/references/3.8.latest/type.html#service)
-- [user](/references/3.8.latest/type.html#user)
+- [group](/references/3.7.latest/type.html#group)
+- [host](/references/3.7.latest/type.html#host)
+- [package](/references/3.7.latest/type.html#package)
+- [service](/references/3.7.latest/type.html#service)
+- [user](/references/3.7.latest/type.html#user)
 
 For an introduction to resources and types, please see [the Resources chapter of Learning Puppet](/learning/ral.html).
 

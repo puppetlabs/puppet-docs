@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.8 » Puppet » Puppet Data Library"
+title: "PE 3.7 » Puppet » Puppet Data Library"
 subtitle: "The Puppet Data Library"
 canonical: "/pe/latest/puppet_data_library.html"
 ---
@@ -25,7 +25,7 @@ PuppetDB stores up-to-date copies of every node's **facts,** **resource catalogs
 * [See the documentation for PuppetDB's query API here.][puppetdb_api]
 * Since PuppetDB receives all facts for all nodes, you can extend its data with [custom facts](/guides/custom_facts.html) on your Puppet master server.
 
-[puppetdb_api]: /puppetdb/2.3/api/index.html
+[puppetdb_api]: /puppetdb/2.2/api/index.html
 
 > **EXAMPLE:**  Using the old Puppet Inventory Service, a customer automated the validation and reporting of their servers' warranty status.  Their automation regularly retrieved the serial numbers of all servers in the data center, then checked them against the hardware vendor's warranty database using the vendor's public API to determine the warranty status for each.
 >
@@ -48,7 +48,7 @@ The Puppet Resource Dependency Graph provides a complete, mathematical graph of 
 
 > EXAMPLE:  Using the Puppet Resource Dependency Graph and Gephi, a visualization tool, a customer identified unknown dependencies within a complicated set of configuration modules.  They used this knowledge to re-write parts of the modules to get better performance.
 
-[Learn more about the Puppet Resource Dependency Graph here](/guides/faq.html#how-do-i-use-puppets-graphing-support)
+[Learn more about the Puppet Resource Dependency Graph here](/references/latest/configuration.html#graph)
 
 
 * * *

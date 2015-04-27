@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.8 » Installing » Installing PE Overview"
+title: "PE 3.7 » Installing » Installing PE Overview"
 subtitle: "Installing Puppet Enterprise Overview"
 canonical: "/pe/latest/install_basic.html"
 ---
@@ -37,7 +37,7 @@ Before you begin, choose an installation method. We've provided a few paths to c
 
 - Use the web-based interface to create an answer file that you can then add as an argument to the installer script to perform an installation (e.g., `sudo ./puppet-enterprise-installer -a ~/my_answers.txt`). Refer to [Installing with an Answer File](./install_automated.html), which provides an overview on installing PE with an answer file.
 
-- Edit an answer file provided in the PE installation tarball. Check [Installing with an Answer File](./install_automated.html) to get started.
+- Edit an answer file provided in the PE installation tarball. Check the [Answer File Reference Overview](./install_answer_file_reference.html) to get started.
 
 See the [system requirements](./install_system_requirements.html) for any hardware-related specifications.
 
@@ -133,8 +133,6 @@ The Puppet master server can:
 
 >**Note**: By default, the Puppet master will check for the availability of updates whenever the `pe-puppetserver` service restarts. In order to retrieve the correct update information, the master will pass some basic, anonymous information to Puppet Labs' servers. This behavior can be disabled. You can find the details on what is collected and how to disable upgrade checking in the correct answer file reference. If an update is available, a message will alert you.
 
-During the installation, you will be asked if you want to enable the Puppet 4 language parser. The Puppet 4 language parser gives you valuable language features, makes debugging easier, and will help keep your Puppet code compatible with future releases in the next major series. Recommended for all **NEW** Puppet users. If you'll be using Puppet code you did **NOT** create with the Puppet 4 language parser, **DO NOT** enable this feature. See the [Puppet 4 language parser docs](http://links.puppetlabs.com/future_parser) for instructions on enabling the parser in a test environment to ensure it works with your existing Puppet code.
-
 ### PuppetDB and Database Support
 
 The PuppetDB component uses an instance of PostgreSQL that is either installed by PE or manually configured by you. In a monolithic installation, PuppetDB is installed on the same node as the console and Puppet master components. In a split install, PuppetDB is installed on its own server. During installation, you will be asked if you want this PostgreSQL instance to be installed by PE or if you want to use one you've already configured.
@@ -169,7 +167,7 @@ For detailed information to get started with RBAC, see the [PE user's guide](./r
 
 #### Node Classifier (NC)
 
-PE 3.8.0 uses the rules-based node classifier, which is the first part of the Node Manager app that was announced in September. The node classifier provides a powerful and flexible new way to organize and configure your nodes. We’ve built a robust, API-driven backend service and an intuitive new GUI that encourages a modern, cattle-not-pets approach to managing your infrastructure. Classes are now assigned at the group level, and nodes are dynamically matched to groups based on user-defined rules.
+PE 3.7.0 introduces the rules-based node classifier, which is the first part of the Node Manager app that was announced in September. The node classifier provides a powerful and flexible new way to organize and configure your nodes. We’ve built a robust, API-driven backend service and an intuitive new GUI that encourages a modern, cattle-not-pets approach to managing your infrastructure. Classes are now assigned at the group level, and nodes are dynamically matched to groups based on user-defined rules.
 
 For a detailed overview of the new node classifier, refer to the [PE user's guide](./console_classes_groups.html).
 
@@ -185,9 +183,13 @@ As indicated in the "Database Support" section above, the console database relie
 
 ### The Cloud Provisioner
 
-Cloud Provisioner is deprecated in this release and will eventually be removed from Puppet Enterprise. For this reason, Cloud Provisioner is not installed by default as in previous versions of PE. If you have been using Cloud Provisioner in your existing PE infrastructure and would like to continue using it you can install it separately, as described in the [Installing section of Cloud Provisioner documentation](./cloudprovisioner_configuring.html#installing).
+This component is automatically installed when you install PE using the web-based installation method. You can opt out of the cloud provisioning tools by performing an installation with an answers file. If you wish to use cloud provisioning, you should install PE on a system where administrators have shell access. Since it requires confidential information about your cloud accounts to function, it should be installed on a secure system.
 
-Instead of Cloud Provisioner, we recommend using the AWS Supported Module going forward.
+Administrators can use the cloud provisioner tools to:
+
+* create new VMware and Amazon EC2 virtual machine instances.
+* install Puppet Enterprise on any virtual or physical system.
+* add newly provisioned nodes to a group in the console.
 
 Notes, Warnings, and Tips
 ---------
@@ -198,15 +200,9 @@ When you purchased Puppet Enterprise, you should have been sent a `license.key` 
 
 Note that you can download and install Puppet Enterprise on up to ten nodes at no charge. No license key is needed to run PE on up to ten nodes.
 
-### Puppet Enterprise Binaries and Symlinks
+### Setting Puppet in Your Default Path
 
-PE installs its binaries in `/opt/puppet/bin` and `/opt/puppet/sbin`. To make essential Puppet tools available to all users, the installer automatically creates symlinks in `/usr/local/bin` for the `facter`, `puppet`, `pe-man`, `r10k`, `hiera`,  and `mco` binaries. Note that the symlinks will only be created if `/usr/local/bin` is writeable. 
-
-Note that AIX and Solaris 10/11 users need to add `/usr/local/bin` to their default path. 
-
-If you're running Mac OS X agents, note that symlinks are not created until the first successful Puppet run that applies the agents' catalogs.
-
-Other PE binaries, such as `pe-postgresql`, `pe-ruby`, or `pe-openssl`, do not have symlinks created. To include these binaries in your default `$PATH`, manually add them to your profile or run `PATH=/opt/puppet/bin:$PATH;export PATH`.
+PE installs its binaries in `/opt/puppet/bin` and `/opt/puppet/sbin`, which aren't included in your default `$PATH`. To include these binaries in your default `$PATH`, manually add them to your profile or run `PATH=/opt/puppet/bin:$PATH;export PATH`.
 
 Installing Agents
 -----

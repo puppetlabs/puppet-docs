@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.8 » Security and SSL"
+title: "PE 3.7 » Security and SSL"
 subtitle: "Using an External Certificate Authority with Puppet Enterprise"
 canonical: "/pe/latest/external_ca.html"
 ---
@@ -10,12 +10,12 @@ The different parts of Puppet Enterprise (PE) use SSL certificates to communicat
 However, you may already have your own CA in place and wish to use it instead of PE's integrated CA. This page will familiarize you with the certificates and security credentials signed by the PE CA, then detail the procedures for replacing them.
 
 ## Before You Begin
-
+ 
 Setting up an external certificate authority (CA) to use with PE is beyond the scope of this document; in fact, this writing assumes that you already have some knowledge of CA and security credential creation and have the ability to set up your own external CA. This document will lead you through the certs and security credentials you'll need to replace in PE. However, before beginning, we recommend you familiarize yourself with the following docs:
 
-- [SSL Configuration: External CA Support](/puppet/3.8/reference/config_ssl_external_ca.html) provides guidance on establshing an external CA that will play nice will Puppet (and therefore PE).
+- [SSL Configuration: External CA Support](/puppet/3.7/reference/config_ssl_external_ca.html) provides guidance on establshing an external CA that will play nice will Puppet (and therefore PE).
 
-- [Puppet Server: External CA Configuration](/puppetserver/1.0/external_ca_configuration.html) details configurations for Puppet Server when using an external CA.
+- [Puppet Server: External CA Configuration](/puppetserver/1.0/external_ca_configuration.html) details configurations for Puppet Server when using an external CA. 
 
 ### What You Will Need
 
@@ -65,23 +65,23 @@ Every system under PE management (including the Puppet master, console, and Pupp
 We recommend that once you've set up your external CA and security credentials, you first replace the files for PE master/agent nodes and the PE console, then replace the files for PuppetDB, and then replace the PE MCollective files. Remember, naming the new certs and security credentials exactly as they're named by PE will ensure the easiest path to success.
 
 After you've used your external CA to generate new certificates and security credentials to replace all existing certificates and security credentials, you will:
-
+ 
 1. Replace the PE master and PE console certs and security credentials.
 2. Replace the internal classifier certs and security credentials.
-3. Replace the Puppet Master Certificate and Security Credentials in PostgreSQL.
+3. Replace the Puppet Master Certificate and Security Credentials in PostgreSQL. 
 4. Replace the PE PuppetDB certs and security credentials.
 5. Replace the PE MCollective certs and security credentials.
-6. Restart services.
+6. Restart services. 
 7. As needed, add agent nodes using your external CA.
 
 ###Step 1: Replace the PE master and PE Console Certificates and Security Credentials
 
 1. Refer to [Locating the PE Master Certificate and Security Credentials][inpage_locate_master] and copy your new certs and security credentials to the relevant locations.
 2. Refer to [Locating the PE Console Certificate and Security Credentials][inpage_locate_console] and copy your new certs and security credentials to the relevant locations.
-3. From the console, in the top navigation bar, click **Classification**.
-4. Click the **PE Certificate Authority** group.
-5. From the **PE Certificate Authority** group page, find the Puppet master (under **Certname**) and click **unpin**.
-6. Click **Commit 1 change**.
+3. From the console, in the top navigation bar, click **Classification**. 
+4. Click the **PE Certificate Authority** group.  
+5. From the **PE Certificate Authority** group page, find the Puppet master (under **Certname**) and click **unpin**. 
+6. Click **Commit 1 change**. 
 7. Continue to step 2, where you'll replace the PuppetDB certs.
 
 ####Locating the PE Master Certificate and Security Credentials
@@ -115,32 +115,32 @@ The following files in this directory need to be replaced:
 - `pe-internal-dashboard.public_key.pem`
 - `pe-internal-dashboard.cert.pem`
 
-###Step 2: Replace the Internal Classifier Certificate and Security Credentials
+###Step 2: Replace the Internal Classifier Certificate and Security Credentials 
 
 Use the same certs and creds for pe-internal-dashboard and the Puppet master as you did in steps above. The pe-internal-classifier certs and keys are new. These are <add content>.
 
-1. Using the same external CA, generate a certificate and security credentials for the internal classifier (i.e., the node classifier).
+1. Using the same external CA, generate a certificate and security credentials for the internal classifier (i.e., the node classifier). 
 
    The following files should be replaced; they are located in `/opt/puppet/share/console-services/certs/`:
-
+   
    - `pe-internal-classifier.cert.pem`
    - `pe-internal-classifier.private_key.pem`
    - `pe-internal-classifier.public_key.pem`
 
-2. In this same directory (i.e., `/opt/puppet/share/console-services/certs`) add the certs and security credentials for the Puppet master and the pe-internal dashboard. (This will the certs and the public and private keys).
+2. In this same directory (i.e., `/opt/puppet/share/console-services/certs`) add the certs and security credentials for the Puppet master and the pe-internal dashboard. (This will the certs and the public and private keys). 
 3. Continue to step 3 to replace the Puppet master certificate and security credentials in PostgreSQL.
 
 ###Step 3: Replace the Puppet Master Certificate and Security Credentials in PostgreSQL
 
 The Puppet master's certificate and security credentials, collected in step 1, need to be added to the PostgreSQL certs directory, located at `/opt/puppet/var/lib/pgsql/9.2/data/certs/`.
 
-After you replace the certs, continue to step 4 to replace the certs and security credentials.
+After you replace the certs, continue to step 4 to replace the certs and security credentials. 
 
 ###Step 4: Replace the PuppetDB Certificates and Security Credentials
 
 1. Run `service pe-puppetdb stop`.
 2. (Optional—for split installs only) Refer to [Locating the Puppet Agent Certificate and Security Credentials](#locating-the-puppet-agent-certificate-and-security-credentials) and replace the Puppet agent service files. These files will be copied to the PuppetDB SSL directory in the step 3.
-3. Refer to [Locating the PuppetDB Certificate and Security Credentials](#locating-the-puppetdb-certificate-and-security-credentials) and replace the files.
+3. Refer to [Locating the PuppetDB Certificate and Security Credentials](#locating-the-puppetdb-certificate-and-security-credentials) and replace the files. 
 4. Continue to step 5 in which you'll replace the MCollective certificates and security credentials.
 
 ####Locating the PuppetDB Certificate and Security Credentials
@@ -163,7 +163,7 @@ The following files, located on the Puppet master, or on the PuppetDB server in 
 2. Refer to [Locating PE MCollective Certificates and Security Credentials][inpage_locate_mcollective]. Generate new credentials for each name, then replace the cert, private key, and public key for each of them.
 3. On the Puppet master, navigate to `/etc/puppetlabs/activemq/`.
 4. Remove the following two files: `broker.ts` and `broker.ks`.
-6. Continue to step 6 to restart services and run Puppet to complete the process.
+6. Continue to step 6 to restart services and run Puppet to complete the process. 
 
 ####Locating PE MCollective Certificates and Security Credentials
 
@@ -181,7 +181,7 @@ These certs and security credentials are generated by the puppetlabs-pe\_mcollec
 
 ###Step 6: Restart Services and Run Puppet
 
-At this point, you need to restart or start the various services that help control Puppet and then run Puppet so that the certs and security credentials can be properly distributed.
+At this point, you need to restart or start the various services that help control Puppet and then run Puppet so that the certs and security credentials can be properly distributed. 
 
 1. In the order specified, run the following commands:
 
@@ -192,11 +192,11 @@ At this point, you need to restart or start the various services that help contr
    - `service pe-puppetserver start`
    - `service pe-puppet start`
    - `service pe-activemq restart`
-
-2. From the Puppet master node, use the command line to kick off a Puppet run with `puppet agent -t`.
+   
+2. From the Puppet master node, use the command line to kick off a Puppet run with `puppet agent -t`.  
 
 During this run, Puppet will copy the credentials you replaced into their final locations, regenerate the ActiveMQ truststore and keystore, and restart the `pe-activemq` and `pe-mcollective` services.
-
+   
 You should now see the master node in live management and be able to perform Puppet runs and other live management functions using the console.
 
 ##Adding Agent Nodes Using Your External CA
@@ -213,9 +213,9 @@ If you still don't see your agent node in live management, use NTP to verify tha
 
 ## PE Certificates and Security Credentials Quick Reference
 
-**Note**: This table is meant to be used as a quick reference of the certs and security credentials you'll need to replace. You'll need to follow the complete instructions in [Replacing the PE Certificate Authority and Security Crendentials](#replacing-the-pe-certificate-authority-and-security-credentials) to ensure all related tasks are performed correctly.
+**Note**: This table is meant to be used as a quick reference of the certs and security credentials you'll need to replace. You'll need to follow the complete instructions in [Replacing the PE Certificate Authority and Security Crendentials](#replacing-the-pe-certificate-authority-and-security-credentials) to ensure all related tasks are performed correctly. 
 
-| Order| Cert | Location | Filename | Notes |
+| Order| Cert | Location | Filename | Notes | 
 |---|---|---|---|---|
 | 1 | Master cert | `/etc/puppetlabs/puppet/ssl/certs` | `<puppet_master_fqdn>.ca.pem`  | On the Puppet master, the certs and credentials for the master and agent are in the same location/file in each of these categories, so only one set are needed  |
 | 2  | Master private key | `/etc/puppetlabs/puppet/ssl/private_keys`   | `<puppet_master_fqdn>.ca.pem`	  |   |
@@ -231,13 +231,13 @@ If you still don't see your agent node in live management, use NTP to verify tha
 | 12  | MCollective internal servers  | `/etc/puppetlabs/puppet/ssl_private_keys`  | `pe-internal-mcollective-servers.pem`	  |   |
 | 13  | MCollective internal servers  | `/etc/puppetlabs/puppet/ssl_public_keys`  | `pe-internal-mcollective-servers.pem`  |   |
 | 14  | MCollective internal console client  | `/etc/puppetlabs/puppet/ssl/certs`  | `pe-internal-console-mcollective-client.pem`  |   |
-| 15  | MCollective internal console client | `/etc/puppetlabs/puppet/ssl_private_keys`  | `pe-internal-console-mcollective-client.pem`  ||
+| 15  | MCollective internal console client | `/etc/puppetlabs/puppet/ssl_private_keys`  | `pe-internal-console-mcollective-client.pem`  || 
 | 16  | MCollective internal console client  | 	`/etc/puppetlabs/puppet/ssl_public_keys`  | `pe-internal-console-mcollective-client.pem`||
 | 17  | MCollective client  | `/etc/puppetlabs/puppet/ssl/certs`  | `pe-internal-peadmin-mcollective-client.pem`  |   |
 | 18  | MCollective client | `/etc/puppetlabs/puppet/ssl_private_keys`  | `pe-internal-peadmin-mcollective-client.pem`  |   |
 | 19  | MCollective client  | 	`/etc/puppetlabs/puppet/ssl_public_keys`  | `pe-internal-peadmin-mcollective-client.pem`	  |   |
 | 20  | Internal classifier cert  | `/opt/puppet/share/console-services/certs/`   | `pe-internal-classifier.cert.pem`  | |
-| 21  | Internal classifier private key  | `/opt/puppet/share/console-services/certs/`  | `pe-internal-classifier.private_key.pem` ||
+| 21  | Internal classifier private key  | `/opt/puppet/share/console-services/certs/`  | `pe-internal-classifier.private_key.pem` ||  
 | 22  | Internal classifier public key  | `/opt/puppet/share/console-services/certs/`  | `pe-internal-classifier.public_key.pem`  | |
 | 23 | Agent cert  | `/etc/puppetlabs/puppet/ssl/certs`   | `<agent_node_fqdn>.pem`  | |
 | 24  | Agent private key  | `/etc/puppetlabs/puppet/ssl/private_keys`  | `<agent_node_fqdn>.pem`  |   |

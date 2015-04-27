@@ -9,7 +9,7 @@
   </li>
   <li><strong>Release Notes</strong>
     <ul>
-        <li><a href="./release_notes.html">New Features and Deprecations</a></li>
+        <li><a href="./release_notes.html">New Features</a></li>
         <li><a href="./release_notes_known_issues.html">Known Issues</a></li>
         <li><a href="./release_notes_security.html">Security and Bug Fixes</a></li>
     </ul>
@@ -27,14 +27,13 @@
             <li><a href="./quick_writing_nix.html">7: Writing Modules</a></li>
            </ul>
            </li>
-        <li><strong><a href="./quick_start_windows_intro.html">Quick Start Intro for Windows Users</a></strong>
+        <li><strong><a href="./quick_start.html">Quick Start Intro for Windows Users</a></strong>
           <ul>
-            <li><a href="./quick_start_install_mono.html">1: Install PE</a></li>
-            <li><a href="./quick_start_install_agents_windows.html">2: Install Agents</a></li>
-            <li><a href="./quick_start_module_install_windows.html">3: Module Install</a></li>
-            <li><a href="./quick_start_adding_class_windows.html">4: Classifying Agents</a></li>
-            <li><a href="./quick_start_nc_rbac.html">5: Classifying Nodes and Assigning User Permissions</a></li>
-            <li><a href="./quick_writing_windows.html">6: Writing Modules (Windows)</a></li>
+            <li><a href="./quick_start_install_agents_windows.html">Step 1: Install Agents</a></li>
+            <li><a href="./quick_start_module_install_windows.html">Step 2: Module Install</a></li>
+            <li><a href="./quick_start_adding_class_windows.html">Step 3: Classifying Agents</a></li>
+            <li><a href="./quick_start_nc_rbac.html">Step 4: Classifying Nodes and Assigning User Permissions</a></li>
+            <li><a href="./quick_writing_windows.html">Step 5: Writing Modules (Windows)</a></li>
          </ul>
         <li><strong><a href="./quick_start_essential_config.html">Essential Configuration Tasks</a></strong>
            <ul>
@@ -44,7 +43,6 @@
             <li><a href="./quick_start_sudo.html">Sudo Quick Start Guide</a></li>
             <li><a href="./quick_start_firewall.html">Firewall Quick Start Guide</a></li>
           </ul>
-        <li><a href="./quick_start_r10k.html">r10k Quick Start Guide</a></strong>
       </ul>
   </li>
   <li><strong>Installing Puppet Enterprise</strong>
@@ -61,15 +59,11 @@
              <li><a href="./install_agents.html">Install PE Agents: *nix</a></li>
              <li><a href="./install_windows.html">Install PE Agents: Windows</a></li>
              <li><a href="./install_osx.html">Install PE Agents: Mac OS X</a></li>
-             <li><strong>Network Device Agents</strong>
-                 <ul>
-                   <li><a href="./install_eos.html">Install PE Agents: Arista EOS</a></li>
-                   <li><a href="./install_cumulus.html">Intall PE Agents: Cumulus Linux</a></li>
-                 </ul>
+             <li><a href="./install_eos.html">Install PE Agents: Arista EOS</a></li>
            </ul>
          <li><strong>Large Environment Installation</strong>
            <ul>
-             <li><a href="./install_multimaster.html">Additional Puppet Master Installation</a></li>
+             <li><a href="./install_multimaster.html">Compile Master Installation</a></li>
              <li><a href="./install_add_activemq.html">Additional ActiveMQ Hub and Spoke Installation</a></li>
              <li><a href="./install_add_dashboard_workers.html">Adding Dashboard Workers</a></li>
              <li><a href="./install_lei_upgrade.html">Upgrading Large Environment Installations</a></li>
@@ -77,6 +71,7 @@
          <li><strong>Answer File Installation</strong>
            <ul>
              <li><a href="./install_automated.html">Installing with an Answer File</a></li>
+             <li><a href="./install_answer_file_reference.html">Answer File Reference Overview</a></li>
              <li><a href="./install_complete_answer_file_reference.html">Complete Answer File Reference</a></li>
              <li><a href="./install_mono_answers.html">Monolithic Install Answer File Reference</a></li>
              <li><strong>Split Install Answer File Reference</strong>
@@ -94,14 +89,6 @@
                <li><a href="./install_upgrading_dir_env_notes.html">Upgrading to Directory Environments</a></li>
                <li><a href="./install_upgrading_puppet_server_notes.html">Upgrading to Puppet Server</a></li>
               </ul>
-          <li><strong>PE 3.3->PE 3.8 Migration</strong>
-            <ul>
-               	<li><a href="./install_upgrade_migration_tool.html">Overview</a></li>
-               	<li><a href="./install_upgrade_migration_monolithic.html">Migrating a Monolithic Installation</a></li>
-               	<li><a href="./install_upgrade_migration_split.html">Migrating a Split Installation</a></li>
-        		<li><a href="./install_upgrade_migration_preconfigured_groups.html">Preconfigured Node Groups</a></li>
-           		<li><a href="./install_upgrade_migration_tool_conflicts.html">Resolving Conflicts</a></li>
-           	</ul>
            <li><a href="./install_uninstalling.html">Uninstalling</a></li>
            <li><a href="./install_what_and_where.html">What Gets Installed Where?</a></li>
            <li><a href="./install_ssl_postgresql.html">SSL for PE and External PostgreSQL</a></li>
@@ -115,7 +102,6 @@
       <li><a href="./config_puppetdb.html">Configuring and Tuning PuppetDB</a></li>
       <li><a href="./config_orchestration.html">Configuring and Tuning Orchestration</a></li>
       <li><a href="./config_java_args.html">Configuring Java Arguments For PE</a></li>
-      <li><a href="./config_nc.html">Configuring and Tuning Node Classifier</a></li>
     </ul>
   </li>
   <li><strong>Monitoring Your PE Infrastructure</strong>
@@ -124,7 +110,6 @@
            <li><a href="./console_event-inspector.html">Using Event Inspector</a></li>
            <li><a href="./console_reports.html">Viewing Reports & Inventory Data</a></li>
            <li><a href="./console_inventory_search.html">Inventory Search</a></li>
-           <li><a href="./puppet_server_metrics.html">Monitoring Puppet Server</a></li>
 					</ul>
 	</li>
   <li><strong>Managing Nodes</strong>
@@ -136,7 +121,6 @@
                  <li><a href="./console_classes_groups_preconfigured_groups.html">Preconfigured Node Groups</a></li>
                  <li><a href="./console_classes_groups_inheritance.html">How Does Inheritance Work?</a></li>
                  <li><a href="./console_classes_groups_environment_override.html">Working With Environments</a></li>
-                 <li><a href="./node_deactivation.html">Deactivating a PE Agent</a></li>
                  <li><strong>Node Classifier Service API</strong>
                <ul>
                   <li><a href="./nc_index.html">Endpoints</a></li>
@@ -168,7 +152,6 @@
                   <li><a href="./rbac_ldap.html">Connecting PE with External Directory Services</a></li>
                   <li><a href="./rbac_permissions.html">About RBAC Permissions</a></li>
                   <li><a href="./rbac_user_roles.html">Creating and Managing Users and User Roles</a></li>
-                  <li><a href="./deploy_nonroot-agent.html">Running Agents Without Root Privileges</a></li>
                   <li><strong>RBAC Service API</strong>
                   <ul>
                     <li><a href="./rbac_serviceindex.html">Endpoints</a></li>
@@ -193,7 +176,6 @@
     <ul>
       <li><a href="./puppet_overview.html">Overview</a></li>
       <li><a href="./puppet_modules_manifests.html">Modules & Manifests</a></li>
-      <li><a href="../../guides/module_guides/bgtm.html">Beginners Guide to Modules</a></li>
       <li><a href="./puppet_assign_configurations.html">Assigning Configurations to Nodes</a></li>
       <li><a href="./puppet_tools.html">Tools</a></li>
       <li><a href="./puppet_data_library.html">Puppet Data Library</a></li>
@@ -215,19 +197,26 @@
       <li><a href="./orchestration_config.html">Configuring Orchestration</a></li>
     </ul>
 </li>
-
+<li><strong>Deploying PE</strong>
+    <ul>
+      <li><a href="./deploy_nonroot-agent.html">Running Agents Without Root Privileges</a></li>
+      <li><a href="../../guides/module_guides/bgtm.html">Beginners Guide to Modules</a></li>
+      <li><a href="./node_deactivation.html">Deactivating a PE Agent</a></li>
+      <li><a href="./puppet_server_metrics.html">Puppet Server Metrics</a></li>
+    </ul>
+</li>
   <li><strong>Provision With Razor</strong>
     <ul>
       <li><a href="./razor_intro.html">Bare-Metal Provisioning with Razor</a></li>
-      <li><a href="./razor_prereqs.html">Set Up an Environment for Razor</a></li>
+      <li><a href="./razor_prereqs.html">Set Up a Virtual Environment for Razor</a></li>
       <li><a href="./razor_install.html">Install Razor</a></li>
-      <li><a href="./razor_secure_apis.html">Make Razor API Calls Secure</a></li>
-      <li><a href="./razor_objects.html">Razor Objects for Provisioning</a></li>
-      <li><a href="./razor_brownfield.html">Provisioning in a Brownfield Environment</a></li>
-      <li><a href="./razor_using.html">Provision Nodes - How To</a></li>
+      <li><a href="./razor_using.html">Razor Provisioning Setup</a></li>
       <li><a href="./razor_windows_install.html">Setting Up and Installing Windows</a></li>
       <li><a href="./razor_reference.html">Razor Command Reference</a></li>
-      <li><a href="./razor_brokertypes.html">Writing Broker Types</a></li>
+      <li><a href="./razor_tags.html">Razor Tags</a></li>
+      <li><a href="./razor_brokertypes.html">Razor Broker Types</a></li>
+      <li><a href="./razor_tasks.html">Razor Tasks</a></li>
+      <li><a href="./razor_knownissues.html">Razor Setup Information and Known Issues</a></li>
     </ul>
   </li>
   <li><strong>Cloud Provisioners</strong>
@@ -241,18 +230,7 @@
       <li><a href="./cloudprovisioner_workflow.html">Sample Workflow</a></li>
     </ul>
   </li>
-  <li><strong>Code Management with r10K</strong>
-    <ul>
-      <li><a href="./r10k.html">Getting to Know r10K</a></li>
-      <li><a href="./r10k_setup.html">Setting Up r10K</a></li>
-      <li><a href="./r10k_yaml.html">Setting Up Directory Environments in r10k.yaml</a></li>
-      <li><a href="./r10k_puppetfile.html">Managing Modules with the Puppetfile</a></li>
-      <li><a href="./r10k_run.html">Deploying Environments</a></li>
-      <li><a href="./r10k_reference.html">r10k Subcommand Reference</a></li>
-      <li><a href="./quick_start_r10k.html">r10k Quick Start Guide</a></li>
-    </ul>
-  </li>
-<li><strong>The PE Accounts Module</strong>
+  <li><strong>The PE Accounts Module</strong>
     <ul>
       <li><a href="./accounts_user_type.html">The pe_accounts::user Type</a></li>
       <li><a href="./accounts_class.html">The pe_accounts Class</a></li>

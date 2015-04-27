@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.8 » Orchestration » Controlling Puppet"
+title: "PE 3.7 » Orchestration » Controlling Puppet"
 subtitle: "Orchestration: Controlling Puppet"
 canonical: "/pe/latest/orchestration_puppet.html"
 ---
@@ -11,7 +11,7 @@ canonical: "/pe/latest/orchestration_puppet.html"
 [inpage_stop]: #start-and-stop-the-puppet-agent-service
 [filter]: ./orchestration_invoke_cli.html#filtering-actions
 [environment]: /guides/environment.html
-[tags]: /puppet/3.8/reference/lang_tags.html
+[tags]: /puppet/3.7/reference/lang_tags.html
 [batch]: ./orchestration_invoke_cli.html#batching
 [data_plugins]: ./orchestration_invoke_cli.html#data-plugins
 [tab]: ./console_navigating_live_mgmt.html#the-control-puppet-tab
@@ -42,8 +42,6 @@ The orchestration engine can control Puppet from the **PE console** and from the
 > * [Navigating Live Management][console]
 
 In the console, most of these tasks use [the __Control Puppet__ tab of the live management page][puppet_tab], which behaves much like the __Advanced Tasks__ tab. On the command line, most of these tasks use the `mco puppet` subcommand.
-
->**Note**: Live Management is deprecated in PE 3.8, and will be replaced with improved resource management capabilities in future versions of PE. See the [PE 3.8 release notes](./release_notes.html#live-management-is-deprecated).
 
 ![The control puppet tab][live_puppet_main]
 

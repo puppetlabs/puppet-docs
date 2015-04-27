@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.8 » Console » Grouping and Classifying Nodes"
+title: "PE 3.7 » Console » Grouping and Classifying Nodes"
 subtitle: "How Does Inheritance Work?"
 canonical: "/pe/latest/console_classes_groups_inheritance.html"
 ---

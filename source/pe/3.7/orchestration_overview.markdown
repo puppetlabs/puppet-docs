@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.8 » Orchestration » Overview"
+title: "PE 3.7 » Orchestration » Overview"
 subtitle: "Overview of Orchestration Topics"
 canonical: "/pe/latest/orchestration_overview.html"
 ---
@@ -57,8 +57,6 @@ Puppet Enterprise can invoke orchestration actions in two places:
 
 * [**In the PE console** (on the live management page)](./console_navigating_live_mgmt.html)
 * [**On the command line**](./orchestration_invoke_cli.html)
-
->**Note**: Live Management is deprecated in PE 3.8 and will be replaced in future versions of PE. See the [PE 3.8 release notes](./release_notes.html#live-management-is-deprecated) for more information.
 
 ### Special Interfaces: Puppet Runs and Resources
 

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.8 » Quick Start » Writing Modules (Windows)"
+title: "PE 3.7 » Quick Start » Writing Modules (Windows)"
 subtitle: "Module Writing Basics for Windows"
 canonical: "/pe/latest/quick_writing_windows.html"
 ---
@@ -12,7 +12,7 @@ Welcome to the writing modules section of the Quick Start Guide (QSG) series. Th
 * Create a site module that assigns other modules into machine roles
 * Apply Puppet classes to groups with the console
 
-> Before starting this walkthrough, you should have completed the previous exercises in the [introductory quick start guide](./quick_start.html). You should still be logged in as root or administrator on your nodes.
+> Before starting this walkthrough, you should have completed the [introductory quick start guide](./quick_start.html). You should still be logged in as root or administrator on your nodes.
 
 >Note: By following the steps in this guide, you'll be making changes to the Puppet Labs Registry module. If you upgrade the module in the future, the changes you make in these steps will be overwritten.
 
@@ -24,7 +24,7 @@ Next, install the [Puppet Labs Registry module](https://forge.puppetlabs.com/pup
 
 #### Module Basics
 
-By default, modules are stored in `/etc/puppetlabs/puppet/environments/production/modules`. You can configure this path with the [`modulepath`](/references/3.7.latest/configuration.html#modulepath) setting in `puppet.conf`.)
+By default, modules are stored in `/etc/puppetlabs/puppet/modules`. You can configure this path with the [`modulepath`](/references/3.7.latest/configuration.html#modulepath) setting in `puppet.conf`.)
 
 Modules are directory trees. The manifest directory of the Puppet Labs Registry module contains the following files:
 
@@ -41,7 +41,7 @@ Every manifest (.pp) file contains a single class. File names map to class names
 
 Many modules contain directories other than `manifests`; for simplicity's sake, we will not cover them in this introductory guide.
 
-* For more on how modules work, see [Module Fundamentals](/puppet/3.8/reference/modules_fundamentals.html) in the Puppet documentation.
+* For more on how modules work, see [Module Fundamentals](/puppet/3.7/reference/modules_fundamentals.html) in the Puppet documentation.
 * For more on best practices, methods, and approaches to writing modules, see the [Beginners Guide to Modules](/guides/module_guides/bgtm.html).
 * For a more detailed guided tour, also see [the module chapters of Learning Puppet](/learning/modules1.html).
 
@@ -96,8 +96,8 @@ During this exercise, you will create a class called `critical_policy` that will
 For more information about writing classes, refer to the following documentation:
 
 * To learn how to write resource declarations, conditionals, and classes in a guided tour format, [start at the beginning of Learning Puppet.](/learning/)
-* For a complete but succinct guide to the Puppet language's syntax, [see the Puppet 3 language reference](/puppet/3.8/reference/lang_summary.html).
-* For complete documentation of the available resource types, [see the type reference](/references/3.8.latest/type.html).
+* For a complete but succinct guide to the Puppet language's syntax, [see the Puppet 3 language reference](/puppet/3.7/reference/lang_summary.html).
+* For complete documentation of the available resource types, [see the type reference](/references/3.7.latest/type.html).
 * For short, printable references, see [the modules cheat sheet](/module_cheat_sheet.pdf) and [the core types cheat sheet](/puppet_core_types_cheatsheet.pdf).
 
 #### Using Your Custom Module in the Console
@@ -148,7 +148,7 @@ This class declares other classes with the `include` function. Note the "if" con
 
 1. **On the console,** remove all of the previous example classes from your nodes and groups, using the __Edit__ button in each node or group page. Be sure to leave the `pe_*` classes in place.
 2. Add the `site::basic` class to the console with the __Add classes__ button in the sidebar as before.
-3. Assign the `site::basic` class to the __windows_example__ group in the [Adding Classes QSG](./quick_start_adding_class_windows.html).
+3. Assign the `site::basic` class to the default group.
 
 > Your nodes are now receiving the same configurations as before, but with a simplified interface in the console. Instead of deciding which classes a new node should receive, you can decide what _type_ of node it is and take advantage of decisions you made earlier.
 

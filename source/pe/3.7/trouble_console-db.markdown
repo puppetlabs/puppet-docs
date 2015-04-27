@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.8 » Troubleshooting » Troubleshooting the Console & Database "
+title: "PE 3.7 » Troubleshooting » Troubleshooting the Console & Database "
 subtitle: "Finding Common Problems"
 canonical: "/pe/latest/trouble_console-db.html"
 ---
@@ -13,7 +13,7 @@ Below are some common issues that can cause trouble with the databases that supp
 Disabling/Enabling Live Management
 -------
 
-Live Management is deprecated in PE 3.8 and will be replaced by improved resource management functionality in future releases. For this reason, Live Management is not enabled by default as in previous versions of PE, but you can configure your installation to enable it. Live Management can be disabled/enabled during [upgrades][install_upgrade] or during [normal operations][normal_operations].
+Live management is enabled in the console by default when you install PE, but you can configure your installation to disable it. In addition, live management can be disabled/enabled during [upgrades][install_upgrade] or [normal operations][normal_operations].
 
 [install_upgrading]: ./install_upgrading.html#disabling/enabling-live-management-during-an-upgrade
 [normal_operations]: ./console_navigating_live_mgmt.html#disabling/enabling-live-management
@@ -34,9 +34,9 @@ Execute the following curl command from the Puppet master (monolithic install) o
     --key /opt/puppet/share/puppet-dashboard/certs/pe-internal-dashboard.private_key.pem \
     https://$(hostname -f):4433/classifier-api/v1/groups > classifier_groups.json
 
-This will generate a file called `classifier_groups.json`. The JSON file is described in the [groups portion](./nc_groups.html#get-v1groups) of the NC API docs.
+This will generate a file called `classifier_groups.json`. The JSON file is described in the [groups portion](./nc_groups.html#get-v1groups) of the NC API docs. 
 
-#### Determine what data the NC will generate for a given node name
+#### Determine what data the NC will generate for a given node name 
 
 **NOTE**: In the examples below replace `<SOME NODE NAME>` with the FQDN of the node you are interested in.
 
@@ -47,20 +47,20 @@ Execute the following curl command from the Puppet master (monolithic install) o
      --cert /opt/puppet/share/puppet-dashboard/certs/pe-internal-dashboard.cert.pem \
      --key /opt/puppet/share/puppet-dashboard/certs/pe-internal-dashboard.private_key.pem \
      https://$(hostname -f):4433/classifier-api/v1/classified/nodes/<SOME NODE NAME> > node_classification.json
+      
+This will generate a file called `node_classification.json`. The JSON file is described in the [classificatiopn portion](./nc_classification.html#post-v1classifiednodesname) of the NC API docs. 
 
-This will generate a file called `node_classification.json`. The JSON file is described in the [classificatiopn portion](./nc_classification.html#post-v1classifiednodesname) of the NC API docs.
+However, note that the above query will only return classification data for nodes that are [statically pinned](./console_classes_groups.html#adding-nodes-statically) to node groups. 
 
-However, note that the above query will only return classification data for nodes that are [statically pinned](./console_classes_groups.html#adding-nodes-statically) to node groups.
-
-To get classification data for [dynamically grouped nodes](./console_classes_groups.html#adding-nodes-dynamically), a JSON object containing facts will need to be submitted during the POST request.
+To get classification data for [dynamically grouped nodes](./console_classes_groups.html#adding-nodes-dynamically), a JSON object containing facts will need to be submitted during the POST request. 
 
      curl -X POST -H 'Content-Type: application/json' \
-     --data '{"fact":{"pe_version": "3.8.0"}}' \
+     --data '{"fact":{"pe_version": "3.7.0"}}' \
      --cacert /etc/puppetlabs/puppet/ssl/certs/ca.pem \
      --cert /opt/puppet/share/puppet-dashboard/certs/pe-internal-dashboard.cert.pem \
      --key /opt/puppet/share/puppet-dashboard/certs/pe-internal-dashboard.private_key.pem \
      https://$(hostname -f):4433/classifier-api/v1/classified/nodes/<SOME NODE NAME> > node_classification.json
-
+    
 See the [classificatiopn portion](./nc_classification.html#post-v1classifiednodesname) of the NC API docs for more information on how to supply facts when making classification requests.
 
 PostgreSQL is Taking Up Too Much Space
@@ -94,7 +94,7 @@ By default, PuppetDB communicates over port 8081. In some cases, this may confli
 Recovering from a Lost Console Admin Password
 -----
 
-In RBAC, one of the built-in users is the admin, a superuser with all available read/write privileges. In the event you need to reset the admin password for console access, you'll have to run a utility script located in the [PE 3.8.0 installer tarball](http://puppetlabs.com/misc/pe-files). Note that the PE 3.8 tarball might have moved to the [previous releases page](http://puppetlabs.com/misc/pe-files/previous-releases).
+In RBAC, one of the built-in users is the admin, a superuser with all available read/write privileges. In the event you need to reset the admin password for console access, you'll have to run a utility script located in the [PE 3.7.0 installer tarball](http://puppetlabs.com/misc/pe-files). Note that the PE 3.7 tarball might have moved to the [previous releases page](http://puppetlabs.com/misc/pe-files/previous-releases).
 
 This script uses a series of API calls authenticated with a whitelisted certificate to reset the built-in admin's password.
 

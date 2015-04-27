@@ -1,10 +1,9 @@
 ---
 layout: default
-title: "PE 3.8 » Cloud Provisioning » Classifying Nodes and Installing Puppet"
+title: "PE 3.7 » Cloud Provisioning » Classifying Nodes and Installing Puppet"
 subtitle: "Classifying New Nodes and Remotely Installing Puppet"
 canonical: "/pe/latest/cloudprovisioner_classifying_installing.html"
 ---
->**Important**: Cloud Provisioner is deprecated in PE 3.8, and will be removed in future versions of PE. We recommend that you see the AWS supported module for cloud provisioning.
 
 Nodes in a cloud infrastructure can be classified and managed as easily as any other machine in a Puppet Enterprise deployment. You can install a Puppet agent (or other component) on them and add new nodes to pre-existing console groups, further classify and configure those nodes, and manipulate them with live management.
 

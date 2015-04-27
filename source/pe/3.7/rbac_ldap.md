@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.8 » Console » Connecting PE to an External Directory Service"
+title: "PE 3.7 » Console » Connecting PE to an External Directory Service"
 subtitle: "Connecting Puppet Enterprise to an External Directory Service"
 canonical: "/pe/latest/rbac_ldap.html"
 ---
@@ -43,7 +43,7 @@ All of the fields are required except for Login Help, User Relative Distinguishe
 | **LOOKUP USER** | cn=queryuser,cn=Users,dc=puppetlabs,dc=com | cn=admin,dc=delivery,dc=puppetlabs,dc=net |
 | **LOOKUP PASSWORD** | The lookup user's password. | The lookup user's password.
 | **CONNECTION TIMEOUT (SECONDS)** | 10 | 10 |
-| **Connect using SSL?** | Select or leave unchecked (**Note:** To ensure a secure connection, you also need to [set the `ds-trust-chain`](#verify-directory-server-certificates)) | Select or leave unchecked (**Note:** To ensure a secure connection, you also need to [set the `ds-trust-chain`](#verify-directory-server-certificates)) |
+| **Connect using SSL?** | Select or leave unchecked | Select or leave unchecked |
 | **BASE DISTINGUISHED NAME** | dc=puppetlabs,dc=com | dc=puppetlabs,dc=com |
 | **USER LOGIN ATTRIBUTE** | sAMAccountName | cn |
 | **USER EMAIL ADDRESS**  | mail | mail |
@@ -95,7 +95,7 @@ The number of seconds that PE will attempt to connect to the directory server be
 
 **Connect using SSL?**
 
-Select if you want to use SSL to connect to the external directory. If you select this option, make sure you also specify the SSL port in the **PORT** field above. In addition, to ensure that the directory service is properly identified, you need to [configure the `ds-trust-chain` to point to a copy of the public key (PEM format) for the directory service](#verify-directory-server-certificates).
+Select if you want to use SSL to connect to the external directory. If you select this option, make sure you also specify the SSL port in the **PORT** field above.
 
 **BASE DISTINGUISHED NAME**
 
@@ -195,26 +195,8 @@ This setting is optional. If you choose not to set it, PE will search for the gr
 - When you experience long wait times for operations that contact the directory service (either when logging in or importing a group for the first time). Specifying a group RDN will reduce the number of entries that are searched.
 - When you have more than one entry under your base DN with the same lookup value.
 
->**Note**: At present, PE only supports a single Base DN.
->
->  * Use of multiple user RDNs or group RDNs is not supported.
+>**Note**: At present, PE only supports a single Base DN. Use of multiple user RDNs or group RDNs is not supported.
 
-### Verify Directory Server Certificates
-
-If you select **Connect using SSL** when setting up your external directory connection, your connection to the directory will be encrypted. If you would also like to verify the directory server's SSL certificate to ensure that RBAC isn't being subjected to a Man-in-the Middle (MITM) attack, you need to take the additional step of configuring a setting in your HOCON configuration file.
-
-The RBAC service verifies directory server certificates using a trust store file, in Java Key Store (JKS) or PKCS12 format, that contains the chain of trust for the directory server's certificate. This file needs to exist on disk in a location that is readable by the user running the RBAC service.
-
-To turn on verification:
-
-1. From the console, navigate to the **Classification** page and select the **PE Console** node group.
-2. Click **Classes** and scroll down to the `puppet_enterprise::profile::console` class.
-3. Click the **Parameter name** drop-down list and select `rbac_ds_trust_chain`.
-4. In **Value**, set the absolute path to the trust store file. 
-5. Click **Add parameter** and then click the commit button.
-6. To make the change take affect, run Puppet (`puppet agent -t`). Running Puppet will restart pe-console-services.
-
-Once this value is set, the directory server's certificate will be verified whenever RBAC is configured to connect to the directory server using SSL.
 
 See [Working with User Roles](./rbac_user_roles.html) for information about managing users and groups.
 

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.8 » Puppet » Assigning Configurations to Nodes"
+title: "PE 3.7 » Puppet » Assigning Configurations to Nodes"
 subtitle: "Puppet: Assigning Configurations to Nodes"
 canonical: "/pe/latest/puppet_assign_configurations.html"
 ---
@@ -8,19 +8,19 @@ canonical: "/pe/latest/puppet_assign_configurations.html"
 [data_small]: images/puppet/pe-configuration-data-small.png
 [data]: images/puppet/pe-configuration-data.png
 [lang_params]: /puppet/3.6/reference/lang_classes.html#class-parameters-and-variables
-[topscope]: /puppet/3.8/reference/lang_scope.html#top-scope
-[node_definitions]: /puppet/3.8/reference/lang_node_definitions.html
-[node_inheritance]: /puppet/3.8/reference/lang_node_definitions.html#inheritance
-[resource_declarations]: /puppet/3.8/reference/lang_resources.html
+[topscope]: /puppet/3.7/reference/lang_scope.html#top-scope
+[node_definitions]: /puppet/3.7/reference/lang_node_definitions.html
+[node_inheritance]: /puppet/3.7/reference/lang_node_definitions.html#inheritance
+[resource_declarations]: /puppet/3.7/reference/lang_resources.html
 [agent_cron]: ./puppet_overview.html#run-from-cron
-[classes]: /puppet/3.8/reference/lang_classes.html
-[include]: /puppet/3.8/reference/lang_classes.html#using-include
-[resource_like]: /puppet/3.8/reference/lang_classes.html#using-resource-like-declarations
+[classes]: /puppet/3.7/reference/lang_classes.html
+[include]: /puppet/3.7/reference/lang_classes.html#using-include
+[resource_like]: /puppet/3.7/reference/lang_classes.html#using-resource-like-declarations
 [hiera_params]: #assigning-class-parameters-with-hiera
-[variable_assign]: /puppet/3.8/reference/lang_variables.html
-[functions]: /puppet/3.8/reference/lang_functions.html
-[selectors]: /puppet/3.8/reference/lang_conditional.html#selectors
-[node_scope]: /puppet/3.8/reference/lang_scope.html#node-scope
+[variable_assign]: /puppet/3.7/reference/lang_variables.html
+[functions]: /puppet/3.7/reference/lang_functions.html
+[selectors]: /puppet/3.7/reference/lang_conditional.html#selectors
+[node_scope]: /puppet/3.7/reference/lang_scope.html#node-scope
 [puppetdb_query]: https://forge.puppetlabs.com/dalen/puppetdbquery
 [custom_functions]: /guides/custom_functions.html
 [hash]: /puppet/3.7/reference/lang_datatypes.html#hashes
@@ -33,11 +33,11 @@ canonical: "/pe/latest/puppet_assign_configurations.html"
 [console_auth]: ./rbac_intro.html
 [console_classes]: ./console_classes_groups.html
 [forge]: https://forge.puppetlabs.com
-[import]: /puppet/3.8/reference/lang_import.html
+[import]: /puppet/3.7/reference/lang_import.html
 [hiera_config]: /hiera/1/configuring.html
 [hiera_hierarchies]: /hiera/1/hierarchy.html
-[core_facts]: /facter/2.3/core_facts.html
-[p3_special_vars]: /puppet/3.8/reference/lang_variables.html#facts-and-built-in-variables
+[core_facts]: /facter/2.2/core_facts.html
+[p3_special_vars]: /puppet/3.7/reference/lang_variables.html#facts-and-built-in-variables
 [custom_facts]: /guides/custom_facts.html
 [hiera_sources]: /hiera/1/data_sources.html
 [hiera_cli]: /hiera/1/command_line.html
@@ -46,15 +46,15 @@ canonical: "/pe/latest/puppet_assign_configurations.html"
 [hiera_autoparams]: /hiera/1/puppet.html#automatic-parameter-lookup
 [hiera_functions]: /hiera/1/puppet.html#hiera-lookup-functions
 [dunn]: http://www.craigdunn.org/2012/05/239/
-[include_like]: /puppet/3.8/reference/lang_classes.html#include-like-vs-resource-like
+[include_like]: /puppet/3.7/reference/lang_classes.html#include-like-vs-resource-like
 [hiera_priority]: /hiera/1/lookup_types.html#priority-default
-[data_type]: /puppet/3.8/reference/lang_datatypes.html
+[data_type]: /puppet/3.7/reference/lang_datatypes.html
 [site_pp_vars]: #assigning-variables-with-sitepp
 [hiera_arbitrary]: #providing-arbitrary-data
-[exported]: /puppet/3.8/reference/lang_exported.html
+[exported]: /puppet/3.7/reference/lang_exported.html
 [site_pp_other_data]: #working-with-other-data-sources
 [role_profile_params]: #assigning-class-parameters-with-role-and-profile-modules
-[facts]: /puppet/3.8/reference/lang_variables.html#facts-and-built-in-variables
+[facts]: /puppet/3.7/reference/lang_variables.html#facts-and-built-in-variables
 [plugins_in_modules]: /guides/plugins_in_modules.html
 [external_facts]: /guides/custom_facts.html#external-facts
 [rest_api]: ./nc_index.html

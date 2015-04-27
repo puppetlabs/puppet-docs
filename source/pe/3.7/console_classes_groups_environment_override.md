@@ -1,12 +1,24 @@
 ---
 layout: default
-title: "PE 3.8 » Console » Grouping and Classifying Nodes"
+title: "PE 3.7 » Console » Grouping and Classifying Nodes"
 subtitle: "Working With Environments"
 canonical: "/pe/latest/console_classes_groups_environment_override.html"
 ---
 
 
-We recommend the following environment-based workflow for testing new code in the node classifier before pushing it to production. In this workflow, you create a set of node groups that are used exclusively for assigning environments to nodes, and another set of node groups that are used for classifying nodes. This workflow avoids the conflicts that can occur if a node is a member of two different node groups, each with a different environment specified.
+In order to prevent conflicts between node groups, we recommend the idea of “environment groups” and “classification groups”.
+
+"Environment groups" should:
+
+1. Set the environment
+2. Have the **Override all other environments** checkbox selected
+3. Not include any classes
+
+"Classification groups" should:
+
+1. Include classes
+2. **Never** have the **Override all other environments** checkbox selected
+3. Use the environment if you want to filter classes and parameters by environment
 
 <a href="./images/console/env_workflow.svg"><img src="./images/console/env_workflow.svg" alt="Environment Workflow" title="Click to enlarge"> (Click to enlarge)</a>
 
@@ -26,8 +38,8 @@ We recommend the following environment-based workflow for testing new code in th
 
     4. To commit the change, click the commit button.
 
-    In the **All node groups** view, an **Override** tag is displayed for node groups that      have the environment override set.
-
+    In the **All node groups** view, an **Override** tag is displayed for node groups that      have the environment override set. 
+    
 ### Creating Classification Node Groups
 
 1. Create a set of node groups that are used exclusively for assigning classification to nodes. This is where you will add classes, along with rules that specify which nodes to match. You can leave the environment set to the default `production` environment, or change it to whatever environment you need to validate your classes and parameters against. **Do not set the environment override in any of these groups.**

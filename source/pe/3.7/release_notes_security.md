@@ -1,179 +1,224 @@
 ---
-title: "PE 3.8 » Release Notes >> Security and Bug Fixes"
+title: "PE 3.7 » Release Notes >> Security and Bug Fixes"
 layout: default
 subtitle: "Security Fixes"
 canonical: "/pe/latest/release_notes_security.html"
 ---
 
-This page contains information about security fixes in Puppet Enterprise (PE) 3.8. It also contains a select list of those bug fixes that we believe you'll want to learn about.
+This page contains information about security fixes in Puppet Enterprise (PE) 3.7. It also contains a select list of those bug fixes that we believe you'll want to learn about.
 
 For more information about this release, also see the [Known Issues](./release_notes_known_issues.html) and [New Features](./release_notes.html).
 
-## Puppet Enterprise 3.8 (April 28, 2015)
+## Puppet Enterprise 3.7.2 (2/10/15)
 
 ### Security Fixes
 
-#### CWE - Cross-Frame Scripting (XFS) Vulnerability
+#### CVE - OpenSSL January 2015 Security Fixes
 
-Posted April 28, 2015
+Posted February 10, 2015
 
-Some endpoints in the Puppet Enterprise console are potentially susceptible to cross-frame scripting (XFS) attacks. An exploit would coerce a PE user into navigating to an attacker-controlled web page that loaded the Puppet Enterprise console in an HTML frame.
+On January 8th, the OpenSSL project announced several security vulnerabilities in OpenSSL. Puppet Enterprise versions prior to 3.7.2 contained vulnerable versions of OpenSSL. Puppet Enterprise 3.7.2 contains updated versions of OpenSSL that have patched the vulnerabilities.
 
-This issue affected PE 3.7.x. It's resolved in PE 3.8.0.
+For more information about the OpenSSL vulnerabilities, refer to the [OpenSSL security announcement](https://www.openssl.org/news/secadv_20150108.txt).
 
-#### OpenSSL March 2015 Security Fixes
+OpenSSL issues affected PE 2.x and 3.x. They're resolved in PE 3.7.2.
 
-Posted April 28, 2015
+#### CVE - Oracle Java January 2015 Security Fixes
 
-On March 19, the OpenSSL project announced several security vulnerabilities in OpenSSL. Puppet Enterprise versions prior to 3.8.0 contained vulnerable versions of OpenSSL. Puppet Enterprise 3.8.0 contains updated versions of OpenSSL that have patched the vulnerabilities.
+Posted February 10, 2015
+Assessed Risk Level: Medium
 
-For more information about the OpenSSL vulnerabilities, refer to the [OpenSSL security announcement](https://www.openssl.org/news/secadv_20150319.txt).
+On January 20th, Oracle announced several security vulnerabilities in Java. Puppet Enterprise versions prior to 3.7.2 contained a vulnerable version of Java. Puppet Enterprise 3.7.2 contains an updated version of Java that has patched the vulnerabilities.
 
-These issues affected PE 2.x and 3.x. They're resolved in PE 3.8.0.
+For more information about the Java vulnerabilities, refer to the [Oracle security announcement](http://www.oracle.com/technetwork/topics/security/cpujan2015-1972971.html).
 
-#### Oracle Java April 2015 Security Fixes
+This issue affected PE 3.x. It's resolved in PE 3.7.2.
 
-Posted April 28, 2015
+#### CVE - 2015-1426 - Potential Sensitive Information Leakage in Facter's Amazon EC2 Metadata Facts Handling
 
-On April 14th, Oracle announced several security vulnerabilities in Java. Puppet Enterprise versions prior to 3.8.0 contained a vulnerable version of Java. Puppet Enterprise 3.8.0 contains an updated version of Java that has patched the vulnerabilities.
+Posted February 10, 2015
+Assessed Risk Level: Low
 
-For more information about the Java vulnerabilities, refer to the [Oracle security announcement](http://www.oracle.com/technetwork/topics/security/cpuapr2015-2365600.html).
+An issue exists where sensitive Amazon EC2 IAM instance metadata could be added to an Amazon EC2 node's facts, where a non-privileged local user could access the information via Facter.
 
-These issues affected PE 3.x. They're resolved in PE 3.8.0.
+Although Amazon’s API allows anyone who can access an EC2 instance to view its instance metadata, facts containing sensitive EC2 instance metadata could be unintentionally exposed through off-host applications that display facts.
 
-#### PostgreSQL February 2015 Security Fixes
+CVSS v2 Score: 1.3
 
-Posted April 28, 2015
+Vector AV:L/AC:L/Au:S/C:P/I:N/A:N/E:U/RL:OF/RC:C
 
-On February 5th, the PostgreSQL project announced several security vulnerabilities in PostgreSQL. The impact of these vulnerabilities includes information leakage, denial of service, SQL injection, and possible privilege escalation. However, all of the vulnerabilities require prior database authentication.
-
-Puppet Enterprise versions prior to 3.8.0 contained a vulnerable version of PostgreSQL. Puppet Enterprise 3.8.0 contains an updated version of PostgreSQL that has patched the vulnerabilities.
-
-For more information on the PostgreSQL vulnerabilities, please see the [PostgreSQL announcement](http://www.postgresql.org/about/news/1569/).
-
-These issues affected PE 3.x. They're resolved in PE 3.8.0.
-
-#### CVE - Ruby OpenSSL Hostname Verification
-
-Posted April 28, 2015
-
-Vulnerabilities in Ruby’s OpenSSL extension allow overly permissive matching of hostnames, particularly when using wildcard SSL certificates.
-
-Puppet Enterprise does not generate wildcard SSL certificates by default. However, if a PE infrastructure has been configured with wildcard SSL certificates, it could theoretically be vulnerable to man-in-the-middle attacks.
-
-For more information on the vulnerability, please see the [Ruby project’s announcement](https://www.ruby-lang.org/en/news/2015/04/13/ruby-openssl-hostname-matching-vulnerability/).
-
-These issues affected PE 3.x and Puppet-Agent 1.0. They're resolved in PE 3.8.0.
-
-#### CVE - LibYAML Vulnerability Could Allow Denial of Service
-
-Posted April 28, 2015
-
-A flaw in the LibYAML library’s parsing of wrapped strings could allow an attacker to cause a denial of service by loading a specially crafted YAML document.
-
-This issue affected PE 3.x. It's resolved in PE 3.8.0
+This issue affects PE 2.x and 3.x, Facter 1.6.0 - 2.4.0, and CFacter 0.2.0 and earlier. It's resolved in PE 3.7.2 and CFacter 0.3.0.
 
 ### Bug Fixes
 
-Puppet Enterprise 3.8 contains a number of performance and documentation improvements, in addition to the fixes that are highlighted below.
+Puppet Enterprise 3.7.2 contains a number of performance and documentation improvements, in addition to the fixes that are highlighted below.
 
-#### Static Defaults Were Set for TK-Jetty `max threads`
+#### Install and Upgrade Fixes
 
-Previously, in PE, tk-jetty `max threads` were set to a static default of 100 threads. We determined this was too low for large environments with high CPU counts, and we no longer set a default for `max threads`. Unless you specify a value, we will not manage or define this setting. You can tune `max threads` for the [PE console/console API](./console_config.html#tuning-max-threads-on-the-pe-console-and-console-api) or [Puppet Server](./config_puppetserver.html#tuning-max-threads-on-puppet-server) as needed using Hiera.
+* PE installer did not create the symlink for the PE Java cacerts file.
+This issue made `puppetserver gem install` fail with the error "Certificate verify failed." It also caused the error, "Could not find a valid gem 'hiera-eyaml'".
+* PE installer did not check permissions on untarred folders, which caused the installer to fail.
+* `pe-puppet` failed to upgrade on RHEL 4.
 
-#### Custom Console Cert Functionality Was Broken in PE 3.7.x
+#### The `node:del` Rake Task Deleted a Node Group Instead of the Node
 
-In PE 3.7.x users could not set custom certificates for the PE console. This release corrects that issue, but if you're upgrading from PE 3.3.2, note that cert functionality has changed in PE 3.8. If needed, refer to [Configuring the Puppet Enterprise Console to Use a Custom SSL Certificate](./custom_console_cert.html) for instructions on re-configuring your custom console certificate.
+In PE 3.7, the behavior of the `node:del` rake task changed so that it deleted the node group to which a specified node was pinned. In PE 3.7.2, this behavior has been reverted to the PE 3.3 behavior so that `node:del` now deletes the specified node from the console database.
 
-#### Agent Installation No Longer Sets `environment = production`
+A new rake task, `node:delgroup`, was introduced in PE 3.7.2 for deleting a node group.
 
-This release corrects an issue in which agents' environments were set to `production` during the installation process (in `puppet.conf`). This behavior was undesirable if users wanted to set agents' environments with the node classifier.
+For more information, see the [rake API documentation](./console_rake_api.html).
 
-#### Agent Server Setting Moved to `[main]` in `puppet.conf`
+#### Additional Node Manager Service Fixes
 
-The agent server setting is now set in the `[main]` section of `puppet.conf`; in previous versions, it was set in the `[agent]` section. This fix makes it possible to use the agent installation script to install compile masters and ActiveMQ hubs and spokes in large environment installations.
+* Environments are now removed from the classifier when they are no longer populated.
+* In PE console service, changes to logback.xml are now dynamically taken up.
+* Escaping DNs is now in place for searching for group membership.
+* Classifier synchronization failed if an environment couldn't be loaded.
 
-#### ActiveMQ Spokes Can Be Managed from Profile Level
+#### Role-Based Access Control Fixes
 
-ActiveMQ spokes (brokers) can now have their collectives set and managed in PE from the profile level, using the `excluded_collectives` and `included_collectives` parameters in the `puppet_enterprise::profile::amq::broker` class. This functionality was not available from the profile level in PE 3.7.x.
+* Previously, when tracing back an LDAP or Active Directory user's group membership, if one of the groups had a DN with a special character in it, the search would break. Now that search has been updated and should properly escape all special characters.
+* When resetting the admin password in RBAC, it wasn't obfuscated. It's now obfuscated.
 
-#### ActiveMQ/MCollective Network Connections Failed when Sending Commands to Targeted Spokes
+#### Agent Install Did Not Normalize FQDN for Certname
 
-Due to a misconfigured setting in PE (`puppet_enterprise::amq::config::network_connector`), ActiveMQ/MCollective network connections failed on occasion. Specifically, the connections failed when a ActiveMQ hub was sending commands to targeted spokes (brokers) in large environment installations. This is fixed in PE 3.8.
+Previously, if an agent was installed on a node with capital letters in the FQDN, then that FQDN with capital letters would be placed directly into the certname in puppet.conf.  Due to an older issue in Puppet, mixed-case certnames allow a certificate to be created and signed that is lowercase and that does not match the certname in puppet.conf.
 
-#### Changes to ActiveMQ Heap Size Did Not Restart `pe-activemq` Service
+This mismatch was addressed by a fix to the PE 3.7.2 agent installer that downcases the entire certname before placing it in puppet.conf.
 
-In PE 3.7.x, when users changed the ActiveMQ heap size, the change did not trigger the `pe-activemq` service to restart, and thus PE did not pick up the changes. PE 3.8 corrects this issue, and the service is now restarted when changes are made.
+#### PE PostgreSQL Was Started After Services That Depended On It
 
-#### Fix for Tuning Classifier Synchronization Period
+Services like PuppetDB and Console Services were started before PostgreSQL and then were dead after a reboot.
 
-This fix raises the node classifier's default synchronization period from 180 to 600 seconds. It also introduces a [tunable setting](./console_config.html#tuning-the-classifier-synchronization-period) via the PE console.
+#### `puppet_enterprise::packages` Was Overriding Package Resource Defaults
 
-#### Setting `https_proxy` Prevented Service Checks During Installation/Upgrade with `curl`
+This was a problem because if `pe_gem` was installed, it would become the preferred provider over Zypper and cause package installs to fail.
 
-When users ran the PE installer/upgrader behind a proxy, PE could not properly `curl` PE services during installation/upgrade. This fix corrects the issue by unsetting `HTTPS_PROXY`, `https_proxy`, `HTTP_PROXY`, and `http_proxy` before performing `curl` commands to PE services during installs/upgrades.
+#### Puppet Server Was Aggressively Transforming Request Data to UTF-8
 
-#### Node Classifier Ignored Facts That Were False
+The Clojure code that processed requests for delivery to JRuby aggressively transformed the request body to UTF-8. This altered the data contained in the request body and was not appropriate for all requests submitted to a Puppet Master. Notably, file bucket uploads failed if the file content being saved was not strictly UTF-8. The fix is that Puppet Server handles arbitrary character encodings, including raw binary.
 
-When creating node matching rules in PE 3.7, the node classifier ignored all facts with a boolean value of `false`. For example, if you created a rule like `is_virtual` `is` `false`, the rule would never match a node. This issue has been resolved in PE 3.8.
+####Additional Bug Fixes
 
-#### Browser Crashing Issue When Returning a Null Value for `inherited_role_ids`
+The following issues were also fixed for PE 3.7.2
 
-In PE 3.7.2, the browser would crash when the `users` endpoint for Role-Based Access Control (RBAC) returned a `NULL` value for `inherited_role_ids`. A `NULL` value is returned when you delete the user roles for a user group and then view the user. In PE 3.8, this has been fixed and the browser no longer crashes.
+* Automatic classification broke in IE 10 and 11 due to aggressive caching.
+* The `pe_accounts` "examples" directory broke RDoc; it's been removed.
+* The MCO cron sent spam to the root email account.
+* Confusing and unnecessary settings were removed from the `master` section of `puppet.conf`.
 
-#### Browser Crashing Issue When Deleting a Node Group That Had a Permission Assigned
+## Puppet Enterprise 3.7.1 (12/16/14)
 
-In PE 3.7, pages didn't completely render if you took the following steps:
+### Security Fixes
 
-- Create a new user role in RBAC.
-- Add a permission to the user role that has the **Node groups** permission type.
-- Select a specific node group instance that the permission applies to.
-- Delete the node group instance that the permission applies to.
-- Try to go to the **Permissions** tab for the new user role.
+#### CVE-2014-9355 - Information Leakage in Puppet Enterprise Console
 
-The issue was that the Javascript rendering the page stops prematurely.
+Posted December 16, 2014
+Assessed Risk Level: Medium
 
-In PE 3.8, this has been fixed so that the page renders properly. In the PE 3.8 console, if you go to the **Permissions** tab for the new role that was added, the deleted node group instance is displayed as a dash in the **Object** column.
+In Puppet Enterprise 3.7.0, an authenticated Puppet Enterprise console user with no permissions could access certain API endpoints that provide information about PE licensing and certificate signing requests.
 
-#### Node Classifier Returned Activity Service Error When Importing a Large Number of Groups
+This issue affected Puppet Enterprise 3.7.0. It has been fixed for Puppet Enterprise 3.7.1.
 
-In PE 3.7, an error indicating that the "index row size exceeds maximum" was returned when importing a large number of groups (for example, when upgrading a large environment to PE 3.7). This error was returned even if the import was successful. In PE 3.8, this error no longer occurs.
+CVSS v2 Score: 4.0
+Vector AV:N/AC:L/Au:S/C:P/I:N/A:N/E:H/RL:U/RC:C
 
-#### Newly Created Node Group Did Not Appear in List of Parents
+For information on previous releases, see the [Archived Release Notes](./release_notes_archive.html).
 
-When you created a new node group in the PE 3.7 console, then immediately created another new node group and tried to select the first node group as the parent, the first node group did not appear in the list of selectable names in the **Parent name** drop-down list. The first node group would appear if you reloaded the page. This issue has been fixed in PE 3.8.
+#### CVE-2014-7818 and CVE-2014-7829 Rails Action Pack Vulnerabilities Allow Arbitrary File Existence Disclosure
 
-#### Could Only Accept Or Reject One Node at a Time
+Posted December 16, 2014
+Assessed Risk Level: Medium
 
-In PE 3.7, if you had multiple node requests pending, you could accept/reject one node, but if you then tried to accept/reject subsequent nodes, a 403 Forbidden error was returned. This meant that if you wanted to accept/reject node requests one at a time, you had to refresh the page after each time you accepted/rejected a node request. In PE 3.8, this issue has been fixed, and you will no longer receive a 403 Forbidden error.
+Vulnerabilities in Rails Action Pack allow an attacker to determine the existence of files outside the Rails application root directory. The files will not be served, but attackers can determine whether or not specific files exist.
 
-#### User and Group Lookup Attributes Were Case Sensitive
+This issue affected Puppet Enterprise 3.x. It is resolved in Puppet Enterprise 3.7.1.
 
-In earlier releases, the RBAC service required you to use the correct case when specifying lookup attributes for external directories. In PE 3.8, lookup attributes are not case sensitive.
+CVE-2014-7818:
+Upstream CVSS v2 Score: 4.3
+Vector: AV:N/AC:L/Au:N/C:P/I:N/A:N/E:POC/RL:W/RC:C
 
-#### MCollective `puppet-agent` Plugin Now Works When Puppet Service Is Running
+CVE-2014-7829:
+Upstream CVSS v2 Score: 5.0
+Vector: AV:N/AC:L/Au:N/C:P/I:N/A:N
 
-Previously, the MCO puppet agent plugin didn't let a user trigger a remote `noop` run or specify an environment if the `pe-puppet` service was running. It assumed that we were using cron instead of the `pe-puppet` service. Now you can trigger a run while the service is running.
+### Bug Fixes
 
-#### Issue Creating Multiple Mirrors in zpool Resource
+#### puppet_enterprise Module Was Missing Values for Several PuppetDB Attributes
 
-The fix enables you to differentiate between single and multi-mirror and raidz pools and ensures that `mirror` and `raidz` can be used as subcommands.
+PE 3.7.0 contained a version of the puppet_enterprise module that does not have the parameters to manage several important PuppetDB attributes, such as `gc-interval`, `node-ttl`, `node-purge-ttl`, and `report-ttl`. This was fixed in PE 3.7.1.
 
-#### `/var/lib/peadmin/.mcollective.d` Has the Wrong Permissions
+#### `puppet_enterprise::master` Did Not Allow Multiple DNS Alt Names
 
-In PE 3.7.0 the `.mcollective.d` directory was assigned a `0400` permission. This created an issue when the client.log was full, and `peadmin` needed to create another one for shifting the logfile. If a logfile was full, and you tried to use MCollective to issue commands, you'd get an error message that said log shifting had failed and permission was denied. The fix sets the permissions to u+rwx for the PE admin user.
+The resource that manages the `dns_alt_names` entry for `puppet.conf` did not operate correctly with arrays, and only the first element of the array was used. This was fixed in PE 3.7.1.
 
-#### `pe-mcollective-metadata` Cron Redirected Output to a Path That Was Not Valid on AIX
+#### Upgrader Failed If `basemodulepath` Was Changed
 
-The fix updated the manifest to use `puppet_enterprise::params::mco_logdir`, which evaluates to the appropriate log directory for AIX. The cron job now points at the correct location, `/opt/freeware/var/log/pe-mcollective`.
+If you changed your config so that `/opt/puppet/share/puppet/modules` wasn't in your modulepath anymore, one of the `puppet resource` calls in the upgrader would fail because it couldn't find the module it needed.
 
-#### PE Removed Unmanaged Crontab Entries from Root If Invalid Entries Were Present
+This is fixed. Now, the `puppet resource` call explicitly sets its modulepath, so that it doesn't matter what you've set yours to.
 
-Due to this bug, the MCollective metadata cron job was unconditionally laid
-down during PE installation. This caused problems if invalid root crontabs were present. It would then trigger a bug that removed any unmanged cron entries. The fix adds a toggle that allowed the cron job to be unmanaged, to avoid triggering this bug. An exec was
-also added to ensure that the fact cache is present so that `pe-mcollective` can start.
+This was listed as a Known Issue for PE 3.7.0.
 
+#### Changing the ssl-host to `0.0.0.0` Caused the Upgrade to Change Other Settings, Making PuppetDB Unusable
 
+During an upgrade, the installer used the value of ssl-host in `/etc/puppetlabs/puppetdb/conf.d/jetty.ini` to determine the value of `q_puppetdb_hostname`. If you changed the ssl-host to `0.0.0.0` so that PuppetDB could listen on any interface, the upgrade changed other settings that were filled in with `q_puppetdb_hostname` that made PuppetDB unusable after an upgrade in a monolithic installation.
 
+This has been fixed. Now, the agent certname is used to figure out the PuppetDB hostname, since those two things have to match.
+
+## Puppet Enterprise 3.7.0 (11/11/14)
+
+### Security Fixes
+
+#### OpenSSL Security Vulnerabilities
+
+On October 15th, the OpenSSL project announced several security vulnerabilities in OpenSSL. Puppet Enterprise versions prior to 3.7.0 contained vulnerable versions of OpenSSL. Puppet Enterprise 3.7 contains updated versions of OpenSSL that have patched the vulnerabilities.
+
+For more information about the OpenSSL vulnerabilities, refer to the OpenSSL [security announcement](https://www.openssl.org/news/secadv_20141015.txt).
+
+Affected Software Versions:
+* Puppet Enterprise 2.x
+* Puppet Enterprise 3.x
+
+Resolved in:
+Puppet Enterprise 3.7.0
+
+#### Oracle Java Security Vulnerabilities
+
+Assessed Risk Level: Medium
+
+On October 14th, Oracle announced several security vulnerabilities in Java. Puppet Enterprise versions prior to 3.7.0 contained a vulnerable version of Java. Puppet Enterprise 3.7.0 contains an updated version of Java that has patched the vulnerabilities.
+
+For more information about the Java vulnerabilities, refer to the Oracle [security announcement](http://www.oracle.com/technetwork/topics/security/cpuoct2014-1972960.html).
+
+Affected Software Versions:
+Puppet Enterprise 3.x
+
+Resolved in:
+Puppet Enterprise 3.7.0
+
+#### CVE-2014-3566 - POODLE SSLv3 Vulnerability
+
+Posted November 11, 2014
+Assessed Risk Level: Medium
+
+On October 14th, the OpenSSL project announced CVE-2014-3566, the POODLE attack vulnerability in the SSLv3 protocol. Fixes for this vulnerability disable SSLv3 protocol negotiation to prevent fallback to the insecure protocol.
+
+Resolved in:
+Puppet Enterprise 3.7.0
+Manual remediation provided for Puppet Enterprise 3.3
+Puppet 3.7.2, Puppet-Server 0.3.0, PuppetDB 2.2, MCollective 2.6.1
+
+Users of Puppet Enterprise 3.3 who cannot upgrade can follow the remediation instructions in our [impact assessment](http://puppetlabs.com/blog/impact-assessment-sslv3-vulnerability-poodle-attack).
+
+### Bug Fixes
+
+#### `/etc/puppetlabs/mcollective/client.cfg` Is Left Behind on Console Node After Upgrade
+
+Before PE used `/var/lib/peadmin/.mcollective`, the pe_mcollective module laid down /etc/puppetlabs/mcollective/client.cfg.
+
+When upgrading from those earlier versions to a later version, on the master node, `/etc/puppetlabs/mcollective/client.cfg` is correctly removed by `pe_mcollective::client::peadmin`; however, on the console node `pe_mcollective::client::puppet_dashboard` did not remove that file.
+
+This meant that if you were coming from one of the older PE 2.x versions you had this file lying around on your console node that didn't actually configure anything. This has been fixed.
 
 

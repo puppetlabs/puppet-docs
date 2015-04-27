@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.8 » Quick Start » Module Installation (Windows)"
+title: "PE 3.7 » Quick Start » Module Installation (Windows)"
 subtitle: "Module Installation Quick Start Guide"
 canonical: "/pe/latest/quick_start_module_install_windows.html"
 ---

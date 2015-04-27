@@ -1,21 +1,21 @@
 ---
 layout: default
-title: "PE 3.8 » Installing » Installing Split Master Answer File"
+title: "PE 3.7 » Installing » Installing Split Master Answer File"
 subtitle: "Split Puppet Enterprise Install, Puppet Master Answer File Reference"
 canonical: "/pe/latest/install_split_console_answers.html"
 ---
 
-The following example answers can be used as a baseline to perform an automated split installation of PE on the node assigned to the Puppet master component.
+The following example answers can be used as a baseline to perform an automated split installation of PE on the node assigned to the Puppet master component. 
 
 A .txt file version can be found in the `answers` directory of the PE installer tarball.
 
-See [Installing with an answer file](./install_automated.html) for more details. In addition, [the Complete Answer File Reference](./install_complete_answer_file_reference.html) contains all answers that you can use to install PE.
+See the [Answer File Overview](./install_answer_file_reference.html) and [Installing with an answer file](./install_automated.html) for more details. In addition, [the Complete Answer File Reference](./install_complete_answer_file_reference.html) contains all answers that you can use to install PE.
 
 >**Warning**: If you're performing a split installation of PE using an answer file, install the components in the following order:
 >
 > 1. Puppet master
 > 2. Puppet DB and database support (which includes the console database)
-> 3. The PE console
+> 3. The PE console 
 
 ### Global Answers
 These answers are always needed.
@@ -44,9 +44,6 @@ These answers are always needed.
 
 `q_puppet_cloud_install=n`
 : **Y** or **N** --- Whether to install the cloud provisioner component.
-
-`q_enable_future_parser`
-: **Y or N** --- Whether or not to enable the Puppet 4 language parser. This is recommended for all **NEW** Puppet users. **DO NOT** enable this feature if you'll be using Puppet code you did **NOT** create with the Puppet 4 language parser.
 
 ### Additional Component Answers
 
@@ -88,7 +85,7 @@ These answers are generally needed if you are installing the Puppet master compo
    * the type and version of the client’s OS
    * the installed version of PE
    * the number of nodes licensed and the number of nodes used
-
+   
 If you wish to disable update checks (e.g. if your company policy forbids transmitting this information), you will need to set this to n. You can also disable checking after installation by editing the /etc/puppetlabs/installer/answers.install file.
 
 `q_public_hostname=`
@@ -100,9 +97,6 @@ These answers are optional.
 
 `q_tarball_server`
 : **String** --- The location from which PE agent tarballs will be downloaded before installation. Note that agent tarballs are only available for certain operating systems. For details, see the [PE agent installation instructions](./install_agents.html).
-
-`q_exit_and_update_auth_conf=y`
-: **Y** or **N** --- (Upgrade only) Whether to accept the presence of a modified auth.conf file when upgrading. For details see [modified auth.conf files](./install_upgrading_notes.html#upgrading-to-38-with-a-modified-authconf-file).
 
 ### PuppetDB Answers
 

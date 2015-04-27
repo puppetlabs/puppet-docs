@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.8 » Quick Start » Sudo Users"
+title: "PE 3.7 » Quick Start » Sudo Users"
 subtitle: "Sudo Users Quick Start Guide"
 canonical: "/pe/latest/quick_start_sudo.html"
 ---
@@ -16,11 +16,11 @@ In most cases, you want to manage sudo on your agent nodes to control which syst
 
 * [install the saz-sudo module as the foundation for your management of sudo privileges ](#install-the-saz-sudo-module).
 * [write a simple module that contains a class called `privileges` to manage a few resources that set privileges for certain users, which will be managed by the saz-sudo module](#write-the-privileges-class).
-* [use the PE console to add classes from the privileges and sudo modules to your agent nodes](#use-the-pe-console-to-add-the-privileges-and-sudo-classes).
+* [use the PE console to add classes from the privileges and sudo modules to your agent nodes](#use-the-pe-console-to-add-the-privileges-and-sudo-classes). 
 
-## Install Puppet Enterprise and the Puppet Enterprise Agent
+### Install Puppet Enterprise and the Puppet Enterprise Agent
 
-If you haven't already done so, you'll need to get PE installed. See the [system requirements][sys_req] for supported platforms.
+If you haven't already done so, you'll need to get PE installed. See the [system requirements][sys_req] for supported platforms. 
 
 1. [Download and verify the appropriate tarball][downloads].
 2. Refer to the [installation overview][install_overview] to determine how you want to install PE, and then follow the instructions provided.
@@ -30,15 +30,15 @@ If you haven't already done so, you'll need to get PE installed. See the [system
 
 >**Note**: You can add the sudo and privileges classes to as many agents as needed. For ease of explanation, our console images or instructions might show only two agent nodes.
 
-## Install the saz-sudo Module
+### Install the saz-sudo Module
 
-The saz-sudo module, available on the Puppet Forge, is one of many modules written by a member of our user community.  You can learn more about the module by visiting [http://forge.puppetlabs.com/saz/sudo](http://forge.puppetlabs.com/saz/sudo).
+The saz-sudo module, available on the Puppet Forge, is one of many modules written by a member of our user community.  You can learn more about the module by visiting [http://forge.puppetlabs.com/saz/sudo](http://forge.puppetlabs.com/saz/sudo). 
 
 **To install the saz-sudo module**:
 
 From the PE master, run `puppet module install saz-sudo`.
 
-You should see output similar to the following:
+You should see output similar to the following: 
 
         Preparing to install into /etc/puppetlabs/puppet/modules ...
         Notice: Downloading from http://forgeapi.puppetlabs.com ...
@@ -49,11 +49,11 @@ You should see output similar to the following:
 
 > That's it! You've just installed the saz-sudo module. You'll need to wait a short time for the Puppet server to refresh before the classes are available to add to your agent nodes.
 
-## Write the `privileges` Class
+### Write the `privileges` Class
 
-Some modules can be large, complex, and require a significant amount of trial and error as you create them, while others, like [PE-supported modules](https://forge.puppetlabs.com/supported), often work "right out of the box." This module will be a very simple module to write: it contains just one class.
+Some modules can be large, complex, and require a significant amount of trial and error as you create them, while others, like [PE-supported modules](https://forge.puppetlabs.com/supported), often work "right out of the box." This module will be a very simple module to write: it contains just one class.  
 
-> ### A Quick Note about Modules Directories
+> #### A Quick Note about Modules Directories
 >
 >The first thing to know is that, by default, the modules you use to manage nodes are located in `/etc/puppetlabs/puppet/environments/production/modules`---this includes modules installed by PE, those that you download from the Forge, and those you write yourself.
 >
@@ -66,7 +66,7 @@ Modules are directory trees. For this task, you'll create the following files:
  - `privileges` (the module name)
    - `manifests/`
       - `init.pp` (contains the `privileges` class)
-
+  
 **To write the `privileges` class**:
 
 1. From the command line on the Puppet master, navigate to the modules directory (`cd /etc/puppetlabs/puppet/modules`).
@@ -95,7 +95,7 @@ Modules are directory trees. For this task, you'll create the following files:
 
 5. Save and exit the file.
 
-> That's it! You've written a module that contains a class that, once applied, ensures that your agent nodes have the correct sudo privileges set for the root user and the “admin” and “wheel” groups.
+> That's it! You've written a module that contains a class that, once applied, ensures that your agent nodes have the correct sudo privileges set for the root user and the “admin” and “wheel” groups. 
 >
 > Note the following about the resources in the `privileges` class:
 >
@@ -107,59 +107,41 @@ Modules are directory trees. For this task, you'll create the following files:
 
 You will add this class at the same time you add the saz-sudo module.
 
-## Use the PE Console to Add the privileges and sudo classes
+### Use the PE Console to Add the privileges and sudo classes
 
 [classification_selector]: ./images/quick/classification_selector.png
 
-The saz-sudo module contains several **classes**. [Classes](../puppet/3/reference/lang_classes.html) are named chunks of Puppet code and are the primary means by which Puppet Enterprise configures nodes. 
+The saz-sudo module contains several **classes**. [Classes](../puppet/3/reference/lang_classes.html) are named chunks of Puppet code and are the primary means by which Puppet Enterprise configures nodes. For this procedure, you're going to add the `sudo` class to the **default** group. 
 
-We're going to add the `sudo` class to a node group we'll create, called **Sudo**, which will contain all of your nodes. Note that if you don't want to add this class to all of your nodes you can [pin the nodes "statically"](./console_classes_groups.html#adding-nodes-statically) or write a different rule to [add them "dynamically"](./console_classes_groups.html#adding-nodes-dynamically), depending on your needs. 
+The **default** group contains all the nodes in your deployment (including the Puppet master), but you can [create your own group](./console_classes_groups.html#creating-new-node-groups) or add the classes to individual nodes, depending on your needs. 
 
-**To create the Sudo node group**:
+**To add the** `sudo` **and** `privileges` **classes to the default group**:
 
 1. From the console, click __Classification__ in the top navigation bar.
 
    ![classification selection][classification_selector]
 
-2. In the **Node group name** field, name your group **Sudo**. 
-3. Click **Add group**.
+2. From the __Classification page__, select the __default__ group.
 
-   **Note**: Leave the **Parent name** and **Environment** values as their defaults (**default** and **production**, respectively).
+3. Click the __Classes__ tab. 
+   
+4. In the __Class name__ field, begin typing `sudo`, and select it from the autocomplete list.
 
-4. From the __Classification page__, select the __Sudo__ group, and click the __Rules_ tab.
-5. In the **Fact** field, enter "name" (without the quotes).
-6. From the **Operator** drop-down list, select **matches regex**.
-7. In the **Value** field, enter ".x" (without the quotes). 
-8. Click **Add rule**.
+5. Click __Add class__. 
 
-   This rule will ["dynamically" pin all nodes]((./console_classes_groups.html#adding-nodes-dynamically) to the **Sudo** group. (Note that this rule is for testing purposes and that decisions about pinning nodes to groups in a production environment will vary from user to user.) 
+6. Click __Commit 1 change__.
 
+   **Note**: The `sudo` class now appears in the list of classes for the __default__ group, but it has not yet been configured on your nodes. For that to happen, you need to kick off a Puppet run. 
+   
+7. Repeat steps 4 - 6 to add the `privileges` class. 
 
-**To add the** `sudo` **and** `privileges` **classes to the Sudo group**:
+8. Navigate to the live management page, and select the __Control Puppet__ tab. 
 
-1. From the __Classification page__, select the __Sudo__ group.
+9. Click the __runonce__ action and then __Run__. This will configure the nodes using the newly-assigned classes. Wait one or two minutes.
 
-2. Click the __Classes__ tab.
+> Congratulations! You’ve just created the `privileges` class that you can use to define and enforce a sudoers configuration across your PE-managed infrastructure. 
 
-3. In the __Class name__ field, begin typing `sudo`, and select it from the autocomplete list.
-
-4. Click __Add class__.
-
-5. Click __Commit 1 change__.
-
-   **Note**: The `sudo` class now appears in the list of classes for the __sudo__ group, but it has not yet been configured on your nodes. For that to happen, you need to kick off a Puppet run.
-
-8. Repeat steps 4 - 6 to add the `privileges` class.
-
-9. From the CLI of your Puppet master, run `puppet agent -t`.
-
-10. From the CLI of your PE-managed node(s), run `puppet agent -t`.
-
-   This will configure the nodes using the newly-assigned classes. Wait one or two minutes.
-
-> Congratulations! You’ve just created the `privileges` class that you can use to define and enforce a sudoers configuration across your PE-managed infrastructure.
-
-## Other Resources
+### Other Resources
 
 Check out some of the other guides in our PE QSG series:
 
@@ -169,5 +151,5 @@ Check out some of the other guides in our PE QSG series:
 
 Puppet Labs offers many opportunities for learning and training, from formal certification courses to guided online lessons. We've noted a few below; head over to the [learning Puppet page](https://puppetlabs.com/learn) to discover more.
 
-* [Learning Puppet](http://docs.puppetlabs.com/learning/) is a series of exercises on various core topics about deploying and using PE.
+* [Learning Puppet](http://docs.puppetlabs.com/learning/) is a series of exercises on various core topics about deploying and using PE. 
 * The Puppet Labs workshop contains a series of self-paced, online lessons that cover a variety of topics on Puppet basics. You can sign up at the [learning page](https://puppetlabs.com/learn).

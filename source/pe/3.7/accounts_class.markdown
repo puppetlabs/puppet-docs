@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.8 » Accounts Module » The pe_accounts Class"
+title: "PE 3.7 » Accounts Module » The pe_accounts Class"
 subtitle: "The pe_accounts Class"
 canonical: "/pe/latest/accounts_class.html"
 ---

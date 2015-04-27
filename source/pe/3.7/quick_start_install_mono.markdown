@@ -1,12 +1,12 @@
 ---
 layout: default
-title: "PE 3.8 » Quick Start » Install PE (Monolithic)"
+title: "PE 3.7 » Quick Start » Install PE (Monolithic)"
 subtitle: "PE Install Quick Start Guide"
 canonical: "/pe/latest/quick_start_install_mono.html"
 ---
 
 
-## Overview
+### Overview
 
 To get you started using Puppet Enterprise (PE) relatively quickly and efficiently, this guide walks you through the steps of a monolithic install. A monolithic deployment is best suited for users who want to evaluate PE, or for users managing a small number of Puppet agent nodes (up to 500 nodes). For larger installations, you’ll need to perform a [split install](./install_pe_split.html).
 
@@ -16,7 +16,7 @@ For more information about the components that make up your PE deployment, visit
 
 Note: This guide assumes that you’ll install a monolithic PE deployment as `root`.
 
->### General Prerequisites and Notes
+>#### General Prerequisites and Notes
 >
 >- See the [system requirements](./install_system_requirements.html#monolithic-all-in-one-installation) to ensure your hardware needs are met.
 >
@@ -24,7 +24,7 @@ Note: This guide assumes that you’ll install a monolithic PE deployment as `ro
 >
 >- Please ensure that port 3000 is reachable, as the web-based installer uses this port. You can close this port when the installation is complete.
 
-## Installing the Monolithic Puppet Enterprise Deployment
+### Installing the Monolithic Puppet Enterprise Deployment
 
 1. Review the [General Prerequisites](#general-prerequisites-and-notes).
 2. [Download and verify the appropriate PE tarball](./install_basic.html#downloading-puppet-enterprise), and, if needed, copy the tarball to the machine on which you'll be installing PE.
@@ -55,26 +55,20 @@ Note: This guide assumes that you’ll install a monolithic PE deployment as `ro
 
     b. **DNS aliases**: provide a comma-separated list of aliases agent nodes can use to reach to the master; for example `master`.
 
-12. Select whether or not to enable the Puppet 4 language parser.
+12. When prompted about database support, choose the default option **Install PostgreSQL for me**.
 
-   The Puppet 4 language parser gives you valuable language features, makes debugging easier, and will help keep your Puppet code compatible with future releases in the next major series. Recommended for all **NEW** Puppet users.
-
-   If you'll be using Puppet code you did **NOT** create with the Puppet 4 language parser, **DO NOT** enable this feature.
-
-13. When prompted about database support, choose the default option **Install PostgreSQL for me**.
-
-14. Provide the following information about the PE console administrator user:
+13. Provide the following information about the PE console administrator user:
 
     **Console superuser password**: create a password for the console login; the password must be at least eight characters.
 
     **Note**: the user name for the console administrator user is __admin__.
 
-15. Click **Submit**.
-16. On the confirm plan page, review the information you provided, and, if it looks correct, click **Continue**.
+14. Click **Submit**.
+15. On the confirm plan page, review the information you provided, and, if it looks correct, click **Continue**.
 
     If you need to make any changes, click **Go Back** and make whatever changes are required.
 
-17. On the validation page, the installer will verify various configuration elements (e.g., if SSH credentials are correct, if there is enough disk space, and if the OS is the same for the various components). If there aren't any outstanding issues, click **Deploy now**.
+16. On the validation page, the installer will verify various configuration elements (e.g., if SSH credentials are correct, if there is enough disk space, and if the OS is the same for the various components). If there aren't any outstanding issues, click **Deploy now**.
 
 The installer will then install and configure Puppet Enterprise. It may also need to install additional packages from your OS's repository. **This process may take up to 10-15 minutes.** When the installation is complete, the installer script that was running in the terminal will close itself.
 

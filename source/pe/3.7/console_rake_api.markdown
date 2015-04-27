@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.8 » Console » Rake API"
+title: "PE 3.7 » Console » Rake API"
 subtitle: "Rake API for Querying and Modifying Console Data"
 canonical: "/pe/latest/console_rake_api.html"
 ---
@@ -11,7 +11,7 @@ The Puppet Enterprise (PE) console provides rake tasks that can add classes, nod
 Invoking Console Rake Tasks
 -----
 
->**Note**: In the PE 3.8 series, console rake tasks use the node classifier instead of the puppet-dashboard. For more information, refer to the [node classifier documentation](./console_classes_groups.html) and the [node classifier REST API](./nc_index.html).
+>**Note**: In the PE 3.7 series, console rake tasks use the node classifier instead of the puppet-dashboard. For more information, refer to the [node classifier documentation](./console_classes_groups.html) and the [node classifier REST API](./nc_index.html).
 
 > **Deprecation note:** Invoking tasks like this will cause deprecation warnings, but it will continue to work for the duration of the Puppet Enterprise 3.x series, with removal tentatively planned for Puppet Enterprise 4.0.
 
@@ -25,7 +25,7 @@ Invoking Console Rake Tasks
 
 There are two ways to specify arguments for a task. PE 3.0.1 and later can use both styles; PE 3.0.0 (and the PE 2.x series) can only use the environment variable style.
 
->**Note**: For information on the older invocation style with named arguments expressed as environment variables, refer to the [documentation for the previous version of PE](/pe/3.3/console_rake_api_old.html). Note that when you have finished reviewing this documentation, you will need to navigate back to the PE 3.8 documentation.
+>**Note**: For information on the older invocation style with named arguments expressed as environment variables, refer to the [documentation for the previous version of PE](/pe/3.3/console_rake_api_old.html). Note that when you have finished reviewing this documentation, you will need to navigate back to the PE3.7 documentation.
 
 ### Task Arguments as Parameters (`task[argument,argument,...]`)
 
@@ -98,11 +98,11 @@ Each task has specific names that must be used for its arguments. The arguments 
 Node Tasks: Getting Info
 -----
 
->**Note**: In the PE 3.8 series, these rake tasks operate against nodes that have been pinned to a group. See the [node classifier documentation](./console_classes_groups.html) for details about groups and pinned nodes.
+>**Note**: In the PE 3.7 series, these rake tasks operate against nodes that have been pinned to a group. See the [node classifier documentation](./console_classes_groups.html) for details about groups and pinned nodes.
 
 ### `node:list[(match)]`
 
-List nodes. Can optionally match nodes by regex.
+List nodes. Can optionally match nodes by regex. 
 
 Will do a request against the /v1/nodes endpoint of the node classifier, which will only show nodes that have checked in with the node classifier.
 
@@ -137,12 +137,12 @@ List variables for a node.
 
 ### `node:listgroups[name]`
 
-In the PE 3.8 series, this rake task is no longer valid. Running this task will result in a no operation with a removal warning.
+In the PE 3.7 series, this rake task is no longer valid. Running this task will result in a no operation with a removal warning.
 
 Node Tasks: Modifying Info
 -----
 
->**Note**: In the PE 3.8 series, these rake tasks operate against nodes that have been pinned to a group. See the [node classifier documentation](./console_classes_groups.html) for details about groups and pinned nodes.
+>**Note**: In the PE 3.7 series, these rake tasks operate against nodes that have been pinned to a group. See the [node classifier documentation](./console_classes_groups.html) for details about groups and pinned nodes.
 
 ### `node:add[name,(groups),(classes),(onexists)]`
 
@@ -151,17 +151,17 @@ Add a new node. Classes and groups can be specified as [comma-separated lists](#
 **Parameters:**
 
 - `name` --- node name
-- `groups` --- in the PE 3.8 series, this parameter will be ignored
+- `groups` --- in the PE 3.7 series, this parameter will be ignored
 - `classes` (optional) --- classes to assign to the newly added node
 - `onexists` (optional) --- *skip* (do not add the node if it exists) or *fail* (exit with failure if the node exists); the default value is *fail*
 
 ### `node:del[name]`
 
-Delete a node.
+Delete a node. 
 
 **Note:** A node cannot be deleted if the node name contains a parenthesis. To delete a node with a name that contains a parenthesis, you will need to rename the node.
 
-**Note:** You will need the PE 3.8 release of Puppet Enterprise to use this rake task.
+**Note:** You will need the PE 3.7.2 release of Puppet Enterprise to use this rake task. 
 
 **Parameters:**
 
@@ -215,7 +215,7 @@ Add a classparam to the node group to which the node is pinned. If the parameter
 
 ### `node:addgroup[name,group]`
 
-In the PE 3.8 series, this rake task is no longer valid. Running this task will result in a no operation with a removal warning.
+In the PE 3.7 series, this rake task is no longer valid. Running this task will result in a no operation with a removal warning.
 
 ### `node:delclassparam[name,class,param]`
 
@@ -240,7 +240,7 @@ Add (or edit, if they exist) variables to the node group to which the node is pi
 Class Tasks
 -----
 
-In the PE 3.8 series, class rake tasks are no longer valid; running these task will result in a no operation with a removal warning.
+In the PE 3.7 series, class rake tasks are no longer valid; running these task will result in a no operation with a removal warning. 
 
 
 Group Tasks: Getting Info
@@ -273,7 +273,7 @@ List classparams for a nodegroup/class pair.
 
 ### `nodegroup:listgroups[name]`
 
-In the PE 3.8 series, this rake task is no longer valid. Running this task will result in a no operation with a removal warning.
+In the PE 3.7 series, this rake task is no longer valid. Running this task will result in a no operation with a removal warning.
 
 ### `nodegroup:variables[name]`
 
@@ -306,7 +306,7 @@ Delete a node group.
 
 ### `nodegroup:add_all_nodes[name]`
 
-In the PE 3.8 series, this rake task is no longer valid. Running this task will result in a no operation with a removal warning.
+In the PE 3.7 series, this rake task is no longer valid. Running this task will result in a no operation with a removal warning. 
 
 ### `nodegroup:addclass[name,class]`
 

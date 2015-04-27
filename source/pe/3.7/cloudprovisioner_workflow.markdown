@@ -1,11 +1,9 @@
 ---
 layout: default
-title: "PE 3.8 » Cloud Provisioning » Sample Workflow"
+title: "PE 3.7 » Cloud Provisioning » Sample Workflow"
 subtitle: "A Day in the Life of a Puppet-Powered Cloud Sysadmin"
 canonical: "/pe/latest/cloudprovisioner_workflow.html"
 ---
-
->**Important**: Cloud Provisioner is deprecated in PE 3.8, and will be removed in future versions of PE. We recommend that you see the AWS supported module for cloud provisioning.
 
 Tom is a sysadmin for CloudWidget.com, a company that provides web-based application services. They use a three-tier application architecture with the following types of nodes:
 

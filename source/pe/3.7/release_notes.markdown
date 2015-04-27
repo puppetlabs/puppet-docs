@@ -1,118 +1,122 @@
 ---
 layout: default
-title: "PE 3.8 » Release Notes"
-subtitle: "Puppet Enterprise 3.8 Release Notes"
+title: "PE 3.7 » Release Notes"
+subtitle: "Puppet Enterprise 3.7 Release Notes"
 canonical: "/pe/latest/release_notes.html"
 ---
 
-[environments]: /puppet/3.8/reference/environments.html
+This page contains information about new features and general improvements in the latest Puppet Enterprise (PE) release.
 
-This page describes new features and general improvements in the latest Puppet Enterprise (PE) release.
+For more information about this release, also see the [Known Issues](./release_notes_known_issues.html) and [Security and Bug Fixes](./release_notes_security.html).
 
-For more information about this release, see [Known Issues](./release_notes_known_issues.html) and [Security and Bug Fixes](./release_notes_security.html).
+## New Features in PE 3.7.2
 
-## New Features in PE 3.8.0
+### RBAC Can Query an Entire Base DN For Users and Groups
 
-### Classification Data Migration Tool for Upgrades From PE 3.3
+Previously, RBAC required an RDN (relative distinguished name) for user and group queries to an external directory. An RDN is no longer required. This means that you can search an entire base DN (distinguished name) for a user or group.
 
-PE 3.8 comes with a migration tool to help you migrate PE 3.3 classification data to PE 3.8.
+For more information, see [Connecting Puppet Enterprise with LDAP Services](./rbac_ldap.html).
 
-In PE 3.7, we introduced a new node classifier, which allowed for greater automation but wasn't compatible with some of the ways PE 3.3 classified nodes. The migration tool helps you migrate PE 3.3 nodes and classification to the new node classifier, and provides guidance on fixing classifications that aren't compatible with PE 3.8.
+### `jruby_max_active_instances` Now Available
 
-For details about the changes to node classification and important instructions on how to migrate your classification data to PE 3.8, see [the migration tool documentation](./install_upgrade_migration_tool.html).
+This new setting enables you to tune the number of JRuby instances you're running. Doing so helps you control the amount of heap space your infrastructure uses. See [this known issue](./release_notes_known_issues.html#running-pe-puppetserver-on-a-server-with-more-than-four-cores-might-require-tuning) for more information and suggestions for using this setting.
 
-### r10k Code Management Tool and Quick Start Guide
+## New Features in PE 3.7.1
 
-This release adds [r10k](./r10k.html), a code management tool that lets you use your Git repositories to manage the configuration and contents of your Puppet [environments][] (such as production, development, or testing).
+### SLES 12 Support (all components)
 
-Read [the r10k quick start guide](./quick_start_r10k.html) to get started. In this walkthrough, you'll use the code you wrote for the [Hello, World! QSG](./quick_start_helloworld.html) to learn how r10k can help you deploy different versions of code across different environments.
+This release provides full support for SLES 12 on all PE components, including the Puppet master.
 
-### Razor Now Fully Supported
+For more information, see the [system requirements](./install_system_requirements.html).
 
-[razor]: ./razor_intro.html
+### Node Classifier Improvements
 
-[Razor][], Puppet Labs’ tool for provisioning bare metal servers, has moved from tech preview to a fully supported solution. With Razor's policy-based approach, you can automatically discover bare-metal hardware, dynamically configure operating systems and/or hypervisors, and hand nodes off to PE for workload configuration. What used to take hours of manual work now takes minutes. See the [Razor documentation][razor] to learn more.
+The default sync time for the node classifier has been changed from 15 minutes to 3 minutes to be the same as the default refresh time for the environment cache. This means that, by default, the node classifier now retrieves new classes from the master every 3 minutes. For more information, see the [Getting Started With Classification](./console_classes_groups.html#adding-classes-that-apply-to-all-nodes) page.
 
-### Puppet Agent on Network Devices
+In addition, PE 3.7.1 has a **Refresh** button in the **Classes** page that allows you to manually retrieve new classes from the master without waiting for the 3 minute sync period. The timestamp to the left of the **Refresh** button shows the time that has elapsed since the last sync.
 
-Thanks to a number of partnerships, Puppet Enterprise has been adding support for running Puppet agent on network devices. Currently we support the [Cumulus Linux](./install_cumulus.html) and the [Arista EOS](./install_eos.html) platforms.
+### Improvements to the Windows User Experience
 
-### Puppet 4 Language Parser
+Puppet 3.7.3 provided Windows users with two useful new facts, as well as a fix to the PATH variable that are now available to PE users.
 
-The Puppet 4 language parser gives you valuable language features, makes debugging easier, and will help keep your Puppet code compatible with future releases in the next major series. During new installations, you'll be asked if you want to turn on the new  language parser---this is recommended for all **NEW** Puppet users.
+These are the new facts:
 
-If you'll be using Puppet code you did **NOT** create with the Puppet 4 language parser, **DO NOT** enable this feature. See the [Puppet 4 language parser docs](http://links.puppetlabs.com/future_parser) for instructions on enabling the parser in a test environment to ensure it works with your existing Puppet code.
+* [`$system32`](/facter/latest/core_facts.html#system32) is the path to the **native** system32 directory, regardless of Ruby and system architecture. This means that inside a 32-bit Puppet/Ruby on Windows x64, this fact typically resolves to `c:\windows\sysnative`. On a 64-bit Puppet/Ruby on Windows x64, this fact typically resolves to `c:\windows\system32`. In other words, this always gets the `system32` directory with binaries that are the same bitness as the current OS.
+* [`$rubyplatform`](/facter/latest/core_facts.html#rubyplatform) reports the value of Ruby's `RUBY_PLATFORM` constant.
 
-## Improvements in PE 3.8.0
+For details on these improvements, see the [Puppet 3.7.3 Release Notes](/puppet/3.7/reference/release_notes.html#puppet-373).
 
-### PE 3.8 Tagmail Users Should Use the puppetlabs-tagmail Module
+In addition, all of the **Windows versions of Puppet Enterprise supported modules** have been updated to support 64-bit as well as 32-bit Ruby runtime. For more information about supported modules, see the [Supported Modules page in the Forge documentation](https://forge.puppetlabs.com/supported).
 
-If you want to use tagmail in PE 3.8, you need the [puppetlabs-tagmail module](https://forge.puppetlabs.com/puppetlabs/tagmail), available from the Puppet Forge. Puppet 3.8 still includes `tagmail.conf`, but PE users should refer to the module, as the built-in tagmail feature will be completely removed in a future release. 
+**Scheduled tasks** have also been improved for this release in the following ways:
 
-### String Interpolation in the PE Console
+* An error message will notify you when the task scheduler is disabled. Previously, the Win32-taskscheduler gem 0.2.2 crashed.
+* The Windows scheduled task (scheduled_task) provider was generating spurious messages during Puppet runs that suggested that scheduled task resources were being reapplied during each run even when the task was present and its associated resource had not been modified. This has been fixed. For more information, see the information on [scheduled tasks on Windows](/puppet/3.7/reference/resources_scheduled_task_windows.html) in the **Puppet** documentation.
 
-In prior PE versions, you could only enter literal values for parameters and variables in the console.
+## New Features in 3.7.0
 
-Now, when entering string values for parameters and variables, you can interpolate fact values and limited expressions. This makes it possible to use values like `"I live at $ipaddress"`, which interpolates the value of the `$ipaddress` fact, as well as values such as `${$os["release"]["full"]}`, which interpolates the result of the embedded expression.
+### Next-Generation Puppet Server
 
-For more information on the syntax and restrictions for string interpolation in the console, see [Tips on specifying parameter and variable values](./console_classes_groups.html#setting-class-parameters).
+PE 3.7.0 introduces the Puppet server, built on a JVM stack, which functions as a seamless drop-in replacement for the former Apache/Passenger Puppet master stack.
 
-### Upgrades for Large Environment Installations
+For users upgrading from an earlier version of PE, there are a few things you'll notice after upgrading due to changes in the underlying architecture of the Puppet server.
 
-Upgrading your large environment installation (LEI) involves a combination of steps that you must perform across your core Puppet Enterprise components, your compile masters, and your ActiveMQ hubs and spokes. The [LEI upgrade doc](./install_lei_upgrade.html) details the steps you’ll perform to upgrade your LEI from PE 3.7.2 to 3.8.0.
+[About the Puppet Server](./install_upgrading_puppet_server_notes.html) details some items that are intentionally different between the Puppet server and the Apache/Passenger stack; you may also be interested in the PE [Known Issues Related to Puppet Server](./release_notes_known_issues.html#puppet-server-known-issues), where we've listed a handful of issues that we expect to fix in future releases.
 
-### Deleting a User From RBAC
+[Graphing Puppet Server Metrics](./puppet_server_metrics.html) provides instructions on setting up a Graphite server running Grafana to track Puppet server performance metrics.
 
-There is a new endpoint in the Role-Based Access Control API that lets you delete a local or remote user from PE. For more information, see the [API documentation](./rbac_users.html#delete-userssid).
+### Adding Puppet Masters to a PE Deployment
 
-### Deleting a User Group From RBAC
+This release supports the ability to add additional Puppet masters to large PE deployments managing more than 1500 agent nodes. Using additional Puppet masters in such scenarios will provide quicker, more efficient compilation times as multiple masters can share the load of requests when agent nodes run.
 
-There is a new endpoint in the Role-Based Access Control API that lets you delete a local or remote user group from PE. For more information, see the [API documentation](./rbac_usergroups.html#delete-groupssid).
+For instructions on adding additional Puppet masters, refer to [Additional Puppet Master Installation](./install_multimaster.html).
 
-### Verifying Certificates for External LDAP Directories
+### Node Manager
 
-When configuring the RBAC service to connect to an external directory server, you can now verify an SSL certificate for the server. For more information, see the [RBAC documentation](./rbac_ldap.html#verify-directory-server-certificates).
+PE 3.7.0 introduces the rules-based node classifier, which is the first part of the Node Manager app that was announced in September. The node classifier provides a powerful and flexible new way to organize and configure your nodes. We’ve built a robust, API-driven backend service and an intuitive new GUI that encourages a modern, cattle-not-pets approach to managing your infrastructure. Classes are now assigned at the group level, and nodes are dynamically matched to groups based on user-defined rules.
 
-### New RBAC Permission to Edit Parameters and Variables
+For a detailed overview of the new node classifier, refer to the [PE user's guide](./console_classes_groups.html).
 
-This permission allows a user in the given user role to tune classification by editing parameters and variables in a class, without giving the user permission to add or delete classes.
+### Role-Based Access Control
 
-## Deprecations in PE 3.8.0
+With RBAC, PE nodes can now be segmented so that tasks can be safely delegated to the right people. For example, RBAC allows segmenting of infrastructure across application teams so that they can manage their own servers without affecting other applications. Plus, to ease the administration of users and authentication, RBAC connects directly with standard directory services including Microsoft Active Directory and OpenLDAP.
 
-### Cloud Provisioner is Deprecated
+For detailed information to get started with RBAC, see the [PE user's guide](./rbac_intro.html).
 
-Cloud Provisioner is deprecated in this release and will eventually be removed from Puppet Enterprise. For this reason, Cloud Provisioner is no longer installed by default. If you have been using Cloud Provisioner in your existing PE infrastructure and would like to continue using it, you can install it separately, as described in the [Installing section of Cloud Provisioner documentation](./cloudprovisioner_configuring.html#installing).
+### Adding MCollective Hub and Spokes
 
-Instead of Cloud Provisioner, we recommend using the [AWS Supported Module](https://forge.puppetlabs.com/puppetlabs/aws) going forward.
+PE 3.7.0 provides the ability to add additional ActiveMQ hubs and spokes to large PE deployments managing more than 1500 agent nodes. Building out your ActiveMQ brokers will provide efficient load balancing of network connections for relaying MCollective messages through your PE infrastructure.
 
-### Live Management is Deprecated
+For instructions on adding additional ActiveMQ Hubs and Spokes, refer to [Additional ActiveMQ Hub and Spoke Installation](./install_add_activemq.html).
 
-Live Management is deprecated in PE 3.8.0 and will be replaced by improved resource management functionality in future releases. For this reason, Live Management is no longer enabled by default. If you have been using Live Management in your existing PE infrastructure and would like to continue using it with PE 3.8, see the instructions for [enabling Live Management](./console_navigating_live_mgmt.html#disablingenabling-live-management).
+### Upgrades to Directory Environments
 
-### Some Platforms are Deprecated for PE Infrastructure Components
+PE 3.7.0 introduces full support for directory environments, which will be enabled by default.
 
-A number of platforms have been deprecated in PE 3.8 for PE's infrastructure components (the Puppet master, the PE console, and PuppetDB) and will be removed in future versions of PE. Agents on these platforms will continue. The deprecated platforms include all 32-bit versions, all Debian versions, EL 5 versions, and Ubuntu 10.4. The complete list is as follows:
+Environments are isolated groups of Puppet agent nodes. This frees you to use different versions of the same modules for different populations of nodes, which is useful for testing changes to your Puppet code before implementing them on production machines. Directory environments let you add a new environment by simply adding a new directory of config data.
 
-*	centos-5-i386
-*   centos-5-x86_64
-* 	centos-6-i386
-* 	debian-6-i386
-* 	debian-6-x86_64
-* 	debian-7-i386
-* 	debian-7-x86_64
-* 	oracle-5-i386
-* 	oracle-5-x86_64
-*  	oracle-6-i386
-*  	redhat-5-i386
-*  	redhat-5-x86_64
-*  	redhat-6-i386
-*  	scientific-5-i386
-*  	scientific-6-i386
-*  	sles-11-i386
-*  	ubuntu-1004-i386
-*  	ubuntu-1004-x86_64
-*  	ubuntu-1204-i386
-*  	ubuntu-1404-i386
+For your reference, we've provided some notes on what you may experience during upgrades from a previous version of PE. See [Important Information about Upgrades to PE 3.7 and Directory Environments](./install_upgrading_dir_env_notes.html).
 
+Before getting started, visit the Puppet docs to read up on the [Structure of an  Environment](/puppet/3.7/reference/environments_creating.html#structure-of-an-environment), [Global Settings for Configuring Environments](/puppet/3.7/latest/reference/environments_configuring.html#global-settings-for-configuring-environments), and [creating directory environments](/puppet/3.7/reference/environments_creating.html).
 
-See the [system requirements](./install_system_requirements.html) for a list of supported platforms.
+#### A Note about `environment_timeout` in PE 3.7.0
+
+The [environment_timeout](/puppet/3.7/reference/environments_configuring.html#environmenttimeout) defaults to 3 minutes. This means that code changes you make might not appear until after that timeout has been reached. In addition it's possible that back to back runs of Puppet could flip between the new code and the old code until the `environment_timeout` is reached.
+
+#### Factor 2.2
+
+PE 3.7.0 includes Factor 2.2. This provides a number of improvements that are detailed in the [Factor 2.2 release notes](./facter/2.2/release_notes.html). However, it also resulted in some changes to the behavior of facts, which are detailed in the [known issues](/release_notes_known_issues.html).
+
+### Support Script Improvements
+
+PE 3.7.0 includes several improvements to the support script, which is bundle in the PE tarball. Check out the [Getting Support page](./overview_getting_support.html#the-pe-support-script) for more information about the support script.
+
+### SLES 10 Support (agent only)
+
+This release provides support for SLES 10 for agent only installation.
+
+For more information, see the [system requirements](./install_system_requirements.html).
+
+### Enhanced Security For Using HTTP CA API Endpoints
+
+To use the Puppet master's `certificate_status` API endpoint, you now need to add your client to the whitelist in [`ca.conf`](/puppetserver/1.0/configuration.html#caconf). After you add your client to the whitelist, restart Puppet Server using `service pe-puppetserver restart`.

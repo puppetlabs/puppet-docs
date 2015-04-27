@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.8 » Orchestration » Adding New Actions"
+title: "PE 3.7 » Orchestration » Adding New Actions"
 subtitle: "Adding New Orchestration Actions to Puppet Enterprise"
 canonical: "/pe/latest/orchestration_adding_actions.html"
 ---
@@ -29,8 +29,6 @@ You can extend Puppet Enterprise (PE)'s orchestration engine by adding new **act
 > * To invoke actions in the PE console, see [Navigating Live Management](./console_navigating_live_mgmt.html).
 > * To invoke actions on the command line, see [Invoking Actions](./orchestration_invoke_cli.html).
 > * For a list of built-in actions, see [List of Built-In Orchestration Actions](./orchestration_actions.html).
-
->**Note**: Live Management is deprecated in PE 3.8, and will be replaced in future PE versions. See the [PE 3.8 release notes](./release_notes.html#live-management-is-deprecated) for more information.
 
 [fundamentals]: ./orchestration_overview.html#orchestration-fundamentals
 

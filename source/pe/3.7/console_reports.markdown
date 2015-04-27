@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.8 » Console » Viewing Reports"
+title: "PE 3.7 » Console » Viewing Reports"
 subtitle: "Viewing Reports and Inventory Data"
 canonical: "/pe/latest/console_reports.html"
 ---
@@ -87,7 +87,7 @@ The facts you see in the inventory can be useful when [filtering nodes in the li
 Exporting Data
 -----
 
-You can export the report table to a CSV file using the __Export as CSV__ link at the top right of the table.
+You can export the inventory and report tables to a CSV file using the __Export as CSV__ link at the top right of the tables.
 
 [reports_eventstab]: ./images/console/reports_eventstab.png
 [reports_graphs]: ./images/console/reports_graphs.png

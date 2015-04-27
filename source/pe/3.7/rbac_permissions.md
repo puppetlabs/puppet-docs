@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.8 » Console » RBAC Permissions"
+title: "PE 3.7 » Console » RBAC Permissions"
 subtitle: "About RBAC Permissions"
 canonical: "/pe/latest/rbac_permissions.html"
 ---
@@ -26,7 +26,7 @@ Some permissions added to the Administrator user role might look like this:
 |Node groups  | View          | PE Master    | Gives permission to view the PE Master node group.|
 |User roles   | Edit          | All          | Gives permission to edit all user roles. |
 
-When no object is specified, a permission will apply to all objects of that type. In those cases, the object is “All”. This is denoted by a “*” in the API.
+When no object is specified, a permission will apply to all objects of that type. In those cases, the object is “All”. However, this is be denoted by a “*” in the API.
 
 In both the console and the API, a “*” is used to express a permission for which an object doesn’t make sense, such as when creating users.
 
@@ -39,13 +39,12 @@ The table below lists the available object types and their permissions, as well 
 | Node group        | Edit child group rules                  |The ability to edit the rules of descendents of a node group. This does not grant the ability to edit the rules of the group in the `object` field, only children of that group. This permission is inherited by all descendents of the node group.|
 | Node group        | Set environment                         |The ability to set the environment of a node group. This permission is inherited by all descendents of the node group.|
 | Node group        | Edit classes, parameters, and variables |The ability to edit every attribute of a node group except its environment and rule. This permission is inherited by all descendents of the node group.|
-| Node group        | Edit parameters and variables |The ability to edit the class parameters and variables of a node group's classes but not change the group's classes, environment, or rules. This permission is inherited by all descendents of the node group.|
 | Node group        | Create, edit, and delete child groups   |The ability to create new child groups, delete existing child groups, and modify every attribute of child groups, including environment and rules. This permission is inherited by all descendents of the node group.|
 | Node group        | View                                    |The ability to see all attributes of a node group, most notably the values of class parameters and variables. This permission is inherited by all descendents of the node group.|
 | User              | Create                                  | The ability to create new local users. Remote users are "created" by that user authenticating for the first time with RBAC. Object must always be `"*"`. |
 | User              | Reset password                          | The ability to grant password reset tokens to users who have forgotten their passwords. This process also reinstates a user after the use has been revoked. This may be granted per user. |
 | User              | Revoke                                  | The ability to revoke/disable a user. This means the user will no longer be able to authenticate and use the console, node classifier, or RBAC. This may be granted per user. |
-| User              | Edit                                    | The ability to edit a local user's data, such as name or email, and delete a local or remote user from PE. This may be granted per user. |
+| User              | Edit                                    | The ability to edit a local user's data, such as name or email. This may be granted per user. |
 | User group        | Import                                  | The ability to import groups from the directory service for use in RBAC. Object must always be `"*"`. |
 | User role         | Create                                  | The ability to create new roles. Object must always be `"*"`. |
 | User role         | Edit                                    | The ability to edit a role. Object must always be `"*"`. |
@@ -64,7 +63,6 @@ The following table provides both the display and system names for the types and
 | Node group         | node\_groups       | Edit child group rules                  | edit\_child\_rules   |
 | Node group         | node\_groups       | Set environment                         | set\_environment     |
 | Node group         | node\_groups       | Edit classes, parameters, and variables | edit\_classification |
-| Node group		 | node\_groups       | Edit parameters and variables | edit\_params\_and\_vars |
 | Node group         | node\_groups       | Create, edit, and delete child groups   | modify\_children     |
 | Node group         | node\_groups       | View                                    | view                 |
 | User               | users              | Create                                  | create               |

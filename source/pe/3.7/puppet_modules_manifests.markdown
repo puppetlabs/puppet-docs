@@ -1,22 +1,22 @@
 ---
 layout: default
-title: "PE 3.8 » Puppet » Modules and Manifests"
+title: "PE 3.7 » Puppet » Modules and Manifests"
 subtitle: "Puppet Modules and Manifests"
 canonical: "/pe/latest/puppet_modules_manifests.html"
 ---
 
 [assign]: ./puppet_assign_configurations.html
-[lang]: /puppet/3.8/reference/lang_summary.html
-[visual]: /puppet/3.8/reference/lang_visual_index.html
-[resources]: /puppet/3.8/reference/lang_resources.html
-[cond]: /puppet/3.8/reference/lang_conditional.html
-[variables]: /puppet/3.8/reference/lang_variables.html
-[facts]: /puppet/3.8/reference/lang_variables.html#facts-and-built-in-variables
-[rel]: /puppet/3.8/reference/lang_relationships.html
-[classes]: /puppet/3.8/reference/lang_classes.html
-[defined]: /puppet/3.8/reference/lang_defined_types.html
-[fund]: /puppet/3.8/reference/modules_fundamentals.html
-[install]: /puppet/3.8/reference/modules_installing.html
+[lang]: /puppet/3.7/reference/lang_summary.html
+[visual]: /puppet/3.7/reference/lang_visual_index.html
+[resources]: /puppet/3.7/reference/lang_resources.html
+[cond]: /puppet/3.7/reference/lang_conditional.html
+[variables]: /puppet/3.7/reference/lang_variables.html
+[facts]: /puppet/3.7/reference/lang_variables.html#facts-and-built-in-variables
+[rel]: /puppet/3.7/reference/lang_relationships.html
+[classes]: /puppet/3.7/reference/lang_classes.html
+[defined]: /puppet/3.7/reference/lang_defined_types.html
+[fund]: /puppet/3.7/reference/modules_fundamentals.html
+[install]: /puppet/3.7/reference/modules_installing.html
 [forge]: http://forge.puppetlabs.com
 [geppetto]: /geppetto/4.0/index.html
 
@@ -56,9 +56,9 @@ This page covers the first part of that process: writing manifests and modules. 
 >
 > ### Geppetto IDE
 >
-> Geppetto is an integrated development environment (IDE) for Puppet. It provides a toolset for developing Puppet modules and manifests that includes syntax highlighting, content assistance, error tracing/debugging, and code completion features. Geppetto also provides integration with git, enabling side-by-side comparison of code from a given repo complete with highlighting, code validation, syntax error parsing, and expression troubleshooting.
+> Geppetto is an integrated development environment (IDE) for Puppet. It provides a toolset for developing Puppet modules and manifests that includes syntax highlighting, content assistance, error tracing/debugging, and code completion features. Geppetto also provides integration with git, enabling side-by-side comparison of code from a given repo complete with highlighting, code validation, syntax error parsing, and expression troubleshooting. 
 >
->In addition, Geppetto provides tools that integrate with Puppet products. It includes an interface to the Puppet Forge, which allows you to create modules from existing modules on the Forge as well as easily upload your custom modules.
+>In addition, Geppetto provides tools that integrate with Puppet products. It includes an interface to the Puppet Forge, which allows you to create modules from existing modules on the Forge as well as easily upload your custom modules. 
 > Geppetto also provides PE integration by parsing PuppetDB error reporting. This allows you to quickly find the problems with your Puppet code that are causing configuration failures. For complete information, visit the [Geppetto documentation][geppetto].
 >
 >
@@ -102,13 +102,13 @@ When a resource depends on another resource, you should explicitly state the rel
 * See [the Resources page of the Puppet language reference][resources] for details about resource declarations.
 * See [the Relationships and Ordering page][rel] for details about relationships.
 
->### About Manifest Ordering
+>### About Manifest Ordering 
 >
->Puppet Enterprise is now using a new `ordering` setting in the Puppet core that allows you to configure how unrelated resources should be ordered when applying a catalog. By default, `ordering` will be set to `manifest` in PE.
+>Puppet Enterprise is now using a new `ordering` setting in the Puppet core that allows you to configure how unrelated resources should be ordered when applying a catalog. By default, `ordering` will be set to `manifest` in PE. 
 >
 >You most likely expect that resources will be executed in the order you wrote them in your manifest files—if there were no dependencies specified. If you’re an experienced user and have been using this kind of explicit ordering in your codebase, you'll be able to use manifest ordering without any problems.
 >
->We know that for new PE users learning the Puppet language, one of the first stumbling blocks is figuring out how to order resources so they’re evaluated correctly when Puppet runs. We anticipate that manifest ordering will help mitigate your struggles and help get you writing more effective Puppet code. And as you’re learning, we definitely recommend you study up on [relationships and ordering in Puppet](/puppet/3.7/reference/lang_relationships.html).
+>We know that for new PE users learning the Puppet language, one of the first stumbling blocks is figuring out how to order resources so they’re evaluated correctly when Puppet runs. We anticipate that manifest ordering will help mitigate your struggles and help get you writing more effective Puppet code. And as you’re learning, we definitely recommend you study up on [relationships and ordering in Puppet](/puppet/3.7/reference/lang_relationships.html). 
 >
 >The following values are allowed for the `ordering` setting:
 >
@@ -120,7 +120,7 @@ When a resource depends on another resource, you should explicitly state the rel
 >
 >#### Changing the Resource Ordering Setting
 >
->By default, the `ordering` setting is configured for `manifest` ordering, but you will not see this displayed in `puppet.conf` (located at `/etc/puppetlabs/puppet/puppet.conf` on the Puppet master).
+>By default, the `ordering` setting is configured for `manifest` ordering, but you will not see this displayed in `puppet.conf` (located at `/etc/puppetlabs/puppet/puppet.conf` on the Puppet master). 
 >
 >To toggle the setting to `random` or `title-hash`, you will need to add it to the `agent` section; for example:
 >
@@ -224,7 +224,7 @@ This example module, named "`my_module`," shows the standard module layout:
 You can search for pre-built modules on [the Puppet Forge][forge] and use them in your own infrastructure.
 
 * Use the `puppet module search` command to locate modules, or [browse the Puppet Forge's web interface][forge].
-* Along with the standard modules you can find on the Forge, Puppet Labs also provides Puppet Enterprise supported modules; these supported modules are rigorously tested with PE, supported via the usual [support channels](http://puppetlabs.com/services/customer-support), maintained for a long-term lifecycle, and are compatible with multiple platforms and architectures.
+* Along with the standard modules you can find on the Forge, Puppet Labs also provides Puppet Enterprise supported modules; these supported modules are rigorously tested with PE, supported via the usual [support channels](http://puppetlabs.com/services/customer-support), maintained for a long-term lifecycle, and are compatible with multiple platforms and architectures. 
 * On your Puppet master server, use the `puppet module install` command to install modules from the Forge.
 * See [the Installing Modules page][install] for details about installing pre-built modules.
 
