@@ -8,7 +8,7 @@ canonical: "/pe/latest/quick_start_install_agents_windows.html"
 
 ### Overview
 
->**Important**: Windows nodes can only run the Puppet agent component; the Puppet master component must be run on a supported Linux machine.
+>**Important**: This information describes how to install Puppet agents on Windows nodes. The Puppet master component, described in the "PE Install Quick Start Guide," must be run on a supported Linux machine.
 
 The following instructions for installing Puppet agents on nodes running [supported versions](./install_system_requirements.html#operating-system) of the Windows operating system. Refer to the *nix agent installation quick start guide [to do: link] for instructions on installing Puppet agents on nodes running *nix operating systems.
 

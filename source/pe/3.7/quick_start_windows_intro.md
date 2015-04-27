@@ -1,7 +1,7 @@
 ---
 layout: default
 title: " PE 3.8 » Quick Start Guide » Intro for Windows Users"
-subtitle: "Puppet Enterprise 3.8 "
+subtitle: "Puppet Enterprise Quick Start Guide For Windows Users"
 canonical: "/pe/latest/quick_start_windows_intro.html"
 
 ---
@@ -10,10 +10,10 @@ Welcome to the Puppet Enterprise (PE) Quick Start Guide for Windows users. Wheth
 
 The following guides present tasks in the order that you would most likely perform them. See the prerequisite sections in each guide to ensure you have the correct setup to perform the steps as they're provided.
 
->**Important**: Windows users should be aware that the Puppet master components can currently only be installed on a linux machine. Puppet agent components can be installed on Windows machines and you can manage those machines with your Puppet master.
+>**Important**: Windows users should be aware that the Puppet master components can currently only be installed on a Linux machine. Puppet agent components can be installed on Windows machines and you can manage those machines with your Puppet master.
 
 ### 1. Install a Monolithic Puppet Enterprise Deployment
-Follow [these instructions](./quick_start_install_mono.html) to quickly install a monolithic PE deployment on a linux machine. A monolithic PE deployment entails installing the Puppet master, the PE console, and PuppetDB all on one node. Note that you will need to review some prerequisites.
+Follow [these instructions](./quick_start_install_mono.html) to quickly install a monolithic PE deployment on a linux machine. A monolithic PE deployment entails installing the Puppet master, the PE console, and PuppetDB all on one node. Note that these steps are the same for Windows and *nix users.
 
 ### 2. Install the Puppet Agent
 Follow [these instructions](./quick_start_install_agents_windows.html) to quickly install a Puppet agent. A computer running the Puppet agent is usually referred to as an “agent node”. The Puppet agent regularly pulls configuration catalogs from a Puppet master and applies them to the local system.
