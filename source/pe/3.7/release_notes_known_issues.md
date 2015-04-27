@@ -266,6 +266,10 @@ Upgrades to this version of PE can affect deployments that use a custom console 
 
 When pinning a node to a node group in the PE console, if you pin the node multiple times, the console does not resolve this to a single entry. For example, if you pin the same node to a node group ten times and commit it, the console will show that you have ten nodes all with the same node name. 
 
+### Error When a PE User and User Group Have the Same Name
+
+If you have both a PE user and a user group with the exact same name, PE will throw an error when you perform a search that matches both of these entries.
+
 ### Passenger `permission denied` Log entry
 
 At application startup for Dashboard, Passenger logs a "permission denied" message to the Apache error log concerning the passenger-config executable. This log message only appears once, at application startup, is not repeated, and appears to be cosmetic. The dashboard starts and functions properly.
