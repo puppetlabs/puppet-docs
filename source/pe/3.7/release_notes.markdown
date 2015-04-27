@@ -37,6 +37,12 @@ Read [the r10k quick start guide](./quick_start_r10k.html) to get started. In th
 
 Thanks to a number of partnerships, Puppet Enterprise has been adding support for running Puppet agent on network devices. Currently we support the [Cumulus Linux](./install_cumulus.html) and the [Arista EOS](./install_eos.html) platforms.
 
+### Puppet 4 Language Parser
+
+The Puppet 4 language parser gives you valuable language features, makes debugging easier, and will help keep your Puppet code compatible with future releases in the next major series. During new installations, you'll be asked if you want to turn on the new  language parser---this is recommended for all **NEW** Puppet users.
+
+If you'll be using Puppet code you did **NOT** create with the Puppet 4 language parser, **DO NOT** enable this feature. See the [Puppet 4 language parser docs](http://links.puppetlabs.com/future_parser) for instructions on enabling the parser in a test environment to ensure it works with your existing Puppet code.
+
 ## Improvements in PE 3.8.0
 
 ### String Interpolation in the PE Console
