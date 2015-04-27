@@ -40,7 +40,7 @@ r10k deploy environment
 
 This command updates existing environments and recursively creates new environments. 
 
-When an environment is deployed for the first time (as in the initial r10k run above), this command automatically updates all modules as well. For subsequent updates, only the environment itself is updated.
+When an environment is deployed for the first time (as in the initial r10k run above), this command automatically updates all modules specified in each environment's Puppetfile as well. For subsequent updates, only the environment itself is updated.
 
 ### Update All Environments and Modules
 
@@ -65,7 +65,7 @@ However, you should note that this is the slowest method for using r10k because 
 r10k deploy environment my_working_environment
 ~~~
 
-When you're actively developing on a given environment, this is the best way to deploy your changes. When an environment is deployed for the first time, it automatically updates all modules as well. For subsequent updates, only the environment itself is updated.
+When you're actively developing on a given environment, this is the best way to deploy your changes. When an environment is deployed for the first time, it automatically updates all modules specified by the environment's Puppetfile as well. For subsequent updates, only the environment itself is updated.
 
 ### Update a Single Environment and Its Modules
 
@@ -73,11 +73,11 @@ When you're actively developing on a given environment, this is the best way to 
 r10k deploy environment my_working_environment --puppetfile
 ~~~
 
-This updates the given environment and all contained modules. This is useful if you want to make sure that a given environment is fully up to date.
+This updates the given environment and all modules contained in its Puppetfile. This is useful if you want to make sure that a given environment is fully up to date.
 
 ## Installing and Updating Modules
 
-When you use the `r10k deploy` command to update modules, r10k installs/updates the modules as you've specified them in your [Puppetfile](puppetfile). For `r10k puppetfile` commands that you can use to install, verify, and purge modules, see [Running Puppetfile commands](puppetfile#running-puppetfile-commands).
+When you use the `r10k deploy module` subcommand to update modules, r10k installs/updates the modules as you've specified them in each environment's [Puppetfile](puppetfile). If the specified module is not described in an environment's Puppetfile, that environment will be skipped. For `r10k puppetfile` commands that you can use to install, verify, and purge modules, see [Running Puppetfile commands](puppetfile#running-puppetfile-commands).
 
 ### Update a Single Module Across All Environments
 

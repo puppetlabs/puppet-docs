@@ -15,8 +15,8 @@ description: "Subcommand reference for r10k, a Puppet code management tool."
 
 The following subcommands are available with `r10k`:
 
-* [`deploy`](#deploy): Runs r10k.
-* `help`: Generates help man page for `r10k`.
+* [`deploy`](#deploy): Performs operations on environments.
+* `help`: Generates help page for r10k.
 * [`puppetfile`](#puppetfile): Perform operations on a Puppetfile.
 * `version` Prints the version of r10k you are using.
 
