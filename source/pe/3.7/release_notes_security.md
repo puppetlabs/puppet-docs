@@ -61,7 +61,7 @@ Vulnerabilities in Ruby’s OpenSSL extension allow overly permissive matching o
 
 Puppet Enterprise does not generate wildcard SSL certificates by default. However, if a PE infrastructure has been configured with wildcard SSL certificates, it could theoretically be vulnerable to man-in-the-middle attacks.
 
-For more information on the vulnerability, please see the [Ruby project’s annoucement](https://www.ruby-lang.org/en/news/2015/04/13/ruby-openssl-hostname-matching-vulnerability/).
+For more information on the vulnerability, please see the [Ruby project’s announcement](https://www.ruby-lang.org/en/news/2015/04/13/ruby-openssl-hostname-matching-vulnerability/).
 
 These issues affected PE 3.x and Puppet-Agent 1.0. They're resolved in PE 3.8.0.
 
