@@ -321,7 +321,6 @@ tagged. Razor maintains an ordered table of policies. When a node boots, Razor t
 When you list the `policies` collection, the list is in the order in which
 Razor checks policies against nodes.
 
-
 ### Create policy (`create-policy`)
 
     {
@@ -336,6 +335,8 @@ Razor checks policies against nodes.
       "node_metadata": { "key1": "value1", "key2": "value2" },
       "tags": ["existing_tag", "another_tag"]
     }
+
+>**Note**: Because the policy contains many fields, you might want to put it in a JSON file. If you do, then your `create-policy` command would include the file name, like this: `razor create-policy --json <name of policy file>.json`.
 
 Tags, repos, tasks, and brokers are referenced by name. The `tags` are
 optional; a policy with no tags can be applied to a node. The `task`

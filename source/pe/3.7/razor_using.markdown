@@ -124,7 +124,7 @@ The broker hands an installed node off to the Puppet master. The details of the 
 
 The policy is what ties all the Razor objects together and provisions a node when it matches the policy. In this exercise, your policy contains a task called `centos` that comes with Razor.
 
-1. Create a policy with the `create-policy` command. You can get more information about the various arguments to this command by running `razor help create-policy`.
+1. Create a policy with the [`create-policy` command](./razor_reference.html#create-policy-create-policy.html). You can get more information about the various arguments to this command by running `razor help create-policy`.
 
 ~~~
 razor create-policy --name centos-for-small

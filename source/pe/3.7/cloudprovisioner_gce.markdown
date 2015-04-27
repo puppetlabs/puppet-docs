@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.1 » Cloud Provisioning » GCE Provisioning"
+title: "PE 3.8 » Cloud Provisioning » GCE Provisioning"
 subtitle: "Provisioning With Google Compute Engine"
 canonical: "/pe/latest/cloudprovisioner_gce.html"
 ---

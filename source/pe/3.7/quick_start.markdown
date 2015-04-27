@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "PE 3.8 » Quick Start » Intro"
+title: "PE 3.8 » Quick Start » Intro for *Nix Users"
 subtitle: "Puppet Enterprise Quick Start Guide Series: 3.8.0"
 canonical: "/pe/latest/quick_start.html"
 ---
