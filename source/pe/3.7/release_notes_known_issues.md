@@ -294,7 +294,7 @@ If a large number of nodes is returned when querying the `v1/nodes` endpoint of 
 
 To resolve this, you can manually remove the node check-ins. To remove node check-ins that are older than one week for example, in the command line, type:
 
-    sudo su - pe-postgres -s /bin/bash -c "/opt/puppet/bin/psql -d 'pe-classifier' -c \"delete from node_check_ins where time < (now() - '1 week'::interval);\""
+    sudo su - pe-postgres -s /bin/bash -c "/opt/puppet/bin/psql -d 'pe-classifier' -c \"delete FROM node_check_ins WHERE time < (now() - '1 week'::interval);\""
 
 ### User Login is Invalid When Less Than Three Characters
 
