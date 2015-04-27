@@ -13,6 +13,11 @@ description: "Setup of r10k with Puppet Enterprise for code management."
 [reference]: ./r10k_reference.html
 [r10kindex]: ./r10k.md
 
+[brandnew]: #i-am-brand-new-to-r10k-and-have-a-new-installation-of-pe-38
+[r10kpeupgrade]: #i-was-using-r10k-with-an-earlier-version-of-pe-and-just-upgraded-to-pe-38
+[zackr10k]: #i-was-using-the-zack-r10k-module-and-just-upgraded-to-pe-38-from-an-earlier-version-of-pe
+[opensourcer10k]: #i-was-using-r10k-with-open-source-puppet-and-just-upgraded-to-pe-38 
+
 R10k comes packaged with Puppet Enterprise (PE) 3.8, so you don't need to separately download or install it.
 
 To get started, you'll need to decide how r10k should communicate with Git, set up a repository for your code, and prepare r10k for configuration.
@@ -26,7 +31,8 @@ For r10k to work, it needs to be able to communicate with Git. You have two opti
 
 ###Use Git on Your System
 
-If you do not have Git installed, [find out the best way to install it for your setup](http://git-scm.com/book/en/v2/Getting-Started-Installing-Git). After you've installed Git, [set up at least one repository](http://git-scm.com/book/en/v2/Git-Basics-Getting-a-Git-Repository) to act as a control repository for your code.
+1. If you do not have Git installed, [install it for your system](http://git-scm.com/book/en/v2/Getting-Started-Installing-Git). 
+2. After you've installed Git, [set up at least one repository](http://git-scm.com/book/en/v2/Git-Basics-Getting-a-Git-Repository) to act as a control repository for your code.
 
 ###Use Git Library in r10k
 
@@ -38,18 +44,18 @@ You don't have to do anything else with Git right now, but when you edit your [r
 
 You can now prepare r10k for configuration, but how you do that depends on your current situation:
 
-* [I've never used r10k and just installed PE 3.8.]()
-* [I was using r10k and just upgraded to PE 3.8 from an earlier version of PE.]()
-* [I was using the zack-r10k module and just upgraded to PE 3.8 from an earlier version of PE.]()
-* [I was using r10k with open source Puppet and just upgraded to PE 3.8.]()
+* [I've never used r10k and just installed PE 3.8.](brandnew)
+* [I was using r10k and just upgraded to PE 3.8 from an earlier version of PE.](r10kupgrade)
+* [I was using the zack-r10k module and just upgraded to PE 3.8 from an earlier version of PE.](zackr10k)
+* [I was using r10k with open source Puppet and just upgraded to PE 3.8.](opensourcer10k)
 
 ###I Am Brand New to r10k and Have a New Installation of PE 3.8
 
-If you’ve never installed or used r10k before and have just installed PE 3.8, r10k is already installed for you. Your next step is to [create your own config file](r10k_yaml) for r10k in `/etc/puppetlabs/r10k/r10k.yaml`.
+If you’ve never installed or used r10k before and have just installed PE 3.8, r10k is already installed for you. You can move on to your next step: [create your own config file](r10k_yaml) for r10k in `/etc/puppetlabs/r10k/r10k.yaml`.
 
 ###I Was Using r10k With an Earlier Version of PE and Just Upgraded to PE 3.8
 
-Puppet Enterprise automatically installs the current PE version of r10k. However, the default location for r10k.yaml has changed, so we recommend moving it to prevent future upgrade issues. To do so:
+Puppet Enterprise automatically installs the current PE version of r10k. However, the default location for r10k.yaml has changed, so we recommend moving it to its new default location to prevent future upgrade issues. To do so:
 
 1. Locate your current r10k.yaml file. It is likely in the `/etc/` directory.
 2. Move your r10k.yaml file to the `/etc/puppetlabs/r10k/ directory.
@@ -70,7 +76,7 @@ If you want to continue using the zack-r10k module with r10k, you can do so. The
 
 ####Use the PE 3.8 Default r10k Configuration
 
-If you want to use r10k as it ships with PE **without** the zack-r10k module, you should move the location of r10k.yaml:
+If you want to use r10k as it ships with PE **without** the zack-r10k module, you should move r10k.yaml to its new default location to prevent future upgrade issues:
 
 1. Locate your current r10k.yaml file. It is likely in the `/etc/` directory.
 2. Move your r10k.yaml file to the `/etc/puppetlabs/r10k` directory.
@@ -83,7 +89,7 @@ Both /etc/puppetlabs/r10k/r10k.yaml and /etc/r10k.yaml configuration files exist
 
 ###I Was Using r10k With Open Source Puppet and Just Upgraded to PE 3.8
 
-Puppet Enterprise automatically installs the current PE version of r10k. However, the default location for r10k.yaml has changed, so we recommend moving it to prevent future upgrade issues. 
+Puppet Enterprise automatically installs the current PE version of r10k. However, the default location for r10k.yaml has changed, so we recommend moving it to its new default location to prevent future upgrade issues. 
 
 Note that you should have uninstalled your open source r10k gem before you upgraded to PE. If you did not specifically do so before, you can uninstall the open source r10k gem from the system gem location now.
 

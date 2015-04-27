@@ -9,7 +9,7 @@ This page contains information about security fixes in Puppet Enterprise (PE) 3.
 
 For more information about this release, also see the [Known Issues](./release_notes_known_issues.html) and [New Features](./release_notes.html).
 
-## Puppet Enterprise 3.8 (28/04/15)
+## Puppet Enterprise 3.8 (April 28, 2015)
 
 ### Security Fixes
 
@@ -79,7 +79,7 @@ Puppet Enterprise 3.8 contains a number of performance and documentation improve
 
 #### Static Defaults Were Set for TK-Jetty `max threads`
 
-Previously, in PE, tk-jetty `max threads` were set to a static default of 100 threads. We determined this was too low for large environments with high CPU counts, and no longer set a default for `max threads`. Unless you specify a value, we will not manage or define this setting. You can tune `max threads` for the [PE console/console API](./console_config.html#tuning-max-threads-on-the-pe-console-and-console-api) or [Puppet Server](./config_puppetserver.html#tuning-max-threads-on-puppet-server) as needed using Hiera.
+Previously, in PE, tk-jetty `max threads` were set to a static default of 100 threads. We determined this was too low for large environments with high CPU counts, and we no longer set a default for `max threads`. Unless you specify a value, we will not manage or define this setting. You can tune `max threads` for the [PE console/console API](./console_config.html#tuning-max-threads-on-the-pe-console-and-console-api) or [Puppet Server](./config_puppetserver.html#tuning-max-threads-on-puppet-server) as needed using Hiera.
 
 #### Custom Console Cert Functionality Was Broken in PE 3.7.x
 
@@ -123,15 +123,15 @@ In PE 3.7.2, the browser would crash when the `users` endpoint for Role-Based Ac
 
 #### Browser Crashing Issue When Deleting a Node Group That Had a Permission Assigned
 
-In PE 3.7, if you take the following steps:
+In PE 3.7, pages didn't completely render if you took the following steps:
 
-- create a new user role in RBAC
-- add a permission to the user role that has the **Node groups** permission type
-- select a specific node group instance that the permission applies to
-- delete the node group instance that the permission applies to
-- try to go to the **Permissions** tab for the new user role
+- Create a new user role in RBAC.
+- Add a permission to the user role that has the **Node groups** permission type.
+- Select a specific node group instance that the permission applies to.
+- Delete the node group instance that the permission applies to.
+- Try to go to the **Permissions** tab for the new user role.
 
-the result is that the javascript rendering the page stops prematurely and the page is not rendered completely.
+The issue was that the Javascript rendering the page stops prematurely.
 
 In PE 3.8, this has been fixed so that the page renders properly. In the PE 3.8 console, if you go to the **Permissions** tab for the new role that was added, the deleted node group instance is displayed as a dash in the **Object** column.
 
@@ -141,11 +141,11 @@ In PE 3.7, an error indicating that the "index row size exceeds maximum" was ret
 
 #### Newly Created Node Group Did Not Appear in List of Parents
 
-When you created a new node group in the PE 3.7 console, then immediately created another new node group and tried to select the first node group as the parent, the first node group did not appear in the list of selectable names in the **Parent name** drop-down list. The first node group would appear if you reloaded the page. This issues has been fixed in PE 3.8.
+When you created a new node group in the PE 3.7 console, then immediately created another new node group and tried to select the first node group as the parent, the first node group did not appear in the list of selectable names in the **Parent name** drop-down list. The first node group would appear if you reloaded the page. This issue has been fixed in PE 3.8.
 
 #### Could Only Accept Or Reject One Node at a Time
 
-In PE 3.7, if you had multiple node requests pending, you could accept/reject one node, but if you then tried to accept/reject subsequent nodes a 403 Forbidden error was returned. This meant that if you wanted to accept/reject node requests one at a time, you had to refresh the page after each time you accepted/rejected a node request. In PE 3.8, this issue has been fixed and you will no longer receive a 403 Forbidden error.
+In PE 3.7, if you had multiple node requests pending, you could accept/reject one node, but if you then tried to accept/reject subsequent nodes, a 403 Forbidden error was returned. This meant that if you wanted to accept/reject node requests one at a time, you had to refresh the page after each time you accepted/rejected a node request. In PE 3.8, this issue has been fixed, and you will no longer receive a 403 Forbidden error.
 
 #### User and Group Lookup Attributes Were Case Sensitive
 
@@ -163,16 +163,15 @@ The fix enables you to differentiate between single and multi-mirror and raidz p
 
 In PE 3.7.0 the `.mcollective.d` directory was assigned a `0400` permission. This created an issue when the client.log was full, and `peadmin` needed to create another one for shifting the logfile. If a logfile was full, and you tried to use MCollective to issue commands, you'd get an error message that said log shifting had failed and permission was denied. The fix sets the permissions to u+rwx for the PE admin user.
 
-#### `pe-mcollective-metadata` Cron Redirected Output to a Path that Was Not Valid on AIX
+#### `pe-mcollective-metadata` Cron Redirected Output to a Path That Was Not Valid on AIX
 
 The fix updated the manifest to use `puppet_enterprise::params::mco_logdir`, which evaluates to the appropriate log directory for AIX. The cron job now points at the correct location, `/opt/freeware/var/log/pe-mcollective`.
 
 #### PE Removed Unmanaged Crontab Entries from Root If Invalid Entries Were Present
 
-Due to this bug, the mcollective metadata cron job was unconditionally laid
+Due to this bug, the MCollective metadata cron job was unconditionally laid
 down during PE installation. This caused problems if invalid root crontabs were present. It would then trigger a bug that removed any unmanged cron entries. The fix adds a toggle that allowed the cron job to be unmanaged, to avoid triggering this bug. An exec was
-also added to ensure that the fact cache is present so that
-`pe-mcollective` can start.
+also added to ensure that the fact cache is present so that `pe-mcollective` can start.
 
 
 
