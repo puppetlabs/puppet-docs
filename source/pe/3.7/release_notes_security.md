@@ -17,7 +17,7 @@ For more information about this release, also see the [Known Issues](./release_n
 
 Posted April 28, 2015
 
-Some endpoints in the Puppet Enterprise Console are potentially susceptible to Cross-Frame Scripting (XFS) attacks. An exploit would require coercion of a PE user into navigating to an attacker-controlled web page that loaded the Puppet Enterprise console in an HTML frame.
+Some endpoints in the Puppet Enterprise console are potentially susceptible to cross-frame scripting (XFS) attacks. An exploit would coerce a PE user into navigating to an attacker-controlled web page that loaded the Puppet Enterprise console in an HTML frame.
 
 This issue affected PE 3.7.x. It's resolved in PE 3.8.0.
 
@@ -65,7 +65,7 @@ For more information on the vulnerability, please see the [Ruby project’s anno
 
 These issues affected PE 3.x and Puppet-Agent 1.0. They're resolved in PE 3.8.0.
 
-#### CVE - LibYAML vulnerability could allow denial of service
+#### CVE - LibYAML Vulnerability Could Allow Denial of Service
 
 Posted April 28, 2015
 
