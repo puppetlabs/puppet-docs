@@ -288,6 +288,14 @@ To manually remove the deleted flag for an environment named "test" for example,
 
     su - pe-postgres -s /bin/bash -c "/opt/puppet/bin/psql -d 'pe-classifier' -c \"UPDATE environments SET deleted = 'f' WHERE name = 'test';\""
 
+### Querying the Nodes Endpoint of the Classifier Service Can Exhaust Memory 
+
+If a large number of nodes is returned when querying the `v1/nodes` endpoint of the classifier service API, the pe-console-services process may exhaust the memory and return a 500 error. 
+
+To resolve this, you can manually remove the node check-ins. To remove node check-ins that are older than one week for example, in the command line, type:
+
+    sudo su - pe-postgres -s /bin/bash -c "/opt/puppet/bin/psql -d 'pe-classifier' -c \"delete from node_check_ins where time < (now() - '1 week'::interval);\""
+
 ### User Login is Invalid When Less Than Three Characters
 
 The PE RBAC service will not allow you to add a user login that is less than three characters long.
