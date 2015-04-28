@@ -18,29 +18,19 @@ Small documents for getting help fast.
 
 * * *
 
-Learning Puppet
----------------
-
-Learn to use Puppet! New users: start here.
-
-* [Introduction and Index](/learning/)
-
-{% include learning_nav.html %}
-
-* * *
-
 Reference Shelf
 ---------------
 
-### [Puppet 4.0 Reference Manual](/puppet/4.0/reference)
+### [Puppet 3.8 Reference Manual](/puppet/3.8/reference) ###
 
-A concise reference to Puppet 4.0's usage and internals. Use the left sidebar of any reference manual page to navigate between pages.
+A concise reference to Puppet 3.8's usage and internals. Use the left sidebar of any reference manual page to navigate between pages.
 
-- [Overview](/puppet/4.0/reference)
+- [Overview](/puppet/3.8/reference)
+- [Learn about the Future Parser](/puppet/3.8/reference/experiments_future.html)
 
+### Other Puppet Reference Manuals
 
-### Older Puppet Reference Manuals
-
+* [Puppet 4.0 Reference Manual](/puppet/4.0/reference)
 * [Puppet 3.7 Reference Manual](/puppet/3.7/reference)
 * [Puppet 3.6 Reference Manual](/puppet/3.6/reference)
 * [Puppet 3.5 Reference Manual](/puppet/3.5/reference)
@@ -86,8 +76,12 @@ Get Puppet up and running at your site.
 
 * [An Introduction to Puppet](/guides/introduction.html)
 * [Supported Platforms](/guides/platforms.html)
-* [Installing Puppet for Linux](/puppet/4.0/reference/install_linux.html)
-* [Installing Puppet for Windows](/puppet/4.0/reference/install_windows.html)
+* [The Puppet 3.8 Installation Guide](/guides/install_puppet/pre_install.html).
+
+### Looking Ahead to Puppet 4
+
+* [Installing Puppet 4 for Linux](/puppet/4.0/reference/install_linux.html)
+* [Installing Puppet 4 for Windows](/puppet/4.0/reference/install_windows.html)
 * Upgrading Puppet from 3.x to 4.x
   * [Upgrading Puppet 3.x Agents](/puppet/4.0/reference/upgrade_agent.html)
   * [Upgrading Puppet 3.x Servers](/puppet/4.0/reference/upgrade_server.html)
@@ -99,7 +93,6 @@ Get Puppet up and running at your site.
 * [Installing Modules from the Puppet Forge](/puppet/2.7/reference/modules_installing.html) --- save time by using pre-existing modules
 * [Module Smoke Testing](/guides/tests_smoke.html) --- write and run basic smoke tests for your modules
 * [Publishing Modules on the Puppet Forge](/puppet/2.7/reference/modules_publishing.html) --- preparing your best modules to go public
-
 
 ### Help With Writing Puppet Code
 
