@@ -169,7 +169,7 @@ symlink_latest:
   - pe
   - dashboard/manual
 lock_latest: {
-  puppet: 3.7
+  puppet: 3.8
 }
 version_notes:
   # Default notes for upstreams. Tweak these whenever latest de-syncs or re-syncs with PE!
