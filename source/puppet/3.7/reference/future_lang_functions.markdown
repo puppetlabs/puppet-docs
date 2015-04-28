@@ -41,7 +41,7 @@ Function calls can also stand on their own, which will cause their value to be i
 Syntax
 -----
 
-There are two ways to call functions in the Puppet language: classic **prefix calls** like `str2bool("true")`, and **chained calls** like `"true".str2bool`.
+There are two ways to call functions in the Puppet language: classic **prefix calls** like `str2bool("true")`, and **chained calls** like `"true".str2bool`. There's also a modified form of prefix calls that can only be used with certain functions.
 
 ### Choosing a Call Style
 
@@ -102,13 +102,14 @@ In the examples above, [`template`][template], [`str2bool`][str2bool], [`include
 
 {{ about_examples }}
 
+The `include` examples use [statement function calls][inpage_statement], which are a special form of prefix call.
+
 The general form of a prefix function call is:
 
     name(argument, argument, ...) |$parameter, $parameter, ...| { code block }
 
 * The full name of the function, as an unquoted word.
 * An opening parenthesis (`(`).
-    * Parentheses are optional when calling a [_built-in statement function_][inpage_statement] with at least one argument (like `include apache`). They're mandatory in all other cases.
 * Zero or more **arguments,** separated with commas. Arguments can be any [expression][] that resolves to a value. See each function's docs for the number of its arguments and their [data types][datatype].
 * A closing parenthesis (`)`), if an opening parenthesis was used.
 * Optionally, a [lambda][] (code block), if the function accepts one.
@@ -164,6 +165,11 @@ The general form of a chained function call is:
 * Optionally, a [lambda][] (code block), if the function accepts one.
 
 
+### Statement Function Calls
+
+A statement function call is just a prefix call that omits the parentheses around its arguments, like `include apache, ntp`.
+
+You can only use a statement call when calling one of the [_built-in statement functions_][inpage_statement] with at least one argument.
 
 Behavior
 -----
