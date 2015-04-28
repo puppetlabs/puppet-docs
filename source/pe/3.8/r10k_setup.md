@@ -28,7 +28,7 @@ For r10k to work, it needs to be able to communicate with Git. You have two opti
 
 ###Use Git on Your System
 
-1. If you do not have Git installed, [install it for your system](http://git-scm.com/book/en/v2/Getting-Started-Installing-Git). 
+1. If you do not have Git installed, [install it for your system](http://git-scm.com/book/en/v2/Getting-Started-Installing-Git).
 2. After you've installed Git, [set up at least one repository](http://git-scm.com/book/en/v2/Git-Basics-Getting-a-Git-Repository) to act as a control repository for your code.
 
 ###Use Git Library in r10k
@@ -86,7 +86,7 @@ Both /etc/puppetlabs/r10k/r10k.yaml and /etc/r10k.yaml configuration files exist
 
 ###I Was Using r10k With Open Source Puppet and Just Upgraded to PE 3.8
 
-Puppet Enterprise automatically installs the current PE version of r10k. However, the default location for r10k.yaml has changed, so we recommend moving it to its new default location to prevent future upgrade issues. 
+Puppet Enterprise automatically installs the current PE version of r10k. However, the default location for r10k.yaml has changed, so we recommend moving it to its new default location to prevent future upgrade issues.
 
 Note that you should have uninstalled your open source r10k gem before you upgraded to PE. If you did not specifically do so before, you can uninstall the open source r10k gem from the system gem location now.
 

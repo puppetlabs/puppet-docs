@@ -20,7 +20,7 @@ The Puppetfile is a text file written in a Ruby-based DSL. This file specifies w
 
 >**Note:** Puppetfiles do NOT include dependency resolution. You must make sure that you have every module needed for all of your specified modules to run.
 
-After you edit the Puppetfile, you can perform Puppetfile operations from the command line through the [`r10k puppetfile`](#running-puppetfile-commands) subcommand. 
+After you edit the Puppetfile, you can perform Puppetfile operations from the command line through the [`r10k puppetfile`](#running-puppetfile-commands) subcommand.
 
 ##Editing your Puppetfile
 
@@ -124,7 +124,7 @@ mod 'puppetlabs/apache'
 ~~~
 moduledir 'thirdparty'
 
-mod 'puppetlabs/apache' 
+mod 'puppetlabs/apache'
 # installs the apache module into './thirdparty/apache'
 ~~~
 
