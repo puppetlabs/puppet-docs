@@ -74,4 +74,4 @@ Before beginning you will also need to gather:
 
 
 
-[downloadpe]: https://puppetlabs.com/download-puppet-enterprise-all
+[downloadpe]: https://puppetlabs.com/download-puppet-enterprise
