@@ -14,6 +14,7 @@ For an introduction to how Puppet manages systems, see the [Overview of Puppet's
 
 ## Previous Versions
 
+- [Puppet 3.7](/puppet/3.7/reference)
 - [Puppet 3.6](/puppet/3.6/reference)
 - [Puppet 3.5](/puppet/3.5/reference)
 - [Puppet 3.0 through 3.4](/puppet/3/reference)
