@@ -28,6 +28,7 @@ defaultnav:
   /learning: /_includes/learning_nav.html
   /mcollective: /_includes/mcollective_menu.html
   /mcollective1.2: /_includes/mcollective_1.2.html
+  /pe/3.8: pe38.html
   /pe/3.7: /_includes/pe37.html
   /pe/3.3: /_includes/pe33.html
   /pe/3.2: /_includes/pe32.html
