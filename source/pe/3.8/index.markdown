@@ -19,8 +19,8 @@ Whether you're new to PE or have been here for a while, here are some useful lin
 
 * [System Requirements](./install_system_requirements.html)
 * [Monolithic](./install_pe_mono.html) or [Split Installation](./install_pe_split.html) instructions
-* [*nix](./install_agents.html), [Windows](./install_windows.html), or [OS X](./install_osx.html) agent installation 
-* [Upgrading](./install_upgrading)
+* [*nix](./install_agents.html), [Windows](./install_windows.html), or [OS X](./install_osx.html) agent installation
+* [Upgrading](./install_upgrading.html)
 * [PE 3.3 -> PE 3.8 Migration](./install_upgrade_migration_tool.html)
 
 ### Quick Start Guides
