@@ -28,8 +28,8 @@ Each subcommand allows the following options:
 * `-h`, `--help`: Shows help for this command.
 * `-t`, `--trace`: Displays stack traces on application crash.
 * `-v`, `--verbose`: Sets log verbosity. Valid values: fatal, error, warn, notice, info, debug, debug1, debug2.
- 
- 
+
+
 ###`deploy`
 
 The `r10k deploy` command accepts the following subcommands:
@@ -37,7 +37,7 @@ The `r10k deploy` command accepts the following subcommands:
 * `display`: Displays a list of environments in your deployment.
   * To display a list of modules in the Puppetfile, add the `-p` flag to the command.
   * To display detailed information, add `--detail` to the command.
-* `environment`: Deploys environments and their dependent modules. 
+* `environment`: Deploys environments and their dependent modules.
   * To update modules specified in the environment's Puppetfile, add the `-p` flag to the command.
 * `module`: Deploys a module in all environments.
   * To update the modules in the environment, add the `-e` flag to the command.

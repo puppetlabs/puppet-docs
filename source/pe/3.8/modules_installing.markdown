@@ -205,7 +205,7 @@ Use the module tool's *`upgrade` action* to upgrade an installed module to the l
 
 ### Managing Puppet Enterprise Modules
 
-If you want to manage a Puppet Enterprise module with [librarian-puppet](https://github.com/rodjek/librarian-puppet) or [r10k](https://github.com/adrienthebo/r10k), you must [install the module](#installing-puppet-enterprise-modules) and then commit the module to your version control repository. 
+If you want to manage a Puppet Enterprise module with [librarian-puppet](https://github.com/rodjek/librarian-puppet) or [r10k](https://github.com/puppetlabs/r10k), you must [install the module](#installing-puppet-enterprise-modules) and then commit the module to your version control repository. 
 
 When it comes time to upgrade your Puppet Enterprise module, much like with installation, you must:
 

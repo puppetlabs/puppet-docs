@@ -101,7 +101,7 @@ Modules are directory trees. For this task, you'll create the following files:
 
 For this procedure, you're going to add the `resolver` class to a node group we'll create, called **DNS**, which will contain all of your nodes.
 
-The **DNS** group will contain all the nodes in your deployment (including the Puppet master), but you can [create your own groups](./console_classes_groups.html#creating-new-node-groups) or add the classes to individual nodes, depending on your needs.
+The **DNS** group will contain all the nodes in your deployment (including the Puppet master), but you can [create your own groups](./console_classes_groups.html#creating-classification-node-groups) or add the classes to individual nodes, depending on your needs.
 
 **To create the DNS node group**:
 

@@ -13,15 +13,15 @@ description: "A guide to configuring environments in the r10k.yaml file, for r10
 [reference]: ./r10k_reference.html
 [r10kindex]: ./r10k.md
 
-To configure environments in r10k, you'll need to edit the r10k.yaml file with information about your Git repository and directory environments location. This section goes through everything you need to configure r10k to your setup. 
+To configure environments in r10k, you'll need to edit the r10k.yaml file with information about your Git repository and directory environments location. This section goes through everything you need to configure r10k to your setup.
 
 ##Before You Begin
 
-Before you begin configuring r10k, you want to ensure that you have a control repository in Git, with one branch for each environment that you want to establish. 
+Before you begin configuring r10k, you want to ensure that you have a control repository in Git, with one branch for each environment that you want to establish.
 
->**Warning!** 
+>**Warning!**
 >
->If you are currently using [directory environments][direnv], skip immediately to ["Previous Directory Environment Configurations"](#previous-directory-environment-configurations). 
+>If you are currently using [directory environments][direnv], skip immediately to ["Previous Directory Environment Configurations"](#previous-directory-environment-configurations).
 
 ##r10k and Git
 
@@ -60,7 +60,7 @@ sources:
     basedir: '/etc/puppetlabs/puppet/environments'
 ~~~
 
-Note that for your new directory environments to be accessible to Puppet, you **must** make sure that `environmentpath` in your puppet.conf file matches the [`basedir`](#basedir) setting in r10k.yaml. 
+Note that for your new directory environments to be accessible to Puppet, you **must** make sure that `environmentpath` in your puppet.conf file matches the [`basedir`](#basedir) setting in r10k.yaml.
 
 ###`postrun`
 
@@ -106,7 +106,7 @@ sources:
 
 ####`basedir`
 
-Specifies the path where environments will be created for this source. This directory is entirely managed by r10k, and any contents that r10k did not put there will be removed. Make sure that `environmentpath` in your puppet.conf file matches the `basedir` setting in r10k.yaml, or Puppet won't be able to access your new directory environments. 
+Specifies the path where environments will be created for this source. This directory is entirely managed by r10k, and any contents that r10k did not put there will be removed. Make sure that `environmentpath` in your puppet.conf file matches the `basedir` setting in r10k.yaml, or Puppet won't be able to access your new directory environments.
 
 ~~~
 sources:
@@ -118,7 +118,7 @@ sources:
 ####`prefix`
 
 Allows environment names to be prefixed with a short string specified by this source. If `prefix` is set to 'true', the source's name will be used. If `prefix` is a string, then this string is prefixed to the names of the environments. This prevents collisions when multiple sources are deployed into the same directory.
-    
+
 ~~~
 sources:
   myorg:
@@ -149,7 +149,7 @@ sources:
 
 ###Previous Directory Environment Configurations
 
-If you were using directory environments without r10k, you must make sure that any necessary files or code are either committed to the appropriate Git repo or backed up somewhere. The directory environments location is entirely managed by r10k, and any contents that r10k did not put there will be **removed**. 
+If you were using directory environments without r10k, you must make sure that any necessary files or code are either committed to the appropriate Git repo or backed up somewhere. The directory environments location is entirely managed by r10k, and any contents that r10k did not put there will be **removed**.
 
 Remember that r10k names each new directory after the branch in your Git repo. **If your directory environment has the same name as the one r10k is creating, r10k will erase EVERYTHING in your previous directory.**
 
