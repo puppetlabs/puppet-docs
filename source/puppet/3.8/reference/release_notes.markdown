@@ -45,15 +45,13 @@ If you're upgrading from Puppet 2.x, please [learn about major upgrades of Puppe
 
 ## Puppet 3.8.0
 
-Released TODO, 2015, as part of Puppet Enterprise 3.8.0. The first official open source release in the 3.8 series will be 3.8.1.
+Released April 28, 2015, as part of Puppet Enterprise 3.8.0. The first official open source release in the 3.8 series will be 3.8.1.
 
-Puppet 3.8.0 is a backward-compatible features and fixes release in the Puppet 3 series. The biggest things in this release are:
-
-TODO
+Puppet 3.8.0 is a backward-compatible features and fixes release in the Puppet 3 series.
 
 ### New Feature: Back-end Support for Upgrade Previews
 
-TODO: some message here about the PE preview module.
+This version includes several backend changes to support the PE-only compilation preview module.
 
 * [PUP-4113: Migrate and Preview 3.8 Language to 4.0](https://tickets.puppetlabs.com/browse/PUP-4113)
 
@@ -62,7 +60,7 @@ TODO: some message here about the PE preview module.
 In any of the Puppet subcommands that take the `--logdest` command line option, you can now specify a path to a JSON file and Puppet will log a (partial) JSON array of message objects to that file.
 
 * [PUP-4201: Add support for structured logging](https://tickets.puppetlabs.com/browse/PUP-4201)
-* This feature caused a bug which was never released: [PUP-4336: puppet apply --trace has stopped producing output](https://tickets.puppetlabs.com/browse/PUP-4336) and [PUP-4341: add acceptance test for puppet apply --trace](https://tickets.puppetlabs.com/browse/PUP-4341)
+* [PUP-4336](https://tickets.puppetlabs.com/browse/PUP-4336) and [PUP-4341](https://tickets.puppetlabs.com/browse/PUP-4341) cover bugs in this feature that were fixed before release.
 
 
 ### Improvements: Resource Types and Providers
