@@ -107,18 +107,18 @@ Any entries in `/etc/puppetlabs/puppet/autosign.conf` that don't conform to the 
 
 If your Puppet master uses a proxy server to access the internet, you may not be able to download the `pe_repo` packages for the agent. In the case that you're using a proxy, follow this workaround:
 
-**Tip**: The following steps should be performed on your Puppet master (and, if you have a large environment installation, on all your compile masters as well). 
+**Tip**: The following steps should be performed on your Puppet master (and, if you have a large environment installation, on all your compile masters as well).
 
-1. From your Puppet master, navigate to `/etc/sysconfig/`, and create a file called `pe-puppet`. 
+1. From your Puppet master, navigate to `/etc/sysconfig/`, and create a file called `pe-puppet`.
 2. In `pe-puppet` add the following lines:
 
        export http_proxy ...
        export https_proxy ...
-     
-3. Save and exit the file. 
+
+3. Save and exit the file.
 4. Restart the pe-puppet service with the following commands:
 
-	puppet resource service pe-puppet ensure=stopped 
+	puppet resource service pe-puppet ensure=stopped
 	puppet resource service pe-puppet ensure=running
 
 
@@ -264,7 +264,7 @@ Upgrades to this version of PE can affect deployments that use a custom console 
 
 ### Nodes Can Be Pinned an Infinite Number of Times
 
-When pinning a node to a node group in the PE console, if you pin the node multiple times, the console does not resolve this to a single entry. For example, if you pin the same node to a node group ten times and commit it, the console will show that you have ten nodes all with the same node name. 
+When pinning a node to a node group in the PE console, if you pin the node multiple times, the console does not resolve this to a single entry. For example, if you pin the same node to a node group ten times and commit it, the console will show that you have ten nodes all with the same node name.
 
 ### Error When a PE User and User Group Have the Same Name
 
@@ -274,13 +274,13 @@ If you have both a PE user and a user group with the exact same name, PE will th
 
 When there are over 500 nodes pinned to a node group, a **Load All Nodes** button appears in the **Matching nodes** tab for that node group. Clicking the **Load All Nodes** button results in a 400 error.
 
-### Querying the Nodes Endpoint of the Classifier Service Can Exhaust Memory 
+### Querying the Nodes Endpoint of the Classifier Service Can Exhaust Memory
 
 If a large number of nodes is returned when querying the `v1/nodes` endpoint of the classifier service API, the pe-console-services process may exhaust the memory and return a 500 error. This can be resolved by pruning the node check-in data as documented in [Configuring & Tuning Node Classifier](./config_nc.html).
 
 ### Not All Environments Are Listed in the PE Console
 
-When the classifier service encounters an environment that has code that will not compile, it marks the environment as deleted. If you later correct the code in the environment, the classifier service does not remove the deleted flag. 
+When the classifier service encounters an environment that has code that will not compile, it marks the environment as deleted. If you later correct the code in the environment, the classifier service does not remove the deleted flag.
 
 To manually remove the deleted flag for an environment named "test" for example, in the command line, type:
 
@@ -363,7 +363,7 @@ Marking failed tasks as read in the console can instead open a security warning,
 
 ### `site.pp` Must Be Duplicated for Each Environment
 
-You can no longer have a universal or global `site.pp`. The default main filebucket is configured as a resource default in `site.pp`. This means that `site.pp` must be duplicated for each environment. See the [Puppet environments documentation for more information](/puppet/latest/reference/environments.html.)
+You can no longer have a universal or global `site.pp`. The default main filebucket is configured as a resource default in `site.pp`. This means that `site.pp` must be duplicated for each environment. See the [Puppet environments documentation for more information](/puppet/latest/reference/environments.html).
 
 
 ## PE Services/Puppet Core Known Issues
