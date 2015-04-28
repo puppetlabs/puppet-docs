@@ -19,7 +19,7 @@ The following diagram outlines this workflow.
 
 > ## Assumptions and Prerequisites
 >
-> This guide is a simple proof-of-concept primer for getting to know r10k. For more information, see the main [r10k docs](link).
+> This guide is a simple proof-of-concept primer for getting to know r10k. For more information, see the main [r10k docs](./r10k.html).
 >
 > Before beginning, please review the following assumptions and prerequisites.
 >
@@ -39,7 +39,7 @@ The following diagram outlines this workflow.
 >
 >   - `$working-dir/puppet-helloworld`
 >
->- You have completed the [Hello, World! Quickstart Guide](/quick_start_helloworld.html), and committed that module to the **puppet-helloworld** repo.
+>- You have completed the [Hello, World! Quickstart Guide](./quick_start_helloworld.html), and committed that module to the **puppet-helloworld** repo.
 >- For this guide, the Puppet master must have the `zack-r10k` module installed on it. (From the Puppet master, run `puppet module install zack-r10k`.)
 
 The major steps you'll perform in this guide are as follows:

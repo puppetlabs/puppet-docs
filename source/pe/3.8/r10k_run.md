@@ -8,6 +8,7 @@ description: "Deploying environments and modules with r10k, a Puppet code manage
 [setup]: ./r10k_setup.html
 [r10kyaml]: ./r10k_yaml.html
 [puppetfile]: ./r10k_puppetfile.html
+[puppetfile_running]: ./r10k_puppetfile.html#running-puppetfile-commands
 [running]: ./r10k_run.html
 [reference]: ./r10k_reference.html
 [r10kindex]: ./r10k.md
@@ -77,7 +78,7 @@ This updates the given environment and all modules contained in its Puppetfile. 
 
 ## Installing and Updating Modules
 
-When you use the `r10k deploy module` subcommand to update modules, r10k installs/updates the modules as you've specified them in each environment's [Puppetfile](puppetfile). If the specified module is not described in an environment's Puppetfile, that environment will be skipped. For `r10k puppetfile` commands that you can use to install, verify, and purge modules, see [Running Puppetfile commands](puppetfile#running-puppetfile-commands).
+When you use the `r10k deploy module` subcommand to update modules, r10k installs/updates the modules as you've specified them in each environment's [Puppetfile][puppetfile]. If the specified module is not described in an environment's Puppetfile, that environment will be skipped. For `r10k puppetfile` commands that you can use to install, verify, and purge modules, see [Running Puppetfile commands][puppetfile_running].
 
 ### Update a Single Module Across All Environments
 
