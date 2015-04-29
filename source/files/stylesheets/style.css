@@ -1348,26 +1348,19 @@ div#subCol ul > li > ol.toc {
 
 div#subCol ul > li.expanded-nav, div#subCol ul > li.hidden-nav {
   list-style-type: none;
-  margin-left: 0;
 }
 
-div#subCol ul > li.expanded-nav:before, div#subCol ul > li.hidden-nav:before {
-  font-size: 0.75em;
-  width: 5px;
-  display: inline-block;
-  padding-right: 0.85em;
-  color: #888;
-  left: -1px;
-  top: 0.125em;
-  float: left; /* This is semantically pointless, but Safari blows up without it. >:| NF/Devon */
-}
 
 div#subCol ul > li.expanded-nav:before {
-  content: "-";
+  content: "–";
+  font-weight: bold;
+  color: #888;
 }
 
 div#subCol ul > li.hidden-nav:before {
   content: "+";
+  font-weight: bold;
+  color: #888;
 }
 
 div#subCol ul > li {
@@ -1383,6 +1376,8 @@ div#subCol ul > li:before {
   color: #0095dd;
   position: relative;
   left: -5px;
+  display: inline-block;
+  width: 0.1em;
 }
 
 div#subCol ul:not(#doc-navigation) > li {
@@ -1447,6 +1442,7 @@ li.currentpage > ol.toc a {
 
 ul#doc-navigation > li:before {
   content: "" !important;
+  display: inline !important;
 }
 
 ul#doc-navigation > li:first-child {
