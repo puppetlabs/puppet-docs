@@ -59,10 +59,6 @@ code {
   padding: 2px;
 }
 
-a code {
-  color: #777777;
-}
-
 var  {
   font-family: 'Consolas', 'Monaco', 'DejaVu Sans Mono', monospace;
   font-weight: bold;
