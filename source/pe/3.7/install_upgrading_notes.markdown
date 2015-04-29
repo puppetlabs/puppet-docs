@@ -27,7 +27,7 @@ Directory environments are enabled by default in PE 3.7.0. Before upgrading be s
 
 >**Warnings**: If you enabled directory environments in PE 3.3.x and are upgrading to PE 3.7.0, ensure there is no `default_manifest` parameter in `puppet.conf` **before** upgrading. Upgrades will fail if this change is not made.
 >
-> If you enabled directory environents in PE 3.3.x and are upgrading to PE 3.7.0, ensure that the `basemodulepath` parameter in `puppet.conf` is set in the `[main]` section and not in the `[master]` section *before* upgrading. Upgrades will fail if this change is not made.
+> If you enabled directory environments in PE 3.3.x and are upgrading to PE 3.7.0, ensure that the `basemodulepath` parameter in `puppet.conf` is set in the `[main]` section and not in the `[master]` section *before* upgrading. Upgrades will fail if this change is not made.
 
 ### Upgrading to the Node Classifier
 

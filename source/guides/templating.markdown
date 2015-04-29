@@ -20,8 +20,6 @@ Puppet supports templates written in the [ERB][] templating language, which is p
 
 Templates can be used to specify the contents of files.
 
-**For a full introduction to using templates with Puppet, see [the templates chapter of Learning Puppet][lptemplates].**
-
 Evaluating Templates
 -----
 

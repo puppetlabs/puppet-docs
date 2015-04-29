@@ -91,7 +91,6 @@ As of this version, the [future parser][future] should be almost exactly compati
 
 * [PUP-1806: Varargs support for the new function API](https://tickets.puppetlabs.com/browse/PUP-1806)
 * [PUP-3548: 4x function API's call_function cannot call a 3x function](https://tickets.puppetlabs.com/browse/PUP-3548)
-* [PUP-3863: hiera('some::key', undef) returns empty string](https://tickets.puppetlabs.com/browse/PUP-3863)
 * [PUP-3923: Puppet 4 lexer misinterprets multiple '/' tokens as a regex following a variable.](https://tickets.puppetlabs.com/browse/PUP-3923)
 * [PUP-3936: Injected parameter results in omission of block parameter](https://tickets.puppetlabs.com/browse/PUP-3936)
 * [PUP-3947: Type validation fails when validating hashes using a struct type.](https://tickets.puppetlabs.com/browse/PUP-3947)

@@ -43,6 +43,7 @@
     <!-- FIXME: absolute paths -->
 
     <link rel="stylesheet" type="text/css" href="/files/stylesheets/style.css" media="screen">
+      <link rel="stylesheet" type="text/css" href="/files/stylesheets/homepage.css" media="screen">
     <link rel="stylesheet" type="text/css" href="/files/stylesheets/syntax.css" media="screen"> <!-- index -->
 
     <!--[if IE 7]>
@@ -177,6 +178,7 @@
       </div>
   </header>
 
+  <!--
   <section id="masthead">
     <div class="site-width">
       <h1>Docs: <span class="section-name">{{page.title}}</span></h1>
@@ -208,6 +210,187 @@
         </nav>
       </div>
     </div>
+  </section>
+  -->
+
+  <section id="content">
+      <div class="site-width">
+
+          <!-- homepage header and language selector -->
+          <div class="homepage-header">
+              <div class="hh-col title">
+                  <h1>Puppet Labs Documentation</h1>
+              </div>
+              <div class="hh-col language">
+                  <select id="language-select">
+                      <option>Select a Language</option>
+                      <option data-language="spanish" data-url="http://docs.puppetlabs.com/es/">Español</option>
+                      <option data-language="japanese" data-url="http://docs.puppetlabs.com/ja/">日本語</option>
+                  </select>
+                  <script type="text/javascript">
+                      jQuery('#language-select').on('change', function() {
+                          var optionSelected = $("option:selected", this);
+                          if (optionSelected.attr('data-language') != 'null') {
+                              window.location = optionSelected.attr('data-url');
+                          }
+                      });
+                  </script>
+              </div>
+          </div>
+
+          <!-- call out boxes -->
+          <div class="homepage-callout">
+              <div class="hc-wrapper">
+                  <div class="hc-col left">
+                      <div class="hc-col-box">
+                          <h2>Puppet Enterprise</h2>
+                          <p style="text-align:left;">
+                              Puppet Enterprise makes it easy to automate the provisioning, configuration, and ongoing management of your machines and the software running on them.
+                          </p>
+                          <a href="/pe/latest/index.html" class="btn homepage">Go to Puppet Enterprise docs</a>
+                          <div class="hc-hr">
+                              <div class="hc-hr-wrapper">
+                                  <hr>
+                                  <div class="img"></div>
+                              </div>
+                          </div>
+                          <div class="hc-col-subtitle">
+                              Browse Topics
+                          </div>
+                          <div class="hc-col-list">
+                              <div class="hc-col-list-col">
+                                  <ul>
+                                      </li>
+                                      <li>
+                                          <a href="/pe/latest/quick_start.html">Quick Start For *Nix</a>
+                                      </li>
+                                      <li>
+                                          <a href="/pe/latest/quick_start.html">Quick Start for Windows</a>
+                                      </li>
+                                      <li>
+                                          <a href="/pe/latest/quick_start_essential_config.html">Essential Configuration Tasks</a>
+                                      </li>
+                                      <li>
+                                          <a href="/pe/latest/install_system_requirements.html">System Requirements</a>
+                                      </li>
+                                      <li>
+                                          <a href="/pe/latest/install_pe_mono.html">Installing PE</a>
+                                      </li>
+                                      <li>
+                                          <a href="/pe/latest/install_upgrading.html">Upgrading PE</a>
+                                      </li>
+                                      <li>
+                                          <a href="/pe/latest/config_intro.html">Configuring PE</a>
+                                      </li>
+
+                                  </ul>
+                              </div>
+                              <div class="hc-col-list-col">
+                                  <ul>
+                                  <li>
+                                          <a href="/pe/latest/console_cert_mgmt.html">Managing Nodes</a>
+                                      </li>
+                                      <li>
+                                          <a href="/pe/latest/rbac_intro.html">Managing Users</a>
+                                      </li>
+                                      <li>
+                                          <a href="/pe/latest/razor_intro.html">Razor Provisioning</a>
+                                      </li>
+                                      <li>
+                                          <a href="/pe/latest/r10k.html">Code Management with r10k</a>
+                                      </li>
+                                      <li>
+                                          <a href="/pe/index.html">PE Version Index</a>
+                                      </li>
+                                      <li>
+                                          <a href="/pe/latest/overview_getting_support.html">Getting Support for PE</a>
+                                      </li>
+                                      <li>
+                                          <a href="/pe/latest/release_notes.html">Release Notes</a>
+                                      </li>
+                                  </ul>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="hc-col right">
+                      <div class="hc-col-box">
+                          <h2>Open Source Puppet</h2>
+                          <p style="text-align:left;">
+                              Open source Puppet helps you describe machine configurations in a declarative language, bring them to a desired state, and keep them there through automation.
+                          </p>
+                          <a href="/puppet/" class="btn homepage">Go to open source Puppet docs</a>
+                          <div class="hc-hr">
+                              <div class="hc-hr-wrapper">
+                                  <hr>
+                                  <div class="img"></div>
+                              </div>
+                          </div>
+                          <div class="hc-col-subtitle">
+                              Browse Topics
+                          </div>
+                          <div class="hc-col-list">
+                              <div class="hc-col-list-col">
+                                  <ul>
+                                      <li>
+                                          <a href="/puppet/latest/reference/release_notes.html">Puppet Release Notes</a>
+                                      </li>
+                                      <li>
+                                          <a href="/guides/install_puppet/pre_install.html">Install Puppet</a>
+                                      </li>
+                                      <li>
+                                          <a href="/references/latest/type.html">Type Reference</a>
+                                      </li>
+                                      <li>
+                                          <a href="/puppet/latest/reference/modules_fundamentals.html">Module Fundamentals</a>
+                                      </li>
+                                      <li>
+                                          <a href="/puppet/latest/reference/experiments_future.html">Future Parser: Intro</a>
+                                      </li>
+                                      <li>
+                                          <a href="/puppet/4.0/reference/whered_it_go.html">Puppet 4: New File Locations</a>
+                                      </li>
+                                      <li>
+                                          <a href="/puppet/4.0/reference/install_pre.html#next-install-puppet">Puppet 4: Installing</a>
+                                      </li>
+                                  </ul>
+                              </div>
+                              <div class="hc-col-list-col">
+                                  <ul>
+                                  	  <li>
+                                          <a href="/puppetserver/1.0/index.html">Puppet Server</a>
+                                      </li>
+                                  	  <li>
+                                          <a href="/puppetdb/2.2/">PuppetDB</a>
+                                      </li>
+
+                                      <li>
+                                          <a href="/hiera/1/">Hiera</a>
+                                      </li>
+                                      <li>
+                                          <a href="/facter/latest/">Factor</a>
+                                      </li>
+                                      <li>
+                                          <a href="/mcollective/">MCollective</a>
+                                      </li>
+                                      <li>
+                                          <a href="https://forge.puppetlabs.com/?_ga=1.19724600.1018811879.1418687874">Puppet Forge</a>
+                                      </li>
+                                      <li>
+                                          <a href="/community/community_guidelines.html">Puppet Community</a>
+                                      </li>
+                                  </ul>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+          <!-- hc-footer -->
+          <div class="homepage-sub-footer">
+          </div>
+      </div>
   </section>
 
   <!-- Rebuild of Site Footer -->

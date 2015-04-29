@@ -1,0 +1,571 @@
+{
+    "title": "master.example.com",
+    "services": {
+        "filter": {
+            "list": [],
+            "time": {
+                "from": "now-5m",
+                "to": "now"
+            }
+        }
+    },
+    "rows": [
+        {
+            "title": "Puppet Master Requests",
+            "height": "300px",
+            "editable": true,
+            "collapse": false,
+            "collapsable": true,
+            "panels": [
+                {
+                    "span": 4,
+                    "editable": true,
+                    "type": "graphite",
+                    "loadingEditor": false,
+                    "datasource": null,
+                    "renderer": "flot",
+                    "x-axis": true,
+                    "y-axis": true,
+                    "scale": 1,
+                    "y_formats": [
+                        "short",
+                        "short"
+                    ],
+                    "grid": {
+                        "max": null,
+                        "min": null,
+                        "threshold1": null,
+                        "threshold2": null,
+                        "threshold1Color": "rgba(216, 200, 27, 0.27)",
+                        "threshold2Color": "rgba(234, 112, 112, 0.22)"
+                    },
+                    "annotate": {
+                        "enable": false
+                    },
+                    "resolution": 100,
+                    "lines": true,
+                    "fill": 0,
+                    "linewidth": 1,
+                    "points": false,
+                    "pointradius": 5,
+                    "bars": false,
+                    "stack": false,
+                    "legend": {
+                        "show": true,
+                        "values": false,
+                        "min": false,
+                        "max": false,
+                        "current": false,
+                        "total": false,
+                        "avg": false
+                    },
+                    "percentage": false,
+                    "zerofill": true,
+                    "nullPointMode": "connected",
+                    "steppedLine": false,
+                    "tooltip": {
+                        "value_type": "cumulative",
+                        "query_as_alias": true
+                    },
+                    "targets": [
+                        {
+                            "target": "alias(puppetlabs.master.example.com.num-cpus,'num cpus')"
+                        },
+                        {
+                            "target": "alias(puppetlabs.master.example.com.http.active-requests.count,'active requests')"
+                        },
+                        {
+                            "target": "alias(puppetlabs.master.example.com.http.active-histo.mean,'average')"
+                        }
+                    ],
+                    "aliasColors": {},
+                    "aliasYAxis": {},
+                    "title": "Active Requests"
+                },
+                {
+                    "span": 4,
+                    "editable": true,
+                    "type": "graphite",
+                    "loadingEditor": false,
+                    "datasource": null,
+                    "renderer": "flot",
+                    "x-axis": true,
+                    "y-axis": true,
+                    "scale": 1,
+                    "y_formats": [
+                        "ms",
+                        "short"
+                    ],
+                    "grid": {
+                        "max": null,
+                        "min": null,
+                        "threshold1": null,
+                        "threshold2": null,
+                        "threshold1Color": "rgba(216, 200, 27, 0.27)",
+                        "threshold2Color": "rgba(234, 112, 112, 0.22)"
+                    },
+                    "annotate": {
+                        "enable": false
+                    },
+                    "resolution": 100,
+                    "lines": true,
+                    "fill": 0,
+                    "linewidth": 1,
+                    "points": false,
+                    "pointradius": 5,
+                    "bars": false,
+                    "stack": false,
+                    "legend": {
+                        "show": true,
+                        "values": false,
+                        "min": false,
+                        "max": false,
+                        "current": false,
+                        "total": false,
+                        "avg": false
+                    },
+                    "percentage": false,
+                    "zerofill": true,
+                    "nullPointMode": "connected",
+                    "steppedLine": false,
+                    "tooltip": {
+                        "value_type": "cumulative",
+                        "query_as_alias": true
+                    },
+                    "targets": [
+                        {
+                            "target": "alias(puppetlabs.master.example.com.http.catalog-requests.mean,'catalog')"
+                        },
+                        {
+                            "target": "alias(puppetlabs.master.example.com.http.report-requests.mean,'report')"
+                        },
+                        {
+                            "target": "alias(puppetlabs.master.example.com.http.node-requests.mean,'node')"
+                        },
+                        {
+                            "target": "alias(puppetlabs.master.example.com.http.file_metadatas-requests.mean,'file_metadatas')"
+                        },
+                        {
+                            "target": "alias(puppetlabs.master.example.com.http.file_metadata-requests.mean,'file_metadata')"
+                        },
+                        {
+                            "target": "alias(puppetlabs.master.example.com.http.file_content-requests.mean,'file_content')"
+                        },
+                        {
+                            "target": "alias(puppetlabs.master.example.com.http.other-requests.mean,'other')"
+                        },
+                        {
+                            "target": "alias(puppetlabs.master.example.com.http.total-requests.mean,'all')"
+                        }
+                    ],
+                    "aliasColors": {},
+                    "aliasYAxis": {},
+                    "title": "Request Durations"
+                },
+                {
+                    "span": 4,
+                    "editable": true,
+                    "type": "graphite",
+                    "loadingEditor": false,
+                    "datasource": null,
+                    "renderer": "flot",
+                    "x-axis": true,
+                    "y-axis": true,
+                    "scale": 1,
+                    "y_formats": [
+                        "short",
+                        "short"
+                    ],
+                    "grid": {
+                        "max": null,
+                        "min": null,
+                        "threshold1": null,
+                        "threshold2": null,
+                        "threshold1Color": "rgba(216, 200, 27, 0.27)",
+                        "threshold2Color": "rgba(234, 112, 112, 0.22)",
+                        "thresholdLine": false
+                    },
+                    "annotate": {
+                        "enable": false
+                    },
+                    "resolution": 100,
+                    "lines": true,
+                    "fill": 0,
+                    "linewidth": 1,
+                    "points": false,
+                    "pointradius": 5,
+                    "bars": false,
+                    "stack": false,
+                    "legend": {
+                        "show": true,
+                        "values": false,
+                        "min": false,
+                        "max": false,
+                        "current": false,
+                        "total": false,
+                        "avg": false
+                    },
+                    "percentage": true,
+                    "zerofill": true,
+                    "nullPointMode": "connected",
+                    "steppedLine": false,
+                    "tooltip": {
+                        "value_type": "individual",
+                        "query_as_alias": true
+                    },
+                    "targets": [
+                        {
+                            "target": "alias(puppetlabs.master.example.com.http.catalog-percentage,'catalog')",
+                            "hide": false
+                        },
+                        {
+                            "target": "alias(puppetlabs.master.example.com.http.report-percentage,'report')"
+                        },
+                        {
+                            "target": "alias(puppetlabs.master.example.com.http.node-percentage,'node')"
+                        },
+                        {
+                            "target": "alias(puppetlabs.master.example.com.http.file_metadatas-percentage,'file_metadatas')"
+                        },
+                        {
+                            "target": "alias(puppetlabs.master.example.com.http.file_metadata-percentage,'file_metadata')"
+                        },
+                        {
+                            "target": "alias(puppetlabs.master.example.com.http.file_content-percentage,'file_content')"
+                        },
+                        {
+                            "target": "alias(puppetlabs.master.example.com.http.other-percentage,'other')"
+                        }
+                    ],
+                    "aliasColors": {},
+                    "aliasYAxis": {},
+                    "title": "Request Ratios",
+                    "leftYAxisLabel": "Percentage of Requests",
+                    "rightYAxisLabel": ""
+                }
+            ],
+            "notice": false
+        },
+        {
+            "title": "Catalog Compilation",
+            "height": "300px",
+            "editable": true,
+            "collapse": false,
+            "collapsable": true,
+            "panels": [
+                {
+                    "span": 4,
+                    "editable": true,
+                    "type": "graphite",
+                    "loadingEditor": false,
+                    "datasource": null,
+                    "renderer": "flot",
+                    "x-axis": true,
+                    "y-axis": true,
+                    "scale": 1,
+                    "y_formats": [
+                        "short",
+                        "short"
+                    ],
+                    "grid": {
+                        "max": null,
+                        "min": null,
+                        "threshold1": null,
+                        "threshold2": null,
+                        "threshold1Color": "rgba(216, 200, 27, 0.27)",
+                        "threshold2Color": "rgba(234, 112, 112, 0.22)"
+                    },
+                    "annotate": {
+                        "enable": false
+                    },
+                    "resolution": 100,
+                    "lines": true,
+                    "fill": 0,
+                    "linewidth": 1,
+                    "points": false,
+                    "pointradius": 5,
+                    "bars": false,
+                    "stack": false,
+                    "legend": {
+                        "show": true,
+                        "values": false,
+                        "min": false,
+                        "max": false,
+                        "current": false,
+                        "total": false,
+                        "avg": false
+                    },
+                    "percentage": false,
+                    "zerofill": true,
+                    "nullPointMode": "connected",
+                    "steppedLine": false,
+                    "tooltip": {
+                        "value_type": "cumulative",
+                        "query_as_alias": true
+                    },
+                    "targets": [
+                        {
+                            "target": "alias(puppetlabs.master.example.com.functions.count,'all')",
+                            "hide": false
+                        },
+                        {
+                            "target": "alias(puppetlabs.master.example.com.functions.include.count,'include')",
+                            "hide": false
+                        },
+                        {
+                            "target": "alias(puppetlabs.master.example.com.functions.file.count,'file')",
+                            "hide": false
+                        },
+                        {
+                            "target": "alias(puppetlabs.master.example.com.functions.parsejson.count,'parsejson')"
+                        },
+                        {
+                            "target": "alias(puppetlabs.master.example.com.functions.parseyaml.count,'parseyaml')"
+                        },
+                        {
+                            "target": "alias(puppetlabs.master.example.com.functions.myexpensivefunction.count,'myexpensivefunction')"
+                        },
+                        {
+                            "target": "alias(puppetlabs.master.example.com.functions.create_resources.count,'create_resources')"
+                        }
+                    ],
+                    "aliasColors": {},
+                    "aliasYAxis": {},
+                    "title": "Function Calls"
+                },
+                {
+                    "span": 4,
+                    "editable": true,
+                    "type": "graphite",
+                    "loadingEditor": false,
+                    "datasource": null,
+                    "renderer": "flot",
+                    "x-axis": true,
+                    "y-axis": true,
+                    "scale": 1,
+                    "y_formats": [
+                        "ms",
+                        "short"
+                    ],
+                    "grid": {
+                        "max": null,
+                        "min": null,
+                        "threshold1": null,
+                        "threshold2": null,
+                        "threshold1Color": "rgba(216, 200, 27, 0.27)",
+                        "threshold2Color": "rgba(234, 112, 112, 0.22)"
+                    },
+                    "annotate": {
+                        "enable": false
+                    },
+                    "resolution": 100,
+                    "lines": true,
+                    "fill": 0,
+                    "linewidth": 1,
+                    "points": false,
+                    "pointradius": 5,
+                    "bars": false,
+                    "stack": false,
+                    "legend": {
+                        "show": true,
+                        "values": false,
+                        "min": false,
+                        "max": false,
+                        "current": false,
+                        "total": false,
+                        "avg": false
+                    },
+                    "percentage": false,
+                    "zerofill": true,
+                    "nullPointMode": "connected",
+                    "steppedLine": false,
+                    "tooltip": {
+                        "value_type": "cumulative",
+                        "query_as_alias": true
+                    },
+                    "targets": [
+                        {
+                            "target": "alias(puppetlabs.master.example.com.functions.mean,'all')"
+                        },
+                        {
+                            "target": "alias(puppetlabs.master.example.com.functions.include.mean,'include')"
+                        },
+                        {
+                            "target": "alias(puppetlabs.master.example.com.functions.file.mean,'file')"
+                        },
+                        {
+                            "target": "alias(puppetlabs.master.example.com.functions.parsejson.mean,'parsejson')"
+                        },
+                        {
+                            "target": "alias(puppetlabs.master.example.com.functions.parseyaml.mean,'parseyaml')"
+                        },
+                        {
+                            "target": "alias(puppetlabs.master.example.com.functions.myexpensivefunction.mean,'myexpensivefunction')"
+                        },
+                        {
+                            "target": "alias(puppetlabs.master.example.com.functions.create_resources.mean,'create_resources')"
+                        }
+                    ],
+                    "aliasColors": {},
+                    "aliasYAxis": {},
+                    "title": "Function Execution Time"
+                },
+                {
+                    "span": 4,
+                    "editable": true,
+                    "type": "graphite",
+                    "loadingEditor": false,
+                    "datasource": null,
+                    "renderer": "flot",
+                    "x-axis": true,
+                    "y-axis": true,
+                    "scale": 1,
+                    "y_formats": [
+                        "ms",
+                        "short"
+                    ],
+                    "grid": {
+                        "max": null,
+                        "min": null,
+                        "threshold1": null,
+                        "threshold2": null,
+                        "threshold1Color": "rgba(216, 200, 27, 0.27)",
+                        "threshold2Color": "rgba(234, 112, 112, 0.22)"
+                    },
+                    "annotate": {
+                        "enable": false
+                    },
+                    "resolution": 100,
+                    "lines": true,
+                    "fill": 0,
+                    "linewidth": 1,
+                    "points": false,
+                    "pointradius": 5,
+                    "bars": false,
+                    "stack": false,
+                    "legend": {
+                        "show": true,
+                        "values": false,
+                        "min": false,
+                        "max": false,
+                        "current": false,
+                        "total": false,
+                        "avg": false
+                    },
+                    "percentage": false,
+                    "zerofill": true,
+                    "nullPointMode": "connected",
+                    "steppedLine": false,
+                    "tooltip": {
+                        "value_type": "cumulative",
+                        "query_as_alias": true
+                    },
+                    "targets": [
+                        {
+                            "target": "alias(puppetlabs.master.example.com.compiler.compile.mean,'total')"
+                        },
+                        {
+                            "target": "alias(puppetlabs.master.example.com.functions.mean,'function calls')"
+                        },
+                        {
+                            "target": "alias(puppetlabs.master.example.com.compiler.evaluate_ast_node.mean,'eval ast')"
+                        },
+                        {
+                            "target": "alias(puppetlabs.master.example.com.compiler.evaluate_main.mean,'eval main')"
+                        },
+                        {
+                            "target": "alias(puppetlabs.master.example.com.compiler.evaluate_node_classes.mean,'eval node classes')"
+                        },
+                        {
+                            "target": "alias(puppetlabs.master.example.com.compiler.evaluate_definitions.mean,'eval defs')"
+                        },
+                        {
+                            "target": "alias(puppetlabs.master.example.com.compiler.evaluate_generators.mean,'eval generators')"
+                        },
+                        {
+                            "target": "alias(puppetlabs.master.example.com.compiler.finish_catalog.mean,'finish catalog')"
+                        },
+                        {
+                            "target": "alias(puppetlabs.master.example.com.compiler.set_node_params.mean,'set node params')"
+                        },
+                        {
+                            "target": "alias(puppetlabs.master.example.com.compiler.create_settings_scope.mean,'create scope')"
+                        }
+                    ],
+                    "aliasColors": {
+                        "create scope": "#BADFF4"
+                    },
+                    "aliasYAxis": {},
+                    "title": "Compilation"
+                }
+            ],
+            "notice": false
+        }
+    ],
+    "editable": true,
+    "failover": false,
+    "panel_hints": true,
+    "style": "dark",
+    "pulldowns": [
+        {
+            "type": "filtering",
+            "collapse": false,
+            "notice": false,
+            "enable": false
+        },
+        {
+            "type": "annotations",
+            "enable": false
+        }
+    ],
+    "nav": [
+        {
+            "type": "timepicker",
+            "collapse": false,
+            "notice": false,
+            "enable": true,
+            "status": "Stable",
+            "time_options": [
+                "5m",
+                "15m",
+                "1h",
+                "6h",
+                "12h",
+                "24h",
+                "2d",
+                "7d",
+                "30d"
+            ],
+            "refresh_intervals": [
+                "5s",
+                "10s",
+                "30s",
+                "1m",
+                "5m",
+                "15m",
+                "30m",
+                "1h",
+                "2h",
+                "1d"
+            ],
+            "now": true
+        }
+    ],
+    "loader": {
+        "save_gist": false,
+        "save_elasticsearch": true,
+        "save_local": true,
+        "save_default": true,
+        "save_temp": true,
+        "save_temp_ttl_enable": true,
+        "save_temp_ttl": "30d",
+        "load_gist": false,
+        "load_elasticsearch": true,
+        "load_elasticsearch_size": 20,
+        "load_local": false,
+        "hide": false
+    },
+    "refresh": "5s",
+    "tags": [],
+    "timezone": "browser"
+}
