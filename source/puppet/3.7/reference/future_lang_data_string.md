@@ -27,8 +27,6 @@ Strings are unstructured text fragments of any length. They're probably the most
 
 Strings can sometimes interpolate other values, and can sometimes use escape sequences to represent characters that are inconvenient or impossible to write literally. You can access substrings of a string by numerical index.
 
-## Quoting Syntaxes
-
 There are four ways to write literal strings in the Puppet language:
 
 * Bare words
@@ -38,7 +36,7 @@ There are four ways to write literal strings in the Puppet language:
 
 Each of these have slightly different behavior around syntax, interpolation features, and escape sequences.
 
-### Bare Words
+## Bare Words
 
 {% highlight ruby %}
     service { "ntp":
@@ -57,7 +55,7 @@ Unquoted words that begin with upper case letters are interpreted as [data types
 
 Bare word strings can't interpolate values and can't use escape sequences.
 
-### Single-Quoted Strings
+## Single-Quoted Strings
 
 {% highlight ruby %}
     if $autoupdate {
@@ -83,11 +81,13 @@ Some common things to watch out for:
 * To include a backslash at the very end of a single-quoted string, you must use a double backslash instead of a single backslash. For example: `path => 'C:\Program Files(x86)\\'`
 * To include a literal double backslash you must use a quadruple backslash.
 
-### Double-Quoted Strings
+## Double-Quoted Strings
 
 Strings can also be surrounded by double quotes, `"like this"`. Line breaks within the string are interpreted as literal line breaks, and you can also insert line breaks with `\n` (Unix-style) or `\r\n` (Windows-style).
 
 Double-quoted strings can interpolate values. [See below for details on interpolation.][interpolation]
+
+### Escape Sequences
 
 The following escape sequences are available in double-quoted strings:
 
@@ -105,9 +105,158 @@ Sequence | Result
 
 **Note:** If a backslash _isn't_ followed by a character that would make one of these escape sequences, Puppet logs a warning (`Warning: Unrecognized escape sequence`) and then treats it as a literal backslash.
 
-### Heredocs
+## Heredocs
 
-TODO
+~~~
+$gitconfig = @("GITCONFIG"/L)
+    [user]
+        name = ${displayname}
+        email = ${email}
+    [color]
+        ui = true
+    [alias]
+        lg = "log --pretty=format:'%C(yellow)%h%C(reset) %s \
+    %C(cyan)%cr%C(reset) %C(blue)%an%C(reset) %C(green)%d%C(reset)' --graph"
+        wdiff = diff --word-diff=color --ignore-space-at-eol \
+    --word-diff-regex='[[:alnum:]]+|[^[:space:][:alnum:]]+'
+    [merge]
+        defaultToUpstream = true
+    [push]
+        default = upstream
+    | GITCONFIG
+
+file { "${homedir}/.gitconfig":
+  ensure  => file,
+  content => $gitconfig,
+}
+~~~
+
+
+Heredocs let you quote strings with more control over escaping, interpolation, and formatting. They're good for long verbatim strings, and for strings that do complicated things like combining interpolated values with a lot of literal double quotes.
+
+### Syntax
+
+To write a heredoc, you place a **heredoc tag** somewhere in a line of Puppet code. This tag acts as a literal string value, but the content of that string is read from the following lines. The string ends when an end marker is reached.
+
+The general form of a heredoc string is:
+
+* A **heredoc tag** like `@("END"/n$)`, which can be used anywhere a string value is accepted. This tag consists of:
+    * An at sign and an opening parenthesis (`@(`).
+    * Some [**end text,**][inpage_end] which will also appear in the end marker.
+        * Optionally, you can surround the end text with double quotes (`"`) to [enable interpolation.][inpage_enable_interp]
+    * Optionally, a slash (`/`) followed by zero or more [**escape switches.**][inpage_enable_escape]
+    * A closing parenthesis (`)`).
+* The rest of the line of Puppet code that uses this string value.
+* Starting on the _next_ line: the content of the string, which can run over multiple lines.
+    * The content might be able to interpolate values or use escape sequences, if you enabled that.
+    * The content might have cosmetic indentation or line breaks that will be excluded from the actual string value. (See [Formatting Control][inpage_format] below.)
+* An **end marker** like `|-END`, on a line of its own. An end marker consists of:
+    * Optionally, some indentation and a pipe character (`|`) to show how much indentation should be stripped from the string. (See [Formatting Control][inpage_format] below.)
+    * Optionally, a hyphen (`-`) to trim the final line break. (See [Formatting Control][inpage_format] below.) The hyphen can be surrounded by any amount of spaces.
+    * The exact [**end text**][inpage_end] you specified in the heredoc tag above (without any surrounding quotes). The end text can be surrounded by any amount of spaces.
+
+If a line of Puppet code includes more than one heredoc tag, Puppet will read all of those heredocs in order: the first one will begin on the following line and continue until its end marker, the second one will begin on the line immediately after the first end marker, etc. Puppet won't start evaluating additional lines of Puppet code until it reaches the end marker for the final heredoc on that original line.
+
+### End Text
+
+[inpage_end]: #end-text
+
+The tag that starts a heredoc has to include a piece of end text. When Puppet reaches a line that contains only that end text (plus optional formatting control), the string ends.
+
+Both occurrences of the end text must match exactly, with the same capitalization and internal spacing.
+
+End text can be any run of text that doesn't include line breaks, colons, slashes, or parentheses. It can include spaces, and can be mixed case.
+
+The following are all valid end text:
+
+* `EOT`
+* `...end...end...`
+* `Verse 8 of The Raven`
+
+You should make sure your end text stands out from the actual text of the string. Uppercase end text is usually best.
+
+### Enabling Interpolation
+
+[inpage_enable_interp]: #enabling-interpolation
+
+By default, heredocs _do not_ allow you to [interpolate values.][interpolation] You can enable interpolation by double-quoting the end text in the opening heredoc tag. That is:
+
+* An opening tag like `@(EOT)` _won't_ allow interpolation.
+* An opening tag like `@("EOT")` _will_ allow interpolation.
+
+By default, you can't use the `\$` escape sequence to prevent interpolation, but you can optionally enable that escape sequence. (See the next section.)
+
+### Enabling Escape Sequences
+
+[inpage_enable_escape]: #enabling-escape-sequences
+
+By default, heredocs _do not_ allow any escape sequences; every character represents its literal self (except interpolation tokens, if enabled). You can enable the escape sequences you want by adding switches to the heredoc tag.
+
+* To enable _individual_ escape sequences, add a slash (`/`) and some escape switches to the heredoc tag:
+    * `@("EOT"/$n)` would start a heredoc with `\$` and `\n` enabled.
+* To enable _all_ escape sequences, add a slash (`/`) and _no_ switches:
+    * `@("EOT"/)` would start a heredoc with all escapes enabled.
+
+The following escape switches and sequences are available:
+
+Switch | Sequence        | Result
+-------|-----------------|-------
+(auto) | `\\`            | Single backslash (auto-enabled when any other escape is enabled)
+`n`    | `\n`            | Newline
+`r`    | `\r`            | Carriage return
+`t`    | `\t`            | Tab
+`s`    | `\s`            | Space
+`$`    | `\$`            | Literal dollar sign (to prevent interpolation)
+`u`    | `\uXXXX`        | Unicode character number XXXX (a four-digit hex number)
+`L`    | `\<LF or CRLF>` | Nothing (for cosmetic line breaks that appear in the source code but are excluded from the string value)
+
+**Note:** If a backslash _isn't_ followed by a character that would make an enabled escape sequence, Puppet treats it as a literal backslash. Unlike with double-quoted strings, Puppet won't log a warning.
+
+If you're writing a string that has some escapes enabled and includes several literal backslashes in a row, you should make sure each literal backslash is represented by the `\\` escape sequence. (Quadruple backslash to represent a double backslash, etc.)
+
+### Formatting Control
+
+[inpage_format]: #formatting-control
+
+You can control the formatting of a heredoc string in the following ways:
+
+#### Stripping Indentation
+
+To make your files easier to read, you can indent the content of a heredoc to separate it from the surrounding Puppet code.
+
+To strip this indentation from the final string, put the same amount of indentation in front of the end marker, and use a pipe character (`|`) to indicate the position of the first "real" character on each line.
+
+~~~
+$mytext = @(EOT)
+    This block of text is
+    visibly separated from
+    everything around it.
+    | EOT
+~~~
+
+* If a line has _less_ indentation than you've indicated, Puppet will strip any spaces it can without interfering with non-space characters.
+* If a line has _more_ indentation than you've indicated, any excess will be included in the final string.
+
+Indentation can also include tab characters, but Puppet won't automatically convert tabs to spaces, so make sure you use the exact same sequence of space and tab characters on each line.
+
+#### Suppressing Literal Line Breaks
+
+If you enable the `L` escape switch, you can end a line with a backslash (`\`) to exclude the following line break from the final string. This lets you break up long lines in your source code without adding unwanted line breaks to the value you're constructing.
+
+To illustrate, see the "lg" and "wdiff" lines in the main example above.
+
+#### Suppressing the Final Line Break
+
+By default, heredocs end with a trailing line break, but you can exclude this line break from the final string. To suppress it, add a hyphen (`-`) to the end marker (before the end text, but after the pipe if you used one).
+
+~~~
+$mytext = @(EOT)
+    This's too inconvenient for ${double} or ${single} quotes, but needs to be one line.
+    |-EOT
+~~~
+
+This works even if you don't have the `L` escape switch enabled.
+
 
 ## Interpolation
 
@@ -134,7 +283,7 @@ The most common thing to interpolate into a string is the value of a [variable][
     Since there isn't an explicit stopping point for this type of interpolation token (like the closing curly brace in standard interpolation), Puppet assumes the variable name is all of the text between the dollar sign and the first character that couldn't legally be part of a variable name. (Or the end of the string, if that comes first.) This means you can't use this style of interpolation when a variable needs to be butted up against some other word-like text. And even in some cases where you _can_ use this style, you might want to use the following style instead just for clarity's sake.
 * `${myvariable}` --- A dollar sign followed by a variable name in curly braces will be replaced with that variable's value. This also works with qualified variable names like `${myclass::myvariable}`.
 
-    You can also follow a variable name with any combination of [chained function calls][function_chain] and/or [hash access][] / [array access][] / [substring access][inpage_substring] expressions. For example: `"Using interface ${::interfaces.split(',')[3]} for broadcast"`. _However,_ this doesn't work if the variable's name overlaps with a language keyword. For example, if you had a variable called `$inherits`, you would have to use normal-style interpolation, like `"Inheriting ${$inherits.upcase}."`.
+    With this syntax, you can also follow a variable name with any combination of [chained function calls][function_chain] and/or [hash access][] / [array access][] / [substring access][inpage_substring] expressions. For example: `"Using interface ${::interfaces.split(',')[3]} for broadcast"`. _However,_ this doesn't work if the variable's name overlaps with a language keyword. For example, if you had a variable called `$inherits`, you would have to use normal-style interpolation, like `"Inheriting ${$inherits.upcase}."`.
 
 
 ### Conversion of Non-String Values
@@ -146,7 +295,7 @@ Data type                               | Conversion
 String                                  | The contents of the string, with any quoting syntax removed.
 [Undef][]                               | An empty string.
 [Boolean][]                             | The string `'true'` or `'false'`, respectively.
-[Number][]                              | The number in decimal notation (base 10). For floats, the value may vary on different platforms; you can use [the `sprintf` function][sprintf] for more precise formatting.
+[Number][]                              | The number in decimal notation (base 10). For floats, the value can vary on different platforms; you can use [the `sprintf` function][sprintf] for more precise formatting.
 [Array][]                               | A pair of square brackets (`[` and `]`) containing the array's elements, separated by `, ` (a comma with a space). Each element is converted to a string using these same rules. There is no trailing comma.
 [Hash][]                                | A pair of curly braces (`{` and `}`) containing a `<KEY> => <VALUE>` string for each key/value pair, separated by `, ` (a comma with a space). Each key and value is converted to a string using these same rules. There is no trailing comma.
 [Regular expression][]                  | A stringified regular expression.
