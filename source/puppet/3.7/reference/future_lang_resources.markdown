@@ -22,22 +22,34 @@ canonical: "/puppet/latest/reference/future_lang_resources.html"
 [defined_type]: ./future_lang_defined_types.html
 [collector]: ./future_lang_collectors.html
 [catalog]: ./future_lang_summary.html#compilation-and-catalogs
+[files]: /references/3.7.latest/type.html#file
+[cron jobs]: /references/3.7.latest/type.html#cron
+[services]: /references/3.7.latest/type.html#service
+[custom_types]: /guides/custom_types.html
 
-> * [See the resource type reference for complete information about Puppet's built-in resource types.][types]
 
 **Resources** are the fundamental unit for modeling system configurations. Each resource describes some aspect of a system, like a specific service or package.
 
-A **resource declaration** is an expression in the Puppet language which describes a resource and tells Puppet to add it to the [catalog][].
+A **resource declaration** is an expression that describes the desired state for a resource and tells Puppet to add it to the [catalog][]. When Puppet applies that catalog to a target system, it manages every resource it contains, ensuring that the actual state matches the desired state.
 
-When Puppet applies a catalog to a target system, it manages all the resources included in the catalog, ensuring that the actual state matches the desired state.
-
-The Puppet language includes some constructs that let you write a resource declaration but delay adding it to the catalog. For example:
-
-* [Class definitions][class] and [defined types][defined_type] contain resources, but their contents are only added to the catalog once the class or an instance of the defined type is _declared._ They make groups of resources available and let you add the whole group to the catalog as needed.
-* [Virtual resources][virtual] are only added to the catalog once they are [realized][realize].
-
-Syntax
+Resource Types
 -----
+
+Every resource is associated with a **resource type,** which determines the kind of configuration it manages.
+
+Puppet has many built-in resource types, like [files][], [cron jobs][], [services][], etc. [See the resource type reference][types] for information about the built-in resource types.
+
+You can also add new resource types to Puppet:
+
+* [Defined types][defined_type] are lightweight resource types written in the Puppet language.
+* [Custom resource types][custom_types] are written in Ruby, and have access to the same capabilities as Puppet's built-in types.
+
+Simplified Syntax
+-----
+
+[inpage_simplified]: #simplified-syntax
+
+Resource declarations have some extra features for advanced users, but beginners can do a lot with this simplified form:
 
 {% highlight ruby %}
     # A resource declaration:
@@ -52,46 +64,41 @@ Syntax
 Every resource has a **resource type,** a **title,** and a set of **attributes:**
 
 {% highlight ruby %}
-    type {'title':
-      attribute => value,
+    <TYPE> { '<TITLE>':
+      <ATTRIBUTE> => <VALUE>,
     }
 {% endhighlight %}
 
-The general form of a resource declaration is:
+The form of a resource declaration is:
 
-* The resource type, in lower-case
-* An opening curly brace
-* The title, which is a [string][]
-* A colon
-* Optionally, any number of attribute and value pairs, each of which consists of:
-    * An attribute name, which is a bare word
-    * A `=>` (arrow, fat comma, or hash rocket)
-    * A value, which can be any [data type][datatype], depending on what the attribute requires
-    * A trailing comma (note that the comma is optional after the final attribute/value pair)
-* Optionally, a semicolon, followed by another title, colon, and attribute block
-* A closing curly brace
+* The **resource type,** which is a word with no quotes.
+* An opening curly brace.
+* The **title,** which is a [string][].
+* A colon.
+* Optionally, any number of **attribute and value pairs,** each of which consists of:
+    * An attribute name, which is a word with no quotes.
+    * A `=>` (arrow, "fat comma," or "hash rocket").
+    * A value, which can have any [data type][datatype].
+    * A trailing comma.
+* A closing curly brace.
 
-Note that, in the Puppet language, whitespace is fungible.
-
-### Resource Type
-
-The resource type identifies what kind of resource it is. Puppet has a large number of built-in resource types, including files on disk, cron jobs, user accounts, services, and software packages. [See here for a list of built-in resource types][types].
-
-Puppet can be extended with additional resource types, written in Ruby or in the Puppet language.
+Note that you can use any amount of whitespace in the Puppet language.
 
 ### Title
 
-The title is an identifying string. It only has to identify the resource to Puppet's compiler; it does not need to bear any relationship to the actual target system.
+The title is a string that identifies a resource to Puppet's compiler.
 
-Titles **must be unique per resource type.** You may have a package and a service both titled "ntp," but you may only have one service titled "ntp." Duplicate titles will cause a compilation failure.
+A title doesn't have to match the name of what you're managing on the target system, but you'll often want it to: the value of the ["namevar" attribute][inpage_namevar] defaults to the title, so using the name in the title can save you some typing.
+
+Titles **must be unique per resource type.** You can have a package and a service both titled "ntp," but you can only have one service titled "ntp." Duplicate titles will cause a compilation failure.
 
 ### Attributes
 
 Attributes describe the desired state of the resource; each attribute handles some aspect of the resource.
 
-Each resource type has its own set of available attributes; see [the resource type reference][types] for a complete list. Most resource types have a handful of crucial attributes and a larger number of optional ones. Many attributes have a default value that will be used if a value isn't specified.
+Each resource type has its own set of available attributes; see [the resource type reference][types] for a complete list. Most resource types have a handful of crucial attributes and a larger number of optional ones.
 
-Every attribute you declare must have a value; the [data type][datatype] of the value depends on what the attribute accepts. Most attributes that can take multiple values accept them as an [array][].
+Every attribute you declare must have a value; the [data type][datatype] of the value depends on what the attribute accepts.
 
 > #### Synonym Note: Parameters and Properties
 >
@@ -132,16 +139,26 @@ If Puppet makes any changes to a resource, it will log those changes as events. 
 
 ### Scope Independence
 
-Resources are not subject to [scope][] --- a resource in any scope may be [referenced][reference] from any other scope, and local scopes do not introduce local namespaces for resource titles.
+Resources are not subject to [scope][] --- a resource in any scope can be [referenced][reference] from any other scope, and local scopes do not introduce local namespaces for resource titles.
 
 ### Containment
 
-Resources may be contained by [classes][class] and [defined types][defined_type] --- when something forms a [relationship][relationships] with the container, the contained resources are also affected. See [Containment][] for more details.
+Resources can be contained by [classes][class] and [defined types][defined_type] --- when something forms a [relationship][relationships] with the container, the contained resources are also affected. See [Containment][] for more details.
+
+### Delaying Resource Evaluation
+
+The Puppet language includes some constructs that let you describe a resource but delay adding it to the catalog. For example:
+
+* [Classes][class] and [defined types][defined_type] can contain groups of resources. These resources will only be managed if you add that class (or defined resource) to the catalog.
+* [Virtual resources][virtual] are only added to the catalog once they are [realized][realize].
+
 
 Special Attributes
 -----
 
 ### Name/Namevar
+
+[inpage_namevar]: #namenamevar
 
 Most resource types have an attribute which identifies a resource _on the target system._ This special attribute is called the "namevar," and the attribute itself is often (but not always) just `name`. For example, the `name` of a service or package is the name by which the system's service or package tools will recognize it. On the other hand, the `file` type's namevar is `path`, the file's location on disk.
 
@@ -149,7 +166,7 @@ The [resource type reference][types] lists the namevars for all of the core reso
 
 Namevar values **must be unique per resource type,** with only rare exceptions (such as `exec`).
 
-Namevars are not to be confused with the **title**, which identifies a resource _to Puppet._ However, they often have the same value, since the namevar's value will default to the title if it isn't specified. Thus, the `path` of the file example [above](#syntax) is `/etc/passwd`, even though we didn't include the `path` attribute in the resource declaration.
+Namevars are not to be confused with the **title**, which identifies a resource _to Puppet._ However, they often have the same value, since the namevar's value will default to the title if it isn't specified. Thus, the `path` of the file example [above][inpage_simplified] is `/etc/passwd`, even though we didn't include the `path` attribute in the resource declaration.
 
 The separation between title and namevar lets you use a consistently-titled resource to manage something whose name differs by platform. For example, the NTP service might be `ntpd` on Red Hat-derived systems, but `ntp` on Debian and Ubuntu; to accommodate that, you could title the service "ntp," but set its name according to the OS. Other resources could then form relationships to it without worrying that its title will change.
 
@@ -157,7 +174,7 @@ The separation between title and namevar lets you use a consistently-titled reso
 
 Many resource types have an `ensure` attribute. This generally manages the most important aspect of the resource on the target system --- does the file exist, is the service running or stopped, is the package installed or uninstalled, etc.
 
-Allowed values for `ensure` vary by resource type. Most accept `present` and `absent`, but there may be additional variations. Be sure to check the reference for each resource type you are working with.
+Allowed values for `ensure` vary by resource type. Most accept `present` and `absent`, but there might be additional variations. Be sure to check the reference for each resource type you are working with.
 
 ### Metaparameters
 
@@ -166,6 +183,7 @@ Some attributes in Puppet can be used with every resource type. These are called
 The most commonly used metaparameters are for specifying [order relationships][relationships] between resources.
 
 You can see the full list of all metaparameters in the [Metaparameter Reference](/references/3.7.latest/metaparameter.html).
+
 
 
 Condensed Forms
@@ -222,7 +240,7 @@ Note that you cannot specify a separate namevar with an array of titles, since i
 
 ### Semicolon After Attribute Block
 
-If you end an attribute block with a semicolon rather than a comma, you may specify another title, another colon, and another complete attribute block, instead of closing the curly braces. Puppet will treat this as multiple resources of a single resource type.
+If you end an attribute block with a semicolon rather than a comma, you can specify another title, another colon, and another complete attribute block, instead of closing the curly braces. Puppet will treat this as multiple resources of a single resource type.
 
 {% highlight ruby %}
     file {
