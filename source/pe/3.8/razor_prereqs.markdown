@@ -35,6 +35,8 @@ Below are the essential steps. Each of these steps is described in more detail i
 
 Set up a Puppet master running a standard install of Puppet Enterprise 3.8. For more information, see [Installing Puppet Enterprise](./install_basic.html).
 
+Later, when you're provisioning machines, you need to make sure that PE is prepared to manage them. To do this, [add the appropriate class for the repo](./razor_using.html) that contains the agent packages, and then classify the PE Master node group with that class.
+
 >**Note**: Your Puppet master should not be installed on the same machine as your Razor server and client.
 >**Also**: For virtual environments, we recommend using VirtualBox 4.2.22, because we have had the problem that VirtualBox 4.3.6 gets to the point of downloading the microkernel from the Razor server and hangs at 0% indefinitely. We don't have this problem with VirtualBox 4.2.22.
 

@@ -120,6 +120,18 @@ The broker hands an installed node off to the Puppet master. The details of the 
      razor create-broker --name pe --broker-type puppet-pe
          --configuration server=puppet-master.example.com
 
+### Step 4.5: Add `pe_repo` to PE Master
+
+If you haven't already done so, you need to make sure that PE is prepared to manage the nodes you provision. You do this by adding the class for the platform you're provisioning nodes with to the `PE Master` node group, as follows.
+
+1. On the PE console, go to **Classification**.
+2. Click the **PE Master** node group, and then click the **Classes** tab.
+3. In the **Add new class** box, select `pe_repo::platform::<version>`. For example, `pe_repo::platform::el_7_x86_64`.
+4. Click **Add class** and commit the change.
+
+Razor will take it from there.
+
+
 ## Step 5: Create a Policy and Provision Your Node
 
 The policy is what ties all the Razor objects together and provisions a node when it matches the policy. In this exercise, your policy contains a task called `centos` that comes with Razor.
