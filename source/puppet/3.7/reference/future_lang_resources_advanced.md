@@ -233,7 +233,23 @@ The `create_resources` function expects three arguments:
     * Each value is a hash of attributes and values for that resource.
 * Optionally, a [hash][] of _default_ attributes and values, to be used for any resources that don't specify their own values for those attributes.
 
-If we assume we have those values in variables (`$type`, `$resources`, and `$defaults`), we can create matching resources like this:
+If we assume we have those values in variables (`$type`, `$resources`, and `$defaults`):
+
+{% highlight ruby %}
+    $type = "user"
+    $resources = {
+      'nick' => { uid    => '1330',
+                  groups => ['developers', 'operations', 'release'], },
+      'dan'  => { uid    => '1308',
+                  groups => ['developers', 'prosvc', 'release'], },
+    }
+    $defaults = { gid => 'allstaff',
+                  managehome => true,
+                  shell      => 'bash',
+                }
+{% endhighlight %}
+
+...then we can create matching resources like this:
 
 {% highlight ruby %}
     $resources.each |String $resource, Hash $attributes| {
