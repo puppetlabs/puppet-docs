@@ -128,22 +128,19 @@ That is, all of the following are equivalent:
 
 This lets you declare resources without knowing in advance what type of resources they'll be, which can enable interesting transformations of data into resources. For a demonstration, see the `create_resources` example below.
 
-Array of Titles
+Arrays of Titles
 -----
 
-If you specify an [array][] of [strings][string] as the title of a resource body, Puppet treats it as multiple resource declarations with an identical block of attributes.
+If you specify an [array][] of [strings][string] as the title of a resource body, Puppet will create multiple resources with the same set of attributes. This is useful when you have many resources that are nearly identical.
 
 {% highlight ruby %}
-    file { ['/etc',
-            '/etc/rc.d',
-            '/etc/rc.d/init.d',
-            '/etc/rc.d/rc0.d',
-            '/etc/rc.d/rc1.d',
-            '/etc/rc.d/rc2.d',
-            '/etc/rc.d/rc3.d',
-            '/etc/rc.d/rc4.d',
-            '/etc/rc.d/rc5.d',
-            '/etc/rc.d/rc6.d']:
+    $rc_dirs = [
+      '/etc/rc.d',       '/etc/rc.d/init.d','/etc/rc.d/rc0.d',
+      '/etc/rc.d/rc1.d', '/etc/rc.d/rc2.d', '/etc/rc.d/rc3.d',
+      '/etc/rc.d/rc4.d', '/etc/rc.d/rc5.d', '/etc/rc.d/rc6.d',
+    ]
+
+    file { $rc_dirs:
       ensure => directory,
       owner  => 'root',
       group  => 'root',
@@ -151,38 +148,14 @@ If you specify an [array][] of [strings][string] as the title of a resource body
     }
 {% endhighlight %}
 
-This example is the same as declaring each directory as a separate resource with the same attribute block. You can also store an array in a variable and specify the variable as a resource title:
-
-{% highlight ruby %}
-    $rcdirectories = ['/etc',
-                      '/etc/rc.d',
-                      '/etc/rc.d/init.d',
-                      '/etc/rc.d/rc0.d',
-                      '/etc/rc.d/rc1.d',
-                      '/etc/rc.d/rc2.d',
-                      '/etc/rc.d/rc3.d',
-                      '/etc/rc.d/rc4.d',
-                      '/etc/rc.d/rc5.d',
-                      '/etc/rc.d/rc6.d']
-
-    file { $rcdirectories:
-      ensure => directory,
-      owner  => 'root',
-      group  => 'root',
-      mode   => '0755',
-    }
-{% endhighlight %}
-
-
-Note that you cannot specify a separate namevar with an array of titles, since it would then be duplicated across all of the resources. Thus, each title must be a valid namevar value.
-
+Note that if you do this, you _must_ let the [namevar][] attributes of these resources default to their titles. You can't specify an explicit value for the namevar, because it will apply to all of those resources.
 
 Adding or Modifying Attributes
 -----
 
 Although you cannot declare the same resource twice, you can add attributes to an already-declared resource. In certain circumstances, you can also override attributes.
 
-### Amending Attributes With a Reference
+### Amending Attributes With a Resource Reference
 
 {% highlight ruby %}
     file {'/etc/passwd':
@@ -196,14 +169,14 @@ Although you cannot declare the same resource twice, you can add attributes to a
     }
 {% endhighlight %}
 
-The general form of a reference attribute block is:
+The general form of a resource reference attribute block is:
 
-* A [reference][] to the resource in question (or a multi-resource reference)
+* A [resource reference][reference] to the resource in question (or a multi-resource reference)
 * An opening curly brace
 * Any number of attribute => value pairs
 * A closing curly brace
 
-In normal circumstances, this idiom can only be used to add previously unmanaged attributes to a resource; it cannot override already-specified attributes. However, within an [inherited class][inheritance], you **can** use this idiom to override attributes.
+Normally, you can only use this syntax to add previously unmanaged attributes to a resource; it cannot override already-specified attributes. However, within an [inherited class][inheritance], you **can** use this idiom to override attributes.
 
 ### Amending Attributes With a Collector
 
@@ -233,7 +206,7 @@ The general form of a collector attribute block is:
 
 Much like in an [inherited class][inheritance], you can use the special `+>` keyword to append values to attributes that accept arrays. See [appending to attributes][append_attributes] for more details.
 
-> Note that this idiom **must be used carefully,** if at all:
+> **Note:** Be very careful when using this syntax, because:
 >
 > * It **can always override** already-specified attributes, regardless of class inheritance.
 > * It can affect large numbers of resources at once.
