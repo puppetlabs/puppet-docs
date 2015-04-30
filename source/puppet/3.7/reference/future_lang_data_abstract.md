@@ -184,7 +184,7 @@ This data type would match hashes like `{mode => 'read', path => '/etc/fstab'}`.
 
 {%highlight ruby %}
     Struct[{mode => Enum[read, write, update],
-            path     => Optional[String [1]]}]
+            path => Optional[String [1]]}]
 {% endhighlight %}
 
 This data type would match the same values as the previous example, but the `path` key is optional. If present, `path` must match `String[1]`.

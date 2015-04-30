@@ -41,7 +41,7 @@ Function calls can also stand on their own, which will cause their value to be i
 Syntax
 -----
 
-There are two ways to call functions in the Puppet language: classic **prefix calls** like `str2bool("true")`, and **chained calls** like `"true".str2bool`.
+There are two ways to call functions in the Puppet language: classic **prefix calls** like `str2bool("true")`, and **chained calls** like `"true".str2bool`. There's also a modified form of prefix call that can only be used with certain functions.
 
 ### Choosing a Call Style
 
