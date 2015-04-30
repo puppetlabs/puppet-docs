@@ -122,7 +122,9 @@ The broker hands an installed node off to the Puppet master. The details of the 
 
 ### Step 4.5: Add `pe_repo` to PE Master
 
-If you haven't already done so, you need to make sure that PE is prepared to manage the nodes you provision. You do this by adding the class for the platform you're provisioning nodes with to the `PE Master` node group, as follows.
+If you haven't already done so, you need to make sure that PE is prepared to manage the nodes you provision. You don't have to do these steps if the nodes you're installing will have the same architecture as the Master.
+
+You add `pe_repo` class as follows.
 
 1. On the PE console, go to **Classification**.
 2. Click the **PE Master** node group, and then click the **Classes** tab.
