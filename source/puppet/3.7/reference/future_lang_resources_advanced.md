@@ -81,6 +81,16 @@ The full, generalized form of a resource declaration expression is:
 * Optionally, a trailing semicolon after the last resource body.
 * A closing curly brace (`}`).
 
+Multiple Resource Bodies
+-----
+
+If a resource expression includes more than one resource body, the expression will declare multiple resources of that resource type. (A resource body is a title and a set of attributes; each body must be separated from the next one with a semicolon.)
+
+Each resource in an expression is almost completely independent of the others, and they can have completely different values for their attributes. The only connections between resources that share an expression are:
+
+* They all have the same resource type.
+* They can all draw from the same pool of default values, if a resource body with the special title `default` is present. (See below for details.)
+
 
 Value of a Resource Expression
 -----
@@ -165,32 +175,6 @@ This example is the same as declaring each directory as a separate resource with
 
 
 Note that you cannot specify a separate namevar with an array of titles, since it would then be duplicated across all of the resources. Thus, each title must be a valid namevar value.
-
-### Semicolon After Attribute Block
-
-If you end an attribute block with a semicolon rather than a comma, you can specify another title, another colon, and another complete attribute block, instead of closing the curly braces. Puppet will treat this as multiple resources of a single resource type.
-
-{% highlight ruby %}
-    file {
-      '/etc/rc.d':
-        ensure => directory,
-        owner  => 'root',
-        group  => 'root',
-        mode   => '0755';
-
-      '/etc/rc.d/init.d':
-        ensure => directory,
-        owner  => 'root',
-        group  => 'root',
-        mode   => '0755';
-
-      '/etc/rc.d/rc0.d':
-        ensure => directory,
-        owner  => 'root',
-        group  => 'root',
-        mode   => '0755';
-    }
-{% endhighlight %}
 
 
 Adding or Modifying Attributes
