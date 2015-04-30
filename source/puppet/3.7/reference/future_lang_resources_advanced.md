@@ -239,3 +239,34 @@ Much like in an [inherited class][inheritance], you can use the special `+>` key
 > * It can affect large numbers of resources at once.
 > * It will [implicitly realize][realize] any [virtual resources][virtual] that the collector matches. If you are using virtual resources at all, you must use extreme care when constructing collectors that are not intended to realize resources, and would be better off avoiding non-realizing collectors entirely.
 > * Since it ignores class inheritance, you can override the same attribute twice, which results in a evaluation-order dependent race where the final override wins.
+
+
+
+Advanced Examples
+-----
+
+
+### Implementing the `create_resources` Function
+
+Since the Puppet 2.7 era, the `create_resources` function has been a useful tool of last resort when creating modules that were too complex to express in the Puppet language. It lets you use anything you want to create a data structure describing any number of resources, then add all of those resources to the catalog.
+
+In the modern Puppet language, you can combine [iteration][], abstract resource types, per-expression defaults, and attributes from a hash to duplicate the functionality of `create_resources`.
+
+The `create_resources` function expects three arguments:
+
+* A resource type.
+* A [hash][], where:
+    * Each key is a resource title.
+    * Each value is a hash of attributes and values for that resource.
+* Optionally, a [hash][] of _default_ attributes and values, to be used for any resources that don't specify their own values for those attributes.
+
+If we assume we have those values in variables (`$type`, `$resources`, and `$defaults`), we can create matching resources like this:
+
+{% highlight ruby %}
+    $resources.each |String $resource, Hash $attributes| {
+      Resource[$type] {
+        $resource: * => $attributes;
+        default:   * => $defaults;
+      }
+    }
+{% endhighlight %}
