@@ -105,9 +105,11 @@ The value of a resource declaration is an [array][] of [resource references][ref
 Per-Expression Default Attributes
 -----
 
-If a resource expression includes a resource body whose title is [the special value `default`][default], Puppet won't create a new resource for that resource body.
+[inpage_defaults]: #per-expression-default-attributes
 
-Instead, every other resource created by that expression will use attribute values from the `default` body if they don't have an explicit value for one of those attributes.
+If a resource expression includes a resource body whose title is [the special value `default`][default], Puppet won't create a new resource named "default."
+
+Instead, every other resource in that expression will use attribute values from the `default` body if it doesn't have an explicit value for one of those attributes.
 
 This is useful because it lets you set many attributes at once (like with an array of titles), but also lets you override some of them.
 
@@ -120,12 +122,20 @@ This is useful because it lets you set many attributes at once (like with an arr
         mode   => "0600",
       ;
       ['ssh_host_dsa_key', 'ssh_host_key', 'ssh_host_rsa_key']:
+        # use all defaults
       ;
       ['ssh_config', 'ssh_host_dsa_key.pub', 'ssh_host_key.pub', 'ssh_host_rsa_key.pub', 'sshd_config']:
-        mode => "0640",
+        # override mode
+        mode => "0644",
       ;
     }
 {% endhighlight %}
+
+The position of the `default` body in an expression doesn't matter; resources above and below it will all use the default attributes if applicable.
+
+You can only have one `default` resource body per resource expression.
+
+
 
 
 
