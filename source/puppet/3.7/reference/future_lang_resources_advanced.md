@@ -12,19 +12,74 @@ canonical: "/puppet/latest/reference/future_lang_resources_advanced.html"
 [reference]: ./future_lang_data_resource_reference.html
 [realize]: ./future_lang_virtual.html#syntax
 [virtual]: ./future_lang_virtual.html
+[resources]: ./future_lang_resources.html
+[expressions]: ./future_lang_expressions.html
+[string]: ./future_lang_data_string.html
+[array]: ./future_lang_data_array.html
+[hash]: ./future_lang_data_hash.html
+[datatype]: ./future_lang_data.html
+
+[resource_data_type]: ./future_lang_data_resource_type.html
+[default]: ./future_lang_data_default.html
+
+
+Resource declarations are [expressions][] that describe the desired state for one or more resources and instruct Puppet to add those resources to the [catalog][].
+
+[We describe the basics of resource declarations on another page,][resources] but the resource expression syntax has a lot of additional features, including:
+
+* Describing many resources at once.
+* Setting a group of attributes from a [hash][] (with the special `*` attribute).
+* Setting default attributes.
+* Specifying an abstract resource type.
+* Amending or overriding attributes after a resource is already declared.
+
+This page describes the full syntax of resource expressions. Please make sure you've read [the main page about resources][resources] before reading any further.
 
 
 
+Full Syntax
+-----
 
+{% highlight ruby %}
+    <TYPE> {
+      default:
+        *           => <HASH OF ATTRIBUTE/VALUE PAIRS>,
+        <ATTRIBUTE> => <VALUE>,
+      ;
+      '<TITLE>':
+        *           => <HASH OF ATTRIBUTE/VALUE PAIRS>,
+        <ATTRIBUTE> => <VALUE>,
+      ;
+      '<NEXT TITLE>':
+        ...
+      ;
+      ['<TITLE'>, '<TITLE>', '<TITLE>']:
+        ...
+      ;
+    }
+{% endhighlight %}
 
+The full, generalized form of a resource declaration expression is:
 
-
-
-
-
-
-
-
+* The **resource type,** which can be one of:
+    * A lowercase word with no quotes, like `file`.
+    * A [resource type data type][resource_data_type], like `File`, `Resource[File]` or `Resource['file']`. It must have a type but not a title.
+* An opening curly brace (`{`).
+* One or more **resource bodies**, separated with semicolons (`;`). Each resource body consists of:
+    * A **title,** which can be one of:
+        * A [string][].
+        * An [array][] of strings (declares multiple resources).
+        * [The special value `default`][default] (sets default attribute values for other resource bodies in the same expression).
+    * A colon (`:`).
+    * Optionally, any number of **attribute and value pairs,** separated with commas (`,`). Each attribute/value pair consists of:
+        * An attribute name, which can be one of:
+            * A lowercase word with no quotes.
+            * The special attribute `*` (takes a [hash][] and sets _other_ attributes).
+        * A `=>` (called an arrow, "fat comma," or "hash rocket").
+        * A value, which can have any [data type][datatype].
+    * Optionally, a trailing comma after the last attribute/value pair.
+* Optionally, a trailing semicolon after the last resource body.
+* A closing curly brace (`}`).
 
 
 
