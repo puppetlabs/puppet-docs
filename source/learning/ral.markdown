@@ -156,6 +156,8 @@ In the next few chapters, we'll talk about using the Puppet language to manage r
 
 ### Live Management in the Console
 
+>**Important**: Live Management is deprecated in PE 3.8, and will be replaced with improved resource management capabilities in future versions of PE. For more information about these changes, see the [PE 3.8 release notes](./release_notes.html#live-management-is-deprecated).
+
 Puppet Enterprise includes a web console for controlling many of its features. One of the things it can do is browse and inspect resources on any PE systems the console can reach. This supports a limited number of resource types, but has some useful comparison features for correlating data across a large number of nodes.
 
 > #### Logging In

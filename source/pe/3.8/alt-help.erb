@@ -1,0 +1,59 @@
+<%#
+This template was used to help generate the orchestration_actions.markdown page. To use it:
+
+- log into a Puppet Enterprise Puppet master server as root
+- back up the /etc/puppetlabs/mcollective/rpc-help.erb file
+- replace it with this file
+- switch to the peadmin user
+- run `mco plugin doc` for a list of agent plugins
+- run `mco plugin doc agent/NAME >> all_plugins.markdown` for each agent
+- retrieve the file
+%>
+
+The `<%= meta[:name] %>` Plugin
+-----
+
+<%= meta[:description] %>
+
+Actions: `<%= entities.keys.sort.join("`, `") %>`
+
+% entities.keys.sort.each do |action|
+### <%= action %>
+
+<%= entities[action][:description] %>
+
+% unless entities[action][:input].empty?
+**Input<% unless entities[action][:input].size == 1 %>s<% end %>:**
+
+%    entities[action][:input].keys.sort.each do |input|
+`<%= input %>` <% unless entities[action][:input][input][:optional] %>**(required)**<% end %>
+: <%= entities[action][:input][input][:description] %>
+
+  - **Type:** <%= entities[action][:input][input][:type] %>
+%        if entities[action][:input][input][:type] == :string
+  - **Format/Validation:** `<%= entities[action][:input][input][:validation] %>`
+  - **Length:** <%= entities[action][:input][input][:maxlength] %>
+%        elsif entities[action][:input][input][:type] == :list
+  - **Valid Values:** `<%= entities[action][:input][input][:list].join("`, `") %>`
+%        end
+
+%    end
+% else
+(no inputs)
+% end
+
+**Output<% unless entities[action][:output].size == 1 %>s<% end %>:**
+
+%    entities[action][:output].keys.sort.each do |output|
+`<%= output %>`
+: (Appears as "<%= entities[action][:output][output][:display_as] %>" on CLI)
+
+  <%= entities[action][:output][output][:description] %>
+
+%    end
+
+[↑ Back to top](#content)
+
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+% end

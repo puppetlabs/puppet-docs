@@ -50,6 +50,23 @@ If you've installed additional Puppet masters (i.e., secondary or compile master
 
 If necessary, you can install stdlib after installing/upgrading by running `puppet module install puppetlabs-stdlib`.
 
+### Install Agents With Different OS When Puppet Master is Behind A Proxy
+
+If your Puppet master uses a proxy server to access the internet, you may not be able to download the `pe_repo` packages for the agent. In the case that you're using a proxy, follow this workaround:
+
+**Tip**: The following steps should be performed on your Puppet master (and, if you have a large environment installation, on all your compile masters as well). 
+
+1. From your Puppet master, navigate to `/etc/sysconfig/`, and create a file called `pe-puppet`. 
+2. In `pe-puppet` add the following lines:
+
+       export http_proxy ...
+       export https_proxy ...
+     
+3. Save and exit the file. 
+4. Restart the pe-puppet service with the following commands:
+
+       puppet resource service pe-puppet ensure=stopped 
+       puppet resource service pe-puppet ensure=running
 
 ### PuppetDB Behind a Load Balancer Causes Puppet Server Errors
 
@@ -255,6 +272,34 @@ Upgrades to this version of PE may affect deployments that use a custom console 
 
 In addition, the document [Configuring the Puppet Enterprise Console to Use a Custom SSL Certificate](./custom_console_cert.html) does not work for this version of PE. This document, as well as custom console cert functionality, will be fixed in PE 3.8.0.
 
+### Error When a PE User and User Group Have the Same Name
+
+If you have both a PE user and a user group with the exact same name, PE will throw an error when you perform a search that matches both of these entries.
+
+### 400 Error When There Are Over 500 Nodes Pinned to a Node Group and You Click **Load All Nodes**
+
+When there are over 500 nodes pinned to a node group, a **Load All Nodes** button appears in the **Matching nodes** tab for that node group. Clicking the **Load All Nodes** button results in a 400 error.
+
+### Not All Environments Are Listed in the PE Console
+
+When the classifier service encounters an environment that has code that will not compile, it marks the environment as deleted. If you later correct the code in the environment, the classifier service does not remove the deleted flag. 
+
+To manually remove the deleted flag for an environment named "test" for example, in the command line, type:
+
+    su - pe-postgres -s /bin/bash -c "/opt/puppet/bin/psql -d 'pe-classifier' -c \"UPDATE environments SET deleted = 'f' WHERE name = 'test';\""
+
+### Querying the Nodes Endpoint of the Classifier Service Can Exhaust Memory 
+
+If a large number of nodes is returned when querying the `v1/nodes` endpoint of the classifier service API, the pe-console-services process may exhaust the memory and return a 500 error. 
+
+To resolve this, you can manually remove the node check-ins. To remove node check-ins that are older than one week for example, in the command line, type:
+
+    sudo su - pe-postgres -s /bin/bash -c "/opt/puppet/bin/psql -d 'pe-classifier' -c \"delete FROM node_check_ins WHERE time < (now() - '1 week'::interval);\""
+
+### User Login is Invalid When Less Than Three Characters
+
+The PE RBAC service will not allow you to add a user login that is less than three characters long.
+
 ### Console Session Timeout Issue
 
 The default session timeout for the PE console is 30 minutes. However, due to an issue that has not yet been resolved, console users will be logged out after thirty minutes even if they are currently active.
@@ -266,6 +311,10 @@ This issue was resolved in PE 3.7.1.
 Due to a known issue in PE 3.7.0, you can select the SLES 12 `pe::repo` class from the PE console, but this class will not work. SLES 12 is not supported in PE 3.7.0, and no tarballs for SLES 12 are shipped in this version.
 
 Support for SLES 12 will be added in a future release.
+
+### Nodes Can Be Pinned an Infinite Number of Times
+
+When pinning a node to a node group in the PE console, if you pin the node multiple times, the console does not resolve this to a single entry. For example, if you pin the same node to a node group ten times and commit it, the console will show that you have ten nodes all with the same node name. 
 
 ### Safari Certificate Handling May Prevent Console Access
 

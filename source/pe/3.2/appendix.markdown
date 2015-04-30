@@ -155,7 +155,7 @@ In some cases, you may want to disable PE's orchestration capabilities. This can
 
 In PE3.2, Hiera variables were updated to include `::pe` in the name. If you set Hiera variables in PE3.1 and then upgrade to PE3.2, Hiera variables will revert back to the default values. You may experience performance issues as a result.
 
-For example, in PE3.1, the `java_args` variable was set using `pe_puppetdb::java_args` but in PE3.2 it is set using `pe_puppetdb::pe::java_args`. In PE3.1, the `database_config_hash` variable was set using `pe_puppetdb::database::database_config_hash` but in PE3.2 it is set using `pe_puppetdb::pe::database::database_config_hash`. 
+For example, in PE3.1, the `java_args` variable was set using `pe_puppetdb::java_args` but in PE3.2 it is set using `pe_puppetdb::pe::java_args`. In PE3.1, the `database_config_hash` variable was set using `pe_puppetdb::database::database_config_hash` but in PE3.2 it is set using `pe_puppetdb::pe::database::database_config_hash`.
 
 To avoid reverting back to the default values, add `::pe` to the variable name.
 
@@ -195,10 +195,6 @@ Known Issues
 As we discover them, this page will be updated with known issues in Puppet Enterprise 3.2 and earlier. Fixed issues will be removed from this list and noted above in the release notes. If you find new problems yourself, please file bugs in [our issue tracker](https://tickets.puppetlabs.com).
 
 To find out which of these issues may affect you, run `/opt/puppet/bin/puppet --version`, the output of which will look something like `3.2.0 (Puppet Enterprise 3.2)`. To upgrade to a newer version of Puppet Enterprise, see the [chapter on upgrading](install_upgrading.html).
-
-[peissues]: http://projects.puppetlabs.com/projects/puppet-enterprise/issues
-[puppetissues]: http://projects.puppetlabs.com/projects/puppet/issues
-
 
 The following issues affect the currently shipped version of PE and all prior releases through the 2.x.x series, unless otherwise stated.
 
