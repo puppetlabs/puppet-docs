@@ -115,6 +115,7 @@ A resource declaration adds a resource to the catalog, and tells Puppet to manag
 * Compare the actual state to the desired state
 * If necessary, change the system to enforce the desired state
 
+
 ### Uniqueness
 
 Puppet does not allow you to declare the same resource twice. This is to prevent multiple conflicting values from being declared for the same attribute.
@@ -152,8 +153,15 @@ The Puppet language includes some constructs that let you describe a resource bu
 * [Classes][class] and [defined types][defined_type] can contain groups of resources. These resources will only be managed if you add that class (or defined resource) to the catalog.
 * [Virtual resources][virtual] are only added to the catalog once they are [realized][realize].
 
+### Value of a Resource Declaration
 
-Special Attributes
+Resource declarations are [expressions][] in the Puppet language --- they always have a side effect (adding a resource to the catalog), but they also resolve to a value.
+
+The value of a resource declaration is an [array][] of [resource references][reference], with one reference for each resource the expression describes.
+
+**Note:** A resource declaration has extremely low precedence; in fact, it's even lower than the variable assignment operator (`=`). This means that in almost every place where you can use a resource declaration for its value, you will need to surround it with parentheses to properly associate it with the expression that uses the value.
+
+Special Resource Attributes
 -----
 
 ### Name/Namevar
