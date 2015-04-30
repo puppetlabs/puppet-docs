@@ -19,7 +19,7 @@ Puppet maneja tus servidores: Describes la configuración en un lenguaje declara
 
 [Mira el índice de la documentación Puppet aquí](http://docs.puppetlabs.com/puppet/), o ve directamente a una de las páginas más populares:
 
-+ [La serie de aprendizaje de Puppet](http://docs.puppetlabs.com/es/learning/introduction.html) es un tutorial guiado para usuarios nuevos, el cual incluye una VM gratuita para hacer ejercicios y experimentar, y puedas ir desde  *“¿Qué es esto?”* a un *“¡Puedo hacerlo!”* en sólo un par de horas. 
++ [La serie de aprendizaje de Puppet](http://docs.puppetlabs.com/es/learning/introduction.html) es un tutorial guiado para usuarios nuevos, el cual incluye una maquina virtual gratuita para hacer ejercicios y experimentar, y puedas ir desde  *“¿Qué es esto?”* a un *“¡Puedo hacerlo!”* en sólo un par de horas. 
 + [La guía de instalación](http://docs.puppetlabs.com/guides/installation.html) te ayudará a instalar y configurar la versión actual de Puppet Open Source.
 + [El manual de referencia para Puppet 3.7](http://docs.puppetlabs.com/puppet/3.7/reference/)
 + [El manual de referencia para Puppet 3.6](http://docs.puppetlabs.com/puppet/3.6/reference/), [Puppet 3.5](http://docs.puppetlabs.com/puppet/3.5/reference/), [Puppet 3.0-3.4](http://docs.puppetlabs.com/puppet/3/reference/) y [Puppet 2.7](http://docs.puppetlabs.com/puppet/2.7/reference/).
