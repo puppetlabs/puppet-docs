@@ -102,7 +102,30 @@ The value of a resource declaration is an [array][] of [resource references][ref
 **Note:** A resource declaration has extremely low precedence; in fact, it's even lower than the variable assignment operator (`=`). This means that in almost every place where you can use a resource declaration for its value, you will need to surround it with parentheses to properly associate it with the expression that uses the value.
 
 
+Per-Expression Default Attributes
+-----
 
+If a resource expression includes a resource body whose title is [the special value `default`][default], Puppet won't create a new resource for that resource body.
+
+Instead, every other resource created by that expression will use attribute values from the `default` body if they don't have an explicit value for one of those attributes.
+
+This is useful because it lets you set many attributes at once (like with an array of titles), but also lets you override some of them.
+
+{% highlight ruby %}
+    file {
+      default:
+        ensure => file,
+        owner  => "root",
+        group  => "wheel",
+        mode   => "0600",
+      ;
+      ['ssh_host_dsa_key', 'ssh_host_key', 'ssh_host_rsa_key']:
+      ;
+      ['ssh_config', 'ssh_host_dsa_key.pub', 'ssh_host_key.pub', 'ssh_host_rsa_key.pub', 'sshd_config']:
+        mode => "0640",
+      ;
+    }
+{% endhighlight %}
 
 
 
