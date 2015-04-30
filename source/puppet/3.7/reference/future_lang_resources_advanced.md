@@ -21,6 +21,10 @@ canonical: "/puppet/latest/reference/future_lang_resources_advanced.html"
 
 [resource_data_type]: ./future_lang_data_resource_type.html
 [default]: ./future_lang_data_default.html
+[hash_merge]: ./future_lang_expressions.html#merging
+[catalog]: ./future_lang_summary.html#compilation-and-catalogs
+[namevar]: ./future_lang_resources.html#namenamevar
+[iteration]: ./future_lang_iteration.html
 
 
 Resource declarations are [expressions][] that describe the desired state for one or more resources and instruct Puppet to add those resources to the [catalog][].
@@ -136,9 +140,37 @@ The position of the `default` body in an expression doesn't matter; resources ab
 You can only have one `default` resource body per resource expression.
 
 
+Setting Attributes from a Hash
+-----
 
+A resource body can use the special attribute `*` (asterisk or splat character) to set _other_ attributes for that resource from a hash.
 
+The value of the `*` attribute must be a [hash][], where:
 
+* Each key is the name of a valid attribute for that resource type, as a string.
+* Each value is a valid value for the attribute it's assigned to.
+
+This will set values for that resource's attributes, using every attribute and value listed in the hash.
+
+{% highlight ruby %}
+    $file_ownership = {
+      "owner" => "root",
+      "group" => "wheel",
+      "mode   => "0644",
+    }
+
+    file { "/etc/passwd":
+      ensure => file,
+      *      => $file_ownership,
+    }
+{% endhighlight %}
+
+You cannot set any attribute more than once for a given resource; if you try, Puppet will raise a compilation error. This means:
+
+* If you use a hash to set attributes for a resource, you cannot set a different, explicit value for any of those attributes. (If `mode` is present in the hash, you can't also set `mode => "0644"` in that resource body.)
+* You can't use the `*` attribute multiple times in one resource body, since `*` itself acts like an attribute.
+
+If you want to use some attributes from a hash and override others, you can either use a hash to set [per-expression defaults][inpage_defaults], or use [the `+` (merging) operator][hash_merge] to combine attributes from two hashes (with the right-hand hash overriding the left-hand one).
 
 Using an Abstract Resource Type
 -----
