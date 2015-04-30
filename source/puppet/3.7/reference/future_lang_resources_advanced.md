@@ -97,14 +97,31 @@ The value of a resource declaration is an [array][] of [resource references][ref
 
 
 
-Condensed Forms
+Using an Abstract Resource Type
 -----
 
-There are two ways to compress multiple resource declarations. You can also use [resource default statements][resdefaults] to reduce duplicate typing.
+Since a resource expression can accept a [resource type data type][resource_data_type] as its resource type, you can use a `Resource[<TYPE>]` value to specify a non-literal resource type, where the `<TYPE>` portion can be read from a variable.
 
-### Array of Titles
+That is, all of the following are equivalent:
 
-If you specify an array of strings as the title of a resource declaration, Puppet will treat it as multiple resource declarations with an identical block of attributes.
+{% highlight ruby %}
+    file { "/tmp/foo": ensure => file, }
+    File { "/tmp/foo": ensure => file, }
+    Resource[File] { "/tmp/foo": ensure => file, }
+
+    $mytype = File
+    Resource[$mytype] { "/tmp/foo": ensure => file, }
+
+    $mytypename = "file"
+    Resource[$mytypename] { "/tmp/foo": ensure => file, }
+{% endhighlight %}
+
+This lets you declare resources without knowing in advance what type of resources they'll be, which can enable interesting transformations of data into resources. For a demonstration, see the `create_resources` example below.
+
+Array of Titles
+-----
+
+If you specify an [array][] of [strings][string] as the title of a resource body, Puppet treats it as multiple resource declarations with an identical block of attributes.
 
 {% highlight ruby %}
     file { ['/etc',
