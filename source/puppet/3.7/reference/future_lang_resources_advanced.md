@@ -82,6 +82,17 @@ The full, generalized form of a resource declaration expression is:
 * A closing curly brace (`}`).
 
 
+Value of a Resource Expression
+-----
+
+Resource declarations are [expressions][] in the Puppet language --- they always have a side effect (adding a resource to the catalog), but they also resolve to a value.
+
+The value of a resource declaration is an [array][] of [resource references][reference], with one reference for each resource the expression describes.
+
+**Note:** A resource declaration has extremely low precedence; in fact, it's even lower than the variable assignment operator (`=`). This means that in almost every place where you can use a resource declaration for its value, you will need to surround it with parentheses to properly associate it with the expression that uses the value.
+
+
+
 
 
 

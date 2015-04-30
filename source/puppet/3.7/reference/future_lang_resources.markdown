@@ -73,15 +73,15 @@ Every resource has a **resource type,** a **title,** and a set of **attributes:*
 The form of a resource declaration is:
 
 * The **resource type,** which is a word with no quotes.
-* An opening curly brace.
+* An opening curly brace (`{`).
 * The **title,** which is a [string][].
-* A colon.
+* A colon (`:`).
 * Optionally, any number of **attribute and value pairs,** each of which consists of:
     * An attribute name, which is a lowercase word with no quotes.
-    * A `=>` (arrow, "fat comma," or "hash rocket").
+    * A `=>` (called an arrow, "fat comma," or "hash rocket").
     * A value, which can have any [data type][datatype].
     * A trailing comma.
-* A closing curly brace.
+* A closing curly brace (`}`).
 
 Note that you can use any amount of whitespace in the Puppet language.
 
@@ -154,13 +154,6 @@ The Puppet language includes some constructs that let you describe a resource bu
 * [Classes][class] and [defined types][defined_type] can contain groups of resources. These resources will only be managed if you add that class (or defined resource) to the catalog.
 * [Virtual resources][virtual] are only added to the catalog once they are [realized][realize].
 
-### Value of a Resource Declaration
-
-Resource declarations are [expressions][] in the Puppet language --- they always have a side effect (adding a resource to the catalog), but they also resolve to a value.
-
-The value of a resource declaration is an [array][] of [resource references][reference], with one reference for each resource the expression describes.
-
-**Note:** A resource declaration has extremely low precedence; in fact, it's even lower than the variable assignment operator (`=`). This means that in almost every place where you can use a resource declaration for its value, you will need to surround it with parentheses to properly associate it with the expression that uses the value.
 
 Special Resource Attributes
 -----
