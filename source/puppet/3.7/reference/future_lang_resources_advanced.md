@@ -143,6 +143,8 @@ You can only have one `default` resource body per resource expression.
 Setting Attributes from a Hash
 -----
 
+[inpage_splat]: #setting-attributes-from-a-hash
+
 A resource body can use the special attribute `*` (asterisk or splat character) to set _other_ attributes for that resource from a hash.
 
 The value of the `*` attribute must be a [hash][], where:
@@ -174,6 +176,8 @@ If you want to use some attributes from a hash and override others, you can eith
 
 Using an Abstract Resource Type
 -----
+
+[inpage_abstract]: #using-an-abstract-resource-type
 
 Since a resource expression can accept a [resource type data type][resource_data_type] as its resource type, you can use a `Resource[<TYPE>]` value to specify a non-literal resource type, where the `<TYPE>` portion can be read from a variable.
 
@@ -283,12 +287,36 @@ Much like in an [inherited class][inheritance], you can use the special `+>` key
 Advanced Examples
 -----
 
+### Local Resource Defaults
+
+Since classic [resource default statements][resdefaults] are subject to dynamic scope, they can escape the place where they're declared and affect unpredictable areas of code. Sometimes this is powerful and useful, and other times it's really bad, like when you want to set defaults for your module's file resources, but you're also declaring classes and defined resources from other modules and want to avoid any contagious effect.
+
+To control those effects, you can define your defaults in a variable and re-use them in multiple places, by combining [per-expression defaults][inpage_defaults] and [setting attributes from a hash][inpage_splat].
+
+{% highlight ruby %}
+    class mymodule::params {
+      $file_defaults = {
+        mode  => "0644",
+        owner => "root",
+        group => "root",
+      }
+      # ...
+    }
+
+    class mymodule inherits mymodule::params {
+      file { default: *=> $mymodule::params::file_defaults;
+        "/etc/myconfig":
+          ensure => file,
+        ;
+      }
+    }
+{% endhighlight %}
 
 ### Implementing the `create_resources` Function
 
 Since the Puppet 2.7 era, the `create_resources` function has been a useful tool of last resort when creating modules that were too complex to express in the Puppet language. It lets you use anything you want to create a data structure describing any number of resources, then add all of those resources to the catalog.
 
-In the modern Puppet language, you can combine [iteration][], abstract resource types, per-expression defaults, and attributes from a hash to duplicate the functionality of `create_resources`.
+In the modern Puppet language, you can combine [iteration][], [abstract resource types][inpage_abstract], [per-expression defaults][inpage_defaults], and [attributes from a hash][inpage_splat] to duplicate the functionality of `create_resources`.
 
 The `create_resources` function expects three arguments:
 
