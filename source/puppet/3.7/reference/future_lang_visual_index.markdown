@@ -6,10 +6,9 @@ canonical: "/puppet/latest/reference/future_lang_visual_index.html"
 
 
 [resource]: ./future_lang_resources.html
-[type]: ./future_lang_resources.html#type
+[type]: ./future_lang_resources.html#resource-types
 [title]: ./future_lang_resources.html#title
 [attribute]: ./future_lang_resources.html#attributes
-[value]: ./future_lang_resources.html#attributes
 [string]: ./future_lang_data_string.html
 [function]: ./future_lang_functions.html
 [rvalue]: ./future_lang_functions.html#behavior
@@ -46,7 +45,7 @@ canonical: "/puppet/latest/reference/future_lang_visual_index.html"
 [defaults]: ./future_lang_defaults.html
 [override]: ./future_lang_classes.html#overriding-resource-attributes
 [inherits]: ./future_lang_classes.html#inheritance
-[coll_override]: ./future_lang_resources.html#amending-attributes-with-a-collector
+[coll_override]: ./future_lang_resources_advanced.html#amending-attributes-with-a-collector
 [virtual]: ./future_lang_virtual.html
 
 This page can help you find syntax elements when you can't remember their names.
@@ -67,7 +66,7 @@ This page can help you find syntax elements when you can't remember their names.
 * `file`: The [resource type][type]
 * `ntp.conf`: The [title][]
 * `path`: An [attribute][]
-* `'/etc/ntp.conf'`: A [value][]; in this case, a [string][]
+* `'/etc/ntp.conf'`: The value of an [attribute][]; in this case, a [string][]
 * `template('ntp/ntp.conf')`: A [function][] call that [returns a value][rvalue]; in this case, the [`template`][template_func] function, with the name of a template in a [module][] as its [argument][]
 
 {% highlight ruby %}

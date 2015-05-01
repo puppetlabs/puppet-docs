@@ -6,7 +6,6 @@ canonical: "/puppet/latest/reference/subsystem_catalog_compilation.html"
 
 [environment]: ./environments.html
 [certname]: ./config_important_settings.html#basics
-[resource_declaration]: ./lang_resources.html
 [relationships]: ./lang_relationships.html
 [cert_extensions]: ./ssl_attributes_extensions.html
 [facts]: ./lang_facts_and_builtin_vars.html
@@ -39,7 +38,7 @@ Background Info
 
 ### What's a catalog?
 
-When configuring a node, Puppet agent uses a document called a **catalog,** which it downloads from a Puppet master server. The catalog describes the [desired state for each resource][resource_declaration] that should be managed, and may specify [dependency information][relationships] for resources that should be managed in a certain order.
+When configuring a node, Puppet agent uses a document called a **catalog,** which it downloads from a Puppet master server. The catalog describes the [desired state for each resource][resources] that should be managed, and may specify [dependency information][relationships] for resources that should be managed in a certain order.
 
 ### Why is it used?
 

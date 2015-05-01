@@ -34,8 +34,8 @@ Additionally, there is a parent `Resource` data type. All of these one-off data 
 
 A resource data type can be used in the following places:
 
-* The resource type slot of a [resource declaration][]
-* The resource type slot of a [resource default statement][]
+* The resource type slot of a [resource declaration][].
+* The resource type slot of a [resource default statement][].
 
 For example:
 
@@ -88,8 +88,8 @@ Position | Parameter        | Data Type | Default Value | Description
 
 ### Examples
 
-* `File` --- the data type corresponding to the `file` resource type
-* `File['/tmp/foo']` --- a resource reference to the `file` resource whose title is `/tmp/foo`
+* `File` --- the data type corresponding to the `file` resource type.
+* `File['/tmp/foo']` --- a resource reference to the `file` resource whose title is `/tmp/foo`.
 
 Also:
 
@@ -114,21 +114,22 @@ We will take this chance to say, yet again, that most users won't need to deal w
 
 The full signature for `Resource` is:
 
-    Resource[<RESOURCE TYPE>, <RESOURCE TITLE>]
+    Resource[<RESOURCE TYPE>, <RESOURCE TITLE>...]
 
 All of these parameters are optional. They must be listed in order; if you need to specify a later parameter, you must specify values for any prior ones.
 
 Position | Parameter        | Data Type | Default Value | Description
 ---------| -----------------|-----------|---------------|------------
 1 | Resource type | `String` or `Resource` | nothing | A resource type, either as a string or a `Resource` data type value. If provided, this will turn this data type into a resource-specific data type. `Resource[Mytype]` and `Resource["mytype"]` are both 100% identical to the data type `Mytype`.
-2 | Resource title | `String` | nothing | The title of some specific resource of this type. If provided, this will turn this data type into a usable [resource reference][]. `Resource[Mytype, "mytitle"]` and `Resource["mytype", "mytitle"]` are both 100% identical to the data type `Mytype["mytitle"]`.
+2–∞ | Resource title | `String` | nothing | The title of some specific resource of this type. If provided, this will turn this data type into a usable [resource reference][] or array of resource references. `Resource[Mytype, "mytitle"]` and `Resource["mytype", "mytitle"]` are both 100% identical to the data type `Mytype["mytitle"]`.
 
 
 ### Examples
 
-* `Resource[File]` --- the data type corresponding to the `file` resource type
-* `Resource[File, '/tmp/foo']` --- a resource reference to the `file` resource whose title is `/tmp/foo`
-* `Resource["file", '/tmp/foo']` --- a resource reference to the `file` resource whose title is `/tmp/foo`
+* `Resource[File]` --- the data type corresponding to the `file` resource type.
+* `Resource[File, '/tmp/foo']` --- a resource reference to the `file` resource whose title is `/tmp/foo`.
+* `Resource["file", '/tmp/foo']` --- a resource reference to the `file` resource whose title is `/tmp/foo`.
+* `Resource[File, '/tmp/foo', '/tmp/bar']` --- equivalent to `[ File['/tmp/foo'], File['/tmp/bar'] ]`.
 
 Also:
 
@@ -159,7 +160,7 @@ Position | Parameter        | Data Type | Default Value | Description
 
 ### Examples
 
-* `Class["apache"]` --- a [class reference][] to class `apache`
+* `Class["apache"]` --- a [class reference][] to class `apache`.
 
 Also:
 

@@ -6,7 +6,7 @@ canonical: "/puppet/latest/reference/future_lang_data_resource_reference.html"
 
 [relationship]: ./future_lang_relationships.html
 [chaining]: ./future_lang_relationships.html#chaining-arrows
-[attribute_override]: ./future_lang_resources.html#adding-or-modifying-attributes
+[attribute_override]: ./future_lang_resources_advanced.html#adding-or-modifying-attributes
 [string]: ./future_lang_data_string.html
 [data type]: ./future_lang_data_type.html
 [resource_types]: ./future_lang_data_resource_type.html
