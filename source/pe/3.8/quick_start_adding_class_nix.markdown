@@ -60,7 +60,7 @@ Unless you have navigated elsewhere in the console, the __apache example__ node 
 
    This will configure the node using the newly-assigned class. Wait one or two minutes.
 
-8. Open a browser and enter the IP address for the agent node, adding port 80 on the end (e.g., `www.myagentnodeIP:80`).
+8. Open a browser and enter the IP address for the agent node, adding port 80 on the end (e.g., `http://myagentnodeIP:80/`).
 
    You will see the contents of `/var/www/html/index.html` displayed.
 
