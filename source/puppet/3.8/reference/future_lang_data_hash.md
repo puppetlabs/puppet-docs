@@ -29,9 +29,9 @@ Hash keys can be any data type, but you should generally only use strings or num
 
 Hash values can be any data type.
 
-## Indexing
+## Accessing Values
 
-You can access hash members with their key; square brackets are used for indexing.
+You can access hash members with their key; square brackets are used for accessing.
 
 {% highlight ruby %}
     $myhash = { key       => "some value",

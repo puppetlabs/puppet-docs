@@ -12,8 +12,8 @@ canonical: "/puppet/latest/reference/future_lang_data_string.html"
 [pattern]: ./future_lang_data_abstract.html#pattern
 [function_statement]: ./future_lang_functions.html#statement-function-calls
 [function_chain]: ./future_lang_functions.html#chained-function-calls
-[hash access]: ./future_lang_data_hash.html#indexing
-[array access]: ./future_lang_data_array.html#indexing
+[hash access]: ./future_lang_data_hash.html#accessing-values
+[array access]: ./future_lang_data_array.html#accessing-values
 [undef]: ./future_lang_data_undef.html
 [boolean]: ./future_lang_data_boolean.html
 [number]: ./future_lang_data_number.html
@@ -332,11 +332,11 @@ Puppet treats strings as sequences of bytes. It does not recognize encodings or 
 
 However, Puppet Labs recommends that all strings be valid UTF8. Future versions of Puppet might impose restrictions on string encoding, and using only UTF8 will protect you in this event. Additionally, PuppetDB will remove invalid UTF8 characters when storing catalogs.
 
-## Indexing / Substrings
+## Accessing Substrings
 
-[inpage_substring]: #indexing--substrings
+[inpage_substring]: #accessing-substrings
 
-You can access substrings of a string by numerical index. Square brackets are used for indexing; the index consists of one integer, optionally followed by a comma and a second integer (e.g. `$string[3]` or `$string[3,10]`).
+You can access substrings of a string by numerical index. Square brackets are used for accessing; the index consists of one integer, optionally followed by a comma and a second integer (e.g. `$string[3]` or `$string[3,10]`).
 
 The first number of the index is the start position.
 

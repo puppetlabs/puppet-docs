@@ -11,7 +11,7 @@ canonical: "/puppet/latest/reference/future_lang_data_abstract.html"
 [booleans]: ./future_lang_data_boolean.html
 [arrays]: ./future_lang_data_array.html
 [hashes]: ./future_lang_data_hash.html
-[hash_missing_key_access]: ./future_lang_data_hash.html#indexing
+[hash_missing_key_access]: ./future_lang_data_hash.html#accessing-values
 [numbers]: ./future_lang_data_number.html
 
 As described in [the Data Type Syntax][types] page, each of Puppet's main [data types][] has a corresponding value that _represents_ that data type, which can be used to match values of that type in several contexts. (For example, `String` or `Array`.)

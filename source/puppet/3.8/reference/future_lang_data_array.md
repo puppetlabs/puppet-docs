@@ -30,9 +30,9 @@ Arrays are written as comma-separated lists of values surrounded by square brack
 The values in an array can be any data type.
 
 
-## Indexing
+## Accessing Values
 
-You can access items in an array by their numerical index (counting from zero). Square brackets are used for indexing.
+You can access items in an array by their numerical index (counting from zero). Square brackets are used for accessing.
 
 Example:
 
@@ -41,7 +41,7 @@ Example:
     notice( $foo[1] )
 {% endhighlight %}
 
-This manifest would log `two` as a notice. (`$foo[0]` would be `one`, since indexing counts from zero.)
+This manifest would log `two` as a notice. (`$foo[0]` would be `one`, since indexes count from zero.)
 
 Nested arrays and hashes can be accessed by chaining indexes:
 
@@ -52,7 +52,7 @@ Nested arrays and hashes can be accessed by chaining indexes:
 
 This manifest would log `three` as a notice. (`$foo[1]` is a hash, and we access a key named `'third'`.)
 
-Arrays support negative indexing, with `-1` being the final element of the array:
+Arrays support negative indexes, with `-1` being the final element of the array:
 
 {% highlight ruby %}
     $foo = [ 'one', 'two', 'three', 'four', 'five' ]
@@ -80,7 +80,7 @@ If you try to access an element beyond the bounds of the array, its value will b
 
 ## Array Sectioning
 
-You can also access sections of an array by numerical index. Like indexing, sectioning uses square brackets, but it uses two indexes (separated by a comma) instead of one (e.g. `$array[3,10]`).
+You can also access sections of an array by numerical index. Like accessing, sectioning uses square brackets, but it uses two indexes (separated by a comma) instead of one (e.g. `$array[3,10]`).
 
 The result of an array section is always another array.
 
