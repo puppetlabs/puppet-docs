@@ -11,7 +11,7 @@ canonical: "/puppet/latest/reference/lang_virtual.html"
 [include]: ./future_lang_classes.html#using-include
 [collectors]: ./future_lang_collectors.html
 [search_expression]: ./future_lang_collectors.html#search-expressions
-[override]: ./future_lang_resources.html#amending-attributes-with-a-collector
+[override]: ./future_lang_resources_advanced.html#amending-attributes-with-a-collector
 [chaining]: ./future_lang_relationships.html#chaining-arrows
 [virtual_guide]: /guides/virtual_resources.html
 [catalog]: ./future_lang_summary.html#compilation-and-catalogs

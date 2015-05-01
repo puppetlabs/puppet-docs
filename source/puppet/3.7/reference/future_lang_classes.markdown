@@ -6,7 +6,7 @@ canonical: "/puppet/latest/reference/future_lang_classes.html"
 
 [literal_types]: ./future_lang_data_type.html
 [sitedotpp]: ./dirs_manifest.html
-[collector_override]: ./future_lang_resources.html#amending-attributes-with-a-collector
+[collector_override]: ./future_lang_resources_advanced.html#amending-attributes-with-a-collector
 [namespace]: ./future_lang_namespaces.html
 [enc]: /guides/external_nodes.html
 [tags]: ./future_lang_tags.html
@@ -18,7 +18,7 @@ canonical: "/puppet/latest/reference/future_lang_classes.html"
 [contain_classes]: ./future_lang_containment.html#containing-classes
 [function]: ./future_lang_functions.html
 [multi_ref]: ./future_lang_data_resource_reference.html#multi-resource-references
-[add_attribute]: ./future_lang_resources.html#adding-or-modifying-attributes
+[add_attribute]: ./future_lang_resources_advanced.html#adding-or-modifying-attributes
 [undef]: ./future_lang_data_undef.html
 [relationships]: ./future_lang_relationships.html
 [qualified_var]: ./future_lang_variables.html#accessing-out-of-scope-variables

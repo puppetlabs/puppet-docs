@@ -18,7 +18,7 @@ canonical: "/puppet/latest/reference/future_lang_collectors.html"
 [number]: ./future_lang_data_number.html
 [reference]: ./future_lang_data_resource_reference.html
 [undef]: ./future_lang_data_undef.html
-[amend]: ./future_lang_resources.html#amending-attributes-with-a-collector
+[amend]: ./future_lang_resources_advanced.html#amending-attributes-with-a-collector
 [catalog]: ./future_lang_summary.html#compilation-and-catalogs
 
 
