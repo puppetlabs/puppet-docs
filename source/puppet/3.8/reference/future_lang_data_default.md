@@ -9,7 +9,7 @@ canonical: "/puppet/latest/reference/future_lang_data_default.html"
 [resource declaration]: ./future_lang_resources.html
 [data type]: ./future_lang_data_type.html
 [string]: ./future_lang_data_string.html
-
+[resources_advanced]: ./future_lang_resources_advanced.html
 
 Puppet's special `default` value usually acts like a keyword in a few limited corners of the language. Less commonly, it can also be used as a value in other places.
 
@@ -27,9 +27,9 @@ In [case statements][] and [selector expressions][], you can use `default` as a 
 
 ### Per-Block Resource Defaults
 
-You can use `default` as the title in a [resource declaration][] to invoke special behavior.
+You can use `default` as the title in a [resource declaration][] to invoke special behavior. (For details, see [Resources (Advanced).][resources_advanced])
 
-Instead of creating a resource and adding it to the catalog, the special `default` resource sets fallback attributes that can be used by any other resource of that type in the same declaration block. That is:
+Instead of creating a resource and adding it to the catalog, the special `default` resource sets fallback attributes that can be used by any other resource in the same resource expression. That is:
 
 {% highlight ruby %}
     file {

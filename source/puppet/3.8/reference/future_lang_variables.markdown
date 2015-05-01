@@ -12,7 +12,6 @@ canonical: "/puppet/latest/reference/future_lang_variables.html"
 [double_quote]: ./future_lang_data_string.html#double-quoted-strings
 [functions]: ./future_lang_functions.html
 [resource]: ./future_lang_resources.html
-[resource_attribute]: ./future_lang_resources.html#syntax
 [scope]: ./future_lang_scope.html
 [undef]: ./future_lang_data_undef.html
 [strict_variables]: /references/3.8.latest/configuration.html#strictvariables
@@ -56,7 +55,7 @@ Variables can only be assigned using their [short name](#naming). That is, a giv
     $address_array = [$address1, $address2, $address3]
 {% endhighlight %}
 
-The name of a variable can be used in any place where a value of its data type would be accepted, including [expressions][], [functions][], and [resource attributes][resource_attribute]. Puppet will replace the name of the variable with its value.
+The name of a variable can be used in any place where a value of its data type would be accepted, including [expressions][], [functions][], and [resource attributes][resource]. Puppet will replace the name of the variable with its value.
 
 By default, unassigned variables have a value of [`undef`][undef]; see [Unassigned Variables and Strict Mode](#unassigned-variables-and-strict-mode) below for more details.
 

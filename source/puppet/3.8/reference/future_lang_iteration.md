@@ -15,7 +15,7 @@ canonical: "/puppet/latest/reference/future_lang_iteration.html"
 [array]: ./future_lang_data_array.html
 [hash]: ./future_lang_data_hash.html
 [defined types]: ./future_lang_defined_types
-[array_titles]: ./future_lang_resources.html#array-of-titles
+[array_titles]: ./future_lang_resources_advanced.html#arrays-of-titles
 
 
 The Puppet language has looping and iteration features, which can help you write more succinct code and use data more effectively.
