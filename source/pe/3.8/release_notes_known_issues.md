@@ -464,7 +464,7 @@ The issue is being tracked on [this support ticket](https://tickets.puppetlabs.c
 
 ### Ubuntu Conflict When You're Running on Fusion VM and Amazon EC2
 
-We've discovered an issue in which customers running the Ubuntu 14.04 amd64 platform on a Fusion VM or in Amazon EC2 cannot properly install or upgrade to PE 3.8, or they've installed and upgraded but Puppet Server will not properly start. For such cases, the following workaround is available:
+We've discovered an issue in which customers running the Ubuntu 14.04 amd64 platform on a Fusion VM or in Amazon EC2 cannot properly install or upgrade to PE 3.8, or they've upgraded but Puppet Server will not properly start. For such cases, the following workaround is available:
 
 **If you cannot properly install or upgrade**:
 
@@ -477,7 +477,7 @@ We've discovered an issue in which customers running the Ubuntu 14.04 amd64 plat
         puppet_enterprise::profile::master::java_args:
            Djava.library.path: '=/lib/x86_64-linux-gnu'
            
-**If you've installed/upgraded but Puppet Server will not start**:
+**If you've upgraded but Puppet Server will not start**:
 
 1. Follow the two steps in the previous section. 
 2. Edit `/etc/default/pe-puppetserver` and include the following:
