@@ -8,11 +8,13 @@ canonical: "/puppet/latest/reference/future_lang_data_resource_reference.html"
 [chaining]: ./future_lang_relationships.html#chaining-arrows
 [attribute_override]: ./future_lang_resources_advanced.html#adding-or-modifying-attributes
 [string]: ./future_lang_data_string.html
+[undef]: ./future_lang_data_undef.html
 [data type]: ./future_lang_data_type.html
 [resource_types]: ./future_lang_data_resource_type.html
+[hash access]: ./future_lang_data_hash.html#accessing-values
+[resource]: ./future_lang_resources.html
 
-
-Resource references identify a specific Puppet resource by its type and title. Several attributes, such as the [relationship][] metaparameters, require resource references.
+Resource references identify a specific Puppet [resource][] by its type and title. Several attributes, such as the [relationship][] metaparameters, require resource references.
 
 
 ## Syntax
@@ -58,6 +60,31 @@ Resource reference expressions with an **array of titles** or **comma-separated 
 They can be used wherever an array of references might be used. They can also go on either side of a [chaining arrow][chaining] or receive a [block of additional attributes][attribute_override].
 
 
+## Accessing Attribute Values
+
+You can use a resource reference to access the values of a [resource][]'s attributes. To access a value, use square brackets and the name of an attribute (as a [string][]). This works much like [accessing hash values.][hash access]
+
+{% highlight ruby %}
+    file { "/etc/first.conf":
+      ensure => file,
+      mode   => "0644",
+      owner  => "root",
+    }
+
+    file { "/etc/second.conf":
+      ensure => file,
+      mode   => File["/etc/first.conf"]["mode"],
+      owner  => File["/etc/first.conf"]["owner"],
+    }
+{% endhighlight %}
+
+* The resource whose values you're accessing must exist.
+* Like referencing variables, attribute access depends on evaluation order: Puppet must evaluate the resource you're accessing _before_ you try to access it. If it hasn't been evaluated yet, Puppet will raise an evaluation error.
+* You can only access attributes that are valid for that resource type. If you try to access a nonexistent attribute, Puppet will raise an evaluation error.
+* Puppet can only read the values of attributes that are _explicitly set_ in the resource's declaration.
+    * It can't read the values of properties that would have to be read from the target system.
+    * It also can't read the values of attributes that default to some predictable value; for example, in the code above, you wouldn't be able to access the value of the `path` attribute, even though it defaults to the resource's title.
+* Like with [hash access][], the value of an attribute whose value was never set is [`undef`.][undef]
 
 ## Resource References as Data Types
 
