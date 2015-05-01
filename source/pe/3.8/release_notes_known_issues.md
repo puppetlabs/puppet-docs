@@ -464,9 +464,11 @@ The issue is being tracked on [this support ticket](https://tickets.puppetlabs.c
 
 ### Ubuntu Conflict When You're Running on Fusion VM and Amazon EC2
 
-We've discovered an issue in which customers running the Ubuntu 14.04 amd64 platform on a Fusion VM or in Amazon EC2 cannot properly install or upgrade to PE 3.8. For such cases, the following workaround is available:
+We've discovered an issue in which customers running the Ubuntu 14.04 amd64 platform on a Fusion VM or in Amazon EC2 cannot properly install or upgrade to PE 3.8, or they've installed and upgraded but Puppet Server will not properly start. For such cases, the following workaround is available:
 
-1. Edit your Hiera defaults file. 
+**If you cannot properly install or upgrade**:
+
+1. Navigate to your Hiera defaults file. 
 
    The default location for the Hiera defaults is `/var/lib/hiera/defaults.yaml`. If you’ve customized your `hierarchy` or `datadir`, you’ll need to access and edit the default `.yaml` file accordingly.
    
@@ -475,7 +477,14 @@ We've discovered an issue in which customers running the Ubuntu 14.04 amd64 plat
         puppet_enterprise::profile::master::java_args:
            Djava.library.path: '=/lib/x86_64-linux-gnu'
            
-3. Run `service pe-puppetserver restart`.
+**If you've installed/upgraded but Puppet Server will not start**:
+
+1. Follow the two steps in the previous section. 
+2. Edit `/etc/default/pe-puppetserver` and include the following:
+
+    `JAVA_ARGS="-Xms2048m -Xmx2048m -XX:MaxPermSize=256m -Djava.library.path=/lib/x86_64-linux-gnu"`
+    
+3. Run `service pe-puppetserver restart`. 
 
 ### Readline Version Issues on AIX Agents
 
