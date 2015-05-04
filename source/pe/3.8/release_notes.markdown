@@ -91,28 +91,28 @@ Live Management is deprecated in PE 3.8.0 and will be replaced by improved resou
 
 ### Some Platforms are Deprecated for PE Infrastructure Components
 
-A number of platforms have been deprecated in PE 3.8 for PE's infrastructure components (the Puppet master, the PE console, and PuppetDB) and will be removed in future versions of PE. Agents on these platforms will continue. The deprecated platforms include all 32-bit versions, all Debian versions, EL 5 versions, and Ubuntu 10.4. The complete list is as follows:
+A number of older or seldom used Puppet master platforms have been deprecated in PE 3.8 and will be removed in future versions of PE. *PE agent support on these platforms will continue*. The deprecated Puppet master platforms include all 32-bit master platforms, all Debian versions, EL 5 versions, and Ubuntu 10.04. Going forward, only 64-bit Puppet masters will be supported, but 32-bit agent support will continue to be offered. The complete list is as follows:
 
 *	centos-5-i386
-*   centos-5-x86_64
-* 	centos-6-i386
-* 	debian-6-i386
-* 	debian-6-x86_64
-* 	debian-7-i386
-* 	debian-7-x86_64
-* 	oracle-5-i386
-* 	oracle-5-x86_64
-*  	oracle-6-i386
-*  	redhat-5-i386
-*  	redhat-5-x86_64
-*  	redhat-6-i386
-*  	scientific-5-i386
-*  	scientific-6-i386
-*  	sles-11-i386
-*  	ubuntu-1004-i386
-*  	ubuntu-1004-x86_64
-*  	ubuntu-1204-i386
-*  	ubuntu-1404-i386
+* centos-5-x86_64
+* centos-6-i386
+* debian-6-i386
+* debian-6-x86_64
+* debian-7-i386
+* debian-7-x86_64
+* oracle-5-i386
+* oracle-5-x86_64
+* oracle-6-i386
+* redhat-5-i386
+* redhat-5-x86_64
+* redhat-6-i386
+* scientific-5-i386
+* scientific-6-i386
+* sles-11-i386
+* ubuntu-1004-i386
+* ubuntu-1004-x86_64
+* ubuntu-1204-i386
+* ubuntu-1404-i386
 
 
 See the [system requirements](./install_system_requirements.html) for a list of supported platforms.
