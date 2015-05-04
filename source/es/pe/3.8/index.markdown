@@ -11,7 +11,7 @@ Ya sea que seas principiante en el uso de PE o que tengas algo de experiencia, a
 
 ### Notas de la versión
 
-* [Nuevas Caracteristicias](./release_notes.html)
+* [Nuevas Caracteristicias](/source/pe/3.8/release_notes.html)
 * [Problemas conocidos](./release_notes_known_issues.html)
 * [Problemas de seguridad corregidos](./release_notes_security.html)
 
