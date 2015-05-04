@@ -5,7 +5,7 @@ subtitle: "Install and Set Up Razor"
 canonical: "/pe/latest/razor_install.html"
 
 ---
-A Razor module is included with Puppet Enterprise. To install and configure a Razor server, you must [set up your Razor environment](./razor_prereqs.html), and then classify the `pe_razor` node. When PE runs and applies this Razor classification, the Razor server and a PostgreSQL database will be installed and configured.
+A Razor module, pe_razor, is included with Puppet Enterprise. To install and configure a Razor server, you must [set up your Razor environment](./razor_prereqs.html), and then classify the `pe_razor` node. When PE runs and applies this Razor classification, the Razor server and a PostgreSQL database will be installed and configured.
 
 In addition to the Razor server, the Razor client can be installed as a Ruby gem on any machine you want to use for interacting with Razor. The client makes interacting with the server from the command line easier. It lets you explore what the server knows about your infrastructure; for example, it helps avoid datatype errors, and enables you to modify how machines are provisioned by interacting with the Razor server API.
 
