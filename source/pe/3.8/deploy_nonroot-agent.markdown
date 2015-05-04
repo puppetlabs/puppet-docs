@@ -20,7 +20,7 @@ When you or another user are set up as a non-root user, you will have a reduced 
 
 > **Note**: Non-root users are not able to use PE’s orchestration capabilities to manage your nodes, and Mcollective must be disabled on all nodes.
 
-### Installation & Configuration
+## Installation & Configuration
 
 To properly configure non-root agent access, you will need to:
 
@@ -28,7 +28,7 @@ To properly configure non-root agent access, you will need to:
    * Install and configure PE agents, disable the `pe-puppet` service on all nodes, and create non-root users
    * Verify the non-root configuration
 
-#### Install and Configure a Monolithic Master
+### Install and Configure a Monolithic Master
 
 1. As a root user, install and configure a monolithic PE master. Use the [monolithic installation method](./install_pe_mono.html), or use [an answer file](./install_automated.html) to automate your installation.
 2. If you've enabled live management, disable it.
@@ -49,7 +49,7 @@ To properly configure non-root agent access, you will need to:
 
 ![Remove the pe_version rule][remove_pe_version]
 
-#### Install and Configure PE Agents and Create Non-Root Users
+### Install and Configure PE Agents and Create Non-Root Users
 
 1. On each agent node, install a PE agent while logged in as a root user. Refer to the [instructions for installing agents](/pe/latest/install_basic.html#installing-agents).
 
@@ -81,12 +81,11 @@ To properly configure non-root agent access, you will need to:
 9. As the **non-root user**, run `puppet config set certname <UNIQUE NON-ROOT USERNAME.HOSTNAME> --section agent`.
 10. As the **non-root user**, run `puppet config set server <PUPPET MASTER HOSTNAME> --section agent`.
 
-   Steps 7 and 8 create and set the configuration for the non-root agent's `puppet.conf`, created in `/.puppet` in the non-root user's home directory.
-
-		[main]
-		 certname = <UNIQUE NON-ROOT USERNAME.HOSTNAME>
-		 server = <PUPPET MASTER HOSTNAME>
-
+    Steps 7 and 8 create and set the configuration for the non-root agent's `puppet.conf`, created in `/.puppet` in the non-root user's home directory.
+    
+        [main]
+         certname = <UNIQUE NON-ROOT USERNAME.HOSTNAME>
+         server = <PUPPET MASTER HOSTNAME>
 
 11. You can now connect the non-root agent node to the master and get PE to configure it. Log into the agent node as the non-root user and run `puppet agent -t`.
 
@@ -94,7 +93,7 @@ To properly configure non-root agent access, you will need to:
 
    ![non-root user first run output][nonrootuser_first_run]
 
-#### Verify the Non-Root Configuration
+### Verify the Non-Root Configuration
 
 Check the following to make sure the agent is properly configured and functioning as desired:
 
@@ -103,7 +102,7 @@ Check the following to make sure the agent is properly configured and functionin
 - You can check the PE console to ensure that the non-root user node is not listed in the **PE MCollective** group.
 - Non-privileged users should be able to collect existing facts by running `facter` on agents, and they should be able to define new, external Facter facts.
 
-#### Install and Configure Windows Agents and Their Certificates
+## Install and Configure Windows Agents and Their Certificates
 
 If you need to run agents without admin privileges on nodes running a Windows OS, take the following steps:
 
@@ -137,7 +136,7 @@ If you need to run agents without admin privileges on nodes running a Windows OS
 
 9. On the agent node, verify that the agent is connected and working by again starting a Puppet run while logged in as the non-admin user. Running `puppet agent -t` should download and process the catalog from the master without issue.
 
-###Usage
+### Usage
 
 Non-root users can only use a subset of PE’s functionality. Basically, any operation that requires root privileges (e.g., installing system packages) cannot be managed by a non-root Puppet agent.
 
@@ -173,7 +172,7 @@ You should also be able to inspect the following resource types (use `puppet res
 * `service`
 
 
-#### Issues & Warnings
+## Issues & Warnings
 
  - When running a cron job as non-root user, using the `-u` flag to set a user with root privileges will cause the job to fail, resulting in the following error message:
  `Notice: /Stage[main]/Main/Node[nonrootuser]/Cron[illegal_action]/ensure: created must be privileged to use -u`

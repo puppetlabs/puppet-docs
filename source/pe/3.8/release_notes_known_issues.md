@@ -482,7 +482,7 @@ We've discovered an issue in which customers running the Ubuntu 14.04 amd64 plat
 1. Follow the two steps in the previous section. 
 2. Edit `/etc/default/pe-puppetserver` and include the following:
 
-    `JAVA_ARGS="-Xms2048m -Xmx2048m -XX:MaxPermSize=256m -Djava.library.path=/lib/x86_64-linux-gnu"`
+    `JAVA_ARGS="-Xms2048m -Xmx2048m -XX:MaxPermSize=256m -Djava.library.path=/usr/java/packages/lib/amd64:/usr/lib64:/lib64:/lib:/usr/lib:/lib/x86_64-linux-gnu"`
     
 3. Run `service pe-puppetserver restart`. 
 
@@ -503,7 +503,7 @@ We've seen an issue in which Puppet agents on Solaris platforms have quit respon
 
 If you encounter this issue, log in to the Puppet master and clear the agent cert from the Solaris machine (`puppet cert clean <HOSTNAME>`), and then re-install [the Puppet agent](.//install_agents.html).
 
-### Solaris 10 and 11 Have No Default `symplink` Directory
+### Solaris 10 and 11 Have No Default `symlink` Directory
 
 Solaris 10 and 11 will not by default have the `symlink` directory in their path. Therefore, if you use one of these two platforms,  add `/usr/local/bin` to your default path.
 
