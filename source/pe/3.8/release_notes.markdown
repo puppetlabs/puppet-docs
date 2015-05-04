@@ -91,7 +91,7 @@ Live Management is deprecated in PE 3.8.0 and will be replaced by improved resou
 
 ### Some Platforms are Deprecated for PE Infrastructure Components
 
-A number of older or seldom used Puppet master platforms have been deprecated in PE 3.8 and will be removed in future versions of PE. *PE agent support on these platforms will continue*. The deprecated Puppet master platforms include all 32-bit master platforms, all Debian versions, EL 5 versions, and Ubuntu 10.04. Going forward, only 64-bit Puppet masters will be supported, but 32-bit agent support will continue to be offered. The complete list is as follows:
+Several Puppet master platforms have been deprecated in PE 3.8 and will be removed in future versions of PE. *PE agent support on these platforms will continue*. The deprecated Puppet master platforms include all 32-bit master platforms, all Debian versions, EL 5 versions, and Ubuntu 10.04. Going forward, only 64-bit Puppet masters will be supported, but 32-bit agent support will continue to be offered. The complete list is as follows:
 
 *	centos-5-i386
 * centos-5-x86_64

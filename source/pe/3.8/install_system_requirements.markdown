@@ -35,7 +35,7 @@ Microsoft Windows            | 2003, 2003R2                            | x86    
 AIX                          | 5.3, 6.1, 7.1                         | Power         | agent
 Mac OS X                     | Mavericks (10.9)                        | x86_64         | agent
 
->**Puppet Master Platform Deprecations**: A number of older or seldom used Puppet master platforms have been deprecated in PE 3.8 and will be removed in future versions of PE. *PE agent support on these platforms will continue*. The deprecated Puppet master platforms include all 32-bit master platforms, all Debian versions, EL 5 versions, and Ubuntu 10.04. Going forward, only 64-bit Puppet masters will be supported, but 32-bit agent support will continue to be offered.
+>**Puppet Master Platform Deprecations**: Several Puppet master platforms have been deprecated in PE 3.8 and will be removed in future versions of PE. *PE agent support on these platforms will continue*. The deprecated Puppet master platforms include all 32-bit master platforms, all Debian versions, EL 5 versions, and Ubuntu 10.04. Going forward, only 64-bit Puppet masters will be supported, but 32-bit agent support will continue to be offered.
 >
 >* All 32-bit versions
 >* All Debian versions
