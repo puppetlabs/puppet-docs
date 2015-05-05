@@ -29,8 +29,8 @@ defaultnav:
   /learning: /_includes/learning_nav.html
   /mcollective: /_includes/mcollective_menu.html
   /mcollective1.2: /_includes/mcollective_1.2.html
-  /pe/3.8: /_includes/pe38.html
-  /pe/3.7: /_includes/pe37.html
+  /pe/3.8: /pe/3.8/_pe_toc.html
+  /pe/3.7: /pe/3.7/_pe_toc.html
   /pe/3.3: /_includes/pe33.html
   /pe/3.2: /_includes/pe32.html
   /pe/3.1: /_includes/pe31.html
@@ -153,12 +153,22 @@ externalsources:
     repo: git://github.com/puppetlabs/puppet-server.git
     commit: origin/stable
     subdirectory: documentation
-
   puppetserver_2.0:
     url: /puppetserver/2.0
     repo: git://github.com/puppetlabs/puppet-server.git
     commit: origin/master
     subdirectory: documentation
+  pe3.7:
+    url: /pe/3.7
+    repo: git@github.com:puppetlabs/pe-docs-private.git
+    commit: origin/pe3.7
+    subdirectory: source
+  pe3.8:
+    url: /pe/3.8
+    repo: git@github.com:puppetlabs/pe-docs-private.git
+    commit: origin/pe3.8
+    subdirectory: source
+
 
 symlink_latest:
   - puppet
