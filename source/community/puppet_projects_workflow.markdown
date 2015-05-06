@@ -44,7 +44,7 @@ Here are two strategies for finding out whether your bug has already been report
    Two useful refinements are:
      - Using `author:issue-updates@puppetlabs.com` to return tickets reported to the JIRA tracker.
      - Using `author:tickets@puppetlabs.com` to return tickets reported to the old Redmine Tracker.
-   If your search turns up an open ticket in the old Redmine tracking system, please follow the directions under [Migrating Tickets from Redmine](#migrating-tickets-from-redmin) to copy the old ticket over to JIRA.
+   If your search turns up an open ticket in the old Redmine tracking system, please create a new JIRA ticket that contains an updated description with a link pointing to the Redmine ticket.
 
 If you find an existing bug within JIRA that matches your issue (even if it's a close-but-not exact match), add a comment describing what you're seeing.
 Even a simple "I'm having this exact issue" comment is helpful to determine how widespread an impact the issue has.
@@ -116,19 +116,8 @@ When you want to get update emails about bugs you did not create, you can add yo
 
 Bug tracking for Puppet projects was managed for many years using the Redmine bugtracker hosted at <http://projects.puppetlabs.com>.
 Going forward, all ticket activity has shifted to JIRA and Redmine has been placed in read-only mode.
-Unclosed tickets in the following Redmine projects may be automatically exported to JIRA:
 
-- [Puppet](http://projects.puppetlabs.com/projects/puppet/issues)
-- [Puppet Enterprise](http://projects.puppetlabs.com/projects/puppet-enterprise/issues)
-- [Facter](http://projects.puppetlabs.com/projects/facter/issues)
-- [Hiera](http://projects.puppetlabs.com/projects/hiera/issues)
-- [MCollective](http://projects.puppetlabs.com/projects/mcollective/issues)
-- [PuppetDB](http://projects.puppetlabs.com/projects/puppetdb/issues)
-
-Open tickets in the above projects may be migrated by clicking on the "Export this ticket to JIRA" button located above the ticket description.
-If the export is successful, the button will be replaced by a link to a newly created JIRA ticket.
-If you are experiencing an issue that appears to be covered by a closed ticket in Redmine, please submit a new ticket to JIRA by following the steps under [Submitting a Bug](#submitting-a-bug).
-After filing a new JIRA ticket, please add a link to the closed Redmine ticket you believe is related.
+If you find an old, unclosed Redmine ticket that relates to an issue that is still occurring, please create a new JIRA ticket that contains an updated description with a link pointing to the Redmine ticket.
 
 
 ## Workflow for Bugs
