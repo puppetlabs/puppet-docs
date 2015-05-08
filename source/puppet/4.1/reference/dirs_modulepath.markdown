@@ -8,8 +8,8 @@ title: "Directories: The Modulepath (Default Config)"
 [directory environments]: ./environments.html
 [env_modules]: ./environments.html#setting-up-environments-on-a-puppet-master
 [confdir]: ./dirs_confdir.html
-[basemodulepath_setting]: /references/3.7.latest/configuration.html#basemodulepath
-[modulepath_setting]: /references/3.7.latest/configuration.html#modulepath
+[basemodulepath_setting]: /references/3.8.latest/configuration.html#basemodulepath
+[modulepath_setting]: /references/3.8.latest/configuration.html#modulepath
 [environment config sections]: ./environments_classic.html#environment-config-sections
 [dynamic environments]: ./environments_classic.html#dynamic-environments
 [config_print]: ./config_print.html
@@ -17,7 +17,7 @@ title: "Directories: The Modulepath (Default Config)"
 [puppet.conf]: ./config_file_main.html
 [environment.conf]: ./config_file_environment.html
 
-The Puppet master service and the `puppet apply` command both load most of their content from modules. (See the page on [module structure and behavior][module_fundamentals] for more details.)
+The Puppet master service and the Puppet apply command both load most of their content from modules. (See the page on [module structure and behavior][module_fundamentals] for more details.)
 
 Puppet automatically loads modules from one or more directories. The list of directories Puppet will find modules in is called the **modulepath.**
 
@@ -29,13 +29,12 @@ The modulepath is a list of directories separated by the system _path-separator 
 
 It is an ordered list, with earlier directories having priority over later ones. See ["Loading Content from Modules"][inpage_loading] below.
 
-### Individual module directories within /modules
-
-Individual module directory names can only consist of letters, numbers, and underscores. Dashes and periods are **no longer valid** and will cause errors when attempting to use the module. 
 
 ## Contents
 
 Every directory in the modulepath should only contain valid Puppet modules.
+
+The names of those modules must only contain letters, numbers, and underscores. Dashes and periods are **no longer valid** and will cause errors when attempting to use the module.
 
 For details about module contents and structure, see [the documentation on modules][module_fundamentals].
 
@@ -73,11 +72,11 @@ Windows (PE and FOSS)     | `$confdir\modules`
 
 ### Examples of Default Modulepaths
 
-Default settings for a new installation of Puppet Enterprise 3.7 and higher:
+Default settings for a new installation of Puppet Enterprise 3.8 and higher:
 
 `/etc/puppetlabs/puppet/environments/production/modules:/opt/puppet/share/puppet/modules`
 
-Default settings for Puppet Enterprise 3.3 and lower or upgrades to Puppet Enterprise 3.7:
+Default settings for Puppet Enterprise 3.3 and lower or upgrades to Puppet Enterprise 3.8:
 
 `/etc/puppetlabs/puppet/modules:/opt/puppet/share/puppet/modules`
 
