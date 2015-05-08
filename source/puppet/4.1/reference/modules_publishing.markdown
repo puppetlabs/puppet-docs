@@ -53,7 +53,7 @@ This guide assumes that you have already [written a useful Puppet module][fundam
 5. Upload your module using the Puppet Forge's web interface.
 
 ###A note on module names
-Because many users have published their own versions of modules with common names ("mysql," "bacula," etc.), the Puppet Forge (Forge) requires module names to have a username prefix. That is, if a user named "puppetlabs" maintained a "mysql" module, it would be known to the Forge as "puppetlabs-mysql".**Be sure to use this long name in your module's [metadata.json file](#write-a-metadatajson-file).** 
+Because many users have published their own versions of modules with common names ("mysql," "bacula," etc.), the Puppet Forge (Forge) requires module names to have a username prefix. That is, if a user named "puppetlabs" maintained a "mysql" module, it would be known to the Forge as "puppetlabs-mysql".**Be sure to use this long name in your module's [metadata.json file](#write-a-metadatajson-file).**
 
 As of Puppet 4, your module's directory cannot share this long name, as module directory names cannot contain dashes or periods (only letters, numbers, and underscores). Using the the build action will do the right thing as long as the metadata.json is correct.
 
@@ -143,7 +143,7 @@ Your metadata.json will look something like
 * `project_page` --- A link to your module's website that will be linked on the Forge.
 * `issues_url` --- A link to your module's issue tracker.
 * `operatingsystem_support` --- A list of operating system compatibility for your module. See [Operating system compatibility in metadata.json](#operating-system-compatibility-in-metadatajson) below for more details.
-* `tags` --- A list of key words that will help others find your module (not case sensitive)(e.g. [“msyql”, “database”, “monitoring”]). Tags cannot contain whitespace. We recommend using four to six tags. Note that certain tags are prohibited, including profanity and anything resembling the `$::operatingsystem` fact, including, but not necessarily limited to: `redhat`, `centos`, `rhel`, `debian`, `ubuntu`, `solaris`, `sles`, `aix`, `windows`, `darwin`, and `osx`. Use of prohibited tags will lower your module's quality score on the Forge.
+* `tags` --- A list of key words that will help others find your module (not case sensitive)(e.g. `["msyql", "database", "monitoring"]`). Tags cannot contain whitespace. We recommend using four to six tags. Note that certain tags are prohibited, including profanity and anything resembling the `$::operatingsystem` fact, including, but not necessarily limited to: `redhat`, `centos`, `rhel`, `debian`, `ubuntu`, `solaris`, `sles`, `aix`, `windows`, `darwin`, and `osx`. Use of prohibited tags will lower your module's quality score on the Forge.
 
 #####DEPRECATED
 
@@ -220,7 +220,7 @@ In order for your module to be successfully uploaded to and displayed on the For
 
 To build your module:
 
-1. Run `# puppet module build <MODULE DIRECTORY>`. A .tar.gz package will be generated and saved in the module’s pkg/ subdirectory. For example:
+1. Run `# puppet module build <MODULE DIRECTORY>`. A .tar.gz package will be generated and saved in the module's pkg/ subdirectory. For example:
 
 ~~~
 # puppet module build /etc/puppetlabs/puppet/modules/mymodule
@@ -265,7 +265,7 @@ Whether you are uploading a brand new module or a new release of an existing mod
 Delete a Release
 ----
 
-At some point, you may want to delete a release of your module. You can accomplish this easily from the Forge's web interface. 
+At some point, you may want to delete a release of your module. You can accomplish this easily from the Forge's web interface.
 
 >**Note**
 >
@@ -281,7 +281,7 @@ Follow the steps below to delete your release:
    ![your modules button][yourmodules]
 
 3. Go to the module page of the module whose release you want to delete.
- 
+
 4. Locate **Select another release**, choose the release you want from the drop down, and click **Delete**.
 
 
@@ -297,17 +297,17 @@ Follow the steps below to delete your release:
 
 6. Click **Yes, delete it.**
 
-7. On your module page, you will see a banner confirmation of the deletion. 
+7. On your module page, you will see a banner confirmation of the deletion.
 
 
    ![confirmation banner][deleteconfirmation]
 
 
-Once you receive the confirmation banner, your release is officially deleted! 
+Once you receive the confirmation banner, your release is officially deleted!
 
 ##Downloading a Deleted Release
 
-It is still possible to download a specific release of a module, even if it has been deleted. If you check the **Select another release** drop down, the release is still an option in the menu, but is marked as deleted. 
+It is still possible to download a specific release of a module, even if it has been deleted. If you check the **Select another release** drop down, the release is still an option in the menu, but is marked as deleted.
 
    ![the deleted release is still there][deletedrelease]
 
@@ -323,7 +323,7 @@ For example, puppetlabs-appdirector has only one release. It is the only result 
 
    ![one module one release][onereleasesearch]
 
-If that one release is deleted and we search for the word 'appdirector', no results are found. 
+If that one release is deleted and we search for the word 'appdirector', no results are found.
 
    ![no module][noreleasesearch]
 

@@ -19,7 +19,7 @@ canonical: "/puppet/latest/reference/modules_fundamentals.html"
 [environment]: ./environments.html
 [templates]: /guides/templating.html
 [forge]: http://forge.puppetlabs.com
-[file_function]: /references/3.7.latest/function.html#file
+[file_function]: /references/3.8.latest/function.html#file
 [reserved names]: ./lang_reserved.html
 
 Puppet Modules
@@ -42,7 +42,7 @@ Using Modules
 
 Modules are how Puppet finds the classes and types it can use --- it automatically loads any [class][classes] or [defined type][defined_types] stored in its modules. Any of these classes or defines can be declared by name within a manifest or from an [external node classifier (ENC)][enc].
 
-~~~
+{% highlight ruby %}
     # /etc/puppetlabs/puppet/site.pp
 
     node default {
@@ -58,11 +58,11 @@ Modules are how Puppet finds the classes and types it can use --- it automatical
         options => 'Indexes MultiViews',
       }
     }
-~~~
+{% endhighlight %}
 
 Likewise, Puppet can automatically load plugins (like custom native resource types or custom facts) from modules; see ["Using Plugins"][plugins] for more details.
 
-To make a module available to Puppet, place it in one of the directories in Puppet's [modulepath][], and make sure it has an [appropriate name](#allowed-module-names). 
+To make a module available to Puppet, place it in one of the directories in Puppet's [modulepath][], and make sure it has a [valid name](#allowed-module-names).
 
 You can easily install modules written by other users with the `puppet module` subcommand. [See "Installing Modules"][installing] for details.
 
@@ -87,7 +87,7 @@ On disk, a module is simply a directory tree with a specific, predictable struct
 
 ### Example
 
-This example module, my_module, shows the standard module layout in more detail:
+This example module, `my_module`, shows the standard module layout in more detail:
 
 * `my_module` --- This outermost directory's name matches the name of the module.
     * `manifests/` --- Contains all of the manifests in the module.
@@ -103,6 +103,7 @@ This example module, my_module, shows the standard module layout in more detail:
     * `facts.d/` --- Contains [external facts][], which are an alternative to Ruby-based [custom facts][]. These will be synced to all agent nodes, so they can submit values for those facts to the Puppet master. (Requires Facter 2.0.1 or later.)
     * `templates/` --- Contains templates, which the module's manifests can use. See ["Templates"][templates] for more details.
         * `component.erb` --- A manifest can render this template with `template('my_module/component.erb')`.
+        * `component.epp` --- A manifest can render this template with `epp('my_module/component.epp')`. (The `epp` function is only available with the future parser enabled.)
     * `examples/` --- Contains examples showing how to declare the module's classes and defined types.
         * `init.pp`
         * `other_example.pp` --- Major use cases should have an example.
@@ -138,13 +139,13 @@ Certain module names are disallowed, see the list of [reserved words and names][
 
 ### Files
 
-Files in a module's `files` directory can be served to agent nodes. They can be downloaded by using 'puppet:///' URLs in the `source` attribute of a [`file`][file] resource.
+Files in a module's `files` directory can be served to agent nodes. They can be downloaded by using `puppet:///` URLs in the `source` attribute of a [`file`][file] resource.
 
 You can also access module files with [the `file` function][file_function]. This function takes a `<MODULE NAME>/<FILE NAME>` reference and returns the content of the requested file from the module's `files` directory.
 
 Puppet URLs work transparently in both agent/master mode and standalone mode; in either case, they will retrieve the correct file from a module.
 
-[file]: /references/stable/type.html#file
+[file]: /references/3.8.latest/type.html#file
 
 Puppet URLs are formatted as follows:
 
@@ -156,15 +157,16 @@ So `puppet:///modules/my_module/service.conf` would map to `my_module/files/serv
 
 ### Templates
 
-Any ERB template (see ["Templates"][templates] for more details) can be rendered in a manifest with the `template` function. The output of the template is a simple string, which can be used as the content attribute of a [`file`][file] resource or as the value of a variable.
+Any ERB or EPP template (see ["Templates"][templates] for more details) can be rendered in a manifest with the `template` function (for ERB templates which use Ruby) or the `epp` function (for EPP templates, which use the Puppet language; only available when the future parser is enabled). The output of the template is a string, which can be used as the content attribute of a [`file`][file] resource or as the value of a variable.
 
-The template function can look up templates identified by shorthand:
+The `template` and `epp` functions can look up templates identified by shorthand:
 
 Template function | (' | Name of module/ | Name of template | ')
 ------------------|----|-----------------|------------------|----
     `template`    |`('`|   `my_module/`  | `component.erb`  |`')`
+    `epp`         |`('`|   `my_module/`  | `component.epp`  |`')`
 
-So `template('my_module/component.erb')` would render the template `my_module/templates/component.erb`.
+So `template('my_module/component.erb')` would render the template `my_module/templates/component.erb`, and `epp('my_module/component.epp')` would render `my_module/templates/component.epp`.
 
 
 Writing Modules
@@ -241,7 +243,7 @@ mymodule/tests
 mymodule/tests/init.pp
 ~~~
 
->**NOTE:** The `tests` directory is being deprecated in favor of `examples`. If you've just generated your module, you should rename the directory to `examples`. 
+>**NOTE:** The `tests` directory is being deprecated in favor of `examples`. If you've just generated your module, you should rename the directory to `examples`.
 
 For help getting started writing your module, please see the [Beginner's Guide to Modules](/guides/module_guides/bgtm.html).
 
