@@ -1,7 +1,7 @@
 ---
 layout: default
-title: "Future Parser: Namespaces and Autoloading"
-canonical: "/puppet/latest/reference/future_lang_namespaces.html"
+title: "Language: Namespaces and Autoloading"
+canonical: "/puppet/latest/reference/lang_namespaces.html"
 ---
 
 [classes]: ./future_lang_classes.html

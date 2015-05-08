@@ -1,7 +1,7 @@
 ---
 layout: default
-title: "Future Parser: Resources (Advanced)"
-canonical: "/puppet/latest/reference/future_lang_resources_advanced.html"
+title: "Language: Resources (Advanced)"
+canonical: "/puppet/latest/reference/lang_resources_advanced.html"
 ---
 
 

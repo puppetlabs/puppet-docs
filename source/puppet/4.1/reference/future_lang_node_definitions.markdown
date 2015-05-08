@@ -1,7 +1,7 @@
 ---
 layout: default
-title: "Future Language: Node Definitions"
-canonical: "/puppet/latest/reference/future_lang_node_definitions.html"
+title: "Language: Node Definitions"
+canonical: "/puppet/latest/reference/lang_node_definitions.html"
 ---
 
 [hiera]: /hiera/latest

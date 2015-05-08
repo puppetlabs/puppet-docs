@@ -1,7 +1,7 @@
 ---
 layout: default
-title: "Future Parser: Data Types: Arrays"
-canonical: "/puppet/latest/reference/future_lang_data_array.html"
+title: "Language: Data Types: Arrays"
+canonical: "/puppet/latest/reference/lang_data_array.html"
 ---
 
 [undef]: ./future_lang_data_undef.html

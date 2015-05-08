@@ -1,7 +1,7 @@
 ---
 layout: default
-title: "Future Parser: Containment of Resources"
-canonical: "/puppet/latest/reference/future_lang_containment.html"
+title: "Language: Containment of Resources"
+canonical: "/puppet/latest/reference/lang_containment.html"
 ---
 
 [stdlib]: http://forge.puppetlabs.com/puppetlabs/stdlib

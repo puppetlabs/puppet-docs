@@ -1,7 +1,7 @@
 ---
 layout: default
-title: "Future Parser: Reserved Words and Acceptable Names"
-canonical: "/puppet/latest/reference/future_lang_reserved.html"
+title: "Language: Reserved Words and Acceptable Names"
+canonical: "/puppet/latest/reference/lang_reserved.html"
 ---
 
 [settings]: ./config_about_settings.html

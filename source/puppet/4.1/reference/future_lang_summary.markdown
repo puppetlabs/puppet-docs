@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Future Parser: Basics"
+title: "Language: Basics"
 canonical: "/puppet/latest/reference/lang_summary.html"
 ---
 

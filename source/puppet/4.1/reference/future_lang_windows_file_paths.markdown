@@ -1,7 +1,7 @@
 ---
 layout: default
-title: "Future Parser: Handling File Paths on Windows"
-canonical: "/puppet/latest/reference/future_lang_windows_file_paths.html"
+title: "Language: Handling File Paths on Windows"
+canonical: "/puppet/latest/reference/lang_windows_file_paths.html"
 ---
 
 [template]: /guides/templating.html

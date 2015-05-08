@@ -1,7 +1,7 @@
 ---
 layout: default
-title: "Future Parser: Exported Resources"
-canonical: "/puppet/latest/reference/future_lang_exported.html"
+title: "Language: Exported Resources"
+canonical: "/puppet/latest/reference/lang_exported.html"
 ---
 
 [resources]: ./future_lang_resources.html

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Future Parser: Tags"
+title: "Language: Tags"
 canonical: "/puppet/latest/reference/lang_tags.html"
 ---
 

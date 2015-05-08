@@ -1,7 +1,7 @@
 ---
 layout: default
-title: "Future Parser: Data Types: Default"
-canonical: "/puppet/latest/reference/future_lang_data_default.html"
+title: "Language: Data Types: Default"
+canonical: "/puppet/latest/reference/lang_data_default.html"
 ---
 
 [case statements]: ./future_lang_conditional.html#case-statements

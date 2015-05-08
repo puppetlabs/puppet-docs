@@ -1,7 +1,7 @@
 ---
 layout: default
-title: "Future Parser: Relationships and Ordering"
-canonical: "/puppet/latest/reference/future_lang_relationships.html"
+title: "Language: Relationships and Ordering"
+canonical: "/puppet/latest/reference/lang_relationships.html"
 ---
 
 [virtual]: ./future_lang_virtual.html

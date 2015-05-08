@@ -1,7 +1,7 @@
 ---
 layout: default
-title: "Future Parser: Data Types: Resource Types"
-canonical: "/puppet/latest/reference/future_lang_data_resource_type.html"
+title: "Language: Data Types: Resource Types"
+canonical: "/puppet/latest/reference/lang_data_resource_type.html"
 ---
 
 [data type]: ./future_lang_data_type.html

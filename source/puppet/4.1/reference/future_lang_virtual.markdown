@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Future Parser: Virtual Resources"
+title: "Language: Virtual Resources"
 canonical: "/puppet/latest/reference/lang_virtual.html"
 ---
 

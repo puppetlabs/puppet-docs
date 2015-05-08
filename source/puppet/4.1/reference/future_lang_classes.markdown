@@ -1,7 +1,7 @@
 ---
 layout: default
-title: "Future Parser: Classes"
-canonical: "/puppet/latest/reference/future_lang_classes.html"
+title: "Language: Classes"
+canonical: "/puppet/latest/reference/lang_classes.html"
 ---
 
 [literal_types]: ./future_lang_data_type.html

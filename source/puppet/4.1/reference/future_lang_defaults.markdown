@@ -1,7 +1,7 @@
 ---
 layout: default
-title: "Future Parser: Resource Default Statements"
-canonical: "/puppet/latest/reference/future_lang_defaults.html"
+title: "Language: Resource Default Statements"
+canonical: "/puppet/latest/reference/lang_defaults.html"
 ---
 
 [sitemanifest]: ./dirs_manifest.html

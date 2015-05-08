@@ -1,7 +1,7 @@
 ---
 layout: default
-title: "Future Parser: Variables"
-canonical: "/puppet/latest/reference/future_lang_variables.html"
+title: "Language: Variables"
+canonical: "/puppet/latest/reference/lang_variables.html"
 ---
 
 

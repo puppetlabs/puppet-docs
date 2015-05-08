@@ -1,7 +1,7 @@
 ---
 layout: default
-title: "Future Parser: Data Types: Strings"
-canonical: "/puppet/latest/reference/future_lang_data_string.html"
+title: "Language: Data Types: Strings"
+canonical: "/puppet/latest/reference/lang_data_string.html"
 ---
 
 [variables]: ./future_lang_variables.html

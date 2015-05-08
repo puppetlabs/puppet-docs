@@ -1,7 +1,7 @@
 ---
 layout: default
-title: "Future Parser: Resource Collectors"
-canonical: "/puppet/latest/reference/future_lang_collectors.html"
+title: "Language: Resource Collectors"
+canonical: "/puppet/latest/reference/lang_collectors.html"
 ---
 
 [virtual]: ./future_lang_virtual.html

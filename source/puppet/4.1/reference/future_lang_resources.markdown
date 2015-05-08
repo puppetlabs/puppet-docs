@@ -1,7 +1,7 @@
 ---
 layout: default
-title: "Future Parser: Resources"
-canonical: "/puppet/latest/reference/future_lang_resources.html"
+title: "Language: Resources"
+canonical: "/puppet/latest/reference/lang_resources.html"
 ---
 
 [realize]: ./future_lang_virtual.html#syntax

@@ -1,7 +1,7 @@
 ---
 layout: default
-title: "Future Parser: About Values and Data Types"
-canonical: "/puppet/latest/reference/future_lang_data.html"
+title: "Language: About Values and Data Types"
+canonical: "/puppet/latest/reference/lang_data.html"
 ---
 
 

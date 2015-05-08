@@ -1,7 +1,7 @@
 ---
-title: "Future Parser: Expressions and Operators"
+title: "Language: Expressions and Operators"
 layout: default
-canonical: "/puppet/latest/reference/future_lang_expressions.html"
+canonical: "/puppet/latest/reference/lang_expressions.html"
 ---
 
 [datatypes]: ./future_lang_data.html
