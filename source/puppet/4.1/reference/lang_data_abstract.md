@@ -4,15 +4,15 @@ title: "Language: Data Types: Abstract Data Types"
 canonical: "/puppet/latest/reference/lang_data_abstract.html"
 ---
 
-[types]: ./future_lang_data_type.html
-[data types]: ./future_lang_data.html
-[strings]: ./future_lang_data_string.html
-[regular expressions]: ./future_lang_data_regexp.html
-[booleans]: ./future_lang_data_boolean.html
-[arrays]: ./future_lang_data_array.html
-[hashes]: ./future_lang_data_hash.html
-[hash_missing_key_access]: ./future_lang_data_hash.html#accessing-values
-[numbers]: ./future_lang_data_number.html
+[types]: ./lang_data_type.html
+[data types]: ./lang_data.html
+[strings]: ./lang_data_string.html
+[regular expressions]: ./lang_data_regexp.html
+[booleans]: ./lang_data_boolean.html
+[arrays]: ./lang_data_array.html
+[hashes]: ./lang_data_hash.html
+[hash_missing_key_access]: ./lang_data_hash.html#accessing-values
+[numbers]: ./lang_data_number.html
 
 As described in [the Data Type Syntax][types] page, each of Puppet's main [data types][] has a corresponding value that _represents_ that data type, which can be used to match values of that type in several contexts. (For example, `String` or `Array`.)
 

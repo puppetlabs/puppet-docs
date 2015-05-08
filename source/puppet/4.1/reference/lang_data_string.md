@@ -4,24 +4,24 @@ title: "Language: Data Types: Strings"
 canonical: "/puppet/latest/reference/lang_data_string.html"
 ---
 
-[variables]: ./future_lang_variables.html
-[expression]: ./future_lang_expressions.html
-[reserved]: ./future_lang_reserved.html#reserved-words
-[data type]: ./future_lang_data_type.html
-[enum]: ./future_lang_data_abstract.html#enum
-[pattern]: ./future_lang_data_abstract.html#pattern
-[function_statement]: ./future_lang_functions.html#statement-function-calls
-[function_chain]: ./future_lang_functions.html#chained-function-calls
-[hash access]: ./future_lang_data_hash.html#accessing-values
-[array access]: ./future_lang_data_array.html#accessing-values
-[undef]: ./future_lang_data_undef.html
-[boolean]: ./future_lang_data_boolean.html
-[number]: ./future_lang_data_number.html
+[variables]: ./lang_variables.html
+[expression]: ./lang_expressions.html
+[reserved]: ./lang_reserved.html#reserved-words
+[data type]: ./lang_data_type.html
+[enum]: ./lang_data_abstract.html#enum
+[pattern]: ./lang_data_abstract.html#pattern
+[function_statement]: ./lang_functions.html#statement-function-calls
+[function_chain]: ./lang_functions.html#chained-function-calls
+[hash access]: ./lang_data_hash.html#accessing-values
+[array access]: ./lang_data_array.html#accessing-values
+[undef]: ./lang_data_undef.html
+[boolean]: ./lang_data_boolean.html
+[number]: ./lang_data_number.html
 [sprintf]: /references/3.8.latest/function.html#sprintf
-[regular expression]: ./future_lang_data_regexp.html
-[resource reference]: ./future_lang_data_resource_reference.html
-[array]: ./future_lang_data_array.html
-[hash]: ./future_lang_data_hash.html
+[regular expression]: ./lang_data_regexp.html
+[resource reference]: ./lang_data_resource_reference.html
+[array]: ./lang_data_array.html
+[hash]: ./lang_data_hash.html
 
 Strings are unstructured text fragments of any length. They're probably the most common and useful data type.
 
@@ -51,7 +51,7 @@ To be treated as a string, a bare word must:
 * Begin with a lower case letter, and contain only letters, digits, hyphens (`-`), and underscores (`_`).
 * Not be a [reserved word][reserved]
 
-Unquoted words that begin with upper case letters are interpreted as [data types](./future_lang_data_type.html) or [resource references](./future_lang_data_resource_reference.html), not strings.
+Unquoted words that begin with upper case letters are interpreted as [data types](./lang_data_type.html) or [resource references](./lang_data_resource_reference.html), not strings.
 
 Bare word strings can't interpolate values and can't use escape sequences.
 

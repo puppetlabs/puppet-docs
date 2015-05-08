@@ -4,16 +4,16 @@ layout: default
 canonical: "/puppet/latest/reference/lang_lambdas.html"
 ---
 
-[define_unique]: ./future_lang_defined_types.html#resource-uniqueness
-[functions]: ./future_lang_functions.html
-[literal_types]: ./future_lang_data_type.html
-[variable]: ./future_lang_variables.html
-[defined type]: ./future_lang_defined_types.html
-[resources]: ./future_lang_resources.html
-[local scope]: ./future_lang_scope.html#local-scopes
-[callable]: ./future_lang_data_abstract.html#callable
-[array]: ./future_lang_data_array.html
-[iteration]: ./future_lang_iteration.html
+[define_unique]: ./lang_defined_types.html#resource-uniqueness
+[functions]: ./lang_functions.html
+[literal_types]: ./lang_data_type.html
+[variable]: ./lang_variables.html
+[defined type]: ./lang_defined_types.html
+[resources]: ./lang_resources.html
+[local scope]: ./lang_scope.html#local-scopes
+[callable]: ./lang_data_abstract.html#callable
+[array]: ./lang_data_array.html
+[iteration]: ./lang_iteration.html
 
 Lambdas are blocks of Puppet code that can be passed to [functions][]. When a function receives a lambda, it can provide values for the lambda's parameters and evaluate its code.
 

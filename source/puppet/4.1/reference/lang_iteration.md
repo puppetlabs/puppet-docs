@@ -4,18 +4,18 @@ layout: default
 canonical: "/puppet/latest/reference/lang_iteration.html"
 ---
 
-[functions]: ./future_lang_functions.html
-[lambdas]: ./future_lang_lambdas.html
+[functions]: ./lang_functions.html
+[lambdas]: ./lang_lambdas.html
 [each]: /references/3.8.latest/function.html#each
 [slice]: /references/3.8.latest/function.html#slice
 [filter]: /references/3.8.latest/function.html#filter
 [map]: /references/3.8.latest/function.html#map
 [reduce]: /references/3.8.latest/function.html#reduce
 [with]: /references/3.8.latest/function.html#with
-[array]: ./future_lang_data_array.html
-[hash]: ./future_lang_data_hash.html
-[defined types]: ./future_lang_defined_types
-[array_titles]: ./future_lang_resources_advanced.html#arrays-of-titles
+[array]: ./lang_data_array.html
+[hash]: ./lang_data_hash.html
+[defined types]: ./lang_defined_types
+[array_titles]: ./lang_resources_advanced.html#arrays-of-titles
 
 
 The Puppet language has looping and iteration features, which can help you write more succinct code and use data more effectively.

@@ -4,17 +4,17 @@ title: "Language: Virtual Resources"
 canonical: "/puppet/latest/reference/lang_virtual.html"
 ---
 
-[resources]: ./future_lang_resources.html
-[references]: ./future_lang_data_resource_reference.html
-[classes]: ./future_lang_classes.html
+[resources]: ./lang_resources.html
+[references]: ./lang_data_resource_reference.html
+[classes]: ./lang_classes.html
 [realize_function]: /references/3.8.latest/function.html#realize
-[include]: ./future_lang_classes.html#using-include
-[collectors]: ./future_lang_collectors.html
-[search_expression]: ./future_lang_collectors.html#search-expressions
-[override]: ./future_lang_resources_advanced.html#amending-attributes-with-a-collector
-[chaining]: ./future_lang_relationships.html#chaining-arrows
+[include]: ./lang_classes.html#using-include
+[collectors]: ./lang_collectors.html
+[search_expression]: ./lang_collectors.html#search-expressions
+[override]: ./lang_resources_advanced.html#amending-attributes-with-a-collector
+[chaining]: ./lang_relationships.html#chaining-arrows
 [virtual_guide]: /guides/virtual_resources.html
-[catalog]: ./future_lang_summary.html#compilation-and-catalogs
+[catalog]: ./lang_summary.html#compilation-and-catalogs
 
 
 A **virtual resource declaration** specifies a desired state for a resource **without** adding it to the [catalog][]. You can then add the resource to the catalog by **realizing** it elsewhere in your manifests. This splits the work done by a normal [resource declaration][resources] into two steps.
@@ -128,4 +128,4 @@ You may declare virtual resources of defined resource types. This will cause eve
 
 ### Run Stages
 
-Virtual resources will be evaluated in the [run stage](./future_lang_run_stages.html) in which they are **declared,** not the run stage in which they are **realized.**
+Virtual resources will be evaluated in the [run stage](./lang_run_stages.html) in which they are **declared,** not the run stage in which they are **realized.**

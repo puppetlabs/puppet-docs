@@ -5,12 +5,12 @@ canonical: "/puppet/latest/reference/lang_data_undef.html"
 ---
 
 
-[resourcedefault]: ./future_lang_defaults.html
-[data type]: ./future_lang_data_type.html
-[data]: ./future_lang_data_abstract.html#data
-[any]: ./future_lang_data_abstract.html#any
-[optional]: ./future_lang_data_abstract.html#optional
-[variant]: ./future_lang_data_abstract.html#variant
+[resourcedefault]: ./lang_defaults.html
+[data type]: ./lang_data_type.html
+[data]: ./lang_data_abstract.html#data
+[any]: ./lang_data_abstract.html#any
+[optional]: ./lang_data_abstract.html#optional
+[variant]: ./lang_data_abstract.html#variant
 
 Puppet's special `undef` value is roughly equivalent to `nil` in Ruby; it represents the absence of a value. If the `strict_variables` setting isn't enabled, variables which have never been declared have a value of `undef`.
 

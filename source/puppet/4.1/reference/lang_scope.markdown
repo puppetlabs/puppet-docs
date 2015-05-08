@@ -4,21 +4,21 @@ title: "Language: Scope"
 canonical: "/puppet/latest/reference/lang_scope.html"
 ---
 
-[resources]: ./future_lang_resources.html
-[refs]: ./future_lang_data_resource_reference.html
-[class]: ./future_lang_classes.html
-[definedtype]: ./future_lang_defined_types.html
-[node]: ./future_lang_node_definitions.html
-[resourcedefaults]: ./future_lang_defaults.html
-[declare_class]: ./future_lang_classes.html#declaring-classes
+[resources]: ./lang_resources.html
+[refs]: ./lang_data_resource_reference.html
+[class]: ./lang_classes.html
+[definedtype]: ./lang_defined_types.html
+[node]: ./lang_node_definitions.html
+[resourcedefaults]: ./lang_defaults.html
+[declare_class]: ./lang_classes.html#declaring-classes
 [lookup]: #scope-lookup-rules
 [enc]: /guides/external_nodes.html
-[inheritance]: ./future_lang_classes.html#inheritance
+[inheritance]: ./lang_classes.html#inheritance
 [scopedoc]: /guides/scope_and_puppet.html
-[variables]: ./future_lang_variables.html
-[namespace]: ./future_lang_namespaces.html
+[variables]: ./lang_variables.html
+[namespace]: ./lang_namespaces.html
 [diagram]: ./images/scope-euler-diagram.png
-[lambda]: ./future_lang_lambdas.html
+[lambda]: ./lang_lambdas.html
 
 Scope Basics
 -----

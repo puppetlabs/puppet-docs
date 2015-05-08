@@ -4,35 +4,35 @@ title: "Language: Data Types: Data Type Syntax"
 canonical: "/puppet/latest/reference/lang_data_type.html"
 ---
 
-[classes]: ./future_lang_classes.html
-[defined types]: ./future_lang_defined_types.html
+[classes]: ./lang_classes.html
+[defined types]: ./lang_defined_types.html
 [lambdas]: TODO
-[case statements]: ./future_lang_conditional.html#case-statements
-[selector expressions]: ./future_lang_conditional.html#selectors
-[match_operator]: ./future_lang_expressions.html#regex-or-data-type-match
-[strings]: ./future_lang_data_string.html
+[case statements]: ./lang_conditional.html#case-statements
+[selector expressions]: ./lang_conditional.html#selectors
+[match_operator]: ./lang_expressions.html#regex-or-data-type-match
+[strings]: ./lang_data_string.html
 [assert_type]: /references/3.8.latest/function.html#asserttype
-[number]: ./future_lang_data_number.html
-[boolean]: ./future_lang_data_boolean.html
-[array]: ./future_lang_data_array.html
-[hash]: ./future_lang_data_hash.html
-[regexp]: ./future_lang_data_regexp.html
-[undef]: ./future_lang_data_undef.html
-[default]: ./future_lang_data_default.html
-[resource_reference]: ./future_lang_data_resource_reference.html
-[scalar]: ./future_lang_data_abstract.html#scalar
-[collection]: ./future_lang_data_abstract.html#collection
-[variant]: ./future_lang_data_abstract.html#variant
-[data]: ./future_lang_data_abstract.html#data
-[pattern]: ./future_lang_data_abstract.html#pattern
-[enum]: ./future_lang_data_abstract.html#enum
-[tuple]: ./future_lang_data_abstract.html#tuple
-[struct]: ./future_lang_data_abstract.html#struct
-[optional]: ./future_lang_data_abstract.html#optional
-[catalogentry]: ./future_lang_data_abstract.html#catalogentry
-[type]: ./future_lang_data_abstract.html#type
-[any]: ./future_lang_data_abstract.html#any
-[callable]: ./future_lang_data_abstract.html#callable
+[number]: ./lang_data_number.html
+[boolean]: ./lang_data_boolean.html
+[array]: ./lang_data_array.html
+[hash]: ./lang_data_hash.html
+[regexp]: ./lang_data_regexp.html
+[undef]: ./lang_data_undef.html
+[default]: ./lang_data_default.html
+[resource_reference]: ./lang_data_resource_reference.html
+[scalar]: ./lang_data_abstract.html#scalar
+[collection]: ./lang_data_abstract.html#collection
+[variant]: ./lang_data_abstract.html#variant
+[data]: ./lang_data_abstract.html#data
+[pattern]: ./lang_data_abstract.html#pattern
+[enum]: ./lang_data_abstract.html#enum
+[tuple]: ./lang_data_abstract.html#tuple
+[struct]: ./lang_data_abstract.html#struct
+[optional]: ./lang_data_abstract.html#optional
+[catalogentry]: ./lang_data_abstract.html#catalogentry
+[type]: ./lang_data_abstract.html#type
+[any]: ./lang_data_abstract.html#any
+[callable]: ./lang_data_abstract.html#callable
 [stdlib]: https://forge.puppetlabs.com/puppetlabs/stdlib
 
 Each value in the Puppet language has a data type, like "string." There is also a set of values _whose data type is "data type."_

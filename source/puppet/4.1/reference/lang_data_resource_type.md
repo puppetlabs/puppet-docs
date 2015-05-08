@@ -4,13 +4,13 @@ title: "Language: Data Types: Resource Types"
 canonical: "/puppet/latest/reference/lang_data_resource_type.html"
 ---
 
-[data type]: ./future_lang_data_type.html
-[resource reference]: ./future_lang_data_resource_reference.html
-[resource declaration]: ./future_lang_resources.html
-[resource default statement]: ./future_lang_defaults.html
-[classes]: ./future_lang_classes.html
-[class reference]: ./future_lang_data_resource_reference.html#class-references
-[catalogentry]: ./future_lang_data_abstract.html#catalogentry
+[data type]: ./lang_data_type.html
+[resource reference]: ./lang_data_resource_reference.html
+[resource declaration]: ./lang_resources.html
+[resource default statement]: ./lang_defaults.html
+[classes]: ./lang_classes.html
+[class reference]: ./lang_data_resource_reference.html#class-references
+[catalogentry]: ./lang_data_abstract.html#catalogentry
 
 Resource types are a special family of [data types][data type] that behave kind of weirdly. They are all subtypes of the fairly abstract `Resource` data type. [Resource references][resource reference] are a more useful subset of this data type family.
 

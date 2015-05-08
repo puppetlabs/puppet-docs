@@ -4,14 +4,14 @@ title: "Language: Data Types: Booleans"
 canonical: "/puppet/latest/reference/lang_data_boolean.html"
 ---
 
-[if]: ./future_lang_conditional.html#if-statements
-[comparison]: ./future_lang_expressions.html#comparison-operators
+[if]: ./lang_conditional.html#if-statements
+[comparison]: ./lang_expressions.html#comparison-operators
 [stdlib]: http://forge.puppetlabs.com/puppetlabs/stdlib
-[facts]: ./future_lang_variables.html#facts
-[fact_datatypes]: ./future_lang_facts_and_builtin_vars.html#data-types
-[function]: ./future_lang_functions.html
-[abstract types]: ./future_lang_data_abstract.html
-[data type]: ./future_lang_data_type.html
+[facts]: ./lang_variables.html#facts
+[fact_datatypes]: ./lang_facts_and_builtin_vars.html#data-types
+[function]: ./lang_functions.html
+[abstract types]: ./lang_data_abstract.html
+[data type]: ./lang_data_type.html
 
 
 Booleans are one-bit values, representing true or false.

@@ -8,12 +8,12 @@ canonical: "/puppet/latest/reference/lang_functions.html"
 [forge]: https://forge.puppetlabs.com
 [custom]: /guides/custom_functions.html
 [stdlib]: https://forge.puppetlabs.com/puppetlabs/stdlib
-[resource]: ./future_lang_resources.html
+[resource]: ./lang_resources.html
 [custom_facts]: /facter/latest/custom_facts.html
-[datatype]: ./future_lang_data.html
-[catalog]: ./future_lang_summary.html#compilation-and-catalogs
-[lambda]: ./future_lang_lambdas.html
-[expression]: ./future_lang_expressions.html
+[datatype]: ./lang_data.html
+[catalog]: ./lang_summary.html#compilation-and-catalogs
+[lambda]: ./lang_lambdas.html
+[expression]: ./lang_expressions.html
 [template]: /references/3.8.latest/function.html#template
 [str2bool]: https://forge.puppetlabs.com/puppetlabs/stdlib#str2bool
 [include]: /references/3.8.latest/function.html#include

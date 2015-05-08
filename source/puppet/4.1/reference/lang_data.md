@@ -18,15 +18,15 @@ Strings are the most common and useful data type, but you'll also have to work w
 
 ## Puppet's Data Types
 
-* [Strings](./future_lang_data_string.html)
-* [Numbers](./future_lang_data_number.html)
-* [Booleans](./future_lang_data_boolean.html)
-* [Arrays](./future_lang_data_array.html)
-* [Hashes](./future_lang_data_hash.html)
-* [Regular Expressions](./future_lang_data_regexp.html)
-* [Undef](./future_lang_data_undef.html)
-* [Resource References](./future_lang_data_resource_reference.html)
-* [Default](./future_lang_data_default.html)
+* [Strings](./lang_data_string.html)
+* [Numbers](./lang_data_number.html)
+* [Booleans](./lang_data_boolean.html)
+* [Arrays](./lang_data_array.html)
+* [Hashes](./lang_data_hash.html)
+* [Regular Expressions](./lang_data_regexp.html)
+* [Undef](./lang_data_undef.html)
+* [Resource References](./lang_data_resource_reference.html)
+* [Default](./lang_data_default.html)
 
 ## Literal Data Types as Values
 
@@ -36,11 +36,11 @@ You can use these special values to examine a piece of data or enforce rules. Mo
 
 For the syntax and behavior of literal data types, see:
 
-* [Data Type Syntax](./future_lang_data_type.html)
+* [Data Type Syntax](./lang_data_type.html)
 
 For info about each type's behavior, see the main data type pages listed above. Each of these pages gives details about using that data type as a value.
 
 For special abstract data types, which you can use to do more sophisticated or permissive type checking, see:
 
-* [Abstract Data Types](./future_lang_data_abstract.html)
+* [Abstract Data Types](./lang_data_abstract.html)
 

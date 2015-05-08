@@ -4,22 +4,22 @@ title: "Language: Resource Collectors"
 canonical: "/puppet/latest/reference/lang_collectors.html"
 ---
 
-[virtual]: ./future_lang_virtual.html
-[realize]: ./future_lang_virtual.html#syntax
-[exported]: ./future_lang_exported.html
+[virtual]: ./lang_virtual.html
+[realize]: ./lang_virtual.html#syntax
+[exported]: ./lang_exported.html
 [puppetdb]: /puppetdb/
 [puppetdb_install]: /puppetdb/latest/install_via_module.html
 [puppetdb_connect]: /puppetdb/latest/connect_puppet_master.html
-[chaining]: ./future_lang_relationships.html#chaining-arrows
-[attribute]: ./future_lang_resources.html#attributes
-[expressions]: ./future_lang_expressions.html
-[string]: ./future_lang_data_string.html
-[boolean]: ./future_lang_data_boolean.html
-[number]: ./future_lang_data_number.html
-[reference]: ./future_lang_data_resource_reference.html
-[undef]: ./future_lang_data_undef.html
-[amend]: ./future_lang_resources_advanced.html#amending-attributes-with-a-collector
-[catalog]: ./future_lang_summary.html#compilation-and-catalogs
+[chaining]: ./lang_relationships.html#chaining-arrows
+[attribute]: ./lang_resources.html#attributes
+[expressions]: ./lang_expressions.html
+[string]: ./lang_data_string.html
+[boolean]: ./lang_data_boolean.html
+[number]: ./lang_data_number.html
+[reference]: ./lang_data_resource_reference.html
+[undef]: ./lang_data_undef.html
+[amend]: ./lang_resources_advanced.html#amending-attributes-with-a-collector
+[catalog]: ./lang_summary.html#compilation-and-catalogs
 
 
 Resource collectors (AKA the spaceship operator) select a group of resources by searching the attributes of every resource in the [catalog][]. This search is independent of evaluation-order (that is, it even includes resources which haven't yet been declared at the time the collector is written). Collectors realize [virtual resources][virtual], can be used in [chaining statements][chaining], and can override resource attributes.

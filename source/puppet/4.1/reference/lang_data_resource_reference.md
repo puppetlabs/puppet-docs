@@ -4,15 +4,15 @@ title: "Language: Data Types: Resource and Class References"
 canonical: "/puppet/latest/reference/lang_data_resource_reference.html"
 ---
 
-[relationship]: ./future_lang_relationships.html
-[chaining]: ./future_lang_relationships.html#chaining-arrows
-[attribute_override]: ./future_lang_resources_advanced.html#adding-or-modifying-attributes
-[string]: ./future_lang_data_string.html
-[undef]: ./future_lang_data_undef.html
-[data type]: ./future_lang_data_type.html
-[resource_types]: ./future_lang_data_resource_type.html
-[hash access]: ./future_lang_data_hash.html#accessing-values
-[resource]: ./future_lang_resources.html
+[relationship]: ./lang_relationships.html
+[chaining]: ./lang_relationships.html#chaining-arrows
+[attribute_override]: ./lang_resources_advanced.html#adding-or-modifying-attributes
+[string]: ./lang_data_string.html
+[undef]: ./lang_data_undef.html
+[data type]: ./lang_data_type.html
+[resource_types]: ./lang_data_resource_type.html
+[hash access]: ./lang_data_hash.html#accessing-values
+[resource]: ./lang_resources.html
 
 Resource references identify a specific Puppet [resource][] by its type and title. Several attributes, such as the [relationship][] metaparameters, require resource references.
 

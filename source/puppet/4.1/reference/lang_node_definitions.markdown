@@ -7,20 +7,20 @@ canonical: "/puppet/latest/reference/lang_node_definitions.html"
 [hiera]: /hiera/latest
 [sitepp]: ./dirs_manifest.html
 [certname]: ./config_important_settings.html#basics
-[classes]: ./future_lang_classes.html
-[nodescope]: ./future_lang_scope.html#node-scope
-[topscope]: ./future_lang_scope.html#top-scope
+[classes]: ./lang_classes.html
+[nodescope]: ./lang_scope.html#node-scope
+[topscope]: ./lang_scope.html#top-scope
 [extlookup]: /references/3.8.latest/function.html#extlookup
 [custom_functions]: /guides/custom_functions.html
-[regex]: ./future_lang_data_regexp.html
-[strings]: ./future_lang_data_string.html
-[inherit]: ./future_lang_classes.html#inheritance
+[regex]: ./lang_data_regexp.html
+[strings]: ./lang_data_string.html
+[inherit]: ./lang_classes.html#inheritance
 [modules]: ./modules_fundamentals.html
 [enc]: /guides/external_nodes.html
-[facts]: ./future_lang_variables.html#facts-and-built-in-variables
-[catalogs]: ./future_lang_summary.html#compilation-and-catalogs
+[facts]: ./lang_variables.html#facts-and-built-in-variables
+[catalogs]: ./lang_summary.html#compilation-and-catalogs
 [strict]: /references/3.8.latest/configuration.html#stricthostnamechecking
-[conditional]: ./future_lang_conditional.html
+[conditional]: ./lang_conditional.html
 
 
 A **node definition** or **node statement** is a block of Puppet code that will only be included in matching nodes' [catalogs][]. This feature allows you to assign specific configurations to specific nodes.

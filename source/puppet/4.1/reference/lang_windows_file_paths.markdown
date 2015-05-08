@@ -10,13 +10,13 @@ canonical: "/puppet/latest/reference/lang_windows_file_paths.html"
 [package]: /references/3.8.latest/type.html#package
 [file]: /references/3.8.latest/type.html#file
 
-Several [resource types](./future_lang_resources.html) (including `file`, `exec`, and `package`) take file paths as values for various attributes.
+Several [resource types](./lang_resources.html) (including `file`, `exec`, and `package`) take file paths as values for various attributes.
 
 When writing Puppet manifests to manage Windows systems, there are two extra issues to take into account when writing file paths: directory separators and file system redirection.
 
 ## Directory Separators
 
-Windows traditionally uses the backslash (`\`) to separate directories in file paths. (For example, `C:\Program Files\PuppetLabs`.) However, the Puppet language also uses the backslash (`\`) as an escape character in [quoted strings.](./future_lang_data_string.html) This can make it awkward to write literal backslashes.
+Windows traditionally uses the backslash (`\`) to separate directories in file paths. (For example, `C:\Program Files\PuppetLabs`.) However, the Puppet language also uses the backslash (`\`) as an escape character in [quoted strings.](./lang_data_string.html) This can make it awkward to write literal backslashes.
 
 To complicate things further: the Windows file system APIs will accept **both** the backslash (`\`) and forward-slash (`/`) in file paths, but some Windows programs still only accept backslashes.
 
@@ -59,7 +59,7 @@ Backslashes **MUST** be used in:
 
 ### Using Backslashes in Double-Quoted Strings
 
-Puppet supports two kinds of string quoting. See [the reference section about strings](/puppet/latest/reference/future_lang_data_string.html) for full details.
+Puppet supports two kinds of string quoting. See [the reference section about strings](/puppet/latest/reference/lang_data_string.html) for full details.
 
 Strings surrounded by double quotes (`"`) allow many escape sequences that begin with backslashes. (For example, `\n` for a newline.) Any lone backslashes will be interpreted as part of an escape sequence.
 

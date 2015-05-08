@@ -4,13 +4,13 @@ title: "Language: Data Types: Hashes"
 canonical: "/puppet/latest/reference/lang_data_hash.html"
 ---
 
-[undef]: ./future_lang_data_undef.html
+[undef]: ./lang_data_undef.html
 [stdlib]: http://forge.puppetlabs.com/puppetlabs/stdlib
-[data type]: ./future_lang_data_type.html
-[struct]: ./future_lang_data_abstract.html#struct
-[abstract types]: ./future_lang_data_abstract.html
-[data]: ./future_lang_data_abstract.html#data
-[scalar]: ./future_lang_data_abstract.html#scalar
+[data type]: ./lang_data_type.html
+[struct]: ./lang_data_abstract.html#struct
+[abstract types]: ./lang_data_abstract.html
+[data]: ./lang_data_abstract.html#data
+[scalar]: ./lang_data_abstract.html#scalar
 
 
 Hashes (sometimes called hash maps) are unordered structures that map keys to values.

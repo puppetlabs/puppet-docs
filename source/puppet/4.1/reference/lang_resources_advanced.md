@@ -5,26 +5,26 @@ canonical: "/puppet/latest/reference/lang_resources_advanced.html"
 ---
 
 
-[append_attributes]: ./future_lang_classes.html#appending-to-resource-attributes
-[inheritance]: ./future_lang_classes.html#inheritance
-[resdefaults]: ./future_lang_defaults.html
-[collector]: ./future_lang_collectors.html
-[reference]: ./future_lang_data_resource_reference.html
-[realize]: ./future_lang_virtual.html#syntax
-[virtual]: ./future_lang_virtual.html
-[resources]: ./future_lang_resources.html
-[expressions]: ./future_lang_expressions.html
-[string]: ./future_lang_data_string.html
-[array]: ./future_lang_data_array.html
-[hash]: ./future_lang_data_hash.html
-[datatype]: ./future_lang_data.html
+[append_attributes]: ./lang_classes.html#appending-to-resource-attributes
+[inheritance]: ./lang_classes.html#inheritance
+[resdefaults]: ./lang_defaults.html
+[collector]: ./lang_collectors.html
+[reference]: ./lang_data_resource_reference.html
+[realize]: ./lang_virtual.html#syntax
+[virtual]: ./lang_virtual.html
+[resources]: ./lang_resources.html
+[expressions]: ./lang_expressions.html
+[string]: ./lang_data_string.html
+[array]: ./lang_data_array.html
+[hash]: ./lang_data_hash.html
+[datatype]: ./lang_data.html
 
-[resource_data_type]: ./future_lang_data_resource_type.html
-[default]: ./future_lang_data_default.html
-[hash_merge]: ./future_lang_expressions.html#merging
-[catalog]: ./future_lang_summary.html#compilation-and-catalogs
-[namevar]: ./future_lang_resources.html#namenamevar
-[iteration]: ./future_lang_iteration.html
+[resource_data_type]: ./lang_data_resource_type.html
+[default]: ./lang_data_default.html
+[hash_merge]: ./lang_expressions.html#merging
+[catalog]: ./lang_summary.html#compilation-and-catalogs
+[namevar]: ./lang_resources.html#namenamevar
+[iteration]: ./lang_iteration.html
 
 
 Resource declarations are [expressions][] that describe the desired state for one or more resources and instruct Puppet to add those resources to the [catalog][].

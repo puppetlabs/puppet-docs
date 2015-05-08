@@ -4,28 +4,28 @@ layout: default
 canonical: "/puppet/latest/reference/lang_expressions.html"
 ---
 
-[datatypes]: ./future_lang_data.html
-[boolean]: ./future_lang_data_boolean.html
-[numbers]: ./future_lang_data_number.html
-[strings]: ./future_lang_data_string.html
-[arrays]: ./future_lang_data_array.html
-[hashes]: ./future_lang_data_hash.html
-[regex]: ./future_lang_data_regexp.html
-[if]: ./future_lang_conditional.html#if-statements
-[case]: ./future_lang_conditional.html#case-statements
-[selector]: ./future_lang_conditional.html#selectors
-[function]: ./future_lang_functions.html
-[bool_convert]: ./future_lang_data_boolean.html
-[variables]: ./future_lang_variables.html
-[resources]: ./future_lang_resources.html
-[class]: ./future_lang_classes.html
-[defined types]: ./future_lang_defined_types.html
-[node definitions]: ./future_lang_node_definitions.html
-[resource collectors]: ./future_lang_collectors.html
-[chaining]: ./future_lang_relationships.html#syntax-chaining-arrows
-[literal_types]: ./future_lang_data_type.html
+[datatypes]: ./lang_data.html
+[boolean]: ./lang_data_boolean.html
+[numbers]: ./lang_data_number.html
+[strings]: ./lang_data_string.html
+[arrays]: ./lang_data_array.html
+[hashes]: ./lang_data_hash.html
+[regex]: ./lang_data_regexp.html
+[if]: ./lang_conditional.html#if-statements
+[case]: ./lang_conditional.html#case-statements
+[selector]: ./lang_conditional.html#selectors
+[function]: ./lang_functions.html
+[bool_convert]: ./lang_data_boolean.html
+[variables]: ./lang_variables.html
+[resources]: ./lang_resources.html
+[class]: ./lang_classes.html
+[defined types]: ./lang_defined_types.html
+[node definitions]: ./lang_node_definitions.html
+[resource collectors]: ./lang_collectors.html
+[chaining]: ./lang_relationships.html#syntax-chaining-arrows
+[literal_types]: ./lang_data_type.html
 [spec]: https://github.com/puppetlabs/puppet-specifications
-[lambdas]: ./future_lang_lambdas.html
+[lambdas]: ./lang_lambdas.html
 
 **Expressions** are statements that resolve to values.
 

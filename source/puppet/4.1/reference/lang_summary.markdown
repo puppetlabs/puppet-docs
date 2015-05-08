@@ -5,27 +5,27 @@ canonical: "/puppet/latest/reference/lang_summary.html"
 ---
 
 [site_manifest]: ./dirs_manifest.html
-[autoload]: ./future_lang_namespaces.html#autoloader-behavior
+[autoload]: ./lang_namespaces.html#autoloader-behavior
 [config]: /guides/configuring.html
 [usecacheonfailure]: /references/3.8.latest/configuration.html#usecacheonfailure
 [fileserve]: ./modules_fundamentals.html#files
-[classes]: ./future_lang_classes.html
+[classes]: ./lang_classes.html
 [enc]: /guides/external_nodes.html
-[resources]: ./future_lang_resources.html
-[chaining]: ./future_lang_relationships.html#chaining-arrows
+[resources]: ./lang_resources.html
+[chaining]: ./lang_relationships.html#chaining-arrows
 [modules]: ./modules_fundamentals.html
 [package]: /references/3.8.latest/type.html#package
 [file]: /references/3.8.latest/type.html#file
 [service]: /references/3.8.latest/type.html#service
-[case]: ./future_lang_conditional.html#case-statements
-[fact]: ./future_lang_variables.html#facts-and-built-in-variables
-[variables]: ./future_lang_variables.html
-[relationships]: ./future_lang_relationships.html
-[ordering]: ./future_lang_relationships.html#ordering-and-notification
-[notification]: ./future_lang_relationships.html#ordering-and-notification
+[case]: ./lang_conditional.html#case-statements
+[fact]: ./lang_variables.html#facts-and-built-in-variables
+[variables]: ./lang_variables.html
+[relationships]: ./lang_relationships.html
+[ordering]: ./lang_relationships.html#ordering-and-notification
+[notification]: ./lang_relationships.html#ordering-and-notification
 [declared]: /references/glossary.html#declare
-[string_newline]: ./future_lang_data_string.html#line-breaks
-[node]: ./future_lang_node_definitions.html
+[string_newline]: ./lang_data_string.html#line-breaks
+[node]: ./lang_node_definitions.html
 [ordering]: /references/3.8.latest/configuration.html#ordering
 [hiera]: /hiera/latest
 [compilation]: ./subsystem_catalog_compilation.html
@@ -59,7 +59,7 @@ The [ordering setting][ordering] allows you to configure the order in which unre
 
 By default, the order of unrelated resources is effectively random. If you set `ordering = manifest` in `puppet.conf`, Puppet will apply unrelated resources in the order in which they appear in the manifest.
 
-This setting only affects resources whose relative order **is not otherwise determined,** e.g., by metaparameters like `before` or `require`. See [the language page on relationships](./future_lang_relationships.html) for more information.
+This setting only affects resources whose relative order **is not otherwise determined,** e.g., by metaparameters like `before` or `require`. See [the language page on relationships](./lang_relationships.html) for more information.
 
 Files
 -----

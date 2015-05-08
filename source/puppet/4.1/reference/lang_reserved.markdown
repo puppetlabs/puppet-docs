@@ -5,17 +5,17 @@ canonical: "/puppet/latest/reference/lang_reserved.html"
 ---
 
 [settings]: ./config_about_settings.html
-[tags]: ./future_lang_tags.html
-[built_in]: ./future_lang_variables.html#facts-and-built-in-variables
+[tags]: ./lang_tags.html
+[built_in]: ./lang_variables.html#facts-and-built-in-variables
 [facts]: /facter/latest/core_facts.html
-[capture]: ./future_lang_data_regexp.html#regex-capture-variables
-[conditional]: ./future_lang_conditional.html
-[topscope]: ./future_lang_scope.html#top-scope
-[namespace]: ./future_lang_namespaces.html
-[scopes]: ./future_lang_scope.html
-[contains]: ./future_lang_containment.html
-[resources]: ./future_lang_resources.html
-[class]: ./future_lang_classes.html
+[capture]: ./lang_data_regexp.html#regex-capture-variables
+[conditional]: ./lang_conditional.html
+[topscope]: ./lang_scope.html#top-scope
+[namespace]: ./lang_namespaces.html
+[scopes]: ./lang_scope.html
+[contains]: ./lang_containment.html
+[resources]: ./lang_resources.html
+[class]: ./lang_classes.html
 [type_ref]: /references/3.8.latest/type.html
 [func_ref]: /references/3.8.latest/function.html
 [environment]: ./environments.html

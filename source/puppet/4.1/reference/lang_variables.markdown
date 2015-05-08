@@ -5,15 +5,15 @@ canonical: "/puppet/latest/reference/lang_variables.html"
 ---
 
 
-[expressions]: ./future_lang_expressions.html
-[acceptable]: ./future_lang_reserved.html#variables
-[reserved]: ./future_lang_reserved.html#reserved-variable-names
-[datatype]: ./future_lang_data.html
-[double_quote]: ./future_lang_data_string.html#double-quoted-strings
-[functions]: ./future_lang_functions.html
-[resource]: ./future_lang_resources.html
-[scope]: ./future_lang_scope.html
-[undef]: ./future_lang_data_undef.html
+[expressions]: ./lang_expressions.html
+[acceptable]: ./lang_reserved.html#variables
+[reserved]: ./lang_reserved.html#reserved-variable-names
+[datatype]: ./lang_data.html
+[double_quote]: ./lang_data_string.html#double-quoted-strings
+[functions]: ./lang_functions.html
+[resource]: ./lang_resources.html
+[scope]: ./lang_scope.html
+[undef]: ./lang_data_undef.html
 [strict_variables]: /references/3.8.latest/configuration.html#strictvariables
 [puppet.conf]: ./config_file_main.html
 
@@ -27,7 +27,7 @@ In the Puppet language, variables are actually constants, since they [can't be r
 > Facts and Built-In Variables
 > -----
 >
-> Puppet has many built-in variables that you can use in your manifests. For a list of these, see [the page on facts and built-in variables.](./future_lang_facts_and_builtin_vars.html)
+> Puppet has many built-in variables that you can use in your manifests. For a list of these, see [the page on facts and built-in variables.](./lang_facts_and_builtin_vars.html)
 
 Syntax
 -----

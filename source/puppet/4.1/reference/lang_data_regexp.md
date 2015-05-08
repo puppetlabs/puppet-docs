@@ -7,11 +7,11 @@ canonical: "/puppet/latest/reference/lang_data_regexp.html"
 [regsubst]: /references/3.8.latest/function.html#regsubst
 [match]: /references/3.8.latest/function.html#match
 [ruby_regexp]: http://ruby-doc.org/core/Regexp.html
-[conditional]: ./future_lang_conditional.html
-[node]: ./future_lang_node_definitions.html
-[local]: ./future_lang_scope.html#local-scopes
-[data type]: ./future_lang_data_type.html
-[pattern]: ./future_lang_data_abstract.html#pattern
+[conditional]: ./lang_conditional.html
+[node]: ./lang_node_definitions.html
+[local]: ./lang_scope.html#local-scopes
+[data type]: ./lang_data_type.html
+[pattern]: ./lang_data_abstract.html#pattern
 
 
 A regular expression (sometimes shortened as "regex" or "regexp") is a pattern that can match some set of strings, and optionally capture parts of those strings for further use.

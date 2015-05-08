@@ -4,26 +4,26 @@ layout: default
 canonical: "/puppet/latest/reference/lang_defined_types.html"
 ---
 
-[literal_types]: ./future_lang_data_type.html
+[literal_types]: ./lang_data_type.html
 [sitedotpp]: ./dirs_manifest.html
-[namespaces]: ./future_lang_namespaces.html
-[collector]: ./future_lang_collectors.html
-[resource]: ./future_lang_resources.html
-[naming]: ./future_lang_reserved.html#classes-and-types
-[resource_namevar]: ./future_lang_resources.html#namenamevar
-[relationships]: ./future_lang_relationships.html
-[resource_title]: ./future_lang_resources.html#title
-[metaparameters]: ./future_lang_resources.html#metaparameters
+[namespaces]: ./lang_namespaces.html
+[collector]: ./lang_collectors.html
+[resource]: ./lang_resources.html
+[naming]: ./lang_reserved.html#classes-and-types
+[resource_namevar]: ./lang_resources.html#namenamevar
+[relationships]: ./lang_relationships.html
+[resource_title]: ./lang_resources.html#title
+[metaparameters]: ./lang_resources.html#metaparameters
 [modules]: ./modules_fundamentals.html
-[resource_defaults]: ./future_lang_defaults.html
-[classes]: ./future_lang_classes.html
-[variable_assignment]: ./future_lang_variables.html#assignment
-[variable]: ./future_lang_variables.html
-[references_namespaced]: ./future_lang_data_resource_reference.html
-[attributes]: ./future_lang_resources.html#attributes
-[title]: ./future_lang_resources.html#title
-[contains]: ./future_lang_containment.html
-[catalog]: ./future_lang_summary.html#compilation-and-catalogs
+[resource_defaults]: ./lang_defaults.html
+[classes]: ./lang_classes.html
+[variable_assignment]: ./lang_variables.html#assignment
+[variable]: ./lang_variables.html
+[references_namespaced]: ./lang_data_resource_reference.html
+[attributes]: ./lang_resources.html#attributes
+[title]: ./lang_resources.html#title
+[contains]: ./lang_containment.html
+[catalog]: ./lang_summary.html#compilation-and-catalogs
 
 **Defined resource types** (also called **defined types** or **defines**) are blocks of Puppet code that can be evaluated multiple times with different parameters. Once defined, they act like a new resource type: you can cause the block to be evaluated by [declaring a resource][resource] of that new resource type.
 

@@ -5,20 +5,20 @@ canonical: "/puppet/latest/reference/lang_conditional.html"
 ---
 
 
-[local]: ./future_lang_scope.html#local-scopes
-[boolean]: ./future_lang_data_boolean.html
-[regex]: ./future_lang_data_regexp.html
-[facts]: ./future_lang_variables.html#facts
-[equality]: ./future_lang_expressions.html#equality
+[local]: ./lang_scope.html#local-scopes
+[boolean]: ./lang_data_boolean.html
+[regex]: ./lang_data_regexp.html
+[facts]: ./lang_variables.html#facts
+[equality]: ./lang_expressions.html#equality
 [fail]: /references/3.8.latest/function.html#fail
-[matching]: ./future_lang_expressions.html#regex-match
-[expressions]: ./future_lang_expressions.html
-[bool_convert]: ./future_lang_data_boolean.html
-[variables]: ./future_lang_variables.html
-[functions]: ./future_lang_functions.html
-[datatypes]: ./future_lang_data.html
-[splat]: ./future_lang_expressions.html#splat
-[literal_types]: ./future_lang_data_type.html
+[matching]: ./lang_expressions.html#regex-match
+[expressions]: ./lang_expressions.html
+[bool_convert]: ./lang_data_boolean.html
+[variables]: ./lang_variables.html
+[functions]: ./lang_functions.html
+[datatypes]: ./lang_data.html
+[splat]: ./lang_expressions.html#splat
+[literal_types]: ./lang_data_type.html
 
 Conditional statements let your Puppet code behave differently in different situations. They are most helpful when combined with [facts][] or with data retrieved from an external source.
 

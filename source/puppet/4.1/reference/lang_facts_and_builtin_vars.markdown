@@ -4,25 +4,25 @@ title: "Language: Facts and Built-in Variables"
 canonical: "/puppet/latest/reference/lang_facts_and_builtin_vars.html"
 ---
 
-[definedtype]: ./future_lang_defined_types.html
+[definedtype]: ./lang_defined_types.html
 [environment]: ./environments.html
-[topscope]: ./future_lang_scope.html#top-scope
+[topscope]: ./lang_scope.html#top-scope
 [core_facts]: /facter/latest/core_facts.html
 [facter]: /facter/latest
 [customfacts]: /facter/latest/custom_facts.html
 [external facts]: /facter/latest/custom_facts.html#external-facts
-[catalog]: ./future_lang_summary.html#compilation-and-catalogs
+[catalog]: ./lang_summary.html#compilation-and-catalogs
 [noop]: /references/3.8.latest/configuration.html#noop
 [certname]: /references/3.8.latest/configuration.html#certname
 [puppetdb_facts]: /puppetdb/latest/api/index.html
-[localscope]: ./future_lang_scope.html#local-scopes
+[localscope]: ./lang_scope.html#local-scopes
 [trusted_on]: ./config_important_settings.html#getting-new-features-early
-[scope]: ./future_lang_scope
+[scope]: ./lang_scope
 [extensions]: ./ssl_attributes_extensions.html
 [structured_facts_on]: ./config_important_settings.html#getting-new-features-early
-[strings]: ./future_lang_data_string.html
-[datatypes]: ./future_lang_data.html
-[qualified_var_names]: ./future_lang_variables.html#accessing-out-of-scope-variables
+[strings]: ./lang_data_string.html
+[datatypes]: ./lang_data.html
+[qualified_var_names]: ./lang_variables.html#accessing-out-of-scope-variables
 
 
 Before requesting a [catalog][] (or compiling one with `puppet apply`), Puppet will collect system information with [Facter][]. Puppet receives this information as **facts,** which are **pre-set variables** you can use anywhere in your manifests.

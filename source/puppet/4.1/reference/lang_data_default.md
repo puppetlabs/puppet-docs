@@ -4,12 +4,12 @@ title: "Language: Data Types: Default"
 canonical: "/puppet/latest/reference/lang_data_default.html"
 ---
 
-[case statements]: ./future_lang_conditional.html#case-statements
-[selector expressions]: ./future_lang_conditional.html#selectors
-[resource declaration]: ./future_lang_resources.html
-[data type]: ./future_lang_data_type.html
-[string]: ./future_lang_data_string.html
-[resources_advanced]: ./future_lang_resources_advanced.html
+[case statements]: ./lang_conditional.html#case-statements
+[selector expressions]: ./lang_conditional.html#selectors
+[resource declaration]: ./lang_resources.html
+[data type]: ./lang_data_type.html
+[string]: ./lang_data_string.html
+[resources_advanced]: ./lang_resources_advanced.html
 
 Puppet's special `default` value usually acts like a keyword in a few limited corners of the language. Less commonly, it can also be used as a value in other places.
 

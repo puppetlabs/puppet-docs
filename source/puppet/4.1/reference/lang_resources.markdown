@@ -4,26 +4,26 @@ title: "Language: Resources"
 canonical: "/puppet/latest/reference/lang_resources.html"
 ---
 
-[realize]: ./future_lang_virtual.html#syntax
-[virtual]: ./future_lang_virtual.html
-[containment]: ./future_lang_containment.html
-[scope]: ./future_lang_scope.html
+[realize]: ./lang_virtual.html#syntax
+[virtual]: ./lang_virtual.html
+[containment]: ./lang_containment.html
+[scope]: ./lang_scope.html
 [report]: /guides/reporting.html
 [types]: /references/3.8.latest/type.html
-[string]: ./future_lang_data_string.html
-[array]: ./future_lang_data_array.html
-[datatype]: ./future_lang_data.html
-[relationships]: ./future_lang_relationships.html
-[reference]: ./future_lang_data_resource_reference.html
-[class]: ./future_lang_classes.html
-[defined_type]: ./future_lang_defined_types.html
-[catalog]: ./future_lang_summary.html#compilation-and-catalogs
+[string]: ./lang_data_string.html
+[array]: ./lang_data_array.html
+[datatype]: ./lang_data.html
+[relationships]: ./lang_relationships.html
+[reference]: ./lang_data_resource_reference.html
+[class]: ./lang_classes.html
+[defined_type]: ./lang_defined_types.html
+[catalog]: ./lang_summary.html#compilation-and-catalogs
 [files]: /references/3.7.latest/type.html#file
 [cron jobs]: /references/3.7.latest/type.html#cron
 [services]: /references/3.7.latest/type.html#service
 [custom_types]: /guides/custom_types.html
-[resource_advanced]: ./future_lang_resources_advanced.html
-[expressions]: ./future_lang_expressions.html
+[resource_advanced]: ./lang_resources_advanced.html
+[expressions]: ./lang_expressions.html
 
 
 **Resources** are the fundamental unit for modeling system configurations. Each resource describes some aspect of a system, like a specific service or package.

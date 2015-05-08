@@ -4,9 +4,9 @@ title: "Language: Data Types: Numbers"
 canonical: "/puppet/latest/reference/lang_data_number.html"
 ---
 
-[arithmetic]: ./future_lang_expressions.html#arithmetic-operators
-[data type]: ./future_lang_data_type.html
-[variant]: ./future_lang_data_abstract.html#variant
+[arithmetic]: ./lang_expressions.html#arithmetic-operators
+[data type]: ./lang_data_type.html
+[variant]: ./lang_data_abstract.html#variant
 
 
 Numbers in the Puppet language are normal integers and floating point numbers.
@@ -18,7 +18,7 @@ You can work with numbers using Puppet's [arithmetic operators.][arithmetic]
 Numbers are written without quotation marks, and can consist only of:
 
 * Digits
-* An optional negative sign (`-`; this is actually [the unary negation operator](./future_lang_expressions.html#subtraction-and-negation) rather than part of the number)
+* An optional negative sign (`-`; this is actually [the unary negation operator](./lang_expressions.html#subtraction-and-negation) rather than part of the number)
     * Explicit positive signs (`+`) aren't allowed, since there's no unary `+` operator.
 * An optional decimal point (which results in a floating point value)
 * A prefix, for octal or hexidecimal bases

@@ -4,16 +4,16 @@ title: "Language: Namespaces and Autoloading"
 canonical: "/puppet/latest/reference/lang_namespaces.html"
 ---
 
-[classes]: ./future_lang_classes.html
-[define]: ./future_lang_defined_types.html
-[variables]: ./future_lang_variables.html
+[classes]: ./lang_classes.html
+[define]: ./lang_defined_types.html
+[variables]: ./lang_variables.html
 [modulepath]: ./modules_fundamentals.html#the-modulepath
 [module]: ./modules_fundamentals.html
-[scopes]: ./future_lang_scope.html
-[include]: ./future_lang_classes.html#using-include
+[scopes]: ./lang_scope.html
+[include]: ./lang_classes.html#using-include
 [PUP-121]: https://tickets.puppetlabs.com/browse/PUP-121
-[inherits]: ./future_lang_classes.html#inheritance
-[allowed]: ./future_lang_reserved.html#classes-and-defined-types
+[inherits]: ./lang_classes.html#inheritance
+[allowed]: ./lang_reserved.html#classes-and-defined-types
 [relative_below]: #aside-historical-context
 
 

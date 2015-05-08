@@ -4,12 +4,12 @@ title: "Language: Data Types: Arrays"
 canonical: "/puppet/latest/reference/lang_data_array.html"
 ---
 
-[undef]: ./future_lang_data_undef.html
+[undef]: ./lang_data_undef.html
 [stdlib]: http://forge.puppetlabs.com/puppetlabs/stdlib
-[data type]: ./future_lang_data_type.html
-[tuple]: ./future_lang_data_abstract.html#tuple
-[data]: ./future_lang_data_abstract.html#data
-[abstract types]: ./future_lang_data_abstract.html
+[data type]: ./lang_data_type.html
+[tuple]: ./lang_data_abstract.html#tuple
+[data]: ./lang_data_abstract.html#data
+[abstract types]: ./lang_data_abstract.html
 
 Arrays are ordered lists of values.
 
@@ -106,7 +106,7 @@ The second number of the index is the stop position.
 
 There are three expression operators that can act on array values: `*` (splat), `+` (concatenation), and `-` (removal).
 
-For details, [see the relevant section of the Expressions and Operators page.](./future_lang_expressions.html#array-operators)
+For details, [see the relevant section of the Expressions and Operators page.](./lang_expressions.html#array-operators)
 
 
 ## Additional Functions

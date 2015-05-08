@@ -4,21 +4,21 @@ title: "Language: Relationships and Ordering"
 canonical: "/puppet/latest/reference/lang_relationships.html"
 ---
 
-[virtual]: ./future_lang_virtual.html
-[collector]: ./future_lang_collectors.html
-[resources]: ./future_lang_resources.html
-[reference]: ./future_lang_data_resource_reference.html
-[array]: ./future_lang_data_array.html
-[class]: ./future_lang_classes.html
-[event]: ./future_lang_resources.html#behavior
+[virtual]: ./lang_virtual.html
+[collector]: ./lang_collectors.html
+[resources]: ./lang_resources.html
+[reference]: ./lang_data_resource_reference.html
+[array]: ./lang_data_array.html
+[class]: ./lang_classes.html
+[event]: ./lang_resources.html#behavior
 [service]: /references/3.8.latest/type.html#service
 [exec]: /references/3.8.latest/type.html#exec
 [type]: /references/3.8.latest/type.html
 [mount]: /references/3.8.latest/type.html#mount
-[metaparameters]: ./future_lang_resources.html#metaparameters
-[require_function]: ./future_lang_classes.html#using-require
+[metaparameters]: ./lang_resources.html#metaparameters
+[require_function]: ./lang_classes.html#using-require
 [moar]: /references/3.8.latest/configuration.html#ordering
-[lambdas]: ./future_lang_lambdas.html
+[lambdas]: ./lang_lambdas.html
 
 
 
