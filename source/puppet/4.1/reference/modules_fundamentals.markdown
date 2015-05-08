@@ -103,7 +103,7 @@ This example module, `my_module`, shows the standard module layout in more detai
     * `facts.d/` --- Contains [external facts][], which are an alternative to Ruby-based [custom facts][]. These will be synced to all agent nodes, so they can submit values for those facts to the Puppet master. (Requires Facter 2.0.1 or later.)
     * `templates/` --- Contains templates, which the module's manifests can use. See ["Templates"][templates] for more details.
         * `component.erb` --- A manifest can render this template with `template('my_module/component.erb')`.
-        * `component.epp` --- A manifest can render this template with `epp('my_module/component.epp')`. (The `epp` function is only available with the future parser enabled.)
+        * `component.epp` --- A manifest can render this template with `epp('my_module/component.epp')`.
     * `examples/` --- Contains examples showing how to declare the module's classes and defined types.
         * `init.pp`
         * `other_example.pp` --- Major use cases should have an example.
@@ -157,7 +157,7 @@ So `puppet:///modules/my_module/service.conf` would map to `my_module/files/serv
 
 ### Templates
 
-Any ERB or EPP template (see ["Templates"][templates] for more details) can be rendered in a manifest with the `template` function (for ERB templates which use Ruby) or the `epp` function (for EPP templates, which use the Puppet language; only available when the future parser is enabled). The output of the template is a string, which can be used as the content attribute of a [`file`][file] resource or as the value of a variable.
+Any ERB or EPP template (see ["Templates"][templates] for more details) can be rendered in a manifest with the `template` function (for ERB templates which use Ruby) or the `epp` function (for EPP templates, which use the Puppet language). The output of the template is a string, which can be used as the content attribute of a [`file`][file] resource or as the value of a variable.
 
 The `template` and `epp` functions can look up templates identified by shorthand:
 
