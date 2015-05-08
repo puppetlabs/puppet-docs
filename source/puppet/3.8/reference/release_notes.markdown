@@ -22,7 +22,7 @@ This page tells the history of the Puppet 3.8 series.
 
 Elsewhere: release notes for:
 
-* [Puppet 3.7](./puppet/3.7/reference/release_notes.html)
+* [Puppet 3.7](/puppet/3.7/reference/release_notes.html)
 * [Puppet 3.6](/puppet/3.6/reference/release_notes.html)
 * [Puppet 3.5](/puppet/3.5/reference/release_notes.html)
 * [Puppet 3.0 -- 3.4][puppet_3]
