@@ -18,8 +18,6 @@ title: "Configuring Directory Environments"
 [main manifest]: ./dirs_manifest.html
 
 
-Before you can use directory environments, you have to configure Puppet to enable them.
-
 For performance reasons, many users will also want to [set `environment_timeout` to `unlimited`][inpage_timeout] and refresh the Puppet master when deploying code.
 
 After enabling environments, you can:
@@ -27,7 +25,7 @@ After enabling environments, you can:
 * [Create environments][create_environment]
 * [Assign environments to your nodes][assign]
 
-For more info about what environments do, see [About Directory Environments.][about]
+For more info about what environments do, see [About Environments.][about]
 
 Enabling Directory Environments in Puppet Enterprise
 -----
