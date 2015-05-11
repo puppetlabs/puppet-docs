@@ -134,7 +134,7 @@ The following video demonstrates the above and some other basic functions:
 value="http://www.youtube.com/v/dIVOS53ZPFc?version=3&amp;hl=en_US"></param><param
 name="allowFullScreen" value="true"></param><param
 name="allowscriptaccess" value="always"></param><embed
-src="http://www.youtube.com/v/dIVOS53ZPFc?version=3&amp;hl=en_US"
+src="https://www.youtube.com/v/dIVOS53ZPFc?version=3&amp;hl=en_US"
 type="application/x-shockwave-flash" width="420" height="315"
 allowscriptaccess="always" allowfullscreen="true"></embed></object>
 
@@ -167,7 +167,7 @@ the virtual machine and its data!**
 The following video demonstrates the termination process and some other related functions:
 
 <object width="560" height="315"><param name="movie"
-value="http://www.youtube.com/v/-o0h83LYSA0?version=3&amp;hl=en_US"></param><param
+value="https://www.youtube.com/v/-o0h83LYSA0?version=3&amp;hl=en_US"></param><param
 name="allowFullScreen" value="true"></param><param
 name="allowscriptaccess" value="always"></param><embed
 src="http://www.youtube.com/v/-o0h83LYSA0?version=3&amp;hl=en_US"
