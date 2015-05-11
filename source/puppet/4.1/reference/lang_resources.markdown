@@ -93,6 +93,8 @@ A title doesn't have to match the name of what you're managing on the target sys
 
 Titles **must be unique per resource type.** You can have a package and a service both titled "ntp," but you can only have one service titled "ntp." Duplicate titles will cause a compilation failure.
 
+**Note:** If a resource type has multiple namevars, the type gets to specify how (and if) the title will map to those namevars. For example, the `package` type uses the `provider` attribute to help determine uniqueness, but that attribute has no special relationship with the title. See a type's documentation for details about how it maps title to namevars.
+
 ### Attributes
 
 Attributes describe the desired state of the resource; each attribute handles some aspect of the resource.
@@ -164,13 +166,27 @@ Special Resource Attributes
 
 Most resource types have an attribute which identifies a resource _on the target system._ This special attribute is called the "namevar," and the attribute itself is often (but not always) just `name`. For example, the `name` of a service or package is the name by which the system's service or package tools will recognize it. On the other hand, the `file` type's namevar is `path`, the file's location on disk.
 
-The [resource type reference][types] lists the namevars for all of the core resource types. For custom resource types, check the documentation for the module that provides that resource type.
-
-Namevar values **must be unique per resource type,** with only rare exceptions (such as `exec`).
-
-Namevars are not to be confused with the **title**, which identifies a resource _to Puppet._ However, they often have the same value, since the namevar's value will default to the title if it isn't specified. Thus, the `path` of the file example [above][inpage_simplified] is `/etc/passwd`, even though we didn't include the `path` attribute in the resource declaration.
+This is different from the **title**, which identifies a resource _to Puppet's compiler._ However, they often have the same value, since the namevar's value will usually default to the title if it isn't specified. Thus, the `path` of the file example [above][inpage_simplified] is `/etc/passwd`, even though we didn't include the `path` attribute in the resource declaration.
 
 The separation between title and namevar lets you use a consistently-titled resource to manage something whose name differs by platform. For example, the NTP service might be `ntpd` on Red Hat-derived systems, but `ntp` on Debian and Ubuntu; to accommodate that, you could title the service "ntp," but set its name according to the OS. Other resources could then form relationships to it without worrying that its title will change.
+
+The [resource type reference][types] lists the namevars for all of the core resource types. For custom resource types, check the documentation for the module that provides that resource type.
+
+#### Simple Namevars
+
+Most resource types only have one namevar.
+
+With a single namevar, the value **must be unique per resource type,** with only rare exceptions (such as `exec`).
+
+If a value for the namevar isn't specified, it will default to the resource's title.
+
+#### Multiple Namevars
+
+Sometimes, a single value isn't sufficient to identify a resource on the target system. For example, consider a system that has multiple package providers available: the `yum` provider has a package called `mysql`, and the `gem` provider _also_ has a package called `mysql` that installs completely different (and non-conflicting) software. In this case, the `name` of both packages would be `mysql`.
+
+Thus, some resource types have more than one namevar, and Puppet combines their values to determine whether a resource is uniquely identified. If two resources have the same values for _all_ of their namevars, Puppet will raise an error.
+
+A resource type can define its own behavior for how to map a title to its namevars, if one or more of them is unspecified. For example, the `package` type has two namevars (`name` and `provider`), but only `name` will default to the title. For info about other resource types, see that type's documentation.
 
 ### Ensure
 
