@@ -140,7 +140,7 @@ In the output, look for a section called "Requested Extensions," which generally
             1.3.6.1.4.1.34380.1.1.4:
             .$342thbjkt82094y0uthhor289jnqthpc2290
 
-Note that every extension is preceded by any combination of two characters (`.$` and `..`, in the above example), which contain ASN.1 encoding information. Since OpenSSL is unaware of Puppet's custom extensions OIDs, it's unable to properly display the values.
+Note that every extension is preceded by any combination of two characters (`.$` and `..` in the above example), which contain ASN.1 encoding information. Since OpenSSL is unaware of Puppet's custom extensions OIDs, it's unable to properly display the values.
 
 Any Puppet-specific OIDs (see below) will appear as numeric strings when using OpenSSL.
 
