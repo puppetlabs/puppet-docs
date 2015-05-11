@@ -133,12 +133,14 @@ You can check for extension requests in a CSR by using OpenSSL to dump a PEM-for
 In the output, look for a section called "Requested Extensions," which generally appears below the "Subject Public Key Info" and "Attributes" blocks:
 
     Requested Extensions:
-        1.3.6.1.4.1.34380.1.1.4:
-            342thbjkt82094y0uthhor289jnqthpc2290
-        1.3.6.1.4.1.34380.1.1.3:
-            my_ami_image
-        1.3.6.1.4.1.34380.1.1.1:
-            ED803750-E3C7-44F5-BB08-41A04433FE2E
+            pp_uuid:
+            .$ED803750-E3C7-44F5-BB08-41A04433FE2E
+            1.3.6.1.4.1.34380.1.1.3:
+            ..my_ami_image
+            1.3.6.1.4.1.34380.1.1.4:
+            .$342thbjkt82094y0uthhor289jnqthpc2290
+
+Note that every extension is preceded by any combination of two characters (`.$` and `..`, in the above example), which contain ASN.1 encoding information. Since OpenSSL is unaware of Puppet's custom extensions OIDs, it's unable to properly display the values.
 
 Any Puppet-specific OIDs (see below) will appear as numeric strings when using OpenSSL.
 
