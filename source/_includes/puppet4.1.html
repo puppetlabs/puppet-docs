@@ -23,6 +23,63 @@
   <li><a href="{{ puppet_dir }}/system_requirements.html">System Requirements</a></li>
   <li><a href="{{ puppet_dir }}/architecture.html">Overview of Puppet's Architecture</a></li>
 
+  <li><strong>Configuration</strong>
+    <ul>
+      <li><a href="{{ puppet_dir }}/config_about_settings.html">About Puppet's Settings</a></li>
+      <li><a href="{{ puppet_dir }}/config_print.html">Checking Values of Settings</a></li>
+      <li><a href="{{ puppet_dir }}/config_set.html">Editing Settings on the Command Line</a></li>
+      <li><a href="{{ puppet_dir }}/config_important_settings.html">Short List of Important Settings</a></li>
+      <li><a href="/references/4.1.latest/configuration.html">Complete List of Settings (Configuration Reference)</a></li>
+      <li><a href="/puppetserver/{{ server_version }}/puppet_conf_setting_diffs.html">Settings that Differ Under Puppet Server</a></li>
+      <li><strong>Config Files</strong>
+        <ul>
+          <li><a href="{{ puppet_dir }}/config_file_main.html">puppet.conf: The Main Config File</a></li>
+          <li><a href="/puppetserver/{{ server_version }}/configuration.html">Puppet Server's Config Files</a></li>
+          <li><a href="{{ puppet_dir }}/config_file_auth.html">The auth.conf File</a></li>
+          <li><a href="{{ puppet_dir }}/config_file_autosign.html">The autosign.conf File</a></li>
+          <li><a href="{{ puppet_dir }}/config_file_csr_attributes.html">The csr_attributes.yaml File</a></li>
+          <li><a href="{{ puppet_dir }}/config_file_device.html">The device.conf File</a></li>
+          <li><a href="{{ puppet_dir }}/config_file_environment.html">The environment.conf Files</a></li>
+          <li><a href="{{ puppet_dir }}/config_file_fileserver.html">The fileserver.conf File</a></li>
+          <li><a href="{{ puppet_dir }}/config_file_hiera.html">The hiera.yaml File</a></li>
+          <li><a href="{{ puppet_dir }}/config_file_puppetdb.html">The puppetdb.conf File</a></li>
+          <li><a href="{{ puppet_dir }}/config_file_routes.html">The routes.yaml File</a></li>
+          <li><a href="{{ puppet_dir }}/config_file_tagmail.html">The tagmail.conf File</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong>Important Directories and Files</strong>
+    <ul>
+      <li><a href="{{ puppet_dir }}/dirs_confdir.html">The Main Config Directory (Confdir)</a></li>
+      <li><a href="{{ puppet_dir }}/dirs_manifest.html">The Main Manifest(s)</a></li>
+      <li><a href="{{ puppet_dir }}/dirs_modulepath.html">The Modulepath</a></li>
+      <li><a href="{{ puppet_dir }}/dirs_ssldir.html">The SSLdir</a></li>
+      <li><a href="{{ puppet_dir }}/dirs_vardir.html">The Vardir</a></li>
+    </ul>
+  </li>
+  <li><strong>Environments</strong>
+    <ul>
+      <li><a href="{{ puppet_dir }}/environments.html">About Environments</a></li>
+      <li><a href="{{ puppet_dir }}/environments_configuring.html">Configuring Directory Environments</a></li>
+      <li><a href="{{ puppet_dir }}/environments_creating.html">Creating Directory Environments</a></li>
+      <li><a href="{{ puppet_dir }}/environments_assigning.html">Assigning Environments to Nodes</a></li>
+      <li><a href="{{ puppet_dir }}/environments_classic.html">Using Config File Environments (deprecated)</a></li>
+      <li><a href="{{ puppet_dir }}/environments_suggestions.html">Suggestions for Use</a></li>
+      <li><a href="{{ puppet_dir }}/environments_limitations.html">Limitations of Environments</a></li>
+      <li><a href="{{ puppet_dir }}/environments_https.html">Environments and Puppet's HTTPS Interface</a></li>
+    </ul>
+  </li>
+  <li><strong>Modules</strong>
+    <ul>
+      <li><a href="{{ puppet_dir }}/modules_fundamentals.html">Fundamentals</a></li>
+      <li><a href="/guides/plugins_in_modules.html">Plugins in Modules</a></li>
+      <li><a href="{{ puppet_dir }}/modules_installing.html">Installing Modules</a></li>
+      <li><a href="{{ puppet_dir }}/modules_publishing.html">Publishing Modules on the Puppet Forge</a></li>
+      <li><a href="{{ puppet_dir }}/modules_documentation.html">Module Documentation</a></li>
+    </ul>
+  </li>
+
   <li><strong>Puppet's Services and Tools</strong>
     <ul>
       <li><a href="{{ puppet_dir }}/services_commands.html">Puppet's Commands</a></li>
@@ -138,16 +195,6 @@
     </ul>
   </li>
 
-  <li><strong>Modules</strong>
-    <ul>
-      <li><a href="{{ puppet_dir }}/modules_fundamentals.html">Fundamentals</a></li>
-      <li><a href="/guides/plugins_in_modules.html">Plugins in Modules</a></li>
-      <li><a href="{{ puppet_dir }}/modules_installing.html">Installing Modules</a></li>
-      <li><a href="{{ puppet_dir }}/modules_publishing.html">Publishing Modules on the Puppet Forge</a></li>
-      <li><a href="{{ puppet_dir }}/modules_documentation.html">Module Documentation</a></li>
-    </ul>
-  </li>
-
   <li><a href="/references/4.1.latest/type.html">The Resource Type Reference</a></li>
 
   <li><strong>Resource Types: Tips and Examples</strong>
@@ -171,53 +218,6 @@
       <li><a href="/references/4.1.latest/indirection.html">Indirections and Termini</a></li>
       <li><a href="/references/4.1.latest/developer/frames.html">Ruby API for Developing Extensions</a></li>
       <li><a href="/references/4.1.latest/developer/file.http_api_index.html">Puppet's HTTP API</a></li>
-    </ul>
-  </li>
-  <li><strong>Important Directories and Files</strong>
-    <ul>
-      <li><a href="{{ puppet_dir }}/dirs_confdir.html">The Main Config Directory (Confdir)</a></li>
-      <li><a href="{{ puppet_dir }}/dirs_manifest.html">The Main Manifest(s)</a></li>
-      <li><a href="{{ puppet_dir }}/dirs_modulepath.html">The Modulepath</a></li>
-      <li><a href="{{ puppet_dir }}/dirs_ssldir.html">The SSLdir</a></li>
-      <li><a href="{{ puppet_dir }}/dirs_vardir.html">The Vardir</a></li>
-    </ul>
-  </li>
-  <li><strong>Environments</strong>
-    <ul>
-      <li><a href="{{ puppet_dir }}/environments.html">About Environments</a></li>
-      <li><a href="{{ puppet_dir }}/environments_configuring.html">Configuring Directory Environments</a></li>
-      <li><a href="{{ puppet_dir }}/environments_creating.html">Creating Directory Environments</a></li>
-      <li><a href="{{ puppet_dir }}/environments_assigning.html">Assigning Environments to Nodes</a></li>
-      <li><a href="{{ puppet_dir }}/environments_classic.html">Using Config File Environments (deprecated)</a></li>
-      <li><a href="{{ puppet_dir }}/environments_suggestions.html">Suggestions for Use</a></li>
-      <li><a href="{{ puppet_dir }}/environments_limitations.html">Limitations of Environments</a></li>
-      <li><a href="{{ puppet_dir }}/environments_https.html">Environments and Puppet's HTTPS Interface</a></li>
-    </ul>
-  </li>
-  <li><strong>Configuration</strong>
-    <ul>
-      <li><a href="{{ puppet_dir }}/config_about_settings.html">About Puppet's Settings</a></li>
-      <li><a href="{{ puppet_dir }}/config_print.html">Checking Values of Settings</a></li>
-      <li><a href="{{ puppet_dir }}/config_set.html">Editing Settings on the Command Line</a></li>
-      <li><a href="{{ puppet_dir }}/config_important_settings.html">Short List of Important Settings</a></li>
-      <li><a href="/references/4.1.latest/configuration.html">Complete List of Settings (Configuration Reference)</a></li>
-      <li><a href="/puppetserver/{{ server_version }}/puppet_conf_setting_diffs.html">Settings that Differ Under Puppet Server</a></li>
-      <li><strong>Config Files</strong>
-        <ul>
-          <li><a href="{{ puppet_dir }}/config_file_main.html">puppet.conf: The Main Config File</a></li>
-          <li><a href="/puppetserver/{{ server_version }}/configuration.html">Puppet Server's Config Files</a></li>
-          <li><a href="{{ puppet_dir }}/config_file_auth.html">The auth.conf File</a></li>
-          <li><a href="{{ puppet_dir }}/config_file_autosign.html">The autosign.conf File</a></li>
-          <li><a href="{{ puppet_dir }}/config_file_csr_attributes.html">The csr_attributes.yaml File</a></li>
-          <li><a href="{{ puppet_dir }}/config_file_device.html">The device.conf File</a></li>
-          <li><a href="{{ puppet_dir }}/config_file_environment.html">The environment.conf Files</a></li>
-          <li><a href="{{ puppet_dir }}/config_file_fileserver.html">The fileserver.conf File</a></li>
-          <li><a href="{{ puppet_dir }}/config_file_hiera.html">The hiera.yaml File</a></li>
-          <li><a href="{{ puppet_dir }}/config_file_puppetdb.html">The puppetdb.conf File</a></li>
-          <li><a href="{{ puppet_dir }}/config_file_routes.html">The routes.yaml File</a></li>
-          <li><a href="{{ puppet_dir }}/config_file_tagmail.html">The tagmail.conf File</a></li>
-        </ul>
-      </li>
     </ul>
   </li>
   <li><strong>SSL and Certificates</strong>
