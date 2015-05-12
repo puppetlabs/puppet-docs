@@ -81,7 +81,7 @@ When you install with gems, your [confdir][] may be empty or missing. You will n
 
 * Make sure the [confdir][] exists. This directory is usually at `/etc/puppet/`.
 * Create a [puppet.conf][] file in the confdir. You can leave it empty until the post-install tasks.
-* If this node will ever act as a puppet master, it will need an [auth.conf][] file. Download [the default auth.conf file](https://raw.githubusercontent.com/puppetlabs/puppet/master/conf/auth.conf) from the Puppet source on GitHub, and put it in the confdir.
+* If this node will ever act as a puppet master, it will need an [auth.conf][] file. Download [the default auth.conf file](https://raw.githubusercontent.com/puppetlabs/puppet/3.7.5/conf/auth.conf) from the Puppet source on GitHub, and put it in the confdir.
 * Create a [main manifest][] and a [module directory][]. Alternately, [enable directory environments][directory environments] in puppet.conf and create a `production` environment, as described in the [directory environments][] page.
 
 ### Make Sure Puppet Can be Loaded
