@@ -78,10 +78,10 @@ See [our page about moved files and directories][where] for more info.
 ### Install the `puppetserver` Package
 
 #### For RPM-based systems using yum
-On your Puppet master node(s), run `sudo yum install puppetserver`. This installs Puppet Server, which will install the `puppet-agent` package as a dependency.
+On your Puppet master node(s), run `sudo yum install puppetserver`. This installs Puppet Server, which installs the `puppet-agent` package as a dependency.
 
 #### For dpkg-based systems using apt-get
-On your Puppet master node(s), run `apt-get install puppetserver`. This installs Puppet Server, which will install the `puppet-agent` package as a dependency.
+On your Puppet master node(s), run `apt-get install puppetserver`. This installs Puppet Server, which installs the `puppet-agent` package as a dependency.
 
 **Do not** start the `puppetserver` service yet.
 
@@ -89,7 +89,7 @@ On your Puppet master node(s), run `apt-get install puppetserver`. This installs
 
 At a minimum, you need to:
 
-* Make sure [the `dns_alt_names` setting][dns_alt_names] in `/etc/puppetlabs/puppet/puppet.conf` includes any DNS names that your agent nodes will use when contacting the server.
+* Make sure [the `dns_alt_names` setting][dns_alt_names] in `/etc/puppetlabs/puppet/puppet.conf` includes any DNS names that your agents will use when contacting the server.
 * Make sure the [Java heap size][server_heap] is appropriate for your hardware and for the amount of traffic the service will be handling.
 
 ### Configure Other Master Settings
@@ -140,9 +140,9 @@ If you want to watch an agent run happen in the foreground, you can run `sudo /o
 
 ### Sign Certificates (on the CA Master)
 
-As each agent runs for the first time, it will submit a certificate signing request (CSR) to the CA Puppet master. You'll need to log into that server to check for certs and sign them.
+As each agent runs for the first time, it submits a certificate signing request (CSR) to the CA Puppet master. You'll need to log into that server to check for certs and sign them.
 
 * Run `sudo /opt/puppetlabs/bin/puppet cert list` to see any outstanding requests.
 * Run `sudo /opt/puppetlabs/bin/puppet cert sign <NAME>` to sign a request.
 
-After an agent node's cert is signed, it will regularly fetch and apply configurations from the Puppet master server.
+After an agent's cert is signed, it will regularly fetch and apply configurations from the Puppet master.
