@@ -6,10 +6,11 @@ canonical: "/puppet/latest/reference/services_master_webrick.html"
 
 [webrick]: http://ruby-doc.org/stdlib/libdoc/webrick/rdoc/WEBrick.html
 [rack_master]: ./services_master_rack.html
+[deprecate]: http://links.puppetlabs.com/deprecate-rack-webrick-servers
 
-> **Important: Deprecation Warning**
+> ## Important: Deprecation Warning
 >
-> The WEBrick Puppet master server is deprecated and will be removed in a future Puppet release. 
+> [The WEBrick Puppet master server is deprecated][deprecate] and will be removed in a future Puppet release. 
 
 Puppet master is the application that compiles configurations for any number of Puppet agent nodes, using Puppet code and various other data sources. (For more info, see [Overview of Puppet's Architecture](./architecture.html).)
 
@@ -27,11 +28,7 @@ You cannot run a Puppet master on Windows.
 
 ## Controlling the Service
 
-The WEBrick Puppet master runs as a single Ruby process. You can manage it in one of two ways.
-
-### Use the `puppetmaster` Init Script
-
-The Puppet master packages for most platforms install an init script (usually called `puppetmaster`) that lets you manage the Puppet master as a service. You can usually do `sudo puppet resource service puppetmaster ensure=running` to start the service. (Use `ensure=stopped` to stop it.)
+The WEBrick Puppet master runs as a single Ruby process. You can manage it from the command line.
 
 ### Run `puppet master` on the Command Line
 
@@ -46,6 +43,13 @@ The WEBrick Puppet master runs as a single Ruby process. This single process doe
 ### User
 
 The Puppet master process should generally be started as the root user, via `sudo`. Once the process starts, it will drop privileges and start running as the user specified by [the `user` setting][user] (usually `puppet`). Any files and directories the Puppet master uses will need to be readable and writable by this user.
+
+Note that you'll need to manually create the `puppet` user account, as the puppet-agent package does not create it. To create this account, run the following commands:
+
+~~~
+puppet resource group puppet ensure=present
+puppet resource user puppet ensure=present gid=puppet
+~~~
 
 [user]: /references/3.8.latest/configuration.html#user
 
