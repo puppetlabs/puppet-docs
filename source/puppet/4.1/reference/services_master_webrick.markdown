@@ -67,13 +67,11 @@ WEBrick will log all HTTPS requests and errors to the file specified by [the `ma
 
 The Puppet master application itself logs its activity to syslog. This is where things like compilation errors and deprecation warnings go. Your syslog configuration dictates where these messages will be saved, but the default location is `/var/log/messages` on Linux, `/var/log/system.log` on Mac OS X, and `/var/adm/messages` on Solaris.
 
-You can adjust how verbose the logs are with [the `log_level` setting](/references/4.1.latest/configuration.html#loglevel), which defaults to `notice`. Setting it to `info` is equivalent to running with the `--verbose` option, and setting it to `debug` is equivalent to `--debug`. You can also make logs quieter by dialing back to `warning` or lower.
+You can adjust how verbose the logs are with [the `loglevel` setting](/references/4.1.latest/configuration.html#loglevel), which defaults to `notice`. Setting it to `info` is equivalent to running with the `--verbose` option, and setting it to `debug` is equivalent to `--debug`. You can also make logs quieter by dialing back to `warning` or lower.
 
 When running in the foreground with the `--verbose` or `--debug` options, Puppet master logs directly to the terminal instead of to syslog.
 
 When started with the `--logdest <FILE>` option, Puppet master logs to the file specified by `<FILE>`.
-
-You can also set the `log_level` for the Puppet master in the `[master]` section of `/etc/puppet/puppet.conf` (e.g., `log_level=debug`). 
 
 ## Configuring a WEBrick Puppet Master
 
