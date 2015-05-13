@@ -47,17 +47,9 @@ Nodes that serve different roles will generally get different sets of classes. T
 Ordering
 -----
 
-Puppet's language is mostly **declarative:** Rather than listing a series of changes to make to a node, a Puppet manifest describes a desired final state.
+Although Puppet's language is built around describing resources (and the relationships between them) in a declarative way, several parts of the language do depend on evaluation order. The most notable of these are variables, which must be set before they are referenced.
 
-Although resources can be freely ordered, several parts of the language do depend on evaluation order. The most notable of these are variables, which must be set before they are referenced. Puppet assumes most resources aren't related to each other. If one resource depends on another, [you must say so explicitly][relationships]. (If you want a short section of code to get applied in the order written, you can use [chaining arrows][chaining].)
-
-### Configurable Ordering
-
-The [ordering setting][ordering] allows you to configure the order in which unrelated resources get applied.
-
-By default, manifest ordering is applied. Puppet will automatically apply unrelated resources in the order in which they appear in the manifest.
-
-This setting only affects resources whose relative order **is not otherwise determined,** e.g., by metaparameters like `before` or `require`. See [the language page on relationships](./lang_relationships.html) for more information.
+In the rest of this document, we try to call out areas where the order of statements matters.
 
 Files
 -----
