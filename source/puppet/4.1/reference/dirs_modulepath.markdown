@@ -4,14 +4,11 @@ title: "Directories: The Modulepath (Default Config)"
 ---
 
 [module_fundamentals]: ./modules_fundamentals.html
-[config file environments]: ./environments_classic.html
-[directory environments]: ./environments.html
+[environments]: ./environments.html
 [env_modules]: ./environments.html#setting-up-environments-on-a-puppet-master
 [confdir]: ./dirs_confdir.html
 [basemodulepath_setting]: /references/3.8.latest/configuration.html#basemodulepath
 [modulepath_setting]: /references/3.8.latest/configuration.html#modulepath
-[environment config sections]: ./environments_classic.html#environment-config-sections
-[dynamic environments]: ./environments_classic.html#dynamic-environments
 [config_print]: ./config_print.html
 [enable_dir_envs]: ./environments.html#enabling-directory-environments
 [puppet.conf]: ./config_file_main.html
@@ -44,12 +41,12 @@ By default, the modulepath will usually be something like:
 
 `<ACTIVE ENVIRONMENT'S MODULES DIRECTORY>:$confdir/modules:<SYSTEM MODULES DIRECTORY>`
 
-The location of the modulepath is configured differently, depending on whether [directory environments][] are enabled:
+The location of the modulepath is configured differently, depending on whether [environments][] are enabled:
 
 Configuration                                   | Location of modulepath
 ------------------------------------------------|-----------------------
-[Config file environments][] or no environments | Value of `modulepath` setting from [puppet.conf][] (defaults to the **base modulepath**)
-[Directory environments][]                      | Value of `modulepath` setting from [environment.conf][] (defaults to the active environment's [`modules` directory][env_modules] plus the **base modulepath**)
+No environments | Value of the `modulepath` setting from [puppet.conf][] (defaults to the **base modulepath**)
+[Environments][]                      | Value of the `modulepath` setting from [environment.conf][] (defaults to the active environment's [`modules` directory][env_modules] plus the **base modulepath**)
 
 You can view the effective modulepath for any environment by specifying the environment when [requesting the setting value][config_print]:
 
@@ -58,7 +55,7 @@ You can view the effective modulepath for any environment by specifying the envi
 
 ### The Base Modulepath
 
-The **base modulepath** is a list of global module directories for use with all [directory environments][]. It also serves as the default value for the `modulepath` setting, which is used when directory environments are disabled. It can be configured with [the `basemodulepath` setting][basemodulepath_setting], but its default value is probably suitable for you unless you're doing something unusual.
+The **base modulepath** is a list of global module directories for use with all [environments][]. It also serves as the default value for the `modulepath` setting, which is used when environments are disabled. It can be configured with [the `basemodulepath` setting][basemodulepath_setting], but its default value is probably suitable for you unless you're doing something unusual.
 
 The default value of the `basemodulepath` setting depends on your OS and the distribution of Puppet in use. This table lists the default `basemodulepath` values.
 
@@ -80,7 +77,7 @@ Default settings for Puppet Enterprise 3.3 and lower or upgrades to Puppet Enter
 
 `/etc/puppetlabs/puppet/modules:/opt/puppet/share/puppet/modules`
 
-Open source Puppet, directory environments [enabled][enable_dir_envs] with `environmentpath = $confdir/environments`, active environment is `dev`:
+Open source Puppet, environments [enabled][enable_dir_envs] with `environmentpath = $confdir/environments`, active environment is `dev`:
 
 `/etc/puppet/environments/dev/modules:/etc/puppet/modules:/usr/share/puppet/modules`
 
@@ -88,9 +85,7 @@ Open source Puppet, directory environments [enabled][enable_dir_envs] with `envi
 ### Configuring the Modulepath
 
 * If you are not using environments, you can directly configure the modulepath with [the `modulepath` setting][modulepath_setting]. This should generally be set in the `[main]` section of puppet.conf, so it can be used by all commands and services.
-* If you are using [directory environments][], the first element of the modulepath will always be the active environment's `modules` directory. However, you can configure global module directories with the `basemodulepath` setting (see above). This should generally be set in the `[main]` section of puppet.conf.
-* If you are using [environment config sections][], you can set `modulepath` in each environment's section of puppet.conf. If that setting is absent in a given environment, Puppet will fall back to the global value of the `modulepath` setting.
-* If you are using [dynamic environments][], you can set the `modulepath` setting in `[main]` and use the `$environment` variable in some of the directory names.
+* If you are using [environments][], the first element of the modulepath will always be the active environment's `modules` directory. However, you can configure global module directories with the `basemodulepath` setting (see above). This should generally be set in the `[main]` section of puppet.conf.
 
 
 ## Loading Content from Modules

@@ -6,7 +6,6 @@ canonical: "/puppet/latest/reference/config_important_settings.html"
 
 [cli_settings]: ./config_about_settings.html#settings-can-be-set-on-the-command-line
 [trusted_and_facts]: ./lang_facts_and_builtin_vars.html
-[config_environments]: ./environments_classic.html
 [config_reference]: /references/3.8.latest/configuration.html
 [environments]: ./environments.html
 [future]: ./experiments_future.html

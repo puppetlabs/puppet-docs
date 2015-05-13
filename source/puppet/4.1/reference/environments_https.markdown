@@ -6,8 +6,6 @@ canonical: "/puppet/latest/reference/environments_https.html"
 
 [http_api]: ./http_api/http_api_index.html
 [auth.conf file]: ./config_file_auth.html
-[config_file_envs]: ./environments_classic.html
-
 
 Puppet's environments interact in several ways with Puppet's HTTPS interface.
 
