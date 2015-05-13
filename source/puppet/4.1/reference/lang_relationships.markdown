@@ -11,23 +11,20 @@ canonical: "/puppet/latest/reference/lang_relationships.html"
 [array]: ./lang_data_array.html
 [class]: ./lang_classes.html
 [event]: ./lang_resources.html#behavior
-[service]: /references/3.8.latest/type.html#service
-[exec]: /references/3.8.latest/type.html#exec
-[type]: /references/3.8.latest/type.html
-[mount]: /references/3.8.latest/type.html#mount
+[service]: /references/4.1.latest/type.html#service
+[exec]: /references/4.1.latest/type.html#exec
+[type]: /references/4.1.latest/type.html
+[mount]: /references/4.1.latest/type.html#mount
 [metaparameters]: ./lang_resources.html#metaparameters
 [require_function]: ./lang_classes.html#using-require
-[moar]: /references/3.8.latest/configuration.html#ordering
+[moar]: /references/4.1.latest/configuration.html#ordering
 [lambdas]: ./lang_lambdas.html
 
 
 
-With default settings, the order of [resources][] in a Puppet manifest does not matter. Puppet assumes that most resources are not related to each other and will manage the resources in whatever order is most efficient.
+By default, Puppet applies manifest ordering. If a group of resources should be managed in a specific order, you must explicitly declare the relationships. You can disable this with the `ordering` setting. 
 
-If a group of resources should be managed in a specific order, you must explicitly declare the relationships.
-
-> **Aside: Manifest Ordering** Puppet 3.3 added a the ability to turn on [manifest ordering][moar] in the agent's puppet.conf, which causes resources to be applied in the order they are declared in manifests. Beginning in Puppet 4, manifest ordering will be the default setting.
->
+> **Aside: Manifest Ordering** 
 > While manifest ordering is an intuitive and useful shortcut, you should still explicitly declare dependencies much of the time, especially in modules where resources are spread out across multiple manifests.
 
 
