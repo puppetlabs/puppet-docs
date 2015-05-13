@@ -16,33 +16,28 @@ title: "Creating Directory Environments"
 [default_manifest]: /references/3.8.latest/configuration.html#defaultmanifest
 [disable_per_environment_manifest]: /references/3.8.latest/configuration.html#disableperenvironmentmanifest
 
-Once you have [enabled directory environments][enable_dirs], you can:
-
-* Create environments (as described on this page)
-* [Assign environments to your nodes][assign]
-
 For more info about what environments do, see [About Directory Environments.][about]
 
 
 Structure of an Environment
 -----
 
-A directory environment is just a directory that follows a few conventions:
+An environment is just a directory that follows a few conventions:
 
 * The directory name is the environment name.
-* It must be located on the Puppet master server(s) in one of the `environmentpath` directories, usually `$confdir/environments`. (See [the `environmentpath` section of the configuring environments page.][env_conf_path])
+* It must be located on the Puppet master server(s) in one of the `environmentpath` directories, usually `$codedir/environments`. (See [the `environmentpath` section of the configuring environments page.][env_conf_path])
 * It should contain a `modules` directory. If present, it will become part of the environment's default `modulepath`.
 * It should contain a `manifests` directory, which will be the environment's default [main manifest.][manifest_dir]
 * It may contain [an `environment.conf` file][environment.conf], which can locally override several settings, including `modulepath` and `manifest`.
 
-![Diagram: A directory with four directory environments. Each directory environment contains a modules directory, a manifests directory, and an environment.conf file.](./images/environment_directories.jpg)
+![Diagram: A directory with four environments. Each environment contains a modules directory, a manifests directory, and an environment.conf file.](./images/environment_directories.jpg)
 
 Puppet Enterprise Requirements
 -----
 
 [inpage_pe]: #puppet-enterprise-requirements
 
-With Puppet Enterprise, **every** environment must meet two extra requirements.
+With Puppet Enterprise (PE), **every** environment must meet two extra requirements.
 
 ### Filebucket Resource in Main Manifest
 
@@ -62,14 +57,14 @@ The [main manifest][manifest_dir] **must** contain the following snippet of Pupp
 You should do the following to ensure this is present:
 
 * Make sure you set `default_manifest = $confdir/manifests` in [puppet.conf][]. This will provide the necessary code to any environments that don't override their main manifest in [environment.conf][].
-* If any environments DO provide their own main manifests, make sure you copy this code from the `/etc/puppetlabs/puppet/manifests/site.pp` file into some file in their manifests directory.
+* If any environments **do** provide their own main manifests, make sure you copy this code from the `/etc/puppetlabs/puppet/manifests/site.pp` file into some file in their manifests directory.
 
-### Modulepath Includes `/opt/puppet/share/puppet/modules`
+### Modulepath Includes `/opt/puppetlabs/puppet/modules`
 
-The [modulepath][] **must** include the `/opt/puppet/share/puppet/modules` directory, since PE uses modules in that directory to configure orchestration and other features.
+The [modulepath][] **must** include the `/opt/puppetlabs/puppet/modules` directory, since PE uses modules in that directory to configure orchestration and other features.
 
-* If you **upgraded** from a previous version of PE instead of doing a fresh install, make sure to set `basemodulepath = $confdir/modules:/opt/puppet/share/puppet/modules` in [puppet.conf][]. This will include the system modules in the **default** modulepath for every environment. If you installed PE 3.8 from scratch, this path is already set by default.
-* If you use [environment.conf][] to override the modulepath (see below), make sure it includes either `$basemodulepath` or `/opt/puppet/share/puppet/modules`.
+* If you **upgraded** from a previous version of PE instead of doing a fresh install, make sure to set `basemodulepath = $codedir/modules:/opt/puppetlabs/puppet/modules` in [puppet.conf][]. This will include the system modules in the **default** modulepath for every environment. If you installed PE 3.8 or higher from scratch, this path is already set by default.
+* If you use [environment.conf][] to override the modulepath (see below), make sure it includes either `$basemodulepath` or `/opt/puppetlabs/puppet/modules`.
 
 
 Allowed Environment Names
@@ -78,15 +73,6 @@ Allowed Environment Names
 Environment names can contain letters, numbers, and underscores. That is, they must match the following regular expression:
 
 `\A[a-z0-9_]+\Z`
-
-Additionally, there are four forbidden environment names:
-
-* `main`
-* `master`
-* `agent`
-* `user`
-
-These names can't be used because they conflict with the primary [config sections](./config_file_main.html#config-sections). **This can be a problem with Git,** because its default branch is named `master`. You may need to rename the `master` branch to something like `production` or `stable` (e.g. `git branch -m master production`).
 
 
 What Environments Provide
@@ -113,9 +99,9 @@ That is, Puppet will add the environment's `modules` directory to the value of t
 
 #### Configuring the Modulepath
 
-You can configure a different modulepath for an environment by setting `modulepath` in its [environment.conf][] file. Note that the global `modulepath` setting from [puppet.conf][] will never be used by a directory environment.
+You can configure a different modulepath for an environment by setting `modulepath` in its [environment.conf][] file. Note that the global `modulepath` setting from [puppet.conf][] will never be used by an environment.
 
-**Note:** The `modulepath` should almost always include `$basemodulepath`, and if you're using PE, it **must** include `/opt/puppet/share/puppet/modules`. ([See above.][inpage_pe]). This path is included in the `basemodulepath` by default in PE 3.8.
+**Note:** The `modulepath` should almost always include `$basemodulepath`, and if you're using PE, it **must** include `/opt/puppet/share/puppet/modules`. ([See above.][inpage_pe]) This path is included in the `basemodulepath` by default in PE 3.8.
 
 #### Checking the Modulepath
 
@@ -137,7 +123,7 @@ The value of this setting can be an **absolute path** to a manifest that all env
 
 The default value of `default_manifest` is `./manifests` --- that is, the environment's own `manifests` directory.
 
-If the file or directory specified by `default_manifest` is empty or absent, Puppet will **not** fall back to any other manifest; instead, it will behave as though you used a totally blank main manifest. Note that the global `manifest` setting from [puppet.conf][] will never be used by a directory environment.
+If the file or directory specified by `default_manifest` is empty or absent, Puppet will **not** fall back to any other manifest; instead, it will behave as though you used a totally blank main manifest. Note that the global `manifest` setting from [puppet.conf][] will never be used by an environment.
 
 
 #### Configuring the Main Manifest
@@ -162,7 +148,7 @@ By default, the config version will be the **time** at which the catalog was com
 
 #### Configuring the Config Version
 
-You can specify an executable script that will determine an environment's config version by setting `config_version` in its [environment.conf][] file. Puppet will run this script when compiling a catalog for a node in the environment, and use its output as the config version. Note that the global `config_version` setting from [puppet.conf][] will never be used by a directory environment.
+You can specify an executable script that will determine an environment's config version by setting `config_version` in its [environment.conf][] file. Puppet will run this script when compiling a catalog for a node in the environment, and use its output as the config version. Note that the global `config_version` setting from [puppet.conf][] will never be used by an environment.
 
 **Note:** If you're using a system binary like `git rev-parse`, make sure to specify the absolute path to it! If `config_version` is set to a relative path, Puppet will look for the binary _in the environment,_ not in the system's `PATH`.
 

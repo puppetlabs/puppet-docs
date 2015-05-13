@@ -4,7 +4,7 @@ title: "Configuring Environments"
 ---
 
 [environmentpath]: /references/3.8.latest/configuration.html#environmentpath
-[confdir]: ./dirs_confdir.html
+[codedir]: ./dirs_codedir.html
 [puppet.conf]: ./config_file_main.html
 [modulepath]: ./dirs_modulepath.html
 [basemodulepath]: /references/3.8.latest/configuration.html#basemodulepath
@@ -32,9 +32,9 @@ Puppet uses five settings in [puppet.conf][] to configure the behavior of enviro
 
 [inpage_environmentpath]: #about-environmentpath
 
-The Puppet master will only look for environments in certain directories, listed by [the `environmentpath` setting][environmentpath] in puppet.conf. The recommended value for `environmentpath` is `$confdir/environments`. ([See here for info on the confdir][confdir].)
+The Puppet master will only look for environments in certain directories, listed by [the `environmentpath` setting][environmentpath] in puppet.conf. The default value for `environmentpath` is `$codedir/environments`. ([See here for info on the codedir][codedir].)
 
-If `environmentpath` isn't set, directory environments will be disabled completely.
+If `environmentpath` isn't set, environments will be disabled completely.
 
 If you need to manage environments in multiple directories, you can set `environmentpath` to a colon-separated list of directories. (For example: `$confdir/temporary_environments:$confdir/environments`.) When looking for an environment, Puppet will search these directories in order, with earlier directories having precedence.
 
