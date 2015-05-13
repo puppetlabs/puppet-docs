@@ -9,7 +9,7 @@ canonical: "/puppet/latest/reference/config_about_settings.html"
 [puppet.conf]: ./config_file_main.html
 [auth.conf]: ./config_file_auth.html
 [puppetdb.conf]: ./config_file_puppetdb.html
-[puppetserver_config]: ./puppetserver/1.0/configuration.html
+[puppetserver_config]: ./puppetserver/2.0/configuration.html
 
 Puppet's commands and services can be extensively configured, and its settings can be specified in a variety of places.
 
@@ -83,5 +83,5 @@ However, there are also about nine extra configuration files --- things like [au
 
 ### Puppet Server Configuration
 
-Puppet Server honors almost all settings in `puppet.conf` and should pick them up automatically. However, for some tasks, such as configuring the webserver or an external Certificate Authority, there are Puppet Server-specific configuration files and settings. See [Puppet Server: Configuration] [puppetserver_config] for more information.
+Puppet Server honors almost all settings in `puppet.conf` and should pick them up automatically. However, for some tasks, such as configuring the webserver or an external Certificate Authority, there are Puppet Server-specific configuration files and settings. See [Puppet Server: Configuration][puppetserver_config] for more information.
 
