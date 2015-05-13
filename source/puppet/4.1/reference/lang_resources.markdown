@@ -118,6 +118,11 @@ A resource declaration adds a resource to the catalog, and tells Puppet to manag
 * Compare the actual state to the desired state
 * If necessary, change the system to enforce the desired state
 
+### Unmanaged Resources
+
+If the catalog doesn't contain a resource, Puppet will _do nothing_ with whatever that resource might have described.
+
+This means that ceasing to manage something isn't the same as deleting it. If you remove a package resource from your manifests, this won't cause Puppet to _uninstall_ the package; it will just cause Puppet to _stop caring_ about the package. To make sure a package is removed, you would have to manage it as a resource and set `ensure => absent`.
 
 ### Uniqueness
 
