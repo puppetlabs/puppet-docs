@@ -46,8 +46,6 @@ You Can Query Environment Info via the Master's HTTP API
 
 If you are extending Puppet and need a way to query information about the available environments, you can do this via the [environments endpoint.][env_endpoint] (This endpoint uses the new [v2 HTTP API.][v2_api])
 
-This _only works for directory environments._ When you query environments via the API, any [config file environments][config_file_envs] will be omitted.
-
 For more details, see [the reference page about the environments endpoint.][env_endpoint]
 
 [v2_api]: /references/3.8.latest/developer/file.http_api_index.html#V2_HTTP_API
