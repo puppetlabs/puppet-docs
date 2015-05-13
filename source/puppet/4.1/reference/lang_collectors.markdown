@@ -114,6 +114,8 @@ Behavior
 
 A resource collector will **always** [realize][] any [virtual resources][virtual] that match its search expression. Note that empty search expressions match every resource of the specified resource type.
 
+Note that a collector will also collect and realize any exported resources from the current node. If you use exported resources that you don't want realized, take care to exclude them from the collector's search expression.
+
 In addition to realizing, collectors can function as a value in two places:
 
 * When used in a [chaining statement][chaining], a collector will act as a proxy for every resource (virtual or non) that matches its search expression.

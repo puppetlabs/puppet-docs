@@ -97,8 +97,9 @@ Any [resource collector][collectors] will realize any virtual resource that matc
 
 You can use multiple resource collectors that match a given virtual resource and it will only be added to the catalog once.
 
-Note that a collector used in an [override block][override] or a [chaining statement][chaining] will also realize any matching virtual resources.
+Note that a collector will also collect and realize any exported resources from the current node. If you use exported resources that you don't want realized, take care to exclude them from the collector's search expression.
 
+Note also that a collector used in an [override block][override] or a [chaining statement][chaining] will also realize any matching virtual resources.
 
 Behavior
 -----
