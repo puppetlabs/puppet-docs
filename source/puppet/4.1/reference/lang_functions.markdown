@@ -17,7 +17,7 @@ canonical: "/puppet/latest/reference/lang_functions.html"
 [template]: /references/3.8.latest/function.html#template
 [include]: /references/3.8.latest/function.html#include
 [each]: /references/3.8.latest/function.html#each
-
+[splat]: ./lang_expressions.html#splat
 
 Functions are plugins written in Ruby, which you can call during [compilation][catalog]. A call to any function is an [expression][] that resolves to a value.
 
@@ -103,6 +103,7 @@ The general form of a prefix function call is:
 * An opening parenthesis (`(`).
     * Parentheses are optional when calling a [_built-in statement function_][inpage_statement] with at least one argument (like `include apache`). They're mandatory in all other cases.
 * Zero or more **arguments,** separated with commas. Arguments can be any [expression][] that resolves to a value. See each function's docs for the number of its arguments and their [data types][datatype].
+    * Note that [the `*` (splat) array operator][splat] can convert an array to a comma-separated list of arguments.
 * A closing parenthesis (`)`), if an opening parenthesis was used.
 * Optionally, a [lambda][] (code block), if the function accepts one.
 
@@ -148,6 +149,7 @@ The general form of a chained function call is:
 * A period (`.`).
 * The full name of the function, as an unquoted word.
 * Optionally, parentheses containing a comma-separated list of **additional arguments,** starting with the _second_ argument.
+    * Note that [the `*` (splat) array operator][splat] can convert an array to a comma-separated list of arguments.
 * Optionally, a [lambda][] (code block), if the function accepts one.
 
 
