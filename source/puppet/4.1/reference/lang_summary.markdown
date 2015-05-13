@@ -7,16 +7,16 @@ canonical: "/puppet/latest/reference/lang_summary.html"
 [site_manifest]: ./dirs_manifest.html
 [autoload]: ./lang_namespaces.html#autoloader-behavior
 [config]: /guides/configuring.html
-[usecacheonfailure]: /references/3.8.latest/configuration.html#usecacheonfailure
+[usecacheonfailure]: /references/4.1.latest/configuration.html#usecacheonfailure
 [fileserve]: ./modules_fundamentals.html#files
 [classes]: ./lang_classes.html
 [enc]: /guides/external_nodes.html
 [resources]: ./lang_resources.html
 [chaining]: ./lang_relationships.html#chaining-arrows
 [modules]: ./modules_fundamentals.html
-[package]: /references/3.8.latest/type.html#package
-[file]: /references/3.8.latest/type.html#file
-[service]: /references/3.8.latest/type.html#service
+[package]: /references/4.1.latest/type.html#package
+[file]: /references/4.1.latest/type.html#file
+[service]: /references/4.1.latest/type.html#service
 [case]: ./lang_conditional.html#case-statements
 [fact]: ./lang_variables.html#facts-and-built-in-variables
 [variables]: ./lang_variables.html
@@ -26,7 +26,7 @@ canonical: "/puppet/latest/reference/lang_summary.html"
 [declared]: /references/glossary.html#declare
 [string_newline]: ./lang_data_string.html#line-breaks
 [node]: ./lang_node_definitions.html
-[ordering]: /references/3.8.latest/configuration.html#ordering
+[ordering]: /references/4.1.latest/configuration.html#ordering
 [hiera]: /hiera/latest
 [compilation]: ./subsystem_catalog_compilation.html
 
@@ -49,15 +49,13 @@ Ordering
 
 Puppet's language is mostly **declarative:** Rather than listing a series of changes to make to a node, a Puppet manifest describes a desired final state.
 
-The resources in a manifest can be freely ordered --- they will not necessarily be applied to the system in the order they are written. This is because Puppet assumes most resources aren't related to each other. If one resource depends on another, [you must say so explicitly][relationships]. (If you want a short section of code to get applied in the order written, you can use [chaining arrows][chaining].)
-
-Although resources can be freely ordered, several parts of the language do depend on evaluation order. The most notable of these are variables, which must be set before they are referenced.
+Although resources can be freely ordered, several parts of the language do depend on evaluation order. The most notable of these are variables, which must be set before they are referenced. Puppet assumes most resources aren't related to each other. If one resource depends on another, [you must say so explicitly][relationships]. (If you want a short section of code to get applied in the order written, you can use [chaining arrows][chaining].)
 
 ### Configurable Ordering
 
 The [ordering setting][ordering] allows you to configure the order in which unrelated resources get applied.
 
-By default, the order of unrelated resources is effectively random. If you set `ordering = manifest` in `puppet.conf`, Puppet will apply unrelated resources in the order in which they appear in the manifest.
+By default, manifest ordering is applied. Puppet will automatically apply unrelated resources in the order in which they appear in the manifest.
 
 This setting only affects resources whose relative order **is not otherwise determined,** e.g., by metaparameters like `before` or `require`. See [the language page on relationships](./lang_relationships.html) for more information.
 
