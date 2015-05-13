@@ -1,3 +1,9 @@
+---
+layout: default
+title: "Puppet HTTP API: Report"
+canonical: "/puppet/latest/reference/http_api/http_report.html"
+---
+
 Report
 ======
 This document describes the Puppet master's report endpoint and the schema for

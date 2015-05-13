@@ -1,3 +1,9 @@
+---
+layout: default
+title: "Puppet HTTP API: File Metadata"
+canonical: "/puppet/latest/reference/http_api/http_file_metadata.html"
+---
+
 File Metadata
 =============
 

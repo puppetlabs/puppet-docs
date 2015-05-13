@@ -1,3 +1,9 @@
+---
+layout: default
+title: "Puppet HTTP API: File Content"
+canonical: "/puppet/latest/reference/http_api/http_file_content.html"
+---
+
 File Content
 =============
 

@@ -1,3 +1,9 @@
+---
+layout: default
+title: "Puppet HTTP API: Status"
+canonical: "/puppet/latest/reference/http_api/http_status.html"
+---
+
 Status
 =============
 

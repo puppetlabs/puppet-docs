@@ -1,3 +1,9 @@
+---
+layout: default
+title: "Puppet HTTP API: Resource Type"
+canonical: "/puppet/latest/reference/http_api/http_resource_type.html"
+---
+
 Resource Type
 =============
 

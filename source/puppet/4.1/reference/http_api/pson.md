@@ -1,3 +1,9 @@
+---
+layout: default
+title: "Puppet HTTP API: PSON"
+canonical: "/puppet/latest/reference/http_api/pson.html"
+---
+
 PSON
 =============
 

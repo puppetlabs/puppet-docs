@@ -1,3 +1,9 @@
+---
+layout: default
+title: "Puppet HTTP API: Index"
+canonical: "/puppet/latest/reference/http_api/http_api_index.html"
+---
+
 A Puppet master server provides several services via HTTP API, and the Puppet
 agent application uses those services to resolve a node's credentials, retrieve
 a configuration catalog, retrieve file data, and submit reports.

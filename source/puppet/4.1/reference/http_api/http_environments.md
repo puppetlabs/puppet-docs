@@ -1,3 +1,9 @@
+---
+layout: default
+title: "Puppet HTTP API: Environments"
+canonical: "/puppet/latest/reference/http_api/http_environments.html"
+---
+
 Environments
 ============
 

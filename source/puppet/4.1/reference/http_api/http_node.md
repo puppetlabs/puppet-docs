@@ -1,3 +1,9 @@
+---
+layout: default
+title: "Puppet HTTP API: Node"
+canonical: "/puppet/latest/reference/http_api/http_node.html"
+---
+
 Node
 ====
 

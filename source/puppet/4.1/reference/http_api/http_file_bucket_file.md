@@ -1,3 +1,9 @@
+---
+layout: default
+title: "Puppet HTTP API: File Bucket File"
+canonical: "/puppet/latest/reference/http_api/http_file_bucket_file.html"
+---
+
 File Bucket File
 =============
 

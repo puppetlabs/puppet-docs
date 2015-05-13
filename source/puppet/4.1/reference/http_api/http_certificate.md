@@ -1,3 +1,9 @@
+---
+layout: default
+title: "Puppet HTTP API: Certificate"
+canonical: "/puppet/latest/reference/http_api/http_certificate.html"
+---
+
 Certificate
 =============
 

@@ -1,3 +1,9 @@
+---
+layout: default
+title: "Puppet HTTP API: Catalog"
+canonical: "/puppet/latest/reference/http_api/http_catalog.html"
+---
+
 Catalog
 =============
 

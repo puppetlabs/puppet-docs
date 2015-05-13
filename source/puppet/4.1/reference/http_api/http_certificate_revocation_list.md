@@ -1,3 +1,9 @@
+---
+layout: default
+title: "Puppet HTTP API: Certificate Revocation List"
+canonical: "/puppet/latest/reference/http_api/http_certificate_revocation_list.html"
+---
+
 Certificate Revocation List
 ===========================
 
