@@ -15,7 +15,6 @@ canonical: "/puppet/latest/reference/lang_functions.html"
 [lambda]: ./lang_lambdas.html
 [expression]: ./lang_expressions.html
 [template]: /references/3.8.latest/function.html#template
-[str2bool]: https://forge.puppetlabs.com/puppetlabs/stdlib#str2bool
 [include]: /references/3.8.latest/function.html#include
 [each]: /references/3.8.latest/function.html#each
 
@@ -41,7 +40,7 @@ Function calls can also stand on their own, which will cause their value to be i
 Syntax
 -----
 
-There are two ways to call functions in the Puppet language: classic **prefix calls** like `str2bool("true")`, and **chained calls** like `"true".str2bool`. There's also a modified form of prefix call that can only be used with certain functions.
+There are two ways to call functions in the Puppet language: classic **prefix calls** like `template("ntp/ntp.conf")`, and **chained calls** like `"ntp/ntp.conf".template`. There's also a modified form of prefix call that can only be used with certain functions.
 
 ### Choosing a Call Style
 
@@ -70,13 +69,7 @@ You can call a function by writing its name and providing a list of arguments in
       content => template("ntp/ntp.conf"), # function call; resolves to a string
     }
 
-    # Note: str2bool is part of the puppetlabs-stdlib module.
-    if str2bool("$is_virtual") { # function call; resolves to a boolean
-      include ntp::disabled # function call; modifies catalog
-    }
-    else {
-      include ntp           # function call; modifies catalog
-    }
+    include apache # function call; modifies catalog
 
     $binaries = [
       "cfacter",
@@ -97,7 +90,7 @@ You can call a function by writing its name and providing a list of arguments in
 {% endhighlight %}
 
 {% capture about_examples %}
-In the examples above, [`template`][template], [`str2bool`][str2bool], [`include`][include], and [`each`][each] are all functions. `template` and `str2bool` are used for their return values, `include` adds a class to the catalog, and `each` runs a block of code several times with different values.
+In the examples above, [`template`][template], [`include`][include], and [`each`][each] are all functions. `template` is used for is return value, `include` adds a class to the catalog, and `each` runs a block of code several times with different values.
 {% endcapture %}
 
 {{ about_examples }}
@@ -125,13 +118,7 @@ You can also call a function by writing its first argument, a period, and the na
       content => "ntp/ntp.conf".template, # function call; resolves to a string
     }
 
-    # Note: str2bool is part of the puppetlabs-stdlib module.
-    if str2bool("$is_virtual") { # function call; resolves to a boolean
-      "ntp::disabled".include # function call; modifies catalog
-    }
-    else {
-      ntp.include           # function call; modifies catalog
-    }
+    apache.include # function call; modifies catalog
 
     $binaries = [
       "cfacter",

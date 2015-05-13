@@ -7,12 +7,9 @@ canonical: "/puppet/latest/reference/lang_data_boolean.html"
 [if]: ./lang_conditional.html#if-statements
 [comparison]: ./lang_expressions.html#comparison-operators
 [stdlib]: http://forge.puppetlabs.com/puppetlabs/stdlib
-[facts]: ./lang_variables.html#facts
-[fact_datatypes]: ./lang_facts_and_builtin_vars.html#data-types
 [function]: ./lang_functions.html
 [abstract types]: ./lang_data_abstract.html
 [data type]: ./lang_data_type.html
-
 
 Booleans are one-bit values, representing true or false.
 
@@ -29,7 +26,7 @@ If a non-boolean value is used where a boolean is required:
 * The `undef` value is converted to boolean `false`.
 * **All** other values are converted to boolean `true`.
 
-Notably, this means the string values `""` (zero-length string) and `"false"` both resolve to `true`. If Puppet is configured to treat all [facts][] as strings, this can cause unexpected behavior; see [the docs on fact data types][fact_datatypes] for more info.
+Notably, this means the string values `""` (zero-length string) and `"false"` both resolve to `true`.
 
 If you want to convert other values to booleans with more permissive rules (`0` as false, `"false"` as false, etc.), the [puppetlabs-stdlib][stdlib] module includes `str2bool` and `num2bool` functions.
 

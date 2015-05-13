@@ -23,7 +23,6 @@ Temporary environments are good for testing individual changes, especially if yo
 
 Once you're done with a temporary environment, you can delete it. Usually, the nodes in a temporary environment will be short-lived cloud instances or VMs, which can be destroyed when the environment ends; otherwise, you'll need to move the nodes back into a stable environment.
 
-This pattern works best with [directory environments.][directory_environments] If you need to use temporary config file environments, you can use the pattern from [Adrien Thebo's blog post on the subject][adrien_blog].
 
 ## Divided Infrastructure
 

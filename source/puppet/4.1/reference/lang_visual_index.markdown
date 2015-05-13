@@ -188,7 +188,7 @@ This page can help you find syntax elements when you can't remember their names.
 
 
 {% highlight ruby %}
-    if str2bool("$is_virtual") {
+    if $is_virtual {
       warning( 'Tried to include class ntp on virtual machine; this node may be misclassified.' )
     }
     elsif $operatingsystem == 'Darwin' {

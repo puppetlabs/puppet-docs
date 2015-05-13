@@ -1,10 +1,10 @@
 ---
 layout: default
-title: "Configuring Directory Environments"
+title: "Configuring Environments"
 ---
 
 [environmentpath]: /references/3.8.latest/configuration.html#environmentpath
-[confdir]: ./dirs_confdir.html
+[codedir]: ./dirs_codedir.html
 [puppet.conf]: ./config_file_main.html
 [modulepath]: ./dirs_modulepath.html
 [basemodulepath]: /references/3.8.latest/configuration.html#basemodulepath
@@ -17,61 +17,10 @@ title: "Configuring Directory Environments"
 [disable_per_environment_manifest]: /references/3.8.latest/configuration.html#disableperenvironmentmanifest
 [main manifest]: ./dirs_manifest.html
 
-
-Before you can use directory environments, you have to configure Puppet to enable them.
-
-For performance reasons, many users will also want to [set `environment_timeout` to `unlimited`][inpage_timeout] and refresh the Puppet master when deploying code.
-
-After enabling environments, you can:
-
-* [Create environments][create_environment]
-* [Assign environments to your nodes][assign]
-
-For more info about what environments do, see [About Directory Environments.][about]
-
-Enabling Directory Environments in Puppet Enterprise
------
-
-Directory environments are enabled by default in PE 3.7. If you are using an earlier version of PE, you will need to [enable them](/puppet/3.6/reference/environments_configuring.html#enabling-directory-environments-in-puppet-enterprise).
-
-Enabling Directory Environments in Open Source Puppet
------
-
-Directory environments are disabled by default. To enable them, you must:
-
-* Edit the config file
-* Create at least one directory environment
-
-### Edit puppet.conf
-
-To enable directory environments, set `environmentpath = $confdir/environments` (or [the value of your choice][inpage_environmentpath]) in the Puppet master's [puppet.conf][] (in the `[main]` or `[master]` section).
-
-Optionally, you can also:
-
-* Use the `basemodulepath` setting to specify global modules that should be available in all environments. Most people are fine with the default value.
-* Use the `default_manifest` setting to either change the default per-environment manifest or set a global manifest to be used by all environments.
-
-See the section below about settings for more details.
-
-Once you edit puppet.conf, directory environments will be enabled and config file environments will be disabled.
-
-### Create a Directory Environment
-
-You must have a directory environment for **every** environment that **any** nodes are assigned to. At minimum, you should have a `production` environment. Nodes assigned to nonexistent environments cannot fetch their catalogs.
-
-To create your first environment, create a directory named `production` in your environmentpath. (If a `production` directory doesn't exist, the Puppet master will try to create one when it starts up.) Once it is created, you can add modules, a [main manifest,][main manifest] and an [environment.conf][] file to it.
-
-* See [the page on creating directory environments][create_environment] for full details.
-
-### Restart the Puppet Master
-
-Restart the web server that manages your Puppet master, to make sure the Puppet master picks up its changed configuration.
-
-
 Global Settings for Configuring Environments
 -----
 
-Puppet uses five settings in [puppet.conf][] to configure the behavior of directory environments:
+Puppet uses five settings in [puppet.conf][] to configure the behavior of environments:
 
 * [`environmentpath`][environmentpath] is the list of directories where Puppet will look for environments.
 * [`basemodulepath`][basemodulepath] lists directories of global modules that all environments can access by default.
@@ -79,21 +28,21 @@ Puppet uses five settings in [puppet.conf][] to configure the behavior of direct
 * [`disable_per_environment_manifest`][disable_per_environment_manifest] lets you specify that **all** environments should use a shared main manifest. This requires `default_manifest` to be set to an absolute path.
 * [`environment_timeout`][environment_timeout] sets how often the Puppet will refresh information about environments. It can be overridden per-environment.
 
-### `environmentpath`
+## `environmentpath`
 
 [inpage_environmentpath]: #about-environmentpath
 
-The Puppet master will only look for environments in certain directories, listed by [the `environmentpath` setting][environmentpath] in puppet.conf. The recommended value for `environmentpath` is `$confdir/environments`. ([See here for info on the confdir][confdir].)
+The Puppet master will only look for environments in certain directories, listed by [the `environmentpath` setting][environmentpath] in puppet.conf. The default value for `environmentpath` is `$codedir/environments`. ([See here for info on the codedir][codedir].)
 
-If `environmentpath` isn't set, directory environments will be disabled completely.
+If `environmentpath` isn't set, environments will be disabled completely.
 
 If you need to manage environments in multiple directories, you can set `environmentpath` to a colon-separated list of directories. (For example: `$confdir/temporary_environments:$confdir/environments`.) When looking for an environment, Puppet will search these directories in order, with earlier directories having precedence.
 
-Note that if multiple copies a given environment exist in the `environmentpath`, Puppet will use the first one. It won't use any contents of the other copies.
+Note that if multiple copies of a given environment exist in the `environmentpath`, Puppet will use the first one. It won't use any content from the other copies.
 
 The `environmentpath` setting should usually be set in the `[main]` section of [puppet.conf][].
 
-### `basemodulepath`
+## `basemodulepath`
 
 Although environments should contain their own modules, you might want some modules to be available to all environments.
 
@@ -105,17 +54,17 @@ OS and Distro             | Default basemodulepath
 \*nix (open source)       | `$confdir/modules:/usr/share/puppet/modules`
 Windows (PE and foss)     | `$confdir\modules`
 
-> **Note:** In Puppet Enterprise 3.3, the `basemodulepath` must **always** include the `/opt/puppet/share/puppet/modules` directory.
+> **Note:** In Puppet Enterprise, the `basemodulepath` must *always* include the system module directory, which in this version of Puppet is `/opt/puppetlabs/puppet/modules`
 >
-> If you **upgraded** to Puppet Enterprise 3.3 from a previous version of PE, the default `basemodulepath` may not be set in your [puppet.conf][] file. You will need to add `basemodulepath = $confdir/modules:/opt/puppet/share/puppet/modules` to the `[main]` section of your puppet.conf before using directory environments.
+> If you **upgraded** to Puppet Enterprise 3.3 from a previous version of PE, the default `basemodulepath` may not be set in your [puppet.conf][] file. You will need to add `basemodulepath = $confdir/modules:/opt/puppet/share/puppet/modules` to the `[main]` section of your puppet.conf before using environments.
 
 To add additional directories containing global modules, you can set your own value for `basemodulepath`. See [the page on the modulepath][modulepath] for more details about how Puppet loads modules from the modulepath.
 
-### `default_manifest`
+## `default_manifest`
 
 [(See also: Full description of `default_manifest` setting.)](/references/3.8.latest/configuration.html#defaultmanifest)
 
-The default [main manifest][] to use for environments that don't specify one in [environment.conf][].
+The default [main manifest][] to use for environments that don't specify a manifest in [environment.conf][].
 
 The default value of `default_manifest` is `./manifests` --- that is, the environment's own `manifests` directory. (In Puppet versions prior to 3.7, this wasn't configurable.)
 
@@ -124,13 +73,13 @@ The value of this setting can be:
 * An absolute path to one manifest that all environments will share
 * A relative path to a file or directory inside each environment's directory
 
-### `disable_per_environment_manifest`
+## `disable_per_environment_manifest`
 
 Setting `disable_per_environment_manifest = true` will cause Puppet to use the same global manifest for every environment. If an environment specifies a different manifest in [environment.conf][], Puppet will refuse to compile catalogs nodes in that environment (to avoid serving catalogs with potentially wrong contents).
 
 This requires `default_manifest` to be an absolute path.
 
-### `environment_timeout`
+## `environment_timeout`
 
 [inpage_timeout]: #environmenttimeout
 [puppetserver.conf]: /puppetserver/latest/configuration.html#puppetserverconf
@@ -151,7 +100,7 @@ For best performance, you should:
     * With Puppet Server, refresh environments by [calling the `environment-cache` API endpoint.][environment-cache] You may need to allow access in [puppetserver.conf][]'s `puppet-admin` section.
     * With a Rack Puppet master, restart the web server or the
       application server. Passenger lets you touch a `restart.txt` file to
-      refresh an application without restarting Apache; see the Passenger docs
+      refresh an application without restarting Apache; see the [Passenger docs](/guides/passenger.html)
       for details.
 
 This setting can be overridden per-environment in [environment.conf][], but most users should avoid doing that.

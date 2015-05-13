@@ -47,19 +47,15 @@ For building other tools, [PuppetDB's API][puppetdb_facts] offers powerful ways 
 Data Types
 -----
 
-This version of Puppet **supports fact values of [any data type][datatypes],** but you may need to manually enable them:
+This version of Puppet supports fact values of [any data type][datatypes]. It will never convert boolean, numeric, or structured facts to strings.
 
-Puppet Enterprise 3.8             | Puppet 3.8 (open source release)
-----------------------------------|-------
-All data types enabled by default | User must install Facter ≥ 2.0 on all nodes, upgrade to PuppetDB ≥ 2.2, then set `stringify_facts = false` in puppet.conf on all nodes [(details here)][structured_facts_on]
+### Handling Boolean Facts in Older Puppet Versions
 
-### Handling String-Only Facts
+Puppet 3.x will sometimes convert all fact values to [strings][] (e.g. `"false"` instead of `false`), depending on the `stringify_facts` setting and the installed Facter version.
 
-Older versions of Puppet would always convert all fact values to [strings][]. (Thus, `false` would become `"false"`, and hash or array data structures were impossible.) This is still the default in open source releases of Puppet 3.8.
+If you're writing code that might be used with pre-4.0 versions of Puppet, you'll need to take extra care when dealing with boolean facts like `$is_virtual`, since the string `"false"` is actually true when used as the condition of an [`if` statement.](./lang_conditional.html#if-statements)
 
-When Puppet is configured to use stringified facts, you'll need to take extra care when dealing with boolean facts like `$is_virtual`, since the string `"false"` is actually true when used as the condition of an [`if` statement.](./lang_conditional.html#if-statements)
-
-If you're writing code that might be used in Puppet installations without complete data types enabled for facts, you can use the `str2bool` function (from [puppetlabs/stdlib](https://forge.puppetlabs.com/puppetlabs/stdlib)) to prevent fake true values:
+To handle this, you can use the `str2bool` function (from [puppetlabs/stdlib](https://forge.puppetlabs.com/puppetlabs/stdlib)) to prevent fake true values:
 
 {% highlight ruby %}
     if str2bool("$is_virtual") {

@@ -13,27 +13,19 @@ canonical: "/puppet/latest/reference/ssl_attributes_extensions.html"
 [trusted_hash]: ./lang_facts_and_builtin_vars.html#trusted-facts
 [enable_trusted]: ./config_important_settings.html#getting-new-features-early
 
-Summary
------
 
 When Puppet agent nodes request their certificates, the certificate signing request (CSR) usually just contains their certname and the necessary cryptographic information. However, agents can also embed more data in their CSR. This extra data can be useful for [policy-based autosigning][autosign_policy] and for adding new [trusted facts.][trusted_hash]
 
-### Status as of Early 2014
-
-In this version of Puppet, embedding additional data into CSRs is mostly useful in deployments where:
+Embedding additional data into CSRs is mostly useful when:
 
 * Large numbers of nodes are regularly created and destroyed as part of an elastic scaling system.
 * You are willing to build custom tooling to make certificate autosigning more secure and useful.
 
-It may also be useful in deployments where:
+It might also be useful in deployments where:
 
 * Puppet is used to deploy private keys or other sensitive information, and you want extra control over which nodes receive this data.
 
-If your deployment doesn't match one of these descriptions, you may not need this feature.
-
-> ### Version Note
->
-> CSR attributes and certificate extensions are only available in Puppet 3.4 and newer. Access to extensions in the `$trusted` hash is available in 3.5 and newer.
+If your deployment doesn't match one of these descriptions, you might not need this feature.
 
 
 Timing: When Data Can be Added to CSRs / Certificates
@@ -59,7 +51,7 @@ The `csr_attributes` file must be a YAML hash containing one or both of the foll
 
 The value of each key must also be a hash, where:
 
-* Each key is a valid [object identifier (OID)](http://en.wikipedia.org/wiki/Object_identifier) --- [Puppet-specific OIDs][puppet_oids] may optionally be referenced by short name instead of by numeric ID.
+* Each key is a valid [object identifier (OID)](http://en.wikipedia.org/wiki/Object_identifier) --- [Puppet-specific OIDs][puppet_oids] can optionally be referenced by short name instead of by numeric ID.
 * Each value is an object that can be cast to a string (that is, numbers are allowed but arrays are not).
 
 See the respective sections below for information about how each hash is used and recommended OIDs for each hash.
@@ -105,7 +97,7 @@ Extension Requests (Permanent Certificate Data)
 
 **Extension requests** are pieces of data that will be _transferred to the final certificate_ (as **extensions**) when the CA signs the CSR. They will persist as trusted, immutable data, which cannot be altered after the certificate has been signed.
 
-They may also be used by the CA when deciding whether or not to sign the certificate.
+They can also be used by the CA when deciding whether or not to sign the certificate.
 
 ### Default Behavior
 
@@ -133,12 +125,14 @@ You can check for extension requests in a CSR by using OpenSSL to dump a PEM-for
 In the output, look for a section called "Requested Extensions," which generally appears below the "Subject Public Key Info" and "Attributes" blocks:
 
     Requested Extensions:
-        1.3.6.1.4.1.34380.1.1.4:
-            342thbjkt82094y0uthhor289jnqthpc2290
-        1.3.6.1.4.1.34380.1.1.3:
-            my_ami_image
-        1.3.6.1.4.1.34380.1.1.1:
-            ED803750-E3C7-44F5-BB08-41A04433FE2E
+            pp_uuid:
+            .$ED803750-E3C7-44F5-BB08-41A04433FE2E
+            1.3.6.1.4.1.34380.1.1.3:
+            ..my_ami_image
+            1.3.6.1.4.1.34380.1.1.4:
+            .$342thbjkt82094y0uthhor289jnqthpc2290
+
+Note that every extension is preceded by any combination of two characters (`.$` and `..` in the above example), which contain ASN.1 encoding information. Since OpenSSL is unaware of Puppet's custom extensions OIDs, it's unable to properly display the values.
 
 Any Puppet-specific OIDs (see below) will appear as numeric strings when using OpenSSL.
 
