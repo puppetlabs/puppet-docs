@@ -37,9 +37,8 @@ If you are using an ENC and it specifies an environment for that node, it will o
 
 ## Non-Existant Environments
 
-**With directory environments,** nodes **can't** be assigned to unconfigured environments. If a node is assigned to an environment which doesn't exist --- that is, there is no directory of that name in any of the `environmentpath` directories --- the Puppet master will fail compilation of its catalog.
+Nodes **can't** be assigned to unconfigured environments. If a node is assigned to an environment which doesn't exist --- that is, there is no directory of that name in any of the `environmentpath` directories --- the Puppet master will fail compilation of its catalog.
 
 The one exception is if the default `production` environment doesn't exist. In this case, the agent will successfully retrieve an empty catalog.
 
-**With config file environments,** nodes **can** be assigned to environments that are not configured. This will cause them to fall back to global values for `modulepath` and `manifest`.
 
