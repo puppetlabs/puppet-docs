@@ -6,7 +6,7 @@ canonical: "/puppet/latest/reference/services_apply.html"
 
 
 [man]: /references/3.8.latest/man/apply.html
-[type reference]: /references/3.8.latest/type.html
+[resource type reference]: /references/3.8.latest/type.html
 [environments]: ./environments.html
 [main manifest]: ./dirs_manifest.html
 [manifest_setting]: /references/3.8.latest/configuration.html#manifest

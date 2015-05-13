@@ -6,7 +6,7 @@ canonical: "/puppet/latest/reference/services_master_windows.html"
 
 [catalogs]: ./subsystem_catalog_compilation.html
 [unix_agent]: ./services_agent_unix.html
-[type reference]: /references/3.8.latest/type.html
+[resource type reference]: /references/3.8.latest/type.html
 [mcollective]: /mcollective
 [puppet.conf]: ./config_file_main.html
 [runinterval]: /references/3.8.latest/configuration.html#runinterval
