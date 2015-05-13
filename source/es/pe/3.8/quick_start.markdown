@@ -21,7 +21,7 @@ Hay instrucciones disponibles para usuarios de [Windows](./quick_start_install_a
 Las instrucciones en [esta guía](./quick_start_helloworld.html) describen los pasos fundamentales requeridos para escribir módulos de Puppet. Su objetivo es crear un módulo muy simple que contenga las clases para administrar tu MOTD (message of the day, o mensaje del día) y crear una notificación de "Hola, Mundo!" en la linea de comandos.
 
 ### 4. Instalar un Módulo
-Sigue las siguientes instrucciones para instalar un módulo de Puppet Labs. Los módulos contienen [clases](./puppet/3.8/reference/lang_classes.html), que son las unidades mínimas de código de Puppet mediante las cuales Puppet Enterprise configura y administra nodos.
+Sigue las siguientes instrucciones para instalar un módulo de Puppet Labs. Los módulos contienen [clases](/puppet/3.8/reference/lang_classes.html), que son las unidades mínimas de código de Puppet mediante las cuales Puppet Enterprise configura y administra nodos.
 
 
 ### 5. Añadir clases desde la consola
