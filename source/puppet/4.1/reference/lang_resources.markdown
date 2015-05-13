@@ -127,13 +127,11 @@ If multiple classes require the same resource, you can use a [class][] or a [vir
 
 ### Relationships and Ordering
 
-[ordering]: /references/3.8.latest/configuration.html#ordering
+[ordering]: /references/4.1.latest/configuration.html#ordering
 
-By default, the order of resources in a manifest doesn't affect the order in which those resources will be applied. Puppet will apply _unrelated_ resources in a mostly random (but consistent between runs) order.
+Puppet applies unrelated resources in manifest order by default. You can disable this with the [`ordering`][ordering] setting. Puppet will apply _unrelated_ resources in a mostly random (but consistent between runs) order.
 
 If a resource must be applied before or after some other resource, you should declare a relationship between them, to make sure Puppet applies them in the right order. You can also make changes in one resource cause a refresh of some other resource. See [the Relationships and Ordering page][relationships] for more information.
-
-You can also change [the `ordering` setting][ordering] to make Puppet apply unrelated resources in manifest order. This will be the new default behavior in Puppet 4.
 
 ### Changes, Events, and Reporting
 
