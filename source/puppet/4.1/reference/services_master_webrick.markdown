@@ -7,6 +7,10 @@ canonical: "/puppet/latest/reference/services_master_webrick.html"
 [webrick]: http://ruby-doc.org/stdlib/libdoc/webrick/rdoc/WEBrick.html
 [rack_master]: ./services_master_rack.html
 
+> **Important: Deprecation Warning**
+>
+> The WEBrick Puppet master server is deprecated and will be removed in a future Puppet release. 
+
 Puppet master is the application that compiles configurations for any number of Puppet agent nodes, using Puppet code and various other data sources. (For more info, see [Overview of Puppet's Architecture](./architecture.html).)
 
 Puppet has the built-in capability to run a complete Puppet master server using Ruby's [WEBrick][] library.
