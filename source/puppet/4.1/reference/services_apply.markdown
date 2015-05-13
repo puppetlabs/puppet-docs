@@ -39,9 +39,9 @@ By default, it never initiates outbound network connections, although it can be 
 
 ### Main Manifest
 
-Like the Puppet master application, Puppet apply uses its [settings][short_settings] (such as `basemodulepath`) and the configured [environments][] to locate the Puppet code and configuration data it will use when compiling a catalog. 
+Like the Puppet master application, Puppet apply uses its [settings][short_settings] (such as `basemodulepath`) and the configured [environments][] to locate the Puppet code and configuration data it will use when compiling a catalog.
 
-The one exception is the [main manifest][]. Puppet apply always requires a single command line argument, which acts as its main manifest. It ignores the [default main manifest from an environment][env_main_manifest].
+The one exception is the [main manifest][]. Puppet apply always requires a single command line argument, which acts as its main manifest. It ignores the [main manifest from its environment][env_main_manifest].
 
 (Alternately, you can write a tiny main manifest directly on the command line, with the `-e` option. See [the puppet apply man page][man] for details.)
 
