@@ -88,7 +88,9 @@ If you have configured [PuppetDB][], Puppet apply will create outbound HTTPS con
 
 By default, Puppet apply logs directly to the terminal. This is good for interactive use, and less good when running as a scheduled task or cron job.
 
-When started with the `--logdest syslog` option, it logs to the \*nix syslog service. Your syslog configuration dictates where these messages will be saved, but the default location is `/var/log/messages` on Linux, `/var/log/system.log` on Mac OS X, and `/var/adm/messages` on Solaris.
+You can adjust how verbose the logs are with [the `loglevel` setting](/references/4.1.latest/configuration.html#loglevel), which defaults to `notice`. Setting it to `info` is equivalent to running with the `--verbose` option, and setting it to `debug` is equivalent to `--debug`. You can also make logs quieter by dialing back to `warning` or lower.
+
+When started with the `--logdest syslog` option, Puppet apply logs to the \*nix syslog service. Your syslog configuration dictates where these messages will be saved, but the default location is `/var/log/messages` on Linux, `/var/log/system.log` on Mac OS X, and `/var/adm/messages` on Solaris.
 
 When started with the `--logdest eventlog` option, it logs to the Windows Event Log. You can view its logs by browsing the Event Viewer. (Control Panel → System and Security → Administrative Tools → Event Viewer)
 
