@@ -67,8 +67,6 @@ By default, Puppet's HTTPS traffic uses port 8140. Your OS and firewall must all
 
 If you want to use a non-default port, you'll have to change [the `masterport` setting](/references/3.8.latest/configuration.html#masterport) on all agent nodes, and ensure that you've changed your Puppet master's port as well.
 
-If you are using the deprecated `listen` feature, Puppet agent will also need to listen for incoming connections on port 8139. (Configurable with [`puppetport`](/references/3.8.latest/configuration.html#puppetport).)
-
 ### Logging
 
 When running as a service, Puppet agent logs messages to syslog. Your syslog configuration dictates where these messages will be saved, but the default location is `/var/log/messages` on Linux, `/var/log/system.log` on Mac OS X, and `/var/adm/messages` on Solaris.
@@ -105,7 +103,7 @@ The Puppet agent command can start a long-lived daemon process, which will do co
 
 #### Starting the Service
 
-The best way to do this is with Puppet agent's init script / service configuration. If you installed Puppet with packages, they should have included an init script or service configuration for controlling Puppet agent, usually with the service name `puppet` (open source) or `pe-puppet` (Puppet Enterprise).
+The best way to do this is with Puppet agent's init script / service configuration. If you installed Puppet with packages, they should have included an init script or service configuration for controlling Puppet agent, usually with the service name `puppet` (for both open source and Puppet Enterprise).
 
 In Puppet Enterprise, the agent service is automatically configured and started; you don't need to manually start it.
 
@@ -174,15 +172,6 @@ Alternately, [parallel SSH][pssh] can be a more lightweight solution for doing P
 
 [pssh]: https://code.google.com/p/parallel-ssh/
 
-> #### Deprecated: Puppet Kick
->
-> This version of Puppet still has an older method for remote runs, known as Puppet kick. It is deprecated and you shouldn't use it, since it requires _all_ of your agent nodes to accept incoming HTTPS connections.
->
-> If you're maintaining a site that already uses Puppet kick, here are the requirements for getting it working when deploying new agent nodes:
->
-> * Make sure [the `listen` setting][listen] is set to `true`.
-> * Create an [auth.conf][] file for the agent node that allows authenticated access to the `run` endpoint for certain trusted certnames.
-> * Open a hole in your firewall for incoming connections on port 8139 (configurable with [the `puppetport` setting][puppetport]).
 
 ## Disabling and Re-enabling Puppet Runs
 
