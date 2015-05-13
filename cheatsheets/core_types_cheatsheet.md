@@ -26,7 +26,7 @@ Package/file/service: Learn it, live it, love it. Even if this is the only Puppe
       owner   => 'root',
       group   => 'root',
       mode    => '0640',
-      notify  => Service['sshd'], # sshd will restart whenever you edit this file.
+      notify  => Service['sshd'], # sshd restarts whenever you edit this file.
       require => Package['openssh-server'],
     }
 
@@ -71,7 +71,7 @@ Manages files, directories, and symlinks.
 
 #### Other Notable Attributes
 
-[`backup`](https://docs.puppetlabs.com/references/latest/type.html#file-attribute-backup), [`checksum`](https://docs.puppetlabs.com/references/latest/type.html#file-attribute-checksum), [`force`](https://docs.puppetlabs.com/references/latest/type.html#file-attribute-force), [`ignore`](https://docs.puppetlabs.com/references/latest/type.html#file-attribute-ignore), [`links`](https://docs.puppetlabs.com/references/latest/type.html#file-attribute-links), [`recurselimit`](https://docs.puppetlabs.com/references/latest/type.html#file-attribute-recurselimit), [`replace`](https://docs.puppetlabs.com/references/latest/type.html#file-attribute-replace).
+[`backup`](https://docs.puppetlabs.com/references/latest/type.html#file-attribute-backup), [`checksum`](https://docs.puppetlabs.com/references/latest/type.html#file-attribute-checksum), [`force`](https://docs.puppetlabs.com/references/latest/type.html#file-attribute-force), [`ignore`](https://docs.puppetlabs.com/references/latest/type.html#file-attribute-ignore), [`links`](https://docs.puppetlabs.com/references/latest/type.html#file-attribute-links), [`recurselimit`](https://docs.puppetlabs.com/references/latest/type.html#file-attribute-recurselimit), [`replace`](https://docs.puppetlabs.com/references/latest/type.html#file-attribute-replace)
 
 ### [package][]
 
@@ -115,7 +115,7 @@ Hello World
 
 ### [notify][]
 
-Logs an arbitrary message, at the `notice` log level. This will appear in the POSIX syslog or Windows Event Log on the Puppet agent node, and will also be logged in reports.
+Logs an arbitrary message, at the `notice` log level. This appears in the POSIX syslog or Windows Event Log on the Puppet agent node and is also logged in reports.
 
     notify { "This message is getting logged on the agent node.": }
 
@@ -141,8 +141,8 @@ Executes an arbitrary command on the agent node. When using execs, you must eith
 
 #### Attributes to Limit When a Command Should Run
 
-* [`creates`](https://docs.puppetlabs.com/references/latest/type.html#exec-attribute-creates) -- A file to look for before running the command. The command will only run if the file doesn’t exist.
-* [`refreshonly`](https://docs.puppetlabs.com/references/latest/type.html#exec-attribute-refreshonly) -- If `true`, the command will only run if a resource it subscribes to (or a resource which notifies it) has changed.
+* [`creates`](https://docs.puppetlabs.com/references/latest/type.html#exec-attribute-creates) -- A file to look for before running the command. The command only runs if the file doesn’t exist.
+* [`refreshonly`](https://docs.puppetlabs.com/references/latest/type.html#exec-attribute-refreshonly) -- If `true`, the command only run if a resource it subscribes to (or a resource which notifies it) has changed.
 * [`onlyif`](https://docs.puppetlabs.com/references/latest/type.html#exec-attribute-onlyif) -- A command or array of commands; if any have a non-zero return value, the command won't run.
 * [`unless`](https://docs.puppetlabs.com/references/latest/type.html#exec-attribute-unless) -- The opposite of onlyif.
 
@@ -214,7 +214,7 @@ Manages groups.
 * [`ensure`](https://docs.puppetlabs.com/references/latest/type.html#group-attribute-ensure) -- Whether the group should exist. Allowed values:
     * `present`
     * `absent`
-* [`gid`](https://docs.puppetlabs.com/references/latest/type.html#group-attribute-gid) -- The group ID; must be specified numerically, and will be chosen automatically if omitted. Read-only on Windows.
+* [`gid`](https://docs.puppetlabs.com/references/latest/type.html#group-attribute-gid) -- The group ID; must be specified numerically, and is chosen automatically if omitted. Read-only on Windows.
 * [`members`](https://docs.puppetlabs.com/references/latest/type.html#group-attribute-members) -- Users and groups that should be members of the group. Only applicable to certain operating systems; see the full type reference for details.
 
 Everything Else
