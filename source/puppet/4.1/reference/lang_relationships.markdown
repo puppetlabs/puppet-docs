@@ -22,13 +22,14 @@ canonical: "/puppet/latest/reference/lang_relationships.html"
 
 
 
-By default, Puppet applies manifest ordering. If a group of resources should be managed in a specific order, you must explicitly declare the relationships. You can disable this with the `ordering` setting. 
-
-> **Aside: Manifest Ordering** 
-> While manifest ordering is an intuitive and useful shortcut, you should still explicitly declare dependencies much of the time, especially in modules where resources are spread out across multiple manifests.
-
+By default, Puppet applies resources in the order they're written in their manifest file. However, if you know that a group of resources depend on each other and must _always_ be managed in a specific order, you should explicitly declare those relationships.
 
 Relationships can be declared with the relationship metaparameters, chaining arrows, and the `require` function.
+
+> **Aside: Default Ordering**
+>
+> If you want to make Puppet apply unrelated resources in a more-or-less random order, you can set [the `ordering` setting][moar] to `title-hash` or `random`.
+
 
 Syntax: Relationship Metaparameters
 -----

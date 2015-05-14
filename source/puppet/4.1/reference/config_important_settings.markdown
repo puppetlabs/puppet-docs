@@ -6,7 +6,6 @@ canonical: "/puppet/latest/reference/config_important_settings.html"
 
 [cli_settings]: ./config_about_settings.html#settings-can-be-set-on-the-command-line
 [trusted_and_facts]: ./lang_facts_and_builtin_vars.html
-[config_environments]: ./environments_classic.html
 [config_reference]: /references/3.8.latest/configuration.html
 [environments]: ./environments.html
 [future]: ./experiments_future.html
@@ -78,8 +77,16 @@ canonical: "/puppet/latest/reference/config_important_settings.html"
 [alwayscachefeatures]: /references/3.8.latest/configuration.html#alwayscachefeatures
 [environment_timeout]: /references/3.8.latest/configuration.html#environmenttimeout
 [configuring_timeout]: ./environments_configuring.html#environmenttimeout
+[puppetserver_config_files]: /puppetserver/2.0/configuration.html
+[settings_diffs]: /puppetserver/2.0/puppet_conf_setting_diffs.html
+[puppet_admin]: /puppetserver/2.0/configuration.html#puppetserverconf
+[jruby_puppet]: /puppetserver/2.0/tuning_guide.html#puppet-server-and-jruby
+[jvm_heap_config]: /puppetserver/2.0/install_from_packages.html#memory-allocation
+[puppetserver_ca]: /puppetserver/2.0/puppet_conf_setting_diffs.html#cahttpsdocspuppetlabscomreferenceslatestconfigurationhtmlca
+[service_bootstrap]: /puppetserver/2.0/configuration.html#service-bootstrapping
 
-Puppet has about 230 settings, all of which are listed in the [configuration reference][config_reference]. Most users can ignore about 200 of those.
+
+Puppet has about 200 settings, all of which are listed in the [configuration reference][config_reference]. Most users can ignore about 170 of those.
 
 This page lists the most important ones. (We assume here that you're okay with default values for things like the port Puppet uses for network traffic.) The link for each setting will go to the long description in the configuration reference.
 
@@ -90,24 +97,13 @@ This page lists the most important ones. (We assume here that you're okay with d
 Getting New Features Early
 -----
 
-We've added improved behavior to Puppet over the course of the 3.x series, but some of it can't be enabled by default until a major version boundary, since it changes things that some users might be relying on. But if you know your site won't be affected, you can enable some of it today.
-
-### Recommended and Safe
-
-> **Note:** All three of these features are **enabled by default in Puppet Enterprise 3.8.**
-
-* [`trusted_node_data = true`][trusted_node_data] (Puppet master/apply only) --- This enables [the `$trusted` and `$facts` hashes][trusted_and_facts], so you can start using them in your own code.
-* [`stringify_facts = false`][stringify_facts] (all nodes) --- This enables [full data type support for facts][structured_facts], allowing facts to contain arrays, hashes, and booleans instead of just strings. This requires Facter ≥ 2.0.
-* [`ordering = manifest`][ordering] (all nodes) --- This causes unrelated resources to be applied in the order they are written, instead of in effectively random order. You should still specify dependencies, but this reduces frustration if you forget one.
+We've added improved behavior to Puppet, but some of it can't be enabled by default until a major version boundary, since it changes things that some users might be relying on. But if you know your site won't be affected, you can enable some of it today.
 
 ### Possibly Disruptive
 
-Both of these only affect the Puppet master (and Puppet apply nodes).
+Affects the Puppet master (and Puppet apply nodes).
 
-* [`parser = future`][parser] (Puppet master/apply only) --- This enables the future parser, which is explained in more detail on [the future parser page][future]. Since it swaps out the entire Puppet language, there's a good chance you'll find something in your code it doesn't like, but it now runs at a decent speed and lets you explore what's eventually coming in Puppet 4.
-* [`strict_variables = true`][strict_variables] (Puppet master/apply only) --- This makes uninitialized variables cause parse errors, which can help squash difficult bugs by failing early instead of carrying undef values into places that don't expect them. This one has a strong chance of causing problems when you turn it on, so be wary, but it will eventually improve the general quality of Puppet code.
-
-
+* [`strict_variables = true`][strict_variables] (Puppet master/apply only) --- This makes uninitialized variables cause parse errors, which can help squash difficult bugs by failing early instead of carrying undef values into places that don't expect them. This one has a strong chance of causing problems when you turn it on, so be wary, but it will eventually improve the general quality of Puppet code. This will be enabled by default in Puppet 5.0. 
 
 Settings for Agents (All Nodes)
 -----
@@ -136,7 +132,6 @@ These settings affect the way Puppet applies catalogs.
 * [`usecacheonfailure`][usecacheonfailure] --- Whether to fall back to the last known good catalog if the master fails to return a good catalog. The default behavior is good, but you might have a reason to disable it.
 * [`ignoreschedules`][ignoreschedules] --- If you use [schedules][meta_schedule], this can be useful when doing an initial Puppet run to set up new nodes.
 * [`prerun_command`][prerun_command] and [`postrun_command`][postrun_command] --- Commands to run on either side of a Puppet run.
-* [`pluginsync`][pluginsync] --- This defaults to true these days, so you don't need it in your config file. But you might see it in default config files still, because in versions ≤2.7 you had to turn it on yourself.
 
 ### Service Behavior
 
@@ -160,22 +155,28 @@ These settings should usually go in `[master]`. However, if you're using Puppet 
 
 ### Basics
 
-* [`always_cache_features`][alwayscachefeatures] --- You should always set this to `true` in `[master]` for better performance. (Don't change the default value in `[main]`, because Puppet apply and Puppet agent both need this set to `false`.)
 * [`dns_alt_names`][dns_alt_names] --- A list of hostnames the server is allowed to use when acting as a Puppet master. The hostname your agents use in their `server` setting **must** be included in either this setting or the master's `certname` setting. Note that this setting is only used when initially generating the Puppet master's certificate --- if you need to change the DNS names, you must:
-    * Turn off the Puppet master service (or Rack server).
-    * Run `sudo puppet cert clean <MASTER'S CERTNAME>`.
-    * Run `sudo puppet cert generate <MASTER'S CERTNAME> --dns_alt_names <ALT NAME 1>,<ALT NAME 2>,...`.
-    * Re-start the Puppet master service.
+    1. Turn off the Puppet server service (or your Rack server).
+    2. Run `sudo puppet cert clean <MASTER'S CERTNAME>`.
+    3. Run `sudo puppet cert generate <MASTER'S CERTNAME> --dns_alt_names <ALT NAME 1>,<ALT NAME 2>,...`.
+    4. Re-start the Puppet server service.
 * [`environment_timeout`][environment_timeout] --- For better performance, you can set this to `unlimited` and make refreshing the Puppet master a part of your standard code deployment process. See [the timeout section of the Configuring Environments page][configuring_timeout] for more details.
-* [`environmentpath`][environmentpath] --- Set this to `$confdir/environments` to enable directory environments. See [the page on directory environments][environments] for details.
+* [`environmentpath`][environmentpath] --- Controls where Puppet finds directory environments. See [the page on directory environments][environments] for details.
 * [`basemodulepath`][basemodulepath] --- A list of directories containing Puppet modules that can be used in all environments. [See the modulepath page][modulepath_dir] for details.
-    * If [directory environments][environments] are disabled, the [`modulepath`][modulepath] setting controls the final modulepath. You can also set `modulepath` in [environment.conf][].
-* [`manifest`][manifest] --- The main entry point for compiling catalogs. This is only used if directory environments aren't enabled. Defaults to a single site.pp file, but can also point to a directory of manifests. [See the manifest page][manifest_dir] for details.
-* [`reports`][reports] --- Which report handlers to use. For a list of available report handlers, see [the report reference][report_reference]. You can also [write your own report handlers][write_reports]. Note that the report handlers might require settings of their own, like `tagmail`'s various email settings.
+* [`reports`][reports] --- Which report handlers to use. For a list of available report handlers, see [the report reference][report_reference]. You can also [write your own report handlers][write_reports]. Note that the report handlers might require settings of their own.
+
+### Puppet Server-Related Settings
+
+Puppet Server has [its own configuration files][puppetserver_config_files]; consequently, there are [several settings in `puppet.conf` that Puppet Server ignores][settings_diffs].
+
+* [`puppet-admin`][puppet_admin] --- Settings to control which authorized clients can use the admin interface.
+* [`jruby-puppet`][jruby_puppet] --- Provides details on tuning JRuby for better performance. 
+* [`JAVA_ARGS`][jvm_heap_config] --- Instructions on tuning the Puppet Server memory allocation.
 
 ### Rack-Related Settings
 
 * [`ssl_client_header`][ssl_client_header] and [`ssl_client_verify_header`][ssl_client_verify_header] --- These are used when running Puppet master as a Rack application (e.g. under Passenger), which you should definitely be doing. See [the Passenger setup guide][passenger_headers] for more context about how these settings work; depending on how you configure your Rack server, you can usually leave these settings with their default values.
+* [`always_cache_features`][alwayscachefeatures] --- You should always set this to `true` in `[master]` for better performance. (Don't change the default value in `[main]`, because Puppet apply and Puppet agent both need this set to `false`.) Your `config.ru` file should forcibly set this, as done in the default `config.ru` file.
 
 ### Extensions
 
@@ -184,11 +185,12 @@ These features configure add-ons and optional features.
 * [`node_terminus`][node_terminus] and [`external_nodes`][external_nodes] --- The ENC settings. If you're using an [ENC][], set these to `exec` and the path to your ENC script, respectively.
 * [`storeconfigs`][storeconfigs] and [`storeconfigs_backend`][storeconfigs_backend] --- Used for setting up PuppetDB. See [the PuppetDB docs for details.][puppetdb_install]
 * [`catalog_terminus`][catalog_terminus] --- This can enable the optional static compiler. If you have lots of `file` resources in your manifests, the static compiler lets you sacrifice some extra CPU work on your Puppet master to gain faster configuration and reduced HTTPS traffic on your agents. [See the "static compiler" section of the indirection reference][static_compiler] for details.
-* [`config_version`][config_version] --- The "config version" is an ID string included in catalogs and reports. Usually it's just the time at which the catalog was compiled, but this setting can specify a command to run to generate that ID. Some people use this to get, e.g., the current git HEAD in their modules directory.
 
 ### CA Settings
 
 * [`ca`][ca] --- Whether to act as a CA. **There should only be one CA at a Puppet deployment.** If you're using [multiple Puppet masters][multi_master], you'll need to set `ca = false` on all but one of them.
+   Note that the `ca` setting is not valid for Puppet Server. Refer to these sections about the [Puppet Server `ca`][puppetserver_ca] and [service bootstrapping][service_bootstrap]. 
+   
 * [`ca_ttl`][ca_ttl] --- How long newly signed certificates should be valid for.
 * [`autosign`][autosign] --- Whether (and how) to autosign certificates. See [the autosigning page][ssl_autosign] for details.
 

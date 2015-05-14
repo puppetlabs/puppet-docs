@@ -7,8 +7,6 @@ canonical: "/puppet/latest/reference/environments.html"
 
 [manifest_dir]: ./dirs_manifest.html
 [modulepath]: ./dirs_modulepath.html
-[config_file_envs]: ./environments_classic.html
-[config_file_envs_sections]: ./environments_classic.html#environment-config-sections
 [assign]: ./environments_assigning.html
 [env_var]: ./lang_facts_and_builtin_vars.html#variables-set-by-the-puppet-master
 [dir_env_create]: ./environments_creating.html
