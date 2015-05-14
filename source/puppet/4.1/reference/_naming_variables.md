@@ -1,4 +1,4 @@
-[qualified_var]: ./future_lang_variables.html#accessing-out-of-scope-variables
+[qualified_var]: ./lang_variables.html#accessing-out-of-scope-variables
 
 Variable names begin with a `$` (dollar sign) and are case-sensitive.
 
@@ -12,7 +12,7 @@ Variable names can include:
 
 If the first character is an underscore, that variable should only be accessed from its own local scope; using qualified variable names where any namespace segment begins with `_` is deprecated.
 
-Note that [some variable names are reserved.](./future_lang_reserved.html#reserved-variable-names)
+Note that [some variable names are reserved.](./lang_reserved.html#reserved-variable-names)
 
 #### Qualified Variable Names
 
