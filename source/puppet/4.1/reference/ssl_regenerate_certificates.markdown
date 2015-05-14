@@ -55,16 +55,15 @@ Note that this process **destroys the certificate authority and all other certif
 > * You have a brand new CA certificate and key.
 > * Your Puppet master has a certificate from the new CA, and it can once again field new certificate requests.
 > * The Puppet master will reject any requests for configuration catalogs from nodes that haven't replaced their certificates (which, at this point, will be all of them except itself).
-> * If you are using any extensions that rely on Puppet certificates, like PuppetDB, the Puppet master won't be able to communicate with them. Consequently, it may not be able to serve catalogs, even to agents that do have new certificates.
+> * If you are using any extensions that rely on Puppet certificates, like PuppetDB or MCollective, the Puppet master won't be able to communicate with them. Consequently, it may not be able to serve catalogs, even to agents that do have new certificates.
 
 ## Step 2: Clear and Regenerate Certs for any Extensions
 
-You may be using extensions like PuppetDB or Puppet Dashboard to enhance Puppet. These extensions probably use certificates from Puppet's CA in order to communicate securely with the Puppet master.
+You may be using an extension, like PuppetDB or MCollective, to enhance Puppet. These extensions probably use certificates from Puppet's CA in order to communicate securely with the Puppet master.
 
 For each extension like this, you'll need to regenerate the certificate(s) it uses. Many tools have scripts or documentation to help you set up SSL, and you can often just re-run the setup instructions.
 
 * [PuppetDB][] users should first follow [the instructions below on regenerating agent certificates][agent_certs], since PuppetDB re-uses Puppet agents' certificates. After that, [run PuppetDB's ssl configuration script][puppetdb_ssl] to regenerate its SSL configuration, and restart the PuppetDB service.
-* [Puppet Dashboard][] can use certificates for its inventory service. Repeat the [SSL config instructions.](/dashboard/manual/1.2/configuring.html#advanced-features)
 * [MCollective][] often uses SSL certificates from Puppet's CA. If you are replacing your Puppet CA and are using the same certs for MCollective, you should [go through the standard deployment guide][standard_mco] and re-do any steps involving security credentials. You'll generally need to replace client certificates, your server keypair, and the ActiveMQ server's keystore and truststore.
 
 [standard_mco]: /mcollective/deploy/standard.html
