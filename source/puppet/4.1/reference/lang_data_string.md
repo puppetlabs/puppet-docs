@@ -210,8 +210,6 @@ Switch | Sequence        | Result
 `u`    | `\uXXXX`        | Unicode character number XXXX (a four-digit hex number)
 `L`    | `\<LF or CRLF>` | Nothing (for cosmetic line breaks that appear in the source code but are excluded from the string value)
 
-> **Known issue:** In this version of Puppet, `\$` can misbehave in heredocs when the `\$` escape sequence isn't enabled. See [PUP-4462](https://tickets.puppetlabs.com/browse/PUP-4462).
-
 **Note:** If a backslash isn't part of an enabled escape sequence, Puppet treats it as a literal backslash. Unlike with double-quoted strings, this won't log a warning.
 
 If a string has escapes enabled and includes several literal backslashes in a row, you should make sure each literal backslash is represented by the `\\` escape sequence. (Quadruple backslash to represent a double backslash, etc.)
