@@ -190,6 +190,21 @@ Here's a snippet of example Puppet code using a [certificate extension][extensio
     }
 {% endhighlight %}
 
+### `$server_facts` Variable
+
+The `$server_facts`variable provides a hash of server-side facts that cannot be overwritten by client side facts. This is important because it enables you to get trusted server facts that could otherwise be overwritten by client-side facts.
+
+For example, the Puppet master sets the global `$::environment` variable to contain the name of the node's environment. However, if a node provides a fact with the name `environment`, that fact's value overrides the server-set `environment` fact. The same happens with other server-set global variables, like `$::servername` and `$::serverip`. As a result, modules couldn't reliably use these variables for whatever their intended purpose was.
+
+The `$server_facts` variable is opt-in. Its `trusted_server_facts` setting is set to false by default. If you set `trusted_server_facts` to `true`, the `$server_facts` variable will be populated, and will ensure that you get trusted server facts.
+
+In addition, a warning will be issued any time a node parameter is overwritten.
+
+#### Example
+
+The following is an example `$server_facts` hash.
+
+	{serverversion => 4.1.0, servername => v85ix8blah.delivery.puppetlabs.net, serverip => 10.32.115.182, environment => production}
 
 ### Puppet Agent Facts
 

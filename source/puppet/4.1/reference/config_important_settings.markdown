@@ -84,6 +84,7 @@ canonical: "/puppet/latest/reference/config_important_settings.html"
 [jvm_heap_config]: /puppetserver/2.0/install_from_packages.html#memory-allocation
 [puppetserver_ca]: /puppetserver/2.0/puppet_conf_setting_diffs.html#cahttpsdocspuppetlabscomreferenceslatestconfigurationhtmlca
 [service_bootstrap]: /puppetserver/2.0/configuration.html#service-bootstrapping
+[trusted_server_facts]: //ang_facts_and_builtin_vars.html
 
 
 Puppet has about 200 settings, all of which are listed in the [configuration reference][config_reference]. Most users can ignore about 170 of those.
@@ -103,7 +104,7 @@ We've added improved behavior to Puppet, but some of it can't be enabled by defa
 
 Affects the Puppet master (and Puppet apply nodes).
 
-* [`strict_variables = true`][strict_variables] (Puppet master/apply only) --- This makes uninitialized variables cause parse errors, which can help squash difficult bugs by failing early instead of carrying undef values into places that don't expect them. This one has a strong chance of causing problems when you turn it on, so be wary, but it will eventually improve the general quality of Puppet code. This will be enabled by default in Puppet 5.0. 
+* [`strict_variables = true`][strict_variables] (Puppet master/apply only) --- This makes uninitialized variables cause parse errors, which can help squash difficult bugs by failing early instead of carrying undef values into places that don't expect them. This one has a strong chance of causing problems when you turn it on, so be wary, but it will eventually improve the general quality of Puppet code. This will be enabled by default in Puppet 5.0.
 
 Settings for Agents (All Nodes)
 -----
@@ -119,6 +120,7 @@ Roughly in order of importance. Most of these can go in either `[main]` or `[age
     * The special value `ca` is reserved, and can't be used as the certname for a normal node.
     * (Yes, it's also possible to re-use certificates/certnames and then set the name used in requests via the [`node_name_fact`][node_name_fact] / [`node_name_value`][node_name_value] settings. Don't do this unless you know exactly what you're doing, because it changes Puppet's whole security model. For most users, certname = only name.)
 * [`environment`][environment] --- The [environment][environments] to request when contacting the Puppet master. It's only a request, though; the master's [ENC][] can override this if it chooses. Defaults to `production`.
+* [`trusted_server_facts`][trusted_server_facts] --- Set this setting to `true` to take advantage of the `$server_facts` variable, which contains a hash of server-side facts that cannot be overwritten by client side facts.
 
 ### Run Behavior
 
@@ -170,7 +172,7 @@ These settings should usually go in `[master]`. However, if you're using Puppet 
 Puppet Server has [its own configuration files][puppetserver_config_files]; consequently, there are [several settings in `puppet.conf` that Puppet Server ignores][settings_diffs].
 
 * [`puppet-admin`][puppet_admin] --- Settings to control which authorized clients can use the admin interface.
-* [`jruby-puppet`][jruby_puppet] --- Provides details on tuning JRuby for better performance. 
+* [`jruby-puppet`][jruby_puppet] --- Provides details on tuning JRuby for better performance.
 * [`JAVA_ARGS`][jvm_heap_config] --- Instructions on tuning the Puppet Server memory allocation.
 
 ### Rack-Related Settings
@@ -189,8 +191,8 @@ These features configure add-ons and optional features.
 ### CA Settings
 
 * [`ca`][ca] --- Whether to act as a CA. **There should only be one CA at a Puppet deployment.** If you're using [multiple Puppet masters][multi_master], you'll need to set `ca = false` on all but one of them.
-   Note that the `ca` setting is not valid for Puppet Server. Refer to these sections about the [Puppet Server `ca`][puppetserver_ca] and [service bootstrapping][service_bootstrap]. 
-   
+   Note that the `ca` setting is not valid for Puppet Server. Refer to these sections about the [Puppet Server `ca`][puppetserver_ca] and [service bootstrapping][service_bootstrap].
+
 * [`ca_ttl`][ca_ttl] --- How long newly signed certificates should be valid for.
 * [`autosign`][autosign] --- Whether (and how) to autosign certificates. See [the autosigning page][ssl_autosign] for details.
 
