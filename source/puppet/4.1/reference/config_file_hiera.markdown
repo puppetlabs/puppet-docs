@@ -11,13 +11,13 @@ The `hiera.yaml` file is used to configure [Hiera][], which Puppet can use to lo
 
 ## Location
 
-The `hiera.yaml` file is located at `$confdir/hiera.yaml` by default. Its location is configurable with the [`hiera_config` setting][hiera_config].
+The `hiera.yaml` file is located at `$codedir/hiera.yaml` by default. Its location is configurable with the [`hiera_config` setting][hiera_config].
 
 When Puppet loads Hiera, it will use its own Hiera config file instead of the global one (which is usually located at `/etc/hiera.yaml`). If needed, you can point the `hiera_config` setting at the global Hiera config.
 
-The location of the `confdir` varies; it depends on the OS, Puppet distribution, and user account. [See the confdir documentation for details.][confdir]
+The location of the `codedir` varies; it depends on the OS, Puppet distribution, and user account. [See the codedir documentation for details.][codedir]
 
-[confdir]: ./dirs_confdir.html
+[codedir]: ./dirs_codedir.html
 
 
 ## Example
@@ -27,9 +27,9 @@ The location of the `confdir` varies; it depends on the OS, Puppet distribution,
       - yaml
       - json
     :yaml:
-      :datadir: /etc/puppet/hieradata
+      :datadir: /etc/puppetlabs/code/hieradata
     :json:
-      :datadir: /etc/puppet/hieradata
+      :datadir: /etc/puppetlabs/code/hieradata
     :hierarchy:
       - "%{clientcert}"
       - "%{datacenter}"
