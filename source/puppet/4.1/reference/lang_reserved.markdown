@@ -6,7 +6,7 @@ canonical: "/puppet/latest/reference/lang_reserved.html"
 
 [settings]: ./config_about_settings.html
 [tags]: ./lang_tags.html
-[built_in]: ./lang_variables.html#facts-and-built-in-variables
+[built_in]: ./lang_facts_and_builtin_vars.html
 [facts]: /facter/latest/core_facts.html
 [capture]: ./lang_data_regexp.html#regex-capture-variables
 [conditional]: ./lang_conditional.html
@@ -100,21 +100,17 @@ Additionally, the names of data types can't be used as class names:
 Reserved Variable Names
 -----
 
-The following variable names are reserved, and you **must not** assign values to them:
+The following variable names are reserved. Unless otherwise noted, you can't assign values to them or use them as parameters in classes or defined types.
 
-* Every variable name consisting only of digits, starting with `$0` --- These [regex capture variables][capture] are automatically set by regular expressions used in [conditional statements][conditional], and their values do not persist outside their associated code block or selector value. Puppet will raise an error if you try to assign to these variables.
+* `$0`, `$1`, and every other variable name consisting only of digits. These [regex capture variables][capture] are automatically set by regular expressions used in [conditional statements][conditional], and their values do not persist outside their associated code block or selector value. Puppet will raise an error if you try to assign to these variables.
 * Puppet's [built-in variables][built_in] and [facts][facts] are reserved at [top scope][topscope], but can be safely re-used at node or local scope.
-* If [enabled][trusted_on], the `$trusted` and `$facts` variables are reserved for facts and cannot be reassigned at local scopes.
+* `$trusted` and `$facts` are reserved for facts and cannot be reassigned at local scopes.
+* `$server_facts` (if enabled) is reserved for trusted server facts and cannot be reassigned at local scopes.
+* `$title` is reserved for the title of a class or defined type.
+* `$name` is a synonym for `$title`.
 
 [trusted_on]: ./config_important_settings.html#getting-new-features-early
 
-Reserved Parameter Names
-------
-
-The following are special variable names that may not be used as parameters in classes or defined types:
-
-* `$title` -- the title of a class or defined type
-* `$name` -- a synonym for `$title`
 
 Acceptable Characters in Names
 -----
