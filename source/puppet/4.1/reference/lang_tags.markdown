@@ -14,8 +14,7 @@ canonical: "/puppet/latest/reference/lang_tags.html"
 [collectors]: ./lang_collectors.html
 [reports]: /guides/reporting.html#make-masters-process-reports
 [report_format]: ./format_report.html
-[tagmail]: /references/3.8.latest/report.html#tagmail
-[tagmail_conf]: /guides/configuring.html#tagmailconf
+[tagmail]: https://forge.puppetlabs.com/puppetlabs/tagmail
 [tagmeta]: /references/3.8.latest/metaparameter.html#tag
 [tagfunction]: /references/3.8.latest/function.html#tag
 [tags_setting]: /references/3.8.latest/configuration.html#tags
@@ -52,7 +51,7 @@ Every resource automatically receives the following tags:
 
 For example, a file resource in class `apache::ssl` would get the tags `file`, `apache::ssl`, `apache`, and `ssl`.
 
-Class tags are generally the most useful, especially when setting up [tagmail][] or testing refactored manifests.
+Class tags are generally the most useful, especially when setting up the [tagmail][] module or testing refactored manifests.
 
 ### Containment
 
@@ -108,10 +107,7 @@ The value of the `tags` setting should be a comma-separated list of tags (with n
 
 ### Sending Tagmail Reports
 
-The built-in [tagmail report handler][tagmail] can send emails to arbitrary email addresses whenever resources with certain tags are changed. See the following for more info:
-
-* [The tagmail report handler][tagmail]
-* [The `tagmail.conf` file][tagmail_conf]
+The [tagmail][] module can send emails to arbitrary email addresses whenever resources with certain tags are changed.
 
 ### Reading Tags in Custom Report Handlers
 

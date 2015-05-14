@@ -77,9 +77,9 @@ NOT SURE, NEED HELP
 * [PUP-4385: Can't write WOMANS HAT emoji with \uXXXX unicode escapes](https://tickets.puppetlabs.com/browse/PUP-4385)
 * [PUP-4483: Add NotUndef type to the set of Puppet types](https://tickets.puppetlabs.com/browse/PUP-4483)
 * [PUP-2080: Support functions written in pp](https://tickets.puppetlabs.com/browse/PUP-2080)
-* [PUP-2894: lvalue comma asignment should splat* an array](https://tickets.puppetlabs.com/browse/PUP-2894)
+* [PUP-2894: Assign multiple variables from an array](https://tickets.puppetlabs.com/browse/PUP-2894)
 * [PUP-4193: Add pattern matching to the Puppet DSL](https://tickets.puppetlabs.com/browse/PUP-4193)
-* [PUP-4443: splat-assign multiple variables from a hash](https://tickets.puppetlabs.com/browse/PUP-4443)
+* [PUP-4443: Assign multiple variables from a hash](https://tickets.puppetlabs.com/browse/PUP-4443)
 
 #### New Built-In `$server_facts` Variable (Opt-In)
 

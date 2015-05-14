@@ -88,5 +88,3 @@ Items labeled "master only" below may also be present on standalone Puppet apply
 * [`fileserver.conf`](./config_file_fileserver.html) --- configuration for additional fileserver mount points. (Master only.)
 * [`hiera.yaml`](./config_file_hiera.html) --- configuration for the Hiera data lookup system. (Master only.)
 * [`routes.yaml`](./config_file_routes.html) --- advanced configuration of indirector behavior. (Master only.)
-* [`tagmail.conf`](./config_file_tagmail.html) --- instructions for mailing important Puppet events to administrators. (Master only.)
-
