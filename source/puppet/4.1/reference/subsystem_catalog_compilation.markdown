@@ -16,10 +16,10 @@ canonical: "/puppet/latest/reference/subsystem_catalog_compilation.html"
 [functions]: ./lang_functions.html
 [main manifest]: ./dirs_manifest.html
 [modules]: ./modules_fundamentals.html
-[node terminus]: /references/4.0.latest/configuration.html#nodeterminus
-[plain_node]: /references/4.0.latest/indirection.html#plain-terminus
-[exec_node]: /references/4.0.latest/indirection.html#exec-terminus
-[ldap_node]: /references/4.0.latest/indirection.html#ldap-terminus
+[node terminus]: /references/4.1.latest/configuration.html#nodeterminus
+[plain_node]: /references/4.1.latest/indirection.html#plain-terminus
+[exec_node]: /references/4.1.latest/indirection.html#exec-terminus
+[ldap_node]: /references/4.1.latest/indirection.html#ldap-terminus
 [ldap_guide]: /guides/ldap_nodes.html
 [trusted_on]: ./config_important_settings.html#getting-new-features-early
 [facts_builtin]: ./lang_facts_and_builtin_vars.html
@@ -121,7 +121,8 @@ Finally, it's possible to write a custom node terminus that retrieves classes, v
 
 * Any variables provided by the node object will now be set as top-scope Puppet variables.
 * The node's facts are also set as top-scope variables.
-* If you have set [`trusted_node_data = true`][trusted_on] in the master's puppet.conf, then facts will also be set in the protected `$facts` hash, and certain data from the node's certificate will be set in the protected `$trusted` hash. See [the page on facts and built-in variables][facts_builtin] for more details.
+* The node's facts will also be set in the protected `$facts` hash, and certain data from the node's certificate will be set in the protected `$trusted` hash. See [the page on facts and built-in variables][facts_builtin] for more details.
+* Any variables provided by the Puppet master will also be set. See [the page on facts and built-in variables][facts_builtin] for more details.
 
 All of these variables will be available for use by any manifest or template during the subsequent stages of compilation.
 
