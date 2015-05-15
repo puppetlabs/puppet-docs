@@ -43,26 +43,10 @@ Windows NTFS filesystems are case-insensitive (albeit case-preserving); Puppet i
 
 ## Make Sure Puppet's User Account Has Appropriate Permissions
 
-
-
 To manage files properly, Puppet needs the "Create symbolic links" (Vista/2008 and up), "Back up files and directories," and "Restore files and directories" privileges. The easiest way to handle this is:
 
-* When Puppet runs as a service, make sure its user account is a member of the local `Administrators` group.
+* When Puppet runs as a service, make sure its user account is a member of the local `Administrators` group.  When you use the [`PUPPET_AGENT_ACCOUNT_USER` parameter](./guides/install_puppet/install_windows.html#puppetagentaccountuser) with the MSI installer, the user will automatically be added to the administrators group.
 * Before running Puppet interactively (on Vista/2008 and up), be sure to start the command prompt window with elevated privileges by right-clicking on the start menu and choosing "Run as Administrator."
-
-## Always Block Source Permissions on Windows
-
-If you set [the `source` attribute](/references/3.8.latest/type.html#file-attribute-source), Puppet defaults to applying the ownership and permissions that the source files have on the Puppet master server.
-
-This is **almost never what you want** when managing files on Windows, and the default behavior is now deprecated, scheduled for change in a future version of Puppet.
-
-In the meantime, you can change or disable this behavior with [the `file` type's `source_permissions` attribute](/references/3.8.latest/type.html#file-attribute-source_permissions); for Windows systems, you will usually want to set it to `ignore` with a resource default in site.pp:
-
-{% highlight ruby %}
-    if $osfamily == 'windows' {
-      File { source_permissions => ignore }
-    }
-{% endhighlight %}
 
 ## Managing File Permissions
 

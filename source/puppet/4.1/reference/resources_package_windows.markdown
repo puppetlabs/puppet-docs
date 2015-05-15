@@ -32,19 +32,19 @@ Puppet can install and remove two kinds of packages on Windows:
 * MSI packages
 * Executable installers
 
-Both of these use the default `windows` package provider. (There is an older `msi` provider included, but it is deprecated.)
+Both of these use the default `windows` package provider.
 
 ### Alternative Providers
 
 If you've set up [Chocolatey](https://chocolatey.org/), there's a community-supported package provider for it.
 
-* [Chocolatey package provider on the Puppet Forge](https://forge.puppetlabs.com/rismoney/chocolatey)
+* [Chocolatey package provider on the Puppet Forge](https://forge.puppetlabs.com/chocolatey/chocolatey)
 
 ## The `source` Attribute is Required
 
 When managing packages using the `windows` package provider, you **must** specify a package file using [the `source` attribute.][source]
 
-The source can be a local file, a file on a mapped network drive, or a UNC path. Puppet URLs are not currently supported for the `package` type's `source` attribute, although you can use `file` resources to copy packages to the local system. The `source` attribute accepts both forward- and backslashes.
+The source can be a local file or a file on a mapped network drive. For MSI installers, you can use a UNC path. Puppet URLs are not currently supported for the `package` type's `source` attribute, although you can use `file` resources to copy packages to the local system. The `source` attribute accepts both forward- and backslashes.
 
 
 ## Package Name Must be the `DisplayName`
@@ -102,15 +102,15 @@ It's a good idea to use the hash notation for file path arguments since they may
 install_options => [ { 'INSTALLDIR' => "${packagedir}" } ]
 {% endhighlight %}
 
-## Hidden Packages Aren't Yet Supported
-
-Right now, Puppet can't manage packages that hide themselves from the list of installed programs. (That is, packages that set their `SystemComponent` registry value to 1, like `SQL Server 2008 R2 SP2 Common Files`.)
-
-If you try to manage a hidden package, Puppet will try to install it every time it runs. We plan to improve this behavior in the future; it's being tracked as issue [PUP-400][].
-
-[pup-400]: https://tickets.puppetlabs.com/browse/PUP-400
-
 ## Errata
+
+### Known Issues Prior to Puppet 4.1.0
+
+#### Hidden Packages Were Not Supported
+
+Puppet did not managed packages that hide themselves from the list of installed programs. That is, packages that set their `SystemComponent` registry value to 1, like `SQL Server 2008 R2 SP2 Common Files`.
+
+Previously, if you tried to manage a hidden package, Puppet would try to install it every time it ran. As of Puppet 4.1.0, Puppet will recognize those package that are already installed, even if they're hidden.
 
 ### Known Issues Prior to Puppet 3.4 / PE 3.2
 
