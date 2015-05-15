@@ -106,13 +106,7 @@ Example, with the osfamily fact:
 
 ### The `$facts['fact_name']` Hash
 
-This feature may be enabled by default, or you may need to enable it manually:
-
-Puppet Enterprise 3.8             | Puppet 3.8 (open source release)
-----------------------------------|-------
-`$facts` hash enabled by default  | User must [set `trusted_node_data = true`][trusted_on]\* in puppet.conf on the Puppet master server
-
-If enabled, facts also appear in a `$facts` hash. They can be accessed in manifests as `$facts['fact_name']`. The variable name `$facts` will be reserved, so local scopes cannot re-use it.
+Facts also appear in a `$facts` hash. They can be accessed in manifests as `$facts['fact_name']`. The variable name `$facts` is reserved, so local scopes cannot re-use it.
 
 Example, with the osfamily fact:
 
@@ -124,9 +118,7 @@ Example, with the osfamily fact:
 
 **Benefits:** More readable and maintainable code, by making facts visibly distinct from other variables. Eliminates possible confusion if you use a local variable whose name happens to match that of a common fact.
 
-**Drawbacks:** Only works with Puppet 3.5 or later, and only when enabled.
-
-\* Note: The `$facts` hash is enabled by default when setting `trusted_node_data`, but it can be disabled with the `immutable_node_data` setting.
+**Drawbacks:** Only works with Puppet 3.5 or later. Disabled by default in open source releases prior to Puppet 4.0.
 
 
 Special Variables Added by Puppet
@@ -141,13 +133,7 @@ In addition to Facter's core facts and any custom facts, Puppet creates some spe
 
 ### Trusted Facts
 
-This feature may be enabled by default, or you may need to enable it manually:
-
-Puppet Enterprise 3.8             | Puppet 3.8 (open source release)
-----------------------------------|-------
-Trusted facts enabled by default  | User must [set `trusted_node_data = true`][trusted_on] in puppet.conf on the Puppet master server
-
-If enabled, a few special **trusted facts** will appear in a `$trusted` hash. They can be accessed in manifests as `$trusted['fact_name']`. The variable name `$trusted` will be reserved, so local scopes cannot re-use it.
+A few special **trusted facts** appear in a `$trusted` hash. They can be accessed in manifests as `$trusted['fact_name']`. The variable name `$trusted` is reserved, so local scopes cannot re-use it.
 
 Normal facts are self-reported by the node, and nothing guarantees their accuracy. Trusted facts are extracted from the node's certificate, which can prove that the CA checked and approved them. This makes them useful for deciding whether a given node should receive sensitive data in its catalog.
 
