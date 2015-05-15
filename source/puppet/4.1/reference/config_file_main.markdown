@@ -74,10 +74,6 @@ The puppet.conf file consists of one or more **config sections,** each of which 
 
 The file may also include **comment lines** at any point.
 
-### Puppet Server Ignores Some Settings
-
-If you're using Puppet Server, you should note that [Puppet Server will ignore some settings][puppetserver_diff] in `$confdir/puppet.conf`. 
-
 ### Config Sections
 
     [main]
@@ -99,6 +95,10 @@ Puppet uses four **config sections**:
 * `user` is used by the Puppet apply command, as well as many of the less common [Puppet subcommands][subcommands].
 
 Puppet prefers to use settings from one of the three application-specific sections (`master`, `agent`, or `user`). If it doesn't find a setting in the application section, it will use the value from `main`. (If `main` doesn't set one, it will fall back to the default value.)
+
+### Puppet Server Ignores Some Config Settings
+
+If you're using Puppet Server, you should note that it honors almost all settings in `puppet.conf` and should pick them up automatically. However, [some Puppet Server settings differ from a Ruby Puppet master’s `puppet.conf` settings][puppetserver_diff]. 
 
 ### Comment Lines
 
