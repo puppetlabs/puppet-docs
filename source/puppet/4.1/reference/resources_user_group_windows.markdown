@@ -6,6 +6,7 @@ title: "Resource Tips and Examples: User and Group on Windows"
 [user]: /references/3.8.latest/type.html#user
 [group]: /references/3.8.latest/type.html#group
 [relationships]: /puppet/3.8.latest/reference/lang_relationships.html
+[auth_membership]: /references/latest/type.html#group-attribute-auth_membership
 
 Puppet's built-in [`user`][user] and [`group`][group] resource types can manage user and group accounts on Windows.
 
@@ -29,6 +30,8 @@ Groups can also include other groups as members.
 
 [members]: /references/3.8.latest/type.html#group-attribute-members
 
+You can also use the [auth_membership attribute][auth_membership]. The default setting is `false`. Before Puppet 4.1.0, if you had a system with other accounts on it, Puppet would remove any members that weren’t in the manifest. Now you can use the `auth_membership` attribute to make sure the administrator group contains the number of members you want to include.
+
 ### Allowed Attributes
 
 The `user` type in particular has a lot of attributes that don't apply to Windows systems.
@@ -50,6 +53,7 @@ When managing Windows [**group**][group] accounts, you can use the following att
 * [`name`](/references/3.8.latest/type.html#group-attribute-name)
 * [`ensure`](/references/3.8.latest/type.html#group-attribute-ensure)
 * [`members`](/references/3.8.latest/type.html#group-attribute-members)
+* [auth_membership][auth_membership]
 
 Additionally, the `gid` attribute is available as a read-only property when inspecting a group with `puppet resource group <NAME>`. Its value will be the group's SID (see below).
 
