@@ -12,6 +12,7 @@ This is especially useful when managing Windows systems, because there are sever
 
 > **Note:** plugins from the Puppet Forge may not have the same amount of QA and test coverage as Puppet's core resource types.
 
+* [puppetlabs/windows](https://forge.puppetlabs.com/puppetlabs/windows/readme) --- A pack of the Forge's best Windows content. You can install the items listed below separately, or else install them with this module pack.
 * [puppetlabs/acl](https://forge.puppetlabs.com/puppetlabs/acl) --- A resource type for managing access control lists (ACLs) on Windows.
 * [puppetlabs/registry](https://forge.puppetlabs.com/puppetlabs/registry) --- A resource type for managing arbitrary registry keys.
 * [puppetlabs/reboot](https://forge.puppetlabs.com/puppetlabs/reboot) --- A resource type for managing conditional reboots, which may be necessary for installing certain software.

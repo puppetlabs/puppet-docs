@@ -21,10 +21,16 @@ Puppet can manage the task name, the enabled/disabled status, the command, any a
         every      => 2,            # Specifies every other day. Defaults to 1 (every day).
         start_date => '2011-08-31', # Defaults to 'today'
         start_time => '08:00',      # Must be specified
+        minutes_interval => '60',   # Repeat this task every 60 minutes
+        minutes_duration => '300',  # The task will run for a total of five hours
       }
     }
 {% endhighlight %}
 
-Puppet does not support "every X minutes" type triggers.
-
 For more information, see [the reference documentation for the `scheduled_task` type][scheduledtask].
+
+##Errata
+
+### Known Issues Prior to Puppet 4.1.0
+
+Puppet did not support "every X minutes" type triggers.

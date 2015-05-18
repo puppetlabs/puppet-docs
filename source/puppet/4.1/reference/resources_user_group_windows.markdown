@@ -30,7 +30,7 @@ Groups can also include other groups as members.
 
 [members]: /references/3.8.latest/type.html#group-attribute-members
 
-You can also use the [auth_membership attribute][auth_membership]. The default setting is `false`. Before Puppet 4.1.0, if you had a system with other accounts on it, Puppet would remove any members that weren’t in the manifest. Now you can use the `auth_membership` attribute to make sure the administrator group contains the number of members you want to include.
+You can also use the [auth_membership attribute][auth_membership] to help manage members. Before Puppet 4.1.0, if you had a system with other accounts on it, Puppet would remove any members that weren’t in the manifest. Now with the `auth_membership` attribute set to `false`, the default setting, Puppet will make sure that a group contains as many members as are listed in the manifest. Setting `auth_membership` to `true` makes the list of members in the manifest the authoritative list of members in a group.
 
 ### Allowed Attributes
 
@@ -61,7 +61,7 @@ Additionally, the `gid` attribute is available as a read-only property when insp
 
 On Windows, user and group account names can take multiple forms, e.g. `Administrators`, `<host>\Administrators`, `BUILTIN\Administrators`, `S-1-5-32-544` --- the last is called a security identifier (SID). Puppet treats all these forms as equivalent: when comparing two account names, it first transforms account names into their canonical SID form and compares the SIDs instead.
 
-If you need to refer to a user or group in multiple places in a manifest (e.g. when creating [relationships between resources][relationships]), be consistent with the case of the name. Names are case-sensitive in Puppet manifests, but case-insensitive on Windows.
+If you need to refer to a user or group in multiple places in a manifest (e.g. when creating [relationships between resources][relationships]), be consistent with the case of the name. Names are case-sensitive in Puppet manifests, but case-insensitive on Windows. It's important that the cases match, however, because autorequire will attempt to match users with fully qualified names (User[BUILTIN\Administrators]) in addition to SIDs (User[S-1-5-32-544]). It might not match in cases where domain accounts and local accounts have the same name, such as Domain\Bob versus LOCAL\Bob.
 
 ## Errata
 
