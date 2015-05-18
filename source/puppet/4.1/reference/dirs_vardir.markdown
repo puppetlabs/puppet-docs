@@ -1,57 +1,35 @@
 ---
 layout: default
-title: "Directories: The Vardir"
+title: "Directories: The Cache Directory (vardir)"
 canonical: "/puppet/latest/reference/dirs_vardir.html"
 ---
 
 [confdir]: ./dirs_confdir.html
 [config_ref]: /references/3.8.latest/configuration.html
 
-Puppet's `vardir` is the traditional `/var/lib/puppet` directory, although its actual location varies. It contains **dynamic and/or growing data** that Puppet creates automatically in the course of its normal operations. Some of this data can be mined for interesting analysis, or to integrate other tools with Puppet; other parts are just infrastructure and should be ignored by most or all users.
+Puppet's cache directory, sometimes called `vardir`, contains **dynamic and/or growing data** that Puppet creates automatically in the course of its normal operations. Some of this data can be mined for interesting analysis, or to integrate other tools with Puppet; other parts are just infrastructure and should be ignored by most or all users.
 
 ## Location
 
-The location of Puppet's vardir is somewhat complex. The short version is that it's _usually_ at one of the following locations:
+Puppet's cache directory can be found at one of the following locations:
 
-* `/var/opt/lib/pe-puppet`
-* `/var/lib/puppet`
-* `C:\ProgramData\PuppetLabs\puppet\var`
+* \*nix Systems: `/var/opt/puppetlabs/puppet/cache`
+* Windows: `C:\ProgramData\PuppetLabs\puppet\cache`
+* non-root users: `~/.puppetlabs/opt/puppet/cache`
 
-The actual default `vardir` depends on your user account, OS version, and Puppet distribution (Puppet Enterprise vs. open source). See the table for your operating system below. For details on system vs. user vardir behavior, see ["System and User Vardirs" below](#system-and-user-vardirs).
+When Puppet is running as either root, a Windows user with administrator privileges, or the `puppet` user, it will use a system-wide cache directory. When running as a non-root user, it will use a cache directory in that user's home directory.
 
-> **Note:** Puppet's vardir can be specified on the command line with the `--vardir` option, but it can't be set via puppet.conf. If `--vardir` isn't specified when a Puppet application is started, it will always use the default vardir location.
+The system cache directory is what you usually want to use, since you will usually run Puppet's commands and services as root or `puppet`. (Note that admin commands like `puppet cert` must be run with `sudo` to use the same cache directory as Puppet agent or Puppet master.)
 
-### \*nix Systems
+> **Note:** When Puppet master is running as a Rack application, the `config.ru` file must explicitly set `--vardir` to the system cache directory. The example `config.ru` file provided with the Puppet source does this.
 
-On Linux and other Unix-like operating systems, Puppet Enterprise and open source Puppet use different system vardirs. The per-user vardir is the same, and is located inside the per-user [confdir][].
+### Configuration
 
-Puppet Distribution | User     | Vardir Location
---------------------|----------|-------------------------
-Puppet Enterprise   | root     | `/var/opt/lib/pe-puppet`
-Open source         | root     | `/var/lib/puppet`
-(Both)              | non-root | `~/.puppet/var`
+Puppet's cache directory can be specified on the command line with the `--vardir` option, but it can't be set via puppet.conf. If `--vardir` isn't specified when a Puppet application is started, it will always use the default cache directory location.
 
-### Windows Systems
+### Note about Windows 2003
 
-On Microsoft Windows, Puppet Enterprise and open source Puppet use the same directories. However, Windows 2003 uses a different system vardir than other supported Windows versions. (This is because the vardir is based on the `COMMON_APPDATA` folder, whose location changed to a simpler value in Windows 7 and 2008.)
-
-The per-user vardir is the same, and is located inside the per-user [confdir][].
-
-Windows Version               | User              | Vardir Location
-------------------------------|-------------------|-----------------
-7, 2008, & all later versions | Administrator     | `%PROGRAMDATA%\PuppetLabs\puppet\var` (defaults to `C:\ProgramData\PuppetLabs\puppet\var`)
-2003                          | Administrator     | `%ALLUSERSPROFILE%\Application Data\PuppetLabs\puppet\var` (defaults to `C:\Documents and Settings\All Users\Application Data\PuppetLabs\puppet\var`)
-(all)                         | non-Administrator | `%UserProfile%\.puppet\var` (defaults to `C:\Users\USER_NAME\.puppet\var` on 7+ and 2008+)
-
-### System and User Vardirs
-
-Depending on the run environment, Puppet will use either a system-wide vardir or a per-user vardir:
-
-* When Puppet is running as a non-root user, it defaults to a vardir in that user's home directory.
-* The system vardir is used when Puppet is running as root or Administrator, either directly or via `sudo`. (Puppet agent generally runs as root or Administrator when managing a system.)
-    * The system vardir is also used when Puppet is started as root before switching users and dropping privileges, which is what a WEBrick Puppet master does. Note that when Puppet master is running as a Rack application, the `config.ru` file must explicitly set `--vardir` to the system vardir. The example `config.ru` file provided with the Puppet source does this.
-
-The system vardir is the most common, since Puppet generally runs as a service with administrator privileges and the admin commands (like `puppet cert`) must be run with `sudo`.
+The location of the system confdir is based on the `COMMON_APPDATA` folder, whose location changed to a simpler value in Windows 7 and 2008. So if you're using Windows 2003 the confdir will actually be located at `%ALLUSERSPROFILE%\Application Data\PuppetLabs\puppet\var` (defaults to `C:\Documents and Settings\All Users\Application Data\PuppetLabs\puppet\var`).
 
 ## Interpolation of `$vardir`
 
@@ -80,15 +58,8 @@ The default layout of the vardir is as follows. Most of the files and directorie
 * [`lib` (`libdir`)][libdir] (also [plugindest][]) --- Puppet uses this as a cache for plugins (custom facts, types and providers, functions) synced from a Puppet master. It shouldn't be directly modified by the user. It can be safely deleted, and the plugins will be restored on the next Puppet run.
 * [`puppet-module` (`module_working_dir`)][module_working_dir]
     * [`skeleton` (`module_skeleton_dir`)][module_skeleton_dir]
-* [`log` (`logdir`)][logdir]
-    * [`http.log` (`httplog`)][httplog]
-    * [`masterhttp.log` (`masterhttplog`)][masterhttplog]
-    * [`puppetmaster.log` (`masterlog`)][masterlog]
-    * [`puppetd.log` (`puppetdlog`)][puppetdlog]
 * [`reports` (`reportdir`)][reportdir] --- When the `store` report is enabled, a Puppet master will store all reports received from agents as YAML files in this directory. These can be easily mined for analysis by an out-of-band process.
 * [`rrd` (`rrddir`)][rrddir]
-* [`run` (`rundir`)][rundir]
-    * [`${run_mode}.pid` (`pidfile`)][pidfile]
 * [`server_data` (`serverdatadir`)][serverdatadir]
 * [`state` (`statedir`)][statedir]
     * [`agent_catalog_run.lock` (`agent_catalog_run_lockfile`)][agent_catalog_run_lockfile]

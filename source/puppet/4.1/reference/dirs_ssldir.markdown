@@ -45,7 +45,7 @@ By default, the `ssldir` is located at `$confdir/ssl`. ([See here for info about
 
 Its location can be configured with the [`ssldir` setting][ssldir]. To check the actual ssldir on one of your nodes, [run `puppet config print ssldir`][print_settings].
 
-> **Note:** Many open-source Puppet packages for Linux put the ssldir in the [vardir][] instead of the [confdir][]. (The right place for it under the FHS is debatable; the contents are automatically generated and will tend to grow, but are also important, relatively difficult to replace, and can be considered configuration.)
+> **Note:** Some third-party Puppet packages for Linux put the ssldir in the [vardir][] instead of the [confdir][]. (The right place for it under the FHS is debatable; the contents are automatically generated and will tend to grow, but are also important, relatively difficult to replace, and can be considered configuration.)
 >
 > If a distro changes the ssldir location, it will do so by setting `ssldir` in the `$confdir/puppet.conf` file, usually in the `[main]` section. You can find out for sure by [printing the `ssldir` setting value][print_settings].
 

@@ -15,7 +15,7 @@ Puppet's `confdir` is the main directory for Puppet's configuration. It contains
 
 Puppet's confdir can be found at one of the following locations:
 
-* *nix Systems: `/etc/puppetlabs/puppet`
+* \*nix Systems: `/etc/puppetlabs/puppet`
 * Windows: `C:\ProgramData\PuppetLabs\puppet\etc`
 * non-root users: `~/.puppetlabs/etc/puppet`
 

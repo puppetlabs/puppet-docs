@@ -10,7 +10,7 @@ Puppet's `codedir` is the main directory for Puppet code and data. It contains e
 
 Puppet's codedir can be found at one of the following locations:
 
-* *nix Systems: `/etc/puppetlabs/code`
+* \*nix Systems: `/etc/puppetlabs/code`
 * Windows: `C:\ProgramData\PuppetLabs\code`
 * non-root users: `~/.puppetlabs/etc/code`
 
