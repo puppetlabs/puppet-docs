@@ -7,10 +7,11 @@ title: "Installing Puppet: Microsoft Windows"
 [peinstall]: /pe/latest/install_windows.html
 [pre_install]: ./install_pre.html
 [where]: ./whered_it_go.html
-[puppet.conf]: /puppet/latest/reference/config_file_main.html
-[environment]: /puppet/latest/reference/environments.html
-[confdir]: /puppet/latest/reference/dirs_confdir.html
-[vardir]: /puppet/latest/reference/dirs_vardir.html
+[puppet.conf]: ./config_file_main.html
+[environment]: ./environments.html
+[confdir]: ./dirs_confdir.html
+[codedir]: ./dirs_codedir.html
+[vardir]: ./dirs_vardir.html
 
 ## Review the Pre-Install Tasks
 
@@ -224,4 +225,4 @@ To uninstall from the command line, you must have the original MSI file or know 
     msiexec /qn /x puppet-agent-1.0.0-x64.msi
     msiexec /qn /x <PRODUCT CODE>
 
-Uninstalling will remove Puppet's program directory, the puppet agent service, and all related registry keys. It will leave the [confdir][] and [vardir][] intact, including any SSL keys. To completely remove Puppet from the system, the confdir and vardir can be manually deleted.
+Uninstalling will remove Puppet's program directory, the puppet agent service, and all related registry keys. It will leave the [confdir][], [codedir][], and [vardir][] intact, including any SSL keys. To completely remove Puppet from the system, the confdir, codedir, and vardir can be manually deleted.

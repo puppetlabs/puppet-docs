@@ -79,9 +79,10 @@ All of the Puppet master's files and directories must be readable and writable b
 ### Required Directories
 
 [confdir]: ./dirs_confdir.html
+[codedir]: ./dirs_codedir.html
 [vardir]: ./dirs_vardir.html
 
-Before a Rack Puppet master can fully start up, it needs access to a [confdir][] and a [vardir][] that its user has permission to write to. The locations of the confdir and vardir it will use are set in the `config.ru` file (see below).
+Before a Rack Puppet master can fully start up, it needs access to a [confdir][], [codedir][], and a [vardir][] that its user has permission to write to. The locations of the directories it will use are set in the `config.ru` file (see below).
 
 The Puppet master application can manage its own files inside those directories, but since Rack doesn't start the master with root permissions, it won't be able to create the initial directories in `/etc` or `/var`.
 
@@ -188,7 +189,7 @@ The name of this variable is not configurable.
 
 ## Configuring a Rack Puppet Master
 
-As [described elsewhere,][about_settings] the Puppet master application reads most of its settings from [puppet.conf][] and can accept additional settings on the command line. When running under Rack, Puppet master gets its command line options from the `config.ru` file. By default, it only sets the `confdir` and `vardir` settings and the special `--rack` option.
+As [described elsewhere,][about_settings] the Puppet master application reads most of its settings from [puppet.conf][] and can accept additional settings on the command line. When running under Rack, Puppet master gets its command line options from the `config.ru` file. The default `config.ru` file sets some common options for you.
 
 To change the Puppet master's settings, you should use [puppet.conf][]. The only two options you may want to set in `config.ru` are `--verbose` or `--debug`, to change the amount of detail in the logs.
 
