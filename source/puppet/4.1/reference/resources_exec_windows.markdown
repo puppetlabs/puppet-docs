@@ -29,7 +29,7 @@ Puppet does not support a shell provider for Windows, so if you want to execute 
 
 ## The Optional PowerShell Exec Provider
 
-An optional PowerShell exec provider is available as a plugin. To use it, install:
+An optional PowerShell exec provider is available as a plugin and is is particularly helpful if you need to run PowerShell commands but don't know the details about how PowerShell is executed, since you can technically run PowerShell commands in Puppet without the module. To use it, install:
 
 * [The puppetlabs/powershell module](https://forge.puppetlabs.com/puppetlabs/powershell)
 

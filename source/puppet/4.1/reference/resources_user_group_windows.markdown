@@ -63,6 +63,8 @@ On Windows, user and group account names can take multiple forms, e.g. `Administ
 
 If you need to refer to a user or group in multiple places in a manifest (e.g. when creating [relationships between resources][relationships]), be consistent with the case of the name. Names are case-sensitive in Puppet manifests, but case-insensitive on Windows. It's important that the cases match, however, because autorequire will attempt to match users with fully qualified names (User[BUILTIN\Administrators]) in addition to SIDs (User[S-1-5-32-544]). It might not match in cases where domain accounts and local accounts have the same name, such as Domain\Bob versus LOCAL\Bob.
 
+>**Note**: For reporting and for `puppet resource`, groups always come back in fully qualified form when describing a user, so it looks like `BUILTIN\Administrators`. In other words, it doesn’t always look the same as in the manifest.
+
 ## Errata
 
 ### Known Issues Prior to Puppet 3.4 / PE 3.2
