@@ -32,7 +32,7 @@ For more info, see [the timeout section of the Configuring Environments page.][c
 
 Puppet will only use a global [hiera.yaml](./config_file_hiera.html) file; you can't put per-environment configs in an environment directory.
 
-When using the built-in YAML or JSON backends, it _is_ possible to separate your Hiera data per environment; you will need to interpolate [the `$environment` variable][env_var] into [the `:datadir` setting.](/hiera/latest/configuring.html#yaml-and-json) (e.g. `:datadir: /etc/puppet/environments/%{::environment}/hieradata`)
+When using the built-in YAML or JSON backends, it _is_ possible to separate your Hiera data per environment; you will need to interpolate [the `$environment` variable][env_var] into [the `:datadir` setting.](/hiera/latest/configuring.html#yaml-and-json) (e.g. `:datadir: /etc/puppetlabs/code/environments/%{::environment}/hieradata`)
 
 ## Exported Resources Can Conflict or Cross Over
 

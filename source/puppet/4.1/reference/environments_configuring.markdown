@@ -34,9 +34,7 @@ Puppet uses five settings in [puppet.conf][] to configure the behavior of enviro
 
 The Puppet master will only look for environments in certain directories, listed by [the `environmentpath` setting][environmentpath] in puppet.conf. The default value for `environmentpath` is `$codedir/environments`. ([See here for info on the codedir][codedir].)
 
-If `environmentpath` isn't set, environments will be disabled completely.
-
-If you need to manage environments in multiple directories, you can set `environmentpath` to a colon-separated list of directories. (For example: `$confdir/temporary_environments:$confdir/environments`.) When looking for an environment, Puppet will search these directories in order, with earlier directories having precedence.
+If you need to manage environments in multiple directories, you can set `environmentpath` to a colon-separated list of directories. (For example: `$codedir/temporary_environments:$codedir/environments`.) When looking for an environment, Puppet will search these directories in order, with earlier directories having precedence.
 
 Note that if multiple copies of a given environment exist in the `environmentpath`, Puppet will use the first one. It won't use any content from the other copies.
 
@@ -46,19 +44,12 @@ The `environmentpath` setting should usually be set in the `[main]` section of [
 
 Although environments should contain their own modules, you might want some modules to be available to all environments.
 
-[The `basemodulepath` setting][basemodulepath] configures the global module directories. By default, it includes `$confdir/modules`, which is good enough for most users. The default may also include another directory for "system" modules, depending on your OS and Puppet distribution:
+[The `basemodulepath` setting][basemodulepath] configures the global module directories. By default, it includes `$codedir/modules` for user-accessible modules and `/opt/puppetlabs/puppet/modules` for system modules. 
 
-OS and Distro             | Default basemodulepath
---------------------------|----------------------------------------------------
-\*nix (Puppet Enterprise) | `$confdir/modules:/opt/puppet/share/puppet/modules`
-\*nix (open source)       | `$confdir/modules:/usr/share/puppet/modules`
-Windows (PE and foss)     | `$confdir\modules`
+To add additional directories containing global modules, you can set your own value for `basemodulepath`. See [the page on the modulepath][modulepath] for more details.
 
-> **Note:** In Puppet Enterprise, the `basemodulepath` must *always* include the system module directory, which in this version of Puppet is `/opt/puppetlabs/puppet/modules`
->
-> If you **upgraded** to Puppet Enterprise 3.3 from a previous version of PE, the default `basemodulepath` may not be set in your [puppet.conf][] file. You will need to add `basemodulepath = $confdir/modules:/opt/puppet/share/puppet/modules` to the `[main]` section of your puppet.conf before using environments.
+> **Note:** In Puppet Enterprise, the `basemodulepath` must *always* include the system module directory.
 
-To add additional directories containing global modules, you can set your own value for `basemodulepath`. See [the page on the modulepath][modulepath] for more details about how Puppet loads modules from the modulepath.
 
 ## `default_manifest`
 
@@ -90,8 +81,6 @@ This requires `default_manifest` to be an absolute path.
 How long the Puppet master should cache the data it loads from an environment. For performance reasons, we recommend changing this setting once you have a mature code deployment process.
 
 This setting defaults to `0` (caching disabled), which lowers the performance of your Puppet master but makes it easy for new users to deploy updated Puppet code.
-
-> **Note:** This default changed in Puppet 3.7.5. In 3.7.0 through 3.7.4, it was `3m`.
 
 For best performance, you should:
 

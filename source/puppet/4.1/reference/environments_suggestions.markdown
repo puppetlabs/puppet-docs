@@ -17,7 +17,7 @@ The test nodes probably closely resemble the whole production infrastructure in 
 
 ## Temporary Test Environments
 
-In this pattern, developers and admins can create temporary environments to test out a single change or group of changes. This usually means doing a fresh checkout from your version control into the `$confdir/environments` directory, where it will be detected as a new environment. These environments might have descriptive names, or might just use the commit IDs from the version of the code they're based on.
+In this pattern, developers and admins can create temporary environments to test out a single change or group of changes. This usually means doing a fresh checkout from your version control into the `$codedir/environments` directory, where it will be detected as a new environment. These environments might have descriptive names, or might just use the commit IDs from the version of the code they're based on.
 
 Temporary environments are good for testing individual changes, especially if you need to iterate quickly while developing them. Since it's easy to create many of them, you don't have to worry about coordinating with other developers and admins the way you would with a monolithic `test` environment; everyone can have a personal environment for their current development work.
 

@@ -58,8 +58,8 @@ The [main manifest][manifest_dir] **must** contain the following snippet of Pupp
 
 You should do the following to ensure this is present:
 
-* Make sure you set `default_manifest = $confdir/manifests` in [puppet.conf][]. This will provide the necessary code to any environments that don't override their main manifest in [environment.conf][].
-* If any environments **do** provide their own main manifests, make sure you copy this code from the `/etc/puppetlabs/puppet/manifests/site.pp` file into some file in their manifests directory.
+* Make sure you set `default_manifest = $codedir/manifests` in [puppet.conf][]. This will provide the necessary code to any environments that don't override their main manifest in [environment.conf][].
+* If any environments **do** provide their own main manifests, make sure you copy this code from the `/etc/puppetlabs/code/manifests/site.pp` file into some file in their manifests directory.
 
 ### Modulepath Includes `/opt/puppetlabs/puppet/modules`
 
@@ -103,14 +103,14 @@ That is, Puppet will add the environment's `modules` directory to the value of t
 
 You can configure a different modulepath for an environment by setting `modulepath` in its [environment.conf][] file. Note that the global `modulepath` setting from [puppet.conf][] will never be used by an environment.
 
-**Note:** The `modulepath` should almost always include `$basemodulepath`, and if you're using PE, it **must** include `/opt/puppet/share/puppet/modules`. ([See above.][inpage_pe]) This path is included in the `basemodulepath` by default in PE 3.8.
+**Note:** The `modulepath` should almost always include `$basemodulepath`, and if you're using PE, it **must** include `/opt/puppetlabs/puppet/modules`. ([See above.][inpage_pe]) This path is included in the `basemodulepath` by default in PE 3.8.
 
 #### Checking the Modulepath
 
 You can view an environment's effective modulepath by specifying the environment when [requesting the setting value][config_print]:
 
     $ sudo puppet config print modulepath --section master --environment test
-    /etc/puppet/environments/test/modules:/etc/puppet/modules:/usr/share/puppet/modules
+    /etc/puppetlabs/code/environments/test/modules:/etc/puppetlabs/code/modules:/opt/puppetlabs/puppet/modules
 
 
 ### The Main Manifest
