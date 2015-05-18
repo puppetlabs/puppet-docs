@@ -31,6 +31,6 @@ For more information, see [the reference documentation for the `scheduled_task` 
 
 ##Errata
 
-### Known Issues Prior to Puppet 4.1.0
+### Known Issues Prior to Puppet 3.8.0
 
 Puppet did not support "every X minutes" type triggers.

@@ -106,7 +106,7 @@ install_options => [ { 'INSTALLDIR' => "${packagedir}" } ]
 
 ### Known Issues Prior to Puppet 4.1.0
 
-#### Hidden Packages Were Not Supported
+**Hidden Packages Were Not Supported**
 
 Puppet did not managed packages that hide themselves from the list of installed programs. That is, packages that set their `SystemComponent` registry value to 1, like `SQL Server 2008 R2 SP2 Common Files`.
 

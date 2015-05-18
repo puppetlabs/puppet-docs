@@ -53,7 +53,7 @@ When managing Windows [**group**][group] accounts, you can use the following att
 * [`name`](/references/3.8.latest/type.html#group-attribute-name)
 * [`ensure`](/references/3.8.latest/type.html#group-attribute-ensure)
 * [`members`](/references/3.8.latest/type.html#group-attribute-members)
-* [auth_membership][auth_membership]
+* [`auth_membership`][auth_membership]
 
 Additionally, the `gid` attribute is available as a read-only property when inspecting a group with `puppet resource group <NAME>`. Its value will be the group's SID (see below).
 
