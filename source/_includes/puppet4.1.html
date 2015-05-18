@@ -6,6 +6,7 @@
 <ul>
   <li><a href="{{ puppet_dir }}/index.html">Introduction</a></li>
   <li><a href="{{ puppet_dir }}/release_notes.html">Puppet 4.1 Release Notes</a></li>
+  <li><a href="{{ puppet_dir }}/whered_it_go.html">Where Did Everything Go?</a></li>
   <li><a href="/puppetserver/{{ server_version }}/release_notes.html">Puppet Server {{ server_version }} Release Notes</a></li>
   <li><strong>Deprecated Features</strong>
     <ul>
@@ -21,11 +22,17 @@
     </ul>
   </li>
 
-  <li><a href="{{ puppet_dir }}/system_requirements.html">System Requirements</a></li>
-  <li><a href="{{ puppet_dir }}/install_pre.html">Pre-Install Tasks</a></li>
-  <li><a a href="{{ puppet_dir }}/install_linux.html">Install: Linux</a></li>
-  <li><a a href="{{ puppet_dir }}/install_windows.html">Install: Windows</a></li>
-  <li><a href="{{ puppet_dir }}/architecture.html">Overview of Puppet's Architecture</a></li>
+  <li><strong>Installing and Upgrading</strong>
+    <ul>
+      <li><a href="{{ puppet_dir }}/system_requirements.html">System Requirements</a></li>
+      <li><a href="{{ puppet_dir }}/install_pre.html">Pre-Install Tasks</a></li>
+      <li><a a href="{{ puppet_dir }}/install_linux.html">Install: Linux</a></li>
+      <li><a a href="{{ puppet_dir }}/install_windows.html">Install: Windows</a></li>
+      <li><a href="{{ puppet_dir }}/architecture.html">Overview of Puppet's Architecture</a></li>
+      <li><a href="{{ puppet_dir }}/upgrade_agent.html">Upgrade 3.x Agents</a></li>
+      <li><a href="{{ puppet_dir }}/upgrade_server.html">Upgrade 3.x Servers</a></li>
+    </ul>
+  </li>
 
   <li><strong>Configuration</strong>
     <ul>
@@ -54,11 +61,12 @@
   </li>
   <li><strong>Important Directories and Files</strong>
     <ul>
+      <li><a href="{{ puppet_dir }}/dirs_codedir.html">Code and Data Directory (codedir)</a></li>
       <li><a href="{{ puppet_dir }}/dirs_confdir.html">Config Directory (confdir)</a></li>
       <li><a href="{{ puppet_dir }}/dirs_manifest.html">The Main Manifest(s)</a></li>
       <li><a href="{{ puppet_dir }}/dirs_modulepath.html">The Modulepath</a></li>
       <li><a href="{{ puppet_dir }}/dirs_ssldir.html">The SSLdir</a></li>
-      <li><a href="{{ puppet_dir }}/dirs_vardir.html">The Vardir</a></li>
+      <li><a href="{{ puppet_dir }}/dirs_vardir.html">Cache Directory (vardir)</a></li>
     </ul>
   </li>
   <li><strong>Environments</strong>
