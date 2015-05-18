@@ -4,6 +4,30 @@ title: "Puppet 4.1 Release Notes"
 ---
 
 
+TICKETS ADDED TO THE VERSION SINCE FIRST CHECK; NEED CATEGORIES
+
+* [PUP-927: puppet apply on Windows always uses *nix style newlines from templates](https://tickets.puppetlabs.com/browse/PUP-927)
+* [PUP-1279: Windows Group and User fail during deletion even though it is successful](https://tickets.puppetlabs.com/browse/PUP-1279)
+* [PUP-1291: scheduled_task : add support for "every X minutes or hours" mode](https://tickets.puppetlabs.com/browse/PUP-1291)
+* [PUP-1628: Add mount provider for AIX](https://tickets.puppetlabs.com/browse/PUP-1628)
+* [PUP-1802: Puppet should execute ruby.exe not cmd.exe when running as a windows service](https://tickets.puppetlabs.com/browse/PUP-1802)
+* [PUP-2455: Puppet running as Solaris SMF service needs to run child processes in separate "contract"](https://tickets.puppetlabs.com/browse/PUP-2455)
+* [PUP-2628: Ability to add a member to a group, instead of specifying the complete list](https://tickets.puppetlabs.com/browse/PUP-2628)
+* [PUP-3388: Issue Creating Multiple Mirrors in Zpool Resource](https://tickets.puppetlabs.com/browse/PUP-3388)
+* [PUP-3429: Weekly tasks always notify 'trigger changed'](https://tickets.puppetlabs.com/browse/PUP-3429)
+* [PUP-3653: Unable to create/force empty Windows groups](https://tickets.puppetlabs.com/browse/PUP-3653)
+* [PUP-3804: User resource cannot add DOMAIN\User style accounts (through Active Directory) and should emit error message](https://tickets.puppetlabs.com/browse/PUP-3804)
+* [PUP-3863: hiera('some::key', undef) returns empty string](https://tickets.puppetlabs.com/browse/PUP-3863)
+* [PUP-4090: Zypper provider doesn't work correctly on SLES 10.4 with install_options set](https://tickets.puppetlabs.com/browse/PUP-4090)
+* [PUP-4191: Custom gem provider does not issue the right command to uninstall gem](https://tickets.puppetlabs.com/browse/PUP-4191)
+* [PUP-4194: Puppet's logdir permissions prevent puppetserver service start](https://tickets.puppetlabs.com/browse/PUP-4194)
+* [PUP-4201: Add support for structured logging](https://tickets.puppetlabs.com/browse/PUP-4201)
+* [PUP-4203: Add ':uninstall_options' to gem provider](https://tickets.puppetlabs.com/browse/PUP-4203)
+* [PUP-4278: unless with else when then part is empty produces nil result (future parser)](https://tickets.puppetlabs.com/browse/PUP-4278)
+* [PUP-4291: Make issue reporter take max errors/warnings as option](https://tickets.puppetlabs.com/browse/PUP-4291)
+* [PUP-4334: hiera_include stopped working](https://tickets.puppetlabs.com/browse/PUP-4334)
+* [PUP-4336: puppet apply --trace has stopped producing output](https://tickets.puppetlabs.com/browse/PUP-4336)
+* [PUP-4390: Regression: Windows service provider fails to retrieve current state on 2003](https://tickets.puppetlabs.com/browse/PUP-4390)
 
 
 DEFINITELY NO NOTES NEEDED
@@ -78,7 +102,6 @@ NOT SURE, NEED HELP
 * [PUP-4483: Add NotUndef type to the set of Puppet types](https://tickets.puppetlabs.com/browse/PUP-4483)
 * [PUP-2080: Support functions written in pp](https://tickets.puppetlabs.com/browse/PUP-2080)
 * [PUP-2894: Assign multiple variables from an array](https://tickets.puppetlabs.com/browse/PUP-2894)
-* [PUP-4193: Add pattern matching to the Puppet DSL](https://tickets.puppetlabs.com/browse/PUP-4193)
 * [PUP-4443: Assign multiple variables from a hash](https://tickets.puppetlabs.com/browse/PUP-4443)
 
 #### New Built-In `$server_facts` Variable (Opt-In)
