@@ -37,6 +37,8 @@ This flow diagram illustrates the pattern of agent-side checks and HTTPS request
 
 [See below the image for a textual description of this process](#check-for-keys-and-certificates), which explains the illustrated steps in more detail.
 
+> **Note:** This diagram is out of date; it uses the HTTPS endpoints from Puppet 3.x. We will update this diagram sometime in the future.
+
 [![An illustration of the process described below -- this diagram contains no new content, but is simply a visual interpretation of everything from "check for keys and certificates" on down.](./images/agent-master-https-sequence-small.gif)](./images/agent-master-https-sequence-large.gif)
 
 ## Check for Keys and Certificates

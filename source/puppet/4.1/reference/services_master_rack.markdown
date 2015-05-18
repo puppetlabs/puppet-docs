@@ -15,6 +15,11 @@ canonical: "/puppet/latest/reference/services_master_rack.html"
 [trusted]: ./lang_facts_and_builtin_vars.html#trusted-facts
 [webrick]: ./services_master_webrick.html
 [puppet server]: /puppetserver/latest/services_master_puppetserver.html
+[deprecate]: http://links.puppetlabs.com/deprecate-rack-webrick-servers
+
+> ## Important: Deprecation Warning
+>
+> [The Rack Puppet master server is deprecated][deprecate] and will be removed in a future Puppet release.
 
 Puppet master is the application that compiles configurations for any number of Puppet agent nodes, using Puppet code and various other data sources. (For more info, see [Overview of Puppet's Architecture](./architecture.html).)
 
@@ -57,6 +62,13 @@ Rack and the Puppet master application each have various expectations about thei
 ### User
 
 The Puppet master Ruby processes should be run as a specific **non-root** user, which is usually `puppet`. This should match the user specified by [the `user` setting][user].
+
+Note that you'll need to manually create the `puppet` user account, as the puppet-agent package does not create it. To create this account, run the following commands:
+
+~~~
+puppet resource group puppet ensure=present
+puppet resource user puppet ensure=present gid=puppet
+~~~
 
 The Rack web server sets the Puppet master process's user. By default, it will use the owner of the `config.ru` file. (See below.)
 

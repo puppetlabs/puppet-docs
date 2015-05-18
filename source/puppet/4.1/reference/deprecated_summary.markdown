@@ -4,18 +4,13 @@ title: "About Deprecations in This Version of Puppet"
 ---
 
 
-## About Deprecations in Puppet 4.1
+## About Deprecations in Puppet 4.x
 
-(TODO: high-level explanation of what just happened at the 4.0 boundary and what's coming next at the 5.0 boundary goes here)
+Puppet 4.0 removed or changed a lot of old and crufty features that had a long period of deprecation in Puppet 3.x (or sometimes even earlier). Now it's time for the next wave of improvements to the Puppet codebase.
+
+While the 3.x deprecations focused mostly on the Puppet language and longstanding problems with built-in resource types, the 4.x deprecations will focus on Puppet's infrastructure.
 
 ## How to Tell Whether You're Using Deprecated Features, and What to Do Next
 
-(TODO: summary of how to manage 4.x deprecations goes here)
+As Puppet 5 gets closer, you should read through the deprecation pages in this section. Each page will group similar features together, and each feature will explain what to do if you're affected.
 
-## Complete List of Deprecations
-
-Use the navigation sidebar to the left to browse the lists of deprecated features in this version of Puppet.
-
-You may want to print out the following checklist, to use while investigating deprecated feature usage at your site.
-
-(TODO: hierarchical list of deprecations goes here)
