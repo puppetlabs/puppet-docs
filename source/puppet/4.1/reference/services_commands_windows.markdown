@@ -4,6 +4,7 @@ title: "Running Puppet's Commands on Windows"
 ---
 
 [confdir]: ./dirs_confdir.html
+[codedir]: ./dirs_codedir.html
 [agent_service]: ./services_agent_windows.html
 [facter]: /facter/latest
 [puppet agent]: /references/3.8.latest/man/agent.html
@@ -48,8 +49,8 @@ You usually want to run Puppet's commands with administrator privileges.
 
 Puppet has two privilege modes:
 
-* Run with limited privileges, only manage certain resource types, and use a [user-specific confdir][confdir]
-* Run with administrator privileges, manage the whole system, and use the [system confdir][confdir]
+* Run with limited privileges, only manage certain resource types, and use a user-specific [confdir][] and [codedir][].
+* Run with administrator privileges, manage the whole system, and use the system [confdir][] and [codedir][].
 
 On \*nix systems, Puppet defaults to running with limited privileges (when not run by `root`) but can have its privileges raised with the standard `sudo` command.
 
