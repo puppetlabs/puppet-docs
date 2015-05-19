@@ -23,6 +23,9 @@ Released May 19, 2015.
 
 Also notable in this release: we're officially deprecating Rack and WEBrick-based Puppet master servers.
 
+* [All tickets fixed in 4.1.0](https://tickets.puppetlabs.com/issues/?filter=14310)
+* [Issues introduced in 4.1.0](https://tickets.puppetlabs.com/issues/?filter=14309)
+
 ### DEPRECATED: Rack and WEBrick Web Servers for Puppet Master
 
 We're concentrating our future development efforts on Puppet Server, and to make sure we can deliver better features faster, we're going to remove the ability to run a Puppet master under Rack or WEBrick in Puppet 5.0.
