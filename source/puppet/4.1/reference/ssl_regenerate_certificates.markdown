@@ -11,6 +11,7 @@ version_note: '<p class="noisy">This page only applies to open source Puppet. Pu
 [puppetdb]: /puppetdb/latest
 [puppet dashboard]: /dashboard/1.2
 [mcollective]: /mcollective
+[ssldir]: ./dirs_ssldir.html
 
 > **Note:** If you're visiting this page to remediate your Puppet Enterprise deployment due to [CVE-2014-0160][cve], a.k.a. "Heartbleed," [please see this announcement][blog] for additional information and links to more resources before using this guide. Before applying these instructions, please bear in mind that this is a non-trivial operation that contains some manual steps and will require you to replace certificates on  every agent node managed by your Puppet master.
 
@@ -37,17 +38,16 @@ Note that this process **destroys the certificate authority and all other certif
 
 **On the Puppet master hosting the CA:**
 
-1. Back up the `/etc/puppetlabs/puppet/ssl/` directory. If something goes wrong, you may need to restore this directory so your deployment can stay functional. **However,** if you needed to regenerate your certs for security reasons and couldn't, you should get some assistance as soon as possible so you can keep your site secure.
+1. Back up the [SSL directory][ssldir], which should be `/etc/puppetlabs/puppet/ssl/`. If something goes wrong, you may need to restore this directory so your deployment can stay functional. **However,** if you needed to regenerate your certs for security reasons and couldn't, you should get some assistance as soon as possible so you can keep your site secure.
 2. Stop the Puppet agent service with `sudo puppet resource service puppet ensure=stopped`.
-3. Stop the Puppet master service. Your Puppet master is probably managed by a Rack-supporting web server, such as Apache with Passenger; you'll need to stop that web server. (For example, `sudo puppet resource service apache2 ensure=stopped`.)
-4. Locate Puppet's ssldir by [reading the setting from Puppet][config_print]; run either `sudo puppet config print ssldir --section master` or `sudo puppet master --configprint ssldir`.
-5. Delete all files in the ssldir with `sudo rm -r <PATH TO SSLDIR>`.
+3. Stop the Puppet master service. For Puppet Server, use `sudo puppet resource service puppetserver ensure=stopped`. For a Rack-based master, stop whatever web server you're using.
+4. Delete the [SSL directory][ssldir] with `sudo rm -r /etc/puppetlabs/puppet/ssl`.
 5. Regenerate the CA by running `sudo puppet cert list -a`.
    You should see this message: `Notice: Signed certificate request for ca`.
 
 6. Generate the Puppet master's new certs with `sudo puppet master --no-daemonize --verbose`.
 7. When you see `Notice: Starting Puppet master <your Puppet version>`, type CTRL + C.
-8. Start the Puppet master service by reversing whatever you did in step 3. (E.g., `sudo puppet resource service apache2 ensure=running`.)
+8. Start the Puppet master service by reversing whatever you did in step 3. (E.g., `sudo puppet resource service puppetserver ensure=running`.)
 9. Start the Puppet agent service with `sudo puppet resource service puppet ensure=running`.
 
 > At this point:
@@ -77,8 +77,8 @@ For each extension like this, you'll need to regenerate the certificate(s) it us
 To replace the certs on agents, you'll need to log into each agent node and do the following:
 
 1. Stop the Puppet agent service. On \*nix nodes, run `sudo puppet resource service puppet ensure=stopped`. On Windows nodes, run the same command (minus `sudo`) with Administrator privileges.
-2. Locate Puppet's ssldir and delete everything in it. The ssldir can be located by running `puppet config print ssldir --section agent` or `puppet agent --configprint ssldir` --- be sure to run that command with `sudo` on \*nix nodes and with Administrator privileges on Windows nodes.
-3. Re-start the Puppet agent service. On \*nix nodes, run `sudo puppet resource service pe-puppet ensure=running`. On Windows nodes, run the same command (minus `sudo`) with Administrator privileges.
+2. Locate Puppet's [SSL directory][ssldir] and delete everything in it. The SSL directory should be at `/etc/puppetlabs/puppet/ssl` or `C:\ProgramData\PuppetLabs\puppet\etc\ssl`.
+3. Re-start the Puppet agent service. On \*nix nodes, run `sudo puppet resource service puppet ensure=running`. On Windows nodes, run the same command (minus `sudo`) with Administrator privileges.
 
    Once the Puppet agent starts, it will automatically generate keys and request a new certificate from the CA Puppet master.
 4. If you are not using autosigning, you will need to sign each agent node's certificate request. You can do this by logging into the CA Puppet master server, running `sudo puppet cert list` to see pending requests, and running `sudo puppet cert sign <NAME>` to sign requests.
