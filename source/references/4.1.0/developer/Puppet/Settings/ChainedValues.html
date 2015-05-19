@@ -246,15 +246,15 @@
       <pre class="lines">
 
 
-1193
-1194
-1195
-1196
-1197
-1198</pre>
+1212
+1213
+1214
+1215
+1216
+1217</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/settings.rb', line 1193</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/settings.rb', line 1212</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_mode'>mode</span><span class='comma'>,</span> <span class='id identifier rubyid_environment'>environment</span><span class='comma'>,</span> <span class='id identifier rubyid_value_sets'>value_sets</span><span class='comma'>,</span> <span class='id identifier rubyid_defaults'>defaults</span><span class='rparen'>)</span>
   <span class='ivar'>@mode</span> <span class='op'>=</span> <span class='id identifier rubyid_mode'>mode</span>
@@ -338,33 +338,33 @@ if the looked up value is a String.</p>
       <pre class="lines">
 
 
-1227
-1228
-1229
-1230
-1231
-1232
-1233
-1234
-1235
-1236
-1237
-1238
-1239
-1240
-1241
-1242
-1243
-1244
-1245
 1246
 1247
 1248
 1249
-1250</pre>
+1250
+1251
+1252
+1253
+1254
+1255
+1256
+1257
+1258
+1259
+1260
+1261
+1262
+1263
+1264
+1265
+1266
+1267
+1268
+1269</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/settings.rb', line 1227</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/settings.rb', line 1246</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_interpolate'>interpolate</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_setting'>setting</span> <span class='op'>=</span> <span class='ivar'>@defaults</span><span class='lbracket'>[</span><span class='id identifier rubyid_name'>name</span><span class='rbracket'>]</span>
@@ -456,22 +456,22 @@ if the looked up value is a String.</p>
       <pre class="lines">
 
 
-1205
-1206
-1207
-1208
-1209
-1210
-1211
-1212
-1213
-1214
-1215
-1216
-1217</pre>
+1224
+1225
+1226
+1227
+1228
+1229
+1230
+1231
+1232
+1233
+1234
+1235
+1236</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/settings.rb', line 1205</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/settings.rb', line 1224</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_lookup'>lookup</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_set'>set</span> <span class='op'>=</span> <span class='ivar'>@value_sets</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_value_set'>value_set</span><span class='op'>|</span>
@@ -496,7 +496,7 @@ if the looked up value is a String.</p>
 </div>
 
     <div id="footer">
-  Generated on Thu May  7 16:42:18 2015 by
+  Generated on Mon May 18 17:43:52 2015 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.6 (ruby-2.0.0).
 </div>
