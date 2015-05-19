@@ -37,8 +37,6 @@ The location of the `confdir` varies; it depends on the OS, Puppet distribution,
 
 ## Examples
 
-The following examples show what you might see in a fresh install of Puppet Enterprise.
-
 ### Example Agent Config
 
 ~~~
@@ -98,7 +96,7 @@ Puppet prefers to use settings from one of the three application-specific sectio
 
 ### Puppet Server Ignores Some Config Settings
 
-If you're using Puppet Server, you should note that it honors almost all settings in `puppet.conf` and should pick them up automatically. However, [some Puppet Server settings differ from a Ruby Puppet master’s `puppet.conf` settings][puppetserver_diff]. 
+If you're using Puppet Server, you should note that it honors almost all settings in `puppet.conf` and should pick them up automatically. However, [some Puppet Server settings differ from a Ruby Puppet master’s `puppet.conf` settings][puppetserver_diff].
 
 ### Comment Lines
 
