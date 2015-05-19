@@ -1,11 +1,13 @@
 {% capture server_version %}2.0{% endcapture %}
-{% capture puppet_dir %}/puppet/4.1/reference{% endcapture %}
+{% capture puppet_version %}4.1{% endcapture %}
+{% capture puppet_dir %}/puppet/{{ puppet_version }}/reference{% endcapture %}
 
 <h3 id="puppet-3-8-reference-manual">Puppet 4.1 Reference Manual</h3>
 
 <ul>
   <li><a href="{{ puppet_dir }}/index.html">Introduction</a></li>
   <li><a href="{{ puppet_dir }}/release_notes.html">Puppet 4.1 Release Notes</a></li>
+  <li><a href="{{ puppet_dir }}/whered_it_go.html">Where Did Everything Go?</a></li>
   <li><a href="/puppetserver/{{ server_version }}/release_notes.html">Puppet Server {{ server_version }} Release Notes</a></li>
   <li><strong>Deprecated Features</strong>
     <ul>
@@ -21,20 +23,22 @@
     </ul>
   </li>
 
-  <li><a href="{{ puppet_dir }}/system_requirements.html">System Requirements</a></li>
-  <li><a href="{{ puppet_dir }}/install_pre.html">Pre-Install Tasks</a></li>
-  <li><a a href="{{ puppet_dir }}/install_linux.html">Install: Linux</a></li>
-  <li><a a href="{{ puppet_dir }}/install_windows.html">Install: Windows</a></li>
-  <li><a href="{{ puppet_dir }}/architecture.html">Overview of Puppet's Architecture</a></li>
+  <li><strong>Installing and Upgrading</strong>
+    <ul>
+      <li><a href="{{ puppet_dir }}/system_requirements.html">System Requirements</a></li>
+      <li><a href="{{ puppet_dir }}/install_pre.html">Pre-Install Tasks</a></li>
+      <li><a a href="{{ puppet_dir }}/install_linux.html">Install: Linux</a></li>
+      <li><a a href="{{ puppet_dir }}/install_windows.html">Install: Windows</a></li>
+      <li><a href="{{ puppet_dir }}/architecture.html">Overview of Puppet's Architecture</a></li>
+      <li><a href="{{ puppet_dir }}/upgrade_agent.html">Upgrade 3.x Agents</a></li>
+      <li><a href="{{ puppet_dir }}/upgrade_server.html">Upgrade 3.x Servers</a></li>
+    </ul>
+  </li>
 
   <li><strong>Configuration</strong>
     <ul>
       <li><a href="{{ puppet_dir }}/config_about_settings.html">About Puppet's Settings</a></li>
-      <li><a href="{{ puppet_dir }}/config_print.html">Checking Values of Settings</a></li>
-      <li><a href="{{ puppet_dir }}/config_set.html">Editing Settings on the Command Line</a></li>
       <li><a href="{{ puppet_dir }}/config_important_settings.html">Short List of Important Settings</a></li>
-      <li><a href="/references/4.1.latest/configuration.html">Complete List of Settings (Configuration Reference)</a></li>
-      <li><a href="/puppetserver/{{ server_version }}/puppet_conf_setting_diffs.html">Settings that Differ Under Puppet Server</a></li>
       <li><strong>Config Files</strong>
         <ul>
           <li><a href="{{ puppet_dir }}/config_file_main.html">puppet.conf: The Main Config File</a></li>
@@ -50,15 +54,20 @@
           <li><a href="{{ puppet_dir }}/config_file_routes.html">The routes.yaml File</a></li>
         </ul>
       </li>
+      <li><a href="{{ puppet_dir }}/config_print.html">Checking Values of Settings</a></li>
+      <li><a href="{{ puppet_dir }}/config_set.html">Editing Settings on the Command Line</a></li>
+      <li><a href="/references/4.1.latest/configuration.html">Complete List of Settings (Configuration Reference)</a></li>
+      <li><a href="/puppetserver/{{ server_version }}/puppet_conf_setting_diffs.html">Settings that Differ Under Puppet Server</a></li>
     </ul>
   </li>
   <li><strong>Important Directories and Files</strong>
     <ul>
+      <li><a href="{{ puppet_dir }}/dirs_codedir.html">Code and Data Directory (codedir)</a></li>
       <li><a href="{{ puppet_dir }}/dirs_confdir.html">Config Directory (confdir)</a></li>
       <li><a href="{{ puppet_dir }}/dirs_manifest.html">The Main Manifest(s)</a></li>
       <li><a href="{{ puppet_dir }}/dirs_modulepath.html">The Modulepath</a></li>
       <li><a href="{{ puppet_dir }}/dirs_ssldir.html">The SSLdir</a></li>
-      <li><a href="{{ puppet_dir }}/dirs_vardir.html">The Vardir</a></li>
+      <li><a href="{{ puppet_dir }}/dirs_vardir.html">Cache Directory (vardir)</a></li>
     </ul>
   </li>
   <li><strong>Environments</strong>
@@ -198,7 +207,7 @@
     </ul>
   </li>
 
-  <li><a href="/references/4.1.latest/type.html">The Resource Type Reference</a></li>
+  <li><a href="/references/{{ puppet_version }}.latest/type.html">The Resource Type Reference</a></li>
 
   <li><strong>Resource Types: Tips and Examples</strong>
     <ul>
@@ -214,12 +223,62 @@
 
   <li><strong>Misc. References (Settings, Functions, etc.)</strong>
     <ul>
-      <li><a href="/references/4.1.latest/configuration.html">Settings (Configuration Reference)</a></li>
-      <li><a href="/references/4.1.latest/function.html">Functions</a></li>
-      <li><a href="/references/4.1.latest/metaparameter.html">Metaparameters</a></li>
-      <li><a href="/references/4.1.latest/report.html">Report Handlers</a></li>
-      <li><a href="/references/4.1.latest/indirection.html">Indirections and Termini</a></li>
-      <li><a href="/references/4.1.latest/developer/frames.html">Ruby API for Developing Extensions</a></li>
+      <li><a href="/references/{{ puppet_version }}.latest/configuration.html">Settings (Configuration Reference)</a></li>
+      <li><a href="/references/{{ puppet_version }}.latest/function.html">Functions</a></li>
+      <li><a href="/references/{{ puppet_version }}.latest/metaparameter.html">Metaparameters</a></li>
+      <li><a href="/references/{{ puppet_version }}.latest/report.html">Report Handlers</a></li>
+      <li><a href="/references/{{ puppet_version }}.latest/indirection.html">Indirections and Termini</a></li>
+      <li><a href="/references/{{ puppet_version }}.latest/developer/frames.html">Ruby API for Developing Extensions</a></li>
+    </ul>
+  </li>
+
+  <li><strong>Man Pages</strong>
+    <ul>
+
+      <li><a href="/references/{{ puppet_version }}.latest/man/index.html">Index</a></li>
+      <li><strong>Core Tools</strong>
+        <ul>
+          <li><a href="/references/{{ puppet_version }}.latest/man/agent.html">puppet agent</a></li>
+          <li><a href="/references/{{ puppet_version }}.latest/man/apply.html">puppet apply</a></li>
+          <li><a href="/references/{{ puppet_version }}.latest/man/cert.html">puppet cert</a></li>
+          <li><a href="/references/{{ puppet_version }}.latest/man/master.html">puppet master</a></li>
+          <li><a href="/references/{{ puppet_version }}.latest/man/module.html">puppet module</a></li>
+          <li><a href="/references/{{ puppet_version }}.latest/man/resource.html">puppet resource</a></li>
+        </ul>
+      </li>
+
+      <li><strong>Occasionally Useful</strong>
+        <ul>
+          <li><a href="/references/{{ puppet_version }}.latest/man/config.html">puppet config</a></li>
+          <li><a href="/references/{{ puppet_version }}.latest/man/describe.html">puppet describe</a></li>
+          <li><a href="/references/{{ puppet_version }}.latest/man/device.html">puppet device</a></li>
+          <li><a href="/references/{{ puppet_version }}.latest/man/doc.html">puppet doc</a></li>
+          <li><a href="/references/{{ puppet_version }}.latest/man/help.html">puppet help</a></li>
+          <li><a href="/references/{{ puppet_version }}.latest/man/man.html">puppet man</a></li>
+          <li><a href="/references/{{ puppet_version }}.latest/man/node.html">puppet node</a></li>
+          <li><a href="/references/{{ puppet_version }}.latest/man/parser.html">puppet parser</a></li>
+          <li><a href="/references/{{ puppet_version }}.latest/man/plugin.html">puppet plugin</a></li>
+        </ul>
+      </li>
+
+      <li><strong>Niche</strong>
+        <ul>
+          <li><a href="/references/{{ puppet_version }}.latest/man/ca.html">puppet ca</a></li>
+          <li><a href="/references/{{ puppet_version }}.latest/man/catalog.html">puppet catalog</a></li>
+          <li><a href="/references/{{ puppet_version }}.latest/man/certificate.html">puppet certificate</a></li>
+          <li><a href="/references/{{ puppet_version }}.latest/man/certificate_request.html">puppet certificate_request</a></li>
+          <li><a href="/references/{{ puppet_version }}.latest/man/certificate_revocation_list.html">puppet certificate_revocation_list</a></li>
+          <li><a href="/references/{{ puppet_version }}.latest/man/facts.html">puppet facts</a></li>
+          <li><a href="/references/{{ puppet_version }}.latest/man/file.html">puppet file</a></li>
+          <li><a href="/references/{{ puppet_version }}.latest/man/filebucket.html">puppet filebucket</a></li>
+          <li><a href="/references/{{ puppet_version }}.latest/man/inspect.html">puppet inspect</a></li>
+          <li><a href="/references/{{ puppet_version }}.latest/man/key.html">puppet key</a></li>
+          <li><a href="/references/{{ puppet_version }}.latest/man/report.html">puppet report</a></li>
+          <li><a href="/references/{{ puppet_version }}.latest/man/resource_type.html">puppet resource_type</a></li>
+          <li><a href="/references/{{ puppet_version }}.latest/man/status.html">puppet status</a></li>
+        </ul>
+      </li>
+
     </ul>
   </li>
 
