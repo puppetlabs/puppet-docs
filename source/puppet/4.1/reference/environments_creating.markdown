@@ -12,9 +12,9 @@ title: "Creating Directory Environments"
 [environment.conf]: ./config_file_environment.html
 [modulepath]: ./dirs_modulepath.html
 [puppet.conf]: ./config_file_main.html
-[basemodulepath]: /references/3.8.latest/configuration.html#basemodulepath
-[default_manifest]: /references/3.8.latest/configuration.html#defaultmanifest
-[disable_per_environment_manifest]: /references/3.8.latest/configuration.html#disableperenvironmentmanifest
+[basemodulepath]: /references/4.1.latest/configuration.html#basemodulepath
+[default_manifest]: /references/4.1.latest/configuration.html#defaultmanifest
+[disable_per_environment_manifest]: /references/4.1.latest/configuration.html#disableperenvironmentmanifest
 
 For more info about what environments do, see [About Directory Environments.][about]
 

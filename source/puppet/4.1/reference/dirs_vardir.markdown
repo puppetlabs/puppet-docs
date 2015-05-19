@@ -5,7 +5,7 @@ canonical: "/puppet/latest/reference/dirs_vardir.html"
 ---
 
 [confdir]: ./dirs_confdir.html
-[config_ref]: /references/3.8.latest/configuration.html
+[config_ref]: /references/4.1.latest/configuration.html
 
 Puppet's cache directory, sometimes called `vardir`, contains **dynamic and/or growing data** that Puppet creates automatically in the course of its normal operations. Some of this data can be mined for interesting analysis, or to integrate other tools with Puppet; other parts are just infrastructure and should be ignored by most or all users.
 
@@ -74,36 +74,36 @@ The default layout of the vardir is as follows. Most of the files and directorie
 * [`templates` (`templatedir`)][templatedir] --- This directory generally shouldn't be used; templates should be stored in modules.
 * [`yaml` (`yamldir`)][yamldir]
 
-[bucketdir]: /references/3.8.latest/configuration.html#bucketdir
-[client_datadir]: /references/3.8.latest/configuration.html#clientdatadir
-[clientbucketdir]: /references/3.8.latest/configuration.html#clientbucketdir
-[clientyamldir]: /references/3.8.latest/configuration.html#clientyamldir
-[devicedir]: /references/3.8.latest/configuration.html#devicedir
-[factpath]: /references/3.8.latest/configuration.html#factpath
-[pluginfactdest]: /references/3.8.latest/configuration.html#pluginfactdest
-[libdir]: /references/3.8.latest/configuration.html#libdir
-[plugindest]: /references/3.8.latest/configuration.html#plugindest
-[module_working_dir]: /references/3.8.latest/configuration.html#moduleworkingdir
-[module_skeleton_dir]: /references/3.8.latest/configuration.html#moduleskeletondir
-[logdir]: /references/3.8.latest/configuration.html#logdir
-[httplog]: /references/3.8.latest/configuration.html#httplog
-[masterhttplog]: /references/3.8.latest/configuration.html#masterhttplog
-[masterlog]: /references/3.8.latest/configuration.html#masterlog
-[puppetdlog]: /references/3.8.latest/configuration.html#puppetdlog
-[reportdir]: /references/3.8.latest/configuration.html#reportdir
-[rrddir]: /references/3.8.latest/configuration.html#rrddir
-[rundir]: /references/3.8.latest/configuration.html#rundir
-[pidfile]: /references/3.8.latest/configuration.html#pidfile
-[serverdatadir]: /references/3.8.latest/configuration.html#serverdatadir
-[statedir]: /references/3.8.latest/configuration.html#statedir
-[agent_catalog_run_lockfile]: /references/3.8.latest/configuration.html#agentcatalogrunlockfile
-[agent_disabled_lockfile]: /references/3.8.latest/configuration.html#agentdisabledlockfile
-[classfile]: /references/3.8.latest/configuration.html#classfile
-[graphdir]: /references/3.8.latest/configuration.html#graphdir
-[lastrunfile]: /references/3.8.latest/configuration.html#lastrunfile
-[lastrunreport]: /references/3.8.latest/configuration.html#lastrunreport
-[localconfig]: /references/3.8.latest/configuration.html#localconfig
-[resourcefile]: /references/3.8.latest/configuration.html#resourcefile
-[statefile]: /references/3.8.latest/configuration.html#statefile
-[templatedir]: /references/3.8.latest/configuration.html#templatedir
-[yamldir]: /references/3.8.latest/configuration.html#yamldir
+[bucketdir]: /references/4.1.latest/configuration.html#bucketdir
+[client_datadir]: /references/4.1.latest/configuration.html#clientdatadir
+[clientbucketdir]: /references/4.1.latest/configuration.html#clientbucketdir
+[clientyamldir]: /references/4.1.latest/configuration.html#clientyamldir
+[devicedir]: /references/4.1.latest/configuration.html#devicedir
+[factpath]: /references/4.1.latest/configuration.html#factpath
+[pluginfactdest]: /references/4.1.latest/configuration.html#pluginfactdest
+[libdir]: /references/4.1.latest/configuration.html#libdir
+[plugindest]: /references/4.1.latest/configuration.html#plugindest
+[module_working_dir]: /references/4.1.latest/configuration.html#moduleworkingdir
+[module_skeleton_dir]: /references/4.1.latest/configuration.html#moduleskeletondir
+[logdir]: /references/4.1.latest/configuration.html#logdir
+[httplog]: /references/4.1.latest/configuration.html#httplog
+[masterhttplog]: /references/4.1.latest/configuration.html#masterhttplog
+[masterlog]: /references/4.1.latest/configuration.html#masterlog
+[puppetdlog]: /references/4.1.latest/configuration.html#puppetdlog
+[reportdir]: /references/4.1.latest/configuration.html#reportdir
+[rrddir]: /references/4.1.latest/configuration.html#rrddir
+[rundir]: /references/4.1.latest/configuration.html#rundir
+[pidfile]: /references/4.1.latest/configuration.html#pidfile
+[serverdatadir]: /references/4.1.latest/configuration.html#serverdatadir
+[statedir]: /references/4.1.latest/configuration.html#statedir
+[agent_catalog_run_lockfile]: /references/4.1.latest/configuration.html#agentcatalogrunlockfile
+[agent_disabled_lockfile]: /references/4.1.latest/configuration.html#agentdisabledlockfile
+[classfile]: /references/4.1.latest/configuration.html#classfile
+[graphdir]: /references/4.1.latest/configuration.html#graphdir
+[lastrunfile]: /references/4.1.latest/configuration.html#lastrunfile
+[lastrunreport]: /references/4.1.latest/configuration.html#lastrunreport
+[localconfig]: /references/4.1.latest/configuration.html#localconfig
+[resourcefile]: /references/4.1.latest/configuration.html#resourcefile
+[statefile]: /references/4.1.latest/configuration.html#statefile
+[templatedir]: /references/4.1.latest/configuration.html#templatedir
+[yamldir]: /references/4.1.latest/configuration.html#yamldir

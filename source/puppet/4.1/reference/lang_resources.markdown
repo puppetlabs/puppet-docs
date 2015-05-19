@@ -9,7 +9,7 @@ canonical: "/puppet/latest/reference/lang_resources.html"
 [containment]: ./lang_containment.html
 [scope]: ./lang_scope.html
 [report]: /guides/reporting.html
-[types]: /references/3.8.latest/type.html
+[types]: /references/4.1.latest/type.html
 [string]: ./lang_data_string.html
 [array]: ./lang_data_array.html
 [datatype]: ./lang_data.html
