@@ -3,8 +3,6 @@ Report Format 4
 
 This is the format of reports output by Puppet versions 3.3.0 and later. It is backwards-compatible with report format 3, as it only adds two fields.
 
-Starting with Puppet 3.3.0, report objects being sent to the puppet master can be serialized as pson (a variant of json that allows byte sequences that aren't valid utf-8 characters). This is a change from Puppet 3.2.4 and earlier, which only allowed reports to be serialized as yaml. The report serialization format can be changed for compatibility with older puppet masters with the `report_serialization_format` setting.
-
 ### Puppet::Transaction::Report
 
 The Puppet::Transaction::Report contains the following attributes:

@@ -1,0 +1,1152 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Module: Puppet::Parser::Functions
+  
+    &mdash; Documentation by YARD 0.8.7.6
+  
+</title>
+
+  <link rel="stylesheet" href="../../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '../../';
+  framesUrl = "../../frames.html#!Puppet/Parser/Functions.html";
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../../_index.html">Index (F)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span> &raquo; <span class='title'><span class='object_link'>Parser</span></span>
+     &raquo; 
+    <span class="title">Functions</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../../class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="../../method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="../../file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><h1>Module: Puppet::Parser::Functions
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r1 last">Defined in:</dt>
+    <dd class="r1 last">lib/puppet/parser/functions.rb<span class="defines">,<br />
+  lib/puppet/parser/functions/hiera.rb,<br /> lib/puppet/parser/functions/split.rb,<br /> lib/puppet/parser/functions/hiera_hash.rb,<br /> lib/puppet/parser/functions/hiera_array.rb,<br /> lib/puppet/parser/functions/hiera_include.rb</span>
+</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p>A module for managing parser functions.  Each specified function
+is added to a central module that then gets included into the Scope
+class.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+  <h2>Constant Summary</h2>
+  
+
+
+
+
+
+
+
+  
+    <h2>
+      Class Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#arity-class_method" title="arity (class method)">+ (Integer) <strong>arity</strong>(name, environment = Puppet.lookup(:current_environment)) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Return the number of arguments a function expects.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#autoloader-class_method" title="autoloader (class method)">+ (Object) <strong>autoloader</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'><p>Accessor for singleton autoloader.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#environment_module-class_method" title="environment_module (class method)">+ (Object) <strong>environment_module</strong>(env) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'><p>Get the module that functions are mixed into corresponding to an environment.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#function-class_method" title="function (class method)">+ (Symbol, false) <strong>function</strong>(name, environment = Puppet.lookup(:current_environment)) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Determine if a function is defined.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#newfunction-class_method" title="newfunction (class method)">+ (Hash) <strong>newfunction</strong>(name, options = {}, &amp;block) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Create a new Puppet DSL function.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#reset-class_method" title="reset (class method)">+ (Object) <strong>reset</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'><p>Reset the list of loaded functions.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#rvalue%3F-class_method" title="rvalue? (class method)">+ (Boolean) <strong>rvalue?</strong>(name, environment = Puppet.lookup(:current_environment)) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Determine whether a given function returns a value.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'>Util</span></h3>
+  <p class="inherited"><span class='object_link'><a href="../Util.html#exit_on_fail-class_method" title="Puppet::Util.exit_on_fail (method)">exit_on_fail</a></span>, <span class='object_link'><a href="../Util.html#exit_on_fail-instance_method" title="Puppet::Util#exit_on_fail (method)">exit_on_fail</a></span>, <span class='object_link'><a href="../Util.html#which-class_method" title="Puppet::Util.which (method)">which</a></span>, <span class='object_link'><a href="../Util.html#which-instance_method" title="Puppet::Util#which (method)">which</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="arity-class_method">
+  
+    + (<tt>Integer</tt>) <strong>arity</strong>(name, environment = Puppet.lookup(:current_environment)) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Return the number of arguments a function expects.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>name</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Symbol</span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the function</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>environment</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Puppet::Node::Environment</span></tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>Puppet.lookup(:current_environment)</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The environment to find the function in</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The arity of the function. See <span class='object_link'><a href="#newfunction-class_method" title="Puppet::Parser::Functions.newfunction (method)">newfunction</a></span> for
+the meaning of negative values.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+241
+242
+243
+244</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/parser/functions.rb', line 241</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_arity'>arity</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_environment'>environment</span> <span class='op'>=</span> <span class='const'>Puppet</span><span class='period'>.</span><span class='id identifier rubyid_lookup'>lookup</span><span class='lparen'>(</span><span class='symbol'>:current_environment</span><span class='rparen'>)</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_func'>func</span> <span class='op'>=</span> <span class='id identifier rubyid_get_function'>get_function</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_environment'>environment</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_func'>func</span> <span class='op'>?</span> <span class='id identifier rubyid_func'>func</span><span class='lbracket'>[</span><span class='symbol'>:arity</span><span class='rbracket'>]</span> <span class='op'>:</span> <span class='op'>-</span><span class='int'>1</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="autoloader-class_method">
+  
+    + (<tt><span class='object_link'>Object</span></tt>) <strong>autoloader</strong> &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>Accessor for singleton autoloader</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+35
+36
+37</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/parser/functions.rb', line 35</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_autoloader'>autoloader</span>
+  <span class='ivar'>@autoloader</span> <span class='op'>||=</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Util</span><span class='op'>::</span><span class='const'>Autoload</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='kw'>self</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>puppet/parser/functions</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="environment_module-class_method">
+  
+    + (<tt><span class='object_link'>Object</span></tt>) <strong>environment_module</strong>(env) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>Get the module that functions are mixed into corresponding to an
+environment</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/parser/functions.rb', line 43</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_environment_module'>environment_module</span><span class='lparen'>(</span><span class='id identifier rubyid_env'>env</span><span class='rparen'>)</span>
+  <span class='ivar'>@modules</span><span class='lbracket'>[</span><span class='id identifier rubyid_env'>env</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='rbracket'>]</span> <span class='op'>||=</span> <span class='const'>Module</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='kw'>do</span>
+    <span class='ivar'>@metadata</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+
+    <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_all_function_info'>all_function_info</span>
+      <span class='ivar'>@metadata</span>
+    <span class='kw'>end</span>
+
+    <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_get_function_info'>get_function_info</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+      <span class='ivar'>@metadata</span><span class='lbracket'>[</span><span class='id identifier rubyid_name'>name</span><span class='rbracket'>]</span>
+    <span class='kw'>end</span>
+
+    <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_add_function_info'>add_function_info</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_info'>info</span><span class='rparen'>)</span>
+      <span class='ivar'>@metadata</span><span class='lbracket'>[</span><span class='id identifier rubyid_name'>name</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_info'>info</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="function-class_method">
+  
+    + (<tt><span class='object_link'>Symbol</span></tt>, <tt>false</tt>) <strong>function</strong>(name, environment = Puppet.lookup(:current_environment)) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Determine if a function is defined</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>name</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Symbol</span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the function</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>environment</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Puppet::Node::Environment</span></tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>Puppet.lookup(:current_environment)</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>the environment to find the function in</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Symbol</span></tt>, <tt>false</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The name of the function if it's defined,
+otherwise false.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/parser/functions.rb', line 186</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_function'>function</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_environment'>environment</span> <span class='op'>=</span> <span class='const'>Puppet</span><span class='period'>.</span><span class='id identifier rubyid_lookup'>lookup</span><span class='lparen'>(</span><span class='symbol'>:current_environment</span><span class='rparen'>)</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_name'>name</span> <span class='op'>=</span> <span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_intern'>intern</span>
+
+  <span class='id identifier rubyid_func'>func</span> <span class='op'>=</span> <span class='kw'>nil</span>
+  <span class='kw'>unless</span> <span class='id identifier rubyid_func'>func</span> <span class='op'>=</span> <span class='id identifier rubyid_get_function'>get_function</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_environment'>environment</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_autoloader'>autoloader</span><span class='period'>.</span><span class='id identifier rubyid_load'>load</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_environment'>environment</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_func'>func</span> <span class='op'>=</span> <span class='id identifier rubyid_get_function'>get_function</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_environment'>environment</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+
+  <span class='kw'>if</span> <span class='id identifier rubyid_func'>func</span>
+    <span class='id identifier rubyid_func'>func</span><span class='lbracket'>[</span><span class='symbol'>:name</span><span class='rbracket'>]</span>
+  <span class='kw'>else</span>
+    <span class='kw'>false</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="newfunction-class_method">
+  
+    + (<tt><span class='object_link'>Hash</span></tt>) <strong>newfunction</strong>(name, options = {}, &amp;block) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Create a new Puppet DSL function.</p>
+
+<p><strong>The <span class='object_link'><a href="#newfunction-class_method" title="Puppet::Parser::Functions.newfunction (method)">newfunction</a></span> method provides a public API.</strong></p>
+
+<p>This method is used both internally inside of Puppet to define parser
+functions.  For example, template() is defined in
+<a href="../../file.template.html" title="template.rb">template.rb</a> using the
+<span class='object_link'><a href="#newfunction-class_method" title="Puppet::Parser::Functions.newfunction (method)">newfunction</a></span> method.  Third party Puppet modules such as
+<a href="https://forge.puppetlabs.com/puppetlabs/stdlib">stdlib</a> use this method to
+extend the behavior and functionality of Puppet.</p>
+
+<p>See also <a href="http://docs.puppetlabs.com/guides/custom_functions.html">Docs: Custom
+Functions</a></p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <p class="tag_title">Examples:</p>
+    
+      
+        <p class="example_title"><div class='inline'><p>Define a new Puppet DSL Function</p>
+</div></p>
+      
+      <pre class="example code"><code>&gt;&gt; Puppet::Parser::Functions.newfunction(:double, :arity =&gt; 1,
+     :doc =&gt; &quot;Doubles an object, typically a number or string.&quot;,
+     :type =&gt; :rvalue) {|i| i[0]*2 }
+=&gt; {:arity=&gt;1, :type=&gt;:rvalue,
+    :name=&gt;&quot;function_double&quot;,
+    :doc=&gt;&quot;Doubles an object, typically a number or string.&quot;}</code></pre>
+    
+      
+        <p class="example_title"><div class='inline'><p>Invoke the double function from irb as is done in RSpec examples:</p>
+</div></p>
+      
+      <pre class="example code"><code>&gt;&gt; require &#39;puppet_spec/scope&#39;
+&gt;&gt; scope = PuppetSpec::Scope.create_test_scope_for_node(&#39;example&#39;)
+=&gt; Scope()
+&gt;&gt; scope.function_double([2])
+=&gt; 4
+&gt;&gt; scope.function_double([4])
+=&gt; 8
+&gt;&gt; scope.function_double([])
+ArgumentError: double(): Wrong number of arguments given (0 for 1)
+&gt;&gt; scope.function_double([4,8])
+ArgumentError: double(): Wrong number of arguments given (2 for 1)
+&gt;&gt; scope.function_double([&quot;hello&quot;])
+=&gt; &quot;hellohello&quot;</code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>name</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Symbol</span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the name of the function represented as a ruby Symbol.
+The <span class='object_link'><a href="#newfunction-class_method" title="Puppet::Parser::Functions.newfunction (method)">newfunction</a></span> method will define a Ruby method based on this name on
+the parser scope instance.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>block</span>
+      
+      
+        <span class='type'>(<tt>Proc</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the block provided to the <span class='object_link'><a href="#newfunction-class_method" title="Puppet::Parser::Functions.newfunction (method)">newfunction</a></span> method will be
+executed when the Puppet DSL function is evaluated during catalog
+compilation.  The arguments to the function will be passed as an array to
+the first argument of the block.  The return value of the block will be
+the return value of the Puppet DSL function for <code>:rvalue</code> functions.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>options</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Hash</span></tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>{}</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>a customizable set of options</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+  
+    
+    
+    
+    
+    <p class="tag_title">Options Hash (<tt>options</tt>):</p>
+    <ul class="option">
+      
+        <li>
+          <span class="name">:type</span>
+          <span class="type">(<tt>:rvalue</tt>, <tt>:statement</tt>)</span>
+          <span class="default">
+            
+              &mdash; default:
+              <tt>:statement</tt>
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>the type of function.
+Either <code>:rvalue</code> for functions that return a value, or <code>:statement</code> for
+functions that do not return a value.</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:doc</span>
+          <span class="type">(<tt>String</tt>)</span>
+          <span class="default">
+            
+              &mdash; default:
+              <tt>&#39;&#39;</tt>
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>the documentation for the function.
+This string will be extracted by documentation generation tools.</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:arity</span>
+          <span class="type">(<tt>Integer</tt>)</span>
+          <span class="default">
+            
+              &mdash; default:
+              <tt>-1</tt>
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>the
+<a href="http://en.wikipedia.org/wiki/Arity">arity</a> of the function.  When
+specified as a positive integer the function is expected to receive
+<em>exactly</em> the specified number of arguments.  When specified as a
+negative number, the function is expected to receive <em>at least</em> the
+absolute value of the specified number of arguments incremented by one.
+For example, a function with an arity of <code>-4</code> is expected to receive at
+minimum 3 arguments.  A function with the default arity of <code>-1</code> accepts
+zero or more arguments.  A function with an arity of 2 must be provided
+with exactly two arguments, no more and no less.  Added in Puppet 3.1.0.</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:environment</span>
+          <span class="type">(<tt><span class='object_link'>Puppet::Node::Environment</span></tt>)</span>
+          <span class="default">
+            
+              &mdash; default:
+              <tt>nil</tt>
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>can
+explicitly pass the environment we wanted the function added to.  Only used
+to set logging functions in root environment</p>
+</div>
+          
+        </li>
+      
+    </ul>
+  
+    
+    
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Hash</span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>describing the function.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/parser/functions.rb', line 133</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_newfunction'>newfunction</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_name'>name</span> <span class='op'>=</span> <span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_intern'>intern</span>
+  <span class='id identifier rubyid_environment'>environment</span> <span class='op'>=</span> <span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:environment</span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='const'>Puppet</span><span class='period'>.</span><span class='id identifier rubyid_lookup'>lookup</span><span class='lparen'>(</span><span class='symbol'>:current_environment</span><span class='rparen'>)</span>
+
+  <span class='const'>Puppet</span><span class='period'>.</span><span class='id identifier rubyid_warning'>warning</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Overwriting previous definition for function </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='id identifier rubyid_get_function'>get_function</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_environment'>environment</span><span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_arity'>arity</span> <span class='op'>=</span> <span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:arity</span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='op'>-</span><span class='int'>1</span>
+  <span class='id identifier rubyid_ftype'>ftype</span> <span class='op'>=</span> <span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:type</span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='symbol'>:statement</span>
+
+  <span class='kw'>unless</span> <span class='id identifier rubyid_ftype'>ftype</span> <span class='op'>==</span> <span class='symbol'>:statement</span> <span class='kw'>or</span> <span class='id identifier rubyid_ftype'>ftype</span> <span class='op'>==</span> <span class='symbol'>:rvalue</span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>DevError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Invalid statement type </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_ftype'>ftype</span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># the block must be installed as a method because it may use &quot;return&quot;,
+</span>  <span class='comment'># which is not allowed from procs.
+</span>  <span class='id identifier rubyid_real_fname'>real_fname</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>real_function_</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_environment_module'>environment_module</span><span class='lparen'>(</span><span class='id identifier rubyid_environment'>environment</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_send'>send</span><span class='lparen'>(</span><span class='symbol'>:define_method</span><span class='comma'>,</span> <span class='id identifier rubyid_real_fname'>real_fname</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_fname'>fname</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>function_</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_env_module'>env_module</span> <span class='op'>=</span> <span class='id identifier rubyid_environment_module'>environment_module</span><span class='lparen'>(</span><span class='id identifier rubyid_environment'>environment</span><span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_env_module'>env_module</span><span class='period'>.</span><span class='id identifier rubyid_send'>send</span><span class='lparen'>(</span><span class='symbol'>:define_method</span><span class='comma'>,</span> <span class='id identifier rubyid_fname'>fname</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='op'>|</span>
+    <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Util</span><span class='op'>::</span><span class='const'>Profiler</span><span class='period'>.</span><span class='id identifier rubyid_profile'>profile</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Called </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='lbracket'>[</span><span class='symbol'>:functions</span><span class='comma'>,</span> <span class='id identifier rubyid_name'>name</span><span class='rbracket'>]</span><span class='rparen'>)</span> <span class='kw'>do</span>
+      <span class='kw'>if</span> <span class='id identifier rubyid_args'>args</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span> <span class='const'>Array</span>
+        <span class='kw'>if</span> <span class='id identifier rubyid_arity'>arity</span> <span class='op'>&gt;=</span> <span class='int'>0</span> <span class='kw'>and</span> <span class='id identifier rubyid_args'>args</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='op'>!=</span> <span class='id identifier rubyid_arity'>arity</span>
+          <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'>(): Wrong number of arguments given (</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_args'>args</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='embexpr_end'>}</span><span class='tstring_content'> for </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_arity'>arity</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span>
+        <span class='kw'>elsif</span> <span class='id identifier rubyid_arity'>arity</span> <span class='op'>&lt;</span> <span class='int'>0</span> <span class='kw'>and</span> <span class='id identifier rubyid_args'>args</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='op'>&lt;</span> <span class='lparen'>(</span><span class='id identifier rubyid_arity'>arity</span><span class='op'>+</span><span class='int'>1</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_abs'>abs</span>
+          <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'>(): Wrong number of arguments given (</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_args'>args</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='embexpr_end'>}</span><span class='tstring_content'> for minimum </span><span class='embexpr_beg'>#{</span><span class='lparen'>(</span><span class='id identifier rubyid_arity'>arity</span><span class='op'>+</span><span class='int'>1</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_abs'>abs</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span>
+        <span class='kw'>end</span>
+        <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_send'>send</span><span class='lparen'>(</span><span class='id identifier rubyid_real_fname'>real_fname</span><span class='comma'>,</span> <span class='id identifier rubyid_args'>args</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+      <span class='kw'>else</span>
+        <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>custom functions must be called with a single array that contains the arguments. For example, function_example([1]) instead of function_example(1)</span><span class='tstring_end'>&quot;</span></span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+
+  <span class='id identifier rubyid_func'>func</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='symbol'>:arity</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_arity'>arity</span><span class='comma'>,</span> <span class='symbol'>:type</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_ftype'>ftype</span><span class='comma'>,</span> <span class='symbol'>:name</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_fname'>fname</span><span class='rbrace'>}</span>
+  <span class='id identifier rubyid_func'>func</span><span class='lbracket'>[</span><span class='symbol'>:doc</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:doc</span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:doc</span><span class='rbracket'>]</span>
+
+  <span class='id identifier rubyid_env_module'>env_module</span><span class='period'>.</span><span class='id identifier rubyid_add_function_info'>add_function_info</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_func'>func</span><span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_func'>func</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="reset-class_method">
+  
+    + (<tt><span class='object_link'>Object</span></tt>) <strong>reset</strong> &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>Reset the list of loaded functions.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/parser/functions.rb', line 19</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_reset'>reset</span>
+  <span class='ivar'>@modules</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+
+  <span class='comment'># Runs a newfunction to create a function for each of the log levels
+</span>  <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Util</span><span class='op'>::</span><span class='const'>Log</span><span class='period'>.</span><span class='id identifier rubyid_levels'>levels</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_level'>level</span><span class='op'>|</span>
+    <span class='id identifier rubyid_newfunction'>newfunction</span><span class='lparen'>(</span><span class='id identifier rubyid_level'>level</span><span class='comma'>,</span>
+                <span class='symbol'>:environment</span> <span class='op'>=&gt;</span> <span class='const'>Puppet</span><span class='period'>.</span><span class='id identifier rubyid_lookup'>lookup</span><span class='lparen'>(</span><span class='symbol'>:root_environment</span><span class='rparen'>)</span><span class='comma'>,</span>
+                <span class='symbol'>:doc</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Log a message on the server at level </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_level'>level</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='embexpr_end'>}</span><span class='tstring_content'>.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_vals'>vals</span><span class='op'>|</span>
+      <span class='id identifier rubyid_send'>send</span><span class='lparen'>(</span><span class='id identifier rubyid_level'>level</span><span class='comma'>,</span> <span class='id identifier rubyid_vals'>vals</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'> </span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="rvalue?-class_method">
+  
+    + (<tt>Boolean</tt>) <strong>rvalue?</strong>(name, environment = Puppet.lookup(:current_environment)) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Determine whether a given function returns a value.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>name</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Symbol</span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the function</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>environment</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Puppet::Node::Environment</span></tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>Puppet.lookup(:current_environment)</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The environment to find the function in</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>whether it is an rvalue function</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+228
+229
+230
+231</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/parser/functions.rb', line 228</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_rvalue?'>rvalue?</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_environment'>environment</span> <span class='op'>=</span> <span class='const'>Puppet</span><span class='period'>.</span><span class='id identifier rubyid_lookup'>lookup</span><span class='lparen'>(</span><span class='symbol'>:current_environment</span><span class='rparen'>)</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_func'>func</span> <span class='op'>=</span> <span class='id identifier rubyid_get_function'>get_function</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_environment'>environment</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_func'>func</span> <span class='op'>?</span> <span class='id identifier rubyid_func'>func</span><span class='lbracket'>[</span><span class='symbol'>:type</span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='symbol'>:rvalue</span> <span class='op'>:</span> <span class='kw'>false</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+    <div id="footer">
+  Generated on Mon May 18 17:43:50 2015 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.6 (ruby-2.0.0).
+</div>
+
+  </body>
+</html>

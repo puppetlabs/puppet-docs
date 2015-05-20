@@ -51,6 +51,13 @@ RHEL/CentOS (needs the Puppet Labs repository enabled, or the
     $ sudo gem install rack passenger
     $ sudo passenger-install-apache2-module
 
+Configure Puppet
+-----
+
+If you're running Puppet 3.x, make sure [the `always_cache_features` setting](/references/latest/configuration.html#alwayscachefeatures) is set to true in the `[master]` (not `[main]`) section of puppet.conf. This improves performance.
+
+In post-4.0 versions of Puppet, the example config.ru file hardcodes this setting to true.
+
 Configure Apache
 -----
 

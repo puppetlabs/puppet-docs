@@ -17,7 +17,6 @@ module PuppetDocs
         Puppet.initialize_settings()
         helpface = Puppet::Face[:help, '0.0.1']
         manface  = Puppet::Face[:man, '0.0.1']
-        Puppet::Util::Instrumentation.init()
 
         non_face_applications = helpface.legacy_applications
         faces = Puppet::Face.faces
@@ -70,15 +69,12 @@ module PuppetDocs
           describe
           device
           doc
+          epp
           help
           man
           node
           parser
           plugin
-        )
-        categories[:deprecated] = %w(
-          kick
-          queue
         )
         categories[:weird] = %w(
           ca
@@ -90,13 +86,9 @@ module PuppetDocs
           file
           filebucket
           inspect
-          instrumentation_data
-          instrumentation_listener
-          instrumentation_probe
           key
           report
           resource_type
-          secret_agent
           status
         )
         all_in_categories = categories.reduce( [] ) {|total, (cat, items)| total = total + items}
@@ -137,13 +129,6 @@ Niche Subcommands
 Most users can ignore these subcommands. They're only useful for certain niche workflows, and most of them are interfaces to Puppet's internal subsystems.
 
 #{ categories[:weird].reduce('') {|memo, item| memo << "- [puppet #{item}](./#{item}.html)\n"} }
-
-Deprecated Subcommands
------
-
-These subcommands were needed for older functionality, and will be removed in a future version of Puppet.
-
-#{ categories[:deprecated].reduce('') {|memo, item| memo << "- [puppet #{item}](./#{item}.html)\n"} }
 
 EOT
         # Handle any leftovers that aren't in categories

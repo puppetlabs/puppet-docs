@@ -1,0 +1,225 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>
+  File: http_catalog
+  
+    &mdash; Documentation by YARD 0.8.7.6
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '';
+  framesUrl = "frames.html#!file.http_catalog.html";
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index</a> &raquo; 
+    <span class="title">File: http_catalog</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><div id='filecontents'><h1>Catalog</h1>
+
+<p>The <code>catalog</code> endpoint returns a catalog for the specified node name given the provided facts.</p>
+
+<h2>Find</h2>
+
+<p>Retrieve a catalog.</p>
+
+<pre class="code ruby"><code class="ruby">POST /puppet/v3/catalog/:nodename?environment=:environment
+GET /puppet/v3/catalog/:nodename?environment=:environment
+</code></pre>
+
+<h3>Supported HTTP Methods</h3>
+
+<p>POST, GET</p>
+
+<h3>Supported Response Formats</h3>
+
+<p>PSON</p>
+
+<h3>Notes</h3>
+
+<p>The POST and GET methods are functionally equivalent. Both provide the 3 parameters specified below: the POST in the
+request body, the GET in the query string.</p>
+
+<p>Puppet originally used GET; POST was added because some web servers have a maximum URI length of
+1024 bytes (which is easily exceeded with the <code>facts</code> parameter).</p>
+
+<p>The examples below use the POST method.</p>
+
+<h3>Parameters</h3>
+
+<p>Three parameters should be provided to the POST or GET:
+- <code>facts_format</code>: must be <code>pson</code>
+- <code>facts</code>: serialized pson of the facts hash.  One odd note: due to a long-ago misunderstanding in the code, this is
+doubly-escaped (it should just be singly-escaped).  To keep backward compatibility, the extraneous
+escaping is still used/supported.
+- <code>transaction_uuid</code>: a transaction uuid identifying the entire transaction (shows up in the report as well)</p>
+
+<h3>Example Response</h3>
+
+<h4>Catalog found</h4>
+
+<pre class="code ruby"><code class="ruby">POST /puppet/v3/catalog/elmo.mydomain.com?environment=env
+
+facts_format=pson&amp;facts=%7B%22name%22%3A%22elmo.mydomain.com%22%2C%22values%22%3A%7B%22architecture%22%3A%22x86_64%22%7D&amp;transaction_uuid=aff261a2-1a34-4647-8c20-ff662ec11c4c
+
+HTTP 200 OK
+Content-Type: text/pson
+
+{
+  &quot;tags&quot;: [
+    &quot;settings&quot;,
+    &quot;multi_param_class&quot;,
+    &quot;class&quot;
+  ],
+  &quot;name&quot;: &quot;elmo.mydomain.com&quot;,
+  &quot;version&quot;: 1377473054,
+  &quot;environment&quot;: &quot;production&quot;,
+  &quot;resources&quot;: [
+    {
+      &quot;type&quot;: &quot;Stage&quot;,
+      &quot;title&quot;: &quot;main&quot;,
+      &quot;tags&quot;: [
+        &quot;stage&quot;
+      ],
+      &quot;exported&quot;: false,
+      &quot;parameters&quot;: {
+        &quot;name&quot;: &quot;main&quot;
+      }
+    },
+    {
+      &quot;type&quot;: &quot;Class&quot;,
+      &quot;title&quot;: &quot;Settings&quot;,
+      &quot;tags&quot;: [
+        &quot;class&quot;,
+        &quot;settings&quot;
+      ],
+      &quot;exported&quot;: false
+    },
+    {
+      &quot;type&quot;: &quot;Class&quot;,
+      &quot;title&quot;: &quot;main&quot;,
+      &quot;tags&quot;: [
+        &quot;class&quot;
+      ],
+      &quot;exported&quot;: false,
+      &quot;parameters&quot;: {
+        &quot;name&quot;: &quot;main&quot;
+      }
+    },
+    {
+      &quot;type&quot;: &quot;Class&quot;,
+      &quot;title&quot;: &quot;Multi_param_class&quot;,
+      &quot;tags&quot;: [
+        &quot;class&quot;,
+        &quot;multi_param_class&quot;
+      ],
+      &quot;line&quot;: 10,
+      &quot;exported&quot;: false,
+      &quot;parameters&quot;: {
+        &quot;one&quot;: &quot;hello&quot;,
+        &quot;two&quot;: &quot;world&quot;
+      }
+    },
+    {
+      &quot;type&quot;: &quot;Notify&quot;,
+      &quot;title&quot;: &quot;foo&quot;,
+      &quot;tags&quot;: [
+        &quot;notify&quot;,
+        &quot;foo&quot;,
+        &quot;class&quot;,
+        &quot;multi_param_class&quot;
+      ],
+      &quot;line&quot;: 4,
+      &quot;exported&quot;: false,
+      &quot;parameters&quot;: {
+        &quot;message&quot;: &quot;One is hello, two is world&quot;
+      }
+    }
+  ],
+  &quot;edges&quot;: [
+    {
+      &quot;source&quot;: &quot;Stage[main]&quot;,
+      &quot;target&quot;: &quot;Class[Settings]&quot;
+    },
+    {
+      &quot;source&quot;: &quot;Stage[main]&quot;,
+      &quot;target&quot;: &quot;Class[main]&quot;
+    },
+    {
+      &quot;source&quot;: &quot;Stage[main]&quot;,
+      &quot;target&quot;: &quot;Class[Multi_param_class]&quot;
+    },
+    {
+      &quot;source&quot;: &quot;Class[Multi_param_class]&quot;,
+      &quot;target&quot;: &quot;Notify[foo]&quot;
+    }
+  ],
+  &quot;classes&quot;: [
+    &quot;settings&quot;,
+    &quot;multi_param_class&quot;
+  ]
+}
+</code></pre>
+
+<h2>Schema</h2>
+
+<p>In the POST request body (or the GET query), the facts parameter should adhere to the
+<a href="../schemas/facts.json">api/schemas/facts.json</a> schema.</p>
+
+<p>A catalog response body should adhere to the <a href="../schemas/catalog.json">api/schemas/catalog.json</a> schema.</p>
+</div></div>
+
+    <div id="footer">
+  Generated on Mon May 18 17:43:49 2015 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.6 (ruby-2.0.0).
+</div>
+
+  </body>
+</html>

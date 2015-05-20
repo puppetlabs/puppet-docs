@@ -1,0 +1,181 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>
+  File: http_certificate
+  
+    &mdash; Documentation by YARD 0.8.7.6
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '';
+  framesUrl = "frames.html#!file.http_certificate.html";
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index</a> &raquo; 
+    <span class="title">File: http_certificate</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><div id='filecontents'><h1>Certificate</h1>
+
+<p>The <code>certificate</code> endpoint returns the certificate for the specified name,
+which might be either a standard certname or <code>ca</code>.</p>
+
+<h2>Find</h2>
+
+<p>Get a certificate.</p>
+
+<pre class="code ruby"><code class="ruby">GET /puppet-ca/v1/certificate/:nodename?environment=:environment
+</code></pre>
+
+<h3>Supported HTTP Methods</h3>
+
+<p>GET</p>
+
+<h3>Supported Response Formats</h3>
+
+<p>s (denotes a string of text)</p>
+
+<p>The returned certificate is always in the <code>.pem</code> format.</p>
+
+<h3>Parameters</h3>
+
+<p>None</p>
+
+<h3>Notes</h3>
+
+<p>The environment field is ignored.</p>
+
+<h3>Responses</h3>
+
+<h4>Certificate found</h4>
+
+<pre class="code ruby"><code class="ruby">GET /puppet-ca/v1/certificate/elmo.mydomain.com?environment=env
+
+HTTP 200 OK
+Content-Type: text/plain
+
+-----BEGIN CERTIFICATE-----
+MIIFujCCA6KgAwIBAgIBATANBgkqhkiG9w0BAQsFADBiMWAwXgYDVQQDDFdQdXBw
+ZXQgQ0EgZ2VuZXJhdGVkIG9uIGRoY3A1MC5reWxvLmJhY2tsaW5lLnB1cHBldGxh
+YnMubmV0IGF0IDIwMTMtMDYtMjQgMTY6MzA6MTcgLTA3MDAwHhcNMTMwNjIzMjMz
+MDE5WhcNMTgwNjIzMjMzMDE5WjBiMWAwXgYDVQQDDFdQdXBwZXQgQ0EgZ2VuZXJh
+dGVkIG9uIGRoY3A1MC5reWxvLmJhY2tsaW5lLnB1cHBldGxhYnMubmV0IGF0IDIw
+MTMtMDYtMjQgMTY6MzA6MTcgLTA3MDAwggIiMA0GCSqGSIb3DQEBAQUAA4ICDwAw
+ggIKAoICAQDABq1lmzccjuRmnCdXvTmdeXJGb9S8r8+I+G6fkHTa1WKDSob9PZpS
+eXJtanbl0zNws9yBt1Dko2zhKDKctBRWf5CT42nDxBZPY7SaD7KaCzb07g9wfWgU
+BOb/6smyl/iySEmQzzFLRgZbo5A9WLiy/UdyQim1faakevRme2Xi/l/i0TKbpu27
+DhCS+E8aC8Bvaj0ph0T+TzYphTR76pP5Kps6G7Jyk/HFYrVXnY44X2PEt2mgkEXp
+xHCbU+qCFMtTLMG+ZArA/noM3I/O6W5LhLSzApjut/M7UdMlpZ45PGDrsvf2R306
+NcOh+zbbkhxuIaGqaxeaenYzbOlA3gXhZvYaV6EKjXNtm7BslpsvhLi0U+CWyb3C
+qRkpex0MgxJgxoqViJ4TDVA+EmztOnK86+G4HGeJqTPQloYO/Td1wMT1Txh9T5Ue
+Wctw/g+4o22EyJQRo+vxxzHNRIfe7EHAerMUtLT5u9MJeQb9N1iUR2ATNAN+QiB2
+KEqyc9eMapK6QUZFV23Xvbdup1WCrgsWXBqyRWKV7x0sc9Wv8RMRKEFYaBeHEVXU
+m0hGgF34Z8Rzphq2H1FjkLD+xbtGOjrA1Mb2De81Hfvrf18497X5UMPtsuzOt/XU
+PHbbSCy+05J7VNZ/gaiGqgpHfcG5yiqCdj1LIzhFuuvm+fADPxK38wIDAQABo3sw
+eTA3BglghkgBhvhCAQ0EKhYoUHVwcGV0IFJ1YnkvT3BlblNTTCBJbnRlcm5hbCBD
+ZXJ0aWZpY2F0ZTAOBgNVHQ8BAf8EBAMCAQYwDwYDVR0TAQH/BAUwAwEB/zAdBgNV
+HQ4EFgQUEhn/MqSDtuxg12klWosCGenxf1cwDQYJKoZIhvcNAQELBQADggIBAH1G
+L3FG/keKlGqs70PxxvR1wCo4VM3K/C+5uxnzm1MHEAd96nhtwE6YSkUe+XgDiXfC
++NXS2C4TeTQAEo6grREapWDjhJvrhrgqTZmb4lTKzb91II3/VGYzG5UXxID262zy
+QLoX/IBN/xDJ5ds0wF2adUbnHUssEGGljgngewH/7kjeW/L5iL+USXZnKHPSggjM
+RAEjlucE/rDqDNoxhOS4K2PjseFm7krW4cZ0gNmxdrhc7OhmJ56dH92F4M9jn7Qy
+EqxWB304U/aMcO3NJxTQc7AreL/pUtjtI6hxM4miHbjSh6RfNBqhzRyJvxA6gc6g
+m3kumdw04KZFSs/6fPFFbI60i5K+vioB4CnUWpj+3Z+OnDEvhQJEACR1JC8A67Ih
+x+GDlbHLU1BWonwZzSMJz+ABXV3dwIrOSFHI0UmDXg+cIdZ+SaL93qMjUVU4v9nu
+gR9yJGMqNuzLjgfbD/KGCEEAITKBwPvCVd//OMlWVrXr7vvt+yo6STIlTJxABJDp
+CSLyHUtT++CsPXsPADxgRctpIbh1eMFEivkK9Oy+W/CZYIZnARVysUpMWg7TkXqx
+mSCXy9ZXLWqU/ssVhbLS9vFVa5pvxcyfiRpsFg0XZsx8mnZP6OaWcL8FjF+/NwNP
+tg1+DuYTn+d54OHi/GZEnvutgrDZyrJDrrb/Czm9
+-----END CERTIFICATE-----
+</code></pre>
+
+<h4>Certificate not found</h4>
+
+<pre class="code ruby"><code class="ruby">GET /puppet-ca/v1/certificate/certificate_does_not_exist?environment=env
+
+HTTP 404 Not Found
+Content-Type: text/plain
+
+Not Found: Could not find certificate certificate_does_not_exist
+</code></pre>
+
+<h4>No Certificate name given</h4>
+
+<pre class="code ruby"><code class="ruby">GET /puppet-ca/v1/certificate?environment=env
+
+HTTP/1.1 400 Bad Request
+Content-Type: text/plain
+
+No request key specified in /puppet-ca/v1/certificate
+</code></pre>
+
+<h4>Master is not a CA</h4>
+
+<pre class="code ruby"><code class="ruby">GET /puppet/v1/certificate/valid_certificate?environment=env
+
+HTTP/1.1 400 Bad Request
+Content-Type: text/plain
+
+this master is not a CA
+</code></pre>
+
+<h2>Schema</h2>
+
+<p>A <code>certificate</code> response body is not structured data according to any standard scheme such as
+json/pson/yaml, so no schema is applicable.</p>
+</div></div>
+
+    <div id="footer">
+  Generated on Mon May 18 17:43:49 2015 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.6 (ruby-2.0.0).
+</div>
+
+  </body>
+</html>
