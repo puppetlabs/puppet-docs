@@ -8,8 +8,8 @@ canonical: "/puppet/latest/reference/config_file_auth.html"
 [api]: ./http_api/http_api_index.html
 [default_file]: https://github.com/puppetlabs/puppet/blob/4.1.0/conf/auth.conf
 [environment]: ./environments.html
-
-
+[server_ca]: /puppetserver/2.0/configuration.html#caconf
+[puppet server]: /puppetserver/2.0/
 
 Access to Puppet's HTTPS API is configured in `auth.conf`.
 
@@ -20,6 +20,12 @@ Access to Puppet's HTTPS API is configured in `auth.conf`.
 The Puppet agent service requests configurations over HTTPS, and the Puppet master application provides several HTTPS endpoints to support this. (For example, requesting a catalog uses a different endpoint than submitting a report.) There are also a few endpoints that aren't used by Puppet agent.
 
 Since some endpoints should have restricted access (for example, a node shouldn't request another node's configuration catalog), Puppet master has a list of access rules for all of its HTTPS services. These rules can be edited in `auth.conf`.
+
+### Puppet Server Ignores `puppet-ca` ACLs in auth.conf
+
+[Puppet Server][] uses a different implementation of the Puppet CA, and ignores auth.conf's access rules for any `/puppet-ca` endpoints.
+
+For most CA endpoints, where anyone should be able to download public certificates and submit a CSR, Puppet Server simply hardcodes open access. For the optional `certificate_status` endpoint, which allows remote control of the CA, you can [selectively enable access in ca.conf.][server_ca]
 
 ## Location
 
@@ -231,6 +237,3 @@ Which IP addresses can make matching requests.
 An `allow_ip` directive will apply to both client-verified and unverified requests.
 
 Optional; if you don't specify any `allow` or `allow_ip` directives, Puppet will reject all requests matching the ACL.
-
-
-
