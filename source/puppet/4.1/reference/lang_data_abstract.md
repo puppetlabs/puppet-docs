@@ -41,7 +41,9 @@ The full signature for `Optional` is:
 
 Position | Parameter        | Data Type | Default Value | Description
 ---------| -----------------|-----------|---------------|------------
-1 | Data type | `Type` | none **(mandatory)** | The data type to add `undef` to.
+1 | Data type | `Type` or `String` | none **(mandatory)** | The data type to add `undef` to.
+
+`Optional` also allows you to specify a string as its parameter, which is a shortcut for `Optional[Enum["my string"]]` --- it will match only that exact string value or `undef`.
 
 `Optional[<DATA TYPE>]` is equivalent to `Variant[ <DATA TYPE>, Undef ]`
 
@@ -49,6 +51,7 @@ Position | Parameter        | Data Type | Default Value | Description
 
 * `Optional[String]` --- matches any string or `undef`.
 * `Optional[Array[Integer[0, 10]]]` --- matches an array of integers between 0 and 10, or `undef`.
+* `Optional["present"]` --- matches the exact string `"present"` or `undef`.
 
 
 ### `NotUndef`
