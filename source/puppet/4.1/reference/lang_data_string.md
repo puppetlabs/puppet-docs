@@ -100,6 +100,7 @@ Sequence | Result
 `\s`     | Space
 `\$`     | Literal dollar sign (to prevent interpolation)
 `\uXXXX` | Unicode character number XXXX (a four-digit hex number)
+`\u{XXXXXX}` | Unicode character XXXXXX (a hex number between two and six digits)
 `\"`     | Literal double quote
 `\'`     | Literal single quote
 
@@ -208,6 +209,7 @@ Switch | Sequence        | Result
 `s`    | `\s`            | Space
 `$`    | `\$`            | Literal dollar sign (to prevent interpolation)
 `u`    | `\uXXXX`        | Unicode character number XXXX (a four-digit hex number)
+`u`    | `\u{XXXXXX}`    | Unicode character XXXXXX (a hex number between two and six digits)
 `L`    | `\<LF or CRLF>` | Nothing (for cosmetic line breaks that appear in the source code but are excluded from the string value)
 
 **Note:** If a backslash isn't part of an enabled escape sequence, Puppet treats it as a literal backslash. Unlike with double-quoted strings, this won't log a warning.
