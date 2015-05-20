@@ -6,6 +6,21 @@ description: "Facter release notes for all 2.4 versions"
 
 This page documents the history of the Facter 2.4 series. (Elsewhere: release notes for [Facter 2.3](../2.3/release_notes.html), [Facter 2.2](../2.2/release_notes.html), [Facter 2.1](../2.1/release_notes.html), and [Facter 2.0](../2.0/release_notes.html)).
 
+
+## Facter 2.4.4
+
+Released May 20, 2015
+
+Facter 2.4.4 is a bug fix release in the Facter 2.4 series. It also deprecates the `--puppet` command line option, since it caused circular load dependencies. To run Facter in Puppet's context, you should use the `puppet facts` command instead.
+
+
+* [FACT-96: Deprecate 'facter --puppet'](https://tickets.puppetlabs.com/browse/FACT-96)
+* [FACT-628: facter returns incorrect value for `facter virtual` for Solaris Ldoms](https://tickets.puppetlabs.com/browse/FACT-628)
+* [FACT-697: If NetworkManager is installed but not used facter throws a warning.](https://tickets.puppetlabs.com/browse/FACT-697)
+* [FACT-975: On PPC64LE architecture, processors aren't detected](https://tickets.puppetlabs.com/browse/FACT-975)
+* [FACT-963: Remove pre-suite environment setup for AIO](https://tickets.puppetlabs.com/browse/FACT-963)
+
+
 ## Facter 2.4.3
 
 Released April 2, 2015
@@ -21,7 +36,7 @@ Changed external facts directory from `/opt/puppetlabs/agent/facts.d` to `/opt/p
 
 * Reduced calls to `ip link show` for performance. `Facter::Util:IP.get_interface_value` called `get_bonding_interface` for every possible value, which could have caused performance issues if many interfaces were being used.
 
-* Improved the speed of `puppetversion` in standalone Facter. There is no notable difference when calling Facter while Puppet is already running. Previously, running Facter with `--timing` showed that `puppetversion` was by far the slowest fact. This was not true when executed by Puppet, but gave the impression that Puppet is slow.  
+* Improved the speed of `puppetversion` in standalone Facter. There is no notable difference when calling Facter while Puppet is already running. Previously, running Facter with `--timing` showed that `puppetversion` was by far the slowest fact. This was not true when executed by Puppet, but gave the impression that Puppet is slow.
 
 ### Bugs
 
