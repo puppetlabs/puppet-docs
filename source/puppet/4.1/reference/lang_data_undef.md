@@ -11,6 +11,7 @@ canonical: "/puppet/latest/reference/lang_data_undef.html"
 [any]: ./lang_data_abstract.html#any
 [optional]: ./lang_data_abstract.html#optional
 [variant]: ./lang_data_abstract.html#variant
+[notundef]: ./lang_data_abstract.html#notundef
 
 Puppet's special `undef` value is roughly equivalent to `nil` in Ruby; it represents the absence of a value. If the `strict_variables` setting isn't enabled, variables which have never been declared have a value of `undef`.
 
@@ -41,3 +42,4 @@ Several of the abstract data types will also match the value `undef`:
 * [The `Any` type][any] matches any value, including `undef`.
 * [The `Optional` type][optional] wraps one other data type, and returns a type that matches `undef` in addition to that type.
 * [The `Variant` type][variant] can accept the `Undef` type as a parameter, which will make the resulting data type match `undef`.
+* [The `NotUndef` type][notundef] matches any value except `undef`.

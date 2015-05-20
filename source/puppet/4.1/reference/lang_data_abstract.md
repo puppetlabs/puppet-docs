@@ -25,7 +25,6 @@ If you're using data types to match or restrict values and need more flexibility
 
 These abstract data types can match values with a variety of concrete data types. Some of them are similar to a concrete type but offer alternate ways to restrict them (like `Enum`), and some of them let you combine types and match a union of what they would individually match (like `Variant` and `Optional`).
 
-
 ### `Optional`
 
 The `Optional` data type wraps _one_ other data type, and results in a data type that matches anything that type would match _plus_ `undef`.
@@ -50,6 +49,23 @@ Position | Parameter        | Data Type | Default Value | Description
 
 * `Optional[String]` --- matches any string or `undef`.
 * `Optional[Array[Integer[0, 10]]]` --- matches an array of integers between 0 and 10, or `undef`.
+
+
+### `NotUndef`
+
+The `NotUndef` type matches any value _except_ `undef`. It can also wrap one other data type, resulting in a type that matches anything the original type would match except `undef`.
+
+It accepts one optional parameter.
+
+#### Parameters
+
+The full signature for `NotUndef` is:
+
+    NotUndef[<DATA TYPE>]
+
+Position | Parameter        | Data Type | Default Value | Description
+---------| -----------------|-----------|---------------|------------
+1 | Data type | `Type` | `Any` | The data type to subtract `undef` from.
 
 
 ### `Variant`
