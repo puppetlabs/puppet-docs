@@ -68,8 +68,9 @@ The full signature for `NotUndef` is:
 
 Position | Parameter        | Data Type | Default Value | Description
 ---------| -----------------|-----------|---------------|------------
-1 | Data type | `Type` | `Any` | The data type to subtract `undef` from.
+1 | Data type | `Type` or `String` | `Any` | The data type to subtract `undef` from.
 
+`NotUndef` also allows you to specify a string as its parameter, which is a shortcut for `NotUndef[Enum["my string"]]` --- it will match only that exact string value. (This doesn't actually subtract anything, since the `Enum` wouldn't have matched `undef` anyway, but it enables a convenient notation for mandatory keys in `Struct` schema hashes.)
 
 ### `Variant`
 
