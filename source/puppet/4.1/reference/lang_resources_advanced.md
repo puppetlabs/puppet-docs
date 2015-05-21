@@ -158,7 +158,7 @@ This will set values for that resource's attributes, using every attribute and v
     $file_ownership = {
       "owner" => "root",
       "group" => "wheel",
-      "mode   => "0644",
+      "mode"  => "0644",
     }
 
     file { "/etc/passwd":
