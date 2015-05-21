@@ -1,0 +1,926 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Class: Puppet::Interface::Action
+  
+    &mdash; Documentation by YARD 0.8.7.6
+  
+</title>
+
+  <link rel="stylesheet" href="../../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '../../';
+  framesUrl = "../../frames.html#!Puppet/Interface/Action.html";
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../../_index.html">Index (A)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../Interface.html" title="Puppet::Interface (class)">Interface</a></span></span>
+     &raquo; 
+    <span class="title">Action</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../../class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="../../method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="../../file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><h1>Class: Puppet::Interface::Action
+  
+  
+  <span class="private note title">Private</span>
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName"><span class='object_link'>Object</span></span>
+      
+        <ul class="fullTree">
+          <li><span class='object_link'>Object</span></li>
+          
+            <li class="next">Puppet::Interface::Action</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+      <dt class="r2">Extended by:</dt>
+      <dd class="r2"><span class='object_link'><a href="DocGen.html" title="Puppet::Interface::DocGen (module)">DocGen</a></span></dd>
+      
+    
+  
+    
+      <dt class="r1">Includes:</dt>
+      <dd class="r1"><span class='object_link'><a href="FullDocs.html" title="Puppet::Interface::FullDocs (module)">FullDocs</a></span></dd>
+      
+    
+  
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">lib/puppet/interface/action.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This class is part of a private API.</strong>
+  You should avoid using this class if possible, as it may be removed or be changed in the future.
+</p>
+<p>This represents an action that is attached to a face. Actions should
+be constructed by calling <span class='object_link'><a href="ActionManager.html#action-instance_method" title="Puppet::Interface::ActionManager#action (method)">Puppet::Interface::ActionManager#action</a></span>,
+which is available on <span class='object_link'><a href="../Interface.html" title="Puppet::Interface (class)">Puppet::Interface</a></span>, and then calling methods of
+<span class='object_link'><a href="ActionBuilder.html" title="Puppet::Interface::ActionBuilder (class)">ActionBuilder</a></span> in the supplied block.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+
+
+
+  <h2>Instance Attribute Summary <small>(<a href="#" class="summary_toggle">collapse</a>)</small></h2>
+  <ul class="summary">
+    
+      
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#default-instance_method" title="#default (instance method)">- (Boolean) <strong>default</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'><p>Whether this is the default action for the face.</p>
+</div></span>
+  
+</li>
+
+    
+      
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#render_as-instance_method" title="#render_as (instance method)">- (Symbol) <strong>render_as</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+    
+  </ul>
+
+
+
+  
+  
+  <h3 class="inherited">Attributes included from <span class='object_link'><a href="FullDocs.html" title="Puppet::Interface::FullDocs (module)">FullDocs</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="FullDocs.html#copyright_owner-instance_method" title="Puppet::Interface::FullDocs#copyright_owner (method)">#copyright_owner</a></span>, <span class='object_link'><a href="FullDocs.html#copyright_years-instance_method" title="Puppet::Interface::FullDocs#copyright_years (method)">#copyright_years</a></span></p>
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        
+<li class="private ">
+  <span class="summary_signature">
+    
+      <a href="#__add_method-instance_method" title="#__add_method (instance method)">- <strong>__add_method</strong>(name, proc) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  <span class="note title private">private</span>
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#__dup_and_rebind_to-instance_method" title="#__dup_and_rebind_to (instance method)">- <strong>__dup_and_rebind_to</strong>(to) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="private ">
+  <span class="summary_signature">
+    
+      <a href="#__render_method_name_for-instance_method" title="#__render_method_name_for (instance method)">- <strong>__render_method_name_for</strong>(type) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  <span class="note title private">private</span>
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">- (Action) <strong>initialize</strong>(face, name, attrs = {}) </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'><p>A new instance of Action.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#set_rendering_method_for-instance_method" title="#set_rendering_method_for (instance method)">- (Object) <strong>set_rendering_method_for</strong>(type, proc) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#when_rendering-instance_method" title="#when_rendering (instance method)">- (Object) <strong>when_rendering</strong>(type) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="DocGen.html" title="Puppet::Interface::DocGen (module)">DocGen</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="DocGen.html#attr_doc-instance_method" title="Puppet::Interface::DocGen#attr_doc (method)">attr_doc</a></span>, <span class='object_link'><a href="DocGen.html#strip_whitespace-class_method" title="Puppet::Interface::DocGen.strip_whitespace (method)">strip_whitespace</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="FullDocs.html" title="Puppet::Interface::FullDocs (module)">FullDocs</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="FullDocs.html#author%3D-instance_method" title="Puppet::Interface::FullDocs#author= (method)">#author=</a></span>, <span class='object_link'><a href="FullDocs.html#authors-instance_method" title="Puppet::Interface::FullDocs#authors (method)">#authors</a></span>, <span class='object_link'><a href="FullDocs.html#copyright-instance_method" title="Puppet::Interface::FullDocs#copyright (method)">#copyright</a></span>, <span class='object_link'><a href="FullDocs.html#munge_copyright_year-instance_method" title="Puppet::Interface::FullDocs#munge_copyright_year (method)">#munge_copyright_year</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="TinyDocs.html" title="Puppet::Interface::TinyDocs (module)">TinyDocs</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="TinyDocs.html#build_synopsis-instance_method" title="Puppet::Interface::TinyDocs#build_synopsis (method)">#build_synopsis</a></span>, <span class='object_link'><a href="TinyDocs.html#description-instance_method" title="Puppet::Interface::TinyDocs#description (method)">#description</a></span>, <span class='object_link'><a href="TinyDocs.html#summary-instance_method" title="Puppet::Interface::TinyDocs#summary (method)">#summary</a></span></p>
+
+  
+  
+  
+  
+  
+  <div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <h3 class="signature first" id="initialize-instance_method">
+  
+    - (<tt><span class='object_link'><a href="" title="Puppet::Interface::Action (class)">Action</a></span></tt>) <strong>initialize</strong>(face, name, attrs = {}) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>Returns a new instance of Action</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/interface/action.rb', line 15</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_face'>face</span><span class='comma'>,</span> <span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_attrs'>attrs</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_raise'>raise</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span><span class='embexpr_end'>}</span><span class='tstring_content'> is an invalid action name</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>unless</span> <span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^[a-z]\w*$</span><span class='regexp_end'>/</span></span>
+  <span class='ivar'>@face</span>    <span class='op'>=</span> <span class='id identifier rubyid_face'>face</span>
+  <span class='ivar'>@name</span>    <span class='op'>=</span> <span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_to_sym'>to_sym</span>
+
+  <span class='comment'># The few bits of documentation we actually demand.  The default license
+</span>  <span class='comment'># is a favour to our end users; if you happen to get that in a core face
+</span>  <span class='comment'># report it as a bug, please. --daniel 2011-04-26
+</span>  <span class='ivar'>@authors</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+  <span class='ivar'>@license</span>  <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>All Rights Reserved</span><span class='tstring_end'>&#39;</span></span>
+
+  <span class='id identifier rubyid_set_options'>set_options</span><span class='lparen'>(</span><span class='id identifier rubyid_attrs'>attrs</span><span class='rparen'>)</span>
+
+  <span class='comment'># @options collects the added options in the order they&#39;re declared.
+</span>  <span class='comment'># @options_hash collects the options keyed by alias for quick lookups.
+</span>  <span class='ivar'>@options</span>        <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+  <span class='ivar'>@display_global_options</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+  <span class='ivar'>@options_hash</span>   <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+  <span class='ivar'>@when_rendering</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
+    
+      
+      <span id="default=-instance_method"></span>
+      <div class="method_details first">
+  <h3 class="signature first" id="default-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>default</strong> &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>Whether this is the default action for the face</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+61
+62
+63</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/interface/action.rb', line 61</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_default'>default</span>
+  <span class='ivar'>@default</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="render_as=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="render_as-instance_method">
+  
+    - (<tt><span class='object_link'>Symbol</span></tt>) <strong>render_as</strong> &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Symbol</span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+137
+138
+139</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/interface/action.rb', line 137</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_render_as'>render_as</span>
+  <span class='ivar'>@render_as</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="__add_method-instance_method">
+  
+    - <strong>__add_method</strong>(name, proc)  <span class="extras">(private)</span>&nbsp;<span class="note title private">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p class="note returns_void">This method returns an undefined value.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+371
+372
+373</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/interface/action.rb', line 371</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid___add_method'>__add_method</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_proc'>proc</span><span class='rparen'>)</span>
+  <span class='ivar'>@face</span><span class='period'>.</span><span class='id identifier rubyid___send__'>__send__</span> <span class='symbol'>:__add_method</span><span class='comma'>,</span> <span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_proc'>proc</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="__dup_and_rebind_to-instance_method">
+  
+    - <strong>__dup_and_rebind_to</strong>(to) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p class="note returns_void">This method returns an undefined value.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+42
+43
+44
+45
+46</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/interface/action.rb', line 42</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid___dup_and_rebind_to'>__dup_and_rebind_to</span><span class='lparen'>(</span><span class='id identifier rubyid_to'>to</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_bound_version'>bound_version</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_dup'>dup</span>
+  <span class='id identifier rubyid_bound_version'>bound_version</span><span class='period'>.</span><span class='id identifier rubyid_instance_variable_set'>instance_variable_set</span><span class='lparen'>(</span><span class='symbol'>:@face</span><span class='comma'>,</span> <span class='id identifier rubyid_to'>to</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_bound_version'>bound_version</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="__render_method_name_for-instance_method">
+  
+    - <strong>__render_method_name_for</strong>(type)  <span class="extras">(private)</span>&nbsp;<span class="note title private">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p class="note returns_void">This method returns an undefined value.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+129
+130
+131</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/interface/action.rb', line 129</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid___render_method_name_for'>__render_method_name_for</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='rparen'>)</span>
+  <span class='symbol'>:#{</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'>_when_rendering_</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_type'>type</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="set_rendering_method_for-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>set_rendering_method_for</strong>(type, proc) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/interface/action.rb', line 95</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_set_rendering_method_for'>set_rendering_method_for</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='id identifier rubyid_proc'>proc</span><span class='rparen'>)</span>
+  <span class='kw'>unless</span> <span class='id identifier rubyid_proc'>proc</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span> <span class='const'>Proc</span>
+    <span class='id identifier rubyid_msg'>msg</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>The second argument to set_rendering_method_for must be a Proc</span><span class='tstring_end'>&quot;</span></span>
+    <span class='id identifier rubyid_msg'>msg</span> <span class='op'>+=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>, not </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_proc'>proc</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>unless</span> <span class='id identifier rubyid_proc'>proc</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='id identifier rubyid_msg'>msg</span>
+  <span class='kw'>end</span>
+
+  <span class='kw'>if</span> <span class='id identifier rubyid_proc'>proc</span><span class='period'>.</span><span class='id identifier rubyid_arity'>arity</span> <span class='op'>!=</span> <span class='int'>1</span> <span class='kw'>and</span> <span class='id identifier rubyid_proc'>proc</span><span class='period'>.</span><span class='id identifier rubyid_arity'>arity</span> <span class='op'>!=</span> <span class='lparen'>(</span><span class='ivar'>@positional_arg_count</span> <span class='op'>+</span> <span class='int'>1</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_msg'>msg</span> <span class='op'>=</span>  <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>the when_rendering method for the </span><span class='embexpr_beg'>#{</span><span class='ivar'>@face</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'> face </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'> action </span><span class='tstring_end'>&quot;</span></span>
+    <span class='id identifier rubyid_msg'>msg</span> <span class='op'>+=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>takes either just one argument, the result of when_invoked, </span><span class='tstring_end'>&quot;</span></span>
+    <span class='id identifier rubyid_msg'>msg</span> <span class='op'>+=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>or the result plus the </span><span class='embexpr_beg'>#{</span><span class='ivar'>@positional_arg_count</span><span class='embexpr_end'>}</span><span class='tstring_content'> arguments passed </span><span class='tstring_end'>&quot;</span></span>
+    <span class='id identifier rubyid_msg'>msg</span> <span class='op'>+=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>to the when_invoked block, not </span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_proc'>proc</span><span class='period'>.</span><span class='id identifier rubyid_arity'>arity</span> <span class='op'>&lt;</span> <span class='int'>0</span> <span class='kw'>then</span>
+      <span class='id identifier rubyid_msg'>msg</span> <span class='op'>+=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>a variable number</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>else</span>
+      <span class='id identifier rubyid_msg'>msg</span> <span class='op'>+=</span> <span class='id identifier rubyid_proc'>proc</span><span class='period'>.</span><span class='id identifier rubyid_arity'>arity</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>
+    <span class='kw'>end</span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='id identifier rubyid_msg'>msg</span>
+  <span class='kw'>end</span>
+  <span class='kw'>unless</span> <span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span> <span class='const'>Symbol</span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>The rendering format must be a symbol, not </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>end</span>
+  <span class='kw'>if</span> <span class='ivar'>@when_rendering</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span> <span class='id identifier rubyid_type'>type</span> <span class='kw'>then</span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>You can&#39;t define a rendering method for </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_type'>type</span><span class='embexpr_end'>}</span><span class='tstring_content'> twice</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>end</span>
+  <span class='comment'># Now, the ugly bit.  We add the method to our interface object, and
+</span>  <span class='comment'># retrieve it, to rotate through the dance of getting a suitable method
+</span>  <span class='comment'># object out of the whole process. --daniel 2011-04-18
+</span>  <span class='ivar'>@when_rendering</span><span class='lbracket'>[</span><span class='id identifier rubyid_type'>type</span><span class='rbracket'>]</span> <span class='op'>=</span>
+    <span class='ivar'>@face</span><span class='period'>.</span><span class='id identifier rubyid___send__'>__send__</span><span class='lparen'>(</span> <span class='symbol'>:__add_method</span><span class='comma'>,</span> <span class='id identifier rubyid___render_method_name_for'>__render_method_name_for</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_proc'>proc</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="when_rendering-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>when_rendering</strong>(type) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/interface/action.rb', line 79</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_when_rendering'>when_rendering</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='rparen'>)</span>
+  <span class='kw'>unless</span> <span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span> <span class='const'>Symbol</span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>The rendering format must be a symbol, not </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>end</span>
+  <span class='comment'># Do we have a rendering hook for this name?
+</span>  <span class='kw'>return</span> <span class='ivar'>@when_rendering</span><span class='lbracket'>[</span><span class='id identifier rubyid_type'>type</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_bind'>bind</span><span class='lparen'>(</span><span class='ivar'>@face</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='ivar'>@when_rendering</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span> <span class='id identifier rubyid_type'>type</span>
+
+  <span class='comment'># How about by another name?
+</span>  <span class='id identifier rubyid_alt'>alt</span> <span class='op'>=</span> <span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='period'>.</span><span class='id identifier rubyid_sub'>sub</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^to_</span><span class='regexp_end'>/</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_sym'>to_sym</span>
+  <span class='kw'>return</span> <span class='ivar'>@when_rendering</span><span class='lbracket'>[</span><span class='id identifier rubyid_alt'>alt</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_bind'>bind</span><span class='lparen'>(</span><span class='ivar'>@face</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='ivar'>@when_rendering</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span> <span class='id identifier rubyid_alt'>alt</span>
+
+  <span class='comment'># Guess not, nothing to run.
+</span>  <span class='kw'>return</span> <span class='kw'>nil</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+    <div id="footer">
+  Generated on Mon May 18 17:43:57 2015 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.6 (ruby-2.0.0).
+</div>
+
+  </body>
+</html>

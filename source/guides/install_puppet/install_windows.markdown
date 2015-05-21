@@ -10,8 +10,9 @@ title: "Installing Puppet: Microsoft Windows"
 [environment]: /puppet/latest/reference/environments.html
 [confdir]: /puppet/latest/reference/dirs_confdir.html
 [vardir]: /puppet/latest/reference/dirs_vardir.html
+[install-latest]: /puppet/latest/reference/install_pre.html
 
-> **Note:** This document covers open source releases of Puppet. [See here for instructions on installing Puppet Enterprise.][peinstall]
+> **Note:** This document covers open source releases of Puppet version 3.8 and lower. You might also want instructions for [installing Puppet Enterprise][peinstall] or [installing Puppet 4.0 or newer.][install-latest]
 
 First
 -----

@@ -1,0 +1,2138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Class: Puppet::Property
+  
+    &mdash; Documentation by YARD 0.8.7.6
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '../';
+  framesUrl = "../frames.html#!Puppet/Property.html";
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../_index.html">Index (P)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../Puppet.html" title="Puppet (module)">Puppet</a></span></span>
+     &raquo; 
+    <span class="title">Property</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="../method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="../file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><h1>Class: Puppet::Property
+  <span class="abstract note title">Abstract</span>
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName"><span class='object_link'><a href="Parameter.html" title="Puppet::Parameter (class)">Parameter</a></span></span>
+      
+        <ul class="fullTree">
+          <li><span class='object_link'>Object</span></li>
+          
+            <li class="next"><span class='object_link'><a href="Parameter.html" title="Puppet::Parameter (class)">Parameter</a></span></li>
+          
+            <li class="next">Puppet::Property</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">lib/puppet/property.rb<span class="defines">,<br />
+  lib/puppet/type/zpool.rb,<br /> lib/puppet/property/list.rb,<br /> lib/puppet/property/keyvalue.rb,<br /> lib/puppet/property/ordered_list.rb</span>
+</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <div class="note abstract">
+  <strong>This class is abstract.</strong>
+  <div class='inline'>
+</div>
+</div>
+
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'><p>Properties of Types are expressed using subclasses of this class. Such a class describes one
+named property of a particular Type (as opposed to describing a type of property in general). This
+limits the use of one (concrete) property class instance to occur only once for a given type's inheritance
+chain. An instance of a Property class is the value holder of one instance of the resource type (e.g. the
+mode of a file resource instance).
+A Property class may server as the superclass <em>(parent)</em> of another; e.g. a Size property that describes
+handling of measurements such as kb, mb, gb. If a type requires two different size measurements it requires
+one concrete class per such measure; e.g. MinSize (:parent => Size), and MaxSize (:parent => Size).</p>
+</div>
+  </div>
+
+<p>The Property class is the implementation of a resource's attributes of <em>property</em> kind.
+A Property is a specialized Resource Type Parameter that has both an 'is' (current) state, and
+a 'should' (wanted state). However, even if this is conceptually true, the current <em>is</em> value is
+obtained by asking the associated provider for the value, and hence it is not actually part of a
+property's state, and only available when a provider has been selected and can obtain the value (i.e. when
+running on an agent).</p>
+
+<p>A Property (also in contrast to a parameter) is intended to describe a managed attribute of
+some system entity, such as the name or mode of a file.</p>
+
+<p>The current value <em>(is)</em> is read and written with the methods <span class='object_link'>#retrieve</span> and <span class='object_link'><a href="#set-instance_method" title="Puppet::Property#set (method)">#set</a></span>, and the wanted
+value <em>(should)</em> is read and written with the methods <span class='object_link'>#value</span> and <span class='object_link'><a href="#value%3D-instance_method" title="Puppet::Property#value= (method)">#value=</a></span> which delegate to
+<span class='object_link'><a href="#should-instance_method" title="Puppet::Property#should (method)">#should</a></span> and <span class='object_link'><a href="#should%3D-instance_method" title="Puppet::Property#should= (method)">#should=</a></span>, i.e. when a property is used like any other parameter, it is the <em>should</em> value
+that is operated on.</p>
+
+<p>All resource type properties in the puppet system are derived from this class.</p>
+
+<p>The intention is that new parameters are created by using the DSL method <span class='object_link'><a href="Type.html#newproperty-class_method" title="Puppet::Type.newproperty (method)">Type.newproperty</a></span>.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="Type.html" title="Puppet::Type (class)">Type</a></span></li>
+    
+      <li><span class='object_link'><a href="Parameter.html" title="Puppet::Parameter (class)">Parameter</a></span></li>
+    
+  </ul>
+
+</div><div id="subclasses">
+  <h2>Direct Known Subclasses</h2>
+  <p class="children"><span class='object_link'><a href="Property/Ensure.html" title="Puppet::Property::Ensure (class)">Ensure</a></span></p>
+</div>
+<h2>Defined Under Namespace</h2>
+<p class="children">
+  
+    
+  
+    
+      <strong class="classes">Classes:</strong> <span class='object_link'><a href="Property/Ensure.html" title="Puppet::Property::Ensure (class)">Ensure</a></span>
+    
+  
+</p>
+
+  <h2>Constant Summary</h2>
+  
+
+
+
+
+  <h2>Class Attribute Summary <small>(<a href="#" class="summary_toggle">collapse</a>)</small></h2>
+  <ul class="summary">
+    
+      
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#array_matching-class_method" title="array_matching (class method)">+ (Symbol) <strong>array_matching</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+    <span class="note title readonly">DSL</span>
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>The <code>is</code> vs&#46; <code>should</code> array matching mode; <code>:first</code>, or <code>:all</code>.</p>
+</div></span>
+  
+</li>
+
+    
+  </ul>
+
+
+
+  
+  
+  <h3 class="inherited">Attributes inherited from <span class='object_link'><a href="Parameter.html" title="Puppet::Parameter (class)">Parameter</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Parameter.html#parent-instance_method" title="Puppet::Parameter#parent (method)">#parent</a></span></p>
+
+
+  
+    <h2>
+      Class Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#method_added-class_method" title="method_added (class method)">+ (Object) <strong>method_added</strong>(sym) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'><p>Protects against override of the <span class='object_link'><a href="#safe_insync%3F-instance_method" title="Puppet::Property#safe_insync? (method)">#safe_insync?</a></span> method.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#newvalue-class_method" title="newvalue (class method)">+ (Object) <strong>newvalue</strong>(name, options = {}, &amp;block) </a>
+    
+
+    
+  </span>
+  
+  
+  
+    <span class="note title readonly">DSL</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Defines a new valid value for this property.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#value_name-class_method" title="value_name (class method)">+ (Symbol, Regexp) <strong>value_name</strong>(name) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'><p>Looks up a value's name among valid values, to enable option lookup with result as a key.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#value_option-class_method" title="value_option (class method)">+ (Object) <strong>value_option</strong>(name, option) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'><p>Returns the value of the given option (set when a valid value with the given "name" was defined).</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#call_provider-instance_method" title="#call_provider (instance method)">- (Object) <strong>call_provider</strong>(value) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'><p>Calls the provider setter method for this property with the given value as argument.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#insync%3F-instance_method" title="#insync? (instance method)">- (Boolean) <strong>insync?</strong>(is) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Checks if the current <em>(is)</em> value is in sync with the wanted <em>(should)</em> value.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#safe_insync%3F-instance_method" title="#safe_insync? (instance method)">- (Boolean) <strong>safe_insync?</strong>(is) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'><p>Determines whether the property is in-sync or not in a way that is protected against missing value.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#set-instance_method" title="#set (instance method)">- (Object) <strong>set</strong>(value) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Sets the current <em>(is)</em> value of this property.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#should-instance_method" title="#should (instance method)">- (Array&lt;Object&gt;, ...) <strong>should</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Returns the wanted <em>(should)</em> value of this property.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#should%3D-instance_method" title="#should= (instance method)">- (Object) <strong>should=</strong>(values) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Sets the wanted <em>(should)</em> value of this property.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#unsafe_validate-instance_method" title="#unsafe_validate (instance method)">- <strong>unsafe_validate</strong>(value) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'><p>Asserts that the given value is valid.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#validate_features_per_value-instance_method" title="#validate_features_per_value (instance method)">- <strong>validate_features_per_value</strong>(value) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'><p>Asserts that all required provider features are present for the given property value.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#value%3D-instance_method" title="#value= (instance method)">- (Object) <strong>value=</strong>(values) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Sets the wanted <em>(should)</em> value of this property.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods inherited from <span class='object_link'><a href="Parameter.html" title="Puppet::Parameter (class)">Parameter</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Parameter.html#aliasvalue-class_method" title="Puppet::Parameter.aliasvalue (method)">aliasvalue</a></span>, <span class='object_link'><a href="Parameter.html#defaultto-class_method" title="Puppet::Parameter.defaultto (method)">defaultto</a></span>, <span class='object_link'><a href="Parameter.html#desc-class_method" title="Puppet::Parameter.desc (method)">desc</a></span>, <span class='object_link'><a href="Parameter.html#doc-class_method" title="Puppet::Parameter.doc (method)">doc</a></span>, <span class='object_link'><a href="Parameter.html#initialize-instance_method" title="Puppet::Parameter#initialize (method)">#initialize</a></span>, <span class='object_link'><a href="Parameter.html#initvars-class_method" title="Puppet::Parameter.initvars (method)">initvars</a></span>, <span class='object_link'><a href="Parameter.html#isnamevar-class_method" title="Puppet::Parameter.isnamevar (method)">isnamevar</a></span>, <span class='object_link'><a href="Parameter.html#isnamevar%3F-class_method" title="Puppet::Parameter.isnamevar? (method)">isnamevar?</a></span>, <span class='object_link'><a href="Parameter.html#isrequired-class_method" title="Puppet::Parameter.isrequired (method)">isrequired</a></span>, <span class='object_link'><a href="Parameter.html#munge-class_method" title="Puppet::Parameter.munge (method)">munge</a></span>, <span class='object_link'><a href="Parameter.html#newvalues-class_method" title="Puppet::Parameter.newvalues (method)">newvalues</a></span>, <span class='object_link'><a href="Parameter.html#nodefault-class_method" title="Puppet::Parameter.nodefault (method)">nodefault</a></span>, <span class='object_link'><a href="Parameter.html#pathbuilder-instance_method" title="Puppet::Parameter#pathbuilder (method)">#pathbuilder</a></span>, <span class='object_link'><a href="Parameter.html#proxymethods-class_method" title="Puppet::Parameter.proxymethods (method)">proxymethods</a></span>, <span class='object_link'><a href="Parameter.html#required%3F-class_method" title="Puppet::Parameter.required? (method)">required?</a></span>, <span class='object_link'><a href="Parameter.html#unmunge-class_method" title="Puppet::Parameter.unmunge (method)">unmunge</a></span>, <span class='object_link'><a href="Parameter.html#unsafe_munge-instance_method" title="Puppet::Parameter#unsafe_munge (method)">#unsafe_munge</a></span>, <span class='object_link'><a href="Parameter.html#validate-class_method" title="Puppet::Parameter.validate (method)">validate</a></span>, <span class='object_link'><a href="Parameter.html#validate-instance_method" title="Puppet::Parameter#validate (method)">#validate</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'>Util</span></h3>
+  <p class="inherited"><span class='object_link'><a href="Util.html#exit_on_fail-class_method" title="Puppet::Util.exit_on_fail (method)">exit_on_fail</a></span>, <span class='object_link'><a href="Util.html#exit_on_fail-instance_method" title="Puppet::Util#exit_on_fail (method)">#exit_on_fail</a></span>, <span class='object_link'><a href="Util.html#which-class_method" title="Puppet::Util.which (method)">which</a></span>, <span class='object_link'><a href="Util.html#which-instance_method" title="Puppet::Util#which (method)">#which</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <p class="notice">This class inherits a constructor from <span class='object_link'><a href="Parameter.html#initialize-instance_method" title="Puppet::Parameter#initialize (method)">Puppet::Parameter</a></span></p>
+  
+</div>
+
+  <div id="class_attr_details" class="attr_details">
+    <h2>Class Attribute Details</h2>
+    
+      
+      <span id="array_matching=-class_method"></span>
+      <div class="method_details first">
+  <h3 class="signature first" id="array_matching-class_method">
+  
+    + (<tt><span class='object_link'>Symbol</span></tt>) <strong>array_matching</strong> &nbsp;<span class="note title readonly">DSL</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'><p>The semantics of these modes are implemented by the method <span class='object_link'><a href="#insync%3F-instance_method" title="Puppet::Property#insync? (method)">#insync?</a></span>. That method is the default
+implementation and it has a backwards compatible behavior that imposes additional constraints
+on what constitutes a positive match. A derived property may override that method.</p>
+</div>
+  </div>
+
+<p>The <code>is</code> vs&#46; <code>should</code> array matching mode; <code>:first</code>, or <code>:all</code>.</p>
+
+<dl>
+<dt>* <code>:first</code></dt>
+<dt>  This is primarily used for single value properties. When matched against an array of values</dt>
+<dt>  a match is true if the <code>is</code> value matches any of the values in the <code>should</code> array. When the <code>is</code> value</dt>
+<dt>  is also an array, the matching is performed against the entire array as the <code>is</code> value.</dt>
+<dt>* <code>:all</code></dt>
+<dd>This is primarily used for multi-valued properties. When matched against an array of
+<code>should</code> values, the size of <code>is</code> and <code>should</code> must be the same, and all values in <code>is</code> must match
+a value in <code>should</code>.</dd>
+</dl>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Symbol</span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>(:first) the mode in which matching is performed</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="#insync%3F-instance_method" title="Puppet::Property#insync? (method)">#insync?</a></span></li>
+    
+  </ul>
+<p class="tag_title">DSL:</p>
+<ul class="dsl">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'><p>type</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+90
+91
+92</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/property.rb', line 90</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_array_matching'>array_matching</span>
+  <span class='ivar'>@array_matching</span> <span class='op'>||=</span> <span class='symbol'>:first</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="method_added-class_method">
+  
+    + (<tt><span class='object_link'>Object</span></tt>) <strong>method_added</strong>(sym) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>Protects against override of the <span class='object_link'><a href="#safe_insync%3F-instance_method" title="Puppet::Property#safe_insync? (method)">#safe_insync?</a></span> method.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>RuntimeError</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>if the added method is <code>:safe_insync?</code></p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+266
+267
+268</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/property.rb', line 266</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_method_added'>method_added</span><span class='lparen'>(</span><span class='id identifier rubyid_sym'>sym</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_raise'>raise</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Puppet::Property#safe_insync? shouldn&#39;t be overridden; please override insync? instead</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='id identifier rubyid_sym'>sym</span> <span class='op'>==</span> <span class='symbol'>:safe_insync?</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="newvalue-class_method">
+  
+    + (<tt><span class='object_link'>Object</span></tt>) <strong>newvalue</strong>(name, options = {}, &amp;block) &nbsp;<span class="note title readonly">DSL</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+  <div class="note todo">
+    <strong>TODO:</strong>
+    <div class='inline'><p>Option :event original comment says "event should be returned...", is "returned" the correct word
+to use?</p>
+</div>
+  </div>
+
+<p>Defines a new valid value for this property.
+A valid value is specified as a literal (typically a Symbol), but can also be
+specified with a Regexp.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>name</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Symbol</span></tt>, <tt>Regexp</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>a valid literal value, or a regexp that matches a value</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>options</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Hash</span></tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>{}</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>a hash with options</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+  
+    
+    
+    
+    
+    <p class="tag_title">Options Hash (<tt>options</tt>):</p>
+    <ul class="option">
+      
+        <li>
+          <span class="name">:event</span>
+          <span class="type">(<tt><span class='object_link'>Symbol</span></tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>The event that should be emitted when this value is set.</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:invalidate_refreshes</span>
+          <span class="type">(<tt><span class='object_link'>Symbol</span></tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>Indicates a change on this property should invalidate and
+remove any scheduled refreshes (from notify or subscribe) targeted at the same resource. For example, if
+a change in this property takes into account any changes that a scheduled refresh would have performed,
+then the scheduled refresh would be deleted.</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">any</span>
+          <span class="type">(<tt><span class='object_link'>Object</span></tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>Any other option is treated as a call to a setter having the given
+option name (e.g. <code>:required_features</code> calls <code>required_features=</code> with the option's value as an
+argument).</p>
+</div>
+          
+        </li>
+      
+    </ul>
+  
+    
+    
+
+<p class="tag_title">DSL:</p>
+<ul class="dsl">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'><p>type</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/property.rb', line 147</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_newvalue'>newvalue</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_value'>value</span> <span class='op'>=</span> <span class='id identifier rubyid_value_collection'>value_collection</span><span class='period'>.</span><span class='id identifier rubyid_newvalue'>newvalue</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+
+  <span class='kw'>unless</span> <span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_method'>method</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+    <span class='id identifier rubyid_method'>method</span> <span class='op'>=</span> <span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_method'>method</span><span class='period'>.</span><span class='id identifier rubyid_to_sym'>to_sym</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_block'>block</span>
+      <span class='kw'>if</span> <span class='id identifier rubyid_instance_methods'>instance_methods</span><span class='lparen'>(</span><span class='kw'>false</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_method'>method</span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Attempt to redefine method </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_method'>method</span><span class='embexpr_end'>}</span><span class='tstring_content'> with block</span><span class='tstring_end'>&quot;</span></span>
+      <span class='kw'>end</span>
+      <span class='id identifier rubyid_define_method'>define_method</span><span class='lparen'>(</span><span class='id identifier rubyid_method'>method</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+    <span class='kw'>else</span>
+      <span class='comment'># Let the method be an alias for calling the providers setter unless we already have this method
+</span>      <span class='id identifier rubyid_alias_method'>alias_method</span><span class='lparen'>(</span><span class='id identifier rubyid_method'>method</span><span class='comma'>,</span> <span class='symbol'>:call_provider</span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='id identifier rubyid_method_defined?'>method_defined?</span><span class='lparen'>(</span><span class='id identifier rubyid_method'>method</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+  <span class='id identifier rubyid_value'>value</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="value_name-class_method">
+  
+    + (<tt><span class='object_link'>Symbol</span></tt>, <tt>Regexp</tt>) <strong>value_name</strong>(name) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>Looks up a value's name among valid values, to enable option lookup with result as a key.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>name</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Object</span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the parameter value to match against valid values (names).</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Symbol</span></tt>, <tt>Regexp</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>a value matching predicate</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+108
+109
+110
+111
+112</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/property.rb', line 108</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_value_name'>value_name</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_value'>value</span> <span class='op'>=</span> <span class='id identifier rubyid_value_collection'>value_collection</span><span class='period'>.</span><span class='id identifier rubyid_match?'>match?</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="value_option-class_method">
+  
+    + (<tt><span class='object_link'>Object</span></tt>) <strong>value_option</strong>(name, option) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+  <div class="note todo">
+    <strong>TODO:</strong>
+    <div class='inline'><p>Guessing on result of passing a non supported option (it performs send(option)).</p>
+</div>
+  </div>
+
+<p>Returns the value of the given option (set when a valid value with the given "name" was defined).</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>name</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Symbol</span></tt>, <tt>Regexp</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the valid value predicate as returned by <span class='object_link'><a href="#value_name-class_method" title="Puppet::Property.value_name (method)">value_name</a></span></p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>option</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Symbol</span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the name of the wanted option</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Object</span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>value of the option</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>NoMethodError</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>if the option is not supported</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+122
+123
+124
+125
+126</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/property.rb', line 122</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_value_option'>value_option</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_option'>option</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_value'>value</span> <span class='op'>=</span> <span class='id identifier rubyid_value_collection'>value_collection</span><span class='period'>.</span><span class='id identifier rubyid_value'>value</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_send'>send</span><span class='lparen'>(</span><span class='id identifier rubyid_option'>option</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="call_provider-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>call_provider</strong>(value) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>Calls the provider setter method for this property with the given value as argument.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Object</span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>what the provider returns when calling a setter for this property's name</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Puppet::Error</span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>when the provider can not handle this property.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="#set-instance_method" title="Puppet::Property#set (method)">#set</a></span></li>
+    
+  </ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+171
+172
+173
+174
+175
+176
+177
+178
+179</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/property.rb', line 171</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_call_provider'>call_provider</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
+  <span class='comment'># We have no idea how to handle this unless our parent have a provider
+</span>  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_fail'>fail</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'> cannot handle values of type </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>unless</span> <span class='ivar'>@resource</span><span class='period'>.</span><span class='id identifier rubyid_provider'>provider</span>
+  <span class='id identifier rubyid_method'>method</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>=</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>unless</span> <span class='id identifier rubyid_provider'>provider</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span> <span class='id identifier rubyid_method'>method</span>
+    <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_fail'>fail</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>The </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_provider'>provider</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'> provider can not handle attribute </span><span class='embexpr_beg'>#{</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>end</span>
+  <span class='id identifier rubyid_provider'>provider</span><span class='period'>.</span><span class='id identifier rubyid_send'>send</span><span class='lparen'>(</span><span class='id identifier rubyid_method'>method</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="insync?-instance_method">
+  
+    - (<tt><span class='object_link'>Boolean</span></tt>) <strong>insync?</strong>(is) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+  <div class="note todo">
+    <strong>TODO:</strong>
+    <div class='inline'><p>The implementation should really do return is.zip(@should).all? {|a, b| property_matches?(a, b) }
+instead of using equality check and then check against an array with converted strings.</p>
+</div>
+  </div>
+
+
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'><p>The array matching logic in this method contains backwards compatible logic that performs the
+comparison in <code>:all</code> mode by checking equality and equality of <em>is</em> against <em>should</em> converted to array of String,
+and that the lengths are equal, and in <code>:first</code> mode by checking if one of the <em>should</em> values
+is included in the <em>is</em> values. This means that the <em>is</em> value needs to be carefully arranged to
+match the <em>should</em>.</p>
+</div>
+  </div>
+
+<p>Checks if the current <em>(is)</em> value is in sync with the wanted <em>(should)</em> value.
+The check if the two values are in sync is controlled by the result of <span class='object_link'>#match_all?</span> which
+specifies a match of <code>:first</code> or <code>:all</code>). The matching of the <em>is</em> value against the entire <em>should</em> value
+or each of the <em>should</em> values (as controlled by <span class='object_link'>#match_all?</span> is performed by <span class='object_link'>#property_matches?</span>.</p>
+
+<p>A derived property typically only needs to override the <span class='object_link'>#property_matches?</span> method, but may also
+override this method if there is a need to have more control over the array matching logic.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>is</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Object</span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The current <em>(is)</em> value to check if it is in sync with the wanted <em>(should)</em> value(s)</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Boolean</span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>whether the values are in sync or not.</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Puppet::DevError</span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>if wanted value <em>(should)</em> is not an array.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/property.rb', line 290</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_insync?'>insync?</span><span class='lparen'>(</span><span class='id identifier rubyid_is'>is</span><span class='rparen'>)</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_devfail'>devfail</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39;s should is not array</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>unless</span> <span class='ivar'>@should</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Array</span><span class='rparen'>)</span>
+
+  <span class='comment'># an empty array is analogous to no should values
+</span>  <span class='kw'>return</span> <span class='kw'>true</span> <span class='kw'>if</span> <span class='ivar'>@should</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
+
+  <span class='comment'># Look for a matching value, either for all the @should values, or any of
+</span>  <span class='comment'># them, depending on the configuration of this property.
+</span>  <span class='kw'>if</span> <span class='id identifier rubyid_match_all?'>match_all?</span> <span class='kw'>then</span>
+    <span class='comment'># Emulate Array#== using our own comparison function.
+</span>    <span class='comment'># A non-array was not equal to an array, which @should always is.
+</span>    <span class='kw'>return</span> <span class='kw'>false</span> <span class='kw'>unless</span> <span class='id identifier rubyid_is'>is</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span> <span class='const'>Array</span>
+
+    <span class='comment'># If they were different lengths, they are not equal.
+</span>    <span class='kw'>return</span> <span class='kw'>false</span> <span class='kw'>unless</span> <span class='id identifier rubyid_is'>is</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span> <span class='op'>==</span> <span class='ivar'>@should</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span>
+
+    <span class='comment'># Finally, are all the elements equal?  In order to preserve the
+</span>    <span class='comment'># behaviour of previous 2.7.x releases, we need to impose some fun rules
+</span>    <span class='comment'># on &quot;equality&quot; here.
+</span>    <span class='comment'>#
+</span>    <span class='comment'># Specifically, we need to implement *this* comparison: the two arrays
+</span>    <span class='comment'># are identical if the is values are == the should values, or if the is
+</span>    <span class='comment'># values are == the should values, stringified.
+</span>    <span class='comment'>#
+</span>    <span class='comment'># This does mean that property equality is not commutative, and will not
+</span>    <span class='comment'># work unless the `is` value is carefully arranged to match the should.
+</span>    <span class='kw'>return</span> <span class='lparen'>(</span><span class='id identifier rubyid_is'>is</span> <span class='op'>==</span> <span class='ivar'>@should</span> <span class='kw'>or</span> <span class='id identifier rubyid_is'>is</span> <span class='op'>==</span> <span class='ivar'>@should</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='symbol'>:to_s</span><span class='rparen'>)</span><span class='rparen'>)</span>
+
+    <span class='comment'># When we stop being idiots about this, and actually have meaningful
+</span>    <span class='comment'># semantics, this version is the thing we actually want to do.
+</span>    <span class='comment'>#
+</span>    <span class='comment'># return is.zip(@should).all? {|a, b| property_matches?(a, b) }
+</span>  <span class='kw'>else</span>
+    <span class='kw'>return</span> <span class='ivar'>@should</span><span class='period'>.</span><span class='id identifier rubyid_any?'>any?</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_want'>want</span><span class='op'>|</span> <span class='id identifier rubyid_property_matches?'>property_matches?</span><span class='lparen'>(</span><span class='id identifier rubyid_is'>is</span><span class='comma'>,</span> <span class='id identifier rubyid_want'>want</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="safe_insync?-instance_method">
+  
+    - (<tt><span class='object_link'>Boolean</span></tt>) <strong>safe_insync?</strong>(is) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'><p>If the wanted value <em>(should)</em> is not defined or is set to a non-true value then this is
+a state that can not be fixed and the property is reported to be in sync.</p>
+</div>
+  </div>
+
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'><p>Do not override this method.</p>
+</div>
+  </div>
+
+<p>Determines whether the property is in-sync or not in a way that is protected against missing value.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Boolean</span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the protected result of <code>true</code> or the result of calling <span class='object_link'><a href="#insync%3F-instance_method" title="Puppet::Property#insync? (method)">#insync?</a></span>.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+254
+255
+256
+257
+258
+259
+260</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/property.rb', line 254</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_safe_insync?'>safe_insync?</span><span class='lparen'>(</span><span class='id identifier rubyid_is'>is</span><span class='rparen'>)</span>
+  <span class='comment'># If there is no @should value, consider the property to be in sync.
+</span>  <span class='kw'>return</span> <span class='kw'>true</span> <span class='kw'>unless</span> <span class='ivar'>@should</span>
+
+  <span class='comment'># Otherwise delegate to the (possibly derived) insync? method.
+</span>  <span class='id identifier rubyid_insync?'>insync?</span><span class='lparen'>(</span><span class='id identifier rubyid_is'>is</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="set-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>set</strong>(value) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Sets the current <em>(is)</em> value of this property.
+The <em>name</em> associated with the value is first obtained by calling <span class='object_link'><a href="#value_name-class_method" title="Puppet::Property.value_name (method)">value_name</a></span>. A dynamically created setter
+method associated with this <em>name</em> is called if it exists, otherwise the value is set using using the provider's
+setter method for this property by calling (<span class='object_link'><a href="#call_provider-instance_method" title="Puppet::Property#call_provider (method)">#call_provider</a></span>).</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>value</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Object</span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the value to set</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Object</span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>returns the result of calling the setter method or <span class='object_link'><a href="#call_provider-instance_method" title="Puppet::Property#call_provider (method)">#call_provider</a></span></p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Puppet::Error</span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>if there were problems setting the value using the setter method or when the provider
+setter should be used but there is no provider in the associated resource_</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Puppet::ResourceError</span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>if there was a problem setting the value and it was not raised
+as a Puppet::Error. The original exception is wrapped and logged.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/property.rb', line 422</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_set'>set</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
+  <span class='comment'># Set a name for looking up associated options like the event.
+</span>  <span class='id identifier rubyid_name'>name</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_value_name'>value_name</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_method'>method</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_value_option'>value_option</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='symbol'>:method</span><span class='rparen'>)</span> <span class='kw'>and</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='id identifier rubyid_method'>method</span><span class='rparen'>)</span>
+    <span class='kw'>begin</span>
+      <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_send'>send</span><span class='lparen'>(</span><span class='id identifier rubyid_method'>method</span><span class='rparen'>)</span>
+    <span class='kw'>rescue</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Error</span>
+      <span class='id identifier rubyid_raise'>raise</span>
+    <span class='kw'>rescue</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_detail'>detail</span>
+      <span class='id identifier rubyid_error'>error</span> <span class='op'>=</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>ResourceError</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Could not set &#39;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_value'>value</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39; on </span><span class='embexpr_beg'>#{</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'>: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_detail'>detail</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='ivar'>@resource</span><span class='period'>.</span><span class='id identifier rubyid_line'>line</span><span class='comma'>,</span> <span class='ivar'>@resource</span><span class='period'>.</span><span class='id identifier rubyid_file'>file</span><span class='comma'>,</span> <span class='id identifier rubyid_detail'>detail</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_error'>error</span><span class='period'>.</span><span class='id identifier rubyid_set_backtrace'>set_backtrace</span> <span class='id identifier rubyid_detail'>detail</span><span class='period'>.</span><span class='id identifier rubyid_backtrace'>backtrace</span>
+      <span class='const'>Puppet</span><span class='period'>.</span><span class='id identifier rubyid_log_exception'>log_exception</span><span class='lparen'>(</span><span class='id identifier rubyid_detail'>detail</span><span class='comma'>,</span> <span class='id identifier rubyid_error'>error</span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_raise'>raise</span> <span class='id identifier rubyid_error'>error</span>
+    <span class='kw'>end</span>
+  <span class='kw'>elsif</span> <span class='id identifier rubyid_block'>block</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_value_option'>value_option</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='symbol'>:block</span><span class='rparen'>)</span>
+    <span class='comment'># FIXME It&#39;d be better here to define a method, so that
+</span>    <span class='comment'># the blocks could return values.
+</span>    <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_instance_eval'>instance_eval</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+  <span class='kw'>else</span>
+    <span class='id identifier rubyid_call_provider'>call_provider</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="should-instance_method">
+  
+    - (<tt><span class='object_link'>Array</span>&lt;<span class='object_link'>Object</span>&gt;</tt>, ...) <strong>should</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'><p>This method will potentially return different values than the original values as they are
+converted via munging/unmunging. If the original values are wanted, call <span class='object_link'>#shouldorig</span>.</p>
+</div>
+  </div>
+
+<p>Returns the wanted <em>(should)</em> value of this property.
+If the <em>array matching mode</em> <span class='object_link'>#match_all?</span> is true, an array of the wanted values in unmunged format
+is returned, else the first value in the array of wanted values in unmunged format is returned.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Array</span>&lt;<span class='object_link'>Object</span>&gt;</tt>, <tt><span class='object_link'>Object</span></tt>, <tt>nil</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Array of values if <span class='object_link'>#match_all?</span> else a single value, or nil if there are no
+wanted values.</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Puppet::DevError</span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>if the wanted value is non nil and not an array</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'>#shouldorig</span></li>
+    
+  </ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/property.rb', line 458</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_should'>should</span>
+  <span class='kw'>return</span> <span class='kw'>nil</span> <span class='kw'>unless</span> <span class='kw'>defined?</span><span class='lparen'>(</span><span class='ivar'>@should</span><span class='rparen'>)</span>
+
+  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_devfail'>devfail</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>should for </span><span class='embexpr_beg'>#{</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'> on </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_resource'>resource</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'> is not an array</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>unless</span> <span class='ivar'>@should</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Array</span><span class='rparen'>)</span>
+
+  <span class='kw'>if</span> <span class='id identifier rubyid_match_all?'>match_all?</span>
+    <span class='kw'>return</span> <span class='ivar'>@should</span><span class='period'>.</span><span class='id identifier rubyid_collect'>collect</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_val'>val</span><span class='op'>|</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_unmunge'>unmunge</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
+  <span class='kw'>else</span>
+    <span class='kw'>return</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_unmunge'>unmunge</span><span class='lparen'>(</span><span class='ivar'>@should</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="should=-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>should=</strong>(values) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Sets the wanted <em>(should)</em> value of this property.
+If the given value is not already an Array, it will be wrapped in one before being set.
+This method also sets the cached original <em>should</em> values returned by <span class='object_link'>#shouldorig</span>.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>values</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Array</span>&lt;<span class='object_link'>Object</span>&gt;</tt>, <tt><span class='object_link'>Object</span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the value(s) to set as the wanted value(s)</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>StandardError</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>when validation of a value fails (see <span class='object_link'><a href="Parameter.html#validate-instance_method" title="Puppet::Parameter#validate (method)">Puppet::Parameter#validate</a></span>).</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+478
+479
+480
+481
+482
+483
+484
+485</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/property.rb', line 478</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_should='>should=</span><span class='lparen'>(</span><span class='id identifier rubyid_values'>values</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_values'>values</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='id identifier rubyid_values'>values</span><span class='rbracket'>]</span> <span class='kw'>unless</span> <span class='id identifier rubyid_values'>values</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Array</span><span class='rparen'>)</span>
+
+  <span class='ivar'>@shouldorig</span> <span class='op'>=</span> <span class='id identifier rubyid_values'>values</span>
+
+  <span class='id identifier rubyid_values'>values</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_val'>val</span><span class='op'>|</span> <span class='id identifier rubyid_validate'>validate</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
+  <span class='ivar'>@should</span> <span class='op'>=</span> <span class='id identifier rubyid_values'>values</span><span class='period'>.</span><span class='id identifier rubyid_collect'>collect</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_val'>val</span><span class='op'>|</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_munge'>munge</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="unsafe_validate-instance_method">
+  
+    - <strong>unsafe_validate</strong>(value) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p class="note returns_void">This method returns an undefined value.</p><p>Asserts that the given value is valid.
+If the developer uses a 'validate' hook, this method will get overridden.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Exception</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>if the value is invalid, or value can not be handled.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+510
+511
+512
+513</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/property.rb', line 510</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_unsafe_validate'>unsafe_validate</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
+  <span class='kw'>super</span>
+  <span class='id identifier rubyid_validate_features_per_value'>validate_features_per_value</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="validate_features_per_value-instance_method">
+  
+    - <strong>validate_features_per_value</strong>(value) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p class="note returns_void">This method returns an undefined value.</p><p>Asserts that all required provider features are present for the given property value.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>ArgumentError</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>if a required feature is not present</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+520
+521
+522
+523
+524
+525
+526</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/property.rb', line 520</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_validate_features_per_value'>validate_features_per_value</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_features'>features</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_value_option'>value_option</span><span class='lparen'>(</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_value_name'>value_name</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='symbol'>:required_features</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_features'>features</span> <span class='op'>=</span> <span class='const'>Array</span><span class='lparen'>(</span><span class='id identifier rubyid_features'>features</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_needed_features'>needed_features</span> <span class='op'>=</span> <span class='id identifier rubyid_features'>features</span><span class='period'>.</span><span class='id identifier rubyid_collect'>collect</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_f'>f</span><span class='op'>|</span> <span class='id identifier rubyid_f'>f</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span> <span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>, </span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Provider must have features &#39;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_needed_features'>needed_features</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39; to set &#39;</span><span class='embexpr_beg'>#{</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39; to &#39;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_value'>value</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39;</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>unless</span> <span class='id identifier rubyid_provider'>provider</span><span class='period'>.</span><span class='id identifier rubyid_satisfies?'>satisfies?</span><span class='lparen'>(</span><span class='id identifier rubyid_features'>features</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="value=-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>value=</strong>(values) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Sets the wanted <em>(should)</em> value of this property.
+If the given value is not already an Array, it will be wrapped in one before being set.
+This method also sets the cached original <em>should</em> values returned by <span class='object_link'>#shouldorig</span>.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>values</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Array</span>&lt;<span class='object_link'>Object</span>&gt;</tt>, <tt><span class='object_link'>Object</span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the value(s) to set as the wanted value(s)</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>StandardError</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>when validation of a value fails (see <span class='object_link'><a href="Parameter.html#validate-instance_method" title="Puppet::Parameter#validate (method)">Puppet::Parameter#validate</a></span>).</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+534
+535
+536</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/property.rb', line 534</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_value='>value=</span><span class='lparen'>(</span><span class='id identifier rubyid_values'>values</span><span class='rparen'>)</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_should'>should</span> <span class='op'>=</span> <span class='id identifier rubyid_values'>values</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+    <div id="footer">
+  Generated on Mon May 18 17:43:53 2015 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.6 (ruby-2.0.0).
+</div>
+
+  </body>
+</html>

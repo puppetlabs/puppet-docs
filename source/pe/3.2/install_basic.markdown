@@ -365,6 +365,12 @@ This script will detect the OS on which it is running, set up an apt, yum, or zi
 
 Note that you can replace `current` in the script with a specific PE version number, in the form of `3.x.x`.
 
+>**Note**: The `-k` flag is needed in order to get `curl` to trust the master, which it wouldn't otherwise since Puppet and its SSL infrastructure have not yet been set up on the node. 
+>   
+>However, users of AIX 5.3, 6.1, and 7.1 should note that the `-k` is not supported. You should replace the `-k` flag with `-tlsv1` or `-1`. 
+>
+>In some cases, you may be using `wget` instead of `curl`---please use the appropriate flags as needed.
+
 > After the installation is complete, continue on to [Signing Agent Certificates](#signing-agent-certificates)
 
 **Scenario 2**: The OS/architecture of the Puppet master and the agent node are different.
@@ -401,9 +407,11 @@ As an example, if your master is on a node running EL6 and you want to add an ag
 
 The script will install the PE agent packages, create a basic `puppet.conf`, and kick off a puppet run.
 
->**Note**: The `-k` flag is needed in order to get `curl` to trust the master, which it wouldn't otherwise since Puppet and its SSL infrastructure have not yet been set up on the node.
+>**Note**: The `-k` flag is needed in order to get `curl` to trust the master, which it wouldn't otherwise since Puppet and its SSL infrastructure have not yet been set up on the node. 
+>   
+>However, users of AIX 5.3, 6.1, and 7.1 should note that the `-k` is not supported. You should replace the `-k` flag with `-tlsv1` or `-1`. 
 >
->In some cases, you may be using `wget` instead of `curl`. Please use the appropriate flags as needed.
+>In some cases, you may be using `wget` instead of `curl`---please use the appropriate flags as needed.
 
 > #### About the Platform Specific Install Script
 >

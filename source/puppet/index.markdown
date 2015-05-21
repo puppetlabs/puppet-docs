@@ -21,7 +21,14 @@ Small documents for getting help fast.
 Reference Shelf
 ---------------
 
-### [Puppet 3.8 Reference Manual](/puppet/3.8/reference) ###
+### [Puppet 4.1 Reference Manual](/puppet/4.1/reference)
+
+A concise reference to Puppet 4.1's usage and internals. Use the left sidebar of any reference manual page to navigate between pages.
+
+- [Overview](/puppet/4.1/reference)
+
+
+### [Puppet 3.8 Reference Manual](/puppet/3.8/reference)
 
 A concise reference to Puppet 3.8's usage and internals. Use the left sidebar of any reference manual page to navigate between pages.
 

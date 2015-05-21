@@ -64,8 +64,9 @@ defaultnav:
   /puppet/3.8/reference: /_includes/puppet_3_8.html
   /puppet/pre4.0: /_includes/puppet_pre_40.html
   /puppet/4.0/reference: /_includes/puppet_4.html
+  /puppet/4.1/reference: /_includes/puppet4.1.html
   /puppetserver/1.0: /_includes/puppet_3_7.html
-  /puppetserver/2.0: /_includes/puppet_3_7.html
+  /puppetserver/2.0: /_includes/puppet4.1.html
   /references: /_includes/references_general.html
 destination: ../output
 url: "http://docs.puppetlabs.com"
@@ -180,7 +181,6 @@ symlink_latest:
   - pe
   - dashboard/manual
 lock_latest: {
-  puppet: 3.8
 }
 version_notes:
   # Default notes for upstreams. Tweak these whenever latest de-syncs or re-syncs with PE!
@@ -190,8 +190,8 @@ version_notes:
   # Version-specific notes:
   /puppet/3.7: "This is the version of Puppet included in Puppet Enterprise 3.7."
   /puppet/3.8: "This is the version of Puppet included in Puppet Enterprise 3.8."
-  /puppet/4.0: '<p class="noisy">This is the latest version of Puppet. Puppet Enterprise 3.8 users should see <a href="/pe/latest/">the Puppet Enterprise 3.8 docs</a>.</p>'
   /puppet/pre4.0: "<p class=\"noisy\">This page is about a version of Puppet that isn't released yet. If you use the current version of Puppet or of Puppet Enterprise, see <a href=\"/puppet/latest/index.html\">the current Puppet docs.</a></p>"
+  /puppet/4.1: '<p class="noisy">This is the latest version of Puppet. Puppet Enterprise 3.8 users should see <a href="/puppet/3.8/reference/">the Puppet 3.8 docs</a> and <a href="/pe/latest/">the Puppet Enterprise 3.8 docs</a>.</p>'
   /puppetdb/2.2: "This is the version of PuppetDB included in Puppet Enterprise 3.7. If you're using the open source release, there's a <a href=\"/puppetdb/latest/\">newer version</a> available."
   /puppetdb/2.3: "This version of PuppetDB is included in Puppet Enterprise 3.8."
   /puppetdb/master: '<p class="noisy">This page is for an unreleased version of PuppetDB. PE 3.8 users should see <a href="/puppetdb/2.3/">the PuppetDB 2.3 docs</a>. Other users should see <a href="/puppetdb/latest/">the latest official release</a>.</p>'

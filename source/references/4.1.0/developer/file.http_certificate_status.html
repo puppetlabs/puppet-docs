@@ -1,0 +1,202 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>
+  File: http_certificate_status
+  
+    &mdash; Documentation by YARD 0.8.7.6
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '';
+  framesUrl = "frames.html#!file.http_certificate_status.html";
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index</a> &raquo; 
+    <span class="title">File: http_certificate_status</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><div id='filecontents'><h1>Certificate Status</h1>
+
+<p>The <code>certificate status</code> endpoint allows a client to read or alter the
+status of a certificate or pending certificate request. It is only
+useful on the CA.</p>
+
+<p>In all requests the <code>:environment</code> must be given, but it has no bearing
+on the request. Certificates are global.</p>
+
+<h2>Find</h2>
+
+<pre class="code ruby"><code class="ruby">GET /puppet-ca/v1/certificate_status/:certname?environment=:environment
+Accept: pson
+</code></pre>
+
+<p>Retrieve information about the specified certificate. Similar to <code>puppet
+cert --list :certname</code>.</p>
+
+<h2>Search</h2>
+
+<pre class="code ruby"><code class="ruby">GET /puppet-ca/v1/certificate_statuses/:any_key?environment=:environment
+Accept: pson
+</code></pre>
+
+<p>Retrieve information about all known certificates. Similar to <code>puppet
+cert --list --all</code>. A key is required but is ignored.</p>
+
+<h2>Save</h2>
+
+<pre class="code ruby"><code class="ruby">PUT /puppet-ca/v1/certificate_status/:certname?environment=:environment
+Content-Type: text/pson
+</code></pre>
+
+<p>Change the status of the specified certificate. The desired state
+is sent in the body of the PUT request as a one-item PSON hash; the two
+allowed complete hashes are <code>{"desired_state":"signed"}</code> (for signing a
+certificate signing request; similar to <code>puppet cert --sign</code>) and
+<code>{"desired_state":"revoked"}</code> (for revoking a certificate; similar to
+<code>puppet cert --revoke</code>).</p>
+
+<p>Note that revoking a certificate will not clean up other info about the
+host - see the DELETE request for more information.</p>
+
+<h2>Delete</h2>
+
+<pre class="code ruby"><code class="ruby">DELETE /puppet-ca/v1/certificate_status/:hostname?environment=:environment
+Accept: pson
+</code></pre>
+
+<p>Cause the certificate authority to discard all SSL information regarding
+a host (including any certificates, certificate requests, and keys).
+This does not revoke the certificate if one is present; if you wish to
+emulate the behavior of <code>puppet cert --clean</code>, you must PUT a
+<code>desired_state</code> of <code>revoked</code> before deleting the host’s SSL information.</p>
+
+<p>If the deletion was successful, it returns a string listing the deleted
+classes like</p>
+
+<pre class="code ruby"><code class="ruby"><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Deleted for myhost: Puppet::SSL::Certificate, Puppet::SSL::Key</span><span class='tstring_end'>&quot;</span></span>
+</code></pre>
+
+<p>Otherwise it returns</p>
+
+<pre class="code ruby"><code class="ruby"><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Nothing was deleted</span><span class='tstring_end'>&quot;</span></span>
+</code></pre>
+
+<h3>Supported HTTP Methods</h3>
+
+<p>This endpoint is disabled in the default configuration. It is
+recommended to be careful with this endpoint, as it can allow control
+over the certificates used by the puppet master.</p>
+
+<p>GET, PUT, DELETE</p>
+
+<h3>Supported Response Formats</h3>
+
+<p>PSON</p>
+
+<p>This endpoint can produce yaml as well, but the returned data is
+incomplete.</p>
+
+<h3>Examples</h3>
+
+<h4>Certificate information</h4>
+
+<pre class="code ruby"><code class="ruby">GET /puppet-ca/v1/certificate_status/mycertname?environment=env
+
+HTTP/1.1 200 OK
+Content-Type: text/pson
+
+{
+  &quot;name&quot;:&quot;mycertname&quot;,
+  &quot;state&quot;:&quot;signed&quot;,
+  &quot;fingerprint&quot;:&quot;A6:44:08:A6:38:62:88:5B:32:97:20:49:8A:4A:4A:AD:65:C3:3E:A2:4C:30:72:73:02:C5:F3:D4:0E:B7:FC:2F&quot;,
+  &quot;fingerprints&quot;:{
+    &quot;default&quot;:&quot;A6:44:08:A6:38:62:88:5B:32:97:20:49:8A:4A:4A:AD:65:C3:3E:A2:4C:30:72:73:02:C5:F3:D4:0E:B7:FC:2F&quot;,
+    &quot;SHA1&quot;:&quot;77:E6:5A:7E:DD:83:78:DC:F8:51:E3:8B:12:71:F4:57:F1:C2:34:AE&quot;,
+    &quot;SHA256&quot;:&quot;A6:44:08:A6:38:62:88:5B:32:97:20:49:8A:4A:4A:AD:65:C3:3E:A2:4C:30:72:73:02:C5:F3:D4:0E:B7:FC:2F&quot;,
+    &quot;SHA512&quot;:&quot;CA:A0:8C:B9:FE:9D:C2:72:18:57:08:E9:4B:11:B7:BC:4E:F7:52:C8:9C:76:03:45:B4:B6:C5:D2:DC:E8:79:43:D7:71:1F:5C:97:FA:B2:F3:ED:AE:19:BD:A9:3B:DB:9F:A5:B4:8D:57:3F:40:34:29:50:AA:AA:0A:93:D8:D7:54&quot;
+  },
+  &quot;dns_alt_names&quot;:[&quot;DNS:puppet&quot;,&quot;DNS:mycertname&quot;]
+}
+</code></pre>
+
+<h4>Revoking a certificate</h4>
+
+<pre class="code ruby"><code class="ruby">PUT /puppet-ca/v1/certificate_status/mycertname?environment=production HTTP/1.1
+Content-Type: text/pson
+Content-Length: 27
+
+{&quot;desired_state&quot;:&quot;revoked&quot;}
+</code></pre>
+
+<p>This has no meaningful return value.</p>
+
+<h4>Deleting the certificate information</h4>
+
+<pre class="code ruby"><code class="ruby">DELETE /puppet-ca/v1/certificate_status/mycertname?environment=production HTTP/1.1
+</code></pre>
+
+<p>Gets the response:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Deleted for mycertname: Puppet::SSL::Certificate, Puppet::SSL::Key</span><span class='tstring_end'>&quot;</span></span>
+</code></pre>
+
+<h2>Schema</h2>
+
+<p>Find and search operations return objects which
+conform to the json schema at <a href="file.host.html" title="api/schemas/host.json">api/schemas/host.json</a>.</p>
+</div></div>
+
+    <div id="footer">
+  Generated on Mon May 18 17:43:49 2015 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.6 (ruby-2.0.0).
+</div>
+
+  </body>
+</html>

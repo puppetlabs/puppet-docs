@@ -1,0 +1,764 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Class: Puppet::Pops::Functions::Dispatch
+  
+    &mdash; Documentation by YARD 0.8.7.6
+  
+</title>
+
+  <link rel="stylesheet" href="../../../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../../../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '../../../';
+  framesUrl = "../../../frames.html#!Puppet/Pops/Functions/Dispatch.html";
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../../../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../../../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../../../_index.html">Index (D)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../../../Puppet.html" title="Puppet (module)">Puppet</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../../Pops.html" title="Puppet::Pops (module)">Pops</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../Functions.html" title="Puppet::Pops::Functions (module)">Functions</a></span></span>
+     &raquo; 
+    <span class="title">Dispatch</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../../../class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="../../../method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="../../../file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><h1>Class: Puppet::Pops::Functions::Dispatch
+  
+  
+  <span class="private note title">Private</span>
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName"><span class='object_link'><a href="../Evaluator/CallableSignature.html" title="Puppet::Pops::Evaluator::CallableSignature (class)">Evaluator::CallableSignature</a></span></span>
+      
+        <ul class="fullTree">
+          <li><span class='object_link'>Object</span></li>
+          
+            <li class="next"><span class='object_link'><a href="../Evaluator/CallableSignature.html" title="Puppet::Pops::Evaluator::CallableSignature (class)">Evaluator::CallableSignature</a></span></li>
+          
+            <li class="next">Puppet::Pops::Functions::Dispatch</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">lib/puppet/pops/functions/dispatch.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This class is part of a private API.</strong>
+  You should avoid using this class if possible, as it may be removed or be changed in the future.
+</p>
+<p>Defines a connection between a implementation method and the signature that
+the method will handle.</p>
+
+<p>This interface should not be used directly. Instead dispatches should be
+constructed using the DSL defined in <span class='object_link'><a href="../../Functions.html" title="Puppet::Functions (module)">Functions</a></span>.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+
+
+
+  <h2>Instance Attribute Summary <small>(<a href="#" class="summary_toggle">collapse</a>)</small></h2>
+  <ul class="summary">
+    
+      
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#block_name-instance_method" title="#block_name (instance method)">- (Object) <strong>block_name</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+    
+      
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#type-instance_method" title="#type (instance method)">- (Object) <strong>type</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+    
+  </ul>
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">- (Dispatch) <strong>initialize</strong>(type, method_name, param_names, block_name, injections, weaving, last_captures) </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'><p>A new instance of Dispatch.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#invoke-instance_method" title="#invoke (instance method)">- (Object) <strong>invoke</strong>(instance, calling_scope, args, &amp;block) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#last_captures_rest%3F-instance_method" title="#last_captures_rest? (instance method)">- (Boolean) <strong>last_captures_rest?</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#parameter_names-instance_method" title="#parameter_names (instance method)">- (Object) <strong>parameter_names</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#weave-instance_method" title="#weave (instance method)">- (Object) <strong>weave</strong>(scope, args) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods inherited from <span class='object_link'><a href="../Evaluator/CallableSignature.html" title="Puppet::Pops::Evaluator::CallableSignature (class)">Evaluator::CallableSignature</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="../Evaluator/CallableSignature.html#args_range-instance_method" title="Puppet::Pops::Evaluator::CallableSignature#args_range (method)">#args_range</a></span>, <span class='object_link'><a href="../Evaluator/CallableSignature.html#block_type-instance_method" title="Puppet::Pops::Evaluator::CallableSignature#block_type (method)">#block_type</a></span>, <span class='object_link'><a href="../Evaluator/CallableSignature.html#infinity%3F-instance_method" title="Puppet::Pops::Evaluator::CallableSignature#infinity? (method)">#infinity?</a></span></p>
+<div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <h3 class="signature first" id="initialize-instance_method">
+  
+    - (<tt><span class='object_link'><a href="" title="Puppet::Pops::Functions::Dispatch (class)">Dispatch</a></span></tt>) <strong>initialize</strong>(type, method_name, param_names, block_name, injections, weaving, last_captures) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>Returns a new instance of Dispatch</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+23
+24
+25
+26
+27
+28
+29
+30
+31</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/functions/dispatch.rb', line 23</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='id identifier rubyid_method_name'>method_name</span><span class='comma'>,</span> <span class='id identifier rubyid_param_names'>param_names</span><span class='comma'>,</span> <span class='id identifier rubyid_block_name'>block_name</span><span class='comma'>,</span> <span class='id identifier rubyid_injections'>injections</span><span class='comma'>,</span> <span class='id identifier rubyid_weaving'>weaving</span><span class='comma'>,</span> <span class='id identifier rubyid_last_captures'>last_captures</span><span class='rparen'>)</span>
+  <span class='ivar'>@type</span> <span class='op'>=</span> <span class='id identifier rubyid_type'>type</span>
+  <span class='ivar'>@method_name</span> <span class='op'>=</span> <span class='id identifier rubyid_method_name'>method_name</span>
+  <span class='ivar'>@param_names</span> <span class='op'>=</span> <span class='id identifier rubyid_param_names'>param_names</span> <span class='op'>||</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+  <span class='ivar'>@block_name</span> <span class='op'>=</span> <span class='id identifier rubyid_block_name'>block_name</span>
+  <span class='ivar'>@injections</span> <span class='op'>=</span> <span class='id identifier rubyid_injections'>injections</span> <span class='op'>||</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+  <span class='ivar'>@weaving</span> <span class='op'>=</span> <span class='id identifier rubyid_weaving'>weaving</span>
+  <span class='ivar'>@last_captures</span> <span class='op'>=</span> <span class='id identifier rubyid_last_captures'>last_captures</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
+    
+      
+      <span id=""></span>
+      <div class="method_details first">
+  <h3 class="signature first" id="block_name-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>block_name</strong>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+20
+21
+22</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/functions/dispatch.rb', line 20</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_block_name'>block_name</span>
+  <span class='ivar'>@block_name</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="type-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>type</strong>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+10
+11
+12</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/functions/dispatch.rb', line 10</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_type'>type</span>
+  <span class='ivar'>@type</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="invoke-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>invoke</strong>(instance, calling_scope, args, &amp;block) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+44
+45
+46</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/functions/dispatch.rb', line 44</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_invoke'>invoke</span><span class='lparen'>(</span><span class='id identifier rubyid_instance'>instance</span><span class='comma'>,</span> <span class='id identifier rubyid_calling_scope'>calling_scope</span><span class='comma'>,</span> <span class='id identifier rubyid_args'>args</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_instance'>instance</span><span class='period'>.</span><span class='id identifier rubyid_send'>send</span><span class='lparen'>(</span><span class='ivar'>@method_name</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_weave'>weave</span><span class='lparen'>(</span><span class='id identifier rubyid_calling_scope'>calling_scope</span><span class='comma'>,</span> <span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="last_captures_rest?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>last_captures_rest?</strong> &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+39
+40
+41</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/functions/dispatch.rb', line 39</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_last_captures_rest?'>last_captures_rest?</span>
+  <span class='op'>!</span><span class='op'>!</span> <span class='ivar'>@last_captures</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="parameter_names-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>parameter_names</strong> &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+34
+35
+36</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/functions/dispatch.rb', line 34</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_parameter_names'>parameter_names</span>
+  <span class='ivar'>@param_names</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="weave-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>weave</strong>(scope, args) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/functions/dispatch.rb', line 49</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_weave'>weave</span><span class='lparen'>(</span><span class='id identifier rubyid_scope'>scope</span><span class='comma'>,</span> <span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
+  <span class='comment'># no need to weave if there are no injections
+</span>  <span class='kw'>if</span> <span class='ivar'>@injections</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
+    <span class='id identifier rubyid_args'>args</span>
+  <span class='kw'>else</span>
+    <span class='id identifier rubyid_injector'>injector</span> <span class='op'>=</span> <span class='kw'>nil</span> <span class='comment'># lazy lookup of injector Puppet.lookup(:injector)
+</span>    <span class='id identifier rubyid_new_args'>new_args</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+    <span class='ivar'>@weaving</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_knit'>knit</span><span class='op'>|</span>
+      <span class='kw'>if</span> <span class='id identifier rubyid_knit'>knit</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Array</span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_injection_data'>injection_data</span> <span class='op'>=</span> <span class='ivar'>@injections</span><span class='lbracket'>[</span><span class='id identifier rubyid_knit'>knit</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='rbracket'>]</span>
+        <span class='id identifier rubyid_new_args'>new_args</span> <span class='op'>&lt;&lt;</span>
+          <span class='kw'>case</span> <span class='id identifier rubyid_injection_data'>injection_data</span><span class='lbracket'>[</span><span class='int'>3</span><span class='rbracket'>]</span>
+          <span class='kw'>when</span> <span class='symbol'>:dispatcher_internal</span>
+            <span class='comment'># currently only supports :scope injection
+</span>            <span class='id identifier rubyid_scope'>scope</span>
+          <span class='kw'>when</span> <span class='symbol'>:producer</span>
+            <span class='id identifier rubyid_injector'>injector</span> <span class='op'>||=</span> <span class='const'>Puppet</span><span class='period'>.</span><span class='id identifier rubyid_lookup'>lookup</span><span class='lparen'>(</span><span class='symbol'>:injector</span><span class='rparen'>)</span>
+            <span class='id identifier rubyid_injector'>injector</span><span class='period'>.</span><span class='id identifier rubyid_lookup_producer'>lookup_producer</span><span class='lparen'>(</span><span class='id identifier rubyid_scope'>scope</span><span class='comma'>,</span> <span class='id identifier rubyid_injection_data'>injection_data</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_injection_data'>injection_data</span><span class='lbracket'>[</span><span class='int'>2</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+          <span class='kw'>else</span>
+            <span class='id identifier rubyid_injector'>injector</span> <span class='op'>||=</span> <span class='const'>Puppet</span><span class='period'>.</span><span class='id identifier rubyid_lookup'>lookup</span><span class='lparen'>(</span><span class='symbol'>:injector</span><span class='rparen'>)</span>
+            <span class='id identifier rubyid_injector'>injector</span><span class='period'>.</span><span class='id identifier rubyid_lookup'>lookup</span><span class='lparen'>(</span><span class='id identifier rubyid_scope'>scope</span><span class='comma'>,</span> <span class='id identifier rubyid_injection_data'>injection_data</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_injection_data'>injection_data</span><span class='lbracket'>[</span><span class='int'>2</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+          <span class='kw'>end</span>
+      <span class='kw'>else</span>
+        <span class='comment'># Careful so no new nil arguments are added since they would override default
+</span>        <span class='comment'># parameter values in the received
+</span>        <span class='kw'>if</span> <span class='id identifier rubyid_knit'>knit</span> <span class='op'>&lt;</span> <span class='int'>0</span>
+          <span class='id identifier rubyid_idx'>idx</span> <span class='op'>=</span> <span class='op'>-</span><span class='id identifier rubyid_knit'>knit</span> <span class='op'>-</span> <span class='int'>1</span>
+          <span class='id identifier rubyid_new_args'>new_args</span> <span class='op'>+=</span> <span class='id identifier rubyid_args'>args</span><span class='lbracket'>[</span><span class='id identifier rubyid_idx'>idx</span><span class='op'>..</span><span class='op'>-</span><span class='int'>1</span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='id identifier rubyid_idx'>idx</span> <span class='op'>&lt;</span> <span class='id identifier rubyid_args'>args</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span>
+        <span class='kw'>else</span>
+          <span class='id identifier rubyid_new_args'>new_args</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_args'>args</span><span class='lbracket'>[</span><span class='id identifier rubyid_knit'>knit</span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='id identifier rubyid_knit'>knit</span> <span class='op'>&lt;</span> <span class='id identifier rubyid_args'>args</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span>
+        <span class='kw'>end</span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span>
+    <span class='id identifier rubyid_new_args'>new_args</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+    <div id="footer">
+  Generated on Mon May 18 17:44:01 2015 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.6 (ruby-2.0.0).
+</div>
+
+  </body>
+</html>
