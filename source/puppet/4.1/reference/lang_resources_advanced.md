@@ -247,6 +247,8 @@ The general form of a resource reference attribute block is:
 
 Normally, you can only use this syntax to add previously unmanaged attributes to a resource; it cannot override already-specified attributes. However, within an [inherited class][inheritance], you **can** use this idiom to override attributes.
 
+You can also use the special `*` attribute to amend attributes from a hash. See [Setting Attributes From a Hash (above)][inpage_splat] for details.
+
 ### Amending Attributes With a Collector
 
 {% highlight ruby %}
@@ -275,7 +277,9 @@ The general form of a collector attribute block is:
 
 Much like in an [inherited class][inheritance], you can use the special `+>` keyword to append values to attributes that accept arrays. See [appending to attributes][append_attributes] for more details.
 
-> **Note:** Be very careful when using this syntax, because:
+You can also use the special `*` attribute to amend attributes from a hash. See [Setting Attributes From a Hash (above)][inpage_splat] for details.
+
+> **Note:** Be very careful when amending attributes with a collector.
 >
 > * It **can always override** already-specified attributes, regardless of class inheritance.
 > * It can affect large numbers of resources at once.
