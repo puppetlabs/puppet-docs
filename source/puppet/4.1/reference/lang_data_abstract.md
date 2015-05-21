@@ -173,8 +173,9 @@ Note that if the max is _smaller_ than the number of content types you provided,
 
 The `Struct` type only matches [hashes][], but it lets you specify:
 
-* The name of every allowed key
-* The allowed data type for each of those keys' values
+* The name of every allowed key.
+* Whether each key is required or optional.
+* The allowed data type for each of those keys' values.
 
 It takes one mandatory parameter.
 
@@ -186,12 +187,18 @@ The full signature for `Struct` is:
 
 Position | Parameter        | Data Type | Default Value | Description
 ---------| -----------------|-----------|---------------|------------
-1 | Schema hash | `Hash[String, Type]` | none **(mandatory)** | A hash that has all of the allowed keys and data types for the struct.
+1 | Schema hash | `Hash[Variant[String, Optional, NotUndef], Type]` | none **(mandatory)** | A hash that has all of the allowed keys and data types for the struct.
 
-The schema hash must have the same keys as the hashes that the `Struct` data type will match; only string keys are allowed. The value for each key in the schema hash must be a [data type][types] that matches the values you want to allow for that key.
 
-Since [accessing a missing key resolves to the value `undef`][hash_missing_key_access], you can make a key optional in a `Struct` by making its data type accept `undef`. (In other words, use `Optional`.)
+#### Schema Hashes
 
+A struct's schema hash must have the same keys as the hashes it will match. Each value must be a [data type][types] that matches the allowed values for that key.
+
+The keys in a schema hash are usually strings. They can also be an `Optional` or `NotUndef` type with the key's name as their parameter.
+
+If a key is a string, Puppet uses the _value's_ type to determine whether it's optional --- since [accessing a missing key resolves to the value `undef`][hash_missing_key_access], the key will be optional if the value type accepts `undef` (like `Optional[Array]`).
+
+Note that this doesn't distinguish between an explicit value of `undef` and an absent key. If you want to be more explicit, you can use `Optional['my_key']` to indicate that a key can be absent, and `NotUndef['my_key']` to make it mandatory. If you use one of these, a value type that accepts `undef` will only be used to decide about explicit `undef` values, not missing keys.
 
 #### Examples
 
@@ -204,11 +211,26 @@ This data type would match hashes like `{mode => 'read', path => '/etc/fstab'}`.
 
 {%highlight ruby %}
     Struct[{mode => Enum[read, write, update],
-            path => Optional[String [1]]}]
+            path => Optional[String[1]]}]
 {% endhighlight %}
 
 This data type would match the same values as the previous example, but the `path` key is optional. If present, `path` must match `String[1]`.
 
+{%highlight ruby %}
+    Struct[{mode            => Enum[read, write, update],
+            path            => Optional[String[1]],
+            Optional[owner] => String[1]}]
+{% endhighlight %}
+
+In this data type, the `owner` key can be absent, but if it's present, it _must_ be a string; a value of `undef` isn't allowed.
+
+{%highlight ruby %}
+    Struct[{mode            => Enum[read, write, update],
+            path            => Optional[String[1]],
+            NotUndef[owner] => Optional[String[1]]}]
+{% endhighlight %}
+
+In this data type, the owner key is mandatory, but it allows an explicit `undef` value.
 
 ## Parent Types
 
