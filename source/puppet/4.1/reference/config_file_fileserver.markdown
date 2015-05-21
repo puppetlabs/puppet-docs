@@ -21,7 +21,7 @@ However, some use cases make custom mount points more attractive: for example, l
 
 The `fileserver.conf` file is located at `$confdir/fileserver.conf` by default. Its location is configurable with the [`fileserverconfig` setting][fileserverconfig].
 
-The location of the `confdir` varies; it depends on the OS, Puppet distribution, and user account. [See the confdir documentation for details.][confdir]
+The location of the `confdir` depends on your OS. [See the confdir documentation for details.][confdir]
 
 [confdir]: ./dirs_confdir.html
 

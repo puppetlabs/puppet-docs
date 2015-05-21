@@ -21,7 +21,7 @@ The following description does **not** apply to PuppetDB 3.0 and later. If you'r
 
 The `puppetdb.conf` file is always located at `$confdir/puppetdb.conf`. Its location is **not** configurable.
 
-The location of the `confdir` varies; it depends on the OS, Puppet distribution, and user account. [See the confdir documentation for details.][confdir]
+The location of the `confdir` depends on your OS. [See the confdir documentation for details.][confdir]
 
 [confdir]: ./dirs_confdir.html
 

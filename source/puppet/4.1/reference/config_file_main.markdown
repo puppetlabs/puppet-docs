@@ -30,7 +30,7 @@ The puppet.conf file is always located at `$confdir/puppet.conf`.
 
 Although its location is configurable with the [`config` setting][config], it can only be set on the command line (e.g. `puppet agent -t --config ./temporary_config.conf`).
 
-The location of the `confdir` varies; it depends on the OS, Puppet distribution, and user account. [See the confdir documentation for details.][confdir]
+The location of the `confdir` depends on your OS. [See the confdir documentation for details.][confdir]
 
 [confdir]: ./dirs_confdir.html
 

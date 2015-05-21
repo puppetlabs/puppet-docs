@@ -12,7 +12,7 @@ The Puppet device subcommand configures network hardware using a catalog downloa
 
 The `device.conf` file is located at `$confdir/device.conf` by default. Its location is configurable with the [`deviceconfig` setting][deviceconfig].
 
-The location of the `confdir` varies; it depends on the OS, Puppet distribution, and user account. [See the confdir documentation for details.][confdir]
+The location of the `confdir` depends on your OS. [See the confdir documentation for details.][confdir]
 
 [confdir]: ./dirs_confdir.html
 

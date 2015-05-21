@@ -15,7 +15,7 @@ The `hiera.yaml` file is located at `$codedir/hiera.yaml` by default. Its locati
 
 When Puppet loads Hiera, it will use its own Hiera config file instead of the global one (which is usually located at `/etc/hiera.yaml`). If needed, you can point the `hiera_config` setting at the global Hiera config.
 
-The location of the `codedir` varies; it depends on the OS, Puppet distribution, and user account. [See the codedir documentation for details.][codedir]
+The location of the `codedir` depends on your OS. [See the codedir documentation for details.][codedir]
 
 [codedir]: ./dirs_codedir.html
 
