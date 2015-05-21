@@ -14,7 +14,7 @@ Please [contact Puppet Labs](http://puppetlabs.com/contact/) if you are interest
 
 **[See Installing Puppet](/guides/install_puppet/pre_install.html)** for more details about the packages available for your platform(s).
 
-Puppet 2.7 and Puppet 3.x can run on the following platforms:
+Puppet 3.x can run on the following platforms:
 
 Linux
 -----
@@ -47,15 +47,13 @@ BSD
 Other Unix
 ----------
 
-- Mac OS X, version 10.5 (Leopard) and higher (Puppet 2.7 and earlier also support 10.4)
+- Mac OS X, version 10.7 (Leopard) and higher
 - Oracle Solaris, version 10 and higher
 - AIX, version 5.3 and higher
 - HP-UX
 
 Windows
 -------
-
-(Puppet version 2.7.6 and higher)
 
 {% include platforms_windows.markdown %}
 
@@ -69,22 +67,17 @@ Certain versions of Ruby work better with Puppet than others, and some versions 
 
 > ![windows logo](/images/windows-logo-small.jpg) The [Windows installers](http://downloads.puppetlabs.com/windows) provided by Puppet Labs don't rely on the OS's Ruby version, and can be installed alongside any version of Ruby or on systems without Ruby installed.
 
-Ruby version | Puppet 2.6 | Puppet 2.7 | Puppet 3.x
--------------|------------|------------|-----------
-2.1.x        | No         | No         | Supported (3.5 and higher)
-2.0.x        | No         | No         | Supported (3.2 and higher)
-1.9.3\*\*    | No         | No         | Supported
-1.9.2        | No         | No         | No
-1.9.1        | No         | No         | No
-1.9.0        | No         | No         | No
-1.8.7        | Supported  | Supported  | Supported
-1.8.5\*      | Supported  | Supported  | No
-1.8.6        | No         | No         | No
-1.8.1        | No         | No         | No
+Ruby version | Puppet 3.x
+-------------|-----------
+2.1.x        | Supported (3.5 and higher)
+2.0.x        | Supported (3.2 and higher)
+1.9.3\*      | Supported
+1.9.2        | No
+1.9.1        | No
+1.9.0        | No
+1.8.7        |  Supported
 
-> \* Note that although Ruby 1.8.5 is fully supported on Puppet 2.6 and 2.7, Ruby 1.8.7 generally gives better performance and memory use. To support the large installed base of RHEL5 systems which ship with Ruby 1.8.5, Puppet Labs packages a drop-in replacement Ruby 1.8.7 package. Read the ['Enterprise Linux and Derivatives' section of the Installing Puppet guide](/guides/install_puppet/install_el.html) to learn how to install these packages.
->
-> \*\* Ruby 1.9.3-p0 has bugs that cause a number of known issues with Puppet, and you should use a different release. To the best of our knowledge, these issues were fixed in the second public release of Ruby 1.9.3 (p125), and we are positive they are resolved in p392 (which shipped with Fedora 18). Unfortunately, Ubuntu Precise ships with p0 for some reason, and there's not a lot we can do about it. If you're using Precise, we recommend using Puppet Enterprise or installing a third-party Ruby package.
+> \* Ruby 1.9.3-p0 has bugs that cause a number of known issues with Puppet, and you should use a different release. To the best of our knowledge, these issues were fixed in the second public release of Ruby 1.9.3 (p125), and we are positive they are resolved in p392 (which shipped with Fedora 18). Unfortunately, Ubuntu Precise ships with p0 for some reason, and there's not a lot we can do about it. If you're using Precise with puppet 3.x, we recommend using Puppet Enterprise or installing a third-party Ruby package.
 
 Versions marked as "Supported" are recommended by Puppet Labs and are under extensive automated test coverage. Other versions are not recommended and we make no guarantees about their performance with Puppet.
 
@@ -93,11 +86,11 @@ Prerequisites
 
 Puppet has a very small number of external dependencies:
 
-Dependency | Puppet 2.x | Puppet 3.x
------------|------------|-----------
-[Facter][] | Required   | Required
-[Hiera][]  | Optional   | Required
-[rgen][]   |            | Optional
+Dependency | Puppet 3.x
+-----------|-----------
+[Facter][] | Required
+[Hiera][]  | Required
+[rgen][]   | Optional
 
 Rgen is only needed if you are using Puppet ≥ 3.2 [with `parser = future` enabled](/puppet/latest/reference/lang_future.html). The official Puppet Labs packages will install it as a dependency.
 
@@ -105,7 +98,7 @@ Rgen is only needed if you are using Puppet ≥ 3.2 [with `parser = future` enab
 [Hiera]: /hiera/latest/installing.html
 [rgen]: http://ruby-gen.org/downloads
 
-All other prerequisite Ruby libraries should come with any standard Ruby 1.8.5+ install.  Should your OS not come with the complete standard library (or you are using a custom Ruby build), these include:
+All other prerequisite Ruby libraries should come with any standard Ruby install.  Should your OS not come with the complete standard library (or you are using a custom Ruby build), these include:
 
 * base64
 * cgi
