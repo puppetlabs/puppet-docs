@@ -11,8 +11,7 @@ canonical: "/puppet/latest/reference/ssl_attributes_extensions.html"
 [autosign_basic]: ./ssl_autosign.html#basic-autosigning-autosignconf
 [puppet_oids]: #puppet-specific-registered-ids
 [trusted_hash]: ./lang_facts_and_builtin_vars.html#trusted-facts
-[enable_trusted]: ./config_important_settings.html#getting-new-features-early
-
+[oid_map]: ./config_file_oid_map.html
 
 When Puppet agent nodes request their certificates, the certificate signing request (CSR) usually just contains their certname and the necessary cryptographic information. However, agents can also embed more data in their CSR. This extra data can be useful for [policy-based autosigning][autosign_policy] and for adding new [trusted facts.][trusted_hash]
 
@@ -103,7 +102,11 @@ They can also be used by the CA when deciding whether or not to sign the certifi
 
 When signing a certificate, Puppet's CA tools will transfer any extension requests into the final certificate.
 
-If [trusted facts are enabled][enable_trusted], any cert extensions can be accessed in manifests as `$trusted[extensions][<EXTENSION OID>]`. Any OIDs in the ppRegCertExt range ([see below][puppet_oids]) will appear using their short names, and other OIDs will appear as plain dotted numbers. See [the page on facts and special variables][trusted_hash] for more information about `$trusted`.
+You can access certificate extensions in manifests as `$trusted[extensions][<EXTENSION OID>]`.
+
+Any OIDs in the ppRegCertExt range ([see below][puppet_oids]) will appear using their short names. By default, any other OIDs will appear as plain dotted numbers, but you can use [the `custom_trusted_oid_mapping.yaml` file][oid_map] to assign short names to any other OIDs you use at your site. If you do, those OIDs will appear in `$trusted` as their short names instead of their full numerical OID.
+
+See [the page on facts and special variables][trusted_hash] for more information about `$trusted`.
 
 Visibility of extensions is somewhat limited:
 
@@ -162,10 +165,13 @@ Extension request OIDs **must** be under the "ppRegCertExt" (`1.3.6.1.4.1.34380.
 
 Puppet Labs provides several registered OIDs (under "ppRegCertExt") for the most common kinds of extension information, as well as a private OID range ("ppPrivCertExt") for site-specific extension information. The benefits of using the registered OIDs are:
 
-* They can be referenced in `csr_attributes.yaml` using their short names instead of their numeric IDs.
+* You can reference them in `csr_attributes.yaml` with their short names instead of their numeric IDs.
+* You can access them in `$trusted[extensions]` with their short names instead of their numeric IDs.
 * When using Puppet tools to print certificate info, they will appear using their descriptive names instead of their numeric IDs.
 
 The private range is available for any information you want to embed into a certificate that isn't already in wide use elsewhere. It is completely unregulated, and its contents are expected to be different in every Puppet deployment.
+
+You can use [the `custom_trusted_oid_mapping.yaml` file][oid_map] to set short names for any private extension OIDs you're using. Note that this only enables the short names in the `$trusted[extensions]` hash.
 
 #### Puppet-Specific Registered IDs
 
