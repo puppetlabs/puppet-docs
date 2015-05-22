@@ -6,22 +6,22 @@ canonical: "/puppet/latest/reference/experiments_future.html"
 
 [parser_setting]: /references/4.1.latest/configuration.html#parser
 [boolean_convert_old]: ./lang_datatypes.html#automatic-conversion-to-boolean
-[boolean_convert]: ./future_lang_data_boolean.html#automatic-conversion-to-boolean
+[boolean_convert]: ./lang_data_boolean.html#automatic-conversion-to-boolean
 [puppet.conf]: ./config_file_main.html
 [environment]: ./environments.html
 [environment.conf]: ./config_file_environment.html
-[iteration]: ./future_lang_iteration.html
-[match_operator]: ./future_lang_expressions.html#regex-or-data-type-match
-[parameter_datatypes]: ./future_lang_data_type.html#parameter-lists
-[data_types]: ./future_lang_data.html
+[iteration]: ./lang_iteration.html
+[match_operator]: ./lang_expressions.html#regex-or-data-type-match
+[parameter_datatypes]: ./lang_data_type.html#parameter-lists
+[data_types]: ./lang_data.html
 [relative_namespace]: ./lang_namespaces.html#relative-name-lookup-and-incorrect-name-resolution
-[comparison operators]: ./future_lang_expressions.html#comparison-operators
-[fact]: ./future_lang_facts_and_builtin_vars.html
-[strings]: ./future_lang_data_string.html
+[comparison operators]: ./lang_expressions.html#comparison-operators
+[fact]: ./lang_facts_and_builtin_vars.html
+[strings]: ./lang_data_string.html
 [stringify_facts]: /references/4.1.latest/configuration.html#stringifyfacts
 [str2bool]: https://forge.puppetlabs.com/puppetlabs/stdlib#str2bool
 [file_mode]: /references/4.1.latest/type.html#file-attribute-mode
-[integer_bases]: ./future_lang_data_number.html#octal-and-hexadecimal-integers
+[integer_bases]: ./lang_data_number.html#octal-and-hexadecimal-integers
 
 Over the course of the 3.x series, Puppet included work-in-progress releases of a rewritten Puppet language, which could be enabled with a setting. This revised language includes significant breaking changes, major additions, and a new underlying implementation.
 
