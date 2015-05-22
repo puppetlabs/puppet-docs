@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Future Parser: Visual Index"
-canonical: "/puppet/latest/reference/future_lang_visual_index.html"
+canonical: "/puppet/latest/reference/lang_visual_index.html"
 ---
 
 

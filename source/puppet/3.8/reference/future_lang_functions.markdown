@@ -1,7 +1,7 @@
 ---
 title: "Future Parser: Functions"
 layout: default
-canonical: "/puppet/latest/reference/future_lang_functions.html"
+canonical: "/puppet/latest/reference/lang_functions.html"
 ---
 
 [func_ref]: /references/3.8.latest/function.html

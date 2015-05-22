@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Future Parser: Data Types: Booleans"
-canonical: "/puppet/latest/reference/future_lang_data_boolean.html"
+canonical: "/puppet/latest/reference/lang_data_boolean.html"
 ---
 
 [if]: ./future_lang_conditional.html#if-statements

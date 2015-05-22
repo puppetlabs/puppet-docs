@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Future Parser: Data Types: Data Type Syntax"
-canonical: "/puppet/latest/reference/future_lang_data_type.html"
+canonical: "/puppet/latest/reference/lang_data_type.html"
 ---
 
 [classes]: ./future_lang_classes.html

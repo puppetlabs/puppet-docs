@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Future Parser: Data Types: Numbers"
-canonical: "/puppet/latest/reference/future_lang_data_number.html"
+canonical: "/puppet/latest/reference/lang_data_number.html"
 ---
 
 [arithmetic]: ./future_lang_expressions.html#arithmetic-operators

@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Future Parser: Data Types: Resource and Class References"
-canonical: "/puppet/latest/reference/future_lang_data_resource_reference.html"
+canonical: "/puppet/latest/reference/lang_data_resource_reference.html"
 ---
 
 [relationship]: ./future_lang_relationships.html

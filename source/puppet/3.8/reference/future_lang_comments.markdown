@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Future Parser: Comments"
-canonical: "/puppet/latest/reference/future_lang_comments.html"
+canonical: "/puppet/latest/reference/lang_comments.html"
 ---
 
 Puppet supports two kinds of comments:

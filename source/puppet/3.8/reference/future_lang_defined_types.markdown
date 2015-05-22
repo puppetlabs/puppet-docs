@@ -1,7 +1,7 @@
 ---
 title: "Future Parser: Defined Resource Types"
 layout: default
-canonical: "/puppet/latest/reference/future_lang_defined_types.html"
+canonical: "/puppet/latest/reference/lang_defined_types.html"
 ---
 
 [literal_types]: ./future_lang_data_type.html

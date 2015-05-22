@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Future Parser: Data Types: Regular Expressions"
-canonical: "/puppet/latest/reference/future_lang_data_regexp.html"
+canonical: "/puppet/latest/reference/lang_data_regexp.html"
 ---
 
 [regsubst]: /references/3.7.latest/function.html#regsubst

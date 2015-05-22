@@ -1,7 +1,7 @@
 ---
 title: "Future Parser: Iteration and Loops"
 layout: default
-canonical: "/puppet/latest/reference/future_lang_iteration.html"
+canonical: "/puppet/latest/reference/lang_iteration.html"
 ---
 
 [functions]: ./future_lang_functions.html

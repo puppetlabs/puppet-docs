@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Future Parser: Scope"
-canonical: "/puppet/latest/reference/future_lang_scope.html"
+canonical: "/puppet/latest/reference/lang_scope.html"
 ---
 
 [resources]: ./future_lang_resources.html

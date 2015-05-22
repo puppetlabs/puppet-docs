@@ -1,7 +1,7 @@
 ---
 title: "Future Parser: Lambdas (Code Blocks)"
 layout: default
-canonical: "/puppet/latest/reference/future_lang_lambdas.html"
+canonical: "/puppet/latest/reference/lang_lambdas.html"
 ---
 
 [define_unique]: ./future_lang_defined_types.html#resource-uniqueness

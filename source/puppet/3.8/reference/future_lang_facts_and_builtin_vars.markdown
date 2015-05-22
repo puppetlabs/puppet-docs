@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Future Parser: Facts and Built-in Variables"
-canonical: "/puppet/latest/reference/future_lang_facts_and_builtin_vars.html"
+canonical: "/puppet/latest/reference/lang_facts_and_builtin_vars.html"
 ---
 
 [definedtype]: ./future_lang_defined_types.html

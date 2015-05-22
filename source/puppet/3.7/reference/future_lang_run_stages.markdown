@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Future Parser: Run Stages"
-canonical: "/puppet/latest/reference/future_lang_run_stages.html"
+canonical: "/puppet/latest/reference/lang_run_stages.html"
 ---
 
 [metaparameter]: ./future_lang_resources.html#metaparameters

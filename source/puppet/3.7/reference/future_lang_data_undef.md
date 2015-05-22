@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Future Parser: Data Types: Undef"
-canonical: "/puppet/latest/reference/future_lang_data_undef.html"
+canonical: "/puppet/latest/reference/lang_data_undef.html"
 ---
 
 
