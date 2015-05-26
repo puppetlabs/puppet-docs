@@ -45,7 +45,7 @@ If you're upgrading from Puppet 2.x, please [learn about major upgrades of Puppe
 
 ## Puppet 3.8.1
 
-Released May 25, 2015.
+Released May 26, 2015.
 
 Puppet 3.8.1 is a bug fix release (with future parser changes) in the Puppet 3.8 series. It's the first official open source release in the 3.8 series.
 
