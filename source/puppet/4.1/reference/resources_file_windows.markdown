@@ -21,7 +21,7 @@ Puppet's built-in [`file`][file] resource type can manage files and directories 
     }
 {% endhighlight %}
 
-The `file` resource type was originally developed for \*nix systems, and has a few unusual behaviors on Windows. Here's what you'll want to know before using it.
+Here's what you'll want to know before using the `file` resource type.
 
 ## Take Care With Backslashes in Paths
 
@@ -62,7 +62,7 @@ This module provides an optional `acl` resource type that manages permissions in
 
 ### How \*nix Modes Map to Windows Permissions
 
-\*nix permissions are expressed as either an octal number or a string of symbolic modes. See [the reference for the `file` type's `mode` attribute](/references/4.1.latest/type.html#file-attribute-mode) for more details about the syntax.
+\*nix permissions are expressed as either a quoted octal number, e.g. "755", or a string of symbolic modes, e.g. "u=rwx,g=rx,o=rx". See [the reference for the `file` type's `mode` attribute](/references/4.1.latest/type.html#file-attribute-mode) for more details about the syntax.
 
 These mode expressions generally manage three kinds of permission (read, write, execute) for three kinds of user (owner, group, other). They translate to Windows permissions as follows:
 
@@ -97,6 +97,10 @@ Windows usually uses CRLF line endings instead of \*nix's LF line endings. In mo
 
 
 ## Errata
+
+### Known Issues Prior to Puppet 4.0
+
+* Prior to Puppet 4.0, Puppet will copy file permissions from the remote `source`. See below for more details. In Puppet 4.0, Puppet will not copy file permissions. The previous behavior can be enabled by specifying `source_permissions` as `use`.
 
 ### Known Issues Prior to Puppet 3.4 / PE 3.2
 

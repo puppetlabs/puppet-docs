@@ -102,6 +102,8 @@ It's a good idea to use the hash notation for file path arguments since they may
 install_options => [ { 'INSTALLDIR' => "${packagedir}" } ]
 {% endhighlight %}
 
+I'm not sure this ^ is necessary as puppet should quote arguments with spaces automatically.
+
 ## Errata
 
 ### Known Issues Prior to Puppet 4.1.0
