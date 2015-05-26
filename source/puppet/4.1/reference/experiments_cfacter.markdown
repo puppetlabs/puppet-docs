@@ -5,12 +5,12 @@ canonical: "/puppet/latest/reference/experiments_cfacter.html"
 ---
 
 [users_group]: https://groups.google.com/forum/#!forum/puppet-users
-[cfacter_readme]: https://github.com/puppetlabs/cfacter/blob/master/README.md
-[cfacter_features]: https://github.com/puppetlabs/cfacter/blob/master/Extensibility.md
+[cfacter_readme]: https://github.com/puppetlabs/facter/blob/master/README.md
+[cfacter_features]: https://github.com/puppetlabs/facter/blob/master/Extensibility.md
 
 > **Warning:** This document describes an **experimental feature,** which is not officially supported. [See here for more information about experimental features in Puppet](./experiments_overview.html), especially if you are using Puppet Enterprise. Acceptance testing for Native Facter has been minimal, and we do not recommend using it in a production environment.
 
-Native Facter is a rewrite of Facter in C++. Native Facter does the same job that Facter does, but with better performance. 
+Native Facter is a rewrite of Facter in C++. Native Facter does the same job that Facter does, but with better performance.
 
 Native Facter is scheduled to be officially released around the same time as Puppet 4.2. Once released, it will be known as Facter 3.0.
 
