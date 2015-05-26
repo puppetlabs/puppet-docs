@@ -43,6 +43,52 @@ We always recommend that you **upgrade your Puppet master servers before upgradi
 If you're upgrading from Puppet 2.x, please [learn about major upgrades of Puppet first!][upgrade] We have important advice about upgrade plans and package management practices. The short version is: test first, roll out in stages, give yourself plenty of time to work with. Also, read the [release notes for Puppet 3][puppet_3] for a list of all the breaking changes made between the 2.x and 3.x series.
 
 
+## Puppet 3.8.1
+
+Released May 25, 2015.
+
+Puppet 3.8.1 is a bug fix release (with future parser changes) in the Puppet 3.8 series. It's the first official open source release in the 3.8 series.
+
+The main focus of this release is to make sure the 3.8 future parser is forward-compatible with the Puppet language as of Puppet 4.1. It also fixes several bugs.
+
+### Bug Fixes: Major
+
+The initial 3.8.0 release partially broke the per-environment `parser` setting added in 3.7.5, requiring some contortions to make per-environment parser changes work. This is now fixed.
+
+* [PUP-4636: Manifest with future parser code fails in a non-production environment with environment.conf parser=future setting](https://tickets.puppetlabs.com/browse/PUP-4636)
+
+### Improvements: Future Parser
+
+This release improves the Puppet language with a new `\u{xxxxxx}` escape sequence for Unicode characters and a new NotUndef data type. It also adds a feature to the 4.x function API.
+
+* [PUP-4438: Add required_repeated_param to 4.x function API](https://tickets.puppetlabs.com/browse/PUP-4438)
+* [PUP-4483: Add NotUndef type to the set of Puppet types](https://tickets.puppetlabs.com/browse/PUP-4483)
+* [PUP-4385: Can't write WOMANS HAT emoji with \uXXXX unicode escapes](https://tickets.puppetlabs.com/browse/PUP-4385)
+
+
+### Bug Fixes: Future Parser
+
+This release fixes several bugs with the Puppet language that were also fixed in Puppet 4.1.0.
+
+* [PUP-4178: defined() function returns true for undef and empty string, and false for "main"](https://tickets.puppetlabs.com/browse/PUP-4178)
+* [PUP-4374: Splatting attributes into an amended attribute block isn't supported](https://tickets.puppetlabs.com/browse/PUP-4374)
+* [PUP-4398: Splat unfolding not supported in method call syntax](https://tickets.puppetlabs.com/browse/PUP-4398)
+* [PUP-4428: The 'err' logging function cannot be called as a statement](https://tickets.puppetlabs.com/browse/PUP-4428)
+* [PUP-4462: Single backslash before $ blocks interpolation in heredoc with no escapes enabled](https://tickets.puppetlabs.com/browse/PUP-4462)
+* [PUP-4520: Future parser is not correctly handling the default case of a case statement](https://tickets.puppetlabs.com/browse/PUP-4520)
+
+
+### Bug Fixes: Resource Types and Providers
+
+* [PUP-3829: pip package provider is broken on EL (where osfamily is RedHat)](https://tickets.puppetlabs.com/browse/PUP-3829)
+* [PUP-4604: Port fix for pip provider on more recent RedHat operating systems.](https://tickets.puppetlabs.com/browse/PUP-4604)
+
+### Bug Fixes: Misc
+
+* [PUP-4461: manifest changes are ignored when using hiera_include](https://tickets.puppetlabs.com/browse/PUP-4461)
+* [PUP-4437: Update the "puppet-agent" Repo for 4.0.1 to Incorporate Fix for PUP-4390](https://tickets.puppetlabs.com/browse/PUP-4437)
+
+
 ## Puppet 3.8.0
 
 Released April 28, 2015, as part of Puppet Enterprise 3.8.0. The first official open source release in the 3.8 series will be 3.8.1.
