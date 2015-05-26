@@ -7,7 +7,7 @@ title: "Resource Tips and Examples: Exec on Windows"
 [exec]: /references/4.1.latest/type.html#exec
 
 
-Puppet can execute binaries (exe, com, bat, etc.), and can log the child process output and exit status. To ensure the resource is idempotent, one of the `creates`, `onlyif`, or `unless` attributes should be specified.
+Puppet can execute binaries (exe, com, bat, etc.), and can log the child process output and exit status. To ensure the resource is idempotent, specify one of the `creates`, `onlyif`, or `unless` attributes.
 
 Since Puppet uses the same [`exec`][exec] resource type on both \*nix and Windows systems, there are a few Windows-specific caveats to keep in mind.
 
@@ -25,7 +25,7 @@ Microsoft recommends against using negative/very large exit codes, and you shoul
 
 ## Shell Built-ins
 
-Puppet does not support a shell provider for Windows, so if you want to execute shell built-ins (e.g. `echo`), you must provide a complete `cmd.exe` invocation as the command. (For example, `command => 'cmd.exe /c echo "foo"'`.) When using `cmd.exe` and specifying a file path in the command line, be sure to use backslashes. (For example, `'cmd.exe /c type c:\path\to\file.txt'`.) If forward slashes are used, `cmd.exe` will error.
+Puppet does not support a shell provider for Windows, so if you want to execute shell built-ins (e.g. `echo`), you must provide a complete `cmd.exe` invocation as the command. (For example, `command => 'cmd.exe /c echo "foo"'`.) When using `cmd.exe` and specifying a file path in the command line, be sure to use backslashes. (For example, `'cmd.exe /c type c:\path\to\file.txt'`.) If you use forward slashes, `cmd.exe` will error.
 
 ## The Optional PowerShell Exec Provider
 

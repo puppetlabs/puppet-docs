@@ -99,10 +99,8 @@ Any file path arguments within the `install_options` attribute (such as `INSTALL
 It's a good idea to use the hash notation for file path arguments since they may contain spaces, for example:
 
 {% highlight ruby %}
-install_options => [ { 'INSTALLDIR' => "${packagedir}" } ]
+install_options => [ { 'INSTALLDIR' => ${packagedir} } ]
 {% endhighlight %}
-
-I'm not sure this ^ is necessary as puppet should quote arguments with spaces automatically.
 
 ## Errata
 
