@@ -30,9 +30,7 @@ An environment is just a directory that follows a few conventions:
 * It should contain a `manifests` directory, which will be the environment's default [main manifest.][manifest_dir]
 * It may contain [an `environment.conf` file][environment.conf], which can locally override several settings, including `modulepath` and `manifest`.
 
-> **Note:** This diagram is out of date; the default `environments` directory belongs in the `codedir`, not the `confdir`. We will update this diagram sometime in the future.
-
-![Diagram: A directory with four environments. Each environment contains a modules directory, a manifests directory, and an environment.conf file.](./images/environment_directories.jpg)
+![Diagram: A directory with four environments. Each environment contains a modules directory, a manifests directory, and an environment.conf file.](./images/environment_directories.svg)
 
 Puppet Enterprise Requirements
 -----
