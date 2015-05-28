@@ -232,19 +232,13 @@ The general form of a case statement is:
 
 ### Behavior
 
-Puppet compares the control expression to each of the cases, in the order they are listed (except for the `default` case, which always goes last). It will execute the block of code associated with the **first** matching case, and ignore the remainder of the statement.
+Puppet compares the control expression to each of the cases, in the order they are listed (except for the top-most level `default` case, which always goes last). It will execute the block of code associated with the **first** matching case, and ignore the remainder of the statement.
 
 Case statements will execute a _maximum_ of one code block. If none of the cases match, Puppet will do nothing and move on.
 
-See "Cases" below for details on how Puppet matches different kinds of cases.
+See "Case Matching" below for details on how Puppet matches different kinds of cases.
 
-#### When Used as a Value
-
-In addition to executing the code in a block, a `case` statement is also an expression that produces a value, and can be used wherever a value is allowed.
-
-The value of a `case` expression is the value of the last expression in the executed block, or `undef` if no block was executed.
-
-### Control Expressions
+#### Control Expressions
 
 The control expression of a case statement can be any expression that resolves to a value. This includes:
 
@@ -252,22 +246,32 @@ The control expression of a case statement can be any expression that resolves t
 * [Expressions][]
 * [Functions][] that return values
 
-### Cases
+#### Case Matching
 
 A case can be any expression that resolves to a value. (This includes literal values, variables, function calls, etc.)
 
 You can use a comma-separated list of cases to associate multiple cases with the same block of code. (If you need to use values from a variable as cases, note that [the `*` splat operator][splat] can convert an array of values into a comma-separated list of values.)
 
 {% capture case_matching_behavior %}
-Depending on the [data type][datatypes] of a case's value, Puppet will use one of four behaviors to test whether the case matches:
+Depending on the [data type][datatypes] of a case's value, Puppet will use one of following behaviors to test whether the case matches:
 
-* **Most data types** (strings, arrays, booleans, etc.) are compared to the control value with [the `==` equality operator][equality], which is case-insensitive when comparing strings.
+* **Most data types** (strings, booleans, etc.) are compared to the control value with [the `==` equality operator][equality], which is case-insensitive when comparing strings.
 * [**Regular expressions**][regex] are compared to the control value with [the `=~` matching operator][matching], which is case-sensitive. Regex cases _only_ match strings.
 * [**Data types**][literal_types] (like `Integer`) are compared to the control value with [the `=~` matching operator][matching]. This tests whether the control value is an instance of that data type.
-* **The special value `default`** matches anything, but is _always tested last,_ regardless of its position in the list.
+* Arrays are compared to the control value recursively. First, it checks whether the control and array are the same length, then each corresponding element is compared using these same case matching rules. 
+* Hashes compare each key/value pair. To match, the control value and the case have to have the same keys, and each corresponding value is compared using these same case matching rules. 
+* **The special value `default`** matches anything, and unless nested inside an array or hash is _always tested last,_ regardless of its position in the list.  
+
 {% endcapture %}
 
 {{case_matching_behavior}}
+
+#### When Used as a Value
+
+In addition to executing the code in a block, a `case` statement is also an expression that produces a value, and can be used wherever a value is allowed.
+
+The value of a `case` expression is the value of the last expression in the executed block, or `undef` if no block was executed.
+
 
 #### Regex Capture Variables
 
@@ -358,7 +362,7 @@ If none of the cases match, Puppet will **fail compilation with an error,** so y
 
 See "Cases" below for details on how Puppet matches different kinds of cases.
 
-### Control Expressions
+#### Control Expressions
 
 The control expression of a selector can be any expression that resolves to a value. This includes:
 
@@ -366,7 +370,7 @@ The control expression of a selector can be any expression that resolves to a va
 * [Expressions][]
 * [Functions][] that return values
 
-### Cases
+#### Cases
 
 A case can be any expression that resolves to a value. (This includes literal values, variables, function calls, etc.)
 
