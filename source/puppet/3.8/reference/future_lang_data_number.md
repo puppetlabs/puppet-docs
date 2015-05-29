@@ -36,23 +36,23 @@ Floating point numbers ("floats") are numbers that include a fractional value af
 
 If an expression includes both integer and float values, the result will be a float.
 
-{% highlight ruby %}
+~~~ ruby
     $some_number = 8 * -7.992           # evaluates to -63.936
     $another_number = $some_number / 4  # evaluates to -15.984
-{% endhighlight %}
+~~~
 
 Floating point numbers between -1 and 1 cannot start with a bare decimal point; they must have a zero before the decimal point.
 
-{% highlight ruby %}
+~~~ ruby
     $product = 8 * .12 # syntax error
     $product = 8 * 0.12 # OK
-{% endhighlight %}
+~~~
 
 You can express floating point numbers in scientific notation: append `e` or `E` plus an exponent, and the preceding number will be multiplied by 10 to the power of that exponent. Numbers in scientific notation are always floats.
 
-{% highlight ruby %}
+~~~ ruby
     $product = 8 * 3e5  # evaluates to 240000.0
-{% endhighlight %}
+~~~
 
 ### Octal and Hexadecimal Integers
 
@@ -64,7 +64,7 @@ Integer values can be expressed in decimal notation (base 10), octal notation (b
 
 Floats can't be expressed in octal or hex.
 
-{% highlight ruby %}
+~~~ ruby
     # octal
     $value = 0777   # evaluates to decimal 511
     $value = 0789   # Error, invalid octal
@@ -76,7 +76,7 @@ Floats can't be expressed in octal or hex.
     $value = 0Xdef # same as above
     $value = 0xDEF # same as above
     $value = 0xLSD # Error, invalid hex
-{% endhighlight %}
+~~~
 
 ## Converting Numbers to Strings
 

@@ -107,7 +107,7 @@ fact. Start by giving the fact a name, in this case, `hardware_platform`,
 and create your new fact in a file, `hardware_platform.rb`, on the
 Puppet master server:
 
-{% highlight ruby %}
+~~~ ruby
     # hardware_platform.rb
 
     Facter.add('hardware_platform') do
@@ -115,7 +115,7 @@ Puppet master server:
         Facter::Util::Resolution.exec('/bin/uname --hardware-platform')
       end
     end
-{% endhighlight %}
+~~~
 
 You can then use the instructions in [Plugins In Modules](/guides/plugins_in_modules.html) page to copy
 the new fact to a module and distribute it. During your next Puppet run, the value of the new fact
@@ -130,7 +130,7 @@ You can write a fact which uses other facts by accessing
 
 For example:
 
-{% highlight ruby %}
+~~~ ruby
     Facter.add('osfamily') do
       setcode do
         distid = Facter.value('lsbdistid')
@@ -144,7 +144,7 @@ For example:
         end
       end
     end
-{% endhighlight %}
+~~~
 
 ## Configuring Facts
 
@@ -157,14 +157,14 @@ restricts the fact to only run on systems that matches another given fact.
 
 An example of the confine statement would be something like the following:
 
-{% highlight ruby %}
+~~~ ruby
     Facter.add(:powerstates) do
       confine :kernel => 'Linux'
       setcode do
         Facter::Util::Resolution.exec('cat /sys/power/states')
       end
     end
-{% endhighlight %}
+~~~
 
 This fact uses sysfs on linux to get a list of the power states that are
 available on the given system. Since this is only available on Linux systems,
@@ -193,7 +193,7 @@ a suitable value for the fact.
 By default, the weight of a fact is the number of confines for that resolution, so
 that more specific resolutions will take priority over less specific resolutions.
 
-{% highlight ruby %}
+~~~ ruby
     # Check to see if this server has been marked as a postgres server
     Facter.add(:role) do
       has_weight 100
@@ -220,7 +220,7 @@ that more specific resolutions will take priority over less specific resolutions
         'desktop'
       end
     end
-{% endhighlight %}
+~~~
 
 ### Timing out
 
@@ -229,14 +229,14 @@ the `timeout` property. If a fact is defined with a timeout and the evaluation
 of the setcode block exceeds the timeout, Facter will halt the resolution of
 that fact and move on.
 
-{% highlight ruby %}
+~~~ ruby
     # Sleep
     Facter.add(:sleep, :timeout => 10) do
       setcode do
           sleep 999999
       end
     end
-{% endhighlight %}
+~~~
 
 ## Viewing Fact Values
 
@@ -284,13 +284,13 @@ external fact path above.
 
 An example external fact written in Python:
 
-{% highlight python %}
+~~~ python
     #!/usr/bin/env python
     data = {"key1" : "value1", "key2" : "value2" }
 
     for k in data:
             print "%s=%s" % (k,data[k])
-{% endhighlight %}
+~~~
 
 
 You must ensure that the script has its execute bit set:
@@ -357,22 +357,22 @@ Structured data files must use one of the supported data types and must have the
 
 * `.yaml`: YAML data, in the following format:
 
-{% highlight yaml %}
+~~~ yaml
         ---
         key1: val1
         key2: val2
         key3: val3
-{% endhighlight %}
+~~~
 
 * `.json`: JSON data, in the following format:
 
-{% highlight javascript %}
+~~~ javascript
         {
             "key1": "val1",
             "key2": "val2",
             "key3": "val3"
         }
-{% endhighlight %}
+~~~
 
 * `.txt`: Key value pairs, in the following format:
 

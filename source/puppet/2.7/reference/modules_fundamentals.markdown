@@ -39,7 +39,7 @@ Using Modules
 
 **Modules are how Puppet finds the classes and types it can use** --- it automatically loads any [class][classes] or [defined type][defined_types] stored in its modules. Within a manifest or from an [external node classifier (ENC)][enc], any of these classes or types can be declared by name:
 
-{% highlight ruby %}
+~~~ ruby
     # /etc/puppetlabs/puppet/site.pp
 
     node default {
@@ -55,7 +55,7 @@ Using Modules
         options => 'Indexes MultiViews',
       }
     }
-{% endhighlight %}
+~~~
 
 Likewise, Puppet can automatically load plugins (like custom native resource types or custom facts) from modules; see ["Using Plugins"][plugins] for more details.
 

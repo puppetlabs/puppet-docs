@@ -15,12 +15,12 @@ Did you do the `puppet resource` exercises from the [last chapter](./ral.html)? 
 
 In a text editor --- `vim`, `emacs`, or `nano` --- create a file with the following contents and filename:
 
-{% highlight ruby %}
+~~~ ruby
     # /root/examples/user-absent.pp
     user {'katie':
       ensure => absent,
     }
-{% endhighlight %}
+~~~
 
 Save and close the editor, then run:
 
@@ -61,7 +61,7 @@ Resource Declarations
 
 Let's start by looking at a single resource:
 
-{% highlight ruby %}
+~~~ ruby
     # /root/examples/file-1.pp
 
     file {'testfile':
@@ -70,7 +70,7 @@ Let's start by looking at a single resource:
       mode    => 0640,
       content => "I'm a test file.",
     }
-{% endhighlight %}
+~~~
 
 [The complete syntax and behavior of resource declarations are documented in the Puppet reference manual][declaration], but in short, they consist of:
 
@@ -128,7 +128,7 @@ Now that you know resource declarations, let's play with the file type some more
 * See what happens when we leave off certain attributes
 * See some automatic permission adjustments on directories
 
-{% highlight ruby %}
+~~~ ruby
     # /root/examples/file-2.pp
 
     file {'/tmp/test1':
@@ -152,7 +152,7 @@ Now that you know resource declarations, let's play with the file type some more
 
     notify {"I'm notifying you.":}
     notify {"So am I!":}
-{% endhighlight %}
+~~~
 
 Apply:
 

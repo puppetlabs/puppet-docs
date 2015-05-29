@@ -11,12 +11,12 @@ An accurate, shared vocabulary goes a long way to ensure the success of a projec
 
 Attributes are used to specify the state desired for a given configuration resource. Each resource type has a slightly different set of possible attributes, and each attribute has its own set of possible values. For example, a package resource (like `vim`) would have an `ensure` attribute, whose value could be `present`, `latest`, `absent`, or a version number:
 
-{% highlight ruby %}
+~~~ ruby
     package {'vim':
       ensure   => present,
       provider => apt,
     }
-{% endhighlight %}
+~~~
 
 The value of an attribute is specified with the `=>` operator; attribute/value pairs are separated by commas.
 
@@ -257,7 +257,7 @@ A value which does not call a method on a provider. Eventually expressed as an a
 
 A variable in the [definition](#define) of a class or defined type, whose value is set by a resource [attribute](#attribute) when an instance of that type (or class) is declared.
 
-{% highlight ruby %}
+~~~ ruby
     define my_new_type ($my_parameter) {
       file {"$title":
         ensure  => file,
@@ -268,7 +268,7 @@ A variable in the [definition](#define) of a class or defined type, whose value 
     my_new_type {'/tmp/test_file':
       my_parameter => "This text will become the content of the file.",
     }
-{% endhighlight %}
+~~~
 
 The parameters you use when defining a type (or class) become the attributes available when the type (or class) is declared.
 
@@ -380,12 +380,12 @@ The unique identifier (in a given Puppet [catalog](#catalog)) of a resource or c
 * In a class, the title is simply the name of the class.
 * In a resource declaration, the title is the part after the first curly brace and before the colon; in the example below, the title is `/etc/passwd`:
 
-{% highlight ruby %}
+~~~ ruby
         file  { '/etc/passwd':
           owner => 'root',
           group => 'root',
         }
-{% endhighlight %}
+~~~
 
 * In native resource types, the [name or namevar](#namevar) will use the title as its default value if you don't explicitly specify a name.
 * In a defined resource type or a class, the title is available for use throughout the definition as the `$title` variable.

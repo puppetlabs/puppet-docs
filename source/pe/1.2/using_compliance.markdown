@@ -40,7 +40,7 @@ In the simplest case, where you want to audit an identical set of resources on e
 
 **To mark a resource for auditing, declare its `audit` metaparameter.** The value of `audit` can be one attribute, an array of attributes, or `all`. You can also have Puppet manage some attributes of an audited resource. 
 
-{% highlight ruby %}
+~~~ ruby
     file {'hosts':
       path  => '/etc/hosts',
       audit => 'content',
@@ -59,7 +59,7 @@ In the simplest case, where you want to audit an identical set of resources on e
       shell  => '/bin/zsh',
       audit  => 'password',
     }
-{% endhighlight %}
+~~~
 
 
 Reviewing Changes

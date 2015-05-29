@@ -17,7 +17,7 @@ Containment
 
 This effectively means that if any resource or class forms a [relationship][] with the container, it will form the same relationship with every resource inside the container.
 
-{% highlight ruby %}
+~~~ ruby
     class ntp {
       file { '/etc/ntp.conf':
         ...
@@ -36,7 +36,7 @@ This effectively means that if any resource or class forms a [relationship][] wi
     exec {'/usr/local/bin/update_custom_timestamps.sh':
       require => Class['ntp'],
     }
-{% endhighlight %}
+~~~
 
 In this example, `Exec['/usr/local/bin/update_custom_timestamps.sh']` would happen after _every_ resource in the ntp class, including the package, the file, and the service.
 
@@ -62,7 +62,7 @@ Use the `contain` function when a class should be contained. The `contain` funct
 
 In an example NTP module where service configuration is moved out into its own class:
 
-{% highlight ruby %}
+~~~ ruby
     class ntp {
       file { '/etc/ntp.conf':
         ...
@@ -79,13 +79,13 @@ In an example NTP module where service configuration is moved out into its own c
     exec { '/usr/local/bin/update_custom_timestamps.sh':
       require => Class['ntp'],
     }
-{% endhighlight %}
+~~~
 
 This will ensure that the exec will happen after all the resources in both class `ntp` and class `ntp::service`. (If `ntp::service` had been declared with `include` instead of `contain`, the exec would happen after the file and the package, but wouldn't _necessarily_ happen after the service.)
 
 To contain classes that are declared with the resource-like declaration syntax, use the contain function **after** declaring the class:
 
-{% highlight ruby %}
+~~~ ruby
     class ntp {
       # ...
       class { 'ntp::service':
@@ -94,7 +94,7 @@ To contain classes that are declared with the resource-like declaration syntax, 
       contain 'ntp::service'
       # ...
     }
-{% endhighlight %}
+~~~
 
 ### Anchor Pattern Containment (for Compatibility With Puppet ≤ 3.4.0)
 
@@ -109,7 +109,7 @@ To use the anchor pattern:
 
 In an example NTP module where service configuration is moved out into its own class:
 
-{% highlight ruby %}
+~~~ ruby
     class ntp {
       file { '/etc/ntp.conf':
         ...
@@ -130,7 +130,7 @@ In an example NTP module where service configuration is moved out into its own c
     exec { '/usr/local/bin/update_custom_timestamps.sh':
       require => Class['ntp'],
     }
-{% endhighlight %}
+~~~
 
 In this case, the `ntp::service` class will behave like it's contained by the `ntp` class. Resources like the timestamp `exec` can form relationships with the `ntp` class and be assured that no relevant resources will float out of order.
 

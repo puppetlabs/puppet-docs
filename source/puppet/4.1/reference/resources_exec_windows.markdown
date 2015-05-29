@@ -37,11 +37,11 @@ An optional PowerShell exec provider is available as a plugin and is is particul
 
 If you choose to execute PowerShell scripts using Puppet's default `exec` provider on Windows, you must specify the `remotesigned` execution policy as part of the `powershell.exe` invocation:
 
-{% highlight ruby %}
+~~~ ruby
     exec { 'test':
       command => 'C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -executionpolicy remotesigned -file C:\test.ps1',
     }
-{% endhighlight %}
+~~~
 
 
 ## Errata

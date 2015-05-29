@@ -7,7 +7,7 @@ title: Learning Puppet — Class Parameters
 Begin
 -----
 
-{% highlight ruby %}
+~~~ ruby
     class echo_class ($to_echo = "default value") {
       notify {"What are we echoing? ${to_echo}.":}
     }
@@ -15,7 +15,7 @@ Begin
     class {'echo_class':
       to_echo => 'Custom value',
     }
-{% endhighlight %}
+~~~
 
 There's something different about that variable.
 
@@ -34,19 +34,19 @@ Class Parameters
 
 When defining a class, you can give it a list of **parameters.** Parameters go in an optional set of parentheses, between the name and the first curly brace. Each parameter is a variable name, and can have an optional default value; each parameter is separated from the next with a comma.
 
-{% highlight ruby %}
+~~~ ruby
     class mysql ($user = 'mysql', $port = 3306) {
       ...
     }
-{% endhighlight %}
+~~~
 
 This is a doorway for passing information into the class:
 
-{% highlight ruby %}
+~~~ ruby
     class {'mysql':
       user => mysqlserver,
     }
-{% endhighlight %}
+~~~
 
 * If you declare the class with a [resource-like class declaration](./modules1.html#resource-like-class-declarations), the parameters are available as **resource attributes.**
 * If you declare the class with `include` (or leave out some parameters when using a resource-like declaration), Puppet will [automatically look up values][autolookup] for the parameters in your Hiera data.
@@ -117,37 +117,37 @@ Example: NTP (Again)
 
 So let's get back to our NTP module. The first thing we talked about wanting to configure was the set of servers, so that's a good place to start. First, add a parameter:
 
-{% highlight ruby %}
+~~~ ruby
     class ntp ($servers = undef) {
       ...
-{% endhighlight %}
+~~~
 
 Next, we'll change how we set that `$_servers` variable that the template uses:
 
-{% highlight ruby %}
+~~~ ruby
       if $servers == undef {
         $_servers = $default_servers
       }
       else {
         $_servers = $servers
       }
-{% endhighlight %}
+~~~
 
 If we specify an array of servers, use that; otherwise, use the defaults.
 
 And... that's all it takes. If you declare the class with no attributes...
 
-{% highlight ruby %}
+~~~ ruby
     include ntp
-{% endhighlight %}
+~~~
 
 ...it'll work the same way it used to. If you declare it with a `servers` attribute containing an array of servers (with or without appended `iburst` and `dynamic` statements)...
 
-{% highlight ruby %}
+~~~ ruby
     class {'ntp':
       servers => [ "ntp1.example.com dynamic", "ntp2.example.com dynamic", ],
     }
-{% endhighlight %}
+~~~
 
 ...it'll override the default servers in the `ntp.conf` file.
 
@@ -167,7 +167,7 @@ Module Documentation
 
 You have a fairly functional NTP module, at this point. About the only thing it's missing is some documentation:
 
-{% highlight ruby %}
+~~~ ruby
     # = Class: ntp
     #
     # This class installs/configures/manages NTP. It can optionally disable NTP
@@ -200,7 +200,7 @@ You have a fairly functional NTP module, at this point. About the only thing it'
     class ntp ($servers = undef, $enable = true, $ensure = running) {
       case $operatingsystem { ...
       ...
-{% endhighlight %}
+~~~
 
 [rdoc]: http://docs.seattlerb.org/rdoc/RDoc/Markup.html
 

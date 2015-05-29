@@ -57,7 +57,7 @@ For purposes of this walkthrough, we'll assume a situation that looks something 
 
 How did things look before we decided to use Hiera? Classes are assigned to nodes via the puppet site manifest (`/etc/puppet/manifests/sites.pp` for Puppet open source), so here's how our site manifest might have looked:
 
-{% highlight ruby %}
+~~~ ruby
 	node "kermit.example.com" {
 	  class { "ntp":
 		servers    => [ '0.us.pool.ntp.org iburst','1.us.pool.ntp.org iburst','2.us.pool.ntp.org iburst','3.us.pool.ntp.org iburst'],
@@ -83,7 +83,7 @@ How did things look before we decided to use Hiera? Classes are assigned to node
 		enable     => true,
 	  }
 	}
-{% endhighlight %}
+~~~
 
 ## Configuring Hiera and Setting Up the Hierarchy
 
@@ -237,7 +237,7 @@ Now that everything has tested out from the command line, it's time to get a lit
 
 If you'll remember back to our pre-Hiera configuration, we were declaring a number of parameters for the `ntp` class in our `site.pp` manifest, like this:
 
-{% highlight ruby %}
+~~~ ruby
 	node "kermit.example.com" {
 	  class { "ntp":
 		servers    => [ '0.us.pool.ntp.org iburst','1.us.pool.ntp.org iburst','2.us.pool.ntp.org iburst','3.us.pool.ntp.org iburst'],
@@ -246,17 +246,17 @@ If you'll remember back to our pre-Hiera configuration, we were declaring a numb
 		enable     => true,
 	  }
 	}
-{% endhighlight %}
+~~~
 
 In fact, we had three separate stanzas of that length. But now that we've moved all of that parameter data into Hiera, we can significantly pare down `site.pp`:
 
-{% highlight ruby %}
+~~~ ruby
 	node "kermit.example.com", "grover.example.com", "snuffie.example.com" {
       include ntp
       # or:
       # class { "ntp": }
 	}
-{% endhighlight %}
+~~~
 
 That's it.
 

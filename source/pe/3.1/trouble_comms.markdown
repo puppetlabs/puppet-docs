@@ -110,13 +110,13 @@ Agents attempt to back up files to the filebucket on the puppet master, but they
 
 This usually happens when puppet master is installed with a certname that isn't its hostname. To fix these errors, edit `/etc/puppetlabs/puppet/manifests/site.pp` **on the puppet master** so that the following resource's `server` attribute points to the correct hostname:
 
-{% highlight ruby %}
+~~~ ruby
     # Define filebucket 'main':
     filebucket { 'main':
       server => '<PUPPET MASTER'S DNS NAME>',
       path   => false,
     }
-{% endhighlight %}
+~~~
 
 Changing this on the puppet master will fix the error on all agent nodes.
 

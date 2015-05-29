@@ -44,12 +44,12 @@ Syntax
 
 An expression consists of two **operands** separated by an **operator;** the only operator that takes one operand is `!` (not).
 
-{% highlight ruby %}
+~~~ ruby
     5 < 9
     ($operatingsystem != 'Solaris')
     $kernel in ['linux', 'solaris']
     !str2bool($is_virtual)
-{% endhighlight %}
+~~~
 
 In the examples above, the operators are `<`, `!=`, `in`, and `!`.
 
@@ -68,10 +68,10 @@ The [data type][datatypes] of each operand is dictated by the operator. See the 
 
 When creating compound expressions by using other expressions as operands, you should use parentheses for clarity:
 
-{% highlight ruby %}
+~~~ ruby
     (90 < 7) and ('Solaris' == 'Solaris') # resolves to false
     (90 < 7) or ('solaris' in ['linux', 'solaris']) # resolves to true
-{% endhighlight %}
+~~~
 
 
 Order of Operations
@@ -79,10 +79,10 @@ Order of Operations
 
 Compound expressions are evaluated in a standard order of operations. However, parentheses will override the order of operations:
 
-{% highlight ruby %}
+~~~ ruby
     # This example will resolve to 30, rather than 23.
     notice( (7+8)*2 )
-{% endhighlight %}
+~~~
 
 For the sake of clarity, we recommend using parentheses in all but the simplest compound expressions.
 
@@ -168,13 +168,13 @@ This operator is **non-transitive** with regard to data types: it accepts a [str
 
 Examples:
 
-{% highlight ruby %}
+~~~ ruby
     'eat' in 'eaten' # resolves to TRUE
     'Eat' in 'eaten' # resolves to FALSE
     'eat' in ['eat', 'ate', 'eating'] # resolves to TRUE
     'eat' in { 'eat' => 'present tense', 'ate' => 'past tense'} # resolves to TRUE
     'eat' in { 'present' => 'eat', 'past' => 'ate' } # resolves to FALSE
-{% endhighlight %}
+~~~
 
 Boolean Operators
 -----
@@ -198,10 +198,10 @@ Resolves to `true` if either operand is true.
 
 **Takes one operand:**
 
-{% highlight ruby %}
+~~~ ruby
     $my_value = true
     notice ( !$my_value ) # Will resolve to false
-{% endhighlight %}
+~~~
 
 Resolves to `true` if the operand is false, and `false` if the operand is true.
 

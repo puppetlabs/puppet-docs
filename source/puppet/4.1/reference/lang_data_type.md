@@ -61,9 +61,9 @@ The general form of a data type is:
 
 For example:
 
-{% highlight ruby %}
+~~~ ruby
     Variant[Boolean, Enum['true', 'false', 'running', 'stopped']]
-{% endhighlight %}
+~~~
 
 This is an abstract data type (`Variant`) which takes any number of data types as parameters; one of the parameters we provided is _another_ abstract data type (`Enum`) that takes any number of strings as parameters.
 
@@ -83,7 +83,7 @@ Generally, your code expects each parameter to be a specific kind of data. You c
 
 For example:
 
-{% highlight ruby %}
+~~~ ruby
     class ntp (
       Boolean $service_manage = true,
       Boolean $autoupdate     = false,
@@ -92,34 +92,34 @@ For example:
     ) {
       # ...
     }
-{% endhighlight %}
+~~~
 
 If you tried to set `$autoupdate` to a string like `"true"`, Puppet would raise an error, since it expects a legit boolean value.
 
 Abstract data types can let you write more sophisticated and flexible restrictions. For example, this `$puppetdb_service_status` parameter would accept values of `true`, `false`, `"true"`, `"false"`, `"running"`, and `"stopped"`, and raise an error for any other value:
 
-{% highlight ruby %}
+~~~ ruby
     class puppetdb::server (
       Variant[Boolean, Enum['true', 'false', 'running', 'stopped']]
         $puppetdb_service_status = $puppetdb::params::puppetdb_service_status,
     ) inherits puppetdb::params {
       # ...
     }
-{% endhighlight %}
+~~~
 
 
 ### Cases
 
 [Case statements][] and [selector expressions][] both allow data types as their _cases._ Puppet will choose a data type case if the control expression resolves to a value of that data type. For example:
 
-{% highlight ruby %}
+~~~ ruby
     $enable_real = $enable ? {
       Boolean => $enable,
       String  => str2bool($enable),
       Numeric => num2bool($enable),
       default => fail('Illegal value for $enable parameter'),
     }
-{% endhighlight %}
+~~~
 
 ### Match Expressions
 

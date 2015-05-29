@@ -24,12 +24,12 @@ Syntax
 
 Puppet [class][classes] and [defined type][define] names may consist of any number of namespace segments separated by the `::` (double colon) namespace separator. (This separator is analogous to the `/` \[slash\] in a file path.)
 
-{% highlight ruby %}
+~~~ ruby
     class apache { ... }
     class apache::mod { ... }
     class apache::mod::passenger { ... }
     define apache::vhost { ... }
-{% endhighlight %}
+~~~
 
 ### Nested Definitions
 
@@ -37,13 +37,13 @@ If a class/defined type is defined inside another class/defined type definition,
 
 This causes its real name to be something other than the name with which it was defined. For example:
 
-{% highlight ruby %}
+~~~ ruby
     class first {
       class second {
         ...
       }
     }
-{% endhighlight %}
+~~~
 
 In the above code, the interior class's real name is `first::second`, but searching your code for that real name will turn up nothing. Note also that it causes class `first::second` to be defined in the wrong file; see [Handling Missing Files](#handling-missing-files) below.
 

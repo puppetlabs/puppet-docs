@@ -10,10 +10,10 @@ title: Learning Puppet — Variables, Conditionals, and Facts
 Begin
 -----
 
-{% highlight ruby %}
+~~~ ruby
     $my_variable = "A bunch of text"
     notify {$my_variable:}
-{% endhighlight %}
+~~~
 
 Yup, that's a variable, all right.
 
@@ -35,14 +35,14 @@ Variables! You've almost definitely used variables before in some other programm
 * If you reference a variable with its short name and it isn't present in the local scope, Puppet will also check the global top scope; this means you can almost always refer to global variables with just their short names. You can see more about this in the scope chapter of the Puppet reference manual: [scope in Puppet 2.7](/puppet/2.7/reference/lang_scope.html), [scope in Puppet 3](/puppet/latest/reference/lang_scope.html)
 * You can only assign the same variable **once** in a given scope. In this way, they're more like constants from other programming languages.
 
-{% highlight ruby %}
+~~~ ruby
     $longthing = "Imagine I have something really long in here. Like an SSH key, let's say."
 
     file {'authorized_keys':
       path    => '/root/.ssh/authorized_keys',
       content => $longthing,
     }
-{% endhighlight %}
+~~~
 
 Pretty easy.
 
@@ -63,7 +63,7 @@ Facts
 
 Puppet has a bunch of built-in, pre-assigned variables that you can use. Check it out:
 
-{% highlight ruby %}
+~~~ ruby
     # /root/examples/motd.pp
 
     file {'motd':
@@ -80,7 +80,7 @@ Puppet has a bunch of built-in, pre-assigned variables that you can use. Check i
       Password: learningpuppet
     ",
     }
-{% endhighlight %}
+~~~
 
     # puppet apply /root/examples/motd.pp
 
@@ -147,7 +147,7 @@ We'll start with your basic [`if` statement][lang_if]. Same as it ever was:
 
 An example `if` statement:
 
-{% highlight ruby %}
+~~~ ruby
     if str2bool("$is_virtual") {
       service {'ntpd':
         ensure => stopped,
@@ -163,7 +163,7 @@ An example `if` statement:
         require => Package['ntp'],
       }
     }
-{% endhighlight %}
+~~~
 
 
 [bool_convert]: /puppet/latest/reference/lang_datatypes.html#automatic-conversion-to-boolean
@@ -192,7 +192,7 @@ Another kind of conditional is the [case statement][lang_case]. (Or switch, or w
 
 [lang_case]: /puppet/latest/reference/lang_conditional.html#case-statements
 
-{% highlight ruby %}
+~~~ ruby
     case $operatingsystem {
       centos: { $apache = "httpd" }
       # Note that these matches are case-insensitive.
@@ -205,7 +205,7 @@ Another kind of conditional is the [case statement][lang_case]. (Or switch, or w
       name   => $apache,
       ensure => latest,
     }
-{% endhighlight %}
+~~~
 
 Instead of testing a condition up front, `case` matches a variable against a bunch of possible values. **`default` is a special value,** which does exactly what it sounds like.
 
@@ -219,17 +219,17 @@ Case matches can be simple strings (like above), [regular expressions][regex], o
 
 Here's the example from above, rewritten to use comma-separated lists of strings:
 
-{% highlight ruby %}
+~~~ ruby
     case $operatingsystem {
       centos, redhat: { $apache = "httpd" }
       debian, ubuntu: { $apache = "apache2" }
       default: { fail("Unrecognized operating system for webserver") }
     }
-{% endhighlight %}
+~~~
 
 And here's a regex example:
 
-{% highlight ruby %}
+~~~ ruby
     case $ipaddress_eth0 {
       /^127[\d.]+$/: {
         notify {'misconfig':
@@ -237,7 +237,7 @@ And here's a regex example:
         }
       }
     }
-{% endhighlight %}
+~~~
 
 String matching is case-insensitive, like [the `==` comparison operator][lang_eq]. Regular expressions are denoted with the slash-quoting used by Perl and Ruby; they're case-sensitive by default, but you can use the `(?i)` and `(?-i)` switches to turn case-insensitivity on and off inside the pattern. Regex matches also assign captured subpatterns to `$1`, `$2`, etc. inside the associated code block, with `$0` containing the whole matching string. See [the regular expressions section of the Puppet reference manual's data types page][regex] for more details.
 
@@ -249,14 +249,14 @@ Selectors might be less familiar; they're kind of like the common [ternary opera
 
 Instead of choosing between a set of code blocks, selectors choose between a group of possible values. You can't use them on their own; instead, they're usually used to assign a variable.
 
-{% highlight ruby %}
+~~~ ruby
     $apache = $operatingsystem ? {
       centos                => 'httpd',
       redhat                => 'httpd',
       /(?i)(ubuntu|debian)/ => 'apache2',
       default               => undef,
     }
-{% endhighlight %}
+~~~
 
 Careful of the syntax, there: it looks kind of like we're saying `$apache = $operatingsystem`, but we're not. The question mark flags `$operatingsystem` as the control variable of a selector, and the actual value that gets assigned is determined by which option `$operatingsystem` matches. Also note how the syntax differs from the case syntax: it uses hash rockets and line-end commas instead of colons and blocks, and you can't use lists of values in a match. (If you want to match against a list, you have to fake it with a regular expression.)
 

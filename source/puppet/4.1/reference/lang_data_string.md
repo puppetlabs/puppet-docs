@@ -38,11 +38,11 @@ Each of these have slightly different behavior around syntax, interpolation feat
 
 ## Bare Words
 
-{% highlight ruby %}
+~~~ ruby
     service { "ntp":
       ensure => running, # bare word string
     }
-{% endhighlight %}
+~~~
 
 Puppet usually treats bare words --- that is, runs of word-like characters without surrounding quotation marks --- as single-word strings. Bare word strings are most commonly used with resource attributes that accept a limited number of one-word values.
 
@@ -57,11 +57,11 @@ Bare word strings can't interpolate values and can't use escape sequences.
 
 ## Single-Quoted Strings
 
-{% highlight ruby %}
+~~~ ruby
     if $autoupdate {
       notice('autoupdate parameter has been deprecated and replaced with package_ensure.  Set this to latest for the same behavior as autoupdate => true.')
     }
-{% endhighlight %}
+~~~
 
 Multi-word strings can be surrounded by single quotes, `'like this'`. Line breaks within the string are interpreted as literal line breaks.
 
@@ -352,24 +352,24 @@ If the second number is omitted, it defaults to `1` (a single character).
 
 Examples:
 
-{% highlight ruby %}
+~~~ ruby
     $foo = 'abcdef'
     notice( $foo[0] )    # resolves to 'a'
     notice( $foo[0,2] )  # resolves to 'ab'
     notice( $foo[1,2] )  # resolves to 'bc'
     notice( $foo[1,-2] ) # resolves to 'bcde'
     notice( $foo[-3,2] ) # resolves to 'de'
-{% endhighlight %}
+~~~
 
 Text outside the actual range of the string is treated as an infinite amount of empty string.
 
-{% highlight ruby %}
+~~~ ruby
     $foo = 'abcdef'
     notice( $foo[10] )    # resolves to ''
     notice( $foo[3,10] )  # resolves to 'def'
     notice( $foo[-10,2] ) # resolves to ''
     notice( $foo[-10,6] ) # resolves to 'ab'
-{% endhighlight %}
+~~~
 
 ## The `String` Data Type
 

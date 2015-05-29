@@ -158,7 +158,7 @@ Prior to 3.7.3, there's no easy way for Puppet manifests to detect whether `sysn
 
 Finally, it's possible to automatically detect which directory to use in Ruby plugin code. Do something like [this example from the puppetlabs/powershell module](https://github.com/puppetlabs/puppetlabs-powershell/blob/master/lib/puppet/provider/exec/powershell.rb#L6-L13):
 
-{% highlight ruby %}
+~~~ ruby
     commands :powershell =>
       if File.exists?("#{ENV['SYSTEMROOT']}\\sysnative\\WindowsPowershell\\v1.0\\powershell.exe")
       "#{ENV['SYSTEMROOT']}\\sysnative\\WindowsPowershell\\v1.0\\powershell.exe"
@@ -167,7 +167,7 @@ Finally, it's possible to automatically detect which directory to use in Ruby pl
       else
       'powershell.exe'
       end
-{% endhighlight %}
+~~~
 
 
 ## Errata

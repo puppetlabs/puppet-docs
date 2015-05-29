@@ -50,7 +50,7 @@ Each top-level key in the hash **must be a Ruby symbol with a colon (`:`) prefix
 
 [example]: #example-config-file
 
-{% highlight yaml %}
+~~~ yaml
 ---
 :backends:
   - yaml
@@ -63,13 +63,13 @@ Each top-level key in the hash **must be a Ruby symbol with a colon (`:`) prefix
   - "%{::clientcert}"
   - "%{::custom_location}"
   - common
-{% endhighlight %}
+~~~
 
 ### Default Config Values
 
 If the config file exists but has no data, the default settings will be equivalent to the following:
 
-{% highlight yaml %}
+~~~ yaml
 ---
 :backends: yaml
 :yaml:
@@ -78,7 +78,7 @@ If the config file exists but has no data, the default settings will be equivale
 :logger: console
 :merge_behavior: native
 :deep_merge_options: {}
-{% endhighlight %}
+~~~
 
 Global Settings
 -----

@@ -85,12 +85,12 @@ The following YAML and JSON examples provide equivalent results:
 
 `$ hiera ntp_server -y facts.yaml`
 
-{% highlight yaml %}
+~~~ yaml
 # facts.yaml
 ---
 osfamily: Debian
 timezone: CST
-{% endhighlight %}
+~~~
 
 
 
@@ -98,13 +98,13 @@ timezone: CST
 
 `$ hiera ntp_server -j facts.json`
 
-{% highlight json %}
+~~~ json
 // facts.json
 {
   "osfamily" : "Debian",
   "timezone" : "CST"
 }
-{% endhighlight %}
+~~~
 
 
 

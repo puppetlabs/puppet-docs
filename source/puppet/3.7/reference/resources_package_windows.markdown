@@ -8,7 +8,7 @@ title: "Resource Tips and Examples: Package on Windows"
 
 Puppet's built-in [`package`][package] resource type can manage software packages on Windows.
 
-{% highlight ruby %}
+~~~ ruby
     package { 'mysql':
       ensure          => '5.5.16',
       source          => 'N:\packages\mysql-5.5.16-winx64.msi',
@@ -20,7 +20,7 @@ Puppet's built-in [`package`][package] resource type can manage software package
      source          => 'C:\code\puppetlabs\temp\windowsexample\Git-1.8.4-preview20130916.exe',
      install_options => ['/VERYSILENT']
     }
-{% endhighlight %}
+~~~
 
 The `package` type handles a lot of very different packaging systems on many operating systems, so not all features are relevant everywhere. Here's what you'll want to know before using it on Windows.
 
@@ -98,9 +98,9 @@ Any file path arguments within the `install_options` attribute (such as `INSTALL
 
 It's a good idea to use the hash notation for file path arguments since they may contain spaces, for example:
 
-{% highlight ruby %}
+~~~ ruby
 install_options => [ { 'INSTALLDIR' => "${packagedir}" } ]
-{% endhighlight %}
+~~~
 
 ## Hidden Packages Aren't Yet Supported
 

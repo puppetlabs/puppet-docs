@@ -38,7 +38,7 @@ Node definitions should go in [the main manifest (site.pp)][sitepp]. The main ma
 Syntax
 -----
 
-{% highlight ruby %}
+~~~ ruby
     # /etc/puppetlabs/puppet/manifests/site.pp
     node 'www1.example.com' {
       include common
@@ -49,7 +49,7 @@ Syntax
       include common
       include mysql
     }
-{% endhighlight %}
+~~~
 
 In the example above, only `www1.example.com` would receive the apache and squid classes, and only `db1.example.com` would receive the mysql class.
 
@@ -93,12 +93,12 @@ You may not create two node statements with the same name.
 
 You can use a comma-separated list of names to create a group of nodes with a single node statement:
 
-{% highlight ruby %}
+~~~ ruby
     node 'www1.example.com', 'www2.example.com', 'www3.example.com' {
       include common
       include apache, squid
     }
-{% endhighlight %}
+~~~
 
 This example creates three identical nodes: `www1.example.com`, `www2.example.com`, and `www3.example.com`.
 
@@ -110,20 +110,20 @@ The name `default` (without quotes) is a special value for node names. If no nod
 
 [Regular expressions (regexes)][regex] can be used as node names. This is another method for writing a single node statement that matches multiple nodes.
 
-{% highlight ruby %}
+~~~ ruby
     node /^www\d+$/ {
       include common
     }
-{% endhighlight %}
+~~~
 
 The above example would match `www1`, `www13`, and any other node whose name consisted of `www` and one or more
 digits.
 
-{% highlight ruby %}
+~~~ ruby
     node /^(foo|bar)\.example\.com$/ {
       include common
     }
-{% endhighlight %}
+~~~
 
 The above example would match `foo.example.com` and `bar.example.com`, but no other nodes.
 
@@ -182,7 +182,7 @@ Nodes can inherit from other nodes using the `inherits` keyword. Inheritance wor
 
 Example:
 
-{% highlight ruby %}
+~~~ ruby
     node 'common' {
       $ntpserver = 'time.example.com'
       include common
@@ -192,7 +192,7 @@ Example:
       include apache
       include squid
     }
-{% endhighlight %}
+~~~
 
 In the above example, `www1.example.com` would receive the `common, ntp, apache,` and `squid` classes, and would have an `$ntpserver` of `time.example.com`.
 
@@ -200,7 +200,7 @@ In the above example, `www1.example.com` would receive the `common, ntp, apache,
 >
 > You should almost certainly avoid using node inheritance. Many users attempt to do the following:
 >
-{% highlight ruby %}
+~~~ ruby
     node 'common' {
       $ntpserver = 'time.example.com'
       include common
@@ -210,7 +210,7 @@ In the above example, `www1.example.com` would receive the `common, ntp, apache,
       # Override default NTP server:
       $ntpserver = '0.pool.ntp.org'
     }
-{% endhighlight %}
+~~~
 >
 > This will have the opposite of the intended effect, because Puppet treats node definitions like classes. It does not mash the two together and then compile the mix; instead, it compiles the base class, **then** compiles the derived class, which gets a parent scope and special permission to modify resource attributes from the base class.
 >

@@ -29,7 +29,7 @@ Notice: Installing -- do not interrupt ...
 └─┬ puppetlabs-mssql (v1.0.0)
   ├── puppetlabs-acl (v1.0.3)
   └── puppetlabs-stdlib (v4.3.2)
-~~~  
+~~~
 
 By default, your Puppet Enterprise module will be installed either in /etc/puppetlabs/puppet/environments/production/modules for fresh installations of PE 3.7+, or /etc/puppetlabs/puppet/modules for upgraded installations.
 

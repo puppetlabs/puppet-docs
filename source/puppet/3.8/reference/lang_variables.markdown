@@ -28,9 +28,9 @@ Syntax
 
 ### Assignment
 
-{% highlight ruby %}
+~~~ ruby
     $content = "some content\n"
-{% endhighlight %}
+~~~
 
 Variable names are prefixed with a `$` (dollar sign). Values are assigned to them with the `=` (equal sign) assignment operator.
 
@@ -40,26 +40,26 @@ Variables can only be assigned using their [short name](#naming). That is, a giv
 
 ### Resolution
 
-{% highlight ruby %}
+~~~ ruby
     file {'/tmp/testing':
       ensure  => file,
       content => $content,
     }
 
     $address_array = [$address1, $address2, $address3]
-{% endhighlight %}
+~~~
 
 The name of a variable can be used in any place where a value of its data type would be accepted, including [expressions][], [functions][], and [resource attributes][resource_attribute]. Puppet will replace the name of the variable with its value.
 
 ### Interpolation
 
-{% highlight ruby %}
+~~~ ruby
     $rule = "Allow * from $ipaddress"
     file { "${homedir}/.vim":
       ensure => directory,
       ...
     }
-{% endhighlight %}
+~~~
 
 Puppet can resolve variables in [double-quoted strings][double_quote]; this is called "interpolation."
 
@@ -69,13 +69,13 @@ Inside a double-quoted string, you can optionally surround the name of the varia
 
 When creating a local variable with the same name as a variable in [top scope, node scope, or a parent scope][scope], you can optionally append to the received value with the `+=` (plus-equals) appending assignment operator.
 
-{% highlight ruby %}
+~~~ ruby
     $ssh_users = ['myself', 'someone']
 
     class test {
       $ssh_users += ['someone_else']
     }
-{% endhighlight %}
+~~~
 
 In the example above, the value of `$ssh_users` inside class `test` would be `['myself', 'someone', 'someone_else']`.
 
@@ -99,9 +99,9 @@ See the [section on scope][scope] for complete details.
 
 You can access out-of-scope variables from named scopes by using their [qualified names](#naming):
 
-{% highlight ruby %}
+~~~ ruby
     $vhostdir = $apache::params::vhostdir
-{% endhighlight %}
+~~~
 
 Note that the top scope's name is the empty string --- thus, the qualified name of a top scope variable would be, e.g., `$::osfamily`. See [scope][] for details.
 
@@ -109,7 +109,7 @@ Note that the top scope's name is the empty string --- thus, the qualified name 
 
 Unlike most other languages, Puppet only allows a given variable to be assigned **once** within a given [scope][]. You may not change the value of a variable, although you may assign a different value to the same variable name in a new scope:
 
-{% highlight ruby %}
+~~~ ruby
     # scope-example.pp
     # Run with puppet apply --certname www1.example.com scope-example.pp
     $myvar = "Top scope value"
@@ -126,7 +126,7 @@ Unlike most other languages, Puppet only allows a given variable to be assigned 
       $myvar = "Local scope value"
       notice( "from myclass: $myvar" )
     }
-{% endhighlight %}
+~~~
 
 In the example above, `$myvar` has several different values, but only one value will apply to any given scope.
 

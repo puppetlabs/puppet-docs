@@ -29,13 +29,13 @@ Custom Stages
 
 Additional stages are declared as normal resources. Each additional stage must have an [order relationship][ordering] with another stage, such as `Stage['main']`. As with normal resources, these relationships can be specified with metaparameters or with chaining arrows.
 
-{% highlight ruby %}
+~~~ ruby
     stage { 'first':
       before => Stage['main'],
     }
     stage { 'last': }
     Stage['main'] -> Stage['last']
-{% endhighlight %}
+~~~
 
 In the above example, all classes assigned to the `first` stage will be applied before the classes associated with the `main` stage and both stages will be applied before the `last` stage.
 
@@ -44,11 +44,11 @@ Assigning Classes to Stages
 
 Once stages have been declared, a [class][] may be assigned to a custom stage with the `stage` metaparameter.
 
-{% highlight ruby %}
+~~~ ruby
     class { 'apt-keys':
       stage => first,
     }
-{% endhighlight %}
+~~~
 
 The above example will ensure that the `apt-keys` class happens before all other classes, which can be useful if most of your package resources rely on those keys.
 

@@ -22,11 +22,11 @@ Resource Type and Provider APIs
 
 If a user specifies a single element array as the value of a resource attribute:
 
-{% highlight ruby %}
+~~~ ruby
     my_type { 'name':
       my_property => ['value'],
     }
-{% endhighlight %}
+~~~
 
 ...then Puppet will automagically unwrap the array, and the resource type will receive the first element of the array as the value. (In the example above, the type would see the value of `my_property` as `'value'` rather than as `['value']`.)
 

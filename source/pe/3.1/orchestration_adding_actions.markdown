@@ -121,12 +121,12 @@ Once the module is created, **put the plugin files into its `files/` directory.*
 
 For any class that will be installing plugins **on agent nodes,** you should put the following four lines near the top of the class definition:
 
-{% highlight ruby %}
+~~~ ruby
     Class['pe_mcollective::server::plugins'] -> Class[$title] ~> Service['pe-mcollective']
     include pe_mcollective
     $plugin_basedir = $pe_mcollective::server::plugins::plugin_basedir
     $mco_etc        = $pe_mcollective::params::mco_etc
-{% endhighlight %}
+~~~
 
 This will do the following:
 
@@ -142,17 +142,17 @@ This will do the following:
 
 First, set file defaults: all of these files should be owned by root and only writable by root (or the Administrators user on Windows). The `pe_mcollective` module has helpful variables for setting these:
 
-{% highlight ruby %}
+~~~ ruby
     File {
       owner => $pe_mcollective::params::root_owner,
       group => $pe_mcollective::params::root_group,
       mode  => $pe_mcollective::params::root_mode,
     }
-{% endhighlight %}
+~~~
 
 Next, put all relevant plugin files into place, using the `$plugin_basedir` variable we set above:
 
-{% highlight ruby %}
+~~~ ruby
     file {"${plugin_basedir}/agent/nrpe.ddl":
       ensure => file,
       source => 'puppet:///modules/mco_plugins/mcollective-nrpe-agent/agent/nrpe.ddl',
@@ -162,7 +162,7 @@ Next, put all relevant plugin files into place, using the `$plugin_basedir` vari
       ensure => file,
       source => 'puppet:///modules/mco_plugins/mcollective-nrpe-agent/agent/nrpe.rb',
     }
-{% endhighlight %}
+~~~
 
 ### Step 4: Configure the Plugin (Optional)
 
@@ -179,12 +179,12 @@ In server.cfg                             | In ${mco\_etc}/plugin.d/nrpe.conf
 
 You can use a normal file resource to create these config files with the appropriate values. For simple configs, you can set the content directly in the manifest; for complex ones, you can use a template.
 
-{% highlight ruby %}
+~~~ ruby
     file {"${mco_etc}/plugin.d/nrpe.cfg":
       ensure  => file,
       content => "conf_dir = /etc/nagios/nrpe\n",
     }
-{% endhighlight %}
+~~~
 
 #### Policy Files
 
@@ -201,7 +201,7 @@ These files should be named for the agent plugin they apply to, and should go in
 
 Example: This code would completely disable the package plugin's `update` option, to force users to do package upgrades through your centralized Puppet code:
 
-{% highlight ruby %}
+~~~ ruby
     file {"${mco_etc}/policies": ensure => directory,}
 
     file {"${mco_etc}/policies/package.policy":
@@ -210,7 +210,7 @@ Example: This code would completely disable the package plugin's `update` option
     deny	*	update	*	*
     ",
     }
-{% endhighlight %}
+~~~
 
 [actionpolicy]: https://github.com/puppetlabs/mcollective-actionpolicy-auth#readme
 
@@ -243,7 +243,7 @@ Example
 
 This is an example of a Puppet class that installs [the Puppet Labs nrpe plugin][nrpe]. The `files` directory of the module would simply contain a complete copy of [the nrpe plugin's Git repo][nrpe]. In this example, we are not creating separate agent and client classes.
 
-{% highlight ruby %}
+~~~ ruby
     # /etc/puppetlabs/puppet/modules/mco_plugins/manifests/nrpe.pp
     class mco_plugins::nrpe {
       Class['pe_mcollective::server::plugins'] -> Class[$title] ~> Service['pe-mcollective']
@@ -295,7 +295,7 @@ This is an example of a Puppet class that installs [the Puppet Labs nrpe plugin]
       }
 
     }
-{% endhighlight %}
+~~~
 
 * * * 
 

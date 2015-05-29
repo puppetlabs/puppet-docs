@@ -194,14 +194,14 @@ The `config.ru` file for rack has no special configuration when using an
 external CA.  Please follow the standard rack documentation for using Puppet
 with rack.  The following example will work with Puppet 3.2.
 
-    {% highlight ruby %}
+    ~~~ ruby
     $0 = "master"
     ARGV << "--rack"
     ARGV << "--confdir=/etc/puppet"
     ARGV << "--vardir=/var/lib/puppet"
     require 'puppet/util/command_line'
     run Puppet::Util::CommandLine.new.execute
-{% endhighlight %}
+~~~
 {% endcapture %}
 
 {{ master_config_ru }}

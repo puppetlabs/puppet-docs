@@ -164,7 +164,7 @@ The order in which authentication services are listed in the `cas_client_config.
 
 This example shows what you would do if you wanted to use AD and the built-in (local) auth services and disable Google and LDAP.
 
-{% highlight yaml %}
+~~~ yaml
 
 ## This configuration file contains information required by any web
 ## service that makes use of the CAS server for authentication.
@@ -201,7 +201,7 @@ authorization:
 #    default_role: read-only
 #    description: Google
 
-{% endhighlight %}
+~~~
 
 #### Configuring `rubycas-server/config.yml`
 
@@ -209,7 +209,7 @@ This file is used to configure RubyCAS to use external authentication services. 
 
 The authenticators are listed in the file in the following manner (note how this example disables the Google authenticator):
 
-{% highlight yaml %}
+~~~ yaml
 
 authenticator:
   - class: CASServer::Authenticators::SQLEncrypted
@@ -239,7 +239,7 @@ authenticator:
       auth_user: cn=Test I. Am,cn=users,dc=example,dc=dev
       auth_password: P4ssword
 
-{% endhighlight %}
+~~~
 
 > **Note:** The commented-out examples in the config file may or may not have a line break between after the hyphen; both are valid YAML.
 >

@@ -63,13 +63,13 @@ not how it does it.
 
 Types are created by calling the `newtype` method on the `Puppet::Type` class:
 
-{% highlight ruby %}
+~~~ ruby
     # lib/puppet/type/database.rb
     Puppet::Type.newtype(:database) do
       @doc = "Create a new database."
       # ... the code ...
     end
-{% endhighlight %}
+~~~
 
 * The name of the type is the only required argument to `newtype`. The name must be a [Ruby symbol][symbol], and the name of the file containing the type must match the type's name.
 * The `newtype` method also requires a [block of code][ruby_block], specified with either curly braces (`{ ... }`) or the `do ... end` syntax. This code block will implement the type, and contains all of the properties and parameters. The block will not be passed any arguments.
@@ -89,7 +89,7 @@ You can and should write a string describing the resource type and assign it to 
 
 The string should be in [Markdown][] format (avoiding dialect-specific features that aren't universally supported). When the Puppet tools extract the string, they will strip the greatest common amount of leading whitespace from the front of each line, excluding the first line. For example:
 
-{% highlight ruby %}
+~~~ ruby
     Puppet::Type.newtype(:database) do
       @doc = %q{Creates a new database. Depending
         on the provider, this may create relational
@@ -103,7 +103,7 @@ The string should be in [Markdown][] format (avoiding dialect-specific features 
             }
       }
     end
-{% endhighlight %}
+~~~
 
 In this example, any whitespace would be trimmed from the first line (in this case, it's zero spaces), then the greatest common amount would be trimmed from remaining lines. Three lines have four leading spaces, two lines have six, and two lines have eight, so four leading spaces would be trimmed from each line. This leaves the example code block indented by four spaces, and thus doesn't break the Markdown formatting.
 
@@ -137,12 +137,12 @@ special because it's used to create and destroy resources. You can
 set this property up on your resource type just by calling the
 ensurable method in your type definition:
 
-{% highlight ruby %}
+~~~ ruby
     Puppet::Type.newtype(:database) do
       ensurable
       ...
     end
-{% endhighlight %}
+~~~
 
 This property uses three methods on the provider: create, destroy,
 and exists?. The last method, somewhat obviously, is a boolean to
@@ -158,7 +158,7 @@ The rest of the properties are defined a lot like you define the
 types, with the newproperty method, which should be called on the
 type:
 
-{% highlight ruby %}
+~~~ ruby
     Puppet::Type.newtype(:database) do
       ensurable
       newproperty(:owner) do
@@ -166,7 +166,7 @@ type:
         ...
       end
     end
-{% endhighlight %}
+~~~
 
 Note the call to desc; this sets the documentation string for this
 property, and for Puppet types that get distributed with Puppet, it
@@ -180,12 +180,12 @@ and it will automatically handle accepting either strings or
 symbols. In most cases, you only define allowed values for ensure,
 but it works for other properties, too:
 
-{% highlight ruby %}
+~~~ ruby
     newproperty(:enable) do
       newvalue(:true)
       newvalue(:false)
     end
-{% endhighlight %}
+~~~
 
 You can attach code to the value definitions (this code would be
 called instead of the property= method), but it's normally
@@ -194,7 +194,7 @@ unnecessary.
 For most properties, though, it is sufficient to set up
 validation:
 
-{% highlight ruby %}
+~~~ ruby
     newproperty(:owner) do
       validate do |value|
         unless value =~ /^\w+/
@@ -202,7 +202,7 @@ validation:
         end
       end
     end
-{% endhighlight %}
+~~~
 
 Note that the order in which you define your properties can be
 important: Puppet keeps track of the definition order, and it
@@ -220,11 +220,11 @@ If, instead, the property should only be in sync if _all_
 values match the current value (e.g., a list of times in a cron
 job), you can declare this:
 
-{% highlight ruby %}
+~~~ ruby
     newproperty(:minute, :array_matching => :all) do # :array_matching defaults to :first
       ...
     end
-{% endhighlight %}
+~~~
 
 You can also customize how information about your property gets
 logged. You can create an `is_to_s` method to change how the
@@ -242,16 +242,16 @@ those values directly by calling should on your resource (although
 note that when `:array_matching` is set to `:first` you get the first
 value in the array, otherwise you get the whole array):
 
-{% highlight ruby %}
+~~~ ruby
     myval = should(:color)
-{% endhighlight %}
+~~~
 
 When you're not sure (or don't care) whether you're dealing with a
 property or parameter, it's best to use value:
 
-{% highlight ruby %}
+~~~ ruby
     myvalue = value(:color)
-{% endhighlight %}
+~~~
 
 ### Parameters
 
@@ -261,11 +261,11 @@ methods being called on providers.
 
 To define a new parameter, call the `newparam` method. This method takes the name of the parameter (as a symbol) as its argument, as well as a block of code. You can and should provide documentation for each parameter by calling the `desc` method inside its block. Leading whitespace is trimmed from multiline strings [as described above][inpage_whitespace].
 
-{% highlight ruby %}
+~~~ ruby
     newparam(:name) do
       desc "The name of the database."
     end
-{% endhighlight %}
+~~~
 
 #### Namevar
 
@@ -277,28 +277,28 @@ There are three ways to designate a namevar. Every type must have **exactly one*
 
 **Option 1:** Create a parameter whose name is `:name`. Since most types just use `:name` as the namevar, it gets special treatment and will automatically become the namevar.
 
-{% highlight ruby %}
+~~~ ruby
     newparam(:name) do
       desc "The name of the database."
     end
-{% endhighlight %}
+~~~
 
 **Option 2:** Provide the `:namevar => true` option as an additional argument to the `newparam` call. This allows you to use a namevar with a different, more descriptive name (such as the `file` type's `path` parameter).
 
-{% highlight ruby %}
+~~~ ruby
     newparam(:path, :namevar => true) do
       ...
     end
-{% endhighlight %}
+~~~
 
 **Option 3:** Call the `isnamevar` method (which takes no arguments) inside the parameter's code block. This allows you to use a namevar with a different, more descriptive name. There is no practical difference between this and option 2.
 
-{% highlight ruby %}
+~~~ ruby
     newparam(:path) do
       isnamevar
       ...
     end
-{% endhighlight %}
+~~~
 
 > ##### Errors When Namevar is Absent
 >
@@ -321,24 +321,24 @@ There are three ways to designate a namevar. Every type must have **exactly one*
 If your parameter has a fixed list of valid values, you can declare
 them all at once:
 
-{% highlight ruby %}
+~~~ ruby
     newparam(:color) do
       newvalues(:red, :green, :blue, :purple)
     end
-{% endhighlight %}
+~~~
 
 You can specify regexes in addition to literal values; matches
 against regexes always happen after equality comparisons against
 literal values, and those matches are not converted to symbols. For
 instance, given the following definition:
 
-{% highlight ruby %}
+~~~ ruby
     newparam(:color) do
       desc "Your color, and stuff."
 
       newvalues(:blue, :red, /.+/)
     end
-{% endhighlight %}
+~~~
 
 If you provide blue as the value, then your parameter will get set
 to :blue, but if you provide green, then it will get set to
@@ -350,7 +350,7 @@ If your parameter does not have a defined list of values, or you
 need to convert the values in some way, you can use the validate
 and munge hooks:
 
-{% highlight ruby %}
+~~~ ruby
     newparam(:color) do
       desc "Your color, and stuff."
 
@@ -374,7 +374,7 @@ and munge hooks:
         end
       end
     end
-{% endhighlight %}
+~~~
 
 The default validate method looks for values defined using
 newvalues and if there are any values defined it accepts only those
@@ -394,11 +394,11 @@ value, only during assignment.
 
 Boolean parameters are common.  To avoid repetition, some utilities are available:
 
-{% highlight ruby %}
+~~~ ruby
     require 'puppet/parameter/boolean'
     # ...
     newparam(:force, :boolean => true, :parent => Puppet::Parameter::Boolean)
-{% endhighlight %}
+~~~
 
 There are two parts here.  The `:parent => Puppet::Parameter::Boolean` part
 configures the parameter to accept lots of names for true and false, to make
@@ -413,11 +413,11 @@ resources. You use the autorequire hook, which requires a resource
 type as an argument, and your code should return a list of resource
 names that your resource could be related to:
 
-{% highlight ruby %}
+~~~ ruby
     autorequire(:file) do
       ["/tmp", "/dev"]
     end
-{% endhighlight %}
+~~~
 
 Note that this won't throw an error if resources with those names
 do not exist; the purpose of this hook is to make sure that if any
@@ -437,7 +437,7 @@ If a `pre_run_check` method is present in the type, Puppet agent and Puppet appl
 
 As a trivial example, here's a pre-run check that will fail randomly, about one time out of six:
 
-{% highlight ruby %}
+~~~ ruby
     Puppet::Type.newtype(:thing) do
       newparam :name, :namevar => true
 
@@ -447,7 +447,7 @@ As a trivial example, here's a pre-run check that will fail randomly, about one 
         end
       end
     end
-{% endhighlight %}
+~~~
 
 
 Providers
@@ -471,7 +471,7 @@ properties and parameters in the type can declare that they require
 one or more specific features, and Puppet will throw an error if
 those parameters are used with providers missing those features:
 
-{% highlight ruby %}
+~~~ ruby
     newtype(:coloring) do
       feature :paint, "The ability to paint.", :methods => [:paint]
       feature :draw, "The ability to draw."
@@ -480,7 +480,7 @@ those parameters are used with providers missing those features:
         ...
       end
     end
-{% endhighlight %}
+~~~
 
 The first argument to the feature method is the name of the
 feature, the second argument is its description, and after that is
@@ -490,11 +490,11 @@ more methods that must be defined on the provider. If no methods
 are specified, then the provider needs to specifically declare that
 it has that feature:
 
-{% highlight ruby %}
+~~~ ruby
     Puppet::Type.type(:coloring).provide(:drawer) do
       has_feature :draw
     end
-{% endhighlight %}
+~~~
 
 The provider can specify multiple available features at once with
 has\_features.

@@ -61,11 +61,11 @@ When Puppet is configured to use stringified facts, you'll need to take extra ca
 
 If you're writing code that might be used in Puppet installations without complete data types enabled for facts, you can use the `str2bool` function (from [puppetlabs/stdlib](https://forge.puppetlabs.com/puppetlabs/stdlib)) to prevent fake true values:
 
-{% highlight ruby %}
+~~~ ruby
     if str2bool("$is_virtual") {
       ...
     }
-{% endhighlight %}
+~~~
 
 This pattern (quote the variable, then pass it to `str2bool`) will work with both stringified facts and full data type support.
 
@@ -83,11 +83,11 @@ All facts appear in Puppet as [top-scope variables][topscope]. They can be acces
 
 Example, with the osfamily fact:
 
-{% highlight ruby %}
+~~~ ruby
     if $osfamily == 'redhat' {
       # ...
     }
-{% endhighlight %}
+~~~
 
 **Benefits:** Works in all versions of Puppet.
 
@@ -120,11 +120,11 @@ If enabled, facts also appear in a `$facts` hash. They can be accessed in manife
 
 Example, with the osfamily fact:
 
-{% highlight ruby %}
+~~~ ruby
     if $facts['osfamily'] == 'redhat' {
       # ...
     }
-{% endhighlight %}
+~~~
 
 **Benefits:** More readable and maintainable code, by making facts visibly distinct from other variables. Eliminates possible confusion if you use a local variable whose name happens to match that of a common fact.
 
@@ -174,7 +174,7 @@ The available keys in the `$trusted` hash are:
 
 The `$trusted` hash generally looks something like this:
 
-{% highlight ruby %}
+~~~ ruby
     {
       'authenticated' => 'remote',
       'certname'      => 'web01.example.com',
@@ -184,15 +184,15 @@ The `$trusted` hash generally looks something like this:
                           '1.3.6.1.4.1.34380.1.2.1' => 'ssl-termination'
                        }
     }
-{% endhighlight %}
+~~~
 
 Here's a snippet of example Puppet code using a [certificate extension][extensions]:
 
-{% highlight ruby %}
+~~~ ruby
     if $trusted['extensions']['pp_image_name'] == 'storefront_production' {
       include private::storefront::private_keys
     }
-{% endhighlight %}
+~~~
 
 
 ### Puppet Agent Facts

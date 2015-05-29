@@ -138,7 +138,7 @@ You could declare classes and resources directly in site.pp, but that would make
 
 Node definitions work almost exactly like class definitions:
 
-{% highlight ruby %}
+~~~ ruby
     # Append this at the bottom of /etc/puppetlabs/puppet/manifests/site.pp
 
     node 'agent1.localdomain' {
@@ -156,7 +156,7 @@ Node definitions work almost exactly like class definitions:
       }
 
     }
-{% endhighlight %}
+~~~
 
 But unlike classes, nodes are declared automatically, based on the **name** of the node whose catalog is being compiled. **Only one** node definition will get added to a given catalog, and any other node definitions are effectively hidden.
 

@@ -27,12 +27,12 @@ Syntax
 
 Puppet [class][classes] and [defined type][define] names may consist of any number of namespace segments separated by the `::` (double colon) namespace separator. (This separator is analogous to the `/` \[slash\] in a file path.)
 
-{% highlight ruby %}
+~~~ ruby
     class apache { ... }
     class apache::mod { ... }
     class apache::mod::passenger { ... }
     define apache::vhost { ... }
-{% endhighlight %}
+~~~
 
 Optionally, class/define names can begin with the top namespace, which is the empty string. The following names are equivalent: 
 
@@ -67,7 +67,7 @@ Relative Name Lookup and Incorrect Name Resolution
 
 In Puppet 2.7, class name resolution is **partially broken** --- if the final namespace segment of a class in one module matches the name of another module, Puppet will sometimes load the wrong class.
 
-{% highlight ruby %}
+~~~ ruby
     class bar {
       notice("From class bar")
     }
@@ -78,7 +78,7 @@ In Puppet 2.7, class name resolution is **partially broken** --- if the final na
       include bar
     }
     include foo
-{% endhighlight %}
+~~~
 
 In the example above, the invocation of `include bar` will actually declare class `foo::bar`. This is because Puppet assumes class and defined type names are **relative** until proven otherwise. This is a major outstanding design issue ([issue #2053][2053]) which will not be resolved in Puppet 2.7, as the fix will break a large amount of existing code and require a long deprecation period. 
 
@@ -93,12 +93,12 @@ When asked to load a class or defined type `foo`, Puppet will:
 
 A concrete example:
 
-{% highlight ruby %}
+~~~ ruby
     class apache::nagios {
       include nagios
       ...
     }
-{% endhighlight %}
+~~~
 
 When asked to `include nagios`, Puppet will first attempt to load `apache::nagios::nagios`. Since that class does not exist, it will then attempt to load `apache::nagios`. This exists, and since [the include function][include] can safely declare a class multiple times, Puppet does not complain. It will not attempt to load class `nagios` from the `nagios` module. 
 
@@ -106,12 +106,12 @@ When asked to `include nagios`, Puppet will first attempt to load `apache::nagio
 
 If a class within another module is blocking the declaration of a top-namespace class, you can force the correct class to load by specifying its name from the top namespace ([as seen above](#syntax)). To specify a name from the top namespace, prepend `::` (double colon) to it:
 
-{% highlight ruby %}
+~~~ ruby
     class apache::nagios {
       include ::nagios # Start searching from the top namespace instead of the local namespace
       ...
     }
-{% endhighlight %}
+~~~
 
 In the example above, Puppet will load class `nagios` from the `nagios` module instead of declaring `apache::nagios` a second time.
 
@@ -123,7 +123,7 @@ In the example above, Puppet will load class `nagios` from the `nagios` module i
 > 
 > Before modules were introduced, users would create module-like blobs by putting a group of related classes and defined types into one manifest file, then using an [import][] statement in `site.pp` to make the group available to the parser. 
 > 
-{% highlight ruby %}
+~~~ ruby
     # /etc/puppet/manifests/apache.pp
     class apache { ... } # Manage Apache
     class ssl { ... } # Optional SSL support for Apache
@@ -134,7 +134,7 @@ In the example above, Puppet will load class `nagios` from the `nagios` module i
     import apache.pp
     include apache
     include ssl
-{% endhighlight %}
+~~~
 > 
 > #### Namespacing for Redistribution
 > 
@@ -146,14 +146,14 @@ In the example above, Puppet will load class `nagios` from the `nagios` module i
 > 
 > The implementation of namespaces relied on an assumption that turned out to be incorrect: that classes and defined types other than the module's main class would (and should) mostly be used inside the module, rather than applied directly to nodes. (That is, they would be _private,_ much like local variables.) Thus, namespacing was done by hiding definitions within other definitions:
 > 
-{% highlight ruby %}
+~~~ ruby
     class apache {
       ...
       class ssl { ... }
       class python { ... }
       define vhost ($port) { ... }
     }
-{% endhighlight %}
+~~~
 > 
 > The short names of the internal classes and defined types could only be used inside the main class. However, much like qualified variables, you could access them from anywhere by using their full (that is, namespaced) name. Full names were constructed by prepending the full name of the "outer" class, along with the `::` namespace separator. (That is, the full name of `ssl` would be `apache::ssl`, `python` would be `apache::python`, etc.)
 > 

@@ -170,11 +170,11 @@ Site.pp should be managed with version control and deployed to the puppet master
 
 Site.pp can use [node definitions][node_definitions] (also called node statements) to restrict blocks of Puppet code to a specific node or set of nodes.
 
-{% highlight ruby %}
+~~~ ruby
     node 'web01.example.com' {
       # ...arbitrary puppet code
     }
-{% endhighlight %}
+~~~
 
 * Puppet code **outside** any node definition will be applied to **every** node.
 * Puppet code **inside** a node definition will only be applied to nodes that **match** that definition.

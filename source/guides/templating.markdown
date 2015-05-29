@@ -25,9 +25,9 @@ Evaluating Templates
 
 Templates are evaluated via a simple function:
 
-{% highlight ruby %}
+~~~ ruby
     $value = template("my_module/mytemplate.erb")
-{% endhighlight %}
+~~~
 
 **Template files should be stored in the `templates` directory of a [Puppet module][modules],** which allows the `template` function to locate them with the simplified path format shown above. For example, the file referenced by `template("my_module/mytemplate.erb")` would be found on disk at `/etc/puppet/modules/my_module/templates/mytemplate.erb` (assuming the common [`modulepath`](/references/latest/configuration.html#modulepath) of `/etc/puppet/modules`).
 
@@ -72,7 +72,7 @@ Using Templates
 Here is an example for generating the Apache configuration for
 [Trac](http://trac.edgewall.org/) sites:
 
-{% highlight ruby %}
+~~~ ruby
     # /etc/puppet/modules/trac/manifests/tracsite.pp
     define trac::tracsite($cgidir, $tracdir) {
       file { "trac-${name}":
@@ -91,11 +91,11 @@ Here is an example for generating the Apache configuration for
         target => '/usr/share/trac/cgi-bin/trac.cgi'
       }
     }
-{% endhighlight %}
+~~~
 
 And then here's the template:
 
-{% highlight erb %}
+~~~ erb
     <%# /etc/puppet/modules/trac/templates/tracsite.erb %>
     <Location "/cgi-bin/ <%= @name %>.cgi">
         SetEnv TRAC_ENV "/export/svn/trac/<%= @name %>"
@@ -108,7 +108,7 @@ And then here's the template:
         AuthUserFile /etc/apache2/auth/svn
         Require valid-user
     </Location>
-{% endhighlight %}
+~~~
 
 This puts each Trac configuration into a separate
 file, and then we just tell Apache to load all of these files:
@@ -152,7 +152,7 @@ Puppet 3 introduces an easier syntax: you can use the square bracket operator (`
 
 This only works for local variables, so if you need to test variables from other scopes, you must copy them to local scope in the manifest before evaluating the template:
 
-{% highlight ruby %}
+~~~ ruby
     # manifest:
     $in_var = $outside_scope::outside_var
 
@@ -160,7 +160,7 @@ This only works for local variables, so if you need to test variables from other
     <% if @in_var %>
     outside_var has <%= @in_var %> value
     <% end %>
-{% endhighlight %}
+~~~
 
 **Long version:**
 

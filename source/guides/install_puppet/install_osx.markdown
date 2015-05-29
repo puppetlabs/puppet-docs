@@ -81,7 +81,7 @@ OS X services are managed by [launchd][] (which is controlled with the [`launchc
 
 Make the service by creating a plist file at `/Library/LaunchDaemons/com.puppetlabs.puppet.plist`. The contents of the file should be something like this:
 
-{% highlight xml %}
+~~~ xml
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
@@ -108,7 +108,7 @@ Make the service by creating a plist file at `/Library/LaunchDaemons/com.puppetl
         <false/>
 </dict>
 </plist>
-{% endhighlight %}
+~~~
 
 Once you've created the plist, make sure it can only be modified by the root user:
 
@@ -123,20 +123,20 @@ You can customize this configuration if you want to.
 
 By default, all of Puppet's messages will go to the main system log; you can view them in Console.app under "All Messages," and they will appear in `/var/log/system.log`. You can keep Puppet's messages out of the system log by changing `syslog` to `console` in the `ProgramArguments` array. You can also redirect Puppet's messages and errors to their own files by adding the following lines to the main `<dict>` object:
 
-{% highlight xml %}
+~~~ xml
 <key>StandardErrorPath</key>
 <string>/var/log/puppet/puppet.err</string>
 <key>StandardOutPath</key>
 <string>/var/log/puppet/puppet.out</string>
-{% endhighlight %}
+~~~
 
 (Note that the `/var/log/puppet` directory doesn't exist by default, so you'll have to manually create it before launchd can use these files.)
 
 You can also set any command line options you want for puppet agent by adding them to the `ProgramArguments` array. For example, you could increase the detail in your logs by adding:
 
-{% highlight xml %}
+~~~ xml
 <string>--debug</string>
-{% endhighlight %}
+~~~
 
 See [the puppet agent man page](/references/latest/man/agent.html) for details about available options; note that [any of Puppet's settings can also be set on the command line.](/puppet/latest/reference/config_about_settings.html)
 

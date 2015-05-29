@@ -16,7 +16,7 @@ Each Hiera backend must be a Ruby class under the `Hiera::Backend` namespace. Th
 
 You must choose a unique **short common name** for your backend, and derive a **class name** from that short name. The class name should be the backend name with a capitalized first letter and a `_backend` suffix. So a backend named `file` would have a class name of `File_backend`.
 
-{% highlight ruby %}
+~~~ ruby
     class Hiera
       module Backend
         class File_backend
@@ -24,7 +24,7 @@ You must choose a unique **short common name** for your backend, and derive a **
         end
       end
     end
-{% endhighlight %}
+~~~
 
 ### Filename/Path
 
@@ -38,7 +38,7 @@ A backend named `file` would be located in a lib directory at `hiera/backend/fil
 
 If you have any setup to do in your backend before you can look up data --- for example, loading a library necessary for interfacing with a database --- you should put it in an `initialize` method. From the crayfishx/hiera-mysql backend:
 
-{% highlight ruby %}
+~~~ ruby
     def initialize
       begin
         require 'mysql'
@@ -49,7 +49,7 @@ If you have any setup to do in your backend before you can look up data --- for 
 
       Hiera.debug("mysql_backend initialized")
     end
-{% endhighlight %}
+~~~
 
 ### `lookup` Method
 
@@ -64,7 +64,7 @@ When Hiera calls the lookup method, it will pass four pieces of data as argument
 * `order_override` is a requested first hierarchy level, which can optionally be inserted at the top of the hierarchy
 * `resolution_type` is the requested [lookup type](./lookup_types.html)
 
-{% highlight ruby %}
+~~~ ruby
     class Hiera
       module Backend
         class File_backend
@@ -76,7 +76,7 @@ When Hiera calls the lookup method, it will pass four pieces of data as argument
         end
       end
     end
-{% endhighlight %}
+~~~
 
 
 ### Available Helper Methods
@@ -112,7 +112,7 @@ The **arguments** passed to this method are a scope, an order override (optional
 When doing a priority lookup, you should generally use a `break` statement in your block once you get a valid answer, in order to exit early and not overwrite the highest priority answer with a lower priority answer.
 
 
-{% highlight ruby %}
+~~~ ruby
     class Hiera
       module Backend
         class File_backend
@@ -127,7 +127,7 @@ When doing a priority lookup, you should generally use a `break` statement in yo
         end
       end
     end
-{% endhighlight %}
+~~~
 
 
 #### `Backend.datafile(:<BACKEND NAME>, scope, source, "<EXTENSION>")`
@@ -143,7 +143,7 @@ It is optional, and is only useful when your backend is searching files on disk.
 
 The arguments you must provide are the **name of the backend** (as a symbol), the **scope** (usually just passed on from the lookup method's arguments), the **current hierarchy level** (usually passed to the current block by the `Backend.datasources` method), and the **file extension** to expect.
 
-{% highlight ruby %}
+~~~ ruby
     class Hiera
       module Backend
         class File_backend
@@ -162,7 +162,7 @@ The arguments you must provide are the **name of the backend** (as a symbol), th
         end
       end
     end
-{% endhighlight %}
+~~~
 
 
 #### `Backend.parse_answer(data, scope, [extra_data])`
@@ -171,7 +171,7 @@ The arguments you must provide are the **name of the backend** (as a symbol), th
 
 The `Backend.parse_answer` method returns its first argument, but with any [interpolation tokens](./variables.html) replaced by variables from the scope passed as its second argument. Use it if you want to support interpolation of dynamic values into data with your backend. (This is optional.)
 
-{% highlight ruby %}
+~~~ ruby
     class Hiera
       module Backend
         class File_backend
@@ -190,7 +190,7 @@ The `Backend.parse_answer` method returns its first argument, but with any [inte
         end
       end
     end
-{% endhighlight %}
+~~~
 
 You can also pass a hash of extra data as an optional third argument. This hash will be used like the scope to provide variables for interpolation, but _only_ if the scope fails to produce a match for that variable. Your backend can use this to provide fallback data from some other source.
 
@@ -202,7 +202,7 @@ The `Backend.merge_answer` method expects two hashes, and returns a merged hash 
 
 From the json backend:
 
-{% highlight ruby %}
+~~~ ruby
     new_answer = Backend.parse_answer(data[key], scope)
     case resolution_type
     when :array
@@ -217,7 +217,7 @@ From the json backend:
       answer = new_answer
       break
     end
-{% endhighlight %}
+~~~
 
 #### `Hiera.debug(msg)` and `Hiera.warn(msg)`
 
@@ -225,11 +225,11 @@ From the json backend:
 
 These two methods log messages at the debug and warn loglevels, respectively.
 
-{% highlight ruby %}
+~~~ ruby
     def initialize
       Hiera.debug("Hiera File backend starting")
     end
-{% endhighlight %}
+~~~
 
 Tips
 ----
@@ -269,7 +269,7 @@ This backend was written as an example by Reid Vandewiele. It only handles prior
 
 ### Terse Version
 
-{% highlight ruby %}
+~~~ ruby
 class Hiera
   module Backend
     class File_backend
@@ -298,11 +298,11 @@ class Hiera
     end
   end
 end
-{% endhighlight %}
+~~~
 
 ### Annotated Version
 
-{% highlight ruby %}
+~~~ ruby
 # This is an annotated walkthrough of a *very* simple custom backend for Hiera,
 # which uses a directory-based file lookup scheme.
 #
@@ -508,7 +508,7 @@ class Hiera
     end
   end
 end
-{% endhighlight %}
+~~~
 
 More Examples
 -----
