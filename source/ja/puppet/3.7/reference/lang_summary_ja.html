@@ -1,0 +1,143 @@
+---
+layout: default
+title: "Language: Basics"
+canonical: "/puppet/latest/reference/lang_summary.html"
+---
+
+[site_manifest]: ./dirs_manifest.html
+[autoload]: ./lang_namespaces.html#autoloader-behavior
+[config]: /guides/configuring.html
+[usecacheonfailure]: /references/4.1.latest/configuration.html#usecacheonfailure
+[fileserve]: ./modules_fundamentals.html#files
+[classes]: ./lang_classes.html
+[enc]: /guides/external_nodes.html
+[resources]: ./lang_resources.html
+[chaining]: ./lang_relationships.html#chaining-arrows
+[modules]: ./modules_fundamentals.html
+[package]: /references/4.1.latest/type.html#package
+[file]: /references/4.1.latest/type.html#file
+[service]: /references/4.1.latest/type.html#service
+[case]: ./lang_conditional.html#case-statements
+[fact]: ./lang_variables.html#facts-and-built-in-variables
+[variables]: ./lang_variables.html
+[relationships]: ./lang_relationships.html
+[ordering]: ./lang_relationships.html#ordering-and-notification
+[notification]: ./lang_relationships.html#ordering-and-notification
+[declared]: /references/glossary.html#declare
+[string_newline]: ./lang_data_string.html#line-breaks
+[node]: ./lang_node_definitions.html
+[ordering]: /references/4.1.latest/configuration.html#ordering
+[hiera]: /hiera/latest
+[compilation]: ./subsystem_catalog_compilation.html
+              
+<p>Puppetは独自の設定用言語により、システム管理者が諸機能を使えるよう設計されています。Puppet言語は一般的なプログラミング経験を要求せず、文法はNagiosの設定ファイルフォーマットをお手本にしています。</p>
+
+<blockquote>
+  <p>Puppet言語の機能がどのように変遷してきたかについては<a href="/guides/language_history.html">History of the Puppet Language</a>を参照してください。</p>
+</blockquote>
+
+<h2 id="resources-classes-and-nodes">リソース、クラス、ノード</h2>
+
+<p>Puppet言語の中心は<strong><a href="./lang_resources.html">リソース</a>の宣言</strong>です。Puppet言語においてそれ以外にあるのは、柔軟性とリソースの宣言に便利な方法を追加するものです。</p>
+<p>リソースをグループを<strong><a href="./lang_classes.html">クラス</a></strong>として組織化しできます。これらはシステムを設定するための、より大きなユニットです。リソースは単一のファイルやパッケージを宣言できますが、クラスはサービスやアプリケーションの設定で必要なもの全体を宣言します（複数の設定ファイル、サービス、メンテナンス作業を含みます）。小さなクラス群をより大きなクラスに統合し、“データベースサーバ”や“Webアプリケーションワーカ”のような、システムでの役割(system roles)全体をカスタマイズして宣言するようにもできます。</p>
+<p>異なる役割を提供する各ノードは、一般的に異なるクラスの集合を使います。ノードに適用するクラスを設定するタスクを<strong>ノードの分類</strong>と呼びます。Puppet言語では各ノードを<a href="./lang_node_definitions.html">ノード定義</a>を使って分類します。これらは<a href="/guides/external_nodes.html">ENC</a>もしくは<a href="/hiera/latest">Hiera</a>のような、あなたのマニフェストの外にあるノード固有の情報を用いて分類することもできます。</p>
+
+<h2 id="ordering">順序</h2>
+
+<p>Puppet言語のほとんどは<strong>宣言型です:</strong> 一連の作業ステップをリスト化するよりも、Puppetマニフェストでは“あるべき状態”を記述します。</p>
+<p>マニフェスト中のリソースの順番は自由です - システムでの適用順にリソースを記述する必要はありません。なぜならPuppetではそれぞれのリソースが互いにほとんど関連しないことを意味します。もしあるリソースが他のリソースに依存するのなら、<a href="./lang_relationships.html">それを明示的に記述しなければなりません。</a>（もし短いセクションでコードの記述順に適用したいのであれば、<a href="./lang_relationships.html#chaining-arrows">チェインニングアロー</a>を使えば実現できます）</p>
+<p>リソースは自由な順番にできるものの、Puppet言語におけるいくつかの部分は解釈順に依存します。もっとも注目すべきは変数で、その変数が参照されるより前に値がセットされていなければなりません。</p>
+
+<h3 id="configurable-ordering">順序の設定</h3>
+
+<p><a href="/references/3.7.latest/configuration.html#ordering">順序の設定</a>はリソースの関連性が記述されていなかった時、どのような順番でリソースを適用するか設定するものです。</p>
+<p>デフォルトでは関連性が無いリソースの適用順はランダムになります。<code>puppet.conf</code>に<code>ordering = manifest</code>を設定した場合、Puppetは関連性が無いリソースの実行順をマニフェストへの記述順にします。</p>
+<p>この設定は、例えば <code>before</code>や<code>require</code>のようなメタパラメータによって、リソースの適用順を<strong>マニフェストに記述順以外の方法で決定できない場合</strong>に限り有効になります。詳細は<a href="./lang_relationships.html">the language page on relationships</a>を参照してください。</p>
+
+<h2 id="files">ファイル</h2>
+
+<p>Puppet言語のファイルは<strong>マニフェスト</strong>と呼び、拡張子<code>.pp</code>を付与します。マニフェストファイルは以下のように作成します：</p>
+
+<ul>
+  <li>文字エンコードはUTF8であること</li>
+  <li>改行コードはUnix (LF)、Windows (CRLF) を使用すること（改行コードについては<a href="./lang_datatypes.html#line-breaks">文字リテラルの改行コード</a>でもまた影響があります）</li>
+</ul>
+
+<p>Puppetは常に“siteマニフェスト”“mainマニフェスト”と呼ばれる、ひとつのマニフェストをコンパイルするところから始めます（これを複数ピースに分割もできます）。詳細は<a href="./dirs_manifest.html">the reference page on the main manifest</a>を参照してください。</p>
+<p>mainマニフェストで<a href="/references/glossary.html#declare">宣言</a>される全ての<a href="./lang_classes.html">クラス</a>は、モジュールのマニフェストファイルから<a href="./lang_namespaces.html#autoloader-behavior">自動的にロード</a>します。さらに<a href="/guides/external_nodes.html">ENC(External Node Classifier)</a>により宣言されているクラスもまた自動的にロードします。詳細は<a href="./subsystem_catalog_compilation.html">the reference page on catalog compilation</a>を参照してください。</p>
+<p>最も簡単にPuppet開発を始めるには、少ないリソースで構成された単独のmainマニフェストファイルから始める事です。そこから段々成長して複雑になっていくでしょうから、そうしたらリソースをグルーピングしてモジュール化したり、ノードをもっと細かく分類したりしていきます。</p>
+
+<h3 id="line-endings-in-windows-text-files">Windowsにおけるテキストファイルの改行コード</h3>
+
+<p>Windowsの改行コードは*nix系のLFの代わりにCRLFを使っています。</p>
+
+<ul>
+  <li><code>content</code>属性でファイルの内容を指定した場合、Puppetはバイナリモードでファイルを書き込みます。改行コードCRLFを使ってファイルを作成したい場合は、コンテンツで改行位置へエスケープシーケンス<code>\r\n</code>を記述する事で指定できます。</li>
+  <li><code>source</code>属性でWindowsノードへファイルをダウンロードした場合、Puppetはバイナリモードでファイルを転送し、転送されたファイルの改行コードのままで書き込みます。</li>
+  <li>
+    <p><code>file</code>リソース型以外でシステムファイルを部分的に編集するリソース型（特にとりわけ<a href="/references/latest/type.html#host"><code>host</code>リソース型</a>は<code>%windir%\system32\drivers\etc\hosts</code>ファイルを管理します）は、ファイルをテキストモードで管理し、またWindowsと*nix系との間で改行コードを自動的に変換します。</p>
+    <blockquote>
+      <p>メモ: あなた自身のリソース型を記述する時は、<code>flat</code>ファイルを使うと振る舞いを確認できます。</p>
+    </blockquote>
+  </li>
+</ul>
+
+<h2 id="compilation-and-catalogs">コンパイルとカタログ</h2>
+
+<p>Puppetのマニフェストでは、一度に多くのノードの設定を記述できるよう条件分岐が使えます。ノードの設定前、Puppetはマニフェストをコンパイルして<strong>カタログ</strong>にします。カタログは単一のノードでのみ有効で、また曖昧なロジックを含んでいません。</p>
+<p>カタログはリソースや関連性を含む静的なドキュメントです。Puppetが動作するさまざまなステージにおいて、カタログはRubyのオブジェクトとしてメモリに記録され、JSON形式で送信され、YAML形式でディスクに保存されます。現在のバージョンのPuppetで利用しているカタログのフォーマットや仕様はドキュメント化されておりません。</p>
+<p>標準的なagent/master構成においては、各ノードがPuppet masterサーバに対しカタログを要求すると、Puppet masterサーバは各ノードが必要なものをコンパイルして提供します。puppet applyコマンドによってスタンドアローン構成でPuppetが動作する時は、カタログをノード自身でコンパイルして即座に適用します。</p>
+<p>agentノードは直近のカタログをキャッシュします。もしカタログをmasterに要求した際、master側でのコンパイルに失敗した場合は、キャッシュしているカタログを再利用します。このリカバリ動作は<a href="./config_file_main.html">puppet.conf</a>にある<a href="/references/latest/configuration.html#usecacheonfailure"><code>usecacheonfailure</code></a>設定で制御されます。マニフェストをアップデートしてテストする際は、この設定をoffにした方が時間を節約できます。</p>
+
+<p>詳細は<a href="./subsystem_catalog_compilation.html">the reference page on catalog compilation</a>を参照してください。</p>
+
+<h2 id="example">マニフェストの記述例</h2>
+
+<p>以下はNTPを管理する短いマニフェストです。このマニフェストの中では<a href="/references/latest/type.html#package">package</a>、<a href="/references/latest/type.html#file">file</a>、および<a href="/references/latest/type.html#service">service</a>リソースを使っています。また<a href="./lang_variables.html#facts-and-built-in-variables">fact</a>の結果により<a href="./lang_conditional.html#case-statements">case文</a>で条件分岐、<a href="./lang_variables.html">変数</a>、<a href="/references/3.7.latest/configuration.html#ordering">リソース適用の順序</a>、<a href="./lang_relationships.html#ordering-and-notification">通知ありの依存関係</a>、<a href="./modules_fundamentals.html#files">モジュールからファイルを読み込んで保存</a>と言った内容も含んでいます。</a></p>
+
+<div class="highlight"><pre><code class="ruby">    <span class="k">case</span> <span class="vg">$operatingsystem</span> <span class="p">{</span>
+      <span class="n">centos</span><span class="p">,</span> <span class="n">redhat</span><span class="p">:</span> <span class="p">{</span> <span class="vg">$service_name</span> <span class="o">=</span> <span class="s1">&#39;ntpd&#39;</span> <span class="p">}</span>
+      <span class="n">debian</span><span class="p">,</span> <span class="n">ubuntu</span><span class="p">:</span> <span class="p">{</span> <span class="vg">$service_name</span> <span class="o">=</span> <span class="s1">&#39;ntp&#39;</span> <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="n">package</span> <span class="p">{</span> <span class="s1">&#39;ntp&#39;</span><span class="p">:</span>
+      <span class="k">ensure</span> <span class="o">=&gt;</span> <span class="n">installed</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="n">service</span> <span class="p">{</span> <span class="s1">&#39;ntp&#39;</span><span class="p">:</span>
+      <span class="nb">name</span>      <span class="o">=&gt;</span> <span class="vg">$service_name</span><span class="p">,</span>
+      <span class="k">ensure</span>    <span class="o">=&gt;</span> <span class="n">running</span><span class="p">,</span>
+      <span class="n">enable</span>    <span class="o">=&gt;</span> <span class="kp">true</span><span class="p">,</span>
+      <span class="n">subscribe</span> <span class="o">=&gt;</span> <span class="no">File</span><span class="o">[</span><span class="s1">&#39;ntp.conf&#39;</span><span class="o">]</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="n">file</span> <span class="p">{</span> <span class="s1">&#39;ntp.conf&#39;</span><span class="p">:</span>
+      <span class="n">path</span>    <span class="o">=&gt;</span> <span class="s1">&#39;/etc/ntp.conf&#39;</span><span class="p">,</span>
+      <span class="k">ensure</span>  <span class="o">=&gt;</span> <span class="n">file</span><span class="p">,</span>
+      <span class="nb">require</span> <span class="o">=&gt;</span> <span class="no">Package</span><span class="o">[</span><span class="s1">&#39;ntp&#39;</span><span class="o">]</span><span class="p">,</span>
+      <span class="n">source</span>  <span class="o">=&gt;</span> <span class="s2">&quot;puppet:///modules/ntp/ntp.conf&quot;</span><span class="p">,</span>
+      <span class="c1"># This source file would be located on the puppet master at</span>
+      <span class="c1"># /etc/puppetlabs/puppet/modules/ntp/files/ntp.conf (in Puppet Enterprise)</span>
+      <span class="c1"># or</span>
+      <span class="c1"># /etc/puppet/modules/ntp/files/ntp.conf (in open source Puppet)</span>
+    <span class="p">}</span>
+</code></pre>
+</div>
+
+
+              <blockquote><p style="font-size: 1.3em; text-align: center;"><a href="#content">↑ Back to top</a></p></blockquote>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+
+  	<style type="text/css">h1, h2, .btn { visibility : visible; }</style>
+
+
+<!-- BEGIN: MARKETO TRACKING -->
+<!-- Per Alanna, this must be directly before the closing body tag. -->
+ <!-- END: MARKETO TRACKING -->
+	</body>
+</html>
