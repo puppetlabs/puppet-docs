@@ -81,7 +81,7 @@ OS X services are managed by [launchd][] (which is controlled with the [`launchc
 
 Make the service by creating a plist file at `/Library/LaunchDaemons/com.puppetlabs.puppet.plist`. The contents of the file should be something like this:
 
-~~~ xml
+~~~ markup
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
@@ -123,7 +123,7 @@ You can customize this configuration if you want to.
 
 By default, all of Puppet's messages will go to the main system log; you can view them in Console.app under "All Messages," and they will appear in `/var/log/system.log`. You can keep Puppet's messages out of the system log by changing `syslog` to `console` in the `ProgramArguments` array. You can also redirect Puppet's messages and errors to their own files by adding the following lines to the main `<dict>` object:
 
-~~~ xml
+~~~ markup
 <key>StandardErrorPath</key>
 <string>/var/log/puppet/puppet.err</string>
 <key>StandardOutPath</key>
@@ -134,7 +134,7 @@ By default, all of Puppet's messages will go to the main system log; you can vie
 
 You can also set any command line options you want for puppet agent by adding them to the `ProgramArguments` array. For example, you could increase the detail in your logs by adding:
 
-~~~ xml
+~~~ markup
 <string>--debug</string>
 ~~~
 
