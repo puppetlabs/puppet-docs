@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Creating Directory Environments"
+title: "Creating Environments"
 ---
 
 [config_print]: ./config_print.html
