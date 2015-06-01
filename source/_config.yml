@@ -157,7 +157,7 @@ externalsources:
   puppetserver_2.0:
     url: /puppetserver/2.0
     repo: git://github.com/puppetlabs/puppet-server.git
-    commit: origin/master
+    commit: 239776a
     subdirectory: documentation
   pe3.7:
     url: /pe/3.7
