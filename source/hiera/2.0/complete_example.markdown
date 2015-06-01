@@ -135,20 +135,12 @@ Now that we've got Hiera configured, we're ready to return to the ntp module and
 
 We need to start by figuring out the parameters required by the `ntp` class. So let's look at the [ntp module's `init.pp` manifest][ntp_init.pp], where we see five:
 
-servers
-: An array of time servers; `UNSET` by default. Conditional logic in `init.pp` provides a list of ntp servers maintained by the respective maintainers of our module's supported operating systems.
+- **servers** --- An array of time servers; `UNSET` by default. Conditional logic in `init.pp` provides a list of ntp servers maintained by the respective maintainers of our module's supported operating systems.
+- **restrict** --- An array of restrict directives; different values based on operating system by default
+- **autoupdate** --- Whether to update the ntp package automatically or not; `false` by default
+- **enable** --- Whether to start the ntp daemon on boot; `true` by default
+- **template** --- The name of the template to use to configure the ntp service. This is `undef` by default, and it's configured within the `init.pp` manifest with some conditional logic.
 
-restrict
-: An array of restrict directives; different values based on operating system by default
-
-autoupdate
-: Whether to update the ntp package automatically or not; `false` by default
-
-enable
-: Whether to start the ntp daemon on boot; `true` by default
-
-template
-: The name of the template to use to configure the ntp service. This is `undef` by default, and it's configured within the `init.pp` manifest with some conditional logic.
 
 > * [See the Puppet language reference for more about class parameters.][class_parameters]
 
@@ -329,11 +321,8 @@ Some organizations might choose to make sure all their Macs have Homebrew instal
 
 In fact, let's use that last case for this part of the walkthrough: Installing VMWare Tools on a virtual guest. There's a [puppet-vmwaretools][] module on the Puppet Forge that addresses just this need. It takes two parameters:
 
-version
-: The version of VMWare Tools we want to install
-
-working_dir
-: The directory into which we want to install VMWare
+- **version** --- The version of VMWare Tools we want to install
+- **working_dir** --- The directory into which we want to install VMWare
 
 Two ways we might want to use Hiera to help us organize our use of the class this module provides include making sure it's applied to all our VMWare virtual hosts, and configuring where it's installed depending on the guest operating system for a given virtual host.
 

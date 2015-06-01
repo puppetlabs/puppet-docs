@@ -136,14 +136,9 @@ Hiera Lookup Functions
 
 Puppet has three lookup functions for retrieving data from Hiera. All of these functions return a single value (though note that this value may be an arbitrarily complex nested data structure), and can be used anywhere that Puppet accepts values of that type. (Resource attributes, resource titles, the values of variables, etc.)
 
-`hiera`
-: Standard priority lookup. Gets the most specific value for a given key. This can retrieve values of any data type (strings, arrays, hashes) from Hiera.
-
-`hiera_array`
-: Uses an [array merge lookup][array_lookup]. Gets all of the string or array values in the hierarchy for a given key, then flattens them into a single array of unique values.
-
-`hiera_hash`
-: Uses a [hash merge lookup][hash_lookup]. Expects every value in the hierarchy for a given key to be a hash, and merges the top-level keys in each hash into a single hash. Note that this does not do a deep merge in the case of nested structures unless you've installed the `deep merge` gem and [configured deep merging][config_deep_merge].
+- **`hiera`** --- Standard priority lookup. Gets the most specific value for a given key. This can retrieve values of any data type (strings, arrays, hashes) from Hiera.
+- **`hiera_array`** --- Uses an [array merge lookup][array_lookup]. Gets all of the string or array values in the hierarchy for a given key, then flattens them into a single array of unique values.
+- **`hiera_hash`** --- Uses a [hash merge lookup][hash_lookup]. Expects every value in the hierarchy for a given key to be a hash, and merges the top-level keys in each hash into a single hash. Note that this does not do a deep merge in the case of nested structures unless you've installed the `deep merge` gem and [configured deep merging][config_deep_merge].
 
 Each of these functions takes three arguments. In order:
 
