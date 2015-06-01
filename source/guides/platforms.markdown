@@ -14,7 +14,7 @@ Please [contact Puppet Labs](http://puppetlabs.com/contact/) if you are interest
 
 **[See Installing Puppet](/guides/install_puppet/pre_install.html)** for more details about the packages available for your platform(s).
 
-Puppet 3.x can run on the following platforms:
+Puppet 3.x and 4.x can run on the following platforms:
 
 Linux
 -----
@@ -35,14 +35,14 @@ Linux
 
 - SUSE Linux Enterprise Server, version 11 and higher
 - Gentoo Linux
-- Mandriva Corporate Server 4 
+- Mandriva Corporate Server 4
 - ArchLinux
 
 BSD
 ---
 
-- FreeBSD 4.7 and later 
-- OpenBSD 4.1 and later 
+- FreeBSD 4.7 and later
+- OpenBSD 4.1 and later
 
 Other Unix
 ----------
@@ -61,38 +61,36 @@ Ruby Versions
 -----
 
 Puppet requires an [MRI](http://en.wikipedia.org/wiki/Ruby_MRI) [Ruby](http://www.ruby-lang.org/en/) interpreter.
-Certain versions of Ruby work better with Puppet than others, and some versions are not supported at all. Run `ruby --version` to check the version of Ruby on your system.
+Certain versions of Ruby are tested more thoroughly with Puppet than others, and some versions are not tested at all. Run `ruby --version` to check the version of Ruby on your system.
 
-> [Puppet Enterprise](/pe/) does not rely on the OS's Ruby version, as it maintains its own Ruby environment. You can install PE alongside any version of Ruby or on systems without Ruby installed.
-
+> Starting with Puppet 4, puppet-agent packages do not rely on the OS's Ruby version, as it bundles its own Ruby environment. You can install puppet-agent alongside any version of Ruby or on systems without Ruby installed.
+> Likewise [Puppet Enterprise](/pe/) does not rely on the OS's Ruby version, as it bundles its own Ruby environment. You can install PE alongside any version of Ruby or on systems without Ruby installed.
 > ![windows logo](/images/windows-logo-small.jpg) The [Windows installers](http://downloads.puppetlabs.com/windows) provided by Puppet Labs don't rely on the OS's Ruby version, and can be installed alongside any version of Ruby or on systems without Ruby installed.
 
-Ruby version | Puppet 3.x
--------------|-----------
-2.1.x        | Supported (3.5 and higher)
-2.0.x        | Supported (3.2 and higher)
-1.9.3\*      | Supported
-1.9.2        | No
-1.9.1        | No
-1.9.0        | No
-1.8.7        |  Supported
+Ruby version | Puppet 3.x              | Puppet 4.x
+-------------|-------------------------------------------
+2.2.x        | No                      | Lightly Tested
+2.1.x        | Tested (3.5 and higher) | Tested
+2.0.x        | Tested (3.2 and higher) | Lightly Tested
+1.9.3\*      | Tested                  | Lightly Tested
+1.8.7        | Tested                  | No
 
-> \* Ruby 1.9.3-p0 has bugs that cause a number of known issues with Puppet, and you should use a different release. To the best of our knowledge, these issues were fixed in the second public release of Ruby 1.9.3 (p125), and we are positive they are resolved in p392 (which shipped with Fedora 18). Unfortunately, Ubuntu Precise ships with p0 for some reason, and there's not a lot we can do about it. If you're using Precise with puppet 3.x, we recommend using Puppet Enterprise or installing a third-party Ruby package.
+> \* Ruby 1.9.3-p392 and up only. Unfortunately, Ubuntu Precise ships with 1.9.3-p0. If you're using Precise with Puppet 3.x, we recommend using Puppet Enterprise or installing a third-party Ruby package.
 
-Versions marked as "Supported" are recommended by Puppet Labs and are under extensive automated test coverage. Other versions are not recommended and we make no guarantees about their performance with Puppet.
+Versions marked as "Tested" are recommended by Puppet Labs and are under automated test coverage. As of Puppet 4, where puppet-agent packages bundle Ruby, versions marked "Lightly Tested" are under reduced automated test coverage (specifically, spec tests only) -- the Ruby version bundled with puppet-agent is the recommended version. Other versions are not recommended and we make no guarantees about their performance with Puppet.
 
 Prerequisites
 -----
 
 Puppet has a very small number of external dependencies:
 
-Dependency | Puppet 3.x
------------|-----------
-[Facter][] | Required
-[Hiera][]  | Required
-[rgen][]   | Optional
+Dependency | Puppet 3.x | Puppet 4.x
+-----------|------------|-----------
+[Facter][] | Required   | Required
+[Hiera][]  | Required   | Required
+[rgen][]   | Optional   | Required
 
-Rgen is only needed if you are using Puppet ≥ 3.2 [with `parser = future` enabled](/puppet/latest/reference/lang_future.html). The official Puppet Labs packages will install it as a dependency.
+Rgen is only needed if you are using Puppet 4 (or Puppet ≥ 3.2 [with `parser = future` enabled](/puppet/latest/reference/lang_future.html)). The official Puppet Labs packages will install it as a dependency.
 
 [Facter]: /facter
 [Hiera]: /hiera/latest/installing.html
