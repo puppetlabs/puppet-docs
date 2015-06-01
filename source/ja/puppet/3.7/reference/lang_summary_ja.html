@@ -65,7 +65,7 @@ toc: false
   <li>改行コードはUnix (LF)、Windows (CRLF) を使用すること（改行コードについては<a href="./lang_datatypes.html#line-breaks">文字リテラルの改行コード</a>でもまた影響があります）</li>
 </ul>
 
-<p>Puppetは常に“siteマニフェスト”“mainマニフェスト”と呼ばれる、ひとつのマニフェストをコンパイルするところから始めます（これを複数ピースに分割もできます）。詳細は<a href="./dirs_manifest.html">the reference page on the main manifest</a>を参照してください。</p>
+<p>Puppetは常に“siteマニフェスト”“mainマニフェスト”と呼ばれる、ひとつのマニフェストをコンパイルするところから始めます（これを複数ピースに分割もできます）。詳細は<a href="/puppet/3.7/reference/dirs_manifest.html">the reference page on the main manifest</a>を参照してください。</p>
 <p>mainマニフェストで<a href="/references/glossary.html#declare">宣言</a>される全ての<a href="./lang_classes.html">クラス</a>は、モジュールのマニフェストファイルから<a href="./lang_namespaces.html#autoloader-behavior">自動的にロード</a>します。さらに<a href="/guides/external_nodes.html">ENC(External Node Classifier)</a>により宣言されているクラスもまた自動的にロードします。詳細は<a href="./subsystem_catalog_compilation.html">the reference page on catalog compilation</a>を参照してください。</p>
 <p>最も簡単にPuppet開発を始めるには、少ないリソースで構成された単独のmainマニフェストファイルから始める事です。そこから段々成長して複雑になっていくでしょうから、そうしたらリソースをグルーピングしてモジュール化したり、ノードをもっと細かく分類したりしていきます。</p>
 
