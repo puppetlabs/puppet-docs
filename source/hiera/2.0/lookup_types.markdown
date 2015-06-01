@@ -46,7 +46,7 @@ $ hiera ssh_users.0
 root
 ~~~
 
-The subkey can be an integer if the value is an array, or a key name if it's a hash. You can also chain subkeys together for deeply nested structures. Qualified keys can be used in interpolated values just like a normal key, so `%{hiera('user.name')}` is valid.
+A subkey can be an integer if the value is an array, or a key name if the value is a hash. You can also chain subkeys together for deeply nested structures. Qualified keys can be used in interpolated values just like a normal key, so `%{hiera('user.name')}` is valid.
 
 If no matching key or subkey is found, Hiera returns a `nil` result. If a subkey is an unexpected type (e.g., you tried to use an integer as a hash key or a string as an array index), an exception is returned.
 
@@ -136,7 +136,7 @@ To configure deep merging, use the [`:merge_behavior` setting][mergebehavior], w
 
 There are three merge behaviors available.
 
-* The default `native` type is described above under "Native Merging," and matches what Hiera 1.0 and 1.1 do.
+* The default `native` type is described above under "Native Merging."
 * The `deep` type is largely useless and should be avoided.
 * The `deeper` type does a recursive merge, behaving as most users expect.
 

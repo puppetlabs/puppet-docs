@@ -24,13 +24,15 @@ The hierarchy should be an **array.** (Alternately, it may be a string; this wil
 
 Each element in the hierarchy must be a **string,** which may or may not include [interpolation tokens][variables]. Hiera will treat each element in the hierarchy as **the name of a [data source][data].**
 
-    # /etc/hiera.yaml
-    ---
-    :hierarchy:
-      - "%{::clientcert}"
-      - "%{::environment}"
-      - "virtual_%{::is_virtual}"
-      - common
+~~~ yaml
+# /etc/puppetlabs/code/hiera.yaml
+---
+:hierarchy:
+  - "nodes/%{trusted.certname}"
+  - "environment/%{server_facts.environment}"
+  - "virtual/%{::is_virtual}"
+  - common
+~~~
 
 > ### Best Practice: Use Fully-Qualified Puppet Variables
 >
@@ -67,14 +69,16 @@ You can [specify multiple backends as an array in `hiera.yaml`][config]. If you 
 
 Hiera will give priority to the first backend, and will **check every level of the hierarchy** in it before moving on to the second backend. This means that, with the following `hiera.yaml`:
 
-    ---
-    :backends:
-      - yaml
-      - json
-    :hierarchy:
-      - one
-      - two
-      - three
+~~~ yaml
+---
+:backends:
+  - yaml
+  - json
+:hierarchy:
+  - one
+  - two
+  - three
+~~~
 
 ...hiera would check the following data sources, in order:
 
@@ -90,22 +94,24 @@ Example
 
 Assume the following hierarchy:
 
-    # /etc/hiera.yaml
-    ---
-    :hierarchy:
-      - "%{::clientcert}"
-      - "%{::environment}"
-      - "virtual_%{::is_virtual}"
-      - common
+~~~ yaml
+# /etc/puppetlabs/code/hiera.yaml
+---
+:hierarchy:
+  - "nodes/%{trusted.certname}"
+  - "environment/%{server_facts.environment}"
+  - "virtual/%{::is_virtual}"
+  - common
+~~~
 
 ...and the following set of data sources:
 
-* `web01.example.com`
-* `web02.example.com`
-* `db01.example.com`
-* `production.yaml`
-* `development.yaml`
-* `virtual_true.yaml`
+* `nodes/web01.example.com`
+* `nodes/web02.example.com`
+* `nodes/db01.example.com`
+* `environment/production.yaml`
+* `environment/development.yaml`
+* `virtual/true.yaml`
 * `common.yaml`
 
 ...and only the `yaml` backend.
@@ -116,37 +122,41 @@ Given two different nodes with different Puppet variables, here are two ways the
 
 #### Variables
 
-- `::clientcert` = `web01.example.com`
-- `::environment` = `production`
-- `::is_virtual` = `true`
+- `$trusted[certname]` = `web01.example.com`
+- `$server_facts[environment]` = `production`
+- `$::is_virtual` = `true`
 
 #### Data Source Resolution
+
+_(Note: The text in this image may be out of date.)_
 
 ![A hierarchy interpreted for a node](./images/hierarchy1.png)
 
 #### Final Hierarchy
 
-- web01.example.com.yaml
-- production.yaml
-- virtual_true.yaml
+- nodes/web01.example.com.yaml
+- environment/production.yaml
+- virtual/true.yaml
 - common.yaml
 
 ### db01.example.com
 
 #### Variables
 
-- `::clientcert` = `db01.example.com`
-- `::environment` = `development`
-- `::is_virtual` = `false`
+- `$trusted[certname]` = `db01.example.com`
+- `$server_facts[environment]` = `development`
+- `$::is_virtual` = `false`
 
 #### Data Source Resolution
+
+_(Note: The text in this image may be out of date.)_
 
 ![The same hierarchy, interpreted for another node](./images/hierarchy2.png)
 
 #### Final Hierarchy
 
-- db01.example.com.yaml
-- development.yaml
+- nodes/db01.example.com.yaml
+- environment/development.yaml
 - common.yaml
 
-Note that, since `virtual_false.yaml` doesn't exist, it gets skipped entirely.
+Note that, since `virtual/false.yaml` doesn't exist, it gets skipped entirely.
