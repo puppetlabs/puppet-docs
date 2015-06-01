@@ -59,7 +59,7 @@ Puppet language files are called **manifests,** and are named with the `.pp` fil
 * Must use UTF8 encoding
 * May use Unix (LF) or Windows (CRLF) line breaks (note that the line break format also affects [literal line breaks in strings][string_newline])
 
-Puppet always begins compiling with a single manifest (which may be broken up into several pieces), called the "site manifest" or "main manifest." See [the reference page on the main manifest](/puppet/4.1/reference/dirs_manifest.html) for details about this special file/directory.
+Puppet always begins compiling with a single manifest (which may be broken up into several pieces), called the "site manifest" or "main manifest." See [the reference page on the main manifest][site_manifest] for details about this special file/directory.
 
 Any [classes][] [declared][] in the main manifest can be [autoloaded][autoload] from manifest files in [modules][]. Puppet will also autoload any classes declared by an optional [external node classifier][enc]. See [the reference page on catalog compilation][compilation] for details.
 
