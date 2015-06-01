@@ -35,14 +35,14 @@ Linux
 
 - SUSE Linux Enterprise Server, version 11 and higher
 - Gentoo Linux
-- Mandriva Corporate Server 4 
+- Mandriva Corporate Server 4
 - ArchLinux
 
 BSD
 ---
 
-- FreeBSD 4.7 and later 
-- OpenBSD 4.1 and later 
+- FreeBSD 4.7 and later
+- OpenBSD 4.1 and later
 
 Other Unix
 ----------
@@ -67,7 +67,7 @@ Certain versions of Ruby are tested more thoroughly with Puppet than others, and
 > Likewise [Puppet Enterprise](/pe/) does not rely on the OS's Ruby version, as it bundles its own Ruby environment. You can install PE alongside any version of Ruby or on systems without Ruby installed.
 > ![windows logo](/images/windows-logo-small.jpg) The [Windows installers](http://downloads.puppetlabs.com/windows) provided by Puppet Labs don't rely on the OS's Ruby version, and can be installed alongside any version of Ruby or on systems without Ruby installed.
 
-Ruby version | Puppet 3.x                 | Puppet 4.x
+Ruby version | Puppet 3.x              | Puppet 4.x
 -------------|-------------------------------------------
 2.2.x        | No                      | Lightly Tested
 2.1.x        | Tested (3.5 and higher) | Tested
@@ -75,20 +75,20 @@ Ruby version | Puppet 3.x                 | Puppet 4.x
 1.9.3\*      | Tested                  | Lightly Tested
 1.8.7        | Tested                  | No
 
-> \* Ruby 1.9.3-p392 and up only. Unfortunately, Ubuntu Precise ships with 1.9.3-p0. If you're using Precise with puppet 3.x, we recommend using Puppet Enterprise or installing a third-party Ruby package.
+> \* Ruby 1.9.3-p392 and up only. Unfortunately, Ubuntu Precise ships with 1.9.3-p0. If you're using Precise with Puppet 3.x, we recommend using Puppet Enterprise or installing a third-party Ruby package.
 
-Versions marked as "Tested" are recommended by Puppet Labs and are under automated test coverage. As of Puppet 4, where puppet-agent packages bundle ruby, versions marked "Lightly Tested" are under reduced automated test coverage (specifically, spec tests only) -- the ruby version bundled with puppet-agent is the recommended version. Other versions are not recommended and we make no guarantees about their performance with Puppet.
+Versions marked as "Tested" are recommended by Puppet Labs and are under automated test coverage. As of Puppet 4, where puppet-agent packages bundle Ruby, versions marked "Lightly Tested" are under reduced automated test coverage (specifically, spec tests only) -- the Ruby version bundled with puppet-agent is the recommended version. Other versions are not recommended and we make no guarantees about their performance with Puppet.
 
 Prerequisites
 -----
 
 Puppet has a very small number of external dependencies:
 
-Dependency | Puppet 3.x/4.x
------------|---------------
-[Facter][] | Required
-[Hiera][]  | Required
-[rgen][]   | Optional
+Dependency | Puppet 3.x | Puppet 4.x
+-----------|------------|-----------
+[Facter][] | Required   | Required
+[Hiera][]  | Required   | Required
+[rgen][]   | Optional   | Required
 
 Rgen is only needed if you are using Puppet 4 (or Puppet ≥ 3.2 [with `parser = future` enabled](/puppet/latest/reference/lang_future.html)). The official Puppet Labs packages will install it as a dependency.
 
