@@ -4,14 +4,18 @@ title: "Hiera 2: Using Hiera With Puppet"
 ---
 
 [hiera_config]: /references/latest/configuration.html#hieraconfig
-[confdir]: /references/latest/configuration.html#confdir
+[codedir]: /references/latest/configuration.html#codedir
 [datadir]: ./configuring.html#datadir
 [hiera_yaml]: ./configuring.html
 [variable_tokens]: ./variables.html
 [hierarchy]: ./hierarchy.html
 [data_sources]: data_sources.html
 [custom_facts]: /facter/latest/custom_facts.html
-[facts]: /puppet/latest/reference/lang_variables.html#facts-and-built-in-variables
+[facts]: /puppet/latest/reference/lang_facts_and_builtin_vars.html
+[classic_facts]: /puppet/latest/reference/lang_facts_and_builtin_vars.html#classic-factname-facts
+[facts_hash]: /puppet/latest/reference/lang_facts_and_builtin_vars.html#the-factsfactname-hash
+[trusted_facts]: /puppet/latest/reference/lang_facts_and_builtin_vars.html#trusted-facts
+[server_facts]: /puppet/latest/reference/lang_facts_and_builtin_vars.html#serverfacts-variable
 [absolute_scope]: /puppet/latest/reference/lang_variables.html#accessing-out-of-scope-variables
 [classes]: /puppet/latest/reference/lang_classes.html
 [parameters]: /puppet/latest/reference/lang_classes.html#class-parameters-and-variables
@@ -40,8 +44,8 @@ Enabling and Configuring Hiera for Puppet
 
 Puppet 4 and later ships with Hiera support already enabled. You don't need to do anything extra. Hiera data should live on the Puppet master(s).
 
-* Puppet expects to find the [hiera.yaml file][hiera_yaml] at [`$confdir`][confdir]`/hiera.yaml` (usually `/etc/puppet/hiera.yaml`); you can change this with the [`hiera_config`][hiera_config] setting.
-* Remember to set the [`:datadir`][datadir] setting for any backends you are using. It's generally best to use something within the `/etc/puppet/` directory, so that the data is in the first place your fellow admins expect it.
+* Puppet expects to find the [hiera.yaml file][hiera_yaml] at `/etc/puppetlabs/code/hiera.yaml` on \*nix systems and `C:\ProgramData\PuppetLabs\code` on Windows. You can change this with the [`hiera_config`][hiera_config] setting.
+* Remember to set the [`:datadir`][datadir] setting for any backends you are using. It's generally best to use something within the [`$codedir`][codedir], so that the data is in the first place your fellow admins expect it.
 
 Puppet Variables Passed to Hiera
 -----
@@ -66,12 +70,14 @@ Note that these variables are effectively local scope, as they are pseudo-variab
 
 There are two practices we always recommend when using Puppet's variables in Hiera:
 
-- **Do not use local Puppet variables** in Hiera's hierarchy or data sources. Only use [**facts**][facts] and **ENC-set top-scope variables.**
+- Except for the special pseudo-variables listed above, **do not use local Puppet variables** in Hiera's hierarchy or data sources. Only use [facts][] and top-scope variables set by a node classifier.
 
     Using local variables can make your hierarchy incredibly difficult to debug.
-- **Use [absolute top-scope notation][absolute_scope]** (i.e., `%{::clientcert}` instead of `%{clientcert}`) in Hiera's config files to avoid accidentally accessing a local variable instead of a top-scope one.
+- **Use [absolute top-scope notation][absolute_scope]** (i.e., `%{::clientcert}` instead of `%{clientcert}`) to avoid accidentally accessing a local variable instead of a top-scope one.
 
-    Note that this is different from Puppet manifests, where the `$::fact` idiom is [never necessary.](/puppet/latest/reference/lang_facts_and_builtin_vars.html#historical-note-about-) In Puppet, re-using the name of a fact variable in a local scope will only have local consequences. In Hiera, a re-used fact name can have more distant effects, so you still need to defend against it.
+    Although this idiom [isn't usually necessary in Puppet manifests,](/puppet/latest/reference/lang_facts_and_builtin_vars.html#historical-note-about-) the extra abstraction in Hiera means a re-used fact name can have more distant effects, so you still need to defend against it.
+
+    **Note:** This only applies to [classic `$fact_name` facts][classic_facts]. The [`$facts`][facts_hash], [`$trusted`][trusted_facts], and [`$server_facts`][server_facts] variables are protected, so it's safe to skip the `::` prefix.
 
 Automatic Parameter Lookup
 -----
@@ -147,13 +153,12 @@ Each of these functions takes three arguments. In order:
 3. Override (optional): the name of an arbitrary [hierarchy level][hierarchy] to insert at the top of the hierarchy. This lets you use a temporary modified hierarchy for a single lookup. (E.g., instead of a hierarchy of `$clientcert -> $osfamily -> common`, a lookup would use `specialvalues -> $clientcert -> $osfamily -> common`; you would need to be sure to have `specialvalues.yaml` or whatever in your Hiera data.)
 
 
-### Using the Lookup Functions From Templates
+### Don't Use the Lookup Functions from Templates
 
-In general, don't use the Hiera functions from templates. That pattern is too obscure, and hurts your code's maintainability --- if a co-author of your code needs to change the Hiera invocations and is searching `.pp` files for them, they might miss the extra invocations in the template. Even if only one person is maintaining this code, they're likely to make similar mistakes after a few months have passed.
+It's possible to use the Hiera functions from templates, but don't do it. That pattern is too obscure, and hurts your code's maintainability --- if a co-author of your code needs to change the Hiera invocations and is searching `.pp` files for them, they might miss the extra invocations in the template. Even if only one person is maintaining this code, they're likely to make similar mistakes after a few months have passed.
 
 It's much better to use the lookup functions in a Puppet manifest, assign their value to a local variable, and then reference the variable from the template. This keeps the function calls isolated in one layer of your code, where they'll be easy to find if you need to modify them later or document them for other users.
 
-Nevertheless, you can, of course, [use the `scope.function_` prefix][template_functions] to call any of the Hiera functions from a template.
 
 Interacting With Structured Data from Hiera
 -----
@@ -184,7 +189,7 @@ Example:
 
 {% highlight ruby %}
     # get only what you need from Hiera
-    $use_ip = hiera( 'proxies.1.ipaddress' ) 
+    $use_ip = hiera( 'proxies.1.ipaddress' )
 {% endhighlight %}
 
 
