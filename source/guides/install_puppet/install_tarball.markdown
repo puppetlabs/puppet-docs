@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Installing Puppet: From Gems"
+title: "Installing Puppet: From Source Tarballs"
 ---
 
 [peinstall]: /pe/latest/install_basic.html
