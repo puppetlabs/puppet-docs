@@ -65,8 +65,9 @@ defaultnav:
   /puppet/pre4.0: /_includes/puppet_pre_40.html
   /puppet/4.0/reference: /_includes/puppet_4.html
   /puppet/4.1/reference: /_includes/puppet4.1.html
-  /puppetserver/1.0: /_includes/puppet_3_7.html
+  /puppetserver/1.0: /_includes/server1.0.html
   /puppetserver/2.0: /_includes/server2.0.html
+  /puppetserver/1.1: /_includes/puppet_3_8.html
   /puppetserver/2.1: /_includes/puppet4.1.html
   /references: /_includes/references_general.html
 destination: ../output
@@ -160,6 +161,11 @@ externalsources:
     repo: git://github.com/puppetlabs/puppet-server.git
     commit: 239776a
     subdirectory: documentation
+  puppetserver_1.1:
+    url: /puppetserver/1.1
+    repo: git://github.com/puppetlabs/puppet-server.git
+    commit: origin/stable
+    subdirectory: documentation
   puppetserver_2.1:
     url: /puppetserver/2.1
     repo: git://github.com/puppetlabs/puppet-server.git
@@ -206,6 +212,7 @@ version_notes:
   /hiera/2.0: '<p class="noisy">Hiera 2.0 is not included in Puppet Enterprise 3.7 or 3.8. PE 3.7 and 3.8 users should see <a href="/hiera/1.0">the Hiera 1.0 docs.</a></p>'
   /puppetserver/1.0: 'This is the version of Puppet Server included in Puppet Enterprise 3.7 and 3.8.'
   /puppetserver/2.0: '<p class="noisy">This is an old version of Puppet Server. See <a href="/puppetserver/latest">the current Puppet Server docs.</a></p>'
+  /puppetserver/1.1: '<p class="noisy">This version of Puppet Server is not included in a Puppet Enterprise release. PE 3.7 and 3.8 users should see <a href="/puppetserver/1.0">the Puppet Server 1.0 docs.</a>'
   /puppetserver/2.1: '<p class="noisy">This is the latest version of Puppet Server. Puppet Enterprise 3.7 and 3.8 users should see <a href="/puppetserver/1.0">the Puppet Server 1.0 docs.</a>'
 
 ---
