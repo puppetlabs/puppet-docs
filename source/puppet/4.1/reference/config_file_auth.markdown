@@ -8,8 +8,8 @@ canonical: "/puppet/latest/reference/config_file_auth.html"
 [api]: ./http_api/http_api_index.html
 [default_file]: https://github.com/puppetlabs/puppet/blob/4.1.0/conf/auth.conf
 [environment]: ./environments.html
-[server_ca]: /puppetserver/2.0/configuration.html#caconf
-[puppet server]: /puppetserver/2.0/
+[server_ca]: /puppetserver/2.1/configuration.html#caconf
+[puppet server]: /puppetserver/2.1/
 
 Access to Puppet's HTTPS API is configured in `auth.conf`.
 

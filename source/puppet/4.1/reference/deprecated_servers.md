@@ -3,7 +3,7 @@ layout: default
 title: "Deprecated Web Servers"
 ---
 
-[puppet server]: /puppetserver/2.0/services_master_puppetserver.html
+[puppet server]: /puppetserver/2.1/services_master_puppetserver.html
 [rack]: ./services_master_rack.html
 [webrick]: ./services_master_webrick.html
 [server project]: https://tickets.puppetlabs.com/browse/server
