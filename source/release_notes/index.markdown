@@ -10,10 +10,12 @@ description: Links to Puppet and Puppet Enterprise release notes
 
 ### Current Releases
 
+- [Puppet 4.1](/puppet/4.1/reference/release_notes.html)
 - [Puppet 3.8](/puppet/3.8/reference/release_notes.html)
 
 ### Previous Releases
 
+- [Puppet 4.0](/puppet/4.0/reference/release_notes.html)
 - [Puppet 3.7][3.7]
 - [Puppet 3.6][3.6]
 - [Puppet 3.5][3.5]
