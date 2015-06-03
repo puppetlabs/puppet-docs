@@ -72,7 +72,7 @@ Example
 
 The following short manifest manages NTP. It uses [package][], [file][], and [service][] resources; a [case statement][case] based on a [fact][]; [variables][]; [ordering][] and [notification][] relationships; and [file contents being served from a module][fileserve].
 
-{% highlight ruby %}
+~~~ ruby
     case $operatingsystem {
       centos, redhat: { $service_name = 'ntpd' }
       debian, ubuntu: { $service_name = 'ntp' }
@@ -99,6 +99,6 @@ The following short manifest manages NTP. It uses [package][], [file][], and [se
       # or
       # /etc/puppet/modules/ntp/files/ntp.conf (in open source Puppet)
     }
-{% endhighlight %}
+~~~
 
 

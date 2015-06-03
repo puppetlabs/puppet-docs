@@ -118,7 +118,7 @@ In this case, rather than going back to the command line, Judy decides to use Li
 
 To make sure the new class works as expected, she logs out of her master and logs back in again to see if the new default MOTD message pops up. When she does that, she sees a new message containing a bunch of facter facts describing the machine and the classes puppet assigned to it on the last run. Cool.
 
-{% highlight ruby %}
+~~~ ruby
     -------------------------------------------------
     Welcome to the host named puppet
     CentOS 6.4 x86_64
@@ -155,7 +155,7 @@ To make sure the new class works as expected, she logs out of her master and log
     - pe_compliance::agent
     - motd
     -------------------------------------------------
-{% endhighlight%}
+~~~
 
 Now she wants to tweak the MOTD message to identify the marketing department's machines. In the terminal, she navigates to the default module directory (`etc/puppetlabs/puppet/modules`) and locates the "motd" directory. In that directory, she opens up the `templates/motd.erb` file in vi and adds a line below line three that reads "Welcome to the NCC Marketing Department". She kicks off another Puppet run and sure enough, when she logs in to the master again, the new line has been added to the MOTD.
 
@@ -177,7 +177,7 @@ Out of the box, the module doesn't quite match the Apache configuration Judy nee
 
 Next, Judy uses a text editor (vi, nano, whatever) to create a `web.pp` file in the new `ncc/manifests` directory. Then, along the lines of the example in the [module documentation](http://forge.puppetlabs.com/puppetlabs/apache), she writes the following Puppet code to create a new class called `ncc::web`:
 
-{% highlight ruby %}
+~~~ ruby
 
 class ncc::web {
   class { 'apache': }
@@ -191,7 +191,7 @@ class ncc::web {
   }
 }
 
-{% endhighlight%}
+~~~
 
 > *Note:* if this puppet code is opaque and unfamiliar to you, you may wish to spend some time learning about [writing manifests](/learning/manifests.html). To learn about a specific type, check out the [reference guide](/puppet/2.7/reference/).
 

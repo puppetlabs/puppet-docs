@@ -175,17 +175,17 @@ Since [accessing a missing key resolves to the value `undef`][hash_missing_key_a
 
 #### Examples
 
-{%highlight ruby %}
+~~~ ruby
     Struct[{mode => Enum[read, write, update],
             path => String[1]}]
-{% endhighlight %}
+~~~
 
 This data type would match hashes like `{mode => 'read', path => '/etc/fstab'}`. Both the `mode` and `path` keys are mandatory; `mode`'s value must be one of `'read', 'write',` or `'update'`, and `path` must be a string of at least one character.
 
-{%highlight ruby %}
+~~~ ruby
     Struct[{mode => Enum[read, write, update],
             path => Optional[String [1]]}]
-{% endhighlight %}
+~~~
 
 This data type would match the same values as the previous example, but the `path` key is optional. If present, `path` must match `String[1]`.
 

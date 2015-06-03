@@ -37,26 +37,26 @@ Class Structure
 
 Manifests in a module should contain [class definitions](/learning/modules1.html#classes). Class definitions in the Puppet language look like this:
 
-{% highlight ruby %}
+~~~ ruby
     class core_permissions {
       # Comment
       ... resource declarations ...
     }
-{% endhighlight %}
+~~~
 
 Resource Declarations
 -----
 
 Classes should contain [resource declarations](/learning/manifests.html#resource-declarations), which look like this:
 
-{% highlight ruby %}
+~~~ ruby
     file {'/etc/fstab':
       ensure => present,
       mode   => 0644,
       owner  => 'root',
       group  => 'root',
     }
-{% endhighlight %}
+~~~
 
 Resources have: 
 
@@ -83,7 +83,7 @@ To put it all together, here's how to make your first module:
 
 Paste the following code into the `init.pp` file:
 
-{% highlight ruby %}
+~~~ ruby
     class core_permissions {
       file {'/etc/fstab':
         ensure => present,
@@ -106,7 +106,7 @@ Paste the following code into the `init.pp` file:
         group  => 'root',
       }
     }
-{% endhighlight %}
+~~~
 
 This creates a class called `core_permissions`, which manages the ownership and mode of three important files. On any that node that has this class applied to it, an accidental or malicious change in these files' permissions would be **reverted to the specified state within the next half-hour,** and a report of the change would appear on that node's page in the console.
 

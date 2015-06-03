@@ -50,7 +50,7 @@ This exercise will modify the desktop shortcut being managed on your Windows nod
         * If Nano is not installed, run `puppet resource package nano ensure=installed` to install it from your OS's package repositories.
 * Note that the desktop shortcut is being managed as a `file` resource, and its content is being set with the `content` attribute:
 
-{% highlight ruby %}
+~~~ ruby
     class win_desktop_shortcut {
 
       if $osfamily == "windows" {
@@ -65,7 +65,7 @@ This exercise will modify the desktop shortcut being managed on your Windows nod
       }
 
     }
-{% endhighlight %}
+~~~
 
 For more on resource declarations, [see the manifests chapter of Learning Puppet](/learning/manifests.html) or the [resources page of the language reference](/puppet/2.7/reference/lang_resources.html). For more about how file paths with backslashes work in manifests for Windows, [see the page on writing manifests for Windows](/windows/writing.html).
 
@@ -73,7 +73,7 @@ For more on resource declarations, [see the manifests chapter of Learning Puppet
 * Delete the `content` line of the `file` resource.
 * Create two new `file` resources to manage other files on the desktop, mimicking the structure of the first resource:
 
-{% highlight ruby %}
+~~~ ruby
     file { "${win_common_desktop_directory}\\RunningPuppet.URL":
       ensure  => present,
       content => "[InternetShortcut]\nURL=http://docs.puppetlabs.com/windows/running.html",
@@ -83,7 +83,7 @@ For more on resource declarations, [see the manifests chapter of Learning Puppet
       ensure  => present,
       content => "This node is managed by Puppet. Some files and services cannot be edited locally; contact your sysadmin for details.",
     }
-{% endhighlight %}
+~~~
 
 Make sure that these resources are within the two "if" blocks, alongside the first resource.
 
@@ -101,7 +101,7 @@ Make sure that these resources are within the two "if" blocks, alongside the fir
 * Open and begin editing `motd/manifests/init.pp`, using the text editor of your choice.
 * Note that the content of the `motd` file is being filled with the `template` function, referring to a template within the module:
 
-{% highlight ruby %}
+~~~ ruby
     class motd {
       if $kernel == "Linux" {
         file { '/etc/motd':
@@ -111,7 +111,7 @@ Make sure that these resources are within the two "if" blocks, alongside the fir
         }
       }
     }
-{% endhighlight %}
+~~~
 
 * Close the manifest file, then open and begin editing `motd/templates/motd.erb`.
 * Add the line `Welcome to <%= hostname %>` at the beginning of the template file.
@@ -142,7 +142,7 @@ This exercise will create a class that manages the permissions of the `fstab`, `
 * Create and begin editing the `core_permissions/manifests/init.pp` file.
 * Edit the init.pp file so it contains the following, then save it and exit the editor:
 
-{% highlight ruby %}
+~~~ ruby
     class core_permissions {
       if $osfamily != 'windows' {
 
@@ -179,7 +179,7 @@ This exercise will create a class that manages the permissions of the `fstab`, `
 
       }
     }
-{% endhighlight %}
+~~~
 
 > You have created a new module containing a single class. Puppet now knows about this class, and it can be added to the console and assigned to nodes.
 >
@@ -265,7 +265,7 @@ Site modules hide complexity so you can more easily divide labor at your site. S
 
 * **On the puppet master,** create the `/etc/puppetlabs/puppet/modules/site/manifests/basic.pp` file, and edit it to contain the following:
 
-{% highlight ruby %}
+~~~ ruby
     class site::basic {
       if $osfamily == 'windows' {
         include win_desktop_shortcut
@@ -275,7 +275,7 @@ Site modules hide complexity so you can more easily divide labor at your site. S
         include core_permissions
       }
     }
-{% endhighlight %}
+~~~
 
 This class **declares** other classes with the `include` function. Note the "if" conditional that sets different classes for different OSes using the `$osfamily` fact. For more information about declaring classes, see [the modules and classes chapters of Learning Puppet](/learning/modules1.html).
 

@@ -20,7 +20,7 @@ To change this setting, edit the MySQL config file on your database server (usua
 
 The example diff below illustrates the change to a default MySQL config file:
 
-{% highlight diff %}
+~~~ diff
  [mysqld]
  datadir=/var/lib/mysql
  socket=/var/lib/mysql/mysql.sock
@@ -37,7 +37,7 @@ The example diff below illustrates the change to a default MySQL config file:
  [mysqld_safe]
  log-error=/var/log/mysqld.log
  pid-file=/var/run/mysqld/mysqld.pid
-{% endhighlight %}
+~~~
 
 After changing the setting, restart the MySQL server:
 

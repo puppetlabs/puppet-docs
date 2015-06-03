@@ -23,7 +23,7 @@ Puppet includes several built-in functions, and more are available in modules on
 Syntax
 -----
 
-{% highlight ruby %}
+~~~ ruby
     file {'/etc/ntp.conf':
       ensure  => file,
       content => template('ntp/ntp.conf'),
@@ -39,7 +39,7 @@ Syntax
     }
     # str2bool is part of the puppetlabs-stdlib module; install it with
     # sudo puppet module install puppetlabs-stdlib
-{% endhighlight %}
+~~~
 
 In the examples above, `template`, `include`, and `str2bool` are all functions. `template` and `str2bool` return values, and `include` modifies the catalog by causing a class to be applied.
 

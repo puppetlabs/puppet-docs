@@ -202,33 +202,33 @@ Note that this doesn't distinguish between an explicit value of `undef` and an a
 
 #### Examples
 
-{%highlight ruby %}
+~~~ ruby
     Struct[{mode => Enum[read, write, update],
             path => String[1]}]
-{% endhighlight %}
+~~~
 
 This data type would match hashes like `{mode => 'read', path => '/etc/fstab'}`. Both the `mode` and `path` keys are mandatory; `mode`'s value must be one of `'read', 'write',` or `'update'`, and `path` must be a string of at least one character.
 
-{%highlight ruby %}
+~~~ ruby
     Struct[{mode => Enum[read, write, update],
             path => Optional[String[1]]}]
-{% endhighlight %}
+~~~
 
 This data type would match the same values as the previous example, but the `path` key is optional. If present, `path` must match `String[1]`.
 
-{%highlight ruby %}
+~~~ ruby
     Struct[{mode            => Enum[read, write, update],
             path            => Optional[String[1]],
             Optional[owner] => String[1]}]
-{% endhighlight %}
+~~~
 
 In this data type, the `owner` key can be absent, but if it's present, it _must_ be a string; a value of `undef` isn't allowed.
 
-{%highlight ruby %}
+~~~ ruby
     Struct[{mode            => Enum[read, write, update],
             path            => Optional[String[1]],
             NotUndef[owner] => Optional[String[1]]}]
-{% endhighlight %}
+~~~
 
 In this data type, the owner key is mandatory, but it allows an explicit `undef` value.
 

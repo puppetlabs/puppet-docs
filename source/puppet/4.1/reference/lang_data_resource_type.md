@@ -39,7 +39,7 @@ A resource data type can be used in the following places:
 
 For example:
 
-{% highlight ruby %}
+~~~ ruby
     # A resource declaration using a resource data type:
     File { "/etc/ntp.conf":
       mode  => "0644",
@@ -60,7 +60,7 @@ For example:
       owner => "root",
       group => "root",
     }
-{% endhighlight %}
+~~~
 
 ### Resource Data Types With Title
 

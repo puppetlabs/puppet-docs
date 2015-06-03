@@ -54,7 +54,7 @@ Defining a class makes it available for later use. It doesn't yet add any resour
 
 ### Syntax
 
-{% highlight ruby %}
+~~~ ruby
     # A class with no parameters
     class base::linux {
       file { '/etc/passwd':
@@ -68,9 +68,9 @@ Defining a class makes it available for later use. It doesn't yet add any resour
         mode  => '0440',
       }
     }
-{% endhighlight %}
+~~~
 
-{% highlight ruby %}
+~~~ ruby
     # A class with parameters
     class apache ($version = 'latest') {
       package {'httpd':
@@ -88,7 +88,7 @@ Defining a class makes it available for later use. It doesn't yet add any resour
         subscribe => File['/etc/httpd.conf'],
       }
     }
-{% endhighlight %}
+~~~
 
 The general form of a class definition is:
 
@@ -171,7 +171,7 @@ Inheritance causes three things to happen:
 
 The attributes of any resource in the base class can be overridden with a [reference][resource_reference] to the resource you wish to override, followed by a set of curly braces containing attribute => value pairs:
 
-{% highlight ruby %}
+~~~ ruby
     class base::freebsd inherits base::unix {
       File['/etc/passwd'] {
         group => 'wheel'
@@ -180,19 +180,19 @@ The attributes of any resource in the base class can be overridden with a [refer
         group => 'wheel'
       }
     }
-{% endhighlight %}
+~~~
 
 This is identical to the syntax for [adding attributes to an existing resource][add_attribute], but in a derived class, it gains the ability to rewrite resources instead of just adding to them. Note that you can also use [multi-resource references][multi_ref] here.
 
 You can remove an attribute's previous value without setting a new one by overriding it with the special value [`undef`][undef]:
 
-{% highlight ruby %}
+~~~ ruby
     class base::freebsd inherits base::unix {
       File['/etc/passwd'] {
         group => undef,
       }
     }
-{% endhighlight %}
+~~~
 
 This causes the attribute to be unmanaged by Puppet.
 
@@ -202,7 +202,7 @@ This causes the attribute to be unmanaged by Puppet.
 
 Some resource attributes (such as the [relationship metaparameters][relationships]) can accept multiple values in an array. When overriding attributes in a derived class, you can add to the existing values instead of replacing them by using the `+>` ("plusignment") keyword instead of the standard `=>` hash rocket:
 
-{% highlight ruby %}
+~~~ ruby
     class apache {
       service {'apache':
         require => Package['httpd'],
@@ -217,7 +217,7 @@ Some resource attributes (such as the [relationship metaparameters][relationship
         # require => [ Package['httpd'], File['apache.pem'], File['httpd.conf'] ],
       }
     }
-{% endhighlight %}
+~~~
 
 
 
@@ -274,7 +274,7 @@ Resource-like class declarations require that you **only declare a given class o
 
 The `include` [function][] is the standard way to declare classes.
 
-{% highlight ruby %}
+~~~ ruby
     include base::linux
     include base::linux # no additional effect; the class is only declared once
 
@@ -282,7 +282,7 @@ The `include` [function][] is the standard way to declare classes.
 
     $my_classes = ['base::linux', 'apache']
     include $my_classes # including an array
-{% endhighlight %}
+~~~
 
 The `include` function uses [include-like behavior][include-like]. (Multiple declarations OK; relies on external data for parameters.) It can accept:
 
@@ -294,12 +294,12 @@ The `include` function uses [include-like behavior][include-like]. (Multiple dec
 
 The `require` function (not to be confused with the [`require` metaparameter][relationships]) declares one or more classes, then causes them to become a [dependency][relationships] of the surrounding container.
 
-{% highlight ruby %}
+~~~ ruby
     define apache::vhost ($port, $docroot, $servername, $vhost_name) {
       require apache
       ...
     }
-{% endhighlight %}
+~~~
 
 In the above example, Puppet will ensure that every resource in the `apache` class gets applied before every resource in **any** `apache::vhost` instance.
 
@@ -313,7 +313,7 @@ The `require` function uses [include-like behavior][include-like]. (Multiple dec
 
 The `contain` function is meant to be used _inside another class definition._ It declares one or more classes, then causes them to become [contained][contains] by the surrounding class. For details, [see the "Containing Classes" section of the Containment page.][contain_classes]
 
-{% highlight ruby %}
+~~~ ruby
     class ntp {
       file { '/etc/ntp.conf':
         ...
@@ -325,7 +325,7 @@ The `contain` function is meant to be used _inside another class definition._ It
         ...
       }
     }
-{% endhighlight %}
+~~~
 
 In the above example, any resource that forms a `before` or `require` relationship with class `ntp` will also be applied before or after class `ntp::service`, respectively.
 
@@ -357,10 +357,10 @@ The `hiera_include` function requests a list of class names from [Hiera][], then
     classes:
       - base::linux
 
-{% highlight ruby %}
+~~~ ruby
     # /etc/puppetlabs/puppet/manifests/site.pp
     hiera_include(classes)
-{% endhighlight %}
+~~~
 
 On the node `web01.example.com`, the example above would declare the classes `apache`, `memcached`, `wordpress`, and `base::linux`. On other nodes, it would only declare `base::linux`.
 
@@ -370,25 +370,25 @@ The `hiera_include` function uses [include-like behavior][include-like]. (Multip
 
 Resource-like declarations look like [normal resource declarations][resource_declaration], using the special `class` pseudo-resource type.
 
-{% highlight ruby %}
+~~~ ruby
     # Overriding a parameter:
     class {'apache':
       version => '2.2.21',
     }
     # Declaring a class with no parameters:
     class {'base::linux':}
-{% endhighlight %}
+~~~
 
 Resource-like declarations use [resource-like behavior][resource-like]. (Multiple declarations prohibited; parameters may be overridden at compile-time.) You can provide a value for any class parameter by specifying it as resource attribute; any parameters not specified will follow the normal external/default/fail lookup path.
 
 In addition to class-specific parameters, you can also specify a value for any [metaparameter][metaparameters]. In such cases, every resource contained in the class will also have that metaparameter:
 
-{% highlight ruby %}
+~~~ ruby
     # Cause the entire class to be noop:
     class {'apache':
       noop => true,
     }
-{% endhighlight %}
+~~~
 
 However, note that:
 
@@ -421,24 +421,24 @@ Classes can also be assigned to nodes by [external node classifiers][enc] and [L
 >
 > If you are willing to require Hiera and the `hiera-puppet` add-on package for pre-3.0 users, you can emulate Puppet 3's behavior by using a `hiera` function call in each parameter's default value:
 
-{% highlight ruby %}
+~~~ ruby
     class example ( $parameter_one = hiera('example::parameter_one'), $parameter_two = hiera('example::parameter_two') ) {
       ...
     }
-{% endhighlight %}
+~~~
 
 > Be sure to use 3.0-compatible lookup keys (`<class name>::<parameter>`). This will let 2.x users declare the class with `include`, and their Hiera data will continue to work without changes once they upgrade to Puppet 3.
 >
 > This approach can also be combined with the "params class" pattern, if default values are necessary:
 
-{% highlight ruby %}
+~~~ ruby
     class example (
       $parameter_one = hiera('example::parameter_one', $example::params::parameter_one),
       $parameter_two = hiera('example::parameter_two', $example::params::parameter_two)
     ) inherits example::params { # Inherit the params class to let the parameter list see its variables.
       ...
     }
-{% endhighlight %}
+~~~
 
 > The drawbacks of this approach are:
 >
@@ -458,7 +458,7 @@ Appendix: Smart Parameter Defaults
 
 This design pattern can make for significantly cleaner code while enabling some really sophisticated behavior around default values.
 
-{% highlight ruby %}
+~~~ ruby
     # /etc/puppet/modules/webserver/manifests/params.pp
 
     class webserver::params {
@@ -489,13 +489,13 @@ This design pattern can make for significantly cleaner code while enabling some 
        group  => 'root',
      }
     }
-{% endhighlight %}
+~~~
 
 To summarize what's happening here: When a class inherits from another class, it implicitly declares the base class. Since the base class's local scope already exists before the new class's parameters get declared, those parameters can be set based on information in the base class.
 
 This is functionally equivalent to doing the following:
 
-{% highlight ruby %}
+~~~ ruby
     # /etc/puppet/modules/webserver/manifests/init.pp
 
     class webserver( $packages = 'UNSET', $vhost_dir = 'UNSET' ) {
@@ -530,6 +530,6 @@ This is functionally equivalent to doing the following:
        group  => 'root',
      }
     }
-{% endhighlight %}
+~~~
 
 ... but it's a significant readability win, especially if the amount of logic or the number of parameters gets any higher than what's shown in the example.

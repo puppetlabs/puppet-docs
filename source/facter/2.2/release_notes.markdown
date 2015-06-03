@@ -38,7 +38,7 @@ This fact takes the form of a hash incorporating the following facts:
 
 Here's an example of what the new `os` fact looks like:
 
-{% highlight ruby %}
+~~~ ruby
 {  "osfamily"        => "Debian",
    "operatingsystem" => "Debian",
    "release" => {
@@ -53,7 +53,7 @@ Here's an example of what the new `os` fact looks like:
          "distrelease"     => "1.2.3",
          "majdistrelease"  => "1" }
 }
-{% endhighlight %}
+~~~
 
 Related issue:
 
@@ -70,9 +70,9 @@ The new `system_uptime` fact is a hash that incorporates the following flat fact
 
 Here's an example of what the new `system_uptime` fact looks like:
 
-{% highlight ruby %}
+~~~ ruby
 {"seconds"=>609351, "hours"=>169, "days"=>7, "uptime"=>"7 days"}
-{% endhighlight %}
+~~~
 
 Related issue:
 
@@ -90,13 +90,13 @@ The new `processors` (note the plural) fact is a hash that incorporates the foll
 
 Here's an example of what the new `processors` fact looks like:
 
-{% highlight ruby %}
+~~~ ruby
 { "models"=> [ "Processor0"=>"Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz", 
                "Processor1"=>"Intel(R) Xeon(R) CPU E5-2609 0 @ 2.40GHz"], 
  "count"=>2,
  "physicalcount"=>2,
  "speed"=>"2.40 GHz" }
- {% endhighlight %}
+ ~~~
 
 Related issue:
 

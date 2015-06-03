@@ -26,15 +26,15 @@ A well-formed Puppet module implements each of its classes or defined types in s
 
 A test for a class is just a manifest that declares the class. Often, this is going to be as simple as `include apache::ssl`. For parameterized classes, the test must declare the class with all of its required attributes set:
 
-{% highlight ruby %}
+~~~ ruby
     class {'ntp':
       servers => ['0.pool.ntp.org', '1.pool.ntp.org'],
     }
-{% endhighlight %}
+~~~
 
 Tests for defined resource types may increase test coverage by declaring multiple instances of the type, with varying values for their attributes:
 
-{% highlight ruby %}
+~~~ ruby
     dotfiles::user {'root': 
       overwrite => false,
     }
@@ -44,11 +44,11 @@ Tests for defined resource types may increase test coverage by declaring multipl
     dotfiles::user {'guest':
       overwrite => true,
     }
-{% endhighlight %}
+~~~
 
 If a class (or type) depends on any other classes, the test will have to declare those as well:
 
-{% highlight ruby %}
+~~~ ruby
     # git/manifests/gitosis.pp
     class git::gitosis {
       package {'gitosis':
@@ -60,7 +60,7 @@ If a class (or type) depends on any other classes, the test will have to declare
     # git/tests/gitosis.pp
     class{'git':}
     class{'git::gitosis':}
-{% endhighlight %}
+~~~
 
 Running Tests
 -------------

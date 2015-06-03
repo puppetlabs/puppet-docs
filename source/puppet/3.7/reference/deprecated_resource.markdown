@@ -19,7 +19,7 @@ The [`file` type's `mode` attribute](/references/3.7.latest/type.html#file-attri
 
 Numeric modes **must** be represented as quoted strings. Un-quoted numbers in the `mode` attribute will raise a compilation error.
 
-{% highlight ruby %}
+~~~ ruby
     file { '/etc/sudoers':
       ensure => file,
       # BAD:
@@ -27,7 +27,7 @@ Numeric modes **must** be represented as quoted strings. Un-quoted numbers in th
       # GOOD:
       mode   => '0400',
     }
-{% endhighlight %}
+~~~
 
 #### Detecting and Updating
 
@@ -106,11 +106,11 @@ The behavior of `recurse` and [`recurselimit`](/references/3.7.latest/type.html#
 
 If you purge unmanaged `cron` resources, like so:
 
-{% highlight ruby %}
+~~~ ruby
     resources { 'cron':
       purge => true,
     }
-{% endhighlight %}
+~~~
 
 ...then Puppet will **only** delete cron jobs from its own user's crontab file. (Usually, `puppet agent`'s user is `root`.)
 

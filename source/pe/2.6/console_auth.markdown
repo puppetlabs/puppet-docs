@@ -164,7 +164,7 @@ The order in which authentication services are listed in the `cas_client.config.
 
 This example shows what you would do if you wanted to use AD and the built-in (local) auth services and disable Google and LDAP.
 
-{% highlight yaml %}
+~~~ yaml
 
 ## This configuration file contains information required by any web
 ## service that makes use of the CAS server for authentication.
@@ -201,7 +201,7 @@ authorization:
 #    default_role: read-only
 #    description: Google
 
-{% endhighlight %}
+~~~
 
 #### Configuring `rubycas-server/config.yml`
 
@@ -209,7 +209,7 @@ This file is used to configure RubyCAS to use external authentication services. 
 
 The authenticators are listed in the file in the following manner (note how this example disables the Google authenticator):
 
-{% highlight yaml %}
+~~~ yaml
 
 authenticator:
   - class: CASServer::Authenticators::SQLEncrypted
@@ -239,7 +239,7 @@ authenticator:
       auth_user: cn=Test I. Am,cn=users,dc=example,dc=dev
       auth_password: P4ssword
 
-{% endhighlight %}
+~~~
 
 As the above example shows, it's generally best to specify just `dc=` attributes in the `base` key. The criteria for the Organizational Unit (`OU`) and Common Name (`CN`) should be specified in the `filter` key. The value of the `filter:` key is where authorized users should be located in the AD organizational structure. Generally speaking, the `filter:` key is where you would specify an OU or an AD Group. In order to authenticate, users will need to be in the specified OU or Group.
 

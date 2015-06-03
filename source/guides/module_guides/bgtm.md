@@ -66,7 +66,7 @@ The main class of any module must share the name of the module and be located in
 
 For instance, this is how the ntp module's main class is structured:
 
-{% highlight ruby %}
+~~~ ruby
     class ntp (
       $autoupdate        = $ntp::params::autoupdate,
       $config            = $ntp::params::config,
@@ -89,7 +89,7 @@ For instance, this is how the ntp module's main class is structured:
       $service_name      = $ntp::params::service_name,
       $udlc              = $ntp::params::udlc
     ) inherits ntp::params {
-{% endhighlight %}
+~~~
 
 #### `module::install`
 
@@ -97,7 +97,7 @@ The install class must be located in the `install.pp` file, and should contain a
 
 The install class must be named `module::install`, as ntp demonstrates:
 
-{% highlight ruby %}
+~~~ ruby
     class ntp::install inherits ntp {
 
       package { 'ntp':
@@ -106,7 +106,7 @@ The install class must be named `module::install`, as ntp demonstrates:
       }
 
     }
-{% endhighlight %}
+~~~
 
 #### `module::config`
 
@@ -114,7 +114,7 @@ The resources related to configuring the installed software should be placed in 
 
 See, for example, the ntp module:
 
-{% highlight ruby %}
+~~~ ruby
     class ntp::config inherits ntp {
 
       if $keys_enable {
@@ -137,7 +137,7 @@ See, for example, the ntp module:
       }
 
     }
-{% endhighlight %}
+~~~
 
 #### `module::service`
 
@@ -145,7 +145,7 @@ The remaining service resources, and anything else related to the running state 
 
 For example,
 
-{% highlight ruby %}
+~~~ ruby
     class ntp::service inherits ntp {
 
       if ! ($service_ensure in [ 'running', 'stopped' ]) {
@@ -163,7 +163,7 @@ For example,
       }
 
     }
-{% endhighlight %}
+~~~
 
 ### 2b: Parameters
 
@@ -175,7 +175,7 @@ Naming consistency is imperative for community comprehension and assists in trou
 
 For example, in the ntp module
 
-{% highlight ruby %}
+~~~ ruby
     class ntp::install inherits ntp {
 
       package { 'ntp':
@@ -184,7 +184,7 @@ For example, in the ntp module
       }
 
     }
-{% endhighlight %}
+~~~
 
 If you have a parameter that toggles an entire function on and off, the naming convention can be amended to `thing_manage`. This applies, in particular, to Boolean toogles such as managing the installation altogether. The `thing_manage` convention allows you to wrap all of the resources in an `if $package_manage {}` test.
 
@@ -204,12 +204,12 @@ For an example of a module that capitalizes on offering many parameters, please 
 
 Best practices recommend basing your requires, befores, and other ordering-related dependencies on classes rather than resources.  Class-based ordering allows you to shield the implementation details of each class from the other classes. You can do things like:
 
-{% highlight ruby %}
+~~~ ruby
     file { 'configuration':
       ensure  => present,
       require => Class['module::install'],
     }
-{% endhighlight %}
+~~~
 
 Rather than making a require to several packages,  the above ordering allows you to refactor and improve `module::install` without having to adjust the manifests of other classes to match the changes.
 
@@ -223,20 +223,20 @@ In Puppet 3.4.0 / Puppet Enterprise 3.2 and later, you can contain classes by us
 
 Two resources to anchor things to:
 
-{% highlight ruby %}
+~~~ ruby
     anchor { 'module::begin': }
     anchor { 'module::end' }
-{% endhighlight %}
+~~~
 
 The anchoring:
 
-{% highlight ruby %}
+~~~ ruby
     Anchor['module::begin'] ->
       Class['module::install'] ->
       Class['module::config']  ->
       Class['module::service'] ->
     Anchor['module::end']
-{% endhighlight %}
+~~~
 
 This enforces ordering, so `::install` will happen before `::config`, and
 `::config` before `::service`.

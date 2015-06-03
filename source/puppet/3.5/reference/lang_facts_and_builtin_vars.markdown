@@ -45,11 +45,11 @@ All facts appear in Puppet as [top-scope variables][topscope]. They can be acces
 
 Example, with the osfamily fact:
 
-{% highlight ruby %}
+~~~ ruby
     if $osfamily == 'redhat' {
       # ...
     }
-{% endhighlight %}
+~~~
 
 **Benefits:** Works in all versions of Puppet.
 
@@ -76,11 +76,11 @@ If you [set `trusted_node_data = true` in puppet.conf][trusted_on] on the puppet
 
 Example, with the osfamily fact:
 
-{% highlight ruby %}
+~~~ ruby
     if $facts[osfamily] == 'redhat' {
       # ...
     }
-{% endhighlight %}
+~~~
 
 **Benefits:** More readable and maintainable code, by making facts visibly distinct from other variables. Eliminates possible confusion if you use a local variable whose name happens to match that of a common fact.
 
@@ -96,17 +96,17 @@ Normal facts are self-reported by the node, and nothing guarantees their accurac
 
 Example, using a [certificate extension][extensions]:
 
-{% highlight ruby %}
+~~~ ruby
     if $trusted[extensions][pp_image_name] == 'storefront_production' {
       include private::storefront::private_keys
     }
-{% endhighlight %}
+~~~
 
 #### List of Trusted Facts
 
 The `$trusted` hash looks something like this:
 
-{% highlight ruby %}
+~~~ ruby
     {
       authenticated => 'remote',
       certname      => 'web01.example.com',
@@ -116,7 +116,7 @@ The `$trusted` hash looks something like this:
                           '1.3.6.1.4.1.34380.1.2.1' => 'ssl-termination'
                        }
     }
-{% endhighlight %}
+~~~
 
 The available keys are:
 

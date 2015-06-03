@@ -10,7 +10,7 @@ Puppet can create, edit, and delete scheduled tasks, which are a Windows-only re
 
 Puppet can manage the task name, the enabled/disabled status, the command, any arguments, the working directory, the user and password, and triggers. A complete scheduled task resource looks something like this:
 
-{% highlight ruby %}
+~~~ ruby
     scheduled_task { 'An every-other-day task':
       ensure    => present,
       enabled   => true,
@@ -25,7 +25,7 @@ Puppet can manage the task name, the enabled/disabled status, the command, any a
         minutes_duration => '300',  # The task will run for a total of five hours
       }
     }
-{% endhighlight %}
+~~~
 
 For more information, see [the reference documentation for the `scheduled_task` type][scheduledtask].
 

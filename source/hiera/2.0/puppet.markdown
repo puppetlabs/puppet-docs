@@ -86,7 +86,7 @@ Puppet automatically retrieves class parameters from Hiera, using lookup keys li
 
 Puppet [classes][] can optionally include [parameters][] in their definition. This lets the class ask for data to be passed in at the time that it's declared, and it can use that data as normal variables throughout its definition.
 
-{% highlight ruby %}
+~~~ ruby
     # In this example, $parameter's value gets set when `myclass` is eventually declared.
     # Class definition:
     class myclass ($parameter_one = "default text") {
@@ -95,7 +95,7 @@ Puppet [classes][] can optionally include [parameters][] in their definition. Th
         content => $parameter_one,
       }
     }
-{% endhighlight %}
+~~~
 
 Parameters can be set several ways, and Puppet tries each of these ways in order when the class is [declared][class_declare] or [assigned by an ENC][enc_assign]:
 
@@ -106,7 +106,7 @@ Parameters can be set several ways, and Puppet tries each of these ways in order
 
 Step 2 interests us most here. Because Puppet always looks for parameters in Hiera, you can safely declare **any** class with `include`, even classes with parameters. (This wasn't the case in earlier Puppet versions.) Using the example above, you could have something like the following in your Hiera data:
 
-{% highlight yaml %}
+~~~ yaml
     # /etc/puppet/hieradata/web01.example.com.yaml
     ---
     myclass::parameter_one: "This node is special, so we're overriding the common configuration that the other nodes use."
@@ -114,7 +114,7 @@ Step 2 interests us most here. Because Puppet always looks for parameters in Hie
     # /etc/puppet/hieradata/common.yaml
     ---
     myclass::parameter_one: "This node can use the standard configuration."
-{% endhighlight %}
+~~~
 
 You could then say `include myclass` for every node, and each node would get its own appropriate data for the class.
 
@@ -168,7 +168,7 @@ The lookup functions and the automatic parameter lookup return values of top-lev
 
 Example:
 
-{% highlight yaml %}
+~~~ yaml
     # /etc/puppet/hieradata/appservers.yaml
     ---
     proxies:
@@ -176,21 +176,21 @@ Example:
         ipaddress: 192.168.22.21
       - hostname: lb02.example.com
         ipaddress: 192.168.22.28
-{% endhighlight %}
+~~~
 
 
 
-{% highlight ruby %}
+~~~ ruby
     # Get the structured data:
     $proxies = hiera('proxies')
     # Index into the structure:
     $use_ip = $proxies[1]['ipaddress'] # will be 192.168.22.28
-{% endhighlight %}
+~~~
 
-{% highlight ruby %}
+~~~ ruby
     # get only what you need from Hiera
     $use_ip = hiera( 'proxies.1.ipaddress' )
-{% endhighlight %}
+~~~
 
 
 Assigning Classes to Nodes With Hiera (`hiera_include`)
@@ -210,16 +210,16 @@ Example:
 
 Assuming a hierarchy of:
 
-{% highlight yaml %}
+~~~ yaml
     :hierarchy:
       - "%{::clientcert}"
       - "%{::osfamily}"
       - common
-{% endhighlight %}
+~~~
 
 ...and given Hiera data like the following:
 
-{% highlight yaml %}
+~~~ yaml
     # common.yaml
     ---
     classes:
@@ -238,7 +238,7 @@ Assuming a hierarchy of:
     classes:
       - apache
       - apache::passenger
-{% endhighlight %}
+~~~
 
 ...the Ubuntu node `web01.example.com` would get all of the following classes:
 

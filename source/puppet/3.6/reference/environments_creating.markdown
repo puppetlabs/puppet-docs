@@ -47,7 +47,7 @@ With Puppet Enterprise 3.3, **every** environment must meet two extra requiremen
 
 The [main manifest][manifest_dir] **must** contain the following snippet of Puppet code, which PE uses to back up file contents:
 
-{% highlight ruby %}
+~~~ ruby
     # Define filebucket 'main':
     filebucket { 'main':
       server => '<YOUR SERVER HERE>',
@@ -56,7 +56,7 @@ The [main manifest][manifest_dir] **must** contain the following snippet of Pupp
 
     # Make filebucket 'main' the default backup location for all File resources:
     File { backup => 'main' }
-{% endhighlight %}
+~~~
 
 You can accomplish this in one of two ways:
 

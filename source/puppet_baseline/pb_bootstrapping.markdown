@@ -89,7 +89,7 @@ The only acceptable value (right now) is a number between 0000 and 2359, which i
 
 Each puppet agent node will need to be configured to run puppet inspect at least once daily. This can be done with Puppet in the same manifests used to select the resources for audit, by declaring something like the following resource:
 
-{% highlight ruby %}
+~~~ ruby
     cron { 'puppet-inspect':
       ensure  => present,
       command => '/usr/local/bin/puppet inspect',
@@ -97,7 +97,7 @@ Each puppet agent node will need to be configured to run puppet inspect at least
       hour    => [2, 15],
       minute  => 0,
     }
-{% endhighlight %}
+~~~
 
 
 If you want to be able to view and diff file contents, you'll also need to ensure that each agent node's puppet.conf file contains `archive_files = true` in its `[main]` or `[agent]` block.
@@ -113,7 +113,7 @@ In the simplest case, where you want to audit an identical set of resources on e
 
 To mark a resource for auditing, declare its `audit` metaparameter and avoid declaring `ensure` or any other attributes that describe a desired state. The value of `audit` can be one attribute, an array of attributes, or `all`.
 
-{% highlight ruby %}
+~~~ ruby
     file {'hosts':
       path  => '/etc/hosts',
       audit => 'content',
@@ -124,7 +124,7 @@ To mark a resource for auditing, declare its `audit` metaparameter and avoid dec
     user {'httpd':
       audit => 'all',
     }
-{% endhighlight %}
+~~~
 
 As with any Puppet site design, you'll need to classify your nodes with a site manifest or an external node classifier to ensure they get the correct catalog. The implementation of a Puppet site design is beyond the scope of this document.
 

@@ -30,7 +30,7 @@ To tell Puppet which resources to audit, you must write a collection of modules 
 
 When writing compliance classes in Puppet, you should **declare [the `audit` metaparameter](/references/2.7.6/metaparameter.html#audit)** for each resource. The value of `audit` can be one attribute name, an array of attribute names, or `all`. Puppet can also actively manage attributes of an audited resource. 
 
-{% highlight ruby %}
+~~~ ruby
     file {'hosts':
       path  => '/etc/hosts',
       audit => 'content',
@@ -49,7 +49,7 @@ When writing compliance classes in Puppet, you should **declare [the `audit` met
       shell  => '/bin/zsh',
       audit  => 'password',
     }
-{% endhighlight %}
+~~~
 
 
 Reviewing Changes

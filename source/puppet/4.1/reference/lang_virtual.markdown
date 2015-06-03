@@ -42,7 +42,7 @@ Syntax
 
 Virtual resources are used in two steps: declaring and realizing.
 
-{% highlight ruby %}
+~~~ ruby
     # <modulepath>/apache/manifests/init.pp
     ...
     # Declare:
@@ -59,7 +59,7 @@ Virtual resources are used in two steps: declaring and realizing.
     ...
     # Realize again:
     realize A2mod['rewrite']
-{% endhighlight %}
+~~~
 
 In the example above, the `apache` class declares a virtual resource, and both the `wordpress` and `freight` classes realize it. The resource will be managed on any node that has the `wordpress` and/or `freight` classes applied to it.
 
@@ -67,7 +67,7 @@ In the example above, the `apache` class declares a virtual resource, and both t
 
 To declare a virtual resource, prepend `@` (the "at" sign) to the **resource type** of a normal [resource declaration][resources]:
 
-{% highlight ruby %}
+~~~ ruby
     @user {'deploy':
       uid     => 2004,
       comment => 'Deployment User',
@@ -75,15 +75,15 @@ To declare a virtual resource, prepend `@` (the "at" sign) to the **resource typ
       groups  => ["enterprise"],
       tag     => [deploy, web],
     }
-{% endhighlight %}
+~~~
 
 ### Realizing With the `realize` Function
 
 To realize one or more virtual resources **by title,** use the [`realize`][realize_function] function, which accepts one or more [resource references][references]:
 
-{% highlight ruby %}
+~~~ ruby
     realize User['deploy'], User['zleslie']
-{% endhighlight %}
+~~~
 
 The `realize` function may be used multiple times on the same virtual resource and the resource will only be added to the catalog once.
 
@@ -91,9 +91,9 @@ The `realize` function may be used multiple times on the same virtual resource a
 
 Any [resource collector][collectors] will realize any virtual resource that matches its [search expression][search_expression]:
 
-{% highlight ruby %}
+~~~ ruby
     User <| tag == web |>
-{% endhighlight %}
+~~~
 
 You can use multiple resource collectors that match a given virtual resource and it will only be added to the catalog once.
 
@@ -118,10 +118,10 @@ The `realize` function will cause a compilation failure if you attempt to realiz
 
 If a virtual resource is contained in a class, it cannot be realized unless the class is declared at some point during the compilation. A common pattern is to declare a class full of virtual resources and then use a collector to choose the set of resources you need:
 
-{% highlight ruby %}
+~~~ ruby
     include virtual::users
     User <| groups == admin or group == wheel |>
-{% endhighlight %}
+~~~
 
 ### Defined Resource Types
 

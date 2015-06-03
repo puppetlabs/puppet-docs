@@ -107,9 +107,9 @@ Strings surrounded by double quotes `"like this"` allow variable interpolation a
 
 Any [`$variable`][variables] in a double-quoted string will be replaced with its value. To remove ambiguity about which text is part of the variable name, you can surround the variable name in curly braces:
 
-{% highlight ruby %}
+~~~ ruby
     path => "${apache::root}/${apache::vhostdir}/${name}",
-{% endhighlight %}
+~~~
 
 #### Expression Interpolation
 
@@ -117,14 +117,14 @@ Any [`$variable`][variables] in a double-quoted string will be replaced with its
 
 In a double-quoted string, you may interpolate the value of an arbitrary [expression][] (which may contain both variables and literal values) by putting it inside `${}` (a pair of curly braces preceded by a dollar sign):
 
-{% highlight ruby %}
+~~~ ruby
     file {'config.yml':
       content => "...
     db_remote: ${ $clientcert !~ /^db\d+/ }
     ...",
       ensure => file,
     }
-{% endhighlight %}
+~~~
 
 This is of limited use, since most [expressions][expression] resolve to boolean or numerical values.
 
@@ -169,13 +169,13 @@ Resource References
 
 Resource references identify a specific existing Puppet resource by its type and title. Several attributes, such as the [relationship][] metaparameters, require resource references.
 
-{% highlight ruby %}
+~~~ ruby
     # A reference to a file resource:
     subscribe => File['/etc/ntp.conf'],
     ...
     # A type with a multi-segment name:
     before => Concat::Fragment['apache_port_header'],
-{% endhighlight %}
+~~~
 
 The general form of a resource reference is:
 
@@ -190,13 +190,13 @@ Unlike variables, resource references are not parse-order dependent, and can be 
 
 Resource references with an **array of titles** or **comma-separated list of titles** refer to multiple resources of the same type:
 
-{% highlight ruby %}
+~~~ ruby
     # A multi-resource reference:
     require => File['/etc/apache2/httpd.conf', '/etc/apache2/magic', '/etc/apache2/mime.types'],
     # An equivalent multi-resource reference:
     $my_files = ['/etc/apache2/httpd.conf', '/etc/apache2/magic', '/etc/apache2/mime.types']
     require => File[$my_files]
-{% endhighlight %}
+~~~
 
 They can be used wherever an array of references might be used. They can also go on either side of a [chaining arrow][chaining] or receive a [block of additional attributes][attribute_override].
 
@@ -210,19 +210,19 @@ Puppet's arithmetic expressions accept integers and floating point numbers. Inte
 
 Numbers can be written as bare words or quoted strings, and may consist only of digits with an optional negative sign (`-`) and decimal point.
 
-{% highlight ruby %}
+~~~ ruby
     $some_number = 8 * -7.992
     $another_number = $some_number / 4
-{% endhighlight %}
+~~~
 
 Numbers **cannot** include explicit positive signs (`+`) or exponents. Numbers between -1 and 1 **cannot** start with a bare decimal point; they must have a leading zero.
 
-{% highlight ruby %}
+~~~ ruby
     $product = 8 * +4 # syntax error
     $product = 8 * 4 # OK
     $product = 8 * .12 # syntax error
     $product = 8 * 0.12 # OK
-{% endhighlight %}
+~~~
 
 * * *
 
@@ -231,11 +231,11 @@ Arrays
 
 Arrays are written as comma-separated lists of items surrounded by square brackets. An optional trailing comma is allowed between the final value and the closing square bracket.
 
-{% highlight ruby %}
+~~~ ruby
     [ 'one', 'two', 'three' ]
     # Equivalent:
     [ 'one', 'two', 'three', ]
-{% endhighlight %}
+~~~
 
 The items in an array can be any data type, including hashes or more arrays.
 
@@ -247,29 +247,29 @@ You can access items in an array by their numerical index (counting from zero). 
 
 Example:
 
-{% highlight ruby %}
+~~~ ruby
     $foo = [ 'one', 'two', 'three' ]
     notice( $foo[1] )
-{% endhighlight %}
+~~~
 
 This manifest would log `two` as a notice. (`$foo[0]` would be `one`, since indexing counts from zero.)
 
 Nested arrays and hashes can be accessed by chaining indexes:
 
-{% highlight ruby %}
+~~~ ruby
     $foo = [ 'one', {'second' => 'two', 'third' => 'three'} ]
     notice( $foo[1]['third'] )
-{% endhighlight %}
+~~~
 
 This manifest would log `three` as a notice. (`$foo[1]` is a hash, and we access a key named `'third'`.)
 
 Arrays support negative indexing, with `-1` being the final element of the array:
 
-{% highlight ruby %}
+~~~ ruby
     $foo = [ 'one', 'two', 'three', 'four', 'five' ]
     notice( $foo[2] )
     notice( $foo[-2] )
-{% endhighlight %}
+~~~
 
 The first notice would log `three`, and the second would log `four`.
 
@@ -304,11 +304,11 @@ Hashes
 
 Hashes are written as key/value pairs surrounded by curly braces; a key is separated from its value by a `=>` (arrow, fat comma, or hash rocket), and adjacent pairs are separated by commas. An optional trailing comma is allowed between the final value and the closing curly brace.
 
-{% highlight ruby %}
+~~~ ruby
     { key1 => 'val1', key2 => 'val2' }
     # Equivalent:
     { key1 => 'val1', key2 => 'val2', }
-{% endhighlight %}
+~~~
 
 Hash keys are strings, but hash values can be any data type, including arrays or more hashes.
 
@@ -316,17 +316,17 @@ Hash keys are strings, but hash values can be any data type, including arrays or
 
 You can access hash members with their key; square brackets are used for indexing.
 
-{% highlight ruby %}
+~~~ ruby
     $myhash = { key       => "some value",
                 other_key => "some other value" }
     notice( $myhash[key] )
-{% endhighlight %}
+~~~
 
 This manifest would log `some value` as a notice.
 
 Nested arrays and hashes can be accessed by chaining indexes:
 
-{% highlight ruby %}
+~~~ ruby
     $main_site = { port        => { http  => 80,
                                     https => 443 },
                    vhost_name  => 'docs.puppetlabs.com',
@@ -334,7 +334,7 @@ Nested arrays and hashes can be accessed by chaining indexes:
                                     mirror1 => 'egret.example.com' }
                  }
     notice ( $main_site[port][https] )
-{% endhighlight %}
+~~~
 
 This example manifest would log `443` as a notice.
 
@@ -359,11 +359,11 @@ Regular expressions (regexes) are Puppet's one **non-standard** data type. They 
 
 Regular expressions are written as [standard Ruby regular expressions](http://www.ruby-doc.org/core/Regexp.html) (valid for the version of Ruby being used by Puppet) and must be surrounded by forward slashes:
 
-{% highlight ruby %}
+~~~ ruby
     if $host =~ /^www(\d+)\./ {
       notify { "Welcome web server #$1": }
     }
-{% endhighlight %}
+~~~
 
 Alternate forms of regex quoting are not allowed and Ruby-style variable interpolation is not available.
 
@@ -371,12 +371,12 @@ Alternate forms of regex quoting are not allowed and Ruby-style variable interpo
 
 Regexes in Puppet cannot have options or encodings appended after the final slash. However, you may turn options on or off for portions of the expression using the `(?<ENABLED OPTION>:<SUBPATTERN>)` and `(?-<DISABLED OPTION>:<SUBPATTERN>)` notation. The following example enables the `i` option while disabling the `m` and `x` options:
 
-{% highlight ruby %}
+~~~ ruby
      $packages = $operatingsystem ? {
        /(?i-mx:ubuntu|debian)/        => 'apache2',
        /(?i-mx:centos|fedora|redhat)/ => 'httpd',
      }
-{% endhighlight %}
+~~~
 
 The following options are allowed:
 

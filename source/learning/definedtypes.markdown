@@ -11,13 +11,13 @@ Say you wrote a chunk of Puppet code that takes parameters and configures an ind
 
 What you want is something more like a _resource type_ --- you can't declare the same resource twice, but you can declare as many files or users as you want.
 
-{% highlight ruby %}
+~~~ ruby
     apache::vhost {'users.example.com':
       port    => 80,
       docroot => '/var/www/personal',
       options => 'Indexes MultiViews',
     }
-{% endhighlight %}
+~~~
 
 This turns out to be easy. To model _repeatable_ chunks of configuration --- like a Git repository or an Apache vhost --- you should use **defined resource types.**
 
@@ -38,7 +38,7 @@ Defining a Type
 
 Like this:
 
-{% highlight ruby %}
+~~~ ruby
     define planfile ($user = $title, $content) {
       file {"/home/${user}/.plan":
         ensure  => file,
@@ -57,7 +57,7 @@ Like this:
     planfile {'nick':
       content => "Working on new Learning Puppet chapters. Tomorrow: upgrading the LP virtual machine.",
     }
-{% endhighlight %}
+~~~
 
 This one's pretty simple. (In fact, it's basically just a macro.) It has two parameters, one of which is optional (it defaults to the title of the resource), and the collection of resources it declares is just a single file resource.
 
@@ -70,7 +70,7 @@ So it's pretty simple, right? Exactly like defining a class? **Almost:** there's
 
 Consider a slightly different version of that first definition:
 
-{% highlight ruby %}
+~~~ ruby
     define planfile ($user = $title, $content) {
       file {'.plan':
         path    => "/home/${user}/.plan",
@@ -81,11 +81,11 @@ Consider a slightly different version of that first definition:
         require => User[$user],
       }
     }
-{% endhighlight %}
+~~~
 
 See how the title of the file resource isn't tied to any of the definition's parameters?
 
-{% highlight ruby %}
+~~~ ruby
     planfile {'nick':
       content => "Working on new Learning Puppet chapters. Tomorrow: upgrading the LP virtual machine.",
     }
@@ -93,7 +93,7 @@ See how the title of the file resource isn't tied to any of the definition's par
     planfile {'chris':
       content => "Resurrecting a very dead laptop.",
     }
-{% endhighlight %}
+~~~
 
     # puppet apply planfiles.pp
     Duplicate definition: File[.plan] is already defined in file /root/manifests/planfile.pp at line 9; cannot redefine at /root/manifests/planfile.pp:9 on node puppet.localdomain
@@ -131,7 +131,7 @@ An Example: Apache Vhosts
 
 Not that my .plan macro wasn't pretty great, but let's be serious for a minute. Remember your [Apache module](./modules1.html#exercises) from a few chapters back? Let's extend it so we can easily declare vhosts. This example code is borrowed from [the puppetlabs-apache module](https://github.com/puppetlabs/puppetlabs-apache).
 
-{% highlight ruby %}
+~~~ ruby
     # Definition: apache::vhost
     #
     # This class installs Apache Virtual Hosts
@@ -199,9 +199,9 @@ Not that my .plan macro wasn't pretty great, but let's be serious for a minute. 
       }
 
     }
-{% endhighlight %}
+~~~
 
-{% highlight erb %}
+~~~ erb
     # /etc/puppetlabs/modules/apache/templates/vhost-default.conf.erb
 
     # ************************************
@@ -230,18 +230,18 @@ Not that my .plan macro wasn't pretty great, but let's be serious for a minute. 
       CustomLog <%= logdir %>/<%= name %>_access.log combined
       ServerSignature Off
     </VirtualHost>
-{% endhighlight %}
+~~~
 
 And that's more or less a wrap. You can apply a manifest like this:
 
-{% highlight ruby %}
+~~~ ruby
     apache::vhost {'testhost':
       port       => 8081,
       docroot    => '/var/www-testhost',
       priority   => 25,
       servername => 'puppet',
     }
-{% endhighlight %}
+~~~
 
 ...and (as long as the directory exists) you'll immediately be able to reach the new vhost:
 

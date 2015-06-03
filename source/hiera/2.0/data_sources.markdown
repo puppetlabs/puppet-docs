@@ -43,7 +43,7 @@ Any string may include any number of [interpolation tokens][variables].
 
 ### Example
 
-{% highlight yaml %}
+~~~ yaml
 ---
 # array
 apache-packages:
@@ -68,7 +68,7 @@ sshd_settings: {root_allowed: "no", password_allowed: "yes"}
 # to return "true" or "false"
 sshd_settings: {root_allowed: no, password_allowed: yes}
 
-{% endhighlight %}
+~~~
 
 JSON
 -----
@@ -96,7 +96,7 @@ Boolean | `true` / `false`
 Any string may include any number of [interpolation tokens][variables].
 
 ### Example
-{% highlight json %}
+~~~ json
 
 {
     "apache-packages" : [
@@ -112,5 +112,5 @@ Any string may include any number of [interpolation tokens][variables].
                         "password_allowed" : "no"
                       }
 }
-{% endhighlight %}
+~~~
 

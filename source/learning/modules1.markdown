@@ -11,21 +11,21 @@ title: Learning Puppet — Modules and Classes
 Begin
 -----
 
-{% highlight ruby %}
+~~~ ruby
     class my_class {
       notify {"This actually did something":}
     }
-{% endhighlight %}
+~~~
 
 This manifest does nothing.
 
-{% highlight ruby %}
+~~~ ruby
     class my_class {
       notify {"This actually did something":}
     }
 
     include my_class
-{% endhighlight %}
+~~~
 
 This one actually does something.
 
@@ -63,7 +63,7 @@ Before you can use a class, you must **define** it, which is done with the `clas
 What goes in that block of code? How about your answer from last chapter's NTP exercise? It should look a little like this:
 
 
-{% highlight ruby %}
+~~~ ruby
     # /root/examples/modules1-ntp1.pp
 
     class ntp {
@@ -94,7 +94,7 @@ What goes in that block of code? How about your answer from last chapter's NTP e
         subscribe => File['ntp.conf'],
       }
     }
-{% endhighlight %}
+~~~
 
 That's a working class definition!
 
@@ -124,7 +124,7 @@ Okay, remember how we said that _defining_ makes a class available, and _declari
 
 To **declare** a class, use the `include` function with the class's name:
 
-{% highlight ruby %}
+~~~ ruby
     # /root/examples/modules1-ntp2.pp
 
     class ntp {
@@ -157,7 +157,7 @@ To **declare** a class, use the `include` function with the class's name:
     }
 
     include ntp
-{% endhighlight %}
+~~~
 
 This time, Puppet will actually apply all those resources:
 
@@ -188,14 +188,14 @@ It works like this:
 
 This means you can have a pile of modules with sophisticated Puppet code, and your site.pp manifest can look like this:
 
-{% highlight ruby %}
+~~~ ruby
     # /etc/puppetlabs/puppet/manifests/site.pp
     include ntp
     include apache
     include mysql
     include mongodb
     include build_essential
-{% endhighlight %}
+~~~
 
 By stowing the _implementation_ of a feature in a module, your main manifest can become much smaller, more readable, and policy-focused --- you can tell at a glance what will be configured on your nodes, and if you need implementation details on something, you can delve into the module.
 
@@ -248,7 +248,7 @@ There's more to know, but this will get us started. Let's turn our NTP class int
 
 Edit this init.pp file, and paste your ntp class definition into it. Be sure not to paste in the `include` statement; it's not necessary here.
 
-{% highlight ruby %}
+~~~ ruby
     # /etc/puppetlabs/puppet/modules/ntp/manifests/init.pp
 
     class ntp {
@@ -279,7 +279,7 @@ Edit this init.pp file, and paste your ntp class definition into it. Be sure not
         subscribe => File['ntp.conf'],
       }
     }
-{% endhighlight %}
+~~~
 
 
 ### Declaring Classes From Modules
@@ -315,9 +315,9 @@ This lets you safely declare a class in several places. If some class depends on
 
 These look like resource declarations, except with a resource type of "class:"
 
-{% highlight ruby %}
+~~~ ruby
     class {'ntp':}
-{% endhighlight %}
+~~~
 
 These behave differently, acting more like resources than like the `include` function. Remember we've seen that you can't declare the same resource more than once? The same holds true for resource-like class declarations. If Puppet tries to evaluate one and the class has already been declared, it will **fail compilation** with an error.
 
@@ -344,7 +344,7 @@ We're not quite done with this module yet. Notice how the `source` attribute of 
 
 Then, edit the init.pp manifest; we'll use the special `puppet:///` URL format to tell Puppet where the files are:
 
-{% highlight ruby %}
+~~~ ruby
     # ...
       file { 'ntp.conf':
         path    => '/etc/ntp.conf',
@@ -353,7 +353,7 @@ Then, edit the init.pp manifest; we'll use the special `puppet:///` URL format t
         source  => "puppet:///modules/ntp/${conf_file}",
       }
     }
-{% endhighlight %}
+~~~
 
 Now, everything the module needs is in one place. Even better, a puppet master can actually serve those files to agent nodes over the network now --- when we were using `/root/examples/etc...` paths, Puppet would only find the source files if they already existed on the target machine.
 

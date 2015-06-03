@@ -15,7 +15,7 @@ Begin
 
 Let's make a small adjustment to our NTP module from the last chapter: remove the `source` attribute from the file resource, and replace it with a `content` attribute using a new function. (Remember that `source` specifies file contents as a file, and `content` specifies file contents as a **string.**)
 
-{% highlight ruby %}
+~~~ ruby
     # /etc/puppetlabs/puppet/modules/ntp/manifests/init.pp
 
     class ntp {
@@ -29,7 +29,7 @@ Let's make a small adjustment to our NTP module from the last chapter: remove th
         content => template("ntp/${conf_file}.erb"),
       }
     }
-{% endhighlight %}
+~~~
 
 Then, copy the config files into the templates directory:
 
@@ -70,13 +70,13 @@ To use a template, you have to **render** it to produce an output string. To do 
 
 [template_function]: /references/stable/function.html#template
 
-{% highlight ruby %}
+~~~ ruby
     file {'/etc/foo.conf':
       ensure  => file,
       require => Package['foo'],
       content => template('foo/foo.conf.erb'),
     }
-{% endhighlight %}
+~~~
 
 Notice that we're using the output string as the value of the `content` attribute --- it wouldn't work with the `source` attribute, which expects a URL rather than the actual content for a file.
 
@@ -147,9 +147,9 @@ In general, we recommend keeping templates as simple as possible: we'll show you
 
 ERB tags are delimited by angle brackets with percent signs just inside. (There isn't any HTML-like concept of opening or closing tags.)
 
-{% highlight erb %}
+~~~ erb
     <% document = "" %>
-{% endhighlight %}
+~~~
 
 Tags contain one or more lines of Ruby code, which can set variables, munge data, implement control flow, or... actually, pretty much anything, except for print text in the rendered output.
 
@@ -157,10 +157,10 @@ Tags contain one or more lines of Ruby code, which can set variables, munge data
 
 For that, you need to use a printing tag, which looks like a normal tag with an equals sign right after the opening delimiter:
 
-{% highlight erb %}
+~~~ erb
     <%= sectionheader %>
       environment = <%= gitrevision[0,5] %>
-{% endhighlight %}
+~~~
 
 The value you print can be a simple variable, or it can be an arbitrarily complicated Ruby expression.
 
@@ -168,9 +168,9 @@ The value you print can be a simple variable, or it can be an arbitrarily compli
 
 A tag with a hash mark right after the opening delimiter can hold comments, which aren't interpreted as code and aren't displayed in the rendered output.
 
-{% highlight erb %}
+~~~ erb
     <%# This comment will be ignored. %>
-{% endhighlight %}
+~~~
 
 ### Suppressing Line Breaks and Leading Space
 
@@ -181,9 +181,9 @@ If you don't like that, you can:
 * Trim line breaks by putting a hyphen directly before the closing delimiter
 * Trim leading space by putting a hyphen directly after the opening delimiter
 
-{% highlight erb %}
+~~~ erb
     <%- document += thisline -%>
-{% endhighlight %}
+~~~
 
 
 An Example: NTP Again
@@ -197,7 +197,7 @@ First, make sure you change the file resource to use a template, like we saw at 
 
 Next, we'll move the default NTP servers out of the config file and into the manifest:
 
-{% highlight ruby %}
+~~~ ruby
     # /etc/puppetlabs/puppet/modules/ntp/manifests/init.pp
 
     class ntp {
@@ -239,7 +239,7 @@ Next, we'll move the default NTP servers out of the config file and into the man
         content => template("ntp/${conf_file}.erb"),
       }
     }
-{% endhighlight %}
+~~~
 
 We're storing the servers in an array, so we can show how to iterate within a template. Right now, we're not providing the ability to change the list of servers, but we're paving the way to do so in the next chapter.
 
@@ -247,7 +247,7 @@ We're storing the servers in an array, so we can show how to iterate within a te
 
 First, make each template use the `$_servers` variable to create the list of `server` statements:
 
-{% highlight erb %}
+~~~ erb
     <%# /etc/puppetlabs/puppet/modules/ntp/templates/ntp %>
 
     # Managed by Class['ntp']
@@ -256,7 +256,7 @@ First, make each template use the `$_servers` variable to create the list of `se
     <% end -%>
 
     # ...
-{% endhighlight %}
+~~~
 
 What's this doing?
 
@@ -272,18 +272,18 @@ This snippet will produce something like the following:
 
 Next, let's use the `$is_virtual` fact to make NTP perform better if this is a virtual machine. At the top of the file, add this:
 
-{% highlight erb %}
+~~~ erb
     <% if @is_virtual == "true" -%>
     # Keep ntpd from panicking in the event of a large clock skew
     # when a VM guest is suspended and resumed.
     tinker panic 0
 
     <% end -%>
-{% endhighlight %}
+~~~
 
 Then, _below_ the loop we made for the server statements, add this (being sure to replace the similar section of the Red Hat-like template):
 
-{% highlight erb %}
+~~~ erb
     <% if @is_virtual == "false" -%>
     # Undisciplined Local Clock. This is a fake driver intended for backup
     # and when no outside source of synchronized time is available.
@@ -291,7 +291,7 @@ Then, _below_ the loop we made for the server statements, add this (being sure t
     fudge 127.127.1.0 stratum 10
 
     <% end -%>
-{% endhighlight %}
+~~~
 
 By using facts to conditionally switch parts of the config file on and off, we can easily react to the type of machine we're managing.
 

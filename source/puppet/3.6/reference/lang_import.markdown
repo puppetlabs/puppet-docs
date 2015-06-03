@@ -31,7 +31,7 @@ The `import` keyword causes Puppet to compile more than one manifest without aut
 Syntax
 -----
 
-{% highlight ruby %}
+~~~ ruby
     # /etc/puppetlabs/puppet/manifests/site.pp
 
     # import many manifest files with node definitions
@@ -39,7 +39,7 @@ Syntax
 
     # import a single manifest file with node definitions
     import 'nodes.pp'
-{% endhighlight %}
+~~~
 
 An import statement consists of the `import` keyword, followed by a literal quoted string with no variable interpolation.
 
@@ -58,7 +58,7 @@ Import statements have the following characteristics:
 
 These quirks mean **the location of an import statement in a manifest does not matter.** If an uncommented import statement exists anywhere in a manifest, it will always run (even if it looks like it shouldn't) and the code it imports will not be contained in any definition or conditional. The following example illustrates this:
 
-{% highlight ruby %}
+~~~ ruby
     # /etc/puppetlabs/puppet/manifests/site.pp
     node 'kestrel.example.com' {
         import 'nodes/kestrel.pp'
@@ -67,7 +67,7 @@ These quirks mean **the location of an import statement in a manifest does not m
     # /etc/puppetlabs/puppet/manifests/nodes/kestrel.pp
     include ntp
     include apache2
-{% endhighlight %}
+~~~
 
 This import statement looks like it should insert code INTO the node definition that contains it; instead, it will insert the code outside any node definition, and it will do so regardless of whether the node definition matches the current node. The `ntp` and `apache2` classes would be applied to every node.
 

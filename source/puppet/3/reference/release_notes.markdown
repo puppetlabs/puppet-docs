@@ -1217,7 +1217,7 @@ Puppet master's `config.ru` file has changed slightly; see `ext/rack/files/confi
 * Should now run `Puppet::Util::CommandLine.new.execute` instead of `Puppet::Application[:master].run`.
 * Should explicitly set the `--confdir` option (to avoid reading from `~/.puppet/puppet.conf`).
 
-{% highlight diff %}
+~~~ diff
     diff --git a/ext/rack/files/config.ru b/ext/rack/files/config.ru
     index f9c492d..c825d22 100644
     --- a/ext/rack/files/config.ru
@@ -1235,7 +1235,7 @@ Puppet master's `config.ru` file has changed slightly; see `ext/rack/files/confi
     -run Puppet::Application[:master].run
     +run Puppet::Util::CommandLine.new.execute
     +
-{% endhighlight %}
+~~~
 
 > **Upgrade note:** If you run puppet master via a Rack server like Passenger, you **must** change the `config.ru` file as described above.
 

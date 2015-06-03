@@ -141,7 +141,7 @@ PE generates a number of certificates at install. These are:
 
 A fresh PE install should thus give the following list of certificates:
 
-{% highlight ruby %}
+~~~ ruby
 root@master:~# puppet cert list --all
 + "master"                                        (40:D5:40:FA:E2:94:36:4D:C4:8C:CE:68:FB:77:73:AB) (alt names: "DNS:master", "DNS:puppet", "DNS:puppet.soupkitchen.internal")
 + "pe-internal-broker"                            (D3:E1:A8:B1:3A:88:6B:73:76:D1:E3:DA:49:EF:D0:4D) (alt names: "DNS:master", "DNS:master.soupkitchen.internal", "DNS:pe-internal-broker", "DNS:stomp")
@@ -149,7 +149,7 @@ root@master:~# puppet cert list --all
 + "pe-internal-mcollective-servers"               (96:4F:AA:75:B5:7E:12:46:C2:CE:1B:7B:49:FF:05:49)
 + "pe-internal-peadmin-mcollective-client"        (3C:4D:8E:15:07:41:18:E2:21:57:19:01:2E:DB:AB:07)
 + "pe-internal-puppet-console-mcollective-client" (97:10:76:B5:3E:8D:02:D2:3D:A6:43:F4:89:F4:8B:94)
-{% endhighlight %}
+~~~
 
 ###Documentation
 

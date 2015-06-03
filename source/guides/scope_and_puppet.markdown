@@ -24,7 +24,7 @@ To ease the transition, Puppet 2.7 issues deprecation warnings whenever dynamic 
 
 ### An example of dynamic lookup
 
-{% highlight ruby %}
+~~~ ruby
     include dynamic
 
     class dynamic {
@@ -36,7 +36,7 @@ To ease the transition, Puppet 2.7 issues deprecation warnings whenever dynamic 
       notify { $var: } # dynamic lookup will end up finding "from dynamic"
                        # this will change to being undefined
     }
-{% endhighlight %}
+~~~
 
 Why?
 ----
@@ -54,7 +54,7 @@ So you've installed Puppet 2.7 and are ready to start going after those deprecat
 
 Whenever you need to refer to a variable in another class, give the variable an explicit namespace: instead of simply referring to `$packagelist`, use `$git::core::packagelist`. This is a win in readability --- any casual observer can tell exactly where the variable is being set, without having to model your code in their head --- and it saves you from accidentally getting the value of some completely unrelated `$packagelist` variable. For complete clarity and consistency you will probably want to do this even when it isn't absolutely neccessary.
 
-{% highlight ruby %}
+~~~ ruby
     include parent::child
 
     class parent {
@@ -67,11 +67,11 @@ Whenever you need to refer to a variable in another class, give the variable an 
       notify { $var: }          # will be "from parent", as well. Avoid using this form.
       notify { $local_var: }    # will be "from parent::child". The unqualified form is fine here.
     }
-{% endhighlight %}
+~~~
 
 When referring to a variable in another class that is not a parent of the current class, then you will always need to fully qualify the variable name.
 
-{% highlight ruby %}
+~~~ ruby
     class other {
       $var = "from other"
     }
@@ -80,11 +80,11 @@ When referring to a variable in another class that is not a parent of the curren
       include other
       notify { $other::var: } # will be "from other"
     }
-{% endhighlight %}
+~~~
 
 If you're referring explicitly to a top-scope variable, use the empty namespace (e.g. `$::packagelist`) for extra clarity. 
 
-{% highlight ruby %}
+~~~ ruby
     $var = "from topscope"
     node default {
       $var = "from node"
@@ -95,7 +95,7 @@ If you're referring explicitly to a top-scope variable, use the empty namespace 
       notify { $var: }   # will be "from node"
       notify { $::var: } # will be "from topscope"
     }
-{% endhighlight %}
+~~~
 
 ### Declare Resource Defaults Per-File!
 
@@ -129,7 +129,7 @@ Appendix: How Scope Works in Puppet ≤ 2.7.x
 
 These rules seem simple enough, so an example is in order:
 
-{% highlight ruby %}
+~~~ ruby
     # manifests/site.pp
     $nodetype = "base"
     
@@ -164,7 +164,7 @@ These rules seem simple enough, so an example is in order:
          }
     
     } 
-{% endhighlight %}
+~~~
 
 When nodes www01 through www10 connect to the puppet master, `$nodetype` will always be set to "base" and main.cf will always be served from files/base/. This is because `postfix::custom`'s chain of parent scopes is `postfix::custom < postfix < base < top-scope`; the combination of inheritance and dynamic scope causes lookup of the `$nodetype` variable to bypass `node 01-10` entirely. 
 

@@ -74,7 +74,7 @@ Until the upgrader can handle these cases by itself, we recommend the following:
 
     **Example diff:**
 
-{% highlight diff %}
+~~~ diff
  [mysqld]
  datadir=/var/lib/mysql
  socket=/var/lib/mysql/mysql.sock
@@ -91,7 +91,7 @@ Until the upgrader can handle these cases by itself, we recommend the following:
  [mysqld_safe]
  log-error=/var/log/mysqld.log
  pid-file=/var/run/mysqld/mysqld.pid
-{% endhighlight %}
+~~~
 
 * Restart the MySQL server:
 
@@ -130,7 +130,7 @@ On Linode instances, and possibly other Xen platforms, Facter prints the followi
 
 This will be fixed in the next patch release of PE 2.0. For now, the noise can be suppressed by directly patching the `/opt/puppet/lib/ruby/site_ruby/1.8/facter/virtual.rb` file, as shown below:
 
-{% highlight diff %}
+~~~ diff
 diff --git lib/facter/virtual.rb lib/facter/virtual.rb
 index e617359..94b10c5 100644
 --- /opt/puppet/lib/ruby/site_ruby/1.8/facter/virtual.rb
@@ -144,7 +144,7 @@ index e617359..94b10c5 100644
        if not output.nil?
          output.each_line do |p|
            # --- look for the vmware video card to determine if it is virtual => vmware.
-{% endhighlight %}
+~~~
 
 ### `pe-httpd` Must Be Restarted After Revoking Certificates
 

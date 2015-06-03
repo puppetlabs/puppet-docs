@@ -60,9 +60,9 @@ Hash            | `[<KEY>, <VALUE>]` (two-element array) | `<KEY>, <VALUE>`
 
 For example:
 
-{% highlight ruby %}
+~~~ ruby
     ['a','b','c'].each |Integer $index, String $value| { notice("${index} = ${value}") }
-{% endhighlight %}
+~~~
 
 This will result in:
 
@@ -80,7 +80,7 @@ Examples
 
 Since the focus of the Puppet language is declaring resources, most people will want to use iteration to declare many similar resources at once:
 
-{% highlight ruby %}
+~~~ ruby
     $binaries = ["cfacter", "facter", "hiera", "mco", "puppet", "puppetserver"]
 
     # function call with lambda:
@@ -90,7 +90,7 @@ Since the focus of the Puppet language is declaring resources, most people will 
         target => "/opt/puppetlabs/bin/$binary",
       }
     }
-{% endhighlight %}
+~~~
 
 In this example, we have an array of command names that we want to use in each symlink's path and target. The `each` function makes this very easy and succinct.
 
@@ -98,7 +98,7 @@ In this example, we have an array of command names that we want to use in each s
 
 In earlier versions of Puppet, when there were no iteration functions and lambdas weren't supported, you could achieve a clunkier form of iteration by writing [defined resource types][defined types] and [using arrays as resource titles.][array_titles] To do the same thing as the previous example:
 
-{% highlight ruby %}
+~~~ ruby
     # one-off defined resource type, in
     #/etc/puppetlabs/code/environments/production/modules/puppet/manifests/binary/symlink.pp
     define puppet::binary::symlink ($binary = $title) {
@@ -112,7 +112,7 @@ In earlier versions of Puppet, when there were no iteration functions and lambda
     $binaries = ["cfacter", "facter", "hiera", "mco", "puppet", "puppetserver"]
 
     puppet::binary::symlink { $binaries: }
-{% endhighlight %}
+~~~
 
 The main problems with this approach were:
 
@@ -125,7 +125,7 @@ In general, the modern style of iteration is much better, but you'll often see e
 
 You can also use iteration to transform data into more useful forms. For example:
 
-{% highlight ruby %}
+~~~ ruby
     $filtered_array = [1,20,3].filter |$value| { $value < 10 }
     # returns [1,3]
 
@@ -140,5 +140,5 @@ You can also use iteration to transform data into more useful forms. For example
       $memo + $pair
     }
     # returns {"key1"=>"first value", "key2"=>"second value", "key3"=>"third value"}
-{% endhighlight %}
+~~~
 

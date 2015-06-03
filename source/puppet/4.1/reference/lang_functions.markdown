@@ -63,7 +63,7 @@ Functions must always be called with their full names; you can't shorten a quali
 
 You can call a function by writing its name and providing a list of arguments in parentheses.
 
-{% highlight ruby %}
+~~~ ruby
     file {"/etc/ntp.conf":
       ensure  => file,
       content => template("ntp/ntp.conf"), # function call; resolves to a string
@@ -87,7 +87,7 @@ You can call a function by writing its name and providing a list of arguments in
         target => "/opt/puppetlabs/bin/$binary",
       }
     }
-{% endhighlight %}
+~~~
 
 {% capture about_examples %}
 In the examples above, [`template`][template], [`include`][include], and [`each`][each] are all functions. `template` is used for is return value, `include` adds a class to the catalog, and `each` runs a block of code several times with different values.
@@ -113,7 +113,7 @@ The general form of a prefix function call is:
 
 You can also call a function by writing its first argument, a period, and the name of the function.
 
-{% highlight ruby %}
+~~~ ruby
     file {"/etc/ntp.conf":
       ensure  => file,
       content => "ntp/ntp.conf".template, # function call; resolves to a string
@@ -137,7 +137,7 @@ You can also call a function by writing its first argument, a period, and the na
         target => "/opt/puppetlabs/bin/$binary",
       }
     }
-{% endhighlight %}
+~~~
 
 {{ about_examples }}
 
