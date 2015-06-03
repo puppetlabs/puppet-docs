@@ -10632,7 +10632,7 @@ will need to install Ruby's shadow password library (package known as
 
 * Required binaries: `passwd`, `useradd`, `userdel`, `usermod`.
 * Default for `operatingsystem` == `openbsd`.
-* Supported features: `manages_expiry`, `manages_homedir`, `manages_shell`, `system_users`.
+* Supported features: `manages_expiry`, `manages_homedir`, `manages_shell`, `system_users`, `manages_passwords`, `manages_loginclass`.
 
 <h4 id="user-provider-pw">pw</h4>
 
@@ -10771,10 +10771,10 @@ Provider support:
       <td> </td>
       <td><em>X</em> </td>
       <td><em>X</em> </td>
+      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
-      <td> </td>
-      <td> </td>
+      <td><em>X</em> </td>
       <td><em>X</em> </td>
       <td> </td>
       <td><em>X</em> </td>
