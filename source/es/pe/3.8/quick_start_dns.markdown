@@ -6,9 +6,9 @@ canonical: "/pe/latest/quick_start_dns.html"
 ---
 
 [downloads]: http://info.puppetlabs.com/download-pe.html
-[sys_req]: ./install_system_requirements.html
-[agent_install]: ./install_agents.html
-[install_overview]: ./install_basic.html
+[sys_req]: /pe/latest/install_system_requirements.html
+[agent_install]: /pe/latest/install_agents.html
+[install_overview]: /pe/latest/install_basic.html
 
 Bienvenido a la Guía de Inicio Rápido sobre administración de DNS con Puppet Enterprise. Este documento provee instrucciones para comenzar a administar los archivos de configuración de un servidor de nombres DNS simple con PE. Un servidor de nombres tiene con función resolver los nombres de dominio que escribes en tu navegador (ej. `google.com`) puedan ser convertidos en direcctiones IP que tu computadora pueda entender.  
 
@@ -16,9 +16,9 @@ Los administradores de sistemas normalmente tienen que mantener un archivo con l
 
 Dentro de este caso de ejemplo, esta guía te permitirá:
 
-* [escribit un módulo simple que contenga una clase llamada `resolver` para administrar un archivo llamado `/etc/resolv.conf`](#write-the-resolver-class).
-* [utilizar la consola de PE para agregar la clase `resolver`a tu nodo agente](#add-the-resolver-class-in-the-console).
-* [cambiar los contenidos del archivo que lista los servidores de dominio para demostrar como PE configura el estado deseado que especificas en la consola de PE](#enforce-the-desired-state-of-the-resolver-class).
+* [escribit un módulo simple que contenga una clase llamada `resolver` para administrar un archivo llamado `/etc/resolv.conf`](#escribe-la-clase-resolver).
+* [utilizar la consola de PE para agregar la clase `resolver`a tu nodo agente](#agregando-la-clase-resolver-en-la-consola).
+* [cambiar los contenidos del archivo que lista los servidores de dominio para demostrar como PE configura el estado deseado que especificas en la consola de PE](#asegurando-el-estado-deseado-de-la-clase-resolver).
 
 
 ### Instalar Puppet Enterprise y el Agente de Puppet Enterprise
@@ -29,7 +29,7 @@ Si aún no lo has hecho, previo a esta guía debes tener PE instalado. Refiere a
 2. Refiere al [resúmen de instalación][install_overview] para asistirte con la instalación de PE, luego sigue las instrucciones.
 3. Refiere a las [instrucciones de instalación de agentes][agent_install] para asistirte con la instalación de nodo(s) agente(s), luego sigue las instrucciones.
 
->**Sugerencia**: Sigue las instrucciones en la [Guía de Inicio Rápido sobre NTP](./quick_start_ntp.html) para configurar PE de forma que asegures que la hora este sincronizada en todo los equipos de tu entorno.
+>**Sugerencia**: Sigue las instrucciones en la [Guía de Inicio Rápido sobre NTP](/pe/latest/quick_start_ntp.html) para configurar PE de forma que asegures que la hora este sincronizada en todo los equipos de tu entorno.
 
 >**Nota**: Puedes agregar la clase que administra los servidores de nombre de dominio a cuantos agentes lo desees. Para simplificar esta guía, las imágenes o instrucciones pueden mostrar un único nodo.
 
@@ -43,7 +43,7 @@ Algunos modulos pueden ser grandes, complejos, y requieren una significativa can
 >
 >**Nota**: PE también instala módulos en  `/opt/puppet/share/puppet/modules`, pero no modifiques ni agregues nada en este directorio.
 >
->Existe una abundante cantidad de recursos sobre desarrollo de módulos que puedes utilizar como referencia. Refiere a [Módulos y Manifiestos](./puppet_modules_manifests.html), o la [Guía para Principiantes sobre Módulos](/guides/module_guides/bgtm.html), y el [Puppet Forge](https://forge.puppetlabs.com/).
+>Existe una abundante cantidad de recursos sobre desarrollo de módulos que puedes utilizar como referencia. Refiere a [Módulos y Manifiestos](/pe/latest/puppet_modules_manifests.html), o la [Guía para Principiantes sobre Módulos](/guides/module_guides/bgtm.html), y el [Puppet Forge](https://forge.puppetlabs.com/).
 
  Los Módulos son simplemente estructuras de directorios. Para esta tarea, crearás los siguientes archivos:
 
@@ -101,7 +101,7 @@ Algunos modulos pueden ser grandes, complejos, y requieren una significativa can
 
 Para llevar a cabo este procedimiento, vas a agregar la clase `resolver`a un grupo de nodos que crearas llamado **DNS**, que contendrá todos tus nodos.
 
-Si bien el grupo **DNS** incluirá a todos los nodos en tu despliegue, (incluyendo al Puppet Master), puedes crear [tus propios grupos](./console_classes_groups.html#creating-classification-node-groups), dependiendo de tus necesidades.
+Si bien el grupo **DNS** incluirá a todos los nodos en tu despliegue, (incluyendo al Puppet Master), puedes crear [tus propios grupos](/pe/latest/console_classes_groups.html#creating-classification-node-groups), dependiendo de tus necesidades.
 
 **Para crear el grupo de nodos DNS**:
 
@@ -120,7 +120,7 @@ Si bien el grupo **DNS** incluirá a todos los nodos en tu despliegue, (incluyen
 7. En el campo **Value**, ingresa ".x" (sin las comillas dobles). 
 8. Haz clic en **Add rule**.
 
-   Esta regla va a agregar de forma ["dinámica" todos los nodos]((./console_classes_groups.html#adding-nodes-dynamically) al grupo **DNS**. (Ten en cuenta que esta regla es solo una muestra, y que la configuración puede cambiar dependiendo de las necesidades de cada usuario.) 
+   Esta regla va a agregar de forma ["dinámica" todos los nodos]((/pe/latest/console_classes_groups.html#adding-nodes-dynamically) al grupo **DNS**. (Ten en cuenta que esta regla es solo una muestra, y que la configuración puede cambiar dependiendo de las necesidades de cada usuario.) 
 
 **Para agregar la clase** `resolver` **al grupo DNS**:
 
@@ -171,9 +171,9 @@ Puedes agregar los valores en el código de tu modulo, pero es más fácil hacer
 >
 >Cuanto mas navegues el Event Inspector, verás información mas detallada. De existir un problema aplicando la clase `resolver`, esta informacion te dira exáctamente cual es y que línea de código necesitas corregir para remediarlo.
 >
->En la esquina superior derecha verás un vínculo para generar un reporte, que contiene la información sobre los cambios realizados durante la ejecución del agente, incluyendo registros y métricas. Para mas información, visita la [página de reportes](./console_reports.html#reading-reports).
+>En la esquina superior derecha verás un vínculo para generar un reporte, que contiene la información sobre los cambios realizados durante la ejecución del agente, incluyendo registros y métricas. Para mas información, visita la [página de reportes](/pe/latest/console_reports.html#reading-reports).
 >
->Para mas información sobre el Event Inspector de la consola de PE, refiere a [la documentación del Event Inspector](./console_event_inspector).
+>Para mas información sobre el Event Inspector de la consola de PE, refiere a [la documentación del Event Inspector](/pe/latest/console_event_inspector).
 
 ### Asegurando el estado deseado de la clase `resolver`.
 
