@@ -6,9 +6,9 @@ canonical: "/pe/latest/quick_start_firewall.html"
 ---
 
 [downloads]: http://info.puppetlabs.com/download-pe.html
-[sys_req]: ./install_system_requirements.html
-[agent_install]: ./install_agents.html
-[install_overview]: ./install_basic.html
+[sys_req]: /pe/latest/install_system_requirements.html
+[agent_install]: /pe/latest/install_agents.html
+[install_overview]: /pe/latest/install_basic.html
 
 Bienvenido a la Guía de Inicio Rápido sobre Firewall. Este documento provee instrucciones para dar los primeros pasos administrando reglas de firewall con PE.
 
@@ -18,10 +18,10 @@ Para administrar de forma mas eficaz estas reglas con PE, deberás dividirlas en
 
 Siguiendo los ejemplos, esta guía te permitirá:
 
-* [escribir un módulo simple que contenga una clase llamada `my_firewall` para definir las reglas de firewall para tu infraestructura administrada por PE](#write-the-my-firewall-class).
-* [utilizar la consola de PE para agregar la clase `my_firewall` a tus nodos agente](#use-the-pe-console-to-add-the-my-firewall-class).
-* [escribir una clase adicional para abrir los puertos del Puppet master](#open-ports-for-the-puppet-master).
-* [asegurar el estado deseado de la clase `my_firewall`](#enforce-the-desired-state-of-the-my-firewall-class).
+* [escribir un módulo simple que contenga una clase llamada `my_firewall` para definir las reglas de firewall para tu infraestructura administrada por PE](#escribir-el-modulo-myfirewall).
+* [utilizar la consola de PE para agregar la clase `my_firewall` a tus nodos agente](#utilizando-la-consola-de-pe-para-agregar-la-clase-myfirewall).
+* [escribir una clase adicional para abrir los puertos del Puppet master](#abrir-puertos-para-el-puppet-master).
+* [asegurar el estado deseado de la clase `my_firewall`](#asegurando-el-estado-deseado-de-la-clase-myfirewall).
 
 ### Instalar Puppet Enterprise y el Agente de Puppet Enterprise
 
@@ -31,7 +31,7 @@ Si aún no lo has hecho, previo a esta guía debes tener PE instalado. Refiere a
 2. Refiere al [resúmen de instalación][install_overview] para asistirte con la instalación de PE, luego sigue las instrucciones.
 3. Refiere a las [instrucciones de instalación de agentes][agent_install] para asistirte con la instalación de nodo(s) agente(s), luego sigue las instrucciones.
 
->**Sugerencia**: Sigue las instrucciones en la [Guía de Inicio Rápido sobre NTP](./quick_start_ntp.html) para configurar PE de forma que asegures que la hora este sincronizada en todo los equipos de tu entorno.
+>**Sugerencia**: Sigue las instrucciones en la [Guía de Inicio Rápido sobre NTP](/pe/latest/quick_start_ntp.html) para configurar PE de forma que asegures que la hora este sincronizada en todo los equipos de tu entorno.
 
 ## Escribir el modulo `my_firewall`
 
@@ -43,7 +43,7 @@ Algunos modulos pueden ser grandes, complejos, y requieren una significativa can
 >
 >**Nota**: PE también instala módulos en  `/opt/puppet/share/puppet/modules`, pero no modifiques ni agregues nada en este directorio.
 >
->Existe una abundante cantidad de recursos sobre desarrollo de módulos que puedes utilizar como referencia. Refiere a [Módulos y Manifiestos](./puppet_modules_manifests.html), o la [Guía para Principiantes sobre Módulos](/guides/module_guides/bgtm.html), y el [Puppet Forge](https://forge.puppetlabs.com/).
+>Existe una abundante cantidad de recursos sobre desarrollo de módulos que puedes utilizar como referencia. Refiere a [Módulos y Manifiestos](/pe/latest/puppet_modules_manifests.html), o la [Guía para Principiantes sobre Módulos](/guides/module_guides/bgtm.html), y el [Puppet Forge](https://forge.puppetlabs.com/).
 
  Los Módulos son simplemente estructuras de directorios. Para esta tarea, crearás los siguientes archivos:
 
@@ -144,7 +144,7 @@ Los Grupos permiten asignar clases y variables a varios nodos a la vez. Los Nodo
 
 En este procedimiento, crearás un grupo simple, llamado __firewall_example__, que contendrá todos tus nodos. Dependiendo de las necesidades de la infraestructura, es posible que se necesite asignar la clase firewall a un grupo diferente.
 
-[firewall_add_node]: ./images/quick/firewall_add_node.png
+[firewall_add_node]: /images/quick/firewall_add_node.png
 
 **Para crear el grupo firewall_example**:
 
@@ -154,7 +154,7 @@ En este procedimiento, crearás un grupo simple, llamado __firewall_example__, q
 4. Elije el grupo __firewall_example__.
 5. Desde la pestaña __Rules__, en el campo __Node name__, ingresa el nombre del nodo administrado por PE para agregarlo al grupo.
 
-   >**Advertencia**: Se recomienda no agregar al Puppet Master a este grupo. La clase firewall no contiene las reglas requeridas para permitir acceso al Puppet Master. Agregarás estas reglas mas tarde cuando escribas una clase para [abrir los puertos para el Puppet Master](#open-ports-for-the-puppet-master).
+   >**Advertencia**: Se recomienda no agregar al Puppet Master a este grupo. La clase firewall no contiene las reglas requeridas para permitir acceso al Puppet Master. Agregarás estas reglas mas tarde cuando escribas una clase para [abrir los puertos para el Puppet Master](#abrir-puertos-para-el-puppet-master).
 
 6. Haz clic __Pin node__.
 7. Haz clic __Commit 1 change__.
@@ -165,9 +165,9 @@ En este procedimiento, crearás un grupo simple, llamado __firewall_example__, q
 
 ## Utilizando la consola de PE para agregar la clase `my_firewall`
 
-[classbutton]: ./images/quick/add_class_button.png
-[add_firewall]: ./images/quick/firewall_add_firewall.png
-[assign_firewall_group]: ./images/quick/assign_my_fw_group.png
+[classbutton]: /images/quick/add_class_button.png
+[add_firewall]: /images/quick/firewall_add_firewall.png
+[assign_firewall_group]: /images/quick/assign_my_fw_group.png
 
 El módulo puppetlabs-firewall se instala automáticamente como parte de la instalación de PE en `/opt/puppet/share/puppet/modules` y se distribuye a los nodos cuando se agrega la clase `my_firewall`
 
@@ -201,8 +201,8 @@ El módulo puppetlabs-firewall se instala automáticamente como parte de la inst
 
 ## Abrir puertos para el Puppet Master
 
-[master_run_report]: ./images/quick/master_log.png
-[select_master_log]: ./images/quick/select_master_log.png
+[master_run_report]: /images/quick/master_log.png
+[select_master_log]: /images/quick/select_master_log.png
 
 El Puppet Master, como cualquier otra aplicación en la infraestructura, requiere que cierta configuración especifica en el firewall para funcionar correctamente.
 
@@ -245,7 +245,7 @@ El Puppet Master, como cualquier otra aplicación en la infraestructura, requier
 
    Encontraras tres eventos en este nodo, indicando que el firewall permite acceso a MCollective, la consola de PE, y el Puppet master.
 
-   >**Sugerencia**: Para obtener información relacionada a reglas de firewall requeridas para la instalación de PE, revisa la documentación sobre [requisitos del sistema](./install_system_requirements.html#firewall-configuration).
+   >**Sugerencia**: Para obtener información relacionada a reglas de firewall requeridas para la instalación de PE, revisa la documentación sobre [requisitos del sistema](/pe/latest/install_system_requirements.html#firewall-configuration).
 
    ![viewing the latest run report][master_run_report]
 
@@ -270,8 +270,8 @@ El módulo de firewall de Puppet Labs (`puppetlabs-firewall`), es parte del prog
 
 Revisa otras guías de inicio rápido en la serie de GIR de PE:
 
-- [Guía de inicio rápido sobre NTP](./quick_start_ntp.html)
-- [Guía de inicio rápido sobre SSH](./quick_start_ssh.html)
+- [Guía de inicio rápido sobre NTP](/pe/latest/quick_start_ntp.html)
+- [Guía de inicio rápido sobre SSH](/pe/latest/quick_start_ssh.html)
 - [Guía de inicio rápido sobre DNS](./quick_start_dns.html)
 - [Guía de inicio rápido sobre Sudo](./quick_start_firewall.html)
 
