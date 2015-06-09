@@ -122,6 +122,8 @@ Instead, wrap the builtin in `cmd.exe`:
       path => 'c:\windows\system32;c:\windows'
     }
 
+Keep in mind that in 32-bit versions of Puppet, you may be subject to file system redirection (where system32 is switched to sysWOW64 automatically by Windows). We have ways of dealing with the [redirection](/puppet/latest/reference/lang_windows_file_paths.html#file-system-redirection-when-running-32-bit-puppet-on-64-bit-windows).
+
 Or, better still, use the tip from above:
 
     exec { 'cmd.exe /c echo foo':
