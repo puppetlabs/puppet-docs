@@ -49,7 +49,7 @@ description: Links to Puppet and Puppet Enterprise release notes
 
 ## About Version Numbers
 
-### Puppet Labs's Open Source Projects
+### Puppet Labs' Open Source Projects
 
 All of our open source projects --- including Puppet, PuppetDB, Facter, and Hiera --- use [semantic versioning ("semver")][semver] for their version numbers. This means that in an `x.y.z` version number, the "y" will increase if new features are introduced and the "x" will increase if existing features change or get removed.
 
