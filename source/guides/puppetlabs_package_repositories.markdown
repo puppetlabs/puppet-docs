@@ -3,22 +3,34 @@ title: "Using the Puppet Labs Package Repositories"
 layout: default
 nav: /_includes/puppet_general.html
 ---
+Puppet Labs releases official packages, called Puppet Collections, for several of the more popular Linux distributions. A Puppet Collection is is a package repository which includes everything you need to have a fully-functional agent. Each collection will be opt-in, so if you’re running `ensure => latest`, you’ll get the latest in the collection you’re using. 
+
+Puppet Labs also maintains package repositories for specific packages of PuppetDB, MCollective, Puppet Server and several pre-requisites and add-ons for Puppet Labs products. You can also enable package repositories for older Puppet 3.x and Facter 2.x. 
+
+This page explains how to enable these repositories on their supported operating systems.
+
+Our repositories will be maintained for the life of the corresponding operating system and available for one month after their end of life date.
+
+##Using Puppet Collections
+Puppet Collections are numbered with integers, beginning with PC1. The higher the integer, the newer the collection. 
+
+### Yum-based Systems
+The [yum.puppetlabs.com][yum] repository supports the following versions of RHEL and derivatives:
+
+{% include pup40_platforms_redhat_like.markdown %}
+
+{% include pup40_platforms_fedora_like.markdown %}
+
+### Apt-based Systems
+The [apt.puppetlabs.com](https://apt.puppetlabs.com) repository supports the following OS versions:
+
+{% include pup40_platforms_debian_like.markdown %}
 
 
-Puppet Labs maintains official package repositories for several of the more popular Linux distributions. These repos contain the latest available packages for Puppet, Facter, PuppetDB, Puppet Dashboard, MCollective, and several prerequisites and add-ons for Puppet Labs products.
+##Pre-4.0 Open Source Repositories
+Use these repositories to install older, specific versions of open source releases of Puppet, Facter, MCollective, PuppetDB, and more. After enabling the repo, [follow the instructions for installing Puppet](/guides/install_puppet/pre_install.html).
 
-We also maintain repositories for Puppet Enterprise 2.8.x users. These repos contain additional PE components, as well as modified packages for tools like PuppetDB which will integrate more smoothly with PE's namespaced installation layout. Note these *only* apply to users of PE 2.8. In PE 3.x, PuppetDB and other components are already integrated.
-
-This page explains how to enable these repositories on all of the supported operating systems.
-
-Our repositories will be maintained for the life of the corresponding operating system and available for three months after their end of life date. So if an operating system goes end of life on July 15, our repositories for that operating system will still be available until October 15.
-
-Open Source Repositories
------
-
-Use these repositories to install open source releases of Puppet, Facter, MCollective, PuppetDB, and more. After enabling the repo, [follow the instructions for installing Puppet](/guides/install_puppet/pre_install.html).
-
-### For Red Hat Enterprise Linux and Derivatives
+### Yum-based Systems Repository
 
 The [yum.puppetlabs.com](https://yum.puppetlabs.com) repository supports the following versions of Red Hat Enterprise Linux and distributions based on it:
 
@@ -28,7 +40,13 @@ Enabling this repository will let you install Puppet in Enterprise Linux 5 witho
 
 {% include repo_el.markdown %}
 
-### For Debian and Ubuntu
+The [yum.puppetlabs.com](https://yum.puppetlabs.com) repository supports the following Fedora versions:
+
+{% include platforms_fedora.markdown %}
+
+{% include repo_fedora.markdown %}
+
+### Apt-based Systems Repository
 
 The [apt.puppetlabs.com](https://apt.puppetlabs.com) repository supports the following OS versions:
 
@@ -36,17 +54,8 @@ The [apt.puppetlabs.com](https://apt.puppetlabs.com) repository supports the fol
 
 {% include repo_debian_ubuntu.markdown %}
 
-### For Fedora
 
-The [yum.puppetlabs.com](https://yum.puppetlabs.com) repository supports the following Fedora versions:
-
-{% include platforms_fedora.markdown %}
-
-{% include repo_fedora.markdown %}
-
-
-Using the Nightly Repos
------
+##Using the Nightly Repos
 
 We provide automatic nightly repositories, and you can use them to test pre-release builds. These repos are available at <http://nightlies.puppetlabs.com/>.
 
@@ -58,7 +67,7 @@ Our automated systems will only create new "nightly" repos for builds that pass 
 
 ### Contents of a Nightly Repo
 
-Each nightly repo only contains **a single product.** Currently, we only make nightly repos for Puppet, Facter, and PuppetDB.
+Each nightly repo only contains **a single product.** Currently, we make nightly repos for Puppet Server, Puppet Agent, and PuppetDB. We also have nightly packages for older Puppet 3.x and Facter 2.x.
 
 ### Latest vs. Specific Commit
 
@@ -91,60 +100,3 @@ There are two kinds of nightly repo for each product:
         $ sudo wget http://nightlies.puppetlabs.com/puppet/30e4febe85e24c278a2830530965871dc3c0eec1/repo_configs/deb/pl-puppet-30e4febe85e24c278a2830530965871dc3c0eec1-precise.list
 5. Be sure to run `sudo apt-get update`.
 6. Upgrade or install the product as usual.
-
-Using the Prerelease Repos
------
-
-Our open source repository packages also install a disabled prerelease repo, which contains release candidate versions of all Puppet Labs products. Enable this if you wish to test upcoming versions early, or if you urgently need a bug fix that has not gone into a final release yet.
-
-> **Note:** We plan to phase out the prerelease repos in favor of the new and more flexible nightly repos. (See above.) The nightlies are nicer because they're single-serve; for example, you can enable a specific new version of Puppet without inviting in pre-release versions of everything.
-
-### On Debian and Ubuntu
-
-{% include repo_pre_debian_ubuntu.markdown %}
-
-### On Fedora, RHEL, and Derivatives
-
-{% include repo_pre_redhat.markdown %}
-
-Puppet Enterprise 2.8 Repositories
------
-
-Use these repositories to install PE-compatible versions of PuppetDB and the Ruby development headers. **These repositories should only be used with Puppet Enterprise 2.8 and earlier;** PE 3 includes PuppetDB and the Ruby dev libraries by default.
-
-### For Red Hat Enterprise Linux and Derivatives
-
-The [yum-enterprise.puppetlabs.com](https://yum-enterprise.puppetlabs.com) repository supports versions 5 and 6 of Red Hat Enterprise Linux and distributions based on it, including but not limited to CentOS, Scientific Linux, and Ascendos. It contains additional components and add-ons compatible with Puppet Enterprise's installation layout.
-
-To enable the repository, run the command below that corresponds to your OS version:
-
-#### Enterprise Linux 5
-
-##### i386
-
-    $ sudo rpm -ivh https://yum-enterprise.puppetlabs.com/el/5/extras/i386/puppetlabs-enterprise-release-extras-5-2.noarch.rpm
-
-##### x86_64
-
-    $ sudo rpm -ivh https://yum-enterprise.puppetlabs.com/el/5/extras/x86_64/puppetlabs-enterprise-release-extras-5-2.noarch.rpm
-
-#### Enterprise Linux 6
-
-##### i386
-
-    $ sudo rpm -ivh https://yum-enterprise.puppetlabs.com/el/6/extras/i386/puppetlabs-enterprise-release-extras-6-2.noarch.rpm
-
-##### x86_64
-
-    $ sudo rpm -ivh https://yum-enterprise.puppetlabs.com/el/6/extras/x86_64/puppetlabs-enterprise-release-extras-6-2.noarch.rpm
-
-### For Debian and Ubuntu
-
-The [apt-enterprise.puppetlabs.com](https://apt-enterprise.puppetlabs.com) repository supports Debian 6 ("Squeeze"), Ubuntu 10.04 LTS, and Ubuntu 12.04 LTS.
-
-To enable the repository, run the commands below:
-
-    $ wget http://apt-enterprise.puppetlabs.com/puppetlabs-enterprise-release-extras_1.0-2_all.deb
-    $ sudo dpkg -i puppetlabs-enterprise-release-extras_1.0-2_all.deb
-    $ sudo apt-get update
-
