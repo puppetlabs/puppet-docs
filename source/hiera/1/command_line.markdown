@@ -98,7 +98,7 @@ timezone: CST
 
 `$ hiera ntp_server -j facts.json`
 
-~~~ json
+~~~ javascript
 // facts.json
 {
   "osfamily" : "Debian",

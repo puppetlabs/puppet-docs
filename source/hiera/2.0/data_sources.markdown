@@ -96,8 +96,8 @@ Boolean | `true` / `false`
 Any string may include any number of [interpolation tokens][variables].
 
 ### Example
-~~~ json
 
+~~~ javascript
 {
     "apache-packages" : [
     "apache2",
