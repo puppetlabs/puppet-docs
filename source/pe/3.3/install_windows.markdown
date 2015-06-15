@@ -29,10 +29,10 @@ In particular, note that puppet *must* be run with elevated privileges (a.k.a., 
 [server]: ./images/windows/wizard_server.png
 [signcert]: ./install_agents.html#signing-agent-certificates
 
-Installing Windows Puppet Enterprise Agents 
+Installing Windows Puppet Enterprise Agents
 -----
 
-**Note**: Windows nodes can only run the puppet agent component; the puppet master component must be run on a supported Linux machine. 
+**Note**: Windows nodes can only run the puppet agent component; the puppet master component must be run on a supported Linux machine.
 
 The PE Windows installer is a standard Windows .msi package and will run as a graphical wizard. Alternately, you can run the installer unattended; [see "Automated Installation"](#automated-installation) for more information.
 
@@ -40,7 +40,7 @@ The installer must be run with elevated privileges. Installing Puppet **does not
 
 **To install Puppet Enterprise on a Windows node**:
 
-1. [Download][pedownloads] and run the installer. 
+1. [Download][pedownloads] and run the installer.
 
 2. When prompted by the install dialog, provide the hostname of your puppet master server.
 
@@ -61,7 +61,7 @@ Automated Installation
 
 For automated deployments, Puppet can be installed unattended on the command line as follows:
 
-    msiexec /qn /i puppet.msi
+    msiexec /qn /norestart /i puppet.msi
 
 You can also specify `/l*v install.txt` to log the progress of the installation to a file.
 
@@ -85,7 +85,7 @@ MSI Property                                                   | Puppet Setting 
 
 For example:
 
-    msiexec /qn /i puppet.msi PUPPET_MASTER_SERVER=puppet.acme.com
+    msiexec /qn /norestart /i puppet.msi PUPPET_MASTER_SERVER=puppet.acme.com
 
 **Note:** If a value for the `environment` variable already exists in puppet.conf, specifying it during installation will NOT override that value.
 
@@ -160,7 +160,7 @@ Which Windows user account the puppet agent service should use. This is importan
 
 This property should be combined with `PUPPET_AGENT_ACCOUNT_PASSWORD` and `PUPPET_AGENT_ACCOUNT_DOMAIN`. For example, to assign the agent to a domain user `ExampleCorp\bob`, you would install with:
 
-    msiexec /qn /i puppet-<VERSION>.msi PUPPET_AGENT_ACCOUNT_DOMAIN=ExampleCorp PUPPET_AGENT_ACCOUNT_USER=bob PUPPET_AGENT_ACCOUNT_PASSWORD=password
+    msiexec /qn /norestart /i puppet-<VERSION>.msi PUPPET_AGENT_ACCOUNT_DOMAIN=ExampleCorp PUPPET_AGENT_ACCOUNT_USER=bob PUPPET_AGENT_ACCOUNT_PASSWORD=password
 
 **Default:** `LocalSystem`
 
@@ -193,7 +193,7 @@ Puppet can be uninstalled through the Windows standard __Add or Remove Programs_
 
 To uninstall from the command line, you must have the original MSI file or know the <a href="http://msdn.microsoft.com/en-us/library/windows/desktop/aa370854(v=vs.85).aspx">ProductCode</a> of the installed MSI:
 
-    msiexec /qn /x [puppet.msi|product-code]
+    msiexec /qn /norestart /x [puppet.msi|product-code]
 
 Uninstalling will remove Puppet's program directory, the puppet agent service, and all related registry keys. It will leave the [data directory](#data-directory) intact, including any SSL keys. To completely remove Puppet from the system, the data directory can be manually deleted.
 

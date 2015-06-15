@@ -69,7 +69,7 @@ Once the installer finishes, Puppet will be installed, running, and at least par
 
 Use the `msiexec` command to install the Puppet package:
 
-    msiexec /qn /i puppet-<VERSION>.msi
+    msiexec /qn /norestart /i puppet-<VERSION>.msi
 
 If you don't specify any further options, this is the same as installing graphically with the default puppet master hostname (`puppet`).
 
@@ -77,7 +77,7 @@ You can specify `/l*v install.txt` to log the progress of the installation to a 
 
 You can also set several MSI properties to pre-configure Puppet as you install it. For example:
 
-    msiexec /qn /i puppet.msi PUPPET_MASTER_SERVER=puppet.example.com
+    msiexec /qn /norestart /i puppet.msi PUPPET_MASTER_SERVER=puppet.example.com
 
 See the next heading for info about these MSI properties.
 
@@ -202,7 +202,7 @@ Which Windows user account the puppet agent service should use. This is importan
 
 This property should be combined with `PUPPET_AGENT_ACCOUNT_PASSWORD` and `PUPPET_AGENT_ACCOUNT_DOMAIN`. For example, to assign the agent to a domain user `ExampleCorp\bob`, you would install with:
 
-    msiexec /qn /i puppet-<VERSION>.msi PUPPET_AGENT_ACCOUNT_DOMAIN=ExampleCorp PUPPET_AGENT_ACCOUNT_USER=bob PUPPET_AGENT_ACCOUNT_PASSWORD=password
+    msiexec /qn /norestart /i puppet-<VERSION>.msi PUPPET_AGENT_ACCOUNT_DOMAIN=ExampleCorp PUPPET_AGENT_ACCOUNT_USER=bob PUPPET_AGENT_ACCOUNT_PASSWORD=password
 
 **Default:** `LocalSystem`
 
@@ -241,8 +241,8 @@ Puppet can be uninstalled through the "Add or Remove Programs" interface or from
 
 To uninstall from the command line, you must have the original MSI file or know the <a href="http://msdn.microsoft.com/en-us/library/windows/desktop/aa370854(v=vs.85).aspx">ProductCode</a> of the installed MSI:
 
-    msiexec /qn /x puppet-3.5.1.msi
-    msiexec /qn /x <PRODUCT CODE>
+    msiexec /qn /norestart /x puppet-3.5.1.msi
+    msiexec /qn /norestart /x <PRODUCT CODE>
 
 Uninstalling will remove Puppet's program directory, the puppet agent service, and all related registry keys. It will leave the [confdir][] and [vardir][] intact, including any SSL keys. To completely remove Puppet from the system, the confdir and vardir can be manually deleted.
 

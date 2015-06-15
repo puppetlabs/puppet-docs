@@ -53,7 +53,7 @@ Automated Installation
 
 For automated deployments, Puppet can be installed unattended on the command line as follows:
 
-    msiexec /qn /i puppet.msi
+    msiexec /qn /norestart /i puppet.msi
 
 You can also specify `/l*v install.txt` to log the progress of the installation to a file.
 
@@ -73,7 +73,7 @@ The following public MSI properties can also be specified:
 
 For example:
 
-    msiexec /qn /i puppet.msi PUPPET_MASTER_SERVER=puppet.acme.com
+    msiexec /qn /norestart /i puppet.msi PUPPET_MASTER_SERVER=puppet.acme.com
 
 **Note:** If a value for the `environment` variable already exists in puppet.conf, specifying it during installation will NOT override that value.
 
@@ -98,7 +98,7 @@ Puppet can be uninstalled through the Windows standard __Add or Remove Programs_
 
 To uninstall from the command line, you must have the original MSI file or know the <a href="http://msdn.microsoft.com/en-us/library/windows/desktop/aa370854(v=vs.85).aspx">ProductCode</a> of the installed MSI:
 
-    msiexec /qn /x [puppet.msi|product-code]
+    msiexec /qn /norestart /x [puppet.msi|product-code]
 
 Uninstalling will remove Puppet's program directory, the puppet agent service, and all related registry keys. It will leave the [data directory](#data-directory) intact, including any SSL keys. To completely remove Puppet from the system, the data directory can be manually deleted.
 

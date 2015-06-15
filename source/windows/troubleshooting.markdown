@@ -36,7 +36,7 @@ Similarly, the MSI will not overwrite the custom facts written to the `PuppetLab
 
 Puppet may fail to install when trying to perform an unattended install from the command line, e.g.
 
-    msiexec /qn /i puppet.msi
+    msiexec /qn /norestart /i puppet.msi
 
 To get troubleshooting data, specify an installation log, e.g. `/l*v install.txt`. Look in the log for entries like the following:
 
