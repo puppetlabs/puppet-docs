@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 18.1.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 600 400" enable-background="new 0 0 600 400" xml:space="preserve">
+<rect fill="#EDECEC" width="600" height="400"/>
+<g>
+	<defs>
+		<rect id="SVGID_1_" width="600" height="400"/>
+	</defs>
+	<clipPath id="SVGID_2_">
+		<use xlink:href="#SVGID_1_"  overflow="visible"/>
+	</clipPath>
+	<path clip-path="url(#SVGID_2_)" fill="#7E7A78" d="M49.3,21.6v21.6v45.5V428h493.4V46.7H245.8V21.6c0-1.2-7.5-7.8-10.1-7.8
+		L60.2,13.5C57.5,13.5,49.3,20.4,49.3,21.6z"/>
+	<g clip-path="url(#SVGID_2_)">
+		<text transform="matrix(1 0 0 1 60.0747 30.4739)"><tspan x="0" y="0" fill="#EDECEC" font-family="'DroidSansMono'" font-size="14.1427">enviroment directory</tspan><tspan x="0" y="17" fill="#EDECEC" font-family="'DroidSansMono'" font-size="14.1427">$codedir/environments</tspan></text>
+	</g>
+	<path clip-path="url(#SVGID_2_)" fill="#EDECEC" d="M61.4,85.5v9.9V242h227.1V97.1H150.4V85.5c0-0.5-3.4-3.6-4.6-3.6l-79.3-0.1
+		C65.2,81.8,61.4,85,61.4,85.5z"/>
+	<g clip-path="url(#SVGID_2_)">
+		<text transform="matrix(1 0 0 1 66.1699 97.1898)" fill="#3C3C3B" font-family="'DroidSansMono'" font-size="12.857">production</text>
+	</g>
+	<path clip-path="url(#SVGID_2_)" fill="#EDECEC" d="M303.4,85.5v9.9V242h227.1V97.1H380.8V85.5c0-0.5-3.4-3.6-4.6-3.6l-67.8-0.1
+		C307.2,81.8,303.4,85,303.4,85.5z"/>
+	<g clip-path="url(#SVGID_2_)">
+		<polygon fill="#CAC7C7" points="278.8,208.1 220.5,208.1 220.5,133.5 264.2,133.5 278.8,148.4 		"/>
+		<polygon fill="#7E7A78" points="278.8,148.4 264.2,148.4 264.2,133.5 		"/>
+	</g>
+	<g clip-path="url(#SVGID_2_)">
+		<text transform="matrix(1 0 0 1 311.0947 97.1898)" fill="#3C3C3B" font-family="'DroidSansMono'" font-size="12.857">test</text>
+	</g>
+	<path clip-path="url(#SVGID_2_)" fill="#EDECEC" d="M303.4,258.2v9.9v146.5h227.1V269.7H380.8v-11.6c0-0.5-3.4-3.6-4.6-3.6
+		l-67.8-0.1C307.2,254.5,303.4,257.6,303.4,258.2z"/>
+	<g clip-path="url(#SVGID_2_)">
+		<text transform="matrix(1 0 0 1 311.0947 271.1151)" fill="#3C3C3B" font-family="'DroidSansMono'" font-size="12.857">0fe1396f</text>
+	</g>
+	<path clip-path="url(#SVGID_2_)" fill="#EDECEC" d="M61.4,258.2v9.9v146.5h227.1V269.7H138.9v-11.6c0-0.5-3.4-3.6-4.6-3.6
+		l-67.8-0.1C65.2,254.5,61.4,257.6,61.4,258.2z"/>
+	<g clip-path="url(#SVGID_2_)">
+		<text transform="matrix(1 0 0 1 69.1348 271.1151)" fill="#3C3C3B" font-family="'DroidSansMono'" font-size="12.857">0ae7890b</text>
+	</g>
+	<g clip-path="url(#SVGID_2_)">
+		<text transform="matrix(1 0 0 1 227.2104 171.4315)" fill="#3C3C3B" font-family="'DroidSansMono'" font-size="4.5648">environment.conf</text>
+	</g>
+	<path clip-path="url(#SVGID_2_)" fill="#CAC7C7" d="M68.9,142.7v3v6.2v46.5h67.6v-52.2H91.9v-3.4c0-0.2-1-1.1-1.4-1.1l-20.2,0
+		C70,141.6,68.9,142.6,68.9,142.7z"/>
+	<path clip-path="url(#SVGID_2_)" fill="#CAC7C7" d="M145.2,142.7v3v6.2v46.5h67.6v-52.2h-44.5v-3.4c0-0.2-1-1.1-1.4-1.1l-20.2,0
+		C146.3,141.6,145.2,142.6,145.2,142.7z"/>
+	<g clip-path="url(#SVGID_2_)">
+		<text transform="matrix(1 0 0 1 80.8926 175.0252)" fill="#3C3C3B" font-family="'DroidSansMono'" font-size="10.2856">modules</text>
+	</g>
+	<g clip-path="url(#SVGID_2_)">
+		<text transform="matrix(1 0 0 1 150.1802 175.0252)" fill="#3C3C3B" font-family="'DroidSansMono'" font-size="10.2856">manifests</text>
+	</g>
+	<g clip-path="url(#SVGID_2_)">
+		<polygon fill="#CAC7C7" points="278.8,381.1 220.5,381.1 220.5,306.4 264.2,306.4 278.8,321.4 		"/>
+		<polygon fill="#7E7A78" points="278.8,321.4 264.2,321.4 264.2,306.4 		"/>
+	</g>
+	<g clip-path="url(#SVGID_2_)">
+		<text transform="matrix(1 0 0 1 227.2104 344.3582)" fill="#3C3C3B" font-family="'DroidSansMono'" font-size="4.5648">environment.conf</text>
+	</g>
+	<path clip-path="url(#SVGID_2_)" fill="#CAC7C7" d="M68.9,315.6v3v6.2v46.5h67.6v-52.2H91.9v-3.4c0-0.2-1-1.1-1.4-1.1l-20.2,0
+		C70,314.5,68.9,315.5,68.9,315.6z"/>
+	<path clip-path="url(#SVGID_2_)" fill="#CAC7C7" d="M145.2,315.6v3v6.2v46.5h67.6v-52.2h-44.5v-3.4c0-0.2-1-1.1-1.4-1.1l-20.2,0
+		C146.3,314.5,145.2,315.5,145.2,315.6z"/>
+	<g clip-path="url(#SVGID_2_)">
+		<text transform="matrix(1 0 0 1 80.0356 347.951)" fill="#3C3C3B" font-family="'DroidSansMono'" font-size="10.2856">modules</text>
+	</g>
+	<g clip-path="url(#SVGID_2_)">
+		<text transform="matrix(1 0 0 1 152.751 347.951)" fill="#3C3C3B" font-family="'DroidSansMono'" font-size="10.2856">manifests</text>
+	</g>
+	<g clip-path="url(#SVGID_2_)">
+		<polygon fill="#CAC7C7" points="523.2,208.1 464.9,208.1 464.9,133.5 508.6,133.5 523.2,148.4 		"/>
+		<polygon fill="#7E7A78" points="523.2,148.4 508.6,148.4 508.6,133.5 		"/>
+	</g>
+	<g clip-path="url(#SVGID_2_)">
+		<polygon fill="#CAC7C7" points="523.2,381.1 464.9,381.1 464.9,306.4 508.6,306.4 523.2,321.4 		"/>
+		<polygon fill="#7E7A78" points="523.2,321.4 508.6,321.4 508.6,306.4 		"/>
+	</g>
+	<g clip-path="url(#SVGID_2_)">
+		<text transform="matrix(1 0 0 1 471.6104 344.3582)" fill="#3C3C3B" font-family="'DroidSansMono'" font-size="4.5648">environment.conf</text>
+	</g>
+	<path clip-path="url(#SVGID_2_)" fill="#CAC7C7" d="M313.3,315.6v3v6.2v46.5h67.6v-52.2h-44.5v-3.4c0-0.2-1-1.1-1.4-1.1l-20.2,0
+		C314.4,314.5,313.3,315.5,313.3,315.6z"/>
+	<path clip-path="url(#SVGID_2_)" fill="#CAC7C7" d="M389.6,315.6v3v6.2v46.5h67.6v-52.2h-44.5v-3.4c0-0.2-1-1.1-1.4-1.1l-20.2,0
+		C390.7,314.5,389.6,315.5,389.6,315.6z"/>
+	<g clip-path="url(#SVGID_2_)">
+		<text transform="matrix(1 0 0 1 324.4346 347.951)" fill="#3C3C3B" font-family="'DroidSansMono'" font-size="10.2856">modules</text>
+	</g>
+	<g clip-path="url(#SVGID_2_)">
+		<text transform="matrix(1 0 0 1 397.1504 347.951)" fill="#3C3C3B" font-family="'DroidSansMono'" font-size="10.2856">manifests</text>
+	</g>
+	<path clip-path="url(#SVGID_2_)" fill="#CAC7C7" d="M313.3,142.7v3v6.2v46.5h67.6v-52.2h-44.5v-3.4c0-0.2-1-1.1-1.4-1.1l-20.2,0
+		C314.4,141.6,313.3,142.6,313.3,142.7z"/>
+	<path clip-path="url(#SVGID_2_)" fill="#CAC7C7" d="M389.6,142.7v3v6.2v46.5h67.6v-52.2h-44.5v-3.4c0-0.2-1-1.1-1.4-1.1l-20.2,0
+		C390.7,141.6,389.6,142.6,389.6,142.7z"/>
+	<g clip-path="url(#SVGID_2_)">
+		<text transform="matrix(1 0 0 1 324.4346 175.0252)" fill="#3C3C3B" font-family="'DroidSansMono'" font-size="10.2856">modules</text>
+	</g>
+	<g clip-path="url(#SVGID_2_)">
+		<text transform="matrix(1 0 0 1 397.1504 175.0252)" fill="#3C3C3B" font-family="'DroidSansMono'" font-size="10.2856">manifests</text>
+	</g>
+	<g clip-path="url(#SVGID_2_)">
+		<defs>
+			<circle id="SVGID_3_" cx="527.5" cy="164.7" r="55.9"/>
+		</defs>
+		<clipPath id="SVGID_4_">
+			<use xlink:href="#SVGID_3_"  overflow="visible"/>
+		</clipPath>
+		<g clip-path="url(#SVGID_4_)">
+			<path fill="#7E7A78" d="M-289.1-144.5v38.8v82v611.1h888.7V-99.2H64.8v-45.3c0-2.1-13.4-14.1-18.2-14.1l-316.1-0.4
+				C-274.2-159-289.1-146.5-289.1-144.5z"/>
+			<path fill="#EDECEC" d="M168.6,11v17.9v264h417.3v-261H308.1V11c0-1-6.2-6.5-8.4-6.5L177.7,4.3C175.5,4.3,168.6,10.1,168.6,11z"
+				/>
+			<g>
+				<polygon fill="#CAC7C7" points="564.5,228.8 459.5,228.8 459.5,94.4 538.2,94.4 564.5,121.3 				"/>
+				<polygon fill="#7E7A78" points="564.4,121.3 538.2,121.3 538.2,94.3 				"/>
+			</g>
+			<g>
+				<text transform="matrix(1 0 0 1 475.9902 166.9026)" fill="#3C3C3B" font-family="'DroidSansMono'" font-size="8.5913">environment.conf</text>
+			</g>
+		</g>
+		<use xlink:href="#SVGID_3_"  overflow="visible" fill="none" stroke="#F1AC17" stroke-width="3.8571" stroke-miterlimit="10"/>
+	</g>
+</g>
+</svg>
