@@ -358,9 +358,9 @@ The entire selector expression is **treated as a single value.**
 
 Puppet compares the control expression to each of the cases, in the order they are listed (except for the `default` case, which always goes last). When it finds a matching case, it will treat that value as the value of the expression and ignore the remainder of the expression.
 
-If none of the cases match, Puppet will **fail compilation with an error,** so you should always have a default case.
+If none of the cases match, Puppet will **fail compilation with an error.** 
 
-See "Cases" below for details on how Puppet matches different kinds of cases.
+See "Case Matching" below for details on how Puppet matches different kinds of cases.
 
 #### Control Expressions
 
@@ -370,7 +370,7 @@ The control expression of a selector can be any expression that resolves to a va
 * [Expressions][]
 * [Functions][] that return values
 
-#### Cases
+#### Case Matching
 
 A case can be any expression that resolves to a value. (This includes literal values, variables, function calls, etc.)
 
