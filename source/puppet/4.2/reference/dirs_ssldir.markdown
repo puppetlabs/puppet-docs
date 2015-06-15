@@ -5,33 +5,33 @@ canonical: "/puppet/latest/reference/dirs_ssldir.html"
 ---
 
 
-[ssldir]: /references/4.1.latest/configuration.html#ssldir
-[cadir]: /references/4.1.latest/configuration.html#cadir
-[cacrl]: /references/4.1.latest/configuration.html#cacrl
-[cacert]: /references/4.1.latest/configuration.html#cacert
-[cakey]: /references/4.1.latest/configuration.html#cakey
-[capub]: /references/4.1.latest/configuration.html#capub
-[cert_inventory]: /references/4.1.latest/configuration.html#certinventory
-[caprivatedir]: /references/4.1.latest/configuration.html#caprivatedir
-[capass]: /references/4.1.latest/configuration.html#capass
-[csrdir]: /references/4.1.latest/configuration.html#csrdir
-[serial]: /references/4.1.latest/configuration.html#serial
-[signeddir]: /references/4.1.latest/configuration.html#signeddir
-[requestdir]: /references/4.1.latest/configuration.html#requestdir
-[hostcsr]: /references/4.1.latest/configuration.html#hostcsr
-[certdir]: /references/4.1.latest/configuration.html#certdir
-[hostcert]: /references/4.1.latest/configuration.html#hostcert
-[localcacert]: /references/4.1.latest/configuration.html#localcacert
-[hostcrl]: /references/4.1.latest/configuration.html#hostcrl
-[privatedir]: /references/4.1.latest/configuration.html#privatedir
-[passfile]: /references/4.1.latest/configuration.html#passfile
-[privatekeydir]: /references/4.1.latest/configuration.html#privatekeydir
-[hostprivkey]: /references/4.1.latest/configuration.html#hostprivkey
-[publickeydir]: /references/4.1.latest/configuration.html#publickeydir
-[hostpubkey]: /references/4.1.latest/configuration.html#hostpubkey
+[ssldir]: /references/4.2.latest/configuration.html#ssldir
+[cadir]: /references/4.2.latest/configuration.html#cadir
+[cacrl]: /references/4.2.latest/configuration.html#cacrl
+[cacert]: /references/4.2.latest/configuration.html#cacert
+[cakey]: /references/4.2.latest/configuration.html#cakey
+[capub]: /references/4.2.latest/configuration.html#capub
+[cert_inventory]: /references/4.2.latest/configuration.html#certinventory
+[caprivatedir]: /references/4.2.latest/configuration.html#caprivatedir
+[capass]: /references/4.2.latest/configuration.html#capass
+[csrdir]: /references/4.2.latest/configuration.html#csrdir
+[serial]: /references/4.2.latest/configuration.html#serial
+[signeddir]: /references/4.2.latest/configuration.html#signeddir
+[requestdir]: /references/4.2.latest/configuration.html#requestdir
+[hostcsr]: /references/4.2.latest/configuration.html#hostcsr
+[certdir]: /references/4.2.latest/configuration.html#certdir
+[hostcert]: /references/4.2.latest/configuration.html#hostcert
+[localcacert]: /references/4.2.latest/configuration.html#localcacert
+[hostcrl]: /references/4.2.latest/configuration.html#hostcrl
+[privatedir]: /references/4.2.latest/configuration.html#privatedir
+[passfile]: /references/4.2.latest/configuration.html#passfile
+[privatekeydir]: /references/4.2.latest/configuration.html#privatekeydir
+[hostprivkey]: /references/4.2.latest/configuration.html#hostprivkey
+[publickeydir]: /references/4.2.latest/configuration.html#publickeydir
+[hostpubkey]: /references/4.2.latest/configuration.html#hostpubkey
 [vardir]: ./dirs_vardir.html
 [confdir]: ./dirs_confdir.html
-[certname]: /references/4.1.latest/configuration.html#certname
+[certname]: /references/4.2.latest/configuration.html#certname
 [print_settings]: ./config_print.html
 
 

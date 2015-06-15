@@ -1,5 +1,5 @@
 {% capture server_version %}2.1{% endcapture %}
-{% capture puppet_version %}4.1{% endcapture %}
+{% capture puppet_version %}4.2{% endcapture %}
 {% capture puppet_dir %}/puppet/{{ puppet_version }}/reference{% endcapture %}
 
 <h3 id="puppet-{{ puppet_version }}-reference-manual">Puppet {{ puppet_version }} Reference Manual</h3>
@@ -57,7 +57,7 @@
       </li>
       <li><a href="{{ puppet_dir }}/config_print.html">Checking Values of Settings</a></li>
       <li><a href="{{ puppet_dir }}/config_set.html">Editing Settings on the Command Line</a></li>
-      <li><a href="/references/4.1.latest/configuration.html">Complete List of Settings (Configuration Reference)</a></li>
+      <li><a href="/references/{{ puppet_version }}.latest/configuration.html">Complete List of Settings (Configuration Reference)</a></li>
       <li><a href="/puppetserver/{{ server_version }}/puppet_conf_setting_diffs.html">Settings that Differ Under Puppet Server</a></li>
     </ul>
   </li>

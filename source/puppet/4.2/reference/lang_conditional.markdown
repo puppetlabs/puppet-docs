@@ -10,7 +10,7 @@ canonical: "/puppet/latest/reference/lang_conditional.html"
 [regex]: ./lang_data_regexp.html
 [facts]: ./lang_variables.html#facts
 [equality]: ./lang_expressions.html#equality
-[fail]: /references/4.1.latest/function.html#fail
+[fail]: /references/4.2.latest/function.html#fail
 [matching]: ./lang_expressions.html#regex-match
 [expressions]: ./lang_expressions.html
 [bool_convert]: ./lang_data_boolean.html

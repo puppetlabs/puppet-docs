@@ -1,11 +1,11 @@
 ---
 layout: default
-title: "Puppet 4.1 Reference Manual"
+title: "Puppet 4.2 Reference Manual"
 canonical: "/puppet/latest/reference/index.html"
 toc: false
 ---
 
-Welcome to the Puppet 4.1 Reference Manual. Use the navigation to the left to get around.
+Welcome to the Puppet 4.2 Reference Manual. Use the navigation to the left to get around.
 
 ## What Is This?
 
@@ -32,7 +32,7 @@ In order to get this release into the world as quickly as possible we had to mak
 
 This manual is split into several sections, which can be reached from the left sidebar. A few notable pages:
 
-* The [Release Notes](./release_notes.html) have information about what's new and different in Puppet 4.1, and track changes from patch releases.
+* The [Release Notes](./release_notes.html) have information about what's new and different in this version of Puppet, and track changes from patch releases.
 * If you're an experienced Puppet user, you'll want to take a look at the [Where Did Everything Go?](./whered_it_go.html) page.
 * The [Resource Type Reference](/references/3.8.latest/type.html) is the page where experienced Puppet users spend most of their time.
 * Puppet uses its own configuration language, which is documented in the language section of this reference. Two good starting points are:
