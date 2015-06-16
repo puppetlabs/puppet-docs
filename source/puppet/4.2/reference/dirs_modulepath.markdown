@@ -18,7 +18,7 @@ The Puppet master service and the Puppet apply command both load most of their c
 
 Puppet automatically loads modules from one or more directories. The list of directories Puppet will find modules in is called the **modulepath.**
 
-The modulepath is set by the current node's [environment][].
+The modulepath is set by the current node's [environment][environments].
 
 ## Format
 
