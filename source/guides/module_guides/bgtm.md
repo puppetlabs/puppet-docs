@@ -15,7 +15,7 @@ This module guide will help you learn how to create fantastic modules by introdu
 
 ##Requirements
 
-Before reading this guide we recommend that you become familiar with [Puppet](/learning/modules1.html) such that you have a basic understanding of the Puppet [language](/learning/#contents), you know what constitutes a [class](/learning/modules1.html#classes), and you know how to put together a [basic module](/learning/modules1.html#the-modulepath).
+Before reading this guide we recommend that you become familiar with Puppet such that you have a basic understanding of the Puppet [language](/puppet/latest/reference/lang_summary.html), you know what constitutes a [class](/puppet/latest/reference/lang_classes.html), and you know how to put together a [basic module](/puppet/latest/reference/modules_fundamentals.html).
 
 ##Step One: Giving Your Module Purpose
 
@@ -37,9 +37,9 @@ As an example, let's take a look at the [puppetlabs/puppetdb](http://forge.puppe
 
 The ideal module is one that is designed to manage a single piece of software from installation through setup, configuration, and service management.
 
-We acknowledge that there are many variations in software that modules may manage. A large majority of modules should be able to follow this best practices structure. However, we acknowledge that this structure may not be appropriate for some. Where possible, we will call out this incompatibility and recommend best practice alternatives.
+We acknowledge that there are many variations in software that modules can manage. A large majority of modules should be able to follow this best practices structure. However, we acknowledge that this structure might not be appropriate for some. Where possible, we call out this incompatibility and recommend best practice alternatives.
 
-This section will cover:
+This section covers:
 
 * [2a. How to design your module's classes](#a-class-design)
 * [2b. How to develop useful parameters](#b-parameters)
@@ -62,11 +62,11 @@ In terms of class structure we recommend the following (more detail below):
 
 #### `module`
 
-The main class of any module must share the name of the module and be located in the `init.pp` file. The name and location of the main module class is extremely important, as it guides the [autoloader](/puppet/2.7/reference/lang_namespaces.html#autoloader-behavior) behavior. The main class of a module is its interface point and ought to be the only parameterized class if possible. Limiting the parameterized classes to just the main class allows you to control usage of the entire module with the inclusion of a single class.  This class should provide sensible defaults so that a user can get going with `include module`.
+The main class of any module must share the name of the module and be located in the `init.pp` file. The name and location of the main module class is extremely important, as it guides the [autoloader](/puppet/latest/reference/lang_namespaces.html#autoloader-behavior) behavior. The main class of a module is its interface point and ought to be the only parameterized class if possible. Limiting the parameterized classes to just the main class allows you to control usage of the entire module with the inclusion of a single class. This class should provide sensible defaults so that a user can get going with `include module`.
 
 For instance, this is how the ntp module's main class is structured:
 
-~~~ ruby
+~~~ruby
     class ntp (
       $autoupdate        = $ntp::params::autoupdate,
       $config            = $ntp::params::config,
@@ -167,7 +167,7 @@ For example,
 
 ### 2b: Parameters
 
-Parameters form the public API of your module.  They are the most important interface you expose, and care should be taken to give a good balance to the number and variety of parameters so users can customize their interactions with the module. Below, we will walk through best practices for naming and developing parameters.
+Parameters form the public API of your module. They are the most important interface you expose, and care should be taken to give a good balance to the number and variety of parameters so users can customize their interactions with the module. Below, we will walk through best practices for naming and developing parameters.
 
 ####Naming
 
@@ -192,17 +192,17 @@ Consistent naming across modules helps with the readability and usability of you
 
 ####Number
 
-If you want to maximize the usability of your module without requiring users to modify it, you should make it more flexible through the addition of parameters. Adding parameters enables more customized use of your module.  While this can feel frustrating as an author, best practice is to embrace parameters rather than avoid them.
+If you want to maximize the usability of your module without requiring users to modify it, you should make it more flexible through the addition of parameters. Adding parameters enables more customized use of your module. While this can feel frustrating as an author, best practice is to embrace parameters rather than avoid them.
 
 You must not hardcode data in your modules, and having more parameters is the best alternative. Hardcoded data results in an inflexible module that requires manifest changes in order for it to be used in slightly different circumstances.
 
-Adding parameters that allow you to override templates is an anti-pattern to avoid.  Parameters that allow overriding templates lead to end users overriding your template with a custom template that contains hardcoded additional parameters. Hardcoding parameters in a template should be avoided, as it leads to stagnation and inhibits flexibility over time.  It is far better to create more parameters and modify the original template, or have a parameter which accepts an arbitrary chunk of text added to the template, than it is to override the template with a customized one.
+Adding parameters that allow you to override templates is an anti-pattern to avoid. Parameters that allow overriding templates lead to end users overriding your template with a custom template that contains hardcoded additional parameters. Hardcoding parameters in a template should be avoided, as it leads to stagnation and inhibits flexibility over time. It is far better to create more parameters and modify the original template, or have a parameter which accepts an arbitrary chunk of text added to the template, than it is to override the template with a customized one.
 
 For an example of a module that capitalizes on offering many parameters, please see [puppetlabs/apache](http://forge.puppetlabs.com/puppetlabs/apache).
 
 ###2c: Ordering
 
-Best practices recommend basing your requires, befores, and other ordering-related dependencies on classes rather than resources.  Class-based ordering allows you to shield the implementation details of each class from the other classes. You can do things like:
+Best practices recommend basing your requires, befores, and other ordering-related dependencies on classes rather than resources. Class-based ordering allows you to shield the implementation details of each class from the other classes. You can do things like:
 
 ~~~ ruby
     file { 'configuration':
@@ -211,13 +211,13 @@ Best practices recommend basing your requires, befores, and other ordering-relat
     }
 ~~~
 
-Rather than making a require to several packages,  the above ordering allows you to refactor and improve `module::install` without having to adjust the manifests of other classes to match the changes.
+Rather than making a require to several packages, the above ordering allows you to refactor and improve `module::install` without having to adjust the manifests of other classes to match the changes.
 
 ####Containment and Anchoring
 
-Classes do not _automatically_ contain the classes they declare. (This is because classes may be declared in several places via `include` and similar functions. Most of these places shouldn't contain the class, and trying to contain it everywhere would cause huge problems.)
+Classes do not _automatically_ contain the classes they declare. (This is because classes can be declared in several places via `include` and similar functions. Most of these places shouldn't contain the class, and trying to contain it everywhere would cause huge problems.)
 
-Thus, if you want to allow other modules to form ordering relationships with your module, you should ensure that your main class(es) will explicitly _contain_ any subordinate classes they declare. For more information and context, you can see [the Containment page of the Puppet reference manual](/puppet/latest/reference/lang_containment.html).
+Thus, if you want to allow other modules to form ordering relationships with your module, you should ensure that your main class(es) explicitly _contain_ any subordinate classes they declare. For more information and context, you can see [the Containment page of the Puppet reference manual](/puppet/latest/reference/lang_containment.html).
 
 In Puppet 3.4.0 / Puppet Enterprise 3.2 and later, you can contain classes by using [the `contain` function](/references/latest/function.html#contain) on them. To support versions prior to 3.4.0 / PE 3.2, you must use the **anchor pattern** to hold those classes in place. See below for an example of anchoring. (*Note: anchoring requires [puppetlabs-stdlib](http://forge.puppetlabs.com/puppetlabs/stdlib)*.)
 
@@ -245,17 +245,17 @@ For a real world example of anchoring in action, please see Hunter's [puppet-wor
 
 ###2d: Dependencies
 
-If your module's functionality depends on another module, then you must  list these dependencies and include them directly, rather than indirectly hoping they are included in the catalog.
+If your module's functionality depends on another module, then you must list these dependencies and include them directly, rather than indirectly hoping they are included in the catalog.
 
-This means you must `include x` in your `init.pp` to ensure the dependency is included in the catalog. You must also add the dependency to the [Modulefile](/guides/style_guide.html#module-metadata) and `.fixtures.yml`. (`.fixtures.yml` is a file used exclusively by rspec to pull in dependencies required to successfully run unit tests.)
+This means you must `include x` in your `init.pp` to ensure the dependency is included in the catalog. You must also add the dependency to the module's [metadata.json](/guides/style_guide.html#module-metadata) and `.fixtures.yml`. (`.fixtures.yml` is a file used exclusively by rspec to pull in dependencies required to successfully run unit tests.)
 
 ##Step Three: Module Testing
 
-Congratulations! You have written a module that accomplishes a task; has appropriate names, classes, and parameters;  is ordered correctly; and that lists its dependencies. Now you must ensure that the module works in a variety of conditions, and that the options and parameters of your module work together to an appropriate end result.  We have several testing frameworks available to help you write unit and acceptance tests.
+Congratulations! You have written a module that accomplishes a task; has appropriate names, classes, and parameters; is ordered correctly; and that lists its dependencies. Now you must ensure that the module works in a variety of conditions, and that the options and parameters of your module work together to an appropriate end result. We have several testing frameworks available to help you write unit and acceptance tests.
 
 ###rspec-puppet
 
-Rspec-Puppet provides a unit-testing framework for Puppet. It extends RSpec to allow the testing framework to understand Puppet catalogs, the artifact it specializes in testing.  You can write tests, as in the below example, to test that aspects of your module work as intended.
+Rspec-Puppet provides a unit-testing framework for Puppet. It extends RSpec to allow the testing framework to understand Puppet catalogs, the artifact it specializes in testing. You can write tests, as in the below example, to test that aspects of your module work as intended.
 
     it { should contain_file('configuration') }
 
@@ -281,13 +281,13 @@ It then knows how to translate `be_running` into shell commands for different di
 
 ###puppetlabs-spec-helper
 
-The [puppetlabs-spec-helper](https://github.com/puppetlabs/puppetlabs_spec_helper) is a gem that automates some of the tasks required to test modules.  It provides a number of default rake tasks that allow you to standardize testing across modules, and it provides some glue code between rspec-puppet and actual modules.  Most of the time you need do nothing more than add it to the Gemfile of the project and add the following the to the Rakefile:
+The [puppetlabs-spec-helper](https://github.com/puppetlabs/puppetlabs_spec_helper) is a gem that automates some of the tasks required to test modules. It provides a number of default rake tasks that allow you to standardize testing across modules, and it provides some glue code between rspec-puppet and actual modules. Most of the time you need do nothing more than add it to the Gemfile of the project and add the following the to the Rakefile:
 
     require 'puppetlabs_spec_helper/rake_tasks'
 
 ##Step Four: Module versioning
 
-Modules, like any other piece of software, must be versioned and released when changes are made.  We use and recommend using [SemVer](http://semver.org/). It sets out the exact rules around when to increment major versions and so forth.
+Modules, like any other piece of software, must be versioned and released when changes are made. We use and recommend using [SemVer](http://semver.org/). It sets out the exact rules around when to increment major versions and so forth.
 
 Once you've decided on the new version number, you must increase the version number metadata in the Modulefile. Versioning within the Modulefile allows you to build Puppet environments by picking and choosing specific versions of a module or set of modules.
 
