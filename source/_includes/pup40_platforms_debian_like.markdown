@@ -1,4 +1,4 @@
-We publish official packages and run automated testing on the following versions for Puppet 4.0:
+We publish official packages and run automated testing on the following versions for Puppet 4.x:
 
 
 * Debian 7 "Wheezy" (current stable release) 

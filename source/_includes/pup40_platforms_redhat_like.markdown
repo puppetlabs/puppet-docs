@@ -1,4 +1,4 @@
-We publish official packages and run automated testing on the following versions for Puppet 4.0:
+We publish official packages and run automated testing on the following versions for Puppet 4.x:
 
 * Enterprise Linux 6 (also supported by [Puppet Enterprise][peinstall])
 * Enterprise Linux 7 (also supported by [Puppet Enterprise][peinstall])
