@@ -3,9 +3,10 @@ title: "Using the Puppet Labs Package Repositories"
 layout: default
 nav: /_includes/puppet_general.html
 ---
-Puppet Labs releases official packages, called Puppet Collections, for several of the more popular Linux distributions. A Puppet Collection is is a package repository which includes everything you need to have a fully-functional agent. Each collection will be opt-in, so if you’re running `ensure => latest`, you’ll get the latest in the collection you’re using. 
 
-Puppet Labs also maintains package repositories for specific packages of PuppetDB, MCollective, Puppet Server and several pre-requisites and add-ons for Puppet Labs products. You can also enable package repositories for older Puppet 3.x and Facter 2.x. 
+Puppet Labs maintains official package repositories for several of the more popular Linux distributions. To make the repos more predictable, we version them as "Puppet Collections" --- each collection has all of the software you need to run a functional Puppet deployment, in versions that are known to work well with each other. Each collection is opt-in, so if you’re running `ensure => latest`, you’ll get the latest in the collection you’re using. Whenever we make significant breaking changes that introduce incompatibilities between versions of our software, we make a new collection so that you can do major upgrades at your convenience. 
+
+Puppet Labs also maintains package repositories for older versions of PuppetDB, MCollective, Puppet Server and several pre-requisites and add-ons for Puppet Labs products. You can also enable package repositories for older Puppet 3.x and Facter 2.x. 
 
 This page explains how to enable these repositories on their supported operating systems.
 
