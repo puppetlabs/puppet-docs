@@ -36,11 +36,11 @@ Puppet apply does not use the manifest from an environment; it always uses the m
 
 Puppet master always uses the main manifest set by the current node's [environment][]. The main manifest may be a single file or a directory of `.pp` files.
 
-Each environment can configure its own main manifest with the `manifest` setting in [environment.conf][]. (You can disable this ability with [the `disable_per_environment_manifest` setting][disable_per_environment_manifest].)
+By default, the main manifest for a given environment is `<ENVIRONMENTS DIRECTORY>/<ENVIRONMENT>/manifests`. (For example: `/etc/puppetlabs/code/environments/production/manifests`.) You can configure the manifest per-environment, and you can also configure the default for all environments.
 
-Any environment that doesn't set a manifest in its config file will use [the `default_manifest` setting][default_manifest] from [puppet.conf][]. Like the `manifest` setting in [environment.conf][], the value of `default_manifest` can be an absolute or relative path. If it's a relative path, Puppet will resolve it relative to each environment's main directory.
-
-Since the default value of `default_manifest` is `./manifests`, the default main manifest for an environment is `<ENVIRONMENTS DIRECTORY>/<ENVIRONMENT NAME>/manifests`. (For example: `/etc/puppetlabs/code/environments/production/manifests`.)
+* An environment can use the `manifest` setting in [environment.conf][] to choose its main manifest. This can be an absolute path or a path relative to the environment's main directory. If absent, it defaults to the value of [the `default_manifest` setting][default_manifest] from [puppet.conf][].
+* [The `default_manifest` setting][default_manifest] defaults to `./manifests`. Like the `manifest` setting, the value of `default_manifest` can be an absolute path or a path relative to the environment's main directory.
+* You can also force all environments to use the `default_manifest` (ignoring their own `manifest` settings) by setting [`disable_per_environment_manifest = true`][disable_per_environment_manifest] in puppet.conf.
 
 For more details, see:
 

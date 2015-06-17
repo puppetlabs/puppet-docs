@@ -4,8 +4,7 @@ title: "Directories: Config Directory (confdir)"
 canonical: "/puppet/latest/reference/dirs_confdir.html"
 ---
 
-[listen]: /references/4.2.latest/configuration.html#listen
-
+[puppetserver_conf]: /puppetserver/2.1/configuration.html#puppetserverconf
 
 
 Puppet's `confdir` is the main directory for Puppet's configuration. It contains config files and SSL data.
@@ -28,6 +27,8 @@ The system confdir is what you usually want to use, since you will usually run P
 ### Configuration
 
 Puppet's confdir can be specified on the command line with the `--confdir` option, but it can't be set via puppet.conf. (This is because it needs the `confdir` to even find the config file.) If `--confdir` isn't specified when a Puppet application is started, it will always use the default confdir location.
+
+Puppet Server uses the `jruby-puppet.master-conf-dir` setting [in puppetserver.conf][puppetserver_conf] to configure its confdir. Note that if you're using a non-default confdir, you must also specify `--confdir` whenever you run commands like `puppet module` or `puppet cert` to ensure they use the same directories as Puppet Server.
 
 ### Note about Windows 2003
 
@@ -54,7 +55,7 @@ Items labeled "master only" below may also be present on standalone Puppet apply
 ### Config Files
 
 * [`puppet.conf`](./config_file_main.html) --- Puppet's main config file. (All nodes.)
-* [`auth.conf`](./config_file_auth.html) --- access control rules for the Puppet master's network services. (Master only, unless [`listen`][listen] is enabled.)
+* [`auth.conf`](./config_file_auth.html) --- access control rules for the Puppet master's network services.
 * [`autosign.conf`](./config_file_autosign.html) --- a list of pre-approved certificate requests. (CA master only.)
 * [`csr_attributes.yaml`](./config_file_csr_attributes.html) --- optional data to be inserted into new certificate requests. (All nodes.)
 * [`device.conf`](./config_file_device.html) --- configuration for network devices managed by the `puppet device` command. (All nodes.)

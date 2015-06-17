@@ -6,12 +6,19 @@ canonical: "/puppet/latest/reference/dirs_vardir.html"
 
 [confdir]: ./dirs_confdir.html
 [config_ref]: /references/4.2.latest/configuration.html
+[puppetserver_conf]: /puppetserver/2.1/configuration.html#puppetserverconf
 
 Puppet's cache directory, sometimes called `vardir`, contains **dynamic and/or growing data** that Puppet creates automatically in the course of its normal operations. Some of this data can be mined for interesting analysis, or to integrate other tools with Puppet; other parts are just infrastructure and should be ignored by most or all users.
 
 ## Location
 
-Puppet's cache directory can be found at one of the following locations:
+Puppet agent/apply and Puppet Server use different cache directories.
+
+Puppet Server's cache directory defaults to:
+
+* `/opt/puppetlabs/server/data/puppetserver`
+
+The cache directory for Puppet agent and Puppet apply can be found at one of the following locations:
 
 * \*nix Systems: `/var/opt/puppetlabs/puppet/cache`
 * Windows: `C:\ProgramData\PuppetLabs\puppet\cache`
@@ -19,13 +26,15 @@ Puppet's cache directory can be found at one of the following locations:
 
 When Puppet is running as either root, a Windows user with administrator privileges, or the `puppet` user, it will use a system-wide cache directory. When running as a non-root user, it will use a cache directory in that user's home directory.
 
-The system cache directory is what you usually want to use, since you will usually run Puppet's commands and services as root or `puppet`. (Note that admin commands like `puppet cert` must be run with `sudo` to use the same cache directory as Puppet agent or Puppet master.)
+The system cache directory is what you usually want to use, since you will usually run Puppet's commands and services as root or `puppet`. (Note that admin commands like `puppet cert` must be run with `sudo` to use the same directories as Puppet agent or Puppet master.)
 
 > **Note:** When Puppet master is running as a Rack application, the `config.ru` file must explicitly set `--vardir` to the system cache directory. The example `config.ru` file provided with the Puppet source does this.
 
 ### Configuration
 
 Puppet's cache directory can be specified on the command line with the `--vardir` option, but it can't be set via puppet.conf. If `--vardir` isn't specified when a Puppet application is started, it will always use the default cache directory location.
+
+Puppet Server uses the `jruby-puppet.master-var-dir` setting [in puppetserver.conf][puppetserver_conf] to configure its cache directory.
 
 ### Note about Windows 2003
 

@@ -4,6 +4,9 @@ title: "Code and Data Directory (codedir)"
 canonical: "/puppet/latest/reference/dirs_codedir.html"
 ---
 
+[codedir]: /references/4.2.latest/configuration.html#codedir
+[puppetserver_conf]: /puppetserver/2.1/configuration.html#puppetserverconf
+
 Puppet's `codedir` is the main directory for Puppet code and data. It contains environments (which contain your manifests and modules), a global modules directory for all environments, and your Hiera data.
 
 ## Location
@@ -22,7 +25,7 @@ The system codedir is what you usually want to use, since you will usually run P
 
 ### Configuration
 
-Puppet's codedir can be specified on the command line with the `--codedir` option, but it can't be set via puppet.conf. (This is because it needs the `codedir` to even find the config file.) If `--codedir` isn't specified when a Puppet application is started, it will always use the default codedir location.
+The location of the codedir can be configured in puppet.conf with [the `codedir` setting][codedir], but note that Puppet Server doesn't use that setting; it has its own `jruby-puppet.master-code-dir` setting [in puppetserver.conf][puppetserver_conf]. If you're using a non-default codedir, _you must change both settings._
 
 ### Note about Windows 2003
 
@@ -47,10 +50,10 @@ Almost everything in the codedir has its own page of documentation.
 
 ### Code and Data Directories
 
-* [`environments`](./dirs_environments.html) --- contains alternate versions of the `modules` and `manifests` directories, to allow code changes to be tested on smaller sets of nodes before entering production. 
-* [`modules`](./dirs_modulepath.html) --- the main directory for Puppet's modules. 
+* [`environments`](./dirs_environments.html) --- contains alternate versions of the `modules` and `manifests` directories, to allow code changes to be tested on smaller sets of nodes before entering production.
+* [`modules`](./dirs_modulepath.html) --- the main directory for Puppet's modules.
 
 
 ### Config Files
 
-* [`hiera.yaml`](./config_file_hiera.html) --- configuration for the Hiera data lookup system. 
+* [`hiera.yaml`](./config_file_hiera.html) --- configuration for the Hiera data lookup system.
