@@ -1256,7 +1256,7 @@ nav.multi-column {
   -moz-column-width: 13em;
   -moz-column-gap: 1.5em;
   column-width: 13em;
-  column-gap: 1.5em;
+  column-gap: 2.5em;
 }
 
 ol.toc {
