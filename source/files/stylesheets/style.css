@@ -1246,9 +1246,21 @@ dd > p {
 
 /* @group Docs TOC */
 
+nav.in-page {
+  padding-top: 1em;
+}
+
+nav.multi-column {
+  -webkit-column-width: 13em;
+  -webkit-column-gap: 1.5em;
+  -moz-column-width: 13em;
+  -moz-column-gap: 1.5em;
+  column-width: 13em;
+  column-gap: 1.5em;
+}
+
 ol.toc {
   list-style-type: none;
-  padding-top: 1em;
   padding-left: 0;
   font-weight: bold;
   margin-left: 0;
