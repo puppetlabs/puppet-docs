@@ -44,6 +44,37 @@ Variables can be assigned values of any [data type][datatype]. Any statement tha
 
 Variables can only be assigned using their [short name](#naming). That is, a given [scope][] cannot assign values to variables in a foreign scope.
 
+### Assigning Multiple Variables
+
+Multiple variables can be assigned at once from an array or hash. 
+
+#### Arrays 
+
+When assigning multiple variables from an array, there must be an equal number of variables and values. Nested arrays can also be used.
+
+~~~
+    [$a, $b, $c] = [1,2,3]      # $a = 1, $b = 2, $c = 3
+    [$a, [$b, $c]] = [1,[2,3]]  # $a = 1, $b = 2, $c = 3
+    [$a, $b] = [1, [2]]         # $a = 1, $b = [2]
+    [$a, [$b]] = [1, [2]]       # $a = 1, $b = 2
+~~~
+
+If the number of variables and values do not match, the operation will fail. Values that are not an array will be treated as a one item array.
+
+#### Hashes
+Hash keys must be assigned by using the string of a variable name. There can be extra key value pairs in the hash, but all variables to the left of the operator must have a corresponding key in the hash. 
+
+~~~
+    [$a, $b] = {a => 10, b => 20}           # $a = 10, $b = 20
+    [$a, $c] = {a => 5, b => 10, c => 15}   # $a = 5, $c = 15
+~~~
+
+If you're assigning multiple variables from a nested array, the corresponding keys in your hash must be in the same order. 
+
+~~~
+    [[$a, $b], $c] = {[a,b] => {a => 10, b => 20 }, c => 30 } # $a = 10, $b = 20, $c = 30
+~~~
+
 ### Resolution
 
 ~~~ ruby
