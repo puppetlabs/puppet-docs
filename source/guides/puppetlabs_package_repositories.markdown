@@ -13,9 +13,11 @@ This page explains how to enable these repositories on their supported operating
 Our repositories will be maintained for the life of the corresponding operating system and available for one month after their end of life date.
 
 ##Using Puppet Collections
+
 Puppet Collections are numbered with integers, beginning with PC1. The higher the integer, the newer the collection. 
 
 ### Yum-based Systems
+
 The [yum.puppetlabs.com][yum] repository supports the following versions of RHEL and derivatives:
 
 {% include pup40_platforms_redhat_like.markdown %}
@@ -23,12 +25,14 @@ The [yum.puppetlabs.com][yum] repository supports the following versions of RHEL
 {% include pup40_platforms_fedora_like.markdown %}
 
 ### Apt-based Systems
+
 The [apt.puppetlabs.com](https://apt.puppetlabs.com) repository supports the following OS versions:
 
 {% include pup40_platforms_debian_like.markdown %}
 
 
 ##Pre-4.0 Open Source Repositories
+
 Use these repositories to install older, specific versions of open source releases of Puppet, Facter, MCollective, PuppetDB, and more. After enabling the repo, [follow the instructions for installing Puppet](/guides/install_puppet/pre_install.html).
 
 ### Yum-based Systems Repository
