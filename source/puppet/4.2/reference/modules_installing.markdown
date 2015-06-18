@@ -43,36 +43,42 @@ The `puppet module` subcommand is a tool for finding and managing new modules fr
 Using the Module Tool
 -----
 
-The `puppet module` subcommand has several *actions.* The main actions used for managing modules are:
+The `puppet module` subcommand has several *actions.* The main actions used for managing modules are `install`, `list`, `search`, `uninstall`, and `upgrade`.
 
-`install`
-: Install a module from the Forge or a release archive.
+If you have used a command line package manager tool (like `gem`, `apt-get`, or `yum`) before, these actions will generally do what you expect. You can view a full description of each action with `puppet man module` or by [viewing the man page here][module_man]. In short:
 
-      # puppet module install puppetlabs-apache --version 0.0.2
+#### `install`
 
-`list`
-: List installed modules.
+Install a module from the Forge or a release archive.
 
-      # puppet module list
+    # puppet module install puppetlabs-apache --version 0.0.2
 
-`search`
-: Search the Forge for a module.
+#### `list`
 
-      # puppet module search apache
+List installed modules.
 
-`uninstall`
-: Uninstall a Puppet module.
+    # puppet module list
 
-      # puppet module uninstall puppetlabs-apache
+#### `search`
 
-`upgrade`
-: Upgrade a Puppet module.
+Search the Forge for a module.
 
-      # puppet module upgrade puppetlabs-apache --version 0.0.3
+    # puppet module search apache
 
-If you have used a command line package manager tool (like `gem`, `apt-get`, or `yum`) before, these actions will generally do what you expect. You can view a full description of each action with `puppet man module` or by [viewing the man page here][module_man].
+#### `uninstall`
 
-###Using the Module Tool Behind a Proxy
+Uninstall a Puppet module.
+
+    # puppet module uninstall puppetlabs-apache
+
+#### `upgrade`
+
+Upgrade a Puppet module.
+
+    # puppet module upgrade puppetlabs-apache --version 0.0.3
+
+
+## Using the Module Tool Behind a Proxy
 
 In order to use the Puppet module tool behind a proxy, you need to set the following:
 
