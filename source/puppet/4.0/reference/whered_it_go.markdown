@@ -20,7 +20,7 @@ New All-in-One `puppet-agent` Package
 
 On managed \*nix systems, you'll now install `puppet-agent` instead of `puppet`. (This package also provides `puppet apply`, suitable for standalone Puppet systems.)
 
-This is a new name for a new thing. Instead of using package dependencies to bring in tools like Facter, Hiera, and Ruby, it inculdes private versions of all of them.
+This is a new name for a new thing. Instead of using package dependencies to bring in tools like Facter, Hiera, and Ruby, it includes private versions of all of them.
 
 It also includes cfacter and MCollective. (You can start using cfacter by setting `cfacter = true` in puppet.conf.)
 
