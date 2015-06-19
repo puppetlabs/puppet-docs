@@ -4,7 +4,6 @@ title: "Facter 3.0: Core Facts"
 toc: columns
 ---
 
-## Summary
 
 This is a list of all of the built-in facts that ship with Facter 3.0.
 
