@@ -1,10 +1,8 @@
 ---
 layout: default
-title: "Facter 2.4: Overview of Custom Facts With Examples"
+title: "Facter 3.0: Overview of Custom Facts With Examples"
 ---
 
-Anatomy of a Facter Fact
-========================
 
 A typical Facter fact is a fairly simple assemblage of just a few different elements.
 This page is an example-driven tour of those elements, and is intended as a quick primer or reference
@@ -24,7 +22,7 @@ what this looks like in this example: [different resolutions for different opera
 Most facts are resolved all at once, without any need to merge data from different sources. In that case, the resolution is **simple**.
 Both flat and structured facts can have simple resolutions.
 
-### Example: minimal fact that relies on a single shell command
+### Example: Minimal Fact That Relies on a Single Shell Command
 
 ~~~ ruby
 Facter.add(:rubypath) do
@@ -32,26 +30,7 @@ Facter.add(:rubypath) do
 end
 ~~~
 
-### Example: slightly more complex fact, confined to Linux
-
-~~~ ruby
-Facter.add(:jruby_installed) do
-
-  confine :kernel => "Linux"
-
-  setcode do
-    jruby_path = Facter::Core::Execution.exec('which jruby')
-    # if 'which jruby' exits with an error, jruby_path will be an empty string
-    if jruby_path == ""
-      false
-    else
-      true
-    end
-  end
-end
-~~~
-
-### Example: different resolutions for different operating systems
+### Example: Different Resolutions for Different Operating Systems
 
 ~~~ ruby
 Facter.add(:rubypath) do
@@ -65,28 +44,46 @@ Facter.add(:rubypath) do
 end
 ~~~
 
+### Example: Slightly More Complex Fact, Confined to Linux With a Block
+
+~~~ ruby
+Facter.add(:jruby_installed) do
+  confine :kernel do |value|
+    value == "Linux"
+  end
+
+  setcode do
+    # If jruby is present, return true. Otherwise, return false.
+    Facter::Core::Execution.which('jruby') != nil
+  end
+end
+~~~
+
 ### Main Components of Simple Resolutions
 
 Simple facts are typically made up of the following parts:
 
-  1. A call to `Facter.add(:fact_name)`:
-     * This introduces a new fact *or* a new resolution for an existing fact.
-     * The name can be either a symbol or a string.
-     * You can optionally pass `:type => :simple` as a parameter, but it will have no effect since that's already the default.
-     * The rest of the fact is wrapped in the constructor's `do ... end` block.
-  2. Zero or more `confine` statements:
-     * These determine whether the fact/resolution will be executed.
-     * They can either match against the value of another fact or evaluate an arbitrary Ruby expression/block.
-  3. An optional `has_weight` statement:
-     * When multiple resolutions are available, the one with the highest weight will be executed and the rest will be ignored.
-     * It must be an integer greater than 0.
-     * The weight defaults to the number of `confine` statements for the resolution.
-  4. A `setcode` statement that determines the value of the fact:
-     * It can take either a string or a block.
-     * If given a string, Facter will execute it as a shell command and the output will be the value of the fact.
-     * If given a block, the block's return value will be the value of the fact.
-     * To execute shell commands within a `setcode` block, use the `Facter::Core::Execution.exec` function.
-     * If multiple `setcode` statements are evaluated for a single fact, Facter will only retain the newest value.
+1. A call to `Facter.add(:fact_name)`:
+    * This introduces a new fact *or* a new resolution for an existing fact with the same name.
+    * The name can be either a symbol or a string.
+    * You can optionally pass `:type => :simple` as a parameter, but it will have no effect since that's already the default.
+    * The rest of the fact is wrapped in the `add` call's `do ... end` block.
+2. Zero or more `confine` statements:
+    * These determine whether the resolution is suitable (and therefore will be evaluated).
+    * They can either match against the value of another fact or evaluate a Ruby block.
+    * If given a symbol or string representing a fact name, a block is required and the block will receive the fact's value as an argument.
+    * If given a hash, the keys are expected to be fact names. The values of the hash are either the expected fact values or an array of values to compare against.
+    * If given a block, the confine is suitable if the block returns a value other than `nil` or `false`.
+3. An optional `has_weight` statement:
+    * When multiple resolutions are available for a fact, resolutions will be evaluated from highest weight value to lowest.
+    * It must be an integer greater than 0.
+    * The weight defaults to the number of `confine` statements for the resolution.
+4. A `setcode` statement that determines the value of the fact:
+    * It can take either a string or a block.
+    * If given a string, Facter will execute it as a shell command. If the command succeeds, the output of the command will be the value of the fact. If the command fails, the next suitable resolution will be evaluated.
+    * If given a block, the block's return value will be the value of the fact unless the block returns `nil`. If `nil` is returned, the next suitable resolution will be evalutated.
+    * To execute shell commands within a `setcode` block, use the `Facter::Core::Execution.exec` function.
+    * If multiple `setcode` statements are evaluated for a single resolution, only the last `setcode` block will be used.
 
 ## Writing Structured Facts
 
@@ -96,26 +93,27 @@ Facter 2.0 introduced **structured facts**, which can take the form of hashes or
 >
 > Puppet Enterprise 3.7 and later has structured facts enabled by default, as will Puppet 4.0.
 
-### Example: returning an array of network interfaces
+### Example: Returning an Array of Network Interfaces
+
 ~~~ ruby
 Facter.add(:interfaces_array) do
   setcode do
    interfaces = Facter.value(:interfaces)
    # the 'interfaces' fact returns a single comma-delimited string, e.g., "lo0,eth0,eth1"
-   interfaces_array = interfaces.split(',')
-   interfaces_array
+   # this splits the value into an array of interface names
+   interfaces.split(',')
   end
 end
 ~~~
 
-### Example: returning a hash of IP addresses
+### Example: Returning a Hash of Network Interfaces to IP Addresses
+
 ~~~ ruby
 Facter.add(:interfaces_hash) do
   setcode do
-    interfaces_array = Facter.value(:interfaces_array)
     interfaces_hash = {}
 
-    interfaces_array.each do |interface|
+    Facter.value(:interfaces_array).each do |interface|
       ipaddress = Facter.value("ipaddress_#{interface}")
       if ipaddress
         interfaces_hash[interface] = ipaddress
@@ -131,7 +129,7 @@ end
 
 Aggregate resolutions allow you to split up the resolution of a fact into separate chunks.
 By default, Facter will merge hashes with hashes or arrays with arrays, resulting in a
-[structured fact](#structured_facts), but you can also aggregate the chunks into a flat fact
+[structured fact](#writing-structured-facts), but you can also aggregate the chunks into a flat fact
 using concatenation, addition, or any other function that you can express in Ruby code.
 
 ### Example: building a structured fact progressively
@@ -166,22 +164,20 @@ Facter.add(:networking, :type => :aggregate) do
     interfaces
   end
   # Facter will merge the return values for the two chunks
-  # automatically, so there's no setcode statement.
+  # automatically, so there's no aggregate statement.
 end
 ~~~
 
-### Example: building a flat fact progressively with addition
+### Example: Building a Flat Fact Progressively With Addition
 
 ~~~ ruby
 Facter.add(:total_free_memory_mb, :type => :aggregate) do
   chunk(:physical_memory) do
-    Facter.value(:memoryfree_mb).to_i
-    # The 'memoryfree_mb' fact returns the number of megabytes of free memory as a string.
+    Facter.value(:memoryfree_mb)
   end
 
   chunk(:virtual_memory) do
-    Facter.value(:swapfree_mb).to_i
-    # The 'swapfree_mb' fact returns the number of megabytes of free swap as a string.
+    Facter.value(:swapfree_mb)
   end
 
   aggregate do |chunks|
@@ -200,22 +196,25 @@ end
 
 Aggregate resolutions have two key differences compared to simple resolutions: the presence of `chunk` statements and the lack of a `setcode` statement. The `aggregate` block is optional, and without it Facter will merge hashes with hashes or arrays with arrays.
 
-  1. A call to `Facter.add(:fact_name, :type => :aggregate)`:
-     * This introduces a new fact *or* a new resolution for an existing fact.
-     * The name can be either a symbol or a string.
-     * The `:type => :aggregate` parameter is required for aggregate resolutions.
-     * The rest of the fact is wrapped in the constructor's `do ... end` block.
-  2. Zero or more `confine` statements:
-     * These determine whether the fact/resolution will be executed.
-     * They can either match against the value of another fact or evaluate an arbitrary Ruby expression/block.
-  3. An optional `has_weight` statement:
-     * When multiple resolutions are available, the one with the highest weight will be executed and the rest will be ignored.
-     * The weight defaults to the number of `confine` statements for the resolution.
-  4. One or more `chunk` blocks, each containing:
-     * a name parameter (used only for internal organization),
-     * some amount of code for (partially) resolving the fact,
-     * a return value (any type, but typically a hash or array).
-  5. An optional `aggregate` block:
-     * If this is absent, Facter will merge hashes with hashes or arrays with arrays.
-     * If you want to merge the chunks in any other way, you'll need to specify it here.
-     * The `chunks` object contains the return values for all of the chunks in the resolution.
+1. A call to `Facter.add(:fact_name, :type => :aggregate)`:
+    * This introduces a new fact *or* a new resolution for an existing fact with the same name.
+    * The name can be either a symbol or a string.
+    * The `:type => :aggregate` parameter is required for aggregate resolutions.
+    * The rest of the fact is wrapped in the `add` call's `do ... end` block.
+2. Zero or more `confine` statements:
+    * These determine whether the resolution is suitable and (therefore will be evaluated).
+    * They can either match against the value of another fact or evaluate a Ruby block.
+    * If given a symbol or string representing a fact name, a block is required and the block will receive the fact's value as an argument.
+    * If given a hash, the keys are expected to be fact names. The values of the hash are either the expected fact values or an array of values to compare against.
+    * If given a block, the confine is suitable if the block returns a value other than `nil` or `false`.
+3. An optional `has_weight` statement:
+    * When multiple resolutions are available for a fact, resolutions will be evaluated from highest weight value to lowest.
+    * It must be an integer greater than 0.
+    * The weight defaults to the number of `confine` statements for the resolution.
+4. One or more calls to `chunk`, each containing:
+    * A name (as the argument to `chunk`).
+    * A block of code, which is responsible for resolving the chunk to a value. The block's return value will be the value of the chunk; it can be any type, but is typically a hash or array.
+5. An optional `aggregate` block:
+    * If this is absent, Facter will automatically merge hashes with hashes or arrays with arrays.
+    * If you want to merge the chunks in any other way, you'll need to make a call to `aggregate`, which takes a block of code.
+    * The block is passed one argument (`chunks`, in the example), which is a hash of chunk name to chunk value for all the chunks in the resolution.
