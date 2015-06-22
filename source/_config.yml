@@ -201,9 +201,9 @@ symlink_latest:
   - facter
   - pe
 lock_latest: {
-  puppet: "4.1"
-  puppetdb: "2.3"
-  facter: "2.4"
+  puppet: "4.1",
+  puppetdb: "2.3",
+  facter: "2.4",
   hiera: "2.0"
 }
 version_notes:
