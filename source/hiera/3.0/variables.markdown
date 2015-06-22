@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Hiera 2: Interpolation Tokens, Variables, and Lookup Functions"
+title: "Hiera 3: Interpolation Tokens, Variables, and Lookup Functions"
 ---
 
 [config]: ./configuring.html

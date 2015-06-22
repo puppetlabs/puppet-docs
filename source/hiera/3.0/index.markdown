@@ -1,5 +1,5 @@
 ---
-title: "Hiera 2: Overview"
+title: "Hiera 3: Overview"
 layout: default
 ---
 
@@ -21,14 +21,14 @@ Getting Started With Hiera
 -----
 
 > To get started with Hiera, you'll need to do all of the following:
-> 
+>
 > * [Install Hiera][install], if it isn't already installed.
 > * [Make a `hiera.yaml` config file][config].
 > * [Arrange a hierarchy][hierarchy] that fits your site and data.
 > * [Write data sources][data_sources].
 > * [Use your Hiera data in Puppet][with_puppet] (or any other tool).
 
-After you have Hiera working, you can adjust your data and hierarchy whenever you need to. You can also [test Hiera from the command line][command_line] to make sure it's fetching the right data for each node. 
+After you have Hiera working, you can adjust your data and hierarchy whenever you need to. You can also [test Hiera from the command line][command_line] to make sure it's fetching the right data for each node.
 
 ### Learning From Example
 
@@ -40,7 +40,7 @@ Why Hiera?
 
 ### Making Puppet Better
 
-Hiera makes Puppet better by **keeping site-specific data out of your manifests.** Puppet classes can request whatever data they need, and your Hiera data will act like a site-wide config file. 
+Hiera makes Puppet better by **keeping site-specific data out of your manifests.** Puppet classes can request whatever data they need, and your Hiera data will act like a site-wide config file.
 
 This makes it:
 

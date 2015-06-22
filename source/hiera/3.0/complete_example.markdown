@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Hiera 2: Complete Example"
+title: "Hiera 3: Complete Example"
 description: "Learn how to use Hiera to pull site-specific data out of your manifests with this walkthrough."
 ---
 

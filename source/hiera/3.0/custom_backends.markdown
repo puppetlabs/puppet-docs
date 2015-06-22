@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Hiera 2: Writing Custom Backends"
+title: "Hiera 3: Writing Custom Backends"
 ---
 
 
@@ -9,7 +9,7 @@ Custom Hiera backends must be written in Ruby, must conform to certain API requi
 Backend API Versions
 -----
 
-This page describes the updated custom backend API used in Hiera 2.0. If you define a `lookup()` method that takes **five arguments,** as described below, your backend will behave as described on this page.
+This page describes the updated custom backend API used in this version of Hiera. If you define a `lookup()` method that takes **five arguments,** as described below, your backend will behave as described on this page.
 
 If you define a `lookup()` method that takes **four arguments,** your backend will behave [as described in the Hiera 1 docs.](/hiera/1/custom_backends.html)
 
@@ -230,7 +230,7 @@ If you do need to explicitly call `Backend.parse_string` for some reason, you'll
 
 The `Backend.merge_answer` method expects three arguments, and returns a merged hash using the [configured hash merge behavior](./lookup_types.html#hash-merge). If your backend supports hash merge lookups, you should always use this helper method to do the merging.
 
-In passing `resolution_type` to `Backend.merge_answer`, you'll need to pass, verbatim, the `resolution_type` value you received in your `lookup` method. 
+In passing `resolution_type` to `Backend.merge_answer`, you'll need to pass, verbatim, the `resolution_type` value you received in your `lookup` method.
 
 From the json backend:
 
@@ -268,7 +268,7 @@ Tips
 
 ### Handling Lookup Types
 
-Your backend should generally support all three [lookup types](./lookup_types.html). In Hiera 2, the lookup type passed to your `lookup` method (as the fourth argument) will always be one of:
+Your backend should generally support all three [lookup types](./lookup_types.html). In this version of Hiera, the lookup type passed to your `lookup` method (as the fourth argument) will always be one of:
 
 - `:priority`
 - `:array`

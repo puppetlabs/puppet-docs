@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Hiera 2: Lookup Types"
+title: "Hiera 3: Lookup Types"
 ---
 
 Hiera always takes a lookup key and returns a single value (of some simple or complex data type), but it has several methods for extracting/assembling that one value from the hierarchy. We refer to these as "lookup methods."
@@ -277,6 +277,6 @@ With a `deep` merge, you would get:
 
 In this case, deglitch.yaml was able to set the group because common.yaml didn't have a value for it, but where there was a conflict, like the uid, common won. Most users don't want this.
 
-Unfortunately none of these merge behaviors work with data bindings for automatic parameter lookup, because there's no way to specify the lookup type. So instead of any of the above results, automatic data binding lookups only see results from `deglitch.yaml`. See [Bug #20199](https://projects.puppetlabs.com/issues/20199) to track progress on this.
+Unfortunately none of these merge behaviors work with data bindings for automatic parameter lookup, because there's no way to specify the lookup type. So instead of any of the above results, automatic data binding lookups only see results from `deglitch.yaml`. See [Bug HI-118](https://tickets.puppetlabs.com/browse/HI-118) to track progress on this.
 
 

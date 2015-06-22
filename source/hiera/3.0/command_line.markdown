@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Hiera 2: Command Line Usage"
+title: "Hiera 3: Command Line Usage"
 ---
 
 [priority_lookup]: ./lookup_types.html#priority-default

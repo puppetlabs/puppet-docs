@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Hiera 2: Writing Data Sources"
+title: "Hiera 3: Writing Data Sources"
 ---
 
 
