@@ -25,13 +25,13 @@ The following facts are not supported in Facter 3.0.0:
 * `uniqueid`
 * `dir`
 * `cfkey`
-* `puppetversion`
+* `puppetversion` (still available in Puppet)
 * `vlans`
 * `xendomains`
 
-`ps` was only used by Puppet, and we updated Puppet to no longer need it. `uniqueid` was a lie in the first place, and wasn't widely used. I'm not even sure what `dir` was about. `cfkey` was from a different tiiiiiime, man. `vlans` and `xendomains` weren't used widely enough to justify bringing them forward.
+`ps` was only used by Puppet, and we updated Puppet to no longer need it. `uniqueid` was a lie in the first place, and wasn't widely used. `dir` had been added accidentally in Windows, because the `FACTER_DIR` environment variable was set. `cfkey` was from a different tiiiiiime, man. `vlans` and `xendomains` weren't used widely enough to justify bringing them forward.
 
-`puppetversion` introduced a circular dependency, and shouldn't have been in Facter's core in the first place. From Puppet, you can use the special `$serverfacts['serverversion']` and `$clientversion` variables.
+`puppetversion` introduced a circular dependency, and shouldn't have been in Facter's core in the first place. We moved it into Puppet (implemented as an always-available custom fact), and other custom facts can take advantage of it if they're also running via Puppet.
 
 - [CFACT-151](https://tickets.puppetlabs.com/browse/CFACT-151)
 
