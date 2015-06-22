@@ -62,7 +62,7 @@ Each top-level key in the hash **must be a Ruby symbol with a colon (`:`) prefix
 :hierarchy:
   - "nodes/%{::trusted.certname}"
   - "virtual/%{::virtual}"
-  - common
+  - "common"
 ~~~
 
 ### Default Config Values
@@ -79,7 +79,7 @@ If the config file exists but has no data, the default settings will be equivale
   :datadir: "C:\ProgramData\PuppetLabs\code\environments\%{environment}\hieradata"
 :hierarchy:
   - "nodes/%{::trusted.certname}"
-  - common
+  - "common"
 :logger: console
 :merge_behavior: native
 :deep_merge_options: {}
