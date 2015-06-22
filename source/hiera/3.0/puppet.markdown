@@ -45,7 +45,7 @@ Enabling and Configuring Hiera for Puppet
 Puppet 4 and later ships with Hiera support already enabled. You don't need to do anything extra. Hiera data should live on the Puppet master(s).
 
 * Puppet expects to find the [hiera.yaml file][hiera_yaml] at `/etc/puppetlabs/code/hiera.yaml` on \*nix systems and `C:\ProgramData\PuppetLabs\code` on Windows. You can change this with the [`hiera_config`][hiera_config] setting.
-* Remember to set the [`:datadir`][datadir] setting for any backends you are using. It's generally best to use something within the [`$codedir`][codedir], so that the data is in the first place your fellow admins expect it.
+* Remember to set the [`:datadir`][datadir] setting for any backends you are using. It's generally best to use something within the [`$codedir`][codedir], so that the data is in the first place your fellow admins expect it. By default, each environment has its own datadir, at `/etc/puppetlabs/code/environments/<ENVIRONMENT>/hieradata`.
 
 Puppet Variables Passed to Hiera
 -----
@@ -73,7 +73,7 @@ There are two practices we always recommend when using Puppet's variables in Hie
 - Except for the special pseudo-variables listed above, **do not use local Puppet variables** in Hiera's hierarchy or data sources. Only use [facts][] and top-scope variables set by a node classifier.
 
     Using local variables can make your hierarchy incredibly difficult to debug.
-- **Use [absolute top-scope notation][absolute_scope]** (i.e., `%{::clientcert}` instead of `%{clientcert}`) to avoid accidentally accessing a local variable instead of a top-scope one.
+- **Use [absolute top-scope notation][absolute_scope]** (i.e., `%{::is_virtual}` instead of `%{is_virtual}`) to avoid accidentally accessing a local variable instead of a top-scope one.
 
     Although this idiom [isn't usually necessary in Puppet manifests,](/puppet/latest/reference/lang_facts_and_builtin_vars.html#historical-note-about-) the extra abstraction in Hiera means a re-used fact name can have more distant effects, so you still need to defend against it.
 
@@ -87,14 +87,14 @@ Puppet automatically retrieves class parameters from Hiera, using lookup keys li
 Puppet [classes][] can optionally include [parameters][] in their definition. This lets the class ask for data to be passed in at the time that it's declared, and it can use that data as normal variables throughout its definition.
 
 ~~~ ruby
-    # In this example, $parameter's value gets set when `myclass` is eventually declared.
-    # Class definition:
-    class myclass ($parameter_one = "default text") {
-      file {'/tmp/foo':
-        ensure  => file,
-        content => $parameter_one,
-      }
-    }
+# In this example, $parameter's value gets set when `myclass` is eventually declared.
+# Class definition:
+class myclass ($parameter_one = "default text") {
+  file {'/tmp/foo':
+    ensure  => file,
+    content => $parameter_one,
+  }
+}
 ~~~
 
 Parameters can be set several ways, and Puppet tries each of these ways in order when the class is [declared][class_declare] or [assigned by an ENC][enc_assign]:
@@ -107,13 +107,13 @@ Parameters can be set several ways, and Puppet tries each of these ways in order
 Step 2 interests us most here. Because Puppet always looks for parameters in Hiera, you can safely declare **any** class with `include`, even classes with parameters. (This wasn't the case in earlier Puppet versions.) Using the example above, you could have something like the following in your Hiera data:
 
 ~~~ yaml
-    # /etc/puppet/hieradata/web01.example.com.yaml
-    ---
-    myclass::parameter_one: "This node is special, so we're overriding the common configuration that the other nodes use."
+# /etc/puppet/hieradata/web01.example.com.yaml
+---
+myclass::parameter_one: "This node is special, so we're overriding the common configuration that the other nodes use."
 
-    # /etc/puppet/hieradata/common.yaml
-    ---
-    myclass::parameter_one: "This node can use the standard configuration."
+# /etc/puppet/hieradata/common.yaml
+---
+myclass::parameter_one: "This node can use the standard configuration."
 ~~~
 
 You could then say `include myclass` for every node, and each node would get its own appropriate data for the class.
@@ -150,7 +150,7 @@ Each of these functions takes three arguments. In order:
 
 1. Key (required): the key to look up in Hiera.
 2. Default (optional): a fallback value to use if Hiera doesn't find anything for that key. If this isn't provided, a lookup failure will cause a compilation failure.
-3. Override (optional): the name of an arbitrary [hierarchy level][hierarchy] to insert at the top of the hierarchy. This lets you use a temporary modified hierarchy for a single lookup. (E.g., instead of a hierarchy of `$clientcert -> $osfamily -> common`, a lookup would use `specialvalues -> $clientcert -> $osfamily -> common`; you would need to be sure to have `specialvalues.yaml` or whatever in your Hiera data.)
+3. Override (optional): the name of an arbitrary [hierarchy level][hierarchy] to insert at the top of the hierarchy. This lets you use a temporary modified hierarchy for a single lookup. (E.g., instead of a hierarchy of `$trusted['certname'] -> $osfamily -> common`, a lookup would use `specialvalues -> $trusted['certname'] -> $osfamily -> common`; you would need to be sure to have `specialvalues.yaml` or whatever in your Hiera data.)
 
 
 ### Don't Use the Lookup Functions from Templates
@@ -169,27 +169,27 @@ The lookup functions and the automatic parameter lookup return values of top-lev
 Example:
 
 ~~~ yaml
-    # /etc/puppet/hieradata/appservers.yaml
-    ---
-    proxies:
-      - hostname: lb01.example.com
-        ipaddress: 192.168.22.21
-      - hostname: lb02.example.com
-        ipaddress: 192.168.22.28
+# /etc/puppet/hieradata/appservers.yaml
+---
+proxies:
+  - hostname: lb01.example.com
+    ipaddress: 192.168.22.21
+  - hostname: lb02.example.com
+    ipaddress: 192.168.22.28
 ~~~
 
 
 
 ~~~ ruby
-    # Get the structured data:
-    $proxies = hiera('proxies')
-    # Index into the structure:
-    $use_ip = $proxies[1]['ipaddress'] # will be 192.168.22.28
+# Get the structured data:
+$proxies = hiera('proxies')
+# Index into the structure:
+$use_ip = $proxies[1]['ipaddress'] # will be 192.168.22.28
 ~~~
 
 ~~~ ruby
-    # get only what you need from Hiera
-    $use_ip = hiera( 'proxies.1.ipaddress' )
+# get only what you need from Hiera
+$use_ip = hiera( 'proxies.1.ipaddress' )
 ~~~
 
 
@@ -211,33 +211,33 @@ Example:
 Assuming a hierarchy of:
 
 ~~~ yaml
-    :hierarchy:
-      - "%{::clientcert}"
-      - "%{::osfamily}"
-      - common
+:hierarchy:
+  - "%{trusted.certname}"
+  - "%{::osfamily}"
+  - common
 ~~~
 
 ...and given Hiera data like the following:
 
 ~~~ yaml
-    # common.yaml
-    ---
-    classes:
-      - base
-      - security
-      - mcollective
+# common.yaml
+---
+classes:
+  - base
+  - security
+  - mcollective
 
-    # Debian.yaml
-    ---
-    classes:
-      - base::linux
-      - localrepos::apt
+# Debian.yaml
+---
+classes:
+  - base::linux
+  - localrepos::apt
 
-    # web01.example.com.yaml
-    ---
-    classes:
-      - apache
-      - apache::passenger
+# web01.example.com.yaml
+---
+classes:
+  - apache
+  - apache::passenger
 ~~~
 
 ...the Ubuntu node `web01.example.com` would get all of the following classes:

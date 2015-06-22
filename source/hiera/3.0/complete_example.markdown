@@ -4,7 +4,6 @@ title: "Hiera 3: Complete Example"
 description: "Learn how to use Hiera to pull site-specific data out of your manifests with this walkthrough."
 ---
 
-[secure_node_id]: http://projects.puppetlabs.com/issues/19514
 [hiera_lookup]: ./puppet.html#hiera-lookup-functions
 [puppet-vmwaretools]: https://github.com/craigwatson/puppet-vmwaretools
 [ntp_module]: http://forge.puppetlabs.com/puppetlabs/ntp
@@ -58,45 +57,47 @@ For purposes of this walkthrough, we'll assume a situation that looks something 
 How did things look before we decided to use Hiera? Classes are assigned to nodes via the Puppet site manifest (`/etc/puppetlabs/code/environments/production/manifests/sites.pp` for Puppet open source), so here's how our site manifest might have looked:
 
 ~~~ ruby
-	node "kermit.example.com" {
-	  class { "ntp":
-		servers    => [ '0.us.pool.ntp.org iburst','1.us.pool.ntp.org iburst','2.us.pool.ntp.org iburst','3.us.pool.ntp.org iburst'],
-		autoupdate => false,
-		restrict   => [],
-		enable     => true,
-	  }
-	}
+node "kermit.example.com" {
+  class { "ntp":
+    servers    => [ '0.us.pool.ntp.org iburst','1.us.pool.ntp.org iburst','2.us.pool.ntp.org iburst','3.us.pool.ntp.org iburst'],
+    autoupdate => false,
+    restrict   => [],
+    enable     => true,
+  }
+}
 
-	node "grover.example.com" {
-	  class { "ntp":
-		servers    => [ 'kermit.example.com','0.us.pool.ntp.org iburst','1.us.pool.ntp.org iburst','2.us.pool.ntp.org iburst'],
-		autoupdate => true,
-		restrict   => [],
-		enable     => true,
-	  }
-	}
+node "grover.example.com" {
+  class { "ntp":
+    servers    => [ 'kermit.example.com','0.us.pool.ntp.org iburst','1.us.pool.ntp.org iburst','2.us.pool.ntp.org iburst'],
+    autoupdate => true,
+    restrict   => [],
+    enable     => true,
+  }
+}
 
-	node "snuffie.example.com", "bigbird.example.com", "hooper.example.com" {
-	  class { "ntp":
-		servers    => [ 'grover.example.com', 'kermit.example.com'],
-		autoupdate => true,
-		enable     => true,
-	  }
-	}
+node "snuffie.example.com", "bigbird.example.com", "hooper.example.com" {
+  class { "ntp":
+    servers    => [ 'grover.example.com', 'kermit.example.com'],
+    autoupdate => true,
+    enable     => true,
+  }
+}
 ~~~
 
 ## Configuring Hiera and Setting Up the Hierarchy
 
 All Hiera configuration begins with `hiera.yaml`. You can read a [full discussion of this file][hiera.yaml], including where you should put it depending on the version of Puppet you're using.  Here's the one we'll be using for this walkthrough:
 
-	---
-	:backends:
-	  - yaml
-	:yaml:
-	  :datadir: /etc/puppetlabs/code/hieradata
-	:hierarchy:
-	  - "nodes/%{::fqdn}"
-	  - common
+~~~ yaml
+---
+:backends:
+  - yaml
+:yaml:
+  :datadir: /etc/puppetlabs/code/hieradata
+:hierarchy:
+  - "nodes/%{::trusted.certname}"
+  - common
+~~~
 
 Step-by-step:
 
@@ -106,14 +107,14 @@ Step-by-step:
 
 `:hierarchy:` configures the data sources Hiera should consult. Puppet users commonly separate their hierarchies into directories to make it easier to get a quick top-level sense of how the hierarchy is put together. In this case, we're keeping it simple:
 
-- A single `nodes/` directory will contain any number of files named after some node's `fqdn` (fully qualified domain name) fact. (E.g., `/etc/puppetlabs/code/hieradata/nodes/grover.example.com.yaml`) This lets us specifically configure any given node with Hiera. Not every node needs to have a file in `nodes/` --- if it's not there, Hiera will just move onto the next hierarchy level.
+- A single `nodes/` directory will contain any number of files named after some node's certname, read from the `$trusted['certname']` variable. (E.g., `/etc/puppetlabs/code/hieradata/nodes/grover.example.com.yaml`) This lets us specifically configure any given node with Hiera. Not every node needs to have a file in `nodes/` --- if it's not there, Hiera will just move onto the next hierarchy level.
 - Next, the `common` data source (the `/etc/puppetlabs/code/hieradata/common.yaml` file) will provide any common or default values we want to use when Hiera can't find a match for a given key elsewhere in our hierarchy. In this case, we're going to use it to set common ntp servers and default configuration options for the ntp module.
 
-> **Hierarchy and facts note:** When constructing a hierarchy, keep in mind that most of the useful Puppet variables are [**facts.**][facts] Since facts are submitted by the agent node itself, they _aren't necessarily trustworthy._ We don't recommend using facts as the sole deciding factor for distributing sensitive credentials.
->
-> In this example, we're using the `fqdn` fact to identify specific nodes; the special `clientcert` variable is another option, which the agent sets to the value of its `certname` setting. (This is usually the same as the fqdn, but not always.) Right now, Puppet doesn't provide any variables with trusted data about a given node; we're currently [investigating the possibility of adding some][secure_node_id].
+> **Hierarchy and facts note:** When constructing a hierarchy, keep in mind that most [facts][] are self-reported by each node, which means they're useful but aren't necessarily trustworthy. The special [`$trusted` hash][trusted] and [`$server_facts` hash][server_facts] are the only variables that are verified by the Puppet master.
 
-[facts]: /puppet/latest/reference/lang_variables.html#facts-and-built-in-variables
+[facts]: /puppet/latest/reference/lang_facts_and_builtin_vars.html
+[trusted]: /puppet/latest/reference/lang_facts_and_builtin_vars.html#trusted-facts
+[server_facts]: /puppet/latest/reference/lang_facts_and_builtin_vars.html#serverfacts-variable
 
 > **Puppet master note:** If you modify `hiera.yaml` between agent runs, you'll have to restart your Puppet master for your changes to take effect.
 
@@ -151,26 +152,28 @@ Now that we know the parameters the `ntp` class expects, we can start making dec
 
 We want one of these two nodes, `kermit.example.com`, to act as the primary organizational time server. We want it to consult outside time servers, we won't want it to update its ntp server package by default, and we definitely want it to launch the ntp service at boot. So let's write that out in YAML, making sure to express our variables as part of the `ntp` namespace to insure Hiera will pick them up as part of its [automatic parameter lookup][].
 
-    ---
-    ntp::restrict:
-      -
-    ntp::autoupdate: false
-    ntp::enable: true
-    ntp::servers:
-      - 0.us.pool.ntp.org iburst
-      - 1.us.pool.ntp.org iburst
-      - 2.us.pool.ntp.org iburst
-      - 3.us.pool.ntp.org iburst
+~~~ yaml
+---
+ntp::restrict:
+  -
+ntp::autoupdate: false
+ntp::enable: true
+ntp::servers:
+  - 0.us.pool.ntp.org iburst
+  - 1.us.pool.ntp.org iburst
+  - 2.us.pool.ntp.org iburst
+  - 3.us.pool.ntp.org iburst
+~~~
 
-Since we want to provide this data for a specific node, and since we're using the `fqdn` fact to identify unique nodes in our hierarchy, we need to save this data in the `/etc/puppetlabs/code/hieradata/node` directory as `kermit.example.com.yaml`.
+Since we want to provide this data for a specific node, and since we're using the certname to identify unique nodes in our hierarchy, we need to save this data in the `/etc/puppetlabs/code/hieradata/node` directory as `kermit.example.com.yaml`.
 
-Once you've saved that, let's do a quick test using the [Hiera command line tool][]:
+Once you've saved that, let's do a quick test using Puppet apply:
 
-	$ hiera ntp::servers ::fqdn=kermit.example.com
+    $ puppet apply --certname=kermit.example.com -e "notice(hiera('ntp::servers'))"
 
-You should see this:
+The value You should see this:
 
-	["0.us.pool.ntp.org iburst", "1.us.pool.ntp.org iburst", "2.us.pool.ntp.org iburst", "3.us.pool.ntp.org iburst"]
+    Notice: Scope(Class[main]): ["0.us.pool.ntp.org iburst", "1.us.pool.ntp.org iburst", "2.us.pool.ntp.org iburst", "3.us.pool.ntp.org iburst"]
 
 That's just the array of outside ntp servers and options, which we expressed as a YAML array and which Hiera is converting to a Puppet-like array. The module will use this array when it generates configuration files from its templates.
 
@@ -189,37 +192,41 @@ Provided everything works and you get back that array of ntp servers, you're rea
 
 Our next ntp node, `grover.example.com`, is a little less critical to our infrastructure than kermit, so we can be a little more permissive with its configuration: It's o.k. if grover's ntp packages are automatically updated. We also want grover to use kermit as its primary ntp server. Let's express that as YAML:
 
-    ---
-    ntp::restrict:
-      -
-    ntp::autoupdate: true
-    ntp::enable: true
-    ntp::servers:
-      - kermit.example.com iburst
-      - 0.us.pool.ntp.org iburst
-      - 1.us.pool.ntp.org iburst
-      - 2.us.pool.ntp.org iburst
+~~~ yaml
+---
+ntp::restrict:
+  -
+ntp::autoupdate: true
+ntp::enable: true
+ntp::servers:
+  - kermit.example.com iburst
+  - 0.us.pool.ntp.org iburst
+  - 1.us.pool.ntp.org iburst
+  - 2.us.pool.ntp.org iburst
+~~~
 
-As with `kermit.example.com`, we want to save grover's Hiera data source in the `/etc/puppetlabs/code/hieradata/nodes` directory using the `fqdn` fact for the file name: `grover.example.com.yaml`. We can once again test it with the hiera command line tool:
+As with `kermit.example.com`, we want to save grover's Hiera data source in the `/etc/puppetlabs/code/hieradata/nodes` directory using its certname for the file name: `grover.example.com.yaml`. We can once again test it with Puppet apply:
 
-	$ hiera ntp::servers ::fqdn=grover.example.com
-	["kermit.example.com iburst", "0.us.pool.ntp.org iburst", "1.us.pool.ntp.org iburst", "2.us.pool.ntp.org iburst"]
+    $ puppet apply --certname=grover.example.com -e "notice(hiera('ntp::servers'))"
+    Notice: Scope(Class[main]): ["kermit.example.com iburst", "0.us.pool.ntp.org iburst", "1.us.pool.ntp.org iburst", "2.us.pool.ntp.org iburst"]
 
 #### `common.yaml`
 
 So, now we've configured the two nodes in our organization that we'll allow to update from outside ntp servers. However, we still have a few nodes to account for that also provide ntp services. They depend on kermit and grover to get the correct time, and we don't mind if they update themselves. Let's write that out in YAML:
 
-    ---
-    ntp::autoupdate: true
-    ntp::enable: true
-    ntp::servers:
-      - grover.example.com iburst
-      - kermit.example.com iburst
+~~~ yaml
+---
+ntp::autoupdate: true
+ntp::enable: true
+ntp::servers:
+  - grover.example.com iburst
+  - kermit.example.com iburst
+~~~
 
-Unlike kermit and grover, for which we had slightly different but node-specific configuration needs, we're comfortable letting any other node that uses the ntp class use this generic configuration data. Rather than creating a node-specific data source for every possible node on our network that might need to use the ntp module, we'll store this data in `/etc/puppetlabs/code/hieradata/common.yaml`. With our very simple hierarchy, which so far only looks for the `fqdn` facts, any node with a `fqdn` that doesn't match the nodes we have data sources for will get the data found in `common.yaml`. Let's test against one of those nodes:
+Unlike kermit and grover, for which we had slightly different but node-specific configuration needs, we're comfortable letting any other node that uses the ntp class use this generic configuration data. Rather than creating a node-specific data source for every possible node on our network that might need to use the ntp module, we'll store this data in `/etc/puppetlabs/code/hieradata/common.yaml`. With our very simple hierarchy, which so far only looks for the certnames, any node with a certname that doesn't match the nodes we have data sources for will get the data found in `common.yaml`. Let's test against one of those nodes:
 
-	$ hiera ntp::servers ::fqdn=snuffie.example.com
-	["kermit.example.com iburst", "grover.example.com iburst"]
+    $ puppet apply --certname=snuffie.example.com -e "notice(hiera('ntp::servers'))"
+    Notice: Scope(Class[main]): ["kermit.example.com iburst", "grover.example.com iburst"]
 
 #### Modifying Our `site.pp` Manifest
 
@@ -228,24 +235,24 @@ Now that everything has tested out from the command line, it's time to get a lit
 If you'll remember back to our pre-Hiera configuration, we were declaring a number of parameters for the `ntp` class in our `site.pp` manifest, like this:
 
 ~~~ ruby
-	node "kermit.example.com" {
-	  class { "ntp":
-		servers    => [ '0.us.pool.ntp.org iburst','1.us.pool.ntp.org iburst','2.us.pool.ntp.org iburst','3.us.pool.ntp.org iburst'],
-		autoupdate => false,
-		restrict   => [],
-		enable     => true,
-	  }
-	}
+node "kermit.example.com" {
+  class { "ntp":
+    servers    => [ '0.us.pool.ntp.org iburst','1.us.pool.ntp.org iburst','2.us.pool.ntp.org iburst','3.us.pool.ntp.org iburst'],
+    autoupdate => false,
+    restrict   => [],
+    enable     => true,
+  }
+}
 ~~~
 
 In fact, we had three separate stanzas of that length. But now that we've moved all of that parameter data into Hiera, we can significantly pare down `site.pp`:
 
 ~~~ ruby
-	node "kermit.example.com", "grover.example.com", "snuffie.example.com" {
-      include ntp
-      # or:
-      # class { "ntp": }
-	}
+node "kermit.example.com", "grover.example.com", "snuffie.example.com" {
+  include ntp
+  # or:
+  # class { "ntp": }
+}
 ~~~
 
 That's it.
@@ -266,54 +273,61 @@ In the first part of our example, we were concerned with how to use Hiera to pro
 
 Where last we left off, our `site.pp` manifest was looking somewhat spare. With the `hiera_include` function, we can pare things down even further by picking a key to use for classes (we recommend `classes`), then declaring it in our `site.pp` manifest:
 
-	hiera_include('classes')
+~~~ ruby
+hiera_include('classes')
+~~~
 
 From this point on, you can add or modify an existing Hiera data source to add an array of classes you'd like to assign to matching nodes. In the simplest case, we can visit each of kermit, grover, and snuffie and add this to their YAML data sources in `/etc/puppetlabs/code/hieradata/nodes`:
 
-	"classes" : "ntp",
+~~~ yaml
+"classes" : "ntp",
+~~~
 
 modifying kermit's data source, for instance, to look like this:
 
-    ---
-    classes: ntp
-    ntp::restrict:
-      -
-    ntp::autoupdate: false
-    ntp::enable: true
-    ntp::servers:
-      - 0.us.pool.ntp.org iburst
-      - 1.us.pool.ntp.org iburst
-      - 2.us.pool.ntp.org iburst
-      - 3.us.pool.ntp.org iburst
+~~~ yaml
+---
+classes: ntp
+ntp::restrict:
+  -
+ntp::autoupdate: false
+ntp::enable: true
+ntp::servers:
+  - 0.us.pool.ntp.org iburst
+  - 1.us.pool.ntp.org iburst
+  - 2.us.pool.ntp.org iburst
+  - 3.us.pool.ntp.org iburst
+~~~
 
 `hiera_include` requires either a string with a single class, or an array of classes to apply to a given node. Take a look at the "classes" array at the top of our kermit data source to see how we might add three classes to kermit:
 
-    ---
-    classes:
-      - ntp
-      - apache
-      - postfix
-    ntp::restrict:
-     -
-    ntp::autoupdate: false
-    ntp::enable: true
-    ntp::servers:
-      - 0.us.pool.ntp.org iburst
-      - 1.us.pool.ntp.org iburst
-      - 2.us.pool.ntp.org iburst
-      - 3.us.pool.ntp.org iburst
-
+~~~ yaml
+---
+classes:
+  - ntp
+  - apache
+  - postfix
+ntp::restrict:
+ -
+ntp::autoupdate: false
+ntp::enable: true
+ntp::servers:
+  - 0.us.pool.ntp.org iburst
+  - 1.us.pool.ntp.org iburst
+  - 2.us.pool.ntp.org iburst
+  - 3.us.pool.ntp.org iburst
+~~~
 
 We can test which classes we've assigned to a given node with the Hiera command line tool:
 
-	$ hiera classes ::fqdn=kermit.example.com
-	["ntp", "apache", "postfix"]
+    $ puppet apply --certname=kermit.example.com -e "notice(hiera('classes'))"
+    ["ntp", "apache", "postfix"]
 
 > **Note:** The `hiera_include` function will do an [array merge lookup](./lookup_types.html#array-merge), which can let more specific data sources **add to** common sources instead of **replacing** them. This helps you avoid repeating yourself.
 
 #### Using Facts to Drive Class Assignments
 
-That demonstrates a very simple case for `hiera_include`, where we knew that we wanted to assign a particular class to a specific host by name. But just as we used the `fqdn` fact to choose which of our nodes received specific parameter values, we can use that or any other fact to drive class assignments. In other words, you can assign classes to nodes based on characteristics that aren't as obvious as their names, creating the possibility of configuring nodes based on more complex characteristics.
+That demonstrates a very simple case for `hiera_include`, where we knew that we wanted to assign a particular class to a specific host by name. But just as we used the `$trusted['certname']` fact to choose which of our nodes received specific parameter values, we can use that or any other fact to drive class assignments. In other words, you can assign classes to nodes based on characteristics that aren't as obvious as their names, creating the possibility of configuring nodes based on more complex characteristics.
 
 Some organizations might choose to make sure all their Macs have Homebrew installed, or assign a `postfix` class to nodes that have a mail server role expressed through a custom fact, or assign a `vmware_tools` class that installs and configures VMWare Tools packages on every host that returns `vmware` as the value for its `virtual` fact.
 
@@ -326,61 +340,71 @@ Two ways we might want to use Hiera to help us organize our use of the class thi
 
 So let's take a look at our `hiera.yaml` file and make provisions for two new data sources. We'll create one based on the `virtual` fact, which will return `vmware` when a node is a VMWare-based guest.  We'll create another based on the `osfamily` fact, which returns the general family to which a node's operating system belongs (e.g. "Debian" for Ubuntu and Debian systems, or "RedHat" for RHEL, CentOS, and Fedora systems):
 
-	---
-	:backends:
-	  - yaml
-	:yaml:
-	  :datadir: /etc/puppetlabs/code/hieradata
-	:hierarchy:
-	  - "nodes/%{::fqdn}"
-      - "virtual/%{::virtual}"
-	  - "osfamily/%{::osfamily}"
-	  - common
+~~~ yaml
+---
+:backends:
+  - yaml
+:yaml:
+  :datadir: /etc/puppetlabs/code/hieradata
+:hierarchy:
+  - "nodes/%{::trusted.certname}"
+  - "virtual/%{::virtual}"
+  - "osfamily/%{::osfamily}"
+  - common
+~~~
 
 Next, we'll need to create directories for our two new data sources:
 
-	`mkdir /etc/puppetlabs/code/hieradata/virtual; mkdir /etc/puppetlabs/code/hieradata/osfamily`
+    `mkdir /etc/puppetlabs/code/hieradata/virtual; mkdir /etc/puppetlabs/code/hieradata/osfamily`
 
 In our `virtual` directory, we'll want to create the file `vmware.yaml`. In this data source, we'll be assigning the `vmwaretools` class, so the file will need to look like this:
 
-    ---
-    classes: vmwaretools
+~~~ yaml
+---
+classes: vmwaretools
+~~~
 
 Next, we need to provide the data for the `vmwaretools` class parameters. We'll assume we have a mix of Red Hat and Debian VMs in use in our organization, and that we want to install VMWare Tools in `/opt/vmware` in our Red Hat VMs, and `/usr/local/vmware` for our Debian VMs.  We'll need `RedHat.yaml` and `Debian.yaml` files in the `/etc/puppetlabs/code/hieradata/osfamily` directory.
 
 `RedHat.yaml` should look like this:
 
-    ---
-    vmwaretools::working_dir: /opt/vmware
+~~~ yaml
+---
+vmwaretools::working_dir: /opt/vmware
+~~~
 
 `Debian.yaml` should look like this:
 
-    ---
-    vmwaretools::working_dir: /usr/local/vmware
+~~~ yaml
+---
+vmwaretools::working_dir: /usr/local/vmware
+~~~
 
 That leaves us with one parameter we haven't covered: the `version` parameter. Since we don't need to vary which version of VMWare Tools any of our VMs are using, we can put that in `common.yaml`, which should now look like this:
 
-    ---
-    vmwaretools::version: 8.6.5-621624
-    ntp::autoupdate: true
-    ntp::enable: true
-    ntp::servers:
-      - grover.example.com iburst
-      - kermit.example.com iburst
+~~~ yaml
+---
+vmwaretools::version: 8.6.5-621624
+ntp::autoupdate: true
+ntp::enable: true
+ntp::servers:
+  - grover.example.com iburst
+  - kermit.example.com iburst
+~~~
 
 Once you've got all that configured, go ahead and test with the Hiera command line tool:
 
-	$ hiera vmwaretools::working_dir osfamily=RedHat
-	/opt/vmware
+    $ hiera vmwaretools::working_dir osfamily=RedHat
+    /opt/vmware
 
-	$ hiera vmwaretools::working_dir osfamily=Debian
-	/usr/local/vmware
+    $ hiera vmwaretools::working_dir osfamily=Debian
+    /usr/local/vmware
 
-	$ hiera vmwaretools::version
-	8.6.5-621624
+    $ hiera vmwaretools::version
+    8.6.5-621624
 
-	$ hiera classes ::virtual=vmware
-	vmwaretools
+    $ hiera classes ::virtual=vmware
+    vmwaretools
 
 If everything worked, great. If not, [consult the checklist we provided earlier](#something-went-wrong) and give it another shot.
 

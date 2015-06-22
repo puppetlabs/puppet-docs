@@ -153,7 +153,7 @@ The `Backend.datafile` method returns a string, representing the complete path t
 It is optional, and is only useful when your backend is searching files on disk. It provides facilities similar to those in the `yaml` and `json` backends. To use this, you must set a `:datadir` setting in hiera.yaml under a key named for your backend:
 
     :file:
-      :datadir: /etc/puppetlabs/code/hieradata/
+      :datadir: "/etc/puppetlabs/code/environments/%{environment}/hieradata"
 
 The arguments you must provide are the **name of the backend** (as a symbol), the **scope** (usually just passed on from the lookup method's arguments), the **current hierarchy level** (usually passed to the current block by the `Backend.datasources` method), and the **file extension** to expect.
 
@@ -495,7 +495,7 @@ class Hiera
           #       - "%{clientcert}"
           #       - global
           #     :foo:
-          #       :datadir: /etc/puppetlabs/puppet/hieradata
+          #       :datadir: /etc/puppetlabs/code/environments/%{environment}/hieradata
           #
           # And the hieradata directory contains something like:
           #

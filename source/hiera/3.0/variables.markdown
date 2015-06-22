@@ -145,7 +145,7 @@ This example would let you use completely separate data directories for your pro
 Within a data source, you can interpolate values into any string, whether it's a standalone value or part of a hash or array value. This can be useful for values that should be different for every node, but which differ **predictably:**
 
 ~~~ yaml
-# /etc/puppetlabs/code/hieradata/common.yaml
+# /etc/puppetlabs/code/environments/production/hieradata/common.yaml
 ---
 smtpserver: "mail.%{::domain}"
 ~~~
@@ -155,7 +155,7 @@ In this example, instead of creating a `%{::domain}` hierarchy level and a data 
 You can also interpolate values into hash keys:
 
 ~~~ yaml
-# /etc/puppetlabs/code/hieradata/common.yaml
+# /etc/puppetlabs/code/environments/production/hieradata/common.yaml
 ---
 bacula::jobs:
   "%{::hostname}_Cyrus":
@@ -173,7 +173,7 @@ This generally only useful when building something complicated with [the `create
 **Note:** This _only works for keys that are part of a value;_ that is, you can't use interpolation to dynamically create new Hiera lookup keys at the root of a data source.
 
 ~~~ yaml
-# /etc/puppetlabs/code/hieradata/common.yaml
+# /etc/puppetlabs/code/environments/production/hieradata/common.yaml
 ---
 # This isn't legal:
 "%{::hostname}_bacula_jobs":

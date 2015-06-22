@@ -56,13 +56,12 @@ Each top-level key in the hash **must be a Ruby symbol with a colon (`:`) prefix
   - yaml
   - json
 :yaml:
-  :datadir: /etc/puppetlabs/code/hieradata
+  :datadir: "/etc/puppetlabs/code/environments/%{::environment}/hieradata"
 :json:
-  :datadir: /etc/puppetlabs/code/hieradata
+  :datadir: "/etc/puppetlabs/code/environments/%{::environment}/hieradata"
 :hierarchy:
-  - "nodes/%{trusted.certname}"
-  - "environment/%{server_facts.environment}"
-  - "virtual/%{::is_virtual}"
+  - "nodes/%{::trusted.certname}"
+  - "virtual/%{::virtual}"
   - common
 ~~~
 
@@ -74,8 +73,13 @@ If the config file exists but has no data, the default settings will be equivale
 ---
 :backends: yaml
 :yaml:
-  :datadir: /etc/puppetlabs/code/hieradata
-:hierarchy: common
+  # on *nix:
+  :datadir: "/etc/puppetlabs/code/environments/%{environment}/hieradata"
+  # on Windows:
+  :datadir: "C:\ProgramData\PuppetLabs\code\environments\%{environment}\hieradata"
+:hierarchy:
+  - "nodes/%{::trusted.certname}"
+  - common
 :logger: console
 :merge_behavior: native
 :deep_merge_options: {}
@@ -92,7 +96,7 @@ Must be a **string** or an **array of strings,** where each string is the name o
 
 The data sources in the hierarchy are checked in order, top to bottom.
 
-**Default value:** `"common"` (i.e., a single-element hierarchy whose only level is named "common.")
+**Default value:** `["nodes/%{::trusted.certname}", "common"]`
 
 ### `:backends`
 
@@ -157,7 +161,7 @@ The directory in which to find data source files. This must be a string.
 
 You can [interpolate variables][interpolate] into the datadir using `%{variable}` interpolation tokens. This allows you to, for example, point it at `"/etc/puppetlabs/code/hieradata/%{::environment}"` to keep your production and development data entirely separate.
 
-**Default value:** `/etc/puppetlabs/code/hieradata` on \*nix, and [`COMMON_APPDATA`][common_appdata]`\PuppetLabs\code\hieradata` on Windows.
+**Default value:** `"/etc/puppetlabs/code/environments/%{environment}/hieradata"` on \*nix, and `"C:\ProgramData\PuppetLabs\code\environments\%{environment}\hieradata"` on Windows.
 
 ### `:puppet`
 
