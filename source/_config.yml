@@ -224,6 +224,7 @@ version_notes:
   /facter/2.2: 'This is the version of Facter included in Puppet Enterprise 3.7. Open source Puppet users should see <a href="/facter/latest">the latest version of the docs</a>.'
   /facter/2.4: 'This is the version of Facter included in Puppet Enterprise 3.8. Open source Puppet users should see <a href="/facter/latest">the latest version of the docs</a>.'
   /facter/3.0: '<p class="noisy">This version of Facter is not included in Puppet Enterprise 3.8. PE 3.8 users should see <a href="/facter/2.4">the Facter 2.4 docs.</a></p>'
+  /hiera/1: 'This is the version of Hiera included in Puppet Enterprise 3.8. Open source Puppet users should see <a href="/hiera/latest">the latest version of the docs</a>.'
   /hiera/3.0: '<p class="noisy">Hiera 3.0 is not included in Puppet Enterprise 3.7 or 3.8. PE 3.7 and 3.8 users should see <a href="/hiera/1.0">the Hiera 1.0 docs.</a></p>'
   /puppetserver/1.0: 'This is the version of Puppet Server included in Puppet Enterprise 3.7 and 3.8.'
   /puppetserver/2.0: '<p class="noisy">This is an old version of Puppet Server. See <a href="/puppetserver/latest">the current Puppet Server docs.</a></p>'
