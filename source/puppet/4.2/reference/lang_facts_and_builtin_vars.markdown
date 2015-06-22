@@ -190,7 +190,14 @@ In addition, a warning will be issued any time a node parameter is overwritten.
 
 The following is an example `$server_facts` hash.
 
-	{serverversion => 4.1.0, servername => v85ix8blah.delivery.puppetlabs.net, serverip => 10.32.115.182, environment => production}
+~~~ ruby
+{
+  serverversion => "4.1.0",
+  servername    => "v85ix8blah.delivery.puppetlabs.net",
+  serverip      => "10.32.115.182",
+  environment   => "production",
+}
+~~~
 
 ### Puppet Agent Facts
 
