@@ -40,26 +40,26 @@ A resource data type can be used in the following places:
 For example:
 
 ~~~ ruby
-    # A resource declaration using a resource data type:
-    File { "/etc/ntp.conf":
-      mode  => "0644",
-      owner => "root",
-      group => "root",
-    }
+# A resource declaration using a resource data type:
+File { "/etc/ntp.conf":
+  mode  => "0644",
+  owner => "root",
+  group => "root",
+}
 
-    # Equivalent to the above:
-    Resource["file"] { "/etc/ntp.conf":
-      mode  => "0644",
-      owner => "root",
-      group => "root",
-    }
+# Equivalent to the above:
+Resource["file"] { "/etc/ntp.conf":
+  mode  => "0644",
+  owner => "root",
+  group => "root",
+}
 
-    # A resource default:
-    File {
-      mode  => "0644",
-      owner => "root",
-      group => "root",
-    }
+# A resource default:
+File {
+  mode  => "0644",
+  owner => "root",
+  group => "root",
+}
 ~~~
 
 ### Resource Data Types With Title

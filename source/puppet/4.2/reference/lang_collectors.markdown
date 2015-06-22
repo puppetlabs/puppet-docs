@@ -30,9 +30,9 @@ Syntax
 -----
 
 ~~~ ruby
-    User <| title == 'luke' |> # Will collect a single user resource whose title is 'luke'
-    User <| groups == 'admin' |> # Will collect any user resource whose list of supplemental groups includes 'admin'
-    Yumrepo['custom_packages'] -> Package <| tag == 'custom' |> # Will create an order relationship with several package resources
+User <| title == 'luke' |> # Will collect a single user resource whose title is 'luke'
+User <| groups == 'admin' |> # Will collect any user resource whose list of supplemental groups includes 'admin'
+Yumrepo['custom_packages'] -> Package <| tag == 'custom' |> # Will create an order relationship with several package resources
 ~~~
 
 The general form of a resource collector is:
@@ -133,7 +133,7 @@ An **exported resource collector** uses a modified syntax that realizes [exporte
 Exported resource collectors are identical to collectors, except that their angle brackets are doubled.
 
 ~~~ ruby
-    Nagios_service <<| |>> # realize all exported nagios_service resources
+Nagios_service <<| |>> # realize all exported nagios_service resources
 ~~~
 
 The general form of an exported resource collector is:

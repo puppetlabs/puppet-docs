@@ -111,8 +111,8 @@ Each operator has its own rules for the [data types][datatypes] of its operands.
 When creating compound expressions by using other expressions as operands, you should use parentheses for clarity:
 
 ~~~ ruby
-    (90 < 7) and ('Solaris' == 'Solaris') # resolves to false
-    (90 < 7) or ('Solaris' in ['Linux', 'Solaris']) # resolves to true
+(90 < 7) and ('Solaris' == 'Solaris') # resolves to false
+(90 < 7) or ('Solaris' in ['Linux', 'Solaris']) # resolves to true
 ~~~
 
 
@@ -122,8 +122,8 @@ Order of Operations
 Compound expressions are evaluated in a standard order of operations. However, parentheses will override the order of operations:
 
 ~~~ ruby
-    # This example will resolve to 30, rather than 23.
-    notice( (7+8)*2 )
+# This example will resolve to 30, rather than 23.
+notice( (7+8)*2 )
 ~~~
 
 For the sake of clarity, we recommend using parentheses in all but the simplest compound expressions.
@@ -254,25 +254,24 @@ If the left operand is a data type, it checks the right operand as follows:
 Examples:
 
 ~~~ ruby
-    # Right operand is a string:
-    'eat' in 'eaten' # resolves to true
-    'Eat' in 'eaten' # resolves to true
+# Right operand is a string:
+'eat' in 'eaten' # resolves to true
+'Eat' in 'eaten' # resolves to true
 
-    # Right operand is an array:
-    'eat' in ['eat', 'ate', 'eating'] # resolves to true
-    'Eat' in ['eat', 'ate', 'eating'] # resolves to true
+# Right operand is an array:
+'eat' in ['eat', 'ate', 'eating'] # resolves to true
+'Eat' in ['eat', 'ate', 'eating'] # resolves to true
 
-    # Right operand is a hash:
-    'eat' in { 'eat' => 'present tense', 'ate' => 'past tense'} # resolves to true
-    'eat' in { 'present' => 'eat', 'past' => 'ate' }            # resolves to false
+# Right operand is a hash:
+'eat' in { 'eat' => 'present tense', 'ate' => 'past tense'} # resolves to true
+'eat' in { 'present' => 'eat', 'past' => 'ate' }            # resolves to false
 
-    # Left operand is a regular expression (with the case-insensitive option "?i")
-    /(?i:EAT)/ in ['eat', 'ate', 'eating'] # resolves to true
+# Left operand is a regular expression (with the case-insensitive option "?i")
+/(?i:EAT)/ in ['eat', 'ate', 'eating'] # resolves to true
 
-    # Left operand is a data type (matching integers between 100-199)
-    Integer[100, 199] in [1, 2, 125] # resolves to true
-    Integer[100, 199] in [1, 2, 25]  # resolves to false
-
+# Left operand is a data type (matching integers between 100-199)
+Integer[100, 199] in [1, 2, 125] # resolves to true
+Integer[100, 199] in [1, 2, 25]  # resolves to false
 ~~~
 
 Boolean Operators
@@ -298,8 +297,8 @@ Resolves to `true` if either operand is true.
 **Takes one operand:**
 
 ~~~ ruby
-    $my_value = true
-    notice ( !$my_value ) # Will resolve to false
+$my_value = true
+notice ( !$my_value ) # Will resolve to false
 ~~~
 
 Resolves to `true` if the operand is false, and `false` if the operand is true.
@@ -390,9 +389,9 @@ Both operands should be [arrays][]; if the right operand is a scalar value, it w
 If the left operand isn't an array, Puppet will interpret `+` as arithmetic addition.
 
 ~~~ ruby
-    [1, 2, 3] + 1     # resolves to [1, 2, 3, 1]
-    [1, 2, 3] + [1]   # resolves to [1, 2, 3, 1]
-    [1, 2, 3] + [[1]] # resolves to [1, 2, 3, [1]]
+[1, 2, 3] + 1     # resolves to [1, 2, 3, 1]
+[1, 2, 3] + [1]   # resolves to [1, 2, 3, 1]
+[1, 2, 3] + [[1]] # resolves to [1, 2, 3, [1]]
 ~~~
 
 This operator does not change its operands; it only creates a new value.
@@ -406,10 +405,10 @@ Both operands should be [arrays][]; if the right operand is a scalar value, it w
 If the left operand isn't an array, Puppet will interpret `-` as arithmetic subtraction.
 
 ~~~ ruby
-    [1, 2, 3, 4, 5, 1, 1] - 1    # resolves to [2, 3, 4, 5]
-    [1, 2, 3, 4, 5, 1, 1] - [1]  # resolves to [2, 3, 4, 5]
-    [1, 2, 3, [1, 2]] - [1, 2]   # resolves to [3, [1, 2]]
-    [1, 2, 3, [1, 2]] - [[1, 2]] # resolves to [1, 2, 3]
+[1, 2, 3, 4, 5, 1, 1] - 1    # resolves to [2, 3, 4, 5]
+[1, 2, 3, 4, 5, 1, 1] - [1]  # resolves to [2, 3, 4, 5]
+[1, 2, 3, [1, 2]] - [1, 2]   # resolves to [3, [1, 2]]
+[1, 2, 3, [1, 2]] - [[1, 2]] # resolves to [1, 2, 3]
 ~~~
 
 This operator does not change its operands; it only creates a new value.
@@ -434,11 +433,11 @@ The right operand can be one of the following:
 * An array with an **even** number of elements; the first element of each pair will be used as a key, and the second element will be used as its value.
 
 ~~~ ruby
-    {a => 10, b => 20} + {b => 30}  # resolves to {a => 10, b => 30}
-    {a => 10, b => 20} + {c => 30}  # resolves to {a => 10, b => 30, c => 30}
-    {a => 10, b => 20} + [c, 30]    # resolves to {a => 10, b => 20, c => 30}
-    {a => 10, b => 20} + 30         # gives an error
-    {a => 10, b => 20} + [30]       # gives an error
+{a => 10, b => 20} + {b => 30}  # resolves to {a => 10, b => 30}
+{a => 10, b => 20} + {c => 30}  # resolves to {a => 10, b => 30, c => 30}
+{a => 10, b => 20} + [c, 30]    # resolves to {a => 10, b => 20, c => 30}
+{a => 10, b => 20} + 30         # gives an error
+{a => 10, b => 20} + [30]       # gives an error
 ~~~
 
 This operator does not change its operands; it only creates a new value.
@@ -455,10 +454,10 @@ The right operand can be one of the following:
 * A single key
 
 ~~~ ruby
-    {a => first, b => second, c => 17} - c                                # resolves to {a => first, b => second}
-    {a => first, b => second, c => 17} - [c, a]                           # resolves to {b => second}
-    {a => first, b => second, c => 17} - {c => 17, a => "something else"} # resolves to {b => second}
-    {a => first, b => second, c => 17} - {a => a, d => d}                 # resolves to {b => second, c => 17}
+{a => first, b => second, c => 17} - c                                # resolves to {a => first, b => second}
+{a => first, b => second, c => 17} - [c, a]                           # resolves to {b => second}
+{a => first, b => second, c => 17} - {c => 17, a => "something else"} # resolves to {b => second}
+{a => first, b => second, c => 17} - {a => a, d => d}                 # resolves to {b => second, c => 17}
 ~~~
 
 This operator does not change its operands; it only creates a new value.

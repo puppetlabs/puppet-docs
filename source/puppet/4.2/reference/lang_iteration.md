@@ -61,7 +61,7 @@ Hash            | `[<KEY>, <VALUE>]` (two-element array) | `<KEY>, <VALUE>`
 For example:
 
 ~~~ ruby
-    ['a','b','c'].each |Integer $index, String $value| { notice("${index} = ${value}") }
+['a','b','c'].each |Integer $index, String $value| { notice("${index} = ${value}") }
 ~~~
 
 This will result in:
@@ -81,15 +81,15 @@ Examples
 Since the focus of the Puppet language is declaring resources, most people will want to use iteration to declare many similar resources at once:
 
 ~~~ ruby
-    $binaries = ["cfacter", "facter", "hiera", "mco", "puppet", "puppetserver"]
+$binaries = ["cfacter", "facter", "hiera", "mco", "puppet", "puppetserver"]
 
-    # function call with lambda:
-    $binaries.each |String $binary| {
-      file {"/usr/bin/$binary":
-        ensure => link,
-        target => "/opt/puppetlabs/bin/$binary",
-      }
-    }
+# function call with lambda:
+$binaries.each |String $binary| {
+  file {"/usr/bin/$binary":
+    ensure => link,
+    target => "/opt/puppetlabs/bin/$binary",
+  }
+}
 ~~~
 
 In this example, we have an array of command names that we want to use in each symlink's path and target. The `each` function makes this very easy and succinct.
@@ -99,19 +99,19 @@ In this example, we have an array of command names that we want to use in each s
 In earlier versions of Puppet, when there were no iteration functions and lambdas weren't supported, you could achieve a clunkier form of iteration by writing [defined resource types][defined types] and [using arrays as resource titles.][array_titles] To do the same thing as the previous example:
 
 ~~~ ruby
-    # one-off defined resource type, in
-    #/etc/puppetlabs/code/environments/production/modules/puppet/manifests/binary/symlink.pp
-    define puppet::binary::symlink ($binary = $title) {
-      file {"/usr/bin/$binary":
-        ensure => link,
-        target => "/opt/puppetlabs/bin/$binary",
-      }
-    }
+# one-off defined resource type, in
+#/etc/puppetlabs/code/environments/production/modules/puppet/manifests/binary/symlink.pp
+define puppet::binary::symlink ($binary = $title) {
+  file {"/usr/bin/$binary":
+    ensure => link,
+    target => "/opt/puppetlabs/bin/$binary",
+  }
+}
 
-    # using defined type for iteration, somewhere else in your manifests
-    $binaries = ["cfacter", "facter", "hiera", "mco", "puppet", "puppetserver"]
+# using defined type for iteration, somewhere else in your manifests
+$binaries = ["cfacter", "facter", "hiera", "mco", "puppet", "puppetserver"]
 
-    puppet::binary::symlink { $binaries: }
+puppet::binary::symlink { $binaries: }
 ~~~
 
 The main problems with this approach were:
@@ -126,19 +126,19 @@ In general, the modern style of iteration is much better, but you'll often see e
 You can also use iteration to transform data into more useful forms. For example:
 
 ~~~ ruby
-    $filtered_array = [1,20,3].filter |$value| { $value < 10 }
-    # returns [1,3]
+$filtered_array = [1,20,3].filter |$value| { $value < 10 }
+# returns [1,3]
 
-    $sum = reduce([1,2,3]) |$result, $value|  { $result + $value }
-    # returns 6
+$sum = reduce([1,2,3]) |$result, $value|  { $result + $value }
+# returns 6
 
-    $hash_as_array = ['key1', 'first value',
-                     'key2', 'second value',
-                     'key3', 'third value']
+$hash_as_array = ['key1', 'first value',
+                 'key2', 'second value',
+                 'key3', 'third value']
 
-    $real_hash = $hash_as_array.slice(2).reduce( {} ) |Hash $memo, Array $pair| {
-      $memo + $pair
-    }
-    # returns {"key1"=>"first value", "key2"=>"second value", "key3"=>"third value"}
+$real_hash = $hash_as_array.slice(2).reduce( {} ) |Hash $memo, Array $pair| {
+  $memo + $pair
+}
+# returns {"key1"=>"first value", "key2"=>"second value", "key3"=>"third value"}
 ~~~
 

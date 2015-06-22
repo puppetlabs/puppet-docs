@@ -45,15 +45,15 @@ Syntax
 Using exported resources requires two steps: declaring and collecting.
 
 ~~~ ruby
-    class ssh {
-      # Declare:
-      @@sshkey { $hostname:
-        type => dsa,
-        key  => $sshdsakey,
-      }
-      # Collect:
-      Sshkey <<| |>>
-    }
+class ssh {
+  # Declare:
+  @@sshkey { $hostname:
+    type => dsa,
+    key  => $sshdsakey,
+  }
+  # Collect:
+  Sshkey <<| |>>
+}
 ~~~
 
 In the example above, every node with the `ssh` class will export its own SSH host key and then collect the SSH host key of every node (including its own). This will cause every node in the site to trust SSH connections from every other node.
@@ -63,25 +63,25 @@ In the example above, every node with the `ssh` class will export its own SSH ho
 To declare an exported resource, prepend `@@` (a double "at" sign) to the **resource type** of a standard [resource declaration][resources]:
 
 ~~~ ruby
-    @@nagios_service { "check_zfs${hostname}":
-      use                 => 'generic-service',
-      host_name           => "$fqdn",
-      check_command       => 'check_nrpe_1arg!check_zfs',
-      service_description => "check_zfs${hostname}",
-      target              => '/etc/nagios3/conf.d/nagios_service.cfg',
-      notify              => Service[$nagios::params::nagios_service],
-    }
+@@nagios_service { "check_zfs${hostname}":
+  use                 => 'generic-service',
+  host_name           => "$fqdn",
+  check_command       => 'check_nrpe_1arg!check_zfs',
+  service_description => "check_zfs${hostname}",
+  target              => '/etc/nagios3/conf.d/nagios_service.cfg',
+  notify              => Service[$nagios::params::nagios_service],
+}
 ~~~
 
 ### Collecting Exported Resources
 
-To collect exported resources you must use an [exported resource collector][exported_collector] :
+To collect exported resources you must use an [exported resource collector][exported_collector]:
 
 ~~~ ruby
-    Nagios_service <<| |>> # Collect all exported nagios_service resources
+Nagios_service <<| |>> # Collect all exported nagios_service resources
 
-    #  Collect exported file fragments for building a Bacula config file:
-    Concat::Fragment <<| tag == "bacula-storage-dir-${bacula_director}" |>>
+#  Collect exported file fragments for building a Bacula config file:
+Concat::Fragment <<| tag == "bacula-storage-dir-${bacula_director}" |>>
 ~~~
 
 (The second example, taken from [puppetlabs-bacula][bacula], uses the [concat][] module.)

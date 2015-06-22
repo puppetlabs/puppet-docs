@@ -52,14 +52,14 @@ In the diagram above:
 Code that is _outside_ any class definition, type definition, or node definition exists at **top scope.** Variables and defaults declared at top scope are available **everywhere.**
 
 ~~~ ruby
-    # site.pp
-    $variable = "Hi!"
+# site.pp
+$variable = "Hi!"
 
-    class example {
-      notify {"Message from elsewhere: $variable":}
-    }
+class example {
+  notify {"Message from elsewhere: $variable":}
+}
 
-    include example
+include example
 ~~~
 
     $ puppet apply site.pp
@@ -74,14 +74,14 @@ Variables and defaults declared at node scope are available **everywhere except 
 > Note: Classes and resources declared at top scope **bypass node scope entirely,** and so cannot access variables or defaults from node scope.
 
 ~~~ ruby
-    # site.pp
-    $top_variable = "Available!"
-    node 'puppet.example.com' {
-      $variable = "Hi!"
-      notify {"Message from here: $variable":}
-      notify {"Top scope: $top_variable":}
-    }
-    notify {"Message from top scope: $variable":}
+# site.pp
+$top_variable = "Available!"
+node 'puppet.example.com' {
+  $variable = "Hi!"
+  notify {"Message from here: $variable":}
+  notify {"Top scope: $top_variable":}
+}
+notify {"Message from top scope: $variable":}
 ~~~
 
     $ puppet apply site.pp
@@ -98,21 +98,21 @@ Code inside a [class definition][class], [defined type][definedtype], or [lambda
 Variables and defaults declared in a local scope are only available in **that scope and its children.** There are two different sets of rules for when scopes are considered related; see "[scope lookup rules](#scope-lookup-rules)" below.
 
 ~~~ ruby
-    # /etc/puppet/modules/scope_example/manifests/init.pp
-    class scope_example {
-      $variable = "Hi!"
-      notify {"Message from here: $variable":}
-      notify {"Node scope: $node_variable Top scope: $top_variable":}
-    }
+# /etc/puppet/modules/scope_example/manifests/init.pp
+class scope_example {
+  $variable = "Hi!"
+  notify {"Message from here: $variable":}
+  notify {"Node scope: $node_variable Top scope: $top_variable":}
+}
 
-    # /etc/puppet/manifests/site.pp
-    $top_variable = "Available!"
-    node 'puppet.example.com' {
-      $node_variable = "Available!"
-      include scope_example
-      notify {"Message from node scope: $variable":}
-    }
-    notify {"Message from top scope: $variable":}
+# /etc/puppet/manifests/site.pp
+$top_variable = "Available!"
+node 'puppet.example.com' {
+  $node_variable = "Available!"
+  include scope_example
+  notify {"Message from node scope: $variable":}
+}
+notify {"Message from top scope: $variable":}
 ~~~
 
     $ puppet apply site.pp
@@ -129,19 +129,19 @@ In this example, a local scope can see "out" into node and top scope, but outer 
 Variables and defaults declared at node scope can override those received from top scope. Those declared at local scope can override those received from node and top scope, as well as any parent scopes. That is: if multiple variables with the same name are available, **Puppet will use the "most local" one.**
 
 ~~~ ruby
-    # /etc/puppet/modules/scope_example/manifests/init.pp
-    class scope_example {
-      $variable = "Hi, I'm local!"
-      notify {"Message from here: $variable":}
-    }
+# /etc/puppet/modules/scope_example/manifests/init.pp
+class scope_example {
+  $variable = "Hi, I'm local!"
+  notify {"Message from here: $variable":}
+}
 
-    # /etc/puppet/manifests/site.pp
-    $variable = "Hi, I'm top!"
+# /etc/puppet/manifests/site.pp
+$variable = "Hi, I'm top!"
 
-    node 'puppet.example.com' {
-      $variable = "Hi, I'm node!"
-      include scope_example
-    }
+node 'puppet.example.com' {
+  $variable = "Hi, I'm node!"
+  include scope_example
+}
 ~~~
 
     $ puppet apply site.pp
@@ -150,20 +150,20 @@ Variables and defaults declared at node scope can override those received from t
 Resource defaults are processed **by attribute** rather than as a block. Thus, defaults that declare different attributes will be merged, and only the attributes that conflict will be overridden.
 
 ~~~ ruby
-    # /etc/puppet/modules/scope_example/manifests/init.pp
-    class scope_example {
-      File { ensure => directory, }
+# /etc/puppet/modules/scope_example/manifests/init.pp
+class scope_example {
+  File { ensure => directory, }
 
-      file {'/tmp/example':}
-    }
+  file {'/tmp/example':}
+}
 
-    # /etc/puppet/manifests/site.pp
-    File {
-      ensure => file,
-      owner  => 'puppet',
-    }
+# /etc/puppet/manifests/site.pp
+File {
+  ensure => file,
+  owner  => 'puppet',
+}
 
-    include scope_example
+include scope_example
 ~~~
 
 In this example, `/tmp/example` would be a directory owned by the `puppet` user, and would combine the defaults from top and local scope.
@@ -195,8 +195,8 @@ Qualified variable names are formatted as follows, using the double-colon [names
 `$<NAME OF SCOPE>::<NAME OF VARIABLE>`
 
 ~~~ ruby
-    include apache::params
-    $local_copy = $apache::params::confdir
+include apache::params
+$local_copy = $apache::params::confdir
 ~~~
 
 This example would set the variable `$local_copy` to the value of the `$confdir` variable from the `apache::params` class.

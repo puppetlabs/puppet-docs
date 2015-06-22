@@ -96,32 +96,32 @@ Example
 The following short manifest manages NTP. It uses [package][], [file][], and [service][] resources; a [case statement][case] based on a [fact][]; [variables][]; [ordering][] and [notification][] relationships; and [file contents being served from a module][fileserve].
 
 ~~~ ruby
-    case $operatingsystem {
-      centos, redhat: { $service_name = 'ntpd' }
-      debian, ubuntu: { $service_name = 'ntp' }
-    }
+case $operatingsystem {
+  centos, redhat: { $service_name = 'ntpd' }
+  debian, ubuntu: { $service_name = 'ntp' }
+}
 
-    package { 'ntp':
-      ensure => installed,
-    }
+package { 'ntp':
+  ensure => installed,
+}
 
-    service { 'ntp':
-      name      => $service_name,
-      ensure    => running,
-      enable    => true,
-      subscribe => File['ntp.conf'],
-    }
+service { 'ntp':
+  name      => $service_name,
+  ensure    => running,
+  enable    => true,
+  subscribe => File['ntp.conf'],
+}
 
-    file { 'ntp.conf':
-      path    => '/etc/ntp.conf',
-      ensure  => file,
-      require => Package['ntp'],
-      source  => "puppet:///modules/ntp/ntp.conf",
-      # This source file would be located on the Puppet master at
-      # /etc/puppetlabs/puppet/modules/ntp/files/ntp.conf (in Puppet Enterprise)
-      # or
-      # /etc/puppet/modules/ntp/files/ntp.conf (in open source Puppet)
-    }
+file { 'ntp.conf':
+  path    => '/etc/ntp.conf',
+  ensure  => file,
+  require => Package['ntp'],
+  source  => "puppet:///modules/ntp/ntp.conf",
+  # This source file would be located on the Puppet master at
+  # /etc/puppetlabs/puppet/modules/ntp/files/ntp.conf (in Puppet Enterprise)
+  # or
+  # /etc/puppet/modules/ntp/files/ntp.conf (in open source Puppet)
+}
 ~~~
 
 

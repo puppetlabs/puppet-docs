@@ -38,16 +38,16 @@ Syntax
 -----
 
 ~~~ ruby
-    # /etc/puppetlabs/puppet/manifests/site.pp
-    node 'www1.example.com' {
-      include common
-      include apache
-      include squid
-    }
-    node 'db1.example.com' {
-      include common
-      include mysql
-    }
+# /etc/puppetlabs/puppet/manifests/site.pp
+node 'www1.example.com' {
+  include common
+  include apache
+  include squid
+}
+node 'db1.example.com' {
+  include common
+  include mysql
+}
 ~~~
 
 In the example above, only `www1.example.com` would receive the apache and squid classes, and only `db1.example.com` would receive the mysql class.
@@ -92,10 +92,10 @@ You may not create two node statements with the same name.
 You can use a comma-separated list of names to create a group of nodes with a single node statement:
 
 ~~~ ruby
-    node 'www1.example.com', 'www2.example.com', 'www3.example.com' {
-      include common
-      include apache, squid
-    }
+node 'www1.example.com', 'www2.example.com', 'www3.example.com' {
+  include common
+  include apache, squid
+}
 ~~~
 
 This example creates three identical nodes: `www1.example.com`, `www2.example.com`, and `www3.example.com`.
@@ -111,18 +111,18 @@ The name `default` (without quotes) is a special value for node names. If no nod
 > **Note:** Make sure all of your node regexes match non-overlapping sets of node names. If a node's name matches more than one regex, Puppet makes no guarantee about which matching definition it will get.
 
 ~~~ ruby
-    node /^www\d+$/ {
-      include common
-    }
+node /^www\d+$/ {
+  include common
+}
 ~~~
 
 The above example would match `www1`, `www13`, and any other node whose name consisted of `www` and one or more
 digits.
 
 ~~~ ruby
-    node /^(foo|bar)\.example\.com$/ {
-      include common
-    }
+node /^(foo|bar)\.example\.com$/ {
+  include common
+}
 ~~~
 
 The above example would match `foo.example.com` and `bar.example.com`, but no other nodes.

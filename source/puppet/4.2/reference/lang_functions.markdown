@@ -64,29 +64,29 @@ Functions must always be called with their full names; you can't shorten a quali
 You can call a function by writing its name and providing a list of arguments in parentheses.
 
 ~~~ ruby
-    file {"/etc/ntp.conf":
-      ensure  => file,
-      content => template("ntp/ntp.conf"), # function call; resolves to a string
-    }
+file {"/etc/ntp.conf":
+  ensure  => file,
+  content => template("ntp/ntp.conf"), # function call; resolves to a string
+}
 
-    include apache # function call; modifies catalog
+include apache # function call; modifies catalog
 
-    $binaries = [
-      "cfacter",
-      "facter",
-      "hiera",
-      "mco",
-      "puppet",
-      "puppetserver",
-    ]
+$binaries = [
+  "cfacter",
+  "facter",
+  "hiera",
+  "mco",
+  "puppet",
+  "puppetserver",
+]
 
-    # function call with lambda; runs block of code several times
-    each($binaries) |$binary| {
-      file {"/usr/bin/$binary":
-        ensure => link,
-        target => "/opt/puppetlabs/bin/$binary",
-      }
-    }
+# function call with lambda; runs block of code several times
+each($binaries) |$binary| {
+  file {"/usr/bin/$binary":
+    ensure => link,
+    target => "/opt/puppetlabs/bin/$binary",
+  }
+}
 ~~~
 
 {% capture about_examples %}
@@ -114,29 +114,29 @@ The general form of a prefix function call is:
 You can also call a function by writing its first argument, a period, and the name of the function.
 
 ~~~ ruby
-    file {"/etc/ntp.conf":
-      ensure  => file,
-      content => "ntp/ntp.conf".template, # function call; resolves to a string
-    }
+file {"/etc/ntp.conf":
+  ensure  => file,
+  content => "ntp/ntp.conf".template, # function call; resolves to a string
+}
 
-    apache.include # function call; modifies catalog
+apache.include # function call; modifies catalog
 
-    $binaries = [
-      "cfacter",
-      "facter",
-      "hiera",
-      "mco",
-      "puppet",
-      "puppetserver",
-    ]
+$binaries = [
+  "cfacter",
+  "facter",
+  "hiera",
+  "mco",
+  "puppet",
+  "puppetserver",
+]
 
-    # function call with lambda; runs block of code several times
-    $binaries.each |$binary| {
-      file {"/usr/bin/$binary":
-        ensure => link,
-        target => "/opt/puppetlabs/bin/$binary",
-      }
-    }
+# function call with lambda; runs block of code several times
+$binaries.each |$binary| {
+  file {"/usr/bin/$binary":
+    ensure => link,
+    target => "/opt/puppetlabs/bin/$binary",
+  }
+}
 ~~~
 
 {{ about_examples }}

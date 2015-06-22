@@ -53,21 +53,21 @@ Simplified Syntax
 Resource declarations have a lot of features, but beginners can accomplish a lot with just a subset of these. For more advanced syntax (including expressions that declare multiple resources at once), see [Resources (Advanced).][resource_advanced]
 
 ~~~ ruby
-    # A resource declaration:
-    file { '/etc/passwd':
-      ensure => file,
-      owner  => 'root',
-      group  => 'root',
-      mode   => '0600',
-    }
+# A resource declaration:
+file { '/etc/passwd':
+  ensure => file,
+  owner  => 'root',
+  group  => 'root',
+  mode   => '0600',
+}
 ~~~
 
 Every resource has a **resource type,** a **title,** and a set of **attributes:**
 
 ~~~ ruby
-    <TYPE> { '<TITLE>':
-      <ATTRIBUTE> => <VALUE>,
-    }
+<TYPE> { '<TITLE>':
+  <ATTRIBUTE> => <VALUE>,
+}
 ~~~
 
 The form of a resource declaration is:

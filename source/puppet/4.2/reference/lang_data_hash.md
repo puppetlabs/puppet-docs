@@ -20,9 +20,9 @@ Hashes (sometimes called hash maps) are unordered structures that map keys to va
 Hashes are written as a pair of curly braces containing any number of key/value pairs. A key is separated from its value by a `=>` (arrow, fat comma, or hash rocket), and adjacent pairs are separated by commas. An optional trailing comma is allowed between the final value and the closing curly brace.
 
 ~~~ ruby
-    { key1 => 'val1', key2 => 'val2' }
-    # Equivalent:
-    { key1 => 'val1', key2 => 'val2', }
+{ key1 => 'val1', key2 => 'val2' }
+# Equivalent:
+{ key1 => 'val1', key2 => 'val2', }
 ~~~
 
 Hash keys can be any data type, but you should generally only use strings or numbers.
@@ -34,9 +34,9 @@ Hash values can be any data type.
 You can access hash members with their key; square brackets are used for accessing.
 
 ~~~ ruby
-    $myhash = { key       => "some value",
-                other_key => "some other value" }
-    notice( $myhash[key] )
+$myhash = { key       => "some value",
+            other_key => "some other value" }
+notice( $myhash[key] )
 ~~~
 
 This manifest would log `some value` as a notice.
@@ -44,19 +44,19 @@ This manifest would log `some value` as a notice.
 If you try to access a nonexistent key from a hash, its value will be [`undef`.][undef]
 
 ~~~ ruby
-    $cool_value = $myhash[absent_key] # Value is undef
+$cool_value = $myhash[absent_key] # Value is undef
 ~~~
 
 Nested arrays and hashes can be accessed by chaining indexes:
 
 ~~~ ruby
-    $main_site = { port        => { http  => 80,
-                                    https => 443 },
-                   vhost_name  => 'docs.puppetlabs.com',
-                   server_name => { mirror0 => 'warbler.example.com',
-                                    mirror1 => 'egret.example.com' }
-                 }
-    notice ( $main_site[port][https] )
+$main_site = { port        => { http  => 80,
+                                https => 443 },
+               vhost_name  => 'docs.puppetlabs.com',
+               server_name => { mirror0 => 'warbler.example.com',
+                                mirror1 => 'egret.example.com' }
+             }
+notice ( $main_site[port][https] )
 ~~~
 
 This example manifest would log `443` as a notice.

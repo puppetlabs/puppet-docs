@@ -18,24 +18,24 @@ Containment
 This effectively means that if any resource or class forms a [relationship][] with the container, it will form the same relationship with every resource inside the container.
 
 ~~~ ruby
-    class ntp {
-      file { '/etc/ntp.conf':
-        ...
-        require => Package['ntp'],
-        notify  => Service['ntp'],
-      }
-      service { 'ntp':
-        ...
-      }
-      package { 'ntp':
-        ...
-      }
-    }
+class ntp {
+  file { '/etc/ntp.conf':
+    ...
+    require => Package['ntp'],
+    notify  => Service['ntp'],
+  }
+  service { 'ntp':
+    ...
+  }
+  package { 'ntp':
+    ...
+  }
+}
 
-    include ntp
-    exec {'/usr/local/bin/update_custom_timestamps.sh':
-      require => Class['ntp'],
-    }
+include ntp
+exec {'/usr/local/bin/update_custom_timestamps.sh':
+  require => Class['ntp'],
+}
 ~~~
 
 In this example, `Exec['/usr/local/bin/update_custom_timestamps.sh']` would happen after _every_ resource in the ntp class, including the package, the file, and the service.
@@ -63,22 +63,22 @@ Use the `contain` function when a class should be contained. The `contain` funct
 In an example NTP module where service configuration is moved out into its own class:
 
 ~~~ ruby
-    class ntp {
-      file { '/etc/ntp.conf':
-        ...
-        require => Package['ntp'],
-        notify  => Class['ntp::service'],
-      }
-      contain ntp::service
-      package { 'ntp':
-        ...
-      }
-    }
+class ntp {
+  file { '/etc/ntp.conf':
+    ...
+    require => Package['ntp'],
+    notify  => Class['ntp::service'],
+  }
+  contain ntp::service
+  package { 'ntp':
+    ...
+  }
+}
 
-    include ntp
-    exec { '/usr/local/bin/update_custom_timestamps.sh':
-      require => Class['ntp'],
-    }
+include ntp
+exec { '/usr/local/bin/update_custom_timestamps.sh':
+  require => Class['ntp'],
+}
 ~~~
 
 This will ensure that the exec will happen after all the resources in both class `ntp` and class `ntp::service`. (If `ntp::service` had been declared with `include` instead of `contain`, the exec would happen after the file and the package, but wouldn't _necessarily_ happen after the service.)
@@ -86,14 +86,14 @@ This will ensure that the exec will happen after all the resources in both class
 To contain classes that are declared with the resource-like declaration syntax, use the contain function **after** declaring the class:
 
 ~~~ ruby
-    class ntp {
-      # ...
-      class { 'ntp::service':
-        enable => true,
-      }
-      contain 'ntp::service'
-      # ...
-    }
+class ntp {
+  # ...
+  class { 'ntp::service':
+    enable => true,
+  }
+  contain 'ntp::service'
+  # ...
+}
 ~~~
 
 ### Anchor Pattern Containment (for Compatibility With Puppet ≤ 3.4.0)
@@ -110,26 +110,26 @@ To use the anchor pattern:
 In an example NTP module where service configuration is moved out into its own class:
 
 ~~~ ruby
-    class ntp {
-      file { '/etc/ntp.conf':
-        ...
-        require => Package['ntp'],
-        notify  => Class['ntp::service'],
-      }
-      include ntp::service
+class ntp {
+  file { '/etc/ntp.conf':
+    ...
+    require => Package['ntp'],
+    notify  => Class['ntp::service'],
+  }
+  include ntp::service
 
-      # roughly equivalent to "contain ntp::service":
-      anchor { 'ntp_first': } -> Class['ntp::service'] -> anchor { 'ntp_last': }
+  # roughly equivalent to "contain ntp::service":
+  anchor { 'ntp_first': } -> Class['ntp::service'] -> anchor { 'ntp_last': }
 
-      package { 'ntp':
-        ...
-      }
-    }
+  package { 'ntp':
+    ...
+  }
+}
 
-    include ntp
-    exec { '/usr/local/bin/update_custom_timestamps.sh':
-      require => Class['ntp'],
-    }
+include ntp
+exec { '/usr/local/bin/update_custom_timestamps.sh':
+  require => Class['ntp'],
+}
 ~~~
 
 In this case, the `ntp::service` class will behave like it's contained by the `ntp` class. Resources like the timestamp `exec` can form relationships with the `ntp` class and be assured that no relevant resources will float out of order.

@@ -84,14 +84,14 @@ Generally, your code expects each parameter to be a specific kind of data. You c
 For example:
 
 ~~~ ruby
-    class ntp (
-      Boolean $service_manage = true,
-      Boolean $autoupdate     = false,
-      String  $package_ensure = 'present',
-      # ...
-    ) {
-      # ...
-    }
+class ntp (
+  Boolean $service_manage = true,
+  Boolean $autoupdate     = false,
+  String  $package_ensure = 'present',
+  # ...
+) {
+  # ...
+}
 ~~~
 
 If you tried to set `$autoupdate` to a string like `"true"`, Puppet would raise an error, since it expects a legit boolean value.
@@ -99,12 +99,12 @@ If you tried to set `$autoupdate` to a string like `"true"`, Puppet would raise 
 Abstract data types can let you write more sophisticated and flexible restrictions. For example, this `$puppetdb_service_status` parameter would accept values of `true`, `false`, `"true"`, `"false"`, `"running"`, and `"stopped"`, and raise an error for any other value:
 
 ~~~ ruby
-    class puppetdb::server (
-      Variant[Boolean, Enum['true', 'false', 'running', 'stopped']]
-        $puppetdb_service_status = $puppetdb::params::puppetdb_service_status,
-    ) inherits puppetdb::params {
-      # ...
-    }
+class puppetdb::server (
+  Variant[Boolean, Enum['true', 'false', 'running', 'stopped']]
+    $puppetdb_service_status = $puppetdb::params::puppetdb_service_status,
+) inherits puppetdb::params {
+  # ...
+}
 ~~~
 
 
@@ -113,12 +113,12 @@ Abstract data types can let you write more sophisticated and flexible restrictio
 [Case statements][] and [selector expressions][] both allow data types as their _cases._ Puppet will choose a data type case if the control expression resolves to a value of that data type. For example:
 
 ~~~ ruby
-    $enable_real = $enable ? {
-      Boolean => $enable,
-      String  => str2bool($enable),
-      Numeric => num2bool($enable),
-      default => fail('Illegal value for $enable parameter'),
-    }
+$enable_real = $enable ? {
+  Boolean => $enable,
+  String  => str2bool($enable),
+  Numeric => num2bool($enable),
+  default => fail('Illegal value for $enable parameter'),
+}
 ~~~
 
 ### Match Expressions
