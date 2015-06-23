@@ -2,17 +2,17 @@
 
 ####Table of Contents
 
-1. [Overview](#overview)
-3. [Setup - The basics of getting started with [modulename]](#setup)
+1. [Description](#description)
+2. [Setup - The basics of getting started with [modulename]](#setup)
     * [What [modulename] affects](#what-[modulename]-affects)
     * [Setup requirements](#setup-requirements)
     * [Beginning with [modulename]](#beginning-with-[modulename])
-4. [Usage - Configuration options and additional functionality](#usage)
-5. [Reference - An under-the-hood peek at what the module is doing and how](#reference)
+3. [Usage - Configuration options and additional functionality](#usage)
+4. [Reference - An under-the-hood peek at what the module is doing and how](#reference)
 5. [Limitations - OS compatibility, etc.](#limitations)
 6. [Development - Guide for contributing to the module](#development)
 
-##Overview
+##Description
 
 Start with a one- or two-sentence summary of what the module does and/or what problem it solves. This is your 30-second elevator pitch for your module. Consider including OS/Puppet version it works with.       
 
