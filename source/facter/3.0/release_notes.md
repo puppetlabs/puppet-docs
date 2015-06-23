@@ -17,6 +17,9 @@ This rewrite is essentially a drop-in replacement for the Ruby-based Facter 2.x.
 
 It does include a few breaking changes relative to Facter 2.4, but these are very minor.
 
+* [All tickets fixed in 3.0.0](https://tickets.puppetlabs.com/issues/?filter=14556)
+* [Issues introduced in 3.0.0](https://tickets.puppetlabs.com/issues/?filter=14557)
+
 ### BREAK: Removed Seven Obscure Facts
 
 The following facts are not supported in Facter 3.0.0:

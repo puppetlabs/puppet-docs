@@ -23,8 +23,8 @@ Released June 24, 2015.
 
 Also notable in this release: we're [officially deprecating Windows Server 2003 and 2003 R2][win2003dep], which we will stop supporting in Puppet 5.
 
-* [All tickets fixed in 4.2.0](TODO)
-* [Issues introduced in 4.2.0](TODO)
+* [All tickets fixed in 4.2.0](https://tickets.puppetlabs.com/issues/?filter=14558)
+* [Issues introduced in 4.2.0](https://tickets.puppetlabs.com/issues/?filter=14559)
 
 
 ### DEPRECATED: Windows 2003
