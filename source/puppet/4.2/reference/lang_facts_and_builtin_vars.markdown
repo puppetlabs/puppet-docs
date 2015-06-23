@@ -13,6 +13,7 @@ canonical: "/puppet/latest/reference/lang_facts_and_builtin_vars.html"
 [external facts]: /facter/latest/custom_facts.html#external-facts
 [catalog]: ./lang_summary.html#compilation-and-catalogs
 [noop]: /references/4.2.latest/configuration.html#noop
+[environment_setting]: /references/4.2.latest/configuration.html#environment
 [certname]: /references/4.2.latest/configuration.html#certname
 [puppetdb_facts]: /puppetdb/latest/api/index.html
 [localscope]: ./lang_scope.html#local-scopes
@@ -206,6 +207,9 @@ Puppet agent and Puppet apply both add several extra pieces of info to their fac
 * `$clientcert` --- the value of the node's [`certname` setting][certname]. (This is self-reported; for the verified certificate name, use `$trusted['certname']`.)
 * `$clientversion` --- the current version of Puppet agent.
 * `$clientnoop` --- the value of the node's [`noop` setting][noop] (true or false) at the time of the run.
+* `$agent_specified_environment` --- the value of the node's [`environment` setting][environment_setting]. If the Puppet master's node classifier specified an environment for the node, `$agent_specified_environment` and `$environment` can have different values.
+
+    If no value was set for the `environment` setting (in puppet.conf or with `--environment`), the value of `$agent_specified_environment` will be `undef`. (That is, it won't default to `production` like the setting does.)
 
 ### Puppet Master Variables
 
@@ -213,7 +217,7 @@ Several variables are set by the Puppet master. These are most useful when manag
 
 These are **not** available in the `$facts` hash.
 
-* `$environment` (also available to `puppet apply`) --- the agent node's [environment][].
+* `$environment` (also available to `puppet apply`) --- the agent node's [environment][]. Note that nodes can accidentally or purposefully override this with a custom fact; the `$server_facts['environment']` variable always contains the correct environment, and can't be overridden.
 * `$servername` --- the Puppet master's fully-qualified domain name. (Note that this information is gathered from the Puppet master by Facter, rather than read from the config files; even if the master's certname is set to something other than its fully-qualified domain name, this variable will still contain the server's fqdn.)
 * `$serverip` --- the Puppet master's IP address.
 * `$serverversion` --- the current version of Puppet on the Puppet master.
