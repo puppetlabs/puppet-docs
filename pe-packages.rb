@@ -10,8 +10,7 @@ package_name_variations = {
 
 'Puppet' => [
   'pe-puppet',
-  'pup-puppet',
-  'pe-puppetserver-common'
+  'pup-puppet'
 ],
 
 'Facter' => [
@@ -26,8 +25,6 @@ package_name_variations = {
 
 'Mcollective' => [
   'pe-mcollective',
-  'pe-mcollective-client',
-  'pe-mcollective-common',
   'pup-mcollective'
 ],
 
@@ -39,8 +36,7 @@ package_name_variations = {
 
 
 'PuppetDB' => [
-  'pe-puppetdb',
-  'pe-puppetdb-terminus'
+  'pe-puppetdb'
 ],
 
 'Puppet Server' => [
@@ -62,13 +58,7 @@ package_name_variations = {
 ],
 
 'Apache' => [
-  'pe-httpd',
-  'pe-httpd-mpm-event',
-  'pe-httpd-mpm-itk',
-  'pe-httpd-mpm-prefork',
-  'pe-httpd-mpm-worker',
-  'pe-httpd-prefork-dev',
-  'pe-httpd-threaded-dev'
+  'pe-httpd'
 ],
 
 'ActiveMQ' => [
@@ -77,10 +67,7 @@ package_name_variations = {
 
 
 'PostgreSQL' => [
-  'pe-postgresql',
-  'pe-postgresql-contrib',
-  'pe-postgresql-devel',
-  'pe-postgresql-server'
+  'pe-postgresql'
 ],
 
 
@@ -102,8 +89,7 @@ package_name_variations = {
 ],
 
 'LibAPR' => [
-  'pe-libapr',
-  'pe-libaprutil'
+  'pe-libapr'
 ]
 
 }
