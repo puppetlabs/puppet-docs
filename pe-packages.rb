@@ -109,9 +109,10 @@ packagedata.each do | platform, platform_hash |
     we_care = package_name_variations.detect {|k,v| v.include?(package_name)}
     if we_care
       common_name = we_care[0]
-      pe371[common_name] ||= []
-      pe371[common_name] << package_data['version']
-      pe371[common_name].uniq!
+      normalized_version = package_data['version'].split(/\.?(pe|pup|sles|el)/)[0]
+      pe371[common_name] ||= {}
+      pe371[common_name][normalized_version] ||= []
+      pe371[common_name][normalized_version] << platform
     end
   end
 end
