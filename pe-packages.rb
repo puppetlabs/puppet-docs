@@ -13,6 +13,10 @@ package_name_variations = {
   'pup-puppet'
 ],
 
+'Puppet Server' => [
+  'pe-puppetserver'
+],
+
 'Facter' => [
   'pe-facter',
   'pup-facter'
@@ -23,24 +27,13 @@ package_name_variations = {
   'pup-hiera'
 ],
 
-'Mcollective' => [
-  'pe-mcollective',
-  'pup-mcollective'
-],
-
-
-'NXOS agent' => [
-  'puppet-enterprise-nxos-1-i386',
-  'puppet-enterprise-nxos-1-x86_64'
-],
-
-
 'PuppetDB' => [
   'pe-puppetdb'
 ],
 
-'Puppet Server' => [
-  'pe-puppetserver'
+'Mcollective' => [
+  'pe-mcollective',
+  'pup-mcollective'
 ],
 
 'Razor server' => [
@@ -50,7 +43,6 @@ package_name_variations = {
 'Razor libs' => [
   'pe-razor-libs'
 ],
-
 
 'Ruby' => [
   'pe-ruby',
@@ -65,11 +57,9 @@ package_name_variations = {
   'pe-activemq'
 ],
 
-
 'PostgreSQL' => [
   'pe-postgresql'
 ],
-
 
 'Passenger' => [
   'pe-passenger'
@@ -77,7 +67,6 @@ package_name_variations = {
 
 'MySQL' => [
 ],
-
 
 'OpenSSL' => [
   'pe-openssl',
@@ -90,6 +79,11 @@ package_name_variations = {
 
 'LibAPR' => [
   'pe-libapr'
+],
+
+'NXOS agent' => [
+  'puppet-enterprise-nxos-1-i386',
+  'puppet-enterprise-nxos-1-x86_64'
 ]
 
 }
@@ -117,7 +111,9 @@ packagedata.each do | platform, platform_hash |
   end
 end
 
-pp pe371
+# pp pe371
+
+
 
 # top_row = ['Platform ↓ / Packages →'] + all_packages
 # # array of equal-length arrays:
