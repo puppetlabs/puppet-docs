@@ -97,12 +97,6 @@ package_name_variations = {
 }
 
 
-# puts packagedata.keys
-platforms = packagedata.keys.sort
-# puts packagedata.values.collect {|hsh| hsh.keys}
-all_packages = packagedata.values.collect {|distro_hash| distro_hash.keys}.flatten.uniq.sort
-
-# for each package, add all versions to the normalized name of that package. don't sweat distros right now.
 
 pe371 = {}
 
@@ -119,25 +113,5 @@ packagedata.each do | platform, platform_hash |
   end
 end
 
-# pp pe371
+pp pe371
 
-
-
-# top_row = ['Platform ↓ / Packages →'] + all_packages
-# # array of equal-length arrays:
-# table_rows = platforms.reduce( [top_row] ) {|all_rows, platform|
-#   this_row = [platform] + all_packages.collect {|package|
-#     packagedata[platform][package] ? packagedata[platform][package]['version'] : 'n/a'
-#   }
-#   all_rows << this_row
-# }
-#
-# # pp table_rows
-#
-# table_body = table_rows.reduce('') {|html, row|
-#   html << "<tr>\n  <td>"
-#   html << row.join("</td>\n  <td>")
-#   html << "</td>\n</tr>\n"
-# }
-#
-# puts "<table>\n" << table_body << "</table>\n"
