@@ -88,8 +88,8 @@ The following YAML and JSON examples provide equivalent results:
 ~~~ yaml
 # facts.yaml
 ---
-osfamily: Debian
-timezone: CST
+"::osfamily": Debian
+"::timezone": CST
 ~~~
 
 
@@ -101,8 +101,8 @@ timezone: CST
 ~~~ javascript
 // facts.json
 {
-  "osfamily" : "Debian",
-  "timezone" : "CST"
+  "::osfamily" : "Debian",
+  "::timezone" : "CST"
 }
 ~~~
 
