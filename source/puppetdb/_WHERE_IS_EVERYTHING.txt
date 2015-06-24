@@ -1,0 +1,8 @@
+Newer versions of the PuppetDB docs actually live in the PuppetDB GitHub
+repository (https://github.com/puppetlabs/puppetdb), in a directory called
+`documentation`. When we build the website, we add docs for all PuppetDB
+versions by cloning the repo, creating working dirs for each PuppetDB version,
+and symlinking their documentation directories into place.
+
+To see which branch you need to update to affect a version of the PuppetDB docs,
+see the `externalsources` section of the source/_config.yml file.
