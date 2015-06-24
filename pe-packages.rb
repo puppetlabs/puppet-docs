@@ -3,7 +3,15 @@
 require 'json'
 require 'pp'
 
-packagedata = JSON.load( File.read( './packages.json' ) )
+def load_package_json(version)
+  Dir.chdir(File.expand_path('~/Documents/misc_code/enterprise-dist')) do
+    system('git fetch upstream')
+    system("git checkout #{version}")
+    JSON.load( File.read( './packages.json' ) )
+  end
+end
+
+packagedata = load_package_json('3.8.1')
 # this is like { platformname: { packagename: { version: version, md5: md5 }, packagename: {...} }, platformname: {......} }
 
 package_name_variations = {
