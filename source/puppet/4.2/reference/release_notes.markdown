@@ -14,6 +14,11 @@ Puppet's version numbers use the format X.Y.Z, where:
 * Y may increase for backwards-compatible new functionality
 * Z may increase for bug fixes
 
+## If You're Upgrading from Puppet 3.x
+
+Make sure you also read the [Puppet 4.0 release notes](/puppet/4.0/reference/release_notes.html), since they cover any breaking changes since Puppet 3.8.
+
+Also of interest: the [Puppet 4.1 release notes](/puppet/4.1/reference/release_notes.html).
 
 ## Puppet 4.2.0
 
@@ -61,6 +66,8 @@ Special thanks to [Chris Portman](https://github.com/ChrisPortman) for help with
 [splay]: /references/4.2.latest/configuration.html#splay
 
 Puppet apply now supports [the `splay` setting][splay], and Puppet agent sets a new [`agent_specified_environment` fact](./lang_facts_and_builtin_vars.html#puppet-agent-facts).
+
+And of internal interest only: The `node` HTTPS endpoint has a new, optional, `configured_environment` query parameter.
 
 * [PUP-4363: Support splay in apply as well](https://tickets.puppetlabs.com/browse/PUP-4363)
 * [PUP-4521: Pass agent-requested environment to external node classifiers](https://tickets.puppetlabs.com/browse/PUP-4521)
