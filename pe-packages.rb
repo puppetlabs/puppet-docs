@@ -11,10 +11,7 @@ def load_package_json(version)
   end
 end
 
-packagedata = load_package_json('3.8.1')
-# this is like { platformname: { packagename: { version: version, md5: md5 }, packagename: {...} }, platformname: {......} }
-
-package_name_variations = {
+@package_name_variations = {
 
 'Puppet' => [
   'pe-puppet',
@@ -114,20 +111,29 @@ versions_of_interest = [
 ]
 
 
-pe371 = {}
-
-packagedata.each do | platform, platform_hash |
-  platform_hash.each do | package_name, package_data |
-    we_care = package_name_variations.detect {|k,v| v.include?(package_name)}
-    if we_care
-      common_name = we_care[0]
-      normalized_version = package_data['version'].split(/\.?(pe|pup|sles|el)/)[0]
-      pe371[common_name] ||= {}
-      pe371[common_name][normalized_version] ||= []
-      pe371[common_name][normalized_version] << platform
+def normalize_package_data_for_version(packagedata)
+  result = {}
+  packagedata.each do | platform, platform_hash |
+    platform_hash.each do | package_name, package_data |
+      we_care = @package_name_variations.detect {|k,v| v.include?(package_name)}
+      if we_care
+        common_name = we_care[0]
+        normalized_version = package_data['version'].split(/\.?(pe|pup|sles|el)/)[0]
+        result[common_name] ||= {}
+        result[common_name][normalized_version] ||= []
+        result[common_name][normalized_version] << platform
+      end
     end
   end
+
+  result
 end
+
+
+packagedata = load_package_json('3.7.1')
+# this is like { platformname: { packagename: { version: version, md5: md5 }, packagename: {...} }, platformname: {......} }
+
+pe371 = normalize_package_data_for_version(packagedata)
 
 pp pe371
 
