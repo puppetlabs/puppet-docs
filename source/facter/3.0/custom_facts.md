@@ -326,18 +326,18 @@ In a module (recommended):
 
     <MODULEPATH>/<MODULE>/facts.d/
 
-On Unix/Linux/Mac OS X:
+On Unix/Linux/Mac OS X, there are two directories:
 
-    /etc/facter/facts.d/ # Puppet Open Source
-    /etc/puppetlabs/facter/facts.d/ # Puppet Enterprise
+    /etc/puppetlabs/facter/facts.d/
+    /etc/facter/facts.d/
+
+On Windows:
+
+    C:\ProgramData\PuppetLabs\facter\facts.d\
 
 On Windows 2003:
 
     C:\Documents and Settings\All Users\Application Data\PuppetLabs\facter\facts.d\
-
-On other supported Windows Operating Systems (Windows Vista, 7, 8, 2008, 2012):
-
-    C:\ProgramData\PuppetLabs\facter\facts.d\
 
 When running as a non-root / non-Administrator user:
 
