@@ -5,6 +5,20 @@ title: "Facter 3.0: Release Notes"
 
 This page documents the history of the Facter 3.0 series. (Previous version: [Facter 2.4 release notes](../2.4/release_notes.html).)
 
+Facter 3.0.1
+-----
+
+Released June 25, 2015.
+
+Shipped in puppet-agent version: 1.2.1.
+
+Facter 3.0.1 fixes an external facts regression that shipped in 3.0.0.
+
+### REGRESSION FIX: External Facts Work Again
+
+Facter 3.0.0 accidentally broke manually installed external facts when running under Puppet. This is now fixed.
+
+* [FACT-1055: External facts not working with cfacter](https://tickets.puppetlabs.com/browse/FACT-1055)
 
 Facter 3.0.0
 -----
@@ -12,8 +26,6 @@ Facter 3.0.0
 Released June 24, 2015.
 
 Shipped in puppet-agent version: 1.2.0.
-
-> **Warning:** After 3.0.0 shipped, we discovered a regression involving external facts. [See below for details.][inpage_external_regression] We're shipping a fix very soon; if you use manually-installed external facts, you should wait and upgrade to puppet-agent 1.2.1.
 
 Facter 3.0.0 is a complete rewrite of Facter in C++. Prior to this release, it was available separately as `cfacter`, and could be enabled in Puppet by setting `cfacter = true` in puppet.conf.
 
@@ -24,22 +36,22 @@ It does include a few breaking changes relative to Facter 2.4, but these are ver
 * [All tickets fixed in 3.0.0](https://tickets.puppetlabs.com/issues/?filter=14556)
 * [Issues introduced in 3.0.0](https://tickets.puppetlabs.com/issues/?filter=14557)
 
-### REGRESSION / BREAK: Can't Find Manually-Installed External Facts
+### REGRESSION / BREAK (Fixed in 3.0.1): Can't Find Manually-Installed External Facts
 
-[inpage_external_regression]: #regression--break-cant-find-manually-installed-external-facts
+[inpage_external_regression]: #regression--break-fixed-in-301-cant-find-manually-installed-external-facts
 
 [external facts]: ./custom_facts.html#external-facts
 
-Facter 3.0.0 can't load _manually-installed_ [external facts][] from any of the following directories:
+When running under Puppet, Facter 3.0.0 can't load _manually-installed_ [external facts][] from any of the following directories:
 
 * `/etc/puppetlabs/facter/facts.d/`
 * `/etc/facter/facts.d/`
 * `C:\ProgramData\PuppetLabs\facter\facts.d\`
 * `~/.facter/facts.d/`
 
-This is an unintended regression from Facter 2.x, and we are fixing it immediately in Facter 3.0.1.
+This was an unintended regression from Facter 2.x, and we fixed it immediately in Facter 3.0.1.
 
-Pluginsynced external facts (that is, facts synced from your Puppet modules) still work fine, but it's common to make your provisioning system set some external facts when creating a new machine, as a way to assign persistent metadata to that node. If your site does this, Facter 3.0.0 will cause breakages. You should wait to upgrade, and downgrade to the puppet-agent 1.1.1 package if you already upgraded.
+Pluginsynced external facts (that is, facts synced from your Puppet modules) still work fine, but it's common to make your provisioning system set some external facts when creating a new machine, as a way to assign persistent metadata to that node. If your site does this, Facter 3.0.0 will cause breakages. Make sure you install puppet-agent 1.2.1 instead of 1.2.0.
 
 ### BREAK: Removed Seven Obscure Facts
 
