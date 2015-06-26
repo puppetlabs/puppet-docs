@@ -8,6 +8,8 @@ title: "Hiera 3: Release Notes"
 
 Released June 24, 2015.
 
+Shipped in puppet-agent version: 1.2.0.
+
 Hiera 3.0 changes the default values for the `:hierarchy` and `:datadir` settings. It contains no new features and no other changes, but because there was a small chance of changed behavior for existing installations, it received a new semver major version.
 
 ### BREAK: New Default `:hierarchy`

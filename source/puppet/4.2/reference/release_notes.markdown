@@ -24,6 +24,8 @@ Also of interest: the [Puppet 4.1 release notes](/puppet/4.1/reference/release_n
 
 Released June 24, 2015.
 
+Shipped in puppet-agent version: 1.2.0.
+
 4.2.0 is a feature and bug fix release in the Puppet 4 series. There aren't any particular keystone features; just a solid grab-bag of nice smaller improvements.
 
 Also notable in this release: we're [officially deprecating Windows Server 2003 and 2003 R2][win2003dep], which we will stop supporting in Puppet 5.

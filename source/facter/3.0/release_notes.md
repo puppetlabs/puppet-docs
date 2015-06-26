@@ -11,6 +11,8 @@ Facter 3.0.0
 
 Released June 24, 2015.
 
+Shipped in puppet-agent version: 1.2.0.
+
 Facter 3.0.0 is a complete rewrite of Facter in C++. Prior to this release, it was available separately as `cfacter`, and could be enabled in Puppet by setting `cfacter = true` in puppet.conf.
 
 This rewrite is essentially a drop-in replacement for the Ruby-based Facter 2.x. It still supports custom facts written in Ruby with the existing Facter API, as well as external facts written in any number of languages.
