@@ -11,9 +11,13 @@ Not all of them apply to every system, and your site might also use [custom fact
 
 You can access facts in your Puppet manifests as `$fact_name` or `$facts[fact_name]`. For more info, see [the Puppet docs on facts and built-in variables.](/puppet/latest/reference/lang_facts_and_builtin_vars.html)
 
+Note that some facts, like `architecture`, are hidden in Facter's command-line output. These are all older facts that have become part of a more useful structured fact; for example, `architecture` is now part of the `os` fact. You can still use the old versions in Puppet manifests (e.g. `$architecture`), and you can still specifically request them on the command line (e.g. `facter architecture`), but we suppress them to make the default output less noisy.
+
 * * *
 
 ## `architecture`
+
+This fact is hidden in Facter's command-line output.
 
 **Type:** string
 
@@ -55,6 +59,8 @@ Return information about augeas.
 
 ## `augeasversion`
 
+This fact is hidden in Facter's command-line output.
+
 **Type:** string
 
 **Purpose:**
@@ -70,6 +76,8 @@ Return the version of augeas.
 ([↑ Back to top](#page-nav))
 
 ## `blockdevices`
+
+This fact is hidden in Facter's command-line output.
 
 **Type:** string
 
@@ -91,6 +99,8 @@ Return a comma-separated list of block devices.
 
 ## `blockdevice_<devicename>_model`
 
+This fact is hidden in Facter's command-line output.
+
 **Type:** string
 
 **Purpose:**
@@ -110,6 +120,8 @@ Return the model name of block devices attached to the system.
 ([↑ Back to top](#page-nav))
 
 ## `blockdevice_<devicename>_size`
+
+This fact is hidden in Facter's command-line output.
 
 **Type:** integer
 
@@ -131,6 +143,8 @@ Return the size of a block device in bytes.
 
 ## `blockdevice_<devicename>_vendor`
 
+This fact is hidden in Facter's command-line output.
+
 **Type:** string
 
 **Purpose:**
@@ -150,6 +164,8 @@ Return the vendor name of block devices attached to the system.
 ([↑ Back to top](#page-nav))
 
 ## `bios_release_date`
+
+This fact is hidden in Facter's command-line output.
 
 **Type:** string
 
@@ -171,6 +187,8 @@ Return the release date of the system BIOS.
 
 ## `bios_vendor`
 
+This fact is hidden in Facter's command-line output.
+
 **Type:** string
 
 **Purpose:**
@@ -190,6 +208,8 @@ Return the vendor of the system BIOS.
 ([↑ Back to top](#page-nav))
 
 ## `bios_version`
+
+This fact is hidden in Facter's command-line output.
 
 **Type:** string
 
@@ -211,6 +231,8 @@ Return the version of the system BIOS.
 
 ## `boardassettag`
 
+This fact is hidden in Facter's command-line output.
+
 **Type:** string
 
 **Purpose:**
@@ -229,6 +251,8 @@ Return the system board asset tag.
 ([↑ Back to top](#page-nav))
 
 ## `boardmanufacturer`
+
+This fact is hidden in Facter's command-line output.
 
 **Type:** string
 
@@ -249,6 +273,8 @@ Return the system board manufacturer.
 
 ## `boardproductname`
 
+This fact is hidden in Facter's command-line output.
+
 **Type:** string
 
 **Purpose:**
@@ -268,6 +294,8 @@ Return the system board product name.
 
 ## `boardserialnumber`
 
+This fact is hidden in Facter's command-line output.
+
 **Type:** string
 
 **Purpose:**
@@ -286,6 +314,8 @@ Return the system board serial number.
 ([↑ Back to top](#page-nav))
 
 ## `chassisassettag`
+
+This fact is hidden in Facter's command-line output.
 
 **Type:** string
 
@@ -307,6 +337,8 @@ Return the system chassis asset tag.
 
 ## `chassistype`
 
+This fact is hidden in Facter's command-line output.
+
 **Type:** string
 
 **Purpose:**
@@ -326,6 +358,8 @@ Return the system chassis type.
 ([↑ Back to top](#page-nav))
 
 ## `dhcp_servers`
+
+This fact is hidden in Facter's command-line output.
 
 **Type:** map
 
@@ -421,6 +455,8 @@ Return the system management information.
 ([↑ Back to top](#page-nav))
 
 ## `domain`
+
+This fact is hidden in Facter's command-line output.
 
 **Type:** string
 
@@ -540,6 +576,8 @@ Return the usable file systems for block or disk devices.
 
 ## `fqdn`
 
+This fact is hidden in Facter's command-line output.
+
 **Type:** string
 
 **Purpose:**
@@ -578,6 +616,8 @@ Please see the [GCE metadata documentation](https://cloud.google.com/compute/doc
 
 ## `gid`
 
+This fact is hidden in Facter's command-line output.
+
 **Type:** string
 
 **Purpose:**
@@ -593,6 +633,8 @@ Return the group identifier (GID) of the user running facter.
 ([↑ Back to top](#page-nav))
 
 ## `hardwareisa`
+
+This fact is hidden in Facter's command-line output.
 
 **Type:** string
 
@@ -611,6 +653,8 @@ Return the hardware instruction set architecture (ISA).
 
 ## `hardwaremodel`
 
+This fact is hidden in Facter's command-line output.
+
 **Type:** string
 
 **Purpose:**
@@ -628,6 +672,8 @@ Return the operating system's hardware model.
 
 ## `hostname`
 
+This fact is hidden in Facter's command-line output.
+
 **Type:** string
 
 **Purpose:**
@@ -644,6 +690,8 @@ Return the host name of the system.
 ([↑ Back to top](#page-nav))
 
 ## `id`
+
+This fact is hidden in Facter's command-line output.
 
 **Type:** string
 
@@ -685,6 +733,8 @@ Return the identity information of the user running facter.
 
 ## `interfaces`
 
+This fact is hidden in Facter's command-line output.
+
 **Type:** string
 
 **Purpose:**
@@ -703,6 +753,8 @@ Return the comma-separated list of network interface names.
 ([↑ Back to top](#page-nav))
 
 ## `ipaddress`
+
+This fact is hidden in Facter's command-line output.
 
 **Type:** ip
 
@@ -723,6 +775,8 @@ Return the IPv4 address for the default network interface.
 
 ## `ipaddress6`
 
+This fact is hidden in Facter's command-line output.
+
 **Type:** ip6
 
 **Purpose:**
@@ -742,6 +796,8 @@ Return the IPv6 address for the default network interface.
 
 ## `ipaddress6_<interface>`
 
+This fact is hidden in Facter's command-line output.
+
 **Type:** ip6
 
 **Purpose:**
@@ -760,6 +816,8 @@ Return the IPv6 address for a network interface.
 ([↑ Back to top](#page-nav))
 
 ## `ipaddress_<interface>`
+
+This fact is hidden in Facter's command-line output.
 
 **Type:** ip
 
@@ -889,6 +947,8 @@ Return the load average over the last 1, 5 and 15 minutes.
 
 ## `lsbdistcodename`
 
+This fact is hidden in Facter's command-line output.
+
 **Type:** string
 
 **Purpose:**
@@ -907,6 +967,8 @@ Return the Linux Standard Base (LSB) distribution code name.
 ([↑ Back to top](#page-nav))
 
 ## `lsbdistdescription`
+
+This fact is hidden in Facter's command-line output.
 
 **Type:** string
 
@@ -927,6 +989,8 @@ Return the Linux Standard Base (LSB) distribution description.
 
 ## `lsbdistid`
 
+This fact is hidden in Facter's command-line output.
+
 **Type:** string
 
 **Purpose:**
@@ -945,6 +1009,8 @@ Return the Linux Standard Base (LSB) distribution identifier.
 ([↑ Back to top](#page-nav))
 
 ## `lsbdistrelease`
+
+This fact is hidden in Facter's command-line output.
 
 **Type:** string
 
@@ -965,6 +1031,8 @@ Return the Linux Standard Base (LSB) distribution release.
 
 ## `lsbmajdistrelease`
 
+This fact is hidden in Facter's command-line output.
+
 **Type:** string
 
 **Purpose:**
@@ -983,6 +1051,8 @@ Return the Linux Standard Base (LSB) major distribution release.
 ([↑ Back to top](#page-nav))
 
 ## `lsbminordistrelease`
+
+This fact is hidden in Facter's command-line output.
 
 **Type:** string
 
@@ -1003,6 +1073,8 @@ Return the Linux Standard Base (LSB) minor distribution release.
 
 ## `lsbrelease`
 
+This fact is hidden in Facter's command-line output.
+
 **Type:** string
 
 **Purpose:**
@@ -1021,6 +1093,8 @@ Return the Linux Standard Base (LSB) release.
 ([↑ Back to top](#page-nav))
 
 ## `macaddress`
+
+This fact is hidden in Facter's command-line output.
 
 **Type:** mac
 
@@ -1041,6 +1115,8 @@ Return the MAC address for the default network interface.
 
 ## `macaddress_<interface>`
 
+This fact is hidden in Facter's command-line output.
+
 **Type:** mac
 
 **Purpose:**
@@ -1060,6 +1136,8 @@ Return the MAC address for a network interface.
 
 ## `macosx_buildversion`
 
+This fact is hidden in Facter's command-line output.
+
 **Type:** string
 
 **Purpose:**
@@ -1075,6 +1153,8 @@ Return the Mac OSX build version.
 ([↑ Back to top](#page-nav))
 
 ## `macosx_productname`
+
+This fact is hidden in Facter's command-line output.
 
 **Type:** string
 
@@ -1092,6 +1172,8 @@ Return the Mac OSX product name.
 
 ## `macosx_productversion`
 
+This fact is hidden in Facter's command-line output.
+
 **Type:** string
 
 **Purpose:**
@@ -1107,6 +1189,8 @@ Return the Mac OSX product version.
 ([↑ Back to top](#page-nav))
 
 ## `macosx_productversion_major`
+
+This fact is hidden in Facter's command-line output.
 
 **Type:** string
 
@@ -1124,6 +1208,8 @@ Return the Mac OSX product major version.
 
 ## `macosx_productversion_minor`
 
+This fact is hidden in Facter's command-line output.
+
 **Type:** string
 
 **Purpose:**
@@ -1139,6 +1225,8 @@ Return the Mac OSX product minor version.
 ([↑ Back to top](#page-nav))
 
 ## `manufacturer`
+
+This fact is hidden in Facter's command-line output.
 
 **Type:** string
 
@@ -1200,6 +1288,8 @@ Return the system memory information.
 
 ## `memoryfree`
 
+This fact is hidden in Facter's command-line output.
+
 **Type:** string
 
 **Purpose:**
@@ -1218,6 +1308,8 @@ Return the display size of the free system memory (e.g. "1 GiB").
 ([↑ Back to top](#page-nav))
 
 ## `memoryfree_mb`
+
+This fact is hidden in Facter's command-line output.
 
 **Type:** double
 
@@ -1238,6 +1330,8 @@ Return the size of the free system memory, in mebibytes.
 
 ## `memorysize`
 
+This fact is hidden in Facter's command-line output.
+
 **Type:** string
 
 **Purpose:**
@@ -1256,6 +1350,8 @@ Return the display size of the total system memory (e.g. "1 GiB").
 ([↑ Back to top](#page-nav))
 
 ## `memorysize_mb`
+
+This fact is hidden in Facter's command-line output.
 
 **Type:** double
 
@@ -1308,6 +1404,8 @@ Return the current mount points of the system.
 
 ## `mtu_<interface>`
 
+This fact is hidden in Facter's command-line output.
+
 **Type:** integer
 
 **Purpose:**
@@ -1327,6 +1425,8 @@ Return the Maximum Transmission Unit (MTU) for a network interface.
 
 ## `netmask`
 
+This fact is hidden in Facter's command-line output.
+
 **Type:** ip
 
 **Purpose:**
@@ -1345,6 +1445,8 @@ Return the IPv4 netmask for the default network interface.
 ([↑ Back to top](#page-nav))
 
 ## `netmask6`
+
+This fact is hidden in Facter's command-line output.
 
 **Type:** ip6
 
@@ -1368,6 +1470,8 @@ Return the IPv6 netmask for the default network interface.
 
 ## `netmask6_<interface>`
 
+This fact is hidden in Facter's command-line output.
+
 **Type:** ip6
 
 **Purpose:**
@@ -1390,6 +1494,8 @@ Return the IPv6 netmask for a network interface.
 
 ## `netmask_<interface>`
 
+This fact is hidden in Facter's command-line output.
+
 **Type:** ip
 
 **Purpose:**
@@ -1408,6 +1514,8 @@ Return the IPv4 netmask for a network interface.
 ([↑ Back to top](#page-nav))
 
 ## `network`
+
+This fact is hidden in Facter's command-line output.
 
 **Type:** ip
 
@@ -1428,6 +1536,8 @@ Return the IPv4 network for the default network interface.
 
 ## `network6`
 
+This fact is hidden in Facter's command-line output.
+
 **Type:** ip6
 
 **Purpose:**
@@ -1447,6 +1557,8 @@ Return the IPv6 network for the default network interface.
 
 ## `network6_<interface>`
 
+This fact is hidden in Facter's command-line output.
+
 **Type:** ip6
 
 **Purpose:**
@@ -1465,6 +1577,8 @@ Return the IPv6 network for a network interface.
 ([↑ Back to top](#page-nav))
 
 ## `network_<interface>`
+
+This fact is hidden in Facter's command-line output.
 
 **Type:** ip
 
@@ -1533,6 +1647,8 @@ Return the networking information for the system.
 
 ## `operatingsystem`
 
+This fact is hidden in Facter's command-line output.
+
 **Type:** string
 
 **Purpose:**
@@ -1549,6 +1665,8 @@ Return the name of the operating system.
 ([↑ Back to top](#page-nav))
 
 ## `operatingsystemmajrelease`
+
+This fact is hidden in Facter's command-line output.
 
 **Type:** string
 
@@ -1571,6 +1689,8 @@ Return the major release of the operating system.
 ([↑ Back to top](#page-nav))
 
 ## `operatingsystemrelease`
+
+This fact is hidden in Facter's command-line output.
 
 **Type:** string
 
@@ -1646,6 +1766,8 @@ Return information about the host operating system.
 
 ## `osfamily`
 
+This fact is hidden in Facter's command-line output.
+
 **Type:** string
 
 **Purpose:**
@@ -1712,6 +1834,8 @@ Return the PATH environment variable.
 
 ## `physicalprocessorcount`
 
+This fact is hidden in Facter's command-line output.
+
 **Type:** integer
 
 **Purpose:**
@@ -1734,6 +1858,8 @@ Return the count of physical processors.
 
 ## `processor<N>`
 
+This fact is hidden in Facter's command-line output.
+
 **Type:** string
 
 **Purpose:**
@@ -1752,6 +1878,8 @@ Return the model string of processor N.
 ([↑ Back to top](#page-nav))
 
 ## `processorcount`
+
+This fact is hidden in Facter's command-line output.
 
 **Type:** integer
 
@@ -1802,6 +1930,8 @@ Return information about the system's processors.
 
 ## `productname`
 
+This fact is hidden in Facter's command-line output.
+
 **Type:** string
 
 **Purpose:**
@@ -1849,6 +1979,8 @@ Return information about the Ruby loaded by facter.
 
 ## `rubyplatform`
 
+This fact is hidden in Facter's command-line output.
+
 **Type:** string
 
 **Purpose:**
@@ -1867,6 +1999,8 @@ Return the platform Ruby was built for.
 ([↑ Back to top](#page-nav))
 
 ## `rubysitedir`
+
+This fact is hidden in Facter's command-line output.
 
 **Type:** string
 
@@ -1887,6 +2021,8 @@ Return the path to Ruby's site library directory.
 
 ## `rubyversion`
 
+This fact is hidden in Facter's command-line output.
+
 **Type:** string
 
 **Purpose:**
@@ -1906,6 +2042,8 @@ Return the version of Ruby.
 
 ## `selinux`
 
+This fact is hidden in Facter's command-line output.
+
 **Type:** boolean
 
 **Purpose:**
@@ -1921,6 +2059,8 @@ Return whether Security-Enhanced Linux (SELinux) is enabled.
 ([↑ Back to top](#page-nav))
 
 ## `selinux_config_mode`
+
+This fact is hidden in Facter's command-line output.
 
 **Type:** string
 
@@ -1938,6 +2078,8 @@ Return the configured Security-Enhanced Linux (SELinux) mode.
 
 ## `selinux_config_policy`
 
+This fact is hidden in Facter's command-line output.
+
 **Type:** string
 
 **Purpose:**
@@ -1953,6 +2095,8 @@ Return the configured Security-Enhanced Linux (SELinux) policy.
 ([↑ Back to top](#page-nav))
 
 ## `selinux_current_mode`
+
+This fact is hidden in Facter's command-line output.
 
 **Type:** string
 
@@ -1970,6 +2114,8 @@ Return the current Security-Enhanced Linux (SELinux) mode.
 
 ## `selinux_enforced`
 
+This fact is hidden in Facter's command-line output.
+
 **Type:** boolean
 
 **Purpose:**
@@ -1986,6 +2132,8 @@ Return whether Security-Enhanced Linux (SELinux) is enforced.
 
 ## `selinux_policyversion`
 
+This fact is hidden in Facter's command-line output.
+
 **Type:** string
 
 **Purpose:**
@@ -2001,6 +2149,8 @@ Return the Security-Enhanced Linux (SELinux) policy version.
 ([↑ Back to top](#page-nav))
 
 ## `serialnumber`
+
+This fact is hidden in Facter's command-line output.
 
 **Type:** string
 
@@ -2050,6 +2200,8 @@ Return information about Solaris zones.
 ([↑ Back to top](#page-nav))
 
 ## `sp_<name>`
+
+This fact is hidden in Facter's command-line output.
 
 **Type:** string
 
@@ -2109,6 +2261,8 @@ Return SSH public keys and fingerprints.
 
 ## `ssh<algorithm>key`
 
+This fact is hidden in Facter's command-line output.
+
 **Type:** string
 
 **Purpose:**
@@ -2127,6 +2281,8 @@ Return the SSH public key for the algorithm.
 ([↑ Back to top](#page-nav))
 
 ## `sshfp_<algorithm>`
+
+This fact is hidden in Facter's command-line output.
 
 **Type:** string
 
@@ -2147,6 +2303,8 @@ Return the SSH fingerprints for the algorithm's public key.
 
 ## `swapencrypted`
 
+This fact is hidden in Facter's command-line output.
+
 **Type:** boolean
 
 **Purpose:**
@@ -2162,6 +2320,8 @@ Return whether or not the swap is encrypted.
 ([↑ Back to top](#page-nav))
 
 ## `swapfree`
+
+This fact is hidden in Facter's command-line output.
 
 **Type:** string
 
@@ -2181,6 +2341,8 @@ Return the display size of the free swap memory (e.g. "1 GiB").
 
 ## `swapfree_mb`
 
+This fact is hidden in Facter's command-line output.
+
 **Type:** double
 
 **Purpose:**
@@ -2198,6 +2360,8 @@ Return the size of the free swap memory, in mebibytes.
 ([↑ Back to top](#page-nav))
 
 ## `swapsize`
+
+This fact is hidden in Facter's command-line output.
 
 **Type:** string
 
@@ -2217,6 +2381,8 @@ Return the display size of the total swap memory (e.g. "1 GiB").
 
 ## `swapsize_mb`
 
+This fact is hidden in Facter's command-line output.
+
 **Type:** double
 
 **Purpose:**
@@ -2234,6 +2400,8 @@ Return the size of the total swap memory, in mebibytes.
 ([↑ Back to top](#page-nav))
 
 ## `system32`
+
+This fact is hidden in Facter's command-line output.
 
 **Type:** string
 
@@ -2334,6 +2502,8 @@ Return the system timezone.
 
 ## `uptime`
 
+This fact is hidden in Facter's command-line output.
+
 **Type:** string
 
 **Purpose:**
@@ -2352,6 +2522,8 @@ Return the system uptime.
 ([↑ Back to top](#page-nav))
 
 ## `uptime_days`
+
+This fact is hidden in Facter's command-line output.
 
 **Type:** integer
 
@@ -2372,6 +2544,8 @@ Return the system uptime days.
 
 ## `uptime_hours`
 
+This fact is hidden in Facter's command-line output.
+
 **Type:** integer
 
 **Purpose:**
@@ -2391,6 +2565,8 @@ Return the system uptime hours.
 
 ## `uptime_seconds`
 
+This fact is hidden in Facter's command-line output.
+
 **Type:** integer
 
 **Purpose:**
@@ -2409,6 +2585,8 @@ Return the system uptime seconds.
 ([↑ Back to top](#page-nav))
 
 ## `uuid`
+
+This fact is hidden in Facter's command-line output.
 
 **Type:** string
 
@@ -2487,6 +2665,8 @@ Return the version for ZFS.
 
 ## `zone_<name>_brand`
 
+This fact is hidden in Facter's command-line output.
+
 **Type:** string
 
 **Purpose:**
@@ -2505,6 +2685,8 @@ Return the brand for the Solaris zone.
 ([↑ Back to top](#page-nav))
 
 ## `zone_<name>_iptype`
+
+This fact is hidden in Facter's command-line output.
 
 **Type:** string
 
@@ -2525,6 +2707,8 @@ Return the IP type for the Solaris zone.
 
 ## `zone_<name>_name`
 
+This fact is hidden in Facter's command-line output.
+
 **Type:** string
 
 **Purpose:**
@@ -2543,6 +2727,8 @@ Return the name for the Solaris zone.
 ([↑ Back to top](#page-nav))
 
 ## `zone_<name>_uuid`
+
+This fact is hidden in Facter's command-line output.
 
 **Type:** string
 
@@ -2563,6 +2749,8 @@ Return the unique identifier for the Solaris zone.
 
 ## `zone_<name>_id`
 
+This fact is hidden in Facter's command-line output.
+
 **Type:** string
 
 **Purpose:**
@@ -2581,6 +2769,8 @@ Return the zone identifier for the Solaris zone.
 ([↑ Back to top](#page-nav))
 
 ## `zone_<name>_path`
+
+This fact is hidden in Facter's command-line output.
 
 **Type:** string
 
@@ -2601,6 +2791,8 @@ Return the zone path for the Solaris zone.
 
 ## `zone_<name>_status`
 
+This fact is hidden in Facter's command-line output.
+
 **Type:** string
 
 **Purpose:**
@@ -2620,6 +2812,8 @@ Return the zone state for the Solaris zone.
 
 ## `zonename`
 
+This fact is hidden in Facter's command-line output.
+
 **Type:** string
 
 **Purpose:**
@@ -2638,6 +2832,8 @@ Return the name of the current Solaris zone.
 ([↑ Back to top](#page-nav))
 
 ## `zones`
+
+This fact is hidden in Facter's command-line output.
 
 **Type:** integer
 
