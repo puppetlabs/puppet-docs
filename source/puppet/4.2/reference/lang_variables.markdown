@@ -46,7 +46,7 @@ Variables can only be assigned using their [short name](#naming). That is, a giv
 
 ### Assigning Multiple Variables
 
-Multiple variables can be assigned at once from an array or hash. 
+You can assign multiple vairiables at once from an array or hash. 
 
 #### Arrays 
 
@@ -62,17 +62,16 @@ When assigning multiple variables from an array, there must be an equal number o
 If the number of variables and values do not match, the operation will fail. Values that are not an array will be treated as a one item array.
 
 #### Hashes
-Hash keys must be assigned by using the string of a variable name. There can be extra key value pairs in the hash, but all variables to the left of the operator must have a corresponding key in the hash. 
+When you assign multiple variables with a hash, the variables are listed in an array on the left side of the assignment operator, and the hash is on the right. Hash keys must match their corresponding variable name. 
 
 ~~~
     [$a, $b] = {a => 10, b => 20}           # $a = 10, $b = 20
-    [$a, $c] = {a => 5, b => 10, c => 15}   # $a = 5, $c = 15
 ~~~
 
-If you're assigning multiple variables from a nested array, the corresponding keys in your hash must be in the same order. 
+There can be extra key value pairs in the hash, but all variables to the left of the operator must have a corresponding key in the hash. 
 
 ~~~
-    [[$a, $b], $c] = {[a,b] => {a => 10, b => 20 }, c => 30 } # $a = 10, $b = 20, $c = 30
+    [$a, $c] = {a => 5, b => 10, c => 15, d => 22}   # $a = 5, $c = 15
 ~~~
 
 ### Resolution
