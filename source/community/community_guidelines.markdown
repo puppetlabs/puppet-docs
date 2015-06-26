@@ -184,7 +184,7 @@ Here are a few guidelines that apply specifically to our bug tracker:
 
 * We encourage contributions to our documentation.
 * Our documentation is licensed under a [Creative Commons Attribution-Share Alike 3.0 United States License](http://creativecommons.org/licenses/by-sa/3.0/us/).
-* For suggestions or minor corrections, just email faq@puppetlabs.com.
+* For suggestions or minor corrections, just email docs@puppetlabs.com.
 * To contribute text or make larger-scale suggestions, see the [instructions for contributing](/contribute.html).
 * If you would like to submit your own content, you can fork the project on [github](http://github.com/puppetlabs/puppet-docs), make changes, and send us a pull request. See the README files in the project for more information about how to generate and view a copy of the website.
 

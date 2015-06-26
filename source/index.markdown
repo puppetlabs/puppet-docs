@@ -138,7 +138,7 @@ These documents belong to the community and are licensed under the Creative Comm
 
 <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/us/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/3.0/us/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/us/">Creative Commons Attribution-Share Alike 3.0 United States License</a>.
 
-For suggestions or minor corrections, just email <faq@puppetlabs.com>. To contribute text or make larger-scale suggestions, see the [instructions for contributing](./contribute.html).  If you would like to submit your own content, you can fork the project on <A HREF="http://github.com/puppetlabs/puppet-docs">github</A>, make changes, and send us a pull request.  See the README files in the project for more information about how to generate and view a copy of the website.
+For suggestions or minor corrections, just email <docs@puppetlabs.com>. To contribute text or make larger-scale suggestions, see the [instructions for contributing](./contribute.html).  If you would like to submit your own content, you can fork the project on <A HREF="http://github.com/puppetlabs/puppet-docs">github</A>, make changes, and send us a pull request.  See the README files in the project for more information about how to generate and view a copy of the website.
 
 
 * * *

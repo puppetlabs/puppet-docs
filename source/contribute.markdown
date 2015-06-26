@@ -30,7 +30,7 @@ Reporting Errors and Typos
 
 If you spot a typo or other minor error and don't want to go through
 the overhead of filing a ticket or editing the documentation, you can
-report it via email to <faq@puppetlabs.com>.
+report it via email to <docs@puppetlabs.com>.
 
 Editing the Documentation
 -------------------------
