@@ -125,7 +125,7 @@ If you're developing custom types and providers or writing custom facts, be awar
 
 If you need to access registry keys in the native 64-bit registry space, you'll need to make sure you opt out of redirection. Here's an example of avoiding redirection in a custom fact:
 
-{% highlight ruby %}
+~~~ ruby
     Facter.add(:myfact) do
       confine :kernel => :windows
       setcode do
@@ -139,7 +139,7 @@ If you need to access registry keys in the native 64-bit registry space, you'll 
         value
       end
     end
-{% endhighlight %}
+~~~
 
 The addition of `| 0x100` ensures the registry is opened without redirection so you can access the keys you expect to access. For more information, see <a href="http://msdn.microsoft.com/en-us/library/aa384232(v=vs.85).aspx">Microsoft’s MSDN Reference on registry redirection.</a>
 

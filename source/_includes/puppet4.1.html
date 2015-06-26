@@ -1,12 +1,12 @@
-{% capture server_version %}2.0{% endcapture %}
+{% capture server_version %}2.1{% endcapture %}
 {% capture puppet_version %}4.1{% endcapture %}
 {% capture puppet_dir %}/puppet/{{ puppet_version }}/reference{% endcapture %}
 
-<h3 id="puppet-3-8-reference-manual">Puppet 4.1 Reference Manual</h3>
+<h3 id="puppet-{{ puppet_version }}-reference-manual">Puppet {{ puppet_version }} Reference Manual</h3>
 
 <ul>
   <li><a href="{{ puppet_dir }}/index.html">Introduction</a></li>
-  <li><a href="{{ puppet_dir }}/release_notes.html">Puppet 4.1 Release Notes</a></li>
+  <li><a href="{{ puppet_dir }}/release_notes.html">Puppet {{ puppet_version }} Release Notes</a></li>
   <li><a href="{{ puppet_dir }}/whered_it_go.html">Where Did Everything Go?</a></li>
   <li><a href="/puppetserver/{{ server_version }}/release_notes.html">Puppet Server {{ server_version }} Release Notes</a></li>
   <li><strong>Deprecated Features</strong>
@@ -14,12 +14,17 @@
       <li><a href="{{ puppet_dir }}/deprecated_summary.html">About Deprecations in This Version</a></li>
       <li><a href="{{ puppet_dir }}/deprecated_servers.html">Web Servers</a></li>
       <li><a href="{{ puppet_dir }}/deprecated_language.html">Language Features</a></li>
+<!--
       <li><a href="{{ puppet_dir }}/deprecated_resource.html">Resource Type Features</a></li>
+ -->
       <li><a href="{{ puppet_dir }}/deprecated_api.html">Extension Points and APIs</a></li>
+<!--
       <li><a href="{{ puppet_dir }}/deprecated_command.html">Command Line Features</a></li>
+ -->
       <li><a href="{{ puppet_dir }}/deprecated_settings.html">Settings</a></li>
-      <li><a href="{{ puppet_dir }}/deprecated_windows_api.html">Breaking Changes to Private Windows APIs</a></li>
+<!--
       <li><a href="{{ puppet_dir }}/deprecated_misc.html">Other Features</a></li>
+ -->
     </ul>
   </li>
 
@@ -27,8 +32,8 @@
     <ul>
       <li><a href="{{ puppet_dir }}/system_requirements.html">System Requirements</a></li>
       <li><a href="{{ puppet_dir }}/install_pre.html">Pre-Install Tasks</a></li>
-      <li><a a href="{{ puppet_dir }}/install_linux.html">Install: Linux</a></li>
-      <li><a a href="{{ puppet_dir }}/install_windows.html">Install: Windows</a></li>
+      <li><a href="{{ puppet_dir }}/install_linux.html">Install: Linux</a></li>
+      <li><a href="{{ puppet_dir }}/install_windows.html">Install: Windows</a></li>
       <li><a href="{{ puppet_dir }}/architecture.html">Overview of Puppet's Architecture</a></li>
       <li><a href="{{ puppet_dir }}/upgrade_agent.html">Upgrade 3.x Agents</a></li>
       <li><a href="{{ puppet_dir }}/upgrade_server.html">Upgrade 3.x Servers</a></li>
@@ -121,6 +126,7 @@
       <li><a href="/puppetserver/{{ server_version }}/puppet_conf_setting_diffs.html">Differing Behavior in puppet.conf</a></li>
       <li><a href="/puppetserver/{{ server_version }}/gems.html">Using Ruby Gems</a></li>
       <li><a href="/puppetserver/{{ server_version }}/subcommands.html">Subcommands</a></li>
+      <li><a href="/puppetserver/{{ server_version }}/compatibility_with_puppet_agent.html">Backwards Compatibility With Puppet 3 Agents</a></li>
       <li><a href="/puppetserver/{{ server_version }}/external_ca_configuration.html">Using an External CA</a></li>
       <li><a href="/puppetserver/{{ server_version }}/external_ssl_termination.html">External SSL Termination</a></li>
       <li><a href="/puppetserver/{{ server_version }}/tuning_guide.html">Tuning Guide</a></li>

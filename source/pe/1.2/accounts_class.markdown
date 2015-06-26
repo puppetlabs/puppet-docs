@@ -26,31 +26,31 @@ Usage Example
 
 To use YAML files as a data store: 
 
-{% highlight ruby %}
+~~~ ruby
     class {'accounts':
       data_store => yaml,
     }
-{% endhighlight %}
+~~~
 
 To use a Puppet class as a data store and manage `sudoers` rules:
 
-{% highlight ruby %}
+~~~ ruby
     class {'accounts':
       data_store     => namespace,
       data_namespace => 'site::accounts::data',
       manage_sudoers => true,
     }
-{% endhighlight %}
+~~~
 
 To manage `sudoers` rules without managing any users or groups:
 
-{% highlight ruby %}
+~~~ ruby
     class {'accounts':
       manage_users   => false,
       manage_groups  => false,
       manage_sudoers => true,
     }
-{% endhighlight %}
+~~~
 
 Data Stores
 -----
@@ -102,7 +102,7 @@ The **users hash** represents a set of `accounts::user` resources. Each key shou
 
 ##### Puppet Example
 
-{% highlight ruby %}
+~~~ ruby
     $users_hash = {
       sysop => {
         locked  => false,
@@ -121,7 +121,7 @@ The **users hash** represents a set of `accounts::user` resources. Each key shou
         sshkeys => ['ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAwLBhQefRiXHSbVNZYKu2o8VWJjZJ/B4LqICXuxhiiNSCmL8j+5zE/VLPIMeDqNQt8LjKJVOQGZtNutW4OhsLKxdgjzlYnfTsQHp8+JMAOFE3BD1spVnGdmJ33JdMsQ/fjrVMacaHyHK0jW4pHDeUU3kRgaGHtX4TnC0A175BNTH9yJliDvddRzdKR4WtokNzqJU3VPtHaGmJfXEYSfun/wFfc46+hP6u0WcSS7jZ2WElBZ7gNO4u2Z+eJjFWS9rjQ/gNE8HHlvmN0IUuvdpKdBlJjzSiKZR+r/Bo9ujQmGY4cmvlvgmcdajM/X1TqP6p3OuouAk5QSPUlDRV91oEHw== villain+moduledevkey@puppetlabs.com'],
       },
     }
-{% endhighlight %}
+~~~
 
 ##### YAML Example
 
@@ -153,7 +153,7 @@ The **groups hash** represents a set of shared `group` resources. Each key shoul
 
 ##### Puppet Example
 
-{% highlight ruby %}
+~~~ ruby
     $groups_hash = {
       developer => {
         gid    => 3003,
@@ -172,7 +172,7 @@ The **groups hash** represents a set of shared `group` resources. Each key shoul
         ensure => present,
       },
     }
-{% endhighlight %}
+~~~
 
 ##### YAML Example
 
@@ -196,9 +196,9 @@ The **user defaults hash** has no effect on the behavior of the `accounts` modul
 
 ##### Puppet Example
 
-{% highlight ruby %}
+~~~ ruby
     $users_hash_default = {}
-{% endhighlight %}
+~~~
 
 ##### YAML Example
 

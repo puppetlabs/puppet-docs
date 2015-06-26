@@ -93,7 +93,7 @@ The report processor API is as follows:
 
 In summary, a report processor looks more or less like this:
 
-{% highlight ruby %}
+~~~ ruby
     # /etc/puppetlabs/puppet/modules/myreport/lib/puppet/reports/myreport.rb
     require 'puppet'
     # require any other Ruby libraries necessary for this specific report
@@ -107,7 +107,7 @@ In summary, a report processor looks more or less like this:
         my_api.post(self.to_yaml)
       end
     end
-{% endhighlight %}
+~~~
 
 You would then set something like `reports = store,myreport` in the puppet master's puppet.conf.
 

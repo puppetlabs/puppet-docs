@@ -61,12 +61,12 @@ Like [relationships][] and most metaparameters, tags are passed along by [contai
 
 You can use [the `tag` metaparameter][tagmeta] in a resource declaration to add any number of tags:
 
-{% highlight ruby %}
+~~~ ruby
     apache::vhost {'docs.puppetlabs.com':
       port => 80,
       tag  => ['us_mirror1', 'us_mirror2'],
     }
-{% endhighlight %}
+~~~
 
 The `tag` metaparameter can accept a single tag or an array. These will be added to the tags the resource already has. Also, `tag` can be used with normal resources, [defined resources][defined], and classes (when using the resource-like declaration syntax). Since [containment][] applies to tags, the example above would assign the `us_mirror1` and `us_mirror2` tags to every resource contained by `Apache::Vhost['docs.puppetlabs.com']`.
 
@@ -74,7 +74,7 @@ The `tag` metaparameter can accept a single tag or an array. These will be added
 
 You can use [the `tag` function][tagfunction] inside a class definition or defined type to assign tags to the surrounding container and all of the resources it contains:
 
-{% highlight ruby %}
+~~~ ruby
     class role::public_web {
       tag 'us_mirror1', 'us_mirror2'
 
@@ -84,7 +84,7 @@ You can use [the `tag` function][tagfunction] inside a class definition or defin
       ssh::allowgroup {'www-data': }
       @@nagios::website {'docs.puppetlabs.com': }
     }
-{% endhighlight %}
+~~~
 
 The example above would assign the `us_mirror1` and `us_mirror2` tags to all of the defined resources being declared in the class `role::public_web`, as well as to all of the resources each of them contains.
 

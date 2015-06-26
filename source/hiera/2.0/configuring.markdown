@@ -8,7 +8,7 @@ title: "Hiera 2: The hiera.yaml Config File"
 [hierarchy]: ./hierarchy.html
 [interpolate]: ./variables.html
 [custom_backends]: ./custom_backends.html
-[puppetserver_gem]: /puppetserver/1.0/gems.html#installing-and-removing-gems
+[puppetserver_gem]: /puppetserver/latest/gems.html#installing-and-removing-gems
 [deep_merge_gem_docs]: https://github.com/danielsdeleo/deep_merge/blob/master/README.md
 
 Hiera's config file is usually referred to as `hiera.yaml`. Use this file to configure the [hierarchy][], which backend(s) to use, and settings for each backend.
@@ -50,7 +50,7 @@ Each top-level key in the hash **must be a Ruby symbol with a colon (`:`) prefix
 
 [example]: #example-config-file
 
-{% highlight yaml %}
+~~~ yaml
 ---
 :backends:
   - yaml
@@ -60,16 +60,17 @@ Each top-level key in the hash **must be a Ruby symbol with a colon (`:`) prefix
 :json:
   :datadir: /etc/puppetlabs/code/hieradata
 :hierarchy:
-  - "%{::clientcert}"
-  - "%{::custom_location}"
+  - "nodes/%{trusted.certname}"
+  - "environment/%{server_facts.environment}"
+  - "virtual/%{::is_virtual}"
   - common
-{% endhighlight %}
+~~~
 
 ### Default Config Values
 
 If the config file exists but has no data, the default settings will be equivalent to the following:
 
-{% highlight yaml %}
+~~~ yaml
 ---
 :backends: yaml
 :yaml:
@@ -78,7 +79,7 @@ If the config file exists but has no data, the default settings will be equivale
 :logger: console
 :merge_behavior: native
 :deep_merge_options: {}
-{% endhighlight %}
+~~~
 
 Global Settings
 -----

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Creating Directory Environments"
+title: "Creating Environments"
 ---
 
 [config_print]: ./config_print.html
@@ -43,7 +43,7 @@ With Puppet Enterprise (PE), **every** environment must meet two extra requireme
 
 The [main manifest][manifest_dir] **must** contain the following snippet of Puppet code, which PE uses to back up file contents:
 
-{% highlight ruby %}
+~~~ ruby
     # Define filebucket 'main':
     filebucket { 'main':
       server => '<YOUR SERVER HERE>',
@@ -52,7 +52,7 @@ The [main manifest][manifest_dir] **must** contain the following snippet of Pupp
 
     # Make filebucket 'main' the default backup location for all File resources:
     File { backup => 'main' }
-{% endhighlight %}
+~~~
 
 You should do the following to ensure this is present:
 

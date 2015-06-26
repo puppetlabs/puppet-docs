@@ -33,7 +33,7 @@ Declaring a resource instructs Puppet to include it in the [catalog][] and manag
 Syntax
 -----
 
-{% highlight ruby %}
+~~~ ruby
     # A resource declaration:
     file { '/etc/passwd':
       ensure => file,
@@ -41,15 +41,15 @@ Syntax
       group  => 'root',
       mode   => '0600',
     }
-{% endhighlight %}
+~~~
 
 Every resource has a **type,** a **title,** and a set of **attributes:**
 
-{% highlight ruby %}
+~~~ ruby
     type {'title':
       attribute => value,
     }
-{% endhighlight %}
+~~~
 
 The general form of a resource declaration is:
 
@@ -161,7 +161,7 @@ There are two ways to compress multiple resource declarations. You can also use 
 
 If you specify an array of strings as the title of a resource declaration, Puppet will treat it as multiple resource declarations with an identical block of attributes.
 
-{% highlight ruby %}
+~~~ ruby
     file { ['/etc',
             '/etc/rc.d',
             '/etc/rc.d/init.d',
@@ -177,11 +177,11 @@ If you specify an array of strings as the title of a resource declaration, Puppe
       group  => 'root',
       mode   => 0755,
     }
-{% endhighlight %}
+~~~
 
 This example is the same as declaring each directory as a separate resource with the same attribute block. You can also store an array in a variable and specify the variable as a resource title:
 
-{% highlight ruby %}
+~~~ ruby
     $rcdirectories = ['/etc',
                       '/etc/rc.d',
                       '/etc/rc.d/init.d',
@@ -199,7 +199,7 @@ This example is the same as declaring each directory as a separate resource with
       group  => 'root',
       mode   => 0755,
     }
-{% endhighlight %}
+~~~
 
 
 Note that you cannot specify a separate namevar with an array of titles, since it would then be duplicated across all of the resources. Thus, each title must be a valid namevar value.
@@ -208,7 +208,7 @@ Note that you cannot specify a separate namevar with an array of titles, since i
 
 If you end an attribute block with a semicolon rather than a comma, you may specify another title, another colon, and another complete attribute block, instead of closing the curly braces. Puppet will treat this as multiple resources of a single type.
 
-{% highlight ruby %}
+~~~ ruby
     file {
       '/etc/rc.d':
         ensure => directory,
@@ -228,7 +228,7 @@ If you end an attribute block with a semicolon rather than a comma, you may spec
         group  => 'root',
         mode   => 0755;
     }
-{% endhighlight %}
+~~~
 
 
 Adding or Modifying Attributes
@@ -238,7 +238,7 @@ Although you cannot declare the same resource twice, you can add attributes to a
 
 ### Amending Attributes With a Reference
 
-{% highlight ruby %}
+~~~ ruby
     file {'/etc/passwd':
       ensure => file,
     }
@@ -248,7 +248,7 @@ Although you cannot declare the same resource twice, you can add attributes to a
       group => 'root',
       mode  => 0640,
     }
-{% endhighlight %}
+~~~
 
 The general form of a reference attribute block is:
 
@@ -261,7 +261,7 @@ In normal circumstances, this idiom can only be used to add previously unmanaged
 
 ### Amending Attributes With a Collector
 
-{% highlight ruby %}
+~~~ ruby
     class base::linux {
       file {'/etc/passwd':
         ensure => file,
@@ -276,7 +276,7 @@ In normal circumstances, this idiom can only be used to add previously unmanaged
       group => 'root',
       mode  => 0640,
     }
-{% endhighlight %}
+~~~
 
 The general form of a collector attribute block is:
 

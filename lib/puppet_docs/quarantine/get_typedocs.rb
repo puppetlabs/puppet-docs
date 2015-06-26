@@ -84,6 +84,7 @@ Puppet::Type.eachtype { |type|
   # Override several features missing due to bug #18426:
   if type.name == :user
     docobject[:providers][:useradd][:features] << :manages_passwords << :manages_password_age << :libuser
+    docobject[:providers][:openbsd][:features] << :manages_passwords << :manages_loginclass
   end
   if type.name == :group
     docobject[:providers][:groupadd][:features] << :libuser

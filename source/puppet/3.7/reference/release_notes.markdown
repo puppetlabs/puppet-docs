@@ -240,11 +240,11 @@ The Puppet installer for Windows now includes [Facter 2.3.0](/facter/2.3/release
 
 The `$system32` fact makes it much easier to write cross-architecture Puppet code for Windows. Previously, you couldn't write Puppet code to reliably manage system files on all three possible architecture mixtures (64-bit Windows with the 64-bit Puppet installer, 64-bit Win and 32-bit Puppet, and 32-bit/32-bit), so you had to know which Puppet installer your nodes were using and write architecture-specific resources. But now you can do something like:
 
-{% highlight ruby %}
+~~~ ruby
 file { "$system32/myfile.txt":
   ensure => file
 }
-{% endhighlight %}
+~~~
 
 This will resolve to `c:/windows/system32/myfile.txt` on 64-bit/64-bit and 32-bit/32-bit, and to `c:/windows/sysnative/myfile.txt` on 64-bit/32-bit.
 

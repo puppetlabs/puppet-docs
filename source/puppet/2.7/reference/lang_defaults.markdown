@@ -16,14 +16,14 @@ Resource defaults let you set default attribute values for a given resource type
 Syntax
 -----
 
-{% highlight ruby %}
+~~~ ruby
     Exec { 
       path        => '/usr/bin:/bin:/usr/sbin:/sbin',
       environment => 'RUBYLIB=/opt/puppet/lib/ruby/site_ruby/1.8/',
       logoutput   => true,
       timeout     => 180,
     }
-{% endhighlight %}
+~~~
 
 The general form of resource defaults is:
 

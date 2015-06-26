@@ -11,14 +11,14 @@ canonical: "/es/pe/latest/quick_start_adding_class_nix.html"
 [classification_selector]: ./images/quick/classification_selector.png
 [apache_add_group]: ./images/quick/apache_add_group.png
 
-Cada módulo contiene una o más **clases**. Las [clases](/puppet/3.8/reference/lang_classes.html) son la unidad mínima de código de Puppet que usa Puppet Enterprise para configurar nodos. El módulo puppetlabs-apache que instalaste previamente en la [GIR sobre Instalación de Módulos](./quick_start_module_install_nix.html) contiene una clase llamada `apache`. En este ejemplo, utilizarán la clase `apache` para configurar el virtual host de Apache por defecto. Crearán un grupo llamado __ejemplo_apache__ y agregarán la `apache` a este grupo.
+Cada módulo contiene una o más **clases**. Las [clases](/puppet/3.8/reference/lang_classes.html) son la unidad mínima de código de Puppet que usa Puppet Enterprise para configurar nodos. El módulo puppetlabs-apache que instalaste previamente en la [GIR sobre Instalación de Módulos](./quick_start_module_install_nix.html) contiene una clase llamada `apache`. En este ejemplo, utilizarás la clase `apache` para configurar el virtual host de Apache por defecto. Crearás un grupo llamado __ejemplo_apache__ y agregarás la `apache` a este grupo.
 
 > **Prerequisitos**: Esta guía asume que ya existe en funcionamiento un [entorno de PE monolítico], al menos un [nodo agente *nix](./quick_start_install_agents_nix.html) y el [módulo puppetlabs-apache](./quick_start_module_install_nix.html).
 
 
 ## Creando el Grupo ejemplo_apache
 
-1. Desde la consola, haz clic __Classification__ en la barra de navegación.
+1. Desde la consola, haz clic en __Classification__ en la barra de navegación.
 2. En el campo __Node group name__, asígnale un nombre a tu grupo (ej., **ejemplo_apache**).
 3. Haz clic en __Add group__.
 4. Haz clic en el grupo __ejemplo_apache__.
@@ -76,7 +76,7 @@ Puedes usar la consola para establecer o editar los parámetros por defecto de u
 2. Desde __la página de Classification__, haz clic en el grupo __ejemplo_apache__ group.
 3. Haz clic en la pestaña __Classes__, y busca la clase `apache` entre la lista de clases.
 
-4. Desde el desplegable __Parameter Name__, elije el parametro que deseas editar. (Para este ejemplo, utilizaremos `docroot`.)
+4. Desde el desplegable __Parameter Name__, elige el parametro que deseas editar. (Para este ejemplo, utilizaremos `docroot`.)
 
    **Nota**:  El texto gris que aparece como valor de algunos parametros es el valor por defecto, que puede ser literal o una variable de Puppet. Puedes volver al valor por defecto haciendo clic en __Discard changes__ luego de que hayas agregado o editado el parámetro.
 

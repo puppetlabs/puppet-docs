@@ -72,7 +72,7 @@ The order in which authentication services are listed in the `cas_client_config.
 
 This example shows how to edit the file if you want to use AD and the built-in (local) auth services while leaving Google and LDAP disabled:
 
-{% highlight yaml %}
+~~~ yaml
 
 ## This configuration file contains information required by any web
 ## service that makes use of the CAS server for authentication.
@@ -109,7 +109,7 @@ authorization:
 #    default_role: read-only
 #    description: Google
 
-{% endhighlight %}
+~~~
 
 > **Note:** If your console server ever ran PE 2.5, the commented-out sections may not be present in this file. To find example config text that can be copied and pasted into place, look for a `cas_client_config.yml.rpmnew` or `cas_client_config.yml.dpkg-new` file in the same directory.
 
@@ -120,7 +120,7 @@ The `/etc/puppetlabs/rubycas-server/config.yml` file is used to configure RubyCA
 
 The authenticators are listed in the file in the following manner (note how this example disables the Google authenticator but enables both AD and LDAP):
 
-{% highlight yaml %}
+~~~ yaml
 
 authenticator:
   - class: CASServer::Authenticators::SQLEncrypted
@@ -150,7 +150,7 @@ authenticator:
       auth_user: cn=Test I. Am,cn=users,dc=example,dc=dev
       auth_password: P4ssword
 
-{% endhighlight %}
+~~~
 
 > **Note:** If your console server ever ran PE 2.5, the commented-out sections may not be present in this file. To find example config text that can be copied and pasted into place, look for a `config.yml.rpmnew` or `config.yml.dpkg-new` file in the same directory.
 

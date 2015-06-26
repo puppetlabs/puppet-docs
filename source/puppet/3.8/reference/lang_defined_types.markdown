@@ -33,7 +33,7 @@ Syntax
 
 ### Defining a Type
 
-{% highlight ruby %}
+~~~ ruby
     # /etc/puppetlabs/puppet/modules/apache/manifests/vhost.pp
     define apache::vhost ($port, $docroot, $servername = $title, $vhost_name = '*') {
       include apache # contains Package['httpd'] and Service['httpd']
@@ -49,7 +49,7 @@ Syntax
         notify  => Service['httpd'],
       }
     }
-{% endhighlight %}
+~~~
 
 This creates a new type called `apache::vhost`.
 
@@ -78,12 +78,12 @@ The **parameters** used when defining the type become the **attributes** (withou
 
 To declare a resource of the `apache::vhost` type from the example above:
 
-{% highlight ruby %}
+~~~ ruby
     apache::vhost {'homepages':
       port    => 8081,
       docroot => '/var/www-testhost',
     }
-{% endhighlight %}
+~~~
 
 Behavior
 -----
@@ -96,12 +96,12 @@ Declaring a resource of the type will cause Puppet to re-evaluate the block of c
 
 Every parameter of a defined type can be used as a local variable inside the definition. These variables are not set with [normal assignment statements][variable_assignment]; instead, each instance of the defined type uses its attributes to set them:
 
-{% highlight ruby %}
+~~~ ruby
     apache::vhost {'homepages':
       port    => 8081, # Becomes the value of $port
       docroot => '/var/www-testhost', # Becomes the value of $docroot
     }
-{% endhighlight %}
+~~~
 
 ### `$title` and `$name`
 
@@ -112,9 +112,9 @@ Every defined type gets two "free" parameters, which are always available and do
 
 Unlike the other parameters, the values of `$title` and `$name` are already available **inside the parameter list.** This means you can use `$title` as the default value (or part of the default value) for another attribute:
 
-{% highlight ruby %}
+~~~ ruby
     define apache::vhost ($port, $docroot, $servername = $title, $vhost_name = '*') { ...
-{% endhighlight %}
+~~~
 
 ### Resource Uniqueness
 
@@ -122,9 +122,9 @@ Since multiple instances of a defined type might be declared in your manifests, 
 
 You can make resources different across instances by making their **titles** and **names/namevars** include the value of `$title` or another parameter.
 
-{% highlight ruby %}
+~~~ ruby
     file { "${vhost_dir}/${servername}.conf":
-{% endhighlight %}
+~~~
 
 Since `$title` (and possibly other parameters) will be unique per instance, this ensures the resources will be unique as well.
 
@@ -143,12 +143,12 @@ The declaration of a defined type instance can include any [metaparameter][metap
 
 Just like with a normal resource type, you can declare [resource defaults][resource_defaults] for a defined type:
 
-{% highlight ruby %}
+~~~ ruby
     # /etc/puppetlabs/puppet/manifests/site.pp
     Apache::Vhost {
       port => 80,
     }
-{% endhighlight %}
+~~~
 
 In this example, every resource of the type would default to port 80 unless specifically overridden.
 

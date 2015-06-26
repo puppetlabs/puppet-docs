@@ -15,7 +15,7 @@ The `accounts::user` type can be used on all of the platforms supported by Puppe
 
 ## Usage Example
 
-{% highlight ruby %}
+~~~ ruby
     # /etc/puppetlabs/puppet/modules/site/manifests/users.pp
     class site::users {
       # Declaring a dependency: we require several shared groups from the site::groups class (see below).
@@ -92,7 +92,7 @@ The `accounts::user` type can be used on all of the platforms supported by Puppe
         gid => '3000',
       }
     }
-{% endhighlight %}
+~~~
 
 
 ## Parameters

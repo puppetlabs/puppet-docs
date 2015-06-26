@@ -1,0 +1,8 @@
+The Puppet Server docs actually live in the Puppet Server GitHub repository
+(https://github.com/puppetlabs/puppet-server), in a directory called
+`documentation`. When we build the website, we add docs for all Puppet Server
+versions by cloning the repo, creating working dirs for each Puppet Server
+version, and symlinking their documentation directories into place.
+
+To see which branch you need to update to affect a version of the Puppet Server
+docs, see the `externalsources` section of the source/_config.yml file.

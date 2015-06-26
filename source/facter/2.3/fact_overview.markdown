@@ -26,15 +26,15 @@ Both flat and structured facts can have simple resolutions.
 
 ### Example: minimal fact that relies on a single shell command
 
-{% highlight ruby %}
+~~~ ruby
 Facter.add(:rubypath) do
   setcode 'which ruby'
 end
-{% endhighlight %}
+~~~
 
 ### Example: slightly more complex fact, confined to Linux
 
-{% highlight ruby %}
+~~~ ruby
 Facter.add(:jruby_installed) do
 
   confine :kernel => "Linux"
@@ -49,11 +49,11 @@ Facter.add(:jruby_installed) do
     end
   end
 end
-{% endhighlight %}
+~~~
 
 ### Example: different resolutions for different operating systems
 
-{% highlight ruby %}
+~~~ ruby
 Facter.add(:rubypath) do
   setcode 'which ruby'
 end
@@ -63,7 +63,7 @@ Facter.add(:rubypath) do
   # Windows uses 'where' instead of 'which'
   setcode 'where ruby'
 end
-{% endhighlight %}
+~~~
 
 ### Main Components of Simple Resolutions
 
@@ -97,7 +97,7 @@ Facter 2.0 introduced **structured facts**, which can take the form of hashes or
 > Puppet Enterprise 3.7 and later has structured facts enabled by default, as will Puppet 4.0.
 
 ### Example: returning an array of network interfaces
-{% highlight ruby %}
+~~~ ruby
 Facter.add(:interfaces_array) do
   setcode do
    interfaces = Facter.value(:interfaces)
@@ -106,10 +106,10 @@ Facter.add(:interfaces_array) do
    interfaces_array
   end
 end
-{% endhighlight %}
+~~~
 
 ### Example: returning a hash of IP addresses
-{% highlight ruby %}
+~~~ ruby
 Facter.add(:interfaces_hash) do
   setcode do
     interfaces_array = Facter.value(:interfaces_array)
@@ -125,7 +125,7 @@ Facter.add(:interfaces_hash) do
     interfaces_hash
   end
 end
-{% endhighlight %}
+~~~
 
 ## Writing Facts with Aggregate Resolutions
 
@@ -136,7 +136,7 @@ using concatenation, addition, or any other function that you can express in Rub
 
 ### Example: building a structured fact progressively
 
-{% highlight ruby %}
+~~~ ruby
 Facter.add(:networking, :type => :aggregate) do
 
   confine :kernel => "Linux"
@@ -168,11 +168,11 @@ Facter.add(:networking, :type => :aggregate) do
   # Facter will merge the return values for the two chunks
   # automatically, so there's no setcode statement.
 end
-{% endhighlight %}
+~~~
 
 ### Example: building a flat fact progressively with addition
 
-{% highlight ruby %}
+~~~ ruby
 Facter.add(:total_free_memory_mb, :type => :aggregate) do
   chunk(:physical_memory) do
     Facter.value(:memoryfree_mb).to_i
@@ -194,7 +194,7 @@ Facter.add(:total_free_memory_mb, :type => :aggregate) do
     sum
   end
 end
-{% endhighlight %}
+~~~
 
 ### Main Components of Aggregate Resolutions
 

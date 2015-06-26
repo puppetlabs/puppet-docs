@@ -82,7 +82,7 @@ Providers can also specify a provider of any resource type as their parent. Use 
 
 For example, the `ini_setting` type's `ruby` provider (from the [puppetlabs/inifile](https://forge.puppetlabs.com/puppetlabs/inifile) module) can be re-used to implement new resource types that act like INI settings:
 
-{% highlight ruby %}
+~~~ ruby
     # my_module/lib/puppet/provider/glance_api_config/ini_setting.rb
     Puppet::Type.type(:glance_api_config).provide(
       :ini_setting,
@@ -102,7 +102,7 @@ For example, the `ini_setting` type's `ruby` provider (from the [puppetlabs/inif
         '/etc/glance/glance-api.conf'
       end
     end
-{% endhighlight %}
+~~~
 
 ## Suitability
 

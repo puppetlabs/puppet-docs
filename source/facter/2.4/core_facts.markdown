@@ -1,6 +1,7 @@
 ---
 layout: default
 title: "Facter 2.4: Core Facts"
+toc: columns
 ---
 
 ## Summary

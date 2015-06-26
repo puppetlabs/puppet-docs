@@ -36,12 +36,12 @@ Relationships can be declared with the relationship metaparameters, chaining arr
 Syntax: Relationship Metaparameters
 -----
 
-{% highlight ruby %}
+~~~ ruby
     package { 'openssh-server':
       ensure => present,
       before => File['/etc/ssh/sshd_config'],
     }
-{% endhighlight %}
+~~~
 
 Puppet uses four [metaparameters][] to establish relationships. Each of them can be set as an attribute in any resource. The value of any relationship metaparameter should be a [resource reference][reference] (or [array][] of references) pointing to one or more **target resources.**
 
@@ -54,49 +54,49 @@ If two resources need to happen in order, you can either put a `before` attribut
 
 The two examples below create the same ordering relationship:
 
-{% highlight ruby %}
+~~~ ruby
     package { 'openssh-server':
       ensure => present,
       before => File['/etc/ssh/sshd_config'],
     }
-{% endhighlight %}
+~~~
 
-{% highlight ruby %}
+~~~ ruby
     file { '/etc/ssh/sshd_config':
       ensure  => file,
       mode    => '0600',
       source  => 'puppet:///modules/sshd/sshd_config',
       require => Package['openssh-server'],
     }
-{% endhighlight %}
+~~~
 
 The two examples below create the same notification relationship:
 
-{% highlight ruby %}
+~~~ ruby
     file { '/etc/ssh/sshd_config':
       ensure => file,
       mode   => '0600',
       source => 'puppet:///modules/sshd/sshd_config',
       notify => Service['sshd'],
     }
-{% endhighlight %}
+~~~
 
-{% highlight ruby %}
+~~~ ruby
     service { 'sshd':
       ensure    => running,
       enable    => true,
       subscribe => File['/etc/ssh/sshd_config'],
     }
-{% endhighlight %}
+~~~
 
 
 Syntax: Chaining Arrows
 -----
 
-{% highlight ruby %}
+~~~ ruby
     # ntp.conf is applied first, and will notify the ntpd service if it changes:
     File['/etc/ntp.conf'] ~> Service['ntpd']
-{% endhighlight %}
+~~~
 
 You can create relationships between two resources or groups of resources using the `->` and `~>` operators.
 
@@ -114,13 +114,13 @@ The chaining arrows accept the following kinds of operands on either side of the
 
 An operand can be shared between two chaining statements, which allows you to link them together into a "timeline:"
 
-{% highlight ruby %}
+~~~ ruby
     Package['ntp'] -> File['/etc/ntp.conf'] ~> Service['ntpd']
-{% endhighlight %}
+~~~
 
 Since resource declarations can be chained, you can use chaining arrows to make Puppet apply a section of code in the order that it is written:
 
-{% highlight ruby %}
+~~~ ruby
     # first:
     package { 'openssh-server':
       ensure => present,
@@ -134,13 +134,13 @@ Since resource declarations can be chained, you can use chaining arrows to make 
       ensure => running,
       enable => true,
     }
-{% endhighlight %}
+~~~
 
 And since collectors can be chained, you can create many-to-many relationships:
 
-{% highlight ruby %}
+~~~ ruby
     Yumrepo <| |> -> Package <| |>
-{% endhighlight %}
+~~~
 
 This example would apply all yum repository resources before applying any package resources, which protects any packages that rely on custom repos.
 
@@ -180,25 +180,25 @@ Syntax: The `require` Function
 
 [The `require` function][require_function] declares a [class][] and causes it to become a dependency of the surrounding container:
 
-{% highlight ruby %}
+~~~ ruby
     class wordpress {
       require apache
       require mysql
       ...
     }
-{% endhighlight %}
+~~~
 
 The above example would cause every resource in the `apache` and `mysql` classes to be applied before any of the resources in the `wordpress` class.
 
 Unlike the relationship metaparameters and chaining arrows, the `require` function does not have a reciprocal form or a notifying form. However, more complex behavior can be obtained by combining `include` and chaining arrows inside a class definition:
 
-{% highlight ruby %}
+~~~ ruby
     class apache::ssl {
       include site::certificates
       # Restart every service in this class if any of our SSL certificates change on disk:
       Class['site::certificates'] ~> Class['apache::ssl']
     }
-{% endhighlight %}
+~~~
 
 Behavior
 -----

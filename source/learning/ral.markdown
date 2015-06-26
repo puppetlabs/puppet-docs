@@ -97,7 +97,7 @@ In Puppet, every resource is an instance of a **resource type** and is identifie
 
 Puppet uses its own language to describe and manage resources:
 
-{% highlight ruby %}
+~~~ ruby
     user { 'dave':
       ensure     => present,
       uid        => '507',
@@ -106,7 +106,7 @@ Puppet uses its own language to describe and manage resources:
       home       => '/home/dave',
       managehome => true,
     }
-{% endhighlight %}
+~~~
 
 This syntax is called a **resource declaration.** You saw it earlier when you ran `puppet resource service`, and it's the heart of the Puppet language. It describes a desired state for a resource, without mentioning any steps that must be taken to reach that state.
 

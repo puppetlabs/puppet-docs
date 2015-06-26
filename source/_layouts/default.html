@@ -54,6 +54,7 @@
 
     <!-- FIXME: absolute paths -->
 
+    <link rel="stylesheet" type="text/css" href="/files/stylesheets/prism.css" media="screen">
     <link rel="stylesheet" type="text/css" href="/files/stylesheets/style.css" media="screen">
     <link rel="stylesheet" type="text/css" href="/files/stylesheets/syntax.css" media="screen"> <!-- index -->
 
@@ -202,7 +203,7 @@
         <div class="primary-content">
           <h1>{% if page.subtitle %}{{page.subtitle}}{% else %}{{page.title}}{% endif %}</h1>
           <div id="version-note"> {% render_version_note %} </div>
-          {% unless page.toc == 'false' or page.toc == false %}<nav class="in-page" id="page-nav">{{ content | toc }}</nav>{% endunless %}
+          {% unless page.toc == 'false' or page.toc == false %}<nav class="in-page{% if page.toc == 'columns' %} multi-column{% endif %}" id="page-nav">{{ content | toc }}</nav>{% endunless %}
 	  <div id="rendered-markdown">
             {{ content }}
 	  </div>
@@ -340,5 +341,6 @@
 <!-- Per Alanna, this must be directly before the closing body tag. -->
     <script src="https://munchkin.marketo.net/munchkin.js" type="text/javascript"></script> <script>mktoMunchkin("307-QLA-991");</script>
  <!-- END: MARKETO TRACKING -->
+    <script type="text/javascript" src="/files/javascripts/prism.js"></script>
 	</body>
 </html>

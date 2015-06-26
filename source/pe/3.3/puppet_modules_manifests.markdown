@@ -87,7 +87,7 @@ Manifests are files containing Puppet code. They are standard text files saved w
 
 The core of the Puppet language is declaring **resources.** A resource declaration looks like this:
 
-{% highlight ruby %}
+~~~ ruby
     # A resource declaration:
     file { '/etc/passwd':
       ensure => file,
@@ -95,7 +95,7 @@ The core of the Puppet language is declaring **resources.** A resource declarati
       group  => 'root',
       mode   => '0600',
     }
-{% endhighlight %}
+~~~
 
 When a resource depends on another resource, you should explicitly state the relationship to make sure they happen in the right order.
 
@@ -134,7 +134,7 @@ When a resource depends on another resource, you should explicitly state the rel
 
 Puppet manifests can dynamically adjust their behavior based on variables. Puppet includes a set of useful pre-set variables called **facts** that contain system profiling data.
 
-{% highlight ruby %}
+~~~ ruby
     # Set the name of the Apache package based on OS
     case $operatingsystem {
       centos, redhat: { $apache = "httpd" }
@@ -144,7 +144,7 @@ Puppet manifests can dynamically adjust their behavior based on variables. Puppe
     package {$apache:
       ensure => installed,
     }
-{% endhighlight %}
+~~~
 
 * See the [Variables][] page (and the [Facts][] subsection) of the Puppet language reference for information on variables.
 * See the [Conditional Statements][cond] page for information on if, case, and selector statements.
@@ -153,7 +153,7 @@ Puppet manifests can dynamically adjust their behavior based on variables. Puppe
 
 Groups of resource declarations and conditional statements can be wrapped up into a **class:**
 
-{% highlight ruby %}
+~~~ ruby
     class ntp {
       package { 'ntp':
         ensure => installed,
@@ -171,7 +171,7 @@ Groups of resource declarations and conditional statements can be wrapped up int
         subscribe => File['ntp.conf'],
       }
     }
-{% endhighlight %}
+~~~
 
 Classes are named blocks of Puppet code that can be assigned to nodes. They should be stored in modules so that the puppet master can locate them by name.
 

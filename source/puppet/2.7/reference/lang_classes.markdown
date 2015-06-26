@@ -45,7 +45,7 @@ Syntax
 
 ### Defining a Class
 
-{% highlight ruby %}
+~~~ ruby
     class base::linux {
       file { '/etc/passwd':
         owner => 'root',
@@ -58,9 +58,9 @@ Syntax
         mode  => '0440',
       }
     }
-{% endhighlight %}
+~~~
 
-{% highlight ruby %}
+~~~ ruby
     class apache ($version = 'latest') {
       package {'httpd':
         ensure => $version, # Get version from the class declaration
@@ -77,7 +77,7 @@ Syntax
         subscribe => File['/etc/httpd.conf'],
       }
     }
-{% endhighlight %}
+~~~
 
 The general form of a class declaration is:
 
@@ -99,23 +99,23 @@ The general form of a class declaration is:
 
 Declaring a class adds all of the code it contains to the catalog. Classes can be declared with the `include` function [function][].
 
-{% highlight ruby %}
+~~~ ruby
     # Declaring a class with include
     include base::linux
-{% endhighlight %}
+~~~
 
 You can safely use `include` multiple times on the same class and it will only be declared once:
 
-{% highlight ruby %}
+~~~ ruby
     include base::linux
     include base::linux # Has no additional effect
-{% endhighlight %}
+~~~
 
 The `include` function can accept a single class name or a comma-separated list of class names:
 
-{% highlight ruby %}
+~~~ ruby
     include base::linux, apache # including a list of classes
-{% endhighlight %}
+~~~
 
 The `include` function **cannot pass values to a class's parameters.** You may still use `include` with parameterized classes, but only if every parameter has a default value; parameters without defaults are mandatory, and will require you to use the resource-like syntax to declare the class.
 
@@ -123,24 +123,24 @@ The `include` function **cannot pass values to a class's parameters.** You may s
 
 The `require` function acts like `include`, but also causes the class to become a [dependency][relationships] of the surrounding container:
 
-{% highlight ruby %}
+~~~ ruby
     define apache::vhost ($port, $docroot, $servername, $vhost_name) {
       require apache
       ...
     }
-{% endhighlight %}
+~~~
 
 In the above example, whenever an `apache::vhost` resource is declared, Puppet will add the contents of the `apache` class to the catalog if it hasn't already done so and it will ensure that every resource in class `apache` is processed before every resource in that `apache::vhost` instance.
 
 Note that this can also be accomplished with relationship chaining. The following example will have an identical effect:
 
-{% highlight ruby %}
+~~~ ruby
     define apache::vhost ($port, $docroot, $servername, $vhost_name) {
       include apache
       Class['apache'] -> Apache::Vhost[$title]
       ...
     }
-{% endhighlight %}
+~~~
 
 The `require` function should not be confused with the [`require` metaparameter][relationships].
 
@@ -148,24 +148,24 @@ The `require` function should not be confused with the [`require` metaparameter]
 
 Classes can also be [declared like resources][resource_declaration], using the special "class" resource type:
 
-{% highlight ruby %}
+~~~ ruby
     # Declaring a class with the resource-like syntax
     class {'apache':
       version => '2.2.21',
     }
     # With no parameters:
     class {'base::linux':}
-{% endhighlight %}
+~~~
 
 The **parameters** used when defining the class become the **attributes** (without the `$` prefix) available when declaring the class like a resource. Parameters which have a **default value** are optional; if they are left out of the declaration, the default will be used. Parameters without defaults are mandatory.
 
 A class **can only be declared this way once:**
 
-{% highlight ruby %}
+~~~ ruby
     # WRONG:
     class {'base::linux':}
     class {'base::linux':} # Will result in a compilation error
-{% endhighlight %}
+~~~
 
 Thus, unlike with `include`, you must carefully manage where and how classes are declared when using this syntax.
 
@@ -189,11 +189,11 @@ Classes are singletons --- although a given class may have very different behavi
 
 The parameters of a class can be used as local variables inside the class's definition. These variables are not set with [normal assignment statements][variable_assignment]; instead, they are set with attributes when the class is declared:
 
-{% highlight ruby %}
+~~~ ruby
     class {'apache':
       version => '2.2.21',
     }
-{% endhighlight %}
+~~~
 
 In the example above, the value of `$version` within the class definition would be set to the attribute `2.2.21`.
 
@@ -264,7 +264,7 @@ Inheritance causes three things to happen:
 
 The attributes of any resource in the base class can be overridden with a [reference][resource_reference] to the resource you wish to override, followed by a set of curly braces containing attribute => value pairs:
 
-{% highlight ruby %}
+~~~ ruby
     class base::freebsd inherits base::unix {
       File['/etc/passwd'] {
         group => 'wheel'
@@ -273,19 +273,19 @@ The attributes of any resource in the base class can be overridden with a [refer
         group => 'wheel'
       }
     }
-{% endhighlight %}
+~~~
 
 This is identical to the syntax for [adding attributes to an existing resource][add_attribute], but in a derived class, it gains the ability to rewrite resources instead of just adding to them. Note that you can also use [multi-resource references][multi_ref] here.
 
 You can remove an attribute's previous value without setting a new one by overriding it with the special value [`undef`][undef]:
 
-{% highlight ruby %}
+~~~ ruby
     class base::freebsd inherits base::unix {
       File['/etc/passwd'] {
         group => undef,
       }
     }
-{% endhighlight %}
+~~~
 
 This causes the attribute to be unmanaged by Puppet.
 
@@ -293,7 +293,7 @@ This causes the attribute to be unmanaged by Puppet.
 
 Some resource attributes (such as the [relationship metaparameters][relationships]) can accept multiple values in an array. When overriding attributes in a derived class, you can add to the existing values instead of replacing them by using the `+>` ("plusignment") keyword instead of the standard `=>` hash rocket:
 
-{% highlight ruby %}
+~~~ ruby
     class apache {
       service {'apache':
         require => Package['httpd'],
@@ -308,7 +308,7 @@ Some resource attributes (such as the [relationship metaparameters][relationship
         # require => [ Package['httpd'], File['apache.pem'], File['httpd.conf'] ],
       }
     }
-{% endhighlight %}
+~~~
 
 
 
@@ -355,11 +355,11 @@ Some resource attributes (such as the [relationship metaparameters][relationship
 >
 > [Hiera][] works today as an add-on with Puppet 2.7 and 2.6. If you maintain site data in Hiera and write your parameterized classes to use the following idiom, you can have a complete forward-compatible emulation of Puppet 3.0's auto-lookup:
 
-{% highlight ruby %}
+~~~ ruby
     class example ( $parameter_one = hiera('example::parameter_one'), $parameter_two = hiera('example::parameter_two') ) {
       ...
     }
-{% endhighlight %}
+~~~
 
 > This allows you to use `include` on the class and automatically retrive parameter values from Hiera. When you upgrade to 3.0, Puppet will begin automatically looking up the exact same values that it was manually looking up in Puppet 2.7; you can remove the `hiera()` statements in your default values at your leisure, or leave them there for the sake of of backwards compatibility.
 >

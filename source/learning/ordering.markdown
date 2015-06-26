@@ -15,7 +15,7 @@ Disorder
 
 Let's look back on one of our manifests from the last page:
 
-{% highlight ruby %}
+~~~ ruby
     # /root/training-manifests/2.file.pp
 
     file {'/tmp/test1':
@@ -35,7 +35,7 @@ Let's look back on one of our manifests from the last page:
 
     notify {"I'm notifying you.":}
     notify {"So am I!":}
-{% endhighlight %}
+~~~
 
 When we ran this, the resources weren't synced in the order we wrote them: it went `/tmp/test1`, `/tmp/test3`, `/tmp/test2`, `So am I!`, and `I'm notifying you.`
 
@@ -58,7 +58,7 @@ Metaparameters, Resource References, and Ordering
 
 Here's a notify resource that depends on a file resource:
 
-{% highlight ruby %}
+~~~ ruby
     file {'/tmp/test1':
       ensure  => present,
       content => "Hi.",
@@ -67,7 +67,7 @@ Here's a notify resource that depends on a file resource:
     notify {'/tmp/test1 has already been synced.':
       require => File['/tmp/test1'],
     }
-{% endhighlight %}
+~~~
 
 Each resource type has its own set of attributes, but there's another set of attributes, called [metaparameters][], which can be used on any resource. (They're "meta" because they don't describe any feature of the resource that you could observe on the system after Puppet finishes; they only describe how Puppet should act.)
 
@@ -80,9 +80,9 @@ There are four metaparameters that let you arrange resources in order:
 
 All of them accept a [**resource reference**][resource_reference] (or an [array][] of them) as their value. Resource references look like this:
 
-{% highlight ruby %}
+~~~ ruby
     Type['title']
-{% endhighlight %}
+~~~
 
 (Note the square brackets and capitalized resource type!)
 
@@ -96,7 +96,7 @@ All of them accept a [**resource reference**][resource_reference] (or an [array]
 
 These two metaparameters are just different ways of writing the same relationship --- our example above could just as easily be written like this:
 
-{% highlight ruby %}
+~~~ ruby
     file {'/tmp/test1':
       ensure  => present,
       content => "Hi.",
@@ -104,7 +104,7 @@ These two metaparameters are just different ways of writing the same relationshi
     }
 
     notify {'/tmp/test1 has already been synced.':}
-{% endhighlight %}
+~~~
 
 ### Notify and Subscribe
 
@@ -114,7 +114,7 @@ The `notify` and `subscribe` metaparameters make dependency relationships the wa
 
 An example of a notification relationship:
 
-{% highlight ruby %}
+~~~ ruby
     file { '/etc/ssh/sshd_config':
       ensure => file,
       mode   => 600,
@@ -125,7 +125,7 @@ An example of a notification relationship:
       enable    => true,
       subscribe => File['/etc/ssh/sshd_config'],
     }
-{% endhighlight %}
+~~~
 
 In this example, the `sshd` service will be restarted if Puppet has to edit its config file.
 
@@ -136,7 +136,7 @@ There's one last way to declare relationships: chain resource references with th
 
 This example causes the same dependency as the similar examples above:
 
-{% highlight ruby %}
+~~~ ruby
     file {'/tmp/test1':
       ensure  => present,
       content => "Hi.",
@@ -147,13 +147,13 @@ This example causes the same dependency as the similar examples above:
     }
 
     File['/tmp/test1'] -> Notify['after']
-{% endhighlight %}
+~~~
 
 Chaining arrows can take several things as their operands: this example uses resource references, but they can also take resource declarations and [resource collectors](/puppet/latest/reference/lang_collectors.html).
 
 Since whitespace is freely adjustable in Puppet, and since chaining arrows can go between resource declarations, it's easy to make a short run of resources be synced in the order they're written --- just put chaining arrows between them:
 
-{% highlight ruby %}
+~~~ ruby
     file {'/tmp/test1':
       ensure  => present,
       content => "Hi.",
@@ -162,7 +162,7 @@ Since whitespace is freely adjustable in Puppet, and since chaining arrows can g
     notify {'after':
       message => '/tmp/test1 has already been synced.',
     }
-{% endhighlight %}
+~~~
 
 Again, this creates the same relationship we've seen previously.
 
@@ -196,7 +196,7 @@ Let's get a copy of the current sshd config file; going forward, we'll use our n
 
 Now we'll write some Puppet code to manage the file:
 
-{% highlight ruby %}
+~~~ ruby
     # /root/examples/break_ssh.pp (incomplete)
     file { '/etc/ssh/sshd_config':
       ensure => file,
@@ -205,13 +205,13 @@ Now we'll write some Puppet code to manage the file:
       # And yes, that's the first time we've used the "source" attribute. It accepts
       # absolute local paths and puppet:/// URLs, which we'll say more about later.
     }
-{% endhighlight %}
+~~~
 
 This is only half of what we need, though. It will change the config file, but those changes will only take effect when the service restarts, which could be years from now.
 
 To make the service restart whenever we make changes to the config, we should tell Puppet to manage the `sshd` service and have it subscribe to the config file:
 
-{% highlight ruby %}
+~~~ ruby
     # /root/examples/break_ssh.pp
     file { '/etc/ssh/sshd_config':
       ensure => file,
@@ -223,7 +223,7 @@ To make the service restart whenever we make changes to the config, we should te
       enable     => true,
       subscribe  => File['/etc/ssh/sshd_config'],
     }
-{% endhighlight %}
+~~~
 
 ### Manage
 
@@ -261,7 +261,7 @@ Package/File/Service
 
 The example we just saw was very close to a pattern you'll see constantly in production Puppet code, but it was missing a piece. Let's complete it:
 
-{% highlight ruby %}
+~~~ ruby
     # /root/examples/break_ssh.pp
     package { 'openssh-server':
       ensure => present,
@@ -277,7 +277,7 @@ The example we just saw was very close to a pattern you'll see constantly in pro
       enable     => true,
       subscribe  => File['/etc/ssh/sshd_config'],
     }
-{% endhighlight %}
+~~~
 
 This is the **package/file/service** pattern, one of the most useful idioms in Puppet: the package resource makes sure the software and its config file are installed, the config file depends on the package resource, and the service subscribes to changes in the config file.
 

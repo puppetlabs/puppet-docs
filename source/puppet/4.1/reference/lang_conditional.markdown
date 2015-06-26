@@ -29,7 +29,7 @@ Puppet supports "if" and "unless" statements, case statements, and selectors.
 
 An "if" statement:
 
-{% highlight ruby %}
+~~~ ruby
     if $is_virtual {
       warning('Tried to include class ntp on virtual machine; this node may be misclassified.')
     }
@@ -39,30 +39,30 @@ An "if" statement:
     else {
       include ntp
     }
-{% endhighlight %}
+~~~
 
 An "unless" statement:
 
-{% highlight ruby %}
+~~~ ruby
     unless $memorysize > 1024 {
       $maxclient = 500
     }
-{% endhighlight %}
+~~~
 
 A case statement:
 
-{% highlight ruby %}
+~~~ ruby
     case $operatingsystem {
       'Solaris':          { include role::solaris }
       'RedHat', 'CentOS': { include role::redhat  }
       /^(Debian|Ubuntu)$/:{ include role::debian  }
       default:            { include role::generic }
     }
-{% endhighlight %}
+~~~
 
 A selector:
 
-{% highlight ruby %}
+~~~ ruby
     $rootgroup = $osfamily ? {
         'Solaris'          => 'wheel',
         /(Darwin|FreeBSD)/ => 'wheel',
@@ -74,7 +74,7 @@ A selector:
       owner  => 'root',
       group  => $rootgroup,
     }
-{% endhighlight %}
+~~~
 
 "If" Statements
 -----
@@ -84,7 +84,7 @@ A selector:
 
 ### Syntax
 
-{% highlight ruby %}
+~~~ ruby
     if $is_virtual {
       # Our NTP module is not supported on virtual machines:
       warning( 'Tried to include class ntp on virtual machine; this node may be misclassified.' )
@@ -96,7 +96,7 @@ A selector:
       # Normal node, include the class.
       include ntp
     }
-{% endhighlight %}
+~~~
 
 The general form of an "if" statement is:
 
@@ -139,11 +139,11 @@ Static values may also be conditions, although doing this would be pointless.
 
 If you use the regular expression match operator in a condition, any captures from parentheses in the pattern will be available inside the associated code block as numbered variables (`$1, $2`, etc.), and the entire match will be available as `$0`:
 
-{% highlight ruby %}
+~~~ ruby
     if $hostname =~ /^www(\d+)\./ {
       notice("Welcome to web server number $1")
     }
-{% endhighlight %}
+~~~
 
 This example would capture any digits from a hostname like `www01` and `www02` and store them in the `$1` variable.
 
@@ -159,11 +159,11 @@ These are not normal variables, and have some special behaviors:
 
 ### Syntax
 
-{% highlight ruby %}
+~~~ ruby
     unless $memorysize > 1024 {
       $maxclient = 500
     }
-{% endhighlight %}
+~~~
 
 The general form of an "unless" statement is:
 
@@ -209,14 +209,14 @@ Like "if" statements, **case statements** choose one of several blocks of arbitr
 
 ### Syntax
 
-{% highlight ruby %}
+~~~ ruby
     case $operatingsystem {
       'Solaris':          { include role::solaris } # apply the solaris class
       'RedHat', 'CentOS': { include role::redhat  } # apply the redhat class
       /^(Debian|Ubuntu)$/:{ include role::debian  } # apply the debian class
       default:            { include role::generic } # apply the generic class
     }
-{% endhighlight %}
+~~~
 
 The general form of a case statement is:
 
@@ -277,12 +277,12 @@ The value of a `case` expression is the value of the last expression in the exec
 
 If you use regular expression cases, any captures from parentheses in the pattern will be available inside the associated code block as numbered variables (`$1, $2`, etc.), and the entire match will be available as `$0`:
 
-{% highlight ruby %}
+~~~ ruby
     case $hostname {
       /www(d+)/: { notice("Welcome to web server number ${1}"); include role::web }
       default:   { include role::generic }
     }
-{% endhighlight %}
+~~~
 
 This example would capture any digits from a hostname like `www01` and `www02` and store them in the `$1` variable.
 
@@ -324,7 +324,7 @@ Selectors can be used wherever a **value** is expected. This includes:
 
 Selectors resemble a cross between a case statement and the ternary operator found in other languages.
 
-{% highlight ruby %}
+~~~ ruby
     $rootgroup = $osfamily ? {
         'Solaris'          => 'wheel',
         /(Darwin|FreeBSD)/ => 'wheel',
@@ -336,7 +336,7 @@ Selectors resemble a cross between a case statement and the ternary operator fou
       owner  => 'root',
       group  => $rootgroup,
     }
-{% endhighlight %}
+~~~
 
 In the example above, the value of `$rootgroup` is determined using the value of `$osfamily`.
 
@@ -358,9 +358,9 @@ The entire selector expression is **treated as a single value.**
 
 Puppet compares the control expression to each of the cases, in the order they are listed (except for the `default` case, which always goes last). When it finds a matching case, it will treat that value as the value of the expression and ignore the remainder of the expression.
 
-If none of the cases match, Puppet will **fail compilation with an error,** so you should always have a default case.
+If none of the cases match, Puppet will **fail compilation with an error.** 
 
-See "Cases" below for details on how Puppet matches different kinds of cases.
+See "Case Matching" below for details on how Puppet matches different kinds of cases.
 
 #### Control Expressions
 
@@ -370,7 +370,7 @@ The control expression of a selector can be any expression that resolves to a va
 * [Expressions][]
 * [Functions][] that return values
 
-#### Cases
+#### Case Matching
 
 A case can be any expression that resolves to a value. (This includes literal values, variables, function calls, etc.)
 
@@ -382,12 +382,12 @@ A case can be any expression that resolves to a value. (This includes literal va
 
 If you use regular expression cases, any captures from parentheses in the pattern will be available inside the associated value as numbered variables (`$1, $2`, etc.), and the entire match will be available as `$0`:
 
-{% highlight ruby %}
+~~~ ruby
     $system = $operatingsystem ? {
       /(RedHat|Debian)/ => "our system is ${1}",
       default           => "our system is unknown",
     }
-{% endhighlight %}
+~~~
 
 These are not normal variables, and have some special behaviors:
 

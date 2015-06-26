@@ -44,7 +44,7 @@ This page describes the full syntax of resource expressions. Please make sure yo
 Full Syntax
 -----
 
-{% highlight ruby %}
+~~~ ruby
     <TYPE> {
       default:
         *           => <HASH OF ATTRIBUTE/VALUE PAIRS>,
@@ -61,7 +61,7 @@ Full Syntax
         ...
       ;
     }
-{% endhighlight %}
+~~~
 
 The full, generalized form of a resource declaration expression is:
 
@@ -117,7 +117,7 @@ Instead, every other resource in that expression will use attribute values from 
 
 This is useful because it lets you set many attributes at once (like with an array of titles), but also lets you override some of them.
 
-{% highlight ruby %}
+~~~ ruby
     file {
       default:
         ensure => file,
@@ -133,7 +133,7 @@ This is useful because it lets you set many attributes at once (like with an arr
         mode => "0644",
       ;
     }
-{% endhighlight %}
+~~~
 
 The position of the `default` body in an expression doesn't matter; resources above and below it will all use the default attributes if applicable.
 
@@ -154,7 +154,7 @@ The value of the `*` attribute must be a [hash][], where:
 
 This will set values for that resource's attributes, using every attribute and value listed in the hash.
 
-{% highlight ruby %}
+~~~ ruby
     $file_ownership = {
       "owner" => "root",
       "group" => "wheel",
@@ -165,7 +165,7 @@ This will set values for that resource's attributes, using every attribute and v
       ensure => file,
       *      => $file_ownership,
     }
-{% endhighlight %}
+~~~
 
 You cannot set any attribute more than once for a given resource; if you try, Puppet will raise a compilation error. This means:
 
@@ -183,7 +183,7 @@ Since a resource expression can accept a [resource type data type][resource_data
 
 That is, all of the following are equivalent:
 
-{% highlight ruby %}
+~~~ ruby
     file { "/tmp/foo": ensure => file, }
     File { "/tmp/foo": ensure => file, }
     Resource[File] { "/tmp/foo": ensure => file, }
@@ -193,7 +193,7 @@ That is, all of the following are equivalent:
 
     $mytypename = "file"
     Resource[$mytypename] { "/tmp/foo": ensure => file, }
-{% endhighlight %}
+~~~
 
 This lets you declare resources without knowing in advance what type of resources they'll be, which can enable interesting transformations of data into resources. For a demonstration, see the `create_resources` example below.
 
@@ -202,7 +202,7 @@ Arrays of Titles
 
 If you specify an [array][] of [strings][string] as the title of a resource body, Puppet will create multiple resources with the same set of attributes. This is useful when you have many resources that are nearly identical.
 
-{% highlight ruby %}
+~~~ ruby
     $rc_dirs = [
       '/etc/rc.d',       '/etc/rc.d/init.d','/etc/rc.d/rc0.d',
       '/etc/rc.d/rc1.d', '/etc/rc.d/rc2.d', '/etc/rc.d/rc3.d',
@@ -215,7 +215,7 @@ If you specify an [array][] of [strings][string] as the title of a resource body
       group  => 'root',
       mode   => '0755',
     }
-{% endhighlight %}
+~~~
 
 Note that if you do this, you _must_ let the [namevar][] attributes of these resources default to their titles. You can't specify an explicit value for the namevar, because it will apply to all of those resources.
 
@@ -226,7 +226,7 @@ Although you cannot declare the same resource twice, you can add attributes to a
 
 ### Amending Attributes With a Resource Reference
 
-{% highlight ruby %}
+~~~ ruby
     file {'/etc/passwd':
       ensure => file,
     }
@@ -236,7 +236,7 @@ Although you cannot declare the same resource twice, you can add attributes to a
       group => 'root',
       mode  => '0640',
     }
-{% endhighlight %}
+~~~
 
 The general form of a resource reference attribute block is:
 
@@ -251,7 +251,7 @@ You can also use the special `*` attribute to amend attributes from a hash. See 
 
 ### Amending Attributes With a Collector
 
-{% highlight ruby %}
+~~~ ruby
     class base::linux {
       file {'/etc/passwd':
         ensure => file,
@@ -266,7 +266,7 @@ You can also use the special `*` attribute to amend attributes from a hash. See 
       group => 'root',
       mode  => '0640',
     }
-{% endhighlight %}
+~~~
 
 The general form of a collector attribute block is:
 
@@ -297,7 +297,7 @@ Since classic [resource default statements][resdefaults] are subject to dynamic 
 
 To control those effects, you can define your defaults in a variable and re-use them in multiple places, by combining [per-expression defaults][inpage_defaults] and [setting attributes from a hash][inpage_splat].
 
-{% highlight ruby %}
+~~~ ruby
     class mymodule::params {
       $file_defaults = {
         mode  => "0644",
@@ -314,7 +314,7 @@ To control those effects, you can define your defaults in a variable and re-use 
         ;
       }
     }
-{% endhighlight %}
+~~~
 
 ### Implementing the `create_resources` Function
 
@@ -332,7 +332,7 @@ The `create_resources` function expects three arguments:
 
 If we assume we have those values in variables (`$type`, `$resources`, and `$defaults`):
 
-{% highlight ruby %}
+~~~ ruby
     $type = "user"
     $resources = {
       'nick' => { uid    => '1330',
@@ -344,15 +344,15 @@ If we assume we have those values in variables (`$type`, `$resources`, and `$def
                   managehome => true,
                   shell      => 'bash',
                 }
-{% endhighlight %}
+~~~
 
 ...then we can create matching resources like this:
 
-{% highlight ruby %}
+~~~ ruby
     $resources.each |String $resource, Hash $attributes| {
       Resource[$type] {
         $resource: * => $attributes;
         default:   * => $defaults;
       }
     }
-{% endhighlight %}
+~~~

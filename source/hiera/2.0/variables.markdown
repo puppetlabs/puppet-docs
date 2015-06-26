@@ -7,10 +7,10 @@ title: "Hiera 2: Interpolation Tokens, Variables, and Lookup Functions"
 [data]: ./data_sources.html
 [puppet_vars]: /puppet/latest/reference/lang_variables.html
 [qualified_var]: /puppet/latest/reference/lang_variables.html#naming
-[built_in_vars]: /puppet/latest/reference/lang_variables.html#facts-and-built-in-variables
+[built_in_vars]: /puppet/latest/reference/lang_facts_and_builtin_vars.html
 [command_line]: ./command_line.html
 [hierarchy]: ./hierarchy.html
-
+[puppet_interpolation]: /puppet/latest/reference/lang_data_string.html#conversion-of-interpolated-values
 
 When writing Hiera's [settings][config] and [data][], you can instruct it to look up values at run-time and insert them into strings. This lets you make dynamic data sources in the [hierarchy][], and avoid repeating yourself when writing data.
 
@@ -18,12 +18,12 @@ When writing Hiera's [settings][config] and [data][], you can instruct it to loo
 Interpolation Tokens
 -----
 
-**Interpolation tokens** look like `%{variable}` or `%{function("input")}`. That is, they consist of:
+**Interpolation tokens** look like `%{variable}`, `%{variable.subkey}`, or `%{function("input")}`. That is, they consist of:
 
 * A percent sign (`%`)
 * An opening curly brace (`{`)
 * One of:
-    * A variable name
+    * A variable name, optionally including any number of subkeys
     * A lookup function and its input
 * A closing curly brace (`}`)
 
@@ -31,9 +31,8 @@ If any [setting in the config file][config] or [value in a data source][data] co
 
 > **Notes:**
 >
-> * Hiera can only interpolate variables whose values are **strings.** (**Numbers** from Puppet are also passed as strings and can be used safely.) You cannot interpolate variables whose values are booleans, numbers not from Puppet, arrays, hashes, resource references, or an explicit `undef` value.
-> * Additionally, Hiera cannot interpolate an individual **element** of any array or hash, even if that element's value is a string.
-> * In YAML files, **any string containing an interpolation token must be quoted** in order to comply with the YAML spec. (Under Ruby 1.8, interpolation tokens in unquoted strings will sometimes work anyway, but this can't be relied on.)
+> * Hiera can interpolate values of any of Puppet's data types, but the value will be converted to a string. For arrays and hashes, this won't fully match [Puppet's rules for interpolating non-string values][puppet_interpolation], but it will be close.
+> * In YAML files, **any string containing an interpolation token must be quoted.**
 
 ### Interpolating Normal Variables
 
@@ -42,6 +41,14 @@ Hiera receives a set of variables whenever it is invoked, and it can insert them
     smtpserver: "mail.%{::domain}"
 
 See ["Passing Variables to Hiera"](#passing-variables-to-hiera) below for details on how Hiera receives these variables.
+
+### Interpolating Hash or Array Elements
+
+If a variable is an array or a hash, you can interpolate a single element of it by putting a dot and a subkey after the variable name, like `%{trusted.certname}`.
+
+A subkey can be an integer if the value is an array, or a key name if the value is a hash.
+
+You can also chain subkeys together to access nested data structures. For example, to interpolate the current hours of uptime you could use `%{facts.system_uptime.hours}`.
 
 ### Using Lookup Functions
 
@@ -87,7 +94,7 @@ The following two values would be identical:
 
 The `alias()` function allows you to make one key in Hiera data act as an alias for another. This is different than just interpolating another key, since that results in a string.
 
-~~~
+~~~ yaml
 original:
   - 'a'
   - 'b'
@@ -104,6 +111,7 @@ The literal lookup function allows you to escape '%{}' in Hiera data. This is us
 
 With this function, `%{literal('%')}{secret}` returns `%{secret}`, without attempting to interpolate a variable named `secret`.
 
+The only value you should pass to `literal()` is a single `%` sign.
 
 Where to Interpolate Data
 -----
@@ -112,22 +120,23 @@ Where to Interpolate Data
 
 The main use for interpolation is in the [config file][config], where you can set dynamic data sources in the [hierarchy][]:
 
-    ---
-    :hierarchy:
-      - "%{::clientcert}"
-      - "%{::custom_location}"
-      - "virtual_%{::is_virtual}"
-      - "%{::environment}"
-      - common
+~~~ yaml
+---
+:hierarchy:
+  - "nodes/%{trusted.certname}"
+  - "environment/%{server_facts.environment}"
+  - "virtual/%{facts.is_virtual}"
+  - common
+~~~
 
-In this example, every data source except the final one will vary depending on the current values of the `::clientcert, ::custom_location, ::is_virtual,` and `::environment` variables.
+In this example, every data source except the final one will vary depending on the current values of `$trusted[certname], $server_facts[environment],` and `$facts[is_virtual]`.
 
 ### In Other Settings
 
 You can also interpolate variables into other [settings][config], such as `:datadir` (in the YAML and JSON backends):
 
     :yaml:
-      :datadir: "/etc/puppet/hieradata/%{::environment}"
+      :datadir: "/etc/puppet/hieradata/%{server_facts.environment}"
 
 This example would let you use completely separate data directories for your production and development environments.
 
@@ -135,23 +144,27 @@ This example would let you use completely separate data directories for your pro
 
 Within a data source, you can interpolate values into any string, whether it's a standalone value or part of a hash or array value. This can be useful for values that should be different for every node, but which differ **predictably:**
 
-    # /var/lib/hiera/common.yaml
-    ---
-    smtpserver: "mail.%{::domain}"
+~~~ yaml
+# /etc/puppetlabs/code/hieradata/common.yaml
+---
+smtpserver: "mail.%{::domain}"
+~~~
 
 In this example, instead of creating a `%{::domain}` hierarchy level and a data source for each domain, you can get a similar result with one line in the `common` data source.
 
-**In Hiera 1.3 and later,** you can also interpolate values into hash keys:
+You can also interpolate values into hash keys:
 
-    # /var/lib/hiera/common.yaml
-    ---
-    bacula::jobs:
-      "%{::hostname}_Cyrus":
-        fileset: MailServer
-        bacula_schedule: 'CycleStandard'
-      "%{::hostname}_LDAP":
-        fileset: LDAP
-        bacula_schedule: 'CycleStandard'
+~~~ yaml
+# /etc/puppetlabs/code/hieradata/common.yaml
+---
+bacula::jobs:
+  "%{::hostname}_Cyrus":
+    fileset: MailServer
+    bacula_schedule: 'CycleStandard'
+  "%{::hostname}_LDAP":
+    fileset: LDAP
+    bacula_schedule: 'CycleStandard'
+~~~
 
 This generally only useful when building something complicated with [the `create_resources` function](/references/latest/function.html#createresources), as it lets you interpolate values into resource titles.
 
@@ -159,13 +172,15 @@ This generally only useful when building something complicated with [the `create
 
 **Note:** This _only works for keys that are part of a value;_ that is, you can't use interpolation to dynamically create new Hiera lookup keys at the root of a data source.
 
-    # /var/lib/hiera/common.yaml
-    ---
-    # This isn't legal:
-    "%{::hostname}_bacula_jobs":
-      "%{::hostname}_Cyrus":
-        fileset: MailServer
-        bacula_schedule: 'CycleStandard'
+~~~ yaml
+# /etc/puppetlabs/code/hieradata/common.yaml
+---
+# This isn't legal:
+"%{::hostname}_bacula_jobs":
+  "%{::hostname}_Cyrus":
+    fileset: MailServer
+    bacula_schedule: 'CycleStandard'
+~~~
 
 Passing Variables to Hiera
 -----
@@ -194,6 +209,6 @@ When called from the command line, Hiera defaults to having no variables availab
 
 When calling Hiera from Ruby code, you can pass in a complete "scope" of variables as the third argument to the `#lookup` method. The complete signature of `#lookup` is:
 
-{% highlight ruby %}
+~~~ ruby
     hiera_object.lookup(key, default, scope, order_override=nil, resolution_type=:priority)
-{% endhighlight %}
+~~~

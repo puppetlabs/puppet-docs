@@ -15,7 +15,7 @@ Containment
 
 [Classes][] and [defined type][definedtype] instances **contain** the resources they declare. This means that if any resource or class forms a [relationship][] with the container, it will form the same relationship with every resource inside the container.
 
-{% highlight ruby %}
+~~~ ruby
     class ntp {
       file {'/etc/ntp.conf':
         ...
@@ -34,7 +34,7 @@ Containment
     exec {'/usr/local/bin/update_custom_timestamps.sh':
       require => Class['ntp'],
     }
-{% endhighlight %}
+~~~
 
 In this example, `Exec['/usr/local/bin/update_custom_timestamps.sh']` would happen after _every_ resource in the ntp class, including the package, the file, and the service.
 
@@ -45,7 +45,7 @@ Known Issues
 
 **Classes do not get contained by the class or defined type that declares them.** This is a known design problem, and can be tracked at [issue #8040](http://projects.puppetlabs.com/issues/8040).
 
-{% highlight ruby %}
+~~~ ruby
     class ntp {
       include ntp::conf_file
 
@@ -56,7 +56,7 @@ Known Issues
         ...
       }
     }
-{% endhighlight %}
+~~~
 
 In the above example, a resource with a `require => Class['ntp']` metaparameter would be applied after both `Package['ntp']` and `Service['ntp']`, but **would not necessarily** happen after any of the resources contained by the `ntp::conf_file` class; those resources would "float off" outside the NTP class.
 
@@ -81,7 +81,7 @@ To use the anchor pattern:
 
 In an example NTP module where service configuration is moved out into its own class:
 
-{% highlight ruby %}
+~~~ ruby
     class ntp {
       file { '/etc/ntp.conf':
         ...
@@ -99,7 +99,7 @@ In an example NTP module where service configuration is moved out into its own c
     exec { '/usr/local/bin/update_custom_timestamps.sh':
       require => Class['ntp'],
     }
-{% endhighlight %}
+~~~
 
 In this case, the `ntp::service` class still isn't technically contained, but any resource can safely form a relationship with the `ntp` class and be assured that the relationship will propagate into all relevant resources.
 

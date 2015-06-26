@@ -4,14 +4,18 @@ title: "Hiera 2: Using Hiera With Puppet"
 ---
 
 [hiera_config]: /references/latest/configuration.html#hieraconfig
-[confdir]: /references/latest/configuration.html#confdir
+[codedir]: /references/latest/configuration.html#codedir
 [datadir]: ./configuring.html#datadir
 [hiera_yaml]: ./configuring.html
 [variable_tokens]: ./variables.html
 [hierarchy]: ./hierarchy.html
 [data_sources]: data_sources.html
 [custom_facts]: /facter/latest/custom_facts.html
-[facts]: /puppet/latest/reference/lang_variables.html#facts-and-built-in-variables
+[facts]: /puppet/latest/reference/lang_facts_and_builtin_vars.html
+[classic_facts]: /puppet/latest/reference/lang_facts_and_builtin_vars.html#classic-factname-facts
+[facts_hash]: /puppet/latest/reference/lang_facts_and_builtin_vars.html#the-factsfactname-hash
+[trusted_facts]: /puppet/latest/reference/lang_facts_and_builtin_vars.html#trusted-facts
+[server_facts]: /puppet/latest/reference/lang_facts_and_builtin_vars.html#serverfacts-variable
 [absolute_scope]: /puppet/latest/reference/lang_variables.html#accessing-out-of-scope-variables
 [classes]: /puppet/latest/reference/lang_classes.html
 [parameters]: /puppet/latest/reference/lang_classes.html#class-parameters-and-variables
@@ -40,8 +44,8 @@ Enabling and Configuring Hiera for Puppet
 
 Puppet 4 and later ships with Hiera support already enabled. You don't need to do anything extra. Hiera data should live on the Puppet master(s).
 
-* Puppet expects to find the [hiera.yaml file][hiera_yaml] at [`$confdir`][confdir]`/hiera.yaml` (usually `/etc/puppet/hiera.yaml`); you can change this with the [`hiera_config`][hiera_config] setting.
-* Remember to set the [`:datadir`][datadir] setting for any backends you are using. It's generally best to use something within the `/etc/puppet/` directory, so that the data is in the first place your fellow admins expect it.
+* Puppet expects to find the [hiera.yaml file][hiera_yaml] at `/etc/puppetlabs/code/hiera.yaml` on \*nix systems and `C:\ProgramData\PuppetLabs\code` on Windows. You can change this with the [`hiera_config`][hiera_config] setting.
+* Remember to set the [`:datadir`][datadir] setting for any backends you are using. It's generally best to use something within the [`$codedir`][codedir], so that the data is in the first place your fellow admins expect it.
 
 Puppet Variables Passed to Hiera
 -----
@@ -66,12 +70,14 @@ Note that these variables are effectively local scope, as they are pseudo-variab
 
 There are two practices we always recommend when using Puppet's variables in Hiera:
 
-- **Do not use local Puppet variables** in Hiera's hierarchy or data sources. Only use [**facts**][facts] and **ENC-set top-scope variables.**
+- Except for the special pseudo-variables listed above, **do not use local Puppet variables** in Hiera's hierarchy or data sources. Only use [facts][] and top-scope variables set by a node classifier.
 
     Using local variables can make your hierarchy incredibly difficult to debug.
-- **Use [absolute top-scope notation][absolute_scope]** (i.e., `%{::clientcert}` instead of `%{clientcert}`) in Hiera's config files to avoid accidentally accessing a local variable instead of a top-scope one.
+- **Use [absolute top-scope notation][absolute_scope]** (i.e., `%{::clientcert}` instead of `%{clientcert}`) to avoid accidentally accessing a local variable instead of a top-scope one.
 
-    Note that this is different from Puppet manifests, where the `$::fact` idiom is [never necessary.](/puppet/latest/reference/lang_facts_and_builtin_vars.html#historical-note-about-) In Puppet, re-using the name of a fact variable in a local scope will only have local consequences. In Hiera, a re-used fact name can have more distant effects, so you still need to defend against it.
+    Although this idiom [isn't usually necessary in Puppet manifests,](/puppet/latest/reference/lang_facts_and_builtin_vars.html#historical-note-about-) the extra abstraction in Hiera means a re-used fact name can have more distant effects, so you still need to defend against it.
+
+    **Note:** This only applies to [classic `$fact_name` facts][classic_facts]. The [`$facts`][facts_hash], [`$trusted`][trusted_facts], and [`$server_facts`][server_facts] variables are protected, so it's safe to skip the `::` prefix.
 
 Automatic Parameter Lookup
 -----
@@ -80,7 +86,7 @@ Puppet automatically retrieves class parameters from Hiera, using lookup keys li
 
 Puppet [classes][] can optionally include [parameters][] in their definition. This lets the class ask for data to be passed in at the time that it's declared, and it can use that data as normal variables throughout its definition.
 
-{% highlight ruby %}
+~~~ ruby
     # In this example, $parameter's value gets set when `myclass` is eventually declared.
     # Class definition:
     class myclass ($parameter_one = "default text") {
@@ -89,7 +95,7 @@ Puppet [classes][] can optionally include [parameters][] in their definition. Th
         content => $parameter_one,
       }
     }
-{% endhighlight %}
+~~~
 
 Parameters can be set several ways, and Puppet tries each of these ways in order when the class is [declared][class_declare] or [assigned by an ENC][enc_assign]:
 
@@ -100,7 +106,7 @@ Parameters can be set several ways, and Puppet tries each of these ways in order
 
 Step 2 interests us most here. Because Puppet always looks for parameters in Hiera, you can safely declare **any** class with `include`, even classes with parameters. (This wasn't the case in earlier Puppet versions.) Using the example above, you could have something like the following in your Hiera data:
 
-{% highlight yaml %}
+~~~ yaml
     # /etc/puppet/hieradata/web01.example.com.yaml
     ---
     myclass::parameter_one: "This node is special, so we're overriding the common configuration that the other nodes use."
@@ -108,7 +114,7 @@ Step 2 interests us most here. Because Puppet always looks for parameters in Hie
     # /etc/puppet/hieradata/common.yaml
     ---
     myclass::parameter_one: "This node can use the standard configuration."
-{% endhighlight %}
+~~~
 
 You could then say `include myclass` for every node, and each node would get its own appropriate data for the class.
 
@@ -136,14 +142,9 @@ Hiera Lookup Functions
 
 Puppet has three lookup functions for retrieving data from Hiera. All of these functions return a single value (though note that this value may be an arbitrarily complex nested data structure), and can be used anywhere that Puppet accepts values of that type. (Resource attributes, resource titles, the values of variables, etc.)
 
-`hiera`
-: Standard priority lookup. Gets the most specific value for a given key. This can retrieve values of any data type (strings, arrays, hashes) from Hiera.
-
-`hiera_array`
-: Uses an [array merge lookup][array_lookup]. Gets all of the string or array values in the hierarchy for a given key, then flattens them into a single array of unique values.
-
-`hiera_hash`
-: Uses a [hash merge lookup][hash_lookup]. Expects every value in the hierarchy for a given key to be a hash, and merges the top-level keys in each hash into a single hash. Note that this does not do a deep merge in the case of nested structures unless you've installed the `deep merge` gem and [configured deep merging][config_deep_merge].
+- **`hiera`** --- Standard priority lookup. Gets the most specific value for a given key. This can retrieve values of any data type (strings, arrays, hashes) from Hiera.
+- **`hiera_array`** --- Uses an [array merge lookup][array_lookup]. Gets all of the string or array values in the hierarchy for a given key, then flattens them into a single array of unique values.
+- **`hiera_hash`** --- Uses a [hash merge lookup][hash_lookup]. Expects every value in the hierarchy for a given key to be a hash, and merges the top-level keys in each hash into a single hash. Note that this does not do a deep merge in the case of nested structures unless you've installed the `deep merge` gem and [configured deep merging][config_deep_merge].
 
 Each of these functions takes three arguments. In order:
 
@@ -152,13 +153,12 @@ Each of these functions takes three arguments. In order:
 3. Override (optional): the name of an arbitrary [hierarchy level][hierarchy] to insert at the top of the hierarchy. This lets you use a temporary modified hierarchy for a single lookup. (E.g., instead of a hierarchy of `$clientcert -> $osfamily -> common`, a lookup would use `specialvalues -> $clientcert -> $osfamily -> common`; you would need to be sure to have `specialvalues.yaml` or whatever in your Hiera data.)
 
 
-### Using the Lookup Functions From Templates
+### Don't Use the Lookup Functions from Templates
 
-In general, don't use the Hiera functions from templates. That pattern is too obscure, and hurts your code's maintainability --- if a co-author of your code needs to change the Hiera invocations and is searching `.pp` files for them, they might miss the extra invocations in the template. Even if only one person is maintaining this code, they're likely to make similar mistakes after a few months have passed.
+It's possible to use the Hiera functions from templates, but don't do it. That pattern is too obscure, and hurts your code's maintainability --- if a co-author of your code needs to change the Hiera invocations and is searching `.pp` files for them, they might miss the extra invocations in the template. Even if only one person is maintaining this code, they're likely to make similar mistakes after a few months have passed.
 
 It's much better to use the lookup functions in a Puppet manifest, assign their value to a local variable, and then reference the variable from the template. This keeps the function calls isolated in one layer of your code, where they'll be easy to find if you need to modify them later or document them for other users.
 
-Nevertheless, you can, of course, [use the `scope.function_` prefix][template_functions] to call any of the Hiera functions from a template.
 
 Interacting With Structured Data from Hiera
 -----
@@ -168,7 +168,7 @@ The lookup functions and the automatic parameter lookup return values of top-lev
 
 Example:
 
-{% highlight yaml %}
+~~~ yaml
     # /etc/puppet/hieradata/appservers.yaml
     ---
     proxies:
@@ -176,21 +176,21 @@ Example:
         ipaddress: 192.168.22.21
       - hostname: lb02.example.com
         ipaddress: 192.168.22.28
-{% endhighlight %}
+~~~
 
 
 
-{% highlight ruby %}
+~~~ ruby
     # Get the structured data:
     $proxies = hiera('proxies')
     # Index into the structure:
     $use_ip = $proxies[1]['ipaddress'] # will be 192.168.22.28
-{% endhighlight %}
+~~~
 
-{% highlight ruby %}
+~~~ ruby
     # get only what you need from Hiera
-    $use_ip = hiera( 'proxies.1.ipaddress' ) 
-{% endhighlight %}
+    $use_ip = hiera( 'proxies.1.ipaddress' )
+~~~
 
 
 Assigning Classes to Nodes With Hiera (`hiera_include`)
@@ -210,16 +210,16 @@ Example:
 
 Assuming a hierarchy of:
 
-{% highlight yaml %}
+~~~ yaml
     :hierarchy:
       - "%{::clientcert}"
       - "%{::osfamily}"
       - common
-{% endhighlight %}
+~~~
 
 ...and given Hiera data like the following:
 
-{% highlight yaml %}
+~~~ yaml
     # common.yaml
     ---
     classes:
@@ -238,7 +238,7 @@ Assuming a hierarchy of:
     classes:
       - apache
       - apache::passenger
-{% endhighlight %}
+~~~
 
 ...the Ubuntu node `web01.example.com` would get all of the following classes:
 

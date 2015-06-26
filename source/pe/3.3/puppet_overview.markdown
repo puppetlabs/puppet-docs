@@ -88,7 +88,7 @@ On \*nix nodes, the `pe-puppet` daemon process can sometimes use more memory tha
 
 You can [turn off the daemon][stop] and still get scheduled runs by creating a cron task for puppet agent on your \*nix nodes. An example snippet of Puppet code, which would create this task on non-Windows nodes:
 
-{% highlight ruby %}
+~~~ ruby
     # Place in /etc/puppetlabs/puppet/manifests/site.pp on the puppet master node, outside any node statement.
     # Run puppet agent hourly (with splay) on non-Windows nodes:
     if $osfamily != windows {
@@ -99,7 +99,7 @@ You can [turn off the daemon][stop] and still get scheduled runs by creating a c
         minute  => 0,
       }
     }
-{% endhighlight %}
+~~~
 
 Remember, after creating this task you should [turn off the `pe-puppet` service][stop] on \*nix nodes.
 

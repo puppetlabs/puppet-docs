@@ -110,11 +110,11 @@ We had to treat that change as a regression, so we're currently defaulting `allo
 
 If you don't have any resources with ambiguous virtual/non-virtual package names, you can enable the Puppet 4 behavior today by setting a resource default in [the main manifest][]:
 
-{% highlight ruby %}
+~~~ ruby
     Package {
       allow_virtual => true,
     }
-{% endhighlight %}
+~~~
 
 - [PUP-2182: Package resource not working as expected in 3.5.0](https://tickets.puppetlabs.com/browse/PUP-2182)
 

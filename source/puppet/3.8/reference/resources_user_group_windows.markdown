@@ -21,11 +21,17 @@ You can't write a Puppet resource that describes a **domain** user or group. How
 
 ### Group Membership
 
-Puppet can use [the `members` attribute][members] of the [`group`][group] type to manage the members of a group.
+Windows can manage group membership by specifying the groups to which a user belongs, or specifying the members of a group. Puppet supports both cases.
 
-A local group can include both local and domain users, so while you can't use Puppet to _manage_ domain users, you can use it to manage their local groups.
+If Puppet is managing a local [`user`][user], you can list the [`groups`][groups] that the user belongs to. Each group can be a local group account, e.g. `Administrators`, or a domain group account.
 
-Groups can also include other groups as members.
+If Puppet is managing a local [`group`][group], you can list the [`members`][members] that belong to the group. Each member can be a local account, e.g. `Administrator`, or a domain account, where each account can be a user or group account.
+
+When managing a `user`, Puppet will make sure the user belongs to all of the `groups` listed in the manifest. If the user belongs to a group not specified in the manifest, Puppet will not remove the user from the group.
+
+If you want to ensure a `user` belongs to only the `groups` listed in the manifest, and no more, you can specify the [`auth_membership`][auth_membership_user] attribute for the `user`. If set to `inclusive`, Puppet will remove the user from any group not listed in the manifest.
+
+Similarly, when managing a `group`, Puppet will make sure all of the `members` listed in the manifest are added to the group. Existing members of the group not listed in the manifest will be ignored. If you want to ensure a `group` contains only the `members` listed in the manifest, and no more, you can specify the [`auth_membership`][auth_membership_group] attribute for the `group`. If set to `true`, the default in Puppet 3.8, Puppet will remove existing members of the group that are not listed in the manifest.
 
 [members]: /references/3.8.latest/type.html#group-attribute-members
 

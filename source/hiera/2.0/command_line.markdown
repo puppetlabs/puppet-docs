@@ -37,7 +37,7 @@ Hiera is sensitive to the position of its command-line arguments:
 Hiera accepts the following command line options:
 
 Argument                              | Use
---------------------------------------|------------------------------------------------------------------
+--------------------------------------|----------------------------------------------------
 `-V`, `--version`                     | Version information
 `-c`, `--config FILE`                 | Specify an alternate configuration file location
 `-d`, `--debug`                       | Show debugging information
@@ -46,7 +46,6 @@ Argument                              | Use
 `-j`, `--json FILE`                   | JSON file to load scope from
 `-y`, `--yaml FILE`                   | YAML file to load scope from
 `-m`, `--mcollective IDENTITY`        | Use facts from a node (via mcollective) as scope
-`-i`, `--inventory_service IDENTITY`  | Use facts from a node (via Puppet's inventory service) as scope
 
 
 
@@ -59,7 +58,6 @@ You'll typically run the Hiera command line tool on your Puppet master node, whe
 * Included on the command line as variables (e.g., `::operatingsystem=Debian`)
 * Given as a [YAML or JSON scope file](#json-and-yaml-scopes)
 * Retrieved on the fly from [MCollective](#mcollective) data
-* Looked up from [Puppet's inventory service](#inventory-service)
 
 Descriptions of these choices are below.
 
@@ -85,12 +83,12 @@ The following YAML and JSON examples provide equivalent results:
 
 `$ hiera ntp_server -y facts.yaml`
 
-{% highlight yaml %}
+~~~ yaml
 # facts.yaml
 ---
-osfamily: Debian
-timezone: CST
-{% endhighlight %}
+"::osfamily": Debian
+"::timezone": CST
+~~~
 
 
 
@@ -98,13 +96,13 @@ timezone: CST
 
 `$ hiera ntp_server -j facts.json`
 
-{% highlight json %}
+~~~ javascript
 // facts.json
 {
-  "osfamily" : "Debian",
-  "timezone" : "CST"
+  "::osfamily" : "Debian",
+  "::timezone" : "CST"
 }
-{% endhighlight %}
+~~~
 
 
 
@@ -127,34 +125,6 @@ In Puppet Enterprise 2.x or 3.x, you can do Hiera lookups with MCollective by sw
 
 Make sure that the `peadmin` user is allowed to read the Hiera config and data files.
 
-### Inventory Service
-
-If your Puppet master is connected to a PuppetDB server (or has the older ActiveRecord inventory service enabled), you can get Hiera lookups using the actual facts reported by an actual Puppet agent. This goes through Puppet's [inventory service](/guides/inventory_service.html) API.
-
-To do this, use the `-i` or `--inventory_service` flag and give it the name of a Puppet node as an argument:
-
-    $ hiera ntp_server -i balancer01.example.com
-
-
-#### Allowing Lookups on the Puppet Master
-
-[authconf]: /guides/rest_auth_conf.html
-
-Before you can do Hiera lookups via the inventory, you'll need to enable access in [the Puppet master's `auth.conf` file.][authconf] You must ensure that the node you will be doing lookups from can call the `find` method on the `/facts` path. This will probably look something like this:
-
-    path  /facts
-    method find, search
-    auth yes
-    allow pe-internal-dashboard, puppet.example.com
-
-When choosing the name and certificate to use when contacting the Puppet master, Hiera uses the existing puppet.conf and agent certificate on the node. If you are running as root, it will impersonate the agent node you are running on; if you are running as another user, it will use configuration and credentials in `~/.puppet/` instead.
-
-To run as a different user, you may need to request a separate certificate, since the master won't sign two certificates with the same certname. To do this:
-
-1. Create a `~/.puppet/puppet.conf` file and set the `certname` setting to something unique.
-2. Run `puppet agent --test` to request a certificate.
-3. On the puppet master, sign the certificate.
-4. Run `puppet agent --test` again.
 
 ## Lookup Types
 

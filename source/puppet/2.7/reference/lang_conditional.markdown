@@ -27,7 +27,7 @@ Puppet 2.7 supports "if" statements, case statements, and selectors.
 
 An "if" statement:
 
-{% highlight ruby %}
+~~~ ruby
     if $is_virtual == 'true' {
       warning('Tried to include class ntp on virtual machine; this node may be misclassified.')
     }
@@ -37,22 +37,22 @@ An "if" statement:
     else {
       include ntp
     }
-{% endhighlight %}
+~~~
 
 A case statement:
 
-{% highlight ruby %}
+~~~ ruby
     case $operatingsystem {
       'Solaris':          { include role::solaris }
       'RedHat', 'CentOS': { include role::redhat  }
       /^(Debian|Ubuntu)$/:{ include role::debian  }
       default:            { include role::generic }
     }
-{% endhighlight %}
+~~~
 
 A selector:
 
-{% highlight ruby %}
+~~~ ruby
     $rootgroup = $osfamily ? {
         'Solaris'          => 'wheel',
         /(Darwin|FreeBSD)/ => 'wheel',
@@ -64,7 +64,7 @@ A selector:
       owner  => 'root',
       group  => $rootgroup,
     }
-{% endhighlight %}
+~~~
 
 "If" Statements
 -----
@@ -74,7 +74,7 @@ A selector:
 
 ### Syntax
 
-{% highlight ruby %}
+~~~ ruby
     if $is_virtual == 'true' {
       # Our NTP module is not supported on virtual machines:
       warning( 'Tried to include class ntp on virtual machine; this node may be misclassified.' )
@@ -86,7 +86,7 @@ A selector:
       # Normal node, include the class.
       include ntp
     }
-{% endhighlight %}
+~~~
 
 The general form of an "if" statement is:
 
@@ -120,11 +120,11 @@ Static values may also be conditions, although doing this would be pointless.
 
 If you use the regular expression match operator in a condition, any captures from parentheses in the pattern will be available inside the associated code block as numbered variables (`$1, $2`, etc.), and the entire match will be available as `$0`:
 
-{% highlight ruby %}
+~~~ ruby
     if $hostname =~ /^www(\d+)\./ {
       notice("Welcome to web server number $1")
     }
-{% endhighlight %}
+~~~
 
 This example would capture any digits from a hostname like `www01` and `www02` and store them in the `$1` variable.
 
@@ -140,14 +140,14 @@ Like "if" statements, **case statements** choose one of several blocks of arbitr
 
 ### Syntax
 
-{% highlight ruby %}
+~~~ ruby
     case $operatingsystem {
       'Solaris':          { include role::solaris } # apply the solaris class
       'RedHat', 'CentOS': { include role::redhat  } # apply the redhat class
       /^(Debian|Ubuntu)$/:{ include role::debian  } # apply the debian class
       default:            { include role::generic } # apply the generic class
     }
-{% endhighlight %}
+~~~
 
 The general form of a case statement is:
 
@@ -203,11 +203,11 @@ Cases are compared in the order that they are written in the manifest --- if mor
 
 If you use regular expression cases, any captures from parentheses in the pattern will be available inside the associated code block as numbered variables (`$1, $2`, etc.), and the entire match will be available as `$0`:
 
-{% highlight ruby %}
+~~~ ruby
     if $hostname =~ /^www(\d+)\./ {
       notice("Welcome to web server number $1")
     }
-{% endhighlight %}
+~~~
 
 This example would capture any digits from a hostname like `www01` and `www02` and store them in the `$1` variable.
 
@@ -254,7 +254,7 @@ Selectors are not legal in:
 
 Selectors resemble a cross between a case statement and the ternary operator found in other languages.
 
-{% highlight ruby %}
+~~~ ruby
     $rootgroup = $osfamily ? {
         'Solaris'          => 'wheel',
         /(Darwin|FreeBSD)/ => 'wheel',
@@ -266,7 +266,7 @@ Selectors resemble a cross between a case statement and the ternary operator fou
       owner  => 'root',
       group  => $rootgroup,
     }
-{% endhighlight %}
+~~~
 
 In the example above, the value of `$rootgroup` is determined using the value of `$osfamily`.
 
@@ -320,12 +320,12 @@ Cases are compared in the order that they are written in the manifest; thus, the
 
 If you use regular expression cases, any captures from parentheses in the pattern will be available inside the associated value as numbered variables (`$1, $2`, etc.), and the entire match will be available as `$0`:
 
-{% highlight ruby %}
+~~~ ruby
     $system = $operatingsystem ? {
       /(RedHat|Debian)/ => "our system is $1",
       default           => "our system is unknown",
     }
-{% endhighlight %}
+~~~
 
 These are not normal variables, and have some special behaviors:
 

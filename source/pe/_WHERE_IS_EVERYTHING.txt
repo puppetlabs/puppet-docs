@@ -1,0 +1,14 @@
+Newer versions of the Puppet Enterprise docs (3.7 and up) actually live in the
+pe-docs-private GitHub repository
+(https://github.com/puppetlabs/pe-docs-private), in a directory called `source`.
+When we build the website, we add docs for these versions by cloning the repo,
+creating working dirs for each Puppet Enterprise version, and symlinking their
+source directories into place.
+
+THIS REPOSITORY IS PRIVATE TO PUPPET LABS STAFF. To request changes to the
+Puppet Enterprise docs, please file a documentation ticket at
+https://tickets.puppetlabs.com/browse/DOCUMENT/
+
+Puppet Labs staff: To see which branch you need to update to affect a version of
+the Puppet Enterprise docs, see the `externalsources` section of the
+source/_config.yml file.
