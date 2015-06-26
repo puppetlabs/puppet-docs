@@ -62,9 +62,6 @@ require 'pp'
   'pe-passenger'
 ],
 
-'MySQL' => [
-],
-
 'OpenSSL' => [
   'pe-openssl',
   'pup-openssl'
