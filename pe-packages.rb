@@ -102,10 +102,13 @@ versions_of_interest_new = [
 
 versions_of_interest = versions_of_interest_new
 
+Dir.chdir(File.expand_path('~/Documents/misc_code/enterprise-dist')) do
+  system('git fetch upstream')
+end
+
 # this is like { platformname: { packagename: { version: version, md5: md5 }, packagename: {...} }, platformname: {......} }
 def load_package_json(version)
   Dir.chdir(File.expand_path('~/Documents/misc_code/enterprise-dist')) do
-    system('git fetch upstream')
     system("git checkout #{version}")
     JSON.load( File.read( './packages.json' ) )
   end
