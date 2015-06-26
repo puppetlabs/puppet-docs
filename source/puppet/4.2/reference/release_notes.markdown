@@ -26,6 +26,8 @@ Released June 24, 2015.
 
 Shipped in puppet-agent version: 1.2.0.
 
+> **Warning:** puppet-agent 1.2.0 includes Facter 3.0.0. After it shipped, we discovered a regression involving external facts. [See below for details.][inpage_external_regression] We're shipping a fix very soon; if you use manually-installed external facts, don't install puppet-agent 1.2.0; wait and upgrade to puppet-agent 1.2.1.
+
 4.2.0 is a feature and bug fix release in the Puppet 4 series. There aren't any particular keystone features; just a solid grab-bag of nice smaller improvements.
 
 Also notable in this release: we're [officially deprecating Windows Server 2003 and 2003 R2][win2003dep], which we will stop supporting in Puppet 5.
@@ -33,6 +35,22 @@ Also notable in this release: we're [officially deprecating Windows Server 2003 
 * [All tickets fixed in 4.2.0](https://tickets.puppetlabs.com/issues/?filter=14558)
 * [Issues introduced in 4.2.0](https://tickets.puppetlabs.com/issues/?filter=14559)
 
+### REGRESSION / BREAK: Can't Find Manually-Installed External Facts
+
+[inpage_external_regression]: #regression--break-cant-find-manually-installed-external-facts
+
+[external facts]: ./custom_facts.html#external-facts
+
+Facter 3.0.0 can't load _manually-installed_ [external facts][] from any of the following directories:
+
+* `/etc/puppetlabs/facter/facts.d/`
+* `/etc/facter/facts.d/`
+* `C:\ProgramData\PuppetLabs\facter\facts.d\`
+* `~/.facter/facts.d/`
+
+This is an unintended regression from Facter 2.x, and we are fixing it immediately in Facter 3.0.1.
+
+Pluginsynced external facts (that is, facts synced from your Puppet modules) still work fine, but it's common to make your provisioning system set some external facts when creating a new machine, as a way to assign persistent metadata to that node. If your site does this, Facter 3.0.0 will cause breakages. You should wait to upgrade, and downgrade to the `puppet-agent` 1.1.1 package if you already upgraded.
 
 ### DEPRECATED: Windows 2003
 
