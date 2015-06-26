@@ -1,74 +1,65 @@
 ---
 layout: default
 title: Puppet Documentation Index
+toc: false
 ---
 
-This is the documentation for Puppet, the industry-leading configuration management toolkit. Most of the content here applies equally to Puppet Enterprise and open source releases of Puppet.
+This is the documentation for Puppet, as well as several related tools and applications.
 
-Drive-Thru
+Most of the content here applies equally to Puppet Enterprise and open source releases of Puppet, but make sure you're using the right docs version for your Puppet Enterprise version. If you get lost, check the version note in red text at the top of each page.
+
+Main Docs
+-----
+
+Practically speaking, Puppet is a collection of several projects. Here's the documentation for all of the major components that make up a Puppet deployment:
+
+Component     | Latest                             | Other versions
+--------------|------------------------------------|--------------------------------------------
+Puppet        | [Latest](/puppet/latest/reference) | [Other versions](#puppet-reference-manuals)
+Puppet Server | [Latest](/puppetserver/latest)     | [Other versions](/puppetserver)
+Facter        | [Latest](/facter/latest)           | [Other versions](/facter)
+Hiera         | [Latest](/hiera/latest)            | [Other versions](/hiera)
+PuppetDB      | [Latest](/puppetdb/latest)         | [Other versions](/puppetdb)
+
+
+* * *
+
+Cheat Sheets and Glossary
 ----------
 
 Small documents for getting help fast.
 
-<a href="/puppet_core_types_cheatsheet.pdf"><img src="/images/puppet_core_types_cheatsheet_thumbnail.png" alt="Thumbnail preview of the core types cheat sheet."></a> <a href="/module_cheat_sheet.pdf"><img src="/images/module_cheat_sheet_thumbnail.png" alt="Thumbnail preview of the module cheat sheet."></a>
-
-* [Core Types Cheat Sheet](/puppet_core_types_cheatsheet.pdf) --- A double-sided reference to the most common resource types. ([HTML version](http://projects.puppetlabs.com/projects/puppet/wiki/Core_Types_Cheat_Sheet/))
+* [Core Types Cheat Sheet](/puppet_core_types_cheatsheet.pdf) --- A double-sided reference to the most common resource types.
 * [Module Cheat Sheet](/module_cheat_sheet.pdf) --- A one-page reference to Puppet module layout, covering classes and defined types, files, templates, and plugins.
 * [Glossary](/references/glossary.html)
 
 * * *
 
-Reference Shelf
----------------
+Puppet Reference Manuals
+-----
 
-### [Puppet 4.1 Reference Manual](/puppet/4.1/reference)
+A concise reference to Puppet's usage and internals. Use the left sidebar of any reference manual page to navigate between pages.
 
-A concise reference to Puppet 4.1's usage and internals. Use the left sidebar of any reference manual page to navigate between pages.
+### Current Versions
 
-- [Overview](/puppet/4.1/reference)
+- [Puppet 4.2](/puppet/4.2/reference)
+- [Puppet 3.8](/puppet/3.8/reference) is included with Puppet Enterprise 3.8.
 
+### Older Versions
 
-### [Puppet 3.8 Reference Manual](/puppet/3.8/reference)
+- [Puppet 4.1](/puppet/4.1/reference)
+* [Puppet 4.0](/puppet/4.0/reference)
+* [Puppet 3.7](/puppet/3.7/reference)
+* [Puppet 3.6](/puppet/3.6/reference)
+* [Puppet 3.5](/puppet/3.5/reference)
+* [Puppet 3.0 through 3.4](/puppet/3/reference)
+* [Puppet 2.7](/puppet/2.7/reference)
 
-A concise reference to Puppet 3.8's usage and internals. Use the left sidebar of any reference manual page to navigate between pages.
-
-- [Overview](/puppet/3.8/reference)
-- [Learn about the Future Parser](/puppet/3.8/reference/experiments_future.html)
-
-### Other Puppet Reference Manuals
-
-* [Puppet 4.0 Reference Manual](/puppet/4.0/reference)
-* [Puppet 3.7 Reference Manual](/puppet/3.7/reference)
-* [Puppet 3.6 Reference Manual](/puppet/3.6/reference)
-* [Puppet 3.5 Reference Manual](/puppet/3.5/reference)
-* [Puppet 3.0–3.4 Reference Manual](/puppet/3/reference)
-* [Puppet 2.7 Reference Manual](/puppet/2.7/reference)
-
-### Puppet Server Documentation
-
-Puppet Server is the next-generation application for managing Puppet agents.
-
-You can browse Puppet Server's documentation with the navigation sidebar in the latest version of the [Puppet reference manual](/puppet/latest/reference). Alternately, you can start from an [index of all Puppet Server docs.](/puppetserver/latest)
-
-### Miscellaneous References
-
-* [HTTP API](/guides/rest_api.html) --- reference of API-accessible resources
-* [History of the Puppet Language](/guides/language_history.html) --- a table showing which language features were added and removed in which Puppet versions
-
-### Generated References
-
-Complete and up-to-date references for Puppet's resource types, functions, metaparameters, configuration options, indirection termini, and reports, served piping hot directly from the source code.
-
-* [Resource Types](/references/stable/type.html) --- all default types
-* [Functions](/references/stable/function.html) --- all built in functions
-* [Metaparameters](/references/stable/metaparameter.html) --- all type-independent resource attributes
-* [Configuration](/references/stable/configuration.html) --- all configuration file settings
-* [Report](/references/stable/report.html) --- all available report handlers
-* [Puppet Manpages](/references/stable/man/) --- detailed help for each Puppet application
-
-These references are automatically generated from the inline documentation in Puppet's source code. References generated from each version of Puppet are archived here:
+### Other Reference Material
 
 * [Versioned References](/references/) --- inline reference docs from Puppet's past and present
+* [History of the Puppet Language](/guides/language_history.html) --- a table showing which language features were added and removed in which Puppet versions
+
 
 * * *
 
