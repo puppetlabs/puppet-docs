@@ -3,15 +3,6 @@
 require 'json'
 require 'pp'
 
-# this is like { platformname: { packagename: { version: version, md5: md5 }, packagename: {...} }, platformname: {......} }
-def load_package_json(version)
-  Dir.chdir(File.expand_path('~/Documents/misc_code/enterprise-dist')) do
-    system('git fetch upstream')
-    system("git checkout #{version}")
-    JSON.load( File.read( './packages.json' ) )
-  end
-end
-
 @package_name_variations = {
 
 'Puppet' => [
@@ -114,6 +105,15 @@ versions_of_interest_new = [
 
 versions_of_interest = versions_of_interest_new
 
+# this is like { platformname: { packagename: { version: version, md5: md5 }, packagename: {...} }, platformname: {......} }
+def load_package_json(version)
+  Dir.chdir(File.expand_path('~/Documents/misc_code/enterprise-dist')) do
+    system('git fetch upstream')
+    system("git checkout #{version}")
+    JSON.load( File.read( './packages.json' ) )
+  end
+end
+
 def normalize_package_data(packagedata)
   result = {}
   packagedata.each do | platform, platform_hash |
@@ -136,6 +136,31 @@ historical_packages = versions_of_interest.reduce( {} ) do |result, version|
   result[version] = normalize_package_data( load_package_json(version) )
   result
 end
+# results in something like
+# { '3.2.0' => { 'Puppet' => { '3.7.1-1' => ['debian-6-amd6', '...'], '3.7.1-4' => ['...', '...'] } }
+
+
+header_row = ["Pkg. / Ver."].concat( versions_of_interest )
+other_rows = @package_name_variations.keys.map {|common_name|
+  # a row
+  [common_name].concat(
+    # Cells in row after the first cell
+    versions_of_interest.map {|pe_version|
+      # a cell of versions
+      if historical_packages[pe_version][common_name]
+        historical_packages[pe_version][common_name].map {|pkg_ver, platforms|
+          # an individual version w/ associated platforms
+          '<abbr title="' << platforms.join(', ') << '">' <<
+            pkg_ver <<
+          '</abbr>'
+        }.join("<br>")
+      else
+        ""
+      end
+    }
+  )
+}
+
 
 # now make a table
 
@@ -143,29 +168,16 @@ print <<EOT
 <table>
   <thead>
     <tr>
-      <th>Pkg. / Ver.</th>
-      <th>#{versions_of_interest.join('</th> <th>')}</th>
+      <th>#{header_row.join('</th> <th>')}</th>
     </tr>
   </thead>
 
   <tbody>
-    <tr>
-      #{
-        @package_name_variations.keys.map{ |package| # each row
-          "<td>" + versions_of_interest.map{ |version|
-            if historical_packages[version][package]
-              historical_packages[version][package].map{ |packageversion, oses|
-                '<abbr title="' + oses.join(", ") + '">' + packageversion + '</abbr>'
-              }.join("<br>")
-            else
-              ""
-            end
-          }.unshift(package).join("</td> <td>") + "</td>"
-        }.join('</tr> <tr>')
-      }
+    <tr>#{other_rows.map {|row| "<td>" << row.join("</td> <td>") << "</td>"}.join("</tr>\n<tr>")}
     </tr>
   </tbody>
 </table>
+
 EOT
 
 # done
