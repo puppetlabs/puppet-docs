@@ -24,12 +24,53 @@ The [yum.puppetlabs.com][yum] repository supports the following versions of RHEL
 
 {% include pup40_platforms_fedora_like.markdown %}
 
+To enable the repository, run the command below that corresponds to your OS version:
+
+#### Enterprise Linux 7
+
+    $ sudo rpm -ivh http://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm
+
+#### Enterprise Linux 6
+
+    $ sudo rpm -ivh http://yum.puppetlabs.com/puppetlabs-release-pc1-el-6.noarch.rpm
+
+#### Enterprise Linux 5
+
+    $ sudo rpm -ivh http://yum.puppetlabs.com/puppetlabs-release--pc1el-5.noarch.rpm
+
+#### Fedora 20
+
+    $ sudo rpm -ivh http://yum.puppetlabs.com/puppetlabs-release-pc1-fedora-20.noarch.rpm
+
+#### Fedora 21
+	$ sudo rpm -ivh http://yum.puppetlabs.com/puppetlabs-release-pc1-fedora-21.noarch.rpm
+
+
 ### Apt-based Systems
 
 The [apt.puppetlabs.com](https://apt.puppetlabs.com) repository supports the following OS versions:
 
 {% include pup40_platforms_debian_like.markdown %}
 
+To enable the repository:
+
+1. Download the "puppetlabs-release-pc1" package for your OS version.
+    * You can see a full list of these packages on the front page of <https://apt.puppetlabs.com/>. They are all named `puppetlabs-release-pc1-<CODE NAME>.deb`. (For Ubuntu releases, the code name is the adjective, not the animal.)
+    * Architecture is handled automatically; there is only one package per OS version.
+2. Install the package by running `dpkg -i <PACKAGE NAME>`.
+3. Run `apt-get update` to get the new list of available packages.
+
+For example, to enable the repository for Ubuntu 12.04 Precise Pangolin:
+
+    wget https://apt.puppetlabs.com/puppetlabs-release-pc1-precise.deb
+    sudo dpkg -i puppetlabs-release-pc1-precise.deb
+    sudo apt-get update
+
+To enable the repository for Ubuntu 14.04 Trusty Tahr:
+
+    wget https://apt.puppetlabs.com/puppetlabs-release-pc1-trusty.deb
+    sudo dpkg -i puppetlabs-release-pc1-trusty.deb
+    sudo apt-get update
 
 ##Pre-4.0 Open Source Repositories
 
