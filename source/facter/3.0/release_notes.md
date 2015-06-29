@@ -27,16 +27,28 @@ Released June 24, 2015.
 
 Shipped in puppet-agent version: 1.2.0.
 
-Facter 3.0.0 is a complete rewrite of Facter in C++. Prior to this release, it was available separately as `cfacter`, and could be enabled in Puppet by setting `cfacter = true` in puppet.conf.
+Facter 3.0.0 is a complete rewrite of Facter in C++. Prior to this release, it was available separately as `cfacter` and could be enabled in Puppet by setting `cfacter = true` in puppet.conf.
 
-This rewrite is essentially a drop-in replacement for the Ruby-based Facter 2.x. It still supports custom facts written in Ruby with the existing Facter API, as well as external facts written in any number of languages.
+For many workflows, this rewrite is a drop-in replacement for the Ruby-based Facter 2.x. It still supports custom facts written in Ruby with the existing Facter API, as well as external facts written in any number of languages.
 
-It does include a few breaking changes relative to Facter 2.4, but these are very minor.
+It does include a few breaking changes relative to Facter 2.4.
 
 * [All tickets fixed in 3.0.0](https://tickets.puppetlabs.com/issues/?filter=14556)
 * [Issues introduced in 3.0.0](https://tickets.puppetlabs.com/issues/?filter=14557)
 
-### REGRESSION / BREAK (Fixed in 3.0.1): Can't Find Manually-Installed External Facts
+### BREAK: Facter Doesn't Display Legacy Unstructured Facts with Structured Equivalents
+
+Facter 2 introduced structured facts, and Facter 3.0.0 reprovisions many unstructured Puppet facts with new structured equivalents. Facter still tracks the legacy unstructured facts, and `puppet facts` still outputs these facts, but in Facter 3.0.0 these legacy facts no longer appear in the default command-line output. This might break workflows that rely on legacy facts appearing in Facter output.
+
+For example, the new map-structured `os` fact describes several legacy operating system-related facts, such as `architecture` and `operatingsystem`.
+
+Facts that no longer appear in command-line output are documented as such in [the list of core facts](./core_facts.html).
+
+To display legacy facts on the command line with Facter 3, we recommend either using `puppet facts` or modifying Facter workflows to instead use the equivalent structured facts. Facter 3.0.2 will provide the `--show-legacy` flag that forces Facter to output deprecated legacy facts, which should be used only as an interim solution.
+
+- [FACT-1075](https://tickets.puppetlabs.com/browse/FACT-1075)
+
+### REGRESSION / BREAK (Fixed in 3.0.1): Can't Find Manually Installed External Facts
 
 [inpage_external_regression]: #regression--break-fixed-in-301-cant-find-manually-installed-external-facts
 
@@ -51,25 +63,27 @@ When running under Puppet, Facter 3.0.0 can't load _manually-installed_ [externa
 
 This was an unintended regression from Facter 2.x, and we fixed it immediately in Facter 3.0.1.
 
-Pluginsynced external facts (that is, facts synced from your Puppet modules) still work fine, but it's common to make your provisioning system set some external facts when creating a new machine, as a way to assign persistent metadata to that node. If your site does this, Facter 3.0.0 will cause breakages. Make sure you install puppet-agent 1.2.1 instead of 1.2.0.
+Pluginsynced external facts (that is, facts synced from your Puppet modules) still work, but it's common to make your provisioning system set some external facts when creating a new machine as a way to assign persistent metadata to that node. If your site does this, Facter 3.0.0 will cause breakages. Make sure you install puppet-agent 1.2.1 instead of 1.2.0.
 
-### BREAK: Removed Seven Obscure Facts
+### BREAK: Removed Six Facts
 
 The following facts are not supported in Facter 3.0.0:
 
-* `ps`
-* `uniqueid`
-* `dir`
-* `cfkey`
-* `puppetversion` (still available in Puppet)
-* `vlans`
-* `xendomains`
+* `ps`: Only Puppet uses this fact, and we updated Puppet to no longer require it.
+* `uniqueid`: This fact was neither widely used nor necessarily unique in non-Solaris OSs. Puppet prefers `hostid`.
+* `dir`: This fact was unintentionally added in Windows because the `FACTER_DIR` environment variable was set.
+* `cfkey`: This fact was specific to CFengine and removed.
+* `puppetversion`: This fact introduced a circular dependency and didn't belong in Facter's core. We moved it into Puppet, implemented as an always-available custom fact, and other custom facts can take advantage of it if they're also running via Puppet.
+* `vlans`: This fact was not widely used and removed.
 
-`ps` was only used by Puppet, and we updated Puppet to no longer need it. `uniqueid` was a lie in the first place, and wasn't widely used. `dir` had been added accidentally in Windows, because the `FACTER_DIR` environment variable was set. `cfkey` was from a different tiiiiiime, man. `vlans` and `xendomains` weren't used widely enough to justify bringing them forward.
-
-`puppetversion` introduced a circular dependency, and shouldn't have been in Facter's core in the first place. We moved it into Puppet (implemented as an always-available custom fact), and other custom facts can take advantage of it if they're also running via Puppet.
-
+- [FACT-1013](https://tickets.puppetlabs.com/browse/FACT-1013)
 - [CFACT-151](https://tickets.puppetlabs.com/browse/CFACT-151)
+
+### REGRESSION (Fixed in 3.0.2): `xendomains` Fact Removed
+
+We unintentionally removed the `xendomains` fact in 3.0.0. This fact's functionality will return in 3.0.2.
+
+- [FACT-867](https://tickets.puppetlabs.com/browse/FACT-867)
 
 ### BREAK: `:timeout` for Execution Replaces `:timeout` in Resolutions
 
@@ -84,7 +98,6 @@ For details and examples, see [the custom fact docs.](./custom_facts.html#execut
 * [FACT-886: Expose a timeout option on the Ruby Facter API](https://tickets.puppetlabs.com/browse/FACT-886)
 * [FACT-907: cfacter doesn't implement :timeout](https://tickets.puppetlabs.com/browse/FACT-907)
 
-
 ### BREAK: `facter -p` is Gone
 
 Facter's command line interface no longer supports the `-p` option, because it introduced a circular dependency.
@@ -96,6 +109,14 @@ To inspect facts from modules and pluginsync, please use the `puppet facts` comm
 On Windows, the value of the hardware fact (`os.hardware`) has changed from "x64" to "x86_64" for 64-bit Windows editions. We did this to make Windows consistent with other operating systems. The `architecture` fact is still "x64" as it represents the platform-specific name for the system architecture.
 
 - [FACT-610](https://tickets.puppetlabs.com/browse/FACT-610)
+
+### Enhanced Fact: `os` Fact Includes New and Renamed Keys
+
+The new structured `os` fact adds several new keys and renames others.
+
+* The new `architecture`, `hardware`, and `selinux` keys respectively report on the operating system's reported architecture, the supported instruction set, and selinux status.
+* The `lsb` key is now named `distro`, and its keys are no longer prefixed by `dist`.
+* The `release` key encompasses two keys, `full` and `major`. These keys replace `distrelease` and `majdistrelease`.
 
 ### New Facts: `disks`, `memory`, and Nine More
 
@@ -123,6 +144,7 @@ We've improved the [core facts reference](./core_facts.html) to include:
 
 * The data type for every fact.
 * Info about the name and data type for every member of map/hash facts.
+* Whether the fact is included in Facter's command-line output.
 
 ### SPEED
 
