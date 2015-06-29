@@ -87,7 +87,7 @@ When you install with gems, your [confdir][] may be empty or missing. You will n
 
 ### Make Sure Puppet Can be Loaded
 
-Run `puppet --version`. If you get the error `require: no such file to load`, define the RUBYOPT environment variable as advised in the [post-install instructions](http://docs.rubygems.org/read/chapter/3#page70) of the RubyGems User Guide.
+Run `puppet --version`. This should output the version of Puppet you now have installed.
 
 
 Next
