@@ -43,6 +43,9 @@ NTT OSS センタの菅原亮氏による記事です。agent／master型のPupp
 ###[@IT 記事「作業手順書はもういらない！ Puppetにおける自動化の定義書「マニフェスト」の書き方と基礎文法まとめ」（菅原亮氏）](http://www.atmarkit.co.jp/ait/articles/1501/23/news012.html)
 NTT OSS センタの菅原亮氏による記事です。構築から運用まで、システムライフサイクル全体にわたる運用管理の自動化について説明されています。
 
+###[@IT 記事「GitやDockerと連携するPuppet運用テクニック、filebucketによる自動バックアップ、GUIのPuppet Dashboard」（菅原亮氏）](http://www.atmarkit.co.jp/ait/articles/1504/06/news008.html)
+NTT OSS センタの菅原亮氏と岡本隆史氏による記事です。filebucketによる自動バックアップやGitやDockerと連携する運用テクニック、GUIのPuppet Dashboardなどについて説明されています。
+
 翻訳へのご協力
 -----
 
