@@ -10,19 +10,19 @@ Puppet Labs also maintains package repositories for older versions of PuppetDB, 
 
 This page explains how to enable these repositories on their supported operating systems.
 
-Our repositories will be maintained for the life of the corresponding operating system and available for one month after their end of life date.
+Our repositories will be maintained for the life of the corresponding operating system and available for one month after their end-of-life date.
 
-##Using Puppet Collections
+## Using Puppet Collections
 
 Puppet Collections are numbered with integers, beginning with PC1. The higher the integer, the newer the collection. 
 
 ### Yum-based Systems
 
-The [yum.puppetlabs.com][yum] repository supports the following versions of RHEL and derivatives:
+The [yum.puppetlabs.com](https://yum.puppetlabs.com) repository supports the following versions of RHEL and derivatives:
 
 {% include pup40_platforms_redhat_like.markdown %}
 
-{% include pup40_platforms_fedora_like.markdown %}
+{% include pup40_platforms_fedora.markdown %}
 
 To enable the repository, run the command below that corresponds to your OS version:
 
@@ -43,8 +43,8 @@ To enable the repository, run the command below that corresponds to your OS vers
     $ sudo rpm -ivh http://yum.puppetlabs.com/puppetlabs-release-pc1-fedora-20.noarch.rpm
 
 #### Fedora 21
-	$ sudo rpm -ivh http://yum.puppetlabs.com/puppetlabs-release-pc1-fedora-21.noarch.rpm
 
+    $ sudo rpm -ivh http://yum.puppetlabs.com/puppetlabs-release-pc1-fedora-21.noarch.rpm
 
 ### Apt-based Systems
 
@@ -72,7 +72,7 @@ To enable the repository for Ubuntu 14.04 Trusty Tahr:
     sudo dpkg -i puppetlabs-release-pc1-trusty.deb
     sudo apt-get update
 
-##Pre-4.0 Open Source Repositories
+## Pre-4.0 Open Source Repositories
 
 Use these repositories to install older, specific versions of open source releases of Puppet, Facter, MCollective, PuppetDB, and more. After enabling the repo, [follow the instructions for installing Puppet](/guides/install_puppet/pre_install.html).
 
@@ -100,8 +100,7 @@ The [apt.puppetlabs.com](https://apt.puppetlabs.com) repository supports the fol
 
 {% include repo_debian_ubuntu.markdown %}
 
-
-##Using the Nightly Repos
+## Using the Nightly Repos
 
 We provide automatic nightly repositories, and you can use them to test pre-release builds. These repos are available at <http://nightlies.puppetlabs.com/>.
 
