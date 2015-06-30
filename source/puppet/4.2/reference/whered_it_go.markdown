@@ -76,7 +76,6 @@ The main contents of the `codedir` are:
 * The global `modules` directory
     * Note: This is only for module versions you specifically want in _all_ environments.
 * The `hiera.yaml` config file
-* The `hieradata` directory
 
 ### Directory Environments are Always On
 
@@ -91,6 +90,9 @@ This means that if you're starting from scratch, you should:
 
 You can still put global modules in `$codedir/modules`, and can configure a global [main manifest][] with the `default_manifest` setting.
 
+### Hiera Data Goes in Environments by Default
+
+Hiera's default settings now use an environment-specific datadir for the YAML and JSON backends. So the `production` environment's default Hiera data directory would be `/etc/puppetlabs/code/environments/production/hieradata`.
 
 Some Other Directories Have Moved
 -----

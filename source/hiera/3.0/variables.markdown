@@ -136,7 +136,7 @@ In this example, every data source except the final one will vary depending on t
 You can also interpolate variables into other [settings][config], such as `:datadir` (in the YAML and JSON backends):
 
     :yaml:
-      :datadir: "/etc/puppet/hieradata/%{server_facts.environment}"
+      :datadir: "/etc/puppetlabs/code/environments/%{environment}/hieradata"
 
 This example would let you use completely separate data directories for your production and development environments.
 

@@ -164,7 +164,7 @@ for hashes in Hiera is building a data structure which gets passed to the
 In hiera.yaml, we set a two-level hierarchy:
 
 ~~~ yaml
-    # /etc/puppet/hiera.yaml
+    # /etc/puppetlabs/code/hiera.yaml
     ---
     :backends:
       - yaml
@@ -173,7 +173,7 @@ In hiera.yaml, we set a two-level hierarchy:
       - "%{hostname}"
       - common
     :yaml:
-      :datadir: /etc/puppet/hieradata
+      :datadir: "/etc/puppetlabs/code/environments/%{environment}/hieradata"
     # options are native, deep, deeper
     :merge_behavior: deeper
 ~~~

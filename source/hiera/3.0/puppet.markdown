@@ -107,11 +107,11 @@ Parameters can be set several ways, and Puppet tries each of these ways in order
 Step 2 interests us most here. Because Puppet always looks for parameters in Hiera, you can safely declare **any** class with `include`, even classes with parameters. (This wasn't the case in earlier Puppet versions.) Using the example above, you could have something like the following in your Hiera data:
 
 ~~~ yaml
-# /etc/puppet/hieradata/web01.example.com.yaml
+# /etc/puppetlabs/code/production/hieradata/web01.example.com.yaml
 ---
 myclass::parameter_one: "This node is special, so we're overriding the common configuration that the other nodes use."
 
-# /etc/puppet/hieradata/common.yaml
+# /etc/puppetlabs/code/production/hieradata/common.yaml
 ---
 myclass::parameter_one: "This node can use the standard configuration."
 ~~~
@@ -169,7 +169,7 @@ The lookup functions and the automatic parameter lookup return values of top-lev
 Example:
 
 ~~~ yaml
-# /etc/puppet/hieradata/appservers.yaml
+# /etc/puppetlabs/code/production/hieradata/appservers.yaml
 ---
 proxies:
   - hostname: lb01.example.com

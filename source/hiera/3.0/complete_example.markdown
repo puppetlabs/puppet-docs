@@ -93,7 +93,7 @@ All Hiera configuration begins with `hiera.yaml`. You can read a [full discussio
 :backends:
   - yaml
 :yaml:
-  :datadir: /etc/puppetlabs/code/hieradata
+  :datadir: "/etc/puppetlabs/code/environments/%{environment}/hieradata"
 :hierarchy:
   - "nodes/%{::trusted.certname}"
   - common
@@ -103,12 +103,12 @@ Step-by-step:
 
 `:backends:` tells Hiera what kind of data sources it should process. In this case, we'll be using YAML files.
 
-`:yaml:` configures the YAML data backend, telling Hiera to look in `/etc/puppetlabs/code/hieradata` for YAML data sources.
+`:yaml:` configures the YAML data backend, telling Hiera to look in `/etc/puppetlabs/code/environments/<ENVIRONMENT>/hieradata` for YAML data sources.
 
 `:hierarchy:` configures the data sources Hiera should consult. Puppet users commonly separate their hierarchies into directories to make it easier to get a quick top-level sense of how the hierarchy is put together. In this case, we're keeping it simple:
 
-- A single `nodes/` directory will contain any number of files named after some node's certname, read from the `$trusted['certname']` variable. (E.g., `/etc/puppetlabs/code/hieradata/nodes/grover.example.com.yaml`) This lets us specifically configure any given node with Hiera. Not every node needs to have a file in `nodes/` --- if it's not there, Hiera will just move onto the next hierarchy level.
-- Next, the `common` data source (the `/etc/puppetlabs/code/hieradata/common.yaml` file) will provide any common or default values we want to use when Hiera can't find a match for a given key elsewhere in our hierarchy. In this case, we're going to use it to set common ntp servers and default configuration options for the ntp module.
+- A single `nodes/` directory will contain any number of files named after some node's certname, read from the `$trusted['certname']` variable. (E.g., `/etc/puppetlabs/code/environments/production/hieradata/nodes/grover.example.com.yaml`) This lets us specifically configure any given node with Hiera. Not every node needs to have a file in `nodes/` --- if it's not there, Hiera will just move onto the next hierarchy level.
+- Next, the `common` data source (the `/etc/puppetlabs/code/environments/production/hieradata/common.yaml` file) will provide any common or default values we want to use when Hiera can't find a match for a given key elsewhere in our hierarchy. In this case, we're going to use it to set common ntp servers and default configuration options for the ntp module.
 
 > **Hierarchy and facts note:** When constructing a hierarchy, keep in mind that most [facts][] are self-reported by each node, which means they're useful but aren't necessarily trustworthy. The special [`$trusted` hash][trusted] and [`$server_facts` hash][server_facts] are the only variables that are verified by the Puppet master.
 
@@ -165,7 +165,7 @@ ntp::servers:
   - 3.us.pool.ntp.org iburst
 ~~~
 
-Since we want to provide this data for a specific node, and since we're using the certname to identify unique nodes in our hierarchy, we need to save this data in the `/etc/puppetlabs/code/hieradata/node` directory as `kermit.example.com.yaml`.
+Since we want to provide this data for a specific node, and since we're using the certname to identify unique nodes in our hierarchy, we need to save this data in the `/etc/puppetlabs/code/environments/production/hieradata/node` directory as `kermit.example.com.yaml`.
 
 Once you've saved that, let's do a quick test using Puppet apply:
 
@@ -205,7 +205,7 @@ ntp::servers:
   - 2.us.pool.ntp.org iburst
 ~~~
 
-As with `kermit.example.com`, we want to save grover's Hiera data source in the `/etc/puppetlabs/code/hieradata/nodes` directory using its certname for the file name: `grover.example.com.yaml`. We can once again test it with Puppet apply:
+As with `kermit.example.com`, we want to save grover's Hiera data source in the `/etc/puppetlabs/code/environments/production/hieradata/nodes` directory using its certname for the file name: `grover.example.com.yaml`. We can once again test it with Puppet apply:
 
     $ puppet apply --certname=grover.example.com -e "notice(hiera('ntp::servers'))"
     Notice: Scope(Class[main]): ["kermit.example.com iburst", "0.us.pool.ntp.org iburst", "1.us.pool.ntp.org iburst", "2.us.pool.ntp.org iburst"]
@@ -223,7 +223,7 @@ ntp::servers:
   - kermit.example.com iburst
 ~~~
 
-Unlike kermit and grover, for which we had slightly different but node-specific configuration needs, we're comfortable letting any other node that uses the ntp class use this generic configuration data. Rather than creating a node-specific data source for every possible node on our network that might need to use the ntp module, we'll store this data in `/etc/puppetlabs/code/hieradata/common.yaml`. With our very simple hierarchy, which so far only looks for the certnames, any node with a certname that doesn't match the nodes we have data sources for will get the data found in `common.yaml`. Let's test against one of those nodes:
+Unlike kermit and grover, for which we had slightly different but node-specific configuration needs, we're comfortable letting any other node that uses the ntp class use this generic configuration data. Rather than creating a node-specific data source for every possible node on our network that might need to use the ntp module, we'll store this data in `/etc/puppetlabs/code/environments/production/hieradata/common.yaml`. With our very simple hierarchy, which so far only looks for the certnames, any node with a certname that doesn't match the nodes we have data sources for will get the data found in `common.yaml`. Let's test against one of those nodes:
 
     $ puppet apply --certname=snuffie.example.com -e "notice(hiera('ntp::servers'))"
     Notice: Scope(Class[main]): ["kermit.example.com iburst", "grover.example.com iburst"]
@@ -277,7 +277,7 @@ Where last we left off, our `site.pp` manifest was looking somewhat spare. With 
 hiera_include('classes')
 ~~~
 
-From this point on, you can add or modify an existing Hiera data source to add an array of classes you'd like to assign to matching nodes. In the simplest case, we can visit each of kermit, grover, and snuffie and add this to their YAML data sources in `/etc/puppetlabs/code/hieradata/nodes`:
+From this point on, you can add or modify an existing Hiera data source to add an array of classes you'd like to assign to matching nodes. In the simplest case, we can visit each of kermit, grover, and snuffie and add this to their YAML data sources in `/etc/puppetlabs/code/environments/production/hieradata/nodes`:
 
 ~~~ yaml
 "classes" : "ntp",
@@ -345,7 +345,7 @@ So let's take a look at our `hiera.yaml` file and make provisions for two new da
 :backends:
   - yaml
 :yaml:
-  :datadir: /etc/puppetlabs/code/hieradata
+  :datadir: "/etc/puppetlabs/code/environments/%{environment}/hieradata"
 :hierarchy:
   - "nodes/%{::trusted.certname}"
   - "virtual/%{::virtual}"
@@ -355,7 +355,7 @@ So let's take a look at our `hiera.yaml` file and make provisions for two new da
 
 Next, we'll need to create directories for our two new data sources:
 
-    `mkdir /etc/puppetlabs/code/hieradata/virtual; mkdir /etc/puppetlabs/code/hieradata/osfamily`
+    `mkdir /etc/puppetlabs/code/environments/production/hieradata/virtual; mkdir /etc/puppetlabs/code/environments/production/hieradata/osfamily`
 
 In our `virtual` directory, we'll want to create the file `vmware.yaml`. In this data source, we'll be assigning the `vmwaretools` class, so the file will need to look like this:
 
@@ -364,7 +364,7 @@ In our `virtual` directory, we'll want to create the file `vmware.yaml`. In this
 classes: vmwaretools
 ~~~
 
-Next, we need to provide the data for the `vmwaretools` class parameters. We'll assume we have a mix of Red Hat and Debian VMs in use in our organization, and that we want to install VMWare Tools in `/opt/vmware` in our Red Hat VMs, and `/usr/local/vmware` for our Debian VMs.  We'll need `RedHat.yaml` and `Debian.yaml` files in the `/etc/puppetlabs/code/hieradata/osfamily` directory.
+Next, we need to provide the data for the `vmwaretools` class parameters. We'll assume we have a mix of Red Hat and Debian VMs in use in our organization, and that we want to install VMWare Tools in `/opt/vmware` in our Red Hat VMs, and `/usr/local/vmware` for our Debian VMs.  We'll need `RedHat.yaml` and `Debian.yaml` files in the `/etc/puppetlabs/code/environments/production/hieradata/osfamily` directory.
 
 `RedHat.yaml` should look like this:
 
