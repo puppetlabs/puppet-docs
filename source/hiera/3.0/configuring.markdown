@@ -100,7 +100,7 @@ The data sources in the hierarchy are checked in order, top to bottom.
 
 ### `:backends`
 
-Must be a **string** or an **array of strings,** where each string is the name of an available Hiera backend. The built-in backends are `yaml` and `json`; an additional `puppet` backend is available when using Hiera with Puppet. Additional backends are available as add-ons.
+Must be a **string** or an **array of strings,** where each string is the name of an available Hiera backend. The built-in backends are `yaml` and `json`. Additional backends are available as add-ons.
 
 > **Custom backends:** See ["Writing Custom Backends"][custom_backends] for details on writing new backend. Custom backends can interface with nearly any existing data store.
 
@@ -162,12 +162,4 @@ The directory in which to find data source files. This must be a string.
 You can [interpolate variables][interpolate] into the datadir using `%{variable}` interpolation tokens. This allows you to, for example, point it at `"/etc/puppetlabs/code/hieradata/%{::environment}"` to keep your production and development data entirely separate.
 
 **Default value:** `"/etc/puppetlabs/code/environments/%{environment}/hieradata"` on \*nix, and `"C:\ProgramData\PuppetLabs\code\environments\%{environment}\hieradata"` on Windows.
-
-### `:puppet`
-
-#### `:datasource`
-
-The Puppet class in which to look for data.
-
-**Default value:** `data`
 
