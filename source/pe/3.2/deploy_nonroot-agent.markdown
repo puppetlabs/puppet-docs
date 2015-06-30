@@ -148,6 +148,8 @@ On **windows systems** as non-admin user you should be able to enforce the follo
 * `exec`
 * `file`
 
+**NOTE**: A non-root agent on Windows is extremely limited as compared to non-root *nix. While you can use the above resources, you are limited on usage based on what the agent user has access to do (which isn't much). For instance, you can't create a file\directory in `C:\Windows` unless your user has permission to do so.
+
 You should also be able to inspect the following resource types (use `puppet resource <resource type>`):
 
 * `host`
