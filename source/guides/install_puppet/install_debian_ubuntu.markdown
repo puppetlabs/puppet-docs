@@ -26,7 +26,7 @@ To install on other operating systems, see the pages linked in the navigation si
 Step 1: Enable the Puppet Labs Package Repository
 -----
 
-The newest versions of Puppet can be installed from the [apt.puppetlabs.com](http://apt.puppetlabs.com) package repository.
+The newest versions of Puppet can be installed from the [apt.puppetlabs.com](https://apt.puppetlabs.com) package repository.
 
 {% include repo_debian_ubuntu.markdown %}
 

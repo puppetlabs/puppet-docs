@@ -334,7 +334,7 @@ Also look at the lenses available in your installed copy of Augeas, or the list 
 
 Augeas is shipped as a C library, along with command line tools (e.g. augtool) and a set of lenses to interpret config files.  The Ruby bindings (ruby-augeas) are also required to use it with Puppet.  ruby-augeas 0.3.0 or higher is required since Puppet 2.7.12.
 
-* RHEL/CentOS 5: `yum install ruby-augeas` (all available from [EPEL](http://fedoraproject.org/wiki/EPEL) or [yum.puppetlabs.com](http://yum.puppetlabs.com))
+* RHEL/CentOS 5: `yum install ruby-augeas` (all available from [EPEL](http://fedoraproject.org/wiki/EPEL) or [yum.puppetlabs.com](https://yum.puppetlabs.com))
 * RHEL/CentOS 6: `yum install ruby-augeas` (from EPEL or yum.puppetlabs.com).  Augeas itself is in the main RHEL channel and the `augeas` package for augtool is in the optional channel.
 * On Fedora: `yum install ruby-augeas` (and the `augeas` package for augtool)
 * Debian/Ubuntu: `aptitude install libaugeas-ruby`, ensure you use the correct libaugeas-ruby1.8, 1.9 or 1.9.1 package for your version of Ruby

@@ -28,23 +28,23 @@ To enable the repository, run the command below that corresponds to your OS vers
 
 #### Enterprise Linux 7
 
-    $ sudo rpm -ivh http://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm
+    $ sudo rpm -ivh https://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm
 
 #### Enterprise Linux 6
 
-    $ sudo rpm -ivh http://yum.puppetlabs.com/puppetlabs-release-pc1-el-6.noarch.rpm
+    $ sudo rpm -ivh https://yum.puppetlabs.com/puppetlabs-release-pc1-el-6.noarch.rpm
 
 #### Enterprise Linux 5
 
-    $ sudo rpm -ivh http://yum.puppetlabs.com/puppetlabs-release--pc1el-5.noarch.rpm
+    $ sudo rpm -ivh https://yum.puppetlabs.com/puppetlabs-release--pc1el-5.noarch.rpm
 
 #### Fedora 20
 
-    $ sudo rpm -ivh http://yum.puppetlabs.com/puppetlabs-release-pc1-fedora-20.noarch.rpm
+    $ sudo rpm -ivh https://yum.puppetlabs.com/puppetlabs-release-pc1-fedora-20.noarch.rpm
 
 #### Fedora 21
 
-    $ sudo rpm -ivh http://yum.puppetlabs.com/puppetlabs-release-pc1-fedora-21.noarch.rpm
+    $ sudo rpm -ivh https://yum.puppetlabs.com/puppetlabs-release-pc1-fedora-21.noarch.rpm
 
 ### Apt-based Systems
 
@@ -102,7 +102,7 @@ The [apt.puppetlabs.com](https://apt.puppetlabs.com) repository supports the fol
 
 ## Using the Nightly Repos
 
-We provide automatic nightly repositories, and you can use them to test pre-release builds. These repos are available at <http://nightlies.puppetlabs.com/>.
+We provide automatic nightly repositories, and you can use them to test pre-release builds. These repos are available at <https://nightlies.puppetlabs.com/>.
 
 The nightly repos require that you also have the standard Puppet Labs repos enabled.
 
@@ -126,22 +126,22 @@ There are two kinds of nightly repo for each product:
 ### Enabling Nightly Repos on Yum-based Systems
 
 1. Make sure you've enabled the main Puppet Labs repos, as described above.
-2. In a web browser, go to <http://nightlies.puppetlabs.com/>. Choose the repository you want; this will be either `<PRODUCT>-latest`, or `<PRODUCT>/<COMMIT>`.
+2. In a web browser, go to <https://nightlies.puppetlabs.com/>. Choose the repository you want; this will be either `<PRODUCT>-latest`, or `<PRODUCT>/<COMMIT>`.
 3. Click through to your repository's `repo_configs/rpm` directory, and identify the `.repo` file that applies to your operating system; this will usually be something like `pl-puppet-<COMMIT>-el-7-x86_64.repo`.
 4. Download that `.repo` file into the system's `/etc/yum.repos.d/` directory. For example:
 
         $ cd /etc/yum.repos.d
-        $ sudo wget http://nightlies.puppetlabs.com/puppet/30e4febe85e24c278a2830530965871dc3c0eec1/repo_configs/rpm/pl-puppet-30e4febe85e24c278a2830530965871dc3c0eec1-el-7-x86_64.repo
+        $ sudo wget https://nightlies.puppetlabs.com/puppet/30e4febe85e24c278a2830530965871dc3c0eec1/repo_configs/rpm/pl-puppet-30e4febe85e24c278a2830530965871dc3c0eec1-el-7-x86_64.repo
 5. Upgrade or install the product as usual.
 
 ### Enabling Nightly Repos on Apt-based Systems
 
 1. Make sure you've enabled the main Puppet Labs repos, as described above.
-2. In a web browser, go to <http://nightlies.puppetlabs.com/>. Choose the repository you want; this will be either `<PRODUCT>-latest`, or `<PRODUCT>/<COMMIT>`.
+2. In a web browser, go to <https://nightlies.puppetlabs.com/>. Choose the repository you want; this will be either `<PRODUCT>-latest`, or `<PRODUCT>/<COMMIT>`.
 3. Click through to your repository's `repo_configs/deb` directory, and identify the `.list` file that applies to your operating system; this will usually be something like `pl-puppet-<COMMIT>-precise.list`.
 4. Download that `.list` file into the system's `/etc/apt/sources.list.d/` directory. For example:
 
         $ cd /etc/apt/sources.list.d
-        $ sudo wget http://nightlies.puppetlabs.com/puppet/30e4febe85e24c278a2830530965871dc3c0eec1/repo_configs/deb/pl-puppet-30e4febe85e24c278a2830530965871dc3c0eec1-precise.list
+        $ sudo wget https://nightlies.puppetlabs.com/puppet/30e4febe85e24c278a2830530965871dc3c0eec1/repo_configs/deb/pl-puppet-30e4febe85e24c278a2830530965871dc3c0eec1-precise.list
 5. Be sure to run `sudo apt-get update`.
 6. Upgrade or install the product as usual.

@@ -2,7 +2,7 @@ After installing the repos, open your `/etc/yum.repos.d/puppetlabs.repo` file fo
 
     [puppetlabs-devel]
     name=Puppet Labs Devel <%= @dist.capitalize -%> <%= @version -%> - $basearch
-    baseurl=http://yum.puppetlabs.com/<%= @dist.downcase -%>/<%= @codename -%>/devel/$basearch
+    baseurl=https://yum.puppetlabs.com/<%= @dist.downcase -%>/<%= @codename -%>/devel/$basearch
     gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-puppetlabs
     enabled=1
     gpgcheck=1

@@ -222,8 +222,8 @@ Installation
 
 Many operating system vendors offer Puppet in their package repositories,
 which is the most convenient way to install Puppet. Puppet Labs
-also maintains its own public package repositories at <http://yum.puppetlabs.com> and
-<http://apt.puppetlabs.com>.
+also maintains its own public package repositories at <https://yum.puppetlabs.com> and
+<https://apt.puppetlabs.com>.
 
 In addition, source tarballs and packages for the latest release of Puppet are available
 in the [downloads](http://puppetlabs.com/resources/downloads) area

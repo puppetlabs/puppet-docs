@@ -41,8 +41,8 @@ For instance, the package for Puppet Collection 1 on Red Hat Enterprise Linux 7 
 	
 Second, install the package with `rpm -Uhv PACKAGENAME`:
 
-		[root@localhost ~]# rpm -Uvh http://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm
-		Retrieving http://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm
+		[root@localhost ~]# rpm -Uvh https://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm
+		Retrieving https://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm
 		Preparing...                          ################################# [100%]
 		Updating / installing...
 		1:puppetlabs-release-pc1-0.9.2-1.el################################# [100%]
@@ -58,7 +58,7 @@ For instance, the package for Puppet Collection 1 on Debian 7 is `puppetlabs-rel
 
 Second, download the package and install it:
 
-        # wget http://apt.puppetlabs.com/puppetlabs-release-pc1-wheezy.deb
+        # wget https://apt.puppetlabs.com/puppetlabs-release-pc1-wheezy.deb
         # dpkg -i puppetlabs-release-pc1-wheezy.deb
 		
 Finally, make sure to run `apt-get update` after installing the package. 

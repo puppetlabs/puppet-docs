@@ -29,7 +29,7 @@ CentOS and other community forks have several packages Puppet depends on in thei
 Step 2: Enable the Puppet Labs Package Repository
 -----
 
-The newest versions of Puppet can be installed from the [yum.puppetlabs.com](http://yum.puppetlabs.com) package repository.
+The newest versions of Puppet can be installed from the [yum.puppetlabs.com](https://yum.puppetlabs.com) package repository.
 
 {% include repo_el.markdown %}
 
