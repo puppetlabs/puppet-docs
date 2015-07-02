@@ -204,6 +204,6 @@ Resource names (or namevars) might be limited by the underlying system being man
 
 ### Environments
 
-[Environment][] names can contain letters, numbers, and underscores. That is, they must match the following regular expression:
+[Environment][] names can contain lowercase letters, numbers, and underscores. That is, they must match the following regular expression:
 
     \A[a-z0-9_]+\Z
