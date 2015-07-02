@@ -75,7 +75,7 @@ When Facter 3.0.0 executes commands, it incorrectly redirects the stderr output 
 
 In Facter 2.x, Facter would redirect stderr output from executed commands to Facter's stderr. This no longer occurs in Facter 3.x.
 
-Use the `--debug` flag to display more details about Facter's operation, including error messages from commands that Facter executes.
+To display more details about Facter's operation, including error messages from commands that Facter executes, use the `--debug` flag.
 
 ### BREAK: Removed Six Facts
 
