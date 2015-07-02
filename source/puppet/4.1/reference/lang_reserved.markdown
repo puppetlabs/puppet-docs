@@ -190,9 +190,9 @@ Tag names should match the following regular expression:
 
 ### Resources
 
-Resource **titles** may contain any characters whatsoever. They are case-sensitive.
+Resource **titles** can contain any characters whatsoever. They are case-sensitive.
 
-Resource names (or namevars) may be limited by the underlying system being managed. (E.g., most systems have limits on the characters allowed in the name of a user account.) The user is generally responsible for knowing the name limits on the platforms they manage.
+Resource names (or namevars) might be limited by the underlying system being managed. (E.g., most systems have limits on the characters allowed in the name of a user account.) The user is generally responsible for knowing the name limits on the platforms they manage.
 
 ### Nodes
 
@@ -200,6 +200,6 @@ Resource names (or namevars) may be limited by the underlying system being manag
 
 ### Environments
 
-[Environment][] names may contain only digits and lowercase letters. That is, they must match the following regular expression:
+[Environment][] names can contain letters, numbers, and underscores. That is, they must match the following regular expression:
 
-    \A[a-z0-9]+\Z
+    \A[a-z0-9_]+\Z
