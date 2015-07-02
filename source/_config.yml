@@ -209,7 +209,7 @@ version_notes:
   /puppetserver/: '<p class="noisy">This page is about an old version of Puppet Server. See <a href="/puppetserver/latest">the current Puppet Server docs.</a></p>'
   /puppetdb/: '<p class="noisy">This page is about an old version of PuppetDB. If you use the current version of PuppetDB or of Puppet Enterprise, see <a href="/puppetdb/latest">the current PuppetDB docs.</a></p>'
   /facter/: '<p class="noisy">This page is about an old version of Facter. Open source Puppet users should see <a href="/facter/latest">the latest version of the docs.</a> If you use Puppet Enterprise 3.8, see <a href="/facter/2.4">the Facter 2.4 docs.</a></p>'
-  /hiera/: '<p class="noisy">This page is about an old version of Hiera. Open source Puppet users should see <a href="/hiera/latest">the latest version of the docs.</a> If you use Puppet Enterprise 3.8, see <a href="/hiera/1.0">the Hiera 1.0 docs.</a></p>'
+  /hiera/: '<p class="noisy">This page is about an old version of Hiera. Open source Puppet users should see <a href="/hiera/latest">the latest version of the docs.</a> If you use Puppet Enterprise 3.8, see <a href="/hiera/1">the Hiera 1.x docs.</a></p>'
   # Version-specific notes:
   /puppet/3.7: "This is the version of Puppet included in Puppet Enterprise 3.7."
   /puppet/3.8: "This is the version of Puppet included in Puppet Enterprise 3.8."
@@ -222,7 +222,7 @@ version_notes:
   /facter/2.4: 'This is the version of Facter included in Puppet Enterprise 3.8. Open source Puppet users should see <a href="/facter/latest">the latest version of the docs</a>.'
   /facter/3.0: '<p class="noisy">This version of Facter is not included in Puppet Enterprise 3.8. PE 3.8 users should see <a href="/facter/2.4">the Facter 2.4 docs.</a></p>'
   /hiera/1: 'This is the version of Hiera included in Puppet Enterprise 3.8. Open source Puppet users should see <a href="/hiera/latest">the latest version of the docs</a>.'
-  /hiera/3.0: '<p class="noisy">Hiera 3.0 is not included in Puppet Enterprise 3.7 or 3.8. PE 3.7 and 3.8 users should see <a href="/hiera/1.0">the Hiera 1.0 docs.</a></p>'
+  /hiera/3.0: '<p class="noisy">Hiera 3.0 is not included in Puppet Enterprise 3.7 or 3.8. PE 3.7 and 3.8 users should see <a href="/hiera/1">the Hiera 1.x docs.</a></p>'
   /puppetserver/1.0: 'This is the version of Puppet Server included in Puppet Enterprise 3.7 and 3.8.'
   /puppetserver/1.1: '<p class="noisy">This version of Puppet Server is not included in a Puppet Enterprise release. PE 3.7 and 3.8 users should see <a href="/puppetserver/1.0">the Puppet Server 1.0 docs.</a>'
   /puppetserver/2.1: '<p class="noisy">This is the latest version of Puppet Server. Puppet Enterprise 3.7 and 3.8 users should see <a href="/puppetserver/1.0">the Puppet Server 1.0 docs.</a>'
