@@ -44,7 +44,7 @@ For example, the new map-structured `os` fact describes several legacy operating
 
 Facts that no longer appear in command-line output are documented as such in [the list of core facts](./core_facts.html).
 
-To display legacy facts on the command line with Facter 3, we recommend either using `puppet facts` or modifying Facter workflows to instead use the equivalent structured facts. Facter 3.0.2 will provide the `--show-legacy` flag that forces Facter to output deprecated legacy facts, which should be used only as an interim solution.
+To display legacy facts on the command line with Facter 3, we recommend either using `puppet facts` or modifying Facter workflows to instead use the equivalent structured facts. A future version of Facter will provide a flag that forces Facter to output deprecated legacy facts as an interim solution for affected workflows.
 
 - [FACT-1075](https://tickets.puppetlabs.com/browse/FACT-1075)
 
@@ -65,6 +65,18 @@ This was an unintended regression from Facter 2.x, and we fixed it immediately i
 
 Pluginsynced external facts (that is, facts synced from your Puppet modules) still work, but it's common to make your provisioning system set some external facts when creating a new machine as a way to assign persistent metadata to that node. If your site does this, Facter 3.0.0 will cause breakages. Make sure you install puppet-agent 1.2.1 instead of 1.2.0.
 
+### REGRESSION: Facter Redirects stderr to stdout
+
+When Facter 3.0.0 executes commands, it incorrectly redirects the stderr output from those commands to stdout, causing any affected facts to appear to contain the stderr output instead of the fact's value. This can also result in a fact appearing to have an unexpectedly null value if the first command that Facter executes when reporting that fact cannot be found.
+
+- [FACT-1085](https://tickets.puppetlabs.com/browse/FACT-1085)
+
+### BREAK: Facter Does Not Pass Commands' stderr Output to Puppet's stderr
+
+In Facter 2.x, Facter would redirect stderr output from executed commands to Facter's stderr. This no longer occurs in Facter 3.x.
+
+To display more details about Facter's operation, including error messages from commands that Facter executes, use the `--debug` flag.
+
 ### BREAK: Removed Six Facts
 
 The following facts are not supported in Facter 3.0.0:
@@ -79,9 +91,9 @@ The following facts are not supported in Facter 3.0.0:
 - [FACT-1013](https://tickets.puppetlabs.com/browse/FACT-1013)
 - [CFACT-151](https://tickets.puppetlabs.com/browse/CFACT-151)
 
-### REGRESSION (Fixed in 3.0.2): `xendomains` Fact Removed
+### REGRESSION: `xendomains` Fact Removed
 
-We unintentionally removed the `xendomains` fact in 3.0.0. This fact's functionality will return in 3.0.2.
+We unintentionally removed the `xendomains` fact in Facter 3.0.0.
 
 - [FACT-867](https://tickets.puppetlabs.com/browse/FACT-867)
 
