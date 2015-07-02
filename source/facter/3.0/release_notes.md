@@ -67,15 +67,15 @@ Pluginsynced external facts (that is, facts synced from your Puppet modules) sti
 
 ### REGRESSION (fixed in 3.0.2): Facter Redirects stderr to stdout
 
-Facter 3.0.0 incorrectly redirects stderr output from the commands its runs to gather information to stdout, resulting in error messages that should not appear on the command line. This can also result in unexpectedly nullified output if any first command that Facter executes cannot be found.
+When Facter 3.0.0 executes commands, it incorrectly redirects the stderr output from those commands to stdout, which displays error messages on the command line that should not appear. This can also result in unexpectedly nullified output if the first command that Facter executes when reporting a fact cannot be found.
 
 - [FACT-1085](https://tickets.puppetlabs.com/browse/FACT-1085)
 
 ### BREAK: Facter Does Not Pass Commands' stderr Output to Puppet's stderr
 
-In Facter 2.x, stderr output from commands that Facter executed would be redirected to Facter's stderr. This no longer occurs in Facter 3.x. 
+In Facter 2.x, Facter would redirect stderr output from executed commands to Facter's stderr. This no longer occurs in Facter 3.x.
 
-Instead, use the `--debug` flag to display more details about Facter's operation, including error messages from commands that Facter executes.
+Use the `--debug` flag to display more details about Facter's operation, including error messages from commands that Facter executes.
 
 ### BREAK: Removed Six Facts
 
