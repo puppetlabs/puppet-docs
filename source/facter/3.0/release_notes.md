@@ -65,6 +65,18 @@ This was an unintended regression from Facter 2.x, and we fixed it immediately i
 
 Pluginsynced external facts (that is, facts synced from your Puppet modules) still work, but it's common to make your provisioning system set some external facts when creating a new machine as a way to assign persistent metadata to that node. If your site does this, Facter 3.0.0 will cause breakages. Make sure you install puppet-agent 1.2.1 instead of 1.2.0.
 
+### REGRESSION (fixed in 3.0.2): Facter Redirects stderr to stdout
+
+Facter 3.0.0 incorrectly redirects stderr output from the commands its runs to gather information to stdout, resulting in error messages that should not appear on the command line. This can also result in unexpectedly nullified output if any first command that Facter executes cannot be found.
+
+- [FACT-1085](https://tickets.puppetlabs.com/browse/FACT-1085)
+
+### BREAK: Facter Does Not Pass Commands' stderr Output to Puppet's stderr
+
+In Facter 2.x, stderr output from commands that Facter executed would be redirected to Facter's stderr. This no longer occurs in Facter 3.x. 
+
+Instead, use the `--debug` flag to display more details about Facter's operation, including error messages from commands that Facter executes.
+
 ### BREAK: Removed Six Facts
 
 The following facts are not supported in Facter 3.0.0:
