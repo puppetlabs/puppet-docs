@@ -107,7 +107,7 @@ This release gets a cool and noticeable speed-up when applying catalogs. Special
 * [PUP-4601: Puppet gem should require at least 1.9+ ruby version](https://tickets.puppetlabs.com/browse/PUP-4601)
 * [PUP-3088: Debug logging messages can't be used by providers with a "path" method](https://tickets.puppetlabs.com/browse/PUP-3088)
 * [PUP-4517: Add type name to Puppet.newtype deprecation warning](https://tickets.puppetlabs.com/browse/PUP-4517)
-* [PUP-4436: With a gem install of puppet, when run as root, 'puppet {agent|apply}' fail](https://tickets.puppetlabs.com/browse/PUP-4436)
+* [PUP-4436: With a gem install of puppet, when run as root, 'puppet agent / apply' fail](https://tickets.puppetlabs.com/browse/PUP-4436)
 
 ### Bug Fixes: Language
 
