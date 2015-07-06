@@ -60,7 +60,7 @@ For an introduction, see [the language page on data types.][data_types]
 
 ### Cleaner and More Consistent Behavior
 
-The frustrations of [relative namespace lookup][relative_namespace] are gone. Most expressions with values work the same now, so the weird rules about where you can use a variable but not a function call are gone. A lot of edge cases have been cleaned up, and everything is just a lot nicer.
+<del>The frustrations of <a href="./lang_namespaces.html#relative-name-lookup-and-incorrect-name-resolution">relative namespace lookup</a> are gone.</del> (Not actually fixed in 3.7; see [PUP-4818](https://tickets.puppetlabs.com/browse/PUP-4818).) Most expressions with values work the same now, so the weird rules about where you can use a variable but not a function call are gone. A lot of edge cases have been cleaned up, and everything is just a lot nicer.
 
 
 What's Tricky About Switching to the Future Parser

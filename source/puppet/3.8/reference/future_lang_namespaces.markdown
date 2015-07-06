@@ -19,6 +19,8 @@ canonical: "/puppet/latest/reference/lang_namespaces.html"
 
 [Class][classes] and [defined type][define] names may be broken up into segments called **namespaces.** Namespaces tell the autoloader how to find the class or defined type in your [modules][module].
 
+> **Warning:** [PUP-121](https://tickets.puppetlabs.com/browse/PUP-121) wasn't actually fixed as intended, and [relative namespacing](./lang_namespaces.html#relative-name-lookup-and-incorrect-name-resolution) remains a problem with the future parser in Puppet 3.8.1. It _is_ fixed in Puppet 4.0 and later. See [PUP-4818](https://tickets.puppetlabs.com/browse/PUP-4818) for more info.
+
 Syntax
 -----
 
