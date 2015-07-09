@@ -22,14 +22,14 @@ This page covers how to write EPP templates. See [Templates](./lang_template.htm
 
 ## EPP Structure and Syntax
 
-~~~ erb
+~~~ erp
     <%- | Boolean $keys_enable,
           String  $keys_file,
           Array   $keys_trusted,
           String  $keys_requestkey,
           String  $keys_controlkey
     | -%>
-    <%# Parameters tag ↑ -%>
+    <%# Parameter tag ↑ -%>
 
     <%# Non-printing tag ↓ -%>
     <% if $keys_enable { -%>
@@ -48,22 +48,20 @@ This page covers how to write EPP templates. See [Templates](./lang_template.htm
 
 An EPP template looks like a plain-text document interspersed with tags containing Puppet expressions. When evaluated, these tagged expressions can modify text in the template. You can use Puppet [variables][] in an EPP template to customize its output.
 
-[//]: # (^ CHECK THIS)
-
 ## Tags
 
-EPP has two tags for Puppet code, optional tags for comments and parameters, and a way to escape tag delimiters.
+EPP has two tags for Puppet code, optional tags for parameters and comments, and a way to escape tag delimiters.
 
 * `<%= EXPRESSION %>` --- Inserts the value of a single expression.
     * With `-%>` --- Trims any trailing spaces and up to one following line break.
 * `<% EXPRESSION %>` --- Executes any expressions, but does not insert a value.
     * With `<%-` --- Trims the preceding indentation.
     * With `-%>` --- Trims any trailing spaces and up to one following line break.
-* `<%# COMMENT %>` --- Removed from the final output.
-    * With `-%>` --- Trims any trailing spaces and up to one following line break.
-* `<% | PARAMETERS | %>` --- Declares the template's parameters when placed as the first tag.
+* `<% | PARAMETERS | %>` --- Declares the template's parameters.
     * With `<%-` --- Trims the preceding indentation.
     * With `-%>` --- Trims any trailing spaces and up to one following line break.    
+* `<%# COMMENT %>` --- Removed from the final output.
+    * With `-%>` --- Trims any trailing spaces and up to one following line break.
 * `<%%` or `%%>` --- A literal `<%` or `%>`, respectively.
 
 Text outside a tag becomes literal text, but it is subject to any tagged Puppet code surrounding it. For example, text surrounded by a tagged `if` statement only appears in the output if the condition is true.
@@ -74,14 +72,12 @@ Text outside a tag becomes literal text, but it is subject to any tagged Puppet 
 
 An expression-printing tag inserts the value of a single [Puppet expression](./lang_expressions.html) into the output. It starts with an opening tag delimiter and equals sign (`<%=`) and ends with a closing tag delimiter (`%>`). It must contain any single Puppet expression that resolves to a value, including plain variables, [function calls](./lang_functions.html), and arithmetic expressions. If the value isn't a string, Puppet automatically converts it to a string based on the [rules for value interpolation in double-quoted strings](./lang_data_string.html#conversion-of-interpolated-values).
 
-For example, to insert the value of the `$fqdn` and `$hostname` facts in an Apache config file, you could do something like:
+For example, to insert the value of the `$fqdn` and `$hostname` facts in an EPP template for an Apache config file, you could do something like:
 
 ~~~ epp
     ServerName <%= $fqdn %>
     ServerAlias <%= $hostname %>
 ~~~
-
-[//]: # (USE erb TO STYLE epp CODE?)
 
 #### Space Trimming
 
@@ -99,7 +95,7 @@ Non-printing tags that contain [conditional][./lang_iteration.html] and [iterati
 
 For example, to insert text only if a certain variable was set, you could do something like:
 
-~~~ erb
+~~~ erp
     <% if $broadcastclient == true -%>
     broadcastclient
     <% end -%>
@@ -107,7 +103,7 @@ For example, to insert text only if a certain variable was set, you could do som
 
 Expressions in non-printing tags don't have to resolve to a value or be a complete statement, but the tag must close at a place where it would be legal to write another expression. For example, you couldn't write:
 
-~~~ erb
+~~~ erp
     <%# Syntax error: %>
     <% $servers.each -%>
     # some server
@@ -130,30 +126,30 @@ You can trim whitespace surrounding a non-printing tag by adding hyphens (`-`) t
 
 `<%- | Boolean $keys_enable | -%>`
 
-A parameter tag declares parameters that become local [variables][] for the template.
+A parameter tag declares parameters that become local [variables][] within the template. A parameter can be [typed](./lang_data_type.html) and have a default value.
 
-The parameter tag is optional; if used, it must be the first content in a template. The par should always close with a right-trimmed delimiter (`-%>`) to avoid outputting a blank line. Literal text, line breaks, and non-comment tags cannot precede the template's parameter tag. (Comment tags that precede a parameter tag must use the right-trimming tag to trim trailing whitespace.)
+The parameter tag is optional; if used, it **must** be the first content in a template. The parameter tag should always close with a right-trimmed delimiter (`-%>`) to avoid outputting a blank line. Literal text, line breaks, and non-comment tags cannot precede the template's parameter tag. (Comment tags that precede a parameter tag must use the right-trimming tag to trim trailing whitespace.)
 
 Each parameter in the tag follows this format:
 
 `<DATA TYPE> <VARIABLE NAME> = <DEFAULT VALUE>`
 
-Everything but the variable name is optional.
+Only the variable name is required. 
 
 By calling the EPP template with a [hash][] as the last argument of the `[epp][]` or `[inline_epp][]` functions, you can pass parameter values to the template:
 
 ~~~ puppet
-    # produces 'Hello given argument world!'
-    $x ='local variable world'
+    # Outputs 'Hello given argument world!'
+    $x = 'local variable world'
     inline_epp(@(END:epp), { x => 'given argument' })
-    <%- |$x| -%>
+    <%- | $x | -%>
     Hello <%= $x %> world!
     END
 ~~~ puppet
 
-You **must** pass values for all parameters lacking default values to evaluate the template; to declare an optional parameter, assign it a default value in the template's parameter tag.
+[//]: # (^ CHECK THIS, as I changed `inline_epptemplate` to `inline_epp`. I only see `inline_epptemplate` in autogenerated reference pages, and it's contradicted in usage and the `puppet-epp` manpage.)
 
-You can only pass undeclared parameters in this fashion if the EPP template's parameter tag does not declare any parameters.
+You **must** pass values for all parameters that lack default values for Puppet to evaluate the template; to declare an optional parameter, assign it a default value in the template's parameter tag. You can only pass undeclared parameters to an EPP template in this fashion if it does not contain a parameter tag.
 
 #### Space Trimming
 
@@ -182,8 +178,6 @@ If you need the template's final output to contain a literal `<%` or `%>`, you c
 
 Templates can access [variables][] with the standard Puppet syntax of `$variable` or `$class::variable`. 
 
-Compared to the behavior of [ERB][], where the parent scope is the class that calls the template, EPP requires that you either pass class variables to the template as parameters or access them directly using their long names. 
-
 For instance, to access `$ntp::tinker` in a template, you can either pass it when calling the template:
 
 `epp('example/example.epp', { 'tinker' => $ntp::tinker }`
@@ -194,11 +188,11 @@ For instance, to access `$ntp::tinker` in a template, you can either pass it whe
 
 This approach results in clean, clear expressions, and you can see exactly what data a template relies on without having to read the whole template.
 
-You can also access `$ntp::tinker` directly:
+You can also access `$ntp::tinker` directly from the template:
 
 `The tinker value is <%= $ntp::tinker -%>.`
 
-This approach is easier if you need to use many variables. 
+This approach is easier if you need to use many variables.
 
 Either way, when compared to [ERB][] (where the parent scope is set to the class calling the template), EPP helps you see where variables are supposed to come from simply by reading the template---you don't have to examine lots of code outside of the template to trace variables' sources.
 
@@ -220,7 +214,7 @@ There are two ways you can pass specific parameters to an EPP template when call
 In other words, if you **do** declare parameters in a template, you can **only** pass those declared parameters when calling the template. If you **don't** declare parameters in a template, you can pass **any** parameters when calling the template.
 
 [//]: # (TO DO:)
-[//]: # (  - Test whether you can pass parameters into a template if the parameter tag is empty.)
+[//]: # (  - Test whether you can pass parameters into a template if the parameter tag is present but empty.)
 
 ## Example Template
 
