@@ -18,7 +18,7 @@ canonical: "/puppet/latest/reference/lang_template_erb.html"
 
 [ERB][] is a templating language based on Ruby. Puppet can evaluate ERB templates with the `template` and `inline_template` functions.
 
-This page is about how to write ERB templates. See [Templates](./lang_template.html) for info about what templates are and how to evaluate them.
+This page covers how to write ERB templates. See [Templates](./lang_template.html) for information about what templates are and how to evaluate them.
 
 **Note:** If you've used ERB in other projects, it might have had different features enabled. This page only describes how ERB works in Puppet.
 
@@ -42,9 +42,9 @@ controlkey <%= @keys_controlkey %>
 <% end -%>
 ~~~
 
-An ERB template looks like a plain text document interspersed with tags containing Ruby code. When evaluated, this tagged code can modify text in the template.
+An ERB template looks like a plain-text document interspersed with tags containing Ruby code. When evaluated, this tagged code can modify text in the template.
 
-Puppet passes data to templates via special objects and variables, which you can use in the tagged Ruby code to control the template's output.
+Puppet passes data to templates via special objects and variables, which you can use in the tagged Ruby code to control the templates' output.
 
 ## Tags
 
@@ -52,22 +52,22 @@ ERB has two tags for Ruby code, a tag for comments, and a way to escape tag deli
 
 * `<%= EXPRESSION %>` --- Inserts the value of an expression.
     * With `-%>` --- Trims the following line break.
-* `<% CODE %>` --- Executes code, but will not insert a value.
+* `<% CODE %>` --- Executes code, but does not insert a value.
     * With `<%-` --- Trims the preceding indentation.
     * With `-%>` --- Trims the following line break.
 * `<%# COMMENT %>` --- Removed from the final output.
     * With `-%>` --- Trims the following line break.
 * `<%%` or `%%>` --- A literal `<%` or `%>`, respectively.
 
-Text outside a tag becomes literal text, but it is subject to any tagged Ruby code surrounding it; for example, text surrounded by a tagged `if` statement will only appear in the output if the condition is true.
+Text outside a tag becomes literal text, but it is subject to any tagged Ruby code surrounding it. For example, text surrounded by a tagged `if` statement only appears in the output if the condition is true.
 
 ### Expression-Printing Tags
 
 `<%= @fqdn %>`
 
-Expression-printing tags insert values into the final text. They start with an opening tag delimiter and an equals sign (`<%=`), and end with a closing tag delimiter (`%>`). They must contain a snippet of Ruby code that resolves to a value; if the value isn't a string, it will be automatically converted to a string using its `to_s` method.
+An expression-printing tag inserts values into the output. It starts with an opening tag delimiter and equals sign (`<%=`) and ends with a closing tag delimiter (`%>`). It must contain a snippet of Ruby code that resolves to a value; if the value isn't a string, it will be automatically converted to a string using its `to_s` method.
 
-For example, if we wanted to insert the value of the `$fqdn` and `$hostname` facts in an Apache config file, we could do something like:
+For example, to insert the value of the `$fqdn` and `$hostname` facts in an Apache config file, you could do something like:
 
 ~~~ erb
 ServerName <%= @fqdn %>
@@ -84,14 +84,16 @@ You can trim line breaks after expression-printing tags by adding a hyphen to th
 
 `<% if @broadcastclient == true %> ...text... <% end %>`
 
-Non-printing tags execute the code they contain, but won't insert a value into the final text. They're good for conditional or looping logic, or manipulating data before printing it. They start with an opening tag delimiter (`<%`), and end with a closing tag delimiter (`%>`).
+A non-printing tag executes the code it contains, but doesn't insert a value into the output. It starts with an opening tag delimiter (`<%`) and ends with a closing tag delimiter (`%>`).
 
-For example, if we had a piece of text that we only wanted to insert if a certain variable was set, we could do something like:
+Non-printing tags that contain conditional expressions can affect untagged text between the tagged expressions, making this type of tag useful for employing conditional or looping logic, or for manipulating data before printing it. 
+
+For example, to insert text only if a certain variable was set, you could do something like:
 
 ~~~ erb
-<% if @broadcastclient == true -%>
-broadcastclient
-<% end -%>
+    <% if @broadcastclient == true -%>
+    broadcastclient
+    <% end -%>
 ~~~
 
 Non-printing code doesn't have to resolve to a value or be a complete statement, but the tag must close at a place where it would be legal to write another statement. For example, you couldn't write:
@@ -104,7 +106,7 @@ Non-printing code doesn't have to resolve to a value or be a complete statement,
 <% end -%>
 ~~~
 
-You would have to keep `do |server|` inside the first tag, because you can't insert an arbitrary statement between a method call and the block it requires.
+You must keep `do |server|` inside the first tag, because you can't insert an arbitrary statement between a method call and its required block.
 
 #### Space Trimming
 
@@ -117,7 +119,7 @@ You can trim whitespace surrounding a non-printing tag by adding hyphens (`-`) t
 
 `<%# This is a comment. %>`
 
-Comment tags prevent their contents from appearing in the final text. They start with an opening tag delimiter and a hash/pound sign (`<%#`), and end with a closing tag delimiter (`%>`).
+A comment tag's contents do not appear in the template's output. It starts with an opening tag delimiter and a hash sign (`<%#`) and ends with a closing tag delimiter (`%>`).
 
 #### Space Trimming
 
