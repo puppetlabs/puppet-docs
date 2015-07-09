@@ -225,7 +225,7 @@ If:
 
 ## Example Template
 
-The following example is an EPP translation of the `ntp.conf.epp` template from the [`puppetlabs-ntp`][ntp] module.
+The following example is an EPP translation of the `ntp.conf.erb` template from the [`puppetlabs-ntp`][ntp] module.
 
 ~~~ epp
 # ntp.conf: Managed by puppet.
