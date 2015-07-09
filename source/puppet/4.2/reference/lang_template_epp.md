@@ -180,7 +180,7 @@ Templates can access [variables][] with the standard Puppet syntax of `$variable
 
 For instance, to access `$ntp::tinker` in a template, you can either pass it when calling the template:
 
-`epp('example/example.epp', { 'tinker' => $ntp::tinker }`
+`epp('example/example.epp', { 'tinker' => $ntp::tinker })`
 
 ... and use the `$tinker` parameter from within the template:
 
@@ -218,7 +218,7 @@ In other words, if you **do** declare parameters in a template, you can **only**
 
 ## Example Template
 
-The following example is an EPP translation of the ntp.conf.erb template from the [`puppetlabs-ntp`][ntp] module.
+The following example is an EPP translation of the `ntp.conf.epp` template from the [`puppetlabs-ntp`][ntp] module.
 
 ~~~ epp
     # ntp.conf: Managed by puppet.
@@ -313,4 +313,15 @@ The following example is an EPP translation of the ntp.conf.erb template from th
     # Leapfile
     leapfile <%= $ntp::leapfile %>
     <% } -%>
+~~~
+
+To call this template from a manifest (presuming that the template file is located in the `templates` directory of the `puppetlabs-ntp` module), add the following code to the manifest:
+
+~~~ puppet
+# epp(<FILE REFERENCE>, [<PARAMETER HASH>])
+file { '/etc/ntp.conf':
+  ensure  => file,
+  content => epp('ntp/ntp.conf.epp', {'service_name' => 'xntpd', 'iburst_enable' => true}),
+  # Loads /etc/puppetlabs/code/environments/production/modules/ntp/templates/ntp.conf.epp
+}
 ~~~
