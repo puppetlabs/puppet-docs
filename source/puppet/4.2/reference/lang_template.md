@@ -70,10 +70,10 @@ file { '/etc/ntp.conf':
 
 The first argument to these functions should be a string like `'<MODULE>/<FILE>'`, which will load `<FILE>` from `<MODULE>`'s `templates` directory.
 
-File Reference                  | Actual File (with default settings and production environment)
---------------------------------|-----------------------------------------------------------------------------------------------
-`ntp/ntp.conf.epp`              | `/etc/puppetlabs/code/environments/production/modules/ntp/templates/ntp.conf.epp`
-`activemq/amq/activemq.xml.erb` | `/etc/puppetlabs/code/environments/production/modules/activemq/templates/amq/activemq.xml.erb`
+File Reference                  | Actual File
+--------------------------------|---------------------------------------------------------------
+`ntp/ntp.conf.epp`              | `<MODULES DIRECTORY>/ntp/templates/ntp.conf.epp`
+`activemq/amq/activemq.xml.erb` | `<MODULES DIRECTORY>/activemq/templates/amq/activemq.xml.erb`
 
 #### EPP Parameters
 
