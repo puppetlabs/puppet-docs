@@ -86,7 +86,7 @@ You can trim line breaks after expression-printing tags by adding a hyphen to th
 
 A non-printing tag executes the code it contains, but doesn't insert a value into the output. It starts with an opening tag delimiter (`<%`) and ends with a closing tag delimiter (`%>`).
 
-Non-printing tags that contain conditional expressions can affect untagged text between the tagged expressions, making this type of tag useful for employing conditional or looping logic, or for manipulating data before printing it. 
+Non-printing tags that contain iterative or conditional expressions can affect the untagged text they surround.
 
 For example, to insert text only if a certain variable was set, you could do something like:
 
