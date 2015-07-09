@@ -13,6 +13,9 @@ canonical: "/puppet/latest/reference/lang_template_epp.html"
 [local scope]: ./lang_scope.html
 [node definition]: ./lang_node_definitions.html
 [variables]: ./lang_variables.html
+[defined type]: ./lang_defined_types.html
+[variable_names]: ./lang_variables.html#naming
+
 
 Embedded Puppet (EPP) is a templating language based on the [Puppet language](./lang_summary.html). You can use EPP in Puppet 4 and higher, as well as Puppet 3.5 through 3.8 with the [future parser](/3.8/reference/experiments_future.html) enabled.
 
@@ -23,27 +26,27 @@ This page covers how to write EPP templates. See [Templates](./lang_template.htm
 ## EPP Structure and Syntax
 
 ~~~ erp
-    <%- | Boolean $keys_enable,
-          String  $keys_file,
-          Array   $keys_trusted,
-          String  $keys_requestkey,
-          String  $keys_controlkey
-    | -%>
-    <%# Parameter tag ↑ -%>
+<%- | Boolean $keys_enable,
+      String  $keys_file,
+      Array   $keys_trusted,
+      String  $keys_requestkey,
+      String  $keys_controlkey
+| -%>
+<%# Parameter tag ↑ -%>
 
-    <%# Non-printing tag ↓ -%>
-    <% if $keys_enable { -%>
-    <%# Expression-printing tag ↓ -%>
-    keys <%= $keys_file %>
-    <% unless $keys_trusted =~ Array[Data,0,0] { -%>
-    trustedkey <%= $keys_trusted.join(' ') %>
-    <% } -%>
-    <% if $keys_requestkey =~ String[1] { -%>
-    requestkey <%= $keys_requestkey %>
-    <% } -%>
-    <% if $keys_controlkey =~ String[1] { -%>
-    controlkey <%= $keys_controlkey %>
-    <% } -%>
+<%# Non-printing tag ↓ -%>
+<% if $keys_enable { -%>
+<%# Expression-printing tag ↓ -%>
+keys <%= $keys_file %>
+<% unless $keys_trusted =~ Array[Data,0,0] { -%>
+trustedkey <%= $keys_trusted.join(' ') %>
+<% } -%>
+<% if $keys_requestkey =~ String[1] { -%>
+requestkey <%= $keys_requestkey %>
+<% } -%>
+<% if $keys_controlkey =~ String[1] { -%>
+controlkey <%= $keys_controlkey %>
+<% } -%>
 ~~~
 
 An EPP template looks like a plain-text document interspersed with tags containing Puppet expressions. When evaluated, these tagged expressions can modify text in the template. You can use Puppet [variables][] in an EPP template to customize its output.
@@ -75,8 +78,8 @@ An expression-printing tag inserts the value of a single [Puppet expression](./l
 For example, to insert the value of the `$fqdn` and `$hostname` facts in an EPP template for an Apache config file, you could do something like:
 
 ~~~ epp
-    ServerName <%= $fqdn %>
-    ServerAlias <%= $hostname %>
+ServerName <%= $fqdn %>
+ServerAlias <%= $hostname %>
 ~~~
 
 #### Space Trimming
@@ -91,29 +94,27 @@ You can trim trailing whitespace and line breaks after expression-printing tags 
 
 A non-printing tag executes the code it contains, but doesn't insert a value into the output. It starts with an opening tag delimiter (`<%`) and ends with a closing tag delimiter (`%>`).
 
-Non-printing tags that contain [conditional][./lang_iteration.html] and [iterative][./lang_conditional.html] expressions can affect untagged text between the tagged expressions, making this type of tag useful for employing conditional or looping logic, or for manipulating data before outputting it.
+Non-printing tags that contain [iterative](./lang_iteration.html) and [conditional](./lang_conditional.html) expressions can affect the untagged text they surround.
 
 For example, to insert text only if a certain variable was set, you could do something like:
 
 ~~~ erp
-    <% if $broadcastclient == true -%>
-    broadcastclient
-    <% end -%>
+<% if $broadcastclient == true -%>
+broadcastclient
+<% end -%>
 ~~~
 
 Expressions in non-printing tags don't have to resolve to a value or be a complete statement, but the tag must close at a place where it would be legal to write another expression. For example, you couldn't write:
 
 ~~~ erp
-    <%# Syntax error: %>
-    <% $servers.each -%>
-    # some server
-    <% do |server| %> server <%= server %>
-    <% end -%>
+<%# Syntax error: %>
+<% $servers.each -%>
+# some server
+<% |server| { %> server <%= server %>
+<% } -%>
 ~~~
 
-You must keep `do |server|` inside the first tag, because you can't insert an arbitrary statement between a method call and its required block.
-
-[//]: # (^ CHECK THIS)
+You must keep `|server| {` inside the first tag, because you can't insert an arbitrary statement between a function call and its required block.
 
 #### Space Trimming
 
@@ -124,32 +125,20 @@ You can trim whitespace surrounding a non-printing tag by adding hyphens (`-`) t
 
 ### Parameter Tags
 
-`<%- | Boolean $keys_enable | -%>`
+`<%- | Boolean $keys_enable = false, String $keys_file = '' | -%>`
 
-A parameter tag declares parameters that become local [variables][] within the template. A parameter can be [typed](./lang_data_type.html) and have a default value.
+A parameter tag declares which parameters the template will accept. Each parameter can be [typed](./lang_data_type.html) and can have a default value.
 
 The parameter tag is optional; if used, it **must** be the first content in a template. The parameter tag should always close with a right-trimmed delimiter (`-%>`) to avoid outputting a blank line. Literal text, line breaks, and non-comment tags cannot precede the template's parameter tag. (Comment tags that precede a parameter tag must use the right-trimming tag to trim trailing whitespace.)
 
-Each parameter in the tag follows this format:
+The parameter tag's pair of pipe characters (`|`) should contain a comma-separated list of parameters. Each parameter follows this format:
 
 `<DATA TYPE> <VARIABLE NAME> = <DEFAULT VALUE>`
 
-Only the variable name is required.
+Only the variable name is required. If a default value is present, the parameter is optional; otherwise, you must pass a value for that parameter when you call the template.
 
-By calling the EPP template with a [hash][] as the last argument of the `[epp][]` or `[inline_epp][]` functions, you can pass parameter values to the template:
+See [Parameters](#parameters) below for details about passing parameters.
 
-~~~ puppet
-    # Outputs 'Hello given argument world!'
-    $x = 'local variable world'
-    inline_epp(@(END:epp), { x => 'given argument' })
-    <%- | $x | -%>
-    Hello <%= $x %> world!
-    END
-~~~
-
-[//]: # (^ CHECK THIS, as I changed `inline_epptemplate` to `inline_epp`. I only see `inline_epptemplate` in autogenerated reference pages, and it's contradicted in usage and the `puppet-epp` manpage.)
-
-You **must** pass values for all parameters that lack default values for Puppet to evaluate the template; to declare an optional parameter, assign it a default value in the template's parameter tag. You can only pass undeclared parameters to an EPP template in this fashion if it does not contain a parameter tag.
 
 #### Space Trimming
 
@@ -174,154 +163,172 @@ You can trim line breaks after comment tags by adding a hyphen to the closing ta
 
 If you need the template's final output to contain a literal `<%` or `%>`, you can escape them as `<%%` or `%%>`.
 
+
 ## Accessing Variables
 
-Templates can access [variables][] with the standard Puppet syntax of `$variable` or `$class::variable`.
+EPP templates can access [variables][] with Puppet's normal `$variable` syntax (`The tinker value is <%= $ntp::tinker %>`), which is a major advantage over ERB.
 
-For instance, to access `$ntp::tinker` in a template, you can either pass it when calling the template:
+A template works like a [defined type][]:
 
-`epp('example/example.epp', { 'tinker' => $ntp::tinker })`
+* It has its own anonymous [local scope][].
+* The parent scope is set to node scope (or top scope if there's no [node definition][]).
+* When you call the template (with the [`epp`][epp] or [`inline_epp`][inline_epp] functions), you can use parameters to set variables in its local scope.
 
-... and use the `$tinker` parameter from within the template:
-
-`The tinker value is <%= $tinker -%>.`
-
-This approach results in clean, clear expressions, and you can see exactly what data a template relies on without having to read the whole template.
-
-You can also access `$ntp::tinker` directly from the template:
-
-`The tinker value is <%= $ntp::tinker -%>.`
-
-This approach is easier if you need to use many variables.
-
-Either way, when compared to [ERB][] (where the parent scope is set to the class calling the template), EPP helps you see where variables are supposed to come from simply by reading the template---you don't have to examine lots of code outside of the template to trace variables' sources.
-
-An EPP template also has its own [local scope][]. The parent scope is set to node scope, or top scope if there's no [node definition][], which means you can access global variables like `$os` or `$trusted` by their short names. However, with one exception you can't use variables from the class that evaluated the template by their short names unless you pass them as parameters when calling the template with the `[epp][]` or `[inline_epp][]` functions.
-
-### Special Rule for `inline_epp`
-
-If you evaluate a template with the `[inline_epp][]` function, the template declares no parameters, and you don't pass any parameters, you can access variables from the surrounding class in the template by using the variables' short names. This exceptional behavior is only allowed if **all** of those conditions are true.
+This means templates can use short names to access global variables (like `$os` or `$trusted`) and their own local variables, but must use qualified names (like `$ntp::tinker`) to access variables from any class. (With one exception for `inline_epp`; [see below](#special-scope-rule-for-inlineepp).)
 
 ### Parameters
 
-Parameters you pass as an argument of the `[epp][]` or `[inline_epp][]` functions that call the template, or that you declare in a [parameter tag](#parameter-tag) within the template, are locally scoped to the EPP template.
+You can pass parameters when you call a template, and they will become local variables inside the template. To do this, pass a [hash][] as the last argument of the [`epp`][epp] or [`inline_epp`][inline_epp] functions:
 
-There are two ways you can pass specific parameters to an EPP template when calling it:
+~~~ ruby
+epp('example/example.epp', { 'logfile' => "/var/log/ntp.log" })
+~~~
 
-* Declare them in the template's parameter tag and pass only those parameters as an argument.
-* Pass any parameters as an argument to a template that does not contain a parameter tag.
+~~~ epp
+<%- | Optional[String] $logfile = undef | -%>
+<%# (Declare the $logfile parameter as optional) -%>
 
-In other words, if you **do** declare parameters in a template, you can **only** pass those declared parameters when calling the template. If you **don't** declare parameters in a template, you can pass **any** parameters when calling the template.
+<% unless $logfile =~ Undef { -%>
+logfile <%= $logfile %>
+<% } -%>
+~~~
 
-[//]: # (TO DO:)
-[//]: # (  - Test whether you can pass parameters into a template if the parameter tag is present but empty.)
+The keys of the hash should match the variable names you'll be using in the template, minus the leading `$` sign. Parameters must follow [the normal rules for local variable names.][variable_names]
+
+If the template has a [parameter tag](#parameter-tag), you can _only_ pass the parameters it declares. Passing any additional parameters is a syntax error. However, if a template omits the parameter tag, you can pass it any parameters.
+
+If a template's parameter tag includes any parameters without default values, they are mandatory. You must pass values for them when calling the template.
+
+#### Why Use Parameters?
+
+Templates have two ways to use data:
+
+* Directly access class variables like `$ntp::tinker`.
+* Use parameters passed at call time.
+
+These are both better than [ERB][]'s approach (where the parent scope is set to the class calling the template), because they're both more explicit and reliable; you can see where variables are supposed to come from simply by reading the template.
+
+You should use class variables when a template is closely tied to the class that uses it, you don't expect it to be used anywhere else, and you need to use a _lot_ of variables.
+
+You should use parameters when a template might be used in several different places and you want to keep it flexible. Also, declaring parameters with a tag makes a template's data requirements visible at a glance.
+
+### Special Scope Rule for `inline_epp`
+
+If:
+
+* You evaluate a template with the [`inline_epp`][inline_epp] function.
+* The template declares no parameters.
+* You don't pass any parameters.
+
+...you can access variables from the calling class in the template by using the variables' short names. This exceptional behavior is only allowed if **all** of those conditions are true.
+
 
 ## Example Template
 
 The following example is an EPP translation of the `ntp.conf.epp` template from the [`puppetlabs-ntp`][ntp] module.
 
 ~~~ epp
-    # ntp.conf: Managed by puppet.
-    #
-    <% if $ntp::tinker == true and ($ntp::panic or $ntp::stepout) { -%>
-    # Enable next tinker options:
-    # panic - keep ntpd from panicking in the event of a large clock skew
-    # when a VM guest is suspended and resumed;
-    # stepout - allow ntpd change offset faster
-    tinker<% if $ntp::panic { %> panic <%= $ntp::panic %><% } %><% if $ntp::stepout { -%> stepout <%= $ntp::stepout %><% } %>
-    <% } -%>
+# ntp.conf: Managed by puppet.
+#
+<% if $ntp::tinker == true and ($ntp::panic or $ntp::stepout) { -%>
+# Enable next tinker options:
+# panic - keep ntpd from panicking in the event of a large clock skew
+# when a VM guest is suspended and resumed;
+# stepout - allow ntpd change offset faster
+tinker<% if $ntp::panic { %> panic <%= $ntp::panic %><% } %><% if $ntp::stepout { -%> stepout <%= $ntp::stepout %><% } %>
+<% } -%>
 
-    <% if $ntp::disable_monitor == true { -%>
-    disable monitor
-    <% } -%>
-    <% if $ntp::disable_auth == true { -%>
-    disable auth
-    <% } -%>
+<% if $ntp::disable_monitor == true { -%>
+disable monitor
+<% } -%>
+<% if $ntp::disable_auth == true { -%>
+disable auth
+<% } -%>
 
-    <% if $ntp::restrict =~ Array[Data,1] { -%>
-    # Permit time synchronization with our time source, but do not
-    # permit the source to query or modify the service on this system.
-    <% $ntp::restrict.flatten.each |$restrict| { -%>
-    restrict <%= $restrict %>
-    <% } -%>
-    <% } -%>
+<% if $ntp::restrict =~ Array[Data,1] { -%>
+# Permit time synchronization with our time source, but do not
+# permit the source to query or modify the service on this system.
+<% $ntp::restrict.flatten.each |$restrict| { -%>
+restrict <%= $restrict %>
+<% } -%>
+<% } -%>
 
-    <% if $ntp::interfaces =~ Array[Data,1] { -%>
-    # Ignore wildcard interface and only listen on the following specified
-    # interfaces
-    interface ignore wildcard
-    <% $ntp::interfaces.flatten.each |$interface| { -%>
-    interface listen <%= $interface %>
-    <% } -%>
-    <% } -%>
+<% if $ntp::interfaces =~ Array[Data,1] { -%>
+# Ignore wildcard interface and only listen on the following specified
+# interfaces
+interface ignore wildcard
+<% $ntp::interfaces.flatten.each |$interface| { -%>
+interface listen <%= $interface %>
+<% } -%>
+<% } -%>
 
-    <% if $ntp::broadcastclient == true { -%>
-    broadcastclient
-    <% } -%>
+<% if $ntp::broadcastclient == true { -%>
+broadcastclient
+<% } -%>
 
-    # Set up servers for ntpd with next options:
-    # server - IP address or DNS name of upstream NTP server
-    # iburst - allow send sync packages faster if upstream unavailable
-    # prefer - select preferrable server
-    # minpoll - set minimal update frequency
-    # maxpoll - set maximal update frequency
-    <% [$ntp::servers].flatten.each |$server| { -%>
-    server <%= $server %><% if $ntp::iburst_enable == true { %> iburst<% } %><% if $server in $ntp::preferred_servers { %> prefer<% } %><% if $ntp::minpoll { %> minpoll <%= $ntp::minpoll %><% } %><% if $ntp::maxpoll { %> maxpoll <%= $ntp::maxpoll %><% } %>
-    <% } -%>
+# Set up servers for ntpd with next options:
+# server - IP address or DNS name of upstream NTP server
+# iburst - allow send sync packages faster if upstream unavailable
+# prefer - select preferrable server
+# minpoll - set minimal update frequency
+# maxpoll - set maximal update frequency
+<% [$ntp::servers].flatten.each |$server| { -%>
+server <%= $server %><% if $ntp::iburst_enable == true { %> iburst<% } %><% if $server in $ntp::preferred_servers { %> prefer<% } %><% if $ntp::minpoll { %> minpoll <%= $ntp::minpoll %><% } %><% if $ntp::maxpoll { %> maxpoll <%= $ntp::maxpoll %><% } %>
+<% } -%>
 
-    <% if $ntp::udlc { -%>
-    # Undisciplined Local Clock. This is a fake driver intended for backup
-    # and when no outside source of synchronized time is available.
-    server   127.127.1.0
-    fudge    127.127.1.0 stratum <%= $ntp::udlc_stratum %>
-    restrict 127.127.1.0
-    <% } -%>
+<% if $ntp::udlc { -%>
+# Undisciplined Local Clock. This is a fake driver intended for backup
+# and when no outside source of synchronized time is available.
+server   127.127.1.0
+fudge    127.127.1.0 stratum <%= $ntp::udlc_stratum %>
+restrict 127.127.1.0
+<% } -%>
 
-    # Driftfile.
-    driftfile <%= $ntp::driftfile %>
+# Driftfile.
+driftfile <%= $ntp::driftfile %>
 
-    <% unless $ntp::logfile =~ Undef { -%>
-    # Logfile
-    logfile <%= $ntp::logfile %>
-    <% } -%>
+<% unless $ntp::logfile =~ Undef { -%>
+# Logfile
+logfile <%= $ntp::logfile %>
+<% } -%>
 
-    <% unless $ntp::peers =~ Array[Data,0,0] { -%>
-    # Peers
-    <% [$ntp::peers].flatten.each |$peer| { -%>
-    peer <%= $peer %>
-    <% } -%>
-    <% } -%>
+<% unless $ntp::peers =~ Array[Data,0,0] { -%>
+# Peers
+<% [$ntp::peers].flatten.each |$peer| { -%>
+peer <%= $peer %>
+<% } -%>
+<% } -%>
 
-    <% if $ntp::keys_enable { -%>
-    keys <%= $ntp::keys_file %>
-    <% unless $ntp::keys_trusted =~ Array[Data,0,0] { -%>
-    trustedkey <%= $ntp::keys_trusted.join(' ') %>
-    <% } -%>
-    <% if $ntp::keys_requestkey =~ String[1] { -%>
-    requestkey <%= $ntp::keys_requestkey %>
-    <% } -%>
-    <% if $ntp::keys_controlkey =~ String[1] { -%>
-    controlkey <%= $ntp::keys_controlkey %>
-    <% } -%>
+<% if $ntp::keys_enable { -%>
+keys <%= $ntp::keys_file %>
+<% unless $ntp::keys_trusted =~ Array[Data,0,0] { -%>
+trustedkey <%= $ntp::keys_trusted.join(' ') %>
+<% } -%>
+<% if $ntp::keys_requestkey =~ String[1] { -%>
+requestkey <%= $ntp::keys_requestkey %>
+<% } -%>
+<% if $ntp::keys_controlkey =~ String[1] { -%>
+controlkey <%= $ntp::keys_controlkey %>
+<% } -%>
 
-    <% } -%>
-    <% [$ntp::fudge].flatten.each |$entry| { -%>
-    fudge <%= $entry %>
-    <% } -%>
+<% } -%>
+<% [$ntp::fudge].flatten.each |$entry| { -%>
+fudge <%= $entry %>
+<% } -%>
 
-    <% unless $ntp::leapfile =~ Undef { -%>
-    # Leapfile
-    leapfile <%= $ntp::leapfile %>
-    <% } -%>
+<% unless $ntp::leapfile =~ Undef { -%>
+# Leapfile
+leapfile <%= $ntp::leapfile %>
+<% } -%>
 ~~~
 
 To call this template from a manifest (presuming that the template file is located in the `templates` directory of the `puppetlabs-ntp` module), add the following code to the manifest:
 
-~~~ puppet
+~~~ ruby
 # epp(<FILE REFERENCE>, [<PARAMETER HASH>])
 file { '/etc/ntp.conf':
   ensure  => file,
-  content => epp('ntp/ntp.conf.epp', {'service_name' => 'xntpd', 'iburst_enable' => true}),
+  content => epp('ntp/ntp.conf.epp'),
   # Loads /etc/puppetlabs/code/environments/production/modules/ntp/templates/ntp.conf.epp
 }
 ~~~
