@@ -4,12 +4,8 @@ title: "Language Changes Since Puppet 3"
 canonical: "/puppet/latest/reference/experiments_future.html"
 ---
 
-[parser_setting]: /references/4.2.latest/configuration.html#parser
 [boolean_convert_old]: ./lang_datatypes.html#automatic-conversion-to-boolean
 [boolean_convert]: ./lang_data_boolean.html#automatic-conversion-to-boolean
-[puppet.conf]: ./config_file_main.html
-[environment]: ./environments.html
-[environment.conf]: ./config_file_environment.html
 [iteration]: ./lang_iteration.html
 [match_operator]: ./lang_expressions.html#regex-or-data-type-match
 [parameter_datatypes]: ./lang_data_type.html#parameter-lists
@@ -45,6 +41,14 @@ For an introduction, see [the language page on data types.][data_types]
 ### Cleaner and More Consistent Behavior
 
 The frustrations of [relative namespace lookup][relative_namespace] are gone. Most expressions with values work the same now, so the weird rules about where you can use a variable but not a function call are gone. A lot of edge cases have been cleaned up, and everything is just a lot nicer.
+
+### Templates in the Puppet Language
+
+Previously, [templates][] had to be written in [ERB][], which required knowing the Ruby language in addition to the Puppet language. Now, you can write templates in [EPP][], which is based on the Puppet language.
+
+[templates]: ./lang_template.html
+[erb]: ./lang_template_erb.html
+[epp]: ./lang_template_epp.html
 
 
 What's Tricky About Switching to the Revised Puppet Language
