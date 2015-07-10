@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Language: Templates"
+title: "Language: Using Templates"
 canonical: "/puppet/latest/reference/lang_template.html"
 ---
 

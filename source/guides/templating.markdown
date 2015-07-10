@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Using Puppet Templates
+version_note: '<p class="noisy">This is a legacy document that refers to Puppet 3.x and earlier. For up-to-date info, see the latest Puppet docs about templates:</p> <div class="noisy"><ul><li><a href="/puppet/latest/reference/lang_template.html">Using Templates</a></li> <li><a href="/puppet/latest/reference/lang_template_epp.html">Embedded Puppet (EPP) Template Syntax</a></li> <li><a href="/puppet/latest/reference/lang_template_erb.html">Embedded Ruby (ERB) Template Syntax</a></li></ul></div>'
 ---
 
 Using Puppet Templates
