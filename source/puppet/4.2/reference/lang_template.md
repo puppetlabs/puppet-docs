@@ -11,6 +11,7 @@ canonical: "/puppet/latest/reference/lang_template.html"
 [file_line]: https://forge.puppetlabs.com/puppetlabs/stdlib
 [functions]: ./lang_functions.html
 [epp]: ./lang_template_epp.html
+[man epp]: /references/4.2.latest/man/epp.html
 [erb]: ./lang_template_erb.html
 [module]: ./modules_fundamentals.html
 [string]: ./lang_data_string.html
@@ -26,7 +27,7 @@ In Puppet, you'll usually use templates to manage the content of configuration f
 
 ## Templating Languages
 
-Templates are written in a _templating language,_ which is specialized for generating text from data.
+Templates are written in a _templating language_, which is specialized for generating text from data.
 
 Puppet supports two templating languages:
 
@@ -93,7 +94,6 @@ The keys of the hash must be [valid local variable names][] (minus the `$`). Ins
 
 The `template` function can take any number of additional template files, and will concatenate their outputs together to produce the final string.
 
-
 ### With a Template String: `inline_template` and `inline_epp`
 
 If you have a [string][] value that contains template content, you can evaluate it with the `inline_template` (ERB) or `inline_epp` functions as follows:
@@ -120,7 +120,6 @@ In older versions of Puppet, `inline_template` was mostly used to get around lim
 
 In modern versions of Puppet, inline templates are usable in some of the same situations template files are. Since the [heredoc][] syntax makes it easy to write large and complicated strings in a manifest, you can use `inline_template` and `inline_epp` to reduce the number of files needed for a simple module that manages a small config file.
 
-
 #### EPP Parameters
 
 {{ epp_params }}
@@ -129,6 +128,41 @@ In modern versions of Puppet, inline templates are usable in some of the same si
 
 The `inline_template` function can take any number of additional template strings, and will concatenate their outputs together to produce the final value.
 
+## Validating and Previewing Templates
+
+Before deploying a template, you should validate its syntax and render its output to ensure it's producing the results you expect.
+
+Puppet 4 includes the [`puppet epp`][man epp] command-line tool for EPP templates, while Ruby can check ERB syntax after trimming the template with its `erb` command.
+
+### EPP Validation
+
+`puppet epp validate <TEMPLATE NAME>`
+
+The [`puppet epp`][man epp] command includes an action that checks EPP code for syntax problems. The `<TEMPLATE NAME>` can be a file reference or can refer to a `<MODULE NAME>/<TEMPLATE FILENAME>` as the `epp` function. If a file reference can also refer to a module, Puppet validates the module's template instead.
+
+You can also pipe EPP code directly to the validator:
+
+`cat example.epp | puppet epp validate`
+
+The command is silent on a successful validation. It reports and halts on the first error it encounters; to modify this behavior, check the command's [man page][man epp].
+
+### EPP Rendering
+
+`puppet epp render <TEMPLATE NAME>`
+
+You can render EPP from the command line with [`puppet epp render`][man epp]. If Puppet can evaluate the template, it outputs the result.
+
+If your template relies on specific parameters or values to function, you can simulate those values by passing a [hash][] to the `--values` option:
+
+`puppet epp render example.epp --values '{x => 10, y => 20}'`
+
+You can also render inline EPP by using the `-e` flag or piping EPP code to `puppet epp render`, and even simulate facts using YAML. For details, see the command's [man page][man epp].
+
+### ERB Validation
+
+`erb -P -x -T '-' example.erb | ruby -c`
+
+You can use Ruby to check the syntax of ERB code by piping output from the `erb` command into `ruby`. The `-P` switch ignores lines that start with '%', the `-x` switch outputs the template's Ruby script, and the `-T '-'` sets the trim mode to be consistent with Puppet's behavior. This output gets piped into Ruby's syntax checker (`-c`).
 
 ## When to Use (and Not Use) Templates
 
@@ -139,5 +173,3 @@ Strings in the Puppet language already allow you to [interpolate variables and e
 However, if you're doing complex transformations (especially iterating over collections) or working with very large config files, you might need the extra capabilities of a template.
 
 Finally: Sometimes you end up in a situation where several different modules need to manage parts of the same config file, which is incredibly difficult to coordinate with either templates or interpolated strings. For shared configuration like this, you should try to model each setting in that file as an individual resource, with either a custom resource type or an [Augeas][], [concat][], or [`file_line`][file_line] resource. (This approach is similar to how core resource types like `ssh_authorized_key` and `mount` work.)
-
-
