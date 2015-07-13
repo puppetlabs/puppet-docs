@@ -265,6 +265,21 @@ task :build do
   Rake::Task['write_version'].invoke
 end
 
+desc "Instead of building real pages, build naked HTML fragments (with no nav, etc.)"
+task :build_html_fragments do
+  Dir.chdir("#{source_dir}/_layouts") do
+    FileUtils.mv("default.html", "real_default.html")
+    FileUtils.mv("fragment.html", "default.html")
+  end
+  Rake::Task['check_git_dirty_status'].invoke
+  Rake::Task['generate'].invoke
+  # don't write version, so we'll give a noisy error if you try to deploy fragments!
+  Dir.chdir("#{source_dir}/_layouts") do
+    FileUtils.mv("default.html", "fragment.html")
+    FileUtils.mv("real_default.html", "default.html")
+  end
+end
+
 desc "Build all references for a new Puppet version"
 task :references => [ 'references:check_version', 'references:index:stub', 'references:puppetdoc']
 
