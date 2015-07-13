@@ -267,11 +267,11 @@ end
 
 desc "Instead of building real pages, build naked HTML fragments (with no nav, etc.)"
 task :build_html_fragments do
+  Rake::Task['check_git_dirty_status'].invoke
   Dir.chdir("#{source_dir}/_layouts") do
     FileUtils.mv("default.html", "real_default.html")
     FileUtils.mv("fragment.html", "default.html")
   end
-  Rake::Task['check_git_dirty_status'].invoke
   Rake::Task['generate'].invoke
   # don't write version, so we'll give a noisy error if you try to deploy fragments!
   Dir.chdir("#{source_dir}/_layouts") do
