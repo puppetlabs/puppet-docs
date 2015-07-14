@@ -38,6 +38,8 @@ Purpose
 
 Exported resources allow nodes to share information with each other. This is useful when one node has information that another node needs in order to manage a resource --- the node with the information can construct and publish the resource, and the node managing the resource can collect it.
 
+**Note**: Exported resources only include node-specific data, and the catalog compiler constructs and publishes exported resources from that data. This means you can only export node-specific resources stored in the catalog. Generic data not stored in the catalog, such as an entire arbitrary file on a node's filesystem, can't be exported even if referenced by the source parameter of a file resource.
+
 The most common use cases are monitoring and backups. A class that manages a service like PostgreSQL can export a [`nagios_service`][nagios_service] resource describing how to monitor the service, including information like its hostname and port. The Nagios server can then collect every `nagios_service` resource, and will automatically start monitoring the Postgres server.
 
 For more details, see [Exported Resource Design Patterns][exported_guide].
