@@ -20,9 +20,9 @@ Facter 3 outputs new, structured versions of many facts, such as `os`, and hides
 
 - [FACT-1075](https://tickets.puppetlabs.com/browse/FACT-1075)
 
-### Feature: Improved Memory Usage on Launch
+### FIX: Improved Memory Usage on Launch
 
-Previous versions of Facter could consume more memory than was necessary on a `puppetserver` launch. Facter 3.0.2 significantly improves memory usage on launch, making `puppetserver` easier to start on low-spec systems.
+Facter 3.0.0 consumed more memory than was necessary when starting `puppetserver`. Facter 3.0.2 significantly improves memory usage on launch, making `puppetserver` easier to start on low-spec systems.
 
 - [FACT-1083](https://tickets.puppetlabs.com/browse/FACT-1083)
 
@@ -245,6 +245,12 @@ We've improved the [core facts reference](./core_facts.html) to include:
 * The data type for every fact.
 * Info about the name and data type for every member of map/hash facts.
 * Whether the fact is included in Facter's command-line output.
+
+### REGRESSION (fixed in 3.0.2): Facter Uses Too Much Memory
+
+Facter 3.0.0 consumes more memory than is necessary when starting `puppetserver`, causing stability or performance issues on systems with little RAM. This is resolved in Facter 3.0.2.
+
+- [FACT-1083](https://tickets.puppetlabs.com/browse/FACT-1083)
 
 ### SPEED
 
