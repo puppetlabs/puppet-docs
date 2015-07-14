@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Puppet 3.x to 4.x Server Upgrades"
-canonical: "/puppet/latest/reference/upgrade_server.html"
+canonical: "/puppet/latest/reference/upgrade_major_server.html"
 ---
 
 This guide is for sites that have all master-related functions (Puppet master, certificate authority, file server) on one system.
