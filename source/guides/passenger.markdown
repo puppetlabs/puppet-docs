@@ -117,6 +117,8 @@ See "Example Vhost Configuration" below for the contents of the `puppetmaster.co
 This Apache Virtual Host configures the puppet master on the default
 puppetmaster port (8140). You can also see a similar file at `ext/rack/example-passenger-vhost.conf` in the Puppet source.
 
+Make sure you point the SSL-related settings to your actual SSL files; the example below uses Puppet 4's `ssldir`, but Puppet 3 uses a different path, which can vary by OS.
+
     # You'll need to adjust the paths in the Passenger config depending on which OS
     # you're using, as well as the installed version of Passenger.
 
@@ -151,11 +153,11 @@ puppetmaster port (8140). You can also see a similar file at `ext/rack/example-p
         SSLCipherSuite EDH+CAMELLIA:EDH+aRSA:EECDH+aRSA+AESGCM:EECDH+aRSA+SHA384:EECDH+aRSA+SHA256:EECDH:+CAMELLIA256:+AES256:+CAMELLIA128:+AES128:+SSLv3:!aNULL:!eNULL:!LOW:!3DES:!MD5:!EXP:!PSK:!DSS:!RC4:!SEED:!IDEA:!ECDSA:kEDH:CAMELLIA256-SHA:AES256-SHA:CAMELLIA128-SHA:AES128-SHA
         SSLHonorCipherOrder     on
 
-        SSLCertificateFile      /var/lib/puppet/ssl/certs/puppet-server.example.com.pem
-        SSLCertificateKeyFile   /var/lib/puppet/ssl/private_keys/puppet-server.example.pem
-        SSLCertificateChainFile /var/lib/puppet/ssl/ca/ca_crt.pem
-        SSLCACertificateFile    /var/lib/puppet/ssl/ca/ca_crt.pem
-        SSLCARevocationFile     /var/lib/puppet/ssl/ca/ca_crl.pem
+        SSLCertificateFile      /etc/puppetlabs/puppet/ssl/certs/puppet-server.example.com.pem
+        SSLCertificateKeyFile   /etc/puppetlabs/puppet/ssl/private_keys/puppet-server.example.pem
+        SSLCertificateChainFile /etc/puppetlabs/puppet/ssl/ca/ca_crt.pem
+        SSLCACertificateFile    /etc/puppetlabs/puppet/ssl/ca/ca_crt.pem
+        SSLCARevocationFile     /etc/puppetlabs/puppet/ssl/ca/ca_crl.pem
         SSLCARevocationCheck 	chain
         SSLVerifyClient         optional
         SSLVerifyDepth          1
@@ -193,9 +195,9 @@ puppetmaster port (8140). You can also see a similar file at `ext/rack/example-p
 If this puppet master is not the certificate authority, you will
 need to use different paths to the CA certificate and CRL:
 
-    SSLCertificateChainFile /var/lib/puppet/ssl/certs/ca.pem
-    SSLCACertificateFile    /var/lib/puppet/ssl/certs/ca.pem
-    SSLCARevocationFile     /var/lib/puppet/ssl/crl.pem
+    SSLCertificateChainFile /etc/puppetlabs/puppet/ssl/certs/ca.pem
+    SSLCACertificateFile    /etc/puppetlabs/puppet/ssl/certs/ca.pem
+    SSLCARevocationFile     /etc/puppetlabs/puppet/ssl/crl.pem
 
 For additional details about enabling and configuring Passenger, see the
 [Passenger install guide](http://www.modrails.com/install.html) and the [Apache version of the Passenger user's guide][passenger_apache_guide].
