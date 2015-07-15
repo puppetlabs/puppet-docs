@@ -4,11 +4,11 @@ title: "Configuring a Puppet Master Server with Passenger and Apache"
 ---
 
 
-Puppet includes a basic puppet master web server based on Ruby's WEBrick library. (This is what Puppet uses if you run `puppet master` on the command line or use most `puppetmaster` init scripts.)
+Puppet includes a basic Puppet master web server based on Ruby's WEBrick library. (This is what Puppet uses if you run `puppet master` on the command line or use most `puppetmaster` init scripts.)
 
 You **cannot** use this default server for real-life loads, as it can't handle concurrent connections; it is only suitable for small tests with ten nodes or fewer. You must configure a production quality web server before you start managing your nodes with Puppet.
 
-Any Rack-based application server stack will work with a puppet master, but if you don't have any particular preference, you should use Passenger combined with Apache. This guide shows how to configure Puppet with this software.
+Any Rack-based application server stack will work with a Puppet master, but if you don't have any particular preference, you should use Passenger combined with Apache. This guide shows how to configure Puppet with this software.
 
 
 What is Passenger?
@@ -61,10 +61,10 @@ In post-4.0 versions of Puppet, the example config.ru file hardcodes this settin
 Configure Apache
 -----
 
-To configure Apache to run the puppet master application, you must:
+To configure Apache to run the Puppet master application, you must:
 
-* Install the puppet master Rack application, by creating a directory for it and copying the `config.ru` file from the Puppet source.
-* Create a virtual host config file for the puppet master application, and install/enable it.
+* Install the Puppet master Rack application, by creating a directory for it and copying the `config.ru` file from the Puppet source.
+* Create a virtual host config file for the Puppet master application, and install/enable it.
 
 ### Global Configuration
 
@@ -76,13 +76,13 @@ Although this setting is valid at virtual host scope, the way Apache reads its v
 
 ### Install the Puppet Master Rack Application
 
-Your copy of Puppet includes a `config.ru` file, which tells Rack how to spawn puppet master processes. To install this Rack application in a form Passenger can use, you'll need to:
+Your copy of Puppet includes a `config.ru` file, which tells Rack how to spawn Puppet master processes. To install this Rack application in a form Passenger can use, you'll need to:
 
 * Create three directories for the application (a parent directory, a "public" directory, and a "tmp" directory)
 * Copy the `ext/rack/config.ru` file from the Puppet source code into the parent directory
 * Set the ownership of the config.ru file
 
-> **Note:** The `chown` step is important --- the owner of this file is the user the puppet master process will run under. This should usually be `puppet`, but may be different in your deployment.
+> **Note:** The `chown` step is important --- the owner of this file is the user the Puppet master process will run under. This should usually be `puppet`, but may be different in your deployment.
 >
 > Also, make sure the Apache user (which may vary by platform) can both read and traverse all three directories, can traverse all of its parent directories, and can write to the "tmp" directory.
 
@@ -114,7 +114,7 @@ See "Example Vhost Configuration" below for the contents of the `puppetmaster.co
 
 #### Example Vhost Configuration
 
-This Apache Virtual Host configures the puppet master on the default
+This Apache Virtual Host configures the Puppet master on the default
 puppetmaster port (8140). You can also see a similar file at `ext/rack/example-passenger-vhost.conf` in the Puppet source.
 
 Make sure you point the SSL-related settings to your actual SSL files; the example below uses Puppet 4's `ssldir`, but Puppet 3 uses a different path, which can vary by OS.
@@ -168,7 +168,7 @@ Make sure you point the SSL-related settings to your actual SSL files; the examp
         # specify 'SSLCARevocationCheck chain' to actually use the CRL.
 
         # These request headers are used to pass the client certificate
-        # authentication information on to the puppet master process
+        # authentication information on to the Puppet master process
         RequestHeader set X-SSL-Subject %{SSL_CLIENT_S_DN}e
         RequestHeader set X-Client-DN %{SSL_CLIENT_S_DN}e
         RequestHeader set X-Client-Verify %{SSL_CLIENT_VERIFY}e
@@ -192,7 +192,7 @@ Make sure you point the SSL-related settings to your actual SSL files; the examp
         CustomLog /var/log/httpd/puppet-server.example.com_ssl_access.log combined
     </VirtualHost>
 
-If this puppet master is not the certificate authority, you will
+If this Puppet master is not the certificate authority, you will
 need to use different paths to the CA certificate and CRL:
 
     SSLCertificateChainFile /etc/puppetlabs/puppet/ssl/certs/ca.pem
@@ -212,13 +212,13 @@ For additional details about enabling and configuring Passenger, see the
 >
 > Passenger usually uses Apache's DocumentRoot directive to guess where to find its config.ru file --- it assumes config.ru will be right beside the `public` directory.
 >
-> This generally works fine, but some users have seen Passenger fail to guess. If Passenger fails to load the puppet master app and is displaying a generic error message, our first suggestion is to double-check the directory permissions (remember the Apache user must be able to read and traverse all puppet master application directories), but you can also try explicitly telling Passenger where to find the config.ru file with the PassengerAppRoot directive:
+> This generally works fine, but some users have seen Passenger fail to guess. If Passenger fails to load the Puppet master app and is displaying a generic error message, our first suggestion is to double-check the directory permissions (remember the Apache user must be able to read and traverse all Puppet master application directories), but you can also try explicitly telling Passenger where to find the config.ru file with the PassengerAppRoot directive:
 >
 >     PassengerAppRoot /usr/share/puppet/rack/puppetmasterd
 
 > ### Notes on SSL Verification
 >
-> When an agent node makes a request to the puppet master, Apache's `mod_ssl` performs the verification of its certificate, and the puppet master application will trust `mod_ssl`'s judgment. The two systems communicate via environment variables --- Apache must set two variables containing the client's subject DN and its verification status, and the puppet master must know which variables to check when it receives a request.
+> When an agent node makes a request to the Puppet master, Apache's `mod_ssl` performs the verification of its certificate, and the Puppet master application will trust `mod_ssl`'s judgment. The two systems communicate via environment variables --- Apache must set two variables containing the client's subject DN and its verification status, and the Puppet master must know which variables to check when it receives a request.
 >
 > Puppet uses the [`ssl_client_header`][client] and [`ssl_client_verify_header`][clientverify] settings to find these variables; the default values are `HTTP_X_CLIENT_DN` and `HTTP_X_CLIENT_VERIFY`, respectively.
 >
@@ -236,7 +236,7 @@ For additional details about enabling and configuring Passenger, see the
 Start or Restart the Apache service
 -----
 
-Ensure that any WEBrick puppet master process is stopped before starting
+Ensure that any WEBrick Puppet master process is stopped before starting
 the Apache service; only one can be bound to TCP port 8140.
 
 Debian/Ubuntu:
