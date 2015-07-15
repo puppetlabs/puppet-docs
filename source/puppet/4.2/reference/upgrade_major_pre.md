@@ -14,13 +14,17 @@ intro paragraph about how
 
 
 
-## Upgrade/Migrate to Latest Puppet 3.8.x and Server 1.1.x
+## Upgrade/Migrate to Latest Puppet 3.8.x, Server 1.1.x, and PuppetDB 2.3.x
 
 (
 - Upgrade Puppet Server to the latest 1.1.x release.
 - Upgrade Puppet across your deployment to the latest 3.8.x release.
 - If you're still using a Rack-based Puppet master (like Apache with Passenger), migrate to Puppet Server now. (insert link to Puppet Server install guide)
-    - Reminder that your goal here is to take these big changes one by one.
+    - Reminder that your goal here is to take these big changes one by one, and moving from Rack to Server is a biggish change.
+    - You might have to adjust the memory Puppet Server uses. (link to that in the Puppet Server install page)
+    - If you run multiple puppet masters with a single CA, you'll need to edit bootstrap.cfg to turn off the CA service, and make sure you're routing traffic to the appropriate node with a load balancer or with the agents' `ca_server` setting.
+- Upgrade PuppetDB to the latest 2.3.x release, and the puppetdb terminus on your Puppet Server node to the same release.
+    - This is actually all about the terminus package -- the 2.3.x package installs the termini in two places, so the server will still be able to find it after you upgrade. Puppet Server will be fine regardless, but you should always run the same versions of DB and the terminus.
 )
 
 
@@ -63,6 +67,10 @@ link to future language docs as of 3.8
 
 run for a while with future parser turned on, to make sure you've got all the kinks worked out.
 )
+
+## Read the Puppet 4.0 Release Notes
+
+(Puppet 4.0 included several breaking changes, some of which didn't go through a formal deprecation period --- for example, the tagmail report processor was moved out of core and into an optional module. Read the release notes (link) for breaking changes, and make sure you're aware of what's coming.)
 
 ## You're Ready!
 
