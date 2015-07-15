@@ -73,16 +73,15 @@ Naming
 
 Node statements match nodes by name. A node's name is its unique identifier; by default, this is its [certname][] setting, which in turn resolves to the node's fully qualified domain name.
 
-> #### Notes on Node Names
+> #### Note on Non-Certname Node Names
 >
-> * The set of characters allowed in a node name is **undefined** in this version of Puppet. For best future compatibility, you should limit node names to letters, numbers, periods, underscores, and dashes.
-> * Although it is possible to configure Puppet to use something other than the [certname][] as a node name, this is not generally recommended.
+> Although it is possible to configure Puppet to use something other than the [certname][] as a node name, we don't generally recommend it, since it's less secure and makes it harder to identify nodes in manifests and Hiera data.
 
 A node statement's **name** must be one of the following:
 
-* A quoted [string][strings]
-* The bare word `default`
-* A [regular expression][regex]
+* A quoted [string][strings] containing only letters, numbers, underscores (`_`), hyphens (`-`), and periods (`.`).
+* A [regular expression][regex].
+* The bare word `default`.
 
 You may not create two node statements with the same name.
 
