@@ -60,7 +60,7 @@ Facter 3.0.0 can fail when reporting Windows facts that require `win32ole`, resu
 
 ### REGRESSION FIX: Restored Output on Non-zero Exit Codes
 
-If a command returns a non-zero exit code or can't be found, Facter 3.0.0 returns `nil`, instead of a String as in Facter 2. Facter 3.0.2 restores this functionality.
+If a command returns a non-zero exit code or can't be found, Facter 3.0.0 returns `nil`, instead of a String as in Facter 2. This causes problems with facts that rely on exit codes or error messages. Facter 3.0.2 restores this functionality.
 
 - [FACT-1115](https://tickets.puppetlabs.com/browse/FACT-1115)
 
@@ -142,7 +142,7 @@ Pluginsynced external facts (that is, facts synced from your Puppet modules) sti
 
 ### REGRESSION (fixed in 3.0.2): Facter Outputs `nil` When It Can't Find a Command, or When a Command Returns a Non-zero Exit Code
 
-Facter 2 returns a String if a command returns a non-zero exit code or can't be found, but Facter 3.0.0 returns `nil`. This behavior is reverted in Facter 3.0.2.
+Facter 2 returns a String if a command returns a non-zero exit code or can't be found, but Facter 3.0.0 returns `nil`, which causes problems with facts that rely on exit codes or error messages. This behavior is reverted in Facter 3.0.2.
 
 - [FACT-1115](https://tickets.puppetlabs.com/browse/FACT-1115)
 
