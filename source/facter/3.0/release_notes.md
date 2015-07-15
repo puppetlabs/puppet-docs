@@ -16,13 +16,13 @@ Facter 3.0.2 fixes several regressions in Facter 3.0.0 and implements new featur
 
 ### Feature: `--show-legacy` Flag Outputs Unstructured Facts
 
-Facter 3 outputs new, structured versions of many facts, such as `os`, and hides the equivalent unstructured legacy facts. In Facter 3.0.2, you can force Facter's output to include legacy facts by running it with the `--show-legacy` flag.
+Facter 3 outputs new, structured versions of many facts, such as `os`, and hides the equivalent unstructured legacy facts. In Facter 3.0.2, you can force Facter's output to include legacy facts by running it with the `--show-legacy` flag, providing a way to maintain legacy workflows while you convert them to the preferred `puppet facts`.
 
 - [FACT-1075](https://tickets.puppetlabs.com/browse/FACT-1075)
 
 ### FIX: Improved Memory Usage on Launch
 
-Facter 3.0.0 consumed more memory than was necessary when starting `puppetserver`. Facter 3.0.2 significantly improves memory usage on launch, making `puppetserver` easier to start on low-spec systems.
+Facter 3.0.0 consumes more memory than is necessary when starting `puppetserver`. Facter 3.0.2 significantly improves memory usage on launch, making `puppetserver` easier to start on low-spec systems.
 
 - [FACT-1083](https://tickets.puppetlabs.com/browse/FACT-1083)
 
@@ -41,42 +41,42 @@ Facter 3.0.2 reports the `xendomains` fact, which was unintentionally omitted fr
 
 ### REGRESSION FIX: Restored Hostname to the `fqdn` Fact
 
-When reporting the `fqdn` fact, Facter 3.0.0 did not report the hostname. Facter 3.0.2 restores the hostname to the fact.
+When reporting the `fqdn` fact, Facter 3.0.0 doesn't report the hostname. Facter 3.0.2 restores the hostname to the fact.
 
 - [FACT-1077](https://tickets.puppetlabs.com/browse/FACT-1077)
 - [FACT-1078](https://tickets.puppetlabs.com/browse/FACT-1078)
 
 ### REGRESSION FIX: Fixed Crash on Windows Systems with Network Interfaces Lacking DHCP Assignments
 
-Facter 3.0.0 could crash with an "unhandled exception" error when reporting facts on a Windows system where DHCP-configured network interfaces weren't assigned IP addresses. Facter 3.0.2 resolves this issue.
+Facter 3.0.0 can crash with an "unhandled exception" error when reporting facts on a Windows system where DHCP-configured network interfaces aren't assigned IP addresses. Facter 3.0.2 resolves this issue.
 
 - [FACT-1084](https://tickets.puppetlabs.com/browse/FACT-1084)
 
 ### REGRESSION FIX: Resolved an OLE COM Initialization Issue When Reporting Windows Facts 
 
-Facter 3.0.0 could fail when reporting Windows facts that require `win32ole`, resulting in a "fail: OLE initialize" error. Facter 3.0.2 resolves this issue.
+Facter 3.0.0 can fail when reporting Windows facts that require `win32ole`, resulting in a "fail: OLE initialize" error. Facter 3.0.2 resolves this issue.
 
 - [FACT-1082](https://tickets.puppetlabs.com/browse/FACT-1082)
 
-### REGRESSION FIX: Restored Reporting On Command Execution And Failures
+### REGRESSION FIX: Restored Output on Non-zero Exit Codes
 
-Facter 3.0.0 did not report output if a command it executed returned a non-zero exit code or couldn't be found. Facter 3.0.2 restores this functionality to Facter 2.x's behavior, producing error output to help diagnose fact-reporting failures.
+If a command returns a non-zero exit code or can't be found, Facter 3.0.0 returns `nil`, instead of a String as in Facter 2. Facter 3.0.2 restores this functionality.
 
 - [FACT-1115](https://tickets.puppetlabs.com/browse/FACT-1115)
 
 ### REGRESSION FIX: Fixed `stderr` Redirection
 
-When Facter 3.0.0 invoked commands to report facts that resulted in `stderr` output, Facter would report the `stderr` output as the fact. Also, if the required command didn't exist, Facter would report a null value. 
+When Facter 3.0.0 invokes commands to report facts that result in `stderr` output, Facter reports the `stderr` output as the fact. Also, if the required command doesn't exist, Facter 3.0.0 reports a null value. 
 
-Facter 3.0.2 correctly handles fact values in these situations. To view additional diagnostic information, including the invoked commands' `stderr` output, run Facter with the `--debug` flag.
+Facter 3.0.2 correctly reports facts in these situations. To view additional diagnostic information, including the invoked commands' `stderr` output, run Facter with the `--debug` flag.
 
 - [FACT-1085](https://tickets.puppetlabs.com/browse/FACT-1085)
 
 ### `facter -p` Restored
 
-In Facter 2.4, we deprecated `facter -p` as a means of accessing Puppet facts in favor of the `puppet facts` command. However, we've reversed that decision in the short term due to the differences in functionality between `facter` and `puppet facts`.
+In Facter 2.4, we deprecated `facter -p` as a means of accessing Puppet facts in favor of the `puppet facts` command because it introduced a circular dependency. However, we've reversed that decision in Facter 3.0.2 because `puppet facts` isn't yet a drop-in replacement for `facter`.
 
-`puppet facts` is still the best and most direct source for Puppet facts, and we recommend using it whenever possible and moving to it to future-proof your Puppet workflow.
+`puppet facts` is still the most direct source for Puppet facts, and we recommend moving to it to future-proof your Puppet workflow.
 
 - [FACT-1111](https://tickets.puppetlabs.com/browse/FACT-1111)
 
@@ -91,7 +91,7 @@ Facter 3.0.1 fixes an external facts regression that shipped in 3.0.0.
 
 ### REGRESSION FIX: External Facts Work Again
 
-Facter 3.0.0 accidentally broke manually installed external facts when running under Puppet. This is now fixed.
+Facter 3.0.0 accidentally breaks manually installed external facts when running under Puppet. This is now fixed.
 
 * [FACT-1055: External facts not working with cfacter](https://tickets.puppetlabs.com/browse/FACT-1055)
 
@@ -104,18 +104,18 @@ Shipped in puppet-agent version: 1.2.0.
 
 Facter 3.0.0 is a complete rewrite of Facter in C++. Prior to this release, it was available separately as `cfacter` and could be enabled in Puppet by setting `cfacter = true` in puppet.conf.
 
-For many workflows, this rewrite is a drop-in replacement for the Ruby-based Facter 2.x. It still supports custom facts written in Ruby with the existing Facter API, as well as external facts written in any number of languages.
+For many workflows, this rewrite is a drop-in replacement for the Ruby-based Facter 2. It still supports custom facts written in Ruby with the existing Facter API, as well as external facts written in any number of languages.
 
-It does include a few breaking changes relative to Facter 2.4.
+It includes a few breaking changes relative to Facter 2.4.
 
 * [All tickets fixed in 3.0.0](https://tickets.puppetlabs.com/issues/?filter=14556)
 * [Issues introduced in 3.0.0](https://tickets.puppetlabs.com/issues/?filter=14557)
 
 ### BREAK (workaround in 3.0.2): Facter Doesn't Display Legacy Unstructured Facts with Structured Equivalents
 
-Facter 2 introduced structured facts, and Facter 3.0.0 reprovisions many unstructured Puppet facts with new structured equivalents. Facter still tracks the legacy unstructured facts, and `puppet facts` still outputs these facts, but in Facter 3.0.0 these legacy facts no longer appear in the default command-line output. This might break workflows that rely on legacy facts appearing in Facter output.
+Facter 2 introduced structured facts, and Facter 3 reprovisions many unstructured Puppet facts with new structured equivalents. For example, the new map-structured `os` fact describes several legacy operating system-related facts, such as `architecture` and `operatingsystem`.
 
-For example, the new map-structured `os` fact describes several legacy operating system-related facts, such as `architecture` and `operatingsystem`.
+Facter still tracks the legacy unstructured facts, and `puppet facts` still outputs these facts, but in Facter 3 these legacy facts no longer appear in the default command-line output. This change can break workflows that rely on legacy facts appearing in Facter output.
 
 Facts that no longer appear in command-line output are documented as such in [the list of core facts](./core_facts.html).
 
@@ -136,31 +136,37 @@ When running under Puppet, Facter 3.0.0 can't load _manually-installed_ [externa
 * `C:\ProgramData\PuppetLabs\facter\facts.d\`
 * `~/.facter/facts.d/`
 
-This was an unintended regression from Facter 2.x, and we fixed it immediately in Facter 3.0.1.
+This is an unintended regression from Facter 2, and we fixed it immediately in Facter 3.0.1.
 
 Pluginsynced external facts (that is, facts synced from your Puppet modules) still work, but it's common to make your provisioning system set some external facts when creating a new machine as a way to assign persistent metadata to that node. If your site does this, Facter 3.0.0 will cause breakages. Make sure you install puppet-agent 1.2.1 instead of 1.2.0.
 
+### REGRESSION (fixed in 3.0.2): Facter Outputs `nil` When It Can't Find a Command, or When a Command Returns a Non-zero Exit Code
+
+Facter 2 returns a String if a command returns a non-zero exit code or can't be found, but Facter 3.0.0 returns `nil`. This behavior is reverted in Facter 3.0.2.
+
+- [FACT-1115](https://tickets.puppetlabs.com/browse/FACT-1115)
+
 ### REGRESSION (fixed in 3.0.2): Facter Redirects `stderr` to `stdout`
 
-When Facter 3.0.0 executes commands, it incorrectly redirects the stderr output from those commands to stdout, causing any affected facts to appear to contain the stderr output instead of the fact's value. This can also result in a fact appearing to have an unexpectedly null value if the first command that Facter executes when reporting that fact cannot be found. This is resolved in Facter 3.0.2, and you can view the commands' `stderr` output by running Facter with the `--debug` flag.
+When Facter 3.0.0 executes commands, it incorrectly redirects the stderr output from those commands to stdout, causing any affected facts to appear to contain the stderr output instead of the fact's value. This can also result in a fact appearing to have an unexpectedly null value if the first command that Facter executes when reporting that fact cannot be found. We resolved this in Facter 3.0.2, and you can view the commands' `stderr` output by running Facter with the `--debug` flag.
 
 - [FACT-1085](https://tickets.puppetlabs.com/browse/FACT-1085)
 
-### BREAK: Facter Does Not Pass Commands' `stderr` to Puppet's `stderr`
+### BREAK: Facter Doesn't Pass Commands' `stderr` to Puppet's `stderr`
 
-In Facter 2.x, Facter would redirect `stderr` output from executed commands to Facter's stderr. This no longer occurs in Facter 3.x.
+In Facter 2, Facter redirects `stderr` output from executed commands to Facter's `stderr`. This no longer occurs in Facter 3.
 
 To display more details about Facter's operation, including error messages from commands that Facter executes, use the `--debug` flag.
 
 ### BREAK: Removed Six Facts
 
-The following facts are not supported in Facter 3.0.0:
+The following facts are not supported in Facter 3:
 
-* `ps`: Only Puppet uses this fact, and we updated Puppet to no longer require it.
-* `uniqueid`: This fact was neither widely used nor necessarily unique in non-Solaris OSs. Puppet prefers `hostid`.
-* `dir`: This fact was unintentionally added in Windows because the `FACTER_DIR` environment variable was set.
 * `cfkey`: This fact was specific to CFengine and removed.
+* `dir`: This fact was unintentionally added in Windows because the `FACTER_DIR` environment variable was set.
+* `ps`: Only Puppet uses this fact, and we updated Puppet to no longer require it.
 * `puppetversion`: This fact introduced a circular dependency and didn't belong in Facter's core. We moved it into Puppet, implemented as an always-available custom fact, and other custom facts can take advantage of it if they're also running via Puppet.
+* `uniqueid`: This fact was neither widely used nor necessarily unique in non-Solaris OSs. Puppet prefers `hostid`.
 * `vlans`: This fact was not widely used and removed.
 
 - [FACT-1013](https://tickets.puppetlabs.com/browse/FACT-1013)
@@ -168,7 +174,7 @@ The following facts are not supported in Facter 3.0.0:
 
 ### REGRESSION (fixed in 3.0.2): `xendomains` Fact Removed
 
-We unintentionally removed the `xendomains` fact in Facter 3.0.0. It was restored in Facter 3.0.2.
+We unintentionally removed the `xendomains` fact in Facter 3.0.0. It's restored in Facter 3.0.2.
 
 - [FACT-867](https://tickets.puppetlabs.com/browse/FACT-867)
 
@@ -178,37 +184,41 @@ When reporting the `fqdn` fact, Facter 3.0.0 does not report the hostname. Facte
 
 ### BREAK: `:timeout` for Execution Replaces `:timeout` in Resolutions
 
-You can no longer set the `:timeout` option when creating a new fact resolution. If a fact specifies a resolution timeout, Facter will raise a warning and ignore it.
+You can no longer set the `:timeout` option when creating a new fact resolution. If a fact specifies a resolution timeout, Facter 3 will raise a warning and ignore it.
 
 Instead, specify `:timeout` when you call the `Facter::Core::Execution#execute` function. An execution timeout is the number of seconds to wait for the command's execution to complete. If the time elapses, a `Facter::Core::Execution::ExecutionFailure` exception will be raised.
 
 For details and examples, see [the custom fact docs.](./custom_facts.html#execution-timeouts)
 
-(This was necessary because there was no longer any safe way to implement timeouts of arbitrary Ruby code in a fact. Since timeouts were almost always used to protect against long-running external commands, the new interface should be just as useful, but you might need to update some facts.)
+This was necessary because there was no longer a safe way to implement timeouts of arbitrary Ruby code in a fact. The new interface should be just as useful since timeouts are almost always used to protect against long-running external commands, but you might need to update some facts.
 
 * [FACT-886: Expose a timeout option on the Ruby Facter API](https://tickets.puppetlabs.com/browse/FACT-886)
 * [FACT-907: cfacter doesn't implement :timeout](https://tickets.puppetlabs.com/browse/FACT-907)
 
 ### BREAK (reversed in 3.0.2): `facter -p` is Gone
 
-Facter's command line interface no longer supports the `-p` option, because it introduced a circular dependency.
+Facter 3.0.0's command-line interface doesn't support the `-p` option because it introduced a circular dependency. To inspect facts from modules and pluginsync with Facter 3.0.0, please use the `puppet facts` command instead.
 
-To inspect facts from modules and pluginsync, please use the `puppet facts` command instead.
-
-This decision was reversed in Facter 3.0.2.
+We reversed this decision in Facter 3.0.2.
 
 ### BREAK: On 64-bit Windows, `$os['hardware'] = x86_64`
 
-On Windows, the value of the hardware fact (`os.hardware`) has changed from "x64" to "x86_64" for 64-bit Windows editions. We did this to make Windows consistent with other operating systems. The `architecture` fact is still "x64" as it represents the platform-specific name for the system architecture.
+We changed the value of the hardware fact (`os.hardware`) from "x64" to "x86_64" for 64-bit Windows editions to make Windows consistent with other operating systems. The `architecture` fact is still "x64" as it represents the platform-specific name for the system architecture.
 
 - [FACT-610](https://tickets.puppetlabs.com/browse/FACT-610)
 
 ### REGRESSION / BREAK (fixed in 3.0.2): Hostname missing from the `fqdn` fact
 
-When reporting the `fqdn` fact, Facter 3.0.0 does not report the hostname. This is resolved in Facter 3.0.2.
+When reporting the `fqdn` fact, Facter 3.0.0 doesn't report the hostname. We resolved this in Facter 3.0.2.
 
 - [FACT-1077](https://tickets.puppetlabs.com/browse/FACT-1077)
 - [FACT-1078](https://tickets.puppetlabs.com/browse/FACT-1078)
+
+### REGRESSION (fixed in 3.0.2): Facter Uses Too Much Memory
+
+Facter 3.0.0 consumes more memory than necessary when starting `puppetserver`, causing stability or performance issues on systems with little RAM. We resolved this in Facter 3.0.2.
+
+- [FACT-1083](https://tickets.puppetlabs.com/browse/FACT-1083)
 
 ### Enhanced Fact: `os` Fact Includes New and Renamed Keys
 
@@ -234,7 +244,7 @@ The following facts are new to the 3.0.0 release:
 * `ssh`
 * `system_profiler`
 
-Some of these facts contain new information about the node, and some are structured improvements on facts that were already present in Facter 2.x. Please see the [core facts reference](./core_facts.html) for details.
+Some of these facts contain new information about the node, and some are structured improvements on facts that were already present in Facter 2. Please see the [core facts reference](./core_facts.html) for details.
 
 - [CFACT-154](https://tickets.puppetlabs.com/browse/CFACT-154)
 
@@ -246,12 +256,6 @@ We've improved the [core facts reference](./core_facts.html) to include:
 * Info about the name and data type for every member of map/hash facts.
 * Whether the fact is included in Facter's command-line output.
 
-### REGRESSION (fixed in 3.0.2): Facter Uses Too Much Memory
-
-Facter 3.0.0 consumes more memory than is necessary when starting `puppetserver`, causing stability or performance issues on systems with little RAM. This is resolved in Facter 3.0.2.
-
-- [FACT-1083](https://tickets.puppetlabs.com/browse/FACT-1083)
-
 ### SPEED
 
-The whole point of rewriting Facter in C++ was to make everything faster, and Facter 3.0 delivers in spades. It's noticeable everywhere, but especially impressive on Windows.
+We rewrote Facter in C++ to make it faster, and Facter 3 delivers in spades. It's noticeable everywhere, but especially impressive on Windows.
