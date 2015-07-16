@@ -18,22 +18,22 @@ Before upgrading from Puppet 3 to 4, make sure all your Puppet components are ru
 
 **Note**: You don't need to install components you don't already use---just update what you have installed.
 
-- If you're still using a Rack-based Puppet master, like Apache with Passenger, [migrate to Puppet Server now](/puppetserver/1.1/install_from_packages.html). Puppet 4 no longer supports Rack-based setups.
-  - **This is a big change!** Make sure you can successfully migrate to Puppet Server 1.1.x before tackling the major upgrade.
-  - Puppet Server uses 2GB of memory by default. You might have to adjust [how much memory you allocate](/puppetserver/1.1/install_from_packages.html#memory-allocation) to Puppet Server.
-- Update Puppet Server to the latest 1.1.x release. 
-- Update Puppet across your deployment to the latest 3.8.x release.
-  - If you run multiple Puppet masters with a single certificate authority, you'll need to edit `bootstrap.cfg` to turn off the CA service. You'll also need to ensure you're routing traffic to the appropriate node with a load balancer or the agents' `ca_server` setting.
-- [Update PuppetDB](/puppetdb/2.3/upgrade.html) to the latest 2.3.x release, then [update the PuppetDB terminus plugins](/puppetdb/2.3/upgrade.html#upgrading-the-terminus-plugins) on your Puppet Server node to the same release.
+- If you're still using a Rack-based Puppet master, like Apache with Passenger, this is the best time to [migrate to Puppet Server](/puppetserver/1.1/install_from_packages.html). Puppet Server is designed to be a better-performing drop-in replacement for Rack Puppet masters.
+  - **This is a big change!** Make sure you can successfully migrate to Puppet Server 1.1.x before tackling the Puppet 4 upgrade.
+  - Check out [our overview](/puppetserver/latest/puppetserver_vs_passenger.html) of what sets Puppet Server apart from a Rack Puppet master.
+  - Puppet Server uses 2GB of memory by default. Depending on your server's specs, you might have to adjust [how much memory you allocate](/puppetserver/1.1/install_from_packages.html#memory-allocation) to Puppet Server before you launch it.
+- Update Puppet Server across your infrastructure to the latest 1.1.x release.
+- Update all Puppet agents to the latest 3.8.x release.
+  - If you run multiple Puppet masters with a single certificate authority, you'll need to edit Puppet Server's `bootstrap.cfg` to [disable the CA service](/puppetserver/1.1/external_ca_configuration.html#disabling-the-internal-puppet-ca-service). You'll also need to ensure you're routing traffic to the appropriate node with a load balancer or the agents' [`ca_server`](./configuration.html#caserver) setting.
+- If you use PuppetDB, [update it](/puppetdb/2.3/upgrade.html) to the latest 2.3.x release, then [update the PuppetDB terminus plugins](/puppetdb/2.3/upgrade.html#upgrading-the-terminus-plugins) on your Puppet Server node to the same release.
     - The 2.3.x package installs the termini in two places, so the server will still be able to find it after you upgrade. Puppet Server will be fine regardless, but you should always run the same versions of DB and the terminus.
 
-[//]: # (Why? Where does it install? What is the relevance to users updating?)
+[//]: # (Why? Where do the termini install? What is the relevance to users updating?)
+[//]: # (Also, are there any existing instructions for minor updates within 3.x? I can't find them.)
 
 ## Check for Deprecated Features
 
-Read the entire [list of deprecated features in Puppet 3.8](/puppet/3.8/reference/deprecated_summary.html), and determine whether you're using any of them.
-
-All of these features are either removed from Puppet 4 or require workflow-disrupting workarounds to re-implement. If you're using any of them, follow the advice for migrating away from them.
+Puppet 3.8 [deprecated several features](/puppet/3.8/reference/deprecated_summary.html) which are either removed from Puppet 4 or require workflow-disrupting workarounds to re-implement. If you're using any of them, follow the summary's advice for migrating away from them.
 
 ## Stop Stringifying Facts, and Check for Breakage
 
