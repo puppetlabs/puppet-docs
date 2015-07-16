@@ -408,15 +408,16 @@ method would be named `force?`.
 
 ### Automatic Relationships
 
-Your type can specify automatic relationships it can have with
-resources. You use the autorequire hook, which requires a resource
-type as an argument, and your code should return a list of resource
-names that your resource could be related to:
+Your type can specify automatic relationships it can have with 
+resources. You can use autorequire, autobefore, autonotify, and 
+autosubscribe, which all require a resource type as an argument, 
+and your code should return a list of resource names that your 
+resource could be related to.
 
 ~~~ ruby
-    autorequire(:file) do
-      ["/tmp", "/dev"]
-    end
+  autorequire(:user) do
+      self[:user]
+  end
 ~~~
 
 Note that this won't throw an error if resources with those names
