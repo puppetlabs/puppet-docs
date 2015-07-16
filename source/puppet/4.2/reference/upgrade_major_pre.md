@@ -37,14 +37,14 @@ All of these features are either removed from Puppet 4 or require workflow-disru
 
 ## Stop Stringifying Facts, and Check for Breakage
 
-Puppet 4 always uses proper [data types](/puppet/latest/reference/lang_data.html) for facts, but Puppet 3's default behavior is to convert all facts to Strings. If any of your modules or manifests rely on this behavior, you'll need to adjust them before you upgrade.
+Puppet 4 always uses proper [data types](/puppet/latest/reference/lang_data.html) for facts, but Puppet 3 converts all facts to Strings by default. If any of your modules or manifests rely on this behavior, you'll need to adjust them before you upgrade.
 
-If you've already set `stringify_facts = false` in `puppet.conf` on every node in your deployment, skip to the next step. Otherwise:
+If you've already set [`stringify_facts = false`](/puppet/3.8/reference/deprecated_settings.html#stringifyfacts--true) in `puppet.conf` on every node in your deployment, skip to the [next section](#enable-directory-environments-and-move-code-into-them). Otherwise:
 
-- Check your Puppet code for any comparisons that _treat boolean facts like strings._ (For example, `if $::is_virtual == "true" {...}`.) Fix them so they'll work with true Boolean values.
+- Check your Puppet code for any comparisons that _treat boolean facts like strings,_ like `if $::is_virtual == "true" {...}`, and change them so they'll work with true Boolean values.
   - If you need to support Puppet 3 and 4 with the same code, you can instead use something like `if str2bool("$::is_virtual") {...}`.
-- Next, set `stringify_facts = false` in `puppet.conf` on every node in your deployment. (If you want to use Puppet to change this setting, you can use an [`inifile` resource](https://forge.puppetlabs.com/puppetlabs/inifile).)
-- Watch the next set of Puppet runs for any problems in your code.
+- Next, set `stringify_facts = false` in `puppet.conf` on every node in your deployment. To have Puppet change this setting, use an [`inifile` resource](https://forge.puppetlabs.com/puppetlabs/inifile).
+- Watch the next set of Puppet runs for any problems with your code.
 - Repeat until your Puppet install comes up clean!
 
 ## Enable Directory Environments and Move Code into Them
