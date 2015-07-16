@@ -4,74 +4,82 @@ title: "Puppet 3.x to 4.x: Get Upgrade-Ready"
 canonical: "/puppet/latest/reference/upgrade_major_pre.html"
 ---
 
-(
-intro paragraph about how
-- this is a major version jump
-- the safest and most predictable way to do that is to split it into smaller tasks, where you can confirm everything's fine at the end of each one.
-    - you can do something else if you want, but this is the way we recommend.
-- this page has the steps to do before actually upgrading to Puppet 4.
-)
+Puppet 4 is a major upgrade with lots of configuration and functionality changes. Since Puppet is likely managing your entire infrastructure, it should be **upgraded with care**.
 
+To safely upgrade, consider:
 
+- Thoroughly reading the release notes, particularly any backwards-incompatible changes.
+- Splitting the upgrade into smaller tasks.
+- Confirming that the system remains functional after each task.
 
-## Upgrade/Migrate to Latest Puppet 3.8.x, Server 1.1.x, and PuppetDB 2.3.x
+This page provides steps you can take before starting the upgrade to help prepare for a safe transition.
 
-(
-- Upgrade Puppet Server to the latest 1.1.x release.
-- Upgrade Puppet across your deployment to the latest 3.8.x release.
-- If you're still using a Rack-based Puppet master (like Apache with Passenger), migrate to Puppet Server now. (insert link to Puppet Server install guide)
-    - Reminder that your goal here is to take these big changes one by one, and moving from Rack to Server is a biggish change.
-    - You might have to adjust the memory Puppet Server uses. (link to that in the Puppet Server install page)
-    - If you run multiple puppet masters with a single CA, you'll need to edit bootstrap.cfg to turn off the CA service, and make sure you're routing traffic to the appropriate node with a load balancer or with the agents' `ca_server` setting.
-- Upgrade PuppetDB to the latest 2.3.x release, and the puppetdb terminus on your Puppet Server node to the same release.
-    - This is actually all about the terminus package -- the 2.3.x package installs the termini in two places, so the server will still be able to find it after you upgrade. Puppet Server will be fine regardless, but you should always run the same versions of DB and the terminus.
-)
+## Update to the Latest Server 1.1.x, Puppet 3.8.x, and PuppetDB 2.3.x
 
+Before upgrading from Puppet 3 to 4, make sure all your Puppet components are running the latest Puppet 3 versions, checking and updating in the following order.
+
+**Note**: You don't need to install components you don't already use---just update what you have installed.
+
+- If you're still using a Rack-based Puppet master, like Apache with Passenger, [migrate to Puppet Server now](/puppetserver/1.1/install_from_packages.html). Puppet 4 no longer supports Rack-based setups.
+  - **This is a big change!** Make sure you can successfully migrate to Puppet Server 1.1.x before tackling the major upgrade.
+  - Puppet Server uses 2GB of memory by default. You might have to adjust [how much memory you allocate](/puppetserver/1.1/install_from_packages.html#memory-allocation) to Puppet Server.
+- Update Puppet Server to the latest 1.1.x release. 
+- Update Puppet across your deployment to the latest 3.8.x release.
+  - If you run multiple Puppet masters with a single certificate authority, you'll need to edit `bootstrap.cfg` to turn off the CA service. You'll also need to ensure you're routing traffic to the appropriate node with a load balancer or the agents' `ca_server` setting.
+- [Update PuppetDB](/puppetdb/2.3/upgrade.html) to the latest 2.3.x release, then [update the PuppetDB terminus plugins](/puppetdb/2.3/upgrade.html#upgrading-the-terminus-plugins) on your Puppet Server node to the same release.
+    - The 2.3.x package installs the termini in two places, so the server will still be able to find it after you upgrade. Puppet Server will be fine regardless, but you should always run the same versions of DB and the terminus.
+
+[//]: # (Why? Where does it install? What is the relevance to users updating?)
 
 ## Check for Deprecated Features
 
 Read the entire [list of deprecated features in Puppet 3.8](/puppet/3.8/reference/deprecated_summary.html), and determine whether you're using any of them.
 
-All of these features are gone in 4.x. If you're using any of them, follow the advice for migrating away from them.
+All of these features are either removed from Puppet 4 or require workflow-disrupting workarounds to re-implement. If you're using any of them, follow the advice for migrating away from them.
 
-## Stop Stringifying Facts; Check for Breakage
+## Stop Stringifying Facts, and Check for Breakage
 
-Puppet 4.x always uses proper data types for facts, but Puppet 3.x's default behavior is to convert all facts to strings. If any of your modules or manifests rely on this behavior, you'll need to fix them now.
+Puppet 4 always uses proper [data types](/puppet/latest/reference/lang_data.html) for facts, but Puppet 3's default behavior is to convert all facts to Strings. If any of your modules or manifests rely on this behavior, you'll need to adjust them before you upgrade.
 
-If you have already set `stringify_facts = false` in puppet.conf on every node in your deployment, skip to the next step. Otherwise:
+If you've already set `stringify_facts = false` in `puppet.conf` on every node in your deployment, skip to the next step. Otherwise:
 
-* Check your Puppet code for any comparisons that _treat boolean facts like strings._ (For example, `if $::is_virtual == "true" {...}`.) Fix them so they'll work with true boolean values.
-    * If you need to support 4.x and 3.x with the same code, you can use something like `if str2bool("$::is_virtual") {...}`.
-* Next, set `stringify_facts = false` in puppet.conf on every node in your deployment. (If you want to use Puppet to change this setting, you can use an [`inifile` resource](https://forge.puppetlabs.com/puppetlabs/inifile).)
-* Keep an eye on the next set of runs to make sure you didn't miss any problems in your code.
+- Check your Puppet code for any comparisons that _treat boolean facts like strings._ (For example, `if $::is_virtual == "true" {...}`.) Fix them so they'll work with true Boolean values.
+  - If you need to support Puppet 3 and 4 with the same code, you can instead use something like `if str2bool("$::is_virtual") {...}`.
+- Next, set `stringify_facts = false` in `puppet.conf` on every node in your deployment. (If you want to use Puppet to change this setting, you can use an [`inifile` resource](https://forge.puppetlabs.com/puppetlabs/inifile).)
+- Watch the next set of Puppet runs for any problems in your code.
+- Repeat until your Puppet install comes up clean!
 
+## Enable Directory Environments and Move Code into Them
 
-## Enable Directory Environments; Move Code Around if Necessary
+Puppet 4 organizes all code into [directory environments](./environments.html), which are now the only way to organize code. If you don't use environments, you can move everything into the default `production` environment.
 
-(link to ./environments.html)
+## Enable the Future Parser and Fix Broken Code
 
-(Note that you might have already done this.)
+The [future parser](/puppet/3.8/reference/experiments_future.html) in Puppet 3 is the current parser in Puppet 4. If you haven't [enabled the future parser](https://docs.puppetlabs.com/puppet/3.8/reference/experiments_future.html#enabling-the-future-parser) yet, do so now and check for problems in your current Puppet code during the next Puppet run.
 
-(explain that directory environments are the only way to organize code in Puppet 4+.)
+To change the parser per environment:
 
-(if you don't use environments, move everything into the default `production` environment.)
+1. Create a test [directory environment](./environments.html).
+2. Set `parser = future` in a test environment's `environment.conf`.
+3. Run nodes in the test environment and confirm they still get good catalogs.
+4. Based on the result, make any necessary adjustments to your Puppet code.
+5. Once the environment is in good shape, set `parser = future` in `puppet.conf` on all Puppet master nodes to make the change global.
 
-## Enable the Future Parser; Fix Code if Necessary
+Some of the changes to look out for include:
 
-(capsule description:
-    - to change it per environment, set parser = future in environment.conf in a test environment. Run nodes in the test environment and make sure they still get good catalogs.
-    - once you think it's cool, set parser = future in puppet.conf on all puppet master nodes to make the change global.
-link to docs on enabling future parser (in 3.8) and list of gotchas, should all be on that experiments_future page?
-    - some of the big ones include quoting file modes, etc.
-link to future language docs as of 3.8
+- [Changes to comparison operators](/puppet/3.8/reference/experiments_future.html#check-your-comparisons), particularly
+  - the `in` operator ignoring case when comparing strings.
+  - incompatible data types no longer being comparable.
+  - new rules for converting values to Boolean.
+- [Facts having additional data types](/puppet/3.8/reference/experiments_future.html#check-your-comparisons).
+- [Quoting required for octal numbers in `file` resources' `mode` attributes](/puppet/3.8/reference/experiments_future.html#quote-any-octal-numbers-in-file-modes).
 
-run for a while with future parser turned on, to make sure you've got all the kinks worked out.
-)
+Run Puppet for a while with the future parser enabled to ensure you've got any kinks worked out.
 
-## Read the Puppet 4.0 Release Notes
+## Read the Puppet 4.x Release Notes
 
-(Puppet 4.0 included several breaking changes, some of which didn't go through a formal deprecation period --- for example, the tagmail report processor was moved out of core and into an optional module. Read the release notes (link) for breaking changes, and make sure you're aware of what's coming.)
+Puppet 4.0 introduces several breaking changes, some of which didn't go through a formal deprecation period---for example, we moved the [tagmail report handler](/puppet/3.8/reference/lang_tags.html#sending-tagmail-reports) out of Puppet's core and into an optional [module](https://forge.puppetlabs.com/puppetlabs/tagmail). Read the release notes for [4.0](/puppet/4.0/reference/release_notes.html), [4.1](/puppet/4.1/reference/release_notes.html), and [4.2](/puppet/4.2/reference/release_notes.html) for breaking changes and prepare accordingly.
 
 ## You're Ready!
 
-(next, go to the server upgrade page.)
+If your Puppet 3 system is updated and tuned for the upgrade, you're ready to proceed. For Puppet agents, see the [Agent upgrade guide](./upgrade_major_agent.html); for Puppet server, see the [Server upgrade guide](./upgrade_major_server.html).
