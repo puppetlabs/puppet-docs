@@ -6,13 +6,11 @@ canonical: "/puppet/latest/reference/upgrade_major_pre.html"
 
 Puppet 4 is a major upgrade with lots of configuration and functionality changes. Since Puppet is likely managing your entire infrastructure, it should be **upgraded with care**.
 
-To safely upgrade, consider:
+This page provides steps you can take before starting the upgrade to help prepare for a safe transition. Consider taking these steps first:
 
-- Thoroughly reading the release notes, particularly any backwards-incompatible changes.
-- Splitting the upgrade into smaller tasks.
-- Confirming that the system remains functional after each task.
-
-This page provides steps you can take before starting the upgrade to help prepare for a safe transition.
+- Split the upgrade preparation into smaller tasks.
+- Confirm that your system remains functional after each task.
+- Thoroughly read the release notes, particularly any backwards-incompatible changes.
 
 ## Update to the Latest Server 1.1.x, Puppet 3.8.x, and PuppetDB 2.3.x
 
