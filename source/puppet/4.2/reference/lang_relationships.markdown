@@ -220,11 +220,11 @@ Only certain resource types can refresh themselves. Of the built-in resource typ
 
 Service resources refresh by restarting their service. Mount resources refresh by unmounting and then mounting their volume. Exec resources usually do not refresh, but can be made to: setting `refreshonly => true` causes the exec to never fire _unless_ it receives a refresh event. You can also set an additional `refresh` command, which causes the exec to run both commands when it receives a refresh event.
 
-### Auto* Relationships
+### Auto\* Relationships
 
 Certain resource types can have automatic relationships with other resources, using an _autorequire, autonotify, autobefore, or autosubscribe._ This creates an ordering relationship without the user explicitly stating one. The [resource type reference][type] contains information on which resource types can have these types of relationships with other resources. Auto relationships between types and resources are established when applying a catalog.
 
-When Puppet is preparing to sync a resource whose type supports an auto relationship, it will search the catalog for any resources that match certain rules. If it finds any, it will process them _before_ that resource. If Puppet _doesn't_ find any resources that could use an auto relationship, that's fine; they won't be considered a failed dependency.
+When Puppet is preparing to sync a resource whose type supports an auto relationship, it will search the catalog for any resources that match certain rules. If it finds any, it will process them in the correct order, sending refresh events if necessary. If Puppet _doesn't_ find any resources that could use an auto relationship, that's fine; they won't be considered a failed dependency.
 
 ### Evaluation-Order Independence
 
