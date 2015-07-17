@@ -27,7 +27,7 @@ To install on other operating systems, see the pages linked in the navigation si
 
 Windows machines can't act as Puppet masters. Before installing any Windows agent nodes, be sure that you have a \*nix Puppet master installed and configured, and that you know its permanent hostname.
 
-If you haven't done this yet, go back to the [pre-install tasks][pre_install], make any necessary decisions, and follow the install instructions and post-install tasks for your puppet master's OS.
+If you haven't done this yet, go back to the [pre-install tasks][pre_install], make any necessary decisions, and follow the install instructions and post-install tasks for your Puppet master's OS.
 
 ## Download the Windows Puppet Package
 
@@ -50,13 +50,13 @@ You can install Puppet [with a graphical wizard](#graphical-installation) or [on
 
 Double-click the MSI package you downloaded, and follow the graphical wizard. The installer must be run with elevated privileges. Installing Puppet does not require a system reboot.
 
-During installation, you will be asked for the hostname of your puppet master server. This must be a \*nix node configured to act as a puppet master.
+During installation, you will be asked for the hostname of your Puppet master server. This must be a \*nix node configured to act as a Puppet master.
 
 For standalone Puppet nodes that won't be connecting to a master, use the default hostname (`puppet`). You may also want to install on the command line and set the agent startup mode to `Disabled`.
 
 ![Puppet master hostname selection][server]
 
-Once the installer finishes, Puppet will be installed, running, and at least partially configured. 
+Once the installer finishes, Puppet will be installed, running, and at least partially configured.
 
 ### Automated Installation
 
@@ -64,7 +64,7 @@ Use the `msiexec` command to install the Puppet package:
 
     msiexec /qn /norestart /i puppet-agent-<VERSION>-x64.msi
 
-If you don't specify any further options, this is the same as installing graphically with the default puppet master hostname (`puppet`).
+If you don't specify any further options, this is the same as installing graphically with the default Puppet master hostname (`puppet`).
 
 You can specify `/l*v install.txt` to log the progress of the installation to a file.
 
@@ -74,7 +74,7 @@ You can also set several MSI properties to pre-configure Puppet as you install i
 
 See the next heading for info about these MSI properties.
 
-Once the installer finishes, Puppet will be installed, running, and at least partially configured. 
+Once the installer finishes, Puppet will be installed, running, and at least partially configured.
 
 ### MSI Properties
 
@@ -145,7 +145,7 @@ The Program Files directory can be located using the `PROGRAMFILES` environment 
 
 #### `PUPPET_MASTER_SERVER`
 
-The hostname where the puppet master server can be reached. This will set a value for [the `server` setting][s] in the `[main]` section of [puppet.conf][].
+The hostname where the Puppet master server can be reached. This will set a value for [the `server` setting][s] in the `[main]` section of [puppet.conf][].
 
 **Default:** `puppet`
 
@@ -153,7 +153,7 @@ The hostname where the puppet master server can be reached. This will set a valu
 
 #### `PUPPET_CA_SERVER`
 
-The hostname where the CA puppet master server can be reached, if you are using multiple masters and only one of them is acting as the CA. This will set a value for [the `ca_server` setting][c] in the `[main]` section of [puppet.conf][].
+The hostname where the CA Puppet master server can be reached, if you are using multiple masters and only one of them is acting as the CA. This will set a value for [the `ca_server` setting][c] in the `[main]` section of [puppet.conf][].
 
 **Default:** the value of the `PUPPET_MASTER_SERVER` property
 
