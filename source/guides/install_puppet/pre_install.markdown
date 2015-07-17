@@ -5,8 +5,8 @@ title: "Installing Puppet: Pre-Install Tasks"
 
 
 [peinstall]: /pe/latest/install_basic.html
-[sysreqs]: /puppet/latest/reference/system_requirements.html
-[ruby]: /puppet/latest/reference/system_requirements.html#basic-requirements
+[sysreqs]: /puppet/3.8/reference/system_requirements.html
+[ruby]: /puppet/3.8/reference/system_requirements.html#basic-requirements
 [install-latest]: /puppet/latest/reference/install_pre.html
 
 > **Note:** This document covers open source releases of Puppet version 3.8 and lower. You might also want instructions for [installing Puppet Enterprise][peinstall] or [installing Puppet 4.0 or newer.][install-latest]
