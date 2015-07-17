@@ -18,8 +18,8 @@ Before upgrading from Puppet 3 to 4, make sure all your Puppet components are ru
 
 **Note**: You don't need to install components you don't already use---just update what you have installed.
 
-- If you're still using a Rack-based Puppet master, like Apache with Passenger, this is the best time to [migrate to Puppet Server](/puppetserver/1.1/install_from_packages.html). Puppet Server is designed to be a better-performing drop-in replacement for Rack Puppet masters.
-  - **This is a big change!** Make sure you can successfully migrate to Puppet Server 1.1.x before tackling the Puppet 4 upgrade.
+- If you're still using a Rack-based Puppet master, like Apache with Passenger, this is the best time to [switch to Puppet Server](/puppetserver/1.1/install_from_packages.html). Puppet Server is designed to be a better-performing drop-in replacement for Rack Puppet masters.
+  - **This is a big change!** Make sure you can successfully switch to Puppet Server 1.1.x before tackling the Puppet 4 upgrade.
   - Check out [our overview](/puppetserver/latest/puppetserver_vs_passenger.html) of what sets Puppet Server apart from a Rack Puppet master.
   - Puppet Server uses 2GB of memory by default. Depending on your server's specs, you might have to adjust [how much memory you allocate](/puppetserver/1.1/install_from_packages.html#memory-allocation) to Puppet Server before you launch it.
 - Update Puppet Server across your infrastructure to the latest 1.1.x release.
