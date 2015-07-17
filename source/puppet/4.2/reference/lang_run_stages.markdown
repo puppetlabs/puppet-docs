@@ -52,12 +52,9 @@ class { 'apt-keys':
 
 The above example will ensure that the `apt-keys` class happens before all other classes, which can be useful if most of your package resources rely on those keys.
 
-In order to assign a class to a stage, you **must** use the [resource-like][resourcelike] class declaration syntax. You **cannot** assign classes to stages with the `include` function.
-
 Limitations and Known Issues
 -----
-
-* You cannot assign a class to a run stage when declaring it with `include`.
+* In order to assign a class to a stage, you **must** use the [resource-like][resourcelike] class declaration syntax and supply the stage explicitly. You **cannot** assign classes to stages with the `include` function, or by relying on automatic parameter lookup from hiera while using [resource-like][resourcelike] class declarations.
 * You cannot subscribe to or notify resources across a stage boundary.
 * Classes that [contain][containment] other classes (with either the `contain` function or the anchor pattern) can sometimes behave badly if declared with a run stage --- if the contained class is **only** declared by its container, it will work fine, but if it is also declared anywhere outside its container, it will often create a dependency cycle that will prevent the involved classes from being applied.
 
