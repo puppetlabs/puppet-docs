@@ -18,6 +18,8 @@ However, the Puppet master service is fairly resource intensive, and should be i
 
 The demands on the Puppet master will vary widely between different deployments. The total needs are affected by the number of agents being served, how frequently those agents check in, how many resources are being managed on each agent, and the complexity of the manifests and modules in use.
 
+{% include agent_lifecycle.md %}
+
 Platforms With Packages
 -----
 
