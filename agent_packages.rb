@@ -15,6 +15,7 @@ component_files = {
   'MCollective' => 'marionette-collective.json'
 }
 
+agent_repo.fetch
 tags = agent_repo.tags
 # Structure of the repo didn't stabilize until 0.9.0-ish, so:
 until tags.first.name == '1.0.0'
