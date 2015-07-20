@@ -149,24 +149,27 @@ end
 
 header_row = ["Pkg. / Ver."].concat( versions_of_interest )
 other_rows = @package_name_variations.keys.map {|common_name|
+  # Versions of this component per PE version (Cells in row after the first cell)
+  component_versions_per_pe_version = versions_of_interest.map {|pe_version|
+    # a cell of versions
+    if historical_packages[pe_version][common_name]
+      historical_packages[pe_version][common_name].map {|pkg_ver, platforms|
+        # an individual version w/ associated platforms
+        '<abbr title="' << platforms.join(', ') << '">' <<
+          pkg_ver <<
+        '</abbr>'
+      }.join("<br>")
+    else
+      ""
+    end
+  }
   # a row
-  [common_name].concat(
-    # Cells in row after the first cell
-    versions_of_interest.map {|pe_version|
-      # a cell of versions
-      if historical_packages[pe_version][common_name]
-        historical_packages[pe_version][common_name].map {|pkg_ver, platforms|
-          # an individual version w/ associated platforms
-          '<abbr title="' << platforms.join(', ') << '">' <<
-            pkg_ver <<
-          '</abbr>'
-        }.join("<br>")
-      else
-        ""
-      end
-    }
-  )
-}
+  if component_versions_per_pe_version.uniq == ['']
+    nil
+  else
+    [common_name].concat(component_versions_per_pe_version)
+  end
+}.compact
 
 
 # now make a table
