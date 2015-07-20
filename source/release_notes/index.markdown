@@ -10,12 +10,13 @@ description: Links to Puppet and Puppet Enterprise release notes
 
 ### Current Releases
 
-- [Puppet 4.1](/puppet/4.1/reference/release_notes.html)
-- [Puppet 3.8](/puppet/3.8/reference/release_notes.html)
+- [Puppet 4.2][4.2]
+- [Puppet 3.8][3.8]
 
 ### Previous Releases
 
-- [Puppet 4.0](/puppet/4.0/reference/release_notes.html)
+- [Puppet 4.1][4.1]
+- [Puppet 4.0][4.0]
 - [Puppet 3.7][3.7]
 - [Puppet 3.6][3.6]
 - [Puppet 3.5][3.5]
@@ -46,7 +47,6 @@ description: Links to Puppet and Puppet Enterprise release notes
 - [Puppet Enterprise 2.0][pe2.0]
 - [Puppet Enterprise 1.2][pe1.2] (receiving security fixes until April, 2013)
 
-
 ## About Version Numbers
 
 ### Puppet Labs' Open Source Projects
@@ -73,6 +73,10 @@ The [Roadmap Tracker](https://tickets.puppetlabs.com/browse/PUP#selectedTab=com.
 
 
 [semver]: http://semver.org
+[4.2]: /puppet/4.2/reference/release_notes.html
+[4.1]: /puppet/4.1/reference/release_notes.html
+[4.0]: /puppet/4.0/reference/release_notes.html
+[3.8]: /puppet/3.8/reference/release_notes.html
 [3.7]: /puppet/3.7/reference/release_notes.html
 [3.6]: /puppet/3.6/reference/release_notes.html
 [3.5]: /puppet/3.5/reference/release_notes.html
