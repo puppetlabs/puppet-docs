@@ -1,7 +1,18 @@
 #!/usr/bin/env ruby
 
+require 'git'
+require 'pathname'
 require 'json'
 require 'pp'
+
+pe_packages_dir = Pathname.new(File.expand_path(__FILE__)).parent
+@enterprise_dist_dir = (pe_packages_dir + 'enterprise-dist')
+
+if !Dir.exist?(@enterprise_dist_dir + '.git')
+  Git.clone('git@github.com:puppetlabs/enterprise-dist.git', @enterprise_dist_dir)
+end
+
+@pe_repo = Git.open(@enterprise_dist_dir)
 
 @package_name_variations = {
 
@@ -102,16 +113,12 @@ versions_of_interest_new = [
 
 versions_of_interest = versions_of_interest_new
 
-Dir.chdir(File.expand_path('~/Documents/misc_code/enterprise-dist')) do
-  system('git fetch upstream')
-end
+@pe_repo.fetch
 
 # this is like { platformname: { packagename: { version: version, md5: md5 }, packagename: {...} }, platformname: {......} }
 def load_package_json(version)
-  Dir.chdir(File.expand_path('~/Documents/misc_code/enterprise-dist')) do
-    system("git checkout #{version}")
-    JSON.load( File.read( './packages.json' ) )
-  end
+  @pe_repo.checkout(version)
+  JSON.load( File.read( @enterprise_dist_dir + 'packages.json' ) )
 end
 
 def normalize_package_data(packagedata)
