@@ -128,7 +128,11 @@ def normalize_package_data(packagedata)
       we_care = @package_name_variations.detect {|k,v| v.include?(package_name)}
       if we_care
         common_name = we_care[0]
-        normalized_version = package_data['version'].split(/\.?(pe|pup|sles|el)/)[0]
+        normalized_version = package_data['version'].split(/\.?(-|pe|pup|sles|el)/)[0]
+        if (common_name != "Ruby" and common_name != "OpenSSL")
+          # Reduce everything else to three digits.
+          normalized_version = normalized_version.split('.')[0..2].join('.')
+        end
         result[common_name] ||= {}
         result[common_name][normalized_version] ||= []
         result[common_name][normalized_version] << platform
@@ -153,7 +157,7 @@ other_rows = @package_name_variations.keys.map {|common_name|
   component_versions_per_pe_version = versions_of_interest.map {|pe_version|
     # a cell of versions
     if historical_packages[pe_version][common_name]
-      historical_packages[pe_version][common_name].map {|pkg_ver, platforms|
+      historical_packages[pe_version][common_name].sort {|x,y| y <=> x }.map {|pkg_ver, platforms|
         # an individual version w/ associated platforms
         '<abbr title="' << platforms.join(', ') << '">' <<
           pkg_ver <<
