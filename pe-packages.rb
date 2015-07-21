@@ -128,7 +128,8 @@ def normalize_package_data(packagedata)
       we_care = @package_name_variations.detect {|k,v| v.include?(package_name)}
       if we_care
         common_name = we_care[0]
-        normalized_version = package_data['version'].split(/\.?(-|pe|pup|sles|el)/)[0]
+        # There's a special case in here for a slightly mangled Ruby version on Solaris.
+        normalized_version = package_data['version'].sub(/^1.9.3-p484/, '1.9.3.484').split(/\.?(-|pe|pup|sles|el)/)[0]
         if (common_name != "Ruby" and common_name != "OpenSSL")
           # Reduce everything else to three digits.
           normalized_version = normalized_version.split('.')[0..2].join('.')
