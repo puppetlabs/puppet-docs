@@ -9,6 +9,15 @@ canonical: "/puppet/latest/reference/upgrade_major_server.html"
 [auth.conf]: ./config_file_auth.html
 [`puppet.conf`]: ./config_file_main.html
 [Puppet Server compatibility documentation]: /puppetserver/latest/compatibility_with_puppet_agent.html 
+[main manifest]: 
+[`default_manifest`]: 
+[retrieve and apply a catalog]: 
+[`hiera.yaml`]: 
+[Hiera]: 
+[r10k]:
+[`puppet-terminus`]: 
+[`puppet-termini`]: 
+[upgrade PuppetDB]:
 
 Unlike the automated upgrades of Puppet agents, Puppet Server upgrades are a manual process. There's more going on under the hood, and more decisions you need to make during the process.
 
@@ -127,49 +136,52 @@ Sign the certificate on the CA, then run the above `puppet agent` command again 
 
 ### Move Code
 
-> **Note**: You should have already moved to [directory environments](/puppet/latest/reference/environments.html) in the pre-upgrade steps, as [config file environments are deprecated](/puppet/3.8/reference/environments_classic.html#config-file-environments-are-deprecated) in Puppet 4. 
+> **Note**: You should have already switched to [directory environments](/puppet/latest/reference/environments.html) in the pre-upgrade steps, as [config file environments are deprecated](/puppet/3.8/reference/environments_classic.html#config-file-environments-are-deprecated) in Puppet 4. 
 
-Move the contents of your `environments` directory to `/etc/puppetlabs/code/environments`. If you need multiple groups of environments, set the `environmentpath` in `puppet.conf`.
+Move the contents of your old `environments` directory to `/etc/puppetlabs/code/environments`. If you need multiple groups of environments, set the `environmentpath` in `puppet.conf`.
 
-If you're using a single main manifest across all environments, move your main manifest somewhere inside `/etc/puppetlabs/code` and make sure `default_manifest` is set correctly in puppet.conf.
+If you're using a single [main manifest][] across all environments, move it to somewhere inside `/etc/puppetlabs/code` and confirm that [`default_manifest`][] is correctly configured in `puppet.conf`.
 
 If you're configuring individual environments, confirm your `environment.conf` files. If you enabled the [future parser](/puppet/latest/reference/experiments_future.html) in environments, you can remove the now-unused [`parser`](/puppet/3.8/reference/config_file_environment.html#parser) setting.
 
-Move your hiera.yaml file (link to docs) to `/etc/puppetlabs/code/hiera.yaml`.
+If you're using [r10k][] or some other code deployment tool, change its configuration to use the new `environments` directory at `/etc/puppetlabs/code/environments`.
 
-Move your Hiera data files to somewhere inside `/etc/puppetlabs/code`, and edit hiera.yaml accordingly.
+#### Move Hiera
 
-If you're using r10k or some other code deployment tool, change its configuration to use the new environments directory at `/etc/puppetlabs/code/environments`.
-)
+If you use [Hiera][], you also need to move its configuration and data files:
+
+1. Move your [`hiera.yaml`][] file to `/etc/puppetlabs/code/hiera.yaml`.
+2. Move your Hiera data files to somewhere inside `/etc/puppetlabs/code`.
+3. Update file references in `hiera.yaml` accordingly.
 
 ### Start Puppet Server
 
-Puppet server won't automatically start up on system boot; you'll need to enable it. You can use `puppet resource` to do this regardless of the OS flavor you're running:
+Puppet Server won't automatically start up on boot---you'll need to enable it. You can use `puppet resource` to do this regardless of your operating system or distribution:
 
-    /opt/puppetlabs/bin/puppet resource service puppetserver ensure=running enable=true
+`/opt/puppetlabs/bin/puppet resource service puppetserver ensure=running enable=true`
 
-Check the logfile in `/var/log/puppetlabs/puppetserver/puppetserver.log` to make sure your agents can check in successfully.
+Once it's started, check `/var/log/puppetlabs/puppetserver/puppetserver.log` to confirm that your agents have checked in.
 
 ### Confirm Agents Can Connect
 
-Log into any agent node and run `puppet agent --test --server=<THIS SERVER>`, entering the Puppet Server's hostname or IP as `<THIS SERVER>`, and confirm the agent can retrieve and apply a catalog.
+Log into any Puppet agent and test its connection to the upgraded Puppet Server:
 
-### Go Live
+`puppet agent --test --server=<THIS SERVER>`
 
-At this point, Puppet Server is ready to serve nodes in production. If you pulled the server back to stage the upgrade, it's safe to put the node back into play.
+Enter the Puppet Server's hostname or IP address as `<THIS SERVER>` and confirm the agent can [retrieve and apply a catalog][].
+
+### Go Live!
+
+At this point, Puppet Server is ready to serve nodes in production. If you pulled the server back to stage the upgrade, it's safe to push the node back into use.
 
 ## Upgrade PuppetDB, if Desired
 
-In the pre-upgrade steps, you should have already upgraded to PuppetDB 2.3.x, including the terminus package on your Puppet Server nodes. This means the upgraded Puppet Server can already communicate with your PuppetDB server.
+In the pre-upgrade steps, you should have already upgraded to PuppetDB 2.3.x, including the [`puppet-terminus`][] package on your Puppet Server nodes. This means the upgraded Puppet Server can already communicate with your PuppetDB server.
 
-Now that you've upgraded Puppet Server, you can upgrade PuppetDB to version 3 if you want. It has some cool improvements but also retires older API versions, which can break older integrations.
+Now that you've upgraded Puppet Server, you can [upgrade PuppetDB][] to version 3 if you want. Be careful: it adds some cool improvements, but it also retires older API versions, which can break older integrations.
 
-[//]: # (Link?)
-
-You should probably use the `puppetlabs/puppetdb` module to manage your PuppetDB version. Also, note that the terminus package name has changed to `puppetdb-termini` from `puppetdb-terminus`.
-
-[//]: # (Link?)
+You should use the [`puppetlabs/puppetdb`] module to manage your PuppetDB version. Also, note that the terminus package's name is now [`puppetdb-termini`][] instead of `puppetdb-terminus`.
 
 ## You're Done!
 
-Once you've upgraded all of your Puppet Server nodes, you can start upgrading Puppet on your agents.
+Once you've upgraded all of your Puppet Server nodes, you can start [upgrading your Puppet agents](./upgrade_major_agent.html).
