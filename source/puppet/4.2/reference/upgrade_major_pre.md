@@ -49,7 +49,7 @@ If you've already set [`stringify_facts = false`](/puppet/3.8/reference/deprecat
 
 ## Enable Directory Environments and Move Code into Them
 
-Puppet 4 organizes all code into [directory environments](./environments.html), which are now the only way to organize code. If you don't use environments, you can move everything into the default `production` environment.
+Puppet 4 organizes all code into [directory environments](./environments.html), which are the only way to organize code now that [config file environments are deprecated](/puppet/3.8/reference/environments_classic.html#config-file-environments-are-deprecated). If you don't use environments, you can move everything into the default `production` environment.
 
 ## Enable the Future Parser and Fix Broken Code
 

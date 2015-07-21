@@ -4,24 +4,28 @@ title: "Puppet 3.x to 4.x: Upgrade Puppet Server and PuppetDB"
 canonical: "/puppet/latest/reference/upgrade_major_server.html"
 ---
 
+[moved]: http://docs.puppetlabs.com/puppet/latest/reference/whered_it_go.html
+[ca.conf]: /puppetserver/2.1/configuration.html#caconf
+[auth.conf]: ./config_file_auth.html
+[`puppet.conf`]: ./config_file_main.html
+[Puppet Server compatibility documentation]: /puppetserver/latest/compatibility_with_puppet_agent.html 
+
 Unlike the automated upgrades of Puppet agents, Puppet Server upgrades are a manual process. There's more going on under the hood, and more decisions you need to make during the process.
 
 This page walks you through getting an upgraded Puppet Server that can handle Puppet 3 agents. Don't start upgrading agents after the servers are stabilized.
 
 ## Prepare to Upgrade
 
-First, go through any necessary [pre-upgrade steps](./upgrade_major_pre.html). Before upgrading, your Puppet infrastructure should be stable and running:
+Before upgrading, your Puppet infrastructure should be stable and running:
 
-- the latest Puppet 3-compatible versions of everything you use.
-- the future parser.
-- full data type support for facts.
-- Puppet Server instead of Rack.
+* Puppet Server instead of Rack or WEBrick.
+* The latest Puppet 3-compatible versions of everything you use.
+* The future parser.
+* Full data type support for facts.
 
-[//]: # (Add links)
+Read our [pre-upgrade steps](./upgrade_major_pre.html) to cover these concepts. If you're having any problems with your Puppet 3 configuration, **fix them first** before upgrading.
 
-If you're having any problems with this configuration, **fix them first** before continuing.
-
-## Decide on an Upgrade Plan
+## Plan your Upgrade
 
 > **WARNING**: Puppet master servers are in charge of running your site, and this upgrade will interrupt their work. Bring up replacement masters and gradually cut over service to them, take a few masters out of your pool for upgrades while always leaving a few to handle traffic, or schedule downtime.
 > 
@@ -33,49 +37,43 @@ Repeat these steps for each Puppet Server until you're running a pure Puppet 4/P
 
 ### Install the Latest Puppet Server
 
-[//]: # (Revise)
+Starting with Puppet 4, our software releases are grouped into **Puppet Collections**. 
 
-1. Enable the Puppet Collection 1 repository.
-2. Disable any older repositories.
-3. Install the `puppetserver` package.
+To upgrade Puppet Server, you'll need to add the Puppet Collection repository to the nodes' package managers. Follow the [Puppet Server installation instructions](./install_linux.html#install-a-release-package-to-enable-puppet-labs-package-repositories) to:
 
-**Don't start the `puppetserver` service yet!** There's a few other things you should do first.
+* Enable the Puppet Collection 1 repository.
+* Disable any older repositories.
+* Install the `puppetserver` package.
+
+Even after you've installed the package, **don't start the `puppetserver` service yet!** There's a few other things you should do first.
 
 ### Get Familiar with the New Binary Locations
 
-All Puppet binaries are now at `/opt/puppetlabs/bin`, which isn't in your system's `PATH` by default. You should either:
+In Puppet 4, we [moved][] binaries are now at `/opt/puppetlabs/bin`, which isn't in your system's `PATH` by default. You should either:
 
-* Add it to your `PATH` however you prefer.
-[//]: # (Revise)
-* Symlink all the binaries you use into some directory in your path.
+* Add `/opt/puppetlabs/bin` to your `PATH` environment variable. There's lots of ways to accomplish this---do whatever works best for you.
+* Symlink all the binaries you use into a directory in your path.
 * Use the full path to run all Puppet commands (e.g. `/opt/puppetlabs/bin/puppet agent --test`).
 
 ### Reconcile `puppet.conf`
 
-We also moved `puppet.conf` to `/etc/puppetlabs/puppet/puppet.conf`, changed a lot of defaults, ad removed many settings.
+We also moved [`puppet.conf`][] to `/etc/puppetlabs/puppet/puppet.conf`, changed a lot of defaults, and removed many settings.
 
-If you're upgrading a node, open the new, relocated `puppet.conf`, compare it to your old `puppet.conf` (probably at `/etc/puppet/puppet.conf`), and copy the modified settings you actually care about.
+If you're upgrading Puppet Server:
 
-[//]: # (Windows?)
+* Open the new, relocated `puppet.conf`.
+* Compare it to your old `puppet.conf`, probably at `/etc/puppet/puppet.conf`.
+* Copy the modified settings you need to keep.
 
-If this is a new node, look at the list of important settings (link) for stuff you might want to set now.
-
-[//]: # (Why do we care about new nodes in an upgrade guide? If this is a new node, why install Puppet 3 and upgrade to Puppet 4?)
+If this is a new node, look at the [list of important settings](./config_important_settings.html#settings-for-puppet-master-servers) for stuff you might want to set now. If you enabled the [future parser](/puppet/latest/reference/experiments_future.html), you can remove the now-unused [`parser`](/puppet/3.8/reference/config_file_environment.html#parser) setting.
 
 ### Reconcile `auth.conf`
 
-[//]: # (pasting in stuff from Puppet Server compatibility docs; modify if you need to. Also, note that the location changed: it's /etc/puppetlabs/puppet/auth.conf now, and was probably /etc/puppet/auth.conf before.)
+Puppet 4 uses different HTTPS URLs to fetch configurations. Any rules in `auth.conf` that match Puppet 3-style URLs will have _no effect_. For more details, see the [Puppet Server compatibility documentation][].
 
-[ca.conf]: /puppetserver/2.1/configuration.html#caconf
-[auth.conf]: ./config_file_auth.html
+You must:
 
-Puppet 4 uses different HTTPS URLs to fetch configurations. Any rules in `auth.conf` that match Puppet 3-style URLs will have _no effect._ (For more details, see the [Puppet Server compatibility docs]().
-
-[//]: # (Revise)
-
-This means you must:
-
-* Find any _custom_ rules you've added to your old [`auth.conf`][auth.conf] file. (Don't worry about default rules.)
+* Transfer and modify [any _custom_ rules](/puppetserver/latest/compatibility_with_puppet_agent.html#transfer-and-modify-custom-authconf-rules) you've added to your old [`auth.conf`][auth.conf] file. (Don't worry about default rules.)
 * Change each `path` to use Puppet 4 URLs.
     * Add `/puppet/v3` to the beginning of most paths.
     * The `certificate_status` endpoint ignores `auth.conf`. Configure access in Puppet Server's [`ca.conf`][ca.conf] file.
@@ -111,32 +109,35 @@ method find
 allow $1
 ~~~
 
-### Migrate Other Configuration Files
+### Move Other Configuration Files
 
-If you have other configuration files, including `puppetdb.conf`, move them to `/etc/puppetlabs/puppet/`.
-
-[//]: #  (link here to the pages about configuration files)
+If you have other [configuration files](./configuration.html), including [`puppetdb.conf`](config_file_puppetdb.html), move them to `/etc/puppetlabs/puppet/`.
 
 ### Set up SSL
 
+If you're upgrading a Puppet master, find the server's [`ssldir`](./dirs_ssldir.html) and copy it to the new location at `/etc/puppetlabs/puppet/ssl`.
 
+If you're configuring an exact replacement for an older Puppet master---you're keeping the same names, certificates, and DNS configuration---copy the `ssldir` from the old server to the new one. We recommend using `rsync -a` for this, as SSL is picky about file permissions and `rsync`'s "archive" mode preserves the source's permissions at the destination.
 
-- If this is an existing puppet master being upgraded, find the ssldir (link to page about ssldir) and copy it to the new location at `/etc/puppetlabs/puppet/ssl`.
-- If this is an exact replacement for a prior server, keeping the same names etc., copy the ssldir from the old server to the new one. We recommend using `rsync -a` for this: SSL is picky about file permissions, and rsync's "archive" mode will preserve the permissions on the files.
-- If this is a new puppet master server but it's NOT serving as a CA, run `puppet agent --test --certname=<NAME> --dns_alt_names=<NAME>,<NAME>,<NAME> --server=<UPGRADED CA SERVER>`, sign the certificate on the CA, and run that puppet agent command again to fetch the signed certificate. Make sure you turn off the CA service in bootstrap.cfg (link to docs).
+If this is a new Puppet master but _isn't_ serving as a certificate authority, use `puppet agent` to generate a new certificate.
 
-)
+`puppet agent --test --certname=<NAME> --dns_alt_names=<NAME>,<NAME>,<NAME> --server=<UPGRADED CA SERVER>`
+
+Sign the certificate on the CA, then run the above `puppet agent` command again from the new Puppet master to fetch the signed certificate. Remember to [disable the internal Puppet CA service](/puppetserver/latest/external_ca_configuration.html#disabling-the-internal-puppet-ca-service) in `bootstrap.cfg`.
 
 ### Move Code
 
-(You should have already moved to directory environments in the pre-upgrade steps. Now, move the entire contents of your environments directory to `/etc/puppetlabs/code/environments`. If you need multiple groups of environments, make sure you set `environmentpath` correctly in puppet.conf.
+> **Note**: You should have already moved to [directory environments](/puppet/latest/reference/environments.html) in the pre-upgrade steps, as [config file environments are deprecated](/puppet/3.8/reference/environments_classic.html#config-file-environments-are-deprecated) in Puppet 4. 
+
+Move the contents of your `environments` directory to `/etc/puppetlabs/code/environments`. If you need multiple groups of environments, set the `environmentpath` in `puppet.conf`.
 
 If you're using a single main manifest across all environments, move your main manifest somewhere inside `/etc/puppetlabs/code` and make sure `default_manifest` is set correctly in puppet.conf.
+
+If you're configuring individual environments, confirm your `environment.conf` files. If you enabled the [future parser](/puppet/latest/reference/experiments_future.html) in environments, you can remove the now-unused [`parser`](/puppet/3.8/reference/config_file_environment.html#parser) setting.
 
 Move your hiera.yaml file (link to docs) to `/etc/puppetlabs/code/hiera.yaml`.
 
 Move your Hiera data files to somewhere inside `/etc/puppetlabs/code`, and edit hiera.yaml accordingly.
-
 
 If you're using r10k or some other code deployment tool, change its configuration to use the new environments directory at `/etc/puppetlabs/code/environments`.
 )

@@ -62,7 +62,7 @@ To upgrade agents without the `puppet_agent` module, you can either install the 
 
 Follow the installation instructions for [Linux](./install_linux.html#download-the-windows-puppet-package) or [Windows](./install_windows.html#install-puppet-on-agent-nodes).
 
-### Migrate SSL Files (\*nix Only)
+### Move SSL Files (\*nix Only)
 
 On \*nix systems, we [moved][] the default [`confdir`](./dirs_confdir.html) to `/etc/puppetlabs/puppet` in Puppet 4. Since the default [`ssldir`](./dirs_ssldir.html) is `$confdir/ssl`, its location changes during the upgrade.
 
@@ -76,10 +76,11 @@ Locate your [`ssldir`](./dirs_ssldir.html) in `/etc/puppet/puppet.conf`, then mo
 
 On \*nix systems, we [moved][] [`puppet.conf`](./config_file_main.html) from `/etc/puppet/puppet.conf` to `/etc/puppetlabs/puppet/puppet.conf`. You need to either edit the new `puppet.conf` file or copy your old version. (We didn't change `puppet.conf`'s location on Windows.)
 
-Examine `puppet.conf` regardless of OS and determine whether:
+Examine the new `puppet.conf` regardless of your operating system and confirm that:
 
-* It includes any modified settings you care about.
+* It includes any necessary modifications.
 * It excludes any settings that were [removed in Puppet 4.0](/puppet/3.8/reference/deprecated_settings.html). Notably, if you set `stringify_facts=false` [before upgrading](./upgrade_major_pre.html), you can remove this setting.
+* All [important settings](./config_important_settings.html#settings-for-puppet-master-servers) are correctly configured for your site.
 
 ### Start Service or Update Cron Job
 
