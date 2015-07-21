@@ -22,7 +22,7 @@ Also of interest: the [Puppet 4.1 release notes](/puppet/4.1/reference/release_n
 
 ## Puppet 4.2.1
 
-Released July 15, 2015.
+Released July 21, 2015.
 
 Puppet 4.2.1 is a bug fix release. 
 
@@ -35,7 +35,8 @@ Puppet 4.2.1 is a bug fix release.
 * [PUP-4810](https://tickets.puppetlabs.com/browse/PUP-4810): Puppet was caching parse results even when environment_timeout was set to 0.
 * [PUP-4847](https://tickets.puppetlabs.com/browse/PUP-4847): When using custom providers, the puppet resource command could not use custom facts.
 
-* [All bug fixes in 4.2.1]()
+* [All tickets introduced in 4.2.1](https://tickets.puppetlabs.com/issues/?filter=15116)
+* [All tickets addressed in 4.2.1](https://tickets.puppetlabs.com/issues/?filter=15117)
 
 
 
