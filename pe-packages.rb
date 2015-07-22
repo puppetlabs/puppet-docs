@@ -185,7 +185,7 @@ other_rows = @package_name_variations.keys.map {|common_name|
   }
   # a row
   if component_versions_per_pe_version.uniq == ['']
-    nil
+    nil # for compact, below.
   else
     component_name_string = '<abbr title="' << @package_name_variations[common_name].join(', ') << '">' << common_name << '</abbr>'
     [component_name_string].concat(component_versions_per_pe_version)
