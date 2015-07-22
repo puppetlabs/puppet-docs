@@ -169,6 +169,26 @@ def all_abbrs_for_component(component, vers_to_platforms)
   }.join("<br>")
 end
 
+def table_from_header_and_array_of_body_rows(header_row, other_rows)
+  html_table = <<EOT
+<table>
+  <thead>
+    <tr>
+      <th>#{header_row.join('</th> <th>')}</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>#{other_rows.map {|row| "<td>" << row.join("</td> <td>") << "</td>"}.join("</tr>\n    <tr>")}</tr>
+  </tbody>
+</table>
+
+EOT
+  html_table
+end
+
+
+
 header_row = ["Pkg. / Ver."].concat( versions_of_interest )
 other_rows = @package_name_variations.keys.map {|common_name|
   # Versions of this component per PE version (Cells in row after the first cell)
@@ -192,20 +212,7 @@ other_rows = @package_name_variations.keys.map {|common_name|
 
 # now make a table
 
-html_table =  <<EOT
-<table>
-  <thead>
-    <tr>
-      <th>#{header_row.join('</th> <th>')}</th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <tr>#{other_rows.map {|row| "<td>" << row.join("</td> <td>") << "</td>"}.join("</tr>\n    <tr>")}</tr>
-  </tbody>
-</table>
+puts table_from_header_and_array_of_body_rows(header_row, other_rows)
 
-EOT
-
-puts html_table
 # done
