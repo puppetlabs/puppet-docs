@@ -157,6 +157,14 @@ end
 # { '3.2.0' => { 'Puppet' => { '3.7.1-1' => ['debian-6-amd6', '...'], '3.7.1-4' => ['...', '...'] } }
 
 
+
+def abbr_for_given_version(version, platforms)
+  # an individual version w/ associated platforms
+  '<abbr title="' << platforms.join(', ') << '">' <<
+    version <<
+  '</abbr>'
+end
+
 header_row = ["Pkg. / Ver."].concat( versions_of_interest )
 other_rows = @package_name_variations.keys.map {|common_name|
   # Versions of this component per PE version (Cells in row after the first cell)
@@ -164,10 +172,7 @@ other_rows = @package_name_variations.keys.map {|common_name|
     # a cell of versions
     if historical_packages[pe_version][common_name]
       historical_packages[pe_version][common_name].sort {|x,y| y <=> x }.map {|pkg_ver, platforms|
-        # an individual version w/ associated platforms
-        '<abbr title="' << platforms.join(', ') << '">' <<
-          pkg_ver <<
-        '</abbr>'
+        abbr_for_given_version(pkg_ver, platforms)
       }.join("<br>")
     else
       ""
