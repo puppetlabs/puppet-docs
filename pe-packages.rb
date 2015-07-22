@@ -195,7 +195,7 @@ other_rows = @package_name_variations.keys.map {|common_name|
 
 # now make a table
 
-print <<EOT
+html_table =  <<EOT
 <table>
   <thead>
     <tr>
@@ -204,11 +204,11 @@ print <<EOT
   </thead>
 
   <tbody>
-    <tr>#{other_rows.map {|row| "<td>" << row.join("</td> <td>") << "</td>"}.join("</tr>\n<tr>")}
-    </tr>
+    <tr>#{other_rows.map {|row| "<td>" << row.join("</td> <td>") << "</td>"}.join("</tr>\n    <tr>")}</tr>
   </tbody>
 </table>
 
 EOT
 
+puts html_table
 # done
