@@ -4,6 +4,8 @@ title: "Puppet 3.x to 4.x: Post-Upgrade Clean-Up"
 canonical: "/puppet/latest/reference/upgrade_major_post.html"
 ---
 
+[moved]: ./whered_it_go.html
+
 After upgrading, you should do a few more things to make Puppet 4 more stable and easier to maintain.
 
 ## Reconfigure Systems that Use Puppet's Data
@@ -12,7 +14,7 @@ Puppet 4 [changes the locations of many configuration files](./whered_it_go.html
 
 ## Update Backup Jobs
 
-If you back up data in directories that moved (like `/etc/puppet`, whose contents are now split between `/etc/puppetlabs/puppet` and `/etc/puppetlabs/code`), update your backup jobs to use the new locations.
+If you back up data in directories that [moved][] (like `/etc/puppet`, whose contents are now split between `/etc/puppetlabs/puppet` and `/etc/puppetlabs/code`), update your backup jobs to use the new locations.
 
 ## Delete the `/etc/puppet` Directory on \*nix Systems
 
@@ -24,4 +26,4 @@ If you set the [`parser`](https://docs.puppetlabs.com/puppet/3.8/reference/confi
 
 ## Unassign `puppet_agent` Class from Nodes
 
-The [`puppet_agent` module](https://github.com/puppetlabs/puppetlabs-puppet_agent) doesn't affect nodes running Puppet 4, and you can unassign it from all nodes once your entire Puppet infrastructure is upgraded.
+The [`puppet_agent` module](https://forge.puppetlabs.com/puppetlabs/puppet_agent) doesn't affect nodes running Puppet 4, and you can unassign it from all nodes once your entire Puppet infrastructure is upgraded.

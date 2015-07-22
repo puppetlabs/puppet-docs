@@ -4,20 +4,20 @@ title: "Puppet 3.x to 4.x: Upgrade Puppet Server and PuppetDB"
 canonical: "/puppet/latest/reference/upgrade_major_server.html"
 ---
 
-[moved]: http://docs.puppetlabs.com/puppet/latest/reference/whered_it_go.html
+[moved]: ./whered_it_go.html
 [ca.conf]: /puppetserver/2.1/configuration.html#caconf
 [auth.conf]: ./config_file_auth.html
 [`puppet.conf`]: ./config_file_main.html
 [Puppet Server compatibility documentation]: /puppetserver/latest/compatibility_with_puppet_agent.html 
-[main manifest]: 
-[`default_manifest`]: 
-[retrieve and apply a catalog]: 
-[`hiera.yaml`]: 
-[Hiera]: 
-[r10k]:
-[`puppet-terminus`]: 
-[`puppet-termini`]: 
-[upgrade PuppetDB]:
+[main manifest]: ./dirs_manifest.html
+[`default_manifest`]: ./configuration.html#defaultmanifest
+[retrieve and apply a catalog]: /references/latest/man/agent.html#USAGE-NOTES
+[`hiera.yaml`]: /hiera/latest/configuring.html
+[Hiera]: /hiera/
+[r10k]: /pe/latest/r10k.html
+[`puppet-terminus`]: /puppetdb/latest/connect_puppet_master.html#on-platforms-with-packages
+[`puppet-termini`]: /puppetdb/latest/connect_puppet_master.html#on-platforms-with-packages
+[upgrade PuppetDB]: /puppetdb/latest/install_via_module.html
 
 Unlike the automated upgrades of Puppet agents, Puppet Server upgrades are a manual process. There's more going on under the hood, and more decisions you need to make during the process.
 
