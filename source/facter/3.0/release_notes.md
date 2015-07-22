@@ -37,9 +37,9 @@ Facter 3.0.0 couldn't parse major and minor kernel release versions (`os.release
 - [FACT-1056: Operatingsystem major release not resolved in OSX](https://tickets.puppetlabs.com/browse/FACT-1056)
 - [FACT-1073: Operatingsystem release facts not properly resolved in Arch Linux](https://tickets.puppetlabs.com/browse/FACT-1073)
 
-### REGRESSION FIX: Corrected Operating System Fact Reporting on Oracle Linux
+### REGRESSION FIX: Corrected `operatingsystem` Fact Reporting on Oracle Linux
 
-Facter 3.0.0 incorrectly reports Oracle Linux's `operatingsystem` and `osfamily` facts as `RedHat`. Facter 3.0.2 correctly reports `OracleLinux`.
+Facter 3.0.0 incorrectly reports Oracle Linux's `operatingsystem` fact as `RedHat`. Facter 3.0.2 correctly reports `OracleLinux`.
 
 - [FACT-1134](https://tickets.puppetlabs.com/browse/FACT-1134)
 
@@ -162,9 +162,9 @@ This is an unintended regression from Facter 2, and we fixed it immediately in F
 
 Pluginsynced external facts (that is, facts synced from your Puppet modules) still work, but it's common to make your provisioning system set some external facts when creating a new machine as a way to assign persistent metadata to that node. If your site does this, Facter 3.0.0 will cause breakages. Make sure you install puppet-agent 1.2.1 instead of 1.2.0.
 
-### REGRESSION (fixed in 3.0.2): Facter Reports Incorrect Values for Operating System Facts on Oracle Linux
+### REGRESSION (fixed in 3.0.2): Facter Reports Incorrect Values for `operatingsystem` Fact on Oracle Linux
 
-Facter 3.0.0 incorrectly reports Oracle Linux's `operatingsystem` and `osfamily` as `RedHat`. Facter 3.0.2 correctly reports `OracleLinux`.
+Facter 3.0.0 incorrectly reports Oracle Linux's `operatingsystem` fact as `RedHat`. Facter 3.0.2 correctly reports `OracleLinux`.
 
 - [FACT-1134](https://tickets.puppetlabs.com/browse/FACT-1134)
 
