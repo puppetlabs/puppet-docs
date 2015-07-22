@@ -121,6 +121,16 @@ def load_package_json(version)
   JSON.load( File.read( @enterprise_dist_dir + 'packages.json' ) )
 end
 
+def normalize_version_number(number, name = '')
+  # There's a special case in here for a slightly mangled Ruby version on Solaris.
+  normalized_number = number.sub(/^1.9.3-p484/, '1.9.3.484').split(/\.?(-|pe|pup|sles|el)/)[0]
+  if (name != "Ruby" and name != "OpenSSL")
+    # Reduce everything else to three digits.
+    normalized_number = normalized_number.split('.')[0..2].join('.')
+  end
+  normalized_number
+end
+
 def normalize_package_data(packagedata)
   result = {}
   packagedata.each do | platform, platform_hash |
@@ -128,12 +138,7 @@ def normalize_package_data(packagedata)
       we_care = @package_name_variations.detect {|k,v| v.include?(package_name)}
       if we_care
         common_name = we_care[0]
-        # There's a special case in here for a slightly mangled Ruby version on Solaris.
-        normalized_version = package_data['version'].sub(/^1.9.3-p484/, '1.9.3.484').split(/\.?(-|pe|pup|sles|el)/)[0]
-        if (common_name != "Ruby" and common_name != "OpenSSL")
-          # Reduce everything else to three digits.
-          normalized_version = normalized_version.split('.')[0..2].join('.')
-        end
+        normalized_version = normalize_version_number(package_data['version'], common_name)
         result[common_name] ||= {}
         result[common_name][normalized_version] ||= []
         result[common_name][normalized_version] << platform
