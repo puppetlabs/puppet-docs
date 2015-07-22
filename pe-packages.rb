@@ -131,7 +131,7 @@ def normalize_version_number(number, name = '')
   normalized_number
 end
 
-def normalize_package_data(packagedata)
+def packages_json_to_versions_sorted_by_platform(packagedata)
   result = {}
   packagedata.each do | platform, platform_hash |
     platform_hash.each do | package_name, package_data |
@@ -150,7 +150,7 @@ def normalize_package_data(packagedata)
 end
 
 historical_packages = versions_of_interest.reduce( {} ) do |result, version|
-  result[version] = normalize_package_data( load_package_json(version) )
+  result[version] = packages_json_to_versions_sorted_by_platform( load_package_json(version) )
   result
 end
 # results in something like
