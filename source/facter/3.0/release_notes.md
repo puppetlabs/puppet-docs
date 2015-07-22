@@ -20,7 +20,7 @@ For JIRA issues related to Facter 3.0.2, see:
 
 ### Feature: `--show-legacy` Flag Outputs Unstructured Facts
 
-Facter 3 outputs new, structured versions of many facts, such as `os`, and hides the equivalent unstructured legacy facts. In Facter 3.0.2, you can force Facter's output to include legacy facts by running it with the `--show-legacy` flag, providing a way to maintain legacy workflows while you convert them to the preferred `puppet facts`.
+Facter 3 outputs new, structured versions of many facts, such as `os`, and hides the equivalent unstructured legacy facts. In Facter 3.0.2, you can force Facter's output to include legacy facts by running it with the `--show-legacy` flag, providing a way to maintain legacy workflows until `puppet facts` is able to replace it.
 
 - [FACT-1075](https://tickets.puppetlabs.com/browse/FACT-1075)
 
@@ -32,7 +32,7 @@ Facter 3.0.0 consumes more memory than is necessary when starting `puppetserver`
 
 ### FIX: Improved Parsing of Kernel-derived Major and Minor Operating System Version Facts
 
-In Facter 3.0.2, the `os` fact reports major and minor kernel release versions on operating systems that do not formally report OS release versions, such as OS X and Arch Linux.
+Facter 3.0.0 couldn't parse major and minor kernel release versions (`os.release.major` and `os.release.minor`) on OS X, or on operating systems that do not formally report OS release versions, such as Arch Linux. We've fixed this in Facter 3.0.2.
 
 - [FACT-1056: Operatingsystem major release not resolved in OSX](https://tickets.puppetlabs.com/browse/FACT-1056)
 - [FACT-1073: Operatingsystem release facts not properly resolved in Arch Linux](https://tickets.puppetlabs.com/browse/FACT-1073)
@@ -49,9 +49,9 @@ Facter 3.0.2 reports the `xendomains` fact, which was unintentionally omitted fr
 
 - [FACT-867](https://tickets.puppetlabs.com/browse/FACT-867)
 
-### REGRESSION FIX: Restored Hostname to the `fqdn` Fact
+### REGRESSION FIX: `fqdn` Fact Always Reports the Host's Domain Name
 
-When reporting the `fqdn` fact, Facter 3.0.0 doesn't report the hostname. Facter 3.0.2 restores the hostname to the fact.
+On some systems, Facter 3.0.0 doesn't report the domain name as part of the `fqdn` fact. We've fixed this in Facter 3.0.2.
 
 - [FACT-1077](https://tickets.puppetlabs.com/browse/FACT-1077)
 - [FACT-1078](https://tickets.puppetlabs.com/browse/FACT-1078)
@@ -141,7 +141,7 @@ Facter still tracks the legacy unstructured facts, and `puppet facts` still outp
 
 Facts that no longer appear in command-line output are documented as such in [the list of core facts](./core_facts.html).
 
-To display legacy facts on the command line with Facter 3, we recommend either using `puppet facts` or modifying Facter workflows to instead use the equivalent structured facts. Facter 3.0.2 provides a flag that forces Facter to output deprecated legacy facts as an interim solution for affected workflows.
+To display legacy facts on the command line with Facter 3, we recommend either using `puppet facts` or modifying Facter workflows to instead use the equivalent structured facts. Facter 3.0.2 provides a flag that forces Facter to output legacy facts as an interim solution for affected workflows.
 
 - [FACT-1075](https://tickets.puppetlabs.com/browse/FACT-1075)
 
@@ -206,9 +206,9 @@ We unintentionally removed the `xendomains` fact in Facter 3.0.0. It's restored 
 
 - [FACT-867](https://tickets.puppetlabs.com/browse/FACT-867)
 
-### REGRESSION / BREAK (fixed in 3.0.2): `fqdn` Fact Omits Hostname
+### REGRESSION / BREAK (fixed in 3.0.2): `fqdn` Fact Might Omit Domain Name
 
-When reporting the `fqdn` fact, Facter 3.0.0 does not report the hostname. Facter 3.0.2 restores the hostname to the fact.
+On some systems, Facter 3.0.0 doesn't report the domain name as part of the `fqdn` fact. We've fixed this in Facter 3.0.2.
 
 ### BREAK: `:timeout` for Execution Replaces `:timeout` in Resolutions
 
