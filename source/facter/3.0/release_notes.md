@@ -8,11 +8,15 @@ This page documents the history of the Facter 3.0 series. (Previous version: [Fa
 Facter 3.0.2
 -----
 
-Released July 15, 2015.
+Released July 22, 2015.
 
 Shipped in puppet-agent version: 1.2.2.
 
 Facter 3.0.2 fixes several regressions in Facter 3.0.0 and implements new features to support legacy workflows.
+
+For JIRA issues related to Facter 3.0.2, see:
+- [Fixes for facter 3.0.2](https://tickets.puppetlabs.com/issues/?filter=15119)
+- [Introduced in facter 3.0.2](https://tickets.puppetlabs.com/issues/?filter=15118)
 
 ### Feature: `--show-legacy` Flag Outputs Unstructured Facts
 
@@ -57,6 +61,18 @@ When reporting the `fqdn` fact, Facter 3.0.0 doesn't report the hostname. Facter
 Facter 3.0.0 can crash with an "unhandled exception" error when reporting facts on a Windows system where DHCP-configured network interfaces aren't assigned IP addresses. Facter 3.0.2 resolves this issue.
 
 - [FACT-1084](https://tickets.puppetlabs.com/browse/FACT-1084)
+
+### REGRESSION FIX: Localized Time Zones on Windows No Longer Report Invalid UTF-8 Sequences
+
+When Windows is configured to use a timezone that has a localized name, like "Mitteleuropäische Sommerzeit", Facter 3.0.0 reports the timezone as "Mitteleurop‰ische Sommerzeit" in its output. Facter 3.0.2 resolves this issue.
+
+- [FACT-1126](https://tickets.puppetlabs.com/browse/FACT-1126)
+
+### REGRESSION FIX: Facter Works on Windows under MCollective
+
+When running the MCollective agent plugin on Windows, Facter could report a missing `libfacter.so` shared object due to an unset environment variable. Facter 3.0.2 loads this object differently to avoid this error.
+
+- [FACT-1125](https://tickets.puppetlabs.com/browse/FACT-1125)
 
 ### REGRESSION FIX: Resolved an OLE COM Initialization Issue When Reporting Windows Facts 
 
