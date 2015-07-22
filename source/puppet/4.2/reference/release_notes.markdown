@@ -22,9 +22,11 @@ Also of interest: the [Puppet 4.1 release notes](/puppet/4.1/reference/release_n
 
 ## Puppet 4.2.1
 
-Released July 21, 2015.
+Released July 22, 2015.
 
-Puppet 4.2.1 is a bug fix release. 
+Shipped in puppet-agent version: 1.2.2.
+
+Puppet 4.2.1 is a bug fix release.
 
 * [PUP-4752](https://tickets.puppetlabs.com/browse/PUP-4752): Variable names were being checked for allowed characters, but not if they appeared as names of parameters.
 * [PUP-4770](https://tickets.puppetlabs.com/browse/PUP-4770): Solaris Zone's provider debug and error messages were changed to global, this has been reverted to so that it is prefixed with provider context.
