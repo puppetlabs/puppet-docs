@@ -37,8 +37,8 @@ Puppet 4.2.1 is a bug fix release.
 * [PUP-4810](https://tickets.puppetlabs.com/browse/PUP-4810): Puppet was caching parse results even when environment_timeout was set to 0.
 * [PUP-4847](https://tickets.puppetlabs.com/browse/PUP-4847): When using custom providers, the puppet resource command could not use custom facts.
 
-* [All tickets addressed in 4.2.1](https://tickets.puppetlabs.com/issues/?filter=15117)
-
+* [All tickets fixed in 4.2.1](https://tickets.puppetlabs.com/issues/?filter=15117)
+* [Issues introduced in 4.2.1](https://tickets.puppetlabs.com/issues/?filter=15116)
 
 
 ## Puppet 4.2.0
