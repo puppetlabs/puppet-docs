@@ -165,15 +165,20 @@ def abbr_for_given_version(version, platforms)
   '</abbr>'
 end
 
+def all_abbrs_for_component(component, vers_to_platforms)
+  # a cell of versions
+  vers_to_platforms.sort {|x,y| y[0] <=> x[0]}.map {|pkg_ver, platforms|
+    abbr_for_given_version(pkg_ver, platforms)
+  }.join("<br>")
+end
+
 header_row = ["Pkg. / Ver."].concat( versions_of_interest )
 other_rows = @package_name_variations.keys.map {|common_name|
   # Versions of this component per PE version (Cells in row after the first cell)
   component_versions_per_pe_version = versions_of_interest.map {|pe_version|
     # a cell of versions
     if historical_packages[pe_version][common_name]
-      historical_packages[pe_version][common_name].sort {|x,y| y <=> x }.map {|pkg_ver, platforms|
-        abbr_for_given_version(pkg_ver, platforms)
-      }.join("<br>")
+      all_abbrs_for_component(common_name, historical_packages[pe_version][common_name])
     else
       ""
     end
