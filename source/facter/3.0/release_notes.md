@@ -20,7 +20,7 @@ For JIRA issues related to Facter 3.0.2, see:
 
 ### Feature: `--show-legacy` Flag Outputs Unstructured Facts
 
-Facter 3 outputs new, structured versions of many facts, such as `os`, and hides the equivalent unstructured legacy facts. In Facter 3.0.2, you can force Facter's output to include legacy facts by running it with the `--show-legacy` flag, providing a way to maintain legacy workflows until `puppet facts` is able to replace it.
+Facter 3 reports new, structured versions of many facts, such as `os`, and hides the equivalent unstructured legacy facts when run from the command line. Facter still tracks these legacy facts---they're only hidden from command-line output. In Facter 3.0.2, you can force Facter to output legacy facts by running it with the `--show-legacy` flag, providing a way to maintain legacy workflows while you convert them to use structured facts.
 
 - [FACT-1075](https://tickets.puppetlabs.com/browse/FACT-1075)
 
