@@ -18,7 +18,9 @@ end
 
 'Puppet' => [
   'pe-puppet',
-  'pup-puppet'
+  'pup-puppet',
+  'puppet-enterprise-nxos-1-i386',
+  'puppet-enterprise-nxos-1-x86_64'
 ],
 
 'Puppet Server' => [
@@ -84,11 +86,6 @@ end
 
 'LibAPR' => [
   'pe-libapr'
-],
-
-'NXOS agent' => [
-  'puppet-enterprise-nxos-1-i386',
-  'puppet-enterprise-nxos-1-x86_64'
 ]
 
 }
