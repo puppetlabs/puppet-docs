@@ -70,19 +70,18 @@ Learn about different areas of Puppet, fix problems, and design solutions.
 
 ### Installing and Configuring
 
-Get Puppet up and running at your site.
+Get the latest version of Puppet up and running.
 
 * [An Introduction to Puppet](/guides/introduction.html)
-* [Supported Platforms](/guides/platforms.html)
-* [The Puppet 3.8 Installation Guide](/guides/install_puppet/pre_install.html).
-
-### Looking Ahead to Puppet 4
-
 * [Installing Puppet 4 for Linux](/puppet/4.0/reference/install_linux.html)
 * [Installing Puppet 4 for Windows](/puppet/4.0/reference/install_windows.html)
 * Upgrading Puppet from 3.x to 4.x
   * [Upgrading Puppet 3.x Agents](/puppet/4.0/reference/upgrade_agent.html)
   * [Upgrading Puppet 3.x Servers](/puppet/4.0/reference/upgrade_server.html)
+
+### Previous Install Guides
+
+* [The Puppet 3.8 Installation Guide](/guides/install_puppet/pre_install.html)
 
 ### Building and Using Modules
 
