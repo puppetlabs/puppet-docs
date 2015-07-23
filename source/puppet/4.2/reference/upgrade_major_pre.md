@@ -80,4 +80,4 @@ Puppet 4.0 introduces several breaking changes, some of which didn't go through 
 
 ## You're Ready!
 
-If your Puppet 3 system is updated and tuned for the upgrade, you're ready to proceed. For Puppet agents, see the [Agent upgrade guide](./upgrade_major_agent.html); for Puppet server, see the [Server upgrade guide](./upgrade_major_server.html).
+If your Puppet 3 system is updated and tuned for the upgrade, you're ready to proceed. For Puppet server, see the [Server upgrade guide](./upgrade_major_server.html); for Puppet agents, see the [Agent upgrade guide](./upgrade_major_agent.html). Upgrading to Puppet Server 2.1, with backwards compatibility for communicating with Puppet 3 agents, is recommended prior to upgrading agents.

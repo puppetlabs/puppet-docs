@@ -21,7 +21,7 @@ canonical: "/puppet/latest/reference/upgrade_major_server.html"
 
 Unlike the automated upgrades of Puppet agents, Puppet Server upgrades are a manual process. There's more going on under the hood, and more decisions you need to make during the process.
 
-This page walks you through getting an upgraded Puppet Server that can handle Puppet 3 agents. Don't start upgrading agents after the servers are stabilized.
+This page walks you through getting an upgraded Puppet Server that can handle Puppet 3 agents. Don't start upgrading agents until after the servers are stabilized.
 
 ## Prepare to Upgrade
 
