@@ -27,7 +27,7 @@ Here they are:
 
 ### Settings are Loaded on Startup
 
-When any Puppet command or service starts up, it gets values for all of its settings. Any of these settings may change the way that command or service behaves.
+When any Puppet command or service starts up, it gets values for all of its settings. Any of these settings could change the way that command or service behaves.
 
 A command or service will _only_ read its settings _once;_ if it needs to be reconfigured, it will need to be restarted or run again.
 
@@ -43,7 +43,7 @@ Settings from the command line have top priority, and **will always override set
 
 #### Basic Settings
 
-For most settings, you specify the option and follow it with a value. An equals sign between the two (`=`) is optional, and values may optionally be surrounded by quotes.
+For most settings, you specify the option and follow it with a value. An equals sign between the two (`=`) is optional, and you can optionally put values in quotes.
 
 `--certname=temporary-name.example.com`
 
