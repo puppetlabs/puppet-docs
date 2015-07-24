@@ -6,20 +6,17 @@ canonical: "/puppet/latest/reference/upgrade_major_agent.html"
 
 [Hiera]: /hiera/
 [MCollective]: /mcollective/
-[`puppet_agent`]: https://forge.puppetlabs.com/puppetlabs/puppet_agent
+[puppet_agent]: https://forge.puppetlabs.com/puppetlabs/puppet_agent
 [moved]: ./whered_it_go.html
+[facter]: /facter/
 
-Due to the many changes in Puppet 4, the upgrade process for Puppet 3 agents can get complicated. For instance, you'll need to move configurations and credentials for Puppet and [MCollective][].
-
-However, since Puppet agent primarily does what Puppet Server tells it to do, it's relatively easier to upgrade.
+Although there are a lot of changes to Puppet agent configuration in Puppet 4, the process of upgrading agents can be automated in a way that server upgrades can't.
 
 ## Decide How to Upgrade Your Nodes
 
-We provide a module called [`puppet_agent`][] to simplify upgrades from Puppet 3 to 4.
+We provide a module called [`puppet_agent`][puppet_agent] to simplify upgrades from Puppet 3 to 4.
 
 If you're running Puppet on Windows or [any supported Linux operating system](./system_requirements.html#platforms-with-packages), this module can automatically upgrade Puppet, MCollective, and all of their dependencies on agent nodes.
-
-[//]: # (The Forge page says the module only supports Red Hat or CentOS. The module's [`metadata.json`](https://github.com/puppetlabs/puppetlabs-puppet_agent/blob/master/metadata.json) file lists support with RH, CentOS, Debian, Ubuntu, and SLES. The 4.2 supported OS list doesn't include SLES. Can we get these to line up?)
 
 If you're running Puppet on other operating systems, you can't upgrade them with the module. You'll need to either upgrade your agents manually or automate the process yourself.
 
@@ -29,10 +26,10 @@ This document guides you step-by-step through both methods.
 
 > **Note**: This module only works on Windows and supported Linux distributions. If your agents run any other operating systems, skip to ["Upgrade Manually or Build Your Own Automation"](#upgrade-manually-or-build-your-own-automation).
 
-The `puppet_agent` module does these things for you:
+The `puppet_agent` module does the following things for you:
 
 - Enables the Puppet Collection 1 (PC1) repo, if applicable.
-- Installs the latest version of the `puppet-agent` package, which replaces the installed versions of Puppet and [MCollective][].
+- Installs the latest version of the `puppet-agent` package, which replaces the installed versions of Puppet, [Facter][], [Hiera][], and [MCollective][].
 - Copies Puppet's SSL files to their new location.
 - Copies your old `puppet.conf` to Puppet 4's [new location](https://docs.puppetlabs.com/puppet/4.0/reference/whered_it_go.html), then cleans out old settings that we either removed in Puppet 4 or needed to revert to their default values.
 - Copies your MCollective server and client configuration files to their new locations, and adds [the new plugin path](/mcollective/deploy/plugins.html) to the `libdir` setting.
@@ -42,17 +39,21 @@ The `puppet_agent` module does these things for you:
 
 ### Install the Module on Puppet Servers
 
-* If you manage your Puppet code manually, you can use install it with `puppet module install puppetlabs/puppet_agent --environment <ENVIRONMENT>`    
-* If you manage your code with [r10k](/pe/latest/r10k.html), add the module and its dependencies to your Puppetfile. 
+* If you manage your Puppet code manually, you can use install it with `puppet module install puppetlabs/puppet_agent --environment <ENVIRONMENT>`
+* If you manage your code with [r10k](/pe/latest/r10k.html), add the module and its dependencies to your Puppetfile.
 * If you manage your code some other way, install `puppet_agent` as you would any other module.
 
 ### Assign the `puppet_agent` Class to Nodes
 
-However you classify nodes---whether in the [main mainfest][./dirs_manifest.html], with an [external node classifier](/guides/external_nodes.html) or [Hiera][], or some other solution---remember to classify your agents with `puppet_agent`.
+However you classify nodes---whether in the [main mainfest](./dirs_manifest.html), with an [external node classifier](/guides/external_nodes.html) or [Hiera][], or some other solution---remember to classify your agents with `puppet_agent`.
 
 You can also [configure the module](https://forge.puppetlabs.com/puppetlabs/puppet_agent/readme#usage) to control which services start or to force a different architecture on Windows.
 
-As with any major configuration deployment, carefully control and monitor the rollout. Assign the class in a dev or test environment to ensure it works as expected on systems similar to your production environment, then roll it out to your live agents in phases and monitor the upgraded agents for issues.
+As with any major configuration change, carefully control and monitor the rollout. Assign the class in a dev or test environment to ensure it works as expected on systems similar to your production environment, then roll it out to your live agents in phases and monitor the upgraded agents for issues.
+
+### Post-Upgrade Clean-Up
+
+After you've upgraded your entire deployment, you should read our suggested [post-upgrade clean-up tasks](./upgrade_major_post.html).
 
 ## Upgrade Manually or Build your Own Automation
 
@@ -60,7 +61,7 @@ To upgrade agents without the `puppet_agent` module, you can either install the 
 
 ### Install the New Version of Puppet
 
-Follow the installation instructions for [Linux](./install_linux.html#download-the-windows-puppet-package) or [Windows](./install_windows.html#install-puppet-on-agent-nodes).
+Follow the installation instructions; find your OS in the sidebar navigation to the left, or do whatever you originally did to install Puppet.
 
 ### Move SSL Files (\*nix Only)
 
@@ -97,3 +98,7 @@ If you use a cron job to periodically run `puppet agent -t` on your \*nix system
 On \*nix systems, we [moved][] MCollective's configuration files from `/etc/mcollective` to `/etc/puppetlabs/mcollective`.
 
 Edit the new configuration files to port over any settings you need from the old configuration files. Note that the default plugin and library directories also changed; you should update your settings to use both the new directories and any other directories you wish to use.
+
+### Post-Upgrade Clean-Up
+
+After you've upgraded your entire deployment, you should read our suggested [post-upgrade clean-up tasks](./upgrade_major_post.html).
