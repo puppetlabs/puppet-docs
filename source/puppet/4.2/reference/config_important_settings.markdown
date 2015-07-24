@@ -84,7 +84,7 @@ canonical: "/puppet/latest/reference/config_important_settings.html"
 [jvm_heap_config]: /puppetserver/2.1/install_from_packages.html#memory-allocation
 [puppetserver_ca]: /puppetserver/2.1/puppet_conf_setting_diffs.html#cahttpsdocspuppetlabscomreferenceslatestconfigurationhtmlca
 [service_bootstrap]: /puppetserver/2.1/configuration.html#service-bootstrapping
-[trusted_server_facts]: /lang_facts_and_builtin_vars.html#serverfacts-variable
+[trusted_server_facts]: ./lang_facts_and_builtin_vars.html#serverfacts-variable
 
 
 Puppet has about 200 settings, all of which are listed in the [configuration reference][config_reference]. Most users can ignore about 170 of those.
