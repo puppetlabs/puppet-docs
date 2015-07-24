@@ -14,7 +14,8 @@ Please [contact Puppet Labs](http://puppetlabs.com/contact/) if you are interest
 
 **[See Installing Puppet](/guides/install_puppet/pre_install.html)** for more details about the packages available for your platform(s).
 
-Puppet 3.x and 4.x can run on the following platforms:
+
+{% include agent_lifecycle.md %}
 
 Linux
 -----

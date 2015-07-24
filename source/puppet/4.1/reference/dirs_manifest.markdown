@@ -4,7 +4,6 @@ title: "Directories: The Main Manifest(s)"
 canonical: "/puppet/latest/reference/dirs_manifest.html"
 ---
 
-[import_deprecation]: ./lang_import.html#deprecation-notice
 [environment]: ./environments.html
 [catalog_compilation]: ./subsystem_catalog_compilation.html
 [confdir]: ./dirs_confdir.html
