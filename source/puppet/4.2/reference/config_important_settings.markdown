@@ -187,6 +187,7 @@ These features configure add-ons and optional features.
 ### CA Settings
 
 * [`ca`][ca] --- Whether to act as a CA. **There should only be one CA at a Puppet deployment.** If you're using [multiple Puppet masters][multi_master], you'll need to set `ca = false` on all but one of them.
+
    Note that the `ca` setting is not valid for Puppet Server. Refer to these sections about the [Puppet Server `ca`][puppetserver_ca] and [service bootstrapping][service_bootstrap].
 
 * [`ca_ttl`][ca_ttl] --- How long newly signed certificates should be valid for.
