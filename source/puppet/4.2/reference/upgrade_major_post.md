@@ -10,7 +10,7 @@ After upgrading, you should do a few more things to make Puppet 4 more stable an
 
 ## Reconfigure Systems that Use Puppet's Data
 
-Puppet 4 [changes the locations of many configuration files](./whered_it_go.html). If you have any other systems that reuse Puppet's SSL credentials, configuration data, or generated data, remember to point them to the new directories.
+Puppet 4 [changes the locations of many configuration files][moved]. If you have any other systems that reuse Puppet's SSL credentials, configuration data, or generated data, remember to point them to the new directories.
 
 ## Update Backup Jobs
 
@@ -22,7 +22,7 @@ You can avoid maintenance and configuration confusion by deleting the old `/etc/
 
 ## Delete the Per-Environment `parser` Setting
 
-If you set the [`parser`](https://docs.puppetlabs.com/puppet/3.8/reference/config_file_environment.html#parser) setting in `environment.conf` as part of your [upgrade preparations](./upgrade_major_pre.html), remove it from all environments. The setting is  inert, but Puppet will log warnings until it's gone.
+If you set the [`parser`](/puppet/3.8/reference/config_file_environment.html#parser) setting in `environment.conf` as part of your [upgrade preparations](./upgrade_major_pre.html), remove it from all environments. The setting is  inert, but Puppet will log warnings until it's gone.
 
 ## Unassign `puppet_agent` Class from Nodes
 

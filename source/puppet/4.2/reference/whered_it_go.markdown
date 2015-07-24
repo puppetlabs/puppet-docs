@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Puppet 4.0 Preview: Where Did Everything Go?"
+title: "Where Did Everything Go in Puppet 4.x?"
 ---
 
 
