@@ -31,13 +31,26 @@
 
   <li><strong>Installing and Upgrading</strong>
     <ul>
+      <li><a href="{{ puppet_dir }}/architecture.html">Overview of Puppet's Architecture</a></li>
       <li><a href="{{ puppet_dir }}/system_requirements.html">System Requirements</a></li>
       <li><a href="{{ puppet_dir }}/install_pre.html">Pre-Install Tasks</a></li>
-      <li><a href="{{ puppet_dir }}/install_linux.html">Install: Linux</a></li>
-      <li><a href="{{ puppet_dir }}/install_windows.html">Install: Windows</a></li>
-      <li><a href="{{ puppet_dir }}/architecture.html">Overview of Puppet's Architecture</a></li>
-      <li><a href="{{ puppet_dir }}/upgrade_agent.html">Upgrade 3.x Agents</a></li>
-      <li><a href="{{ puppet_dir }}/upgrade_server.html">Upgrade 3.x Servers</a></li>
+      <li><a href="/puppetserver/{{ server_version }}/install_from_packages.html">Install: Puppet Server</a></li>
+      <li><strong>Install: Puppet Agent</strong>
+        <ul>
+          <li><a href="{{ puppet_dir }}/install_linux.html">Install Agent: Linux</a></li>
+          <li><a href="{{ puppet_dir }}/install_windows.html">Install Agent: Windows</a></li>
+        </ul>
+      </li>
+      <li><a href="/puppetdb/latest/install_via_module.html">Install: PuppetDB</a></li>
+      <li><a href="{{ puppet_dir }}/upgrade_minor.html">Upgrade: From Puppet 4.x</a></li>
+      <li><strong>Upgrade: From Puppet 3.x</strong>
+        <ul>
+          <li><a href="{{ puppet_dir }}/upgrade_major_pre.html">Get Upgrade-Ready</a></li>
+          <li><a href="{[ puppet_dir }}/upgrade_major_server.html">Upgrade Puppet Server and PuppetDB</a></li>
+          <li><a href="{{ puppet_dir }}/upgrade_major_agent.html">Upgrade 3.x Agents</a></li>
+          <li><a href="{{ puppet_dir }}/upgrade_major_post.html">Post-Upgrade Clean-Up</a></li>
+        </ul>
+      </li>
     </ul>
   </li>
 
@@ -83,7 +96,6 @@
       <li><a href="{{ puppet_dir }}/environments_configuring.html">Configuring Environments</a></li>
       <li><a href="{{ puppet_dir }}/environments_creating.html">Creating Environments</a></li>
       <li><a href="{{ puppet_dir }}/environments_assigning.html">Assigning Environments to Nodes</a></li>
-      <li><a href="{{ puppet_dir }}/environments_classic.html">Using Config File Environments (deprecated)</a></li>
       <li><a href="{{ puppet_dir }}/environments_suggestions.html">Suggestions for Use</a></li>
       <li><a href="{{ puppet_dir }}/environments_limitations.html">Limitations of Environments</a></li>
       <li><a href="{{ puppet_dir }}/environments_https.html">Environments and Puppet's HTTPS Interface</a></li>

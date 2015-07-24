@@ -9,7 +9,6 @@ canonical: "/puppet/latest/reference/config_file_main.html"
 [short]: ./config_important_settings.html
 [config]: /references/4.2.latest/configuration.html#config
 [subcommands]: /references/4.2.latest/man/
-[conf_environments]: ./environments_classic.html
 [reports]: /references/4.2.latest/configuration.html#reports
 [modulepath]: /references/4.2.latest/configuration.html#modulepath
 [ssldir]: /references/4.2.latest/configuration.html#ssldir
@@ -160,6 +159,5 @@ Not all settings are equally useful; there's no real point in interpolating `$ss
 * `$codedir`
 * `$confdir`
 * `$vardir`
-* `$environment` --- the name of the active environment. Used in dynamic [config file environments.][conf_environments] If you are using this in puppet.conf, you should switch to [directory environments][dir_environments].
 
 [env_conf_interp]: ./config_file_environment.html#interpolation-in-values

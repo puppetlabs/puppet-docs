@@ -5,38 +5,63 @@ canonical: "/puppet/latest/reference/index.html"
 toc: false
 ---
 
+[Overview of Puppet's Architecture]: ./architecture.html
+[pre-install instructions]: ./install_pre.html
+[Facter 3]: /facter/latest/
+[Hiera 3]: /hiera/latest/
+[Puppet Server 2.1]: /puppetserver/latest/
+[PuppetDB 3]: /puppetdb/latest/
+[Linux installation]: ./install_linux.html
+[Windows installation]: ./install_windows.html
+[pre-upgrade guide]: ./upgrade_major_pre.html
+[Agent major upgrade]: ./upgrade_major_agent.html
+[Server major upgrade]: ./upgrade_major_server.html
+[post-upgrade guide]: ./upgrade_major_post.html
+[minor upgrade guide]: ./upgrade_minor.html
+[Language Changes Since Puppet 3]: ./experiments_future.html
+[Release Notes]: ./release_notes.html
+
 Welcome to the Puppet 4.2 Reference Manual. Use the navigation to the left to get around.
 
-## What Is This?
+## What is This?
 
-For an introduction to how Puppet manages systems, see the [Overview of Puppet's Architecture.](./architecture.html)
+For an introduction to how Puppet manages systems, see the [Overview of Puppet's Architecture][].
 
 ## Getting Started
 
-Puppet 4 consists of:
+Puppet 4.2 consists of:
 
-* A `puppet-agent` "All-in-One" package that installs Puppet, Ruby, Facter, Hiera, and supporting code.
-* A `puppetserver` package that installs Puppet Server.
+* A `puppet-agent` "All-in-One" package that installs Puppet, Ruby, [Facter 3][], [Hiera 3][], and supporting code.
+* A `puppetserver` package that installs [Puppet Server 2.1][].
+* A `puppetdb` package that installs [PuppetDB 3][].
 
-To install these, read the [pre-install instructions](./install_pre.html), then see the Puppet installation guides for [Linux](./install_linux.html) and [Windows](./install_windows.html).
+To install these, read the [pre-install instructions][], then see the Puppet installation guides for [Linux][Linux installation] and [Windows][Windows installation].
 
-### Upgrading from Puppet 3.x
+### Upgrading from Puppet 3
 
-In order to get this release into the world as quickly as possible we had to make two significant tradeoffs for in-place upgrades:
+Puppet 4 changes many things about how Puppet works, and you must be careful when upgrading from Puppet 3. We've made four guides to help walk you through the upgrade process:
 
-1. Due to the changes in filesystem paths for configuration and SSL files, you'll need to take a few extra steps to install Puppet Agent / Puppet 4 on an existing Puppet 3.x host and have it "just work." Check out the [Agent Upgrade doc](upgrade_agent.html) for details.
+1. Prepare for the upgrade by following the [pre-upgrade guide][], which covers how to update and move your site's configuration files to Puppet 4's revised standards.
 
-2. Changes to Puppet's agent-to-master network communication mean that 4.x agents can only talk to 4.x masters, so the process for upgrading within a major series ("Upgrade your masters first, then agents") isn't sufficient. We're working to make 3.x agents able to talk to the next release of Puppet Server. We do have [step by step instructions](upgrade_server.html) to help you set up 4.x masters.
+2. Follow our [step-by-step instructions][Server major upgrade] to upgrade Puppet Server.
+
+3. You need to take a few steps before upgrading your Puppet 3 agents. We've created a special Puppet module, `puppet_agent`, to help; check out the [Puppet agent major upgrade documentation][Agent major upgrade] for details.
+
+4. After the upgrade, confirm that everything's working and clean up your configuration with the [post-upgrade guide][].
+
+### Updating from Earlier Versions of Puppet 4
+
+If you're already running Puppet 4, the [minor upgrade guide][] can help you update Puppet across your infrastructure.
 
 ## Getting Around
 
 This manual is split into several sections, which can be reached from the left sidebar. A few notable pages:
 
-* The [Release Notes](./release_notes.html) have information about what's new and different in this version of Puppet, and track changes from patch releases.
-* If you're an experienced Puppet user, you'll want to take a look at the [Where Did Everything Go?](./whered_it_go.html) page.
-* The [Resource Type Reference](/references/3.8.latest/type.html) is the page where experienced Puppet users spend most of their time.
-* Puppet uses its own configuration language, which is documented in the language section of this reference. Two good starting points are:
-    * The [Language Summary](./lang_summary.html), which gives an overview and some context.
+* The [Release Notes][] cover what's new and different in this version of Puppet.
+* If you're an experienced Puppet user who's new to Puppet 4, review the [Where Did Everything Go?](./whered_it_go.html) page.
+* Use the [Resource Type Reference](/references/4.2.latest/type.html) for up-to-date information on core Puppet concepts.
+* Puppet uses its own configuration language, which is documented in this reference's language section. You can start with:
+    * The [Language Summary](./lang_summary.html), which gives an overview and some context for the language.
     * The [Visual Index](./lang_visual_index.html), which can help you find docs for syntax when you know what it looks like but don't know what it's called.
-* [Modules](./modules_fundamentals.html) explains how to organize your Puppet manifests, obtain pre-existing modules, and publish your own modules for public use.
-
+    * [Language Changes Since Puppet 3][], if you're experienced with Puppet and want to focus on new and changed features.
+* The [Modules Fundamentals](./modules_fundamentals.html) guide explains how to organize Puppet manifests, install pre-built modules from the Puppet Forge, and share your own modules.
