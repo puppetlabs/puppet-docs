@@ -33,7 +33,7 @@ If you haven't already done so, you'll need to get Puppet installed. See the [sy
 
 ### Write the `resolver` Class
 
-Some modules can be large, complex, and require a significant amount of trial and error, while others, like [PE-supported modules](https://forge.puppetlabs.com/supported), often work "right out of the box". This module will be a very simple module to write; it contains just one class and one template.
+Some modules can be large, complex, and require a significant amount of trial and error, while others often work "right out of the box". This module will be a very simple module to write; it contains just one class and one template.
 
 > #### A Quick Note about Modules
 >
@@ -107,7 +107,7 @@ Finally, let's take a look at how Puppet will ensure the desired state of the `r
 
 ### Other Resources
 
-For more information about working with Puppet or Puppet Enterprise and DNS, check out our [Dealing with Name Resolution Issues](http://puppetlabs.com/blog/resolving-dns-issues) blog post.
+For more information about working with Puppet and DNS, check out our [Dealing with Name Resolution Issues](http://puppetlabs.com/blog/resolving-dns-issues) blog post.
 
 Puppet Labs offers many opportunities for learning and training, from formal certification courses to guided online lessons. We've noted a few below; head over to the [learning Puppet page](https://puppetlabs.com/learn) to discover more.
 
