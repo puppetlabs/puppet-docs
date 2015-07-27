@@ -22,7 +22,7 @@ Following this example, you will use this guide to:
 * [write an additional class to open ports for the Puppet master](#open-ports-for-the-puppet-master)
 * [enforce the desired state of the `my_firewall` class](#enforce-the-desired-state-of-the-my-firewall-class).
 
-## Install Puppet Enterprise and the Puppet Enterprise Agent
+## Install Puppet and the Puppet Agent
 
 If you haven't already done so, you'll need to get Puppet installed. See the [system requirements][sys_req] for supported platforms.
 
@@ -48,8 +48,7 @@ You should see output similar to the following:
         /etc/puppetlabs/puppet/environments/production/modules
         └── puppetlabs-firewall (v1.6.0)
         
-> That's it! You've just installed the firewall module. You'll need to wait a short time for the Puppet server to refresh before the classes are available to add to your agent nodes.
-
+> That's it! You've just installed the firewall module. 
 
 ## Write the `my_firewall` Module
 
