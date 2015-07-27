@@ -1,8 +1,8 @@
 ---
 layout: default
-title: "PE 2015.2 » Quick Start » Helloworld"
+title: "Quick Start » Helloworld"
 subtitle: "Hello World! Quick Start Guide"
-canonical: "/pe/latest/quick_start_helloworld.html"
+canonical: "/puppet/latest/quick_start_helloworld.html"
 ---
 
 ## Overview
@@ -48,7 +48,7 @@ Modules are directory trees. For this task, you'll create the following files:
            file { '/etc/motd':
            owner  => 'root',
            group  => 'root',
-           mode    => 0644,
+           mode    => '0644',
            content => "hello, world!\n",
            }
 
@@ -74,7 +74,7 @@ For this procedure, you're going to add the `helloworld` classes to the [default
            file { '/etc/motd':
            owner  => 'root',
            group  => 'root',
-           mode    => 0644,
+           mode    => '0644',
            content => "hello, world!\n",
            }
 
