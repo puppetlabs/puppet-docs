@@ -209,6 +209,19 @@ EOT
   html_table
 end
 
+def make_table_body(list_of_components, historical_packages)
+  historical_packages.map {|pe_version, version_info|
+    component_versions = list_of_components.map {|component|
+      if version_info[component]
+        all_abbrs_for_component(component, version_info[component])
+      else
+        ""
+      end
+    }
+    [pe_version].concat(component_versions)
+  }
+end
+
 
 
 # header_row = ["Pkg. / Ver."].concat( versions_of_interest )
@@ -235,22 +248,12 @@ end
 # First, Puppet Labs software.
 
 pl_header = ['PE Version'].concat(pl_software)
-pl_body = historical_packages.map {|pe_version, version_info|
-  component_versions = pl_software.map {|component|
-    all_abbrs_for_component(component, version_info[component])
-  }
-  [pe_version].concat(component_versions)
-}
+pl_body = make_table_body(pl_software, historical_packages)
 
 # Then, third-party software.
 
 third_header = ['PE Version'].concat(third_party)
-third_body = historical_packages.map {|pe_version, version_info|
-  component_versions = third_party.map {|component|
-    all_abbrs_for_component(component, version_info[component])
-  }
-  [pe_version].concat(component_versions)
-}
+third_body = make_table_body(third_party, historical_packages)
 
 # now make tables
 
