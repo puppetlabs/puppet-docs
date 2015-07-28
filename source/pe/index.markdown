@@ -6,7 +6,7 @@ toc: false
 
 Puppet Enterprise is the best-of-breed distribution for the Puppet family of systems automation tools.
 
-Puppet Enterprise 3.8
+Puppet Enterprise 2015.2
 -----
 
 * [Puppet Enterprise 2015.2 User's Guide](./2015.2)
