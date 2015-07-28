@@ -35,7 +35,7 @@ Modules are directory trees. For these exercises you'll use the following files:
         - `vhost.pp` (contains the Apache virtual hosts class)
     - `templates/`
         - `vhost/`
-            - `_file_header.erb` (contains the vhost template, managed by PE)
+            - `_file_header.erb` (contains the vhost template, managed by Puppet)
 
 Every manifest (.pp) file contains a single class. File names map to class names in a predictable way: `init.pp` contains a class with the same name as the module; `<NAME>.pp` contains a class called `<MODULE NAME>::<NAME>`; and `<NAME>/<OTHER NAME>.pp` contains `<MODULE NAME>::<NAME>::<OTHER NAME>`.
 
@@ -47,7 +47,7 @@ Many modules, including Apache, contain directories other than `manifests` and `
 
 ### Editing a Manifest
 
-This simplified exercise modifies a template from the Puppet Labs Apache module, specifically `'vhost.conf.erb`. You'll edit the template to include some simple variables that will be populated by facts (using PE's implementation of Facter) about your node.
+This simplified exercise modifies a template from the Puppet Labs Apache module, specifically `'vhost.conf.erb`. You'll edit the template to include some simple variables that will be populated by facts (using Puppet's implementation of Facter) about your node.
 
 1. **On the Puppet master,** navigate to the modules directory by running `cd /etc/puppetlabs/puppet/environments/production/modules`.
 2. Run `ls` to view the currently installed modules; note that `apache` is present.
@@ -163,9 +163,9 @@ During this exercise, you will create a class called `pe_quickstart_app` that wi
 
    ![PHP Info Page][php_info]
 
-You have created a new class from scratch and used it to launch a Apache PHP-based web app. Needless to say, in the real world, your apps will do a lot more than display PHP info pages. But for the purposes of this exercise, let's take a closer look at how PE is managing your app.
+You have created a new class from scratch and used it to launch a Apache PHP-based web app. Needless to say, in the real world, your apps will do a lot more than display PHP info pages. But for the purposes of this exercise, let's take a closer look at how Puppet is managing your app.
 
-### Using PE to Manage Your App
+### Using Puppet to Manage Your App
 
 1. **On the Puppet agent**, open `/var/www/pe_quickstart_app/index.php`, and change the content; change it to something like, "THIS APP IS MANAGED BY PUPPET!"
 2. Refresh your browser, and notice that the PHP info page has been replaced with your new message.

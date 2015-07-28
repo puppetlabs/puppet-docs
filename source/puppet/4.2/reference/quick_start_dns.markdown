@@ -10,7 +10,7 @@ canonical: "/puppet/latest/quick_start_dns.html"
 [agent_install]: ./install_agents.html
 [install_overview]: ./install_basic.html
 
-Welcome to the Puppet Enterprise DNS Quick Start Guide. This document provides instructions for getting started managing a simple DNS nameserver file with Puppet. A nameserver ensures that the "human-readable" names you type in your browser (e.g., `google.com`) can be resolved to IP addresses your computers can read.
+Welcome to the Open Source Puppet DNS Quick Start Guide. This document provides instructions for getting started managing a simple DNS nameserver file with Puppet. A nameserver ensures that the "human-readable" names you type in your browser (e.g., `google.com`) can be resolved to IP addresses your computers can read.
 
 Sysadmins typically need to manage a nameserver file for internal resources that aren't published in public nameservers. For example, let's say you have several employee-maintained servers in your infrastructure, and the DNS network assigned to those servers use Google's public nameserver located at `8.8.8.8`. However, there are several resources behind your company's firewall that your employees need to access on a regular basis. In this case, you'd build a private nameserver (say at `10.16.22.10`), and then use Puppet to ensure all the servers in your infrastructure have access to it.
 
@@ -109,9 +109,8 @@ Finally, let's take a look at how Puppet will ensure the desired state of the `r
 
 For more information about working with Puppet and DNS, check out our [Dealing with Name Resolution Issues](http://puppetlabs.com/blog/resolving-dns-issues) blog post.
 
-Puppet Labs offers many opportunities for learning and training, from formal certification courses to guided online lessons. We've noted a few below; head over to the [learning Puppet page](https://puppetlabs.com/learn) to discover more.
+Puppet Labs offers many opportunities for learning and training, from formal certification courses to guided online lessons. We've noted one below; head over to the [learning Puppet page](https://puppetlabs.com/learn) to discover more.
 
-* [Learning Puppet](http://docs.puppetlabs.com/learning/) is a series of exercises on various core topics about deploying and using PE.
 * The Puppet Labs workshop contains a series of self-paced, online lessons that cover a variety of topics on Puppet basics. You can sign up at the [learning page](https://puppetlabs.com/learn).
 
 ----------

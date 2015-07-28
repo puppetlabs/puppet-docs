@@ -136,11 +136,11 @@ In this fashion, it is possible to create multiple nodes to suit your needs.
 
 ## Other Resources
 
-For more information about working with the puppetlabs-ntp module, check out our [Puppetlabs-NTP: A Puppet Enterprise Supported Module](http://puppetlabs.com/blog/puppetlabs-ntp-puppet-enterprise-supported-module) blog post and our [How to Manage NTP](http://puppetlabs.com/webinars/how-manage-ntp) webinar.
+For more information about working with the puppetlabs-ntp module, check out our [How to Manage NTP](http://puppetlabs.com/webinars/how-manage-ntp) webinar.
 
 Puppet Labs offers many opportunities for learning and training, from formal certification courses to guided online lessons. We've noted a few below; head over to the [learning Puppet page](https://puppetlabs.com/learn) to discover more.
 
-* [Learning Puppet](http://docs.puppetlabs.com/learning/) is a series of exercises on various core topics about deploying and using PE and Puppet.
+* [Learning Puppet](http://docs.puppetlabs.com/learning/) is a series of exercises on various core topics about deploying and using Puppet.
 * The Puppet Labs workshop contains a series of self-paced, online lessons that cover a variety of topics on Puppet basics. You can sign up at the [learning page](https://puppetlabs.com/learn).
 
 ----------
