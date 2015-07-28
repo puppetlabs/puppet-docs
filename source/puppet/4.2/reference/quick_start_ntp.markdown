@@ -10,13 +10,13 @@ canonical: "/puppet/latest/quick_start_ntp.html"
 [agent_install]: ./install_agents.html
 [install_overview]: ./install_basic.html
 
-Welcome to the Puppet Enterprise NTP Quick Start Guide. This document provides instructions for getting started managing an NTP service using the Puppet Labs NTP module.
+Welcome to the Open Source Puppet NTP Quick Start Guide. This document provides instructions for getting started managing an NTP service using the Puppet Labs NTP module.
 
 The clocks on your servers are not inherently accurate. They need to synchronize with something to let them know what the right time is. NTP is a protocol designed to synchronize the clocks of computers over a network. NTP uses Coordinated Universal Time (UTC) to synchronize computer clock times to a millisecond---and sometimes to a fraction of a millisecond.
 
 Your entire datacenter, from the network to the applications, depends on accurate time for many different things, such as security services, certificate validation, and file sharing across nodes.
 
-NTP is one of the most crucial, yet easiest, services to configure and manage with Puppet Enterprise. Using the Puppet Labs NTP module, you can:
+NTP is one of the most crucial, yet easiest, services to configure and manage with Puppet. Using the Puppet Labs NTP module, you can:
 
 * ensure time is correctly synced across all the servers in your infrastructure.
 * ensure time is correctly synced across your configuration management tools.
@@ -31,17 +31,17 @@ Using this guide, you will:
 
 ## Install Puppet and the Puppet Agent
 
-If you haven't already done so, you'll need to get PE installed. See the [system requirements][sys_req] for supported platforms.
+If you haven't already done so, you'll need to get Puppet installed. See the [system requirements][sys_req] for supported platforms.
 
 1. [Download and verify the appropriate tarball][downloads].
-2. Refer to the [installation overview][install_overview] to determine how you want to install PE, and follow the instructions provided.
-3. Refer to the [agent installation instructions][agent_install] to determine how you want to install your PE agent(s), and follow the instructions provided.
+2. Refer to the [installation overview][install_overview] to determine how you want to install Puppet, and follow the instructions provided.
+3. Refer to the [agent installation instructions][agent_install] to determine how you want to install your Puppet agent(s), and follow the instructions provided.
 
->**Note**: You can add the NTP service to as many agents as needed. For ease of explanation, our console images or instructions may show only one agent node.
+>**Note**: You can add the NTP service to as many agents as needed. For ease of explanation, we will only be using one.
 
 ## Install the puppetlabs-ntp Module
 
-The puppetlabs-ntp module is part of the PE [supported modules](http://forge.puppetlabs.com/supported) program; these modules are supported, tested, and maintained by Puppet Labs. You can learn more about the puppetlabs-ntp module by visiting [http://forge.puppetlabs.com/puppetlabs/ntp](http://forge.puppetlabs.com/puppetlabs/ntp).
+The puppetlabs-ntp module is part of the [supported modules](http://forge.puppetlabs.com/supported) program; these modules are supported, tested, and maintained by Puppet Labs. You can learn more about the puppetlabs-ntp module by visiting [http://forge.puppetlabs.com/puppetlabs/ntp](http://forge.puppetlabs.com/puppetlabs/ntp).
 
 **To install the puppetlabs-ntp module**:
 
@@ -61,12 +61,12 @@ You should see output similar to the following:
 
 [classification_selector]: ./images/quick/classification_selector.png
 
-The NTP module contains several **classes**. [Classes](../puppet/3/reference/lang_classes.html) are named chunks of Puppet code and are the primary means by which Puppet and Puppet Enterprise configure nodes. The NTP module contains the following classes:
+The NTP module contains several **classes**. [Classes](../puppet/3/reference/lang_classes.html) are named chunks of Puppet code and are the primary means by which Puppet configures nodes. The NTP module contains the following classes:
 
 * `ntp`: the main class; this class includes all other classes (including the classes in this list).
 * `ntp::install`: this class handles the installation packages.
 * `ntp::config`: this class handles the configuration file.
-* `ntp::service`: this class handlesmut the service.
+* `ntp::service`: this class handles the service.
 
 We're going to add the `ntp` class to the default node. Depending on your needs or infrastructure, you may have a different group that you'll assign NTP to, but these same instructions would apply.
 
@@ -78,7 +78,8 @@ We're going to add the `ntp` class to the default node. Depending on your needs 
 
         node default {        									 
      		class { 'ntp':       									 
-    		servers => ['nist-time-server.eoni.com','nist1-lv.ustiming.org','ntp-nist.ldsbc.edu']    }						
+    		servers => ['nist-time-server.eoni.com','nist1-lv.ustiming.org','ntp-nist.ldsbc.edu']
+    	    }						
 		}
 
 >**Note**: If you already have a default node, do not copy `node default` into it.
@@ -112,7 +113,7 @@ In the example below,
 			restrict   => [],
 			enable     => true,
 	     }
-	   }
+	    }
 
 	     node "grover.example.com" {
 	      class { "ntp":
@@ -121,15 +122,15 @@ In the example below,
 		   restrict   => [],
 		   enable     => true,
 	     }
-	   }
+	    }
 
-	   node "snuffie.example.com", "bigbird.example.com", "hooper.example.com" {
-	     class { "ntp":
+	     node "snuffie.example.com", "bigbird.example.com", "hooper.example.com" {
+	      class { "ntp":
 		   servers    => [ 'grover.example.com', 'kermit.example.com'],
 		   autoupdate => true,
 		   enable     => true,
 	     }
-	   }
+	    }
 	   
 In this fashion, it is possible to create multiple nodes to suit your needs.
 
