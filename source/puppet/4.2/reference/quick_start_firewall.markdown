@@ -128,15 +128,13 @@ Modules are directory trees. For this task, you'll create the following files:
 
 1. Navigate to the main manifest (`cd /etc/puppetlabs/code/environments/production/manifests`).
 2. Use your text editor to open `site.pp`.
-3. Add the following Puppet code to your `site.pp` file:
+3. Add the following Puppet code to your `site.pp` file. This will clear any existing rules ato make sure that only rules defined in Puppet exist on the machine.
 
 		  resources { 'firewall':
 		    purge => true,
 		  }
   
-> This will clear any existing rules ato make sure that only rules defined in Puppet exist on the machine.
-
-4. Add the following Puppet code to your `site.pp` file:
+4. Add the following Puppet code to your `site.pp` file. These defaults will ensure that the `pre` and `post` classes are run in the correct order to avoid locking you out of your box during the first Puppet run, and declaring `my_fw::pre` and `my_fw::post` satisfies dependencies.
 
 		  Firewall {
 		    before  => Class['my_fw::post'],
@@ -145,8 +143,6 @@ Modules are directory trees. For this task, you'll create the following files:
 		  
 		  class { ['my_fw::pre', 'my_fw::post']: }
 		  
-> These defaults will ensure that the `pre` and `post` classes are run in the correct order to avoid locking you out of your box during the first Puppet run. Declaring `my_fw::pre` and `my_fw::post` satisfies dependencies.
-
 5. Add the `firewall` class to your `site.pp` to ensure the correct packages are installed:
 
 		  class { 'firewall': }
