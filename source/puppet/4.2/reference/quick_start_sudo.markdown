@@ -10,11 +10,11 @@ canonical: "/puppet/latest/quick_start_sudo.html"
 [agent_install]: ./install_agents.html
 [install_overview]: ./install_basic.html
 
-Welcome to the Puppet Enterprise Sudo Users Quick Start Guide. This document provides instructions for getting started managing sudo privileges across your Puppet deployment, using a module from the Puppet Forge in conjunction with a simple module you will write.
+Welcome to the Open Source Puppet Sudo Users Quick Start Guide. This document provides instructions for getting started managing sudo privileges across your Puppet deployment, using a module from the Puppet Forge in conjunction with a simple module you will write.
 
 In most cases, you want to manage sudo on your agent nodes to control which system users have access to elevated privileges. Using this guide, you will:
 
-* [install the saz-sudo module as the foundation for your management of sudo privileges ](#install-the-saz-sudo-module).
+* [install the saz-sudo module as the foundation for your management of sudo privileges](#install-the-saz-sudo-module).
 * [write a simple module that contains a class called `privileges` to manage a few resources that set privileges for certain users, which will be managed by the saz-sudo module](#write-the-privileges-class).
 * [use the main manifest to add classes from the privileges and sudo modules to your agent nodes](#use-the-main-manifest-to-add-the-privileges-and-sudo-classes).
 
@@ -48,7 +48,7 @@ You should see output similar to the following:
         └── saz-sudo (v2.3.6)
               └── puppetlabs-stdlib (3.2.2) [/opt/puppet/share/puppet/modules]
 
-> That's it! You've just installed the saz-sudo module. You'll need to wait a short time for the Puppet server to refresh before the classes are available to add to your agent nodes.
+> That's it! You've just installed the saz-sudo module.
 
 ## Write the `privileges` Class
 
@@ -125,7 +125,9 @@ Modules are directory trees. For this task, you'll create the following files:
     		}
 
 3. Save and exit the file.
-4. From the CLI of your Puppet master, run `puppet parser validate site.pp` to ensure that there are no errors. The parser will return nothing if there are no errors. If it does detect a syntax error, open the file again and fix the problem before continuing.
+
+4. From the CLI of your Puppet master, run `puppet parser validate site.pp` to ensure that there are no errors. The parser will return nothing if there are no errors.
+
 5. From the CLI of your Puppet agent, use `puppet agent -t` to trigger a Puppet run.
 
 > That's it! You have successfully installed the Sudo module and applied privileges and classes to it. 
@@ -143,7 +145,7 @@ From the CLI of the Puppet agent, run `sudo -l -U jargyle` to confirm it worked.
 	 User jargyle may run the following commands on this host:
     (ALL) NOPASSWD: ALL
     
-> That's it! Yay.
+> That's it! You've successfully managed sudo privileges in your Puppet deployment.
 
 
 
