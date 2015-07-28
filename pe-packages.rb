@@ -254,9 +254,9 @@ third_body = historical_packages.map {|pe_version, version_info|
 
 # now make tables
 
-puts "### Puppet Labs Software"
+puts "### Puppet Labs Software\n"
 puts table_from_header_and_array_of_body_rows(pl_header, pl_body)
-puts "### Third-Party Software"
+puts "### Third-Party Software\n"
 puts table_from_header_and_array_of_body_rows(third_header, third_body)
 
 # done
