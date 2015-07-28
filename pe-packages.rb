@@ -242,10 +242,21 @@ pl_body = historical_packages.map {|pe_version, version_info|
   [pe_version].concat(component_versions)
 }
 
+# Then, third-party software.
 
-# now make a table
+third_header = ['PE Version'].concat(third_party)
+third_body = historical_packages.map {|pe_version, version_info|
+  component_versions = third_party.map {|component|
+    all_abbrs_for_component(component, version_info[component])
+  }
+  [pe_version].concat(component_versions)
+}
 
+# now make tables
 
+puts "### Puppet Labs Software"
 puts table_from_header_and_array_of_body_rows(pl_header, pl_body)
+puts "### Third-Party Software"
+puts table_from_header_and_array_of_body_rows(third_header, third_body)
 
 # done
