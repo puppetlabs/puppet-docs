@@ -18,9 +18,7 @@ Every module contains one or more **classes**. [Classes](./puppet/4.2/reference/
 2. Use your text editor to open the `site.pp` file, and edit it so that it contains the following Puppet code:
 
         node default {
-
-			include apache
-			
+		  include apache	
         }
 
 **Note: If you have already created the default node class, simply add `include apache` to it.**
@@ -58,10 +56,10 @@ You can edit the [parameters](./puppet/latest/reference/lang_classes.html#defini
 3. Replace the `include apache` command with the following Puppet code:
 
         class { 'apache':
-    	docroot => '/var/www'
+    	  docroot => '/var/www'
 		}
 		
-That's it! If you refresh `http://myagentnodeIP:80/`, you'll see that the page has changed to reflect the files in `/var/www`. If you click `html`, you'll again be presented with the contents of `/var/www/html/index.html`.
+> That's it! If you refresh `http://myagentnodeIP:80/`, you'll see that the page has changed to reflect the files in `/var/www`. If you click `html`, you'll again be presented with the contents of `/var/www/html/index.html`.
 
 ----------
 
