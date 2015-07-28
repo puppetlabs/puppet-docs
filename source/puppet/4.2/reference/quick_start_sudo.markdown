@@ -25,11 +25,11 @@ If you haven't already done so, you'll need to get Puppet installed. See the [sy
 1. [Download and verify the appropriate tarball][downloads].
 2. Refer to the [installation overview][install_overview] to determine how you want to install Puppet, and then follow the instructions provided.
 3. Refer to the [agent installation instructions][agent_install] to determine how you want to install your Puppet agent(s), and then follow the instructions provided.
-4. Follow the [Quick start Guide for Users and Groups](./quick_start_user_group) to set up your `jargyle` user and `web` group.
+4. Follow the [Quick Start Guide for Users and Groups](./quick_start_user_group) to set up your `jargyle` user and `web` group.
 
 >**Tip**: Follow the instructions in the [NTP Quick Start Guide](./quick_start_ntp.html) to have Puppet ensure time is in sync across your deployment.
 
->**Note**: You can add the sudo and privileges classes to as many agents as needed. For ease of explanation, our console images or instructions might show only two agent nodes.
+>**Note**: You can add the sudo and privileges classes to as many agents as needed, although we may only reference one for ease of explanation. 
 
 ## Install the saz-sudo Module
 
