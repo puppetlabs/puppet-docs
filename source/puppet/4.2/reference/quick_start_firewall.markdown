@@ -134,7 +134,7 @@ Modules are directory trees. For this task, you'll create the following files:
 		    purge => true,
 		  }
   
-This will clear any existing rules ato make sure that only rules defined in Puppet exist on the machine.
+> This will clear any existing rules ato make sure that only rules defined in Puppet exist on the machine.
 
 4. Add the following Puppet code to your `site.pp` file:
 
@@ -145,7 +145,7 @@ This will clear any existing rules ato make sure that only rules defined in Pupp
 		  
 		  class { ['my_fw::pre', 'my_fw::post']: }
 		  
-These defaults will ensure that the `pre` and `post` classes are run in the correct order to avoid locking you out of your box during the first Puppet run. Declaring `my_fw::pre` and `my_fw::post` satisfies dependencies.
+> These defaults will ensure that the `pre` and `post` classes are run in the correct order to avoid locking you out of your box during the first Puppet run. Declaring `my_fw::pre` and `my_fw::post` satisfies dependencies.
 
 5. Add the `firewall` class to your `site.pp` to ensure the correct packages are installed:
 
@@ -172,10 +172,17 @@ These defaults will ensure that the `pre` and `post` classes are run in the corr
 Lastly, let's take a look at how Puppet ensures the desired state of the `my_firewall` class on your agent nodes. In the previous task, you applied your firewall class. Now imagine a scenario where a member of your team changes the contents of the `iptables` to allow connections on a random port that was not specified in `my_firewall` .
 
 1. Select an agent node on which you applied the `my_firewall` class, run `iptables --list`.
+
 2. Note that the rules from the `my_firewall` class have been applied.
+
 3. From the command line, insert a new rule to allow connections to port **8449**; run,  `iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 8449 -j ACCEPT`.
+
 4. Run `iptables --list` again and note this new rule is now listed.
+
 5. Run `puppet agent -t --onetime` to trigger a Puppet run on that agent node.
+
 6. Run `iptables --list` on that node once more, and notice that Puppet has enforced the desired state you specified for the firewall rules.
 
 > That's it--Puppet has enforced the desired state of your agent node!
+
+FINAL STUFF???
