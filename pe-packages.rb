@@ -90,6 +90,28 @@ end
 
 }
 
+pl_software = [
+"Puppet",
+"Puppet Server",
+"Facter",
+"Hiera",
+"PuppetDB",
+"Mcollective",
+"Razor server",
+"Razor libs"
+]
+
+third_party = [
+"Ruby",
+"Apache",
+"ActiveMQ",
+"PostgreSQL",
+"Passenger",
+"OpenSSL",
+"Java",
+"LibAPR"
+]
+
 versions_of_interest_old = [
 '3.2.0',
 '3.2.1',
@@ -189,30 +211,41 @@ end
 
 
 
-header_row = ["Pkg. / Ver."].concat( versions_of_interest )
-other_rows = @package_name_variations.keys.map {|common_name|
-  # Versions of this component per PE version (Cells in row after the first cell)
-  component_versions_per_pe_version = versions_of_interest.map {|pe_version|
-    # a cell of versions
-    if historical_packages[pe_version][common_name]
-      all_abbrs_for_component(common_name, historical_packages[pe_version][common_name])
-    else
-      ""
-    end
+# header_row = ["Pkg. / Ver."].concat( versions_of_interest )
+# other_rows = @package_name_variations.keys.map {|common_name|
+#   # Versions of this component per PE version (Cells in row after the first cell)
+#   component_versions_per_pe_version = versions_of_interest.map {|pe_version|
+#     # a cell of versions
+#     if historical_packages[pe_version][common_name]
+#       all_abbrs_for_component(common_name, historical_packages[pe_version][common_name])
+#     else
+#       ""
+#     end
+#   }
+#   # a row
+#   if component_versions_per_pe_version.uniq == ['']
+#     nil # for compact, below.
+#   else
+#     component_name_string = '<abbr title="' << @package_name_variations[common_name].join(', ') << '">' << common_name << '</abbr>'
+#     [component_name_string].concat(component_versions_per_pe_version)
+#   end
+# }.compact
+
+
+# First, Puppet Labs software.
+
+pl_header = ['PE Version'].concat(pl_software)
+pl_body = historical_packages.map {|pe_version, version_info|
+  component_versions = pl_software.map {|component|
+    all_abbrs_for_component(component, version_info[component])
   }
-  # a row
-  if component_versions_per_pe_version.uniq == ['']
-    nil # for compact, below.
-  else
-    component_name_string = '<abbr title="' << @package_name_variations[common_name].join(', ') << '">' << common_name << '</abbr>'
-    [component_name_string].concat(component_versions_per_pe_version)
-  end
-}.compact
+  [pe_version].concat(component_versions)
+}
 
 
 # now make a table
 
 
-puts table_from_header_and_array_of_body_rows(header_row, other_rows)
+puts table_from_header_and_array_of_body_rows(pl_header, pl_body)
 
 # done
