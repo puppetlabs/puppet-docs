@@ -5,12 +5,12 @@ subtitle: "Module Writing Basics for *nix"
 canonical: "/puppet/latest/quick_writing_nix.html"
 ---
 
-Welcome to the writing modules section of the Quick Start Guide series. This document is a short walkthrough to help you become more familiar with Puppet modules, module development, and additional PE features. Follow along to learn how to:
+Welcome to the writing modules section of the Quick Start Guide series. This document is a short walkthrough to help you become more familiar with Puppet modules and module development. Follow along to learn how to:
 
 * Modify a module obtained from the Forge
 * Write your own Puppet module
 * Create a site module that composes other modules into machine roles
-* Apply Puppet classes to groups with the console
+* Apply Puppet classes to the main manifest
 
 > Before starting this walkthrough, you should have completed the previous exercises in the [introductory quick start guide](./quick_start.html). You should still be logged in as root or administrator on your nodes.
 
