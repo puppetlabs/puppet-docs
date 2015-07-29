@@ -23,6 +23,10 @@ end
   'puppet-enterprise-nxos-1-x86_64'
 ],
 
+'Puppet Agent' => [
+  'puppet-agent'
+],
+
 'Puppet Server' => [
   'pe-puppetserver'
 ],
