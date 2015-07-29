@@ -17,7 +17,7 @@ Sysadmins typically need to manage a nameserver file for internal resources that
 Following this example, you will use this guide to:
 
 * [write a simple module that contains a class called `resolver` to manage a nameserver file called, `/etc/resolv.conf`](#write-the-resolver-class).
-* other things :^)
+* [enforce the desired state of that class from the command line of your puppet agent](#enforce-the-desired-state-of-the-resolver-class).
 
 ### Install Puppet and the Puppet Agent
 
@@ -29,7 +29,7 @@ If you haven't already done so, you'll need to get Puppet installed. See the [sy
 
 >**Tip**: Follow the instructions in the [NTP Quick Start Guide](./quick_start_ntp.html) to have Puppet ensure time is in sync across your deployment.
 
->**Note**: You can add the DNS nameserver class to as many agents as needed. For ease of explanation, our console images or instructions may show only one agent node.
+>**Note**: You can add the DNS nameserver class to as many agents as needed. For ease of explanation, this guide will reference only one agent.
 
 ### Write the `resolver` Class
 
@@ -67,15 +67,12 @@ Modules are directory trees. For this task, you'll create the following files:
         # Other values can be added or hard-coded into the template as needed.
 
 5. Save and exit the file.
-6. On the Puppet master, navigate to the main manifest (`cd /etc/puppetlabs/code/environments/production/manifests`).
-7. Use your text editor to open the `site.pp` file and add the following Puppet code to the `default` node:
+6. Open `/etc/resolv.conf` with your desired text editor on the Puppet master, and copy the IP address of your master's nameserver (in this example, the nameserver is `10.0.2.3`).
+7. On the Puppet master, navigate to the main manifest (`cd /etc/puppetlabs/code/environments/production/manifests`).
+8. Use your text editor to open the `site.pp` file and add the following Puppet code to the `default` node, editing your nameserver value to match the one you found in `/etc/resolv.conf`:
 
         $nameservers = ['10.0.2.3']
-
-> **Note**: To find the IP of your nameserver, navigate to `etc/resolv.conf` on the Puppet master.
-
-8. Add the following Puppet code to the `default` node in site.pp:
-
+        
         file { '/etc/resolv.conf':
           ensure  => file,
           owner   => 'root',
@@ -87,8 +84,8 @@ Modules are directory trees. For this task, you'll create the following files:
 9. From the CLI of your Puppet agent, run `puppet agent -t`.
 10. From the CLI of your Puppet agent, run `cat /etc/resolv.conf`. The result should reflect the nameserver you added to your main manifest in step 7.
 
-> That's it! You've written a module that contains a class that will, once applied, ensure your agent nodes resolve to your internal nameserver. You'll need to wait a short time for the Puppet server to refresh before the classes are available to add to your agent nodes.
->
+> That's it! You've written a module that contains a class that will, once applied, ensure your agent nodes resolve to your internal nameserver. 
+
 > Note the following about your new class:
 >
 > * The class `resolver` ensures the creation of the file `/etc/resolv.conf`.
