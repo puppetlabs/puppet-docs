@@ -64,4 +64,4 @@ html_table = <<END
 END
 
 # puts html_table
-pp version_info_hash
+puts JSON.dump(version_info_hash)
