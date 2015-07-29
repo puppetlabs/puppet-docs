@@ -7,10 +7,9 @@ canonical: "/puppet/latest/quick_writing_nix.html"
 
 Welcome to the writing modules section of the Quick Start Guide series. This document is a short walkthrough to help you become more familiar with Puppet modules and module development. Follow along to learn how to:
 
-* Modify a module obtained from the Forge
-* Write your own Puppet module
-* Create a site module that composes other modules into machine roles
-* Apply Puppet classes to the main manifest
+* [Modify a module obtained from the Forge](#editing-a-forge-module)
+* [Write your own Puppet module](#writing-a-puppet-module)
+* [Create a site module that composes other modules into machine roles](#using-a-site-module)
 
 > Before starting this walkthrough, you should have completed the previous exercises in the [introductory quick start guide](./quick_start.html). You should still be logged in as root or administrator on your nodes.
 
@@ -45,7 +44,7 @@ Many modules, including Apache, contain directories other than `manifests` and `
 * For more on best practices, methods, and approaches to writing modules, see the [Beginners Guide to Modules](/guides/module_guides/bgtm.html).
 * For a more detailed guided tour, also see [the module chapters of Learning Puppet](/learning/modules1.html).
 
-### Editing a Manifest
+### Writing a Puppet Module
 
 This simplified exercise modifies a template from the Puppet Labs Apache module, specifically `'vhost.conf.erb`. You'll edit the template to include some simple variables that will be populated by facts (using Puppet's implementation of Facter) about your node.
 
