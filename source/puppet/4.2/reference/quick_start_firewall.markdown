@@ -73,9 +73,12 @@ Modules are directory trees. For this task, you'll create the following files:
 **To write the `my_firewall` module**:
 
 1. From the command line on the Puppet master, navigate to the modules directory (`cd /etc/puppetlabs/code/environments/production/modules`).
+
 2. Run `mkdir -p my_fw/manifests` to create the new module directory and its manifests directory.
+
 3. From the `manifests` directory, use your text editor to create `pre.pp`.
-4. Edit `pre.pp` so it contains the following Puppet code. These rules all basic networking to ensure that existing connections are not closed.
+
+4. Edit `pre.pp` so it contains the following Puppet code. These rules allow basic networking to ensure that existing connections are not closed.
 
        	class my_fw::pre {
     	  Firewall {
@@ -183,4 +186,16 @@ Lastly, let's take a look at how Puppet ensures the desired state of the `my_fir
 
 > That's it--Puppet has enforced the desired state of your agent node!
 
-FINAL STUFF???
+## Other Resources
+
+You can learn more about the Puppet Labs Firewall module by visiting [the Puppet Forge](http://forge.puppetlabs.com/puppetlabs/firewall).
+
+Check out the other quick start guides in our Puppet QSG series:
+
+- [NTP Quick Start Guide](./quick_start_ntp.html)
+- [DNS Quick Start Guide](./quick_start_dns.html)
+- [Sudo Users Quick Start Guide](./quick_start_firewall.html)
+
+Puppet Labs offers many opportunities for learning and training, from formal certification courses to guided online lessons. We've noted one below; head over to the [learning Puppet page](https://puppetlabs.com/learn) to discover more.
+
+* The Puppet Labs workshop contains a series of self-paced, online lessons that cover a variety of topics on Puppet basics. You can sign up at the [learning page](https://puppetlabs.com/learn).
