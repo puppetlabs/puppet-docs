@@ -9,7 +9,7 @@ Intro
 
 ## Create the User and Group
 
-(Intro on making and controlling users and groups)
+Puppet uses some defaults for unspecified user and group attributes, so all you'll need to do to create a new user and group is set the 'ensure' attribute to 'present'. This 'present' value tells Puppet to check if the resource exists on the system, and to create the specified resource if it does not.
 
 1. On your Puppet master, run `puppet apply -e "user { jargyle: ensure => 'present', }"`. The result should show, in part, `Notice: /Stage[main]/Main/User[jargyle]/ensure: created`.
 
