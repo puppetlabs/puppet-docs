@@ -15,6 +15,10 @@ component_files = {
   'MCollective' => 'marionette-collective.json'
 }
 
+def version_from_json(file)
+  JSON.load(File.read(file))['ref'].split('/')[-1]
+end
+
 agent_repo.fetch
 tags = agent_repo.tags
 # Structure of the repo didn't stabilize until 0.9.0-ish, so:
@@ -37,7 +41,7 @@ version_info_hash = tags.reduce(Hash.new) {|result, tag|
   version_hash = component_files.reduce(Hash.new) {|result, (component, json)|
     # We want the last component of a string like refs/tags/4.2.0.
     component_file = agent_packages_dir + 'puppet-agent/configs/components' + json
-    result[component] = JSON.load(component_file.read)['ref'].split('/')[-1]
+    result[component] = version_from_json(component_file)
     result
   }
   result[tag.name] = version_hash
