@@ -131,7 +131,7 @@ During this exercise, you will create a class called `puppet_quickstart_app` tha
 
         }
 
-> You have written a new module containing a new class that includes two other classes. Puppet now knows about this your new class, and it can be added to the console and assigned to your node.
+> You have written a new module containing a new class that includes two other classes. 
 >
 > Note the following about your new class:
 >
@@ -177,7 +177,7 @@ Many users create a "site" module. Instead of describing smaller units of a conf
 * A `site::webserver` class for nodes that serve web content.
 * A `site::dbserver` class for nodes that provide a database server to other applications.
 
-Site modules hide complexity so you can more easily divide labor at your site. System architects can create the site classes, and junior admins can create new machines and assign a single "role" class to them in the console. In this workflow, the console controls policy, not fine-grained implementation.
+Site modules hide complexity so you can more easily divide labor at your site. System architects can create the site classes, and junior admins can create new machines.
 
 * **On the Puppet master**, create `/etc/puppetlabs/code/environments/production/modules/site/manifests/basic.pp`, and edit the file to contain the following:
 
