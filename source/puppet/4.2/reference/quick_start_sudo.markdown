@@ -147,6 +147,19 @@ From the CLI of the Puppet agent, run `sudo -l -U jargyle` to confirm it worked.
     
 > That's it! You've successfully managed sudo privileges in your Puppet deployment.
 
+### Other Resources
+
+For more information about working with Puppet and Sudo Users, check out our [Module of The Week: saz/sudo - Manage sudo configuration](https://puppetlabs.com/blog/module-of-the-week-sazsudo-manage-sudo-configuration) blog post.
+
+Puppet Labs offers many opportunities for learning and training, from formal certification courses to guided online lessons. We've noted one below; head over to the [learning Puppet page](https://puppetlabs.com/learn) to discover more.
+
+* [Learning Puppet](http://docs.puppetlabs.com/learning/) is a series of exercises on various core topics about deploying and using Puppet.
+* The Puppet Labs workshop contains a series of self-paced, online lessons that cover a variety of topics on Puppet basics. You can sign up at the [learning page](https://puppetlabs.com/learn).
+* Learn about [Managing sudo Privileges](https://puppetlabs.com/learn/managing-sudo-privileges) through this online training workshop.
+
+----------
+
+Next: [Firewall Quick Start Guide](./quick_start_firewall.html)
 
 
 
