@@ -81,7 +81,9 @@ For this procedure, you're going to add the `helloworld` classes to the [default
            }
 
 4. Save and exit the file.
+
 5. Ensure that there are no errors in the Puppet code by running `puppet parser validate site.pp` on the CLI of your Puppet master. The parser will return nothing if there are no errors. If it does detect a syntax error, open the file again and fix the problem before continuing.
+
 6. From the CLI of your Puppet agent, use `puppet agent -t` to trigger a Puppet run.
 
 ### Viewing the Results
