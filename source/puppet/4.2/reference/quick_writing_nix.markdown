@@ -30,8 +30,6 @@ Modules are directory trees. For these exercises you'll use the following files:
 - `apache/` (the module name)
     - `manifests/`
         - `init.pp` (contains the `apache` class)
-        - `php.pp` (contains the `php` class to install PHP for Apache)
-        - `vhost.pp` (contains the Apache virtual hosts class)
     - `templates/`
         - `vhost/`
             - `_file_header.erb` (contains the vhost template, managed by Puppet)
@@ -46,7 +44,7 @@ Many modules, including Apache, contain directories other than `manifests` and `
 
 ### Writing a Puppet Module
 
-This simplified exercise modifies a template from the Puppet Labs Apache module, specifically `'vhost.conf.erb`. You'll edit the template to include some simple variables that will be populated by facts (using Puppet's implementation of Facter) about your node.
+This simplified exercise modifies a template from the Puppet Labs Apache module, specifically `vhost.conf.erb`. You'll edit the template to include some simple variables that will be populated by facts (using Puppet's implementation of Facter) about your node.
 
 1. **On the Puppet master,** navigate to the modules directory by running `cd /etc/puppetlabs/puppet/environments/production/modules`.
 2. Run `ls` to view the currently installed modules; note that `apache` is present.
@@ -105,13 +103,13 @@ Puppet Labs modules save time, but at some point you may that you'll need to wri
 
 ### Writing a Class in a Module
 
-During this exercise, you will create a class called `pe_quickstart_app` that will manage a PHP-based web app running on an Apache virtual host.
+During this exercise, you will create a class called `puppet_quickstart_app` that will manage a PHP-based web app running on an Apache virtual host.
 
-1. **On the Puppet master**, make sure you're still in the modules directory (`cd /etc/puppetlabs/puppet/environments/production/modules`) and then run `mkdir -p pe_quickstart_app/manifests` to create the new module directory and its manifests directory.
-2. Use your text editor to create and open the `pe_quickstart_app/manifests/init.pp` file.
+1. **On the Puppet master**, make sure you're still in the modules directory (`cd /etc/puppetlabs/puppet/environments/production/modules`) and then run `mkdir -p puppet_quickstart_app/manifests` to create the new module directory and its manifests directory.
+2. Use your text editor to create and open the `puppet_quickstart_app/manifests/init.pp` file.
 3. Edit the `init.pp` file so it contains the following Puppet code, and then save it and exit the editor:
 
-        class pe_quickstart_app {
+        class puppet_quickstart_app {
 
           class { 'apache':
             mpm_module => 'prefork',
@@ -119,13 +117,13 @@ During this exercise, you will create a class called `pe_quickstart_app` that wi
 
           include apache::mod::php
 
-          apache::vhost { 'pe_quickstart_app':
+          apache::vhost { 'puppet_quickstart_app':
             port     => '80',
-            docroot  => '/var/www/pe_quickstart_app',
+            docroot  => '/var/www/puppet_quickstart_app',
             priority => '10',
           }
 
-          file { '/var/www/pe_quickstart_app/index.php':
+          file { '/var/www/puppet_quickstart_app/index.php':
             ensure  => file,
             content => "<?php phpinfo() ?>\n",
             mode    => '0644',
@@ -138,19 +136,19 @@ During this exercise, you will create a class called `pe_quickstart_app` that wi
 > Note the following about your new class:
 >
 > * The class `apache` has been modified to include the `mpm_module` attribute; this attribute determines which multi-process module is configured and loaded for the Apache (HTTPD) process. In this case, the value is set to `prefork`.
-> * `include apache::mod::php` indicates that your new class relies on those classes to function correctly. However, Puppet understands that your node needs to be classified with these classes and will take care of that work automatically when you classify your node with the `pe_quickstart_app` class; in other words, you don't need to worry about classifying your nodes with Apache and Apache PHP.
+> * `include apache::mod::php` indicates that your new class relies on those classes to function correctly. However, Puppet understands that your node needs to be classified with these classes and will take care of that work automatically when you classify your node with the `puppet_quickstart_app` class; in other words, you don't need to worry about classifying your nodes with Apache and Apache PHP.
 > * The `priority` attribute of `10` ensures that your app has a higher priority on port 80 than the default Apache vhost app.
-> * The file `/var/pe_quickstart_app/index.php` contains whatever is specified by the `content` attribute. This is the content you will see when you launch your app. Puppet uses the `ensure` attribute to create that file the first time the class is applied. This the content you will see when you launch your app.
+> * The file `/var/puppet_quickstart_app/index.php` contains whatever is specified by the `content` attribute. This is the content you will see when you launch your app. Puppet uses the `ensure` attribute to create that file the first time the class is applied. This the content you will see when you launch your app.
 
 ### Using Your Custom Module in the Main Manifest
 
 1. From the command line on the Puppet master, navigate to the main manifest (`cd /etc/puppetlabs/code/environments/production/manifests`).
 2. With your text editor, open `site.pp` and add the following Puppet code to your default node. Remove the apache class you added previously.
 
-        class { 'pe_quickstart_app':
+        class { 'puppet_quickstart_app':
         }
 
-   >**Note**: Since the `pe_quickstart_app` includes the `apache` class, you need to remove the first `apache` class you added the master node, as Puppet will only allow you to declare a class once.
+   >**Note**: Since the `puppet_quickstart_app` includes the `apache` class, you need to remove the first `apache` class you added the master node, as Puppet will only allow you to declare a class once.
 
 3. From the CLI on your agent node, run `puppet agent -t`.
 
@@ -166,10 +164,10 @@ You have created a new class from scratch and used it to launch a Apache PHP-bas
 
 ### Using Puppet to Manage Your App
 
-1. **On the Puppet agent**, open `/var/www/pe_quickstart_app/index.php`, and change the content; change it to something like, "THIS APP IS MANAGED BY PUPPET!"
+1. **On the Puppet agent**, open `/var/www/puppet_quickstart_app/index.php`, and change the content; change it to something like, "THIS APP IS MANAGED BY PUPPET!"
 2. Refresh your browser, and notice that the PHP info page has been replaced with your new message.
 3. Run `puppet agent -t --onetime` on your Puppet agent.
-4. Refresh your browser, and notice that Puppet has reset your web app to display the PHP info page. (You can also see that the contents of `/var/www/pe_quickstart_app/index.php` has been reset to what was specified in your manifest.)
+4. Refresh your browser, and notice that Puppet has reset your web app to display the PHP info page. (You can also see that the contents of `/var/www/puppet_quickstart_app/index.php` has been reset to what was specified in your manifest.)
 
 ## Using a Site Module
 
@@ -186,7 +184,7 @@ Site modules hide complexity so you can more easily divide labor at your site. S
 
         class site::basic {
           if $kernel == 'Linux' {
-            include pe_quickstart_app
+            include puppet_quickstart_app
           }
           elsif $kernel == 'windows' {
             include registry::compliance_example
@@ -194,7 +192,7 @@ Site modules hide complexity so you can more easily divide labor at your site. S
         }
 
 
-This class declares other classes with the `include` function. Note the "if" conditional that sets different classes for different kernels using the `$kernel` fact. In this example, if an agent node is a Linux machine, Puppet will apply your `pe_quickstart_app` class; if it is a window machines, Puppet will apply the `registry::compliance_example` class. For more information about declaring classes, see the [modules and classes chapters of Learning Puppet](/learning/modules1.html).
+This class declares other classes with the `include` function. Note the "if" conditional that sets different classes for different kernels using the `$kernel` fact. In this example, if an agent node is a Linux machine, Puppet will apply your `puppet_quickstart_app` class; if it is a window machines, Puppet will apply the `registry::compliance_example` class. For more information about declaring classes, see the [modules and classes chapters of Learning Puppet](/learning/modules1.html).
 
 1. From the command line on the Puppet master, navigate to the main manifest (`cd /etc/puppetlabs/code/environments/production/manifests`).
 2. Add the following Puppet code to the default node in `site.pp`:
