@@ -35,9 +35,7 @@ Modules are directory trees. For this task, you'll create the following files:
 3. In the `manifests` directory, use your text editor to create the `init.pp` file, and edit it so that it contains the following Puppet code.
 
         class helloworld {
-
            notify { 'hello, world!': }
-
         }
 
 4. Save and exit the file.
@@ -60,15 +58,19 @@ Modules are directory trees. For this task, you'll create the following files:
 
 ## Add the `helloworld` and `helloworld::motd` Classes to the Main Manifest
 
-For this procedure, you're going to add the `helloworld` classes to the [default node group](.puppet/latest/reference/lang_node_definitions.html#the-default-node) in the main manifest. You will be using the default node group throughout the Quick Start Guide.
+For this procedure, you're going to add the `helloworld` classes to the [default node](.puppet/latest/reference/lang_node_definitions.html#the-default-node) in the main manifest. You will be using the default node throughout the Quick Start Guide.
 
 **To create the default node**
 
 1. From the command line on the Puppet master, navigate to the main manifest (`cd /etc/puppetlabs/code/environments/production/manifests`).
-2. Use your text editor to create the `site.pp` file, and edit it so that it contains the following Puppet code:
+2. Use your text editor to create the `site.pp` file, and edit it so that it contains the following Puppet code. The default node is a special value for node names. If no node statement matching a given node name can be found, the default node will be used, making it an easy way to ensure compilation for any node will be successful.
 
         node default {
         
+        }
+
+3. Add the following Puppet code within `node default {`:
+
            notify { 'hello, world!': }
            
            file { '/etc/motd':
@@ -78,11 +80,9 @@ For this procedure, you're going to add the `helloworld` classes to the [default
            content => "hello, world!\n",
            }
 
-        }
-
-3. Save and exit the file.
-4. Ensure that there are no errors in the Puppet code by running `puppet parser validate site.pp` on the CLI of your Puppet master. The parser will return nothing if there are no errors. If it does detect a syntax error, open the file again and fix the problem before continuing.
-5. From the CLI of your Puppet agent, use `puppet agent -t` to trigger a Puppet run.
+4. Save and exit the file.
+5. Ensure that there are no errors in the Puppet code by running `puppet parser validate site.pp` on the CLI of your Puppet master. The parser will return nothing if there are no errors. If it does detect a syntax error, open the file again and fix the problem before continuing.
+6. From the CLI of your Puppet agent, use `puppet agent -t` to trigger a Puppet run.
 
 ### Viewing the Results
 
@@ -102,8 +102,9 @@ From the CLI of your Puppet agent, run `cat /etc/motd`. The result should show `
 
 ## Other Resources
 
-> NOTHING YET
+>There are plenty of resources about modules and the creation of modules that you can reference. Check out [Modules and Manifests](./puppet_modules_manifests.html), the [Beginner's Guide to Modules](/guides/module_guides/bgtm.html), and the [Puppet Forge](https://forge.puppetlabs.com/).
+>
+> Check out the remainder of the [Quick Start Guide series](./quick_start.html) for additional module writing exercises.
 
 ---------
-Next: ???
-
+Next: [Installing Modules (*nix)](./quick_start_module_install_nix.html)
