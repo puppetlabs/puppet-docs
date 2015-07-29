@@ -46,8 +46,6 @@ Some modules can be large, complex, and require a significant amount of trial an
 Modules are directory trees. For this task, you'll create the following files:
 
  - `resolver` (the module name)
-   - `manifests/`
-      - `init.pp` (contains the `resolver` class)
    - `templates/`
       - `resolv.conf.erb` (contains template for `/etc/resolv.conf` template, the contents of which will be populated after you add the class and run Puppet.)
 
@@ -70,10 +68,15 @@ Modules are directory trees. For this task, you'll create the following files:
         # Other values can be added or hard-coded into the template as needed.
 
 5. Save and exit the file.
-6. Open `/etc/resolv.conf` with your desired text editor on the Puppet master, and copy the IP address of your master's nameserver (in this example, the nameserver is `10.0.2.3`).
 
-7. On the Puppet master, navigate to the main manifest (`cd /etc/puppetlabs/code/environments/production/manifests`).
-8. Use your text editor to open the `site.pp` file and add the following Puppet code to the `default` node, editing your nameserver value to match the one you found in `/etc/resolv.conf`:
+> That's it! You've created a Ruby template to populate `/etc/resolv.conf`.
+
+## Add the resolv.conf File to Your Main Manifest
+
+1. Open `/etc/resolv.conf` with your desired text editor on the Puppet master, and copy the IP address of your master's nameserver (in this example, the nameserver is `10.0.2.3`).
+
+2. On the Puppet master, navigate to the main manifest (`cd /etc/puppetlabs/code/environments/production/manifests`).
+3. Use your text editor to open the `site.pp` file and add the following Puppet code to the `default` node, editing your nameserver value to match the one you found in `/etc/resolv.conf`:
 
         $nameservers = ['10.0.2.3']
         
@@ -85,8 +88,8 @@ Modules are directory trees. For this task, you'll create the following files:
           content => template('resolver/resolv.conf.erb'),
         }
       
-9. From the CLI of your Puppet agent, run `puppet agent -t`.
-10. From the CLI of your Puppet agent, run `cat /etc/resolv.conf`. The result should reflect the nameserver you added to your main manifest in step 8.
+4. From the CLI of your Puppet agent, run `puppet agent -t`.
+5. From the CLI of your Puppet agent, run `cat /etc/resolv.conf`. The result should reflect the nameserver you added to your main manifest in step 8.
 
 > That's it! You've written a module that contains a class that will, once applied, ensure your agent nodes resolve to your internal nameserver. 
 
