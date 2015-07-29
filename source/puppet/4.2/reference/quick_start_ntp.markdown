@@ -20,18 +20,18 @@ NTP is one of the most crucial, yet easiest, services to configure and manage wi
 
 * ensure time is correctly synced across all the servers in your infrastructure.
 * ensure time is correctly synced across your configuration management tools.
-*  roll out updates quickly if you need to change or specify your own internal NTP server pool.
+* roll out updates quickly if you need to change or specify your own internal NTP server pool.
 
 Using this guide, you will:
 
 * [install the `puppetlabs-ntp` module](#install-the-puppetlabs-ntp-module).
-* add classes to the default node in your main manifest.
+* [add classes to the default node in your main manifest](#use-the-main-manifest-to-add-classes-from-the-ntp-module).
 * view the status of your NTP service.
-* see how to modify the parameters of your NTP class.
+* [use multiple nodes to configure NTP for different permissions](#use-multiple-nodes-to-configure-ntp-for-different-permissions).
 
 ## Install Puppet and the Puppet Agent
 
-If you haven't already done so, you'll need to get Puppet installed. See the [system requirements][sys_req] for supported platforms.
+If you haven't already done so, you'll need to get Puppet and the Puppet agent installed. See the [system requirements][sys_req] for supported platforms.
 
 1. [Download and verify the appropriate tarball][downloads].
 2. Refer to the [installation overview][install_overview] to determine how you want to install Puppet, and follow the instructions provided.
@@ -89,7 +89,7 @@ We're going to add the `ntp` class to the default node. Depending on your needs 
 
 > That's it! You've successfully configured Puppet to use NTP.
 
-To check if the NTP service is running, run `puppet resource service ntpd` from the CLI of your Puppet agent. The output should be:
+**To check if the NTP service is running**, run `puppet resource service ntpd` from the CLI of your Puppet agent. The output should be:
 
         service { 'ntpd':
   		ensure => 'running',
@@ -100,10 +100,11 @@ To check if the NTP service is running, run `puppet resource service ntpd` from 
 
 While you will be using the default node throughout this Quick Start Guide, it is possible to use multiple nodes in the main manifest to configure NTP in different ways.
 In the example below, 
-* There are two ntp servers in the organization that are allowed to talk to outside time servers. Other ntp servers get their time data from these two servers.
-* One of the primary ntp servers is very cautiously configured — it can’t afford outages, so it’s not allowed to automatically update its ntp server package without testing. The other server is more permissively configured.
-* There are a number of other ntp servers that will use our two primary servers.
+* There are two ntp servers in the organization that are allowed to talk to outside time servers ("kermit" and "grover"). Other ntp servers get their time data from these two servers.
+* One of the primary ntp servers is very cautiously configured — it can’t afford outages, so it’s not allowed to automatically update its ntp server package without testing ("kermit"). The other servers are more permissively configured.
+* There are a number of other ntp servers that will use our two primary servers ("snuffie," "bigbird," and "hooper").
 * There are a number of VMWare guest operating systems that need to have VMWare Tools installed.
+
 
 
 		 node "kermit.example.com" {
