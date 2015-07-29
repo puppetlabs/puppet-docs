@@ -18,9 +18,10 @@ To best manage such rules with Puppet, you want to break these rules into `pre` 
 
 Following this example, you will use this guide to:
 
-* [write a simple module that contains a class called `my_firewall` to define the firewall rules for your Puppet-managed infrastructure](#write-the-my-firewall-class).
-* [write an additional class to open ports for the Puppet master](#open-ports-for-the-puppet-master)
-* [enforce the desired state of the `my_firewall` class](#enforce-the-desired-state-of-the-my-firewall-class).
+* [install the puppetlabs-firewall module](#install-the-puppet-firewall-module).
+* [write a simple module that contains a class called `my_firewall` to define the firewall rules for your Puppet-managed infrastructure](#write-the-my_firewall-module).
+* [add the firewall module to the main manifest](#add-the-firewall-module-to-the-main-manifest).
+* [enforce the desired state of the `my_firewall` class](#enforce-the-desired-state-of-the-my_firewall-class).
 
 ## Install Puppet and the Puppet Agent
 
@@ -32,7 +33,7 @@ If you haven't already done so, you'll need to get Puppet installed. See the [sy
 
 >**Tip**: Follow the instructions in the [NTP Quick Start Guide](./quick_start_ntp.html) to have Puppet ensure time is in sync across your deployment.
 
-## Install the puppet-firewall Module
+## Install the puppetlabs-firewall Module
 
 The firewall module, available on the Puppet Forge, introduces the firewall resource, which is used to manage and configure firewall rules from within the Puppet DSL.  You can learn more about the module by visiting [http://forge.puppetlabs.com/puppetlabs/firewall](http://forge.puppetlabs.com/puppetlabs/firewall).
 
@@ -74,7 +75,7 @@ Modules are directory trees. For this task, you'll create the following files:
 1. From the command line on the Puppet master, navigate to the modules directory (`cd /etc/puppetlabs/code/environments/production/modules`).
 2. Run `mkdir -p my_fw/manifests` to create the new module directory and its manifests directory.
 3. From the `manifests` directory, use your text editor to create `pre.pp`.
-4. Edit `pre.pp` so it contains the following Puppet code:
+4. Edit `pre.pp` so it contains the following Puppet code. These rules all basic networking to ensure that existing connections are not closed.
 
        	class my_fw::pre {
     	  Firewall {
@@ -106,7 +107,7 @@ Modules are directory trees. For this task, you'll create the following files:
 
 5. Save and exit the file.
 6. From the `manifests` directory, use your text editor to create `post.pp`.
-7. Edit `post.pp` so it contains the following Puppet code:
+7. Edit `post.pp` so it contains the following Puppet code. This drops any requests that don't meet the rules defined in `pre.pp` or your rules defined in `site.pp` (see [next section](#add-the-firewall-module-to-the-main-manifest)).
 
         class my_fw::post {
 		    firewall { '999 drop all':
@@ -121,10 +122,10 @@ Modules are directory trees. For this task, you'll create the following files:
 > That's it! You've written a module that contains a class that, once applied, ensures your firewall has rules in it that will be managed by Puppet.
 > Note the following about your new class:
 >
-> * `pre.pp` defines the “pre” group rules the firewall applies when a service requests access.
-> * `post.pp` defines the rule for the firewall to drop any requests that haven’t met the rules defined by `pre.pp`.
+> * `pre.pp` defines the “pre” group rules the firewall applies when a service requests access. It is run before any other rules.
+> * `post.pp` defines the rule for the firewall to drop any requests that haven’t met the rules defined by `pre.pp` or in `site.pp` (see [next section](#add-the-firewall-module-to-the-main-manifest)).
 
-**To Add the Firewall Module to the Main Manifest**
+## Add the Firewall Module to the Main Manifest
 
 1. Navigate to the main manifest (`cd /etc/puppetlabs/code/environments/production/manifests`).
 2. Use your text editor to open `site.pp`.
@@ -134,7 +135,7 @@ Modules are directory trees. For this task, you'll create the following files:
 		    purge => true,
 		  }
   
-4. Add the following Puppet code to your `site.pp` file:
+4. Add the following Puppet code to your `site.pp` file. These defaults will ensure that the `pre` and `post` classes are run in the correct order to avoid locking you out of your box during the first Puppet run, and declaring `my_fw::pre` and `my_fw::post` satisfies dependencies.
 
 		  Firewall {
 		    before  => Class['my_fw::post'],
@@ -143,7 +144,6 @@ Modules are directory trees. For this task, you'll create the following files:
 		  
 		  class { ['my_fw::pre', 'my_fw::post']: }
 		  
-> These defaults will ensure that the `pre` and `post` classes are run in the correct order to avoid locking you out of your box during the first Puppet run, and declaring `my_fw::pre` and `my_fw::post` satisfies dependencies.
 
 5. Add the `firewall` class to your `site.pp` to ensure the correct packages are installed:
 
