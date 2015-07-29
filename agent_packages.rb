@@ -9,6 +9,8 @@ agent_packages_dir = Pathname.new(File.expand_path(__FILE__)).parent
 agent_repo = Git.open(agent_packages_dir + 'puppet-agent')
 
 component_files = {
+  'Ruby' => 'ruby.rb',
+  'OpenSSL' => 'openssl.rb',
   'Puppet' => 'puppet.json',
   'Facter' => 'facter.json',
   'Hiera' => 'hiera.json',
@@ -16,7 +18,14 @@ component_files = {
 }
 
 def version_from_json(file)
+  # We want the last component of a string like refs/tags/4.2.0.
   JSON.load(File.read(file))['ref'].split('/')[-1]
+end
+
+def version_from_ruby(file)
+  ruby_text = File.read(file)
+  # find 'pkg.version "version"' and capture the version.
+  ruby_text.match(/^\s*pkg\.version[\s\(]*"([^"]+)"/)[1]
 end
 
 agent_repo.fetch
@@ -36,15 +45,20 @@ end
 #   [tag.name, versions].flatten
 # }
 
-version_info_hash = tags.reduce(Hash.new) {|result, tag|
+agent_versions_hash = tags.reduce(Hash.new) {|result, tag|
   agent_repo.checkout(tag)
-  version_hash = component_files.reduce(Hash.new) {|result, (component, json)|
-    # We want the last component of a string like refs/tags/4.2.0.
-    component_file = agent_packages_dir + 'puppet-agent/configs/components' + json
-    result[component] = version_from_json(component_file)
+  components_hash = component_files.reduce(Hash.new) {|result, (component, config)|
+    component_file = agent_packages_dir + 'puppet-agent/configs/components' + config
+    if component_file.extname == '.json'
+      result[component] = version_from_json(component_file)
+    elsif component_file.extname == '.rb'
+      result[component] = version_from_ruby(component_file)
+    else
+      raise("Unexpected file extension for #{component_file}")
+    end
     result
   }
-  result[tag.name] = version_hash
+  result[tag.name] = components_hash
   result
 }
 
@@ -68,4 +82,4 @@ version_info_hash = tags.reduce(Hash.new) {|result, tag|
 # END
 
 # puts html_table
-puts JSON.dump(version_info_hash)
+puts JSON.dump(agent_versions_hash)
