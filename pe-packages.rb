@@ -257,9 +257,9 @@ third_body = make_table_body(third_party, historical_packages)
 
 # now make tables
 
-puts "### Puppet Labs Software\n"
-puts table_from_header_and_array_of_body_rows(pl_header, pl_body)
-puts "### Third-Party Software\n"
-puts table_from_header_and_array_of_body_rows(third_header, third_body)
+print "### Puppet Labs Software\n\n"
+print table_from_header_and_array_of_body_rows(pl_header, pl_body)
+print "### Third-Party Software\n\n"
+print table_from_header_and_array_of_body_rows(third_header, third_body)
 
 # done
