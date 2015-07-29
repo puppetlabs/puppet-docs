@@ -47,7 +47,7 @@ Modules are directory trees. For this task, you'll create the following files:
 
  - `resolver` (the module name)
    - `templates/`
-      - `resolv.conf.erb` (contains template for `/etc/resolv.conf` template, the contents of which will be populated after you add the class and run Puppet.)
+      - `resolv.conf.erb` (contains template for `/etc/resolv.conf`, the contents of which will be populated after you add the class and run Puppet.)
 
 **To write the `resolver` class**:
 
@@ -95,7 +95,7 @@ Modules are directory trees. For this task, you'll create the following files:
 
 > Note the following about your new class:
 >
-> * The class `resolver` ensures the creation of the file `/etc/resolv.conf`.
+> * The file ensures the creation of the file `/etc/resolv.conf`.
 > * The content of `/etc/resolv.conf` is modified and managed by the template, `resolv.conf.erb`. 
 
 ### Enforce the Desired State of the `resolver` Class
