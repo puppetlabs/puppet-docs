@@ -6,7 +6,13 @@ require 'json'
 require 'pp'
 
 agent_packages_dir = Pathname.new(File.expand_path(__FILE__)).parent
-agent_repo = Git.open(agent_packages_dir + 'puppet-agent')
+puppet_agent_dir = (agent_packages_dir + 'puppet-agent')
+
+if !Dir.exist?(puppet_agent_dir + '.git')
+  Git.clone('git@github.com:puppetlabs/puppet-agent.git', puppet_agent_dir)
+end
+
+agent_repo = Git.open(puppet_agent_dir)
 
 component_files = {
   'Ruby' => 'ruby.rb',
