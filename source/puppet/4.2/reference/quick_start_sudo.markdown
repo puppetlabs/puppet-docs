@@ -131,6 +131,14 @@ Modules are directory trees. For this task, you'll create the following files:
 5. From the CLI of your Puppet agent, use `puppet agent -t` to trigger a Puppet run.
 
 > That's it! You have successfully installed the Sudo module and applied privileges and classes to it. 
+>
+> Note the following about your new resources in the `site.pp` file:
+>
+> * `sudo::conf ‘web’`: Create a sudoers rule to ensure that members of the web group have the ability to run any command using sudo. This resource creates configuration fragment file to define this rule in `/etc/sudoers.d/`.
+>
+> * `sudo::conf ‘admins’`: Create a sudoers rule to ensure that members of the admin group have the ability to run any command using sudo. This resource creates configuration fragment file to define this rule in `/etc/sudoers.d/`. It will be called something like `10_admins`.
+>
+> * `sudo::conf ‘jargyle’`: Create a sudoers rule to ensure that the user jargyle has the ability to run any command using sudo. This resource creates a configuration fragment to define this rule in `/etc/sudoers.d/`. It will be called something like `60_jargyle`.
 
 From the CLI of the Puppet agent, run `sudo -l -U jargyle` to confirm it worked. The results should resemble the following:
 
@@ -145,8 +153,7 @@ From the CLI of the Puppet agent, run `sudo -l -U jargyle` to confirm it worked.
 	 User jargyle may run the following commands on this host:
     (ALL) NOPASSWD: ALL
     
-> That's it! You've successfully managed sudo privileges in your Puppet deployment.
-
+    
 ### Other Resources
 
 For more information about working with Puppet and Sudo Users, check out our [Module of The Week: saz/sudo - Manage sudo configuration](https://puppetlabs.com/blog/module-of-the-week-sazsudo-manage-sudo-configuration) blog post.

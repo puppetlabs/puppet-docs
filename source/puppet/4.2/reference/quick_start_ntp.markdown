@@ -101,10 +101,12 @@ We're going to add the `ntp` class to the default node. Depending on your needs 
 While you will be using the default node throughout this Quick Start Guide, it is possible to use multiple nodes in the main manifest to configure NTP in different ways.
 In the example below, 
 * There are two ntp servers in the organization that are allowed to talk to outside time servers ("kermit" and "grover"). Other ntp servers get their time data from these two servers.
-* One of the primary ntp servers is very cautiously configured — it can’t afford outages, so it’s not allowed to automatically update its ntp server package without testing ("kermit"). The other servers are more permissively configured.
-* There are a number of other ntp servers that will use our two primary servers ("snuffie," "bigbird," and "hooper").
-* There are a number of VMWare guest operating systems that need to have VMWare Tools installed.
 
+* One of the primary ntp servers is very cautiously configured — it can’t afford outages, so it’s not allowed to automatically update its ntp server package without testing ("kermit"). The other servers are more permissively configured.
+
+* There are a number of other ntp servers that will use our two primary servers ("snuffie," "bigbird," and "hooper").
+
+* There are a number of VMWare guest operating systems that need to have VMWare Tools installed.
 
 
 		 node "kermit.example.com" {
