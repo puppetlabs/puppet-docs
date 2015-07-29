@@ -32,6 +32,18 @@ version_info = tags.map {|tag|
   [tag.name, versions].flatten
 }
 
+version_info_hash = tags.reduce(Hash.new) {|result, tag|
+  agent_repo.checkout(tag)
+  version_hash = component_files.reduce(Hash.new) {|result, (component, json)|
+    # We want the last component of a string like refs/tags/4.2.0.
+    component_file = agent_packages_dir + 'puppet-agent/configs/components' + json
+    result[component] = JSON.load(component_file.read)['ref'].split('/')[-1]
+    result
+  }
+  result[tag.name] = version_hash
+  result
+}
+
 version_header = ['puppet-agent'].concat(component_files.keys)
 # version_table = version_info.unshift(version_header)
 
@@ -51,4 +63,5 @@ html_table = <<END
 
 END
 
-puts html_table
+# puts html_table
+pp version_info_hash
