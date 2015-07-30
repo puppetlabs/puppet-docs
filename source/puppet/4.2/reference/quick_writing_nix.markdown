@@ -22,7 +22,7 @@ In the [Apache installation QSG](./quick_start_module_install_nix.html), you ins
 Although many Forge modules are exact solutions that fit your site, many are *almost* but not quite what you need. Sometimes you will need to edit some of your Forge modules.
 
 ### Module Basics
-> ### A Quick Note about Module Directories
+> ### About Module Directories
 >
 >The first thing to know is that, by default, the modules you use to manage nodes are located in `/etc/puppetlabs/puppet/environments/production/modules`---this includes modules installed by Puppet, those that you download from the Forge, and those that you write yourself.
 >If need be, you can configure this path with the [`modulepath`](/references/3.8.latest/configuration.html#modulepath) setting in `puppet.conf`.)
@@ -41,7 +41,7 @@ Modules are directory trees. For these exercises you'll use the following files:
         - `vhost/`
             - `_file_header.erb` (contains the vhost template, managed by Puppet)
 
-Every manifest (.pp) file contains a single class. File names map to class names in a predictable way: `init.pp` contains a class with the same name as the module; `<NAME>.pp` contains a class called `<MODULE NAME>::<NAME>`; and `<NAME>/<OTHER NAME>.pp` contains `<MODULE NAME>::<NAME>::<OTHER NAME>`.
+Every manifest (.pp file) in a module contains a single class. File names map to class names in a predictable way: `init.pp` contains a class with the same name as the module; `<FILE1>.pp` contains a class called `<MODULE NAME>::<FILE1>`; and `<FOLDER/<FILE2>.pp` contains `<MODULE NAME>::<FOLDER>::<FILE2>`.
 
 Many modules, including Apache, contain directories other than `manifests` and `templates`; for simplicity's sake, we do not cover them in this introductory guide.
 
@@ -64,8 +64,8 @@ This simplified exercise modifies a template from the Puppet Labs Apache module,
         # ************************************
 
 4. Collect the following facts about your agent node:
-   - run `facter osfamily` (this returns your agent node's OS)
-   - run `facter id` (this returns the id of the currently logged in user)
+   - run `facter osfamily` on your Puppet agent (this returns your agent node's OS)
+   - run `facter id` on your Puppet agent (this returns the id of the currently logged in user)
 5. Edit the header of `_file_header.erb` so that it contains the following variables for Facter lookups:
 
         # ************************************
@@ -150,7 +150,7 @@ During this exercise, you will create a class called `puppet_quickstart_app` tha
 ### Using Your Custom Module in the Main Manifest
 
 1. From the command line on the Puppet master, navigate to the main manifest (`cd /etc/puppetlabs/code/environments/production/manifests`).
-2. With your text editor, open `site.pp` and add the following Puppet code to your default node. Remove the apache class you added previously.
+2. With your text editor, open `site.pp` and add the following Puppet code to your default node. **Remove the apache class you added previously.**
 
         class { 'puppet_quickstart_app':
         }
