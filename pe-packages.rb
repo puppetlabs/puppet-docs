@@ -50,11 +50,11 @@ end
   'pup-mcollective'
 ],
 
-'Razor server' => [
+'Razor Server' => [
   'pe-razor-server'
 ],
 
-'Razor libs' => [
+'Razor Libs' => [
   'pe-razor-libs'
 ],
 

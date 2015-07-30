@@ -6,8 +6,8 @@ pl_software = [
 "Hiera",
 "PuppetDB",
 "Mcollective",
-"Razor server",
-"Razor libs"
+"Razor Server",
+"Razor Libs"
 ]
 
 third_party = [
