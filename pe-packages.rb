@@ -63,6 +63,10 @@ end
   'pup-ruby'
 ],
 
+'Nginx' => [
+  'pe-nginx'
+],
+
 'Apache' => [
   'pe-httpd'
 ],
