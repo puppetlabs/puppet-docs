@@ -14,7 +14,7 @@ Welcome to the Open Source Puppet NTP Quick Start Guide. This document provides 
 
 The clocks on your servers are not inherently accurate. They need to synchronize with something to let them know what the right time is. NTP is a protocol designed to synchronize the clocks of computers over a network. NTP uses Coordinated Universal Time (UTC) to synchronize computer clock times to a millisecond---and sometimes to a fraction of a millisecond.
 
-Your entire datacenter, from the network to the applications, depends on accurate time for many different things, such as security services, certificate validation, and file sharing across nodes.
+Your entire datacenter, from the network to the applications, depends on accurate time for many different things, such as security services, certificate validation, and file sharing across Puppet agents. If the time is wrong, your Puppet master might mistakenly issue agent certificates from the distant past or future, which other agents will treat as expired.
 
 NTP is one of the most crucial, yet easiest, services to configure and manage with Puppet. Using the Puppet Labs NTP module, you can:
 
@@ -25,9 +25,9 @@ NTP is one of the most crucial, yet easiest, services to configure and manage wi
 Using this guide, you will:
 
 * [install the `puppetlabs-ntp` module](#install-the-puppetlabs-ntp-module).
-* [add classes to the default node in your main manifest](#use-the-main-manifest-to-add-classes-from-the-ntp-module).
+* [add classes to the `default` node in your main manifest](#use-the-main-manifest-to-add-classes-from-the-ntp-module).
 * view the status of your NTP service.
-* [use multiple nodes to configure NTP for different permissions](#use-multiple-nodes-to-configure-ntp-for-different-permissions).
+* [use multiple nodes in the main manifest to configure NTP for different permissions](#use-multiple-nodes-to-configure-ntp-for-different-permissions).
 
 ## Install Puppet and the Puppet Agent
 
@@ -68,7 +68,7 @@ The NTP module contains several **classes**. [Classes](../puppet/3/reference/lan
 * `ntp::config`: this class handles the configuration file.
 * `ntp::service`: this class handles the service.
 
-We're going to add the `ntp` class to the default node. Depending on your needs or infrastructure, you may have a different group that you'll assign NTP to, but these same instructions would apply.
+You're going to add the `ntp` class to the `default` node in your main manifest. Depending on your needs or infrastructure, you may have a different group that you'll assign NTP to, but these same instructions would apply.
 
 **To create the NTP class:**
 
