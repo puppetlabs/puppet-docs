@@ -144,6 +144,8 @@ versions_of_interest_newer = [
 '2015.2.0'
 ]
 
+versions_of_interest = versions_of_interest_old.concat(versions_of_interest_new).concat(versions_of_interest_newer)
+
 @pe_repo.fetch
 
 # this is like { platformname: { packagename: { version: version, md5: md5 }, packagename: {...} }, platformname: {......} }
@@ -187,7 +189,7 @@ end
 # results in something like
 # { '3.2.0' => { 'Puppet' => { '3.7.1-1' => ['debian-6-amd6', '...'], '3.7.1-4' => ['...', '...'] } }
 
-
+puts JSON.dump(historical_packages)
 
 def abbr_for_given_version(version, platforms)
   # an individual version w/ associated platforms
@@ -259,19 +261,19 @@ end
 
 # First, Puppet Labs software.
 
-pl_header = ['PE Version'].concat(pl_software)
-pl_body = make_table_body(pl_software, historical_packages)
-
-# Then, third-party software.
-
-third_header = ['PE Version'].concat(third_party)
-third_body = make_table_body(third_party, historical_packages)
-
-# now make tables
-
-print "### Puppet Labs Software\n\n"
-print table_from_header_and_array_of_body_rows(pl_header, pl_body)
-print "### Third-Party Software\n\n"
-print table_from_header_and_array_of_body_rows(third_header, third_body)
+# pl_header = ['PE Version'].concat(pl_software)
+# pl_body = make_table_body(pl_software, historical_packages)
+#
+# # Then, third-party software.
+#
+# third_header = ['PE Version'].concat(third_party)
+# third_body = make_table_body(third_party, historical_packages)
+#
+# # now make tables
+#
+# print "### Puppet Labs Software\n\n"
+# print table_from_header_and_array_of_body_rows(pl_header, pl_body)
+# print "### Third-Party Software\n\n"
+# print table_from_header_and_array_of_body_rows(third_header, third_body)
 
 # done
