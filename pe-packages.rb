@@ -116,9 +116,13 @@ versions_of_interest_new = [
 '3.8.1'
 ]
 
-versions_of_interest_newer = [
-'2015.2.0'
-]
+# versions_of_interest_newer = [
+# '2015.2.0'
+# ]
+
+final_201x_tags = @pe_repo.tags.select {|tag| tag.name =~ /^\d{4}/ and tag.name !~ /-/}
+
+versions_of_interest_newer = final_201x_tags.map {|tag| tag.name}
 
 versions_of_interest = versions_of_interest_old.concat(versions_of_interest_new).concat(versions_of_interest_newer)
 
