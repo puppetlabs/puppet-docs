@@ -140,7 +140,9 @@ versions_of_interest_new = [
 '3.8.1'
 ]
 
-versions_of_interest = versions_of_interest_new
+versions_of_interest_newer = [
+'2015.2.0'
+]
 
 @pe_repo.fetch
 
