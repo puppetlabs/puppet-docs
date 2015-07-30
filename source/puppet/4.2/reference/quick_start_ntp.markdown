@@ -82,8 +82,8 @@ We're going to add the `ntp` class to the default node. Depending on your needs 
     	    }						
 		}
 
->**Note**: If you already have a default node, do not copy `node default` into it.
-> To select other time servers, visit [http://www.pool.ntp.org/](http://www.pool.ntp.org/).
+	>**Note**: If you already have a default node, do not copy `node default` into it.
+	> To select other time servers, visit [http://www.pool.ntp.org/](http://www.pool.ntp.org/).
 
 4. From the CLI of your Puppet agent, trigger a Puppet run with `puppet agent -t`.
 

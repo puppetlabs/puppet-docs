@@ -5,7 +5,7 @@ subtitle: "Module Writing Basics for *nix"
 canonical: "/puppet/latest/quick_writing_nix.html"
 ---
 
-Welcome to the writing modules section of the Quick Start Guide series. This document is a short walkthrough to help you become more familiar with Puppet modules and module development. Follow along to learn how to:
+Welcome to the Module Writing section of the Quick Start Guide series. This document is a short walkthrough to help you become more familiar with Puppet modules and module development. Follow along to learn how to:
 
 * [Modify a module obtained from the Forge](#editing-a-forge-module)
 * [Write your own Puppet module](#writing-a-puppet-module)
@@ -15,15 +15,22 @@ Welcome to the writing modules section of the Quick Start Guide series. This doc
 
 ## Getting Started
 
-In the [Apache installation QSG](./quick_start_module_install_nix.html), you installed the latest version of the puppetlabs-apache module. 
+In the [Apache installation QSG](./quick_start_module_install_nix.html), you installed the latest version of the puppetlabs-apache module. This guide assumes you have done so, and that you have Puppet and a Puppet agent installed.
 
 ## Editing a Forge Module
 
 Although many Forge modules are exact solutions that fit your site, many are *almost* but not quite what you need. Sometimes you will need to edit some of your Forge modules.
 
 ### Module Basics
+> ### A Quick Note about Module Directories
+>
+>The first thing to know is that, by default, the modules you use to manage nodes are located in `/etc/puppetlabs/puppet/environments/production/modules`---this includes modules installed by Puppet, those that you download from the Forge, and those that you write yourself.
+>If need be, you can configure this path with the [`modulepath`](/references/3.8.latest/configuration.html#modulepath) setting in `puppet.conf`.)
+>
+>**Note**: Puppet also installs modules in `/opt/puppet/share/puppet/modules`, but don’t modify anything in this directory or add modules of your own to it.
+>
+>There are plenty of resources about modules and the creation of modules that you can reference. Check out [Modules and Manifests](./puppet_modules_manifests.html), the [Beginner's Guide to Modules](/guides/module_guides/bgtm.html), and the [Puppet Forge](https://forge.puppetlabs.com/).
 
-By default, modules are stored in `/etc/puppetlabs/puppet/environments/production/modules`. If need be, you can configure this path with the [`modulepath`](/references/3.8.latest/configuration.html#modulepath) setting in `puppet.conf`.)
 
 Modules are directory trees. For these exercises you'll use the following files:
 

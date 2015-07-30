@@ -21,7 +21,7 @@ Every module contains one or more **classes**. [Classes](./puppet/4.2/reference/
 		  include apache	
         }
 
-**Note: If you have already created the default node class, simply add `include apache` to it.**
+	>**Note**: If you have already created the default node class, simply add `include apache` to it.
 
 3. Ensure that there are no errors in the Puppet code by running `puppet parser validate site.pp` on the CLI of your Puppet master. The parser will return nothing if there are no errors. If it does detect a syntax error, open the file again and fix the problem before continuing.
 4. From the CLI of your Puppet agent, use `puppet agent -t` to trigger a Puppet run.
