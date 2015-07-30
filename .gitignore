@@ -1,1 +1,3 @@
 puppet-agent
+enterprise-dist
+*.json
