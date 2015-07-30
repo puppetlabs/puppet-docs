@@ -100,6 +100,7 @@ end
 
 pl_software = [
 "Puppet",
+"Puppet Agent",
 "Puppet Server",
 "Facter",
 "Hiera",
@@ -112,6 +113,7 @@ pl_software = [
 third_party = [
 "Ruby",
 "Apache",
+"Nginx",
 "ActiveMQ",
 "PostgreSQL",
 "Passenger",
