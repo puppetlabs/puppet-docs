@@ -65,7 +65,7 @@ For this procedure, you're going to add the `helloworld` classes to the default 
 **To create the default node**
 
 1. From the command line on the Puppet master, navigate to the main manifest (`cd /etc/puppetlabs/code/environments/production/manifests`).
-2. Use your text editor to create the `site.pp` file, and edit it so that it contains the following Puppet code. The [default node](.puppet/latest/reference/lang_node_definitions.html#the-default-node) is a special value for node names. If no node statement matching a given node name can be found, the default node will be used, making it an easy way to ensure compilation for any node will be successful.
+2. Use your text editor to create the `site.pp` file, and edit it so that it contains the following Puppet code. The [default node](.puppet/latest/reference/lang_node_definitions.html#the-default-node) is a special value for node names. If no node statement matching a given node name can be found, the default node will be used, making it an easy way to ensure compilation for any node will be successful. See the note below for further explanation.
 
         node default {
         
@@ -87,6 +87,11 @@ For this procedure, you're going to add the `helloworld` classes to the default 
 5. Ensure that there are no errors in the Puppet code by running `puppet parser validate site.pp` on the CLI of your Puppet master. The parser will return nothing if there are no errors. If it does detect a syntax error, open the file again and fix the problem before continuing.
 
 6. From the CLI of your Puppet agent, use `puppet agent -t` to trigger a Puppet run.
+
+> **Another note on the `default` node:**
+> In Puppet, a given agent will only get the contents of one node definition. In order to simplify this process, and ensure that compilations are always successful, this guide will consistently use the `default` node in site `site.pp` manifest. 
+> The default node's properties apply to all the agents which have not had definitions applied to them yet, so in the case of this guide, the contents of the default node will apply to all of your agents.
+
 
 ### Viewing the Results
 
