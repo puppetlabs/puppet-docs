@@ -71,7 +71,7 @@ For this procedure, you're going to add the `helloworld` classes to the default 
         
         }
 
-3. Add the following Puppet code within `node default {`:
+3. Add the following Puppet code within `node default {  }`:
 
            notify { 'hello, world!': }
            
