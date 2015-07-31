@@ -18,6 +18,8 @@ In most cases, you want to manage sudo on your agent nodes to control which syst
 * [write a simple module that contains a class called `privileges` to manage a few resources that set privileges for certain users, which will be managed by the saz-sudo module](#write-the-privileges-class).
 * [use the main manifest to add classes from the privileges and sudo modules to your agent nodes](#use-the-main-manifest-to-add-the-privileges-and-sudo-classes).
 
+> Before starting this walkthrough, you might want to complete the previous exercises in the [essential configuration tasks](./quick_start_essential_config.html). For this walkthrough, you should be logged in as root or administrator on your nodes.
+
 ## Install Puppet and the Puppet Agent
 
 If you haven't already done so, you'll need to get Puppet installed. See the [system requirements][sys_req] for supported platforms.

@@ -19,6 +19,8 @@ Following this example, you will use this guide to:
 * [write a simple module that contains a class called `resolver` to manage a nameserver file called `/etc/resolv.conf`](#write-the-resolver-class).
 * [enforce the desired state of that class from the command line of your puppet agent](#enforce-the-desired-state-of-the-resolver-class).
 
+> Before starting this walkthrough, you might want to complete the previous exercise in the [essential configuration tasks](./quick_start_essential_config.html), which is setting up [NTP](./quick_start_ntp). For this walkthrough, you should be logged in as root or administrator on your nodes.
+
 ### Install Puppet and the Puppet Agent
 
 If you haven't already done so, you'll need to get Puppet installed. See the [system requirements][sys_req] for supported platforms.
@@ -91,7 +93,7 @@ Modules are directory trees. For this task, you'll create the following files:
 4. From the CLI of your Puppet agent, run `puppet agent -t`.
 5. From the CLI of your Puppet agent, run `cat /etc/resolv.conf`. The result should reflect the nameserver you added to your main manifest in step 8.
 
-> That's it! You've written a module that contains a class that will, once applied, ensure your agent nodes resolve to your internal nameserver. 
+> That's it! You've written a module that contains a class that will ensure your agent nodes resolve to your internal nameserver. 
 
 > Note the following about your new class:
 >

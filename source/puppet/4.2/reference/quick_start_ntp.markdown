@@ -29,6 +29,8 @@ Using this guide, you will:
 * view the status of your NTP service.
 * [use multiple nodes in the main manifest to configure NTP for different permissions](#use-multiple-nodes-to-configure-ntp-for-different-permissions).
 
+> For this walkthrough, you should be logged in as root or administrator on your nodes.
+
 ## Install Puppet and the Puppet Agent
 
 If you haven't already done so, you'll need to get Puppet and the Puppet agent installed. See the [system requirements][sys_req] for supported platforms.

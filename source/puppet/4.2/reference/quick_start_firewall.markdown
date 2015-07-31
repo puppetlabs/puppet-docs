@@ -23,6 +23,8 @@ Following this example, you will use this guide to:
 * [add the firewall module to the main manifest](#add-the-firewall-module-to-the-main-manifest).
 * [enforce the desired state of the `my_firewall` class](#enforce-the-desired-state-of-the-my_firewall-class).
 
+> Before starting this walkthrough, you might want to complete the previous exercises in the [essential configuration tasks](./quick_start_essential_config.html). For this walkthrough, you should be logged in as root or administrator on your nodes.
+
 ## Install Puppet and the Puppet Agent
 
 If you haven't already done so, you'll need to get Puppet installed. See the [system requirements][sys_req] for supported platforms.
