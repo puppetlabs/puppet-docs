@@ -39,16 +39,16 @@ EOT
       }.join("<br>")
     end
 
-    def self.make_table_body(list_of_components, historical_packages)
-      historical_packages.map {|pe_version, version_info|
-        component_versions = list_of_components.map {|component|
-          if version_info[component]
-            all_abbrs_for_component(component, version_info[component])
+    def self.make_table_body(versions, components, historical_packages)
+      versions.map {|version| # Make a row for each version
+        component_versions = components.map {|component|
+          if historical_packages[version][component]
+            all_abbrs_for_component(component, historical_packages[version][component])
           else
             ""
           end
         }
-        [pe_version].concat(component_versions)
+        [version].concat(component_versions)
       }
     end
 
