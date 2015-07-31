@@ -11,6 +11,8 @@ The following quick start guide introduces the essential components of Puppet mo
 
 While the module you'll write doesn't have an incredible amount of functionality, you'll learn the basic module directory structure and how to apply classes to the main manifest. You'll encounter more complex module writing scenarios in other quick start guides.
 
+> For this walkthrough, you should be logged in as root or administrator on your nodes.
+
 ## Write the `helloworld` Class
 
 Some modules can be large, complex, and require a significant amount of trial and error. This module will be a very simple module to write; it contains just two classes.

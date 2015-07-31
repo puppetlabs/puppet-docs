@@ -15,6 +15,8 @@ Every module contains one or more **classes**. [Classes](./puppet/4.2/reference/
 
 > **Prerequisites**: This guide assumes you've already [installed a monolithic Puppet deployment](./guides/install_puppet/pre_install.html), and have installed at least one [*nix agent node](./guides/install_puppet/post_install.html) and the [puppetlabs-apache module](./quick_start_module_install_nix.html).
 
+> Before starting this walkthrough, you might want to complete the previous exercises in the [introductory quick start guide](./quick_start.html). You should still be logged in as root or administrator on your nodes.
+
 ## Add Apache to the Main Manifest
 
 1. From the command line of your Puppet master, navigate to the main manifest directory (`cd etc/puppetlabs/code/environments/production/manifests`).
