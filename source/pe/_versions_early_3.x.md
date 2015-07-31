@@ -1,11 +1,9 @@
-## Puppet Enterprise 3.2 through 3.3
-
 ### Puppet Labs Software
 
 <table>
   <thead>
     <tr>
-      <th>PE Version</th> <th>Puppet</th> <th>Facter</th> <th>Hiera</th> <th>PuppetDB</th> <th>Mcollective</th> <th>Razor Server</th> <th>Razor Libs</th>
+      <th>PE Version</th> <th>Puppet</th> <th>Facter</th> <th>Hiera</th> <th>PuppetDB</th> <th>MCollective</th> <th>Razor Server</th> <th>Razor Libs</th>
     </tr>
   </thead>
 
