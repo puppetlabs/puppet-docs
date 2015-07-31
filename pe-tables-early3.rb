@@ -15,7 +15,7 @@ pl_software = [
   "Facter",
   "Hiera",
   "PuppetDB",
-  "Mcollective",
+  "MCollective",
   "Razor Server",
   "Razor Libs"
 ]

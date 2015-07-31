@@ -45,7 +45,7 @@ end
   'pe-puppetdb'
 ],
 
-'Mcollective' => [
+'MCollective' => [
   'pe-mcollective',
   'pup-mcollective'
 ],
