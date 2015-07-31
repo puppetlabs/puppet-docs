@@ -10,7 +10,7 @@ canonical: "/puppet/latest/reference/upgrade_major_agent.html"
 [moved]: ./whered_it_go.html
 [facter]: /facter/
 
-Although there are a lot of changes to Puppet Agent configuration in Puppet 4, the process of upgrading agents can be automated in a way that server upgrades can't.
+Although there are a lot of changes to Puppet agent configuration in Puppet 4, the process of upgrading agents can be automated in a way that server upgrades can't.
 
 ## Decide How to Upgrade Your Nodes
 
@@ -61,7 +61,7 @@ To upgrade agents without using the `puppet_agent` module, you can either instal
 
 ### Install the New Version of Puppet
 
-Find your operating system in the sidebar navigation to the left and follow the Puppet Agent installation instructions.
+Find your operating system in the sidebar navigation to the left and follow the Puppet agent installation instructions.
 
 ### Move SSL Files (\*nix Only)
 
