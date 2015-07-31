@@ -58,12 +58,12 @@ Modules are directory trees. For this task, you'll create the following files:
 
 ## Add the `helloworld` and `helloworld::motd` Classes to the Main Manifest
 
-For this procedure, you're going to add the `helloworld` classes to the [default node](.puppet/latest/reference/lang_node_definitions.html#the-default-node) in the main manifest. You will be using the default node throughout the Quick Start Guide.
+For this procedure, you're going to add the `helloworld` classes to the default node in the main manifest. You will be using the default node throughout the Quick Start Guide.
 
 **To create the default node**
 
 1. From the command line on the Puppet master, navigate to the main manifest (`cd /etc/puppetlabs/code/environments/production/manifests`).
-2. Use your text editor to create the `site.pp` file, and edit it so that it contains the following Puppet code. The default node is a special value for node names. If no node statement matching a given node name can be found, the default node will be used, making it an easy way to ensure compilation for any node will be successful.
+2. Use your text editor to create the `site.pp` file, and edit it so that it contains the following Puppet code. The [default node](.puppet/latest/reference/lang_node_definitions.html#the-default-node) is a special value for node names. If no node statement matching a given node name can be found, the default node will be used, making it an easy way to ensure compilation for any node will be successful.
 
         node default {
         
