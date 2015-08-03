@@ -65,8 +65,8 @@ You can edit the [parameters](./puppet/latest/reference/lang_classes.html#defini
 		}
 		
 > That's it! If you refresh `http://myagentnodeIP:80/`, you'll see that the page has changed to reflect the files in `/var/www`. If you click `html`, you'll again be presented with the contents of `/var/www/html/index.html`.
-
-> **Note:** Almost the entirety of this guide can be done through Puppet Enterprise's web UI, [the console](https://docs.puppetlabs.com/pe/latest/console_accessing.html).
+>
+> Note: Almost the entirety of this guide can be done through Puppet Enterprise's web UI, [the console](https://docs.puppetlabs.com/pe/latest/console_accessing.html).
 ----------
 
 Next: [Quick Start: Writing Modules](./quick_writing_nix.html)
