@@ -31,7 +31,7 @@ The `puppet_agent` module does the following things for you:
 - Enables the Puppet Collection 1 (PC1) repository, if applicable.
 - Installs the latest version of the `puppet-agent` package, which replaces the installed versions of Puppet, [Facter][], [Hiera][], and [MCollective][].
 - Copies Puppet's SSL files to their new location.
-- Copies your old `puppet.conf` to Puppet 4's [new location](https://docs.puppetlabs.com/puppet/4.0/reference/whered_it_go.html), and cleans out old settings that we either removed in Puppet 4 or needed to revert to their default values.
+- Copies your old `puppet.conf` to Puppet 4's [new location][moved], and cleans out old settings that we either removed in Puppet 4 or needed to revert to their default values.
 - Copies your MCollective server and client configuration files to their new locations, and adds [the new plugin path](/mcollective/deploy/plugins.html) to the `libdir` setting.
 - Ensures the Puppet and MCollective services are running.
 

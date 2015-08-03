@@ -19,7 +19,7 @@ canonical: "/puppet/latest/reference/upgrade_major_server.html"
 [puppetdb-termini]: /puppetdb/latest/connect_puppet_master.html#on-platforms-with-packages
 [upgrade PuppetDB]: /puppetdb/latest/install_via_module.html
 [puppetdb_module]: https://forge.puppetlabs.com/puppetlabs/puppetdb
-[PuppetDB 3.0 release notes]: http://docs.puppetlabs.com/puppetdb/3.0/release_notes.html
+[PuppetDB 3.0 release notes]: /puppetdb/3.0/release_notes.html
 
 Unlike the automated upgrades of Puppet agents, Puppet Server upgrades are a manual process because you need to make more decisions during the upgrade.
 
@@ -64,7 +64,7 @@ In Puppet 4, we [moved][] all of Puppet's binaries on \*nix systems. They are no
 
 ### Reconcile `puppet.conf`
 
-We also moved [`puppet.conf`][puppet.conf] to `/etc/puppetlabs/puppet/puppet.conf`, changed a lot of defaults, and removed many settings. Compare the new `puppet.conf` to the old one, which is probably at `/etc/puppet/puppet.conf`, and copy over the settings you need to keep. 
+We also moved [`puppet.conf`][puppet.conf] to `/etc/puppetlabs/puppet/puppet.conf`, changed a lot of defaults, and removed many settings. Compare the new `puppet.conf` to the old one, which is probably at `/etc/puppet/puppet.conf`, and copy over the settings you need to keep.
 
 If you are installing Puppet Server 4 onto a new node, look at the [list of important settings](./config_important_settings.html#settings-for-puppet-master-servers) for stuff you might want to set now. You can also remove the now-unused [`parser`](/puppet/3.8/reference/config_file_environment.html#parser) setting you enabled for the [future parser](/puppet/latest/reference/experiments_future.html).
 
@@ -179,4 +179,4 @@ Use the [`puppetlabs/puppetdb`][puppetdb_module] module to manage your PuppetDB 
 
 ## You're Done Upgrading Puppet Server!
 
-Once you've upgraded all of your Puppet Server nodes, you can start [upgrading your Puppet agents](./upgrade_major_agent.html). After you've upgraded all your nodes, follow the [post-install guide][./upgrade_major_post.html] to complete the upgrade.
+Once you've upgraded all of your Puppet Server nodes, you can start [upgrading your Puppet agents](./upgrade_major_agent.html). After you've upgraded all your nodes, follow the [post-install guide](./upgrade_major_post.html) to complete the upgrade.
