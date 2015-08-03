@@ -40,7 +40,7 @@ To view the results in your web browser, install `httpd` (for RedHat/CentOS/Fedo
 2. **On the Puppet agent**, install the "Apache HTTP Server" by running `sudo yum install httpd.x86_64`.
 
 #### For Debian/Ubuntu Users
-1. **On the Puppet agent**, run `apt-get search apache2`.
+1. **On the Puppet agent**, run `apt-cache search apache2`.
 2. **On the Puppet agent**, install the "Apache HTTP Server" by running `apt-get install apache.x86_64`.
 
 ## Create the index.html file
