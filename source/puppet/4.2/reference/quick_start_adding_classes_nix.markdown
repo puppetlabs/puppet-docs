@@ -13,13 +13,13 @@ Every module contains one or more **classes**. [Classes](./puppet/4.2/reference/
 * [install httpd/apache2 to ensure web access.](#ensure-web-access)
 * [edit class parameters in the main manifest.](#editing-class-parameters-in-the-main-manifest)
 
-> **Prerequisites**: This guide assumes you've already [installed a monolithic Puppet deployment](./guides/install_puppet/pre_install.html), and have installed at least one [*nix agent node](./guides/install_puppet/post_install.html) and the [puppetlabs-apache module](./quick_start_module_install_nix.html).
+> **Prerequisites**: This guide assumes you've already [installed Puppet](./guides/install_puppet/pre_install.html), and have installed at least one [*nix agent node](./guides/install_puppet/post_install.html) and the [puppetlabs-apache module](./quick_start_module_install_nix.html).
 
 > Before starting this walkthrough, you might want to complete the previous exercises in the [introductory quick start guide](./quick_start.html). You should still be logged in as root or administrator on your nodes.
 
 ## Add Apache to the Main Manifest
 
-1. From the command line of your Puppet master, navigate to the main manifest directory (`cd etc/puppetlabs/code/environments/production/manifests`).
+1. From the command line of your Puppet master, navigate to the main manifest directory (`cd /etc/puppetlabs/code/environments/production/manifests`).
 2. Use your text editor to open the `site.pp` file, and edit it so that it contains the following Puppet code:
 
         node default {
@@ -33,7 +33,7 @@ Every module contains one or more **classes**. [Classes](./puppet/4.2/reference/
 
 ## Ensure Web Access
 
-In order to ensure you are able to view the results in your web browser, install `httpd` (for RedHat/CentOS/Fedora) or `apache2` (for Debian/Ubuntu) on your agent node.
+To view the results in your web browser, install `httpd` (for RedHat/CentOS/Fedora) or `apache2` (for Debian/Ubuntu) on your agent node.
 
 #### For RedHat/CentOS/Fedora Users
 1. **On the Puppet agent**, run `sudo yum search httpd`.
@@ -56,7 +56,7 @@ In order to ensure you are able to view the results in your web browser, install
 You can edit the [parameters](./puppet/latest/reference/lang_classes.html#defining-classes) of a class in site.pp as well. Parameters allow a class to request external data. If a class needs to configure itself with data other than facts, that data should usually enter the class via a parameter.
 **To edit the parameters of the** `apache` **class**:
 
-1. From the CLI of your Puppet master, navigate to `etc/puppetlabs/code/environments/production/manifests`.
+1. From the CLI of your Puppet master, navigate to `/etc/puppetlabs/code/environments/production/manifests`.
 2. Use your text editor to open `site.pp`. 
 3. Replace the `include apache` command with the following Puppet code:
 

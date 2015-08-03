@@ -12,7 +12,7 @@ In the [Module Writing Basics for Linux QSG](./quick_writing_nix.html) you'll le
 
 The process for installing a module is the same on both Windows and *nix operating systems.
 
-> **Prerequisites**: This guide assumes you've already [installed a monolithic Puppet deployment](./guides/install_puppet/pre_install.html), and have installed at least one [*nix agent node](./guides/install_puppet/post_install.html).
+> **Prerequisites**: This guide assumes you've already [installed Puppet](./guides/install_puppet/pre_install.html), and have installed at least one [*nix agent node](./guides/install_puppet/post_install.html).
 
 > Before starting this walkthrough, you might want to complete the previous exercise in the [introductory quick start guide](./quick_start.html), called [Hello World](./quick_start_helloworld). You should still be logged in as root or administrator on your nodes.
 
