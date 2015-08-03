@@ -4,8 +4,8 @@ title: "Installing Puppet: Pre-Install Tasks"
 ---
 
 [peinstall]: /pe/latest/install_basic.html
-[sysreqs]: /puppet/4.0/reference/system_requirements.html
-[ruby]: /puppet/4.0/reference/system_requirements.html#basic-requirements
+[sysreqs]: ./system_requirements.html
+[ruby]: ./system_requirements.html#basic-requirements
 [architecture]: /puppet/latest/reference/architecture.html
 
 > **Note:** This document covers open source releases of Puppet. [See here for instructions on installing Puppet Enterprise.][peinstall]
@@ -55,5 +55,11 @@ The time must be set accurately on the Puppet master server that will be acting 
 
 Once these tasks are complete, you can install Puppet.
 
-* [Installing on *nix](./install_linux.html)
-* [Installing on Windows](./install_windows.html)
+Install Puppet Server before installing Puppet on your agent nodes.
+
+* [Installing Puppet Server](/puppetserver/2.1/install_from_packages.html)
+
+Once Puppet Server is installed and configured, you can install agents:
+
+* [Installing Puppet Agent on Linux](./install_linux.html)
+* [Installing Puppet Agent on Windows](./install_windows.html)

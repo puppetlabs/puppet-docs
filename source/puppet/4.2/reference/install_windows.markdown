@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Installing Puppet: Microsoft Windows"
+title: "Installing Puppet Agent: Microsoft Windows"
 ---
 
 [downloads]: http://downloads.puppetlabs.com/windows
@@ -12,10 +12,13 @@ title: "Installing Puppet: Microsoft Windows"
 [confdir]: ./dirs_confdir.html
 [codedir]: ./dirs_codedir.html
 [vardir]: ./dirs_vardir.html
+[server_install]: /puppetserver/2.1/install_from_packages.html
 
-## Review the Pre-Install Tasks
+## Make Sure You're Ready
 
-Before installing Puppet, make sure you've looked at the [pre-install tasks.](./install_pre.html)
+Before installing Puppet, make sure you've read the [pre-install tasks](./install_pre.html) and [installed Puppet Server][server_install].
+
+> **Note:** If you've used older Puppet versions, Puppet 4 changed the locations for a lot of the most important files and directories. [See this page for a summary of the changes.][where]
 
 ## Review Supported Versions
 
