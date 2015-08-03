@@ -73,7 +73,7 @@ defaultnav:
   /puppetserver/1.0: /_includes/server1.0.html
   /puppetserver/2.0: /_includes/server2.0.html
   /puppetserver/1.1: /_includes/puppet_3_8.html
-  /puppetserver/2.1: /_includes/puppet4.1.html
+  /puppetserver/2.1: /_includes/puppet4.2.html
   /references: /_includes/references_general.html
 destination: ../output
 url: "http://docs.puppetlabs.com"
