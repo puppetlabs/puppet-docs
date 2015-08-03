@@ -62,6 +62,8 @@ Modules are directory trees. For this task, you'll create the following files:
 
 For this procedure, you're going to add the `helloworld` classes to the default node in the main manifest. You will be using the default node throughout the Quick Start Guide.
 
+With [Puppet Enterprise](https://puppetlabs.com/puppet/puppet-enterprise), it is possible to dynamically pin nodes using the UI instead of using the main manifest.
+
 **To create the default node**
 
 1. From the command line on the Puppet master, navigate to the main manifest (`cd /etc/puppetlabs/code/environments/production/manifests`).
@@ -91,7 +93,6 @@ For this procedure, you're going to add the `helloworld` classes to the default 
 > **Another note on the `default` node:**
 > In Puppet, a given agent will only get the contents of one node definition. In order to simplify this process, and ensure that compilations are always successful, this guide will consistently use the `default` node in site `site.pp` manifest. 
 > The default node's properties apply to all the agents which have not had definitions applied to them yet, so in the case of this guide, the contents of the default node will apply to all of your agents.
-
 
 ### Viewing the Results
 

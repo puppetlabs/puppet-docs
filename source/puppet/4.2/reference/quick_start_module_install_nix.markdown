@@ -43,7 +43,7 @@ The process for installing a module is the same on both Windows and *nix operati
 > ### A Quick Note about Module Directories
 >
 >By default, the modules you use to manage nodes are located in `/etc/puppetlabs/code/environments/production/modules`---this includes modules installed by Puppet, those that you download from the Forge, and those you write yourself.
->
+>`puppetlabs-apache` is a [PE-supported module](https://forge.puppetlabs.com/supported?_ga=1.208920786.1181567766.1438190846). It is tested and maintained by Puppet Labs, and Puppet Enterprise users are able to file bug reports and tickets on supported modules.
 
 
 
