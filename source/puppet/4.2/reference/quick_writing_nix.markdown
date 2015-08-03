@@ -24,8 +24,8 @@ Although many Forge modules are exact solutions that fit your site, many are *al
 ### Module Basics
 > ### About Module Directories
 >
->The first thing to know is that, by default, the modules you use to manage nodes are located in `/etc/puppetlabs/puppet/environments/production/modules`---this includes modules installed by Puppet, those that you download from the Forge, and those that you write yourself.
->If need be, you can configure this path with the [`modulepath`](/references/3.8.latest/configuration.html#modulepath) setting in `puppet.conf`.)
+>The first thing to know is that, by default, the modules you use to manage nodes are located in `/etc/puppetlabs/code/environments/production/modules`---this includes modules installed by Puppet, those that you download from the Forge, and those that you write yourself.
+>If need be, you can configure this path with the [`modulepath`](/references/3.8.latest/configuration.html#modulepath) setting in [`puppet.conf`](https://docs.puppetlabs.com/puppet/latest/reference/config_file_main.html).)
 >
 >**Note**: Puppet also installs modules in `/opt/puppet/share/puppet/modules`, but don’t modify anything in this directory or add modules of your own to it.
 >
@@ -43,7 +43,7 @@ Modules are directory trees. For these exercises you'll use the following files:
 
 Every manifest (.pp file) in a module contains a single class. File names map to class names in a predictable way: `init.pp` contains a class with the same name as the module; `<FILE1>.pp` contains a class called `<MODULE NAME>::<FILE1>`; and `<FOLDER/<FILE2>.pp` contains `<MODULE NAME>::<FOLDER>::<FILE2>`.
 
-Many modules, including Apache, contain directories other than `manifests` and `templates`; for simplicity's sake, we do not cover them in this introductory guide.
+Many modules, including Apache, contain directories other than `manifests` and `templates`. For simplicity's sake, we do not cover them in this introductory guide.
 
 * For more on how modules work, see [Module Fundamentals](/puppet/3.8/reference/modules_fundamentals.html) in the Puppet documentation.
 * For more on best practices, methods, and approaches to writing modules, see the [Beginners Guide to Modules](/guides/module_guides/bgtm.html).
@@ -53,8 +53,8 @@ Many modules, including Apache, contain directories other than `manifests` and `
 
 This simplified exercise modifies a template from the Puppet Labs Apache module, specifically `vhost.conf.erb`. You'll edit the template to include some simple variables that will be populated by facts (using Puppet's implementation of Facter) about your node.
 
-1. **On the Puppet master,** navigate to the modules directory by running `cd /etc/puppetlabs/puppet/environments/production/modules`.
-2. Run `ls` to view the currently installed modules; note that `apache` is present.
+1. **On the Puppet master,** navigate to the modules directory by running `cd /etc/puppetlabs/code/environments/production/modules`.
+2. Run `ls` to view the currently installed modules, and note that `apache` is present.
 3. Open `apache/templates/vhost/_file_header.erb`, using the text editor of your choice (vi, nano, etc.). Avoid using Notepad since it can introduce errors.
       `_file_header.erb` contains the following header:
 
@@ -64,8 +64,8 @@ This simplified exercise modifies a template from the Puppet Labs Apache module,
         # ************************************
 
 4. Collect the following facts about your agent node:
-   - run `facter osfamily` on your Puppet agent (this returns your agent node's OS)
-   - run `facter id` on your Puppet agent (this returns the id of the currently logged in user)
+   - on your Puppet agent, run `facter osfamily` (this returns your agent node's OS)
+   - on your Puppet agent, run `facter id` (this returns the id of the currently logged in user)
 5. Edit the header of `_file_header.erb` so that it contains the following variables for Facter lookups:
 
         # ************************************
@@ -87,7 +87,7 @@ At this point, Puppet configures apache and starts the httpd service. When this 
    - Redhat-based: `/etc/httpd/conf.d`
    - Debian-based: `/etc/apache2/sites-available`
 
-2. View `15-default.conf`; depending on the node's OS, the header will show some variation of the following contents:
+2. View `15-default.conf`. Depending on the node's OS, the header will show some variation of the following contents:
 
         # ************************************
         # Vhost template in module puppetlabs-apache
@@ -102,17 +102,17 @@ At this point, Puppet configures apache and starts the httpd service. When this 
 
 As you can see, Puppet has used Facter to retrieve some key facts about your node, and then used those facts to populate the header of your vhost template.
 
-But now, let's see what happens you write your own Puppet code.
+But now, let's see what happens when you write your own Puppet code.
 
 ## Writing a Puppet Module
 
-Puppet Labs modules save time, but at some point you may that you'll need to write your own modules.
+Puppet Labs modules save time, but at some point you may need to write your own modules.
 
 ### Writing a Class in a Module
 
 During this exercise, you will create a class called `puppet_quickstart_app` that will manage a PHP-based web app running on an Apache virtual host.
 
-1. **On the Puppet master**, make sure you're still in the modules directory (`cd /etc/puppetlabs/puppet/environments/production/modules`) and then run `mkdir -p puppet_quickstart_app/manifests` to create the new module directory and its manifests directory.
+1. **On the Puppet master**, make sure you're still in the modules directory (`cd /etc/puppetlabs/code/environments/production/modules`) and then run `mkdir -p puppet_quickstart_app/manifests` to create the new module directory and its manifests directory.
 2. Use your text editor to create and open the `puppet_quickstart_app/manifests/init.pp` file.
 3. Edit the `init.pp` file so it contains the following Puppet code, and then save it and exit the editor:
 
@@ -142,26 +142,27 @@ During this exercise, you will create a class called `puppet_quickstart_app` tha
 >
 > Note the following about your new class:
 >
-> * The class `apache` has been modified to include the `mpm_module` attribute; this attribute determines which multi-process module is configured and loaded for the Apache (HTTPD) process. In this case, the value is set to `prefork`.
-> * `include apache::mod::php` indicates that your new class relies on those classes to function correctly. However, Puppet understands that your node needs to be classified with these classes and will take care of that work automatically when you classify your node with the `puppet_quickstart_app` class; in other words, you don't need to worry about classifying your nodes with Apache and Apache PHP.
+> * The class `apache` has been modified to include the `mpm_module` attribute. This attribute determines which multi-process module is configured and loaded for the Apache (HTTPD) process. In this case, the value is set to `prefork`.
+> * `include apache::mod::php` indicates that your new class relies on those classes to function correctly. However, Puppet understands that your node needs to be classified with these classes and will take care of that work automatically when you classify your node with the `puppet_quickstart_app` class. In other words, you don't need to worry about classifying your nodes with Apache and Apache PHP.
 > * The `priority` attribute of `10` ensures that your app has a higher priority on port 80 than the default Apache vhost app.
 > * The file `/var/puppet_quickstart_app/index.php` contains whatever is specified by the `content` attribute. This is the content you will see when you launch your app. Puppet uses the `ensure` attribute to create that file the first time the class is applied. This the content you will see when you launch your app.
 
 ### Using Your Custom Module in the Main Manifest
 
 1. From the command line on the Puppet master, navigate to the main manifest (`cd /etc/puppetlabs/code/environments/production/manifests`).
-2. With your text editor, open `site.pp` and add the following Puppet code to your default node. **Remove the apache class you added previously.**
+2. With your text editor, open `site.pp` and add the following Puppet code to your default node. **Remove the apache class you added previously.** Your site.pp file should look like this after you make your changes (although you may have portions from earlier in the Quick Start Guide):
 
-        class { 'puppet_quickstart_app':
-        }
-
+		 node default {
+           class { 'puppet_quickstart_app':
+           }
+		 }
    >**Note**: Since the `puppet_quickstart_app` includes the `apache` class, you need to remove the first `apache` class you added the master node, as Puppet will only allow you to declare a class once.
 
 3. From the CLI on your agent node, run `puppet agent -t`.
 
      When the Puppet run is complete, you will see in the node's log that a vhost for the app has been created and the Apache service (httpd) has been started.
 
-4. Use a browser to navigate to port 80 of the IP address for your node; e.g, `http://<yournodeip>:80`.
+4. Use a browser to navigate to port 80 of the IP address for your node, e.g, `http://<yournodeip>:80`.
 
    >**Tip**: Be sure to use `http` instead of `https`.
 
@@ -171,7 +172,7 @@ You have created a new class from scratch and used it to launch a Apache PHP-bas
 
 ### Using Puppet to Manage Your App
 
-1. **On the Puppet agent**, open `/var/www/puppet_quickstart_app/index.php`, and change the content; change it to something like, "THIS APP IS MANAGED BY PUPPET!"
+1. **On the Puppet agent**, open `/var/www/puppet_quickstart_app/index.php`, and change the content to something like, "THIS APP IS MANAGED BY PUPPET!"
 2. Refresh your browser, and notice that the PHP info page has been replaced with your new message.
 3. Run `puppet agent -t --onetime` on your Puppet agent.
 4. Refresh your browser, and notice that Puppet has reset your web app to display the PHP info page. (You can also see that the contents of `/var/www/puppet_quickstart_app/index.php` has been reset to what was specified in your manifest.)
@@ -199,7 +200,7 @@ Site modules hide complexity so you can more easily divide labor at your site. S
         }
 
 
-This class declares other classes with the `include` function. Note the "if" conditional that sets different classes for different kernels using the `$kernel` fact. In this example, if an agent node is a Linux machine, Puppet will apply your `puppet_quickstart_app` class; if it is a window machines, Puppet will apply the `registry::compliance_example` class. For more information about declaring classes, see the [modules and classes chapters of Learning Puppet](/learning/modules1.html).
+This class declares other classes with the `include` function. Note the "if" conditional that sets different classes for different kernels using the `$kernel` fact. In this example, if an agent node is a Linux machine, Puppet will apply your `puppet_quickstart_app` class. If it is a Windows machine, Puppet will apply the `registry::compliance_example` class. For more information about declaring classes, see the [modules and classes chapters of Learning Puppet](/learning/modules1.html).
 
 1. From the command line on the Puppet master, navigate to the main manifest (`cd /etc/puppetlabs/code/environments/production/manifests`).
 2. Add the following Puppet code to the default node in `site.pp`:
