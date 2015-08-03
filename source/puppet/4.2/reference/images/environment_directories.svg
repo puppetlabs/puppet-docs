@@ -14,7 +14,7 @@
 	<path clip-path="url(#SVGID_2_)" fill="#7E7A78" d="M49.3,21.6v21.6v45.5V428h493.4V46.7H245.8V21.6c0-1.2-7.5-7.8-10.1-7.8
 		L60.2,13.5C57.5,13.5,49.3,20.4,49.3,21.6z"/>
 	<g clip-path="url(#SVGID_2_)">
-		<text transform="matrix(1 0 0 1 60.0747 30.4739)"><tspan x="0" y="0" fill="#EDECEC" font-family="'DroidSansMono'" font-size="14.1427">enviroment directory</tspan><tspan x="0" y="17" fill="#EDECEC" font-family="'DroidSansMono'" font-size="14.1427">$codedir/environments</tspan></text>
+		<text transform="matrix(1 0 0 1 60.0747 30.4739)"><tspan x="0" y="0" fill="#EDECEC" font-family="'DroidSansMono'" font-size="14.1427">environment directory</tspan><tspan x="0" y="17" fill="#EDECEC" font-family="'DroidSansMono'" font-size="14.1427">$codedir/environments</tspan></text>
 	</g>
 	<path clip-path="url(#SVGID_2_)" fill="#EDECEC" d="M61.4,85.5v9.9V242h227.1V97.1H150.4V85.5c0-0.5-3.4-3.6-4.6-3.6l-79.3-0.1
 		C65.2,81.8,61.4,85,61.4,85.5z"/>
