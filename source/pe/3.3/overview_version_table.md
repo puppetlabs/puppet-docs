@@ -5,7 +5,7 @@ canonical: "/pe/latest/overview_version_table.html"
 ---
 
 
-This is a historical overview of which components went into which Puppet Enterprise (PE) versions.
+This is a historical overview of which components went into which Puppet Enterprise (PE) versions. It may include versions before and after the releases documented in this manual.
 
 > **Tip:** Sometimes, different operating systems use different versions of a component. If a component has multiple versions listed, hover over them to see which operating systems use each one.
 
