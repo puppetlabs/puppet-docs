@@ -14,9 +14,10 @@ Follow [these instructions](./install_pre.html) to ensure you meet the system re
 
 ### 2. Install Puppet
 Next, you'll be installing and configuring your Puppet master and agents. 
+
 Follow [these instructions](http://docs.puppetlabs.com/puppetserver/2.1/install_from_packages.html) to quickly install and configure your Puppet Server.
 
-Follow these instructions to quickly install a Puppet agent. A computer running the Puppet agent is often referred to as an “agent node”. The Puppet agent regularly pulls configuration catalogs from a Puppet master and applies them to the local system.
+Follow the instructions below to quickly install a Puppet agent. A computer running the Puppet agent is often referred to as an “agent node”. The Puppet agent regularly pulls configuration catalogs from a Puppet master and applies them to the local system.
 
 Instructions are available for [Windows](./install_windows.html) and [*nix](./install_linux.html) users.
 
