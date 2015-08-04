@@ -8,6 +8,7 @@ canonical: "/puppet/latest/reference/install_pre.html"
 [sysreqs]: ./system_requirements.html
 [ruby]: ./system_requirements.html#basic-requirements
 [architecture]: /puppet/latest/reference/architecture.html
+[puppetdb]: /puppetdb/latest
 
 > **Note:** This document covers open source releases of Puppet. [See here for instructions on installing Puppet Enterprise.][peinstall]
 
@@ -17,13 +18,15 @@ Before you install Puppet, you should do the following tasks.
 
 Puppet usually uses an agent/master (client/server) architecture, but it can also run in a self-contained architecture. Your choice determines which packages you'll be installing, and what extra configuration you'll need to do.
 
+Additionally, you should consider using [PuppetDB][], which enables extra Puppet features and makes it easy to query and analyze Puppet's data about your infrastructure.
+
 [Learn more about Puppet's architectures here.][architecture]
 
 ## Designate Servers
 
-If you choose the standard agent/master architecture, you'll need to decide which server(s) will act as the Puppet master.
+If you choose the standard agent/master architecture, you'll need to decide which server(s) will act as the Puppet master (and the [PuppetDB][] server, if you choose to use it).
 
-You should completely install and configure Puppet on any Puppet masters before installing on any agent nodes. The master must be running some kind of \*nix. Windows machines can't be masters.
+You should completely install and configure Puppet on any Puppet masters and PuppetDB servers before installing on any agent nodes. The master must be running some kind of \*nix. Windows machines can't be masters.
 
 A Puppet master should be a dedicated machine with a fast processor, lots of RAM, and a fast disk. It must also be reachable at a reliable hostname.
 
@@ -59,6 +62,10 @@ Once these tasks are complete, you can install Puppet.
 Install Puppet Server before installing Puppet on your agent nodes.
 
 * [Installing Puppet Server](/puppetserver/2.1/install_from_packages.html)
+
+If you're using PuppetDB, install it once Puppet Server is up and running.
+
+* [Installing PuppetDB](/puppetdb/latest/install_via_module.html)
 
 Once Puppet Server is installed and configured, you can install agents:
 
