@@ -90,7 +90,7 @@ each($binaries) |$binary| {
 ~~~
 
 {% capture about_examples %}
-In the examples above, [`template`][template], [`include`][include], and [`each`][each] are all functions. `template` is used for is return value, `include` adds a class to the catalog, and `each` runs a block of code several times with different values.
+In the examples above, [`template`][template], [`include`][include], and [`each`][each] are all functions. `template` is used for its return value, `include` adds a class to the catalog, and `each` runs a block of code several times with different values.
 {% endcapture %}
 
 {{ about_examples }}
