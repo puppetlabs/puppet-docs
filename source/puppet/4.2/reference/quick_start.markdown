@@ -12,11 +12,13 @@ The following guides present tasks in the order that you would most likely perfo
 ### 1. Perform Pre-Install Tasks
 Follow [these instructions](./install_pre.html) to ensure you meet the system requirements for Puppet, designate servers, decide on a deployment type, and more.
 
-### 2. Install Puppet and the Puppet Agent
-Next, you'll be installing Puppet and the Puppet agent. [This is the clearest guide for doing so](#/install_linux.html). [links and clarification to come, navigation is messy in the switch from 3.8 to 2015.2]
+### 2. Install Puppet
+Next, you'll be installing and configuring your Puppet master and agents. 
+Follow [these instructions](http://docs.puppetlabs.com/puppetserver/2.1/install_from_packages.html) to quickly install and configure your Puppet Server.
+
 Follow these instructions to quickly install a Puppet agent. A computer running the Puppet agent is often referred to as an “agent node”. The Puppet agent regularly pulls configuration catalogs from a Puppet master and applies them to the local system.
 
-Instructions are available for [Windows](./quick_start_install_agents_windows.html) and [*nix](./install_linux.html) users.
+Instructions are available for [Windows](./install_windows.html) and [*nix](./install_linux.html) users.
 
 ### 3. Hello, World!
 The instructions in [this guide](./quick_start_helloworld.html) lead you through the fundamentals of Puppet module writing. You'll write a very simple module that contains classes to manage your motd (message of the day) and create a Hello, World! notification on the command line.
