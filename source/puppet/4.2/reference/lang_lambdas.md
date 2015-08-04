@@ -135,7 +135,7 @@ This uniqueness requirement is [similar to defined types][define_unique], which 
 
 Every time a lambda is called, it produces a value, which is the value of the last expression in the code block.
 
-The function that calls the lambda has access to this value, and but not every function will do something with it. Some functions will return it, some will transform it, some will ignore it, and some will use it to do something else entirely.
+The function that calls the lambda has access to this value, but not every function will do something with it. Some functions will return it, some will transform it, some will ignore it, and some will use it to do something else entirely.
 
 For example:
 
