@@ -1,31 +1,32 @@
 ---
 layout: default
 title: "Installing Puppet Agent: Linux"
+canonical: "/puppet/latest/reference/install_linux.html"
 ---
 
-[master_settings]: /puppet/latest/reference/config_important_settings.html#settings-for-puppet-master-servers
-[agent_settings]: /puppet/latest/reference/config_important_settings.html#settings-for-agents-all-nodes
+[master_settings]: ./config_important_settings.html#settings-for-puppet-master-servers
+[agent_settings]: ./config_important_settings.html#settings-for-agents-all-nodes
 [current_install]: /guides/install_puppet/pre_install.html
 [where]: ./whered_it_go.html
 [dns_alt_names]: /references/latest/configuration.html#dnsaltnames
 [server_heap]: /puppetserver/2.1/install_from_packages.html#memory-allocation
 [puppetserver_confd]: /puppetserver/2.1/configuration.html
 [server_install]: /puppetserver/2.1/install_from_packages.html
-[modules]: /puppet/latest/reference/modules_fundamentals.html
-[main manifest]: /puppet/latest/reference/dirs_manifest.html
-[environments]: /puppet/latest/reference/environments.html
+[modules]: ./modules_fundamentals.html
+[main manifest]: ./dirs_manifest.html
+[environments]: ./environments.html
 
 
 ## Make Sure You're Ready
 
-Before installing Puppet, make sure you've read the [pre-install tasks](./install_pre.html) and [installed Puppet Server][server_install].
+Before installing Puppet on any agent nodes, make sure you've read the [pre-install tasks](./install_pre.html) and [installed Puppet Server][server_install].
 
 > **Note:** If you've used older Puppet versions, Puppet 4 changed the locations for a lot of the most important files and directories. [See this page for a summary of the changes.][where]
 
 
 ## Review Supported Versions and Requirements
 
-Most Linux systems including CentOS, Redhat, Ubuntu, and Debian have packages. We have not yet released a Mac OS X package. For a complete list of supported platforms, view the [system requirements page.](./system_requirements.html)
+Most Linux systems (including CentOS, Redhat, Ubuntu, and Debian) have official Puppet agent packages. For a complete list of supported platforms, view the [system requirements page.](./system_requirements.html)
 
 
 ## Install a Release Package to Enable Puppet Labs Package Repositories
