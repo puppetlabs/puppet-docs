@@ -77,21 +77,10 @@ Modules are directory trees. For this task, you'll create the following files:
 3. From the `manifests` directory, use your text editor to create the `init.pp` file, and edit it so it contains the following Puppet code.
 
         class privileges {
-          user { 'root':
-            ensure   => present,
-            password => '$1$oST1TkX7$p21hU2qzMkR4Iy7HK6zWq0',
-            shell    => '/bin/bash',
-            uid      => '0',
-          }
 
           sudo::conf { 'admins':
             ensure  => present,
             content => '%admin ALL=(ALL) ALL',
-          }
-
-          sudo::conf { 'wheel':
-            ensure  => present,
-            content => '%wheel ALL=(ALL) ALL',
           }
 
         }
@@ -117,10 +106,9 @@ Modules are directory trees. For this task, you'll create the following files:
     		sudo::conf { 'web':
     		  content  => "web ALL=(ALL) NOPASSWD: ALL",
     		}
-    		sudo::conf { 'admins':
-      		  priority => 10,
-      		  content  => "%admins ALL=(ALL) NOPASSWD: ALL",
-    		}
+    		
+    		class { 'privileges': }
+    		
    		    sudo::conf { 'jargyle':
       		  priority => 60,
       		  content  => "jargyle ALL=(ALL) NOPASSWD: ALL",
