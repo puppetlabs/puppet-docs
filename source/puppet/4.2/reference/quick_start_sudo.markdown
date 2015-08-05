@@ -91,12 +91,8 @@ Modules are directory trees. For this task, you'll create the following files:
 >
 > Note the following about the resources in the `privileges` class:
 >
-> * `user ‘root’`: This resource ensures that the root user has a centrally defined password and shell. Puppet enforces this configuration and report on, and remediate, any drift detected, such as if a rogue admin logs in and changes the password on an agent node.
->
 > * `sudo::conf ‘admins’`: Create a sudoers rule to ensure that members of the admin group have the ability to run any command using sudo. This resource creates configuration fragment file to define this rule in `/etc/sudoers.d/`. It will be called something like `10_admins`.
 >
-> * `sudo::conf ‘wheel’`: Create a sudoers rule to ensure that members of the wheel group have the ability to run any command using sudo. This resource creates a configuration fragment to define this rule in `/etc/sudoers.d/`. It will be called something like `10_wheel`.
-
 ## Use the Main Manifest to Add the Privileges and Sudo Classes
 
 1. From the command line on the Puppet master, navigate to the main manifest (`cd /etc/puppetlabs/code/environments/production/manifests`).
