@@ -7,13 +7,15 @@ canonical: "/puppet/latest/quick_start_user_group.html"
 
 Intro
 
+> For this walkthrough, you should be logged in as root or administrator on your nodes.
+
 ## Create the User and Group
 
 Puppet uses some defaults for unspecified user and group attributes, so all you'll need to do to create a new user and group is set the 'ensure' attribute to 'present'. This 'present' value tells Puppet to check if the resource exists on the system, and to create the specified resource if it does not.
 
-1. On your Puppet master, run `puppet apply -e "user { jargyle: ensure => 'present', }"`. The result should show, in part, `Notice: /Stage[main]/Main/User[jargyle]/ensure: created`.
+1. On your Puppet master, run `puppet apply -e "user { 'jargyle': ensure => present, }"`. The result should show, in part, `Notice: /Stage[main]/Main/User[jargyle]/ensure: created`.
 
-2. On your Puppet master, run `puppet apply -e "group { web: ensure => 'present', }"`. The result should show, in part, `Notice: /Stage[main]/Main/Group[web]/ensure: created`.
+2. On your Puppet master, run `puppet apply -e "group { 'web': ensure => present, }"`. The result should show, in part, `Notice: /Stage[main]/Main/Group[web]/ensure: created`.
 
 > That's it! You've successfully created the Puppet user `jargyle` and the Puppet group `web`. 
 
@@ -27,6 +29,8 @@ Puppet uses some defaults for unspecified user and group attributes, so all you'
   			  ensure => 'present',
   			  gid    => '502',
 			}
+			
+	>**Note**: Your GID (the group ID) may not be the exact same number shown in this guide.
 			
 2. Copy the code, then save and exit the file.
 
@@ -54,6 +58,8 @@ Puppet uses some defaults for unspecified user and group attributes, so all you'
 			  shell            => '/bin/bash',
 			  uid              => '501',
 			}
+
+	>**Note**: Your uid (the user ID), or gid (the group ID) may not be the exact same number shown in this guide.
 
 8. Edit the file by adding the following Puppet code to it:
 

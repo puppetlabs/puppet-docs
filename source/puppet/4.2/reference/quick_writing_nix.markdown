@@ -142,7 +142,7 @@ During this exercise, you will create a class called `puppet_quickstart_app` tha
 >
 > Note the following about your new class:
 >
-> * The class `apache` has been modified to include the `mpm_module` attribute. This attribute determines which multi-process module is configured and loaded for the Apache (HTTPD) process. In this case, the value is set to `prefork`.
+> * The class `apache` has been configured to include the `mpm_module` attribute. This attribute determines which multi-process module is configured and loaded for the Apache (HTTPD) process. In this case, the value is set to `prefork`.
 > * `include apache::mod::php` indicates that your new class relies on those classes to function correctly. However, Puppet understands that your node needs to be classified with these classes and will take care of that work automatically when you classify your node with the `puppet_quickstart_app` class. In other words, you don't need to worry about classifying your nodes with Apache and Apache PHP.
 > * The `priority` attribute of `10` ensures that your app has a higher priority on port 80 than the default Apache vhost app.
 > * The file `/var/puppet_quickstart_app/index.php` contains whatever is specified by the `content` attribute. This is the content you will see when you launch your app. Puppet uses the `ensure` attribute to create that file the first time the class is applied. This the content you will see when you launch your app.
@@ -191,10 +191,10 @@ Site modules hide complexity so you can more easily divide labor at your site. S
 
 
         class site::basic {
-          if $kernel == 'Linux' {
+          if $::kernel == 'Linux' {
             include puppet_quickstart_app
           }
-          elsif $kernel == 'windows' {
+          elsif $::kernel == 'windows' {
             include registry::compliance_example
           }
         }
