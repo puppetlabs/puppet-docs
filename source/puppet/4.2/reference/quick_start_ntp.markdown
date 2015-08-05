@@ -108,9 +108,6 @@ In the example below,
 
 * There are a number of other ntp servers that will use our two primary servers ("snuffie," "bigbird," and "hooper").
 
-* There are a number of VMWare guest operating systems that need to have VMWare Tools installed.
-
-
 		 node "kermit.example.com" {
 		  class { "ntp":
 		    servers    => [ '0.us.pool.ntp.org iburst','1.us.pool.ntp.org iburst','2.us.pool.ntp.org iburst','3.us.pool.ntp.org iburst'],
