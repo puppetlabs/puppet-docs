@@ -111,7 +111,6 @@ Securing the Puppet file server consists of allowing and denying access (at vary
 In addition to custom mount points, there are two special mount points which can be managed with `fileserver.conf`: `modules` and `plugins`. Neither of these mount points should have a `path` option specified. The behavior of the `modules` mount point is described above under [Serving Files From Custom Mount Points](#serving-files-from-custom-mount-points). The `plugins` mount is not a true mount point, but is rather a hook to allow `fileserver.conf` to specify which nodes are permitted to sync plugins from the Puppet Master. Both of these mount points exist by default, and both default to allowing all access; if **any** `allow` or `deny` directives are set for one of these special mounts, its security settings will behave like those of a normal mount (i.e., it will default to denying all access). Note that these are the only mount points for which `deny *` is not redundant.
 
 If nodes are not connecting to the Puppet file server directly,
-e.g. using a reverse proxy and Mongrel (see [Using Mongrel](./mongrel.html)),
 then the file server will see all the connections as coming from
 the proxy server's IP address rather than that of the Puppet Agent node. In this case, it is best to restrict access based on hostname. Additionally, the
 machine(s) acting as reverse proxy (usually 127.0.0.0/8) will need to be

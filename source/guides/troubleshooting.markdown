@@ -55,8 +55,7 @@ certificate with openssl:
 
     sudo openssl verify -CAfile /etc/puppet/ssl/certs/ca.pem /etc/puppet/ssl/certs/myhostname.domain.com.pem
 
-This can also happen if you've followed the [Using Mongrel](./mongrel.html)
-pattern to alleviate file download problems. If your set-up is such
+If your set-up is such
 that the host name differs from the name in the Puppet server
 certificate, or there is any other SSL certificate negotiation
 problem, the SSL handshake between client and server will fail. In
