@@ -15,7 +15,7 @@ Welcome to the Open Source Puppet Sudo Users Quick Start Guide. This document pr
 In most cases, you want to manage sudo on your agent nodes to control which system users have access to elevated privileges. Using this guide, you will:
 
 * [install the saz-sudo module as the foundation for your management of sudo privileges](#install-the-saz-sudo-module).
-* [write a simple module that contains a class called `privileges` to manage a few resources that set privileges for certain users, which will be managed by the saz-sudo module](#write-the-privileges-class).
+* [write a simple module that contains a class called `privileges` to manage a resource that sets privileges for certain users, which will be managed by the saz-sudo module](#write-the-privileges-class).
 * [use the main manifest to add classes from the privileges and sudo modules to your agent nodes](#use-the-main-manifest-to-add-the-privileges-and-sudo-classes).
 
 > Before starting this walkthrough, you might want to complete the previous exercises in the [essential configuration tasks](./quick_start_essential_config.html). For this walkthrough, you should be logged in as root or administrator on your nodes.
@@ -89,10 +89,10 @@ Modules are directory trees. For this task, you'll create the following files:
 
 > That's it! You've written a module that contains a class that, once applied, ensures that your agent nodes have the correct sudo privileges set for the root user and the “admin” and “wheel” groups.
 >
-> Note the following about the resources in the `privileges` class:
+> Note the following about the resource in the `privileges` class:
 >
 > * `sudo::conf ‘admins’`: Create a sudoers rule to ensure that members of the admin group have the ability to run any command using sudo. This resource creates configuration fragment file to define this rule in `/etc/sudoers.d/`. It will be called something like `10_admins`.
->
+
 ## Use the Main Manifest to Add the Privileges and Sudo Classes
 
 1. From the command line on the Puppet master, navigate to the main manifest (`cd /etc/puppetlabs/code/environments/production/manifests`).
