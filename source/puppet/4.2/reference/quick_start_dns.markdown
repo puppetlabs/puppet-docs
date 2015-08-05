@@ -29,7 +29,7 @@ If you haven't already done so, you'll need to get Puppet installed. See the [sy
 2. Refer to the [installation overview][install_overview] to determine how you want to install Puppet, and then follow the instructions provided.
 3. Refer to the [agent installation instructions][agent_install] to determine how you want to install your Puppet agent(s), and then follow the instructions provided.
 
->**Tip**: Follow the instructions in the [NTP Quick Start Guide](./quick_start_ntp.html) to have Puppet ensure time is in sync across your deployment.
+>**Tip**: Follow the instructions in the [NTP Quick Start Guide](./quick_start_ntp.html) to have Puppet ensure time is synced across your deployment.
 
 >**Note**: You can add the DNS nameserver class to as many agents as needed. For ease of explanation, this guide will reference only one agent.
 
