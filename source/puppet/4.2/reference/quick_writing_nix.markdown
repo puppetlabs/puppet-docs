@@ -27,9 +27,10 @@ Although many Forge modules are exact solutions that fit your site, many are *al
 >The first thing to know is that, by default, the modules you use to manage nodes are located in `/etc/puppetlabs/code/environments/production/modules`---this includes modules installed by Puppet, those that you download from the Forge, and those that you write yourself.
 >If need be, you can configure this path with the [`modulepath`](/references/3.8.latest/configuration.html#modulepath) setting in [`puppet.conf`](https://docs.puppetlabs.com/puppet/latest/reference/config_file_main.html).)
 >
->**Note**: Puppet also installs modules in `/opt/puppet/share/puppet/modules`, but don’t modify anything in this directory or add modules of your own to it.
+> **Note**: Puppet also checks the path `/opt/puppet/share/puppet/modules` for modules, but don’t modify anything in this directory or add modules of your own to it.
 >
 >There are plenty of resources about modules and the creation of modules that you can reference. Check out [Modules and Manifests](./puppet_modules_manifests.html), the [Beginner's Guide to Modules](/guides/module_guides/bgtm.html), and the [Puppet Forge](https://forge.puppetlabs.com/).
+
 
 
 Modules are directory trees. For these exercises you'll use the following files:
@@ -203,7 +204,7 @@ Site modules hide complexity so you can more easily divide labor at your site. S
 This class declares other classes with the `include` function. Note the "if" conditional that sets different classes for different kernels using the `$kernel` fact. In this example, if an agent node is a Linux machine, Puppet will apply your `puppet_quickstart_app` class. If it is a Windows machine, Puppet will apply the `registry::compliance_example` class. For more information about declaring classes, see the [modules and classes chapters of Learning Puppet](/learning/modules1.html).
 
 1. From the command line on the Puppet master, navigate to the main manifest (`cd /etc/puppetlabs/code/environments/production/manifests`).
-2. Add the following Puppet code to the default node in `site.pp`:
+2. Add the following Puppet code to the default node in `site.pp`, retaining the classes you have already added:
        
         class { ‘site::basic’: 
         }
