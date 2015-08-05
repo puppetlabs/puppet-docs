@@ -75,15 +75,9 @@ With [Puppet Enterprise](https://puppetlabs.com/puppet/puppet-enterprise), it is
 
 3. Add the following Puppet code within `node default {  }`:
 
-           notify { 'hello, world!': }
-           
-           file { '/etc/motd':
-           owner  => 'root',
-           group  => 'root',
-           mode    => '0644',
-           content => "hello, world!\n",
-           }
-
+        class { 'helloworld': }
+		class { 'helloworld::motd': }
+		   
 4. Save and exit the file.
 
 5. Ensure that there are no errors in the Puppet code by running `puppet parser validate site.pp` on the CLI of your Puppet master. The parser will return nothing if there are no errors. If it does detect a syntax error, open the file again and fix the problem before continuing.
