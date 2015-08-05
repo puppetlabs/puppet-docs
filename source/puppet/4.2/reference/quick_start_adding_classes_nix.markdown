@@ -10,7 +10,6 @@ canonical: "/puppet/latest/quick_start_adding_class_nix.html"
 
 Every module contains one or more **classes**. [Classes](./puppet/4.2/reference/lang_classes.html) are named chunks of Puppet code and are the primary means by which Puppet configures nodes. The puppetlabs-apache module you installed in the [Module Installation QSG](./quick_start_module_install_nix.html) contains a class called `apache`. In this example, you will:
 * [use the `apache` class to launch the default Apache virtual host.](#add-apache-to-the-main-manifest)
-* [install httpd/apache2 to ensure web access.](#ensure-web-access)
 * [edit class parameters in the main manifest.](#editing-class-parameters-in-the-main-manifest)
 
 > **Prerequisites**: This guide assumes you've already [installed Puppet](./guides/install_puppet/pre_install.html), and have installed at least one [*nix agent node](./guides/install_puppet/post_install.html) and the [puppetlabs-apache module](./quick_start_module_install_nix.html).
@@ -30,18 +29,6 @@ Every module contains one or more **classes**. [Classes](./puppet/4.2/reference/
 
 3. Ensure that there are no errors in the Puppet code by running `puppet parser validate site.pp` on the CLI of your Puppet master. The parser will return nothing if there are no errors. If it does detect a syntax error, open the file again and fix the problem before continuing.
 4. From the CLI of your Puppet agent, use `puppet agent -t` to trigger a Puppet run.
-
-## Ensure Web Access
-
-To view the results in your web browser, install `httpd` (for RedHat/CentOS/Fedora) or `apache2` (for Debian/Ubuntu) on your agent node.
-
-#### For RedHat/CentOS/Fedora Users
-1. **On the Puppet agent**, run `sudo yum search httpd`.
-2. **On the Puppet agent**, install the "Apache HTTP Server" by running `sudo yum install httpd.x86_64`.
-
-#### For Debian/Ubuntu Users
-1. **On the Puppet agent**, run `apt-cache search apache2`.
-2. **On the Puppet agent**, install the "Apache HTTP Server" by running `apt-get install apache.x86_64`.
 
 ## Create the index.html file
 1. **On the Puppet agent**, navigate to `/var/www/html`, and create a file called `index.html`.
