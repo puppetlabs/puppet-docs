@@ -5,16 +5,16 @@ subtitle: "Firewall Quick Start Guide"
 canonical: "/puppet/latest/quick_start_firewall.html"
 ---
 
-[downloads]: http://info.puppetlabs.com/download-pe.html
+[downloads]: https://puppetlabs.com/puppet/puppet-open-source
 [sys_req]: ./install_system_requirements.html
 [agent_install]: ./install_agents.html
 [install_overview]: ./install_basic.html
 
 Welcome to the Open Source Puppet Firewall Quick Start Guide. This document provides instructions for getting started managing firewall rules with Puppet.
 
-With a firewall, admins define a set of policies (aka, firewall rules) that usually consist of things like application ports (TCP/UDP), node interfaces (e.g. which network port) , IP addresses, and an accept/deny statement. These rules are applied from a “top-to-bottom” approach. For example, when a service, say SSH, attempts to access resources on the other side of a firewall, the firewall applies a list of rules to determine if or how SSH communications are handled. If a rule allowing SSH access can’t be found, the firewall will deny access to that SSH attempt.
+With a firewall, admins define a set of policies (aka, firewall rules) that usually consist of things like application ports (TCP/UDP), network ports, IP addresses, and an accept/deny statement. These rules are applied from a “top-to-bottom” approach. For example, when a service, say SSH, attempts to access resources on the other side of a firewall, the firewall applies a list of rules to determine if or how SSH communications are handled. If a rule allowing SSH access can’t be found, the firewall will deny access to that SSH attempt.
 
-To best manage such rules with Puppet, you want to break these rules into `pre` and `post` groups.
+To best manage such rules with Puppet, you want to break these rules into `pre` and `post` groups to ensure Puppet checks firewall rules in the correct order.
 
 Following this example, you will use this guide to:
 
@@ -29,7 +29,7 @@ Following this example, you will use this guide to:
 
 If you haven't already done so, you'll need to get Puppet installed. See the [system requirements][sys_req] for supported platforms.
 
-1. [Download and verify the appropriate tarball][downloads].
+1. [Download and verify the appropriate package][downloads].
 2. Refer to the [installation overview][install_overview] to determine how you want to install Puppet, and then follow the instructions provided.
 3. Refer to the [agent installation instructions][agent_install] to determine how you want to install your Puppet agent(s), and then follow the instructions provided.
 
@@ -140,7 +140,7 @@ Modules are directory trees. For this task, you'll create the following files:
 		    purge => true,
 		  }
   
-4. Add the following Puppet code to your `site.pp` file. These defaults will ensure that the `pre` and `post` classes are run in the correct order to avoid locking you out of your box during the first Puppet run, and declaring `my_fw::pre` and `my_fw::post` satisfies dependencies.
+4. Add the following Puppet code to your `site.pp` file. These defaults will ensure that the `pre` and `post` classes are [run in the correct order](https://docs.puppetlabs.com/puppet/latest/reference/lang_relationships.html) to avoid locking you out of your box during the first Puppet run, and declaring `my_fw::pre` and `my_fw::post` satisfies the specified dependencies.
 
 		  Firewall {
 		    before  => Class['my_fw::post'],

@@ -5,7 +5,7 @@ subtitle: "Sudo Users Quick Start Guide"
 canonical: "/puppet/latest/quick_start_sudo.html"
 ---
 
-[downloads]: http://info.puppetlabs.com/download-pe.html
+[downloads]: https://puppetlabs.com/puppet/puppet-open-source
 [sys_req]: ./install_system_requirements.html
 [agent_install]: ./install_agents.html
 [install_overview]: ./install_basic.html
@@ -24,7 +24,7 @@ In most cases, you want to manage sudo on your agent nodes to control which syst
 
 If you haven't already done so, you'll need to get Puppet installed. See the [system requirements][sys_req] for supported platforms.
 
-1. [Download and verify the appropriate tarball][downloads].
+1. [Download and verify the appropriate package][downloads].
 2. Refer to the [installation overview][install_overview] to determine how you want to install Puppet, and then follow the instructions provided.
 3. Refer to the [agent installation instructions][agent_install] to determine how you want to install your Puppet agent(s), and then follow the instructions provided.
 4. Follow the [Quick Start Guide for Users and Groups](./quick_start_user_group) to set up your `jargyle` user and `web` group.
@@ -35,15 +35,15 @@ If you haven't already done so, you'll need to get Puppet installed. See the [sy
 
 ## Install the saz-sudo Module
 
-The saz-sudo module, available on the Puppet Forge, is one of many modules written by a member of our user community.  You can learn more about the module by visiting [http://forge.puppetlabs.com/saz/sudo](http://forge.puppetlabs.com/saz/sudo).
+The saz-sudo module, available on the Puppet Forge, is one of many modules written by a member of the Puppet user community.  You can learn more about the module by visiting [http://forge.puppetlabs.com/saz/sudo](http://forge.puppetlabs.com/saz/sudo).
 
 **To install the saz-sudo module**:
 
-From the Puppet master, run `puppet module install saz-sudo`.
+As the root user on the Puppet master, run `puppet module install saz-sudo`.
 
 You should see output similar to the following:
 
-        Preparing to install into /etc/puppetlabs/puppet/modules ...
+ 		Preparing to install into /etc/puppetlabs/code/environments/production/modules  ...
         Notice: Downloading from http://forgeapi.puppetlabs.com ...
         Notice: Installing -- do not interrupt ...
         /etc/puppetlabs/puppet/modules
@@ -77,10 +77,10 @@ Modules are directory trees. For this task, you'll create the following files:
 3. From the `manifests` directory, use your text editor to create the `init.pp` file, and edit it so it contains the following Puppet code.
 
         class privileges {
-
-          sudo::conf { 'admins':
-            ensure  => present,
-            content => '%admin ALL=(ALL) ALL',
+        
+		  sudo::conf { 'admins':
+          ensure  => present,
+          content => '%admin ALL=(ALL) ALL',
           }
 
         }
@@ -99,7 +99,7 @@ Modules are directory trees. For this task, you'll create the following files:
 2. Open `site.pp` with your text editor and add the following Puppet code to the `default` node:
 
 			class { 'sudo': }
-    		sudo::conf { 'web':
+    		  sudo::conf { 'web':
     		  content  => "web ALL=(ALL) NOPASSWD: ALL",
     		}
     		
