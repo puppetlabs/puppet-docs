@@ -13,6 +13,7 @@ if !Dir.exist?(@enterprise_dist_dir + '.git')
 end
 
 @pe_repo = Git.open(@enterprise_dist_dir)
+@pe_repo.fetch
 
 @package_name_variations = {
 
@@ -126,8 +127,6 @@ final_38_and_201x_tags = @pe_repo.tags.select {|tag|
 versions_of_interest_newer = final_38_and_201x_tags.map {|tag| tag.name}
 
 versions_of_interest = versions_of_interest_old.concat(versions_of_interest_new).concat(versions_of_interest_newer)
-
-@pe_repo.fetch
 
 # this is like { platformname: { packagename: { version: version, md5: md5 }, packagename: {...} }, platformname: {......} }
 def load_package_json(version)

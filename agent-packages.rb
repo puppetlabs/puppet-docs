@@ -13,6 +13,7 @@ if !Dir.exist?(puppet_agent_dir + '.git')
 end
 
 agent_repo = Git.open(puppet_agent_dir)
+agent_repo.fetch
 
 component_files = {
   'Ruby' => 'ruby.rb',
@@ -34,7 +35,6 @@ def version_from_ruby(file)
   ruby_text.match(/^\s*pkg\.version[\s\(]*"([^"]+)"/)[1]
 end
 
-agent_repo.fetch
 tags = agent_repo.tags
 # Structure of the repo didn't stabilize until 0.9.0-ish, so:
 until tags.first.name == '1.0.0'
