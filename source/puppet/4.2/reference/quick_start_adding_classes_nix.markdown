@@ -25,14 +25,14 @@ Every module contains one or more **classes**. [Classes](./puppet/4.2/reference/
 		  include apache	
         }
 
-	>**Note**: If you have already created the default node class, simply add `include apache` to it.
+	>**Note**: If you have already created the default node class, simply add `include apache` to it. Code from the [hello world guide](./quick_start_helloworld.html) does not need to be removed, but a class cannot be declared twice --- we will explore this later in the guide.
 
 3. Ensure that there are no errors in the Puppet code by running `puppet parser validate site.pp` on the CLI of your Puppet master. The parser will return nothing if there are no errors. If it does detect a syntax error, open the file again and fix the problem before continuing.
 4. From the CLI of your Puppet agent, use `puppet agent -t` to trigger a Puppet run.
 
 ## Create the index.html file
-1. **On the Puppet agent**, navigate to `/var/www/html`, and create a file called `index.html`.
-2. Open `index.html` with the text editor of your choice and fill it with some content (e.g., "Hello World").
+1. **On the Puppet agent**, navigate to `/var/www/html`, and create a file called `index.html`. On Ubuntu, this file may already exist.
+2. Open `index.html` with the text editor of your choice and fill it with some content (e.g., "Hello World"). If content already exists within it, you may choose not to alter the text.
 3. From the CLI of your Puppet agent node, run `puppet agent -t`.
 4. Open a browser and enter the IP address for the agent node, adding port 80 on the end (e.g., `http://myagentnodeIP:80/`).
 
@@ -40,7 +40,7 @@ Every module contains one or more **classes**. [Classes](./puppet/4.2/reference/
    
 ## Editing Class Parameters in the Main Manifest
 
-You can edit the [parameters](./puppet/latest/reference/lang_classes.html#defining-classes) of a class in site.pp as well. Parameters allow a class to request external data. If a class needs to configure itself with data other than facts, that data should usually enter the class via a parameter.
+You can edit the [parameters](https://docs.puppetlabs.com/puppet/latest/reference/lang_classes.html#defining-classes) of a class in site.pp as well. Parameters allow a class to request external data. If a class needs to configure itself with data other than facts, that data should usually enter the class via a parameter.
 **To edit the parameters of the** `apache` **class**:
 
 1. From the CLI of your Puppet master, navigate to `/etc/puppetlabs/code/environments/production/manifests`.
@@ -51,6 +51,8 @@ You can edit the [parameters](./puppet/latest/reference/lang_classes.html#defini
     	  docroot => '/var/www'
 		}
 		
+	>**Note**: You must remove `include apache` because Puppet will only allow you to [declare a class once](https://docs.puppetlabs.com/puppet/latest/reference/lang_classes.html#declaring-classes).
+
 > That's it! If you refresh `http://myagentnodeIP:80/`, you'll see that the page has changed to reflect the files in `/var/www`. If you click `html`, you'll again be presented with the contents of `/var/www/html/index.html`.
 >
 > Note: Almost the entirety of this guide can be done through Puppet Enterprise's web UI, [the console](https://docs.puppetlabs.com/pe/latest/console_accessing.html).

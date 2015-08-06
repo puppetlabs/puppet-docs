@@ -56,7 +56,7 @@ Modules are directory trees. For this task, you'll create the following files:
 
 6. Save and exit the file.
 
-> That's it! You've written a module that contains two classes that will, once applied, show a notification message when Puppet runs, and manage the motd on your server---we'll take a closer at these actions after we add the classes. 
+> That's it! You've written a module that contains two classes that will, once applied, show a notification message when Puppet runs, and manage the motd on your server. 
 
 ## Add the `helloworld` and `helloworld::motd` Classes to the Main Manifest
 
