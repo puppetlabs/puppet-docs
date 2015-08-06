@@ -30,6 +30,12 @@ Modules are directory trees. For this task, you'll create the following files:
       - `init.pp` (contains the `helloworld` class)
       - `motd.pp` (contains a file resource that ensures the creation of the MOTD)
 
+Every manifest (.pp file) in a module contains a single class. File names map to class names in a predictable way: `init.pp` contains a class with the same name as the module; `<FILE1>.pp` contains a class called `<MODULE NAME>::<FILE1>`; and `<FOLDER/<FILE2>.pp` contains `<MODULE NAME>::<FOLDER>::<FILE2>`.
+
+* For more on how modules work, see [Module Fundamentals](/puppet/3.8/reference/modules_fundamentals.html) in the Puppet documentation.
+* For more on best practices, methods, and approaches to writing modules, see the [Beginners Guide to Modules](/guides/module_guides/bgtm.html).
+* For a more detailed guided tour, also see [the module chapters of Learning Puppet](/learning/modules1.html).
+
 **To write the `helloworld` class**:
 
 1. From the command line on the Puppet master, navigate to the modules directory (`cd /etc/puppetlabs/code/environments/production/modules`).

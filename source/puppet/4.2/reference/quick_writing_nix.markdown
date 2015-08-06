@@ -146,7 +146,7 @@ During this exercise, you will create a class called `puppet_quickstart_app` tha
 > * The class `apache` has been configured to include the `mpm_module` attribute. This attribute determines which multi-process module is configured and loaded for the Apache (HTTPD) process. In this case, the value is set to `prefork`.
 > * `include apache::mod::php` indicates that your new class relies on those classes to function correctly. However, Puppet understands that your node needs to be classified with these classes and will take care of that work automatically when you classify your node with the `puppet_quickstart_app` class. In other words, you don't need to worry about classifying your nodes with Apache and Apache PHP.
 > * The `priority` attribute of `10` ensures that your app has a higher priority on port 80 than the default Apache vhost app.
-> * The file `/var/puppet_quickstart_app/index.php` contains whatever is specified by the `content` attribute. This is the content you will see when you launch your app. Puppet uses the `ensure` attribute to create that file the first time the class is applied. This the content you will see when you launch your app.
+> * The file `/var/puppet_quickstart_app/index.php` contains whatever is specified by the `content` attribute. This is the content you will see when you launch your app. Puppet uses the `ensure` attribute to create that file the first time the class is applied.
 
 ### Using Your Custom Module in the Main Manifest
 
@@ -154,14 +154,13 @@ During this exercise, you will create a class called `puppet_quickstart_app` tha
 2. With your text editor, open `site.pp` and add the following Puppet code to your default node. **Remove the apache class you added previously.** Your site.pp file should look like this after you make your changes (although you may have portions from earlier in the Quick Start Guide):
 
 		 node default {
-           class { 'puppet_quickstart_app':
-           }
+           class { 'puppet_quickstart_app': }
 		 }
    >**Note**: Since the `puppet_quickstart_app` includes the `apache` class, you need to remove the first `apache` class you added the master node, as Puppet will only allow you to declare a class once.
 
 3. From the CLI on your agent node, run `puppet agent -t`.
 
-     When the Puppet run is complete, you will see in the node's log that a vhost for the app has been created and the Apache service (httpd) has been started.
+     When the Puppet run is complete, you will see in the agent's log that a vhost for the app has been created and the Apache service (httpd) has been started.
 
 4. Use a browser to navigate to port 80 of the IP address for your node, e.g, `http://<yournodeip>:80`.
 
