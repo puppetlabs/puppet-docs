@@ -3,6 +3,9 @@ layout: default
 title: "Facter 3.0: Custom Facts Walkthrough"
 ---
 
+[Facter 3.0.2 release notes]: ./release_notes.html#facter--p-restored
+[Plugins in Modules]: ./plugins_in_modules.html
+
 Custom Facts
 ============
 
@@ -14,22 +17,22 @@ Sometimes you need to be able to write conditional expressions
 based on site-specific data that just isn't available via Facter,
 or perhaps you'd like to include it in a template.
 
-Since you can't include arbitrary ruby code in your manifests,
+Since you can't include arbitrary Ruby code in your manifests,
 the best solution is to add a new fact to Facter. These additional facts
 can then be distributed to Puppet clients and are available for use
 in manifests and templates, just like any other fact would be.
 
 ## The Concept
 
-You can add new facts by writing snippets of ruby code on the
-Puppet master. Puppet will then use [Plugins in Modules](/guides/plugins_in_modules.html)
+You can add new facts by writing snippets of Ruby code on the
+Puppet master. Puppet then uses [Plugins in Modules][]
 to distribute the facts to the client.
 
 ## Loading Custom Facts
 
 Facter offers a few methods of loading facts:
 
-* $LOAD\_PATH, or the ruby library load path
+* `$LOAD\_PATH`, or the Ruby library load path
 * The `--custom-dir` command line option.
 * The environment variable 'FACTERLIB'
 
@@ -39,9 +42,9 @@ machines.
 
 ### Using the Ruby load path
 
-Facter will search all directories in the ruby $LOAD\_PATH variable for
-subdirectories named 'facter', and will load all ruby files in those directories.
-If you had some directory in your $LOAD\_PATH like ~/lib/ruby, set up like
+Facter searches all directories in the Ruby $LOAD\_PATH variable for
+subdirectories named 'facter', and loads all Ruby files in those directories.
+If you had some directory in your $LOAD\_PATH like `~/lib/ruby`, set up like
 this:
 
     #~/lib/ruby
@@ -56,8 +59,9 @@ Facter would try to load 'facter/system\_load.rb', 'facter/users.rb', and
 ### Using the `--custom-dir` command line option
 
 Facter can take multiple `--custom-dir` options on the command line that specifies a single directory
-to search for custom facts.  Facter will attempt to load all ruby files in the specified directories.
+to search for custom facts. Facter attempts to load all Ruby files in the specified directories.
 This allows you to do something like this:
+
 
     $ ls my_facts
     system_load.rb
@@ -69,8 +73,8 @@ This allows you to do something like this:
 
 ### Using the `FACTERLIB` environment variable
 
-Facter also will check the environment variable `FACTERLIB` for a delimited (semicolon for Windows and colon for all
-other platforms) set of directories, and will try to load all ruby files in those directories.
+Facter also checks the environment variable `FACTERLIB` for a delimited (semicolon for Windows and colon for all
+other platforms) set of directories, and tries to load all Ruby files in those directories.
 This allows you to do something like this:
 
     $ ls my_facts
@@ -82,19 +86,19 @@ This allows you to do something like this:
     system_load => 0.25
     users => thomas,pat
 
-> ### Note: Removal of Built-in Pluginsync Support
+> ### Note: Changes in Built-in Pluginsync Support in Facter 3
 >
-> Facter 2.4 **deprecated** Facter's support for loading facts via Puppet's pluginsync (the `-p` option).  Facter 3.0 has now
-> **removed** support for the `-p` option.  Using the `-p` option with Facter 3 will result in an error.
->
-> To load facts from Puppet's pluginsync, use the [`puppet facts` command from Puppet](/references/stable/man/facts.html).
+> Facter 2.4 **deprecated** Facter's support for loading facts via Puppet's pluginsync
+> (the `-p` option), and Facter 3.0.0 **removed** the `-p` option. However, we reversed 
+> this decision in Facter 3.0.2 and re-enabled the `-p` option. For details about current 
+> and future support for this option, see the [Facter 3.0.2 release notes][].
 
 ## Two Parts of Every Fact
 
 Setting aside external facts for now, most facts have at least two elements:
 
 1. A call to `Facter.add('fact_name')`, which determines the name of the fact
-2. A `setcode` statement for simple resolutions, which will be evaluated to determine the fact's value.
+2. A `setcode` statement for simple resolutions, which is evaluated to determine the fact's value.
 
 Facts *can* get a lot more complicated than that, but those two together are the most common implementation of a custom fact.
 
@@ -102,16 +106,16 @@ Facts *can* get a lot more complicated than that, but those two together are the
 
 Puppet gets information about a system from Facter, and the most common way for Facter to
 get that information is by executing shell commands. You can then parse and manipulate the
-output from those commands using standard ruby code. The Facter API gives you a few ways to
+output from those commands using standard Ruby code. The Facter API gives you a few ways to
 execute shell commands:
 
 * If all you want to do is run the command and use the output, verbatim, as your fact's value,
 you can pass the command into `setcode` directly. For example: `setcode 'uname --hardware-platform'`
 * If your fact is more complicated than that, you can call `Facter::Core::Execution.exec('uname --hardware-platform')`
-from within the `setcode do`...`end` block. As always, whatever the `setcode` statement returns will be used as the fact's value.
-* In any case, remember that your shell command is also a ruby string, so you'll need to escape special characters if you want to pass them through.
+from within the `setcode do`...`end` block. As always, whatever the `setcode` statement returns is used as the fact's value.
+* In any case, remember that your shell command is also a Ruby string, so you'll need to escape special characters if you want to pass them through.
 
-It's important to note that *not everything that works in the terminal will work in a fact*. You can use the pipe (`|`) and similar operators just as you normally would, but Bash-specific syntax like `if` statements will not work. The best way to handle this limitation is to write your conditional logic in ruby.
+It's important to note that *not everything that works in the terminal will work in a fact*. You can use the pipe (`|`) and similar operators as you normally would, but Bash-specific syntax like `if` statements will not work. The best way to handle this limitation is to write your conditional logic in Ruby.
 
 ### An Example
 
@@ -131,14 +135,14 @@ Facter.add('hardware_platform') do
 end
 ~~~
 
-You can then use the instructions in the [Plugins In Modules](/guides/plugins_in_modules.html) page to copy
+You can then use the instructions in the [Plugins in Modules][] page to copy
 the new fact to a module and distribute it. During your next Puppet run, the value of the new fact
 will be available to use in your manifests and templates.
 
 ## Using Other Facts
 
-You can write a fact which uses other facts by accessing `Facter.value(:somefact)`.
-If the fact fails to resolve or is not present, `nil` will be returned.
+You can write a fact that uses other facts by accessing `Facter.value(:somefact)`.
+If the fact fails to resolve or is not present, Facter returns `nil`.
 
 For example:
 
@@ -193,13 +197,13 @@ a new resolution to a fact, you simply add the fact again, only with a different
 `setcode` statement.
 
 When a fact has more than one resolution, the first resolution that returns a value other
-than `nil` will set the fact's value.  The way that Facter decides the issue of resolution precedence is the
+than `nil` will set the fact's value. The way that Facter decides the issue of resolution precedence is the
 weight property. Once Facter rules out any resolutions that are excluded because of `confine` statements,
-the resolution with the highest weight will be evaluated first. If that resolution returns `nil`,
-Facter will move on to the next resolution (by descending weight) until it gets a value for the fact.
+the resolution with the highest weight is evaluated first. If that resolution returns `nil`,
+Facter moves on to the next resolution (by descending weight) until it gets a value for the fact.
 
 By default, the weight of a fact is the number of confines for that resolution, so
-that more specific resolutions will take priority over less specific resolutions.
+that more specific resolutions takes priority over less specific resolutions.
 
 ~~~ ruby
 # Check to see if this server has been marked as a postgres server
@@ -232,8 +236,8 @@ end
 
 ### Execution Timeouts
 
-Facter 2.x supported a `:timeout` option to `Facter#add`.  Facter no longer
-supports this option, and will produce a warning if it's used.
+Facter 2.x supported a `:timeout` option to `Facter#add`. Facter no longer
+supports this option, and produces a warning if it's used.
 
 Although Facter 3.0 does not support overall timeouts on resolutions, you can pass a timeout
 to `Facter::Core::Execution#execute`:
@@ -295,7 +299,7 @@ aggregate do |chunks|
 end
 ~~~
 
-If the `chunk` blocks either all return arrays or all return hashes, you can omit the `aggregate` block. If you do, Facter will automatically merge all of your data into one array or hash and use that as the fact's value.
+If the `chunk` blocks either all return arrays or all return hashes, you can omit the `aggregate` block. If you do, Facter automatically merges all of your data into one array or hash and use that as the fact's value.
 
 For more examples of aggregate resolutions, see the [aggregate resolutions](fact_overview.html#writing-facts-with-aggregate-resolutions) section of the [Fact Overview](fact_overview.html) page.
 
@@ -318,9 +322,8 @@ The best way to distribute external facts is with pluginsync, which added suppor
 
 If you're not using pluginsync, then external facts must go in a standard directory. The location of this directory varies depending on your operating system, whether your deployment uses Puppet Enterprise or open source releases, and whether you are running as root/Administrator. When calling facter from the command line, you can specify the external facts directory with the `--external-dir` option.
 
-> **Note:** These directories will not necessarily exist by default; you may need to create them. If you create the directory, make sure
-to restrict access so that only Administrators can write to the
-directory.
+> **Note:** These directories don't necessarily exist by default; you may need to create them. If you create the directory, make sure
+to restrict access so that only Administrators can write to the directory.
 
 In a module (recommended):
 
@@ -346,8 +349,8 @@ When running as a non-root / non-Administrator user:
 ### Executable Facts --- Unix
 
 Executable facts on Unix work by dropping an executable file into the standard
-external fact path above.  A [shebang](https://en.wikipedia.org/wiki/Shebang_%28Unix%29) is
-always required for executable facts on Unix.  If the shebang is missing, the execution of the fact
+external fact path above. A [shebang](https://en.wikipedia.org/wiki/Shebang_%28Unix%29) is
+always required for executable facts on Unix. If the shebang is missing, the execution of the fact
 will fail.
 
 An example external fact written in Python:
@@ -404,7 +407,7 @@ Here is a sample batch script which outputs facts using the required format:
 
 #### PowerShell Scripts
 
-The encoding that should be used with `.ps1` files is pretty open. PowerShell will determine the encoding of the file at run time.
+The encoding that should be used with `.ps1` files is pretty open. PowerShell determines the encoding of the file at run time.
 
 Here is a sample PowerShell script which outputs facts using the required format:
 
@@ -491,6 +494,6 @@ found in the stdlib module.
 
 While external facts provide a mostly-equal way to create variables for Puppet, they have a few drawbacks:
 
-* An external fact cannot internally reference another fact. However, due to parse order, you can reference an external fact from a ruby fact.
+* An external fact cannot internally reference another fact. However, due to parse order, you can reference an external fact from a Ruby fact.
 * External executable facts are forked instead of executed within the same process.
 * Distributing executable facts through pluginsync requires Puppet 3.4.0 or greater.
