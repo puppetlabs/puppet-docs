@@ -60,8 +60,9 @@ To prepare for new features in the 4.x series, the bare words 'application', 'co
 
 ### Security Update: Windows
 
-We updated the version of OpenSSL in Windows packages to 1.0.0.s to address recent CVEs.
-* [PUP-5007: Put openssl 1.0.0.s into Windows FOSS release (3.x)](https://tickets.puppetlabs.com/browse/PUP-5007)
+We updated the version of OpenSSL in Windows packages to 1.0.0s to address recent CVEs.
+
+* [PUP-5007: Put openssl 1.0.0s into Windows FOSS release (3.x)](https://tickets.puppetlabs.com/browse/PUP-5007)
 
 ### Performance Improvements
 
