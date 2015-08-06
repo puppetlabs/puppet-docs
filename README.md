@@ -2,6 +2,8 @@
 
 This code is a bit of a mess, because it's not really in its final form. I'm planning to integrate it into our improved references generator at some point, once that... starts... existing?
 
+Also, it needs the `git` gem. There's a Gemfile so you can use Bundler to run everything, or you can just install that one gem globally.
+
 Anyway, for now the interface to this is:
 
 1. Check out this repo.
