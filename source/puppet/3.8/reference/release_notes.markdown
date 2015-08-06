@@ -48,11 +48,20 @@ Released August 6, 2015.
 
 Puppet 3.8.2 is a maintenance (bug fix) release to improve forward compatibility for users upgrading to the Puppet 4.x series.
 
+* [All fixes for Puppet 3.8.2](https://tickets.puppetlabs.com/issues/?filter=15207)
+* [Introduced in Puppet 3.8.2](https://tickets.puppetlabs.com/issues/?filter=15208)
+
+
 ### Deprecation: New Reserved Words
 
 To prepare for new features in the 4.x series, the bare words 'application', 'consumes', and 'produces' have been made into reserved words when using the future parser. A warning is issued when they are used. These words should now be quoted if a string is wanted.
 
 * [PUP-4941: Reserve keywords 'application', 'consumes', and 'produces'](https://tickets.puppetlabs.com/browse/PUP-4941)
+
+### Security Update: Windows
+
+We updated the version of OpenSSL in Windows packages to 1.0.0.s to address recent CVEs.
+* [PUP-5007: Put openssl 1.0.0.s into Windows FOSS release (3.x)](https://tickets.puppetlabs.com/browse/PUP-5007)
 
 ### Performance Improvements
 
