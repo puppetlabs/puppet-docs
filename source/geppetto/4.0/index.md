@@ -17,7 +17,7 @@ Geppetto is an integrated development environment for Puppet. In other words, it
 
 Built on Eclipse, Geppetto provides a puppet manifest editor that provides syntax highlighting, content assistance, error tracing/debugging, and code completion features. It also includes a puppet module editor and an interface to the [Puppet Forge](http://forge.puppetlabs.com/), which allows you to create projects from existing modules on the Forge as well as easily upload your custom modules. Geppetto is even integrated with GitHub (Git) and Subversion (SVN) with Eclipse, enabling side-by-side comparison of code from a given repo complete with highlighting, code validation, syntax error parsing, and expression troubleshooting.
 
-Geppetto also offers [integration with Puppet Enterprise][#geppetto-and-pe], giving you an additional resource view and error information based on PuppetDB data from the last puppet run.
+Geppetto also offers [integration with Puppet Enterprise](#geppetto-and-pe), giving you an additional resource view and error information based on PuppetDB data from the last puppet run.
 
 Geppetto is packaged so it can be downloaded and used immediately. It contains a full installation of Eclipse, meaning you can install tools as you would with the regular Eclipse IDE. Geppetto handles multiple versions of Puppet, allowing you set the version that you're working with.
 
