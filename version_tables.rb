@@ -23,6 +23,35 @@ EOT
     html_table
   end
 
+  def self.release_notes_for_component_version(component, version) # returns string or nil.
+    x = version.split('.')[0]
+    x_dot_y = version.split('.')[0..1].join('.')
+    dotless = version.gsub(/\./, '')
+    case component
+      when 'Puppet'
+        if x == '3' and x_dot_y.to_f < 3.5
+          "puppet/3/reference/release_notes.html#puppet-#{dotless}"
+        else
+          "/puppet/#{x_dot_y}/reference/release_notes.html#puppet-#{dotless}"
+        end
+      when 'Puppet Server'
+        "/puppetserver/#{x_dot_y}/release_notes.html#puppet-server-#{dotless}"
+      when 'Facter'
+        "/facter/#{x_dot_y}/release_notes.html#facter-#{dotless}"
+      when 'Hiera'
+        if x == '1'
+          "/hiera/1/release_notes.html#hiera-#{dotless}"
+        else
+          "/hiera/#{x_dot_y}/release_notes.html#hiera-#{dotless}"
+        end
+      when 'PuppetDB'
+        "/puppetdb/#{x_dot_y}/release_notes.html" # Anchors are broken because Kramdown is silly.
+      when 'MCollective'
+        "/mcollective/releasenotes.html" # Anchors broken here too.
+      else
+        nil
+    end
+  end
 
   module PE
     def self.abbr_for_given_version(version, platforms)
@@ -35,7 +64,13 @@ EOT
     def self.all_abbrs_for_component(component, vers_to_platforms)
       # a cell of versions
       vers_to_platforms.sort {|x,y| y[0] <=> x[0]}.map {|pkg_ver, platforms|
-        abbr_for_given_version(pkg_ver, platforms)
+        abbr = abbr_for_given_version(pkg_ver, platforms)
+        notes = VersionTables.release_notes_for_component_version(component, pkg_ver)
+        if notes
+          '<a href="' << notes << '">' << abbr << '</a>'
+        else
+          abbr
+        end
       }.join("<br>")
     end
 

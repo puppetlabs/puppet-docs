@@ -24,7 +24,13 @@ header = ['puppet-agent'].concat(components)
 
 body = our_versions.map {|version| # Make a row for each version
   component_versions = components.map {|component| # read from the version info
-    version_info[version][component]
+    comp_ver = version_info[version][component]
+    notes = VersionTables.release_notes_for_component_version(component, comp_ver)
+    if notes
+      '<a href="' << notes << '">' << comp_ver << '</a>'
+    else
+      comp_ver
+    end
   }
   [version].concat(component_versions)
 }
