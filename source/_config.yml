@@ -156,11 +156,11 @@ externalsources:
     repo: git://github.com/nfagerlund/marionette-collective.git
     commit: origin/docs_1.2
     subdirectory: website
- puppetserver_master:
-   url: /puppetserver/master
-   repo: git://github.com/puppetlabs/puppet-server.git
-   commit: origin/master
-   subdirectory: documentation
+  puppetserver_master:
+    url: /puppetserver/master
+    repo: git://github.com/puppetlabs/puppet-server.git
+    commit: origin/master
+    subdirectory: documentation
   puppetserver_1.0:
     url: /puppetserver/1.0
     repo: git://github.com/puppetlabs/puppet-server.git
