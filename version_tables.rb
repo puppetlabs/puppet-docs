@@ -53,6 +53,18 @@ EOT
     end
   end
 
+  def self.link_release_notes_if_applicable(component, text, version = nil)
+    unless version
+      version = text
+    end
+    notes = release_notes_for_component_version(component, version)
+    if notes
+      '<a href="' << notes << '">' << text << '</a>'
+    else
+      text
+    end
+  end
+
   module PE
     def self.abbr_for_given_version(version, platforms)
       # an individual version w/ associated platforms
@@ -64,13 +76,11 @@ EOT
     def self.all_abbrs_for_component(component, vers_to_platforms)
       # a cell of versions
       vers_to_platforms.sort {|x,y| y[0] <=> x[0]}.map {|pkg_ver, platforms|
-        abbr = abbr_for_given_version(pkg_ver, platforms)
-        notes = VersionTables.release_notes_for_component_version(component, pkg_ver)
-        if notes
-          '<a href="' << notes << '">' << abbr << '</a>'
-        else
-          abbr
-        end
+        VersionTables.link_release_notes_if_applicable(
+          component,
+          abbr_for_given_version(pkg_ver, platforms),
+          pkg_ver
+        )
       }.join("<br>")
     end
 
