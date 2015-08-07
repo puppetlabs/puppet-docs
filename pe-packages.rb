@@ -59,6 +59,10 @@ end
   'pe-razor-libs'
 ],
 
+'r10k' => [
+  'pe-r10k'
+],
+
 'Ruby' => [
   'pe-ruby',
   'pup-ruby'

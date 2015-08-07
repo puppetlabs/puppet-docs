@@ -48,6 +48,8 @@ EOT
         "/puppetdb/#{x_dot_y}/release_notes.html" # Anchors are broken because Kramdown is silly.
       when 'MCollective'
         "/mcollective/releasenotes.html" # Anchors broken here too.
+      when 'r10k'
+        "https://github.com/puppetlabs/r10k/blob/master/CHANGELOG.mkd##{dotless}"
       else
         nil
     end

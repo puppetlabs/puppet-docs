@@ -17,7 +17,8 @@ pl_software = [
   "PuppetDB",
   "MCollective",
   "Razor Server",
-  "Razor Libs"
+  "Razor Libs",
+  "r10k"
 ]
 
 third_party = [
