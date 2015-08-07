@@ -32,7 +32,7 @@ end
 def version_from_ruby(file)
   ruby_text = File.read(file)
   # find 'pkg.version "version"' and capture the version.
-  ruby_text.match(/^\s*pkg\.version[\s\(]*"([^"]+)"/)[1]
+  ruby_text.match(/^\s*pkg\.version[\s\(]*['"]([^'"]+)['"]/)[1]
 end
 
 tags = agent_repo.tags
