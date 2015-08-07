@@ -4,7 +4,7 @@ title: "Facter 3.0: Custom Facts Walkthrough"
 ---
 
 [Facter 3.0.2 release notes]: ./release_notes.html#facter--p-restored
-[Plugins in Modules]: ./plugins_in_modules.html
+[Plugins in Modules]: /guides/plugins_in_modules.html
 
 Custom Facts
 ============
