@@ -8,29 +8,29 @@ require './version_tables.rb'
 json_file = File.expand_path(ARGV[0])
 version_info = JSON.load(File.read(json_file))
 
-pl_software = [
-  "Puppet",
+agent_stuff = [
 #   "Puppet Agent",
-  "Puppet Server",
+  "Puppet",
   "Facter",
   "Hiera",
-  "PuppetDB",
   "MCollective",
-  "Razor Server",
-  "Razor Libs",
-  "r10k"
+  "Ruby",
+  "OpenSSL"
 ]
 
-third_party = [
-  "Ruby",
-  "Apache",
-#   "Nginx",
-  "ActiveMQ",
+server_stuff = [
+  "Puppet Server",
+  "PuppetDB",
+  "r10k",
+  "Razor Server",
+  "Razor Libs",
   "PostgreSQL",
-  "Passenger",
-  "OpenSSL",
   "Java",
-  "LibAPR"
+  "ActiveMQ",
+  "Apache",
+  "LibAPR",
+  "Passenger"
+#   "Nginx"
 ]
 
 # our_versions = [
@@ -45,21 +45,21 @@ our_versions = version_info.keys.select {|v|
   v =~ /^3\.[78]/
 }.sort.reverse
 
-# First, Puppet Labs software.
+# First, software on agents / all nodes.
 
-pl_header = ['PE Version'].concat(pl_software)
-pl_body = VersionTables::PE::make_table_body(our_versions, pl_software, version_info)
+agent_header = ['PE Version'].concat(agent_stuff)
+agent_body = VersionTables::PE::make_table_body(our_versions, agent_stuff, version_info)
 
-# Then, third-party software.
+# Then, server-side software.
 
-third_header = ['PE Version'].concat(third_party)
-third_body = VersionTables::PE::make_table_body(our_versions, third_party, version_info)
+server_header = ['PE Version'].concat(server_stuff)
+server_body = VersionTables::PE::make_table_body(our_versions, server_stuff, version_info)
 
 # now make tables
 
-print "### Puppet Labs Software\n\n"
-print VersionTables::table_from_header_and_array_of_body_rows(pl_header, pl_body)
-print "### Third-Party Software\n\n"
-print VersionTables::table_from_header_and_array_of_body_rows(third_header, third_body)
+print "### Agent Components (On All Nodes)\n\n"
+print VersionTables::table_from_header_and_array_of_body_rows(agent_header, agent_body)
+print "### Server Components\n\n"
+print VersionTables::table_from_header_and_array_of_body_rows(server_header, server_body)
 
 # done
