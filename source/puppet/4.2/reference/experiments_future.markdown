@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Language Changes Since Puppet 3"
+title: "Updating 3.x Manifests for Puppet 4.x"
 canonical: "/puppet/latest/reference/experiments_future.html"
 ---
 
@@ -19,74 +19,192 @@ canonical: "/puppet/latest/reference/experiments_future.html"
 [file_mode]: /references/4.2.latest/type.html#file-attribute-mode
 [integer_bases]: ./lang_data_number.html#octal-and-hexadecimal-integers
 
-Over the course of the 3.x series, Puppet included work-in-progress releases of a rewritten Puppet language, which could be enabled with a setting. This revised language includes significant breaking changes, major additions, and a new underlying implementation.
-
-In Puppet 4.x, the rewritten language is the new normal. The new default parser is functionally identical to the future parser included with Puppet 3.7.5 and up.
-
-What's Cool About the Revised Puppet Language
------
-
-### Lambdas and Iteration
-
-Puppet now has iteration and looping features, which can help you write more succinct and readable code.
-
-For an introduction, see [the language page on iteration.][iteration]
-
-### Better Data Type Enforcement
-
-The revised language has a more consistent concept of data types now, and you can take advantage of it in several ways. It's now easier to [test what data type a value is][match_operator] and catch common errors early by [restricting allowed values for class/defined type parameters.][parameter_datatypes]
-
-For an introduction, see [the language page on data types.][data_types]
-
-### Cleaner and More Consistent Behavior
-
-The frustrations of [relative namespace lookup][relative_namespace] are gone. Most expressions with values work the same now, so the weird rules about where you can use a variable but not a function call are gone. A lot of edge cases have been cleaned up, and everything is just a lot nicer.
-
-### Templates in the Puppet Language
-
-Previously, [templates][] had to be written in [ERB][], which required knowing the Ruby language in addition to the Puppet language. Now, you can write templates in [EPP][], which is based on the Puppet language.
-
-[templates]: ./lang_template.html
-[erb]: ./lang_template_erb.html
-[epp]: ./lang_template_epp.html
 
 
-What's Tricky About Switching to the Revised Puppet Language
------
-
-The revised language includes breaking changes, and some of them might break your existing Puppet code or make it behave differently. Watch out for the following:
-
-### Check Your Comparisons
-
-The rules for comparing values with the [comparison operators][] have changed quite a bit, and some of the changes might reverse the results of comparisons in your code. So you'll want to check your `if`, `unless`, `case`, and selector expressions to see if you're relying on changed behavior.
-
-The most notable changes are:
-
-* The `in` operator now ignores case when comparing strings, same as the `==` operator.
-* You can't do relative comparisons with incompatible data types. For example, `"3" < 40` is now an error, because strings and numbers aren't the same anymore.
-* The rules for converting non-boolean values to boolean have changed. In Puppet 4, [`undef` converts to `false`][boolean_convert] and all other non-boolean values convert to `true`; in Puppet 3.x, [empty strings were also false.][boolean_convert_old]
+Several breaking changes were introduced in Puppet 4.x and your manifests will need to be updated to for the new implementation. This page helps to identify some of the steps necessary to update your manifest to be 4.x compatible.
 
 
-### Facts Can Have Additional Data Types
+## Make sure everything is in the right place
 
-Look for any place in your code that either _checks truth_ of a [fact][] or makes a numerical comparison with a fact, and make sure they're ready for Puppet 4.
+The locations of important config files and directories have changed. Read about [where everything went](where) to make sure your files are in the correct place before tackling updates to your manifest.
 
-This isn't strictly part of the Puppet language, but it's a related change.
+## Double-check to make sure it's safe before purging `cron` resources
 
-Old versions of Facter returned all facts as [strings][], but modern versions can return facts of many data types. Puppet will use the real fact data types if [the `stringify_facts` setting][stringify_facts] is set to `false`, which is the default in Puppet 4.0 and up.
+Previously, using the [resources]() resource to set `purge` to `true` for `cron` resources would only result in the purge of the current user performing the Puppet run's unmanaged cron jobs. [In Puppet 4](https://docs.puppetlabs.com/puppet/4.0/reference/release_notes.html_), this action is more aggressive and causes **all** unmanaged cron jobs to be purged.
 
-This is generally good, but a lot of older code assumes that "boolean" facts like `$is_virtual` are actually strings, using conditionals like `if $is_virtual == "true"`. If you enable multi-type facts, any conditionals that treat booleans like strings will silently change their behavior, which is super bad. You'll need to change these when migrating to Puppet 4.
+## Check your data types
+[Data types](http://docs.puppetlabs.com/puppet/4.2/reference/lang_data.html) have changed in a few ways.
 
-Most people will want a period of overlap, where their code can work in both Puppet 4 and Puppet 3. The safe and compatible way to handle boolean facts is to:
+### Numbers and Strings are different in the DSL
 
-* Interpolate the fact into a string (`"$is_virtual"`)...
-* ...then pass the string to [the stdlib `str2bool` function][str2bool] (`str2bool("$is_virtual")`).
+Previously, Puppet would convert everything to strings, and then attempt to convert numbers to numerics for the purpose of arithmetic and comparison (which, as you'll see, it will still attempt to do). In Puppet 4, numbers in the DSL are parsed and maintained internally as numbers, so the below are different:
 
-This will behave identically in new and old Puppet versions.
+	$port_a = 80   # Parsed and maintained as a number, errors if NOT a number
+	$port_b = '80' # Parsed and maintained as a string
+
+The difference now is that Puppet will STRICTLY enforce numerics and will throw errors if strings that begin with a number are not valid numbers.
+
+	node 1name {} # invalid because 1name is not a valid decimal number
+	notice(0xggg) # invalid because 0xggg is not a valid hexadecimal number
+	$a = 1 + 0789 # invalid because 0789 is not a valid octal number
+
+### Arithmetic expressions
+
+Mathematical equations still convert strings to numeric values using the prefixes 0, and 0x to determine if the number in string form is an octal or hex number.  An error is raised if either side in an arithmetic expression is not numeric or a string is not convertible to numeric.  For example:
+
+	$number = 40 + 50     # valid because both values are numeric
+	$another = 25 + '30'  # valid because '30' can be cast numerically
+	$nan = 40 + 0789      # invalid because 0789 isn't a valid octal number
+	$nanliu = 40 + '0789' # invalid because '0789' can't be cast numerically
+
+## Check your comparisons
+
+Comparison operations have changed in Puppet 4. Read about expressions and operators for the full details.
+
+### Regular expressions against non Strings
+
+Matching a value that is not a string with a regular expression now raises an error. In 3.x, other data types were converted to string form before matching with surprising and undefined results.
+
+	~~~
+	$securitylevel = 2
+
+	case $securitylevel {
+	  /[1-3]/: { notify { 'security low': } }
+	  /[4-7]/: { notify { 'security medium': } }
+	  default: { notify { 'security high': } }
+	}
+	~~~
+
+Prior to Puppet 4.0, the first regex would match, and the notify { 'security low': } resource would be put into the catalog.
+
+Now, in Puppet 4.0, neither of the regexes would match because the value of `$securitylevel` is an integer, not a string, and so the default condition would match, resulting in the inclusion of notify `{ 'security high': }` in the catalog.
+
+### Empty Strings in Boolean are `true`
+
+In previous versions of Puppet, an empty string was evaluated as a `false` boolean value. You would see this in variable and parameter default values where conditional checks would be used to determine if someone passed in a value or left it blank.
+
+~~~
+	class empty_string_defaults (
+	  $parameter_to_check = ''
+	) {
+	  if $parameter_to_check {
+	    $parameter_to_check_real = $parameter_to_check
+	  } else {
+	    $parameter_to_check_real = 'default value'
+	  }
+	}
+~~~
+
+Puppet's old behavior of evaluating the empty string as `false` would allow you to set the default based on a simple if-statement. In Puppet 4.x, this behavior is flipped and `$parameter_to_check_real` will be set to an empty string.
+
+You can check your existing codebase for this behavior with the [puppet-lint plugin](https://github.com/puppet-community/puppet-lint-empty_string-check).
+
+### The `in` operator is now specified
+
+The `in` operator works slightly differently and its behaviors are now better [defined in the documentation](http://docs.puppetlabs.com/puppet/latest/reference/lang_expressions.html#in).
+
+### Comparing data types
+
+Different [data types](http://docs.puppetlabs.com/puppet/4.2/reference/lang_data.html) can't be compared as if they're the same data type anymore.
+
+## Check single-quoted strings for double backslashes
+The `\\` escape now works properly. Previously, there was no way to end a single-quoted string with a backslash.
+
+This will change any existing that are supposed to have literal double backslashes in them. Read more about this behavior in the [Puppet Reference Manual](http://docs.puppetlabs.com/puppet/4.2/reference/lang_data_string.html#single-quoted-strings).
+
+## Names of variables, classes, functions, defined types, etc
+
+Naming conventions have changed and become more strict.
+
+* Capitalized bare words as un-quoted strings are no longer allowed.
+* Variables must not start with capital letters.
+* Classes, defined types, functions must not include hyphens or begin with digits.
+
+## Check for non-productive expressions
+
+Puppet 4.0.0 validates logic that has no effect and flags such expressions as being errors.
+
+An example of a non productive expression is:
+
+	if true { } # non productive
+	$a = 10
 
 
-### Quote Any Octal Numbers in File Modes
+The if expression produces undef, which is then thrown away. Note that expressions are never considered non-productive when they are the last in a sequence as that is also the value of the sequence. If code contains non-productive expression after being reviewed, simply remove them.
 
-Search your code for any use of [the `file` type's `mode` attribute,][file_mode] and make sure the mode is quoted. Unquoted numbers in the `mode` attribute will cause compilation errors in Puppet 4.
 
-We enabled integers in [octal and hexidecimal][integer_bases] bases as part of making data types more rigorous, and Puppet internally normalizes these numbers to decimal base. And since the `mode` attribute is actually just a string that's passed to the underlying operating system tools, a literal octal number would be converted into decimal before being converted to a string, which would result in something very unwanted. So Puppet 4 fails early if you do that, instead of doing anything weird.
+
+## Check for bare words that may now be reserved
+
+More reserved words were added in Puppet 4.0, so check the list to be sure you're not using any words that may now need to be quoted strings.
+
+## Check for excess spaces in hashes and arrays
+
+The space between a value and a left bracket is significant, and will output different results if there is a space.
+
+Bad:
+
+	$a [3]	# first the value of a, then a literal array with the single value 3 in it
+
+
+Good:
+
+	$a[3]	# index 3 in the array referenced by $a
+
+## Check for function calls without parentheses
+
+Only certain functions are allowed to be called without parentheses. Read the [documentation on functions](http://docs.puppetlabs.com/puppet/4.2/reference/lang_functions.html) to learn when parentheses can be omitted.
+
+## Check your regular expressions for correct syntax
+
+Puppet 4 bundles its own copy of Ruby 2.x, and the regex syntax is slightly different than Ruby 1.8.7, which you may have been running prior to upgrade. Because the two versions of Ruby use differing regex engines, your results may vary.
+
+## Check YAML files used by Hiera, etc for correct syntax
+
+If the Ruby version changed since upgrade, the yaml parser will be more strict. Ensure strings containing a % are quoted.
+
+## Check the `mode` attribute of any file resources
+
+The `mode` attribute of file resources must be strings. If you use an actual octal number, it will be converted to a decimal number, then converted back to a string representing the wrong number when it comes time to run the `chown` command.
+
+## Check for resources with `noop => true`
+
+In Puppet 4.0.0, resources with `noop` set to true are no longer enforced when being notified or when subscribed.
+
+## Check for removed things
+
+Several things were removed from Puppet 4, either because they did not have practical use cases and were not being used, or there was a better work around.
+
+### `import` statements and node inheritance
+
+Removal of `import` means you'll have to use a directory as your main manifest to recreate this functionality. Read the [Main Manifest](https://docs.puppetlabs.com/puppet/4.2/reference/dirs_manifest.html) page to learn more about this method.
+
+Node inheritance has also been removed. It is no longer possible to have node definitions that inherit from another node definition. Better results can be achieved using a combination of Hiera data and wrapper modules to construct system configurations.
+
+### Dynamic Scoping
+
+In Puppet 4.0, dynamic scoping has been removed from resource defaults and variables in ERB templates. The behavior of resource defaults has not been changed.
+
+	class outer {
+	  $var = 'dynamic'
+	  include inner
+	}
+
+	class inner {
+	  notice(inline_template('<%= @var %>'))
+	}
+
+	include outer
+
+Prior to Puppet 4.x, (dynamic versions) the value supplied to `notice()` will resolve to the string dynamic.
+
+Now, in Puppet 4.x, the value supplied to `notice()` will resolve to an empty string.
+
+### += and -=
+
+These operators have been removed. You can run the puppet-lint plugin to check your existing code base for them.
+
+### Modules using the Ruby DSL
+
+Finally, the long-deprecated Ruby DSL has been fully removed from Puppet.
+
