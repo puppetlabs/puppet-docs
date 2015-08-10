@@ -21,6 +21,8 @@ Follow the instructions below to quickly install a Puppet agent. A computer runn
 
 Instructions are available for [Windows](./install_windows.html) and [*nix](./install_linux.html) users.
 
+To learn how to get your Puppet master and agent(s) to communicate and ensure your Puppet master will receive certificates from its agents, follow the instructions in the [Master/Agent Communication Guide](./quick_start_master_agent_communication.html).
+
 ### 3. Hello, World!
 The instructions in [this guide](./quick_start_helloworld.html) lead you through the fundamentals of Puppet module writing. You'll write a very simple module that contains classes to manage your motd (message of the day) and create a Hello, World! notification on the command line.
 
