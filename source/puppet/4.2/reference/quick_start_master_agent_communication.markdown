@@ -18,11 +18,11 @@ This guide walks you through the process to make sure your Puppet master and age
 To make sure your Puppet master and agents communicate, set the `/etc/hosts` file on each so that they’re aware of each other. 
 First, use your text editor to open /etc/hosts on your Puppet master. Add each of your agents by IP address and name below the existing text. It should look something like this:
 
-192.168.33.11    agent1.example.com
+		192.168.33.11    agent1.example.com
 
 Next, add the name and IP address of your Puppet master to each of your Puppet agents. Use your text editor to open /etc/hosts from the CLI of your Puppet agent and add the IP address and name of your Puppet master below the existing text, as well as the alias `puppet`. It should look similar to this:
 
-192.168.33.10    puppet master.example.com
+		192.168.33.10    puppet master.example.com
 
 Repeat this step for all of your Puppet agents.
 
@@ -36,7 +36,7 @@ For your Puppet master to successful sign an agent certificate, the agent needs 
 
 From the CLI of your Puppet master, run:
 
-# iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 8140 -j ACCEPT
+		iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 8140 -j ACCEPT
 
 From the CLI of your Puppet agent, run `puppet agent -t`.
 
