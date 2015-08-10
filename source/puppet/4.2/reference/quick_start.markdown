@@ -34,7 +34,7 @@ Instructions are available specifically for [*nix](./quick_start_module_install_
 ### 5. Add Classes
 Follow these instructions to quickly add a class to your Puppet agent. The class you’ll install is derived from the module you installed in the module install QSG.
 
-Instructions are available for [*nix](./quick_start_adding_class_nix.html) users.
+Instructions are available for [*nix](./quick_start_adding_classes_nix.html) users.
 
 
 ### 6. Module Writing Quick Start Guide

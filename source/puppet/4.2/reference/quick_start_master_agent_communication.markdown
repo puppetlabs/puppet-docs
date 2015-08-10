@@ -43,3 +43,7 @@ From the CLI of your Puppet agent, run `puppet agent -t`.
 From your Puppet master, run `puppet cert list` and then `puppet cert sign <NAME>` to sign the certificate(s) of your Puppet agent(s).
 
 > That’s it! Your Puppet configuration is ready to go.
+
+--------
+
+Next: Return to the [Quick Start Guides](./quick_start.html) or get started with the [Hello World Guide](./quick_start_helloworld.html).
