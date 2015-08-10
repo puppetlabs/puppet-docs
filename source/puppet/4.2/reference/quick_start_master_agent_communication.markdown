@@ -22,7 +22,7 @@ First, use your text editor to open /etc/hosts on your Puppet master. Add each o
 
 Next, add the name and IP address of your Puppet master to each of your Puppet agents. Use your text editor to open /etc/hosts from the CLI of your Puppet agent and add the IP address and name of your Puppet master below the existing text, as well as the alias `puppet`. It should look similar to this:
 
-		192.168.33.10    puppet master.example.com
+		192.168.33.10    master.example.com puppet
 
 Repeat this step for all of your Puppet agents.
 
