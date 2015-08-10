@@ -65,8 +65,8 @@ This simplified exercise modifies a template from the Puppet Labs Apache module,
         # ************************************
 
 4. Collect the following facts about your agent node:
-   - on your Puppet agent, run `facter osfamily` (this returns your agent node's OS)
-   - on your Puppet agent, run `facter id` (this returns the id of the currently logged in user)
+   - on your Puppet agent, run `facter osfamily` (this [returns your agent node's OS](http://docs.puppetlabs.com/facter/3.0/core_facts.html#osfamily))
+   - on your Puppet agent, run `facter id` (this [returns the id of the currently logged in user](http://docs.puppetlabs.com/facter/3.0/core_facts.html#id))
 5. Edit the header of `_file_header.erb` so that it contains the following variables for Facter lookups:
 
         # ************************************
