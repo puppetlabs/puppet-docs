@@ -31,6 +31,7 @@ defaultnav:
   /learning: /_includes/learning_nav.html
   /mcollective: /_includes/mcollective_menu.html
   /mcollective1.2: /_includes/mcollective_1.2.html
+  /pe/2015.3: /pe/ankeny/_pe_toc.html
   /pe/2015.2: /pe/2015.2/_pe_toc.html
   /pe/3.8: /pe/3.8/_pe_toc.html
   /pe/3.7: /pe/3.7/_pe_toc.html
@@ -196,7 +197,11 @@ externalsources:
     repo: git@github.com:puppetlabs/pe-docs-private.git
     commit: origin/shallowgravy
     subdirectory: source
-
+  pe2015.3:
+    url: /pe/ankeny
+    repo: git@github.com:puppetlabs/pe-docs-private.git
+    commit: origin/ankeny
+    subdirectory: source
 
 symlink_latest:
   - puppet
