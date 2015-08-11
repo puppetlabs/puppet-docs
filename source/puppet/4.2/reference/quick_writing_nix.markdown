@@ -174,7 +174,7 @@ You have created a new class from scratch and used it to launch a Apache PHP-bas
 
 1. **On the Puppet agent**, open `/var/www/puppet_quickstart_app/index.php`, and change the content to something like, "THIS APP IS MANAGED BY PUPPET!"
 2. Refresh your browser, and notice that the PHP info page has been replaced with your new message.
-3. Run `puppet agent -t --onetime` on your Puppet agent.
+3. Run `puppet agent -t --onetime` on your Puppet agent. For more information on Puppet agent options, check out [the Puppet agent man page](https://docs.puppetlabs.com/references/4.stable/man/agent.html).
 4. Refresh your browser, and notice that Puppet has reset your web app to display the PHP info page. (You can also see that the contents of `/var/www/puppet_quickstart_app/index.php` has been reset to what was specified in your manifest.)
 
 ## Using a Site Module
