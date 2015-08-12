@@ -42,6 +42,92 @@ We always recommend that you **upgrade your Puppet master servers before upgradi
 
 If you're upgrading from Puppet 2.x, please [learn about major upgrades of Puppet first!][upgrade] We have important advice about upgrade plans and package management practices. The short version is: test first, roll out in stages, give yourself plenty of time to work with. Also, read the [release notes for Puppet 3][puppet_3] for a list of all the breaking changes made between the 2.x and 3.x series.
 
+## Puppet 3.8.2
+
+Released August 6, 2015.
+
+Puppet 3.8.2 is a maintenance (bug fix) release to improve forward compatibility for users upgrading to the Puppet 4.x series.
+
+* [All fixes for Puppet 3.8.2](https://tickets.puppetlabs.com/issues/?filter=15207)
+* [Introduced in Puppet 3.8.2](https://tickets.puppetlabs.com/issues/?filter=15208)
+
+
+### Deprecation: New Reserved Words
+
+To prepare for new features in the 4.x series, the bare words 'application', 'consumes', and 'produces' have been made into reserved words when using the future parser. A warning is issued when they are used. These words should now be quoted if a string is wanted.
+
+* [PUP-4941: Reserve keywords 'application', 'consumes', and 'produces'](https://tickets.puppetlabs.com/browse/PUP-4941)
+
+### Security Update: Windows
+
+We updated the version of OpenSSL in Windows packages to 1.0.0s to address recent CVEs.
+
+* [PUP-5007: Put openssl 1.0.0s into Windows FOSS release (3.x)](https://tickets.puppetlabs.com/browse/PUP-5007)
+
+### Performance Improvements
+
+Optimized the future_parser checks by reducing the number of calls from once per copied resource attribute, to once per resource. This improvement affects all users irrespective of if running with parser = future or not.
+
+* [PUP-4703: Optimize future_parser? checks for faster catalog production](https://tickets.puppetlabs.com/browse/PUP-4703)
+
+When puppet forks (e.g. for a daemonized agent) it could leak file descriptors (with an fd > 255). It could also be slow. Both of those are addressed by this change.
+
+* [PUP-4751: Optimize & Secure safe_posix_fork](https://tickets.puppetlabs.com/browse/PUP-4751)
+
+### Bug Fixes: Future Parser
+
+Along with performance improvements, this release addresses several bug fixes in the future parser.
+
+* [PUP-4648: Problem of indentation with epp()](https://tickets.puppetlabs.com/browse/PUP-4648) - Trimming too much white space caused loss of expected indentations.
+* [PUP-4662: EPP template can't explicitly access top scope variables if there's no node definition in the scope chain](https://tickets.puppetlabs.com/browse/PUP-4662)
+* [PUP-4753: cannot call 4.x functions from 3.x function ERB templates](https://tickets.puppetlabs.com/browse/PUP-4753) - By adding a method to the scope named `call_function`, a user can agnostically call a 3.x or 4.x function. Arguments are given in an Array, and it accepts a ruby block (to enable calling 4.x iterative functions).
+* [PUP-4789: hiera_include does not have access to variables from node scope when future parser is enabled](https://tickets.puppetlabs.com/browse/PUP-4789) - Instead of hiera_include, use include hiera_array('classes') as the problem is with the 'include' functionality inside of hiera_include.
+* [PUP-4752: Uppercase letters in parameter variable names](https://tickets.puppetlabs.com/browse/PUP-4752) - More strict name verification of parameters, similar to Puppet 4.x.
+* [PUP-4826: meaning of Integer[0] different in a ruby function](https://tickets.puppetlabs.com/browse/PUP-4826)
+* [PUP-4848: Global parser = future with environment.conf parser = current gives an error](https://tickets.puppetlabs.com/browse/PUP-4848)
+* [PUP-4668: cannot create a define named something that starts with 'class'](https://tickets.puppetlabs.com/browse/PUP-4668) - This can be worked around by giving the reference as a string instead of as a type.
+
+### Bug Fixes: Resource Types and Providers
+
+Since the password provider is only intended for use on BSD operating systems, it should use confine to prevent accidental activation on non-BSD systems. Linux was particularly susceptible to this, as there are no default providers declared for that platform.
+
+* [PUP-4693: The pw provider for users and groups should be confined to freeBSD](https://tickets.puppetlabs.com/browse/PUP-4693)
+* [PUP-3166: Debian service provider on docker with insserv (dep boot sequencing)](https://tickets.puppetlabs.com/browse/PUP-3166)
+
+### Bug Fixes: Misc
+
+* [PUP-4196: agent command line options ignored running under systemd](https://tickets.puppetlabs.com/browse/PUP-4196)
+
+Having `{}` around variables in a systemd service file makes systemd treat it as a single argument, which breaks when used for something like `PUPPET_EXTRA_OPS` in the puppet agent and server systemd files. When passing more than one argument in using that variable, systemd would treat it as a single variable, which Puppet would ignore as invalid. Removing the `{}` from the variable addresses this issue. This was fixed in Puppet 4, and this ticket backported the fix to 3.x.
+
+* [PUP-3088: Debug logging messages can't be used by providers with a "path" method](https://tickets.puppetlabs.com/browse/PUP-3088)
+* [PUP-4665: Puppet::Parser::Scope has no inspect method which is causing an extremely large string to be produced](https://tickets.puppetlabs.com/browse/PUP-4665)
+* [PUP-4810: Puppet caches parse results when environment_timeout is set to 0](https://tickets.puppetlabs.com/browse/PUP-4810)
+* [PUP-4854: PMT fails to install modules on Windows that have long paths](https://tickets.puppetlabs.com/browse/PUP-4854)
+
+PMT fails on long Windows paths - For modules that install on Windows and use a long hierarchical directory structure, the default TEMP path where PMT extracts the modules tarball can be problematic. Windows has a default maximum path length of 260 characters (MAX_PATH).
+
+By default, the extracted temp location looks like:
+
+~~~
+C:\ProgramData\PuppetLabs\puppet\cache\puppet-module\cache\tmp-unpackerYYYYMMDD-XXXX-xxxxxxx
+~~~
+
+The default install location of a puppet 4.0+ module is:
+
+~~~
+C:\ProgramData\PuppetLabs\code\environments\production\modules
+~~~
+
+In using the Temp directory instead we allow for longer path names in the modules. Instead of using over 90 characters before the module path, we only use around 60, allowing for longer module paths during unpacking.
+
+
+### Bug Fixes: HTTP API
+
+* [PUP-4747: resource_types response has AST for parameters' default values](https://tickets.puppetlabs.com/browse/PUP-4747)
+
+
+
 
 ## Puppet 3.8.1
 

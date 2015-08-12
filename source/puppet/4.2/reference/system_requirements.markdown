@@ -43,7 +43,7 @@ Puppet 4.2 and all of its prerequisites will run on the following platforms, and
 
 ### Mac OS X
 
-- A package for Mac OS X, version 10.9 (Mavericks) and higher will be available at a later date.
+{% include pup40_platforms_osx.markdown %}
 
 Platforms Without Packages
 -----

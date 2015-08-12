@@ -44,23 +44,23 @@ $binaries.each |String $binary| {
 The general form of a lambda is:
 
 * A **parameter list.** (Mandatory, but can be empty.) This consists of:
-    * An opening pipe character (`|`)
+    * An opening pipe character (`|`).
     * A comma-separated list of zero or more **parameters** (e.g. `String $myparam = "default value"`). Each parameter consists of:
-        * An optional [data type][literal_types], which restricts the values it allows (defaults to `Any`)
-        * A [variable][] name to represent the parameter, including the `$` prefix
-        * An optional equals (`=`) sign and **default value**
+        * An optional [data type][literal_types], which restricts the values it allows (defaults to `Any`).
+        * A [variable][] name to represent the parameter, including the `$` prefix.
+        * An optional equals (`=`) sign and **default value.**
     * Optionally, another comma and an **extra arguments parameter** (e.g. `String *$others = ["default one", "default two"]`), which consists of:
-        * An optional [data type][literal_types], which restricts the values allowed for extra arguments (defaults to `Any`)
-        * An asterisk (AKA "splat") character (`*`)
-        * A [variable][] name to represent the parameter, including the `$` prefix
+        * An optional [data type][literal_types], which restricts the values allowed for extra arguments (defaults to `Any`).
+        * An asterisk (AKA "splat") character (`*`).
+        * A [variable][] name to represent the parameter, including the `$` prefix.
         * An optional equals (`=`) sign and **default value,** which can be:
-            * One value that matches the specified data type
-            * An array of values that all match the data type
-    * An optional trailing comma after the last parameter
-    * A closing pipe character (`|`)
-* An opening curly brace
-* A block of arbitrary Puppet code
-* A closing curly brace
+            * One value that matches the specified data type.
+            * An array of values that all match the data type.
+    * An optional trailing comma after the last parameter.
+    * A closing pipe character (`|`).
+* An opening curly brace.
+* A block of arbitrary Puppet code.
+* A closing curly brace.
 
 
 ## Parameters and Variables
@@ -103,10 +103,10 @@ Much like a [defined type][], a lambda delays evaluation of the Puppet code it c
 
 Unlike defined types, lambdas aren't directly invoked by a user. The user provides a lambda to some _other_ piece of code (a function), and _that_ code gets to decide:
 
-* Whether (and when) to call/evaluate the lambda
-* How many times to call it
-* What values its parameters should have
-* What to do with any values it produces (see [Lambda-Produced Values][inpage_values] below)
+* Whether (and when) to call/evaluate the lambda.
+* How many times to call it.
+* What values its parameters should have.
+* What to do with any values it produces (see [Lambda-Produced Values][inpage_values] below).
 
 Some functions can call a single lambda multiple times, providing different parameter values each time. For info on how a particular function uses its lambda, see its documentation.
 
@@ -135,7 +135,7 @@ This uniqueness requirement is [similar to defined types][define_unique], which 
 
 Every time a lambda is called, it produces a value, which is the value of the last expression in the code block.
 
-The function that calls the lambda has access to this value, and but not every function will do something with it. Some functions will return it, some will transform it, some will ignore it, and some will use it to do something else entirely.
+The function that calls the lambda has access to this value, but not every function will do something with it. Some functions will return it, some will transform it, some will ignore it, and some will use it to do something else entirely.
 
 For example:
 

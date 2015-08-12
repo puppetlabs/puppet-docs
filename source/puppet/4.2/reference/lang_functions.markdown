@@ -40,7 +40,7 @@ Function calls can also stand on their own, which will cause their value to be i
 Syntax
 -----
 
-There are two ways to call functions in the Puppet language: classic **prefix calls** like `template("ntp/ntp.conf")`, and **chained calls** like `"ntp/ntp.conf".template`. There's also a modified form of prefix call that can only be used with certain functions.
+There are two ways to call functions in the Puppet language: classic **prefix calls** like `template("ntp/ntp.conf.erb")`, and **chained calls** like `"ntp/ntp.conf.erb".template`. There's also a modified form of prefix call that can only be used with certain functions.
 
 ### Choosing a Call Style
 
@@ -66,7 +66,7 @@ You can call a function by writing its name and providing a list of arguments in
 ~~~ ruby
 file {"/etc/ntp.conf":
   ensure  => file,
-  content => template("ntp/ntp.conf"), # function call; resolves to a string
+  content => template("ntp/ntp.conf.erb"), # function call; resolves to a string
 }
 
 include apache # function call; modifies catalog
@@ -90,7 +90,7 @@ each($binaries) |$binary| {
 ~~~
 
 {% capture about_examples %}
-In the examples above, [`template`][template], [`include`][include], and [`each`][each] are all functions. `template` is used for is return value, `include` adds a class to the catalog, and `each` runs a block of code several times with different values.
+In the examples above, [`template`][template], [`include`][include], and [`each`][each] are all functions. `template` is used for its return value, `include` adds a class to the catalog, and `each` runs a block of code several times with different values.
 {% endcapture %}
 
 {{ about_examples }}
@@ -116,7 +116,7 @@ You can also call a function by writing its first argument, a period, and the na
 ~~~ ruby
 file {"/etc/ntp.conf":
   ensure  => file,
-  content => "ntp/ntp.conf".template, # function call; resolves to a string
+  content => "ntp/ntp.conf.erb".template, # function call; resolves to a string
 }
 
 apache.include # function call; modifies catalog
