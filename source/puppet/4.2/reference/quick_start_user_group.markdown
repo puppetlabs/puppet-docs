@@ -1,11 +1,15 @@
 ---
 layout: default
-title: "Quick Start » Creating Users  and Groups "
-subtitle: "Users and Groups  Quick Start Guide"
+title: "Quick Start » Creating Users and Groups "
+subtitle: "Users and Groups Quick Start Guide"
 canonical: "/puppet/latest/quick_start_user_group.html"
 ---
 
- ## Before you begin 
+## Before you begin 
+
+> **Prerequisites**: This guide assumes you've already [installed Puppet](https://docs.puppetlabs.com/puppetserver/2.1/install_from_packages.html), and have installed at least one [*nix agent node](https://docs.puppetlabs.com/puppet/4.2/reference/install_linux.html).
+
+> Before starting this walk-through, complete the [Hello World](./quick_start_helloworld) exercise in the [introductory quick start guide](./quick_start.html). You should still be logged in as root or administrator on your nodes.
 
 > For this  walk-through, log in as root or administrator on your nodes.
 
@@ -91,3 +95,6 @@ Puppet uses some defaults for unspecified user and group attributes, so all you'
 > Success! You have created a user, `jargyle`, and added jargyle to the group with `groups => web`. 
 > For more information on users and groups, check out the documentation for Puppet resource types regarding [users](https://docs.puppetlabs.com/references/latest/type.html#user) and [groups](https://docs.puppetlabs.com/references/latest/type.html#group).
 > With users and groups, you can assign different permissions for managing Puppet. 
+
+---------
+Next: [Hello, World!](./quick_start_helloworld.html)
