@@ -1,52 +1,50 @@
 ---
 layout: default
-title: "Quick Start » Creating User and Group"
-subtitle: "User/Group Quick Start Guide"
+title: "Quick Start » Creating Users  and Groups "
+subtitle: "Users and Groups  Quick Start Guide"
 canonical: "/puppet/latest/quick_start_user_group.html"
 ---
 
-Intro
+ ## Before you begin 
 
-> For this walkthrough, you should be logged in as root or administrator on your nodes.
+> For this  walk-through, log in as root or administrator on your nodes.
 
-## Create the User and Group
+## Create a User and Group
 
 Puppet uses some defaults for unspecified user and group attributes, so all you'll need to do to create a new user and group is set the 'ensure' attribute to 'present'. This 'present' value tells Puppet to check if the resource exists on the system, and to create the specified resource if it does not.
 
-1. On your Puppet master, run `puppet apply -e "user { 'jargyle': ensure => present, }"`. The result should show, in part, `Notice: /Stage[main]/Main/User[jargyle]/ensure: created`.
+1.  To create a user named `jargyle`, on your Puppet master, run `puppet apply -e "user { 'jargyle': ensure => present, }"`. The result should show, in part, `Notice: /Stage[main]/Main/User[jargyle]/ensure: created`.
 
-2. On your Puppet master, run `puppet apply -e "group { 'web': ensure => present, }"`. The result should show, in part, `Notice: /Stage[main]/Main/Group[web]/ensure: created`.
+2.  To create a group named `web`, on your Puppet master, run `puppet apply -e "group { 'web': ensure => present, }"`. The result should show, in part, `Notice: /Stage[main]/Main/Group[web]/ensure: created`.
 
 > That's it! You've successfully created the Puppet user `jargyle` and the Puppet group `web`. 
 
 ## Add the Group to the Main Manifest
 
-(Intro)
-
-1. From the CLI of your Puppet master, run `puppet resource -e group web`. It should return the following Puppet code in the form of a file in your text editor:
+1. From the command line on your Puppet master, run `puppet resource -e group web`. This opens a file in your text editor with the following content:
 
 			group { 'web':
   			  ensure => 'present',
   			  gid    => '502',
 			}
 			
-	>**Note**: Your GID (the group ID) may not be the exact same number shown in this guide.
+	>**Note**: Your gid (the group ID) might be a different number than the example shown in this guide.
 			
-2. Copy the code, then save and exit the file.
+2. Copy the lines of code, and save and exit the file.
 
-3. Navigate to your main manifest (`cd /etc/puppetlabs/code/environments/production/manifests`).
+3. Navigate to your main manifest: `cd /etc/puppetlabs/code/environments/production/manifests`.
 
-4. Paste the code you got from running `puppet resource -e group web` into the default node of `site.pp`, then save and exit.
+4. Still using the Puppet master, paste the code you got from Steps 1 and 2 into the default node `site.pp`, then save and exit.
 
-5. From the CLI of your Puppet master, run `puppet parser validate site.pp` to ensure that there are no errors. The parser will return nothing if there are no errors. 
+5. From the command line on your Puppet master, run `puppet parser validate site.pp` to ensure that there are no errors. The parser will return nothing if there are no errors. 
 
-6. From the CLI of your Puppet agent, use `puppet agent -t` to trigger a Puppet run.
+6. From the command line on your Puppet agent, use `puppet agent -t` to trigger a Puppet run.
 
 > That's it! You've successfully added your group, `web`, to the main manifest.
 
 ## Add the User to the Main Manifest
 
-1. From the CLI of your Puppet master, run `puppet resource -e user jargyle`. It should return the following Puppet code in the form of a file in your text editor:
+1. From the command line on your Puppet master, run `puppet resource -e user jargyle`. This opens a file in your text editor with the following content:
 
 			user { 'jargyle':
  			  ensure           => 'present',
@@ -59,20 +57,20 @@ Puppet uses some defaults for unspecified user and group attributes, so all you'
 			  uid              => '501',
 			}
 
-	>**Note**: Your uid (the user ID), or gid (the group ID) may not be the exact same number shown in this guide.
+	>**Note**: Your uid (the user ID), or gid (the group ID) might be different numbers than the examples shown in this guide.
 
-8. Edit the file by adding the following Puppet code to it:
+8. Add the following Puppet code to the file:
 
 			comment           => 'Judy Argyle',
 			groups            => 'web',
 
-9. **Delete** the following Puppet code from the jargyle user:
+9. **Delete** the following Puppet code from the file:
 
 			  gid              => '501',
 		
-10. Copy all of the code, then save and exit the file.
+10. Copy all of the code, and save and exit the file.
 
-11. Paste the code you got after editing `puppet resource -e user jargyle` into your default node in `site.pp`. It should look like this:
+11. Paste the code from Step 10 into your default node in `site.pp`. It should look like this:
 
 			user { 'jargyle':
  			  ensure           => 'present',
@@ -86,10 +84,10 @@ Puppet uses some defaults for unspecified user and group attributes, so all you'
 			  uid              => '501',
 			}
 
-12. From the CLI of your Puppet master, run `puppet parser validate site.pp` to ensure that there are no errors. The parser will return nothing if there are no errors. 
+12. From the command line on your Puppet master, run `puppet parser validate site.pp` to ensure that there are no errors. The parser will return nothing if there are no errors. 
 
-13. From the CLI of your Puppet agent, use `puppet agent -t` to trigger a Puppet run.
+13. From the command line on your Puppet agent, use `puppet agent -t` to trigger a Puppet run.
 
 > Success! You have created a user, `jargyle`, and added jargyle to the group with `groups => web`. 
-
-(Final notes)
+> For more information on users and groups, check out the documentation for Puppet resource types regarding [users](https://docs.puppetlabs.com/references/latest/type.html#user) and [groups](https://docs.puppetlabs.com/references/latest/type.html#group).
+> With users and groups, you can assign different permissions for managing Puppet. 

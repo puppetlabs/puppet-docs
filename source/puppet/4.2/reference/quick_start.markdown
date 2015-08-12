@@ -5,42 +5,42 @@ subtitle: "Open Source Puppet Quick Start Guide Series: 3.8.0"
 canonical: "/puppet/latest/quick_start.html"
 ---
 
-Welcome to the Open Source Puppet Quick Start Guide. Whether you’re setting up a Puppet installation for actual deployment or want to learn some fundamentals of configuration management with Open Source Puppet, this series of guides provides the steps you need to get up and running relatively quickly. We’ll walk you through Puppet installation and show you how to automate some basic tasks that sysadmins regularly perform.
+Welcome to the Open Source Puppet Quick Start Guide. Whether you’re setting up a Puppet installation for a real deployment or simply want to learn some fundamentals of configuration management with Open Source Puppet, this series of guides provides the steps you need to get up and running relatively quickly. We’ll walk you through Puppet installation and show you how to automate some basic tasks that sysadmins regularly perform.
 
 The following guides present tasks in the order that you would most likely perform them. See the prerequisite sections in each guide to ensure you have the correct setup to perform the steps as they're provided:
 
 ### 1. Perform Pre-Install Tasks
-Follow [these instructions](./install_pre.html) to ensure you meet the system requirements for Puppet, designate servers, decide on a deployment type, and more.
+Follow [these instructions](./install_pre.html) to ensure you meet the system requirements for Puppet, to designate servers, to decide on a deployment type, and more.
 
 ### 2. Install Puppet
-Next, you'll be installing and configuring your Puppet master and agents. 
+Next, you'll install and configure your Puppet master and agents. 
 
-Follow [these instructions](http://docs.puppetlabs.com/puppetserver/2.1/install_from_packages.html) to quickly install and configure your Puppet Server.
+ A computer that runs the Puppet Server is called the "master." Follow [these instructions](http://docs.puppetlabs.com/puppetserver/2.1/install_from_packages.html) to install and configure Puppet Server.
 
-Follow the instructions below to quickly install a Puppet agent. A computer running the Puppet agent is often referred to as an “agent node”. The Puppet agent regularly pulls configuration catalogs from a Puppet master and applies them to the local system.
+A computer that runs the Puppet agent is called an "agent node". The Puppet agent regularly pulls configuration catalogs from a master and applies them to the local system.
 
-Instructions are available for [Windows](./install_windows.html) and [*nix](./install_linux.html) users.
+ Follow these instructions to install a Puppet agent on [Windows](./install_windows.html) or [*nix](./install_linux.html).
 
-To learn how to get your Puppet master and agent(s) to communicate and ensure your Puppet master will receive certificates from its agents, follow the instructions in the [Master/Agent Communication Guide](./quick_start_master_agent_communication.html).
+To learn how to get your Puppet master and agents to communicate with each other and to ensure your Puppet master will receive certificates from its agents, follow the instructions in the [Master/Agent Communication Quick Start Guide](./quick_start_master_agent_communication.html).
 
 ### 3. Hello, World!
-The instructions in [this guide](./quick_start_helloworld.html) lead you through the fundamentals of Puppet module writing. You'll write a very simple module that contains classes to manage your motd (message of the day) and create a Hello, World! notification on the command line.
+ Modules contain [classes](./puppet/3.8/reference/lang_classes.html), which are named chunks of Puppet code and are the primary means by which Puppet configures and manages nodes. The instructions in the [Hello World! Quick Start Guide](./quick_start_helloworld.html) lead you through the fundamentals of Puppet module writing. You'll write a very simple module that contains classes to manage your message of the day (motd) and create a Hello, World! notification on the command line.
 
 ### 4. Install a Module
-Follow these instructions to install a Puppet Labs module. Modules contain [classes](./puppet/3.8/reference/lang_classes.html), which are named chunks of Puppet code and are the primary means by which Puppet configures and manages nodes.
+ Next, learn how to install a Puppet Labs module by following the [Module Installation Quick Start Guide](./quick_start_module_install_nix.html). 
 
-Instructions are available specifically for [*nix](./quick_start_module_install_nix.html) users, but the installation process is the same for both Windows and *nix.
+ The instructions are written specifically for *nix, but the installation process is the same for Windows.
 
 ### 5. Add Classes
-Follow these instructions to quickly add a class to your Puppet agent. The class you’ll install is derived from the module you installed in the module install QSG.
+Follow the [Adding Classes Quick Start Guide](./quick_start_adding_classes_nix.html) to add a class to your module. The class you’ll install is derived from the module you installed in the Module Installation Quick Start Guide.
 
-Instructions are available for [*nix](./quick_start_adding_classes_nix.html) users.
+Instructions are available for *nix only.
 
 
-### 6. Module Writing Quick Start Guide
-Follow these instructions for exercises in writing modules to help you become more familiar with Puppet modules and module development.
+### 6. Write Modules 
+Follow the [Writing Modules Quick Start Guide](./quick_writing_nix.html) for exercises in writing modules to help you become more familiar with Puppet modules and module development.
 
-Instructions are available for [*nix](./quick_writing_nix.html) users.
+Instructions are available for *nix only.
 
 
 
