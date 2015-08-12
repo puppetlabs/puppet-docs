@@ -12,32 +12,23 @@ canonical: "/puppet/latest/quick_start_sudo.html"
 
 Welcome to the Open Source Puppet Sudo Users Quick Start Guide. This document provides instructions for getting started managing sudo privileges across your Puppet deployment, using a module from the Puppet Forge in conjunction with a simple module you will write.
 
-In most cases, you want to manage sudo on your agent nodes to control which system users have access to elevated privileges. Using this guide, you will:
+In most cases, managing sudo on your agents involves controlling which users have access to elevated privileges. Using this guide, you will learn how to do the following tasks: 
 
-* [install the saz-sudo module as the foundation for your management of sudo privileges](#install-the-saz-sudo-module).
-* [write a simple module that contains a class called `privileges` to manage a resource that sets privileges for certain users, which will be managed by the saz-sudo module](#write-the-privileges-class).
-* [use the main manifest to add classes from the privileges and sudo modules to your agent nodes](#use-the-main-manifest-to-add-the-privileges-and-sudo-classes).
+* [Install the `saz-sudo` module as the foundation for managing sudo privileges](#install-the-saz-sudo-module).
+* [Write a simple module that contains a class called `privileges` to manage a resource that sets privileges for certain users, which will be managed by the `saz-sudo` module](#write-the-privileges-class).
+* [Add classes from the privileges and sudo modules to your agents](#use-the-main-manifest-to-add-the-privileges-and-sudo-classes).
 
-> Before starting this walkthrough, you might want to complete the previous exercises in the [essential configuration tasks](./quick_start_essential_config.html). For this walkthrough, you should be logged in as root or administrator on your nodes.
+> Before starting this walk-through, complete the previous exercises in the [essential configuration tasks](./quick_start_essential_config.html). Log in as root or administrator on your nodes.
 
-## Install Puppet and the Puppet Agent
+> **Prerequisites**: This guide assumes you've already [installed Puppet](https://docs.puppetlabs.com/puppetserver/2.1/install_from_packages.html), and have installed at least one [*nix agent](https://docs.puppetlabs.com/puppet/4.2/reference/install_linux.html).
 
-If you haven't already done so, you'll need to get Puppet installed. See the [system requirements][sys_req] for supported platforms.
+>**Note**: You can add the sudo and privileges classes to as many agents as needed, although we describe only one for ease of explanation. 
 
-1. [Download and verify the appropriate package][downloads].
-2. Refer to the [installation overview][install_overview] to determine how you want to install Puppet, and then follow the instructions provided.
-3. Refer to the [agent installation instructions][agent_install] to determine how you want to install your Puppet agent(s), and then follow the instructions provided.
-4. Follow the [Quick Start Guide for Users and Groups](./quick_start_user_group) to set up your `jargyle` user and `web` group.
+## Install the `saz-sudo` Module
 
->**Tip**: Follow the instructions in the [NTP Quick Start Guide](./quick_start_ntp.html) to have Puppet ensure time is in sync across your deployment.
+The `saz-sudo` module, available on the Puppet Forge, is one of many modules written by a member of the Puppet user community.  You can learn more about the module by visiting [http://forge.puppetlabs.com/saz/sudo](http://forge.puppetlabs.com/saz/sudo).
 
->**Note**: You can add the sudo and privileges classes to as many agents as needed, although we may only reference one for ease of explanation. 
-
-## Install the saz-sudo Module
-
-The saz-sudo module, available on the Puppet Forge, is one of many modules written by a member of the Puppet user community.  You can learn more about the module by visiting [http://forge.puppetlabs.com/saz/sudo](http://forge.puppetlabs.com/saz/sudo).
-
-**To install the saz-sudo module**:
+**To install the `saz-sudo` module**:
 
 As the root user on the Puppet master, run `puppet module install saz-sudo`.
 
@@ -50,31 +41,31 @@ You should see output similar to the following:
         └── saz-sudo (v2.3.6)
               └── puppetlabs-stdlib (3.2.2) [/opt/puppet/share/puppet/modules]
 
-> That's it! You've just installed the saz-sudo module.
+> That's it! You've just installed the `saz-sudo` module.
 
 ## Write the `privileges` Class
 
-Some modules can be large, complex, and require a significant amount of trial and error as you create them, while others often work "right out of the box." This module will be a very simple module to write: it contains just one class.
+Some modules can be large, complex, and require a significant amount of trial and error as you create them, while others often work right out of the box. This module will be a very simple module to write. It contains just one class.
 
 > ### A Quick Note about Modules Directories
 >
->The first thing to know is that, by default, the modules you use to manage nodes are located in `/etc/puppetlabs/puppet/environments/production/modules`---this includes modules installed by Puppet, those that you download from the Forge, and those you write yourself.
+>By default, the modules you use to manage nodes are located in `/etc/puppetlabs/puppet/environments/production/modules`. This includes modules installed by Puppet, those that you download from the Forge, and those you write yourself.
 >
->**Note**: Puppet also installs modules in `/opt/puppet/share/puppet/modules`, but don’t modify anything in this directory or add modules of your own to it.
+> **Note**: Puppet also checks the path `/opt/puppet/share/puppet/modules` for modules, but don’t modify anything in this directory or add modules of your own to it.
 >
 >There are plenty of resources about modules and the creation of modules that you can reference. Check out [Modules and Manifests](./puppet_modules_manifests.html), the [Beginner's Guide to Modules](/guides/module_guides/bgtm.html), and the [Puppet Forge](https://forge.puppetlabs.com/).
 
 Modules are directory trees. For this task, you'll create the following files:
 
- - `privileges` (the module name)
+ - `privileges/` (the module name)
    - `manifests/`
       - `init.pp` (contains the `privileges` class)
 
 **To write the `privileges` class**:
 
-1. From the command line on the Puppet master, navigate to the modules directory (`cd /etc/puppetlabs/code/environments/production/modules`).
+1. From the command line on the Puppet master, navigate to the modules directory: `cd /etc/puppetlabs/code/environments/production/modules`.
 2. Run `mkdir -p privileges/manifests` to create the new module directory and its manifests directory.
-3. From the `manifests` directory, use your text editor to create the `init.pp` file, and edit it so it contains the following Puppet code.
+3. From the `manifests` directory, use your text editor to create the `init.pp` file, and edit it so it contains the following Puppet code:
 
         class privileges {
         
@@ -87,15 +78,15 @@ Modules are directory trees. For this task, you'll create the following files:
 
 5. Save and exit the file.
 
-> That's it! You've written a module that contains a class that, once applied, ensures that your agent nodes have the correct sudo privileges set for the root user and the “admin” and “wheel” groups.
+> That's it! You've written a module that contains a class that, once applied, ensures that your agents have the correct sudo privileges set for the root user and the “admins” and “wheel” groups.
 >
 > Note the following about the resource in the `privileges` class:
 >
-> * `sudo::conf ‘admins’`: Create a sudoers rule to ensure that members of the admin group have the ability to run any command using sudo. This resource creates configuration fragment file to define this rule in `/etc/sudoers.d/`. It will be called something like `10_admins`.
+> * The `sudo::conf ‘admins’` line creates a sudoers rule to ensure that members of the `admins` group have the ability to run any command using sudo. This resource creates configuration fragment file to define this rule in `/etc/sudoers.d/`. It will be called something like `10_admins`.
 
-## Use the Main Manifest to Add the Privileges and Sudo Classes
+## Add the Privileges and Sudo Classes
 
-1. From the command line on the Puppet master, navigate to the main manifest (`cd /etc/puppetlabs/code/environments/production/manifests`).
+1. From the command line on the Puppet master, navigate to the main manifest: `cd /etc/puppetlabs/code/environments/production/manifests`.
 2. Open `site.pp` with your text editor and add the following Puppet code to the `default` node:
 
 			class { 'sudo': }
@@ -112,21 +103,21 @@ Modules are directory trees. For this task, you'll create the following files:
 
 3. Save and exit the file.
 
-4. From the CLI of your Puppet master, run `puppet parser validate site.pp` to ensure that there are no errors. The parser will return nothing if there are no errors.
+4. From the command line on your Puppet master, run `puppet parser validate site.pp` to ensure that there are no errors. The parser will return nothing if there are no errors.
 
-5. From the CLI of your Puppet agent, use `puppet agent -t` to trigger a Puppet run.
+5. From the command line on your Puppet agent, run `puppet agent -t` to trigger a Puppet run.
 
 > That's it! You have successfully installed the Sudo module and applied privileges and classes to it. 
 >
 > Note the following about your new resources in the `site.pp` file:
 >
-> * `sudo::conf ‘web’`: Create a sudoers rule to ensure that members of the web group have the ability to run any command using sudo. This resource creates configuration fragment file to define this rule in `/etc/sudoers.d/`.
+> * `sudo::conf ‘web’`: Creates a sudoers rule to ensure that members of the web group have the ability to run any command using sudo. This resource creates a configuration fragment file to define this rule in `/etc/sudoers.d/`.
 >
-> * `sudo::conf ‘admins’`: Create a sudoers rule to ensure that members of the admin group have the ability to run any command using sudo. This resource creates configuration fragment file to define this rule in `/etc/sudoers.d/`. It will be called something like `10_admins`.
+> * `sudo::conf ‘admins’`: Creates a sudoers rule to ensure that members of the admins group have the ability to run any command using sudo. This resource creates a configuration fragment file to define this rule in `/etc/sudoers.d/`. It will be called something like `10_admins`.
 >
-> * `sudo::conf ‘jargyle’`: Create a sudoers rule to ensure that the user jargyle has the ability to run any command using sudo. This resource creates a configuration fragment to define this rule in `/etc/sudoers.d/`. It will be called something like `60_jargyle`.
+> * `sudo::conf ‘jargyle’`: Creates a sudoers rule to ensure that the user `jargyle` has the ability to run any command using sudo. This resource creates a configuration fragment to define this rule in `/etc/sudoers.d/`. It will be called something like `60_jargyle`.
 
-From the CLI of the Puppet agent, run `sudo -l -U jargyle` to confirm it worked. The results should resemble the following:
+From the command line on the Puppet agent, run `sudo -l -U jargyle` to confirm it worked. The results should resemble the following:
 
 	 Matching Defaults entries for jargyle on this host:
     !visiblepw, always_set_home, env_reset, env_keep="COLORS DISPLAY HOSTNAME HISTSIZE
