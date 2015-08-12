@@ -39,8 +39,7 @@ Modules are directory trees. For these exercises you'll use the following files:
         - `vhost/`
             - `_file_header.erb` (contains the vhost template, managed by Puppet)
 
-Every manifest (.pp file) in a module contains a single class. File names map to class names in a predictable way, described in the [Autoloader Behavior documentation](https://docs.puppetlabs.com/puppet/latest/reference/lang_namespaces.html#autoloader-behavior). The `init.pp` file is a special case that contains a class named after the module, `apache`. Other manifest files contain classes called `<MODULE NAME>::<FILE NAME>` or `<MODULE NAME>::<FOLDER>::<FILE NAME>` (if the `manifests` folder is contained within another folder.
-
+Every manifest (.pp file) in a module contains a single class. File names map to class names in a predictable way, described in the [Autoloader Behavior documentation](https://docs.puppetlabs.com/puppet/latest/reference/lang_namespaces.html#autoloader-behavior). The `init.pp` file is a special case that contains a class named after the module, `apache`. Other manifest files contain classes called `<MODULE NAME>::<FILE NAME>` or `<MODULE NAME>::<FOLDER>::<FILE NAME>`.
 Many modules, including Apache, contain directories other than `manifests` and `templates`. For simplicity's sake, we do not cover them in this introductory guide.
 
 * For more on how modules work, see [Module Fundamentals](/puppet/3.8/reference/modules_fundamentals.html) in the Puppet documentation.
