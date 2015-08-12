@@ -21,13 +21,11 @@ Sysadmins typically need to manage a nameserver file for internal resources that
 
 > Before starting this walk-through, complete the previous exercise in the [essential configuration tasks](./quick_start_essential_config.html), which is setting up [NTP](./quick_start_ntp). Log in as root or administrator on your nodes.
 
->**Tip**: Follow the instructions in the [NTP Quick Start Guide](./quick_start_ntp.html) to have Puppet ensure time is synced across your deployment.
-
 >**Note**: You can add the DNS nameserver class to as many agents as needed. For ease of explanation, this guide will describe only one agent.
 
 ### Write the `resolver` Class
 
-Some modules can be large, complex, and require a significant amount of trial and error, while others often work right out of the box. This module will be a very simple module to write; it contains just one class and one template.
+Some modules can be large, complex, and require a significant amount of trial and error, while others often work right out of the box. This module will be a very simple module to write, as it contains just one class and one template.
 
 > #### A Quick Note about Modules
 >
@@ -85,7 +83,7 @@ Modules are directory trees. For this task, you'll create the following files:
 4. From the command line on your Puppet agent, run `puppet agent -t`.
 5. From the command line on your Puppet agent, run `cat /etc/resolv.conf`. The result should reflect the nameserver you added to your main manifest in step 3.
 
-> That's it! You've written a module that contains a class that will ensure your agent nodes resolve to your internal nameserver. 
+> That's it! You've written a module that contains a class that will ensure your agents resolve to your internal nameserver. 
 
 > Note the following about your new class:
 >
@@ -94,7 +92,7 @@ Modules are directory trees. For this task, you'll create the following files:
 
 ### Enforce the Desired State of the `resolver` Class
 
-Finally, let's take a look at how Puppet will ensure the desired state of the `resolver` class on your agent nodes. In the previous task, you set the nameserver IP address. Now imagine a scenario where a member of your team changes the contents of `/etc/resolv.conf` to use a different nameserver and can no longer access any internal resources.
+Finally, let's take a look at how Puppet will ensure the desired state of the `resolver` class on your agents. In the previous task, you set the nameserver IP address. Now imagine a scenario where a member of your team changes the contents of `/etc/resolv.conf` to use a different nameserver and can no longer access any internal resources.
 
 1. On any agent node to which you applied the `resolv.conf` class, edit `/etc/resolv.conf` to be any  nameserver IP address other than the one you desire to use.
 2. Save and exit the file.

@@ -22,7 +22,7 @@ NTP is one of the most crucial, yet easiest, services to configure and manage wi
 * Ensure time is correctly synced across your configuration management tools.
 * Roll out updates quickly if you need to change or specify your own internal NTP server pool.
 
- This guide will step you through the following tasks: 
+This guide will step you through the following tasks: 
 
 * [Install the `puppetlabs-ntp` module](#install-the-puppetlabs-ntp-module).
 * [Add classes to the `default` node in your main manifest](#use-the-main-manifest-to-add-classes-from-the-ntp-module).
@@ -96,6 +96,7 @@ You're going to add the `ntp` class to the `default` node in your main manifest.
 ## Use Multiple Nodes to Configure NTP for Different Permissions
 
 Until now, you've been using the default node in this Quick Start Guide. If you want to configure the NTP service to run differently on different nodes, you can set up NTP differently in multiple nodes in the `site.pp` file.
+
 In the example below, two ntp servers in the organization are allowed to talk to outside time servers ("kermit" and "grover"). Other ntp servers get their time data from these two servers. One of the primary ntp servers, "kermit", is very cautiously configured — it can’t afford outages, so it’s not allowed to automatically update its ntp server package without testing. The other servers are more permissively configured.
 
 The other ntp servers ("snuffie," "bigbird," and "hooper") will use our two primary servers to sync their time.
