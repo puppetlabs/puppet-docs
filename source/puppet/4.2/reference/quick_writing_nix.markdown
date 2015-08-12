@@ -60,8 +60,8 @@ Many modules, including Apache, contain directories other than `manifests` and `
         # Managed by Puppet
         # ************************************
 
-4. Collect the following facts about your agent node:
-   - on your Puppet agent, run `facter osfamily`. This returns your agent node's OS. 
+4. Collect the following facts about your agent:
+   - on your Puppet agent, run `facter osfamily`. This returns your agent's OS. 
    - on your Puppet agent, run `facter id`. This returns the id of the currently logged in user. 
 5. Edit the header of `_file_header.erb` so that it contains the following variables for Facter lookups:
 
@@ -80,7 +80,7 @@ Many modules, including Apache, contain directories other than `manifests` and `
 
 At this point, Puppet configures Apache and starts the httpd service. When this happens, a default Apache virtual host is created based on the contents of `_file_header.erb`.
 
-1. **On the agent node**, navigate to one of the following locations based on your operating system:
+1. **On the agent**, navigate to one of the following locations based on your operating system:
    - Redhat-based: `/etc/httpd/conf.d`
    - Debian-based: `/etc/apache2/sites-available`
 
@@ -154,7 +154,7 @@ Puppet Labs modules save time, but at some point you may need to write your own 
 		 }
    >**Note**: Since the `puppet_quickstart_app` includes the `apache` class, you need to remove the first `apache` class you added the master node, as Puppet will only allow you to declare a class once.
 
-3. From the command line on your agent node, run `puppet agent -t` to trigger a Puppet run.
+3. From the command line on your agent, run `puppet agent -t` to trigger a Puppet run.
 
      When the Puppet run is complete, you will see in the agent's log that a vhost for the app has been created and the Apache service (httpd) has been started.
 
@@ -196,7 +196,7 @@ Site modules hide complexity so you can more easily divide labor at your site. S
         }
 
 
-This class declares other classes with the `include` function. Note the "if" conditional that sets different classes for different kernels using the `$kernel` fact. In this example, if an agent node is a Linux machine, Puppet will apply your `puppet_quickstart_app` class. If it is a Windows machine, Puppet will apply the `registry::compliance_example` class. For more information about declaring classes, see the [modules and classes chapters of Learning Puppet](/learning/modules1.html).
+This class declares other classes with the `include` function. Note the "if" conditional that sets different classes for different kernels using the `$kernel` fact. In this example, if an agent is a Linux machine, Puppet will apply your `puppet_quickstart_app` class. If it is a Windows machine, Puppet will apply the `registry::compliance_example` class. For more information about declaring classes, see the [modules and classes chapters of Learning Puppet](/learning/modules1.html).
 
 1. From the command line on the Puppet master, navigate to the main manifest: `cd /etc/puppetlabs/code/environments/production/manifests`.
 2. Add the following Puppet code to the default node in `site.pp`, retaining the classes you have already added:

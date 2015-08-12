@@ -17,7 +17,7 @@ Next, you'll install and configure your Puppet master and agents.
 
  A computer that runs the Puppet Server is called the "master." Follow [these instructions](http://docs.puppetlabs.com/puppetserver/2.1/install_from_packages.html) to install and configure Puppet Server.
 
-A computer that runs the Puppet agent is called an "agent node". The Puppet agent regularly pulls configuration catalogs from a master and applies them to the local system.
+A computer that runs the Puppet agent is called a "Puppet agent" or simply "agent". The Puppet agent regularly pulls configuration catalogs from a master and applies them to the local system.
 
  Follow these instructions to install a Puppet agent on [Windows](./install_windows.html) or [*nix](./install_linux.html).
 

@@ -34,7 +34,7 @@ Every module contains one or more **classes**. [Classes](./puppet/4.2/reference/
 1. **On the Puppet agent**, navigate to `/var/www/html`, and create a file called `index.html` if it does not already exist.
 2. Open `index.html` in your text editor and fill it with some content (for example, "Hello World") or edit what is already there. 
 3. From the command line of your Puppet agent, run `puppet agent -t`.
-4. Open a web browser and enter the IP address for the agent node, adding port 80 on the end, as in `http://myagentnodeIP:80/`.
+4. Open a web browser and enter the IP address for the Puppet agent, adding port 80 on the end, as in `http://myagentnodeIP:80/`.
 
    You will see the contents of `/var/www/html/index.html` displayed.
    
