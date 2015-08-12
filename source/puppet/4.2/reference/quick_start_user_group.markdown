@@ -9,8 +9,6 @@ canonical: "/puppet/latest/quick_start_user_group.html"
 
 > **Prerequisites**: This guide assumes you've already [installed Puppet](https://docs.puppetlabs.com/puppetserver/2.1/install_from_packages.html), and have installed at least one [*nix agent node](https://docs.puppetlabs.com/puppet/4.2/reference/install_linux.html).
 
-> Before starting this walk-through, complete the [Hello World](./quick_start_helloworld) exercise in the [introductory quick start guide](./quick_start.html). You should still be logged in as root or administrator on your nodes.
-
 > For this  walk-through, log in as root or administrator on your nodes.
 
 ## Create a User and Group
