@@ -10,36 +10,28 @@ canonical: "/puppet/latest/quick_start_dns.html"
 [agent_install]: ./install_agents.html
 [install_overview]: ./install_basic.html
 
-Welcome to the Open Source Puppet DNS Quick Start Guide. This document provides instructions for getting started managing a simple DNS nameserver file with Puppet. A nameserver ensures that the "human-readable" names you type in your browser (e.g., `google.com`) can be resolved to IP addresses your computers can read.
+Welcome to the Open Source Puppet DNS Quick Start Guide. This document provides instructions for getting started managing a simple DNS nameserver file with Puppet. A nameserver ensures that the "human-readable" names you type in your browser (for example, `example.com`) can be resolved to IP addresses that computers can read.
 
 Sysadmins typically need to manage a nameserver file for internal resources that aren't published in public nameservers. For example, let's say you have several employee-maintained servers in your infrastructure, and the DNS network assigned to those servers use Google's public nameserver located at `8.8.8.8`. However, there are several resources behind your company's firewall that your employees need to access on a regular basis. In this case, you'd build a private nameserver (say at `10.16.22.10`), and then use Puppet to ensure all the servers in your infrastructure have access to it.
 
-Following this example, you will use this guide to:
+ In this exercise, you will learn how to do the following steps: 
 
-* [write a simple module that contains a class called `resolver` to manage a nameserver file called `/etc/resolv.conf`](#write-the-resolver-class).
-* [enforce the desired state of that class from the command line of your puppet agent](#enforce-the-desired-state-of-the-resolver-class).
+* [Write a simple module that contains a class called `resolver` to manage a nameserver file called `/etc/resolv.conf`](#write-the-resolver-class).
+* [Enforce the desired state of that class from the command line of your puppet agent](#enforce-the-desired-state-of-the-resolver-class).
 
-> Before starting this walkthrough, you might want to complete the previous exercise in the [essential configuration tasks](./quick_start_essential_config.html), which is setting up [NTP](./quick_start_ntp). For this walkthrough, you should be logged in as root or administrator on your nodes.
-
-### Install Puppet and the Puppet Agent
-
-If you haven't already done so, you'll need to get Puppet installed. See the [system requirements][sys_req] for supported platforms.
-
-1. [Download and verify the appropriate tarball][downloads].
-2. Refer to the [installation overview][install_overview] to determine how you want to install Puppet, and then follow the instructions provided.
-3. Refer to the [agent installation instructions][agent_install] to determine how you want to install your Puppet agent(s), and then follow the instructions provided.
+> Before starting this walk-through, complete the previous exercise in the [essential configuration tasks](./quick_start_essential_config.html), which is setting up [NTP](./quick_start_ntp). Log in as root or administrator on your nodes.
 
 >**Tip**: Follow the instructions in the [NTP Quick Start Guide](./quick_start_ntp.html) to have Puppet ensure time is synced across your deployment.
 
->**Note**: You can add the DNS nameserver class to as many agents as needed. For ease of explanation, this guide will reference only one agent.
+>**Note**: You can add the DNS nameserver class to as many agents as needed. For ease of explanation, this guide will describe only one agent.
 
 ### Write the `resolver` Class
 
-Some modules can be large, complex, and require a significant amount of trial and error, while others often work "right out of the box". This module will be a very simple module to write; it contains just one class and one template.
+Some modules can be large, complex, and require a significant amount of trial and error, while others often work right out of the box. This module will be a very simple module to write; it contains just one class and one template.
 
 > #### A Quick Note about Modules
 >
->The first thing to know is that, by default, the modules you use to manage nodes are located in `/etc/puppetlabs/code/environments/production/modules`---this includes modules installed by Puppet, those that you download from the Forge, and those you write yourself.
+>By default, the modules you use to manage nodes are located in `/etc/puppetlabs/code/environments/production/modules`. This includes modules installed by Puppet, those that you download from the Forge, and those you write yourself.
 >
 >**Note**: Puppet also installs modules in `/opt/puppet/share/puppet/modules`, but don’t modify anything in this directory or add modules of your own to it.
 >
@@ -53,13 +45,13 @@ Modules are directory trees. For this task, you'll create the following files:
 
 **To write the `resolver` class**:
 
-1. From the command line on the Puppet master, navigate to the modules directory (`cd /etc/puppetlabs/code/environments/production/modules`).
+1. From the command line on the Puppet master, navigate to the modules directory: `cd /etc/puppetlabs/code/environments/production/modules`.
 
 2. Run `mkdir -p resolver/templates` to create the new module directory and its templates directory.
 
 3. Use your text editor to create the `resolver/templates/resolv.conf.erb` file.
 
-4. Edit the `resolv.conf.erb` file so that it contains the following Ruby code. This Ruby code is a template for populating `/etc/resolv.conf` correctly, no matter what changes are manually made to `/etc/resolv.conf`, as we will see in a later example.
+4. Edit the `resolv.conf.erb` file to add the following Ruby code. This Ruby code is a template for populating `/etc/resolv.conf` correctly, no matter what changes are manually made to `/etc/resolv.conf`, as we will see in a later example.
 
         # Resolv.conf generated by Puppet
 
@@ -75,9 +67,9 @@ Modules are directory trees. For this task, you'll create the following files:
 
 ## Add the resolv.conf File to Your Main Manifest
 
-1. Open `/etc/resolv.conf` with your desired text editor on the Puppet master, and copy the IP address of your master's nameserver (in this example, the nameserver is `10.0.2.3`).
+1. On the Puppet master, open `/etc/resolv.conf` with your text editor, and copy the IP address of your master's nameserver (in this example, the nameserver is `10.0.2.3`).
 
-2. On the Puppet master, navigate to the main manifest (`cd /etc/puppetlabs/code/environments/production/manifests`).
+2. On the Puppet master, navigate to the main manifest: `cd /etc/puppetlabs/code/environments/production/manifests`.
 3. Use your text editor to open the `site.pp` file and add the following Puppet code to the `default` node, editing your nameserver value to match the one you found in `/etc/resolv.conf`:
 
         $nameservers = ['10.0.2.3']
@@ -90,14 +82,14 @@ Modules are directory trees. For this task, you'll create the following files:
           content => template('resolver/resolv.conf.erb'),
         }
       
-4. From the CLI of your Puppet agent, run `puppet agent -t`.
-5. From the CLI of your Puppet agent, run `cat /etc/resolv.conf`. The result should reflect the nameserver you added to your main manifest in step 8.
+4. From the command line on your Puppet agent, run `puppet agent -t`.
+5. From the command line on your Puppet agent, run `cat /etc/resolv.conf`. The result should reflect the nameserver you added to your main manifest in step 3.
 
 > That's it! You've written a module that contains a class that will ensure your agent nodes resolve to your internal nameserver. 
 
 > Note the following about your new class:
 >
-> * The file ensures the creation of the file `/etc/resolv.conf`.
+> * It ensures the creation of the file `/etc/resolv.conf`.
 > * The content of `/etc/resolv.conf` is modified and managed by the template, `resolv.conf.erb`. 
 
 ### Enforce the Desired State of the `resolver` Class
@@ -106,8 +98,8 @@ Finally, let's take a look at how Puppet will ensure the desired state of the `r
 
 1. On any agent node to which you applied the `resolv.conf` class, edit `/etc/resolv.conf` to be any  nameserver IP address other than the one you desire to use.
 2. Save and exit the file.
-3. From the CLI of your Puppet agent, run `puppet agent -t --onetime`.
-4. From the CLI of your Puppet agent, run `cat /etc/resolv.conf`, and notice that Puppet has enforced the desired state you specified on your Puppet master.
+3. From the command line on your Puppet agent, run `puppet agent -t --onetime`.
+4. From the command line on your Puppet agent, run `cat /etc/resolv.conf`, and notice that Puppet has enforced the desired state you specified on your Puppet master.
 
 > That's it --- Puppet has enforced the desired state of your agent node!
 
@@ -115,7 +107,7 @@ Finally, let's take a look at how Puppet will ensure the desired state of the `r
 
 For more information about working with Puppet and DNS, check out our [Dealing with Name Resolution Issues](http://puppetlabs.com/blog/resolving-dns-issues) blog post.
 
-Puppet Labs offers many opportunities for learning and training, from formal certification courses to guided online lessons. We've noted a few below; head over to the [learning Puppet page](https://puppetlabs.com/learn) to discover more.
+Puppet Labs offers many opportunities for learning and training, from formal certification courses to guided online lessons. We've noted a few below. Head over to the [Learning Puppet page](https://puppetlabs.com/learn) to discover more.
 
 * [Learning Puppet](http://docs.puppetlabs.com/learning/) is a series of exercises on various core topics about deploying and using Puppet.
 * The Puppet Labs workshop contains a series of self-paced, online lessons that cover a variety of topics on Puppet basics. You can sign up at the [learning page](https://puppetlabs.com/learn).
