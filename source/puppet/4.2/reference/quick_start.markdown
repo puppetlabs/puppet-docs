@@ -24,7 +24,7 @@ A computer that runs the Puppet agent is called an "agent node". The Puppet agen
 To learn how to get your Puppet master and agents to communicate with each other and to ensure your Puppet master will receive certificates from its agents, follow the instructions in the [Master/Agent Communication Quick Start Guide](./quick_start_master_agent_communication.html).
 
 ### 3. Create a User and Group
-Learn how to create a Puppet user and group with [these instructions](./quick_start_user_group).
+Learn how to create a Puppet user and group with [these instructions](./quick_start_user_group.html).
 
 Instructions are available for *nix only.
 
