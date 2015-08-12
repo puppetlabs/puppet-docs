@@ -26,6 +26,8 @@ To learn how to get your Puppet master and agents to communicate with each other
 ### 3. Create a User and Group
 Learn how to create a Puppet user and group with [these instructions](./quick_start_user_group).
 
+Instructions are available for *nix only.
+
 ### 4. Hello, World!
  Modules contain [classes](./puppet/3.8/reference/lang_classes.html), which are named chunks of Puppet code and are the primary means by which Puppet configures and manages nodes. The instructions in the [Hello World! Quick Start Guide](./quick_start_helloworld.html) lead you through the fundamentals of Puppet module writing. You'll write a very simple module that contains classes to manage your message of the day (motd) and create a Hello, World! notification on the command line.
 
