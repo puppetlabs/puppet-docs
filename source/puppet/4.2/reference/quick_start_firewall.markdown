@@ -12,32 +12,27 @@ canonical: "/puppet/latest/quick_start_firewall.html"
 
 Welcome to the Open Source Puppet Firewall Quick Start Guide. This document provides instructions for getting started managing firewall rules with Puppet.
 
-With a firewall, admins define a set of policies (aka, firewall rules) that usually consist of things like application ports (TCP/UDP), network ports, IP addresses, and an accept/deny statement. These rules are applied from a “top-to-bottom” approach. For example, when a service, say SSH, attempts to access resources on the other side of a firewall, the firewall applies a list of rules to determine if or how SSH communications are handled. If a rule allowing SSH access can’t be found, the firewall will deny access to that SSH attempt.
+With a firewall, admins define a set of policies (also known as firewall rules) that consist of things like application ports (TCP/UDP), network ports, IP addresses, and an accept/deny statement. These rules are applied in a "top-to-bottom" approach. For example, when a service, say SSH, attempts to access resources on the other side of a firewall, the firewall applies a list of rules to determine if or how SSH communications are handled. If a rule allowing SSH access can’t be found, the firewall will deny access to that SSH attempt.
 
-To best manage such rules with Puppet, you want to break these rules into `pre` and `post` groups to ensure Puppet checks firewall rules in the correct order.
+To best manage such rules with Puppet, you want to divide these rules into `pre` and `post` groups to ensure Puppet checks firewall rules in the correct order.
 
-Following this example, you will use this guide to:
+Using this guide, you will learn how to do the following tasks:
 
-* [install the puppetlabs-firewall module](#install-the-puppet-firewall-module).
-* [write a simple module that contains a class called `my_firewall` to define the firewall rules for your Puppet-managed infrastructure](#write-the-my_firewall-module).
-* [add the firewall module to the main manifest](#add-the-firewall-module-to-the-main-manifest).
-* [enforce the desired state of the `my_firewall` class](#enforce-the-desired-state-of-the-my_firewall-class).
+* [Install the puppetlabs-firewall module](#install-the-puppet-firewall-module).
+* [Write a simple module to define the firewall rules for your Puppet-managed infrastructure](#write-the-my_firewall-module).
+* [Add the firewall module to the main manifest](#add-the-firewall-module-to-the-main-manifest).
+* [Enforce the desired state of the `my_firewall` class](#enforce-the-desired-state-of-the-my_firewall-class).
 
-> Before starting this walkthrough, you might want to complete the previous exercises in the [essential configuration tasks](./quick_start_essential_config.html). For this walkthrough, you should be logged in as root or administrator on your nodes.
+> Before starting this walk-through, complete the previous exercises in the [essential configuration tasks](./quick_start_essential_config.html). Log in as root or administrator on your nodes.
 
-## Install Puppet and the Puppet Agent
+> **Prerequisites**: This guide assumes you've already [installed Puppet](https://docs.puppetlabs.com/puppetserver/2.1/install_from_packages.html), and have installed at least one [*nix agent](https://docs.puppetlabs.com/puppet/4.2/reference/install_linux.html).
 
-If you haven't already done so, you'll need to get Puppet installed. See the [system requirements][sys_req] for supported platforms.
+> You should still be logged in as root or administrator on your nodes.
 
-1. [Download and verify the appropriate package][downloads].
-2. Refer to the [installation overview][install_overview] to determine how you want to install Puppet, and then follow the instructions provided.
-3. Refer to the [agent installation instructions][agent_install] to determine how you want to install your Puppet agent(s), and then follow the instructions provided.
 
->**Tip**: Follow the instructions in the [NTP Quick Start Guide](./quick_start_ntp.html) to have Puppet ensure time is in sync across your deployment.
+## Install the `puppetlabs-firewall` Module
 
-## Install the puppetlabs-firewall Module
-
-The firewall module, available on the Puppet Forge, introduces the firewall resource, which is used to manage and configure firewall rules from within the Puppet DSL.  You can learn more about the module by visiting [http://forge.puppetlabs.com/puppetlabs/firewall](http://forge.puppetlabs.com/puppetlabs/firewall).
+The firewall module, available on the Puppet Forge, introduces the firewall resource, which is used to manage and configure firewall rules from with Puppet. Learn more about the module by visiting [http://forge.puppetlabs.com/puppetlabs/firewall](http://forge.puppetlabs.com/puppetlabs/firewall).
 
 **To install the firewall module**:
 
@@ -55,26 +50,26 @@ You should see output similar to the following:
 
 ## Write the `my_firewall` Module
 
-Some modules can be large, complex, and require a significant amount of trial and error. This module, however, will be a very simple module to write: it contains just three classes.
+Some modules can be large, complex, and require a significant amount of trial and error. This module, however, will be a very simple module to write. It contains just three classes.
 
 > ### A Quick Note about Module Directories
 >
->The first thing to know is that, by default, the modules you use to manage nodes are located in `/etc/puppetlabs/puppet/environments/production/modules`---this includes modules installed by Puppet, those that you download from the Forge, and those that you write yourself.
+>By default, the modules you use to manage nodes are located in `/etc/puppetlabs/puppet/environments/production/modules`. This includes modules installed by Puppet, those that you download from the Forge, and those that you write yourself.
 >
->**Note**: Puppet also installs modules in `/opt/puppet/share/puppet/modules`, but don’t modify anything in this directory or add modules of your own to it.
+> **Note**: Puppet also checks the path `/opt/puppet/share/puppet/modules` for modules, but don’t modify anything in this directory or add modules of your own to it.
 >
 >There are plenty of resources about modules and the creation of modules that you can reference. Check out [Modules and Manifests](./puppet_modules_manifests.html), the [Beginner's Guide to Modules](/guides/module_guides/bgtm.html), and the [Puppet Forge](https://forge.puppetlabs.com/).
 
 Modules are directory trees. For this task, you'll create the following files:
 
- - `my_firewall` (the module name)
+ - `my_firewall/` (the module name)
    - `manifests/`
      - `pre.pp`
      - `post.pp`
 
 **To write the `my_firewall` module**:
 
-1. From the command line on the Puppet master, navigate to the modules directory (`cd /etc/puppetlabs/code/environments/production/modules`).
+1. From the command line on the Puppet master, navigate to the modules directory:  `cd /etc/puppetlabs/code/environments/production/modules`.
 
 2. Run `mkdir -p my_fw/manifests` to create the new module directory and its manifests directory.
 
@@ -132,7 +127,7 @@ Modules are directory trees. For this task, you'll create the following files:
 
 ## Add the Firewall Module to the Main Manifest
 
-1. Navigate to the main manifest (`cd /etc/puppetlabs/code/environments/production/manifests`).
+1. On your Puppet master, navigate to the main manifest: `cd /etc/puppetlabs/code/environments/production/manifests`.
 2. Use your text editor to open `site.pp`.
 3. Add the following Puppet code to your `site.pp` file. This will clear any existing rules and make sure that only rules defined in Puppet exist on the machine.
 
@@ -172,21 +167,21 @@ Modules are directory trees. For this task, you'll create the following files:
 		
 ## Enforce the Desired State of the `my_firewall` Class
  
-Lastly, let's take a look at how Puppet ensures the desired state of the `my_firewall` class on your agent nodes. In the previous task, you applied your firewall class. Now imagine a scenario where a member of your team changes the contents of the `iptables` to allow connections on a random port that was not specified in `my_firewall` .
+Lastly, let's take a look at how Puppet ensures the desired state of the `my_firewall` class on your agents. In the previous task, you applied your firewall class. Now imagine a scenario where a member of your team changes the contents of the `iptables` to allow connections on a random port that was not specified in `my_firewall`.
 
-1. Select an agent node on which you applied the `my_firewall` class, run `iptables --list`.
+1. Select an agent on which you applied the `my_firewall` class, and run `iptables --list`.
 
 2. Note that the rules from the `my_firewall` class have been applied.
 
-3. From the command line, insert a new rule to allow connections to port **8449**; run,  `iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 8449 -j ACCEPT`.
+3. From the command line, insert a new rule to allow connections to port **8449** by running  `iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 8449 -j ACCEPT`.
 
-4. Run `iptables --list` again and note this new rule is now listed.
+4. Run `iptables --list` again and note that this new rule is now listed.
 
-5. Run `puppet agent -t --onetime` to trigger a Puppet run on that agent node.
+5. Run `puppet agent -t --onetime` to trigger a Puppet run on that agent.
 
 6. Run `iptables --list` on that node once more, and notice that Puppet has enforced the desired state you specified for the firewall rules.
 
-> That's it--Puppet has enforced the desired state of your agent node!
+> That's it--Puppet has enforced the desired state of your agent!
 
 ## Other Resources
 
