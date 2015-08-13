@@ -31,7 +31,7 @@ Several words in the Puppet language are **reserved**. This means they:
 * Cannot be used as names for classes.
 * Cannot be used as names for custom resource types or defined resource types.
 
-> **Note:** As of Puppet 3, reserved words MAY be used as names for attributes in custom resource types. This is a change from the behavior of 2.7 and earlier.
+> **Note:** As of Puppet 3, reserved words _can_ be used as names for attributes in custom resource types. This is a change from the behavior of 2.7 and earlier.
 
 The following words are reserved:
 
@@ -59,6 +59,14 @@ The following words are reserved for future use:
 * `function`
 * `type`
 * `private`
+
+The following words are reserved when using the future parser:
+
+* `application`
+* `consumes`
+* `produces`
+
+As of Puppet 3.8.2, [Puppet warns you](./release_notes.html#deprecation-new-reserved-words) when using `application`, `consumes`, and `produces` with the future parser.
 
 Additionally, you cannot use the name of any existing [resource type][type_ref] or [function][func_ref] as the name of a function, and you cannot use the name of any existing [resource type][type_ref] as the name of a defined type.
 
