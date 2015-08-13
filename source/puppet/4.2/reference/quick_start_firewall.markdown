@@ -77,33 +77,35 @@ Modules are directory trees. For this task, you'll create the following files:
 
 4. Edit `pre.pp` so it contains the following Puppet code. These rules allow basic networking to ensure that existing connections are not closed.
 
-       	class my_fw::pre {
-    	  Firewall {
-      	    require => undef,
-    	  }
+~~~puppet
+class my_fw::pre {
+  Firewall {
+  require => undef,
+  }
 
-    	 # Default firewall rules
-		    firewall { '000 accept all icmp':
-		      proto  => 'icmp',
-		      action => 'accept',
-		    }
-		    firewall { '001 accept all to lo interface':
-		      proto   => 'all',
-		      iniface => 'lo',
-		      action  => 'accept',
-		    }
-		    firewall { '002 reject local traffic not on loopback interface':
-		      iniface     => '! lo',
-		      proto       => 'all',
-		      destination => '127.0.0.1/8',
-		      action      => 'reject',
-		    }
-		    firewall { '003 accept related established rules':
-		      proto  => 'all',
-		      state  => ['RELATED', 'ESTABLISHED'],
-		      action => 'accept',
-		    }
-		  }
+# Default firewall rules
+  firewall { '000 accept all icmp':
+  proto  => 'icmp',
+  action => 'accept',
+  }
+  firewall { '001 accept all to lo interface':
+  proto   => 'all',
+  iniface => 'lo',
+  action  => 'accept',
+  }
+  firewall { '002 reject local traffic not on loopback interface':
+  iniface     => '! lo',
+  proto       => 'all',
+  destination => '127.0.0.1/8',
+  action      => 'reject',
+  }
+  firewall { '003 accept related established rules':
+  proto  => 'all',
+  state  => ['RELATED', 'ESTABLISHED'],
+  action => 'accept',
+  }
+}
+~~~
 
 5. Save and exit the file.
 6. From the `manifests` directory, use your text editor to create `post.pp`.
