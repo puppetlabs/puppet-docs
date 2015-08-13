@@ -9,10 +9,11 @@ canonical: "/puppet/latest/quick_start_adding_class_nix.html"
 ## Overview
 
 Every module contains one or more **classes**. [Classes](./puppet/4.2/reference/lang_classes.html) are named chunks of Puppet code and are the primary means by which Puppet configures nodes. The puppetlabs-apache module you installed in the [Module Installation Quick Start Guide ](./quick_start_module_install_nix.html) contains a class called `apache`. In this example, you will:
-* [use the `apache` class to launch the default Apache virtual host.](#add-apache-to-the-main-manifest)
-* [edit class parameters in the main manifest.](#editing-class-parameters-in-the-main-manifest)
 
-> **Prerequisites**: This guide assumes you've already [installed Puppet](./guides/install_puppet/pre_install.html), and have installed at least one [*nix agent](./guides/install_puppet/post_install.html) and the [puppetlabs-apache module](./quick_start_module_install_nix.html).
+* [Use the `apache` class to launch the default Apache virtual host](#add-apache-to-the-main-manifest)
+* [Edit class parameters in the main manifest](#editing-class-parameters-in-the-main-manifest)
+
+> **Prerequisites**: This guide assumes you've already [installed Puppet](https://docs.puppetlabs.com/puppetserver/2.1/install_from_packages.html), and have installed at least one [*nix agent](https://docs.puppetlabs.com/puppet/4.2/reference/install_linux.html) and the [puppetlabs-apache module](./quick_start_module_install_nix.html).
 
 > Before starting this walk-through, complete the previous exercises in the [introductory quick start guide](./quick_start.html). You should still be logged in as root or administrator on your nodes.
 
@@ -59,7 +60,8 @@ You can edit the [parameters](https://docs.puppetlabs.com/puppet/latest/referenc
 >
 > **Note:**
 > If you have Puppet Enterprise, you can do the steps in this guide through the PE web UI, [the console](https://docs.puppetlabs.com/pe/latest/console_accessing.html).
->
+
+
 ----------
 
 Next: [Quick Start: Writing Modules](./quick_writing_nix.html)

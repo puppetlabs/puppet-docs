@@ -152,6 +152,7 @@ Puppet Labs modules save time, but at some point you may need to write your own 
 		 node default {
            class { 'puppet_quickstart_app': }
 		 }
+   
    >**Note**: Since the `puppet_quickstart_app` includes the `apache` class, you need to remove the first `apache` class you added the master node, as Puppet will only allow you to declare a class once.
 
 3. From the command line on your agent, run `puppet agent -t` to trigger a Puppet run.
@@ -161,8 +162,6 @@ Puppet Labs modules save time, but at some point you may need to write your own 
 4. Use a browser to navigate to port 80 of the IP address for your node, as in `http://<yournodeip>:80`.
 
    >**Tip**: Be sure to use `http` instead of `https`.
-
-   ![PHP Info Page][php_info]
 
  Congratulations! You have created a new class from scratch and used it to launch a Apache PHP-based web app. Needless to say, in the real world, your apps will do a lot more than display PHP info pages. But for the purposes of this exercise, let's take a closer look at how Puppet is managing your app.
 
@@ -201,8 +200,7 @@ This class declares other classes with the `include` function. Note the "if" con
 1. From the command line on the Puppet master, navigate to the main manifest: `cd /etc/puppetlabs/code/environments/production/manifests`.
 2. Add the following Puppet code to the default node in `site.pp`, retaining the classes you have already added:
        
-        class { ‘site::basic’: 
-        }
+        class { ‘site::basic’: }
         
 3. Save and exit, then run `puppet agent -t` from the command line of your Puppet agent.
 

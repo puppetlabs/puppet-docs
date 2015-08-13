@@ -89,17 +89,17 @@ Modules are directory trees. For this task, you'll create the following files:
 1. From the command line on the Puppet master, navigate to the main manifest: `cd /etc/puppetlabs/code/environments/production/manifests`.
 2. Open `site.pp` with your text editor and add the following Puppet code to the `default` node:
 
-			class { 'sudo': }
-    		  sudo::conf { 'web':
-    		  content  => "web ALL=(ALL) NOPASSWD: ALL",
-    		}
-    		
-    		class { 'privileges': }
-    		
-   		    sudo::conf { 'jargyle':
-      		  priority => 60,
-      		  content  => "jargyle ALL=(ALL) NOPASSWD: ALL",
-    		}
+~~~puppet
+class { 'sudo': }
+sudo::conf { 'web':
+  content  => "web ALL=(ALL) NOPASSWD: ALL",
+}
+class { 'privileges': }
+sudo::conf { 'jargyle':
+  priority => 60,
+  content  => "jargyle ALL=(ALL) NOPASSWD: ALL",
+}
+~~~
 
 3. Save and exit the file.
 
