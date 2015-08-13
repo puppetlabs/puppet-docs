@@ -202,7 +202,7 @@ Check out the other quick start guides in our Puppet QSG series:
 
 - [NTP Quick Start Guide](./quick_start_ntp.html)
 - [DNS Quick Start Guide](./quick_start_dns.html)
-- [Sudo Users Quick Start Guide](./quick_start_firewall.html)
+- [Sudo Users Quick Start Guide](./quick_start_sudo.html)
 
 Puppet Labs offers many opportunities for learning and training, from formal certification courses to guided online lessons. We've noted one below; head over to the [learning Puppet page](https://puppetlabs.com/learn) to discover more.
 
