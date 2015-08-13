@@ -67,14 +67,14 @@ Modules are directory trees. For this task, you'll create the following files:
 2. Run `mkdir -p privileges/manifests` to create the new module directory and its manifests directory.
 3. From the `manifests` directory, use your text editor to create the `init.pp` file, and edit it so it contains the following Puppet code:
 
-        class privileges {
-        
-		  sudo::conf { 'admins':
-          ensure  => present,
-          content => '%admin ALL=(ALL) ALL',
-          }
-
-        }
+~~~puppet
+class privileges {
+  sudo::conf { 'admins':
+	ensure  => present,
+	content => '%admin ALL=(ALL) ALL',
+  }
+}
+~~~
 
 5. Save and exit the file.
 

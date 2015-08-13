@@ -42,23 +42,27 @@ Every manifest (.pp file) in a module contains a single class. File names map to
 2. Run `mkdir -p helloworld/manifests` to create the new module directory and its manifests directory.
 3. In the `manifests` directory, use your text editor to create the `init.pp` file, and edit it so that it contains the following Puppet code: 
 
-        class helloworld {
-           notify { 'hello, world!': }
-        }
+~~~puppet
+class helloworld {
+  notify { 'hello, world!': }
+}
+~~~
 
 4. Save and exit the file.
 5. In the `manifests` directory, use your text editor to create the `motd.pp` file, and edit it so that it contains the following Puppet code:
 
-        class helloworld::motd {
+~~~puppet
+class helloworld::motd {
 
-           file { '/etc/motd':
-           owner  => 'root',
-           group  => 'root',
-           mode    => '0644',
-           content => "hello, world!\n",
-           }
+  file { '/etc/motd':
+  owner  => 'root',
+  group  => 'root',
+  mode    => '0644',
+  content => "hello, world!\n",
+  }
 
-        }
+}
+~~~
 
 6. Save and exit the file.
 
@@ -75,14 +79,18 @@ The [default node](.puppet/latest/reference/lang_node_definitions.html#the-defau
 1. From the command line on the Puppet master, navigate to the main manifest: `cd /etc/puppetlabs/code/environments/production/manifests`.
 2. Use your text editor to create the `site.pp` file, and edit it so that it contains the following Puppet code:
 
-        node default {
+~~~puppet
+node default {
         
-        }
+}
+~~~
 
 3. Add the following Puppet code within `node default {  }`:
 
-        class { 'helloworld': }
-		class { 'helloworld::motd': }
+~~~puppet
+class { 'helloworld': }
+class { 'helloworld::motd': }
+~~~
 		   
 4. Save and exit the file.
 

@@ -111,13 +111,15 @@ class my_fw::pre {
 6. From the `manifests` directory, use your text editor to create `post.pp`.
 7. Edit `post.pp` so it contains the following Puppet code. This drops any requests that don't meet the rules defined in `pre.pp` or your rules defined in `site.pp` (see [next section](#add-the-firewall-module-to-the-main-manifest)).
 
-        class my_fw::post {
-		    firewall { '999 drop all':
-		      proto  => 'all',
-		      action => 'drop',
-		      before => undef,
-		    }
-		  }
+~~~puppet
+class my_fw::post {
+  firewall { '999 drop all':
+	proto  => 'all',
+	action => 'drop',
+	before => undef,
+  }
+}
+~~~
 
 8. Save and exit the file.
 
@@ -133,39 +135,46 @@ class my_fw::pre {
 2. Use your text editor to open `site.pp`.
 3. Add the following Puppet code to your `site.pp` file. This will clear any existing rules and make sure that only rules defined in Puppet exist on the machine.
 
-		  resources { 'firewall':
-		    purge => true,
-		  }
+~~~puppet
+resources { 'firewall':
+  purge => true,
+}
+~~~
   
 4. Add the following Puppet code to your `site.pp` file. These defaults will ensure that the `pre` and `post` classes are [run in the correct order](https://docs.puppetlabs.com/puppet/latest/reference/lang_relationships.html) to avoid locking you out of your box during the first Puppet run, and declaring `my_fw::pre` and `my_fw::post` satisfies the specified dependencies.
 
-		  Firewall {
-		    before  => Class['my_fw::post'],
-		    require => Class['my_fw::pre'],
-		  }
+~~~puppet
+Firewall {
+  before  => Class['my_fw::post'],
+  require => Class['my_fw::pre'],
+}
 		  
-		  class { ['my_fw::pre', 'my_fw::post']: }
-		  
+class { ['my_fw::pre', 'my_fw::post']: }
+~~~		  
 
 5. Add the `firewall` class to your `site.pp` to ensure the correct packages are installed:
 
-		  class { 'firewall': }
+~~~puppet
+class { 'firewall': }
+~~~	
 		  
 > That's it! To check your firewall configuration, run `iptables --list` from the command line of your Puppet agent. The result should look similar to this:
 
-		Chain INPUT (policy ACCEPT)
-		target     prot opt source               destination
-		ACCEPT     icmp --  anywhere             anywhere            /* 000 accept all icmp */
-		ACCEPT     all  --  anywhere             anywhere            /* 001 accept all to lo interface */
-		REJECT     all  --  anywhere             loopback/8          /* 002 reject local traffic not on loopback interface */ reject-with icmp-port-unreachable
-		ACCEPT     all  --  anywhere             anywhere            /* 003 accept related established rules */ state RELATED,ESTABLISHED
-		DROP       all  --  anywhere             anywhere            /* 999 drop all */
+~~~puppet
+Chain INPUT (policy ACCEPT)
+target     prot opt source               destination
+ACCEPT     icmp --  anywhere             anywhere            /* 000 accept all icmp */
+ACCEPT     all  --  anywhere             anywhere            /* 001 accept all to lo interface */
+REJECT     all  --  anywhere             loopback/8          /* 002 reject local traffic not on loopback interface */ reject-with icmp-port-unreachable
+ACCEPT     all  --  anywhere             anywhere            /* 003 accept related established rules */ state RELATED,ESTABLISHED
+DROP       all  --  anywhere             anywhere            /* 999 drop all */
 
-		Chain FORWARD (policy ACCEPT)
-		target     prot opt source               destination
+Chain FORWARD (policy ACCEPT)
+target     prot opt source               destination
 
-		Chain OUTPUT (policy ACCEPT)
-		target     prot opt source               destination
+Chain OUTPUT (policy ACCEPT)
+target     prot opt source               destination
+~~~
 		
 ## Enforce the Desired State of the `my_firewall` Class
  

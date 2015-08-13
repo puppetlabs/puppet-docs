@@ -22,9 +22,11 @@ Every module contains one or more **classes**. [Classes](./puppet/4.2/reference/
 1. From the command line of your Puppet master, navigate to the main manifest directory: `cd /etc/puppetlabs/code/environments/production/manifests`.
 2. Use your text editor to open the `site.pp` file, and edit it so that it contains the following Puppet code:
 
-        node default {
-		  include apache	
-        }
+~~~puppet
+node default {
+  include apache	
+}
+~~~
 
 	>**Note**: If you have already created the default node class, simply add `include apache` to it. Code from the [Hello World! exercise](./quick_start_helloworld.html) does not need to be removed, but a class cannot be declared twice. We will explore this later in the guide.
 
@@ -50,9 +52,11 @@ You can edit the [parameters](https://docs.puppetlabs.com/puppet/latest/referenc
 2. Use your text editor to open `site.pp`. 
 3. Replace the `include apache` command with the following Puppet code:
 
-        class { 'apache':
-    	  docroot => '/var/www'
-		}
+~~~puppet
+class { 'apache':
+  docroot => '/var/www'
+}
+~~~
 		
 	>**Note**: You must remove `include apache` because Puppet will only allow you to [declare a class once](https://docs.puppetlabs.com/puppet/latest/reference/lang_classes.html#declaring-classes).
 
