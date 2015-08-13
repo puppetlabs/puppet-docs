@@ -81,6 +81,7 @@ node default {
 }
 ~~~
 
+
 	>**Note**: If you already have a default node, just add the `class` and `servers` lines to it.
 	> To see a list of other time servers, visit [http://www.pool.ntp.org/](http://www.pool.ntp.org/).
 
