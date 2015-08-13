@@ -164,12 +164,15 @@ The space between a value and a left bracket is significant, and Puppet will out
 
 Bad:
 
-    $a [3]  # first the value of a, then a literal array with the single value 3 in it
-
+~~~ ruby
+$a [3]  # first the value of a, then a literal array with the single value 3 in it
+~~~
 
 Good:
 
-    $a[3]   # index 3 in the array referenced by $a
+~~~ ruby
+$a[3]   # index 3 in the array referenced by $a
+~~~
 
 ## Check for Function Calls Without Parentheses
 
