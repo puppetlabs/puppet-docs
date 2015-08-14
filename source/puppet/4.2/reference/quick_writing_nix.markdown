@@ -55,30 +55,26 @@ Many modules, including Apache, contain directories other than `manifests` and `
 3. Open `apache/templates/vhost/_file_header.erb` in a text editor. Avoid using Notepad because it can introduce errors.
       `_file_header.erb` contains the following header:
 
-~~~puppet
-# ************************************
-# Vhost template in module puppetlabs-apache
-# Managed by Puppet
-# ************************************
-~~~
+        # ************************************
+        # Vhost template in module puppetlabs-apache
+        # Managed by Puppet
+        # ************************************
 
 4. Collect the following facts about your agent:
    - on your Puppet agent, run `facter osfamily`. This returns your agent's OS. 
    - on your Puppet agent, run `facter id`. This returns the id of the currently logged in user. 
 5. Edit the header of `_file_header.erb` so that it contains the following variables for Facter lookups:
 
-~~~puppet
-# ************************************
-# Vhost template in module puppetlabs-apache
-# Managed by Puppet
-#
-# This file is authorized for deployment by <%= scope.lookupvar('::id') %>.
-#
-# This file is authorized for deployment ONLY on <%= scope.lookupvar('::osfamily') %> <%= scope.lookupvar('::operatingsystemmajrelease')     %>.
-#
-# Deployment by any other user or on any other system is strictly prohibited.
-# ************************************
-~~~
+        # ************************************
+        # Vhost template in module puppetlabs-apache
+        # Managed by Puppet
+        #
+        # This file is authorized for deployment by <%= scope.lookupvar('::id') %>.
+        #
+        # This file is authorized for deployment ONLY on <%= scope.lookupvar('::osfamily') %> <%= scope.lookupvar('::operatingsystemmajrelease')     %>.
+        #
+        # Deployment by any other user or on any other system is strictly prohibited.
+        # ************************************
         
 6. From the command line of your Puppet agent, run `puppet agent -t` to trigger a Puppet run.
 
@@ -90,18 +86,16 @@ At this point, Puppet configures Apache and starts the httpd service. When this 
 
 2. View `15-default.conf`. Depending on the node's OS, the header will show some variation of the following contents:
 
-~~~puppet
-# ************************************
-# Vhost template in module puppetlabs-apache
-# Managed by Puppet
-#
-# This file is authorized for deployment by root.
-#
-# This file is authorized for deployment ONLY on Redhat 6.
-#
-# Deployment by any other user or on any other system is strictly prohibited.
-# ************************************
-~~~
+        # ************************************
+        # Vhost template in module puppetlabs-apache
+        # Managed by Puppet
+        #
+        # This file is authorized for deployment by root.
+        #
+        # This file is authorized for deployment ONLY on Redhat 6.
+        #
+        # Deployment by any other user or on any other system is strictly prohibited.
+        # ************************************
 
 As you can see, Puppet has used Facter to retrieve some key facts about your node, and then used those facts to populate the header of your vhost template.
 
@@ -119,29 +113,27 @@ Puppet Labs modules save time, but at some point you may need to write your own 
 2. Use your text editor to create and open the `puppet_quickstart_app/manifests/init.pp` file.
 3. Edit the `init.pp` file so it contains the following Puppet code, and then save it and exit the editor:
 
-~~~puppet
-class puppet_quickstart_app {
+        class puppet_quickstart_app {
 
-class { 'apache':
-  mpm_module => 'prefork',
-}
+          class { 'apache':
+            mpm_module => 'prefork',
+          }
 
-include apache::mod::php
+          include apache::mod::php
 
-apache::vhost { 'puppet_quickstart_app':
-  port     => '80',
-  docroot  => '/var/www/puppet_quickstart_app',
-  priority => '10',
-}
+          apache::vhost { 'puppet_quickstart_app':
+            port     => '80',
+            docroot  => '/var/www/puppet_quickstart_app',
+            priority => '10',
+          }
 
-file { '/var/www/puppet_quickstart_app/index.php':
-  ensure  => file,
-  content => "<?php phpinfo() ?>\n",
-  mode    => '0644',
-}
+          file { '/var/www/puppet_quickstart_app/index.php':
+            ensure  => file,
+            content => "<?php phpinfo() ?>\n",
+            mode    => '0644',
+          }
 
-}
-~~~
+        }
 
 > You have written a new module containing a new class that includes two other classes: `apache` and `apache::mod::php`.
 >
@@ -157,11 +149,9 @@ file { '/var/www/puppet_quickstart_app/index.php':
 1. From the command line on the Puppet master, navigate to the main manifest (`cd /etc/puppetlabs/code/environments/production/manifests`).
 2. With your text editor, open `site.pp` and add the following Puppet code to your default node. **Remove the apache class you added previously.** Your site.pp file should look like this after you make your changes (although you may have portions from earlier in the Quick Start Guide):
 
-~~~puppet
-node default {
-  class { 'puppet_quickstart_app': }
-}
-~~~
+		 node default {
+           class { 'puppet_quickstart_app': }
+		 }
    
    >**Note**: Since the `puppet_quickstart_app` includes the `apache` class, you need to remove the first `apache` class you added the master node, as Puppet will only allow you to declare a class once.
 
@@ -194,25 +184,23 @@ Site modules hide complexity so you can more easily divide labor at your site. S
 
 * **On the Puppet master**, create `/etc/puppetlabs/code/environments/production/modules/site/manifests/basic.pp`, and edit the file to contain the following:
 
-~~~puppet
-class site::basic {
-  if $::kernel == 'Linux' {
-	include puppet_quickstart_app
-  }
-  elsif $::kernel == 'windows' {
-	include registry::compliance_example
-  }
-}
-~~~
+
+        class site::basic {
+          if $::kernel == 'Linux' {
+            include puppet_quickstart_app
+          }
+          elsif $::kernel == 'windows' {
+            include registry::compliance_example
+          }
+        }
+
 
 This class declares other classes with the `include` function. Note the "if" conditional that sets different classes for different kernels using the `$kernel` fact. In this example, if an agent is a Linux machine, Puppet will apply your `puppet_quickstart_app` class. If it is a Windows machine, Puppet will apply the `registry::compliance_example` class. For more information about declaring classes, see the [modules and classes chapters of Learning Puppet](/learning/modules1.html).
 
 1. From the command line on the Puppet master, navigate to the main manifest: `cd /etc/puppetlabs/code/environments/production/manifests`.
 2. Add the following Puppet code to the default node in `site.pp`, retaining the classes you have already added:
-
-~~~puppet       
-class { ‘site::basic’: }
-~~~        
+       
+        class { ‘site::basic’: }
         
 3. Save and exit, then run `puppet agent -t` from the command line of your Puppet agent.
 
