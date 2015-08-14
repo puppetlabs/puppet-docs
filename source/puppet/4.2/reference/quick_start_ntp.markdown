@@ -73,16 +73,17 @@ You're going to add the `ntp` class to the `default` node in your main manifest.
 2. Use your text editor to open `site.pp`. 
 3. Add the following Puppet code to `site.pp`:
 
-		~~~puppet
-		node default {        									 
-		  class { 'ntp':       									 
-		  servers => ['nist-time-server.eoni.com','nist1-lv.ustiming.org','ntp-nist.ldsbc.edu']
-		  }						
-		}
-		~~~
+~~~puppet
+node default {        									 
+  class { 'ntp':       									 
+  servers => ['nist-time-server.eoni.com','nist1-lv.ustiming.org','ntp-nist.ldsbc.edu']
+  }						
+}
+~~~
 
-   **Note**: If you already have a default node, just add the `class` and `servers` lines to it.
-   To see a list of other time servers, visit [http://www.pool.ntp.org/](http://www.pool.ntp.org/).
+
+	>**Note**: If you already have a default node, just add the `class` and `servers` lines to it.
+	> To see a list of other time servers, visit [http://www.pool.ntp.org/](http://www.pool.ntp.org/).
 
 4. From the command line on your Puppet agent, trigger a Puppet run with `puppet agent -t`.
 
@@ -90,12 +91,12 @@ You're going to add the `ntp` class to the `default` node in your main manifest.
 
 **To check if the NTP service is running**, run `puppet resource service ntpd` on your Puppet agent. The output should be:
 
-		~~~puppet
-		service { 'ntpd':
-		  ensure => 'running',
-		  enable => 'true',
-		}
-		~~~
+~~~puppet
+service { 'ntpd':
+  ensure => 'running',
+  enable => 'true',
+}
+~~~
 
 ## Use Multiple Nodes to Configure NTP for Different Permissions
 
@@ -107,33 +108,33 @@ The other ntp servers ("snuffie," "bigbird," and "hooper") will use our two prim
 
 The `site.pp` looks like this:
 
-		~~~puppet
-		node "kermit.example.com" {
-		  class { "ntp":
-			servers    => [ '0.us.pool.ntp.org iburst','1.us.pool.ntp.org iburst','2.us.pool.ntp.org iburst','3.us.pool.ntp.org iburst'],
-			autoupdate => false,
-			restrict   => [],
-			enable     => true,
-		  }
-		}
+~~~puppet
+node "kermit.example.com" {
+  class { "ntp":
+	servers    => [ '0.us.pool.ntp.org iburst','1.us.pool.ntp.org iburst','2.us.pool.ntp.org iburst','3.us.pool.ntp.org iburst'],
+	autoupdate => false,
+	restrict   => [],
+	enable     => true,
+  }
+}
 
-		node "grover.example.com" {
-		  class { "ntp":
-			servers    => [ 'kermit.example.com','0.us.pool.ntp.org iburst','1.us.pool.ntp.org iburst','2.us.pool.ntp.org iburst'],
-			autoupdate => true,
-			restrict   => [],
-			enable     => true,
-		  }
-		}
+node "grover.example.com" {
+  class { "ntp":
+	servers    => [ 'kermit.example.com','0.us.pool.ntp.org iburst','1.us.pool.ntp.org iburst','2.us.pool.ntp.org iburst'],
+	autoupdate => true,
+	restrict   => [],
+	enable     => true,
+  }
+}
 
-		node "snuffie.example.com", "bigbird.example.com", "hooper.example.com" {
-		  class { "ntp":
-			servers    => [ 'grover.example.com', 'kermit.example.com'],
-			autoupdate => true,
-			enable     => true,
-		  }
-		}
-		~~~
+node "snuffie.example.com", "bigbird.example.com", "hooper.example.com" {
+  class { "ntp":
+	servers    => [ 'grover.example.com', 'kermit.example.com'],
+	autoupdate => true,
+	enable     => true,
+  }
+}
+~~~
 	   
 In this fashion, it is possible to create multiple nodes to suit your needs.
 

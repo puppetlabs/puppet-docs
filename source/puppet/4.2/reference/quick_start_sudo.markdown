@@ -67,14 +67,14 @@ Modules are directory trees. For this task, you'll create the following files:
 2. Run `mkdir -p privileges/manifests` to create the new module directory and its manifests directory.
 3. From the `manifests` directory, use your text editor to create the `init.pp` file, and edit it so it contains the following Puppet code:
 
-		~~~puppet
-		class privileges {
-		  sudo::conf { 'admins':
-			ensure  => present,
-			content => '%admin ALL=(ALL) ALL',
-		  }
-		}
-		~~~
+~~~puppet
+class privileges {
+  sudo::conf { 'admins':
+	ensure  => present,
+	content => '%admin ALL=(ALL) ALL',
+  }
+}
+~~~
 
 5. Save and exit the file.
 
@@ -89,17 +89,17 @@ Modules are directory trees. For this task, you'll create the following files:
 1. From the command line on the Puppet master, navigate to the main manifest: `cd /etc/puppetlabs/code/environments/production/manifests`.
 2. Open `site.pp` with your text editor and add the following Puppet code to the `default` node:
 
-		~~~puppet
-		class { 'sudo': }
-		sudo::conf { 'web':
-		  content  => "web ALL=(ALL) NOPASSWD: ALL",
-		}
-		class { 'privileges': }
-		sudo::conf { 'jargyle':
-		  priority => 60,
-		  content  => "jargyle ALL=(ALL) NOPASSWD: ALL",
-		}
-		~~~
+~~~puppet
+class { 'sudo': }
+sudo::conf { 'web':
+  content  => "web ALL=(ALL) NOPASSWD: ALL",
+}
+class { 'privileges': }
+sudo::conf { 'jargyle':
+  priority => 60,
+  content  => "jargyle ALL=(ALL) NOPASSWD: ALL",
+}
+~~~
 
 3. Save and exit the file.
 

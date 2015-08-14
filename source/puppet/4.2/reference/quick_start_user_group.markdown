@@ -25,14 +25,14 @@ Puppet uses some defaults for unspecified user and group attributes, so all you'
 
 1. From the command line on your Puppet master, run `puppet resource -e group web`. This opens a file in your text editor with the following content:
 
-		~~~puppet
-		group { 'web':
-		  ensure => 'present',
-		  gid    => '502',
-		}
-		~~~
+~~~puppet
+group { 'web':
+  ensure => 'present',
+  gid    => '502',
+}
+~~~
 			
-   **Note**: Your gid (the group ID) might be a different number than the example shown in this guide.
+	>**Note**: Your gid (the group ID) might be a different number than the example shown in this guide.
 			
 2. Copy the lines of code, and save and exit the file.
 
@@ -50,51 +50,51 @@ Puppet uses some defaults for unspecified user and group attributes, so all you'
 
 1. From the command line on your Puppet master, run `puppet resource -e user jargyle`. This opens a file in your text editor with the following content:
 
-		~~~puppet
-		user { 'jargyle':
-		  ensure           => 'present',
-		  gid              => '501',
-		  home             => '/home/jargyle',
-		  password         => '!!',
-		  password_max_age => '99999',
-		  password_min_age => '0',
-		  shell            => '/bin/bash',
-		  uid              => '501',
-		}
-		~~~
+~~~puppet
+user { 'jargyle':
+  ensure           => 'present',
+  gid              => '501',
+  home             => '/home/jargyle',
+  password         => '!!',
+  password_max_age => '99999',
+  password_min_age => '0',
+  shell            => '/bin/bash',
+  uid              => '501',
+}
+~~~
 
-   **Note**: Your uid (the user ID), or gid (the group ID) might be different numbers than the examples shown in this guide.
+	>**Note**: Your uid (the user ID), or gid (the group ID) might be different numbers than the examples shown in this guide.
 
 8. Add the following Puppet code to the file:
 
-		~~~puppet
-		comment           => 'Judy Argyle',
-		groups            => 'web',
-		~~~
+~~~puppet
+comment           => 'Judy Argyle',
+groups            => 'web',
+~~~
 
 9. **Delete** the following Puppet code from the file:
 
-		~~~puppet
-		gid              => '501',
-		~~~
+~~~puppet
+gid              => '501',
+~~~
 
 10. Copy all of the code, and save and exit the file.
 
 11. Paste the code from Step 10 into your default node in `site.pp`. It should look like this:
 
-		~~~puppet
-		user { 'jargyle':
-		  ensure           => 'present',
-		  home             => '/home/jargyle',
-		  comment           => 'Judy Argyle',
-		  groups            => 'web',
-		  password         => '!!',
-		  password_max_age => '99999',
-		  password_min_age => '0',
-		  shell            => '/bin/bash',
-		  uid              => '501',
-		}
-		~~~
+~~~puppet
+user { 'jargyle':
+  ensure           => 'present',
+  home             => '/home/jargyle',
+  comment           => 'Judy Argyle',
+  groups            => 'web',
+  password         => '!!',
+  password_max_age => '99999',
+  password_min_age => '0',
+  shell            => '/bin/bash',
+  uid              => '501',
+}
+~~~
 
 12. From the command line on your Puppet master, run `puppet parser validate site.pp` to ensure that there are no errors. The parser will return nothing if there are no errors. 
 
