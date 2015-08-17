@@ -28,6 +28,7 @@ defaultnav:
   /ja/guides/install_puppet: /_includes/ja_puppet_general.html
   /ja/learning: /_includes/ja_learning_nav.html
   /ja/puppet/3.7/reference: /_includes/ja_puppet_3_7.html
+  /ja/puppet/4.2/reference: /_includes/ja_puppet4.2.html
   /learning: /_includes/learning_nav.html
   /mcollective: /_includes/mcollective_menu.html
   /mcollective1.2: /_includes/mcollective_1.2.html
