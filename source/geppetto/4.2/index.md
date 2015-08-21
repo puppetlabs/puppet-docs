@@ -19,6 +19,8 @@ canonical: "/geppetto/latest/geppetto.html"
 
 Geppetto is an integrated development environment for Puppet. In other words, it is a simplified toolset for developing and integrating Puppet modules and manifests.
 
+>**Note**: Geppetto is an open-source tool that is maintained but not supported by Puppet Labs.
+
 Built on Eclipse, Geppetto provides a Puppet manifest editor that supplies syntax highlighting, content assistance, error tracing/debugging, and code completion features. It also includes a similar editor for the module metadata, as well as an interface to the [Puppet Forge](http://forge.puppetlabs.com/), which enables you to create projects from existing modules on the Forge and upload your custom modules directly to the Forge.
 
 Geppetto is integrated with GitHub (Git) via Eclipse EGit and with Subversion (SVN) via Eclipse Subversive. This means you can manage your projects' version control from within Geppetto. You can also compare versions of your code side-by-side, complete with highlighting, code validation, syntax error parsing, and expression troubleshooting.
@@ -43,7 +45,7 @@ In the image above, you can see some of the most common work areas (this descrip
 
 * You can edit your code in the **Editor**. Geppetto takes advantage of Eclipse's editing capabilities, like syntax highlighting, content assistance, and error tracing and debugging for your Puppet code.
 
-* You can quickly find the elements of your classes in the **Outline** view, which shows a tree version of the code you're editing. 
+* You can quickly find the elements of your classes in the **Outline** view, which shows a tree version of the code you're editing.
 
 * You can create your own tasks, as well as automatically create tasks from code comments, in the **Tasks** view.
 
@@ -107,7 +109,7 @@ Now you can start coding your Puppet project in Geppetto.
 4. Select a module from the list that's returned, and then click **OK**.
 5. The project's name will automatically populate in the **Project name** field. Click **Finish**.
     The module's metadata.json is automatically opened in the editor, and the project is available in your **Project Explorer**.
-    
+
 ### Import Module from Source
 
 1. Click **File -> Import**.
@@ -154,7 +156,7 @@ To open the repository perspective, in Geppetto, click **Window -> Open Perspect
 
 ### Import Modules From Git Repository Into Project Editor
 
-You might have a repo that is a single module, or your repo might contain several modules. If your repo contains several modules and none of the modules contain .project files, then you have to import each module one-by-one using **Import as general project**. Otherwise, Geppetto has no way of recognizing the module as a project. You also have to add Puppet project nature. 
+You might have a repo that is a single module, or your repo might contain several modules. If your repo contains several modules and none of the modules contain .project files, then you have to import each module one-by-one using **Import as general project**. Otherwise, Geppetto has no way of recognizing the module as a project. You also have to add Puppet project nature.
 
 If your repo contains modules that already have .project files, then you can import all the modules at once using **Import existing projects**. Puppet project nature will then be added automatically. For more about .project files, see [About Geppetto Project Files](./index.html#aboutgeppettoprojecttfiles).
 
@@ -183,15 +185,15 @@ For more information about interacting with Git or SVN from Geppetto, refer to t
 
 ## Editing Module Metadata
 
-All Puppet modules include a metadata file, which contains high-level information about the module (such as version, author, license, and dependencies). You can modify this metadata through Geppetto's metadata editor. This editor features syntax coloring, tooltips, autocompletion, dependency lookups, and formatting. These features are all configurable in Geppetto's Preferences menu.  
+All Puppet modules include a metadata file, which contains high-level information about the module (such as version, author, license, and dependencies). You can modify this metadata through Geppetto's metadata editor. This editor features syntax coloring, tooltips, autocompletion, dependency lookups, and formatting. These features are all configurable in Geppetto's Preferences menu.
 
-Open any module's metadata.json in Geppetto to open the editor and modify the metadata. If you create a module using Geppetto's Project Wizard, you will have access to the same metadata editor. 
+Open any module's metadata.json in Geppetto to open the editor and modify the metadata. If you create a module using Geppetto's Project Wizard, you will have access to the same metadata editor.
 
-Upon pulling a module from the Puppet Forge, Geppetto will open the metadata.json in the editor automatically. 
+Upon pulling a module from the Puppet Forge, Geppetto will open the metadata.json in the editor automatically.
 
 ### Fields in metadata.json:
 
-* `name`: The name of your module. If you are planning to upload your module to the Puppet Forge at any point, your module name should begin with your username, i.e., "username-module". See [our guidelines on module naming][module_names] for more information. 
+* `name`: The name of your module. If you are planning to upload your module to the Puppet Forge at any point, your module name should begin with your username, i.e., "username-module". See [our guidelines on module naming][module_names] for more information.
 * `version`: Your module's current version number. It is important that you keep this up-to-date, as it affects module dependencies. We highly recommend using [semver](http://semver.org/) to guide your versioning.
 * `author`: The name of the module's author.
 * `license`: Any applicable license guiding the module's use.
@@ -201,7 +203,7 @@ Upon pulling a module from the Puppet Forge, Geppetto will open the metadata.jso
 * `issues_url`: A link to your module's issue tracker.
 * `operatingsystem_support`: A list of operating systems with which your module is compatible. Please see [operating system compatibility in metadata.json][os_metadatajson] for more information.
 * `tags`: Key words that will help others find your module, such as "mysql", "database", or "monitoring". Tags cannot contain whitespace and are case-insensitive.
-* `dependencies`: If your module requires capabilities or functionality provided by another module in order to run properly, your module is dependent on that other module. 
+* `dependencies`: If your module requires capabilities or functionality provided by another module in order to run properly, your module is dependent on that other module.
 You should express such [dependencies][dependencies_metadata] in this field. For example, the [puppetlabs-postgresql](https://forge.puppetlabs.com/puppetlabs/postgresql) has these dependencies:
 
   ~~~
@@ -212,7 +214,7 @@ You should express such [dependencies][dependencies_metadata] in this field. For
     { "name": "puppetlabs/concat", "version_requirement": ">= 1.0.0 <2.0.0" }
   ]
   ~~~
-  
+
   For more information, see [Dependencies in metadata.json](dependencies_metadata).
 
 #### Deriving Metadata.json from Deprecated Modulefile
