@@ -1,0 +1,76 @@
+<div>
+<blockquote>
+  <p> <strong>Note:</strong> このドキュメントはオープンソース版のPuppetについて記述しています。 <a href="/pe/latest/install_basic.html">Puppet Enterpriseのインストール方法はこちら</a>
+</p>
+</blockquote>
+
+<p> Puppetをインストールする前に、以下の作業を実施してください。
+</p>
+
+<h2 id="decide-on-a-deployment-type">デプロイの方法を決める</h2>
+
+<p> Puppetは通常agent/master型(クライアント/サーバ型)で利用しますが、単独での動作もまた可能です。 その選択によりインストールするパッケージと必要な追加設定が決まります。
+</p>
+
+<p> <a href="/puppet/latest/reference/architecture.html">Puppetの仕組みについてさらに学ぶにはこちら.</a>
+</p>
+
+<h2 id="designate-servers">サーバの設計</h2>
+
+<p> もし一般的なagent/master構成を選択するのであれば、どのサーバ機(１台もしくは複数台)をPuppet masterにするか決めます。
+</p>
+
+<p> agentノードをインストールするより前にmasterのインストールと設定を完了していなくてはなりません。 スタンドアローン型
+</p>
+
+<p> masterは高速なプロセッサ、大容量メモリ、高速なディスクを搭載した専用のサーバ機とするのを推奨します。 また信頼できるホスト名で疎通できなくてはなりません。
+</p>
+
+<blockquote>
+  <p> Note: agentノードはデフォルトでホスト名 <code>puppet</code>.に対して接続しようとします。 もしPuppet masterのホスト名を解決できるようにすれば、[<code>server</code>設定][server_setting]を変更しなくてもよくなり、構築時間を削減できます。
+</p>
+</blockquote>
+
+<h2 id="check-os-versions-and-system-requirements">OSのバージョンとシステム要件の確認</h2>
+
+<p> インストールしようとするPuppetバージョンの<a href="system_requirements.html">システム要件</a>を確認し、以下の項目について検討してください:
+</p>
+
+<ul>
+<li>Puppet master(一台もしくは複数台)は管理すべきPuppet agentの数を捌ききれなければなりません。</li>
+  <li>オフィシャルパッケージが提供されているシステムなら、より簡単なインストール方法があります。</li>
+  <li>オフィシャルパッケージが提供されていないシステムの場合でも、インストールされているRubyのバージョンが適切で尚且つ要件を満たしていればPuppetが動く<em>可能性があります</em> 。<a href="/puppet/4.0/reference/system_requirements.html#basic-requirements">サポートするRubyのバージョンおよび要件</a>を参照してください。インストールもまた複雑な手順に従わなければなりません。</li>
+</ul>
+<h2 id="check-your-network-configuration">ネットワーク設定の確認</h2>
+
+<p> agent/master型の場合はPuppetの通信用ネットワークを準備しなくてはなりません。
+</p>
+
+<ul>
+<li>
+<strong>ファイアウォール:</strong> Puppet masterサーバは8140/tcpへの接続を許可している必要があります。 またagentノードはmasterの8140/tcpからの接続を許可する必要があります。</li>
+  <li>
+<strong>名前解決:</strong> 全てのノードはユニークなホスト名を持っていなければなりません。 <strong>DNSの正引きと逆引き</strong> 両方とも正しく設定されていなければなりません。(DNSの設定を説明するのはこのガイドの範囲を超えていますので、DNSが無い場合は各ノードの<code>/etc/hosts</code>ファイルを記述してください)<ul>
+<li>
+<strong>Note:</strong>Puppet masterのホスト名はデフォルトで<code>puppet</code>になっています。agentノードでこのホスト名が解決できるのなら、すぐPuppet masterへ接続可能になります。</li>
+    </ul>
+</li>
+</ul>
+<h2 id="check-timekeeping-on-your-puppet-master-server">Puppet Masterサーバの時刻確認</h2>
+
+<p> Puppet masterサーバの時刻は証明書を認証するため正確に設定しなければなりません。 そのためNTPの利用を推奨します。
+</p>
+
+<p> (もし正しく設定しないと、過去もしくは未来のagent証明書が発行できてしまう事になるので、他のノードではこれを有効でないものとして扱います )
+</p>
+
+<h2 id="next-install-puppet">Next: Puppetのインストール</h2>
+
+<p> ここまでのタスクが完了すれば、Puppetのインストールが可能です。
+</p>
+
+<ul>
+<li><a href="./install_linux.html">*nix環境へのインストール</a></li>
+  <li><a href="./install_windows.html">Windows環境へのインストール</a></li>
+</ul>
+</div>

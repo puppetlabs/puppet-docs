@@ -21,14 +21,11 @@ canonical: "/puppet/latest/reference/lang_relationships.html"
 [lambdas]: ./lang_lambdas.html
 
 
-
-By default, Puppet applies resources in the order they're written in their manifest file. However, if you know that a group of resources depend on each other and must _always_ be managed in a specific order, you should explicitly declare those relationships.
-
-Relationships can be declared with the relationship metaparameters, chaining arrows, and the `require` function.
+By default, Puppet applies resources in the order they're declared in their manifest. However, if a group of resources must _always_ be managed in a specific order, you can explicitly declare such relationships with relationship metaparameters, chaining arrows, and the `require` function.
 
 > **Aside: Default Ordering**
 >
-> If you want to make Puppet apply unrelated resources in a more-or-less random order, you can set [the `ordering` setting][moar] to `title-hash` or `random`.
+> To make Puppet apply unrelated resources in a more-or-less random order, set [the `ordering` setting][moar] to `title-hash` or `random`.
 
 
 Syntax: Relationship Metaparameters
@@ -41,14 +38,14 @@ package { 'openssh-server':
 }
 ~~~
 
-Puppet uses four [metaparameters][] to establish relationships. Each of them can be set as an attribute in any resource. The value of any relationship metaparameter should be a [resource reference][reference] (or [array][] of references) pointing to one or more **target resources.**
+Puppet uses four [metaparameters][] to establish relationships, and you can set each of them as an attribute in any resource. The value of any relationship metaparameter should be a [resource reference][reference] (or [array][] of references) pointing to one or more **target resources**.
 
-* `before` --- Causes a resource to be applied **before** the target resource.
-* `require` --- Causes a resource to be applied **after** the target resource.
-* `notify` --- Causes a resource to be applied **before** the target resource. The target resource will refresh if the notifying resource changes.
-* `subscribe` --- Causes a resource to be applied **after** the target resource. The subscribing resource will refresh if the target resource changes.
+* `before` --- Applies a resource **before** the target resource.
+* `require` --- Applies a resource **after** the target resource.
+* `notify` --- Applies a resource **before** the target resource. The target resource refreshes if the notifying resource changes.
+* `subscribe` --- Applies a resource **after** the target resource. The subscribing resource refreshes if the target resource changes.
 
-If two resources need to happen in order, you can either put a `before` attribute in the prior one or a `require` attribute in the subsequent one; either approach will create the same relationship. The same is true of `notify` and `subscribe`.
+If two resources need to happen in order, you can either put a `before` attribute in the prior one or a `require` attribute in the subsequent one; either approach creates the same relationship. The same is true of `notify` and `subscribe`.
 
 The two examples below create the same ordering relationship:
 
@@ -87,19 +84,45 @@ service { 'sshd':
 }
 ~~~
 
+Since an array of resource references can contain resources of differing types, these two examples also create the same ordering relationship:
+
+~~~ ruby
+service { 'sshd':
+  ensure  => running,
+  require => [
+    Package['openssh-server'],
+    File['/etc/ssh/sshd_config'],
+  ],
+}
+~~~
+
+~~~ ruby
+package { 'openssh-server':
+  ensure => present,
+  before => Service['sshd'],
+}
+
+file { '/etc/ssh/sshd_config':
+  ensure => file,
+  mode   => '0600',
+  source => 'puppet:///modules/sshd/sshd_config',
+  before => Service['sshd'],
+}
+~~~
+
 
 Syntax: Chaining Arrows
 -----
 
 ~~~ ruby
-# ntp.conf is applied first, and will notify the ntpd service if it changes:
+# ntp.conf is applied first, and notifies the ntpd service if it changes:
 File['/etc/ntp.conf'] ~> Service['ntpd']
 ~~~
 
 You can create relationships between two resources or groups of resources using the `->` and `~>` operators.
 
-* `->` (ordering arrow) --- Causes the resource on the left to be applied before the resource on the right. Written with a hyphen and a greater-than sign.
-* `~>` (notification arrow) --- Causes the resource on the left to be applied first, and sends a refresh event to the resource on the right if the left resource changes. Written with a tilde and a greater-than sign.
+* `->` (ordering arrow; a hyphen and a greater-than sign) --- Applies the resource on the left before the resource on the right.
+* `~>` (notification arrow; a tilde and a greater-than sign) --- Applies the resource on the left first, and sends a refresh event to the resource on the right if the left-hand resource changes.
 
 ### Operands
 
@@ -110,7 +133,7 @@ The chaining arrows accept the following kinds of operands on either side of the
 * [Resource declarations][resources]
 * [Resource collectors][collector]
 
-An operand can be shared between two chaining statements, which allows you to link them together into a "timeline:"
+An operand can be shared between two chaining statements, which allows you to link them together into a "timeline":
 
 ~~~ ruby
 Package['ntp'] -> File['/etc/ntp.conf'] ~> Service['ntpd']
@@ -140,7 +163,7 @@ And since collectors can be chained, you can create many-to-many relationships:
 Yumrepo <| |> -> Package <| |>
 ~~~
 
-This example would apply all yum repository resources before applying any package resources, which protects any packages that rely on custom repos.
+This example applies all yum repository resources before applying any package resources, which protects any packages that rely on custom repositories.
 
 ### Capturing Resource References for Generated Resources
 
@@ -150,28 +173,29 @@ You can take advantage of this if you're automatically creating resources whose 
 
 For example:
 
-* The `map` function iterates over its arguments and returns an array of values, wich each value produced by the last expression in the block. If that last expression is a resource declaration, `map` would produce an array of resource references, which could then be used as an operand for a chaining arrow.
-* The value of a resource declaration whose title is an array is an array of resource references. This can be assigned to a variable and used in a chaining statement.
+* The `map` function iterates over its arguments and returns an array of values, with each value produced by the last expression in the block. If that last expression is a resource declaration, `map` produces an array of resource references, which could then be used as an operand for a chaining arrow.
+* The value of a resource declaration whose title is an array, is itself an array of resource references that you can assign to a variable and use in a chaining statement.
 
 ### Caveats when Chaining Resource Collectors
 
 #### Potential for Dependency Cycles
 
-Chained collectors can potentially cause huge [dependency cycles](#dependency-cycles) and should be used carefully. They can also be dangerous when used with [virtual resources][virtual], which are implicitly realized by collectors.
+Chained collectors can cause huge [dependency cycles](#dependency-cycles); be careful when using them. They can also be dangerous when used with [virtual resources][virtual], which are implicitly realized by collectors.
 
 #### Potential for Breaking Chains
 
-Although you can usually chain many resources and/or collectors together (`File['one'] -> File['two'] -> File['three']`), the chain can be broken if it includes a collector whose search expression doesn't match any resources. This is [Puppet bug PUP-1410](https://tickets.puppetlabs.com/browse/PUP-1410).
+Although you can usually chain many resources or collectors together (`File['one'] -> File['two'] -> File['three']`), the chain can be broken if it includes a collector whose search expression doesn't match any resources. This is [Puppet bug PUP-1410](https://tickets.puppetlabs.com/browse/PUP-1410).
 
 #### Implicit Properties Aren't Searchable
 
-Collectors can only search on attributes which are present in the manifests; they cannot see properties that are automatically set or are read from the target system. For example, if the example above had been written as `Yumrepo <| |> -> Package <| provider == yum |>`, it would only create relationships with packages whose `provider` attribute had been _explicitly_ set to `yum` in the manifests. It would not affect any packages that didn't specify a provider but would end up using Yum because it's the default provider for the node's OS.
+Collectors can search only on attributes present in the manifests; they cannot see properties that are automatically set or are read from the target system. For example, if the example above had been written as `Yumrepo <| |> -> Package <| provider == yum |>`, it would only create relationships with packages whose `provider` attribute had been _explicitly_ set to `yum` in the manifests. It would not affect any packages that didn't specify a provider but would end up using Yum because it's the default provider for the node's operating system.
 
 ### Reversed Forms
 
 Both chaining arrows have a reversed form (`<-` and `<~`). As implied by their shape, these forms operate in reverse, causing the resource on their right to be applied before the resource on their left.
 
-> Note: As the majority of Puppet's syntax is written left-to-right, these reversed forms can be confusing and are not recommended.
+> **Note**: Most of Puppet's syntax is written left-to-right. Avoid these reversed forms as they can be confusing.
+
 
 Syntax: The `require` Function
 -----
@@ -186,7 +210,7 @@ class wordpress {
 }
 ~~~
 
-The above example would cause every resource in the `apache` and `mysql` classes to be applied before any of the resources in the `wordpress` class.
+The above example causes every resource in the `apache` and `mysql` classes to be applied before any of the resources in the `wordpress` class.
 
 Unlike the relationship metaparameters and chaining arrows, the `require` function does not have a reciprocal form or a notifying form. However, more complex behavior can be obtained by combining `include` and chaining arrows inside a class definition:
 
@@ -198,6 +222,7 @@ class apache::ssl {
 }
 ~~~
 
+
 Behavior
 -----
 
@@ -208,11 +233,11 @@ Puppet has two kinds of resource relationships:
 * Ordering
 * Ordering with notification
 
-An ordering relationship ensures that one resource will be managed before another.
+An ordering relationship ensures that one resource is managed before another.
 
 A notification relationship does the same, but **also** sends the latter resource a **refresh event** if Puppet [changes the first resource's state][event]. A refresh event causes the recipient to refresh itself.
 
-If a resource receives multiple refresh events, they will be combined and the resource will only refresh once.
+If a resource receives multiple refresh events, they're combined and the resource only refreshes once.
 
 ### Refreshing
 
@@ -222,9 +247,9 @@ Service resources refresh by restarting their service. Mount resources refresh b
 
 ### Auto\* Relationships
 
-Certain resource types can have automatic relationships with other resources, using an _autorequire, autonotify, autobefore, or autosubscribe._ This creates an ordering relationship without the user explicitly stating one. The [resource type reference][type] contains information on which resource types can have these types of relationships with other resources. Auto relationships between types and resources are established when applying a catalog.
+Certain resource types can have automatic relationships with other resources, using  _autorequire_, _autonotify_, _autobefore_, or _autosubscribe_. This creates an ordering relationship without the user explicitly stating one. The [resource type reference][type] notes which resource types can have these types of relationships with other resources. Auto relationships between types and resources are established when applying a catalog.
 
-When Puppet is preparing to sync a resource whose type supports an auto relationship, it will search the catalog for any resources that match certain rules. If it finds any, it will process them in the correct order, sending refresh events if necessary. If Puppet _doesn't_ find any resources that could use an auto relationship, that's fine; they won't be considered a failed dependency.
+When Puppet prepares to sync a resource whose type supports an auto relationship, it searches the catalog for any resources that match certain rules. If it finds any, it processes them in the correct order, sending refresh events if necessary. If Puppet _doesn't_ find any resources that could use an auto relationship, that's fine; they aren't considered a failed dependency.
 
 ### Evaluation-Order Independence
 
@@ -232,31 +257,34 @@ Relationships are not limited by evaluation-order. You can declare a relationshi
 
 ### Missing Dependencies
 
-If one of the resources in a relationship is never declared, **compilation will fail** with one of the following errors:
+If one of the resources in a relationship is never declared, **compilation fails** with one of the following errors:
 
 * `Could not find dependency <OTHER RESOURCE> for <RESOURCE>`
 * `Could not find resource '<OTHER RESOURCE>' for relationship on '<RESOURCE>'`.
 
 ### Failed Dependencies
 
-If Puppet fails to apply the prior resource in a relationship, it will skip the subsequent resource and log the following messages:
+If Puppet fails to apply the prior resource in a relationship, it skips the subsequent resource and log the following messages:
 
-    notice: <RESOURCE>: Dependency <OTHER RESOURCE> has failures: true
-    warning: <RESOURCE>: Skipping because of failed dependencies
+~~~
+notice: <RESOURCE>: Dependency <OTHER RESOURCE> has failures: true
+warning: <RESOURCE>: Skipping because of failed dependencies
+~~~
 
-It will then continue to apply any unrelated resources. Any resources that depend on the skipped resource will also be skipped.
+It then continues to apply any unrelated resources. Any resources that depend on the skipped resource are also skipped.
 
 This helps prevent inconsistent system state by causing a "clean" failure instead of attempting to apply a resource whose prerequisites may be broken.
 
-> Note: Although a resource won't be applied if a dependency fails, it can still receive and respond to refresh events from other, successful, dependencies. This is because refreshes are handled semi-independently of the normal resource sync process. It is an outstanding design issue, and may be tracked at [issue #7486](http://projects.puppetlabs.com/issues/7486).
+> **Note**: Although a resource won't be applied if a dependency fails, it can still receive and respond to refresh events from other, successful, dependencies. This is because refreshes are handled semi-independently of the normal resource sync process. It is an outstanding design issue, and may be tracked at [issue #7486](http://projects.puppetlabs.com/issues/7486).
 
 ### Dependency Cycles
 
-If two or more resources require each other in a loop, Puppet will compile the catalog but will be unable to apply it. Puppet will log an error like the following, and will attempt to help you identify the cycle:
+If two or more resources require each other in a loop, Puppet compiles the catalog but won't be able to apply it. Puppet logs an error like the following, and attempts to help  identify the cycle:
 
-    err: Could not apply complete catalog: Found 1 dependency cycle:
-    (<RESOURCE> => <OTHER RESOURCE> => <RESOURCE>)
-    Try the '--graph' option and opening the resulting '.dot' file in OmniGraffle or GraphViz
+~~~
+err: Could not apply complete catalog: Found 1 dependency cycle:
+(<RESOURCE> => <OTHER RESOURCE> => <RESOURCE>)
+Try the '--graph' option and opening the resulting '.dot' file in OmniGraffle or GraphViz
+~~~
 
 To locate the directory containing the graph files, run `puppet agent --configprint graphdir`.
-

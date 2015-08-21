@@ -28,6 +28,7 @@ defaultnav:
   /ja/guides/install_puppet: /_includes/ja_puppet_general.html
   /ja/learning: /_includes/ja_learning_nav.html
   /ja/puppet/3.7/reference: /_includes/ja_puppet_3_7.html
+  /ja/puppet/4.2/reference: /_includes/ja_puppet4.2.html
   /learning: /_includes/learning_nav.html
   /mcollective: /_includes/mcollective_menu.html
   /mcollective1.2: /_includes/mcollective_1.2.html
@@ -156,11 +157,11 @@ externalsources:
     repo: git://github.com/nfagerlund/marionette-collective.git
     commit: origin/docs_1.2
     subdirectory: website
-#  puppetserver_master:
-#    url: /puppetserver/master
-#    repo: git://github.com/puppetlabs/puppet-server.git
-#    commit: origin/master
-#    subdirectory: documentation
+  puppetserver_master:
+    url: /puppetserver/master
+    repo: git://github.com/puppetlabs/puppet-server.git
+    commit: origin/master
+    subdirectory: documentation
   puppetserver_1.0:
     url: /puppetserver/1.0
     repo: git://github.com/puppetlabs/puppet-server.git
@@ -174,12 +175,12 @@ externalsources:
   puppetserver_1.1:
     url: /puppetserver/1.1
     repo: git://github.com/puppetlabs/puppet-server.git
-    commit: origin/stable
+    commit: origin/1.x
     subdirectory: documentation
   puppetserver_2.1:
     url: /puppetserver/2.1
     repo: git://github.com/puppetlabs/puppet-server.git
-    commit: origin/master
+    commit: origin/stable
     subdirectory: documentation
   pe3.7:
     url: /pe/3.7

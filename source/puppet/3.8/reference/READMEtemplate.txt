@@ -1,62 +1,61 @@
-#modulename
+# modulename
 
-####Table of Contents
+#### Table of Contents
 
-1. [Overview](#overview)
-2. [Module Description - What the module does and why it is useful](#module-description)
-3. [Setup - The basics of getting started with [Modulename]](#setup)
-    * [What [Modulename] affects](#what-[modulename]-affects)
+1. [Description](#description)
+2. [Setup - The basics of getting started with [modulename]](#setup)
+    * [What [modulename] affects](#what-[modulename]-affects)
     * [Setup requirements](#setup-requirements)
-    * [Beginning with [Modulename]](#beginning-with-[Modulename])
-4. [Usage - Configuration options and additional functionality](#usage)
-5. [Reference - An under-the-hood peek at what the module is doing and how](#reference)
+    * [Beginning with [modulename]](#beginning-with-[modulename])
+3. [Usage - Configuration options and additional functionality](#usage)
+4. [Reference - An under-the-hood peek at what the module is doing and how](#reference)
 5. [Limitations - OS compatibility, etc.](#limitations)
 6. [Development - Guide for contributing to the module](#development)
 
-##Overview
+## Description
 
-A one-maybe-two sentence summary of what the module does/what problem it solves. This is your 30 second elevator pitch for your module. Consider including OS/Puppet version it works with.       
+Start with a one- or two-sentence summary of what the module does and/or what problem it solves. This is your 30-second elevator pitch for your module. Consider including OS/Puppet version it works with.       
 
-##Module Description
+You can give more descriptive information in a second paragraph. This paragraph should answer the questions: "What does this module *do*?" and "Why would I use it?" If your module has a range of functionality (installation, configuration, management, etc.), this is the time to mention it.
 
-If applicable, this section should have a brief description of the technology the module integrates with and what that integration enables. This section should answer the questions: "What does this module *do*?" and "Why would I use it?"
-    
-If your module has a range of functionality (installation, configuration, management, etc.) this is the time to mention it.
+## Setup
 
-##Setup
+### What [modulename] affects **OPTIONAL**
 
-###What [Modulename] affects
+If it's obvious what your module touches, you can skip this section. For example, folks can probably figure out that your mysql_instance module affects their MySQL instances.
 
-* A list of files, packages, services, or operations that the module will alter, impact, or execute on the system it's installed on.
-* This is a great place to stick any warnings.
-* Can be in list or paragraph form. 
+If there's more that they should know about, though, this is the place to mention:
 
-###Setup Requirements **OPTIONAL**
+* Files, packages, services, or operations that the module will alter, impact, or execute.
+* Dependencies that your module automatically installs.
+* Warnings or other important notices.
 
-If your module requires anything extra before setting up (pluginsync enabled, etc.), mention it here. 
+### Setup Requirements **OPTIONAL**
+
+If your module requires anything extra before setting up (pluginsync enabled, another module, etc.), mention it here. 
 	
-###Beginning with [Modulename]	
+If your most recent release breaks compatibility or requires particular steps for upgrading, you might want to include an additional "Upgrading" section here.
 
-The very basic steps needed for a user to get the module up and running. 
+### Beginning with [modulename]	
 
-If your most recent release breaks compatibility or requires particular steps for upgrading, you may wish to include an additional section here: Upgrading (For an example, see http://forge.puppetlabs.com/puppetlabs/firewall).
+The very basic steps needed for a user to get the module up and running. This can include setup steps, if necessary, or it can be an example of the most basic use of the module.
 
-##Usage
+## Usage
 
-Put the classes, types, and resources for customizing, configuring, and doing the fancy stuff with your module here. 
+This section is where you describe how to customize, configure, and do the fancy stuff with your module here. It's especially helpful if you include usage examples and code samples for doing things with your module.
 
-##Reference
+## Reference
 
-Here, list the classes, types, providers, facts, etc contained in your module. This section should include all of the under-the-hood workings of your module so people know what the module is touching on their system but don't need to mess with things. (We are working on automating this section!)
+Here, include a complete list of your module's classes, types, providers, facts, along with the parameters for each. Users refer to this section (thus the name "Reference") to find specific details; most users don't read it per se.
 
-##Limitations
+## Limitations
 
-This is where you list OS compatibility, version compatibility, etc.
+This is where you list OS compatibility, version compatibility, etc. If there are Known Issues, you might want to include them under their own heading here.
 
-##Development
+## Development
 
 Since your module is awesome, other users will want to play with it. Let them know what the ground rules for contributing are.
 
-##Release Notes/Contributors/Etc **Optional**
+## Release Notes/Contributors/Etc. **Optional**
 
-If you aren't using changelog, put your release notes here (though you should consider using changelog). You may also add any additional sections you feel are necessary or important to include here. Please use the `## ` header. 
+If you aren't using changelog, put your release notes here (though you should consider using changelog). You can also add any additional sections you feel are necessary or important to include here. Please use the `## ` header. 

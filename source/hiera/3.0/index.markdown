@@ -6,14 +6,14 @@ layout: default
 
 [puppet]: /puppet
 [config]: ./configuring.html
-[install]: ./installing.html
 [data_sources]: ./data_sources.html
 [hierarchy]: ./hierarchy.html
 [with_puppet]: ./puppet.html
 [command_line]: ./command_line.html
 [complete_example]: ./complete_example.html
-
-
+[linux]: /puppet/latest/reference/install_linux.html
+[windows]: /puppet/latest/reference/install_windows.html
+[os x]: /puppet/latest/reference/install_osx.html
 
 Hiera is a key/value lookup tool for configuration data, built to **make [Puppet][] better** and let you **set node-specific data without repeating yourself.** See ["Why Hiera?" below](#why-hiera) for more information, or get started using it right away:
 
@@ -22,7 +22,7 @@ Getting Started With Hiera
 
 > To get started with Hiera, you'll need to do all of the following:
 >
-> * [Install Hiera][install], if it isn't already installed.
+> * Make sure it's installed. Hiera ships with Puppet agent, so install the puppet-agent package if you haven't already. ([Linux][], [Windows][], [OS X][].)
 > * [Make a `hiera.yaml` config file][config].
 > * [Arrange a hierarchy][hierarchy] that fits your site and data.
 > * [Write data sources][data_sources].
