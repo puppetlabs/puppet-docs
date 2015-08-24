@@ -8,6 +8,7 @@ PuppetDB is the fast, scalable, and reliable data warehouse for Puppet. It cache
 
 ## Current Versions
 
+* [PuppetDB 3.1](./3.1) is compatible with Puppet 4.x.
 * [PuppetDB 3.0](./3.0) is compatible with Puppet 4.x.
 * [PuppetDB 2.3](./2.3) is included with Puppet Enterprise 3.8. It's compatible with Puppet 4.x and 3.x.
 

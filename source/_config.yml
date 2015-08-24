@@ -57,6 +57,7 @@ defaultnav:
   /puppetdb/2.2: /_includes/puppetdb2.2.html
   /puppetdb/2.3: /puppetdb/2.3/_puppetdb_nav.html
   /puppetdb/3.0: /puppetdb/3.0/_puppetdb_nav.html
+  /puppetdb/3.1: /puppetdb/3.1/_puppetdb_nav.html
   /puppetdb/master: /puppetdb/master/_puppetdb_nav.html
   /puppet/0.24/reference: /_includes/puppet_0_24.html
   /puppet/0.25/reference: /_includes/puppet_0_25.html
@@ -140,6 +141,11 @@ externalsources:
   puppetdb_3.0:
     url: /puppetdb/3.0
     repo: git://github.com/puppetlabs/puppetdb.git
+    commit: 3.0.2
+    subdirectory: documentation
+  puppetdb_3.1:
+    url: /puppetdb/3.1
+    repo: git://github.com/puppetlabs/puppetdb.git
     commit: origin/stable
     subdirectory: documentation
   puppetdb_master:
@@ -208,6 +214,7 @@ symlink_latest:
   - facter
   - pe
 lock_latest: {
+  puppetdb: "3.0"
 }
 version_notes:
   # Default notes for upstreams. Tweak these whenever latest de-syncs or re-syncs with PE!
