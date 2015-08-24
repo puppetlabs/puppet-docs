@@ -214,7 +214,6 @@ symlink_latest:
   - facter
   - pe
 lock_latest: {
-  puppetdb: "3.0"
 }
 version_notes:
   # Default notes for upstreams. Tweak these whenever latest de-syncs or re-syncs with PE!
