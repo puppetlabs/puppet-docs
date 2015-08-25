@@ -228,15 +228,16 @@ version_notes:
   /puppet/4.2: '<p class="noisy">This is the latest version of Puppet and is used with PE 2015.2. PE 3.8 users should see <a href="/puppet/3.8/reference/">the Puppet 3.8 docs</a> and <a href="/pe/latest/">the Puppet Enterprise 3.8 docs</a>.</p>'
   /puppetdb/2.2: "This is the version of PuppetDB included in Puppet Enterprise 3.7. If you're using the open source release, there's a <a href=\"/puppetdb/latest/\">newer version</a> available."
   /puppetdb/2.3: "This is the version of PuppetDB included in Puppet Enterprise 3.8. If you're using the open source release, there's a <a href=\"/puppetdb/latest/\">newer version</a> available."
-  /puppetdb/3.0: '<p class="noisy">This version of PuppetDB is included in PE 2015.2. PE 3.8 users should see <a href="/puppetdb/2.3/">the PuppetDB 2.3 docs</a>.</p>'
-  /puppetdb/master: '<p class="noisy">This page is for an unreleased version of PuppetDB. PE 3.8 users should see <a href="/puppetdb/2.3/">the PuppetDB 2.3 docs</a>. Other users should see <a href="/puppetdb/latest/">the latest official release</a>.</p>'
+  /puppetdb/3.0: "This is the version of PuppetDB included in PE 2015.2. PE 3.8 users should see <a href=\"/puppetdb/2.3/\">the PuppetDB 2.3 docs</a>. If you're using the open source release, there's a <a href=\"/puppetdb/latest/\">newer version</a> available."
+  /puppetdb/3.1: '<p class="noisy">This version of PuppetDB is not currently included in a Puppet Enterprise release. PE 2015.2 users should see <a href="/puppetdb/3.0/">the PuppetDB 3.0 docs</a>. PE 3.8 users should see <a href="/puppetdb/2.3/">the PuppetDB 2.3 docs</a>.</p>'
+  /puppetdb/master: '<p class="noisy">This page is for an unreleased version of PuppetDB. PE 2015.2 users should see <a href="/puppetdb/3.0/">the PuppetDB 3.0 docs</a>. Other users should see <a href="/puppetdb/latest/">the latest official release</a>.</p>'
   /facter/2.2: 'This is the version of Facter included in Puppet Enterprise 3.7. Open source Puppet users should see <a href="/facter/latest">the latest version of the docs</a>.'
   /facter/2.4: 'This is the version of Facter included in Puppet Enterprise 3.8. Open source Puppet users should see <a href="/facter/latest">the latest version of the docs</a>.'
-  /facter/3.0: '<p class="noisy">Use this version with PE 2015.2. PE 3.8 users should see <a href="/facter/2.4">the Facter 2.4 docs.</a></p>'
+  /facter/3.0: 'This is the version of Facter included in PE 2015.2. PE 3.8 users should see <a href="/facter/2.4">the Facter 2.4 docs.</a></p>'
   /hiera/1: 'This is the version of Hiera included in Puppet Enterprise 3.8. Open source Puppet users should see <a href="/hiera/latest">the latest version of the docs</a>.'
   /hiera/3.0: '<p class="noisy">This version is used with PE 2015.2. PE 3.7 and 3.8 users should see <a href="/hiera/1">the Hiera 1.x docs.</a></p>'
-  /puppetserver/1.0: 'This is the version of Puppet Server included in Puppet Enterprise 3.7 and 3.8.'
-  /puppetserver/1.1: '<p class="noisy">This version of Puppet Server is not included in a Puppet Enterprise release. PE 3.7 and 3.8 users should see <a href="/puppetserver/1.0">the Puppet Server 1.0 docs.</a>'
-  /puppetserver/2.1: '<p class="noisy">This is the latest version of Puppet Server for use with PE 2015.2. Puppet Enterprise 3.7 and 3.8 users should see <a href="/puppetserver/1.0">the Puppet Server 1.0 docs.</a>'
+  /puppetserver/1.0: 'This is the version of Puppet Server included in Puppet Enterprise 3.7 and 3.8.0.'
+  /puppetserver/1.1: '<p class="noisy">This is the version of Puppet Server included in Puppet Enterprise 3.8.1 (and later 3.8 releases). PE 3.7 users should see <a href="/puppetserver/1.0">the Puppet Server 1.0 docs.</a>'
+  /puppetserver/2.1: '<p class="noisy">This is the latest version of Puppet Server, included in PE 2015.2. Puppet Enterprise 3.8 users should see <a href="/puppetserver/1.1">the Puppet Server 1.1 docs.</a>'
 
 ---
