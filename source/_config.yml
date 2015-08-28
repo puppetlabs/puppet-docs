@@ -210,7 +210,6 @@ symlink_latest:
   - puppetdb
   - puppetserver
   - hiera
-  - geppetto
   - facter
   - pe
 lock_latest: {
