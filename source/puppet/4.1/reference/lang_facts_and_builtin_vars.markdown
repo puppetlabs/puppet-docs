@@ -17,7 +17,7 @@ canonical: "/puppet/latest/reference/lang_facts_and_builtin_vars.html"
 [puppetdb_facts]: /puppetdb/latest/api/index.html
 [localscope]: ./lang_scope.html#local-scopes
 [trusted_on]: ./config_important_settings.html#getting-new-features-early
-[scope]: ./lang_scope
+[scope]: ./lang_scope.html
 [extensions]: ./ssl_attributes_extensions.html
 [structured_facts_on]: ./config_important_settings.html#getting-new-features-early
 [strings]: ./lang_data_string.html

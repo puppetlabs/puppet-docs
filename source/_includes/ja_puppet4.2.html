@@ -1,6 +1,8 @@
 {% capture server_version %}2.1{% endcapture %}
 {% capture puppet_version %}4.2{% endcapture %}
-{% capture puppet_dir %}/puppet/{{ puppet_version }}/reference{% endcapture %}
+{% capture puppet_dir %}/ja/puppet/{{ puppet_version }}/reference{% endcapture %}
+
+{% comment %}
 
 <h3 id="puppet-{{ puppet_version }}-reference-manual">Puppet {{ puppet_version }} Reference Manual</h3>
 
@@ -404,3 +406,20 @@
     </ul>
   </li>
 </ul>
+
+
+{% endcomment %}
+
+<h3 id="puppet-{{ puppet_version }}-reference-manual">Puppet {{ puppet_version }} Reference Manual</h3>
+
+
+<ul>
+  <li><a href="/ja/index.html">Puppet Labs 日本語ホーム</a></li>
+  <li><a href="{{ puppet_dir }}/index_ja.html">リファレンスマニュアルへようこそ</a></li>
+  <li><strong>Puppetのインストールとアップグレード</strong>
+    <ul>
+      <li><a href="{{ puppet_dir }}/architecture_ja.html">Puppetのアーキテクチャ概要</a></li>
+      <li><a href="{{ puppet_dir }}/install_pre_ja.html">インストール前のタスク</a></li>
+    </ul>
+</ul>
+

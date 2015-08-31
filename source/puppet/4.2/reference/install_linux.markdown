@@ -71,6 +71,8 @@ The new location for Puppet's executables is `/opt/puppetlabs/bin/`, which is no
 
 This doesn't matter for Puppet services (so `service puppet start` will work fine), but if you're running any interactive `puppet` commands, you'll need to either add them to your PATH or refer to them by full name.
 
+To quickly add this to your PATH, use the command `export PATH=/opt/puppetlabs/bin:$PATH`.
+
 See [our page about moved files and directories][where] for more info.
 
 

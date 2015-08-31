@@ -346,7 +346,7 @@
                                           <a href="/puppet/latest/reference/modules_fundamentals.html">Module Fundamentals</a>
                                       </li>
                                       <li>
-                                          <a href="/puppet/latest/reference/experiments_future.html">Future Parser: Intro</a>
+                                          <a href="/puppet/latest/reference/experiments_future.html">Updating 3.x Manifests for Puppet 4.x</a>
                                       </li>
                                       <li>
                                           <a href="/puppet/4.0/reference/whered_it_go.html">Puppet 4: New File Locations</a>
@@ -356,14 +356,14 @@
                               <div class="hc-col-list-col">
                                   <ul>
                                   	  <li>
-                                          <a href="/puppetserver/1.0/index.html">Puppet Server</a>
+                                          <a href="/puppetserver/latest">Puppet Server</a>
                                       </li>
                                   	  <li>
-                                          <a href="/puppetdb/2.2/">PuppetDB</a>
+                                          <a href="/puppetdb/latest">PuppetDB</a>
                                       </li>
 
                                       <li>
-                                          <a href="/hiera/1/">Hiera</a>
+                                          <a href="/hiera/latest">Hiera</a>
                                       </li>
                                       <li>
                                           <a href="/facter/latest/">Facter</a>
@@ -387,10 +387,14 @@
 
           <!-- hc-footer -->
           <div class="homepage-sub-footer">
-            <a href="http://docs.puppetlabs.com/pe/latest/pe_versioning.html">Version Numbering for Puppet Labs Software</a>
-              <a href="https://docs.puppetlabs.com/contribute.html" class="hsf-link">Report Errors and Suggest Changes</a>
-              <span class="bullet hsf-link">&bull;</span>
-              <a href="http://learn.puppetlabs.com/?_ga=1.28832956.1018811879.1418687874" class="hsf-link">Take a Class</a>
+            <a href="http://docs.puppetlabs.com/pe/latest/pe_versioning.html" class="hsf-link">Software Version Numbering</a>
+            <a href="https://docs.puppetlabs.com/contribute.html" class="hsf-link">Report Errors and Suggest Changes</a>
+            <a href="http://learn.puppetlabs.com/?_ga=1.28832956.1018811879.1418687874" class="hsf-link">Take a Class</a>
+            <a href="http://docs.puppetlabs.com/puppetdocs-latest.tar.gz" class="hsf-link">Download the Docs</a>
+
+            <br>
+
+            Last site build: {{ 'now' | date: "%B %d, %Y" }}, from revision {% gitrevision %}.
           </div>
       </div>
   </section>
@@ -440,7 +444,7 @@
                   <div class="title">Get Puppet Labs News</div>
                   <div class="email-subscription">
                       <div id="email-subscription-container">
-                          <form class="lpeRegForm formNotEmpty" method="post" enctype="application/x-www-form-urlencoded" action=http://info.puppetlabs.com/index.php/leadCapture/save" id="mktForm_1047" name="mktForm_1047">
+                          <form class="lpeRegForm formNotEmpty" method="post" enctype="application/x-www-form-urlencoded" action="https://app-sjh.marketo.com/index.php/leadCapture/save" id="mktForm_1047" name="mktForm_1047">
                               <input class='mktFormText mktFormEmail mktFReq' name="Email" id="Email" type='email' value=""  placeholder="enter your email address" maxlength='255' tabIndex='1' />
                               <input class='mktFormHidden' name="Form_Name__c" id="Form_Name__c" type='hidden' value="Newsletter" />
                               <input class='mktFormHidden' name="Current_Form_Name__c" id="Current_Form_Name__c" type='hidden' value="Newsletter" />

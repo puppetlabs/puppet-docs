@@ -50,7 +50,7 @@ See [our page about moved files and directories][where] for more info.
 
 ## Install Puppet
 
-There are three ways to install Puppet os OS X:
+There are three ways to install Puppet on OS X:
 
 * With the GUI installer.
 * On the command line.
