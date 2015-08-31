@@ -91,7 +91,7 @@ You can trim trailing whitespace and line breaks after expression-printing tags 
 
 ### Non-Printing Tags
 
-`<% if $broadcastclient == true %> ...text... <% end %>`
+`<% if $broadcastclient == true { %> ...text... <% } %>`
 
 A non-printing tag executes the code it contains, but doesn't insert a value into the output. It starts with an opening tag delimiter (`<%`) and ends with a closing tag delimiter (`%>`).
 
@@ -100,9 +100,9 @@ Non-printing tags that contain [iterative](./lang_iteration.html) and [condition
 For example, to insert text only if a certain variable was set, you could do something like:
 
 ~~~ erp
-<% if $broadcastclient == true -%>
+<% if $broadcastclient == true { -%>
 broadcastclient
-<% end -%>
+<% } -%>
 ~~~
 
 Expressions in non-printing tags don't have to resolve to a value or be a complete statement, but the tag must close at a place where it would be legal to write another expression. For example, you couldn't write:
