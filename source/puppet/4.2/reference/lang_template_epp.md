@@ -36,9 +36,9 @@ This page covers how to write EPP templates. See [Templates](./lang_template.htm
 
 <%# Non-printing tag ↓ -%>
 <% if $keys_enable { -%>
+
 <%# Expression-printing tag ↓ -%>
 keys <%= $keys_file %>
-<% } -%>
 <% unless $keys_trusted =~ Array[Data,0,0] { -%>
 trustedkey <%= $keys_trusted.join(' ') %>
 <% } -%>
@@ -47,6 +47,8 @@ requestkey <%= $keys_requestkey %>
 <% } -%>
 <% if $keys_controlkey =~ String[1] { -%>
 controlkey <%= $keys_controlkey %>
+<% } -%>
+
 <% } -%>
 ~~~
 
