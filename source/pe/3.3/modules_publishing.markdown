@@ -176,6 +176,18 @@ The version requirement in a dependency isn't limited to a single version; you c
 * `>= 3.2.x`
 * `< 4.x`
 
+>###A Note on Module Dependencies
+>
+>As a best practice when your module depends on other modules, you should always strive to set the upper version boundary in your version range, whether through `1.x` (Any version of `1`, less than `2.0.0`) or through `>=1.0.0 <3.0.0` (greater than or equal to `1.0.0` but less than `3.0.0`).
+>
+>When module dependencies do not have an upper bound to the next major version, it leaves a possibility for compatibility issues across a major version boundary, where incompatible changes are known to occur (based on rules of semantic versioning). It is better to be conservative and set an upper bound, then release a newer version of your module once a major version has been released and found compatible than to find yourself suddenly needing to fix a broken dependency.
+>
+>If you are compatible with only one major version or minor version you can simply use the semantic major/minor version shorthand (e.g. `1.x`). If you are compatible with versions crossing major version boundaries, like you might have with stdlib, you can set your supported version range to the next unreleased major version, e.g.
+>
+>     { "name": "puppetlabs/stdlib", "version_requirement": ">=3.2.0 <5.0.0" }
+>
+>Note that the current version of stdlib at the time of this writing is `4.8.0`, version `5.0.0` is not yet released. Due to the rules of semantic versioning, we know that `5.0.0` is likely to have incompatibilities, but every version of 4.x should be compatible. We don't know yet if our module will be compatible with 5.x. So we set the upper bound of our version dependency to less than the next known incompatible release (the major version).
+
 ###Operating system compatibility in metadata.json
 
 If you are publishing your module to the Puppet Forge, we highly recommend that you include `operatingsystem_support` in your metadata.json. Even if you do not intend to publish your module, including this information can be helpful for tracking your work. 
