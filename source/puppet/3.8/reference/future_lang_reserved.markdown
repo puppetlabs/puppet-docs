@@ -33,9 +33,11 @@ Several words in the Puppet language are **reserved**. This means they:
 The following words are reserved:
 
 * `and` --- expression operator
+* `application` --- reserved for future use
 * `attr` --- reserved for future use
 * `case` --- language keyword
 * `class` --- language keyword
+* `consumes` --- reserved for future use
 * `default` --- language keyword
 * `define` --- language keyword
 * `else` --- language keyword
@@ -49,6 +51,7 @@ The following words are reserved:
 * `node` --- language keyword
 * `or` --- expression operator
 * `private` --- reserved for future use
+* `produces` --- reserved for future use
 * `true` --- boolean value
 * `type` --- reserved for future use
 * `undef` --- special value
