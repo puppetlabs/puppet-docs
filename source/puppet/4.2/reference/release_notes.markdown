@@ -20,6 +20,54 @@ Make sure you also read the [Puppet 4.0 release notes](/puppet/4.0/reference/rel
 
 Also of interest: the [Puppet 4.1 release notes](/puppet/4.1/reference/release_notes.html).
 
+## Puppet 4.2.2
+
+Released TODO
+
+Shipped in puppet-agent version: 1.2.4.
+
+Puppet 4.2.2 is a bug fix release in the Puppet 4.2 series. It also adds warnings for new reserved words, to prepare for upcoming language features.
+
+### New Reserved Words: `application`, `consumes`, and `produces`
+
+To prepare for upcoming language features, we've reserved three new words in the Puppet language:
+
+* `application`
+* `consumes`
+* `produces`
+
+Like all [reserved words](./lang_reserved.html), you can't use these as unquoted strings or as names for classes, defined types, resource types, or custom functions.
+
+Since this isn't a major version boundary, using these words will log warnings instead of errors. In the next major version of Puppet, they will become normal reserved words. When we introduce features that use these words, they will be opt-in via a setting until the next major version of Puppet.
+
+This change also went into Puppet 3.8.2's future parser.
+
+* [PUP-4941: Reserve keywords 'application', 'consumes', and 'produces'](https://tickets.puppetlabs.com/browse/PUP-4941)
+* [PUP-5036: `--parser future` breaks `class application {}`](https://tickets.puppetlabs.com/browse/PUP-5036)
+
+### Bug Fixes: Windows
+
+* [PUP-4854: PMT fails to install modules on Windows that have long paths](https://tickets.puppetlabs.com/browse/PUP-4854) --- Windows has a default maximum path length of 260 characters (`MAX_PATH`), and the module tool's temp path was taking up too much of that. We've changed it to use a shorter temp directory.
+* [PUP-5018: Puppet::FileSystem.unlink fails on Windows when the target path doesn't exist](https://tickets.puppetlabs.com/browse/PUP-5018) --- Puppet would raise an error when removing a symlink whose target no longer exists. Now it works fine.
+
+### Bug Fixes: Mac OS X
+
+* [PUP-4639: Refreshing a LaunchDaemon leaves it disabled](https://tickets.puppetlabs.com/browse/PUP-4639) --- When refreshing a service on Mac OS X that was already running (via `notify`, `subscribe`, or `~>`), Puppet would stop the service and fail to start it.
+* [PUP-4822: Regression PMT cannot connect to forge on OSX](https://tickets.puppetlabs.com/browse/PUP-4822) --- The bundled copy of OpenSSL in our OS X packages didn't have the CA cert it needed to connect to the Puppet Forge, so `puppet module` wasn't working correctly.
+* [PUP-5044: launchd enable/disable on OS X 10.10](https://tickets.puppetlabs.com/browse/PUP-5044) --- Enable/disable of services on El Capitan (10.10) wasn't working because the overrides plist moved. Puppet now knows where to find that plist on 10.10+.
+
+### Bug Fixes: Linux
+
+* [PUP-4865: Package resources no longer fail with bad names on EL5](https://tickets.puppetlabs.com/browse/PUP-4865) --- On Red Hat Enterprise Linux 5, there was a regression wherein package resources with bad names (which should fail) were not failing. This fix restores the correct behavior, which is to fail the catalog application.
+* [PUP-4605: With a systemd masked service: 'enable=true ensure=running' doesn't work](https://tickets.puppetlabs.com/browse/PUP-4605) --- With a systemd masked service the combination of the enable=true and ensure=running attributes did not work, although using them serially would work. This fix addresses that use case.
+
+### Bug Fixes: Misc
+
+* [PUP-3318: Puppet prints warning when "environment" is set using classifier rather than local puppet.conf](https://tickets.puppetlabs.com/browse/PUP-3318) --- When a Puppet agent was instructed by the Puppet master to change its environment, it would issue a warning about changing environment even though that's the intended behavior. That message has been changed to a notice.
+* [PUP-5013: Improve the code for profiling resource evaluation?](https://tickets.puppetlabs.com/browse/PUP-5013) --- Puppet Server's metrics for resource evaluation were very incomplete, because we were only tracking one of the several code paths that can evaluate resources. The metrics should be more complete now.
+* [PUP-3045: exec resource with timeout doesn't kill executed command that times out](https://tickets.puppetlabs.com/browse/PUP-3045) --- On POSIX systems, `exec` resources with a `timeout` value will now send a TERM signal if their command runs too long.
+
+
 ## Puppet 4.2.1
 
 Released July 22, 2015.
