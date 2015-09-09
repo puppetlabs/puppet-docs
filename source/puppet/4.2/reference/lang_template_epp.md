@@ -15,7 +15,7 @@ canonical: "/puppet/latest/reference/lang_template_epp.html"
 [variables]: ./lang_variables.html
 [defined type]: ./lang_defined_types.html
 [variable_names]: ./lang_variables.html#naming
-
+[typed]: ./lang_data_type.html
 
 Embedded Puppet (EPP) is a templating language based on the [Puppet language](./lang_summary.html). You can use EPP in Puppet 4 and higher, as well as Puppet 3.5 through 3.8 with the [future parser](/3.8/reference/experiments_future.html) enabled.
 
@@ -130,15 +130,23 @@ You can trim whitespace surrounding a non-printing tag by adding hyphens (`-`) t
 
 `<%- | Boolean $keys_enable = false, String $keys_file = '' | -%>`
 
-A parameter tag declares which parameters the template will accept. Each parameter can be [typed](./lang_data_type.html) and can have a default value.
+A parameter tag declares which parameters the template will accept. Each parameter can be [typed][] and can have a default value.
 
 The parameter tag is optional; if used, it **must** be the first content in a template. The parameter tag should always close with a right-trimmed delimiter (`-%>`) to avoid outputting a blank line. Literal text, line breaks, and non-comment tags cannot precede the template's parameter tag. (Comment tags that precede a parameter tag must use the right-trimming tag to trim trailing whitespace.)
 
 The parameter tag's pair of pipe characters (`|`) should contain a comma-separated list of parameters. Each parameter follows this format:
 
-`<DATA TYPE> <VARIABLE NAME> = <DEFAULT VALUE>`
+~~~ ruby
+Boolean $keys_enable = false
+~~~
 
-Only the variable name is required. If a default value is present, the parameter is optional; otherwise, you must pass a value for that parameter when you call the template.
+That is:
+
+* An optional [data type][typed], which will restrict the allowed values for the parameter (defaults to `Any`)
+* A [variable name][variable_names].
+* An optional equals (`=`) sign and default value (which must match the data type, if one was specified).
+
+Parameters with default values are optional, and can be omitted when the template is evaluated. (If you want to use a default value of `undef`, make sure to also specify a data type that allows `undef`. For example, `Optional[String]` will accept `undef` as well as any string. For more details, read up on [data types][typed].)
 
 See [Parameters](#parameters) below for details about passing parameters.
 
