@@ -4,59 +4,55 @@ title: "About Reporting"
 canonical: "/puppet/latest/reference/reporting_about.html"
 ---
 
+[`report`]: /references/latest/configuration.html#report
+[`reports`]: /references/latest/configuration.html#reports
+[`reportdir`]: /references/latest/configuration.html#reportdir
+[`puppet.conf`]: ./config_file_main.html
 
-Every time it applies a catalog, Puppet makes a report of activity during the run. You can analyze these reports to get insight or alerts about what Puppet's doing in your infrastructure.
-
+Puppet creates a report about your infrastructure and the actions it takes each time it applies a catalog during a Puppet run. You can create and use report processors to generate insightful information or alerts from those reports.
 
 ## How Reporting Works
 
-In the standard agent/master arrangement, Puppet agent sends its report to the Puppet master server, which can process that report in a variety of ways. In a standalone arrangement, Puppet apply processes its own reports.
+In a client/server configuration, a Puppet agent sends its report to the Puppet master for processing. In a standalone configuration, the `puppet apply` command processes the node's own reports.
 
-Puppet master uses _report processor_ plugins to handle the reports it receives. If multiple processors are enabled, Puppet will run all of them for each report. (Puppet apply also uses report processors.)
+In both configurations, report processor plugins handle recieved reports. If you enable multiple report processors, Puppet runs all of them for each report.
 
-Each report processor can do _something_ with the data in the report. This is usually one of two things:
+Each processor typically does one of two things with the report:
 
-- Send some of the data in the report to some other service (like PuppetDB) that can collate it.
-- Trigger alerts on some other service if the data matches some kind of condition (like a failed run).
+- It sends some of the report data to another service, such as PuppetDB, that can collate it.
+- It triggers alerts on another service if the data matches a specified condition, such as a failed run.
 
-Then, you use that external service to actually view the report data.
+That external service can then provide a way to view the processed report.
 
 ## Configuring Reporting
 
-* You can disable reporting on agent nodes by changing the `report` setting (link to config ref) to false. This keeps Puppet agent from sending a report to the master.
-* You can configure the enabled report processors (on Puppet master or Puppet apply) with the `reports` setting (link), which is a comma-separated list of report processor names. (Defaults to just `store`.)
-    * point to list of built-in report processors. /references/4.2.latest/report.html
-* You can install new report processors with modules. (example: tagmail) Read the docs for a module with a report processor, because you might need to install a gem or something.
+Agents do not send reports by default. You can enable reporting by changing the [`report`][] setting on agents' [`puppet.conf`][] to true.
+
+You can configure enabled report processors, whether on a Puppet master or via `puppet apply`, by passing a comma-separated list of report processor names in the [`reports`][] setting. The default `reports` value is 'store', which stores them in the configured [`reportdir`][]. You can also disable reports entirely by setting `reports` to 'none'.
 
 
 ## Practical Reporting for Beginners
 
-- Use Puppet Enterprise, which includes helpful reporting tools in the console. (link to relevant parts of PE docs, ask michelle.)
-- Install and configure PuppetDB, enable the `puppetdb` report processor (installed automatically along w/ the puppetdb termini package), and use something like Puppetboard or PuppetExplorer. (PE users can use these too, since they always have PuppetDB.)
+Puppet's reporting features are powerful, but there are simple ways to work with them. Puppet Enterprise includes [helpful reporting tools](/pe/latest/CM_reports.html) in the console, and [PuppetDB](/puppetdb/latest/) provides the [`puppetdb` report processor](/puppetdb/latest/connect_puppet_master.html#enabling-report-storage) with the `puppetdb-termini` package that can interface with tools like [Puppetboard](https://github.com/puppet-community/puppetboard) or [PuppetExplorer](https://github.com/spotify/puppetexplorer).
 
-https://github.com/spotify/puppetexplorer
-https://github.com/puppet-community/puppetboard
+Puppet has several basic built-in [report processors](/references/latest/report.html). For example, the `http` processor sends YAML dumps of reports via POST requests to a designated URL, while `log` saves received logs to a local log file.
+
+Certain Puppet modules---for instance, [`tagmail`](https://forge.puppetlabs.com/puppetlabs/tagmail)---add new report processors. Each module has its own requirements, such as Ruby gems, operating system packages, or other Puppet modules.
 
 ## Advanced Reporting
 
-* Directly query PuppetDB's report data, and build something to display it nicely. Limits you to what PuppetDB collects (which isn't everything), but should still be useful.
+For access to more Puppet report data, you can write your own [custom report processor](./reporting_write_processors.html) to process and send any report data into whatever formats you can use.
 
-/puppetdb/latest/api/query/v4/reports.html
-/puppetdb/latest/api/query/v4/events.html
-/puppetdb/latest/api/query/v4/event-counts.html
-/puppetdb/latest/api/query/v4/aggregate-event-counts.html
+You can also query PuppetDB's stored report data and build your own tools to display it. PuppetDB doesn't collect everything that Puppet reports, but it provides an API for accessing useful data about Puppet's actions. For details about PuppetDB's reporting functions and API, see its [reports documentation](/puppetdb/latest/api/query/v4/reports.html). For details about the types of data PuppetDB collects, see the documentation for its [`events`](/puppetdb/latest/api/query/v4/events.html), [`event-counts`](/puppetdb/latest/api/query/v4/event-counts.html), and [`aggregate-event-counts`](/puppetdb/latest/api/query/v4/aggregate-event-counts.html) API endpoints.
 
-* Write your own custom report processor, which can access ANY info from a report and do whatever with it. Link to ./reporting_write_processors.html
+## What Data is in a Report?
 
-## What Kind of Data is in a Report?
+Puppet report processors handle these points of data:
 
-Short version:
-
-* Metadata about the node, its environment, its version of Puppet, and the catalog used in the run.
-* The status of every resource.
-* Actions Puppet took during the run ("events").
+* Metadata about the node, its environment and Puppet version, and the catalog used in the run.
+* Every resource's status.
+* Actions Puppet took during the run, also known as events.
 * Log messages generated during the run.
-* Metrics about the run (how long it took, how many resources were in what state, etc.).
+* Metrics about the run, such as its duration and resources' statuses during the run.
 
-For complete info, (link to report format page)
-
+For detailed information about Puppet's report data, see [the Puppet report format documentation](./format_report.markdown).

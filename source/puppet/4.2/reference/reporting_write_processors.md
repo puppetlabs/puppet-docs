@@ -5,67 +5,66 @@ canonical: "/puppet/latest/reference/reporting_write_processors.html"
 ---
 
 [format]: ./format_report.html
+[report processor]: ./reporting_about.html
+[Puppet module]: ./modules_fundamentals.html
 
+You can write your own [report processor][] in Ruby and include it in a [Puppet module][]. Puppet can then use the processor to send report data to any service and in any format.
 
-You can write your own report processor plugin in Ruby and use it to send report data to the service of your choice.
+## Writing a Report Processor
 
+A report processor must adhere to these standards:
 
-## Location
+* Its name must be a valid Ruby symbol that contains only alphanumeric characters and starts with a letter. More liberal names might work but haven't been tested.
+* It must be in its own Ruby file named `<NAME>.rb`, inside a Puppet module's `lib/puppet/reports/` directory.
+* Its Ruby code must start with `require 'puppet'`.
+* It must call the `Puppet::Reports.register_report(:NAME)` method. This method takes the name of the report as a symbol, and a mandatory block of code with no arguments that contains:
+  * A Markdown-formatted string describing of the report in a call to the `desc` method.
+  * An implementation of a method named `process` that contains the report processor's main functionality.
+    * The `process` method must have access to a `self` object, which is a [`Puppet::Transaction::Report` object][format] describing a Puppet run.
 
-Put report processors in the `lib/puppet/reports` directory of a Puppet module.
+The processor can access all of the report's data by calling accessor methods (as described in the [report format docs][format]) on `self`, and it can forward that data to any service you configure in the report processor. 
 
-Once a custom report processer is available to Puppet, you can specify it as one of the values of the `reports` setting (link).
+It can also call `self.to_yaml` to dump the entire report to YAML. Note that the YAML output doesn't represent a safe, well-defined data format---it's simply a serialized Ruby object.
 
-## Code
+### Example
 
-Your report processor must adhere to the following standards:
-
-* The name of a report processor must be a Ruby symbol. It can contain only alphanumeric characters, and should start with a letter. (More liberal names haven't been tested; underscores are probably okay as well.)
-* Each report processor must be in its own Ruby file, named `lib/puppet/reports/<NAME>.rb`.
-* The Ruby file must have `require 'puppet'` at the top.
-* It must contain a call to the `Puppet::Reports.register_report(:NAME)` method. This method takes the name of the report (as a symbol) and a mandatory block of code; the block should take no arguments.
-* The block provided to the `register_report` method must contain the following:
-    * A call to the `desc` method, which takes a Markdown-formatted string describing the report.
-    * Implementation of a method named `process`, which can do basically anything. This method is the main substance of the report processor.
-* The `process` method has access to a `self` object, which will be a [`Puppet::Transaction::Report` object][format] describing a Puppet run.
-    * The processor can access all of the report's data by calling accessor methods (as described in the [report format docs][format]) on `self`, and it can forward that data to any service you set up.
-    * It can also call `self.to_yaml` to dump the entire report to YAML. You'll have to be careful when loading that YAML, though, because it's not a safe, well-defined data format; it's just a serialized Ruby object.
-
-In summary, a report processor looks more or less like this:
+A report processor looks like this:
 
 ~~~ ruby
-    # /etc/puppetlabs/puppet/modules/myreport/lib/puppet/reports/myreport.rb
-    require 'puppet'
-    # require any other Ruby libraries necessary for this specific report
+# Located in /etc/puppetlabs/puppet/modules/myreport/lib/puppet/reports/myreport.rb.
+require 'puppet'
+# If necessary, require any other Ruby libraries for this report here.
 
-    Puppet::Reports.register_report(:myreport) do
-      desc "Process reports via the my_cool_cmdb API."
+Puppet::Reports.register_report(:myreport) do
+  desc "Process reports via the fictional my_cool_cmdb API."
 
-      def process
-        # do something that sets up the API we're sending the report to.
-        # Post the report object (self), after dumping it to yaml:
-        my_api.post(self.to_yaml)
-      end
+  # Declare and configure any settings here. We'll pretend this connects to our API.
+  my_api = MY_COOL_CMD
+
+  # Next, define and configure the report processor.
+  def process
+    # Do something that sets up the API we're sending the report to here.
+    # For instance, let's check on the node's status using the report object (self):
+    if self.status != nil then
+      status = self.status
+    else
+      status = 'undefined'
     end
+    
+    # Next, let's do something if the status equals 'failed'.
+    if status == 'failed' then
+      # Finally, dump the report object to YAML and post it using the API object:
+      my_api.post(self.to_yaml)
+    end
+  end
+end
 ~~~
 
-You would then set something like `reports = store,myreport` in the puppet master's puppet.conf.
+The above report processor could then be included in the comma-separated list of processors in the Puppet master's `reports` setting in `puppet.conf`, such as `reports = store,myreport`.
 
-## Examples
+For more examples using this API, see [the built-in reports' source](https://github.com/puppetlabs/puppet/tree/master/lib/puppet/reports) or one of these simple custom reports created by a member of the Puppet community:
 
-For examples of using this API, you can use [the built-in reports](https://github.com/puppetlabs/puppet/tree/master/lib/puppet/reports) as a guide, or use and/or hack one of these simple custom reports:
-
-
-* [Report failed runs to an IRC channel](https://github.com/jamtur01/puppet-irc)
-* [Report failed runs and logs to PagerDuty](https://github.com/jamtur01/puppet-pagerduty)
 * [Report failed runs to Jabber/XMPP](https://github.com/jamtur01/puppet-xmpp)
-* [Report failed runs to Twitter](https://github.com/jamtur01/puppet-twitter)
-* [Report failed runs and logs to Campfire](https://github.com/jamtur01/puppet-campfire)
-* [Report failed runs to Twilio](https://github.com/jamtur01/puppet-twilio)
-* [Report failed runs to Boxcar](https://github.com/jamtur01/puppet-boxcar)
-* [Report failed runs to HipChat](https://github.com/jamtur01/puppet-hipchat)
 * [Send metrics to a Ganglia server via gmetric](https://github.com/jamtur01/puppet-ganglia)
-* [Report failed runs to Growl](https://github.com/jamtur01/puppet-growl)
 
-These example reports aren't necessarily vetted by Puppet Labs; they're linked here for educational purposes.
-
+These community reports aren't provided or guaranteed by Puppet Labs.
