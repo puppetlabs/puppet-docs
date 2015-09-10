@@ -26,7 +26,13 @@ Released TODO
 
 Shipped in puppet-agent version: 1.2.4.
 
-Puppet 4.2.2 is a bug fix release in the Puppet 4.2 series. It also adds warnings for new reserved words, to prepare for upcoming language features.
+Puppet 4.2.2 is a security and bug fix release in the Puppet 4.2 series. It also adds warnings for new reserved words, to prepare for upcoming language features.
+
+### SECURITY: Override Cert File Locations on Windows
+
+Puppet on Windows was relying on OpenSSL's default certificate locations, which aren't guaranteed to be safe. With this fix, Puppet now overrides the default locations with known safe ones. We recommend all Windows users upgrade for this security fix.
+
+* [PUP-5218: Set SSL_CERT_FILE environment variable for windows services](https://tickets.puppetlabs.com/browse/PUP-5218)
 
 ### New Reserved Words: `application`, `consumes`, and `produces`
 
@@ -60,12 +66,14 @@ This change also went into Puppet 3.8.2's future parser.
 
 * [PUP-4865: Package resources no longer fail with bad names on EL5](https://tickets.puppetlabs.com/browse/PUP-4865) --- On Red Hat Enterprise Linux 5, there was a regression wherein package resources with bad names (which should fail) were not failing. This fix restores the correct behavior, which is to fail the catalog application.
 * [PUP-4605: With a systemd masked service: 'enable=true ensure=running' doesn't work](https://tickets.puppetlabs.com/browse/PUP-4605) --- With a systemd masked service the combination of the enable=true and ensure=running attributes did not work, although using them serially would work. This fix addresses that use case.
+* [PUP-4196: agent command line options ignored running under systemd](https://tickets.puppetlabs.com/browse/PUP-4196) --- Puppet agent under systemd lets you set command line options with the `PUPPET_EXTRA_OPS` variable in the `/etc/sysconfig/puppet` file, but a syntax glitch was making it ignore them.
 
 ### Bug Fixes: Misc
 
 * [PUP-3318: Puppet prints warning when "environment" is set using classifier rather than local puppet.conf](https://tickets.puppetlabs.com/browse/PUP-3318) --- When a Puppet agent was instructed by the Puppet master to change its environment, it would issue a warning about changing environment even though that's the intended behavior. That message has been changed to a notice.
 * [PUP-5013: Improve the code for profiling resource evaluation?](https://tickets.puppetlabs.com/browse/PUP-5013) --- Puppet Server's metrics for resource evaluation were very incomplete, because we were only tracking one of the several code paths that can evaluate resources. The metrics should be more complete now.
 * [PUP-3045: exec resource with timeout doesn't kill executed command that times out](https://tickets.puppetlabs.com/browse/PUP-3045) --- On POSIX systems, `exec` resources with a `timeout` value will now send a TERM signal if their command runs too long.
+* [PUP-4936: Add smf service files for puppet](https://tickets.puppetlabs.com/browse/PUP-4936) --- We've added SMF service files for running Puppet agent on Solaris 10. They're in the Puppet source at [ext/solaris/smf](https://github.com/puppetlabs/puppet/tree/master/ext/solaris/smf).
 
 
 ## Puppet 4.2.1
