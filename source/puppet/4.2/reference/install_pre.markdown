@@ -71,3 +71,4 @@ Once Puppet Server is installed and configured, you can install agents:
 
 * [Installing Puppet Agent on Linux](./install_linux.html)
 * [Installing Puppet Agent on Windows](./install_windows.html)
+* [Installing Puppet Agent on Mac OS X](./install_osx.html)

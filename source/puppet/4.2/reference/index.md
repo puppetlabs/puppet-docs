@@ -13,6 +13,7 @@ toc: false
 [PuppetDB 3]: /puppetdb/latest/
 [Linux installation]: ./install_linux.html
 [Windows installation]: ./install_windows.html
+[OSX installation]: ./install_osx.html
 [pre-upgrade guide]: ./upgrade_major_pre.html
 [Agent major upgrade]: ./upgrade_major_agent.html
 [Server major upgrade]: ./upgrade_major_server.html
@@ -35,7 +36,7 @@ Puppet 4.2 consists of:
 * A `puppetserver` package that installs [Puppet Server 2.1][].
 * A `puppetdb` package that installs [PuppetDB 3][].
 
-To install these, read the [pre-install instructions][], then see the Puppet installation guides for [Linux][Linux installation] and [Windows][Windows installation].
+To install these, read the [pre-install instructions][], then see the Puppet installation guides for [Linux][Linux installation], [Windows][Windows installation], and [Mac OS X][OSX installation].
 
 ### Upgrading from Puppet 3
 
