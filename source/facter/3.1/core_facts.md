@@ -1,11 +1,11 @@
 ---
 layout: default
-title: "Facter 3.0: Core Facts"
+title: "Facter 3.1: Core Facts"
 toc: columns
 ---
 
 
-This is a list of all of the built-in facts that ship with Facter 3.0.
+This is a list of all of the built-in facts that ship with Facter 3.1.
 
 Not all of them apply to every system, and your site might also use [custom facts](./custom_facts.html) delivered via Puppet modules. To see the full list of facts and values on a given system (including plugin facts), run `puppet facts` at the command line. If you are using Puppet Enterprise, you can view all of the facts for any node on the node's page in the console.
 

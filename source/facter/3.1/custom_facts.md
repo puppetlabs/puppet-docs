@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Facter 3.0: Custom Facts Walkthrough"
+title: "Facter 3.1: Custom Facts Walkthrough"
 ---
 
 [Facter 3.0.2 release notes]: ./release_notes.html#facter--p-restored
@@ -89,8 +89,8 @@ This allows you to do something like this:
 > ### Note: Changes in Built-in Pluginsync Support in Facter 3
 >
 > Facter 2.4 **deprecated** Facter's support for loading facts via Puppet's pluginsync
-> (the `-p` option), and Facter 3.0.0 **removed** the `-p` option. However, we reversed 
-> this decision in Facter 3.0.2 and re-enabled the `-p` option. For details about current 
+> (the `-p` option), and Facter 3.0.0 **removed** the `-p` option. However, we reversed
+> this decision in Facter 3.0.2 and re-enabled the `-p` option. For details about current
 > and future support for this option, see the [Facter 3.0.2 release notes][].
 
 ## Two Parts of Every Fact
@@ -239,7 +239,7 @@ end
 Facter 2.x supported a `:timeout` option to `Facter#add`. Facter no longer
 supports this option, and produces a warning if it's used.
 
-Although Facter 3.0 does not support overall timeouts on resolutions, you can pass a timeout
+Although this version of Facter does not support overall timeouts on resolutions, you can pass a timeout
 to `Facter::Core::Execution#execute`:
 
 ~~~ ruby
