@@ -26,7 +26,7 @@ Released September 14, 2015.
 
 Shipped in puppet-agent version: 1.2.4.
 
-Puppet 4.2.2 is a security and bug fix release in the Puppet 4.2 series. It also adds warnings for new reserved words, to prepare for upcoming language features.
+Puppet 4.2.2 is a security, bug fix, and platform support release in the Puppet 4.2 series. It also adds warnings for new reserved words, to prepare for upcoming language features.
 
 For JIRA issues related to Puppet 4.2.2, see:
 
@@ -56,6 +56,10 @@ This change also went into Puppet 3.8.2's future parser.
 
 * [PUP-4941: Reserve keywords 'application', 'consumes', and 'produces'](https://tickets.puppetlabs.com/browse/PUP-4941)
 * [PUP-5036: `--parser future` breaks `class application {}`](https://tickets.puppetlabs.com/browse/PUP-5036)
+
+### New Platform: Ubuntu 15.04 Vivid Vervet
+
+We're now providing Puppet agent packages for Vivid, along with a PC1 repo for that platform.
 
 ### Bug Fixes: Windows
 
