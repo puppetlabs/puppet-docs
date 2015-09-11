@@ -18,11 +18,12 @@ A report processor must adhere to these standards:
 * It must be in its own Ruby file named `<NAME>.rb`, inside a Puppet module's `lib/puppet/reports/` directory.
 * Its Ruby code must start with `require 'puppet'`.
 * It must call the `Puppet::Reports.register_report(:NAME)` method. This method takes the name of the report as a symbol, and a mandatory block of code with no arguments that contains:
-  * A Markdown-formatted string describing of the report in a call to the `desc` method.
-  * An implementation of a method named `process` that contains the report processor's main functionality.
-    * The `process` method must have access to a `self` object, which is a [`Puppet::Transaction::Report` object][format] describing a Puppet run.
+    * A Markdown-formatted string describing the processor, passed to the `desc(<DESCRIPTION>)` method.
+    * An implementation of a method named `process` that contains the report processor's main functionality.
 
-The processor can access all of the report's data by calling accessor methods (as described in the [report format docs][format]) on `self`, and it can forward that data to any service you configure in the report processor. 
+Puppet will let the `process` method access a `self` object, which will be a [`Puppet::Transaction::Report` object][format] describing a Puppet run.
+
+The processor can access all of the report's data by calling accessor methods (as described in the [report format docs][format]) on `self`, and it can forward that data to any service you configure in the report processor.
 
 It can also call `self.to_yaml` to dump the entire report to YAML. Note that the YAML output doesn't represent a safe, well-defined data format---it's simply a serialized Ruby object.
 
@@ -50,7 +51,7 @@ Puppet::Reports.register_report(:myreport) do
     else
       status = 'undefined'
     end
-    
+
     # Next, let's do something if the status equals 'failed'.
     if status == 'failed' then
       # Finally, dump the report object to YAML and post it using the API object:
