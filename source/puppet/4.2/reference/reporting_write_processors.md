@@ -14,7 +14,7 @@ You can write your own [report processor][] in Ruby and include it in a [Puppet 
 
 A report processor must adhere to these standards:
 
-* Its name must be a valid Ruby symbol that contains only alphanumeric characters and starts with a letter. More liberal names might work but haven't been tested.
+* Its name must be a valid Ruby symbol that contains only alphanumeric characters and starts with a letter. {--More liberal names might work but haven't been tested.--}
 * It must be in its own Ruby file named `<NAME>.rb`, inside a Puppet module's `lib/puppet/reports/` directory.
 * Its Ruby code must start with `require 'puppet'`.
 * It must call the `Puppet::Reports.register_report(:NAME)` method. This method takes the name of the report as a symbol, and a mandatory block of code with no arguments that contains:
