@@ -61,6 +61,10 @@ This change also went into Puppet 3.8.2's future parser.
 
 We're now providing Puppet agent packages for Vivid, along with a PC1 repo for that platform.
 
+### Packaging Change: OS X Disk Image Names
+
+Our Mac OS X disk images had a redundant and unwieldy naming scheme (`puppet-agent-1.2.2-osx-10.10-x86_64.dmg`), so we simplified it (`puppet-agent-1.2.4-yosemite.dmg`). [OS X agent packages are available here.](http://downloads.puppetlabs.com/mac/PC1/)
+
 ### Bug Fixes: Windows
 
 * [PUP-4854: PMT fails to install modules on Windows that have long paths](https://tickets.puppetlabs.com/browse/PUP-4854) --- Windows has a default maximum path length of 260 characters (`MAX_PATH`), and the module tool's temp path was taking up too much of that. We've changed it to use a shorter temp directory.
