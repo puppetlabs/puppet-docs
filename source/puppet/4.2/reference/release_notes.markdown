@@ -22,11 +22,17 @@ Also of interest: the [Puppet 4.1 release notes](/puppet/4.1/reference/release_n
 
 ## Puppet 4.2.2
 
-Released TODO
+Released September 14, 2015.
 
 Shipped in puppet-agent version: 1.2.4.
 
 Puppet 4.2.2 is a security and bug fix release in the Puppet 4.2 series. It also adds warnings for new reserved words, to prepare for upcoming language features.
+
+For JIRA issues related to Puppet 4.2.2, see:
+
+- [Fixes for Puppet 4.2.2](https://tickets.puppetlabs.com/issues/?filter=15437)
+- [Introduced in Puppet 4.2.2](https://tickets.puppetlabs.com/issues/?filter=15435)
+
 
 ### SECURITY: Override Cert File Locations on Windows
 

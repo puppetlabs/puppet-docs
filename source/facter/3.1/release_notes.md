@@ -8,15 +8,16 @@ This page documents the history of the Facter 3.0 series. (Previous version: [Fa
 Facter 3.1.0
 -----
 
-Released 2015.
+Released September 14, 2015.
 
-Shipped in puppet-agent version: 1.2.3.
+Shipped in puppet-agent version: 1.2.4.
 
 Facter 3.1.0 fixes several bugs and introduces support for OpenBSD and Solaris 10.
 
 For JIRA issues related to Facter 3.1.0, see:
-- [Fixes for Facter 3.1.0]()
-- [Introduced in Facter 3.1.0]()
+
+- [Fixes for Facter 3.1.0](https://tickets.puppetlabs.com/issues/?filter=15431)
+- [Introduced in Facter 3.1.0](https://tickets.puppetlabs.com/issues/?filter=15429)
 
 ### New Supported Platforms: OpenBSD and Solaris 10
 
