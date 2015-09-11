@@ -26,7 +26,6 @@ Facter 3.1.0 supports OpenBSD, as well as Solaris 10 on both x86 and SPARC syste
 Facter 3.1.0 also reports Solaris-specific LDom facts previously supported by Facter 2 and includes the new `ldom` mapped fact.
 
 - [FACT-927](https://tickets.puppetlabs.com/browse/FACT-927): Facter 3 Solaris Support
-- [FACT-910](https://tickets.puppetlabs.com/browse/FACT-910): Solaris is missing the LDom facts
 - [FACT-1148](https://tickets.puppetlabs.com/browse/FACT-1148): Port Facter to OpenBSD
 
 ### Feature: Improve Cisco NX-OS `family` and `release` Fact Reporting
@@ -34,6 +33,12 @@ Facter 3.1.0 also reports Solaris-specific LDom facts previously supported by Fa
 Facter 3.1.0 adds support for reporting a NX-OS guestshell's native family in the `family` fact, and its minor release in the `release` fact.
 
 - [FACT-1138](https://tickets.puppetlabs.com/browse/FACT-1138)
+
+### Feature: Networking Fact Includes Address Bindings
+
+The `networking` fact now includes arrays of bound addresses for each network interface (as `networking[interfaces][<INTERFACE>][bindings]` and `...bindings6`).
+
+- [FACT-1233](https://tickets.puppetlabs.com/browse/FACT-1233)
 
 ### REGRESSION FIX: Improve Handling of Non-Printable ASCII Characters in Disk UUIDs
 
@@ -77,9 +82,9 @@ Facter 3.0.0 reintroduced a previously fixed bug that included the trailing dot 
 
 - [FACT-1169](https://tickets.puppetlabs.com/browse/FACT-1169)
 
-### FIX: Resolve Intermittent "Failed to Associate Process with Job Object" Errors on Windows
+### REGRESSION FIX: Resolve Intermittent "Failed to Associate Process with Job Object" Errors on Windows
 
-When running previous versions of Facter on Windows in job groups that prohibit detaching child processes, it could fail with an error when trying to attach a child processes to its own job group. Facter 3.1.0 resolves this issue.
+When running Facter 3.0 on Windows in job groups that prohibit detaching child processes, it could fail with an error when trying to attach a child process to its own job group. Facter 3.1.0 resolves this issue.
 
 - [FACT-1128](https://tickets.puppetlabs.com/browse/FACT-1128)
 
@@ -121,7 +126,7 @@ Facter now reports the 'noatime' option in the `mountpoints` fact when it is set
 
 ### REGRESSION FIX: Create `rubysitedir`
 
-The `puppet-agent` package that installs Facter 3.0.0 did not create the `rubysitedir` pointed to by the `rubysitedir` fact. The `puppet-agent` 1.2.3 update resolves this issue.
+The `puppet-agent` package that installs Facter 3.0.0 did not create the `rubysitedir` pointed to by the `rubysitedir` fact. The `puppet-agent` 1.2.4 update resolves this issue.
 
 - [FACT-1154](https://tickets.puppetlabs.com/browse/FACT-1154)
 
