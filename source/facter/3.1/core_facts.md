@@ -47,12 +47,12 @@ Return information about augeas.
 
 **Elements:**
 
-* `version` (string) --- The version of augtool.
+* `version` (string) --- The version of augparse.
 
 
 **Resolution:**
 
-* All platforms: query augtool for augeas metadata.
+* All platforms: query augparse for augeas metadata.
 
 
 ([↑ Back to top](#page-nav))
@@ -70,7 +70,7 @@ Return the version of augeas.
 
 **Resolution:**
 
-* All platforms: query augtool for the augeas version.
+* All platforms: query augparse for the augeas version.
 
 
 ([↑ Back to top](#page-nav))
@@ -923,6 +923,40 @@ Return the kernel's version.
 
 ([↑ Back to top](#page-nav))
 
+## `ldom`
+
+**Type:** map
+
+**Purpose:**
+
+Return Solaris LDom information from the `virtinfo` utility.
+
+
+**Resolution:**
+
+* Solaris: use the `virtinfo` utility to retrieve LDom information.
+
+
+([↑ Back to top](#page-nav))
+
+## `ldom_<name>`
+
+This fact is hidden in Facter's command-line output.
+
+**Type:** string
+
+**Purpose:**
+
+Return Solaris LDom information.
+
+
+**Resolution:**
+
+* Solaris: use the `virtinfo` utility to retrieve LDom information.
+
+
+([↑ Back to top](#page-nav))
+
 ## `load_averages`
 
 **Type:** map
@@ -1613,6 +1647,8 @@ Return the networking information for the system.
 * `hostname` (string) --- The host name of the system.
 * `interfaces` (map) --- The network interfaces of the system.
     * `<interface>` (map) --- Represents a network interface.
+        * `bindings` (array) --- The array of IPv4 address bindings for the interface.
+        * `bindings6` (array) --- The array of IPv6 address bindings for the interface.
         * `dhcp` (ip) --- The DHCP server for the network interface.
         * `ip` (ip) --- The IPv4 address for the network interface.
         * `ip6` (ip6) --- The IPv6 address for the network interface.
@@ -1630,6 +1666,7 @@ Return the networking information for the system.
 * `netmask6` (ip6) --- The IPv6 netmask of the default network interface.
 * `network` (ip) --- The IPv4 network of the default network interface.
 * `network6` (ip6) --- The IPv6 network of the default network interface.
+* `primary` (string) --- The name of the primary interface.
 
 
 **Resolution:**
@@ -1804,6 +1841,7 @@ Return the disk partitions of the system.
     * `size` (string) --- The display size of the partition (e.g. "1 GiB").
     * `size_bytes` (integer) --- The size of the partition, in bytes.
     * `uuid` (string) --- The unique identifier of a partition.
+    * `backing_file` (string) --- The path to the file backing the partition.
 
 
 **Resolution:**
@@ -2622,6 +2660,50 @@ Return the hypervisor name for virtual machines or "physical" for physical machi
 * Solaris: use the `zonename` utility to retrieve virtual machine name.
 * Windows: use WMI to retrieve virtual machine name.
 
+
+([↑ Back to top](#page-nav))
+
+## `xen`
+
+**Type:** map
+
+**Purpose:**
+
+Return metadata for the Xen hypervisor.
+
+**Elements:**
+
+* `domains` (array) --- list of strings identifying active Xen domains.
+
+
+**Resolution:**
+
+* POSIX platforms: use `/usr/lib/xen-common/bin/xen-toolstack` to locate xen admin commands if available, otherwise fallback to `/usr/sbin/xl` or `/usr/sbin/xm`. Use the found command to execute the `list` query.
+
+**Caveats:**
+
+* POSIX platforms: confined to Xen privileged virtual machines.
+
+([↑ Back to top](#page-nav))
+
+## `xendomains`
+
+This fact is hidden in Facter's command-line output.
+
+**Type:** string
+
+**Purpose:**
+
+Return a list of comma-separated active Xen domain names.
+
+
+**Resolution:**
+
+* POSIX platforms: see the `xen` structured fact.
+
+**Caveats:**
+
+* POSIX platforms: confined to Xen privileged virtual machines.
 
 ([↑ Back to top](#page-nav))
 
