@@ -16,7 +16,7 @@ Facter 3.1.0 fixes several bugs and introduces support for OpenBSD and Solaris 1
 
 For JIRA issues related to Facter 3.1.0, see:
 
-- [Fixes for Facter 3.1.0](https://tickets.puppetlabs.com/issues/?filter=15431)
+- [Fixes for Facter 3.1.0](https://tickets.puppetlabs.com/issues/?filter=15500)
 - [Introduced in Facter 3.1.0](https://tickets.puppetlabs.com/issues/?filter=15429)
 
 ### New Supported Platforms: OpenBSD and Solaris 10
@@ -115,6 +115,8 @@ When reporting the `networking` fact, Facter 3.0.0 would report the link-local (
 ### FIX: Report Logical Threads on AIX
 
 Facter 3.0.0 would report only physical processor cores on AIX systems. On other operating systems, Facter reports physical cores and logical threads. Facter 3.1.0 resolves this issue by reporting both cores and threads on AIX systems.
+
+Note that Facter 3.1.0 doesn't yet have full AIX support.
 
 - [FACT-970](https://tickets.puppetlabs.com/browse/FACT-970)
 
