@@ -4,6 +4,12 @@ title: "Hiera 3: Release Notes"
 ---
 
 
+## Hiera 3.0.3 and 3.0.2
+
+Hiera 3.0.3 has no functional differences from 3.0.1, but we needed to increase the version number for testing and packaging purposes.
+
+Hiera 3.0.2 was never released.
+
 ## Hiera 3.0.1
 
 Released June 24, 2015.
