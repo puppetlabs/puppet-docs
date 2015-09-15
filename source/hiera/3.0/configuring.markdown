@@ -140,7 +140,7 @@ Must be a hash of options to pass to the `deep merge` gem, if `:merge_behavior` 
 
     :merge_behavior: deeper
     :deep_merge_options:
-      :knockout_prefix => '--'
+      :knockout_prefix: '--'
 
 Available options are documented in [the `deep_merge` gem][deep_merge_gem_docs].
 
