@@ -29,13 +29,13 @@ To install on other operating systems, see the pages linked in the navigation si
 
 ### Choosing Your Package
 
-The OS X packages are named with their `puppet-agent` version, the OS version they support, and their architecture (currently only `x86_64`), as:
+The OS X packages are named with their `puppet-agent` version and the name of their OS version:
 
-`puppet-agent-<PACKAGE VERSION>-osx-<OSX VERSION>-x86_64.dmg`
+`puppet-agent-<PACKAGE VERSION>-<OSX VERSION NAME>.dmg`
 
 For example:
 
-`puppet-agent-1.2.2-osx-10.10-x86_64.dmg`
+`puppet-agent-1.2.4-yosemite.dmg`
 
 To see which versions of Puppet, Facter, etc. are in a given `puppet-agent` release, [see the docs page about `puppet-agent` versions.](./about_agent.html)
 
