@@ -85,7 +85,7 @@ Our Mac OS X disk images had a redundant and unwieldy naming scheme (`puppet-age
 ### Bug Fixes: Misc
 
 * [PUP-3318: Puppet prints warning when "environment" is set using classifier rather than local puppet.conf](https://tickets.puppetlabs.com/browse/PUP-3318) --- When a Puppet agent was instructed by the Puppet master to change its environment, it would issue a warning about changing environment even though that's the intended behavior. That message has been changed to a notice.
-* [PUP-5013: Improve the code for profiling resource evaluation?](https://tickets.puppetlabs.com/browse/PUP-5013) --- Puppet Server's metrics for resource evaluation were very incomplete, because we were only tracking one of the several code paths that can evaluate resources. The metrics should be more complete now.
+* [PUP-5013: resource evaluation metrics are missing when not using an ENC](https://tickets.puppetlabs.com/browse/PUP-5013) --- Puppet Server's metrics for resource evaluation were very incomplete, because we were only tracking one of the several code paths that can evaluate resources. The metrics should be more complete now.
 * [PUP-3045: exec resource with timeout doesn't kill executed command that times out](https://tickets.puppetlabs.com/browse/PUP-3045) --- On POSIX systems, `exec` resources with a `timeout` value will now send a TERM signal if their command runs too long.
 * [PUP-4936: Add smf service files for puppet](https://tickets.puppetlabs.com/browse/PUP-4936) --- We've added SMF service files for running Puppet agent on Solaris 10. They're in the Puppet source at [ext/solaris/smf](https://github.com/puppetlabs/puppet/tree/master/ext/solaris/smf).
 
