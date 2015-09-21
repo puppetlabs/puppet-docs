@@ -72,7 +72,7 @@ In Puppet 3, the default `ssldir` is `/etc/puppet/ssl`; some systems might also 
 Locate your [`ssldir`](./dirs_ssldir.html) in `/etc/puppet/puppet.conf` and move that directory's contents to `/etc/puppetlabs/puppet/ssl` without changing the files' permissions. For example, run:
 
 ~~~ bash
-# cp -rp /var/lib/puppet/ssl /etc/puppetlabs/puppet/ssl
+sudo cp -rp /var/lib/puppet/ssl /etc/puppetlabs/puppet/ssl
 ~~~
 
 ### Reconcile `puppet.conf`

@@ -36,20 +36,17 @@ canonical: "/puppet/latest/reference/lang_classes.html"
 [declare]: #declaring-classes
 [setting_parameters]: #include-like-vs-resource-like
 [override]: #using-resource-like-declarations
-[ldap_nodes]: http://projects.puppetlabs.com/projects/1/wiki/Ldap_Nodes
+[ldap_nodes]: /guides/ldap_nodes.html
 [hiera]: /hiera/latest
 [external_data]: /hiera/latest/puppet.html
 [array_search]: /hiera/latest/lookup_types.html#array-merge
 [hiera_hierarchy]: /hiera/latest/hierarchy.html
 
-
-
-**Classes** are named blocks of Puppet code, which are stored in [modules][] for later use and are not applied until they are invoked by name. They can be added to a node's [catalog][] by either **declaring** them in your manifests or by **assigning** them from an [ENC][].
+**Classes** are named blocks of Puppet code that are stored in [modules][] for later use and are not applied until they are invoked by name. They can be added to a node's [catalog][] by either **declaring** them in your manifests or **assigning** them from an [ENC][].
 
 Classes generally configure large or medium-sized chunks of functionality, such as all of the packages, config files, and services needed to run an application.
 
-Defining Classes
------
+## Defining Classes
 
 Defining a class makes it available for later use. It doesn't yet add any resources to the catalog; to do that, you must [declare it (see below)][declare] or [assign it from an ENC][enc].
 
@@ -108,15 +105,13 @@ The general form of a class definition is:
 * A block of arbitrary Puppet code, which generally contains at least one [resource declaration][resource_declaration]
 * A closing curly brace
 
-
 ### Class Parameters and Variables
-
 
 **Parameters** allow a class to request external data. If a class needs to configure itself with data other than [facts][], that data should usually enter the class via a parameter.
 
 Each class parameter can be used as a normal [variable][] inside the class definition. The values of these variables are not set with [normal assignment statements][variable_assignment] or looked up from top or node scope; instead, they are [set based on user input when the class is declared][setting_parameters].
 
-Note that if a class parameter lacks a default value, the user of the module **must** set a value themselves (either in their [external data][external_data] or an [override][]). As such, you should supply defaults wherever possible.
+Note that if a class parameter lacks a default value, the module's user **must** set a value themselves (either in their [external data][external_data] or an [override][]). As such, you should supply defaults wherever possible.
 
 Each parameter can be preceeded by an optional [**data type**][literal_types]. If you include one, Puppet will check the parameter's value at runtime to make sure that it has the right data type, and raise an error if the value is illegal. If no data type is provided, the parameter will accept values of any data type.
 
@@ -128,7 +123,7 @@ Class definitions should be stored in [modules][]. Puppet is **automatically awa
 
 Classes should be stored in their module's `manifests/` directory as one class per file, and each filename should reflect the name of its class; see [Module Fundamentals][modules] and [Namespaces and Autoloading][namespace] for more details.
 
-A class definition statement isn't an expression, and can't be used where a value is expected.
+A class definition statement isn't an expression and can't be used where a value is expected.
 
 > #### Other Locations
 >
@@ -138,21 +133,19 @@ A class definition statement isn't an expression, and can't be used where a valu
 > * A file in the same module whose corresponding class name is a truncated version of this class's name. That is, the class `first::second::third` could be put in `first::second`'s file, `first/manifests/second.pp`.
 > * Lexically inside another class definition. This puts the interior class under the exterior class's [namespace][], causing its real name to be something other than the name with which it was defined. (For example: in `class first { class second { ... } }`, the interior class's real name is `first::second`.) Note that this doesn't cause the interior class to be automatically declared along with the exterior class.
 >
-> Again: You should basically never do these.
-
-
+> Again: You should never do these.
 
 ### Containment
 
 A class [contains][] all of its resources. This means any [relationships][] formed with the class as a whole will be extended to every resource in the class.
 
-Classes can also contain other classes, but _you must manually specify that a class should be contained._ For details, [see the "Containing Classes" section of the Containment page.][contain_classes]
+Classes can also contain other classes, but _you must manually specify that a class should be contained._ For details, [see the "Containing Classes" section of the Containment page][contain_classes].
 
 A contained class is automatically [tagged][tags] with the name of its container.
 
 ### Auto-Tagging
 
-Every resource in a class gets automatically [tagged][tags] with the class's name (and each of its [namespace segments][namespace]).
+Every resource in a class gets automatically [tagged][tags] with the class's name and each of its [namespace segments][namespace].
 
 ### Inheritance
 
@@ -166,14 +159,14 @@ Inheritance causes three things to happen:
 * The base class becomes the [parent scope][parent_scope] of the derived class, so that the new class receives a copy of all of the base class's variables and resource defaults.
 * Code in the derived class is given special permission to override any resource attributes that were set in the base class.
 
-> #### Aside: When to Inherit
+> **Aside: When to Inherit**
 >
 > Class inheritance should be used **very sparingly,** generally only in the following situations:
 >
 > * When you need to override resource attributes in the base class.
 > * To let a "params class" provide default values for another class's parameters:
 >
->       class example (String $my_param = $example::params::myparam) inherits example::params { ... }
+> `class example (String $my_param = $example::params::myparam) inherits example::params { ... }`
 >
 >   This pattern works by guaranteeing that the params class is evaluated before Puppet attempts to evaluate the main class's parameter list. It is especially useful when you want your default values to change based on system facts and other data, since it lets you isolate and encapsulate all that conditional logic.
 >
@@ -214,7 +207,7 @@ This causes the attribute to be unmanaged by Puppet.
 
 #### Appending to Resource Attributes
 
-Some resource attributes (such as the [relationship metaparameters][relationships]) can accept multiple values in an array. When overriding attributes in a derived class, you can add to the existing values instead of replacing them by using the `+>` ("plusignment") keyword instead of the standard `=>` hash rocket:
+Some resource attributes, such as the [relationship metaparameters][relationships], can accept multiple values in an array. When overriding attributes in a derived class, you can add to the existing values instead of replacing them by using the `+>` ("plusignment") keyword instead of the standard `=>` hash rocket:
 
 ~~~ ruby
 class apache {
@@ -233,10 +226,7 @@ class apache::ssl inherits apache {
 }
 ~~~
 
-
-
-Declaring Classes
------
+## Declaring Classes
 
 **Declaring** a class in a Puppet manifest adds all of its resources to the catalog. You can declare classes in [node definitions][node], at top scope in the [site manifest][sitedotpp], and in other classes or [defined types][definedtype]. Declaring classes isn't the only way to add them to the catalog; you can also [assign classes to nodes with an ENC](#assigning-classes-from-an-enc).
 
@@ -276,7 +266,6 @@ Resource-like class declarations require that you **only declare a given class o
 > This is necessary to avoid paradoxical or conflicting parameter values. Since overridden values from the class declaration always win, are computed at compile-time, and do not have a built-in hierarchy for resolving conflicts, allowing repeated overrides would cause catalog compilation to be unreliable and evaluation-order dependent.
 >
 > This was the original reason for adding external data bindings to include-like declarations: since external data is set **before** compile-time and has a **fixed hierarchy,** the compiler can safely rely on it without risk of conflicts.
-
 
 ### Using `include`
 
@@ -350,31 +339,31 @@ The `contain` function uses [include-like behavior][include-like]. (Multiple dec
 The `hiera_include` function requests a list of class names from [Hiera][], then declares all of them. Since it uses the [array lookup type][array_search], it will get a combined list that includes classes from **every level** of the [hierarchy][hiera_hierarchy]. This allows you to abandon [node definitions][node] and use Hiera like a lightweight ENC.
 
 ~~~ yaml
-# /etc/puppetlabs/puppet/hiera.yaml
+# /etc/puppetlabs/code/hiera.yaml
 ...
 hierarchy:
   - "%{::clientcert}"
   - common
 
-# /etc/puppetlabs/puppet/hieradata/web01.example.com.yaml
+# /etc/puppetlabs/code/hieradata/web01.example.com.yaml
 ---
 classes:
   - apache
   - memcached
   - wordpress
 
-# /etc/puppetlabs/puppet/hieradata/common.yaml
+# /etc/puppetlabs/code/hieradata/common.yaml
 ---
 classes:
   - base::linux
 ~~~
 
 ~~~ ruby
-# /etc/puppetlabs/puppet/manifests/site.pp
+# /etc/puppetlabs/code/environments/production/manifests/site.pp
 hiera_include(classes)
 ~~~
 
-On the node `web01.example.com`, the example above would declare the classes `apache`, `memcached`, `wordpress`, and `base::linux`. On other nodes, it would only declare `base::linux`.
+On the node `web01.example.com` in the production environment, the example above would declare the classes `apache`, `memcached`, `wordpress`, and `base::linux`. On other nodes, it would only declare `base::linux`.
 
 The `hiera_include` function uses [include-like behavior][include-like]. (Multiple declarations OK; relies on external data for parameters.) It accepts a single lookup key.
 
@@ -407,22 +396,16 @@ However, note that:
 * Any resource can specifically override metaparameter values received from its container.
 * Metaparameters which can take more than one value (like the [relationship][relationships] metaparameters) will merge the values from the container and any resource-specific values.
 
-
-
-Assigning Classes From an ENC
------
+## Assigning Classes From an ENC
 
 Classes can also be assigned to nodes by [external node classifiers][enc] and [LDAP node data][ldap_nodes]. Note that most ENCs assign classes with include-like behavior, and some ENCs assign them with resource-like behavior. See the [documentation of the ENC interface][enc] or the documentation of your specific ENC for complete details.
 
-
-
-Appendix: Smart Parameter Defaults
-------------------------------------
+## Appendix: Smart Parameter Defaults
 
 This design pattern can make for significantly cleaner code while enabling some really sophisticated behavior around default values.
 
 ~~~ ruby
-# /etc/puppet/modules/webserver/manifests/params.pp
+# /etc/puppetlabs/code/modules/webserver/manifests/params.pp
 
 class webserver::params {
   $packages = $operatingsystem ? {
@@ -435,7 +418,7 @@ class webserver::params {
   }
 }
 
-# /etc/puppet/modules/webserver/manifests/init.pp
+# /etc/puppetlabs/code/modules/webserver/manifests/init.pp
 
 class webserver(
   String $packages  = $webserver::params::packages,
@@ -459,40 +442,40 @@ To summarize what's happening here: When a class inherits from another class, it
 This is functionally equivalent to doing the following:
 
 ~~~ ruby
-# /etc/puppet/modules/webserver/manifests/init.pp
+# /etc/puppetlabs/code/modules/webserver/manifests/init.pp
 
 class webserver(String $packages = 'UNSET', String $vhost_dir = 'UNSET' ) {
 
- if $packages == 'UNSET' {
-   $real_packages = $operatingsystem ? {
-     /(?i-mx:ubuntu|debian)/        => 'apache2',
-     /(?i-mx:centos|fedora|redhat)/ => 'httpd',
-   }
- }
- else {
-    $real_packages = $packages
- }
+  if $packages == 'UNSET' {
+    $real_packages = $operatingsystem ? {
+      /(?i-mx:ubuntu|debian)/        => 'apache2',
+      /(?i-mx:centos|fedora|redhat)/ => 'httpd',
+    }
+  }
+  else {
+     $real_packages = $packages
+  }
 
- if $vhost_dir == 'UNSET' {
-   $real_vhost_dir = $operatingsystem ? {
-     /(?i-mx:ubuntu|debian)/        => '/etc/apache2/sites-enabled',
-     /(?i-mx:centos|fedora|redhat)/ => '/etc/httpd/conf.d',
-   }
- }
- else {
-    $real_vhost_dir = $vhost_dir
-}
+  if $vhost_dir == 'UNSET' {
+    $real_vhost_dir = $operatingsystem ? {
+      /(?i-mx:ubuntu|debian)/        => '/etc/apache2/sites-enabled',
+      /(?i-mx:centos|fedora|redhat)/ => '/etc/httpd/conf.d',
+    }
+  }
+  else {
+     $real_vhost_dir = $vhost_dir
+  }
 
- package { $real_packages: ensure => present }
+  package { $real_packages: ensure => present }
 
- file { 'vhost_dir':
-   path   => $real_vhost_dir,
-   ensure => directory,
-   mode   => '0750',
-   owner  => 'www-data',
-   group  => 'root',
- }
+  file { 'vhost_dir':
+    path   => $real_vhost_dir,
+    ensure => directory,
+    mode   => '0750',
+    owner  => 'www-data',
+    group  => 'root',
+  }
 }
 ~~~
 
-... but it's a significant readability win, especially if the amount of logic or the number of parameters gets any higher than what's shown in the example.
+This is a significant readability win, especially if the amount of logic or the number of parameters grows beyond what's shown in the example.

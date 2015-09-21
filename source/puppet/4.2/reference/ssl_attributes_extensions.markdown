@@ -24,13 +24,13 @@ It might also be useful in deployments where Puppet is used to deploy private ke
 
 If your deployment doesn't match one of these descriptions, you might not need this feature.
 
-## Timing: When Data Can be Added to CSRs / Certificates
+## Timing: When Data Can be Added to CSRs and Certificates
 
 When Puppet agent starts the process of requesting a catalog, it first checks whether it has a valid signed certificate. If it does not, it generates a key pair, crafts a CSR, and submits it to the certificate authority (CA) Puppet master. The steps are [covered in more detail in the reference page about agent/master HTTPS traffic][cert_request].
 
 For all practical purposes, a certificate is locked and immutable as soon as it is signed. For any data to persist in the certificate, it has to be added to the CSR _before_ the CA signs the certificate.
 
-This means **any desired extra data must be present _before_ Puppet agent attempts to request its catalog for the first time**.
+This means **any desired extra data must be present _before_ Puppet agent attempts to request its catalog for the first time.**
 
 Practically speaking, you should populate any extra data when provisioning the node. If you mess up, see [Recovering From Failed Data Embedding](#recovering-from-failed-data-embedding) below.
 
@@ -83,7 +83,7 @@ Attributes:
 
 ### Recommended OIDs for Attributes
 
-Custom attributes can use any public or site-specific OID, **with the exception of the OIDs used for core X.509 functionality**. This means you can't re-use existing OIDs for things like subject alternative names.
+Custom attributes can use any public or site-specific OID, **with the exception of the OIDs used for core X.509 functionality.** This means you can't re-use existing OIDs for things like subject alternative names.
 
 One useful OID is the "challengePassword" attribute --- `1.2.840.113549.1.9.7`. This is a rarely-used corner of X.509 that can easily be repurposed to hold a pre-shared key. The benefit of using this instead of an arbitrary OID is that it appears by name when using OpenSSL to dump the CSR to text; OIDs that `openssl req` can't recognize are displayed as numerical strings.
 
@@ -128,12 +128,12 @@ In the output, look for a section called "Requested Extensions," which generally
 
 ~~~
 Requested Extensions:
-        pp_uuid:
-        .$ED803750-E3C7-44F5-BB08-41A04433FE2E
-        1.3.6.1.4.1.34380.1.1.3:
-        ..my_ami_image
-        1.3.6.1.4.1.34380.1.1.4:
-        .$342thbjkt82094y0uthhor289jnqthpc2290
+    pp_uuid:
+    .$ED803750-E3C7-44F5-BB08-41A04433FE2E
+    1.3.6.1.4.1.34380.1.1.3:
+    ..my_ami_image
+    1.3.6.1.4.1.34380.1.1.4:
+    .$342thbjkt82094y0uthhor289jnqthpc2290
 ~~~
 
 Note that every extension is preceded by any combination of two characters (`.$` and `..` in the above example) that contain ASN.1 encoding information. Since OpenSSL is unaware of Puppet's custom extensions OIDs, it's unable to properly display the values.
@@ -193,10 +193,10 @@ if [ ! -d /etc/puppetlabs/puppet ]; then
 fi
 erb > /etc/puppetlabs/puppet/csr_attributes.yaml <<END
 custom_attributes:
-  1.2.840.113549.1.9.7: mySuperAwesomePassword
+    1.2.840.113549.1.9.7: mySuperAwesomePassword
 extension_requests:
-  pp_instance_id: <%= %x{/opt/aws/bin/ec2-metadata -i}.sub(/instance-id: (.*)/,'\1').chomp %>
-  pp_image_name:  <%= %x{/opt/aws/bin/ec2-metadata -a}.sub(/ami-id: (.*)/,'\1').chomp %>
+    pp_instance_id: <%= %x{/opt/aws/bin/ec2-metadata -i}.sub(/instance-id: (.*)/,'\1').chomp %>
+    pp_image_name:  <%= %x{/opt/aws/bin/ec2-metadata -a}.sub(/ami-id: (.*)/,'\1').chomp %>
 END
 ~~~
 
@@ -210,13 +210,13 @@ When first testing this feature, you might fail to embed the right information i
 
 To start over, do the following:
 
-**On the test node**:
+**On the test node:**
 
 * Turn off Puppet agent, if it's running.
 * Check whether a CSR is present; it will be at `$ssldir/certificate_requests/<name>.pem`. If it exists, delete it.
 * Check whether a certificate is present; it will be at `$ssldir/certs/<name>.pem`. If it exists, delete it.
 
-**On the CA Puppet master**:
+**On the CA Puppet master:**
 
 * Check whether a signed certificate exists; use `puppet cert list --all` to see the complete list. If it exists, revoke and delete it with `puppet cert clean <name>`.
 * Check whether a CSR for the node exists; it will be in `$ssldir/ca/requests/<name>.pem`. If it exists, delete it.
