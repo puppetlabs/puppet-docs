@@ -2120,3 +2120,13 @@ div.input-label input {
 #site-footer .footer-col-right p {
   line-height: 1.4rem;
 }
+/* Marketo form styles */
+#mktoForm_1416 {
+  width: 512px !important;
+}
+#mktoForm_1416 .mktoFormCol {
+  width: 100%;
+}
+#mktoForm_1416 .mktoFieldWrap {
+  width: 100%;
+}

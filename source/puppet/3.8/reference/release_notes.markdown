@@ -42,6 +42,32 @@ We always recommend that you **upgrade your Puppet master servers before upgradi
 
 If you're upgrading from Puppet 2.x, please [learn about major upgrades of Puppet first!][upgrade] We have important advice about upgrade plans and package management practices. The short version is: test first, roll out in stages, give yourself plenty of time to work with. Also, read the [release notes for Puppet 3][puppet_3] for a list of all the breaking changes made between the 2.x and 3.x series.
 
+
+## Puppet 3.8.3
+
+Released September 21, 2015.
+
+Puppet 3.8.3 is a bug fix release in the Puppet 3.8 series. It fixes one significant regression and several miscellaneous bugs.
+
+* [All fixes for Puppet 3.8.3](https://tickets.puppetlabs.com/issues/?filter=15509)
+* [Introduced in Puppet 3.8.3](https://tickets.puppetlabs.com/issues/?filter=15510)
+
+### Regression Fix: Warnings (Not Errors) for New Reserved Words
+
+In Puppet 3.8.2, we reserved the new keywords `application`, `consumes`, and `produces` ([PUP-4941](https://tickets.puppetlabs.com/browse/PUP-4941)). For this version of Puppet, using these words as class names or unquoted strings was supposed to log a warning, but due to a bug, Puppet would raise an error and fail compilation instead.
+
+This is now fixed, and the new keywords log warnings as intended.
+
+* [PUP-5036: `--parser future` breaks `class application {}`](https://tickets.puppetlabs.com/browse/PUP-5036)
+
+### Bug Fixes: Misc
+
+* [PUP-3045: exec resource with timeout doesn't kill executed command that times out](https://tickets.puppetlabs.com/browse/PUP-3045) --- On POSIX systems, `exec` resources with a `timeout` value will now send a TERM signal if their command runs too long.
+* [PUP-4639: Refreshing a LaunchDaemon leaves it disabled](https://tickets.puppetlabs.com/browse/PUP-4639) --- When refreshing a service on Mac OS X that was already running (via `notify`, `subscribe`, or `~>`), Puppet would stop the service and fail to start it.
+* [PUP-5044: launchd enable/disable on OS X 10.10](https://tickets.puppetlabs.com/browse/PUP-5044) --- Enable/disable of services on El Capitan (10.10) wasn't working because the overrides plist moved. Puppet now knows where to find that plist on 10.10+.
+* [PUP-5013: resource evaluation metrics are missing when not using an ENC](https://tickets.puppetlabs.com/browse/PUP-5013) --- Puppet Server's metrics for resource evaluation were very incomplete, because we were only tracking one of the several code paths that can evaluate resources. The metrics should be more complete now.
+* [PUP-735: Status unchanged when "Could not apply complete catalog"](https://tickets.puppetlabs.com/browse/PUP-735) --- Previously, if a catalog had a dependency cycle (resource A depended on B which depended on A), then the run would fail with a cryptic error "Could not apply complete catalog", Puppet would exit with 0, and the report would omit metrics information about the failure. With this change, Puppet logs that a cycle was detected, exits with 1, and includes correct information about the failure in the report.
+
 ## Puppet 3.8.2
 
 Released August 6, 2015.
@@ -50,7 +76,6 @@ Puppet 3.8.2 is a maintenance (bug fix) release to improve forward compatibility
 
 * [All fixes for Puppet 3.8.2](https://tickets.puppetlabs.com/issues/?filter=15207)
 * [Introduced in Puppet 3.8.2](https://tickets.puppetlabs.com/issues/?filter=15208)
-
 
 ### Deprecation: New Reserved Words
 

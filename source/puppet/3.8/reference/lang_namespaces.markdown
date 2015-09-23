@@ -125,18 +125,18 @@ In the example above, Puppet will load class `nagios` from the `nagios` module i
 >
 > Before modules were introduced, users would create module-like blobs by putting a group of related classes and defined types into one manifest file, then using an [import][] statement in `site.pp` to make the group available to the parser.
 >
-~~~ ruby
-    # /etc/puppet/manifests/apache.pp
-    class apache { ... } # Manage Apache
-    class ssl { ... } # Optional SSL support for Apache
-    class python { ... } # Optional mod_python support for Apache
-    define vhost ($port) { ... } # Create an Apache vhost
-
-    # /etc/puppet/manifests/site.pp
-    import apache.pp
-    include apache
-    include ssl
-~~~
+> ~~~ ruby
+>     # /etc/puppet/manifests/apache.pp
+>     class apache { ... } # Manage Apache
+>     class ssl { ... } # Optional SSL support for Apache
+>     class python { ... } # Optional mod_python support for Apache
+>     define vhost ($port) { ... } # Create an Apache vhost
+>
+>     # /etc/puppet/manifests/site.pp
+>     import apache.pp
+>     include apache
+>     include ssl
+> ~~~
 >
 > #### Namespacing for Redistribution
 >
@@ -148,14 +148,14 @@ In the example above, Puppet will load class `nagios` from the `nagios` module i
 >
 > The implementation of namespaces relied on an assumption that turned out to be incorrect: that classes and defined types other than the module's main class would (and should) mostly be used inside the module, rather than applied directly to nodes. (That is, they would be _private,_ much like local variables.) Thus, namespacing was done by hiding definitions within other definitions:
 >
-~~~ ruby
-    class apache {
-      ...
-      class ssl { ... }
-      class python { ... }
-      define vhost ($port) { ... }
-    }
-~~~
+> ~~~ ruby
+>     class apache {
+>       ...
+>       class ssl { ... }
+>       class python { ... }
+>       define vhost ($port) { ... }
+>     }
+> ~~~
 >
 > The short names of the internal classes and defined types could only be used inside the main class. However, much like qualified variables, you could access them from anywhere by using their full (that is, namespaced) name. Full names were constructed by prepending the full name of the "outer" class, along with the `::` namespace separator. (That is, the full name of `ssl` would be `apache::ssl`, `python` would be `apache::python`, etc.)
 >

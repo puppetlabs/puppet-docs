@@ -62,7 +62,7 @@ Read the [README](http://github.com/puppetlabs/puppet-docs/blob/master/README.ma
 and [README_WRITING](http://github.com/puppetlabs/puppet-docs/blob/master/README_WRITING.markdown)
 files in the puppet-docs source to learn more about how our documentation works;
 read the [documentation style and usage guide](http://github.com/puppetlabs/puppet-docs/blob/master/style_and_usage.markdown)
-for the project's language conventions. 
+for the project's language conventions.
 
 ### Make Your Edits
 
@@ -73,7 +73,7 @@ provide passing tests that cover your changes.
 
 ### Preview Your Changes
 
-Before committing any changes or submitting a patch, you should preview your changes. The [README](http://github.com/puppetlabs/puppet-docs/blob/master/README.markdown) provides information on how to set up the correct tools to run a local server that will allow you to preview all your changes as they'll appear on the website. 
+Before committing any changes or submitting a patch, you should preview your changes. The [README](http://github.com/puppetlabs/puppet-docs/blob/master/README.markdown) provides information on how to set up the correct tools to run a local server that will allow you to preview all your changes as they'll appear on the website.
 
 ### Commit and Push/Patch
 
@@ -85,16 +85,5 @@ Before committing any changes or submitting a patch, you should preview your cha
 NOTE: If you need a refresher on how to commit and work with remote
 repositories in Git, you may want to visit [GitHub's articles and
 screencasts](http://learn.github.com/).
-
-### Submit a Ticket
-
-Visit the [Puppet Documentation Project](https://tickets.puppetlabs.com/browse/DOCUMENT)
-in JIRA and submit a ticket describing the problem and your proposed
-changes; you'll need to create a [JIRA account](tickets.puppetlabs.com/secure/Signup!default.jspa)
-if you don't already have one. Be sure to provide the background on
-your change, the versions of Puppet (or supporting project)
-to which the change pertains, and (if you're using GitHub or another
-remote host) the URL to the branch you're submitting. (If you're working
-with only a local Git repository, please attach one or more patches containing your edits.)
 
 We'll get back to you on your contribution as soon as possible. And thanks!
