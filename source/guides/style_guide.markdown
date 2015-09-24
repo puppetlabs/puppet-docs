@@ -10,7 +10,7 @@ The Puppet Language Style Guide
 
 Puppet Language Style Guide: Version 2.0.1
 
-Puppet: Version 3.7+ 
+Puppet: Version 3.7+
 
 (Note: While the style guide maps to Puppet 3.7, many of its recommendations apply to Puppet 3.0.x and up.)
 
@@ -32,11 +32,11 @@ The purpose of this style guide is to promote consistent formatting across modul
 We can never cover every possible circumstance you might run into when developing Puppet code or creating a module. Eventually, a judgement call will be necessary. When that happens, keep in mind the following general principles:
 
 1.  **Readability matters.**
-    
+
     If you have to choose between two equally effective alternatives, pick the
     more readable one. While this is subjective, if you can read your
     own code three months from now, it's a great start. In particular, code that generates readable diffs is highly preferred.
-    
+
 2. **Scoping and simplicity are key.**
 
     When in doubt, err on the side of simplicity. A module should contain related resources that enable it to accomplish a task. If you describe the function of your module and you find yourself using the word 'and,' it's time to split the module at the 'and.' You should have one goal, with all your classes and parameters focused on achieving it.
@@ -47,7 +47,7 @@ We can never cover every possible circumstance you might run into when developin
 
 ## 4. Versioning
 
-Your module must be versioned. We recommend (and use) [SemVer](http://semver.org/spec/v1.0.0.html); meaning for a version x.y.z., an increase in x indicates backwards incompatible changes or a complete rewrite, an increase in y indicates the addition of new features, and an increase in z indicates non-breaking bug fixes. 
+Your module must be versioned. We recommend (and use) [SemVer](http://semver.org/spec/v1.0.0.html); meaning for a version x.y.z., an increase in x indicates backwards incompatible changes or a complete rewrite, an increase in y indicates the addition of new features, and an increase in z indicates non-breaking bug fixes.
 
 This style guide is versioned using SemVer.
 
@@ -65,7 +65,7 @@ Module manifests:
 
 ## 6. Quoting
 
-* All strings must be enclosed in single quotes, unless they contain variables or single quotes.  
+* All strings must be enclosed in single quotes, unless they contain variables or single quotes.
 * Quoting is optional when the string is an enumerable set of options (such as present/absent).
 * All variables must be enclosed in braces when interpolated in a string.  For example:
 
@@ -100,7 +100,7 @@ Module manifests:
 
 * Double quotes should be used rather than escaping when a string contains single quotes.
 
-**Good:**  
+**Good:**
 
 ~~~
 warning("Class['apache'] parameter purge_vdir is deprecated in favor of purge_configs")
@@ -155,7 +155,7 @@ Every publicly available module must have metadata defined in the metadata.json 
         },
         {
           "operatingsystem": "Ubuntu",
-          "operatingsystemrelease": [ 
+          "operatingsystemrelease": [
             "12.04",
             "10.04"
          ]
@@ -198,7 +198,7 @@ All resource titles must be quoted. If you are using an array of titles you must
 All of the hash rockets (`=>`) in a resource's attribute/value list should
 be aligned. The hash rockets should be placed one space ahead of the longest
 attribute name. Nested blocks must be indented by two spaces, and hash rockets within a nested block should be aligned (one space ahead of the longest attribute name).
- 
+
 
 **Good:**
 
@@ -287,7 +287,7 @@ Within a manifest, resources should be grouped by logical relationship to each o
     file { '/tmp/dir2':
       ensure => directory,
     }
-    
+
     file { '/tmp/dir/a':
       content => 'a',
     }
@@ -330,6 +330,15 @@ Symbolic links must be declared with an ensure value of `ensure => link` and exp
 ~~~
   file { '/var/log/syslog':
       ensure => file,
+      mode   => '0644',
+  }
+~~~
+
+**Also Good:**
+
+~~~
+  file { '/var/log/syslog':
+      ensure => file,
       mode   => 'o-rwx',
   }
 ~~~
@@ -349,10 +358,10 @@ Resource defaults should be used in a very controlled manner and should only
 be declared at the edges of your manifest ecosystem. Specifically, they may be declared:
 
 * At top scope in site.pp, or
-* In a class which is guaranteed to never declare or be inherited by 
+* In a class which is guaranteed to never declare or be inherited by
 a class or define from another module.
 
-This is due to the way resource defaults propagate through dynamic scope, which can have 
+This is due to the way resource defaults propagate through dynamic scope, which can have
 unpredictable effects far away from where the default was declared.
 
 **Good:**
@@ -386,7 +395,7 @@ unpredictable effects far away from where the default was declared.
 
 ### 10.1. Separate Files
 
-All classes and resource type definitions (defines) must be separate files in the `manifests` directory of the module. 
+All classes and resource type definitions (defines) must be separate files in the `manifests` directory of the module.
 
 **Good:**
 
@@ -405,7 +414,7 @@ Separating classes and defines into separate files is functionally identical to 
 
 ### 10.2. Internal Organization of Classes and Defines
 
-Classes and defines must be structured to accomplish one task. Below is a line-by-line general layout of what lines of code should come first, second, and so on. 
+Classes and defines must be structured to accomplish one task. Below is a line-by-line general layout of what lines of code should come first, second, and so on.
 
 1. First line: Name of class or type.
 1. Following lines, if applicable: Define parameters.
@@ -498,7 +507,7 @@ You should help indicate to the user which classes are which by both calling out
 
 Most of the time, use [relationship metaparameters](https://docs.puppetlabs.com/puppet/latest/reference/lang_relationships.html#relationship-metaparameters) rather than [chaining arrows](https://docs.puppetlabs.com/puppet/latest/reference/lang_relationships.html#chaining-arrows). When you have many [interdependent or order-specific items](https://github.com/puppetlabs/puppetlabs-mysql/blob/3.1.0/manifests/server.pp#L64-L72), chaining syntax may be used.  Chaining arrows must be used left to right.
 
-**Good:** 
+**Good:**
 
     Package['httpd'] -> Service['httpd']
 
@@ -508,7 +517,7 @@ Most of the time, use [relationship metaparameters](https://docs.puppetlabs.com/
 
 ### 10.5. Nested Classes or Defines
 
-Classes and defined resource types must not be defined within other classes or defined types. Classes and defines should be declared as close to node scope as possible. If you have a class or define which requires another class or define, graceful failures must be in place if those required classes or defines are not declared elsewhere. 
+Classes and defined resource types must not be defined within other classes or defined types. Classes and defines should be declared as close to node scope as possible. If you have a class or define which requires another class or define, graceful failures must be in place if those required classes or defines are not declared elsewhere.
 
 **Very Bad:**
 
@@ -699,7 +708,7 @@ parameter and conditional relationship declarations. For instance,
 
 Remember:
 
-Class inheritance should only be used for `myclass::params` parameter defaults. Other use cases can be accomplished through the addition of parameters or conditional logic. 
+Class inheritance should only be used for `myclass::params` parameter defaults. Other use cases can be accomplished through the addition of parameters or conditional logic.
 
 ### 11.2 A Note About Publicly Available Modules
 
@@ -861,7 +870,7 @@ All publicly available modules should include the documentation covered below.
 
 Your module should have a README in .md (or .markdown) format. READMEs help users of your module get the full benefit of your work. There is a [Puppet Labs README template](https://docs.puppetlabs.com/puppet/latest/reference/READMEtemplate.txt) available for your use; it can also be obtained by running `puppet module generate` (available in Puppet 3.6 and above). Using the .md/.markdown format allows your README to be parsed and displayed by both GitHub and the Puppet Forge.
 
-If you are prolific with your in-code comments, you can use `puppet doc` up until Puppet 4 is released. If you're currently using the future parser, you might want to check out [strings](https://github.com/puppetlabs/puppetlabs-strings), the replacement for `puppet doc` that (only) works with the future parser. 
+If you are prolific with your in-code comments, you can use `puppet doc` up until Puppet 4 is released. If you're currently using the future parser, you might want to check out [strings](https://github.com/puppetlabs/puppetlabs-strings), the replacement for `puppet doc` that (only) works with the future parser.
 
 There's an entire [guide](https://docs.puppetlabs.com/puppet/latest/reference/modules_documentation.html) to writing a great README, but overall you should:
 
@@ -871,10 +880,10 @@ There's an entire [guide](https://docs.puppetlabs.com/puppet/latest/reference/mo
 
 ### 17.2 CHANGELOG
 
-Your module should have a CHANGELOG in .md (or .markdown) format. Your CHANGELOG should: 
+Your module should have a CHANGELOG in .md (or .markdown) format. Your CHANGELOG should:
 
-* Have entries for each release. 
-* List bugfixes and features included in the release. 
+* Have entries for each release.
+* List bugfixes and features included in the release.
 * Specifically call out backwards-incompatible changes
 
 ## 19. Verifying style
