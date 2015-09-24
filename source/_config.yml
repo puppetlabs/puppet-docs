@@ -202,13 +202,9 @@ externalsources:
   pe2015.2:
     url: /pe/2015.2
     repo: git@github.com:puppetlabs/pe-docs-private.git
-    commit: origin/shallowgravy
-    subdirectory: source
-  pe2015.2.1:
-    url: /pe/2015.2
-    repo: git@github.com:puppetlabs/pe-docs-private.git
     commit: origin/pe2015.2.1
     subdirectory: source
+  
 
 
 symlink_latest:
