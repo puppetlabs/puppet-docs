@@ -464,7 +464,7 @@ All of the above types are supported on Windows with the following caveats:
 If your external fact is not appearing in Facter's output, running
 Facter in debug mode should give you a meaningful reason and tell you which file is causing the problem:
 
-    # facter --debug
+    # puppet facts --debug
 
 One example of when this might happen is in cases where a fact returns invalid characters.
 Let say you used a hyphen instead of an equals sign in your script `test.sh`:
@@ -473,15 +473,15 @@ Let say you used a hyphen instead of an equals sign in your script `test.sh`:
 
     echo "key1-value1"
 
-Running `facter --debug` should yield a useful message:
+Running `puppet facts --debug` should yield a useful message:
 
     ...
-    2015-06-12 18:45:29.179944 DEBUG puppetlabs.facter - resolving facts from executable file "/tmp/test.sh".
-    2015-06-12 18:45:29.180146 DEBUG puppetlabs.facter - executing command: /tmp/test.sh
-    2015-06-12 18:45:29.182434 DEBUG | - key1-value1
-    2015-06-12 18:45:29.182529 DEBUG puppetlabs.facter - ignoring line in output: key1-value1
-    2015-06-12 18:45:29.182765 DEBUG puppetlabs.facter - process exited with status code 0.
-    2015-06-12 18:45:29.182896 DEBUG puppetlabs.facter - completed resolving facts from executable file "/tmp/test.sh".
+    Debug: Facter: resolving facts from executable file "/tmp/test.sh".
+    Debug: Facter: executing command: /tmp/test.sh
+    Debug: Facter: key1-value1
+    Debug: Facter: ignoring line in output: key1-value1
+    Debug: Facter: process exited with status code 0.
+    Debug: Facter: completed resolving facts from executable file "/tmp/test.sh".
     ...
 
 #### External Facts and stdlib
