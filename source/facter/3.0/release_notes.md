@@ -15,6 +15,7 @@ Shipped in puppet-agent version: 1.2.2.
 Facter 3.0.2 fixes several regressions in Facter 3.0.0 and implements new features to support legacy workflows.
 
 For JIRA issues related to Facter 3.0.2, see:
+
 - [Fixes for Facter 3.0.2](https://tickets.puppetlabs.com/issues/?filter=15119)
 - [Introduced in Facter 3.0.2](https://tickets.puppetlabs.com/issues/?filter=15118)
 
