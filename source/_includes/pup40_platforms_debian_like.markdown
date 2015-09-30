@@ -1,7 +1,8 @@
 We publish official packages and run automated testing on the following versions for Puppet 4.x:
 
 
-* Debian 7 "Wheezy" (current stable release)
+* Debian 8 "Jessie" (current stable release)
+* Debian 7 "Wheezy" (previous stable release)
 * Ubuntu 15.04 "Vivid Vervet"
 * Ubuntu 14.10 "Utopic Unicorn"
 * Ubuntu 14.04 LTS "Trusty Tahr"
