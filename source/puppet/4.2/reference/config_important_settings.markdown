@@ -112,11 +112,12 @@ Roughly in order of importance. Most of these can go in either `[main]` or `[age
 
 * [`server`][server] --- The Puppet master server to request configurations from. Defaults to `puppet`; change it if that's not your server's name.
     * [`ca_server`][ca_server] and [`report_server`][report_server] --- If you're using multiple masters, you'll need to centralize the CA; one of the ways to do this is by configuring `ca_server` on all agents. [See the multiple masters guide][multi_master] for more details. The `report_server` setting works about the same way, although whether you need to use it depends on how you're processing reports.
-* [`certname`][certname] --- The node's certificate name, and the name it uses when requesting catalogs; defaults to the fully qualified domain name.
+* [`certname`][certname] --- The node's certificate name, and the unique identifier it uses when requesting catalogs; defaults to the fully qualified domain name.
     * For best compatibility, you should limit the value of `certname` to only use letters, numbers, periods, underscores, and dashes. (That is, it should match `/\A[a-z0-9._-]+\Z/`.)
     * The special value `ca` is reserved, and can't be used as the certname for a normal node.
-    * (Yes, it's also possible to re-use certificates/certnames and then set the name used in requests via the [`node_name_fact`][node_name_fact] / [`node_name_value`][node_name_value] settings. Don't do this unless you know exactly what you're doing, because it changes Puppet's whole security model. For most users, certname = only name.)
 * [`environment`][environment] --- The [environment][environments] to request when contacting the Puppet master. It's only a request, though; the master's [ENC][] can override this if it chooses. Defaults to `production`.
+
+{% partial ./_nodename_certname.md %}
 
 ### Run Behavior
 

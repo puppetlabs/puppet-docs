@@ -71,11 +71,9 @@ Node definitions look like class definitions. The general form of a node definit
 Naming
 -----
 
-Node statements match nodes by name. A node's name is its unique identifier; by default, this is its [certname][] setting, which in turn resolves to the node's fully qualified domain name.
+Node statements match nodes by name. A node's name is its unique identifier; by default, this is its [certname][] setting, which in turn defaults to the node's fully qualified domain name.
 
-> #### Note on Non-Certname Node Names
->
-> Although it is possible to configure Puppet to use something other than the [certname][] as a node name, we don't generally recommend it, since it's less secure and makes it harder to identify nodes in manifests and Hiera data.
+{% partial ./_nodename_certname.md %}
 
 A node statement's **name** must be one of the following:
 
