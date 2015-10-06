@@ -8,24 +8,28 @@ canonical: "/puppet/latest/reference/config_file_auth.html"
 [api]: ./http_api/http_api_index.html
 [default_file]: https://github.com/puppetlabs/puppet/blob/4.3.0/conf/auth.conf
 [environment]: ./environments.html
-[server_ca]: /puppetserver/2.2/configuration.html#caconf
-[puppet server]: /puppetserver/2.2/
+[server_ca]: /puppetserver/2.2/config_file_ca.html
+[server_master]: /puppetserver/2.2/config_file_master.html
+[Puppet Server `auth.conf`]: /puppetserver/2.2/config_file_auth.html
+[Puppet Server 2.2]: /puppetserver/2.2/
 
 Access to Puppet's HTTPS API is configured in `auth.conf`.
 
 ## About Puppet's HTTPS API
 
-(For full details about Puppet's HTTPS API, see [the API reference.][api])
+(For full details about Puppet's HTTPS API, see [the API reference][api].)
 
 The Puppet agent service requests configurations over HTTPS, and the Puppet master application provides several HTTPS endpoints to support this. (For example, requesting a catalog uses a different endpoint than submitting a report.) There are also a few endpoints that aren't used by Puppet agent.
 
-Since some endpoints should have restricted access (for example, a node shouldn't request another node's configuration catalog), Puppet master has a list of access rules for all of its HTTPS services. These rules can be edited in `auth.conf`.
+Since some endpoints should have restricted access (for example, a node shouldn't request another node's configuration catalog), the Puppet master has a list of access rules for all of its HTTPS services. You can edit these rules in `auth.conf`.
 
-### Puppet Server Ignores `puppet-ca` ACLs in auth.conf
+### New Puppet Server Authorization Options
 
-[Puppet Server][] uses a different implementation of the Puppet CA, and ignores auth.conf's access rules for any `/puppet-ca` endpoints.
+[confdir]: ./dirs_confdir.html
 
-For most CA endpoints, where anyone should be able to download public certificates and submit a CSR, Puppet Server simply hardcodes open access. For the optional `certificate_status` endpoint, which allows remote control of the CA, you can [selectively enable access in ca.conf.][server_ca]
+[Puppet Server 2.2][] uses [`trapperkeeper-authorization`](https://github.com/puppetlabs/trapperkeeper-authorization)---a different implementation of the Puppet Certificate Authority (CA)---and ignores `auth.conf`'s access rules (ACLs) for any `/puppet-ca` endpoints. This is a dramatic change in how Puppet Server manages authorization, as you can now configure access to certificate status and administration endpoints by writing rules in Puppet Server's own new HOCON-formatted [`auth.conf`][Puppet Server `auth.conf`] file, located by default at `/etc/puppetlabs/puppetserver/conf.d/auth.conf`.
+
+> **Deprecation Note:** The legacy hardcoded authorization methods that use [`ca.conf`][server_ca] and [`master.conf`][server_master] are [deprecated][/puppetserver/2.2/deprecated_features.html].
 
 ## Location
 
@@ -33,74 +37,74 @@ The `auth.conf` file is located at `$confdir/auth.conf` by default. Its location
 
 The location of the `confdir` depends on your OS. [See the confdir documentation for details.][confdir]
 
-[confdir]: ./dirs_confdir.html
-
 ## Example
 
-    path /puppet/v3/environments
-    method find
-    allow *
+~~~
+path /puppet/v3/environments
+method find
+allow *
 
-    # allow nodes to retrieve their own catalog
-    path ~ ^/puppet/v3/catalog/([^/]+)$
-    method find
-    allow $1
+# allow nodes to retrieve their own catalog
+path ~ ^/puppet/v3/catalog/([^/]+)$
+method find
+allow $1
 
-    # allow nodes to retrieve their own node definition
-    path ~ ^/puppet/v3/node/([^/]+)$
-    method find
-    allow $1
+# allow nodes to retrieve their own node definition
+path ~ ^/puppet/v3/node/([^/]+)$
+method find
+allow $1
 
-    # allow all nodes to store their own reports
-    path ~ ^/puppet/v3/report/([^/]+)$
-    method save
-    allow $1
+# allow all nodes to store their own reports
+path ~ ^/puppet/v3/report/([^/]+)$
+method save
+allow $1
 
-    # control access to the custom user_files mount point
-    path ~ ^/puppet/v3/file_(metadata|content)s?/user_files/
-    auth yes
-    allow *.example.com
-    allow_ip 192.168.100.0/24
+# control access to the custom user_files mount point
+path ~ ^/puppet/v3/file_(metadata|content)s?/user_files/
+auth yes
+allow *.example.com
+allow_ip 192.168.100.0/24
 
-    # Allow all nodes to access all file services.
-    path /puppet/v3/file
-    allow *
+# Allow all nodes to access all file services.
+path /puppet/v3/file
+allow *
 
-    path /puppet/v3/status
-    method find
-    allow *
+path /puppet/v3/status
+method find
+allow *
 
-    # allow all nodes to access the certificates services
-    path /puppet-ca/v1/certificate_revocation_list/ca
-    method find
-    allow *
+# allow all nodes to access the certificates services
+path /puppet-ca/v1/certificate_revocation_list/ca
+method find
+allow *
 
-    ### Unauthenticated ACLs, for clients without valid certificates; authenticated
-    ### clients can also access these paths, though they rarely need to.
+### Unauthenticated ACLs, for clients without valid certificates; authenticated
+### clients can also access these paths, though they rarely need to.
 
-    # allow access to the CA certificate; unauthenticated nodes need this
-    # in order to validate the puppet master's certificate
-    path /puppet-ca/v1/certificate/ca
-    auth any
-    method find
-    allow *
+# allow access to the CA certificate; unauthenticated nodes need this
+# in order to validate the puppet master's certificate
+path /puppet-ca/v1/certificate/ca
+auth any
+method find
+allow *
 
-    # allow nodes to retrieve the certificate they requested earlier
-    path /puppet-ca/v1/certificate/
-    auth any
-    method find
-    allow *
+# allow nodes to retrieve the certificate they requested earlier
+path /puppet-ca/v1/certificate/
+auth any
+method find
+allow *
 
-    # allow nodes to request a new certificate
-    path /puppet-ca/v1/certificate_request
-    auth any
-    method find, save
-    allow *
+# allow nodes to request a new certificate
+path /puppet-ca/v1/certificate_request
+auth any
+method find, save
+allow *
 
-    # deny everything else; this ACL is not strictly necessary, but
-    # illustrates the default policy.
-    path /
-    auth any
+# deny everything else; this ACL is not strictly necessary, but
+# illustrates the default policy.
+path /
+auth any
+~~~
 
 ## Access Control Behavior
 
@@ -112,7 +116,7 @@ In other words, authorization rules work like simple firewall rules. If you want
 
 Puppet master uses two sets of auth rules: the rules from auth.conf, which it checks first, and a set of hardcoded default rules, which it only checks if a request doesn't match any rules in auth.conf.
 
-If you are modifying auth.conf at all, **you should never rely on the hardcoded default rules.** Start with [a default auth.conf that explicitly includes copies of all of the default rules.][default_file]
+If you are modifying auth.conf at all, **you should never rely on the hardcoded default rules.** Start with [a default auth.conf that explicitly includes copies of all of the default rules][default_file].
 
 There are two reasons for this:
 
@@ -129,23 +133,25 @@ The file can also include comments, which are lines starting with `#`. Comments 
 
 [inpage_acl]: #acl-syntax
 
-    path ~ ^/puppet/v3/report/([^/]+)$
-    method save
-    allow $1
+~~~
+path ~ ^/puppet/v3/report/([^/]+)$
+method save
+allow $1
+~~~
 
 An ACL is a series of adjacent lines, with one directive per line. It describes some set of requests, and says who is allowed to make those requests.
 
 The following directives describe which requests should match the ACL:
 
-* `path` --- Which URLs the ACL applies to. **Required.** Must be the first directive in the ACL.
-* `environment` --- Which environments the ACL applies to. Optional; defaults to all environments.
-* `method` --- Which HTTP methods the ACL applies to. Optional; defaults to all methods.
-* `auth` --- Whether the ACL applies to client-verified or non-client-verified HTTPS requests. Optional; defaults to `yes` (verified).
+* `path`: Which URLs the ACL applies to. **Required.** Must be the first directive in the ACL.
+* `environment`: Which environments the ACL applies to. Optional; defaults to all environments.
+* `method`: Which HTTP methods the ACL applies to. Optional; defaults to all methods.
+* `auth`: Whether the ACL applies to client-verified or non-client-verified HTTPS requests. Optional; defaults to `yes` (verified).
 
 The following directives control who is allowed to make requests that match the ACL:
 
-* `allow` --- Which certificate names or hostnames can make matching requests. Optional; defaults to allowing no one.
-* `allow_ip` --- Which IP addresses can make matching requests. Optional; defaults to allowing no one.
+* `allow`: Which certificate names or hostnames can make matching requests. Optional; defaults to allowing no one.
+* `allow_ip`: Which IP addresses can make matching requests. Optional; defaults to allowing no one.
 
 An ACL can include multiple `allow` and `allow_ip` directives.
 
@@ -169,7 +175,7 @@ If the value of `path` is just an absolute path, Puppet master interprets it as 
 
 If the value of `path` is a tilde (`~`), a space, and then a regular expression, the ACL will match any URL that matches the regular expression. Regexps in paths should NOT be delimited with slashes.
 
-**Note:** You should almost always include at least a start anchor (`^`) in your regular expressions, to prevent them from matching URLs you didn't intend.
+> **Note:** You should almost always include at least a start anchor (`^`) in your regular expressions, to prevent them from matching URLs you didn't intend.
 
 If a regular expression path includes capturing parentheses, you can reference the captures in `allow` directives with numbered variables like `$1`.
 
@@ -196,7 +202,6 @@ search     | GET and POST, for endpoints whose names end in "s" or "_search"
 save       | PUT
 destroy    | DELETE
 
-
 ### `auth`
 
 Whether the ACL applies to client-verified or non-client-verified HTTPS requests.
@@ -206,7 +211,6 @@ Whether the ACL applies to client-verified or non-client-verified HTTPS requests
 Puppet agent makes client-verified requests to fetch configuration data and submit reports, but makes unverified requests to ask for a certificate.
 
 If you set `auth any`, it allows nodes to access an endpoint without a valid certificate. (Setting it to `no` is not very useful, since it will _reject_ requests that have valid certificates.)
-
 
 ### `allow`
 
