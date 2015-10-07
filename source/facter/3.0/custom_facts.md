@@ -329,8 +329,9 @@ In a module (recommended):
 
     <MODULEPATH>/<MODULE>/facts.d/
 
-On Unix/Linux/Mac OS X, there are two directories:
+On Unix/Linux/Mac OS X, there are three directories:
 
+    /opt/puppetlabs/facter/facts.d/
     /etc/puppetlabs/facter/facts.d/
     /etc/facter/facts.d/
 
