@@ -59,6 +59,7 @@ defaultnav:
   /puppetdb/2.3: /puppetdb/2.3/_puppetdb_nav.html
   /puppetdb/3.0: /puppetdb/3.0/_puppetdb_nav.html
   /puppetdb/3.1: /puppetdb/3.1/_puppetdb_nav.html
+  /puppetdb/3.1: /puppetdb/3.2/_puppetdb_nav.html
   /puppetdb/master: /puppetdb/master/_puppetdb_nav.html
   /puppet/0.24/reference: /_includes/puppet_0_24.html
   /puppet/0.25/reference: /_includes/puppet_0_25.html
@@ -147,6 +148,11 @@ externalsources:
   puppetdb_3.1:
     url: /puppetdb/3.1
     repo: git://github.com/puppetlabs/puppetdb.git
+    commit: origin/3.1.x
+    subdirectory: documentation
+  puppetdb_3.2:
+    url: /puppetdb/3.2
+    repo: git://github.com/puppetlabs/puppetdb.git
     commit: origin/stable
     subdirectory: documentation
   puppetdb_master:
@@ -215,6 +221,7 @@ symlink_latest:
   - facter
   - pe
 lock_latest: {
+  puppetdb: "3.1"
 }
 version_notes:
   # Default notes for upstreams. Tweak these whenever latest de-syncs or re-syncs with PE!
@@ -231,6 +238,7 @@ version_notes:
   /puppetdb/2.3: "This is the version of PuppetDB included in Puppet Enterprise 3.8. If you're using the open source release, there's a <a href=\"/puppetdb/latest/\">newer version</a> available."
   /puppetdb/3.0: "This is the version of PuppetDB included in PE 2015.2. PE 3.8 users should see <a href=\"/puppetdb/2.3/\">the PuppetDB 2.3 docs</a>. If you're using the open source release, there's a <a href=\"/puppetdb/latest/\">newer version</a> available."
   /puppetdb/3.1: '<p class="noisy">This version of PuppetDB is not currently included in a Puppet Enterprise release. PE 2015.2 users should see <a href="/puppetdb/3.0/">the PuppetDB 3.0 docs</a>. PE 3.8 users should see <a href="/puppetdb/2.3/">the PuppetDB 2.3 docs</a>.</p>'
+  /puppetdb/3.2: '<p class="noisy">This page is for an unreleased version of PuppetDB. PE 2015.2 users should see <a href="/puppetdb/3.0/">the PuppetDB 3.0 docs</a>. Other users should see <a href="/puppetdb/latest/">the latest official release</a>.</p>'
   /puppetdb/master: '<p class="noisy">This page is for an unreleased version of PuppetDB. PE 2015.2 users should see <a href="/puppetdb/3.0/">the PuppetDB 3.0 docs</a>. Other users should see <a href="/puppetdb/latest/">the latest official release</a>.</p>'
   /facter/2.2: 'This is the version of Facter included in Puppet Enterprise 3.7. Open source Puppet users should see <a href="/facter/latest">the latest version of the docs</a>.'
   /facter/2.4: 'This is the version of Facter included in Puppet Enterprise 3.8. Open source Puppet users should see <a href="/facter/latest">the latest version of the docs</a>.'
