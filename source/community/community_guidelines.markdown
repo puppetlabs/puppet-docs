@@ -25,10 +25,11 @@ The point of this section is not to find opportunities to punish people, but we 
 
 
 Notes:
+
 * Obvious spammers are banned on first occurrence. If we don’t do this, we’ll have spam all over the place.
 * Violations are forgiven after 6 months of good behavior, and we won’t hold a grudge.
 * People who are committing minor formatting / style infractions will get some education, rather than hammering them in the 3 strikes process.
-* Contact conduct@puppetlabs.com to report abuse or appeal violations. This email list goes to Kara Sowles, who can also be contacted at kara@puppetlabs.com. In the case of appeals, we know that mistakes happen, and we’ll work with you to come up with a fair solution if there has been a misunderstanding.
+* Contact conduct@puppetlabs.com to report abuse or appeal violations. This email list goes to Kara Sowles (kara at puppetlabs.com) and Nathan Rawlins (nathan.rawlins at puppetlabs.com / 503-806-2992).  In the case of appeals, we know that mistakes happen, and we’ll work with you to come up with a fair solution if there has been a misunderstanding.
 
 
 Activity-Specific Guidelines
