@@ -191,13 +191,13 @@ As an example, you can enter the following script into the "Configure Instance D
 if [ ! -d /etc/puppetlabs/puppet ]; then
    mkdir /etc/puppetlabs/puppet
 fi
-erb > /etc/puppetlabs/puppet/csr_attributes.yaml <<END
+cat > /etc/puppetlabs/puppet/csr_attributes.yaml << YAML
 custom_attributes:
     1.2.840.113549.1.9.7: mySuperAwesomePassword
 extension_requests:
-    pp_instance_id: <%= %x{/opt/aws/bin/ec2-metadata -i}.sub(/instance-id: (.*)/,'\1').chomp %>
-    pp_image_name:  <%= %x{/opt/aws/bin/ec2-metadata -a}.sub(/ami-id: (.*)/,'\1').chomp %>
-END
+    pp_instance_id: $(curl -s http://169.254.169.254/latest/meta-data/instance-id)
+    pp_image_name:  $(curl -s http://169.254.169.254/latest/meta-data/ami-id)
+YAML
 ~~~
 
 Assuming your image has the `erb` binary available, this populates the attributes file with the AWS instance ID, image name, and a pre-shared key to use with policy-based autosigning.
