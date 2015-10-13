@@ -208,7 +208,7 @@ externalsources:
   pe2015.2:
     url: /pe/2015.2
     repo: git@github.com:puppetlabs/pe-docs-private.git
-    commit: origin/pe2015.2.1
+    commit: origin/pe2015.2.2
     subdirectory: source
   
 
@@ -243,7 +243,7 @@ version_notes:
   /facter/2.2: 'This is the version of Facter included in Puppet Enterprise 3.7. Open source Puppet users should see <a href="/facter/latest">the latest version of the docs</a>.'
   /facter/2.4: 'This is the version of Facter included in Puppet Enterprise 3.8. Open source Puppet users should see <a href="/facter/latest">the latest version of the docs</a>.'
   /facter/3.0: 'This is the version of Facter included in PE 2015.2.0. PE 3.8 users should see <a href="/facter/2.4">the Facter 2.4 docs.</a></p>'
-  /facter/3.1: 'This is the version of Facter included in PE 2015.2.1. PE 3.8 users should see <a href="/facter/2.4">the Facter 2.4 docs.</a></p>'
+  /facter/3.1: 'This is the version of Facter included in PE 2015.2.2. PE 3.8 users should see <a href="/facter/2.4">the Facter 2.4 docs.</a></p>'
   /hiera/1: 'This is the version of Hiera included in Puppet Enterprise 3.8. Open source Puppet users should see <a href="/hiera/latest">the latest version of the docs</a>.'
   /hiera/3.0: '<p class="noisy">This version is used with PE 2015.2.x. PE 3.7 and 3.8 users should see <a href="/hiera/1">the Hiera 1.x docs.</a></p>'
   /puppetserver/1.0: 'This is the version of Puppet Server included in Puppet Enterprise 3.7 and 3.8.0.'
