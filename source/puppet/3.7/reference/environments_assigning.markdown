@@ -17,7 +17,7 @@ There are two ways to assign nodes to a different environment:
 * Via your [ENC][] or [node terminus][]
 * Via each agent node's puppet.conf
 
-> **Note:** If you have Puppet Enterprise (PE), you can use the PE console to [set the environment for each node group](/pe/3.7/console_classes_groups.html#creating-new-node-groups). 
+> **Note:** If you have Puppet Enterprise (PE), you can use the PE console to [set the environment for each node group](/pe/3.7/console_classes_groups.html#creating-new-node-groups).
 
 The value from the ENC is authoritative, if it exists. If the ENC doesn't specify an environment, the node's config value is used.
 
@@ -35,7 +35,7 @@ In [puppet.conf][] on each agent node, you can set [the `environment` setting][e
 
 If you are using an ENC and it specifies an environment for that node, it will override whatever is in the config file.
 
-## Non-Existant Environments
+## Non-Existent Environments
 
 **With directory environments,** nodes **can't** be assigned to unconfigured environments. If a node is assigned to an environment which doesn't exist --- that is, there is no directory of that name in any of the `environmentpath` directories --- the Puppet master will fail compilation of its catalog.
 
