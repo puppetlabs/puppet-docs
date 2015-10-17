@@ -277,6 +277,26 @@ With a `deep` merge, you would get:
 
 In this case, deglitch.yaml was able to set the group because common.yaml didn't have a value for it, but where there was a conflict, like the uid, common won. Most users don't want this.
 
-Unfortunately none of these merge behaviors work with data bindings for automatic parameter lookup, because there's no way to specify the lookup type. So instead of any of the above results, automatic data binding lookups only see results from `deglitch.yaml`. See [Bug HI-118](https://tickets.puppetlabs.com/browse/HI-118) to track progress on this.
+#### With Automatic Parameter Lookup
+
+Merge behaviors may be enabled for automatic parameter lookup. This is a new feature and may impact performance. It is disabled by default. To enable merge behaviors with automatic parameter lookup, `hiera_advanced_parameter_bindings` must be set to true in `puppet.conf`.
+
+    [main]
+    hiera_advanced_parameter_bindings = true
+
+The merge behavior is set on individual parameters through the key `lookupoptions::*` which requires a hash key `merge` set to a valid merge strategy. e.g. To use a merge strategy of `deep` with the YAML backend and the key `mysql::server::override_options`, add `lookupoptions::mysql::server::override_options` to any YAML file in the hierarchy that will be parsed:
+
+    # clientcert/mysql.example.com.yaml
+    lookupoptions::mysql::server::override_options:
+      merge: deep
+    mysql::server::override_options:
+      foo: baz
+
+    # common.yaml
+    mysql::server::override_options:
+      foo: bar
+      abc: xyz
+
+When `hiera_advanced_parameter_bindings` is set to false or no `lookupoptions::*` keys are found, automatic parameter lookups will only see the results from the first match (`clientcert/mysql.example.com.yaml` in the above example). See [Bug HI-118](https://tickets.puppetlabs.com/browse/HI-118) for more details.
 
 
