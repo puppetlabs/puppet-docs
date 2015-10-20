@@ -4,27 +4,25 @@ title: "Facter 3.1: Core Facts"
 toc: columns
 ---
 
+This is a list of all of the built-in facts that ship with Facter 3.1, which includes both legacy facts and newer structured facts.
 
-This is a list of all of the built-in facts that ship with Facter 3.1.
+Not all of them apply to every system, and your site might also use [custom facts](./custom_facts.html) delivered via Puppet modules. To see the full list of structured facts and values on a given system (including plugin facts), run `puppet facts` at the command line. If you are using Puppet Enterprise, you can view all of the facts for any node on the node's page in the console.
 
-Not all of them apply to every system, and your site might also use [custom facts](./custom_facts.html) delivered via Puppet modules. To see the full list of facts and values on a given system (including plugin facts), run `puppet facts` at the command line. If you are using Puppet Enterprise, you can view all of the facts for any node on the node's page in the console.
+You can access facts in your Puppet manifests as `$fact_name` or `$facts[fact_name]`. For more information, see [the Puppet docs on facts and built-in variables.](/puppet/latest/reference/lang_facts_and_builtin_vars.html)
 
-You can access facts in your Puppet manifests as `$fact_name` or `$facts[fact_name]`. For more info, see [the Puppet docs on facts and built-in variables.](/puppet/latest/reference/lang_facts_and_builtin_vars.html)
-
-Note that some facts, like `architecture`, are hidden in Facter's command-line output. These are all older facts that have become part of a more useful structured fact; for example, `architecture` is now part of the `os` fact. You can still use the old versions in Puppet manifests (e.g. `$architecture`), and you can still specifically request them on the command line (e.g. `facter architecture`), but we suppress them to make the default output less noisy.
+> **Legacy Facts Note:** As of Facter 3, legacy facts such as `architecture` are hidden by default to reduce noise in Facter's default command-line output. These older facts are now part of more useful structured facts; for example, `architecture` is now part of the `os` fact and accessible as `os.architecture`. You can still use these legacy facts in Puppet manifests (`$architecture`), request them on the command line (`facter architecture`), and view them alongside structured facts (`facter --show-legacy`).
 
 * * *
 
 ## `architecture`
 
-This fact is hidden in Facter's command-line output.
+This legacy fact is hidden by default in Facter's command-line output.
 
 **Type:** string
 
 **Purpose:**
 
 Return the operating system's hardware architecture.
-
 
 **Resolution:**
 
@@ -59,7 +57,7 @@ Return information about augeas.
 
 ## `augeasversion`
 
-This fact is hidden in Facter's command-line output.
+This legacy fact is hidden by default in Facter's command-line output.
 
 **Type:** string
 
@@ -77,7 +75,7 @@ Return the version of augeas.
 
 ## `blockdevices`
 
-This fact is hidden in Facter's command-line output.
+This legacy fact is hidden by default in Facter's command-line output.
 
 **Type:** string
 
@@ -99,7 +97,7 @@ Return a comma-separated list of block devices.
 
 ## `blockdevice_<devicename>_model`
 
-This fact is hidden in Facter's command-line output.
+This legacy fact is hidden by default in Facter's command-line output.
 
 **Type:** string
 
@@ -121,7 +119,7 @@ Return the model name of block devices attached to the system.
 
 ## `blockdevice_<devicename>_size`
 
-This fact is hidden in Facter's command-line output.
+This legacy fact is hidden by default in Facter's command-line output.
 
 **Type:** integer
 
@@ -143,7 +141,7 @@ Return the size of a block device in bytes.
 
 ## `blockdevice_<devicename>_vendor`
 
-This fact is hidden in Facter's command-line output.
+This legacy fact is hidden by default in Facter's command-line output.
 
 **Type:** string
 
@@ -165,7 +163,7 @@ Return the vendor name of block devices attached to the system.
 
 ## `bios_release_date`
 
-This fact is hidden in Facter's command-line output.
+This legacy fact is hidden by default in Facter's command-line output.
 
 **Type:** string
 
@@ -187,7 +185,7 @@ Return the release date of the system BIOS.
 
 ## `bios_vendor`
 
-This fact is hidden in Facter's command-line output.
+This legacy fact is hidden by default in Facter's command-line output.
 
 **Type:** string
 
@@ -209,7 +207,7 @@ Return the vendor of the system BIOS.
 
 ## `bios_version`
 
-This fact is hidden in Facter's command-line output.
+This legacy fact is hidden by default in Facter's command-line output.
 
 **Type:** string
 
@@ -231,7 +229,7 @@ Return the version of the system BIOS.
 
 ## `boardassettag`
 
-This fact is hidden in Facter's command-line output.
+This legacy fact is hidden by default in Facter's command-line output.
 
 **Type:** string
 
@@ -252,7 +250,7 @@ Return the system board asset tag.
 
 ## `boardmanufacturer`
 
-This fact is hidden in Facter's command-line output.
+This legacy fact is hidden by default in Facter's command-line output.
 
 **Type:** string
 
@@ -273,7 +271,7 @@ Return the system board manufacturer.
 
 ## `boardproductname`
 
-This fact is hidden in Facter's command-line output.
+This legacy fact is hidden by default in Facter's command-line output.
 
 **Type:** string
 
@@ -294,7 +292,7 @@ Return the system board product name.
 
 ## `boardserialnumber`
 
-This fact is hidden in Facter's command-line output.
+This legacy fact is hidden by default in Facter's command-line output.
 
 **Type:** string
 
@@ -315,7 +313,7 @@ Return the system board serial number.
 
 ## `chassisassettag`
 
-This fact is hidden in Facter's command-line output.
+This legacy fact is hidden by default in Facter's command-line output.
 
 **Type:** string
 
@@ -337,7 +335,7 @@ Return the system chassis asset tag.
 
 ## `chassistype`
 
-This fact is hidden in Facter's command-line output.
+This legacy fact is hidden by default in Facter's command-line output.
 
 **Type:** string
 
@@ -359,7 +357,7 @@ Return the system chassis type.
 
 ## `dhcp_servers`
 
-This fact is hidden in Facter's command-line output.
+This legacy fact is hidden by default in Facter's command-line output.
 
 **Type:** map
 
@@ -456,7 +454,7 @@ Return the system management information.
 
 ## `domain`
 
-This fact is hidden in Facter's command-line output.
+This legacy fact is hidden by default in Facter's command-line output.
 
 **Type:** string
 
@@ -576,7 +574,7 @@ Return the usable file systems for block or disk devices.
 
 ## `fqdn`
 
-This fact is hidden in Facter's command-line output.
+This legacy fact is hidden by default in Facter's command-line output.
 
 **Type:** string
 
@@ -616,7 +614,7 @@ Please see the [GCE metadata documentation](https://cloud.google.com/compute/doc
 
 ## `gid`
 
-This fact is hidden in Facter's command-line output.
+This legacy fact is hidden by default in Facter's command-line output.
 
 **Type:** string
 
@@ -634,7 +632,7 @@ Return the group identifier (GID) of the user running facter.
 
 ## `hardwareisa`
 
-This fact is hidden in Facter's command-line output.
+This legacy fact is hidden by default in Facter's command-line output.
 
 **Type:** string
 
@@ -653,7 +651,7 @@ Return the hardware instruction set architecture (ISA).
 
 ## `hardwaremodel`
 
-This fact is hidden in Facter's command-line output.
+This legacy fact is hidden by default in Facter's command-line output.
 
 **Type:** string
 
@@ -672,7 +670,7 @@ Return the operating system's hardware model.
 
 ## `hostname`
 
-This fact is hidden in Facter's command-line output.
+This legacy fact is hidden by default in Facter's command-line output.
 
 **Type:** string
 
@@ -691,7 +689,7 @@ Return the host name of the system.
 
 ## `id`
 
-This fact is hidden in Facter's command-line output.
+This legacy fact is hidden by default in Facter's command-line output.
 
 **Type:** string
 
@@ -733,7 +731,7 @@ Return the identity information of the user running facter.
 
 ## `interfaces`
 
-This fact is hidden in Facter's command-line output.
+This legacy fact is hidden by default in Facter's command-line output.
 
 **Type:** string
 
@@ -754,7 +752,7 @@ Return the comma-separated list of network interface names.
 
 ## `ipaddress`
 
-This fact is hidden in Facter's command-line output.
+This legacy fact is hidden by default in Facter's command-line output.
 
 **Type:** ip
 
@@ -775,7 +773,7 @@ Return the IPv4 address for the default network interface.
 
 ## `ipaddress6`
 
-This fact is hidden in Facter's command-line output.
+This legacy fact is hidden by default in Facter's command-line output.
 
 **Type:** ip6
 
@@ -796,7 +794,7 @@ Return the IPv6 address for the default network interface.
 
 ## `ipaddress6_<interface>`
 
-This fact is hidden in Facter's command-line output.
+This legacy fact is hidden by default in Facter's command-line output.
 
 **Type:** ip6
 
@@ -817,7 +815,7 @@ Return the IPv6 address for a network interface.
 
 ## `ipaddress_<interface>`
 
-This fact is hidden in Facter's command-line output.
+This legacy fact is hidden by default in Facter's command-line output.
 
 **Type:** ip
 
@@ -941,7 +939,7 @@ Return Solaris LDom information from the `virtinfo` utility.
 
 ## `ldom_<name>`
 
-This fact is hidden in Facter's command-line output.
+This legacy fact is hidden by default in Facter's command-line output.
 
 **Type:** string
 
@@ -981,7 +979,7 @@ Return the load average over the last 1, 5 and 15 minutes.
 
 ## `lsbdistcodename`
 
-This fact is hidden in Facter's command-line output.
+This legacy fact is hidden by default in Facter's command-line output.
 
 **Type:** string
 
@@ -1002,7 +1000,7 @@ Return the Linux Standard Base (LSB) distribution code name.
 
 ## `lsbdistdescription`
 
-This fact is hidden in Facter's command-line output.
+This legacy fact is hidden by default in Facter's command-line output.
 
 **Type:** string
 
@@ -1023,7 +1021,7 @@ Return the Linux Standard Base (LSB) distribution description.
 
 ## `lsbdistid`
 
-This fact is hidden in Facter's command-line output.
+This legacy fact is hidden by default in Facter's command-line output.
 
 **Type:** string
 
@@ -1044,7 +1042,7 @@ Return the Linux Standard Base (LSB) distribution identifier.
 
 ## `lsbdistrelease`
 
-This fact is hidden in Facter's command-line output.
+This legacy fact is hidden by default in Facter's command-line output.
 
 **Type:** string
 
@@ -1065,7 +1063,7 @@ Return the Linux Standard Base (LSB) distribution release.
 
 ## `lsbmajdistrelease`
 
-This fact is hidden in Facter's command-line output.
+This legacy fact is hidden by default in Facter's command-line output.
 
 **Type:** string
 
@@ -1086,7 +1084,7 @@ Return the Linux Standard Base (LSB) major distribution release.
 
 ## `lsbminordistrelease`
 
-This fact is hidden in Facter's command-line output.
+This legacy fact is hidden by default in Facter's command-line output.
 
 **Type:** string
 
@@ -1107,7 +1105,7 @@ Return the Linux Standard Base (LSB) minor distribution release.
 
 ## `lsbrelease`
 
-This fact is hidden in Facter's command-line output.
+This legacy fact is hidden by default in Facter's command-line output.
 
 **Type:** string
 
@@ -1128,7 +1126,7 @@ Return the Linux Standard Base (LSB) release.
 
 ## `macaddress`
 
-This fact is hidden in Facter's command-line output.
+This legacy fact is hidden by default in Facter's command-line output.
 
 **Type:** mac
 
@@ -1149,7 +1147,7 @@ Return the MAC address for the default network interface.
 
 ## `macaddress_<interface>`
 
-This fact is hidden in Facter's command-line output.
+This legacy fact is hidden by default in Facter's command-line output.
 
 **Type:** mac
 
@@ -1170,7 +1168,7 @@ Return the MAC address for a network interface.
 
 ## `macosx_buildversion`
 
-This fact is hidden in Facter's command-line output.
+This legacy fact is hidden by default in Facter's command-line output.
 
 **Type:** string
 
@@ -1188,7 +1186,7 @@ Return the Mac OSX build version.
 
 ## `macosx_productname`
 
-This fact is hidden in Facter's command-line output.
+This legacy fact is hidden by default in Facter's command-line output.
 
 **Type:** string
 
@@ -1206,7 +1204,7 @@ Return the Mac OSX product name.
 
 ## `macosx_productversion`
 
-This fact is hidden in Facter's command-line output.
+This legacy fact is hidden by default in Facter's command-line output.
 
 **Type:** string
 
@@ -1224,7 +1222,7 @@ Return the Mac OSX product version.
 
 ## `macosx_productversion_major`
 
-This fact is hidden in Facter's command-line output.
+This legacy fact is hidden by default in Facter's command-line output.
 
 **Type:** string
 
@@ -1242,7 +1240,7 @@ Return the Mac OSX product major version.
 
 ## `macosx_productversion_minor`
 
-This fact is hidden in Facter's command-line output.
+This legacy fact is hidden by default in Facter's command-line output.
 
 **Type:** string
 
@@ -1260,7 +1258,7 @@ Return the Mac OSX product minor version.
 
 ## `manufacturer`
 
-This fact is hidden in Facter's command-line output.
+This legacy fact is hidden by default in Facter's command-line output.
 
 **Type:** string
 
@@ -1322,7 +1320,7 @@ Return the system memory information.
 
 ## `memoryfree`
 
-This fact is hidden in Facter's command-line output.
+This legacy fact is hidden by default in Facter's command-line output.
 
 **Type:** string
 
@@ -1343,7 +1341,7 @@ Return the display size of the free system memory (e.g. "1 GiB").
 
 ## `memoryfree_mb`
 
-This fact is hidden in Facter's command-line output.
+This legacy fact is hidden by default in Facter's command-line output.
 
 **Type:** double
 
@@ -1364,7 +1362,7 @@ Return the size of the free system memory, in mebibytes.
 
 ## `memorysize`
 
-This fact is hidden in Facter's command-line output.
+This legacy fact is hidden by default in Facter's command-line output.
 
 **Type:** string
 
@@ -1385,7 +1383,7 @@ Return the display size of the total system memory (e.g. "1 GiB").
 
 ## `memorysize_mb`
 
-This fact is hidden in Facter's command-line output.
+This legacy fact is hidden by default in Facter's command-line output.
 
 **Type:** double
 
@@ -1438,7 +1436,7 @@ Return the current mount points of the system.
 
 ## `mtu_<interface>`
 
-This fact is hidden in Facter's command-line output.
+This legacy fact is hidden by default in Facter's command-line output.
 
 **Type:** integer
 
@@ -1459,7 +1457,7 @@ Return the Maximum Transmission Unit (MTU) for a network interface.
 
 ## `netmask`
 
-This fact is hidden in Facter's command-line output.
+This legacy fact is hidden by default in Facter's command-line output.
 
 **Type:** ip
 
@@ -1480,7 +1478,7 @@ Return the IPv4 netmask for the default network interface.
 
 ## `netmask6`
 
-This fact is hidden in Facter's command-line output.
+This legacy fact is hidden by default in Facter's command-line output.
 
 **Type:** ip6
 
@@ -1504,7 +1502,7 @@ Return the IPv6 netmask for the default network interface.
 
 ## `netmask6_<interface>`
 
-This fact is hidden in Facter's command-line output.
+This legacy fact is hidden by default in Facter's command-line output.
 
 **Type:** ip6
 
@@ -1528,7 +1526,7 @@ Return the IPv6 netmask for a network interface.
 
 ## `netmask_<interface>`
 
-This fact is hidden in Facter's command-line output.
+This legacy fact is hidden by default in Facter's command-line output.
 
 **Type:** ip
 
@@ -1549,7 +1547,7 @@ Return the IPv4 netmask for a network interface.
 
 ## `network`
 
-This fact is hidden in Facter's command-line output.
+This legacy fact is hidden by default in Facter's command-line output.
 
 **Type:** ip
 
@@ -1570,7 +1568,7 @@ Return the IPv4 network for the default network interface.
 
 ## `network6`
 
-This fact is hidden in Facter's command-line output.
+This legacy fact is hidden by default in Facter's command-line output.
 
 **Type:** ip6
 
@@ -1591,7 +1589,7 @@ Return the IPv6 network for the default network interface.
 
 ## `network6_<interface>`
 
-This fact is hidden in Facter's command-line output.
+This legacy fact is hidden by default in Facter's command-line output.
 
 **Type:** ip6
 
@@ -1612,7 +1610,7 @@ Return the IPv6 network for a network interface.
 
 ## `network_<interface>`
 
-This fact is hidden in Facter's command-line output.
+This legacy fact is hidden by default in Facter's command-line output.
 
 **Type:** ip
 
@@ -1684,7 +1682,7 @@ Return the networking information for the system.
 
 ## `operatingsystem`
 
-This fact is hidden in Facter's command-line output.
+This legacy fact is hidden by default in Facter's command-line output.
 
 **Type:** string
 
@@ -1703,7 +1701,7 @@ Return the name of the operating system.
 
 ## `operatingsystemmajrelease`
 
-This fact is hidden in Facter's command-line output.
+This legacy fact is hidden by default in Facter's command-line output.
 
 **Type:** string
 
@@ -1727,7 +1725,7 @@ Return the major release of the operating system.
 
 ## `operatingsystemrelease`
 
-This fact is hidden in Facter's command-line output.
+This legacy fact is hidden by default in Facter's command-line output.
 
 **Type:** string
 
@@ -1803,7 +1801,7 @@ Return information about the host operating system.
 
 ## `osfamily`
 
-This fact is hidden in Facter's command-line output.
+This legacy fact is hidden by default in Facter's command-line output.
 
 **Type:** string
 
@@ -1872,7 +1870,7 @@ Return the PATH environment variable.
 
 ## `physicalprocessorcount`
 
-This fact is hidden in Facter's command-line output.
+This legacy fact is hidden by default in Facter's command-line output.
 
 **Type:** integer
 
@@ -1896,7 +1894,7 @@ Return the count of physical processors.
 
 ## `processor<N>`
 
-This fact is hidden in Facter's command-line output.
+This legacy fact is hidden by default in Facter's command-line output.
 
 **Type:** string
 
@@ -1917,7 +1915,7 @@ Return the model string of processor N.
 
 ## `processorcount`
 
-This fact is hidden in Facter's command-line output.
+This legacy fact is hidden by default in Facter's command-line output.
 
 **Type:** integer
 
@@ -1968,7 +1966,7 @@ Return information about the system's processors.
 
 ## `productname`
 
-This fact is hidden in Facter's command-line output.
+This legacy fact is hidden by default in Facter's command-line output.
 
 **Type:** string
 
@@ -2017,7 +2015,7 @@ Return information about the Ruby loaded by facter.
 
 ## `rubyplatform`
 
-This fact is hidden in Facter's command-line output.
+This legacy fact is hidden by default in Facter's command-line output.
 
 **Type:** string
 
@@ -2038,7 +2036,7 @@ Return the platform Ruby was built for.
 
 ## `rubysitedir`
 
-This fact is hidden in Facter's command-line output.
+This legacy fact is hidden by default in Facter's command-line output.
 
 **Type:** string
 
@@ -2059,7 +2057,7 @@ Return the path to Ruby's site library directory.
 
 ## `rubyversion`
 
-This fact is hidden in Facter's command-line output.
+This legacy fact is hidden by default in Facter's command-line output.
 
 **Type:** string
 
@@ -2080,7 +2078,7 @@ Return the version of Ruby.
 
 ## `selinux`
 
-This fact is hidden in Facter's command-line output.
+This legacy fact is hidden by default in Facter's command-line output.
 
 **Type:** boolean
 
@@ -2098,7 +2096,7 @@ Return whether Security-Enhanced Linux (SELinux) is enabled.
 
 ## `selinux_config_mode`
 
-This fact is hidden in Facter's command-line output.
+This legacy fact is hidden by default in Facter's command-line output.
 
 **Type:** string
 
@@ -2116,7 +2114,7 @@ Return the configured Security-Enhanced Linux (SELinux) mode.
 
 ## `selinux_config_policy`
 
-This fact is hidden in Facter's command-line output.
+This legacy fact is hidden by default in Facter's command-line output.
 
 **Type:** string
 
@@ -2134,7 +2132,7 @@ Return the configured Security-Enhanced Linux (SELinux) policy.
 
 ## `selinux_current_mode`
 
-This fact is hidden in Facter's command-line output.
+This legacy fact is hidden by default in Facter's command-line output.
 
 **Type:** string
 
@@ -2152,7 +2150,7 @@ Return the current Security-Enhanced Linux (SELinux) mode.
 
 ## `selinux_enforced`
 
-This fact is hidden in Facter's command-line output.
+This legacy fact is hidden by default in Facter's command-line output.
 
 **Type:** boolean
 
@@ -2170,7 +2168,7 @@ Return whether Security-Enhanced Linux (SELinux) is enforced.
 
 ## `selinux_policyversion`
 
-This fact is hidden in Facter's command-line output.
+This legacy fact is hidden by default in Facter's command-line output.
 
 **Type:** string
 
@@ -2188,7 +2186,7 @@ Return the Security-Enhanced Linux (SELinux) policy version.
 
 ## `serialnumber`
 
-This fact is hidden in Facter's command-line output.
+This legacy fact is hidden by default in Facter's command-line output.
 
 **Type:** string
 
@@ -2239,7 +2237,7 @@ Return information about Solaris zones.
 
 ## `sp_<name>`
 
-This fact is hidden in Facter's command-line output.
+This legacy fact is hidden by default in Facter's command-line output.
 
 **Type:** string
 
@@ -2299,7 +2297,7 @@ Return SSH public keys and fingerprints.
 
 ## `ssh<algorithm>key`
 
-This fact is hidden in Facter's command-line output.
+This legacy fact is hidden by default in Facter's command-line output.
 
 **Type:** string
 
@@ -2320,7 +2318,7 @@ Return the SSH public key for the algorithm.
 
 ## `sshfp_<algorithm>`
 
-This fact is hidden in Facter's command-line output.
+This legacy fact is hidden by default in Facter's command-line output.
 
 **Type:** string
 
@@ -2341,7 +2339,7 @@ Return the SSH fingerprints for the algorithm's public key.
 
 ## `swapencrypted`
 
-This fact is hidden in Facter's command-line output.
+This legacy fact is hidden by default in Facter's command-line output.
 
 **Type:** boolean
 
@@ -2359,7 +2357,7 @@ Return whether or not the swap is encrypted.
 
 ## `swapfree`
 
-This fact is hidden in Facter's command-line output.
+This legacy fact is hidden by default in Facter's command-line output.
 
 **Type:** string
 
@@ -2379,7 +2377,7 @@ Return the display size of the free swap memory (e.g. "1 GiB").
 
 ## `swapfree_mb`
 
-This fact is hidden in Facter's command-line output.
+This legacy fact is hidden by default in Facter's command-line output.
 
 **Type:** double
 
@@ -2399,7 +2397,7 @@ Return the size of the free swap memory, in mebibytes.
 
 ## `swapsize`
 
-This fact is hidden in Facter's command-line output.
+This legacy fact is hidden by default in Facter's command-line output.
 
 **Type:** string
 
@@ -2419,7 +2417,7 @@ Return the display size of the total swap memory (e.g. "1 GiB").
 
 ## `swapsize_mb`
 
-This fact is hidden in Facter's command-line output.
+This legacy fact is hidden by default in Facter's command-line output.
 
 **Type:** double
 
@@ -2439,7 +2437,7 @@ Return the size of the total swap memory, in mebibytes.
 
 ## `system32`
 
-This fact is hidden in Facter's command-line output.
+This legacy fact is hidden by default in Facter's command-line output.
 
 **Type:** string
 
@@ -2540,7 +2538,7 @@ Return the system timezone.
 
 ## `uptime`
 
-This fact is hidden in Facter's command-line output.
+This legacy fact is hidden by default in Facter's command-line output.
 
 **Type:** string
 
@@ -2561,7 +2559,7 @@ Return the system uptime.
 
 ## `uptime_days`
 
-This fact is hidden in Facter's command-line output.
+This legacy fact is hidden by default in Facter's command-line output.
 
 **Type:** integer
 
@@ -2582,7 +2580,7 @@ Return the system uptime days.
 
 ## `uptime_hours`
 
-This fact is hidden in Facter's command-line output.
+This legacy fact is hidden by default in Facter's command-line output.
 
 **Type:** integer
 
@@ -2603,7 +2601,7 @@ Return the system uptime hours.
 
 ## `uptime_seconds`
 
-This fact is hidden in Facter's command-line output.
+This legacy fact is hidden by default in Facter's command-line output.
 
 **Type:** integer
 
@@ -2624,7 +2622,7 @@ Return the system uptime seconds.
 
 ## `uuid`
 
-This fact is hidden in Facter's command-line output.
+This legacy fact is hidden by default in Facter's command-line output.
 
 **Type:** string
 
@@ -2688,7 +2686,7 @@ Return metadata for the Xen hypervisor.
 
 ## `xendomains`
 
-This fact is hidden in Facter's command-line output.
+This legacy fact is hidden by default in Facter's command-line output.
 
 **Type:** string
 
@@ -2747,7 +2745,7 @@ Return the version for ZFS.
 
 ## `zone_<name>_brand`
 
-This fact is hidden in Facter's command-line output.
+This legacy fact is hidden by default in Facter's command-line output.
 
 **Type:** string
 
@@ -2768,7 +2766,7 @@ Return the brand for the Solaris zone.
 
 ## `zone_<name>_iptype`
 
-This fact is hidden in Facter's command-line output.
+This legacy fact is hidden by default in Facter's command-line output.
 
 **Type:** string
 
@@ -2789,7 +2787,7 @@ Return the IP type for the Solaris zone.
 
 ## `zone_<name>_name`
 
-This fact is hidden in Facter's command-line output.
+This legacy fact is hidden by default in Facter's command-line output.
 
 **Type:** string
 
@@ -2810,7 +2808,7 @@ Return the name for the Solaris zone.
 
 ## `zone_<name>_uuid`
 
-This fact is hidden in Facter's command-line output.
+This legacy fact is hidden by default in Facter's command-line output.
 
 **Type:** string
 
@@ -2831,7 +2829,7 @@ Return the unique identifier for the Solaris zone.
 
 ## `zone_<name>_id`
 
-This fact is hidden in Facter's command-line output.
+This legacy fact is hidden by default in Facter's command-line output.
 
 **Type:** string
 
@@ -2852,7 +2850,7 @@ Return the zone identifier for the Solaris zone.
 
 ## `zone_<name>_path`
 
-This fact is hidden in Facter's command-line output.
+This legacy fact is hidden by default in Facter's command-line output.
 
 **Type:** string
 
@@ -2873,7 +2871,7 @@ Return the zone path for the Solaris zone.
 
 ## `zone_<name>_status`
 
-This fact is hidden in Facter's command-line output.
+This legacy fact is hidden by default in Facter's command-line output.
 
 **Type:** string
 
@@ -2894,7 +2892,7 @@ Return the zone state for the Solaris zone.
 
 ## `zonename`
 
-This fact is hidden in Facter's command-line output.
+This legacy fact is hidden by default in Facter's command-line output.
 
 **Type:** string
 
@@ -2915,7 +2913,7 @@ Return the name of the current Solaris zone.
 
 ## `zones`
 
-This fact is hidden in Facter's command-line output.
+This legacy fact is hidden by default in Facter's command-line output.
 
 **Type:** integer
 
