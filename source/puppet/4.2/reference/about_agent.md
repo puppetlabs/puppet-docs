@@ -11,10 +11,11 @@ canonical: "/puppet/latest/about_agent.html"
 [apply]: ./services_apply.html
 [puppet server]: /puppetserver/latest/
 
-
 ## Release Contents: `puppet-agent` 1.x
 
 {% partial /puppet-agent/_agent1.x.html %}
+
+{% partial /puppet-agent/_release_notes.md %}
 
 ## What Are `puppet-agent` and Puppet Server?
 
