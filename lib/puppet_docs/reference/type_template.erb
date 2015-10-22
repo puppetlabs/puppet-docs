@@ -25,7 +25,11 @@
 <% sorted_attribute_list.each do |attribute_name| -%>
 <h4 id="<%= name %>-attribute-<%= attribute_name %>"><%= attribute_name %></h4>
 
-<% if this_type['attributes'][attribute_name]['namevar'] %>_(**Namevar:** If omitted, this attribute's value defaults to the resource's title.)_<%= "\n\n" %><% end -%>
+<% if this_type['attributes'][attribute_name]['namevar'] -%>
+<% if attribute_name != 'provider' %>_(**Namevar:** If omitted, this attribute's value defaults to the resource's title.)_<%= "\n\n" -%>
+<% elsif attribute_name == 'provider' %>_(**Secondary namevar:** This resource type allows you to manage multiple resources with the same name as long as their providers are different.)_<%= "\n\n" -%>
+<% end -%>
+<% end -%>
 <% if this_type['attributes'][attribute_name]['kind'] == 'property' %>_(**Property:** This attribute represents concrete state on the target system.)_<%= "\n\n" %><% end -%>
 <%= this_type['attributes'][attribute_name]['description'] %>
 
