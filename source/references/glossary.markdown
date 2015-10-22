@@ -52,6 +52,10 @@ To assign [classes](#class) to a [node](#agent), as well as provide any data the
 
 You can classify nodes by using [node definitions](#node-definition) in the [site manifest](#site-manifest), with an [ENC](#external-node-classifier), or with both.
 
+### data type
+
+A **data type** is a named classification of a value type that a [variable](#variable) or parameter may hold. The Puppet language has both concrete data types such as Integer, Boolean or String, and abstract types such as Any, or Optional.
+
 ### declare
 
 To direct Puppet to include a given [class](#class) or [resource](#resource) in a given configuration, you **declare** it. To declare resources, use the lowercase `file {'/tmp/bar':}` syntax. To declare classes, use the `include` keyword or the `class {'foo':}` syntax. (Note that Puppet automatically declares any classes it receives from an [external node classifier](#external-node-classifier).)
@@ -237,13 +241,13 @@ A type of [relationship](#relationship) that both declares an order for resource
 
 ### ordering
 
-Which resources should be managed before which others.
+By **ordering** [resources](#resource), you determine which resources should be managed before others.
 
-By default, the order of a [manifest](#manifest) is not the order in which resources are managed. You must declare a [relationship](#relationship) if a resource depends on other resources. For more information, see [Relationships and Ordering][] in the [Puppet language][] reference.
+By default, the order of a [manifest](#manifest) is not the order in which Puppet manages resources. You must declare a [relationship](#relationship) if a resource depends on other resources. For more information, see [Relationships and Ordering][] in the [Puppet language][] reference.
 
 ### parameter
 
-Generally speaking, a parameter is a chunk of information that a class or resource can accept. See also:
+Generally speaking, a **parameter** is a chunk of information that a [class](#class) or [resource](#resource) can accept. See also:
 
 * [parameter (custom type and provider development)](#parameter-custom-type-and-provider-development)
 * [parameter (defined types and parameterized classes)](#parameter-defined-types-and-parameterized-classes)
@@ -251,38 +255,44 @@ Generally speaking, a parameter is a chunk of information that a class or resour
 
 ### parameter (custom type and provider development)
 
-A value which does not call a method on a provider. Eventually expressed as an attribute in instances of this resource type. See [Custom Types](/guides/custom_types.html).
+This type of parameter is a value that does not call a method on a [provider](#provider). They are eventually expressed as [attributes](#attributes) in instances of this [resource](#resource) [type](#type). For more information, see the [Custom Types](/guides/custom_types.html) guide.
 
 ### parameter (defined types and parameterized classes)
 
-A variable in the [definition](#define) of a class or defined type, whose value is set by a resource [attribute](#attribute) when an instance of that type (or class) is declared.
+This type of parameter is a [variable](#variable) in the [definition](#define) of a [class](#class) or [defined type](#type-defined), whose value is set by a [resource](#resource) [attribute](#attribute) when an instance of that type or class is [declared](#declare).
 
 ~~~ ruby
 define my_new_type ($my_parameter) {
-  file {"$title":
+  file { "$title":
     ensure  => file,
     content => $my_parameter,
   }
 }
 
-my_new_type {'/tmp/test_file':
+my_new_type { '/tmp/test_file':
   my_parameter => "This text will become the content of the file.",
 }
 ~~~
 
-The parameters you use when defining a type (or class) become the attributes available when the type (or class) is declared.
+The parameters you use when defining a type or class become the attributes available when the type or class is declared.
 
 ### parameter (external nodes)
 
-A top-scope variable set by an [external node classifier](#external-node-classifier). Although these are called "parameters," they are just normal variables; the name refers to the fact that they are usually used to configure the behavior of classes.
+This type of parameter is a top-scope [variable](#variable) set by an [external node classifier](#external-node-classifier). Although these are called "parameters," they are just normal variables; the name refers to how they are usually used to configure the behavior of [classes](#class).
 
 ### pattern
 
-A colloquial term, describing a collection of related manifests meant to solve an issue or manage a particular configuration item. (For example, an Apache pattern.) See also [module](#module).
+"**Pattern**" is used colloquially to describe a collection of related [manifests](#manifest) designed to solve an issue or manage a particular configuration item. For example, an "Apache pattern" refers to the manifests designed to configure Apache. See also [module](#module).
 
 ### plusignment operator
 
 The **plusignment** (`+>`) **operator** adds values to [resource](#resource) [attributes](#attribute) using the plusignment syntax. This  is useful when you want to override resource attributes without having to specify already-declared values a second time. For more information, see the [Appending to Resource Attributes](/puppet/latest/reference/lang_classes.html#appending-to-resource-attributes) section in the [Puppet language][] reference.
+
+### profile
+
+A **profile** represents the configuration of a technology stack for a [site](#site) and typically consists of one or more [classes](#class). A [role](#role) can include as many profiles as required to define itself. Profiles are included in [role and profile modules](#role-and-profile-module).
+
+For more information about roles and profiles, see [the Puppet Enterprise documentation](/pe/latest/puppet_assign_configurations.html#assigning-configuration-data-with-role-and-profile-modules).
 
 ### property (custom type and provider development)
 
@@ -319,9 +329,17 @@ You write Puppet [manifests](#manifest) in the **Puppet language**. The Puppet [
 
 A **Puppet run** is when a Puppet [agent](#agent) requests a [catalog](#catalog) from a Puppet [master](#master), which then compiles that agent's [manifest](#manifest) into a new catalog and sends it to the [agents](#agent). The agent then applies that catalog to the [node](#node) by using [providers](#provider) to bring the node's [properties](#property) in line with the catalog. By default, a Puppet run takes place every 30 minutes.
 
+### Puppetfile
+
+A **Puppetfile** is an authoritative, standalone list that specifies which [modules](#module) to install, what versions to install, and a source for the modules. You can use Puppetfiles with [r10k](#r10k) to quickly install sets of modules. For more information, see [Managing Modules with the Puppetfile](/pe/latest/r10k_puppetfile.html). For the Puppetfile format specification, see 
+
 ### puppetize
 
 A **puppetized** system, [resource](#resource), or [property](#property) is one that is managed by Puppet.
+
+### r10k
+
+The **r10k** tool helps you manage [Puppet code][] in [enivronments](#environment) and [modules](#module) by using [Puppetfiles](#puppetfile). For more information, see the [Getting to Know r10k](/pe/latest/r10k.html) guide.
 
 ### realize
 
@@ -353,6 +371,18 @@ For more information about resources, see the [Language: Resource](/puppet/lates
 ### resource declaration
 
 A **resource declaration** is a fragment of [Puppet code](#puppet-language) that details the desired state of a [resource](#resource) and instructs Puppet to manage it. This term helps to differentiate between the literal resource on a system and the specification for how to manage that resource. However, resource declarations are often referred to simply as "resources."
+
+### role
+
+A **role** defines the business purpose that a [node](#node) performs. A role typically consists of one [class](#class) that can completely configure categories of nodes with [profiles](#profile). A node shouldn't have more than one role; if a node requires more than one existing role, you should create a new role for it. See also [role and profile modules](#role-and-profile-module). 
+
+For more information about roles and profiles, see [the Puppet Enterprise documentation](/pe/latest/puppet_assign_configurations.html#assigning-configuration-data-with-role-and-profile-modules).
+
+### role and profile module
+
+A **role and profile module** is a Puppet [module](#module) that assigns configuration data to groups of [nodes](#node) based on [roles](#role) and [profiles](#profile). A role and profile module doesn't have any special features; it simply represents an abstract, private, [site-specific](#site) way to use modules to configure technology stacks and node descriptions.
+
+For more information about roles and profiles, see [the Puppet Enterprise documentation](/pe/latest/puppet_assign_configurations.html#assigning-configuration-data-with-role-and-profile-modules).
 
 ### scope
 
