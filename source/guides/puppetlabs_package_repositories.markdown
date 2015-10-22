@@ -36,7 +36,7 @@ To enable the repository, run the command below that corresponds to your OS vers
 
 #### Enterprise Linux 5
 
-    $ sudo rpm -ivh https://yum.puppetlabs.com/puppetlabs-release--pc1el-5.noarch.rpm
+    $ sudo rpm -ivh https://yum.puppetlabs.com/puppetlabs-release-pc1-el-5.noarch.rpm
 
 #### Fedora 20
 
