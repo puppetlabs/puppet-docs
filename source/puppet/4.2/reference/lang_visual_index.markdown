@@ -35,7 +35,7 @@ canonical: "/puppet/latest/reference/lang_visual_index.html"
 [built_in]: ./lang_variables.html#facts-and-built-in-variables
 [facts]: ./lang_variables.html#facts
 [regex]: ./lang_data_regexp.html
-[regex_match]: ./lang_expressions.html#regex-match
+[regex_match]: ./lang_expressions.html#regex-or-data-type-match
 [in]: ./lang_expressions.html#in
 [case]: ./lang_conditional.html#case-statements
 [selector]: ./lang_conditional.html#selectors
