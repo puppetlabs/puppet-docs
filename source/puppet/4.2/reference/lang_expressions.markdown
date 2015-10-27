@@ -380,6 +380,19 @@ The splat operator is only meaningful in places where a comma-separated list of 
 
 In any other context, splat just resolves to the array it was given.
 
+### `<<` (append)
+
+Resolves to an array containing the elements in the left operand, plus the right operand as its final element.
+
+The left operand should be an [array][arrays], and the right operand can be any data type. Appending will only add a single element at a time to an array; to add multiple elements from a second array, use `+` (concatenation).
+
+~~~ ruby
+[1, 2, 3] << 4     # resolves to [1, 2, 3, 4]
+[1, 2, 3] << [4, 5]   # resolves to [1, 2, 3, [4, 5]]
+~~~
+
+This operator does not change its operands; it only creates a new value.
+
 ### `+` (concatenation)
 
 Resolves to an array containing the elements in the left operand followed by the elements in the right operand.
