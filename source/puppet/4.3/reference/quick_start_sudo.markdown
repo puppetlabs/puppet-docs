@@ -12,7 +12,7 @@ canonical: "/puppet/latest/quick_start_sudo.html"
 
 Welcome to the Open Source Puppet Sudo Users Quick Start Guide. This document provides instructions for getting started managing sudo privileges across your Puppet deployment, using a module from the Puppet Forge in conjunction with a simple module you will write.
 
-In most cases, managing sudo on your agents involves controlling which users have access to elevated privileges. Using this guide, you will learn how to do the following tasks: 
+In most cases, managing sudo on your agents involves controlling which users have access to elevated privileges. Using this guide, you will learn how to do the following tasks:
 
 * [Install the `saz-sudo` module as the foundation for managing sudo privileges](#install-the-saz-sudo-module).
 * [Write a simple module that contains a class called `privileges` to manage a resource that sets privileges for certain users, which will be managed by the `saz-sudo` module](#write-the-privileges-class).
@@ -20,9 +20,9 @@ In most cases, managing sudo on your agents involves controlling which users hav
 
 > Before starting this walk-through, complete the previous exercises in the [essential configuration tasks](./quick_start_essential_config.html). Log in as root or administrator on your nodes.
 
-> **Prerequisites**: This guide assumes you've already [installed Puppet](https://docs.puppetlabs.com/puppetserver/2.1/install_from_packages.html), and have installed at least one [*nix agent](https://docs.puppetlabs.com/puppet/4.2/reference/install_linux.html).
+> **Prerequisites**: This guide assumes you've already [installed Puppet](/puppetserver/2.2/install_from_packages.html), and have installed at least one [*nix agent](./install_linux.html).
 
->**Note**: You can add the sudo and privileges classes to as many agents as needed, although we describe only one for ease of explanation. 
+>**Note**: You can add the sudo and privileges classes to as many agents as needed, although we describe only one for ease of explanation.
 
 ## Install the `saz-sudo` Module
 
@@ -68,7 +68,7 @@ Modules are directory trees. For this task, you'll create the following files:
 3. From the `manifests` directory, use your text editor to create the `init.pp` file, and edit it so it contains the following Puppet code:
 
         class privileges {
-        
+
 		  sudo::conf { 'admins':
           ensure  => present,
           content => '%admin ALL=(ALL) ALL',
@@ -107,7 +107,7 @@ sudo::conf { 'jargyle':
 
 5. From the command line on your Puppet agent, run `puppet agent -t` to trigger a Puppet run.
 
-> That's it! You have successfully installed the Sudo module and applied privileges and classes to it. 
+> That's it! You have successfully installed the Sudo module and applied privileges and classes to it.
 >
 > Note the following about your new resources in the `site.pp` file:
 >
@@ -129,8 +129,8 @@ From the command line on the Puppet agent, run `sudo -l -U jargyle` to confirm i
 
 	 User jargyle may run the following commands on this host:
     (ALL) NOPASSWD: ALL
-    
-    
+
+
 ### Other Resources
 
 For more information about working with Puppet and Sudo Users, check out our [Module of The Week: saz/sudo - Manage sudo configuration](https://puppetlabs.com/blog/module-of-the-week-sazsudo-manage-sudo-configuration) blog post.

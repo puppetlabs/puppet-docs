@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Puppet 4.2 Reference Manual"
+title: "Puppet 4.3 Reference Manual"
 canonical: "/puppet/latest/reference/index.html"
 toc: false
 ---
@@ -9,7 +9,7 @@ toc: false
 [pre-install instructions]: ./install_pre.html
 [Facter 3]: /facter/latest/
 [Hiera 3]: /hiera/latest/
-[Puppet Server 2.1]: /puppetserver/latest/
+[Puppet Server 2.2]: /puppetserver/latest/
 [PuppetDB 3]: /puppetdb/latest/
 [Linux installation]: ./install_linux.html
 [Windows installation]: ./install_windows.html
@@ -22,7 +22,7 @@ toc: false
 [Language Changes Since Puppet 3]: ./experiments_future.html
 [Release Notes]: ./release_notes.html
 
-Welcome to the Puppet 4.2 Reference Manual. Use the navigation to the left to get around.
+Welcome to the Puppet 4.3 Reference Manual. Use the navigation to the left to get around.
 
 ## What is This?
 
@@ -30,10 +30,10 @@ For an introduction to how Puppet manages systems, see the [Overview of Puppet's
 
 ## Getting Started
 
-Puppet 4.2 consists of:
+Puppet 4.3 consists of:
 
 * A `puppet-agent` "All-in-One" package that installs Puppet, Ruby, [Facter 3][], [Hiera 3][], and supporting code.
-* A `puppetserver` package that installs [Puppet Server 2.1][].
+* A `puppetserver` package that installs [Puppet Server 2.2][].
 * A `puppetdb` package that installs [PuppetDB 3][].
 
 To install these, read the [pre-install instructions][], then see the Puppet installation guides for [Linux][Linux installation], [Windows][Windows installation], and [Mac OS X][OSX installation].
@@ -60,7 +60,7 @@ This manual is split into several sections, which can be reached from the left s
 
 * The [Release Notes][] cover what's new and different in this version of Puppet.
 * If you're an experienced Puppet user who's new to Puppet 4, review the [Where Did Everything Go?](./whered_it_go.html) page.
-* Use the [Resource Type Reference](/references/4.2.latest/type.html) for up-to-date information on core Puppet concepts.
+* Use the [Resource Type Reference](/references/4.3.latest/type.html) for up-to-date information on core Puppet concepts.
 * Puppet uses its own configuration language, which is documented in this reference's language section. You can start with:
     * The [Language Summary](./lang_summary.html), which gives an overview and some context for the language.
     * The [Visual Index](./lang_visual_index.html), which can help you find docs for syntax when you know what it looks like but don't know what it's called.

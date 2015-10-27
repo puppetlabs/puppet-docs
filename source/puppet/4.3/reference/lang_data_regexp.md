@@ -4,8 +4,8 @@ title: "Language: Data Types: Regular Expressions"
 canonical: "/puppet/latest/reference/lang_data_regexp.html"
 ---
 
-[regsubst]: /references/4.2.latest/function.html#regsubst
-[match]: /references/4.2.latest/function.html#match
+[regsubst]: /references/4.3.latest/function.html#regsubst
+[match]: /references/4.3.latest/function.html#match
 [ruby_regexp]: http://ruby-doc.org/core/Regexp.html
 [conditional]: ./lang_conditional.html
 [node]: ./lang_node_definitions.html

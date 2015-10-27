@@ -1,5 +1,5 @@
-[node_name_fact]: /references/4.2.latest/configuration.html#nodenamefact
-[node_name_value]: /references/4.2.latest/configuration.html#nodenamevalue
+[node_name_fact]: /references/4.3.latest/configuration.html#nodenamefact
+[node_name_value]: /references/4.3.latest/configuration.html#nodenamevalue
 
 > #### Note on Non-Certname Node Names
 >

@@ -11,7 +11,7 @@ canonical: "/puppet/latest/reference/lang_template.html"
 [file_line]: https://forge.puppetlabs.com/puppetlabs/stdlib
 [functions]: ./lang_functions.html
 [epp]: ./lang_template_epp.html
-[man epp]: /references/4.2.latest/man/epp.html
+[man epp]: /references/4.3.latest/man/epp.html
 [erb]: ./lang_template_erb.html
 [module]: ./modules_fundamentals.html
 [string]: ./lang_data_string.html

@@ -4,9 +4,9 @@ title: "Config Files: fileserver.conf"
 canonical: "/puppet/latest/reference/config_file_fileserver.html"
 ---
 
-[file]: /references/4.2.latest/type.html#file
+[file]: /references/4.3.latest/type.html#file
 [module_files]: ./modules_fundamentals.html#files
-[fileserverconfig]: /references/4.2.latest/configuration.html#fileserverconfig
+[fileserverconfig]: /references/4.3.latest/configuration.html#fileserverconfig
 [auth_conf]: ./config_file_auth.html
 
 The `fileserver.conf` file configures custom static mount points for Puppet's file server. If custom mount points are present, [`file` resources][file] can access them with their `source` attributes.

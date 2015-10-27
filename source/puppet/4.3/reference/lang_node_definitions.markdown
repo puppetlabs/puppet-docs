@@ -10,7 +10,7 @@ canonical: "/puppet/latest/reference/lang_node_definitions.html"
 [classes]: ./lang_classes.html
 [nodescope]: ./lang_scope.html#node-scope
 [topscope]: ./lang_scope.html#top-scope
-[extlookup]: /references/4.2.latest/function.html#extlookup
+[extlookup]: /references/4.3.latest/function.html#extlookup
 [custom_functions]: /guides/custom_functions.html
 [regex]: ./lang_data_regexp.html
 [strings]: ./lang_data_string.html
@@ -19,7 +19,7 @@ canonical: "/puppet/latest/reference/lang_node_definitions.html"
 [enc]: /guides/external_nodes.html
 [facts]: ./lang_variables.html#facts-and-built-in-variables
 [catalogs]: ./lang_summary.html#compilation-and-catalogs
-[strict]: /references/4.2.latest/configuration.html#stricthostnamechecking
+[strict]: /references/4.3.latest/configuration.html#stricthostnamechecking
 [conditional]: ./lang_conditional.html
 
 

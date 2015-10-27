@@ -5,9 +5,9 @@ subtitle: "Users and Groups Quick Start Guide"
 canonical: "/puppet/latest/quick_start_user_group.html"
 ---
 
-## Before you begin 
+## Before you begin
 
-> **Prerequisites**: This guide assumes you've already [installed Puppet](https://docs.puppetlabs.com/puppetserver/2.1/install_from_packages.html), and have installed at least one [*nix agent](https://docs.puppetlabs.com/puppet/4.2/reference/install_linux.html).
+> **Prerequisites**: This guide assumes you've already [installed Puppet](/puppetserver/2.2/install_from_packages.html), and have installed at least one [*nix agent](./install_linux.html).
 
 > For this  walk-through, log in as root or administrator on your nodes.
 
@@ -19,7 +19,7 @@ Puppet uses some defaults for unspecified user and group attributes, so all you'
 
 2.  To create a group named `web`, on your Puppet master, run `puppet apply -e "group { 'web': ensure => present, }"`. The result should show, in part, `Notice: /Stage[main]/Main/Group[web]/ensure: created`.
 
-> That's it! You've successfully created the Puppet user `jargyle` and the Puppet group `web`. 
+> That's it! You've successfully created the Puppet user `jargyle` and the Puppet group `web`.
 
 ## Add the Group to the Main Manifest
 
@@ -29,16 +29,16 @@ Puppet uses some defaults for unspecified user and group attributes, so all you'
   			  ensure => 'present',
   			  gid    => '502',
 			}
-			
+
 	>**Note**: Your gid (the group ID) might be a different number than the example shown in this guide.
-			
+
 2. Copy the lines of code, and save and exit the file.
 
 3. Navigate to your main manifest: `cd /etc/puppetlabs/code/environments/production/manifests`.
 
 4. Still using the Puppet master, paste the code you got from Steps 1 and 2 into the default node `site.pp`, then save and exit.
 
-5. From the command line on your Puppet master, run `puppet parser validate site.pp` to ensure that there are no errors. The parser will return nothing if there are no errors. 
+5. From the command line on your Puppet master, run `puppet parser validate site.pp` to ensure that there are no errors. The parser will return nothing if there are no errors.
 
 6. From the command line on your Puppet agent, use `puppet agent -t` to trigger a Puppet run.
 
@@ -69,7 +69,7 @@ Puppet uses some defaults for unspecified user and group attributes, so all you'
 9. **Delete** the following Puppet code from the file:
 
 			  gid              => '501',
-		
+
 10. Copy all of the code, and save and exit the file.
 
 11. Paste the code from Step 10 into your default node in `site.pp`. It should look like this:
@@ -86,13 +86,13 @@ Puppet uses some defaults for unspecified user and group attributes, so all you'
 			  uid              => '501',
 			}
 
-12. From the command line on your Puppet master, run `puppet parser validate site.pp` to ensure that there are no errors. The parser will return nothing if there are no errors. 
+12. From the command line on your Puppet master, run `puppet parser validate site.pp` to ensure that there are no errors. The parser will return nothing if there are no errors.
 
 13. From the command line on your Puppet agent, use `puppet agent -t` to trigger a Puppet run.
 
-> Success! You have created a user, `jargyle`, and added jargyle to the group with `groups => web`. 
+> Success! You have created a user, `jargyle`, and added jargyle to the group with `groups => web`.
 > For more information on users and groups, check out the documentation for Puppet resource types regarding [users](https://docs.puppetlabs.com/references/latest/type.html#user) and [groups](https://docs.puppetlabs.com/references/latest/type.html#group).
-> With users and groups, you can assign different permissions for managing Puppet. 
+> With users and groups, you can assign different permissions for managing Puppet.
 
 ---------
 Next: [Hello, World!](./quick_start_helloworld.html)

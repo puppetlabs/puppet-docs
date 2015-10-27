@@ -25,7 +25,7 @@ Using this guide, you will learn how to do the following tasks:
 
 > Before starting this walk-through, complete the previous exercises in the [essential configuration tasks](./quick_start_essential_config.html). Log in as root or administrator on your nodes.
 
-> **Prerequisites**: This guide assumes you've already [installed Puppet](https://docs.puppetlabs.com/puppetserver/2.1/install_from_packages.html), and have installed at least one [*nix agent](https://docs.puppetlabs.com/puppet/4.2/reference/install_linux.html).
+> **Prerequisites**: This guide assumes you've already [installed Puppet](/puppetserver/2.2/install_from_packages.html), and have installed at least one [*nix agent](./install_linux.html).
 
 > You should still be logged in as root or administrator on your nodes.
 
@@ -45,8 +45,8 @@ You should see output similar to the following:
         Notice: Installing -- do not interrupt ...
         /etc/puppetlabs/puppet/environments/production/modules
         └── puppetlabs-firewall (v1.6.0)
-        
-> That's it! You've just installed the firewall module. 
+
+> That's it! You've just installed the firewall module.
 
 ## Write the `my_firewall` Module
 
@@ -134,21 +134,21 @@ Modules are directory trees. For this task, you'll create the following files:
 		  resources { 'firewall':
 		    purge => true,
 		  }
-  
+
 4. Add the following Puppet code to your `site.pp` file. These defaults will ensure that the `pre` and `post` classes are [run in the correct order](https://docs.puppetlabs.com/puppet/latest/reference/lang_relationships.html) to avoid locking you out of your box during the first Puppet run, and declaring `my_fw::pre` and `my_fw::post` satisfies the specified dependencies.
 
 		  Firewall {
 		    before  => Class['my_fw::post'],
 		    require => Class['my_fw::pre'],
 		  }
-		  
+
 		  class { ['my_fw::pre', 'my_fw::post']: }
-		  
+
 
 5. Add the `firewall` class to your `site.pp` to ensure the correct packages are installed:
 
 		  class { 'firewall': }
-		  
+
 > That's it! To check your firewall configuration, run `iptables --list` from the command line of your Puppet agent. The result should look similar to this:
 
 		Chain INPUT (policy ACCEPT)
@@ -164,9 +164,9 @@ Modules are directory trees. For this task, you'll create the following files:
 
 		Chain OUTPUT (policy ACCEPT)
 		target     prot opt source               destination
-		
+
 ## Enforce the Desired State of the `my_firewall` Class
- 
+
 Lastly, let's take a look at how Puppet ensures the desired state of the `my_firewall` class on your agents. In the previous task, you applied your firewall class. Now imagine a scenario where a member of your team changes the contents of the `iptables` to allow connections on a random port that was not specified in `my_firewall`.
 
 1. Select an agent on which you applied the `my_firewall` class, and run `iptables --list`.

@@ -22,7 +22,7 @@ NTP is one of the most crucial, yet easiest, services to configure and manage wi
 * Ensure time is correctly synced across your configuration management tools.
 * Roll out updates quickly if you need to change or specify your own internal NTP server pool.
 
-This guide will step you through the following tasks: 
+This guide will step you through the following tasks:
 
 * [Install the `puppetlabs-ntp` module](#install-the-puppetlabs-ntp-module).
 * [Add classes to the `default` node in your main manifest](#use-the-main-manifest-to-add-classes-from-the-ntp-module).
@@ -31,7 +31,7 @@ This guide will step you through the following tasks:
 
 > For this walk-through, log in as root or administrator on your nodes.
 
-> **Prerequisites**: This guide assumes you've already [installed Puppet](https://docs.puppetlabs.com/puppetserver/2.1/install_from_packages.html), and have installed at least one [*nix agent](https://docs.puppetlabs.com/puppet/4.2/reference/install_linux.html).
+> **Prerequisites**: This guide assumes you've already [installed Puppet](/puppetserver/2.2/install_from_packages.html), and have installed at least one [*nix agent](./install_linux.html).
 
 >**Note**: You can add the NTP service to as many agents as needed. For ease of explanation, we will describe only one.
 
@@ -70,13 +70,13 @@ You're going to add the `ntp` class to the `default` node in your main manifest.
 **To create the NTP class:**
 
 1. From the command line on the Puppet master, navigate to the main manifest: `cd /etc/puppetlabs/code/environments/production/manifests`.
-2. Use your text editor to open `site.pp`. 
+2. Use your text editor to open `site.pp`.
 3. Add the following Puppet code to `site.pp`:
 
-        node default {        									 
-     	  class { 'ntp':       									 
+        node default {
+     	  class { 'ntp':
     	  servers => ['nist-time-server.eoni.com','nist1-lv.ustiming.org','ntp-nist.ldsbc.edu']
-    	  }						
+    	  }
 		}
 
 	>**Note**: If you already have a default node, just add the `class` and `servers` lines to it.
@@ -128,7 +128,7 @@ The `site.pp` looks like this:
 			enable     => true,
 	     }
 	    }
-	   
+
 In this fashion, it is possible to create multiple nodes to suit your needs.
 
 ## Other Resources
