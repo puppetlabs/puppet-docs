@@ -75,10 +75,12 @@ defaultnav:
   /puppet/4.0/reference: /_includes/puppet_4.html
   /puppet/4.1/reference: /_includes/puppet4.1.html
   /puppet/4.2/reference: /_includes/puppet4.2.html
+  /puppet/4.3/reference: /puppet/4.3/reference/_puppet_toc.html
   /puppetserver/1.0: /_includes/server1.0.html
   /puppetserver/2.0: /_includes/server2.0.html
   /puppetserver/1.1: /_includes/puppet_3_8.html
   /puppetserver/2.1: /_includes/puppet4.2.html
+  /puppetserver/2.2: /puppet/4.3/reference/_puppet_toc.html
   /references: /_includes/references_general.html
 destination: ../output
 url: "http://docs.puppetlabs.com"
@@ -211,7 +213,7 @@ externalsources:
     repo: git@github.com:puppetlabs/pe-docs-private.git
     commit: origin/pe2015.2.2
     subdirectory: source
-  
+
 
 
 symlink_latest:
@@ -222,7 +224,8 @@ symlink_latest:
   - facter
   - pe
 lock_latest: {
-  puppetdb: "3.1"
+  puppetdb: "3.1",
+  puppet: "4.2"
 }
 version_notes:
   # Default notes for upstreams. Tweak these whenever latest de-syncs or re-syncs with PE!
@@ -234,7 +237,8 @@ version_notes:
   # Version-specific notes:
   /puppet/3.7: "This is the version of Puppet included in Puppet Enterprise 3.7."
   /puppet/3.8: "This is the version of Puppet included in Puppet Enterprise 3.8."
-  /puppet/4.2: '<p class="noisy">This is the latest version of Puppet and is used with PE 2015.2. PE 3.8 users should see <a href="/puppet/3.8/reference/">the Puppet 3.8 docs</a> and <a href="/pe/latest/">the Puppet Enterprise 3.8 docs</a>.</p>'
+  /puppet/4.2: '<p class="noisy">This is the latest version of Puppet and is used with PE 2015.2. PE 3.8 users should see <a href="/puppet/3.8/reference/">the Puppet 3.8 docs</a> and <a href="/pe/3.8/">the Puppet Enterprise 3.8 docs</a>.</p>'
+  /puppet/4.3: '<p class="noisy">This is the latest version of Puppet and is not yet included in Puppet Enterprise. PE 2015.2 users should see <a href="/puppet/4.2/reference">the Puppet 4.2 docs</a> and <a href="/pe/2015.2">the PE 2015.2 docs</a>. PE 3.8 users should see <a href="/puppet/3.8/reference/">the Puppet 3.8 docs</a> and <a href="/pe/3.8/">the Puppet Enterprise 3.8 docs</a>.</p>'
   /puppetdb/2.2: "This is the version of PuppetDB included in Puppet Enterprise 3.7. If you're using the open source release, there's a <a href=\"/puppetdb/latest/\">newer version</a> available."
   /puppetdb/2.3: "This is the version of PuppetDB included in Puppet Enterprise 3.8. If you're using the open source release, there's a <a href=\"/puppetdb/latest/\">newer version</a> available."
   /puppetdb/3.0: "This is the version of PuppetDB included in PE 2015.2. PE 3.8 users should see <a href=\"/puppetdb/2.3/\">the PuppetDB 2.3 docs</a>. If you're using the open source release, there's a <a href=\"/puppetdb/latest/\">newer version</a> available."
@@ -250,5 +254,6 @@ version_notes:
   /puppetserver/1.0: 'This is the version of Puppet Server included in Puppet Enterprise 3.7 and 3.8.0.'
   /puppetserver/1.1: '<p class="noisy">This is the version of Puppet Server included in Puppet Enterprise 3.8.1 (and later 3.8 releases). PE 3.7 users should see <a href="/puppetserver/1.0">the Puppet Server 1.0 docs.</a>'
   /puppetserver/2.1: '<p class="noisy">This is the latest version of Puppet Server, included in PE 2015.2.x. Puppet Enterprise 3.8 users should see <a href="/puppetserver/1.1">the Puppet Server 1.1 docs.</a>'
+  /puppetserver/2.2: '<p class="noisy">This is the latest version of Puppet Server and is not yet included in Puppet Enterprise. PE 2015.2.x users should see <a href="/puppetserver/2.1">the Puppet Server 2.1 docs</a>. Puppet Enterprise 3.8 users should see <a href="/puppetserver/1.1">the Puppet Server 1.1 docs.</a>'
 
 ---
