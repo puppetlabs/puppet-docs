@@ -5,12 +5,12 @@ canonical: "/puppet/latest/reference/upgrade_major_server.html"
 ---
 
 [moved]: ./whered_it_go.html
-[ca.conf]: /puppetserver/2.1/configuration.html#caconf
+[ca.conf]: /puppetserver/2.2/configuration.html#caconf
 [auth.conf]: ./config_file_auth.html
 [puppet.conf]: ./config_file_main.html
-[Puppet Server compatibility documentation]: /puppetserver/2.1/compatibility_with_puppet_agent.html
+[Puppet Server compatibility documentation]: /puppetserver/2.2/compatibility_with_puppet_agent.html
 [main manifest]: ./dirs_manifest.html
-[default_manifest]: /references/4.2.latest/configuration.html#defaultmanifest
+[default_manifest]: /references/4.3.latest/configuration.html#defaultmanifest
 [retrieve and apply a catalog]: /references/latest/man/agent.html#USAGE-NOTES
 [hiera.yaml]: /hiera/latest/configuring.html
 [Hiera]: /hiera/
@@ -50,7 +50,7 @@ Repeat the following steps for each Puppet Server until you're running a pure Pu
 
 Starting with Puppet 4, our software releases are grouped into **Puppet Collections**.
 
-To upgrade Puppet Server, you'll need to add the Puppet Collection repository to each node's package manager. Follow the [Puppet Server installation instructions](/puppetserver/2.1/install_from_packages.html) to [enable the Puppet Collection 1 repository.](/guides/puppetlabs_package_repositories.html) and install the `puppetserver` package.
+To upgrade Puppet Server, you'll need to add the Puppet Collection repository to each node's package manager. Follow the [Puppet Server installation instructions](/puppetserver/2.2/install_from_packages.html) to [enable the Puppet Collection 1 repository.](/guides/puppetlabs_package_repositories.html) and install the `puppetserver` package.
 
 Even after you've installed the package, **don't start the `puppetserver` service yet**! You should do a few other things first.
 
@@ -75,7 +75,7 @@ Puppet 4 uses different HTTPS URLs to fetch configurations. Any rules in `auth.c
 To convert the URLs:
 
 1. Open your old [`auth.conf`][auth.conf] file, which is probably at `/etc/puppet/auth.conf`.
-2. Identify [any _custom_ rules](/puppetserver/2.1/compatibility_with_puppet_agent.html#transfer-and-modify-custom-authconf-rules) you've added to your old [`auth.conf`][auth.conf] file. (Don't worry about default rules.)
+2. Identify [any _custom_ rules](/puppetserver/2.2/compatibility_with_puppet_agent.html#transfer-and-modify-custom-authconf-rules) you've added to your old [`auth.conf`][auth.conf] file. (Don't worry about default rules.)
 3. Change the `path` of each custom rule to use Puppet 4 URLs.
     1. Add `/puppet/v3` to the beginning of most paths.
     2. The `certificate_status` endpoint ignores `auth.conf`. Configure access in Puppet Server's [`ca.conf`][ca.conf] file.
@@ -125,7 +125,7 @@ If this is a new Puppet master but _isn't_ serving as a certificate authority, u
 
 1. Run the following command: `puppet agent --test --certname=<NAME> --dns_alt_names=<NAME>,<NAME>,<NAME> --server=<UPGRADED CA SERVER>`
 
-2. Sign the certificate on the CA, then run the above `puppet agent` command again from the new Puppet master to fetch the signed certificate. Remember to [disable the internal Puppet CA service](/puppetserver/2.1/external_ca_configuration.html#disabling-the-internal-puppet-ca-service) in `bootstrap.cfg`.
+2. Sign the certificate on the CA, then run the above `puppet agent` command again from the new Puppet master to fetch the signed certificate. Remember to [disable the internal Puppet CA service](/puppetserver/2.2/external_ca_configuration.html#disabling-the-internal-puppet-ca-service) in `bootstrap.cfg`.
 
 ### Move Code
 

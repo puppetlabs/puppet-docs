@@ -9,7 +9,7 @@ canonical: "/puppet/latest/reference/lang_resources.html"
 [containment]: ./lang_containment.html
 [scope]: ./lang_scope.html
 [report]: /guides/reporting.html
-[types]: /references/4.2.latest/type.html
+[types]: /references/4.3.latest/type.html
 [string]: ./lang_data_string.html
 [array]: ./lang_data_array.html
 [datatype]: ./lang_data.html
@@ -134,7 +134,7 @@ If multiple classes require the same resource, you can use a [class][] or a [vir
 
 ### Relationships and Ordering
 
-[ordering]: /references/4.2.latest/configuration.html#ordering
+[ordering]: /references/4.3.latest/configuration.html#ordering
 
 By default, Puppet applies unrelated resources in the order in which they're written in the manifest. You can disable this with the [`ordering`][ordering] setting.
 

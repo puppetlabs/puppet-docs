@@ -4,7 +4,7 @@ title: "Installing Puppet Agent: Mac OS X"
 canonical: "/puppet/latest/reference/install_osx.html"
 ---
 
-[server_install]: /puppetserver/2.1/install_from_packages.html
+[server_install]: /puppetserver/2.2/install_from_packages.html
 [where]: ./whered_it_go.html
 [agent_settings]: ./config_important_settings.html#settings-for-agents-all-nodes
 

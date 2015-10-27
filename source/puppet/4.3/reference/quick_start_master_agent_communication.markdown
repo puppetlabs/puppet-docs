@@ -9,13 +9,13 @@ canonical: "/puppet/latest/quick_start_master_agent_communication.html"
 
 This guide walks you through the process to make sure your Puppet master and agents are able to communicate. This involves modifying the `/etc/hosts` file on your master and agents, and also opening the firewall to your master so that it is able to sign certificates from the agents.
 
-> **Prerequisites**: This guide assumes you've already [installed Puppet](https://docs.puppetlabs.com/puppetserver/2.1/install_from_packages.html), and have installed at least one [*nix agent](https://docs.puppetlabs.com/puppet/4.2/reference/install_linux.html).
+> **Prerequisites**: This guide assumes you've already [installed Puppet](/puppetserver/2.2/install_from_packages.html), and have installed at least one [*nix agent](./install_linux.html).
 >
 > For this walk-through, log in as root or administrator on your nodes.
 
 ##  Modifying the `/etc/hosts` files
 
-To make sure your Puppet master and agents communicate, update the `/etc/hosts` file on each so that they’re aware of each other. 
+To make sure your Puppet master and agents communicate, update the `/etc/hosts` file on each so that they’re aware of each other.
 First, use your text editor to open `/etc/hosts` on your Puppet master. Add each of your agents by IP address and name below the existing text. It should look something like this:
 
 		192.168.33.11    agent1.example.com
@@ -26,7 +26,7 @@ Next, add the name and IP address of your Puppet master to each of your Puppet a
 
 Repeat this step for all of your Puppet agents.
 
-> Congratulations! You’ve successfully made sure your Puppet master and agents can communicate. 
+> Congratulations! You’ve successfully made sure your Puppet master and agents can communicate.
 
 ## Opening port 8140 on your firewall
 
