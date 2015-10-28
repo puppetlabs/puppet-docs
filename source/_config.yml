@@ -60,7 +60,7 @@ defaultnav:
   /puppetdb/2.3: /puppetdb/2.3/_puppetdb_nav.html
   /puppetdb/3.0: /puppetdb/3.0/_puppetdb_nav.html
   /puppetdb/3.1: /puppetdb/3.1/_puppetdb_nav.html
-  /puppetdb/3.1: /puppetdb/3.2/_puppetdb_nav.html
+  /puppetdb/3.2: /puppetdb/3.2/_puppetdb_nav.html
   /puppetdb/master: /puppetdb/master/_puppetdb_nav.html
   /puppet/0.24/reference: /_includes/puppet_0_24.html
   /puppet/0.25/reference: /_includes/puppet_0_25.html
