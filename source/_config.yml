@@ -224,7 +224,6 @@ symlink_latest:
   - facter
   - pe
 lock_latest: {
-  puppetdb: "3.1",
   puppet: "4.2"
 }
 version_notes:
