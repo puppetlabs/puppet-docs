@@ -431,7 +431,7 @@ Hash Operators
 
 Hash operators take:
 
-* A [hash][] as their left operand.
+* A [hash][hashes] as their left operand.
 * Various values as their right operand.
 
 They resolve to hash values.
