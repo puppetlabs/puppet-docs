@@ -10,18 +10,19 @@ canonical: "/puppet/latest/reference/lang_relationships.html"
 [reference]: ./lang_data_resource_reference.html
 [array]: ./lang_data_array.html
 [class]: ./lang_classes.html
-[event]: ./lang_resources.html#behavior
 [service]: /references/4.3.latest/type.html#service
 [exec]: /references/4.3.latest/type.html#exec
 [type]: /references/4.3.latest/type.html
 [mount]: /references/4.3.latest/type.html#mount
+[package]: /references/4.3.latest/type.html#package
 [metaparameters]: ./lang_resources.html#metaparameters
 [require_function]: ./lang_classes.html#using-require
 [moar]: /references/4.3.latest/configuration.html#ordering
 [lambdas]: ./lang_lambdas.html
+[containment]: ./lang_containment.html
 
 
-By default, Puppet applies resources in the order they're declared in their manifest. However, if a group of resources must _always_ be managed in a specific order, you can explicitly declare such relationships with relationship metaparameters, chaining arrows, and the `require` function.
+By default, Puppet applies resources in the order they're declared in their manifest. However, if a group of resources must _always_ be managed in a specific order, you should explicitly declare such relationships with relationship metaparameters, chaining arrows, and the `require` function.
 
 > **Aside: Default Ordering**
 >
@@ -42,8 +43,8 @@ Puppet uses four [metaparameters][] to establish relationships, and you can set 
 
 * `before` --- Applies a resource **before** the target resource.
 * `require` --- Applies a resource **after** the target resource.
-* `notify` --- Applies a resource **before** the target resource. The target resource refreshes if the notifying resource changes.
-* `subscribe` --- Applies a resource **after** the target resource. The subscribing resource refreshes if the target resource changes.
+* `notify` --- Applies a resource **before** the target resource. The target resource [refreshes][refresh] if the notifying resource changes.
+* `subscribe` --- Applies a resource **after** the target resource. The subscribing resource [refreshes][refresh] if the target resource changes.
 
 If two resources need to happen in order, you can either put a `before` attribute in the prior one or a `require` attribute in the subsequent one; either approach creates the same relationship. The same is true of `notify` and `subscribe`.
 
@@ -65,7 +66,7 @@ file { '/etc/ssh/sshd_config':
 }
 ~~~
 
-The two examples below create the same notification relationship:
+The two examples below create the same notifying relationship:
 
 ~~~ ruby
 file { '/etc/ssh/sshd_config':
@@ -122,7 +123,7 @@ File['/etc/ntp.conf'] ~> Service['ntpd']
 You can create relationships between two resources or groups of resources using the `->` and `~>` operators.
 
 * `->` (ordering arrow; a hyphen and a greater-than sign) --- Applies the resource on the left before the resource on the right.
-* `~>` (notification arrow; a tilde and a greater-than sign) --- Applies the resource on the left first, and sends a refresh event to the resource on the right if the left-hand resource changes.
+* `~>` (notifying arrow; a tilde and a greater-than sign) --- Applies the resource on the left first. If the left-hand resource changes, the right-hand resource will [refresh][].
 
 ### Operands
 
@@ -226,24 +227,41 @@ class apache::ssl {
 Behavior
 -----
 
-### Ordering and Notification
+### Ordering
 
-Puppet has two kinds of resource relationships:
+All relationships cause Puppet to manage one or more resources before one or more other resources.
 
-* Ordering
-* Ordering with notification
+By default, _unrelated_ resources are managed in the order in which they're written in their manifest file. If you declare an explicit relationship between resources, it will override this default ordering.
 
-An ordering relationship ensures that one resource is managed before another.
+### Refreshing and Notification
 
-A notification relationship does the same, but **also** sends the latter resource a **refresh event** if Puppet [changes the first resource's state][event]. A refresh event causes the recipient to refresh itself.
+[refresh]: #refreshing-and-notification
 
-If a resource receives multiple refresh events, they're combined and the resource only refreshes once.
+Some resource types can do a special "refresh" action when a dependency changes. For example, some services must restart when their config files change, so `service` resources can refresh by restarting the service.
 
-### Refreshing
+(The built-in resource types that can refresh are [service][], [mount][], [exec][], and sometimes [package][]. See each type's docs for info about their refresh behavior.)
 
-Only certain resource types can refresh themselves. Of the built-in resource types, these are [service][], [mount][], and [exec][].
+Puppet uses notifying relationships (`subscribe`, `notify`, and `~>`) to tell resources when they should refresh. A resource will perform its refresh action if Puppet changes any of the resources it subscribes to.
 
-Service resources refresh by restarting their service. Mount resources refresh by unmounting and then mounting their volume. Exec resources usually do not refresh, but can be made to: setting `refreshonly => true` causes the exec to never fire _unless_ it receives a refresh event. You can also set an additional `refresh` command, which causes the exec to run both commands when it receives a refresh event.
+Notifying relationships also interact with [containment][]. The complete rules for notification and refreshing are:
+
+#### Receiving Refresh Events
+
+* If a resource gets a refresh event during a run and its resource type has a refresh action, it will perform that action.
+* If a resource gets a refresh event but its resource type _cannot_ refresh, nothing happens.
+* If a class or defined resource gets a refresh event, every resource it contains will also get a refresh event.
+* A resource can perform its refresh action up to once per run. If it receives multiple refresh events, they're combined and the resource only refreshes once.
+
+#### Sending Refresh Events
+
+* If a resource is not in its desired state and Puppet makes changes to it during a run, it will send a refresh event to any subscribed resources.
+* If a resource performs its refresh action during a run, it will send a refresh event to any subscribed resources.
+* If Puppet changes (or refreshes) any resource in a class or defined resource, that class or defined resource will send a refresh event to any subscribed resources.
+
+#### No-Op
+
+* If a resource is in no-op mode (due to the global `noop` setting or the per-resource `noop` metaparameter), it _will not refresh_ when it receives a refresh event. However, Puppet will log a message stating what would have happened.
+* If a resource is in no-op mode but Puppet would otherwise have changed or refreshed it, it _will not send refresh events_ to subscribed resources. However, Puppet will log messages stating what would have happened to any resources further down the subscription chain.
 
 ### Auto\* Relationships
 
