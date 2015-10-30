@@ -82,10 +82,6 @@ In Puppet 4.2.2, the `filter` function did not behave according to specification
 
 * [PUP-5350](https://tickets.puppetlabs.com/browse/PUP-5350)
 
-### Bug Fixes: Misc
-
-* [PUP-5380](https://tickets.puppetlabs.com/browse/PUP-5380): Improve Catalog Run Times
-
 ## Puppet 4.2.2
 
 Released September 14, 2015.
