@@ -198,12 +198,12 @@ externalsources:
   pe3.8:
     url: /pe/3.8
     repo: git@github.com:puppetlabs/pe-docs-private.git
-    commit: origin/pe3.8
+    commit: origin/pe3.8.3
     subdirectory: source
   pe2015.2:
     url: /pe/2015.2
     repo: git@github.com:puppetlabs/pe-docs-private.git
-    commit: origin/pe2015.2.2
+    commit: origin/pe2015.2.3
     subdirectory: source
   pe2015.3:
     url: /pe/ankeny
