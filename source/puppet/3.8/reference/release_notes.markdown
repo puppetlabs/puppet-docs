@@ -42,6 +42,50 @@ We always recommend that you **upgrade your Puppet master servers before upgradi
 
 If you're upgrading from Puppet 2.x, please [learn about major upgrades of Puppet first!][upgrade] We have important advice about upgrade plans and package management practices. The short version is: test first, roll out in stages, give yourself plenty of time to work with. Also, read the [release notes for Puppet 3][puppet_3] for a list of all the breaking changes made between the 2.x and 3.x series.
 
+## Puppet 3.8.4
+
+Released November 3, 2015.
+
+Puppet 3.8.4 is a maintenance release in the Puppet 3.8 series. It includes a security update for Windows OpenSSL, and fixes a few miscellaneous bugs.
+
+
+* [All fixes for Puppet 3.8.4](https://tickets.puppetlabs.com/browse/PUP-5398?filter=15901)
+* [Introduced in Puppet 3.8.4](https://tickets.puppetlabs.com/browse/PUP-5469?filter=15900)
+
+
+### Security Fix: CA private key now created privately
+
+Previously, Puppet generated a CA private key (Puppet[:cacert]) that was initially world readable, which would create a security vulnerability. Restarting the Puppet master (via webrick, passenger, puppetserver or executing the `puppet cert generate` command) would automatically resolve the issue, so the vulnerability was limited to the time between when Puppet was installed/started and when it was restarted.
+
+This change ensures Puppet creates the CA private key with mode 640 initially.
+
+The private host key (Puppet[:hostprivkey]) had the same issue, but the parent directory was not world executable/traversable, so it wasn't a security issue. This change also fixes the host private key in the same manner as the CA private key.
+
+### Security Fix: Windows OpenSSL
+
+[Update Windows OpenSSL version to 1.0.2d from 1.0.0s](https://tickets.puppetlabs.com/browse/PUP-5273)
+
+### Bug Fix: Windows Password Management
+
+* [PUP-5271: Windows user resource should not manage password unless specified](https://tickets.puppetlabs.com/browse/PUP-5271)
+
+Previously, if you were attempting to create users without specifying the password and you had the Windows Password Policy for `Password must meet complexity requirements` set to Enabled, it Puppet would fail to create the user. Now it works appropriately.
+
+**NOTE:** When the Windows Password Policy `Minimum password length` is greater than 0, the password must always be specified. This is due to Windows validation for new user creation requiring a password for all new accounts, so it is not possible to leave password unspecified once the policy is set.
+
+It is also important to note that when a user is specified with `managehome => true`, the password must always be specified if it is not an already existing user on the system.
+
+
+### Bug Fixes: Misc
+
+* [PUP-5398: Fix regression that reintroduced file watching for directory environmnents](https://tickets.puppetlabs.com/browse/PUP-5398) A regression introduced in 3.7.5 would cause a directory based environment to reload if a file was changed, or cause a premature cache timeout if the `filetimeout` setting had a shorter time than the environment cache.
+The regression could also cause performance degradation in general due to many calls to get status of files.
+* [PUP-5380: Slow catalog run after updating to Puppet 3.7.5](https://tickets.puppetlabs.com/browse/PUP-5380)
+* [PUP-5350: Puppet filter function does not behave consistently across all supported argument types.](https://tickets.puppetlabs.com/browse/PUP-5350) The `filter()` function did not behave according to specification when filtering a hash, as it did not enforce that only boolean true as a return from the lambda would include the element in the result. Instead, any "truthy" value was accepted. Now, only boolean true will include an element in the result.
+* [PUP-5271: Windows user resource should not manage password unless specified](https://tickets.puppetlabs.com/browse/PUP-5271)
+* [PUP-4495: Puppet 3.5.0 introduced a regression in tag filtering for catalog runs](https://tickets.puppetlabs.com/browse/PUP-4495) When filtering on the agent with a qualified tag having multiple name segments using commandline with --tag option, the given was processed by breaking the name a part as if multiple tags had been specified. This could lead to surprising results. Now, this regression is fixed, and the entire given tag is used as is when searching.
+
+
 
 ## Puppet 3.8.3
 
