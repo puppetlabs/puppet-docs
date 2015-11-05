@@ -7,10 +7,10 @@ canonical: "/ja/pe/quick_start_install_mono_ja.html"
 <div>
 <h2 id="overview">概要</h2>
 
-<p> このガイドでは、モノリシックインストール手順について説明します。この手順にそって操作すれば、Puppet Enterprise (PE)を簡単に効率よく使い始めることができます。 モノリシック環境は、Puppet Enterpriseを評価する場合や、管理対象のPuppet agentノードが500台以下の場合に最適です。 大規模なインストールの場合は、<a href="./install_pe_split.html">分割インストール</a>を実施します。
+<p> このガイドでは、モノリシックインストール手順について説明します。この手順にそって操作すれば、Puppet Enterprise (PE)を簡単に効率よく使い始めることができます。 モノリシック環境は、Puppet Enterpriseを評価する場合や、管理対象のPuppet agentノードが500台以下の場合に最適です。 大規模なインストールの場合は、<a href="/pe/2015.2/install_pe_split.html">分割インストール</a>を実施します。
 </p>
 
-<p> モノリシックPuppet Enterprise環境では、1台のノードにPuppet master、Puppet Enterprise Webコンソール、PuppetDBをインストールします。 Puppet agentは、後の過程でインストールします。「<a href="./quick_start_install_agents_nix_ja.html">agentのインストールクイックスタートガイド(*nix)</a>」または「<a href="./quick_start_install_agents_windows.html">agentのインストールクイックスタートガイド(Windows)</a>」を参照してください。
+<p> モノリシックPuppet Enterprise環境では、1台のノードにPuppet master、Puppet Enterprise Webコンソール、PuppetDBをインストールします。 Puppet agentは、後の過程でインストールします。「<a href="./quick_start_install_agents_nix_ja.html">agentのインストールクイックスタートガイド(*nix)</a>」または「<a href="/pe/2015.2/quick_start_install_agents_windows.html">agentのインストールクイックスタートガイド(Windows)</a>」を参照してください。
 </p>
 
 <p> Puppet Enterprise環境のコンポーネントについて、詳しくはPEマニュアルの「<a href="./install_basic_ja.html">インストールの概要</a>」を参照してください。
@@ -24,7 +24,7 @@ canonical: "/ja/pe/quick_start_install_mono_ja.html"
 
   <ul>
 <li>
-      <p> 「<a href="./install_system_requirements.html#monolithic-all-in-one-installation">システム要件</a>」を参照し、ハードウェアの必要条件が満たされていることを確認してください。
+      <p> 「<a href="/pe/2015.2/install_system_requirements.html#monolithic-all-in-one-installation">システム要件</a>」を参照し、ハードウェアの必要条件が満たされていることを確認してください。
 </p>
     </li>
     <li>
@@ -44,11 +44,11 @@ canonical: "/ja/pe/quick_start_install_mono_ja.html"
 <li>
 <a href="#general-prerequisites-and-notes">一般的な前提条件</a>を確認します。</li>
   <li>
-    <p> <a href="./install_basic.html#downloading-puppet-enterprise">適切なPE tarballをダウンロードし、検証します</a>。必要に応じて、Puppet Enterpriseのインストール先マシンにtarballをコピーします。
+    <p> <a href="./install_basic_ja.html#downloading-puppet-enterprise">適切なPE tarballをダウンロードし、検証します</a>。必要に応じて、Puppet Enterpriseのインストール先マシンにtarballをコピーします。
 </p>
 
     <blockquote>
-      <p> <strong>ヒント</strong>: agentのみのtarballではなく、完全なPuppet Enterprise tarballをダウンロードしてください。 agentのみのtarballは、<a href="./install_agents.html">パッケージ管理によってagentをインストール</a>する際に使用します。 このインストール方法については、このガイドでは取り上げません。
+      <p> <strong>ヒント</strong>: agentのみのtarballではなく、完全なPuppet Enterprise tarballをダウンロードしてください。 agentのみのtarballは、<a href="/pe/2015.2/install_agents.html">パッケージ管理によってagentをインストール</a>する際に使用します。 このインストール方法については、このガイドでは取り上げません。
 </p>
     </blockquote>
   </li>
@@ -131,7 +131,7 @@ canonical: "/ja/pe/quick_start_install_mono_ja.html"
 <ol>
 <li>
 <strong>コントロールワークステーションで</strong>Webブラウザを開き、インストーラによって提供されたアドレス(例: <code>https://master.example.com</code>)にアクセスします。
-一般的なブラウザでは、署名機関である<em>あなた自身</em>が、Puppet Enterpriseのデプロイの有効な署名機関として認識されていないため、信頼できない証明書に関する警告メッセージが表示されます。<strong>この警告メッセージは無視して、証明書を承認します</strong>。この手順は、<a href="./console_accessing.html">ブラウザによって異なります</a>。</li>
+一般的なブラウザでは、署名機関である<em>あなた自身</em>が、Puppet Enterpriseのデプロイの有効な署名機関として認識されていないため、信頼できない証明書に関する警告メッセージが表示されます。<strong>この警告メッセージは無視して、証明書を承認します</strong>。この手順は、<a href="/pe/2015.2/console_accessing.html">ブラウザによって異なります</a>。</li>
   <li>
     <p> コンソールのログインページで、ユーザー名に<strong>admin</strong>を使用し、Puppet masterのインストール時に入力したパスワードを使用して<strong>ログイン</strong>します。
 </p>
@@ -140,6 +140,6 @@ canonical: "/ja/pe/quick_start_install_mono_ja.html"
 </p>
   </li>
 </ol>
-<p> 次の手順: Agentのインストール — <a href="./quick_start_install_agents_windows.html">Windows</a>または<a href="./quick_start_install_agents_nix.html">*nix</a>
+<p> 次の手順: Agentのインストール — <a href="/pe/2015.2/quick_start_install_agents_windows.html">Windows</a>または<a href="./quick_start_install_agents_nix_ja.html">*nix</a>
 </p>
 </div>
