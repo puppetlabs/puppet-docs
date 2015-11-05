@@ -8,29 +8,41 @@ canonical: "/ja/pe/quick_start_helloworld_ja.html"
 <div>
 <h2 id="overview">概要</h2>
 
-<div class="real-paragraph"> <p class="temp-sentence">このクイックスタートガイドでは、Puppetモジュールを記述するのに必須となる知識について説明します。</p> <p class="temp-sentence">以下では、簡単な*nixベースのモジュールを記述します。このモジュールには、ログイン時に表示されるメッセージを管理するクラス(motd)と、Puppetの実行時にコマンドラインで通知を作成するクラスの2つのクラスが含まれています。</p>
+<div class="real-paragraph"> <div class="real-paragraph"> <p class="temp-sentence">このクイックスタートガイドでは、Puppetモジュールを記述するのに必須となる知識について説明します。</p>
+</div> <div class="real-paragraph"> <p class="temp-sentence">以下では、簡単な*nixベースのモジュールを記述します。このモジュールには、ログイン時に表示されるメッセージを管理するクラス(motd)と、Puppetの実行時にコマンドラインで通知を作成するクラスの2つのクラスが含まれています。</p>
+</div>
 </div>
 
-<div class="real-paragraph"> <p class="temp-sentence">ここで記述するモジュールには、多くの機能は含まれていません。このガイドでは、モジュールの基本的なディレクトリ構造と、Puppet Enterprise Webコンソールにクラスを割り当てる方法を理解することに主眼を置いています。</p> <p class="temp-sentence">より複雑なモジュールの記述方法については、ほかのクイックスタートガイドで取り上げます。</p>
+<div class="real-paragraph"> <div class="real-paragraph"> <p class="temp-sentence">ここで記述するモジュールには、多くの機能は含まれていません。このガイドでは、モジュールの基本的なディレクトリ構造と、Puppet Enterprise Webコンソールにクラスを割り当てる方法を理解することに主眼を置いています。</p>
+</div> <div class="real-paragraph"> <p class="temp-sentence">より複雑なモジュールの記述方法については、ほかのクイックスタートガイドで取り上げます。</p>
+</div>
 </div>
 
 <h2 id="write-the-helloworld-class">
 <code>helloworld</code>クラスの記述</h2>
 
-<div class="real-paragraph"> <p class="temp-sentence">モジュールによっては、サイズが大きく複雑なため、試行錯誤を繰り返す必要がある場合があります。</p> <p class="temp-sentence">ここでは、簡単に記述できるモジュールを紹介します。</p> <p class="temp-sentence">このモジュールではクラスを2つだけ記述します。</p>
+<div class="real-paragraph"> <div class="real-paragraph"> <p class="temp-sentence">モジュールによっては、サイズが大きく複雑なため、試行錯誤を繰り返す必要がある場合があります。</p>
+</div> <div class="real-paragraph"> <p class="temp-sentence">ここでは、簡単に記述できるモジュールを紹介します。</p>
+</div> <div class="real-paragraph"> <p class="temp-sentence">このモジュールではクラスを2つだけ記述します。</p>
+</div>
 </div>
 
 <blockquote>
   <h3 id="a-quick-note-about-modules">モジュールに関する注意</h3>
 
-  <div class="real-paragraph"> <p class="temp-sentence">デフォルトで、ノード管理に使用するモジュールは、<code>/etc/puppetlabs/code/environments/production/modules</code>内に格納されています。</p> <p class="temp-sentence">これらのモジュールには、Puppet Enterpriseによってインストールされたモジュール、Forgeからダウンロードしたモジュール、ユーザーが記述したモジュールが含まれます。</p>
+  <div class="real-paragraph"> <div class="real-paragraph"> <p class="temp-sentence">デフォルトで、ノード管理に使用するモジュールは、<code>/etc/puppetlabs/code/environments/production/modules</code>内に格納されています。</p>
+</div> <div class="real-paragraph"> <p class="temp-sentence">これらのモジュールには、Puppet Enterpriseによってインストールされたモジュール、Forgeからダウンロードしたモジュール、ユーザーが記述したモジュールが含まれます。</p>
+</div>
 </div>
 
-  <div class="real-paragraph"> <p class="temp-sentence"><strong>注意</strong>: Puppet Enterpriseによって<code>/opt/puppetlabs/puppet/modules</code>にもモジュールがインストールされますが、このディレクトリ内のモジュールを変更したり、作成したモジュールを追加したりしないでください。</p>
+  <div class="real-paragraph"> <div class="real-paragraph"> <p class="temp-sentence"><strong>注意</strong>: Puppet Enterpriseによって<code>/opt/puppetlabs/puppet/modules</code>にもモジュールがインストールされますが、このディレクトリ内のモジュールを変更したり、作成したモジュールを追加したりしないでください。</p>
+</div>
 </div>
 </blockquote>
 
-<div class="real-paragraph"> <p class="temp-sentence">モジュールとは即ちディレクトリのツリー構造です。</p> <p class="temp-sentence">ここでは、以下のファイルを作成します。</p>
+<div class="real-paragraph"> <div class="real-paragraph"> <p class="temp-sentence">モジュールとは即ちディレクトリのツリー構造です。</p>
+</div> <div class="real-paragraph"> <p class="temp-sentence">ここでは、以下のファイルを作成します。</p>
+</div>
 </div>
 
 <ul>
@@ -47,7 +59,8 @@ canonical: "/ja/pe/quick_start_helloworld_ja.html"
     </ul>
 </li>
 </ul>
-<div class="real-paragraph"> <p class="temp-sentence"><strong><code>helloworld</code>クラスの記述手順</strong></p>
+<div class="real-paragraph"> <div class="real-paragraph"> <p class="temp-sentence"><strong><code>helloworld</code>クラスの記述手順</strong></p>
+</div>
 </div>
 
 <ol>
@@ -55,7 +68,8 @@ canonical: "/ja/pe/quick_start_helloworld_ja.html"
   <li>
 <code>mkdir -p helloworld/manifests</code>を実行して、新規モジュールのディレクトリとマニフェストのディレクトリを作成します。</li>
   <li>
-    <div class="real-paragraph"> <p class="temp-sentence"><code>manifests</code>ディレクトリで、テキストエディタを使って<code>init.pp</code> ファイルを作成し、以下のPuppetコードを追加します。</p>
+    <div class="real-paragraph"> <div class="real-paragraph"> <p class="temp-sentence"><code>manifests</code>ディレクトリで、テキストエディタを使って<code>init.pp</code> ファイルを作成し、以下のPuppetコードを追加します。</p>
+</div>
 </div>
 
     <pre><code> class helloworld {
@@ -67,7 +81,8 @@ canonical: "/ja/pe/quick_start_helloworld_ja.html"
   </li>
   <li>ファイルを保存し、テキストエディタを終了します。</li>
   <li>
-    <div class="real-paragraph"> <p class="temp-sentence"><code>manifests</code>ディレクトリで、テキストエディタで<code>motd.pp</code>ファイルを作成し、以下のPuppetコードを追加します。</p>
+    <div class="real-paragraph"> <div class="real-paragraph"> <p class="temp-sentence"><code>manifests</code>ディレクトリで、テキストエディタで<code>motd.pp</code>ファイルを作成し、以下のPuppetコードを追加します。</p>
+</div>
 </div>
 
     <pre><code> class helloworld::motd {
@@ -85,27 +100,35 @@ canonical: "/ja/pe/quick_start_helloworld_ja.html"
   <li>ファイルを保存し、テキストエディタを終了します。</li>
 </ol>
 <blockquote>
-  <div class="real-paragraph"> <p class="temp-sentence">できました！</p> <p class="temp-sentence">Puppetの実行時に通知メッセージを表示するクラスと、サーバー上でmotdを管理するクラスの2つのクラスを含むモジュールの記述が完成しました。これらの操作については、クラスを追加した後、詳しく取り上げます。</p> <p class="temp-sentence">Puppetサーバーが更新され、クラスがノードで使用可能になるまで少し時間がかかります。</p>
+  <div class="real-paragraph"> <div class="real-paragraph"> <p class="temp-sentence">できました！</p>
+</div> <div class="real-paragraph"> <p class="temp-sentence">Puppetの実行時に通知メッセージを表示するクラスと、サーバー上でmotdを管理するクラスの2つのクラスを含むモジュールの記述が完成しました。これらの操作については、クラスを追加した後、詳しく取り上げます。</p>
+</div> <div class="real-paragraph"> <p class="temp-sentence">Puppetサーバーが更新され、クラスがノードで使用可能になるまで少し時間がかかります。</p>
+</div>
 </div>
 </blockquote>
 
 <h2 id="add-the-helloworld-and-helloworldmotd-classes-in-the-console">
 <code>helloworld</code>クラスと<code>helloworld::motd</code>クラスをコンソールに追加する</h2>
 
-<div class="real-paragraph"> <p class="temp-sentence">ここでは、「<strong>HelloWorld</strong>」というノードグループを作成し、<code>helloworld</code>クラスを追加します。</p> <p class="temp-sentence">使用環境やインフラに応じて別のグループにNTPを割り当てる場合も、手順は同じです。</p>
+<div class="real-paragraph"> <div class="real-paragraph"> <p class="temp-sentence">ここでは、「<strong>HelloWorld</strong>」というノードグループを作成し、<code>helloworld</code>クラスを追加します。</p>
+</div> <div class="real-paragraph"> <p class="temp-sentence">使用環境やインフラに応じて別のグループにNTPを割り当てる場合も、手順は同じです。</p>
+</div>
 </div>
 
-<div class="real-paragraph"> <p class="temp-sentence"><strong>HelloWorldノードグループの作成手順</strong></p>
+<div class="real-paragraph"> <div class="real-paragraph"> <p class="temp-sentence"><strong>HelloWorldノードグループの作成手順</strong></p>
+</div>
 </div>
 
 <ol>
 <li>コンソールのサイドナビゲーションバーにある[<strong>Nodes</strong>]をクリックし、[<strong>Classification</strong>]を選択します。</li>
   <li>[<strong>Node group name</strong>]フィールドに「<strong>HelloWorld</strong>」と入力し、グループ名を指定します。</li>
   <li>
-    <div class="real-paragraph"> <p class="temp-sentence">[<strong>Add group</strong>]をクリックします。</p>
+    <div class="real-paragraph"> <div class="real-paragraph"> <p class="temp-sentence">[<strong>Add group</strong>]をクリックします。</p>
+</div>
 </div>
 
-    <div class="real-paragraph"> <p class="temp-sentence"><strong>注意</strong>: [<strong>Parent name</strong>]と[<strong>Environment</strong>]の値はデフォルト値(<strong>All Nodes</strong>、<strong>production</strong>)のままにしておきます。</p>
+    <div class="real-paragraph"> <div class="real-paragraph"> <p class="temp-sentence"><strong>注意</strong>: [<strong>Parent name</strong>]と[<strong>Environment</strong>]の値はデフォルト値(<strong>All Nodes</strong>、<strong>production</strong>)のままにしておきます。</p>
+</div>
 </div>
   </li>
   <li>[<strong>Classification</strong>]ページで、[<strong>HelloWorld</strong>]グループをクリックし、[<em>_Rules</em>]タブをクリックします。</li>
@@ -113,59 +136,76 @@ canonical: "/ja/pe/quick_start_helloworld_ja.html"
   <li>[<strong>Operator</strong>]ドロップダウンリストから[<strong>matches regex</strong>]を選択します。</li>
   <li>[<strong>Value</strong>]フィールドに「.*」(引用符なし)と入力します。</li>
   <li>
-    <div class="real-paragraph"> <p class="temp-sentence">[<strong>Add rule</strong>]をクリックします。</p>
+    <div class="real-paragraph"> <div class="real-paragraph"> <p class="temp-sentence">[<strong>Add rule</strong>]をクリックします。</p>
+</div>
 </div>
 
-    <div class="real-paragraph"> <p class="temp-sentence">このルールによって、<strong>HelloWorld</strong>グループに[“dynamically” pin all nodes](すべてのノードが「動的に」ピン)されます(./console_classes_groups.html#adding-nodes-dynamically)。</p> <p class="temp-sentence">このルールはテスト目的で作成します。</p> <p class="temp-sentence">本稼働環境でグループのノードをピンするかどうかは、状況によって異なります。</p>
+    <div class="real-paragraph"> <div class="real-paragraph"> <p class="temp-sentence">このルールによって、<strong>HelloWorld</strong>グループに[“dynamically” pin all nodes](すべてのノードが「動的に」ピン)されます(./console_classes_groups.html#adding-nodes-dynamically)。</p>
+</div> <div class="real-paragraph"> <p class="temp-sentence">このルールはテスト目的で作成します。</p>
+</div> <div class="real-paragraph"> <p class="temp-sentence">本稼働環境でグループのノードをピンするかどうかは、状況によって異なります。</p>
+</div>
 </div>
   </li>
 </ol>
-<div class="real-paragraph"> <p class="temp-sentence"><strong>NTPグループへの</strong><code>helloworld</code><strong>クラスの追加手順</strong></p>
+<div class="real-paragraph"> <div class="real-paragraph"> <p class="temp-sentence"><strong>NTPグループへの</strong><code>helloworld</code><strong>クラスの追加手順</strong></p>
+</div>
 </div>
 
 <ol>
 <li>
-    <div class="real-paragraph"> <p class="temp-sentence">[<strong>Classification</strong>]ページで、[<em>_HelloWorld</em>]グループをクリックします。</p>
+    <div class="real-paragraph"> <div class="real-paragraph"> <p class="temp-sentence">[<strong>Classification</strong>]ページで、[<em>_HelloWorld</em>]グループをクリックします。</p>
+</div>
 </div>
   </li>
   <li>
-    <div class="real-paragraph"> <p class="temp-sentence">[<strong>Classes</strong>]タブをクリックします。</p>
+    <div class="real-paragraph"> <div class="real-paragraph"> <p class="temp-sentence">[<strong>Classes</strong>]タブをクリックします。</p>
+</div>
 </div>
   </li>
   <li>
-    <div class="real-paragraph"> <p class="temp-sentence">[<strong>Class name</strong>]フィールドに「<code>helloworld</code>」と入力し始め、オートコンプリートリストから選択します。</p>
+    <div class="real-paragraph"> <div class="real-paragraph"> <p class="temp-sentence">[<strong>Class name</strong>]フィールドに「<code>helloworld</code>」と入力し始め、オートコンプリートリストから選択します。</p>
+</div>
 </div>
   </li>
   <li>
-    <div class="real-paragraph"> <p class="temp-sentence">[<strong>Add class</strong>]をクリックします。</p>
+    <div class="real-paragraph"> <div class="real-paragraph"> <p class="temp-sentence">[<strong>Add class</strong>]をクリックします。</p>
+</div>
 </div>
   </li>
   <li>
-    <div class="real-paragraph"> <p class="temp-sentence">手順3～4を繰り返して、<code>helloworld::motd</code>クラスを追加します。</p>
+    <div class="real-paragraph"> <div class="real-paragraph"> <p class="temp-sentence">手順3～4を繰り返して、<code>helloworld::motd</code>クラスを追加します。</p>
+</div>
 </div>
   </li>
   <li>
-    <div class="real-paragraph"> <p class="temp-sentence">[<strong>Commit change</strong>]ボタンをクリックします。</p>
+    <div class="real-paragraph"> <div class="real-paragraph"> <p class="temp-sentence">[<strong>Commit change</strong>]ボタンをクリックします。</p>
+</div>
 </div>
 
-    <div class="real-paragraph"> <p class="temp-sentence"><strong>注意</strong>: <code>helloworld</code>クラスが<strong>HelloWorld</strong>グループのクラスの一覧リストに表示されますが、この段階ではノードには設定されていません。</p> <p class="temp-sentence">ノードに設定するには、Puppetを実行する必要があります。</p>
+    <div class="real-paragraph"> <div class="real-paragraph"> <p class="temp-sentence"><strong>注意</strong>: <code>helloworld</code>クラスが<strong>HelloWorld</strong>グループのクラスの一覧リストに表示されますが、この段階ではノードには設定されていません。</p>
+</div> <div class="real-paragraph"> <p class="temp-sentence">ノードに設定するには、Puppetを実行する必要があります。</p>
+</div>
 </div>
   </li>
   <li>
-    <div class="real-paragraph"> <p class="temp-sentence">Puppet masterのコマンドラインから、<code>puppet agent -t</code>を実行します。</p>
+    <div class="real-paragraph"> <div class="real-paragraph"> <p class="temp-sentence">Puppet masterのコマンドラインから、<code>puppet agent -t</code>を実行します。</p>
+</div>
 </div>
   </li>
   <li>
-    <div class="real-paragraph"> <p class="temp-sentence">Puppet Enterpriseで管理している各ノード上で、<code>puppet agent -t</code>を実行します。</p>
+    <div class="real-paragraph"> <div class="real-paragraph"> <p class="temp-sentence">Puppet Enterpriseで管理している各ノード上で、<code>puppet agent -t</code>を実行します。</p>
+</div>
 </div>
 
-    <div class="real-paragraph"> <p class="temp-sentence">新たに割り当てたクラスがノードの設定に使用されます。</p>
+    <div class="real-paragraph"> <div class="real-paragraph"> <p class="temp-sentence">新たに割り当てたクラスがノードの設定に使用されます。</p>
+</div>
 </div>
   </li>
 </ol>
 <h3 id="viewing-the-results">結果を表示する</h3>
 
-<div class="real-paragraph"> <p class="temp-sentence">Puppetを初めて実行すると、<code>helloworld</code>クラスが適用され、コマンドラインに以下のように表示されます。</p>
+<div class="real-paragraph"> <div class="real-paragraph"> <p class="temp-sentence">Puppetを初めて実行すると、<code>helloworld</code>クラスが適用され、コマンドラインに以下のように表示されます。</p>
+</div>
 </div>
 
 <pre><code>[root@master manifests]# puppet agent -t
@@ -179,20 +219,26 @@ Notice: /Stage[main]/Helloworld/Notify[hello, world!]/message: defined 'message'
 Notice: Finished catalog run in 9.42 seconds
 </code></pre>
 
-<div class="real-paragraph"> <p class="temp-sentence">この段階で、<code>cat /etc/motd</code>を実行します。</p> <p class="temp-sentence">これで、<code>hello, world!</code>と表示されます。</p>
+<div class="real-paragraph"> <div class="real-paragraph"> <p class="temp-sentence">この段階で、<code>cat /etc/motd</code>を実行します。</p>
+</div> <div class="real-paragraph"> <p class="temp-sentence">これで、<code>hello, world!</code>と表示されます。</p>
+</div>
 </div>
 
 <h2 id="other-resources">その他のリソース</h2>
 
 <blockquote>
-  <div class="real-paragraph"> <p class="temp-sentence">モジュールとモジュールの作成方法については、豊富なリソースが用意されています。</p> <p class="temp-sentence">「<a href="./puppet_modules_manifests.html">モジュールおよびマニフェスト</a>」、「<a href="/guides/module_guides/bgtm.html">モジュール入門ガイド</a>」、「<a href="https://forge.puppetlabs.com/">Puppet Forge</a>」を参照してください。</p>
+  <div class="real-paragraph"> <div class="real-paragraph"> <p class="temp-sentence">モジュールとモジュールの作成方法については、豊富なリソースが用意されています。</p>
+</div> <div class="real-paragraph"> <p class="temp-sentence">「<a href="./puppet_modules_manifests.html">モジュールおよびマニフェスト</a>」、「<a href="/guides/module_guides/bgtm.html">モジュール入門ガイド</a>」、「<a href="https://forge.puppetlabs.com/">Puppet Forge</a>」を参照してください。</p>
+</div>
 </div>
 
-  <div class="real-paragraph"> <p class="temp-sentence"><a href="./quick_start.html">クイックスタートガイドシリーズ</a>には、さらに多くのモジュールの記述練習が紹介されています。</p>
+  <div class="real-paragraph"> <div class="real-paragraph"> <p class="temp-sentence"><a href="./quick_start.html">クイックスタートガイドシリーズ</a>には、さらに多くのモジュールの記述練習が紹介されています。</p>
+</div>
 </div>
 </blockquote>
 
 <hr>
-<div class="real-paragraph"> <p class="temp-sentence">次の手順: <a href="./quick_start_module_install_nix.html">モジュールのインストール(*nix)</a>または<a href="./quick_start_module_install_windows.html">モジュールのインストール(Windows)</a></p>
+<div class="real-paragraph"> <div class="real-paragraph"> <p class="temp-sentence">次の手順: <a href="./quick_start_module_install_nix.html">モジュールのインストール(*nix)</a>または<a href="./quick_start_module_install_windows.html">モジュールのインストール(Windows)</a></p>
+</div>
 </div>
 </div>
