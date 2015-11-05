@@ -55,6 +55,8 @@ The most useful variables to interpolate into environment.conf settings are:
 Allowed Settings
 -----
 
+Note: A restart of puppetserver is not required after creating or modifying an environment's environment.conf file.
+
 {% partial ./_environment_conf_settings.md %}
 
 ### `modulepath`
