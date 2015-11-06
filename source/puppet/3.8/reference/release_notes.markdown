@@ -49,8 +49,8 @@ Released November 3, 2015.
 Puppet 3.8.4 is a maintenance release in the Puppet 3.8 series. It includes a security update for Windows OpenSSL, and fixes a few miscellaneous bugs.
 
 
-* [All fixes for Puppet 3.8.4](https://tickets.puppetlabs.com/browse/PUP-5398?filter=15901)
-* [Introduced in Puppet 3.8.4](https://tickets.puppetlabs.com/browse/PUP-5469?filter=15900)
+* [All fixes for Puppet 3.8.4](https://tickets.puppetlabs.com/issues/?filter=15901)
+* [Introduced in Puppet 3.8.4](https://tickets.puppetlabs.com/issues/?filter=15900)
 
 
 ### Security Fix: CA private key now created privately
