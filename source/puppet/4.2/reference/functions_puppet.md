@@ -1,67 +1,85 @@
-(insert YAML frontmatter here. Not sure yet what the title of this page should be. Writing Functions in the Puppet Language?)
+---
+layout: default
+title: "Writing Functions in the Puppet Language"
+canonical: "/puppet/latest/functions_puppet.html"
+---
 
+[defined_types]: ./lang_defined_types.html
+[literal_types]: ./lang_data_type.html
+[modules]: ./modules_fundamentals.html
+[naming]: ./lang_reserved.html#classes-and-types
+[namespaces]: ./lang_namespaces.html
+[resource]: ./lang_resources.html
+[resource_defaults]: ./lang_defaults.html
+[references_namespaced]: ./lang_data_resource_reference.html
+[function_call]: ./lang_functions.html#choosing-a-call-style
+[classes]: ./lang_classes.html
+[variable]: ./lang_variables.html
+[array]: ./lang_data_array.html
 
-
-You can write functions in the Puppet language.
+You can write your own functions in the Puppet language to transform data and construct values. Functions can optionally take one or more parameters as arguments, then return some other, resulting value from the final expression.
 
 ## Syntax
 
-(see examples like the lang_lambdas and lang_classes pages for how to format this section.)
+The general form of a function written in Puppet language is:
 
-functions look almost exactly like defined types, and then act a lot like lambdas:
+* The [name][naming] of the function
+* An optional **parameter list,** which consists of:
+    * An opening parenthesis
+    * A comma-separated list of **parameters** (e.g. `String $myparam = "default value"`). Each parameter consists of:
+        * An optional [data type][literal_types], which will restrict the allowed values for the parameter (defaults to `Any`)
+        * A [variable][] name to represent the parameter, including the `$` prefix
+        * An optional equals (`=`) sign and **default value** (which must match the data type, if one was specified)
+    * An optional trailing comma after the last parameter
+    * A closing parenthesis
+* An opening curly brace
+* A block of Puppet code
+* A closing curly brace
 
 ~~~ ruby
 function <NAME>(<PARAMETER LIST>) {
   ... body of function ...
-  final statement, which will be the value of the function
+  final expression, which will be the returned value of the function
 }
 ~~~
 
 
-The parameter list acts almost EXACTLY like parameter lists in lambdas do. (In lambdas, it's the part between the pipe characters, like |Integer $x, Integer $y|.) You can pretty much copy that snippet of docs from the lambdas page. Note that whereas the extra arguments parameter is mostly useless in lambdas, it's very useful in functions. (Again, it acts the same way.)
+### Parameters
 
-The one main difference with parameters is with the default values. If you reference a variable in a default value for a parameter, Puppet will always start looking for that variable at top scope. So if you use $fqdn, but then you CALL the function from a class that overrides the variable $fqdn, the parameter's default value will be the value from top scope, not the value from the class. You can reference qualified variable names in a function default value, but compilation will fail if that class wasn't declared by the time the function gets called.
+Functions are passed arguments by **parameter position.** This means that the _order_ of parameters is important, and the paramater names will not affect the order they are passed.
 
-Unlike functions written in ruby, functions written in Puppet CANNOT accept a lambda as their final argument.
+#### Mandatory and Optional Parameters
 
-As for the statements in the body of the function: you can basically do anything at all in there. AFAICT there aren't any special rules. BUT, you should avoid declaring resources, and you should be careful about causing any other side effects. Functions are supposed to be for constructing values and transforming data. If you want to create resources based on inputs, that's what defined types are for!
+If a parameter has a default value, it's optional --- the function will use the default if the caller doesn't provide a value for that parameter.
 
-Also, the final expression in the function body will be the value returned by the function:
+If you reference a variable in a default value for a parameter, Puppet will always start looking for that variable at top scope. So if you use `$fqdn`, but then you call the function from a class that overrides the variable `$fqdn`, the parameter's default value will be the value from top scope, not the value from the class. You can reference qualified variable names in a function default value, but compilation will fail if that class wasn't declared by the time the function gets called.
 
-- this is almost exactly how lambdas work.
-- Note that pretty much all the conditional expressions in the puppet language have values that work in a similar way, so you can use an if statement or a case statement as the final expression to give different values based on different numbers of inputs (for example).
-
-## Naming
-
-Same rules as class or defined type names. Copy those rules here.
-
-If it's in a module, it should have a namespaced name, same as classes etc.
+However, since parameters are passed by position, _any optional parameters have to be listed after all required parameters._ You cannot put a required parameter after an optional one, because it will cause an evaluation error.
 
 
-## Location
+#### The Extra Arguments Parameter
 
-Functions should go in modules. They go in the `functions` folder, which is a top-level directory, a sibling of `manifests`, `lib`, et al.
+The _final_ parameter of a function can optionally be a special _extra arguments parameter,_ which will collect an unlimited number of extra arguments into an array. This is useful when you don't know in advance how many arguments the caller will provide.
 
-Puppet autoloads them based on name, with the same rules as classes or defined types. (copy rules here.)
+To specify that the last parameter should collect extra arguments, write an asterisk/splat (`*`) in front of its name in the parameter list (like `*$others`). You can't put a splat in front of any parameter except the last one.
 
-You can also put functions in the main manifest, in which case they can have any name. You mostly shouldn't do that, for the same reason you shouldn't generally do it for classes or defined types.
+An extra arguments parameter is always optional.
 
-If you do put a function in the main manifest, it will override any function of the same name from modules. (It can't override built-in functions, though.)
+The value of an extra arguments parameter is always an [array][], containing every argument in excess of the earlier parameters. If there are no extra arguments and no default value, it will be an empty array.
 
-## Behavior
+An extra arguments parameter can have a default value, which has some automatic array wrapping for convenience:
 
-Once a function is written and available (usually by putting it in a module where the autoloader will be able to find it), you can call that function in any puppet manifest. The arguments you pass to the function call will map to the parameters defined in the function's definition. You will have to provide arguments for the mandatory parameters, and can choose whether to provide arguments for the optional ones.
+* If the provided default is a non-array value, the real default will be a single-element array containing that value.
+* If the provided default is an array, the real default will be that array.
 
-The function call acts like a normal function call, and resolves to the function's value.
-
-link here to language docs on function calls.
+An extra arguments parameter can also have a [data type.][literal_types] Puppet will use this data type to validate _the elements_ of the array. That is, if you specify a data type of `String`, the final data type of the extra arguments parameter will be `Array[String]`.
 
 
-## Examples
+### The Function Body
 
-### Small Example
+Functions are meant for constructing values and transforming data, so the body of your function code will differ based on what you're trying to achieve with your function, and the parameters that you're requiring. You should avoid declaring resources in the body of your function. If you want to create resources based on inputs, that's what [defined types][defined_types] are for.
 
-Here's one that just transforms some data, it's a copy of a ruby function in the puppetlabs-apache module (https://github.com/puppetlabs/puppetlabs-apache/blob/master/lib/puppet/parser/functions/bool2httpd.rb)
+The final expression in the function body will be the value returned by the function.
 
 ~~~ ruby
 function apache::bool2http($arg) {
@@ -73,11 +91,9 @@ function apache::bool2http($arg) {
 }
 ~~~
 
-### Large Example
+Most conditional expressions in the Puppet language have values that work in a similar way, so you can use an if statement or a case statement as the final expression to give different values based on different numbers or types of inputs.
 
-This one does something much more complicated and it's a copy of a function in the puppetlabs-postgresql module (https://github.com/puppetlabs/puppetlabs-postgresql/blob/master/lib/puppet/parser/functions/postgresql_acls_to_resources_hash.rb)
 
-(I tested this with the spec tests from https://github.com/puppetlabs/puppetlabs-postgresql/blob/master/spec/unit/functions/postgresql_acls_to_resources_hash_spec.rb, and it gives the same results.)
 
 ~~~ ruby
 # This internal function translates the ipv(4|6)acls format into a resource
@@ -173,3 +189,29 @@ function postgresql::acls_to_resource_hash(Array $acls, String $id, Integer $off
 }
 ~~~
 
+
+## Location
+
+Functions you write should be stored in modules. They go in the `functions` folder, which is a top-level directory, a sibling of `manifests`, `lib`, et al. You should only be defining one function per file, and each filename should reflect the name of the function being defined. For larger, more complex blocks of functional code, see [classes][].
+
+Puppet is automatically aware of any functions in a valid module and will autoload them by name.
+
+> ### Aside: Best Practices
+>
+> You should usually only write functions in modules. Although the additional options below this aside will work, they are not recommended.
+
+You can also put functions in the main manifest, in which case they can have any name.
+
+If you do put a function in the main manifest, it will override any function of the same name from all modules. (It cannot override built-in functions, though.)
+
+
+## Naming
+
+[The characters allowed in a function's name are listed here][naming].
+
+
+## Behavior
+
+Once a function is written and available (usually by putting it in a module where the autoloader will be able to find it), you can call that function in any Puppet manifest. The arguments you pass to the function call will map to the parameters defined in the function's definition. You will have to provide arguments for the mandatory parameters, and can choose whether to provide arguments for the optional ones.
+
+The [function call][function_call] acts like a normal call to any other Puppet function, and resolves to the function's value.
