@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Hiera 3: The hiera.yaml Config File"
+title: "Hiera 3.1: The hiera.yaml Config File"
 ---
 
 [common_appdata]: /guides/install_puppet/install_windows.html#the-commonappdata-folder

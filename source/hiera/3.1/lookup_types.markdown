@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Hiera 3: Lookup Types"
+title: "Hiera 3.1: Lookup Types"
 ---
 
 Hiera always takes a lookup key and returns a single value (of some simple or complex data type), but it has several methods for extracting/assembling that one value from the hierarchy. We refer to these as "lookup methods."

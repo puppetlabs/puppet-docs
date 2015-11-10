@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Hiera 3: Using Hiera With Puppet"
+title: "Hiera 3.1: Using Hiera With Puppet"
 ---
 
 [hiera_config]: /references/latest/configuration.html#hieraconfig

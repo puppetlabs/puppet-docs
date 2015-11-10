@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Hiera 3: Creating Hierarchies"
+title: "Hiera 3.1: Creating Hierarchies"
 ---
 
 [config]: ./configuring.html
