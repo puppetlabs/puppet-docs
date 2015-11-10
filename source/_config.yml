@@ -21,6 +21,7 @@ defaultnav:
   /hiera/1: /_includes/hiera1.html
   /hiera/2.0: /_includes/hiera20.html
   /hiera/3.0: /_includes/hiera30.html
+  /hiera/3.1: /hiera/3.1/_hiera_toc.html
   /es: /_includes/es_docs.html
   /es/hiera: /_includes/es_hiera1.html
   /es/learning: /_includes/es_learning_nav.html
@@ -224,7 +225,8 @@ symlink_latest:
   - facter
   - pe
 lock_latest: {
-  puppet: "4.2"
+  puppet: "4.2",
+  hiera: "3.0"
 }
 version_notes:
   # Default notes for upstreams. Tweak these whenever latest de-syncs or re-syncs with PE!
