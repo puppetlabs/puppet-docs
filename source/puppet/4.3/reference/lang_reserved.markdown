@@ -42,6 +42,7 @@ The following words are reserved:
 * `define` --- language keyword
 * `else` --- language keyword
 * `elsif` --- language keyword
+* `environment` --- reserved for symbolic namespace use
 * `false` --- boolean value
 * `function` --- reserved for future use
 * `if` --- language keyword
