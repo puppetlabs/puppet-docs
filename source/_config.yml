@@ -197,6 +197,12 @@ externalsources:
   puppetserver_2.1:
     url: /puppetserver/2.1
     repo: git://github.com/puppetlabs/puppet-server.git
+    # This is a tag:
+    commit: puppet-server-2.1.3-alpha1
+    subdirectory: documentation
+  puppetserver_2.2:
+    url: /puppetserver/2.2
+    repo: git://github.com/puppetlabs/puppet-server.git
     commit: origin/stable
     subdirectory: documentation
   pe3.7:
@@ -226,6 +232,7 @@ symlink_latest:
   - pe
 lock_latest: {
   puppet: "4.2",
+  puppetserver: "2.1",
   hiera: "3.0"
 }
 version_notes:
