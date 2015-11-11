@@ -6,6 +6,39 @@ title: "Facter 3.1: Release Notes"
 [puppet-agent]: /puppet/4.2/reference/about_agent.html
 
 This page documents the history of the Facter 3.1 series. (Previous version: [Facter 3.0 release notes](../3.0/release_notes.html).)
+## Facter 3.1.2
+
+Released November 12, 2015.
+
+Shipped in [puppet-agent][] version 1.3.0.
+
+Facter 3.1.2 is a bug fix release in the Facter 3.1 series.
+
+* [Fixes for Facter 3.1.2](https://tickets.puppetlabs.com/issues/?filter=16011)
+
+### FIX: Correctly Report OSX Versions
+
+Facter was incorrectly omitting a "point release" part of the full version of major releases of the OSX operating system when the point release is "0". For major new releases like "10.11.0", Facter was reporting this version as "10.11". For "10.11.1", Facter correctly reports "10.11.1". This has been addressed so that Facter consistently reports the full version (e.g. "10.11.0") even if the "point release" part of the version number is "0".
+
+* [FACT-1267](https://tickets.puppetlabs.com/browse/FACT1267)
+
+### FIX: Missing Required File
+
+The tarball for Facter 3.1.1 failed to include .gemspec.in, which is required for building from source. This has been fixed.
+
+* [FACT-1266](https://tickets.puppetlabs.com/browse/FACT-1266)
+
+### FIX: Custom Structured Facts
+
+Facter supports a command line syntax for querying into structured facts (e.g. "foo.bar" gets the "bar" member of the hash fact "foo"). This only worked with built-in and external facts, and not custom facts written in Ruby. This has been fixed so that the feature works with all facts.
+
+* [FACT-1254](https://tickets.puppetlabs.com/browse/FACT-1254)
+
+### FIX: System dmidecode on Older Linux
+
+On older Linux kernels, Facter falls back to executing dmidecode to retrieve certain built-in facts. Facter was incorrectly using the system's dmidecode, if present, instead of the one that ships with Puppet Agent. This has been corrected so that the system installed with Puppet Agent is preferred.
+
+* [FACT-1241](https://tickets.puppetlabs.com/browse/FACT-1254)
 
 ## Facter 3.1.1
 
