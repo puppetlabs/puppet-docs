@@ -22,7 +22,7 @@ On managed \*nix systems, you'll now install `puppet-agent` instead of `puppet`.
 
 This is a new name for a new thing. Instead of using package dependencies to bring in tools like Facter, Hiera, and Ruby, it includes private versions of all of them.
 
-It also includes cfacter and MCollective. (You can start using cfacter by setting `cfacter = true` in puppet.conf.)
+It also includes MCollective.
 
 On Windows, you'll use the same package as before, but the open source package now includes MCollective.
 
