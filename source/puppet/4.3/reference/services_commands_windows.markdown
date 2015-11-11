@@ -87,7 +87,6 @@ The Puppet Start Menu Items
 -----
 
 [start_menu]: ./images/start_menu.png
-[cfacter]: ./experiments_cfacter.html
 
 Puppet's installer adds a folder of shortcut items to the Start Menu.
 
@@ -101,9 +100,6 @@ The Start Menu items do the following:
 
 This shortcut automatically requests UAC elevation, then runs [Facter][] in a command prompt window with administrator privileges.
 
-### Run CFacter
-
-This shortcut automatically requests UAC elevation, then runs [CFacter][cfacter] in a command prompt window with administrator privileges.
 
 ### Run Puppet Agent
 
