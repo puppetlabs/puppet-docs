@@ -25,16 +25,13 @@ canonical: "/puppet/latest/reference/lang_facts_and_builtin_vars.html"
 [datatypes]: ./lang_data.html
 [qualified_var_names]: ./lang_variables.html#accessing-out-of-scope-variables
 
-
 Before requesting a [catalog][] (or compiling one with `puppet apply`), Puppet will collect system information with [Facter][]. Puppet receives this information as **facts,** which are **pre-set variables** you can use anywhere in your manifests.
 
 Puppet also pre-sets some **other special variables** which behave a lot like facts.
 
 This page describes how to use facts, and lists all of the special variables added by Puppet.
 
-
-Which Facts?
------
+## Which Facts?
 
 Puppet can access the following facts:
 
@@ -45,8 +42,7 @@ You can see the [list of core facts][core_facts] to get acquainted with what's a
 
 For building other tools, [PuppetDB's API][puppetdb_facts] offers powerful ways to to search and report on your entire deployment's facts. (PuppetDB is included in Puppet Enterprise.)
 
-Data Types
------
+## Data Types
 
 This version of Puppet supports fact values of [any data type][datatypes]. It will never convert boolean, numeric, or structured facts to strings.
 
@@ -66,8 +62,7 @@ if str2bool("$is_virtual") {
 
 This pattern (quote the variable, then pass it to `str2bool`) will work with both stringified facts and full data type support.
 
-Accessing Facts From Puppet Code
------
+## Accessing Facts From Puppet Code
 
 There are two ways to access facts from Puppet code:
 
@@ -121,9 +116,7 @@ if $facts['osfamily'] == 'redhat' {
 
 **Drawbacks:** Only works with Puppet 3.5 or later. Disabled by default in open source releases prior to Puppet 4.0.
 
-
-Special Variables Added by Puppet
------
+## Special Variables Added by Puppet
 
 In addition to Facter's core facts and any custom facts, Puppet creates some special variables of its own. The main categories of special variables are:
 
@@ -148,10 +141,11 @@ The available keys in the `$trusted` hash are:
     * If `authenticated` is `remote`, this is the subject CN extracted from the node's certificate.
     * If `authenticated` is `local`, this is read directly from the `certname` setting.
     * If `authenticated` is `false`, the value of this key will be an empty string.
+* `domain` --- the node's domain, as derived from its validated certificate name. The value can be empty if the certificate name doesn't contain a fully qualified domain name.
 * `extensions` --- a hash containing any [custom extensions][extensions] present in the node's certificate.
     * The keys of the hash will be the [extension OIDs](./ssl_attributes_extensions.html#recommended-oids-for-extensions) --- any OIDs in the ppRegCertExt range will appear using their short names, and other OIDs will appear as plain dotted numbers.
     * If no extensions are present or `authenticated` is `local` or `false`, this will be an empty hash.
-
+* `hostname` --- the node's hostname, as derived from its validated certificate name.
 
 #### Examples
 
@@ -161,11 +155,13 @@ The `$trusted` hash generally looks something like this:
 {
   'authenticated' => 'remote',
   'certname'      => 'web01.example.com',
+  'domain'        => 'example.com',
   'extensions'    => {
                       'pp_uuid'                 => 'ED803750-E3C7-44F5-BB08-41A04433FE2E',
                       'pp_image_name'           => 'storefront_production'
                       '1.3.6.1.4.1.34380.1.2.1' => 'ssl-termination'
-                   }
+                   },
+  'hostname'      => 'web01'
 }
 ~~~
 
@@ -233,4 +229,3 @@ These variables are always defined (by the standards of the `strict_variables` s
 
 * `$module_name` --- the name of the module that contains the current class or defined type.
 * `$caller_module_name` --- the name of the module in which the **specific instance** of the surrounding defined type was declared. This is only useful when creating versatile defined types which will be re-used by several modules.
-
