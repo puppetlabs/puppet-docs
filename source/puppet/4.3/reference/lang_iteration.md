@@ -81,7 +81,7 @@ Examples
 Since the focus of the Puppet language is declaring resources, most people will want to use iteration to declare many similar resources at once:
 
 ~~~ ruby
-$binaries = ["cfacter", "facter", "hiera", "mco", "puppet", "puppetserver"]
+$binaries = ["facter", "hiera", "mco", "puppet", "puppetserver"]
 
 # function call with lambda:
 $binaries.each |String $binary| {
@@ -109,7 +109,7 @@ define puppet::binary::symlink ($binary = $title) {
 }
 
 # using defined type for iteration, somewhere else in your manifests
-$binaries = ["cfacter", "facter", "hiera", "mco", "puppet", "puppetserver"]
+$binaries = ["facter", "hiera", "mco", "puppet", "puppetserver"]
 
 puppet::binary::symlink { $binaries: }
 ~~~

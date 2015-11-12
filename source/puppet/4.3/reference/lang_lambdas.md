@@ -30,7 +30,7 @@ Lambdas are not valid in any other place in the Puppet language, and cannot be a
 Lambdas are written as a list of parameters surrounded by pipe (`|`) characters, followed by a block of arbitrary Puppet code in curly braces. They must be used as part of a [function call.][functions]
 
 ~~~ ruby
-$binaries = ["cfacter", "facter", "hiera", "mco", "puppet", "puppetserver"]
+$binaries = ["facter", "hiera", "mco", "puppet", "puppetserver"]
 
 # function call with lambda:
 $binaries.each |String $binary| {
