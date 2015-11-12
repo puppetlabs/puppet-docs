@@ -3,7 +3,6 @@ layout: default
 title: "Where Did Everything Go in Puppet 4.x?"
 ---
 
-
 [confdir]: /puppet/latest/reference/dirs_confdir.html
 [directory environments]: /puppet/latest/reference/environments.html
 [spec]: https://github.com/puppetlabs/puppet-specifications/blob/master/file_paths.md
@@ -22,7 +21,7 @@ On managed \*nix systems, you'll now install `puppet-agent` instead of `puppet`.
 
 This is a new name for a new thing. Instead of using package dependencies to bring in tools like Facter, Hiera, and Ruby, it includes private versions of all of them.
 
-It also includes cfacter and MCollective. (You can start using cfacter by setting `cfacter = true` in puppet.conf.)
+It also includes MCollective, and Facter now uses the previously experimental [native Facter ("cfacter")](./experiments_cfacter.html).
 
 On Windows, you'll use the same package as before, but the open source package now includes MCollective.
 
