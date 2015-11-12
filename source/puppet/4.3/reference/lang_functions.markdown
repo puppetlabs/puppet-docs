@@ -72,7 +72,6 @@ file {"/etc/ntp.conf":
 include apache # function call; modifies catalog
 
 $binaries = [
-  "cfacter",
   "facter",
   "hiera",
   "mco",
@@ -122,7 +121,6 @@ file {"/etc/ntp.conf":
 apache.include # function call; modifies catalog
 
 $binaries = [
-  "cfacter",
   "facter",
   "hiera",
   "mco",
