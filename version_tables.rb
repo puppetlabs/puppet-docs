@@ -30,7 +30,7 @@ EOT
     case component
       when 'Puppet'
         if x == '3' and x_dot_y.to_f < 3.5
-          "puppet/3/reference/release_notes.html#puppet-#{dotless}"
+          "/puppet/3/reference/release_notes.html#puppet-#{dotless}"
         else
           "/puppet/#{x_dot_y}/reference/release_notes.html#puppet-#{dotless}"
         end
