@@ -3,13 +3,13 @@ layout: default
 title: "Hiera 3: Release Notes"
 ---
 
-[puppet-agent]: https://docs.puppetlabs.com/puppet/4.2/reference/about_agent.html
+[puppet-agent]: /puppet/4.2/reference/about_agent.html
 
 ## Hiera 3.0.4
 
 Released October 29, 2015.
 
-Shipped in [puppet-agent] version 1.2.7.
+Shipped in [puppet-agent][] version 1.2.7.
 
 * [Fixes for Hiera 3.0.4](https://tickets.puppetlabs.com/issues/?filter=15772)
 * [Introduced in Hiera 3.0.4](https://tickets.puppetlabs.com/issues/?filter=15340)
