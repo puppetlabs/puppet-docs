@@ -23,6 +23,11 @@ EOT
     html_table
   end
 
+  def self.puppet_version_for_agent_version(agent_version)
+    agent_info = JSON.load(File.read(Pathname.new(__FILE__).dirname + 'agent.json'))
+    agent_info[agent_version]['Puppet']
+  end
+
   def self.release_notes_for_component_version(component, version) # returns string or nil.
     x = version.split('.')[0]
     x_dot_y = version.split('.')[0..1].join('.')
@@ -33,6 +38,13 @@ EOT
           "/puppet/3/reference/release_notes.html#puppet-#{dotless}"
         else
           "/puppet/#{x_dot_y}/reference/release_notes.html#puppet-#{dotless}"
+        end
+      when 'Puppet Agent'
+        if x_dot_y.to_f < 1.2
+          nil
+        else
+          puppet_docs = puppet_version_for_agent_version(version).split('.')[0..1].join('.')
+          "/puppet/#{puppet_docs}/reference/release_notes_agent.html#puppet-agent-#{dotless}"
         end
       when 'Puppet Server'
         "/puppetserver/#{x_dot_y}/release_notes.html#puppet-server-#{dotless}"

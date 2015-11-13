@@ -26,7 +26,8 @@ body = our_versions.map {|version| # Make a row for each version
   component_versions = components.map {|component| # read from the version info
     VersionTables.link_release_notes_if_applicable(component, version_info[version][component])
   }
-  [version].concat(component_versions)
+  linked_agent_version = VersionTables.link_release_notes_if_applicable('Puppet Agent', version)
+  [linked_agent_version].concat(component_versions)
 }
 
 html_table = VersionTables.table_from_header_and_array_of_body_rows(header, body)
