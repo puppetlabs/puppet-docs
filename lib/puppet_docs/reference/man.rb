@@ -64,6 +64,7 @@ module PuppetDocs
           master
           module
           resource
+          lookup
         )
         categories[:occasional] = %w(
           config
