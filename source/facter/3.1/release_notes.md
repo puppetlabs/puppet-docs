@@ -6,9 +6,10 @@ title: "Facter 3.1: Release Notes"
 [puppet-agent]: /puppet/4.2/reference/about_agent.html
 
 This page documents the history of the Facter 3.1 series. (Previous version: [Facter 3.0 release notes](../3.0/release_notes.html).)
+
 ## Facter 3.1.2
 
-Released November 12, 2015.
+Released November 17, 2015.
 
 Shipped in [puppet-agent][] version 1.3.0.
 
