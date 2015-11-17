@@ -21,39 +21,39 @@ Also of interest: the [Puppet 4.2 release notes](/puppet/4.2/reference/release_n
 
 Released November 17, 2015.
 
-Puppet 4.3.0 is a feature and bug fix release in the Puppet 4 series. It introduces the experimental `lookup` feature.
+Puppet 4.3.0 is a feature and bug fix release in the Puppet 4 series. It introduces the experimental Puppet lookup feature.
 
 
-### New Feature: Data in Modules
+### New Feature: Puppet Lookup
 
-* [PUP-4474: Complete the "data in modules" functionality introduced in Puppet 4.0.0](https://tickets.puppetlabs.com/browse/PUP-4474): The 'data in modules' is a new feature (partially available in earlier 4.x releases) that makes it possible to specify data in environments and modules without requiring that they all share the same hierarchy. Data can be defined using functions or via new Hiera 4 data providers.
+Puppet lookup is a new and improved Hiera-like data lookup system, with lots of room for interesting future growth. It integrates with the existing Hiera system, but fixes a lot of its most frustrating limitations.
 
-* [PUP-4490: Pick up bindings from module's Metadata.json](https://tickets.puppetlabs.com/browse/PUP-4490): A module's `metadata.json` can now define the name of a 'data in modules' data provider directly without the need of specifying the same using the lower level bindings system which required ruby coding.
+{% partial ./_lookup_experimental.md %}
 
-* [PUP-5395: There's no way to set resolution_type when using data bindings](https://tickets.puppetlabs.com/browse/PUP-5395): This adds a new feature to automatic data binding and the lookup function that allows the lookup options to be defined in the data by binding keys in a hash bound to the key `lookup_options`. This makes it possible to get deep merge behavior for select class parameters.
+Today, the summary of Puppet lookup is:
 
-* [PUP-4489: Add data_provider to module metadata](https://tickets.puppetlabs.com/browse/PUP-4489): Module metadata can now optionally contain binding information for a 'data in modules' data provider.
+* You can keep your hierarchy configuration in your environments, so it can be versioned alongside the data it controls.
+* Modules can use Hiera-like data files to specify default values for their parameters.
+* There's a new `lookup` function and `puppet lookup` command, with more powerful features and a more useful interface.
+    * MUCH more powerful. Check out `puppet lookup`'s `--node` and `--explain` options.
+* Automatic class parameter lookup can finally fetch merged data! You can specify merge behavior in your data sources with the new `lookup_options` metadata key.
 
-		"data_provider":  "symbolic_name"
+Custom Hiera backends don't currently work with Puppet lookup.
 
-Where the key `symbolic_name` must be a string that matches /^[a-zA-Z][a-zA-Z0-9_]*$/
+For more details, see:
 
-### New Feature: `lookup` Command Line Application
+* [Quick Reference for Hiera Users](./lookup_quick.html)
+* [Quick Intro to Module Data](./lookup_quick_module.html)
 
-* [PUP-4476: Add a 'puppet lookup' command line application as UI to lookup function](https://tickets.puppetlabs.com/browse/PUP-4476): As part of the new 'data in modules' feature, there is now a command line command `puppet lookup` that can lookup the value for a given key for a given node. This is an intended replacement of the earlier "hiera" command line tool since it is unaware of 'data in modules'.
-### New Feature: New `hiera` Data Provider
+Related tickets:
 
-* [PUP-4485: Add a 'hiera' data provider](https://tickets.puppetlabs.com/browse/PUP-4485): This introduces the capability to have hiera data per environment and per module. This also introduces new features in the hiera.yaml configuration file that is used for environments and modules. The new feature does not apply to the regular hiera, which remains unaffected.
-
-In summary:
-
-* It is now possible to have more precise control over the hierarchy where hiera earlier gave all paths to all backends.
-* Backends written for the regular hiera cannot be used with the new 'data in modules' based implementation (JSON and yaml support is included in Puppet).
-* Data files in JSON and Hiera as used with regular Hiera are compatible with the data in modules implementation.
-* The hiera.yaml configuration file is not compatible with regular Hiera.
-* Automatic data binding, and the `lookup` function operates on the data in the global regular Hiera, environments, and modules. The `hiera_*` functions only operate on the global regular Hiera data.
-
-* [PUP-4475: Add explain-ability to the lookup and data provider APIs](https://tickets.puppetlabs.com/browse/PUP-4475): As part of the 'data in modules' feature - the `lookup` command line tool can now explain how a looked up value was resolved by using the option `--explain`.
+* [PUP-4474: Complete the "data in modules" functionality introduced in Puppet 4.0.0](https://tickets.puppetlabs.com/browse/PUP-4474)
+* [PUP-4490: Pick up bindings from module's Metadata.json](https://tickets.puppetlabs.com/browse/PUP-4490)
+* [PUP-5395: There's no way to set resolution_type when using data bindings](https://tickets.puppetlabs.com/browse/PUP-5395)
+* [PUP-4489: Add data_provider to module metadata](https://tickets.puppetlabs.com/browse/PUP-4489)
+* [PUP-4476: Add a 'puppet lookup' command line application as UI to lookup function](https://tickets.puppetlabs.com/browse/PUP-4476)
+* [PUP-4485: Add a 'hiera' data provider](https://tickets.puppetlabs.com/browse/PUP-4485)
+* [PUP-4475: Add explain-ability to the lookup and data provider APIs](https://tickets.puppetlabs.com/browse/PUP-4475)
 
 ### New Feature: Control the Execution of Augeas Resources
 
