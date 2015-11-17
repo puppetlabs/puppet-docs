@@ -36,7 +36,7 @@ Puppet 4.3.0 is a feature and bug fix release in the Puppet 4 series. It introdu
 
 		"data_provider":  "symbolic_name"
 
-Where the key <symbolic_name> must be a string that matches /^[a-zA-Z][a-zA-Z0-9_]*$/
+Where the key `symbolic_name` must be a string that matches /^[a-zA-Z][a-zA-Z0-9_]*$/
 
 ### New Feature: `lookup` Command Line Application
 
