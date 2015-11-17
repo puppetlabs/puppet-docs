@@ -15,7 +15,8 @@ Shipped in [puppet-agent][] version 1.3.0.
 
 Facter 3.1.2 is a bug fix release in the Facter 3.1 series.
 
-* [Fixes for Facter 3.1.2](https://tickets.puppetlabs.com/issues/?filter=16011)
+* [Fixes for Facter 3.1.2](https://tickets.puppetlabs.com/issues/?filter=16010)
+* [Introduced in Facter 3.1.2](https://tickets.puppetlabs.com/issues/?filter=16111)
 
 ### FIX: Correctly Report OSX Versions
 

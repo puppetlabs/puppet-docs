@@ -23,6 +23,9 @@ Released November 17, 2015.
 
 Puppet 4.3.0 is a feature and bug fix release in the Puppet 4 series. It adds OS X 10.11 (El Capitan) packages, introduces the experimental `lookup` system, support for new language features used by Application Orchestration, augeas improvements, and many bug fixes.
 
+* [Fixed in Puppet 4.3.0](https://tickets.puppetlabs.com/issues/?filter=16109)
+* [Introduced in Puppet 4.3.0](https://tickets.puppetlabs.com/issues/?filter=16108)
+
 ### New Feature: Puppet Lookup
 
 Puppet lookup is a new and improved Hiera-like data lookup system, with lots of room for interesting future growth. It integrates with the existing Hiera system, but fixes a lot of its most frustrating limitations.

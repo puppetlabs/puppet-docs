@@ -13,6 +13,9 @@ Shipped in [puppet-agent][] version 1.3.0.
 
 Hiera 3.0.5 has no functional changes from 3.0.4, but has an increase in version number for testing and packaging purposes with puppet-agent 1.3.0.
 
+* [Fixes for Hiera 3.0.5](https://tickets.puppetlabs.com/issues/?filter=16113)
+* [Introduced in Hiera 3.0.5](https://tickets.puppetlabs.com/issues/?filter=16112)
+
 ## Hiera 3.0.4
 
 Released October 29, 2015.
