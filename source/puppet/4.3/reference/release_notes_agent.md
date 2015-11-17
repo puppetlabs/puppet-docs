@@ -27,7 +27,7 @@ Also of interest: [About Agent](/puppet/4.3/reference/about_agent.html) and the 
 
 Released November 17, 2015.
 
-Includes [Puppet 4.3.0][], [Facter 3.1.2][], [Hiera 3.0.5][], [MCollective 2.8.6][], Ruby 2.1.7, and OpenSSL 1.0.2d.
+Includes [Puppet 4.3.0][], [Facter 3.1.2][], [Hiera 3.0.5][], [MCollective 2.8.6][], Ruby 2.1.7, and OpenSSL 1.0.2d. This version also introduces the [`pxp-agent`](https://github.com/puppetlabs/pxp-agent) component at version 1.0.1 in support of the [PCP Execution Protocol](https://github.com/puppetlabs/pcp-specifications/blob/master/pxp/README.md).
 
 ### New Platforms
 
@@ -35,7 +35,7 @@ This version adds packages for OS X 10.11 (El Capitan).
 
 ### Windows Server 2003 Removed
 
-We no longer provide `puppet-agent` packages that will install on Windows Server 2003 or Server 2003 R2, which were [deprecated](./deprecated_win2003.html) in Puppet 4.2/`puppet-agent` 1.2.
+We no longer provide `puppet-agent` packages that will install on Windows Server 2003 or Server 2003 R2. We [deprecated](./deprecated_win2003.html) those platforms in Puppet 4.2.
 
 ### Bug Fixes
 
