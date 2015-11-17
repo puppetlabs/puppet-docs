@@ -1,1 +1,1 @@
-> Puppet lookup is an experimental feature in this version of Puppet. We might change its interface in subsequent releases before we declare it stable. Please use it and tell us if you see a way to make it better.
+> **Note:** Puppet lookup is an experimental feature in this version of Puppet. We might change its interface in subsequent releases before we declare it stable. Please use it and tell us if you see a way to make it better.

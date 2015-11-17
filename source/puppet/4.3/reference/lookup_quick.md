@@ -4,15 +4,17 @@ title: "Puppet Lookup: Quick Reference for Hiera Users"
 canonical: "/puppet/latest/reference/lookup_quick.html"
 ---
 
-[lookup_function]: TODO
-[lookup_man]: TODO
-[auto_params]: TODO
-[hiera_config]: TODO
-[hiera_4_config]: TODO
-[environment.conf]: TODO
-[puppet.conf]: TODO
-[metadata.json]: TODO
-
+[lookup_function]: /references/4.3.latest/function.html#lookup
+[lookup_man]: /references/4.3.latest/man/lookup.html
+[auto_params]: ./lang_classes.html#include-like-behavior
+[hiera_config]: /hiera/3.0/configuring.html
+[environment.conf]: ./config_file_environment.html
+[puppet.conf]: ./config_file_main.html
+[metadata.json]: ./modules_publishing.html#write-a-metadatajson-file
+[namespace]: ./lang_namespaces.html
+[quick_module]: ./lookup_quick_module.html
+[writing data sources]: /hiera/3.0/data_sources.html
+[hiera_interpolation]: /hiera/3.0/variables.html
 
 {% partial ./_lookup_experimental.md %}
 
@@ -21,72 +23,63 @@ We designed Puppet lookup to be familiar to Hiera users, but there are a few imp
 
 ## What Is Puppet Lookup?
 
-It's a lot like Hiera, except that:
+It's a lot like Hiera, except:
 
 * Environments can configure their own lookup hierarchies, which frees you to manage hierarchy changes like the rest of your code.
-* Modules can contribute default data, which is used if an environment (or classic Hiera) doesn't specify some.
-* The lookup tools are slightly better.
+* Modules have more ways to set default values for their own parameters.
+* The lookup tools are better.
+* You can control merge behavior in new ways.
+    * Related: There's a special key called `lookup_options` that you can never manually look up.
 
 There are some extra details, and we might add more new features in the future, but those are the most important bits.
 
 ## Three Tiers: Classic Hiera → Environment Data → Module Data
 
-Every time you request data through the new Puppet lookup system, Puppet will search three tiers of data:
+Every time you request data through Puppet lookup, Puppet will search three tiers of data, in this order:
 
 1. Classic Hiera.
 2. Environment data.
 3. Module data.
 
-Puppet checks the tiers in that order, with classic Hiera always going first (for backwards compatibility).
-
 If you do a merging lookup, Puppet can combine answers from all three tiers.
+
+### What Are the Tiers For?
+
+* Environment data is the core of Puppet lookup. It's where most of your data should live.
+* Classic Hiera is for global overrides, when you need to fix something before a change can roll through your environments.
+* Module data can only provide default values for a module's own parameters. Puppet lookup enforces that by only using it for keys in a given module's [namespace][]. (For example, Puppet will check the `apache` module for keys starting with `apache::`.)
 
 ## Three Tools: Function, Command, and Automatic Lookup
 
 There are three ways to use Puppet lookup:
 
-* The `lookup` function (see the [function docs][lookup_function]).
-* The `puppet lookup` command (see the [man page][lookup_man]).
-* Automatic class parameter lookup (see the [language docs about automatic lookup][auto_params]).
+* [The `lookup` function][lookup_function] --- for looking up data from Puppet manifests. Replaces `hiera`, `hiera_array`, and `hiera_hash`; you can use optional arguments to control merge behavior and more.
+* [The `puppet lookup` command][lookup_man] --- for looking up data from the CLI. Replaces the `hiera` command. Try the `--node` and `--explain` options to see how much more powerful it is.
+* [Automatic class parameter lookup][auto_params] --- when you omit a class parameter, Puppet now uses Puppet lookup (instead of plain Hiera) to search for `<CLASS NAME>::<PARAMETER>` keys.
 
-### The `lookup` Function
+The Hiera functions and CLI tool are still around, but they can only access classic Hiera.
 
-Puppet manifests can request data with the new `lookup` function. By default, it acts like the `hiera` function; with optional arguments, it can mimic `hiera_array` and `hiera_hash`. (For `hiera_include` behavior, just use `include( lookup(...) )`.)
+## Data Files are Hiera-Compatible
 
-The older Hiera functions are still around, but they can only access classic Hiera.
+If you use Puppet lookup's `hiera` data provider in an environment or module, the YAML and JSON data files work exactly the same as Hiera's do. This means they can interpolate variables, do sub-lookups with the `hiera()` and `alias()` functions, etc. For details, see the following Hiera pages:
 
-See [the `lookup` function docs][lookup_function] for more details.
-
-### The `puppet lookup` Command
-
-The `puppet lookup` command lets you look up data from the CLI.
-
-Use the `--node <NAME>` option to automatically use real facts from PuppetDB. Use the `--explain` option to see how Puppet arrived at a given answer.
-
-See [the puppet lookup man page][lookup_man] for more details.
-
-
-### Automatic Class Parameter Lookup
-
-If you omit a parameter when declaring a class, Puppet automatically looks up the value of `<CLASS NAME>::<PARAMATER NAME>` before using the default value (or failing, if there's no default.) This is called automatic class parameter lookup, or sometimes "data binding".
-
-This feature has changed: instead of using Hiera directly, it now uses Puppet lookup, so it can access environment or module data if classic Hiera doesn't set a value.
-
-Other than that, it works the same as it did before. It can't do merging lookups, and will only use the first value found.
-
-See the [language docs about automatic lookup][auto_params] for more details.
+* [Writing Data Sources][]
+* [Interpolation and Variables][hiera_interpolation]
 
 ## Using Environment Data
 
 ### ...If You Already Use Hiera in Environments
 
-If you already keep classic Hiera's YAML or JSON data in your environments (probably with something like `:datadir: "/etc/puppetlabs/code/environments/%{environment}/hieradata"`), you can switch to new-style environment data like this:
+If you already keep Hiera's YAML or JSON data in your environments (probably with something like `:datadir: "/etc/puppetlabs/code/environments/%{environment}/hieradata"`), you can switch to new-style environment data like this:
 
-* Set `environment_data_provider = hiera` in puppet.conf.
+* Change any `hiera`/`hiera_array`/`hiera_hash` calls in your manifests to use `lookup` instead.
+* Set `environment_data_provider = hiera` in `puppet.conf`. (Individual environments can override this in `environment.conf` if needed.)
 * Create a `hiera.yaml` (version 4) file in each environment, recreating your existing hierarchy. [See below for the file format.][inpage_config_4]
-* Edit your classic `hiera.yaml` to use a datadir outside your environments (like `/etc/puppetlabs/code/hieradata`), so that classic Hiera won't interfere with the new environment data provider.
+* Edit your classic `hiera.yaml` config to use a datadir outside your environments (like `/etc/puppetlabs/code/hieradata`), so that classic Hiera won't interfere with the new environment data provider.
 
-Once these three steps are done, your Puppet infrastructure should work the same way it did before, but you'll have a lot more freedom the next time you want to make changes to your hierarchy.
+Once these steps are done, your Puppet infrastructure should work the same way it did before, but you'll have a lot more freedom the next time you want to make changes to your hierarchy.
+
+To interactively see where Puppet is finding data, log into your Puppet master server and run `sudo puppet lookup <KEY> --node <NAME> --explain`. This will show you whether Puppet is using the new environment data or not.
 
 ### ...In General
 
@@ -98,15 +91,21 @@ To specify a data provider, set a value for the `environment_data_provider` sett
 The default data provider is `none`, which doesn't provide any data. There are two other providers available:
 
 * `hiera` --- Hiera-like data lookup, which is configured with a local [`hiera.yaml` (version 4)][inpage_config_4] file.
-* `function` --- Function-based data lookup, which is a simpler interface. It calls a specially-named Puppet function that returns a hash, and tries to find the requested data as a key in that hash. It's generally better for modules than for environments.
+* `function` --- Function-based data lookup, which obtains a hash from a specially-named Puppet function.
 {% endcapture %}
 
 {{ dataproviders }}
 
-    In an environment, the `function` provider expects a function named `environment::data`. (That's the literal string "environment", not the name of the environment.) This can be one of:
+#### More About the Function Data Provider
 
-    * A Puppet language function, located at `<ENVIRONMENT>/functions/environment/data.pp`.
-    * A Ruby function (using the modern `Puppet::Functions` API), located at `<ENVIRONMENT>/lib/puppet/functions/environment/data.rb`.
+In an environment, the `function` provider calls a function named `environment::data`. (That's the literal string "environment", not the name of the environment.) This function must take no arguments and return a hash; Puppet will try to find the requested data as a key in that hash.
+
+The `environment::data` function can be one of:
+
+* A Puppet language function, located at `<ENVIRONMENT>/functions/environment/data.pp`.
+* A Ruby function (using the modern `Puppet::Functions` API), located at `<ENVIRONMENT>/lib/puppet/functions/environment/data.rb`.
+
+Since using a data function with an environment is kind of impractical, this quick reference won't cover it in detail.
 
 ## Using Module Data
 
@@ -116,153 +115,11 @@ To specify a data provider, set a value for the `data_provider` key in a module'
 
 {{ dataproviders }}
 
-    In a module, the `function` provider expects a function named `<MODULE NAME>::data`. This can be one of:
+### Details and Examples
 
-    * A Puppet language function, located at `<MODULE>/functions/data.pp`.
-    * A Ruby function (using the modern `Puppet::Functions` API), located at `<MODULE>/lib/puppet/functions/<MODULE NAME>/data.rb`.
+Module data works almost exactly like environment data, but it supports a different use case. This makes it more complicated to explain than just "hiera.yaml lives in your environments now," so we put some examples on a separate page:
 
-### Migrating From `params.pp`
-
-If you already use the "params.pp" pattern to set default values for your modules' parameters, you can easily switch to using a function or Hiera-like data. To do this, you'll need to:
-
-* Write a function or a hierarchy of data files that will produce the same values as the `params.pp` manifest.
-    * Use names that your class parameters will automatically look up. So for example, if `params.pp` sets a `$service_name` variable that gets used by class `ntp`, you'd want to assign that value to the key `ntp::service_name`.
-* Set `"data_provider": "function"` or `"data_provider": "hiera"` in the module's `metadata.json` file.
-* Edit the module's main classes to:
-    * Remove any default parameter values that reference variables from the `<MODULE>::params` class.
-    * Stop inheriting from `<MODULE>::params`.
-* Delete the params class.
-
-#### Example With Params.pp
-
-~~~ ruby
-# ntp/manifests/params.pp
-class ntp::params {
-  $autoupdate = false
-  $default_service_name = 'ntpd'
-
-  case $::osfamily {
-    'AIX': {
-      $service_name = 'xntpd'
-    }
-    'Debian': {
-      $service_name = 'ntp'
-    }
-    'RedHat': {
-      $service_name = $default_service_name
-    }
-  }
-}
-~~~
-
-~~~ ruby
-# ntp/manifests/init.pp
-class ntp (
-  $autoupdate   = $ntp::params::autoupdate,
-  $service_name = $ntp::params::service_name,
-) inherits ntp::params {
- ...
-}
-~~~
-
-#### Example With Function
-
-~~~ json
-# ntp/metadata.json
-{
-  ...
-  "data_provider": "function"
-}
-~~~
-
-~~~ ruby
-# ntp/functions/data.pp
-function ntp::data() {
-  $base_params = {
-    'ntp::autoupdate'   => false,
-    'ntp::service_name' => 'ntpd',
-  }
-
-  case $facts['os']['family'] {
-    'AIX': {
-      $os_params = {
-        'ntp::service_name' => 'xntpd'
-      }
-    }
-    'Debian': {
-      $os_params = {
-        'ntp::service_name' => 'ntp'
-      }
-    }
-    default: {
-      $os_params = {}
-    }
-  }
-
-  # merge params and return a single hash
-  $base_params + $os_params
-}
-~~~
-
-~~~ ruby
-# ntp/manifests/init.pp
-# ntp/manifests/init.pp
-class ntp (
-  # default values are in ntp/functions/data.pp
-  $autoupdate
-  $service_name
-) {
- ...
-}
-~~~
-
-#### Example With Hiera
-
-~~~ json
-# ntp/metadata.json
-{
-  ...
-  "data_provider": "hiera"
-}
-~~~
-
-~~~ yaml
-# ntp/hiera.yaml
----
-version: 4
-datadir: data
-hierarchy:
-  - name: "OS family"
-    backend: yaml
-    path: "os/%{facts.os.family}
-
-  - name: "common"
-    backend: yaml
-
-# ntp/data/common.yaml
----
-ntp::autoupdate: false
-ntp::service_name: ntpd
-
-# ntp/data/os/AIX.yaml
----
-ntp::service_name: xntpd
-
-# ntp/data/os/Debian.yaml
-ntp::service_name: ntp
-~~~
-
-~~~ ruby
-# ntp/manifests/init.pp
-# ntp/manifests/init.pp
-class ntp (
-  # default values are in ntp/data
-  $autoupdate
-  $service_name
-) {
- ...
-}
-~~~
+[Quick Intro to Module Data][quick_module]
 
 ## There Are Two `hiera.yaml` Formats Now
 
@@ -271,7 +128,7 @@ class ntp (
 These files have the same name, but they're different. Sorry. We couldn't fix some of Hiera's limitations without a new format, but we couldn't change classic Hiera's config format in a minor Puppet agent release, so you'll be using two different formats for a while.
 
 * [**Old `hiera.yaml`**][hiera_config] configures classic Hiera. It's [documented in the Hiera manual][hiera_config]. Puppet can only use one Hiera config file, and it's global across all environments.
-* [**`hiera.yaml` (version 4)**][hiera_4_config] configures environment and module data. Every environment or module has its own `hiera.yaml` (version 4) file, but there's no global one. The format is [documented on the `hiera.yaml` (version 4) page][hiera_4_config].
+* [**`hiera.yaml` (version 4)**][inpage_config_4] configures environment and module data. Every environment or module has its own `hiera.yaml` (version 4) file, but there's no global one.
 
 ### `hiera.yaml` (Version 4) in a Nutshell
 
@@ -285,9 +142,13 @@ hierarchy:
     backend: yaml
     path: "nodes/%{trusted.certname}"
 
+  # Putting a JSON level between YAML levels like this
+  # was impossible in the old format.
   - name: "Exported JSON nodes"
     backend: json
     paths:
+      # Puppet checks these in order. Even though this is a single
+      # item in the hierarchy, it acts like multiple hierarchy levels.
       - "nodes/%{trusted.certname}"
       - "insecure_nodes/%{facts.fqdn}"
 
@@ -306,11 +167,19 @@ It is a YAML hash that contains three keys:
 * `datadir` --- Optional. The default datadir, for any hierarchy levels that omit it. It is a relative path, from the root of the environment or module. The default is `data`.
 * `hierarchy` --- Optional. A hierarchy of data sources to search, in the new format. If omitted, it defaults to a single source called `common` that uses the YAML backend.
 
-The `hierarchy` is an array, and each item in it is a hash. Unlike in classic Hiera, each hierarchy level can specify its own backend or use a separate datadir.
+The `hierarchy` is an array of hashes. Unlike in classic Hiera, each hierarchy level must specify its own backend, and can optionally use a separate datadir.
 
-Each hierarchy level has an arbitrary human-readable name, which is used for debugging and for `puppet lookup --explain`. If you don't specify any paths to data files, the name will be used as the path. (If the name interpolates variables, Puppet will use the pre-interpolation string as the name but the interpolated version as the path.)
+Each hierarchy level can contain the following keys:
 
-You can specify `path` or `paths` in a hierarchy level, but not both; `paths` will be searched in order, and can be easier to read if you have a bunch of consecutive hierarchy levels that use the same backend and datadir.
+* `name` --- Required. An arbitrary human-readable name, used for debugging and for `puppet lookup --explain`.
 
+    This is also used as the default `path` if you don't specify any paths. (If the name interpolates variables, Puppet will interpolate when finding data files but leave it uninterpolated when reporting the level's name.)
+* `backend` --- Required. Which backend to use. Currently only `yaml` and `json` are supported.
+* `path` --- Optional; mutually exclusive with `paths`. The path to a data file. Can interpolate variables, to use different files depending on a node's facts.
+* `paths` --- Optional; mutually exclusive with `path`. An array of paths to data files, which can interpolate variables. This acts like multiple hierarchy levels, and is shorthand for writing consecutive levels that use the same backend and datadir.
+* `datadir` --- Optional. A one-off datadir to use instead of the default one specified at top level.
 
+#### Interpolation
+
+Variable interpolation in `hiera.yaml` (version 4) works the same way as it does in classic Hiera. See [the Hiera interpolation docs][hiera_interpolation] for details.
 
