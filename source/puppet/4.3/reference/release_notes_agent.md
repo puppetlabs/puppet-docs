@@ -29,6 +29,14 @@ Released November 17, 2015.
 
 Includes [Puppet 4.3.0][], [Facter 3.1.2][], [Hiera 3.0.5][], [MCollective 2.8.6][], Ruby 2.1.7, and OpenSSL 1.0.2d.
 
+### New Platforms
+
+This version adds packages for OS X 10.11 (El Capitan).
+
+### Windows Server 2003 Removed
+
+We no longer provide `puppet-agent` packages that will install on Windows Server 2003 or Server 2003 R2, which were [deprecated](./deprecated_win2003.html) in Puppet 4.2/`puppet-agent` 1.2.
+
 ### Bug Fixes
 
 * Resolves [a daemonization issue on AIX](https://tickets.puppetlabs.com/browse/PA-67) that made the service appear to be inoperative when running.
