@@ -183,3 +183,52 @@ Each hierarchy level can contain the following keys:
 
 Variable interpolation in `hiera.yaml` (version 4) works the same way as it does in classic Hiera. See [the Hiera interpolation docs][hiera_interpolation] for details.
 
+## Specifying Merge Behavior
+
+Classic Hiera could optionally do deep merging of values when doing hash-merge lookups, but you could only configure this globally, in `hiera.yaml` file. This was very hacky, and made a lot of simple use cases totally impossible.
+
+In Puppet lookup, you can't configure global merge behavior like that. Instead, you configure merge behavior on a per-key basis. There are two ways to do this:
+
+* **At lookup time,** as an argument to the `lookup` function or `puppet lookup` command. See the function and command documentation for details.
+* **In the data source,** using the new `lookup_options` metadata key. This allows you to set default merge behavior for any lookup, _including automatic parameter lookup_ (which previously could not do merging lookup at all). If a lookup specifies its own merge behavior, this will override the default behavior.
+
+### Setting `lookup_options` in Data
+
+Any normal data source can set a special `lookup_options` metadata key, which controls the default merge behavior for _other_ keys in your data.
+
+The value of `lookup_options` should be a hash, where:
+
+* Each key is the name of a key that Puppet lookup might be asked for (like `ntp::servers`).
+* Each value is a hash. This hash may contain a `merge` key, whose value is valid for [the `lookup` function's][lookup_function] `merge` argument.
+
+So, for example:
+
+~~~ yaml
+lookup_options:
+  ntp::servers:
+    merge: unique
+~~~
+
+Whenever Puppet looks up a key, it also checks `lookup_options` to see if it contains any merge settings for that key. If it does, it will use that merge behavior unless the lookup request overrides it it.
+
+In the example above, Puppet will default to a `unique` merge (also called an array merge) any time it looks up the `ntp::servers` key, including as a default for the `ntp` class's `$servers` parameter.
+
+#### The `lookup_options` Key is Reserved
+
+`lookup_options` is a special reserved metadata key, and you cannot do a manual lookup for it. If you attempt to look up `lookup_options`, it will fail.
+
+#### Modules Can Set Lookup Options for Their Own Namespace
+
+Usually, module data can only set values for keys in that module's namespace. The `lookup_options` key is special exception: a module can set a value for it, but it can only set options for keys in that module's namespace.
+
+If a module sets options for keys outside its namespace, they will be ignored.
+
+#### Environments and Classic Hiera can Set Options for Anything
+
+...although options from Hiera only apply to Puppet lookup; anything that uses classic Hiera directly will ignore them.
+
+#### Lookup Options are Merged
+
+Before deciding on a merge behavior, Puppet merges the `lookup_options` values using a hash merge. (_Not_ a deep merge; if a higher-priority source sets any options for a given key, it overrides _all_ that key's options from lower-priority sources.)
+
+This allows module authors to request default merge behavior, but also allows end users to override it.
