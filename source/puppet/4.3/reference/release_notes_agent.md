@@ -27,7 +27,7 @@ Also of interest: [About Agent](/puppet/4.3/reference/about_agent.html) and the 
 
 Released November 17, 2015.
 
-Includes [Puppet 4.3.0][], [Facter 3.1.2][], [Hiera 3.0.5][], [MCollective 2.8.6][], Ruby 2.1.7, and OpenSSL 1.0.2d. This version also introduces the [`pxp-agent`](https://github.com/puppetlabs/pxp-agent) component at version 1.0.1 in support of the [PCP Execution Protocol](https://github.com/puppetlabs/pcp-specifications/blob/master/pxp/README.md).
+Includes [Puppet 4.3.0][], [Facter 3.1.2][], [Hiera 3.0.5][], [MCollective 2.8.6][], Ruby 2.1.7, and OpenSSL 1.0.2d. This version also introduces the [`pxp-agent`](https://github.com/puppetlabs/pxp-agent) component at version 1.0.1 in support of the [PCP Execution Protocol](https://github.com/puppetlabs/pcp-specifications/blob/master/pxp/README.md) and forthcoming Application Orchestration features in Puppet Enterprise 2015.3.
 
 ### New Platforms
 
