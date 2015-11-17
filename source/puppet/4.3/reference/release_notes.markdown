@@ -109,7 +109,7 @@ For FOSS users, the `code_id` will have a nil value, and doesn't result in user-
 
 ### Bug Fixes: Resource Types and Providers
 
-* [PUP-2573: Puppet::Agent::Locker#lock doesn't return whether it acquired the lock or not](https://tickets.puppetlabs.com/browse/PUP-2573): The puppet agent uses a lock file to ensure that only one instance is running at a time. However, the agent was susceptible to a race condition that could cause two agents to try to acquire the lock at the same time, and have one of them fail with a generic "Could not run" error. Now the agent will atomically try to acquire the lock, and if that fails, log a meaningful error.
+* [PUP-2573: Puppet::Agent::Locker#lock doesn't return whether it acquired the lock or not](https://tickets.puppetlabs.com/browse/PUP-2573): The Puppet agent uses a lock file to ensure that only one instance is running at a time. However, the agent was susceptible to a race condition that could cause two agents to try to acquire the lock at the same time, and have one of them fail with a generic "Could not run" error. Now the agent will atomically try to acquire the lock, and if that fails, log a meaningful error.
 
 * [PUP-2509: puppet resource service on Solaris needs -H flag](https://tickets.puppetlabs.com/browse/PUP-2509): This change was necessary on Solaris 11 due to a new format for service listings when calling `svcs`. Puppet was fooled into thinking that the literal column headers of the command output were services, when they clearly were not.
 
@@ -160,7 +160,7 @@ Also the log rotation script tried to own permissions for Puppet's log file, whi
 
 * [PUP-2575: OS X group resource triggers spurious notice of a change](https://tickets.puppetlabs.com/browse/PUP-2575): Previously, if the manifest specified group members in a different order than the OSX group provider returned them in, then Puppet would generate a spurious notice that the resource was not insync. The same would also happen if you specified the same member more than once.
 
-* [PUP-4776: `puppet agent arg` silently eats arguments and runs the agent](https://tickets.puppetlabs.com/browse/PUP-4776): Previously, Puppet agent would allow arguments to be passed to it that it didn't understand, and would ignore them. For example, `puppet agent disable`, and because puppet agent deamonizes by default, this would actually start the agent running in the background instead of disabling it. Now puppet agent will reject options it doesn't understand.
+* [PUP-4776: `puppet agent arg` silently eats arguments and runs the agent](https://tickets.puppetlabs.com/browse/PUP-4776): Previously, Puppet agent would allow arguments to be passed to it that it didn't understand, and would ignore them. For example, `puppet agent disable`, and because the Puppet agent deamonizes by default, this would actually start the agent running in the background instead of disabling it. Now the Puppet agent will reject options it doesn't understand.
 
 * [PUP-4771: Static compiler only looks for file content in production environment](https://tickets.puppetlabs.com/browse/PUP-4771): Fixes the static compiler to use the specified environment, rather than always using production.
 
