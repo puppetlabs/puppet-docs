@@ -134,6 +134,8 @@ EOT
 
         if content
           if @name == "configuration" # then get any references to the laptop's hostname out of there
+            # Uh, de-jank this someday.
+            $LOAD_PATH << "#{facter_dir}/lib"
             require 'facter'
             hostname = Facter["hostname"].value
             domain = Facter["domain"].value
