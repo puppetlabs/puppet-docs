@@ -21,8 +21,7 @@ Also of interest: the [Puppet 4.2 release notes](/puppet/4.2/reference/release_n
 
 Released November 17, 2015.
 
-Puppet 4.3.0 is a feature and bug fix release in the Puppet 4 series. It introduces the experimental Puppet lookup feature.
-
+Puppet 4.3.0 is a feature and bug fix release in the Puppet 4 series. It adds OS X 10.11 (El Capitan) packages, introduces the experimental `lookup` system, support for new language features used by Application Orchestration, augeas improvements, and many bug fixes.
 
 ### New Feature: Puppet Lookup
 
