@@ -31,7 +31,7 @@ Includes [Puppet 4.3.0][], [Facter 3.1.2][], [Hiera 3.0.5][], [MCollective 2.8.6
 
 ### New Platforms
 
-This version adds packages for OS X 10.11 (El Capitan) and Fedora 22.
+This release adds `puppet-agent` packages for OS X 10.11 (El Capitan) and Fedora 22.
 
 ### Windows Server 2003 Removed
 
