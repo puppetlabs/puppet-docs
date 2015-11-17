@@ -83,7 +83,7 @@ Related tickets:
 
 * [PUP-2315: function call error message about mis-matched arguments is hard to understand](https://tickets.puppetlabs.com/browse/PUP-2315): When giving arguments to functions, defined types, or classes, and they were not acceptable Puppet would produce too much information and thereby making it hard to understand exactly were the unacceptable argument value was and why it was unacceptable.
 
-This is now much improved and the presented error message points to what to fix.
+    This is now much improved and the presented error message points to what to fix.
 
 * [PUP-4780: enhance versioncmp() error checking as it only accepts strings](https://tickets.puppetlabs.com/browse/PUP-4780): The `versioncmp()` function now type checks its arguments (they must be Strings). Before this, if something other than Strings were given the result could be a confusing error message. Now it is made clear it is a type mismatch problem.
 
@@ -96,7 +96,7 @@ This is now much improved and the presented error message points to what to fix.
 
 * [PUP-5221: (Ankeny) Direct Puppet: code_id support](https://tickets.puppetlabs.com/browse/PUP-5221): This epic covers add a `code_id` field to the catalog during compilation. The catalog sent to the agent and puppetdb will contain & persist the code_id. See the API docs for more information about how this changes the catalog schema.
 
-For FOSS users, the `code_id` will have a nil value, and doesn't result in user-visible behavior changes. In PE Ankeny, the `code_id` will be the git sha from the file sync service.
+    For FOSS users, the `code_id` will have a nil value, and doesn't result in user-visible behavior changes. In PE Ankeny, the `code_id` will be the git sha from the file sync service.
 
 
 ### Bug Fixes: Language
@@ -115,17 +115,17 @@ For FOSS users, the `code_id` will have a nil value, and doesn't result in user-
 
 * [PUP-5016: SysV init script managed by 'init' provider instead of 'debian' provider on Debian8](https://tickets.puppetlabs.com/browse/PUP-5016): In Debian 8 and Ubuntu 15.04, Systemd was introduced as the default service manager. However, many packages and services still utilize older SysVInit scripts to manage services, necessitating the systemd-sysv-init compatibility layer.
 
-This layer confused Puppet into improperly managing SysVInit services on these platforms. The final outcome of this ticket is that Puppet now falls back to the Debian service provider when managing a service without a Systemd unit file. All services should be enable-able, which they were not before due to Puppet incorrectly falling back to the Init provider.
+    This layer confused Puppet into improperly managing SysVInit services on these platforms. The final outcome of this ticket is that Puppet now falls back to the Debian service provider when managing a service without a Systemd unit file. All services should be enable-able, which they were not before due to Puppet incorrectly falling back to the Init provider.
 
-In another, closely related scenario (on versions of Ubuntu before 15.04), the init provider was erroneously being favored over the debian provider when managing the 'enable' attribute of upstart services. This meant that `puppet resource service <name>` would not show whether the service was enabled or not.
+    In another, closely related scenario (on versions of Ubuntu before 15.04), the init provider was erroneously being favored over the debian provider when managing the 'enable' attribute of upstart services. This meant that `puppet resource service <name>` would not show whether the service was enabled or not.
 
-This change causes the debian provider to be used instead, which utilizes upstart rather than init to manage these services. Thus, the `enable` attribute is always displayed when a service is queried.
+    This change causes the debian provider to be used instead, which utilizes upstart rather than init to manage these services. Thus, the `enable` attribute is always displayed when a service is queried.
 
 * [PUP-5271: Windows user resource should not manage password unless specified](https://tickets.puppetlabs.com/browse/PUP-5271): When you are attempting to create users without specifying the password and you have the Windows Password Policy for `Password must meet complexity requirements` set to Enabled, it caused Puppet to fail to create the user. Now it works appropriately.
 
->>NOTE: When the Windows Password Policy `Minimum password length` is greater than 0, the password must always be specified. This is due to Windows validation for new user creation requiring a password for all new accounts, so it is not possible to leave password unspecified once that password policy is set.
+    >>NOTE: When the Windows Password Policy `Minimum password length` is greater than 0, the password must always be specified. This is due to Windows validation for new user creation requiring a password for all new accounts, so it is not possible to leave password unspecified once that password policy is set.
 
-It is also important to note that when a user is specified with `managehome => true`, the password must always be specified if it is not an already existing user on the system.
+    It is also important to note that when a user is specified with `managehome => true`, the password must always be specified if it is not an already existing user on the system.
 
 * [PUP-4633: User resource fails with UTF-8 comment on 2nd run](https://tickets.puppetlabs.com/browse/PUP-4633): Failure to parse existing non-ASCII characters in user comment field - performed when comment is set by the user type - has been fixed.
 
@@ -140,7 +140,7 @@ It is also important to note that when a user is specified with `managehome => t
 * [PUP-1963: Generated resources never receive dependency edges](https://tickets.puppetlabs.com/browse/PUP-1963): Resources created by another type (via the `generate` method) will now have any relationship metaparams respected, and will participate in `autorequire`.
 * [PUP-4918: Logrotate and init scripts permission and signal issues](https://tickets.puppetlabs.com/browse/PUP-4918): Log rotation was incorrectly configured on Fedora/RHEL and Debian-based systems; it pointed to the wrong file location and so would not rotate logs. Fix log locations so log rotation works again.
 
-Also the log rotation script tried to own permissions for Puppet's log file, which conflicted with service restarts on Fedora/RHEL where the Puppet service would also try to update permissions for the log file. Installation on those systems will now set the correct permissions for log files, and the log rotation script will not try to update them.
+    Also the log rotation script tried to own permissions for Puppet's log file, which conflicted with service restarts on Fedora/RHEL where the Puppet service would also try to update permissions for the log file. Installation on those systems will now set the correct permissions for log files, and the log rotation script will not try to update them.
 
 * [PUP-3953: Puppet resource doesn't properly escape single quotes.](https://tickets.puppetlabs.com/browse/PUP-3953): `puppet resource` did not escape single quotes in resource titles, causing it to generate invalid manifests. This commit escapes single quotes so the title is valid.
 
