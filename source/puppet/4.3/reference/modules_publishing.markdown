@@ -52,12 +52,14 @@ This guide assumes that you have already [written a useful Puppet module][fundam
 4. Build an uploadable tarball of your module.
 5. Upload your module using the Puppet Forge's web interface.
 
-###A note on module names
+### A Note on Module Names
+
 Because many users have published their own versions of modules with common names ("mysql," "bacula," etc.), the Puppet Forge (Forge) requires module names to have a username prefix. That is, if a user named "puppetlabs" maintained a "mysql" module, it would be known to the Forge as "puppetlabs-mysql".**Be sure to use this long name in your module's [metadata.json file](#write-a-metadatajson-file).**
 
 As of Puppet 4, your module's directory cannot share this long name, as module directory names cannot contain dashes or periods (only letters, numbers, and underscores). Using the the build action will do the right thing as long as the metadata.json is correct.
 
-###Another note on module names
+### Another Note on Module Names
+
 Although the Puppet Forge expects to receive modules named `username-module`, its web interface presents them as `username/module`. There isn't a good reason for this, and we are working on reconciling the two; in the meantime, be sure to always use the `username-module` style in your metadata files and when issuing commands.
 
 Create a Puppet Forge Account
@@ -80,13 +82,13 @@ Alternately, you can use the `puppet module generate` action to generate a templ
 
 Follow the directions to [generate a new module](https://docs.puppetlabs.com/puppet/latest/reference/modules_fundamentals.html#writing-modules)
 
-###Set files to be ignored
+### Set Files to Be Ignored
 
 It's not unusual to have some files in your module that you want to exclude from your build. You may exclude files by including them in .gitgnore or .pmtignore. Your .pmtignore or .gitignore file must be in the module's root directory, and will be read during the build process.
 
 If you have both a .pmtignore and a .gitignore file, the Puppet module tool will read the .pmtignore file over the .gitignore.
 
-###Remove symlinks
+### Remove Symlinks
 
 Before you build your module, you must make sure that symlinks are either removed or set to be [ignored](#set-files-to-be-ignored). If you try to build a module with symlinks, you will recieve the following error:
 
@@ -256,7 +258,7 @@ Whether you are uploading a brand new module or a new release of an existing mod
 5. A successful upload will result in you being taken to the new release page of your module. Any errors will come up on the same screen. Once your module has been published to the Puppet Forge, the Forge will pull your README, Changelog, and License files from your tarball to display on your module's page. To confirm that it was published correctly, you can [install it][installing] on a new system using the `puppet module install` action.
 
 
-####Notes
+#### Notes
 
 1. You must make sure that your [metadata](#write-a-metadatajson-file) is correct and entirely located in metadata.json, otherwise your module will either not display correctly on the Forge or will error out during upload.
 2. When you release a new version of an already published module, you must increment the `version` field in the metadata.json file (ensuring you use a valid [semantic version](http://semver.org/)).
@@ -305,7 +307,7 @@ Follow the steps below to delete your release:
 
 Once you receive the confirmation banner, your release is officially deleted!
 
-##Downloading a Deleted Release
+## Downloading a Deleted Release
 
 It is still possible to download a specific release of a module, even if it has been deleted. If you check the **Select another release** drop down, the release is still an option in the menu, but is marked as deleted.
 
@@ -315,7 +317,7 @@ If you select the deleted release, a warning banner will appear on the page with
 
    ![download deleted release][delteddownloadwarning]
 
-##Searching For a Deleted Module
+## Searching For a Deleted Module
 
 If the only release of a module is deleted, or if all the releases of a module are deleted, the module will still show up in the Forge's search under some circumstances.
 
