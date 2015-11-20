@@ -12,8 +12,6 @@ canonical: "/puppet/latest/reference/modules_documentation.html"
 [forge]: https://forge.puppetlabs.com/
 [commonmark]: http://commonmark.org/
 
-Documenting Modules
-=====
 
 We strongly encourage you to document any module you write, whether you intend the module solely for internal use or for publication on the [Puppet Forge][forge] (Forge). Documenting your module helps future-you remember what your module was built to do, as well as helping to explain why you chose to do things one way versus another. And anyone else using your module will definitely appreciate it.
 

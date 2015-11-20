@@ -27,7 +27,7 @@ canonical: "/puppet/latest/reference/modules_publishing.html"
 [onereleasesearch]: ./images/onereleasesearch.png
 [noreleasesearch]: ./images/noreleasesearch.png
 [noreleasesearchfilter]: ./images/noreleasesearchfilter.png
-
+[metadata]: ./modules_metadata.html
 
 Publishing Modules on the Puppet Forge
 =====
@@ -52,12 +52,14 @@ This guide assumes that you have already [written a useful Puppet module][fundam
 4. Build an uploadable tarball of your module.
 5. Upload your module using the Puppet Forge's web interface.
 
-###A note on module names
+### A Note on Module Names
+
 Because many users have published their own versions of modules with common names ("mysql," "bacula," etc.), the Puppet Forge (Forge) requires module names to have a username prefix. That is, if a user named "puppetlabs" maintained a "mysql" module, it would be known to the Forge as "puppetlabs-mysql".**Be sure to use this long name in your module's [metadata.json file](#write-a-metadatajson-file).**
 
 As of Puppet 4, your module's directory cannot share this long name, as module directory names cannot contain dashes or periods (only letters, numbers, and underscores). Using the the build action will do the right thing as long as the metadata.json is correct.
 
-###Another note on module names
+### Another Note on Module Names
+
 Although the Puppet Forge expects to receive modules named `username-module`, its web interface presents them as `username/module`. There isn't a good reason for this, and we are working on reconciling the two; in the meantime, be sure to always use the `username-module` style in your metadata files and when issuing commands.
 
 Create a Puppet Forge Account
@@ -80,13 +82,13 @@ Alternately, you can use the `puppet module generate` action to generate a templ
 
 Follow the directions to [generate a new module](https://docs.puppetlabs.com/puppet/latest/reference/modules_fundamentals.html#writing-modules)
 
-###Set files to be ignored
+### Set Files to Be Ignored
 
 It's not unusual to have some files in your module that you want to exclude from your build. You may exclude files by including them in .gitgnore or .pmtignore. Your .pmtignore or .gitignore file must be in the module's root directory, and will be read during the build process.
 
 If you have both a .pmtignore and a .gitignore file, the Puppet module tool will read the .pmtignore file over the .gitignore.
 
-###Remove symlinks
+### Remove Symlinks
 
 Before you build your module, you must make sure that symlinks are either removed or set to be [ignored](#set-files-to-be-ignored). If you try to build a module with symlinks, you will recieve the following error:
 
@@ -99,120 +101,12 @@ Error: Try 'puppet help module build' for usage
 Write a metadata.json File
 -----
 
-If you generated your module using the `puppet module generate` command, you'll already have a metadata.json file. If you put your module together without using the `puppet module generate` command, you must make sure that you have a metadata.json file in your module's main directory.
+If you generated your module using the `puppet module generate` command, you'll already have a metadata.json file. Check it and make any necessary edits.
 
-The metadata.json is a JSON-formatted file containing information about your module, such as its name, version, and dependencies.
+If you assembled your module manually, you must make sure that you have a metadata.json file in your module's main directory.
 
-Your metadata.json will look something like
+[See the page about `metadata.json` for full details about its format.][metadata]
 
-    {
-      "name": "examplecorp-mymodule",
-      "version": "0.0.1",
-      "author": "Pat",
-      "license": "Apache-2.0",
-      "summary": "A module for a thing",
-      "source": "https://github.com/examplecorp/examplecorp-mymodule",
-      "project_page": "https://forge.puppetlabs.com/examplecorp/mymodule",
-      "issues_url": "https://github.com/examplecorp/examplecorp-mymodule/issues",
-      "tags": ["things", "stuff"],
-      "operatingsystem_support": [
-        {
-        "operatingsystem":"RedHat",
-        "operatingsystemrelease":[ "5.0", "6.0" ]
-        },
-        {
-        "operatingsystem": "Ubuntu",
-        "operatingsystemrelease": [ "12.04", "10.04" ]
-        }
-       ],
-      "dependencies": [
-        { "name": "puppetlabs/stdlib", "version_requirement": ">=3.2.0 <5.0.0" },
-        { "name": "puppetlabs/firewall", "version_requirement": ">= 0.0.4" }
-      ]
-    }
-
-###Fields in metadata.json
-
-* `name` --- REQUIRED. The full name of your module, including the username (e.g. "username-module" --- [see note above](#a-note-on-module-names)).
-* `version` --- REQUIRED. The current version of your module. This should be a [semantic version](http://semver.org/).
-* `author` --- REQUIRED. The person who gets credit for creating the module. If not provided, this field will default to the username portion of the `name` field.
-* `license` --- REQUIRED. The license under which your module is made available. License metadata should match an identifier provided by [SPDX](http://spdx.org/licenses/).
-* `summary` --- REQUIRED. A one-line description of your module.
-* `source` --- REQUIRED. The source repository for your module.
-* `dependencies` --- REQUIRED. A list of the other modules that your module depends on to function. See [Dependencies in metadata.json](#dependencies-in-metadatajson) below for more details.
-* `project_page` --- A link to your module's website that will be linked on the Forge.
-* `issues_url` --- A link to your module's issue tracker.
-* `operatingsystem_support` --- A list of operating system compatibility for your module. See [Operating system compatibility in metadata.json](#operating-system-compatibility-in-metadatajson) below for more details.
-* `tags` --- A list of key words that will help others find your module (not case sensitive)(e.g. `["msyql", "database", "monitoring"]`). Tags cannot contain whitespace. We recommend using four to six tags. Note that certain tags are prohibited, including profanity and anything resembling the `$::operatingsystem` fact, including, but not necessarily limited to: `redhat`, `centos`, `rhel`, `debian`, `ubuntu`, `solaris`, `sles`, `aix`, `windows`, `darwin`, and `osx`. Use of prohibited tags will lower your module's quality score on the Forge.
-
-#####DEPRECATED
-
-* `types` --- Resource type documentation generated by older versions of the Puppet module tool as part of `puppet module build`. **You should remove this field from your metadata.json.**
-
-###Dependencies in metadata.json
-
-If your module's functionality depends upon functionality in another module, you can express this in the `dependencies` field of your metadata.json file. The `dependencies` field accepts an array of hashes. Here's an example from the [puppetlabs-postgresql](https://forge.puppetlabs.com/puppetlabs/postgresql) module:
-
-~~~
-    "dependencies": [
-      { "name": "puppetlabs/stdlib", "version_requirement": ">=3.2.0 <5.0.0" },
-      { "name": "puppetlabs/firewall", "version_requirement": ">= 0.0.4" },
-      { "name": "puppetlabs/apt", "version_requirement": ">=1.1.0 <2.0.0" },
-      { "name": "puppetlabs/concat", "version_requirement": ">= 1.0.0 <2.0.0" }
-    ]
-~~~
-
-**Note:** Once you've generated your module and gone through the metadata.json dialog, you must manually edit the metadata.json file to include the dependency information.
-
-The version requirement in a dependency isn't limited to a single version; you can use several operators for version comparisons.
-
-* `1.2.3` --- A specific version.
-* `>1.2.3` --- Greater than a specific version.
-* `<1.2.3` --- Less than a specific version.
-* `>=1.2.3` --- Greater than or equal to a specific version.
-* `<=1.2.3` --- Less than or equal to a specific version.
-* `>=1.0.0 <2.0.0` --- Range of versions; both conditions must be satisfied. (This example would match 1.0.1 but not 2.0.1)
-* `1.x` --- A semantic major version. (This example would match 1.0.1 but not 2.0.1, and is shorthand for `>=1.0.0 <2.0.0`.)
-* `1.2.x` --- A semantic major and minor version. (This example would match 1.2.3 but not 1.3.0, and is shorthand for `>=1.2.0 <1.3.0`.)
-
-**Note:** You cannot mix semantic versioning shorthand (.x) with greater/less than versioning syntax. The following would be incorrect.
-
-* `>= 3.2.x`
-* `< 4.x`
-
-###Operating system compatibility in metadata.json
-
-If you are publishing your module to the Forge, we highly recommend that you include `operatingsystem_support` in your metadata.json. Even if you do not intend to publish your module, including this information can be helpful for tracking your work.
-
-You can express this field through an array of hashes, classified under `operatingsystem` or `operatingsystemrelease`. `operatingsystem` will be used with Forge search filters, and `operatingsystemrelease` will be treated as strings on module pages. You can format it in either way shown below:
-
-    "operatingsystem_support": [
-      {
-      "operatingsystem":"RedHat",
-      "operatingsystemrelease":[ "5.0", "6.0" ]
-      },
-      {
-      "operatingsystem": "Ubuntu",
-      "operatingsystemrelease": [
-        "12.04",
-        "10.04"
-        ]
-      }
-    ]
-
-Since the numeric values corresponding to `operatingsystemrelease` are strings, they can be formatted in any way that makes sense to the operating system in question. Setting `operatingsystemrelease` to '6' indicates that your module is compatible with the entire 6.x series of that operating system.  If you know it to be incompatible with versions in that series you should be more specific (for example, Ubuntu 14.04 and 14.10 are two different major releases).
-
-###A Note on Semantic Versioning
-
-When writing your metadata.json file, you're setting a version for your own module and optionally expressing dependencies on others' module versions. We strongly recommend following the [Semantic Versioning](http://semver.org/spec/v1.0.0.html) specification. Doing so allows others to rely on your modules without unexpected change.
-
-Many other users already use semantic versioning, and you can take advantage of this in your modules' dependencies. For example, if you depend on puppetlabs-stdlib and want to allow updates while avoiding breaking changes, you could write the following line in your metadata.json (assuming a current stdlib version of 4.2.1):
-
-~~~
-     "dependencies": [
-       { "name": "puppetlabs/stdlib", "version_requirement": "4.x" },
-     ]
-~~~
 
 Build Your Module
 ------
@@ -256,7 +150,7 @@ Whether you are uploading a brand new module or a new release of an existing mod
 5. A successful upload will result in you being taken to the new release page of your module. Any errors will come up on the same screen. Once your module has been published to the Puppet Forge, the Forge will pull your README, Changelog, and License files from your tarball to display on your module's page. To confirm that it was published correctly, you can [install it][installing] on a new system using the `puppet module install` action.
 
 
-####Notes
+#### Notes
 
 1. You must make sure that your [metadata](#write-a-metadatajson-file) is correct and entirely located in metadata.json, otherwise your module will either not display correctly on the Forge or will error out during upload.
 2. When you release a new version of an already published module, you must increment the `version` field in the metadata.json file (ensuring you use a valid [semantic version](http://semver.org/)).
@@ -305,7 +199,7 @@ Follow the steps below to delete your release:
 
 Once you receive the confirmation banner, your release is officially deleted!
 
-##Downloading a Deleted Release
+## Downloading a Deleted Release
 
 It is still possible to download a specific release of a module, even if it has been deleted. If you check the **Select another release** drop down, the release is still an option in the menu, but is marked as deleted.
 
@@ -315,7 +209,7 @@ If you select the deleted release, a warning banner will appear on the page with
 
    ![download deleted release][delteddownloadwarning]
 
-##Searching For a Deleted Module
+## Searching For a Deleted Module
 
 If the only release of a module is deleted, or if all the releases of a module are deleted, the module will still show up in the Forge's search under some circumstances.
 
