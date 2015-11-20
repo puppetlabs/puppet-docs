@@ -102,19 +102,15 @@ function ntp::data() {
     'ntp::service_name' => 'ntpd',
   }
 
-  case $facts['os']['family'] {
+  $os_params = case $facts['os']['family'] {
     'AIX': {
-      $os_params = {
-        'ntp::service_name' => 'xntpd'
-      }
+      { 'ntp::service_name' => 'xntpd' }
     }
     'Debian': {
-      $os_params = {
-        'ntp::service_name' => 'ntp'
-      }
+      { 'ntp::service_name' => 'ntp' }
     }
     default: {
-      $os_params = {}
+      {}
     }
   }
 
