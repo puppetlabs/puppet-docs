@@ -211,7 +211,7 @@ lookup_options:
 
 Whenever Puppet looks up a key, it also checks `lookup_options` to see if it contains any merge settings for that key. If it does, it will use that merge behavior unless the lookup request overrides it it.
 
-In the example above, Puppet will default to a `unique` merge (also called an array merge) any time it looks up the `ntp::servers` key, including as a default for the `ntp` class's `$servers` parameter.
+In the example above, Puppet will default to a `unique` merge (also called an array merge) any time it looks up the `ntp::servers` key. This includes automatic lookup (as a default for the `ntp` class's `$servers` parameter).
 
 #### The `lookup_options` Key is Reserved
 
@@ -219,13 +219,13 @@ In the example above, Puppet will default to a `unique` merge (also called an ar
 
 #### Modules Can Set Lookup Options for Their Own Namespace
 
-Usually, module data can only set values for keys in that module's namespace. The `lookup_options` key is special exception: a module can set a value for it, but it can only set options for keys in that module's namespace.
+Usually, module data can only set values for keys in that module's namespace. The `lookup_options` key is a special exception: a module can set a value for it, but it can only set options for keys in that module's namespace.
 
 If a module sets options for keys outside its namespace, they will be ignored.
 
 #### Environments and Classic Hiera can Set Options for Anything
 
-...although options from Hiera only apply to Puppet lookup; anything that uses classic Hiera directly will ignore them.
+...although options from Hiera only apply when it's consulted by Puppet lookup; the classic `hiera` functions will ignore them.
 
 #### Lookup Options are Merged
 
