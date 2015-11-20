@@ -5,7 +5,7 @@ canonical: "/"
 toc: false
 ---
 
-Welcome to the Puppet Labs documentation site. You can [download the current version of this entire website](./puppetdocs-latest.tar.gz) as a zipped archive; unzip it and follow the instructions in the README.txt file to view the site offline.
+Welcome to the Puppet Labs documentation site. You can [download the current version of this entire website](./download/) as a zipped archive; unzip it and follow the instructions in the README.txt file to view the site offline.
 
 [Puppet Enterprise](/pe/latest)
 -----
@@ -147,4 +147,3 @@ Documentation Version
 ---------------------
 
 This release of the documentation was generated from revision {% gitrevision %} of the [puppet-docs Git repo](http://github.com/puppetlabs/puppet-docs) on {{ 'now' | date: "%B %d, %Y" }}.
-
