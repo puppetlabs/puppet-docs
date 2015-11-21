@@ -5,7 +5,7 @@ canonical: "/puppet/latest/reference/release_notes_agent.html"
 ---
 
 [Puppet 4.3.0]: /puppet/4.3/reference/release_notes.html#puppet-430
-[Facter 3.1.2]: /facter/3.1/reference/release_notes.html#facter-312
+[Facter 3.1.2]: /facter/3.1/release_notes.html#facter-312
 [Hiera 3.0.5]: /hiera/3.0/release_notes.html#hiera-305
 [MCollective 2.8.6]: /mcollective/releasenotes.html#2_8_6
 
