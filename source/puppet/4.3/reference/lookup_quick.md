@@ -185,11 +185,11 @@ Variable interpolation in `hiera.yaml` (version 4) works the same way as it does
 
 ## Specifying Merge Behavior
 
-Classic Hiera could optionally do deep merging of values when doing hash-merge lookups, but you could only configure this globally, in `hiera.yaml` file. This was very hacky, and made a lot of simple use cases totally impossible.
+Classic Hiera could optionally do deep merging of values when doing hash-merge lookups, but you could only configure this globally, in the `hiera.yaml` file. This was very hacky, and made a lot of simple use cases totally impossible.
 
 In Puppet lookup, you can't configure global merge behavior like that. Instead, you configure merge behavior on a per-key basis. There are two ways to do this:
 
-* **At lookup time,** as an argument to the `lookup` function or `puppet lookup` command. See the function and command documentation for details.
+* **At lookup time,** as an argument to the `lookup` function or `puppet lookup` command. This always wins, overriding any default merge behavior. See the function and command documentation for details.
 * **In the data source,** using the new `lookup_options` metadata key. This allows you to set default merge behavior for any lookup, _including automatic parameter lookup_ (which previously could not do merging lookup at all). If a lookup specifies its own merge behavior, this will override the default behavior.
 
 ### Setting `lookup_options` in Data
@@ -209,7 +209,7 @@ lookup_options:
     merge: unique
 ~~~
 
-Whenever Puppet looks up a key, it also checks `lookup_options` to see if it contains any merge settings for that key. If it does, it will use that merge behavior unless the lookup request overrides it it.
+Whenever Puppet looks up a key, it also checks `lookup_options` to see if it contains any merge settings for that key. If it does, it will use that merge behavior unless the lookup request overrides it.
 
 In the example above, Puppet will default to a `unique` merge (also called an array merge) any time it looks up the `ntp::servers` key. This includes automatic lookup (as a default for the `ntp` class's `$servers` parameter).
 
