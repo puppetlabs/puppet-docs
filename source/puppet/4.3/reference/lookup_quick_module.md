@@ -5,6 +5,7 @@ canonical: "/puppet/latest/reference/lookup_quick_module.html"
 ---
 
 [hash merge operator]: ./lang_expressions.html#merging
+[metadata.json]: ./modules_metadata.html
 
 
 {% partial ./_lookup_experimental.md %}
@@ -19,7 +20,7 @@ If you already use the "params.pp" pattern, you can easily switch to using a fun
 
 * Write a function or a hierarchy of data files that will produce the same values as the `params.pp` manifest.
     * Use names that your class parameters will automatically look up. For example, if your `ntp` class has a `$service_name` parameter, assign its default value to the key `ntp::service_name`.
-* Set `"data_provider": "function"` or `"data_provider": "hiera"` in the module's `metadata.json` file.
+* Set `"data_provider": "function"` or `"data_provider": "hiera"` in the module's [`metadata.json` file.][metadata.json]
 * Edit the module's main classes to:
     * Remove any default parameter values that reference variables from the `<MODULE>::params` class.
     * Stop inheriting from `<MODULE>::params`.

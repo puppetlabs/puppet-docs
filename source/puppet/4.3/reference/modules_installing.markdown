@@ -13,6 +13,7 @@ canonical: "/puppet/latest/reference/modules_installing.html"
 [plugins]: /guides/plugins_in_modules.html
 [documentation]: ./modules_documentation.html
 [errors]: /windows/troubleshooting.html#error-messages
+[metadata.json]: ./modules_metadata.html
 
 > **Puppet Enterprise Users Note**
 >
@@ -33,7 +34,8 @@ The `puppet module` subcommand is a tool for finding and managing new modules fr
 
 * Continue reading to learn how to install and manage modules from the Puppet Forge.
 * [See "Module Fundamentals"][fundamentals] to learn how to use and write Puppet modules.
-* [See "Publishing Modules"][publishing] to learn how to contribute your own modules to the Forge, including information about metadata.json format as well as the Puppet module tool's `build` and `generate` actions.
+* [See "Publishing Modules"][publishing] to learn how to contribute your own modules to the Forge, including information about the Puppet module tool's `build` and `generate` actions.
+* [See "Module Metadata"][metadata.json] for info about the metadata.json file.
 * [See "Using Plugins"][plugins] for how to arrange plugins (like custom facts and custom resource types) in modules and sync them to agent nodes.
 * [See "Documenting Modules"][documentation] for a README template and information on providing directions for your module.
 

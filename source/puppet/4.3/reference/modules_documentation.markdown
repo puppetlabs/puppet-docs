@@ -11,6 +11,7 @@ canonical: "/puppet/latest/reference/modules_documentation.html"
 [template]: ./READMEtemplate.txt
 [forge]: https://forge.puppetlabs.com/
 [commonmark]: http://commonmark.org/
+[metadata.json]: ./modules_metadata.html
 
 
 We strongly encourage you to document any module you write, whether you intend the module solely for internal use or for publication on the [Puppet Forge][forge] (Forge). Documenting your module helps future-you remember what your module was built to do, as well as helping to explain why you chose to do things one way versus another. And anyone else using your module will definitely appreciate it.
@@ -52,7 +53,7 @@ The section headings for each top-level section (following the numbered sections
 
 ## Module Description
 
-Assume **Module Description** is the first thing a user reads. First, it should briefly address what software the module is working with and what it does with that software. Does it just install it? Does it install and configure it? Check the `summary` field in the module's metadata.json. Your **Module Description** should be slightly longer and more informative than that.
+Assume **Module Description** is the first thing a user reads. First, it should briefly address what software the module is working with and what it does with that software. Does it just install it? Does it install and configure it? Check the `summary` field in the module's [metadata.json][]. Your **Module Description** should be slightly longer and more informative than that.
 
 A second paragraph can go into more depth on the "How?" and "What?" of a module, giving a user more information about what to expect from the module so they can assess whether they would like to use it or not.
 
@@ -196,15 +197,15 @@ README Style Notes
 3. Every parameter should have a description that starts with an action verb if at all possible (such as, "Sets the...", "Enables...", "Determines...", "Specifies..."). The description should be followed, in the same paragraph, by valid options (such as, "Valid options: an array"). Valid options should be followed by any default, if applicable.
 
     For example:
-  
-      
+
+
         Specifies the type of meow the cat service uses at food distribution time. Valid options: 'bark', 'low', 'rumble', 'loud', or 'none'. Default: 'low'.
-        
+
 
     or
 
         Sets the food intake limit for your cat service. Determined in grams. Valid options: Integer; maximum = 100g.
-   
+
 4. List parameters in alphabetical order. This makes it **so much easier** for the user to find what they are looking for, not to mention how much easier it makes the readme to update.
 5. Specify the valid options (or inputs or values) for **every** parameter. This might be a string, integers, an array, or specific values.
 6. Mark parameters as Required or Optional whenever possible
@@ -217,8 +218,8 @@ README Style Notes
 If you really want your documentation to shine, following a few best practices can help make your documentation clear and readable.
 
 1. Use the second person; that is, write directly to the person reading your document. For example, “If you’re installing the cat module on Windows....”
-2. Use the imperative; that is, tell the user what they should do. For example, “Secure your dog door before installing the cat module.” 
+2. Use the imperative; that is, tell the user what they should do. For example, “Secure your dog door before installing the cat module.”
 3. Use the active voice whenever possible. For example, “We recommend that you install cat and bird modules on separate instances” rather than “It is recommended that you install cat and bird modules on separate instances."
 4. Use the present tense, almost always. You seldom need the word "will," for example. Events that regularly occur should be present tense: "This parameter *sets* your cat to 'purebred'. The purebred cat *alerts* you for breakfast at 6 a.m." Only use future tense when you are specifically referring to something that takes place at a time in the future, such as "The `tail` parameter is deprecated and *will be* removed in a future version. Use `manx` instead."
 5. Lists, whether ordered or unordered, make things clearer for the reader. When steps should happen in a sequence, use an ordered list (1, 2, 3…). If order doesn’t matter, like in a list of options or requirements, use an unordered (bulleted) list.
- 
+

@@ -10,7 +10,7 @@ canonical: "/puppet/latest/reference/lookup_quick.html"
 [hiera_config]: /hiera/3.0/configuring.html
 [environment.conf]: ./config_file_environment.html
 [puppet.conf]: ./config_file_main.html
-[metadata.json]: ./modules_publishing.html#write-a-metadatajson-file
+[metadata.json]: ./modules_metadata.html
 [namespace]: ./lang_namespaces.html
 [quick_module]: ./lookup_quick_module.html
 [writing data sources]: /hiera/3.0/data_sources.html
