@@ -54,7 +54,7 @@ This guide assumes that you have already [written a useful Puppet module][fundam
 
 ### A Note on Module Names
 
-Because many users have published their own versions of modules with common names ("mysql," "bacula," etc.), the Puppet Forge (Forge) requires module names to have a username prefix. That is, if a user named "puppetlabs" maintained a "mysql" module, it would be known to the Forge as "puppetlabs-mysql".**Be sure to use this long name in your module's [metadata.json file](#write-a-metadatajson-file).**
+Because many users have published their own versions of modules with common names ("mysql," "bacula," etc.), the Puppet Forge (Forge) requires module names to have a username prefix. That is, if a user named "puppetlabs" maintained a "mysql" module, it would be known to the Forge as "puppetlabs-mysql".**Be sure to use this long name in your module's [metadata.json file][inpage_metadata].**
 
 As of Puppet 4, your module's directory cannot share this long name, as module directory names cannot contain dashes or periods (only letters, numbers, and underscores). Using the the build action will do the right thing as long as the metadata.json is correct.
 
@@ -101,6 +101,8 @@ Error: Try 'puppet help module build' for usage
 Write a metadata.json File
 -----
 
+[inpage_metadata]: #write-a-metadatajson-file
+
 If you generated your module using the `puppet module generate` command, you'll already have a metadata.json file. Check it and make any necessary edits.
 
 If you assembled your module manually, you must make sure that you have a metadata.json file in your module's main directory.
@@ -110,7 +112,18 @@ If you assembled your module manually, you must make sure that you have a metada
 
 Build Your Module
 ------
-In order for your module to be successfully uploaded to and displayed on the Forge, your metadata.json file will need to have the following [fields](#fields-in-metadatajson): name, version, author, license, summary, source, dependencies, project_page, operatingsystem_support, and tags.
+In order for your module to be successfully uploaded to and displayed on the Forge, your [metadata.json][] file must include the following keys:
+
+* `name`
+* `version`
+* `author`
+* `license`
+* `summary`
+* `source`
+* `dependencies`
+* `project_page`
+* `operatingsystem_support`
+* `tags`
 
 To build your module:
 
@@ -124,7 +137,7 @@ Building /etc/puppetlabs/puppet/modules/mymodule for release
 
 >**Note:**
 >
->Throughout the Puppet 3.x series, deprecation warnings were issued for Modulefile. If you still have a Modulefile, it will be treated like any other text file in the root directory of the module. You will need to move any metadata contained in it to the [metadata.json](#write-a-metadatajson-file).
+>Throughout the Puppet 3.x series, deprecation warnings were issued for Modulefile. If you still have a Modulefile, it will be treated like any other text file in the root directory of the module. You will need to move any metadata contained in it to the [metadata.json][inpage_metadata].
 
 Upload to the Puppet Forge
 ------
@@ -152,7 +165,7 @@ Whether you are uploading a brand new module or a new release of an existing mod
 
 #### Notes
 
-1. You must make sure that your [metadata](#write-a-metadatajson-file) is correct and entirely located in metadata.json, otherwise your module will either not display correctly on the Forge or will error out during upload.
+1. You must make sure that your [metadata][inpage_metadata] is correct and entirely located in metadata.json, otherwise your module will either not display correctly on the Forge or will error out during upload.
 2. When you release a new version of an already published module, you must increment the `version` field in the metadata.json file (ensuring you use a valid [semantic version](http://semver.org/)).
 3. You are highly encouraged to fix any problems or mistakes with your module by issuing another release.
 
