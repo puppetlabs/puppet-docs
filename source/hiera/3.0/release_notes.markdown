@@ -3,8 +3,29 @@ layout: default
 title: "Hiera 3: Release Notes"
 ---
 
+[puppet-agent]: https://docs.puppetlabs.com/puppet/4.2/reference/about_agent.html
 
-## Hiera 3.0.3 and 3.0.2
+## Hiera 3.0.5
+
+Released November 17, 2015.
+
+Shipped in [puppet-agent][] version 1.3.0.
+
+Hiera 3.0.5 has no functional changes from 3.0.4, but has an increase in version number for testing and packaging purposes with puppet-agent 1.3.0.
+
+* [Fixes for Hiera 3.0.5](https://tickets.puppetlabs.com/issues/?filter=16113)
+* [Introduced in Hiera 3.0.5](https://tickets.puppetlabs.com/issues/?filter=16112)
+
+## Hiera 3.0.4
+
+Released October 29, 2015.
+
+Shipped in [puppet-agent][] version 1.2.7.
+
+* [Fixes for Hiera 3.0.4](https://tickets.puppetlabs.com/issues/?filter=15772)
+* [Introduced in Hiera 3.0.4](https://tickets.puppetlabs.com/issues/?filter=15340)
+
+## Hiera 3.0.2 and 3.0.3
 
 Hiera 3.0.3 has no functional differences from 3.0.1, but we needed to increase the version number for testing and packaging purposes.
 
@@ -14,7 +35,7 @@ Hiera 3.0.2 was never released.
 
 Released June 24, 2015.
 
-Shipped in puppet-agent version: 1.2.0.
+Shipped in [puppet-agent][] version 1.2.0.
 
 Hiera 3.0 changes the default values for the `:hierarchy` and `:datadir` settings. It contains no new features and no other changes, but because there was a small chance of changed behavior for existing installations, it received a new semver major version.
 

@@ -42,7 +42,7 @@ resource type. The `provide` method takes three arguments plus a block:
 
 ### Parent Classes
 
-When declarating a provider, you can specify a
+When declaring a provider, you can specify a
 parent class. There are several different kinds of parent you can use.
 
 #### Base Provider
