@@ -280,21 +280,21 @@ Within a manifest, resources should be grouped by logical relationship to each o
 **Bad:**
 
 ~~~
-    file { '/tmp/dir':
-      ensure => directory,
+
+    file {
+    '/tmp/dir':
+      ensure => directory;
+    '/tmp/dir2':
+      ensure => directory;
     }
 
-    file { '/tmp/dir2':
-      ensure => directory,
+    file {
+      '/tmp/dir/a':
+        content => 'a';
+      '/tmp/dir2/b':
+        content => 'b';
     }
 
-    file { '/tmp/dir/a':
-      content => 'a',
-    }
-
-    file { '/tmp/dir2/b':
-      content => 'b',
-    }
 ~~~
 
 ### 9.5. Symbolic Links
