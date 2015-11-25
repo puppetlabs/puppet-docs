@@ -64,7 +64,7 @@ Since Puppet Enterprise bundles a lot of interrelated software together, it does
 
 ## Upgrading Puppet
 
-Before upgrading, you should skim our [page of advice about upgrading Puppet](/guides/install_puppet/upgrading.html).
+Before upgrading, you should skim our [page of advice about upgrading Puppet](puppet/latest/reference/upgrade_major_pre.html).
 
 The short version is that you should upgrade when you're ready to upgrade, skim the release notes first, reserve some time for testing, upgrade the Puppet master first, and roll out upgrades in stages.
 

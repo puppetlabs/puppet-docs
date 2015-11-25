@@ -28,9 +28,8 @@ To install Puppet Enterprise on Windows, [see the Puppet Enterprise manual's ins
 
 To install open source Puppet on Windows, follow the instructions on the following pages, in order:
 
-* [Pre-install tasks](/guides/install_puppet/pre_install.html)
-* [Installation instructions](/guides/install_puppet/install_windows.html)
-* [Post-install tasks](/guides/install_puppet/post_install.html)
+* [Pre-install tasks](puppet/latest/reference/install_pre.html)
+* [Installation instructions](puppet/latest/reference/install_windows.html)
 
 * * *
 
@@ -38,7 +37,7 @@ Running
 -----
 
 * Windows systems can run puppet agent and puppet apply, but they can't act as a puppet master server.
-* Puppet is available in 32- and 64-bit versions. Install the appropriate Puppet package for your version of Windows. (Note that Windows Server 2003 requires 32-bit Puppet.) 
+* Puppet is available in 32- and 64-bit versions. Install the appropriate Puppet package for your version of Windows. (Note that Windows Server 2003 requires 32-bit Puppet.)
 * Puppet should usually run with elevated privileges. If you want to run any of Puppet's commands interactively on systems with UAC, you'll have to start a command prompt by right-clicking and choosing "Run as administrator."
 * Puppet's configuration and data are stored in different places on different Windows versions. For more details, see the Puppet reference manual pages on [the confdir][] and [the vardir][].
 
@@ -113,7 +112,7 @@ For more information, see the following pages in the Puppet reference manual:
 
 ### File System Redirection (Windows Server 2003 or older versions of Puppet)
 
-As of Puppet 3.7, the Puppet agent can run as either a 32- or a 64-bit process. This means that as long as you've installed the correct package for your version of Windows, file system redirection should no longer be an issue. 
+As of Puppet 3.7, the Puppet agent can run as either a 32- or a 64-bit process. This means that as long as you've installed the correct package for your version of Windows, file system redirection should no longer be an issue.
 
 However, if you are running Windows Server 2003, which is incompatible with 64-bit Puppet, or if you are using an earlier version of Puppet, file system redirection will still affect you. Please see [Language: Handling File Paths on Windows](/puppet/latest/reference/lang_windows_file_paths.html) for how to safely handle file system redirection when running 32-bit Puppet on a 64-bit Windows system. Note that the information about file system redirection applies to extensions as well.
 
