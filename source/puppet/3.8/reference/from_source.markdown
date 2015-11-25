@@ -3,7 +3,7 @@ layout: default
 title: Running Puppet From Source
 ---
 
-[install]: /guides/install_puppet/pre_install.html
+[install]: /puppet/3.8/reference/pre_install.html
 [sysreqs]: /puppet/latest/reference/system_requirements.html
 [authconf]: /guides/rest_auth_conf.html
 [gitpuppet]: https://github.com/puppetlabs/puppet

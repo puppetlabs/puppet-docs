@@ -5,7 +5,7 @@ description: "Puppet release notes for version 3.8"
 canonical: "/puppet/latest/reference/release_notes.html"
 ---
 
-[upgrade]: /guides/install_puppet/upgrading.html
+[upgrade]: /puppet/3.8/reference/upgrading.html
 [puppet_3]: /puppet/3/reference/release_notes.html
 
 [puppet.conf]: ./config_file_main.html
