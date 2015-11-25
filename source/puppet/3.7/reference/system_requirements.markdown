@@ -4,7 +4,7 @@ title: "Puppet 3.7 System Requirements"
 canonical: "/puppet/latest/reference/system_requirements.html"
 ---
 
-> To install Puppet 3.7, see [the Puppet installation guide](/guides/install_puppet/pre_install.html).
+> This is an old version of Puppet. If you'd like to install Puppet 3.7, see [the Puppet 3.8 installation guide](/puppet/3.8/reference/pre_install.html), as the processes are the same.
 
 Hardware
 -----
@@ -54,15 +54,15 @@ Puppet and its prerequisites are known to run on the following platforms, but we
 
 - SUSE Linux Enterprise Server, version 11 and higher
 - Gentoo Linux
-- Mandriva Corporate Server 4 
+- Mandriva Corporate Server 4
 - ArchLinux
 
 ### Other Unix
 
 - Oracle Solaris, version 10 and higher (Puppet Labs performs limited automated testing on Solaris 11.)
 - AIX, version 5.3 and higher
-- FreeBSD 4.7 and later 
-- OpenBSD 4.1 and later 
+- FreeBSD 4.7 and later
+- OpenBSD 4.1 and later
 - HP-UX
 
 Basic Requirements

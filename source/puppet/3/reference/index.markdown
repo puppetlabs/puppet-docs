@@ -9,8 +9,6 @@ Welcome to the Puppet 3 Reference Manual! Use the navigation to the left to get 
 
 This manual covers Puppet versions 3.0 through 3.4. For Puppet 3.5 and above, use [the Puppet 3.5 Reference Manual](/puppet/3.5/reference). [Documentation for Puppet 2.7 can be found here.](/puppet/2.7/reference)
 
-To install Puppet 3, see [the Puppet installation guide](/guides/install_puppet/pre_install.html). For general advice on upgrading between major versions, see [Upgrading Puppet](/guides/install_puppet/upgrading.html).
-
 This manual is split into several sections:
 
 * ["Puppet 3.x Release Notes"](./release_notes.html) contains information about Puppet 3's new features, and tracks changes introduced in minor and patch releases in the Puppet 3 series.

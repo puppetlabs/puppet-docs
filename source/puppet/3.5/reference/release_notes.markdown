@@ -7,7 +7,7 @@ canonical: "/puppet/latest/reference/release_notes.html"
 
 [environments_simple]: ./environments.html
 [dirs_modulepath_simple_envs]: ./dirs_modulepath.html
-[upgrade]: /guides/install_puppet/upgrading.html
+[upgrade]: /puppet/3.8/reference/upgrading.html
 [vars_trusted_hash]: ./lang_facts_and_builtin_vars.html#trusted-facts
 [v2_api_yard]: /references/3.5.latest/developer/file.http_api_index.html
 [puppet_3]: /puppet/3/reference/release_notes.html
