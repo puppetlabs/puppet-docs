@@ -81,7 +81,7 @@ Get the latest version of Puppet up and running.
 
 ### Previous Install Guides
 
-* [The Puppet 3.8 Installation Guide](/guides/install_puppet/pre_install.html)
+* [The Puppet 3.8 Installation Guide](puppet/3.8/reference/pre_install.html)
 
 ### Building and Using Modules
 
@@ -144,7 +144,6 @@ Puppet's default configuration is meant for prototyping and designing a site. On
 
 ### Developing Puppet
 
-* [Running Puppet from Source](/guides/install_puppet/from_source.html) --- preview the leading edge
 * [Development Life Cycle](/guides/development_lifecycle.html) --- learn how to contribute code
 * [Puppet Internals](/guides/puppet_internals.html) --- understand how
   Puppet works internally
