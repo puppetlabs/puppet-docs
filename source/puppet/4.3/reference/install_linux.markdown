@@ -6,7 +6,6 @@ canonical: "/puppet/latest/reference/install_linux.html"
 
 [master_settings]: ./config_important_settings.html#settings-for-puppet-master-servers
 [agent_settings]: ./config_important_settings.html#settings-for-agents-all-nodes
-[current_install]: /guides/install_puppet/pre_install.html
 [where]: ./whered_it_go.html
 [dns_alt_names]: /references/latest/configuration.html#dnsaltnames
 [server_heap]: /puppetserver/2.2/install_from_packages.html#memory-allocation
