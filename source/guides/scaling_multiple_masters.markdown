@@ -9,7 +9,7 @@ Using Multiple Puppet Masters With Open Source Puppet
 
 To scale beyond a certain size, or for geographic distribution or disaster recovery, a deployment may warrant having more than one Puppet master. This document outlines options for open source Puppet deployments with multiple masters.
 
-> Note: This document is specific to open source Puppet, versions 2.7 through 3.2. If you're using Puppet Enterprise 3.7 or later, please use the [split installation guide][pe_split], then add [new Puppet masters][pe_add_master] or [additional ActiveMQ resources][pe_add_amq] to your deployment as needed. 
+> Note: This document is specific to open source Puppet, versions 2.7 through 3.2. If you're using Puppet Enterprise 3.7 or later, please use the [split installation guide][pe_split], then add [new Puppet masters][pe_add_master] or [additional ActiveMQ resources][pe_add_amq] to your deployment as needed.
 
 [pe_split]: /pe/latest/install_pe_split.html
 [pe_add_master]: /pe/latest/install_multimaster.html
@@ -147,7 +147,7 @@ Create New Puppet Master Servers
 
 ### Install Puppet
 
-To add a new puppet master server to your deployment, begin by [installing and configuring Puppet](/guides/install_puppet/pre_install.html) as per normal.
+To add a new puppet master server to your deployment, begin by [installing and configuring Puppet](/puppet/latest/reference/install_pre.html) as per normal.
 
 As with any puppet master, you'll need to use a production-grade web server rather than the default WEBrick server. We generally assume that you know how to do this if you're already at the point where you need multiple masters, but see [Scaling with Passenger](/guides/passenger.html) for one way to do it.
 

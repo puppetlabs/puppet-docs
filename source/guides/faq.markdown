@@ -283,7 +283,7 @@ Variable names can include alphanumeric characters and underscores, and are case
 ### How do I apply and test manifests?
 
 Once you have Puppet installed according the the [Installation
-Guide](/guides/install_puppet/pre_install.html), just run `puppet apply` against your example:
+Guide](/puppet/latest/reference/install_pre.html), just run `puppet apply` against your example:
 
     puppet apply -v example.pp
 

@@ -4,9 +4,9 @@ layout: default
 nav: /_includes/puppet_general.html
 ---
 
-Puppet Labs maintains official package repositories for several of the more popular Linux distributions. To make the repos more predictable, we version them as "Puppet Collections" --- each collection has all of the software you need to run a functional Puppet deployment, in versions that are known to work well with each other. Each collection is opt-in, so if you’re running `ensure => latest`, you’ll get the latest in the collection you’re using. Whenever we make significant breaking changes that introduce incompatibilities between versions of our software, we make a new collection so that you can do major upgrades at your convenience. 
+Puppet Labs maintains official package repositories for several of the more popular Linux distributions. To make the repos more predictable, we version them as "Puppet Collections" --- each collection has all of the software you need to run a functional Puppet deployment, in versions that are known to work well with each other. Each collection is opt-in, so if you’re running `ensure => latest`, you’ll get the latest in the collection you’re using. Whenever we make significant breaking changes that introduce incompatibilities between versions of our software, we make a new collection so that you can do major upgrades at your convenience.
 
-Puppet Labs also maintains package repositories for older versions of PuppetDB, MCollective, Puppet Server, and several pre-requisites and add-ons for Puppet Labs products. You can also enable package repositories for older Puppet 3.x and Facter 2.x. 
+Puppet Labs also maintains package repositories for older versions of PuppetDB, MCollective, Puppet Server, and several pre-requisites and add-ons for Puppet Labs products. You can also enable package repositories for older Puppet 3.x and Facter 2.x.
 
 This page explains how to enable these repositories on their supported operating systems.
 
@@ -14,7 +14,7 @@ Our repositories will be maintained for the life of the corresponding operating 
 
 ## Using Puppet Collections
 
-Puppet Collections are numbered with integers, beginning with PC1. The higher the integer, the newer the collection. 
+Puppet Collections are numbered with integers, beginning with PC1. The higher the integer, the newer the collection.
 
 ### Yum-based Systems
 
@@ -86,7 +86,7 @@ sudo apt-get update
 
 ## Pre-4.0 Open Source Repositories
 
-Use these repositories to install specific older versions of open source releases of Puppet, Facter, MCollective, PuppetDB, and more. After enabling the repo, [follow the instructions for installing Puppet 3.8 and older](/guides/install_puppet/pre_install.html).
+Use these repositories to install specific older versions of open source releases of Puppet, Facter, MCollective, PuppetDB, and more. After enabling the repo, [follow the instructions for installing Puppet 3.8 and older](/puppet/3.8/reference/pre_install.html).
 
 ### Yum-based Systems Repository
 
