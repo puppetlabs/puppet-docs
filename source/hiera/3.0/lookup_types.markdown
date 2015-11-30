@@ -279,7 +279,9 @@ In this case, deglitch.yaml was able to set the group because common.yaml didn't
 
 #### With Automatic Parameter Lookup
 
-Merge behaviors may be enabled for automatic parameter lookup. This is accomplished via the `lookup_options` hash. Each key of the hash is a qualified parameter name. The value for each parameter name is a hash with the key `merge` and a valid merge strategy (typically `deep`).
+With Puppet 4.3 / Puppet agent 1.3 and later, you can specify merge behaviors for automatic parameter lookup.
+
+To do this, set a value for the special `lookup_options` metadata key. Its value should be a hash, where each key is a qualified parameter name. The value for each parameter name is a hash with the key `merge` and a valid merge strategy --- one of `first`, `unique` (AKA array merge), `hash`, or `deep`.
 
 To use a merge strategy of `deep` with the YAML backend and the key `mysql::server::override_options`, add `lookup_options` with a key of `mysql::server::override_options` to any YAML file in the hierarchy that will be parsed:
 
@@ -297,4 +299,4 @@ To use a merge strategy of `deep` with the YAML backend and the key `mysql::serv
 
 When no `lookup_options` keys that match the qualified parameter name are found, automatic parameter lookups will only see the results from the first match hiera finds for the parameter name (`clientcert/mysql.example.com.yaml` in the above example).
 
-
+For more details, [see the Puppet lookup docs](/puppet/latest/reference/lookup_quick.html#specifying-merge-behavior).
