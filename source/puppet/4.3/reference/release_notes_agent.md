@@ -5,9 +5,16 @@ canonical: "/puppet/latest/reference/release_notes_agent.html"
 ---
 
 [Puppet 4.3.0]: /puppet/4.3/reference/release_notes.html#puppet-430
+[Puppet 4.3.1]: /puppet/4.3/reference/release_notes.html#puppet-431
+
 [Facter 3.1.2]: /facter/3.1/release_notes.html#facter-312
+[Facter 3.1.3]: /facter/3.1/release_notes.html#facter-313
+
 [Hiera 3.0.5]: /hiera/3.0/release_notes.html#hiera-305
+
 [MCollective 2.8.6]: /mcollective/releasenotes.html#2_8_6
+
+[pxp-agent]: https://github.com/puppetlabs/pxp-agent
 
 This page lists changes to the `puppet-agent` package. For details about changes to components in a `puppet-agent` release, follow the links to those components in the package release's notes.
 
@@ -22,6 +29,19 @@ The `puppet-agent` package's version numbers use the format X.Y.Z, where:
 The `puppet-agent` package installs Puppet 4. Also read the [Puppet 4.0 release notes](/puppet/4.0/reference/release_notes.html), since they cover any breaking changes since Puppet 3.8.
 
 Also of interest: [About Agent](/puppet/4.3/reference/about_agent.html) and the [Puppet 4.3 release notes](/puppet/4.3/reference/release_notes.html).
+
+## Puppet Agent 1.3.1
+
+Released November 30, 2015.
+
+Includes [Puppet 4.3.1][], [Facter 3.1.3][], and [`pxp-agent` 1.0.1][pxp-agent], each with bug or regression fixes and no new functionality. No other components are updated.
+
+This release also closes a race condition in `pxp-agent` between the completion of an action command and the corresponding metadata file being updated.
+
+### All Changes
+
+* [Fixed in `puppet-agent` 1.3.1](https://tickets.puppetlabs.com/issues/?filter=16106)
+* [Introduced in `puppet-agent` 1.3.1](https://tickets.puppetlabs.com/issues/?filter=16209)
 
 ## Puppet Agent 1.3.0
 
