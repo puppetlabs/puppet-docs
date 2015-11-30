@@ -30,6 +30,21 @@ The `puppet-agent` package installs Puppet 4. Also read the [Puppet 4.0 release 
 
 Also of interest: [About Agent](/puppet/4.3/reference/about_agent.html) and the [Puppet 4.3 release notes](/puppet/4.3/reference/release_notes.html).
 
+## Puppet Agent 1.3.2
+
+Released December 2, 2015.
+
+This release restores a missing root certificate. No other components are updated.
+
+* [Fixed in `puppet-agent` 1.3.2]()
+* [Introduced in `puppet-agent` 1.3.2]()
+
+#### DigiCert Global Root Certificate is Restored
+
+The `puppet-agent` 1.3.0 package mistakenly omits the DigiCert Global Root certificate from `/opt/puppetlabs/puppet/ssl/cert.pem`, which was included in `puppet-agent` up to version 1.2.7. This certificate is restored in `puppet-agent` 1.3.2.
+
+* [PA-95: DigiCert Global Root cert missing in puppet-agent 1.3.0](https://tickets.puppetlabs.com/browse/PA-95)
+
 ## Puppet Agent 1.3.1
 
 Released November 30, 2015.
@@ -47,12 +62,11 @@ This release also closes a race condition in `pxp-agent` between the completion 
 
 Released November 17, 2015.
 
-Includes [Puppet 4.3.0][], [Facter 3.1.2][], [Hiera 3.0.5][], [MCollective 2.8.6][], Ruby 2.1.7, and OpenSSL 1.0.2d. This version also introduces the [`pxp-agent`](https://github.com/puppetlabs/pxp-agent) component at version 1.0.0 in support of the [PCP Execution Protocol](https://github.com/puppetlabs/pcp-specifications/blob/master/pxp/README.md) and forthcoming Application Orchestration features in Puppet Enterprise 2015.3.
+Includes [Puppet 4.3.0][], [Facter 3.1.2][], [Hiera 3.0.5][], [MCollective 2.8.6][], Ruby 2.1.7, and OpenSSL 1.0.2d. This version also introduces the [`pxp-agent`][pxp-agent] component at version 1.0.0 in support of the [PCP Execution Protocol](https://github.com/puppetlabs/pcp-specifications/blob/master/pxp/README.md) and forthcoming Application Orchestration features in Puppet Enterprise 2015.3.
 
 ### New Platforms
 
-This release adds `puppet-agent` packages for OS X 10.11 (El Capitan).
-
+This release adds `puppet-agent` packages for OS X 10.11 (El Capitan) and Fedora 22.
 
 ### Windows Server 2003 Removed
 
@@ -61,6 +75,14 @@ We no longer provide `puppet-agent` packages that will install on Windows Server
 ### Bug Fixes
 
 * Resolves [a daemonization issue on AIX](https://tickets.puppetlabs.com/browse/PA-67) that made the service appear to be inoperative when running.
+
+### Regressions
+
+#### DigiCert Global Root Certificate is Restored
+
+The `puppet-agent` 1.3.0 package mistakenly omits the DigiCert Global Root certificate from `/opt/puppetlabs/puppet/ssl/cert.pem`, which was included in `puppet-agent` up to version 1.2.7. This certificate is restored in `puppet-agent` 1.3.2.
+
+* [PA-95: DigiCert Global Root cert missing in puppet-agent 1.3.0](https://tickets.puppetlabs.com/browse/PA-95)
 
 ### Updated Components
 
