@@ -31,32 +31,32 @@ Released November 17, 2015.
 
 Shipped in [`puppet-agent` 1.3.0][puppet-agent 1.3.x].
 
-Facter 3.1.2 is a bug fix release in the Facter 3.1 series.
+Facter 3.1.2 is a bug-fix release in the Facter 3.1 series.
 
-* [Fixes for Facter 3.1.2](https://tickets.puppetlabs.com/issues/?filter=16010)
+* [Fixed in Facter 3.1.2](https://tickets.puppetlabs.com/issues/?filter=16110)
 * [Introduced in Facter 3.1.2](https://tickets.puppetlabs.com/issues/?filter=16111)
 
-### FIX: Correctly Report OSX Versions
+### FIX: Correctly Report OS X Versions
 
-Facter was incorrectly omitting a "point release" part of the full version of major releases of the OSX operating system when the point release is "0". For major new releases like "10.11.0", Facter was reporting this version as "10.11". For "10.11.1", Facter correctly reports "10.11.1". This has been addressed so that Facter consistently reports the full version (e.g. "10.11.0") even if the "point release" part of the version number is "0".
+Facter incorrectly omitted a "point release" part of the full version of major releases of OS X when the point release is "0". For instance, Facter incorrectly reported major releases like "10.11.0" as "10.11". This has been addressed so that Facter consistently reports the full version number even if the "point release" part of the version number is "0".
 
-* [FACT-1267](https://tickets.puppetlabs.com/browse/FACT1267)
+* [FACT-1267](https://tickets.puppetlabs.com/browse/FACT-1267)
 
-### FIX: Missing Required File
+### FIX: Restore Missing Required File
 
-The tarball for Facter 3.1.1 failed to include .gemspec.in, which is required for building from source. This has been fixed.
+The tarball for Facter 3.1.1 failed to include `.gemspec.in`, which is required for building from source. This release includes the file.
 
 * [FACT-1266](https://tickets.puppetlabs.com/browse/FACT-1266)
 
-### FIX: Custom Structured Facts
+### FIX: Access Members of Custom Structured Facts
 
-Facter supports a command line syntax for querying into structured facts (e.g. "foo.bar" gets the "bar" member of the hash fact "foo"). This only worked with built-in and external facts, and not custom facts written in Ruby. This has been fixed so that the feature works with all facts.
+Facter supports a command-line syntax for querying structured facts. For example, "os.name" gets the "name" member of the hash fact "os". However, in previous versions of Facter 3 this didn't work with custom facts written in Ruby. This release fixes this behavior to work with all facts.
 
 * [FACT-1254](https://tickets.puppetlabs.com/browse/FACT-1254)
 
-### FIX: System dmidecode on Older Linux
+### FIX: System `dmidecode` on Older Linux
 
-On older Linux kernels, Facter falls back to executing dmidecode to retrieve certain built-in facts. Facter was incorrectly using the system's dmidecode, if present, instead of the one that ships with Puppet Agent. This has been corrected so that the system installed with Puppet Agent is preferred.
+On older Linux kernels, Facter falls back to executing `dmidecode` to retrieve certain built-in facts. Previous versions of Facter incorrectly used the system's `dmidecode`, if present, instead of the one that ships with Puppet Agent. This release corrects this behavior to use the version installed with Puppet Agent.
 
 * [FACT-1241](https://tickets.puppetlabs.com/browse/FACT-1254)
 
@@ -68,12 +68,12 @@ Shipped in [`puppet-agent` 1.2.7][puppet-agent 1.2.x].
 
 Facter 3.1.1 fixes several bugs and adds functionality for AIX 5.3, 6.1, and 7.1, and Solaris 11.
 
-* [Fixes for Facter 3.1.1](https://tickets.puppetlabs.com/issues/?filter=15777)
+* [Fixed in Facter 3.1.1](https://tickets.puppetlabs.com/issues/?filter=15777)
 * [Introduced in Facter 3.1.1](https://tickets.puppetlabs.com/issues/?filter=15771)
 
 ### New Platforms: AIX and Solaris 11
 
-Facter 3.1.1 now reports facts on AIX 5.3, 6.1, and 7.1 on PowerPC, and Solaris 11 on x86 and SPARC. Note that there are no open source Puppet all-in-one packages for these platforms; for more information, see the [puppet-agent][] 1.2.7 release notes.
+Facter 3.1.1 now reports facts on AIX 5.3, 6.1, and 7.1 on PowerPC, and Solaris 11 on x86 and SPARC. Note that there are no open source Puppet all-in-one packages for these platforms; for more information, see the [`puppet-agent` 1.2.7](/puppet/4.2/reference/release_notes_agent.html#puppet-agent-127) release notes.
 
 * [FACT-890](https://tickets.puppetlabs.com/browse/FACT-890): Facter 3 AIX Support
 * [FACT-549](https://tickets.puppetlabs.com/browse/FACT-549): `serialnumber` Fact for AIX
@@ -120,7 +120,7 @@ Facter 3.1.0 fixes several bugs and introduces support for OpenBSD and Solaris 1
 
 For JIRA issues related to Facter 3.1.0, see:
 
-* [Fixes for Facter 3.1.0](https://tickets.puppetlabs.com/issues/?filter=15500)
+* [Fixed in Facter 3.1.0](https://tickets.puppetlabs.com/issues/?filter=15500)
 * [Introduced in Facter 3.1.0](https://tickets.puppetlabs.com/issues/?filter=15429)
 
 ### New Platforms: OpenBSD and Solaris 10

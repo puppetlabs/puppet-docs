@@ -47,16 +47,31 @@ This release also closes a race condition in `pxp-agent` between the completion 
 
 Released November 17, 2015.
 
-Includes [Puppet 4.3.0][], [Facter 3.1.2][], [Hiera 3.0.5][], [MCollective 2.8.6][], Ruby 2.1.7, and OpenSSL 1.0.2d. This version also introduces the [`pxp-agent`](https://github.com/puppetlabs/pxp-agent) component at version 1.0.0 in support of the [PCP Execution Protocol](https://github.com/puppetlabs/pcp-specifications/blob/master/pxp/README.md) and forthcoming Application Orchestration features in Puppet Enterprise 2015.3.
+Includes [Puppet 4.3.0][], [Facter 3.1.2][], [Hiera 3.0.5][], [MCollective 2.8.6][], Ruby 2.1.7, and OpenSSL 1.0.2d. This version also introduces the [`pxp-agent`][pxp-agent] component at version 1.0.0 in support of the [PCP Execution Protocol](https://github.com/puppetlabs/pcp-specifications/blob/master/pxp/README.md) and forthcoming Application Orchestration features in Puppet Enterprise 2015.3.
 
 ### New Platforms
 
-This release adds `puppet-agent` packages for OS X 10.11 (El Capitan).
-
+This release adds `puppet-agent` packages for OS X 10.11 (El Capitan) and Fedora 22.
 
 ### Windows Server 2003 Removed
 
 We no longer provide `puppet-agent` packages that will install on Windows Server 2003 or Server 2003 R2. We [deprecated](./deprecated_win2003.html) those platforms in Puppet 4.2.
+
+### Fedora 20 Removed
+
+We no longer provide `puppet-agent` packages for Fedora 20, which reached its end-of-life on June 23, 2015.
+
+### Known Issues
+
+#### Windows Uninstaller Falsely Suggests a Reboot is Required
+
+When uninstalling `puppet-agent` 1.3.0 and newer for Windows, Windows Installer presents a dialog stating:
+
+> The setup must update files or services that cannot be updated while the system is running. If you choose to continue, a reboot will be required to complete the setup.
+
+Windows Installer incorrectly assumes the newly included `pxp-agent.exe` will be locked by the time it will be removed. This is not true, and you can ignore the dialog. Unattended installs and future upgrades might log an error from the MSI Restart Manager that you can also ignore.
+
+* [PA-65: Windows claims to requires reboot after uninstalling MSI when pxp-agent is running when it does not](https://tickets.puppetlabs.com/browse/PA-65)
 
 ### Bug Fixes
 
