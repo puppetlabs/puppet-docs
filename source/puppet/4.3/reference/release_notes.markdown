@@ -17,6 +17,19 @@ Make sure you also read the [Puppet 4.0 release notes](/puppet/4.0/reference/rel
 
 Also of interest: the [Puppet 4.2 release notes](/puppet/4.2/reference/release_notes.html) and [Puppet 4.1 release notes](/puppet/4.1/reference/release_notes.html).
 
+## Puppet 4.3.1
+
+Released November 30, 2015.
+
+Puppet 4.3.1 is a bug fix release.
+
+* [Fixed in Puppet 4.3.1](https://tickets.puppetlabs.com/issues/?filter=16211)
+* [Introduced in Puppet 4.3.1](https://tickets.puppetlabs.com/issues/?filter=16210)
+
+### Bug Fixes: Miscellaneous
+
+* [PUP-5525: Hiera special pseudo-variables breaking with Puppet 4.3](https://tickets.puppetlabs.com/browse/PUP-5525): Puppet 4.3.0 does not initialize Hiera for use with data bindings in the correct order, and does not correctly set special pseudovariables like `calling_module`. This led to lookups not finding values when the special variables were interpolated in hierarchy data paths.
+
 ## Puppet 4.3.0
 
 Released November 17, 2015.

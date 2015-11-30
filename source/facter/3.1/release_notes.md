@@ -3,15 +3,33 @@ layout: default
 title: "Facter 3.1: Release Notes"
 ---
 
-[puppet-agent]: /puppet/4.2/reference/about_agent.html
+[puppet-agent 1.2.x]: /puppet/4.2/reference/about_agent.html
+[puppet-agent 1.3.x]: /puppet/4.3/reference/about_agent.html
 
 This page documents the history of the Facter 3.1 series. (Previous version: [Facter 3.0 release notes](../3.0/release_notes.html).)
+
+## Facter 3.1.3
+
+Released November 30, 2015.
+
+Shipped in [`puppet-agent` 1.3.1][puppet-agent 1.3.x].
+
+Facter 3.1.3 is a bug-fix release in the Facter 3.1 series.
+
+* [Fixed in Facter 3.1.3](https://tickets.puppetlabs.com/issues/?filter=16212)
+* [Introduced in Facter 3.1.3](https://tickets.puppetlabs.com/issues/?filter=16213)
+
+### REGRESSION FIX: Report `puppetversion` Fact
+
+We didn't report the `puppetversion` fact when when we restored `facter -p` functionality to Facter 3.0.2. This release restores the fact.
+
+* [FACT-1277](https://tickets.puppetlabs.com/browse/FACT-1277)
 
 ## Facter 3.1.2
 
 Released November 17, 2015.
 
-Shipped in [puppet-agent][] version 1.3.0.
+Shipped in [`puppet-agent` 1.3.0][puppet-agent 1.3.x].
 
 Facter 3.1.2 is a bug fix release in the Facter 3.1 series.
 
@@ -46,7 +64,7 @@ On older Linux kernels, Facter falls back to executing dmidecode to retrieve cer
 
 Released October 29, 2015.
 
-Shipped in [puppet-agent][] version 1.2.7.
+Shipped in [`puppet-agent` 1.2.7][puppet-agent 1.2.x].
 
 Facter 3.1.1 fixes several bugs and adds functionality for AIX 5.3, 6.1, and 7.1, and Solaris 11.
 
@@ -96,7 +114,7 @@ Previous versions of Facter 3 would halt if Windows Management Instrumentation (
 
 Released September 14, 2015.
 
-Shipped in [puppet-agent][] version 1.2.4.
+Shipped in [`puppet-agent` 1.2.4][puppet-agent 1.2.x].
 
 Facter 3.1.0 fixes several bugs and introduces support for OpenBSD and Solaris 10.
 
