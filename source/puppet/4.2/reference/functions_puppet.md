@@ -17,24 +17,25 @@ canonical: "/puppet/latest/functions_puppet.html"
 [variable]: ./lang_variables.html
 [array]: ./lang_data_array.html
 
-You can write your own functions in the Puppet language to transform data and construct values. Functions can optionally take one or more parameters as arguments, then return some other, resulting value from the final expression.
+You can write your own functions in the Puppet language to transform data and construct values. {~~Functions~>A function~~} can optionally take one or more parameters as arguments{~~, then~>. A function~~} return{++s++} {~~some other, resulting~>a calculated~~} value from the final expression{++ in its code block++}.
 
 ## Syntax
 
 The general form of a function written in Puppet language is:
 
-* The [name][naming] of the function
+{++* The keyword `function`.++} {>> or do we call them reserved words? Either way, worth mentioning that it starts with "function" <<}
+* The [name][naming] of the function{++.++}
 * An optional **parameter list,** which consists of:
-    * An opening parenthesis
-    * A comma-separated list of **parameters** (e.g. `String $myparam = "default value"`). Each parameter consists of:
-        * An optional [data type][literal_types], which will restrict the allowed values for the parameter (defaults to `Any`)
-        * A [variable][] name to represent the parameter, including the `$` prefix
-        * An optional equals (`=`) sign and **default value** (which must match the data type, if one was specified)
-    * An optional trailing comma after the last parameter
-    * A closing parenthesis
-* An opening curly brace
-* A block of Puppet code
-* A closing curly brace
+    * An opening parenthesis{++.++}
+    * A comma-separated list of **parameters** ({~~e.g.~>for example,~~} `String $myparam = "default value"`). Each parameter consists of:
+        * An optional [data type][literal_types], which will restrict the allowed values for the parameter (defaults to `Any`){++.++}
+        * A [variable][] name to represent the parameter, including the `$` prefix{++.++}
+        * An optional equals (`=`) sign and **default value** (which must match the data type, if one was specified){++.++}
+    * An optional trailing comma after the last parameter{++.++}
+    * A closing parenthesis{++.++}
+* An opening curly brace{++.++}
+* A block of Puppet code{++, ending with an expression whose value is returned.++}
+* A closing curly brace{++.++}
 
 ~~~ ruby
 function <NAME>(<PARAMETER LIST>) {
@@ -46,22 +47,24 @@ function <NAME>(<PARAMETER LIST>) {
 
 ### Parameters
 
-Functions are passed arguments by **parameter position.** This means that the _order_ of parameters is important, and the paramater names will not affect the order they are passed.
+Functions are passed arguments by **parameter position{--.--}**{++.++} This means that the _order_ of parameters is important, and the {~~paramater~>parameter~~} names will not affect the order they are passed.
 
 #### Mandatory and Optional Parameters
 
-If a parameter has a default value, it's optional --- the function will use the default if the caller doesn't provide a value for that parameter.
+If a parameter has a default value, {~~it's optional~>then it's optional to pass a value for it when you call the function~~}{~~ --- t~>/ T~~}he function will use the default if the caller doesn't provide a value for that parameter.
 
-If you reference a variable in a default value for a parameter, Puppet will always start looking for that variable at top scope. So if you use `$fqdn`, but then you call the function from a class that overrides the variable `$fqdn`, the parameter's default value will be the value from top scope, not the value from the class. You can reference qualified variable names in a function default value, but compilation will fail if that class wasn't declared by the time the function gets called.
+{>> This paragraph seems out of place. It's not talking about mandatory or optional parameters. It's talking about variables in defaults. Can we made a new h4 and move this into it? The p after this seems to go back to talking about mandatory/optional parameters. <<}If you reference a variable in a default value for a parameter, Puppet will always start looking for that variable at top scope. So if you use `$fqdn`, but then you call the function from a class that overrides the variable `$fqdn`, the parameter's default value will be the value from top scope, not the value from the class. You can reference qualified variable names in a function default value, but compilation will fail if that class wasn't declared by the time the function gets called.
 
-However, since parameters are passed by position, _any optional parameters have to be listed after all required parameters._ You cannot put a required parameter after an optional one, because it will cause an evaluation error.
+However, since parameters are passed by position, _{--any --}optional parameters {~~have to ~>must ~~}be listed after all required parameters{--.--}_{++.++} {~~You cannot ~>If you ~~}put a required parameter after an optional one, {--because --}it will cause an evaluation error.
 
+{++ #### Variables in Default Parameter Values++}
+{++ Move paragraph from above here.++}
 
 #### The Extra Arguments Parameter
 
-The _final_ parameter of a function can optionally be a special _extra arguments parameter,_ which will collect an unlimited number of extra arguments into an array. This is useful when you don't know in advance how many arguments the caller will provide.
+The _final_ parameter of a function can optionally be a special _extra arguments parameter{--,--}_{++,++} which will collect an unlimited number of extra arguments into an array. This is useful when you don't know in advance how many arguments the caller will provide.
 
-To specify that the last parameter should collect extra arguments, write an asterisk/splat (`*`) in front of its name in the parameter list (like `*$others`). You can't put a splat in front of any parameter except the last one.
+To specify that the last parameter should collect extra arguments, {~~write an asterisk/splat (`*`) in front of~>start~~} its name {~~in the parameter list~>with an asterisk symbol (`*`)~~}{~~ (like~>, as in~~} `*$others`{--)--}. {~~You can't put a splat in front of any parameter except the last one.~>The asterisk is only valid for the last parameter.~~}
 
 An extra arguments parameter is always optional.
 
@@ -72,14 +75,14 @@ An extra arguments parameter can have a default value, which has some automatic 
 * If the provided default is a non-array value, the real default will be a single-element array containing that value.
 * If the provided default is an array, the real default will be that array.
 
-An extra arguments parameter can also have a [data type.][literal_types] Puppet will use this data type to validate _the elements_ of the array. That is, if you specify a data type of `String`, the final data type of the extra arguments parameter will be `Array[String]`.
+An extra arguments parameter can also have a [data type{--.--}][literal_types]{++.++} Puppet will use this data type to validate _the elements_ of the array. That is, if you specify a data type of `String`, the {~~final~>real~~} data type of the extra arguments parameter will be `Array[String]`.
 
 
 ### The Function Body
 
-Functions are meant for constructing values and transforming data, so the body of your function code will differ based on what you're trying to achieve with your function, and the parameters that you're requiring. You should avoid declaring resources in the body of your function. If you want to create resources based on inputs, that's what [defined types][defined_types] are for.
+Functions are meant for constructing values and transforming data, so the body of your function code will differ based on what you're trying to achieve with your function, and the parameters that you're requiring. {~~You should a~>A~~}void declaring resources in the body of your function. If you want to create resources based on inputs, {~~that's what~>use~~} [defined types][defined_types] {~~are for~>instead~~}.{>> Can we provide an example of how to do this with defined types instead of resource declaration? <<}
 
-The final expression in the function body will be the value returned by the function.
+The final expression in the function body {~~will be~>determines~~} the value {~~returned by~>that~~} the function{++ will return when called++}.
 
 ~~~ ruby
 function apache::bool2http($arg) {
@@ -91,9 +94,9 @@ function apache::bool2http($arg) {
 }
 ~~~
 
-Most conditional expressions in the Puppet language have values that work in a similar way, so you can use an if statement or a case statement as the final expression to give different values based on different numbers or types of inputs.
+Most conditional expressions in the Puppet language have values that work in a similar way, so you can use an if statement or a case statement as the final expression to give different values based on different numbers or types of inputs.{>> Is this statement about the previous example ruby code? If so, move it above the example, and add another sentence to the effect of "In the following example, the function accepts blabla and returns blabla." Basically, explain how the case statement works as the final expression. <<}
 
-
+{>> Add an intro to this example, including a heading I think. <<}
 
 ~~~ ruby
 # This internal function translates the ipv(4|6)acls format into a resource
@@ -192,26 +195,30 @@ function postgresql::acls_to_resource_hash(Array $acls, String $id, Integer $off
 
 ## Location
 
-Functions you write should be stored in modules. They go in the `functions` folder, which is a top-level directory, a sibling of `manifests`, `lib`, et al. You should only be defining one function per file, and each filename should reflect the name of the function being defined. For larger, more complex blocks of functional code, see [classes][].
+{~~Functions~>Store the functions ~~} you write {--should be stored --}in {++your ++}modules{++'++}{--. They go in the--} `functions` folder, which is a top-level directory, a sibling of `manifests`{~~,~> and~~} `lib`{--, et al--}. {~~You should only be d~>D~~}efin{~~ing~>e only~~} one function per file, and {~~each filename should~>name the file to~~} reflect the name of the function being defined. For larger, more complex blocks of functional code, see [classes][].
 
-Puppet is automatically aware of any functions in a valid module and will autoload them by name.
+Puppet is automatically aware of {--any --}functions in a valid module and will autoload them by name.
 
-> ### Aside: Best Practices
+{>> Let's handle this next section differently. Instead of saying "don't do this and here's how", let's say "under the following rare circumstances, you might need to do this, so I guess here's how." If no one can tell you what those rare circumstances might be, I suggest we simply tell people not to.<<}
+{--> ### Aside: Best Practices
 >
 > You should usually only write functions in modules. Although the additional options below this aside will work, they are not recommended.
 
 You can also put functions in the main manifest, in which case they can have any name.
 
-If you do put a function in the main manifest, it will override any function of the same name from all modules. (It cannot override built-in functions, though.)
-
+If you do put a function in the main manifest, it will override any function of the same name from all modules. (It cannot override built-in functions, though.)--}
+{++> ### Aside: Writing functions in the main manifest
+>
+>In most circumstances, you will store functions in modules. However, in rare situations you might find it necessary to put a function in the main manifest. This is not recommended, and advisable only if ...[provide details here]... If you do put a function in the main manifest, it will override any function of the same name in all modules (except built-in functions).
+++}
 
 ## Naming
 
 [The characters allowed in a function's name are listed here][naming].
 
 
-## Behavior
+## {~~Behavior~>Calling a Function~~}
 
-Once a function is written and available (usually by putting it in a module where the autoloader will be able to find it), you can call that function in any Puppet manifest. The arguments you pass to the function call will map to the parameters defined in the function's definition. You will have to provide arguments for the mandatory parameters, and can choose whether to provide arguments for the optional ones.
+Once a function is written and available ({--usually by putting it --}in a module where the autoloader {~~will be able to~>can~~} find it), you can call that function in any Puppet manifest. The arguments you pass to the function {--call will --}map to the parameters defined in the function's definition. You {~~will have to provide~>must pass in~~} arguments for the mandatory parameters, and can choose whether to {~~provide~>ass in~~} arguments for the optional ones.
 
-The [function call][function_call] acts like a normal call to any other Puppet function, and resolves to the function's value.
+The [function call][function_call] acts like a normal call to any {~~other~>built-in~~}{>> ? <<} Puppet function, and resolves to the function's {++returned ++}value.
