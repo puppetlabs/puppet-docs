@@ -25,7 +25,7 @@ For more information on how the site manifest is used in catalog compilation, se
 
 ### With Puppet Apply
 
-The `puppet apply` command requires a manifest as an argument on the command line. (For example: `puppet apply /etc/puppetlabs/code/environments/production/site.pp`.) It can be a single file or a directory of files.
+The `puppet apply` command requires a manifest as an argument on the command line. (For example: `puppet apply /etc/puppetlabs/code/environments/production/manifests/site.pp`.) It can be a single file or a directory of files.
 
 The `puppet apply` command does not automatically use an environment's manifest. Instead, it always uses the manifest you pass to it.
 
