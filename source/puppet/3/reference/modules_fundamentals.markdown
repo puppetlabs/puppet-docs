@@ -11,16 +11,12 @@ canonical: "/puppet/latest/reference/modules_fundamentals.html"
 
 [plugins]: /guides/plugins_in_modules.html
 
-
 [classes]: ./lang_classes.html
 [defined_types]: ./lang_defined_types.html
 [enc]: /guides/external_nodes.html
 [conf]: /puppet/3.6/reference/config_file_main.html
 [environment]: /puppet/latest/reference/environments_classic.html
 [templates]: /guides/templating.html
-
-Puppet Modules
-=====
 
 **Modules** are self-contained bundles of code and data. You can write your own modules or you can download pre-built modules from Puppet Labs' online collection, the Puppet Forge.
 
@@ -34,27 +30,26 @@ Puppet Modules
 * [See "Using Plugins"][plugins] for how to arrange plugins (like custom facts and custom resource types) in modules and sync them to agent nodes.
 * [See "Documenting Modules"][documentation] for a README template and information on providing directions for your module.
 
-Using Modules
------
+## Using Modules
 
 **Modules are how Puppet finds the classes and types it can use** --- it automatically loads any [class][classes] or [defined type][defined_types] stored in its modules. Within a manifest or from an [external node classifier (ENC)][enc], any of these classes or types can be declared by name:
 
 ~~~ ruby
-    # /etc/puppetlabs/puppet/site.pp
+# /etc/puppet/manifests/site.pp
 
-    node default {
-      include apache
+node default {
+  include apache
 
-      class {'ntp':
-        enable => false;
-      }
+  class {'ntp':
+    enable => false;
+  }
 
-      apache::vhost {'personal_site':
-        port    => 80,
-        docroot => '/var/www/personal',
-        options => 'Indexes MultiViews',
-      }
-    }
+  apache::vhost {'personal_site':
+    port    => 80,
+    docroot => '/var/www/personal',
+    options => 'Indexes MultiViews',
+  }
+}
 ~~~
 
 Likewise, Puppet can automatically load plugins (like custom native resource types or custom facts) from modules; see ["Using Plugins"][plugins] for more details.
@@ -74,9 +69,7 @@ To make a module available to Puppet, **place it in one of the directories in Pu
 
 You can easily install modules written by other users with the `puppet module` subcommand. [See "Installing Modules"][installing] for details.
 
-
-Module Layout
------
+## Module Layout
 
 On disk, a module is simply **a directory tree with a specific, predictable structure:**
 
@@ -87,7 +80,6 @@ On disk, a module is simply **a directory tree with a specific, predictable stru
     * lib
     * tests
     * spec
-
 
 ### Example
 
@@ -144,13 +136,11 @@ Certain module names are disallowed:
 * main
 * settings
 
-
 ### Files
 
 Files in a module's `files` directory are automatically served to agent nodes. They can be downloaded by using **puppet:/// URLs** in the `source` attribute of a [`file`][file] resource.
 
 Puppet URLs work transparently in both agent/master mode and standalone mode; in either case, they will retrieve the correct file from a module.
-
 
 [file]: /references/stable/type.html#file
 
@@ -174,18 +164,14 @@ Template function | (' | Name of module/ | Name of template | ')
 
 So `template('my_module/component.erb')` would render the template `my_module/templates/component.erb`.
 
-
-Writing Modules
------
+## Writing Modules
 
 To write a module, simply write classes and defined types and place them in properly named manifest files as described above.
 
 * [See here][classes] for more information on classes
 * [See here][defined_types] for more information on defined types
 
-
-Best Practices
------
+## Best Practices
 
 The [classes][], [defined types][defined_types], and [plugins][] in a module **should all be related,** and the module should aim to be **as self-contained as possible.**
 
