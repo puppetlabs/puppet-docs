@@ -102,7 +102,7 @@ In an environment, the `function` provider calls a function named `environment::
 
 The `environment::data` function can be one of:
 
-* A Puppet language function, located at `<ENVIRONMENT>/functions/environment/data.pp`.
+* A Puppet language function, located at `<ENVIRONMENT>/functions/data.pp`.
 * A Ruby function (using the modern `Puppet::Functions` API), located at `<ENVIRONMENT>/lib/puppet/functions/environment/data.rb`.
 
 Since using a data function with an environment is kind of impractical, this quick reference won't cover it in detail.
