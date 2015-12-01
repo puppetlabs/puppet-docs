@@ -78,12 +78,13 @@ To convert the URLs:
 2. Identify [any _custom_ rules](/puppetserver/2.2/compatibility_with_puppet_agent.html#transfer-and-modify-custom-authconf-rules) you've added to your old [`auth.conf`][auth.conf] file. (Don't worry about default rules.)
 3. Change the `path` of each custom rule to use Puppet 4 URLs.
     1. Add `/puppet/v3` to the beginning of most paths.
-    2. The `certificate_status` endpoint ignores `auth.conf`. Configure access in Puppet Server's [`ca.conf`][ca.conf] file.
-4. Add the custom rules to Puppet Server's new `/etc/puppetlabs/puppet/auth.conf` file.
+    2. Configure the `certificate_status` endpoint in `auth.conf`. Puppet Server's `ca.conf` file is [deprecated][] as of Puppet Server 2.2.
+4. (Optional) Convert your rules to use new authorization methods and `auth.conf` format. See the [Puppet Server configuration documentation][/puppetserver/latest/configuration.html] for details.
+5. Add the custom rules to Puppet Server's new `/etc/puppetlabs/puppet/conf.d/auth.conf` file.
 
-#### `auth.conf` Rule Example
+#### Example `auth.conf` Rules for Puppet 3 and 4 Agents
 
-Old Puppet 3 rules:
+The other examples in this section convert this Puppet 3 example `auth.conf` rule to be compatible with Puppet 4:
 
 ~~~
 # Puppet 3 auth.conf on the master
@@ -97,10 +98,44 @@ method find
 allow $1
 ~~~
 
-New Puppet Server 2 rules supporting both Puppet 3 and 4 agents:
+To support both Puppet 3 and Puppet 4 agents when the `use-legacy-auth-conf` parameter in the `jruby-puppet` setting is false, modify the rules to follow the new HOCON `auth.conf` format and place the new rules in `/etc/puppetlabs/puppetserver/conf.d/auth.conf`:
 
 ~~~
-# Puppet 3 & 4 compatible auth.conf with Puppet Server 2.1
+authorization: {
+    version: 1
+    rules: [
+        ...
+        {
+            # Puppet 3 & 4 compatible auth.conf with Puppet Server 2.2+
+            match-request: {
+                path: "^/puppet/v3/catalog/([^/]+).uuid$"
+                type: regex
+                method: [get, post]
+            }
+            allow: "/^$1|.uuid.*/"
+            sort-order: 200
+            name: "my catalog"
+        },
+        {
+            # Default rule, should follow the more specific rules
+            match-request: {
+                path: "^/puppet/v3/catalog/([^/]+)$"
+                type: regex
+                method: [get, post]
+            }
+            allow: "$1"
+            sort-order: 500
+            name: "puppetlabs catalog"
+        },
+        ...
+    ]
+}
+~~~
+
+To support both Puppet 3 and Puppet 4 agents when the `use-legacy-auth-conf` parameter in the `jruby-puppet` setting is true, modify the rules to specify the v3 endpoints while following the legacy `auth.conf` format, then place the new rules in `/etc/puppetlabs/puppet/auth.conf`:
+
+~~~
+# Puppet 3 & 4 compatible auth.conf with Puppet Server 2.1+
 path ~ ^/puppet/v3/catalog/([^/]+).uuid$
 method find
 allow /^$1\.uuid.*/
