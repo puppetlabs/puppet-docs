@@ -34,7 +34,7 @@ Also of interest: [About Agent](/puppet/4.3/reference/about_agent.html) and the 
 
 Released December 2, 2015.
 
-This release restores a missing root certificate. No other components are updated.
+This release includes a more comprehensive root certificate authority (CA) certificate bundle. No other components are updated.
 
 * [Fixed in `puppet-agent` 1.3.2](https://tickets.puppetlabs.com/issues/?filter=16400)
 * [Introduced in `puppet-agent` 1.3.2](https://tickets.puppetlabs.com/issues/?filter=16401)
@@ -43,7 +43,7 @@ This release restores a missing root certificate. No other components are update
 
 #### More CA Certificates Bundled
 
-In `puppet-agent` 1.3.0 and 1.3.1, the included bundle of certificate authority (CA) certificates was smaller than the system bundles used in `puppet-agent` 1.2.7 and earlier, which could cause Puppet features that rely on the omitted CA certificates to fail. This release resolves the issue by expanding the certificate bundle to be more comparable to the set provided by other vendors.
+In `puppet-agent` 1.3.0 and 1.3.1, the included bundle of CA certificates was smaller than the system bundles used in `puppet-agent` 1.2.7 and earlier, which could cause Puppet features that rely on the omitted CA certificates to fail. This release resolves the issue by expanding the certificate bundle to be more comparable to the set provided by other vendors.
 
 * [PA-95: DigiCert Global Root cert missing in puppet-agent 1.3.0](https://tickets.puppetlabs.com/browse/PA-95)
 * [PA-101: AIO's OpenSSL cannot make SSL connection to apt.dockerproject.org](https://tickets.puppetlabs.com/browse/PA-101)
@@ -83,7 +83,7 @@ We no longer provide `puppet-agent` packages that will install on Windows Server
 
 #### Smaller CA Certificate Bundle Can Cause Failures
 
-Through version 1.2.7, the `puppet-agent` package used the system-provided OpenSSL certificate authority (CA) certificate bundle on platforms where it was available, such as on Linux-based operating systems. Starting with `puppet-agent` 1.3.0, the package includes a CA certificate bundle to support encrypted access consistently across platforms, including those that don't provide their own certificate bundle.
+Through version 1.2.7, the `puppet-agent` package used the system-provided OpenSSL certificate authority (CA) certificate bundle on platforms where it was available, such as on Linux-based operating systems. Starting with `puppet-agent` 1.3.0, the package includes a CA certificate bundle to support authenticated SSL connections consistently across platforms, including platforms that don't provide their own certificate bundle.
 
 However, the bundle we provide in `puppet-agent` 1.3.0 and 1.3.1 includes only a subset of the CA certificates generally provided by Linux vendors, which can cause some Puppet features that require any of the omitted certificates to fail. Starting in version 1.3.2, the bundle includes a more complete set of CA certificates that's comparable to the full set provided by other vendors.
 
