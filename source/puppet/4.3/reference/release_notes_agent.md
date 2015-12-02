@@ -36,14 +36,17 @@ Released December 2, 2015.
 
 This release restores a missing root certificate. No other components are updated.
 
-* [Fixed in `puppet-agent` 1.3.2]()
-* [Introduced in `puppet-agent` 1.3.2]()
+* [Fixed in `puppet-agent` 1.3.2](https://tickets.puppetlabs.com/issues/?filter=16400)
+* [Introduced in `puppet-agent` 1.3.2](https://tickets.puppetlabs.com/issues/?filter=16401)
 
-#### DigiCert Global Root Certificate is Restored
+### Regression Fixes
 
-The `puppet-agent` 1.3.0 package mistakenly omits the DigiCert Global Root certificate from `/opt/puppetlabs/puppet/ssl/cert.pem`, which was included in `puppet-agent` up to version 1.2.7. This certificate is restored in `puppet-agent` 1.3.2.
+#### More CA Certificates Bundled
+
+In `puppet-agent` 1.3.0 and 1.3.1, the included bundle of certificate authority (CA) certificates was smaller than the system bundles used in `puppet-agent` 1.2.7 and earlier, which could cause Puppet features that rely on the omitted CA certificates to fail. This release resolves the issue by expanding the certificate bundle to be more comparable to the set provided by other vendors.
 
 * [PA-95: DigiCert Global Root cert missing in puppet-agent 1.3.0](https://tickets.puppetlabs.com/browse/PA-95)
+* [PA-101: AIO's OpenSSL cannot make SSL connection to apt.dockerproject.org](https://tickets.puppetlabs.com/browse/PA-101)
 
 ## Puppet Agent 1.3.1
 
@@ -78,11 +81,14 @@ We no longer provide `puppet-agent` packages that will install on Windows Server
 
 ### Regressions
 
-#### DigiCert Global Root Certificate is Restored
+#### Smaller CA Certificate Bundle Can Cause Failures
 
-The `puppet-agent` 1.3.0 package mistakenly omits the DigiCert Global Root certificate from `/opt/puppetlabs/puppet/ssl/cert.pem`, which was included in `puppet-agent` up to version 1.2.7. This certificate is restored in `puppet-agent` 1.3.2.
+Through version 1.2.7, the `puppet-agent` package used the system-provided OpenSSL certificate authority (CA) certificate bundle on platforms where it was available, such as on Linux-based operating systems. Starting with `puppet-agent` 1.3.0, the package includes a CA certificate bundle to support encrypted access consistently across platforms, including those that don't provide their own certificate bundle.
+
+However, the bundle we provide in `puppet-agent` 1.3.0 and 1.3.1 includes only a subset of the CA certificates generally provided by Linux vendors, which can cause some Puppet features that require any of the omitted certificates to fail. Starting in version 1.3.2, the bundle includes a more complete set of CA certificates that's comparable to the full set provided by other vendors.
 
 * [PA-95: DigiCert Global Root cert missing in puppet-agent 1.3.0](https://tickets.puppetlabs.com/browse/PA-95)
+* [PA-101: AIO's OpenSSL cannot make SSL connection to apt.dockerproject.org](https://tickets.puppetlabs.com/browse/PA-101)
 
 ### Updated Components
 
