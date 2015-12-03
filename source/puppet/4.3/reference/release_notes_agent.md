@@ -30,6 +30,24 @@ The `puppet-agent` package installs Puppet 4. Also read the [Puppet 4.0 release 
 
 Also of interest: [About Agent](/puppet/4.3/reference/about_agent.html) and the [Puppet 4.3 release notes](/puppet/4.3/reference/release_notes.html).
 
+## Puppet Agent 1.3.2
+
+Released December 2, 2015.
+
+This release includes a more comprehensive root certificate authority (CA) certificate bundle. No other components are updated.
+
+* [Fixed in `puppet-agent` 1.3.2](https://tickets.puppetlabs.com/issues/?filter=16400)
+* [Introduced in `puppet-agent` 1.3.2](https://tickets.puppetlabs.com/issues/?filter=16401)
+
+### Regression Fixes
+
+#### More CA Certificates Bundled
+
+In `puppet-agent` 1.3.0 and 1.3.1, the included bundle of CA certificates was smaller than the system bundles used in `puppet-agent` 1.2.7 and earlier, which could cause Puppet features that rely on the omitted CA certificates to fail. This release resolves the issue by expanding the certificate bundle to be more comparable to the set provided by other vendors.
+
+* [PA-95: DigiCert Global Root cert missing in puppet-agent 1.3.0](https://tickets.puppetlabs.com/browse/PA-95)
+* [PA-101: AIO's OpenSSL cannot make SSL connection to apt.dockerproject.org](https://tickets.puppetlabs.com/browse/PA-101)
+
 ## Puppet Agent 1.3.1
 
 Released November 30, 2015.
@@ -37,8 +55,6 @@ Released November 30, 2015.
 Includes [Puppet 4.3.1][], [Facter 3.1.3][], and [`pxp-agent` 1.0.1][pxp-agent], each with bug or regression fixes and no new functionality. No other components are updated.
 
 This release also closes a race condition in `pxp-agent` between the completion of an action command and the corresponding metadata file being updated.
-
-### All Changes
 
 * [Fixed in `puppet-agent` 1.3.1](https://tickets.puppetlabs.com/issues/?filter=16106)
 * [Introduced in `puppet-agent` 1.3.1](https://tickets.puppetlabs.com/issues/?filter=16209)
@@ -76,6 +92,17 @@ Windows Installer incorrectly assumes the newly included `pxp-agent.exe` will be
 ### Bug Fixes
 
 * Resolves [a daemonization issue on AIX](https://tickets.puppetlabs.com/browse/PA-67) that made the service appear to be inoperative when running.
+
+### Regressions
+
+#### Smaller CA Certificate Bundle Can Cause Failures
+
+Through version 1.2.7, the `puppet-agent` package used the system-provided OpenSSL certificate authority (CA) certificate bundle on platforms where it was available, such as on Linux-based operating systems. Starting with `puppet-agent` 1.3.0, the package includes a CA certificate bundle to support authenticated SSL connections consistently across platforms, including platforms that don't provide their own certificate bundle.
+
+However, the bundle we provide in `puppet-agent` 1.3.0 and 1.3.1 includes only a subset of the CA certificates generally provided by Linux vendors, which can cause some Puppet features that require any of the omitted certificates to fail. Starting in version 1.3.2, the bundle includes a more complete set of CA certificates that's comparable to the full set provided by other vendors.
+
+* [PA-95: DigiCert Global Root cert missing in puppet-agent 1.3.0](https://tickets.puppetlabs.com/browse/PA-95)
+* [PA-101: AIO's OpenSSL cannot make SSL connection to apt.dockerproject.org](https://tickets.puppetlabs.com/browse/PA-101)
 
 ### Updated Components
 
