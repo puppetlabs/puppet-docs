@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "puppet-agent: What Is It, and What's In It?"
-canonical: "/puppet/latest/about_agent.html"
+canonical: "/puppet/latest/reference/about_agent.html"
 ---
 
 [Facter]: /facter/latest/
