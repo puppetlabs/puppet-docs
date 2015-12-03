@@ -56,8 +56,6 @@ Includes [Puppet 4.3.1][], [Facter 3.1.3][], and [`pxp-agent` 1.0.1][pxp-agent],
 
 This release also closes a race condition in `pxp-agent` between the completion of an action command and the corresponding metadata file being updated.
 
-### All Changes
-
 * [Fixed in `puppet-agent` 1.3.1](https://tickets.puppetlabs.com/issues/?filter=16106)
 * [Introduced in `puppet-agent` 1.3.1](https://tickets.puppetlabs.com/issues/?filter=16209)
 
