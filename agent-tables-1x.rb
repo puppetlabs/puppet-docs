@@ -1,13 +1,14 @@
 #!/usr/bin/env ruby
-# Requires json file as an argument
+# Requires agent.json file
 
 require 'json'
 require 'pathname'
 require 'pp'
 require './version_tables.rb'
 
-json_file = File.expand_path(ARGV[0])
-version_info = JSON.load(File.read(json_file))
+project_dir = Pathname.new(File.expand_path(__FILE__)).parent
+agent_json = project_dir + 'agent.json'
+version_info = JSON.load(File.read(agent_json))
 
 components = [
   'Puppet',

@@ -5,8 +5,10 @@ require 'pathname'
 require 'pp'
 require './version_tables.rb'
 
-pe_json = File.expand_path(ARGV[0])
-agent_json = File.expand_path(ARGV[1])
+project_dir = Pathname.new(File.expand_path(__FILE__)).parent
+pe_json = project_dir + 'pe.json'
+agent_json = project_dir + 'agent.json'
+
 version_info = JSON.load(File.read(pe_json))
 agent_info = JSON.load(File.read(agent_json))
 

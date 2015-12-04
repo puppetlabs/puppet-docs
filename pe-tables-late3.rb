@@ -5,8 +5,10 @@ require 'pathname'
 require 'pp'
 require './version_tables.rb'
 
-json_file = File.expand_path(ARGV[0])
-version_info = JSON.load(File.read(json_file))
+project_dir = Pathname.new(File.expand_path(__FILE__)).parent
+pe_json = project_dir + 'pe.json'
+
+version_info = JSON.load(File.read(pe_json))
 
 agent_stuff = [
 #   "Puppet Agent",

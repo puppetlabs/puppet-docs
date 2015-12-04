@@ -5,14 +5,14 @@ require 'pathname'
 require 'json'
 require 'pp'
 
-agent_packages_dir = Pathname.new(File.expand_path(__FILE__)).parent
-puppet_agent_dir = (agent_packages_dir + 'puppet-agent')
+project_dir = Pathname.new(File.expand_path(__FILE__)).parent
+vanagon_dir = (project_dir + 'puppet-agent')
 
-if !Dir.exist?(puppet_agent_dir + '.git')
-  Git.clone('git@github.com:puppetlabs/puppet-agent.git', puppet_agent_dir)
+if !Dir.exist?(vanagon_dir + '.git')
+  Git.clone('git@github.com:puppetlabs/puppet-agent.git', vanagon_dir)
 end
 
-agent_repo = Git.open(puppet_agent_dir)
+agent_repo = Git.open(vanagon_dir)
 agent_repo.fetch
 
 component_files = {
@@ -45,7 +45,7 @@ end
 agent_versions_hash = tags.reduce(Hash.new) {|result, tag|
   agent_repo.checkout(tag)
   components_hash = component_files.reduce(Hash.new) {|result, (component, config)|
-    component_file = agent_packages_dir + 'puppet-agent/configs/components' + config
+    component_file = vanagon_dir + 'configs/components' + config
     if component_file.extname == '.json'
       result[component] = version_from_json(component_file)
     elsif component_file.extname == '.rb'
