@@ -41,21 +41,28 @@ our_versions = version_info.keys.select {|v|
   v =~ /^2015/
 }.sort.reverse
 
-# Merge info from puppet-agent package into PE version info!
 
-our_versions.each {|pe_version|
-  # Remember that we have to handle multiple agent versions. So...
-  agent_versions = version_info[pe_version]['Puppet Agent'] # it's a hash. '1.2.2' => ['os-1', 'os-2']
-  agent_versions.each {|agent_version, os_list|
-    agent_contents = agent_info[agent_version] # it's a hash. 'Component' => '4.2.2'
-    agent_contents.each {|component, component_version|
+# this_pe_version_info is version_info[<PE VERSION>].
+# name_of_vanagon_package is, e.g., 'Puppet Agent'.
+# vanagon_data is the full dump of version info for that vanagon project (slurped in from json).
+def merge_vanagon_info!(this_pe_version_info, name_of_vanagon_package, vanagon_data)
+  # Remember that we might have to handle multiple agent/client-tools versions per PE release. So...
+  versions_and_operating_systems = this_pe_version_info[name_of_vanagon_package] # it's a hash. '1.2.2' => ['os-1', 'os-2']
+  versions_and_operating_systems.each {|vanagon_version, os_list|
+    vanagon_contents = vanagon_data[vanagon_version] # it's a hash. 'Component' => '4.2.2'
+    vanagon_contents.each {|component, component_version|
       # set version_info[pe_version][component][component_verision] to os_list, but be conservative
       # in case there's something there already.
-      version_info[pe_version][component] ||= {}
-      version_info[pe_version][component][component_version] ||= []
-      version_info[pe_version][component][component_version].concat(os_list)
+      this_pe_version_info[component] ||= {}
+      this_pe_version_info[component][component_version] ||= []
+      this_pe_version_info[component][component_version].concat(os_list)
     }
   }
+end
+
+# Merge info from puppet-agent and client tools packages into PE version info!
+our_versions.each {|pe_version|
+  merge_vanagon_info!( version_info[pe_version], 'Puppet Agent', agent_info )
 }
 
 # First, software on agents / all nodes.
