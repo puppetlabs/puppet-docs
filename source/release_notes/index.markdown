@@ -10,11 +10,12 @@ description: Links to Puppet and Puppet Enterprise release notes
 
 ### Current Releases
 
-- [Puppet 4.2][4.2]
+- [Puppet 4.3][4.3]
 - [Puppet 3.8][3.8]
 
 ### Previous Releases
 
+- [Puppet 4.2][4.2]
 - [Puppet 4.1][4.1]
 - [Puppet 4.0][4.0]
 - [Puppet 3.7][3.7]
@@ -46,17 +47,17 @@ description: Links to Puppet and Puppet Enterprise release notes
 - [Puppet Enterprise 2.6][pe2.6]
 - [Puppet Enterprise 2.5][pe2.5]
 - [Puppet Enterprise 2.0][pe2.0]
-- [Puppet Enterprise 1.2][pe1.2] (receiving security fixes until April, 2013)
+- [Puppet Enterprise 1.2][pe1.2] (received security fixes until April 2013)
 
 ## About Version Numbers
 
 ### Puppet Labs' Open Source Projects
 
-All of our open source projects --- including Puppet, PuppetDB, Facter, and Hiera --- use [semantic versioning ("semver")][semver] for their version numbers. This means that in an `x.y.z` version number, the "y" will increase if new features are introduced and the "x" will increase if existing features change or get removed.
+All of our open source projects --- including Puppet, Puppet Server, PuppetDB, Facter, and Hiera --- use [semantic versioning ("semver")][semver] for their version numbers. This means that in an `x.y.z` version number, the "y" will increase if new features are introduced and the "x" will increase if existing features change or get removed.
 
 Our semver promises only refer to the code in a single project; it's possible for packaging or interactions with new "y" releases of other projects to cause new behavior in a "z" upgrade of Puppet.
 
-Historical note: In Puppet versions prior to 3.0.0 and Facter versions prior to 1.7.0, we weren't using semantic versioning.
+> **Historical note:** In Puppet versions prior to 3.0.0 and Facter versions prior to 1.7.0, we weren't using semantic versioning.
 
 ### Puppet Enterprise
 
@@ -64,7 +65,7 @@ Since Puppet Enterprise bundles a lot of interrelated software together, it does
 
 ## Upgrading Puppet
 
-Before upgrading, you should skim our [page of advice about upgrading Puppet](puppet/latest/reference/upgrade_major_pre.html).
+Before upgrading, you should skim our [page of advice about upgrading Puppet](/puppet/latest/reference/upgrade_major_pre.html).
 
 The short version is that you should upgrade when you're ready to upgrade, skim the release notes first, reserve some time for testing, upgrade the Puppet master first, and roll out upgrades in stages.
 
@@ -72,8 +73,8 @@ The short version is that you should upgrade when you're ready to upgrade, skim 
 
 The [Roadmap Tracker](https://tickets.puppetlabs.com/browse/PUP#selectedTab=com.atlassian.jira.plugin.system.project%3Aversions-panel) lists tickets closed for each release.
 
-
 [semver]: http://semver.org
+[4.3]: /puppet/4.3/reference/release_notes.html
 [4.2]: /puppet/4.2/reference/release_notes.html
 [4.1]: /puppet/4.1/reference/release_notes.html
 [4.0]: /puppet/4.0/reference/release_notes.html
