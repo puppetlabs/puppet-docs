@@ -11,7 +11,7 @@ canonical: "/puppet/latest/reference/install_pre.html"
 [puppetdb]: /puppetdb/latest
 [server_setting]: /references/4.3.latest/configuration.html#server
 
-> **Note:** This document covers open source releases of Puppet. [See here for instructions on installing Puppet Enterprise.][peinstall]
+> **Note:** This document covers open source releases of Puppet. For instructions on installing Puppet Enterprise, see [its installation documentation][peinstall].
 
 Before you install Puppet, you should do the following tasks.
 
