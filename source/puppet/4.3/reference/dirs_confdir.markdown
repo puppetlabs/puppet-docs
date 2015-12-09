@@ -13,7 +13,7 @@ Puppet's `confdir` is the main directory for Puppet's configuration. It contains
 Puppet's confdir can be found at one of the following locations:
 
 * \*nix Systems: `/etc/puppetlabs/puppet`
-* Windows: `C:\ProgramData\PuppetLabs\puppet\etc`
+* Windows: `%PROGRAMDATA%\PuppetLabs\puppet\etc` (usually `C:\ProgramData\PuppetLabs\puppet\etc`)
 * non-root users: `~/.puppetlabs/etc/puppet`
 
 When Puppet is running as either root, a Windows user with administrator privileges, or the `puppet` user, it will use a system-wide confdir. When running as a non-root user, it will use a confdir in that user's home directory.
@@ -27,10 +27,6 @@ The system confdir is what you usually want to use, since you will usually run P
 Puppet's confdir can be specified on the command line with the `--confdir` option, but it can't be set via puppet.conf. (This is because it needs the `confdir` to even find the config file.) If `--confdir` isn't specified when a Puppet application is started, it will always use the default confdir location.
 
 Puppet Server uses the `jruby-puppet.master-conf-dir` setting [in puppetserver.conf][puppetserver_conf] to configure its confdir. Note that if you're using a non-default confdir, you must also specify `--confdir` whenever you run commands like `puppet module` or `puppet cert` to ensure they use the same directories as Puppet Server.
-
-### Note about Windows 2003
-
-The location of the system confdir is based on the `COMMON_APPDATA` folder, whose location changed to a simpler value in Windows 7 and 2008. So if you're using Windows 2003 the confdir will actually be located at `%ALLUSERSPROFILE%\Application Data\PuppetLabs\puppet\etc` (defaults to `C:\Documents and Settings\All Users\Application Data\PuppetLabs\puppet\etc`).
 
 ## Interpolation of `$confdir`
 

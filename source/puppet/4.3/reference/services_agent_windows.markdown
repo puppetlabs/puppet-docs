@@ -130,16 +130,15 @@ You **must be logged in as an administrator** to do this. On Windows 7/2008 and 
 
 ##### Running Other Puppet Commands
 
-If you want to run other Puppet-related commands, you must start a command prompt **with administrative privileges.** You can do this with either the standard `cmd.exe` program, or the "Start Command Prompt with Puppet" Start menu item added by the Puppet installer.
+If you want to run other Puppet-related commands, you must start a command prompt **with administrative privileges.** (You can do so with either the standard `cmd.exe` program, or the "Start Command Prompt with Puppet" Start menu item added by the Puppet installer.)
 
-* On Windows 2003, make sure you are logged in as an administrator before starting the command prompt.
-* On Windows 7 or 2008, you must right-click the start menu item and choose "Run as administrator:"
+To do this, right-click the start menu item and choose "Run as administrator:"
 
-    ![the right click menu, with run as administrator highlighted][rightclick]
+![the right click menu, with run as administrator highlighted][rightclick]
 
-    This will ask for UAC confirmation:
+This will ask for UAC confirmation:
 
-    ![UAC dialog][uac]
+![UAC dialog][uac]
 
 #### Remotely
 

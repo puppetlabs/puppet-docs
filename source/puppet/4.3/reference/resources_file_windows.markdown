@@ -33,7 +33,7 @@ The issue of backslashes and forward-slashes in file paths can get complicated. 
 
 As of Puppet 3.7, Puppet can run as either a 32- or a 64-bit process. As long as you have installed an architecture-appropriate Puppet package, file system redirection is not an issue for you.
 
-However, if you're using Windows Server 2003, have purposely installed a 32-bit package on a 64-bit version of Windows, or are writing code that must support older versions of Puppet, you will be affected by the Windows File System Redirector. This issue is covered in full detail in [Handling File Paths on Windows.][win_paths]
+However, if you have purposely installed a 32-bit package on a 64-bit version of Windows, or are writing code that must support older versions of Puppet, you will be affected by the Windows File System Redirector. This issue is covered in full detail in [Handling File Paths on Windows.][win_paths]
 
 ## Be Consistent With Case in File Names
 

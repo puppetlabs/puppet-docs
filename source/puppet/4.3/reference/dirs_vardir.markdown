@@ -21,7 +21,7 @@ Puppet Server's cache directory defaults to:
 The cache directory for Puppet agent and Puppet apply can be found at one of the following locations:
 
 * \*nix Systems: `/var/opt/puppetlabs/puppet/cache`
-* Windows: `C:\ProgramData\PuppetLabs\puppet\cache`
+* Windows: `%PROGRAMDATA%\PuppetLabs\puppet\cache` (usually `C:\ProgramData\PuppetLabs\puppet\cache`)
 * non-root users: `~/.puppetlabs/opt/puppet/cache`
 
 When Puppet is running as either root, a Windows user with administrator privileges, or the `puppet` user, it will use a system-wide cache directory. When running as a non-root user, it will use a cache directory in that user's home directory.
@@ -35,10 +35,6 @@ The system cache directory is what you usually want to use, since you will usual
 Puppet's cache directory can be specified on the command line with the `--vardir` option, but it can't be set via puppet.conf. If `--vardir` isn't specified when a Puppet application is started, it will always use the default cache directory location.
 
 Puppet Server uses the `jruby-puppet.master-var-dir` setting [in puppetserver.conf][puppetserver_conf] to configure its cache directory.
-
-### Note about Windows 2003
-
-The location of the system confdir is based on the `COMMON_APPDATA` folder, whose location changed to a simpler value in Windows 7 and 2008. So if you're using Windows 2003 the confdir will actually be located at `%ALLUSERSPROFILE%\Application Data\PuppetLabs\puppet\var` (defaults to `C:\Documents and Settings\All Users\Application Data\PuppetLabs\puppet\var`).
 
 ## Interpolation of `$vardir`
 
