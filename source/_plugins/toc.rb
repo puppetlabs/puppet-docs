@@ -25,13 +25,17 @@ module TocFilter
         ([23]) # 1: Header level
       )
       (?:
-        >|\s+(.*?)> # 2: Empty or an attribute string which probably includes id="blah;" the group makes a capture even if the alternator keeps matching from reaching it.
+        >|\s+(.*?)> # 2: Either nil or an attribute string which probably includes id="blah"; the group makes a capture even if the alternator keeps matching from reaching it.
       )
       (.*?) # 3: Header text, potentially including an <em> or <code> element
       </\1\s*> # Closing tag
     }imx).each { |entry|
       hlevel = entry[1].to_i
-      id = entry[2][/^id\s*=\s*(['"])(.*)\1$/, 2]
+      if entry[2].class == String
+        id = entry[2][/id\s*=\s*(['"])(.*?)\1/, 2]
+      else # Don't try to call [] on nil.
+        id = ''
+      end
       text = entry[3].gsub(/<[^>]+>/m, '').strip # Get rid of any span-level tags inside the header text, and strip trailing whitespace.
       if hdepth == 0
         sublist_stack.push(toc) # Prime the pump. This has to be exclusive of the next elsif.
@@ -50,7 +54,7 @@ module TocFilter
         }
       )
       hdepth = hlevel # Set the current depth.
-    } 
+    }
     print_toc_sublist(toc)
   end
   def print_toc_sublist(ary)
@@ -62,7 +66,7 @@ module TocFilter
       sublist_string << print_toc_sublist(header['sublist'])
       sublist_string << "</li>\n"
     }
-    
+
     sublist_string << "</ol>"
     sublist_string
   end
