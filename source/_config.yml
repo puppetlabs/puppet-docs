@@ -35,6 +35,7 @@ defaultnav:
   /learning: /_includes/learning_nav.html
   /mcollective: /_includes/mcollective_menu.html
   /mcollective1.2: /_includes/mcollective_1.2.html
+  /pe/: /pe/2015.3/_pe_toc.html
   /pe/2015.3: /pe/2015.3/_pe_toc.html
   /pe/2015.2: /pe/2015.2/_pe_toc.html
   /pe/3.8: /pe/3.8/_pe_toc.html
