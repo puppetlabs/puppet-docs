@@ -6,7 +6,9 @@ canonical: "/puppet/latest/reference/modules_installing.html"
 
 [forge]: https://forge.puppetlabs.com
 [module_man]: /references/4.3.latest/man/module.html
-[modulepath]: /references/4.3.latest/configuration.html#modulepath
+[modulepath]: ./dirs_modulepath.html
+[codedir]: ./dirs_codedir.html
+
 
 [publishing]: ./modules_publishing.html
 [fundamentals]: ./modules_fundamentals.html
@@ -15,14 +17,10 @@ canonical: "/puppet/latest/reference/modules_installing.html"
 [errors]: /windows/troubleshooting.html#error-messages
 [metadata.json]: ./modules_metadata.html
 
-> **Puppet Enterprise Users Note**
+
+> **Windows Note**
 >
-> For a complete guide to installing and managing modules, please see the [Installing Modules page](/pe/2015.2/modules_installing.html).
-
-![Windows note](/images/windows-logo-small.jpg)
-
-* Windows nodes that pull configurations from a Linux or Unix Puppet master can use any Forge modules installed on the master. Continue reading to learn how to use the module tool on your Puppet master.
-* If you are getting SSL errors or cannot get the Puppet module tool to work, check out our [error messages documentation][errors].
+> If you are getting SSL errors or cannot get the Puppet module tool to work, check out our [error messages documentation][errors].
 
 > **Solaris Note**
 >
@@ -100,22 +98,23 @@ Alternatively, you can set these two proxy settings inside the `user` config sec
 
 ## Installing Modules
 
-The `puppet module install` action will install a module and all of its dependencies. By default, it installs into the first directory in Puppet's [modulepath][].
+The `puppet module install` action will install a module and all of its dependencies. By default, it installs into the first directory in Puppet's [modulepath][], which defaults to `$codedir/environments/production/modules`. (See also: [more about the modulepath][modulepath] and [how to find the codedir][codedir].)
 
-* Use the `--version` option to specify a version. You can use an exact version or a requirement string like `>=1.0.3`.
+* Use the `--target-dir` option to specify a different directory for installation. Relatedly:
+    * Use the `--environment` option to install into a different [environment][].
+    * Use the `--modulepath` option to manually specify a different modulepath, which will be used to calculate dependencies and choose a default value for `--target-dir`.
+* Use the `--version` option to specify a version of the module. You can use an exact version or a requirement string like `>=1.0.3`.
 * Use the `--force` option to forcibly install a module or re-install an existing module. (**Note:** Does not install dependencies.)
-* Use the `--environment` option to install into a different environment.
-* Use the `--modulepath` option to manually specify which directory to install into. (**Note:** To avoid duplicating modules installed as dependencies, you may need to specify the modulepath as a list of directories; see [the documentation for setting the modulepath][modulepath] for details.)
 * Use the `--ignore-dependencies` option to skip installing any modules required by this module.
 * Use the `--debug` option to see additional information about what the Puppet module tool is doing.
 
-> **A note about installing**
+> **Note: Invalid Version Warnings**
 >
-> As of Puppet 3.6, if any module in your `modules` directory (`/etc/puppetlabs/code/modules` in Puppet 4) has incorrect versioning (anything other than major.minor.patch), attempting to install a module will result in this warning:
+> If any installed module has an invalid number (anything other than major.minor.patch), Puppet will issue the following warning whenever you install a module:
 >
 > `Warning: module (/Users/youtheuser/.puppet/modules/module) has an invalid version number (0.1). The version has been set to 0.0.0. If you are the maintainer for this module, please update the metadata.json with a valid Semantic Version (http://semver.org).`
 >
-> Despite the warning, Puppet still downloads your module and does not permanently change the offending module's metadata. The versioning information has only been changed in memory during the run of the program.
+> Despite the warning, Puppet still downloads your module and does not permanently change the offending module's metadata. The version is only changed in memory during the run of the program, in order to calculate dependencies for the modules you're installing.
 
 ### Installing From the Puppet Forge
 
@@ -146,6 +145,20 @@ sudo puppet module install ~/puppetlabs-apache-0.10.0.tar.gz --ignore-dependenci
 ~~~
 
 > **Note:** You can manually install modules without the `puppet module` tool. If you do, you must name your module's directory appropriately. Module directory names can only contain letters, numbers, and underscores. Dashes and periods are **no longer valid** and cause errors when attempting to use the module.
+
+### Installing Puppet Enterprise Modules
+
+We publish some premium modules that are built exclusively for Puppet Enterprise users. To install a [Puppet Enterprise module](/forge/puppetenterprisemodules) you must:
+
+* Be logged in as the root user.
+* Use the [Puppet module tool](#using-the-module-tool).
+* Install the module on a properly licensed Puppet node.
+* Have internet access on the node you are using to download the module.
+
+Once you've run `puppet module install puppetlabs-<MODULE>` you can move the installed module to the directory, server, or version control system (VCS) repository of your choice.
+
+You might also choose to run `puppet module install puppetlabs-<MODULE>` and then  run `puppet module build` to build the newly-installed module so you can move the pkg/*.tar.gz wherever you choose. Once the tar.gz file is moved, run `puppet module install` against it. As long as the node you've moved it to has internet access, this second run of `puppet module install` will bring in any publicly available dependencies, such as puppetlabs-stdlib.
+
 
 ## Finding Modules
 
@@ -195,6 +208,17 @@ Use the module tool's `upgrade` action to upgrade an installed module to the lat
 * Use the `--ignore-changes` option to upgrade the module while ignoring and overwriting any local changes that may have been made.
 * Use the `--ignore-dependencies` option to skip upgrading any modules required by this module.
 
+### Managing Puppet Enterprise Modules
+
+If you want to manage a Puppet Enterprise module with [librarian-puppet](https://github.com/rodjek/librarian-puppet) or [r10k](https://github.com/puppetlabs/r10k), you must [install the module](#installing-puppet-enterprise-modules) and then commit the module to your version control repository.
+
+When it comes time to upgrade your Puppet Enterprise module, much like with installation, you must:
+
+* Be logged in as the root user.
+* Use the [Puppet module tool](#using-the-module-tool).
+* Install the module on a properly licensed Puppet node.
+* Have internet access on the node you are using to download the module.
+
 ### Uninstalling Modules
 
 Use the module tool's `uninstall` action to remove an installed module. You must identify the target module by its full name  (username-modulename).
@@ -211,6 +235,7 @@ Removed /etc/puppetlabs/code/modules/apache (v0.0.3)
 By default, the tool won't uninstall a module that other modules depend on, or whose files have been edited since it was installed.
 
 * Use the `--force` option to uninstall even if the module is depended upon or has been manually edited.
+* Use the `--ignore-changes` option to uninstall the module while ignoring and overwriting any local changes that may have been made.
 
 ### Errors
 
@@ -231,7 +256,7 @@ You can workaround it by upgrading or uninstalling using the `--ignore-changes` 
 
 #### PE-only modules
 
-You might see an error while attempting to install a module from the Forge that looks like:
+When installing or upgrading a Puppet Enterprise module, you might receive the following error:
 
 ~~~
 $ sudo puppet module install puppetlabs-mssql
@@ -243,6 +268,12 @@ Error: Request to Puppet Forge failed.
   The message we received said 'You must have a valid Puppet Enterprise license on this node in order to download puppetlabs-mssql. If you have a Puppet Enterprise license, please see https://docs.puppetlabs.com/forge/pe-only-modules for more information.'
 ~~~
 
-It is because the module you are trying to download is only available to Puppet Enterprise users. To use this module, download [Puppet Enterprise](https://puppetlabs.com/puppet/puppet-enterprise).
+If you aren't a Puppet Enterprise user, you won't be able to use this module unless you purchase [Puppet Enterprise](https://puppetlabs.com/puppet/puppet-enterprise).
 
-If you are a Puppet Enterprise user, use the [troubleshooting guide](/pe/2015.2/modules_installing.html#errors).
+If you are a Puppet Enterprise user, check the following:
+
+1. Are you logged in as the root user? If not, log in as root and try again.
+2. Are you using either the `puppet module install` or `puppet module upgrade` command? If not, you must use the Puppet module subcommands to install or upgrade Puppet Enterprise modules.
+3. Does the node you're on have a valid Puppet Enterprise license? If not, switch to a node that has a valid PE license on it.
+4. Are you running a version of Puppet Enterprise that supports this module? If not, you might need to upgrade.
+5. Do you have access to the internet on the node? If not, you need to switch to a node that has access to the internet.
