@@ -54,9 +54,9 @@ This guide assumes that you have already [written a useful Puppet module][fundam
 
 ### A Note on Module Names
 
-Because many users have published their own versions of modules with common names ("mysql," "bacula," etc.), the Puppet Forge (Forge) requires module names to have a username prefix. That is, if a user named "puppetlabs" maintained a "mysql" module, it would be known to the Forge as "puppetlabs-mysql".**Be sure to use this long name in your module's [metadata.json file][inpage_metadata].**
+Because many users have published their own versions of modules with common names ("mysql," "bacula," etc.), the Puppet Forge (Forge) requires module names to have a username prefix. That is, if a user named "puppetlabs" maintained a "mysql" module, it would be known to the Forge as "puppetlabs-mysql". **Be sure to use this long name in your module's [metadata.json file][inpage_metadata].**
 
-As of Puppet 4, your module's directory cannot share this long name, as module directory names cannot contain dashes or periods (only letters, numbers, and underscores). Using the the build action will do the right thing as long as the metadata.json is correct.
+However, your module's directory on disk must use the short name, without the username prefix. (Module directory names cannot contain dashes or periods; only letters, numbers, and underscores). Using the the build action will do the right thing as long as the metadata.json is correct.
 
 ### Another Note on Module Names
 
@@ -76,15 +76,17 @@ Before you begin, you should create a user account on the Puppet Forge (Forge). 
 Prepare the Module
 -----
 
-If you already have a Puppet module with the [correct directory layout][fundamentals], you may continue to the next step.
+If you already have a Puppet module with the [correct directory layout][fundamentals], you can continue to the next step.
 
 Alternately, you can use the `puppet module generate` action to generate a template layout. Generating a module will provide you with a sample README and a copy of the `spec_helper` tool for writing [rspec-puppet][rspec] tests. It will also launch a series of questions that will create your metadata.json file.
 
-Follow the directions to [generate a new module](https://docs.puppetlabs.com/puppet/latest/reference/modules_fundamentals.html#writing-modules)
+Follow the directions to [generate a new module](./modules_fundamentals.html#writing-modules).
+
+>**Note:** In order to successfully publish your module to the Puppet Forge and ensure everything can be rendered correctly, your README, license file, changelog, and metadata.json must be UTF-8 encoded.
 
 ### Set Files to Be Ignored
 
-It's not unusual to have some files in your module that you want to exclude from your build. You may exclude files by including them in .gitgnore or .pmtignore. Your .pmtignore or .gitignore file must be in the module's root directory, and will be read during the build process.
+It's not unusual to have some files in your module that you want to exclude from your build. You can exclude files by including them in .gitgnore or .pmtignore. Your .pmtignore or .gitignore file must be in the module's root directory, and will be read during the build process.
 
 If you have both a .pmtignore and a .gitignore file, the Puppet module tool will read the .pmtignore file over the .gitignore.
 
@@ -172,7 +174,7 @@ Whether you are uploading a brand new module or a new release of an existing mod
 Delete a Release
 ----
 
-At some point, you may want to delete a release of your module. You can accomplish this easily from the Forge's web interface.
+At some point, you might want to delete a release of your module. You can accomplish this easily from the Forge's web interface.
 
 >**Note**
 >
