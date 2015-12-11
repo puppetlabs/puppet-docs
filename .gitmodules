@@ -1,3 +1,0 @@
-[submodule "marionette-collective"]
-	path = marionette-collective
-	url = git://github.com/puppetlabs/marionette-collective.git
