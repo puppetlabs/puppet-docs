@@ -1,6 +1,3 @@
-require 'puppet_references/bleach'
-require 'puppet_references/doc_command'
-require 'puppet_references/man_command'
 require 'pathname'
 
 module PuppetReferences
@@ -9,5 +6,11 @@ module PuppetReferences
   FACTER_DIR = BASE_DIR + 'vendor/facter'
   AGENT_DIR = BASE_DIR + 'vendor/puppet-agent'
   PE_DIR = BASE_DIR + 'vendor/enterprise-dist'
+  OUTPUT_DIR = BASE_DIR + 'references_output'
+
+  require 'puppet_references/bleach'
+  require 'puppet_references/doc_command'
+  require 'puppet_references/man_command'
+  require 'puppet_references/puppet/puppet_doc'
 
 end
