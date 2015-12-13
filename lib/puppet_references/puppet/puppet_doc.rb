@@ -8,9 +8,11 @@ module PuppetReferences
 
       def self.build_all
         OUTPUT_DIR.mkpath
+        puts 'Oldskool refs: Building all...'
         REFERENCES.each do |ref|
           build_reference(ref)
         end
+        puts 'Oldskool refs: Done!'
       end
 
       def self.make_header(reference)
@@ -24,6 +26,7 @@ EOT
       end
 
       def self.build_reference(reference)
+        puts "Oldskool refs: Building #{reference} reference"
         filename = OUTPUT_DIR + "#{reference}.md"
         raw_content = PuppetReferences::DocCommand.new(reference).get
         # Remove the first H1 with the title, like "# Metaparameter Reference"
