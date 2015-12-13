@@ -1,5 +1,3 @@
-#!/usr/bin/env ruby
-
 # This script will print the Puppet type docs to stdout in JSON format.
 
 # There are some subtleties that make this a pain to run. Basically: Even if you
