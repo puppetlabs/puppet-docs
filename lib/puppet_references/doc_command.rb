@@ -1,19 +1,8 @@
-require 'puppet_references/bleach'
-class PuppetReferences
-  class DocCommand
+require 'puppet_references/puppet_command'
+module PuppetReferences
+  class DocCommand < PuppetReferences::PuppetCommand
     def initialize(name, puppet_dir = './vendor/puppet')
-      @name = name
-      @puppet_dir = File.expand_path(puppet_dir)
-    end
-
-    def get
-      text = ''
-      Dir.chdir(@puppet_dir) do
-        text = PuppetReferences::Bleach.run_dirty_command(
-            "bundle exec puppet doc -r #{@name} #{PuppetReferences::Bleach::PUPPET_OPTIONS}"
-        )
-      end
-      text
+      super("puppet doc -r #{name}", puppet_dir)
     end
   end
 end

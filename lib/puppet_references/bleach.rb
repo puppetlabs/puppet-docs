@@ -1,4 +1,4 @@
-class PuppetReferences
+module PuppetReferences
   class Bleach
     def self.run_dirty_command(command)
       result = Bundler.with_clean_env do
