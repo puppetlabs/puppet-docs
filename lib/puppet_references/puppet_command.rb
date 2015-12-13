@@ -2,9 +2,7 @@ require 'puppet_references'
 require 'puppet_references/bleach'
 module PuppetReferences
   class PuppetCommand
-    attr_reader :name
-    def initialize(name, command, puppet_dir = PuppetReferences::PUPPET_DIR)
-      @name = name
+    def initialize(command, puppet_dir = PuppetReferences::PUPPET_DIR)
       @command = command
       @puppet_dir = File.expand_path(puppet_dir)
     end
