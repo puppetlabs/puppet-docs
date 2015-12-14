@@ -89,7 +89,9 @@ declare which features they provide.
 EOT
 
       def self.build_all
-        puts 'Type ref: Building all'
+        OUTPUT_DIR_UNIFIED.mkpath
+        OUTPUT_DIR_INDIVIDUAL.mkpath
+        puts 'Type ref: Building all...'
         type_json = get_type_json
         type_data = JSON.load(type_json)
 
