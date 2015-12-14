@@ -11,22 +11,7 @@ module PuppetReferences
       OUTPUT_DIR_UNIFIED = PuppetReferences::OUTPUT_DIR + 'puppet'
       OUTPUT_DIR_INDIVIDUAL = PuppetReferences::OUTPUT_DIR + 'puppet/types'
       LATEST_DIR = '/references/latest'
-
-      def self.get_type_json
-        puts "Type ref: Getting JSON data"
-        PuppetReferences::PuppetCommand.new("ruby #{TYPEDOCS_SCRIPT}").get
-      end
-
-      def self.build_unified_page(typedocs)
-        puts "Type ref: Building unified page"
-        header_data = {layout: 'default',
-                       title: 'Resource Type Reference (Single-Page)',
-                       canonical: "#{LATEST_DIR}/type.html",
-                       toc: 'columns'}
-        generated_at = "> **NOTE:** This page was generated from the Puppet source code on #{Time.now.to_s}"
-        preamble = <<EOT
-#{generated_at}
-
+      PREAMBLE = <<EOT
 ## About Resource Types
 
 ### Built-in Types and Custom Types
@@ -102,18 +87,71 @@ declare which features they provide.
 ----------------
 
 EOT
+
+      def self.build_all
+        puts 'Type ref: Building all'
+        type_json = get_type_json
+        type_data = JSON.load(type_json)
+
+        write_json_file(type_json)
+        build_index(type_data.keys.sort)
+        build_unified_page(type_data)
+        type_data.each do |name, data|
+          build_page(name, data)
+        end
+        puts 'Type ref: Done!'
+      end
+
+      def self.build_index(names)
+        header_data = {layout: 'default',
+                       title: 'Resource Types: Index',
+                       canonical: "#{LATEST_DIR}/types/index.html"}
+        links = names.map {|name|
+          "* [#{name}](./#{name}.html)"
+        }
+        content = PuppetReferences::Util.make_header(header_data) + "## List of Resource Types\n\n" + links.join("\n") + "\n\n" + PREAMBLE
+        filename = OUTPUT_DIR_INDIVIDUAL + 'index.md'
+        filename.open('w') {|f| f.write(content)}
+      end
+
+      def self.get_type_json
+        puts "Type ref: Getting JSON data"
+        PuppetReferences::PuppetCommand.new("ruby #{TYPEDOCS_SCRIPT}").get
+      end
+
+      def self.build_unified_page(typedocs)
+        puts "Type ref: Building unified page"
+        header_data = {layout: 'default',
+                       title: 'Resource Type Reference (Single-Page)',
+                       canonical: "#{LATEST_DIR}/type.html",
+                       toc: 'columns'}
+        generated_at = "> **NOTE:** This page was generated from the Puppet source code on #{Time.now.to_s}"
+
         sorted_type_list = typedocs.keys.sort
         all_type_docs = sorted_type_list.collect{|name|
           text_for_type(name, typedocs[name])
         }.join("\n\n---------\n\n")
 
-        content = PuppetReferences::Util.make_header(header_data) + preamble + all_type_docs + "\n\n" + generated_at
+        content = PuppetReferences::Util.make_header(header_data) + generated_at + "\n\n" + PREAMBLE + all_type_docs + "\n\n" + generated_at
         filename = OUTPUT_DIR_UNIFIED + 'type.md'
         filename.open('w') {|f| f.write(content)}
       end
 
-      def self.build_page(name, data)
+      def self.write_json_file(json)
+        puts 'Type ref: Writing JSON as file'
+        filename = OUTPUT_DIR_UNIFIED + 'type.json'
+        filename.open('w') {|f| f.write(json)}
+      end
 
+      def self.build_page(name, data)
+        puts "Type ref: Building #{name}"
+        header_data = {layout: 'default',
+                       title: "Resource Type: #{name}",
+                       canonical: "#{LATEST_DIR}/types/#{name}.html"}
+        generated_at = "> **NOTE:** This page was generated from the Puppet source code on #{Time.now.to_s}"
+        content = PuppetReferences::Util.make_header(header_data) + generated_at + "\n\n" + text_for_type(name, data) + "\n\n" + generated_at
+        filename = OUTPUT_DIR_INDIVIDUAL + "#{name}.md"
+        filename.open('w') {|f| f.write(content)}
       end
 
       def self.text_for_type(name, this_type)
