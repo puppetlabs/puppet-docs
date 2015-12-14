@@ -9,7 +9,7 @@ module PuppetReferences
       if FACES_THAT_RUIN_EVERYTHING.include?(@name)
         super("puppet #{@name} --help", puppet_dir)
       else
-        super("puppet man #{@name} --render-as s", puppet_dir)
+        super("puppet man man #{@name} --render-as s", puppet_dir)
       end
 
     end
