@@ -17,7 +17,6 @@ module PuppetReferences
 
       def self.build_reference(reference)
         puts "Oldskool refs: Building #{reference} reference"
-        filename = OUTPUT_DIR + "#{reference}.md"
         raw_content = PuppetReferences::DocCommand.new(reference).get
         # Remove the first H1 with the title, like "# Metaparameter Reference"
         raw_content.sub!(/^# \w+ Reference *$/, '')
@@ -28,6 +27,7 @@ module PuppetReferences
                        title: "#{reference.capitalize} Reference",
                        canonical: "#{LATEST_DIR}/#{reference}.html"}
         content = PuppetReferences::Util.make_header(header_data) + raw_content
+        filename = OUTPUT_DIR + "#{reference}.md"
         filename.open('w') {|f| f.write(content)}
       end
 
