@@ -48,6 +48,10 @@ module Jekyll
     # Can also handle partial names on the final directory segment.
     def pick_best_default(path, defaults_array)
       current_dir = path.rpartition('/')[0]
+      # Edge case: in the root of the site, rpartition discards the leading /.
+      if current_dir == ''
+        current_dir = '/'
+      end
       if defaults_array.include?(current_dir)
         return current_dir
       else
