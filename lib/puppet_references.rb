@@ -9,9 +9,10 @@ module PuppetReferences
   OUTPUT_DIR = BASE_DIR + 'references_output'
 
   require 'puppet_references/bleach'
+  require 'puppet_references/util'
   require 'puppet_references/doc_command'
   require 'puppet_references/man_command'
   require 'puppet_references/puppet/puppet_doc'
   require 'puppet_references/puppet/man'
-  require 'puppet_references/util'
+  require 'puppet_references/puppet/yard'
 end
