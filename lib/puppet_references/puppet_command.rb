@@ -5,12 +5,15 @@ module PuppetReferences
     def initialize(command, puppet_dir = PuppetReferences::PUPPET_DIR)
       @command = command
       @puppet_dir = File.expand_path(puppet_dir)
+      if @command =~ /^puppet/
+        @command << " #{PuppetReferences::Bleach::PUPPET_OPTIONS}"
+      end
     end
     def get
       text = ''
       Dir.chdir(@puppet_dir) do
         text = PuppetReferences::Bleach.run_dirty_command(
-            "bundle exec #{@command} #{PuppetReferences::Bleach::PUPPET_OPTIONS}"
+            "bundle exec #{@command}"
         )
       end
       text
