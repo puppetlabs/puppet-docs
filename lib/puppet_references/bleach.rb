@@ -9,6 +9,5 @@ module PuppetReferences
       result
     end
 
-    PUPPET_OPTIONS = '--environmentpath /dev/null --vardir /dev/null --modulepath /dev/null'
   end
 end
