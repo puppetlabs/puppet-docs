@@ -85,11 +85,9 @@ Get the latest version of Puppet up and running.
 
 ### Building and Using Modules
 
-* [Beginner's Guide to Modules](/guides/module_guides/bgtm.html) --- Learn what works best when starting to develop a new Puppet module.
-* [Module Fundamentals](/puppet/2.7/reference/modules_fundamentals.html) --- nearly all Puppet code should be in modules.
-* [Installing Modules from the Puppet Forge](/puppet/2.7/reference/modules_installing.html) --- save time by using pre-existing modules
-* [Module Smoke Testing](/guides/tests_smoke.html) --- write and run basic smoke tests for your modules
-* [Publishing Modules on the Puppet Forge](/puppet/2.7/reference/modules_publishing.html) --- preparing your best modules to go public
+* [Module Fundamentals](/puppet/latest/reference/modules_fundamentals.html) --- Nearly all of your Puppet code should be in modules.
+* [Installing Modules from the Puppet Forge](/puppet/latest/reference/modules_installing.html) --- Save time by using pre-existing modules.
+* [Publishing Modules on the Puppet Forge](/puppet/latest/reference/modules_publishing.html) --- Preparing your best modules to go public.
 
 ### Help With Writing Puppet Code
 
@@ -112,6 +110,13 @@ You can manage Windows nodes side by side with your \*nix infrastructure, with P
 
 * [Overview of Puppet on Windows](/windows/)
 * [Troubleshooting Puppet on Windows](/windows/troubleshooting.html)
+
+### Tuning and Scaling
+
+Puppet's default configuration is meant for prototyping and designing a site. Once you're ready for production deployment, learn how to adjust Puppet for peak performance.
+
+* [Running a Production-Grade Puppet Master Server With Passenger](/guides/passenger.html) --- This should be one of your earliest steps in scaling out Puppet.
+* [Using Multiple Puppet Masters](/guides/scaling_multiple_masters.html) --- a guide to deployments with multiple Puppet masters.
 
 ### Hacking and Extending: Using Puppet's Data
 
