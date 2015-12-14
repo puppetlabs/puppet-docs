@@ -15,16 +15,6 @@ module PuppetReferences
         puts 'Oldskool refs: Done!'
       end
 
-      def self.make_header(reference)
-        <<EOT
----
-layout: default
-title: "#{reference.capitalize} Reference"
-canonical: "#{LATEST_DIR}/#{reference}.html"
----
-EOT
-      end
-
       def self.build_reference(reference)
         puts "Oldskool refs: Building #{reference} reference"
         filename = OUTPUT_DIR + "#{reference}.md"
@@ -34,7 +24,10 @@ EOT
         if reference == 'configuration'
           clean_configuration_reference!(raw_content)
         end
-        content = make_header(reference) + "\n\n" + raw_content
+        header_data = {layout: 'default',
+                       title: "#{reference.capitalize} Reference",
+                       canonical: "#{LATEST_DIR}/#{reference}.html"}
+        content = PuppetReferences::Util.make_header(header_data) + raw_content
         filename.open('w') {|f| f.write(content)}
       end
 

@@ -12,5 +12,5 @@ module PuppetReferences
   require 'puppet_references/doc_command'
   require 'puppet_references/man_command'
   require 'puppet_references/puppet/puppet_doc'
-
+  require 'puppet_references/util'
 end
