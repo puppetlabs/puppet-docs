@@ -1,6 +1,7 @@
 require 'puppet_references'
 require 'json'
 require 'erb'
+require 'ostruct'
 
 module PuppetReferences
   module Puppet
@@ -97,11 +98,16 @@ module PuppetReferences
             a <=> b
           end
         }
-        sorted_feature_list = this_type['features'].keys.sort
-        longest_attribute_name = sorted_attribute_list.collect{|attr| attr.length}.max
 
         # template uses: name, this_type, sorted_attribute_list, sorted_feature_list, longest_attribute_name
-        TEMPLATE.result(binding)
+        template_scope = OpenStruct.new({
+          name: name,
+          this_type: this_type,
+          sorted_attribute_list: sorted_attribute_list,
+          sorted_feature_list: this_type['features'].keys.sort,
+          longest_attribute_name: sorted_attribute_list.collect{|attr| attr.length}.max
+        })
+        TEMPLATE.result( template_scope.instance_eval {binding} )
       end
 
     end
