@@ -113,14 +113,6 @@ You can manage Windows nodes side by side with your \*nix infrastructure, with P
 * [Overview of Puppet on Windows](/windows/)
 * [Troubleshooting Puppet on Windows](/windows/troubleshooting.html)
 
-### Tuning and Scaling
-
-Puppet's default configuration is meant for prototyping and designing a site. Once you're ready for production deployment, learn how to adjust Puppet for peak performance.
-
-* [Running a Production-Grade Puppet Master Server With Passenger](/guides/passenger.html) --- This should be one of your earliest steps in scaling out Puppet.
-* [Scaling Puppet](/guides/scaling.html) --- general tips & tricks
-* [Using Multiple Puppet Masters](/guides/scaling_multiple_masters.html) --- a guide to deployments with multiple Puppet masters
-
 ### Hacking and Extending: Using Puppet's Data
 
 * [Puppet Data Library: Overview](/guides/puppet_data_library.html) --- Puppet automatically gathers reams of data about your infrastructure. Learn where that data is, how to access it, and how to mine it for knowledge.
