@@ -2,7 +2,7 @@
 <html dir="ltr" lang="en-US">
   <head>
   	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  	<title>{{page.title}}</title>
+  	<title>Puppet Labs Documentation</title>
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
   	<link rel="alternate" type="application/atom+xml" title="Puppet Labs Documentation Updates" href="https://github.com/puppetlabs/puppet-docs/commits/master.atom">
     <link rel="alternate" type="application/atom+xml" title="Puppet Labs Blog Feed" href="http://puppetlabs.com/feed/">
@@ -38,7 +38,7 @@
     <!-- /all in one seo pack -->
 
     <!-- Give us the option of setting a canonical URL in yaml frontmatter -NF -->
-    <link rel="canonical" href="https://docs.puppetlabs.com{% if page.canonical %}{{page.canonical}}{% else %}{{page.url}}{% endif %}" />
+    <link rel="canonical" href="https://docs.puppetlabs.com" />
 
     <!-- FIXME: absolute paths -->
 
@@ -178,41 +178,6 @@
           </script>
       </div>
   </header>
-
-  <!--
-  <section id="masthead">
-    <div class="site-width">
-      <h1>Docs: <span class="section-name">{{page.title}}</span></h1>
-    </div>
-    <br />
-  </section>
-
-  <section id="content">
-    <div class="site-width">
-      <div class="primary-secondary-content">
-        <div class="primary-content">
-          <h1>{% if page.subtitle %}{{page.subtitle}}{% else %}{{page.title}}{% endif %}</h1>
-          {% unless page.toc == 'false' or page.toc == false %}<nav class="in-page">{{ content | toc }}</nav>{% endunless %}
-          {{ content }}
-          <blockquote><p style="font-size: 1.3em; text-align: center;"><a href="#content">↑ Back to top</a></p></blockquote>
-        </div>
-        <nav class="main">
-              <div id="subCol">
-                  <ul id="doc-navigation">
-                    <li class="with-submenu">
-                      <a href="#">
-                        <span>Docs Quick Nav</span>
-                        <span class="drop-down-trigger"></span>
-                      </a>
-                       {% include quick_nav.html %}
-                    </li>
-                  </ul>
-              </div>
-        </nav>
-      </div>
-    </div>
-  </section>
-  -->
 
   <section id="content">
       <div class="site-width">
