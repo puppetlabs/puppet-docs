@@ -16,4 +16,5 @@ module PuppetReferences
   require 'puppet_references/puppet/man'
   require 'puppet_references/puppet/yard'
   require 'puppet_references/puppet/type'
+  require 'puppet_references/puppet/http'
 end
