@@ -179,7 +179,7 @@ Your hard dependency declarations should not be unbounded.
 
 ### 9.1. Resource Names
 
-All resource titles must be quoted. If you are using an array of titles you must quote each title in the array, but must not quote the array itself.
+All resource titles must be strings, and must not be bare words. If you are using an array of titles to assign multiple resources at once, you must quote each title in the array, but must not quote the array itself.
 
 **Good:**
 
