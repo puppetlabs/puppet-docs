@@ -5,7 +5,7 @@ require 'ostruct'
 
 module PuppetReferences
   module Puppet
-    module Type
+    class Type < PuppetReferences::Reference
       TYPEDOCS_SCRIPT = PuppetReferences::BASE_DIR + 'lib/puppet_references/quarantine/get_typedocs.rb'
       TEMPLATE_FILE = Pathname.new(File.expand_path(__FILE__)).dirname + 'type_template.erb'
       TEMPLATE = ERB.new(TEMPLATE_FILE.read, nil, '-')
@@ -15,7 +15,7 @@ module PuppetReferences
       PREAMBLE_FILE = Pathname.new(File.expand_path(__FILE__)).dirname + 'type_preamble.md'
       PREAMBLE = PREAMBLE_FILE.read
 
-      def self.build_all
+      def build_all
         OUTPUT_DIR_UNIFIED.mkpath
         OUTPUT_DIR_INDIVIDUAL.mkpath
         puts 'Type ref: Building all...'
@@ -31,27 +31,25 @@ module PuppetReferences
         puts 'Type ref: Done!'
       end
 
-      def self.build_index(names)
-        header_data = {layout: 'default',
-                       title: 'Resource Types: Index',
+      def build_index(names)
+        header_data = {title: 'Resource Types: Index',
                        canonical: "#{LATEST_DIR}/types/index.html"}
         links = names.map {|name|
           "* [#{name}](./#{name}.html)"
         }
-        content = PuppetReferences::Util.make_header(header_data) + "## List of Resource Types\n\n" + links.join("\n") + "\n\n" + PREAMBLE
+        content = make_header(header_data) + "## List of Resource Types\n\n" + links.join("\n") + "\n\n" + PREAMBLE
         filename = OUTPUT_DIR_INDIVIDUAL + 'index.md'
         filename.open('w') {|f| f.write(content)}
       end
 
-      def self.get_type_json
-        puts "Type ref: Getting JSON data"
+      def get_type_json
+        puts 'Type ref: Getting JSON data'
         PuppetReferences::PuppetCommand.new("ruby #{TYPEDOCS_SCRIPT}").get
       end
 
-      def self.build_unified_page(typedocs)
-        puts "Type ref: Building unified page"
-        header_data = {layout: 'default',
-                       title: 'Resource Type Reference (Single-Page)',
+      def build_unified_page(typedocs)
+        puts 'Type ref: Building unified page'
+        header_data = {title: 'Resource Type Reference (Single-Page)',
                        canonical: "#{LATEST_DIR}/type.html",
                        toc: 'columns'}
         generated_at = "> **NOTE:** This page was generated from the Puppet source code on #{Time.now.to_s}"
@@ -61,29 +59,28 @@ module PuppetReferences
           text_for_type(name, typedocs[name])
         }.join("\n\n---------\n\n")
 
-        content = PuppetReferences::Util.make_header(header_data) + generated_at + "\n\n" + PREAMBLE + all_type_docs + "\n\n" + generated_at
+        content = make_header(header_data) + generated_at + "\n\n" + PREAMBLE + all_type_docs + "\n\n" + generated_at
         filename = OUTPUT_DIR_UNIFIED + 'type.md'
         filename.open('w') {|f| f.write(content)}
       end
 
-      def self.write_json_file(json)
+      def write_json_file(json)
         puts 'Type ref: Writing JSON as file'
         filename = OUTPUT_DIR_UNIFIED + 'type.json'
         filename.open('w') {|f| f.write(json)}
       end
 
-      def self.build_page(name, data)
+      def build_page(name, data)
         puts "Type ref: Building #{name}"
-        header_data = {layout: 'default',
-                       title: "Resource Type: #{name}",
+        header_data = {title: "Resource Type: #{name}",
                        canonical: "#{LATEST_DIR}/types/#{name}.html"}
         generated_at = "> **NOTE:** This page was generated from the Puppet source code on #{Time.now.to_s}"
-        content = PuppetReferences::Util.make_header(header_data) + generated_at + "\n\n" + text_for_type(name, data) + "\n\n" + generated_at
+        content = make_header(header_data) + generated_at + "\n\n" + text_for_type(name, data) + "\n\n" + generated_at
         filename = OUTPUT_DIR_INDIVIDUAL + "#{name}.md"
         filename.open('w') {|f| f.write(content)}
       end
 
-      def self.text_for_type(name, this_type)
+      def text_for_type(name, this_type)
         sorted_attribute_list = this_type['attributes'].keys.sort {|a,b|
           # Float namevar to top and ensure to second-top
           if this_type['attributes'][a]['namevar']

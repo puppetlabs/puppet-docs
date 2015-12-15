@@ -2,13 +2,13 @@ require 'puppet_references'
 require 'fileutils'
 module PuppetReferences
   module Puppet
-    module Http
+    class Http < PuppetReferences::Reference
       OUTPUT_DIR = PuppetReferences::OUTPUT_DIR + 'puppet'
       DOCS_DIR = OUTPUT_DIR + 'http_api'
       API_SOURCE = PuppetReferences::PUPPET_DIR + 'api'
       LATEST_DIR = '/puppet/latest/reference/http_api'
 
-      def self.build_all
+      def build_all
         DOCS_DIR.mkpath
         puts 'HTTP API: Building all...'
         copy_schemas
@@ -16,12 +16,12 @@ module PuppetReferences
         puts 'HTTP API: Done!'
       end
 
-      def self.copy_schemas
+      def copy_schemas
         # This cp_r method is finicky and makes me long for rsync.
         FileUtils.cp_r( (API_SOURCE + 'schemas').to_path, OUTPUT_DIR.to_path)
       end
 
-      def self.copy_docs
+      def copy_docs
         docs_dir = API_SOURCE + 'docs'
         files = Pathname.glob(docs_dir + '*')
         files.each do |file|
@@ -30,7 +30,7 @@ module PuppetReferences
       end
 
       # expects a Pathname
-      def self.munge_and_copy_doc_file(file)
+      def munge_and_copy_doc_file(file)
         shortname = file.basename(file.extname).to_path
         if shortname == 'http_api_index'
           title = 'Index'
@@ -39,10 +39,9 @@ module PuppetReferences
         else
           title = shortname.sub(/^http_/, '').split('_').map {|w| w.capitalize}.join(' ')
         end
-        header_data = {layout: 'default',
-                       title: "Puppet HTTP API: #{title}",
+        header_data = {title: "Puppet HTTP API: #{title}",
                        canonical: "#{LATEST_DIR}/#{shortname}.html"}
-        content = PuppetReferences::Util.make_header(header_data) + file.read
+        content = make_header(header_data) + file.read
         dest = DOCS_DIR + file.basename
         dest.open('w') {|f| f.write(content)}
       end

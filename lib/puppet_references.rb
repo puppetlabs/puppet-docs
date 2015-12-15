@@ -10,6 +10,7 @@ module PuppetReferences
 
   require 'puppet_references/bleach'
   require 'puppet_references/util'
+  require 'puppet_references/reference'
   require 'puppet_references/doc_command'
   require 'puppet_references/man_command'
   require 'puppet_references/puppet/puppet_doc'

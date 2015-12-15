@@ -1,12 +1,12 @@
 require 'puppet_references'
 module PuppetReferences
   module Puppet
-    module PuppetDoc
+    class PuppetDoc < PuppetReferences::Reference
       REFERENCES = %w(configuration function indirection metaparameter report)
       OUTPUT_DIR = PuppetReferences::OUTPUT_DIR + 'puppet'
       LATEST_DIR = '/references/latest'
 
-      def self.build_all
+      def build_all
         OUTPUT_DIR.mkpath
         puts 'Oldskool refs: Building all...'
         REFERENCES.each do |ref|
@@ -15,7 +15,7 @@ module PuppetReferences
         puts 'Oldskool refs: Done!'
       end
 
-      def self.build_reference(reference)
+      def build_reference(reference)
         puts "Oldskool refs: Building #{reference} reference"
         raw_content = PuppetReferences::DocCommand.new(reference).get
         # Remove the first H1 with the title, like "# Metaparameter Reference"
@@ -23,16 +23,15 @@ module PuppetReferences
         if reference == 'configuration'
           clean_configuration_reference!(raw_content)
         end
-        header_data = {layout: 'default',
-                       title: "#{reference.capitalize} Reference",
+        header_data = {title: "#{reference.capitalize} Reference",
                        canonical: "#{LATEST_DIR}/#{reference}.html"}
-        content = PuppetReferences::Util.make_header(header_data) + raw_content
+        content = make_header(header_data) + raw_content
         filename = OUTPUT_DIR + "#{reference}.md"
         filename.open('w') {|f| f.write(content)}
       end
 
       # Remove any references to a real system's hostname.
-      def self.clean_configuration_reference!(text)
+      def clean_configuration_reference!(text)
         # Assume we aren't on Solaris or AIX, where this might set the hostname to "-f" D:
         fqdn = `hostname -f`.strip
         domain = fqdn.partition('.')[2]

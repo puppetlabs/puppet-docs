@@ -1,11 +1,11 @@
 require 'puppet_references'
 module PuppetReferences
   module Puppet
-    module Man
+    class Man < PuppetReferences::Reference
       OUTPUT_DIR = PuppetReferences::OUTPUT_DIR + 'puppet/man'
       LATEST_DIR = '/references/latest/man'
 
-      def self.build_all
+      def build_all
         OUTPUT_DIR.mkpath
         commands = get_subcommands
         puts 'Man pages: Building all...'
@@ -15,7 +15,8 @@ module PuppetReferences
         end
         puts 'Man pages: Done!'
       end
-      def self.build_index(commands)
+
+      def build_index(commands)
         puts 'Man pages: Building index page'
         # Categorize subcommands
         categories = {
@@ -111,7 +112,7 @@ EOADDENDUM
         filename.open('w') {|f| f.write(index_text)}
       end
 
-      def self.get_subcommands
+      def get_subcommands
         application_files = Pathname.glob(PuppetReferences::PUPPET_DIR + 'lib/puppet/application/*.rb')
         applications = application_files.map {|f| f.basename('.rb').to_s}
         applications.delete('face_base')
@@ -119,7 +120,7 @@ EOADDENDUM
         applications
       end
 
-      def self.render_with_ronn(raw_text)
+      def render_with_ronn(raw_text)
         rendered_html = ''
         Dir.chdir(PuppetReferences::BASE_DIR) do
           ronn = IO.popen("bundle exec ronn --pipe -f", "r+")
@@ -131,14 +132,13 @@ EOADDENDUM
         rendered_html
       end
 
-      def self.build_manpage(subcommand)
+      def build_manpage(subcommand)
         puts "Man pages: Building #{subcommand}"
-        header_data = {layout: 'default',
-                       title: "Man Page: puppet #{subcommand}",
+        header_data = {title: "Man Page: puppet #{subcommand}",
                        nav: '/_includes/references_man.html',
                        canonical: "#{LATEST_DIR}/#{subcommand}.html"}
         raw_text = PuppetReferences::ManCommand.new(subcommand).get
-        content = PuppetReferences::Util.make_header(header_data) + render_with_ronn(raw_text)
+        content = make_header(header_data) + render_with_ronn(raw_text)
         filename = OUTPUT_DIR + "#{subcommand}.md"
         filename.open('w') {|f| f.write(content)}
       end
