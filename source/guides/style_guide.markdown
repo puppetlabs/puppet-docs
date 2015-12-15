@@ -179,7 +179,7 @@ Your hard dependency declarations should not be unbounded.
 
 ### 9.1. Resource Names
 
-All resource titles must be quoted. If you are using an array of titles you must quote each title in the array, but cannot quote the array itself.
+All resource titles must be quoted. If you are using an array of titles you must quote each title in the array, but must not quote the array itself.
 
 **Good:**
 
@@ -442,7 +442,7 @@ The following example follows the recommended style:
         fail("Module ${module_name} does not support ${::operatingsystem}")
       }
 
-      # temp file contents cannot contain numbers
+      # temp file contents cmust not contain numbers
       case $tempfile_contents {
         /\d/: {
           $_tempfile_contents = regsubst($tempfile_contents, '\d', '', 'G')
