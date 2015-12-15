@@ -119,13 +119,7 @@ EOADDENDUM
         applications
       end
 
-      def self.build_manpage(subcommand)
-        puts "Man pages: Building #{subcommand}"
-        header_data = {layout: 'default',
-                       title: "Man Page: puppet #{subcommand}",
-                       nav: '/_includes/references_man.html',
-                       canonical: "#{LATEST_DIR}/#{subcommand}.html"}
-        raw_text = PuppetReferences::ManCommand.new(subcommand).get
+      def self.render_with_ronn(raw_text)
         rendered_html = ''
         Dir.chdir(PuppetReferences::BASE_DIR) do
           ronn = IO.popen("bundle exec ronn --pipe -f", "r+")
@@ -134,7 +128,17 @@ EOADDENDUM
           rendered_html = ronn.read
           ronn.close
         end
-        content = PuppetReferences::Util.make_header(header_data) + rendered_html
+        rendered_html
+      end
+
+      def self.build_manpage(subcommand)
+        puts "Man pages: Building #{subcommand}"
+        header_data = {layout: 'default',
+                       title: "Man Page: puppet #{subcommand}",
+                       nav: '/_includes/references_man.html',
+                       canonical: "#{LATEST_DIR}/#{subcommand}.html"}
+        raw_text = PuppetReferences::ManCommand.new(subcommand).get
+        content = PuppetReferences::Util.make_header(header_data) + render_with_ronn(raw_text)
         filename = OUTPUT_DIR + "#{subcommand}.md"
         filename.open('w') {|f| f.write(content)}
       end
