@@ -30,10 +30,10 @@ module PuppetReferences
         PuppetReferences::Puppet::Yard
     ]
     repo = PuppetReferences::Repo.new('puppet', PUPPET_DIR)
-    repo.checkout(commit)
+    real_commit = repo.checkout(commit)
     repo.update_bundle
     references.each do |ref|
-      ref.new(commit).build_all
+      ref.new(real_commit).build_all
     end
     # TODO: tell the writer where to move these things to. Probably centralize the "latest" dir info into a config file or something, and read that.
   end
@@ -43,9 +43,9 @@ module PuppetReferences
         PuppetReferences::Facter::CoreFacts
     ]
     repo = PuppetReferences::Repo.new('facter', FACTER_DIR)
-    repo.checkout(commit)
+    real_commit = repo.checkout(commit)
     references.each do |ref|
-      ref.new(commit).build_all
+      ref.new(real_commit).build_all
     end
   end
 end

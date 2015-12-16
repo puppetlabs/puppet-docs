@@ -25,6 +25,7 @@ module PuppetReferences
     def checkout(commit)
       @repo.fetch
       @repo.checkout(commit, {force: true})
+      @repo.revparse(commit)
     end
 
     def update_bundle
