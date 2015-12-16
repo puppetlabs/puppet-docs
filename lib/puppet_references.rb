@@ -8,7 +8,6 @@ module PuppetReferences
   PE_DIR = BASE_DIR + 'vendor/enterprise-dist'
   OUTPUT_DIR = BASE_DIR + 'references_output'
 
-  require 'puppet_references/bleach'
   require 'puppet_references/util'
   require 'puppet_references/repo'
   require 'puppet_references/reference'

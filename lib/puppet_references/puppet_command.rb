@@ -1,5 +1,4 @@
 require 'puppet_references'
-require 'puppet_references/bleach'
 module PuppetReferences
   class PuppetCommand
     PUPPET_OPTIONS = '--environmentpath /dev/null --vardir /dev/null --modulepath /dev/null'
@@ -13,7 +12,7 @@ module PuppetReferences
     def get
       text = ''
       Dir.chdir(@puppet_dir) do
-        text = PuppetReferences::Bleach.run_dirty_command(
+        text = PuppetReferences::Util.run_dirty_command(
             "bundle exec #{@command}"
         )
       end
