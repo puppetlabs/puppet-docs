@@ -19,7 +19,6 @@ module PuppetReferences
   require 'puppet_references/puppet/yard'
   require 'puppet_references/puppet/type'
   require 'puppet_references/puppet/http'
-  require 'puppet_references/puppet'
 
   def self.build_puppet_references(commit)
     references = [
