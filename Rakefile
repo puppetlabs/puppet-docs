@@ -19,7 +19,6 @@ end
 
 $LOAD_PATH.unshift File.expand_path('lib')
 
-references = %w(configuration function indirection metaparameter report type developer man)
 top_dir = Dir.pwd
 
 source_dir = "#{top_dir}/source"
@@ -280,8 +279,12 @@ task :build_html_fragments do
   end
 end
 
-desc "Build all references for a new Puppet version"
-task :references => [ 'references:check_version', 'references:index:stub', 'references:puppetdoc']
+desc "List the available groups of references. Run `rake references:<GROUP>` to build."
+task :references do
+  puts 'The following references are available:'
+  puts 'bundle exec references:puppet VERSION=<GIT TAG OR COMMIT>'
+  puts 'bundle exec references:facter VERSION=<GIT TAG OR COMMIT>'
+end
 
 namespace :references do
 
@@ -305,44 +308,14 @@ namespace :references do
     end
   end
 
-  namespace :puppetdoc do
-
-    references.each do |name|
-      # "Write references/VERSION/#{name}"
-      task name => 'references:check_version' do
-        require 'puppet_docs'
-        PuppetDocs::Reference::Generator.new(ENV['VERSION'], name, ENV['COMMIT']).generate
-      end
-    end
-
+  task :puppet => 'references:check_version' do
+    require 'puppet_references'
+    PuppetReferences.build_puppet_references(ENV['VERSION'])
   end
 
-  desc "Write all references for VERSION (from optional COMMIT if tag doesn't yet exist)"
-  task :puppetdoc => references.map { |r| "puppetdoc:#{r}" }
-
-  namespace :index do
-
-    # "Generate a stub index for VERSION"
-    task :stub => 'references:check_version' do
-      filename = Pathname.new("#{source_dir}/references") + ENV['VERSION'] + 'index.markdown'
-      filename.parent.mkpath
-      filename.open('w') do |f|
-        f.puts "---"
-        f.puts "layout: default"
-        f.puts "title: #{ENV['VERSION']} References"
-        f.puts "---\n\n\n"
-        f.puts "# #{ENV['VERSION']} References\n"
-        f.puts "* * *\n\n"
-        references.each do |name|
-          unless name=="developer" or name=="man"
-            f.puts "* [#{name.capitalize}](./#{name}.html)"
-          end
-        end
-        f.puts "* [Developer Documentation](./developer/index.html)\n* [Man Pages](./man/index.html)"
-      end
-      puts "Wrote #{filename}"
-    end
-
+  task :facter => 'references:check_version' do
+    require 'puppet_references'
+    PuppetReferences.build_facter_references(ENV['VERSION'])
   end
 
   task :check_version do
