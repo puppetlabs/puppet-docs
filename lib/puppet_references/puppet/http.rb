@@ -6,7 +6,11 @@ module PuppetReferences
       OUTPUT_DIR = PuppetReferences::OUTPUT_DIR + 'puppet'
       DOCS_DIR = OUTPUT_DIR + 'http_api'
       API_SOURCE = PuppetReferences::PUPPET_DIR + 'api'
-      LATEST_DIR = '/puppet/latest/reference/http_api'
+
+      def initialize(*args)
+        @latest = '/puppet/latest/reference/http_api'
+        super(*args)
+      end
 
       def build_all
         DOCS_DIR.mkpath
@@ -40,7 +44,7 @@ module PuppetReferences
           title = shortname.sub(/^http_/, '').split('_').map {|w| w.capitalize}.join(' ')
         end
         header_data = {title: "Puppet HTTP API: #{title}",
-                       canonical: "#{LATEST_DIR}/#{shortname}.html"}
+                       canonical: "#{@latest}/#{shortname}.html"}
         content = make_header(header_data) + file.read
         dest = DOCS_DIR + file.basename
         dest.open('w') {|f| f.write(content)}

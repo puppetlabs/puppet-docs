@@ -4,7 +4,11 @@ module PuppetReferences
     class PuppetDoc < PuppetReferences::Reference
       REFERENCES = %w(configuration function indirection metaparameter report)
       OUTPUT_DIR = PuppetReferences::OUTPUT_DIR + 'puppet'
-      LATEST_DIR = '/references/latest'
+
+      def initialize(*args)
+        @latest = '/references/latest'
+        super(*args)
+      end
 
       def build_all
         OUTPUT_DIR.mkpath
@@ -25,7 +29,7 @@ module PuppetReferences
         end
         header_data = {title: "#{reference.capitalize} Reference",
                        toc: 'columns',
-                       canonical: "#{LATEST_DIR}/#{reference}.html"}
+                       canonical: "#{@latest}/#{reference}.html"}
         content = make_header(header_data) + raw_content
         filename = OUTPUT_DIR + "#{reference}.md"
         filename.open('w') {|f| f.write(content)}

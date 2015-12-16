@@ -11,9 +11,13 @@ module PuppetReferences
       TEMPLATE = ERB.new(TEMPLATE_FILE.read, nil, '-')
       OUTPUT_DIR_UNIFIED = PuppetReferences::OUTPUT_DIR + 'puppet'
       OUTPUT_DIR_INDIVIDUAL = PuppetReferences::OUTPUT_DIR + 'puppet/types'
-      LATEST_DIR = '/references/latest'
       PREAMBLE_FILE = Pathname.new(File.expand_path(__FILE__)).dirname + 'type_preamble.md'
       PREAMBLE = PREAMBLE_FILE.read
+
+      def initialize(*args)
+        @latest = '/references/latest'
+        super(*args)
+      end
 
       def build_all
         OUTPUT_DIR_UNIFIED.mkpath
@@ -33,7 +37,7 @@ module PuppetReferences
 
       def build_index(names)
         header_data = {title: 'Resource Types: Index',
-                       canonical: "#{LATEST_DIR}/types/index.html"}
+                       canonical: "#{@latest}/types/index.html"}
         links = names.map {|name|
           "* [#{name}](./#{name}.html)"
         }
@@ -50,7 +54,7 @@ module PuppetReferences
       def build_unified_page(typedocs)
         puts 'Type ref: Building unified page'
         header_data = {title: 'Resource Type Reference (Single-Page)',
-                       canonical: "#{LATEST_DIR}/type.html",
+                       canonical: "#{@latest}/type.html",
                        toc: 'columns'}
         generated_at = "> **NOTE:** This page was generated from the Puppet source code on #{Time.now.to_s}"
 
@@ -73,7 +77,7 @@ module PuppetReferences
       def build_page(name, data)
         puts "Type ref: Building #{name}"
         header_data = {title: "Resource Type: #{name}",
-                       canonical: "#{LATEST_DIR}/types/#{name}.html"}
+                       canonical: "#{@latest}/types/#{name}.html"}
         generated_at = "> **NOTE:** This page was generated from the Puppet source code on #{Time.now.to_s}"
         content = make_header(header_data) + generated_at + "\n\n" + text_for_type(name, data) + "\n\n" + generated_at
         filename = OUTPUT_DIR_INDIVIDUAL + "#{name}.md"
