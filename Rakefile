@@ -282,8 +282,8 @@ end
 desc "List the available groups of references. Run `rake references:<GROUP>` to build."
 task :references do
   puts 'The following references are available:'
-  puts 'bundle exec references:puppet VERSION=<GIT TAG OR COMMIT>'
-  puts 'bundle exec references:facter VERSION=<GIT TAG OR COMMIT>'
+  puts 'bundle exec rake references:puppet VERSION=<GIT TAG OR COMMIT>'
+  puts 'bundle exec rake references:facter VERSION=<GIT TAG OR COMMIT>'
 end
 
 namespace :references do
