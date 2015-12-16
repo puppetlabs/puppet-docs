@@ -24,6 +24,7 @@ module PuppetReferences
           clean_configuration_reference!(raw_content)
         end
         header_data = {title: "#{reference.capitalize} Reference",
+                       toc: 'columns',
                        canonical: "#{LATEST_DIR}/#{reference}.html"}
         content = make_header(header_data) + raw_content
         filename = OUTPUT_DIR + "#{reference}.md"
