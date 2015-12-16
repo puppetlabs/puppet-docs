@@ -19,4 +19,22 @@ module PuppetReferences
   require 'puppet_references/puppet/yard'
   require 'puppet_references/puppet/type'
   require 'puppet_references/puppet/http'
+  require 'puppet_references/puppet'
+
+  def self.build_puppet_references(commit)
+    references = [
+        PuppetReferences::Puppet::Http,
+        PuppetReferences::Puppet::Man,
+        PuppetReferences::Puppet::PuppetDoc,
+        PuppetReferences::Puppet::Type,
+        PuppetReferences::Puppet::Yard
+    ]
+    repo = PuppetReferences::Repo.new('puppet', PUPPET_DIR)
+    repo.checkout(commit)
+    repo.update_bundle
+    references.each do |ref|
+      ref.new(commit).build_all
+    end
+    # TODO: tell the writer where to move these things to. Probably centralize the "latest" dir info into a config file or something, and read that.
+  end
 end
