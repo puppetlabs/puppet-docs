@@ -19,6 +19,7 @@ module PuppetReferences
   require 'puppet_references/puppet/yard'
   require 'puppet_references/puppet/type'
   require 'puppet_references/puppet/http'
+  require 'puppet_references/facter/core_facts'
 
   def self.build_puppet_references(commit)
     references = [
@@ -35,5 +36,16 @@ module PuppetReferences
       ref.new(commit).build_all
     end
     # TODO: tell the writer where to move these things to. Probably centralize the "latest" dir info into a config file or something, and read that.
+  end
+
+  def self.build_facter_references(commit)
+    references = [
+        PuppetReferences::Facter::CoreFacts
+    ]
+    repo = PuppetReferences::Repo.new('facter', FACTER_DIR)
+    repo.checkout(commit)
+    references.each do |ref|
+      ref.new(commit).build_all
+    end
   end
 end
