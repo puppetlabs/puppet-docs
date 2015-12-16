@@ -10,7 +10,9 @@ module PuppetReferences
       end
 
       def build_all
+        puts 'Building YARD references, which always takes a while...'
         PuppetReferences::PuppetCommand.new("yard -o #{OUTPUT_DIR}").get
+        puts 'Done with YARD!'
       end
     end
   end
