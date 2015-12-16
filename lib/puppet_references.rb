@@ -8,7 +8,6 @@ module PuppetReferences
   PE_DIR = BASE_DIR + 'vendor/enterprise-dist'
   OUTPUT_DIR = BASE_DIR + 'references_output'
 
-  require 'puppet_references/bleach'
   require 'puppet_references/util'
   require 'puppet_references/repo'
   require 'puppet_references/reference'
@@ -30,12 +29,9 @@ module PuppetReferences
         PuppetReferences::Puppet::Yard
     ]
     repo = PuppetReferences::Repo.new('puppet', PUPPET_DIR)
-    repo.checkout(commit)
+    real_commit = repo.checkout(commit)
     repo.update_bundle
-    references.each do |ref|
-      ref.new(commit).build_all
-    end
-    # TODO: tell the writer where to move these things to. Probably centralize the "latest" dir info into a config file or something, and read that.
+    build_from_list_of_classes(references, real_commit)
   end
 
   def self.build_facter_references(commit)
@@ -43,9 +39,21 @@ module PuppetReferences
         PuppetReferences::Facter::CoreFacts
     ]
     repo = PuppetReferences::Repo.new('facter', FACTER_DIR)
-    repo.checkout(commit)
+    real_commit = repo.checkout(commit)
+    build_from_list_of_classes(references, real_commit)
+  end
+
+  def self.build_from_list_of_classes(reference_classes, real_commit)
+    references = reference_classes.map {|r| r.new(real_commit)}
     references.each do |ref|
-      ref.new(commit).build_all
+      ref.build_all
     end
+
+    locations = references.map {|ref|
+      "#{ref.class.to_s} -> #{ref.latest}"
+    }.join("\n")
+    puts 'NOTE: Generated files are in the references_output directory.'
+    puts "NOTE: You'll have to move the generated files into place yourself. The 'latest' location for each is:"
+    puts locations
   end
 end

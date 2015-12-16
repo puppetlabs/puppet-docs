@@ -2,7 +2,7 @@ require 'puppet_references'
 
 module PuppetReferences
   class Reference
-    attr_accessor :commit
+    attr_accessor :commit, :latest
     def initialize(commit)
       @commit = commit
     end

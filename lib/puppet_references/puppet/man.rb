@@ -3,7 +3,11 @@ module PuppetReferences
   module Puppet
     class Man < PuppetReferences::Reference
       OUTPUT_DIR = PuppetReferences::OUTPUT_DIR + 'puppet/man'
-      LATEST_DIR = '/references/latest/man'
+
+      def initialize(*args)
+        @latest = '/references/latest/man'
+        super(*args)
+      end
 
       def build_all
         OUTPUT_DIR.mkpath
@@ -64,13 +68,11 @@ module PuppetReferences
         categories.values.each do |list|
           list.reject! {|sub| !commands.include?(sub)}
         end
+        header_data = {title: 'Puppet Man Pages',
+                       nav: '/_includes/references_man.html',
+                       canonical: "#{@latest}/index.html"}
         index_text = <<EOT
----
-title: Puppet Man Pages
-layout: default
-nav: /_includes/references_man.html
-canonical: "#{LATEST_DIR}/index.html"
----
+#{ make_header(header_data) }
 
 Puppet's command line tools consist of a single `puppet` binary with many subcommands. The following subcommands are available in this version of Puppet:
 
@@ -136,7 +138,7 @@ EOADDENDUM
         puts "Man pages: Building #{subcommand}"
         header_data = {title: "Man Page: puppet #{subcommand}",
                        nav: '/_includes/references_man.html',
-                       canonical: "#{LATEST_DIR}/#{subcommand}.html"}
+                       canonical: "#{@latest}/#{subcommand}.html"}
         raw_text = PuppetReferences::ManCommand.new(subcommand).get
         content = make_header(header_data) + render_with_ronn(raw_text)
         filename = OUTPUT_DIR + "#{subcommand}.md"
