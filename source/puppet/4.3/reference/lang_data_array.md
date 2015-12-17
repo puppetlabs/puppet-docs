@@ -10,6 +10,9 @@ canonical: "/puppet/latest/reference/lang_data_array.html"
 [tuple]: ./lang_data_abstract.html#tuple
 [data]: ./lang_data_abstract.html#data
 [abstract types]: ./lang_data_abstract.html
+[regexp]: ./lang_data_regexp.html
+[string data type]: ./lang_data_string.html
+
 
 Arrays are ordered lists of values.
 
@@ -77,6 +80,16 @@ $foo = [ 'one', 'two', 'three', 'four', 'five' ]
 $cool_value = $foo[6] # value is undef
 ~~~
 
+When testing with a [regular expression][regexp] whether an Array[<TYPE>] data type matches a given array, empty arrays will match as long as the type can accept zero-length arrays.
+
+~~~ ruby
+$foo = []
+if $foo =~ Array[String] {
+  notice( 'foo' )
+}
+~~~
+
+This manifest would log `foo` as a notice, because the regex matches the empty array.
 
 ## Array Sectioning
 
