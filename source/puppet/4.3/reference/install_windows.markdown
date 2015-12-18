@@ -120,25 +120,11 @@ puppet      | Puppet source
 service     | code to run puppet agent as a service
 sys         | Ruby and other tools
 
-**Default (Puppet 3.7+):**
+**Default:**
 
-When using the architecture-appropriate installer, Puppet installs into the following directories:
+When using the architecture-appropriate installer, Puppet installs into `C:\Program Files\Puppet Labs\Puppet`.
 
-OS type                    | Default Install Path
----------------------------|--------------------------------------------
-Most Windows Versions      | `C:\Program Files\Puppet Labs\Puppet`
-Windows Server 2003 64-bit | `C:\Program Files (x86)\Puppet Labs\Puppet`
-
-The Program Files directory can be located using the `PROGRAMFILES` environment variable. (On Windows Server 2003 64-bit, you should use the `PROGRAMFILES(X86)` variable instead.)
-
-**Default (Puppet 3.6 and earlier):**
-
-OS type  | Default Install Path
----------|---------------------
-32-bit   | `C:\Program Files\Puppet Labs\Puppet`
-64-bit   | `C:\Program Files (x86)\Puppet Labs\Puppet`
-
-The Program Files directory can be located using the `PROGRAMFILES` environment variable on 32-bit versions of Windows or the `PROGRAMFILES(X86)` variable on 64-bit versions.
+If you install the x86 package on a 64-bit system, it will install into `C:\Program Files (x86)\Puppet Labs\Puppet`.
 
 #### `PUPPET_MASTER_SERVER`
 

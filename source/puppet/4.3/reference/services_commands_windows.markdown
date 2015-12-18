@@ -45,6 +45,10 @@ You may have to open a new command prompt after installing; any processes that w
 Running With Administrator Privileges
 -----
 
+[uac]: ./images/uac.png
+[rightclick]: ./images/run_as_admin.png
+[admin_prompt]: ./images/windows_administrator_prompt.png
+
 You usually want to run Puppet's commands with administrator privileges.
 
 Puppet has two privilege modes:
@@ -55,12 +59,6 @@ Puppet has two privilege modes:
 On \*nix systems, Puppet defaults to running with limited privileges (when not run by `root`) but can have its privileges raised with the standard `sudo` command.
 
 Windows systems don't use `sudo`, so raising privileges works differently.
-
-### Systems With UAC (Windows 2008+ / Vista+)
-
-[uac]: ./images/uac.png
-[rightclick]: ./images/run_as_admin.png
-[admin_prompt]: ./images/windows_administrator_prompt.png
 
 Newer versions of Windows manage security with User Account Control (UAC), which was added in Windows 2008 and Windows Vista. With UAC, most programs run by administrators will still have limited privileges. To get administrator privileges, the process has to request those privileges when it starts.
 
@@ -77,10 +75,6 @@ This will bring up a UAC confirmation dialog:
 When the command prompt window opens, you'll notice that its title bar begins with "Administrator." This means Puppet commands run from that window can manage the whole system.
 
 ![A command prompt with Administrator in the title bar][admin_prompt]
-
-### Systems Without UAC (Windows 2003)
-
-On Windows 2003, Puppet's commands will always run with admin privileges if the user that runs them is a member of the local Administrators group. Otherwise, they will run with limited privileges.
 
 
 The Puppet Start Menu Items

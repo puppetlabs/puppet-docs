@@ -91,46 +91,7 @@ Managing files in the `C:\Windows\system32` directory can be problematic. The sh
 
 ### Summary
 
-With some combinations of Windows and Puppet versions, Windows will redirect Puppet's access to the `C:\Windows\system32` directory. If you are running Puppet in one of these configurations and are managing files in the system directory, you will need to watch out for this and compensate.
-
-<table>
-
-<tr>
-<th>Windows</th>
-<th>Puppet</th>
-<th>Effects</th>
-</tr>
-
-<tr>
-<td>32-bit</td>
-<td>32-bit</td>
-<td rowspan="2">Not affected by redirection. <code>sysnative</code> alias doesn't exist.</td>
-</tr>
-
-<tr>
-<td rowspan="2">64-bit, Vista+ / 2008+</td>
-<td>64-bit</td>
-</tr>
-
-<tr>
-<td>32-bit</td>
-<td rowspan="2"><strong>Redirects system32 access to SysWOW64.</strong> <code>sysnative</code> alias can access real system32.</td>
-</tr>
-
-<tr>
-<td>64-bit, 2003 R2</td>
-<td>32-bit</td>
-</tr>
-
-<tr>
-<td>64-bit, 2003</td>
-<td>32-bit</td>
-<td><strong>Redirects system32 access to SysWOW64.</strong> Hotfix <a href="http://support.microsoft.com/kb/942589/en-us">KB942589</a> is required to use <code>sysnative</code> alias.</td>
-</tr>
-
-</table>
-
-> Note: The `sysnative` alias was added in Windows 2003 R2. 64-bit Windows 2003 requires hotfix [KB942589](http://support.microsoft.com/kb/942589/en-us) to use the `sysnative` alias.
+If you are running a 32-bit Puppet package on a 64-bit version of Windows, Windows will redirect Puppet's access to the `C:\Windows\system32` directory into `C:\Windows\SysWOW64`. You will need to watch out for this and compensate.
 
 ### Details
 
@@ -140,10 +101,9 @@ However, if you are **running a 32-bit version of Puppet on a 64-bit version of 
 
 Additionally, the `ProgramFiles` environment variable resolves to `C:\Program Files\` in a 64-bit native application, and `C:\Program Files (x86)\` in a 32-bit process running on a 64-bit version of Windows.
 
-There are three cases where you might be dealing with mixed Puppet/Windows architectures:
+There are two cases where you might be dealing with mixed Puppet/Windows architectures:
 
 * You deliberately installed a 32-bit package on a 64-bit system, to maintain compatibility for certain modules until you're able to update their code for 64-bit Puppet.
-* You are running a 64-bit version of Windows Server 2003 or 2003 R2, which is not supported by the 64-bit Puppet installer.
 * You are writing code that must support older versions of Puppet, which did not have 64-bit packages available.
 
 ### Compensating for Redirection
