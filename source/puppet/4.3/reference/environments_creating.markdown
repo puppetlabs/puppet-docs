@@ -32,41 +32,6 @@ An environment is just a directory that follows a few conventions:
 
 ![Diagram: A directory with four environments. Each environment contains a modules directory, a manifests directory, and an environment.conf file.](./images/environment_directories.svg)
 
-Puppet Enterprise Requirements
------
-
-[inpage_pe]: #puppet-enterprise-requirements
-
-With Puppet Enterprise (PE), **every** environment must meet two extra requirements.
-
-### Filebucket Resource in Main Manifest
-
-The [main manifest][manifest_dir] **must** contain the following snippet of Puppet code, which PE uses to back up file contents:
-
-~~~ ruby
-    # Define filebucket 'main':
-    filebucket { 'main':
-      server => '<YOUR SERVER HERE>',
-      path   => false,
-    }
-
-    # Make filebucket 'main' the default backup location for all File resources:
-    File { backup => 'main' }
-~~~
-
-You should do the following to ensure this is present:
-
-* Make sure you set `default_manifest = $codedir/manifests` in [puppet.conf][]. This will provide the necessary code to any environments that don't override their main manifest in [environment.conf][].
-* If any environments **do** provide their own main manifests, make sure you copy this code from the `/etc/puppetlabs/code/manifests/site.pp` file into some file in their manifests directory.
-
-### Modulepath Includes `/opt/puppetlabs/puppet/modules`
-
-The [modulepath][] **must** include the `/opt/puppetlabs/puppet/modules` directory, since PE uses modules in that directory to configure orchestration and other features.
-
-* If you **upgraded** from a previous version of PE instead of doing a fresh install, make sure to set `basemodulepath = $codedir/modules:/opt/puppetlabs/puppet/modules` in [puppet.conf][]. This will include the system modules in the **default** modulepath for every environment. If you installed PE 3.8 or higher from scratch, this path is already set by default.
-* If you use [environment.conf][] to override the modulepath (see below), make sure it includes either `$basemodulepath` or `/opt/puppetlabs/puppet/modules`.
-
-
 Allowed Environment Names
 -----
 
@@ -101,7 +66,9 @@ That is, Puppet will add the environment's `modules` directory to the value of t
 
 You can configure a different modulepath for an environment by setting `modulepath` in its [environment.conf][] file. Note that the global `modulepath` setting from [puppet.conf][] will never be used by an environment.
 
-**Note:** The `modulepath` should almost always include `$basemodulepath`, and if you're using PE, it **must** include `/opt/puppetlabs/puppet/modules`. ([See above.][inpage_pe]) This path is included in the `basemodulepath` by default in PE 3.8.
+> **Note:** In Puppet Enterprise, **every** environment **must** include `/opt/puppetlabs/puppet/modules` in its modulepath, since PE uses modules in that directory to configure its own infrastructure.
+>
+> Environments already get this directory by default, since it's part of the default value of `basemodulepath`. Don't remove it from the `basemodulepath` setting, and if you override the modulepath in [environment.conf][], ensure your custom modulepath includes either `$basemodulepath` or `/opt/puppetlabs/puppet/modules`.
 
 #### Checking the Modulepath
 
@@ -131,8 +98,6 @@ If the file or directory specified by `default_manifest` is empty or absent, Pup
 You can configure a different main manifest for an environment by setting `manifest` in its [environment.conf][] file.
 
 As with the global `default_manifest` setting, you can specify a relative path (to be resolved within the environment's directory) or an absolute path.
-
-**Note:** If you are using Puppet Enterprise, you **must** ensure that the default filebucket resource is included in the main manifest. ([See above.][inpage_pe])
 
 #### Locking the Main Manifest
 
