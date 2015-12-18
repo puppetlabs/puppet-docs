@@ -80,7 +80,7 @@ $foo = [ 'one', 'two', 'three', 'four', 'five' ]
 $cool_value = $foo[6] # value is undef
 ~~~
 
-When testing with a [regular expression][regexp] whether an Array[<TYPE>] data type matches a given array, empty arrays will match as long as the type can accept zero-length arrays.
+When testing with a [regular expression][regexp] whether an `Array[<TYPE>]` data type matches a given array, empty arrays will match as long as the type can accept zero-length arrays.
 
 ~~~ ruby
 $foo = []
