@@ -43,7 +43,7 @@ Every module should contain a `metadata.json` file. It should be located in the 
         }
        ],
       "dependencies": [
-        { "name": "puppetlabs/stdlib", "version_requirement": ">=3.2.0 <5.0.0" },
+        { "name": "puppetlabs/stdlib", "version_requirement": ">= 3.2.0 < 5.0.0" },
         { "name": "puppetlabs/firewall", "version_requirement": ">= 0.0.4" }
       ],
       "data_provider": "hiera"
@@ -94,10 +94,10 @@ The `dependencies` key accepts an array of hashes, where each hash contains `"na
 
 ~~~ javascript
     "dependencies": [
-      { "name": "puppetlabs/stdlib", "version_requirement": ">=3.2.0 <5.0.0" },
+      { "name": "puppetlabs/stdlib", "version_requirement": ">= 3.2.0 < 5.0.0" },
       { "name": "puppetlabs/firewall", "version_requirement": ">= 0.0.4" },
-      { "name": "puppetlabs/apt", "version_requirement": ">=1.1.0 <2.0.0" },
-      { "name": "puppetlabs/concat", "version_requirement": ">= 1.0.0 <2.0.0" }
+      { "name": "puppetlabs/apt", "version_requirement": ">= 1.1.0 < 2.0.0" },
+      { "name": "puppetlabs/concat", "version_requirement": ">= 1.0.0 < 2.0.0" }
     ]
 ~~~
 
@@ -110,18 +110,30 @@ The version requirement in a dependency isn't limited to a single version; you c
 The version specifiers allowed in module dependencies are:
 
 * `1.2.3` --- A specific version.
-* `>1.2.3` --- Greater than a specific version.
-* `<1.2.3` --- Less than a specific version.
-* `>=1.2.3` --- Greater than or equal to a specific version.
-* `<=1.2.3` --- Less than or equal to a specific version.
-* `>=1.0.0 <2.0.0` --- Range of versions; both conditions must be satisfied. (This example would match 1.0.1 but not 2.0.1.)
-* `1.x` --- A semantic major version. (This example would match 1.0.1 but not 2.0.1, and is shorthand for `>=1.0.0 <2.0.0`.)
-* `1.2.x` --- A semantic major and minor version. (This example would match 1.2.3 but not 1.3.0, and is shorthand for `>=1.2.0 <1.3.0`.)
+* `> 1.2.3` --- Greater than a specific version.
+* `< 1.2.3` --- Less than a specific version.
+* `>= 1.2.3` --- Greater than or equal to a specific version.
+* `<= 1.2.3` --- Less than or equal to a specific version.
+* `>= 1.0.0 < 2.0.0` --- Range of versions; both conditions must be satisfied. (This example would match 1.0.1 but not 2.0.1.)
+* `1.x` --- A semantic major version. (This example would match 1.0.1 but not 2.0.1, and is shorthand for `>= 1.0.0 < 2.0.0`.)
+* `1.2.x` --- A semantic major and minor version. (This example would match 1.2.3 but not 1.3.0, and is shorthand for `>= 1.2.0 < 1.3.0`.)
 
 **Note:** You cannot mix semantic versioning shorthand (.x) with greater/less than versioning syntax. The following would be incorrect.
 
 * `>= 3.2.x`
 * `< 4.x`
+
+> ### Best Practice: Set an Upper Bound for Dependencies
+>
+> When your module depends on other modules, make sure to set the upper version boundary in your version range; for example, `1.x` (any version of `1`, but less than `2.0.0`) or `>= 1.0.0 < 3.0.0` (greater than or equal to `1.0.0`, but less than `3.0.0`). If your module is compatible with the latest released versions of its dependencies, set the upper bound to exclude the next, unreleased major version.
+>
+> Without this upper bound, users might run into compatibility issues across major version boundaries, where incompatible changes occur. It is better to be conservative and set an upper bound, and then release a newer version of your module after a major version release of the dependency. Otherwise, you could suddenly have to fix broken dependencies.
+>
+> If your module is compatible with only one major or minor version, you can use the semantic major/minor version shorthand (e.g., `1.x`). If your module is compatible with versions crossing major version boundaries, such as with stdlib, you can set your supported version range to the next unreleased major version. For example:
+>
+>      { "name": "puppetlabs/stdlib", "version_requirement": ">= 3.2.0 < 5.0.0" }
+>
+> In this example, the current version of stdlib is 4.8.0, and version 5.0.0 is not yet released. Under the rules of semantic versioning, 5.0.0 is likely to have incompatibilities, but every version of 4.x should be compatible. We don't know yet if the module will be compatible with 5.x. So we set the upper bound of the version dependency to less than the next known incompatible release (or major version).
 
 ## Specifying Operating System Compatibility
 
