@@ -88,11 +88,11 @@ This example module, named "`my_module`," shows the standard module layout in mo
 * `my_module` --- This outermost directory's name matches the name of the module.
     * `manifests/` --- Contains all of the manifests in the module.
         * `init.pp` --- Contains a class definition. **This class's name must match the module's name.**
-        * `other_class.pp` --- Contains a class named **`my_module::other_class`.**
-        * `my_defined_type.pp` --- Contains a defined type named **`my_module::my_defined_type`.**
+        * `other_class.pp` --- Contains a class named **`my_module::other_class` which must match the file name.**
+        * `my_defined_type.pp` --- Contains a defined type named **`my_module::my_defined_type` which must match the file name..**
         * `implementation/` --- This directory's name affects the class names beneath it.
-            * `foo.pp` --- Contains a class named **`my_module::implementation::foo`.**
-            * `bar.pp` --- Contains a class named **`my_module::implementation::bar`.**
+            * `foo.pp` --- Contains a class named **`my_module::implementation::foo` which must match the file name..**
+            * `bar.pp` --- Contains a class named **`my_module::implementation::bar` which must match the file name..**
     * `files/` --- Contains static files, which managed nodes can download.
         * `service.conf` --- This file's URL would be **`puppet:///modules/my_module/service.conf`.**
     * `lib/` --- Contains plugins, like custom facts and custom resource types. See ["Using Plugins"][plugins] for more details.
