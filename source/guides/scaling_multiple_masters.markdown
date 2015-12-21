@@ -124,6 +124,7 @@ All certificate related URLs begin with `/<NAME OF PUPPET ENVIRONMENT>/certifica
 >     SSLProxyEngine On
 >     # Proxy all requests that start with things like /production/certificate to the CA
 >     ProxyPassMatch ^/([^/]+/certificate.*)$ https://puppetca.example.com:8140/$1
+>     ProxyPassReverse ^(/.*?)/(certificate.*?)/(.*)$ https://puppetca.example.com:8140/$1
 >
 > This change must be made to the Apache configuration on every puppet master server other than the one serving as the CA. No changes need to be made to agent nodes' configurations.
 >
