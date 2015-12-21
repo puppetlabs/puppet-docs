@@ -190,15 +190,6 @@ If you have a parameter that toggles an entire function on and off, the naming c
 
 Consistent naming across modules helps with the readability and usability of your code. While Puppet Labs doesn't have a set of standards for parameters to conform to, there's a community project working to establish one. If you care about name standardization, offer issues and pull requests [here](https://github.com/stdmod/puppet-modules/blob/master/Parameters_List.md).
 
-####Number
-
-If you want to maximize the usability of your module without requiring users to modify it, you should make it more flexible through the addition of parameters. Adding parameters enables more customized use of your module. While this can feel frustrating as an author, best practice is to embrace parameters rather than avoid them.
-
-You must not hardcode data in your modules, and having more parameters is the best alternative. Hardcoded data results in an inflexible module that requires manifest changes in order for it to be used in slightly different circumstances.
-
-Adding parameters that allow you to override templates is an anti-pattern to avoid. Parameters that allow overriding templates lead to end users overriding your template with a custom template that contains hardcoded additional parameters. Hardcoding parameters in a template should be avoided, as it leads to stagnation and inhibits flexibility over time. It is far better to create more parameters and modify the original template, or have a parameter which accepts an arbitrary chunk of text added to the template, than it is to override the template with a customized one.
-
-For an example of a module that capitalizes on offering many parameters, please see [puppetlabs/apache](http://forge.puppetlabs.com/puppetlabs/apache).
 
 ###2c: Ordering
 
