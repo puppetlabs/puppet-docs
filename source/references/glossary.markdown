@@ -1,82 +1,126 @@
 ---
-title: Glossary
+title: Glossary of Puppet Vocabulary
 layout: default
 ---
 
-# Glossary of Puppet Vocabulary
+[Relationships and Ordering]: /puppet/latest/reference/lang_relationships.html
 
-An accurate, shared vocabulary goes a long way to ensure the success of a project. To that end, this glossary defines the most common terms Puppet users rely on.
+An accurate, shared vocabulary goes a long way to ensure the success of a project. To that end, this glossary defines the most common terms that Puppet users rely on.
+
+### abstract data type
+
+See [type (data)](#type-data).
 
 ### attribute
 
-Attributes are used to specify the state desired for a given configuration resource. Each resource type has a slightly different set of possible attributes, and each attribute has its own set of possible values. For example, a package resource (like `vim`) would have an `ensure` attribute, whose value could be `present`, `latest`, `absent`, or a version number:
+Attributes specify the desired state of a given configuration resource. Each resource type has a different set of attributes, and each attribute has its own set of allowed [values](#value). For example, a package resource (like `vim`) would have an `ensure` attribute, whose value could be `present`, `latest`, `absent`, or a version number:
 
 ~~~ ruby
-    package {'vim':
-      ensure   => present,
-      provider => apt,
-    }
+package {'vim':
+  ensure   => present,
+  provider => apt,
+}
 ~~~
 
-The value of an attribute is specified with the `=>` operator; attribute/value pairs are separated by commas.
+You specify an attribute's value with the `=>` operator, and pairs of attributes and values are separated by commas.
 
 ### agent
 
-(or  **agent node**)
+(or **Puppet agent**, or **agent node**)
 
-Puppet is usually deployed in a simple client-server arrangement, and the Puppet client daemon is known as the "agent." By association, a computer running puppet agent is usually referred to as an "agent node" (or simply "agent," or simply "node").
+"**Puppet agent**" can refer to a few different things:
 
-Puppet agent regularly pulls configuration catalogs from a puppet master server and applies them to the local system.
+* **The Puppet agent software package,** also known as [`puppet-agent`](puppet/latest/reference/about_agent.html). Puppet is usually deployed in a simple client-server arrangement. When you install Puppet on a device, you're installing the agent software and its associated tools and dependencies. On *nix systems, this package is called `puppet-agent`.
+* **The `puppet agent` daemon.** You can invoke the agent software by running the `puppet agent` command, or you can let it run in the background as a daemon.
+* **A [node](#node) running the Puppet agent software.** By association, a [node](#node) running the Puppet agent daemon can be referred to as an **agent node**, or simply "agent".
+
+A Puppet agent regularly performs [Puppet runs](#puppet-run), wherein it sends [facts](#fact) to a Puppet [master](#master) and receives a configuration [catalog](#catalog), then applies the catalog to the local system using its [providers](#provider).
+
+> **Note:** Puppet masters typically also run the Puppet agent daemon, which allows Puppet to manage its own configuration. In this sense, a Puppet master can also be a Puppet agent. An agent can also serve as its own master; this is often called a **masterless** configuration.
+
+For more information about Puppet's agent-master architecture, see [the Puppet documentation](/puppet/latest/reference/architecture.html).
 
 ### catalog
 
-A catalog is a compilation of all the resources that will be applied to a given system and the relationships between those resources.
+A **catalog** describes the desired state of each managed resource on a node. It is a [compilation](#compilation) of all the [resources](#resource) that the Puppet [agent](#agent) applies to a given [node](#node), as well as the relationships between those resources.
 
-Catalogs are compiled from manifests by a puppet master server and served to agent nodes. Unlike the manifests they were compiled from, they don't contain any conditional logic or functions. They are unambiguous, are only relevant to one specific node, and are machine-generated rather than written by hand.
+Catalogs are compiled by a Puppet [master](#master) from [manifests](#manifest) and agent-provided data (such as [facts](#fact), certificates, and an [environment](#environment) if one is provided), as well as optional external data (such as data from an [external node classifier](#external-node-classifier),  [exported resources](#exported-resource), and [functions](#function)). The master then serves the compiled catalog to the agent when requested. 
+
+Unlike the manifests from which they were compiled, catalogs don't contain any conditional logic or [functions](#function). They are unambiguous, relevant to only a specific node, and generated by a [node](#node).
+
+For detailed information, see the [Catalog Compilation](/puppet/latest/reference/subsystem_catalog_compilation.html) page in the Puppet documentation. See also [node graph](#node-graph), a tool in [Puppet Enterprise](#puppet-enterprise) that interactively visualizes a node's catalog.
 
 ### class
 
-A collection of related resources, which, once defined, can be declared as a single unit. For example, a class could contain all of the elements (files, settings, modules, scripts, etc) needed to configure Apache on a host. Classes can also declare other classes.
+A **class** is a collection of related [resources](#resource) that, once [defined](#define), can be [declared](#declare) as a single unit. For example, a class can contain all of the resources (such as files, settings, [modules](#module), and scripts) needed to configure the Apache webserver on a host. Classes can also declare other classes. For more information, see the [Classes](/puppet/latest/reference/lang_classes.html) page in the [Puppet language](#puppet-language) reference.
 
-Classes are singletons, and can only be applied once in a given configuration, although the `include` keyword allows you to declare a class multiple times while still only evaluating it once.
+Classes are [singletons](#singleton) and can be applied only once in a given configuration; although the `include` function allows you to declare a class multiple times, Puppet evaluates it only once. 
 
-> **Note:** Being singletons, Puppet classes are not analogous to classes in object-oriented programming languages. OO classes are like templates that can be instantiated multiple times; Puppet's equivalent to this concept is [defined types](#type-defined).
+The `require` and `contain` functions can create [relationships](#relationship) between classes. For more information, see the [Containment of Resources](/puppet/latest/reference/lang_containment.html) page in the Puppet language reference.
+
+> **Note:** Being singletons, Puppet classes are not analogous to classes in object-oriented programming languages. Object-oriented classes are like templates that can be instantiated multiple times; Puppet's equivalent to this concept is [defined types](#type-defined).
 
 ### classify
 
 (or **node classification**)
 
-To assign [classes](#class) to a [node](#agent), as well as provide any data the classes require. Writing a class makes a set of configurations available; classifying a node determines what its actual configuration will be.
+To assign [classes](#class) to a [node](#node), as well as provide any data required by the classes, you **classify** the node. 
 
-Nodes can be classified with [node definitions](#node-definition) in the [site manifest](#site-manifest), with an [ENC](#external-node-classifier), or with both.
+By writing a class, you enable a set of configurations. By classifying a node with the class, you describe the node's desired configuration.
+
+You can classify nodes through [node definitions](#node-definition) in the [main manifest](#main-manifest), or with the [Puppet Enterprise](#puppet-enterprise) [Node Manager](#node-manager) or an [external node classifier](#external-node-classifier).
+
+### compilation
+
+A Puppet [master](#master) creates a [catalog](#catalog) by **compiling** [manifests](#manifest) and agent-provided data, as well as any provided external data. During a [Puppet run](#puppet-run), an agent requests its [node's](#node) compiled catalog, then applies it to configure the node. For detailed information, see the [Catalog Compilation](/puppet/latest/reference/subsystem_catalog_compilation.html#whats-a-catalog) page in the Puppet documentation.
+
+### core data type
+
+(or **concrete data type**)
+
+See [type (data)](#type-data).
+
+### console
+
+[Puppet Enterprise](#puppet-enterprise) includes a web user interface called the **console**, which provides tools for managing your Puppet infrastructure. For example, you can use it to [classify nodes](#node-manager), manage Puppet services, trigger and view [reports](#report) and metrics about [Puppet runs](#puppet-run) and activity, and examine inventory data and [resources](#resource). For detailed information, see [the Puppet Enterprise documentation](/pe/latest/console_accessing.html).
+
+### data type
+
+See [type (data)](#type-data).
 
 ### declare
 
-To direct Puppet to include a given class or resource in a given configuration. To declare resources, use the lowercase `file {'/tmp/bar':}` syntax. To declare classes, use the `include` keyword or the `class {'foo':}` syntax. (Note that Puppet will automatically declare any classes it receives from an [external node classifier](#external-node-classifier).)
+To direct Puppet to include a given [class](#class) or [resource](#resource) in a given configuration, you **declare** it using the [Puppet language](#puppet-language). To declare classes, use a [function](#function) (such as `include`) or the `class {'foo':}` syntax. To declare resources, use the lowercase `file {'/tmp/bar':}` syntax.
 
-You can configure a resource or class when you declare it by including [attribute/value pairs](#attribute).
+You can configure a resource or class when you declare it by including [attribute-value pairs](#attribute).
 
-Contrast with "[define](#define)."
+For more information, see the [Declaring Classes](/puppet/latest/reference/lang_classes.html#declaring-classes) section and [Resources](/puppet/latest/reference/lang_resources.html) page in the Puppet language reference. Contrast with "[define](#define)."
 
 ### define
 
-To specify the contents and behavior of a class or a defined resource type. Defining a class or type doesn't automatically include it in a configuration; it simply makes it available to be [declared](#declare).
+To specify the contents and behavior of a [class](#class) or a [defined type](#type-defined), you **define** it using the [Puppet language](#puppet-language). Defining a class or type doesn't automatically include it in a configuration; it simply makes it available to be [declared](#declare).
+
+For more information, see the [Defined Types](/puppet/latest/reference/lang_defined_types.html)
 
 ### define (noun)
 
 (or **definition**)
 
-An older term for a [defined resource type](#type-defined).
+As a noun, **define** is an older term for a [defined type](#type-defined). For instance, a module might refer to its available defines.
 
 ### define (keyword)
 
-The language keyword used to create a [defined type](#type-defined).
+You use the **`define`** [Puppet language](#puppet-language) keyword to create a [defined type](#type-defined).
 
-### defined resource type
+### defined resource
 
-(or **defined type**)
+A [resource](#resource) whose [type](#type) has been [define](#defined). See [type (defined)](#type-defined).
 
-See "[type (defined)](#type-defined)."
+### defined type
+
+(or **defined resource type**)
+
+See [type (defined)](#type-defined).
 
 ### ENC
 
@@ -84,166 +128,228 @@ See [external node classifier](#external-node-classifier).
 
 ### environment
 
-An arbitrary segment of your Puppet [site](#site), which can be served a different set of modules. For example, environments can be used to set up scratch nodes for testing before roll-out, or to divide a site by types of hardware.
+An **environment** is an isolated group of Puppet [agent nodes](#agent) that a Puppet [master](#master) can serve with its own [main manifest](#main-manifest) and set of [modules](#modules). For example, you can use environments to set up scratch [nodes](#node) for testing before rolling out changes to production, or divide a site by types of hardware.
+
+For more information, see the [About Environments](/puppet/latest/reference/environments.html) page.
+
+### exported resource
+
+An **exported resource** is a [resource](#resource) that you've [declared](#declare) to be available to other [node](#node) that can then collect the exported resource and manage their own copies. This lets you share a resource's desired state across nodes, such as when one node depends on information on another node for its configuration, or when you need to monitor a resource's state.
+
+For more information, see [the Exported Resources page](/puppet/latest/reference/lang_exported.html) in the [Puppet language](#puppet-language) reference.
 
 ### expression
 
-The Puppet language supports several types of expressions for comparison and evaluation purposes. Amongst others, Puppet supports boolean expressions, comparision expressions, and arithmetic expressions. See [the Expressions page](/puppet/latest/reference/lang_expressions.html) in the latest Puppet language reference for more information.
+The [Puppet language](#puppet-language) supports several types of **expressions** for comparison and evaluation purposes, including Boolean expressions, comparison expressions, and arithmetic expressions. For more information, see [the Expressions page](/puppet/latest/reference/lang_expressions.html) in the [Puppet language](#puppet-language) reference.
 
 ### external node classifier
 
 (or **ENC**)
 
-An executable script, which, when called by the puppet master, returns information about which classes to apply to a node.
+An **external node classifier** (ENC) is an executable script that returns information about which [classes](#class) to apply to a [node](#node) when called by a Puppet [master](#master).
 
-ENCs provide an alternate method to using the main site manifest (`site.pp`) to classify nodes. An ENC can be written in any language, and can use information from any pre-existing data source (such as an LDAP db) when classifying nodes.
+ENCs provide an alternative to using a [site's](#site) [main manifest](#main-manifest) to classify nodes. An ENC can be written in any language, and can use information from any data source (such as an LDAP database) when classifying nodes.
 
-An ENC is called with the name of the node to be classified as an argument, and should return a YAML document describing the node. See [External Nodes](/guides/external_nodes.html) for more information.
+An ENC is called with the name of the node to be classified as an argument, and should return a YAML document describing the node. For more information, see the [External Nodes](/guides/external_nodes.html) guide.
 
 ### fact
 
-A piece of information about a node, such as its operating system, hostname, or IP address.
+A piece of information about a [node](#node), such as its hostname, IP address, and operating system, is a **fact**.
 
-Facts are read from the system by [Facter](#facter), and are made available to Puppet as global variables.
-
-Facter can also be extended with custom facts, which can expose site-specific details of your systems to your Puppet manifests. See [Custom Facts](/facter/latest/custom_facts.html) for more details.
+[Facter](#facter) reads facts from a node and makes them available to Puppet. You can extend Facter with custom facts, which can expose [site-specific](#site) details of your systems to your Puppet [manifests](#manifest). For more information, see the [Custom Facts](/facter/latest/custom_facts.html) documentation.
 
 ### Facter
 
-Facter is Puppet's system inventory tool. Facter reads [facts](#fact) about a node (such as its hostname, IP address, operating system, etc.) and makes them available to Puppet.
+**Facter** is Puppet's system inventory tool. Facter reads [facts](#fact) about a [node](#node), such as its hostname, IP address, and operating system, and makes them available to Puppet.
 
-Facter includes a large number of built-in facts; you can view their names and values for the local system by running `facter` at the command line.
+Facter includes many built-in facts, and you can view their names and [values](#value) for the local system by running `facter` at a node's command line.
 
-In agent/master Puppet arrangements, agent nodes send their facts to the master.
+In [agent](#agent)/[master](#master) Puppet arrangements, Puppet agents send their nodes' facts to the Puppet master.
 
-* [Facter product page](http://puppetlabs.com/puppet/related-projects/facter/)
-* [Facter GitHub page](https://github.com/puppetlabs/facter)
+For more information, see [the Facter documentation](/facter/latest/).
 
 ### filebucket
 
-A repository in which Puppet stores file backups when it has to replace files. A filebucket can be either local (and owned by the node being mangaed) or site-global (and owned by the puppet master). Typically, a single filebucket is defined for a whole network and is used as the default backup location.
+A repository in which Puppet stores file backups when it has to replace files is called a **filebucket**. 
 
-See [type: filebucket](/references/stable/type.html#filebucket) for more information.
+A filebucket can be local (and owned by the [node](#node) being managed) or site-global (and owned by the Puppet [master](#master)). Typically, a single filebucket is defined for a network and is used as the default backup location. For more information, see the [`filebucket` type](/references/stable/type.html#filebucket) in the [Puppet language](#puppet-language) type reference.
 
 ### function
 
-A statement in a manifest which returns a value or makes a change to the catalog.
+A **function** is a [Puppet language](#puppet-language) statement that returns a [value](#value) or modifies a [catalog](#catalog). Puppet has many [built-in functions](/references/latest/function.html), and Puppet [modules](#module) can add their own functions. You can also [write custom functions](/guides/custom_functions.html).
 
-Since they run during compilation, functions happen on the puppet master in an agent/master arrangement. The only agent-specific information they have access to are the [facts](#fact) the agent submitted.
+Functions generally take at least one [value](#value) as an argument, execute Puppet code, and return a value. Since Puppet evaluates functions during [compilation](#compilation), the Puppet [master](#master) executes them in an [agent](#agent)-master arrangement. Puppet functions can only access the [facts](#fact) that an agent submitted.
 
-Common functions include `template`, `notice`, and `include`. You can choose from the [list of built-in functions](/references/stable/function.html), use functions from public modules (like [puppetlabs-stdlib](http://forge.puppetlabs.com/puppetlabs/stdlib)), or write our own custom functions (see the [Writing Your Own Functions page](/guides/custom_functions.html)).
+Contrast with "[lambda](#lambda)".
 
 ### global scope
 
 See [scope](#scope).
 
+### Hiera
+
+The **Hiera** tool, which ships with the [Puppet agent](#agent), provides hierarchical key-value lookup for [site-specific](#site) data. This lets you take site-specific data out of your [manifests](#manifest) and place it in a centralized location, while also setting default data and overriding certain specified [values](#value) when necessary. For more information, see [the Hiera documentation](/hiera/latest/).
+
 ### host
 
-Any computer (physical or virtual) attached to a network.
+Any device, physical or virtual, attached to a network is a **host**.
 
-In the Puppet docs, this usually means an instance of an operating system with the Puppet agent installed. See also "[Agent Node](#agent)".
+In the Puppet documentation, this can also refer to a device running the Puppet [agent](#agent) daemon. See also [node](#node).
 
 ### host (resource type)
 
-An entry in a system's `hosts` file, used for name resolution. See [type: host](/references/stable/type.html#host) for more information.
+A **host** can refer to an entry in a system's `hosts` file, and is used for name resolution. Puppet includes a [type](#type) of [resource](#resource) to manage hosts. For more information, see the [Host](/references/stable/type.html#host) section of the [Puppet language](#puppet-language) type reference.
 
 ### idempotent
 
-Able to be applied multiple times with the same outcome. Puppet resources are idempotent, since they describe a desired final state rather than a series of steps to follow.
+**Idempotence** refers to the concept of doing something multiple times with the same outcome. Puppet [resources](#resource) are idempotent, since they describe a desired final state rather than a series of steps to follow.
 
-(The only major exception is the `exec` type; exec resources must still be idempotent, but it's up to the user to design each exec resource correctly.)
-
+The most prominent exception among Puppet resources is the `exec` [resource type](#type), which should be idempotent but rely on the user to design them accordingly.
 
 ### inheritance (class)
 
-A Puppet class can be derived from one other class with the `inherits` keyword. The derived class will declare all of the same resources, but can override some of their attributes and add new resources.
+A Puppet [class](#class) can be derived from another class by using the `inherits` keyword. The derived class [declares](#declare) all of the same [resources](#resource), but can override some of their [attributes](#attribute) and add new resources. Inheritance should be used very sparingly; for more information, see the [Classes](/puppet/latest/reference/lang_classes.html#inheritance) page in the [Puppet language](#puppet-language) reference.
 
-> **Note:** Most users should avoid inheritance most of the time. Unlike object-oriented programming languages, inheritance isn't terribly important in Puppet; it is only useful for overriding attributes, which can be done equally well by using a single class with a few [parameters](#parameter-defined-types-and-parameterized-classes).
+### lambda
 
+(or **code block**)
 
+A **lambda** is a block of parameterized [Puppet language](#puppet-language) code that you can pass to certain [functions](#function). For more information, see the [Lambdas (Code Blocks)](/puppet/latest/reference/lang_lambdas.html) page in the Puppet language reference.
 
-### inheritance (node)
+### local scope
 
-Node statements can be derived from other node statements with the `inherits` keyword. This works identically to the way class inheritance works.
+See [scope](#scope).
 
-> **Note:** Node inheritance **should almost always be avoided.** Many new users attempt to use node inheritance to look up variables that have a common default value and a rare specific value on certain nodes; it is not suited to this task, and often yields the opposite of the expected result. If you have a lot of conditional per-node data, we recommend using the Heira tool or assigning variables with an ENC instead.
+### main manifest
 
-### master
+(or **site manifest**)
 
-In a standard Puppet client-server deployment, the server is known as the master. The puppet master serves configuration [catalogs](#catalog) on demand to the puppet [agent](#agent) service that runs on the clients.
+The **main manifest** is the main "point of entry" [manifest](#manifest) used by a Puppet [master](#master) when [compiling](#compilation) a [catalog](#catalog).
 
-The puppet master uses an HTTP server to provide catalogs. It can run as a standalone daemon process with a built-in web server, or it can be managed by a production-grade web server that supports the rack API. The built-in web server is meant for testing, and is not suitable for use with more than ten nodes.
+The location of this manifest is set with the `manifest` setting in [`environment.conf`](/puppet/latest/reference/config_file_environment.html), with a default location set by the `default_manifest` setting in [`puppet.conf`](/puppet/latest/reference/config_file_main.html).
+
+For more information, see the [Main Manifests](/puppet/latest/reference/dirs_manifest.html) page of the Puppet documentation.
 
 ### manifest
 
-A file containing code written in the Puppet language, and named with the `.pp` file extension. The Puppet code in a manifest can:
+(or **Puppet code**)
+
+A **manifest** file contains code written in the [Puppet language](#puppet-language) and is named with the `.pp` file extension. The **Puppet code** in a manifest can:
 
 * [Declare](#declare) [resources](#resource) and [classes](#class)
 * Set [variables](#variable)
 * Evaluate [functions](#function)
-* [Define](#define) [classes](#class), [defined types](#type-defined), and [nodes](#node-definition)
+* [Define](#define) [classes](#class), [defined types](#type-defined), [functions](#function), and [nodes](#node-definition)
 
+Most manifests are contained in [modules](#module). Every manifest in a module should [define](#define) a single class, defined type, or function.
 
-Most manifests are contained in [modules](#module). Every manifest in a module should [define](#define) a single [class](#class) or [defined type](#type-defined).
+The Puppet [master](#master) service reads an [environment's](#environment) [main manifest](#main-manifest). This manifest usually defines [nodes](#node-definition), so that each managed [agent](#agent) receives a unique [catalog](#catalog).
 
-The puppet master service reads a single "site manifest," usually located at `/etc/puppet/manifests/site.pp`. This manifest usually defines [nodes](#node-definition), so that each managed [agent node](#node) will receive a unique catalog.
+See also [main manifest](#main-manifest).
+
+### manifest ordering
+
+Puppet uses **manifest ordering** to apply unrelated [resources](#resource) in the order that they're declared in their [manifests](#manifest). For related resources, or for more information about manifest ordering, see the [Relationships and Ordering][] page in the [Puppet language](#puppet-language) reference.
+
+### master
+
+(or **Puppet master**)
+
+In a standard Puppet client-server deployment, the server is known as the **Puppet master**. The Puppet master [compiles](#compilation) and serves configuration [catalogs](#catalog) on demand to Puppet [agents](#agent) on client [nodes](#node).
+
+The Puppet master provides catalogs to agents using an HTTP server. It can run as a standalone daemon with a built-in web server, or as part of [Puppet Server](#puppet-server). (We don't recommend using the built-in daemon when managing more than 10 nodes.)
+
+For more information, see the [Overview of Puppet's Architecture](/puppet/latest/reference/architecture.html) page in the Puppet documentation.
+
+### masterless
+
+"**Masterless**" is a term often used to refer to a Puppet [node](#node) that does not rely on a [master](#master) for its [catalog](#catalog). See [agent](#agent).
 
 ### metaparameter
 
-A resource [attribute](#attribute) that can be specified for any type of resource. Metaparameters are part of Puppet's framework rather than part of a specific [type](#type), and usually affect the way resources relate to each other. For a list of metaparameters and their usage, see the [Metaparameter Reference](/references/stable/metaparameter.html).
+A **metaparameter** is a [resource](#resource) [attribute](#attribute) that can be specified for any type of resource. Metaparameters are part of Puppet's framework rather than part of a specific [type](#type), and usually affect the way resources relate to each other. For a list of metaparameters and their usage, see the [Metaparameter Reference](/references/stable/metaparameter.html).
 
 ### module
 
-A collection of classes, resource types, files, and templates, organized around a particular purpose. For example, a module could be used to completely configure an Apache instance or to set-up a Rails application. There are many pre-built modules available for download in the [Puppet Forge](http://forge.puppetlabs.com/). For more information see:
+A collection of [classes](#class), [resource](#resource) [types](#type), files, [functions](#function) and [templates](#template), organized around a particular purpose is a **module**. For example, a module can configure an Apache webserver instance or Rails application. There are many modules available for download in the [Puppet Forge](https://forge.puppetlabs.com/). For more information, see:
 
-* [Module Fundamentals](/puppet/latest/reference/modules_fundamentals.html)
-* [Installing Modules](/puppet/latest/reference/modules_installing.html)
+For more information, see the [Module Fundamentals](/puppet/latest/reference/modules_fundamentals.html) and [Installing Modules](/puppet/latest/reference/modules_installing.html) pages in the Puppet documentation.
 
 ### namevar
 
 (or **name**)
 
-The attribute that represents a [resource](#resource)'s **unique identity** on the **target system.** For example: two different files cannot have the same `path`, and two different services cannot have the same `name`.
+This [attribute](#attribute) represents a [resource's](#resource) unique identity on the target system. For example, two different files cannot have the same `path`, and two different services cannot have the same `name`.
 
-Every resource [type](#type) has a designated namevar; usually it is simply `name`, but some types, like [`file`](/references/latest/type.html#file) or [`exec`](/references/latest/type.html#exec), have their own (e.g. `path` and `command`). If the namevar is something other than `name`, it will be called out in the [type reference](/references/latest/type.html).
+Every resource [type](#type) has a designated namevar, usually `name`. Some types, such as [`file`](/references/latest/type.html#file) or [`exec`](/references/latest/type.html#exec), have their own (in these cases, `path` and `command`, respectively). If a type's namevar is something other than `name`, it's called out in the [type reference](/references/latest/type.html).
 
-If you do not specify a value for a resource's namevar when you declare it, it will default to that resource's [title](#title).
+If you don't specify a [value](#value) for a resource's namevar when you [declare](#declare) it, it defaults to that resource's [title](#title).
 
-### node (definition)
+### node
+
+A **node** is a device managed by Puppet. Some nodes are [masters](#master), which [compile](#compilation) [manifests](#manifest) into [catalogs](#catalog); most nodes, including most masters, are [agents](#agent), which receive catalogs and apply them to the node during a [Puppet run](#puppet-run). Most nodes are computers (such as workstations and servers), but some aren't (such as supported network switches and storage appliances).
+
+A node is also one of the fundamental units of a [puppetized](#puppetize) infrastructure. See also [classification](#classify), [node definition](#node-definition), and [node scope](#node-scope).
+
+For general information about Puppet's architecture, see [the Puppet documentation](/puppet/latest/reference/architecture.html).
+
+### node definition
 
 (or **node statement**)
 
-A collection of classes, resources, and variables in a manifest, which will only be applied to a certain [agent node](#agent). Node definitions begin with the `node` keyword, and can match a node by full name or by regular expression.
+A **node definition** is a collection of [classes](#class), [resources](#resource), and [variables](#variable) in a [manifest](#manifest) that are only applied to a certain [agent node](#agent). Node definitions begin with the `node` keyword, and can match a node by full name or regular expression.
 
-When a managed node retrieves or compiles its catalog, it will receive the contents of a single matching node statement, as well as any classes or resources declared outside any node statement. The classes in every _other_ node statement will be hidden from that node.
+When a [node](#node) retrieves or [compiles](#compilation) its [catalog](#catalog), it receives the contents of a single matching node statement as well as any classes or resources declared outside any node statement. The classes in every _other_ node statement are hidden from that node.
 
-See [node definitions](/puppet/latest/reference/lang_node_definitions.html) in the latest Puppet language reference for more details.
+For more information, see the [node definitions](/puppet/latest/reference/lang_node_definitions.html) in the [Puppet language](#puppet-language) reference.
+
+### node graph
+
+The **node graph** in [Puppet Enterprise's](#puppet-enterprise) [Configuration Manager](#configuration-manager) provides a graphic representation of a [node's](#node) [resources](#resource). For more information, see the [Configuration Management overview](/pe/latest/CM_overview.html) in the Puppet Enterprise documentation.
+
+### Node Manager
+
+The **Node Manager** app lets you [classify](#classify) [nodes](#node) using [fact-based](#fact) rules in the [Puppet Enterprise](#puppet-enterprise) [console](#console). It's one of two main workspaces in Puppet Enterprise, along with [Configuration Manager](#configuration-manager).
 
 ### node scope
 
-The local variable [scope](#scope) created by a [node definition](#node-definition). Variables declared in this scope will override top-scope variables. (Note that [ENCs](#external-node-classifier-enc) assign variables at top scope, and do not introduce node scopes.)
+See [scope](#scope).
 
-### noop
+### node state
 
-Noop mode (short for "No Operations" mode) lets you simulate your configuration without making any actual changes. Basically, noop allows you to do a dry run with all logging working normally, but with no effect on any hosts. To run in noop mode, execute `puppet agent` or `puppet apply` with the `--noop` option.
+When Puppet manages a [node](#node) during a [Puppet run](#puppet-run), it attempts bring it into compliance with its [catalog](#catalog). When using the [Node Manager](#node-manager) in [Puppet Enterprise](#puppet-enterprise), the result is considered the **node state**. In most cases, a node's state is either: 
+
+* **Changed**, by a successful [Puppet run](#puppet-run) that modified the node into compliance.
+* **Unchanged**, by a successful Puppet run that determined the node was already compliant.
+* **Failed**, when a Puppet run fails while evaluating or modifying the node.
+
+When a [no-op](#no-op) Puppet run determines that it would have modified the node during a normal Puppet run, the node state is **no-op**. If a node is unresponsive for a period of time, its node state is **unresponsive**. If a node has never reported to a master, its node state is **unreported**.
+
+For more information, see the [Configuration Management overview](/pe/latest/CM_overview.html) in the Puppet Enterprise documentation.
+
+### no-op
+
+(or **noop**)
+
+By running Puppet in **no-op** mode (short for "No Operations" mode), you can simulate what Puppet will do without actually changing anything. No-op mode allows you to perform a [dry run](#dry-run) that logs planned activity but doesn't affect any [nodes](#node). To run Puppet in no-op mode, execute `puppet agent` or `puppet apply` with the `--noop` option.
 
 ### notify
 
-A notification [relationship](#relationship), set with the `notify` [metaparameter](#metaparameter) or the wavy chaining arrow. (`~>`) See ["Relationships and Ordering"][lang_puppet_relationships] in the Puppet language reference for more details.
+A notification [relationship](#relationship) set with the `notify` [metaparameter](#metaparameter) or the wavy [chaining arrow](#chaining-arrow) (`~>`). For more information, see the [Relationships and Ordering][] page in the [Puppet language](#puppet-language) reference.
 
 ### notification
 
-A type of [relationship](#relationship) that both declares an order for resources and causes [refresh](#refresh) events to be sent. See ["Relationships and Ordering"][lang_puppet_relationships] in the Puppet language reference for more details.
+A type of [relationship](#relationship) that both declares an order for resources and causes [refresh](#refresh) events to be sent. For more information, see the [Relationships and Ordering][] page in the [Puppet language](#puppet-language) reference.
 
 ### ordering
 
-Which resources should be managed before which others.
+By **ordering** [resources](#resource), you determine which resources should be managed before others.
 
-By default, the order of a [manifest](#manifest) is not the order in which resources are managed. You must declare a [relationship](#relationship) if a resource depends on other resources. See ["Relationships and Ordering"][lang_puppet_relationships] in the Puppet language reference for more details.
+By default, Puppet uses [manifest ordering](#manifest-ordering), which evaluates resources in the same order they're declared in their [manifests](#manifest). Puppet also obeys [relationships](#relationship) you provide that determine whether a resource depends on other resources. For more information, see the [Relationships and Ordering][] page in the [Puppet language](#puppet-language) reference and the [ordering](/references/latest/configuration.html#ordering) section in the Puppet configuration reference.
 
 ### parameter
 
-Generally speaking, a parameter is a chunk of information that a class or resource can accept. See also:
+Generally speaking, a **parameter** is a chunk of information that a [class](#class) or [resource](#resource) can accept. See also:
 
 * [parameter (custom type and provider development)](#parameter-custom-type-and-provider-development)
 * [parameter (defined types and parameterized classes)](#parameter-defined-types-and-parameterized-classes)
@@ -251,148 +357,231 @@ Generally speaking, a parameter is a chunk of information that a class or resour
 
 ### parameter (custom type and provider development)
 
-A value which does not call a method on a provider. Eventually expressed as an attribute in instances of this resource type. See [Custom Types](/guides/custom_types.html).
+This type of parameter does not call a method on a [provider](#provider). They are eventually expressed as [attributes](#attributes) in instances of this [resource](#resource) [type](#type). For more information, see the [Custom Types](/guides/custom_types.html) guide.
 
 ### parameter (defined types and parameterized classes)
 
-A variable in the [definition](#define) of a class or defined type, whose value is set by a resource [attribute](#attribute) when an instance of that type (or class) is declared.
+This type of parameter is a [variable](#variable) in the [definition](#define) of a [class](#class) or [defined type](#type-defined), whose [value](#value) is set by a [resource](#resource) [attribute](#attribute) when an instance of that type or class is [declared](#declare).
 
 ~~~ ruby
-    define my_new_type ($my_parameter) {
-      file {"$title":
-        ensure  => file,
-        content => $my_parameter,
-      }
-    }
+define my_new_type ($my_parameter) {
+  file { "$title":
+    ensure  => file,
+    content => $my_parameter,
+  }
+}
 
-    my_new_type {'/tmp/test_file':
-      my_parameter => "This text will become the content of the file.",
-    }
+my_new_type { '/tmp/test_file':
+  my_parameter => "This text will become the content of the file.",
+}
 ~~~
 
-The parameters you use when defining a type (or class) become the attributes available when the type (or class) is declared.
-
+The parameters you use when defining a type or class define the attributes available when the type or class is declared.
 
 ### parameter (external nodes)
 
-A top-scope variable set by an [external node classifier](#external-node-classifier). Although these are called "parameters," they are just normal variables; the name refers to the fact that they are usually used to configure the behavior of classes.
+This type of parameter is a top-scope [variable](#variable) set by an [external node classifier](#external-node-classifier). Although these are called "parameters," they are just normal variables; the name refers to how they are usually used to configure the behavior of [classes](#class).
 
+### design pattern
 
-### pattern
-
-A colloquial term, describing a collection of related manifests meant to solve an issue or manage a particular configuration item. (For example, an Apache pattern.) See also [module](#module).
+A **design pattern** is a colloquial term used to describe a collection of related [manifests](#manifest) that are designed to solve an issue or manage a particular configuration item. For example, an "Apache pattern" refers to the manifests designed to configure Apache. See also [module](#module).
 
 ### plusignment operator
 
-The `+>` operator, which allows you to add values to resource attributes using the ('plusignment') syntax. Useful when you want to override resource attributes without having to respecify already declared values.
+The **plusignment** (`+>`) **operator** adds [values](#value) to [resource](#resource) [attributes](#attribute) using the plusignment syntax. This is useful when you want to override resource attributes without having to specify already-declared values a second time. For more information, see the [Appending to Resource Attributes](/puppet/latest/reference/lang_classes.html#appending-to-resource-attributes) section in the [Puppet language](#puppet-language) reference.
+
+### profile
+
+A **profile** represents the configuration of a technology stack for a [site](#site) and typically consists of one or more [classes](#class). A [role](#role) can include as many profiles as required to define itself. Profiles are included in [role and profile modules](#role-and-profile-module).
+
+For more information about roles and profiles, see [the Puppet Enterprise documentation](/pe/latest/puppet_assign_configurations.html#assigning-configuration-data-with-role-and-profile-modules).
 
 ### property (custom type and provider development)
 
-A value that corresponds to an observable piece of state on the target system. When retrieving the state of a resource, a property will call the specified method on the provider, which will read the state from the system. If the current state does not match the specified state, the provider will change it.
+A **property** is a [value](#value) that corresponds to an observable part of the target [node's](#node) state. When retrieving a [resource's](#resource) state, a property calls the specified method on the [provider](#provider), which reads the state from the system. If the current state does not match the specified state, the provider  changes it.
 
-Properties appear as [attributes](#attribute) when declaring instances of this resource type. See [Custom Types](/guides/custom_types.html).
+Properties appear as [attributes](#attribute) when [declaring](#declare) instances of this resource [type](#type). For more information, see the [Custom Types](/guides/custom_types.html) guide.
 
 ### provider
 
-Providers implement resource [types](#type) on a specific type of system, using the system's own tools. The division between types and providers allows a single resource type (like [`package`](/references/latest/type.html#package)) to manage packages on many different systems (using, for example, `yum` on Red Hat systems, `dpkg` and `apt` on Debian-based systems, and `ports` on BSD systems).
+**Providers** implement [resource](#resource) [types](#type) on a specific type of system by using the system's own tools. The division between types and providers allows a single resource type (like [`package`](/references/latest/type.html#package)) to manage packages on many different systems (using, for example, `yum` on Red Hat systems, `dpkg` and `apt` on Debian-based systems, and `ports` on BSD systems).
 
-Typically, providers are simple Ruby wrappers around shell commands, so they are usually short and easy to create.
+Providers are often Ruby wrappers around shell commands, and can be short and easy to create.
 
 ### plugin
 
-A custom [type](#type), [function](#function), or [fact](#fact) that extends Puppet's capabilities and is distributed via a [module](#module). See [Plugins in Modules](/guides/plugins_in_modules.html) for more details.
+A **plugin** is a custom [type](#type), [function](#function), or [fact](#fact) that extends Puppet's capabilities and is distributed via a [module](#module). See [Plugins in Modules](/guides/plugins_in_modules.html) for more details.
+
+### Puppet
+
+"**Puppet**" can refer to several things:
+
+* The Puppet suite of automation products.
+* The open source Puppet project.
+* The command you run to invoke the Puppet [agent](#agent) daemon on a [node](#node).
+* The [Puppet language](#puppet-language) that you use you write [manifests](#manifest).
+
+For general information about Puppet's architecture, see [the Puppet documentation](/puppet/latest/reference/architecture.html).
+
+### PuppetDB
+
+**PuppetDB** is an open-source database that caches and stores data generated by Puppet. This makes Puppet work faster and provides an API for other applications to access Puppet's collected data. It also enables advanced Puppet features, such as [exported resources](#exported-resource). For more information about PuppetDB, see [its documentation](/puppetdb/latest/).
+
+### Puppet Collection
+
+A **Puppet Collection** is a package repository that contains versions of open-source Puppet components designed to work together. Puppet Collections were introduced with Puppet 4. For more information, see the [Using the Puppet Labs Package Repositories](/guides/puppetlabs_package_repositories.html) guide.
+
+### Puppet Enterprise
+
+**Puppet Enterprise** is the best-of-breed distribution for the Puppet family of systems automation tools. It includes several unique tools designed to manage Puppet across thousands of [nodes](#node), such as the [console](#console), [Node Manager](#node-manager), [Configuration Manager](#configuration-manager), [r10k](#r10k), and [Razor](#razor). For more information, see [the Puppet Enterprise documentation](/pe/).
+
+### Puppet language
+
+You write Puppet code in the **Puppet language**. Puppet language files are called [manifests](#manifest) and are named with the `.pp` extension. The Puppet [master](#master) [compiles](#compilation) this Puppet code into a [catalog](#catalog) during a [Puppet run](#puppet-run). For a summary of the Puppet language, see the [Basics](/puppet/latest/reference/lang_summary.html) page in its reference.
+
+### Puppet run
+
+A **Puppet run** is when a Puppet [agent](#agent) sends [facts](#fact) and an identifying certificate to a Puppet [master](#master), and requests a [compiled](#compilation) [catalog](#catalog) in return. The agent applies that catalog to the [node](#node) by using operating system-specific [providers](#provider) to bring the node's [properties](#property) in line with the catalog's definitions, then sends a [report](#report) of logs and metrics to the Puppet master.
+
+By default, a Puppet run takes place every 30 minutes, even when an agent's catalog or configuration haven't changed. For a detailed description of a Puppet run, see the [Agent/Master HTTPS Communications](/puppet/latest/reference/subsystem_agent_master_comm.html) page of the Puppet documentation.
+
+### Puppet Server
+
+**Puppet Server** is an open-source Java Virtual machine application that provides high-performance, scalable Puppet [master](#master) services and an administrative API for maintenance. For more information, see [the Puppet Server documentation](/puppetserver/latest/services_master_puppetserver.html).
+
+### Puppetfile
+
+A **Puppetfile** is an authoritative, standalone list that specifies to [r10k](#r10k) which [modules](#module) to install, what versions to install, and which source to use. This lets you quickly install sets of modules. For more information, see [Managing Modules with the Puppetfile](/pe/latest/r10k_puppetfile.html).
+
+### puppetize
+
+A **puppetized** [node](#node), [resource](#resource), or [property](#property) is one that Puppet manages.
+
+### r10k
+
+The **r10k** tool in [Puppet Enterprise](#puppet-enterprise) helps you manage [Puppet code](#puppet-language) in [enivronments](#environment) and [modules](#module) by using [Puppetfiles](#puppetfile). For more information, see the [Getting to Know r10k](/pe/latest/r10k.html) guide.
+
+### Razor
+
+**Razor** is a [Puppet Enterprise](#puppet-enterprise) provisioning application designed to help you discover, configure, and deploy bare-metal hardware, even if it doesn't yet have an operating system. For more information, see [the Razor documentation](/pe/latest/razor_intro.html).
 
 ### realize
 
-To specify that a [virtual resource](#virtual-resource) should actually be applied to the current system. Once a virtual resource has been declared, there are two methods for realizing it:
+To specify that a [virtual resource](#virtual-resource) should be applied to the current system, it must be **realized**. After you [declare](#declare) a virtual resource, there are two methods for realizing it:
 
-1. Use the "spaceship" syntax `<||>`
-2. Use the `realize` function
+1. Use the "spaceship" syntax (`<||>`).
+2. Use the `realize` [function](#function).
 
-A virtually declared resource will be present in the [catalog](#catalog), but will not be applied to a system until it is realized. See [Virtual Resources](/guides/virtual_resources.html) for more details.
+A virtually declared resource is present in the [catalog](#catalog) but won't be applied to a system until it is realized. For more information, see the [Virtual Resources](/puppet/latest/reference/lang_virtual.html) page in the [Puppet language](#puppet-language) documentation.
 
 ### refresh
 
-A resource gets **refreshed** when a resource it [subscribes to](#subscribe) (or which [notifies it](#notify)) is changed.
+A [resource](#resource) is **refreshed** when a resource it [subscribes to](#subscribe) (or which [notifies it](#notify)) is modified.
 
-Different resource types do different things when they get refreshed. (Services restart; mount points unmount and remount; execs usually do nothing, but will fire if the `refreshonly` attribute is set.)
+Different resource types do different things when they're refreshed. For instance, Sservices restart, mount points unmount and remount, and `exec`s execute if the `refreshonly` [attribute](#attribute) is set.
 
 ### relationship
 
-A rule stating that one resource should be managed before another. See ["Relationships and Ordering"][lang_puppet_relationships] in the Puppet language reference for more details.
+A rule that sets the order in which [resources](#resource) should be managed creates a **relationship** between those resources. For more information, see the [Relationships and Ordering][] page in the [Puppet language](#puppet-language) reference.
 
-[lang_puppet_relationships]: /puppet/latest/reference/lang_relationships.html
+### report
+
+You can configure Puppet [agents](#agent) to send **reports** containing logs and metrics at the end of every [Puppet run](#puppet-run). A [report processor](#report-processor) can transform those reports to a different format and send it to another application, location, or service. 
+
+For more information, see the [Reporting](/guides/reporting.html) guide. For details on the report format, see the [Reports](/puppet/latest/reference/format_report.html) format reference in the Puppet documentation.
+
+### report processor
+
+A **report processor** can take a Puppet [report](#report), transform it to a specific format, and send it to another application, location, or service. Puppet ships with [built-in report processors](/references/latest/report.html), and you can [write your own](/guides/reporting.html#writing-custom-reports). For more information, see the [Reporting](/guides/reporting.html) guide.
 
 ### resource
 
-A unit of configuration, whose state can be managed by Puppet. Every resource has a [type](#type) (such as `file`, `service`, or `user`), a [title](#title), and one or more [attributes](#attribute) with specified values (for example, an `ensure` attribute with a value of `present`).
+A **resource** is a unit of configuration whose state can be managed by Puppet. Every resource has a [type](#type) (such as `file`, `service`, or `user`), a [title](#title), and one or more [attributes](#attribute) with specified [values](#value).
 
-Resources can be large or small, simple or complex, and they do not always directly map to simple details on the client -- they might sometimes involve spreading information across multiple files, or even involve modifying devices. For example, a `service` resource only models a single service, but may involve executing an init script, running an external command to check its status, and modifying the system's run level configuration.
+Resources can be large or small, and simple or complex. They do not always directly map to simple details on the client --- they might involve spreading information across multiple files or modifying devices. For example, a `service` resource only models a single service, but might involve executing an init script, running an external command to check its status, and modifying the system's run level configuration.
+
+For more information about resources, see the [Resource](/puppet/latest/reference/lang_resources.html) page in the [Puppet language](#puppet-language) reference.
 
 ### resource declaration
 
-A fragment of Puppet code that details the desired state of a resource and instructs Puppet to manage it. This term helps to differentiate between the literal resource on disk and the specification for how to manage that resource. However, most often, these are just referred to as "resources."
+A **resource declaration** is a fragment of [Puppet code](#puppet-language) that details the desired state of a [resource](#resource) and instructs Puppet to manage it. This term helps to differentiate between the literal resource on a system and the specification for how to manage that resource. However, resource declarations are often referred to simply as "resources."
+
+### role
+
+A **role** defines the business purpose that a [node](#node) performs. A role typically consists of one [class](#class) that can completely configure categories of nodes with [profiles](#profile). A node shouldn't have more than one role; if a node requires more than one existing role, you should create a new role for it. See also [role and profile modules](#role-and-profile-module). 
+
+For more information about roles and profiles, see [the Puppet Enterprise documentation](/pe/latest/puppet_assign_configurations.html#assigning-configuration-data-with-role-and-profile-modules).
+
+### role and profile module
+
+A **role and profile module** is a Puppet [module](#module) that assigns configuration data to groups of [nodes](#node) based on [roles](#role) and [profiles](#profile). A role and profile module doesn't have any special features; it simply represents an abstract, private, [site-specific](#site) way to use modules to configure technology stacks and node descriptions.
+
+For more information about roles and profiles, see [the Puppet Enterprise documentation](/pe/latest/puppet_assign_configurations.html#assigning-configuration-data-with-role-and-profile-modules).
 
 ### scope
 
-The area of code where a variable has a given value.
+(or **variable scope**; includes **local scope**, **node scope**, and **top scope**)
 
-Class definitions and type definitions create local scopes. Variables declared in a local scope are available by their short name (e.g. `$my_variable`) inside the scope, but are hidden from other scopes unless you refer to them by their fully qualified name (e.g. `$my_class::my_variable`).
+The **scope** refers to an area of [Puppet code](#puppet-language) that is partially isolated from other areas of code. Scopes limit the reach of [variables](#variable) and resource defaults. Scopes can be named (such as scopes created by class definitions) or anonymous (such as scopes created by [lambdas](#lambda) and [defined resources](#type-defined)).
 
-Variables outside any definition (or set by an ENC) exist at a special "top scope;" they are available everywhere by their short names (e.g. `$my_variable`), but can be overridden in a local scope if that scope has a variable of the same name.
+In general, if multiple variables with the same name are available, Puppet uses the variable from the most local scope.
 
-Node definitions create a special "node scope." Variables in this scope are also available everywhere by their short names, and can override top-scope variables.
+![An Euler diagram of several scopes. Top scope contains node scope, which contains the example::other, example::four, and example::parent scopes. Example::parent contains the example::child scope.][/puppet/latest/reference/images/scope-euler-diagram.png]
 
+The three most common scopes you'll work with in the Puppet language are:
 
-> Note: Previously, Puppet used dynamic scope, which would search for short-named variables through a long chain of parent scopes. This was deprecated in version 2.7 and will be removed in the next version. For more information, see [Scope and Puppet](/guides/scope_and_puppet.html).
+* **Top scope,** from which variables are accessible from anywhere by their short name (such as `$my_variable`) but can be overridden in a local scope. The top scope's name is always an empty string, and top-scope variables can always be accessed using the double-colon namespace separator with an empty string (`$::my_variable`).
+* **Node scope,** a special scope created in a [node definition](#node-definition). You can refer to a node-scope variable from anywhere within a node scope by its short name, and node-scope variables can override top-scope variables.
+* **Local scope,** where you can refer to a variable by its short name inside that scope and the scope's children, but typically cannot access it from other scopes.
+
+There are a few exceptions, and you might also encounter other, more situational scopes. For detailed information, see the [Scope](/puppet/latest/reference/lang_scope.html) page in the [Puppet language](#puppet-language) reference.
+
+> **Note:** Previously, Puppet used dynamic scope, which would search for short-named variables through a long chain of parent scopes. This scope was deprecated in Puppet 2.7, and in Puppet 4 is used only for resource defaults.
+
+### singleton
+
+A **singleton** is an object in the [Puppet language](#puppet-language), such as a [class](#class), that can only be evaluated once. For example, you can't have more than one distinct class with the same specific [name](#namevar) in a [manifest](#manifest) or [catalog](#catalog), making that class a singleton.
 
 ### site
 
-An entire IT ecosystem being managed by Puppet. That is, a site includes all puppet master servers, all agent nodes, and all independent masterless Puppet nodes within an organization.
-
-### site manifest
-
-The main "point of entry" [manifest](#manifest) used by the puppet master when compiling a catalog. The location of this manifest is set with the `manifest` setting in puppet.conf. Its default value is usually `/etc/puppet/manifests/site.pp` or `/etc/puppetlabs/puppet/manifests/site.pp`.
-
-The site manifest usually contains [node definitions](#node-definition). When an [ENC](#external-node-classifier) is being used, the site manifest may be nearly empty, depending on whether the ENC was designed to have complete or partial node information.
+A **site** refers to an entire IT ecosystem that is managed by Puppet. A site includes all Puppet [master](#master) servers, [agent nodes](#agent), and independent masterless Puppet [nodes](#node) within an organization.
 
 ### site module
 
-A common idiom in which one or more [modules](#module) contain [classes](#class) specific to a given Puppet site. These classes usually describe complete configurations for a specific system or a given group of systems. For example, the `site::db_slave` class might describe the entire configuration of a database server, and a new database server could be configured simply by applying that class to it.
+A **site module** is a common Puppet idiom in which one or more [modules](#module) contain [classes](#class) specific to a given Puppet [site](#site). These classes usually describe complete configurations for a specific system or group of systems. For example, the `site::db_slave` class might describe the entire configuration of a database server, and a new database server could be configured simply by applying that class to it.
 
 ### subclass
 
-A class that inherits from another class. See [inheritance](#inheritance-class).
+A **subclass** is a [class](#class) that inherits from another class. See [inheritance](#inheritance-class).
 
 ### subscribe
 
-A notification [relationship](#relationship), set with the `subscribe` [metaparameter](#metaparameter) or the wavy chaining arrow. (`~>`)
-See ["Relationships and Ordering"][lang_puppet_relationships] in the Puppet language reference for more details.
+A notification [relationship](#relationship) set with the `subscribe` [metaparameter](#metaparameter), or the wavy [chaining arrow](#chaining-arrow) (`~>`), is referred to as a **subscription**. For more information, see the [Relationships and Ordering][] page in the [Puppet language](#puppet-language) reference.
 
 ### template
 
-A partial document which is filled in with data from [variables](#variable). Puppet can use Ruby ERB templates to generate configuration files tailored to an individual system. See [Templating](/guides/templating.html) for more details.
+A **template** is a partial document that is filled in with data from [variables](#variable). Puppet can use Embedded Puppet (EPP) written in the [Puppet language](#puppet-language), or Embedded Ruby (ERB) templates written in Ruby, to generate configuration files tailored to an individual system. For more information, see the [Using Templates](/puppet/latest/reference/lang_template.html) page in the Puppet language reference.
 
 ### title
 
-The unique identifier (in a given Puppet [catalog](#catalog)) of a resource or class.
+A **title** is the unique identifier of a [resource](#resource) or [class](#class) in a given Puppet [catalog](#catalog).
 
-* In a class, the title is simply the name of the class.
-* In a resource declaration, the title is the part after the first curly brace and before the colon; in the example below, the title is `/etc/passwd`:
+* In a class, the title is simply the class's [name](#namevar).
+* In a resource [declaration](#declare), the title is the part after the first curly brace and before the colon; in the example below, the title is `/etc/passwd`:
 
 ~~~ ruby
-        file  { '/etc/passwd':
-          owner => 'root',
-          group => 'root',
-        }
+file  { '/etc/passwd':
+  owner => 'root',
+  group => 'root',
+}
 ~~~
 
-* In native resource types, the [name or namevar](#namevar) will use the title as its default value if you don't explicitly specify a name.
-* In a defined resource type or a class, the title is available for use throughout the definition as the `$title` variable.
+* In native resource types, the name or [namevar](#namevar) uses the title as its default [value](#value) if you don't explicitly specify a name.
+* In a [defined type](#type-defined) or a class, the title is available for use throughout the [definition](#define) as the `$title` [variable](#variable).
 
-Unlike the name or namevar, a resource's title need not map to any actual attribute of the target system; it is only a referent. This means you can give a resource a single title even if its name has to vary across different kinds of system, like a configuration file whose location differs on Solaris.
+Unlike the name or namevar, a resource's title doesn't need to map to any [attribute](#attribute) of the target system; it is only a referent. You can give a resource a single title even if its name must vary across different kinds of systems, like a configuration file whose location differs on Solaris.
 
-For more on resource titles, see [the Resources page](/puppet/latest/reference/lang_resources.html#syntax) of the latest Puppet language reference.
+For more information on resource titles, see [the Resources page](/puppet/latest/reference/lang_resources.html#syntax) in the [Puppet language](#puppet-language) reference.
 
 ### top scope
 
@@ -404,33 +593,50 @@ A kind of [resource](#resource) that Puppet is able to manage; for example, `fil
 
 Puppet ships with a set of built-in resource types; see the [type reference](/references/stable/type.html) for a complete list of them. New [native types](#type-native) can be added as [plugins](#plugin), and [defined types](#type-defined) can be constructed by grouping together resources of existing types.
 
+Contrast with [data type](#type-data). See also [defined type](#type-defined) and [native type](#type-native).
+
+### type (data)
+
+(or **data type**; includes **abstract data type** and **core data type**)
+
+Every [value](#value) has a **data type**, which is a named classification of a type of data that a [variable](#variable) or [parameter](#parameter) can hold. The [Puppet language](#puppet-language) has core data types (such as integer, Boolean, or string) and abstract data types (such as any or optional). For more information, see [About Values and Data Types](/puppet/latest/reference/lang_data.html) in the Puppet language reference.
+
 ### type (defined)
 
-(or **defined resource type;** sometimes called a **define** or **definition**)
+(or **defined type**, or **defined resource type;** sometimes called a **define** or **definition**)
 
-A [resource type](#type) implemented as a group of other resources, written in the Puppet language and saved in a [manifest](#manifest). (For example, a defined type could use a combination of `file` and `exec` resources to set up and populate a Git repository.) Once a type is [defined](#define), new resources of that type can be [declared](#declare) just like any native or custom resource.
+A **defined type** is a [resource type](#type) [defined](#define) as a group of other [resources](#resource), written in the [Puppet language](#puppet-language) and saved in a [manifest](#manifest). For example, a defined type could use a combination of `file` and `exec` resources to configure and populate a git repository. 
 
-Since defined types are written in the Puppet language instead of as Ruby plugins, they are analogous to macros in other languages. Contrast with [native types](#type-native). For more information, see [the Learning Puppet chapter on defined types](/learning/definedtypes.html).
+Once you define a type, new resources of that type can be [declared](#declare) just like any native or custom resource; these are called **defined resources**.
+
+Since defined types are written in the Puppet language instead of as Ruby plugins, they are analogous to macros in other languages. Contrast with [native types](#type-native). For more information, see [the Learning Puppet chapter on defined types](/learning/definedtypes.html) and the [Defined Resource Types](/puppet/latest/reference/lang_defined_types.html) page of the Puppet language reference.
 
 ### type (native)
 
-A resource type written in Ruby. Puppet ships with a large set of built-in native types, and custom native types can be distributed as [plugins](#plugin) in [modules](#module). See the [type reference](/references/stable/type.html) for a complete list of built-in types.
+(or **native type**, or **native resource type**)
 
-Native types have lower-level access to the target system than defined types, and can directly use the system's own tools to make changes. Most native types have one or more [providers](#provider), so that they can implement the same resources on different kinds of systems.
+A **native type** is a [resource](#resource) type written in Ruby. Puppet ships with a large set of built-in native types, and custom native types can be distributed as [plugins](#plugin) in [modules](#module). For a complete list of built-in types, see the [type reference](/references/stable/type.html).
 
+Native types have lower-level access to the target system than [defined types](#type-defined) and can use the system's own tools to make changes. Most native types have one or more [providers](#provider) that can implement the same resources on different kinds of systems.
+
+### value
+
+In the [Puppet language](#puppet-language), a **value** is a piece of data which has a certain [data type](#type-data), or in some cases represents a literal data type. You can assign values to [variables](#variable) and [parameters](#parameter). For more information about values and data types, see [About Values and Data Types](/puppet/latest/reference/lang_data.html) in the Puppet language reference.
 
 ### variable
 
-A named placeholder in a [manifest](#manifest) that represents a value. Variables in Puppet are similar to variables in other programming languages, and are indicated with a dollar sign (e.g. `$operatingsystem`) and assigned with the equals sign (e.g. `$myvariable = "something"`). Once assigned, variables cannot be reassigned within the same [scope](#scope); however, other local scopes can assign their own value to any variable name.
+A **variable** is a named placeholder in a [manifest](#manifest) that represents a [value](#value). Once assigned, variables cannot be reassigned within the same [scope](#scope); however, other scopes might be able to assign their own value to any variable name.
 
-[Facts](#fact) from [agent nodes](#agent) are represented as variables within Puppet manifests, and are automatically pre-assigned before compilation begins. There are also [several other special pre-assigned variables](/puppet/latest/reference/lang_facts_and_builtin_vars.html).
+Variables in Puppet are indicated with a dollar sign (`$operatingsystem`, also known as a short name) and assigned with the equals sign (`$operatingsystem = "Debian"`). In certain scopes, variables can also be accessed using a qualified name consisting of the scope name, followed by a double-colon namespace separator, then the variable name; this pattern can be repeated to drill down through multiple scopes. (For example, `$apache::params::confdir` represents the `confdir` variable in the `params` subclass of the `apache` class.)
+
+[Facts](#fact) from [agents](#agent) are represented as variables within Puppet manifests, and are automatically pre-assigned before [compilation](#compilation) begins. There are also [several other special pre-assigned variables](/puppet/latest/reference/lang_facts_and_builtin_vars.html).
 
 ### variable scoping
 
-See [scope](#scope) above.
+See [scope](#scope).
 
 ### virtual resource
 
-A resource that is declared in the catalog but will not be applied to a system unless it is explicitly [realized](#realize).
+A **virtual resource** is a [resource](#resource) that is [declared](#declare) in the [catalog](#catalog) but isn't be applied to a system unless it is explicitly [realized](#realize).
 
-See [Virtual Resources](/guides/virtual_resources.html) for more details.
+For more information, see the [Virtual Resources](/puppet/latest/reference/lang_virtual.html) page in the [Puppet language](#puppet-language) reference.
