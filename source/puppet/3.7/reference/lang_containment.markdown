@@ -38,7 +38,7 @@ This effectively means that if any resource or class forms a [relationship][] wi
     }
 ~~~
 
-In this example, `Exec['/usr/local/bin/update_custom_timestamps.sh']` would happen after _every_ resource in the ntp class, including the package, the file, and the service.
+In this example, `Exec['/usr/local/bin/update_custom_timestamps.sh']` would happen after _every_ resource in the ntp class has been fulfilled, including the package, the file, and the service.
 
 This feature also allows you to [notify and subscribe to][notify] classes and defined resource types as though they were a single resource.
 
