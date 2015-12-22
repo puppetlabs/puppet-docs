@@ -62,7 +62,7 @@ At Puppet Labs, we sign most of our packages, Ruby gems, and release tarballs wi
 
 Security-conscious users can use GPG to verify signatures on our packages.
 
-### Automatic Verification
+### Automatic verification
 
 Certain operating system and installation methods automatically verify our package signatures.
 
@@ -71,9 +71,9 @@ Certain operating system and installation methods automatically verify our packa
 
 In these cases, you don't need to do anything to verify the package signature.
 
-### Manual Verification
+### Manual verification
 
-If you're using Puppet source tarballs or installing packages without Apt or Yum, you can manually verify the signatures.
+If you're using Puppet source tarballs or Ruby gems, or installing RPM packages without Yum, you can manually verify the signatures.
 
 #### Import the release signing key
 
@@ -165,3 +165,33 @@ puppetlabs-release-pc1-fedora-22.noarch.rpm:
     V4 RSA/SHA1 Signature, key ID 4bd6ec30: NOKEY
     MD5 digest: OK (97a9c407a8a7ee9f8689c79bab97250e)
 ~~~
+
+#### Verify an OS X `puppet-agent` package
+
+Puppet Labs signs `puppet-agent` packages for OS X with a developer ID and certificate. To verify the signature, download and mount the `puppet-agent` disk image, then use the `pkgutil` tool with the `--check-signature` flag:
+
+    pkgutil --check-signature /Volumes/puppet-agent-1.3.2-1.osx10.10/puppet-agent-1.3.2-1-installer.pkg
+
+The tool confirms the signature and outputs fingerprints for each certificate in the chain:
+
+~~~
+Package "puppet-agent-1.3.2-1-installer.pkg":
+   Status: signed by a certificate trusted by Mac OS X
+   Certificate Chain:
+    1. Developer ID Installer: PUPPET LABS, INC. (VKGLGN2B6Y)
+       SHA1 fingerprint: AF 91 BF B7 7E CF 87 9F A8 0A 06 C3 03 5A B4 C7 11 34 0A 6F
+       -----------------------------------------------------------------------------
+    2. Developer ID Certification Authority
+       SHA1 fingerprint: 3B 16 6C 3B 7D C4 B7 51 C9 FE 2A FA B9 13 56 41 E3 88 E1 86
+       -----------------------------------------------------------------------------
+    3. Apple Root CA
+       SHA1 fingerprint: 61 1E 5B 66 2C 59 3A 08 FF 58 D1 4A E2 24 52 D1 98 DF 6C 60
+~~~
+
+You can also confirm the certificate when installing the package by clicking the lock icon in the top-right corner of the installer:
+
+![Locate and click the lock icon in the OS X package installer window's top-right corner.](./images/os-x-signature-gui-1.png)
+
+This displays details about the `puppet-agent` package's certificate:
+
+![Details about the puppet-agent package's certificate displayed by the OS X package installer.](./images/os-x-signature-gui-2.png)
