@@ -62,7 +62,7 @@ At Puppet Labs, we sign most of our packages, Ruby gems, and release tarballs wi
 
 Security-conscious users can use GPG to verify signatures on our packages.
 
-## Automatic Verification
+### Automatic Verification
 
 Certain operating system and installation methods automatically verify our package signatures.
 
@@ -71,11 +71,11 @@ Certain operating system and installation methods automatically verify our packa
 
 In these cases, you don't need to do anything to verify the package signature.
 
-## Manual Verification
+### Manual Verification
 
 If you're using Puppet source tarballs or installing packages without Apt or Yum, you can manually verify the signatures.
 
-### Import the release signing key
+#### Import the release signing key
 
 Before you can verify signatures, you must import the Puppet Labs public key and verify its fingerprint. This key is certified by several Puppet developers and should be available from the public keyservers.
 
@@ -96,7 +96,7 @@ The key is also [available via HTTP](http://pool.sks-keyservers.net:11371/pks/lo
 
 > **Note:** If this is your first time running the `gpg` tool, it might fail to import the key after creating its configuration file and keyring. This is normal, and you can run the command a second time to import the key into your newly created keyring.
 
-### Verify the fingerprint
+#### Verify the fingerprint
 
 The fingerprint of the Puppet Labs release signing key is **`47B3 20EB 4C7C 375A A9DA  E1A0 1054 B7A2 4BD6 EC30`**. Run the following:
 
@@ -108,7 +108,7 @@ Then, ensure the fingerprint listed in the output matches the above value:
           Key fingerprint = 47B3 20EB 4C7C 375A A9DA  E1A0 1054 B7A2 4BD6 EC30
     uid                  Puppet Labs Release Key (Puppet Labs Release Key) <info@puppetlabs.com>
 
-### Verify a source tarball or gem
+#### Verify a source tarball or gem
 
 To verify a source tarball or Ruby gem, you must download both it and its corresponding `.asc` file. These files are available from <https://downloads.puppetlabs.com/puppet/>.
 
@@ -130,7 +130,7 @@ If you have not taken the necessary steps to build a [trust path](https://www.gn
 
 This is normal if you do not have a trust path to the key. If you've verified the fingerprint of the key as described above, GPG has verified the archive's integrity; the warning only means that GPG can't automatically prove the key's ownership.
 
-### Verify an RPM package
+#### Verify an RPM package
 
 Puppet RPM packages include an embedded signature. To verify it, you must import the Puppet Labs public key to `rpm`, then use `rpm` to check the signature.
 
