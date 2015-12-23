@@ -31,7 +31,7 @@ Notice: Installing -- do not interrupt ...
   └── puppetlabs-stdlib (v4.3.2)
 ~~~
 
-By default, your Puppet Enterprise module will be installed either in /etc/puppetlabs/puppet/environments/production/modules for fresh installations of PE 3.7+, or /etc/puppetlabs/puppet/modules for upgraded installations.
+By default, your Puppet Enterprise module will be installed either in `/etc/puppetlabs/puppet/environments/production/modules` for fresh installations of PE 3.7 and higher, or `/etc/puppetlabs/puppet/modules` for upgraded installations.
 
 ##Managing Puppet Enterprise Modules
 
