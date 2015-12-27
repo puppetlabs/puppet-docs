@@ -56,20 +56,9 @@ For more information, see:
 * [Puppet Agent on Windows Systems][agent_windows]
 * [Puppet Agent's Man Page][agent_man]
 
-### Puppet Master
-
-Puppet master compiles and serves configuration catalogs for any number of Puppet agents, using Puppet modules and various other data sources.
-
-For more information, see:
-
-* [Overview of Puppet's Architecture][arch]
-* [The Rack Puppet Master][master_rack]
-* [The WEBrick Puppet Master][master_webrick]
-* [Puppet Master's Man Page][master_man]
-
 ### Puppet Server
 
-Puppet Server compiles configurations for any number of Puppet agents, using Puppet code and various other data sources. It provides the same services as the classic Puppet master application and is meant to replace an Apache/Passenger Puppet master stack. 
+Puppet Server compiles configurations for any number of Puppet agents, using Puppet code and various other data sources. It provides the same services as the classic Puppet master application, and more.
 
 Puppet Server has its own subcommand, `puppetserver`, which isn't prefaced by the usual `puppet` subcommand.
 
@@ -79,6 +68,22 @@ For more information, see:
 * [Puppet Server][about_server]
 * [Puppet Server vs. Apache/Passenger master][server_vs_passenger]
 * [Puppet Server Subcommands][subcommands]
+* [Puppet Master's Man Page][master_man]
+
+### Classic Rack-Based Puppet Master
+
+Before Puppet Server was released, most users ran a Rack-based Puppet master using the Apache + Passenger stack. This still works, but it's deprecated and will be removed in Puppet 5.
+
+A Rack-based Puppet master compiles and serves configuration catalogs for any number of Puppet agents, using Puppet modules and various other data sources.
+
+It's also possible to run a standalone WEBrick-based Puppet master, but we don't encourage anyone to do this in production.
+
+For more information, see:
+
+* [Overview of Puppet's Architecture][arch]
+* [The Rack Puppet Master][master_rack]
+* [The WEBrick Puppet Master][master_webrick]
+* [Puppet Master's Man Page][master_man]
 
 ### Puppet Apply
 
