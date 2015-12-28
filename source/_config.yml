@@ -208,7 +208,7 @@ externalsources:
   pe2015.3:
     url: /pe/ankeny
     repo: git@github.com:puppetlabs/pe-docs-private.git
-    commit: origin/ankeny
+    commit: origin/pe2015.3.1
     subdirectory: source
 
 symlink_latest:
