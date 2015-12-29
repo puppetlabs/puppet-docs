@@ -21,10 +21,9 @@ Although many Forge modules are exact solutions that fit your site, many are *al
 ### Module Basics
 > ### About Module Directories
 >
-> By default, installed modules are located in `/etc/puppetlabs/code/environments/production/modules`. This includes modules installed by Puppet, those that you download from the Forge, and those that you write yourself.
-> To change this path, modify  the [`modulepath`](/references/3.8.latest/configuration.html#modulepath) setting in [`puppet.conf`](https://docs.puppetlabs.com/puppet/latest/reference/config_file_main.html).)
+>By default, Puppet keeps modules in an environment's [`modulepath`](./dirs_modulepath.html), which for the production environment defaults to `/etc/puppetlabs/code/environments/production/modules`. This includes modules that Puppet installs, those that you download from the Forge, and those you write yourself. In a fresh installation, you need to create this `modules` subdirectory yourself by navigating to `/etc/puppetlabs/code/environments/production` and running `mkdir modules`.
 >
-> **Note**: Puppet also checks the path `/opt/puppet/share/puppet/modules` for modules, but don’t modify anything in this directory or add modules of your own to it.
+>**Note:** Puppet also creates another module directory: `/opt/puppetlabs/puppet/modules`. Don't modify or add anything in this directory, including modules of your own.
 >
 >There are plenty of resources about modules and the creation of modules that you can reference. Check out [Modules and Manifests](./puppet_modules_manifests.html), the [Beginner's Guide to Modules](/guides/module_guides/bgtm.html), and the [Puppet Forge](https://forge.puppetlabs.com/).
 
@@ -39,10 +38,10 @@ Modules are directory trees. For these exercises you'll use the following files:
         - `vhost/`
             - `_file_header.erb` (contains the vhost template, managed by Puppet)
 
-Every manifest (.pp file) in a module contains a single class. File names map to class names in a predictable way, described in the [Autoloader Behavior documentation](https://docs.puppetlabs.com/puppet/latest/reference/lang_namespaces.html#autoloader-behavior). The `init.pp` file is a special case that contains a class named after the module, `apache`. Other manifest files contain classes called `<MODULE NAME>::<FILE NAME>` or `<MODULE NAME>::<FOLDER>::<FILE NAME>`.
+Every manifest (.pp file) in a module contains a single class. File names map to class names in a predictable way, described in the [Autoloader Behavior documentation](./lang_namespaces.html#autoloader-behavior). The `init.pp` file is a special case that contains a class named after the module, `apache`. Other manifest files contain classes called `<MODULE NAME>::<FILE NAME>` or `<MODULE NAME>::<FOLDER>::<FILE NAME>`.
 Many modules, including Apache, contain directories other than `manifests` and `templates`. For simplicity's sake, we do not cover them in this introductory guide.
 
-* For more on how modules work, see [Module Fundamentals](/puppet/3.8/reference/modules_fundamentals.html) in the Puppet documentation.
+* For more on how modules work, see [Module Fundamentals](./modules_fundamentals.html) in the Puppet documentation.
 * For more on best practices, methods, and approaches to writing modules, see the [Beginners Guide to Modules](/guides/module_guides/bgtm.html).
 * For a more detailed guided tour, also see [the module chapters of Learning Puppet](/learning/modules1.html).
 

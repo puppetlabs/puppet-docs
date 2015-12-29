@@ -28,7 +28,7 @@ The process for installing a module is the same on both Windows and *nix operati
         puppetlabs-apache     Puppet module for apache              @puppetlabs   apache
 
 
-    To view detailed information about the module, see the [Apache module on Forge](http://forge.puppetlabs.com/puppetlabs/apache).
+    To view detailed information about the module, see the [Apache module on Forge](https://forge.puppetlabs.com/puppetlabs/apache).
 
 2. To install the Apache module, run:  `puppet module install puppetlabs-apache`. The result looks like this:
 
@@ -42,11 +42,11 @@ The process for installing a module is the same on both Windows and *nix operati
 
 > ### A Quick Note about Module Directories
 >
-> By default, installed modules are located in `/etc/puppetlabs/code/environments/production/modules`. This includes modules installed by Puppet, those that you download from the Forge, and those you write yourself.
+>By default, Puppet keeps modules in an environment's [`modulepath`](./dirs_modulepath.html), which for the production environment defaults to `/etc/puppetlabs/code/environments/production/modules`. This includes modules that Puppet installs, those that you download from the Forge, and those you write yourself.
 >
-> **Note**: Puppet also checks the path `/opt/puppet/share/puppet/modules` for modules, but don’t modify anything in this directory or add modules of your own to it.
+>**Note:** Puppet also creates another module directory: `/opt/puppetlabs/puppet/modules`. Don't modify or add anything in this directory, including modules of your own.
 
->`puppetlabs-apache` is a [PE-supported module](https://forge.puppetlabs.com/supported?_ga=1.208920786.1181567766.1438190846). It is tested and maintained by Puppet Labs, and Puppet Enterprise users are able to file support escalations on these modules.
+>`puppetlabs-apache` is a [PE-supported module](https://forge.puppetlabs.com/supported). It is tested and maintained by Puppet Labs, and Puppet Enterprise users are able to file support escalations on these modules.
 
 --------
 

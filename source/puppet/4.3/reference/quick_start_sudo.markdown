@@ -49,9 +49,9 @@ Some modules can be large, complex, and require a significant amount of trial an
 
 > ### A Quick Note about Modules Directories
 >
->By default, the modules you use to manage nodes are located in `/etc/puppetlabs/puppet/environments/production/modules`. This includes modules installed by Puppet, those that you download from the Forge, and those you write yourself.
+>By default, Puppet keeps modules in an environment's [`modulepath`](./dirs_modulepath.html), which for the production environment defaults to `/etc/puppetlabs/code/environments/production/modules`. This includes modules that Puppet installs, those that you download from the Forge, and those you write yourself.
 >
-> **Note**: Puppet also checks the path `/opt/puppet/share/puppet/modules` for modules, but don’t modify anything in this directory or add modules of your own to it.
+>**Note:** Puppet also creates another module directory: `/opt/puppetlabs/puppet/modules`. Don't modify or add anything in this directory, including modules of your own.
 >
 >There are plenty of resources about modules and the creation of modules that you can reference. Check out [Modules and Manifests](./puppet_modules_manifests.html), the [Beginner's Guide to Modules](/guides/module_guides/bgtm.html), and the [Puppet Forge](https://forge.puppetlabs.com/).
 
@@ -137,7 +137,7 @@ For more information about working with Puppet and Sudo Users, check out our [Mo
 
 Puppet Labs offers many opportunities for learning and training, from formal certification courses to guided online lessons. We've noted one below; head over to the [learning Puppet page](https://puppetlabs.com/learn) to discover more.
 
-* [Learning Puppet](http://docs.puppetlabs.com/learning/) is a series of exercises on various core topics about deploying and using Puppet.
+* [Learning Puppet](/learning/) is a series of exercises on various core topics about deploying and using Puppet.
 * The Puppet Labs workshop contains a series of self-paced, online lessons that cover a variety of topics on Puppet basics. You can sign up at the [learning page](https://puppetlabs.com/learn).
 * Learn about [Managing sudo Privileges](https://puppetlabs.com/learn/managing-sudo-privileges) through this online training workshop.
 
