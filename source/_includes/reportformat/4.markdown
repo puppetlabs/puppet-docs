@@ -38,7 +38,7 @@ A Puppet::Util::Log object contains the following attributes:
   <tr><td>level</td><td>symbol</td><td>severity of the message.  Possible values for level are :debug, :info, :notice, :warning, :err, :alert, :emerg, :crit</td></tr>
   <tr><td>message</td><td>string</td><td>the message itself.</td></tr>
   <tr><td>source</td><td>string</td><td>the origin of the log message.  This could be a resource, a property of a resource, or the string "Puppet".</td></tr>
-  <tr><td>tags</td><td>array</td><td>each array element is a string.</td></tr>
+  <tr><td>tags</td><td>hash</td><td>maps to an object of type Puppet::Util::TagSet</td></tr>
   <tr><td>time</td><td>datetime</td><td>when the message was sent.</td></tr>
 </table>
 
@@ -80,7 +80,7 @@ A Puppet::Resource::Status object represents the status of a single resource. It
   <tr><td>evaluation_time</td><td>float</td><td>the amount of time, in seconds, taken to evaluate the resource.  Not present in inspect reports.</td></tr>
   <tr><td>change_count</td><td>integer</td><td>the number of properties which changed.  Always 0 in inspect reports.</td></tr>
   <tr><td>out_of_sync_count</td><td>integer</td><td>the number of properties which were out of sync.  Always 0 in inspect reports.</td></tr>
-  <tr><td>tags</td><td>array</td><td>the strings with which the resource is tagged</td></tr>
+  <tr><td>tags</td><td>hash</td><td>maps to an object of type Puppet::Util::TagSet</td></tr>
   <tr><td>time</td><td>datetime</td><td>the time at which the resource was evaluated</td></tr>
   <tr><td>events</td><td>array</td><td>the Puppet::Transaction::Event objects for the resource</td></tr>
   <tr><td>out_of_sync</td><td>boolean</td><td>True if out_of_sync_count > 0, otherwise false.  *deprecated*</td></tr>
@@ -116,5 +116,7 @@ Puppet::Transaction::Event#status has the following meanings:
 
 ### Differences from Report Format 3
 
-* Puppet::Transaction::Report gained `transaction_uuid`.
 * Puppet::Resource::Status gained `containment_path`.
+* Puppet::Resource::Status changed tags from an array to an object: `Puppet::Util::TagSet`
+* Puppet::Transaction::Report gained `transaction_uuid`.
+* Puppet::Util::Log changed tags from an array to an object: `Puppet::Util::TagSet`
