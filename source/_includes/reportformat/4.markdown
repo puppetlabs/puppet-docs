@@ -3,6 +3,10 @@ Report Format 4
 
 This is the format of reports output by Puppet versions 3.3.0 and later. It is backwards-compatible with report format 3, as it only adds two fields.
 
+### Known Issues
+
+In Puppet 4.0 through 4.3, the `tags` fields of `Puppet::Util::Log` and `Puppet::Resource::Status` objects are `Puppet::Util::TagSet` objects (inheriting from the Ruby `Set` class) instead of arrays of strings. This is a bug, tracked as [PUP-5341](https://tickets.puppetlabs.com/browse/PUP-5341).
+
 ### Puppet::Transaction::Report
 
 The Puppet::Transaction::Report contains the following attributes:
