@@ -17,6 +17,8 @@ canonical: "/puppet/latest/reference/config_file_tagmail.html"
 
 The `tagmail.conf` file configures the optional [`tagmail` report processor][tagmail_reference].
 
+> **Note:** If you use [Puppet Server](/puppetserver/1.1/) and want to enable and configure the `tagmail` report processor, install and use the [`puppetlabs/tagmail` module](https://forge.puppetlabs.com/puppetlabs/tagmail). The built-in `tagmail` report processor has a [known issue with Puppet Server](https://tickets.puppetlabs.com/browse/SERVER-62) and was removed in open source Puppet 4.0 and Puppet Enterprise 3.8.
+
 ## What is the Tagmail Report Processor?
 
 Puppet agent nodes can be configured to send reports to a Puppet master server. The master will then use its configured [report processors][report]  to handle those reports.
