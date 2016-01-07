@@ -6,7 +6,7 @@ gem 'rack'
 gem 'git'
 
 group(:build_site) do
-  gem 'jekyll', '~>2.0'
+  gem 'jekyll', '3.0.1'
   gem 'kramdown'
   gem 'vlad'
   gem 'vlad-git'
