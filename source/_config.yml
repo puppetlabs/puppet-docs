@@ -1,5 +1,5 @@
 ---
-highlighter: pygments
+highlighter: none
 markdown: kramdown
 include: [_index.html]
 destination: ../output
