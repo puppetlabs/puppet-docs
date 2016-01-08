@@ -11,7 +11,9 @@ Puppet master is the application that compiles configurations for any number of 
 
 Puppet has the built-in capability to run a complete Puppet master server using Ruby's [WEBrick][] library.
 
-The WEBrick Puppet master server is not capable of handling production-level numbers of agent nodes. Since it can't handle concurrent connections, it will be quickly overwhelmed by as few as 10 agents. You should never run a WEBrick Puppet master in production, and should always configure a [Rack Puppet master server][rack_master] instead.
+The WEBrick Puppet master server is not capable of handling production-level numbers of agent nodes. Since it can't handle concurrent connections, it will be quickly overwhelmed by as few as 10 agents. You should never run a WEBrick Puppet master in production.
+
+> **Note:** We recommend using [Puppet Server](/puppetserver/1.1/services_master_puppetserver.html) for production-quality Puppet master servers. Puppet 4 deprecates WEBrick and Rack Puppet master servers, which will be removed in Puppet 5.
 
 For details about invoking the Puppet master command, see [the puppet master man page](/references/3.8.latest/man/master.html).
 
