@@ -19,9 +19,9 @@ Some modules can be large, complex, and require a significant amount of trial an
 
 > ### A Quick Note about Modules
 >
->By default, the modules you use to manage nodes are located in `/etc/puppetlabs/code/environments/production/modules` on the master This includes modules installed by Puppet, those that you download from the Forge, and those you write yourself.
+>By default, Puppet keeps modules in an environment's [`modulepath`](./dirs_modulepath.html), which for the production environment defaults to `/etc/puppetlabs/code/environments/production/modules`. This includes modules that Puppet installs, those that you download from the Forge, and those you write yourself.
 >
-> **Note**: Puppet also checks the path `/opt/puppet/share/puppet/modules` for modules, but don’t modify anything in this directory or add modules of your own to it.
+>**Note:** Puppet also creates another module directory: `/opt/puppetlabs/puppet/modules`. Don't modify or add anything in this directory, including modules of your own.
 
 Modules are directory trees. For this task, you'll create the following structure and files:
 

@@ -111,7 +111,7 @@ Since Puppet apply doesn't run as a service, you must manually create a schedule
 
 On \*nix, you can use the Puppet resource command to set up a cron job. Below is an example that runs Puppet once an hour; adjust the path to the Puppet command if you are not using Puppet Enterprise.
 
-    $ sudo puppet resource cron puppet-apply ensure=present user=root minute=30 command='/opt/puppet/bin/puppet apply /etc/puppetlabs/puppet/manifests --logdest syslog'
+    sudo puppet resource cron puppet-apply ensure=present user=root minute=30 command='/opt/puppetlabs/bin/puppet apply /etc/puppetlabs/puppet/manifests --logdest syslog'
 
 ## Configuring Puppet Apply
 

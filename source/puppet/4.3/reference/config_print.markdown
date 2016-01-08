@@ -83,7 +83,7 @@ To see the settings the Puppet master service and the Puppet cert command would 
 To see the effective [modulepath][] used in the `dev` environment:
 
     $ sudo puppet config print modulepath --section master --environment dev
-    /etc/puppetlabs/puppet/environments/dev/modules:/etc/puppetlabs/puppet/modules:/opt/puppet/share/puppet/modules
+    /etc/puppetlabs/code/environments/dev/modules:/etc/puppetlabs/code/modules:/opt/puppetlabs/puppet/modules
 
 To see whether the [`$facts` and `$trusted` variables][facts_and_trusted] are enabled:
 
