@@ -35,7 +35,7 @@ A los efectos de este tutorial, vamos a asumir esta situación:
 
 ### Nuestro entorno antes de Hiera
 
-¿Cómo se veían las cosas antes de que decidiéramos utilizar Hiera? Las clases eran asignadas a los nodos vía el manifiesto del sitio (**/etc/puppet/manifests/sites.pp** para Puppet open source); así que aquí está cómo nuestro site.pp podría haber sido:
+¿Cómo se veían las cosas antes de que decidiéramos utilizar Hiera? Las clases eran asignadas a los nodos vía el manifiesto del sitio (**/etc/puppet/manifests/sites.pp** para Puppet open source); así que aquí está cómo nuestro site.pp podría haber sido:
 
 	node "kermit.example.com" {
 	  class { "ntp":
@@ -83,7 +83,7 @@ Paso a paso:
 
 **:json:** configura el *backend* de datos JSON, indicando a Hiera que busque las fuentes de datos JSON en **/etc/puppet/hiera**.
 
-**:hierarchy:**  configura las Fuentes de datos que Hiera debe consultar. Los usuarios de Puppet normalmente separan sus jerarquías en directorios para obtener fácilmente un panorama de cómo está armada la jerarquía. En este caso, nosotros lo hacemos más simple:
+**:hierarchy:**  configura las Fuentes de datos que Hiera debe consultar. Los usuarios de Puppet normalmente separan sus jerarquías en directorios para obtener fácilmente un panorama de cómo está armada la jerarquía. En este caso, nosotros lo hacemos más simple:
 
 + Un solo directorio (**node/**) contendrá todos los archivos nombrados según el fact *fqdn* (fully qualified domain name) de algún nodo.  (Ej: **/etc/puppet/hiera/node/grover.example.com.json**) Esto nos permite configurar específicamente cualquier nodo determinado con Hiera. No es necesario que todos los nodos tengan un archivo en el directorio **node/**  (Si no está allí, Hiera pasará al siguiente nivel de la jerarquía).
 + Luego, la fuente de datos **común** (el archivo **/etc/puppet/hiera/common.json**) proveerá de valores comunes o por defecto que querramos usar cuando Hiera no pueda encontrar una coincidencia para una clave determinada en otra parte de nuestra jerarquía. En este caso, vamos a usar estos valores para configurar servidores ntp comunes y las opciones de configuración por defecto para el módulo ntp.

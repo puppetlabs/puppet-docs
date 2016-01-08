@@ -14,23 +14,23 @@ Hiera usa diferentes ubicaciones para archivos de configuración, dependiendo de
 ### Desde Puppet
 Por defecto, el archivo de configuración es **$confdir/hiera.yaml**, que generalmente es uno de estos:
 
-+ **/etc/puppet/hiera.yaml** en Puppet *open source* \*nix 
-+ **/etc/puppetlabs/puppet/hiera.yaml** en Puppet Enterprise \*nix 
-+ **[COMMON_APPDATA]( http://docs.puppetlabs.com/windows/installing.html#the-commonappdata-folder )\PuppetLabs\puppet\etc\hiera.yaml** en Windows
++ **/etc/puppet/hiera.yaml** en Puppet *open source* \*nix 
++ **/etc/puppetlabs/puppet/hiera.yaml** en Puppet Enterprise \*nix 
++ **[COMMON_APPDATA]( http://docs.puppetlabs.com/windows/installing.html#the-commonappdata-folder )\PuppetLabs\puppet\etc\hiera.yaml** en Windows
 
 En Puppet 3 o superior, puedes especificar un archivo de configuración diferente con [la opción de configuración **hiera_config**](http://docs.puppetlabs.com/references/latest/configuration.html#hieraconfig) en **puppet.conf**. En Puppet 2.x, no puedes especificar un archivo de configuración diferente, pero sí puedes crear un link simbólico de **$confdir/hiera.yaml** a un archivo diferente.
 
 ### Desde la Línea de comando
 
-+ **/etc/hiera.yaml** en \*nix
-+ [**COMMON_APPDATA**](http://docs.puppetlabs.com/windows/installing.html#the-commonappdata-folder)**\PuppetLabs\hiera\etc\hiera.yaml** en Windows
++ **/etc/hiera.yaml** en \*nix
++ [**COMMON_APPDATA**](http://docs.puppetlabs.com/windows/installing.html#the-commonappdata-folder)**\PuppetLabs\hiera\etc\hiera.yaml** en Windows
 
 Puedes especificar un archivo de configuración diferente con la opción **-c (--config)**.
 
 ### Desde Ruby
 
-+ **/etc/hiera.yaml** en \*nix
-+ **[COMMON_APPDATA](http://docs.puppetlabs.com/windows/installing.html#the-commonappdata-folder)\PuppetLabs\hiera\etc\hiera.yaml** en Windows
++ **/etc/hiera.yaml** en \*nix
++ **[COMMON_APPDATA](http://docs.puppetlabs.com/windows/installing.html#the-commonappdata-folder)\PuppetLabs\hiera\etc\hiera.yaml** en Windows
 
 Puedes especificar un archivo de configuración diferente, o un *hash* de configuraciones cuando llamas al método **Hiera.new**.
 
@@ -84,11 +84,11 @@ Debe ser un **string** con el nombre de un logger disponible.
 
 Los loggers sólo controlan hacia dónde se direccionan las alertas y los mensajes de depuración. Puedes usar uno de los loggers inegrados o escribir el tuyo propio. Los loggers integrados son:
 
-**console** (los mensajes van directo a *STDERR*)
+**console** (los mensajes van directo a *STDERR*)
 
-**puppet** (los mensajes van al sistema de logueo de Puppet)
+**puppet** (los mensajes van al sistema de logueo de Puppet)
 
-**noop** (los mensajes son silenciados)
+**noop** (los mensajes son silenciados)
 
 **Loggers personalizados**: Puedes hacer tus propios loggers proporcionando una clase llamada, por ejemplo, **Hiera::Foo_logger** (en tal caso el nombre interno en Hiera para el logger sería **foo**), y dándole métodos de clase llamados **warn** y **debug**, los cuales deben aceptar cada uno un string simple.
 
@@ -116,7 +116,7 @@ El directorio en el cual encontrarás los archivos de fuentes de información.
 
 Puedes [interpolar variables](http://docs.puppetlabs.com/es/hiera/variables.html) en el *datadir* usando símbolos  de interpolación del tipo **%{variable}**. Esto te permite, por ejemplo, apuntarlo en **/etc/puppet/hieradata/%{::environment}** para mantener la información de desarrollo y producción completamente separadas.
 
-**Valor por defecto**: **/var/lib/hiera ** en \*nix, y **[COMMON_APPDATA](http://docs.puppetlabs.com/windows/installing.html#the-commonappdata-folder)\PuppetLabs\Hiera\var** ) en Windows.
+**Valor por defecto**: **/var/lib/hiera ** en \*nix, y **[COMMON_APPDATA](http://docs.puppetlabs.com/windows/installing.html#the-commonappdata-folder)\PuppetLabs\Hiera\var** ) en Windows.
 
 ### :puppet
 

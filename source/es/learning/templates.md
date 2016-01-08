@@ -220,7 +220,7 @@ Primero, haz que cada template utilice la variable **$servers_real** para crear 
 
 Qué está haciendo?
 
-+ Está utilizando un tag no imprimible de Ruby para comenzar un ciclo. Hacemos referencia a la variable de Puppet **$servers_real** con el nombre **@servers_real**, luego llamamos al método **each** de Ruby en él. Todo lo que está entre **do |server| -%>**  y el tag **<% end -%>**  será repetido por cada elemento en el array **servers_real** con el valor de ese elemento de array asignado a la variable temporal **this_server**.
++ Está utilizando un tag no imprimible de Ruby para comenzar un ciclo. Hacemos referencia a la variable de Puppet **$servers_real** con el nombre **@servers_real**, luego llamamos al método **each** de Ruby en él. Todo lo que está entre **do |server| -%>**  y el tag **<% end -%>**  será repetido por cada elemento en el array **servers_real** con el valor de ese elemento de array asignado a la variable temporal **this_server**.
 + Dentro del ciclo, imprimimos literalmente la palabra **server** seguida del valor del elemento del array actual.
 
 Este fragmento producirá algo como lo siguiente:

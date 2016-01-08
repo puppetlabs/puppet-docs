@@ -41,9 +41,9 @@ this:
 
     #~/lib/ruby
     └── facter
-        ├── rackspace.rb
-        ├── system_load.rb
-        └── users.rb
+        ├── rackspace.rb
+        ├── system_load.rb
+        └── users.rb
 
 Facter tries to load 'facter/system_load.rb', 'facter/users.rb', and
 'facter/rackspace.rb'.

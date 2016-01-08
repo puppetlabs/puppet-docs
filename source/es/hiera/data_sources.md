@@ -48,7 +48,7 @@ Los tipos de información de Hiera se asignan a los tipos de datos YAML nativos 
   </tr>
   <tr>
 	<td>Booleano</td>
-	<td>Booleano (nota: incluye <strong>on</strong> y <strong>off</strong>, <strong>yes</strong> y <strong>no</strong>,  además de <strong>true</strong> y  <strong>false</strong>)</td>
+	<td>Booleano (nota: incluye <strong>on</strong> y <strong>off</strong>, <strong>yes</strong> y <strong>no</strong>,  además de <strong>true</strong> y  <strong>false</strong>)</td>
   </tr>
  </tbody>
 </table>
@@ -119,7 +119,7 @@ El objetivo principal de cada fuente de información JSON debe ser un *objeto JS
   </tr>
   <tr>
 	<td>Booleano</td>
-	<td><strong>verdadero</strong> / <strong>falso</strong></td>
+	<td><strong>verdadero</strong> / <strong>falso</strong></td>
   </tr>
  </tbody>
 </table>
