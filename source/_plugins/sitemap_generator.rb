@@ -14,6 +14,7 @@
 #   - http://creativecommons.org/licenses/by/3.0/
 require 'jekyll/document'
 require 'rexml/document'
+require 'pathname'
 
 module Jekyll
 
@@ -76,6 +77,9 @@ module Jekyll
       @config['exclude'] = sitemap_config['exclude'] || EXCLUDE
       @config['include_posts'] = sitemap_config['include_posts'] || INCLUDE_POSTS
 
+      # Hold onto the full source dir for some things later
+      @source_dir = Pathname.new(site.source)
+
       sitemap = REXML::Document.new << REXML::XMLDecl.new("1.0", "UTF-8")
 
       urlset = REXML::Element.new "urlset"
@@ -114,7 +118,7 @@ module Jekyll
           urlset.add_element(url)
         end
 
-        date = File.mtime(post.path)
+        date = (@source_dir + post.path).mtime
         last_modified_date = date if last_modified_date == nil or date > last_modified_date
       end
 
@@ -128,7 +132,7 @@ module Jekyll
     def fill_pages(site, urlset)
       site.pages.each do |page|
         if !excluded?(site, page.path_to_source)
-          if File.exists?(page.path)
+          if (@source_dir + page.path).exist?
             url = fill_url(site, page)
             urlset.add_element(url)
           end
@@ -194,7 +198,7 @@ module Jekyll
     # Returns lastmod REXML::Element or nil
     def fill_last_modified(site, page_or_post)
       lastmod = REXML::Element.new "lastmod"
-      date = File.mtime(page_or_post.path)
+      date = (@source_dir + page_or_post.path).mtime
       latest_date = find_latest_date(date, site, page_or_post)
 
       if @last_modified_post_date == nil
@@ -221,7 +225,7 @@ module Jekyll
       layouts = site.layouts
       layout = layouts[page_or_post.data["layout"]]
       while layout
-        date = File.mtime(layout.path)
+        date = (@source_dir + layout.path).mtime
 
         latest_date = date if (date > latest_date)
 
