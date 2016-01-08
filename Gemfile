@@ -23,4 +23,6 @@ group(:unknown) do
   gem 'activerecord', '~>3'
 end
 
-
+# group(:debug) do
+#   gem 'byebug'
+# end
