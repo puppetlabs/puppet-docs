@@ -22,6 +22,7 @@ defaultnav:
   /hiera/2.0: /_includes/hiera20.html
   /hiera/3.0: /_includes/hiera30.html
   /hiera/3.1: /hiera/3.1/_hiera_toc.html
+  /de/pe/2015.2: /_includes/de_pe2015.2.html
   /es: /_includes/es_docs.html
   /es/hiera: /_includes/es_hiera1.html
   /es/learning: /_includes/es_learning_nav.html
