@@ -6,7 +6,7 @@ title: The Puppet Language Style Guide
 The Puppet Language Style Guide
 ===========
 
-####Metadata
+#### Metadata
 
 Puppet Language Style Guide: Version 2.0.1
 

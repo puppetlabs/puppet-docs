@@ -29,7 +29,7 @@ README Template
 
 If you used the `puppet module generate` command to generate your module skeleton, you already have a copy of the README template in .md format. If you would like a standalone copy of the template, you can find it [here][template]. Again, we strongly recommend using .md format for your README.
 
-##Introduction
+## Introduction
 We start with listing the module's name as a Level 1 Heading, followed by a table of contents as a Level 4 Heading.
 
     #modulename
@@ -51,14 +51,14 @@ The table of contents is optional but suggested as best practice, particularly f
 
 The section headings for each top-level section (and top-level sections should follow the numbered sections in the TOC) will be Level 2 Headings, with each sub-section decreasing from there
 
-##Overview and Description
+## Overview and Description
 
 The **Overview** and **Description** sections are covered together because both sections depend on and are built off of each other.
 
 Assume **Overview** is one of the first things a user will read. It should very briefly address what software the module is working with and what it does with that software. Does it just install it? Does it install and configure it? If you are looking for inspiration, check the `summary` field in the module's metadata.json. Your overview should be just slightly longer and more informative than that.
 
 ~~~
-##Overview
+## Overview
 
 The cat module installs, configures, and maintains your cat in both
 apartment and residential house settings.
@@ -69,7 +69,7 @@ For modules used internally, the overview section may be omitted.
 **Module Description** goes into slightly more depth on the "How?" and "What?" of a module, giving a user more information about what to expect from the module so they can assess whether they would like to use it or not.
 
 ~~~
-##Module Description
+## Module Description
 
 The cat module automates the installation of a cat to your apartment or
 house, and then provides options for configuring the cat to fit your
@@ -77,16 +77,16 @@ environment's needs. Once installed and configured, the cat module
 automates maintenance of your cat through a series of resource types and providers.
 ~~~
 
-##Setup
+## Setup
 
 Overall, the **Setup** section should give a user the basic steps to successfully get their module functioning (install instructions for a module are covered both on the module's Forge page AND in the Puppet Reference Manual and should not be reiterated here).
 
 The **What (Modulename) Affects** section should only be used IF: 1.) the module alters, overwrites, or otherwise touches files, packages, services, or operations outside the named software; or 2.) the module's general performance may overwrite, purge, or otherwise remove entries, files, or directories in a user's environment.
 
 ~~~
-##Setup
+## Setup
 
-###What cat affects
+### What cat affects
 
 * Your dog door may be overwritten if not secured before installation.
 ~~~
@@ -96,28 +96,28 @@ The **Setup Requirements** section is becoming increasingly unnecessary as Puppe
 The **Beginning with [Modulename]** section should cover the minimum steps required to get the module up and running in a user's environment. (Note: This does not necessarily mean it should be running in production. This step most often covers basic Proof of Concept use cases.) It's entirely OK if this section is just "Declare the main `::cat` class." For very simple modules, this will often be the case.
 
 ~~~
-###Beginning with cat
+### Beginning with cat
 
 Declare the main `::cat` class.
 ~~~
 
-##Usage
+## Usage
 
 The **Usage** section should address how to solve some general problems with the module, and include code examples. If your module does a large amount of things, you should put some (3 - 5) examples of the most important or most asked-for tasks a user can accomplish with your module.
 
 How you structure this section will depend on the structure of the module and how it was built to work in the user's environment. Asking yourself questions like, "What problems can users solve with this module?" or "What are a couple basic tasks a user can do to see how this module works in their environment?" will help get you started.
 
 ~~~
-##Usage
+## Usage
 
 All interaction with your cat can be done through the main cat class. With
 the default options, a basic cat will be installed with no optimizations.
 
-###I just want cat, what's the minimum I need?
+### I just want cat, what's the minimum I need?
 
     include '::cat'
 
-###I want to configure my lasers
+### I want to configure my lasers
 
 Use the following to configure your lasers for a random-pattern, 20 minute
 playtime at 3AM local time.
@@ -131,19 +131,19 @@ playtime at 3AM local time.
     }
 ~~~
 
-##Reference
+## Reference
 
 Generally, unless your module is very small (only 1 - 4 classes or defined types (defines)), the **Reference** section should have a small table of contents that first list the public classes, defines, and resource types of your module and then list the private classes, defines, and resource types. You should include a brief description of what these items accomplish in your module. If you are feeling productive, it is nice to provide a link to each listed item.
 
 ~~~
-##Reference
+## Reference
 
-###Classes
+### Classes
 
-####Public Classes
+#### Public Classes
 *[`pet::cat`](#petcat): Installs and configures a cat in your environment.
 
-####Private Classes
+#### Private Classes
 *[`pet::cat::install`](#petcatinstall): Handles the cat packages.
 *[`pet::cat::configure`](#petcatconfigure): Handles the configuration file.
 ~~~
@@ -151,17 +151,17 @@ Generally, unless your module is very small (only 1 - 4 classes or defined types
 Then, list the parameters, providers, or features for each thing:
 
 ~~~
-###`pet::cat`
+### `pet::cat`
 
-####Parameters
+#### Parameters
 
-#####`purr`
+##### `purr`
 Enables purring in your cat. Valid options: 'true' or 'false'. Default: 'true'.
 
-#####`meow`
+##### `meow`
 Enables vocalization in your cat. Valid options: 'string'. Default: 'medium-loud'.
 
-####`laser`
+#### `laser`
 Specifies the type, duration, and timing of your cat's laser show. Default: undef
 
 Valid options: A hash with the following keys:
@@ -172,12 +172,12 @@ Valid options: A hash with the following keys:
 * `start_time` - accepts an integer specifying the 24-hr formatted start time for the program.
 ~~~
 
-##Limitations and Development
+## Limitations and Development
 
 The **Limitations** section is the place to call out surprise incompatibilities.
 
 ~~~
-##Limitations
+## Limitations
 
 This module cannot be used with the smallchild module.
 ~~~
@@ -187,13 +187,13 @@ Since your module is awesome, other users will want to play with it. The **Devel
 README Style Notes
 ---
 
-##General Principles of READMEs
+## General Principles of READMEs
 
 1. Write for both web and terminal viewing. We highly prefer [markdown](http://daringfireball.net/projects/markdown/syntax). Above all else, your module must be readable and scannable relatively easily.
 2. Limit the number of external links. Linking to anything on the web is limiting the utility of the module, particularly if you publish it to the Forge and a range of users may be using it in various environments. Also, links look gross in plain markdown and will make your README less readable.
 3. Scannability is key. READMEs are formulaic and repetitious for a reason. The repetition means that no matter the module, a user knows where to go to get what information and can easily scan for what they are looking for.
 
-##Style and Formatting
+## Style and Formatting
 
 1. When referring to the module, the module's name is lowercase. When referring to the software the module is automating, the software's name is uppercase (as appropriate).
 2. *Public classes* are intended to be tweaked, changed, or otherwise interacted with by the user. *Private classes* are intended to do the behind-the-scenes work of the module (for instance, grabbing the package and installing it) and are not intended for the user to touch or look at.

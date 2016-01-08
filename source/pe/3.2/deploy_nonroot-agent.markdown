@@ -121,7 +121,7 @@ If you need to run agents without admin privileges on nodes running a Windows OS
 
 8. On the agent node, verify that the agent is connected and working by again starting a puppet run while logged in as the non-admin user. Running `puppet agent -t` should download and process the catalog from the master without issue.
 
-###Usage
+### Usage
 
 Non-root users can only use a subset of PE’s functionality. Basically, any operation that requires root privileges (e.g., installing system packages) cannot be managed by a non-root puppet agent.
 

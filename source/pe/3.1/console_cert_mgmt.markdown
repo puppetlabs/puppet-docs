@@ -14,7 +14,7 @@ Once the console has been properly configured to point at the appropriate Certif
 For each node making a request, you can also see its name and associated CSR fingerprint.
 
 
-###Viewing Node Requests
+### Viewing Node Requests
 
 You can view the number of pending node requests from anywhere in the console by checking the indicator in the top right of the main menu bar.
 
@@ -27,7 +27,7 @@ You will see a view containing a list of all the pending node requests. Each ite
 If there are no pending node requests, you will see some instructions for adding new nodes. If this is not what you expect to see, the location of your Certificate Authority (CA) may not be configured correctly.
 
 
-###Rejecting and Approving Nodes
+### Rejecting and Approving Nodes
 
 The ability to respond to node requests is linked to your user privileges. You must be logged in to the console as a user with read/write privileges before you can respond to requests.
 

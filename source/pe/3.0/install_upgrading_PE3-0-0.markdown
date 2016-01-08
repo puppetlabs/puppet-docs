@@ -132,7 +132,7 @@ Trigger puppet runs on each agent with `puppet agent -t` until a message is disp
 
 Next, verify that all the agents have reported by checking to see if they're listed in the console.
 
-###Upgrade Agents to 3.0
+### Upgrade Agents to 3.0
 
 Now that the agents are successfully pointed at the 3.0 master, they can be upgraded to 3.0 as well. This is done by running  `puppet-enterprise-installer` on each agent after the 3.0 tarball has been copied onto them and unpacked. The installer will detect that this is an upgrade, and proceed  to ask the usual install questions regarding vendor packages, symlinks, etc.
 

@@ -29,7 +29,7 @@ Puppet can manage the task name, the enabled/disabled status, the command, any a
 
 For more information, see [the reference documentation for the `scheduled_task` type][scheduledtask].
 
-##Errata
+## Errata
 
 ### Known Issues Prior to Puppet 3.8.0
 

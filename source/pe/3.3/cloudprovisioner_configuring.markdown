@@ -172,7 +172,7 @@ src="http://www.youtube.com/v/pc-LFM2-nwQ?version=3&amp;hl=en_US"
 type="application/x-shockwave-flash" width="560" height="315"
 allowscriptaccess="always" allowfullscreen="true"></embed></object>
 
-###Adding Google Compute Engine Credentials
+### Adding Google Compute Engine Credentials
 
 The following steps describe how to create a Google Compute Engine account, obtain a client ID and secret, and register `node_gce` with your GCE account.
 **Note** These steps don't cover setting up a billing method for your GCE account. To set up billing, click **Billing** in the Google Cloud Console, and follow the instructions there.

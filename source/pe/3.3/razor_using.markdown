@@ -90,7 +90,7 @@ You might create multiple policies, and then retrieve the policies collection. T
 
 See [Razor Command Reference](./razor_reference.html) for more information.
 
-####Create a Policy
+#### Create a Policy
 
 1. Create a file called `policy.json` and copy the following template text into it:
 

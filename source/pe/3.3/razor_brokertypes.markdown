@@ -10,7 +10,7 @@ Brokers are responsible for handing a node off to a configuration management sys
 
 The broker type is closely tied to the configuration management system that the node should be handed off to. Generally, it consists of two things: a (templated) shell script that performs the handoff and a description of the additional information that must be specified to create a broker from that broker type.
 
-####Create a PE Broker
+#### Create a PE Broker
 
 1. Create a directory on the broker_path that is set in your `config.yaml` file. You can call it something like `sample.broker`. By default, the brokers directory in Razor.root is on that path.
 2. Write a template for your broker install script. For example, create a file called `broker.json` and add the following:

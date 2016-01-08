@@ -96,7 +96,7 @@ Las funciones son plugins, por lo que muchos plugins customizados están disponi
 
 La documentación completa acerca de las funciones está disponible en [la página de funciones en el manual de referencia de Puppet](http://docs.puppetlabs.com/puppet/latest/reference/lang_functions.html) y en [la lista de funciones integradas](http://docs.puppetlabs.com/references/stable/function.html).
 
-#Variables en templates
+# Variables en templates
 
 Los templates son poderosos porque tienen acceso a todas las variables de Puppet que están presentes cuando se renderiza el template.
 

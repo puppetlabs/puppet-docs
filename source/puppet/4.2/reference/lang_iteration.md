@@ -100,7 +100,7 @@ In earlier versions of Puppet, when there were no iteration functions and lambda
 
 ~~~ ruby
 # one-off defined resource type, in
-#/etc/puppetlabs/code/environments/production/modules/puppet/manifests/binary/symlink.pp
+# /etc/puppetlabs/code/environments/production/modules/puppet/manifests/binary/symlink.pp
 define puppet::binary::symlink ($binary = $title) {
   file {"/usr/bin/$binary":
     ensure => link,
