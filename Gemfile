@@ -4,6 +4,7 @@ gem 'versionomy'
 gem 'rake'
 gem 'rack'
 gem 'git'
+gem 'json'
 
 group(:build_site) do
   gem 'jekyll', '3.0.1'
