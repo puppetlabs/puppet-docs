@@ -210,6 +210,11 @@ externalsources:
     repo: git@github.com:puppetlabs/pe-docs-private.git
     commit: origin/pe2015.3.1
     subdirectory: source
+  pe2016.1:
+    url: /pe/burnside
+    repo: git@github.com:puppetlabs/pe-docs-private.git
+    commit: origin/burnside
+    subdirectory: source
 
 symlink_latest:
   - puppet
