@@ -115,13 +115,13 @@ namespace :externalsources do
         end
         Dir.chdir(name) do
           puts "Updating #{name}"
-          system ("git fetch origin && git checkout --force #{info['commit']} && git clean --force .")
+          system ("git checkout --force #{info['commit']} && git clean --force .")
         end
       end
     end
   end
 
-  # "Clone any external documentation repos (from externalsources in source/_config.yml) that don't yet exist"
+  # "Fetch all external doc repos (from externalsources in source/_config.yml), cloning any that don't yet exist"
   task :clone do
     repos = []
     config_data['externalsources'].each do |name, info|
@@ -129,7 +129,12 @@ namespace :externalsources do
     end
     Dir.chdir("externalsources") do
       repos.uniq.each do |repo|
-        system ("git clone #{repo} #{repo_unique_id(repo)}") unless File.directory?("#{repo_unique_id(repo)}")
+        puts "Fetching #{repo}"
+        repo_dir = repo_unique_id(repo)
+        system ("git clone #{repo} #{repo_dir}") unless File.directory?(repo_dir)
+        Dir.chdir(repo_dir) do
+          system("git fetch origin")
+        end
       end
     end
   end
