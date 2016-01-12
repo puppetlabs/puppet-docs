@@ -22,14 +22,14 @@ Installing
 
 ### Puppet Enterprise
 
-To install Puppet Enterprise on Windows, [see the Puppet Enterprise manual's installation instructions.](/pe/latest/install_windows.html)
+To install Puppet Enterprise on Windows, [see the Puppet Enterprise manual's installation instructions.](/pe/latest/windows_installing.html)
 
 ### Open Source
 
 To install open source Puppet on Windows, follow the instructions on the following pages, in order:
 
-* [Pre-install tasks](puppet/latest/reference/install_pre.html)
-* [Installation instructions](puppet/latest/reference/install_windows.html)
+* [Pre-install tasks](/puppet/latest/reference/install_pre.html)
+* [Installation instructions](/puppet/latest/reference/install_windows.html)
 
 * * *
 
