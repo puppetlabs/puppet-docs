@@ -3,6 +3,8 @@ layout: default
 title: "Puppet 4.3 Release Notes"
 ---
 
+[`puppet lookup`]: ./lookup_quick.html
+
 This page lists the changes in Puppet 4.3 and its patch releases.
 
 Puppet's version numbers use the format X.Y.Z, where:
@@ -16,6 +18,123 @@ Puppet's version numbers use the format X.Y.Z, where:
 Read the [Puppet 4.0 release notes](/puppet/4.0/reference/release_notes.html), since they cover breaking changes since Puppet 3.8.
 
 Also of interest: the [Puppet 4.2 release notes](/puppet/4.2/reference/release_notes.html) and [Puppet 4.1 release notes](/puppet/4.1/reference/release_notes.html).
+
+## Puppet 4.3.2
+
+Released January 19, 2015.
+
+Puppet 4.3.2 is a bug fix release.
+
+* [Fixed in Puppet 4.3.2]()
+* [Introduced in Puppet 4.3.2]()
+
+### Improvements: Speed!
+
+#### Faster Puppet lexer and parser
+
+The lexer and parser in this version of Puppet complete tasks in less time when compared to Puppet 4.3.1. In limited testing, we've seen CPU time reduced by up to 55% in JRuby and by up to 13% in Ruby MRI.
+
+* [PUP-5554](https://tickets.puppetlabs.com/browse/PUP-5554)
+
+#### Faster service queries on OS X
+
+Puppet 4.3.2 queries service enablement status on OS X several times faster than previous versions of Puppet.
+
+* [PUP-5505](https://tickets.puppetlabs.com/browse/PUP-5505): 
+
+#### Faster compilation when `environment_timeout = 0`
+
+In previous versions of Puppet, an environment with an `environment_timeout` set to 0 that used many automatically bound default values would perform poorly, as each lookup caused the environment cache to be evicted and recreated. Puppet 4.3.2 greatly reduces the number of times it evicts the environment and significantly improves compilation performance.
+
+* [PUP-5547: Environment is evicted many times during compilation](https://tickets.puppetlabs.com/browse/PUP-5547)
+
+### New Feature: Use fact files with `puppet lookup`
+
+Puppet 4.3.2 adds the ability to declare a JSON or YAML file containing key-value pairs (a **fact file**) when running the `puppet lookup` command. This populates a scope with facts from the fact file that Puppet can use when looking up data. For more information, see the [Puppet lookup quick reference][`puppet lookup`].
+
+* [PUP-5060](https://tickets.puppetlabs.com/browse/PUP-5060)
+
+### New Feature: Set HTTP proxy host and port for the `pip` provider
+
+In previous versions of Puppet, the [`pip` package provider](/references/latest/type.html#package-provider-pip) could fail if used behind an HTTP proxy. This version adds the `http_proxy_host` and `http_proxy_port` settings to the provider.
+
+* [PUP-5212](https://tickets.puppetlabs.com/browse/PUP-5212)
+
+### New Feature: No catalog compilation on `puppet lookup` without the `--compile` flag
+
+In previous versions of Puppet 4.3, the `puppet lookup` command always compiles the entire catalog before performing looking up a key. While correct, it can potentially be very time-consuming and produce unwanted logging. In Puppet 4.3.2, running `puppet lookup` instead uses an empty catalog (as `--noop`), and Puppet only compiles the entire catalog when run with the new `--compile` flag.
+
+* [PUP-5461: `puppet lookup` is too verbose and compiles everything by default](https://tickets.puppetlabs.com/browse/PUP-5461)
+
+### Regression Fix: Retrieve resource state at evaluation time
+
+In previous versions of Puppet 4.3, Puppet prematurely retrieves generated resources when they are generated, rather than during evaluation. This could cause certain types or providers to behave inconsistently. For instance, changing only the mode on an existing `remote_file` resource might lead to Puppet unnecessarily recreate the file on each Puppet run. This is a regression from Puppet 4.2, and Puppet 4.3.2 correctly retrieves generated resources when it evaluates the resource.
+
+* [PUP-5595](https://tickets.puppetlabs.com/browse/PUP-5595)
+
+### Regression Fix: Perform Hiera lookup on `undef` class parameters
+
+In previous versions of Puppet 4.3, a Hiera lookup for a class parameter wouldn't occur if the parameter value was set to `undef` in the resource declaration. This is a regression from Puppet 4.2, and Puppet 4.3.2 correctly performs the lookup.
+
+* [PUP-5592](https://tickets.puppetlabs.com/browse/PUP-5592)
+
+### Regression Fix: Correctly interoplate default values
+
+Puppet should interpolate default values from keys where the value is intentionally missing. However, this functionality stopped working in Puppet 4 due to the new distinction it makes between empty strings and undefined values, affecting lookups of missing variables. Puppet 4.3.2 fixes this by recognizing when a key has an undefined value and correctly interpolating its default value.
+
+* [PUP-5578](https://tickets.puppetlabs.com/browse/PUP-5578)
+
+### Regression Fix: Fix `yum` provider's handling of epoch-versioned RPM packages
+
+Puppet 4.3.0 attempted to resolve an issue in handling epoch tags in DNF package names ([PUP-5025](https://tickets.puppetlabs.com/browse/PUP-5025)). However, the fix broke the `yum` provider's handling of epoch-versioned packages. This regression is fixed in Puppet 4.3.2.
+
+* [PUP-5549](https://tickets.puppetlabs.com/browse/PUP-5549)
+
+### Regression Fix: Make `--profile` flag compatible with Puppet 3
+
+In Puppet 4, functions converted to the Puppet 4 function API were not included in the profiling information produced by the `--profile` flag. This caused the profiling output to produce less information than in Puppet 3. Puppet 4.3.2 restores this missing information.
+
+* [PUP-5063](https://tickets.puppetlabs.com/browse/PUP-5063)
+
+### Bug Fix: Unterminated C-style comments cause Puppet to hang
+
+In previous versions of Puppet, an unterminated C-style comment in a Puppet manifest could lead to the `puppet master` process hanging indefinitely. Puppet 4.3.2 resolves this issue.
+
+* [PUP-5127](https://tickets.puppetlabs.com/browse/PUP-5127)
+
+### Bug Fix: Correctly handle `yum` warnings
+
+When run without an internet connection, the `yum` package manager returns a non-zero exit code. The [`yum` package provider](/references/latest/type.html#package-provider-yum) failed to handle this properly in previous versions of Puppet 4, resulting in an exception and failed resource. Puppet 4.3.2 updates the `yum` provider to gracefully warn the user instead of failing.
+
+* [PUP-5594](https://tickets.puppetlabs.com/browse/PUP-5594)
+
+### Bug Fix: Use `service` command to determine service status on Debian 8 and Ubuntu 15.04
+
+If `systemd` is purged from a Debian 8 or Ubuntu 15.04 system running Puppet 4.3.1, the `service` provider failed to determine the state of a service because `systemctl` didn't exist. Puppet 4.3.1 instead uses the `service` command, which is an abstraction around each of the available init systems in the Debian family of platforms, to power the `service` provider.
+
+* [PUP-5548](https://tickets.puppetlabs.com/browse/PUP-5548)
+
+### Bug Fixes: Language
+
+* [PUP-3149: Removing packages on SuSE Linux should use `zypper`, not `rpm`](https://tickets.puppetlabs.com/browse/PUP-3149)
+* [PUP-4744: `yumrepo` doesn't recognize whitespace-delimited `reposdir` settings in `/etc/yum.conf`](https://tickets.puppetlabs.com/browse/PUP-4744)
+* [PUP-5209: Declaring a module dependency in `metadata.json` with a dash instead of a slash results in unexpected behavior](https://tickets.puppetlabs.com/browse/PUP-5209): When declaring one module as a dependency from another module's `metadata.json`, using a dash in the dependency's name (such as `puppetlabs-stdlib`) instead of a slash (`puppetlabs/stdlib`) could make functions in the dependency unexpectedly unavailable to the dependent module. Puppet 4.3.2 resolves the issue.
+* [PUP-5552: Check parameter names in EPP templates](https://tickets.puppetlabs.com/browse/PUP-5552): In previous versions of Puppet, including the Puppet 3 future parser, Puppet would validate only the number of parameters passed to an EPP template, not their names, which could lead to Puppet failing to produce an error when passing an unknown parameter. Puppet 4.3.2 correctly validates EPP templates with the same logic used to validate resource parameters.
+* [PUP-5589: No error logged when a type without a namevar causes a failure](https://tickets.puppetlabs.com/browse/PUP-5589): In previous versions of Puppet 4, a faulty implementation of a resource type could lead to a catalog compilation or Puppet run that fails without presenting a reason. Such problems are now logged.
+* [PUP-5612: Error message for declaring a resource without a title is confusing](https://tickets.puppetlabs.com/browse/PUP-5612): When declaring a resource without a title, previous versions of Puppet 4 produced a confusing, generic error message. Puppet 4.3.2 recognizes when a resource is missing a title and suggests adding one.
+* [PUP-5628: Errors from functions written in the Puppet language don't mention the affected file](https://tickets.puppetlabs.com/browse/PUP-5628): When a function written in the Puppet language fails, previous versions of Puppet 4 only reported that an error occurred, but not the file in which it occurred. Puppet 4.3.2 identifies the path to the affected file.
+* [PUP-5651: Puppet function declarations must be top-level constructs](https://tickets.puppetlabs.com/browse/PUP-5651): [Functions](./lang_functions.html) in the Puppet language should not be nested in any type of block, but Puppet 4 allowed you to define a function inside a class or user-defined type without producing an error message. Puppet 4.3.2 correctly validates this rule and produces an error when it's violated.
+
+### Bug Fixes: Puppet lookup
+
+* [PUP-5502: Lookup adapter `lookup_global` produces bad error messages for faulty `hiera.yaml`](https://tickets.puppetlabs.com/browse/PUP-5502): In Puppet 4.3.1, errors in `hiera.yaml` produce vague error messages when handled during lookup actions. Puppet 4.3.2 produces a more concise error message, and includes the name of the key, location of the broken `hiera.yaml` file, and the location in `hiera.yaml` where the evaluation failed.
+* [PUP-5511: `puppet lookup` rejects `--merge first`](https://tickets.puppetlabs.com/browse/PUP-5511): In Puppet 4.3.1, the [`puppet lookup`][] command's `--merge` option only accepted `unique` even though the `lookup()` function also accepted `first`. That made it impossible to override the lookup merge options provided in data files when performing a lookup from the command line. Puppet 4.3.2 resolves this by implementing the `--merge first` option for `puppet lookup`.
+* [PUP-5618: Puppet ignores nested `lookup_options` in modules](https://tickets.puppetlabs.com/browse/PUP-5618): When a module using [`lookup_options`](./lookup_quick.html#setting-lookupoptions-in-data) includes another module using `lookup_options`, Puppet 4.3.1 ignores the nested options. Puppet 4.3.2 correctly respects the nested options.
+* [PUP-5644: Puppet lookup creates new SSL hierarchy with self-signed CA](https://tickets.puppetlabs.com/browse/PUP-5644): When running `puppet lookup` under Puppet 4.3.1, Puppet created an unnecessary SSL hierarchy and self-signed certificate authority. Besides not being useful, these unnecessary creations could also cause lookups on masterless Puppet nodes to fail. Puppet 4.3.2 doesn't do this.
+
+### Bug Fixes: Miscellaneous
+
+* [PUP-5522: Puppet::Node attributes not kept consistent with its parameters](https://tickets.puppetlabs.com/browse/PUP-5522): In some Puppet-related applications, or in certain cases when using Puppet from Ruby, a Node object could use one environment but report that it was in another, resulting in the node having the wrong set of parameters. This doesn't affect regular catalog compilation, and is resolved in Puppet 4.3.2.
 
 ## Puppet 4.3.1
 
@@ -57,7 +176,7 @@ Custom Hiera backends don't work with Puppet lookup.
 
 For more details, see:
 
-* [Quick Reference for Hiera Users](./lookup_quick.html)
+* [Quick Reference for Hiera Users][`puppet-lookup`]
 * [Quick Intro to Module Data](./lookup_quick_module.html)
 
 Related tickets:
@@ -223,3 +342,21 @@ onlyif => "values cfg_file != ['/etc/nagios/commands.cfg', '/etc/nagios/anotherc
 * [PUP-5387: AIX service provider returns before service operations are complete](https://tickets.puppetlabs.com/browse/PUP-5387): In AIX, service state transitions are not atomic. On slower systems, this could cause race conditions when starting, stopping or restarting services, as Puppet did not wait for services to conclude their operations before continuing to apply different resources. The SRC service provider has been updated to wait up for up to 60 seconds when changing the state of a service.
 
 * [PUP-5422: Daemonized agent's pidfile never removed if stopped while waiting for a certificate](https://tickets.puppetlabs.com/browse/PUP-5422): If the daemonized agent was waiting for a cert to be issued, and the process was killed, e.g. SIGTERM or SIGINT, then the agent would exit ungracefully and leave its pid file behind. Now the agent gracefully exits and deletes its pid file.
+
+### Regression: Puppet retrieves resource state prematurely
+
+In Puppet 4.3.0, Puppet prematurely retrieves generated resources when they are generated, rather than during evaluation. This could cause certain types or providers to behave inconsistently. For instance, changing only the mode on an existing `remote_file` resource might lead to Puppet unnecessarily recreate the file on each Puppet run. This is a regression from Puppet 4.2 and is fixed in Puppet 4.3.2.
+
+* [PUP-5595](https://tickets.puppetlabs.com/browse/PUP-5595)
+
+### Regression: Puppet doesn't perform Hiera lookups on `undef` class parameters
+
+In Puppet 4.3.0, a Hiera lookup for a class parameter wouldn't occur if the parameter value was set to `undef` in the resource declaration. This is a regression from Puppet 4.2 and is fixed in Puppet 4.3.2.
+
+* [PUP-5592](https://tickets.puppetlabs.com/browse/PUP-5592)
+
+### Regression: Package version behavior is broken for epoch-versioned RPM packages
+
+Puppet 4.3.0 attempted to resolve an issue in handling epoch tags in DNF package names ([PUP-5025](https://tickets.puppetlabs.com/browse/PUP-5025)). However, the fix broke the `yum` provider's handling of epoch-versioned packages. This regression is fixed in Puppet 4.3.2.
+
+* [PUP-5549](https://tickets.puppetlabs.com/browse/PUP-5549)
