@@ -34,7 +34,7 @@ defaultnav:
   /mcollective: /_includes/mcollective_menu.html
   /mcollective1.2: /_includes/mcollective_1.2.html
   /pe/burnside: /pe/burnside/_pe_toc.html
-  /pe/ankeny: /pe/ankeny/_pe_toc.html
+  /pe/2015.3: /pe/2015.3.2/_pe_toc.html
   /pe/2015.2: /pe/2015.2/_pe_toc.html
   /pe/3.8: /pe/3.8/_pe_toc.html
   /pe/3.7: /pe/3.7/_pe_toc.html
@@ -207,9 +207,9 @@ externalsources:
     commit: origin/pe2015.2.3
     subdirectory: source
   pe2015.3:
-    url: /pe/ankeny
+    url: /pe/2015.3
     repo: git@github.com:puppetlabs/pe-docs-private.git
-    commit: origin/pe2015.3.1
+    commit: origin/pe2015.3.2
     subdirectory: source
   pe2016.1:
     url: /pe/burnside
