@@ -1,7 +1,8 @@
 ---
 layout: default
-title: "Puppet HTTP API: Certificate Status"
-canonical: "/puppet/latest/reference/http_api/http_certificate_status.html"
+built_from_commit: f223e717763aa79a28314425fa6917eb57ec3af8
+title: 'Puppet HTTP API: Certificate Status'
+canonical: /puppet/latest/reference/http_api/http_certificate_status.html
 ---
 
 Certificate Status
