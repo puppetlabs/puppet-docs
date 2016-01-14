@@ -39,39 +39,39 @@ Hiera acepta las siguientes opciones de línea de comando:
  </thead>
  <tbody>
 	<tr>
-	 <td><code>-V, --version</code></td>
+	 <td><code>-V, --version</code></td>
 	 <td>Información de la versión</td>
 	</tr>
 	<tr>
-	 <td><code>-c, --config FILE</code></td>
+	 <td><code>-c, --config FILE</code></td>
 	 <td>Especifica la ubicación del archivo de configuración alternativo</td>
 	</tr>
 	<tr>
-	 <td><code>-d, --debug</code></td>
+	 <td><code>-d, --debug</code></td>
 	 <td>Muestra información de depuración</td>
 	</tr>
 	<tr>
-	 <td><code>-a, --array</code></td>
+	 <td><code>-a, --array</code></td>
 	 <td>Devuelve todos los valores como un array aplanado de valores únicos</td>
 	</tr>
 	<tr>
-	 <td><code>-h, --hash</code></td>
+	 <td><code>-h, --hash</code></td>
 	 <td>Devuelve todos los valores de hashes como un hash combinado</td>
 	</tr>
 	<tr>
-	 <td><code>-j, --json FILE</code></td>
+	 <td><code>-j, --json FILE</code></td>
 	 <td>Archivo JSON del cual cargar el scope</td>
 	</tr>
 	<tr>
-	 <td><code>-y, --yaml FILE</code></td>
+	 <td><code>-y, --yaml FILE</code></td>
 	 <td>Archivo YAML del cual cargar el scope</td>
 	</tr>
 	<tr>
-	 <td><code>-m, --mcollective IDENTITY</code></td>
+	 <td><code>-m, --mcollective IDENTITY</code></td>
 	 <td>Utilizar facts de un nodo (vía mcollective) como scope</td>
 	</tr>
 	<tr>
-	 <td><code>-i, --inventory_service IDENTITY</code></td>
+	 <td><code>-i, --inventory_service IDENTITY</code></td>
 	 <td>Utilizar facts de un nodo (vía el servicio de inventario de Puppet) como scope</td>
 	</tr>
  </tbody>

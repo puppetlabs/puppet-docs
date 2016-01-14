@@ -12,14 +12,14 @@ The following sections provide the steps for a basic setup that you can use to e
 
 >**Warning**: Proceed with caution. We recommend testing on a completely isolated test environment because running a second DCHCP server on your company's network could bring down the network. In addition, running a second DHCP server that will boot into the Razor microkernel and register with the server has a bigger risk. In such a case, if someone has established a policy that node matches, a simple reboot could cause Razor to replace a server with a fresh OS install. 
 
-###Before You Begin
+### Before You Begin
 
 Things you should know before you set up provisioning:
 
 + Razor has been specifically validated on RHEL/CentOS 6.4, but it should work on all 6.x versions. See the [CentOS site](http://isoredirect.centos.org/centos/6/isos/x86_64/) for options.
 + The Razor microkernel is 64-bit only. Razor can only provision 64-bit machines.
 
-##Install Overview
+## Install Overview
 
 Below are the essential steps to create a virtual test environment. Each of these steps is described in more detail in the following sections.
 
@@ -32,14 +32,14 @@ Below are the essential steps to create a virtual test environment. Each of thes
 
 When you finish this section, go on to [Install and Set Up Razor](./razor_install.html). 
 
-###Install PE in Your Virtual Environment
+### Install PE in Your Virtual Environment
 
 In your virtual testing environment, set up a puppet master running a standard install of Puppet Enterprise 3.2. For more information, see [Installing Puppet Enterprise](./install_basic.html).
 
 **Note**: We're finding that VirtualBox 4.3.6 gets to the point of downloading the microkernel from the Razor server and hangs at 0% indefinitely. We don't have this problem with VirtualBox 4.2.22. 
 
 
-###Install and Configure dnsmasq DHCP/TFTP Service
+### Install and Configure dnsmasq DHCP/TFTP Service
 
 The installation that's described here, particularly these prerequisites, are one way to configure your Razor test environment. We're providing explicit instructions for this setup because it's been tested and is relatively straightforward. 
 
@@ -55,7 +55,7 @@ As stated in the **Warning** above, to avoid breaking your company network or in
 
 		chmod 655 /var/lib/tftpboot
 	
-###Temporarily Disable SELinux to Enable PXE Boot
+### Temporarily Disable SELinux to Enable PXE Boot
 
 1. Disable SELinux by changing the following setting in the file `/etc/sysconfig/selinux`:
 
@@ -67,7 +67,7 @@ As stated in the **Warning** above, to avoid breaking your company network or in
 	
 2. Restart the computer and log in again. 
 
-###Edit the dnsmasq Configuration File to Enable PXE Boot
+### Edit the dnsmasq Configuration File to Enable PXE Boot
 
 1. Edit the file `/etc/dnsmasq.conf`, by adding the following line at the bottom of the file:
 

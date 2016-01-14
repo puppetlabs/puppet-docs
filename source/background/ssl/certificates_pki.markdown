@@ -18,7 +18,7 @@ A public key infrastructure (PKI) is a way to associate public keys with trusted
 
 The PKI used in SSL/TLS is defined by [the X.509 standard][x509]. Puppet and Puppet Enterprise use OpenSSL's implementation of the X.509 PKI.
 
-##Certificates
+## Certificates
 
 A **certificate** is a cryptographic identification document that contains:
 

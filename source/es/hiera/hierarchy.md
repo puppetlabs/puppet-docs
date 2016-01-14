@@ -91,9 +91,9 @@ Dados dos nodos diferentes con variables Puppet diferentes, aquí tienes dos man
 ### web01.example.com
 #### Variables
 
-+ **::clientcert** =** web01.example.com**
-+ **::environment** =** production**
-+ **::is_virtual** = **true**
++ **::clientcert** =** web01.example.com**
++ **::environment** =** production**
++ **::is_virtual** = **true**
 
 #### Resolución de la fuente de información
 ![](img/datasource-resolution01.png)
@@ -108,9 +108,9 @@ Dados dos nodos diferentes con variables Puppet diferentes, aquí tienes dos man
 ### db01.example.com
 #### Variables
 
-+ **::clientcert** =**db01.example.com**
-+ **::environment** = **development**
-+ **::is_virtual** = **false**
++ **::clientcert** =**db01.example.com**
++ **::environment** = **development**
++ **::is_virtual** = **false**
 
 #### Resolución de la fuente de información
 ![](img/datasource-resolution02.png)

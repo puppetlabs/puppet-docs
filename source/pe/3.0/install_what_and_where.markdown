@@ -15,13 +15,13 @@ Puppet Enterprise can be evaluated with a complementary ten-node license; beyond
 
 To purchase a license, please see the [Puppet Enterprise pricing page](http://www.puppetlabs.com/puppet/how-to-buy/), or contact Puppet Labs at <sales@puppetlabs.com> or (877) 575-9775. For more information on licensing terms, please see [the licensing FAQ](http://www.puppetlabs.com/licensing-faq/). If you have misplaced or never received your license key, please contact <sales@puppetlabs.com>.
 
-##Software
+## Software
 
-###<i>What</i>
+### <i>What</i>
 
 All functional components of PE, excluding configuration files. You are not likely to need to change these components.
 
-###<i>Where</i>
+### <i>Where</i>
 
 On \*nix nodes, all PE software (excluding config files and generated data) is installed under `/opt/puppet`.
 
@@ -31,13 +31,13 @@ On Windows nodes, all PE software is installed in the "Puppet Enterprise" subdir
 * The Puppet modules included with PE are installed on the puppet master server in `/opt/puppet/share/puppet/modules`. Don't edit this directory to add modules of your own. Instead, install them in `/etc/puppetlabs/puppet/modules`.
 * Orchestration plugins are installed in `/opt/puppet/libexec/mcollective/mcollective` on \*nix and in [`<COMMON_APPDATA>`](./install_windows.html#data-directory)`\PuppetLabs\mcollective\etc\plugins\mcollective`. If you are adding new plugins to your PE agent nodes, you should [distribute them via Puppet as described in the "Adding Actions" page of this manual](./orchestration_adding_actions.html).
 
-##Configuration Files
+## Configuration Files
 
-###<i>What</i>
+### <i>What</i>
 
 Files used to configure Puppet and its subsidiary components. These are the files you will likely change to accomodate the needs of your environment.
 
-###<i>Where</i>
+### <i>Where</i>
 
 On \*nix nodes, Puppet Enterprise's configuration files all live under `/etc/puppetlabs`.
 
@@ -50,12 +50,12 @@ PE's various components all have subdirectories inside this main data directory:
 * The console's config files are in the `puppet-dashboard`, `rubycas-server`, and `console-auth` subdirectories.
 * PuppetDB's config files are in the `puppetdb` subdirectory.
 
-##Log Files
+## Log Files
 
-###<i>What</i>
+### <i>What</i>
 The software distributed with Puppet Enterprise generates the following log files, which can be found as follows.
 
-###<i>Where</i>
+### <i>Where</i>
 
 ### Puppet Master Logs
 
@@ -128,7 +128,7 @@ PE uses the following services:
 - **`pe-activemq`** --- The ActiveMQ message server, which passes messages to the MCollective servers on agent nodes. Runs on servers with the puppet master role.
 -**`pe-puppetdb`** and **`pe-postgresql`** --- daemons that manage and serve the db roles.
 
-###User Accounts
+### User Accounts
 
 PE creates the following users:
 
@@ -141,7 +141,7 @@ PE creates the following users:
 - **`pe-auth`** --- Puppet Console Auth User
 - **`pe-memcached`** --- Puppet Enterprise Memcached Daemon User
 
-###Certificates
+### Certificates
 
 PE generates a number of certificates at install. These are:
 
@@ -164,7 +164,7 @@ A fresh PE install should thus give the following list of certificates:
     + "pe-internal-peadmin-mcollective-client"        (3C:4D:8E:15:07:41:18:E2:21:57:19:01:2E:DB:AB:07)
     + "pe-internal-puppet-console-mcollective-client" (97:10:76:B5:3E:8D:02:D2:3D:A6:43:F4:89:F4:8B:94)
 
-###Documentation
+### Documentation
 
 Man pages for the Puppet subcommands are generated on the fly. To view them, run `puppet man <SUBCOMMAND>`.
 

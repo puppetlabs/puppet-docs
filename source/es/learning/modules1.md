@@ -24,7 +24,7 @@ Este sí hace algo.
 
 ## El fin de un gran manifiesto
 
-Ya puedes escribir manifiestos bonitos y sofisticados a esta altura, pero hasta ahora los has puesto en un solo archivo (**/etc/puppetlabs/puppet/manifests/site.pp** o uno de un sólo uso con puppet apply)
+Ya puedes escribir manifiestos bonitos y sofisticados a esta altura, pero hasta ahora los has puesto en un solo archivo (**/etc/puppetlabs/puppet/manifests/site.pp** o uno de un sólo uso con puppet apply)
 
 Con más de 4 o 5 recursos, esto se pone difícil de manejar. Probablemente ya puedes ver el camino al manifiesto de 3 mil líneas de la muerte, y no quieres terminar allí. Es mucho mejor cortar trozos de código relacionados lógicamente en sus propios archivos y luego hacer referencia a esos trozos por el nombre cuando lo necesites.
 

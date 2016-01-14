@@ -15,9 +15,9 @@ Puppet Enterprise can be evaluated with a complementary ten-node license; beyond
 
 To purchase a license, please see the [Puppet Enterprise pricing page](http://www.puppetlabs.com/puppet/how-to-buy/), or contact Puppet Labs at <sales@puppetlabs.com> or (877) 575-9775. For more information on licensing terms, please see [the licensing FAQ](http://www.puppetlabs.com/licensing-faq/). If you have misplaced or never received your license key, please contact <sales@puppetlabs.com>.
 
-##Software
+## Software
 
-###<i>What</i>
+### <i>What</i>
 
 All functional components of PE, excluding configuration files. You are not likely to need to change these components. The following software components are installed:
 
@@ -28,7 +28,7 @@ All functional components of PE, excluding configuration files. You are not like
  * Hiera
  * Puppet Dashboard
 
-###<i>Where</i>
+### <i>Where</i>
 
 On \*nix nodes, all PE software (excluding config files and generated data) is installed under `/opt/puppet`.
 
@@ -46,13 +46,13 @@ If you will be using your own instance of PostgreSQL (as opposed to the instance
 ### OpenSSL Requirement
 OpenSSL is a dependency required for PE. For RHEL 4, Windows, AIX, and Solaris 10 nodes, OpenSSL is included with PE; for all other platforms it is installed directly from the system repositories.
 
-##Configuration Files
+## Configuration Files
 
-###<i>What</i>
+### <i>What</i>
 
 Files used to configure Puppet and its subsidiary components. These are the files you will likely change to accomodate the needs of your environment.
 
-###<i>Where</i>
+### <i>Where</i>
 
 On \*nix nodes, Puppet Enterprise's configuration files all live under `/etc/puppetlabs`.
 
@@ -65,12 +65,12 @@ PE's various components all have subdirectories inside this main data directory:
 * The console's config files are in the `puppet-dashboard`, `rubycas-server`, and `console-auth` subdirectories.
 * PuppetDB's config files are in the `puppetdb` subdirectory.
 
-##Log Files
+## Log Files
 
-###<i>What</i>
+### <i>What</i>
 The software distributed with Puppet Enterprise generates the following log files, which can be found as follows.
 
-###<i>Where</i>
+### <i>Where</i>
 
 ### Puppet Master Logs
 
@@ -168,7 +168,7 @@ PE uses the following services:
 - **`pe-puppet-dashboard-workers`** --- A supervisor that manages the console's background processes. Runs on servers with the console component.
 - **`pe-puppetdb`** and **`pe-postgresql`** --- Daemons that manage and serve the database components. Note that pe-postgresql is only created if we install and manage PostgreSQL for you.
 
-###User Accounts
+### User Accounts
 
 PE creates the following users:
 
@@ -182,7 +182,7 @@ PE creates the following users:
 - **`pe-memcached`** --- Puppet Enterprise Memcached Daemon User
 - **`pe-postgres`** --- A system user with access to the pe-postgreSQL instance. Note that this user is only created if we install and manage PostgreSQL for you.
 
-###Certificates
+### Certificates
 
 PE generates a number of certificates at install. These are:
 
@@ -205,7 +205,7 @@ A fresh PE install should thus give the following list of certificates:
     + "pe-internal-peadmin-mcollective-client"        (3C:4D:8E:15:07:41:18:E2:21:57:19:01:2E:DB:AB:07)
     + "pe-internal-puppet-console-mcollective-client" (97:10:76:B5:3E:8D:02:D2:3D:A6:43:F4:89:F4:8B:94)
 
-###Documentation
+### Documentation
 
 Man pages for the Puppet subcommands are generated on the fly. To view them, run `puppet man <SUBCOMMAND>`.
 

@@ -28,7 +28,7 @@ Echemos un vistazo a uno de los manifiestos de la página anterior:
 	    notify {"I'm notifying you.":}
 	    notify {"So am I!":}
 
-Cuando lo ejecutamos, los recursos no fueron sincronizados en el orden que los habíamos escrito: **/tmp/test1,/tmp/test3, /tmp/test2, So am I!**, y **I'm notifying you**.
+Cuando lo ejecutamos, los recursos no fueron sincronizados en el orden que los habíamos escrito: **/tmp/test1,/tmp/test3, /tmp/test2, So am I!**, y **I'm notifying you**.
 
 Como hemos mencionado en el capítulo anterior, Puppet combina las acciones de “chequea el estado” y “soluciona cualquier problema” en una sola declaración para cada recurso, y como cada recurso está representado por una sola declaración atómica, el orden importa mucho menos que en un script equivalente.
 
@@ -38,8 +38,8 @@ Puppet tiene formas de expresar esas relaciones cuando trata con recursos relaci
 
 ### Sumario de esta página
 
-+ Puedes insertar información de la relación en un recurso con los metaparámetros **before**, **require**, **notify**, y **subscribe**.
-+ También puedes declarar relaciones fuera de un recurso con las flechas de encadenamiento **->** y  **~>** 
++ Puedes insertar información de la relación en un recurso con los metaparámetros **before**, **require**, **notify**, y **subscribe**.
++ También puedes declarar relaciones fuera de un recurso con las flechas de encadenamiento **->** y  **~>** 
 + Las relaciones se pueden ordenar (esto antes que aquello) u ordenar con notificaciones (esto antes que aquello, y avisa si aquello fue cambiado)
 + La sintaxis y el comportamiento de las relaciones de Puppet está documentada en [la página de relaciones del manual de referencia de Puppet]().
 

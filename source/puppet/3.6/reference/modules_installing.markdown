@@ -71,7 +71,7 @@ The `puppet module` subcommand has several **actions.** The main actions used fo
 
 If you have used a command line package manager tool (like `gem`, `apt-get`, or `yum`) before, these actions will generally do what you expect. You can view a full description of each action with `puppet man module` or by [viewing the man page here][module_man].
 
-###Using the Module Tool Behind a Proxy
+### Using the Module Tool Behind a Proxy
 
 In order to use the puppet module tool behind a proxy, you need to set the following:
 

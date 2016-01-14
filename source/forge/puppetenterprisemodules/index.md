@@ -4,11 +4,11 @@ title: "Puppet Enterprise Modules"
 canonical: "/forge/puppetenterprisemodules/index.html"
 ---
 
-#Puppet Enterprise Modules
+# Puppet Enterprise Modules
 
 Puppet Enterprise modules are modules built by Puppet Labs specifically for use with Puppet Enterprise (PE). These modules were launched with PE 3.7, and quickly and easily give PE users expanded functionality.
 
-##Installing Puppet Enterprise Modules
+## Installing Puppet Enterprise Modules
 
 To install a Puppet Enterprise module you must:
 
@@ -33,13 +33,13 @@ Notice: Installing -- do not interrupt ...
 
 By default, your Puppet Enterprise module will be installed either in `/etc/puppetlabs/puppet/environments/production/modules` for fresh installations of PE 3.7 and higher, or `/etc/puppetlabs/puppet/modules` for upgraded installations.
 
-##Managing Puppet Enterprise Modules
+## Managing Puppet Enterprise Modules
 
 Once you've installed the module you can move the installed module to the directory, server, or version control system (VCS) repository of your choice. 
 
 If you are using [librarian-puppet](https://github.com/rodjek/librarian-puppet) or [r10k](https://github.com/adrienthebo/r10k), you must install the module with the PMT before committing it to your version control repository.
 
-###Upgrading Puppet Enterprise Modules
+### Upgrading Puppet Enterprise Modules
 
 Upgrading a Puppet Enterprise module looks a lot like installing. You must:
 
@@ -51,7 +51,7 @@ Upgrading a Puppet Enterprise module looks a lot like installing. You must:
 
 If these conditions are met, you upgrade the module by running `puppet module upgrade puppetlabs-modulename`.
 
-###Uninstalling Puppet Enterprise Modules
+### Uninstalling Puppet Enterprise Modules
 
 You can uninstall a Puppet Enterprise module just like any other module by running `puppet module uninstall puppetlabs-modulename`.
 
@@ -60,7 +60,7 @@ You can uninstall a Puppet Enterprise module just like any other module by runni
 Removed /etc/puppetlabs/puppet/environments/production/modules/mssql (v1.0.0)
 ~~~
 
-##Feedback and Contributing
+## Feedback and Contributing
 
 If you run into an issue with a Puppet Enterprise module, or if you would like to request a feature, please [file a ticket](https://tickets.puppetlabs.com/browse/MODULES/).
 

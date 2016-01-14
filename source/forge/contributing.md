@@ -11,7 +11,7 @@ canonical: "/forge/contributing.html"
 [dev]:           https://groups.google.com/forum/?fromgroups#!forum/puppet-dev
 
 
-#Contributing to Puppet Labs Modules
+# Contributing to Puppet Labs Modules
 
 ## How to contribute
 

@@ -37,7 +37,7 @@ Task templates are ERB templates and are searched in all the directories given i
 2. `base.task` # If the task has a base task.
 3. `common` 
 
-####Template Helpers
+#### Template Helpers
 Templates can use the following helpers to generate URLs that point back to the server; all of the URLs respond to a `GET` request, even the ones that make changes on the server:
 
 * `file_url(TEMPLATE)`: the URL that will retrieve `TEMPLATE.erb` (after evaluation) from the current node's task.

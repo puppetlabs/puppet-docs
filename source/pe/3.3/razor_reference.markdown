@@ -10,7 +10,7 @@ The Razor API is REST-based. For best results, use the following as the base URL
 
 **Note:** The following sections contain some example URL's that might be structured differently from the URLs your server uses.
 
-###Common Attributes
+### Common Attributes
 Two attributes are commonly used to identify objects: 
 
 + `id` can be used as a GUID for an object. A `GET` request against a URL with an `id` attribute will produce a representation
