@@ -2,7 +2,7 @@ require 'puppet_references'
 module PuppetReferences
   module Puppet
     class Yard < PuppetReferences::Reference
-      OUTPUT_DIR = PuppetReferences::OUTPUT_DIR + 'yard'
+      OUTPUT_DIR = PuppetReferences::OUTPUT_DIR + 'puppet/yard'
 
       def initialize(*args)
         @latest = '/references/latest/developer'
