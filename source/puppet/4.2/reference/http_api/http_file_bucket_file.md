@@ -1,7 +1,8 @@
 ---
 layout: default
-title: "Puppet HTTP API: File Bucket File"
-canonical: "/puppet/latest/reference/http_api/http_file_bucket_file.html"
+built_from_commit: e49293167c2a4753e3db51df5585478e3d8c8877
+title: 'Puppet HTTP API: File Bucket File'
+canonical: /puppet/latest/reference/http_api/http_file_bucket_file.html
 ---
 
 File Bucket File

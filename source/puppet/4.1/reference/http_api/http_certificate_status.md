@@ -1,7 +1,8 @@
 ---
 layout: default
-title: "Puppet HTTP API: Certificate Status"
-canonical: "/puppet/latest/reference/http_api/http_certificate_status.html"
+built_from_commit: c4a6a76fd219bffd689476413985ed13f40ef1dd
+title: 'Puppet HTTP API: Certificate Status'
+canonical: /puppet/latest/reference/http_api/http_certificate_status.html
 ---
 
 Certificate Status
@@ -131,4 +132,5 @@ Schema
 -----
 
 Find and search operations return objects which
-conform to [the host schema.](../schemas/host.json)
+conform to the json schema at {file:api/schemas/host.json
+api/schemas/host.json}.

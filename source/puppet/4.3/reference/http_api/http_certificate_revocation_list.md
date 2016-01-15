@@ -1,7 +1,8 @@
 ---
 layout: default
-title: "Puppet HTTP API: Certificate Revocation List"
-canonical: "/puppet/latest/reference/http_api/http_certificate_revocation_list.html"
+built_from_commit: 08dbaf538d4bb530b97815b9a88857bf93a63c49
+title: 'Puppet HTTP API: Certificate Revocation List'
+canonical: /puppet/latest/reference/http_api/http_certificate_revocation_list.html
 ---
 
 Certificate Revocation List
