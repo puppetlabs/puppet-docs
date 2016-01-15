@@ -1,5 +1,5 @@
-[node_name_fact]: /puppet/4.3/reference/configuration.html#nodenamefact
-[node_name_value]: /puppet/4.3/reference/configuration.html#nodenamevalue
+[node_name_fact]: ./configuration.html#nodenamefact
+[node_name_value]: ./configuration.html#nodenamevalue
 
 > #### Note on Non-Certname Node Names
 >

@@ -10,14 +10,14 @@ canonical: "/puppet/latest/reference/lang_relationships.html"
 [reference]: ./lang_data_resource_reference.html
 [array]: ./lang_data_array.html
 [class]: ./lang_classes.html
-[service]: /puppet/4.3/reference/type.html#service
-[exec]: /puppet/4.3/reference/type.html#exec
-[type]: /puppet/4.3/reference/type.html
-[mount]: /puppet/4.3/reference/type.html#mount
-[package]: /puppet/4.3/reference/type.html#package
+[service]: ./type.html#service
+[exec]: ./type.html#exec
+[type]: ./type.html
+[mount]: ./type.html#mount
+[package]: ./type.html#package
 [metaparameters]: ./lang_resources.html#metaparameters
 [require_function]: ./lang_classes.html#using-require
-[moar]: /puppet/4.3/reference/configuration.html#ordering
+[moar]: ./configuration.html#ordering
 [lambdas]: ./lang_lambdas.html
 [containment]: ./lang_containment.html
 

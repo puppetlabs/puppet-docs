@@ -4,7 +4,7 @@ title: "Config Files: auth.conf"
 canonical: "/puppet/latest/reference/config_file_auth.html"
 ---
 
-[rest_authconfig]: /puppet/4.3/reference/configuration.html#restauthconfig
+[rest_authconfig]: ./configuration.html#restauthconfig
 [api]: ./http_api/http_api_index.html
 [default_file]: https://github.com/puppetlabs/puppet/blob/4.3.0/conf/auth.conf
 [environment]: ./environments.html

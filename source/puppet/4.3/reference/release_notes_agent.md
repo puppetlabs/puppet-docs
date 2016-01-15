@@ -4,8 +4,8 @@ title: "Puppet Agent Release Notes"
 canonical: "/puppet/latest/reference/release_notes_agent.html"
 ---
 
-[Puppet 4.3.0]: /puppet/4.3/reference/release_notes.html#puppet-430
-[Puppet 4.3.1]: /puppet/4.3/reference/release_notes.html#puppet-431
+[Puppet 4.3.0]: ./release_notes.html#puppet-430
+[Puppet 4.3.1]: ./release_notes.html#puppet-431
 
 [Facter 3.1.2]: /facter/3.1/release_notes.html#facter-312
 [Facter 3.1.3]: /facter/3.1/release_notes.html#facter-313
@@ -28,7 +28,7 @@ The `puppet-agent` package's version numbers use the format X.Y.Z, where:
 
 The `puppet-agent` package installs Puppet 4. Also read the [Puppet 4.0 release notes](/puppet/4.0/reference/release_notes.html), since they cover any breaking changes since Puppet 3.8.
 
-Also of interest: [About Agent](/puppet/4.3/reference/about_agent.html) and the [Puppet 4.3 release notes](/puppet/4.3/reference/release_notes.html).
+Also of interest: [About Agent](./about_agent.html) and the [Puppet 4.3 release notes](./release_notes.html).
 
 ## Puppet Agent 1.3.2
 

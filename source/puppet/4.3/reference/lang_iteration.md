@@ -6,12 +6,12 @@ canonical: "/puppet/latest/reference/lang_iteration.html"
 
 [functions]: ./lang_functions.html
 [lambdas]: ./lang_lambdas.html
-[each]: /puppet/4.3/reference/function.html#each
-[slice]: /puppet/4.3/reference/function.html#slice
-[filter]: /puppet/4.3/reference/function.html#filter
-[map]: /puppet/4.3/reference/function.html#map
-[reduce]: /puppet/4.3/reference/function.html#reduce
-[with]: /puppet/4.3/reference/function.html#with
+[each]: ./function.html#each
+[slice]: ./function.html#slice
+[filter]: ./function.html#filter
+[map]: ./function.html#map
+[reduce]: ./function.html#reduce
+[with]: ./function.html#with
 [array]: ./lang_data_array.html
 [hash]: ./lang_data_hash.html
 [defined types]: ./lang_defined_types

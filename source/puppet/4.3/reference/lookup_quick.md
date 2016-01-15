@@ -4,8 +4,8 @@ title: "Puppet Lookup: Quick Reference for Hiera Users"
 canonical: "/puppet/latest/reference/lookup_quick.html"
 ---
 
-[lookup_function]: /puppet/4.3/reference/function.html#lookup
-[lookup_man]: /puppet/4.3/reference/man/lookup.html
+[lookup_function]: ./function.html#lookup
+[lookup_man]: ./man/lookup.html
 [auto_params]: ./lang_classes.html#include-like-behavior
 [hiera_config]: /hiera/3.0/configuring.html
 [environment.conf]: ./config_file_environment.html

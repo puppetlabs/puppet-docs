@@ -10,7 +10,7 @@ canonical: "/puppet/latest/reference/upgrade_major_server.html"
 [puppet.conf]: ./config_file_main.html
 [Puppet Server compatibility documentation]: /puppetserver/2.2/compatibility_with_puppet_agent.html
 [main manifest]: ./dirs_manifest.html
-[default_manifest]: /puppet/4.3/reference/configuration.html#defaultmanifest
+[default_manifest]: ./configuration.html#defaultmanifest
 [retrieve and apply a catalog]: /puppet/latest/reference/man/agent.html#USAGE-NOTES
 [hiera.yaml]: /hiera/latest/configuring.html
 [Hiera]: /hiera/

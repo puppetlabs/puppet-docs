@@ -5,7 +5,7 @@ canonical: "/puppet/latest/reference/lang_exported.html"
 ---
 
 [resources]: ./lang_resources.html
-[nagios_service]: /puppet/4.3/reference/type.html#nagiosservice
+[nagios_service]: ./type.html#nagiosservice
 [concat]: http://forge.puppetlabs.com/ripienaar/concat
 [title]: ./lang_resources.html#title
 [namevar]: ./lang_resources.html#namenamevar
