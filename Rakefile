@@ -168,7 +168,6 @@ task :generate do
   system("mkdir #{output_dir}/references")
   system("bundle exec jekyll build --source #{source_dir} --destination #{output_dir}")
 
-  Rake::Task['references:symlink'].invoke
   Rake::Task['symlink_latest_versions'].invoke
 
   Rake::Task['externalsources:clean'].invoke # The opposite of externalsources:link. Delete all symlinks in the source.
