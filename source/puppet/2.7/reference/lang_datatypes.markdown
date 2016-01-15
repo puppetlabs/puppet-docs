@@ -9,7 +9,7 @@ canonical: "/puppet/latest/reference/lang_datatypes.html"
 [conditional]: ./lang_conditional.html
 [node]: ./lang_node_definitions.html
 [attribute]: ./lang_resources.html#syntax
-[regsubst]: /puppet/2.7/reference/function.html#regsubst
+[regsubst]: ./function.html#regsubst
 [function]: ./lang_functions.html
 [variables]: ./lang_variables.html
 [expression]: ./lang_expressions.html

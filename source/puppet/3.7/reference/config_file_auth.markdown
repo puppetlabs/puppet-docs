@@ -4,7 +4,7 @@ title: "Config Files: auth.conf"
 canonical: "/puppet/latest/reference/config_file_auth.html"
 ---
 
-[rest_authconfig]: /puppet/3.7/reference/configuration.html#restauthconfig
+[rest_authconfig]: ./configuration.html#restauthconfig
 
 
 Access to Puppet's HTTPS API is configured in `auth.conf`.

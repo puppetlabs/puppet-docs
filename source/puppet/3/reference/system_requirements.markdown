@@ -4,7 +4,7 @@ title: "Puppet 3 System Requirements"
 canonical: "/puppet/latest/reference/system_requirements.html"
 ---
 
-> To install Puppet 3, see [the Puppet installation guide](http://docs.puppet.com/puppet/3.8/reference/pre_install.html).
+> To install Puppet 3, see [the Puppet installation guide](http://docs.puppet.com./pre_install.html).
 
 Basic Requirements
 -----

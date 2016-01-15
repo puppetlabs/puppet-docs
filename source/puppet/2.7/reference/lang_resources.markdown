@@ -10,7 +10,7 @@ canonical: "/puppet/latest/reference/lang_resources.html"
 [scope]: ./lang_scope.html
 [report]: /guides/reporting.html
 [append_attributes]: ./lang_classes.html#appending-to-resource-attributes
-[types]: /puppet/2.7/reference/type.html
+[types]: ./type.html
 [bareword]: ./lang_datatypes.html#bare-words
 [string]: ./lang_datatypes.html#strings
 [array]: ./lang_datatypes.html#arrays

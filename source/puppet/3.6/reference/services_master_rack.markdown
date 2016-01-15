@@ -25,7 +25,7 @@ This is the recommended way of running the puppet master service.
 
 This page describes the generic requirements and run environment for running under Rack; for practical configuration instructions, see [the guide to configuring a Passenger + Apache puppet master.][passenger_guide]
 
-For details about invoking the puppet master command, see [the puppet master man page](/puppet/3.6/reference/man/master.html).
+For details about invoking the puppet master command, see [the puppet master man page](./man/master.html).
 
 ## Supported Platforms
 

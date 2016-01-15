@@ -4,8 +4,8 @@ title: "Future Parser: Data Types: Regular Expressions"
 canonical: "/puppet/latest/reference/lang_data_regexp.html"
 ---
 
-[regsubst]: /puppet/3.8/reference/function.html#regsubst
-[match]: /puppet/3.8/reference/function.html#match
+[regsubst]: ./function.html#regsubst
+[match]: ./function.html#match
 [ruby_regexp]: http://ruby-doc.org/core/Regexp.html
 [conditional]: ./future_lang_conditional.html
 [node]: ./future_lang_node_definitions.html

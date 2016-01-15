@@ -7,7 +7,7 @@ canonical: "/puppet/latest/reference/lang_virtual.html"
 [resources]: ./lang_resources.html
 [references]: ./lang_datatypes.html#resource-references
 [classes]: ./lang_classes.html
-[realize_function]: /puppet/2.7/reference/function.html#realize
+[realize_function]: ./function.html#realize
 [include]: ./lang_classes.html#declaring-a-class-with-include
 [collectors]: ./lang_collectors.html
 [search_expression]: ./lang_collectors.html#search-expressions

@@ -23,7 +23,7 @@ Before upgrading from Puppet 3 to 4, make sure all your Puppet components are ru
   - **This is a big change!** Make sure you can successfully switch to Puppet Server 1.1.x before tackling the Puppet 4 upgrade.
   - Check out [our overview](/puppetserver/latest/puppetserver_vs_passenger.html) of what sets Puppet Server apart from a Rack Puppet master.
   - Puppet Server uses 2GB of memory by default. Depending on your server's specs, you might have to adjust [how much memory you allocate](/puppetserver/1.1/install_from_packages.html#memory-allocation) to Puppet Server before you launch it.
-  - If you run multiple Puppet masters with a single certificate authority, you'll need to edit Puppet Server's `bootstrap.cfg` to [disable the CA service](/puppetserver/1.1/external_ca_configuration.html#disabling-the-internal-puppet-ca-service). You'll also need to ensure you're routing traffic to the appropriate node with a load balancer or the agents' [`ca_server`](/puppet/4.2/reference/configuration.html#caserver) setting.
+  - If you run multiple Puppet masters with a single certificate authority, you'll need to edit Puppet Server's `bootstrap.cfg` to [disable the CA service](/puppetserver/1.1/external_ca_configuration.html#disabling-the-internal-puppet-ca-service). You'll also need to ensure you're routing traffic to the appropriate node with a load balancer or the agents' [`ca_server`](./configuration.html#caserver) setting.
 - Update all Puppet agents to the latest 3.8.x release.
 - If you use PuppetDB, [update it](/puppetdb/2.3/upgrade.html) to the latest 2.3.x release, then [update the PuppetDB terminus plugins](/puppetdb/2.3/upgrade.html#upgrading-the-terminus-plugins) on your Puppet Server node to the same release.
     - Puppet Server 1.x and 2.x look for the PuppetDB termini in two different places. The 2.3.x `puppetdb-terminus` package installs the termini in both of them, so the server will still be able to find the plugins after you upgrade.
@@ -81,7 +81,7 @@ Run Puppet for a while with the future parser enabled to ensure you've got any k
 
 ## Read the Puppet 4.x Release Notes
 
-Puppet 4.0 introduces several breaking changes, some of which didn't go through a formal deprecation period---for example, we moved the [tagmail report handler](/puppet/3.8/reference/lang_tags.html#sending-tagmail-reports) out of Puppet's core and into an optional [module](https://forge.puppetlabs.com/puppetlabs/tagmail). Read the release notes for [4.0](/puppet/4.0/reference/release_notes.html), [4.1](/puppet/4.1/reference/release_notes.html), and [4.2](/puppet/4.2/reference/release_notes.html) and prepare accordingly.
+Puppet 4.0 introduces several breaking changes, some of which didn't go through a formal deprecation period---for example, we moved the [tagmail report handler](/puppet/3.8/reference/lang_tags.html#sending-tagmail-reports) out of Puppet's core and into an optional [module](https://forge.puppetlabs.com/puppetlabs/tagmail). Read the release notes for [4.0](/puppet/4.0/reference/release_notes.html), [4.1](/puppet/4.1/reference/release_notes.html), and [4.2](./release_notes.html) and prepare accordingly.
 
 ## You're Ready!
 

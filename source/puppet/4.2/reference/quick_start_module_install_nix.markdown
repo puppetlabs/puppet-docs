@@ -7,7 +7,7 @@ canonical: "/puppet/latest/quick_start_module_install_nix.html"
 
 ## Overview
 
-In this guide, you'll install the puppetlabs-apache module, a Puppet-supported module. Modules contain [classes](/puppet/4.2/reference/lang_classes.html), which are named chunks of Puppet code and are the primary means by which Puppet configures and manages nodes.  
+In this guide, you'll install the puppetlabs-apache module, a Puppet-supported module. Modules contain [classes](./lang_classes.html), which are named chunks of Puppet code and are the primary means by which Puppet configures and manages nodes.  
 In the [Module Writing Basics for Linux Quick Start Guide](./quick_writing_nix.html) you'll learn more about modules, including customizing and writing your own modules on *nix platforms.
 
 The process for installing a module is the same on both Windows and *nix operating systems.

@@ -5,7 +5,7 @@ canonical: "/puppet/latest/reference/config_file_autosign.html"
 ---
 
 [autosigning]: ./ssl_autosign.html
-[autosign]: /puppet/3.8/reference/configuration.html#autosign
+[autosign]: ./configuration.html#autosign
 
 The `autosign.conf` file can allow certain certificate requests to be automatically signed. It is only valid on the CA Puppet master server; a Puppet master that is not serving as a CA will not consult `autosign.conf`.
 

@@ -4,7 +4,7 @@ layout: default
 canonical: "/puppet/latest/reference/lang_functions.html"
 ---
 
-[func_ref]: /puppet/3.8/reference/function.html
+[func_ref]: ./function.html
 [forge]: https://forge.puppetlabs.com
 [custom]: /guides/custom_functions.html
 [stdlib]: https://forge.puppetlabs.com/puppetlabs/stdlib
@@ -14,10 +14,10 @@ canonical: "/puppet/latest/reference/lang_functions.html"
 [catalog]: ./future_lang_summary.html#compilation-and-catalogs
 [lambda]: ./future_lang_lambdas.html
 [expression]: ./future_lang_expressions.html
-[template]: /puppet/3.8/reference/function.html#template
+[template]: ./function.html#template
 [str2bool]: https://forge.puppetlabs.com/puppetlabs/stdlib#str2bool
-[include]: /puppet/3.8/reference/function.html#include
-[each]: /puppet/3.8/reference/function.html#each
+[include]: ./function.html#include
+[each]: ./function.html#each
 
 
 Functions are plugins written in Ruby, which you can call during [compilation][catalog]. A call to any function is an [expression][] that resolves to a value.
@@ -200,21 +200,21 @@ The built-in statement functions are:
 
 ### Catalog Statements
 
-* [`include`](/puppet/3.8/reference/function.html#include) --- includes given classes in catalog
-* [`require`](/puppet/3.8/reference/function.html#require) --- includes given classes in the catalog and adds them as a dependency of the current class or defined resource
-* [`contain`](/puppet/3.8/reference/function.html#contain) --- includes given classes in the catalog and contains them in the current class
-* [`realize`](/puppet/3.8/reference/function.html#realize) --- makes a virtual resource real
-* [`tag`](/puppet/3.8/reference/function.html#tag) --- adds the specified tag(s) to the containing class or defined resource
+* [`include`](./function.html#include) --- includes given classes in catalog
+* [`require`](./function.html#require) --- includes given classes in the catalog and adds them as a dependency of the current class or defined resource
+* [`contain`](./function.html#contain) --- includes given classes in the catalog and contains them in the current class
+* [`realize`](./function.html#realize) --- makes a virtual resource real
+* [`tag`](./function.html#tag) --- adds the specified tag(s) to the containing class or defined resource
 
 ### Logging Statements
 
-* [`debug`](/puppet/3.8/reference/function.html#debug) --- logs message at debug level
-* [`info`](/puppet/3.8/reference/function.html#info) --- logs message at info level
-* [`notice`](/puppet/3.8/reference/function.html#notice) --- logs message at notice level
-* [`warning`](/puppet/3.8/reference/function.html#warning) --- logs message at warning level
+* [`debug`](./function.html#debug) --- logs message at debug level
+* [`info`](./function.html#info) --- logs message at info level
+* [`notice`](./function.html#notice) --- logs message at notice level
+* [`warning`](./function.html#warning) --- logs message at warning level
 
 Although there are a few additional logging functions, they cannot be called as statements.
 
 ### Failure Statements
 
-* [`fail`](/puppet/3.8/reference/function.html#fail) --- logs error message and aborts compilation
+* [`fail`](./function.html#fail) --- logs error message and aborts compilation

@@ -4,7 +4,7 @@ title: "Future Parser: Introduction to the Future Parser"
 canonical: "/puppet/latest/reference/experiments_future.html"
 ---
 
-[parser_setting]: /puppet/3.8/reference/configuration.html#parser
+[parser_setting]: ./configuration.html#parser
 [boolean_convert_old]: ./lang_datatypes.html#automatic-conversion-to-boolean
 [boolean_convert]: ./future_lang_data_boolean.html#automatic-conversion-to-boolean
 [puppet.conf]: ./config_file_main.html
@@ -18,9 +18,9 @@ canonical: "/puppet/latest/reference/experiments_future.html"
 [comparison operators]: ./future_lang_expressions.html#comparison-operators
 [fact]: ./future_lang_facts_and_builtin_vars.html
 [strings]: ./future_lang_data_string.html
-[stringify_facts]: /puppet/3.8/reference/configuration.html#stringifyfacts
+[stringify_facts]: ./configuration.html#stringifyfacts
 [str2bool]: https://forge.puppetlabs.com/puppetlabs/stdlib#str2bool
-[file_mode]: /puppet/3.8/reference/type.html#file-attribute-mode
+[file_mode]: ./type.html#file-attribute-mode
 [integer_bases]: ./future_lang_data_number.html#octal-and-hexadecimal-integers
 
 Over the course of the 3.x series, Puppet has included work-in-progress releases of a rewritten Puppet language, which can be enabled with a setting. This revised language includes significant breaking changes, major additions, and a new underlying implementation.

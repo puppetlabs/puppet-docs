@@ -4,7 +4,7 @@ title: "Directories: Config Directory (confdir)"
 canonical: "/puppet/latest/reference/dirs_confdir.html"
 ---
 
-[listen]: /puppet/4.1/reference/configuration.html#listen
+[listen]: ./configuration.html#listen
 
 Puppet's `confdir` is the main directory for Puppet's configuration. It contains config files and SSL data.
 

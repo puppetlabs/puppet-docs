@@ -8,8 +8,8 @@ title: "Directories: The Modulepath (Default Config)"
 [directory environments]: ./environments.html
 [env_modules]: ./environments.html#setting-up-environments-on-a-puppet-master
 [confdir]: ./dirs_confdir.html
-[basemodulepath_setting]: /puppet/3.8/reference/configuration.html#basemodulepath
-[modulepath_setting]: /puppet/3.8/reference/configuration.html#modulepath
+[basemodulepath_setting]: ./configuration.html#basemodulepath
+[modulepath_setting]: ./configuration.html#modulepath
 [environment config sections]: ./environments_classic.html#environment-config-sections
 [dynamic environments]: ./environments_classic.html#dynamic-environments
 [config_print]: ./config_print.html

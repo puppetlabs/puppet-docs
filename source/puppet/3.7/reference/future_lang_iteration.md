@@ -6,12 +6,12 @@ canonical: "/puppet/latest/reference/lang_iteration.html"
 
 [functions]: ./future_lang_functions.html
 [lambdas]: ./future_lang_lambdas.html
-[each]: /puppet/3.7/reference/function.html#each
-[slice]: /puppet/3.7/reference/function.html#slice
-[filter]: /puppet/3.7/reference/function.html#filter
-[map]: /puppet/3.7/reference/function.html#map
-[reduce]: /puppet/3.7/reference/function.html#reduce
-[with]: /puppet/3.7/reference/function.html#with
+[each]: ./function.html#each
+[slice]: ./function.html#slice
+[filter]: ./function.html#filter
+[map]: ./function.html#map
+[reduce]: ./function.html#reduce
+[with]: ./function.html#with
 [array]: ./future_lang_data_array.html
 [hash]: ./future_lang_data_hash.html
 [defined types]: ./future_lang_defined_types

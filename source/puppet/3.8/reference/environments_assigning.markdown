@@ -7,7 +7,7 @@ title: "Assigning Nodes to Environments"
 [node terminus]: ./subsystem_catalog_compilation.html#step-1-retrieve-the-node-object
 [enc_environment]: /guides/external_nodes.html#environment
 [puppet.conf]: ./config_file_main.html
-[env_setting]: /puppet/3.8/reference/configuration.html#environment
+[env_setting]: ./configuration.html#environment
 
 
 By default, all nodes are assigned to a default environment named `production`.

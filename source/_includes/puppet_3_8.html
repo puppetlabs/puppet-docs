@@ -1,5 +1,5 @@
 {% capture server_version %}1.1{% endcapture %}
-{% capture puppet_dir %}/puppet/3.8/reference{% endcapture %}
+{% capture puppet_dir %}{{ puppet_dir }}{% endcapture %}
 
 <h3 id="puppet-3-8-reference-manual">Puppet 3.8 Reference Manual</h3>
 
@@ -179,7 +179,7 @@
     </ul>
   </li>
 
-  <li><a href="/puppet/3.8/reference/type.html">The Resource Type Reference</a></li>
+  <li><a href="{{ puppet_dir }}/type.html">The Resource Type Reference</a></li>
 
   <li><strong>Resource Types: Tips and Examples</strong>
     <ul>
@@ -195,13 +195,13 @@
 
   <li><strong>Misc. References (Settings, Functions, HTTP, etc.)</strong>
     <ul>
-      <li><a href="/puppet/3.8/reference/configuration.html">Settings (Configuration Reference)</a></li>
-      <li><a href="/puppet/3.8/reference/function.html">Functions</a></li>
-      <li><a href="/puppet/3.8/reference/metaparameter.html">Metaparameters</a></li>
-      <li><a href="/puppet/3.8/reference/report.html">Report Handlers</a></li>
-      <li><a href="/puppet/3.8/reference/indirection.html">Indirections and Termini</a></li>
-      <li><a href="/puppet/3.8/reference/developer/frames.html">Ruby API for Developing Extensions</a></li>
-      <li><a href="/puppet/3.8/reference/developer/file.http_api_index.html">Puppet's HTTP API</a></li>
+      <li><a href="{{ puppet_dir }}/configuration.html">Settings (Configuration Reference)</a></li>
+      <li><a href="{{ puppet_dir }}/function.html">Functions</a></li>
+      <li><a href="{{ puppet_dir }}/metaparameter.html">Metaparameters</a></li>
+      <li><a href="{{ puppet_dir }}/report.html">Report Handlers</a></li>
+      <li><a href="{{ puppet_dir }}/indirection.html">Indirections and Termini</a></li>
+      <li><a href="{{ puppet_dir }}/yard/frames.html">Ruby API for Developing Extensions</a></li>
+      <li><a href="{{ puppet_dir }}/yard/file.http_api_index.html">Puppet's HTTP API</a></li>
     </ul>
   </li>
   <li><strong>Important Directories and Files</strong>
@@ -231,7 +231,7 @@
       <li><a href="{{ puppet_dir }}/config_print.html">Checking Values of Settings</a></li>
       <li><a href="{{ puppet_dir }}/config_set.html">Editing Settings on the Command Line</a></li>
       <li><a href="{{ puppet_dir }}/config_important_settings.html">Short List of Important Settings</a></li>
-      <li><a href="/puppet/3.8/reference/configuration.html">Complete List of Settings (Configuration Reference)</a></li>
+      <li><a href="{{ puppet_dir }}/configuration.html">Complete List of Settings (Configuration Reference)</a></li>
       <li><a href="/puppetserver/{{ server_version }}/puppet_conf_setting_diffs.html">Settings that Differ Under Puppet Server</a></li>
       <li><strong>Config Files</strong>
         <ul>

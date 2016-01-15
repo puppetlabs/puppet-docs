@@ -6,7 +6,7 @@ canonical: "/puppet/latest/reference/lang_summary.html"
 
 
 [autoload]: ./lang_namespaces.html#autoloader-behavior
-[config]: /puppet/3.6/reference/config_file_main.html
+[config]: ./config_file_main.html
 [usecacheonfailure]: /puppet/latest/reference/configuration.html#usecacheonfailure
 [fileserve]: ./modules_fundamentals.html#files
 [sitepp]: /references/glossary.html#site-manifest
@@ -27,7 +27,7 @@ canonical: "/puppet/latest/reference/lang_summary.html"
 [declared]: /references/glossary.html#declare
 [string_newline]: ./lang_datatypes.html#line-breaks
 [node]: ./lang_node_definitions.html
-[ordering option]: /puppet/3.4/reference/configuration.html#ordering
+[ordering option]: ./configuration.html#ordering
 
 [hiera]: https://github.com/puppetlabs/hiera
 

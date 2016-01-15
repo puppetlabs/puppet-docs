@@ -6,20 +6,20 @@ title: "Installing Puppet: Post-Install Tasks"
 [peinstall]: /pe/latest/install_basic.html
 [hiera_include]: /hiera/latest/puppet.html#assigning-classes-to-nodes-with-hiera-hierainclude
 [hiera]: /hiera/latest/
-[puppet.conf]: /puppet/3.8/reference/config_file_main.html
-[dns_alt_names]: /puppet/3.8/reference/configuration.html#dnsaltnames
-[about_settings]: /puppet/3.8/reference/config_about_settings.html
-[manifest]: /puppet/3.8/reference/dirs_manifest.html
-[install_modules]: /puppet/3.8/reference/modules_installing.html
-[directory environments]: /puppet/3.8/reference/environments.html
-[modulepath]: /puppet/3.8/reference/dirs_modulepath.html
+[puppet.conf]: ./config_file_main.html
+[dns_alt_names]: ./configuration.html#dnsaltnames
+[about_settings]: ./config_about_settings.html
+[manifest]: ./dirs_manifest.html
+[install_modules]: ./modules_installing.html
+[directory environments]: ./environments.html
+[modulepath]: ./dirs_modulepath.html
 [rack]: http://rack.github.io/
 [multi_masters]: /guides/scaling_multiple_masters.html
-[puppet classes]: /puppet/3.8/reference/lang_classes.html
-[modules_fundamentals]: /puppet/3.8/reference/modules_fundamentals.html
-[node definitions]: /puppet/3.8/reference/lang_node_definitions.html
+[puppet classes]: ./lang_classes.html
+[modules_fundamentals]: ./modules_fundamentals.html
+[node definitions]: ./lang_node_definitions.html
 [external node classifier]: /guides/external_nodes.html
-[ssldir]: /puppet/3.8/reference/dirs_ssldir.html
+[ssldir]: ./dirs_ssldir.html
 [install-latest]: /puppet/latest/reference/install_pre.html
 
 > **Note:** This document covers open source releases of Puppet version 3.8 and lower. You might also want instructions for [installing Puppet Enterprise][peinstall] or [installing Puppet 4.0 or newer.][install-latest]
@@ -67,7 +67,7 @@ You have two main options:
 
 You'll want to set a few settings in [puppet.conf][] before putting the new master to work. See [the list of master-related settings][master_settings] for details. You may also want to read about [how Puppet loads settings][about_settings] and [the syntax of the puppet.conf file][puppet.conf].
 
-[master_settings]: /puppet/3.8/reference/config_important_settings.html#settings-for-puppet-master-servers
+[master_settings]: ./config_important_settings.html#settings-for-puppet-master-servers
 
 ### Put Your Puppet Modules and Manifests in Place
 
@@ -126,7 +126,7 @@ You will probably need to configure some settings in each agent's [puppet.conf][
 
 See [the list of agent-related settings][agent_settings] for details. You may also want to read about [how Puppet loads settings][about_settings] and [the syntax of the puppet.conf file][puppet.conf].
 
-[agent_settings]: /puppet/3.8/reference/config_important_settings.html#settings-for-agents-all-nodes
+[agent_settings]: ./config_important_settings.html#settings-for-agents-all-nodes
 
 
 ### Start the Puppet Agent Service

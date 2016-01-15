@@ -15,7 +15,7 @@ canonical: "/puppet/latest/reference/lang_tags.html"
 [reports]: /guides/reporting.html#make-masters-process-reports
 [report_format_3]: http://projects.puppetlabs.com/projects/puppet/wiki/Report_Format_3
 [tagmail]: /puppet/latest/reference/report.html#tagmail
-[tagmail_conf]: /puppet/3.6/reference/config_file_tagmail.html
+[tagmail_conf]: ./config_file_tagmail.html
 [tagmeta]: /puppet/latest/reference/metaparameter.html#tag
 [tagfunction]: /puppet/latest/reference/function.html#tag
 [tags_setting]: /puppet/latest/reference/configuration.html#tags

@@ -3,11 +3,11 @@ layout: default
 title: "Resource Tips and Examples: User and Group on Windows"
 ---
 
-[user]: /puppet/4.1/reference/type.html#user
-[groups]: /puppet/4.1/reference/type.html#user-attribute-groups
+[user]: ./type.html#user
+[groups]: ./type.html#user-attribute-groups
 [auth_membership_user]: /puppet/latest/reference/type.html#user-attribute-auth_membership
-[group]: /puppet/4.1/reference/type.html#group
-[members]: /puppet/4.1/reference/type.html#group-attribute-members
+[group]: ./type.html#group
+[members]: ./type.html#group-attribute-members
 [auth_membership_group]: /puppet/latest/reference/type.html#group-attribute-auth_membership
 [relationships]: /puppet/4.1.latest/reference/lang_relationships.html
 
@@ -41,22 +41,22 @@ Similarly, when managing a `group`, Puppet will make sure all of the `members` l
 
 When managing Windows [**user**][user] accounts, you can use the following attributes:
 
-* [`name`](/puppet/4.1/reference/type.html#user-attribute-name)
-* [`ensure`](/puppet/4.1/reference/type.html#user-attribute-ensure)
-* [`comment`](/puppet/4.1/reference/type.html#user-attribute-comment)
-* [`groups`](/puppet/4.1/reference/type.html#user-attribute-groups) --- note that you can't use the `gid` attribute.
-* [`home`](/puppet/4.1/reference/type.html#user-attribute-home)
-* [`managehome`](/puppet/4.1/reference/type.html#user-attribute-managehome)
-* [`password`](/puppet/4.1/reference/type.html#user-attribute-password) --- note that passwords can only be specified in cleartext, since Windows has no API for setting the password hash.
+* [`name`](./type.html#user-attribute-name)
+* [`ensure`](./type.html#user-attribute-ensure)
+* [`comment`](./type.html#user-attribute-comment)
+* [`groups`](./type.html#user-attribute-groups) --- note that you can't use the `gid` attribute.
+* [`home`](./type.html#user-attribute-home)
+* [`managehome`](./type.html#user-attribute-managehome)
+* [`password`](./type.html#user-attribute-password) --- note that passwords can only be specified in cleartext, since Windows has no API for setting the password hash.
 *[`auth_membership`][auth_membership_user]
 
 Additionally, the `uid` attribute is available as a read-only property when inspecting a user with `puppet resource user <NAME>`. Its value will be the user's SID (see below).
 
 When managing Windows [**group**][group] accounts, you can use the following attributes:
 
-* [`name`](/puppet/4.1/reference/type.html#group-attribute-name)
-* [`ensure`](/puppet/4.1/reference/type.html#group-attribute-ensure)
-* [`members`](/puppet/4.1/reference/type.html#group-attribute-members)
+* [`name`](./type.html#group-attribute-name)
+* [`ensure`](./type.html#group-attribute-ensure)
+* [`members`](./type.html#group-attribute-members)
 * [`auth_membership`][auth_membership_group]
 
 Additionally, the `gid` attribute is available as a read-only property when inspecting a group with `puppet resource group <NAME>`. Its value will be the group's SID (see below).

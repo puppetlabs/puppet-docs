@@ -26,7 +26,7 @@ canonical: "/puppet/latest/reference/lang_summary.html"
 [declared]: /references/glossary.html#declare
 [string_newline]: ./lang_datatypes.html#line-breaks
 [node]: ./lang_node_definitions.html
-[ordering]: /puppet/3.6/reference/configuration.html#ordering
+[ordering]: ./configuration.html#ordering
 [hiera]: /hiera/latest
 [compilation]: ./subsystem_catalog_compilation.html
 

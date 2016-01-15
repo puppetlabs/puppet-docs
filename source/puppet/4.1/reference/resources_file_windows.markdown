@@ -3,12 +3,12 @@ layout: default
 title: "Resource Tips and Examples: File on Windows"
 ---
 
-[file]: /puppet/4.1/reference/type.html#file
+[file]: ./type.html#file
 [relationships]: /puppet/latest/reference/lang_relationships.html
 [acl_module]: https://forge.puppetlabs.com/puppetlabs/acl
-[mode]: /puppet/4.1/reference/type.html#file-attribute-mode
+[mode]: ./type.html#file-attribute-mode
 
-Puppet's built-in [`file`][file] resource type can manage files and directories on Windows, including ownership, group, permissions, and content. Symbolic links are supported in Puppet 3.4.0 / PE 3.2 and later on Windows 2008 / Vista and later; for details, [see the notes in the resource type reference under `file`'s `ensure` attribute](/puppet/4.1/reference/type.html#file-attribute-ensure).
+Puppet's built-in [`file`][file] resource type can manage files and directories on Windows, including ownership, group, permissions, and content. Symbolic links are supported in Puppet 3.4.0 / PE 3.2 and later on Windows 2008 / Vista and later; for details, [see the notes in the resource type reference under `file`'s `ensure` attribute](./type.html#file-attribute-ensure).
 
 
 ~~~ ruby
@@ -62,7 +62,7 @@ This module provides an optional `acl` resource type that manages permissions in
 
 ### How \*nix Modes Map to Windows Permissions
 
-\*nix permissions are expressed as either a quoted octal number, e.g. "755", or a string of symbolic modes, e.g. "u=rwx,g=rx,o=rx". See [the reference for the `file` type's `mode` attribute](/puppet/4.1/reference/type.html#file-attribute-mode) for more details about the syntax.
+\*nix permissions are expressed as either a quoted octal number, e.g. "755", or a string of symbolic modes, e.g. "u=rwx,g=rx,o=rx". See [the reference for the `file` type's `mode` attribute](./type.html#file-attribute-mode) for more details about the syntax.
 
 These mode expressions generally manage three kinds of permission (read, write, execute) for three kinds of user (owner, group, other). They translate to Windows permissions as follows:
 
@@ -91,7 +91,7 @@ Windows usually uses CRLF line endings instead of \*nix's LF line endings. In mo
 * If a file resource uses the `content` or `source` attributes, Puppet will write the file in "binary" mode, using whatever line endings are present in the content.
     * If the manifest, template, or source file is saved with CRLF line endings, Puppet will use those endings in the destination file.
     * If the manifest, template, or source file is saved with LF line endings, you can use the `\r\n` escape sequence to create literal CRLFs.
-* Non-`file` resource types that make partial edits to a system file (most notably the [`host`](/puppet/4.1/reference/type.html#host) resource type, which manages the `%windir%\system32\drivers\etc\hosts` file) manage their files in text mode, and will automatically translate between Windows and \*nix line endings.
+* Non-`file` resource types that make partial edits to a system file (most notably the [`host`](./type.html#host) resource type, which manages the `%windir%\system32\drivers\etc\hosts` file) manage their files in text mode, and will automatically translate between Windows and \*nix line endings.
 
     > Note: When writing your own resource types, you can get this same behavior by using the `flat` filetype.
 

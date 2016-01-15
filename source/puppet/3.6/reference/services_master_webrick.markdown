@@ -13,7 +13,7 @@ Puppet has the built-in capability to run a complete puppet master server using 
 
 The WEBrick puppet master server is not capable of handling production-level numbers of agent nodes. Since it can't handle concurrent connections, it will be quickly overwhelmed by as few as 10 agents. You should never run a WEBrick puppet master in production, and should always configure a [Rack puppet master server][rack_master] instead.
 
-For details about invoking the puppet master command, see [the puppet master man page](/puppet/3.6/reference/man/master.html).
+For details about invoking the puppet master command, see [the puppet master man page](./man/master.html).
 
 ## Supported Platforms
 
@@ -55,7 +55,7 @@ The port can be changed by changing [the `masterport` setting](/puppet/latest/re
 
 When running under WEBrick, puppet master's logging is split.
 
-WEBrick will log all HTTPS requests and errors to the file specified by [the `masterhttplog` setting](/puppet/3.6/reference/configuration.html#masterhttplog).
+WEBrick will log all HTTPS requests and errors to the file specified by [the `masterhttplog` setting](./configuration.html#masterhttplog).
 
 The puppet master application itself logs its activity to syslog. This is where things like compilation errors and deprecation warnings go. Your syslog configuration dictates where these messages will be saved, but the default location is `/var/log/messages` on Linux, `/var/log/system.log` on Mac OS X, and `/var/adm/messages` on Solaris.
 

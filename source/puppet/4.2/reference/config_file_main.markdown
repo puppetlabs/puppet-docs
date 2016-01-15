@@ -4,16 +4,16 @@ title: "Config Files: The Main Config File (puppet.conf)"
 canonical: "/puppet/latest/reference/config_file_main.html"
 ---
 
-[conf_ref]: /puppet/4.2/reference/configuration.html
+[conf_ref]: ./configuration.html
 [about]: ./config_about_settings.html
 [short]: ./config_important_settings.html
-[config]: /puppet/4.2/reference/configuration.html#config
-[subcommands]: /puppet/4.2/reference/man/
-[reports]: /puppet/4.2/reference/configuration.html#reports
-[modulepath]: /puppet/4.2/reference/configuration.html#modulepath
-[ssldir]: /puppet/4.2/reference/configuration.html#ssldir
+[config]: ./configuration.html#config
+[subcommands]: ./man/
+[reports]: ./configuration.html#reports
+[modulepath]: ./configuration.html#modulepath
+[ssldir]: ./configuration.html#ssldir
 [dir_environments]: ./environments.html
-[environmentpath]: /puppet/4.2/reference/configuration.html#environmentpath
+[environmentpath]: ./configuration.html#environmentpath
 [puppetserver_diff]: /puppetserver/2.1/puppet_conf_setting_diffs.html
 
 The `puppet.conf` file is Puppet's main config file. It configures all of the Puppet commands and services, including Puppet agent, Puppet master, Puppet apply, and Puppet cert. Nearly all of the settings listed in the [configuration reference][conf_ref] can be set in puppet.conf.

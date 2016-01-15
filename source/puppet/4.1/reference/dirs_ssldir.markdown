@@ -5,33 +5,33 @@ canonical: "/puppet/latest/reference/dirs_ssldir.html"
 ---
 
 
-[ssldir]: /puppet/4.1/reference/configuration.html#ssldir
-[cadir]: /puppet/4.1/reference/configuration.html#cadir
-[cacrl]: /puppet/4.1/reference/configuration.html#cacrl
-[cacert]: /puppet/4.1/reference/configuration.html#cacert
-[cakey]: /puppet/4.1/reference/configuration.html#cakey
-[capub]: /puppet/4.1/reference/configuration.html#capub
-[cert_inventory]: /puppet/4.1/reference/configuration.html#certinventory
-[caprivatedir]: /puppet/4.1/reference/configuration.html#caprivatedir
-[capass]: /puppet/4.1/reference/configuration.html#capass
-[csrdir]: /puppet/4.1/reference/configuration.html#csrdir
-[serial]: /puppet/4.1/reference/configuration.html#serial
-[signeddir]: /puppet/4.1/reference/configuration.html#signeddir
-[requestdir]: /puppet/4.1/reference/configuration.html#requestdir
-[hostcsr]: /puppet/4.1/reference/configuration.html#hostcsr
-[certdir]: /puppet/4.1/reference/configuration.html#certdir
-[hostcert]: /puppet/4.1/reference/configuration.html#hostcert
-[localcacert]: /puppet/4.1/reference/configuration.html#localcacert
-[hostcrl]: /puppet/4.1/reference/configuration.html#hostcrl
-[privatedir]: /puppet/4.1/reference/configuration.html#privatedir
-[passfile]: /puppet/4.1/reference/configuration.html#passfile
-[privatekeydir]: /puppet/4.1/reference/configuration.html#privatekeydir
-[hostprivkey]: /puppet/4.1/reference/configuration.html#hostprivkey
-[publickeydir]: /puppet/4.1/reference/configuration.html#publickeydir
-[hostpubkey]: /puppet/4.1/reference/configuration.html#hostpubkey
+[ssldir]: ./configuration.html#ssldir
+[cadir]: ./configuration.html#cadir
+[cacrl]: ./configuration.html#cacrl
+[cacert]: ./configuration.html#cacert
+[cakey]: ./configuration.html#cakey
+[capub]: ./configuration.html#capub
+[cert_inventory]: ./configuration.html#certinventory
+[caprivatedir]: ./configuration.html#caprivatedir
+[capass]: ./configuration.html#capass
+[csrdir]: ./configuration.html#csrdir
+[serial]: ./configuration.html#serial
+[signeddir]: ./configuration.html#signeddir
+[requestdir]: ./configuration.html#requestdir
+[hostcsr]: ./configuration.html#hostcsr
+[certdir]: ./configuration.html#certdir
+[hostcert]: ./configuration.html#hostcert
+[localcacert]: ./configuration.html#localcacert
+[hostcrl]: ./configuration.html#hostcrl
+[privatedir]: ./configuration.html#privatedir
+[passfile]: ./configuration.html#passfile
+[privatekeydir]: ./configuration.html#privatekeydir
+[hostprivkey]: ./configuration.html#hostprivkey
+[publickeydir]: ./configuration.html#publickeydir
+[hostpubkey]: ./configuration.html#hostpubkey
 [vardir]: ./dirs_vardir.html
 [confdir]: ./dirs_confdir.html
-[certname]: /puppet/4.1/reference/configuration.html#certname
+[certname]: ./configuration.html#certname
 [print_settings]: ./config_print.html
 
 

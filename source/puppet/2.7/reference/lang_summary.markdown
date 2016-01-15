@@ -7,7 +7,7 @@ canonical: "/puppet/latest/reference/lang_summary.html"
 
 [autoload]: ./lang_namespaces.html#autoloader-behavior
 [config]: /puppet/3.6/reference/config_file_main.html
-[usecacheonfailure]: /puppet/2.7/reference/configuration.html#usecacheonfailure
+[usecacheonfailure]: ./configuration.html#usecacheonfailure
 [fileserve]: ./modules_fundamentals.html#files
 [sitepp]: /references/glossary.html#site-manifest
 [classes]: ./lang_classes.html
@@ -15,9 +15,9 @@ canonical: "/puppet/latest/reference/lang_summary.html"
 [resources]: ./lang_resources.html
 [chaining]: ./lang_relationships.html#chaining-arrows
 [modules]: ./modules_fundamentals.html
-[package]: /puppet/2.7/reference/type.html#package
-[file]: /puppet/2.7/reference/type.html#file
-[service]: /puppet/2.7/reference/type.html#service
+[package]: ./type.html#package
+[file]: ./type.html#file
+[service]: ./type.html#service
 [case]: ./lang_conditional.html#case-statements
 [fact]: ./lang_variables.html#facts-and-built-in-variables
 [variables]: ./lang_variables.html

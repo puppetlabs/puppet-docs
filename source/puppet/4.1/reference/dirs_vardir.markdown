@@ -5,7 +5,7 @@ canonical: "/puppet/latest/reference/dirs_vardir.html"
 ---
 
 [confdir]: ./dirs_confdir.html
-[config_ref]: /puppet/4.1/reference/configuration.html
+[config_ref]: ./configuration.html
 
 Puppet's cache directory, sometimes called `vardir`, contains **dynamic and/or growing data** that Puppet creates automatically in the course of its normal operations. Some of this data can be mined for interesting analysis, or to integrate other tools with Puppet; other parts are just infrastructure and should be ignored by most or all users.
 
@@ -74,36 +74,36 @@ The default layout of the vardir is as follows. Most of the files and directorie
 * [`templates` (`templatedir`)][templatedir] --- This directory generally shouldn't be used; templates should be stored in modules.
 * [`yaml` (`yamldir`)][yamldir]
 
-[bucketdir]: /puppet/4.1/reference/configuration.html#bucketdir
-[client_datadir]: /puppet/4.1/reference/configuration.html#clientdatadir
-[clientbucketdir]: /puppet/4.1/reference/configuration.html#clientbucketdir
-[clientyamldir]: /puppet/4.1/reference/configuration.html#clientyamldir
-[devicedir]: /puppet/4.1/reference/configuration.html#devicedir
-[factpath]: /puppet/4.1/reference/configuration.html#factpath
-[pluginfactdest]: /puppet/4.1/reference/configuration.html#pluginfactdest
-[libdir]: /puppet/4.1/reference/configuration.html#libdir
-[plugindest]: /puppet/4.1/reference/configuration.html#plugindest
-[module_working_dir]: /puppet/4.1/reference/configuration.html#moduleworkingdir
-[module_skeleton_dir]: /puppet/4.1/reference/configuration.html#moduleskeletondir
-[logdir]: /puppet/4.1/reference/configuration.html#logdir
-[httplog]: /puppet/4.1/reference/configuration.html#httplog
-[masterhttplog]: /puppet/4.1/reference/configuration.html#masterhttplog
-[masterlog]: /puppet/4.1/reference/configuration.html#masterlog
-[puppetdlog]: /puppet/4.1/reference/configuration.html#puppetdlog
-[reportdir]: /puppet/4.1/reference/configuration.html#reportdir
-[rrddir]: /puppet/4.1/reference/configuration.html#rrddir
-[rundir]: /puppet/4.1/reference/configuration.html#rundir
-[pidfile]: /puppet/4.1/reference/configuration.html#pidfile
-[serverdatadir]: /puppet/4.1/reference/configuration.html#serverdatadir
-[statedir]: /puppet/4.1/reference/configuration.html#statedir
-[agent_catalog_run_lockfile]: /puppet/4.1/reference/configuration.html#agentcatalogrunlockfile
-[agent_disabled_lockfile]: /puppet/4.1/reference/configuration.html#agentdisabledlockfile
-[classfile]: /puppet/4.1/reference/configuration.html#classfile
-[graphdir]: /puppet/4.1/reference/configuration.html#graphdir
-[lastrunfile]: /puppet/4.1/reference/configuration.html#lastrunfile
-[lastrunreport]: /puppet/4.1/reference/configuration.html#lastrunreport
-[localconfig]: /puppet/4.1/reference/configuration.html#localconfig
-[resourcefile]: /puppet/4.1/reference/configuration.html#resourcefile
-[statefile]: /puppet/4.1/reference/configuration.html#statefile
-[templatedir]: /puppet/4.1/reference/configuration.html#templatedir
-[yamldir]: /puppet/4.1/reference/configuration.html#yamldir
+[bucketdir]: ./configuration.html#bucketdir
+[client_datadir]: ./configuration.html#clientdatadir
+[clientbucketdir]: ./configuration.html#clientbucketdir
+[clientyamldir]: ./configuration.html#clientyamldir
+[devicedir]: ./configuration.html#devicedir
+[factpath]: ./configuration.html#factpath
+[pluginfactdest]: ./configuration.html#pluginfactdest
+[libdir]: ./configuration.html#libdir
+[plugindest]: ./configuration.html#plugindest
+[module_working_dir]: ./configuration.html#moduleworkingdir
+[module_skeleton_dir]: ./configuration.html#moduleskeletondir
+[logdir]: ./configuration.html#logdir
+[httplog]: ./configuration.html#httplog
+[masterhttplog]: ./configuration.html#masterhttplog
+[masterlog]: ./configuration.html#masterlog
+[puppetdlog]: ./configuration.html#puppetdlog
+[reportdir]: ./configuration.html#reportdir
+[rrddir]: ./configuration.html#rrddir
+[rundir]: ./configuration.html#rundir
+[pidfile]: ./configuration.html#pidfile
+[serverdatadir]: ./configuration.html#serverdatadir
+[statedir]: ./configuration.html#statedir
+[agent_catalog_run_lockfile]: ./configuration.html#agentcatalogrunlockfile
+[agent_disabled_lockfile]: ./configuration.html#agentdisabledlockfile
+[classfile]: ./configuration.html#classfile
+[graphdir]: ./configuration.html#graphdir
+[lastrunfile]: ./configuration.html#lastrunfile
+[lastrunreport]: ./configuration.html#lastrunreport
+[localconfig]: ./configuration.html#localconfig
+[resourcefile]: ./configuration.html#resourcefile
+[statefile]: ./configuration.html#statefile
+[templatedir]: ./configuration.html#templatedir
+[yamldir]: ./configuration.html#yamldir

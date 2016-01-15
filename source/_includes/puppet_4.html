@@ -1,5 +1,5 @@
 {% capture server_version %}2.0{% endcapture %}
-{% capture puppet_dir %}/puppet/4.0/reference{% endcapture %}
+{% capture puppet_dir %}{{ puppet_dir }}{% endcapture %}
 
 <h2>Puppet 4.0 Docs</h2>
 
@@ -52,12 +52,12 @@
 
 <li><strong>References</strong>
   <ul>
-    <li><a href="/puppet/4.0/reference/type.html">Resource Types</a></li>
-    <li><a href="/puppet/4.0/reference/configuration.html">Settings</a></li>
-    <li><a href="/puppet/4.0/reference/function.html">Functions</a></li>
-    <li><a href="/puppet/4.0/reference/metaparameter.html">Metaparameters</a></li>
-    <li><a href="/puppet/4.0/reference/report.html">Reports</a></li>
-    <li><a href="/puppet/4.0/reference/indirection.html">Indirections</a></li>
+    <li><a href="{{ puppet_dir }}/type.html">Resource Types</a></li>
+    <li><a href="{{ puppet_dir }}/configuration.html">Settings</a></li>
+    <li><a href="{{ puppet_dir }}/function.html">Functions</a></li>
+    <li><a href="{{ puppet_dir }}/metaparameter.html">Metaparameters</a></li>
+    <li><a href="{{ puppet_dir }}/report.html">Reports</a></li>
+    <li><a href="{{ puppet_dir }}/indirection.html">Indirections</a></li>
 
     <li><strong>Man Pages</strong>
       <ul>

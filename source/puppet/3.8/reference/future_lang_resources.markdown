@@ -9,7 +9,7 @@ canonical: "/puppet/latest/reference/lang_resources.html"
 [containment]: ./future_lang_containment.html
 [scope]: ./future_lang_scope.html
 [report]: /guides/reporting.html
-[types]: /puppet/3.8/reference/type.html
+[types]: ./type.html
 [string]: ./future_lang_data_string.html
 [array]: ./future_lang_data_array.html
 [datatype]: ./future_lang_data.html
@@ -127,7 +127,7 @@ If multiple classes require the same resource, you can use a [class][] or a [vir
 
 ### Relationships and Ordering
 
-[ordering]: /puppet/3.8/reference/configuration.html#ordering
+[ordering]: ./configuration.html#ordering
 
 By default, the order of resources in a manifest doesn't affect the order in which those resources will be applied. Puppet will apply _unrelated_ resources in a mostly random (but consistent between runs) order.
 

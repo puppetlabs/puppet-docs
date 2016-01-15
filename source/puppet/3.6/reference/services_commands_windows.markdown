@@ -6,13 +6,13 @@ title: "Running Puppet's Commands on Windows"
 [confdir]: ./dirs_confdir.html
 [agent_service]: ./services_agent_windows.html
 [facter]: /facter/latest
-[puppet agent]: /puppet/3.6/reference/man/agent.html
-[puppet apply]: /puppet/3.6/reference/man/apply.html
-[puppet module]: /puppet/3.6/reference/man/module.html
-[puppet resource]: /puppet/3.6/reference/man/resource.html
-[puppet config]: /puppet/3.6/reference/man/config.html
-[puppet help]: /puppet/3.6/reference/man/help.html
-[puppet man]: /puppet/3.6/reference/man/man.html
+[puppet agent]: ./man/agent.html
+[puppet apply]: ./man/apply.html
+[puppet module]: ./man/module.html
+[puppet resource]: ./man/resource.html
+[puppet config]: ./man/config.html
+[puppet help]: ./man/help.html
+[puppet man]: ./man/man.html
 
 
 Puppet was originally designed to run on \*nix systems, so its commands generally act the way \*nix admins expect.

@@ -5,9 +5,9 @@ canonical: "/puppet/latest/reference/config_ssl_external_ca.html"
 ---
 
 [conf]: ./config_file_main.html
-[verify_header]: /puppet/3.8/reference/configuration.html#sslclientverifyheader
-[client_header]: /puppet/3.8/reference/configuration.html#sslclientheader
-[ca_auth]: /puppet/3.8/reference/configuration.html#sslclientcaauth
+[verify_header]: ./configuration.html#sslclientverifyheader
+[client_header]: ./configuration.html#sslclientheader
+[ca_auth]: ./configuration.html#sslclientcaauth
 [puppetdb]: /puppetdb/latest
 
 In lieu of its built-in CA and PKI tools, Puppet can use an existing external CA for all of its SSL communications.
@@ -65,7 +65,7 @@ Any Puppet master certificate must contain the DNS name at which agent nodes wil
 
 ### Format of X-Client-DN Request Header
 
-Rack web servers must set a client request header, which the Puppet master will check based on the [`ssl_client_header` setting](/puppet/3.8/reference/configuration.html#sslclientheader).
+Rack web servers must set a client request header, which the Puppet master will check based on the [`ssl_client_header` setting](./configuration.html#sslclientheader).
 
 This header should conform to the following specifications:
 
