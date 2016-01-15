@@ -1,0 +1,677 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Class: Puppet::Plugins::BindingSchemes::BindingsSchemeHandler
+  
+    &mdash; Documentation by YARD 0.8.7.6
+  
+</title>
+
+  <link rel="stylesheet" href="../../../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../../../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '../../../';
+  framesUrl = "../../../frames.html#!Puppet/Plugins/BindingSchemes/BindingsSchemeHandler.html";
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../../../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../../../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../../../_index.html">Index (B)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../../../Puppet.html" title="Puppet (module)">Puppet</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../../Plugins.html" title="Puppet::Plugins (module)">Plugins</a></span></span> &raquo; <span class='title'><span class='object_link'>BindingSchemes</span></span>
+     &raquo; 
+    <span class="title">BindingsSchemeHandler</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../../../class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="../../../method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="../../../file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><h1>Class: Puppet::Plugins::BindingSchemes::BindingsSchemeHandler
+  <span class="abstract note title">Abstract</span>
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName"><span class='object_link'>Object</span></span>
+      
+        <ul class="fullTree">
+          <li><span class='object_link'>Object</span></li>
+          
+            <li class="next">Puppet::Plugins::BindingSchemes::BindingsSchemeHandler</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">lib/puppet/plugins/binding_schemes.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <div class="note abstract">
+  <strong>This class is abstract.</strong>
+  <div class='inline'></div>
+</div>
+<p>BindingsSchemeHandler is a Puppet Extension Point for the purpose of extending Puppet with a
+handler of a URI scheme used in the Puppet Bindings / Injector system.
+The intended use is to create a class derived from this class and then register it with the
+Puppet Binder.</p>
+
+<h2>Creating the Extension Class</h2>
+
+<p>As an example, a class for getting LDAP data and transforming into bindings based on an LDAP URI scheme (such as RFC 2255, 4516)
+may be authored in say a puppet module called &#39;exampleorg/ldap&#39;. The name of the class should start with <code>Puppetx::&lt;user&gt;::&lt;module&gt;</code>,
+e.g. &#39;Puppetx::Exampleorg::Ldap::LdapBindingsSchemeHandler&quot; and
+be located in <code>lib/puppetx/exampleorg/Ldap/LdapBindingsSchemeHandler.rb</code>. (These rules are not enforced, but it makes the class
+both auto-loadable, and guaranteed to not have a name that clashes with some other LdapBindingsSchemeHandler from some other
+author/organization.</p>
+
+<p>The Puppet Binder will auto-load the file when it
+has a binding to the class <code>Puppetx::Exampleorg::Ldap::LdapBindingsSchemeHandler&#39;
+The Ruby Module</code>Puppetx` is created by Puppet, the remaining modules should be created by the loaded logic - e.g.:</p>
+
+<h2>The expand_included method</h2>
+
+<p>This method is given a URI (as entered by a user in a bindings configuration) and the handler&#39;s first task is to
+perform checking, transformation, and possible expansion into multiple URIs for loading. The result is always an array
+of URIs. This method allows users to enter wild-cards, or to represent something symbolic that is transformed into one or
+more &quot;real URIs&quot; to load. (It is allowed to change scheme!).
+If the &quot;optional&quot; feature is supported, the handler should not include the URI in the result unless it will be able to produce
+bindings for the given URI (as an option it may produce an empty set of bindings).</p>
+
+<h2>The expand_excluded method</h2>
+
+<p>This method is given an URI (as entered by the user in a bindings configuration), and it is the handler&#39;s second task
+to perform checking, transformation, and possible expansion into multiple URIs that should not be loaded. The result is always
+an array of URIs. The user may be allowed to enter wild-cards etc. The URIs produced by this method should have the same syntax
+as those produced by <span class='object_link'><a href="#expand_included-instance_method" title="Puppet::Plugins::BindingSchemes::BindingsSchemeHandler#expand_included (method)">#expand_included</a></span> since they are excluded by comparison.</p>
+
+<h2>The contributed_bindings method</h2>
+
+<p>As the last step, the handler is being called once per URI that was included, and not later excluded to produce the
+contributed bindings. It is given three arguments, uri (the uri to load), scope (to provide access to the rest of the
+environment), and an acceptor (of issues), on which issues can be recorded.</p>
+
+<h2>Reporting Errors/Issues</h2>
+
+<p>Issues are reported by calling the given composer&#39;s acceptor, which takes a severity (e.g. <code>:error</code>,
+<code>:warning</code>, or <code>:ignore</code>), an <span class='object_link'>Issue</span> instance, and a <span class='object_link'>SourcePosAdapter</span> (which describes details about linenumber, position, and length of the problem area). If the scheme is
+not based on file, line, pos - nil can be passed. The URI itself can be passed as file.</p>
+
+<p>Instead of reporting issues, an exception can be raised.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <p class="tag_title">Examples:</p>
+    
+      
+        <p class="example_title"><div class='inline'><p>Defining an LdapBindingsSchemeHandler</p>
+</div></p>
+      
+      <pre class="example code"><code><span class='kw'>module</span> <span class='const'>Puppetx</span><span class='op'>::</span><span class='const'>Exampleorg</span>
+  <span class='kw'>module</span> <span class='const'>Ldap</span>
+    <span class='kw'>class</span> <span class='const'>LdapBindingsSchemeHandler</span> <span class='op'>&lt;</span> <span class='const'>Puppetx</span><span class='op'>::</span><span class='const'>Puppetlabs</span><span class='op'>::</span><span class='const'>BindingsSchemeHandler</span>
+      <span class='comment'># implement the methods
+</span>    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></code></pre>
+    
+      
+        <p class="example_title"><div class='inline'><p>Reporting an issue</p>
+</div></p>
+      
+      <pre class="example code"><code><span class='comment'># create an issue with a symbolic name (that can serve as a reference to more details about the problem),
+</span><span class='comment'># make the name unique
+</span><span class='id identifier rubyid_issue'>issue</span> <span class='op'>=</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Pops</span><span class='op'>::</span><span class='const'>Issues</span><span class='op'>::</span><span class='id identifier rubyid_issue'>issue</span><span class='lparen'>(</span><span class='symbol'>:EXAMPLEORG_LDAP_ILLEGAL_URI</span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>The URI is not a valid Ldap URI</span><span class='tstring_end'>&quot;</span></span> <span class='rbrace'>}</span>
+<span class='id identifier rubyid_source_pos'>source_pos</span> <span class='op'>=</span> <span class='kw'>nil</span>
+
+<span class='comment'># report it
+</span><span class='id identifier rubyid_composer'>composer</span><span class='period'>.</span><span class='id identifier rubyid_acceptor'>acceptor</span><span class='period'>.</span><span class='id identifier rubyid_accept'>accept</span><span class='lparen'>(</span><span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Pops</span><span class='op'>::</span><span class='const'>Validation</span><span class='op'>::</span><span class='const'>Diagnostic</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='symbol'>:error</span><span class='comma'>,</span> <span class='id identifier rubyid_issue'>issue</span><span class='comma'>,</span> <span class='id identifier rubyid_uri'>uri</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='comma'>,</span> <span class='id identifier rubyid_source_pos'>source_pos</span><span class='comma'>,</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'><p>Puppet 4.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><div id="subclasses">
+  <h2>Direct Known Subclasses</h2>
+  <p class="children"><span class='object_link'><a href="../../Pops/Binder/SchemeHandler/SymbolicScheme.html" title="Puppet::Pops::Binder::SchemeHandler::SymbolicScheme (class)">Puppet::Pops::Binder::SchemeHandler::SymbolicScheme</a></span></p>
+</div>
+
+
+
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#contributed_bindings-instance_method" title="#contributed_bindings (instance method)">- (Puppet::Pops::Binder::Bindings::ContributedBindings) <strong>contributed_bindings</strong>(uri, scope, composer) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Produces the bindings contributed to the binding system based on the given URI.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#expand_excluded-instance_method" title="#expand_excluded (instance method)">- (Array&lt;URI&gt;) <strong>expand_excluded</strong>(uri, composer) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Expands the given URI for the purpose of excluding the bindings it refers to.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#expand_included-instance_method" title="#expand_included (instance method)">- (Array&lt;URI&gt;) <strong>expand_included</strong>(uri, composer) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Expands the given URI for the purpose of including the bindings it refers to.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="contributed_bindings-instance_method">
+  
+    - (<tt><span class='object_link'><a href="../../Pops/Binder/Bindings/ContributedBindings.html" title="Puppet::Pops::Binder::Bindings::ContributedBindings (class)">Puppet::Pops::Binder::Bindings::ContributedBindings</a></span></tt>) <strong>contributed_bindings</strong>(uri, scope, composer) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Produces the bindings contributed to the binding system based on the given URI.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>uri</span>
+      
+      
+        <span class='type'>(<tt>URI</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the URI to load bindings from</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>scope</span>
+      
+      
+        <span class='type'>(<tt>Puppet::Pops::Parser::Scope</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>access to scope and the rest of the environment</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>composer</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Puppet::Pops::Binder::BindingsComposer</span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>a composer giving access to modules by name, and a diagnostics acceptor</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../Pops/Binder/Bindings/ContributedBindings.html" title="Puppet::Pops::Binder::Bindings::ContributedBindings (class)">Puppet::Pops::Binder::Bindings::ContributedBindings</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the bindings to contribute, most conveniently
+created by calling <span class='object_link'>Puppet::Pops::Binder::BindingsFactory.contributed_bindings</span>.</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>NotImplementedError</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'><p>Puppet 4.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+92
+93
+94</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/plugins/binding_schemes.rb', line 92</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_contributed_bindings'>contributed_bindings</span><span class='lparen'>(</span><span class='id identifier rubyid_uri'>uri</span><span class='comma'>,</span> <span class='id identifier rubyid_scope'>scope</span><span class='comma'>,</span> <span class='id identifier rubyid_composer'>composer</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_raise'>raise</span> <span class='const'>NotImplementedError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>The BindingsProviderScheme for uri: &#39;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_uri'>uri</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39; must implement &#39;contributed_bindings&#39;</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="expand_excluded-instance_method">
+  
+    - (<tt><span class='object_link'>Array</span>&lt;URI&gt;</tt>) <strong>expand_excluded</strong>(uri, composer) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Expands the given URI for the purpose of excluding the bindings it refers to. The input may contain
+wild-cards (if supported by this handler), and it is this methods responsibility to transform such into
+real loadable URIs (that match those produced by <span class='object_link'><a href="#expand_included-instance_method" title="Puppet::Plugins::BindingSchemes::BindingsSchemeHandler#expand_included (method)">#expand_included</a></span> that should be excluded from the result.</p>
+
+<p>A scheme handler that does not support optionality, or wildcards should simply return the given URI
+in an Array.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>uri</span>
+      
+      
+        <span class='type'>(<tt>URI</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the uri for which bindings are to be produced.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>composer</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Puppet::Pops::Binder::BindingsComposer</span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>a composer giving access to modules by name, and a diagnostics acceptor</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Array</span>&lt;URI&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the transformed, and possibly expanded set of URIs to include-</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'><p>Puppet 4.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+124
+125
+126</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/plugins/binding_schemes.rb', line 124</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_expand_excluded'>expand_excluded</span><span class='lparen'>(</span><span class='id identifier rubyid_uri'>uri</span><span class='comma'>,</span> <span class='id identifier rubyid_composer'>composer</span><span class='rparen'>)</span>
+  <span class='lbracket'>[</span><span class='id identifier rubyid_uri'>uri</span><span class='rbracket'>]</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="expand_included-instance_method">
+  
+    - (<tt><span class='object_link'>Array</span>&lt;URI&gt;</tt>) <strong>expand_included</strong>(uri, composer) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Expands the given URI for the purpose of including the bindings it refers to. The input may contain
+wild-cards (if supported by this handler), and it is this methods responsibility to transform such into
+real loadable URIs.</p>
+
+<p>A scheme handler that does not support optionality, or wildcards should simply return the given URI
+in an Array.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>uri</span>
+      
+      
+        <span class='type'>(<tt>URI</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the uri for which bindings are to be produced.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>composer</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Puppet::Pops::Binder::BindingsComposer</span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>a composer giving access to modules by name, and a diagnostics acceptor</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Array</span>&lt;URI&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the transformed, and possibly expanded set of URIs to include.</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'><p>Puppet 4.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+108
+109
+110</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/plugins/binding_schemes.rb', line 108</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_expand_included'>expand_included</span><span class='lparen'>(</span><span class='id identifier rubyid_uri'>uri</span><span class='comma'>,</span> <span class='id identifier rubyid_composer'>composer</span><span class='rparen'>)</span>
+  <span class='lbracket'>[</span><span class='id identifier rubyid_uri'>uri</span><span class='rbracket'>]</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+    <div id="footer">
+  Generated on Fri Jan 15 17:27:36 2016 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.6 (ruby-2.0.0).
+</div>
+
+  </body>
+</html>

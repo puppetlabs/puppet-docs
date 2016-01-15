@@ -1,0 +1,172 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>
+  File: http_file_bucket_file
+  
+    &mdash; Documentation by YARD 0.8.7.6
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '';
+  framesUrl = "frames.html#!file.http_file_bucket_file.html";
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index</a> &raquo; 
+    <span class="title">File: http_file_bucket_file</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><div id='filecontents'><h1>File Bucket File</h1>
+
+<p>The <code>file_bucket_file</code> endpoint manages the contents of files in the
+file bucket. All access to files is managed with the md5 checksum of the
+file contents, represented as <code>:md5</code>. Where used, <code>:filename</code> means the
+full absolute path of the file on the client system. This is usually
+optional and used as an error check to make sure correct file is
+retrieved.  The environment is required in all requests but ignored, as
+the file bucket does not distinguish between environments.</p>
+
+<h2>Find</h2>
+
+<p>Retrieve the contents of a file.</p>
+
+<pre class="code ruby"><code class="ruby">GET /puppet/v3/file_bucket_file/:md5?environment=:environment
+GET /puppet/v3/file_bucket_file/:md5/:original_path?environment=:environment
+</code></pre>
+
+<p>This will return the contents of the file if it&#39;s present. If
+<code>:original_path</code> is provided then the contents will only be sent if the
+file was uploaded with the same path at some point.</p>
+
+<h2>Head</h2>
+
+<p>Check if a file is present in the filebucket</p>
+
+<pre class="code ruby"><code class="ruby">HEAD /puppet/v3/file_bucket_file/:md5?environment=:environment
+HEAD /puppet/v3/file_bucket_file/:md5/:original_path?environment=:environment
+</code></pre>
+
+<p>This behaves identically to find, only returning headers.</p>
+
+<h2>Save</h2>
+
+<p>Save a file to the filebucket</p>
+
+<pre class="code ruby"><code class="ruby">PUT /puppet/v3/file_bucket_file/:md5?environment=:environment
+PUT /puppet/v3/file_bucket_file/:md5/:original_path?environment=:environment
+</code></pre>
+
+<p>The body should contain the file contents. This saves the file using the
+md5 sum of the file contents. If <code>:original_path</code> is provided, it adds
+the path to a list for the given file. If the md5 sum in the request is
+incorrect, the file will be instead saved under the correct checksum.</p>
+
+<h3>Supported HTTP Methods</h3>
+
+<p>GET, HEAD, PUT</p>
+
+<h3>Supported Response Formats</h3>
+
+<p><code>binary</code> or <code>application/octet-stream</code> (a string of the raw file contents)</p>
+
+<h3>Parameters</h3>
+
+<p>None</p>
+
+<h3>Examples</h3>
+
+<h4>Saving a file</h4>
+
+<pre class="code ruby"><code class="ruby">&gt; PUT /puppet/v3/file_bucket_file/md5/eb61eead90e3b899c6bcbe27ac581660//home/user/myfile.txt?environment=production HTTP/1.1
+
+&gt; Content-Type: application/octet-stream
+&gt; Content-Length: 24
+
+&gt; This is the file content
+
+
+&lt; HTTP/1.1 200 OK
+</code></pre>
+
+<h4>Retrieving a file</h4>
+
+<pre class="code ruby"><code class="ruby">&gt; GET /puppet/v3/file_bucket_file/md5/4949e56d376cc80ce5387e8e89a75396//home/user/myfile.txt?environment=production HTTP/1.1
+&gt; Accept: binary
+
+
+&lt; HTTP/1.1 200 OK
+&lt; Content-Length: 24
+
+&lt; This is the file content
+</code></pre>
+
+<h4>Wrong file name</h4>
+
+<pre class="code ruby"><code class="ruby">&gt; GET /puppet/v3/file_bucket_file/md5/4949e56d376cc80ce5387e8e89a75396//home/user/wrong_name?environment=production HTTP/1.1
+&gt; Accept: binary
+
+
+&lt; HTTP/1.1 404 Not Found
+&lt;
+&lt; Not Found: Could not find file_bucket_file md5/4949e56d376cc80ce5387e8e89a75396/home/user/wrong_name
+</code></pre>
+
+<h2>Schema</h2>
+
+<p>A <code>file_bucket_file</code> response body is not structured data according to any standard scheme such as
+json/yaml, so no schema is applicable.</p>
+</div></div>
+
+    <div id="footer">
+  Generated on Fri Jan 15 17:27:27 2016 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.6 (ruby-2.0.0).
+</div>
+
+  </body>
+</html>

@@ -1,0 +1,871 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Class: Puppet::Pops::Types::PAnyType
+  
+    &mdash; Documentation by YARD 0.8.7.6
+  
+</title>
+
+  <link rel="stylesheet" href="../../../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../../../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '../../../';
+  framesUrl = "../../../frames.html#!Puppet/Pops/Types/PAnyType.html";
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../../../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../../../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../../../_index.html">Index (P)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../../../Puppet.html" title="Puppet (module)">Puppet</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../../Pops.html" title="Puppet::Pops (module)">Pops</a></span></span> &raquo; <span class='title'><span class='object_link'>Types</span></span>
+     &raquo; 
+    <span class="title">PAnyType</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../../../class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="../../../method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="../../../file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><h1>Class: Puppet::Pops::Types::PAnyType
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName"><span class='object_link'>TypedModelObject</span></span>
+      
+        <ul class="fullTree">
+          <li><span class='object_link'>Object</span></li>
+          
+            <li class="next"><span class='object_link'>TypedModelObject</span></li>
+          
+            <li class="next">Puppet::Pops::Types::PAnyType</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">lib/puppet/pops/types/types.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p>Base type for all types</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><div id="subclasses">
+  <h2>Direct Known Subclasses</h2>
+  <p class="children"><span class='object_link'><a href="PCallableType.html" title="Puppet::Pops::Types::PCallableType (class)">PCallableType</a></span>, <span class='object_link'><a href="PCatalogEntryType.html" title="Puppet::Pops::Types::PCatalogEntryType (class)">PCatalogEntryType</a></span>, <span class='object_link'><a href="PCollectionType.html" title="Puppet::Pops::Types::PCollectionType (class)">PCollectionType</a></span>, <span class='object_link'><a href="PDataType.html" title="Puppet::Pops::Types::PDataType (class)">PDataType</a></span>, <span class='object_link'><a href="PDefaultType.html" title="Puppet::Pops::Types::PDefaultType (class)">PDefaultType</a></span>, <span class='object_link'><a href="POptionalType.html" title="Puppet::Pops::Types::POptionalType (class)">POptionalType</a></span>, <span class='object_link'><a href="PRuntimeType.html" title="Puppet::Pops::Types::PRuntimeType (class)">PRuntimeType</a></span>, <span class='object_link'><a href="PScalarType.html" title="Puppet::Pops::Types::PScalarType (class)">PScalarType</a></span>, <span class='object_link'><a href="PStructType.html" title="Puppet::Pops::Types::PStructType (class)">PStructType</a></span>, <span class='object_link'><a href="PTupleType.html" title="Puppet::Pops::Types::PTupleType (class)">PTupleType</a></span>, <span class='object_link'><a href="PType.html" title="Puppet::Pops::Types::PType (class)">PType</a></span>, <span class='object_link'><a href="PUndefType.html" title="Puppet::Pops::Types::PUndefType (class)">PUndefType</a></span>, <span class='object_link'><a href="PUnitType.html" title="Puppet::Pops::Types::PUnitType (class)">PUnitType</a></span>, <span class='object_link'><a href="PVariantType.html" title="Puppet::Pops::Types::PVariantType (class)">PVariantType</a></span></p>
+</div>
+
+  <h2>Constant Summary</h2>
+  
+
+
+
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        
+<li class="protected ">
+  <span class="summary_signature">
+    
+      <a href="#_assignable%3F-instance_method" title="#_assignable? (instance method)">- (Boolean) <strong>_assignable?</strong>(o) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  <span class="note title protected">protected</span>
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#assignable%3F-instance_method" title="#assignable? (instance method)">- (Boolean) <strong>assignable?</strong>(o) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Checks if <em>o</em> is a type that is assignable to this type.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#callable_args%3F-instance_method" title="#callable_args? (instance method)">- (Boolean) <strong>callable_args?</strong>(callable) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'><p>Returns <code>true</code> if this instance is considered valid as arguments to <em>callable</em>.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="protected ">
+  <span class="summary_signature">
+    
+      <a href="#class_from_string-instance_method" title="#class_from_string (instance method)">- (Object) <strong>class_from_string</strong>(str) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  <span class="note title protected">protected</span>
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#generalize-instance_method" title="#generalize (instance method)">- (PAnyType) <strong>generalize</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Generalizes value specific types.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#kind_of_callable%3F-instance_method" title="#kind_of_callable? (instance method)">- (Boolean) <strong>kind_of_callable?</strong>(optional = true) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'><p>Responds <code>true</code> for all callables, variants of callables and unless <em>optional</em> is false, all optional callables.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="protected ">
+  <span class="summary_signature">
+    
+      <a href="#tuple_entry_at-instance_method" title="#tuple_entry_at (instance method)">- (Object) <strong>tuple_entry_at</strong>(tuple_t, from, to, index) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  <span class="note title protected">protected</span>
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'><p>Produces the tuple entry at the given index given a tuple type, its from/to constraints on the last type, and an index.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="protected ">
+  <span class="summary_signature">
+    
+      <a href="#type_to_range-instance_method" title="#type_to_range (instance method)">- (Object) <strong>type_to_range</strong>(size_type) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  <span class="note title protected">protected</span>
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'><p>Transform size_type to min, max if size_type == nil the constraint is 1,1 if size_type.from == nil min size = 1 if size_type.to == nil max size == Infinity.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="_assignable?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>_assignable?</strong>(o)  <span class="extras">(protected)</span>&nbsp;<span class="note title protected">protected</span><span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+129
+130
+131</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 129</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid__assignable?'>_assignable?</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>PAnyType</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="assignable?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>assignable?</strong>(o) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Checks if <em>o</em> is a type that is assignable to this type.
+If <em>o</em> is a <code>Class</code> then it is first converted to a type.
+If <em>o</em> is a Variant, then it is considered assignable when all its types are assignable</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p><code>true</code> when <em>o</em> is assignable to this type</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 34</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_assignable?'>assignable?</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='rparen'>)</span>
+  <span class='kw'>case</span> <span class='id identifier rubyid_o'>o</span>
+    <span class='kw'>when</span> <span class='const'>Class</span>
+    <span class='comment'># Safe to call _assignable directly since a Class never is a Unit or Variant
+</span>    <span class='id identifier rubyid__assignable?'>_assignable?</span><span class='lparen'>(</span><span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Pops</span><span class='op'>::</span><span class='const'>Types</span><span class='op'>::</span><span class='const'>TypeCalculator</span><span class='period'>.</span><span class='id identifier rubyid_singleton'>singleton</span><span class='period'>.</span><span class='id identifier rubyid_type'>type</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='rparen'>)</span><span class='rparen'>)</span>
+  <span class='kw'>when</span> <span class='const'>PUnitType</span>
+    <span class='kw'>true</span>
+  <span class='kw'>when</span> <span class='const'>PVariantType</span>
+    <span class='comment'># Assignable if all contained types are assignable
+</span>    <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_types'>types</span><span class='period'>.</span><span class='id identifier rubyid_all?'>all?</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_vt'>vt</span><span class='op'>|</span> <span class='id identifier rubyid_assignable?'>assignable?</span><span class='lparen'>(</span><span class='id identifier rubyid_vt'>vt</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
+  <span class='kw'>when</span> <span class='const'>PNotUndefType</span>
+    <span class='kw'>if</span> <span class='op'>!</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>||</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_assignable?'>assignable?</span><span class='lparen'>(</span><span class='const'>PUndefType</span><span class='op'>::</span><span class='const'>DEFAULT</span><span class='rparen'>)</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_assignable?'>assignable?</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_type'>type</span><span class='rparen'>)</span>
+    <span class='kw'>else</span>
+      <span class='id identifier rubyid__assignable?'>_assignable?</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+  <span class='kw'>else</span>
+    <span class='id identifier rubyid__assignable?'>_assignable?</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="callable_args?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>callable_args?</strong>(callable) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>Returns <code>true</code> if this instance is considered valid as arguments to <em>callable</em></p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+65
+66
+67</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 65</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_callable_args?'>callable_args?</span><span class='lparen'>(</span><span class='id identifier rubyid_callable'>callable</span><span class='rparen'>)</span>
+  <span class='kw'>false</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="class_from_string-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>class_from_string</strong>(str)  <span class="extras">(protected)</span>&nbsp;<span class="note title protected">protected</span><span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+136
+137
+138
+139
+140
+141
+142
+143
+144</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 136</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_class_from_string'>class_from_string</span><span class='lparen'>(</span><span class='id identifier rubyid_str'>str</span><span class='rparen'>)</span>
+  <span class='kw'>begin</span>
+    <span class='id identifier rubyid_str'>str</span><span class='period'>.</span><span class='id identifier rubyid_split'>split</span><span class='lparen'>(</span><span class='const'>NAME_SEGMENT_SEPARATOR</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_reduce'>reduce</span><span class='lparen'>(</span><span class='const'>Object</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_memo'>memo</span><span class='comma'>,</span> <span class='id identifier rubyid_name_segment'>name_segment</span><span class='op'>|</span>
+      <span class='id identifier rubyid_memo'>memo</span><span class='period'>.</span><span class='id identifier rubyid_const_get'>const_get</span><span class='lparen'>(</span><span class='id identifier rubyid_name_segment'>name_segment</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+  <span class='kw'>rescue</span> <span class='const'>NameError</span>
+    <span class='kw'>return</span> <span class='kw'>nil</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="generalize-instance_method">
+  
+    - (<tt><span class='object_link'><a href="" title="Puppet::Pops::Types::PAnyType (class)">PAnyType</a></span></tt>) <strong>generalize</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Generalizes value specific types. Types that are not value specific will return <code>self</code> otherwize
+the generalized type is returned.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="" title="Puppet::Pops::Types::PAnyType (class)">PAnyType</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The generalized type</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+80
+81
+82
+83</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 80</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_generalize'>generalize</span>
+  <span class='comment'># Applicable to all types that have no variables
+</span>  <span class='kw'>self</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="kind_of_callable?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>kind_of_callable?</strong>(optional = true) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>Responds <code>true</code> for all callables, variants of callables and unless <em>optional</em> is
+false, all optional callables.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p><code>true</code>if this type is considered callable</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+89
+90
+91</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 89</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_kind_of_callable?'>kind_of_callable?</span><span class='lparen'>(</span><span class='id identifier rubyid_optional'>optional</span><span class='op'>=</span><span class='kw'>true</span><span class='rparen'>)</span>
+  <span class='kw'>false</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="tuple_entry_at-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>tuple_entry_at</strong>(tuple_t, from, to, index)  <span class="extras">(protected)</span>&nbsp;<span class="note title protected">protected</span><span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>Produces the tuple entry at the given index given a tuple type, its from/to constraints on the last
+type, and an index.
+Produces nil if the index is out of bounds
+from must be less than to, and from may not be less than 0</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 153</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_tuple_entry_at'>tuple_entry_at</span><span class='lparen'>(</span><span class='id identifier rubyid_tuple_t'>tuple_t</span><span class='comma'>,</span> <span class='id identifier rubyid_from'>from</span><span class='comma'>,</span> <span class='id identifier rubyid_to'>to</span><span class='comma'>,</span> <span class='id identifier rubyid_index'>index</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_regular'>regular</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='id identifier rubyid_tuple_t'>tuple_t</span><span class='period'>.</span><span class='id identifier rubyid_types'>types</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='op'>-</span> <span class='int'>1</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_index'>index</span> <span class='op'>&lt;</span> <span class='id identifier rubyid_regular'>regular</span>
+    <span class='id identifier rubyid_tuple_t'>tuple_t</span><span class='period'>.</span><span class='id identifier rubyid_types'>types</span><span class='lbracket'>[</span><span class='id identifier rubyid_index'>index</span><span class='rbracket'>]</span>
+  <span class='kw'>elsif</span> <span class='id identifier rubyid_index'>index</span> <span class='op'>&lt;</span> <span class='id identifier rubyid_regular'>regular</span> <span class='op'>+</span> <span class='id identifier rubyid_to'>to</span>
+    <span class='comment'># in the varargs part
+</span>    <span class='id identifier rubyid_tuple_t'>tuple_t</span><span class='period'>.</span><span class='id identifier rubyid_types'>types</span><span class='lbracket'>[</span><span class='op'>-</span><span class='int'>1</span><span class='rbracket'>]</span>
+  <span class='kw'>else</span>
+    <span class='kw'>nil</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="type_to_range-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>type_to_range</strong>(size_type)  <span class="extras">(protected)</span>&nbsp;<span class="note title protected">protected</span><span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>Transform size_type to min, max
+if size_type == nil the constraint is 1,1
+if size_type.from == nil min size = 1
+if size_type.to == nil max size == Infinity</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+172
+173
+174
+175
+176
+177</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 172</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_type_to_range'>type_to_range</span><span class='lparen'>(</span><span class='id identifier rubyid_size_type'>size_type</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='lbracket'>[</span><span class='int'>1</span><span class='comma'>,</span><span class='int'>1</span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='id identifier rubyid_size_type'>size_type</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+  <span class='id identifier rubyid_from'>from</span> <span class='op'>=</span> <span class='id identifier rubyid_size_type'>size_type</span><span class='period'>.</span><span class='id identifier rubyid_from'>from</span>
+  <span class='id identifier rubyid_to'>to</span> <span class='op'>=</span> <span class='id identifier rubyid_size_type'>size_type</span><span class='period'>.</span><span class='id identifier rubyid_to'>to</span>
+  <span class='lbracket'>[</span><span class='id identifier rubyid_from'>from</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>?</span> <span class='int'>1</span> <span class='op'>:</span> <span class='id identifier rubyid_from'>from</span><span class='comma'>,</span> <span class='id identifier rubyid_to'>to</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>?</span> <span class='const'>Float</span><span class='op'>::</span><span class='const'>INFINITY</span> <span class='op'>:</span> <span class='id identifier rubyid_to'>to</span><span class='rbracket'>]</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+    <div id="footer">
+  Generated on Fri Jan 15 16:54:47 2016 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.6 (ruby-2.0.0).
+</div>
+
+  </body>
+</html>

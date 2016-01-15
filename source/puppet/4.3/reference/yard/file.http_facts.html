@@ -1,0 +1,222 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>
+  File: http_facts
+  
+    &mdash; Documentation by YARD 0.8.7.6
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '';
+  framesUrl = "frames.html#!file.http_facts.html";
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index</a> &raquo; 
+    <span class="title">File: http_facts</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><div id='filecontents'><h1>Facts</h1>
+
+<p>The <code>facts</code> endpoint allows getting or setting the facts for the specified node name.  The <code>facts_search</code> endpoint
+allows retrieving a list of node names containing the specified facts.</p>
+
+<h2>Find</h2>
+
+<p>Get facts for a node.</p>
+
+<pre class="code ruby"><code class="ruby"><span class='const'>GET</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>:environment</span><span class='regexp_end'>/facts</span></span><span class='op'>/</span><span class='symbol'>:nodename</span>
+</code></pre>
+
+<h3>Supported HTTP Methods</h3>
+
+<p>GET</p>
+
+<h3>Supported Response Formats</h3>
+
+<p>PSON</p>
+
+<h3>Parameters</h3>
+
+<p>None</p>
+
+<h3>Example Response</h3>
+
+<ul>
+<li>Note: list of facts was shortened for readability.</li>
+<li>Note: pson was formatted for readability.</li>
+</ul>
+
+<h4>Facts found</h4>
+
+<pre class="code ruby"><code class="ruby">GET /env/facts/elmo.mydomain.com
+
+HTTP 200 OK
+Content-Type: text/pson
+
+{
+  &quot;name&quot;: &quot;elmo.mydomain.com&quot;,
+  &quot;values&quot;: {
+    &quot;architecture&quot;: &quot;x86_64&quot;,
+    &quot;kernel&quot;: &quot;Darwin&quot;,
+    &quot;domain&quot;: &quot;local&quot;,
+    &quot;macaddress&quot;: &quot;70:11:24:8c:33:a9&quot;,
+    &quot;osfamily&quot;: &quot;Darwin&quot;,
+    &quot;operatingsystem&quot;: &quot;Darwin&quot;,
+    &quot;facterversion&quot;: &quot;1.7.2&quot;,
+    &quot;fqdn&quot;: &quot;elmo.mydomain.com&quot;,
+  },
+  &quot;timestamp&quot;: &quot;2013-09-09 15:49:27 -0700&quot;,
+  &quot;expiration&quot;: &quot;2013-09-09 16:19:27 -0700&quot;
+}
+</code></pre>
+
+<h2>Save</h2>
+
+<p>Store facts for a node.  The request body should contain pson-formatted facts.</p>
+
+<pre class="code ruby"><code class="ruby"><span class='const'>PUT</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>:environment</span><span class='regexp_end'>/facts</span></span><span class='op'>/</span><span class='symbol'>:nodename</span>
+</code></pre>
+
+<h3>Supported HTTP Methods</h3>
+
+<p>PUT</p>
+
+<h3>Supported Format</h3>
+
+<p>Accept: pson, text/pson</p>
+
+<h3>Parameters</h3>
+
+<p>None</p>
+
+<h3>Example Response</h3>
+
+<ul>
+<li>Note: list of facts was shortened for readability.</li>
+<li>Note: pson was formatted for readability.</li>
+</ul>
+
+<h4>Facts found</h4>
+
+<pre class="code ruby"><code class="ruby">PUT /env/facts/elmo.mydomain.com
+
+Content-Type: text/pson
+
+{
+  &quot;name&quot;: &quot;elmo.mydomain.com&quot;,
+  &quot;values&quot;: {
+    &quot;architecture&quot;: &quot;x86_64&quot;,
+    &quot;kernel&quot;: &quot;Darwin&quot;,
+    &quot;domain&quot;: &quot;local&quot;,
+    &quot;macaddress&quot;: &quot;70:11:24:8c:33:a9&quot;,
+    &quot;osfamily&quot;: &quot;Darwin&quot;,
+    &quot;operatingsystem&quot;: &quot;Darwin&quot;,
+    &quot;facterversion&quot;: &quot;1.7.2&quot;,
+    &quot;fqdn&quot;: &quot;elmo.mydomain.com&quot;,
+  },
+  &quot;timestamp&quot;: &quot;2013-09-09 15:49:27 -0700&quot;,
+  &quot;expiration&quot;: &quot;2013-09-09 16:19:27 -0700&quot;
+}
+
+HTTP/1.1 200 OK
+Content-Type: text/pson
+
+&quot;/etc/puppet/var/yaml/facts/joebob.local.yaml&quot;
+</code></pre>
+
+<h2>Search</h2>
+
+<p>Get the list of nodes matching the facts_search parameters</p>
+
+<pre class="code ruby"><code class="ruby">GET /:environment/facts_search/search
+</code></pre>
+
+<h3>Supported HTTP Methods</h3>
+
+<p>GET</p>
+
+<h3>Supported Format</h3>
+
+<p>Accept: pson, text/pson</p>
+
+<h3>Parameters</h3>
+
+<p>For the parameters, see <a href="http://docs.puppetlabs.com/guides/rest_api.html#facts-search">http://docs.puppetlabs.com/guides/rest_api.html#facts-search</a>.</p>
+
+<h3>Response</h3>
+
+<p>The response is an array of node names.  The array is square-bracket delimited; the node names are quoted and
+comma separated.</p>
+
+<h3>Example Response</h3>
+
+<h4>Facts found</h4>
+
+<pre class="code ruby"><code class="ruby">GET /env/facts_search/search?facts.processorcount.ge=2
+
+HTTP 200 OK
+Content-Type: text/pson
+
+[&quot;elmo.mydomain.com&quot;,&quot;kermit.mydomain.com&quot;]
+</code></pre>
+
+<h2>Schema</h2>
+
+<p>The representation of facts, whether returned from a GET or contained in a PUT body, should adhere to the
+<a href="file.facts.html" title="api/schemas/facts.json">api/schemas/facts.json</a> schema.</p>
+</div></div>
+
+    <div id="footer">
+  Generated on Fri Jan 15 16:32:31 2016 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.6 (ruby-2.0.0).
+</div>
+
+  </body>
+</html>
