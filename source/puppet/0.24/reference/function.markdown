@@ -1,5 +1,5 @@
 ---
-canonical: "/references/latest/function.html"
+canonical: "/puppet/latest/reference/function.html"
 layout: default
 title: Function Reference
 ---

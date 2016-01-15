@@ -1,5 +1,5 @@
 ---
-canonical: "/references/latest/metaparameter.html"
+canonical: "/puppet/latest/reference/metaparameter.html"
 layout: default
 title: Metaparameter Reference
 ---

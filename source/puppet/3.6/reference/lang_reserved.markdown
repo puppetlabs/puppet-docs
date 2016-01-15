@@ -17,8 +17,8 @@ canonical: "/puppet/latest/reference/lang_reserved.html"
 [resources]: ./lang_resources.html
 [class]: ./lang_classes.html
 [qualified_var]: ./lang_variables.html#accessing-out-of-scope-variables
-[type_ref]: /references/latest/type.html
-[func_ref]: /references/latest/function.html
+[type_ref]: /puppet/latest/reference/type.html
+[func_ref]: /puppet/latest/reference/function.html
 [environment]: ./environments.html
 
 Reserved Words

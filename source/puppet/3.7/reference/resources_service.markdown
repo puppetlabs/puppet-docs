@@ -3,14 +3,14 @@ layout: default
 title: "Resource Tips and Examples: Service"
 ---
 
-[service]: /references/3.7.latest/type.html#service
-[ensure]: /references/3.7.latest/type.html#service-attribute-ensure
-[enable]: /references/3.7.latest/type.html#service-attribute-enable
-[start]: /references/3.7.latest/type.html#service-attribute-start
-[binary]: /references/3.7.latest/type.html#service-attribute-binary
-[stop]: /references/3.7.latest/type.html#service-attribute-stop
-[status]: /references/3.7.latest/type.html#service-attribute-status
-[pattern]: /references/3.7.latest/type.html#service-attribute-pattern
+[service]: /puppet/3.7/reference/type.html#service
+[ensure]: /puppet/3.7/reference/type.html#service-attribute-ensure
+[enable]: /puppet/3.7/reference/type.html#service-attribute-enable
+[start]: /puppet/3.7/reference/type.html#service-attribute-start
+[binary]: /puppet/3.7/reference/type.html#service-attribute-binary
+[stop]: /puppet/3.7/reference/type.html#service-attribute-stop
+[status]: /puppet/3.7/reference/type.html#service-attribute-status
+[pattern]: /puppet/3.7/reference/type.html#service-attribute-pattern
 
 
 Puppet can manage [services][service] on nearly all operating systems.

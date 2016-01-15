@@ -7,11 +7,11 @@ canonical: "/puppet/latest/reference/dirs_manifest.html"
 [environment]: ./environments.html
 [catalog_compilation]: ./subsystem_catalog_compilation.html
 [confdir]: ./dirs_confdir.html
-[manifest_setting]: /references/4.3.latest/configuration.html#manifest
+[manifest_setting]: /puppet/4.3/reference/configuration.html#manifest
 [print_settings]: ./config_print.html
 [enc]: /guides/external_nodes.html
-[default_manifest]: /references/4.3.latest/configuration.html#defaultmanifest
-[disable_per_environment_manifest]: /references/4.3.latest/configuration.html#disableperenvironmentmanifest
+[default_manifest]: /puppet/4.3/reference/configuration.html#defaultmanifest
+[disable_per_environment_manifest]: /puppet/4.3/reference/configuration.html#disableperenvironmentmanifest
 [environment.conf]: ./config_file_environment.html
 [puppet.conf]: ./config_file_main.html
 [configuring environments]: ./environments_configuring.html

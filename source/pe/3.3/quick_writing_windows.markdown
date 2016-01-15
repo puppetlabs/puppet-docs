@@ -27,7 +27,7 @@ Once the module has been installed, add its class as described in the section [U
 
 #### Module Basics
 
-By default, modules are stored in `/etc/puppetlabs/puppet/modules`. You can configure this path with the [`modulepath`](/references/3.4.latest/configuration.html#modulepath) setting in `puppet.conf`.)
+By default, modules are stored in `/etc/puppetlabs/puppet/modules`. You can configure this path with the [`modulepath`](/puppet/3.4/reference/configuration.html#modulepath) setting in `puppet.conf`.)
 
 Modules are directory trees. The manifest directory of the Puppet Labs Registry module contains the following files:
 
@@ -100,7 +100,7 @@ For more information about writing classes, refer to the following documentation
 
 * To learn how to write resource declarations, conditionals, and classes in a guided tour format, [start at the beginning of Learning Puppet.](/learning/)
 * For a complete but succinct guide to the Puppet language's syntax, [see the Puppet 3 language reference](/puppet/3.6/reference/lang_summary.html).
-* For complete documentation of the available resource types, [see the type reference](/references/3.4.latest/type.html).
+* For complete documentation of the available resource types, [see the type reference](/puppet/3.4/reference/type.html).
 * For short, printable references, see [the modules cheat sheet](/module_cheat_sheet.pdf) and [the core types cheat sheet](/puppet_core_types_cheatsheet.pdf).
 
 #### Using Your Custom Module in the Console

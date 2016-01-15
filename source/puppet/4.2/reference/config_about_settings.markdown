@@ -5,7 +5,7 @@ canonical: "/puppet/latest/reference/config_about_settings.html"
 ---
 
 [short list]: ./config_important_settings.html
-[conf_ref]: /references/4.2.latest/configuration.html
+[conf_ref]: /puppet/4.2/reference/configuration.html
 [puppet.conf]: ./config_file_main.html
 [auth.conf]: ./config_file_auth.html
 [puppetdb.conf]: ./config_file_puppetdb.html

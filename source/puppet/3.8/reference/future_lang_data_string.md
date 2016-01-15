@@ -17,7 +17,7 @@ canonical: "/puppet/latest/reference/lang_data_string.html"
 [undef]: ./future_lang_data_undef.html
 [boolean]: ./future_lang_data_boolean.html
 [number]: ./future_lang_data_number.html
-[sprintf]: /references/3.8.latest/function.html#sprintf
+[sprintf]: /puppet/3.8/reference/function.html#sprintf
 [regular expression]: ./future_lang_data_regexp.html
 [resource reference]: ./future_lang_data_resource_reference.html
 [array]: ./future_lang_data_array.html

@@ -4,7 +4,7 @@ title: "Config Files: routes.yaml"
 canonical: "/puppet/latest/reference/config_file_routes.html"
 ---
 
-[route_file]: /references/4.2.latest/configuration.html#routefile
+[route_file]: /puppet/4.2/reference/configuration.html#routefile
 
 The `routes.yaml` file overrides configuration settings involving indirector termini, and allows termini to be set in greater detail than `puppet.conf` allows.
 

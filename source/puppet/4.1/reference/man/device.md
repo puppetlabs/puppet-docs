@@ -3,7 +3,7 @@ layout: default
 built_from_commit: c4a6a76fd219bffd689476413985ed13f40ef1dd
 title: 'Man Page: puppet device'
 nav: /_includes/references_man.html
-canonical: /references/latest/man/device.html
+canonical: /puppet/latest/reference/man/device.html
 ---
 
 <div class='mp'>

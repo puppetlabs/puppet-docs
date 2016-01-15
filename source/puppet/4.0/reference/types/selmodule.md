@@ -2,7 +2,7 @@
 layout: default
 built_from_commit: 08cb8b2d315a296fa404a4871f94b3703a819461
 title: 'Resource Type: selmodule'
-canonical: /references/latest/types/selmodule.html
+canonical: /puppet/latest/reference/types/selmodule.html
 ---
 
 > **NOTE:** This page was generated from the Puppet source code on 2016-01-15 16:39:04 +0100

@@ -41,7 +41,7 @@ The heart of Puppet is the resource abstraction layer (RAL), which lets the pupp
 When New Configurations Take Effect
 -----
 
-By default, puppet agent will pull a catalog and run it every 30 minutes (counted from when the agent service started, rather than on the half-hour). You can change this by setting the [`runinterval`](/references/2.7.6/configuration.html#runinterval) option in an agent's [`/etc/puppetlabs/puppet/puppet.conf`](/puppet/3.6/reference/config_file_main.html) file to a new value. (The `runinterval` is measured in seconds.)
+By default, puppet agent will pull a catalog and run it every 30 minutes (counted from when the agent service started, rather than on the half-hour). You can change this by setting the [`runinterval`](/puppet/2.7/reference/configuration.html#runinterval) option in an agent's [`/etc/puppetlabs/puppet/puppet.conf`](/puppet/3.6/reference/config_file_main.html) file to a new value. (The `runinterval` is measured in seconds.)
 
 If you need a node or group of nodes to retrieve a new configuration _now,_ use the "Control Puppet" section of the console's live management page. 
 

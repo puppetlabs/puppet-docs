@@ -82,7 +82,7 @@ Floats can't be expressed in octal or hex.
 
 Numbers are automatically converted to strings when interpolated into a string. The automatic conversion uses decimal (base 10) notation.
 
-If you need to convert numbers to non-decimal string representations, you can use [the `printf` function.](/references/4.1.latest/function.html#printf)
+If you need to convert numbers to non-decimal string representations, you can use [the `printf` function.](/puppet/4.1/reference/function.html#printf)
 
 ## Converting Strings to Numbers
 
@@ -91,7 +91,7 @@ The [arithmetic operators][arithmetic] will automatically convert strings to num
 In all other contexts (resource attributes, function arguments, etc.), Puppet _won't_ automatically convert strings to numbers, but you can:
 
 * Add 0 to manually convert a string to a number. (For example, `$mystring = "85"; $mynum = 0 + $mystring`.)
-* Use [the `scanf` function](/references/4.1.latest/function.html#scanf) to manually extract numbers from strings. This function can also account for surrounding non-numerical text.
+* Use [the `scanf` function](/puppet/4.1/reference/function.html#scanf) to manually extract numbers from strings. This function can also account for surrounding non-numerical text.
 
 
 ## The `Integer` Data Type

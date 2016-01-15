@@ -12,9 +12,9 @@ canonical: "/puppet/latest/reference/lang_facts_and_builtin_vars.html"
 [customfacts]: /facter/latest/custom_facts.html
 [external facts]: /facter/latest/custom_facts.html#external-facts
 [catalog]: ./lang_summary.html#compilation-and-catalogs
-[noop]: /references/4.2.latest/configuration.html#noop
-[environment_setting]: /references/4.2.latest/configuration.html#environment
-[certname]: /references/4.2.latest/configuration.html#certname
+[noop]: /puppet/4.2/reference/configuration.html#noop
+[environment_setting]: /puppet/4.2/reference/configuration.html#environment
+[certname]: /puppet/4.2/reference/configuration.html#certname
 [puppetdb_facts]: /puppetdb/latest/api/index.html
 [localscope]: ./lang_scope.html#local-scopes
 [trusted_on]: ./config_important_settings.html#getting-new-features-early

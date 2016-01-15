@@ -7,18 +7,18 @@ canonical: "/puppet/latest/reference/environments.html"
 [manifest_dir]: ./dirs_manifest.html
 [manifest_dir_dir]: ./dirs_manifest.html#directory-behavior-vs-single-file
 [config_file_envs]: ./environments_classic.html
-[config_version]: /references/3.5.latest/configuration.html#configversion
-[environmentpath]: /references/3.5.latest/configuration.html#environmentpath
+[config_version]: /puppet/3.5/reference/configuration.html#configversion
+[environmentpath]: /puppet/3.5/reference/configuration.html#environmentpath
 [confdir]: ./dirs_confdir.html
 [enc]: /guides/external_nodes.html
 [node terminus]: ./subsystem_catalog_compilation.html#step-1-retrieve-the-node-object
 [enc_environment]: /guides/external_nodes.html#environment
 [puppet.conf]: ./config_file_main.html
-[env_setting]: /references/3.5.latest/configuration.html#environment
+[env_setting]: /puppet/3.5/reference/configuration.html#environment
 [modulepath]: ./dirs_modulepath.html
-[basemodulepath]: /references/3.5.latest/configuration.html#basemodulepath
-[manifest_setting]: /references/3.5.latest/configuration.html#manifest
-[modulepath_setting]: /references/3.5.latest/configuration.html#modulepath
+[basemodulepath]: /puppet/3.5/reference/configuration.html#basemodulepath
+[manifest_setting]: /puppet/3.5/reference/configuration.html#manifest
+[modulepath_setting]: /puppet/3.5/reference/configuration.html#modulepath
 [config_print]: ./config_print.html
 [env_var]: ./lang_facts_and_builtin_vars.html#variables-set-by-the-puppet-master
 [config_file_envs_sections]: ./environments_classic.html#environment-config-sections

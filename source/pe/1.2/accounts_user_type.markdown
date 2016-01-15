@@ -9,7 +9,7 @@ canonical: "/pe/latest/accounts_user_type.html"
 The `accounts::user` Type
 =====
 
-This defined type manages a single user account. Many of its parameters echo those of the standard [`user` type](/references/2.6.9/type.html#user). Unlike the `user` type, it will also create and manage the user's home directory, create and manage a primary group with the same name as the user, manage a set of SSH public keys for the user, and optionally lock the user's account. 
+This defined type manages a single user account. Many of its parameters echo those of the standard [`user` type](/puppet/2.6/reference/type.html#user). Unlike the `user` type, it will also create and manage the user's home directory, create and manage a primary group with the same name as the user, manage a set of SSH public keys for the user, and optionally lock the user's account. 
 
 The `accounts::user` type can be used on all of the platforms supported by Puppet Enterprise.
 
@@ -143,5 +143,5 @@ Whether the user should be prevented from logging in; set this to `true` for sys
 
 ### `sshkeys`
 
-An array of SSH public keys associated with the user. Unlike with the [`ssh_authorized_key`](/references/2.6.9/type.html#sshauthorizedkey) type, these should be **complete public key strings** that include the type and name of the key, exactly as the key would appear in its `id_rsa.pub` or `id_dsa.pub` file. Defaults to an empty array.
+An array of SSH public keys associated with the user. Unlike with the [`ssh_authorized_key`](/puppet/2.6/reference/type.html#sshauthorizedkey) type, these should be **complete public key strings** that include the type and name of the key, exactly as the key would appear in its `id_rsa.pub` or `id_dsa.pub` file. Defaults to an empty array.
 

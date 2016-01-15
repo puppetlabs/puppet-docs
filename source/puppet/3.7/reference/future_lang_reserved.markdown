@@ -16,8 +16,8 @@ canonical: "/puppet/latest/reference/lang_reserved.html"
 [contains]: ./future_lang_containment.html
 [resources]: ./future_lang_resources.html
 [class]: ./future_lang_classes.html
-[type_ref]: /references/3.7.latest/type.html
-[func_ref]: /references/3.7.latest/function.html
+[type_ref]: /puppet/3.7/reference/type.html
+[func_ref]: /puppet/3.7/reference/function.html
 [environment]: ./environments.html
 
 Reserved Words

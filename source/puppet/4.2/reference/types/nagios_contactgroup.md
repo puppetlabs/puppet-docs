@@ -2,7 +2,7 @@
 layout: default
 built_from_commit: e49293167c2a4753e3db51df5585478e3d8c8877
 title: 'Resource Type: nagios_contactgroup'
-canonical: /references/latest/types/nagios_contactgroup.html
+canonical: /puppet/latest/reference/types/nagios_contactgroup.html
 ---
 
 > **NOTE:** This page was generated from the Puppet source code on 2016-01-15 16:50:35 +0100

@@ -13,7 +13,7 @@ Puppet has the built-in capability to run a complete puppet master server using 
 
 The WEBrick puppet master server is not capable of handling production-level numbers of agent nodes. Since it can't handle concurrent connections, it will be quickly overwhelmed by as few as 10 agents. You should never run a WEBrick puppet master in production, and should always configure a [Rack puppet master server][rack_master] instead.
 
-For details about invoking the puppet master command, see [the puppet master man page](/references/3.6.latest/man/master.html).
+For details about invoking the puppet master command, see [the puppet master man page](/puppet/3.6/reference/man/master.html).
 
 ## Supported Platforms
 
@@ -43,19 +43,19 @@ The WEBrick puppet master runs as a single Ruby process. This single process doe
 
 The puppet master process should generally be started as the root user, via `sudo`. Once the process starts, it will drop privileges and start running as the user specified by [the `user` setting][user] (usually `puppet`). Any files and directories the puppet master uses will need to be readable and writable by this user.
 
-[user]: /references/latest/configuration.html#user
+[user]: /puppet/latest/reference/configuration.html#user
 
 ### Ports
 
 By default, Puppet's HTTPS traffic uses port 8140. The OS and firewall must allow the puppet master's Ruby process to accept incoming connections on this port.
 
-The port can be changed by changing [the `masterport` setting](/references/latest/configuration.html#masterport) across all agents and puppet masters.
+The port can be changed by changing [the `masterport` setting](/puppet/latest/reference/configuration.html#masterport) across all agents and puppet masters.
 
 ### Logging
 
 When running under WEBrick, puppet master's logging is split.
 
-WEBrick will log all HTTPS requests and errors to the file specified by [the `masterhttplog` setting](/references/3.6.latest/configuration.html#masterhttplog).
+WEBrick will log all HTTPS requests and errors to the file specified by [the `masterhttplog` setting](/puppet/3.6/reference/configuration.html#masterhttplog).
 
 The puppet master application itself logs its activity to syslog. This is where things like compilation errors and deprecation warnings go. Your syslog configuration dictates where these messages will be saved, but the default location is `/var/log/messages` on Linux, `/var/log/system.log` on Mac OS X, and `/var/adm/messages` on Solaris.
 

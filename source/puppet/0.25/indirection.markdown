@@ -1,5 +1,5 @@
 ---
-canonical: "/references/latest/indirection.html"
+canonical: "/puppet/latest/reference/indirection.html"
 layout: default
 title: Indirection Reference
 ---

@@ -3,7 +3,7 @@ layout: default
 built_from_commit: e49293167c2a4753e3db51df5585478e3d8c8877
 title: 'Man Page: puppet inspect'
 nav: /_includes/references_man.html
-canonical: /references/latest/man/inspect.html
+canonical: /puppet/latest/reference/man/inspect.html
 ---
 
 <div class='mp'>
@@ -37,7 +37,7 @@ from cron.</p>
 <p>Any configuration setting which is valid in the configuration file is
 also a valid long argument, e.g. '--server=master.domain.com'. See the
 configuration file documentation at
-http://docs.puppetlabs.com/references/latest/configuration.html for
+http://docs.puppetlabs.com/puppet/latest/reference/configuration.html for
 the full list of acceptable settings.</p>
 
 <dl>

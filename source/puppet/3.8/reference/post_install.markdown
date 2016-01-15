@@ -7,7 +7,7 @@ title: "Installing Puppet: Post-Install Tasks"
 [hiera_include]: /hiera/latest/puppet.html#assigning-classes-to-nodes-with-hiera-hierainclude
 [hiera]: /hiera/latest/
 [puppet.conf]: /puppet/3.8/reference/config_file_main.html
-[dns_alt_names]: /references/3.stable/configuration.html#dnsaltnames
+[dns_alt_names]: /puppet/3.8/reference/configuration.html#dnsaltnames
 [about_settings]: /puppet/3.8/reference/config_about_settings.html
 [manifest]: /puppet/3.8/reference/dirs_manifest.html
 [install_modules]: /puppet/3.8/reference/modules_installing.html

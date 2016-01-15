@@ -91,7 +91,7 @@ Puppet uses some defaults for unspecified user and group attributes, so all you'
 13. From the command line on your Puppet agent, use `puppet agent -t` to trigger a Puppet run.
 
 > Success! You have created a user, `jargyle`, and added jargyle to the group with `groups => web`. 
-> For more information on users and groups, check out the documentation for Puppet resource types regarding [users](https://docs.puppetlabs.com/references/latest/type.html#user) and [groups](https://docs.puppetlabs.com/references/latest/type.html#group).
+> For more information on users and groups, check out the documentation for Puppet resource types regarding [users](https://docs.puppetlabs.com/puppet/latest/reference/type.html#user) and [groups](https://docs.puppetlabs.com/puppet/latest/reference/type.html#group).
 > With users and groups, you can assign different permissions for managing Puppet. 
 
 ---------

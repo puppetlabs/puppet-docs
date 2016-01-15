@@ -3,7 +3,7 @@ layout: default
 built_from_commit: 08cb8b2d315a296fa404a4871f94b3703a819461
 title: Report Reference
 toc: columns
-canonical: /references/latest/report.html
+canonical: /puppet/latest/reference/report.html
 ---
 
 

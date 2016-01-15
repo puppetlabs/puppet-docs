@@ -27,7 +27,7 @@ By default, the config file is `$confdir/hiera.yaml`, which is usually one of th
 * `/etc/puppetlabs/puppet/hiera.yaml` in \*nix Puppet Enterprise
 * [`COMMON_APPDATA`][common_appdata]`\PuppetLabs\puppet\etc\hiera.yaml` on Windows
 
-In Puppet 3 or later, you can specify a different config file with [the `hiera_config` setting](/references/latest/configuration.html#hieraconfig) in `puppet.conf`. In Puppet 2.x, you cannot specify a different config file, although you can make `$confdir/hiera.yaml` a symlink to a different file.
+In Puppet 3 or later, you can specify a different config file with [the `hiera_config` setting](/puppet/latest/reference/configuration.html#hieraconfig) in `puppet.conf`. In Puppet 2.x, you cannot specify a different config file, although you can make `$confdir/hiera.yaml` a symlink to a different file.
 
 ### From the Command Line
 

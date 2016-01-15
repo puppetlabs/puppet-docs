@@ -14,11 +14,11 @@ canonical: "/puppet/latest/reference/lang_tags.html"
 [collectors]: ./lang_collectors.html
 [reports]: /guides/reporting.html#make-masters-process-reports
 [report_format_2]: http://projects.puppetlabs.com/projects/puppet/wiki/Report_Format_2
-[tagmail]: /references/2.7.latest/report.html#tagmail
+[tagmail]: /puppet/2.7/reference/report.html#tagmail
 [tagmail_conf]: /puppet/3.6/reference/config_file_tagmail.html
-[tagmeta]: /references/2.7.latest/metaparameter.html#tag
-[tagfunction]: /references/2.7.latest/function.html#tag
-[tags_setting]: /references/2.7.latest/configuration.html#tags
+[tagmeta]: /puppet/2.7/reference/metaparameter.html#tag
+[tagfunction]: /puppet/2.7/reference/function.html#tag
+[tags_setting]: /puppet/2.7/reference/configuration.html#tags
 [tagnames]: ./lang_reserved.html#tags
 [relationships]: ./lang_relationships.html
 [containment]: ./lang_containment.html

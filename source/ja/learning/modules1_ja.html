@@ -197,7 +197,7 @@ notice: Finished catalog run in 0.76 seconds
         <p>自動ローダーは以下のように動作します。</p>
         <ul>
           <li>モジュールとはあらかじめ決められたフォーマットに整形され、特定の場所に配置された、ファイルを含む単なるディレクトリです。モジュールに含まれるマニフェストファイルは命名規約に従っています。</li>
-          <li>Puppetは特定の場所（もしくは場所のリスト）にあるモジュールを探します。このディレクトリセットは<a href="http://docs.puppetlabs.com/references/stable/configuration.html#modulepath">構成可能な設定(英文)</a>である<code>modulepath</code>として知られています。</li>
+          <li>Puppetは特定の場所（もしくは場所のリスト）にあるモジュールを探します。このディレクトリセットは<a href="http://docs.puppetlabs.com/puppet/latest/reference/configuration.html#modulepath">構成可能な設定(英文)</a>である<code>modulepath</code>として知られています。</li>
           <li>クラスがモジュール内で定義されると、あらゆるマニフェストの中でそのクラスを名前で宣言する事ができます。Puppetは自動的にクラス定義に含まれるマニフェストを見つけて読み込みます。</li>
         </ul>
         <p>これはたくさんのモジュールを洗練されたPuppetコードで持てる事を意味しており、site.ppマニフェストは以下のようになります。</p>
@@ -237,7 +237,7 @@ notice: Finished catalog run in 0.76 seconds
         <p>最初の<code>/etc/puppetlabs/puppet/modules</code>が主に使うモジュールのディレクトリです（もう1つはPuppet Enterpriseで使う機能の特別なモジュールが含まれています。これらを見る事はできますが、中身を変更したり追加したりすべきではありません）。</p>
         <blockquote>
           <h4 id="aside-configprint">余談：Configprintオプション</h4>
-          <p><code>modulepath</code>の値は<code>puppet master --configprint modulepath</code>コマンドを実行しても取得できます。この<code>--configprint</code>オプションPuppetに<a href="http://docs.puppetlabs.com/references/latest/configuration.html">設定(英文)</a>されている任意の値を取得できます。<code>master</code>サブコマンドを使って<code>puppet master</code>コマンドが使う値を取得できることを確認しておきましょう。</p>
+          <p><code>modulepath</code>の値は<code>puppet master --configprint modulepath</code>コマンドを実行しても取得できます。この<code>--configprint</code>オプションPuppetに<a href="http://docs.puppetlabs.com/puppet/latest/reference/configuration.html">設定(英文)</a>されている任意の値を取得できます。<code>master</code>サブコマンドを使って<code>puppet master</code>コマンドが使う値を取得できることを確認しておきましょう。</p>
         </blockquote>
         <h3 id="module-structure">Module Structure ～ モジュールの構造</h3>
         <ul>

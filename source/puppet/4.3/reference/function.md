@@ -3,7 +3,7 @@ layout: default
 built_from_commit: 08dbaf538d4bb530b97815b9a88857bf93a63c49
 title: Function Reference
 toc: columns
-canonical: /references/latest/function.html
+canonical: /puppet/latest/reference/function.html
 ---
 
 

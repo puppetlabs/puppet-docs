@@ -11,13 +11,13 @@ canonical: "/puppet/latest/reference/lang_relationships.html"
 [array]: ./lang_data_array.html
 [class]: ./lang_classes.html
 [event]: ./lang_resources.html#behavior
-[service]: /references/4.2.latest/type.html#service
-[exec]: /references/4.2.latest/type.html#exec
-[type]: /references/4.2.latest/type.html
-[mount]: /references/4.2.latest/type.html#mount
+[service]: /puppet/4.2/reference/type.html#service
+[exec]: /puppet/4.2/reference/type.html#exec
+[type]: /puppet/4.2/reference/type.html
+[mount]: /puppet/4.2/reference/type.html#mount
 [metaparameters]: ./lang_resources.html#metaparameters
 [require_function]: ./lang_classes.html#using-require
-[moar]: /references/4.2.latest/configuration.html#ordering
+[moar]: /puppet/4.2/reference/configuration.html#ordering
 [lambdas]: ./lang_lambdas.html
 
 

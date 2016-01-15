@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Type Reference"
-canonical: "/references/latest/type.html"
+canonical: "/puppet/latest/reference/type.html"
 ---
 
 

@@ -4,7 +4,7 @@ title: "Module Fundamentals"
 canonical: "/puppet/latest/reference/modules_fundamentals.html"
 ---
 
-[modulepath]: /references/stable/configuration.html#modulepath
+[modulepath]: /puppet/latest/reference/configuration.html#modulepath
 [installing]: ./modules_installing.html
 [publishing]: ./modules_publishing.html
 
@@ -142,7 +142,7 @@ Files in a module's `files` directory are automatically served to agent nodes. T
 
 Puppet URLs work transparently in both agent/master mode and standalone mode; in either case, they will retrieve the correct file from a module.
 
-[file]: /references/stable/type.html#file
+[file]: /puppet/latest/reference/type.html#file
 
 Puppet URLs are formatted as follows:
 

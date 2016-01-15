@@ -19,7 +19,7 @@ canonical: "/puppet/latest/reference/modules_fundamentals.html"
 [environment]: ./environments.html
 [templates]: /guides/templating.html
 [forge]: http://forge.puppetlabs.com
-[file_function]: /references/4.3.latest/function.html#file
+[file_function]: /puppet/4.3/reference/function.html#file
 [reserved names]: ./lang_reserved.html
 
 **Modules** are self-contained bundles of code and data. You can download pre-built modules from [the Puppet Forge][forge] or you can write your own modules.
@@ -138,7 +138,7 @@ You can also access module files with [the `file` function][file_function]. This
 
 Puppet URLs work transparently in both agent/master mode and standalone mode; in either case, they will retrieve the correct file from a module.
 
-[file]: /references/4.3.latest/type.html#file
+[file]: /puppet/4.3/reference/type.html#file
 
 Puppet URLs are formatted as follows:
 

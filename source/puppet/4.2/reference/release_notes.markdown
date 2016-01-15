@@ -215,7 +215,7 @@ Special thanks to [Chris Portman](https://github.com/ChrisPortman) for help with
 
 ### New Features: Miscellaneous
 
-[splay]: /references/4.2.latest/configuration.html#splay
+[splay]: /puppet/4.2/reference/configuration.html#splay
 
 Puppet apply now supports [the `splay` setting][splay], and Puppet agent sets a new [`agent_specified_environment` fact](./lang_facts_and_builtin_vars.html#puppet-agent-facts).
 

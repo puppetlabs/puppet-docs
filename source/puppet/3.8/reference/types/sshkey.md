@@ -2,7 +2,7 @@
 layout: default
 built_from_commit: c0673af42427fbe0b22ff97c8e5fa3244715eeae
 title: 'Resource Type: sshkey'
-canonical: /references/latest/types/sshkey.html
+canonical: /puppet/latest/reference/types/sshkey.html
 ---
 
 > **NOTE:** This page was generated from the Puppet source code on 2016-01-15 16:31:56 +0100

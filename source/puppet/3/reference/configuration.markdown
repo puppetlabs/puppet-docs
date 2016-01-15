@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Configuration Reference"
-canonical: "/references/latest/configuration.html"
+canonical: "/puppet/latest/reference/configuration.html"
 ---
 
 
@@ -1137,7 +1137,7 @@ subscribing or notified resources, although Puppet will log that a refresh
 event _would_ have been sent.
 
 **Important note:**
-[The `noop` metaparameter](http://docs.puppetlabs.com/references/latest/metaparameter.html#noop)
+[The `noop` metaparameter](http://docs.puppetlabs.com/puppet/latest/reference/metaparameter.html#noop)
 allows you to apply individual resources in noop mode, and will override
 the global value of the `noop` setting. This means a resource with
 `noop => false` _will_ be changed if necessary, even when running puppet

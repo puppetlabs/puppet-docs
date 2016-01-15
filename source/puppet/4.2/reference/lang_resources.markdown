@@ -9,7 +9,7 @@ canonical: "/puppet/latest/reference/lang_resources.html"
 [containment]: ./lang_containment.html
 [scope]: ./lang_scope.html
 [report]: /guides/reporting.html
-[types]: /references/4.2.latest/type.html
+[types]: /puppet/4.2/reference/type.html
 [string]: ./lang_data_string.html
 [array]: ./lang_data_array.html
 [datatype]: ./lang_data.html
@@ -18,9 +18,9 @@ canonical: "/puppet/latest/reference/lang_resources.html"
 [class]: ./lang_classes.html
 [defined_type]: ./lang_defined_types.html
 [catalog]: ./lang_summary.html#compilation-and-catalogs
-[files]: /references/3.7.latest/type.html#file
-[cron jobs]: /references/3.7.latest/type.html#cron
-[services]: /references/3.7.latest/type.html#service
+[files]: /puppet/3.7/reference/type.html#file
+[cron jobs]: /puppet/3.7/reference/type.html#cron
+[services]: /puppet/3.7/reference/type.html#service
 [custom_types]: /guides/custom_types.html
 [resource_advanced]: ./lang_resources_advanced.html
 [expressions]: ./lang_expressions.html
@@ -134,7 +134,7 @@ If multiple classes require the same resource, you can use a [class][] or a [vir
 
 ### Relationships and Ordering
 
-[ordering]: /references/4.2.latest/configuration.html#ordering
+[ordering]: /puppet/4.2/reference/configuration.html#ordering
 
 By default, Puppet applies unrelated resources in the order in which they're written in the manifest. You can disable this with the [`ordering`][ordering] setting.
 
@@ -203,6 +203,6 @@ Some attributes in Puppet can be used with every resource type. These are called
 
 The most commonly used metaparameters are for specifying [order relationships][relationships] between resources.
 
-You can see the full list of all metaparameters in the [Metaparameter Reference](/references/3.7.latest/metaparameter.html).
+You can see the full list of all metaparameters in the [Metaparameter Reference](/puppet/3.7/reference/metaparameter.html).
 
 

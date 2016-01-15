@@ -8,28 +8,28 @@ title: "Puppet's Commands"
 [arch]: ./architecture.html
 [agent_unix]: ./services_agent_unix.html
 [agent_windows]: ./services_agent_windows.html
-[agent_man]: /references/4.3.latest/man/agent.html
+[agent_man]: /puppet/4.3/reference/man/agent.html
 [master_rack]: ./services_master_rack.html
 [master_webrick]: ./services_master_webrick.html
-[master_man]: /references/4.3.latest/man/master.html
+[master_man]: /puppet/4.3/reference/man/master.html
 [apply]: ./services_apply.html
-[apply_man]: /references/4.3.latest/man/apply.html
-[cert_man]: /references/4.3.latest/man/cert.html
+[apply_man]: /puppet/4.3/reference/man/apply.html
+[cert_man]: /puppet/4.3/reference/man/cert.html
 [puppet forge]: https://forge.puppetlabs.com
 [module fundamentals]: ./modules_fundamentals.html
 [installing modules]: ./modules_installing.html
 [publishing modules on the puppet forge]: ./modules_publishing.html
-[module_man]: /references/4.3.latest/man/module.html
-[resource_man]: /references/4.3.latest/man/resource.html
+[module_man]: /puppet/4.3/reference/man/module.html
+[resource_man]: /puppet/4.3/reference/man/resource.html
 [about puppet's settings]: ./config_about_settings.html
 [checking values of settings]: ./config_print.html
 [editing settings on the command line]: ./config_set.html
 [short list of important settings]: ./config_important_settings.html
-[config_man]: /references/4.3.latest/man/config.html
-[parser_man]: /references/4.3.latest/man/parser.html
-[help_man]: /references/4.3.latest/man/help.html
-[man_man]: /references/4.3.latest/man/man.html
-[all_manpages]: /references/4.3.latest/man/
+[config_man]: /puppet/4.3/reference/man/config.html
+[parser_man]: /puppet/4.3/reference/man/parser.html
+[help_man]: /puppet/4.3/reference/man/help.html
+[man_man]: /puppet/4.3/reference/man/man.html
+[all_manpages]: /puppet/4.3/reference/man/
 [about_server]: /puppetserver/2.2/services_master_puppetserver.html
 [server_vs_passenger]: /puppetserver/2.2/puppetserver_vs_passenger.html
 [subcommands]: /puppetserver/2.2/subcommands.html

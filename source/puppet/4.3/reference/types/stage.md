@@ -2,7 +2,7 @@
 layout: default
 built_from_commit: 08dbaf538d4bb530b97815b9a88857bf93a63c49
 title: 'Resource Type: stage'
-canonical: /references/latest/types/stage.html
+canonical: /puppet/latest/reference/types/stage.html
 ---
 
 > **NOTE:** This page was generated from the Puppet source code on 2016-01-15 16:54:12 +0100
@@ -17,7 +17,7 @@ stage
 A resource type for creating new run stages.  Once a stage is available,
 classes can be assigned to it by declaring them with the resource-like syntax
 and using
-[the `stage` metaparameter](http://docs.puppetlabs.com/references/latest/metaparameter.html#stage).
+[the `stage` metaparameter](http://docs.puppetlabs.com/puppet/latest/reference/metaparameter.html#stage).
 
 Note that new stages are not useful unless you also declare their order
 in relation to the default `main` stage.

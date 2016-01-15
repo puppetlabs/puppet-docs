@@ -8,11 +8,11 @@ canonical: "/puppet/latest/reference/dirs_manifest.html"
 [environment]: ./environments.html
 [catalog_compilation]: ./subsystem_catalog_compilation.html
 [confdir]: ./dirs_confdir.html
-[manifest_setting]: /references/3.7.latest/configuration.html#manifest
+[manifest_setting]: /puppet/3.7/reference/configuration.html#manifest
 [print_settings]: ./config_print.html
 [enc]: /guides/external_nodes.html
-[default_manifest]: /references/3.7.latest/configuration.html#defaultmanifest
-[disable_per_environment_manifest]: /references/3.7.latest/configuration.html#disableperenvironmentmanifest
+[default_manifest]: /puppet/3.7/reference/configuration.html#defaultmanifest
+[disable_per_environment_manifest]: /puppet/3.7/reference/configuration.html#disableperenvironmentmanifest
 [environment.conf]: ./config_file_environment.html
 [puppet.conf]: ./config_file_main.html
 [configuring directory environments]: ./environments_configuring.html
@@ -74,7 +74,7 @@ Puppet will act as though the whole directory were just one big manifest; for ex
 
     Puppet will load files in depth-first order. (For example, if the manifest directory contains a directory named `01` and a file named `02.pp`, it will parse all the files in `01` before `02`.)
 
-[parser]: /references/3.7.latest/configuration.html#parser
+[parser]: /puppet/3.7/reference/configuration.html#parser
 
 > **Recommended:** If you're using the main manifest heavily instead of relying on an [ENC][], consider changing the `manifest` setting to `$confdir/manifests`. This lets you split up your top-level code into multiple files while [avoiding the `import` keyword][import_deprecation]. It will also match the behavior of [directory environments][environment].
 

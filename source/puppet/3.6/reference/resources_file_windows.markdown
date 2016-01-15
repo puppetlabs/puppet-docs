@@ -3,12 +3,12 @@ layout: default
 title: "Resource Tips and Examples: File on Windows"
 ---
 
-[file]: /references/3.6.latest/type.html#file
+[file]: /puppet/3.6/reference/type.html#file
 [relationships]: /puppet/latest/reference/lang_relationships.html
 [acl_module]: https://forge.puppetlabs.com/puppetlabs/acl
-[mode]: /references/3.6.latest/type.html#file-attribute-mode
+[mode]: /puppet/3.6/reference/type.html#file-attribute-mode
 
-Puppet's built-in [`file`][file] resource type can manage files and directories on Windows, including ownership, group, permissions, and content. Symbolic links are supported in Puppet 3.4.0 / PE 3.2 and later on Windows 2008 / Vista and later; for details, [see the notes in the type reference under `file`'s `ensure` attribute](/references/latest/type.html#file-attribute-ensure).
+Puppet's built-in [`file`][file] resource type can manage files and directories on Windows, including ownership, group, permissions, and content. Symbolic links are supported in Puppet 3.4.0 / PE 3.2 and later on Windows 2008 / Vista and later; for details, [see the notes in the type reference under `file`'s `ensure` attribute](/puppet/latest/reference/type.html#file-attribute-ensure).
 
 
 ~~~ ruby
@@ -50,11 +50,11 @@ To manage files properly, Puppet needs the "Create symbolic links" (Vista/2008 a
 
 ## Always Block Source Permissions on Windows
 
-If you set [the `source` attribute](/references/latest/type.html#file-attribute-source), Puppet defaults to applying the ownership and permissions that the source files have on the puppet master server.
+If you set [the `source` attribute](/puppet/latest/reference/type.html#file-attribute-source), Puppet defaults to applying the ownership and permissions that the source files have on the puppet master server.
 
 This is **almost never what you want** when managing files on Windows, and the default behavior is now deprecated, scheduled for change in a future version of Puppet.
 
-In the meantime, you can change or disable this behavior with [the `file` type's `source_permissions` attribute](/references/latest/type.html#file-attribute-source_permissions); for Windows systems, you will usually want to set it to `ignore` with a resource default in site.pp:
+In the meantime, you can change or disable this behavior with [the `file` type's `source_permissions` attribute](/puppet/latest/reference/type.html#file-attribute-source_permissions); for Windows systems, you will usually want to set it to `ignore` with a resource default in site.pp:
 
 ~~~ ruby
     if $osfamily == 'windows' {
@@ -76,7 +76,7 @@ This module provides an optional `acl` resource type that manages permissions in
 
 ### How \*nix Modes Map to Windows Permissions
 
-\*nix permissions are expressed as either an octal number or a string of symbolic modes. See [the reference for the `file` type's `mode` attribute](/references/latest/type.html#file-attribute-mode) for more details about the syntax.
+\*nix permissions are expressed as either an octal number or a string of symbolic modes. See [the reference for the `file` type's `mode` attribute](/puppet/latest/reference/type.html#file-attribute-mode) for more details about the syntax.
 
 These mode expressions generally manage three kinds of permission (read, write, execute) for three kinds of user (owner, group, other). They translate to Windows permissions as follows:
 
@@ -106,7 +106,7 @@ Windows usually uses CRLF line endings instead of \*nix's LF line endings. In mo
     * If the manifest or template file is saved with CRLF line endings, Puppet will use those endings in the destination file.
     * If the manifest or template file is saved with LF line endings, you can use the `\r\n` escape sequence to create literal CRLFs.
 * If a file resource uses the `source` attribute, Puppet will transfer the file in "binary" mode, leaving the original newlines untouched.
-* Non-`file` resource types that make partial edits to a system file (most notably the [`host`](/references/latest/type.html#host) type, which manages the `%windir%\system32\drivers\etc\hosts` file) manage their files in text mode, and will automatically translate between Windows and \*nix line endings.
+* Non-`file` resource types that make partial edits to a system file (most notably the [`host`](/puppet/latest/reference/type.html#host) type, which manages the `%windir%\system32\drivers\etc\hosts` file) manage their files in text mode, and will automatically translate between Windows and \*nix line endings.
 
     > Note: When writing your own resource types, you can get this same behavior by using the `flat` filetype.
 

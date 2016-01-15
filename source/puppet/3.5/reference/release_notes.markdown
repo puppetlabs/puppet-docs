@@ -9,7 +9,7 @@ canonical: "/puppet/latest/reference/release_notes.html"
 [dirs_modulepath_simple_envs]: ./dirs_modulepath.html
 [upgrade]: /puppet/3.8/reference/upgrading.html
 [vars_trusted_hash]: ./lang_facts_and_builtin_vars.html#trusted-facts
-[v2_api_yard]: /references/3.5.latest/developer/file.http_api_index.html
+[v2_api_yard]: /puppet/3.5/reference/developer/file.http_api_index.html
 [puppet_3]: /puppet/3/reference/release_notes.html
 [dynamic environments]: ./environments_classic.html#dynamic-environments
 [blog_environments]: http://puppetlabs.com/blog/git-workflow-and-puppet-environments
@@ -146,7 +146,7 @@ Unfortunately, this introduced new bugs, which break existing configurations. Ou
 
 Sorry for the annoyance! We have fixes that will go into Puppet 3.5.1.
 
-[yumrepo]: /references/3.5.latest/type.html#yumrepo
+[yumrepo]: /puppet/3.5/reference/type.html#yumrepo
 
 ### Directory Environments
 

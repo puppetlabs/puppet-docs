@@ -2,7 +2,7 @@
 layout: default
 built_from_commit: 08dbaf538d4bb530b97815b9a88857bf93a63c49
 title: 'Resource Type: ssh_authorized_key'
-canonical: /references/latest/types/ssh_authorized_key.html
+canonical: /puppet/latest/reference/types/ssh_authorized_key.html
 ---
 
 > **NOTE:** This page was generated from the Puppet source code on 2016-01-15 16:54:12 +0100

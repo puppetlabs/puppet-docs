@@ -59,7 +59,7 @@ Node inheritance often causes ambiguous or counterintuitive behavior. More effec
 
 You can use the `import` statement in the [main manifest][] to compile more than one manifest without autoloading the additional files from modules.
 
-Since `import` statements can interfere with syntax checking individual manifest files, you can also use [the `ignoreimport` setting](/references/3.7.latest/configuration.html#ignoreimport) to block importing when using the `puppet parser validate` command.
+Since `import` statements can interfere with syntax checking individual manifest files, you can also use [the `ignoreimport` setting](/puppet/3.7/reference/configuration.html#ignoreimport) to block importing when using the `puppet parser validate` command.
 
 ### In Puppet 4.0
 

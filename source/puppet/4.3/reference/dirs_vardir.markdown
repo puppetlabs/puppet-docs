@@ -5,7 +5,7 @@ canonical: "/puppet/latest/reference/dirs_vardir.html"
 ---
 
 [confdir]: ./dirs_confdir.html
-[config_ref]: /references/4.3.latest/configuration.html
+[config_ref]: /puppet/4.3/reference/configuration.html
 [puppetserver_conf]: /puppetserver/2.2/configuration.html#puppetserverconf
 
 Puppet's cache directory, sometimes called `vardir`, contains **dynamic and/or growing data** that Puppet creates automatically in the course of its normal operations. Some of this data can be mined for interesting analysis, or to integrate other tools with Puppet; other parts are just infrastructure and should be ignored by most or all users.
@@ -79,36 +79,36 @@ The default layout of the vardir is as follows. Most of the files and directorie
 * [`templates` (`templatedir`)][templatedir] --- This directory generally shouldn't be used; templates should be stored in modules.
 * [`yaml` (`yamldir`)][yamldir]
 
-[bucketdir]: /references/4.3.latest/configuration.html#bucketdir
-[client_datadir]: /references/4.3.latest/configuration.html#clientdatadir
-[clientbucketdir]: /references/4.3.latest/configuration.html#clientbucketdir
-[clientyamldir]: /references/4.3.latest/configuration.html#clientyamldir
-[devicedir]: /references/4.3.latest/configuration.html#devicedir
-[factpath]: /references/4.3.latest/configuration.html#factpath
-[pluginfactdest]: /references/4.3.latest/configuration.html#pluginfactdest
-[libdir]: /references/4.3.latest/configuration.html#libdir
-[plugindest]: /references/4.3.latest/configuration.html#plugindest
-[module_working_dir]: /references/4.3.latest/configuration.html#moduleworkingdir
-[module_skeleton_dir]: /references/4.3.latest/configuration.html#moduleskeletondir
-[logdir]: /references/4.3.latest/configuration.html#logdir
-[httplog]: /references/4.3.latest/configuration.html#httplog
-[masterhttplog]: /references/4.3.latest/configuration.html#masterhttplog
-[masterlog]: /references/4.3.latest/configuration.html#masterlog
-[puppetdlog]: /references/4.3.latest/configuration.html#puppetdlog
-[reportdir]: /references/4.3.latest/configuration.html#reportdir
-[rrddir]: /references/4.3.latest/configuration.html#rrddir
-[rundir]: /references/4.3.latest/configuration.html#rundir
-[pidfile]: /references/4.3.latest/configuration.html#pidfile
-[serverdatadir]: /references/4.3.latest/configuration.html#serverdatadir
-[statedir]: /references/4.3.latest/configuration.html#statedir
-[agent_catalog_run_lockfile]: /references/4.3.latest/configuration.html#agentcatalogrunlockfile
-[agent_disabled_lockfile]: /references/4.3.latest/configuration.html#agentdisabledlockfile
-[classfile]: /references/4.3.latest/configuration.html#classfile
-[graphdir]: /references/4.3.latest/configuration.html#graphdir
-[lastrunfile]: /references/4.3.latest/configuration.html#lastrunfile
-[lastrunreport]: /references/4.3.latest/configuration.html#lastrunreport
-[localconfig]: /references/4.3.latest/configuration.html#localconfig
-[resourcefile]: /references/4.3.latest/configuration.html#resourcefile
-[statefile]: /references/4.3.latest/configuration.html#statefile
-[templatedir]: /references/4.3.latest/configuration.html#templatedir
-[yamldir]: /references/4.3.latest/configuration.html#yamldir
+[bucketdir]: /puppet/4.3/reference/configuration.html#bucketdir
+[client_datadir]: /puppet/4.3/reference/configuration.html#clientdatadir
+[clientbucketdir]: /puppet/4.3/reference/configuration.html#clientbucketdir
+[clientyamldir]: /puppet/4.3/reference/configuration.html#clientyamldir
+[devicedir]: /puppet/4.3/reference/configuration.html#devicedir
+[factpath]: /puppet/4.3/reference/configuration.html#factpath
+[pluginfactdest]: /puppet/4.3/reference/configuration.html#pluginfactdest
+[libdir]: /puppet/4.3/reference/configuration.html#libdir
+[plugindest]: /puppet/4.3/reference/configuration.html#plugindest
+[module_working_dir]: /puppet/4.3/reference/configuration.html#moduleworkingdir
+[module_skeleton_dir]: /puppet/4.3/reference/configuration.html#moduleskeletondir
+[logdir]: /puppet/4.3/reference/configuration.html#logdir
+[httplog]: /puppet/4.3/reference/configuration.html#httplog
+[masterhttplog]: /puppet/4.3/reference/configuration.html#masterhttplog
+[masterlog]: /puppet/4.3/reference/configuration.html#masterlog
+[puppetdlog]: /puppet/4.3/reference/configuration.html#puppetdlog
+[reportdir]: /puppet/4.3/reference/configuration.html#reportdir
+[rrddir]: /puppet/4.3/reference/configuration.html#rrddir
+[rundir]: /puppet/4.3/reference/configuration.html#rundir
+[pidfile]: /puppet/4.3/reference/configuration.html#pidfile
+[serverdatadir]: /puppet/4.3/reference/configuration.html#serverdatadir
+[statedir]: /puppet/4.3/reference/configuration.html#statedir
+[agent_catalog_run_lockfile]: /puppet/4.3/reference/configuration.html#agentcatalogrunlockfile
+[agent_disabled_lockfile]: /puppet/4.3/reference/configuration.html#agentdisabledlockfile
+[classfile]: /puppet/4.3/reference/configuration.html#classfile
+[graphdir]: /puppet/4.3/reference/configuration.html#graphdir
+[lastrunfile]: /puppet/4.3/reference/configuration.html#lastrunfile
+[lastrunreport]: /puppet/4.3/reference/configuration.html#lastrunreport
+[localconfig]: /puppet/4.3/reference/configuration.html#localconfig
+[resourcefile]: /puppet/4.3/reference/configuration.html#resourcefile
+[statefile]: /puppet/4.3/reference/configuration.html#statefile
+[templatedir]: /puppet/4.3/reference/configuration.html#templatedir
+[yamldir]: /puppet/4.3/reference/configuration.html#yamldir

@@ -8,10 +8,10 @@ canonical: "/puppet/latest/reference/dirs_manifest.html"
 [environment]: ./environments.html
 [catalog_compilation]: ./subsystem_catalog_compilation.html
 [confdir]: ./dirs_confdir.html
-[manifest_setting]: /references/3.6.latest/configuration.html#manifest
+[manifest_setting]: /puppet/3.6/reference/configuration.html#manifest
 [print_settings]: ./config_print.html
 [enc]: /guides/external_nodes.html
-[environmentpath]: /references/3.6.latest/configuration.html#environmentpath
+[environmentpath]: /puppet/3.6/reference/configuration.html#environmentpath
 [classic_environments]: ./environments_classic.html
 
 Puppet always starts compiling with either a single manifest file or a directory of manifests that get treated like a single file. This main starting point is called the **main manifest** or **site manifest.**

@@ -4,8 +4,8 @@ title: "Experimental Features: The Future Parser"
 canonical: "/puppet/latest/reference/experiments_future.html"
 ---
 
-[parser_setting]: /references/latest/configuration.html#parser
-[evaluator_setting]: /references/latest/configuration.html#evaluator
+[parser_setting]: /puppet/latest/reference/configuration.html#parser
+[evaluator_setting]: /puppet/latest/reference/configuration.html#evaluator
 [users_group]: https://groups.google.com/forum/#!forum/puppet-users
 
 > **Warning:** This document describes an **experimental feature,** which is not officially supported and is not considered ready for production. [See here for more information about experimental features in Puppet](./experiments_overview.html), especially if you are using Puppet Enterprise.

@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Metaparameter Reference"
-canonical: "/references/latest/metaparameter.html"
+canonical: "/puppet/latest/reference/metaparameter.html"
 ---
 
 
@@ -267,7 +267,7 @@ Multiple tags can be specified as an array:
     }
 
 Tags are useful for things like applying a subset of a host's configuration
-with [the `tags` setting](/references/latest/configuration.html#tags):
+with [the `tags` setting](/puppet/latest/reference/configuration.html#tags):
 
     puppet agent --test --tags bootstrap
 

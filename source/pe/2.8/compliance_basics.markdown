@@ -27,7 +27,7 @@ canonical: "/pe/latest/compliance_alt.html"
 >
 > Puppet resources or catalogs can be marked as "noop" before they are applied by the agent nodes. This means that the user describes a desired state for the resource, and Puppet will detect and report any divergence from this desired state. Puppet will report what _should_ change to bring the resource into the desired state, but it will not _make_ those changes automatically.
 >
-> * To set an individual resource as noop, set [the `noop` metaparameter](/references/latest/metaparameter.html#noop) to `true`.
+> * To set an individual resource as noop, set [the `noop` metaparameter](/puppet/latest/reference/metaparameter.html#noop) to `true`.
 >
 >         file {'/etc/sudoers':
 >           owner => root,
@@ -37,7 +37,7 @@ canonical: "/pe/latest/compliance_alt.html"
 >         }
 >
 >     This allows you to mix enforced resources and noop resources in the same Puppet run.
-> * To do an entire Puppet run in noop, set [the `noop` setting](/references/latest/configuration.html#noop) to `true`. This can be done in the `[agent]` block of puppet.conf, or as a `--noop` command-line flag. If you are running puppet agent in the default daemon mode, you would set noop in puppet.conf.
+> * To do an entire Puppet run in noop, set [the `noop` setting](/puppet/latest/reference/configuration.html#noop) to `true`. This can be done in the `[agent]` block of puppet.conf, or as a `--noop` command-line flag. If you are running puppet agent in the default daemon mode, you would set noop in puppet.conf.
 >
 > ### In the Console
 >
@@ -108,7 +108,7 @@ Any native Puppet resource type can be used in the baseline compliance workflow.
 
 ### Compliance Manifests
 
-The set of resources to audit is declared in standard Puppet manifests on the master and retrieved as a catalog by the agent. Instead of (or in addition to) declaring the desired state of a resource, these manifests should declare the [`audit`](/references/2.7.latest/metaparameter.html#audit) metaparameter.
+The set of resources to audit is declared in standard Puppet manifests on the master and retrieved as a catalog by the agent. Instead of (or in addition to) declaring the desired state of a resource, these manifests should declare the [`audit`](/puppet/2.7/reference/metaparameter.html#audit) metaparameter.
 
 ### Inspect Reports
 

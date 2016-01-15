@@ -2,7 +2,7 @@
 layout: default
 built_from_commit: e49293167c2a4753e3db51df5585478e3d8c8877
 title: 'Resource Type: mailalias'
-canonical: /references/latest/types/mailalias.html
+canonical: /puppet/latest/reference/types/mailalias.html
 ---
 
 > **NOTE:** This page was generated from the Puppet source code on 2016-01-15 16:50:35 +0100

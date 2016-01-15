@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Configuration Reference"
-canonical: "/references/latest/configuration.html"
+canonical: "/puppet/latest/reference/configuration.html"
 ---
 
 

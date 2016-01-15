@@ -23,7 +23,7 @@ Although many Forge modules are exact solutions that fit your site, many more ar
 
 ### Module Basics
 
-By default, modules are stored in `/etc/puppetlabs/puppet/modules`. (This can be configured with the [`modulepath`](/references/3.3.latest/configuration.html#modulepath) setting in `puppet.conf`.)
+By default, modules are stored in `/etc/puppetlabs/puppet/modules`. (This can be configured with the [`modulepath`](/puppet/3.3/reference/configuration.html#modulepath) setting in `puppet.conf`.)
 
 Modules are directory trees. Their basic structure looks like this:
 
@@ -191,14 +191,14 @@ This exercise will create a class that manages the permissions of the `fstab`, `
 > * Uses a selector [conditional][] and a variable to change the name of the root user's primary group on Solaris.
 > * Uses three [`file` resources][file_type] to manage the `fstab`, `passwd`, and `crontab` files on \*nix systems. These resources do not manage the content of the files, only their ownership and permissions.
 
-[file_type]: /references/3.3.latest/type.html#file
+[file_type]: /puppet/3.3/reference/type.html#file
 [conditional]: /puppet/3/reference/lang_conditional.html
 
 For more information about writing classes, refer to the following documentation:
 
 * To learn how to write resource declarations, conditionals, and classes in a guided tour format, [start at the beginning of Learning Puppet.](/learning/)
 * For a complete but succinct guide to the Puppet language's syntax, [see the Puppet 3 language reference](/puppet/3/reference/lang_summary.html).
-* For complete documentation of the available resource types, [see the type reference](/references/3.3.latest/type.html).
+* For complete documentation of the available resource types, [see the type reference](/puppet/3.3/reference/type.html).
 * For short, printable references, see [the modules cheat sheet](/module_cheat_sheet.pdf) and [the core types cheat sheet](/puppet_core_types_cheatsheet.pdf).
 
 ### Using a Homemade Module in the Console

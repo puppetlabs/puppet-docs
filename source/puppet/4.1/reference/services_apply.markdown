@@ -5,18 +5,18 @@ canonical: "/puppet/latest/reference/services_apply.html"
 ---
 
 
-[man]: /references/4.1.latest/man/apply.html
-[resource type reference]: /references/4.1.latest/type.html
+[man]: /puppet/4.1/reference/man/apply.html
+[resource type reference]: /puppet/4.1/reference/type.html
 [environments]: ./environments.html
 [main manifest]: ./dirs_manifest.html
-[manifest_setting]: /references/4.1.latest/configuration.html#manifest
+[manifest_setting]: /puppet/4.1/reference/configuration.html#manifest
 [env_main_manifest]: ./environments.html#manifests-directory--main-manifest
 [modules]: ./modules_fundamentals.html
 [enc]: /guides/external_nodes.html
-[http_report]: /references/4.1.latest/report.html#http
+[http_report]: /puppet/4.1/reference/report.html#http
 [puppetdb]: /puppetdb/latest
-[report handlers]: /references/4.1.latest/report.html
-[reports_setting]: /references/4.1.latest/configuration.html#reports
+[report handlers]: /puppet/4.1/reference/report.html
+[reports_setting]: /puppet/4.1/reference/configuration.html#reports
 [reports_guide]: /guides/reporting.html
 [puppet.conf]: ./config_file_main.html
 [short_settings]: ./config_important_settings.html#settings-for-agents-all-nodes
@@ -88,7 +88,7 @@ If you have configured [PuppetDB][], Puppet apply will create outbound HTTPS con
 
 By default, Puppet apply logs directly to the terminal. This is good for interactive use, and less good when running as a scheduled task or cron job.
 
-You can adjust how verbose the logs are with [the `log_level` setting](/references/4.1.latest/configuration.html#loglevel), which defaults to `notice`. Setting it to `info` is equivalent to running with the `--verbose` option, and setting it to `debug` is equivalent to `--debug`. You can also make logs quieter by dialing back to `warning` or lower.
+You can adjust how verbose the logs are with [the `log_level` setting](/puppet/4.1/reference/configuration.html#loglevel), which defaults to `notice`. Setting it to `info` is equivalent to running with the `--verbose` option, and setting it to `debug` is equivalent to `--debug`. You can also make logs quieter by dialing back to `warning` or lower.
 
 When started with the `--logdest syslog` option, Puppet apply logs to the \*nix syslog service. Your syslog configuration dictates where these messages will be saved, but the default location is `/var/log/messages` on Linux, `/var/log/system.log` on Mac OS X, and `/var/adm/messages` on Solaris.
 
@@ -100,7 +100,7 @@ When started with the `--logdest <FILE>` option, it logs to the file specified b
 
 In addition to local logging, Puppet apply will process a report using its configured [report handlers][], like a Puppet master does. You can enable different reports with [the `reports` setting][reports_setting]; see the [list of available reports][report handlers] for more info. For more about reporting, see [the guide to reporting][reports_guide].
 
-To disable reporting and avoid taking up disk space with the `store` report handler, you can set [`report = false`](/references/4.1.latest/configuration.html#report) in [puppet.conf][].
+To disable reporting and avoid taking up disk space with the `store` report handler, you can set [`report = false`](/puppet/4.1/reference/configuration.html#report) in [puppet.conf][].
 
 
 ## Managing Systems With Puppet Apply

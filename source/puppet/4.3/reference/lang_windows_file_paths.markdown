@@ -5,10 +5,10 @@ canonical: "/puppet/latest/reference/lang_windows_file_paths.html"
 ---
 
 [template]: /guides/templating.html
-[scheduledtask]: /references/4.3.latest/type.html#scheduledtask
-[exec]: /references/4.3.latest/type.html#exec
-[package]: /references/4.3.latest/type.html#package
-[file]: /references/4.3.latest/type.html#file
+[scheduledtask]: /puppet/4.3/reference/type.html#scheduledtask
+[exec]: /puppet/4.3/reference/type.html#exec
+[package]: /puppet/4.3/reference/type.html#package
+[file]: /puppet/4.3/reference/type.html#file
 
 Several [resource types](./lang_resources.html) (including `file`, `exec`, and `package`) take file paths as values for various attributes.
 

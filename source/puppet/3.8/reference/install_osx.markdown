@@ -138,7 +138,7 @@ You can also set any command line options you want for puppet agent by adding th
 <string>--debug</string>
 ~~~
 
-See [the puppet agent man page](/references/latest/man/agent.html) for details about available options; note that [any of Puppet's settings can also be set on the command line.](/puppet/latest/reference/config_about_settings.html)
+See [the puppet agent man page](/puppet/latest/reference/man/agent.html) for details about available options; note that [any of Puppet's settings can also be set on the command line.](/puppet/latest/reference/config_about_settings.html)
 
 ### Don't Worry About Loading the Launchd Service
 

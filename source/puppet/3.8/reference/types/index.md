@@ -2,7 +2,7 @@
 layout: default
 built_from_commit: c0673af42427fbe0b22ff97c8e5fa3244715eeae
 title: 'Resource Types: Index'
-canonical: /references/latest/types/index.html
+canonical: /puppet/latest/reference/types/index.html
 ---
 
 ## List of Resource Types

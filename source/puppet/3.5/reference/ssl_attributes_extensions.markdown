@@ -5,8 +5,8 @@ canonical: "/puppet/latest/reference/ssl_attributes_extensions.html"
 ---
 
 [cert_request]: ./subsystem_agent_master_comm.html#check-for-keys-and-certificates
-[csr_attributes]: /references/3.5.latest/configuration.html#csrattributes
-[confdir]: /references/3.5.latest/configuration.html#confdir
+[csr_attributes]: /puppet/3.5/reference/configuration.html#csrattributes
+[confdir]: /puppet/3.5/reference/configuration.html#confdir
 [autosign_policy]: ./ssl_autosign.html#policy-based-autosigning
 [autosign_basic]: ./ssl_autosign.html#basic-autosigning-autosignconf
 [puppet_oids]: #puppet-specific-registered-ids

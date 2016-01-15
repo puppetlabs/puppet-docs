@@ -4,7 +4,7 @@ title: "Puppet 4.0 Release Notes"
 canonical: "/puppet/4.0/reference/release_notes.html"
 toc: false
 ---
-[refguide]: /references/4.0.0/function.html#epp
+[refguide]: /puppet/4.0/reference/function.html#epp
 
 These are the release notes for Puppet 4.0, released April 15 2015. There's a lot of information here so it's organized top to bottom by size of impact -- things everyone is going to notice will be at the top and minor bugfixes/improvements are down at the bottom.
 

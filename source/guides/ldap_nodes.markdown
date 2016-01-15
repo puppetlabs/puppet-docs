@@ -191,18 +191,18 @@ tree as your search base (e.g., `ldapbase = ou=Hosts,dc=madstop,dc=com`).
 
 However, you'll probably also want to specify several other settings, including where to find the server, how to authenticate to it, and more. The following is a full list of settings related to LDAP nodes; click any of them for descriptions in the configuration reference.
 
-* [`ldapattrs`](/references/latest/configuration.html#ldapattrs)
-* [`ldapbase`](/references/latest/configuration.html#ldapbase)
-* [`ldapclassattrs`](/references/latest/configuration.html#ldapclassattrs)
-* [`ldapparentattr`](/references/latest/configuration.html#ldapparentattr)
-* [`ldappassword`](/references/latest/configuration.html#ldappassword)
-* [`ldapport`](/references/latest/configuration.html#ldapport)
-* [`ldapserver`](/references/latest/configuration.html#ldapserver)
-* [`ldapssl`](/references/latest/configuration.html#ldapssl)
-* [`ldapstackedattrs`](/references/latest/configuration.html#ldapstackedattrs)
-* [`ldapstring`](/references/latest/configuration.html#ldapstring)
-* [`ldaptls`](/references/latest/configuration.html#ldaptls)
-* [`ldapuser`](/references/latest/configuration.html#ldapuser)
+* [`ldapattrs`](/puppet/latest/reference/configuration.html#ldapattrs)
+* [`ldapbase`](/puppet/latest/reference/configuration.html#ldapbase)
+* [`ldapclassattrs`](/puppet/latest/reference/configuration.html#ldapclassattrs)
+* [`ldapparentattr`](/puppet/latest/reference/configuration.html#ldapparentattr)
+* [`ldappassword`](/puppet/latest/reference/configuration.html#ldappassword)
+* [`ldapport`](/puppet/latest/reference/configuration.html#ldapport)
+* [`ldapserver`](/puppet/latest/reference/configuration.html#ldapserver)
+* [`ldapssl`](/puppet/latest/reference/configuration.html#ldapssl)
+* [`ldapstackedattrs`](/puppet/latest/reference/configuration.html#ldapstackedattrs)
+* [`ldapstring`](/puppet/latest/reference/configuration.html#ldapstring)
+* [`ldaptls`](/puppet/latest/reference/configuration.html#ldaptls)
+* [`ldapuser`](/puppet/latest/reference/configuration.html#ldapuser)
 
 
 

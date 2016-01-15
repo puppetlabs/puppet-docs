@@ -2,7 +2,7 @@
 layout: default
 built_from_commit: 08cb8b2d315a296fa404a4871f94b3703a819461
 title: 'Resource Type: scheduled_task'
-canonical: /references/latest/types/scheduled_task.html
+canonical: /puppet/latest/reference/types/scheduled_task.html
 ---
 
 > **NOTE:** This page was generated from the Puppet source code on 2016-01-15 16:39:04 +0100

@@ -172,11 +172,11 @@ For more information, see [the Facter documentation](/facter/latest/).
 
 A repository in which Puppet stores file backups when it has to replace files is called a **filebucket**. 
 
-A filebucket can be local (and owned by the [node](#node) being managed) or site-global (and owned by the Puppet [master](#master)). Typically, a single filebucket is defined for a network and is used as the default backup location. For more information, see the [`filebucket` type](/references/stable/type.html#filebucket) in the [Puppet language](#puppet-language) type reference.
+A filebucket can be local (and owned by the [node](#node) being managed) or site-global (and owned by the Puppet [master](#master)). Typically, a single filebucket is defined for a network and is used as the default backup location. For more information, see the [`filebucket` type](/puppet/latest/reference/type.html#filebucket) in the [Puppet language](#puppet-language) type reference.
 
 ### function
 
-A **function** is a [Puppet language](#puppet-language) statement that returns a [value](#value) or modifies a [catalog](#catalog). Puppet has many [built-in functions](/references/latest/function.html), and Puppet [modules](#module) can add their own functions. You can also [write custom functions](/guides/custom_functions.html).
+A **function** is a [Puppet language](#puppet-language) statement that returns a [value](#value) or modifies a [catalog](#catalog). Puppet has many [built-in functions](/puppet/latest/reference/function.html), and Puppet [modules](#module) can add their own functions. You can also [write custom functions](/guides/custom_functions.html).
 
 Functions generally take at least one [value](#value) as an argument, execute Puppet code, and return a value. Since Puppet evaluates functions during [compilation](#compilation), the Puppet [master](#master) executes them in an [agent](#agent)-master arrangement. Puppet functions can only access the [facts](#fact) that an agent submitted.
 
@@ -198,7 +198,7 @@ In the Puppet documentation, this can also refer to a device running the Puppet 
 
 ### host (resource type)
 
-A **host** can refer to an entry in a system's `hosts` file, and is used for name resolution. Puppet includes a [type](#type) of [resource](#resource) to manage hosts. For more information, see the [Host](/references/stable/type.html#host) section of the [Puppet language](#puppet-language) type reference.
+A **host** can refer to an entry in a system's `hosts` file, and is used for name resolution. Puppet includes a [type](#type) of [resource](#resource) to manage hosts. For more information, see the [Host](/puppet/latest/reference/type.html#host) section of the [Puppet language](#puppet-language) type reference.
 
 ### idempotent
 
@@ -267,7 +267,7 @@ For more information, see the [Overview of Puppet's Architecture](/puppet/latest
 
 ### metaparameter
 
-A **metaparameter** is a [resource](#resource) [attribute](#attribute) that can be specified for any type of resource. Metaparameters are part of Puppet's framework rather than part of a specific [type](#type), and usually affect the way resources relate to each other. For a list of metaparameters and their usage, see the [Metaparameter Reference](/references/stable/metaparameter.html).
+A **metaparameter** is a [resource](#resource) [attribute](#attribute) that can be specified for any type of resource. Metaparameters are part of Puppet's framework rather than part of a specific [type](#type), and usually affect the way resources relate to each other. For a list of metaparameters and their usage, see the [Metaparameter Reference](/puppet/latest/reference/metaparameter.html).
 
 ### module
 
@@ -281,7 +281,7 @@ For more information, see the [Module Fundamentals](/puppet/latest/reference/mod
 
 This [attribute](#attribute) represents a [resource's](#resource) unique identity on the target system. For example, two different files cannot have the same `path`, and two different services cannot have the same `name`.
 
-Every resource [type](#type) has a designated namevar, usually `name`. Some types, such as [`file`](/references/latest/type.html#file) or [`exec`](/references/latest/type.html#exec), have their own (in these cases, `path` and `command`, respectively). If a type's namevar is something other than `name`, it's called out in the [type reference](/references/latest/type.html).
+Every resource [type](#type) has a designated namevar, usually `name`. Some types, such as [`file`](/puppet/latest/reference/type.html#file) or [`exec`](/puppet/latest/reference/type.html#exec), have their own (in these cases, `path` and `command`, respectively). If a type's namevar is something other than `name`, it's called out in the [type reference](/puppet/latest/reference/type.html).
 
 If you don't specify a [value](#value) for a resource's namevar when you [declare](#declare) it, it defaults to that resource's [title](#title).
 
@@ -345,7 +345,7 @@ A type of [relationship](#relationship) that both declares an order for resource
 
 By **ordering** [resources](#resource), you determine which resources should be managed before others.
 
-By default, Puppet uses [manifest ordering](#manifest-ordering), which evaluates resources in the same order they're declared in their [manifests](#manifest). Puppet also obeys [relationships](#relationship) you provide that determine whether a resource depends on other resources. For more information, see the [Relationships and Ordering][] page in the [Puppet language](#puppet-language) reference and the [ordering](/references/latest/configuration.html#ordering) section in the Puppet configuration reference.
+By default, Puppet uses [manifest ordering](#manifest-ordering), which evaluates resources in the same order they're declared in their [manifests](#manifest). Puppet also obeys [relationships](#relationship) you provide that determine whether a resource depends on other resources. For more information, see the [Relationships and Ordering][] page in the [Puppet language](#puppet-language) reference and the [ordering](/puppet/latest/reference/configuration.html#ordering) section in the Puppet configuration reference.
 
 ### parameter
 
@@ -404,7 +404,7 @@ Properties appear as [attributes](#attribute) when [declaring](#declare) instanc
 
 ### provider
 
-**Providers** implement [resource](#resource) [types](#type) on a specific type of system by using the system's own tools. The division between types and providers allows a single resource type (like [`package`](/references/latest/type.html#package)) to manage packages on many different systems (using, for example, `yum` on Red Hat systems, `dpkg` and `apt` on Debian-based systems, and `ports` on BSD systems).
+**Providers** implement [resource](#resource) [types](#type) on a specific type of system by using the system's own tools. The division between types and providers allows a single resource type (like [`package`](/puppet/latest/reference/type.html#package)) to manage packages on many different systems (using, for example, `yum` on Red Hat systems, `dpkg` and `apt` on Debian-based systems, and `ports` on BSD systems).
 
 Providers are often Ruby wrappers around shell commands, and can be short and easy to create.
 
@@ -492,7 +492,7 @@ For more information, see the [Reporting](/guides/reporting.html) guide. For det
 
 ### report processor
 
-A **report processor** can take a Puppet [report](#report), transform it to a specific format, and send it to another application, location, or service. Puppet ships with [built-in report processors](/references/latest/report.html), and you can [write your own](/guides/reporting.html#writing-custom-reports). For more information, see the [Reporting](/guides/reporting.html) guide.
+A **report processor** can take a Puppet [report](#report), transform it to a specific format, and send it to another application, location, or service. Puppet ships with [built-in report processors](/puppet/latest/reference/report.html), and you can [write your own](/guides/reporting.html#writing-custom-reports). For more information, see the [Reporting](/guides/reporting.html) guide.
 
 ### resource
 
@@ -591,7 +591,7 @@ See [scope](#scope).
 
 A kind of [resource](#resource) that Puppet is able to manage; for example, `file`, `cron`, and `service` are all resource types. A type specifies the set of attributes that a resource of that type may use, and models the behavior of that kind of resource on the target system. You can declare many resources of a given type.
 
-Puppet ships with a set of built-in resource types; see the [type reference](/references/stable/type.html) for a complete list of them. New [native types](#type-native) can be added as [plugins](#plugin), and [defined types](#type-defined) can be constructed by grouping together resources of existing types.
+Puppet ships with a set of built-in resource types; see the [type reference](/puppet/latest/reference/type.html) for a complete list of them. New [native types](#type-native) can be added as [plugins](#plugin), and [defined types](#type-defined) can be constructed by grouping together resources of existing types.
 
 Contrast with [data type](#type-data). See also [defined type](#type-defined) and [native type](#type-native).
 
@@ -615,7 +615,7 @@ Since defined types are written in the Puppet language instead of as Ruby plugin
 
 (or **native type**, or **native resource type**)
 
-A **native type** is a [resource](#resource) type written in Ruby. Puppet ships with a large set of built-in native types, and custom native types can be distributed as [plugins](#plugin) in [modules](#module). For a complete list of built-in types, see the [type reference](/references/stable/type.html).
+A **native type** is a [resource](#resource) type written in Ruby. Puppet ships with a large set of built-in native types, and custom native types can be distributed as [plugins](#plugin) in [modules](#module). For a complete list of built-in types, see the [type reference](/puppet/latest/reference/type.html).
 
 Native types have lower-level access to the target system than [defined types](#type-defined) and can use the system's own tools to make changes. Most native types have one or more [providers](#provider) that can implement the same resources on different kinds of systems.
 

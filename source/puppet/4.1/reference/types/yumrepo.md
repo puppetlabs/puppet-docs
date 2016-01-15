@@ -2,7 +2,7 @@
 layout: default
 built_from_commit: c4a6a76fd219bffd689476413985ed13f40ef1dd
 title: 'Resource Type: yumrepo'
-canonical: /references/latest/types/yumrepo.html
+canonical: /puppet/latest/reference/types/yumrepo.html
 ---
 
 > **NOTE:** This page was generated from the Puppet source code on 2016-01-15 16:47:06 +0100

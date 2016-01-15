@@ -2,7 +2,7 @@
 layout: default
 built_from_commit: c0673af42427fbe0b22ff97c8e5fa3244715eeae
 title: 'Resource Type: augeas'
-canonical: /references/latest/types/augeas.html
+canonical: /puppet/latest/reference/types/augeas.html
 ---
 
 > **NOTE:** This page was generated from the Puppet source code on 2016-01-15 16:31:56 +0100

@@ -4,13 +4,13 @@ title: "Configuring Directory Environments"
 ---
 
 [manifest_dir]: ./dirs_manifest.html
-[environmentpath]: /references/3.6.latest/configuration.html#environmentpath
+[environmentpath]: /puppet/3.6/reference/configuration.html#environmentpath
 [confdir]: ./dirs_confdir.html
 [puppet.conf]: ./config_file_main.html
 [modulepath]: ./dirs_modulepath.html
-[basemodulepath]: /references/3.6.latest/configuration.html#basemodulepath
+[basemodulepath]: /puppet/3.6/reference/configuration.html#basemodulepath
 [environment.conf]: ./config_file_environment.html
-[environment_timeout]: /references/3.6.latest/configuration.html#environmenttimeout
+[environment_timeout]: /puppet/3.6/reference/configuration.html#environmenttimeout
 [create_environment]: ./environments_creating.html
 [about]: ./environments.html
 [assign]: ./environments_assigning.html

@@ -3,7 +3,7 @@ layout: default
 built_from_commit: 08dbaf538d4bb530b97815b9a88857bf93a63c49
 title: 'Man Page: puppet describe'
 nav: /_includes/references_man.html
-canonical: /references/latest/man/describe.html
+canonical: /puppet/latest/reference/man/describe.html
 ---
 
 <div class='mp'>

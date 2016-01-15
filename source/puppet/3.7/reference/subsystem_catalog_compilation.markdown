@@ -15,10 +15,10 @@ canonical: "/puppet/latest/reference/subsystem_catalog_compilation.html"
 [functions]: ./lang_functions.html
 [main manifest]: ./dirs_manifest.html
 [modules]: ./modules_fundamentals.html
-[node terminus]: /references/3.7.latest/configuration.html#nodeterminus
-[plain_node]: /references/3.7.latest/indirection.html#plain-terminus
-[exec_node]: /references/3.7.latest/indirection.html#exec-terminus
-[ldap_node]: /references/3.7.latest/indirection.html#ldap-terminus
+[node terminus]: /puppet/3.7/reference/configuration.html#nodeterminus
+[plain_node]: /puppet/3.7/reference/indirection.html#plain-terminus
+[exec_node]: /puppet/3.7/reference/indirection.html#exec-terminus
+[ldap_node]: /puppet/3.7/reference/indirection.html#ldap-terminus
 [ldap_guide]: /guides/ldap_nodes.html
 [trusted_on]: ./config_important_settings.html#getting-new-features-early
 [facts_builtin]: ./lang_facts_and_builtin_vars.html

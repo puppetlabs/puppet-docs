@@ -3,7 +3,7 @@ layout: default
 built_from_commit: 08dbaf538d4bb530b97815b9a88857bf93a63c49
 title: Configuration Reference
 toc: columns
-canonical: /references/latest/configuration.html
+canonical: /puppet/latest/reference/configuration.html
 ---
 
 
@@ -1207,7 +1207,7 @@ subscribing or notified resources, although Puppet will log that a refresh
 event _would_ have been sent.
 
 **Important note:**
-[The `noop` metaparameter](http://docs.puppetlabs.com/references/latest/metaparameter.html#noop)
+[The `noop` metaparameter](http://docs.puppetlabs.com/puppet/latest/reference/metaparameter.html#noop)
 allows you to apply individual resources in noop mode, and will override
 the global value of the `noop` setting. This means a resource with
 `noop => false` _will_ be changed if necessary, even when running puppet
@@ -1387,7 +1387,7 @@ as the fallback logging destination.
 For control over logging destinations, see the `--logdest` command line
 option in the manual pages for puppet master, puppet agent, and puppet
 apply. You can see man pages by running `puppet <SUBCOMMAND> --help`,
-or read them online at http://docs.puppetlabs.com/references/latest/man/.
+or read them online at http://docs.puppetlabs.com/puppet/latest/reference/man/.
 
 - *Default*: $logdir/puppetd.log
 

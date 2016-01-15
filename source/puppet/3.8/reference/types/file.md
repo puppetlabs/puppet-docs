@@ -2,7 +2,7 @@
 layout: default
 built_from_commit: c0673af42427fbe0b22ff97c8e5fa3244715eeae
 title: 'Resource Type: file'
-canonical: /references/latest/types/file.html
+canonical: /puppet/latest/reference/types/file.html
 ---
 
 > **NOTE:** This page was generated from the Puppet source code on 2016-01-15 16:31:56 +0100
@@ -208,8 +208,8 @@ the manifest...
     }
 
 ...but for larger files, this attribute is more useful when combined with the
-[template](http://docs.puppetlabs.com/references/latest/function.html#template)
-or [file](http://docs.puppetlabs.com/references/latest/function.html#file)
+[template](http://docs.puppetlabs.com/puppet/latest/reference/function.html#template)
+or [file](http://docs.puppetlabs.com/puppet/latest/reference/function.html#file)
 function.
 
 ([↑ Back to file attributes](#file-attributes))

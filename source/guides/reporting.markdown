@@ -57,18 +57,18 @@ each report, and each type of metric has one or more values:
 By default:
 
 * The agent sends reports to the master.
-* The master is configured to use the `store` report handler, which just dumps reports as YAML to disk in the [`reportdir`](/references/latest/configuration.html#reportdir).
+* The master is configured to use the `store` report handler, which just dumps reports as YAML to disk in the [`reportdir`](/puppet/latest/reference/configuration.html#reportdir).
 
 ### Make Masters Process Reports
 
 By default, the puppet master server stores incoming YAML reports to
-disk in the [`reportdir`](/references/latest/configuration.html#reportdir). There are other report types available that can process each report as it arrives; you can use Puppet's built-in report processors, write custom report processor plugins, or write an out-of-band report analyzer task that consumes the stored YAML reports on your own schedule.
+disk in the [`reportdir`](/puppet/latest/reference/configuration.html#reportdir). There are other report types available that can process each report as it arrives; you can use Puppet's built-in report processors, write custom report processor plugins, or write an out-of-band report analyzer task that consumes the stored YAML reports on your own schedule.
 
 #### Using Built-In Reports
 
-* [A list of the available built-in report processors](/references/latest/report.html)
+* [A list of the available built-in report processors](/puppet/latest/reference/report.html)
 
-Select the report processors to use with the [`reports`](/references/latest/configuration.html#reports) setting in the puppet master's [`puppet.conf`][conf] file. This setting should be a comma-separated list of report processors to use; if there is more than one, Puppet will run all of them.
+Select the report processors to use with the [`reports`](/puppet/latest/reference/configuration.html#reports) setting in the puppet master's [`puppet.conf`][conf] file. This setting should be a comma-separated list of report processors to use; if there is more than one, Puppet will run all of them.
 
 The most useful one is usually the `http` processor, which sends reports to an arbitrary URL. Puppet Dashboard uses this, and it's easy enough to write a web service that consumes reports.
 

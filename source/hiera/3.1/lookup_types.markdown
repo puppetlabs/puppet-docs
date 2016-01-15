@@ -126,7 +126,7 @@ To configure deep merging, use the [`:merge_behavior` setting][mergebehavior], w
 > * You must install the `deep_merge` Ruby gem for deep merges to work. If it isn't available, Hiera falls back to the default `native` merge behavior. If you're using Puppet Server, you'll need to use the [`puppetserver gem`][puppetserver_gem] command to install the gem.
 > * This configuration is global, not per-lookup.
 
-[create]: /references/latest/function.html#createresources
+[create]: /puppet/latest/reference/function.html#createresources
 [mergebehavior]: ./configuring.html#mergebehavior
 [deepmerge]: https://github.com/peritor/deep_merge
 [puppetserver_gem]: /puppetserver/latest/gems.html#installing-and-removing-gems

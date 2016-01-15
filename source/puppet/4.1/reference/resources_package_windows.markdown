@@ -3,8 +3,8 @@ layout: default
 title: "Resource Tips and Examples: Package on Windows"
 ---
 
-[package]: /references/4.1.latest/type.html#package
-[source]: /references/4.1.latest/type.html#package-attribute-source
+[package]: /puppet/4.1/reference/type.html#package
+[source]: /puppet/4.1/reference/type.html#package-attribute-source
 
 Puppet's built-in [`package`][package] resource type can manage software packages on Windows.
 

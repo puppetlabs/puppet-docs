@@ -6,9 +6,9 @@ canonical: "/puppet/latest/reference/config_file_environment.html"
 
 [directory environments]: ./environments.html
 [environmentpath]: ./environments.html#about-environmentpath
-[modulepath]: /references/3.6.latest/configuration.html#modulepath
+[modulepath]: /puppet/3.6/reference/configuration.html#modulepath
 [puppet.conf]: ./config_file_main.html
-[basemodulepath]: /references/3.6.latest/configuration.html#basemodulepath
+[basemodulepath]: /puppet/3.6/reference/configuration.html#basemodulepath
 [main manifest]: ./dirs_manifest.html
 
 

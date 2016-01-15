@@ -1,5 +1,5 @@
 ---
-canonical: "/references/0.25.5/network.html"
+canonical: "/puppet/0.25/reference/network.html"
 layout: default
 title: Network Reference
 ---

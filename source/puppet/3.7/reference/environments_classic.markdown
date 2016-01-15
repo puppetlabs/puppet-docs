@@ -7,16 +7,16 @@ canonical: "/puppet/latest/reference/environments_classic.html"
 [config_sections]: ./config_file_main.html#config-sections
 [manifest_dir]: ./dirs_manifest.html
 [modulepath]: ./dirs_modulepath.html
-[config_version]: /references/3.7.latest/configuration.html#configversion
+[config_version]: /puppet/3.7/reference/configuration.html#configversion
 [puppet.conf]: ./config_file_main.html
-[manifest_setting]: /references/3.7.latest/configuration.html#manifest
-[modulepath_setting]: /references/3.7.latest/configuration.html#modulepath
+[manifest_setting]: /puppet/3.7/reference/configuration.html#manifest
+[modulepath_setting]: /puppet/3.7/reference/configuration.html#modulepath
 [directory_environments]: ./environments.html
 [dir_envs_enable]: ./environments.html#enabling-directory-environments
 [enc]: /guides/external_nodes.html
 [node terminus]: ./subsystem_catalog_compilation.html#step-1-retrieve-the-node-object
 [enc_environment]: /guides/external_nodes.html#environment
-[env_setting]: /references/3.7.latest/configuration.html#environment
+[env_setting]: /puppet/3.7/reference/configuration.html#environment
 [env_var]: ./lang_facts_and_builtin_vars.html#variables-set-by-the-puppet-master
 
 > Config File Environments Are Deprecated
