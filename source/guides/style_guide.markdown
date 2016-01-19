@@ -442,7 +442,7 @@ The following example follows the recommended style:
         fail("Module ${module_name} does not support ${::operatingsystem}")
       }
 
-      # temp file contents cmust not contain numbers
+      # temp file contents must not contain numbers
       case $tempfile_contents {
         /\d/: {
           $_tempfile_contents = regsubst($tempfile_contents, '\d', '', 'G')
