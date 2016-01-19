@@ -1,5 +1,5 @@
 ---
-title: "Using the Puppet Labs Package Repositories"
+title: "Using Puppet Collections"
 layout: default
 nav: /_includes/puppet_general.html
 ---
@@ -20,7 +20,7 @@ Puppet Collections are numbered with integers, beginning with PC1. The higher th
 
 The [yum.puppetlabs.com](https://yum.puppetlabs.com) repository supports the following versions of Red Hat Enterprise Linux and distributions based on it:
 
-{% include pup40_platforms_redhat_like.markdown %}
+{% include pup43_platforms_redhat_like.markdown %}
 
 {% include pup43_platforms_fedora.markdown %}
 
@@ -120,11 +120,11 @@ The nightly repos require that you also have the standard Puppet Labs repos enab
 
 ### Nightly?
 
-Our automated systems will only create new "nightly" repos for builds that pass our acceptance testing on the most popular platforms. This means there will sometimes be a skipped day.
+Our automated systems create new "nightly" repositories for only the builds that pass our acceptance testing on the most popular platforms. This means we might not technically release builds nightly. However, they still represent bleeding-edge Puppet builds **that are not intended for production use.**
 
 ### Contents of a Nightly Repo
 
-Each nightly repo contains **a single product.** We make nightly repos for Puppet Server, Puppet Agent, and PuppetDB. We also have nightly packages for Puppet 3.x and Facter 2.x.
+Each nightly repo contains a single product. We make nightly repositories for Puppet 3 and 4, Facter 2 and 3, Puppet Server, Puppet Agent, and PuppetDB.
 
 ### Latest vs. Specific Commit
 
@@ -135,7 +135,7 @@ There are two kinds of nightly repo for each product:
 
     We delete single-commit repositories a week or two after we create them, so if you want to keep the packages available, import them into your local repository.
 
-### Enabling Nightly Repos on Yum-based Systems
+### Enabling Nightly Repositories on Yum-based Systems
 
 1. Enable the main Puppet Labs repos, as described above.
 2. In a web browser, go to <https://nightlies.puppetlabs.com/>. Choose the repository you want; this will be either `<PRODUCT>-latest`, or `<PRODUCT>/<COMMIT>`.
@@ -148,7 +148,7 @@ There are two kinds of nightly repo for each product:
     ~~~
 5. Upgrade or install the product as usual.
 
-### Enabling Nightly Repos on Apt-based Systems
+### Enabling Nightly Repositories on Apt-based Systems
 
 1. Enable the main Puppet Labs repos, as described above.
 2. In a web browser, go to <https://nightlies.puppetlabs.com/>. Choose the repository you want; this will be either `<PRODUCT>-latest`, or `<PRODUCT>/<COMMIT>`.
