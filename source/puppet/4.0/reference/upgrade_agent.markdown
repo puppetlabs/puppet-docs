@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Puppet 3.x to 4.x Agent Upgrades"
-canonical: "/puppet/4.0/reference/upgrade_agent.html"
+canonical: "/puppet/latest/reference/upgrade_agent.html"
 ---
 
 This guide will help you update your Puppet 3.x agents to Puppet 4.0.
@@ -30,8 +30,8 @@ upgrade instructions](server_upgrade.markdown) on at least one host so the agent
     `/opt/puppetlabs/bin/puppet agent -tv`
 
 * Ensure that Puppet will continue to run automatically. If you used a cron job to periodically run `puppet agent -t`, 
-make sure you update the path to the binary; if you run puppet as a daemon, ensure it's set to start up on system boot.  
-Here's a handy `puppet resource` command to do just that:
+  make sure you update the path to the binary; if you run puppet as a daemon, ensure it's set to start up on system boot.  
+  Here's a handy `puppet resource` command to do just that:
 
     `/opt/puppetlabs/bin/puppet resource service puppet ensure=running enable=true`
 

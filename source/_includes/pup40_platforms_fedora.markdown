@@ -1,6 +1,6 @@
-We publish official packages and run automated testing on the following versions for Puppet 4.x:
+We publish and test official `puppet-agent` packages for the following versions of Fedora:
 
-* Fedora 20
 * Fedora 21
+* Fedora 20
 
 <!-- When updating these, also edit guides/puppetlabs_package_repositories.markdown and add/delete the repo packages as needed. -->

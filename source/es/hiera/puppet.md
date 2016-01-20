@@ -12,14 +12,14 @@ Puppet puede utilizar Hiera para  buscar información. Esto te ayuda a separar i
 
 Puppet 3.x y versiones superiores vienen con soporte para Hiera ya habilitado. No necesitas hacer nada extra. La información de Hiera debería existir en el o los puppet master(s).
 
-+ Puppet espera encontrar el [archivo hiera.yaml](http://docs.puppetlabs.com/es/hiera/configuring.html) en **$confdir/hiera.yaml** (normalmente **/etc/puppet/hiera.yaml**); puedes modificar esto con las opciones de configuración **hiera_config**.
++ Puppet espera encontrar el [archivo hiera.yaml](http://docs.puppetlabs.com/es/hiera/configuring.html) en **$confdir/hiera.yaml** (normalmente **/etc/puppet/hiera.yaml**); puedes modificar esto con las opciones de configuración **hiera_config**.
 + Recuerda configurar los valores de **:datadir** para todos los backends que uses. Generalmente lo mejor es utilizar algo dentro del directorio **/etc/puppet/** ya que es en el primer lugar que tus colegas administradores esperan encontrar la información.
 
 ### Puppet 2.7
 
 Debes instalar Hiera y el paquete **hiera-puppet** en tus puppet master(s) antes de usar Hiera con Puppet. La información de Hiera debería existir en el o los puppet master(s).
 
-+ Puppet espera encontrar el [archivo hiera.yaml](http://docs.puppetlabs.com/es/hiera/configuring.html) en **$confdir/hiera.yaml** (normalmente **/etc/puppet/hiera.yaml**); Esto no es configurable en 2.7.
++ Puppet espera encontrar el [archivo hiera.yaml](http://docs.puppetlabs.com/es/hiera/configuring.html) en **$confdir/hiera.yaml** (normalmente **/etc/puppet/hiera.yaml**); Esto no es configurable en 2.7.
 + Recuerda configurar los valores de **:datadir** para todos los backends que uses. Generalmente lo mejor es utilizar algo dentro del directorio **/etc/puppet/** ya que es en el primer lugar que tus colegas administradores esperan encontrar información. 
 
 ### Versiones anteriores
@@ -36,17 +36,17 @@ Entonces Hiera puede usar cualquiera de estas variables en los [símbolos de int
 
 Cuando realizas cualquier búsqueda de Hiera, sea con la búsqueda automática de parámetros o con las funciones de Hiera, Puppet configura dos variables que no están disponibles en manifiestos normales:
 
-+ **calling_module**, el módulo en el que se escribe la búsqueda. Tiene el mismo valor que la [la variable Puppet **$module_name**.](http://docs.puppetlabs.com/puppet/latest/reference/lang_variables.html#parser-set-variables)
++ **calling_module**, el módulo en el que se escribe la búsqueda. Tiene el mismo valor que la [la variable Puppet **$module_name**.](http://docs.puppetlabs.com/puppet/latest/reference/lang_variables.html#parser-set-variables)
 + **calling_class**, la clase en la que la búsqueda es evaluada. Si la búsqueda está escrita en un tipo definido, esta variable es la clase en que se declara la instancia actual del tipo definido.
 
 **Nota:** Estas variables estaban rotas en algunas versiones de Puppet.
 
-+ Puppet 2.7.x: **Funcionan**
-+ Puppet 3.0.x and 3.1.x: **Rotas**
-+ Puppet 3.2.x y superiores: **Funcionan**
++ Puppet 2.7.x: **Funcionan**
++ Puppet 3.0.x and 3.1.x: **Rotas**
++ Puppet 3.2.x y superiores: **Funcionan**
 
 ### Buenas prácticas
-**No uses variables locales de Puppet** en jerarquías de Hiera o fuentes de información. Sólo usa [facts](http://docs.puppetlabs.com/puppet/latest/reference/lang_variables.html#facts-and-built-in-variables) y **variables top-scope definidas por un ENC**. Usa [notación de top-scope absoluta](http://docs.puppetlabs.com/puppet/latest/reference/lang_variables.html#accessing-out-of-scope-variables) (por ejemplo: **%{::clientcert}** en lugar de **%{clientcert}**) en la configuración de archivos de Hiera para evitar usar accidentalmente una variable local en lugar de una *top-scope*.
+**No uses variables locales de Puppet** en jerarquías de Hiera o fuentes de información. Sólo usa [facts](http://docs.puppetlabs.com/puppet/latest/reference/lang_variables.html#facts-and-built-in-variables) y **variables top-scope definidas por un ENC**. Usa [notación de top-scope absoluta](http://docs.puppetlabs.com/puppet/latest/reference/lang_variables.html#accessing-out-of-scope-variables) (por ejemplo: **%{::clientcert}** en lugar de **%{clientcert}**) en la configuración de archivos de Hiera para evitar usar accidentalmente una variable local en lugar de una *top-scope*.
 
 Esta no es una regla estricta, existen excepciones; pero casi siempre te arrepentirás si la rompes, y eso sucede porque la función de Hiera es separar la información del código, y establecer información jerárquica específica de cada nodo que no depende del orden de análisis de Puppet.
 
@@ -74,7 +74,7 @@ Las [clases](http://docs.puppetlabs.com/puppet/latest/reference/lang_classes.htm
 Los parámetros se pueden establecer de diferentes formas, y Puppet probará a cada una de ellas en orden para cuando la clase sea [declarada](http://docs.puppetlabs.com/puppet/latest/reference/lang_classes.html#declaring-classes) o [asignada por un ENC](http://docs.puppetlabs.com/puppet/latest/reference/lang_classes.html#assigning-classes-from-an-enc):
 
 + Si fue una [declaración o asignación como recurso](http://docs.puppetlabs.com/puppet/latest/reference/lang_classes.html#using-resource-like-declarations), Puppet usará cada parámetro que haya sido configurado explícitamente. De existir, estos son los que siempre ganan.
-+ **Puppet buscará parámetros en Hiera automáticamente**, usando ** <NOMBRE DE CLASE>::<NOMBRE DE PARÁMETRO>** como clave de búsqueda. (**myclass::parameter_one** en el ejemplo anterior) 
++ **Puppet buscará parámetros en Hiera automáticamente**, usando ** <NOMBRE DE CLASE>::<NOMBRE DE PARÁMETRO>** como clave de búsqueda. (**myclass::parameter_one** en el ejemplo anterior) 
 + Si 1 y 2 no devuelven un valor, Puppet usará el valor por defecto de la [definición](http://docs.puppetlabs.com/puppet/latest/reference/lang_classes.html#defining-classes) de la clase. (**”default text”** en el ejemplo anterior)
 + Si de 1 a 3 no devuelven un valor, la compilación fallará.
 
@@ -132,7 +132,7 @@ Cada una de estas funciones toma tres argumentos en el siguiente orden:
 
 1. Clave (requerido): La clave de búsqueda en Hiera.
 2. Default (opcional): Valor para usar si Hiera no encuentra nada para esa clave. Si no se provee este valor, se producirá una falla en la búsqueda que causará una falla en la compilación.
-3. Sustitución (opcional): El nombre de un [nivel de jerarquía](http://docs.puppetlabs.com/es/hiera/hierarchy.html) arbitrario para insertar al tope de la jerarquía. Esto te permite usar una jerarquía modificada temporalmente para una búsqueda particular (por ejemplo: en lugar de una jerarquía de **$clientcert -> $osfamily -> common**, la búsqueda usaría **specialvalues -> $clientcert -> $osfamily -> common**; necesitarías estar seguro de tener **specialvalues.yaml** o similar en tus datos de Hiera).
+3. Sustitución (opcional): El nombre de un [nivel de jerarquía](http://docs.puppetlabs.com/es/hiera/hierarchy.html) arbitrario para insertar al tope de la jerarquía. Esto te permite usar una jerarquía modificada temporalmente para una búsqueda particular (por ejemplo: en lugar de una jerarquía de **$clientcert -> $osfamily -> common**, la búsqueda usaría **specialvalues -> $clientcert -> $osfamily -> common**; necesitarías estar seguro de tener **specialvalues.yaml** o similar en tus datos de Hiera).
 
 ### Usar las funciones de búsqueda desde Templates
 En general, no utilices las funciones de Hiera desde templates. Ese patrón es poco legible y *lastimará* el mantenimiento de tu código. Si un coautor de tu código necesita cambiar las invocaciones de Hiera y busca archivos **.pp** para esto, podrían perderse invocaciones extra en este template. Incluso si sólo una persona hace el mantenimiento de este código, es probable que cometa errores similares luego de algunos meses.

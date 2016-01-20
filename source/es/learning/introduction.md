@@ -77,4 +77,4 @@ Si por algún motivo no puedes exponer la VM en tu red local, o no estás en una
 
 Para asignar manualmente una dirección IP a un adaptador *Host Only*:
 +Encuentra la dirección IP del servidor en las preferencias de VirtualBox, ve a la sección “Network”, haz doble click en la red *Host Only Adapter* que estés usando, ve a la pestaña “Adapter” y toma nota de la dirección IP en el campo “IPv4 Address”.
-+Una vez que tu VM esté ejecutándose, loguéate en la consola y ejecuta **ifconfig eth1 <NEW IP ADDRESS>**, donde **<NEW IP ADDRESS>** es una dirección IP no reclamada en la subred de la red “Host Only”.
++Una vez que tu VM esté ejecutándose, loguéate en la consola y ejecuta **ifconfig eth1 <NEW IP ADDRESS>**, donde **<NEW IP ADDRESS>** es una dirección IP no reclamada en la subred de la red “Host Only”.

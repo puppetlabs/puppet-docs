@@ -46,10 +46,10 @@ Out of the box, Puppet's directory structure will look like this:
 
     /etc/puppetlabs/code
     ├── environments
-    │   └── production
-    │       ├── environment.conf
-    │       ├── manifests
-    │       └── modules
+    │   └── production
+    │       ├── environment.conf
+    │       ├── manifests
+    │       └── modules
     ├── hieradata
     ├── hiera.yaml
     └── modules

@@ -3,7 +3,7 @@ layout: default
 title: "Hiera 2: The hiera.yaml Config File"
 ---
 
-[common_appdata]: /guides/install_puppet/install_windows.html#the-commonappdata-folder
+[common_appdata]: /puppet/latest/reference/install_windows.html#the-commonappdata-folder
 [yaml]: http://www.yaml.org/YAML_for_ruby.html
 [hierarchy]: ./hierarchy.html
 [interpolate]: ./variables.html

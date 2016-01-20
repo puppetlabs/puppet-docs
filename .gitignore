@@ -5,6 +5,7 @@ vendor/facter
 vendor/bundle
 bin/mar*
 output
+references_output
 \#*
 .#*
 log
@@ -20,3 +21,4 @@ Gemfile.lock
 .*.swp
 .*.un~
 *.orig
+.idea

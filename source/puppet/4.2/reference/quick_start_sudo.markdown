@@ -20,13 +20,13 @@ In most cases, managing sudo on your agents involves controlling which users hav
 
 > Before starting this walk-through, complete the previous exercises in the [essential configuration tasks](./quick_start_essential_config.html). Log in as root or administrator on your nodes.
 
-> **Prerequisites**: This guide assumes you've already [installed Puppet](https://docs.puppetlabs.com/puppetserver/2.1/install_from_packages.html), and have installed at least one [*nix agent](https://docs.puppetlabs.com/puppet/4.2/reference/install_linux.html).
+> **Prerequisites**: This guide assumes you've already [installed Puppet](/puppetserver/2.1/install_from_packages.html), and have installed at least one [*nix agent](./install_linux.html).
 
 >**Note**: You can add the sudo and privileges classes to as many agents as needed, although we describe only one for ease of explanation. 
 
 ## Install the `saz-sudo` Module
 
-The `saz-sudo` module, available on the Puppet Forge, is one of many modules written by a member of the Puppet user community.  You can learn more about the module by visiting [http://forge.puppetlabs.com/saz/sudo](http://forge.puppetlabs.com/saz/sudo).
+The `saz-sudo` module, available on the Puppet Forge, is one of many modules written by a member of the Puppet user community.  You can learn more about the module by visiting [https://forge.puppetlabs.com/saz/sudo](https://forge.puppetlabs.com/saz/sudo).
 
 **To install the `saz-sudo` module**:
 
@@ -49,9 +49,9 @@ Some modules can be large, complex, and require a significant amount of trial an
 
 > ### A Quick Note about Modules Directories
 >
->By default, the modules you use to manage nodes are located in `/etc/puppetlabs/puppet/environments/production/modules`. This includes modules installed by Puppet, those that you download from the Forge, and those you write yourself.
+>By default, Puppet keeps modules in an environment's [`modulepath`](./dirs_modulepath.html), which for the production environment defaults to `/etc/puppetlabs/code/environments/production/modules`. This includes modules that Puppet installs, those that you download from the Forge, and those you write yourself.
 >
-> **Note**: Puppet also checks the path `/opt/puppet/share/puppet/modules` for modules, but don’t modify anything in this directory or add modules of your own to it.
+>**Note:** Puppet also creates another module directory: `/opt/puppetlabs/puppet/modules`. Don't modify or add anything in this directory, including modules of your own.
 >
 >There are plenty of resources about modules and the creation of modules that you can reference. Check out [Modules and Manifests](./puppet_modules_manifests.html), the [Beginner's Guide to Modules](/guides/module_guides/bgtm.html), and the [Puppet Forge](https://forge.puppetlabs.com/).
 
@@ -137,7 +137,7 @@ For more information about working with Puppet and Sudo Users, check out our [Mo
 
 Puppet Labs offers many opportunities for learning and training, from formal certification courses to guided online lessons. We've noted one below; head over to the [learning Puppet page](https://puppetlabs.com/learn) to discover more.
 
-* [Learning Puppet](http://docs.puppetlabs.com/learning/) is a series of exercises on various core topics about deploying and using Puppet.
+* [Learning Puppet](/learning/) is a series of exercises on various core topics about deploying and using Puppet.
 * The Puppet Labs workshop contains a series of self-paced, online lessons that cover a variety of topics on Puppet basics. You can sign up at the [learning page](https://puppetlabs.com/learn).
 * Learn about [Managing sudo Privileges](https://puppetlabs.com/learn/managing-sudo-privileges) through this online training workshop.
 

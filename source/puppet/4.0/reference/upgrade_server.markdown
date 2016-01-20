@@ -50,10 +50,10 @@ the box, the puppet-agent's directory structure will look like this:
 
     /etc/puppetlabs/code
     ├── environments
-    │   └── production
-    │       ├── environment.conf
-    │       ├── manifests
-    │       └── modules
+    │   └── production
+    │       ├── environment.conf
+    │       ├── manifests
+    │       └── modules
     ├── hieradata
     ├── hiera.yaml
     └── modules

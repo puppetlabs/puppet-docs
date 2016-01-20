@@ -45,7 +45,7 @@ Windows NTFS filesystems are case-insensitive (albeit case-preserving); Puppet i
 
 To manage files properly, Puppet needs the "Create symbolic links" (Vista/2008 and up), "Back up files and directories," and "Restore files and directories" privileges. The easiest way to handle this is:
 
-* When Puppet runs as a service, make sure its user account is a member of the local `Administrators` group.  When you use the [`PUPPET_AGENT_ACCOUNT_USER` parameter](./guides/install_puppet/install_windows.html#puppetagentaccountuser) with the MSI installer, the user will automatically be added to the administrators group.
+* When Puppet runs as a service, make sure its user account is a member of the local `Administrators` group.  When you use the [`PUPPET_AGENT_ACCOUNT_USER` parameter](./puppet/latest/reference/install_windows.html#puppetagentaccountuser) with the MSI installer, the user will automatically be added to the administrators group.
 * Before running Puppet interactively (on Vista/2008 and up), be sure to start the command prompt window with elevated privileges by right-clicking on the start menu and choosing "Run as Administrator."
 
 ## Managing File Permissions

@@ -12,7 +12,7 @@ This page lists supported platforms for the open source version of Puppet. For P
 
 Please [contact Puppet Labs](http://puppetlabs.com/contact/) if you are interested in a platform not on this list.
 
-**[See Installing Puppet](/guides/install_puppet/pre_install.html)** for more details about the packages available for your platform(s).
+**[See Installing Puppet](/puppet/latest/reference/install_pre.html)** for more details about the packages available for your platform(s).
 
 
 {% include agent_lifecycle.md %}

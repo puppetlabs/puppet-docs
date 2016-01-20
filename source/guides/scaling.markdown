@@ -10,12 +10,6 @@ Tune Puppet for maximum performance in large environments.
 
 * * *
 
-Are you using the default webserver?
-------------------------------------
-
-WEBrick, the default web server used to enable Puppet's web services connectivity, is essentially a reference
-implementation, and becomes unreliable beyond about ten managed nodes. In any sort of production environment serving many nodes, you should switch to a more efficient web server implementation such as [Passenger](./passenger.html).
-
 Delayed check in
 ----------------
 

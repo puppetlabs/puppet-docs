@@ -347,7 +347,7 @@ So let's take a look at our `hiera.yaml` file and make provisions for two new da
 	:hierarchy:
 	  - "node/%{::fqdn}"
       - "virtual/%{::virtual}"
-	  - "osfamily/%{osfamily}"
+	  - "osfamily/%{::osfamily}"
 	  - common
 
 Next, we'll need to create directories for our two new data sources:

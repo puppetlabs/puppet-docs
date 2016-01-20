@@ -146,7 +146,7 @@ Razor is included in PE 3.3 as a [tech preview](http://puppetlabs.com/services/t
 
 ## Security Fixes
 
-####[CVE-2014-0224 OpenSSL vulnerability in secure communications](http://puppetlabs.com/security/cve/cve-2014-0224/)
+#### [CVE-2014-0224 OpenSSL vulnerability in secure communications](http://puppetlabs.com/security/cve/cve-2014-0224/)
 
 **Assessed Risk Level**: medium
 
@@ -162,7 +162,7 @@ Puppet Enterprise 3.3.0 includes a patched version of OpenSSL.
 
 CVSS v2 score: 2.4 with Vector: AV:N/AC:H/Au:M/C:P/I:P/A:N/E:U/RL:OF/RC:C
 
-####[CVE-2014-0198 OpenSSL vulnerability could allow denial of service attack](http://puppetlabs.com/security/cve/cve-2014-0198/)
+#### [CVE-2014-0198 OpenSSL vulnerability could allow denial of service attack](http://puppetlabs.com/security/cve/cve-2014-0198/)
 
 **Assessed Risk Level**: low
 
@@ -172,7 +172,7 @@ Due to a vulnerability in OpenSSL versions 1.0.0 and 1.0.1, if SSL\_MODE_\RELEAS
 
 CVSS v2 score: 1.9 with Vector: AV:N/AC:H/Au:N/C:N/I:N/A:P/E:U/RL:OF/RC:C
 
-####[CVE-2014-3251 MCollective `aes_security` plugin did not correctly validated new server certs](http://puppetlabs.com/security/cve/cve-2014-3251/)
+#### [CVE-2014-3251 MCollective `aes_security` plugin did not correctly validated new server certs](http://puppetlabs.com/security/cve/cve-2014-3251/)
 
 **Assessed Risk Level**: low
 

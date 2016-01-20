@@ -11,7 +11,7 @@ In addition to the Razor server, the Razor client can be installed as a Ruby gem
  
 **Important**: Because Razor is a Tech Preview, we highly recommend that you set it up in a completely isolated test environment. This environment must have access to the internet. See [Set Up a Virtual Environment for Razor](./razor_prereqs.html) for details.
 	 
-###Before You Begin
+### Before You Begin
 Things you should know before you set up provisioning:
 
 + **Do not** install Razor on the puppet master.
@@ -49,7 +49,7 @@ If you don't have access to the internet or would like to pull the PE tarball fr
 2. On the Razor server, run puppet with: `puppet agent -t` (otherwise you have to wait for the scheduled agent run).
 
 
-###Load iPXE Software
+### Load iPXE Software
 
 You must set your machines to PXE boot. Without PXE booting, Razor has no way to interact with a system. This is OK if the node has already been enrolled with Razor and is installed, but it will prevent any changes on the server (for example, an attempt to reinstall the system) from having any effect on the node. Razor relies on "seeing" when a machine boots and starts all its interactions with a node when that node boots.
 
@@ -65,7 +65,7 @@ Razor provides a specific iPXE boot image to ensure you're using a compatible ve
  **Note**: Make sure you don't use `localhost` as the name of the Razor host. The bootstrap script chain-loads the next iPXE script from the Razor server. This means that it has to contain the correct hostname for clients to try and fetch that script from, or it isn't going to work.	
 		
 		
-###Verify the Razor Server 
+### Verify the Razor Server 
 
 Test the new Razor configuration: `wget http://${RAZOR_HOSTNAME}:${RAZOR_PORT}/api -O test.out`.
 	

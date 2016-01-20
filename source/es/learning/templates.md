@@ -96,7 +96,7 @@ Las funciones son plugins, por lo que muchos plugins customizados están disponi
 
 La documentación completa acerca de las funciones está disponible en [la página de funciones en el manual de referencia de Puppet](http://docs.puppetlabs.com/puppet/latest/reference/lang_functions.html) y en [la lista de funciones integradas](http://docs.puppetlabs.com/references/stable/function.html).
 
-#Variables en templates
+# Variables en templates
 
 Los templates son poderosos porque tienen acceso a todas las variables de Puppet que están presentes cuando se renderiza el template.
 
@@ -220,7 +220,7 @@ Primero, haz que cada template utilice la variable **$servers_real** para crear 
 
 Qué está haciendo?
 
-+ Está utilizando un tag no imprimible de Ruby para comenzar un ciclo. Hacemos referencia a la variable de Puppet **$servers_real** con el nombre **@servers_real**, luego llamamos al método **each** de Ruby en él. Todo lo que está entre **do |server| -%>**  y el tag **<% end -%>**  será repetido por cada elemento en el array **servers_real** con el valor de ese elemento de array asignado a la variable temporal **this_server**.
++ Está utilizando un tag no imprimible de Ruby para comenzar un ciclo. Hacemos referencia a la variable de Puppet **$servers_real** con el nombre **@servers_real**, luego llamamos al método **each** de Ruby en él. Todo lo que está entre **do |server| -%>**  y el tag **<% end -%>**  será repetido por cada elemento en el array **servers_real** con el valor de ese elemento de array asignado a la variable temporal **this_server**.
 + Dentro del ciclo, imprimimos literalmente la palabra **server** seguida del valor del elemento del array actual.
 
 Este fragmento producirá algo como lo siguiente:

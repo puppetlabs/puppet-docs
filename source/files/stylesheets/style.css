@@ -29,7 +29,7 @@ del, dfn, em, font, img, ins, kbd, q, s, samp,
 small, strike, strong, sub, tt, var,
 dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td, header, footer, section, article, aside, nav {
+table, caption, tbody, tfoot, thead, tr, th, td, header, footer, section, article, aside, nav, figure {
   margin: 0;
   padding: 0;
   border: 0;

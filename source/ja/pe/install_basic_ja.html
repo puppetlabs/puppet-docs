@@ -1,0 +1,296 @@
+---
+layout: default
+title: "PEインストールの概要"
+canonical: "/ja/pe/install_basic_ja.html"
+---
+
+<div>
+<blockquote>
+  <p> <img src="/pe/2015.2/images/windows-logo-small.jpg" alt="windows logo"> このセクションでは、*nixオペレーティングシステムについて取り上げます。 WindowsへのPuppet Enterpriseのインストールについては、「<a href="/pe/2015.2/install_windows.html">Windows Agentのインストール（英語）</a>」を参照してください。
+</p>
+</blockquote>
+
+<h2 id="installing-puppet-enterprise">Puppet Enterpriseのインストール</h2>
+
+<p> 以下では、Puppet Enterpriseをスムーズにインストールするために知っておくべきことを説明します。 Puppet Enterpriseの機能は、複数のコンポーネントに分散されています。インストーラを実行すると、これらのコンポーネントがインストールされ、設定されます。 コンポーネントは1つのノードにインストール(「モノリシックインストール」)することも、複数のノードに分割してインストール(「分割インストール」)することもできます「agent」コンポーネントはすべてのノードにインストールされます。
+</p>
+
+<p> インストールを開始する前に、必要なデプロイの方法を決定します。 Puppet Enterpriseコンポーネントをインストールするすべてのノードにアクセスできるよう、各ノードの完全修飾ドメイン名を把握し、ファイアウォールのルールが<a href="/pe/2015.2/install_system_requirements.html#firewall-configuration">必要なポート</a>にアクセスできるよう設定されているか確認する必要があります。
+</p>
+
+<p> これらの情報を確認した後、次の<strong>3段階</strong>でインストールを実行します。
+</p>
+
+<ol>
+<li>
+    <p> インストール方法を選択します。
+</p>
+  </li>
+  <li>
+    <p> Puppet Enterpriseの主要コンポーネント、すなわち、Puppet master、PuppetDB (およびデータベースサポート)、PEコンソールをインストールします。
+</p>
+  </li>
+  <li>
+    <p> Puppet Enterpriseによる管理を行うすべてのノードに、Puppet agentをインストールします。 「<a href="/pe/2015.2/install_agents.html">agentのインストール手順</a>」を参照してください。
+</p>
+  </li>
+</ol>
+<h3 id="choose-an-installation-method">インストール方法の選択</h3>
+
+<p> 開始する前に、インストール方法を選択します。 インストール方法は、以下の手順で決定することができます。
+</p>
+
+<ul>
+<li>
+    <p> Webベースのインターフェイスで、画面に表示される手順に従ってインストールします。 Puppet Enterpriseのインストール方法に関する質問に答えることで、方法を決定することができます。 SSH証明書を提供できる場合は、この方法ですばやくインストールし運用を始めることができます。 以下のどちらのインストールを行うか選択します。
+</p>
+
+    <ul>
+<li>
+        <p> <a href="/pe/2015.2/install_pe_mono.html">モノリシックインストール</a>(最大500ノード)
+</p>
+      </li>
+      <li>
+        <p> <a href="/pe/2015.2/install_pe_split.html">分割インストール</a>(500～1500ノード)
+</p>
+      </li>
+    </ul>
+</li>
+  <li>
+    <p> Webベースのインターフェイスで解答ファイルを作成した後、インストーラのスクリプトに引数を追加して、インストールを実行します(例: <code>sudo ./puppet-enterprise-installer -a ~/my_answers.txt</code>)。 解答ファイルを使用してPuppet Enterpriseをインストールする方法の概要については、「<a href="/pe/2015.2/install_automated.html">解答ファイルを用いたインストール（英語）</a>」を参照してください。
+</p>
+  </li>
+  <li>
+    <p> Puppet Enterpriseインストールtarballによって提供される解答ファイルを編集します。 手順については、「<a href="/pe/2015.2/install_automated.html">解答ファイルを用いたインストール（英語）</a> 」を参照してください。
+</p>
+  </li>
+</ul>
+<p> 「<a href="/pe/2015.2/install_system_requirements.html">システム要件（英語）</a>」で、ハードウェア関連の仕様を確認します。
+</p>
+
+<blockquote>
+  <p> <strong>注意</strong>: インストールを開始する前に、「<a href="#about-puppet-enterprise-components">Enterpriseのコンポーネント</a>」を読んで、Puppet Enterpriseのインストールに関連する部分をよく理解しておくとよいでしょう。
+</p>
+</blockquote>
+
+<h2 id="downloading-puppet-enterprise">Puppet Enterpriseをダウンロードする</h2>
+
+<p> まず、Puppet LabsのWebサイトから、最新バージョンのPuppet EnterpriseのtarballとGPG署名(「.asc」ファイル)を<a href="http://info.puppetlabs.com/download-pe.html">ダウンロード</a>します。
+</p>
+
+<h3 id="choosing-an-installer-tarball">インストーラTarballを選択する</h3>
+
+<p> Puppet Enterpriseは、特定のOSバージョンとアーキテクチャ向けのtarballとして配布されます。
+</p>
+
+<h4 id="available-nix-tarballs">*nix向けTarball</h4>
+
+<table>
+<thead><tr>
+<th>ファイル名の末尾</th>
+      <th>インストール先</th>
+    </tr></thead>
+<tbody>
+<tr>
+<td><code>-el-&lt;version and arch&gt;.tar.gz</code></td>
+      <td>RHEL、CentOS、Scientific Linux、またはOracle Linux</td>
+    </tr>
+<tr>
+<td><code>-ubuntu-&lt;version and arch&gt;.tar.gz</code></td>
+      <td>Ubuntu LTS</td>
+    </tr>
+<tr>
+<td><code>-sles-&lt;version and arch&gt;.tar.gz</code></td>
+      <td>SLES</td>
+    </tr>
+</tbody>
+</table>
+<p> <em>注意:</em> RHEL 5および6ではSELinuxのバインドを利用できます。 これらはデフォルトではインストールされませんが、インストールtarballには含まれています。
+</p>
+
+<h3 id="verifying-the-installer">インストーラを検証する</h3>
+
+<p> Puppet Enterpriseインストーラを検証するには、Puppet Labsの公開鍵をインポートし、ダウンロードしたtarballの暗号検証を実行します。 Puppet Labsの公開鍵は、Puppet Labsによって証明されており、<code>pgp.mit.edu</code>などの公開鍵サーバー、およびPuppet Labsから入手できます。 GnuPGをインストールし、PE tarballと共にGPG署名(「.asc」ファイル)をダウンロードする必要があります。
+</p>
+
+<p> Puppet Labsの公開鍵をインポートするには、次のコマンドを実行します。
+</p>
+
+<pre><code>wget -O - https://downloads.puppetlabs.com/puppetlabs-gpg-signing-key.pub | gpg --import
+</code></pre>
+
+<p> 以下のような結果が表示されます。
+</p>
+
+<pre><code>gpg: key 4BD6EC30: public key "Puppet Labs Release Key (Puppet Labs Release Key) &lt;info@puppetlabs.com&gt;" imported
+gpg: Total number processed: 1
+gpg:               imported: 1  (RSA: 1)
+</code></pre>
+
+<p> 公開鍵のフィンガープリントを出力するには、次のコマンドを実行します。
+</p>
+
+<pre><code>gpg --fingerprint 0x1054b7a24bd6ec30
+</code></pre>
+
+<p> さらに、公開鍵のフィンガープリントに完全に一致する文字列が表示され、検証時に出力されます。
+</p>
+
+<pre><code>Primary key fingerprint: 47B3 20EB 4C7C 375A A9DA  E1A0 1054 B7A2 4BD6 EC30
+</code></pre>
+
+<p> 次に、次のコマンドを実行して、tarballの解除署名を検証します。
+</p>
+
+<pre><code>$ gpg --verify puppet-enterprise-&lt;version&gt;-&lt;platform&gt;.tar.gz.asc
+</code></pre>
+
+<p> 以下のような結果が表示されます。
+</p>
+
+<pre><code>gpg: Signature made Tue 18 Jun 2013 10:05:25 AM PDT using RSA key ID 4BD6EC30
+gpg: Good signature from "Puppet Labs Release Key (Puppet Labs Release Key)"
+</code></pre>
+
+<p> <strong>注意</strong>: 署名を検証する際、解除鍵の署名の1つへの信頼できるパスがない場合は、以下のような警告メッセージが表示されます。
+</p>
+
+<pre><code>Could not find a valid trust path to the key.
+    gpg: WARNING: This key is not certified with a trusted signature!
+    gpg: There is no indication that the signature belongs to the owner.
+</code></pre>
+
+<p> これは、解除鍵に署名したユーザーを証明できる信頼できるパスが作成されていないためです。この警告は無視してかまいません。
+</p>
+
+<h2 id="about-puppet-enterprise-components">Puppet Enterpriseのコンポーネントについて</h2>
+
+<p> インストールを開始する前に、以下のPuppet Enterpriseのコンポーネントをよく理解しておく必要があります。
+</p>
+
+<h3 id="the-puppet-agent">Puppet Agent</h3>
+
+<p> Puppet agentは、パッケージマネージャを使ってインストールするのがもっとも簡単です(「<a href="/pe/2015.2/install_agents.html">agentのインストール」</a>を参照)。 リモートリポジトリから直接パッケージをインストールできないプラットフォーム(Windows)の場合は、インストーラスクリプトを使用することができます。
+</p>
+
+<p> このコンポーネントは、デプロイ環境の<strong>すべてのノード</strong>にインストールする必要があります。 Puppet master、PuppetDB、またはコンソールコンポーネントをインストールすると、これらのコンポーネントに割り当てられたマシンにPuppet agentコンポーネントが自動的にインストールされます。
+</p>
+
+<p> Puppet agentコンポーネントをインストールしたノードでは、以下を実行することができます。
+</p>
+
+<ul>
+<li>Puppet agentデーモンを実行し、Puppet masterから設定を受信して適用する。</li>
+  <li>オーケストレーションメッセージを聴取し、オーケストレーションアクションを呼び出す。</li>
+  <li>PuppetDBが使用するデータをmasterに送信する。</li>
+</ul>
+<h3 id="the-puppet-master">Puppet Master</h3>
+
+<p> ほとんどのデプロイ環境では、このコンポーネントは<strong>1つのノード</strong>にインストールすることを推奨します(複数のPuppet masterをインストールするには追加設定が必要ですが、このガイドでは取り上げません)。 Puppet masterには、堅牢な専用サーバーを使用する必要があります。 詳しくは「<a href="/pe/2015.2/install_system_requirements.html">システム要件</a>」を参照してください。
+</p>
+
+<p> Puppet masterでは、以下を実行することができます。
+</p>
+
+<ul>
+<li>Puppet agentノードの設定カタログをコンパイルして提供する。</li>
+  <li>自身のActiveMQサーバー経由でオーケストレーションメッセージを経路指定する。</li>
+  <li>(<code>peadmin</code>ユーザーとしてログインした管理者が)有効なオーケストレーションコマンドを発行する。</li>
+</ul>
+<blockquote>
+  <p> <strong>注意</strong>: デフォルトで、Puppet masterは、<code>pe-puppetserver</code>が再起動するたびに、利用可能なアップデートを確認します。 正確なアップデート情報を取得するため、masterはPuppet Labsのサーバーに対して基本的な匿名情報を送信します。 この動作は無効にできます。 収集されるデータ、およびアップグレードチェックを無効にする方法について、詳しくは正しい解答ファイルのリファレンスで確認できます。 利用可能なアップデートがある場合は、メッセージが表示されます。
+</p>
+</blockquote>
+
+<p> インストール中に、Puppet 4言語パーサーを有効にするかどうか確認するメッセージが表示されます。 Puppet 4言語パーサーには便利な言語機能が備わっており、デバッグを簡単に実行したり、次の主要シリーズの将来的なリリースに対応できるPuppetコードを作成したりできます。 すべての<strong>新規</strong>Puppetユーザーは、言語パーサーを有効にすることを推奨します。 Puppet 4言語パーサーで作成<strong>したものではない</strong>Puppetコードを使用する場合は、 この機能を有効に<strong>しないで</strong>ください。 「<a href="http://links.puppetlabs.com/future_parser">Puppet 4言語パーサーマニュアル</a>」を参照し、テスト環境でパーサーを有効にする手順を実行して、言語パーサーが既存のPuppetコードに対応するかどうか確認してください。
+</p>
+
+<h3 id="puppetdb-and-database-support">PuppetDBおよびデータベースサポート</h3>
+
+<p> PuppetDBコンポーネントは、Puppet EnterpriseによってインストールされたPostgreSQ、またはユーザーが手動で設定したPostgreSQのインスタンスを使用します。 モノリシックインストールの場合、PuppetDBは、コンソールおよびPuppet masterコンポーネントと同じノードにインストールされます。 分割インストールの場合、PuppetDBは自身のサーバーにインストールされます。 インストール中に、Puppet EnterpriseでPostgreSQLインスタンスをインストールするか、または設定済みのPostgreSQLインスタンスを使用するか確認するメッセージが表示されます。
+</p>
+
+<p> データベースはロールベースのアクセス制御(RBAC)をサポートするため、PuppetDBと同じPostgreSQLのインスタンス上でノード分類子が実行されます。
+</p>
+
+<p> PuppetDBは、Puppet Enterpriseのデータをすばやく格納できる拡張性と信頼性の高いデータウェアハウスです。 Puppet Enterpriseによって生成されたデータをキャッシュに入れ、強力なAPIによって高度な機能を高速で提供します。
+</p>
+
+<p> PuppetDBには以下が格納されます。
+</p>
+
+<ul>
+<li>すべてのノードからの最新データ</li>
+  <li>すべてのノードの最新カタログ</li>
+  <li>すべてのノードに関する(構成可能なオプション)の14日分(設定可能)のイベントレポート</li>
+</ul>
+<p> PuppetDBデータベースを手動で設定する場合は、「<a href="/puppetdb/2.2/configure.html#using-postgresql">PuppetDBの設定マニュアル</a>」で詳しい手順を確認してください。
+</p>
+
+<blockquote>
+  <p> <strong>重要</strong>: 既存のPostgreSQLインスタンスを使用する場合は、データベースサポートに使用するノードのホスト名とポート、データベースのアクセスに使用するユーザーパスワードが必要です。
+</p>
+</blockquote>
+
+<h3 id="the-pe-console">Puppet Enterprise Webコンソール</h3>
+
+<p> 分割インストールの場合、コンソールは専用サーバーにインストールしますが、モノリシックインストールでは、ほかのすべてのPEコンポーネントと同じサーバーにインストールします。
+</p>
+
+<p> コンソールサーバーでは以下を実行できます。
+</p>
+
+<ul>
+<li>コンソールWebインターフェイスを提供する。管理者はこのインターフェイスで、ノード上のリソースを直接編集したり、ノードをグループ化したり、クラスを割り当てたり、レポートやグラフ、インベントリ情報を確認したりできます。</li>
+  <li>レポートを収集し、ノード情報をPuppet masterに提供する。</li>
+</ul>
+<h4 id="role-based-access-control-rbac">ロールベースのアクセス制御(RBAC)</h4>
+
+<p> RBACによってPuppet Enterpriseノードをセグメント化し、適切なユーザーに安全に割り当てることができます。 たとえば、アプリケーションチーム全体でインフラをセグメント化し、ほかのアプリケーションに影響を与えることなく、自身のサーバーを管理できます。 さらに、RBACはMicrosoft Active DirectoryやOpenLDAPなどの標準ディレクトリサービスに直接接続できるため、ユーザーや認証を簡単に管理できます。
+</p>
+
+<p> RBACの詳しい使い方については、「<a href="/pe/2015.2/rbac_intro.html">PEユーザーガイド</a>」を参照してください。
+</p>
+
+<h4 id="node-classifier-nc">ノード分類子(NC)</h4>
+
+<p> ノード分類子を活用すれば、これまでにないパワフルで柔軟な方法でノードを整理して設定できます。 API駆動型のバックエンドサービスにより、直感的に操作できる新しいWeb UIを通じて、インフラを「ペットではなく家畜として」管理できる最新のアプローチが実現します。 グループレベルでクラスを割り当てられるようになり、ユーザーが定義したルールに基づいて、ノードを動的にグループに一致させることができます。
+</p>
+
+<p> 新しいノード分類子については、「<a href="/pe/2015.2/console_classes_groups.html">PEユーザーガイド</a>」を参照してください。
+</p>
+
+<blockquote>
+  <p> <strong>注意</strong>: PuppetDBと同様、 RBACとノード分類子のデータベースはPostgreSQL上で実行されます。既存のPostgreSQLインスタンスを使用することも、Puppet Enterpriseのインストール時に作成することもできます。 既存のPostgreSQLインスタンスを使用する場合は、データベースにアクセスするためのホスト名、ユーザー名、ユーザーパスワードを設定する必要があります。
+</p>
+</blockquote>
+
+<h2 id="notes-warnings-and-tips">注意、警告メッセージ、およびヒント</h2>
+
+<h3 id="verifying-your-license">ライセンスを確認する</h3>
+
+<p> Puppet Enterpriseの購入時に受け取った<code>license.key</code>ファイルで、デプロイ可能なノードの台数を確認します。 Puppet Enterpriseの実行時にログインライセンスの警告メッセージが表示されないようにするには、このファイルを<code>/etc/puppetlabs/license.key</code>としてPuppet masterノードにコピーする必要があります。 ライセンスキーファイルがない場合は、<a href="mailto:sales@puppetlabs.com">sales@puppetlabs.com</a>宛てにメールで再送付を依頼してください。
+</p>
+
+<p> Puppet Enterpriseは、最大10台のノードに無料でダウンロードしてインストールできます。 ノード台数が10台までの場合、ライセンスキーは不要です。
+</p>
+
+<h3 id="puppet-enterprise-binaries-and-symlinks">Puppet Enterpriseのバイナリおよびシンボリックリンク</h3>
+
+<p> Puppet Enterpriseのバイナリは<code>/opt/puppetlabs/bin</code>にインストールされます。 すべてのユーザーが主要なPuppetツールを使えるよう、インストーラによって、<code>facter</code>、<code>puppet</code>、<code>pe-man</code>、<code>r10k</code>、<code>hiera</code>、および<code>mco</code>バイナリのシンボリックリンクが<code>/usr/local/bin</code>に自動的に作成されます。 シンボリックリンクは、<code>/usr/local/bin</code>が書き込み可能な場合にのみ作成されます。
+</p>
+
+<p> AIXおよびSolaris 10/11をお使いの場合は、デフォルトパスに<code>/usr/local/bin</code>を追加する必要があります。
+</p>
+
+<p> Mac OS X agentを実行している場合、agentのカタログを適用してPuppetが正常に実行されるまで、シンボルリンクは作成されません。
+</p>
+
+<p> <code>pe-postgresql</code>、<code>pe-ruby</code>、<code>pe-openssl</code>など、上記以外のPuppet Enterpriseバイナリのシンボリックリンクは作成されません。 これらのバイナリをデフォルトの<code>$PATH</code>に追加するには、プロファイルに手動で追加するか、または<code>PATH=/opt/puppetlabs/bin:$PATH;export PATH</code>を実行します。
+</p>
+
+<h2 id="installing-agents">Agentのインストール</h2>
+
+<p> Agentのインストール方法については、「<a href="/pe/2015.2/install_agents.html">PE Agentのインストール</a>」を参照してください。
+</p>
+</div>

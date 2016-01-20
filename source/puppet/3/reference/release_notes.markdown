@@ -9,7 +9,6 @@ canonical: "/puppet/latest/reference/release_notes.html"
 [lang_scope]: ./lang_scope.html
 [qualified_vars]: ./lang_variables.html#accessing-out-of-scope-variables
 [auth_conf]: /guides/rest_auth_conf.html
-[upgrade]: /guides/install_puppet/upgrading.html
 [upgrade_issues]: http://projects.puppetlabs.com/projects/puppet/wiki/Telly_Upgrade_Issues
 [target_300]: http://projects.puppetlabs.com/projects/puppet/issues?set_filter=1&f[]=fixed_version_id&op[fixed_version_id]=%3D&v[fixed_version_id][]=271&f[]=&c[]=project&c[]=tracker&c[]=status&c[]=priority&c[]=subject&c[]=assigned_to&c[]=fixed_version&group_by=
 [unless]: ./lang_conditional.html#unless-statements
@@ -69,7 +68,7 @@ Starting from version 3.0.0, Puppet is semantically versioned with a three-part 
 * Y may increase for backwards-compatible new functionality.
 * Z may increase for bug fixes.
 
-> **Note:** When preparing to upgrade, please read our [general recommendations for upgrading between two major versions of Puppet][upgrade], which include suggested roll-out plans and package management practices. In general, upgrade the puppet master servers before upgrading the agents they support.
+> **Note:** In general, you should upgrade the puppet master servers before upgrading the agents they support.
 >
 > Also, before upgrading, look above at the _table of contents_ for this page. Identify the version you're upgrading TO and any versions you're upgrading THROUGH, and check them for a subheader labeled "Upgrade Warning," which will always be at the top of that version's notes. If there's anything special you need to know before upgrading, we will put it here.
 
@@ -289,7 +288,7 @@ Puppet's Windows support continues to get better, with improvements to resource 
 
 #### Packaging and Installer Improvements
 
-- The Windows Puppet installer has several new MSI properties for automated installation, which can set the service user and startup mode. See [the docs on automated installation on Windows](/guides/install_puppet/install_windows.html#automated-installation) for details. ([Issue 21243](http://projects.puppetlabs.com/issues/21243), [Issue 18268](http://projects.puppetlabs.com/issues/18268), [PUP-386](https://tickets.puppetlabs.com/browse/PUP-386), [PUP-387](https://tickets.puppetlabs.com/browse/PUP-387))
+- The Windows Puppet installer has several new MSI properties for automated installation, which can set the service user and startup mode. ([Issue 21243](http://projects.puppetlabs.com/issues/21243), [Issue 18268](http://projects.puppetlabs.com/issues/18268), [PUP-386](https://tickets.puppetlabs.com/browse/PUP-386), [PUP-387](https://tickets.puppetlabs.com/browse/PUP-387))
 - The Windows installer now puts Puppet on the PATH, so a special command prompt is no longer necessary. ([Issue 22700](http://projects.puppetlabs.com/issues/22700), [PUP-415](https://tickets.puppetlabs.com/browse/PUP-415))
 - Windows installer options can now override existing settings. ([Issue 20281](https://projects.puppetlabs.com/issues/20281), [PUP-388](https://tickets.puppetlabs.com/browse/PUP-388))
 
@@ -539,7 +538,7 @@ Released September 12, 2013.
 
 Although 3.3.0 is backward-compatible, its default configuration will cause reporting failures when ≥ 3.3.0 agent nodes connect to a sub-3.3.0 master.
 
-* This only affects newer agents + older masters; it is not a problem if you [upgrade the puppet master first.](/guides/install_puppet/upgrading.html#always-upgrade-the-puppet-master-first)
+* This only affects newer agents + older masters; it is not a problem if you upgrade the puppet master first.
 * To use ≥ 3.3.0 agents with an older puppet master, set `report_serialization_format` to `yaml` in their puppet.conf files; this restores full compatibility.
 
 [See the note below on yaml deprecation for details.][yaml_deprecation]
@@ -597,7 +596,7 @@ As of this release:
 
 Puppet 3.3 agents now default to sending reports as JSON, and masters running Puppet 3.2.4 and earlier cannot understand JSON reports. Using an out of the box 3.3 agent with a 3.2 puppet master will therefore fail.
 
-* To avoid errors, [upgrade the puppet master first](/guides/install_puppet/upgrading.html#always-upgrade-the-puppet-master-first).
+* To avoid errors, upgrade the puppet master first.
 * If you must use ≥ 3.3.0 agents with older puppet masters, set the new `report_serialization_format` to `yaml` in the agents' puppet.conf; this restores full compatibility.
 
 ### Regex Capture Variables from Node Definitions ($1, etc.)

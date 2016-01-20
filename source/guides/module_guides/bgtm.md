@@ -13,11 +13,11 @@ title: Beginner's Guide to Modules
 
 This module guide will help you learn how to create fantastic modules by introducing Puppet Labs' module best practice [standards and architecture](/guides/style_guide.html). Contributors to this guide have spent years creating Puppet modules, falling into every pitfall, trap, and mistake you could hope to make. This guide is intended to help you avoid our mistakes through an approachable introduction to module best practices.
 
-##Requirements
+## Requirements
 
 Before reading this guide we recommend that you become familiar with Puppet such that you have a basic understanding of the Puppet [language](/puppet/latest/reference/lang_summary.html), you know what constitutes a [class](/puppet/latest/reference/lang_classes.html), and you know how to put together a [basic module](/puppet/latest/reference/modules_fundamentals.html).
 
-##Step One: Giving Your Module Purpose
+## Step One: Giving Your Module Purpose
 
 Before you begin writing your module, you must define what it will do. Defining the range of your module's work helps you avoid accidentally creating a sprawling monster of a module that is unwieldy and difficult to work with. Your module should have one area of responsibility. For example, a good module addresses installing MySQL but **does not address** installing another program/service that requires MySQL.
 
@@ -33,7 +33,7 @@ It is standard practice for Puppet users to have upwards of 200 modules in their
 
 As an example, let's take a look at the [puppetlabs/puppetdb](http://forge.puppetlabs.com/puppetlabs/puppetdb) module. This module deals solely with the the setup, configuration and management of PuppetDB. However, PuppetDB stores its data in a PostgreSQL database. Rather than having the module manage PostgreSQL, the author included the [puppetlabs/postgresql](http://forge.puppetlabs.com/puppetlabs/postgresql) module as a dependency, leveraging the postgresql module's classes and resources to build out the right configuration for PuppetDB. Similarly, the puppetdb module needs to manipulate puppet.conf in order to operate PuppetDB. Instead of having the puppetdb module handle it internally, the author took advantage of the [puppetlabs/inifile](http://forge.puppetlabs.com/puppetlabs/inifile) module to enable puppetdb to make only the required edits to puppet.conf.
 
-##Step Two: Module Structure
+## Step Two: Module Structure
 
 The ideal module is one that is designed to manage a single piece of software from installation through setup, configuration, and service management.
 
@@ -48,7 +48,7 @@ This section covers:
 
 To demonstrate a real-world best practices standard module, we will walk through the structure of the [puppetlabs/ntp](http://forge.puppetlabs.com/puppetlabs/ntp) module.
 
-###2a: Class Design
+### 2a: Class Design
 
 Module development follows a similar [principle](http://www.amazon.com/dp/0201485672/?tag=stackoverfl08-20) as software development, essentially: "good software is comprised of many small, easily tested things composed together." A good module is comprised of small, self-contained classes that do one thing only. Classes within a module are similar to functions in programming, using parameters to perform related steps that create a coherent whole.
 
@@ -169,7 +169,7 @@ For example,
 
 Parameters form the public API of your module. They are the most important interface you expose, and care should be taken to give a good balance to the number and variety of parameters so users can customize their interactions with the module. Below, we will walk through best practices for naming and developing parameters.
 
-####Naming
+#### Naming
 
 Naming consistency is imperative for community comprehension and assists in troubleshooting and collaborating on module development. Best practices recommend the pattern of `thing_property` for naming parameters.
 
@@ -186,11 +186,11 @@ For example, in the ntp module
     }
 ~~~
 
-If you have a parameter that toggles an entire function on and off, the naming convention can be amended to `thing_manage`. This applies, in particular, to Boolean toogles such as managing the installation altogether. The `thing_manage` convention allows you to wrap all of the resources in an `if $package_manage {}` test.
+If you have a parameter that toggles an entire function on and off, the naming convention can be amended to `thing_manage`. This applies, in particular, to Boolean toggles such as managing the installation altogether. The `thing_manage` convention allows you to wrap all of the resources in an `if $package_manage {}` test.
 
 Consistent naming across modules helps with the readability and usability of your code. While Puppet Labs doesn't have a set of standards for parameters to conform to, there's a community project working to establish one. If you care about name standardization, offer issues and pull requests [here](https://github.com/stdmod/puppet-modules/blob/master/Parameters_List.md).
 
-####Number
+#### Number
 
 If you want to maximize the usability of your module without requiring users to modify it, you should make it more flexible through the addition of parameters. Adding parameters enables more customized use of your module. While this can feel frustrating as an author, best practice is to embrace parameters rather than avoid them.
 
@@ -200,7 +200,7 @@ Adding parameters that allow you to override templates is an anti-pattern to avo
 
 For an example of a module that capitalizes on offering many parameters, please see [puppetlabs/apache](http://forge.puppetlabs.com/puppetlabs/apache).
 
-###2c: Ordering
+### 2c: Ordering
 
 Best practices recommend basing your requires, befores, and other ordering-related dependencies on classes rather than resources. Class-based ordering allows you to shield the implementation details of each class from the other classes. You can do things like:
 
@@ -213,7 +213,7 @@ Best practices recommend basing your requires, befores, and other ordering-relat
 
 Rather than making a require to several packages, the above ordering allows you to refactor and improve `module::install` without having to adjust the manifests of other classes to match the changes.
 
-####Containment and Anchoring
+#### Containment and Anchoring
 
 Classes do not _automatically_ contain the classes they declare. (This is because classes can be declared in several places via `include` and similar functions. Most of these places shouldn't contain the class, and trying to contain it everywhere would cause huge problems.)
 
@@ -243,17 +243,17 @@ This enforces ordering, so `::install` will happen before `::config`, and
 
 For a real world example of anchoring in action, please see Hunter's [puppet-wordpress](https://github.com/hunner/puppet-wordpress/blob/master/manifests/init.pp) module.
 
-###2d: Dependencies
+### 2d: Dependencies
 
 If your module's functionality depends on another module, then you must list these dependencies and include them directly, rather than indirectly hoping they are included in the catalog.
 
 This means you must `include x` in your `init.pp` to ensure the dependency is included in the catalog. You must also add the dependency to the module's [metadata.json](/guides/style_guide.html#module-metadata) and `.fixtures.yml`. (`.fixtures.yml` is a file used exclusively by rspec to pull in dependencies required to successfully run unit tests.)
 
-##Step Three: Module Testing
+## Step Three: Module Testing
 
 Congratulations! You have written a module that accomplishes a task; has appropriate names, classes, and parameters; is ordered correctly; and that lists its dependencies. Now you must ensure that the module works in a variety of conditions, and that the options and parameters of your module work together to an appropriate end result. We have several testing frameworks available to help you write unit and acceptance tests.
 
-###rspec-puppet
+### rspec-puppet
 
 Rspec-Puppet provides a unit-testing framework for Puppet. It extends RSpec to allow the testing framework to understand Puppet catalogs, the artifact it specializes in testing. You can write tests, as in the below example, to test that aspects of your module work as intended.
 
@@ -263,13 +263,13 @@ RSpec lets you provide facts, like `osfamily`, in order to test the module in va
 
 You can read more at [http://rspec-puppet.com/](http://rspec-puppet.com/).
 
-###rspec-system
+### rspec-system
 
 [Rspec-system](https://github.com/puppetlabs/rspec-system) is an acceptance/integration testing framework that provisions, configures, and uses various [Vagrant](http://www.vagrantup.com/) virtual machines to apply your puppet module to a real machine and then test things (such as ensuring a package is installed or a service is running) from the command line within the VM.
 
 At Puppet Labs, we use rspec-system to do things like build a Debian virtual machine, run the apache module on it, then ensure we can curl to http://localhost:80 and retrieve the contents of a virtual host.
 
-###serverspec
+### serverspec
 
 [Serverspec](http://serverspec.org/) provides additional testing constructs (such as `be_running` and `be_installed`) for rspec-system, and allows you to abstract away details of the underlying distribution when testing. It lets you write tests like:
 
@@ -279,13 +279,13 @@ At Puppet Labs, we use rspec-system to do things like build a Debian virtual mac
 
 It then knows how to translate `be_running` into shell commands for different distributions.
 
-###puppetlabs-spec-helper
+### puppetlabs-spec-helper
 
 The [puppetlabs-spec-helper](https://github.com/puppetlabs/puppetlabs_spec_helper) is a gem that automates some of the tasks required to test modules. It provides a number of default rake tasks that allow you to standardize testing across modules, and it provides some glue code between rspec-puppet and actual modules. Most of the time you need do nothing more than add it to the Gemfile of the project and add the following the to the Rakefile:
 
     require 'puppetlabs_spec_helper/rake_tasks'
 
-##Step Four: Module versioning
+## Step Four: Module versioning
 
 Modules, like any other piece of software, must be versioned and released when changes are made. We use and recommend using [SemVer](http://semver.org/). It sets out the exact rules around when to increment major versions and so forth.
 
@@ -293,11 +293,11 @@ Once you've decided on the new version number, you must increase the version num
 
 It also allows you to create a list of dependencies in the Modulefile of your modules with specific versions of dependent modules, which ensures your module isn't used with an ancient dependency that won't work. Versioning also enables workflow management by allowing you to easily use different versions of modules in different environments.
 
-##Step Five: Module releasing
+## Step Five: Module releasing
 
 We encourage you to publish your modules on the [Puppet Forge](http://forge.puppetlabs.com). Sharing your modules allows other users to write improvements to the modules you make available and contribute them back to you, effectively giving you free improvements to your modules! Additionally, publishing your modules to the Forge helps foster community among Puppet users, and allows other Puppet community members to download and use your module in order to avoid reinventing the wheel. If the Puppet community routinely releases and hacks on modules on the Forge, the quality of available Puppet modules increases dramatically and gives you access to more modules to download and modify for your own purposes. Details on how to publish modules to the Puppet Forge can be found [here](/puppet/latest/reference/modules_publishing.html).
 
-##Community Resources
+## Community Resources
 
 [All the module basics](/puppet/latest/reference/modules_fundamentals.html) (part of the Puppet Reference Guide)
 

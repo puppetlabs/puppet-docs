@@ -25,10 +25,11 @@ The point of this section is not to find opportunities to punish people, but we 
 
 
 Notes:
+
 * Obvious spammers are banned on first occurrence. If we don’t do this, we’ll have spam all over the place.
 * Violations are forgiven after 6 months of good behavior, and we won’t hold a grudge.
 * People who are committing minor formatting / style infractions will get some education, rather than hammering them in the 3 strikes process.
-* Contact abuse@puppetlabs.com to report abuse or appeal violations. This email list goes to Kara Sowles, who can also be contacted at kara@puppetlabs.com. In the case of appeals, we know that mistakes happen, and we’ll work with you to come up with a fair solution if there has been a misunderstanding.
+* Contact conduct@puppetlabs.com to report abuse or appeal violations. This email list goes to Kara Sowles (kara at puppetlabs.com) and Nathan Rawlins (nathan.rawlins at puppetlabs.com / 503-806-2992).  In the case of appeals, we know that mistakes happen, and we’ll work with you to come up with a fair solution if there has been a misunderstanding.
 
 
 Activity-Specific Guidelines
@@ -60,17 +61,17 @@ We also provide various [commercial services](http://puppetlabs.com/services/ove
 
 If you can't solve a problem on your own, there are a lot of places you can go to get help from (and help back!) your fellow community members. The sections below cover the norms and expectations in each area of the Puppet community.
 
-### IRC Guidelines
+### IRC/Slack
 
+For some Puppet Labs events, a Slack will be created to enable attendees to communicate.  The following guidelines apply to all Slack channels and groups as well as IRC.
 
 A great place to get real-time help with Puppet is our IRC channel: #puppet on irc.freenode.net. There are usually many helpful people there in addition to some of the Puppetlabs staff.
 Please read and understand this [fantastic guide to getting help for open-source projects on irc](http://workaround.org/getting-help-on-irc) before diving in. All of the points there apply to #puppet, especially “Don’t repeat yourself”, “Don’t ask to ask”, and “Stick around”. #puppet in particular has heavy concentrations of people in UK (GMT) and West-coast US (PST), so asking your question when those time zones are in business hours is more likely to get a good result.
 
-
 Be aware that the IRC channel is not an official support channel, it’s an ad hoc group of people (some of whom work on puppet for a living) self-organizing to help each other out. If you do not receive an answer to your question, (especially if you have not followed the [getting help on irc best practices](http://workaround.org/getting-help-on-irc)!!), that doesn’t mean you are out of options, the software is hopelessly broken, or your problem is insoluble. It just means you need to keep troubleshooting.
 
 
-We also have a few IRC-specific guidelines:
+Some additional conduct guidelines:
 
 * Don't be a jerk: Treat people with respect and consideration.
 * Be helpful: Be patient with new people and be willing to jump in to answer questions.
@@ -218,7 +219,7 @@ If a participant engages in harassing behavior, the event organizers may take an
 
 Event staff will be happy to help participants address concerns. All reports will be treated as confidential. We strongly encourage you to address your issues privately with any of our staff members who are organizing the event. We encourage you to avoid disclosing information about the incident until the staff have had sufficient time in which to address the situation. Please also keep in mind that public shaming can be counter-productive to building a strong community. We do not condone nor participate in such actions.
 
-We value your attendance. If you cannot find a member of the event staff or are not comfortable contacting one of the staff, you can alternatively contact abuse@puppetlabs.com or Kara Sowles (kara at puppetlabs.com).
+We value your attendance. If you cannot find a member of the event staff or are not comfortable contacting one of the staff, you can alternatively contact conduct@puppetlabs.com, Kara Sowles (kara at puppetlabs.com) or Nathan Rawlins (503-806-2992 or nathan.rawlins at puppetlabs.com).
 
 We expect all participants to follow these rules at all event venues and related social events.
 

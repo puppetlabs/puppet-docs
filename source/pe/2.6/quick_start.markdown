@@ -39,7 +39,7 @@ For this deployment, the puppet master and the console will be the same machine,
 > * [Puppet Enterprise installer tarballs][downloads] suitable for the OS and architecture your nodes are using. 
 > * A network --- all of your nodes should be able to reach each other.
 > * An internet connection or a local mirror of your operating system's package repositories, for downloading additional software that Puppet Enterprise may require.
-> * [Properly configured firewalls](./install_system_requirements.html#firewall-configuration).
+> * [Properly configured firewalls](./install_system_requirements.html#firewall-configuration).
 >     * For demonstration purposes, all nodes should allow **all traffic on ports 8140, 61613, and 443.** (Production deployments can and should partially restrict this traffic.)
 > * [Properly configured name resolution](./install_system_requirements.html#name-resolution).
 >     * Each node needs **a unique hostname,** and they should be on **a shared domain.** For the rest of this walkthrough, we will refer to the puppet master as `master.example.com`, the first agent node as `agent1.example.com`, and the Windows node as `windows.example.com`. You can use any hostnames and any domain; simply substitute the names as needed throughout this document.

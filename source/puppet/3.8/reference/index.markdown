@@ -22,7 +22,7 @@ For an introduction to how Puppet manages systems, see the [Overview of Puppet's
 
 ## Getting Started
 
-To install Puppet 3.8, see [the Puppet installation guide](/guides/install_puppet/pre_install.html). For general advice on upgrading between major versions, see [Upgrading Puppet](/guides/install_puppet/upgrading.html).
+To install Puppet 3.8, see [the Puppet installation guide](/puppet/3.8/reference/pre_install.html). For general advice on upgrading between major versions, see [Upgrading Puppet](/puppet/3.8/reference/upgrading.html).
 
 ## Getting Around
 

@@ -32,7 +32,7 @@ To enable tagmail, you must:
 * **Enable the tagmail processor:** On puppet masters (and puppet apply nodes), set [`reports = tagmail`][reports].
     * Note that [the `reports` setting][reports] accepts a list, so you can enable multiple report processors.
 * **Configure email:** On puppet masters (and puppet apply nodes), set the [`reportfrom`][reportfrom] email address and a value for either [`smtpserver`][smtpserver] or [`sendmail`][sendmail].
-* **Configure tags:** On puppet masters (and puppet apply nodes), create a `tagmail.conf` file at the location specified in the `tagmap` setting.
+* **Configure tags:** On puppet masters (and puppet apply nodes), create a `tagmail.conf` file at the location specified in the `tagmap` setting.
 
 ## The `tagmail.conf` File
 

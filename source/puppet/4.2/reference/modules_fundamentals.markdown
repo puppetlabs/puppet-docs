@@ -22,9 +22,6 @@ canonical: "/puppet/latest/reference/modules_fundamentals.html"
 [file_function]: /references/4.2.latest/function.html#file
 [reserved names]: ./lang_reserved.html
 
-Puppet Modules
-=====
-
 **Modules** are self-contained bundles of code and data. You can download pre-built modules from [the Puppet Forge][forge] or you can write your own modules.
 
 **Nearly all Puppet manifests belong in modules.** The sole exception is the main `site.pp` manifest, which contains site-wide and node-specific code.
@@ -37,27 +34,26 @@ Every Puppet user should expect to write at least some of their own modules.
 * [See "Using Plugins"][plugins] for how to arrange plugins (like custom facts and custom resource types) in modules and sync them to agent nodes.
 * [See "Documenting Modules"][documentation] for a README template and information on providing directions for your module.
 
-Using Modules
------
+## Using Modules
 
 Modules are how Puppet finds the classes and types it can use --- it automatically loads any [class][classes] or [defined type][defined_types] stored in its modules. Any of these classes or defines can be declared by name within a manifest or from an [external node classifier (ENC)][enc].
 
 ~~~ ruby
-    # /etc/puppetlabs/puppet/site.pp
+# /etc/puppetlabs/code/environments/production/manifests/site.pp
 
-    node default {
-      include apache
+node default {
+  include apache
 
-      class {'ntp':
-        enable => false;
-      }
+  class {'ntp':
+    enable => false;
+  }
 
-      apache::vhost {'personal_site':
-        port    => 80,
-        docroot => '/var/www/personal',
-        options => 'Indexes MultiViews',
-      }
-    }
+  apache::vhost {'personal_site':
+    port    => 80,
+    docroot => '/var/www/personal',
+    options => 'Indexes MultiViews',
+  }
+}
 ~~~
 
 Likewise, Puppet can automatically load plugins (like custom native resource types or custom facts) from modules; see ["Using Plugins"][plugins] for more details.
@@ -67,8 +63,7 @@ To make a module available to Puppet, place it in one of the directories in Pupp
 You can easily install modules written by other users with the `puppet module` subcommand. [See "Installing Modules"][installing] for details.
 
 
-Module Layout
------
+## Module Layout
 
 On disk, a module is simply a directory tree with a specific, predictable structure:
 
@@ -81,9 +76,7 @@ On disk, a module is simply a directory tree with a specific, predictable struct
     * `examples`
     * `spec`
 
->**Deprecation Warning:**
->
->The `tests` directory is being DEPRECATED in favor of the `examples` directory. If you use [`puppet module generate`](#writing-modules) to create your module skeleton, please rename your directory to `examples`.
+> **Deprecation Note:** The `tests` directory is deprecated in favor of the `examples` directory. If you use [`puppet module generate`](#writing-modules) to create your module skeleton, rename the `tests` directory to `examples`.
 
 ### Example
 
@@ -115,7 +108,7 @@ Each of the module's subdirectories has a specific function, as follows.
 
 Each manifest in a module's `manifests` folder should contain one class or defined type. The file names of manifests map predictably to the names of the classes and defined types they contain.
 
-`init.pp` is special and always contains a class with the same name as the module. You may not have a class named init.
+`init.pp` is special and always contains a class with the same name as the module. You cannot have a class named `init`.
 
 Every other manifest contains a class or defined type named as follows:
 
@@ -135,7 +128,7 @@ The double colon that divides the sections of a class's name is called the *name
 
 Module names should only contain lowercase letters, numbers, and underscores, and should begin with a lowercase letter; that is, they should match the expression `[a-z][a-z0-9_]*`. Note that these are the same restrictions that apply to class names, but with the added restriction that module names cannot contain the namespace separator (`::`) as modules cannot be nested.
 
-Certain module names are disallowed, see the list of [reserved words and names][reserved names].
+Certain module names are disallowed; see the list of [reserved words and names][reserved names].
 
 ### Files
 
@@ -168,13 +161,11 @@ Template function | (' | Name of module/ | Name of template | ')
 
 So `template('my_module/component.erb')` would render the template `my_module/templates/component.erb`, and `epp('my_module/component.epp')` would render `my_module/templates/component.epp`.
 
-
-Writing Modules
------
+## Writing Modules
 
 To write a module, we strongly suggest running `puppet module generate <USERNAME>-<MODULE NAME>`.
 
-When you run the above command, the Puppet module tool (PMT) will run a series of questions to gather metadata about your module and will create a basic module structure for you.
+When you run the above command, the Puppet module tool (PMT) will ask a series of questions to gather metadata about your module, and creates a basic module structure for you.
 
 ~~~
 $ puppet module generate examplecorp-mymodule
@@ -243,23 +234,21 @@ mymodule/tests
 mymodule/tests/init.pp
 ~~~
 
->**NOTE:** The `tests` directory is being deprecated in favor of `examples`. If you've just generated your module, you should rename the directory to `examples`.
+> **Note:** The `tests` directory is deprecated in favor of `examples`. If you've just generated your module, rename the directory to `examples`.
 
-For help getting started writing your module, please see the [Beginner's Guide to Modules](/guides/module_guides/bgtm.html).
+For help getting started writing your module, see the [Beginner's Guide to Modules](/guides/module_guides/bgtm.html).
 
-You also have the option of writing classes and defined types by hand and placing them in properly named manifest files as [described above](#module_layout). If you take this route, you **must** ensure that your metadata.json file is properly formatted or your module **will not work**.
+You also have the option of writing classes and defined types by hand and placing them in properly named manifest files as [described in the "Module Layout" section above](#module_layout). If you take this route, you **must** ensure that your `metadata.json` file is properly formatted or your module **will not work**.
 
 * [See here][classes] for more information on classes
 * [See here][defined_types] for more information on defined types
 
+## Tips
 
-Tips
------
-
-The [classes][], [defined types][defined_types], and [plugins][] in a module **should all be related,** and the module should aim to be **as self-contained as possible.**
+A module's [classes][], [defined types][defined_types], and [plugins][] **should all be related,** and the module should aim to be **as self-contained as possible.**
 
 Manifests in one module should never reference files or templates stored in another module.
 
 Be wary of having classes declare classes from other modules, as this makes modules harder to redistribute. When possible, it's best to isolate "super-classes" that declare many other classes in a local "site" module.
 
-For more best practices, please see the [Puppet Labs Modules Style Guide](/guides/style_guide.html).
+For more best practices, see the [Puppet Labs Modules Style Guide](/guides/style_guide.html).

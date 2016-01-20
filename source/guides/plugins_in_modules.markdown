@@ -40,7 +40,7 @@ Plugins are stored in the `lib` directory of a module, using an internal directo
             ├── facter
             └── puppet
                 ├── parser
-                │   └── functions
+                │   └── functions
                 ├── provider
                 |   ├── exec
                 |   ├── package

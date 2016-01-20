@@ -15,13 +15,13 @@ Puppet Enterprise can be evaluated with a complementary ten-node license; beyond
 
 To purchase a license, please see the [Puppet Enterprise pricing page](http://www.puppetlabs.com/puppet/how-to-buy/), or contact Puppet Labs at <sales@puppetlabs.com> or (877) 575-9775. For more information on licensing terms, please see [the licensing FAQ](http://www.puppetlabs.com/licensing-faq/). If you have misplaced or never received your license key, please contact <sales@puppetlabs.com>.
 
-##Software
+## Software
 
-###<i>What</i>
+### <i>What</i>
 
 All working components of PE, excluding configuration files. These are files you are not likely to need to change.
 
-###<i>Where</i>
+### <i>Where</i>
 
 All PE software (excluding config files) is installed under `/opt/puppet`.
 
@@ -30,13 +30,13 @@ All PE software (excluding config files) is installed under `/opt/puppet`.
 * The Puppet modules included with PE are installed in `/opt/puppet/share/puppet/modules`. Don't edit this directory to add modules of your own. Instead, install them in `/etc/puppetlabs/puppet/modules`.
 * MCollective plugins are installed in `/opt/puppet/libexec/mcollective/`. If you are adding new plugins to your PE agent nodes, you should distribute them via Puppet.
 
-##Configuration Files
+## Configuration Files
 
-###<i>What</i>
+### <i>What</i>
 
  Files used to configure Puppet and its subsidiary components. These are the files you will likely change to accomodate the needs of your environment.
 
-###<i>Where</i>
+### <i>Where</i>
 
 Puppet Enterprise's configuration files all live under `/etc/puppetlabs`, with subdirectories for each of PE's components.
 
@@ -44,12 +44,12 @@ Puppet Enterprise's configuration files all live under `/etc/puppetlabs`, with s
 * [MCollective's](orchestration_overview.html) config files are in `/etc/puppetlabs/mcollective`.
 * The console's config files are in `/etc/puppetlabs/puppet-dashboard`.
 
-##Log Files
+## Log Files
 
-###<i>What</i>
+### <i>What</i>
 The software distributed with Puppet Enterprise generates the following log files, which can be found as follows.
 
-###<i>Where</i>
+### <i>Where</i>
 
 ### Puppet Master Logs
 
@@ -117,7 +117,7 @@ PE uses the following services:
 - **`pe-puppet-dashboard-workers`** --- A supervisor that manages the console's background processes. Runs on servers with the console role.
 - **`pe-activemq`** --- The ActiveMQ message server, which passes messages to the MCollective servers on agent nodes. Runs on servers with the puppet master role.
 
-###User Accounts
+### User Accounts
 
 PE creates the following users:
 
@@ -127,7 +127,7 @@ PE creates the following users:
 - **`pe-activemq`** --- A system user which runs the ActiveMQ message bus used by MCollective.
 - **`puppet-dashboard`** --- A system user which runs the console processes spawned by Passenger.
 
-###Documentation
+### Documentation
 
 Man pages for the Puppet subcommands are generated on the fly. To view them, run `puppet man <SUBCOMMAND>`.
 

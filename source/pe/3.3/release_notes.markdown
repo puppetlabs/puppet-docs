@@ -24,7 +24,7 @@ This page contains information about the Puppet Enterprise (PE) 3.3.2 release as
 
 ## Security Fixes (9/9/14)
 
-####[CVE-2014-0226 - Apache vulnerabilty in mod_status module could allow arbitrary code execution](http://puppetlabs.com/security/cve/cve-2014-0226/)
+#### [CVE-2014-0226 - Apache vulnerabilty in mod_status module could allow arbitrary code execution](http://puppetlabs.com/security/cve/cve-2014-0226/)
 
 **Assessed risk level**: medium
 
@@ -36,7 +36,7 @@ A race condition in the mod_status module in the Apache HTTP Server before 2.4.1
 
 Upstream CVSS v2 Score: 4.4 with Vector:  AV:L/AC:M/Au:N/C:P/I:P/A:P/E:ND/RL:U/RC:C
 
-####[CVE-2014-0118 - Apache vulnerability in mod_deflate module could allow denial of service attacks](http://puppetlabs.com/security/cve/cve-2014-0118)
+#### [CVE-2014-0118 - Apache vulnerability in mod_deflate module could allow denial of service attacks](http://puppetlabs.com/security/cve/cve-2014-0118)
 
 **Assessed risk level**: medium
 
@@ -48,7 +48,7 @@ The `deflate_in_filter` function in the mod_deflate module in the Apache HTTP Se
 
 Upstream CVSS v2 Score: 5.0 with Vector: AV:N/AC:L/Au:N/C:N/I:N/A:P/E:ND/RL:U/RC:C
 
-####[CVE-2014-0231 - Apache vulnerability in mod_cgid module could allow denial of service attacks](http://puppetlabs.com/security/cve/cve-2014-0231)
+#### [CVE-2014-0231 - Apache vulnerability in mod_cgid module could allow denial of service attacks](http://puppetlabs.com/security/cve/cve-2014-0231)
 
 **Assessed risk level**: low
 
@@ -60,13 +60,13 @@ The mod_cgid module in the Apache HTTP Server before 2.4.10 does not have a time
 
 Upstream CVSS v2 Score: 2.6 with Vector: AV:N/AC:H/Au:N/C:N/I:N/A:P/E:ND/RL:U/RC:C)
 
-####Additional Security Information for this Release: OpenSSL Security Fixes
+#### Additional Security Information for this Release: OpenSSL Security Fixes
 
 On August 6, the OpenSSL project announced several security vulnerabilities in OpenSSL. Puppet Enterprise 2.x and 3.x contained vulnerable versions of OpenSSL. Puppet Enterprise 2.8.8 and 3.3.2 contain updated versions of OpenSSL that have patched the vulnerabilities.
 
 For more information about the OpenSSL vulnerabilities, refer to the [OpenSSL security site](https://www.openssl.org/news/vulnerabilities.html).
 
-##Bug Fixes
+## Bug Fixes
 
 **Incomplete /etc/inittab entry for pe-puppet service on AIX**
 

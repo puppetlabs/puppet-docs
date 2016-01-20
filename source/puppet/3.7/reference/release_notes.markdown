@@ -5,7 +5,7 @@ description: "Puppet release notes for version 3.7"
 canonical: "/puppet/latest/reference/release_notes.html"
 ---
 
-[upgrade]: /guides/install_puppet/upgrading.html
+[upgrade]: /puppet/3.8/reference/upgrading.html
 [puppet_3]: /puppet/3/reference/release_notes.html
 [puppet_35]: /puppet/3.5/reference/release_notes.html
 [puppet_36]: /puppet/3.6/reference/release_notes.html
@@ -543,7 +543,7 @@ Since Puppet 3.7 includes the Puppet 4 version of the language, getting ready to
 
 [inpage_win64]: #feature-64-bit-support-ruby-20-and-ffi-on-windows
 
-We now ship both 32- and 64-bit Puppet installers for Windows! When installing Puppet, you should download the package that matches your systems' version of Windows. If you installed Puppet into a custom directory, or if you need to downgrade, be sure to see the new notes in [the Windows installation page.](/guides/install_puppet/install_windows.html)
+We now ship both 32- and 64-bit Puppet installers for Windows! When installing Puppet, you should download the package that matches your systems' version of Windows. If you installed Puppet into a custom directory, or if you need to downgrade, be sure to see the new notes in [the Windows installation page.](/puppet/3.8/reference/install_windows.html)
 
 > **Note:** Windows Server 2003 can't use our 64-bit installer, and must continue to use the 32-bit installer for all architectures. This is because 64-bit Ruby relies on OS features that weren't added until after Windows 2003.
 

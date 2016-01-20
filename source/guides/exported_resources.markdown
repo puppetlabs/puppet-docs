@@ -6,7 +6,9 @@ title: Exported Resource Design Patterns
 Exported Resource Design Patterns
 ==================================
 
-Exported resources allow nodes to share information with each other. This is useful when one node has information that another node needs in order to manage a resource --- the node with the information can construct and publish the resource, and the node managing the resource can collect it.
+Exported resources allow the Puppet compiler to share information among nodes by combining information from multiple nodes' catalogs. This helps you manage things that rely on nodes knowing the states or activity of other nodes.
+
+> **Note:** Exported resources rely on the compiler having access to the information, and cannot use information that's never sent to the compiler, such as the contents of arbitrary files on a node.
 
 [For more information on the syntax, behavior, and prerequisites of exported resources, see the Exported Resources section of the Puppet language reference.][lang_exported]
 

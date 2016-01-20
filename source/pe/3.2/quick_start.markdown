@@ -59,7 +59,7 @@ For this walk-through, you will create a simple deployment where the puppet mast
 > * A network --- all of your nodes should be able to reach each other.
 > * All of the nodes you intend to use should have their system clocks set to within a minute of each other.
 > * An internet connection or a local mirror of your operating system's package repositories, for downloading additional software that Puppet Enterprise may require.
-> * [Properly configured firewalls](./install_system_requirements.html#firewall-configuration).
+> * [Properly configured firewalls](./install_system_requirements.html#firewall-configuration).
 >     * For demonstration purposes, all nodes should allow **all traffic on ports 8140, 61613, and 443.** (Production deployments can and should partially restrict this traffic.)
 > * [Properly configured name resolution](./install_system_requirements.html#name-resolution).
 >     * Each node needs **a unique hostname,** and they should be on **a shared domain.** For the rest of this walkthrough, we will refer to the puppet master as `master.example.com` and the agent node as `agent1.example.com`. You can use any hostnames and any domain; simply substitute the names as needed throughout this document.

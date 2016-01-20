@@ -55,7 +55,7 @@ apache-packages:
 apache-service: apache2
 
 # interpolated facter variable
-hosts_entry: "sandbox.%{fqdn}"
+hosts_entry: "sandbox.%{::fqdn}"
 
 # hash
 sshd_settings:

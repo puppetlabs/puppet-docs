@@ -74,7 +74,7 @@ You can change the run interval by setting a new value for [the `runinterval` se
 
 [runinterval]: /references/3.3.latest/configuration.html#runinterval
 
-* This file is located at `/etc/puppetlabs/puppet/puppet.conf` on \*nix nodes, and [`<DATADIR>`](/guides/install_puppet/install_windows.html#data-directory)`\puppet.conf` on Windows.
+* This file is located at `/etc/puppetlabs/puppet/puppet.conf` on \*nix nodes, and `<DATADIR>\puppet.conf` on Windows.
 * Make sure you put this setting in [the `[agent]` or `[main]` block of puppet.conf](/puppet/3.6/reference/config_file_main.html#format).
 * Since you will be managing this file on many systems at once, you may wish to manage puppet.conf with a Puppet template.
 
