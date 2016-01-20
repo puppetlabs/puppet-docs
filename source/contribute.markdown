@@ -5,8 +5,6 @@ title: Contribute
 
 We welcome community contributions to the documentation! You can help by reporting errors and typos, or by contributing new or updated sections. This topic describes the three main ways to contribute to the docs, and provides guidance on writing good documentation.
 
-* * *
-
 ## Three ways to improve the Puppet documentation
 
 ### Filing a ticket
@@ -22,11 +20,11 @@ If you spot a typo or other minor error and don't want to go through the overhea
 
 ### Sending a Github pull request
 
-If there's a hole in the documentation and you know just what needs to be added, and if you're [familiar with Github](http://learn.github.com/), you can contribute directly to our open source project. Use your [GitHub](http://github.com) account to fork the [puppet-docs](http://github.com/puppetlabs/puppet-docs) repository, make your changes, and submit a pull request. To reduce editing churn and have your PR quickly accepted, follow the Puppet documentation style guidelines, below.
+If there's a hole in the documentation and you know just what needs to be added, and if you're [familiar with Github](http://learn.github.com/), you can contribute directly to our open source project. Use your [GitHub](http://github.com) account to fork the [puppet-docs](http://github.com/puppetlabs/puppet-docs) repository, make your changes, and submit a pull request. To reduce editing churn and have your PR quickly accepted, follow the Puppet documentation guidelines, below.
 
 Documentation source files for certain Puppet-related components, such as Puppet language reference, MCollective, and PuppetDB, are kept in other repositories. See the [Contributing ReadMe](https://github.com/puppetlabs/puppet-docs/blob/master/CONTRIBUTING.md) for details.
 
-## Puppet documentation style guidelines
+## Puppet documentation guidelines
 
 ### Source files
 
@@ -79,6 +77,11 @@ Sometimes our docs are missing useful information that you can provide:
 ### Grammar, idiom, and spelling
 
 ### Headings
+
+Use headings to increase the scanability of your content, and to make separate sections for conceptual information, each task, and reference information. 
+- Nest H3s (markdown: `### `) inside H2s (`## `), and H4s (`#### `) inside H3s. 
+- Headings for conceptual information should be noun phrases that accurately describe the content (for example, "Defined resource types"). 
+- Task section headings should be verb phrase that indicates what the user is doing (for example, "Deploying your code"), but also differentiates it from other tasks (so maybe, "Deploying your code to a test environment")
 
 ### Formatting
 
