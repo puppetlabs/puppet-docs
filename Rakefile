@@ -170,37 +170,20 @@ end
 
 desc "Symlink latest versions of several projects; see symlink_latest and lock_latest lists in _config.yml"
 task :symlink_latest_versions do
-  require 'versionomy'
-  require 'pathname'
+  require 'puppet_docs/versions'
 
   # Auto-link the latest version of every project in symlink_latest
   config_data['symlink_latest'].each do |project|
-    # Skip locked projects
-    next if config_data['lock_latest'].keys.include?(project)
+    project_dir = "#{output_dir}/#{project}"
 
-    # this bit is snipped from PuppetDocs::Reference
-    subdirs = Pathname.new("#{output_dir}/#{project}").children.select do |child|
-      child.directory? && !child.symlink?
-    end
-    versions = []
-    subdirs.each do |path|
-      begin
-        version = Versionomy.parse(path.basename.to_s)
-        versions << version
-      rescue
-        next
-      end
-    end
-    versions.sort! # sorts into ascending order, so most recent is last
-    Dir.chdir "#{output_dir}/#{project}" do
-      FileUtils.ln_sf versions.last.to_s, 'latest'
-    end
-  end
+    versions = Pathname.glob("#{project_dir}/*").select {|f|
+      f.directory? && !f.symlink?
+    }.map {|d| d.basename.to_s}
 
-  # Manually link the locked "latest" version of every project in lock_latest
-  config_data['lock_latest'].each do |project, version|
-    Dir.chdir "#{output_dir}/#{project}" do
-      FileUtils.ln_sf version.to_s, 'latest'
+    latest = config_data['lock_latest'][project] || PuppetDocs::Versions.latest(versions)
+
+    Dir.chdir project_dir do
+      FileUtils.ln_sf latest, 'latest'
     end
   end
 end
