@@ -91,70 +91,11 @@ defaultnav:
   /puppetserver/2.2: /puppet/4.3/reference/_puppet_toc.html
   /references: /_includes/references_general.html
 #Anatomy of an external source:
-#  mcollective: # an arbitrary name. The working dir for this source will be at externalsources/<name>.
-#    url: /mcollective # The absolute URL where the source's contents should be mounted in the final site.
-#    repo: git://github.com/puppetlabs/marionette-collective.git # The URL of the upstream repo, in a form acceptable to `git clone`. This must be accessible to anyone who will need to deploy the site.
-#    commit: origin/master # a git treeish (in a form acceptable to `git checkout`) that the external source should track. This should almost always be either a tag, which will never update, or an upstream tracking branch on the default "origin" remote (origin/<branch>), which will update every time someone builds the site.
-#    subdirectory: website # A subdirectory within the remote repository that contains the documentation files that we'll build and mount at the specified url.
+#  /puppetdb/2.2:                                   # The absolute URL where the source's contents should be mounted in the final site.
+#    repo: git://github.com/puppetlabs/puppetdb.git # The URL of the upstream repo, in a form acceptable to `git clone`. This must be accessible to anyone who will need to deploy the site.
+#    commit: origin/2.2.x                           # a git treeish (in a form acceptable to `git checkout`) that the external source should track. This should almost always be either a tag, which will never update, or an upstream tracking branch on the default "origin" remote (origin/<branch>), which will update every time someone builds the site.
+#    subdirectory: documentation                    # A subdirectory within the remote repository that contains the documentation files that we'll build and mount at the specified url.
 externalsources:
-  # Older versions of PuppetDB are now 'legacy' and so we can clear the branch, we are
-  # referencing a tag instead.
-  /puppetdb/1.1:
-    repo: git://github.com/puppetlabs/puppetdb.git
-    commit: 1.1.x-docs
-    subdirectory: documentation
-  /puppetdb/1.2:
-    repo: git://github.com/puppetlabs/puppetdb.git
-    commit: 1.2.x-docs
-    subdirectory: documentation
-  /puppetdb/1.3:
-    repo: git://github.com/puppetlabs/puppetdb.git
-    commit: 1.3.x-docs
-    subdirectory: documentation
-  /puppetdb/1.4:
-    repo: git://github.com/puppetlabs/puppetdb.git
-    commit: 1.4.x-docs
-    subdirectory: documentation
-  /puppetdb/1.5:
-    repo: git://github.com/puppetlabs/puppetdb.git
-    commit: 1.5.x-docs
-    subdirectory: documentation
-  /puppetdb/1.6:
-    repo: git://github.com/puppetlabs/puppetdb.git
-    commit: origin/1.6.x
-    subdirectory: documentation
-  /puppetdb/2.0:
-    repo: git://github.com/puppetlabs/puppetdb.git
-    commit: origin/2.0.x
-    subdirectory: documentation
-  /puppetdb/2.1:
-    repo: git://github.com/puppetlabs/puppetdb.git
-    commit: origin/2.1.x
-    subdirectory: documentation
-  /puppetdb/2.2:
-    repo: git://github.com/puppetlabs/puppetdb.git
-    commit: origin/2.2.x
-    subdirectory: documentation
-  /puppetdb/2.3:
-    repo: git://github.com/puppetlabs/puppetdb.git
-    commit: origin/2.3.x
-    subdirectory: documentation
-  /puppetdb/3.0:
-    repo: git://github.com/puppetlabs/puppetdb.git
-    commit: origin/3.0.x
-    subdirectory: documentation
-  /puppetdb/3.1:
-    repo: git://github.com/puppetlabs/puppetdb.git
-    commit: origin/3.1.x
-    subdirectory: documentation
-  /puppetdb/3.2:
-    repo: git://github.com/puppetlabs/puppetdb.git
-    commit: origin/stable
-    subdirectory: documentation
-  /puppetdb/master:
-    repo: git://github.com/puppetlabs/puppetdb.git
-    commit: origin/master
-    subdirectory: documentation
   /mcollective:
     repo: git://github.com/puppetlabs/marionette-collective.git
     commit: origin/master
@@ -163,47 +104,6 @@ externalsources:
     repo: git://github.com/nfagerlund/marionette-collective.git
     commit: origin/docs_1.2
     subdirectory: website
-  /puppetserver/master:
-    repo: git://github.com/puppetlabs/puppet-server.git
-    commit: origin/master
-    subdirectory: documentation
-  /puppetserver/1.0:
-    repo: git://github.com/puppetlabs/puppet-server.git
-    commit: ce030bb
-    subdirectory: documentation
-  /puppetserver/2.0:
-    repo: git://github.com/puppetlabs/puppet-server.git
-    commit: 239776a
-    subdirectory: documentation
-  /puppetserver/1.1:
-    repo: git://github.com/puppetlabs/puppet-server.git
-    commit: origin/1.x
-    subdirectory: documentation
-  /puppetserver/2.1:
-    repo: git://github.com/puppetlabs/puppet-server.git
-    # This is a tag:
-    commit: puppet-server-2.1.3-alpha1
-    subdirectory: documentation
-  /puppetserver/2.2:
-    repo: git://github.com/puppetlabs/puppet-server.git
-    commit: origin/stable
-    subdirectory: documentation
-  /pe/3.7:
-    repo: git@github.com:puppetlabs/pe-docs-private.git
-    commit: origin/pe3.7
-    subdirectory: source
-  /pe/3.8:
-    repo: git@github.com:puppetlabs/pe-docs-private.git
-    commit: origin/pe3.8.3
-    subdirectory: source
-  /pe/2015.2:
-    repo: git@github.com:puppetlabs/pe-docs-private.git
-    commit: origin/pe2015.2.3
-    subdirectory: source
-  /pe/2015.3:
-    repo: git@github.com:puppetlabs/pe-docs-private.git
-    commit: origin/pe2015.3.1
-    subdirectory: source
 
 
 symlink_latest:
@@ -247,6 +147,21 @@ version_notes:
   /puppetserver/2.1: '<p class="noisy">This is the version of Puppet Server included in Puppet Enterprise 2015.2.0 to 2015.2.2. Puppet Enterprise 3.8 users should see <a href="/puppetserver/1.1/">the Puppet Server 1.1 docs.</a>'
   /puppetserver/2.2: '<p class="noisy">This is the latest version of Puppet Server, included in Puppet Enterprise 2015.3 and 2015.2.3. Users of previous versions of PE 2015.2.x should see <a href="/puppetserver/2.1/">the Puppet Server 2.1 docs.</a> PE 3.8 users should see <a href="/puppetserver/1.1/">the Puppet Server 1.1 docs.</a>'
 
+# Anatomy of a document:
+#  /pe/2015.3:                    # Base URL for this doc, starting from the root of the site.
+#    doc: pe                      # Which document group it's a part of. Used to determine this doc's siblings.
+#    version: 2015.3              # Version. Used for associating confirmed version numbers with a URL.
+#    nav: ./_pe_toc.html          # Nav snippet. Can be an absolute URL, or relative to the base URL.
+#    external_source:             # External source. Works the same as external sources above; requires repo, commit, and subdirectory keys.
+#      repo: git@github.com:puppetlabs/pe-docs-private.git
+#      commit: origin/pe2015.3.1
+#      subdirectory: source
+#    my_versions:                 # A hash, where you can specify the one most-relavent version for any number of other documents.
+#      puppet: 4.3                # The keys of this hash should be document group IDs; that is, the value of the `doc` key from another document.
+#      facter: 3.1
+#      hiera: 3.0
+#      puppetserver: 2.2
+#      puppetdb: 3.2
 
 documents:
   /pe/2015.3:
