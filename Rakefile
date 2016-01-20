@@ -5,6 +5,7 @@ require 'rake'
 require 'pathname'
 require 'fileutils'
 require 'yaml'
+require 'puppet_docs/config'
 
 begin
   require "vlad"
@@ -22,7 +23,7 @@ preview_dir = "#{top_dir}/_preview"
 
 version_file = "#{output_dir}/VERSION.txt"
 
-config_data = YAML.load(File.read("#{source_dir}/_config.yml"))
+config_data = PuppetDocs::Config.new("#{source_dir}/_config.yml")
 
 desc "Stash all directories but one in a temporary location. Run a preview server on localhost:4000."
 task :preview, :filename do |t, args|
