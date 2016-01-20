@@ -132,66 +132,6 @@ By default, Facter will merge hashes with hashes or arrays with arrays, resultin
 [structured fact](#writing-structured-facts), but you can also aggregate the chunks into a flat fact
 using concatenation, addition, or any other function that you can express in Ruby code.
 
-### Example: building a structured fact progressively
-
-~~~ ruby
-Facter.add(:networking, :type => :aggregate) do
-
-  confine :kernel => "Linux"
-
-  chunk(:macaddrs) do
-    interfaces = {}
-
-    Sysfs.net_devs.each do |dev|
-      interfaces[dev.name] = {
-        'macaddr' => dev.macaddr,
-        'macbrd'  => dev.macbrd,
-      }
-    end
-
-    interfaces
-  end
-
-  chunk(:ipv4) do
-    interfaces = {}
-    Facter::Util::IP.get_interfaces.each do |interface|
-      interfaces[interface] = {
-        'ipaddress' => Facter::Util::IP.get_ipaddress_value(interface),
-        'netmask'   => Facter::Util::IP.get_netmask_value(interface),
-      }
-    end
-
-    interfaces
-  end
-  # Facter will merge the return values for the two chunks
-  # automatically, so there's no aggregate statement.
-end
-~~~
-
-### Example: Building a Flat Fact Progressively With Addition
-
-~~~ ruby
-Facter.add(:total_free_memory_mb, :type => :aggregate) do
-  chunk(:physical_memory) do
-    Facter.value(:memoryfree_mb)
-  end
-
-  chunk(:virtual_memory) do
-    Facter.value(:swapfree_mb)
-  end
-
-  aggregate do |chunks|
-    # The return value for this block will determine the value of the fact.
-    sum = 0
-    chunks.each_value do |i|
-      sum += i
-    end
-
-    sum
-  end
-end
-~~~
-
 ### Main Components of Aggregate Resolutions
 
 Aggregate resolutions have two key differences compared to simple resolutions: the presence of `chunk` statements and the lack of a `setcode` statement. The `aggregate` block is optional, and without it Facter will merge hashes with hashes or arrays with arrays.
@@ -218,3 +158,82 @@ Aggregate resolutions have two key differences compared to simple resolutions: t
     * If this is absent, Facter will automatically merge hashes with hashes or arrays with arrays.
     * If you want to merge the chunks in any other way, you'll need to make a call to `aggregate`, which takes a block of code.
     * The block is passed one argument (`chunks`, in the example), which is a hash of chunk name to chunk value for all the chunks in the resolution.
+
+### Example: Building a Structured Fact Progressively
+
+This example builds a new fact, `networking_primary_sha`, by progressively merging two chunks. One chunk encodes each networking interface's MAC address as an encoded base64 value, and the other determines if each interface is the system's primary interface.
+
+~~~ ruby
+require 'digest'
+require 'base64'
+
+Facter.add(:networking_primary_sha, :type => :aggregate) do
+
+  chunk(:sha256) do
+    interfaces = {}
+
+    Facter.value(:networking)['interfaces'].each do |interface, values|
+      if values['mac']
+        hash = Digest::SHA256.digest(values['mac'])
+        encoded = Base64.encode64(hash)
+        interfaces[interface] = {:mac_sha256 => encoded.strip}
+      end
+    end
+
+    interfaces
+  end
+
+  chunk(:primary?) do
+    interfaces = {}
+
+    Facter.value(:networking)['interfaces'].each do |interface, values|
+      interfaces[interface] = {:primary? => (interface == Facter.value(:networking)['primary'])}
+    end
+
+    interfaces
+  end
+  # Facter will merge the return values for the two chunks
+  # automatically, so there's no aggregate statement.
+end
+~~~
+
+The fact's output is organized by network interface into hashes, each containing the two chunks:
+
+~~~ json
+{
+  bridge0 => {
+    mac_sha256 => "bfgEFV7m1V04HYU6UqzoNoVmnPIEKWRSUOU650j0Wkk=",
+    primary? => false
+  },
+  en0 => {
+    mac_sha256 => "6Fd3Ws2z+aIl8vNmClCbzxiO2TddyFBChMlIU+QB28c=",
+    primary? => true
+  },
+  ...
+}
+~~~
+
+### Example: Building a Flat Fact Progressively With Addition
+
+~~~ ruby
+Facter.add(:total_free_memory_mb, :type => :aggregate) do
+  chunk(:physical_memory) do
+    Facter.value(:memoryfree_mb)
+  end
+
+  chunk(:virtual_memory) do
+    Facter.value(:swapfree_mb)
+  end
+
+  aggregate do |chunks|
+    # The return value for this block will determine the value of the fact.
+    sum = 0
+    chunks.each_value do |i|
+      sum += i
+    end
+
+    sum
+  end
+end
+~~~
+
