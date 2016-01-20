@@ -6,18 +6,12 @@ require 'pathname'
 require 'fileutils'
 require 'yaml'
 
-Dir.glob(File.join("vendor", "gems", "*", "lib")).each do |lib|
-  $LOAD_PATH.unshift(File.expand_path(lib))
-end
-
 begin
   require "vlad"
   Vlad.load :scm => :git
 rescue LoadError
   # do nothing
 end
-
-$LOAD_PATH.unshift File.expand_path('lib')
 
 top_dir = Dir.pwd
 
