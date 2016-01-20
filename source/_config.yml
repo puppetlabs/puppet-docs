@@ -99,134 +99,108 @@ defaultnav:
 externalsources:
   # Older versions of PuppetDB are now 'legacy' and so we can clear the branch, we are
   # referencing a tag instead.
-  puppetdb_1.1:
-    url: /puppetdb/1.1
+  /puppetdb/1.1:
     repo: git://github.com/puppetlabs/puppetdb.git
     commit: 1.1.x-docs
     subdirectory: documentation
-  puppetdb_1.2:
-    url: /puppetdb/1.2
+  /puppetdb/1.2:
     repo: git://github.com/puppetlabs/puppetdb.git
     commit: 1.2.x-docs
     subdirectory: documentation
-  puppetdb_1.3:
-    url: /puppetdb/1.3
+  /puppetdb/1.3:
     repo: git://github.com/puppetlabs/puppetdb.git
     commit: 1.3.x-docs
     subdirectory: documentation
-  puppetdb_1.4:
-    url: /puppetdb/1.4
+  /puppetdb/1.4:
     repo: git://github.com/puppetlabs/puppetdb.git
     commit: 1.4.x-docs
     subdirectory: documentation
-  puppetdb_1.5:
-    url: /puppetdb/1.5
+  /puppetdb/1.5:
     repo: git://github.com/puppetlabs/puppetdb.git
     commit: 1.5.x-docs
     subdirectory: documentation
-  puppetdb_1.6:
-    url: /puppetdb/1.6
+  /puppetdb/1.6:
     repo: git://github.com/puppetlabs/puppetdb.git
     commit: origin/1.6.x
     subdirectory: documentation
-  puppetdb_2.0:
-    url: /puppetdb/2.0
+  /puppetdb/2.0:
     repo: git://github.com/puppetlabs/puppetdb.git
     commit: origin/2.0.x
     subdirectory: documentation
-  puppetdb_2.1:
-    url: /puppetdb/2.1
+  /puppetdb/2.1:
     repo: git://github.com/puppetlabs/puppetdb.git
     commit: origin/2.1.x
     subdirectory: documentation
-  puppetdb_2.2:
-    url: /puppetdb/2.2
+  /puppetdb/2.2:
     repo: git://github.com/puppetlabs/puppetdb.git
     commit: origin/2.2.x
     subdirectory: documentation
-  puppetdb_2.3:
-    url: /puppetdb/2.3
+  /puppetdb/2.3:
     repo: git://github.com/puppetlabs/puppetdb.git
     commit: origin/2.3.x
     subdirectory: documentation
-  puppetdb_3.0:
-    url: /puppetdb/3.0
+  /puppetdb/3.0:
     repo: git://github.com/puppetlabs/puppetdb.git
     commit: origin/3.0.x
     subdirectory: documentation
-  puppetdb_3.1:
-    url: /puppetdb/3.1
+  /puppetdb/3.1:
     repo: git://github.com/puppetlabs/puppetdb.git
     commit: origin/3.1.x
     subdirectory: documentation
-  puppetdb_3.2:
-    url: /puppetdb/3.2
+  /puppetdb/3.2:
     repo: git://github.com/puppetlabs/puppetdb.git
     commit: origin/stable
     subdirectory: documentation
-  puppetdb_master:
-    url: /puppetdb/master
+  /puppetdb/master:
     repo: git://github.com/puppetlabs/puppetdb.git
     commit: origin/master
     subdirectory: documentation
-  mcollective:
-    url: /mcollective
+  /mcollective:
     repo: git://github.com/puppetlabs/marionette-collective.git
     commit: origin/master
     subdirectory: website
-  mcollective1.2:
-    url: /mcollective1.2
+  /mcollective1.2:
     repo: git://github.com/nfagerlund/marionette-collective.git
     commit: origin/docs_1.2
     subdirectory: website
-  puppetserver_master:
-    url: /puppetserver/master
+  /puppetserver/master:
     repo: git://github.com/puppetlabs/puppet-server.git
     commit: origin/master
     subdirectory: documentation
-  puppetserver_1.0:
-    url: /puppetserver/1.0
+  /puppetserver/1.0:
     repo: git://github.com/puppetlabs/puppet-server.git
     commit: ce030bb
     subdirectory: documentation
-  puppetserver_2.0:
-    url: /puppetserver/2.0
+  /puppetserver/2.0:
     repo: git://github.com/puppetlabs/puppet-server.git
     commit: 239776a
     subdirectory: documentation
-  puppetserver_1.1:
-    url: /puppetserver/1.1
+  /puppetserver/1.1:
     repo: git://github.com/puppetlabs/puppet-server.git
     commit: origin/1.x
     subdirectory: documentation
-  puppetserver_2.1:
-    url: /puppetserver/2.1
+  /puppetserver/2.1:
     repo: git://github.com/puppetlabs/puppet-server.git
     # This is a tag:
     commit: puppet-server-2.1.3-alpha1
     subdirectory: documentation
-  puppetserver_2.2:
-    url: /puppetserver/2.2
+  /puppetserver/2.2:
     repo: git://github.com/puppetlabs/puppet-server.git
     commit: origin/stable
     subdirectory: documentation
-  pe3.7:
-    url: /pe/3.7
+  /pe/3.7:
     repo: git@github.com:puppetlabs/pe-docs-private.git
     commit: origin/pe3.7
     subdirectory: source
-  pe3.8:
-    url: /pe/3.8
+  /pe/3.8:
     repo: git@github.com:puppetlabs/pe-docs-private.git
     commit: origin/pe3.8.3
     subdirectory: source
-  pe2015.2:
-    url: /pe/2015.2
+  /pe/2015.2:
     repo: git@github.com:puppetlabs/pe-docs-private.git
     commit: origin/pe2015.2.3
     subdirectory: source
-  pe2015.3:
-    url: /pe/2015.3
+  /pe/2015.3:
     repo: git@github.com:puppetlabs/pe-docs-private.git
     commit: origin/pe2015.3.1
     subdirectory: source

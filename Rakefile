@@ -101,14 +101,16 @@ namespace :externalsources do
   # "Update all working copies defined in source/_config.yml"
   task :update do
     Rake::Task['externalsources:clone'].invoke
-    Dir.chdir("externalsources") do
-      config_data['externalsources'].each do |name, info|
-        unless File.directory?(name)
-          puts "Making new working directory for #{name}"
-          system ("\"#{top_dir}/vendor/bin/git-new-workdir\" '#{safe_dirname(info['repo'])}' '#{name}' '#{info['commit']}'")
+    Dir.chdir('externalsources') do
+      config_data['externalsources'].each do |url, info|
+        workdir = safe_dirname(url)
+        local_repo = safe_dirname(info['repo'])
+        unless File.directory?(workdir)
+          puts "Making new working directory for #{url}"
+          system ("\"#{top_dir}/vendor/bin/git-new-workdir\" '#{local_repo}' '#{workdir}' '#{info['commit']}'")
         end
-        Dir.chdir(name) do
-          puts "Updating #{name}"
+        Dir.chdir(workdir) do
+          puts "Updating #{url}"
           system ("git checkout --force #{info['commit']} && git clean --force .")
         end
       end
@@ -135,9 +137,10 @@ namespace :externalsources do
   task :link do
     Rake::Task['externalsources:clean'].invoke # Bad things happen if any of these symlinks already exist, and Jekyll will run FOREVER
     Rake::Task['externalsources:clean'].reenable
-    config_data['externalsources'].each do |name, info|
-      # Have to use absolute paths for the source, since we have no idea how deep in the hierarchy info['url'] is (and thus how many ../..s it would need).
-      FileUtils.ln_sf "#{top_dir}/externalsources/#{name}/#{info['subdirectory']}", "#{source_dir}#{info['url']}"
+    config_data['externalsources'].each do |url, info|
+      workdir = safe_dirname(url)
+      # Have to use absolute paths for the source, since we have no idea how deep in the hierarchy the url is (and thus how many ../..s it would need).
+      FileUtils.ln_sf "#{top_dir}/externalsources/#{workdir}/#{info['subdirectory']}", "#{source_dir}#{url}"
     end
   end
 
