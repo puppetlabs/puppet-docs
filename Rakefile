@@ -94,8 +94,8 @@ namespace :externalsources do
   end
 
   # Returns something like git_github_com_puppetlabs_marionette-collective_git. We use this as the name of the main repo directory, because we may need to disambiguate between two repos with the same short name but a different user account on github.
-  def repo_unique_id(repo_url)
-    repo_url.gsub(/[:\/\.]+/, '_')
+  def safe_dirname(name)
+    name.sub(/^[:\/\.]+/, '').gsub(/[:\/\.]+/, '_')
   end
 
   # "Update all working copies defined in source/_config.yml"
@@ -105,7 +105,7 @@ namespace :externalsources do
       config_data['externalsources'].each do |name, info|
         unless File.directory?(name)
           puts "Making new working directory for #{name}"
-          system ("\"#{top_dir}/vendor/bin/git-new-workdir\" '#{repo_unique_id(info['repo'])}' '#{name}' '#{info['commit']}'")
+          system ("\"#{top_dir}/vendor/bin/git-new-workdir\" '#{safe_dirname(info['repo'])}' '#{name}' '#{info['commit']}'")
         end
         Dir.chdir(name) do
           puts "Updating #{name}"
@@ -117,14 +117,12 @@ namespace :externalsources do
 
   # "Fetch all external doc repos (from externalsources in source/_config.yml), cloning any that don't yet exist"
   task :clone do
-    repos = []
-    config_data['externalsources'].each do |name, info|
-      repos << info['repo']
-    end
+    repos = config_data['externalsources'].values.map {|info| info['repo']}.uniq
+
     Dir.chdir("externalsources") do
-      repos.uniq.each do |repo|
+      repos.each do |repo|
         puts "Fetching #{repo}"
-        repo_dir = repo_unique_id(repo)
+        repo_dir = safe_dirname(repo)
         system ("git clone #{repo} #{repo_dir}") unless File.directory?(repo_dir)
         Dir.chdir(repo_dir) do
           system("git fetch origin")
