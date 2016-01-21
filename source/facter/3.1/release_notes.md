@@ -10,7 +10,7 @@ This page documents the history of the Facter 3.1 series. (Previous version: [Fa
 
 ## Facter 3.1.4
 
-Released January 21, 2016.
+Released January 25, 2016.
 
 Shipped in [`puppet-agent` 1.3.3][puppet-agent 1.3.x].
 

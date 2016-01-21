@@ -21,7 +21,7 @@ Also of interest: the [Puppet 4.2 release notes](/puppet/4.2/reference/release_n
 
 ## Puppet 4.3.2
 
-Released January 21, 2015.
+Released January 25, 2016.
 
 Puppet 4.3.2 is a bug fix release.
 

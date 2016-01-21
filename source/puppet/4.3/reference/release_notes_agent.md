@@ -36,7 +36,7 @@ Also of interest: [About Agent](./about_agent.html) and the [Puppet 4.3 release 
 
 ## Puppet Agent 1.3.3
 
-Released January 21, 2016.
+Released January 25, 2016.
 
 This release adds packages for Ubuntu Wily 15.10, as well as bug fixes and improvements to Puppet and a Ruby security fix on Windows.
 
