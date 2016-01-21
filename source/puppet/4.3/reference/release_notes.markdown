@@ -21,12 +21,18 @@ Also of interest: the [Puppet 4.2 release notes](/puppet/4.2/reference/release_n
 
 ## Puppet 4.3.2
 
-Released January 19, 2015.
+Released January 21, 2015.
 
 Puppet 4.3.2 is a bug fix release.
 
-* [Fixed in Puppet 4.3.2]()
-* [Introduced in Puppet 4.3.2]()
+* [Fixed in Puppet 4.3.2](https://tickets.puppetlabs.com/issues/?jql=fixVersion+%3D+%27PUP+4.3.2%27)
+* [Introduced in Puppet 4.3.2](https://tickets.puppetlabs.com/issues/?jql=affectedVersion+%3D+%27PUP+4.3.2%27)
+
+### New Platform: Ubuntu Wily 15.10
+
+As of Puppet 4.3.2, packages are available for Ubuntu Wily 15.10. Puppet 4.3.2 also modifies systemd to be the default service provider on Wily.
+
+* [PUP-5553](https://tickets.puppetlabs.com/browse/PUP-5553)
 
 ### Improvements: Speed!
 
@@ -66,6 +72,12 @@ In previous versions of Puppet 4.3, the `puppet lookup` command always compiles 
 
 * [PUP-5461: `puppet lookup` is too verbose and compiles everything by default](https://tickets.puppetlabs.com/browse/PUP-5461)
 
+### Regression Fix: Allow resource collectors to use resource references
+
+Puppet 4.0 introduced a regression where resource collectors using resource references would produce an error. Puppet 4.3.2 fixes that regression.
+
+* [PUP-5465](https://tickets.puppetlabs.com/browse/PUP-5465)
+
 ### Regression Fix: Retrieve resource state at evaluation time
 
 In previous versions of Puppet 4.3, Puppet prematurely retrieves generated resources when they are generated, rather than during evaluation. This could cause certain types or providers to behave inconsistently. For instance, changing only the mode on an existing `remote_file` resource might lead to Puppet unnecessarily recreate the file on each Puppet run. This is a regression from Puppet 4.2, and Puppet 4.3.2 correctly retrieves generated resources when it evaluates the resource.
@@ -102,6 +114,12 @@ In previous versions of Puppet, an unterminated C-style comment in a Puppet mani
 
 * [PUP-5127](https://tickets.puppetlabs.com/browse/PUP-5127)
 
+### Bug Fix: Handle non-ASCII Unicode characters in inlined file content
+
+In previous versions of Puppet, when a catalog contained inlined file content (typically from a template) with non-ASCII unicode characters, those characters could be corrupted when the agent used a cached catalog. Puppet 4.3.2 resolves this issue for the JSON cache.
+
+* [PUP-5584](https://tickets.puppetlabs.com/browse/PUP-5584)
+
 ### Bug Fix: Correctly handle `yum` warnings
 
 When run without an internet connection, the `yum` package manager returns a non-zero exit code. The [`yum` package provider](/references/latest/type.html#package-provider-yum) failed to handle this properly in previous versions of Puppet 4, resulting in an exception and failed resource. Puppet 4.3.2 updates the `yum` provider to gracefully warn the user instead of failing.
@@ -114,16 +132,26 @@ If `systemd` is purged from a Debian 8 or Ubuntu 15.04 system running Puppet 4.3
 
 * [PUP-5548](https://tickets.puppetlabs.com/browse/PUP-5548)
 
-### Bug Fixes: Language
+### Bug Fix: Always restore full trusted information from data stores
+
+When trusted information was stored in PuppetDB, caches, or a file, and later retrieved, the value of the authenticated key was modified depending on whether the process ran as root. In Puppet 4.3.2, there is no difference, and the same information is always retrieved.
+
+Therefore, the `authenticated` flag should be interpreted as "how the trusted information was authenticated when it entered the system". Historical data retains how it was authenticated in the past, and Puppet can obtain this information when reading it.
+
+* [PUP-5061](https://tickets.puppetlabs.com/browse/PUP-5061)
+
+### Bug Fixes: Puppet Language
 
 * [PUP-3149: Removing packages on SuSE Linux should use `zypper`, not `rpm`](https://tickets.puppetlabs.com/browse/PUP-3149)
 * [PUP-4744: `yumrepo` doesn't recognize whitespace-delimited `reposdir` settings in `/etc/yum.conf`](https://tickets.puppetlabs.com/browse/PUP-4744)
 * [PUP-5209: Declaring a module dependency in `metadata.json` with a dash instead of a slash results in unexpected behavior](https://tickets.puppetlabs.com/browse/PUP-5209): When declaring one module as a dependency from another module's `metadata.json`, using a dash in the dependency's name (such as `puppetlabs-stdlib`) instead of a slash (`puppetlabs/stdlib`) could make functions in the dependency unexpectedly unavailable to the dependent module. Puppet 4.3.2 resolves the issue.
 * [PUP-5552: Check parameter names in EPP templates](https://tickets.puppetlabs.com/browse/PUP-5552): In previous versions of Puppet, including the Puppet 3 future parser, Puppet would validate only the number of parameters passed to an EPP template, not their names, which could lead to Puppet failing to produce an error when passing an unknown parameter. Puppet 4.3.2 correctly validates EPP templates with the same logic used to validate resource parameters.
 * [PUP-5589: No error logged when a type without a namevar causes a failure](https://tickets.puppetlabs.com/browse/PUP-5589): In previous versions of Puppet 4, a faulty implementation of a resource type could lead to a catalog compilation or Puppet run that fails without presenting a reason. Such problems are now logged.
+* [PUP-5590: No error on duplicate parameters in classes and resources](https://tickets.puppetlabs.com/browse/PUP-5590): In previous versions of Puppet, you could illegally use the same parameter multiple times in a single class or resource without invoking an error. Puppet 4.3.2 adds an error message when parsing a manifest in which a parameter is specified more than once in a class or resource.
 * [PUP-5612: Error message for declaring a resource without a title is confusing](https://tickets.puppetlabs.com/browse/PUP-5612): When declaring a resource without a title, previous versions of Puppet 4 produced a confusing, generic error message. Puppet 4.3.2 recognizes when a resource is missing a title and suggests adding one.
 * [PUP-5628: Errors from functions written in the Puppet language don't mention the affected file](https://tickets.puppetlabs.com/browse/PUP-5628): When a function written in the Puppet language fails, previous versions of Puppet 4 only reported that an error occurred, but not the file in which it occurred. Puppet 4.3.2 identifies the path to the affected file.
-* [PUP-5651: Puppet function declarations must be top-level constructs](https://tickets.puppetlabs.com/browse/PUP-5651): [Functions](./lang_functions.html) in the Puppet language should not be nested in any type of block, but Puppet 4 allowed you to define a function inside a class or user-defined type without producing an error message. Puppet 4.3.2 correctly validates this rule and produces an error when it's violated.
+* [PUP-5651: Puppet function declarations must be top-level constructs](https://tickets.puppetlabs.com/browse/PUP-5651): [Functions](./lang_functions.html) in the Puppet language should not be nested in any type of block, but Puppet 4 allowed you to illegally define a function inside a class or user-defined type without producing an error message. Puppet 4.3.2 correctly validates this rule and produces an error when it's violated.
+* [PUP-5658: Disallow numeric ranges where from > to](https://tickets.puppetlabs.com/browse/PUP-5658): Previous versions of Puppet allowed you to create range sub-type declarations (such as `Integer[first,second]`) for integer and and float types where the maximum limit was set first and the minimum limit was set second. Now for such declarations, the first value must not be greater than the second.
 
 ### Bug Fixes: Puppet lookup
 
@@ -133,6 +161,8 @@ If `systemd` is purged from a Debian 8 or Ubuntu 15.04 system running Puppet 4.3
 * [PUP-5644: Puppet lookup creates new SSL hierarchy with self-signed CA](https://tickets.puppetlabs.com/browse/PUP-5644): When running `puppet lookup` under Puppet 4.3.1, Puppet created an unnecessary SSL hierarchy and self-signed certificate authority. Besides not being useful, these unnecessary creations could also cause lookups on masterless Puppet nodes to fail. Puppet 4.3.2 doesn't do this.
 
 ### Bug Fixes: Miscellaneous
+
+* [PUP-5520: Exclude unsafe Yocto scripts from service init provider](https://tickets.puppetlabs.com/browse/PUP-5520): Gathering the status of service resources on Yocto Linux can cause unintended consequences, such as sending shutdown signals to daemons. Puppet 4.3.2 blacklists a series of unsafe init scripts shipped by Yocto so that Puppet does not try to execute them. 
 
 * [PUP-5522: Puppet::Node attributes not kept consistent with its parameters](https://tickets.puppetlabs.com/browse/PUP-5522): In some Puppet-related applications, or in certain cases when using Puppet from Ruby, a Node object could use one environment but report that it was in another, resulting in the node having the wrong set of parameters. This doesn't affect regular catalog compilation, and is resolved in Puppet 4.3.2.
 

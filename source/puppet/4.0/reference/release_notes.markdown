@@ -291,11 +291,17 @@ Module authors who use the `prefetch` method in custom providers may want to be 
 * [PUP-3512: Add deprecation warning for old profiler API in Puppet](https://tickets.puppetlabs.com/browse/PUP-3512)
 * [PUP-3666: Replace 'configtimeout' with separate HTTP connect and read timeout settings](https://tickets.puppetlabs.com/browse/PUP-3666)
 
-### Regression: Puppet 4's `--profile` flag produces less information
+### Regression: `--profile` flag produces less information
 
 In Puppet 4, functions converted to the Puppet 4 function API were not included in the profiling information produced by the `--profile` flag. This caused the profiling output to produce less information than in Puppet 3. Puppet 4.3.2 restores this missing information.
 
 * [PUP-5063](https://tickets.puppetlabs.com/browse/PUP-5063)
+
+### Regression: Resource collectors can't use resource references
+
+Puppet 4.0 introduced a regression where resource collectors using resource references would produce an error. Puppet 4.3.2 fixes that regression.
+
+* [PUP-5465](https://tickets.puppetlabs.com/browse/PUP-5465)  
 
 ### Resource Type and Provider Improvements
 
