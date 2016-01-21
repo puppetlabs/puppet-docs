@@ -6,6 +6,28 @@ description: "Facter release notes for all 2.4 versions"
 
 This page documents the history of the Facter 2.4 series. (Elsewhere: release notes for [Facter 2.3](../2.3/release_notes.html), [Facter 2.2](../2.2/release_notes.html), [Facter 2.1](../2.1/release_notes.html), and [Facter 2.0](../2.0/release_notes.html)).
 
+## Facter 2.4.5
+
+Released January 20, 2016.
+
+Facter 2.4.5 is a bug fix release in the Facter 2.4 series.
+
+### Bug fix: Use public IP address for the `ipaddress` fact
+
+Previous versions of Facter 2 reported the IP address of the first interface in alphabetical order in the `ipaddress` fact, which wasn't always desirable as that interface might not have a public IP address. Facter 2.4.5 ignores private IP addresses when reporting the `ipaddress` fact.
+
+* [FACT-380](https://tickets.puppetlabs.com/browse/FACT-380)
+
+### Bug fixes: Miscellaneous
+
+* [FACT-765: The `gid` fact is ill-constrained on Windows](https://tickets.puppetlabs.com/browse/FACT-765): Previous versions of Facter 2 would attempt to invoke `id.exe` if found on the system. Doing so would cause an error resolving the `gid` fact. Facter 2.4.5 and Facter 3 resolve this issue.
+* [FACT-1286: `Facter::Util::Resolution.which()` returns directories, not only executable files](https://tickets.puppetlabs.com/browse/FACT-1286): Previous versions of Facter 2 could return a directory if one matches the request in the `PATH` environment variable before an executable. Facter 2.4.5 resolves this by only returning a matching executable.
+* [FACT-959: Incorrect processor counts on Windows](https://tickets.puppetlabs.com/browse/FACT-959): Facter 2.4.3 and 2.4.4 could erroneously report the number of physical processors as the number of virtual processors. Facter 2.4.5 resolves this issue.
+* [FACT-704: Docker support for virtual and is_virtual broken by systemd slices](https://tickets.puppetlabs.com/browse/FACT-704): Previous versions of Facter 2 couldn't accurately detect when running in a Docker container, because the virtual fact was broken due to `systemd` slices that changed the cgroup paths.  Facter 2.4.5 correctly detects when it is running in a Docker container when using `systemd` slices.
+
+### Full list of issues
+
+[See Jira for a full list of issues resolved in Facter 2.4.5.](https://tickets.puppetlabs.com/issues/?filter=17113)
 
 ## Facter 2.4.4
 
