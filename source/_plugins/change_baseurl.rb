@@ -1,5 +1,4 @@
 require 'pathname'
-require 'byebug'
 
 # {% change_baseurl url old_baseurl new_baseurl %}
 # Arguments are space-separated. Literal strings must be quoted;
@@ -12,11 +11,15 @@ module Jekyll
       @var_regex = /\A#{Liquid::VariableSignature}+\Z/
       @args = args_string.scan(@arg_regex).map{|a|a.strip}
       if @args.length != 3
-        @error = "Tag error: Gave #{args.length} arguments; change_baseurl tag requires url, old_baseurl, new_baseurl."
+        @error = "Tag error: Gave #{args.length} (valid) arguments; change_baseurl tag requires url, old_baseurl, new_baseurl."
       end
     end
 
     def render(context)
+      if @error
+        return @error
+      end
+
       (@url, @old_baseurl, @new_baseurl) = @args.map{|arg|
         if arg =~ @var_regex
           Liquid::Variable.new(arg).render(context)
