@@ -211,6 +211,13 @@
         </div>
         <nav class="main">
               <div id="subCol">
+                  {% if page.doc %}
+                  <p>This page in other versions:
+                      {% for version in site.document_list[page.doc.doc] %}
+                      (version: {{version[0]}}, baseurl: {{version[1]}}),
+                      {% endfor %}
+                  </p>
+                  {% endif %}
                   <ul id="doc-navigation">
                     <li class="with-submenu">
                       <a href="#">
