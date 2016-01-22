@@ -297,10 +297,6 @@ documents:
     doc: puppet
     version: 4.0
     nav: /_includes/puppet_4.html
-  /puppet/pre4.0:
-    doc: puppet
-    version: 4.0b1
-    nav: /_includes/puppet_pre_40.html
   /puppet/3.8/reference:
     doc: puppet
     version: 3.8
