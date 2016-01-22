@@ -214,7 +214,7 @@
                   {% if page.doc %}
                   <p>This page in other versions:
                       {% for version in site.document_list[page.doc.doc] %}
-                      (version: {{version[0]}}, baseurl: {{version[1]}}),
+                      <a href="{% change_baseurl page.url page.doc.base_url version[1] %}">{{version[0]}}</a>{% unless forloop.last %}, {% endunless %}
                       {% endfor %}
                   </p>
                   {% endif %}
