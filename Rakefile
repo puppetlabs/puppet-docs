@@ -25,6 +25,13 @@ VERSION_FILE = "#{OUTPUT_DIR}/VERSION.txt"
 
 CONFIG_DATA = PuppetDocs::Config.new("#{SOURCE_DIR}/_config.yml")
 
+def jekyll(command = 'build', source = SOURCE_DIR, destination = OUTPUT_DIR, *args)
+  amended_config = "#{SOURCE_DIR}/_config_amended.yml"
+  File.write(amended_config, YAML.dump(CONFIG_DATA))
+  system("bundle exec jekyll #{command} --source #{source} --destination #{destination} #{args.join(' ')} --config #{amended_config}")
+  FileUtils.rm(amended_config)
+end
+
 desc "Stash all directories but one in a temporary location. Run a preview server on localhost:4000."
 task :preview, :filename do |t, args|
 
@@ -66,7 +73,7 @@ PREVIEW_INDEX
   File.open("index.markdown", 'w') {|f| f.write(preview_index) }
 
   # Run our preview server, watching ... watching ...
-  system("bundle exec jekyll  #{PREVIEW_DIR} --auto --serve")
+  jekyll('serve', SOURCE_DIR, PREVIEW_DIR)
 
   # When we kill it with a ctl-c ...
   puts "\n\n*** Shut down the server."
@@ -162,7 +169,7 @@ task :generate do
   system("mkdir -p #{OUTPUT_DIR}")
   system("rm -rf #{OUTPUT_DIR}/*")
   system("mkdir #{OUTPUT_DIR}/references")
-  system("bundle exec jekyll build --source #{SOURCE_DIR} --destination #{OUTPUT_DIR}")
+  jekyll()
 
   Rake::Task['symlink_latest_versions'].invoke
 
