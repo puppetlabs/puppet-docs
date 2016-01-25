@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Type Reference"
-canonical: "/references/2.7.latest/type.html"
+canonical: "/puppet/2.7/reference/type.html"
 ---
 
 
@@ -740,7 +740,7 @@ content
       }
 
   ...but for larger files, this attribute is more useful when combined with the
-  [template](/references/latest/function.html#template)
+  [template](/puppet/latest/reference/function.html#template)
   function.
 
 ctime
@@ -3437,7 +3437,7 @@ url
 ### schedule
 
 Define schedules for Puppet. Resources can be limited to a schedule by using the
-[`schedule`](/references/latest/metaparameter.html#schedule)
+[`schedule`](/puppet/latest/reference/metaparameter.html#schedule)
 metaparameter.
 
 Currently, **schedules can only be used to stop a resource from being

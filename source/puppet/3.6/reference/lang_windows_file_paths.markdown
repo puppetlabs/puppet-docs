@@ -4,10 +4,10 @@ title: "Language: Handling File Paths on Windows"
 ---
 
 [template]: /guides/templating.html
-[scheduledtask]: /references/latest/type.html#scheduledtask
-[exec]: /references/latest/type.html#exec
-[package]: /references/latest/type.html#package
-[file]: /references/latest/type.html#file
+[scheduledtask]: /puppet/latest/reference/type.html#scheduledtask
+[exec]: /puppet/latest/reference/type.html#exec
+[package]: /puppet/latest/reference/type.html#package
+[file]: /puppet/latest/reference/type.html#file
 
 Several [resource types](./lang_resources.html) (including `file`, `exec`, and `package`) take file paths as values for various attributes.
 

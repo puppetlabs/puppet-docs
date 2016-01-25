@@ -29,7 +29,7 @@ You can specify a different config file for Hiera via Puppet, the command line, 
 
 #### In Puppet
 
-You can use [the `hiera_config` setting](/references/latest/configuration.html#hieraconfig) in `puppet.conf` to specify a different config file.
+You can use [the `hiera_config` setting](/puppet/latest/reference/configuration.html#hieraconfig) in `puppet.conf` to specify a different config file.
 
 #### From the Command Line
 

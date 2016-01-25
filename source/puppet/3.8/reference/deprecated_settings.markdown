@@ -3,9 +3,9 @@ layout: default
 title: "Deprecated Settings"
 ---
 
-[manifest_setting]: /references/3.8.latest/configuration.html#manifest
-[modulepath_setting]: /references/3.8.latest/configuration.html#modulepath
-[config_version]: /references/3.8.latest/configuration.html#configversion
+[manifest_setting]: ./configuration.html#manifest
+[modulepath_setting]: ./configuration.html#modulepath
+[config_version]: ./configuration.html#configversion
 [puppet.conf]: ./config_file_main.html
 [environment.conf]: ./config_file_environment.html
 [cli_settings]: ./config_about_settings.html#settings-can-be-set-on-the-command-line
@@ -20,9 +20,9 @@ The following Puppet settings are deprecated and will be removed in Puppet 4.0. 
 Config File Environment Settings
 -----
 
-* [`manifest`](/references/3.8.latest/configuration.html#manifest)
-* [`modulepath`](/references/3.8.latest/configuration.html#modulepath)
-* [`config_version`](/references/3.8.latest/configuration.html#configversion)
+* [`manifest`](./configuration.html#manifest)
+* [`modulepath`](./configuration.html#modulepath)
+* [`config_version`](./configuration.html#configversion)
 
 ### Now
 
@@ -46,22 +46,22 @@ See the note about [the deprecation of config file environments.](./deprecated_m
 Activerecord Storeconfigs Settings
 -----
 
-* [`async_storeconfigs`](/references/3.8.latest/configuration.html#asyncstoreconfigs)
-* [`dbadapter`](/references/3.8.latest/configuration.html#dbadapter)
-* [`dbconnections`](/references/3.8.latest/configuration.html#dbconnections)
-* [`dblocation`](/references/3.8.latest/configuration.html#dblocation)
-* [`dbmigrate`](/references/3.8.latest/configuration.html#dbmigrate)
-* [`dbname`](/references/3.8.latest/configuration.html#dbname)
-* [`dbpassword`](/references/3.8.latest/configuration.html#dbpassword)
-* [`dbport`](/references/3.8.latest/configuration.html#dbport)
-* [`dbserver`](/references/3.8.latest/configuration.html#dbserver)
-* [`dbsocket`](/references/3.8.latest/configuration.html#dbsocket)
-* [`dbuser`](/references/3.8.latest/configuration.html#dbuser)
-* [`queue_source`](/references/3.8.latest/configuration.html#queuesource)
-* [`queue_type`](/references/3.8.latest/configuration.html#queuetype)
-* [`rails_loglevel`](/references/3.8.latest/configuration.html#railsloglevel)
-* [`railslog`](/references/3.8.latest/configuration.html#railslog)
-* [`thin_storeconfigs`](/references/3.8.latest/configuration.html#thinstoreconfigs)
+* [`async_storeconfigs`](./configuration.html#asyncstoreconfigs)
+* [`dbadapter`](./configuration.html#dbadapter)
+* [`dbconnections`](./configuration.html#dbconnections)
+* [`dblocation`](./configuration.html#dblocation)
+* [`dbmigrate`](./configuration.html#dbmigrate)
+* [`dbname`](./configuration.html#dbname)
+* [`dbpassword`](./configuration.html#dbpassword)
+* [`dbport`](./configuration.html#dbport)
+* [`dbserver`](./configuration.html#dbserver)
+* [`dbsocket`](./configuration.html#dbsocket)
+* [`dbuser`](./configuration.html#dbuser)
+* [`queue_source`](./configuration.html#queuesource)
+* [`queue_type`](./configuration.html#queuetype)
+* [`rails_loglevel`](./configuration.html#railsloglevel)
+* [`railslog`](./configuration.html#railslog)
+* [`thin_storeconfigs`](./configuration.html#thinstoreconfigs)
 
 ### Now
 
@@ -83,9 +83,9 @@ ActiveRecord storeconfigs was an old and slow system that could do only a fracti
 Inventory Service Settings
 -----
 
-* [`inventory_port`](/references/3.8.latest/configuration.html#inventoryport)
-* [`inventory_server`](/references/3.8.latest/configuration.html#inventoryserver)
-* [`inventory_terminus`](/references/3.8.latest/configuration.html#inventoryterminus)
+* [`inventory_port`](./configuration.html#inventoryport)
+* [`inventory_server`](./configuration.html#inventoryserver)
+* [`inventory_terminus`](./configuration.html#inventoryterminus)
 
 ### Now
 
@@ -108,7 +108,7 @@ Other Settings
 
 ### `parser`
 
-* [`parser`](/references/3.8.latest/configuration.html#parser)
+* [`parser`](./configuration.html#parser)
 
 #### Now
 
@@ -124,7 +124,7 @@ If this is set in puppet.conf on your master(s), you'll need to delete it. Addit
 
 ### `allow_variables_with_dashes`
 
-* [`allow_variables_with_dashes`](/references/3.8.latest/configuration.html#allowvariableswithdashes)
+* [`allow_variables_with_dashes`](./configuration.html#allowvariableswithdashes)
 
 #### Now
 
@@ -144,7 +144,7 @@ This setting was designed to reduce the damage from a pair of bad decisions we m
 
 ### `catalog_format`
 
-* [`catalog_format`](/references/3.8.latest/configuration.html#catalogformat)
+* [`catalog_format`](./configuration.html#catalogformat)
 
 #### Now
 
@@ -160,11 +160,11 @@ Search your [puppet.conf][] file on agent nodes for the name of the setting.
 
 #### Context
 
-This setting is replaced by the [`preferred_serialization_format`](/references/3.8.latest/configuration.html#preferredserializationformat) setting.
+This setting is replaced by the [`preferred_serialization_format`](./configuration.html#preferredserializationformat) setting.
 
 ### `dynamicfacts`
 
-* [`dynamicfacts`](/references/3.8.latest/configuration.html#dynamicfacts)
+* [`dynamicfacts`](./configuration.html#dynamicfacts)
 
 #### Now
 
@@ -188,7 +188,7 @@ This setting was intended to ignore dynamic facts when deciding whether changed 
 
 ### `ignoreimport`
 
-* [`ignoreimport`](/references/3.8.latest/configuration.html#ignoreimport)
+* [`ignoreimport`](./configuration.html#ignoreimport)
 
 #### Now
 
@@ -215,7 +215,7 @@ This is part of [deprecating the `import` keyword](./deprecated_language.html#im
 
 ### `listen`
 
-* [`listen`](/references/3.8.latest/configuration.html#listen)
+* [`listen`](./configuration.html#listen)
 
 #### Now
 
@@ -236,7 +236,7 @@ See [the note on `puppet kick`.](./deprecated_command.html#puppet-kick)
 
 ### `manifestdir`
 
-* [`manifestdir`](/references/3.8.latest/configuration.html#manifestdir)
+* [`manifestdir`](./configuration.html#manifestdir)
 
 #### Now
 
@@ -256,7 +256,7 @@ This setting didn't need to exist before, and it has even less meaning now that 
 
 ### `masterlog`
 
-* [`masterlog`](/references/3.8.latest/configuration.html#masterlog)
+* [`masterlog`](./configuration.html#masterlog)
 
 #### Now
 
@@ -276,7 +276,7 @@ This setting once could specify where the Puppet master logged, but it has not w
 
 ### `stringify_facts = true`
 
-* [`stringify_facts`](/references/3.8.latest/configuration.html#stringifyfacts)
+* [`stringify_facts`](./configuration.html#stringifyfacts)
 
 #### Now
 
@@ -299,11 +299,11 @@ This should only affect you if you have custom facts that naïvely return someth
 
 ### `templatedir`
 
-* [`templatedir`](/references/3.8.latest/configuration.html#templatedir)
+* [`templatedir`](./configuration.html#templatedir)
 
 #### Now
 
-When given a relative path, the [`template` function](/references/3.8.latest/function.html#template) will try to find templates in this directory before trying to find them in modules.
+When given a relative path, the [`template` function](./function.html#template) will try to find templates in this directory before trying to find them in modules.
 
 #### In Puppet 4.0
 

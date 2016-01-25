@@ -3,8 +3,8 @@ layout: default
 title: "Resource Tips and Examples: Exec on Windows"
 ---
 
-[package]: /references/3.6.latest/type.html#package
-[exec]: /references/3.6.latest/type.html#exec
+[package]: ./type.html#package
+[exec]: ./type.html#exec
 
 
 Puppet can execute binaries (exe, com, bat, etc.), and can log the child process output and exit status.

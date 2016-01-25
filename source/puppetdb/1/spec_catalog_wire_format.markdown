@@ -64,7 +64,7 @@ The value of the `"data"` key must be a JSON object with six keys: `"name"`, `"v
 
 `"version"`
 
-: String. An arbitrary string that uniquely identifies this specific catalog across time for a single node. This is controlled by Puppet's [`config_version` setting](/references/latest/configuration.html#configversion) and is usually the seconds elapsed since the epoch. 
+: String. An arbitrary string that uniquely identifies this specific catalog across time for a single node. This is controlled by Puppet's [`config_version` setting](/puppet/latest/reference/configuration.html#configversion) and is usually the seconds elapsed since the epoch. 
 
 `"classes"`
 

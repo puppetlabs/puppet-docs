@@ -94,7 +94,7 @@ Several resources are case-insensitive on Windows (file, user, group). When esta
 
 ### Diffs
 
-Puppet does not show diffs on Windows (e.g., `puppet agent --show_diff`) unless a third-party diff utility has been installed (e.g., msys, gnudiff, cygwin, etc) and [the `diff` setting](/references/latest/configuration.html#diff) has been set appropriately.
+Puppet does not show diffs on Windows (e.g., `puppet agent --show_diff`) unless a third-party diff utility has been installed (e.g., msys, gnudiff, cygwin, etc) and [the `diff` setting](/puppet/latest/reference/configuration.html#diff) has been set appropriately.
 
 ## Resource Errors and Quirks
 

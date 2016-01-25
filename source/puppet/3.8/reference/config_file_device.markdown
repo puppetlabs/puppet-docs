@@ -4,7 +4,7 @@ title: "Config Files: device.conf"
 canonical: "/puppet/latest/reference/config_file_device.html"
 ---
 
-[deviceconfig]: /references/3.8.latest/configuration.html#deviceconfig
+[deviceconfig]: ./configuration.html#deviceconfig
 
 The Puppet device subcommand configures network hardware using a catalog downloaded from the Puppet master; in order to function, it requires that the relevant devices be configured.
 

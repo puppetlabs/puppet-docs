@@ -164,7 +164,7 @@ Para ayudarte a partir tus manifiestos en una estructura más simple de entender
 Funciona de la siguiente manera:
 
 + Los módulos son simplemente directorios con archivos, ordenados en una estructura específica y predecible. Los archivos de manifiesto dentro de un módulo tienen que obedecer a determinadas restricciones.
-+ Puppet busca módulos en un lugar (o lista de lugares) específico. Este conjunto de directorios se conoce como el **modulepath**, el cual es [configurable](http://docs.puppetlabs.com/references/stable/configuration.html#modulepath)
++ Puppet busca módulos en un lugar (o lista de lugares) específico. Este conjunto de directorios se conoce como el **modulepath**, el cual es [configurable](http://docs.puppetlabs.com/puppet/latest/reference/configuration.html#modulepath)
 + Si una clase está definida en un módulo, puedes declararla por su nombre en *cualquier manifiesto*. Puppet la encontrará automáticamente y cargará el manifiesto que contiene la definición de clase.
 
 Esto significa que puedes tener una pila de módulos con código Puppet sofisticado, y que tu manifiesto site.pp puede verse así:
@@ -210,7 +210,7 @@ La primera, **/etc/puppetlabs/puppet/modules**, es el directorio principal de m�
 
 
 **Nota aparte: Configprint**
-También puedes obtener el valor del modulepath ejecutando **puppet master --configprint modulepath**. La opción **--configprint** te permite obtener el valor de cualquier [opción de configuración](http://docs.puppetlabs.com/references/latest/configuration.html) de Puppet, utilizando el subcomando **master**, nos aseguraremos de obtener el valor que el puppet master utilizará.
+También puedes obtener el valor del modulepath ejecutando **puppet master --configprint modulepath**. La opción **--configprint** te permite obtener el valor de cualquier [opción de configuración](http://docs.puppetlabs.com/puppet/latest/reference/configuration.html) de Puppet, utilizando el subcomando **master**, nos aseguraremos de obtener el valor que el puppet master utilizará.
 
 
 ### Estructura de un módulo

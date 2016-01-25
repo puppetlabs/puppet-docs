@@ -4,7 +4,7 @@ title: "Config Files: csr_attributes.yaml"
 canonical: "/puppet/latest/reference/config_file_csr_attributes.html"
 ---
 
-[csr_attributes]: /references/3.8.latest/configuration.html#csrattributes
+[csr_attributes]: ./configuration.html#csrattributes
 
 The `csr_attributes.yaml` file defines custom data for new certificate signing requests (CSRs). It can set:
 

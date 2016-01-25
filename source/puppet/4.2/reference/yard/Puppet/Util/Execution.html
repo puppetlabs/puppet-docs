@@ -1,0 +1,1430 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Module: Puppet::Util::Execution
+  
+    &mdash; Documentation by YARD 0.8.7.6
+  
+</title>
+
+  <link rel="stylesheet" href="../../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '../../';
+  framesUrl = "../../frames.html#!Puppet/Util/Execution.html";
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../../_index.html">Index (E)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span> &raquo; <span class='title'><span class='object_link'>Util</span></span>
+     &raquo; 
+    <span class="title">Execution</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../../class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="../../method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="../../file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><h1>Module: Puppet::Util::Execution
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r1 last">Defined in:</dt>
+    <dd class="r1 last">lib/puppet/util/execution.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p>This module defines methods for execution of system commands. It is intented for inclusion
+in classes that needs to execute system commands.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><h2>Defined Under Namespace</h2>
+<p class="children">
+  
+    
+  
+    
+      <strong class="classes">Classes:</strong> <span class='object_link'><a href="Execution/ProcessOutput.html" title="Puppet::Util::Execution::ProcessOutput (class)">ProcessOutput</a></span>
+    
+  
+</p>
+
+  <h2>Constant Summary</h2>
+  
+
+
+
+
+
+
+
+  
+    <h2>
+      Class Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#execfail-class_method" title="execfail (class method)">+ (Puppet::Util::Execution::ProcessOutput) <strong>execfail</strong>(command, exception) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Wraps execution of <span class='object_link'><a href="#execute-class_method" title="Puppet::Util::Execution.execute (method)">Execution.execute</a></span> with mapping of exception to given exception (and output as argument).</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#execpipe-class_method" title="execpipe (class method)">+ (String) <strong>execpipe</strong>(command, failonfail = true) {|pipe| ... }</a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>The command can be a simple string, which is executed as-is, or an Array, which is treated as a set of command arguments to pass through.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#execute-class_method" title="execute (class method)">+ (Puppet::Util::Execution::ProcessOutput) <strong>execute</strong>(command, options = NoOptionsSpecified) </a>
+    
+
+    
+      (also: util_execute)
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Executes the desired command, and return the status and output.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="private ">
+  <span class="summary_signature">
+    
+      <a href="#execute_posix-class_method" title="execute_posix (class method)">+ (Object) <strong>execute_posix</strong>(command, options, stdin, stdout, stderr) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  <span class="note title private">private</span>
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>This is private method.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="private ">
+  <span class="summary_signature">
+    
+      <a href="#execute_windows-class_method" title="execute_windows (class method)">+ (Object) <strong>execute_windows</strong>(command, options, stdin, stdout, stderr) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  <span class="note title private">private</span>
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>This is private method.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#ruby_path-class_method" title="ruby_path (class method)">+ (String) <strong>ruby_path</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'><p>Returns the path to the ruby executable (available via Config object, even if it&#39;s not in the PATH... so this is slightly safer than just using Puppet::Util.which).</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="private ">
+  <span class="summary_signature">
+    
+      <a href="#wait_for_output-class_method" title="wait_for_output (class method)">+ (Object) <strong>wait_for_output</strong>(stdout) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  <span class="note title private">private</span>
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>This is private method.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="execfail-class_method">
+  
+    + (<tt><span class='object_link'><a href="Execution/ProcessOutput.html" title="Puppet::Util::Execution::ProcessOutput (class)">Puppet::Util::Execution::ProcessOutput</a></span></tt>) <strong>execfail</strong>(command, exception) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Wraps execution of <span class='object_link'><a href="#execute-class_method" title="Puppet::Util::Execution.execute (method)">execute</a></span> with mapping of exception to given exception (and output as argument).</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Execution/ProcessOutput.html" title="Puppet::Util::Execution::ProcessOutput (class)">Puppet::Util::Execution::ProcessOutput</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>output as specified by options</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>exception</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>under same conditions as <span class='object_link'><a href="#execute-class_method" title="Puppet::Util::Execution.execute (method)">execute</a></span>, but raises the given <code>exception</code> with the output as argument</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+101
+102
+103
+104
+105
+106</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/util/execution.rb', line 101</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_execfail'>execfail</span><span class='lparen'>(</span><span class='id identifier rubyid_command'>command</span><span class='comma'>,</span> <span class='id identifier rubyid_exception'>exception</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_output'>output</span> <span class='op'>=</span> <span class='id identifier rubyid_execute'>execute</span><span class='lparen'>(</span><span class='id identifier rubyid_command'>command</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_output'>output</span>
+<span class='kw'>rescue</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>ExecutionFailure</span>
+  <span class='id identifier rubyid_raise'>raise</span> <span class='id identifier rubyid_exception'>exception</span><span class='comma'>,</span> <span class='id identifier rubyid_output'>output</span><span class='comma'>,</span> <span class='id identifier rubyid_exception'>exception</span><span class='period'>.</span><span class='id identifier rubyid_backtrace'>backtrace</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="execpipe-class_method">
+  
+    + (<tt>String</tt>) <strong>execpipe</strong>(command, failonfail = true) {|pipe| ... }
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>The command can be a simple string, which is executed as-is, or an Array,
+which is treated as a set of command arguments to pass through.</p>
+
+<p>In either case, the command is passed directly to the shell, STDOUT and
+STDERR are connected together, and STDOUT will be streamed to the yielded
+pipe.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>command</span>
+      
+      
+        <span class='type'>(<tt>String</tt>, <tt><span class='object_link'>Array</span>&lt;String&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the command to execute as one string,
+or as parts in an array. The parts of the array are joined with one
+separating space between each entry when converting to the command line
+string to execute.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>failonfail</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>(true) if the execution should fail with
+Exception on failure or not.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Yields:</p>
+<ul class="yield">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>pipe</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>to a block executing a subprocess</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Yield Parameters:</p>
+<ul class="yieldparam">
+  
+    <li>
+      
+        <span class='name'>pipe</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>IO</span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the opened pipe</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Yield Returns:</p>
+<ul class="yieldreturn">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the output to return</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>a string with the output from the subprocess executed by
+the given block</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../ExecutionFailure.html" title="Puppet::ExecutionFailure (class)">Puppet::ExecutionFailure</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>if the executed chiled process did not
+exit with status == 0 and <code>failonfail</code> is <code>true</code>.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li>for `mode` values</li>
+    
+  </ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/util/execution.rb', line 58</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_execpipe'>execpipe</span><span class='lparen'>(</span><span class='id identifier rubyid_command'>command</span><span class='comma'>,</span> <span class='id identifier rubyid_failonfail'>failonfail</span> <span class='op'>=</span> <span class='kw'>true</span><span class='rparen'>)</span>
+  <span class='comment'># Paste together an array with spaces.  We used to paste directly
+</span>  <span class='comment'># together, no spaces, which made for odd invocations; the user had to
+</span>  <span class='comment'># include whitespace between arguments.
+</span>  <span class='comment'>#
+</span>  <span class='comment'># Having two spaces is really not a big drama, since this passes to the
+</span>  <span class='comment'># shell anyhow, while no spaces makes for a small developer cost every
+</span>  <span class='comment'># time this is invoked. --daniel 2012-02-13
+</span>  <span class='id identifier rubyid_command_str'>command_str</span> <span class='op'>=</span> <span class='id identifier rubyid_command'>command</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='symbol'>:join</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='id identifier rubyid_command'>command</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'> </span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='op'>:</span> <span class='id identifier rubyid_command'>command</span>
+
+  <span class='kw'>if</span> <span class='id identifier rubyid_respond_to?'>respond_to?</span> <span class='symbol'>:debug</span>
+    <span class='id identifier rubyid_debug'>debug</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Executing &#39;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_command_str'>command_str</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39;</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>else</span>
+    <span class='const'>Puppet</span><span class='period'>.</span><span class='id identifier rubyid_debug'>debug</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Executing &#39;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_command_str'>command_str</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39;</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># force the run of the command with
+</span>  <span class='comment'># the user/system locale to &quot;C&quot; (via environment variables LANG and LC_*)
+</span>  <span class='comment'># it enables to have non localized output for some commands and therefore
+</span>  <span class='comment'># a predictable output
+</span>  <span class='id identifier rubyid_english_env'>english_env</span> <span class='op'>=</span> <span class='const'>ENV</span><span class='period'>.</span><span class='id identifier rubyid_to_hash'>to_hash</span><span class='period'>.</span><span class='id identifier rubyid_merge'>merge</span><span class='lparen'>(</span> <span class='lbrace'>{</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>LANG</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>C</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>LC_ALL</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>C</span><span class='tstring_end'>&#39;</span></span><span class='rbrace'>}</span> <span class='rparen'>)</span>
+  <span class='id identifier rubyid_output'>output</span> <span class='op'>=</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Util</span><span class='period'>.</span><span class='id identifier rubyid_withenv'>withenv</span><span class='lparen'>(</span><span class='id identifier rubyid_english_env'>english_env</span><span class='rparen'>)</span> <span class='kw'>do</span>
+    <span class='id identifier rubyid_open'>open</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>| </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_command_str'>command_str</span><span class='embexpr_end'>}</span><span class='tstring_content'> 2&gt;&amp;1</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_pipe'>pipe</span><span class='op'>|</span>
+      <span class='kw'>yield</span> <span class='id identifier rubyid_pipe'>pipe</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+
+  <span class='kw'>if</span> <span class='id identifier rubyid_failonfail'>failonfail</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_exitstatus'>exitstatus</span> <span class='op'>!=</span> <span class='int'>0</span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>ExecutionFailure</span><span class='comma'>,</span> <span class='id identifier rubyid_output'>output</span>
+  <span class='kw'>end</span>
+
+  <span class='id identifier rubyid_output'>output</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="execute-class_method">
+  
+    + (<tt><span class='object_link'><a href="Execution/ProcessOutput.html" title="Puppet::Util::Execution::ProcessOutput (class)">Puppet::Util::Execution::ProcessOutput</a></span></tt>) <strong>execute</strong>(command, options = NoOptionsSpecified) 
+  
+
+  
+    <span class="aliases">Also known as:
+    <span class="names"><span id='util_execute-class_method'>util_execute</span></span>
+    </span>
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'><p>Unfortunately, the default behavior for failonfail and combine (since
+0.22.4 and 0.24.7, respectively) depend on whether options are specified
+or not. If specified, then failonfail and combine default to false (even
+when the options specified are neither failonfail nor combine). If no
+options are specified, then failonfail and combine default to true.</p>
+</div>
+  </div>
+
+<p>Executes the desired command, and return the status and output.
+def execute(command, options)</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>command</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Array</span>&lt;String&gt;</tt>, <tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the command to execute. If it is
+an Array the first element should be the executable and the rest of the
+elements should be the individual arguments to that executable.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>options</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Hash</span></tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>NoOptionsSpecified</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>a Hash of options</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+  
+    
+    
+    
+    
+    <p class="tag_title">Options Hash (<tt>options</tt>):</p>
+    <ul class="option">
+      
+        <li>
+          <span class="name">:failonfail</span>
+          <span class="type">(<tt>Boolean</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>if this value is set to true, then this method will raise an error if the
+command is not executed successfully.</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:uid</span>
+          <span class="type">(<tt>Integer</tt>, <tt>String</tt>)</span>
+          <span class="default">
+            
+              &mdash; default:
+              <tt>nil</tt>
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>the user id of the user that the process should be run as. Will be ignored if the
+user id matches the effective user id of the current process.</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:gid</span>
+          <span class="type">(<tt>Integer</tt>, <tt>String</tt>)</span>
+          <span class="default">
+            
+              &mdash; default:
+              <tt>nil</tt>
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>the group id of the group that the process should be run as. Will be ignored if the
+group id matches the effective group id of the current process.</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:combine</span>
+          <span class="type">(<tt>Boolean</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>sets whether or not to combine stdout/stderr in the output, if false stderr output is discarded</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:stdinfile</span>
+          <span class="type">(<tt>String</tt>)</span>
+          <span class="default">
+            
+              &mdash; default:
+              <tt>nil</tt>
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>sets a file that can be used for stdin. Passing a string for stdin is not currently
+supported.</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:squelch</span>
+          <span class="type">(<tt>Boolean</tt>)</span>
+          <span class="default">
+            
+              &mdash; default:
+              <tt>false</tt>
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>if true, ignore stdout / stderr completely.</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:override_locale</span>
+          <span class="type">(<tt>Boolean</tt>)</span>
+          <span class="default">
+            
+              &mdash; default:
+              <tt>true</tt>
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>by default (and if this option is set to true), we will temporarily override
+the user/system locale to &quot;C&quot; (via environment variables LANG and LC_*) while we are executing the command.
+This ensures that the output of the command will be formatted consistently, making it predictable for parsing.
+Passing in a value of false for this option will allow the command to be executed using the user/system locale.</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:custom_environment</span>
+          <span class="type">(<tt><span class='object_link'>Hash</span>&lt;{String =&gt; String}&gt;</tt>)</span>
+          <span class="default">
+            
+              &mdash; default:
+              <tt>{}</tt>
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>a hash of key/value pairs to set as environment variables for the duration
+of the command.</p>
+</div>
+          
+        </li>
+      
+    </ul>
+  
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Execution/ProcessOutput.html" title="Puppet::Util::Execution::ProcessOutput (class)">Puppet::Util::Execution::ProcessOutput</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>output as specified by options</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../ExecutionFailure.html" title="Puppet::ExecutionFailure (class)">Puppet::ExecutionFailure</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>if the executed chiled process did not exit with status == 0 and <code>failonfail</code> is
+<code>true</code>.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/util/execution.rb', line 144</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_execute'>execute</span><span class='lparen'>(</span><span class='id identifier rubyid_command'>command</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='const'>NoOptionsSpecified</span><span class='rparen'>)</span>
+  <span class='comment'># specifying these here rather than in the method signature to allow callers to pass in a partial
+</span>  <span class='comment'># set of overrides without affecting the default values for options that they don&#39;t pass in
+</span>  <span class='id identifier rubyid_default_options'>default_options</span> <span class='op'>=</span> <span class='lbrace'>{</span>
+      <span class='symbol'>:failonfail</span> <span class='op'>=&gt;</span> <span class='const'>NoOptionsSpecified</span><span class='period'>.</span><span class='id identifier rubyid_equal?'>equal?</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span><span class='comma'>,</span>
+      <span class='symbol'>:uid</span> <span class='op'>=&gt;</span> <span class='kw'>nil</span><span class='comma'>,</span>
+      <span class='symbol'>:gid</span> <span class='op'>=&gt;</span> <span class='kw'>nil</span><span class='comma'>,</span>
+      <span class='symbol'>:combine</span> <span class='op'>=&gt;</span> <span class='const'>NoOptionsSpecified</span><span class='period'>.</span><span class='id identifier rubyid_equal?'>equal?</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span><span class='comma'>,</span>
+      <span class='symbol'>:stdinfile</span> <span class='op'>=&gt;</span> <span class='kw'>nil</span><span class='comma'>,</span>
+      <span class='symbol'>:squelch</span> <span class='op'>=&gt;</span> <span class='kw'>false</span><span class='comma'>,</span>
+      <span class='symbol'>:override_locale</span> <span class='op'>=&gt;</span> <span class='kw'>true</span><span class='comma'>,</span>
+      <span class='symbol'>:custom_environment</span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='comma'>,</span>
+  <span class='rbrace'>}</span>
+
+  <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='id identifier rubyid_default_options'>default_options</span><span class='period'>.</span><span class='id identifier rubyid_merge'>merge</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
+
+  <span class='kw'>if</span> <span class='id identifier rubyid_command'>command</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Array</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_command'>command</span> <span class='op'>=</span> <span class='id identifier rubyid_command'>command</span><span class='period'>.</span><span class='id identifier rubyid_flatten'>flatten</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='symbol'>:to_s</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_str'>str</span> <span class='op'>=</span> <span class='id identifier rubyid_command'>command</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'> </span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='kw'>elsif</span> <span class='id identifier rubyid_command'>command</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>String</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_str'>str</span> <span class='op'>=</span> <span class='id identifier rubyid_command'>command</span>
+  <span class='kw'>end</span>
+
+  <span class='id identifier rubyid_user_log_s'>user_log_s</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:uid</span><span class='rbracket'>]</span>
+    <span class='id identifier rubyid_user_log_s'>user_log_s</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'> uid=</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:uid</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>end</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:gid</span><span class='rbracket'>]</span>
+    <span class='id identifier rubyid_user_log_s'>user_log_s</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'> gid=</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:gid</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>end</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_user_log_s'>user_log_s</span> <span class='op'>!=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span>
+    <span class='id identifier rubyid_user_log_s'>user_log_s</span><span class='period'>.</span><span class='id identifier rubyid_prepend'>prepend</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'> with</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+
+  <span class='kw'>if</span> <span class='id identifier rubyid_respond_to?'>respond_to?</span> <span class='symbol'>:debug</span>
+    <span class='id identifier rubyid_debug'>debug</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Executing</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_user_log_s'>user_log_s</span><span class='embexpr_end'>}</span><span class='tstring_content'>: &#39;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_str'>str</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39;</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>else</span>
+    <span class='const'>Puppet</span><span class='period'>.</span><span class='id identifier rubyid_debug'>debug</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Executing</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_user_log_s'>user_log_s</span><span class='embexpr_end'>}</span><span class='tstring_content'>: &#39;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_str'>str</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39;</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>end</span>
+
+  <span class='id identifier rubyid_null_file'>null_file</span> <span class='op'>=</span> <span class='const'>Puppet</span><span class='period'>.</span><span class='id identifier rubyid_features'>features</span><span class='period'>.</span><span class='id identifier rubyid_microsoft_windows?'>microsoft_windows?</span> <span class='op'>?</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>NUL</span><span class='tstring_end'>&#39;</span></span> <span class='op'>:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>/dev/null</span><span class='tstring_end'>&#39;</span></span>
+
+  <span class='kw'>begin</span>
+    <span class='id identifier rubyid_stdin'>stdin</span> <span class='op'>=</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_open'>open</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:stdinfile</span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='id identifier rubyid_null_file'>null_file</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>r</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_stdout'>stdout</span> <span class='op'>=</span> <span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:squelch</span><span class='rbracket'>]</span> <span class='op'>?</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_open'>open</span><span class='lparen'>(</span><span class='id identifier rubyid_null_file'>null_file</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>w</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='op'>:</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>FileSystem</span><span class='op'>::</span><span class='const'>Uniquefile</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>puppet</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_stderr'>stderr</span> <span class='op'>=</span> <span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:combine</span><span class='rbracket'>]</span> <span class='op'>?</span> <span class='id identifier rubyid_stdout'>stdout</span> <span class='op'>:</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_open'>open</span><span class='lparen'>(</span><span class='id identifier rubyid_null_file'>null_file</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>w</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+
+    <span class='id identifier rubyid_exec_args'>exec_args</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='id identifier rubyid_command'>command</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span><span class='comma'>,</span> <span class='id identifier rubyid_stdin'>stdin</span><span class='comma'>,</span> <span class='id identifier rubyid_stdout'>stdout</span><span class='comma'>,</span> <span class='id identifier rubyid_stderr'>stderr</span><span class='rbracket'>]</span>
+
+    <span class='kw'>if</span> <span class='id identifier rubyid_execution_stub'>execution_stub</span> <span class='op'>=</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Util</span><span class='op'>::</span><span class='const'>ExecutionStub</span><span class='period'>.</span><span class='id identifier rubyid_current_value'>current_value</span>
+      <span class='kw'>return</span> <span class='id identifier rubyid_execution_stub'>execution_stub</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_exec_args'>exec_args</span><span class='rparen'>)</span>
+    <span class='kw'>elsif</span> <span class='const'>Puppet</span><span class='period'>.</span><span class='id identifier rubyid_features'>features</span><span class='period'>.</span><span class='id identifier rubyid_posix?'>posix?</span>
+      <span class='id identifier rubyid_child_pid'>child_pid</span> <span class='op'>=</span> <span class='kw'>nil</span>
+      <span class='kw'>begin</span>
+        <span class='id identifier rubyid_child_pid'>child_pid</span> <span class='op'>=</span> <span class='id identifier rubyid_execute_posix'>execute_posix</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_exec_args'>exec_args</span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_exit_status'>exit_status</span> <span class='op'>=</span> <span class='const'>Process</span><span class='period'>.</span><span class='id identifier rubyid_waitpid2'>waitpid2</span><span class='lparen'>(</span><span class='id identifier rubyid_child_pid'>child_pid</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_last'>last</span><span class='period'>.</span><span class='id identifier rubyid_exitstatus'>exitstatus</span>
+        <span class='id identifier rubyid_child_pid'>child_pid</span> <span class='op'>=</span> <span class='kw'>nil</span>
+      <span class='kw'>rescue</span> <span class='const'>Timeout</span><span class='op'>::</span><span class='const'>Error</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'>e</span>
+        <span class='comment'># NOTE: For Ruby 2.1+, an explicit Timeout::Error class has to be
+</span>        <span class='comment'># passed to Timeout.timeout in order for there to be something for
+</span>        <span class='comment'># this block to rescue.
+</span>        <span class='kw'>unless</span> <span class='id identifier rubyid_child_pid'>child_pid</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+          <span class='const'>Process</span><span class='period'>.</span><span class='id identifier rubyid_kill'>kill</span><span class='lparen'>(</span><span class='symbol'>:TERM</span><span class='comma'>,</span> <span class='id identifier rubyid_child_pid'>child_pid</span><span class='rparen'>)</span>
+          <span class='comment'># Spawn a thread to reap the process if it dies.
+</span>          <span class='const'>Thread</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='lbrace'>{</span> <span class='const'>Process</span><span class='period'>.</span><span class='id identifier rubyid_waitpid'>waitpid</span><span class='lparen'>(</span><span class='id identifier rubyid_child_pid'>child_pid</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
+        <span class='kw'>end</span>
+
+        <span class='id identifier rubyid_raise'>raise</span> <span class='id identifier rubyid_e'>e</span>
+      <span class='kw'>end</span>
+    <span class='kw'>elsif</span> <span class='const'>Puppet</span><span class='period'>.</span><span class='id identifier rubyid_features'>features</span><span class='period'>.</span><span class='id identifier rubyid_microsoft_windows?'>microsoft_windows?</span>
+      <span class='id identifier rubyid_process_info'>process_info</span> <span class='op'>=</span> <span class='id identifier rubyid_execute_windows'>execute_windows</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_exec_args'>exec_args</span><span class='rparen'>)</span>
+      <span class='kw'>begin</span>
+        <span class='id identifier rubyid_exit_status'>exit_status</span> <span class='op'>=</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Util</span><span class='op'>::</span><span class='const'>Windows</span><span class='op'>::</span><span class='const'>Process</span><span class='period'>.</span><span class='id identifier rubyid_wait_process'>wait_process</span><span class='lparen'>(</span><span class='id identifier rubyid_process_info'>process_info</span><span class='period'>.</span><span class='id identifier rubyid_process_handle'>process_handle</span><span class='rparen'>)</span>
+      <span class='kw'>ensure</span>
+        <span class='const'>FFI</span><span class='op'>::</span><span class='const'>WIN32</span><span class='period'>.</span><span class='const'>CloseHandle</span><span class='lparen'>(</span><span class='id identifier rubyid_process_info'>process_info</span><span class='period'>.</span><span class='id identifier rubyid_process_handle'>process_handle</span><span class='rparen'>)</span>
+        <span class='const'>FFI</span><span class='op'>::</span><span class='const'>WIN32</span><span class='period'>.</span><span class='const'>CloseHandle</span><span class='lparen'>(</span><span class='id identifier rubyid_process_info'>process_info</span><span class='period'>.</span><span class='id identifier rubyid_thread_handle'>thread_handle</span><span class='rparen'>)</span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span>
+
+    <span class='lbracket'>[</span><span class='id identifier rubyid_stdin'>stdin</span><span class='comma'>,</span> <span class='id identifier rubyid_stdout'>stdout</span><span class='comma'>,</span> <span class='id identifier rubyid_stderr'>stderr</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_io'>io</span><span class='op'>|</span> <span class='id identifier rubyid_io'>io</span><span class='period'>.</span><span class='id identifier rubyid_close'>close</span> <span class='kw'>rescue</span> <span class='kw'>nil</span><span class='rbrace'>}</span>
+
+    <span class='comment'># read output in if required
+</span>    <span class='kw'>unless</span> <span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:squelch</span><span class='rbracket'>]</span>
+      <span class='id identifier rubyid_output'>output</span> <span class='op'>=</span> <span class='id identifier rubyid_wait_for_output'>wait_for_output</span><span class='lparen'>(</span><span class='id identifier rubyid_stdout'>stdout</span><span class='rparen'>)</span>
+      <span class='const'>Puppet</span><span class='period'>.</span><span class='id identifier rubyid_warning'>warning</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Could not get output</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>unless</span> <span class='id identifier rubyid_output'>output</span>
+    <span class='kw'>end</span>
+
+    <span class='kw'>if</span> <span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:failonfail</span><span class='rbracket'>]</span> <span class='kw'>and</span> <span class='id identifier rubyid_exit_status'>exit_status</span> <span class='op'>!=</span> <span class='int'>0</span>
+      <span class='id identifier rubyid_raise'>raise</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>ExecutionFailure</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Execution of &#39;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_str'>str</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39; returned </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_exit_status'>exit_status</span><span class='embexpr_end'>}</span><span class='tstring_content'>: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_output'>output</span><span class='period'>.</span><span class='id identifier rubyid_strip'>strip</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>end</span>
+  <span class='kw'>ensure</span>
+    <span class='kw'>if</span> <span class='op'>!</span><span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:squelch</span><span class='rbracket'>]</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_stdout'>stdout</span>
+      <span class='comment'># if we opened a temp file for stdout, we need to clean it up.
+</span>      <span class='id identifier rubyid_stdout'>stdout</span><span class='period'>.</span><span class='id identifier rubyid_close!'>close!</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+
+  <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Util</span><span class='op'>::</span><span class='const'>Execution</span><span class='op'>::</span><span class='const'>ProcessOutput</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_output'>output</span> <span class='op'>||</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_exit_status'>exit_status</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="execute_posix-class_method">
+  
+    + (<tt><span class='object_link'>Object</span></tt>) <strong>execute_posix</strong>(command, options, stdin, stdout, stderr)  <span class="extras">(private)</span>&nbsp;<span class="note title private">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>This is private method.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/util/execution.rb', line 265</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_execute_posix'>execute_posix</span><span class='lparen'>(</span><span class='id identifier rubyid_command'>command</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span><span class='comma'>,</span> <span class='id identifier rubyid_stdin'>stdin</span><span class='comma'>,</span> <span class='id identifier rubyid_stdout'>stdout</span><span class='comma'>,</span> <span class='id identifier rubyid_stderr'>stderr</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_child_pid'>child_pid</span> <span class='op'>=</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Util</span><span class='period'>.</span><span class='id identifier rubyid_safe_posix_fork'>safe_posix_fork</span><span class='lparen'>(</span><span class='id identifier rubyid_stdin'>stdin</span><span class='comma'>,</span> <span class='id identifier rubyid_stdout'>stdout</span><span class='comma'>,</span> <span class='id identifier rubyid_stderr'>stderr</span><span class='rparen'>)</span> <span class='kw'>do</span>
+
+    <span class='comment'># We can&#39;t just call Array(command), and rely on it returning
+</span>    <span class='comment'># things like [&#39;foo&#39;], when passed [&#39;foo&#39;], because
+</span>    <span class='comment'># Array(command) will call command.to_a internally, which when
+</span>    <span class='comment'># given a string can end up doing Very Bad Things(TM), such as
+</span>    <span class='comment'># turning &quot;/tmp/foo;\r\n /bin/echo&quot; into [&quot;/tmp/foo;\r\n&quot;, &quot; /bin/echo&quot;]
+</span>    <span class='id identifier rubyid_command'>command</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='id identifier rubyid_command'>command</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_flatten'>flatten</span>
+    <span class='const'>Process</span><span class='period'>.</span><span class='id identifier rubyid_setsid'>setsid</span>
+    <span class='kw'>begin</span>
+      <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Util</span><span class='op'>::</span><span class='const'>SUIDManager</span><span class='period'>.</span><span class='id identifier rubyid_change_privileges'>change_privileges</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:uid</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:gid</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='kw'>true</span><span class='rparen'>)</span>
+
+      <span class='comment'># if the caller has requested that we override locale environment variables,
+</span>      <span class='kw'>if</span> <span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:override_locale</span><span class='rbracket'>]</span><span class='rparen'>)</span> <span class='kw'>then</span>
+        <span class='comment'># loop over them and clear them
+</span>        <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Util</span><span class='op'>::</span><span class='const'>POSIX</span><span class='op'>::</span><span class='const'>LOCALE_ENV_VARS</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_name'>name</span><span class='op'>|</span> <span class='const'>ENV</span><span class='period'>.</span><span class='id identifier rubyid_delete'>delete</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
+        <span class='comment'># set LANG and LC_ALL to &#39;C&#39; so that the command will have consistent, predictable output
+</span>        <span class='comment'># it&#39;s OK to manipulate these directly rather than, e.g., via &quot;withenv&quot;, because we are in
+</span>        <span class='comment'># a forked process.
+</span>        <span class='const'>ENV</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>LANG</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>C</span><span class='tstring_end'>&#39;</span></span>
+        <span class='const'>ENV</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>LC_ALL</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>C</span><span class='tstring_end'>&#39;</span></span>
+      <span class='kw'>end</span>
+
+      <span class='comment'># unset all of the user-related environment variables so that different methods of starting puppet
+</span>      <span class='comment'># (automatic start during boot, via &#39;service&#39;, via /etc/init.d, etc.) won&#39;t have unexpected side
+</span>      <span class='comment'># effects relating to user / home dir environment vars.
+</span>      <span class='comment'># it&#39;s OK to manipulate these directly rather than, e.g., via &quot;withenv&quot;, because we are in
+</span>      <span class='comment'># a forked process.
+</span>      <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Util</span><span class='op'>::</span><span class='const'>POSIX</span><span class='op'>::</span><span class='const'>USER_ENV_VARS</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_name'>name</span><span class='op'>|</span> <span class='const'>ENV</span><span class='period'>.</span><span class='id identifier rubyid_delete'>delete</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
+
+      <span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:custom_environment</span><span class='rbracket'>]</span> <span class='op'>||=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+      <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Util</span><span class='period'>.</span><span class='id identifier rubyid_withenv'>withenv</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:custom_environment</span><span class='rbracket'>]</span><span class='rparen'>)</span> <span class='kw'>do</span>
+        <span class='const'>Kernel</span><span class='period'>.</span><span class='id identifier rubyid_exec'>exec</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_command'>command</span><span class='rparen'>)</span>
+      <span class='kw'>end</span>
+    <span class='kw'>rescue</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_detail'>detail</span>
+      <span class='const'>Puppet</span><span class='period'>.</span><span class='id identifier rubyid_log_exception'>log_exception</span><span class='lparen'>(</span><span class='id identifier rubyid_detail'>detail</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Could not execute posix command: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_detail'>detail</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_exit!'>exit!</span><span class='lparen'>(</span><span class='int'>1</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+  <span class='id identifier rubyid_child_pid'>child_pid</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="execute_windows-class_method">
+  
+    + (<tt><span class='object_link'>Object</span></tt>) <strong>execute_windows</strong>(command, options, stdin, stdout, stderr)  <span class="extras">(private)</span>&nbsp;<span class="note title private">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>This is private method.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/util/execution.rb', line 314</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_execute_windows'>execute_windows</span><span class='lparen'>(</span><span class='id identifier rubyid_command'>command</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span><span class='comma'>,</span> <span class='id identifier rubyid_stdin'>stdin</span><span class='comma'>,</span> <span class='id identifier rubyid_stdout'>stdout</span><span class='comma'>,</span> <span class='id identifier rubyid_stderr'>stderr</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_command'>command</span> <span class='op'>=</span> <span class='id identifier rubyid_command'>command</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_part'>part</span><span class='op'>|</span>
+    <span class='id identifier rubyid_part'>part</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'> </span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='op'>?</span> <span class='tstring'><span class='tstring_beg'>%Q[</span><span class='tstring_content'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_part'>part</span><span class='period'>.</span><span class='id identifier rubyid_gsub'>gsub</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>&quot;</span><span class='regexp_end'>/</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>\&quot;</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>&quot;</span><span class='tstring_end'>]</span></span> <span class='op'>:</span> <span class='id identifier rubyid_part'>part</span>
+  <span class='kw'>end</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'> </span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_command'>command</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Array</span><span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:custom_environment</span><span class='rbracket'>]</span> <span class='op'>||=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+  <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Util</span><span class='period'>.</span><span class='id identifier rubyid_withenv'>withenv</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:custom_environment</span><span class='rbracket'>]</span><span class='rparen'>)</span> <span class='kw'>do</span>
+    <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Util</span><span class='op'>::</span><span class='const'>Windows</span><span class='op'>::</span><span class='const'>Process</span><span class='period'>.</span><span class='id identifier rubyid_execute'>execute</span><span class='lparen'>(</span><span class='id identifier rubyid_command'>command</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span><span class='comma'>,</span> <span class='id identifier rubyid_stdin'>stdin</span><span class='comma'>,</span> <span class='id identifier rubyid_stdout'>stdout</span><span class='comma'>,</span> <span class='id identifier rubyid_stderr'>stderr</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="ruby_path-class_method">
+  
+    + (<tt>String</tt>) <strong>ruby_path</strong> &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>Returns the path to the ruby executable (available via Config object, even if
+it&#39;s not in the PATH... so this is slightly safer than just using Puppet::Util.which)</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the path to the Ruby executable</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+249
+250
+251
+252
+253</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/util/execution.rb', line 249</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_ruby_path'>ruby_path</span><span class='lparen'>(</span><span class='rparen'>)</span>
+  <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='const'>RbConfig</span><span class='op'>::</span><span class='const'>CONFIG</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>bindir</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
+            <span class='const'>RbConfig</span><span class='op'>::</span><span class='const'>CONFIG</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>ruby_install_name</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>+</span> <span class='const'>RbConfig</span><span class='op'>::</span><span class='const'>CONFIG</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>EXEEXT</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span><span class='period'>.</span>
+    <span class='id identifier rubyid_sub'>sub</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>.*\s.*</span><span class='regexp_end'>/m</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>&quot;\&amp;&quot;</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="wait_for_output-class_method">
+  
+    + (<tt><span class='object_link'>Object</span></tt>) <strong>wait_for_output</strong>(stdout)  <span class="extras">(private)</span>&nbsp;<span class="note title private">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>This is private method.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/util/execution.rb', line 331</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_wait_for_output'>wait_for_output</span><span class='lparen'>(</span><span class='id identifier rubyid_stdout'>stdout</span><span class='rparen'>)</span>
+  <span class='comment'># Make sure the file&#39;s actually been written.  This is basically a race
+</span>  <span class='comment'># condition, and is probably a horrible way to handle it, but, well, oh
+</span>  <span class='comment'># well.
+</span>  <span class='comment'># (If this method were treated as private / inaccessible from outside of this file, we shouldn&#39;t have to worry
+</span>  <span class='comment'>#  about a race condition because all of the places that we call this from are preceded by a call to &quot;waitpid2&quot;,
+</span>  <span class='comment'>#  meaning that the processes responsible for writing the file have completed before we get here.)
+</span>  <span class='int'>2</span><span class='period'>.</span><span class='id identifier rubyid_times'>times</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_try'>try</span><span class='op'>|</span>
+    <span class='kw'>if</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>FileSystem</span><span class='period'>.</span><span class='id identifier rubyid_exist?'>exist?</span><span class='lparen'>(</span><span class='id identifier rubyid_stdout'>stdout</span><span class='period'>.</span><span class='id identifier rubyid_path'>path</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_stdout'>stdout</span><span class='period'>.</span><span class='id identifier rubyid_open'>open</span>
+      <span class='kw'>begin</span>
+        <span class='kw'>return</span> <span class='id identifier rubyid_stdout'>stdout</span><span class='period'>.</span><span class='id identifier rubyid_read'>read</span>
+      <span class='kw'>ensure</span>
+        <span class='id identifier rubyid_stdout'>stdout</span><span class='period'>.</span><span class='id identifier rubyid_close'>close</span>
+        <span class='id identifier rubyid_stdout'>stdout</span><span class='period'>.</span><span class='id identifier rubyid_unlink'>unlink</span>
+      <span class='kw'>end</span>
+    <span class='kw'>else</span>
+      <span class='id identifier rubyid_time_to_sleep'>time_to_sleep</span> <span class='op'>=</span> <span class='id identifier rubyid_try'>try</span> <span class='op'>/</span> <span class='float'>2.0</span>
+      <span class='const'>Puppet</span><span class='period'>.</span><span class='id identifier rubyid_warning'>warning</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Waiting for output; will sleep </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_time_to_sleep'>time_to_sleep</span><span class='embexpr_end'>}</span><span class='tstring_content'> seconds</span><span class='tstring_end'>&quot;</span></span>
+      <span class='id identifier rubyid_sleep'>sleep</span><span class='lparen'>(</span><span class='id identifier rubyid_time_to_sleep'>time_to_sleep</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+  <span class='kw'>nil</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+    <div id="footer">
+  Generated on Fri Jan 15 17:27:28 2016 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.6 (ruby-2.0.0).
+</div>
+
+  </body>
+</html>

@@ -8,10 +8,10 @@ title: "Overview of Puppet's Architecture"
 [https_walkthrough]: ./subsystem_agent_master_comm.html
 [rack]: ./services_master_rack.html
 [webrick]: ./services_master_webrick.html
-[master_http]: /references/4.3.latest/developer/file.http_api_index.html
+[master_http]: ./yard/file.http_api_index.html
 [auth.conf]: ./conf_file_auth.html
 [catalog_compilation]: ./subsystem_catalog_compilation.html
-[report handlers]: /references/4.3.latest/report.html
+[report handlers]: ./report.html
 [lang_basics]: ./lang_summary.html
 [apply]: ./services_apply.html
 [puppetdb]: /puppetdb/latest

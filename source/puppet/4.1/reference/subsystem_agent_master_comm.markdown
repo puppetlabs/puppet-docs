@@ -8,9 +8,9 @@ canonical: "/puppet/latest/reference/subsystem_agent_master_comm.html"
 [authconf]: ./config_file_auth.html
 [facts]: ./lang_variables.html#facts-and-built-in-variables
 [catalog]: ./lang_summary.html#compilation-and-catalogs
-[file]: /references/4.1.latest/type.html#file
-[static]: /references/4.1.latest/indirection.html#catalog
-[keepalive_setting]: /references/4.1.latest/configuration.html#httpkeepalivetimeout
+[file]: ./type.html#file
+[static]: ./indirection.html#catalog
+[keepalive_setting]: ./configuration.html#httpkeepalivetimeout
 
 
 

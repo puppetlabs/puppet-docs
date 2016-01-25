@@ -93,7 +93,7 @@ To configure deep merging, use the [`:merge_behavior` setting][mergebehavior], w
 > * You must install the `deep_merge` Ruby gem for deep merges to work. If it isn't available, Hiera will fall back to the default `native` merge behavior.
 > * This configuration is global, not per-lookup.
 
-[create]: /references/latest/function.html#createresources
+[create]: /puppet/latest/reference/function.html#createresources
 [mergebehavior]: ./configuring.html#mergebehavior
 [deepmerge]: https://github.com/danielsdeleo/deep_merge
 

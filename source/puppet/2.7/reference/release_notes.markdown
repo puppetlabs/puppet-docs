@@ -837,7 +837,7 @@ Reid Vandewiele, and Stefan Schulte
     Puppet Module Tool Face - the module tool has seen a host of
     improvements including dependency resolution, environment handling,
     and searching the forge. There are more details available at
-    http://docs.puppetlabs.com/puppet/2.7/reference/modules_installing.html
+    http://docs.puppetlabs.com./modules_installing.html
 
 ### Bug Fixes
 

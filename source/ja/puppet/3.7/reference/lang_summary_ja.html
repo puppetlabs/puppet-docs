@@ -26,7 +26,7 @@ toc: false
 
 <h3 id="configurable-ordering">順序の設定</h3>
 
-<p><a href="/references/3.7.latest/configuration.html#ordering">順序の設定</a>はリソースの関連性が記述されていなかった時、どのような順番でリソースを適用するか設定するものです。</p>
+<p><a href="/puppet/3.7/reference/configuration.html#ordering">順序の設定</a>はリソースの関連性が記述されていなかった時、どのような順番でリソースを適用するか設定するものです。</p>
 <p>デフォルトでは関連性が無いリソースの適用順はランダムになります。<code>puppet.conf</code>に<code>ordering = manifest</code>を設定した場合、Puppetは関連性が無いリソースの実行順をマニフェストへの記述順にします。</p>
 <p>この設定は、例えば <code>before</code>や<code>require</code>のようなメタパラメータによって、リソースの適用順を<strong>マニフェストに記述順以外の方法で決定できない場合</strong>に限り有効になります。詳細は<a href="/puppet/3.7/reference/lang_relationships.html">the language page on relationships</a>を参照してください。</p>
 
@@ -51,7 +51,7 @@ toc: false
   <li><code>content</code>属性でファイルの内容を指定した場合、Puppetはバイナリモードでファイルを書き込みます。改行コードCRLFを使ってファイルを作成したい場合は、コンテンツで改行位置へエスケープシーケンス<code>\r\n</code>を記述する事で指定できます。</li>
   <li><code>source</code>属性でWindowsノードへファイルをダウンロードした場合、Puppetはバイナリモードでファイルを転送し、転送されたファイルの改行コードのままで書き込みます。</li>
   <li>
-    <p><code>file</code>リソース型以外でシステムファイルを部分的に編集するリソース型（特にとりわけ<a href="/references/latest/type.html#host"><code>host</code>リソース型</a>は<code>%windir%\system32\drivers\etc\hosts</code>ファイルを管理します）は、ファイルをテキストモードで管理し、またWindowsと*nix系との間で改行コードを自動的に変換します。</p>
+    <p><code>file</code>リソース型以外でシステムファイルを部分的に編集するリソース型（特にとりわけ<a href="/puppet/latest/reference/type.html#host"><code>host</code>リソース型</a>は<code>%windir%\system32\drivers\etc\hosts</code>ファイルを管理します）は、ファイルをテキストモードで管理し、またWindowsと*nix系との間で改行コードを自動的に変換します。</p>
     <blockquote>
       <p>メモ: あなた自身のリソース型を記述する時は、<code>flat</code>ファイルを使うと振る舞いを確認できます。</p>
     </blockquote>
@@ -63,13 +63,13 @@ toc: false
 <p>Puppetのマニフェストでは、一度に多くのノードの設定を記述できるよう条件分岐が使えます。ノードの設定前、Puppetはマニフェストをコンパイルして<strong>カタログ</strong>にします。カタログは単一のノードでのみ有効で、また曖昧なロジックを含んでいません。</p>
 <p>カタログはリソースや関連性を含む静的なドキュメントです。Puppetが動作するさまざまなステージにおいて、カタログはRubyのオブジェクトとしてメモリに記録され、JSON形式で送信され、YAML形式でディスクに保存されます。現在のバージョンのPuppetで利用しているカタログのフォーマットや仕様はドキュメント化されておりません。</p>
 <p>標準的なagent/master構成においては、各ノードがPuppet masterサーバに対しカタログを要求すると、Puppet masterサーバは各ノードが必要なものをコンパイルして提供します。puppet applyコマンドによってスタンドアローン構成でPuppetが動作する時は、カタログをノード自身でコンパイルして即座に適用します。</p>
-<p>agentノードは直近のカタログをキャッシュします。もしカタログをmasterに要求した際、master側でのコンパイルに失敗した場合は、キャッシュしているカタログを再利用します。このリカバリ動作は<a href="/puppet/3.7/reference/config_file_main.html">puppet.conf</a>にある<a href="/references/latest/configuration.html#usecacheonfailure"><code>usecacheonfailure</code></a>設定で制御されます。マニフェストをアップデートしてテストする際は、この設定をoffにした方が時間を節約できます。</p>
+<p>agentノードは直近のカタログをキャッシュします。もしカタログをmasterに要求した際、master側でのコンパイルに失敗した場合は、キャッシュしているカタログを再利用します。このリカバリ動作は<a href="/puppet/3.7/reference/config_file_main.html">puppet.conf</a>にある<a href="/puppet/latest/reference/configuration.html#usecacheonfailure"><code>usecacheonfailure</code></a>設定で制御されます。マニフェストをアップデートしてテストする際は、この設定をoffにした方が時間を節約できます。</p>
 
 <p>詳細は<a href="/puppet/3.7/reference/subsystem_catalog_compilation.html">the reference page on catalog compilation</a>を参照してください。</p>
 
 <h2 id="example">マニフェストの記述例</h2>
 
-<p>以下はNTPを管理する短いマニフェストです。このマニフェストの中では<a href="/references/latest/type.html#package">package</a>、<a href="/references/latest/type.html#file">file</a>、および<a href="/references/latest/type.html#service">service</a>リソースを使っています。また<a href="/puppet/3.7/reference/lang_variables.html#facts-and-built-in-variables">fact</a>の結果により<a href="/puppet/3.7/reference/lang_conditional.html#case-statements">case文</a>で条件分岐、<a href="/puppet/3.7/reference/lang_variables.html">変数</a>、<a href="/references/3.7.latest/configuration.html#ordering">リソース適用の順序</a>、<a href="/puppet/3.7/reference/lang_relationships.html#ordering-and-notification">通知ありの依存関係</a>、<a href="/puppet/3.7/reference/modules_fundamentals.html#files">モジュールからファイルを読み込んで保存</a>と言った内容も含んでいます。</a></p>
+<p>以下はNTPを管理する短いマニフェストです。このマニフェストの中では<a href="/puppet/latest/reference/type.html#package">package</a>、<a href="/puppet/latest/reference/type.html#file">file</a>、および<a href="/puppet/latest/reference/type.html#service">service</a>リソースを使っています。また<a href="/puppet/3.7/reference/lang_variables.html#facts-and-built-in-variables">fact</a>の結果により<a href="/puppet/3.7/reference/lang_conditional.html#case-statements">case文</a>で条件分岐、<a href="/puppet/3.7/reference/lang_variables.html">変数</a>、<a href="/puppet/3.7/reference/configuration.html#ordering">リソース適用の順序</a>、<a href="/puppet/3.7/reference/lang_relationships.html#ordering-and-notification">通知ありの依存関係</a>、<a href="/puppet/3.7/reference/modules_fundamentals.html#files">モジュールからファイルを読み込んで保存</a>と言った内容も含んでいます。</a></p>
 
 <div class="highlight"><pre><code class="ruby">    <span class="k">case</span> <span class="vg">$operatingsystem</span> <span class="p">{</span>
       <span class="n">centos</span><span class="p">,</span> <span class="n">redhat</span><span class="p">:</span> <span class="p">{</span> <span class="vg">$service_name</span> <span class="o">=</span> <span class="s1">&#39;ntpd&#39;</span> <span class="p">}</span>

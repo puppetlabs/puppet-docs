@@ -60,7 +60,7 @@ This manual is split into several sections, which can be reached from the left s
 
 * The [Release Notes][] cover what's new and different in this version of Puppet.
 * If you're an experienced Puppet user who's new to Puppet 4, review the [Where Did Everything Go?](./whered_it_go.html) page.
-* Use the [Resource Type Reference](/references/4.2.latest/type.html) for up-to-date information on core Puppet concepts.
+* Use the [Resource Type Reference](./type.html) for up-to-date information on core Puppet concepts.
 * Puppet uses its own configuration language, which is documented in this reference's language section. You can start with:
     * The [Language Summary](./lang_summary.html), which gives an overview and some context for the language.
     * The [Visual Index](./lang_visual_index.html), which can help you find docs for syntax when you know what it looks like but don't know what it's called.

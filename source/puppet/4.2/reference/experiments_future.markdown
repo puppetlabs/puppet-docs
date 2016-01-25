@@ -5,7 +5,7 @@ canonical: "/puppet/latest/reference/experiments_future.html"
 ---
 
 [str2bool]: https://forge.puppetlabs.com/puppetlabs/stdlib#str2bool
-[file_mode]: /references/4.2.latest/type.html#file-attribute-mode
+[file_mode]: ./type.html#file-attribute-mode
 [where]: ./whered_it_go.html
 [reserved]: ./lang_reserved.html
 [numeric]: ./lang_data_number.html
@@ -22,7 +22,7 @@ The locations of code directories and important config files have changed. Read 
 
 ## Double-Check to Make Sure It's Safe Before Purging `cron` Resources
 
-Previously, using [`resources {'cron': purge => true}`](/references/4.2.latest/type.html#resources) to purge `cron` resources would only purge jobs belonging to the current user performing the Puppet run (usually `root`). [In Puppet 4](/puppet/4.0/reference/release_notes.html), this action is more aggressive and causes **all** unmanaged cron jobs to be purged.
+Previously, using [`resources {'cron': purge => true}`](./type.html#resources) to purge `cron` resources would only purge jobs belonging to the current user performing the Puppet run (usually `root`). [In Puppet 4](/puppet/4.0/reference/release_notes.html), this action is more aggressive and causes **all** unmanaged cron jobs to be purged.
 
 Make sure this is what you want. You might want to set `noop => true` on the purge resource to keep an eye on it.
 

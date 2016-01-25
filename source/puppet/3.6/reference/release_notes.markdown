@@ -50,7 +50,7 @@ Apache 2.4+ uses the `SSLCARevocationCheck` setting to determine how to check th
 
 Puppet 3.6.0 [deprecated config-file environments][], leading to warnings during every puppet run for people who haven't yet switched to the new and improved [directory environments](environments.html). The high volume of duplicate deprecation warnings was deemed annoying enough that we've added a new feature to allow people to disable them.
 
-You can now use the new (optional) [`disable_warnings` setting](/references/3.6.2/configuration.html#disablewarnings) in puppet.conf or on the command line to suppress certain types of warnings. For now, `disable_warnings` can only be set to `deprecations`, but other warning types may be added in future versions. All warnings are still enabled by default.
+You can now use the new (optional) [`disable_warnings` setting](./configuration.html#disablewarnings) in puppet.conf or on the command line to suppress certain types of warnings. For now, `disable_warnings` can only be set to `deprecations`, but other warning types may be added in future versions. All warnings are still enabled by default.
 
 Related issue:
 
@@ -66,7 +66,7 @@ Related issue:
 
 ### Fixes to `purge_ssh_keys`
 
-Two bugs were discovered with the new (as of 3.6.0) `purge_ssh_keys` attribute for the [user type](/references/3.6.latest/type.html#user). These bugs could prevent SSH keys from being purged under certain circumstances, and have been fixed.
+Two bugs were discovered with the new (as of 3.6.0) `purge_ssh_keys` attribute for the [user type](./type.html#user). These bugs could prevent SSH keys from being purged under certain circumstances, and have been fixed.
 
 Related issues:
 
@@ -75,7 +75,7 @@ Related issues:
 
 ### Default `environment_timeout` increased
 
-The previous default value for [`environment_timeout`](/references/3.6.latest/configuration.html#environmenttimeout) was 5s, which turns out to be way too short for a typical production environment. This release changes the default `environment_timeout` to 3m.
+The previous default value for [`environment_timeout`](./configuration.html#environmenttimeout) was 5s, which turns out to be way too short for a typical production environment. This release changes the default `environment_timeout` to 3m.
 
 Related issue:
 
@@ -92,9 +92,9 @@ Puppet 3.6.1
 
 [node termini]: ./subsystem_catalog_compilation.html#step-1-retrieve-the-node-object
 [enc]: /guides/external_nodes.html
-[allow_virtual]: /references/3.6.latest/type.html#package-attribute-allow_virtual
+[allow_virtual]: ./type.html#package-attribute-allow_virtual
 [the main manifest]: ./dirs_manifest.html
-[multi_source]: /references/3.6.latest/type.html#file-attribute-source
+[multi_source]: ./type.html#file-attribute-source
 
 Released May 22, 2014.
 
@@ -212,9 +212,9 @@ Related issues:
 
 ### Feature: Purging Unmanaged SSH Authorized Keys
 
-Purging unmanaged [`ssh_authorized_key`](/references/3.6.latest/type.html#sshauthorizedkey) resources has been on the most-wanted features list for a very long time, and we haven't been able to make [the `resources` meta-type](/references/3.6.latest/type.html#resources) accommodate it.
+Purging unmanaged [`ssh_authorized_key`](./type.html#sshauthorizedkey) resources has been on the most-wanted features list for a very long time, and we haven't been able to make [the `resources` meta-type](./type.html#resources) accommodate it.
 
-Fortunately, the [user type](/references/3.6.latest/type.html#user) accommodates it very nicely. You can now purge unmanaged SSH keys for a user by setting the `purge_ssh_keys` attribute:
+Fortunately, the [user type](./type.html#user) accommodates it very nicely. You can now purge unmanaged SSH keys for a user by setting the `purge_ssh_keys` attribute:
 
     user { 'nick':
       ensure         => present,
@@ -246,7 +246,7 @@ Related issue:
 
 ### Feature: `digest_algorithm` Setting
 
-You can now change the hashing algorithm that puppet uses for file digests to `sha256` using the new [`digest_algorithm` setting](/references/3.6.latest/configuration.html#digestalgorithm) in puppet.conf. This is especially important for FIPS-compliant hosts, which would previously crash when puppet tried to use MD5 for hashing. Changing this setting won't affect the `md5` or `fqdn_rand` functions.
+You can now change the hashing algorithm that puppet uses for file digests to `sha256` using the new [`digest_algorithm` setting](./configuration.html#digestalgorithm) in puppet.conf. This is especially important for FIPS-compliant hosts, which would previously crash when puppet tried to use MD5 for hashing. Changing this setting won't affect the `md5` or `fqdn_rand` functions.
 
 This setting **must** be set to the same value on all agents and all masters simultaneously; if they mismatch, you'll run into two problems:
 
@@ -298,7 +298,7 @@ Related issues:
 
 The puppet module tool has been updated to deprecate the Modulefile in favor of metadata.json. To help ease the transition, the module tool will automatically generate metadata.json based on a Modulefile if it finds one. If neither Modulefile nor metadata.json is available, it will kick off an interview and generate metadata.json based on your responses.
 
-The new module template has also been updated to include a basic README and spec tests. For more information, see [Publishing Modules on the Puppet Forge](/puppet/3.6/reference/modules_publishing.html).
+The new module template has also been updated to include a basic README and spec tests. For more information, see [Publishing Modules on the Puppet Forge](./modules_publishing.html).
 
 Related issues:
 

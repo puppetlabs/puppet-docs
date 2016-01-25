@@ -35,7 +35,7 @@ Use the buttons to accept or reject nodes, singly or all at once. Note that once
 
 ![request management view](./images/console/request_mgmt_view.png)
 
-In some cases, DNS altnames may be set up for agent nodes. In such cases, you cannot use the console to approve/reject node requests. The CSR for those nodes must be accepted or rejected using `puppet cert` on the CA. For more information, see the [DNS altnames entry in the reference guide](/references/latest/configuration.html#dnsaltnames).
+In some cases, DNS altnames may be set up for agent nodes. In such cases, you cannot use the console to approve/reject node requests. The CSR for those nodes must be accepted or rejected using `puppet cert` on the CA. For more information, see the [DNS altnames entry in the reference guide](/puppet/latest/reference/configuration.html#dnsaltnames).
 
 In some cases, attempting to accept or reject a node request will result in an error. This is typically because the request has been modified somehow, usually by being accepted or rejected elsewhere (e.g. by another user or from the CLI) since the request was first generated.
 
@@ -54,7 +54,7 @@ To sign one of the pending requests, run:
 
     $ sudo puppet cert sign <name>
 
-For more information on working with certificates from the CLI, see the [man page for `puppet cert`](/references/2.7.stable/man/cert.html).
+For more information on working with certificates from the CLI, see the [man page for `puppet cert`](/puppet/2.7/reference/man/cert.html).
 
 ### Configuration Details
 

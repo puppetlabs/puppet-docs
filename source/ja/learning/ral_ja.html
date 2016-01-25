@@ -73,7 +73,7 @@ service { 'apmd':
   <ul>
     <li><code>puppet</code>: ほとんどの機能は、多くのサブコマンドを持つ<code>puppet</code>コマンド1つに集約されています。</li>
     <li><code>resource</code>: <code>resource</code>サブコマンドはリソースの状態を表示したり、インタラクティブに編集することができます。</li>
-    <li><code>service</code>: <code>puppet resource</code>コマンドの最初の引数は<strong>リソース型</strong>でなければなりません。リソース型についてはこの後学んでいきます。全ての型のリストは <a href="http://docs.puppetlabs.com/references/latest/type.html">Puppet型リファレンス(英文)</a>で見つけられます。</li>
+    <li><code>service</code>: <code>puppet resource</code>コマンドの最初の引数は<strong>リソース型</strong>でなければなりません。リソース型についてはこの後学んでいきます。全ての型のリストは <a href="http://docs.puppetlabs.com/puppet/latest/reference/type.html">Puppet型リファレンス(英文)</a>で見つけられます。</li>
   </ul>
 
   <p>つまり、このコマンドはシステムにある全てのサービスにおける動作/停止状態を調べるコマンドとなるわけです。</p>
@@ -164,7 +164,7 @@ service { 'apmd':
 
 <h3 id="the-type-reference">The Type Reference ～ Puppet型リファレンス</h3>
 
-<p>経験豊富なPuppetユーザは、多くの時間を<a href="http://docs.puppetlabs.com/references/latest/type.html">Puppet型リファレンス(英文)</a>に費やします。</p>
+<p>経験豊富なPuppetユーザは、多くの時間を<a href="http://docs.puppetlabs.com/puppet/latest/reference/type.html">Puppet型リファレンス(英文)</a>に費やします。</p>
 
 <p>そこにはPuppetが持つ全てのビルトインリソース型について、非常に詳しく書かれています。新規ユーザは少し圧倒されてしまいますが、日常的にPuppetコードを書く際に必要な、ほとんどの情報が載っています。</p>
 
@@ -172,13 +172,13 @@ service { 'apmd':
 
 <h3 id="puppet-describe">Puppet Describe ～ Puppet Describe コマンド</h3>
 
-<p><code>puppet describe</code>コマンドはその時点でインストールされているリソース型の情報を提供します。これは<a href="http://docs.puppetlabs.com/references/latest/type.html">Puppet型リファレンス(英文)</a>と異なり、ビルトイン型だけでなくユーザによってインストールされたプラグインの情報までもが対象になります。
+<p><code>puppet describe</code>コマンドはその時点でインストールされているリソース型の情報を提供します。これは<a href="http://docs.puppetlabs.com/puppet/latest/reference/type.html">Puppet型リファレンス(英文)</a>と異なり、ビルトイン型だけでなくユーザによってインストールされたプラグインの情報までもが対象になります。
 </p>
 
 <ul>
   <li><code>puppet describe -l</code> — 対象のシステムで有効なリソース全てのリストを表示します。</li>
   <li><code>puppet describe -s &lt;TYPE&gt;</code> — 個々の属性の情報を除く、型に関する簡易な情報を表示します。</li>
-  <li><code>puppet describe &lt;TYPE&gt;</code> — <a href="http://docs.puppetlabs.com/references/latest/type.html">Puppet型リファレンス(英文)</a>にあるような詳細な情報を表示します。</li>
+  <li><code>puppet describe &lt;TYPE&gt;</code> — <a href="http://docs.puppetlabs.com/puppet/latest/reference/type.html">Puppet型リファレンス(英文)</a>にあるような詳細な情報を表示します。</li>
 </ul>
 
 

@@ -100,7 +100,7 @@ There are two main options for centralizing the CA:
 
 #### Method A: Individual Agent Configuration
 
-On **every agent node,** you must set the [`ca_server`](/references/latest/configuration.html#caserver) setting in [`puppet.conf`](/puppet/latest/reference/config_file_main.html) (in the `[main]` configuration block) to the hostname of the server acting as the certificate authority.
+On **every agent node,** you must set the [`ca_server`](/puppet/latest/reference/configuration.html#caserver) setting in [`puppet.conf`](/puppet/latest/reference/config_file_main.html) (in the `[main]` configuration block) to the hostname of the server acting as the certificate authority.
 
 * If you have a large number of existing nodes, it is easiest to do this by managing `puppet.conf` with a Puppet module and a template.
 * Be sure to pre-set this setting when provisioning new nodes --- they will be unable to successfully complete their initial agent run if they're not communicating with the correct `ca_server`.

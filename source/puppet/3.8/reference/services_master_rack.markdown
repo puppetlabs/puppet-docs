@@ -26,7 +26,7 @@ A Rack server is one of two recommended ways to run the Puppet master service; t
 
 This page describes the generic requirements and run environment for running under Rack; for practical configuration instructions, see [the guide to configuring a Passenger + Apache Puppet master.][passenger_guide]
 
-For details about invoking the Puppet master command, see [the puppet master man page](/references/3.8.latest/man/master.html).
+For details about invoking the Puppet master command, see [the puppet master man page](./man/master.html).
 
 ## Supported Platforms
 
@@ -62,7 +62,7 @@ The Rack web server sets the Puppet master process's user. By default, it will u
 
 All of the Puppet master's files and directories must be readable and writable by this user.
 
-[user]: /references/3.8.latest/configuration.html#user
+[user]: ./configuration.html#user
 
 ### Required Directories
 
@@ -83,13 +83,13 @@ Once the terminal says `Notice: Starting Puppet master version <VERSION>`, type 
 
 By default, Puppet's HTTPS traffic uses port 8140. Your web server must be listening on this port, and the OS and firewall must allow it to accept incoming connections on this port.
 
-A Rack Puppet master will ignore [the `masterport` setting](/references/3.8.latest/configuration.html#masterport); instead, the web server's configuration (for example, an Apache vhost) controls the port. You must ensure that the web server is listening on this port and is routing those requests to the Puppet master application.
+A Rack Puppet master will ignore [the `masterport` setting](./configuration.html#masterport); instead, the web server's configuration (for example, an Apache vhost) controls the port. You must ensure that the web server is listening on this port and is routing those requests to the Puppet master application.
 
 If you want to switch to a non-default port, you'll have to change your web server's configuration, then make sure `masterport` is set correctly on all agents.
 
 ### Keepalive Timeout
 
-By default, the Puppet agent application will keep its HTTPS connections open for **up to four seconds** of idle time. (Configurable with [the `http_keepalive_timeout` setting.](/references/3.8.latest/configuration.html#httpkeepalivetimeout))
+By default, the Puppet agent application will keep its HTTPS connections open for **up to four seconds** of idle time. (Configurable with [the `http_keepalive_timeout` setting.](./configuration.html#httpkeepalivetimeout))
 
 This means Puppet expects the Rack web server to have **a keepalive timeout of at least four seconds, preferably five.** This is compatible with the default configuration of the most popular Rack stack.
 
@@ -150,7 +150,7 @@ Mandatory. Must be one of `NONE`, `SUCCESS`, `GENEROUS` or `FAILED:reason`.
 
 The Rack server will automatically set this variable if some other part of the stack added the `X-Client-Verify` HTTP header to the request.
 
-You can change the variable name Puppet looks for with [the `ssl_client_verify_header` setting.](/references/3.8.latest/configuration.html#sslclientverifyheader)
+You can change the variable name Puppet looks for with [the `ssl_client_verify_header` setting.](./configuration.html#sslclientverifyheader)
 
 #### `HTTP_X_CLIENT_DN`
 
@@ -158,7 +158,7 @@ Mandatory. Must be the [Subject DN][] of the agent's certificate, if a certifica
 
 The Rack server will automatically set this variable if some other part of the stack added the `X-Client-DN` HTTP header to the request.
 
-You can change the variable name Puppet looks for with [the `ssl_client_header` setting.](/references/3.8.latest/configuration.html#sslclientheader)
+You can change the variable name Puppet looks for with [the `ssl_client_header` setting.](./configuration.html#sslclientheader)
 
 #### `SSL_CLIENT_CERT`
 

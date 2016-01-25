@@ -5,16 +5,16 @@ description: "Puppet release notes for version 3.8"
 canonical: "/puppet/latest/reference/release_notes.html"
 ---
 
-[upgrade]: /puppet/3.8/reference/upgrading.html
+[upgrade]: ./upgrading.html
 [puppet_3]: /puppet/3/reference/release_notes.html
 
 [puppet.conf]: ./config_file_main.html
 [main manifest]: ./dirs_manifest.html
-[env_api]: /references/3.7.latest/developer/file.http_environments.html
+[env_api]: /puppet/3.7/reference/developer/file.http_environments.html
 [file_system_redirect]: ./lang_windows_file_paths.html#file-system-redirection-when-running-32-bit-puppet-on-64-bit-windows
 [environment.conf]: ./config_file_environment.html
-[default_manifest]: /references/3.7.latest/configuration.html#defaultmanifest
-[disable_per_environment_manifest]: /references/3.7.latest/configuration.html#disableperenvironmentmanifest
+[default_manifest]: /puppet/3.7/reference/configuration.html#defaultmanifest
+[disable_per_environment_manifest]: /puppet/3.7/reference/configuration.html#disableperenvironmentmanifest
 [directory environments]: ./environments.html
 [future]: ./experiments_future.html
 

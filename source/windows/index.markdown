@@ -60,14 +60,14 @@ Some \*nix resource types aren't supported on Windows, and there are some Window
 
 The following core resource types can be managed on Windows:
 
-* [file](/references/latest/type.html#file) ([tips for Windows](/puppet/latest/reference/resources_file_windows.html))
-* [user](/references/latest/type.html#user) ([tips for Windows](/puppet/latest/reference/resources_user_group_windows.html))
-* [group](/references/latest/type.html#group) ([tips for Windows](/puppet/latest/reference/resources_user_group_windows.html))
-* [scheduled_task](/references/latest/type.html#scheduledtask) ([tips for Windows](/puppet/latest/reference/resources_scheduled_task_windows.html))
-* [package](/references/latest/type.html#package) ([tips for Windows](/puppet/latest/reference/resources_package_windows.html))
-* [service](/references/latest/type.html#service) ([tips for Windows](/puppet/latest/reference/resources_service.html))
-* [exec](/references/latest/type.html#exec) ([tips for Windows](/puppet/latest/reference/resources_exec_windows.html))
-* [host](/references/latest/type.html#host)
+* [file](/puppet/latest/reference/type.html#file) ([tips for Windows](/puppet/latest/reference/resources_file_windows.html))
+* [user](/puppet/latest/reference/type.html#user) ([tips for Windows](/puppet/latest/reference/resources_user_group_windows.html))
+* [group](/puppet/latest/reference/type.html#group) ([tips for Windows](/puppet/latest/reference/resources_user_group_windows.html))
+* [scheduled_task](/puppet/latest/reference/type.html#scheduledtask) ([tips for Windows](/puppet/latest/reference/resources_scheduled_task_windows.html))
+* [package](/puppet/latest/reference/type.html#package) ([tips for Windows](/puppet/latest/reference/resources_package_windows.html))
+* [service](/puppet/latest/reference/type.html#service) ([tips for Windows](/puppet/latest/reference/resources_service.html))
+* [exec](/puppet/latest/reference/type.html#exec) ([tips for Windows](/puppet/latest/reference/resources_exec_windows.html))
+* [host](/puppet/latest/reference/type.html#host)
 
 Also, there are some popular [optional resource types for Windows.](/puppet/latest/reference/resources_windows_optional.html)
 

@@ -18,7 +18,7 @@ Por defecto, el archivo de configuración es **$confdir/hiera.yaml**, que genera
 + **/etc/puppetlabs/puppet/hiera.yaml** en Puppet Enterprise \*nix 
 + **[COMMON_APPDATA]( http://docs.puppetlabs.com/windows/installing.html#the-commonappdata-folder )\PuppetLabs\puppet\etc\hiera.yaml** en Windows
 
-En Puppet 3 o superior, puedes especificar un archivo de configuración diferente con [la opción de configuración **hiera_config**](http://docs.puppetlabs.com/references/latest/configuration.html#hieraconfig) en **puppet.conf**. En Puppet 2.x, no puedes especificar un archivo de configuración diferente, pero sí puedes crear un link simbólico de **$confdir/hiera.yaml** a un archivo diferente.
+En Puppet 3 o superior, puedes especificar un archivo de configuración diferente con [la opción de configuración **hiera_config**](http://docs.puppetlabs.com/puppet/latest/reference/configuration.html#hieraconfig) en **puppet.conf**. En Puppet 2.x, no puedes especificar un archivo de configuración diferente, pero sí puedes crear un link simbólico de **$confdir/hiera.yaml** a un archivo diferente.
 
 ### Desde la Línea de comando
 

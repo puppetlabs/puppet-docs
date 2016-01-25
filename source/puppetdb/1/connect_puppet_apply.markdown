@@ -5,9 +5,9 @@ canonical: "/puppetdb/latest/connect_puppet_apply.html"
 ---
 
 [exported]: /puppet/latest/reference/lang_exported.html
-[package]: /references/latest/type.html#package
-[file]: /references/latest/type.html#file
-[yumrepo]: /references/latest/type.html#yumrepo
+[package]: /puppet/latest/reference/type.html#package
+[file]: /puppet/latest/reference/type.html#file
+[yumrepo]: /puppet/latest/reference/type.html#yumrepo
 [apt]: http://forge.puppetlabs.com/puppetlabs/apt
 [puppetdb_download]: http://downloads.puppetlabs.com/puppetdb
 [puppetdb_conf]: /guides/configuring.html#puppetdbconf

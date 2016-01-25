@@ -5,8 +5,8 @@ canonical: "/puppet/latest/reference/modules_installing.html"
 ---
 
 [forge]: http://forge.puppetlabs.com
-[module_man]: /references/3.4.stable/man/module.html
-[modulepath]: /references/stable/configuration.html#modulepath
+[module_man]: ./man/module.html
+[modulepath]: /puppet/latest/reference/configuration.html#modulepath
 
 [publishing]: ./modules_publishing.html
 [fundamentals]: ./modules_fundamentals.html
@@ -75,7 +75,7 @@ In order to use the puppet module tool behind a proxy, you need to set the follo
 	export http_proxy=http://10.187.255.9:8080
 	export https_proxy=http://10.187.255.9:8080
 
-Alternatively, you can set these two proxy settings inside the `user` config section in the `puppet.conf` file: `http_proxy_host` and `http_proxy_port`. For more information, see [Configuration Reference](/references/latest/configuration.html).
+Alternatively, you can set these two proxy settings inside the `user` config section in the `puppet.conf` file: `http_proxy_host` and `http_proxy_port`. For more information, see [Configuration Reference](/puppet/latest/reference/configuration.html).
 
 **Note:** Make sure to set these two proxy settings in the `user` section only. Otherwise, there can be adverse effects.
 
@@ -102,7 +102,7 @@ To install a module from the Puppet Forge, simply identify the desired module by
 
 ### Installing From Another Module Repository
 
-The module tool can install modules from other repositories that mimic the Forge's interface. To do this, change the [`module_repository`](/references/latest/configuration.html#modulerepository) setting in [`puppet.conf`](/puppet/3.6/reference/config_file_main.html) or specify a repository on the command line with the `--module_repository` option. The value of this setting should be the base URL of the repository; the default value, which uses the Forge, is `https://forgeapi.puppetlabs.com`.
+The module tool can install modules from other repositories that mimic the Forge's interface. To do this, change the [`module_repository`](/puppet/latest/reference/configuration.html#modulerepository) setting in [`puppet.conf`](./config_file_main.html) or specify a repository on the command line with the `--module_repository` option. The value of this setting should be the base URL of the repository; the default value, which uses the Forge, is `https://forgeapi.puppetlabs.com`.
 
 After setting the repository, follow the instructions above for installing from the Forge.
 

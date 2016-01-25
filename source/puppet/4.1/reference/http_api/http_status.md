@@ -1,7 +1,8 @@
 ---
 layout: default
-title: "Puppet HTTP API: Status"
-canonical: "/puppet/latest/reference/http_api/http_status.html"
+built_from_commit: c4a6a76fd219bffd689476413985ed13f40ef1dd
+title: 'Puppet HTTP API: Status'
+canonical: /puppet/latest/reference/http_api/http_status.html
 ---
 
 Status
@@ -43,4 +44,5 @@ None
 Schema
 ------
 
-A status response body conforms to [the status schema.](../schemas/status.json)
+The returned status conforms to the
+[api/schemas/status.json](../schemas/status.json) schema.

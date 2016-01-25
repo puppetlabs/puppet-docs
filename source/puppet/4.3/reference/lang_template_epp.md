@@ -5,9 +5,9 @@ canonical: "/puppet/latest/reference/lang_template_epp.html"
 ---
 
 [erb]: ./lang_template_erb.html
-[epp]: /references/latest/function.html#epp
+[epp]: /puppet/latest/reference/function.html#epp
 [ntp]: https://forge.puppetlabs.com/puppetlabs/ntp
-[inline_epp]: /references/latest/function.html#inlineepp
+[inline_epp]: /puppet/latest/reference/function.html#inlineepp
 [functions]: ./lang_functions.html
 [hash]: ./lang_data_hash.html
 [local scope]: ./lang_scope.html

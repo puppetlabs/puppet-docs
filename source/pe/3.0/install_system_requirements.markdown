@@ -226,7 +226,7 @@ To install the packages on your selected node directly, you can run `rpm -Uvh` w
 
 *Note:* GPG verification will not work on AIX, the RPM version used by AIX (even 7.1) is too old. The AIX package provider doesn't support package downgrades (installing an older package over a newer package). Avoid using leading zeros when specifying a version number for the AIX provider (i.e., use `2.3.4` not `02.03.04`).
 
-The PE AIX implementation supports the NIM, BFF, and RPM package providers. Check the [Type Reference](/references/3.2.latest/type.html#package) for technical details on these providers.
+The PE AIX implementation supports the NIM, BFF, and RPM package providers. Check the [Type Reference](/puppet/3.2/reference/type.html#package) for technical details on these providers.
 
 ***Solaris***
 

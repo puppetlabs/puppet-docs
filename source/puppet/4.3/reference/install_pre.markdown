@@ -9,7 +9,7 @@ canonical: "/puppet/latest/reference/install_pre.html"
 [ruby]: ./system_requirements.html#basic-requirements
 [architecture]: /puppet/latest/reference/architecture.html
 [puppetdb]: /puppetdb/latest
-[server_setting]: /references/4.3.latest/configuration.html#server
+[server_setting]: ./configuration.html#server
 
 > **Note:** This document covers open source releases of Puppet. For instructions on installing Puppet Enterprise, see [its installation documentation][peinstall].
 

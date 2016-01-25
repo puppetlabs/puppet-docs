@@ -4,7 +4,7 @@ title: "Experimental Features: The Future Parser"
 canonical: "/puppet/latest/reference/experiments_future.html"
 ---
 
-[parser_setting]: /references/latest/configuration.html#parser
+[parser_setting]: /puppet/latest/reference/configuration.html#parser
 
 > **Warning:** This document describes an **experimental feature,** which is not officially supported and is not considered ready for production. [See here for more information about experimental features in Puppet](./experiments_overview.html), especially if you are using Puppet Enterprise.
 

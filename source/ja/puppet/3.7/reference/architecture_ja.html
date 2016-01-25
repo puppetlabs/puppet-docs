@@ -75,13 +75,13 @@ toc: false
 
 <p>Puppet agentノードとPuppet masterはクライアント認証有りのHTTPSで通信します。</p>
 
-<p>Puppet masterはHTTPインタフェースを、<a href="/references/3.7.latest/developer/file.http_api_index.html">さまざまなエンドポイント</a>を提供します。Puppet masterに対してリクエストしたり何かしら送信する際、Puppet agentはそれらエンドポイントのひとつにHTTPSで投げます。</a>
+<p>Puppet masterはHTTPインタフェースを、<a href="/puppet/3.7/reference/developer/file.http_api_index.html">さまざまなエンドポイント</a>を提供します。Puppet masterに対してリクエストしたり何かしら送信する際、Puppet agentはそれらエンドポイントのひとつにHTTPSで投げます。</a>
 
 <p>詳細はこちら:</p>
 
 <ul>
   <li><a href="/puppet/3.7/reference/subsystem_agent_master_comm.html">A walkthrough of Puppet’s HTTPS communications</a></li>
-  <li><a href="/references/3.7.latest/developer/file.http_api_index.html">The puppet master’s HTTP API</a></li>
+  <li><a href="/puppet/3.7/reference/developer/file.http_api_index.html">The puppet master’s HTTP API</a></li>
   <li><a href="/puppet/3.7/reference/config_file_auth.html">The puppet master’s auth.conf file</a></li>
 </ul>
 
@@ -125,7 +125,7 @@ toc: false
     			   <li><strong>最小特権の原則：</strong>agent/master型の場合、agentはそれぞれ自分自身の設定を取得する事しかしません。また他ノードの設定を参照する事はできません。puppet applyの場合これを実現するのは非現実的なため、それぞれのノードがサイトの設定に関する完全なナレッジにアクセスできてしまいます。この権限の水平的昇格（訳注：一般ユーザが他の一般ユーザの権限を取得）をされる潜在的リスクがどうなるかはシステムの設定次第になります。</li>
 
 
-    <li><strong>レポートとインベントリ情報の集中管理を簡素化：</strong>デフォルトでagentはmasterにレポートを送信します。またmasterは<a href="/references/3.7.latest/report.html">レポートハンドラ</a>を設定し他のサービスにレポートを渡す事も可能です。インベントリや履歴データを検索する用途にパワフルなツールである<a href="/puppetdb/latest">PuppetDB</a>へ接続する事もできます。puppet applyを使うノードでは自身で情報をハンドルします。もしPuppetDBを使っている、もしくはレポートを他のサービスに送信しているのであれば、<em>それぞれの</em>ノードで設定と接続認証が個別に必要です。</li>
+    <li><strong>レポートとインベントリ情報の集中管理を簡素化：</strong>デフォルトでagentはmasterにレポートを送信します。またmasterは<a href="/puppet/3.7/reference/report.html">レポートハンドラ</a>を設定し他のサービスにレポートを渡す事も可能です。インベントリや履歴データを検索する用途にパワフルなツールである<a href="/puppetdb/latest">PuppetDB</a>へ接続する事もできます。puppet applyを使うノードでは自身で情報をハンドルします。もしPuppetDBを使っている、もしくはレポートを他のサービスに送信しているのであれば、<em>それぞれの</em>ノードで設定と接続認証が個別に必要です。</li>
 
     <li><strong>アップデート時の設定簡略化：</strong>Puppet masterサーバ（１台もしくは複数台）だけがPuppetモジュール、メインのマニフェスト、その他カタログのコンパイルに必要な情報を持っています。これはシステムのアップデート設定時に１台（もしくは複数台）のサーバのコンテンツだけをアップデートすればよい事を意味します。集中管理していないpuppet applyのデプロイ形態の場合は、全ノードに対して新しい設定コードとデータを同期する必要があります。</li>
 

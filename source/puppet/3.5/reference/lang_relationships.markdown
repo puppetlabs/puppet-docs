@@ -11,10 +11,10 @@ canonical: "/puppet/latest/reference/lang_relationships.html"
 [array]: ./lang_datatypes.html#arrays
 [class]: ./lang_classes.html
 [event]: ./lang_resources.html#behavior
-[service]: /references/latest/type.html#service
-[exec]: /references/latest/type.html#exec
-[type]: /references/latest/type.html
-[mount]: /references/latest/type.html#mount
+[service]: /puppet/latest/reference/type.html#service
+[exec]: /puppet/latest/reference/type.html#exec
+[type]: /puppet/latest/reference/type.html
+[mount]: /puppet/latest/reference/type.html#mount
 [metaparameters]: ./lang_resources.html#metaparameters
 [require_function]: ./lang_classes.html#using-require
 

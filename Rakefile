@@ -168,7 +168,6 @@ task :generate do
   system("mkdir #{output_dir}/references")
   system("bundle exec jekyll build --source #{source_dir} --destination #{output_dir}")
 
-  Rake::Task['references:symlink'].invoke
   Rake::Task['symlink_latest_versions'].invoke
 
   Rake::Task['externalsources:clean'].invoke # The opposite of externalsources:link. Delete all symlinks in the source.
@@ -290,27 +289,6 @@ task :references do
 end
 
 namespace :references do
-
-  namespace :symlink do
-    # "Show the versions that will be symlinked"
-    task :versions do
-      require 'puppet_docs'
-      PuppetDocs::Reference.special_versions.each do |name, (version, source)|
-        puts "#{name}: #{version}"
-      end
-    end
-  end
-
-  # "Symlink the latest & stable directories"
-  task :symlink do
-    require 'puppet_docs'
-    PuppetDocs::Reference.special_versions.each do |name, (version, source)|
-      Dir.chdir "#{output_dir}/references" do
-        FileUtils.ln_sf version.to_s, name.to_s
-      end
-    end
-  end
-
   task :puppet => 'references:check_version' do
     require 'puppet_references'
     PuppetReferences.build_puppet_references(ENV['VERSION'])
@@ -324,7 +302,6 @@ namespace :references do
   task :check_version do
     abort "No VERSION given to build references for" unless ENV['VERSION']
   end
-
 end
 
 desc "Deploy the site to the production servers"
