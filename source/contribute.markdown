@@ -65,12 +65,12 @@ Provide links to related Puppet documentation topics, or other resources.
 ### Updating existing documentation topics
 
 Sometimes our docs are missing useful information that you can provide:
-- basic-level concepts the original author took for granted, but are helpful for new people
-- missing overviews, steps, or links
-- missing prerequisites for tasks
-- clarifying definitions for terms that Puppet is using differently than other technologies (for example, "class")
-- helpful code or command line examples
-- troubleshooting tips
+- Basic-level concepts the original author took for granted, but are helpful for new people
+- Missing overviews, steps, or links
+- Missing prerequisites for tasks
+- Clarifying definitions for terms that Puppet is using differently than other technologies (for example, "class")
+- Helpful code or command line examples
+- Troubleshooting tips
 
 ### Tone
 - Strive to be friendly and authoritative.
