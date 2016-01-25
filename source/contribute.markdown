@@ -46,13 +46,13 @@ Each topic file should cover a single subject area. If the Puppet docs already h
 If you're writing a new topic, start with an overview:
 - Provide definitions and descriptions that introduce the subject and place it within the context of the rest of Puppet.
 - Provide diagrams if they help clarify relationships and structures. 
-- Your goal is to help users solve problems and get things done. Avoid too much background information.
+- Your goal is to help people solve problems and get things done. Avoid too much background information.
 
-Next, describe things that the user *does*:
-- Create a section for each major task users do. 
+Next, describe things that the person *does*:
+- Create a section for each major task that a person does. These should describe how to get results people want, not just things the tools require them to do.
 - List prerequisites, if any. 
-- Use a numbered list to list the actions the user does to accomplish the task. 
-- Finish by stating what the outcome is, and what the user might do next. 
+- Use a numbered list to list the actions the person does to accomplish the task. 
+- Finish by stating what the outcome is, and what the person might do next. 
 - Provide code or command examples that show what to do for common scenarios.
 - If there are multiple ways of doing something, describe only one: the most straight-forward way for the given context. 
 - Use screen captures minimally (ideally not at all), and only to illustrate things that are otherwise impractical to describe. 
@@ -65,7 +65,7 @@ Provide links to related Puppet documentation topics, or other resources.
 ### Updating existing documentation topics
 
 Sometimes our docs are missing useful information that you can provide:
-- basic-level concepts the original author took for granted, but are helpful for new users
+- basic-level concepts the original author took for granted, but are helpful for new people
 - missing overviews, steps, or links
 - missing prerequisites for tasks
 - clarifying definitions for terms that Puppet is using differently than other technologies (for example, "class")
@@ -73,15 +73,30 @@ Sometimes our docs are missing useful information that you can provide:
 - troubleshooting tips
 
 ### Tone
+- Strive to be friendly and authoritative.
+- Use simple, direct language. Avoid passive voice and implications.
+- Be consise, but not terse.
+- Use second-person almost always: "Open the file in your favorite text editor."
+- Use inclusive, gender-neutral language.
+- Avoid patronizing language, often indicated by words like _clearly_, _actually_, or _obviously_.
+- Be honest but not negative about our product or competitors.
 
 ### Grammar, idiom, and spelling
+- Metaphors, analogies, and certain turns-of-phrases might not translate into languages or cultures other than your own. Stick to comparisons that are relatively innocuous and universal.
+- Almost always, follow Associated Press (AP) Style and choose [Webster's dictionary](http://www.merriam-webster.com/) spelling (American): _color_, _specialize_.
+- Use the serial comma. In a list with three or more items, include a comma after the second-last item, before the conjunction: "... is supported on Unix, Linux, and Windows."
 
 ### Headings
 
 Use headings to increase the scanability of your content, and to make separate sections for conceptual information, each task, and reference information. 
-- Nest H3s (markdown: `### `) inside H2s (`## `), and H4s (`#### `) inside H3s. 
-- Headings for conceptual information should be noun phrases that accurately describe the content (for example, "Defined resource types"). 
-- Task section headings should be verb phrase that indicates what the user is doing (for example, "Deploying your code"), but also differentiates it from other tasks (so maybe, "Deploying your code to a test environment")
+- Nest H3s (markdown: `### `) inside H2s (`## `). Nest H4s (`#### `) inside H3s. 
+- For conceptual information, use a noun phrase that accurately describes the content (for example, "Defined resource types"). 
+- For task section headings, use a verb phrase that indicates the goal (for example, "Deploying your code"), but also differentiates it from other tasks (so maybe, "Deploying your code to a test environment").
 
 ### Formatting
+- For file names and directories, use `monospace`.
+- When citing text that appears in the GUI, use **bold**.
+- For commands and code examples, use `monospace`. Short commands can be included as part of the paragraph. Longer examples or code should be set in a separate paragraph, enclosed within three back-ticks.
+- For user input on the command line, use `monospace`. For user input on a GUI, use _italics_.
+- To indicate text in code that should be replaced, use angle-brackets and all-caps (and, if in a code example, monospace): `<TEST_HOSTNAME>`
 
