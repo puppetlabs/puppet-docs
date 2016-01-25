@@ -41,16 +41,17 @@ Step 2: Install Puppet on the Puppet Master Server
 
 (Skip this step for a standalone deployment.)
 
-On your puppet master node, run one of the following:
+On your puppet master node, run:
 
-* `sudo apt-get install puppetmaster-passenger` --- We recommend this one, as it will save you a step in the post-install tasks. It will install Puppet and its prerequisites, and automatically configure a production-capacity web server.
-* `sudo apt-get install puppetmaster` --- This will install Puppet, its prerequisites, and an init script (`/etc/init.d/puppetmaster`) for running a test-quality puppet master server.
+    $ sudo apt-get install puppetserver
+    
+This installs Puppet, its prerequisites, and [Puppet Server](/puppetserver/), a JVM-based Puppet master server that's ready for production.
 
-Do not start the puppet master service yet.
+Do not start Puppet Server yet.
 
 ### Upgrading
 
-**Note:** Be sure to read our [tips on upgrading](./upgrading.html) before upgrading your whole Puppet deployment.
+> **Note:** Be sure to read our [tips on upgrading](./upgrading.html) before upgrading your whole Puppet deployment.
 
 To upgrade to the latest version of Puppet, you can run:
 
