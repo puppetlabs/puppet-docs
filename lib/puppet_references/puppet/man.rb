@@ -69,7 +69,6 @@ module PuppetReferences
           list.reject! {|sub| !commands.include?(sub)}
         end
         header_data = {title: 'Puppet Man Pages',
-                       nav: '/_includes/references_man.html',
                        canonical: "#{@latest}/index.html"}
         index_text = <<EOT
 #{ make_header(header_data) }
@@ -110,7 +109,7 @@ These subcommands have not yet been added to any of the categories above.
 EOADDENDUM
         end
         # write index
-        filename = OUTPUT_DIR + 'index.html'
+        filename = OUTPUT_DIR + 'index.md'
         filename.open('w') {|f| f.write(index_text)}
       end
 
