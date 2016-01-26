@@ -211,13 +211,6 @@
         </div>
         <nav class="main">
               <div id="subCol">
-                  {% if page.doc %}
-                  <p>This page in other versions:
-                      {% for version in site.document_list[page.doc.doc] %}
-                      <a href="{% change_baseurl page.url page.doc.base_url version[1] %}">{{version[0]}}</a>{% unless forloop.last %}, {% endunless %}
-                      {% endfor %}
-                  </p>
-                  {% endif %}
                   <ul id="doc-navigation">
                     <li class="with-submenu">
                       <a href="#">
@@ -227,6 +220,29 @@
                        {% include quick_nav.html %}
                     </li>
                   </ul>
+
+                  {% if page.doc %}
+                  <ul id="doc-navigation">
+                      <li class="with-submenu">
+                          <a href="#">
+                              <span>Version: {{ page.doc.version }}{% if site.document_version_index[page.doc.doc].latest == page.doc.base_url %} (latest){% endif %}</span>
+                              <span class="drop-down-trigger"></span>
+                          </a>
+                          <dl>
+                              <dt></dt>
+                              {% for base_url in site.document_version_order[page.doc.doc] %}
+                              <dd>
+                                  {% if base_url == page.doc.base_url %}
+                                  Version {{page.doc.version}}{% if site.document_version_index[page.doc.doc].latest == base_url %} (latest){% endif %}
+                                  {% else %}
+                                  <a href="{% change_baseurl page.url page.doc.base_url base_url %}">Version {{ site['document_list'][base_url]['version'] }}{% if site.document_version_index[page.doc.doc].latest == base_url %} (latest){% endif %}</a>
+                                  {% endif %}
+                              </dd>
+                              {% endfor %}
+                          </dl>
+                      </li>
+                  </ul>
+                  {% endif %}
 
                   {% render_nav %}
               </div>
