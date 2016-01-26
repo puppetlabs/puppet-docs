@@ -82,7 +82,7 @@ Sometimes our docs are missing useful information that you can provide:
 - Be honest but not negative about our product or competitors.
 
 ### Grammar, idiom, and spelling
-- Metaphors, analogies, and certain turns-of-phrases might not translate into languages or cultures other than your own. Stick to comparisons that are relatively innocuous and universal.
+- Metaphors, analogies, and certain turns of phrase might not translate into languages or cultures other than your own. Stick to comparisons that are relatively innocuous and universal.
 - Almost always, follow Associated Press (AP) Style and choose [Webster's dictionary](http://www.merriam-webster.com/) spelling (American): _color_, _specialize_.
 - Use the serial comma. In a list with three or more items, include a comma after the second-last item, before the conjunction: "... is supported on Unix, Linux, and Windows."
 
