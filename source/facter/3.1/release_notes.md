@@ -8,6 +8,21 @@ title: "Facter 3.1: Release Notes"
 
 This page documents the history of the Facter 3.1 series. (Previous version: [Facter 3.0 release notes](../3.0/release_notes.html).)
 
+## Facter 3.1.4
+
+Released January 25, 2016.
+
+Shipped in [`puppet-agent` 1.3.3][puppet-agent 1.3.x].
+
+Facter 3.1.4 is a platform packaging release in the Facter 3.1 series.
+
+* [Fixed in Facter 3.1.4](https://tickets.puppetlabs.com/issues/?jql=affectedVersion%20%3D%20%27FACT%203.1.4%27)
+* [Introduced in Facter 3.1.4](https://tickets.puppetlabs.com/browse/FACT-1313?jql=fixVersion%20%3D%20%27FACT%203.1.4%27)
+
+### NEW PLATFORM: Ubuntu Wily 15.10
+
+As of `puppet-agent` 1.3.3, packages are available for Ubuntu Wily 15.10.
+
 ## Facter 3.1.3
 
 Released November 30, 2015.
