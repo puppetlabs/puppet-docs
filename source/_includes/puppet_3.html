@@ -1,230 +1,96 @@
-{% comment %}
-
-Possible stuff to add in the future:
-
-- **Standard Puppet Operation**
-    - The "Puppet Run"
-        * Summary of a run, with parallels drawn between standalone and agent/master
-            * Get plugins from master or modules
-            * load facts
-            * request catalog and submit facts
-            * Determine what classes go in the catalog (node terminus)
-            * compile/receive catalog
-            * compare state and apply catalog changes, retrieving files if necessary
-            * send report
-    - Network Communications and Timing Diagrams
-- **Command Line Interface**
-    - The Puppet Command and Subcommands
-    - Legacy Command Equivalents
-    - Getting Help
-        * puppet help
-        * puppet man
-        * puppet config print
-        * puppet describe
-    - Using Puppet Interactively
-        * puppet apply
-        * puppet resource
-        * puppet agent --test
-    - Managing the Puppet Services
-        * puppet master (summary)
-        * puppet agent
-        * puppet agent w/ cron
-        * puppet apply w/ cron
-    - Certificate Management
-    - Puppet Faces
-        * installing new ones
-    - Developing Puppet Faces
-    - Man Pages
-- **The Puppet Services**
-    - Puppet agent
-    - Puppet master
-    - Web Servers for the Puppet Master
-        * Rack interface summary
-        * WEBrick
-        * Apache/Passenger
-        * Nginx/Unicorn
-    * Combine w/ CLI interface things above? does it make sense to split these?
-- **Puppet Internals**
-    - Catalogs and Compilation
-- **Node-Specific Data**
-    - Node Identity
-        * certname, node_name, node_name_value, node_name_fact
-        * auth.conf issues w/ non-certname node_name
-    - Determining Catalog Contents
-        * Anything outside a node def., the current node def., and whatever the terminus handed over
-    - How Puppet Selects a Node Definition
-    - The External Node Classifier Interface
-    - The LDAP Node Terminus
-- **Modules**
-    - `"Fundamentals", "./modules_fundamentals.html"`
-    - Plugins in Modules
-    - `"Installing Modules", "./modules_installing.html"`
-    - `"Publishing Modules", "./modules_publishing.html"`
-    - `"Module Documentation", "./modules_documentation.html"`
-- **File Serving**
-- **Resource Types and Providers**
-    - Type and Provider Overview (RAL)
-    - Core Type Mini-Reference
-    - Type Reference (the big one)
-    - How to Get Info for Resource Types
-        * and use the huge type reference
-    - Installing custom types from modules
-    - Writing Types and Providers
-    - Type and Provider API Quick-Reference
-- **SSL and Certificates**
-    - SSL Requirements for Normal Communication
-    - DNS Alt Names for Puppet Masters
-    - Certificate Management Tools
-    - Autosigning
-    - Remote Certificate Signing
-    - Certificate Request/Retrieval and Timing Diagrams
-- **Puppet Data Library**
-    - PuppetDB
-    - Storeconfigs
-    - Inventory Service
-    - Writing Custom Reports
-    - Report Formats
-    - Resource Graphs
-    - Catalog Formats
-    - Node Facts Format
-- **API**
-    - Puppet Subsystems
-    - REST API
-    - Faces Ruby API
-    - Indirector Faces
-- **Environments**
-    - Environments
-- **Configuring Puppet**
-    - Settings and Puppet.conf
-    - Auth.conf
-        * Stanza format
-        * Request processing
-        * Default values
-    - Other Config Files
-    - Abridged Configuration Reference
-    - Full Configuration Reference
-- **Data Binding and Lookup**
-    - Hiera Integration
-    - Automatic Data Binding (for 3.0)
-    - Data Lookup Functions
-    - Alternate Data Binding Termini
-    - Integration Points for Custom Data Sources
-- **Internals**
-    - Indirections and Termini
-    - The Autoloader
-    - The Compiler
-    - The Transaction
-- **Reference Appendix**
-    - Generated References
-
-  <li><strong>More Sections Coming Later</strong>
-    <ul>
-      <li><strong>Standard Puppet Operation</strong></li>
-      <li><strong>Command Line Interface</strong></li>
-      <li><strong>The Puppet Services</strong></li>
-      <li><strong>Node Classification</strong></li>
-      <li><strong>File Serving</strong></li>
-      <li><strong>Resource Types and Providers</strong></li>
-      <li><strong>SSL and Certificates</strong></li>
-      <li><strong>Puppet Data Library</strong></li>
-      <li><strong>Environments</strong></li>
-      <li><strong>Configuring Puppet</strong></li>
-      <li><strong>Internals</strong></li>
-    </ul>
-  </li>
-{% endcomment %}
+{% capture puppet_dir %}/puppet/3/reference{% endcapture %}
 
 
 <h3 id="puppet-3-reference-manual">Puppet 3 Reference Manual</h3>
 
-<p><a href="./index.html">Main Index</a></p>
+<p><a href="{{ puppet_dir }}/index.html">Main Index</a></p>
 
 
 <ul>
   <li><strong>Puppet 3 Overview</strong>
     <ul>
-      <li><a href="./index.html">Introduction</a></li>
-      <li><a href="./release_notes.html">Puppet 3.x.x Release Notes</a></li>
-      <li><a href="./system_requirements.html">System Requirements</a></li>
+      <li><a href="{{ puppet_dir }}/index.html">Introduction</a></li>
+      <li><a href="{{ puppet_dir }}/release_notes.html">Puppet 3.x.x Release Notes</a></li>
+      <li><a href="{{ puppet_dir }}/system_requirements.html">System Requirements</a></li>
     </ul>
   </li>
   <li><strong>The Puppet Language</strong>
     <ul>
-      <li><a href="./lang_visual_index.html">Visual Index</a></li>
-      <li><a href="./lang_summary.html">Summary</a></li>
-      <li><a href="./lang_reserved.html">Reserved Words and Allowed Names</a></li>
-      <li><a href="./lang_resources.html">Resources</a></li>
-      <li><a href="./lang_relationships.html">Relationships and Ordering</a></li>
-      <li><a href="./lang_defaults.html">Resource Defaults</a></li>
-      <li><a href="./lang_variables.html">Variables</a></li>
-      <li><a href="./lang_scope.html">Scope</a></li>
-      <li><a href="./lang_conditional.html">Conditional Statements</a></li>
-      <li><a href="./lang_expressions.html">Expressions</a></li>
-      <li><a href="./lang_functions.html">Functions</a></li>
-      <li><a href="./lang_classes.html">Classes</a></li>
-      <li><a href="./lang_defined_types.html">Defined Types</a></li>
-      <li><a href="./lang_containment.html">Containment</a></li>
-      <li><a href="./lang_namespaces.html">Namespaces and Autoloading</a></li>
-      <li><a href="./lang_collectors.html">Resource Collectors</a></li>
-      <li><a href="./lang_node_definitions.html">Node definitions</a></li>
-      <li><a href="./lang_datatypes.html">Data Types</a></li>
-      <li><a href="./lang_comments.html">Comments</a></li>
-      <li><a href="./lang_virtual.html">Virtual Resources</a></li>
-      <li><a href="./lang_exported.html">Exported Resources</a></li>
-      <li><a href="./lang_tags.html">Tags</a></li>
-      <li><a href="./lang_run_stages.html">Run Stages</a></li>
-      <li><a href="./lang_import.html">Importing Manifest Files</a></li>
+      <li><a href="{{ puppet_dir }}/lang_visual_index.html">Visual Index</a></li>
+      <li><a href="{{ puppet_dir }}/lang_summary.html">Summary</a></li>
+      <li><a href="{{ puppet_dir }}/lang_reserved.html">Reserved Words and Allowed Names</a></li>
+      <li><a href="{{ puppet_dir }}/lang_resources.html">Resources</a></li>
+      <li><a href="{{ puppet_dir }}/lang_relationships.html">Relationships and Ordering</a></li>
+      <li><a href="{{ puppet_dir }}/lang_defaults.html">Resource Defaults</a></li>
+      <li><a href="{{ puppet_dir }}/lang_variables.html">Variables</a></li>
+      <li><a href="{{ puppet_dir }}/lang_scope.html">Scope</a></li>
+      <li><a href="{{ puppet_dir }}/lang_conditional.html">Conditional Statements</a></li>
+      <li><a href="{{ puppet_dir }}/lang_expressions.html">Expressions</a></li>
+      <li><a href="{{ puppet_dir }}/lang_functions.html">Functions</a></li>
+      <li><a href="{{ puppet_dir }}/lang_classes.html">Classes</a></li>
+      <li><a href="{{ puppet_dir }}/lang_defined_types.html">Defined Types</a></li>
+      <li><a href="{{ puppet_dir }}/lang_containment.html">Containment</a></li>
+      <li><a href="{{ puppet_dir }}/lang_namespaces.html">Namespaces and Autoloading</a></li>
+      <li><a href="{{ puppet_dir }}/lang_collectors.html">Resource Collectors</a></li>
+      <li><a href="{{ puppet_dir }}/lang_node_definitions.html">Node definitions</a></li>
+      <li><a href="{{ puppet_dir }}/lang_datatypes.html">Data Types</a></li>
+      <li><a href="{{ puppet_dir }}/lang_comments.html">Comments</a></li>
+      <li><a href="{{ puppet_dir }}/lang_virtual.html">Virtual Resources</a></li>
+      <li><a href="{{ puppet_dir }}/lang_exported.html">Exported Resources</a></li>
+      <li><a href="{{ puppet_dir }}/lang_tags.html">Tags</a></li>
+      <li><a href="{{ puppet_dir }}/lang_run_stages.html">Run Stages</a></li>
+      <li><a href="{{ puppet_dir }}/lang_import.html">Importing Manifest Files</a></li>
     </ul>
   </li>
 
 
   <li><strong>Modules</strong>
     <ul>
-      <li><a href="./modules_fundamentals.html">Fundamentals</a></li>
+      <li><a href="{{ puppet_dir }}/modules_fundamentals.html">Fundamentals</a></li>
       <li><a href="/guides/plugins_in_modules.html">Plugins in Modules</a></li>
-      <li><a href="./modules_installing.html">Installing Modules</a></li>
-      <li><a href="./modules_publishing.html">Publishing Modules on the Puppet Forge</a></li>
-      <li><a href="./modules_documentation.html">Module Documentation</a></li>
+      <li><a href="{{ puppet_dir }}/modules_installing.html">Installing Modules</a></li>
+      <li><a href="{{ puppet_dir }}/modules_publishing.html">Publishing Modules on the Puppet Forge</a></li>
+      <li><a href="{{ puppet_dir }}/modules_documentation.html">Module Documentation</a></li>
     </ul>
   </li>
 
   <li><strong>SSL and Certificates</strong>
     <ul>
-      <li><a href="./config_ssl_external_ca.html">Using an External CA</a></li>
-      <li><a href="./ssl_autosign.html">Configuring Autosigning</a></li>
-      <li><a href="./ssl_attributes_extensions.html">CSR Attributes and Certificate Extensions</a></li>
+      <li><a href="{{ puppet_dir }}/config_ssl_external_ca.html">Using an External CA</a></li>
+      <li><a href="{{ puppet_dir }}/ssl_autosign.html">Configuring Autosigning</a></li>
+      <li><a href="{{ puppet_dir }}/ssl_attributes_extensions.html">CSR Attributes and Certificate Extensions</a></li>
     </ul>
   </li>
 
   <li><strong>Data Formats</strong>
     <ul>
-      <li><a href="./format_report.html">Report Format</a></li>
+      <li><a href="{{ puppet_dir }}/format_report.html">Report Format</a></li>
     </ul>
   </li>
 
   <li><strong>Puppet Subsystems</strong>
     <ul>
-      <li><a href="./subsystem_agent_master_comm.html">Agent/Master HTTPS Communications</a></li>
+      <li><a href="{{ puppet_dir }}/subsystem_agent_master_comm.html">Agent/Master HTTPS Communications</a></li>
     </ul>
   </li>
   <li><strong>Experimental Features</strong>
     <ul>
-      <li><a href="./experiments_overview.html">Overview</a></li>
-      <li><a href="./experiments_future.html">The Future Parser (3.2+)</a></li>
-      <li><a href="./experiments_lambdas.html">Iteration and Lambdas (3.2+)</a></li>
-      <li><a href="./experiments_binder.html">The Data Binder (3.3+)</a></li>
-      <li><a href="./experiments_msgpack.html">Msgpack Support (3.4+)</a></li>
+      <li><a href="{{ puppet_dir }}/experiments_overview.html">Overview</a></li>
+      <li><a href="{{ puppet_dir }}/experiments_future.html">The Future Parser (3.2+)</a></li>
+      <li><a href="{{ puppet_dir }}/experiments_lambdas.html">Iteration and Lambdas (3.2+)</a></li>
+      <li><a href="{{ puppet_dir }}/experiments_binder.html">The Data Binder (3.3+)</a></li>
+      <li><a href="{{ puppet_dir }}/experiments_msgpack.html">Msgpack Support (3.4+)</a></li>
     </ul>
   </li>
   <li><strong>Generated References</strong>
     <ul>
-      <li><a href="./type.html">Resource Types</a></li>
-      <li><a href="./configuration.html">Configuration Settings</a></li>
-      <li><a href="./function.html">Functions</a></li>
-      <li><a href="./metaparameter.html">Metaparameters</a></li>
-      <li><a href="./report.html">Report Handlers</a></li>
-      <li><a href="./indirection.html">Indirections and Termini</a></li>
-      <li><a href="./yard/index.html">Developer Documentation</a></li>
+      <li><a href="{{ puppet_dir }}/type.html">Resource Types</a></li>
+      <li><a href="{{ puppet_dir }}/configuration.html">Configuration Settings</a></li>
+      <li><a href="{{ puppet_dir }}/function.html">Functions</a></li>
+      <li><a href="{{ puppet_dir }}/metaparameter.html">Metaparameters</a></li>
+      <li><a href="{{ puppet_dir }}/report.html">Report Handlers</a></li>
+      <li><a href="{{ puppet_dir }}/indirection.html">Indirections and Termini</a></li>
+      <li><a href="{{ puppet_dir }}/yard/index.html">Developer Documentation</a></li>
     </ul>
   </li>
 </ul>
