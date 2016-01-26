@@ -17,7 +17,7 @@ Shipped in [`puppet-agent` 1.3.3][puppet-agent 1.3.x].
 Facter 3.1.4 is a platform packaging release in the Facter 3.1 series.
 
 * [Fixed in Facter 3.1.4](https://tickets.puppetlabs.com/issues/?jql=affectedVersion%20%3D%20%27FACT%203.1.4%27)
-* [Introduced in Facter 3.1.4](https://tickets.puppetlabs.com/browse/FACT-1313?jql=fixVersion%20%3D%20%27FACT%203.1.4%27)
+* [Introduced in Facter 3.1.4](https://tickets.puppetlabs.com/issues/?jql=affectedVersion%20%3D%20%27FACT%203.1.4%27)
 
 ### NEW PLATFORM: Ubuntu Wily 15.10
 
