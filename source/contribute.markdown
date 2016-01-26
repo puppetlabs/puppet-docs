@@ -96,7 +96,7 @@ Use headings to increase the scanability of your content, and to make separate s
 ### Formatting
 - For file names and directories, use `monospace`.
 - When citing text that appears in the GUI, use **bold**.
-- For commands and code examples, use `monospace`. Short commands can be included as part of the paragraph. Longer examples or code should be set in a separate paragraph, enclosed within three back-ticks.
+- For commands and code examples, use `monospace`. Short commands can be included as part of the paragraph. Longer examples or code should be set in a separate paragraph, enclosed within three tildes (`~~~`).
 - For user input on the command line, use `monospace`. For user input on a GUI, use _italics_.
 - To indicate text in code that should be replaced, use angle-brackets and all-caps (and, if in a code example, monospace): `<TEST_HOSTNAME>`
 
