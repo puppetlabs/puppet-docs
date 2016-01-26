@@ -2,7 +2,6 @@
 layout: default
 built_from_commit: e49293167c2a4753e3db51df5585478e3d8c8877
 title: 'Man Page: puppet file'
-nav: /_includes/references_man.html
 canonical: /puppet/latest/reference/man/file.html
 ---
 

@@ -2,7 +2,6 @@
 layout: default
 built_from_commit: 08cb8b2d315a296fa404a4871f94b3703a819461
 title: 'Man Page: puppet module'
-nav: /_includes/references_man.html
 canonical: /puppet/latest/reference/man/module.html
 ---
 

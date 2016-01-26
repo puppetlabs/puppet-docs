@@ -2,7 +2,6 @@
 layout: default
 built_from_commit: c4a6a76fd219bffd689476413985ed13f40ef1dd
 title: 'Man Page: puppet certificate_request'
-nav: /_includes/references_man.html
 canonical: /puppet/latest/reference/man/certificate_request.html
 ---
 

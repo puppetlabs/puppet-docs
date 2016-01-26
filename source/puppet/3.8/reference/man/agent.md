@@ -2,7 +2,6 @@
 layout: default
 built_from_commit: c0673af42427fbe0b22ff97c8e5fa3244715eeae
 title: 'Man Page: puppet agent'
-nav: /_includes/references_man.html
 canonical: /puppet/latest/reference/man/agent.html
 ---
 

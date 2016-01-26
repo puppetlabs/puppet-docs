@@ -2,7 +2,6 @@
 layout: default
 built_from_commit: b38f8a72231c43ffcd4fe348667c7764692af9a1
 title: 'Man Page: puppet epp'
-nav: /_includes/references_man.html
 canonical: /puppet/latest/reference/man/epp.html
 ---
 
