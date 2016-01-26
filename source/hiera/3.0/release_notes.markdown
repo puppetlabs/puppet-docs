@@ -9,7 +9,7 @@ title: "Hiera 3: Release Notes"
 
 Released January 25, 2016.
 
-Shipped in [`puppet-agent`][] version 1.3.3.
+Shipped in [`puppet-agent`][] version 1.3.4.
 
 Hiera 3.0.6 has no functional changes from 3.0.5, but has an increase in version number for testing and packaging purposes with `puppet-agent` 1.3.3.
 
