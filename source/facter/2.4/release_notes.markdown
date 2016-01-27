@@ -6,6 +6,18 @@ description: "Facter release notes for all 2.4 versions"
 
 This page documents the history of the Facter 2.4 series. (Elsewhere: release notes for [Facter 2.3](../2.3/release_notes.html), [Facter 2.2](../2.2/release_notes.html), [Facter 2.1](../2.1/release_notes.html), and [Facter 2.0](../2.0/release_notes.html)).
 
+## Facter 2.4.6
+
+Released January 26, 2016.
+
+Facter 2.4.6 reverts a change in Facter 2.4.5 that caused breaking behavior for users.
+
+### Reverted: Use public IP address for the `ipaddress` fact
+
+Many users were relying on Facter's existing behavior in Facter 2.x for returning IP addresses, so this change has been reverted. Users who want to ignore private IP addresses when reporting the `ipadress` fact can upgrade to Facter 3.x.
+
+* [FACT-380](https://tickets.puppetlabs.com/browse/FACT-380)
+
 ## Facter 2.4.5
 
 Released January 20, 2016.
