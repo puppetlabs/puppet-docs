@@ -211,38 +211,9 @@
         </div>
         <nav class="main">
               <div id="subCol">
-                  <ul id="doc-navigation">
-                    <li class="with-submenu">
-                      <a href="#">
-                        <span>Docs Quick Nav</span>
-                        <span class="drop-down-trigger"></span>
-                      </a>
-                       {% include quick_nav.html %}
-                    </li>
-                  </ul>
+                  {% include quick_nav.html %}
 
-                  {% if page.doc %}
-                  <ul id="doc-navigation">
-                      <li class="with-submenu">
-                          <a href="#">
-                              <span>Version: {{ page.doc.version }}{% if site.document_version_index[page.doc.doc].latest == page.doc.base_url %} (latest){% endif %}</span>
-                              <span class="drop-down-trigger"></span>
-                          </a>
-                          <dl>
-                              <dt></dt>
-                              {% for base_url in site.document_version_order[page.doc.doc] %}
-                              <dd>
-                                  {% if base_url == page.doc.base_url %}
-                                  Version {{page.doc.version}}{% if site.document_version_index[page.doc.doc].latest == base_url %} (latest){% endif %}
-                                  {% else %}
-                                  <a href="{% change_baseurl page.url page.doc.base_url base_url %}">Version {{ site['document_list'][base_url]['version'] }}{% if site.document_version_index[page.doc.doc].latest == base_url %} (latest){% endif %}</a>
-                                  {% endif %}
-                              </dd>
-                              {% endfor %}
-                          </dl>
-                      </li>
-                  </ul>
-                  {% endif %}
+                  {% include version_switcher.html %}
 
                   {% render_nav %}
               </div>
