@@ -1543,7 +1543,7 @@ ul#doc-navigation li.with-submenu dl {
   background: rgba(48,44,109,.9);
   left: 0;
   z-index: 10;
-  font-size: 0.85em;
+  font-size: 1em;
   transition: opacity 0.3s linear;
   -webkit-transition: opacity 0.3s linear;
   width: 288px;
@@ -1571,14 +1571,15 @@ ul#doc-navigation li.with-submenu dl dt {
   padding: 0.75em 10px 0;
 }
 
-ul#doc-navigation li.with-submenu dl a {
+ul#doc-navigation li.with-submenu dl dd {
   padding: 0.25em 10px;
   display: block;
   line-height: 1.33em;
   margin-bottom: 0.25em;
+  color: #ffffff;
 }
 
-ul#doc-navigation li.with-submenu dl a {
+ul#doc-navigation li.with-submenu dl dd a {
   color: #f6b333;
 }
 
