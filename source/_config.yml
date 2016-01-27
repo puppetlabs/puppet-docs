@@ -163,6 +163,14 @@ version_notes:
 #      puppetserver: 2.2
 #      puppetdb: 3.2
 
+document_names:
+  pe: Puppet Enterprise
+  puppet: Puppet
+  puppetserver: Puppet Server
+  puppetdb: PuppetDB
+  hiera: Hiera
+  facter: Facter
+
 documents:
   /pe/2015.3:
     doc: pe
