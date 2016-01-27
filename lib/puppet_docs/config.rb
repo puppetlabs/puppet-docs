@@ -57,7 +57,7 @@ module PuppetDocs
       self['document_version_index'].each {|doc, ver_index|
         latest_ver = self['lock_latest'][doc] || PuppetDocs::Versions.latest(ver_index.keys)
         # byebug
-        self['document_version_index'][doc]['latest'] = self['document_version_index'][doc][latest_ver]
+        ver_index['latest'] = ver_index[latest_ver]
       }
 
       # Expand the document data: fill all empty my_version fields.
