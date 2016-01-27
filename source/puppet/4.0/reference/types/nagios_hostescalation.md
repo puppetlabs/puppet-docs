@@ -5,7 +5,7 @@ title: 'Resource Type: nagios_hostescalation'
 canonical: /puppet/latest/reference/types/nagios_hostescalation.html
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-01-15 16:39:04 +0100
+> **NOTE:** This page was generated from the Puppet source code on 2016-01-27 14:24:39 +0000
 
 nagios_hostescalation
 -----
@@ -219,4 +219,4 @@ Nagios configuration file parameter.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-01-15 16:39:04 +0100
+> **NOTE:** This page was generated from the Puppet source code on 2016-01-27 14:24:39 +0000

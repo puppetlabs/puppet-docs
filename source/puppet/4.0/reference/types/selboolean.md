@@ -5,7 +5,7 @@ title: 'Resource Type: selboolean'
 canonical: /puppet/latest/reference/types/selboolean.html
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-01-15 16:39:04 +0100
+> **NOTE:** This page was generated from the Puppet source code on 2016-01-27 14:24:39 +0000
 
 selboolean
 -----
@@ -79,4 +79,4 @@ Manage SELinux booleans using the getsebool and setsebool binaries.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-01-15 16:39:04 +0100
+> **NOTE:** This page was generated from the Puppet source code on 2016-01-27 14:24:39 +0000

@@ -5,7 +5,7 @@ title: 'Resource Type: scheduled_task'
 canonical: /puppet/latest/reference/types/scheduled_task.html
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-01-15 16:47:06 +0100
+> **NOTE:** This page was generated from the Puppet source code on 2016-01-27 14:22:05 +0000
 
 scheduled_task
 -----
@@ -228,4 +228,4 @@ This provider manages scheduled tasks on Windows.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-01-15 16:47:06 +0100
+> **NOTE:** This page was generated from the Puppet source code on 2016-01-27 14:22:05 +0000

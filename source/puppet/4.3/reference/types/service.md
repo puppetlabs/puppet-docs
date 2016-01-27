@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 08dbaf538d4bb530b97815b9a88857bf93a63c49
+built_from_commit: 3b5d15cb1c5ed830cb460f2687fde710e5383e69
 title: 'Resource Type: service'
 canonical: /puppet/latest/reference/types/service.html
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-01-15 16:54:12 +0100
+> **NOTE:** This page was generated from the Puppet source code on 2016-01-27 14:15:19 +0000
 
 service
 -----
@@ -332,7 +332,7 @@ The only differences from `init` are support for enabling and disabling
 services via `update-rc.d` and the ability to determine enabled status via
 `invoke-rc.d`.
 
-* Required binaries: `/usr/sbin/invoke-rc.d`, `/usr/sbin/update-rc.d`.
+* Required binaries: `/usr/sbin/invoke-rc.d`, `/usr/sbin/service`, `/usr/sbin/update-rc.d`.
 * Default for `operatingsystem` == `cumuluslinux`. Default for `operatingsystem` == `debian` and `operatingsystemmajrelease` == `5, 6, 7`.
 * Supported features: `enableable`, `refreshable`.
 
@@ -517,7 +517,7 @@ is not yet supported.
 Manages `systemd` services using `systemctl`.
 
 * Required binaries: `systemctl`.
-* Default for `osfamily` == `archlinux`. Default for `operatingsystemmajrelease` == `7` and `osfamily` == `redhat`. Default for `operatingsystem` == `fedora` and `osfamily` == `redhat`. Default for `osfamily` == `suse`. Default for `operatingsystem` == `debian` and `operatingsystemmajrelease` == `8`. Default for `operatingsystem` == `ubuntu` and `operatingsystemmajrelease` == `15.04`.
+* Default for `osfamily` == `archlinux`. Default for `operatingsystemmajrelease` == `7` and `osfamily` == `redhat`. Default for `operatingsystem` == `fedora` and `osfamily` == `redhat`. Default for `osfamily` == `suse`. Default for `operatingsystem` == `debian` and `operatingsystemmajrelease` == `8`. Default for `operatingsystem` == `ubuntu` and `operatingsystemmajrelease` == `15.04, 15.10`.
 * Supported features: `enableable`, `maskable`, `refreshable`.
 
 <h4 id="service-provider-upstart">upstart</h4>
@@ -733,4 +733,4 @@ Provider support:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-01-15 16:54:12 +0100
+> **NOTE:** This page was generated from the Puppet source code on 2016-01-27 14:15:19 +0000

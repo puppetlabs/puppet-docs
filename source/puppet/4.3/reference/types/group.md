@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 08dbaf538d4bb530b97815b9a88857bf93a63c49
+built_from_commit: 3b5d15cb1c5ed830cb460f2687fde710e5383e69
 title: 'Resource Type: group'
 canonical: /puppet/latest/reference/types/group.html
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-01-15 16:54:12 +0100
+> **NOTE:** This page was generated from the Puppet source code on 2016-01-27 14:15:19 +0000
 
 group
 -----
@@ -32,7 +32,7 @@ a group record.
   <a href="#group-attribute-allowdupe">allowdupe</a>            =&gt; <em># Whether to allow duplicate GIDs. Defaults to...</em>
   <a href="#group-attribute-attribute_membership">attribute_membership</a> =&gt; <em># Whether specified attribute value pairs should...</em>
   <a href="#group-attribute-attributes">attributes</a>           =&gt; <em># Specify group AIX attributes in an array of...</em>
-  <a href="#group-attribute-auth_membership">auth_membership</a>      =&gt; <em># whether the provider is authoritative for group...</em>
+  <a href="#group-attribute-auth_membership">auth_membership</a>      =&gt; <em># Whether the provider is authoritative for group...</em>
   <a href="#group-attribute-forcelocal">forcelocal</a>           =&gt; <em># Forces the management of local accounts when...</em>
   <a href="#group-attribute-gid">gid</a>                  =&gt; <em># The group ID.  Must be specified numerically....</em>
   <a href="#group-attribute-ia_load_module">ia_load_module</a>       =&gt; <em># The name of the I&A module to use to manage this </em>
@@ -98,7 +98,9 @@ Requires features manages_aix_lam.
 
 <h4 id="group-attribute-auth_membership">auth_membership</h4>
 
-whether the provider is authoritative for group membership.
+Whether the provider is authoritative for group membership. This
+must be set to true to allow setting the group to no members with
+`members => [],`.
 
 Valid values are `true`, `false`, `yes`, `no`.
 
@@ -145,7 +147,9 @@ Requires features manages_aix_lam.
 _(**Property:** This attribute represents concrete state on the target system.)_
 
 The members of the group. For directory services where group
-membership is stored in the group objects, not the users.
+membership is stored in the group objects, not the users. Use
+with auth_membership to determine whether the specified members
+are inclusive or the minimum.
 
 
 
@@ -302,4 +306,4 @@ Provider support:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-01-15 16:54:12 +0100
+> **NOTE:** This page was generated from the Puppet source code on 2016-01-27 14:15:19 +0000

@@ -36,7 +36,7 @@ from cron.</p>
 <p>Any configuration setting which is valid in the configuration file is
 also a valid long argument, e.g. '--server=master.domain.com'. See the
 configuration file documentation at
-http://docs.puppetlabs.com/puppet/latest/reference/configuration.html for
+http://docs.puppetlabs.com/references/latest/configuration.html for
 the full list of acceptable settings.</p>
 
 <dl>

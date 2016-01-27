@@ -1,12 +1,12 @@
 ---
 layout: default
-built_from_commit: 08dbaf538d4bb530b97815b9a88857bf93a63c49
+built_from_commit: 3b5d15cb1c5ed830cb460f2687fde710e5383e69
 title: Resource Type Reference (Single-Page)
 canonical: /puppet/latest/reference/type.html
 toc: columns
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-01-15 16:54:11 +0100
+> **NOTE:** This page was generated from the Puppet source code on 2016-01-27 14:15:19 +0000
 
 ## About Resource Types
 
@@ -1281,8 +1281,8 @@ the manifest...
     }
 
 ...but for larger files, this attribute is more useful when combined with the
-[template](http://docs.puppetlabs.com/puppet/latest/reference/function.html#template)
-or [file](http://docs.puppetlabs.com/puppet/latest/reference/function.html#file)
+[template](http://docs.puppetlabs.com/references/latest/function.html#template)
+or [file](http://docs.puppetlabs.com/references/latest/function.html#file)
 function.
 
 ([↑ Back to file attributes](#file-attributes))
@@ -1836,7 +1836,7 @@ Filebuckets are used for the following features:
   puppet master's filebucket with the _desired_ content for each file,
   then instructs the agent to retrieve the content for a specific
   checksum. For more details,
-  [see the `static_compiler` section in the catalog indirection docs](http://docs.puppetlabs.com/puppet/latest/reference/indirection.html#catalog).
+  [see the `static_compiler` section in the catalog indirection docs](http://docs.puppetlabs.com/references/latest/indirection.html#catalog).
 
 To use a central filebucket for backups, you will usually want to declare
 a filebucket resource and a resource default for the `backup` attribute
@@ -1929,7 +1929,7 @@ a group record.
   <a href="#group-attribute-allowdupe">allowdupe</a>            =&gt; <em># Whether to allow duplicate GIDs. Defaults to...</em>
   <a href="#group-attribute-attribute_membership">attribute_membership</a> =&gt; <em># Whether specified attribute value pairs should...</em>
   <a href="#group-attribute-attributes">attributes</a>           =&gt; <em># Specify group AIX attributes in an array of...</em>
-  <a href="#group-attribute-auth_membership">auth_membership</a>      =&gt; <em># whether the provider is authoritative for group...</em>
+  <a href="#group-attribute-auth_membership">auth_membership</a>      =&gt; <em># Whether the provider is authoritative for group...</em>
   <a href="#group-attribute-forcelocal">forcelocal</a>           =&gt; <em># Forces the management of local accounts when...</em>
   <a href="#group-attribute-gid">gid</a>                  =&gt; <em># The group ID.  Must be specified numerically....</em>
   <a href="#group-attribute-ia_load_module">ia_load_module</a>       =&gt; <em># The name of the I&A module to use to manage this </em>
@@ -1995,7 +1995,9 @@ Requires features manages_aix_lam.
 
 <h4 id="group-attribute-auth_membership">auth_membership</h4>
 
-whether the provider is authoritative for group membership.
+Whether the provider is authoritative for group membership. This
+must be set to true to allow setting the group to no members with
+`members => [],`.
 
 Valid values are `true`, `false`, `yes`, `no`.
 
@@ -2042,7 +2044,9 @@ Requires features manages_aix_lam.
 _(**Property:** This attribute represents concrete state on the target system.)_
 
 The members of the group. For directory services where group
-membership is stored in the group objects, not the users.
+membership is stored in the group objects, not the users. Use
+with auth_membership to determine whether the specified members
+are inclusive or the minimum.
 
 
 
@@ -8406,7 +8410,7 @@ schedule
 <h3 id="schedule-description">Description</h3>
 
 Define schedules for Puppet. Resources can be limited to a schedule by using the
-[`schedule`](http://docs.puppetlabs.com/puppet/latest/reference/metaparameter.html#schedule)
+[`schedule`](http://docs.puppetlabs.com/references/latest/metaparameter.html#schedule)
 metaparameter.
 
 Currently, **schedules can only be used to stop a resource from being
@@ -9308,7 +9312,7 @@ The only differences from `init` are support for enabling and disabling
 services via `update-rc.d` and the ability to determine enabled status via
 `invoke-rc.d`.
 
-* Required binaries: `/usr/sbin/invoke-rc.d`, `/usr/sbin/update-rc.d`.
+* Required binaries: `/usr/sbin/invoke-rc.d`, `/usr/sbin/service`, `/usr/sbin/update-rc.d`.
 * Default for `operatingsystem` == `cumuluslinux`. Default for `operatingsystem` == `debian` and `operatingsystemmajrelease` == `5, 6, 7`.
 * Supported features: `enableable`, `refreshable`.
 
@@ -9493,7 +9497,7 @@ is not yet supported.
 Manages `systemd` services using `systemctl`.
 
 * Required binaries: `systemctl`.
-* Default for `osfamily` == `archlinux`. Default for `operatingsystemmajrelease` == `7` and `osfamily` == `redhat`. Default for `operatingsystem` == `fedora` and `osfamily` == `redhat`. Default for `osfamily` == `suse`. Default for `operatingsystem` == `debian` and `operatingsystemmajrelease` == `8`. Default for `operatingsystem` == `ubuntu` and `operatingsystemmajrelease` == `15.04`.
+* Default for `osfamily` == `archlinux`. Default for `operatingsystemmajrelease` == `7` and `osfamily` == `redhat`. Default for `operatingsystem` == `fedora` and `osfamily` == `redhat`. Default for `osfamily` == `suse`. Default for `operatingsystem` == `debian` and `operatingsystemmajrelease` == `8`. Default for `operatingsystem` == `ubuntu` and `operatingsystemmajrelease` == `15.04, 15.10`.
 * Supported features: `enableable`, `maskable`, `refreshable`.
 
 <h4 id="service-provider-upstart">upstart</h4>
@@ -9977,7 +9981,7 @@ stage
 A resource type for creating new run stages.  Once a stage is available,
 classes can be assigned to it by declaring them with the resource-like syntax
 and using
-[the `stage` metaparameter](http://docs.puppetlabs.com/puppet/latest/reference/metaparameter.html#stage).
+[the `stage` metaparameter](http://docs.puppetlabs.com/references/latest/metaparameter.html#stage).
 
 Note that new stages are not useful unless you also declare their order
 in relation to the default `main` stage.
@@ -12260,4 +12264,4 @@ Provider for zpool.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-01-15 16:54:11 +0100
+> **NOTE:** This page was generated from the Puppet source code on 2016-01-27 14:15:19 +0000

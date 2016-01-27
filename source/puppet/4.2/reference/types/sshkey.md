@@ -5,7 +5,7 @@ title: 'Resource Type: sshkey'
 canonical: /puppet/latest/reference/types/sshkey.html
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-01-15 16:50:35 +0100
+> **NOTE:** This page was generated from the Puppet source code on 2016-01-27 14:19:23 +0000
 
 sshkey
 -----
@@ -108,4 +108,4 @@ Parse and generate host-wide known hosts files for SSH.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-01-15 16:50:35 +0100
+> **NOTE:** This page was generated from the Puppet source code on 2016-01-27 14:19:23 +0000
