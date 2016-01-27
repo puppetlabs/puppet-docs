@@ -11,9 +11,9 @@ module Jekyll
     def generate(site)
       puts 'about to do the thing'
       puts Time.now.to_s
-      byebug
+      # byebug
 
-      documents = site.config['documents']
+      documents = site.config['document_list']
 
       site.pages.each do |page|
         (base_url, data) = doc_for_page(page.url, documents)
@@ -24,7 +24,7 @@ module Jekyll
 
       puts 'did the thing.'
       puts Time.now.to_s
-      byebug
+      # byebug
       puts 'hey'
 
     end
