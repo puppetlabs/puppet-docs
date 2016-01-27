@@ -57,6 +57,10 @@ module PuppetDocs
         self['document_version_index'][doc]['latest'] = self['document_version_index'][doc][latest_ver]
       }
 
+      # Duplicate the documents hash under a new name that doesn't conflict with Jekyll's
+      # site.documents method. :( If you don't do this' you can't access the documents in templates.
+      self['document_list'] = self['documents']
+
     end
 
   end
