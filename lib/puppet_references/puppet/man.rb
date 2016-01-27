@@ -136,7 +136,6 @@ EOADDENDUM
       def build_manpage(subcommand)
         puts "Man pages: Building #{subcommand}"
         header_data = {title: "Man Page: puppet #{subcommand}",
-                       nav: '/_includes/references_man.html',
                        canonical: "#{@latest}/#{subcommand}.html"}
         raw_text = PuppetReferences::ManCommand.new(subcommand).get
         content = make_header(header_data) + render_with_ronn(raw_text)
