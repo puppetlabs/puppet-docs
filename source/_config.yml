@@ -190,8 +190,8 @@ documents:
       puppet: 4.2
       facter: 3.1
       hiera: 3.0
-      puppetserver: 2.2
-      puppetdb: 3.2
+      puppetserver: 2.1
+      puppetdb: 3.1
   /pe/3.8:
     doc: pe
     version: 3.8
