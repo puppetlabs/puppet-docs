@@ -44,7 +44,7 @@ The following words are reserved:
 * `elsif` --- language keyword
 * `environment` --- reserved for symbolic namespace use
 * `false` --- boolean value
-* `function` --- reserved for future use
+* `function` --- language keyword
 * `if` --- language keyword
 * `import` --- former language keyword (now removed)
 * `in` --- expression operator
