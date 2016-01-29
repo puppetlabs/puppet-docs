@@ -52,15 +52,15 @@ Puppet and its prerequisites are known to run on the following platforms, but we
 
 - SUSE Linux Enterprise Server, version 11 and higher
 - Gentoo Linux
-- Mandriva Corporate Server 4 
+- Mandriva Corporate Server 4
 - ArchLinux
 
 ### Other Unix
 
 - Oracle Solaris, version 10 and higher (Puppet Labs performs limited automated testing on Solaris 11.)
 - AIX, version 5.3 and higher
-- FreeBSD 4.7 and later 
-- OpenBSD 4.1 and later 
+- FreeBSD 4.7 and later
+- OpenBSD 4.1 and later
 - HP-UX
 
 Basic Requirements
@@ -85,7 +85,7 @@ Use one of the following versions of MRI (standard) Ruby:
 - [Facter](http://www.puppetlabs.com/puppet/related-projects/facter/) 2.4.3 or later
 - [Hiera](/hiera/latest/) 2.0.0 or later
 - The `json` gem (any modern version).
-- The [`rgen` gem](http://ruby-gen.org/downloads) version 0.6.6 or later is now required because Puppet [ `parser = future` is enabled by default](./experiments_future.html).
+- The [`rgen` gem](http://ruby-gen.org/downloads) version 0.6.6 or later is now required because Puppet [ `parser = future` is enabled by default](./lang_updating_manifests.html).
 
 ### Optional Libraries
 
