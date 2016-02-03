@@ -8,6 +8,9 @@
         <dl>
             <dt></dt>
             {% for base_url in site.document_version_order[page.doc.doc] %}
+            {% if site['document_list'][base_url]['hide'] and base_url != page.doc.base_url %}
+                {% continue %}
+            {% endif %}
             <dd>
                 {% if base_url == page.doc.base_url %}
                 Version {{page.doc.version}}{% if site.document_version_index[page.doc.doc].latest == base_url %} (latest){% endif %}

@@ -152,6 +152,7 @@ version_notes:
 #    doc: pe                      # Which document group it's a part of. Used to determine this doc's siblings.
 #    version: 2015.3              # Version. Used for associating confirmed version numbers with a URL.
 #    nav: ./_pe_toc.html          # Nav snippet. Can be an absolute URL, or relative to the base URL.
+#    hide: false                  # Whether to hide this version in the version switcher. Optional; defaults to false.
 #    external_source:             # External source. Works the same as external sources above; requires repo, commit, and subdirectory keys.
 #      repo: git@github.com:puppetlabs/pe-docs-private.git
 #      commit: origin/pe2015.3.1
@@ -258,22 +259,27 @@ documents:
     doc: pe
     version: 2.8
     nav: /_includes/pe28.html
+    hide: true
   /pe/2.7:
     doc: pe
     version: 2.7
     nav: /_includes/pe27.html
+    hide: true
   /pe/2.6:
     doc: pe
     version: 2.6
     nav: /_includes/pe26.html
+    hide: true
   /pe/2.5:
     doc: pe
     version: 2.5
     nav: /_includes/pe25.html
+    hide: true
   /pe/2.0:
     doc: pe
     version: 2.0
     nav: /_includes/pe_2.0_nav.markdown
+    hide: true
 
   /puppet/4.3/reference:
     doc: puppet
@@ -331,22 +337,27 @@ documents:
     doc: puppet
     version: 3
     nav: /_includes/puppet_3.html
+    hide: true
   /puppet/2.7/reference:
     doc: puppet
     version: 2.7
     nav: /_includes/puppet_2_7.html
+    hide: true
   /puppet/2.6/reference:
     doc: puppet
     version: 2.6
     nav: /_includes/puppet_2_6.html
+    hide: true
   /puppet/0.25/reference:
     doc: puppet
     version: 0.25
     nav: /_includes/puppet_0_25.html
+    hide: true
   /puppet/0.24/reference:
     doc: puppet
     version: 0.24
     nav: /_includes/puppet_0_24.html
+    hide: true
 
   /facter/3.1:
     doc: facter
@@ -549,6 +560,7 @@ documents:
     doc: puppetdb
     version: 1.2
     nav: /_includes/puppetdb1.2.html
+    hide: true
     external_source:
       url: /puppetdb/1.2
       repo: git://github.com/puppetlabs/puppetdb.git
@@ -558,6 +570,7 @@ documents:
     doc: puppetdb
     version: 1.1
     nav: /_includes/puppetdb1.1.html
+    hide: true
     external_source:
       url: /puppetdb/1.1
       repo: git://github.com/puppetlabs/puppetdb.git
@@ -567,10 +580,12 @@ documents:
     doc: puppetdb
     version: 1
     nav: /_includes/puppetdb1.html
+    hide: true
   /puppetdb/0.9:
     doc: puppetdb
     version: 0.9
     nav: /_includes/puppetdb0.9.html
+    hide: true
   /puppetdb/master:
     doc: puppetdb
     version: master
