@@ -43,9 +43,6 @@ module PuppetDocs
         memo
       }
 
-      # Save an array of all known document groups.
-      self['document_groups'] = self['document_version_index'].keys
-
       # Lists of base URLs, in descending version order, like:
       # {'pe' => ['/pe/2015.3', '/pe/2015.2', '/pe/3.8', ...], 'puppet' => [...]}
       self['document_version_order'] = self['document_version_index'].reduce( {} ) {|memo, (doc, ver_index)|
@@ -61,11 +58,12 @@ module PuppetDocs
       }
 
       # Expand the document data: fill all empty my_version fields.
+      document_groups = self['document_version_index'].keys
       self['documents'].each {|base_url, data|
         data['my_versions'] ||= {}
 
         # Exclude self:
-        other_groups = self['document_groups'] - [ data['doc'] ]
+        other_groups = document_groups - [ data['doc'] ]
         # If we have an explicit version for a given group, keep it:
         unknown_groups = other_groups.reject {|group| data['my_versions'].has_key?(group)}
 
@@ -88,7 +86,7 @@ module PuppetDocs
       }
 
       # Duplicate the documents hash under a new name that doesn't conflict with Jekyll's
-      # site.documents method. :( If you don't do this' you can't access the documents in templates.
+      # site.documents method. :( If you don't do this, you can't access the documents in templates.
       self['document_list'] = self['documents']
 
     end
