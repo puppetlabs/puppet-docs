@@ -1,7 +1,6 @@
 require 'yaml'
 require 'pathname'
 require 'puppet_docs/versions'
-require 'byebug'
 
 module PuppetDocs
   class Config < Hash
@@ -53,7 +52,6 @@ module PuppetDocs
       # Add the special "latest" version to the index.
       self['document_version_index'].each {|doc, ver_index|
         latest_ver = self['lock_latest'][doc] || PuppetDocs::Versions.latest(ver_index.keys)
-        # byebug
         ver_index['latest'] = ver_index[latest_ver]
       }
 
