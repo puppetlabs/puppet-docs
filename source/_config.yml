@@ -4,8 +4,6 @@ markdown: kramdown
 kramdown:
   input: GFM
   hard_wrap: false
-include: [_index.html]
-destination: ../output
 url: "https://docs.puppetlabs.com"
 safe: false
 defaultnav:
