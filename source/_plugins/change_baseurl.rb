@@ -1,5 +1,10 @@
 require 'pathname'
 
+# This tag lets you replace a directory at the start of an absolute path. For example:
+# {% change_baseurl "/pe/2015.3/release_notes_known_issues.html" "/pe/2015.3" "/pe/3.8" %}
+# ...would result in /pe/3.8/release_notes_known_issues.html.
+#
+# Syntax:
 # {% change_baseurl url old_baseurl new_baseurl %}
 # Arguments are space-separated. Literal strings must be quoted;
 # otherwise we assume the args are variables.
