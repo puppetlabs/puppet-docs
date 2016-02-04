@@ -5,7 +5,7 @@ title: 'Resource Type: nagios_serviceescalation'
 canonical: /puppet/latest/reference/types/nagios_serviceescalation.html
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-01-15 16:47:06 +0100
+> **NOTE:** This page was generated from the Puppet source code on 2016-01-27 14:22:05 +0000
 
 nagios_serviceescalation
 -----
@@ -237,4 +237,4 @@ Nagios configuration file parameter.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-01-15 16:47:06 +0100
+> **NOTE:** This page was generated from the Puppet source code on 2016-01-27 14:22:05 +0000

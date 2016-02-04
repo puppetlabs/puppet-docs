@@ -5,7 +5,7 @@ title: 'Resource Type: selmodule'
 canonical: /puppet/latest/reference/types/selmodule.html
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-01-15 16:47:06 +0100
+> **NOTE:** This page was generated from the Puppet source code on 2016-01-27 14:22:05 +0000
 
 selmodule
 -----
@@ -109,4 +109,4 @@ Manage SELinux policy modules using the semodule binary.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-01-15 16:47:06 +0100
+> **NOTE:** This page was generated from the Puppet source code on 2016-01-27 14:22:05 +0000

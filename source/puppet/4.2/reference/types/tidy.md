@@ -5,7 +5,7 @@ title: 'Resource Type: tidy'
 canonical: /puppet/latest/reference/types/tidy.html
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-01-15 16:50:35 +0100
+> **NOTE:** This page was generated from the Puppet source code on 2016-01-27 14:19:23 +0000
 
 tidy
 -----
@@ -141,4 +141,4 @@ Valid values are `atime`, `mtime`, `ctime`.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-01-15 16:50:35 +0100
+> **NOTE:** This page was generated from the Puppet source code on 2016-01-27 14:19:23 +0000

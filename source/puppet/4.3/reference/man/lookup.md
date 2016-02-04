@@ -1,8 +1,7 @@
 ---
 layout: default
-built_from_commit: 08dbaf538d4bb530b97815b9a88857bf93a63c49
+built_from_commit: 3b5d15cb1c5ed830cb460f2687fde710e5383e69
 title: 'Man Page: puppet lookup'
-nav: /_includes/references_man.html
 canonical: /puppet/latest/reference/man/lookup.html
 ---
 
@@ -26,6 +25,7 @@ to be run on a puppet master or a node in a masterless setup.</p>
   [--knock-out-prefix <var>PREFIX-STRING</var>] [--sort-merged-arrays]
   [--unpack-arrays <var>STRING-VALUE</var>] [--merge-hash-arrays] [--explain]
   [--default <var>VALUE</var>] [--node <var>NODE-NAME</var>] [--facts <var>FILE</var>]
+  [--compile]
   [--render-as s|json|yaml|binary|msgpack] <var>keys</var></p>
 
 <h2 id="DESCRIPTION">DESCRIPTION</h2>
@@ -77,6 +77,9 @@ and hashes will be merged.</p></li>
 Print an explanation for the details of how the lookup performed rather
 than the value returned for the key. The explaination will describe how
 the result was obtained or why lookup failed to obtain the result.</p></li>
+<li><p>--explain-options
+Explain if a lookup_options hash will be used and how it was assembled
+when performing a lookup.</p></li>
 <li><p>--default <var>VALUE</var>
 A value produced if no value was found in the lookup.</p></li>
 <li><p>--node <var>NODE-NAME</var>
@@ -87,6 +90,10 @@ lookup is being run (which should be the master).</p></li>
 Specify a .json, or .yaml file holding key => value mappings that will
 override the facts for the current node. Any facts not specified by the
 user will maintain their original value.</p></li>
+<li><p>--compile
+Perform a full catalog compilation prior to the lookup. This is meaningful when
+the catalog changes global variables that are referenced in interpolated values.
+No catalog compilation takes place unless this flag is given.</p></li>
 <li><p>--render-as s|json|yaml|binary|msgpack
 Determines how the results will be rendered to the standard output where
 s means plain text. The default when lookup is producing a value is yaml

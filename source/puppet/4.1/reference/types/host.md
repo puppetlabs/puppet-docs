@@ -5,7 +5,7 @@ title: 'Resource Type: host'
 canonical: /puppet/latest/reference/types/host.html
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-01-15 16:47:05 +0100
+> **NOTE:** This page was generated from the Puppet source code on 2016-01-27 14:22:05 +0000
 
 host
 -----
@@ -106,4 +106,4 @@ those providers that write to disk. On most systems this defaults to `/etc/hosts
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-01-15 16:47:05 +0100
+> **NOTE:** This page was generated from the Puppet source code on 2016-01-27 14:22:05 +0000

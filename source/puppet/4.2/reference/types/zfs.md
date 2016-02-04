@@ -5,7 +5,7 @@ title: 'Resource Type: zfs'
 canonical: /puppet/latest/reference/types/zfs.html
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-01-15 16:50:35 +0100
+> **NOTE:** This page was generated from the Puppet source code on 2016-01-27 14:19:23 +0000
 
 zfs
 -----
@@ -351,4 +351,4 @@ Provider for zfs.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-01-15 16:50:35 +0100
+> **NOTE:** This page was generated from the Puppet source code on 2016-01-27 14:19:23 +0000

@@ -8,7 +8,6 @@ canonical: "/puppet/latest/reference/config_important_settings.html"
 [trusted_and_facts]: ./lang_facts_and_builtin_vars.html
 [config_reference]: ./configuration.html
 [environments]: ./environments.html
-[future]: ./experiments_future.html
 [multi_master]: /guides/scaling_multiple_masters.html
 [enc]: /guides/external_nodes.html
 [meta_noop]: ./metaparameter.html#noop

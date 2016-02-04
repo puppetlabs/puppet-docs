@@ -5,7 +5,7 @@ title: 'Resource Type: computer'
 canonical: /puppet/latest/reference/types/computer.html
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-01-15 16:47:05 +0100
+> **NOTE:** This page was generated from the Puppet source code on 2016-01-27 14:22:05 +0000
 
 computer
 -----
@@ -122,4 +122,4 @@ type as per other platforms.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-01-15 16:47:05 +0100
+> **NOTE:** This page was generated from the Puppet source code on 2016-01-27 14:22:05 +0000

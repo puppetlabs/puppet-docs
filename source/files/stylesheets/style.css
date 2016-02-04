@@ -103,6 +103,11 @@ table td {
   color: rgba(48,44,109,.9);
 }
 
+table td,
+table th {
+  line-height: 1.6;
+}
+
 table th:first-child {
   -webkit-border-top-left-radius: 0.5em;
   -moz-border-radius-topleft: 0.5em;

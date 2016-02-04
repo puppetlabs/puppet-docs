@@ -1,8 +1,7 @@
 ---
 layout: default
-built_from_commit: c0673af42427fbe0b22ff97c8e5fa3244715eeae
+built_from_commit: 3b5d15cb1c5ed830cb460f2687fde710e5383e69
 title: Puppet Man Pages
-nav: /_includes/references_man.html
 canonical: /puppet/latest/reference/man/index.html
 ---
 
@@ -21,6 +20,7 @@ These subcommands form the core of Puppet's tool set, and every user should unde
 - [puppet master](./master.html)
 - [puppet module](./module.html)
 - [puppet resource](./resource.html)
+- [puppet lookup](./lookup.html)
 
 
 Occasionally Useful Subcommands
@@ -32,6 +32,7 @@ Many or most users will need to use these subcommands at some point, but they ar
 - [puppet describe](./describe.html)
 - [puppet device](./device.html)
 - [puppet doc](./doc.html)
+- [puppet epp](./epp.html)
 - [puppet help](./help.html)
 - [puppet man](./man.html)
 - [puppet node](./node.html)
@@ -58,16 +59,4 @@ Most users can ignore these subcommands. They're only useful for certain niche w
 - [puppet resource_type](./resource_type.html)
 - [puppet status](./status.html)
 
-
-Unknown or New Subcommands
------
-
-These subcommands have not yet been added to any of the categories above.
-
-- [puppet instrumentation_data](./instrumentation_data.html)
-- [puppet instrumentation_listener](./instrumentation_listener.html)
-- [puppet instrumentation_probe](./instrumentation_probe.html)
-- [puppet kick](./kick.html)
-- [puppet queue](./queue.html)
-- [puppet secret_agent](./secret_agent.html)
 

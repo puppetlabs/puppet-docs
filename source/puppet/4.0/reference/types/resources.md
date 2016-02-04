@@ -5,7 +5,7 @@ title: 'Resource Type: resources'
 canonical: /puppet/latest/reference/types/resources.html
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-01-15 16:39:04 +0100
+> **NOTE:** This page was generated from the Puppet source code on 2016-01-27 14:24:39 +0000
 
 resources
 -----
@@ -71,4 +71,4 @@ To specify a range of uids, consider using the range() function from stdlib.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-01-15 16:39:04 +0100
+> **NOTE:** This page was generated from the Puppet source code on 2016-01-27 14:24:39 +0000

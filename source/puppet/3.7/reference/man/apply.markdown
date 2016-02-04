@@ -1,6 +1,5 @@
 ---
 layout: default
-nav: /_includes/references_man.html
 title: puppet apply Man Page
 ---
 

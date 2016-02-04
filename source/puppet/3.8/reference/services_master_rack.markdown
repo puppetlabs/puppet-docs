@@ -14,7 +14,7 @@ canonical: "/puppet/latest/reference/services_master_rack.html"
 [pem format]: /background/ssl/cert_anatomy.html#pem-file
 [trusted]: ./lang_facts_and_builtin_vars.html#trusted-facts
 [webrick]: ./services_master_webrick.html
-[puppet server]: /puppetserver/latest/services_master_puppetserver.html
+[puppet server]: /puppetserver/1.1/services_master_puppetserver.html
 
 Puppet master is the application that compiles configurations for any number of Puppet agent nodes, using Puppet code and various other data sources. (For more info, see [Overview of Puppet's Architecture](./architecture.html).)
 

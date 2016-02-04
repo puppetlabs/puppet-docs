@@ -5,7 +5,7 @@ title: 'Resource Type: mcx'
 canonical: /puppet/latest/reference/types/mcx.html
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-01-15 16:39:04 +0100
+> **NOTE:** This page was generated from the Puppet source code on 2016-01-27 14:24:39 +0000
 
 mcx
 -----
@@ -161,4 +161,4 @@ Provider support:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-01-15 16:39:04 +0100
+> **NOTE:** This page was generated from the Puppet source code on 2016-01-27 14:24:39 +0000

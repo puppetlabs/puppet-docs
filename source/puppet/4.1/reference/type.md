@@ -6,7 +6,7 @@ canonical: /puppet/latest/reference/type.html
 toc: columns
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-01-15 16:47:05 +0100
+> **NOTE:** This page was generated from the Puppet source code on 2016-01-27 14:22:05 +0000
 
 ## About Resource Types
 
@@ -1263,8 +1263,8 @@ the manifest...
     }
 
 ...but for larger files, this attribute is more useful when combined with the
-[template](http://docs.puppetlabs.com/puppet/latest/reference/function.html#template)
-or [file](http://docs.puppetlabs.com/puppet/latest/reference/function.html#file)
+[template](http://docs.puppetlabs.com/references/latest/function.html#template)
+or [file](http://docs.puppetlabs.com/references/latest/function.html#file)
 function.
 
 ([↑ Back to file attributes](#file-attributes))
@@ -1816,7 +1816,7 @@ Filebuckets are used for the following features:
   puppet master's filebucket with the _desired_ content for each file,
   then instructs the agent to retrieve the content for a specific
   checksum. For more details,
-  [see the `static_compiler` section in the catalog indirection docs](http://docs.puppetlabs.com/puppet/latest/reference/indirection.html#catalog).
+  [see the `static_compiler` section in the catalog indirection docs](http://docs.puppetlabs.com/references/latest/indirection.html#catalog).
 
 To use a central filebucket for backups, you will usually want to declare
 a filebucket resource and a resource default for the `backup` attribute
@@ -8327,7 +8327,7 @@ schedule
 <h3 id="schedule-description">Description</h3>
 
 Define schedules for Puppet. Resources can be limited to a schedule by using the
-[`schedule`](http://docs.puppetlabs.com/puppet/latest/reference/metaparameter.html#schedule)
+[`schedule`](http://docs.puppetlabs.com/references/latest/metaparameter.html#schedule)
 metaparameter.
 
 Currently, **schedules can only be used to stop a resource from being
@@ -9861,7 +9861,7 @@ stage
 A resource type for creating new run stages.  Once a stage is available,
 classes can be assigned to it by declaring them with the resource-like syntax
 and using
-[the `stage` metaparameter](http://docs.puppetlabs.com/puppet/latest/reference/metaparameter.html#stage).
+[the `stage` metaparameter](http://docs.puppetlabs.com/references/latest/metaparameter.html#stage).
 
 Note that new stages are not useful unless you also declare their order
 in relation to the default `main` stage.
@@ -12144,4 +12144,4 @@ Provider for zpool.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-01-15 16:47:05 +0100
+> **NOTE:** This page was generated from the Puppet source code on 2016-01-27 14:22:05 +0000

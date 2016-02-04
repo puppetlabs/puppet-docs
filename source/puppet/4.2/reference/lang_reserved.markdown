@@ -43,7 +43,7 @@ The following words are reserved:
 * `else` --- language keyword
 * `elsif` --- language keyword
 * `false` --- boolean value
-* `function` --- reserved for future use
+* `function` --- language keyword
 * `if` --- language keyword
 * `import` --- former language keyword (now removed)
 * `in` --- expression operator

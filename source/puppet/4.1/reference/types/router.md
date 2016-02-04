@@ -5,7 +5,7 @@ title: 'Resource Type: router'
 canonical: /puppet/latest/reference/types/router.html
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-01-15 16:47:06 +0100
+> **NOTE:** This page was generated from the Puppet source code on 2016-01-27 14:22:05 +0000
 
 router
 -----
@@ -36,4 +36,4 @@ An SSH or telnet URL at which to access the router, in the form
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-01-15 16:47:06 +0100
+> **NOTE:** This page was generated from the Puppet source code on 2016-01-27 14:22:05 +0000

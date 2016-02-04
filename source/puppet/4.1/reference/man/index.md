@@ -1,8 +1,7 @@
 ---
 layout: default
-built_from_commit: 08cb8b2d315a296fa404a4871f94b3703a819461
+built_from_commit: c4a6a76fd219bffd689476413985ed13f40ef1dd
 title: Puppet Man Pages
-nav: /_includes/references_man.html
 canonical: /puppet/latest/reference/man/index.html
 ---
 

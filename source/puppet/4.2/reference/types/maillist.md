@@ -5,7 +5,7 @@ title: 'Resource Type: maillist'
 canonical: /puppet/latest/reference/types/maillist.html
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-01-15 16:50:35 +0100
+> **NOTE:** This page was generated from the Puppet source code on 2016-01-27 14:19:23 +0000
 
 maillist
 -----
@@ -102,4 +102,4 @@ The name of the host providing web archives and the administrative interface.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-01-15 16:50:35 +0100
+> **NOTE:** This page was generated from the Puppet source code on 2016-01-27 14:19:23 +0000

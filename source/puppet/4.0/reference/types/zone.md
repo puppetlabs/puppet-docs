@@ -5,7 +5,7 @@ title: 'Resource Type: zone'
 canonical: /puppet/latest/reference/types/zone.html
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-01-15 16:39:04 +0100
+> **NOTE:** This page was generated from the Puppet source code on 2016-01-27 14:24:39 +0000
 
 zone
 -----
@@ -243,4 +243,4 @@ Provider for Solaris Zones.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-01-15 16:39:04 +0100
+> **NOTE:** This page was generated from the Puppet source code on 2016-01-27 14:24:39 +0000
