@@ -1556,6 +1556,7 @@ ul#doc-navigation li.with-submenu dl {
   opacity: 0;
   visibility: hidden;
   display: none;
+  position: absolute;
 }
 
 ul#doc-navigation li.active.with-submenu dl {
@@ -1590,6 +1591,7 @@ ul#doc-navigation li.with-submenu dl dd a {
 
 ul#doc-navigation {
   margin: 0;
+  display: inline;
 }
 
 
