@@ -42,6 +42,15 @@ We always recommend that you **upgrade your Puppet master servers before upgradi
 
 If you're upgrading from Puppet 2.x, please [learn about major upgrades of Puppet first!][upgrade] We have important advice about upgrade plans and package management practices. The short version is: test first, roll out in stages, give yourself plenty of time to work with. Also, read the [release notes for Puppet 3][puppet_3] for a list of all the breaking changes made between the 2.x and 3.x series.
 
+## Puppet 3.8.6
+
+Released February 3, 2016.
+
+This release is a security only release that contains an updated version of OpenSSL that has addresses a vulnerability announced by OpenSSL on January 28, 2016.
+
+* [Puppet Labs CVE announcement](https://puppetlabs.com/security/cve/openssl-jan-2016-security-fixes)
+* [OpenSSL security announcement](http://openssl.org/news/secadv/20160128.txt)
+
 ## Puppet 3.8.5
 
 Released January 21, 2016.
@@ -57,7 +66,7 @@ Puppet 3.8.5 is a maintenance release in the Puppet 3.8 series that fixes severa
 
 Puppet 3.8.5 queries service enablement status on OS X several times faster than previous versions of Puppet.
 
-* [PUP-5505](https://tickets.puppetlabs.com/browse/PUP-5505): 
+* [PUP-5505](https://tickets.puppetlabs.com/browse/PUP-5505):
 
 #### Faster compilation when `environment_timeout = 0`
 
@@ -75,7 +84,7 @@ In previous versions of Puppet, the [`pip` package provider](/references/latest/
 
 Puppet 3.8.5 for Windows includes new versions of Ruby that fix [CVE-2015-7551](https://www.ruby-lang.org/en/news/2015/12/16/unsafe-tainted-string-usage-in-fiddle-and-dl-cve-2015-7551/).
 
-* [PUP-5716](https://tickets.puppetlabs.com/browse/PUP-5716) 
+* [PUP-5716](https://tickets.puppetlabs.com/browse/PUP-5716)
 
 ### Bug fix: Fix group resources on Windows `--noop` runs when the `members` parameter is an array
 
@@ -90,11 +99,11 @@ In previous version of Puppet 3 for Windows, no-op Puppet runs (such as running 
 
 ### Bug Fixes: Miscellaneous
 
-* [PUP-4426](https://tickets.puppetlabs.com/browse/PUP-4426): 
-* [PUP-1293](https://tickets.puppetlabs.com/browse/PUP-1293): 
+* [PUP-4426](https://tickets.puppetlabs.com/browse/PUP-4426):
+* [PUP-1293](https://tickets.puppetlabs.com/browse/PUP-1293):
 * [PUP-5480: Puppet does not apply inheritable SYSTEM permissions to directories it manages on Windows under certain circumstances](https://tickets.puppetlabs.com/browse/PUP-5480)
 * [PUP-5522: Puppet::Node attributes not kept consistent with its parameters](https://tickets.puppetlabs.com/browse/PUP-5522): In some Puppet-related applications, or in certain cases when using Puppet from Ruby, a Node object could use one environment but report that it was in another, resulting in the node having the wrong set of parameters. This doesn't affect regular catalog compilation, and is resolved in Puppet 3.8.5.
-* [PUP-4516: Agent does not stop with Ctrl-C](https://tickets.puppetlabs.com/browse/PUP-4516): In previous versions of Puppet 3, if the agent process was idle, it could take up to 5 seconds to stop the process in response to SIGINT and SIGTERM signals, such as when pressing **Ctrl-C**. If the Puppet agent was performing a run, it could not be interrupted until after the run completed. Puppet 3.8.5 agents and WEBrick masters immediately exit. 
+* [PUP-4516: Agent does not stop with Ctrl-C](https://tickets.puppetlabs.com/browse/PUP-4516): In previous versions of Puppet 3, if the agent process was idle, it could take up to 5 seconds to stop the process in response to SIGINT and SIGTERM signals, such as when pressing **Ctrl-C**. If the Puppet agent was performing a run, it could not be interrupted until after the run completed. Puppet 3.8.5 agents and WEBrick masters immediately exit.
 * [PUP-4386: Windows Group resource reports errors incorrectly when specifying an invalid group member](https://tickets.puppetlabs.com/browse/PUP-4386): Previous versions of Puppet on Windows would produce extraneous messages if you specify an invalid group member in a manifest. Puppet 3.8.5 produces accurate error messages.
 
 ## Puppet 3.8.4
