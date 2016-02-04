@@ -2,6 +2,12 @@ require 'yaml'
 require 'pathname'
 require 'puppet_docs/versions'
 
+# Load the puppet-docs config file and munge some of the data in it to make it
+# more usable in some awkward contexts. The Rakefile uses this class when loading
+# the config, and makes sure that both Jekyll and all our rake tasks will only
+# receive the munged version.
+
+# Where's all this config data get used? See puppet-docs/source/_config.readme for a run-down.
 module PuppetDocs
   class Config < Hash
     def initialize(config_file)
