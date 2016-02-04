@@ -19,7 +19,7 @@ toc: false
 [Server major upgrade]: ./upgrade_major_server.html
 [post-upgrade guide]: ./upgrade_major_post.html
 [minor upgrade guide]: ./upgrade_minor.html
-[Language Changes Since Puppet 3]: ./experiments_future.html
+[Updating 3.x Manifests for Puppet 4.x]: ./lang_updating_manifests.html
 [Release Notes]: ./release_notes.html
 
 Welcome to the Puppet 4.3 Reference Manual. Use the navigation to the left to get around.
@@ -60,9 +60,9 @@ This manual is split into several sections, which can be reached from the left s
 
 * The [Release Notes][] cover what's new and different in this version of Puppet.
 * If you're an experienced Puppet user who's new to Puppet 4, review the [Where Did Everything Go?](./whered_it_go.html) page.
-* Use the [Resource Type Reference](/references/4.3.latest/type.html) for up-to-date information on core Puppet concepts.
+* Use the [Resource Type Reference](./type.html) for up-to-date information on core Puppet concepts.
 * Puppet uses its own configuration language, which is documented in this reference's language section. You can start with:
     * The [Language Summary](./lang_summary.html), which gives an overview and some context for the language.
     * The [Visual Index](./lang_visual_index.html), which can help you find docs for syntax when you know what it looks like but don't know what it's called.
-    * [Language Changes Since Puppet 3][], if you're experienced with Puppet and want to focus on new and changed features.
+    * [Updating 3.x Manifests for Puppet 4.x][], if you're experienced with Puppet and want to focus on new and changed features.
 * The [Modules Fundamentals](./modules_fundamentals.html) guide explains how to organize Puppet manifests, install pre-built modules from the Puppet Forge, and share your own modules.

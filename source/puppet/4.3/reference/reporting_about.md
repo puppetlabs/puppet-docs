@@ -4,9 +4,9 @@ title: "About Reporting"
 canonical: "/puppet/latest/reference/reporting_about.html"
 ---
 
-[report]: /references/latest/configuration.html#report
-[reports]: /references/latest/configuration.html#reports
-[reportdir]: /references/latest/configuration.html#reportdir
+[report]: /puppet/latest/reference/configuration.html#report
+[reports]: /puppet/latest/reference/configuration.html#reports
+[reportdir]: /puppet/latest/reference/configuration.html#reportdir
 [puppet.conf]: ./config_file_main.html
 
 Puppet creates a report about its actions and your infrastructure each time it applies a catalog during a Puppet run. You can create and use report processors to generate insightful information or alerts from those reports.
@@ -34,7 +34,7 @@ On Puppet master servers (and nodes running Puppet apply), you can configure ena
 
 Puppet's reporting features are powerful, but there are simple ways to work with them. Puppet Enterprise includes [helpful reporting tools](/pe/latest/CM_reports.html) in the console. [PuppetDB](/puppetdb/latest/), with [its report processor enabled](/puppetdb/latest/connect_puppet_master.html#enabling-report-storage), can interface with third-party tools such as [Puppetboard](https://github.com/puppet-community/puppetboard) or [PuppetExplorer](https://github.com/spotify/puppetexplorer).
 
-Puppet has several basic built-in [report processors](/references/latest/report.html). For example, the `http` processor sends YAML dumps of reports via POST requests to a designated URL, while `log` saves received logs to a local log file.
+Puppet has several basic built-in [report processors](/puppet/latest/reference/report.html). For example, the `http` processor sends YAML dumps of reports via POST requests to a designated URL, while `log` saves received logs to a local log file.
 
 Certain Puppet modules --- for instance, [`tagmail`](https://forge.puppetlabs.com/puppetlabs/tagmail) --- add additional report processors. Each module has its own requirements, such as Ruby gems, operating system packages, or other Puppet modules.
 

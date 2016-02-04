@@ -9,7 +9,7 @@ canonical: "/puppetdb/latest/maintain_and_tune.html"
 [threads]: ./configure.html#command-processing-settings
 [memrec]: ./scaling_recommendations.html#bottleneck-java-heap-size
 [ttl]: ./configure.html#node-ttl-days
-[resources_type]: /references/latest/type.html#resources
+[resources_type]: /puppet/latest/reference/type.html#resources
 [log4j]: ./configure.html#configuring-logging
 [dashboard]: #monitor-the-performance-dashboard
 

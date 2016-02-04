@@ -10,7 +10,7 @@ canonical: "/puppet/latest/reference/lang_resources.html"
 [scope]: ./lang_scope.html
 [report]: /guides/reporting.html
 [append_attributes]: ./lang_classes.html#appending-to-resource-attributes
-[types]: /references/latest/type.html
+[types]: /puppet/latest/reference/type.html
 [bareword]: ./lang_datatypes.html#bare-words
 [string]: ./lang_datatypes.html#strings
 [array]: ./lang_datatypes.html#arrays
@@ -149,7 +149,7 @@ Some attributes in Puppet can be used with every resource type. These are called
 
 The most commonly used metaparameters are for specifying [order relationships][relationships] between resources.
 
-You can see the full list of all metaparameters in the [Metaparameter Reference](/references/stable/metaparameter.html).
+You can see the full list of all metaparameters in the [Metaparameter Reference](/puppet/latest/reference/metaparameter.html).
 
 
 Condensed Forms

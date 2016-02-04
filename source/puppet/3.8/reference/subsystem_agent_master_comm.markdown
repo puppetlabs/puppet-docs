@@ -8,8 +8,8 @@ canonical: "/puppet/latest/reference/subsystem_agent_master_comm.html"
 [authconf]: /guides/rest_auth_conf.html
 [facts]: ./lang_variables.html#facts-and-built-in-variables
 [catalog]: ./lang_summary.html#compilation-and-catalogs
-[file]: /references/3.8.latest/type.html#file
-[static]: /references/3.8.latest/indirection.html#catalog
+[file]: ./type.html#file
+[static]: ./indirection.html#catalog
 
 
 
@@ -29,7 +29,7 @@ You can use [the `http_keepalive_timeout` setting][keepalive_setting] to configu
 
 An HTTP server may disable persistent connections ([Apache example](http://httpd.apache.org/docs/current/mod/core.html#keepalive)). If so, Puppet will request that the connection be kept open as usual, but the server will decline by sending `Connection: close` in the HTTP response and Puppet will start a new connection for its next request. (In Puppet 3.8.4 and up, WEBrick Puppet masters running on Ruby 1.8.7 will close connections to work around a Ruby bug.)
 
-[keepalive_setting]: /references/3.8.latest/configuration.html#httpkeepalivetimeout
+[keepalive_setting]: ./configuration.html#httpkeepalivetimeout
 
 ## Diagram
 

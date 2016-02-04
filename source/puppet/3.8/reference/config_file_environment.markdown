@@ -6,9 +6,9 @@ canonical: "/puppet/latest/reference/config_file_environment.html"
 
 [directory environments]: ./environments.html
 [environmentpath]: ./environments.html#about-environmentpath
-[modulepath]: /references/3.8.latest/configuration.html#modulepath
+[modulepath]: ./configuration.html#modulepath
 [puppet.conf]: ./config_file_main.html
-[basemodulepath]: /references/3.8.latest/configuration.html#basemodulepath
+[basemodulepath]: ./configuration.html#basemodulepath
 [main manifest]: ./dirs_manifest.html
 [configuring_timeout]: ./environments_configuring.html#environmenttimeout
 
@@ -85,7 +85,7 @@ Whether to use the 3.x parser (`current`) or the 4.x parser (`future`). If prese
 
 This is useful when preparing for a migration to Puppet 4: you can switch a limited test environment to using the Puppet 4 version of the Puppet language, and catch any failures or behavior changes without affecting your main production environments.
 
-More info: [full description of the `parser` setting.](/references/3.8.latest/configuration.html#parser)
+More info: [full description of the `parser` setting.](./configuration.html#parser)
 
 ### `config_version`
 

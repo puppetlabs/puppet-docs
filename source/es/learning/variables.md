@@ -179,7 +179,7 @@ Otro tipo de condicional es la [declaración de *case*](http://docs.puppetlabs.c
 
 En lugar de probar una condición al principio, **case** compara una variable contra un grupo de valores posibles. **_default_ es un valor especial**, que hace exactamente lo que parece. 
 
-En este ejemplo, también vemos la [función **fail**](http://docs.puppetlabs.com/references/latest/function.html#fail). A diferencia de la función **str2bool** que vimos antes, **fail** no resuelve a un valor; por el contrario, se produce inmediatamente un error de compilación con un mensaje de error.
+En este ejemplo, también vemos la [función **fail**](http://docs.puppetlabs.com/puppet/latest/reference/function.html#fail). A diferencia de la función **str2bool** que vimos antes, **fail** no resuelve a un valor; por el contrario, se produce inmediatamente un error de compilación con un mensaje de error.
 
 #### Coincidencia de casos
 

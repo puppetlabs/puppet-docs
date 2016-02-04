@@ -5,16 +5,16 @@ description: "Puppet release notes for version 3.8"
 canonical: "/puppet/latest/reference/release_notes.html"
 ---
 
-[upgrade]: /puppet/3.8/reference/upgrading.html
+[upgrade]: ./upgrading.html
 [puppet_3]: /puppet/3/reference/release_notes.html
 
 [puppet.conf]: ./config_file_main.html
 [main manifest]: ./dirs_manifest.html
-[env_api]: /references/3.7.latest/developer/file.http_environments.html
+[env_api]: /puppet/3.7/reference/developer/file.http_environments.html
 [file_system_redirect]: ./lang_windows_file_paths.html#file-system-redirection-when-running-32-bit-puppet-on-64-bit-windows
 [environment.conf]: ./config_file_environment.html
-[default_manifest]: /references/3.7.latest/configuration.html#defaultmanifest
-[disable_per_environment_manifest]: /references/3.7.latest/configuration.html#disableperenvironmentmanifest
+[default_manifest]: /puppet/3.7/reference/configuration.html#defaultmanifest
+[disable_per_environment_manifest]: /puppet/3.7/reference/configuration.html#disableperenvironmentmanifest
 [directory environments]: ./environments.html
 [future]: ./experiments_future.html
 
@@ -41,6 +41,61 @@ Before upgrading, **look at the table of contents above and see if there are any
 We always recommend that you **upgrade your Puppet master servers before upgrading the agents they serve.**
 
 If you're upgrading from Puppet 2.x, please [learn about major upgrades of Puppet first!][upgrade] We have important advice about upgrade plans and package management practices. The short version is: test first, roll out in stages, give yourself plenty of time to work with. Also, read the [release notes for Puppet 3][puppet_3] for a list of all the breaking changes made between the 2.x and 3.x series.
+
+## Puppet 3.8.5
+
+Released January 21, 2016.
+
+Puppet 3.8.5 is a maintenance release in the Puppet 3.8 series that fixes several bugs.
+
+* [All fixes for Puppet 3.8.5](https://tickets.puppetlabs.com/issues/?filter=17212)
+* [Introduced in Puppet 3.8.5](https://tickets.puppetlabs.com/issues/?filter=17213)
+
+### Improvements: Speed!
+
+#### Faster service queries on OS X
+
+Puppet 3.8.5 queries service enablement status on OS X several times faster than previous versions of Puppet.
+
+* [PUP-5505](https://tickets.puppetlabs.com/browse/PUP-5505): 
+
+#### Faster compilation when `environment_timeout = 0`
+
+In previous versions of Puppet, an environment with an `environment_timeout` set to 0 that used many automatically bound default values would perform poorly, as each lookup caused the environment cache to be evicted and recreated. Puppet 3.8.5 greatly reduces the number of times it evicts the environment and significantly improves compilation performance.
+
+* [PUP-5547: Environment is evicted many times during compilation](https://tickets.puppetlabs.com/browse/PUP-5547)
+
+### New Feature: Set HTTP proxy host and port for the `pip` provider
+
+In previous versions of Puppet, the [`pip` package provider](/references/latest/type.html#package-provider-pip) could fail if used behind an HTTP proxy. This version adds the `http_proxy_host` and `http_proxy_port` settings to the provider.
+
+* [PUP-5212](https://tickets.puppetlabs.com/browse/PUP-5212)
+
+### Security update: Ruby on Windows
+
+Puppet 3.8.5 for Windows includes new versions of Ruby that fix [CVE-2015-7551](https://www.ruby-lang.org/en/news/2015/12/16/unsafe-tainted-string-usage-in-fiddle-and-dl-cve-2015-7551/).
+
+* [PUP-5716](https://tickets.puppetlabs.com/browse/PUP-5716) 
+
+### Bug fix: Fix group resources on Windows `--noop` runs when the `members` parameter is an array
+
+In previous version of Puppet 3 for Windows, no-op Puppet runs (such as running `puppet agent` or `puppet apply` with the `--noop` flag) would fail if the `members` parameter of a [group resource](/references/3.8.latest/type.html#group) contained an array. Puppet 3.8.5 resolves this issue.
+
+* [PUP-4426: Group resource doesn't work on Windows when members is an array and noop is used](https://tickets.puppetlabs.com/browse/PUP-4426)
+
+### Bug fixes: Puppet language
+
+* [PUP-5590: No error on duplicate parameters in classes and resources](https://tickets.puppetlabs.com/browse/PUP-5590): In previous versions of Puppet, you could use the same parameter multiple times in a single class or resource without invoking an error. Instead, Puppet would use the second invocation's value only. Puppet 3.8.5 produces an error message when parsing a manifest in which a class or resource assigns the same parameter multiple times.
+* [PUP-5658: Disallow numeric ranges where from > to](https://tickets.puppetlabs.com/browse/PUP-5658): Previous versions of Puppet allowed you to create range sub-type declarations (such as `Integer[first,second]`) for integer and and float types where the maximum limit was set first and the minimum limit was set second. Now for such declarations, the first value must not be greater than the second.
+
+### Bug Fixes: Miscellaneous
+
+* [PUP-4426](https://tickets.puppetlabs.com/browse/PUP-4426): 
+* [PUP-1293](https://tickets.puppetlabs.com/browse/PUP-1293): 
+* [PUP-5480: Puppet does not apply inheritable SYSTEM permissions to directories it manages on Windows under certain circumstances](https://tickets.puppetlabs.com/browse/PUP-5480)
+* [PUP-5522: Puppet::Node attributes not kept consistent with its parameters](https://tickets.puppetlabs.com/browse/PUP-5522): In some Puppet-related applications, or in certain cases when using Puppet from Ruby, a Node object could use one environment but report that it was in another, resulting in the node having the wrong set of parameters. This doesn't affect regular catalog compilation, and is resolved in Puppet 3.8.5.
+* [PUP-4516: Agent does not stop with Ctrl-C](https://tickets.puppetlabs.com/browse/PUP-4516): In previous versions of Puppet 3, if the agent process was idle, it could take up to 5 seconds to stop the process in response to SIGINT and SIGTERM signals, such as when pressing **Ctrl-C**. If the Puppet agent was performing a run, it could not be interrupted until after the run completed. Puppet 3.8.5 agents and WEBrick masters immediately exit. 
+* [PUP-4386: Windows Group resource reports errors incorrectly when specifying an invalid group member](https://tickets.puppetlabs.com/browse/PUP-4386): Previous versions of Puppet on Windows would produce extraneous messages if you specify an invalid group member in a manifest. Puppet 3.8.5 produces accurate error messages.
 
 ## Puppet 3.8.4
 

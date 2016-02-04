@@ -5,23 +5,18 @@ canonical: "/puppet/latest/reference/upgrade_minor.html"
 ---
 
 [`puppetlabs/puppetdb`]: https://forge.puppetlabs.com/puppetlabs/puppetdb
-[PC1 repositories]: ./install_linux.html#install-a-release-package-to-enable-puppet-labs-package-repositories
+[Puppet Collection]: ./puppet_collections.md
 [major upgrades]: ./upgrade_major_pre.html
 
 A minor upgrade is an upgrade from one Puppet 4 release to another. If you are upgrading from Puppet 2 or 3, follow the instructions for [major upgrades][].
 
-## Puppet Collections and Upgrading
+## Puppet Collections and upgrading
 
-We deliver Puppet 4 (and all the stuff that works with it) in a group of packages called a **Puppet Collection**. Puppet 4 is part of Puppet Collection 1 (PC1), which contains these packages:
+We deliver Puppet 4 (and all the stuff that works with it) in a group of packages called a **[Puppet Collection][]**. Puppet 4 is part of Puppet Collection 1 (PC1), which contains these packages:
 
-Package            | Contents
--------------------|----------------------------------------------
-`puppet-agent`     | Puppet, [Facter](/facter/), [Hiera](/hiera/), and prerequisites like [Ruby](https://www.ruby-lang.org/) and [Augeas](http://augeas.net/)
-`puppetserver`     | Puppet Server; depends on `puppet-agent`
-`puppetdb`         | PuppetDB
-`puppetdb-termini` | Plugins to let Puppet Server talk to PuppetDB
+{% include puppet-collections/_puppet_collection_1_contents.md %}
 
-On \*nix systems, make sure the required [PC1 repositories][] are installed and enabled before upgrading nodes.
+On \*nix systems, make sure the required PC1 repositories are installed and enabled before upgrading nodes.
 
 The order in which you upgrade packages is important. Always upgrade `puppetserver` on your masters _before_ you upgrade agents. You can upgrade PuppetDB before or after you upgrade other nodes.
 

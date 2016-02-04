@@ -1,25 +1,43 @@
-                <dl>
-                  <dt>Home</dt>
-                    <dd><a href="/">Puppet Docs Front Page</a></dd>
-                  <dt>#1 Most Popular</dt>
-                    <dd><a href="/references/stable/type.html">The Resource Type Reference</a></dd>
-                  <dt>Puppet Enterprise</dt>
-                    <dd><a href="/pe/latest/">Puppet Enterprise User's Guide (latest)</a></dd>
-                    <dd><a href="/pe/latest/quick_start.html">Quick Start Guide</a></dd>
-                  <dt>Puppet in General (PE &amp; Open Source)</dt>
-                      <dd><a href="/puppet/latest/reference">Puppet Reference Manual (latest)</a></dd>
-                      <dd><a href="/learning/">Learning Puppet</a></dd>
-                      <dd><a href="/references/glossary.html">Glossary of Puppet Terms</a></dd>
-                  <dt>Open Source Puppet</dt>
-                    <dd><a href="/puppet/latest/reference/install_pre.html">Installing</a></dd>
-                    <dd><a href="/puppet/latest/reference/upgrade_major_pre.html">Upgrading</a></dd>
-                  <dt>Facter</dt>
-                      <dd><a href="/facter/latest/core_facts.html">Core Facts Reference</a></dd>
-                      <dd><a href="/facter/latest/fact_overview.html">Writing Custom Facts</a></dd>
-                  <dt>PuppetDB</dt>
-                      <dd><a href="/puppetdb/latest">PuppetDB Manual</a></dd>
-                  <dt>MCollective</dt>
-                      <dd><a href="/mcollective/index.html">All MCollective Docs</a></dd>
-                      <dd><a href="/mcollective/reference/index.html">References</a></dd>
-                      <dd><a href="/mcollective/simplerpc/index.html">Writing Plugins</a></dd>
-                </dl>
+{% capture doc_longname %}{{ site.document_names[page.doc.doc] }} {{ page.doc.version }}{% endcapture %}
+<ul id="doc-navigation">
+    <li class="with-submenu">
+        <a href="#">
+            <span>{% if page.doc %}Doc: {{ site.document_names[page.doc.doc] }}{% else %}Choose a Document:{% endif %}</span>
+            <span class="drop-down-trigger"></span>
+        </a>
+        <dl>
+            <dt>Puppet Enterprise</dt>
+            {% if page.doc.my_versions.pe and page.doc.my_versions.pe != 'latest' %}{% assign next_url = site.document_version_index['pe'][page.doc.my_versions.pe] %}<dd><a href="{{ next_url }}/">{{ site.document_list[next_url].version }} (recommended for {{ doc_longname }})</a></dd>{% endif %}
+            {% assign next_url = site.document_version_index['pe']['latest'] %}<dd><a href="/pe/latest/">{{ site.document_list[next_url].version }} (latest)</a></dd>
+
+            <dt>Puppet (PE and open source)</dt>
+            {% if page.doc.my_versions.puppet and page.doc.my_versions.puppet != 'latest' %}{% assign next_url = site.document_version_index['puppet'][page.doc.my_versions.puppet] %}<dd><a href="{{ next_url }}/">{{ site.document_list[next_url].version }} (recommended for {{ doc_longname }})</a></dd>{% endif %}
+            {% assign next_url = site.document_version_index['puppet']['latest'] %}<dd><a href="/puppet/latest/reference/">{{ site.document_list[next_url].version }} (latest)</a></dd>
+
+            <dt>Puppet Server (PE and open source)</dt>
+            {% if page.doc.my_versions.puppetserver and page.doc.my_versions.puppetserver != 'latest' %}{% assign next_url = site.document_version_index['puppetserver'][page.doc.my_versions.puppetserver] %}<dd><a href="{{ next_url }}/">{{ site.document_list[next_url].version }} (recommended for {{ doc_longname }})</a></dd>{% endif %}
+            {% assign next_url = site.document_version_index['puppetserver']['latest'] %}<dd><a href="/puppetserver/latest/">{{ site.document_list[next_url].version }} (latest)</a></dd>
+
+            <dt>PuppetDB (PE and open source)</dt>
+            {% if page.doc.my_versions.puppetdb and page.doc.my_versions.puppetdb != 'latest' %}{% assign next_url = site.document_version_index['puppetdb'][page.doc.my_versions.puppetdb] %}<dd><a href="{{ next_url }}/">{{ site.document_list[next_url].version }} (recommended for {{ doc_longname }})</a></dd>{% endif %}
+            {% assign next_url = site.document_version_index['puppetdb']['latest'] %}<dd><a href="/puppetdb/latest/">{{ site.document_list[next_url].version }} (latest)</a></dd>
+
+            <dt>Facter (PE and open source)</dt>
+            {% if page.doc.my_versions.facter and page.doc.my_versions.facter != 'latest' %}{% assign next_url = site.document_version_index['facter'][page.doc.my_versions.facter] %}<dd><a href="{{ next_url }}/">{{ site.document_list[next_url].version }} (recommended for {{ doc_longname }})</a></dd>{% endif %}
+            {% assign next_url = site.document_version_index['facter']['latest'] %}<dd><a href="/facter/latest/">{{ site.document_list[next_url].version }} (latest)</a></dd>
+
+            <dt>Hiera (PE and open source)</dt>
+            {% if page.doc.my_versions.hiera and page.doc.my_versions.hiera != 'latest' %}{% assign next_url = site.document_version_index['hiera'][page.doc.my_versions.hiera] %}<dd><a href="{{ next_url }}/">{{ site.document_list[next_url].version }} (recommended for {{ doc_longname }})</a></dd>{% endif %}
+            {% assign next_url = site.document_version_index['hiera']['latest'] %}<dd><a href="/hiera/latest/">{{ site.document_list[next_url].version }} (latest)</a></dd>
+
+            <dt>MCollective (PE and open source)</dt>
+            <dd><a href="/mcollective/index.html">Latest</a></dd>
+
+            <dt>Other</dt>
+            <dd><a href="/">Puppet Docs Front Page</a></dd>
+            <dd><a href="/forge/">Using the Puppet Forge</a></dd>
+            <dd><a href="/puppet/latest/reference/type.html">Resource Type Reference</a></dd>
+            <dd><a href="/references/glossary.html">Glossary of Puppet Terms</a></dd>
+        </dl>
+    </li>
+</ul>

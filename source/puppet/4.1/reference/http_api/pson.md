@@ -1,13 +1,14 @@
 ---
 layout: default
-title: "Puppet HTTP API: PSON"
-canonical: "/puppet/latest/reference/http_api/pson.html"
+built_from_commit: c4a6a76fd219bffd689476413985ed13f40ef1dd
+title: 'Puppet HTTP API: PSON'
+canonical: /puppet/latest/reference/http_api/pson.html
 ---
 
 PSON
 =============
 
-PSON is a variant of [JSON](http://json.org) that puppet uses for serializing
+PSON is a variant of {http://json.org JSON} that puppet uses for serializing
 data to transmit across the network or store on disk. Whereas JSON requires
 that the serialized form is valid unicode (usually UTF-8), PSON is 8-bit ASCII,
 which allows it to represent arbitrary byte sequences in strings.

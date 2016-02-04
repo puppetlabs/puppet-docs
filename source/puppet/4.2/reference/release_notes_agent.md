@@ -4,10 +4,10 @@ title: "Puppet Agent 1.2.x Release Notes"
 canonical: "/puppet/latest/reference/release_notes_agent.html"
 ---
 
-[Puppet 4.2.0]: /puppet/4.2/reference/release_notes.html#puppet-420
-[Puppet 4.2.1]: /puppet/4.2/reference/release_notes.html#puppet-421
-[Puppet 4.2.2]: /puppet/4.2/reference/release_notes.html#puppet-422
-[Puppet 4.2.3]: /puppet/4.2/reference/release_notes.html#puppet-423
+[Puppet 4.2.0]: ./release_notes.html#puppet-420
+[Puppet 4.2.1]: ./release_notes.html#puppet-421
+[Puppet 4.2.2]: ./release_notes.html#puppet-422
+[Puppet 4.2.3]: ./release_notes.html#puppet-423
 [Facter 3.0.0]: /facter/3.0/reference/release_notes.html#facter-300
 [Facter 3.0.1]: /facter/3.0/reference/release_notes.html#facter-301
 [Facter 3.0.2]: /facter/3.0/reference/release_notes.html#facter-302
@@ -32,13 +32,13 @@ The `puppet-agent` package's version numbers use the format X.Y.Z, where:
 
 The `puppet-agent` package installs Puppet 4. Also read the [Puppet 4.0 release notes](/puppet/4.0/reference/release_notes.html), since they cover any breaking changes since Puppet 3.8.
 
-Also of interest: [About Agent](/puppet/4.2/reference/about_agent.html) and the [Puppet 4.2 release notes](/puppet/4.2/reference/release_notes.html).
+Also of interest: [About Agent](./about_agent.html) and the [Puppet 4.2 release notes](./release_notes.html).
 
 ## Puppet Agent 1.2.7
 
 Released October 29, 2015.
 
-Includes [Puppet 4.2.3](/puppet/4.2/reference/release_notes.html#puppet-423), [Facter 3.1.1][], [Hiera 3.0.4][], [MCollective 2.8.6][], Ruby 2.1.7, and OpenSSL 1.0.2d.
+Includes [Puppet 4.2.3](./release_notes.html#puppet-423), [Facter 3.1.1][], [Hiera 3.0.4][], [MCollective 2.8.6][], Ruby 2.1.7, and OpenSSL 1.0.2d.
 
 ### New Platforms
  
@@ -62,7 +62,7 @@ The [Puppet Enterprise 2015.2.3](/pe/2015.2/) repositories include `puppet-agent
 
 Released October 12, 2015.
 
-Includes [Puppet 4.2.2](/puppet/4.2/reference/release_notes.html#puppet-422), [Facter 3.1.0][], [Hiera 3.0.3][], [MCollective 2.8.6][], Ruby 2.1.6, and OpenSSL 1.0.2d.
+Includes [Puppet 4.2.2](./release_notes.html#puppet-422), [Facter 3.1.0][], [Hiera 3.0.3][], [MCollective 2.8.6][], Ruby 2.1.6, and OpenSSL 1.0.2d.
 
 This release contains no component fixes or updates. It only resolves a packaging issue that could leave the `puppet` and `mcollective` services stopped and unregistered after a package upgrade from an earlier `puppet-agent` release.
 
@@ -70,7 +70,7 @@ This release contains no component fixes or updates. It only resolves a packagin
 
 Released October 1, 2015.
 
-Includes [Puppet 4.2.2](/puppet/4.2/reference/release_notes.html#puppet-422), [Facter 3.1.0][], [Hiera 3.0.3][], [MCollective 2.8.6][], Ruby 2.1.6, and OpenSSL 1.0.2d.
+Includes [Puppet 4.2.2](./release_notes.html#puppet-422), [Facter 3.1.0][], [Hiera 3.0.3][], [MCollective 2.8.6][], Ruby 2.1.6, and OpenSSL 1.0.2d.
 
 ### Bug Fixes
 
@@ -84,7 +84,7 @@ Includes [Puppet 4.2.2](/puppet/4.2/reference/release_notes.html#puppet-422), [F
 
 Released September 14, 2015.
 
-Includes [Puppet 4.2.2](/puppet/4.2/reference/release_notes.html#puppet-422), [Facter 3.1.0][], [Hiera 3.0.3][], [MCollective 2.8.5][], Ruby 2.1.6, and OpenSSL 1.0.2d.
+Includes [Puppet 4.2.2](./release_notes.html#puppet-422), [Facter 3.1.0][], [Hiera 3.0.3][], [MCollective 2.8.5][], Ruby 2.1.6, and OpenSSL 1.0.2d.
 
 ### Updated Components
 
@@ -96,7 +96,7 @@ There was no `puppet-agent` 1.2.3 release.
 
 Released July 22, 2015.
 
-Includes [Puppet 4.2.1](/puppet/4.2/reference/release_notes.html#puppet-421), [Facter 3.0.2][], [Hiera 3.0.1][], [MCollective 2.8.2][], Ruby 2.1.6, and OpenSSL 1.0.0s.
+Includes [Puppet 4.2.1](./release_notes.html#puppet-421), [Facter 3.0.2][], [Hiera 3.0.1][], [MCollective 2.8.2][], Ruby 2.1.6, and OpenSSL 1.0.0s.
 
 ### Bug Fixes
 
@@ -106,7 +106,7 @@ Includes [Puppet 4.2.1](/puppet/4.2/reference/release_notes.html#puppet-421), [F
 
 Released June 25, 2015.
 
-Includes [Puppet 4.2.0](/puppet/4.2/reference/release_notes.html#puppet-420), [Facter 3.0.1][], [Hiera 3.0.1][], [MCollective 2.8.2][], Ruby 2.1.6, and OpenSSL 1.0.0s.
+Includes [Puppet 4.2.0](./release_notes.html#puppet-420), [Facter 3.0.1][], [Hiera 3.0.1][], [MCollective 2.8.2][], Ruby 2.1.6, and OpenSSL 1.0.0s.
 
 ### Regression Fixes
 
@@ -116,7 +116,7 @@ Includes [Puppet 4.2.0](/puppet/4.2/reference/release_notes.html#puppet-420), [F
 
 Released June 24, 2015.
 
-Includes [Puppet 4.2.0](/puppet/4.2/reference/release_notes.html#puppet-420), [Facter 3.0.0][], [Hiera 3.0.1][], [MCollective 2.8.2][], Ruby 2.1.6, and OpenSSL 1.0.0s.
+Includes [Puppet 4.2.0](./release_notes.html#puppet-420), [Facter 3.0.0][], [Hiera 3.0.1][], [MCollective 2.8.2][], Ruby 2.1.6, and OpenSSL 1.0.0s.
 
 ### Updated Components
 

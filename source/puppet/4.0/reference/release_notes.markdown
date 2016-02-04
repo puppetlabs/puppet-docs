@@ -1,10 +1,10 @@
 ---
 layout: default
 title: "Puppet 4.0 Release Notes"
-canonical: "/puppet/4.0/reference/release_notes.html"
+canonical: "./release_notes.html"
 toc: false
 ---
-[refguide]: /references/4.0.0/function.html#epp
+[refguide]: ./function.html#epp
 
 These are the release notes for Puppet 4.0, released April 15 2015. There's a lot of information here so it's organized top to bottom by size of impact -- things everyone is going to notice will be at the top and minor bugfixes/improvements are down at the bottom.
 
@@ -219,6 +219,7 @@ Most of these changes remove code that was previously deprecated.
 * [PUP-3294: Remove support for :parent](https://tickets.puppetlabs.com/browse/PUP-3294) in the custom type and provider API.
 * [PUP-3296: Remove handling and mention of :before and :after for parameters](https://tickets.puppetlabs.com/browse/PUP-3296)
 
+
 ## Stuff a lot of people will notice
 
 A lot of these changes codify defaults changes that were deprecated or on-the-way in Puppet 3.x but couldn't flip over to be the default except on a semver major number boundary. For example, the `stringify_facts` setting (which causes the agent to submit all Facter facts as strings) is gone, because non-stringified-facts are now the default. Similarly, the Modulefile which described puppet module metadata was deprecated in 3.5 in favour of the `metadata.json` file, and now the transitional support for it is gone completely.
@@ -289,6 +290,18 @@ Module authors who use the `prefetch` method in custom providers may want to be 
 * [PUP-3654: Deprecate Puppet.newtype](https://tickets.puppetlabs.com/browse/PUP-3654)
 * [PUP-3512: Add deprecation warning for old profiler API in Puppet](https://tickets.puppetlabs.com/browse/PUP-3512)
 * [PUP-3666: Replace 'configtimeout' with separate HTTP connect and read timeout settings](https://tickets.puppetlabs.com/browse/PUP-3666)
+
+### Regression: `--profile` flag produces less information
+
+In Puppet 4, functions converted to the Puppet 4 function API were not included in the profiling information produced by the `--profile` flag. This caused the profiling output to produce less information than in Puppet 3. Puppet 4.3.2 restores this missing information.
+
+* [PUP-5063](https://tickets.puppetlabs.com/browse/PUP-5063)
+
+### Regression: Resource collectors can't use resource references
+
+Puppet 4.0 introduced a regression where resource collectors using resource references would produce an error. Puppet 4.3.2 fixes that regression.
+
+* [PUP-5465](https://tickets.puppetlabs.com/browse/PUP-5465)  
 
 ### Resource Type and Provider Improvements
 

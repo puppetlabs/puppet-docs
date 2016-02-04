@@ -25,7 +25,7 @@ Enable `strict_variables` on your Puppet master, run as normal for a while, and 
 
 #### Now
 
-Puppet doesn't validate the value of the [`ensure` attribute in `file` resources](/references/latest/type.html#file-attribute-ensure). If the value is not `present`, `absent`, `file`, `directory`, or `link`, Puppet treats the value as an arbitrary path and creates a symbolic link to that path.
+Puppet doesn't validate the value of the [`ensure` attribute in `file` resources](/puppet/latest/reference/type.html#file-attribute-ensure). If the value is not `present`, `absent`, `file`, `directory`, or `link`, Puppet treats the value as an arbitrary path and creates a symbolic link to that path.
 
 For example, these resource declarations are equivalent:
 

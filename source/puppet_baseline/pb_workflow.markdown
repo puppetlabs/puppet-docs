@@ -49,7 +49,7 @@ Resources are audited by attribute --- you can choose one or more attributes you
 
 ### Manifests
 
-The set of resources to audit is declared in standard Puppet manifests on the master and retrieved as a catalog by the agent. Instead of declaring the desired state of a resource, these manifests should declare only titles (and name/namevar, if necessary) and the [`audit`](/references/latest/metaparameter.html#audit) metaparameter.
+The set of resources to audit is declared in standard Puppet manifests on the master and retrieved as a catalog by the agent. Instead of declaring the desired state of a resource, these manifests should declare only titles (and name/namevar, if necessary) and the [`audit`](/puppet/latest/reference/metaparameter.html#audit) metaparameter.
 
 ### Inspect Reports
 

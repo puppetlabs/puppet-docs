@@ -8,28 +8,28 @@ title: "Puppet's Commands"
 [arch]: ./architecture.html
 [agent_unix]: ./services_agent_unix.html
 [agent_windows]: ./services_agent_windows.html
-[agent_man]: /references/3.7.latest/man/agent.html
+[agent_man]: ./man/agent.html
 [master_rack]: ./services_master_rack.html
 [master_webrick]: ./services_master_webrick.html
-[master_man]: /references/3.7.latest/man/master.html
+[master_man]: ./man/master.html
 [apply]: ./services_apply.html
-[apply_man]: /references/3.7.latest/man/apply.html
-[cert_man]: /references/3.7.latest/man/cert.html
+[apply_man]: ./man/apply.html
+[cert_man]: ./man/cert.html
 [puppet forge]: https://forge.puppetlabs.com
 [module fundamentals]: ./modules_fundamentals.html
 [installing modules]: ./modules_installing.html
 [publishing modules on the puppet forge]: ./modules_publishing.html
-[module_man]: /references/3.7.latest/man/module.html
-[resource_man]: /references/3.7.latest/man/resource.html
+[module_man]: ./man/module.html
+[resource_man]: ./man/resource.html
 [about puppet's settings]: ./config_about_settings.html
 [checking values of settings]: ./config_print.html
 [editing settings on the command line]: ./config_set.html
 [short list of important settings]: ./config_important_settings.html
-[config_man]: /references/3.7.latest/man/config.html
-[parser_man]: /references/3.7.latest/man/parser.html
-[help_man]: /references/3.7.latest/man/help.html
-[man_man]: /references/3.7.latest/man/man.html
-[all_manpages]: /references/3.7.latest/man/
+[config_man]: ./man/config.html
+[parser_man]: ./man/parser.html
+[help_man]: ./man/help.html
+[man_man]: ./man/man.html
+[all_manpages]: ./man/
 [about_server]: /puppetserver/1.0/services_master_puppetserver.html
 [server_vs_passenger]: /puppetserver/1.0/puppetserver_vs_passenger.html
 [subcommands]: /puppetserver/1.0/subcommands.html

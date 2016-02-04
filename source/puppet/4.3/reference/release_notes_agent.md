@@ -6,13 +6,17 @@ canonical: "/puppet/latest/reference/release_notes_agent.html"
 
 [Puppet 4.3.0]: /puppet/4.3/reference/release_notes.html#puppet-430
 [Puppet 4.3.1]: /puppet/4.3/reference/release_notes.html#puppet-431
+[Puppet 4.3.2]: /puppet/4.3/reference/release_notes.html#puppet-432
 
 [Facter 3.1.2]: /facter/3.1/release_notes.html#facter-312
 [Facter 3.1.3]: /facter/3.1/release_notes.html#facter-313
+[Facter 3.1.4]: /facter/3.1/release_notes.html#facter-314
 
 [Hiera 3.0.5]: /hiera/3.0/release_notes.html#hiera-305
+[Hiera 3.0.6]: /hiera/3.0/release_notes.html#hiera-306
 
 [MCollective 2.8.6]: /mcollective/releasenotes.html#2_8_6
+[MCollective 2.8.7]: /mcollective/releasenotes.html#2_8_7
 
 [pxp-agent]: https://github.com/puppetlabs/pxp-agent
 
@@ -28,7 +32,35 @@ The `puppet-agent` package's version numbers use the format X.Y.Z, where:
 
 The `puppet-agent` package installs Puppet 4. Also read the [Puppet 4.0 release notes](/puppet/4.0/reference/release_notes.html), since they cover any breaking changes since Puppet 3.8.
 
-Also of interest: [About Agent](/puppet/4.3/reference/about_agent.html) and the [Puppet 4.3 release notes](/puppet/4.3/reference/release_notes.html).
+Also of interest: [About Agent](./about_agent.html) and the [Puppet 4.3 release notes](./release_notes.html).
+
+## Puppet Agent 1.3.4
+
+Released January 25, 2016.
+
+This release includes [Puppet 4.3.2][], [Facter 3.1.4][], [Hiera 3.0.6][], [MCollective 2.8.7][], and [`pxp-agent`][pxp-agent] 1.0.2, and updates OpenSSL to the latest version of 1.0.2 and Ruby to 2.1.8. This release also adds packages for Ubuntu Wily 15.10.
+
+There was no release for `puppet-agent` 1.3.3.
+
+* [Fixed in `puppet-agent` 1.3.4](https://tickets.puppetlabs.com/issues/?filter=17100)
+* [Introduced in `puppet-agent` 1.3.4](https://tickets.puppetlabs.com/issues/?filter=17101)
+
+### New platforms
+
+This release adds `puppet-agent` packages for Ubutnu Wily 15.10 and Cisco eXR.
+
+### Security fix: Ruby CVE-2015-7551
+
+This release includes Ruby 2.1.8, which resolves [CVE-2015-7551](https://www.ruby-lang.org/en/news/2015/12/16/unsafe-tainted-string-usage-in-fiddle-and-dl-cve-2015-7551/).
+
+### Security fixes: OpenSSL 1.0.2
+
+This release includes the latest version of OpenSSL 1.0.2, which resolves [several CVEs](http://openssl.org/news/secadv/20151203.txt).
+
+### Updated components
+
+* Updates Puppet, MCollective, and `pxp-agent`. This release also updates Facter and Hiera, but the update contains no functional changes.
+* [Updates Ruby on Windows]() to resolve a security issue.
 
 ## Puppet Agent 1.3.2
 

@@ -10,13 +10,8 @@ $( document ).ready( function() {
     // toggle visibility of the menu.
     $( "li.with-submenu" ).on("click", function(e) {
         $( this ).toggleClass("active");
+        $( this ).children('dl').slideToggle(200);
         e.stopPropagation();
-    });
-
-    // If you click anywhere else (that is, the other two things didn't stop
-    // propagation of the event), hide the menu.
-    $( document ).on("click", function(e) {
-        $( "li.with-submenu" ).removeClass("active");
     });
 
 });

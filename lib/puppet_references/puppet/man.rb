@@ -5,7 +5,7 @@ module PuppetReferences
       OUTPUT_DIR = PuppetReferences::OUTPUT_DIR + 'puppet/man'
 
       def initialize(*args)
-        @latest = '/references/latest/man'
+        @latest = '/puppet/latest/reference/man'
         super(*args)
       end
 
@@ -69,7 +69,6 @@ module PuppetReferences
           list.reject! {|sub| !commands.include?(sub)}
         end
         header_data = {title: 'Puppet Man Pages',
-                       nav: '/_includes/references_man.html',
                        canonical: "#{@latest}/index.html"}
         index_text = <<EOT
 #{ make_header(header_data) }
@@ -110,7 +109,7 @@ These subcommands have not yet been added to any of the categories above.
 EOADDENDUM
         end
         # write index
-        filename = OUTPUT_DIR + 'index.html'
+        filename = OUTPUT_DIR + 'index.md'
         filename.open('w') {|f| f.write(index_text)}
       end
 
@@ -137,7 +136,6 @@ EOADDENDUM
       def build_manpage(subcommand)
         puts "Man pages: Building #{subcommand}"
         header_data = {title: "Man Page: puppet #{subcommand}",
-                       nav: '/_includes/references_man.html',
                        canonical: "#{@latest}/#{subcommand}.html"}
         raw_text = PuppetReferences::ManCommand.new(subcommand).get
         content = make_header(header_data) + render_with_ronn(raw_text)

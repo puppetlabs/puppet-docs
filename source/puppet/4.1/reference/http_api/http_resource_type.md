@@ -1,7 +1,8 @@
 ---
 layout: default
-title: "Puppet HTTP API: Resource Type"
-canonical: "/puppet/latest/reference/http_api/http_resource_type.html"
+built_from_commit: c4a6a76fd219bffd689476413985ed13f40ef1dd
+title: 'Puppet HTTP API: Resource Type'
+canonical: /puppet/latest/reference/http_api/http_resource_type.html
 ---
 
 Resource Type
@@ -203,8 +204,7 @@ List matching a regular expression:
 Schema
 ------
 
-A `resource_type` response body conforms to
-[the `resource_type` schema.](../schemas/resource_type.json)
+A `resource_type` response body conforms to the schema at [api/schemas/resource_type.json](../schemas/resource_type.json).
 
 Source
 ------

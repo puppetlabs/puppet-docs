@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Function Reference"
-canonical: "/references/2.7.latest/function.html"
+canonical: "/puppet/2.7/reference/function.html"
 ---
 
 

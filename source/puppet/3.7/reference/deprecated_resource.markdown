@@ -13,7 +13,7 @@ The following features of Puppet's built-in resource types are deprecated, and w
 
 #### Now
 
-The [`file` type's `mode` attribute](/references/3.7.latest/type.html#file-attribute-mode) will accept both numbers and strings to represent numeric permissions (like `0644`).
+The [`file` type's `mode` attribute](./type.html#file-attribute-mode) will accept both numbers and strings to represent numeric permissions (like `0644`).
 
 #### In Puppet 4.0
 
@@ -45,7 +45,7 @@ In the Puppet 4 language, numbers starting with 0 are interpreted as octal, but 
 
 #### Now
 
-If a `file` resource uses the `source` attribute and doesn't specify any of the `owner`, `group`, or `mode` attributes, Puppet will default to using the ownership and permissions from the source file, which is usually a file from a Puppet module. You can use [the `source_permissions` attribute](/references/3.7.latest/type.html#file-attribute-source_permissions) to override this behavior.
+If a `file` resource uses the `source` attribute and doesn't specify any of the `owner`, `group`, or `mode` attributes, Puppet will default to using the ownership and permissions from the source file, which is usually a file from a Puppet module. You can use [the `source_permissions` attribute](./type.html#file-attribute-source_permissions) to override this behavior.
 
 #### In Puppet 4.0
 
@@ -75,7 +75,7 @@ Nonsensical \*nix permissions being copied to Windows nodes revealed the problem
 
 #### Now
 
-The [`file` type's `recurse` attribute](/references/3.7.latest/type.html#file-attribute-recurse) allows a value of `inf`. (It's a synonym for `true`.)
+The [`file` type's `recurse` attribute](./type.html#file-attribute-recurse) allows a value of `inf`. (It's a synonym for `true`.)
 
 #### In Puppet 4.0
 
@@ -93,7 +93,7 @@ Replace any occurrences with `recurse => true`.
 
 #### Context
 
-The behavior of `recurse` and [`recurselimit`](/references/3.7.latest/type.html#file-attribute-recurselimit) used to both be crammed into the `recurse` attribute, which could be set to numbers and `inf` in addition to its current values. Now that they're handled separately, `inf` is nonsensical as a value for `recurse`.
+The behavior of `recurse` and [`recurselimit`](./type.html#file-attribute-recurselimit) used to both be crammed into the `recurse` attribute, which could be set to numbers and `inf` in addition to its current values. Now that they're handled separately, `inf` is nonsensical as a value for `recurse`.
 
 * [PUP-2379: Deprecate `recurse => inf` for file type](https://tickets.puppetlabs.com/browse/PUP-2379)
 

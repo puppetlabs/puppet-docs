@@ -1,7 +1,8 @@
 ---
 layout: default
-title: "Puppet HTTP API: Index"
-canonical: "/puppet/latest/reference/http_api/http_api_index.html"
+built_from_commit: 3b5d15cb1c5ed830cb460f2687fde710e5383e69
+title: 'Puppet HTTP API: Index'
+canonical: /puppet/latest/reference/http_api/http_api_index.html
 ---
 
 A Puppet master server provides several services via HTTP API, and the Puppet

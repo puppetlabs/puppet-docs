@@ -315,7 +315,7 @@ toc: false
 <blockquote>
   <h3 id="exercise-apache">Exercise: Apache ～ 演習：Apache</h3>
   
-  <p>Apacheの<a href="http://docs.puppetlabs.com/references/latest/type.html#package">パッケージ</a>をインストールするマニフェストを作成してみましょう。そしてApacheの<a href="http://docs.puppetlabs.com/references/latest/type.html#package">サービス</a>が動作している事を確認してください。ホストOSのWebブラウザから接続してApache welcome pageが表示される事を証明しましょう。</p>
+  <p>Apacheの<a href="http://docs.puppetlabs.com/puppet/latest/reference/type.html#package">パッケージ</a>をインストールするマニフェストを作成してみましょう。そしてApacheの<a href="http://docs.puppetlabs.com/puppet/latest/reference/type.html#package">サービス</a>が動作している事を確認してください。ホストOSのWebブラウザから接続してApache welcome pageが表示される事を証明しましょう。</p>
 
   <p><strong>追加課題：</strong>httpd.confを管理し、サービスに通知するようにしましょう。Apacheに特定バージョンを維持するように強制します。（メモ：これはOSのバージョン文字列のフォーマットを調べて、そのバージョンが有効になるようにします）。</p>
   
@@ -325,7 +325,7 @@ toc: false
     <li>従来のRed Hat系（あなたのVM）とDebian系のLinuxシステムでは、OSのAptもしくはYumリポジトリからパッケージがインストールされます。システムツールはパッケージをどのように見つけてインストールするか知っていますが（特定バージョンのパッケージに限定することすらできます）、Puppetが知るべきは<code>ensure => installed</code>だけです。パッケージがどこにあるかは必要ありません。</li>
     <li>パッケージおよび「serviceリソース」の名称はOSのネーミング規則に依存します。これはよくある話ですが、マニフェストを記述する前にそれぞれのローカル名称を調べる必要があるという事です。例えばApacheパッケージとサービスの名称はお使いのVMに乗っているCentOSではパッケージおよびサービスの名称は双方とも<code>httpd</code>です。</li>
     <li>それぞれのリソース型で<code>ensure</code>の値を正しく使ってください。<code>package</code>、<code>file</code>、<code>service</code>の使い方は同じではありません。</li>
-    <li><a href="http://docs.puppetlabs.com/puppet_core_types_cheatsheet.pdf">虎の巻(英文)</a>と<a href="http://docs.puppetlabs.com/references/stable/type.html">型リファレンス(英文)</a>は役に立ちます。</li>
+    <li><a href="http://docs.puppetlabs.com/puppet_core_types_cheatsheet.pdf">虎の巻(英文)</a>と<a href="http://docs.puppetlabs.com/puppet/latest/reference/type.html">型リファレンス(英文)</a>は役に立ちます。</li>
     </ul>
 </blockquote>
 

@@ -3,11 +3,11 @@ layout: default
 title: Custom Types
 ---
 
-[package_type]: /references/latest/type.html#package
+[package_type]: /puppet/latest/reference/type.html#package
 [module]: /puppet/latest/reference/modules_fundamentals.html
 [custom_functions]: /guides/custom_functions.html
 [custom_facts]: /facter/latest/custom_facts.html
-[pluginsync]: /references/latest/configuration.html#pluginsync
+[pluginsync]: /puppet/latest/reference/configuration.html#pluginsync
 [symbol]: http://www.ruby-doc.org/core/Symbol.html
 [ruby_block]: http://www.robertsosinski.com/2008/12/21/understanding-ruby-blocks-procs-and-lambdas/
 [markdown]: http://daringfireball.net/projects/markdown/

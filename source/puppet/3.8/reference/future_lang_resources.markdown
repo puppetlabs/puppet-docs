@@ -9,7 +9,7 @@ canonical: "/puppet/latest/reference/lang_resources.html"
 [containment]: ./future_lang_containment.html
 [scope]: ./future_lang_scope.html
 [report]: /guides/reporting.html
-[types]: /references/3.8.latest/type.html
+[types]: ./type.html
 [string]: ./future_lang_data_string.html
 [array]: ./future_lang_data_array.html
 [datatype]: ./future_lang_data.html
@@ -18,9 +18,9 @@ canonical: "/puppet/latest/reference/lang_resources.html"
 [class]: ./future_lang_classes.html
 [defined_type]: ./future_lang_defined_types.html
 [catalog]: ./future_lang_summary.html#compilation-and-catalogs
-[files]: /references/3.7.latest/type.html#file
-[cron jobs]: /references/3.7.latest/type.html#cron
-[services]: /references/3.7.latest/type.html#service
+[files]: /puppet/3.7/reference/type.html#file
+[cron jobs]: /puppet/3.7/reference/type.html#cron
+[services]: /puppet/3.7/reference/type.html#service
 [custom_types]: /guides/custom_types.html
 [resource_advanced]: ./future_lang_resources_advanced.html
 [expressions]: ./future_lang_expressions.html
@@ -127,7 +127,7 @@ If multiple classes require the same resource, you can use a [class][] or a [vir
 
 ### Relationships and Ordering
 
-[ordering]: /references/3.8.latest/configuration.html#ordering
+[ordering]: ./configuration.html#ordering
 
 By default, the order of resources in a manifest doesn't affect the order in which those resources will be applied. Puppet will apply _unrelated_ resources in a mostly random (but consistent between runs) order.
 
@@ -184,6 +184,6 @@ Some attributes in Puppet can be used with every resource type. These are called
 
 The most commonly used metaparameters are for specifying [order relationships][relationships] between resources.
 
-You can see the full list of all metaparameters in the [Metaparameter Reference](/references/3.7.latest/metaparameter.html).
+You can see the full list of all metaparameters in the [Metaparameter Reference](/puppet/3.7/reference/metaparameter.html).
 
 

@@ -92,7 +92,7 @@ Simple facts are typically made up of the following parts:
 
 Facter 2.0 introduced **structured facts**, which can take the form of hashes or arrays. You don't have to do anything special to mark the fact as structured --- if your fact returns a hash or array, Facter will recognize it as a structured fact. Structured facts can have [simple](#main-components-of-simple-resolutions) or [aggregate resolutions](#main-components-of-aggregate-resolutions).
 
-> **Note:** Structured facts are supported in Puppet 3.3 and greater, but they aren't enabled by default. To enable structured facts, set the [stringify_facts](/references/latest/configuration.html#stringifyfacts) option to `false` in the `[main]` section of puppet.conf on all machines, whether they are agents, masters, or standalone nodes running `puppet apply`.
+> **Note:** Structured facts are supported in Puppet 3.3 and greater, but they aren't enabled by default. To enable structured facts, set the [stringify_facts](/puppet/latest/reference/configuration.html#stringifyfacts) option to `false` in the `[main]` section of puppet.conf on all machines, whether they are agents, masters, or standalone nodes running `puppet apply`.
 >
 > Puppet Enterprise 3.7 and later has structured facts enabled by default, as will Puppet 4.0.
 

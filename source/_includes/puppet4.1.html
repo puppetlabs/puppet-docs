@@ -62,7 +62,7 @@
       </li>
       <li><a href="{{ puppet_dir }}/config_print.html">Checking Values of Settings</a></li>
       <li><a href="{{ puppet_dir }}/config_set.html">Editing Settings on the Command Line</a></li>
-      <li><a href="/references/4.1.latest/configuration.html">Complete List of Settings (Configuration Reference)</a></li>
+      <li><a href="/puppet/4.1/reference/configuration.html">Complete List of Settings (Configuration Reference)</a></li>
       <li><a href="/puppetserver/{{ server_version }}/puppet_conf_setting_diffs.html">Settings that Differ Under Puppet Server</a></li>
     </ul>
   </li>
@@ -153,7 +153,7 @@
 
   <li><strong>The Puppet Language</strong>
     <ul>
-      <li><a href="{{ puppet_dir }}/experiments_future.html">Language Changes Since Puppet 3</a></li>
+      <li><a href="{{ puppet_dir }}/lang_updating_manifests.html">Updating 3.x Manifests for Puppet 4.x</a></li>
       <li><a href="{{ puppet_dir }}/lang_visual_index.html">Visual Index</a></li>
       <li><a href="{{ puppet_dir }}/lang_summary.html">Basics</a></li>
       <li><a href="{{ puppet_dir }}/lang_windows_file_paths.html">Handling File Paths on Windows</a></li>
@@ -213,75 +213,125 @@
     </ul>
   </li>
 
-  <li><a href="/references/{{ puppet_version }}.latest/type.html">The Resource Type Reference</a></li>
-
-  <li><strong>Resource Types: Tips and Examples</strong>
+  <li><strong>Resource Types</strong>
     <ul>
-      <li><a href="{{ puppet_dir }}/resources_service.html">Service Resources (All OSes)</a></li>
-      <li><a href="{{ puppet_dir }}/resources_file_windows.html">File Resources (Windows)</a></li>
-      <li><a href="{{ puppet_dir }}/resources_package_windows.html">Package Resources (Windows)</a></li>
-      <li><a href="{{ puppet_dir }}/resources_user_group_windows.html">User and Group Resources (Windows)</a></li>
-      <li><a href="{{ puppet_dir }}/resources_scheduled_task_windows.html">Scheduled Task Resources (Windows)</a></li>
-      <li><a href="{{ puppet_dir }}/resources_exec_windows.html">Exec Resources (Windows)</a></li>
-      <li><a href="{{ puppet_dir }}/resources_windows_optional.html">Optional Resource Types for Windows</a></li>
+      <li><a href="{{ puppet_dir }}/type.html">All Resource Types (Single-Page Reference)</a></li>
+      <li><a href="{{ puppet_dir }}/resources_windows_optional.html">TIPS: Optional Resource Types for Windows</a></li>
+
+      <li><a href="{{ puppet_dir }}/types/augeas.html">augeas</a></li>
+      <li><a href="{{ puppet_dir }}/types/computer.html">computer</a></li>
+      <li><a href="{{ puppet_dir }}/types/cron.html">cron</a></li>
+      <li><a href="{{ puppet_dir }}/types/exec.html">exec</a></li>
+      <li><a href="{{ puppet_dir }}/resources_exec_windows.html">TIPS: Exec Resources (Windows)</a></li>
+      <li><a href="{{ puppet_dir }}/types/file.html">file</a></li>
+      <li><a href="{{ puppet_dir }}/resources_file_windows.html">TIPS: File Resources (Windows)</a></li>
+      <li><a href="{{ puppet_dir }}/types/filebucket.html">filebucket</a></li>
+      <li><a href="{{ puppet_dir }}/types/group.html">group</a></li>
+      <li><a href="{{ puppet_dir }}/resources_user_group_windows.html">TIPS: User and Group Resources (Windows)</a></li>
+      <li><a href="{{ puppet_dir }}/types/host.html">host</a></li>
+      <li><a href="{{ puppet_dir }}/types/index.html">index</a></li>
+      <li><a href="{{ puppet_dir }}/types/interface.html">interface</a></li>
+      <li><a href="{{ puppet_dir }}/types/k5login.html">k5login</a></li>
+      <li><a href="{{ puppet_dir }}/types/macauthorization.html">macauthorization</a></li>
+      <li><a href="{{ puppet_dir }}/types/mailalias.html">mailalias</a></li>
+      <li><a href="{{ puppet_dir }}/types/maillist.html">maillist</a></li>
+      <li><a href="{{ puppet_dir }}/types/mcx.html">mcx</a></li>
+      <li><a href="{{ puppet_dir }}/types/mount.html">mount</a></li>
+      <li><a href="{{ puppet_dir }}/types/nagios_command.html">nagios_command</a></li>
+      <li><a href="{{ puppet_dir }}/types/nagios_contact.html">nagios_contact</a></li>
+      <li><a href="{{ puppet_dir }}/types/nagios_contactgroup.html">nagios_contactgroup</a></li>
+      <li><a href="{{ puppet_dir }}/types/nagios_host.html">nagios_host</a></li>
+      <li><a href="{{ puppet_dir }}/types/nagios_hostdependency.html">nagios_hostdependency</a></li>
+      <li><a href="{{ puppet_dir }}/types/nagios_hostescalation.html">nagios_hostescalation</a></li>
+      <li><a href="{{ puppet_dir }}/types/nagios_hostextinfo.html">nagios_hostextinfo</a></li>
+      <li><a href="{{ puppet_dir }}/types/nagios_hostgroup.html">nagios_hostgroup</a></li>
+      <li><a href="{{ puppet_dir }}/types/nagios_service.html">nagios_service</a></li>
+      <li><a href="{{ puppet_dir }}/types/nagios_servicedependency.html">nagios_servicedependency</a></li>
+      <li><a href="{{ puppet_dir }}/types/nagios_serviceescalation.html">nagios_serviceescalation</a></li>
+      <li><a href="{{ puppet_dir }}/types/nagios_serviceextinfo.html">nagios_serviceextinfo</a></li>
+      <li><a href="{{ puppet_dir }}/types/nagios_servicegroup.html">nagios_servicegroup</a></li>
+      <li><a href="{{ puppet_dir }}/types/nagios_timeperiod.html">nagios_timeperiod</a></li>
+      <li><a href="{{ puppet_dir }}/types/notify.html">notify</a></li>
+      <li><a href="{{ puppet_dir }}/types/package.html">package</a></li>
+      <li><a href="{{ puppet_dir }}/resources_package_windows.html">TIPS: Package Resources (Windows)</a></li>
+      <li><a href="{{ puppet_dir }}/types/resources.html">resources</a></li>
+      <li><a href="{{ puppet_dir }}/types/router.html">router</a></li>
+      <li><a href="{{ puppet_dir }}/types/schedule.html">schedule</a></li>
+      <li><a href="{{ puppet_dir }}/types/scheduled_task.html">scheduled_task</a></li>
+      <li><a href="{{ puppet_dir }}/resources_scheduled_task_windows.html">TIPS: Scheduled Task Resources (Windows)</a></li>
+      <li><a href="{{ puppet_dir }}/types/selboolean.html">selboolean</a></li>
+      <li><a href="{{ puppet_dir }}/types/selmodule.html">selmodule</a></li>
+      <li><a href="{{ puppet_dir }}/types/service.html">service</a></li>
+      <li><a href="{{ puppet_dir }}/resources_service.html">TIPS: Service Resources (All OSes)</a></li>
+      <li><a href="{{ puppet_dir }}/types/ssh_authorized_key.html">ssh_authorized_key</a></li>
+      <li><a href="{{ puppet_dir }}/types/sshkey.html">sshkey</a></li>
+      <li><a href="{{ puppet_dir }}/types/stage.html">stage</a></li>
+      <li><a href="{{ puppet_dir }}/types/tidy.html">tidy</a></li>
+      <li><a href="{{ puppet_dir }}/types/user.html">user</a></li>
+      <li><a href="{{ puppet_dir }}/resources_user_group_windows.html">TIPS: User and Group Resources (Windows)</a></li>
+      <li><a href="{{ puppet_dir }}/types/vlan.html">vlan</a></li>
+      <li><a href="{{ puppet_dir }}/types/yumrepo.html">yumrepo</a></li>
+      <li><a href="{{ puppet_dir }}/types/zfs.html">zfs</a></li>
+      <li><a href="{{ puppet_dir }}/types/zone.html">zone</a></li>
+      <li><a href="{{ puppet_dir }}/types/zpool.html">zpool</a></li>
     </ul>
   </li>
 
   <li><strong>Misc. References (Settings, Functions, etc.)</strong>
     <ul>
-      <li><a href="/references/{{ puppet_version }}.latest/configuration.html">Settings (Configuration Reference)</a></li>
-      <li><a href="/references/{{ puppet_version }}.latest/function.html">Functions</a></li>
-      <li><a href="/references/{{ puppet_version }}.latest/metaparameter.html">Metaparameters</a></li>
-      <li><a href="/references/{{ puppet_version }}.latest/report.html">Report Handlers</a></li>
-      <li><a href="/references/{{ puppet_version }}.latest/indirection.html">Indirections and Termini</a></li>
-      <li><a href="/references/{{ puppet_version }}.latest/developer/frames.html">Ruby API for Developing Extensions</a></li>
+      <li><a href="{{ puppet_dir }}/configuration.html">Settings (Configuration Reference)</a></li>
+      <li><a href="{{ puppet_dir }}/function.html">Functions</a></li>
+      <li><a href="{{ puppet_dir }}/metaparameter.html">Metaparameters</a></li>
+      <li><a href="{{ puppet_dir }}/report.html">Report Handlers</a></li>
+      <li><a href="{{ puppet_dir }}/indirection.html">Indirections and Termini</a></li>
+      <li><a href="{{ puppet_dir }}/yard/frames.html">Ruby API for Developing Extensions</a></li>
     </ul>
   </li>
 
   <li><strong>Man Pages</strong>
     <ul>
 
-      <li><a href="/references/{{ puppet_version }}.latest/man/index.html">Index</a></li>
+      <li><a href="{{ puppet_dir }}/man/index.html">Index</a></li>
       <li><strong>Core Tools</strong>
         <ul>
-          <li><a href="/references/{{ puppet_version }}.latest/man/agent.html">puppet agent</a></li>
-          <li><a href="/references/{{ puppet_version }}.latest/man/apply.html">puppet apply</a></li>
-          <li><a href="/references/{{ puppet_version }}.latest/man/cert.html">puppet cert</a></li>
-          <li><a href="/references/{{ puppet_version }}.latest/man/master.html">puppet master</a></li>
-          <li><a href="/references/{{ puppet_version }}.latest/man/module.html">puppet module</a></li>
-          <li><a href="/references/{{ puppet_version }}.latest/man/resource.html">puppet resource</a></li>
+          <li><a href="{{ puppet_dir }}/man/agent.html">puppet agent</a></li>
+          <li><a href="{{ puppet_dir }}/man/apply.html">puppet apply</a></li>
+          <li><a href="{{ puppet_dir }}/man/cert.html">puppet cert</a></li>
+          <li><a href="{{ puppet_dir }}/man/master.html">puppet master</a></li>
+          <li><a href="{{ puppet_dir }}/man/module.html">puppet module</a></li>
+          <li><a href="{{ puppet_dir }}/man/resource.html">puppet resource</a></li>
         </ul>
       </li>
 
       <li><strong>Occasionally Useful</strong>
         <ul>
-          <li><a href="/references/{{ puppet_version }}.latest/man/config.html">puppet config</a></li>
-          <li><a href="/references/{{ puppet_version }}.latest/man/describe.html">puppet describe</a></li>
-          <li><a href="/references/{{ puppet_version }}.latest/man/device.html">puppet device</a></li>
-          <li><a href="/references/{{ puppet_version }}.latest/man/doc.html">puppet doc</a></li>
-          <li><a href="/references/{{ puppet_version }}.latest/man/help.html">puppet help</a></li>
-          <li><a href="/references/{{ puppet_version }}.latest/man/man.html">puppet man</a></li>
-          <li><a href="/references/{{ puppet_version }}.latest/man/node.html">puppet node</a></li>
-          <li><a href="/references/{{ puppet_version }}.latest/man/parser.html">puppet parser</a></li>
-          <li><a href="/references/{{ puppet_version }}.latest/man/plugin.html">puppet plugin</a></li>
+          <li><a href="{{ puppet_dir }}/man/config.html">puppet config</a></li>
+          <li><a href="{{ puppet_dir }}/man/describe.html">puppet describe</a></li>
+          <li><a href="{{ puppet_dir }}/man/device.html">puppet device</a></li>
+          <li><a href="{{ puppet_dir }}/man/doc.html">puppet doc</a></li>
+          <li><a href="{{ puppet_dir }}/man/help.html">puppet help</a></li>
+          <li><a href="{{ puppet_dir }}/man/man.html">puppet man</a></li>
+          <li><a href="{{ puppet_dir }}/man/node.html">puppet node</a></li>
+          <li><a href="{{ puppet_dir }}/man/parser.html">puppet parser</a></li>
+          <li><a href="{{ puppet_dir }}/man/plugin.html">puppet plugin</a></li>
         </ul>
       </li>
 
       <li><strong>Niche</strong>
         <ul>
-          <li><a href="/references/{{ puppet_version }}.latest/man/ca.html">puppet ca</a></li>
-          <li><a href="/references/{{ puppet_version }}.latest/man/catalog.html">puppet catalog</a></li>
-          <li><a href="/references/{{ puppet_version }}.latest/man/certificate.html">puppet certificate</a></li>
-          <li><a href="/references/{{ puppet_version }}.latest/man/certificate_request.html">puppet certificate_request</a></li>
-          <li><a href="/references/{{ puppet_version }}.latest/man/certificate_revocation_list.html">puppet certificate_revocation_list</a></li>
-          <li><a href="/references/{{ puppet_version }}.latest/man/facts.html">puppet facts</a></li>
-          <li><a href="/references/{{ puppet_version }}.latest/man/file.html">puppet file</a></li>
-          <li><a href="/references/{{ puppet_version }}.latest/man/filebucket.html">puppet filebucket</a></li>
-          <li><a href="/references/{{ puppet_version }}.latest/man/inspect.html">puppet inspect</a></li>
-          <li><a href="/references/{{ puppet_version }}.latest/man/key.html">puppet key</a></li>
-          <li><a href="/references/{{ puppet_version }}.latest/man/report.html">puppet report</a></li>
-          <li><a href="/references/{{ puppet_version }}.latest/man/resource_type.html">puppet resource_type</a></li>
-          <li><a href="/references/{{ puppet_version }}.latest/man/status.html">puppet status</a></li>
+          <li><a href="{{ puppet_dir }}/man/ca.html">puppet ca</a></li>
+          <li><a href="{{ puppet_dir }}/man/catalog.html">puppet catalog</a></li>
+          <li><a href="{{ puppet_dir }}/man/certificate.html">puppet certificate</a></li>
+          <li><a href="{{ puppet_dir }}/man/certificate_request.html">puppet certificate_request</a></li>
+          <li><a href="{{ puppet_dir }}/man/certificate_revocation_list.html">puppet certificate_revocation_list</a></li>
+          <li><a href="{{ puppet_dir }}/man/facts.html">puppet facts</a></li>
+          <li><a href="{{ puppet_dir }}/man/file.html">puppet file</a></li>
+          <li><a href="{{ puppet_dir }}/man/filebucket.html">puppet filebucket</a></li>
+          <li><a href="{{ puppet_dir }}/man/inspect.html">puppet inspect</a></li>
+          <li><a href="{{ puppet_dir }}/man/key.html">puppet key</a></li>
+          <li><a href="{{ puppet_dir }}/man/report.html">puppet report</a></li>
+          <li><a href="{{ puppet_dir }}/man/resource_type.html">puppet resource_type</a></li>
+          <li><a href="{{ puppet_dir }}/man/status.html">puppet status</a></li>
         </ul>
       </li>
 

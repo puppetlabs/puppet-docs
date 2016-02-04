@@ -7,7 +7,7 @@ canonical: "/puppet/latest/reference/lang_virtual.html"
 [resources]: ./future_lang_resources.html
 [references]: ./future_lang_data_resource_reference.html
 [classes]: ./future_lang_classes.html
-[realize_function]: /references/3.8.latest/function.html#realize
+[realize_function]: ./function.html#realize
 [include]: ./future_lang_classes.html#using-include
 [collectors]: ./future_lang_collectors.html
 [search_expression]: ./future_lang_collectors.html#search-expressions

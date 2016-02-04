@@ -68,9 +68,9 @@ For example:
 
     msiexec /qn /i puppet.msi PUPPET_MASTER_SERVER=puppet.acme.com
 
-[s]: /references/3.2.latest/configuration.html#server
-[c]: /references/3.2.latest/configuration.html#caserver
-[r]: /references/3.2.latest/configuration.html#certname
+[s]: /puppet/3.2/reference/configuration.html#server
+[c]: /puppet/3.2/reference/configuration.html#caserver
+[r]: /puppet/3.2/reference/configuration.html#certname
 
 Upgrading
 -----

@@ -6,17 +6,17 @@ canonical: "/puppet/latest/reference/services_master_unix.html"
 
 [catalogs]: ./subsystem_catalog_compilation.html
 [win_agent]: ./services_agent_windows.html
-[resource type reference]: /references/4.2.latest/type.html
+[resource type reference]: ./type.html
 [mcollective]: /mcollective
 [puppet.conf]: ./config_file_main.html
-[runinterval]: /references/4.2.latest/configuration.html#runinterval
-[onetime]: /references/4.2.latest/configuration.html#onetime
-[daemonize]: /references/4.2.latest/configuration.html#daemonize
-[splay]: /references/4.2.latest/configuration.html#splay
-[splaylimit]: /references/4.2.latest/configuration.html#splaylimit
-[listen]: /references/4.2.latest/configuration.html#listen
-[puppetport]: /references/4.2.latest/configuration.html#puppetport
-[pidfile]: /references/4.2.latest/configuration.html#pidfile
+[runinterval]: ./configuration.html#runinterval
+[onetime]: ./configuration.html#onetime
+[daemonize]: ./configuration.html#daemonize
+[splay]: ./configuration.html#splay
+[splaylimit]: ./configuration.html#splaylimit
+[listen]: ./configuration.html#listen
+[puppetport]: ./configuration.html#puppetport
+[pidfile]: ./configuration.html#pidfile
 [auth.conf]: ./config_file_auth.html
 [short_settings]: ./config_important_settings.html#settings-for-agents-all-nodes
 [page on triggering puppet runs]: /pe/latest/orchestration_puppet.html
@@ -24,7 +24,7 @@ canonical: "/puppet/latest/reference/services_master_unix.html"
 
 Puppet agent is the application that manages configurations on nodes. It requires a Puppet master server to fetch configuration [catalogs][] from. (For more info, see [Overview of Puppet's Architecture](./architecture.html).)
 
-For details about invoking the Puppet agent command, see [the puppet agent man page](/references/4.2.latest/man/agent.html).
+For details about invoking the Puppet agent command, see [the puppet agent man page](./man/agent.html).
 
 ## Supported Platforms
 
@@ -64,13 +64,13 @@ If you need to install packages into a directory controlled by a non-root user, 
 
 By default, Puppet's HTTPS traffic uses port 8140. Your OS and firewall must allow Puppet agent to initiate outbound connections on this port.
 
-If you want to use a non-default port, you'll have to change [the `masterport` setting](/references/4.2.latest/configuration.html#masterport) on all agent nodes, and ensure that you've changed your Puppet master's port as well.
+If you want to use a non-default port, you'll have to change [the `masterport` setting](./configuration.html#masterport) on all agent nodes, and ensure that you've changed your Puppet master's port as well.
 
 ### Logging
 
 When running as a service, Puppet agent logs messages to syslog. Your syslog configuration dictates where these messages will be saved, but the default location is `/var/log/messages` on Linux, `/var/log/system.log` on Mac OS X, and `/var/adm/messages` on Solaris.
 
-You can adjust how verbose the logs are with [the `log_level` setting](/references/4.2.latest/configuration.html#loglevel), which defaults to `notice`. Setting it to `info` is equivalent to running with the `--verbose` option, and setting it to `debug` is equivalent to `--debug`. You can also make logs quieter by dialing back to `warning` or lower.
+You can adjust how verbose the logs are with [the `log_level` setting](./configuration.html#loglevel), which defaults to `notice`. Setting it to `info` is equivalent to running with the `--verbose` option, and setting it to `debug` is equivalent to `--debug`. You can also make logs quieter by dialing back to `warning` or lower.
 
 When running in the foreground with the `--verbose`, `--debug`, or `--test` options, Puppet agent logs directly to the terminal instead of to syslog.
 
@@ -78,7 +78,7 @@ When started with the `--logdest <FILE>` option, Puppet agent logs to the file s
 
 ### Reporting
 
-In addition to local logging, Puppet agent will submit a [report][] to the Puppet master after each run. (This can be disabled by setting [`report = false`](/references/4.2.latest/configuration.html#report) in [puppet.conf][].)
+In addition to local logging, Puppet agent will submit a [report][] to the Puppet master after each run. (This can be disabled by setting [`report = false`](./configuration.html#report) in [puppet.conf][].)
 
 In Puppet Enterprise, you can browse these reports in the PE console's node pages, and you can analyze correlated events with the PE event inspector.
 

@@ -8,8 +8,8 @@ canonical: "/puppet/latest/reference/dirs_modulepath.html"
 [environments]: ./environments.html
 [env_modules]: ./environments.html#setting-up-environments-on-a-puppet-master
 [confdir]: ./dirs_confdir.html
-[basemodulepath_setting]: /references/4.3.latest/configuration.html#basemodulepath
-[modulepath_setting]: /references/4.3.latest/configuration.html#modulepath
+[basemodulepath_setting]: ./configuration.html#basemodulepath
+[modulepath_setting]: ./configuration.html#modulepath
 [config_print]: ./config_print.html
 [enable_dir_envs]: ./environments.html#enabling-directory-environments
 [puppet.conf]: ./config_file_main.html

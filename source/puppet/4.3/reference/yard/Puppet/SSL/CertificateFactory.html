@@ -1,0 +1,774 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Module: Puppet::SSL::CertificateFactory
+  
+    &mdash; Documentation by YARD 0.8.7.6
+  
+</title>
+
+  <link rel="stylesheet" href="../../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '../../';
+  framesUrl = "../../frames.html#!Puppet/SSL/CertificateFactory.html";
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../../_index.html">Index (C)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span> &raquo; <span class='title'><span class='object_link'>SSL</span></span>
+     &raquo; 
+    <span class="title">CertificateFactory</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../../class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="../../method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="../../file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><h1>Module: Puppet::SSL::CertificateFactory
+  
+  
+  <span class="private note title">Private</span>
+</h1>
+
+<dl class="box">
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r1 last">Defined in:</dt>
+    <dd class="r1 last">lib/puppet/ssl/certificate_factory.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This module is part of a private API.</strong>
+  You should avoid using this module if possible, as it may be removed or be changed in the future.
+</p>
+<p>This class encapsulates the logic of creating and adding extensions to X509
+certificates.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+
+
+
+
+
+
+  
+    <h2>
+      Class Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        
+<li class="private ">
+  <span class="summary_signature">
+    
+      <a href="#add_extensions_to-class_method" title="add_extensions_to (class method)">+ <strong>add_extensions_to</strong>(cert, csr, issuer, extensions) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  <span class="note title private">private</span>
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Add X509v3 extensions to the given certificate.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#build-class_method" title="build (class method)">+ (OpenSSL::X509::Certificate) <strong>build</strong>(cert_type, csr, issuer, serial, ttl = nil) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Create a new X509 certificate and add any needed extensions to the cert.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="private ">
+  <span class="summary_signature">
+    
+      <a href="#generate_extension-class_method" title="generate_extension (class method)">+ (OpenSSL::X509::Extension) <strong>generate_extension</strong>(ef, oid, val, crit = false) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  <span class="note title private">private</span>
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Generate an extension with the given OID, value, and critical state.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="add_extensions_to-class_method">
+  
+    + <strong>add_extensions_to</strong>(cert, csr, issuer, extensions)  <span class="extras">(private)</span>&nbsp;<span class="note title private">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p class="note returns_void">This method returns an undefined value.</p><p>Add X509v3 extensions to the given certificate.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>cert</span>
+      
+      
+        <span class='type'>(<tt>OpenSSL::X509::Certificate</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The certificate to add the
+extensions to.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>csr</span>
+      
+      
+        <span class='type'>(<tt>OpenSSL::X509::Request</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The CSR associated with the given
+certificate, which may specify requested extensions for the given cert.
+See <a href="http://tools.ietf.org/html/rfc2985">http://tools.ietf.org/html/rfc2985</a> Section 5.4.2 Extension request</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>issuer</span>
+      
+      
+        <span class='type'>(<tt>OpenSSL::X509::Certificate</tt>, <tt>OpenSSL::X509::Request</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>An X509 CSR
+if this is a self signed certificate, or the X509 certificate of the CA if
+this is a CA signed certificate.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>extensions</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Hash</span>&lt;String, <span class='object_link'>Array</span>&lt;String&gt; | String&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The extensions to
+add to the certificate, based on the certificate type being created (CA,
+server, client, etc)</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/ssl/certificate_factory.rb', line 76</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_add_extensions_to'>add_extensions_to</span><span class='lparen'>(</span><span class='id identifier rubyid_cert'>cert</span><span class='comma'>,</span> <span class='id identifier rubyid_csr'>csr</span><span class='comma'>,</span> <span class='id identifier rubyid_issuer'>issuer</span><span class='comma'>,</span> <span class='id identifier rubyid_extensions'>extensions</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_ef'>ef</span> <span class='op'>=</span> <span class='const'>OpenSSL</span><span class='op'>::</span><span class='const'>X509</span><span class='op'>::</span><span class='const'>ExtensionFactory</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+  <span class='id identifier rubyid_ef'>ef</span><span class='period'>.</span><span class='id identifier rubyid_subject_certificate'>subject_certificate</span> <span class='op'>=</span> <span class='id identifier rubyid_cert'>cert</span>
+  <span class='id identifier rubyid_ef'>ef</span><span class='period'>.</span><span class='id identifier rubyid_issuer_certificate'>issuer_certificate</span>  <span class='op'>=</span> <span class='id identifier rubyid_issuer'>issuer</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>OpenSSL</span><span class='op'>::</span><span class='const'>X509</span><span class='op'>::</span><span class='const'>Request</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='id identifier rubyid_cert'>cert</span> <span class='op'>:</span> <span class='id identifier rubyid_issuer'>issuer</span>
+
+  <span class='comment'># Extract the requested extensions from the CSR.
+</span>  <span class='id identifier rubyid_requested_exts'>requested_exts</span> <span class='op'>=</span> <span class='id identifier rubyid_csr'>csr</span><span class='period'>.</span><span class='id identifier rubyid_request_extensions'>request_extensions</span><span class='period'>.</span><span class='id identifier rubyid_inject'>inject</span><span class='lparen'>(</span><span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_hash'>hash</span><span class='comma'>,</span> <span class='id identifier rubyid_re'>re</span><span class='op'>|</span>
+    <span class='id identifier rubyid_hash'>hash</span><span class='lbracket'>[</span><span class='id identifier rubyid_re'>re</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>oid</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='id identifier rubyid_re'>re</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>value</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_re'>re</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>critical</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='rbracket'>]</span>
+    <span class='id identifier rubyid_hash'>hash</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># Produce our final set of extensions.  We deliberately order these to
+</span>  <span class='comment'># build the way we want:
+</span>  <span class='comment'># 1. &quot;safe&quot; default values, like the comment, that no one cares about.
+</span>  <span class='comment'># 2. request extensions, from the CSR
+</span>  <span class='comment'># 3. extensions based on the type we are generating
+</span>  <span class='comment'># 4. overrides, which we always want to have in their form
+</span>  <span class='comment'>#
+</span>  <span class='comment'># This ordering *is* security-critical, but we want to allow the user
+</span>  <span class='comment'># enough rope to shoot themselves in the foot, if they want to ignore our
+</span>  <span class='comment'># advice and externally approve a CSR that sets the basicConstraints.
+</span>  <span class='comment'>#
+</span>  <span class='comment'># Swapping the order of 2 and 3 would ensure that you couldn&#39;t slip a
+</span>  <span class='comment'># certificate through where the CA constraint was true, though, if
+</span>  <span class='comment'># something went wrong up there. --daniel 2011-10-11
+</span>  <span class='id identifier rubyid_defaults'>defaults</span> <span class='op'>=</span> <span class='lbrace'>{</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>nsComment</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Puppet Ruby/OpenSSL Internal Certificate</span><span class='tstring_end'>&quot;</span></span> <span class='rbrace'>}</span>
+
+  <span class='comment'># See http://www.openssl.org/docs/apps/x509v3_config.html
+</span>  <span class='comment'># for information about the special meanings of &#39;hash&#39;, &#39;keyid&#39;, &#39;issuer&#39;
+</span>  <span class='id identifier rubyid_override'>override</span> <span class='op'>=</span> <span class='lbrace'>{</span>
+    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>subjectKeyIdentifier</span><span class='tstring_end'>&quot;</span></span>   <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>hash</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>authorityKeyIdentifier</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>keyid,issuer</span><span class='tstring_end'>&quot;</span></span>
+  <span class='rbrace'>}</span>
+
+  <span class='id identifier rubyid_exts'>exts</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='id identifier rubyid_defaults'>defaults</span><span class='comma'>,</span> <span class='id identifier rubyid_requested_exts'>requested_exts</span><span class='comma'>,</span> <span class='id identifier rubyid_extensions'>extensions</span><span class='comma'>,</span> <span class='id identifier rubyid_override'>override</span><span class='rbracket'>]</span><span class='period'>.</span>
+    <span class='id identifier rubyid_inject'>inject</span><span class='lparen'>(</span><span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_ret'>ret</span><span class='comma'>,</span> <span class='id identifier rubyid_val'>val</span><span class='op'>|</span> <span class='id identifier rubyid_ret'>ret</span><span class='period'>.</span><span class='id identifier rubyid_merge'>merge</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
+
+  <span class='id identifier rubyid_cert'>cert</span><span class='period'>.</span><span class='id identifier rubyid_extensions'>extensions</span> <span class='op'>=</span> <span class='id identifier rubyid_exts'>exts</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_oid'>oid</span><span class='comma'>,</span> <span class='id identifier rubyid_val'>val</span><span class='op'>|</span>
+    <span class='id identifier rubyid_generate_extension'>generate_extension</span><span class='lparen'>(</span><span class='id identifier rubyid_ef'>ef</span><span class='comma'>,</span> <span class='id identifier rubyid_oid'>oid</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="build-class_method">
+  
+    + (<tt>OpenSSL::X509::Certificate</tt>) <strong>build</strong>(cert_type, csr, issuer, serial, ttl = nil) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Create a new X509 certificate and add any needed extensions to the cert.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>cert_type</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Symbol</span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The certificate type to create, which specifies
+what extensions are added to the certificate.
+One of (:ca, :terminalsubca, :server, :ocsp, :client)</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>csr</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Puppet::SSL::CertificateRequest</span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The signing request associated with
+the certificate being created.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>issuer</span>
+      
+      
+        <span class='type'>(<tt>OpenSSL::X509::Certificate</tt>, <tt>OpenSSL::X509::Request</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>An X509 CSR
+if this is a self signed certificate, or the X509 certificate of the CA if
+this is a CA signed certificate.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>serial</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The serial number for the given certificate, which
+MUST be unique for the given CA.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ttl</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>nil</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The duration of the validity for the given certificate.
+defaults to Puppet[:ca_ttl]</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>OpenSSL::X509::Certificate</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>ArgumentError</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/ssl/certificate_factory.rb', line 27</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_build'>build</span><span class='lparen'>(</span><span class='id identifier rubyid_cert_type'>cert_type</span><span class='comma'>,</span> <span class='id identifier rubyid_csr'>csr</span><span class='comma'>,</span> <span class='id identifier rubyid_issuer'>issuer</span><span class='comma'>,</span> <span class='id identifier rubyid_serial'>serial</span><span class='comma'>,</span> <span class='id identifier rubyid_ttl'>ttl</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
+  <span class='comment'># Work out if we can even build the requested type of certificate.
+</span>  <span class='id identifier rubyid_build_extensions'>build_extensions</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>build_</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_cert_type'>cert_type</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='embexpr_end'>}</span><span class='tstring_content'>_extensions</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='id identifier rubyid_build_extensions'>build_extensions</span><span class='rparen'>)</span> <span class='kw'>or</span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_cert_type'>cert_type</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='embexpr_end'>}</span><span class='tstring_content'> is an invalid certificate type!</span><span class='tstring_end'>&quot;</span></span>
+
+  <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Certificate TTL must be an integer</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>unless</span> <span class='id identifier rubyid_ttl'>ttl</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>||</span> <span class='id identifier rubyid_ttl'>ttl</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Fixnum</span><span class='rparen'>)</span>
+
+  <span class='comment'># set up the certificate, and start building the content.
+</span>  <span class='id identifier rubyid_cert'>cert</span> <span class='op'>=</span> <span class='const'>OpenSSL</span><span class='op'>::</span><span class='const'>X509</span><span class='op'>::</span><span class='const'>Certificate</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+
+  <span class='id identifier rubyid_cert'>cert</span><span class='period'>.</span><span class='id identifier rubyid_version'>version</span>    <span class='op'>=</span> <span class='int'>2</span> <span class='comment'># X509v3
+</span>  <span class='id identifier rubyid_cert'>cert</span><span class='period'>.</span><span class='id identifier rubyid_subject'>subject</span>    <span class='op'>=</span> <span class='id identifier rubyid_csr'>csr</span><span class='period'>.</span><span class='id identifier rubyid_content'>content</span><span class='period'>.</span><span class='id identifier rubyid_subject'>subject</span>
+  <span class='id identifier rubyid_cert'>cert</span><span class='period'>.</span><span class='id identifier rubyid_issuer'>issuer</span>     <span class='op'>=</span> <span class='id identifier rubyid_issuer'>issuer</span><span class='period'>.</span><span class='id identifier rubyid_subject'>subject</span>
+  <span class='id identifier rubyid_cert'>cert</span><span class='period'>.</span><span class='id identifier rubyid_public_key'>public_key</span> <span class='op'>=</span> <span class='id identifier rubyid_csr'>csr</span><span class='period'>.</span><span class='id identifier rubyid_content'>content</span><span class='period'>.</span><span class='id identifier rubyid_public_key'>public_key</span>
+  <span class='id identifier rubyid_cert'>cert</span><span class='period'>.</span><span class='id identifier rubyid_serial'>serial</span>     <span class='op'>=</span> <span class='id identifier rubyid_serial'>serial</span>
+
+  <span class='comment'># Make the certificate valid as of yesterday, because so many people&#39;s
+</span>  <span class='comment'># clocks are out of sync.  This gives one more day of validity than people
+</span>  <span class='comment'># might expect, but is better than making every person who has a messed up
+</span>  <span class='comment'># clock fail, and better than having every cert we generate expire a day
+</span>  <span class='comment'># before the user expected it to when they asked for &quot;one year&quot;.
+</span>  <span class='id identifier rubyid_cert'>cert</span><span class='period'>.</span><span class='id identifier rubyid_not_before'>not_before</span> <span class='op'>=</span> <span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_now'>now</span> <span class='op'>-</span> <span class='lparen'>(</span><span class='int'>60</span><span class='op'>*</span><span class='int'>60</span><span class='op'>*</span><span class='int'>24</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_cert'>cert</span><span class='period'>.</span><span class='id identifier rubyid_not_after'>not_after</span>  <span class='op'>=</span> <span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_now'>now</span> <span class='op'>+</span> <span class='lparen'>(</span><span class='id identifier rubyid_ttl'>ttl</span> <span class='op'>||</span> <span class='const'>Puppet</span><span class='lbracket'>[</span><span class='symbol'>:ca_ttl</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_add_extensions_to'>add_extensions_to</span><span class='lparen'>(</span><span class='id identifier rubyid_cert'>cert</span><span class='comma'>,</span> <span class='id identifier rubyid_csr'>csr</span><span class='comma'>,</span> <span class='id identifier rubyid_issuer'>issuer</span><span class='comma'>,</span> <span class='id identifier rubyid_send'>send</span><span class='lparen'>(</span><span class='id identifier rubyid_build_extensions'>build_extensions</span><span class='rparen'>)</span><span class='rparen'>)</span>
+
+  <span class='kw'>return</span> <span class='id identifier rubyid_cert'>cert</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="generate_extension-class_method">
+  
+    + (<tt>OpenSSL::X509::Extension</tt>) <strong>generate_extension</strong>(ef, oid, val, crit = false)  <span class="extras">(private)</span>&nbsp;<span class="note title private">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>Generate an extension with the given OID, value, and critical state</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>oid</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The numeric value or short name of a given OID. X509v3
+extensions must be passed by short name or long name, while custom
+extensions may be passed by short name, long name, oid numeric OID.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ef</span>
+      
+      
+        <span class='type'>(<tt>OpenSSL::X509::ExtensionFactory</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The extension factory to use
+when generating the extension.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>val</span>
+      
+      
+        <span class='type'>(<tt>String</tt>, <tt><span class='object_link'>Array</span>&lt;String&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The extension value.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>crit</span>
+      
+      
+        <span class='type'>(<tt>true</tt>, <tt>false</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Whether the given extension is critical, defaults
+to false.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>OpenSSL::X509::Extension</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/ssl/certificate_factory.rb', line 197</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_generate_extension'>generate_extension</span><span class='lparen'>(</span><span class='id identifier rubyid_ef'>ef</span><span class='comma'>,</span> <span class='id identifier rubyid_oid'>oid</span><span class='comma'>,</span> <span class='id identifier rubyid_val'>val</span><span class='comma'>,</span> <span class='id identifier rubyid_crit'>crit</span> <span class='op'>=</span> <span class='kw'>false</span><span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_val'>val</span> <span class='op'>=</span> <span class='id identifier rubyid_val'>val</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>, </span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='id identifier rubyid_val'>val</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span> <span class='const'>String</span>
+
+  <span class='comment'># Enforce the X509v3 rules about subjectAltName being critical:
+</span>  <span class='comment'># specifically, it SHOULD NOT be critical if we have a subject, which we
+</span>  <span class='comment'># always do. --daniel 2011-10-18
+</span>  <span class='id identifier rubyid_crit'>crit</span> <span class='op'>=</span> <span class='kw'>false</span> <span class='kw'>if</span> <span class='id identifier rubyid_oid'>oid</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>subjectAltName</span><span class='tstring_end'>&quot;</span></span>
+
+  <span class='kw'>if</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>SSL</span><span class='op'>::</span><span class='const'>Oids</span><span class='period'>.</span><span class='id identifier rubyid_subtree_of?'>subtree_of?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>id-ce</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_oid'>oid</span><span class='rparen'>)</span> <span class='kw'>or</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>SSL</span><span class='op'>::</span><span class='const'>Oids</span><span class='period'>.</span><span class='id identifier rubyid_subtree_of?'>subtree_of?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>id-pkix</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_oid'>oid</span><span class='rparen'>)</span>
+    <span class='comment'># Attempt to create a X509v3 certificate extension. Standard certificate
+</span>    <span class='comment'># extensions may need access to the associated subject certificate and
+</span>    <span class='comment'># issuing certificate, so must be created by the OpenSSL::X509::ExtensionFactory
+</span>    <span class='comment'># which provides that context.
+</span>    <span class='id identifier rubyid_ef'>ef</span><span class='period'>.</span><span class='id identifier rubyid_create_ext'>create_ext</span><span class='lparen'>(</span><span class='id identifier rubyid_oid'>oid</span><span class='comma'>,</span> <span class='id identifier rubyid_val'>val</span><span class='comma'>,</span> <span class='id identifier rubyid_crit'>crit</span><span class='rparen'>)</span>
+  <span class='kw'>else</span>
+    <span class='comment'># This is not an X509v3 extension which means that the extension
+</span>    <span class='comment'># factory cannot generate it. We need to generate the extension
+</span>    <span class='comment'># manually.
+</span>    <span class='const'>OpenSSL</span><span class='op'>::</span><span class='const'>X509</span><span class='op'>::</span><span class='const'>Extension</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_oid'>oid</span><span class='comma'>,</span> <span class='const'>OpenSSL</span><span class='op'>::</span><span class='const'>ASN1</span><span class='op'>::</span><span class='const'>UTF8String</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_der'>to_der</span><span class='comma'>,</span> <span class='id identifier rubyid_crit'>crit</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+    <div id="footer">
+  Generated on Fri Jan 15 16:54:45 2016 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.6 (ruby-2.0.0).
+</div>
+
+  </body>
+</html>

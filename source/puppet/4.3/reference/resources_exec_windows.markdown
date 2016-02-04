@@ -3,8 +3,8 @@ layout: default
 title: "Resource Tips and Examples: Exec on Windows"
 ---
 
-[package]: /references/4.3.latest/type.html#package
-[exec]: /references/4.3.latest/type.html#exec
+[package]: ./type.html#package
+[exec]: ./type.html#exec
 
 
 Puppet can execute binaries (exe, com, bat, etc.), and can log the child process output and exit status. To ensure the resource is idempotent, specify one of the `creates`, `onlyif`, or `unless` attributes.

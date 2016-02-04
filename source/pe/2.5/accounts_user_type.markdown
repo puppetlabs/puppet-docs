@@ -108,7 +108,7 @@ The `pe_accounts::user` type can be used on all of the platforms supported by Pu
 
 ## Parameters
 
-Many of the type's parameters echo those of the standard [`user` type](/references/2.7.6/type.html#user).
+Many of the type's parameters echo those of the standard [`user` type](/puppet/2.7/reference/type.html#user).
 
 ### `name`
 
@@ -156,7 +156,7 @@ Whether the user should be prevented from logging in. Set this to `true` for sys
 
 ### `sshkeys`
 
-An array of SSH public keys associated with the user. Unlike with the [`ssh_authorized_key`](/references/2.6.9/type.html#sshauthorizedkey) type, these should be **complete public key strings** that include the type and name of the key, exactly as the key would appear in its `id_rsa.pub` or `id_dsa.pub` file. Defaults to an empty array.
+An array of SSH public keys associated with the user. Unlike with the [`ssh_authorized_key`](/puppet/2.6/reference/type.html#sshauthorizedkey) type, these should be **complete public key strings** that include the type and name of the key, exactly as the key would appear in its `id_rsa.pub` or `id_dsa.pub` file. Defaults to an empty array.
 
 
 

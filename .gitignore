@@ -22,3 +22,5 @@ Gemfile.lock
 .*.un~
 *.orig
 .idea
+.jekyll-metadata
+.byebug_history

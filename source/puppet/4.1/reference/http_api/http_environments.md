@@ -1,7 +1,8 @@
 ---
 layout: default
-title: "Puppet HTTP API: Environments"
-canonical: "/puppet/latest/reference/http_api/http_environments.html"
+built_from_commit: c4a6a76fd219bffd689476413985ed13f40ef1dd
+title: 'Puppet HTTP API: Environments'
+canonical: /puppet/latest/reference/http_api/http_environments.html
 ---
 
 Environments
@@ -48,5 +49,5 @@ The `environment_timeout` attribute could also be the string "unlimited".
 Schema
 ------
 
-An environments response body conforms to
-[the environments schema.](../schemas/environments.json)
+A environments response body adheres to the {file:api/schemas/environments.json
+api/schemas/environments.json} schema.

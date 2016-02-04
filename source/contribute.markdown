@@ -3,87 +3,100 @@ layout: default
 title: Contribute
 ---
 
-Contribute
-==========
+We welcome community contributions to the documentation! You can help by reporting errors and typos, or by contributing new or updated sections. This topic describes the three main ways to contribute to the docs, and provides guidance on writing good documentation.
 
-We welcome community contributions to the documentation! You can help by filing
-tickets, reporting errors and typos, and editing the documentation.
+## Three ways to improve the Puppet documentation
 
-* * *
+### Filing a ticket
 
-Filing Tickets
---------------
+The Puppet documentation is managed like a software project, and you can file bug reports and feature requests in its
+[issue tracker](https://tickets.puppetlabs.com/browse/DOCUMENT). You'll need to create a [JIRA account](https://tickets.puppetlabs.com/secure/Signup!default.jspa) if you don't already have one.
 
-The Puppet documentation is managed like a software project, and you can file
-bug reports and feature requests in its
-[issue tracker](https://tickets.puppetlabs.com/browse/DOCUMENT).
-You'll need to create a [JIRA account](https://tickets.puppetlabs.com/secure/Signup!default.jspa)
-if you don't already have one.
+In your ticket, provide as much information as possible about what's missing, what's inaccurate, or what's outdated. Include URLs to the affected pages. Describe your best understanding of what the documentation _should_ say. We'll begin looking into the problem, and you can follow our progress in the ticket.
 
-In your ticket, please give as much information as possible about what's
-missing, what's inaccurate, or what's outdated, including URLs to the affected pages
-and your best understanding of what the documentation _should_ say.
-We'll begin looking into the problem and update the ticket as soon as possible.
+### Emailing us
 
-Reporting Errors and Typos
---------------------------
+If you spot a typo or other minor error and don't want to go through the overhead of filing a ticket or editing the documentation, you can report it by email to <docs@puppetlabs.com>.
 
-If you spot a typo or other minor error and don't want to go through
-the overhead of filing a ticket or editing the documentation, you can
-report it via email to <docs@puppetlabs.com>.
+### Sending a Github pull request
 
-Editing the Documentation
--------------------------
+If there's a hole in the documentation and you know just what needs to be added, and if you're [familiar with Github](http://learn.github.com/), you can contribute directly to our open source project. Use your [GitHub](http://github.com) account to fork the [puppet-docs](http://github.com/puppetlabs/puppet-docs) repository, make your changes, and submit a pull request. To reduce editing churn and have your PR quickly accepted, follow the Puppet documentation guidelines, below.
 
-If there's a hole in the documentation and you know just what needs to be added, here's how to contribute directly:
+Documentation source files for certain Puppet-related components, such as Puppet language reference, MCollective, and PuppetDB, are kept in other repositories. See the [Contributing ReadMe](https://github.com/puppetlabs/puppet-docs/blob/master/CONTRIBUTING.md) for details.
 
-### Use Git
+## Puppet documentation guidelines
 
-Version control for the project is handled with
-[Git](http://git-scm.com/). The URL of the repository is <http://github.com/puppetlabs/puppet-docs>
-We recommend using a [GitHub](http://github.com) account and pull requests to
-contribute to this project, but we also accept Git patches.
+### Source files
 
-### Fork the Project and Clone the Repo
+Puppet documentation is written in [Markdown format](https://daringfireball.net/projects/markdown/syntax), and stored in the `source` directory of the [puppet-docs](http://github.com/puppetlabs/puppet-docs) Github repository. Our build converts it to HTML and publishes it to <https://docs.puppetlabs.com/puppet/>. 
 
-If you're using Github, [fork](http://help.github.com/forking/) our
-repository, and clone your fresh repository to your local disk:
+Each documentation `.markdown` or `.md` file starts with a (non-Markdown) header section, where you provide the topic title:
 
-    $ git clone git@github.com:yourname/puppet-docs.git
+```
+---
+layout: default
+title: My topic title
+---
+```
 
-If you're not using GitHub, just clone our copy directly (you can push
-to your own remote host or provide git patches later):
+### Writing new topics from scratch
 
-    $ git clone git://github.com/puppetlabs/puppet-docs.git
+Each topic file should cover a single subject area. If the Puppet docs already have topics that discuss this area, modify those existing topics rather than creating a new one.
 
-### Learn How to Write Puppet Documentation
+If you're writing a new topic, start with an overview:
+- Provide definitions and descriptions that introduce the subject and place it within the context of the rest of Puppet.
+- Provide diagrams if they help clarify relationships and structures. 
+- Your goal is to help people solve problems and get things done. Avoid too much background information.
 
-Read the [README](http://github.com/puppetlabs/puppet-docs/blob/master/README.markdown)
-and [README_WRITING](http://github.com/puppetlabs/puppet-docs/blob/master/README_WRITING.markdown)
-files in the puppet-docs source to learn more about how our documentation works;
-read the [documentation style and usage guide](http://github.com/puppetlabs/puppet-docs/blob/master/style_and_usage.markdown)
-for the project's language conventions.
+Next, describe things that the person *does*:
+- Create a section for each major task that a person does. These should describe how to get results people want, not just things the tools require them to do.
+- List prerequisites, if any. 
+- Use a numbered list to list the actions the person does to accomplish the task. 
+- Finish by stating what the outcome is, and what the person might do next. 
+- Provide code or command examples that show what to do for common scenarios.
+- If there are multiple ways of doing something, describe only one: the most straight-forward way for the given context. 
+- Use screen captures minimally (ideally not at all), and only to illustrate things that are otherwise impractical to describe. 
+- Avoid mixing lengthy conceptual descriptions in with task steps. Put those in your overview section instead.
 
-### Make Your Edits
+For reference information for a command line tool or an API, follow the layout patterns in similar existing Puppet documentation. If this is lengthy, split it into its own Markdown file.
 
-Add your documentation fixes.
+Provide links to related Puppet documentation topics, or other resources.
 
-NOTE: If you modify any of the code used to generate the documentation, make sure you
-provide passing tests that cover your changes.
+### Updating existing documentation topics
 
-### Preview Your Changes
+Sometimes our docs are missing useful information that you can provide:
+- Basic-level concepts the original author took for granted, but are helpful for new people
+- Missing overviews, steps, or links
+- Missing prerequisites for tasks
+- Clarifying definitions for terms that Puppet is using differently than other technologies (for example, "class")
+- Helpful code or command line examples
+- Troubleshooting tips
 
-Before committing any changes or submitting a patch, you should preview your changes. The [README](http://github.com/puppetlabs/puppet-docs/blob/master/README.markdown) provides information on how to set up the correct tools to run a local server that will allow you to preview all your changes as they'll appear on the website.
+### Tone
+- Strive to be friendly and authoritative.
+- Use simple, direct language. Avoid passive voice and implications.
+- Be consise, but not terse.
+- Use second-person almost always: "Open the file in your favorite text editor."
+- Use inclusive, gender-neutral language.
+- Avoid patronizing language, often indicated by words like _clearly_, _actually_, or _obviously_.
+- Be honest but not negative about our product or competitors.
 
-### Commit and Push/Patch
+### Grammar, idiom, and spelling
+- Metaphors, analogies, and certain turns of phrase might not translate into languages or cultures other than your own. Stick to comparisons that are relatively innocuous and universal.
+- Almost always, follow Associated Press (AP) Style and choose [Webster's dictionary](http://www.merriam-webster.com/) spelling (American): _color_, _specialize_.
+- Use the serial comma. In a list with three or more items, include a comma after the second-last item, before the conjunction: "... is supported on Unix, Linux, and Windows."
 
-* If you're using GitHub (or your own hosted repository), push to a
-  remote branch.
-* If you're not working with a remote, generate a patch of your
-  changes for the next step.
+### Headings
 
-NOTE: If you need a refresher on how to commit and work with remote
-repositories in Git, you may want to visit [GitHub's articles and
-screencasts](http://learn.github.com/).
+Use headings to increase the scanability of your content, and to make separate sections for conceptual information, each task, and reference information. 
+- Nest H3s (markdown: `### `) inside H2s (`## `). Nest H4s (`#### `) inside H3s. 
+- For conceptual information, use a noun phrase that accurately describes the content (for example, "Defined resource types"). 
+- For task section headings, use a verb phrase that indicates the goal (for example, "Deploying your code"), but also differentiates it from other tasks (so maybe, "Deploying your code to a test environment").
 
-We'll get back to you on your contribution as soon as possible. And thanks!
+### Formatting
+- For file names and directories, use `monospace`.
+- When citing text that appears in the GUI, use **bold**.
+- For commands and code examples, use `monospace`. Short commands can be included as part of the paragraph. Longer examples or code should be set in a separate paragraph, enclosed within three tildes (`~~~`).
+- For user input on the command line, use `monospace`. For user input on a GUI, use _italics_.
+- To indicate text in code that should be replaced, use angle-brackets and all-caps (and, if in a code example, monospace): `<TEST_HOSTNAME>`
+

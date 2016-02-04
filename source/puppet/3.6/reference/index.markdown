@@ -27,7 +27,7 @@ To install Puppet 3.6, see [the Puppet installation guide](/puppet/3.8/reference
 This manual is split into several sections, which can be reached from the left sidebar. A few notable pages:
 
 * [The Puppet 3.6 Release Notes](./release_notes.html) contain information about Puppet 3.6's new features, and tracks changes from patch releases.
-* The [Resource Type Reference](/references/3.6.latest/type.html) is the page where experienced Puppet users spend most of their time.
+* The [Resource Type Reference](./type.html) is the page where experienced Puppet users spend most of their time.
 * Puppet uses its own configuration language. The [Language Summary](./lang_summary.html) gives some context and acts as a starting point for the language reference.
 * The [Visual Index to the Puppet Language](./lang_visual_index.html) can help you find the reference for a piece of syntax when you know what it looks like but don't know what it's called.
 * ["Modules"](./modules_fundamentals.html) explains how to organize your Puppet manifests, obtain pre-existing modules, and publish your own modules for public use.

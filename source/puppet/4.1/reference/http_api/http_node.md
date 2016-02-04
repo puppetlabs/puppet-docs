@@ -1,7 +1,8 @@
 ---
 layout: default
-title: "Puppet HTTP API: Node"
-canonical: "/puppet/latest/reference/http_api/http_node.html"
+built_from_commit: c4a6a76fd219bffd689476413985ed13f40ef1dd
+title: 'Puppet HTTP API: Node'
+canonical: /puppet/latest/reference/http_api/http_node.html
 ---
 
 Node
@@ -56,5 +57,5 @@ PSON
 Schema
 ------
 
-A node response body conforms to
-[the node schema.](../schemas/node.json)
+Returned node objects conform to the json schema at
+[api/schemas/node.json](../schemas/node.json).

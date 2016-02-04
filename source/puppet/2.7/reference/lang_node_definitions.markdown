@@ -8,11 +8,11 @@ canonical: "/puppet/latest/reference/lang_node_definitions.html"
 [hiera]: https://github.com/puppetlabs/hiera
 
 [sitepp]: lang_summary.html#files
-[certname]: /references/2.7.latest/configuration.html#certname
+[certname]: ./configuration.html#certname
 [classes]: ./lang_classes.html
 [nodescope]: ./lang_scope.html#node-scope
 [topscope]: ./lang_scope.html#top-scope
-[extlookup]: /references/2.7.latest/function.html#extlookup
+[extlookup]: ./function.html#extlookup
 [custom_functions]: /guides/custom_functions.html
 [import]: ./lang_import.html
 [regex]: ./lang_datatypes.html#regular-expressions
@@ -22,7 +22,7 @@ canonical: "/puppet/latest/reference/lang_node_definitions.html"
 [enc]: /guides/external_nodes.html
 [facts]: ./lang_variables.html#facts-and-built-in-variables
 [catalog]: ./lang_summary.html#compilation-and-catalogs
-[strict]: /references/2.7.latest/configuration.html#stricthostnamechecking
+[strict]: ./configuration.html#stricthostnamechecking
 [conditional]: ./lang_conditional.html
 
 

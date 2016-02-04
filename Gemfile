@@ -1,4 +1,5 @@
 source 'https://rubygems.org/'
+gemspec :name => 'puppet_docs'
 
 gem 'versionomy'
 gem 'rake'

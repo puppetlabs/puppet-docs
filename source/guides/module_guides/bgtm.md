@@ -219,7 +219,7 @@ Classes do not _automatically_ contain the classes they declare. (This is becaus
 
 Thus, if you want to allow other modules to form ordering relationships with your module, you should ensure that your main class(es) explicitly _contain_ any subordinate classes they declare. For more information and context, you can see [the Containment page of the Puppet reference manual](/puppet/latest/reference/lang_containment.html).
 
-In Puppet 3.4.0 / Puppet Enterprise 3.2 and later, you can contain classes by using [the `contain` function](/references/latest/function.html#contain) on them. To support versions prior to 3.4.0 / PE 3.2, you must use the **anchor pattern** to hold those classes in place. See below for an example of anchoring. (*Note: anchoring requires [puppetlabs-stdlib](http://forge.puppetlabs.com/puppetlabs/stdlib)*.)
+In Puppet 3.4.0 / Puppet Enterprise 3.2 and later, you can contain classes by using [the `contain` function](/puppet/latest/reference/function.html#contain) on them. To support versions prior to 3.4.0 / PE 3.2, you must use the **anchor pattern** to hold those classes in place. See below for an example of anchoring. (*Note: anchoring requires [puppetlabs-stdlib](http://forge.puppetlabs.com/puppetlabs/stdlib)*.)
 
 Two resources to anchor things to:
 

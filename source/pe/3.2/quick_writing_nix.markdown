@@ -26,7 +26,7 @@ Although many Forge modules are exact solutions that fit your site, many are *al
 
 ### Module Basics
 
-By default, modules are stored in `/etc/puppetlabs/puppet/modules`. If need be, you can configure this path with the [`modulepath`](/references/3.3.latest/configuration.html#modulepath) setting in `puppet.conf`.)
+By default, modules are stored in `/etc/puppetlabs/puppet/modules`. If need be, you can configure this path with the [`modulepath`](/puppet/3.3/reference/configuration.html#modulepath) setting in `puppet.conf`.)
 
 Modules are directory trees. For these exercises you'll use the following files:
 
@@ -150,7 +150,7 @@ For more information about writing classes, refer to the following documentation
 
 * To learn how to write resource declarations, conditionals, and classes in a guided tour format, [start at the beginning of Learning Puppet.](/learning/)
 * For a complete but succinct guide to the Puppet language's syntax, [see the Puppet 3 language reference](/puppet/3/reference/lang_summary.html).
-* For complete documentation of the available resource types, [see the type reference](/references/3.3.latest/type.html).
+* For complete documentation of the available resource types, [see the type reference](/puppet/3.3/reference/type.html).
 * For short, printable references, see [the modules cheat sheet](/module_cheat_sheet.pdf) and [the core types cheat sheet](/puppet_core_types_cheatsheet.pdf).
 
 ### Using Your Custom Module in the Console

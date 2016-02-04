@@ -162,7 +162,7 @@ Puppet 4.2.1 is a bug fix release.
 * [PUP-4770](https://tickets.puppetlabs.com/browse/PUP-4770): Solaris Zone's provider debug and error messages were changed to global, this has been reverted to so that it is prefixed with provider context.
 * [PUP-4777](https://tickets.puppetlabs.com/browse/PUP-4770): Puppet gem dependencies updated to use Hiera 3.
 * [PUP-4789](https://tickets.puppetlabs.com/browse/PUP-4789): The 4.x hiera_include function was not propagating the correct scope to the include function.
-* [PUP-4826](https://tickets.puppetlabs.com/browse/PUP-4826): When using Integer[1], the expectation was that this produces the type Integer[1, default], but it produced Integer[1,1]. The same was occuring with Float. After the fix, they are both operating as documented in the [Puppet Language Reference](http://docs.puppetlabs.com/puppet/4.2/reference/lang_data_number.html#parameters).
+* [PUP-4826](https://tickets.puppetlabs.com/browse/PUP-4826): When using Integer[1], the expectation was that this produces the type Integer[1, default], but it produced Integer[1,1]. The same was occuring with Float. After the fix, they are both operating as documented in the [Puppet Language Reference](http://docs.puppetlabs.com./lang_data_number.html#parameters).
 * [PUP-4775](https://tickets.puppetlabs.com/browse/PUP-4775): Serialization of node objects could produce giant serializations. When loaded later would cause 'stack level too deep' errors. This was caused by logic missing in the node implementation that should have prevented serialization of the entire runtime state of the environment.
 * [PUP-4810](https://tickets.puppetlabs.com/browse/PUP-4810): Puppet was caching parse results even when environment_timeout was set to 0.
 * [PUP-4847](https://tickets.puppetlabs.com/browse/PUP-4847): When using custom providers, the puppet resource command could not use custom facts.
@@ -215,7 +215,7 @@ Special thanks to [Chris Portman](https://github.com/ChrisPortman) for help with
 
 ### New Features: Miscellaneous
 
-[splay]: /references/4.2.latest/configuration.html#splay
+[splay]: ./configuration.html#splay
 
 Puppet apply now supports [the `splay` setting][splay], and Puppet agent sets a new [`agent_specified_environment` fact](./lang_facts_and_builtin_vars.html#puppet-agent-facts).
 

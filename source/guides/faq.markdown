@@ -297,7 +297,7 @@ RDoc or HTML documents for your manifests and modules.
 
 ### How do I manage passwords on Red Hat Enterprise Linux, CentOS, and Fedora Core?
 
-As described in the [Type reference](../references/stable/type.html), you need the Shadow Password
+As described in the [Type reference](../puppet/latest/reference/type.html), you need the Shadow Password
 Library, which is provided by the ruby-shadow package. The
 ruby-shadow library is available natively for fc6 (and higher), and
 should build on the corresponding RHEL and CentOS variants.

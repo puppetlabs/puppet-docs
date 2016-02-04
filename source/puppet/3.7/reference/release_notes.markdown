@@ -12,11 +12,11 @@ canonical: "/puppet/latest/reference/release_notes.html"
 
 [puppet.conf]: ./config_file_main.html
 [main manifest]: ./dirs_manifest.html
-[env_api]: /references/3.7.latest/developer/file.http_environments.html
+[env_api]: ./yard/file.http_environments.html
 [file_system_redirect]: ./lang_windows_file_paths.html#file-system-redirection-when-running-32-bit-puppet-on-64-bit-windows
 [environment.conf]: ./config_file_environment.html
-[default_manifest]: /references/3.7.latest/configuration.html#defaultmanifest
-[disable_per_environment_manifest]: /references/3.7.latest/configuration.html#disableperenvironmentmanifest
+[default_manifest]: ./configuration.html#defaultmanifest
+[disable_per_environment_manifest]: ./configuration.html#disableperenvironmentmanifest
 [directory environments]: ./environments.html
 [future]: ./experiments_future.html
 
@@ -110,7 +110,7 @@ As of this version, the [future parser][future] should be almost exactly compati
 
 ### Other Language Fixes
 
-Two issues related to variables: [the `defined` function](/references/3.7.latest/function.html#defined) wasn't properly handling variable names like `$::global_var`, and module testing could run into problems when the `strict_variables` setting was enabled. (To fix the latter, we now make sure that the [`$module_name` and `$caller_module_name` variables](./lang_facts_and_builtin_vars.html#parser-variables) are always defined, but they're set to `undef` when they don't have another value.)
+Two issues related to variables: [the `defined` function](./function.html#defined) wasn't properly handling variable names like `$::global_var`, and module testing could run into problems when the `strict_variables` setting was enabled. (To fix the latter, we now make sure that the [`$module_name` and `$caller_module_name` variables](./lang_facts_and_builtin_vars.html#parser-variables) are always defined, but they're set to `undef` when they don't have another value.)
 
 * [PUP-4072: defined() function returns wrong value for global variable check](https://tickets.puppetlabs.com/browse/PUP-4072)
 * [PUP-4066: With strict variables turned on, it is difficult to use built in variables when testing module](https://tickets.puppetlabs.com/browse/PUP-4066)
@@ -126,7 +126,7 @@ We also improved provider detection for Fedora systems that use systemd.
 
 ### Miscellaneous Fixes
 
-This release fixes some inaccuracies in [dot graphs](/references/3.7.latest/configuration.html#graph), a problem where catalog runs could fail with `current thread not owner` if Puppet agent received a `USR1` signal, a problem where Puppet agent couldn't upgrade Puppet on systems that use Yum and systemd (like CentOS 7), and misleading line numbers in error messages when using the `create_resources` function.
+This release fixes some inaccuracies in [dot graphs](./configuration.html#graph), a problem where catalog runs could fail with `current thread not owner` if Puppet agent received a `USR1` signal, a problem where Puppet agent couldn't upgrade Puppet on systems that use Yum and systemd (like CentOS 7), and misleading line numbers in error messages when using the `create_resources` function.
 
 * [PUP-914: expanded_relationship.dot should not have both containment and relationship edges](https://tickets.puppetlabs.com/browse/PUP-914)
 * [PUP-1635: "current thread not owner" after Puppet Agent receives USR1 signal](https://tickets.puppetlabs.com/browse/PUP-1635)
@@ -170,7 +170,7 @@ This release contains several bug fixes and adjustments in the future parser, in
 
 #### New `scanf` Function
 
-Since the future parser handles numbers more strictly now, we added [a new `scanf` function](/references/3.7.latest/function.html#scanf) that can extract real numbers from strings. If you need to deal with quoted numbers, this is the new right way to handle them.
+Since the future parser handles numbers more strictly now, we added [a new `scanf` function](./function.html#scanf) that can extract real numbers from strings. If you need to deal with quoted numbers, this is the new right way to handle them.
 
 [PUP-3635: Add a scanf function for string to numeric conversion (and more)](https://tickets.puppetlabs.com/browse/PUP-3635)
 
@@ -304,7 +304,7 @@ Released October 22, 2014.
 [resource_like]: ./lang_classes.html#include-like-vs-resource-like
 [include_like]: ./lang_classes.html#include-like-vs-resource-like
 [enc]: /guides/external_nodes.html
-[env_setting]: /references/3.7.latest/configuration.html#environment
+[env_setting]: ./configuration.html#environment
 
 Puppet 3.7.2 is a bug fix release in the Puppet 3.7 series. It plugs a significant memory leak in the Puppet master application, improves Puppet's resistance to POODLE attacks (but you still need to check your Apache configs), and fixes a variety of other bugs.
 
@@ -405,7 +405,7 @@ This release fixes those regressions.
 
 ### Miscellaneous Bugs
 
-Puppet logs an error message if it tries to manage a resource whose provider isn't suitable for the target system. But it could also log that error if it _wasn't_ managing such a resource, as long as that resource was skipped with [the `tags` setting](/references/3.7.latest/configuration.html#tags) (or the `--tags` option). This release fixes that, so the error only appears if Puppet _actually_ attempts to manage an unsuitable resource.
+Puppet logs an error message if it tries to manage a resource whose provider isn't suitable for the target system. But it could also log that error if it _wasn't_ managing such a resource, as long as that resource was skipped with [the `tags` setting](./configuration.html#tags) (or the `--tags` option). This release fixes that, so the error only appears if Puppet _actually_ attempts to manage an unsuitable resource.
 
 This release also fixes a potential race condition for the validity of the CA's certificate revocation list (CRL), and a case where agents using Ruby 2.x could hit HTTP errors.
 
@@ -455,7 +455,7 @@ Please check the configuration of your Rack web server and make sure the **keepa
 
 If you are using the Apache+Passenger stack, this will be the `KeepAliveTimeout` setting. The default value is `5`, but your global Apache config may have set a different value, in which case you'll need to change it.
 
-Puppet 3.7 introduces [persistent HTTPS connections](#persistent-connections), which gives a major performance boost. But if your server's keepalive timeout is less than the agent's [`http_keepalive_timeout` setting](/references/3.7.latest/configuration.html#httpkeepalivetimeout) (default: four seconds), agents will sometimes fail with an **"Error: Could not retrieve catalog from remote server: end of file reached"** message.
+Puppet 3.7 introduces [persistent HTTPS connections](#persistent-connections), which gives a major performance boost. But if your server's keepalive timeout is less than the agent's [`http_keepalive_timeout` setting](./configuration.html#httpkeepalivetimeout) (default: four seconds), agents will sometimes fail with an **"Error: Could not retrieve catalog from remote server: end of file reached"** message.
 
 ### UPGRADE WARNING (for Windows Users)
 
@@ -605,7 +605,7 @@ For details, see [the section on pre-run validation in the custom resource types
 
 ### Feature: Improved HTTP Debugging
 
-Puppet has a new [`http_debug` setting](/references/3.7.latest/configuration.html#httpdebug) for troubleshooting Puppet's HTTPS connections. When set to `true` on an agent node, Puppet will log all HTTP requests and responses to stderr.
+Puppet has a new [`http_debug` setting](./configuration.html#httpdebug) for troubleshooting Puppet's HTTPS connections. When set to `true` on an agent node, Puppet will log all HTTP requests and responses to stderr.
 
 Use this only for temporary debugging (e.g. `puppet agent --test --http_debug`). It should never be enabled in production, because it can leak sensitive data to stderr. (Also because it's extremely noisy.)
 
@@ -617,15 +617,15 @@ When `parser = future` is set in [puppet.conf][], Puppet will recursively load a
 
 ### Feature: Authenticated Proxy Servers
 
-Puppet can now use proxy servers that require a username and password. You'll need to provide the authentication in the new [`http_proxy_user`](/references/3.7.latest/configuration.html#httpproxyuser) and [`http_proxy_password`](/references/3.7.latest/configuration.html#httpproxypassword) settings. (Note that passwords must be valid as part of a URL, and any reserved characters must be URL-encoded.)
+Puppet can now use proxy servers that require a username and password. You'll need to provide the authentication in the new [`http_proxy_user`](./configuration.html#httpproxyuser) and [`http_proxy_password`](./configuration.html#httpproxypassword) settings. (Note that passwords must be valid as part of a URL, and any reserved characters must be URL-encoded.)
 
 * [PUP-2869: Puppet should be able to use authenticated proxies](https://tickets.puppetlabs.com/browse/PUP-2869)
 
 ### Feature: New `digest` Function
 
-The [`md5` function](/references/3.7.latest/function.html#md5) is hardcoded to the (old, low-quality) MD5 hash algorithm, which is no good at sites that are prohibited from using MD5.
+The [`md5` function](./function.html#md5) is hardcoded to the (old, low-quality) MD5 hash algorithm, which is no good at sites that are prohibited from using MD5.
 
-To help those users, Puppet now has a [`digest` function](/references/3.7.latest/function.html#digest), which uses whichever hash algorithm is specified in the Puppet master's [`digest_algorithm` setting.](/references/3.7.latest/configuration.html#digestalgorithm)
+To help those users, Puppet now has a [`digest` function](./function.html#digest), which uses whichever hash algorithm is specified in the Puppet master's [`digest_algorithm` setting.](./configuration.html#digestalgorithm)
 
 * [PUP-2511: Add parser function digest: uses digest_algorithm to hash, not strictly md5](https://tickets.puppetlabs.com/browse/PUP-2511)
 
@@ -854,7 +854,7 @@ The bug affecting module builds is resolved; no more workaround is required. You
 
 The biggest performance win this time comes from using longer-lived persistent HTTPS connections for agent/master interactions. Depending on how many plugins you have and how many files you manage, Puppet agent can make 50-100 separate HTTPS per run, and the SSL handshakes can put stress on the master. By re-using connections, nearly all users should see a speed boost and improved capacity on the Puppet master.
 
-You don't need to do anything to enable this; Puppet will re-use connections whenever it's acting as an HTTP client. You can configure the keepalive timeout on agent nodes with [the `http_keepalive_timeout` setting.](/references/3.7.latest/configuration.html#httpkeepalivetimeout)
+You don't need to do anything to enable this; Puppet will re-use connections whenever it's acting as an HTTP client. You can configure the keepalive timeout on agent nodes with [the `http_keepalive_timeout` setting.](./configuration.html#httpkeepalivetimeout)
 
 #### Feature Caching on Puppet Masters
 

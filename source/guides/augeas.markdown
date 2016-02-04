@@ -32,7 +32,7 @@ with Augeas to the new version.
 
 Assuming you want to work with Augeas, this is a description of how
 to perform Augeas changes using Puppet. You'll need Puppet >=
-0.24.7 for this. The basic usage is in the [Type Reference](/references/latest/type.html#augeas).
+0.24.7 for this. The basic usage is in the [Type Reference](/puppet/latest/reference/type.html#augeas).
 The command-line utility `augtool` will be used to demonstrate things here, but it is not required to use Augeas within Puppet. On most Linux distributions, `augtool` can be found in a separate package.
 
 The somewhat more important, and unfortunately complicated, part is

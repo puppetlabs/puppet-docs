@@ -6,17 +6,15 @@ title: "Overview of Puppet's Architecture"
 [agent_unix]: ./services_agent_unix.html
 [agent_win]: ./services_agent_windows.html
 [https_walkthrough]: ./subsystem_agent_master_comm.html
-[rack]: ./services_master_rack.html
-[webrick]: ./services_master_webrick.html
-[master_http]: /references/4.3.latest/developer/file.http_api_index.html
+[master_http]: ./http_api/http_api_index.html
 [auth.conf]: ./conf_file_auth.html
 [catalog_compilation]: ./subsystem_catalog_compilation.html
-[report handlers]: /references/4.3.latest/report.html
+[report handlers]: ./report.html
 [lang_basics]: ./lang_summary.html
 [apply]: ./services_apply.html
 [puppetdb]: /puppetdb/latest
 [resource]: ./lang_resources.html
-
+[Puppet Server]: /puppetserver/latest/
 
 Puppet usually uses an agent/master (client/server) architecture for configuring systems, using the **Puppet agent** and **Puppet master** applications. It can also run in a self-contained architecture with the **Puppet apply** application.
 
@@ -42,7 +40,7 @@ Puppet usually runs in an agent/master architecture, where a Puppet master serve
 
 ### Basics
 
-In this architecture, managed nodes run the **Puppet agent** application, usually as a background service. One or more servers run the **Puppet master** application, usually [as a Rack application][rack] managed by a web server (like Apache with Passenger).
+In this architecture, managed nodes run the **Puppet agent** application, usually as a background service. One or more servers run the **Puppet master** application, usually in the form of [Puppet Server][].
 
 Periodically, Puppet agent will send facts to the Puppet master and request a catalog. The master will compile and return that node's catalog, using several sources of information it has access to.
 
@@ -54,8 +52,7 @@ After applying the catalog, the agent will submit a report to the Puppet master.
 
 * [Puppet Agent on \*nix Systems][agent_unix]
 * [Puppet Agent on Windows Systems][agent_win]
-* [The Rack Puppet Master][rack]
-* [The WEBrick Puppet Master][webrick]
+* [Puppet Server][]
 
 ### Communications and Security
 

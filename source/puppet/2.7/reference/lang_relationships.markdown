@@ -11,9 +11,9 @@ canonical: "/puppet/latest/reference/lang_relationships.html"
 [array]: ./lang_datatypes.html#arrays
 [class]: ./lang_classes.html
 [event]: ./lang_resources.html#behavior
-[service]: /references/2.7.latest/type.html#service
-[exec]: /references/2.7.latest/type.html#exec
-[mount]: /references/2.7.latest/type.html#mount
+[service]: ./type.html#service
+[exec]: ./type.html#exec
+[mount]: ./type.html#mount
 [metaparameters]: ./lang_resources.html#metaparameters
 [require_function]: ./lang_classes.html#declaring-a-class-with-require
 

@@ -5,15 +5,15 @@ title: "Background Reference: X.509 Certificate Anatomy"
 
 [pem]: http://en.wikipedia.org/wiki/X.509#Certificate_filename_extensions
 [der]: http://en.wikipedia.org/wiki/Distinguished_Encoding_Rules
-[altnames]: /references/latest/configuration.html#dnsaltnames
+[altnames]: /puppet/latest/reference/configuration.html#dnsaltnames
 [extensions]: /puppet/3/reference/ssl_attributes_extensions.html
 [certs]: ./certificates_pki.html
 [ssldir]: /puppet/latest/reference/dirs_ssldir.html
-[certname]: /references/latest/configuration.html#certname
+[certname]: /puppet/latest/reference/configuration.html#certname
 [lang_node]: /puppet/latest/reference/lang_node_definitions.html
 [enc]: /guides/external_nodes.html
 [index]: ./index.html
-[ca_name]: /references/latest/configuration.html#caname
+[ca_name]: /puppet/latest/reference/configuration.html#caname
 [wiki_x509]: http://en.wikipedia.org/wiki/X.509
 
 

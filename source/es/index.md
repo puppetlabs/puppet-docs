@@ -23,7 +23,7 @@ Puppet maneja tus servidores: Describes la configuración en un lenguaje declara
 + [La guía de instalación](http://docs.puppetlabs.com/guides/installation.html) te ayudará a instalar y configurar la versión actual de Puppet Open Source.
 + [El manual de referencia para Puppet 3.7](http://docs.puppetlabs.com/puppet/3.7/reference/)
 + [El manual de referencia para Puppet 3.6](http://docs.puppetlabs.com/puppet/3.6/reference/), [Puppet 3.5](http://docs.puppetlabs.com/puppet/3.5/reference/), [Puppet 3.0-3.4](http://docs.puppetlabs.com/puppet/3/reference/) y [Puppet 2.7](http://docs.puppetlabs.com/puppet/2.7/reference/).
-+ [Referencia de tipos](http://docs.puppetlabs.com/references/latest/type.html) cubre todos los tipos de recursos integrados y sus atributos disponibles. Los usuarios nuevos deberían empezar por otra parte, pero los experimentados pasarán la mayoría del tiempo en esta página.
++ [Referencia de tipos](http://docs.puppetlabs.com/puppet/latest/reference/type.html) cubre todos los tipos de recursos integrados y sus atributos disponibles. Los usuarios nuevos deberían empezar por otra parte, pero los experimentados pasarán la mayoría del tiempo en esta página.
 + [El glosario](http://docs.puppetlabs.com/references/glossary.html) explica la terminología que encontrarás leyendo sobre Puppet.
 
 ## Puppet Enterprise

@@ -3,7 +3,7 @@ layout: default
 title: Running Puppet From Source
 ---
 
-[install]: /puppet/3.8/reference/pre_install.html
+[install]: ./pre_install.html
 [sysreqs]: /puppet/latest/reference/system_requirements.html
 [authconf]: /guides/rest_auth_conf.html
 [gitpuppet]: https://github.com/puppetlabs/puppet
@@ -96,15 +96,15 @@ The puppet.conf file contains Puppet's settings. For more details, see [About Pu
 You will likely want to set the following settings:
 
 * In the `[agent]` section:
-    * [`certname`](/references/latest/configuration.html#certname)
-    * [`server`](/references/latest/configuration.html#server)
-    * [`environment`](/references/latest/configuration.html#environment)
+    * [`certname`](/puppet/latest/reference/configuration.html#certname)
+    * [`server`](/puppet/latest/reference/configuration.html#server)
+    * [`environment`](/puppet/latest/reference/configuration.html#environment)
 * In the `[master]` section:
-    * [`certname`](/references/latest/configuration.html#certname)
-    * [`dns_alt_names`](/references/latest/configuration.html#dnsaltnames)
-    * [`reports`](/references/latest/configuration.html#reports)
-    * [`node_terminus`](/references/latest/configuration.html#nodeterminus)
-    * [`external_nodes`](/references/latest/configuration.html#externalnodes)
+    * [`certname`](/puppet/latest/reference/configuration.html#certname)
+    * [`dns_alt_names`](/puppet/latest/reference/configuration.html#dnsaltnames)
+    * [`reports`](/puppet/latest/reference/configuration.html#reports)
+    * [`node_terminus`](/puppet/latest/reference/configuration.html#nodeterminus)
+    * [`external_nodes`](/puppet/latest/reference/configuration.html#externalnodes)
 
 ### Copy auth.conf Into Place (Puppet Master Servers Only)
 
@@ -114,7 +114,7 @@ Copy the file from `~/src/puppet/conf/auth.conf` (or wherever you checked out th
 
 ### Create the Puppet User and Group (Puppet Master Servers Only)
 
-To run a puppet master server, Puppet requires a user and group. By default, these are both named `puppet`, but they can be changed in [puppet.conf][] with the [`user`](/references/latest/configuration.html#user) and [`group`](/references/latest/configuration.html#group) settings.
+To run a puppet master server, Puppet requires a user and group. By default, these are both named `puppet`, but they can be changed in [puppet.conf][] with the [`user`](/puppet/latest/reference/configuration.html#user) and [`group`](/puppet/latest/reference/configuration.html#group) settings.
 
 Create this user and group using your operating system's normal tools, or run the following:
 
