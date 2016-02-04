@@ -10,22 +10,9 @@ defaultnav:
   /: /_includes/fallback_nav.html
   /background/ssl: /_includes/background_ssl.html
   /community: /_includes/community_nav.html
-  /facter/1.6: /_includes/facter16.html
-  /facter/1.7: /_includes/facter17.html
-  /facter/2.0: /_includes/facter20.html
-  /facter/2.1: /_includes/facter21.html
-  /facter/2.2: /_includes/facter22.html
-  /facter/2.3: /_includes/facter23.html
-  /facter/2.4: /_includes/facter24.html
-  /facter/3.0: /facter/3.0/_facter_toc.html
-  /facter/3.1: /facter/3.1/_facter_toc.html
   /forge: /_includes/forge.html
   /guides/deployment_guide: /_includes/deploy_guide.html
   /guides/install_puppet: /_includes/puppet_general.html
-  /hiera/1: /_includes/hiera1.html
-  /hiera/2.0: /_includes/hiera20.html
-  /hiera/3.0: /_includes/hiera30.html
-  /hiera/3.1: /hiera/3.1/_hiera_toc.html
   /de: /_includes/de_pe2015.2.html
   /es: /_includes/es_docs.html
   /es/hiera: /_includes/es_hiera1.html
@@ -40,53 +27,6 @@ defaultnav:
   /learning: /_includes/learning_nav.html
   /mcollective: /_includes/mcollective_menu.html
   /mcollective1.2: /_includes/mcollective_1.2.html
-  /pe/2015.3: /pe/2015.3/_pe_toc.html
-  /pe/2015.2: /pe/2015.2/_pe_toc.html
-  /pe/3.8: /pe/3.8/_pe_toc.html
-  /pe/3.7: /pe/3.7/_pe_toc.html
-  /pe/3.3: /_includes/pe33.html
-  /pe/3.2: /_includes/pe32.html
-  /pe/3.1: /_includes/pe31.html
-  /pe/3.0: /_includes/pe30.html
-  /pe/2.8: /_includes/pe28.html
-  /pe/2.7: /_includes/pe27.html
-  /pe/2.6: /_includes/pe26.html
-  /pe/2.5: /_includes/pe25.html
-  /pe/2.0: /_includes/pe_2.0_nav.markdown
-  /puppetdb/0.9: /_includes/puppetdb0.9.html
-  /puppetdb/1: /_includes/puppetdb1.html
-  /puppetdb/1.1: /_includes/puppetdb1.1.html
-  /puppetdb/1.2: /_includes/puppetdb1.2.html
-  /puppetdb/1.3: /_includes/puppetdb1.3.html
-  /puppetdb/1.4: /_includes/puppetdb1.4.html
-  /puppetdb/1.5: /_includes/puppetdb1.5.html
-  /puppetdb/1.6: /_includes/puppetdb1.6.html
-  /puppetdb/2.0: /_includes/puppetdb2.0.html
-  /puppetdb/2.1: /_includes/puppetdb2.1.html
-  /puppetdb/2.2: /_includes/puppetdb2.2.html
-  /puppetdb/2.3: /puppetdb/2.3/_puppetdb_nav.html
-  /puppetdb/3.0: /puppetdb/3.0/_puppetdb_nav.html
-  /puppetdb/3.1: /puppetdb/3.1/_puppetdb_nav.html
-  /puppetdb/3.2: /puppetdb/3.2/_puppetdb_nav.html
-  /puppetdb/master: /puppetdb/master/_puppetdb_nav.html
-  /puppet/0.24/reference: /_includes/puppet_0_24.html
-  /puppet/0.25/reference: /_includes/puppet_0_25.html
-  /puppet/2.6/reference: /_includes/puppet_2_6.html
-  /puppet/2.7/reference: /_includes/puppet_2_7.html
-  /puppet/3/reference: /_includes/puppet_3.html
-  /puppet/3.5/reference: /_includes/puppet_3_5.html
-  /puppet/3.6/reference: /_includes/puppet_3_6.html
-  /puppet/3.7/reference: /_includes/puppet_3_7.html
-  /puppet/3.8/reference: /_includes/puppet_3_8.html
-  /puppet/4.0/reference: /_includes/puppet_4.html
-  /puppet/4.1/reference: /_includes/puppet4.1.html
-  /puppet/4.2/reference: /_includes/puppet4.2.html
-  /puppet/4.3/reference: /puppet/4.3/reference/_puppet_toc.html
-  /puppetserver/1.0: /_includes/server1.0.html
-  /puppetserver/2.0: /_includes/server2.0.html
-  /puppetserver/1.1: /_includes/puppet_3_8.html
-  /puppetserver/2.1: /_includes/puppet4.2.html
-  /puppetserver/2.2: /puppet/4.3/reference/_puppet_toc.html
   /references: /_includes/references_general.html
 #Anatomy of an external source:
 #  /puppetdb/2.2:                                   # The absolute URL where the source's contents should be mounted in the final site.
