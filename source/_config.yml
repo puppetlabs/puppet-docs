@@ -27,7 +27,7 @@ defaultnav:
   /learning: /_includes/learning_nav.html
   /mcollective: /_includes/mcollective_menu.html
   /mcollective1.2: /_includes/mcollective_1.2.html
-  /references: /_includes/references_general.html
+
 #Anatomy of an external source:
 #  /puppetdb/2.2:                                   # The absolute URL where the source's contents should be mounted in the final site.
 #    repo: git://github.com/puppetlabs/puppetdb.git # The URL of the upstream repo, in a form acceptable to `git clone`. This must be accessible to anyone who will need to deploy the site.
