@@ -46,7 +46,7 @@ If you're upgrading from Puppet 2.x, please [learn about major upgrades of Puppe
 
 Released February 3, 2016.
 
-This release is a security only release that contains an updated version of OpenSSL that has addresses a vulnerability announced by OpenSSL on January 28, 2016.
+This release is a security only release for Windows that contains an updated version of OpenSSL that has addresses a vulnerability announced by OpenSSL on January 28, 2016.
 
 * [Puppet Labs CVE announcement](https://puppetlabs.com/security/cve/openssl-jan-2016-security-fixes)
 * [OpenSSL security announcement](http://openssl.org/news/secadv/20160128.txt)
