@@ -1,5 +1,5 @@
 {% if page.doc %}
-<ul id="doc-navigation">
+<ul class="doc-navigation" id="version-switcher">
     <li class="with-submenu">
         <a href="#">
             <span>Version: {{ page.doc.version }}{% if site.document_version_index[page.doc.doc].latest == page.doc.base_url %} (latest){% endif %}</span>
