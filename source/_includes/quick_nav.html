@@ -2,7 +2,7 @@
 <ul class="doc-navigation" id="quick-nav">
     <li class="with-submenu">
         <a href="#">
-            <span>{% if page.doc %}Doc: {{ site.document_names[page.doc.doc] }}{% else %}Choose a Document:{% endif %}</span>
+            <span>{% if page.doc %}{{ site.document_names[page.doc.doc] }}{% else %}Choose a Document:{% endif %}</span>
             <span class="drop-down-trigger"></span>
         </a>
         <dl>
