@@ -1406,6 +1406,11 @@ a.disabled-nav-link {
   color: #444;
 }
 
+li.selected a.disabled-nav-link {
+  font-weight: bold;
+  color: rgb(96, 96, 144);
+}
+
 a.disabled-nav-link:hover {
   text-decoration: none;
 }
