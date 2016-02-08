@@ -193,7 +193,7 @@
 
   <section id="masthead">
     <div class="site-width">
-      <h1>Docs / <span class="section-name">{{page.title}}</span></h1>
+      <h1>{% include quick_nav.html %} / {% include version_switcher.html %}</h1>
     </div>
   </section>
 
@@ -211,10 +211,6 @@
         </div>
         <nav class="main">
               <div id="subCol">
-                  {% include quick_nav.html %}
-
-                  {% include version_switcher.html %}
-
                   {% render_nav %}
               </div>
         </nav>

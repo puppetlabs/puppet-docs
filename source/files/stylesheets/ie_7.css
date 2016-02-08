@@ -224,7 +224,7 @@ body#puppetlabsdocs #masthead ul li{
   z-index: 2;
 }
 
-section#masthead ul#doc-navigation {
+section#masthead ul.doc-navigation {
 	margin-top: -3.5em;
 }
 
