@@ -1550,7 +1550,7 @@ ul.doc-navigation ol li:hover span.drop-down-trigger {
 }
 
 ul.doc-navigation li.with-submenu dl {
-  background: rgba(48,44,109,.9);
+  background: rgba(48,44,109,1);
   left: 0;
   z-index: 10;
   font-size: 1em;
