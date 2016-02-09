@@ -199,15 +199,15 @@ end
 
 The fact's output is organized by network interface into hashes, each containing the two chunks:
 
-~~~ json
+~~~ ruby
 {
   bridge0 => {
     mac_sha256 => "bfgEFV7m1V04HYU6UqzoNoVmnPIEKWRSUOU650j0Wkk=",
-    primary? => false
+    primary?   => false
   },
   en0 => {
     mac_sha256 => "6Fd3Ws2z+aIl8vNmClCbzxiO2TddyFBChMlIU+QB28c=",
-    primary? => true
+    primary?   => true
   },
   ...
 }
