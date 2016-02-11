@@ -93,6 +93,20 @@ module PuppetDocs
       # site.documents method. :( If you don't do this, you can't access the documents in templates.
       self['document_list'] = self['documents']
 
+      # Use the defaultnav hash to set "nav" in Jekyll's frontmatter defaults. Our template passes this to
+      # the {% partial %} tag to render the sidebar nav snippet.
+      # We don't set these defaults directly in _config.yml because Jekyll's format for them is really unwieldy, and
+      # also because nav is the only path-prefix config we use.
+      self['defaults'] ||= []
+      self['defaultnav'].each {|prefix, nav|
+        new_default = {
+            # Jekyll requires us to strip any trailing or leading slash.
+            'scope' => {'path' => prefix.sub(/\A\//, '').sub(/\/\Z/, '')},
+            'values' => {'nav' => nav}
+        }
+        self['defaults'] << new_default
+      }
+
     end
 
   end
