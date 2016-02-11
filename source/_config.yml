@@ -55,8 +55,6 @@ symlink_latest:
   - facter
   - pe
 lock_latest:
-  puppet: 4.3
-  puppetserver: 2.2
   hiera: 3.0
 
 # Anatomy of a document:
