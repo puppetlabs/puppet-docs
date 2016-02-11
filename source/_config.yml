@@ -95,7 +95,7 @@ version_notes:
 #      repo: git@github.com:puppetlabs/pe-docs-private.git
 #      commit: origin/pe2015.3.1
 #      subdirectory: source
-#    my_versions:                 # A hash, where you can specify the one most-relavent version for any number of other documents.
+#    my_versions:                 # A hash, where you can specify the one most-relevant version for any number of other documents.
 #      puppet: 4.3                # The keys of this hash should be document group IDs; that is, the value of the `doc` key from another document.
 #      facter: 3.1
 #      hiera: 3.0
@@ -223,7 +223,6 @@ documents:
     doc: puppet
     version: 4.3
     nav: ./_puppet_toc.html
-    version_note: "<p class=\"noisy\">This is the version of Puppet included in Puppet Enterprise 2015.3. PE 2015.2 users should see <a href=\"/puppet/4.2/reference/\">the Puppet 4.2 docs</a> and <a href=\"/pe/2015.2\">the PE 2015.2 docs</a>. PE 3.8 users should see <a href=\"/puppet/3.8/reference/\">the Puppet 3.8 docs</a> and <a href=\"/pe/3.8/\">the PE 3.8 docs</a>.</p>"
     my_versions:
       facter: 3.1
       hiera: 3.0
@@ -232,7 +231,6 @@ documents:
     doc: puppet
     version: 4.2
     nav: /_includes/puppet4.2.html
-    version_note: "<p class=\"noisy\">This is the version of Puppet included in PE 2015.2. PE 3.8 users should see <a href=\"/puppet/3.8/reference/\">the Puppet 3.8 docs</a> and <a href=\"/pe/3.8/\">the Puppet Enterprise 3.8 docs</a>. If you're using the open source release, there's a <a href=\"/puppet/latest/reference/\">newer version</a> available.</p>"
     my_versions:
       facter: 3.1
       hiera: 3.0
@@ -253,7 +251,6 @@ documents:
     doc: puppet
     version: 3.8
     nav: /_includes/puppet_3_8.html
-    version_note: "This is the version of Puppet included in Puppet Enterprise 3.8."
     my_versions:
       facter: 2.4
       hiera: 1
@@ -262,7 +259,6 @@ documents:
     doc: puppet
     version: 3.7
     nav: /_includes/puppet_3_7.html
-    version_note: "This is the version of Puppet included in Puppet Enterprise 3.7."
   /puppet/3.6/reference:
     doc: puppet
     version: 3.6
@@ -301,17 +297,14 @@ documents:
     doc: facter
     version: 3.1
     nav: ./_facter_toc.html
-    version_note: 'This is the version of Facter included in PE 2015.3 and 2015.2.2. PE 3.8 users should see <a href="/facter/2.4/">the Facter 2.4 docs.</a></p>'
   /facter/3.0:
     doc: facter
     version: 3.0
     nav: ./_facter_toc.html
-    version_note: 'This is the version of Facter included in PE 2015.2.0. PE 3.8 users should see <a href="/facter/2.4/">the Facter 2.4 docs.</a></p>'
   /facter/2.4:
     doc: facter
     version: 2.4
     nav: /_includes/facter24.html
-    version_note: 'This is the version of Facter included in Puppet Enterprise 3.8. Open source Puppet users should see <a href="/facter/latest/">the latest version of the docs</a>.'
   /facter/2.3:
     doc: facter
     version: 2.3
@@ -320,7 +313,6 @@ documents:
     doc: facter
     version: 2.2
     nav: /_includes/facter22.html
-    version_note: 'This is the version of Facter included in Puppet Enterprise 3.7. Open source Puppet users should see <a href="/facter/latest/">the latest version of the docs</a>.'
   /facter/2.1:
     doc: facter
     version: 2.1
@@ -360,7 +352,6 @@ documents:
     doc: puppetserver
     version: 1.0
     nav: /_includes/server1.0.html
-    version_note: 'This is the version of Puppet Server included in Puppet Enterprise 3.7 and 3.8.0.'
     external_source:
       repo: git://github.com/puppetlabs/puppet-server.git
       commit: ce030bb
@@ -377,7 +368,6 @@ documents:
     doc: puppetserver
     version: 1.1
     nav: /_includes/puppet_3_8.html
-    version_note: '<p class="noisy">This is the version of Puppet Server included in Puppet Enterprise 3.8.1 (and later 3.8 releases). PE 3.7 users should see <a href="/puppetserver/1.0/">the Puppet Server 1.0 docs.</a>'
     external_source:
       repo: git://github.com/puppetlabs/puppet-server.git
       commit: origin/1.x
@@ -386,7 +376,6 @@ documents:
     doc: puppetserver
     version: 2.1
     nav: /_includes/puppet4.2.html
-    version_note: '<p class="noisy">This is the version of Puppet Server included in Puppet Enterprise 2015.2.0 to 2015.2.2. Puppet Enterprise 3.8 users should see <a href="/puppetserver/1.1/">the Puppet Server 1.1 docs.</a>'
     external_source:
       repo: git://github.com/puppetlabs/puppet-server.git
       # This is a tag:
@@ -396,7 +385,6 @@ documents:
     doc: puppetserver
     version: 2.2
     nav: /puppet/4.3/reference/_puppet_toc.html
-    version_note: '<p class="noisy">This is the latest version of Puppet Server, included in Puppet Enterprise 2015.3 and 2015.2.3. Users of previous versions of PE 2015.2.x should see <a href="/puppetserver/2.1/">the Puppet Server 2.1 docs.</a> PE 3.8 users should see <a href="/puppetserver/1.1/">the Puppet Server 1.1 docs.</a>'
     external_source:
       repo: git://github.com/puppetlabs/puppet-server.git
       commit: origin/stable
@@ -410,7 +398,6 @@ documents:
     doc: puppetdb
     version: 3.2
     nav: ./_puppetdb_nav.html
-    version_note: '<p class="noisy">This is the version of PuppetDB included in PE 2015.3. PE 2015.2 users should see <a href="/puppetdb/3.0/">the PuppetDB 3.0 docs</a>. PE 3.8 users should see <a href="/puppetdb/2.3/">the PuppetDB 2.3 docs</a>.</p>'
     external_source:
       url: /puppetdb/3.2
       repo: git://github.com/puppetlabs/puppetdb.git
@@ -420,7 +407,6 @@ documents:
     doc: puppetdb
     version: 3.1
     nav: ./_puppetdb_nav.html
-    version_note: '<p class="noisy">This is the version of PuppetDB included in PE 2015.2.2. PE 3.8 users should see <a href="/puppetdb/2.3/">the PuppetDB 2.3 docs</a>.</p>'
     external_source:
       url: /puppetdb/3.1
       repo: git://github.com/puppetlabs/puppetdb.git
@@ -430,7 +416,6 @@ documents:
     doc: puppetdb
     version: 3.0
     nav: ./_puppetdb_nav.html
-    version_note: "This is the version of PuppetDB included in PE 2015.2. PE 3.8 users should see <a href=\"/puppetdb/2.3/\">the PuppetDB 2.3 docs</a>. If you're using the open source release, there's a <a href=\"/puppetdb/latest/\">newer version</a> available."
     external_source:
       url: /puppetdb/3.0
       repo: git://github.com/puppetlabs/puppetdb.git
@@ -440,7 +425,6 @@ documents:
     doc: puppetdb
     version: 2.3
     nav: ./_puppetdb_nav.html
-    version_note: "This is the version of PuppetDB included in Puppet Enterprise 3.8. If you're using the open source release, there's a <a href=\"/puppetdb/latest/\">newer version</a> available."
     external_source:
       url: /puppetdb/2.3
       repo: git://github.com/puppetlabs/puppetdb.git
@@ -450,7 +434,6 @@ documents:
     doc: puppetdb
     version: 2.2
     nav: /_includes/puppetdb2.2.html
-    version_note: "This is the version of PuppetDB included in Puppet Enterprise 3.7. If you're using the open source release, there's a <a href=\"/puppetdb/latest/\">newer version</a> available."
     external_source:
       url: /puppetdb/2.2
       repo: git://github.com/puppetlabs/puppetdb.git
@@ -544,7 +527,6 @@ documents:
     doc: puppetdb
     version: master
     nav: ./_puppetdb_nav.html
-    version_note: '<p class="noisy">This page is for an unreleased version of PuppetDB. PE 2015.2 users should see <a href="/puppetdb/3.0/">the PuppetDB 3.0 docs</a>. Other users should see <a href="/puppetdb/latest/">the latest official release</a>.</p>'
     external_source:
       url: /puppetdb/master
       repo: git://github.com/puppetlabs/puppetdb.git
