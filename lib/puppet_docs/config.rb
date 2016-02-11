@@ -14,6 +14,15 @@ module PuppetDocs
       super()
       self.merge!(YAML.load(File.read(config_file)))
 
+      # Normalize lock_latest: Ensure it's a hash, and ensure version numbers are strings. This makes it easier to write
+      # the list in the config file, since we can skip the quoting and curly braces.
+      if self['lock_latest'].class != Hash
+        self['lock_latest'] = {}
+      end
+      self['lock_latest'].each {|prod, ver|
+        self['lock_latest'][prod] = ver.to_s
+      }
+
       # Merge document info into external sources. Expected behavior is that documents override
       # standalone sources if there's a conflict.
       self['documents'].each {|base_url, data|

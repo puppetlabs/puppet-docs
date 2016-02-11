@@ -54,11 +54,10 @@ symlink_latest:
   - hiera
   - facter
   - pe
-lock_latest: {
-  puppet: "4.3",
-  puppetserver: "2.2",
-  hiera: "3.0"
-}
+lock_latest:
+  puppet: 4.3
+  puppetserver: 2.2
+  hiera: 3.0
 
 # Anatomy of a document:
 #  /pe/2015.3:                    # Base URL for this doc, starting from the root of the site.
