@@ -6,8 +6,11 @@ kramdown:
   hard_wrap: false
 url: "https://docs.puppetlabs.com"
 safe: false
+# YAML frontmatter defaults:
+defaults: [ {scope: {path: ""},
+             values: {layout: "default",
+                      nav: "/_includes/fallback_nav.html"} } ]
 defaultnav:
-  /: /_includes/fallback_nav.html
   /background/ssl: /_includes/background_ssl.html
   /community: /_includes/community_nav.html
   /forge: /_includes/forge.html
