@@ -27,8 +27,6 @@ Where's all this config data get used? Well.
   `document_version_index`). In both places, it lets you override the latest
   version. Any other code that needs to know the latest version will find out
   via one of those two places instead of recalculating it.
-- `version_notes`: Used by the `render_version_note` plugin, which gets called
-  in our main template to add red version notes above content.
 - `document_names`: Used by the main template (via the document switcher) to
   refer to documents by their long names.
 - `documents`: Used by PuppetDocs::Config to construct the keys in the following
