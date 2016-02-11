@@ -374,7 +374,6 @@ documents:
     version: 3.2
     nav: ./_puppetdb_nav.html
     external_source:
-      url: /puppetdb/3.2
       repo: git://github.com/puppetlabs/puppetdb.git
       commit: origin/stable
       subdirectory: documentation
@@ -383,7 +382,6 @@ documents:
     version: 3.1
     nav: ./_puppetdb_nav.html
     external_source:
-      url: /puppetdb/3.1
       repo: git://github.com/puppetlabs/puppetdb.git
       commit: origin/3.1.x
       subdirectory: documentation
@@ -392,7 +390,6 @@ documents:
     version: 3.0
     nav: ./_puppetdb_nav.html
     external_source:
-      url: /puppetdb/3.0
       repo: git://github.com/puppetlabs/puppetdb.git
       commit: origin/3.0.x
       subdirectory: documentation
@@ -401,7 +398,6 @@ documents:
     version: 2.3
     nav: ./_puppetdb_nav.html
     external_source:
-      url: /puppetdb/2.3
       repo: git://github.com/puppetlabs/puppetdb.git
       commit: origin/2.3.x
       subdirectory: documentation
@@ -410,7 +406,6 @@ documents:
     version: 2.2
     nav: /_includes/puppetdb2.2.html
     external_source:
-      url: /puppetdb/2.2
       repo: git://github.com/puppetlabs/puppetdb.git
       commit: origin/2.2.x
       subdirectory: documentation
@@ -419,7 +414,6 @@ documents:
     version: 2.1
     nav: /_includes/puppetdb2.1.html
     external_source:
-      url: /puppetdb/2.1
       repo: git://github.com/puppetlabs/puppetdb.git
       commit: origin/2.1.x
       subdirectory: documentation
@@ -428,7 +422,6 @@ documents:
     version: 2.0
     nav: /_includes/puppetdb2.0.html
     external_source:
-      url: /puppetdb/2.0
       repo: git://github.com/puppetlabs/puppetdb.git
       commit: origin/2.0.x
       subdirectory: documentation
@@ -437,7 +430,6 @@ documents:
     version: 1.6
     nav: /_includes/puppetdb1.6.html
     external_source:
-      url: /puppetdb/1.6
       repo: git://github.com/puppetlabs/puppetdb.git
       commit: origin/1.6.x
       subdirectory: documentation
@@ -446,7 +438,6 @@ documents:
     version: 1.5
     nav: /_includes/puppetdb1.5.html
     external_source:
-      url: /puppetdb/1.5
       repo: git://github.com/puppetlabs/puppetdb.git
       commit: 1.5.x-docs
       subdirectory: documentation
@@ -455,7 +446,6 @@ documents:
     version: 1.4
     nav: /_includes/puppetdb1.4.html
     external_source:
-      url: /puppetdb/1.4
       repo: git://github.com/puppetlabs/puppetdb.git
       commit: 1.4.x-docs
       subdirectory: documentation
@@ -464,7 +454,6 @@ documents:
     version: 1.3
     nav: /_includes/puppetdb1.3.html
     external_source:
-      url: /puppetdb/1.3
       repo: git://github.com/puppetlabs/puppetdb.git
       commit: 1.3.x-docs
       subdirectory: documentation
@@ -474,7 +463,6 @@ documents:
     nav: /_includes/puppetdb1.2.html
     hide: true
     external_source:
-      url: /puppetdb/1.2
       repo: git://github.com/puppetlabs/puppetdb.git
       commit: 1.2.x-docs
       subdirectory: documentation
@@ -484,7 +472,6 @@ documents:
     nav: /_includes/puppetdb1.1.html
     hide: true
     external_source:
-      url: /puppetdb/1.1
       repo: git://github.com/puppetlabs/puppetdb.git
       commit: 1.1.x-docs
       subdirectory: documentation
@@ -503,7 +490,6 @@ documents:
     version: master
     nav: ./_puppetdb_nav.html
     external_source:
-      url: /puppetdb/master
       repo: git://github.com/puppetlabs/puppetdb.git
       commit: origin/master
       subdirectory: documentation
