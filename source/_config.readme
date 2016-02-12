@@ -9,8 +9,10 @@ Where's all this config data get used? Well.
 ## Raw Config Data
 
 - `highlighter`, `markdown`, `kramdown`, `url`, `safe`: Used directly by Jekyll.
-- `defaultnav`: Used by the `render_nav` plugin, which gets called in our main
-  template to add the sidebar navigation to a page.
+- `defaultnav`: Used by PuppetDocs::Config to set default values for `page.nav`.
+  (Under the hood, this uses Jekyll's frontmatter defaults feature, which is too
+  unwieldy to use directly.) The main template then calls
+  `{% partial {{page.nav}} %}` to add the sidebar navigation to each page.
 
   **Note:** In versioned documents, any applicable defaultnav gets overridden
   by the nav value from the document.
@@ -27,8 +29,6 @@ Where's all this config data get used? Well.
   `document_version_index`). In both places, it lets you override the latest
   version. Any other code that needs to know the latest version will find out
   via one of those two places instead of recalculating it.
-- `version_notes`: Used by the `render_version_note` plugin, which gets called
-  in our main template to add red version notes above content.
 - `document_names`: Used by the main template (via the document switcher) to
   refer to documents by their long names.
 - `documents`: Used by PuppetDocs::Config to construct the keys in the following

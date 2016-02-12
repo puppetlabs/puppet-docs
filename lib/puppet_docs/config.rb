@@ -14,6 +14,15 @@ module PuppetDocs
       super()
       self.merge!(YAML.load(File.read(config_file)))
 
+      # Normalize lock_latest: Ensure it's a hash, and ensure version numbers are strings. This makes it easier to write
+      # the list in the config file, since we can skip the quoting and curly braces.
+      if self['lock_latest'].class != Hash
+        self['lock_latest'] = {}
+      end
+      self['lock_latest'].each {|prod, ver|
+        self['lock_latest'][prod] = ver.to_s
+      }
+
       # Merge document info into external sources. Expected behavior is that documents override
       # standalone sources if there's a conflict.
       self['documents'].each {|base_url, data|
@@ -66,6 +75,11 @@ module PuppetDocs
       self['documents'].each {|base_url, data|
         data['my_versions'] ||= {}
 
+        # Reject any non-existent versions (they'll fall back to latest):
+        data['my_versions'].reject! {|group, version|
+          !( self['document_version_index'][group].has_key?(version) )
+        }
+
         # Exclude self:
         other_groups = document_groups - [ data['doc'] ]
         # If we have an explicit version for a given group, keep it:
@@ -92,6 +106,20 @@ module PuppetDocs
       # Duplicate the documents hash under a new name that doesn't conflict with Jekyll's
       # site.documents method. :( If you don't do this, you can't access the documents in templates.
       self['document_list'] = self['documents']
+
+      # Use the defaultnav hash to set "nav" in Jekyll's frontmatter defaults. Our template passes this to
+      # the {% partial %} tag to render the sidebar nav snippet.
+      # We don't set these defaults directly in _config.yml because Jekyll's format for them is really unwieldy, and
+      # also because nav is the only path-prefix config we use.
+      self['defaults'] ||= []
+      self['defaultnav'].each {|prefix, nav|
+        new_default = {
+            # Jekyll requires us to strip any trailing or leading slash.
+            'scope' => {'path' => prefix.sub(/\A\//, '').sub(/\/\Z/, '')},
+            'values' => {'nav' => nav}
+        }
+        self['defaults'] << new_default
+      }
 
     end
 

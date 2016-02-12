@@ -34,6 +34,15 @@ The `puppet-agent` package installs Puppet 4. Also read the [Puppet 4.0 release 
 
 Also of interest: [About Agent](./about_agent.html) and the [Puppet 4.3 release notes](./release_notes.html).
 
+## Puppet Agent 1.3.5
+
+Released February 3, 2016.
+
+This release is a security release that updates vulnerable versions of OpenSSL shipped with builds of `puppet-agent` to OpenSSL 1.0.2.f.
+
+* [Puppet Labs CVE announcement](https://puppetlabs.com/security/cve/openssl-jan-2016-security-fixes)
+* [OpenSSL security announcement](http://openssl.org/news/secadv/20160128.txt)
+
 ## Puppet Agent 1.3.4
 
 Released January 25, 2016.
