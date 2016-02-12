@@ -57,6 +57,14 @@ symlink_latest:
 lock_latest:
   hiera: 3.0
 
+document_names:
+  pe: Puppet Enterprise
+  puppet: Puppet
+  puppetserver: Puppet Server
+  puppetdb: PuppetDB
+  hiera: Hiera
+  facter: Facter
+
 # Anatomy of a document:
 #  /pe/2015.3:                    # Base URL for this doc, starting from the root of the site.
 #    doc: pe                      # Which document group it's a part of. Used to determine this doc's siblings.
@@ -73,15 +81,6 @@ lock_latest:
 #      hiera: 3.0
 #      puppetserver: 2.2
 #      puppetdb: 3.2
-
-document_names:
-  pe: Puppet Enterprise
-  puppet: Puppet
-  puppetserver: Puppet Server
-  puppetdb: PuppetDB
-  hiera: Hiera
-  facter: Facter
-
 documents:
   /pe/2015.3:
     doc: pe
