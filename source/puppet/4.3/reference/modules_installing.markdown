@@ -42,13 +42,11 @@ The `puppet module` tool finds and manages new modules from the Forge. Its inter
 
 ## Using the Module Tool
 
-The `puppet module` subcommand has several _actions._ The main actions used for managing modules are `install`, `list`, `search`, `uninstall`, and `upgrade`.
-
-If you have used a command line package manager tool (like `gem`, `apt-get`, or `yum`) before, these actions do what you'd generally expect. You can view a full description of each action with `puppet man module` or by [viewing the man page here][module_man]. In short:
+If you have used a command line package manager tool (like `gem`, `apt-get`, or `yum`) before, `puppet module` actions do what you'd generally expect. You can view a full description of each action with `puppet man module` or by [viewing the man page here][module_man]. The main actions of the `puppet module` subcommand are:
 
 #### `install`
 
-Install a module from the Forge or a release archive.
+Installs a module from the Forge or a release archive.
 
 ``` bash
 sudo puppet module install puppetlabs-apache --version 0.0.2
@@ -56,7 +54,7 @@ sudo puppet module install puppetlabs-apache --version 0.0.2
 
 #### `list`
 
-List installed modules.
+Lists installed modules.
 
 ``` bash
 sudo puppet module list
@@ -64,7 +62,7 @@ sudo puppet module list
 
 #### `search`
 
-Search the Forge for a module.
+Searches the Forge for a module.
 
 ``` bash
 sudo puppet module search apache
@@ -72,7 +70,7 @@ sudo puppet module search apache
 
 #### `uninstall`
 
-Uninstall a Puppet module.
+Uninstalls a Puppet module.
 
 ``` bash
 sudo puppet module uninstall puppetlabs-apache
@@ -80,7 +78,7 @@ sudo puppet module uninstall puppetlabs-apache
 
 #### `upgrade`
 
-Upgrade a Puppet module.
+Upgrades a Puppet module.
 
 ``` bash
 sudo puppet module upgrade puppetlabs-apache --version 0.0.3
@@ -141,7 +139,7 @@ sudo puppet module install --module_repository http://dev-forge.example.com pupp
 
 To install a module from a release tarball, specify the path to the tarball instead of the module name.
 
-Make sure to use the `--ignore-dependencies` flag if you cannot currently reach the Puppet Forge or are installing modules that have not yet been published to the Forge. This flag tells the Puppet module tool not to try to resolve dependencies by connecting to the Forge. Be aware that in this case, you must manually install any dependencies.
+If you cannot connect to the Puppet Forge or are installing modules that have not yet been published to the Forge, use the `--ignore-dependencies` flag. This flag tells the Puppet module tool not to try to resolve dependencies by connecting to the Forge. In this case, you must manually install any dependencies.
 
 ``` bash
 sudo puppet module install ~/puppetlabs-apache-0.10.0.tar.gz --ignore-dependencies
@@ -167,7 +165,7 @@ If you need to install a PE-only module on a PE node that doesn't have internet 
 3. Move the *.tar.gz wherever you choose.
 4. Run `puppet module install` against the tar.gz.
 
-Note that without internet access on the node, you will also have to manually install any dependencies.
+As mentioned in the instructions for [installing from a tarball](#installing-from-a-release-tarball), when installing on a node without internet access, you must manually install any dependencies.
 
 
 ## Finding Modules
@@ -269,7 +267,10 @@ You can workaround it by upgrading or uninstalling using the `--ignore-changes` 
 When installing or upgrading a Puppet Enterprise module, you might receive an error like the following:
 
 ```
-ERROR	-> You must have a valid Puppet Enterprise license on this node in order to download puppetlabs-sqlserver-1.1.1. If you have a Puppet Enterprise license, please see https://docs.puppetlabs.com/pe/latest/modules_installing.html#puppet-enterprise-modules for more information.
+Error: Request to Puppet Forge failed.
+  The server being queried was https://forgeapi.puppetlabs.com/v3/releases?module=puppetlabs-f5&module_groups=base+pe_only
+  The HTTP response we received was '403 Forbidden'
+  The message we received said 'You must have a valid Puppet Enterprise license on this node in order to download puppetlabs-f5. If you have a Puppet Enterprise license, please see https://docs.puppetlabs.com/pe/latest/modules_installing.html#puppet-enterprise-modules for more information.'
 ```
 
 If you aren't a Puppet Enterprise user, you won't be able to use this module unless you purchase [Puppet Enterprise](https://puppetlabs.com/puppet/puppet-enterprise).
@@ -281,7 +282,6 @@ If you are a Puppet Enterprise user, check the following:
 3. Does the node you're on have a valid Puppet Enterprise license? If not, switch to a node that has a valid PE license on it.
 4. Are you running a version of Puppet Enterprise that supports this module? If not, you might need to upgrade.
 5. Do you have access to the internet on the node? If not, you need to switch to a node that has access to the internet.
-6. If you are using r10k, was it originally installed as a gem? If so, switch to [Code Manager][code_mgr] or [r10k][r10k] as included with PE. PE installs an updated version of r10k that has the proper support for these modules.
-
+6. If you are using r10k, is it running from `/opt/puppetlabs/bin/r10k`? If not, run r10k  from that location.
 
 
