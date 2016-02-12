@@ -319,13 +319,26 @@ documents:
     version: 1
     nav: /_includes/hiera1.html
 
-  /puppetserver/1.0:
+  /puppetserver/2.2:
     doc: puppetserver
-    version: 1.0
-    nav: /_includes/server1.0.html
+    version: 2.2
+    nav: /puppet/4.3/reference/_puppet_toc.html
     external_source:
       repo: git://github.com/puppetlabs/puppet-server.git
-      commit: ce030bb
+      commit: origin/stable
+      subdirectory: documentation
+    my_versions:
+      puppet: 4.3
+      facter: 3.1
+      hiera: 3.0
+  /puppetserver/2.1:
+    doc: puppetserver
+    version: 2.1
+    nav: /_includes/puppet4.2.html
+    external_source:
+      repo: git://github.com/puppetlabs/puppet-server.git
+      # This is a tag:
+      commit: puppet-server-2.1.3-alpha1
       subdirectory: documentation
   /puppetserver/2.0:
     doc: puppetserver
@@ -343,27 +356,14 @@ documents:
       repo: git://github.com/puppetlabs/puppet-server.git
       commit: origin/1.x
       subdirectory: documentation
-  /puppetserver/2.1:
+  /puppetserver/1.0:
     doc: puppetserver
-    version: 2.1
-    nav: /_includes/puppet4.2.html
+    version: 1.0
+    nav: /_includes/server1.0.html
     external_source:
       repo: git://github.com/puppetlabs/puppet-server.git
-      # This is a tag:
-      commit: puppet-server-2.1.3-alpha1
+      commit: ce030bb
       subdirectory: documentation
-  /puppetserver/2.2:
-    doc: puppetserver
-    version: 2.2
-    nav: /puppet/4.3/reference/_puppet_toc.html
-    external_source:
-      repo: git://github.com/puppetlabs/puppet-server.git
-      commit: origin/stable
-      subdirectory: documentation
-    my_versions:
-      puppet: 4.3
-      facter: 3.1
-      hiera: 3.0
 
   /puppetdb/3.2:
     doc: puppetdb
