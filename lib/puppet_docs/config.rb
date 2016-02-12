@@ -75,6 +75,11 @@ module PuppetDocs
       self['documents'].each {|base_url, data|
         data['my_versions'] ||= {}
 
+        # Reject any non-existent versions (they'll fall back to latest):
+        data['my_versions'].reject! {|group, version|
+          !( self['document_version_index'][group].has_key?(version) )
+        }
+
         # Exclude self:
         other_groups = document_groups - [ data['doc'] ]
         # If we have an explicit version for a given group, keep it:
