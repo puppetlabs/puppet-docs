@@ -13,18 +13,18 @@ task :mirror1 do
 end
 
 task :preview1 do
-    set :domain,    "#{user}@docspreview1.puppetlabs.lan"
-    set :deploy_to, "/opt/docspreview1"
+    set :domain,    "#{user}@staticweb1-dev.puppetlabs.com"
+    set :deploy_to, "/var/www/docspreview1.ops.puppetlabs.net"
 end
 
 task :preview2 do
-    set :domain,    "#{user}@docspreview2.puppetlabs.lan"
-    set :deploy_to, "/opt/docspreview2"
+    set :domain,    "#{user}@staticweb1-dev.puppetlabs.com"
+    set :deploy_to, "/var/www/docspreview2.ops.puppetlabs.net"
 end
 
 task :preview3 do
-    set :domain,    "#{user}@docspreview3.puppetlabs.lan"
-    set :deploy_to, "/opt/docspreview3"
+    set :domain,    "#{user}@staticweb1-dev.puppetlabs.com"
+    set :deploy_to, "/var/www/docspreview3.ops.puppetlabs.net"
 end
 
 namespace :vlad do
