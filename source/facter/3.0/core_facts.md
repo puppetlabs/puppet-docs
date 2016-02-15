@@ -1313,7 +1313,7 @@ This legacy fact is hidden by default in Facter's command-line output.
 
 **Purpose:**
 
-Return the size of the free system memory, in mebibytes.
+Return the size of the free system memory, in megabytes.
 
 
 **Resolution:**
@@ -1355,7 +1355,7 @@ This legacy fact is hidden by default in Facter's command-line output.
 
 **Purpose:**
 
-Return the size of the total system memory, in mebibytes.
+Return the size of the total system memory, in megabytes.
 
 
 **Resolution:**
@@ -2345,7 +2345,7 @@ This legacy fact is hidden by default in Facter's command-line output.
 
 **Purpose:**
 
-Return the size of the free swap memory, in mebibytes.
+Return the size of the free swap memory, in megabytes.
 
 
 **Resolution:**
@@ -2385,7 +2385,7 @@ This legacy fact is hidden by default in Facter's command-line output.
 
 **Purpose:**
 
-Return the size of the total swap memory, in mebibytes.
+Return the size of the total swap memory, in megabytes.
 
 
 **Resolution:**
