@@ -9,6 +9,7 @@ safe: false
 # YAML frontmatter defaults:
 defaults: [ {scope: {path: ""},
              values: {layout: "default",
+                      toc_levels: "23",
                       nav: "/_includes/fallback_nav.html"} } ]
 defaultnav:
   /background/ssl: /_includes/background_ssl.html

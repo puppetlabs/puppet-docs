@@ -16,13 +16,20 @@
 require 'jekyll'
 
 module TocFilter
-  def toc(input)
+  # input should be the full content of a page.
+  # toc_levels should be a list of the header levels to use when building the TOC. Defaults to h2 and h3.
+  def toc(input, toc_levels = '23')
+    toc_levels = toc_levels.to_s.gsub(/[^1-6]/, '')
+    # Avoid empty char-class error:
+    if toc_levels.empty?
+      toc_levels = '23'
+    end
     hdepth = 0
     toc = []
     sublist_stack = []
     input.scan(%r{
       <(h # 0: Enclosing group with the whole element name
-        ([23]) # 1: Header level
+        ([#{toc_levels}]) # 1: Header level
       )
       (?:
         >|\s+(.*?)> # 2: Either nil or an attribute string which probably includes id="blah"; the group makes a capture even if the alternator keeps matching from reaching it.
