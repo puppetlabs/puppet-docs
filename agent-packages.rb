@@ -4,9 +4,15 @@ require 'git'
 require 'pathname'
 require 'json'
 require 'pp'
+require 'yaml'
 
 project_dir = Pathname.new(File.expand_path(__FILE__)).parent
 vanagon_dir = (project_dir + 'puppet-agent')
+config_file = project_dir + 'config.yaml'
+
+config = YAML.load(config_file.read)
+includes = config['agent']['include'] || {}
+excludes = config['agent']['exclude'] || []
 
 if !Dir.exist?(vanagon_dir + '.git')
   Git.clone('git@github.com:puppetlabs/puppet-agent.git', vanagon_dir)
@@ -41,22 +47,28 @@ until tags.first.name == '1.0.0'
   tags.shift
 end
 
+versions_and_commits = Hash[ tags.map {|tag| [tag.name, tag.name]} ]
+excludes.each do |tag|
+  versions_and_commits.delete(tag)
+end
+versions_and_commits.merge!(includes)
 
-agent_versions_hash = tags.reduce(Hash.new) {|result, tag|
-  agent_repo.checkout(tag)
-  components_hash = component_files.reduce(Hash.new) {|result, (component, config)|
-    component_file = vanagon_dir + 'configs/components' + config
-    if component_file.extname == '.json'
-      result[component] = version_from_json(component_file)
-    elsif component_file.extname == '.rb'
-      result[component] = version_from_ruby(component_file)
-    else
-      raise("Unexpected file extension for #{component_file}")
-    end
-    result
+agent_versions_hash = Hash[
+  versions_and_commits.map {|name, commit|
+    agent_repo.checkout(commit)
+    components_hash = component_files.reduce(Hash.new) {|result, (component, config)|
+      component_file = vanagon_dir + 'configs/components' + config
+      if component_file.extname == '.json'
+        result[component] = version_from_json(component_file)
+      elsif component_file.extname == '.rb'
+        result[component] = version_from_ruby(component_file)
+      else
+        raise("Unexpected file extension for #{component_file}")
+      end
+      result
+    }
+    [name, components_hash]
   }
-  result[tag.name] = components_hash
-  result
-}
+]
 
 puts JSON.dump(agent_versions_hash)
