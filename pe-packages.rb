@@ -4,9 +4,15 @@ require 'git'
 require 'pathname'
 require 'json'
 require 'pp'
+require 'yaml'
 
 pe_packages_dir = Pathname.new(File.expand_path(__FILE__)).parent
 @enterprise_dist_dir = (pe_packages_dir + 'enterprise-dist')
+config_file = pe_packages_dir + 'config.yaml'
+
+config = YAML.load(config_file.read)
+includes = config['pe']['include'] || {}
+excludes = config['pe']['exclude'] || []
 
 if !Dir.exist?(@enterprise_dist_dir + '.git')
   Git.clone('git@github.com:puppetlabs/enterprise-dist.git', @enterprise_dist_dir)
@@ -103,31 +109,16 @@ end
 
 }
 
-versions_of_interest_old = [
-'3.2.0',
-'3.2.1',
-'3.2.2',
-'3.2.3',
-'3.3.0',
-'3.3.1',
-'3.3.2'
-]
 
-versions_of_interest_new = [
-'3.7.0',
-'3.7.1',
-'3.7.2'
-]
-
-# versions_of_interest_newer = [
-# '2015.2.0'
-# ]
-
-versions_of_interest_newer = @pe_repo.tags.map {|tag| tag.name}.select {|name|
+autodetected_versions = @pe_repo.tags.map {|tag| tag.name}.select {|name|
   (name =~ /^\d{4}/ or name =~ /^3\.8/) and name !~ /-/
 }
 
-versions_of_interest = versions_of_interest_old.concat(versions_of_interest_new).concat(versions_of_interest_newer)
+versions_and_commits = Hash[ autodetected_versions.map {|name| [name, name]} ]
+excludes.each do |tag|
+  versions_and_commits.delete(tag)
+end
+versions_and_commits.merge!(includes)
 
 # this is like { platformname: { packagename: { version: version, md5: md5 }, packagename: {...} }, platformname: {......} }
 def load_package_json(version)
@@ -163,8 +154,8 @@ def packages_json_to_versions_sorted_by_platform(packagedata)
   result
 end
 
-historical_packages = versions_of_interest.reduce( {} ) do |result, version|
-  result[version] = packages_json_to_versions_sorted_by_platform( load_package_json(version) )
+historical_packages = versions_and_commits.reduce( {} ) do |result, (name, commit)|
+  result[name] = packages_json_to_versions_sorted_by_platform( load_package_json(commit) )
   result
 end
 # results in something like
