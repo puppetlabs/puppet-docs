@@ -2,3 +2,5 @@ puppet-agent
 enterprise-dist
 *.json
 output
+.idea
+Gemfile.lock
