@@ -24,7 +24,7 @@ module TocFilter
     if toc_levels.empty?
       toc_levels = '23'
     end
-    hdepth = 0
+    hdepth = [0]
     toc = []
     sublist_stack = []
     input.scan(%r{
@@ -44,13 +44,32 @@ module TocFilter
         id = ''
       end
       text = entry[3].gsub(/<[^>]+>/m, '').strip # Get rid of any span-level tags inside the header text, and strip trailing whitespace.
-      if hdepth == 0
-        sublist_stack.push(toc) # Prime the pump. This has to be exclusive of the next elsif.
-      elsif hdepth < hlevel
+      if hdepth.last == 0 # Prime the pump. This has to be exclusive of the next elsif.
+        sublist_stack.push(toc)
+        hdepth.push(hlevel)
+      elsif hdepth.last < hlevel # we just entered a deeper header level.
         sublist_stack.last.last[:sublist] = []
-        sublist_stack.push(sublist_stack.last.last[:sublist]) # we just now entered a deeper header level.
-      elsif hdepth > hlevel
-        sublist_stack.pop unless sublist_stack.last.object_id == toc.object_id # Ascend to a shallower header level. The unless protects us from the case where an H3 appeared before the first H2.
+        sublist_stack.push(sublist_stack.last.last[:sublist])
+        hdepth.push(hlevel)
+      elsif hdepth.last > hlevel
+        # one of two things: we just ascended to a shallower header level (by one or more levels),
+        # or we stay at the same level (because we were at level 2, then used a 4, then a 3). If the former, we'll
+        # pop hdepth until we see our OWN header level; if the latter, we'll pop hdepth but will see something
+        # smaller than our level and never see our own.
+        if sublist_stack.last.object_id != toc.object_id # First, don't blow up the world if an H3 appeared before the first H2.
+          if hdepth.include?(hlevel) # Then we're going up!
+            while hdepth.last > hlevel
+              hdepth.pop
+              sublist_stack.pop
+            end
+            # And we don't add to hdepth, only subtract.
+          else # Then we're staying put, but adjusting the hdepth!
+            while hdepth.last > hlevel
+              hdepth.pop
+            end
+            hdepth.push(hlevel) # and we DO add our current level to hdepth.
+          end
+        end
       # else we're at the same level as last time and don't need to change course.
       end
       sublist_stack.last.push(
@@ -60,7 +79,6 @@ module TocFilter
             hlevel: hlevel
         }
       )
-      hdepth = hlevel # Set the current depth.
     }
     print_toc_sublist(toc)
   end
