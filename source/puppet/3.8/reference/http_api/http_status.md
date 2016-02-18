@@ -45,4 +45,4 @@ Schema
 ------
 
 The returned status conforms to the
-{file:api/schemas/status.json api/schemas/status.json} schema.
+[status schema](../schemas/status.json).

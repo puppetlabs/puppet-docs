@@ -161,6 +161,6 @@ Schema
 ------
 
 In the POST request body (or the GET query), the facts parameter should adhere to the
-{file:api/schemas/facts.json api/schemas/facts.json} schema.
+[facts schema](../schemas/facts.json).
 
-A catalog response body should adhere to the {file:api/schemas/catalog.json api/schemas/catalog.json} schema.
+A catalog response body should adhere to the [catalog schema](../schemas/catalog.json).

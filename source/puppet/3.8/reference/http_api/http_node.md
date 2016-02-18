@@ -60,5 +60,4 @@ PSON
 Schema
 ------
 
-Returned node objects conform to the json schema at
-{file:api/schemas/node.json api/schemas/node.json}.
+Returned node objects conform to the [node schema](../schemas/node.json).

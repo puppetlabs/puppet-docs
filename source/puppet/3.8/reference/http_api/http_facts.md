@@ -148,4 +148,4 @@ Schema
 ------
 
 The representation of facts, whether returned from a GET or contained in a PUT body, should adhere to the
-{file:api/schemas/facts.json api/schemas/facts.json} schema.
+[facts schema](../schemas/facts.json).

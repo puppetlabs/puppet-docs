@@ -101,7 +101,7 @@ error responses will uniformly be a JSON object with the following properties:
   * `issue_kind`: [String] A unique label to identify the error class.
   * `stacktrace` (only for 5xx errors): [Array<String>] A stacktrace to where the error occurred.
 
-A [JSON schema for the error objects](./schemas/error.json) is also available.
+A [JSON schema for the error objects](../schemas/error.json) is also available.
 
 
 Serialization Formats
