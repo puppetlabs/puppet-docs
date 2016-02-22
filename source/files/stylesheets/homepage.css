@@ -39,19 +39,12 @@ body {
   display: table;
   width: 100%;
   height: 200px;
+  border-spacing: 20px 0;
 }
 .homepage-callout .hc-wrapper .hc-col {
   display: table-cell;
   width: 50%;
   vertical-align: top;
-}
-.homepage-callout .hc-wrapper .hc-col.left {
-  padding-right: 10px;
-}
-.homepage-callout .hc-wrapper .hc-col.right {
-  padding-left: 10px;
-}
-.homepage-callout .hc-wrapper .hc-col-box {
   border: 1px solid #d8d8d8;
   min-height: 100px;
   text-align: center;
