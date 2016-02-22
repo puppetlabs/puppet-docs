@@ -148,7 +148,7 @@ body {
 
 /* homepage-sub-footer */
 .homepage-sub-footer {
-  margin-top: 40px;
+  margin-top: 20px;
   text-align: center;
 }
 .homepage-sub-footer .hsf-link {
@@ -163,4 +163,13 @@ body {
 }
 .homepage-sub-footer span.bullet.hsf-link {
   padding: 0;
+}
+
+/* hc-footer */
+.hc-footer-box {
+    border: 1px solid #d8d8d8;
+    text-align: center;
+    border-radius: 12px;
+    background: #fafafa;
+    padding: 40px;
 }
