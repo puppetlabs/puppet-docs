@@ -168,7 +168,6 @@ task :generate do
 
   system("mkdir -p #{OUTPUT_DIR}")
   system("rm -rf #{OUTPUT_DIR}/*")
-  system("mkdir #{OUTPUT_DIR}/references")
   jekyll()
 
   Rake::Task['symlink_latest_versions'].invoke
