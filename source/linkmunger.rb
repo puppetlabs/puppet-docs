@@ -1,6 +1,10 @@
 #!/usr/bin/env ruby
-# Script takes a path to the folder acting as site root as argument, or else
+# USAGE:
+#  ./linkmunger.rb [-n] <PATH>
+# Takes a path to the folder acting as site root as argument, or else
 # assumes it should treat the cwd as the site root.
+# OPTIONS:
+#  -n: run in no-op mode
 
 def relativepath(path, relative_to)
   if path == relative_to
@@ -56,7 +60,7 @@ end
 noop = ARGV.first == "-n"
 if noop
   ARGV.shift
-  puts "Running in noop mode"
+  puts "Running in no-op mode"
 end
 
 if ARGV.first
