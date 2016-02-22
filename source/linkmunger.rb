@@ -82,8 +82,12 @@ regex = %r{
 }xi
 
 changed = 0
+prev_dir = ''
 Dir['**/*.html'].each do |page_path|
-  puts "Processing: /#{page_path}"
+  if File.dirname(page_path) != prev_dir
+    prev_dir = File.dirname(page_path)
+    puts "Processing: #{prev_dir}/"
+  end
   results = File.read(page_path).gsub(regex) do |match|
     changed += 1
     "#{$1}=#{$2}" + relativepath($3, "/" + page_path) + $2
