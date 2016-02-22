@@ -84,12 +84,6 @@ Facter es la biblioteca multiplataforma de perfilado de sistemas utilizado por P
 + [La lista de facts fundamentales](http://docs.puppetlabs.com/facter/latest/core_facts.html) enumera y describe cada fact que se incluye por defecto en Facter.
 + [La guía de facts customizados](http://docs.puppetlabs.com/guides/custom_facts.html), explica cómo escribir y distribuir tus propios facts.
 
-## [Geppetto](/geppetto/latest/index.html)
-
-Geppetto es un entorno integrado de desarrollo (IDE) para Puppet. Provee herramientas para el desarrollo de módulos y manifiestos de Puppet incluyendo resaltado de sintaxis, debugging de errores y autocompletado de código. Geppetto también incorpora integración con PE parseando los reportes de errores de PuppetDB. Esto permite encontrar rapidamente las fallas de configuración causadas por errores en el código de Puppet.
-
-* [El manual de Geppetto](/geppetto/latest/index.html) tiene instrucciones para la instalación y uso.
-
 ## [Puppet Forge](/forge/index.html)
 
 El [Puppet Forge](https://forge.puppetlabs.com) es donde puedes conseguir módulos pre-hechos, creados por Puppet Labs y la comunidad de Puppet. Los módulos del Forge abarcan desde NTP y Registry hasta Apache y PostgreSQL, haciendo fácil la instalación, configuración y manejo de todo tipo de tecnologías con Puppet. Puedes acceder al Forge online o desde la herramienta Puppet module, la cual permite interactuar con el Forge desde la línea de comandos.
