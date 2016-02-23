@@ -8,7 +8,7 @@ canonical: "/puppet/latest/functions_puppet.html"
 [literal_types]: ./lang_data_type.html
 [modules]: ./modules_fundamentals.html
 [naming]: ./lang_reserved.html#classes-and-types
-[namespaces]: ./lang_namespaces.html
+[namespace]: ./lang_namespaces.html
 [resource]: ./lang_resources.html
 [resource_defaults]: ./lang_defaults.html
 [references_namespaced]: ./lang_data_resource_reference.html
@@ -24,6 +24,8 @@ You can write your own functions in the Puppet language to transform data and co
 The general form of a function written in Puppet language is:
 
 * The keyword `function`.
+* The [namespace][] of the function. This should match the name of the module the function is contained in.
+* The namespace separator, a double colon (::).
 * The [name][naming] of the function.
 * An optional **parameter list,** which consists of:
     * An opening parenthesis.
@@ -38,7 +40,7 @@ The general form of a function written in Puppet language is:
 * A closing curly brace.
 
 ~~~ ruby
-function <NAME>(<PARAMETER LIST>) {
+function <MODULE NAME>::<NAME>(<PARAMETER LIST>) {
   ... body of function ...
   final expression, which will be the returned value of the function
 }
@@ -185,6 +187,7 @@ function postgresql::acls_to_resource_hash(Array $acls, String $id, Integer $off
 Store the functions you write in your modules' `functions` folder, which is a top-level directory, a sibling of `manifests` and `lib`. Define only one function per file, and name the file to match the name of the function being defined. For larger, more complex blocks of functional code, see [classes][].
 
 Puppet is automatically aware of functions in a valid module and will autoload them by name.
+
 
 > ### Aside: Writing Functions in the Main Manifest
 >
