@@ -13,18 +13,18 @@ task :mirror1 do
 end
 
 task :preview1 do
-    set :domain,    "#{user}@docspreview1.puppetlabs.lan"
-    set :deploy_to, "/opt/docspreview1"
+    set :domain,    "#{user}@staticweb1-dev.puppetlabs.com"
+    set :deploy_to, "/var/www/docspreview1.ops.puppetlabs.net"
 end
 
 task :preview2 do
-    set :domain,    "#{user}@docspreview2.puppetlabs.lan"
-    set :deploy_to, "/opt/docspreview2"
+    set :domain,    "#{user}@staticweb1-dev.puppetlabs.com"
+    set :deploy_to, "/var/www/docspreview2.ops.puppetlabs.net"
 end
 
 task :preview3 do
-    set :domain,    "#{user}@docspreview3.puppetlabs.lan"
-    set :deploy_to, "/opt/docspreview3"
+    set :domain,    "#{user}@staticweb1-dev.puppetlabs.com"
+    set :deploy_to, "/var/www/docspreview3.ops.puppetlabs.net"
 end
 
 namespace :vlad do
@@ -33,15 +33,14 @@ desc "Release the documentation site"
 remote_task :release do
   Rake::Task['check_build_version'].invoke
   puts "DEPLOYING TO: #{domain}"
-  tarball_name = "puppetdocs-latest.tar.gz"
-  staging_dir = "~/puppetdocs_deploy"
 
-  sh "rsync -av --delete output/ #{domain}:#{deploy_to}/"
+  stage_dir = deploy_to + '/stage'
 
-  run "rm -rf #{staging_dir}"
-  run "cp -R #{deploy_to} #{staging_dir}"
-  run "cd #{staging_dir} && ruby ./linkmunger.rb && tar -czf #{tarball_name} *"
-  run "mv #{staging_dir}/#{tarball_name} #{deploy_to}/#{tarball_name}"
+  sh "rsync -crlpv --delete --force output/ #{domain}:#{stage_dir}/"
+
+  # Create tarball, move everything into place, and reload NGINX. Rake has
+  # trouble mixing stdout and stderr, so we combine them on the remote host.
+  run "sh #{stage_dir}/install.sh #{deploy_to} 2>&1"
 end
 
 end
