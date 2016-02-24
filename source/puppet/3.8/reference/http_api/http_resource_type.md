@@ -204,7 +204,7 @@ List matching a regular expression:
 Schema
 ------
 
-A `resource_type` response body conforms to the schema at {file:api/schemas/resource_type.json api/schemas/resource_type.json}.
+A `resource_type` response body conforms to the [resource type schema](../schemas/resource_type.json).
 
 Source
 ------

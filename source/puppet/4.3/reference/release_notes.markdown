@@ -3,7 +3,7 @@ layout: default
 title: "Puppet 4.3 Release Notes"
 ---
 
-[`puppet lookup`]: ./lookup_quick.html
+[puppet lookup]: ./lookup_quick.html
 
 This page lists the changes in Puppet 4.3 and its patch releases.
 
@@ -206,7 +206,7 @@ Custom Hiera backends don't work with Puppet lookup.
 
 For more details, see:
 
-* [Quick Reference for Hiera Users][`puppet-lookup`]
+* [Quick Reference for Hiera Users][puppet lookup]
 * [Quick Intro to Module Data](./lookup_quick_module.html)
 
 Related tickets:

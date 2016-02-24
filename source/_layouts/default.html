@@ -203,7 +203,7 @@
         <div class="primary-content">
           <h1>{% if page.subtitle %}{{page.subtitle}}{% else %}{{page.title}}{% endif %}</h1>
           <div id="version-note"> {% include version_note.html %} </div>
-          {% unless page.toc == 'false' or page.toc == false %}<nav class="in-page{% if page.toc == 'columns' %} multi-column{% endif %}" id="page-nav">{{ content | toc }}</nav>{% endunless %}
+          {% unless page.toc == 'false' or page.toc == false %}<nav class="in-page{% if page.toc == 'columns' %} multi-column{% endif %}" id="page-nav">{{ content | toc: page.toc_levels }}</nav>{% endunless %}
 	  <div id="rendered-markdown">
             {{ content }}
 	  </div>
@@ -306,7 +306,7 @@
                           </script>
                       </div>
                       <p>
-                          &copy; 2015 <a href="https://puppetlabs.com/about">Puppet Labs</a>
+                          &copy; 2016 <a href="https://puppetlabs.com/about">Puppet Labs</a>
                           <br>
                           <a href="tel:877-575-9775" class="tel">877-575-9775</a>
                       </p>

@@ -21,6 +21,8 @@ Jekyll::Hooks.register :pages, :pre_render do |page, payload|
     data['my_versions'].each do |doc, version|
       payload[doc] = document_version_index[doc][version]
     end
+    # Also, set our own shortcut variable to our own version:
+    payload[ data['doc'] ] = data['version']
   else
     # Fall back to latest if this isn't a versioned doc.
     document_version_index.each do |doc, versions|

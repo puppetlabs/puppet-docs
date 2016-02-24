@@ -1,32 +1,101 @@
 #!/usr/bin/env ruby
-# Script takes a path to the folder acting as site root as argument, or else
+# USAGE:
+#  ./linkmunger.rb [-n] <PATH>
+# Takes a path to the folder acting as site root as argument, or else
 # assumes it should treat the cwd as the site root.
+# OPTIONS:
+#  -n: run in no-op mode
 
-require 'pathname'
+def relativepath(path, relative_to)
+  if path == relative_to
+    if path[-1] == "/" and relative_to[-1] == "/"
+      return "."
+    else
+      return File.basename(path)
+    end
+  end
 
-def munge_links(html, page_url) # page_url must be a Pathname object, and be absolute, where / is the site root (not the system root)
-  html.gsub( Regexp.new( %q{((href|src)=['"])(/|/[^/][^'"]*)(['"])} ) ) {|match|
-    attribute_and_quote = $1
-    # just_href_or_src = $2
-    absolute_path = $3
-    closing_quote = $4
-    pagedir = page_url.dirname
+  if path == "#{relative_to}/"
+    # from /a to /a/
+    return File.basename(path) + "/"
+  end
 
-    relative_path = Pathname.new(absolute_path).relative_path_from(pagedir)
+  if "#{path}/" == relative_to
+    # from /a/ to /a
+    return "../" + File.basename(path)
+  end
 
-    attribute_and_quote + relative_path.to_s + closing_quote
-  }
+  path = path.chomp("/")
+  if path == ""
+    path = [""]
+  else
+    # The negative limit ensures that empty values aren't dropped.
+    path = path.split(File::SEPARATOR, -1)
+  end
+
+  relative_to = relative_to.chomp("/")
+  if relative_to == ""
+    relative_to = [""]
+  else
+    # The negative limit ensures that empty values aren't dropped.
+    relative_to = relative_to.split(File::SEPARATOR, -1)
+  end
+
+  while (path.length > 0) && (path.first == relative_to.first)
+    path.shift
+    relative_to.shift
+  end
+
+  if relative_to.length == 0 and path.length == 0
+    throw "BUG: Processed paths were equivalent when raw paths were the same"
+  elsif relative_to.length == 0
+    path.join(File::SEPARATOR)
+  elsif path.length == 0 and relative_to.length == 1
+    "."
+  else
+    (['..'] * (relative_to.length - 1) + path).join(File::SEPARATOR)
+  end
 end
 
-site_root = Pathname.new('/')
-document_root = Pathname.new( File.expand_path( ARGV.shift || Dir.pwd ) )
-all_html_files = Pathname.glob( document_root + "**/*.html" ) # array of absolute Pathname objects
-
-all_html_files.each do |page_file|
-  page_url = site_root + page_file.relative_path_from(document_root)
-  puts "Processing: #{page_url.to_s}"
-  content = page_file.read
-  page_file.open('w') {|f|
-    f.print( munge_links(content, page_url) )
-  }
+noop = ARGV.first == "-n"
+if noop
+  ARGV.shift
+  puts "Running in no-op mode"
 end
+
+if ARGV.first
+  Dir.chdir(ARGV.shift)
+end
+
+regex = %r{
+  (href|src)=
+  # The first quote, which must be matched by the final quote
+  (['"])
+    # The value is either a single /, or it starts with / but not //, since
+    # that's a URL with a host but no protocol. Sometimes it will incorrectly
+    # have a quote that's different from the one that starts the attribute.
+    (
+      /(?:[^/'"].*?)?
+    )
+  # Look for a matching quote.
+  \2
+}xi
+
+changed = 0
+prev_dir = ''
+Dir['**/*.html'].each do |page_path|
+  if File.dirname(page_path) != prev_dir
+    prev_dir = File.dirname(page_path)
+    puts "Processing: #{prev_dir}/"
+  end
+  results = File.read(page_path).gsub(regex) do |match|
+    changed += 1
+    "#{$1}=#{$2}" + relativepath($3, "/" + page_path) + $2
+  end
+
+  if ! noop
+    File.write(page_path, results)
+  end
+end
+
+puts "Updated #{changed} links"

@@ -119,5 +119,4 @@ example is formatted for readability)
 Schema
 ------
 
-The sent report objects must conform to the schema at
-{file:api/schemas/report.json api/schemas/report.json}.
+The sent report objects must conform to the [report schema](../schemas/report.json).
