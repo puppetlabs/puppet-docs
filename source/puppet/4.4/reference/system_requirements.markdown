@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Puppet 4.3 System Requirements"
+title: "Puppet 4.4 System Requirements"
 canonical: "/puppet/latest/reference/system_requirements.html"
 ---
 
@@ -21,7 +21,7 @@ The demands on the Puppet master vary widely between deployments. The total need
 
 ## Platforms With Packages
 
-Puppet 4.3 and all of its prerequisites run on the following platforms, and Puppet Labs provides official packages in [Puppet Collections](./upgrade_minor.html#puppet-collections-and-upgrading).
+Puppet 4.4 and all of its prerequisites run on the following platforms, and Puppet Labs provides official packages in [Puppet Collections](./upgrade_minor.html#puppet-collections-and-upgrading).
 
 ### Red Hat Enterprise Linux (and Derivatives)
 
@@ -66,7 +66,7 @@ Puppet and its prerequisites are known to run on the following platforms, but we
 
 If you're installing Puppet via the official packages, you won't need to worry about these prerequisites; your system's package manager handles all of them. These are only listed for those running Puppet from source or on unsupported systems.
 
-Puppet 4.3 has the following prerequisites:
+Puppet 4.4 has the following prerequisites:
 
 ### Ruby
 

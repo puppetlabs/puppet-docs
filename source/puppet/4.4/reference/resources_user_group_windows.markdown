@@ -9,7 +9,7 @@ title: "Resource Tips and Examples: User and Group on Windows"
 [group]: ./type.html#group
 [members]: ./type.html#group-attribute-members
 [auth_membership_group]: /puppet/latest/reference/type.html#group-attribute-auth_membership
-[relationships]: /puppet/4.3.latest/reference/lang_relationships.html
+[relationships]: /puppet/4.4/reference/lang_relationships.html
 
 Puppet's built-in [`user`][user] and [`group`][group] resource types can manage user and group accounts on Windows.
 

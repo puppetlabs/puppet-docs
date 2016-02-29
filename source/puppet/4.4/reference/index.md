@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Puppet 4.3 Reference Manual"
+title: "Puppet 4.4 Reference Manual"
 canonical: "/puppet/latest/reference/index.html"
 toc: false
 ---
@@ -22,7 +22,7 @@ toc: false
 [Updating 3.x Manifests for Puppet 4.x]: ./lang_updating_manifests.html
 [Release Notes]: ./release_notes.html
 
-Welcome to the Puppet 4.3 Reference Manual. Use the navigation to the left to get around.
+Welcome to the Puppet 4.4 Reference Manual. Use the navigation to the left to get around.
 
 ## What is This?
 
@@ -30,7 +30,7 @@ For an introduction to how Puppet manages systems, see the [Overview of Puppet's
 
 ## Getting Started
 
-Puppet 4.3 consists of:
+Puppet 4.4 consists of:
 
 * A `puppet-agent` "All-in-One" package that installs Puppet, Ruby, [Facter 3][], [Hiera 3][], and supporting code.
 * A `puppetserver` package that installs [Puppet Server 2.2][].
