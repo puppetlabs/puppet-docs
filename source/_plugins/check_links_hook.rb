@@ -45,27 +45,29 @@ Jekyll::Hooks.register :site, :post_render do |site|
           end
         end
 
-        full_path = (cwd + path).to_s
 
-        if full_path =~ %r{/latest/} # then we have to resolve it to its real directory, because we haven't symlinked latest yet.
-          path_dirs = full_path.split('/')
-          project = path_dirs[ path_dirs.index('latest') - 1 ]
-          project_dir = "#{site.source}/#{project}"
-          versions = Pathname.glob("#{project_dir}/*").select {|f|
-            f.directory?
-          }.map {|d| d.basename.to_s}
-
-          latest = site.config['lock_latest'][project] || PuppetDocs::Versions.latest(versions) || 'latest' # last one just in case we've deleted them all.
-          path_dirs[ path_dirs.index('latest') ] = latest
-          full_path = path_dirs.join('/')
-        end
-
-        # Handle Jekyll's "friendly" index.html URL trimming
-        full_path.sub!(%r{/index\.html$}, '/')
-
-        if full_path == '' # it's an in-page link.
+        if path == '' # it's an in-page link.
+          full_path = page.url
           destination = page
         else
+          full_path = (cwd + path).to_s
+
+          if full_path =~ %r{/latest/} # then we have to resolve it to its real directory, because we haven't symlinked latest yet.
+            path_dirs = full_path.split('/')
+            project = path_dirs[ path_dirs.index('latest') - 1 ]
+            project_dir = "#{site.source}/#{project}"
+            versions = Pathname.glob("#{project_dir}/*").select {|f|
+              f.directory?
+            }.map {|d| d.basename.to_s}
+
+            latest = site.config['lock_latest'][project] || PuppetDocs::Versions.latest(versions) || 'latest' # last one just in case we've deleted them all.
+            path_dirs[ path_dirs.index('latest') ] = latest
+            full_path = path_dirs.join('/')
+          end
+
+          # Handle Jekyll's "friendly" index.html URL trimming
+          full_path.sub!(%r{/index\.html$}, '/')
+
           destination = site.pages.detect {|pg| pg.url == full_path or pg.relative_path == full_path or pg.url == "#{full_path}/"}
           # that last one is because /puppet/4.3/reference is known to Jekyll as /puppet/4.3/reference/.
         end
