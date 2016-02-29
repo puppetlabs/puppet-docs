@@ -79,7 +79,7 @@ To convert the URLs:
 3. Change the `path` of each custom rule to use Puppet 4 URLs.
     1. Add `/puppet/v3` to the beginning of most paths.
     2. Configure the `certificate_status` endpoint in `auth.conf`. Puppet Server's `ca.conf` file is [deprecated][] as of Puppet Server 2.2.
-4. (Optional) Convert your rules to use new authorization methods and `auth.conf` format. See the [Puppet Server configuration documentation][/puppetserver/latest/configuration.html] for details.
+4. (Optional) Convert your rules to use new authorization methods and `auth.conf` format. See the [Puppet Server configuration documentation](/puppetserver/latest/configuration.html) for details.
 5. Add the custom rules to Puppet Server's new `/etc/puppetlabs/puppet/conf.d/auth.conf` file.
 
 #### Example `auth.conf` Rules for Puppet 3 and 4 Agents
