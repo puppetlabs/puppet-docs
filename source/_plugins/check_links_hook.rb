@@ -76,7 +76,7 @@ Jekyll::Hooks.register :site, :post_render do |site|
             link_test_results[page.relative_path][:broken_path] << link
           end
         else # go ahead and check the anchors, then. (We won't bother for redirected pages.)
-          if destination.content !~ /id=(['"])#{anchor}\1/ # then couldn't find it
+          if anchor != nil and anchor != '' and destination.content !~ /id=(['"])#{anchor}\1/ # then we couldn't find that anchor.
             link_test_results[page.relative_path][:broken_anchor] << link
           end
         end
