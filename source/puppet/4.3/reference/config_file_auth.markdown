@@ -29,7 +29,7 @@ Since some endpoints should have restricted access (for example, a node shouldn'
 
 [Puppet Server 2.2][] uses [`trapperkeeper-authorization`](https://github.com/puppetlabs/trapperkeeper-authorization)---a different implementation of the Puppet Certificate Authority (CA)---and ignores `auth.conf`'s access rules (ACLs) for any `/puppet-ca` endpoints. This is a dramatic change in how Puppet Server manages authorization, as you can now configure access to certificate status and administration endpoints by writing rules in Puppet Server's own new HOCON-formatted [`auth.conf`][Puppet Server `auth.conf`] file, located by default at `/etc/puppetlabs/puppetserver/conf.d/auth.conf`.
 
-> **Deprecation Note:** The legacy hardcoded authorization methods that use [`ca.conf`][server_ca] and [`master.conf`][server_master] are [deprecated][/puppetserver/2.2/deprecated_features.html].
+> **Deprecation Note:** The legacy hardcoded authorization methods that use [`ca.conf`][server_ca] and [`master.conf`][server_master] are [deprecated](/puppetserver/2.2/deprecated_features.html).
 
 ## Location
 
