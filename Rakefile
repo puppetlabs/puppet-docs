@@ -251,6 +251,12 @@ task :build do
   Rake::Task['write_version'].invoke
 end
 
+desc 'Check all internal links in the site. This also results in a deployable site build.'
+task :build_and_check_links do
+  @config_data['check_links'] = true
+  Rake::Task['build'].invoke
+end
+
 desc "Instead of building real pages, build naked HTML fragments (with no nav, etc.)"
 task :build_html_fragments do
   Rake::Task['check_git_dirty_status'].invoke
