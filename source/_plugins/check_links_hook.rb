@@ -72,12 +72,12 @@ Jekyll::Hooks.register :site, :post_render do |site|
           # that last one is because /puppet/4.3/reference is known to Jekyll as /puppet/4.3/reference/.
         end
 
-        if destination.nil? # then the page doesn't exist, so let's check redirects
-          unless redirections.detect {|match| full_path =~ match }
+        if destination.nil? # then there's no page by that name; we'll skip anchors no matter what, but we'll check static files and redirects before calling it broken.
+          unless site.static_files.detect {|thing| thing.url == full_path} || redirections.detect {|match| full_path =~ match }
             # Finally, we're willing to call it broken.
             link_test_results[page.relative_path][:broken_path] << link
           end
-        else # go ahead and check the anchors, then. (We won't bother for redirected pages.)
+        else # we found a "real" page, so go ahead and check the anchors.
           if anchor != nil and anchor != '' and destination.content !~ /id=(['"])#{anchor}\1/ # then we couldn't find that anchor.
             link_test_results[page.relative_path][:broken_anchor] << link
           end
