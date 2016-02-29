@@ -64,7 +64,8 @@ Jekyll::Hooks.register :site, :post_render do |site|
       if full_path == '' # it's an in-page link.
         destination = page
       else
-        destination = site.pages.detect {|pg| pg.url == full_path or pg.relative_path == full_path}
+        destination = site.pages.detect {|pg| pg.url == full_path or pg.relative_path == full_path or pg.url == "#{full_path}/"}
+        # that last one is because /puppet/4.3/reference is known to Jekyll as /puppet/4.3/reference/.
       end
 
       if destination.nil? # then the page doesn't exist, so let's check redirects
