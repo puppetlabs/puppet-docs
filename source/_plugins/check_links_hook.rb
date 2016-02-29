@@ -21,6 +21,7 @@ Jekyll::Hooks.register :site, :post_render do |site|
       link_test_results[page.relative_path][:internal_with_hostname] = []
       link_test_results[page.relative_path][:broken_path] = []
       link_test_results[page.relative_path][:broken_anchor] = []
+      link_test_results[page.relative_path][:redirected] = []
 
       cwd = Pathname.new(page.relative_path).dirname
       links = page.content.scan(href_regex).map{|ary| ary[2]}
@@ -71,7 +72,12 @@ Jekyll::Hooks.register :site, :post_render do |site|
         end
 
         if destination.nil? # then there's no page by that name; we'll skip anchors no matter what, but we'll check static files and redirects before calling it broken.
-          unless site.static_files.detect {|thing| thing.url == full_path} || redirections.detect {|match| full_path =~ match }
+          if site.static_files.detect {|thing| thing.url == full_path}
+            # It's an image or something, and the link is good. Do nothing.
+          elsif redirections.detect {|match| full_path =~ match }
+            # This links to something that got redirected. It should probably be updated eventually.
+            link_test_results[page.relative_path][:redirected] << link
+          else
             # Finally, we're willing to call it broken.
             link_test_results[page.relative_path][:broken_path] << link
           end
