@@ -53,7 +53,7 @@ Jekyll::Hooks.register :site, :post_render do |site|
           f.directory?
         }.map {|d| d.basename.to_s}
 
-        latest = site.config['lock_latest'][project] || PuppetDocs::Versions.latest(versions)
+        latest = site.config['lock_latest'][project] || PuppetDocs::Versions.latest(versions) || 'latest' # last one just in case we've deleted them all.
         path_dirs[ path_dirs.index('latest') ] = latest
         full_path = path_dirs.join('/')
       end
@@ -61,14 +61,29 @@ Jekyll::Hooks.register :site, :post_render do |site|
       # Handle Jekyll's "friendly" index.html URL trimming
       full_path.sub!(%r{/index\.html$}, '/')
 
-      destination = site.pages.detect {|pg| pg.url == full_path or pg.relative_path == full_path}
-      if destination.nil? # then the page doesn't exist, but we still gotta check redirects
+      if full_path == '' # it's an in-page link.
+        destination = page
+      else
+        destination = site.pages.detect {|pg| pg.url == full_path or pg.relative_path == full_path}
+      end
+
+      if destination.nil? # then the page doesn't exist, so let's check redirects
         unless redirections.detect {|match| full_path =~ match }
+          # Finally, we're willing to call it broken.
           link_test_results[page.relative_path][:broken_path] << link
+        end
+      else # go ahead and check the anchors, then. (We won't bother for redirected pages.)
+        if destination.content !~ /id=(['"])#{anchor}\1/ # then couldn't find it
+          link_test_results[page.relative_path][:broken_anchor] << link
         end
       end
     }
   end
 
-  puts YAML.dump(link_test_results)
+  # Clean the results
+  link_test_results.each do |_filename, tally|
+    tally.reject! {|_kind, links| links.empty?}
+  end
+  link_test_results.reject! {|_filename, tally| tally.empty?}
+  File.open("#{File.dirname(site.source)}/link_test_results.yaml", 'w') {|f| f.write( YAML.dump(link_test_results) )}
 end
