@@ -1,0 +1,154 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Module: Puppet::Pops::Types
+  
+    &mdash; Documentation by YARD 0.8.7.6
+  
+</title>
+
+  <link rel="stylesheet" href="../../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '../../';
+  framesUrl = "../../frames.html#!Puppet/Pops/Types.html";
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../../_index.html">Index (T)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../Pops.html" title="Puppet::Pops (module)">Pops</a></span></span>
+     &raquo; 
+    <span class="title">Types</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../../class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="../../method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="../../file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><h1>Module: Puppet::Pops::Types
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r1 last">Defined in:</dt>
+    <dd class="r1 last">lib/puppet/pops/types/types.rb<span class="defines">,<br />
+  lib/puppet/pops/types/types_meta.rb,<br /> lib/puppet/pops/types/type_assertion_error.rb</span>
+</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p>The Types model is a model of Puppet Language types.</p>
+
+<p>The exact relationship between types is not visible in this model wrt. the PDataType which is an abstraction
+of Scalar, Array[Data], and Hash[Scalar, Data] nested to any depth. This means it is not possible to
+infer the type by simply looking at the inheritance hierarchy. The <span class='object_link'><a href="Types/TypeCalculator.html" title="Puppet::Pops::Types::TypeCalculator (class)">TypeCalculator</a></span> should
+be used to answer questions about types. The <span class='object_link'><a href="Types/TypeFactory.html" title="Puppet::Pops::Types::TypeFactory (module)">TypeFactory</a></span> should be used to create an instance
+of a type whenever one is needed.</p>
+
+<p>The implementation of the Types model contains methods that are required for the type objects to behave as
+expected when comparing them and using them as keys in hashes. (No other logic is, or should be included directly in
+the model&#39;s classes).</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><h2>Defined Under Namespace</h2>
+<p class="children">
+  
+    
+      <strong class="modules">Modules:</strong> <span class='object_link'><a href="Types/TypeFactory.html" title="Puppet::Pops::Types::TypeFactory (module)">TypeFactory</a></span>
+    
+  
+    
+      <strong class="classes">Classes:</strong> <span class='object_link'><a href="Types/PAnyType.html" title="Puppet::Pops::Types::PAnyType (class)">PAnyType</a></span>, <span class='object_link'><a href="Types/PArrayType.html" title="Puppet::Pops::Types::PArrayType (class)">PArrayType</a></span>, <span class='object_link'><a href="Types/PBooleanType.html" title="Puppet::Pops::Types::PBooleanType (class)">PBooleanType</a></span>, <span class='object_link'><a href="Types/PCallableType.html" title="Puppet::Pops::Types::PCallableType (class)">PCallableType</a></span>, <span class='object_link'><a href="Types/PCatalogEntryType.html" title="Puppet::Pops::Types::PCatalogEntryType (class)">PCatalogEntryType</a></span>, <span class='object_link'><a href="Types/PCollectionType.html" title="Puppet::Pops::Types::PCollectionType (class)">PCollectionType</a></span>, <span class='object_link'><a href="Types/PDataType.html" title="Puppet::Pops::Types::PDataType (class)">PDataType</a></span>, <span class='object_link'><a href="Types/PDefaultType.html" title="Puppet::Pops::Types::PDefaultType (class)">PDefaultType</a></span>, <span class='object_link'><a href="Types/PEnumType.html" title="Puppet::Pops::Types::PEnumType (class)">PEnumType</a></span>, <span class='object_link'><a href="Types/PFloatType.html" title="Puppet::Pops::Types::PFloatType (class)">PFloatType</a></span>, <span class='object_link'><a href="Types/PHashType.html" title="Puppet::Pops::Types::PHashType (class)">PHashType</a></span>, <span class='object_link'><a href="Types/PHostClassType.html" title="Puppet::Pops::Types::PHostClassType (class)">PHostClassType</a></span>, <span class='object_link'><a href="Types/PIntegerType.html" title="Puppet::Pops::Types::PIntegerType (class)">PIntegerType</a></span>, <span class='object_link'><a href="Types/PNotUndefType.html" title="Puppet::Pops::Types::PNotUndefType (class)">PNotUndefType</a></span>, <span class='object_link'><a href="Types/PNumericType.html" title="Puppet::Pops::Types::PNumericType (class)">PNumericType</a></span>, <span class='object_link'><a href="Types/POptionalType.html" title="Puppet::Pops::Types::POptionalType (class)">POptionalType</a></span>, <span class='object_link'><a href="Types/PPatternType.html" title="Puppet::Pops::Types::PPatternType (class)">PPatternType</a></span>, <span class='object_link'><a href="Types/PRegexpType.html" title="Puppet::Pops::Types::PRegexpType (class)">PRegexpType</a></span>, <span class='object_link'><a href="Types/PResourceType.html" title="Puppet::Pops::Types::PResourceType (class)">PResourceType</a></span>, <span class='object_link'><a href="Types/PRuntimeType.html" title="Puppet::Pops::Types::PRuntimeType (class)">PRuntimeType</a></span>, <span class='object_link'><a href="Types/PScalarType.html" title="Puppet::Pops::Types::PScalarType (class)">PScalarType</a></span>, <span class='object_link'><a href="Types/PStringType.html" title="Puppet::Pops::Types::PStringType (class)">PStringType</a></span>, <span class='object_link'><a href="Types/PStructElement.html" title="Puppet::Pops::Types::PStructElement (class)">PStructElement</a></span>, <span class='object_link'><a href="Types/PStructType.html" title="Puppet::Pops::Types::PStructType (class)">PStructType</a></span>, <span class='object_link'><a href="Types/PTupleType.html" title="Puppet::Pops::Types::PTupleType (class)">PTupleType</a></span>, <span class='object_link'><a href="Types/PType.html" title="Puppet::Pops::Types::PType (class)">PType</a></span>, <span class='object_link'><a href="Types/PUndefType.html" title="Puppet::Pops::Types::PUndefType (class)">PUndefType</a></span>, <span class='object_link'><a href="Types/PUnitType.html" title="Puppet::Pops::Types::PUnitType (class)">PUnitType</a></span>, <span class='object_link'><a href="Types/PVariantType.html" title="Puppet::Pops::Types::PVariantType (class)">PVariantType</a></span>, <span class='object_link'><a href="Types/TypeCalculator.html" title="Puppet::Pops::Types::TypeCalculator (class)">TypeCalculator</a></span>, <span class='object_link'><a href="Types/TypeParser.html" title="Puppet::Pops::Types::TypeParser (class)">TypeParser</a></span>
+    
+  
+</p>
+
+  <h2>Constant Summary</h2>
+  
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+</div>
+
+    <div id="footer">
+  Generated on Fri Jan 15 16:51:07 2016 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.6 (ruby-2.0.0).
+</div>
+
+  </body>
+</html>
