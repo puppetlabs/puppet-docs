@@ -1,4 +1,3 @@
-require 'byebug'
 require 'pathname'
 require 'puppet_docs/versions'
 require 'yaml'
@@ -6,7 +5,6 @@ require 'yaml'
 Jekyll::Hooks.register :site, :post_render do |site|
   if site.config['check_links']
 
-    # byebug
     puts 'Checking internal links! This can take upwards of 20m.'
     DOCS_HOSTNAME = 'docs.puppetlabs.com'
     NGINX_CONFIG = "#{site.source}/nginx_rewrite.conf"
