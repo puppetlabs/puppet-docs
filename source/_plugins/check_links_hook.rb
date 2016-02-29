@@ -32,7 +32,7 @@ Jekyll::Hooks.register :site, :post_render do |site|
         (path, anchor) = link.split('#', 2)
 
         if path =~ /:/
-          if path =~ /^mailto/ # then we don't care, byeeeee
+          if path =~ /^mailto/ or path =~ /^&/ # then we don't care, byeeeee
             next
           elsif path =~ %r{^(https?:)?//} # it's either external, or internal and against our style guidelines
             if path =~ /#{DOCS_HOSTNAME}/ # it's internal!
