@@ -24,3 +24,4 @@ Gemfile.lock
 .idea
 .jekyll-metadata
 .byebug_history
+link_test_results.yaml
