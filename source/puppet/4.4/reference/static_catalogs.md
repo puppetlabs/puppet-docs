@@ -1,0 +1,130 @@
+---
+layout: default
+title: "Static Catalogs"
+canonical: "/puppet/latest/reference/static_catalogs.html"
+---
+
+[catalogs]: ./subsystem_catalog_compilation.html
+[catalog endpoint]: ./http_api/http_catalog.html
+[`static_file_content`]: /puppetserver/latest/puppet-api/v3/static_file_content.html
+[resource_declaration]: ./lang_resources.html
+[file resources]: ./types/file.html
+[puppet catalog]: ./man/catalog.html
+[environment]: ./environments.html
+[facts]: ./lang_facts_and_builtin_vars.html
+[exported resources]: ./lang_exported.html
+[main manifest]: ./dirs_manifest.html
+[modules]: ./modules_fundamentals.html
+[resources]: ./lang_resources.html
+[variables]: ./lang_variables.html
+[classes]: ./lang_classes.html
+[modulepath]: ./dirs_modulepath.html
+[`puppet.conf`]: ./config_file_main.html
+[`environment.conf`]: ./config_file_environment.html
+
+[Puppet Server]: /puppetserver/latest/
+[`puppetserver.conf`]: /puppetserver/latest/config_file_puppetserver.html
+[Application Orchestration]: /pe/latest/app_orchestration_overview.html
+[file sync]: /pe/latest/cmgmt_filesync.html
+[Code Manager]: /pe/latest/code_mgr.html
+[`code_content`]: /puppetserver/latest/
+
+Puppet 4.4 and Puppet Server 2.3 introduce a new feature for [catalog compilation][catalogs]: **static catalogs**.
+
+> #### What's a catalog?
+>
+> A catalog is a document that describes the [desired state for each resource][resource_declaration] that Puppet should manage on a node. A Puppet master typically compiles a catalog from manifests of Puppet code. For more information about catalogs and compilation, see [our step-by-step overview of the catalog compilation process][catalogs]. For details about retrieving and reviewing catalogs, see [the `puppet catalog` man page][puppet catalog] and [the `catalog` API endpoint documentation][catalog endpoint].
+
+### What's a static catalog?
+
+Unlike a standard Puppet catalog, a static catalog includes metadata that identifies the desired state of any [file resources][] on a node that have `source` attributes pointing to `puppet:///` locations. This metadata can refer to a specific version of the file, rather than the latest version, and confirm that the agent is applying the appropriate version of the file resource for the catalog. Also, because much of the metadata is provided in the catalog, Puppet agents make fewer requests to the master.
+
+### Why use static catalogs?
+
+When a Puppet master produces a normal catalog, the result doesn't specify the a version of file resources. When the agent applies the catalog, it always retrieves the latest version of that file resource.
+
+When a Puppet manifest depends on a file whose contents might change more frequently than the Puppet agent receives new catalogs --- for instance, if the agent is caching catalogs for improved performance, to enable certain features like Puppet Enterprise's [Application Orchestration][], or because it can't reach a Puppet master over the network --- this can lead to a node applying a version of the referenced file that doesn't match the instructions in the catalog.
+
+Consequently, the agent's Puppet runs might produce different results each time the agent applies the same catalog. This often causes problems, because Puppet generally expects a catalog to produce the same results each time it's applied, regardless of any code or file content updates on the master.
+
+Additionally, each time a Puppet agent applies a normal cached catalog that contains file resources sourced from `puppet:///` locations, the agent requests file metadata from the master each time the catalog's applied, even though nothing's changed in the cached catalog. This causes the master to perform unnecessary resource-intensive checksum calculations for each such file resource.
+
+Static catalogs avoid these problems by including metadata that refers to a specific version of the resource's file. This prevents the a newer version from being incorrectly applied, and avoids having the agent regenerate the metadata on each Puppet run.
+
+These are the traits that make this type of catalog "static": it contains all of the information that an agent needs to determine whether the node's configuration matches the instructions and **static** state of file resources **at the point in time when the catalog was compiled.**
+
+### Static catalog features
+
+Puppet 4.4 enables static catalog generation by default, whether you upgrade Puppet or perform a clean installation.
+
+> **Puppet Enterprise note:** If you use [Code Manager][], [file sync][], or [Application Orchestration][] in future versions of Puppet Enterprise that include Puppet 4.4 and Puppet Server 2.3, Puppet automatically takes advantage of static catalogs out of the box. You don't need to read any further to enable or configure static catalogs --- they're already working.
+
+A static catalog includes file metadata in its own section of a catalog and associates it with the catalog's file resources. For example, consider the following file resource:
+
+``` puppet
+file { '/etc/application/config.conf':
+  ensure => file,
+  source => 'puppet:///modules/module_name/config.conf'
+}
+```
+
+In a normal catalog, the Puppet agent requests metadata and content for the file from the Server. The server generates a checksum for the file and provides that file as it currently exists on the master.
+
+With static catalogs enabled, the Puppet master generates metadata for each file resource sourced from a `puppet:///` location and adds it to the static catalog, and adds a `code_id` to the catalog that associates such file resources with the version of their files as they exist *at compilation time*.
+
+Inlined metadata is part of a `FileMetadata` object in the catalog that's divided into two new catalog sections: `metadata` for metadata associated with individual files, and `recursive_metadata` for metadata associated with many files. To use the appropriate version of the file content for the catalog, [Puppet Server][] also adds a `code_id` parameter to the catalog. The value of `code_id` is a unique string, such as the hash of a git or r10k commit, that corresponds to the version of all files in an environment at the time when the catalog was compiled.
+
+When applying a file resource from a static catalog, an agent first checks the catalog for that file's metadata. If it finds some, Puppet uses the metadata to call the [`static_file_content`][] API endpoint on the Puppet master and retrieve the `code_content`. If the catalog doesn't contain metadata for the resource, Puppet does what it's always done: generate the metadata itself, then request the resource's file from the master in the file's current state.
+
+### Configuring `code_id` and the `static_file_content` endpoint
+
+When requesting the file's content from a static catalog's metadata, the Puppet agent passes the file's path, the catalog's `code_id`, and the requested environment to Puppet Server's new [`static_file_content`][] API endpoint, and the endpoint returns the appropriate version of the file's contents as the `code_content`.
+
+> **Puppet Enterprise note:** If [file sync][] is enabled on future versions of Puppet Enterprise that include Puppet Server 2.3, Puppet Server automatically populates the `code_id` and serves the `code_content` out of the box. You don't need to read any further to configure static catalogs --- they're already configured. However, if you've disabled file sync (for instance, to use r10k instead of Code Manager) and want to use static catalogs, you'll need to read on for information about creating the necessary scripts and configuring Puppet Server.
+
+If static catalogs are enabled but none of the relevant Puppet Server settings are configured, the `code_id` parameter defaults to a null value and the `static_file_content` API endpoint always returns the latest content. To populate the `code_id` with a more useful identifier and have the `static_file_content` endpoint return the appropriate version of the file's content, you must specify scripts or commands that provide Puppet with the right information.
+
+Puppet Server locates these commands via the `code-id-command` and `code-content-command` settings in Puppet Server's [`puppetserver.conf`][] file. Puppet Server runs the `code-id-command` each time it compiles a static catalog, and it runs the `code-content-command` each time an agent requests file contents from the `static_file_content` endpoint.
+
+> **Puppet Enterprise note:** You can set `code-id-command` and `code-content-command` in the PE console by changing the `code_id_command` and `code_content_command` parameters. Note that these only take effect if [file sync][] is disabled by setting the `file_sync_enabled` console parameter to false.
+
+Puppet Server validates the standard output of each of these scripts, and if the output's acceptable, it adds the results to the catalog as their respective parameters' values. This lets you use any versioning or synchronization tools you want, as long as you can write scripts that produce a valid hash for the `code_id` and code content using the catalog's `code_id` and file's environment.
+
+The `code-id-command` and `code-content-command` scripts can be as simple or complex as necessary. For instance, if files in an environment are simply managed by git, a `code-id-command` script can be nothing more than this, with the environment name passed to the script as the first parameter:
+
+``` bash
+#!/bin/bash
+set -e
+if [[ -z $1 ]]; then
+  echo Expected an environment >&2
+  exit 1
+fi
+cd /etc/puppetlabs/code/environments/$1 && git rev-parse HEAD
+```
+
+As long as the script's standard output is a valid hash, Puppet Server will store it as the catalog's `code_id`. If the script returns a non-zero exit code, Puppet Server logs an error.
+
+A `code-content-command` script can also be simple. The following example assumes the environment name is passed to the script as the first parameter, the `code_id` is passed as the second parameter, and the path to the file resource from its `content_uri` is passed as the third parameter:
+
+``` bash
+#!/bin/bash
+set -e
+if [[ $# < 3 ]]; then
+  echo Expected environment, code-id, file-path >&2
+  exit 1
+fi
+cd /etc/puppetlabs/code/environments/$1 && git show $2:$3
+```
+
+The script's standard output is then provided as the file's `code_content`. Again, if the script returns a non-zero exit code, Puppet Server logs an error.
+
+### Enabling or disabling static catalogs
+
+If you're using static catalogs, the agents don't need to generate file metadata or recurse into directories, catalog application time significantly decreases. And since static catalogs allow agents to use static catalogs more reliably, they're less likely to need the master to generate catalogs as frequently.
+
+In other words, even if you aren't using static catalogs, disabling it doesn't substantially improve server or agent performance.
+
+However, if you still want to toggle static catalog generation, you can do so with the Boolean `static_catalog` setting in two places:
+
+* **[`puppet.conf`][]:** You can globally determine whether Puppet generates static catalogs by setting `static_catalog` in `puppet.conf`.
+* **[`environment.conf`][]:** You can override the global setting in each environment by setting `static_catalog` in an environment's `environment.conf` file.
