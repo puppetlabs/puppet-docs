@@ -53,15 +53,17 @@ Jekyll::Hooks.register :site, :post_render do |site|
 
           if full_path =~ %r{/latest/} # then we have to resolve it to its real directory, because we haven't symlinked latest yet.
             path_dirs = full_path.split('/')
-            project = path_dirs[ path_dirs.index('latest') - 1 ]
-            project_dir = "#{site.source}/#{project}"
-            versions = Pathname.glob("#{project_dir}/*").select {|f|
-              f.directory?
-            }.map {|d| d.basename.to_s}
+            project = path_dirs[ 1..(path_dirs.index('latest') - 1) ].join('/') # something like 'references' or 'ja/puppet'
+            if site.config['symlink_latest'].include?(project)
+              project_dir = "#{site.source}/#{project}"
+              versions = Pathname.glob("#{project_dir}/*").select {|f|
+                f.directory?
+              }.map {|d| d.basename.to_s}
 
-            latest = site.config['lock_latest'][project] || PuppetDocs::Versions.latest(versions) || 'latest' # last one just in case we've deleted them all.
-            path_dirs[ path_dirs.index('latest') ] = latest
-            full_path = path_dirs.join('/')
+              latest = site.config['lock_latest'][project] || PuppetDocs::Versions.latest(versions) || 'latest' # last one just in case we've deleted them all.
+              path_dirs[ path_dirs.index('latest') ] = latest
+              full_path = path_dirs.join('/')
+            end
           end
 
           # Handle Jekyll's "friendly" index.html URL trimming
