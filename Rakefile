@@ -23,11 +23,11 @@ PREVIEW_DIR = "#{top_dir}/_preview"
 
 VERSION_FILE = "#{OUTPUT_DIR}/VERSION.txt"
 
-CONFIG_DATA = PuppetDocs::Config.new("#{SOURCE_DIR}/_config.yml")
+@config_data = PuppetDocs::Config.new("#{SOURCE_DIR}/_config.yml")
 
 def jekyll(command = 'build', source = SOURCE_DIR, destination = OUTPUT_DIR, *args)
   amended_config = "#{SOURCE_DIR}/_config_amended.yml"
-  File.write(amended_config, YAML.dump(CONFIG_DATA))
+  File.write(amended_config, YAML.dump(@config_data))
   system("bundle exec jekyll #{command} --source #{source} --destination #{destination} #{args.join(' ')} --config #{amended_config}")
   FileUtils.rm(amended_config)
 end
@@ -110,7 +110,7 @@ namespace :externalsources do
   task :update do
     Rake::Task['externalsources:clone'].invoke
     Dir.chdir('externalsources') do
-      CONFIG_DATA['externalsources'].each do |url, info|
+      @config_data['externalsources'].each do |url, info|
         workdir = safe_dirname(url)
         local_repo = safe_dirname(info['repo'])
         unless File.directory?(workdir)
@@ -127,7 +127,7 @@ namespace :externalsources do
 
   # "Fetch all external doc repos (from externalsources in source/_config.yml), cloning any that don't yet exist"
   task :clone do
-    repos = CONFIG_DATA['externalsources'].values.map {|info| info['repo']}.uniq
+    repos = @config_data['externalsources'].values.map {|info| info['repo']}.uniq
 
     Dir.chdir("externalsources") do
       repos.each do |repo|
@@ -145,7 +145,7 @@ namespace :externalsources do
   task :link do
     Rake::Task['externalsources:clean'].invoke # Bad things happen if any of these symlinks already exist, and Jekyll will run FOREVER
     Rake::Task['externalsources:clean'].reenable
-    CONFIG_DATA['externalsources'].each do |url, info|
+    @config_data['externalsources'].each do |url, info|
       workdir = safe_dirname(url)
       # Have to use absolute paths for the source, since we have no idea how deep in the hierarchy the url is (and thus how many ../..s it would need).
       FileUtils.ln_sf "#{top_dir}/externalsources/#{workdir}/#{info['subdirectory']}", "#{SOURCE_DIR}#{url}"
@@ -181,14 +181,14 @@ task :symlink_latest_versions do
   require 'puppet_docs/versions'
 
   # Auto-link the latest version of every project in symlink_latest
-  CONFIG_DATA['symlink_latest'].each do |project|
+  @config_data['symlink_latest'].each do |project|
     project_dir = "#{OUTPUT_DIR}/#{project}"
 
     versions = Pathname.glob("#{project_dir}/*").select {|f|
       f.directory? && !f.symlink?
     }.map {|d| d.basename.to_s}
 
-    latest = CONFIG_DATA['lock_latest'][project] || PuppetDocs::Versions.latest(versions)
+    latest = @config_data['lock_latest'][project] || PuppetDocs::Versions.latest(versions)
 
     Dir.chdir project_dir do
       FileUtils.ln_sf latest, 'latest'
@@ -249,6 +249,12 @@ task :build do
   Rake::Task['check_git_dirty_status'].invoke
   Rake::Task['generate'].invoke
   Rake::Task['write_version'].invoke
+end
+
+desc 'Check all internal links in the site. This also results in a deployable site build.'
+task :build_and_check_links do
+  @config_data['check_links'] = true
+  Rake::Task['build'].invoke
 end
 
 desc "Instead of building real pages, build naked HTML fragments (with no nav, etc.)"

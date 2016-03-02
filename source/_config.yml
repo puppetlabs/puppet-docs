@@ -56,6 +56,7 @@ symlink_latest:
   - facter
   - pe
 lock_latest:
+  puppet: 4.3
   hiera: 3.0
 
 document_names:
@@ -199,6 +200,14 @@ documents:
     nav: /_includes/pe_2.0_nav.markdown
     hide: true
 
+  /puppet/4.4/reference:
+    doc: puppet
+    version: 4.4
+    nav: ./_puppet_toc.html
+    my_versions:
+      facter: 3.1
+      hiera: 3.0
+      puppetserver: 2.2
   /puppet/4.3/reference:
     doc: puppet
     version: 4.3
