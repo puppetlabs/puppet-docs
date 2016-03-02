@@ -28,20 +28,17 @@ Jekyll::Hooks.register :site, :post_render do |site|
       links.each {|link|
         (path, anchor) = link.split('#', 2)
 
-        if path =~ /:/
-          if path =~ /^(mailto|ftp|&)/ # then we don't care, byeeeee
+        if path =~ /^(mailto|ftp|&)/ # then we don't care, byeeeee
+          next
+        elsif path =~ %r{^(https?:)?//} # it's either external, or internal and against our style guidelines
+          if path =~ /#{DOCS_HOSTNAME}/ # it's internal!
+            link_test_results[page.relative_path][:internal_with_hostname] << link
+            # continue and see if it actually resolves. Get the path portion.
+            path = path.split(DOCS_HOSTNAME, 2)[1]
+          else # it's external and we don't careeeee
             next
-          elsif path =~ %r{^(https?:)?//} # it's either external, or internal and against our style guidelines
-            if path =~ /#{DOCS_HOSTNAME}/ # it's internal!
-              link_test_results[page.relative_path][:internal_with_hostname] << link
-              # continue and see if it actually resolves. Get the path portion.
-              path = path.split(DOCS_HOSTNAME, 2)[1]
-            else # it's external and we don't careeeee
-              next
-            end
           end
         end
-
 
         if path == '' # it's an in-page link.
           full_path = page.url
