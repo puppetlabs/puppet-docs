@@ -7,6 +7,7 @@ Jekyll::Hooks.register :site, :post_render do |site|
 
     puts 'Checking internal links! This can take upwards of 20m.'
     DOCS_HOSTNAME = 'docs.puppetlabs.com'
+    PREVIEW_HOSTNAMES = %r{^(https?:)?//docspreview\d\.(puppetlabs\.lan|ops\.puppetlabs\.net)}
     NGINX_CONFIG = "#{site.source}/nginx_rewrite.conf"
 
     link_test_results = {}
@@ -30,11 +31,18 @@ Jekyll::Hooks.register :site, :post_render do |site|
 
         if path =~ /^(mailto|ftp|&)/ # then we don't care, byeeeee
           next
-        elsif path =~ %r{^(https?:)?//} # it's either external, or internal and against our style guidelines
+        elsif path =~ %r{^(https?:)?//} # it's internal-with-hostname, external, or broken in an interesting way.
           if path =~ /#{DOCS_HOSTNAME}/ # it's internal!
             link_test_results[page.relative_path][:internal_with_hostname] << link
             # continue and see if it actually resolves. Get the path portion.
             path = path.split(DOCS_HOSTNAME, 2)[1]
+          elsif path =~ PREVIEW_HOSTNAMES or path =~ %r{^(https?:)?//localhost} # it's a link to the preview site.
+            link_test_results[page.relative_path][:broken_path] << link
+            next
+          elsif path =~ %r{^//[^/\.]+/} # the hostname has no TLD and probably won't resolve on the global internet.
+            # Someone probably typoed something like //puppet/latest/reference/etc.
+            link_test_results[page.relative_path][:broken_path] << link
+            next
           else # it's external and we don't careeeee
             next
           end
