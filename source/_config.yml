@@ -84,9 +84,28 @@ document_names:
 #      puppetserver: 2.2
 #      puppetdb: 3.2
 documents:
-  /pe/burnside:
+  # Couch preview
+  /pe/2016.2:
     doc: pe
     version: 2016.1
+    nav: ./_pe_toc.html
+    external_source:
+      repo: git@github.com:puppetlabs/pe-docs-private.git
+      commit: origin/couch
+      subdirectory: source
+  # Burnside preview at the real URLs
+  /pe/2016.1:
+    doc: pe
+    version: 2016.1
+    nav: ./_pe_toc.html
+    external_source:
+      repo: git@github.com:puppetlabs/pe-docs-private.git
+      commit: origin/burnside
+      subdirectory: source
+  # Extra copy of burnside for existing preview URLs.
+  /pe/burnside:
+    doc: pe
+    version: burnside
     nav: ./_pe_toc.html
     external_source:
       repo: git@github.com:puppetlabs/pe-docs-private.git
