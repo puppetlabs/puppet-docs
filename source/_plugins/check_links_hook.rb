@@ -10,8 +10,7 @@ Jekyll::Hooks.register :site, :post_render do |site|
     NGINX_CONFIG = "#{site.source}/nginx_rewrite.conf"
 
     link_test_results = {}
-    href_regex = %r{(href)=(['"])([^'"]+)\2}i
-    src_regex = %r{(src)=(['"])([^'"]+)\2}i
+    link_regex = %r{(href|src)=(['"])([^'"]+)\2}i
     redirections = File.read(NGINX_CONFIG).scan(%r{^rewrite\s+(\S+)}).map{|ary| Regexp.new(ary[0]) }
 
     site.pages.each do |page|
@@ -24,8 +23,7 @@ Jekyll::Hooks.register :site, :post_render do |site|
       link_test_results[page.relative_path][:redirected] = []
 
       cwd = Pathname.new(page.relative_path).dirname
-      links = page.content.scan(href_regex).map{|ary| ary[2]}
-      images = page.content.scan(src_regex).map{|ary| ary[2]}
+      links = page.content.scan(link_regex).map{|ary| ary[2]}
 
       links.each {|link|
         (path, anchor) = link.split('#', 2)
