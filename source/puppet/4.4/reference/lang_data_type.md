@@ -6,7 +6,7 @@ canonical: "/puppet/latest/reference/lang_data_type.html"
 
 [classes]: ./lang_classes.html
 [defined types]: ./lang_defined_types.html
-[lambdas]: TODO
+[lambdas]: ./lang_lambdas.html
 [case statements]: ./lang_conditional.html#case-statements
 [selector expressions]: ./lang_conditional.html#selectors
 [match_operator]: ./lang_expressions.html#regex-or-data-type-match
