@@ -54,8 +54,8 @@ Jekyll::Hooks.register :site, :post_render do |site|
         else
           full_path = (cwd + path).to_s
 
-          if full_path =~ %r{/latest/} # then we have to resolve it to its real directory, because we haven't symlinked latest yet.
-            path_dirs = full_path.split('/')
+          if full_path =~ %r{/latest(/|$)} # then we have to resolve it to its real directory, because we haven't symlinked latest yet.
+            path_dirs = full_path.split('/', -1)
             project = path_dirs[ 1..(path_dirs.index('latest') - 1) ].join('/') # something like 'references' or 'ja/puppet'
             if site.config['symlink_latest'].include?(project)
               project_dir = "#{site.source}/#{project}"
