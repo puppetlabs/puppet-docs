@@ -7,11 +7,11 @@ Jekyll::Hooks.register :site, :post_render do |site|
 
     puts 'Checking internal links! This can take upwards of 20m.'
     DOCS_HOSTNAME = 'docs.puppetlabs.com'
+    PREVIEW_HOSTNAMES = %r{^(https?:)?//docspreview\d\.(puppetlabs\.lan|ops\.puppetlabs\.net)}
     NGINX_CONFIG = "#{site.source}/nginx_rewrite.conf"
 
     link_test_results = {}
-    href_regex = %r{(href)=(['"])([^'"]+)\2}i
-    src_regex = %r{(src)=(['"])([^'"]+)\2}i
+    link_regex = %r{(href|src)=(['"])([^'"]+)\2}i
     redirections = File.read(NGINX_CONFIG).scan(%r{^rewrite\s+(\S+)}).map{|ary| Regexp.new(ary[0]) }
 
     site.pages.each do |page|
@@ -24,26 +24,29 @@ Jekyll::Hooks.register :site, :post_render do |site|
       link_test_results[page.relative_path][:redirected] = []
 
       cwd = Pathname.new(page.relative_path).dirname
-      links = page.content.scan(href_regex).map{|ary| ary[2]}
-      images = page.content.scan(src_regex).map{|ary| ary[2]}
+      links = page.content.scan(link_regex).map{|ary| ary[2]}
 
       links.each {|link|
         (path, anchor) = link.split('#', 2)
 
-        if path =~ /:/
-          if path =~ /^(mailto|ftp|&)/ # then we don't care, byeeeee
+        if path =~ /^(mailto|ftp|&)/ # then we don't care, byeeeee
+          next
+        elsif path =~ %r{^(https?:)?//} # it's internal-with-hostname, external, or broken in an interesting way.
+          if path =~ /#{DOCS_HOSTNAME}/ # it's internal!
+            link_test_results[page.relative_path][:internal_with_hostname] << link
+            # continue and see if it actually resolves. Get the path portion.
+            path = path.split(DOCS_HOSTNAME, 2)[1]
+          elsif path =~ PREVIEW_HOSTNAMES or path =~ %r{^(https?:)?//localhost} # it's a link to the preview site.
+            link_test_results[page.relative_path][:broken_path] << link
             next
-          elsif path =~ %r{^(https?:)?//} # it's either external, or internal and against our style guidelines
-            if path =~ /#{DOCS_HOSTNAME}/ # it's internal!
-              link_test_results[page.relative_path][:internal_with_hostname] << link
-              # continue and see if it actually resolves. Get the path portion.
-              path = path.split(DOCS_HOSTNAME, 2)[1]
-            else # it's external and we don't careeeee
-              next
-            end
+          elsif path =~ %r{^//[^/\.]+/} # the hostname has no TLD and probably won't resolve on the global internet.
+            # Someone probably typoed something like //puppet/latest/reference/etc.
+            link_test_results[page.relative_path][:broken_path] << link
+            next
+          else # it's external and we don't careeeee
+            next
           end
         end
-
 
         if path == '' # it's an in-page link.
           full_path = page.url
