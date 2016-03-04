@@ -332,7 +332,7 @@ documents:
   /puppetserver/2.3:
     doc: puppetserver
     version: 2.3
-    nav: /puppet/4.3/reference/_puppet_toc.html
+    nav: /puppet/4.4/reference/_puppet_toc.html
     external_source:
       repo: git://github.com/puppetlabs/puppet-server.git
       commit: origin/stable
