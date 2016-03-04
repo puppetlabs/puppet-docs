@@ -1,4 +1,4 @@
-{% capture server_version %}2.2{% endcapture %}
+{% capture server_version %}2.3{% endcapture %}
 {% capture puppet_version %}4.4{% endcapture %}
 {% capture puppet_dir %}/puppet/{{ puppet_version }}/reference{% endcapture %}
 
@@ -107,6 +107,8 @@
           <li><a href="/puppetserver/{{ server_version }}/config_file_global.html">global.conf: Trapperkeeper Settings</a></li>
           <li><a href="/puppetserver/{{ server_version }}/config_file_ca.html">ca.conf: CA Service Access Control (deprecated)</a></li>
           <li><a href="/puppetserver/{{ server_version }}/config_file_master.html">master.conf: Authorization by HTTP Header (deprecated)</a></li>
+          <li><a href="/puppetserver/{{ server_version }}/config_file_logbackxml.html">logback.xml: Logging Level and Location</a></li>
+          <li><a href="/puppetserver/{{ server_version }}/config_logging_advanced.html">Advanced Logging Configuration</a></li>
         </ul>
       </li>
       <li><a href="{{ puppet_dir }}/config_print.html">Checking Values of Settings</a></li>
