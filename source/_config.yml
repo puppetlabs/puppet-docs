@@ -87,7 +87,7 @@ documents:
   # Couch preview
   /pe/2016.2:
     doc: pe
-    version: 2016.1
+    version: 2016.2
     nav: ./_pe_toc.html
     external_source:
       repo: git@github.com:puppetlabs/pe-docs-private.git
