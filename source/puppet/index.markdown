@@ -128,7 +128,6 @@ Puppet's default configuration is meant for prototyping and designing a site. On
 
 ### Hacking and Extending: APIs and Interfaces
 
-* [HTTP Access Control](/guides/rest_auth_conf.html) --- Secure API access with `auth.conf`.
 * [External Nodes](/guides/external_nodes.html) --- Specify what your machines do using external data sources.
     * [LDAP Nodes](/guides/ldap_nodes.html) --- A special-case tool for keeping node information in your LDAP directory.
 
