@@ -97,7 +97,6 @@ Get the latest version of Puppet up and running.
 * [Troubleshooting](/guides/troubleshooting.html) --- Avoid common problems and confusions.
 * [Style Guide](/guides/style_guide.html) --- Puppet community conventions.
 * [Best Practices](/guides/best_practices.html) --- Use Puppet effectively.
-* [Templating](/guides/templating.html) --- Template config files using ERB.
 * [Virtual Resources](/guides/virtual_resources.html)
 * [Exported Resources](/guides/exported_resources.html) --- Share data between hosts.
 * [Using the Augeas Resource Type](/guides/augeas.html) --- Safely edit many types of config files.
