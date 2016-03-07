@@ -3,6 +3,11 @@ layout: default
 title: "Hiera 2: Release Notes"
 ---
 
+## Hiera 2.0.1
+
+Released April 13, 2015
+
+This release is identical to 2.0.0. We only changed some tests and packaging data.
 
 ## Hiera 2.0.0
 
