@@ -6,6 +6,8 @@ toc: false
 ---
 [refguide]: ./function.html#epp
 
+<a id="puppet-400"></a>
+
 These are the release notes for Puppet 4.0, released April 15 2015. There's a lot of information here so it's organized top to bottom by size of impact -- things everyone is going to notice will be at the top and minor bugfixes/improvements are down at the bottom.
 
 ## BREAK: Changes to Platform Support, Repos, and Installation
