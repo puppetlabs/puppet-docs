@@ -86,11 +86,11 @@ If static catalogs are enabled but none of the relevant Puppet Server settings a
 
 Puppet Server locates these commands via the `code-id-command` and `code-content-command` settings in Puppet Server's [`puppetserver.conf`][] file. Puppet Server runs the `code-id-command` each time it compiles a static catalog, and it runs the `code-content-command` each time an agent requests file contents from the `static_file_content` endpoint.
 
-> **Puppet Enterprise note:** You can set `code-id-command` and `code-content-command` in the PE console by changing the `code_id_command` and `code_content_command` parameters. Note that these only take effect if [file sync][] is disabled by setting the `file_sync_enabled` console parameter to false.
+> **Puppet Enterprise note:** In future versions of PE, you can set `code-id-command` and `code-content-command` in the PE console by changing the `code_id_command` and `code_content_command` parameters. Note that these only take effect if [file sync][] is disabled.
 
-Puppet Server validates the standard output of each of these scripts, and if the output's acceptable, it adds the results to the catalog as their respective parameters' values. This lets you use any versioning or synchronization tools you want, as long as you can write scripts that produce a valid hash for the `code_id` and code content using the catalog's `code_id` and file's environment.
+Puppet Server validates the standard output of each of these scripts, and if the output's acceptable, it adds the results to the catalog as their respective parameters' values. This lets you use any versioning or synchronization tools you want, as long as you can write scripts that produce a hash for the `code_id` and code content using the catalog's `code_id` and file's environment.
 
-The `code-id-command` and `code-content-command` scripts can be as simple or complex as necessary. For instance, if files in an environment are simply managed by git, a `code-id-command` script can be nothing more than this, with the environment name passed to the script as the first parameter:
+The `code-id-command` and `code-content-command` scripts can be as simple or complex as necessary. For instance, if files in an environment are simply managed by git, a `code-id-command` script can be nothing more than this, with the environment name passed to the script as the first command-line argument:
 
 ``` bash
 #!/bin/bash
@@ -102,7 +102,7 @@ fi
 cd /etc/puppetlabs/code/environments/$1 && git rev-parse HEAD
 ```
 
-As long as the script's standard output is a valid hash, Puppet Server will store it as the catalog's `code_id`. If the script returns a non-zero exit code, Puppet Server logs an error.
+As long as the script's exit code is zero, Puppet Server uses the script's standard output as the catalog's `code_id`. If the script returns a non-zero exit code, Puppet Server logs an error and returns the error and a 500 response code to the API request.
 
 A `code-content-command` script can also be simple. Puppet Server passes the environment name as the first command-line argument, the `code_id` as the second argument, and the path to the file resource from its `content_uri` as the third argument:
 
