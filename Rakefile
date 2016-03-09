@@ -161,6 +161,15 @@ namespace :externalsources do
   end
 end
 
+desc "Clean up any crap left over from failed docs site builds"
+task :clean do
+  # Get rid of external sources symlinks
+  Rake::Task['externalsources:clean'].invoke
+  Rake::Task['externalsources:clean'].reenable
+  # Get rid of the amended config file we write for Jekyll
+  FileUtils.rm("#{SOURCE_DIR}/_config_amended.yml")
+end
+
 desc "Generate the documentation"
 task :generate do
   Rake::Task['externalsources:update'].invoke # Create external sources if necessary, and check out the required working directories
