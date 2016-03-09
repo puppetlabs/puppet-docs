@@ -49,7 +49,7 @@ Consequently, the agent's Puppet runs might produce different results each time 
 
 Additionally, each time a Puppet agent applies a normal cached catalog that contains file resources sourced from `puppet:///` locations, the agent requests file metadata from the master each time the catalog's applied, even though nothing's changed in the cached catalog. This causes the master to perform unnecessary resource-intensive checksum calculations for each such file resource.
 
-Static catalogs avoid these problems by including metadata that refers to a specific version of the resource's file. This prevents the a newer version from being incorrectly applied, and avoids having the agent regenerate the metadata on each Puppet run.
+Static catalogs avoid these problems by including metadata that refers to a specific version of the resource's file. This prevents the a newer version from being incorrectly applied, and avoids having the agent request the metadata on each Puppet run.
 
 These are the traits that make this type of catalog "static": it contains all of the information that an agent needs to determine whether the node's configuration matches the instructions and **static** state of file resources **at the point in time when the catalog was compiled.**
 
@@ -72,7 +72,7 @@ With static catalogs enabled, the Puppet master generates metadata for each file
 
 Inlined metadata is part of a `FileMetadata` object in the catalog that's divided into two new catalog sections: `metadata` for metadata associated with individual files, and `recursive_metadata` for metadata associated with many files. To use the appropriate version of the file content for the catalog, [Puppet Server][] also adds a `code_id` parameter to the catalog. The value of `code_id` is a unique string, such as the hash of a git or r10k commit, that corresponds to the version of all files in an environment at the time when the catalog was compiled.
 
-When applying a file resource from a static catalog, an agent first checks the catalog for that file's metadata. If it finds some, Puppet uses the metadata to call the [`static_file_content`][] API endpoint on the Puppet master and retrieve the `code_content`. If the catalog doesn't contain metadata for the resource, Puppet does what it's always done: generate the metadata itself, then request the resource's file from the master in the file's current state.
+When applying a file resource from a static catalog, an agent first checks the catalog for that file's metadata. If it finds some, Puppet uses the metadata to call the [`static_file_content`][] API endpoint on the Puppet master and retrieve the `code_content`. If the catalog doesn't contain metadata for the resource, Puppet does what it's always done: request the file resource's metadata, then request the resource's file from the master in its current state.
 
 ### Configuring `code_id` and the `static_file_content` endpoint
 
@@ -114,7 +114,7 @@ The script's standard output is then provided as the file's `code_content`. Agai
 
 ### Enabling or disabling static catalogs
 
-If you're using static catalogs, the agents don't need to generate file metadata or recurse into directories, catalog application time significantly decreases. And since static catalogs allow agents to use static catalogs more reliably, they're less likely to need the master to generate catalogs as frequently.
+If you're using static catalogs, the agents don't need to request file metadata or recurse into directories. And since static catalogs allow agents to use static catalogs more reliably, they're less likely to need to request catalogs as frequently.
 
 In other words, even if you aren't using static catalogs, disabling it doesn't substantially improve server or agent performance.
 
