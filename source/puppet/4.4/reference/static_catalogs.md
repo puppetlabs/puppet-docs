@@ -118,7 +118,7 @@ If you're using static catalogs, the agents don't need to generate file metadata
 
 In other words, even if you aren't using static catalogs, disabling it doesn't substantially improve server or agent performance.
 
-However, if you still want to toggle static catalog generation, you can do so with the Boolean `static_catalog` setting in two places:
+However, if you still want to toggle static catalog generation, you can do so with the Boolean `static_catalogs` setting in two places:
 
-* **[`puppet.conf`][]:** You can globally determine whether Puppet generates static catalogs by setting `static_catalog` in `puppet.conf`.
-* **[`environment.conf`][]:** You can override the global setting in each environment by setting `static_catalog` in an environment's `environment.conf` file.
+* **[`puppet.conf`][]:** You can globally determine whether Puppet generates static catalogs by setting `static_catalogs` in `puppet.conf`.
+* **[`environment.conf`][]:** You can override the global setting in each environment by setting `static_catalogs` in an environment's `environment.conf` file.
