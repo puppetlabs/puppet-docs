@@ -97,7 +97,6 @@ Get the latest version of Puppet up and running.
 * [Troubleshooting](/guides/troubleshooting.html) --- Avoid common problems and confusions.
 * [Style Guide](/guides/style_guide.html) --- Puppet community conventions.
 * [Best Practices](/guides/best_practices.html) --- Use Puppet effectively.
-* [Templating](/guides/templating.html) --- Template config files using ERB.
 * [Virtual Resources](/guides/virtual_resources.html)
 * [Exported Resources](/guides/exported_resources.html) --- Share data between hosts.
 * [Using the Augeas Resource Type](/guides/augeas.html) --- Safely edit many types of config files.
@@ -128,7 +127,6 @@ Puppet's default configuration is meant for prototyping and designing a site. On
 
 ### Hacking and Extending: APIs and Interfaces
 
-* [HTTP Access Control](/guides/rest_auth_conf.html) --- Secure API access with `auth.conf`.
 * [External Nodes](/guides/external_nodes.html) --- Specify what your machines do using external data sources.
     * [LDAP Nodes](/guides/ldap_nodes.html) --- A special-case tool for keeping node information in your LDAP directory.
 

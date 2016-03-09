@@ -28,4 +28,4 @@ require 'kramdown'
 ARGF.set_encoding('utf-8')
 $content = ARGF.read
 
-puts Kramdown::Document.new($content).to_html
+puts Kramdown::Document.new($content, {input: "GFM", hard_wrap: false}).to_html
