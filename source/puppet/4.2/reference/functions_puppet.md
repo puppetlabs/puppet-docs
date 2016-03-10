@@ -21,6 +21,26 @@ You can write your own functions in the Puppet language to transform data and co
 
 ## Syntax
 
+~~~ ruby
+function <MODULE NAME>::<NAME>(<PARAMETER LIST>) {
+  ... body of function ...
+  final expression, which will be the returned value of the function
+}
+~~~
+
+{% capture bool2httpexample %}
+
+~~~ ruby
+function apache::bool2http($arg) {
+  case $arg {
+    false, undef, /(?i:false)/ : { 'Off' }
+    true, /(?i:true)/          : { 'On' }
+    default               : { "$arg" }
+  }
+}
+~~~
+{% endcapture %}
+
 The general form of a function written in Puppet language is:
 
 * The keyword `function`.
@@ -39,17 +59,11 @@ The general form of a function written in Puppet language is:
 * A block of Puppet code, ending with an expression whose value is returned.
 * A closing curly brace.
 
-~~~ ruby
-function <MODULE NAME>::<NAME>(<PARAMETER LIST>) {
-  ... body of function ...
-  final expression, which will be the returned value of the function
-}
-~~~
-
 
 ### Parameters
 
 Functions are passed arguments by **parameter position**. This means that the _order_ of parameters is important, and the parameter names will not affect the order they are passed.
+
 
 #### Mandatory and Optional Parameters
 
@@ -85,22 +99,38 @@ Functions are meant for constructing values and transforming data, so the body o
 
 The final expression in the function body determines the value that the function will return when called.
 
-Most conditional expressions in the Puppet language have values that work in a similar way, so you can use an if statement or a case statement as the final expression to give different values based on different numbers or types of inputs. In the following example, the case statement serves as both the body of the function, and its final expression.
-
-~~~ ruby
-function apache::bool2http($arg) {
-  case $arg {
-    false, undef, /(?i:false)/ : { 'Off' }
-    true, /(?i:true)/          : { 'On' }
-    default               : { "$arg" }
-  }
-}
-~~~
+Most [conditional expressions](./lang_conditional.html) in the Puppet language have values that work in a similar way, so you can use an if statement or a case statement as the final expression to give different values based on different numbers or types of inputs. In the following example, the case statement serves as both the body of the function, and its final expression.
 
 
-#### Complex Function Example
+{{ bool2httpexample }}
 
-The below function is from the [`postgresql`](https://forge.puppetlabs.com/puppetlabs/postgresql) module. This function translates the IPv4 and IPv6 ACLs format into a resource suitable for `create_resources`. The writer of this function also left helpful inline comments for other people who use the function, or in case it needs to be altered in the future.
+
+## Location
+
+Store the functions you write in your modules' `functions` folder, which is a top-level directory, a sibling of `manifests` and `lib`. Define only one function per file, and name the file to match the name of the function being defined. For larger, more complex blocks of functional code, see [classes][].
+
+Puppet is automatically aware of functions in a valid module and will autoload them by name.
+
+
+>### Aside: Writing Functions in the Main Manifest
+>
+>In most circumstances, you will store functions in modules. However, in rare situations you might find it necessary to put a function in the main manifest. This is not recommended. If you do put a function in the main manifest, it will override any function of the same name in all modules (except built-in functions).
+
+
+## Naming
+
+[The characters allowed in a function's name are listed here][naming].
+
+
+## Calling a Function
+
+The [function call][function_call] acts like a normal call to any built-in Puppet function, and resolves to the function's returned value.
+
+Once a function is written and available (in a module where the autoloader can find it), you can call that function in any Puppet manifest that lists the containing module as a dependency and from the `site.pp`. The arguments you pass to the function map to the parameters defined in the function's definition. You must pass arguments for the mandatory parameters, and can choose whether to pass in arguments for the optional ones.
+
+## Complex Function Example
+
+The below code is a re-written version of a Ruby function from the [`postgresql`](https://forge.puppetlabs.com/puppetlabs/postgresql) module into Puppet code. This function translates the IPv4 and IPv6 ACLs format into a resource suitable for `create_resources`. The writer of this function also left helpful inline comments for other people who use the it, or in case it needs to be altered in the future. In this case the filename would be `acls_to_resource_hash.pp`, and it would be saved in a folder named `functions` in the top-level directory of the `postgresql` module.
 
 ~~~ ruby
 function postgresql::acls_to_resource_hash(Array $acls, String $id, Integer $offset) {
@@ -180,27 +210,3 @@ function postgresql::acls_to_resource_hash(Array $acls, String $id, Integer $off
   $resources.reduce({}) |$result, $resource| { $result + $resource }
 }
 ~~~
-
-
-## Location
-
-Store the functions you write in your modules' `functions` folder, which is a top-level directory, a sibling of `manifests` and `lib`. Define only one function per file, and name the file to match the name of the function being defined. For larger, more complex blocks of functional code, see [classes][].
-
-Puppet is automatically aware of functions in a valid module and will autoload them by name.
-
-
-> ### Aside: Writing Functions in the Main Manifest
->
->In most circumstances, you will store functions in modules. However, in rare situations you might find it necessary to put a function in the main manifest. This is not recommended. If you do put a function in the main manifest, it will override any function of the same name in all modules (except built-in functions).
-
-
-## Naming
-
-[The characters allowed in a function's name are listed here][naming].
-
-
-## Calling a Function
-
-Once a function is written and available (in a module where the autoloader can find it), you can call that function in any Puppet manifest. The arguments you pass to the function map to the parameters defined in the function's definition. You must pass arguments for the mandatory parameters, and can choose whether to pass in arguments for the optional ones.
-
-The [function call][function_call] acts like a normal call to any built-in Puppet function, and resolves to the function's returned value.
