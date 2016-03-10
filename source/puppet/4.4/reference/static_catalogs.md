@@ -6,6 +6,7 @@ canonical: "/puppet/latest/reference/static_catalogs.html"
 
 [catalogs]: ./subsystem_catalog_compilation.html
 [catalog endpoint]: ./http_api/http_catalog.html
+[file metadata]: ./http_api/http_file_metadata.html
 [`file_content`]: ./http_api/http_file_content.html
 [`static_file_content`]: /puppetserver/latest/puppet-api/v3/static_file_content.html
 [resource_declaration]: ./lang_resources.html
@@ -48,7 +49,7 @@ When a Puppet manifest depends on a file whose contents might change more freque
 
 Consequently, the agent's Puppet runs might produce different results each time the agent applies the same catalog. This often causes problems, because Puppet generally expects a catalog to produce the same results each time it's applied, regardless of any code or file content updates on the master.
 
-Additionally, each time a Puppet agent applies a normal cached catalog that contains file resources sourced from `puppet:///` locations, the agent requests file metadata from the master each time the catalog's applied, even though nothing's changed in the cached catalog. This causes the master to perform unnecessary resource-intensive checksum calculations for each such file resource.
+Additionally, each time a Puppet agent applies a normal cached catalog that contains file resources sourced from `puppet:///` locations, the agent requests [file metadata][] from the master each time the catalog's applied, even though nothing's changed in the cached catalog. This causes the master to perform unnecessary resource-intensive checksum calculations for each such file resource.
 
 Static catalogs avoid these problems by including metadata that refers to a specific version of the resource's file. This prevents the a newer version from being incorrectly applied, and avoids having the agent request the metadata on each Puppet run.
 
@@ -121,7 +122,7 @@ The script's standard output is then provided as the file's `code_content` as lo
 
 ### Enabling or disabling static catalogs
 
-If you're using static catalogs, the agents don't need to request file metadata or recurse into directories. And since static catalogs allow agents to use static catalogs more reliably, they're less likely to need to request catalogs as frequently.
+If you're using static catalogs, the agents don't need to request [file metadata][] or recurse into directories. And since static catalogs allow agents to use static catalogs more reliably, they're less likely to need to request catalogs as frequently.
 
 In other words, even if you aren't using static catalogs, disabling it doesn't substantially improve server or agent performance.
 
