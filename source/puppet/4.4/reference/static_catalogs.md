@@ -6,6 +6,7 @@ canonical: "/puppet/latest/reference/static_catalogs.html"
 
 [catalogs]: ./subsystem_catalog_compilation.html
 [catalog endpoint]: ./http_api/http_catalog.html
+[`file_content`]: ./http_api/http_file_content.html
 [`static_file_content`]: /puppetserver/latest/puppet-api/v3/static_file_content.html
 [resource_declaration]: ./lang_resources.html
 [file resources]: ./types/file.html
@@ -41,7 +42,7 @@ Unlike a standard Puppet catalog, a static catalog includes metadata that identi
 
 ### Why use static catalogs?
 
-When a Puppet master produces a normal catalog, the result doesn't specify the a version of file resources. When the agent applies the catalog, it always retrieves the latest version of that file resource, or uses a previously retrieved version if it matches the latest version's contents.
+When a Puppet master compiles a normal catalog, the catalog doesn't specify a particular version of its file resources. When the agent applies the catalog, it always retrieves the latest version of that file resource, or uses a previously retrieved version if it matches the latest version's contents.
 
 When a Puppet manifest depends on a file whose contents might change more frequently than the Puppet agent receives new catalogs --- for instance, if the agent is caching catalogs or can't reach a Puppet master over the network --- this can lead to a node applying a version of the referenced file that doesn't match the instructions in the catalog.
 
@@ -70,21 +71,27 @@ In a normal catalog, the Puppet agent requests metadata and content for the file
 
 With static catalogs enabled, the Puppet master generates metadata for each file resource sourced from a `puppet:///` location and adds it to the static catalog, and adds a `code_id` to the catalog that associates such file resources with the version of their files as they exist *at compilation time*.
 
-Inlined metadata is part of a `FileMetadata` object in the catalog that's divided into two new catalog sections: `metadata` for metadata associated with individual files, and `recursive_metadata` for metadata associated with many files. To use the appropriate version of the file content for the catalog, [Puppet Server][] also adds a `code_id` parameter to the catalog. The value of `code_id` is a unique string, such as the hash of a git or r10k commit, that corresponds to the version of all files in an environment at the time when the catalog was compiled.
+Inlined metadata is part of a `FileMetadata` object in the static catalog that's divided into two new sections: `metadata` for metadata associated with individual files, and `recursive_metadata` for metadata associated with many files. To use the appropriate version of the file content for the catalog, [Puppet Server][] also adds a `code_id` parameter to the catalog. The value of `code_id` is a unique string that Puppet Server uses to retrieve the version of file resources in an environment at the time when the catalog was compiled.
 
-When applying a file resource from a static catalog, an agent first checks the catalog for that file's metadata. If it finds some, Puppet uses the metadata to call the [`static_file_content`][] API endpoint on the Puppet master and retrieve the `code_content`. If the catalog doesn't contain metadata for the resource, Puppet does what it's always done: request the file resource's metadata, then request the resource's file from the master in its current state.
+When applying a file resource from a static catalog, an agent first checks the catalog for that file's metadata. If it finds some, Puppet uses the metadata to call the [`static_file_content`][] API endpoint on the Puppet Server and retrieve the file's contents, also called the `code_content`. If the catalog doesn't contain metadata for the resource, Puppet does what it's always done: request the file resource's metadata from the master, compare it to the local file if it exists, and request the resource's file from the master in its current state if the local file doesn't exist or differs from the master's version.
 
 ### Configuring `code_id` and the `static_file_content` endpoint
 
-When requesting the file's content from a static catalog's metadata, the Puppet agent passes the file's path, the catalog's `code_id`, and the requested environment to Puppet Server's new [`static_file_content`][] API endpoint, and the endpoint returns the appropriate version of the file's contents as the `code_content`.
+When requesting the file's content via the static catalog's metadata, the Puppet agent passes the file's path, the catalog's `code_id`, and the requested environment to Puppet Server's new [`static_file_content`][] API endpoint, and the endpoint returns the appropriate version of the file's contents as the `code_content`.
 
-If static catalogs are enabled but none of the relevant Puppet Server settings are configured, the `code_id` parameter defaults to a null value and the `static_file_content` API endpoint always returns the latest content. To populate the `code_id` with a more useful identifier and have the `static_file_content` endpoint return the appropriate version of the file's content, you must specify scripts or commands that provide Puppet with the right information.
+If static catalogs are enabled but none of the relevant Puppet Server settings are configured, the `code_id` parameter defaults to a null value and the agent uses the [`file_content`][] API endpoint, which always returns the latest content. To populate the `code_id` with a more useful identifier and have the agent use the  `static_file_content` endpoint to retrieve a specific version of the file's content, you must specify scripts or commands that provide Puppet with the appropriate results.
 
 Puppet Server locates these commands via the `code-id-command` and `code-content-command` settings in Puppet Server's [`puppetserver.conf`][] file. Puppet Server runs the `code-id-command` each time it compiles a static catalog, and it runs the `code-content-command` each time an agent requests file contents from the `static_file_content` endpoint.
 
+> **Note: The Puppet Server process must be able to execute these scripts. Puppet Server also validates their output and checks their exit codes. Environment names can contain only alphanumeric characters and underscores (`_`). The `code_id` can  contain only alphanumeric characters and dashes (`-`), underscores (`_`), semicolons (`;`), and colons (`:`). If either command returns a non-zero exit code, Puppet Server logs an error and returns the error message and a 500 response code to the API request.
+
 Puppet Server validates the standard output of each of these scripts, and if the output's acceptable, it adds the results to the catalog as their respective parameters' values. This lets you use any versioning or synchronization tools you want, as long as you can write scripts that produce a hash for the `code_id` and code content using the catalog's `code_id` and file's environment.
 
-The `code-id-command` and `code-content-command` scripts can be as simple or complex as necessary. For instance, if files in an environment are simply managed by git, a `code-id-command` script can be nothing more than this, with the environment name passed to the script as the first command-line argument:
+The `code-id-command` and `code-content-command` scripts can be as simple or complex as necessary.
+
+> **Note:** The following examples demonstrate how Puppet Server passes arguments to the `code-id-command` and `code-content-command` scripts and how Puppet Server uses the results to return a specific version of a file resource. The scripts themselves are not recommended for production use.
+
+For instance, if files in an environment are simply managed by git, a `code-id-command` script can be nothing more than this, with the environment name passed to the script as the first command-line argument:
 
 ``` bash
 #!/bin/bash
@@ -93,10 +100,10 @@ if [[ -z $1 ]]; then
   echo Expected an environment >&2
   exit 1
 fi
-cd /etc/puppetlabs/code/environments/$1 && git rev-parse HEAD
+cd /etc/puppetlabs/code/environments/"$1" && git rev-parse HEAD
 ```
 
-As long as the script's exit code is zero, Puppet Server uses the script's standard output as the catalog's `code_id`. If the script returns a non-zero exit code, Puppet Server logs an error and returns the error and a 500 response code to the API request.
+As long as the script's exit code is zero, Puppet Server uses the script's standard output as the catalog's `code_id`.
 
 A `code-content-command` script can also be simple. Puppet Server passes the environment name as the first command-line argument, the `code_id` as the second argument, and the path to the file resource from its `content_uri` as the third argument:
 
@@ -107,10 +114,12 @@ if [[ $# < 3 ]]; then
   echo Expected environment, code-id, file-path >&2
   exit 1
 fi
-cd /etc/puppetlabs/code/environments/$1 && git show $2:$3
+cd /etc/puppetlabs/code/environments/"$1" && git show $2:$3
 ```
 
-The script's standard output is then provided as the file's `code_content`. Again, if the script returns a non-zero exit code, Puppet Server logs an error and returns the error and a 500 response code to the API request.
+The script's standard output is then provided as the file's `code_content` as long as the script returns a non-zero exit code.
+
+
 
 ### Enabling or disabling static catalogs
 
