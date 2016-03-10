@@ -7,6 +7,10 @@ title: "Deprecated Settings"
 The following Puppet settings are deprecated and will be removed in Puppet 5.0.
 
 
+## `cfacter`
+
+The `cfacter` setting was used to enable pre-releases of native Facter (distributed as the "cfacter" package) prior to the release of Facter 3.0. Now that native Facter is the default in puppet-agent packages, this setting has no purpose.
+
 ## `configtimeout`
 
 The `configtimeout` setting mashed the connect and read timeouts together, and could cause erroneous timeouts if everything was working fine but Puppet was transferring a very large file.
