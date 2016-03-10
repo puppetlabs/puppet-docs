@@ -83,9 +83,9 @@ If static catalogs are enabled but none of the relevant Puppet Server settings a
 
 Puppet Server locates these commands via the `code-id-command` and `code-content-command` settings in Puppet Server's [`puppetserver.conf`][] file. Puppet Server runs the `code-id-command` each time it compiles a static catalog, and it runs the `code-content-command` each time an agent requests file contents from the `static_file_content` endpoint.
 
-> **Note: The Puppet Server process must be able to execute these scripts. Puppet Server also validates their output and checks their exit codes. Environment names can contain only alphanumeric characters and underscores (`_`). The `code_id` can  contain only alphanumeric characters and dashes (`-`), underscores (`_`), semicolons (`;`), and colons (`:`). If either command returns a non-zero exit code, Puppet Server logs an error and returns the error message and a 500 response code to the API request.
+> **Note:** The Puppet Server process must be able to execute these scripts. Puppet Server also validates their output and checks their exit codes. Environment names can contain only alphanumeric characters and underscores (`_`). The `code_id` can  contain only alphanumeric characters and dashes (`-`), underscores (`_`), semicolons (`;`), and colons (`:`). If either command returns a non-zero exit code, Puppet Server logs an error and returns the error message and a 500 response code to the API request.
 
-Puppet Server validates the standard output of each of these scripts, and if the output's acceptable, it adds the results to the catalog as their respective parameters' values. This lets you use any versioning or synchronization tools you want, as long as you can write scripts that produce a hash for the `code_id` and code content using the catalog's `code_id` and file's environment.
+Puppet Server validates the standard output of each of these scripts, and if the output's acceptable, it adds the results to the catalog as their respective parameters' values. This lets you use any versioning or synchronization tools you want, as long as you can write scripts that produce a valid string for the `code_id` and code content using the catalog's `code_id` and file's environment.
 
 The `code-id-command` and `code-content-command` scripts can be as simple or complex as necessary.
 
@@ -118,8 +118,6 @@ cd /etc/puppetlabs/code/environments/"$1" && git show $2:$3
 ```
 
 The script's standard output is then provided as the file's `code_content` as long as the script returns a non-zero exit code.
-
-
 
 ### Enabling or disabling static catalogs
 
