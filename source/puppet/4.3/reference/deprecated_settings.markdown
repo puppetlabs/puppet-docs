@@ -24,4 +24,6 @@ The old `configtimeout` setting now logs a deprecation warning if it's set, and 
 
 ## `ignorecache`
 
-The `ignorecache` setting has no effect, and has been dead code since Puppet 0.24.5. It does not log a deprecation warning; if you use it after we remove it, it will have the same effect as it does now.
+The `ignorecache` setting has no effect, and has been dead code since Puppet 0.24.5.
+
+This setting does not log a deprecation warning. Once it is removed in Puppet 5.0, Puppet will fail to start if you pass `--ignorecache` as a command line argument.
