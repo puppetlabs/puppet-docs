@@ -130,8 +130,8 @@ Puppet Server also won't produce static catalogs for an agent under the followin
 * If the agent's `static_catalogs` setting is false, either globally in [`puppet.conf`][] or in the [`environment.conf`][] file for the environment under which the agent is requesting a catalog.
 * If the agent's Puppet version is older than 4.4.0.
 
-Additionally, Puppet Server only inlines metadata for [file resources][] under the following circumstances:
+Additionally, Puppet Server only inlines metadata for [file resources][] if **all** of the following conditions are true:
 
 * It contains a `source` parameter with a Puppet URI, such as `source => 'puppet:///path/to/file'`.
 * It contains a `source` parameter that uses the built-in `modules` mount point.
-* The file it sources is within the following glob relative to the environment: `*/*/files/**`. For example, Puppet Server will inline metadata into static catalogs for file resources sourcing module files located by default in `/etc/puppetlabs/code/environments/<ENVIRONMENT>/modules/<MODULE NAME>/files/**`.
+* The file it sources is within the following glob relative to the environment's root directory: `*/*/files/**`. For example, Puppet Server will inline metadata into static catalogs for file resources sourcing module files located by default in `/etc/puppetlabs/code/environments/<ENVIRONMENT>/modules/<MODULE NAME>/files/**`.
