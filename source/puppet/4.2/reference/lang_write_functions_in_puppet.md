@@ -41,6 +41,8 @@ function apache::bool2http($arg) {
 ~~~
 {% endcapture %}
 
+{{ bool2httpexample }}
+
 The general form of a function written in Puppet language is:
 
 * The keyword `function`.
