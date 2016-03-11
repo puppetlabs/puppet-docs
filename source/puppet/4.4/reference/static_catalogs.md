@@ -57,8 +57,6 @@ These are the traits that make this type of catalog "static": it contains all of
 
 ### Static catalog features
 
-Puppet 4.4 and Puppet Server 2.3.0 enable static catalog generation by default, whether you upgrade Puppet or perform a clean installation.
-
 A static catalog includes file metadata in its own section of a catalog and associates it with the catalog's file resources. For example, consider the following file resource:
 
 ``` puppet
@@ -97,7 +95,7 @@ For instance, if files in an environment are simply managed by git, a `code-id-c
 ``` bash
 #!/bin/bash
 set -e
-if [[ -z $1 ]]; then
+if [[ -z "$1" ]]; then
   echo Expected an environment >&2
   exit 1
 fi
@@ -115,18 +113,25 @@ if [[ $# < 3 ]]; then
   echo Expected environment, code-id, file-path >&2
   exit 1
 fi
-cd /etc/puppetlabs/code/environments/"$1" && git show $2:$3
+cd /etc/puppetlabs/code/environments/"$1" && git show "$2":"$3"
 ```
 
 The script's standard output is then provided as the file's `code_content` as long as the script returns a non-zero exit code.
 
 ### Enabling or disabling static catalogs
 
-If you're using static catalogs, the agents don't need to request [file metadata][] or recurse into directories. And since static catalogs allow agents to use static catalogs more reliably, they're less likely to need to request catalogs as frequently.
+Puppet 4.4 and Puppet Server 2.3.0 enable the global `static_catalog` setting by default, whether you upgrade Puppet or perform a clean installation. However, the default configuration doesn't produce static catalogs, and even when configured to produce static catalogs Puppet Server doesn't inline metadata for all types of file resources.
 
-In other words, even if you aren't using static catalogs, disabling it doesn't substantially improve server or agent performance.
+Static catalogs are produced only by Puppet Server. The Ruby Puppet master never produces static catalogs, even when served by WEBrick or Passenger.
 
-However, if you still want to toggle static catalog generation, you can do so with the Boolean `static_catalogs` setting in two places:
+Puppet Server also won't produce static catalogs for an agent under the following circumstances:
 
-* **[`puppet.conf`][]:** You can globally determine whether Puppet generates static catalogs by setting `static_catalogs` in `puppet.conf`.
-* **[`environment.conf`][]:** You can override the global setting in each environment by setting `static_catalogs` in an environment's `environment.conf` file.
+* If the Server's `code-id-command` and `code-content-command` settings and scripts are not configured, or if the `code-id-command` returns an empty string.
+* If the agent's `static_catalogs` setting is false, either globally in [`puppet.conf`][] or in the [`environment.conf`][] file for the environment under which the agent is requesting a catalog.
+* If the agent's Puppet version is older than 4.4.0.
+
+Additionally, Puppet Server only inlines metadata for [file resources][] under the following circumstances:
+
+* It contains a `source` parameter with a Puppet URI, such as `source => 'puppet:///path/to/file'`.
+* It contains a `source` parameter that uses the built-in `modules` mount point.
+* The file it sources is within the following glob relative to the environment: `*/*/files/**`. For example, Puppet Server will inline metadata into static catalogs for file resources sourcing module files located by default in `/etc/puppetlabs/code/environments/<ENVIRONMENT>/modules/<MODULE NAME>/files/**`.
