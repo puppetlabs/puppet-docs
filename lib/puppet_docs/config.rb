@@ -115,7 +115,7 @@ module PuppetDocs
       self['defaultnav'].each {|prefix, nav|
         new_default = {
             # Jekyll requires us to strip any trailing or leading slash.
-            'scope' => {'path' => prefix.sub(/\A\//, '').sub(/\/\Z/, '')},
+            'scope' => {'path' => prefix.sub(%r{\A/}, '').sub(%r{/\Z}, '')},
             'values' => {'nav' => nav}
         }
         self['defaults'] << new_default
