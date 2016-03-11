@@ -53,7 +53,7 @@
               <li class="forge"><a href="https://forge.puppetlabs.com" onclick="_gaq.push(['_trackEvent', 'Toolbar', 'click', 'Forge']);">
                       <img src="/images/svg/icon-tools.svg"><span>forge</span>
                   </a></li>
-              <li class="docs"><a href="https://docs.puppetlabs.com" onclick="_gaq.push(['_trackEvent', 'Toolbar', 'click', 'Docs']);">
+              <li class="docs"><a href="https://docs.puppetlabs.com/ja/index_ja.html" onclick="_gaq.push(['_trackEvent', 'Toolbar', 'click', 'Docs']);">
                       <img src="/images/svg/icon-book.svg"><span>マニュアル</span>
                   </a></li>
               <li class="learn"><a href="https://puppetlabs.com/learn" onclick="_gaq.push(['_trackEvent', 'Toolbar', 'click', 'Training']);">
@@ -79,7 +79,7 @@
 
           <!-- Title -->
           <div id="navbar-title" class="navbar-section">
-              <div class="centered"><a href="http://docs.puppetlabs.com">マニュアル</a></div>
+              <div class="centered"><a href="http://docs.puppetlabs.com/ja/index_ja.html">マニュアル</a></div>
           </div>
 
           <!-- Search -->
@@ -116,10 +116,10 @@
                   <h1>Puppet Labsのマニュアル</h1>
               </div>
               <div class="hh-col language">
-<select id="language-select"><option>言語を選択&lt;br&gt;</option>
+<select id="language-select"><option>言語を選択</option>
+<option data-language="english" data-url="http://docs.puppetlabs.com">English</option>
 <option data-language="spanish" data-url="http://docs.puppetlabs.com/es/">Español</option>
-<option data-language="japanese" data-url="http://docs.puppetlabs.com/ja/">日本語</option>
-<option data-language="german" data-url="http://docs.puppetlabs.com/de/pe/2015.2/index.html">Deutsch</option></select><script type="text/javascript">
+<option data-language="german" data-url="http://docs.puppetlabs.com/de/pe/latest/index.html">Deutsch</option></select><script type="text/javascript">
                       jQuery('#language-select').on('change', function() {
                           var optionSelected = $("option:selected", this);
                           if (optionSelected.attr('data-language') != 'null') {
