@@ -1,0 +1,143 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>
+  File: http_file_content
+  
+    &mdash; Documentation by YARD 0.8.7.6
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '';
+  framesUrl = "frames.html#!file.http_file_content.html";
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index</a> &raquo; 
+    <span class="title">File: http_file_content</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><div id='filecontents'><h1>File Content</h1>
+
+<p>The <code>file_content</code> endpoint returns the contents of the specified file.</p>
+
+<h2>Find</h2>
+
+<p>Get a file.</p>
+
+<pre class="code ruby"><code class="ruby">GET /puppet/v3/file_content/:mount_point/:name
+</code></pre>
+
+<p><code>:mount_point</code> is one of mounts configured in the <code>fileserver.conf</code>.
+See <a href="http://docs.puppetlabs.com/guides/file_serving.html">the puppet file server guide</a>
+for more information about how mount points work.</p>
+
+<p><code>:name</code> is the path to the file within the <code>:mount_point</code> that is requested.</p>
+
+<h3>Supported HTTP Methods</h3>
+
+<p>GET</p>
+
+<h3>Supported Response Formats</h3>
+
+<p>binary (the raw binary content)</p>
+
+<h3>Parameters</h3>
+
+<p>None</p>
+
+<h3>Notes</h3>
+
+<h3>Responses</h3>
+
+<h4>File found</h4>
+
+<pre class="code ruby"><code class="ruby">GET /puppet/v3/file_content/modules/example/my_file?environment=env
+Accept: binary
+
+HTTP/1.1 200 OK
+Content-Type: application/octet-stream
+Content-Length: 16
+
+this is my file
+</code></pre>
+
+<h4>File not found</h4>
+
+<pre class="code ruby"><code class="ruby">GET /puppet/v3/file_content/modules/example/not_found?environment=env
+Accept: binary
+
+HTTP/1.1 404 Not Found
+Content-Type: text/plain
+
+Not Found: Could not find file_content modules/example/not_found
+</code></pre>
+
+<h4>No file name given</h4>
+
+<pre class="code ruby"><code class="ruby">GET /puppet/v3/file_content?environment=env
+
+HTTP/1.1 400 Bad Request
+Content-Type: text/plain
+
+No request key specified in /puppet/v3/file_content/
+</code></pre>
+
+<h2>Schema</h2>
+
+<p>A <code>file_content</code> response body is not structured data according to any standard scheme such as
+json/pson/yaml, so no schema is applicable.</p>
+</div></div>
+
+    <div id="footer">
+  Generated on Fri Jan 15 16:54:44 2016 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.6 (ruby-2.0.0).
+</div>
+
+  </body>
+</html>

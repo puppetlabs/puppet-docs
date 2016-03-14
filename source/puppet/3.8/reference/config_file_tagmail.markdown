@@ -5,17 +5,19 @@ canonical: "/puppet/latest/reference/config_file_tagmail.html"
 ---
 
 [tags]: ./lang_tags.html
-[tagmail_reference]: /references/3.8.latest/report.html#tagmail
-[report_server]: /references/3.8.latest/configuration.html#reportserver
-[report]: /references/3.8.latest/configuration.html#report
-[reports]: /references/3.8.latest/configuration.html#reports
-[reportfrom]: /references/3.8.latest/configuration.html#reportfrom
-[smtpserver]: /references/3.8.latest/configuration.html#smtpserver
-[sendmail]: /references/3.8.latest/configuration.html#sendmail
-[tagmap]: /references/3.8.latest/configuration.html#tagmap
+[tagmail_reference]: ./report.html#tagmail
+[report_server]: ./configuration.html#reportserver
+[report]: ./configuration.html#report
+[reports]: ./configuration.html#reports
+[reportfrom]: ./configuration.html#reportfrom
+[smtpserver]: ./configuration.html#smtpserver
+[sendmail]: ./configuration.html#sendmail
+[tagmap]: ./configuration.html#tagmap
 
 
 The `tagmail.conf` file configures the optional [`tagmail` report processor][tagmail_reference].
+
+> **Note:** If you use [Puppet Server](/puppetserver/1.1/) and want to enable and configure the `tagmail` report processor, install and use the [`puppetlabs/tagmail` module](https://forge.puppetlabs.com/puppetlabs/tagmail). The built-in `tagmail` report processor has a [known issue with Puppet Server](https://tickets.puppetlabs.com/browse/SERVER-62) and was removed in open source Puppet 4.0 and Puppet Enterprise 3.8.
 
 ## What is the Tagmail Report Processor?
 
@@ -32,7 +34,7 @@ To enable tagmail, you must:
 * **Enable the tagmail processor:** On Puppet masters (and Puppet apply nodes), set [`reports = tagmail`][reports].
     * Note that [the `reports` setting][reports] accepts a list, so you can enable multiple report processors.
 * **Configure email:** On Puppet masters (and Puppet apply nodes), set the [`reportfrom`][reportfrom] email address and a value for either [`smtpserver`][smtpserver] or [`sendmail`][sendmail].
-* **Configure tags:** On Puppet masters (and Puppet apply nodes), create a `tagmail.conf` file at the location specified in the `tagmap` setting.
+* **Configure tags:** On Puppet masters (and Puppet apply nodes), create a `tagmail.conf` file at the location specified in the `tagmap` setting.
 
 ## The `tagmail.conf` File
 

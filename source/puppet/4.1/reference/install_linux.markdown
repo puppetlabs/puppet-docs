@@ -5,9 +5,8 @@ title: "Installing Puppet: Linux"
 
 [master_settings]: /puppet/latest/reference/config_important_settings.html#settings-for-puppet-master-servers
 [agent_settings]: /puppet/latest/reference/config_important_settings.html#settings-for-agents-all-nodes
-[current_install]: /guides/install_puppet/pre_install.html
 [where]: ./whered_it_go.html
-[dns_alt_names]: /references/latest/configuration.html#dnsaltnames
+[dns_alt_names]: /puppet/latest/reference/configuration.html#dnsaltnames
 [server_heap]: /puppetserver/latest/install_from_packages.html#memory-allocation
 [puppetserver_confd]: /puppetserver/latest/configuration.html
 [modules]: /puppet/latest/reference/modules_fundamentals.html
@@ -15,30 +14,30 @@ title: "Installing Puppet: Linux"
 [environments]: /puppet/latest/reference/environments.html
 
 
-## Read the Pre-Install Tasks 
+## Read the Pre-Install Tasks
 
 Before installing Puppet, make sure you've read the [pre-install tasks.](./install_pre.html)
 
 > **Note:** Puppet 4 changed the locations for a lot of the most important files and directories. [See this page for a summary of the changes.][where]
 
 
-## Review Supported Versions and Requirements 
+## Review Supported Versions and Requirements
 
 Most Linux systems including CentOS, Redhat, Ubuntu, and Debian have packages. We have not yet released a Mac OS X package. For a complete list of supported platforms, view the [system requirements page.](./system_requirements.html)
 
 
 ## Install a Release Package to Enable Puppet Labs Package Repositories
 
-Release packages configure your system to download and install appropriate versions of the puppetserver and puppet-agent packages. 
+Release packages configure your system to download and install appropriate versions of the puppetserver and puppet-agent packages.
 
 ### Installing Release Packages on yum/RPM Systems
 
 First, choose the package based on your specific operating system and version. The packages are all named using the following convention:
-  
+
 `puppetlabs-release-COLLECTION-OS-VERSION.noarch.rpm`
-  
+
 For instance, the package for Puppet Collection 1 on Red Hat Enterprise Linux 7 is `puppetlabs-release-pc1-rhel-7.noarch.rpm`.
-	
+
 Second, install the package with `rpm -Uhv PACKAGENAME`:
 
 		[root@localhost ~]# rpm -Uvh https://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm
@@ -46,11 +45,11 @@ Second, install the package with `rpm -Uhv PACKAGENAME`:
 		Preparing...                          ################################# [100%]
 		Updating / installing...
 		1:puppetlabs-release-pc1-0.9.2-1.el################################# [100%]
-    
+
 
 ### Installing Release Packages apt/dpkg Systems
-   
-First, choose the package based on your specific operating system and version. The packages are all named using the following convention: 
+
+First, choose the package based on your specific operating system and version. The packages are all named using the following convention:
 
 `puppetlabs-release-COLLECTION-VERSION.deb`
 
@@ -60,8 +59,8 @@ Second, download the package and install it:
 
         # wget https://apt.puppetlabs.com/puppetlabs-release-pc1-wheezy.deb
         # dpkg -i puppetlabs-release-pc1-wheezy.deb
-		
-Finally, make sure to run `apt-get update` after installing the package. 
+
+Finally, make sure to run `apt-get update` after installing the package.
 
 ## Make Sure You'll Be Able to Run the Puppet Executables
 
@@ -119,7 +118,7 @@ If you want to run Puppet Server in the foreground and watch the log messages sc
 ### Install the `puppet-agent` Package
 
 #### For RPM-based systems using yum
-On your Puppet agent node(s), run `sudo yum install puppet-agent`. 
+On your Puppet agent node(s), run `sudo yum install puppet-agent`.
 
 #### For dpkg-based systems using apt-get
 On your Puppet agent node(s), run `apt-get install puppet-agent`.

@@ -160,7 +160,7 @@ notice: Finished catalog run in 0.11 seconds
 
 <p><code>puppet apply</code>コマンドを実行したときは、そのファイル中に適用したいクラスやリソースを全て宣言したマニフェストファイルを指定しました。</p>
 
-<p>masterノードも同様であり、<strong>常に同じマニフェストファイルを読み込む</strong>ような場合を除き、通常はsite.ppを参照します。Puppet Enterpriseではデフォルトで<code>/etc/puppetlabs/puppet/manifests/site.pp</code>に配置されていますが、<a href="http://docs.puppetlabs.com/references/latest/configuration.html#manifest"><code>manifest</code>の設定(英文)</a>で場所を変更できます。</p>
+<p>masterノードも同様であり、<strong>常に同じマニフェストファイルを読み込む</strong>ような場合を除き、通常はsite.ppを参照します。Puppet Enterpriseではデフォルトで<code>/etc/puppetlabs/puppet/manifests/site.pp</code>に配置されていますが、<a href="http://docs.puppetlabs.com/puppet/latest/reference/configuration.html#manifest"><code>manifest</code>の設定(英文)</a>で場所を変更できます。</p>
 
 <p>指定したディレクトリのsite.pp中にクラスやリソースを宣言する事もできますが、全てのノードが同じリソースを取得するカタログを作ってしまいますので、これは限定的な利用方法です。通常は<strong>node定義</strong>で宣言したいクラスを隠します。</p>
 
@@ -190,7 +190,7 @@ notice: Finished catalog run in 0.11 seconds
 
 <p>ノードがクラスと異なるのは、ノードの場合はノードの<strong>名前</strong>を基準としてカタログがコンパイルされて自動的に宣言されるということです。<strong>ただ1つ</strong>のノード定義がカタログに追加されるので、他のノード定義は効果的に隠されます。</p>
 
-<p>agentノードの<strong>名前</strong>はほぼ毎回<a href="http://docs.puppetlabs.com/references/latest/configuration.html#certname"><code>certname</code>の設定(英文)</a>から読み込まれます。これはインストール時に設定されますが、後から変更もできます。<code>certname</code>は通常ノード名のFQDN（でも絶対ではありません）になっています。</p>
+<p>agentノードの<strong>名前</strong>はほぼ毎回<a href="http://docs.puppetlabs.com/puppet/latest/reference/configuration.html#certname"><code>certname</code>の設定(英文)</a>から読み込まれます。これはインストール時に設定されますが、後から変更もできます。<code>certname</code>は通常ノード名のFQDN（でも絶対ではありません）になっています。</p>
 
 <p>ノード定義の詳細は別の手段でクラスをノードに割り当てる方法と共に後述します。</p>
 

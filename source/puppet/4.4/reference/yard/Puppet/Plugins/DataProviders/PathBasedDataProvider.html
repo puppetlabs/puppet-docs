@@ -1,0 +1,475 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Class: Puppet::Plugins::DataProviders::PathBasedDataProvider
+  
+    &mdash; Documentation by YARD 0.8.7.6
+  
+</title>
+
+  <link rel="stylesheet" href="../../../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../../../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '../../../';
+  framesUrl = "../../../frames.html#!Puppet/Plugins/DataProviders/PathBasedDataProvider.html";
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../../../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../../../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../../../_index.html">Index (P)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../../../Puppet.html" title="Puppet (module)">Puppet</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../../Plugins.html" title="Puppet::Plugins (module)">Plugins</a></span></span> &raquo; <span class='title'><span class='object_link'>DataProviders</span></span>
+     &raquo; 
+    <span class="title">PathBasedDataProvider</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../../../class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="../../../method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="../../../file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><h1>Class: Puppet::Plugins::DataProviders::PathBasedDataProvider
+  <span class="abstract note title">Abstract</span>
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName"><span class='object_link'>Object</span></span>
+      
+        <ul class="fullTree">
+          <li><span class='object_link'>Object</span></li>
+          
+            <li class="next">Puppet::Plugins::DataProviders::PathBasedDataProvider</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">lib/puppet/plugins/data_providers/data_provider.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <div class="note abstract">
+  <strong>This class is abstract.</strong>
+  <div class='inline'></div>
+</div>
+<p>A data provider that is initialized with a set of <em>paths</em>. When performing lookup, each
+path is search in the order they appear. If a value is found in more than one location it
+will be merged according to a given (optional) merge strategy.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'><p>Puppet 4.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+
+
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">- (PathBasedDataProvider) <strong>initialize</strong>(name, paths) </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>A new instance of PathBasedDataProvider.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#unchecked_lookup-instance_method" title="#unchecked_lookup (instance method)">- (Object) <strong>unchecked_lookup</strong>(key, lookup_invocation, merge) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Performs a lookup by searching all given paths for the given <em>key</em>.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'>DataProvider</span></h3>
+  <p class="inherited"><span class='object_link'><a href="DataProvider.html#data-instance_method" title="Puppet::Plugins::DataProviders::DataProvider#data (method)">#data</a></span>, <span class='object_link'><a href="DataProvider.html#data_key-instance_method" title="Puppet::Plugins::DataProviders::DataProvider#data_key (method)">#data_key</a></span>, <span class='object_link'><a href="DataProvider.html#initialize_data-instance_method" title="Puppet::Plugins::DataProviders::DataProvider#initialize_data (method)">#initialize_data</a></span>, <span class='object_link'><a href="DataProvider.html#lookup-instance_method" title="Puppet::Plugins::DataProviders::DataProvider#lookup (method)">#lookup</a></span>, <span class='object_link'><a href="DataProvider.html#post_process-instance_method" title="Puppet::Plugins::DataProviders::DataProvider#post_process (method)">#post_process</a></span></p>
+<div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <h3 class="signature first" id="initialize-instance_method">
+  
+    - (<tt><span class='object_link'><a href="" title="Puppet::Plugins::DataProviders::PathBasedDataProvider (class)">PathBasedDataProvider</a></span></tt>) <strong>initialize</strong>(name, paths) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Returns a new instance of PathBasedDataProvider</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>name</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The name of the data provider</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>paths</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Array</span>&lt;<span class='object_link'><a href="ResolvedPath.html" title="Puppet::Plugins::DataProviders::ResolvedPath (class)">ResolvedPath</a></span>&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Paths used by this provider</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'><p>Puppet 4.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+180
+181
+182
+183</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/plugins/data_providers/data_provider.rb', line 180</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_paths'>paths</span><span class='rparen'>)</span>
+  <span class='ivar'>@name</span> <span class='op'>=</span> <span class='id identifier rubyid_name'>name</span>
+  <span class='ivar'>@paths</span> <span class='op'>=</span> <span class='id identifier rubyid_paths'>paths</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="unchecked_lookup-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>unchecked_lookup</strong>(key, lookup_invocation, merge) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Performs a lookup by searching all given paths for the given <em>key</em>. A merge will be performed if
+the value is found in more than one location and <em>merge</em> is not nil.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>key</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The key to lookup</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>lookup_invocation</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Puppet::Pops::Lookup::Invocation</span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The current lookup invocation</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>merge</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Puppet::Pops::MergeStrategy</span></tt>, <tt>String</tt>, <tt><span class='object_link'>Hash</span>&lt;String,<span class='object_link'>Object</span>&gt;</tt>, <tt>nil</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Merge strategy or hash with strategy and options</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'><p>Puppet 4.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/plugins/data_providers/data_provider.rb', line 193</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_unchecked_lookup'>unchecked_lookup</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_lookup_invocation'>lookup_invocation</span><span class='comma'>,</span> <span class='id identifier rubyid_merge'>merge</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_lookup_invocation'>lookup_invocation</span><span class='period'>.</span><span class='id identifier rubyid_with'>with</span><span class='lparen'>(</span><span class='symbol'>:data_provider</span><span class='comma'>,</span> <span class='kw'>self</span><span class='rparen'>)</span> <span class='kw'>do</span>
+    <span class='id identifier rubyid_merge_strategy'>merge_strategy</span> <span class='op'>=</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Pops</span><span class='op'>::</span><span class='const'>MergeStrategy</span><span class='period'>.</span><span class='id identifier rubyid_strategy'>strategy</span><span class='lparen'>(</span><span class='id identifier rubyid_merge'>merge</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_lookup_invocation'>lookup_invocation</span><span class='period'>.</span><span class='id identifier rubyid_with'>with</span><span class='lparen'>(</span><span class='symbol'>:merge</span><span class='comma'>,</span> <span class='id identifier rubyid_merge_strategy'>merge_strategy</span><span class='rparen'>)</span> <span class='kw'>do</span>
+      <span class='id identifier rubyid_merged_result'>merged_result</span> <span class='op'>=</span> <span class='id identifier rubyid_merge_strategy'>merge_strategy</span><span class='period'>.</span><span class='id identifier rubyid_merge_lookup'>merge_lookup</span><span class='lparen'>(</span><span class='ivar'>@paths</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_path'>path</span><span class='op'>|</span>
+        <span class='id identifier rubyid_lookup_invocation'>lookup_invocation</span><span class='period'>.</span><span class='id identifier rubyid_with'>with</span><span class='lparen'>(</span><span class='symbol'>:path</span><span class='comma'>,</span> <span class='id identifier rubyid_path'>path</span><span class='rparen'>)</span> <span class='kw'>do</span>
+          <span class='kw'>if</span> <span class='id identifier rubyid_path'>path</span><span class='period'>.</span><span class='id identifier rubyid_exists?'>exists?</span>
+            <span class='id identifier rubyid_hash'>hash</span> <span class='op'>=</span> <span class='id identifier rubyid_data'>data</span><span class='lparen'>(</span><span class='id identifier rubyid_path'>path</span><span class='period'>.</span><span class='id identifier rubyid_path'>path</span><span class='comma'>,</span> <span class='id identifier rubyid_lookup_invocation'>lookup_invocation</span><span class='rparen'>)</span>
+            <span class='id identifier rubyid_value'>value</span> <span class='op'>=</span> <span class='id identifier rubyid_hash'>hash</span><span class='lbracket'>[</span><span class='id identifier rubyid_key'>key</span><span class='rbracket'>]</span>
+            <span class='kw'>if</span> <span class='id identifier rubyid_value'>value</span> <span class='op'>||</span> <span class='id identifier rubyid_hash'>hash</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='rparen'>)</span>
+              <span class='id identifier rubyid_lookup_invocation'>lookup_invocation</span><span class='period'>.</span><span class='id identifier rubyid_report_found'>report_found</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_post_process'>post_process</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='comma'>,</span> <span class='id identifier rubyid_lookup_invocation'>lookup_invocation</span><span class='rparen'>)</span><span class='rparen'>)</span>
+            <span class='kw'>else</span>
+              <span class='id identifier rubyid_lookup_invocation'>lookup_invocation</span><span class='period'>.</span><span class='id identifier rubyid_report_not_found'>report_not_found</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='rparen'>)</span>
+              <span class='id identifier rubyid_throw'>throw</span> <span class='symbol'>:no_such_key</span>
+            <span class='kw'>end</span>
+          <span class='kw'>else</span>
+            <span class='id identifier rubyid_lookup_invocation'>lookup_invocation</span><span class='period'>.</span><span class='id identifier rubyid_report_path_not_found'>report_path_not_found</span>
+            <span class='id identifier rubyid_throw'>throw</span> <span class='symbol'>:no_such_key</span>
+          <span class='kw'>end</span>
+        <span class='kw'>end</span>
+      <span class='kw'>end</span>
+      <span class='id identifier rubyid_lookup_invocation'>lookup_invocation</span><span class='period'>.</span><span class='id identifier rubyid_report_result'>report_result</span><span class='lparen'>(</span><span class='id identifier rubyid_merged_result'>merged_result</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+    <div id="footer">
+  Generated on Fri Jan 15 16:54:54 2016 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.6 (ruby-2.0.0).
+</div>
+
+  </body>
+</html>

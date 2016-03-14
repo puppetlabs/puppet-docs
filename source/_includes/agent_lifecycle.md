@@ -9,8 +9,8 @@ On community-supported operating systems, we support Puppet agent for the OS's o
 This covers the following community-supported operating systems:
 
 - Debian
-- Fedora (only available in Open Source Puppet)
-- Ubuntu (non LTS) (only available in Open Source Puppet)
+- Fedora
+- Ubuntu (non LTS)
 
 #### Enterprise-Class Operating Systems
 

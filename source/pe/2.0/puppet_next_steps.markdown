@@ -22,7 +22,7 @@ The preceding chapters were sprinkled with links to [Learning Puppet](/learning/
 
 ### More About Resource Types
 
-For a fast, printable reference to the most common resource types, get the [Core Types Cheat Sheet](/puppet_core_types_cheatsheet.pdf). For more detailed info about Puppet's resource types, see the [type reference for your version of Puppet](/references/2.7.6/type.html).
+For a fast, printable reference to the most common resource types, get the [Core Types Cheat Sheet](/puppet_core_types_cheatsheet.pdf). For more detailed info about Puppet's resource types, see the [type reference for your version of Puppet](/puppet/2.7/reference/type.html).
 
 ### More About the Puppet Language
 

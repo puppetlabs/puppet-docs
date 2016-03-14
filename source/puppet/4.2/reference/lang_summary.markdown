@@ -7,16 +7,16 @@ canonical: "/puppet/latest/reference/lang_summary.html"
 [site_manifest]: ./dirs_manifest.html
 [autoload]: ./lang_namespaces.html#autoloader-behavior
 [config]: /guides/configuring.html
-[usecacheonfailure]: /references/4.2.latest/configuration.html#usecacheonfailure
+[usecacheonfailure]: ./configuration.html#usecacheonfailure
 [fileserve]: ./modules_fundamentals.html#files
 [classes]: ./lang_classes.html
 [enc]: /guides/external_nodes.html
 [resources]: ./lang_resources.html
 [chaining]: ./lang_relationships.html#chaining-arrows
 [modules]: ./modules_fundamentals.html
-[package]: /references/4.2.latest/type.html#package
-[file]: /references/4.2.latest/type.html#file
-[service]: /references/4.2.latest/type.html#service
+[package]: ./type.html#package
+[file]: ./type.html#file
+[service]: ./type.html#service
 [case]: ./lang_conditional.html#case-statements
 [fact]: ./lang_variables.html#facts-and-built-in-variables
 [variables]: ./lang_variables.html
@@ -26,7 +26,7 @@ canonical: "/puppet/latest/reference/lang_summary.html"
 [declared]: /references/glossary.html#declare
 [string_newline]: ./lang_data_string.html#line-breaks
 [node]: ./lang_node_definitions.html
-[ordering]: /references/4.2.latest/configuration.html#ordering
+[ordering]: ./configuration.html#ordering
 [hiera]: /hiera/latest
 [compilation]: ./subsystem_catalog_compilation.html
 
@@ -34,8 +34,7 @@ Puppet uses its own configuration language, which was designed to be accessible 
 
 > To see how the Puppet language's features have evolved over time, see [History of the Puppet Language](/guides/language_history.html).
 
-Resources, Classes, and Nodes
------
+## Resources, Classes, and Nodes
 
 The core of the Puppet language is **declaring [resources][].** Every other part of the language exists to add flexibility and convenience to the way resources are declared.
 
@@ -43,16 +42,13 @@ Groups of resources can be organized into **[classes][],** which are larger unit
 
 Nodes that serve different roles will generally get different sets of classes. The task of configuring which classes will be applied to a given node is called **node classification.**  Nodes can be classified in the Puppet language using [node definitions][node]; they can also be classified using node-specific data from outside your manifests, such as that from an [ENC][] or [Hiera][].
 
-
-Ordering
------
+## Ordering
 
 Although Puppet's language is built around describing resources (and the relationships between them) in a declarative way, several parts of the language do depend on evaluation order. The most notable of these are variables, which must be set before they are referenced.
 
 In the rest of this document, we try to call out areas where the order of statements matters.
 
-Files
------
+## Files
 
 Puppet language files are called **manifests,** and are named with the `.pp` file extension. Manifest files:
 
@@ -71,13 +67,11 @@ Windows uses CRLF line endings instead of \*nix's LF line endings.
 
 * If the contents of a file are specified with the `content` attribute, Puppet will write the content in "binary" mode. To create files with CRLF line endings, the `\r\n` escape sequence should be specified as part of the content.
 * If a file is being downloaded to a Windows node with the `source` attribute, Puppet will transfer the file in "binary" mode, leaving the original newlines untouched.
-* Non-`file` resource types that make partial edits to a system file (most notably the [`host`](/references/4.2.latest/type.html#host) resource type, which manages the `%windir%\system32\drivers\etc\hosts` file) manage their files in text mode, and will automatically translate between Windows and \*nix line endings.
+* Non-`file` resource types that make partial edits to a system file (most notably the [`host`](./type.html#host) resource type, which manages the `%windir%\system32\drivers\etc\hosts` file) manage their files in text mode, and will automatically translate between Windows and \*nix line endings.
 
-    > Note: When writing your own resource types, you can get this behavior by using the `flat` filetype.
+> **Note:** When writing your own resource types, you can get this behavior by using the `flat` filetype.
 
-
-Compilation and Catalogs
------
+## Compilation and Catalogs
 
 Puppet manifests can use conditional logic to describe many nodes' configurations at once. Before configuring a node, Puppet compiles manifests into a **catalog,** which is only valid for a single node and which contains no ambiguous logic.
 
@@ -89,9 +83,7 @@ Agent nodes cache their most recent catalog. If they request a catalog and the m
 
 For more information, see [the reference page on catalog compilation][compilation].
 
-
-Example
------
+## Example
 
 The following short manifest manages NTP. It uses [package][], [file][], and [service][] resources; a [case statement][case] based on a [fact][]; [variables][]; [ordering][] and [notification][] relationships; and [file contents being served from a module][fileserve].
 
@@ -118,10 +110,6 @@ file { 'ntp.conf':
   require => Package['ntp'],
   source  => "puppet:///modules/ntp/ntp.conf",
   # This source file would be located on the Puppet master at
-  # /etc/puppetlabs/puppet/modules/ntp/files/ntp.conf (in Puppet Enterprise)
-  # or
-  # /etc/puppet/modules/ntp/files/ntp.conf (in open source Puppet)
+  # /etc/puppetlabs/code/modules/ntp/files/ntp.conf
 }
 ~~~
-
-

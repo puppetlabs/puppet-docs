@@ -5,7 +5,7 @@ canonical: "/puppet/latest/reference/lang_exported.html"
 ---
 
 [resources]: ./lang_resources.html
-[nagios_service]: /references/latest/type.html#nagiosservice
+[nagios_service]: /puppet/latest/reference/type.html#nagiosservice
 [concat]: http://forge.puppetlabs.com/ripienaar/concat
 [title]: ./lang_resources.html#title
 [namevar]: ./lang_resources.html#namenamevar
@@ -36,7 +36,9 @@ An **exported resource declaration** specifies a desired state for a resource, *
 Purpose
 -----
 
-Exported resources allow nodes to share information with each other. This is useful when one node has information that another node needs in order to manage a resource --- the node with the information can construct and publish the resource, and the node managing the resource can collect it.
+Exported resources allow the Puppet compiler to share information among nodes by combining information from multiple nodes' catalogs. This helps you manage things that rely on nodes knowing the states or activity of other nodes.
+
+> **Note:** Exported resources rely on the compiler having access to the information, and cannot use information that's never sent to the compiler, such as the contents of arbitrary files on a node.
 
 The most common use cases are monitoring and backups. A class that manages a service like PostgreSQL can export a [`nagios_service`][nagios_service] resource describing how to monitor the service, including information like its hostname and port. The Nagios server can then collect every `nagios_service` resource, and will automatically start monitoring the Postgres server.
 

@@ -16,8 +16,8 @@ canonical: "/puppet/latest/reference/lang_reserved.html"
 [contains]: ./lang_containment.html
 [resources]: ./lang_resources.html
 [class]: ./lang_classes.html
-[type_ref]: /references/4.2.latest/type.html
-[func_ref]: /references/4.2.latest/function.html
+[type_ref]: ./type.html
+[func_ref]: ./function.html
 [environment]: ./environments.html
 
 Reserved Words
@@ -43,7 +43,7 @@ The following words are reserved:
 * `else` --- language keyword
 * `elsif` --- language keyword
 * `false` --- boolean value
-* `function` --- reserved for future use
+* `function` --- language keyword
 * `if` --- language keyword
 * `import` --- former language keyword (now removed)
 * `in` --- expression operator

@@ -4,7 +4,7 @@ title: "Resource Tips and Examples: Scheduled Task on Windows"
 toc: false
 ---
 
-[scheduledtask]: /references/4.2.latest/type.html#scheduledtask
+[scheduledtask]: ./type.html#scheduledtask
 
 Puppet can create, edit, and delete scheduled tasks, which are a Windows-only resource type.
 
@@ -29,7 +29,7 @@ Puppet can manage the task name, the enabled/disabled status, the command, any a
 
 For more information, see [the reference documentation for the `scheduled_task` type][scheduledtask].
 
-##Errata
+## Errata
 
 ### Known Issues Prior to Puppet 3.8.0
 

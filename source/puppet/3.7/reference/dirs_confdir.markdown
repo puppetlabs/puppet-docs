@@ -4,7 +4,7 @@ title: "Directories: The Main Config Directory (Confdir)"
 canonical: "/puppet/latest/reference/dirs_confdir.html"
 ---
 
-[listen]: /references/3.7.latest/configuration.html#listen
+[listen]: ./configuration.html#listen
 
 
 

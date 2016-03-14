@@ -49,9 +49,9 @@ this:
 
     #~/lib/ruby
     └── facter
-        ├── rackspace.rb
-        ├── system_load.rb
-        └── users.rb
+        ├── rackspace.rb
+        ├── system_load.rb
+        └── users.rb
 
 Facter would try to load 'facter/system\_load.rb', 'facter/users.rb', and
 'facter/rackspace.rb'.
@@ -329,8 +329,9 @@ In a module (recommended):
 
     <MODULEPATH>/<MODULE>/facts.d/
 
-On Unix/Linux/Mac OS X, there are two directories:
+On Unix/Linux/Mac OS X, there are three directories:
 
+    /opt/puppetlabs/facter/facts.d/
     /etc/puppetlabs/facter/facts.d/
     /etc/facter/facts.d/
 

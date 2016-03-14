@@ -1,0 +1,251 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>
+  File: http_api_index
+  
+    &mdash; Documentation by YARD 0.8.7.6
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '';
+  framesUrl = "frames.html#!file.http_api_index.html";
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index</a> &raquo; 
+    <span class="title">File: http_api_index</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><div id='filecontents'><p>A Puppet master server provides several services via HTTP API, and the Puppet
+agent application uses those services to resolve a node&#39;s credentials, retrieve
+a configuration catalog, retrieve file data, and submit reports.</p>
+
+<p>In general, these APIs aren&#39;t designed for use by tools other than Puppet agent,
+and they&#39;ve historically relied on a lot of shared code to work correctly.
+This is gradually changing, although we expect external use of these APIs to
+remain low for the foreseeable future.</p>
+
+<h2>V1/V2 HTTP APIs (Removed)</h2>
+
+<p>The V1 and V2 APIs were removed in Puppet 4.0.0. The routes that were previously
+under <code>/</code> or <code>/v2.0</code> can now be found under the <a href="#puppet-v3-http-api"><code>/puppet/v3</code></a>
+API or <a href="#ca-v1-http-api"><code>/puppet-ca/v1</code></a> API.</p>
+
+<p>Starting with version 2.1, the Puppet Server 2.x series provides both the
+current and previous API endpoints, and can serve nodes running Puppet agent 3.x
+and 4.x. However, Rack masters, WEBrick masters, and Puppet Server 2.0 cannot
+serve nodes running Puppet 3.x.</p>
+
+<h2>Puppet and Puppet CA APIs</h2>
+
+<p>Beginning with Puppet 4, Puppet&#39;s HTTP API has been split into two APIs, which
+are versioned separately. There is now an API for configuration-related services
+and a separate one for the certificate authority (CA).</p>
+
+<p>All configuration endpoints are prefixed with <code>/puppet</code>, while all CA endpoints are
+prefixed with <code>/puppet-ca</code>. All endpoints are explicitly versioned: the prefix
+is always immediately followed by a string like <code>/v3</code> (a directory separator,
+the letter <code>v</code>, and the version number of the API).</p>
+
+<h3>Authorization</h3>
+
+<p>Authorization for <code>/puppet</code> endpoints is still controlled with Puppet&#39;s <code>auth.conf</code>
+authorization system.</p>
+
+<p>Puppet Server ignores <code>auth.conf</code> for <code>/puppet-ca</code> endpoints. Access to the
+<code>certificate_status</code> endpoint is configured in Puppet Server&#39;s <code>ca.conf</code> file,
+and the remaining CA endpoints are always accessible. Rack Puppet master servers
+still use <code>auth.conf</code> for <code>/puppet-ca</code>.</p>
+
+<p>When specifying authorization in <code>auth.conf</code>, the prefix and the version number
+(e.g. <code>/puppet/v3</code>) on the paths must be retained, since Puppet matches
+authorization rules against the full request path.</p>
+
+<h2>Puppet V3 HTTP API</h2>
+
+<p>The Puppet agent application uses several network services to manage systems.
+These services are all grouped under the <code>/puppet</code> API. Other tools can access
+these services and use the Puppet master&#39;s data for other purposes.</p>
+
+<p>The V3 API contains endpoints of two types: those that are based on dispatching
+to Puppet&#39;s internal &quot;indirector&quot; framework, and those that are not (namely the
+<a href="#environments-endpoint">environments endpoint</a>).</p>
+
+<p>Every HTTP endpoint that dispatches to the indirector follows the form:
+<code>/puppet/v3/:indirection/:key?environment=:environment</code> where:</p>
+
+<ul>
+<li><code>:environment</code> is the name of the environment that should be in effect for
+the request. Not all endpoints need an environment, but the query
+parameter must always be specified.</li>
+<li><code>:indirection</code> is the indirection to dispatch the request to.</li>
+<li><code>:key</code> is the &quot;key&quot; portion of the indirection call.</li>
+</ul>
+
+<p>Using this API requires significant understanding of how Puppet&#39;s internal
+services are structured, but the following documents attempt to specify what is
+available and how to interact with it.</p>
+
+<h3>Configuration Management Services</h3>
+
+<p>These services are all directly used by the Puppet agent application, in order
+to manage the configuration of a node.</p>
+
+<ul>
+<li><a href="./http_catalog.md">Catalog</a></li>
+<li><a href="./http_node.md">Node</a></li>
+<li><a href="./http_file_bucket_file.md">File Bucket File</a></li>
+<li><a href="./http_file_content.md">File Content</a></li>
+<li><a href="./http_file_metadata.md">File Metadata</a></li>
+<li><a href="./http_report.md">Report</a></li>
+</ul>
+
+<h3>Informational Services</h3>
+
+<p>These services are not directly used by Puppet agent, but may be used by other
+tools.</p>
+
+<ul>
+<li><a href="./http_resource_type.md">Resource Type</a></li>
+<li><a href="./http_status.md">Status</a></li>
+</ul>
+
+<h3>Environments Endpoint</h3>
+
+<p>The one endpoint with a different format is the <code>/puppet/v3/environments</code>
+endpoint.</p>
+
+<p>This endpoint will only accept payloads formatted as JSON and respond with JSON
+(MIME type of <code>application/json</code>).</p>
+
+<ul>
+<li><a href="./http_environments.md">Environments</a></li>
+</ul>
+
+<h4>Error Responses</h4>
+
+<p>The <code>environments</code> endpoint will respond to error conditions in a uniform manner
+and use standard HTTP response code to signify those errors.</p>
+
+<ul>
+<li>When the client submits a malformed request, the API will return a 400 Bad
+Request response.</li>
+<li>When the client is not authorized, the API will return a 403 Not Authorized
+response.</li>
+<li>When the client attempts to use an HTTP method that is not permissible for
+the endpoint, the API will return a 405 Method Not Allowed response.</li>
+<li>When the client asks for a response in a format other than JSON, the API will
+return a 406 Unacceptable response.</li>
+<li>When the server encounters an unexpected error during the handling of a
+request, it will return a 500 Server Error response.</li>
+<li>When the server is unable to find an endpoint handler for an http request,
+it will return a 404 Not Found response</li>
+</ul>
+
+<p>All error responses will contain a body, except when it is a HEAD request. The
+error responses will uniformly be a JSON object with the following properties:</p>
+
+<ul>
+<li><code>message</code>: (<code>String</code>) A human readable message explaining the error.</li>
+<li><code>issue_kind</code>: (<code>String</code>) A unique label to identify the error class.</li>
+<li><code>stacktrace</code> (only for 5xx errors): (<code>Array&lt;String&gt;</code>) A stacktrace to where
+the error occurred.</li>
+</ul>
+
+<p>A <a href="../schemas/error.json">JSON schema for the error objects</a> is also available.</p>
+
+<h2>CA V1 HTTP API</h2>
+
+<p>The CA API contains all of the endpoints used in support of Puppet&#39;s PKI
+system.</p>
+
+<p>The CA V1 endpoints share the same basic format as the Puppet V3 API, since
+they are also based off of Puppet&#39;s internal &quot;indirector&quot;. However, they have
+a different prefix and version. The endpoints thus follow the form:
+<code>/puppet-ca/v1/:indirection/:key?environment=:environment</code> where:</p>
+
+<ul>
+<li><code>:environment</code> is an arbitrary placeholder word, required for historical
+reasons. No CA endpoints actually use an environment, but the query parameter
+must always be specified.</li>
+<li><code>:indirection</code> is the indirection to dispatch the request to.</li>
+<li><code>:key</code> is the &quot;key&quot; portion of the indirection call.</li>
+</ul>
+
+<p>As with the Puppet V3 API, using this API requires a significant amount of
+understanding of how Puppet&#39;s internal services are structured. The following
+documents provide additional specification.</p>
+
+<h3>SSL Certificate Related Services</h3>
+
+<ul>
+<li><a href="./http_certificate.md">Certificate</a></li>
+<li><a href="./http_certificate_request.md">Certificate Signing Requests</a></li>
+<li><a href="./http_certificate_status.md">Certificate Status</a></li>
+<li><a href="./http_certificate_revocation_list.md">Certificate Revocation List</a></li>
+</ul>
+
+<h2>Serialization Formats</h2>
+
+<p>Puppet sends messages using several different serialization formats. Not all
+REST services support all of the formats.</p>
+
+<ul>
+<li><a href="./pson.md">PSON</a></li>
+<li><a href="http://www.yaml.org/spec/1.2/spec.html">YAML</a></li>
+</ul>
+</div></div>
+
+    <div id="footer">
+  Generated on Fri Jan 15 17:27:27 2016 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.6 (ruby-2.0.0).
+</div>
+
+  </body>
+</html>

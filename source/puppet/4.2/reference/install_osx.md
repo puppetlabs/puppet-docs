@@ -5,7 +5,6 @@ canonical: "/puppet/latest/reference/install_osx.html"
 ---
 
 [server_install]: /puppetserver/2.1/install_from_packages.html
-[downloads_pc1]: http://downloads.puppetlabs.com/mac/PC1/
 [where]: ./whered_it_go.html
 [agent_settings]: ./config_important_settings.html#settings-for-agents-all-nodes
 
@@ -25,19 +24,32 @@ To install on other operating systems, see the pages linked in the navigation si
 
 ## Download the OS X `puppet-agent` Package
 
-[OS X `puppet-agent` packages are available here.][downloads_pc1] These packages are tied to Puppet Collection 1, which is the set of Puppet Labs software designed to work well with Puppet 4. The `puppet-agent` package bundles all of Puppet's prerequisites, so you don't need to download anything else to install Puppet on an agent node.
+OS X `puppet-agent` packages are available here:
+
+- [10.10 Yosemite](https://downloads.puppetlabs.com/mac/10.10/PC1/x86_64/)
+- [10.9 Mavericks](https://downloads.puppetlabs.com/mac/10.9/PC1/x86_64/)
+- [all](https://downloads.puppetlabs.com/mac/) (Includes older Puppet versions; browse to `<OS X VERSION>/PC1/x86_64` for current packages.)
+
+These packages are tied to Puppet Collection 1, which is the set of Puppet Labs software designed to work well with Puppet 4. The `puppet-agent` package bundles all of Puppet's prerequisites, so you don't need to download anything else to install Puppet on an agent node.
 
 ### Choosing Your Package
 
-The OS X packages are named with their `puppet-agent` version and the name of their OS version:
+The OS X packages are named with their `puppet-agent` version and OS X version:
 
-`puppet-agent-<PACKAGE VERSION>-<OSX VERSION NAME>.dmg`
+`puppet-agent-<PACKAGE VERSION>.osx<OS X VERSION>.dmg`
 
 For example:
 
-`puppet-agent-1.2.4-yosemite.dmg`
+`puppet-agent-1.2.5.osx10.10.dmg`
 
 To see which versions of Puppet, Facter, etc. are in a given `puppet-agent` release, [see the docs page about `puppet-agent` versions.](./about_agent.html)
+
+> #### Previous Package Names
+>
+> We used some different naming schemes in the puppet-agent 1.2 series before settling on the current convention in 1.2.5.
+>
+> - 1.2.0 through 1.2.2: `puppet-agent-<VERSION>-osx-<OS X VERSION>-<ARCH>.dmg`. Redundant; OS X only runs on x86_64.
+> - 1.2.4: `puppet-agent-<VERSION>-<OS X CODE NAME>.dmg`. This was too hard for automated tooling to deal with, because OS X's built-in CLI tools don't report the code name.
 
 ## Make Sure You'll Be Able to Run the Puppet Executables
 

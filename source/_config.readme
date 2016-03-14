@@ -1,0 +1,73 @@
+# About `_config.yml`
+
+The _config.yml file was originally a basic Jekyll config, but since it was
+there already, we've extended it to configure a bunch of stuff specific to the
+Puppet Docs website.
+
+Where's all this config data get used? Well.
+
+## Raw Config Data
+
+- `highlighter`, `markdown`, `kramdown`, `url`, `safe`: Used directly by Jekyll.
+- `defaultnav`: Used by PuppetDocs::Config to set default values for `page.nav`.
+  (Under the hood, this uses Jekyll's frontmatter defaults feature, which is too
+  unwieldy to use directly.) The main template then calls
+  `{% partial {{page.nav}} %}` to add the sidebar navigation to each page.
+
+  **Note:** In versioned documents, any applicable defaultnav gets overridden
+  by the nav value from the document.
+- `externalsources`: Used by the external sources tasks in our Rakefile, which
+  links other repos into place before building the site.
+
+  **Note:** This isn't the complete list of external sources, because
+  PuppetDocs::Config merges in information from the `documents` list before we
+  run those tasks.
+- `symlink_latest`: Used by the `symlink_latest_versions` task in the Rakefile,
+  to decide which directories to create a "latest" shortcut in.
+- `lock_latest`: Used in two places: the `symlink_latest_versions` task in the
+  Rakefile, and in PuppetDocs::Config (when building the
+  `document_version_index`). In both places, it lets you override the latest
+  version. Any other code that needs to know the latest version will find out
+  via one of those two places instead of recalculating it.
+- `document_names`: Used by the main template (via the document switcher) to
+  refer to documents by their long names.
+- `documents`: Used by PuppetDocs::Config to construct the keys in the following
+  sub-list. **No other code should access `documents` directly;** use
+  `document_list` instead.
+
+## Generated Config Data
+
+The following config data isn't written directly in the config file; it's
+created by the PuppetDocs::Config class before any other code can read its
+configuration.
+
+- `document_list`: Used in the `document_data_generator` plugin to make a page's
+  document data available under `page.doc`. Also used in the main template (via
+  the version switcher and the document switcher) to discover which documents
+  and versions are available.
+
+  The reason we use a different name is because Jekyll stomps on the name
+  `documents` when passing the `site` hash to a page template. So we need to
+  evade that if we want our full list of doc data available in our website
+  (which is, of course, the entire point).
+
+  **Note:** This is mostly the same as the `documents` key from the config
+  file, but with the following changes:
+
+  - All version numbers are converted to strings.
+  - New `base_url` key, whose value is the same as the primary key. (The base
+    URL is still used in as the main key in the hash, so this is redundant,
+    but this way the data hash for a document is complete and we don't have to
+    separately keep track of the base URL.)
+  - The `nav` key is always an absolute path, from the top of the source
+    directory. If `nav` had a relative path in the config file, it gets
+    resolved relative to the document's base URL.
+- `document_version_index`: Used by the main template (via the version switcher
+  and the document switcher) to look up the base URL for a given document ID and
+  version, and to find out whether a given version is the latest.
+
+  This is necessary because the Liquid templating language is intentionally
+  very limited, and it can't do a whole lot of data munging.
+- `document_version_order`: Used by the main template (via the version switcher)
+  to list versions in descending order. See above re: Liquid being intentionally
+  limited.

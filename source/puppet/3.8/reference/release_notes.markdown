@@ -5,16 +5,16 @@ description: "Puppet release notes for version 3.8"
 canonical: "/puppet/latest/reference/release_notes.html"
 ---
 
-[upgrade]: /guides/install_puppet/upgrading.html
+[upgrade]: ./upgrading.html
 [puppet_3]: /puppet/3/reference/release_notes.html
 
 [puppet.conf]: ./config_file_main.html
 [main manifest]: ./dirs_manifest.html
-[env_api]: /references/3.7.latest/developer/file.http_environments.html
+[env_api]: /puppet/3.7/reference/developer/file.http_environments.html
 [file_system_redirect]: ./lang_windows_file_paths.html#file-system-redirection-when-running-32-bit-puppet-on-64-bit-windows
 [environment.conf]: ./config_file_environment.html
-[default_manifest]: /references/3.7.latest/configuration.html#defaultmanifest
-[disable_per_environment_manifest]: /references/3.7.latest/configuration.html#disableperenvironmentmanifest
+[default_manifest]: /puppet/3.7/reference/configuration.html#defaultmanifest
+[disable_per_environment_manifest]: /puppet/3.7/reference/configuration.html#disableperenvironmentmanifest
 [directory environments]: ./environments.html
 [future]: ./experiments_future.html
 
@@ -42,6 +42,140 @@ We always recommend that you **upgrade your Puppet master servers before upgradi
 
 If you're upgrading from Puppet 2.x, please [learn about major upgrades of Puppet first!][upgrade] We have important advice about upgrade plans and package management practices. The short version is: test first, roll out in stages, give yourself plenty of time to work with. Also, read the [release notes for Puppet 3][puppet_3] for a list of all the breaking changes made between the 2.x and 3.x series.
 
+## Puppet 3.8.6
+
+Released February 3, 2016.
+
+This release is a security only release for Windows that contains an updated version of OpenSSL that has addresses a vulnerability announced by OpenSSL on January 28, 2016.
+
+* [Puppet Labs CVE announcement](https://puppetlabs.com/security/cve/openssl-jan-2016-security-fixes)
+* [OpenSSL security announcement](http://openssl.org/news/secadv/20160128.txt)
+
+## Puppet 3.8.5
+
+Released January 21, 2016.
+
+Puppet 3.8.5 is a maintenance release in the Puppet 3.8 series that fixes several bugs.
+
+* [All fixes for Puppet 3.8.5](https://tickets.puppetlabs.com/issues/?filter=17212)
+* [Introduced in Puppet 3.8.5](https://tickets.puppetlabs.com/issues/?filter=17213)
+
+### Improvements: Speed!
+
+#### Faster service queries on OS X
+
+Puppet 3.8.5 queries service enablement status on OS X several times faster than previous versions of Puppet.
+
+* [PUP-5505](https://tickets.puppetlabs.com/browse/PUP-5505):
+
+#### Faster compilation when `environment_timeout = 0`
+
+In previous versions of Puppet, an environment with an `environment_timeout` set to 0 that used many automatically bound default values would perform poorly, as each lookup caused the environment cache to be evicted and recreated. Puppet 3.8.5 greatly reduces the number of times it evicts the environment and significantly improves compilation performance.
+
+* [PUP-5547: Environment is evicted many times during compilation](https://tickets.puppetlabs.com/browse/PUP-5547)
+
+### New Feature: Set HTTP proxy host and port for the `pip` provider
+
+In previous versions of Puppet, the [`pip` package provider](/references/latest/type.html#package-provider-pip) could fail if used behind an HTTP proxy. This version adds the `http_proxy_host` and `http_proxy_port` settings to the provider.
+
+* [PUP-5212](https://tickets.puppetlabs.com/browse/PUP-5212)
+
+### Security update: Ruby on Windows
+
+Puppet 3.8.5 for Windows includes new versions of Ruby that fix [CVE-2015-7551](https://www.ruby-lang.org/en/news/2015/12/16/unsafe-tainted-string-usage-in-fiddle-and-dl-cve-2015-7551/).
+
+* [PUP-5716](https://tickets.puppetlabs.com/browse/PUP-5716)
+
+### Bug fix: Fix group resources on Windows `--noop` runs when the `members` parameter is an array
+
+In previous version of Puppet 3 for Windows, no-op Puppet runs (such as running `puppet agent` or `puppet apply` with the `--noop` flag) would fail if the `members` parameter of a [group resource](/references/3.8.latest/type.html#group) contained an array. Puppet 3.8.5 resolves this issue.
+
+* [PUP-4426: Group resource doesn't work on Windows when members is an array and noop is used](https://tickets.puppetlabs.com/browse/PUP-4426)
+
+### Bug fixes: Puppet language
+
+* [PUP-5590: No error on duplicate parameters in classes and resources](https://tickets.puppetlabs.com/browse/PUP-5590): In previous versions of Puppet, you could use the same parameter multiple times in a single class or resource without invoking an error. Instead, Puppet would use the second invocation's value only. Puppet 3.8.5 produces an error message when parsing a manifest in which a class or resource assigns the same parameter multiple times.
+* [PUP-5658: Disallow numeric ranges where from > to](https://tickets.puppetlabs.com/browse/PUP-5658): Previous versions of Puppet allowed you to create range sub-type declarations (such as `Integer[first,second]`) for integer and and float types where the maximum limit was set first and the minimum limit was set second. Now for such declarations, the first value must not be greater than the second.
+
+### Bug Fixes: Miscellaneous
+
+* [PUP-4426](https://tickets.puppetlabs.com/browse/PUP-4426):
+* [PUP-1293](https://tickets.puppetlabs.com/browse/PUP-1293):
+* [PUP-5480: Puppet does not apply inheritable SYSTEM permissions to directories it manages on Windows under certain circumstances](https://tickets.puppetlabs.com/browse/PUP-5480)
+* [PUP-5522: Puppet::Node attributes not kept consistent with its parameters](https://tickets.puppetlabs.com/browse/PUP-5522): In some Puppet-related applications, or in certain cases when using Puppet from Ruby, a Node object could use one environment but report that it was in another, resulting in the node having the wrong set of parameters. This doesn't affect regular catalog compilation, and is resolved in Puppet 3.8.5.
+* [PUP-4516: Agent does not stop with Ctrl-C](https://tickets.puppetlabs.com/browse/PUP-4516): In previous versions of Puppet 3, if the agent process was idle, it could take up to 5 seconds to stop the process in response to SIGINT and SIGTERM signals, such as when pressing **Ctrl-C**. If the Puppet agent was performing a run, it could not be interrupted until after the run completed. Puppet 3.8.5 agents and WEBrick masters immediately exit.
+* [PUP-4386: Windows Group resource reports errors incorrectly when specifying an invalid group member](https://tickets.puppetlabs.com/browse/PUP-4386): Previous versions of Puppet on Windows would produce extraneous messages if you specify an invalid group member in a manifest. Puppet 3.8.5 produces accurate error messages.
+
+## Puppet 3.8.4
+
+Released November 3, 2015.
+
+Puppet 3.8.4 is a maintenance release in the Puppet 3.8 series. It includes a security update for Windows OpenSSL, and fixes a few miscellaneous bugs.
+
+
+* [All fixes for Puppet 3.8.4](https://tickets.puppetlabs.com/issues/?filter=15901)
+* [Introduced in Puppet 3.8.4](https://tickets.puppetlabs.com/issues/?filter=15900)
+
+
+### Security Fix: CA private key now created privately
+
+Previously, Puppet generated a CA private key (Puppet[:cacert]) that was initially world readable, which would create a security vulnerability. Restarting the Puppet master (via webrick, passenger, puppetserver or executing the `puppet cert generate` command) would automatically resolve the issue, so the vulnerability was limited to the time between when Puppet was installed/started and when it was restarted.
+
+This change ensures Puppet creates the CA private key with mode 640 initially.
+
+The private host key (Puppet[:hostprivkey]) had the same issue, but the parent directory was not world executable/traversable, so it wasn't a security issue. This change also fixes the host private key in the same manner as the CA private key.
+
+### Security Fix: Windows OpenSSL
+
+[Update Windows OpenSSL version to 1.0.2d from 1.0.0s](https://tickets.puppetlabs.com/browse/PUP-5273)
+
+### Bug Fix: Windows Password Management
+
+* [PUP-5271: Windows user resource should not manage password unless specified](https://tickets.puppetlabs.com/browse/PUP-5271)
+
+Previously, if you were attempting to create users without specifying the password and you had the Windows Password Policy for `Password must meet complexity requirements` set to Enabled, it Puppet would fail to create the user. Now it works appropriately.
+
+**NOTE:** When the Windows Password Policy `Minimum password length` is greater than 0, the password must always be specified. This is due to Windows validation for new user creation requiring a password for all new accounts, so it is not possible to leave password unspecified once the policy is set.
+
+It is also important to note that when a user is specified with `managehome => true`, the password must always be specified if it is not an already existing user on the system.
+
+
+### Bug Fixes: Misc
+
+* [PUP-5398: Fix regression that reintroduced file watching for directory environmnents](https://tickets.puppetlabs.com/browse/PUP-5398) A regression introduced in 3.7.5 would cause a directory based environment to reload if a file was changed, or cause a premature cache timeout if the `filetimeout` setting had a shorter time than the environment cache.
+The regression could also cause performance degradation in general due to many calls to get status of files.
+* [PUP-5380: Slow catalog run after updating to Puppet 3.7.5](https://tickets.puppetlabs.com/browse/PUP-5380)
+* [PUP-5350: Puppet filter function does not behave consistently across all supported argument types.](https://tickets.puppetlabs.com/browse/PUP-5350) The `filter()` function did not behave according to specification when filtering a hash, as it did not enforce that only boolean true as a return from the lambda would include the element in the result. Instead, any "truthy" value was accepted. Now, only boolean true will include an element in the result.
+* [PUP-5271: Windows user resource should not manage password unless specified](https://tickets.puppetlabs.com/browse/PUP-5271)
+* [PUP-4495: Puppet 3.5.0 introduced a regression in tag filtering for catalog runs](https://tickets.puppetlabs.com/browse/PUP-4495) When filtering on the agent with a qualified tag having multiple name segments using commandline with --tag option, the given was processed by breaking the name a part as if multiple tags had been specified. This could lead to surprising results. Now, this regression is fixed, and the entire given tag is used as is when searching.
+
+
+
+## Puppet 3.8.3
+
+Released September 21, 2015.
+
+Puppet 3.8.3 is a bug fix release in the Puppet 3.8 series. It fixes one significant regression and several miscellaneous bugs.
+
+* [All fixes for Puppet 3.8.3](https://tickets.puppetlabs.com/issues/?filter=15509)
+* [Introduced in Puppet 3.8.3](https://tickets.puppetlabs.com/issues/?filter=15510)
+
+### Regression Fix: Warnings (Not Errors) for New Reserved Words
+
+In Puppet 3.8.2, we reserved the new keywords `application`, `consumes`, and `produces` ([PUP-4941](https://tickets.puppetlabs.com/browse/PUP-4941)). For this version of Puppet, using these words as class names or unquoted strings was supposed to log a warning, but due to a bug, Puppet would raise an error and fail compilation instead.
+
+This is now fixed, and the new keywords log warnings as intended.
+
+* [PUP-5036: `--parser future` breaks `class application {}`](https://tickets.puppetlabs.com/browse/PUP-5036)
+
+### Bug Fixes: Misc
+
+* [PUP-3045: exec resource with timeout doesn't kill executed command that times out](https://tickets.puppetlabs.com/browse/PUP-3045) --- On POSIX systems, `exec` resources with a `timeout` value will now send a TERM signal if their command runs too long.
+* [PUP-4639: Refreshing a LaunchDaemon leaves it disabled](https://tickets.puppetlabs.com/browse/PUP-4639) --- When refreshing a service on Mac OS X that was already running (via `notify`, `subscribe`, or `~>`), Puppet would stop the service and fail to start it.
+* [PUP-5044: launchd enable/disable on OS X 10.10](https://tickets.puppetlabs.com/browse/PUP-5044) --- Enable/disable of services on El Capitan (10.10) wasn't working because the overrides plist moved. Puppet now knows where to find that plist on 10.10+.
+* [PUP-5013: resource evaluation metrics are missing when not using an ENC](https://tickets.puppetlabs.com/browse/PUP-5013) --- Puppet Server's metrics for resource evaluation were very incomplete, because we were only tracking one of the several code paths that can evaluate resources. The metrics should be more complete now.
+* [PUP-735: Status unchanged when "Could not apply complete catalog"](https://tickets.puppetlabs.com/browse/PUP-735) --- Previously, if a catalog had a dependency cycle (resource A depended on B which depended on A), then the run would fail with a cryptic error "Could not apply complete catalog", Puppet would exit with 0, and the report would omit metrics information about the failure. With this change, Puppet logs that a cycle was detected, exits with 1, and includes correct information about the failure in the report.
+
 ## Puppet 3.8.2
 
 Released August 6, 2015.
@@ -50,7 +184,6 @@ Puppet 3.8.2 is a maintenance (bug fix) release to improve forward compatibility
 
 * [All fixes for Puppet 3.8.2](https://tickets.puppetlabs.com/issues/?filter=15207)
 * [Introduced in Puppet 3.8.2](https://tickets.puppetlabs.com/issues/?filter=15208)
-
 
 ### Deprecation: New Reserved Words
 

@@ -14,7 +14,7 @@ Once the console has been properly configured to point at the appropriate Certif
 For each node making a request, you can also see its name and associated CSR fingerprint.
 
 
-###Viewing Node Requests
+### Viewing Node Requests
 
 You can view the number of pending node requests from anywhere in the console by checking the indicator in the top right of the main menu bar.
 
@@ -27,7 +27,7 @@ You will see a view containing a list of all the pending node requests. Each ite
 If there are no pending node requests, you will see some instructions for adding new nodes. If this is not what you expect to see, the location of your Certificate Authority (CA) may not be configured correctly.
 
 
-###Rejecting and Approving Nodes
+### Rejecting and Approving Nodes
 
 The ability to respond to node requests is linked to your user privileges. You must be logged in to the console as a user with read/write privileges before you can respond to requests.
 
@@ -35,7 +35,7 @@ Use the buttons to accept or reject nodes, singly or all at once. Note that once
 
 ![request management view](./images/console/request_mgmt_view.png)
 
-In some cases, DNS altnames may be set up for agent nodes. In such cases, you cannot use the console to approve/reject node requests. The CSR for those nodes must be accepted or rejected using `puppet cert` on the CA. For more information, see the [DNS altnames entry in the configuration reference](/references/3.2.latest/configuration.html#dnsaltnames).
+In some cases, DNS altnames may be set up for agent nodes. In such cases, you cannot use the console to approve/reject node requests. The CSR for those nodes must be accepted or rejected using `puppet cert` on the CA. For more information, see the [DNS altnames entry in the configuration reference](/puppet/3.2/reference/configuration.html#dnsaltnames).
 
 In some cases, attempting to accept or reject a node request will result in an error. This is typically because the request has been modified somehow, usually by being accepted or rejected elsewhere (e.g. by another user or from the CLI) since the request was first generated.
 
@@ -54,7 +54,7 @@ To sign one of the pending requests, run:
 
     $ sudo puppet cert sign <name>
 
-For more information on working with certificates from the CLI, see the [man page for `puppet cert`](/references/3.stable/man/cert.html).
+For more information on working with certificates from the CLI, see the [man page for `puppet cert`](/puppet/3.2/reference/man/cert.html).
 
 ### Configuration Details
 

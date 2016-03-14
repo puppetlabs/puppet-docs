@@ -136,7 +136,7 @@ In this example, instead of creating a `%{::domain}` hierarchy level and a data 
         fileset: LDAP
         bacula_schedule: 'CycleStandard'
 
-This generally only useful when building something complicated with [the `create_resources` function](/references/latest/function.html#createresources), as it lets you interpolate values into resource titles.
+This generally only useful when building something complicated with [the `create_resources` function](/puppet/latest/reference/function.html#createresources), as it lets you interpolate values into resource titles.
 
 **Note:** With YAML data sources, interpolating into hash keys means those hash keys must be quoted.
 

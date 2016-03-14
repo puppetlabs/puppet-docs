@@ -11,8 +11,8 @@ canonical: "/puppet/latest/reference/lang_facts_and_builtin_vars.html"
 [facter]: /facter/latest
 [customfacts]: /facter/latest/custom_facts.html
 [catalog]: ./lang_summary.html#compilation-and-catalogs
-[noop]: /references/3.6.latest/configuration.html#noop
-[certname]: /references/3.6.latest/configuration.html#certname
+[noop]: ./configuration.html#noop
+[certname]: ./configuration.html#certname
 [puppetdb_facts]: /puppetdb/latest/api/index.html
 [localscope]: ./lang_scope.html#local-scopes
 [trusted_on]: ./config_important_settings.html#getting-new-features-early

@@ -1,58 +1,121 @@
+{% capture puppet_dir %}/puppet/2.7/reference{% endcapture %}
+
 <h3 id="puppet-27-reference-manual">Puppet 2.7 Reference Manual</h3>
 
-<p><a href="./index.html">Main Index</a></p>
+<p><a href="{{ puppet_dir }}/index.html">Main Index</a></p>
 
 <ul>
-  <li><a href="./release_notes.html">Puppet 2.7 Release Notes</a></li>
+  <li><a href="{{ puppet_dir }}/release_notes.html">Puppet 2.7 Release Notes</a></li>
   <li><strong>The Puppet Language</strong>
     <ul>
-      <li><a href="./lang_visual_index.html">Visual Index</a></li>
-      <li><a href="./lang_summary.html">Summary</a></li>
-      <li><a href="./lang_reserved.html">Reserved Words and Acceptable Names</a></li>
-      <li><a href="./lang_resources.html">Resources</a></li>
-      <li><a href="./lang_relationships.html">Relationships and Ordering</a></li>
-      <li><a href="./lang_defaults.html">Resource Defaults</a></li>
-      <li><a href="./lang_variables.html">Variables</a></li>
-      <li><a href="./lang_scope.html">Scope</a></li>
-      <li><a href="./lang_conditional.html">Conditional Statements</a></li>
-      <li><a href="./lang_expressions.html">Expressions</a></li>
-      <li><a href="./lang_functions.html">Functions</a></li>
-      <li><a href="./lang_classes.html">Classes</a></li>
-      <li><a href="./lang_defined_types.html">Defined Types</a></li>
-      <li><a href="./lang_containment.html">Containment</a></li>
-      <li><a href="./lang_namespaces.html">Namespaces and Autoloading</a></li>
-      <li><a href="./lang_collectors.html">Resource Collectors</a></li>
-      <li><a href="./lang_node_definitions.html">Node definitions</a></li>
-      <li><a href="./lang_datatypes.html">Data Types</a></li>
-      <li><a href="./lang_comments.html">Comments</a></li>
-      <li><a href="./lang_virtual.html">Virtual Resources</a></li>
-      <li><a href="./lang_exported.html">Exported Resources</a></li>
-      <li><a href="./lang_tags.html">Tags</a></li>
-      <li><a href="./lang_run_stages.html">Run Stages</a></li>
-      <li><a href="./lang_import.html">Importing Manifest Files</a></li>
+      <li><a href="{{ puppet_dir }}/lang_visual_index.html">Visual Index</a></li>
+      <li><a href="{{ puppet_dir }}/lang_summary.html">Summary</a></li>
+      <li><a href="{{ puppet_dir }}/lang_reserved.html">Reserved Words and Acceptable Names</a></li>
+      <li><a href="{{ puppet_dir }}/lang_resources.html">Resources</a></li>
+      <li><a href="{{ puppet_dir }}/lang_relationships.html">Relationships and Ordering</a></li>
+      <li><a href="{{ puppet_dir }}/lang_defaults.html">Resource Defaults</a></li>
+      <li><a href="{{ puppet_dir }}/lang_variables.html">Variables</a></li>
+      <li><a href="{{ puppet_dir }}/lang_scope.html">Scope</a></li>
+      <li><a href="{{ puppet_dir }}/lang_conditional.html">Conditional Statements</a></li>
+      <li><a href="{{ puppet_dir }}/lang_expressions.html">Expressions</a></li>
+      <li><a href="{{ puppet_dir }}/lang_functions.html">Functions</a></li>
+      <li><a href="{{ puppet_dir }}/lang_classes.html">Classes</a></li>
+      <li><a href="{{ puppet_dir }}/lang_defined_types.html">Defined Types</a></li>
+      <li><a href="{{ puppet_dir }}/lang_containment.html">Containment</a></li>
+      <li><a href="{{ puppet_dir }}/lang_namespaces.html">Namespaces and Autoloading</a></li>
+      <li><a href="{{ puppet_dir }}/lang_collectors.html">Resource Collectors</a></li>
+      <li><a href="{{ puppet_dir }}/lang_node_definitions.html">Node definitions</a></li>
+      <li><a href="{{ puppet_dir }}/lang_datatypes.html">Data Types</a></li>
+      <li><a href="{{ puppet_dir }}/lang_comments.html">Comments</a></li>
+      <li><a href="{{ puppet_dir }}/lang_virtual.html">Virtual Resources</a></li>
+      <li><a href="{{ puppet_dir }}/lang_exported.html">Exported Resources</a></li>
+      <li><a href="{{ puppet_dir }}/lang_tags.html">Tags</a></li>
+      <li><a href="{{ puppet_dir }}/lang_run_stages.html">Run Stages</a></li>
+      <li><a href="{{ puppet_dir }}/lang_import.html">Importing Manifest Files</a></li>
     </ul>
   </li>
   <li><strong>Modules</strong>
     <ul>
-      <li><a href="./modules_fundamentals.html">Fundamentals</a></li>
+      <li><a href="{{ puppet_dir }}/modules_fundamentals.html">Fundamentals</a></li>
       <li><a href="/guides/plugins_in_modules.html">Plugins in Modules</a></li>
-      <li><a href="./modules_installing.html">Installing Modules</a></li>
-      <li><a href="./modules_publishing.html">Publishing Modules on the Puppet Forge</a></li>
-      <li><a href="./modules_documentation.html">Module Documentation</a></li>
+      <li><a href="{{ puppet_dir }}/modules_installing.html">Installing Modules</a></li>
+      <li><a href="{{ puppet_dir }}/modules_publishing.html">Publishing Modules on the Puppet Forge</a></li>
+      <li><a href="{{ puppet_dir }}/modules_documentation.html">Module Documentation</a></li>
     </ul>
   </li>
   <li><strong>Data Formats</strong>
     <ul>
-      <li><a href="./format_report.html">Report Formats</a></li>
+      <li><a href="{{ puppet_dir }}/format_report.html">Report Formats</a></li>
     </ul>
   </li>
   <li><strong>Generated References</strong>
     <ul>
-      <li><a href="/references/2.7.latest/type.html">Resource Types</a></li>
-      <li><a href="/references/2.7.latest/configuration.html">Configuration Settings</a></li>
-      <li><a href="/references/2.7.latest/function.html">Functions</a></li>
-      <li><a href="/references/2.7.latest/metaparameter.html">Metaparameters</a></li>
-      <li><a href="/references/2.7.latest/report.html">Report Handlers</a></li>
+      <li><a href="{{ puppet_dir }}/type.html">Resource Types</a></li>
+      <li><a href="{{ puppet_dir }}/configuration.html">Configuration Settings</a></li>
+      <li><a href="{{ puppet_dir }}/function.html">Functions</a></li>
+      <li><a href="{{ puppet_dir }}/metaparameter.html">Metaparameters</a></li>
+      <li><a href="{{ puppet_dir }}/report.html">Report Handlers</a></li>
     </ul>
   </li>
+  <li><strong>Man Pages</strong>
+    <ul>
+
+      <li><a href="{{ puppet_dir }}/man/index.html">Index</a></li>
+      <li><strong>Core Tools</strong>
+        <ul>
+          <li><a href="{{ puppet_dir }}/man/agent.html">puppet agent</a></li>
+          <li><a href="{{ puppet_dir }}/man/apply.html">puppet apply</a></li>
+          <li><a href="{{ puppet_dir }}/man/cert.html">puppet cert</a></li>
+          <li><a href="{{ puppet_dir }}/man/master.html">puppet master</a></li>
+          <li><a href="{{ puppet_dir }}/man/module.html">puppet module</a></li>
+          <li><a href="{{ puppet_dir }}/man/resource.html">puppet resource</a></li>
+        </ul>
+      </li>
+
+      <li><strong>Occasionally Useful</strong>
+        <ul>
+          <li><a href="{{ puppet_dir }}/man/config.html">puppet config</a></li>
+          <li><a href="{{ puppet_dir }}/man/describe.html">puppet describe</a></li>
+          <li><a href="{{ puppet_dir }}/man/device.html">puppet device</a></li>
+          <li><a href="{{ puppet_dir }}/man/doc.html">puppet doc</a></li>
+          <li><a href="{{ puppet_dir }}/man/help.html">puppet help</a></li>
+          <li><a href="{{ puppet_dir }}/man/man.html">puppet man</a></li>
+          <li><a href="{{ puppet_dir }}/man/node.html">puppet node</a></li>
+          <li><a href="{{ puppet_dir }}/man/parser.html">puppet parser</a></li>
+          <li><a href="{{ puppet_dir }}/man/plugin.html">puppet plugin</a></li>
+        </ul>
+      </li>
+
+      <li><strong>Niche</strong>
+        <ul>
+          <li><a href="{{ puppet_dir }}/man/ca.html">puppet ca</a></li>
+          <li><a href="{{ puppet_dir }}/man/catalog.html">puppet catalog</a></li>
+          <li><a href="{{ puppet_dir }}/man/certificate.html">puppet certificate</a></li>
+          <li><a href="{{ puppet_dir }}/man/certificate_request.html">puppet certificate_request</a></li>
+          <li><a href="{{ puppet_dir }}/man/certificate_revocation_list.html">puppet certificate_revocation_list</a></li>
+          <li><a href="{{ puppet_dir }}/man/facts.html">puppet facts</a></li>
+          <li><a href="{{ puppet_dir }}/man/file.html">puppet file</a></li>
+          <li><a href="{{ puppet_dir }}/man/filebucket.html">puppet filebucket</a></li>
+          <li><a href="{{ puppet_dir }}/man/inspect.html">puppet inspect</a></li>
+          <li><a href="{{ puppet_dir }}/man/instrumentation_data.html">puppet instrumentation_data</a></li>
+          <li><a href="{{ puppet_dir }}/man/instrumentation_listener.html">puppet instrumentation_listener</a></li>
+          <li><a href="{{ puppet_dir }}/man/instrumentation_probe.html">puppet instrumentation_probe</a></li>
+          <li><a href="{{ puppet_dir }}/man/key.html">puppet key</a></li>
+          <li><a href="{{ puppet_dir }}/man/report.html">puppet report</a></li>
+          <li><a href="{{ puppet_dir }}/man/resource_type.html">puppet resource_type</a></li>
+          <li><a href="{{ puppet_dir }}/man/secret_agent.html">puppet secret_agent</a></li>
+          <li><a href="{{ puppet_dir }}/man/status.html">puppet status</a></li>
+        </ul>
+      </li>
+
+      <li><strong>Deprecated</strong>
+        <ul>
+          <li><a href="{{ puppet_dir }}/man/kick.html">puppet kick</a></li>
+          <li><a href="{{ puppet_dir }}/man/queue.html">puppet queue</a></li>
+        </ul>
+      </li>
+
+    </ul>
+  </li>
+
 </ul>

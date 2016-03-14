@@ -265,7 +265,7 @@ Ya hemos visto varios ejemplos de Apache, y es probable que tengas al menos un s
 [Descarga gratis Puppet Enterprise](http://info.puppetlabs.com/download-pe.html) y sigue [la guía de comienzo rápido](http://docs.puppetlabs.com/pe/latest/quick_start.html) para obtener un pequeño entorno instalado en algunas máquinas de prueba. Luego, instala uno de los siguientes módulos:
 
 + [puppetlabs/apache](http://forge.puppetlabs.com/puppetlabs/apache)
-+ [simondean/iis](http://forge.puppetlabs.com/simondean/iis) (para IIS en Windows Server)
++ [simondean/iis](http://forge.puppetlabs.com/simondean/iis) (para IIS en Windows Server)
 + [Cualquiera de los módulos de Nginx disponibles]( http://forge.puppetlabs.com/modules?utf-8=%E2%9C%93&q=nginx&LeadSource=Web+-+Organic&Lead_Source_Description__c=google+-+%28not+provided%29&utm_source__c=google&utm_medium__c=organic&utm_term__c=%28not+provided%29&utm_content__c=null&utm_campaign__c=%28organic%29&utm_adgroup__c=null&gclid=)
 
 Lee la documentación del módulo para ver cómo funciona, luego intenta manejar el servicio y cualquier servidor virtual relevante para que coincida con tu infraestructura configurada manualmente.

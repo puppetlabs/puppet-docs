@@ -9,8 +9,8 @@
     <link rel='index' title='Puppet Labs Documentation' href='https://docs.puppetlabs.com' />
     <link rel='icon' href='/favicon.ico' />
 
-     {% capture description %}{% if page.description %}{{ page.description }}{% else %}{{ content | raw_content }}{% endif %}{% endcapture %}
-  <meta name="description" content="{{ description | strip_html | strip_newlines | condense_spaces | truncate:150 }}">
+     {% capture description %}{% if page.description %}{{ page.description }}{% else %}{{ content | truncate:300 | strip_html | strip_newlines | condense_spaces }}{% endif %}{% endcapture %}
+  <meta name="description" content="{{ description }}">
 
       <!--[if gte IE 9]>
       <style type="text/css">
@@ -49,8 +49,8 @@
     <meta name="keywords" content="Puppet, puppet labs, reductive labs, open source, system administrator, ruby, data center, automation, support" />
     <!-- /all in one seo pack -->
 
-    <!-- Give us the option of setting a canonical URL in yaml frontmatter -NF -->
-    <link rel="canonical" href="https://docs.puppetlabs.com{% if page.canonical %}{{page.canonical}}{% else %}{{page.url}}{% endif %}" />
+    <!-- Set a canonical URL, in the following order: 1. explicit, from yaml frontmatter; 2. implicit, from document data; 3. singleton, from page URL. -NF -->
+    <link rel="canonical" href="https://docs.puppetlabs.com{% if page.canonical %}{{page.canonical}}{% elsif page.doc %}{% assign latest_baseurl = site.document_version_index[page.doc.doc]['latest'] %}{% change_baseurl page.url page.doc.base_url latest_baseurl %}{% else %}{{page.url}}{% endif %}" />
 
     <!-- FIXME: absolute paths -->
 
@@ -199,7 +199,7 @@
 
   <section id="masthead">
     <div class="site-width">
-      <h1>Docs / <span class="section-name">{{page.title}}</span></h1>
+      <h1>{% include quick_nav.html %} / {% include version_switcher.html %}</h1>
     </div>
   </section>
 
@@ -208,23 +208,16 @@
       <div class="primary-secondary-content">
         <div class="primary-content">
           <h1>{% if page.subtitle %}{{page.subtitle}}{% else %}{{page.title}}{% endif %}</h1>
-          {% unless page.toc == 'false' or page.toc == false %}<nav class="in-page" id="page-nav">{{ content | toc }}</nav>{% endunless %}
-          {{ content }}
+          <div id="version-note"> {% include version_note.html %} </div>
+          {% unless page.toc == 'false' or page.toc == false %}<nav class="in-page{% if page.toc == 'columns' %} multi-column{% endif %}" id="page-nav">{{ content | toc }}</nav>{% endunless %}
+	  <div id="rendered-markdown">
+            {{ content }}
+	  </div>
           <blockquote><p style="font-size: 1.3em; text-align: center;"><a href="#content">↑ Back to top</a></p></blockquote>
         </div>
         <nav class="main">
               <div id="subCol">
-                  <ul id="doc-navigation">
-                    <li class="with-submenu">
-                      <a href="#">
-                        <span>Docs Quick Nav</span>
-                        <span class="drop-down-trigger"></span>
-                      </a>
-                       {% include quick_nav.html %}
-                    </li>
-                  </ul>
-
-                  {% render_nav %}
+                  {% partial {{page.nav}} %}
               </div>
         </nav>
       </div>
@@ -319,7 +312,7 @@
                           </script>
                       </div>
                       <p>
-                          &copy; 2015 <a href="https://puppetlabs.com/about">Puppet Labs</a>
+                          &copy; 2016 <a href="https://puppetlabs.com/about">Puppet Labs</a>
                           <br>
                           <a href="tel:877-575-9775" class="tel">877-575-9775</a>
                       </p>

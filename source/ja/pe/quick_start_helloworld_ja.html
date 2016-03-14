@@ -1,0 +1,203 @@
+---
+layout: default
+title: "Hello World! クイックスタートガイド"
+canonical: "/ja/pe/quick_start_helloworld_ja.html"
+---
+
+
+<div>
+<h2 id="overview">概要</h2>
+
+<p> このクイックスタートガイドでは、Puppetモジュールを記述するのに必須となる知識について説明します。 以下では、簡単な*nixベースのモジュールを記述します。このモジュールには、ログイン時に表示されるメッセージを管理するクラス(motd)と、Puppetの実行時にコマンドラインで通知を作成するクラスの2つのクラスが含まれています。
+</p>
+
+<p> ここで記述するモジュールには、多くの機能は含まれていません。このガイドでは、モジュールの基本的なディレクトリ構造と、Puppet Enterprise Webコンソールにクラスを割り当てる方法を理解することに主眼を置いています。 より複雑なモジュールの記述方法については、ほかのクイックスタートガイドで取り上げます。
+</p>
+
+<h2 id="write-the-helloworld-class">
+<code>helloworld</code>クラスの記述</h2>
+
+<p> モジュールによっては、サイズが大きく複雑なため、試行錯誤を繰り返す必要がある場合があります。 ここでは、簡単に記述できるモジュールを紹介します。 このモジュールではクラスを2つだけ記述します。
+</p>
+
+<blockquote>
+  <h3 id="a-quick-note-about-modules">モジュールに関する注意</h3>
+
+  <p> デフォルトで、ノード管理に使用するモジュールは、<code>/etc/puppetlabs/code/environments/production/modules</code>内に格納されています。 これらのモジュールには、Puppet Enterpriseによってインストールされたモジュール、Forgeからダウンロードしたモジュール、ユーザーが記述したモジュールが含まれます。
+</p>
+
+  <p> <strong>注意</strong>: Puppet Enterpriseによって<code>/opt/puppetlabs/puppet/modules</code>にもモジュールがインストールされますが、このディレクトリ内のモジュールを変更したり、作成したモジュールを追加したりしないでください。
+</p>
+</blockquote>
+
+<p> モジュールとは即ちディレクトリのツリー構造です。 ここでは、以下のファイルを作成します。
+</p>
+
+<ul>
+<li>
+<code>helloworld/</code> (モジュール名)<ul>
+<li>
+<code>manifests/</code><ul>
+<li>
+<code>init.pp</code> (<code>helloworld</code>クラスを含む)</li>
+          <li>
+<code>motd.pp</code> (motdの作成に必要なファイルリソースを含む)</li>
+        </ul>
+</li>
+    </ul>
+</li>
+</ul>
+<p> <strong><code>helloworld</code>クラスの記述手順</strong>
+</p>
+
+<ol>
+<li>Puppet masterのコマンドラインから、モジュールディレクトリ<code>cd /etc/puppetlabs/code/environments/production/modules</code>に移動します。</li>
+  <li>
+<code>mkdir -p helloworld/manifests</code>を実行して、新規モジュールのディレクトリとマニフェストのディレクトリを作成します。</li>
+  <li>
+    <p> <code>manifests</code>ディレクトリで、テキストエディタを使って<code>init.pp</code> ファイルを作成し、以下のPuppetコードを追加します。
+</p>
+
+    <pre><code> class helloworld {
+
+    notify { 'hello, world!': }
+
+ }
+</code></pre>
+  </li>
+  <li>ファイルを保存し、テキストエディタを終了します。</li>
+  <li>
+    <p> <code>manifests</code>ディレクトリで、テキストエディタで<code>motd.pp</code>ファイルを作成し、以下のPuppetコードを追加します。
+</p>
+
+    <pre><code> class helloworld::motd {
+
+    file { '/etc/motd':
+    owner  =&gt; 'root',
+    group  =&gt; 'root',
+    mode    =&gt; '0644',
+    content =&gt; "hello, world!\n",
+    }
+
+ }
+</code></pre>
+  </li>
+  <li>ファイルを保存し、テキストエディタを終了します。</li>
+</ol>
+<blockquote>
+  <p> できました！ Puppetの実行時に通知メッセージを表示するクラスと、サーバー上でmotdを管理するクラスの2つのクラスを含むモジュールの記述が完成しました。これらの操作については、クラスを追加した後、詳しく取り上げます。 Puppetサーバーが更新され、クラスがノードで使用可能になるまで少し時間がかかります。
+</p>
+</blockquote>
+
+<h2 id="add-the-helloworld-and-helloworldmotd-classes-in-the-console">
+<code>helloworld</code>クラスと<code>helloworld::motd</code>クラスをコンソールに追加する</h2>
+
+<p> ここでは、「<strong>HelloWorld</strong>」というノードグループを作成し、<code>helloworld</code>クラスを追加します。 使用環境やインフラに応じて別のグループにNTPを割り当てる場合も、手順は同じです。
+</p>
+
+<p> <strong>HelloWorldノードグループの作成手順</strong>
+</p>
+
+<ol>
+<li>コンソールのサイドナビゲーションバーにある<strong>Nodes</strong>をクリックし、<strong>Classification</strong>を選択します。</li>
+  <li>
+<strong>Node group name</strong>フィールドに「<strong>HelloWorld</strong>」と入力し、グループ名を指定します。</li>
+  <li>
+    <p> <strong>Add group</strong>をクリックします。
+</p>
+
+    <p> <strong>注意</strong>: <strong>Parent name</strong>と<strong>Environment</strong>の値はデフォルト値(<strong>All Nodes</strong>、<strong>production</strong>)のままにしておきます。
+</p>
+  </li>
+  <li>
+<strong>Classification</strong>ページで、<strong>HelloWorld</strong>グループをクリックし、<em>_Rules</em>タブをクリックします。</li>
+  <li>
+<strong>Fact</strong>フィールドに“name”(ダブルクォーテーション“”は付けません)と入力します。</li>
+  <li>
+<strong>Operator</strong>ドロップダウンリストから<strong>matches regex</strong>を選択します。</li>
+  <li>
+<strong>Value</strong>フィールドに“.*” (ダブルクォーテーション“”は付けません)と入力します。</li>
+  <li>
+    <p> [<strong>Add rule</strong>]をクリックします。
+</p>
+
+    <p> このルールによって、<strong>HelloWorld</strong>グループに[すべてのノードが「動的に」ピンされます](/pe/2015.2/console_classes_groups.html#adding-nodes-dynamically)。 このルールはテスト目的で作成します。 商用環境にあるグループのノードをピンする(ノードを手動でグループに付加する)かどうかの判断は状況によって異なります。
+</p>
+  </li>
+</ol>
+<p> <code>helloworld</code>クラスを <strong>NTPグループ</strong>に<strong>追加する手順</strong>:
+</p>
+
+<ol>
+<li>
+    <p> <strong>Classification</strong>ページで、<em>_HelloWorld</em>グループをクリックします。
+</p>
+  </li>
+  <li>
+    <p> <strong>Classes</strong>タブをクリックします。
+</p>
+  </li>
+  <li>
+    <p> <strong>Class name</strong>フィールドに「<code>helloworld</code>」と途中まで入力するだけでオートコンプリートリストに表示されますので、クリックして選択します。
+</p>
+  </li>
+  <li>
+    <p> <strong>Add class</strong>をクリックします。
+</p>
+  </li>
+  <li>
+    <p> 手順3～4を繰り返して、<code>helloworld::motd</code>クラスを追加します。
+</p>
+  </li>
+  <li>
+    <p> <strong>Commit change</strong>ボタンをクリックします。
+</p>
+
+    <p> <strong>注意</strong>: <code>helloworld</code>クラスが<strong>HelloWorld</strong>グループのクラスの一覧リストに表示はされますが、この段階ではまだノードに反映されていません。 ノードに反映するには、Puppetを実行する必要があります。
+</p>
+  </li>
+  <li>
+    <p> Puppet masterのコマンドラインから、<code>puppet agent -t</code>を実行します。
+</p>
+  </li>
+  <li>
+    <p> Puppet Enterpriseが管理している各ノードそれぞれのコマンドライン上でも<code>puppet agent -t</code>を実行します。
+</p>
+
+    <p> これで割り当てられたクラスが、各ノードに対して反映されます。
+</p>
+  </li>
+</ol>
+<h3 id="viewing-the-results">結果を確認する</h3>
+
+<p> Puppet runを最初に実行した時<code>helloworld</code>クラスがノードに対して反映され、コマンドラインに以下のような内容が出力されます。
+</p>
+
+<pre><code>[root@master manifests]# puppet agent -t
+Info: Retrieving pluginfacts
+Info: Retrieving plugin
+Info: Loading facts
+Info: Caching catalog for master.example.com
+Info: Applying configuration version '1416331291'
+Notice: hello, world!
+Notice: /Stage[main]/Helloworld/Notify[hello, world!]/message: defined 'message' as 'hello, world!'
+Notice: Finished catalog run in 9.42 seconds
+</code></pre>
+
+<p> ここで<code>cat /etc/motd</code>を実行します。 その結果、<code>hello, world!</code>と表示されます。
+</p>
+
+<h2 id="other-resources">その他のリソース</h2>
+
+<blockquote>
+  <p> モジュールとモジュールの作成方法については、豊富なリソースが用意されています。 例えば、「<a href="/pe/2015.2/puppet_modules_manifests.html">Modules and Manifests</a>」、「<a href="/guides/module_guides/bgtm.html">Beginner’s Guide to Modules</a>」、「<a href="https://forge.puppetlabs.com/">Puppet Forge</a>」を参照してください。
+</p>
+
+  <p> <a href="./quick_start.html">クイックスタートガイドシリーズ</a>には、さらに多くのモジュールの記述エクササイズが紹介されています。
+</p>
+</blockquote>
+
+<hr>
+<p> Next: <a href="/pe/2015.2/quick_start_module_install_nix.html">Installing Modules (*nix)</a>または<a href="/pe/2015.2/quick_start_module_install_windows.html">Installing Modules (Windows)</a>
+</p>
+</div>

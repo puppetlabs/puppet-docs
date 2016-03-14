@@ -1,12 +1,15 @@
 source 'https://rubygems.org/'
+gemspec :name => 'puppet_docs'
 
 gem 'versionomy'
 gem 'rake'
 gem 'rack'
+gem 'git'
+gem 'json'
 
 group(:build_site) do
-  gem 'jekyll', :git => 'git://github.com/puppetlabs/jekyll.git', :branch => 'puppetdocs'
-  gem 'kramdown'
+  gem 'jekyll', '3.0.1'
+  gem 'kramdown', '~> 1.9'
   gem 'vlad'
   gem 'vlad-git'
 end
@@ -22,4 +25,6 @@ group(:unknown) do
   gem 'activerecord', '~>3'
 end
 
-
+# group(:debug) do
+#   gem 'byebug'
+# end

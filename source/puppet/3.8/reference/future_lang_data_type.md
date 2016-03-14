@@ -6,12 +6,12 @@ canonical: "/puppet/latest/reference/lang_data_type.html"
 
 [classes]: ./future_lang_classes.html
 [defined types]: ./future_lang_defined_types.html
-[lambdas]: TODO
+[lambdas]: ./lang_lambdas.html
 [case statements]: ./future_lang_conditional.html#case-statements
 [selector expressions]: ./future_lang_conditional.html#selectors
 [match_operator]: ./future_lang_expressions.html#regex-or-data-type-match
 [strings]: ./future_lang_data_string.html
-[assert_type]: /references/3.8.latest/function.html#asserttype
+[assert_type]: ./function.html#asserttype
 [number]: ./future_lang_data_number.html
 [boolean]: ./future_lang_data_boolean.html
 [array]: ./future_lang_data_array.html

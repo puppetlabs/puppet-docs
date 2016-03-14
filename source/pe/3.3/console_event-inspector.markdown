@@ -48,7 +48,7 @@ There are four kinds of events, all of which are shown in event inspector:
 * **Change:** a property was out of sync, and Puppet had to make changes to reach the desired state.
 * **Failure:** a property was out of sync; Puppet tried to make changes, but was unsuccessful.
 * **No-op:** a property was out of sync, but Puppet was previously instructed to not make changes on this resource (via either the `--noop` command-line option, the `noop` setting, or the `noop => true` metaparameter). Instead of making changes, Puppet will log a no-op event and report the changes it _would_ have made.
-* **Skip:** a prerequisite for this resource was not met, so Puppet did not compare its current state to the desired state. (This prerequisite is either a failure in one of the resource's dependencies or a timing limitation set with [the `schedule` metaparameter](/references/3.4.latest/metaparameter.html#schedule).) The resource may be in sync or out of sync; Puppet doesn't know yet.
+* **Skip:** a prerequisite for this resource was not met, so Puppet did not compare its current state to the desired state. (This prerequisite is either a failure in one of the resource's dependencies or a timing limitation set with [the `schedule` metaparameter](/puppet/3.4/reference/metaparameter.html#schedule).) The resource may be in sync or out of sync; Puppet doesn't know yet.
 
 
 ### Perspectives

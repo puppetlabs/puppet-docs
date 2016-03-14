@@ -19,7 +19,7 @@ Resource Types
 Resource types are the atomic unit of Puppet configurations, and there are a lot of them to remember.
 
 * [The Core Types Cheat Sheet](/puppet_core_types_cheatsheet.pdf) is a fast, printable two-page guide to the most useful resource types.
-* [The Type Reference](/references/3.4.latest/type.html) is the complete dictionary of Puppet's built-in resource types. No other page will be more useful to you on a daily basis.
+* [The Type Reference](/puppet/3.4/reference/type.html) is the complete dictionary of Puppet's built-in resource types. No other page will be more useful to you on a daily basis.
 
 
 Puppet Syntax
@@ -32,7 +32,7 @@ Configuration and Settings
 -----
 
 * [Configuring Puppet](/puppet/3.6/reference/config_about_settings.html) describes Puppet's configuration files and covers the ten or so most useful settings.
-* [The Configuration Reference](/references/3.4.latest/configuration.html) lists every single setting available to Puppet.
+* [The Configuration Reference](/puppet/3.4/reference/configuration.html) lists every single setting available to Puppet.
 
 * * *
 

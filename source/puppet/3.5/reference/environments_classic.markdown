@@ -7,10 +7,10 @@ canonical: "/puppet/latest/reference/environments_classic.html"
 [config_sections]: ./config_file_main.html#config-sections
 [manifest_dir]: ./dirs_manifest.html
 [modulepath]: ./dirs_modulepath.html
-[config_version]: /references/3.5.latest/configuration.html#configversion
+[config_version]: ./configuration.html#configversion
 [puppet.conf]: ./config_file_main.html
-[manifest_setting]: /references/3.5.latest/configuration.html#manifest
-[modulepath_setting]: /references/3.5.latest/configuration.html#modulepath
+[manifest_setting]: ./configuration.html#manifest
+[modulepath_setting]: ./configuration.html#modulepath
 [adrien_blog]: http://puppetlabs.com/blog/git-workflow-and-puppet-environments
 [directory_environments]: ./environments.html
 [dir_envs_enable]: ./environments.html#enabling-directory-environments

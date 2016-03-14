@@ -64,13 +64,6 @@ It also copies the following files:
 - the contents of `/etc/puppetlabs`
 - the contents of `/var/log/pe-*`
 
-
-### Free Support
-
-If you are evaluating Puppet Enterprise, we also offer support during your evaluation period.  During this period you can report issues with Puppet Enterprise to our public support portal. Please be aware that all issues filed here are viewable by all other users.
-
-**Public support portal: <https://tickets.puppetlabs.com/browse/ENTERPRISE>**
-
 Join the Puppet Enterprise User Group
 -----
 

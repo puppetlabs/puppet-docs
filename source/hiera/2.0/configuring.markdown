@@ -3,7 +3,7 @@ layout: default
 title: "Hiera 2: The hiera.yaml Config File"
 ---
 
-[common_appdata]: /guides/install_puppet/install_windows.html#the-commonappdata-folder
+[common_appdata]: /puppet/latest/reference/install_windows.html#the-commonappdata-folder
 [yaml]: http://www.yaml.org/YAML_for_ruby.html
 [hierarchy]: ./hierarchy.html
 [interpolate]: ./variables.html
@@ -29,7 +29,7 @@ You can specify a different config file for Hiera via Puppet, the command line, 
 
 #### In Puppet
 
-You can use [the `hiera_config` setting](/references/latest/configuration.html#hieraconfig) in `puppet.conf` to specify a different config file.
+You can use [the `hiera_config` setting](/puppet/latest/reference/configuration.html#hieraconfig) in `puppet.conf` to specify a different config file.
 
 #### From the Command Line
 

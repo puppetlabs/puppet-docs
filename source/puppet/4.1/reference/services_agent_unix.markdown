@@ -6,17 +6,17 @@ canonical: "/puppet/latest/reference/services_master_unix.html"
 
 [catalogs]: ./subsystem_catalog_compilation.html
 [win_agent]: ./services_agent_windows.html
-[resource type reference]: /references/4.1.latest/type.html
+[resource type reference]: ./type.html
 [mcollective]: /mcollective
 [puppet.conf]: ./config_file_main.html
-[runinterval]: /references/4.1.latest/configuration.html#runinterval
-[onetime]: /references/4.1.latest/configuration.html#onetime
-[daemonize]: /references/4.1.latest/configuration.html#daemonize
-[splay]: /references/4.1.latest/configuration.html#splay
-[splaylimit]: /references/4.1.latest/configuration.html#splaylimit
-[listen]: /references/4.1.latest/configuration.html#listen
-[puppetport]: /references/4.1.latest/configuration.html#puppetport
-[pidfile]: /references/4.1.latest/configuration.html#pidfile
+[runinterval]: ./configuration.html#runinterval
+[onetime]: ./configuration.html#onetime
+[daemonize]: ./configuration.html#daemonize
+[splay]: ./configuration.html#splay
+[splaylimit]: ./configuration.html#splaylimit
+[listen]: ./configuration.html#listen
+[puppetport]: ./configuration.html#puppetport
+[pidfile]: ./configuration.html#pidfile
 [auth.conf]: ./config_file_auth.html
 [short_settings]: ./config_important_settings.html#settings-for-agents-all-nodes
 [page on triggering puppet runs]: /pe/latest/orchestration_puppet.html
@@ -24,14 +24,13 @@ canonical: "/puppet/latest/reference/services_master_unix.html"
 
 Puppet agent is the application that manages configurations on nodes. It requires a Puppet master server to fetch configuration [catalogs][] from. (For more info, see [Overview of Puppet's Architecture](./architecture.html).)
 
-For details about invoking the Puppet agent command, see [the puppet agent man page](/references/4.1.latest/man/agent.html).
+For details about invoking the Puppet agent command, see [the puppet agent man page](./man/agent.html).
 
 ## Supported Platforms
 
 This page describes how Puppet agent behaves on \*nix systems. For information about Windows, see [Puppet Agent on Windows Systems][win_agent].
 
 Not all operating systems can manage the same resources with Puppet; some resource types are OS-specific, and others may have OS-specific features. See the [resource type reference][] for details.
-
 
 ## Puppet Agent's Run Environment
 
@@ -65,13 +64,13 @@ If you need to install packages into a directory controlled by a non-root user, 
 
 By default, Puppet's HTTPS traffic uses port 8140. Your OS and firewall must allow Puppet agent to initiate outbound connections on this port.
 
-If you want to use a non-default port, you'll have to change [the `masterport` setting](/references/4.1.latest/configuration.html#masterport) on all agent nodes, and ensure that you've changed your Puppet master's port as well.
+If you want to use a non-default port, you'll have to change [the `masterport` setting](./configuration.html#masterport) on all agent nodes, and ensure that you've changed your Puppet master's port as well.
 
 ### Logging
 
 When running as a service, Puppet agent logs messages to syslog. Your syslog configuration dictates where these messages will be saved, but the default location is `/var/log/messages` on Linux, `/var/log/system.log` on Mac OS X, and `/var/adm/messages` on Solaris.
 
-You can adjust how verbose the logs are with [the `log_level` setting](/references/4.1.latest/configuration.html#loglevel), which defaults to `notice`. Setting it to `info` is equivalent to running with the `--verbose` option, and setting it to `debug` is equivalent to `--debug`. You can also make logs quieter by dialing back to `warning` or lower.
+You can adjust how verbose the logs are with [the `log_level` setting](./configuration.html#loglevel), which defaults to `notice`. Setting it to `info` is equivalent to running with the `--verbose` option, and setting it to `debug` is equivalent to `--debug`. You can also make logs quieter by dialing back to `warning` or lower.
 
 When running in the foreground with the `--verbose`, `--debug`, or `--test` options, Puppet agent logs directly to the terminal instead of to syslog.
 
@@ -79,7 +78,7 @@ When started with the `--logdest <FILE>` option, Puppet agent logs to the file s
 
 ### Reporting
 
-In addition to local logging, Puppet agent will submit a [report][] to the Puppet master after each run. (This can be disabled by setting [`report = false`](/references/4.1.latest/configuration.html#report) in [puppet.conf][].)
+In addition to local logging, Puppet agent will submit a [report][] to the Puppet master after each run. (This can be disabled by setting [`report = false`](./configuration.html#report) in [puppet.conf][].)
 
 In Puppet Enterprise, you can browse these reports in the PE console's node pages, and you can analyze correlated events with the PE event inspector.
 
@@ -109,22 +108,27 @@ In Puppet Enterprise, the agent service is automatically configured and started;
 
 In open source Puppet, you can enable the service with:
 
-    $ sudo puppet resource service puppet ensure=running enable=true
+~~~ bash
+sudo puppet resource service puppet ensure=running enable=true
+~~~
 
 Alternately, you can run `sudo puppet agent` on the command line with no additional options; this will cause Puppet agent to start running and daemonize, but you won't have an easy interface for restarting or stopping it. To stop the daemon, use the process ID from the agent's [`pidfile`][pidfile]:
 
-    $ sudo kill $(puppet config print pidfile --section agent)
+~~~ bash
+sudo kill $(puppet config print pidfile --section agent)
+~~~
 
 #### Configuring the Run Interval
 
 The Puppet agent service defaults to doing a configuration run every 30 minutes. You can configure this with [the `runinterval` setting][runinterval] in [puppet.conf][]:
 
-    # /etc/puppet/puppet.conf
-    [agent]
-      runinterval = 2h
+~~~
+# /etc/puppetlabs/puppet/puppet.conf
+[agent]
+  runinterval = 2h
+~~~
 
 If you don't need an aggressive schedule of configuration runs, a longer run interval will let your Puppet master server(s) handle many more agent nodes.
-
 
 ### Running Puppet Agent as a Cron Job
 
@@ -134,7 +138,9 @@ This behavior is good for building a cron job that does configuration runs. You 
 
 You can use the Puppet resource command to set up this cron job. Below is an example that runs Puppet once an hour; adjust the path to the Puppet command if you are not using Puppet Enterprise.
 
-    $ sudo puppet resource cron puppet-agent ensure=present user=root minute=30 command='/opt/puppet/bin/puppet agent --onetime --no-daemonize --splay --splaylimit 60'
+~~~ bash
+sudo puppet resource cron puppet-agent ensure=present user=root minute=30 command='/opt/puppetlabs/bin/puppet agent --onetime --no-daemonize --splay --splaylimit 60'
+~~~
 
 ### Running Puppet Agent On Demand
 
@@ -148,11 +154,15 @@ If you are currently logged into the machine that needs to run Puppet agent, you
 
 **Run in the foreground, with verbose logging to the terminal:**
 
-    $ sudo puppet agent --test
+~~~ bash
+sudo puppet agent --test
+~~~
 
 **Run once in the background:**
 
-    $ sudo puppet agent --onetime
+~~~ bash
+sudo puppet agent --onetime
+~~~
 
 Note that this won't notify you when the run is completed.
 
@@ -160,7 +170,9 @@ Note that this won't notify you when the run is completed.
 
 To run Puppet agent remotely on one machine, you can simply use ssh:
 
-    $ ssh ops@magpie.example.com sudo puppet agent --test
+~~~ bash
+ssh ops@magpie.example.com sudo puppet agent --test
+~~~
 
 To run remotely on _many_ machines, you will need some form of orchestration or parallel execution tool.
 
@@ -172,13 +184,11 @@ Alternately, [parallel SSH][pssh] can be a more lightweight solution for doing P
 
 [pssh]: https://code.google.com/p/parallel-ssh/
 
-
 ## Disabling and Re-enabling Puppet Runs
 
 Regardless of how you're running Puppet agent, you can prevent it from doing any Puppet runs by running `sudo puppet agent --disable "<MESSAGE>"`. You can re-enable it with `sudo puppet agent --enable`.
 
 If Puppet agent attempts to do a configuration run while disabled --- either a scheduled run or a manually triggered one --- it will log a message like `Notice: Skipping run of Puppet configuration client; administratively disabled (Reason: 'Investigating a problem 5/23/14 -NF'); Use 'puppet agent --enable' to re-enable.`
-
 
 ## Configuring Puppet Agent
 

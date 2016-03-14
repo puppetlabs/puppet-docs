@@ -44,7 +44,7 @@ La gente que escribe manifiestos para compartir con otros, a menudo tiene el há
 
 Como hemos dicho antes, el prefijo de dos puntos doble especifica que debe encontrarse una variable determinada en el top scope; pero esto no es necesario ya que la búsqueda de variables siempre llegará al top scope. Mira [el capítulo de scope en el manual de referencia de Puppet](http://docs.puppetlabs.com/puppet/latest/reference/lang_scope.html).
 
-Sin embargo, pedir explícitamente el top scope ayuda a esquivar dos cuestiones que pueden hacer que el código público se comporte de forma impredecible. Una afecta a todas las versiones de Puppet 2.x, y la otra a versiones tempranas de Puppet 2.7.x:
+Sin embargo, pedir explícitamente el top scope ayuda a esquivar dos cuestiones que pueden hacer que el código público se comporte de forma impredecible. Una afecta a todas las versiones de Puppet 2.x, y la otra a versiones tempranas de Puppet 2.7.x:
 
     + En Puppet 2.x: Si un usuario declara una clase de un módulo público dentro de una de sus propias clases, y su clase personal establece una variable cuyo nombre coincide con el nombre del fact que la clase pública intenta acceder, la clase pública usará la variable local en lugar del fact. Esto causará que la clase pública falle o tenga un comportamiento extraño.
     + En versiones tempranas a Puppet 2.7.x: Las "deprecation warnings" del scope dinámico puede que se activen de forma inapropiada cuando un manifiesto accede a variables top scope sin el prefijo de dos puntos. Esto se arregló en versiones posteriores, pero fue muy molesto por un tiempo.
@@ -158,7 +158,7 @@ En este caso:
 
 La [función](http://docs.puppetlabs.com/puppet/latest/reference/lang_functions.html)  **str2bool** es parte del módulo [puppetlabs/stdlib](http://forge.puppetlabs.com/puppetlabs/stdlib), incluido en Puppet Enterprise. Si estás ejecutando Puppet open source, puedes instalarlo ejecutando **sudo puppet module install puppetlabs/stdlib**.
 
-También es posible utilizar la expresión **$is_virtual == 'true'**, la cual resolvería a *true* si el fact **is_virtual** tiene el valor verdadero, y *false* en caso contrario. 
+También es posible utilizar la expresión **$is_virtual == 'true'**, la cual resolvería a *true* si el fact **is_virtual** tiene el valor verdadero, y *false* en caso contrario. 
 
 ### Case
 
@@ -179,7 +179,7 @@ Otro tipo de condicional es la [declaración de *case*](http://docs.puppetlabs.c
 
 En lugar de probar una condición al principio, **case** compara una variable contra un grupo de valores posibles. **_default_ es un valor especial**, que hace exactamente lo que parece. 
 
-En este ejemplo, también vemos la [función **fail**](http://docs.puppetlabs.com/references/latest/function.html#fail). A diferencia de la función **str2bool** que vimos antes, **fail** no resuelve a un valor; por el contrario, se produce inmediatamente un error de compilación con un mensaje de error.
+En este ejemplo, también vemos la [función **fail**](http://docs.puppetlabs.com/puppet/latest/reference/function.html#fail). A diferencia de la función **str2bool** que vimos antes, **fail** no resuelve a un valor; por el contrario, se produce inmediatamente un error de compilación con un mensaje de error.
 
 #### Coincidencia de casos
 
@@ -203,7 +203,7 @@ Y aquí un exemplo con regex:
           }
         }
 
-La coincidencia de strings no distingue entre mayúsculas y minúsculas, como [el operador de comparación ==](http://docs.puppetlabs.com/puppet/latest/reference/lang_expressions.html#equality). Las expresiones regulares se denotan entre barras (/), como se hace en Perl y Ruby; las cuales por defecto tampoco distinguen entre mayúsculas y minúsculas, pero puedes utilizar los switches **(?i)** y **(?-i)** para activar y desactivar esta distinción dentro del patrón. Las coincidencias de regex también asignan subpatrones capturados a **$1**, **$2**, etc. dentro del bloque de código asociado, con **$0** conteniendo todo el string coincidente. Mira [la sección de expresiones regulares en la página de tipos de datos del manual de referencia de Puppet ](http://docs.puppetlabs.com/puppet/latest/reference/lang_datatypes.html#regular-expressions) para más detalles.
+La coincidencia de strings no distingue entre mayúsculas y minúsculas, como [el operador de comparación ==](http://docs.puppetlabs.com/puppet/latest/reference/lang_expressions.html#equality). Las expresiones regulares se denotan entre barras (/), como se hace en Perl y Ruby; las cuales por defecto tampoco distinguen entre mayúsculas y minúsculas, pero puedes utilizar los switches **(?i)** y **(?-i)** para activar y desactivar esta distinción dentro del patrón. Las coincidencias de regex también asignan subpatrones capturados a **$1**, **$2**, etc. dentro del bloque de código asociado, con **$0** conteniendo todo el string coincidente. Mira [la sección de expresiones regulares en la página de tipos de datos del manual de referencia de Puppet ](http://docs.puppetlabs.com/puppet/latest/reference/lang_datatypes.html#regular-expressions) para más detalles.
 
 ### Selectores
 Los selectores te pueden parecer menos familiares, son algo así como el [operador ternario](http://en.wikipedia.org/wiki/%3F:) común y también como la declaración de *case*.

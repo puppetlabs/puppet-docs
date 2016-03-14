@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Puppet 3.x to 4.x Server Upgrades"
-canonical: "/puppet/4.0/reference/upgrade_server.html"
+canonical: "./upgrade_server.html"
 ---
 
 This guide is for sites which have all master-related functions (puppetmaster, certificate authority, file server) on one 
@@ -50,10 +50,10 @@ the box, the puppet-agent's directory structure will look like this:
 
     /etc/puppetlabs/code
     ├── environments
-    │   └── production
-    │       ├── environment.conf
-    │       ├── manifests
-    │       └── modules
+    │   └── production
+    │       ├── environment.conf
+    │       ├── manifests
+    │       └── modules
     ├── hieradata
     ├── hiera.yaml
     └── modules

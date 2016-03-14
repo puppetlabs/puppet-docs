@@ -3,8 +3,8 @@ layout: default
 title: "Hiera 1: Using Hiera With Puppet"
 ---
 
-[hiera_config]: /references/latest/configuration.html#hieraconfig
-[confdir]: /references/latest/configuration.html#confdir
+[hiera_config]: /puppet/latest/reference/configuration.html#hieraconfig
+[confdir]: /puppet/latest/reference/configuration.html#confdir
 [datadir]: ./configuring.html#datadir
 [hiera_yaml]: ./configuring.html
 [variable_tokens]: ./variables.html

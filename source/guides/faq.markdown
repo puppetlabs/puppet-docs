@@ -283,7 +283,7 @@ Variable names can include alphanumeric characters and underscores, and are case
 ### How do I apply and test manifests?
 
 Once you have Puppet installed according the the [Installation
-Guide](/guides/install_puppet/pre_install.html), just run `puppet apply` against your example:
+Guide](/puppet/latest/reference/install_pre.html), just run `puppet apply` against your example:
 
     puppet apply -v example.pp
 
@@ -297,7 +297,7 @@ RDoc or HTML documents for your manifests and modules.
 
 ### How do I manage passwords on Red Hat Enterprise Linux, CentOS, and Fedora Core?
 
-As described in the [Type reference](../references/stable/type.html), you need the Shadow Password
+As described in the [Type reference](../puppet/latest/reference/type.html), you need the Shadow Password
 Library, which is provided by the ruby-shadow package. The
 ruby-shadow library is available natively for fc6 (and higher), and
 should build on the corresponding RHEL and CentOS variants.
@@ -435,15 +435,15 @@ whole.
 
 ### What happens if I am on Puppet 2.6x or earlier?
 
-Nothing changes for you.  Puppet 2.6.x remains licensed as GPLv2.
+Nothing changes for you.  Puppet 2.6.x remains licensed as GPLv2.
 The license change is not retroactive.
 
 ### Does this change affect all the components of Puppet?
 
 As part of this change, we’re also changing the license of the
-Facter system inventory tool to Apache.  This change will take
+Facter system inventory tool to Apache.  This change will take
 effect with Facter version 1.6.0, and earlier versions of Facter
-will remain licensed under the GPLv2 license.  This change will
+will remain licensed under the GPLv2 license.  This change will
 bring the licensing of Puppet’s two key components into alignment.
 
 Our other major product, MCollective, is already licensed under
@@ -468,7 +468,7 @@ cannot be disputed in the event of any legal challenge.
 ### What if I haven’t signed a CLA?
 
 If you haven’t signed a CLA, then we can’t yet accept your code
-contribution into Puppet or Facter.  Signing a CLA is very easy:
+contribution into Puppet or Facter.  Signing a CLA is very easy:
 simply log into your [GitHub](https://github.com) account
 and [go to our CLA page to sign the agreement](https://cla.puppetlabs.com/).
 
@@ -481,8 +481,8 @@ signed a CLA, please sign a CLA or
 ### Does signing a CLA change who owns Puppet?
 
 The change in license and the requirement for a CLA doesn’t change
-who owns the code.  This is a pure license agreement and NOT a
-Copyright assignment.  If you sign a CLA, you maintain full
+who owns the code.  This is a pure license agreement and NOT a
+Copyright assignment.  If you sign a CLA, you maintain full
 copyright to your own code and are merely providing a license to
 Puppet Labs to use your code.
 

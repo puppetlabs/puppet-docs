@@ -51,7 +51,7 @@ Los templates son salvados como archivos con extensión .erb, y se deben guardar
 
 ## Rendering de templates
 
-Para utilizar un template, lo tienes que renderizar para producir un string de salida. Para hacer esto, utiliza la [función de **template**](http://docs.puppetlabs.com/references/stable/function.html#template) integrada. Esta función toma un path a uno o más archivos de templates y devuelve un string de salida.
+Para utilizar un template, lo tienes que renderizar para producir un string de salida. Para hacer esto, utiliza la [función de **template**](http://docs.puppetlabs.com/puppet/latest/reference/function.html#template) integrada. Esta función toma un path a uno o más archivos de templates y devuelve un string de salida.
 
 	    file {'/etc/foo.conf':
 	      ensure  => file,
@@ -73,7 +73,7 @@ Ten en cuenta que la ruta al template no utiliza la misma semántica que la ruta
 
 ### Templates inline
 
-Otra alternativa es utilizar la [función **inline_template**](http://docs.puppetlabs.com/references/stable/function.html#inlinetemplate), que toma un string que contiene un template y devuelve un string de salida.
+Otra alternativa es utilizar la [función **inline_template**](http://docs.puppetlabs.com/puppet/latest/reference/function.html#inlinetemplate), que toma un string que contiene un template y devuelve un string de salida.
 Esto no es útil tan frecuentemente, pero si tienes un template muy pequeño lo puedes insertar en el manifiesto en lugar de hacer un archivo nuevo para esto.
 
 ### Nota aparte: Funciones en general
@@ -94,9 +94,9 @@ Las funciones pueden tomar cualquier cantidad de argumentos, los cuales están s
 
 Las funciones son plugins, por lo que muchos plugins customizados están disponibles en módulos.
 
-La documentación completa acerca de las funciones está disponible en [la página de funciones en el manual de referencia de Puppet](http://docs.puppetlabs.com/puppet/latest/reference/lang_functions.html) y en [la lista de funciones integradas](http://docs.puppetlabs.com/references/stable/function.html).
+La documentación completa acerca de las funciones está disponible en [la página de funciones en el manual de referencia de Puppet](http://docs.puppetlabs.com/puppet/latest/reference/lang_functions.html) y en [la lista de funciones integradas](http://docs.puppetlabs.com/puppet/latest/reference/function.html).
 
-#Variables en templates
+# Variables en templates
 
 Los templates son poderosos porque tienen acceso a todas las variables de Puppet que están presentes cuando se renderiza el template.
 
@@ -220,7 +220,7 @@ Primero, haz que cada template utilice la variable **$servers_real** para crear 
 
 Qué está haciendo?
 
-+ Está utilizando un tag no imprimible de Ruby para comenzar un ciclo. Hacemos referencia a la variable de Puppet **$servers_real** con el nombre **@servers_real**, luego llamamos al método **each** de Ruby en él. Todo lo que está entre **do |server| -%>**  y el tag **<% end -%>**  será repetido por cada elemento en el array **servers_real** con el valor de ese elemento de array asignado a la variable temporal **this_server**.
++ Está utilizando un tag no imprimible de Ruby para comenzar un ciclo. Hacemos referencia a la variable de Puppet **$servers_real** con el nombre **@servers_real**, luego llamamos al método **each** de Ruby en él. Todo lo que está entre **do |server| -%>**  y el tag **<% end -%>**  será repetido por cada elemento en el array **servers_real** con el valor de ese elemento de array asignado a la variable temporal **this_server**.
 + Dentro del ciclo, imprimimos literalmente la palabra **server** seguida del valor del elemento del array actual.
 
 Este fragmento producirá algo como lo siguiente:

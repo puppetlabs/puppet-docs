@@ -1,0 +1,23 @@
+{
+    "$schema":     "http://json-schema.org/draft-04/schema#",
+    "title":       "Node",
+    "description": "A Puppet node object",
+    "type":        "object",
+    "properties": {
+        "environment": {
+            "type": "string"
+        },
+        "name": {
+            "type": "string"
+        },
+        "classes": {
+            "type": "array",
+            "items": { "type": "string" }
+        },
+        "parameters": {
+            "type": "object"
+        }
+    },
+    "required": ["name", "environment"],
+    "additionalProperties": false
+}

@@ -4,7 +4,7 @@ title: "Puppet 3 System Requirements"
 canonical: "/puppet/latest/reference/system_requirements.html"
 ---
 
-> To install Puppet 3, see [the Puppet installation guide](/guides/install_puppet/pre_install.html).
+> To install Puppet 3, see [the Puppet installation guide](http://docs.puppet.com./pre_install.html).
 
 Basic Requirements
 -----
@@ -60,7 +60,7 @@ On these platforms, Puppet Labs does not build official packages.
 
 - SUSE Linux Enterprise Server, version 11 and higher
 - Gentoo Linux
-- Mandriva Corporate Server 4 
+- Mandriva Corporate Server 4
 - ArchLinux
 
 ### Other Unix
@@ -68,8 +68,8 @@ On these platforms, Puppet Labs does not build official packages.
 - Mac OS X, version 10.5 (Leopard) and higher
 - Oracle Solaris, version 10 and higher
 - AIX, version 5.3 and higher
-- FreeBSD 4.7 and later 
-- OpenBSD 4.1 and later 
+- FreeBSD 4.7 and later
+- OpenBSD 4.1 and later
 - HP-UX
 
 ### Windows

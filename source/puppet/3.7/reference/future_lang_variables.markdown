@@ -14,7 +14,7 @@ canonical: "/puppet/latest/reference/lang_variables.html"
 [resource]: ./future_lang_resources.html
 [scope]: ./future_lang_scope.html
 [undef]: ./future_lang_data_undef.html
-[strict_variables]: /references/3.7.latest/configuration.html#strictvariables
+[strict_variables]: ./configuration.html#strictvariables
 [puppet.conf]: ./config_file_main.html
 
 

@@ -8,9 +8,9 @@ title: "Other Deprecated Features"
 [puppet.conf]: ./config_file_main.html
 [config file environments]: ./environments_classic.html
 [environment config sections]: ./environments_classic.html#environment-config-sections
-[manifest_setting]: /references/3.8.latest/configuration.html#manifest
-[modulepath_setting]: /references/3.8.latest/configuration.html#modulepath
-[config_version]: /references/3.8.latest/configuration.html#configversion
+[manifest_setting]: ./configuration.html#manifest
+[modulepath_setting]: ./configuration.html#modulepath
+[config_version]: ./configuration.html#configversion
 [directory environments]: ./environments.html
 [puppet-dev]: https://groups.google.com/forum/#!forum/puppet-dev
 

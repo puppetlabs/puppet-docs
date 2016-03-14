@@ -5,7 +5,7 @@ canonical: "/puppet/latest/reference/experiments_lambdas.html"
 ---
 
 [arm2]: https://github.com/puppetlabs/armatures/tree/master/arm-2.iteration
-[array]: /puppet/3/reference/lang_datatypes.html#arrays
+[array]: ./lang_datatypes.html#arrays
 [experimentalmodule]: https://github.com/hlindberg/puppet-network
 [experimentalcommit]: https://github.com/hlindberg/puppet-network/commit/b1665a2da730e31b76a9230796510d01e6a626d7
 

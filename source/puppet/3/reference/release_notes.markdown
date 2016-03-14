@@ -9,7 +9,6 @@ canonical: "/puppet/latest/reference/release_notes.html"
 [lang_scope]: ./lang_scope.html
 [qualified_vars]: ./lang_variables.html#accessing-out-of-scope-variables
 [auth_conf]: /guides/rest_auth_conf.html
-[upgrade]: /guides/install_puppet/upgrading.html
 [upgrade_issues]: http://projects.puppetlabs.com/projects/puppet/wiki/Telly_Upgrade_Issues
 [target_300]: http://projects.puppetlabs.com/projects/puppet/issues?set_filter=1&f[]=fixed_version_id&op[fixed_version_id]=%3D&v[fixed_version_id][]=271&f[]=&c[]=project&c[]=tracker&c[]=status&c[]=priority&c[]=subject&c[]=assigned_to&c[]=fixed_version&group_by=
 [unless]: ./lang_conditional.html#unless-statements
@@ -21,10 +20,10 @@ canonical: "/puppet/latest/reference/release_notes.html"
 [CVE-2013-1652]: http://puppetlabs.com/security/cve/cve-2013-1652
 [CVE-2013-1640]: http://puppetlabs.com/security/cve/cve-2013-1640
 [32issues]: http://projects.puppetlabs.com/versions/371
-[32splay]: /references/latest/configuration.html#splay
-[32modulo_operator]: /puppet/3/reference/lang_expressions.html#modulo
-[32profiling_setting]: /references/3.4.stable/configuration.html#profile
-[32cron_type]: /references/3.4.stable/type.html#cron
+[32splay]: /puppet/latest/reference/configuration.html#splay
+[32modulo_operator]: ./lang_expressions.html#modulo
+[32profiling_setting]: ./configuration.html#profile
+[32cron_type]: ./type.html#cron
 [32hiera_auto_param]: /hiera/1/puppet.html#automatic-parameter-lookup
 [19983]: http://projects.puppetlabs.com/issues/19983 "egrammar parser loses filename in error messages"
 [11331]: http://projects.puppetlabs.com/issues/11331 "Add 'foreach' structure in manifests"
@@ -69,7 +68,7 @@ Starting from version 3.0.0, Puppet is semantically versioned with a three-part 
 * Y may increase for backwards-compatible new functionality.
 * Z may increase for bug fixes.
 
-> **Note:** When preparing to upgrade, please read our [general recommendations for upgrading between two major versions of Puppet][upgrade], which include suggested roll-out plans and package management practices. In general, upgrade the puppet master servers before upgrading the agents they support.
+> **Note:** In general, you should upgrade the puppet master servers before upgrading the agents they support.
 >
 > Also, before upgrading, look above at the _table of contents_ for this page. Identify the version you're upgrading TO and any versions you're upgrading THROUGH, and check them for a subheader labeled "Upgrade Warning," which will always be at the top of that version's notes. If there's anything special you need to know before upgrading, we will put it here.
 
@@ -186,10 +185,10 @@ It introduces one known regression, [PUP-1015](https://tickets.puppetlabs.com/br
 
 ### New `contain` Function Removes Need for "Anchor Pattern"
 
-Puppet now includes [a `contain` function](/references/3.4.stable/function.html#contain) to allow classes to contain other classes. It works similarly to the `include` function, with the added effect of creating a containment relationship. For more information, see:
+Puppet now includes [a `contain` function](./function.html#contain) to allow classes to contain other classes. It works similarly to the `include` function, with the added effect of creating a containment relationship. For more information, see:
 
-* [The containment page of the language reference](/puppet/3/reference/lang_containment.html), for background information about class containment issues and an explanation of the anchor pattern.
-* [The classes page of the language reference](/puppet/3/reference/lang_classes.html), for complete information on declaring classes with `contain`, `include`, and more.
+* [The containment page of the language reference](./lang_containment.html), for background information about class containment issues and an explanation of the anchor pattern.
+* [The classes page of the language reference](./lang_classes.html), for complete information on declaring classes with `contain`, `include`, and more.
 
 ([Issue 8040](http://projects.puppetlabs.com/issues/8040),  [PUP-99](https://tickets.puppetlabs.com/browse/PUP-99))
 
@@ -204,7 +203,7 @@ Prior to 3.4, Puppet would accept a whitelist of nodes whose requests should be 
 For details, see:
 
 * [The "Policy-Based Autosigning" section of the autosigning reference page][ssl_policy_autosign]
-* [Documentation for the `autosign` setting](/references/3.4.stable/configuration.html#autosign)
+* [Documentation for the `autosign` setting](./configuration.html#autosign)
 
 ([Issue 7244](https://projects.puppetlabs.com/issues/7244), [PUP-664](https://tickets.puppetlabs.com/browse/PUP-664), [PUP-453](https://tickets.puppetlabs.com/browse/PUP-453))
 
@@ -220,7 +219,7 @@ Two kinds of custom data are available: "custom attributes," which are discarded
 For details on custom CSR data, see:
 
 * [The "CSR Attributes and Certificate Extensions" reference page][ssl_attributes]
-* [Documentation for the `csr_attributes` setting](/references/3.4.stable/configuration.html#csrattributes)
+* [Documentation for the `csr_attributes` setting](./configuration.html#csrattributes)
 
 ([Issue 7243](http://projects.puppetlabs.com/issues/7243),
 [PUP-669](https://tickets.puppetlabs.com/browse/PUP-669),
@@ -229,7 +228,7 @@ For details on custom CSR data, see:
 
 ### Priority Level Can Be Set for Puppet Processes
 
-Puppet's processes, including puppet agent and puppet apply, can now lower or raise their own priority level using [the `priority` setting](/references/3.4.stable/configuration.html#priority). (Note that they can't _raise_ their priority unless they are running as a privileged user.)
+Puppet's processes, including puppet agent and puppet apply, can now lower or raise their own priority level using [the `priority` setting](./configuration.html#priority). (Note that they can't _raise_ their priority unless they are running as a privileged user.)
 
 This is especially useful for making sure resource-intensive Puppet runs don't interfere with a machine's real duties.
 
@@ -249,7 +248,7 @@ Note that any existing problems with the puppet doc command still apply --- it s
 
 Since at least Puppet 2.6, the Puppet compiler receives a special `$clientcert` variable that contains the node's certificate name. However, this variable is self-reported by agent nodes and is not verified by the puppet master. This means `$clientcert` might contain more or less anything, and can't be trusted when deciding whether to insert sensitive information into the catalog.
 
-As of 3.4, you can configure the puppet master to verify each agent node's certname and make it available to the compiler as `$trusted['certname']`. To do this, you must set the `trusted_node_data` setting to `true` in the master's puppet.conf. [See the language documentation about special variables for more details.](/puppet/3/reference/lang_variables.html#trusted-node-data)
+As of 3.4, you can configure the puppet master to verify each agent node's certname and make it available to the compiler as `$trusted['certname']`. To do this, you must set the `trusted_node_data` setting to `true` in the master's puppet.conf. [See the language documentation about special variables for more details.](./lang_variables.html#trusted-node-data)
 
 ([Issue 19514](http://projects.puppetlabs.com/issues/19514), [PUP-122](https://tickets.puppetlabs.com/browse/PUP-122))
 
@@ -257,7 +256,7 @@ As of 3.4, you can configure the puppet master to verify each agent node's certn
 
 Traditionally, if `file` resources did not have the `owner`, `group`, and/or `mode` permissions explicitly specified and were using a `source` file, they would set the permissions on the target system to match those of the `source`. This could cause files to be insecure or too secure on Windows systems being managed by a Linux puppet master. (And even in all-\*nix environments, it often isn't the desired behavior.)
 
-Now, you can opt out of source permissions using [the `file` type's `source_permissions` attribute](/references/latest/type.html#file-attribute-source_permissions). This can be done per-resource, or globally with a [resource default](/puppet/3/reference/lang_defaults.html) in site.pp.
+Now, you can opt out of source permissions using [the `file` type's `source_permissions` attribute](/puppet/latest/reference/type.html#file-attribute-source_permissions). This can be done per-resource, or globally with a [resource default](./lang_defaults.html) in site.pp.
 
 As part of this, the previous default behavior (`source_permissions => use`) is now deprecated on Windows; the default for Windows is expected to change to `ignore` in Puppet 4.0.
 
@@ -289,7 +288,7 @@ Puppet's Windows support continues to get better, with improvements to resource 
 
 #### Packaging and Installer Improvements
 
-- The Windows Puppet installer has several new MSI properties for automated installation, which can set the service user and startup mode. See [the docs on automated installation on Windows](/guides/install_puppet/install_windows.html#automated-installation) for details. ([Issue 21243](http://projects.puppetlabs.com/issues/21243), [Issue 18268](http://projects.puppetlabs.com/issues/18268), [PUP-386](https://tickets.puppetlabs.com/browse/PUP-386), [PUP-387](https://tickets.puppetlabs.com/browse/PUP-387))
+- The Windows Puppet installer has several new MSI properties for automated installation, which can set the service user and startup mode. ([Issue 21243](http://projects.puppetlabs.com/issues/21243), [Issue 18268](http://projects.puppetlabs.com/issues/18268), [PUP-386](https://tickets.puppetlabs.com/browse/PUP-386), [PUP-387](https://tickets.puppetlabs.com/browse/PUP-387))
 - The Windows installer now puts Puppet on the PATH, so a special command prompt is no longer necessary. ([Issue 22700](http://projects.puppetlabs.com/issues/22700), [PUP-415](https://tickets.puppetlabs.com/browse/PUP-415))
 - Windows installer options can now override existing settings. ([Issue 20281](https://projects.puppetlabs.com/issues/20281), [PUP-388](https://tickets.puppetlabs.com/browse/PUP-388))
 
@@ -312,7 +311,7 @@ Package resources using the `rpm` package provider can now specify command-line 
 
 ### HTTP API Documentation
 
-Puppet's HTTP API endpoints now have extensive documentation for the formatting of their requests and the objects they return. For version-specific endpoint documentation, see [the HTTP API section of the developer docs](/references/3.4.stable/developer/file.http_api_index.html).
+Puppet's HTTP API endpoints now have extensive documentation for the formatting of their requests and the objects they return. For version-specific endpoint documentation, see [the HTTP API section of the developer docs](./yard/file.http_api_index.html).
 
 ([PUP-124](https://tickets.puppetlabs.com/browse/PUP-124),
 [PUP-125](https://tickets.puppetlabs.com/browse/PUP-125),
@@ -330,7 +329,7 @@ Puppet's HTTP API endpoints now have extensive documentation for the formatting 
 
 ### Msgpack Serialization (Experimental)
 
-Puppet agents and masters can now optionally use [Msgpack](http://msgpack.org/) for all communications. This is an experimental feature and is disabled by default; see [the Msgpack experiment page](/puppet/3/reference/experiments_msgpack.html) for details about it.
+Puppet agents and masters can now optionally use [Msgpack](http://msgpack.org/) for all communications. This is an experimental feature and is disabled by default; see [the Msgpack experiment page](./experiments_msgpack.html) for details about it.
 
 ([Issue 22849](http://projects.puppetlabs.com/issues/22849), [PUP-472](https://tickets.puppetlabs.com/browse/PUP-472))
 
@@ -376,7 +375,7 @@ This is now fixed, and the cert inventory is handled more safely. To accommodate
 
 #### Cached Catalogs Work Again
 
-This was a regression from Puppet 3.0.0, as an unintended consequence of making the ENC authoritative for node environments. In many cases (generally when agents couldn't reach the puppet master), it broke the puppet agent's ability to use cached catalogs when it failed to retrieve one. The issue is now fixed, and agents will obey [the `usecacheonfailure` setting](/references/3.4.stable/configuration.html#usecacheonfailure).
+This was a regression from Puppet 3.0.0, as an unintended consequence of making the ENC authoritative for node environments. In many cases (generally when agents couldn't reach the puppet master), it broke the puppet agent's ability to use cached catalogs when it failed to retrieve one. The issue is now fixed, and agents will obey [the `usecacheonfailure` setting](./configuration.html#usecacheonfailure).
 
 ([Issue 22925](http://projects.puppetlabs.com/issues/22925), [PUP-580](https://tickets.puppetlabs.com/browse/PUP-580))
 
@@ -539,7 +538,7 @@ Released September 12, 2013.
 
 Although 3.3.0 is backward-compatible, its default configuration will cause reporting failures when ≥ 3.3.0 agent nodes connect to a sub-3.3.0 master.
 
-* This only affects newer agents + older masters; it is not a problem if you [upgrade the puppet master first.](/guides/install_puppet/upgrading.html#always-upgrade-the-puppet-master-first)
+* This only affects newer agents + older masters; it is not a problem if you upgrade the puppet master first.
 * To use ≥ 3.3.0 agents with an older puppet master, set `report_serialization_format` to `yaml` in their puppet.conf files; this restores full compatibility.
 
 [See the note below on yaml deprecation for details.][yaml_deprecation]
@@ -550,7 +549,7 @@ Although 3.3.0 is backward-compatible, its default configuration will cause repo
 
 Puppet can now optionally apply unrelated resources in the order they were written in their manifest files.
 
-A [new `ordering` setting](/references/3.4.stable/configuration.html#ordering) configures how unrelated resources should be ordered when applying a catalog. This setting affects puppet agent and puppet apply, but not puppet master.
+A [new `ordering` setting](./configuration.html#ordering) configures how unrelated resources should be ordered when applying a catalog. This setting affects puppet agent and puppet apply, but not puppet master.
 
 The allowed values for this setting are `title-hash`, `manifest`, and `random`:
 
@@ -597,7 +596,7 @@ As of this release:
 
 Puppet 3.3 agents now default to sending reports as JSON, and masters running Puppet 3.2.4 and earlier cannot understand JSON reports. Using an out of the box 3.3 agent with a 3.2 puppet master will therefore fail.
 
-* To avoid errors, [upgrade the puppet master first](/guides/install_puppet/upgrading.html#always-upgrade-the-puppet-master-first).
+* To avoid errors, upgrade the puppet master first.
 * If you must use ≥ 3.3.0 agents with older puppet masters, set the new `report_serialization_format` to `yaml` in the agents' puppet.conf; this restores full compatibility.
 
 ### Regex Capture Variables from Node Definitions ($1, etc.)
@@ -629,7 +628,7 @@ of the file back to the agent after it was uploaded to the server.
 
 #### Report Format 4
 
-[report4]: /puppet/3/reference/format_report.html#report-format-4
+[report4]: ./format_report.html#report-format-4
 
 Puppet's [report format version][report4] has been bumped to 4. This is backward-compatible with report format 3, and adds `transaction_uuid` to reports and `containment_path` to resource statuses.
 
@@ -667,7 +666,7 @@ items as one item per line.
 
 [(Issue 21170: enhancement of the module generate functionality)][21170]
 
-Previously, you could provide your own template for the `puppet module generate` action by creating a directory called `skeleton` in the directory specified by [the `module_working_dir` setting](/references/3.4.stable/configuration.html#module_working_dir). (The layout of the directory should match that of [`lib/puppet/module_tool/skeleton`](https://github.com/puppetlabs/puppet/tree/master/lib/puppet/module_tool/skeleton).) This directory can now be configured independently with [the `module_skeleton_dir` setting](/references/3.4.stable/configuration.html#module_skeleton_dir).
+Previously, you could provide your own template for the `puppet module generate` action by creating a directory called `skeleton` in the directory specified by [the `module_working_dir` setting](./configuration.html#module_working_dir). (The layout of the directory should match that of [`lib/puppet/module_tool/skeleton`](https://github.com/puppetlabs/puppet/tree/master/lib/puppet/module_tool/skeleton).) This directory can now be configured independently with [the `module_skeleton_dir` setting](./configuration.html#module_skeleton_dir).
 
 ### Improvements to Resource Types
 
@@ -871,7 +870,7 @@ By default, Puppet 3.2 is backward compatible with Puppet 3.1, with only minimal
 Note that **features in the experimental parser are exempt from semantic versioning.** They might change several times before being released in the "current" parser.
 
 [arm2]: https://github.com/puppetlabs/armatures/tree/master/arm-2.iteration
-[32experimental]: /puppet/3/reference/lang_experimental_3_2.html
+[32experimental]: ./lang_experimental_3_2.html
 [experimentalmodule]: https://github.com/hlindberg/puppet-network
 [experimentalcommit]: https://github.com/hlindberg/puppet-network/commit/b1665a2da730e31b76a9230796510d01e6a626d7
 
@@ -915,7 +914,7 @@ We now officially support using an external certificate authority with Puppet. S
 
 If you were stalled on 2.7.17 due to [bug 15561][15561], upgrading to 3.2 should fix your problems.
 
-[external_ca]: /puppet/3/reference/config_ssl_external_ca.html
+[external_ca]: ./config_ssl_external_ca.html
 
 (Issues [15561][], [17864][], [19271][], and [20027][])
 
@@ -1068,7 +1067,7 @@ Puppet 3.1.0 is a features and fixes release in the 3.x series, focused on addin
 
 ### New: YARD API Documentation
 
-To go along with the improved usability of Puppet as a library, we've added [YARD documentation](http://yardoc.org) throughout the codebase. YARD generates browsable code documentation based on in-line comments. This is a first pass through the codebase but about half of it's covered now. To use the YARD docs, simply run `gem install yard` then `yard server --nocache` from inside a puppet source code checkout (the directory containing `lib/puppet`). YARD documentation is also available in the [generated references section](/references/3.4.stable/index.html) under [Developer Documentation](/references/3.4.stable/developer/).
+To go along with the improved usability of Puppet as a library, we've added [YARD documentation](http://yardoc.org) throughout the codebase. YARD generates browsable code documentation based on in-line comments. This is a first pass through the codebase but about half of it's covered now. To use the YARD docs, simply run `gem install yard` then `yard server --nocache` from inside a puppet source code checkout (the directory containing `lib/puppet`). YARD documentation is also available in the [generated references section](./index.html) under [Developer Documentation](./yard/).
 
 
 ### Fix: YAML Node Cache Restored on Master
@@ -1437,7 +1436,7 @@ Puppet now has [an `unless` statement][unless].
 
 Usually, agent nodes use the `server` setting from puppet.conf to locate their puppet master, with optional `ca_server` and `report_server` settings for centralizing some kinds of puppet master traffic.
 
-If you set [`use_srv_records`](/references/latest/configuration.html#usesrvrecords) to `true`, agent nodes will instead use DNS SRV records to attempt to locate the puppet master. These records must be configured as follows:
+If you set [`use_srv_records`](/puppet/latest/reference/configuration.html#usesrvrecords) to `true`, agent nodes will instead use DNS SRV records to attempt to locate the puppet master. These records must be configured as follows:
 
 Server                       | SRV record
 -----------------------------|-----------------------------
@@ -1446,7 +1445,7 @@ CA server (if different)     | `_x-puppet-ca._tcp.$srv_domain`
 Report server (if different) | `_x-puppet-report._tcp.$srv_domain`
 File server\* (if different) | `_x-puppet-fileserver._tcp.$srv_domain`
 
-The [`srv_domain`](/references/latest/configuration.html#srvdomain) setting can be used to set the domain the agent will query; it defaults to the value of the [domain fact](/facter/latest/core_facts.html#domain). If the agent doesn't find an SRV record or can't contact the servers named in the SRV record, it will fall back to the `server`/`ca_server`/`report_server` settings from puppet.conf.
+The [`srv_domain`](/puppet/latest/reference/configuration.html#srvdomain) setting can be used to set the domain the agent will query; it defaults to the value of the [domain fact](/facter/latest/core_facts.html#domain). If the agent doesn't find an SRV record or can't contact the servers named in the SRV record, it will fall back to the `server`/`ca_server`/`report_server` settings from puppet.conf.
 
 \* (Note that the file server record is somewhat dangerous, as it overrides the server specified in **any** `puppet://` URL, not just URLs that use the default server.)
 

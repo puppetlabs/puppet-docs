@@ -22,14 +22,14 @@ For an introduction to how Puppet manages systems, see the [Overview of Puppet's
 
 ## Getting Started
 
-To install Puppet 3.8, see [the Puppet installation guide](/guides/install_puppet/pre_install.html). For general advice on upgrading between major versions, see [Upgrading Puppet](/guides/install_puppet/upgrading.html).
+To install Puppet 3.8, see [the Puppet installation guide](./pre_install.html). For general advice on upgrading between major versions, see [Upgrading Puppet](./upgrading.html).
 
 ## Getting Around
 
 This manual is split into several sections, which can be reached from the left sidebar. A few notable pages:
 
 * [The Puppet 3.8 Release Notes](./release_notes.html) contain information about Puppet 3.8's new features, and tracks changes from patch releases.
-* The [Resource Type Reference](/references/3.8.latest/type.html) is the page where experienced Puppet users spend most of their time.
+* The [Resource Type Reference](./type.html) is the page where experienced Puppet users spend most of their time.
 * Puppet uses its own configuration language. The [Language Summary](./lang_summary.html) gives some context and acts as a starting point for the language reference.
 * The [Visual Index to the Puppet Language](./lang_visual_index.html) can help you find the reference for a piece of syntax when you know what it looks like but don't know what it's called.
 * ["Modules"](./modules_fundamentals.html) explains how to organize your Puppet manifests, obtain pre-existing modules, and publish your own modules for public use.

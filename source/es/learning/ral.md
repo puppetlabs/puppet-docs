@@ -37,7 +37,7 @@ Loguéate en la VM de Learning Puppet como root, y ejecuta el siguiente comando:
 
 + **puppet**: La mayoría de las funciones de Puppet vienen de un sólo comando de **puppet**, el cual tiene muchos subcomandos.
 + **resource**: El subcomando **resource** puede inspeccionar y modificar recursos de forma interactiva.
-+ **service**: El primer argumento del comando **puppet resource** debe ser un **tipo de recurso**, del cual aprenderás más a continuación. Puedes encontrar una lista completa de tipos en [la referencia de tipos de Puppet](http://docs.puppetlabs.com/references/latest/type.html).
++ **service**: El primer argumento del comando **puppet resource** debe ser un **tipo de recurso**, del cual aprenderás más a continuación. Puedes encontrar una lista completa de tipos en [la referencia de tipos de Puppet](http://docs.puppetlabs.com/puppet/latest/reference/type.html).
 
 Juntos, estos comandos inspeccionan cada servicio en el sistema, ya sea en ejecución o parado.
 
@@ -109,7 +109,7 @@ No todos los tipos de recursos son igual de comunes o igual de útiles, con lo c
 
 ### Referencia de tipos
 
-Los usuarios de Puppet experimentados, pasan mucho tiempo en la página de [referencia de tipos](http://docs.puppetlabs.com/references/latest/type.html).
+Los usuarios de Puppet experimentados, pasan mucho tiempo en la página de [referencia de tipos](http://docs.puppetlabs.com/puppet/latest/reference/type.html).
 
 Esta página es una lista detallada de *todos* los tipos de recursos integrados. Puede ser un poco abrumador para un usuario nuevo, pero tiene casi toda la información que necesitarás en un día normal escribiendo código Puppet.
 
@@ -121,7 +121,7 @@ El subcomando **puppet describe** puede realizar una lista de tipos de recursos 
 
 + **puppet describe -l**: Lista todos los tipos de recursos disponibles en el sistema.
 + **puppet describe –s <TIPO>**: Imprime información breve acerca de un tipo, sin describir cada atributo.
-+ **puppet describe <TIPO>**: Imprime información completa, algo similar a lo que aparece en la [referencia de tipos](http://docs.puppetlabs.com/references/latest/type.html).
++ **puppet describe <TIPO>**: Imprime información completa, algo similar a lo que aparece en la [referencia de tipos](http://docs.puppetlabs.com/puppet/latest/reference/type.html).
 
 ## Explorar e inspeccionar recursos
 

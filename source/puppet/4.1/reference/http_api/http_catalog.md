@@ -1,7 +1,8 @@
 ---
 layout: default
-title: "Puppet HTTP API: Catalog"
-canonical: "/puppet/latest/reference/http_api/http_catalog.html"
+built_from_commit: c4a6a76fd219bffd689476413985ed13f40ef1dd
+title: 'Puppet HTTP API: Catalog'
+canonical: /puppet/latest/reference/http_api/http_catalog.html
 ---
 
 Catalog
@@ -38,7 +39,6 @@ The examples below use the POST method.
 ### Parameters
 
 Three parameters should be provided to the POST or GET:
-
 - `facts_format`: must be `pson`
 - `facts`: serialized pson of the facts hash.  One odd note: due to a long-ago misunderstanding in the code, this is
 doubly-escaped (it should just be singly-escaped).  To keep backward compatibility, the extraneous
@@ -154,8 +154,7 @@ escaping is still used/supported.
 Schema
 ------
 
-In the POST request body (or the GET query), the facts parameter should conform
-to [the facts schema.](../schemas/facts.json)
+In the POST request body (or the GET query), the facts parameter should adhere to the
+[api/schemas/facts.json](../schemas/facts.json) schema.
 
-A catalog response body conforms to
-[the catalog schema.](../schemas/catalog.json)
+A catalog response body should adhere to the [api/schemas/catalog.json](../schemas/catalog.json) schema.

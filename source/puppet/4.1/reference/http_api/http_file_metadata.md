@@ -1,7 +1,8 @@
 ---
 layout: default
-title: "Puppet HTTP API: File Metadata"
-canonical: "/puppet/latest/reference/http_api/http_file_metadata.html"
+built_from_commit: c4a6a76fd219bffd689476413985ed13f40ef1dd
+title: 'Puppet HTTP API: File Metadata'
+canonical: /puppet/latest/reference/http_api/http_file_metadata.html
 ---
 
 File Metadata
@@ -340,8 +341,7 @@ is identical to the above example, except for:
 Schema
 ------
 
-The file metadata response body conforms to
-[the `file_metadata` schema.](../schemas/file_metadata.json)
+The representation of file metadata conforms to the schema at [api/schemas/file_metadata.json](../schemas/file_metadata.json).
 
 Sample Module
 -------------

@@ -1,0 +1,280 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Class: Puppet::Pops::Binder::BindingsFactory::MultibindingsBuilder
+  
+    &mdash; Documentation by YARD 0.8.7.6
+  
+</title>
+
+  <link rel="stylesheet" href="../../../../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../../../../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '../../../../';
+  framesUrl = "../../../../frames.html#!Puppet/Pops/Binder/BindingsFactory/MultibindingsBuilder.html";
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../../../../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../../../../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../../../../_index.html">Index (M)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../../../../Puppet.html" title="Puppet (module)">Puppet</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../../../Pops.html" title="Puppet::Pops (module)">Pops</a></span></span> &raquo; <span class='title'><span class='object_link'>Binder</span></span> &raquo; <span class='title'><span class='object_link'><a href="../BindingsFactory.html" title="Puppet::Pops::Binder::BindingsFactory (module)">BindingsFactory</a></span></span>
+     &raquo; 
+    <span class="title">MultibindingsBuilder</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../../../../class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="../../../../method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="../../../../file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><h1>Class: Puppet::Pops::Binder::BindingsFactory::MultibindingsBuilder
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName"><span class='object_link'><a href="BindingsBuilder.html" title="Puppet::Pops::Binder::BindingsFactory::BindingsBuilder (class)">BindingsBuilder</a></span></span>
+      
+        <ul class="fullTree">
+          <li><span class='object_link'>Object</span></li>
+          
+            <li class="next"><span class='object_link'>AbstractBuilder</span></li>
+          
+            <li class="next"><span class='object_link'><a href="BindingsBuilder.html" title="Puppet::Pops::Binder::BindingsFactory::BindingsBuilder (class)">BindingsBuilder</a></span></li>
+          
+            <li class="next">Puppet::Pops::Binder::BindingsFactory::MultibindingsBuilder</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">lib/puppet/pops/binder/bindings_factory.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p>A builder specialized for multibind - checks that type is Array or Hash based. A new builder sets the
+multibinding to be of type Hash[Data].</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+
+
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#type-instance_method" title="#type (instance method)">- (Object) <strong>type</strong>(type) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Constraints type to be one of <span class='object_link'><a href="../../Types/PArrayType.html" title="Puppet::Pops::Types::PArrayType (class)">PArrayType</a></span>, or <span class='object_link'><a href="../../Types/PHashType.html" title="Puppet::Pops::Types::PHashType (class)">PHashType</a></span>.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods inherited from <span class='object_link'><a href="BindingsBuilder.html" title="Puppet::Pops::Binder::BindingsFactory::BindingsBuilder (class)">BindingsBuilder</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="BindingsBuilder.html#abstract-instance_method" title="Puppet::Pops::Binder::BindingsFactory::BindingsBuilder#abstract (method)">#abstract</a></span>, <span class='object_link'><a href="BindingsBuilder.html#array_of-instance_method" title="Puppet::Pops::Binder::BindingsFactory::BindingsBuilder#array_of (method)">#array_of</a></span>, <span class='object_link'><a href="BindingsBuilder.html#array_of_data-instance_method" title="Puppet::Pops::Binder::BindingsFactory::BindingsBuilder#array_of_data (method)">#array_of_data</a></span>, <span class='object_link'><a href="BindingsBuilder.html#boolean-instance_method" title="Puppet::Pops::Binder::BindingsFactory::BindingsBuilder#boolean (method)">#boolean</a></span>, <span class='object_link'><a href="BindingsBuilder.html#final-instance_method" title="Puppet::Pops::Binder::BindingsFactory::BindingsBuilder#final (method)">#final</a></span>, <span class='object_link'><a href="BindingsBuilder.html#float-instance_method" title="Puppet::Pops::Binder::BindingsFactory::BindingsBuilder#float (method)">#float</a></span>, <span class='object_link'><a href="BindingsBuilder.html#hash_of-instance_method" title="Puppet::Pops::Binder::BindingsFactory::BindingsBuilder#hash_of (method)">#hash_of</a></span>, <span class='object_link'><a href="BindingsBuilder.html#hash_of_data-instance_method" title="Puppet::Pops::Binder::BindingsFactory::BindingsBuilder#hash_of_data (method)">#hash_of_data</a></span>, <span class='object_link'><a href="BindingsBuilder.html#in_multibind-instance_method" title="Puppet::Pops::Binder::BindingsFactory::BindingsBuilder#in_multibind (method)">#in_multibind</a></span>, <span class='object_link'><a href="BindingsBuilder.html#initialize-instance_method" title="Puppet::Pops::Binder::BindingsFactory::BindingsBuilder#initialize (method)">#initialize</a></span>, <span class='object_link'><a href="BindingsBuilder.html#instance_of-instance_method" title="Puppet::Pops::Binder::BindingsFactory::BindingsBuilder#instance_of (method)">#instance_of</a></span>, <span class='object_link'><a href="BindingsBuilder.html#integer-instance_method" title="Puppet::Pops::Binder::BindingsFactory::BindingsBuilder#integer (method)">#integer</a></span>, <span class='object_link'><a href="BindingsBuilder.html#name-instance_method" title="Puppet::Pops::Binder::BindingsFactory::BindingsBuilder#name (method)">#name</a></span>, <span class='object_link'><a href="BindingsBuilder.html#override-instance_method" title="Puppet::Pops::Binder::BindingsFactory::BindingsBuilder#override (method)">#override</a></span>, <span class='object_link'><a href="BindingsBuilder.html#pattern-instance_method" title="Puppet::Pops::Binder::BindingsFactory::BindingsBuilder#pattern (method)">#pattern</a></span>, <span class='object_link'><a href="BindingsBuilder.html#producer_options-instance_method" title="Puppet::Pops::Binder::BindingsFactory::BindingsBuilder#producer_options (method)">#producer_options</a></span>, <span class='object_link'><a href="BindingsBuilder.html#scalar-instance_method" title="Puppet::Pops::Binder::BindingsFactory::BindingsBuilder#scalar (method)">#scalar</a></span>, <span class='object_link'><a href="BindingsBuilder.html#string-instance_method" title="Puppet::Pops::Binder::BindingsFactory::BindingsBuilder#string (method)">#string</a></span>, <span class='object_link'><a href="BindingsBuilder.html#to-instance_method" title="Puppet::Pops::Binder::BindingsFactory::BindingsBuilder#to (method)">#to</a></span>, <span class='object_link'><a href="BindingsBuilder.html#to_first_found-instance_method" title="Puppet::Pops::Binder::BindingsFactory::BindingsBuilder#to_first_found (method)">#to_first_found</a></span>, <span class='object_link'><a href="BindingsBuilder.html#to_hash_lookup_of-instance_method" title="Puppet::Pops::Binder::BindingsFactory::BindingsBuilder#to_hash_lookup_of (method)">#to_hash_lookup_of</a></span>, <span class='object_link'><a href="BindingsBuilder.html#to_lookup_of-instance_method" title="Puppet::Pops::Binder::BindingsFactory::BindingsBuilder#to_lookup_of (method)">#to_lookup_of</a></span>, <span class='object_link'><a href="BindingsBuilder.html#to_producer-instance_method" title="Puppet::Pops::Binder::BindingsFactory::BindingsBuilder#to_producer (method)">#to_producer</a></span>, <span class='object_link'><a href="BindingsBuilder.html#to_producer_series-instance_method" title="Puppet::Pops::Binder::BindingsFactory::BindingsBuilder#to_producer_series (method)">#to_producer_series</a></span>, <span class='object_link'><a href="BindingsBuilder.html#to_series_of-instance_method" title="Puppet::Pops::Binder::BindingsFactory::BindingsBuilder#to_series_of (method)">#to_series_of</a></span>, <span class='object_link'><a href="BindingsBuilder.html#type_factory-instance_method" title="Puppet::Pops::Binder::BindingsFactory::BindingsBuilder#type_factory (method)">#type_factory</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods inherited from <span class='object_link'>AbstractBuilder</span></h3>
+  <p class="inherited"><span class='object_link'><a href="AbstractBuilder.html#initialize-instance_method" title="Puppet::Pops::Binder::BindingsFactory::AbstractBuilder#initialize (method)">#initialize</a></span>, <span class='object_link'><a href="AbstractBuilder.html#method_missing-instance_method" title="Puppet::Pops::Binder::BindingsFactory::AbstractBuilder#method_missing (method)">#method_missing</a></span></p>
+<div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <p class="notice">This class inherits a constructor from <span class='object_link'><a href="BindingsBuilder.html#initialize-instance_method" title="Puppet::Pops::Binder::BindingsFactory::BindingsBuilder#initialize (method)">Puppet::Pops::Binder::BindingsFactory::BindingsBuilder</a></span></p>
+  
+</div>
+<div id="method_missing_details" class="method_details_list">
+  <h2>Dynamic Method Handling</h2>
+  <p class="notice super">
+    This class handles dynamic methods through the <tt>method_missing</tt> method
+    
+      in the class <span class='object_link'><a href="AbstractBuilder.html#method_missing-instance_method" title="Puppet::Pops::Binder::BindingsFactory::AbstractBuilder#method_missing (method)">Puppet::Pops::Binder::BindingsFactory::AbstractBuilder</a></span>
+    
+  </p>
+  
+</div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="type-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>type</strong>(type) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Constraints type to be one of <span class='object_link'><a href="../../Types/PArrayType.html" title="Puppet::Pops::Types::PArrayType (class)">PArrayType</a></span>, or <span class='object_link'><a href="../../Types/PHashType.html" title="Puppet::Pops::Types::PHashType (class)">PHashType</a></span>.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>ArgumentError</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>if type constraint is not met.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+580
+581
+582
+583
+584
+585
+586</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/bindings_factory.rb', line 580</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_type'>type</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='rparen'>)</span>
+  <span class='kw'>unless</span> <span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span> <span class='op'>==</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Pops</span><span class='op'>::</span><span class='const'>Types</span><span class='op'>::</span><span class='const'>PArrayType</span> <span class='op'>||</span> <span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span> <span class='op'>==</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Pops</span><span class='op'>::</span><span class='const'>Types</span><span class='op'>::</span><span class='const'>PHashType</span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Wrong type; only PArrayType, or PHashType allowed, got &#39;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39;</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>end</span>
+  <span class='id identifier rubyid_model'>model</span><span class='period'>.</span><span class='id identifier rubyid_type'>type</span> <span class='op'>=</span> <span class='id identifier rubyid_type'>type</span>
+  <span class='kw'>self</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+    <div id="footer">
+  Generated on Fri Jan 15 16:54:52 2016 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.6 (ruby-2.0.0).
+</div>
+
+  </body>
+</html>

@@ -4,8 +4,8 @@ title: "Environments and Puppet's HTTPS Interface"
 canonical: "/puppet/latest/reference/environments_https.html"
 ---
 
-[v1 api]: /references/3.5.latest/developer/file.http_api_index.html#V1_API_Services
-[http_api]: /references/3.5.latest/developer/file.http_api_index.html
+[v1 api]: ./yard/file.http_api_index.html#V1_API_Services
+[http_api]: ./yard/file.http_api_index.html
 [auth.conf file]: ./config_file_auth.html
 [config_file_envs]: ./environments_classic.html
 
@@ -21,21 +21,21 @@ For some endpoints, making a request "in" an environment is meaningless; for oth
 
 Endpoints where the requested environment can be overridden by the ENC/node terminus:
 
-- [Catalog](/references/3.5.latest/developer/file.http_catalog.html) --- For this endpoint, the environment is just a request, as described above in the section on assigning nodes to environments; if the ENC specifies an environment for the node, it will override the environment in the request.
+- [Catalog](./yard/file.http_catalog.html) --- For this endpoint, the environment is just a request, as described above in the section on assigning nodes to environments; if the ENC specifies an environment for the node, it will override the environment in the request.
 
 Endpoints where the requested environment is always used:
 
-- [File content](/references/3.5.latest/developer/file.http_file_content.html) and [file metadata](/references/3.5.latest/developer/file.http_file_metadata.html) --- Files in modules, including plugins like custom facts and resource types, will always be served from the requested environment. Puppet agent has to account for this when fetching files; it does so by fetching its node object (see "node" below), then resetting the environment it will request to whatever the ENC specified and using that new environment for all subsequent requests. (Since custom facts might influence the decision of the ENC, the agent will repeat this process up to three times before giving up.)
-- [Resource type](/references/3.5.latest/developer/file.http_resource_type.html) --- Puppet agent doesn't use this; it's just for extensions. The puppet master will always respond with information for the requested environment.
+- [File content](./yard/file.http_file_content.html) and [file metadata](./yard/file.http_file_metadata.html) --- Files in modules, including plugins like custom facts and resource types, will always be served from the requested environment. Puppet agent has to account for this when fetching files; it does so by fetching its node object (see "node" below), then resetting the environment it will request to whatever the ENC specified and using that new environment for all subsequent requests. (Since custom facts might influence the decision of the ENC, the agent will repeat this process up to three times before giving up.)
+- [Resource type](./yard/file.http_resource_type.html) --- Puppet agent doesn't use this; it's just for extensions. The puppet master will always respond with information for the requested environment.
 
 Endpoints where environment makes no difference:
 
-- [File Bucket File](/references/3.5.latest/developer/file.http_file_bucket_file.html) --- There's only one filebucket.)
-- [Report](/references/3.5.latest/developer/file.http_report.html) --- Reports already contain environment info, and each report handler can decide what, if anything, to do with it.)
-- [Facts](/references/3.5.latest/developer/file.http_facts.html) --- Puppet agent doesn't actually use this endpoint. When used as the inventory service, environment has no effect.)
-- [Node](/references/3.5.latest/developer/file.http_node.html) --- Puppet agent uses this to learn whether the master's ENC has overridden its preferred environment. Theoretically, a node terminus could use the environment of the first node object request to decide whether to override the environment, but we're not aware of anyone doing that and there wouldn't seem to be much point to it.)
-- [Status](/references/3.5.latest/developer/file.http_status.html)
-- [Certificate](/references/3.5.latest/developer/file.http_certificate.html), [certificate signing request](/references/3.5.latest/developer/file.http_certificate_request.html), [certificate status](/references/3.5.latest/developer/file.http_certificate_status.html), and [certificate revocation list](/references/3.5.latest/developer/file.http_certificate_revocation_list.html) --- The CA doesn't differ by environment.)
+- [File Bucket File](./yard/file.http_file_bucket_file.html) --- There's only one filebucket.)
+- [Report](./yard/file.http_report.html) --- Reports already contain environment info, and each report handler can decide what, if anything, to do with it.)
+- [Facts](./yard/file.http_facts.html) --- Puppet agent doesn't actually use this endpoint. When used as the inventory service, environment has no effect.)
+- [Node](./yard/file.http_node.html) --- Puppet agent uses this to learn whether the master's ENC has overridden its preferred environment. Theoretically, a node terminus could use the environment of the first node object request to decide whether to override the environment, but we're not aware of anyone doing that and there wouldn't seem to be much point to it.)
+- [Status](./yard/file.http_status.html)
+- [Certificate](./yard/file.http_certificate.html), [certificate signing request](./yard/file.http_certificate_request.html), [certificate status](./yard/file.http_certificate_status.html), and [certificate revocation list](./yard/file.http_certificate_revocation_list.html) --- The CA doesn't differ by environment.)
 
 ### Controlling HTTPS Access Based on Environment
 
@@ -50,6 +50,6 @@ This _only works for directory environments._ When you query environments via th
 
 For more details, see [the reference page about the environments endpoint.][env_endpoint]
 
-[v2_api]: /references/3.5.latest/developer/file.http_api_index.html#V2_HTTP_API
-[env_endpoint]: /references/3.5.latest/developer/file.http_environments.html
+[v2_api]: ./yard/file.http_api_index.html#V2_HTTP_API
+[env_endpoint]: ./yard/file.http_environments.html
 

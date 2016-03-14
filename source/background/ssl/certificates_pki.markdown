@@ -14,12 +14,11 @@ title: "Background Reference: What are Certificates and PKI?"
 > This article is [part of a series][index]. The previous article covered the concept of [public key cryptography][public_key].
 
 
-A public key infrastructure (PKI) is a way to associate public keys with trusted information about their owners. This makes public key crypto significantly more useful, since each participant doesn't have to keep a personal list of all known public keys.
+A public key infrastructure (PKI) is a way to associate public keys with trusted information about their owners. This makes public key cryptography significantly more useful, since each participant doesn't have to keep a personal list of all known public keys.
 
 The PKI used in SSL/TLS is defined by [the X.509 standard][x509]. Puppet and Puppet Enterprise use OpenSSL's implementation of the X.509 PKI.
 
-Certificates
------
+## Certificates
 
 A **certificate** is a cryptographic identification document that contains:
 
@@ -35,7 +34,7 @@ These three parts work together to form a useful unit of trust:
 
 ### Certificate Storage
 
-Certificates are usually stored in some encoded format. The most common format is PEM (privacy-enhanced mail), but certs may also be stored in archives such as Java keystores. These encoded formats are not human-readable, and need to be dumped into a different format to be inspected by users.
+Certificates are usually stored in some encoded format. The most common format is PEM (privacy-enhanced mail), but certificates may also be stored in archives such as Java keystores. These encoded formats are not human-readable, and need to be dumped into a different format to be inspected by users.
 
 A list of the most common file formats is available at [Wikipedia's page about the X.509 standard.][file_extensions]
 
@@ -45,22 +44,20 @@ A list of the most common file formats is available at [Wikipedia's page about t
 
 For more details about the metadata available in a certificate, such as the difference between the CN and the DN, please see [the appendix on certificate anatomy][certificate_anatomy].
 
-Certificate Authorities (CAs)
------
+## Certificate Authorities (CAs)
 
 Participants in a PKI generally agree ahead of time to trust a small number of **certificate authorities (CAs).** The CAs that are trusted before any other infrastructure is set up are called "root" CAs; later, some root CAs might issue "intermediate" or "chained" CA certificates, which are allowed to sign new certificates but can also be validated and revoked like normal certificates.
 
 Fundamentally, a CA is just a trusted person or institution that controls a key pair. The following steps are what differentiate the CA from any other participant in the PKI:
 
-* Other participants agree to trust that key pair's owner as a CA. For a root CA, this is usually a social/legal/contractual agreement that originates outside the PKI. For an intermediate CA, participants will trust it because they trust the root CA that endorses it.
+* Other participants agree to trust that key pair's owner as a CA. For a root CA, this is usually a social/legal/contractual agreement that originates outside of the PKI. For an intermediate CA, participants will trust it because they trust the root CA that endorses it.
 * The CA either creates or obtains a special certificate, whose metadata states that the CA is allowed to sign new certificates. (This is a rare permission that most certificates do not have.)
-    * For intermediate CAs, this certificate is issued by another (probably root) CA. Root CAs will use their own key pair to craft a _self-signed certificate._ (That is, the signature is provided by the same key pair that the certificate describes.) This is why the decision to trust a root CA happens outside the PKI: their certificates amount to a tautological "trust me because you trust me."
-* The CA certificate is distributed to other participants in the PKI. This is often done out-of-band as part of some bootstrapping process. (For example, the root CA certificates used by web browsers can be bundled with the executable and installed alongside it. Most modern operating systems also ship with root CA certs included.)
+    * For intermediate CAs, this certificate is issued by another (probably root) CA. Root CAs will use their own key pair to craft a _self-signed certificate._ (That is, the signature is provided by the same key pair that the certificate describes.) This is why the decision to trust a root CA happens outside of the PKI: their certificates amount to a tautological "Trust me because you trust me."
+* The CA certificate is distributed to other participants in the PKI. This is often done out-of-band as part of some bootstrapping process. (For example, the root CA certificates used by web browsers can be bundled with the executable and installed alongside it. Most modern operating systems also ship with root CA certificates included.)
 
 At this point, other participants can use the CA's certificate to verify signatures on any certificates that claim to be vetted by that CA. If the signature fails to validate, they will consider that certificate forged and decline to trust it.
 
-Certificate Signing Requests (CSRs)
------
+## Certificate Signing Requests (CSRs)
 
 Once the foundation of CA trust is established, participants can send **certificate signing requests (CSRs)** to the CA. The process depends on the CA; it might involve a ream of paperwork, or an email and a phone call, or an HTTP request to some automated system.
 
@@ -70,8 +67,7 @@ The CA can double-check this metadata, verify that the key pair belongs to the a
 
 Signing the request will create a new certificate for the participant that requested it. That participant will then have to retrieve the certificate from the CA. (The process for doing so will vary depending on the CA's preferences.) Once the participant has it, they can present the certificate to other participants and use their private key to prove themselves as the certificate's rightful owner. Other participants can use the CA's signature to prove that the metadata in the certificate was vetted by that CA.
 
-Certificate Revocation Checking
------
+## Certificate Revocation Checking
 
 Trusted certificates sometimes need to become untrusted, often as a result of a security breach. To handle this, a CA will keep track of which certificates are now untrusted, and will somehow make that information available to PKI participants.
 
@@ -104,16 +100,14 @@ This means the certificate presenter can pass the pre-fetched OCSP response dire
 OCSP stapling is considered the state of the art for revocation checking on the public web, although it isn't universally implemented yet.
 
 
-Certificate Lifespans
------
+## Certificate Lifespans
 
 Each certificate has a period of time for which it is valid; before or after this timespan, the certificate should not be trusted. The validity period is embedded in the certificate's metadata, and is assigned by the CA when signing the certificate.
 
 When checking a certificate's validity, participants in a PKI should also ensure that the certificate has not expired.
 
 
-Certificates and Puppet: The Puppet CA
------
+## Certificates and Puppet: The Puppet CA
 
 Puppet includes built-in tools for creating and managing a CA. This allows Puppet to be used in deployments where a suitable PKI is not already present. Using the built-in CA also provides some extra conveniences when bringing new nodes online; since agent nodes already know how the Puppet CA works, they can automatically request certificates when they first attempt to contact the puppet master. (By default, these certificates must be manually signed by an admin, although automatic signing can be configured.)
 
@@ -138,19 +132,18 @@ The Puppet CA consists of the following components:
 > Due to the shape of this trust arrangement, most attacks on a PKI will tend to fit a certain number of fundamental patterns:
 >
 > * **Subvert the CA's owner.** If you can coerce or manipulate the person or organization behind the CA, you can easily obtain fraudulent certificates that are indistinguishable from legitimate ones. These can be used to impersonate other participants in a man-in-the-middle attack, or to provide legitimacy for some other shenanigans. The only way for other participants to recover is to burn that CA permanently, which will have hugely disruptive effects; any participants with certificates from that CA will need to become re-certified under a new CA.
-> * **Subvert the CA's credentials.** If you can steal the CA's private key or get temporary access to it, you can issue your own forged certificates and do basically the same thing as above. Since the CA won't know about these certificates, you may end up with duplicated serial numbers, but these are only a problem if someone who has seen your forged certs in the wild can correlate them with the set of all legit certificates. (Basically: if the CA gets wind of it, the gig is up.) Duped serial numbers can also make it difficult for the CA to effectively revoke your forged certs. The only way for other participants to recover is to stop trusting that CA's certificate permanently and either replace it or stop trusting the entity behind the CA. All existing participants will need to be re-certified with the new CA credentials.
+> * **Subvert the CA's credentials.** If you can steal the CA's private key or get temporary access to it, you can issue your own forged certificates and do basically the same thing as above. Since the CA won't know about these certificates, you may end up with duplicated serial numbers, but these are only a problem if someone who has seen your forged certificates in the wild can correlate them with the set of all legit certificates. (Basically: if the CA gets wind of it, the gig is up.) Duped serial numbers can also make it difficult for the CA to effectively revoke your forged certificates. The only way for other participants to recover is to stop trusting that CA's certificate permanently and either replace it or stop trusting the entity behind the CA. All existing participants will need to be re-certified with the new CA credentials.
 > * **Trick the CA.** If the CA is lax in its background checks, a rogue participant may submit fraudulent metadata (for example, using the name of an organization they don't actually represent) and have it signed into a legit certificate. This may allow them to impersonate other actors or exercise permissions they shouldn't have. To recover, the CA must revoke that certificate and all participants must be using good certificate revocation checking when validating certificates.
->     * (A fun example was Puppet's [CVE-2011-3872](http://puppetlabs.com/security/cve/cve-2011-3872), where the CA could be configured to trick _itself_ into silently adding forged metadata to agent certs.)
+>     * (A fun example was Puppet's [CVE-2011-3872](http://puppetlabs.com/security/cve/cve-2011-3872), where the CA could be configured to trick _itself_ into silently adding forged metadata to agent certificates.)
 > * **Subvert participants' credentials.** If you can get access to a participant's private key, you can impersonate them at will. To recover, the CA will need to revoke their certificate and they will need to get re-certified.
-> * **Subvert a participant's list of trusted CAs.** If you can insert an evil CA certificate into a user's collection of CA certs, they will often trust certificates issued by that rogue CA. (This could be done by, e.g., redirecting a user to a doctored browser executable with bogus root CAs inserted. It could also be done with a trojan or other means of partial control over the user's computer.) To recover, the user would need to be keeping track of their trusted CAs, and would need to remove the evil one and patch whatever vulnerability allowed it to be placed there.
+> * **Subvert a participant's list of trusted CAs.** If you can insert an evil CA certificate into a user's collection of CA certificates, they will often trust certificates issued by that rogue CA. (This could be done by, e.g., redirecting a user to a doctored browser executable with bogus root CAs inserted. It could also be done with a trojan or other means of partial control over the user's computer.) To recover, the user would need to be keeping track of their trusted CAs, and would need to remove the evil one and patch whatever vulnerability allowed it to be placed there.
 > * **Attack the implementation.** If you can find a vulnerability in the protocol that is using the PKI --- for example, the BEAST and CRIME attacks on SSL/TLS, the Heartbleed attack on OpenSSL, and the occasional straight-up cipher crack --- you may be able to steal information from or insert information into the secure channel without actually needing to attack the PKI itself. To recover or defend, the participants must make sure they're using a version of their protocol that isn't vulnerable to that attack.
 > * **Attack outside the protocol.** If the target terminates SSL and sends unencrypted traffic over leased fiber, attack the leased fiber. Or get a keylogger onto the target's machine, or something; the point is, cheating is easier and more effective than fussing with a PKI or a secure protocol.
 >
 > In short: protect your private keys, make sure you actually trust the CA (in intentions _and_ competence), stay up to date on protocol exploits, and above all keep an eye on the unsecured portions of your system.
 
 
-Summary
------
+## Summary
 
 This article was longer than the others in this series, so a recap is in order:
 
@@ -158,12 +151,11 @@ This article was longer than the others in this series, so a recap is in order:
 * A certificate has three parts: public key, metadata, and signature from the CA. Without all three, it's not a certificate.
 * The CA issues all certificates. If it's a certificate at all, the CA has seen it and approved it.
 * Because the CA approves all certificate metadata, participants don't have to keep a list of all the public keys they'll need to know about; instead, they can just trust any valid certificate they are shown.
-* Because certs include public keys, only their rightful owner can present them as ID. A stolen cert is inert without a stolen private key.
-* The CA can also revoke certificates, but that only works if everybody regularly checks for revoked certs (via a traditional CRL or more modern means). This is even harder to ensure than it sounds.
+* Because certificates include public keys, only their rightful owner can present them as ID. A stolen cert is inert without a stolen private key.
+* The CA can also revoke certificates, but that only works if everybody regularly checks for revoked certificates (via a traditional CRL or more modern means). This is even harder to ensure than it sounds.
 * Puppet has built-in tools to make managing a CA easier. These are covered in other documentation.
 
 
-Next in This Series
------
+## Next in This Series
 
 The next chapter in this series, [What is TLS/SSL][tls_ssl], explains how certificates can be used to create secure _and_ authenticated channels of communication over a network. [Continue reading...][tls_ssl]

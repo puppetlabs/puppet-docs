@@ -1,0 +1,1415 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Class: Puppet::Transaction::Report
+  
+    &mdash; Documentation by YARD 0.8.7.6
+  
+</title>
+
+  <link rel="stylesheet" href="../../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '../../';
+  framesUrl = "../../frames.html#!Puppet/Transaction/Report.html";
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../../_index.html">Index (R)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../Transaction.html" title="Puppet::Transaction (class)">Transaction</a></span></span>
+     &raquo; 
+    <span class="title">Report</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../../class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="../../method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="../../file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><h1>Class: Puppet::Transaction::Report
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName"><span class='object_link'>Object</span></span>
+      
+        <ul class="fullTree">
+          <li><span class='object_link'>Object</span></li>
+          
+            <li class="next">Puppet::Transaction::Report</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">lib/puppet/transaction/report.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p>This class is used to report what happens on a client.
+There are two types of data in a report; <em>Logs</em> and <em>Metrics</em>.</p>
+
+<ul>
+<li><strong>Logs</strong> - are the output that each change produces.</li>
+<li><strong>Metrics</strong> - are all of the numerical data involved in the transaction.</li>
+</ul>
+
+<p>Use <span class='object_link'><a href="../Reports.html" title="Puppet::Reports (class)">Reports</a></span> class to create a new custom report type. This class is indirectly used
+as a source of data to report in such a registered report.</p>
+
+<h2>Metrics</h2>
+
+<p>There are three types of metrics in each report, and each type of metric has one or more values.</p>
+
+<ul>
+<li>Time: Keeps track of how long things took.
+
+<ul>
+<li>Total: Total time for the configuration run</li>
+<li>File:</li>
+<li>Exec:</li>
+<li>User:</li>
+<li>Group:</li>
+<li>Config Retrieval: How long the configuration took to retrieve</li>
+<li>Service:</li>
+<li>Package:</li>
+</ul></li>
+<li>Resources: Keeps track of the following stats:
+
+<ul>
+<li>Total: The total number of resources being managed</li>
+<li>Skipped: How many resources were skipped, because of either tagging or scheduling restrictions</li>
+<li>Scheduled: How many resources met any scheduling restrictions</li>
+<li>Out of Sync: How many resources were out of sync</li>
+<li>Applied: How many resources were attempted to be fixed</li>
+<li>Failed: How many resources were not successfully fixed</li>
+<li>Restarted: How many resources were restarted because their dependencies changed</li>
+<li>Failed Restarts: How many resources could not be restarted</li>
+</ul></li>
+<li>Changes: The total number of changes in the transaction.</li>
+</ul>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+
+
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#%3C%3C-instance_method" title="#&lt;&lt; (instance method)">- (Object) <strong>&lt;&lt;</strong>(msg) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#add_metric-instance_method" title="#add_metric (instance method)">- (Object) <strong>add_metric</strong>(name, hash) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#add_resource_status-instance_method" title="#add_resource_status (instance method)">- (Object) <strong>add_resource_status</strong>(status) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#add_times-instance_method" title="#add_times (instance method)">- (Object) <strong>add_times</strong>(name, value) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#compute_status-instance_method" title="#compute_status (instance method)">- (Object) <strong>compute_status</strong>(resource_metrics, change_metric) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#exit_status-instance_method" title="#exit_status (instance method)">- (Integer) <strong>exit_status</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Computes a single number that represents the report&#39;s status.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#finalize_report-instance_method" title="#finalize_report (instance method)">- (Object) <strong>finalize_report</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">- (Report) <strong>initialize</strong>(kind, configuration_version = nil, environment = nil, transaction_uuid = nil) </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'><p>A new instance of Report.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize_from_hash-instance_method" title="#initialize_from_hash (instance method)">- (Object) <strong>initialize_from_hash</strong>(data) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#name-instance_method" title="#name (instance method)">- (String) <strong>name</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>The host name.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#prune_internal_data-instance_method" title="#prune_internal_data (instance method)">- (Object) <strong>prune_internal_data</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#raw_summary-instance_method" title="#raw_summary (instance method)">- (Hash&lt;{String =&gt; Object}&gt;) <strong>raw_summary</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Provides a raw hash summary of this report.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#summary-instance_method" title="#summary (instance method)">- (String) <strong>summary</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Provide a human readable textual summary of this report.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#to_yaml_properties-instance_method" title="#to_yaml_properties (instance method)">- (Object) <strong>to_yaml_properties</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  
+  
+  
+  
+  <div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <h3 class="signature first" id="initialize-instance_method">
+  
+    - (<tt><span class='object_link'><a href="" title="Puppet::Transaction::Report (class)">Report</a></span></tt>) <strong>initialize</strong>(kind, configuration_version = nil, environment = nil, transaction_uuid = nil) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>Returns a new instance of Report</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/transaction/report.rb', line 167</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_kind'>kind</span><span class='comma'>,</span> <span class='id identifier rubyid_configuration_version'>configuration_version</span><span class='op'>=</span><span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_environment'>environment</span><span class='op'>=</span><span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_transaction_uuid'>transaction_uuid</span><span class='op'>=</span><span class='kw'>nil</span><span class='rparen'>)</span>
+  <span class='ivar'>@metrics</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+  <span class='ivar'>@logs</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+  <span class='ivar'>@resource_statuses</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+  <span class='ivar'>@external_times</span> <span class='op'>||=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+  <span class='ivar'>@host</span> <span class='op'>=</span> <span class='const'>Puppet</span><span class='lbracket'>[</span><span class='symbol'>:node_name_value</span><span class='rbracket'>]</span>
+  <span class='ivar'>@time</span> <span class='op'>=</span> <span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_now'>now</span>
+  <span class='ivar'>@kind</span> <span class='op'>=</span> <span class='id identifier rubyid_kind'>kind</span>
+  <span class='ivar'>@report_format</span> <span class='op'>=</span> <span class='int'>4</span>
+  <span class='ivar'>@puppet_version</span> <span class='op'>=</span> <span class='const'>Puppet</span><span class='period'>.</span><span class='id identifier rubyid_version'>version</span>
+  <span class='ivar'>@configuration_version</span> <span class='op'>=</span> <span class='id identifier rubyid_configuration_version'>configuration_version</span>
+  <span class='ivar'>@transaction_uuid</span> <span class='op'>=</span> <span class='id identifier rubyid_transaction_uuid'>transaction_uuid</span>
+  <span class='ivar'>@environment</span> <span class='op'>=</span> <span class='id identifier rubyid_environment'>environment</span>
+  <span class='ivar'>@status</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>failed</span><span class='tstring_end'>&#39;</span></span> <span class='comment'># assume failed until the report is finalized
+</span><span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="<<-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>&lt;&lt;</strong>(msg) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+111
+112
+113
+114</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/transaction/report.rb', line 111</span>
+
+<span class='kw'>def</span> <span class='op'>&lt;&lt;</span><span class='lparen'>(</span><span class='id identifier rubyid_msg'>msg</span><span class='rparen'>)</span>
+  <span class='ivar'>@logs</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_msg'>msg</span>
+  <span class='kw'>self</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="add_metric-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>add_metric</strong>(name, hash) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/transaction/report.rb', line 122</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_add_metric'>add_metric</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_hash'>hash</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_metric'>metric</span> <span class='op'>=</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Util</span><span class='op'>::</span><span class='const'>Metric</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_hash'>hash</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_metric_name'>metric_name</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='op'>|</span>
+    <span class='id identifier rubyid_metric'>metric</span><span class='period'>.</span><span class='id identifier rubyid_newvalue'>newvalue</span><span class='lparen'>(</span><span class='id identifier rubyid_metric_name'>metric_name</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+
+  <span class='ivar'>@metrics</span><span class='lbracket'>[</span><span class='id identifier rubyid_metric'>metric</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_metric'>metric</span>
+  <span class='id identifier rubyid_metric'>metric</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="add_resource_status-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>add_resource_status</strong>(status) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+134
+135
+136</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/transaction/report.rb', line 134</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_add_resource_status'>add_resource_status</span><span class='lparen'>(</span><span class='id identifier rubyid_status'>status</span><span class='rparen'>)</span>
+  <span class='ivar'>@resource_statuses</span><span class='lbracket'>[</span><span class='id identifier rubyid_status'>status</span><span class='period'>.</span><span class='id identifier rubyid_resource'>resource</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_status'>status</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="add_times-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>add_times</strong>(name, value) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+117
+118
+119</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/transaction/report.rb', line 117</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_add_times'>add_times</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
+  <span class='ivar'>@external_times</span><span class='lbracket'>[</span><span class='id identifier rubyid_name'>name</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_value'>value</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="compute_status-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>compute_status</strong>(resource_metrics, change_metric) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+139
+140
+141
+142
+143
+144
+145
+146
+147</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/transaction/report.rb', line 139</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_compute_status'>compute_status</span><span class='lparen'>(</span><span class='id identifier rubyid_resource_metrics'>resource_metrics</span><span class='comma'>,</span> <span class='id identifier rubyid_change_metric'>change_metric</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='lparen'>(</span><span class='id identifier rubyid_resource_metrics'>resource_metrics</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>failed</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='int'>0</span><span class='rparen'>)</span> <span class='op'>&gt;</span> <span class='int'>0</span>
+    <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>failed</span><span class='tstring_end'>&#39;</span></span>
+  <span class='kw'>elsif</span> <span class='id identifier rubyid_change_metric'>change_metric</span> <span class='op'>&gt;</span> <span class='int'>0</span>
+    <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>changed</span><span class='tstring_end'>&#39;</span></span>
+  <span class='kw'>else</span>
+    <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>unchanged</span><span class='tstring_end'>&#39;</span></span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="exit_status-instance_method">
+  
+    - (<tt>Integer</tt>) <strong>exit_status</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Computes a single number that represents the report&#39;s status.
+The computation is based on the contents of this report&#39;s metrics.
+The resulting number is a bitmask where
+individual bits represent the presence of different metrics.</p>
+
+<ul>
+<li>0x2 set if there are changes</li>
+<li>0x4 set if there are resource failures or resources that failed to restart</li>
+</ul>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>A bitmask where 0x2 is set if there are changes, and 0x4 is set of there are failures.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+303
+304
+305
+306
+307
+308
+309</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/transaction/report.rb', line 303</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_exit_status'>exit_status</span>
+  <span class='id identifier rubyid_status'>status</span> <span class='op'>=</span> <span class='int'>0</span>
+  <span class='id identifier rubyid_status'>status</span> <span class='op'>|=</span> <span class='int'>2</span> <span class='kw'>if</span> <span class='ivar'>@metrics</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>changes</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>total</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>&gt;</span> <span class='int'>0</span>
+  <span class='id identifier rubyid_status'>status</span> <span class='op'>|=</span> <span class='int'>4</span> <span class='kw'>if</span> <span class='ivar'>@metrics</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>resources</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>failed</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>&gt;</span> <span class='int'>0</span>
+  <span class='id identifier rubyid_status'>status</span> <span class='op'>|=</span> <span class='int'>4</span> <span class='kw'>if</span> <span class='ivar'>@metrics</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>resources</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>failed_to_restart</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>&gt;</span> <span class='int'>0</span>
+  <span class='id identifier rubyid_status'>status</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="finalize_report-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>finalize_report</strong> &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/transaction/report.rb', line 155</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_finalize_report'>finalize_report</span>
+  <span class='id identifier rubyid_prune_internal_data'>prune_internal_data</span>
+
+  <span class='id identifier rubyid_resource_metrics'>resource_metrics</span> <span class='op'>=</span> <span class='id identifier rubyid_add_metric'>add_metric</span><span class='lparen'>(</span><span class='symbol'>:resources</span><span class='comma'>,</span> <span class='id identifier rubyid_calculate_resource_metrics'>calculate_resource_metrics</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_add_metric'>add_metric</span><span class='lparen'>(</span><span class='symbol'>:time</span><span class='comma'>,</span> <span class='id identifier rubyid_calculate_time_metrics'>calculate_time_metrics</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_change_metric'>change_metric</span> <span class='op'>=</span> <span class='id identifier rubyid_calculate_change_metric'>calculate_change_metric</span>
+  <span class='id identifier rubyid_add_metric'>add_metric</span><span class='lparen'>(</span><span class='symbol'>:changes</span><span class='comma'>,</span> <span class='lbrace'>{</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>total</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_change_metric'>change_metric</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_add_metric'>add_metric</span><span class='lparen'>(</span><span class='symbol'>:events</span><span class='comma'>,</span> <span class='id identifier rubyid_calculate_event_metrics'>calculate_event_metrics</span><span class='rparen'>)</span>
+  <span class='ivar'>@status</span> <span class='op'>=</span> <span class='id identifier rubyid_compute_status'>compute_status</span><span class='lparen'>(</span><span class='id identifier rubyid_resource_metrics'>resource_metrics</span><span class='comma'>,</span> <span class='id identifier rubyid_change_metric'>change_metric</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="initialize_from_hash-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>initialize_from_hash</strong>(data) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/transaction/report.rb', line 184</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize_from_hash'>initialize_from_hash</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='rparen'>)</span>
+  <span class='ivar'>@puppet_version</span> <span class='op'>=</span> <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>puppet_version</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
+  <span class='ivar'>@report_format</span> <span class='op'>=</span> <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>report_format</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
+  <span class='ivar'>@configuration_version</span> <span class='op'>=</span> <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>configuration_version</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
+  <span class='ivar'>@transaction_uuid</span> <span class='op'>=</span> <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>transaction_uuid</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
+  <span class='ivar'>@environment</span> <span class='op'>=</span> <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>environment</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
+  <span class='ivar'>@status</span> <span class='op'>=</span> <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>status</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
+  <span class='ivar'>@host</span> <span class='op'>=</span> <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>host</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
+  <span class='ivar'>@time</span> <span class='op'>=</span> <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>time</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
+  <span class='kw'>if</span> <span class='ivar'>@time</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span> <span class='const'>String</span>
+    <span class='ivar'>@time</span> <span class='op'>=</span> <span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_parse'>parse</span><span class='lparen'>(</span><span class='ivar'>@time</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+  <span class='ivar'>@kind</span> <span class='op'>=</span> <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>kind</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
+
+  <span class='ivar'>@metrics</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+  <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>metrics</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_hash'>hash</span><span class='op'>|</span>
+    <span class='ivar'>@metrics</span><span class='lbracket'>[</span><span class='id identifier rubyid_name'>name</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Util</span><span class='op'>::</span><span class='const'>Metric</span><span class='period'>.</span><span class='id identifier rubyid_from_data_hash'>from_data_hash</span><span class='lparen'>(</span><span class='id identifier rubyid_hash'>hash</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+
+  <span class='ivar'>@logs</span> <span class='op'>=</span> <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>logs</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_record'>record</span><span class='op'>|</span>
+    <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Util</span><span class='op'>::</span><span class='const'>Log</span><span class='period'>.</span><span class='id identifier rubyid_from_data_hash'>from_data_hash</span><span class='lparen'>(</span><span class='id identifier rubyid_record'>record</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+
+  <span class='ivar'>@resource_statuses</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+  <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>resource_statuses</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_record'>record</span><span class='op'>|</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_record'>record</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+      <span class='id identifier rubyid_status'>status</span> <span class='op'>=</span> <span class='kw'>nil</span>
+    <span class='kw'>else</span>
+      <span class='id identifier rubyid_status'>status</span> <span class='op'>=</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Resource</span><span class='op'>::</span><span class='const'>Status</span><span class='period'>.</span><span class='id identifier rubyid_from_data_hash'>from_data_hash</span><span class='lparen'>(</span><span class='id identifier rubyid_record'>record</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+    <span class='ivar'>@resource_statuses</span><span class='lbracket'>[</span><span class='id identifier rubyid_record'>record</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_status'>status</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="name-instance_method">
+  
+    - (<tt>String</tt>) <strong>name</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Returns the host name</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the host name</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+239
+240
+241</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/transaction/report.rb', line 239</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_name'>name</span>
+  <span class='id identifier rubyid_host'>host</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="prune_internal_data-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>prune_internal_data</strong> &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+150
+151
+152</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/transaction/report.rb', line 150</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_prune_internal_data'>prune_internal_data</span>
+  <span class='id identifier rubyid_resource_statuses'>resource_statuses</span><span class='period'>.</span><span class='id identifier rubyid_delete_if'>delete_if</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span><span class='id identifier rubyid_res'>res</span><span class='op'>|</span> <span class='id identifier rubyid_res'>res</span><span class='period'>.</span><span class='id identifier rubyid_resource_type'>resource_type</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Whit</span><span class='tstring_end'>&#39;</span></span><span class='rbrace'>}</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="raw_summary-instance_method">
+  
+    - (<tt><span class='object_link'>Hash</span>&lt;{String =&gt; <span class='object_link'>Object</span>}&gt;</tt>) <strong>raw_summary</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Provides a raw hash summary of this report.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Hash</span>&lt;{String =&gt; <span class='object_link'>Object</span>}&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>A hash with metrics key to value map</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/transaction/report.rb', line 278</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_raw_summary'>raw_summary</span>
+  <span class='id identifier rubyid_report'>report</span> <span class='op'>=</span> <span class='lbrace'>{</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>version</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>config</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_configuration_version'>configuration_version</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>puppet</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='const'>Puppet</span><span class='period'>.</span><span class='id identifier rubyid_version'>version</span>  <span class='rbrace'>}</span> <span class='rbrace'>}</span>
+
+  <span class='ivar'>@metrics</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_metric'>metric</span><span class='op'>|</span>
+    <span class='id identifier rubyid_key'>key</span> <span class='op'>=</span> <span class='id identifier rubyid_metric'>metric</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>
+    <span class='id identifier rubyid_report'>report</span><span class='lbracket'>[</span><span class='id identifier rubyid_key'>key</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+    <span class='id identifier rubyid_metric'>metric</span><span class='period'>.</span><span class='id identifier rubyid_values'>values</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_metric_name'>metric_name</span><span class='comma'>,</span> <span class='id identifier rubyid_label'>label</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='op'>|</span>
+      <span class='id identifier rubyid_report'>report</span><span class='lbracket'>[</span><span class='id identifier rubyid_key'>key</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='id identifier rubyid_metric_name'>metric_name</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_value'>value</span>
+    <span class='kw'>end</span>
+    <span class='id identifier rubyid_report'>report</span><span class='lbracket'>[</span><span class='id identifier rubyid_key'>key</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>total</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='int'>0</span> <span class='kw'>unless</span> <span class='id identifier rubyid_key'>key</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>time</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>or</span> <span class='id identifier rubyid_report'>report</span><span class='lbracket'>[</span><span class='id identifier rubyid_key'>key</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>total</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+  <span class='lparen'>(</span><span class='id identifier rubyid_report'>report</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>time</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>||=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>last_run</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_now'>now</span><span class='period'>.</span><span class='id identifier rubyid_tv_sec'>tv_sec</span>
+  <span class='id identifier rubyid_report'>report</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="summary-instance_method">
+  
+    - (<tt>String</tt>) <strong>summary</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'><p>This is intended for debugging purposes</p>
+</div>
+  </div>
+
+<p>Provide a human readable textual summary of this report.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>A string with a textual summary of this report.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/transaction/report.rb', line 248</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_summary'>summary</span>
+  <span class='id identifier rubyid_report'>report</span> <span class='op'>=</span> <span class='id identifier rubyid_raw_summary'>raw_summary</span>
+
+  <span class='id identifier rubyid_ret'>ret</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_report'>report</span><span class='period'>.</span><span class='id identifier rubyid_keys'>keys</span><span class='period'>.</span><span class='id identifier rubyid_sort'>sort</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_a'>a</span><span class='comma'>,</span><span class='id identifier rubyid_b'>b</span><span class='op'>|</span> <span class='id identifier rubyid_a'>a</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span> <span class='op'>&lt;=&gt;</span> <span class='id identifier rubyid_b'>b</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span> <span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_key'>key</span><span class='op'>|</span>
+    <span class='id identifier rubyid_ret'>ret</span> <span class='op'>+=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Util</span><span class='op'>::</span><span class='const'>Metric</span><span class='period'>.</span><span class='id identifier rubyid_labelize'>labelize</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>:\n</span><span class='tstring_end'>&quot;</span></span>
+
+    <span class='id identifier rubyid_report'>report</span><span class='lbracket'>[</span><span class='id identifier rubyid_key'>key</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_keys'>keys</span><span class='period'>.</span><span class='id identifier rubyid_sort'>sort</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_a'>a</span><span class='comma'>,</span><span class='id identifier rubyid_b'>b</span><span class='op'>|</span>
+      <span class='comment'># sort by label
+</span>      <span class='kw'>if</span> <span class='id identifier rubyid_a'>a</span> <span class='op'>==</span> <span class='symbol'>:total</span>
+        <span class='int'>1</span>
+      <span class='kw'>elsif</span> <span class='id identifier rubyid_b'>b</span> <span class='op'>==</span> <span class='symbol'>:total</span>
+        <span class='op'>-</span><span class='int'>1</span>
+      <span class='kw'>else</span>
+        <span class='id identifier rubyid_report'>report</span><span class='lbracket'>[</span><span class='id identifier rubyid_key'>key</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='id identifier rubyid_a'>a</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span> <span class='op'>&lt;=&gt;</span> <span class='id identifier rubyid_report'>report</span><span class='lbracket'>[</span><span class='id identifier rubyid_key'>key</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='id identifier rubyid_b'>b</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>
+      <span class='kw'>end</span>
+    <span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_label'>label</span><span class='op'>|</span>
+      <span class='id identifier rubyid_value'>value</span> <span class='op'>=</span> <span class='id identifier rubyid_report'>report</span><span class='lbracket'>[</span><span class='id identifier rubyid_key'>key</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='id identifier rubyid_label'>label</span><span class='rbracket'>]</span>
+      <span class='kw'>next</span> <span class='kw'>if</span> <span class='id identifier rubyid_value'>value</span> <span class='op'>==</span> <span class='int'>0</span>
+      <span class='id identifier rubyid_value'>value</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>%0.2f</span><span class='tstring_end'>&quot;</span></span> <span class='op'>%</span> <span class='id identifier rubyid_value'>value</span> <span class='kw'>if</span> <span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Float</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_ret'>ret</span> <span class='op'>+=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>   %15s %s\n</span><span class='tstring_end'>&quot;</span></span> <span class='op'>%</span> <span class='lbracket'>[</span><span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Util</span><span class='op'>::</span><span class='const'>Metric</span><span class='period'>.</span><span class='id identifier rubyid_labelize'>labelize</span><span class='lparen'>(</span><span class='id identifier rubyid_label'>label</span><span class='rparen'>)</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>:</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='rbracket'>]</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+  <span class='id identifier rubyid_ret'>ret</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="to_yaml_properties-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>to_yaml_properties</strong> &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+313
+314
+315</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/transaction/report.rb', line 313</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_to_yaml_properties'>to_yaml_properties</span>
+  <span class='kw'>super</span> <span class='op'>-</span> <span class='lbracket'>[</span><span class='symbol'>:@external_times</span><span class='rbracket'>]</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+    <div id="footer">
+  Generated on Fri Jan 15 17:27:34 2016 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.6 (ruby-2.0.0).
+</div>
+
+  </body>
+</html>

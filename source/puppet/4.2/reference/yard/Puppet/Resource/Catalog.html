@@ -1,0 +1,592 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Class: Puppet::Resource::Catalog
+  
+    &mdash; Documentation by YARD 0.8.7.6
+  
+</title>
+
+  <link rel="stylesheet" href="../../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '../../';
+  framesUrl = "../../frames.html#!Puppet/Resource/Catalog.html";
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../../_index.html">Index (C)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../Resource.html" title="Puppet::Resource (class)">Resource</a></span></span>
+     &raquo; 
+    <span class="title">Catalog</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../../class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="../../method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="../../file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><h1>Class: Puppet::Resource::Catalog
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName"><span class='object_link'>Graph::SimpleGraph</span></span>
+      
+        <ul class="fullTree">
+          <li><span class='object_link'>Object</span></li>
+          
+            <li class="next"><span class='object_link'>Graph::SimpleGraph</span></li>
+          
+            <li class="next">Puppet::Resource::Catalog</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">lib/puppet/resource/catalog.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p>This class models a node catalog.  It is the thing meant to be passed
+from server to client, and it contains all of the information in the
+catalog, including the resources and the relationships between them.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+  <h2>Constant Summary</h2>
+  
+
+
+
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#apply-instance_method" title="#apply (instance method)">- (Puppet::Transaction) <strong>apply</strong>(options = {}) {|transaction| ... }</a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Apply our catalog to the local host.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#container_of-instance_method" title="#container_of (instance method)">- (A Resource<sup>?</sup>) <strong>container_of</strong>(resource) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>The resource that contains the given resource.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#relationship_graph-instance_method" title="#relationship_graph (instance method)">- (Puppet::Graph::RelationshipGraph) <strong>relationship_graph</strong>(given_prioritizer = nil) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>The relationship_graph form of the catalog.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="apply-instance_method">
+  
+    - (<tt><span class='object_link'><a href="../Transaction.html" title="Puppet::Transaction (class)">Puppet::Transaction</a></span></tt>) <strong>apply</strong>(options = {}) {|transaction| ... }
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Apply our catalog to the local host.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>options</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Hash</span>{<span class='object_link'>Symbol</span> =&gt; <span class='object_link'>Object</span>}</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>{}</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>a hash of options</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+  
+    
+    
+    <p class="tag_title">Options Hash (<tt>options</tt>):</p>
+    <ul class="option">
+      
+        <li>
+          <span class="name">:report</span>
+          <span class="type">(<tt><span class='object_link'><a href="../Transaction/Report.html" title="Puppet::Transaction::Report (class)">Puppet::Transaction::Report</a></span></tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>The report object to log this transaction to. This is optional,
+and the resulting transaction will create a report if not
+supplied.</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:tags</span>
+          <span class="type">(<tt><span class='object_link'>Array</span>[String]</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>Tags used to filter the transaction. If supplied then only
+resources tagged with any of these tags will be evaluated.</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:ignoreschedules</span>
+          <span class="type">(<tt>Boolean</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>Ignore schedules when evaluating resources</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:for_network_device</span>
+          <span class="type">(<tt>Boolean</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>Whether this catalog is for a network device</p>
+</div>
+          
+        </li>
+      
+    </ul>
+  
+
+<p class="tag_title">Yields:</p>
+<ul class="yield">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>transaction</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Transaction.html" title="Puppet::Transaction (class)">Puppet::Transaction</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the transaction created for this
+application</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/resource/catalog.rb', line 171</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_apply'>apply</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Util</span><span class='op'>::</span><span class='const'>Storage</span><span class='period'>.</span><span class='id identifier rubyid_load'>load</span> <span class='kw'>if</span> <span class='id identifier rubyid_host_config?'>host_config?</span>
+
+  <span class='id identifier rubyid_transaction'>transaction</span> <span class='op'>=</span> <span class='id identifier rubyid_create_transaction'>create_transaction</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
+
+  <span class='kw'>begin</span>
+    <span class='id identifier rubyid_transaction'>transaction</span><span class='period'>.</span><span class='id identifier rubyid_report'>report</span><span class='period'>.</span><span class='id identifier rubyid_as_logging_destination'>as_logging_destination</span> <span class='kw'>do</span>
+      <span class='id identifier rubyid_transaction'>transaction</span><span class='period'>.</span><span class='id identifier rubyid_evaluate'>evaluate</span>
+    <span class='kw'>end</span>
+  <span class='kw'>ensure</span>
+    <span class='comment'># Don&#39;t try to store state unless we&#39;re a host config
+</span>    <span class='comment'># too recursive.
+</span>    <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Util</span><span class='op'>::</span><span class='const'>Storage</span><span class='period'>.</span><span class='id identifier rubyid_store'>store</span> <span class='kw'>if</span> <span class='id identifier rubyid_host_config?'>host_config?</span>
+  <span class='kw'>end</span>
+
+  <span class='kw'>yield</span> <span class='id identifier rubyid_transaction'>transaction</span> <span class='kw'>if</span> <span class='id identifier rubyid_block_given?'>block_given?</span>
+
+  <span class='id identifier rubyid_transaction'>transaction</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="container_of-instance_method">
+  
+    - (<tt>A <span class='object_link'><a href="../Resource.html" title="Puppet::Resource (class)">Resource</a></span></tt><sup>?</sup>) <strong>container_of</strong>(resource) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Returns the resource that contains the given resource</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>resource</span>
+      
+      
+        <span class='type'>(<tt>A <span class='object_link'><a href="../Resource.html" title="Puppet::Resource (class)">Resource</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>a resource in the catalog</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>A <span class='object_link'><a href="../Resource.html" title="Puppet::Resource (class)">Resource</a></span></tt>, <tt>nil</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the resource that contains the given resource</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+83
+84
+85</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/resource/catalog.rb', line 83</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_container_of'>container_of</span><span class='lparen'>(</span><span class='id identifier rubyid_resource'>resource</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_adjacent'>adjacent</span><span class='lparen'>(</span><span class='id identifier rubyid_resource'>resource</span><span class='comma'>,</span> <span class='symbol'>:direction</span> <span class='op'>=&gt;</span> <span class='symbol'>:in</span><span class='rparen'>)</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="relationship_graph-instance_method">
+  
+    - (<tt><span class='object_link'><a href="../Graph/RelationshipGraph.html" title="Puppet::Graph::RelationshipGraph (class)">Puppet::Graph::RelationshipGraph</a></span></tt>) <strong>relationship_graph</strong>(given_prioritizer = nil) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>The relationship_graph form of the catalog. This contains all of the
+dependency edges that are used for determining order.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>given_prioritizer</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Graph/Prioritizer.html" title="Puppet::Graph::Prioritizer (class)">Puppet::Graph::Prioritizer</a></span></tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>nil</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>The prioritization
+strategy to use when constructing the relationship graph. Defaults the
+being determined by the <code>ordering</code> setting.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Graph/RelationshipGraph.html" title="Puppet::Graph::RelationshipGraph (class)">Puppet::Graph::RelationshipGraph</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+199
+200
+201
+202
+203
+204
+205</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/resource/catalog.rb', line 199</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_relationship_graph'>relationship_graph</span><span class='lparen'>(</span><span class='id identifier rubyid_given_prioritizer'>given_prioritizer</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='ivar'>@relationship_graph</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+    <span class='ivar'>@relationship_graph</span> <span class='op'>=</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Graph</span><span class='op'>::</span><span class='const'>RelationshipGraph</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_given_prioritizer'>given_prioritizer</span> <span class='op'>||</span> <span class='id identifier rubyid_prioritizer'>prioritizer</span><span class='rparen'>)</span>
+    <span class='ivar'>@relationship_graph</span><span class='period'>.</span><span class='id identifier rubyid_populate_from'>populate_from</span><span class='lparen'>(</span><span class='kw'>self</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+  <span class='ivar'>@relationship_graph</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+    <div id="footer">
+  Generated on Fri Jan 15 17:27:32 2016 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.6 (ruby-2.0.0).
+</div>
+
+  </body>
+</html>

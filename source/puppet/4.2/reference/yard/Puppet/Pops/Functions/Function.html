@@ -1,0 +1,706 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Class: Puppet::Pops::Functions::Function
+  
+    &mdash; Documentation by YARD 0.8.7.6
+  
+</title>
+
+  <link rel="stylesheet" href="../../../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../../../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '../../../';
+  framesUrl = "../../../frames.html#!Puppet/Pops/Functions/Function.html";
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../../../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../../../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../../../_index.html">Index (F)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../../../Puppet.html" title="Puppet (module)">Puppet</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../../Pops.html" title="Puppet::Pops (module)">Pops</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../Functions.html" title="Puppet::Pops::Functions (module)">Functions</a></span></span>
+     &raquo; 
+    <span class="title">Function</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../../../class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="../../../method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="../../../file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><h1>Class: Puppet::Pops::Functions::Function
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName"><span class='object_link'>Object</span></span>
+      
+        <ul class="fullTree">
+          <li><span class='object_link'>Object</span></li>
+          
+            <li class="next">Puppet::Pops::Functions::Function</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">lib/puppet/pops/functions/function.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'><p>WARNING: This new function API is still under development and may change at
+any time</p>
+</div>
+  </div>
+
+<p>A function in the puppet evaluator.</p>
+
+<p>Functions are normally defined by another system, which produces subclasses
+of this class as well as constructing delegations to call the appropriate methods.</p>
+
+<p>This class should rarely be used directly. Instead functions should be
+constructed using <span class='object_link'><a href="../../Functions.html#create_function-class_method" title="Puppet::Functions.create_function (method)">Functions.create_function</a></span>.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><div id="subclasses">
+  <h2>Direct Known Subclasses</h2>
+  <p class="children"><span class='object_link'><a href="../../Functions/Function.html" title="Puppet::Functions::Function (class)">Functions::Function</a></span></p>
+</div>
+
+
+
+
+
+
+
+  
+    <h2>
+      Class Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#dispatcher-class_method" title="dispatcher (class method)">+ (Object) <strong>dispatcher</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'><p>The dispatcher for the function.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#signatures-class_method" title="signatures (class method)">+ (Object) <strong>signatures</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'><p>Produces information about parameters in a way that is compatible with Closure.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#call-instance_method" title="#call (instance method)">- (Object) <strong>call</strong>(scope, *args, &amp;block) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Invokes the function via the dispatching logic that performs type check and weaving.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#call_function-instance_method" title="#call_function (instance method)">- (Object) <strong>call_function</strong>(function_name, *args, &amp;block) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Allows the implementation of a function to call other functions by name.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="protected ">
+  <span class="summary_signature">
+    
+      <a href="#internal_call_function-instance_method" title="#internal_call_function (instance method)">- (Object) <strong>internal_call_function</strong>(scope, function_name, args, &amp;block) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  <span class="note title protected">protected</span>
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Allows the implementation of a function to call other functions by name and pass the caller scope.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="dispatcher-class_method">
+  
+    + (<tt><span class='object_link'>Object</span></tt>) <strong>dispatcher</strong> &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>The dispatcher for the function</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+63
+64
+65</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/functions/function.rb', line 63</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_dispatcher'>dispatcher</span>
+  <span class='ivar'>@dispatcher</span> <span class='op'>||=</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Pops</span><span class='op'>::</span><span class='const'>Functions</span><span class='op'>::</span><span class='const'>Dispatcher</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="signatures-class_method">
+  
+    + (<tt><span class='object_link'>Object</span></tt>) <strong>signatures</strong> &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>Produces information about parameters in a way that is compatible with Closure</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+70
+71
+72</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/functions/function.rb', line 70</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_signatures'>signatures</span>
+  <span class='ivar'>@dispatcher</span><span class='period'>.</span><span class='id identifier rubyid_signatures'>signatures</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="call-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>call</strong>(scope, *args, &amp;block) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Invokes the function via the dispatching logic that performs type check and weaving.
+A specialized function may override this method to do its own dispatching and checking of
+the raw arguments. A specialized implementation can rearrange arguments, add or remove
+arguments and then delegate to the dispatching logic by calling:</p>
+
+<p>System functions that must have access to the calling scope can use this technique. Functions
+in general should not need the calling scope. (The closure scope; what is visible where the function
+is defined) is available via the method <code>closure_scope</code>).</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <p class="tag_title">Examples:</p>
+    
+      
+        <p class="example_title"><div class='inline'><p>Delegating to the dispatcher</p>
+</div></p>
+      
+      <pre class="example code"><code><span class='kw'>def</span> <span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='id identifier rubyid_scope'>scope</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_manipulated_args'>manipulated_args</span> <span class='op'>=</span> <span class='id identifier rubyid_args'>args</span> <span class='op'>+</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>easter_egg</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_dispatcher'>dispatcher</span><span class='period'>.</span><span class='id identifier rubyid_dispatch'>dispatch</span><span class='lparen'>(</span><span class='kw'>self</span><span class='comma'>,</span> <span class='id identifier rubyid_scope'>scope</span><span class='comma'>,</span> <span class='id identifier rubyid_manipulated_args'>manipulated_args</span><span class='rparen'>)</span>
+<span class='kw'>end</span></code></pre>
+    
+  </div>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+43
+44
+45</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/functions/function.rb', line 43</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='id identifier rubyid_scope'>scope</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_dispatcher'>dispatcher</span><span class='period'>.</span><span class='id identifier rubyid_dispatch'>dispatch</span><span class='lparen'>(</span><span class='kw'>self</span><span class='comma'>,</span> <span class='id identifier rubyid_scope'>scope</span><span class='comma'>,</span> <span class='id identifier rubyid_args'>args</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="call_function-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>call_function</strong>(function_name, *args, &amp;block) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Allows the implementation of a function to call other functions by name. The callable functions
+are those visible to the same loader that loaded this function (the calling function). The
+referenced function is called with the calling functions closure scope as the caller&#39;s scope.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>function_name</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The name of the function</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>*args</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Object</span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>splat of arguments</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Object</span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The result returned by the called function</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+56
+57
+58</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/functions/function.rb', line 56</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_call_function'>call_function</span><span class='lparen'>(</span><span class='id identifier rubyid_function_name'>function_name</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_internal_call_function'>internal_call_function</span><span class='lparen'>(</span><span class='id identifier rubyid_closure_scope'>closure_scope</span><span class='comma'>,</span> <span class='id identifier rubyid_function_name'>function_name</span><span class='comma'>,</span> <span class='id identifier rubyid_args'>args</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="internal_call_function-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>internal_call_function</strong>(scope, function_name, args, &amp;block)  <span class="extras">(protected)</span>&nbsp;<span class="note title protected">protected</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Allows the implementation of a function to call other functions by name and pass the caller
+scope. The callable functions are those visible to the same loader that loaded this function
+(the calling function).</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>scope</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../../Parser/Scope.html" title="Puppet::Parser::Scope (class)">Puppet::Parser::Scope</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The caller scope</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>function_name</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The name of the function</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>args</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Array</span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>array of arguments</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Object</span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The result returned by the called function</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>ArgumentError</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/functions/function.rb', line 86</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_internal_call_function'>internal_call_function</span><span class='lparen'>(</span><span class='id identifier rubyid_scope'>scope</span><span class='comma'>,</span> <span class='id identifier rubyid_function_name'>function_name</span><span class='comma'>,</span> <span class='id identifier rubyid_args'>args</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_the_loader'>the_loader</span> <span class='op'>=</span> <span class='id identifier rubyid_loader'>loader</span>
+  <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Function </span><span class='embexpr_beg'>#{</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'>(): cannot call function &#39;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_function_name'>function_name</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39; - no loader specified</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>unless</span> <span class='id identifier rubyid_the_loader'>the_loader</span>
+
+  <span class='id identifier rubyid_func'>func</span> <span class='op'>=</span> <span class='id identifier rubyid_the_loader'>the_loader</span><span class='period'>.</span><span class='id identifier rubyid_load'>load</span><span class='lparen'>(</span><span class='symbol'>:function</span><span class='comma'>,</span> <span class='id identifier rubyid_function_name'>function_name</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_func'>func</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='id identifier rubyid_scope'>scope</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_func'>func</span>
+
+  <span class='comment'># Check if a 3x function is present. Raise a generic error if it&#39;s not to allow upper layers to fill in the details
+</span>  <span class='comment'># about where in a puppet manifest this error originates. (Such information is not available here).
+</span>  <span class='id identifier rubyid_loader_scope'>loader_scope</span> <span class='op'>=</span> <span class='id identifier rubyid_closure_scope'>closure_scope</span>
+  <span class='id identifier rubyid_func_3x'>func_3x</span> <span class='op'>=</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Parser</span><span class='op'>::</span><span class='const'>Functions</span><span class='period'>.</span><span class='id identifier rubyid_function'>function</span><span class='lparen'>(</span><span class='id identifier rubyid_function_name'>function_name</span><span class='comma'>,</span> <span class='id identifier rubyid_loader_scope'>loader_scope</span><span class='period'>.</span><span class='id identifier rubyid_environment'>environment</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_loader_scope'>loader_scope</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Parser</span><span class='op'>::</span><span class='const'>Scope</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Function </span><span class='embexpr_beg'>#{</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'>(): cannot call function &#39;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_function_name'>function_name</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39; - not found</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>unless</span> <span class='id identifier rubyid_func_3x'>func_3x</span>
+
+  <span class='comment'># Call via 3x API
+</span>  <span class='comment'># Arguments must be mapped since functions are unaware of the new and magical creatures in 4x.
+</span>  <span class='comment'># NOTE: Passing an empty string last converts nil/:undef to empty string
+</span>  <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='id identifier rubyid_scope'>scope</span><span class='period'>.</span><span class='id identifier rubyid_send'>send</span><span class='lparen'>(</span><span class='id identifier rubyid_func_3x'>func_3x</span><span class='comma'>,</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Pops</span><span class='op'>::</span><span class='const'>Evaluator</span><span class='op'>::</span><span class='const'>Runtime3Converter</span><span class='period'>.</span><span class='id identifier rubyid_map_args'>map_args</span><span class='lparen'>(</span><span class='id identifier rubyid_args'>args</span><span class='comma'>,</span> <span class='id identifier rubyid_loader_scope'>loader_scope</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+
+  <span class='comment'># Prevent non r-value functions from leaking their result (they are not written to care about this)
+</span>  <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Parser</span><span class='op'>::</span><span class='const'>Functions</span><span class='period'>.</span><span class='id identifier rubyid_rvalue?'>rvalue?</span><span class='lparen'>(</span><span class='id identifier rubyid_function_name'>function_name</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='id identifier rubyid_result'>result</span> <span class='op'>:</span> <span class='kw'>nil</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+    <div id="footer">
+  Generated on Fri Jan 15 17:27:36 2016 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.6 (ruby-2.0.0).
+</div>
+
+  </body>
+</html>

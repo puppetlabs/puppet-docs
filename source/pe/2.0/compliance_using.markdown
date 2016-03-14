@@ -36,7 +36,7 @@ Writing Compliance Manifests
 
 To tell Puppet which resources to audit, you must write a collection of modules in the Puppet language and assign them to your nodes. See this manual's [introduction to Puppet](./puppet_overview.html) for a quick tutorial on creating a module and applying its classes. 
 
-When writing compliance classes in Puppet, you should **declare [the `audit` metaparameter](/references/2.7.6/metaparameter.html#audit)** for each resource. The value of `audit` can be one attribute name, an array of attribute names, or `all`. Puppet can also actively manage attributes of an audited resource. 
+When writing compliance classes in Puppet, you should **declare [the `audit` metaparameter](/puppet/2.7/reference/metaparameter.html#audit)** for each resource. The value of `audit` can be one attribute name, an array of attribute names, or `all`. Puppet can also actively manage attributes of an audited resource. 
 
 ~~~ ruby
     file {'hosts':

@@ -1,7 +1,8 @@
 ---
 layout: default
-title: "Puppet HTTP API: Index"
-canonical: "/puppet/latest/reference/http_api/http_api_index.html"
+built_from_commit: c4a6a76fd219bffd689476413985ed13f40ef1dd
+title: 'Puppet HTTP API: Index'
+canonical: /puppet/latest/reference/http_api/http_api_index.html
 ---
 
 A Puppet master server provides several services via HTTP API, and the Puppet
@@ -17,7 +18,7 @@ V1/V2 HTTP APIs (Removed)
 ---------------
 
 The V1 and V2 APIs were removed in Puppet 4.0.0. The routes that were previously
-under `/` or `/v2.0` can now be found under the [master V3](#puppet-v3-http-api)
+under `/` or `/v2.0` can now be found under the [master V3](#master-v3-http-api)
 API or [CA V1](#ca-v1-http-api) API.
 
 Notably, this means Puppet 3.x agent nodes cannot speak to a newer Puppet master
@@ -40,16 +41,16 @@ authorization system in puppet. When specifying the authorization in
 `auth.conf` the prefix (either `/puppet` or `/puppet-ca`) and the version
 number on the paths must be retained; the full request path is used.
 
-Puppet V3 HTTP API
+Master V3 HTTP API
 ------------------
 
 The Puppet agent application uses several network services to manage systems.
-These services are all grouped under the `/puppet` API. Other tools can access
+These services are all grouped under the `/master` API. Other tools can access
 these services and use the Puppet master's data for other purposes.
 
 The V3 API contains endpoints of two types: those that are based on dispatching
 to Puppet's internal "indirector" framework, and those that are not (namely the
-[environments endpoint](#environments-endpoint)).
+[environments endpoint](#Environments-Endpoint)).
 
 Every HTTP endpoint that dispatches to the indirector follows the form:
 `/puppet/v3/:indirection/:key?environment=:environment` where:

@@ -44,7 +44,7 @@ Any native Puppet resource type can be used in the baseline compliance workflow.
 
 ### Compliance Manifests
 
-The set of resources to audit is declared in standard Puppet manifests on the master and retrieved as a catalog by the agent. Instead of (or in addition to) declaring the desired state of a resource, these manifests should declare the [`audit`](/references/2.7.6/metaparameter.html#audit) metaparameter. 
+The set of resources to audit is declared in standard Puppet manifests on the master and retrieved as a catalog by the agent. Instead of (or in addition to) declaring the desired state of a resource, these manifests should declare the [`audit`](/puppet/2.7/reference/metaparameter.html#audit) metaparameter. 
 
 ### Inspect Reports
 

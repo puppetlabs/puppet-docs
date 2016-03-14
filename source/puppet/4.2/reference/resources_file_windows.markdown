@@ -3,12 +3,12 @@ layout: default
 title: "Resource Tips and Examples: File on Windows"
 ---
 
-[file]: /references/4.2.latest/type.html#file
+[file]: ./type.html#file
 [relationships]: /puppet/latest/reference/lang_relationships.html
 [acl_module]: https://forge.puppetlabs.com/puppetlabs/acl
-[mode]: /references/4.2.latest/type.html#file-attribute-mode
+[mode]: ./type.html#file-attribute-mode
 
-Puppet's built-in [`file`][file] resource type can manage files and directories on Windows, including ownership, group, permissions, and content. Symbolic links are supported in Puppet 3.4.0 / PE 3.2 and later on Windows 2008 / Vista and later; for details, [see the notes in the resource type reference under `file`'s `ensure` attribute](/references/4.2.latest/type.html#file-attribute-ensure).
+Puppet's built-in [`file`][file] resource type can manage files and directories on Windows, including ownership, group, permissions, and content. Symbolic links are supported in Puppet 3.4.0 / PE 3.2 and later on Windows 2008 / Vista and later; for details, [see the notes in the resource type reference under `file`'s `ensure` attribute](./type.html#file-attribute-ensure).
 
 
 ~~~ ruby
@@ -45,7 +45,7 @@ Windows NTFS filesystems are case-insensitive (albeit case-preserving); Puppet i
 
 To manage files properly, Puppet needs the "Create symbolic links" (Vista/2008 and up), "Back up files and directories," and "Restore files and directories" privileges. The easiest way to handle this is:
 
-* When Puppet runs as a service, make sure its user account is a member of the local `Administrators` group.  When you use the [`PUPPET_AGENT_ACCOUNT_USER` parameter](./guides/install_puppet/install_windows.html#puppetagentaccountuser) with the MSI installer, the user will automatically be added to the administrators group.
+* When Puppet runs as a service, make sure its user account is a member of the local `Administrators` group.  When you use the [`PUPPET_AGENT_ACCOUNT_USER` parameter](./puppet/latest/reference/install_windows.html#puppetagentaccountuser) with the MSI installer, the user will automatically be added to the administrators group.
 * Before running Puppet interactively (on Vista/2008 and up), be sure to start the command prompt window with elevated privileges by right-clicking on the start menu and choosing "Run as Administrator."
 
 ## Managing File Permissions
@@ -62,7 +62,7 @@ This module provides an optional `acl` resource type that manages permissions in
 
 ### How \*nix Modes Map to Windows Permissions
 
-\*nix permissions are expressed as either a quoted octal number, e.g. "755", or a string of symbolic modes, e.g. "u=rwx,g=rx,o=rx". See [the reference for the `file` type's `mode` attribute](/references/4.2.latest/type.html#file-attribute-mode) for more details about the syntax.
+\*nix permissions are expressed as either a quoted octal number, e.g. "755", or a string of symbolic modes, e.g. "u=rwx,g=rx,o=rx". See [the reference for the `file` type's `mode` attribute](./type.html#file-attribute-mode) for more details about the syntax.
 
 These mode expressions generally manage three kinds of permission (read, write, execute) for three kinds of user (owner, group, other). They translate to Windows permissions as follows:
 
@@ -91,7 +91,7 @@ Windows usually uses CRLF line endings instead of \*nix's LF line endings. In mo
 * If a file resource uses the `content` or `source` attributes, Puppet will write the file in "binary" mode, using whatever line endings are present in the content.
     * If the manifest, template, or source file is saved with CRLF line endings, Puppet will use those endings in the destination file.
     * If the manifest, template, or source file is saved with LF line endings, you can use the `\r\n` escape sequence to create literal CRLFs.
-* Non-`file` resource types that make partial edits to a system file (most notably the [`host`](/references/4.2.latest/type.html#host) resource type, which manages the `%windir%\system32\drivers\etc\hosts` file) manage their files in text mode, and will automatically translate between Windows and \*nix line endings.
+* Non-`file` resource types that make partial edits to a system file (most notably the [`host`](./type.html#host) resource type, which manages the `%windir%\system32\drivers\etc\hosts` file) manage their files in text mode, and will automatically translate between Windows and \*nix line endings.
 
     > Note: When writing your own resource types, you can get this same behavior by using the `flat` filetype.
 

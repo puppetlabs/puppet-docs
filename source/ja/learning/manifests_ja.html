@@ -141,7 +141,7 @@ notice: Finished catalog run in 0.04 seconds
 <p>同じマニフェストを2回実行しても、2回目にはPuppetは何もしません。リソースが既にあるべき状態になっている時は、Puppetは何もせずに終了するのです。</p>
 
 <blockquote>
-  <p><strong>演習：</strong> マニフェストで別のファイルリソースを宣言して適用してください。既存のファイルに新たな状態を設定してみましょう。例として/etc/motdを変更する事により、ログインメッセージを変更してみてください。既存のファイルに新たな状態を設定してみましょう。例として<code>/etc/motd</code>の内容を設定し、ログインメッセージを変更してみましょう。 <a href="/references/latest/type.html#file"><code>file</code>リソースに設定できる属性についてはこちらを参照(英文)</a>してください。</p>
+  <p><strong>演習：</strong> マニフェストで別のファイルリソースを宣言して適用してください。既存のファイルに新たな状態を設定してみましょう。例として/etc/motdを変更する事により、ログインメッセージを変更してみてください。既存のファイルに新たな状態を設定してみましょう。例として<code>/etc/motd</code>の内容を設定し、ログインメッセージを変更してみましょう。 <a href="/puppet/latest/reference/type.html#file"><code>file</code>リソースに設定できる属性についてはこちらを参照(英文)</a>してください。</p>
 </blockquote>
 
 <h3 id="syntax-hints">Syntax Hints ～ 文法のヒント</h3>
@@ -378,7 +378,7 @@ Hi.
 
 <blockquote>
   <h3 id="exercise-ssh-authorized-key">Exercise: SSH Authorized Key ～ 演習：SSH認証鍵</h3>
-  <p><a href="http://docs.puppetlabs.com/references/stable/type.html#sshauthorizedkey"><code>ssh_authorized_key</code>型</a>を利用し、learning VMにパスワード無しでrootでログインするマニフェストを記述して適用してみましょう。</p>
+  <p><a href="http://docs.puppetlabs.com/puppet/latest/reference/type.html#sshauthorizedkey"><code>ssh_authorized_key</code>型</a>を利用し、learning VMにパスワード無しでrootでログインするマニフェストを記述して適用してみましょう。</p>
   <p><strong>追加演習：</strong> このマニフェストを<code>puppet apply</code>コマンドを使う代わりにサイトマニフェストに直接挿入してみましょう。<a href="http://docs.puppetlabs.com/pe/latest/orchestration_puppet.html">コンソールからpuppet agentを実行し</a>、<a href="http://docs.puppetlabs.com/pe/latest/console_reports.html">Webコンソールに表示されるレポートを確認</a>してマニフェストが動作したか見てみましょう。</p>
 
   <ul>

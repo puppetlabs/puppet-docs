@@ -112,7 +112,7 @@ that implementation is fulfilled on a particular operating system,
 for instance, a Linux user versus an OS X user can be talked about in the same way
 but are implemented differently inside of Puppet.
 
-See [the types reference](/references/latest/type.html) for a list of managed types
+See [the types reference](/puppet/latest/reference/type.html) for a list of managed types
 and information about how to use them.
 
 #### Providers

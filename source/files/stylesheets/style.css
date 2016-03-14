@@ -29,7 +29,7 @@ del, dfn, em, font, img, ins, kbd, q, s, samp,
 small, strike, strong, sub, tt, var,
 dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td, header, footer, section, article, aside, nav {
+table, caption, tbody, tfoot, thead, tr, th, td, header, footer, section, article, aside, nav, figure {
   margin: 0;
   padding: 0;
   border: 0;
@@ -101,6 +101,11 @@ table th {
 table td {
   padding: 0.5em;
   color: rgba(48,44,109,.9);
+}
+
+table td,
+table th {
+  line-height: 1.6;
 }
 
 table th:first-child {
@@ -190,6 +195,13 @@ body {
 }
 
 /* @group Typography */
+
+h1 strong,
+h2 strong,
+h3 strong,
+h4 strong {
+  color: #78B7D2;
+}
 
 h1, h2, h3 {
   display: block;
@@ -1388,7 +1400,7 @@ div#subCol ul > li:before {
   width: 0.1em;
 }
 
-div#subCol ul:not(#doc-navigation) > li {
+div#subCol ul:not(.doc-navigation) > li {
   text-indent: -8px;
 }
 
@@ -1399,6 +1411,11 @@ div#subCol ul > li.selected:before {
 a.disabled-nav-link {
   cursor: text;
   color: #444;
+}
+
+li.selected a.disabled-nav-link {
+  font-weight: bold;
+  color: rgb(96, 96, 144);
 }
 
 a.disabled-nav-link:hover {
@@ -1448,12 +1465,12 @@ li.currentpage > ol.toc a {
 
 /* Quick nav styling (after being moved to the sidebar instead of the masthead) (NF 2014.04.02) */
 
-ul#doc-navigation > li:before {
+ul.doc-navigation > li:before {
   content: "" !important;
   display: inline !important;
 }
 
-ul#doc-navigation > li:first-child {
+ul.doc-navigation > li:first-child {
   margin-top: 0.5rem;
 }
 
@@ -1461,7 +1478,7 @@ ul#docs-navigation li.with-submenu {
   width: 100%;
 }
 
-ul#doc-navigation li.with-submenu > a {
+ul.doc-navigation li.with-submenu > a {
   display: block;
   position: relative;
   background: rgba(48,44,109,.5);
@@ -1475,37 +1492,37 @@ ul#doc-navigation li.with-submenu > a {
   line-height: 1.4em;
 }
 
-ul#doc-navigation li.with-submenu:hover > a {
+ul.doc-navigation li.with-submenu:hover > a {
   background: rgba(48,44,109,.75);
 }
 
-ul#doc-navigation li.with-submenu.active > a,
-ul#doc-navigation li.with-submenu.active:hover > a {
+ul.doc-navigation li.with-submenu.active > a,
+ul.doc-navigation li.with-submenu.active:hover > a {
   background: rgba(48,44,109,1);
 }
 
-ul#doc-navigation li.with-submenu > a span {
+ul.doc-navigation li.with-submenu > a span {
   font-weight: lighter;
 }
 
-ul#doc-navigation li {
+ul.doc-navigation li {
   display: inline-block;
   color: white;
   margin: 0;
   margin-top: 10px;
   margin-left: 0 !important;
-  margin-right: 8px;
+  margin-right: 0;
   -webkit-border-radius: 0.5em;
   -moz-border-radius: 0.5em;
   border-radius: 0.5em;
   position: relative;
 }
 
-ul#doc-navigation dt {
+ul.doc-navigation dt {
   color: white;
 }
 
-ul#doc-navigation li.active a {
+ul.doc-navigation li.active a {
   -webkit-border-bottom-left-radius: 0;
   -webkit-border-bottom-right-radius: 0;
   -moz-border-radius-bottomleft: 0;
@@ -1514,7 +1531,7 @@ ul#doc-navigation li.active a {
   border-bottom-right-radius: 0;
 }
 
-ul#doc-navigation span.drop-down-trigger {
+ul.doc-navigation span.drop-down-trigger {
   display: block;
   width: 20px;
   height: 1.4em;
@@ -1528,37 +1545,38 @@ ul#doc-navigation span.drop-down-trigger {
   padding: 0;
 }
 
-ul#doc-navigation span.drop-down-trigger:before {
+ul.doc-navigation span.drop-down-trigger:before {
   font-family: FontAwesome;
   content: '\f0c9';
   font-size: 1.4em;
 }
 
-ul#doc-navigation ol li:hover span.drop-down-trigger {
+ul.doc-navigation ol li:hover span.drop-down-trigger {
   opacity: 1;
   visibility: visible;
 }
 
-ul#doc-navigation li.with-submenu dl {
-  background: rgba(48,44,109,.9);
+ul.doc-navigation li.with-submenu dl {
+  background: rgba(48,44,109,1);
   left: 0;
   z-index: 10;
-  font-size: 0.85em;
+  font-size: 1em;
   transition: opacity 0.3s linear;
   -webkit-transition: opacity 0.3s linear;
   width: 288px;
   padding: 0 0 10px;
-  position: absolute;
   opacity: 0;
   visibility: hidden;
+  display: none;
+  position: absolute;
 }
 
-ul#doc-navigation li.active.with-submenu dl {
+ul.doc-navigation li.active.with-submenu dl {
   opacity: 1;
   visibility: visible;
 }
 
-ul#doc-navigation li.with-submenu dl:last-child {
+ul.doc-navigation li.with-submenu dl:last-child {
   -webkit-border-bottom-left-radius: 0.5em;
   -webkit-border-bottom-right-radius: 0.5em;
   -moz-border-radius-bottomleft: 0.5em;
@@ -1567,23 +1585,25 @@ ul#doc-navigation li.with-submenu dl:last-child {
   border-bottom-right-radius: 0.5em;
 }
 
-ul#doc-navigation li.with-submenu dl dt {
+ul.doc-navigation li.with-submenu dl dt {
   padding: 0.75em 10px 0;
 }
 
-ul#doc-navigation li.with-submenu dl a {
+ul.doc-navigation li.with-submenu dl dd {
   padding: 0.25em 10px;
   display: block;
   line-height: 1.33em;
   margin-bottom: 0.25em;
+  color: #ffffff;
 }
 
-ul#doc-navigation li.with-submenu dl a {
+ul.doc-navigation li.with-submenu dl dd a {
   color: #f6b333;
 }
 
-ul#doc-navigation {
+ul.doc-navigation {
   margin: 0;
+  display: inline;
 }
 
 
@@ -2119,4 +2139,14 @@ div.input-label input {
 }
 #site-footer .footer-col-right p {
   line-height: 1.4rem;
+}
+/* Marketo form styles */
+#mktoForm_1416 {
+  width: 512px !important;
+}
+#mktoForm_1416 .mktoFormCol {
+  width: 100%;
+}
+#mktoForm_1416 .mktoFieldWrap {
+  width: 100%;
 }

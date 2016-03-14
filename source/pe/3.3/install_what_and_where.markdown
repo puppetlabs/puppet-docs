@@ -14,9 +14,9 @@ Puppet Enterprise can be evaluated with a complementary ten-node license; beyond
 
 To purchase a license, please see the [Puppet Enterprise pricing page](http://www.puppetlabs.com/puppet/how-to-buy/), or contact Puppet Labs at <sales@puppetlabs.com> or (877) 575-9775. For more information on licensing terms, please see [the licensing FAQ](http://www.puppetlabs.com/licensing-faq/). If you have misplaced or never received your license key, please contact <sales@puppetlabs.com>.
 
-##Software
+## Software
 
-###<i>What</i>
+### <i>What</i>
 
 All functional components of PE, excluding configuration files. You are not likely to need to change these components. The following software components are installed:
 
@@ -27,7 +27,7 @@ All functional components of PE, excluding configuration files. You are not like
  * Hiera
  * Puppet Dashboard
 
-###<i>Where</i>
+### <i>Where</i>
 
 On \*nix nodes, all PE software (excluding config files and generated data) is installed under `/opt/puppet`.
 
@@ -41,13 +41,13 @@ On Windows nodes, all PE software is installed in the "Puppet Enterprise" subdir
 
 For information about PostgreSQL and OpenSSL requirements, refer to the [system requirements](./install_system_requirements.html#dependencies-and-os-specific-details).
 
-##Configuration Files
+## Configuration Files
 
-###<i>What</i>
+### <i>What</i>
 
 Files used to configure Puppet and its subsidiary components. These are the files you will likely change to accomodate the needs of your environment.
 
-###<i>Where</i>
+### <i>Where</i>
 
 On \*nix nodes, Puppet Enterprise's configuration files all live under `/etc/puppetlabs`.
 
@@ -60,12 +60,12 @@ PE's various components all have subdirectories inside this main data directory:
 * The console's config files are in the `puppet-dashboard`, `rubycas-server`, and `console-auth` subdirectories.
 * PuppetDB's config files are in the `puppetdb` subdirectory.
 
-##Log Files
+## Log Files
 
-###<i>What</i>
+### <i>What</i>
 The software distributed with Puppet Enterprise generates the following log files, which can be found as follows.
 
-###<i>Where</i>
+### <i>Where</i>
 
 ### Puppet Master Logs
 

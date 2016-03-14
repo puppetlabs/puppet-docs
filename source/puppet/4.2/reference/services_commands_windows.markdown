@@ -7,13 +7,13 @@ title: "Running Puppet's Commands on Windows"
 [codedir]: ./dirs_codedir.html
 [agent_service]: ./services_agent_windows.html
 [facter]: /facter/latest
-[puppet agent]: /references/4.2.latest/man/agent.html
-[puppet apply]: /references/4.2.latest/man/apply.html
-[puppet module]: /references/4.2.latest/man/module.html
-[puppet resource]: /references/4.2.latest/man/resource.html
-[puppet config]: /references/4.2.latest/man/config.html
-[puppet help]: /references/4.2.latest/man/help.html
-[puppet man]: /references/4.2.latest/man/man.html
+[puppet agent]: ./man/agent.html
+[puppet apply]: ./man/apply.html
+[puppet module]: ./man/module.html
+[puppet resource]: ./man/resource.html
+[puppet config]: ./man/config.html
+[puppet help]: ./man/help.html
+[puppet man]: ./man/man.html
 
 
 Puppet was originally designed to run on \*nix systems, so its commands generally act the way \*nix admins expect.
@@ -87,7 +87,6 @@ The Puppet Start Menu Items
 -----
 
 [start_menu]: ./images/start_menu.png
-[cfacter]: ./experiments_cfacter.html
 
 Puppet's installer adds a folder of shortcut items to the Start Menu.
 
@@ -100,10 +99,6 @@ The Start Menu items do the following:
 ### Run Facter
 
 This shortcut automatically requests UAC elevation, then runs [Facter][] in a command prompt window with administrator privileges.
-
-### Run CFacter
-
-This shortcut automatically requests UAC elevation, then runs [CFacter][cfacter] in a command prompt window with administrator privileges.
 
 ### Run Puppet Agent
 

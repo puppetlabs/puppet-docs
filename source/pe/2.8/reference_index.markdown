@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 2.7.21 (PE) References
-canonical: "/references/2.7.latest/index.html"
+canonical: "/puppet/2.7/reference/index.html"
 ---
 
 

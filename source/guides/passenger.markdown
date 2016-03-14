@@ -54,7 +54,7 @@ RHEL/CentOS (needs the Puppet Labs repository enabled, or the
 Configure Puppet
 -----
 
-If you're running Puppet 3.x, make sure [the `always_cache_features` setting](/references/latest/configuration.html#alwayscachefeatures) is set to true in the `[master]` (not `[main]`) section of puppet.conf. This improves performance.
+If you're running Puppet 3.x, make sure [the `always_cache_features` setting](/puppet/latest/reference/configuration.html#alwayscachefeatures) is set to true in the `[master]` (not `[main]`) section of puppet.conf. This improves performance.
 
 In post-4.0 versions of Puppet, the example config.ru file hardcodes this setting to true.
 
@@ -229,8 +229,8 @@ For additional details about enabling and configuring Passenger, see the
 
 
 [sslvars]: http://httpd.apache.org/docs/2.2/mod/mod_ssl.html#envvars
-[client]: /references/latest/configuration.html#sslclientheader
-[clientverify]: /references/latest/configuration.html#sslclientverifyheader
+[client]: /puppet/latest/reference/configuration.html#sslclientheader
+[clientverify]: /puppet/latest/reference/configuration.html#sslclientverifyheader
 
 
 Start or Restart the Apache service

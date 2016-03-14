@@ -126,7 +126,7 @@ To configure deep merging, use the [`:merge_behavior` setting][mergebehavior], w
 > * You must install the `deep_merge` Ruby gem for deep merges to work. If it isn't available, Hiera falls back to the default `native` merge behavior. If you're using Puppet Server, you'll need to use the [`puppetserver gem`][puppetserver_gem] command to install the gem.
 > * This configuration is global, not per-lookup.
 
-[create]: /references/latest/function.html#createresources
+[create]: /puppet/latest/reference/function.html#createresources
 [mergebehavior]: ./configuring.html#mergebehavior
 [deepmerge]: https://github.com/peritor/deep_merge
 [puppetserver_gem]: /puppetserver/latest/gems.html#installing-and-removing-gems
@@ -277,6 +277,26 @@ With a `deep` merge, you would get:
 
 In this case, deglitch.yaml was able to set the group because common.yaml didn't have a value for it, but where there was a conflict, like the uid, common won. Most users don't want this.
 
-Unfortunately none of these merge behaviors work with data bindings for automatic parameter lookup, because there's no way to specify the lookup type. So instead of any of the above results, automatic data binding lookups only see results from `deglitch.yaml`. See [Bug HI-118](https://tickets.puppetlabs.com/browse/HI-118) to track progress on this.
+#### With Automatic Parameter Lookup
 
+With Puppet 4.3 / Puppet agent 1.3 and later, you can specify merge behaviors for automatic parameter lookup.
 
+To do this, set a value for the special `lookup_options` metadata key. Its value should be a hash, where each key is a qualified parameter name. The value for each parameter name is a hash with the key `merge` and a valid merge strategy --- one of `first`, `unique` (AKA array merge), `hash`, or `deep`.
+
+To use a merge strategy of `deep` with the YAML backend and the key `mysql::server::override_options`, add `lookup_options` with a key of `mysql::server::override_options` to any YAML file in the hierarchy that will be parsed:
+
+    # clientcert/mysql.example.com.yaml
+    lookup_options:
+      mysql::server::override_options:
+        merge: deep
+    mysql::server::override_options:
+      foo: baz
+
+    # common.yaml
+    mysql::server::override_options:
+      foo: bar
+      abc: xyz
+
+When no `lookup_options` keys that match the qualified parameter name are found, automatic parameter lookups will only see the results from the first match hiera finds for the parameter name (`clientcert/mysql.example.com.yaml` in the above example).
+
+For more details, [see the Puppet lookup docs](/puppet/latest/reference/lookup_quick.html#specifying-merge-behavior).

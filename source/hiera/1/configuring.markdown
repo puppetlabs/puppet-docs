@@ -3,7 +3,7 @@ layout: default
 title: "Hiera 1: The hiera.yaml Config File"
 ---
 
-[common_appdata]: /guides/install_puppet/install_windows.html#the-commonappdata-folder
+[common_appdata]: /puppet/latest/reference/install_windows.html#the-commonappdata-folder
 [yaml]: http://www.yaml.org/YAML_for_ruby.html
 [hierarchy]: ./hierarchy.html
 [interpolate]: ./variables.html
@@ -27,7 +27,7 @@ By default, the config file is `$confdir/hiera.yaml`, which is usually one of th
 * `/etc/puppetlabs/puppet/hiera.yaml` in \*nix Puppet Enterprise
 * [`COMMON_APPDATA`][common_appdata]`\PuppetLabs\puppet\etc\hiera.yaml` on Windows
 
-In Puppet 3 or later, you can specify a different config file with [the `hiera_config` setting](/references/latest/configuration.html#hieraconfig) in `puppet.conf`. In Puppet 2.x, you cannot specify a different config file, although you can make `$confdir/hiera.yaml` a symlink to a different file.
+In Puppet 3 or later, you can specify a different config file with [the `hiera_config` setting](/puppet/latest/reference/configuration.html#hieraconfig) in `puppet.conf`. In Puppet 2.x, you cannot specify a different config file, although you can make `$confdir/hiera.yaml` a symlink to a different file.
 
 ### From the Command Line
 

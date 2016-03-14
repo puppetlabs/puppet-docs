@@ -60,7 +60,7 @@ Iteration over arrays and hashes                                                
 [in]: /puppet/latest/reference/lang_expressions.html#in
 [titleparam]: /puppet/latest/reference/lang_defined_types.html#title-and-name
 [hyphenvars]: /puppet/latest/reference/lang_variables.html#naming
-[hv_pref]: /references/3.0.2/configuration.html#allowvariableswithdashes
+[hv_pref]: /puppet/3/reference/configuration.html#allowvariableswithdashes
 [unless]: /puppet/latest/reference/lang_conditional.html#unless-statements
 [32_iter]: /puppet/3/reference/lang_experimental_3_2.html#collection-manipulation-and-iteration
 [modulo]: /puppet/latest/reference/lang_expressions.html#modulo

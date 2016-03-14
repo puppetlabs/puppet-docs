@@ -18,7 +18,7 @@ Syntax
 ~~~ ruby
     Exec {
       path        => '/usr/bin:/bin:/usr/sbin:/sbin',
-      environment => 'RUBYLIB=/opt/puppet/lib/ruby/site_ruby/1.8/',
+      environment => 'RUBYLIB=/opt/puppetlabs/puppet/lib/ruby/site_ruby/2.1.0/',
       logoutput   => true,
       timeout     => 180,
     }

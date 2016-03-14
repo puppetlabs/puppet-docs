@@ -1,0 +1,50 @@
+---
+layout: default
+title: "Puppet Enterprise クイックスタートガイド"
+canonical: "/ja/pe/quick_start_ja.html"
+---
+
+<div>
+<p> Puppet Enterpriseクイックスタートガイド(QSG)にようこそ。 Puppet Enterpriseを実環境にインストールして設定を行うかPuppet Enterpriseの設定の基礎を学ぶ場合に、本ガイドは迅速に必要な環境を準備して動かす方法を提供します。 モノリシック(オールインワンノード)を構築することによって、システム管理者が定期的に利用する基本タスクのいくつかを自動化する方法を紹介しています。 
+</p>
+
+<p> 実際に利用する可能性が高い順に手順を説明します。 各ガイドの「前提条件」セクションで、ハードウェアとソフトウェアの要件が満たされていることを確認してください。
+</p>
+
+<h3 id="install-a-monolithic-puppet-enterprise-deployment">1.Puppet Enterpriseをモノリシックインストールする</h3>
+<p> Linux上でモノリシックPE環境を構築するには<a href="./quick_start_install_mono_ja.html">こちらの手順</a>をご参照ください。 モノリシックPuppet Enterprise環境では、1台のノードにPuppet master、Puppet Enterprise Webコンソール、PuppetDBをインストールします。 インストールの前提条件を確認してください。
+</p>
+
+<h3 id="install-the-puppet-agent">2. Puppet Agentをインストールする</h3>
+<p> Pupet Agentをインストールする方法を記載します。 Puppet Agentが動作しているコンピュータを「agentノード」と呼びます。 Puppet agentは、Puppet masterから定期的に設定カタログを取得し、ローカルシステムに適用します。
+</p>
+
+<p> <a href="/pe/2015.2/quick_start_install_agents_windows.html">Windows向けのインストール手順（英語）</a>、および<a href="./quick_start_install_agents_nix_ja.html">*nix向けのインストール手順</a>について説明します。 コンソールでagentの証明書要求に署名する手順についても取り上げます。
+</p>
+
+<h3 id="hello-world">3. Hello, World!</h3>
+<p> <a href="./quick_start_helloworld_ja.html">Puppetモジュールの記述</a>に関する主な要素について説明します。 motd (ログイン時に表示されるメッセージ)を管理するクラスを含む簡単なモジュールを記述し、 コマンドラインで「Hello, World!」通知を作成します。
+</p>
+
+<h3 id="install-a-module">4. モジュールをインストールする</h3>
+<p> Puppet Labsモジュールのインストール手順を説明します。 モジュールには<a href="/puppet/4.2/reference/lang_classes.html">クラス</a>が含まれています。クラスとは、Puppetコードを1つにまとめて名前を付けたもので、Puppet Enterpriseでノードを設定して管理する際の基本的な単位です。
+</p>
+
+<p> <a href="/pe/2015.2/quick_start_module_install_windows.html">Windows向けのインストール手順（英語）</a>、および<a href="./quick_start_module_install_nix_ja.html">*nix向けのインストール手順</a>を説明します。
+</p>
+
+<h3 id="add-classes-from-the-console">5. コンソールからクラスを追加する</h3>
+<p> Puppet agentにクラスを追加する手順を説明します。 <a href="/pe/2015.2/quick_start_adding_class_windows.html">Windows向けのインストール手順（英語）</a>、および<a href="./quick_start_adding_class_nix_ja.html">*nix向けのインストール手順</a>があります。 ここでは、「モジュールのインストールクイックスタートガイド」で使用したモジュールのクラスをインストールします。
+</p>
+
+<h3 id="classifying-nodes-and-managing-users">6. ノードを分類し、ユーザーを管理する</h3>
+<p> <a href="./quick_start_nc_rbac_ja.html">ノードの分類とロールベースのアクセス制御</a>について説明します。 新規ノードグループを作成し、ノードを追加します。 さらに、ノードにクラスを追加してノードを分類します。 また、新規ユーザーロールを作成し、作成したノードグループに対するロールベースの権限を割り当てます。
+</p>
+
+<h3 id="module-writing-quick-start-guide">7. モジュールの記述クイックスタートガイド</h3>
+<p> 手順に従ってモジュールの記述を練習することで、Puppetモジュールとモジュール開発に関する理解を深めることができます。
+</p>
+
+<p> <a href="/pe/2015.2/quick_writing_windows.html">Windows向け（英語）</a>、および<a href=".quick_writing_nix_ja.html">*nix向け（英語）</a>の手順を説明します。
+</p>
+</div>

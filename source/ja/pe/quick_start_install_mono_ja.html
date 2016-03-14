@@ -1,0 +1,145 @@
+---
+layout: default
+title: "Puppet Enterprise インストールクイックスタートガイド"
+canonical: "/ja/pe/quick_start_install_mono_ja.html"
+---
+
+<div>
+<h2 id="overview">概要</h2>
+
+<p> このガイドでは、モノリシックインストール手順について説明します。この手順にそって操作すれば、Puppet Enterprise (PE)を簡単に効率よく使い始めることができます。 モノリシック環境は、Puppet Enterpriseを評価する場合や、管理対象のPuppet agentノードが500台以下の場合に最適です。 大規模なインストールの場合は、<a href="/pe/2015.2/install_pe_split.html">分割インストール</a>を実施します。
+</p>
+
+<p> モノリシックPuppet Enterprise環境では、1台のノードにPuppet master、Puppet Enterprise Webコンソール、PuppetDBをインストールします。 Puppet agentは、後の過程でインストールします。「<a href="./quick_start_install_agents_nix_ja.html">agentのインストールクイックスタートガイド(*nix)</a>」または「<a href="/pe/2015.2/quick_start_install_agents_windows.html">agentのインストールクイックスタートガイド(Windows)</a>」を参照してください。
+</p>
+
+<p> Puppet Enterprise環境のコンポーネントについて、詳しくはPEマニュアルの「<a href="./install_basic_ja.html">インストールの概要</a>」を参照してください。
+</p>
+
+<p> 注意: このガイドでは、<code>root</code>としてモノリシックPuppet Enterprise環境をインストールする手順について説明します。
+</p>
+
+<blockquote>
+  <h3 id="general-prerequisites-and-notes">一般的な前提条件と注意事項</h3>
+
+  <ul>
+<li>
+      <p> 「<a href="/pe/2015.2/install_system_requirements.html#monolithic-all-in-one-installation">システム要件</a>」を参照し、ハードウェアの必要条件が満たされていることを確認してください。
+</p>
+    </li>
+    <li>
+      <p> Puppet Enterpriseのインストール先マシンにDNSが正しく設定されていることを確認してください。 すべてのノードは<strong>自身のホスト名を認識していなければなりません</strong>。そのためには、ローカルDNSサーバーで逆引きDNSを正しく設定するか、ホスト名を明示的に設定する必要があります。 ホスト名の設定には、通常、<code>hostname</code>コマンドと1つ以上の構成ファイルを使用しますが、正確な方法はプラットフォームによって異なります。 さらに、すべてのノードが<strong>名前を使用して相互アクセスできる必要があります</strong>。そのためには、ローカルDNSサーバーを使用するか、各ノードの<code>/etc/hosts</code>ファイルを編集して、適切なIPアドレスを示す必要があります。 
+</p>
+    </li>
+    <li>
+      <p> ポート3000にアクセスできるよう設定する必要があります。このポートは、Webベースのインストーラが使用します。 インストールの完了後、このポートは閉じることができます。
+</p>
+    </li>
+  </ul>
+</blockquote>
+
+<h2 id="installing-the-monolithic-puppet-enterprise-deployment">Puppet Enterpriseのモノリシックインストール</h2>
+
+<ol>
+<li>
+<a href="#general-prerequisites-and-notes">一般的な前提条件</a>を確認します。</li>
+  <li>
+    <p> <a href="./install_basic_ja.html#downloading-puppet-enterprise">適切なPE tarballをダウンロードし、検証します</a>。必要に応じて、Puppet Enterpriseのインストール先マシンにtarballをコピーします。
+</p>
+
+    <blockquote>
+      <p> <strong>ヒント</strong>: agentのみのtarballではなく、完全なPuppet Enterprise tarballをダウンロードしてください。 agentのみのtarballは、<a href="/pe/2015.2/install_agents.html">パッケージ管理によってagentをインストール</a>する際に使用します。 このインストール方法については、このガイドでは取り上げません。
+</p>
+    </blockquote>
+  </li>
+  <li>
+<code>tar -xf &lt;tarball&gt;</code>を実行してtarballを展開します。</li>
+  <li>Puppet Enterpriseインストーラのディレクトリから、<code>sudo ./puppet-enterprise-installer</code>を実行します。</li>
+  <li>
+    <p> メッセージ画面で[<strong>Yes</strong>]を選択し、設定パッケージをインストールします。 [<strong>No</strong>]を選択すると、インストーラが終了します。
+</p>
+
+    <p> この段階で、Puppet EnterpriseインストーラによってWebサーバーが起動され、Webアドレス<code>https://&lt;install platform hostname&gt;:3000</code>が提供されます。 ポート3000にアクセスできることを確認します。 ポート3000は、必要に応じて、インストールの完了後、閉じることができます。 必ず<code>https</code>を使用してください。
+</p>
+
+    <blockquote>
+      <p> <strong>警告</strong>: インストールが完了するまで、ターミナル接続を開いたままにしておいてください。接続を終了するとインストールに失敗します。
+</p>
+    </blockquote>
+  </li>
+  <li>アドレスをブラウザにコピーします。</li>
+  <li>
+    <p> メッセージ画面で、ブラウザのセキュリティ条件を承認します。
+</p>
+
+    <p> Webベースのインストールでは、デフォルトのSSL証明書を使用するため、Webベースのインストーラにアクセスするには、セキュリティの例外を追加する必要があります。 この例外を追加しても、セキュリティ上問題は起こりません。
+</p>
+
+    <p> インストーラの開始ページが表示されます。
+</p>
+  </li>
+  <li>最初のページで[<strong>Let’s get started</strong>]をクリックします。</li>
+  <li>次に、デプロイ方法として[<strong>Monolithic</strong>]を選択します。</li>
+  <li>Puppet masterのコンポーネントのインストール先として、インストーラを実行しているサーバーを選択します。</li>
+  <li>
+    <p> Puppet masterサーバーに以下の情報を入力します。
+</p>
+
+    <p> a. <strong>Puppet master FQDN</strong>: PEのインストール先サーバーの完全修飾ドメイン名 (例: <code>master.example.com</code>)
+</p>
+
+    <p> b. <strong>DNS aliases</strong>: agentノードがmasterにアクセスする際に使用できるエイリアスのリストをカンマ区切りで列挙します (例: <code>master</code>)。
+</p>
+  </li>
+  <li>
+    <p> データベースサポートに関するメッセージ画面で、デフォルトのオプション[<strong>Install PostgreSQL for me</strong>]を選択します。
+</p>
+  </li>
+  <li>
+    <p> PEコンソール管理ユーザーに関する以下の情報を入力します。
+</p>
+
+    <p> <strong>Console superuser password</strong>: コンソールへのログインに使用するパスワードを作成します。 パスワードは8文字以上でなければなりません。
+</p>
+
+    <p> <strong>注意</strong>: コンソール管理ユーザーのユーザー名は<strong>admin</strong>です。
+</p>
+  </li>
+  <li>[<strong>Submit</strong>]をクリックします。</li>
+  <li>
+    <p> 確認ページで、入力した情報を見直し、[<strong>Continue</strong>]をクリックします。
+</p>
+
+    <p> 変更が必要な場合は、[<strong>Go Back</strong>]をクリックして情報を変更します。
+</p>
+  </li>
+  <li>確認ページで、インストーラによって、さまざまな設定項目(SSH証明書が正しいか、ディスク空き容量は十分か、各コンポーネントのOSは同じかなど)が検証されます。問題が表示されなければ、[<strong>Deploy now</strong>]をクリックします。</li>
+</ol>
+<p> インストーラによって、Puppet Enterpriseがインストールされ、設定されます。 お使いのOSのリポジトリから追加パッケージをインストールする必要がある場合があります。 <strong>この処理には最大15分かかります</strong>。インストールが完了すると、ターミナルで実行されていたインストーラのスクリプトは自動的に終了します。
+</p>
+
+<blockquote>
+  <p> これで、Puppet masterノードのインストールは完了です。 Puppet masterノードはagentでもあるため、デプロイ時にほかのノードと同じ方法で自身を設定します。 この後の練習に備えて、rootとしてログインしたままにしておきます。
+</p>
+</blockquote>
+
+<h3 id="log-in-to-the-console">コンソールへのログイン</h3>
+
+<p> Webベースのインストーラが完了すると[<strong>Start Using Puppet Enterprise Now</strong>]ボタンが表示されます。コンソールにログインするには、このボタンを選択します。 または、以下の手順に従ってログインすることもできます。
+</p>
+
+<ol>
+<li>
+<strong>コントロールワークステーションで</strong>Webブラウザを開き、インストーラによって提供されたアドレス(例: <code>https://master.example.com</code>)にアクセスします。
+一般的なブラウザでは、署名機関である<em>あなた自身</em>が、Puppet Enterpriseのデプロイの有効な署名機関として認識されていないため、信頼できない証明書に関する警告メッセージが表示されます。<strong>この警告メッセージは無視して、証明書を承認します</strong>。この手順は、<a href="/pe/2015.2/console_accessing.html">ブラウザによって異なります</a>。</li>
+  <li>
+    <p> コンソールのログインページで、ユーザー名に<strong>admin</strong>を使用し、Puppet masterのインストール時に入力したパスワードを使用して<strong>ログイン</strong>します。
+</p>
+
+    <p> コンソールのUIがブラウザに表示されます。
+</p>
+  </li>
+</ol>
+<p> 次の手順: Agentのインストール — <a href="/pe/2015.2/quick_start_install_agents_windows.html">Windows</a>または<a href="./quick_start_install_agents_nix_ja.html">*nix</a>
+</p>
+</div>

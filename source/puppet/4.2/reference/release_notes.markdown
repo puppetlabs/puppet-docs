@@ -3,8 +3,7 @@ layout: default
 title: "Puppet 4.2 Release Notes"
 ---
 
-
-
+[puppet-agent]: /puppet/latest/reference/about_agent.html
 
 This page lists the changes in Puppet 4.2 and its patch releases.
 
@@ -20,19 +19,81 @@ Make sure you also read the [Puppet 4.0 release notes](/puppet/4.0/reference/rel
 
 Also of interest: the [Puppet 4.1 release notes](/puppet/4.1/reference/release_notes.html).
 
+## Puppet 4.2.3
+
+Released October 29, 2015.
+
+Shipped in [puppet-agent][] version 1.2.7.
+
+Puppet 4.2.3 is a bug fix and platform support release in the Puppet 4.2 series. It also removes support for Ubuntu 14.10 (Utopic).
+
+For JIRA issues related to Puppet 4.2.3, see:
+
+* [Fixes for Puppet 4.2.3](https://tickets.puppetlabs.com/issues/?filter=15778)
+* [Introduced in Puppet 4.2.3](https://tickets.puppetlabs.com/issues/?filter=15770)
+
+### New Platforms: AIX 5.3, 6.1, and 7.1, and Solaris 11
+
+Puppet 4.2.3 adds functionality for AIX 5.3, 6.1, and 7.1 on PowerPC architectures, and Solaris 11 on SPARC and i386 architectures. Note that [puppet-agent][] packages for these platforms are available only in Puppet Enterprise.
+
+### SUPPORT END: Ubuntu 14.10 (Utopic)
+
+Ubuntu 14.10 (Utopic) reached the end of its life on [July 23, 2015](https://lists.ubuntu.com/archives/ubuntu-announce/2015-July/000198.html). Support for it ends with Puppet 4.2.3. We continue to support Ubuntu 14.04 (Trusty) and 15.04 (Vivid).
+
+* [PUP-5001](https://tickets.puppetlabs.com/browse/PUP-5001)
+
+### REGRESSION FIX: Revert Error Code When Running Puppet Master Without a `puppet` User or Group
+
+Prior to Puppet 4.1.0, running Puppet master as root would exit with error code 74 if the `puppet` user, which Puppet uses for the process, did not exist. In Puppet 4.1.0, this error code was unintentionally changed to 1. Puppet 4.2.3 reinstates error code 74 in this situation.
+
+* [PUP-5317](https://tickets.puppetlabs.com/browse/PUP-5317)
+
+### REGRESSION FIX: Properly Filter with Tags with Segmented Names
+
+Since Puppet 3.5.0, running Puppet agent with a tag filter (the `--tag` flag) would split the given tag if it contained a segmented name, such as the double-colon separator in `apache::mod`. This resulted in Puppet behaving as if you had specified multiple tags, which could lead to inconsistent or unexpected results. Puppet 4.2.3 resolves this issue.
+
+* [PUP-4495](https://tickets.puppetlabs.com/browse/PUP-4495)
+
+### FIX: Manage Passwords for Windows User Resources Only When Specified
+
+In previous versions of Puppet for Windows, Puppet fails when attempting to create users without specifying a password while the Windows Password Policy [`Password must meet complexity requirements`](https://technet.microsoft.com/en-us/library/cc786468.aspx) policy is enabled. Puppet 4.2.3 resolves this issue.
+
+> **Note:** When the Windows Password Policy [`Minimum password length`](https://technet.microsoft.com/en-us/library/hh994560.aspx) is greater than 0, the password must be specified because Windows requires passwords for all new user accounts.
+> 
+> Also, when you specify a user resource for a new user in Puppet with the `managehome` parameter set to true, you must _always_ specify the password.
+
+* [PUP-5271](https://tickets.puppetlabs.com/browse/PUP-5271)
+
+### FIX: Log Exceptions Raised by Indirector Save Methods
+
+In previous versions of Puppet, Puppet did not log exceptions raised by an indirector save methods, resulting in no indication in the logs when code exits on an exception. Puppet 4.2.3 ensures that Puppet logs these exceptions.
+
+* [PUP-5290](https://tickets.puppetlabs.com/browse/PUP-5290)
+
+### FIX: Puppet Can Manage the `puppet` Service on Enterprise Linux 4
+
+In Enterprise Linux 4, the `puppet` service installed by [puppet-agent][] would always stop when attempting to manage it with Puppet. Puppet 4.2.3 resolves this issue.
+
+* [PUP-5257](https://tickets.puppetlabs.com/browse/PUP-5257)
+
+### FIX: Puppet Language's `filter` Function Returns Elements as Specified
+
+In Puppet 4.2.2, the `filter` function did not behave according to specification when filtering a hash, as it allowed any "truthy" value as a return from the lambda to include the element in the result. Puppet 4.2.3 only includes an element in the result when the lambda returns a Boolean true.
+
+* [PUP-5350](https://tickets.puppetlabs.com/browse/PUP-5350)
+
 ## Puppet 4.2.2
 
 Released September 14, 2015.
 
-Shipped in puppet-agent version: 1.2.4.
+Shipped in [puppet-agent][] version 1.2.4.
 
 Puppet 4.2.2 is a security, bug fix, and platform support release in the Puppet 4.2 series. It also adds warnings for new reserved words, to prepare for upcoming language features.
 
 For JIRA issues related to Puppet 4.2.2, see:
 
-- [Fixes for Puppet 4.2.2](https://tickets.puppetlabs.com/issues/?filter=15437)
-- [Introduced in Puppet 4.2.2](https://tickets.puppetlabs.com/issues/?filter=15435)
-
+* [Fixes for Puppet 4.2.2](https://tickets.puppetlabs.com/issues/?filter=15437)
+* [Introduced in Puppet 4.2.2](https://tickets.puppetlabs.com/issues/?filter=15435)
 
 ### SECURITY: Override Cert File Locations on Windows
 
@@ -85,16 +146,15 @@ Our Mac OS X disk images had a redundant and unwieldy naming scheme (`puppet-age
 ### Bug Fixes: Misc
 
 * [PUP-3318: Puppet prints warning when "environment" is set using classifier rather than local puppet.conf](https://tickets.puppetlabs.com/browse/PUP-3318) --- When a Puppet agent was instructed by the Puppet master to change its environment, it would issue a warning about changing environment even though that's the intended behavior. That message has been changed to a notice.
-* [PUP-5013: Improve the code for profiling resource evaluation?](https://tickets.puppetlabs.com/browse/PUP-5013) --- Puppet Server's metrics for resource evaluation were very incomplete, because we were only tracking one of the several code paths that can evaluate resources. The metrics should be more complete now.
+* [PUP-5013: resource evaluation metrics are missing when not using an ENC](https://tickets.puppetlabs.com/browse/PUP-5013) --- Puppet Server's metrics for resource evaluation were very incomplete, because we were only tracking one of the several code paths that can evaluate resources. The metrics should be more complete now.
 * [PUP-3045: exec resource with timeout doesn't kill executed command that times out](https://tickets.puppetlabs.com/browse/PUP-3045) --- On POSIX systems, `exec` resources with a `timeout` value will now send a TERM signal if their command runs too long.
 * [PUP-4936: Add smf service files for puppet](https://tickets.puppetlabs.com/browse/PUP-4936) --- We've added SMF service files for running Puppet agent on Solaris 10. They're in the Puppet source at [ext/solaris/smf](https://github.com/puppetlabs/puppet/tree/master/ext/solaris/smf).
-
 
 ## Puppet 4.2.1
 
 Released July 22, 2015.
 
-Shipped in puppet-agent version: 1.2.2.
+Shipped in [puppet-agent][] version 1.2.2.
 
 Puppet 4.2.1 is a bug fix release.
 
@@ -102,7 +162,7 @@ Puppet 4.2.1 is a bug fix release.
 * [PUP-4770](https://tickets.puppetlabs.com/browse/PUP-4770): Solaris Zone's provider debug and error messages were changed to global, this has been reverted to so that it is prefixed with provider context.
 * [PUP-4777](https://tickets.puppetlabs.com/browse/PUP-4770): Puppet gem dependencies updated to use Hiera 3.
 * [PUP-4789](https://tickets.puppetlabs.com/browse/PUP-4789): The 4.x hiera_include function was not propagating the correct scope to the include function.
-* [PUP-4826](https://tickets.puppetlabs.com/browse/PUP-4826): When using Integer[1], the expectation was that this produces the type Integer[1, default], but it produced Integer[1,1]. The same was occuring with Float. After the fix, they are both operating as documented in the [Puppet Language Reference](http://docs.puppetlabs.com/puppet/4.2/reference/lang_data_number.html#parameters).
+* [PUP-4826](https://tickets.puppetlabs.com/browse/PUP-4826): When using Integer[1], the expectation was that this produces the type Integer[1, default], but it produced Integer[1,1]. The same was occuring with Float. After the fix, they are both operating as documented in the [Puppet Language Reference](http://docs.puppetlabs.com./lang_data_number.html#parameters).
 * [PUP-4775](https://tickets.puppetlabs.com/browse/PUP-4775): Serialization of node objects could produce giant serializations. When loaded later would cause 'stack level too deep' errors. This was caused by logic missing in the node implementation that should have prevented serialization of the entire runtime state of the environment.
 * [PUP-4810](https://tickets.puppetlabs.com/browse/PUP-4810): Puppet was caching parse results even when environment_timeout was set to 0.
 * [PUP-4847](https://tickets.puppetlabs.com/browse/PUP-4847): When using custom providers, the puppet resource command could not use custom facts.
@@ -110,14 +170,13 @@ Puppet 4.2.1 is a bug fix release.
 * [All tickets fixed in 4.2.1](https://tickets.puppetlabs.com/issues/?filter=15117)
 * [Issues introduced in 4.2.1](https://tickets.puppetlabs.com/issues/?filter=15116)
 
-
 ## Puppet 4.2.0
 
 Released June 24, 2015.
 
-Shipped in puppet-agent version: 1.2.0.
+Shipped in [puppet-agent][] version 1.2.0.
 
-> **Note:** Make sure you install the puppet-agent 1.2.1 package instead of 1.2.0. The .0 release included a Facter regression involving external facts, which was fixed in 1.2.1.
+> **Note:** Make sure you install the [puppet-agent][] 1.2.1 package instead of 1.2.0. The .0 release included a Facter regression involving external facts, which was fixed in 1.2.1.
 
 4.2.0 is a feature and bug fix release in the Puppet 4 series. There aren't any particular keystone features; just a solid grab-bag of nice smaller improvements.
 
@@ -154,10 +213,9 @@ Special thanks to [Chris Portman](https://github.com/ChrisPortman) for help with
 
 * [PUP-4030: Add support for no_proxy env var](https://tickets.puppetlabs.com/browse/PUP-4030)
 
-
 ### New Features: Miscellaneous
 
-[splay]: /references/4.2.latest/configuration.html#splay
+[splay]: ./configuration.html#splay
 
 Puppet apply now supports [the `splay` setting][splay], and Puppet agent sets a new [`agent_specified_environment` fact](./lang_facts_and_builtin_vars.html#puppet-agent-facts).
 
@@ -167,7 +225,6 @@ And of internal interest only: The `node` HTTPS endpoint has a new, optional, `c
 * [PUP-4521: Pass agent-requested environment to external node classifiers](https://tickets.puppetlabs.com/browse/PUP-4521)
 * [PUP-4522: Provide Facts for a classifier to select whether to enable overriding the environment](https://tickets.puppetlabs.com/browse/PUP-4522)
 
-
 ### New Features: Resource Types and Providers
 
 * [PUP-1253: systemd service provider should support masking](https://tickets.puppetlabs.com/browse/PUP-1253)
@@ -176,13 +233,11 @@ And of internal interest only: The `node` HTTPS endpoint has a new, optional, `c
 * [PUP-4210: Support "rename" in the augeas resource type](https://tickets.puppetlabs.com/browse/PUP-4210)
 * [PUP-3480: Puppet does not have Python 3 package provider (pip3)](https://tickets.puppetlabs.com/browse/PUP-3480)
 
-
 ### Performance Improvement: Catalog Application
 
 This release gets a cool and noticeable speed-up when applying catalogs. Special thanks to [Nelson Elhage](https://github.com/nelhage) for finding this win.
 
 * [PUP-3930: Applying catalogs spends an inordinate amount of time checking for failed dependencies.](https://tickets.puppetlabs.com/browse/PUP-3930)
-
 
 ### Bug Fixes: Miscellaneous
 
@@ -212,7 +267,6 @@ This release gets a cool and noticeable speed-up when applying catalogs. Special
 * [PUP-4709: Square braces in title confuse puppet 4 parser](https://tickets.puppetlabs.com/browse/PUP-4709)
 * [PUP-4753: cannot call 4.x functions from 3.x function ERB templates](https://tickets.puppetlabs.com/browse/PUP-4753)
 
-
 ### Bug Fixes: Resource Types and Providers
 
 #### Service
@@ -240,4 +294,3 @@ This release gets a cool and noticeable speed-up when applying catalogs. Special
 #### Other
 
 * [PUP-1931: mount provider improvement when options property is not specified](https://tickets.puppetlabs.com/browse/PUP-1931)
-
