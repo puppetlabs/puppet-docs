@@ -90,7 +90,7 @@ documents:
     nav: ./_pe_toc.html
     external_source:
       repo: git@github.com:puppetlabs/pe-docs-private.git
-      commit: origin/pe2015.3.2
+      commit: origin/pe2015.3.3
       subdirectory: source
     my_versions:
       puppet: 4.3
