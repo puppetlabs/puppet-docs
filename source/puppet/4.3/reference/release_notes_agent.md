@@ -38,7 +38,7 @@ Also of interest: [About Agent](./about_agent.html) and the [Puppet 4.3 release 
 
 Released March 14, 2016.
 
-This security release fixes a vulnerability that allowed arbitrary remote code execution on Puppet agent notes.
+This security release fixes a vulnerability that allowed arbitrary remote code execution on Puppet agent nodes.
 
 * [Puppet Labs CVE announcement](https://puppetlabs.com/security/cve/CVE-2016-2786)
 
