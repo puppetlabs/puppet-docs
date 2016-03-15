@@ -98,98 +98,79 @@
   </form>
 
   <!-- Rebuild of Site Header -->
-  <header id="site-header">
-      <div id="morebar">
-          <ul>
-              <li class="home">
-                  <a href="https://puppetlabs.com/" onclick="_gaq.push(['_trackEvent', 'Toolbar', 'click', 'Home']);">
-                      <img src="/images/svg/icon-home.svg" />
-                      <span>home</span>
-                  </a>
-              </li>
-              <li class="forge">
-                  <a href="https://forge.puppetlabs.com" onclick="_gaq.push(['_trackEvent', 'Toolbar', 'click', 'Forge']);">
-                      <img src="/images/svg/icon-tools.svg" />
-                      <span>forge</span>
-                  </a>
-              </li>
-              <li class="docs">
-                  <a href="https://docs.puppetlabs.com" onclick="_gaq.push(['_trackEvent', 'Toolbar', 'click', 'Docs']);">
-                      <img src="/images/svg/icon-book.svg" />
-                      <span>docs</span>
-                  </a>
-              </li>
-              <li class="learn">
-                  <a href="https://puppetlabs.com/learn" onclick="_gaq.push(['_trackEvent', 'Toolbar', 'click', 'Training']);">
-                      <img src="/images/svg/icon-graduation-cap.svg" />
-                      <span>learn</span>
-                  </a>
-              </li>
-              <li class="community">
-                  <a href="https://puppetlabs.com/community/overview" onclick="_gaq.push(['_trackEvent', 'Toolbar', 'click', 'Community']);">
-                      <img src="/images/svg/icon-users.svg" />
-                      <span>community</span>
-                  </a>
-              </li>
-              <li class="tickets">
-                  <a href="https://tickets.puppetlabs.com" onclick="_gaq.push(['_trackEvent', 'Toolbar', 'click', 'JIRA']);">
-                      <img src="/images/svg/icon-ticket.svg" />
-                      <span>tickets</span>
-                  </a>
-              </li>
-              <li class="help">
-                  <a href="https://puppetlabs.com/help" onclick="_gaq.push(['_trackEvent', 'Toolbar', 'click', 'Help']);">
-                      <img src="/images/svg/icon-help-circled.svg" />
-                      <span>help</span>
-                  </a>
-              </li>
-          </ul>
-      </div>
-      <div id="navbar" class="gradient">
-          <!-- Logo -->
-          <div id="navbar-logo" class="navbar-section">
-              <div class="centered">
-                  <a href="https://puppetlabs.com/">
-                      <img src="/images/svg/logo.svg">
-                  </a>
-              </div>
+    <header>
+      <div class="global-header">
+        <div class="global-header__row __row1">
+          <nav class="global-header__nav-satellite"></nav>
+          <nav class="global-header__nav-satellite">
+            <div class="global-header__nav-satellite__item">
+              <a href="//www.puppet.com" class="home">Home</a>
+            </div>
+            <div class="global-header__nav-satellite__item">
+              <a href="//forge.puppetlabs.com/" class="offsite">Forge</a>
+            </div>
+            <div class="global-header__nav-satellite__item">
+              <a href="//docs.puppetlabs.com" class="offsite">Docs</a>
+            </div>
+            <div class="global-header__nav-satellite__item">
+              <a href="//learn.puppetlabs.com/" class="offsite">Learn</a>
+            </div>
+            <div class="global-header__nav-satellite__item">
+              <span class="spacer"></span>
+            </div>
+            <div class="global-header__nav-satellite__item">
+              <a href="//www.puppet.com/support">Support &amp; Services</a>
+            </div>
+            <div class="global-header__nav-satellite__item">
+              <a href="//www.puppet.com/contact">Contact Us</a>
+            </div>
+          </nav>
+        </div>
+        <div class="global-header__row __row2">
+          <div class="global-header__row__col __col1">
+            <a href="/">
+              <img src="/images/puppet-logo/puppet-logo-amber-white-lg.png">
+            </a>
           </div>
+          <div class="global-header__row__col __col2">
+            <nav class="global-header__nav-main">
 
-          <!-- Title -->
-          <div id="navbar-title" class="navbar-section">
-              <div class="centered">
-                  <a href="http://docs.puppetlabs.com">Documentation</a>
+              <!-- Product -->
+              <div class="global-header__nav-main__item dropdown">
+                <a href="/" class="dropdown__tab">
+                  <div class="dropdown__tab__title">Documentation</div>
+                  <div class="dropdown__tab__indicator product"></div>
+                </a>
+                <div class="dropdown-grow-bar"></div>
               </div>
-          </div>
 
-          <!-- Search -->
-          <div id="navbar-search" class="navbar-section">
-              <div class="centered">
-                  <div id="search-container">
-                      <input type="text" placeholder="search" class="gradient">
-                      <input type="submit" value="&#xf002;">
+              <!-- Hamburger -->
+              <div class="global-header__nav-main__item hamburger">
+                <a class="dropdown__tab">
+                  <img class="menu-white" src="/images/puppet-icons/menu-white.svg" alt="Menu">
+                  <img class="menu-amber" src="/images/puppet-icons/menu-amber.svg" alt="Menu">
+                </a>
+              </div>
+
+              <!-- Search -->
+              <div class="global-header__nav-main__item search">
+                <a class="dropdown__tab">
+                  <img class="search-white" src="/images/puppet-icons/search-white-2.svg" alt="Search">
+                  <img class="search-amber" src="/images/puppet-icons/search-amber.svg" alt="Search">
+                </a>
+              <div class="search-slider">
+                <div class="search-slider-table">
+                  <div class="search-slider-table__cell">
+                    <input class="search-slider-table__cell__input" type="text">
                   </div>
+                </div>
               </div>
+              </div>
+            </nav>
           </div>
-
-          <script type="text/javascript">
-
-              // Handle routing of search to real (hidden) search input
-              var search_input = jQuery("#search-container [type='text']");
-              var search_icon = jQuery("#search-container [type='submit']");
-              search_input.keyup(function (e) {
-                  if (e.keyCode == 13) {
-                      jQuery('#cse-search-box [type="text"]').val(search_input.val());
-                      jQuery('#cse-search-box [type="submit"]').click();
-                  }
-              });
-              search_icon.click(function(e) {
-                  jQuery('#cse-search-box [type="text"]').val(search_input.val());
-                  jQuery('#cse-search-box [type="submit"]').click();
-              });
-          </script>
+        </div>
       </div>
-  </header>
+    </header>
 
   <section id="masthead">
     <div class="site-width">
@@ -219,102 +200,113 @@
   </section>
 
 
-  <footer id="site-footer">
-      <div class="footer-wrapper">
-          <div class="footer-col footer-col-left">
-              <ul>
-                  <h4>Resources</h4>
-                  <li><a href="https://puppetlabs.com/download-puppet-enterprise"  onclick="_gaq.push(['_trackEvent', 'Footer', 'click', 'Download']);">Free Download</a></li>
-                  <li><a href="https://puppetlabs.com/blog"  onclick="_gaq.push(['_trackEvent', 'Footer', 'click', 'Blog']);">Blog</a></li>
-                  <li><a href="https://puppetlabs.com/security"  onclick="_gaq.push(['_trackEvent', 'Footer', 'click', 'Security']);">Security</a></li>
-                  <li><a href="https://puppetlabs.com/sitemap"  onclick="_gaq.push(['_trackEvent', 'Footer', 'click', 'Site Map']);">Site Map</a></li>
-                  <li><a href="http://feeds.feedburner.com/PuppetLabs"  onclick="_gaq.push(['_trackEvent', 'Footer', 'click', 'RSS']);"
-                         target="_blank">RSS</a></li>
-              </ul>
-              <ul>
-                  <h4>Support</h4>
-                  <li><a href="https://puppetlabs.com/services/customer-support"  onclick="_gaq.push(['_trackEvent', 'Footer', 'click', 'Support']);">Customer Support</a></li>
-                  <li><a href="https://tickets.puppetlabs.com"  onclick="_gaq.push(['_trackEvent', 'Footer', 'click', 'Tickets']);" target="_blank">Bug Tracker</a></li>
-                  <li><a href="http://ask.puppetlabs.com"  onclick="_gaq.push(['_trackEvent', 'Footer', 'click', 'Ask']);" target="_blank">Puppet Ask</a></li>
-                  <li><a href="http://groups.google.com/group/puppet-users?pli=1"  onclick="_gaq.push(['_trackEvent', 'Footer', 'click', 'Users']);" target="_blank">Puppet Users</a></li>
-                  <li><a href="https://github.com/puppetlabs"  onclick="_gaq.push(['_trackEvent', 'Footer', 'click', 'GitHub']);" target="_blank">GitHub</a></li>
-              </ul>
-              <ul>
-                  <h4>Company</h4>
-                  <li><a href="https://puppetlabs.com/about"  onclick="_gaq.push(['_trackEvent', 'Footer', 'click', 'About Us']);">About Us</a></li>
-                  <li><a href="https://puppetlabs.com/about/careers"  onclick="_gaq.push(['_trackEvent', 'Footer', 'click', 'Careers']);">Careers</a></li>
-                  <li><a href="https://puppetlabs.com/licensing"  onclick="_gaq.push(['_trackEvent', 'Footer', 'click', 'Licensing']);">Licensing</a></li>
-                  <li><a href="https://puppetlabs.com/privacy"  onclick="_gaq.push(['_trackEvent', 'Footer', 'click', 'Privacy Policy']);">Privacy Policy</a></li>
-                  <li><a href="https://puppetlabs.com/terms"  onclick="_gaq.push(['_trackEvent', 'Footer', 'click', 'Terms of Use']);">Terms of Use</a></li>
-              </ul>
-              <ul>
-                  <h4>Connect</h4>
-                  <li><a href="https://puppetlabs.com/contact"  onclick="_gaq.push(['_trackEvent', 'Footer', 'click', 'Contact Us']);">Contact Us</a></li>
-                  <li><a href="https://puppetlabs.com/contact-sales"  onclick="_gaq.push(['_trackEvent', 'Footer', 'click', 'Contact Sales']);">Contact Sales</a></li>
-                  <li><a href="https://twitter.com/puppetlabs" target="_blank" onclick="_gaq.push(['_trackEvent', 'Footer', 'click', 'Twitter']);">Twitter</a></li>
-                  <li><a href="https://www.facebook.com/puppetlabs" target="_blank" onclick="_gaq.push(['_trackEvent', 'Footer', 'click', 'Facebook']);">Facebook</a></li>
-                  <li><a href="http://www.linkedin.com/company/621389" target="_blank" onclick="_gaq.push(['_trackEvent', 'Footer', 'click', 'LinkedIn']);">LinkedIn</a></li>
-                  <li><a href="https://plus.google.com/112682055028218091774" target="_blank" onclick="_gaq.push(['_trackEvent', 'Footer', 'click', 'Google+']);">Google+</a></li>
-                  <li><a href="http://webchat.freenode.net/?channels=puppet" target="_blank" onclick="_gaq.push(['_trackEvent', 'Footer', 'click', 'IRC']);">IRC</a></li>
-              </ul>
+  <footer class="layout-footer">
+      <div class="footer-row-1">
+        <div class="fg-col">
+
+          <div class="fg-col">
+            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/232088/puppet-logo-white-sm.png" class="puppet-logo">
           </div>
-          <div class="footer-col footer-col-right">
-              <div class="footer-col-right-container">
-                  <div class="title">Get Puppet Labs News</div>
-                  <div class="email-subscription">
-                      <div id="email-subscription-container">
-                          <form class="lpeRegForm formNotEmpty" method="post" enctype="application/x-www-form-urlencoded" action="https://app-sjh.marketo.com/index.php/leadCapture/save" id="mktForm_1047" name="mktForm_1047">
-                              <input class='mktFormText mktFormEmail mktFReq' name="Email" id="Email" type='email' value=""  placeholder="enter your email address" maxlength='255' tabIndex='1' />
-                              <input class='mktFormHidden' name="Form_Name__c" id="Form_Name__c" type='hidden' value="Newsletter" />
-                              <input class='mktFormHidden' name="Current_Form_Name__c" id="Current_Form_Name__c" type='hidden' value="Newsletter" />
-                              <input class='mktFormHidden' name="Original_Campaign_ID__c" id="Original_Campaign_ID__c" type='hidden' value="701G0000000F68K" />
-                              <input class='mktFormHidden' name="campaign_ID__c" id="campaign_ID__c" type='hidden' value="701G0000000F68K" />
-                              <input class='mktFormHidden' name="Current_Lead_Source__c" id="Current_Lead_Source__c" type='hidden' value="website-corporate" />
-                              <input class='mktFormHidden' name="LeadSource" id="LeadSource" type='hidden' value="website-corporate" />
-                              <input class='mktFormHidden' name="Custom_Campaign__c" id="Custom_Campaign__c" type='hidden' value="null" />
-                              <input class='mktFormHidden' name="Current_Custom_Campaign__c" id="Current_Custom_Campaign__c" type='hidden' value="null" />
-                              <input class='mktFormHidden' name="honeypot" id="honeypot" type='hidden' value="null" />
-                              <input id='mktFrmSubmit' type='submit' value='&#xf0a9;' name='submitButton' onclick='formSubmit(document.getElementById("mktForm_1047")); return false;' />
-                              <input style='display: none;' id='mktFrmReset' type='reset' value='Clear' name='resetButton' onclick='formReset(document.getElementById("mktForm_1047")); return false;' />
-                              <span style="display:none;"><input type="text" name="_marketo_comments" value="" /></span>
-                              <input type="hidden" name="lpId" value="-1" />
-                              <input type="hidden" name="subId" value="100" />
-                              <input type="hidden" name="munchkinId" value="307-QLA-991" />
-                              <input type="hidden" name="kw" value="" />
-                              <input type="hidden" name="cr" value="" />
-                              <input type="hidden" name="searchstr" value="" />
-                              <input type="hidden" name="lpurl" value="http://info.puppetlabs.com/newslettersubscribe.html?cr={creative}&kw={keyword}" />
-                              <input type="hidden" name="formid" value="1047" />
-                              <input type="hidden" name="returnURL" value="http://puppetlabs.com" />
-                              <input type="hidden" name="retURL" value="http://puppetlabs.com/misc/subscription-thank-you" />
-                              <input type="hidden" name="returnLPId" value="-1" />
-                              <input type="hidden" name="_mkt_disp" value="return" />
-                              <input type="hidden" name="_mkt_trk" value="" />
-                          </form>
-                          <script type="text/javascript" src="//puppetlabs.com/sites/default/files/mktFormSupport.js"></script>
-                          <script type="text/javascript">
-                              function formSubmit(elt) {
-                                  var submit = Mkto.formSubmit(elt) ? true : false;
-                                  if (submit) {
-                                      jQuery(elt).find('#mktFrmSubmit').attr('value', "");
-                                  }
-                                  return submit;
-                              }
-                              function formReset(elt) {
-                                  return Mkto.formReset(elt);
-                              }
-                          </script>
-                      </div>
-                      <p>
-                          &copy; 2016 <a href="https://puppetlabs.com/about">Puppet Labs</a>
-                          <br>
-                          <a href="tel:877-575-9775" class="tel">877-575-9775</a>
-                      </p>
-                  </div>
-              </div>
+
+          <div class="fg-col">
+            <h3>Overview</h3>
+            <ul>
+              <li><a href="//www.puppet.com/product">Product</a></li>
+              <li><a href="//www.puppet.com/solutions">Solutions</a></li>
+              <li><a href="//www.puppet.com/resource-library">Resource Library</a></li>
+              <li><a href="//www.puppet.com/company">Company</a></li>
+              <li><a href="//www.puppet.com/open-source-projects">Open Source Projects</a></li>
+              <li><a href="//www.puppet.com/security">Security</a></li>
+            </ul>
           </div>
+
+          <div class="fg-col">
+            <h3>Resources</h3>
+            <ul>
+              <li><a href="//www.puppet.com/get-help">Get Help</a></li>
+              <li><a href="//puppet.com/find-a-partner">Find a Partner</a></li>
+              <li><a href="//www.puppet.com/training">Training</a></li>
+              <li><a href="//www.puppet.com/downloads">Downloads</a></li>
+              <li><a href="//www.puppet.com/sitemap">Site Map</a></li>
+            </ul>
+          </div>
+
+          <div class="fg-col">
+            <h3>Connect</h3>
+            <ul>
+              <li><a href="//www.puppet.com/contact">Contact Us</a></li>
+              <li><a href="//tickets.puppetlabs.com/events">Events</a></li>
+              <li><a href="//www.puppet.com/blog">Blog</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="fg-col">
+          <h3>Join our newsletter</h3>
+          <p>Join up and get notified about new products, updates, and special offers.</p>
+          <form class="lpeRegForm formNotEmpty" method="post" enctype="application/x-www-form-urlencoded" action="https://app-sjh.marketo.com/index.php/leadCapture/save" id="mktForm_1047" name="mktForm_1047">
+            <input class='mktFormText mktFormEmail mktFReq' name="Email" id="Email" type='email' value=""  placeholder="Enter your email" maxlength='255' tabIndex='1' />
+            <input class='mktFormHidden' name="Form_Name__c" id="Form_Name__c" type='hidden' value="Newsletter" />
+            <input class='mktFormHidden' name="Current_Form_Name__c" id="Current_Form_Name__c" type='hidden' value="Newsletter" />
+            <input class='mktFormHidden' name="Original_Campaign_ID__c" id="Original_Campaign_ID__c" type='hidden' value="701G0000000F68K" />
+            <input class='mktFormHidden' name="campaign_ID__c" id="campaign_ID__c" type='hidden' value="701G0000000F68K" />
+            <input class='mktFormHidden' name="Current_Lead_Source__c" id="Current_Lead_Source__c" type='hidden' value="website-corporate" />
+            <input class='mktFormHidden' name="LeadSource" id="LeadSource" type='hidden' value="website-corporate" />
+            <input class='mktFormHidden' name="Custom_Campaign__c" id="Custom_Campaign__c" type='hidden' value="null" />
+            <input class='mktFormHidden' name="Current_Custom_Campaign__c" id="Current_Custom_Campaign__c" type='hidden' value="null" />
+            <input class='mktFormHidden' name="honeypot" id="honeypot" type='hidden' value="null" />
+            <input id='mktFrmSubmit' type='submit' value='&#xf0a9;' name='submitButton' onclick='formSubmit(document.getElementById("mktForm_1047")); return false;' />
+            <input style='display: none;' id='mktFrmReset' type='reset' value='Clear' name='resetButton' onclick='formReset(document.getElementById("mktForm_1047")); return false;' />
+            <span style="display:none;"><input type="text" name="_marketo_comments" value="" /></span>
+            <input type="hidden" name="lpId" value="-1" />
+            <input type="hidden" name="subId" value="100" />
+            <input type="hidden" name="munchkinId" value="307-QLA-991" />
+            <input type="hidden" name="kw" value="" />
+            <input type="hidden" name="cr" value="" />
+            <input type="hidden" name="searchstr" value="" />
+            <input type="hidden" name="lpurl" value="http://info.puppet.com/newslettersubscribe.html?cr={creative}&kw={keyword}" />
+            <input type="hidden" name="formid" value="1047" />
+            <input type="hidden" name="returnURL" value="http://puppet.com" />
+            <input type="hidden" name="retURL" value="http://puppet.com/misc/subscription-thank-you" />
+            <input type="hidden" name="returnLPId" value="-1" />
+            <input type="hidden" name="_mkt_disp" value="return" />
+            <input type="hidden" name="_mkt_trk" value="" />
+          </form>
+          <script type="text/javascript" src="//puppet.com/sites/default/files/mktFormSupport.js"></script>
+          <script type="text/javascript">
+            function formSubmit(elt) {
+              var submit = Mkto.formSubmit(elt) ? true : false;
+              if (submit) {
+                jQuery(elt).find('#mktFrmSubmit').attr('value', "");
+              }
+              return submit;
+            }
+            function formReset(elt) {
+              return Mkto.formReset(elt);
+            }
+          </script>
+          <p>
+            <a href="https://twitter.com/puppetlabs" class="social-icon"><img src="/images/social-icons/twitter-box-white.svg" alt="Twitter"></a>
+            <a href="https://www.linkedin.com/company/621389" class="social-icon"><img class="social-icon" src="/images/social-icons/linkedin-box-white.svg" alt="Facebook"></a>
+            <a href="https://www.facebook.com/puppetlabs" class="social-icon"><img class="social-icon" src="/images/social-icons/facebook-box-white.svg" alt="Facebook"></a>
+            <a href="https://www.youtube.com/channel/UCPfMWIY-qNbLhIrbZm2BFMQ" class="social-icon"><img class="social-icon" src="/images/social-icons/youtube-white.svg" alt="Youtube"></a>
+            <a href="https://plus.google.com/112682055028218091774" class="social-icon"><img class="social-icon" src="/images/social-icons/g-plus-white.svg" alt="Google+"></a>
+          </p>
+        </div>
       </div>
-  </footer>
+      <div class="footer-row-2">
+        <div class="footer-row-2-wrapper">
+          <div class="footer-row-2-col-1">
+            <a href="//www.puppet.com/legal">Legal</a>
+            <a href="//www.puppet.com/privacy">Privacy Policy</a>
+            <a href="http://www.puppet.com/terms">Terms of Use</a>
+          </div>
+          <div class="footer-row-2-col-2">
+            <a href="/">&copy; 2016 Puppet</a>
+          </div>
+        </div>
+      </div>
+    </footer>
 
   <script type="text/javascript">
       jQuery(document).on('ready', function() {
