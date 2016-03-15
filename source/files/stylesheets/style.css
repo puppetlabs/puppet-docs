@@ -203,6 +203,12 @@ h4 strong {
   color: #78B7D2;
 }
 
+h1 strong,
+h2 strong,
+h3 strong {
+  font-weight: lighter;
+}
+
 h1, h2, h3 {
   display: block;
   margin-bottom: 1rem;
