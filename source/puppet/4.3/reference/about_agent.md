@@ -16,7 +16,7 @@ canonical: "/puppet/latest/reference/about_agent.html"
 
 {% partial /puppet-agent/_agent1.x.html %}
 
-See the table above for details about which components shipped in which `puppet-agent` release, and the [package-specific release notes][release notes] for more information about packaging and installation fixes and features.
+See the table above for details about which components shipped in which `puppet-agent` release, and the [package-specific release notes][release notes] for more information about packaging and installation fixes and features. Visit the [Puppet Enterprise documentation](/pe/latest/overview_version_table.html) to view which versions of `puppet-agent` are shipped with specific PE releases.
 
 ## What Are `puppet-agent` and Puppet Server?
 
