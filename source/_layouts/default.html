@@ -42,6 +42,7 @@
     <script type='text/javascript' src='/files/javascripts/jquery-1.11.1.min.js'></script>
     <script type='text/javascript' src='/files/javascripts/quick_nav.js'></script>
     <script type='text/javascript' src='/files/javascripts/navigation-accordion.js'></script>
+    <script type='text/javascript' src='/files/javascripts/search-toggle.js'></script>
 
     <script type="text/javascript" src="https://puppetlabs.com/sites/all/themes/puppetlabs/js/leadcapture.js"></script>
 
@@ -107,13 +108,13 @@
               <a href="//www.puppet.com" class="home">Home</a>
             </div>
             <div class="global-header__nav-satellite__item">
-              <a href="//forge.puppetlabs.com/" class="offsite">Forge</a>
+              <a href="//forge.puppetlabs.com/" class="offsite forge">Forge</a>
             </div>
             <div class="global-header__nav-satellite__item">
-              <a href="//docs.puppetlabs.com" class="offsite">Docs</a>
+              <a href="//docs.puppetlabs.com" class="offsite docs">Docs</a>
             </div>
             <div class="global-header__nav-satellite__item">
-              <a href="//learn.puppetlabs.com/" class="offsite">Learn</a>
+              <a href="//learn.puppetlabs.com/" class="offsite learn">Learn</a>
             </div>
             <div class="global-header__nav-satellite__item">
               <span class="spacer"></span>
@@ -144,19 +145,11 @@
                 <div class="dropdown-grow-bar"></div>
               </div>
 
-              <!-- Hamburger -->
-              <div class="global-header__nav-main__item hamburger">
-                <a class="dropdown__tab">
-                  <img class="menu-white" src="/images/puppet-icons/menu-white.svg" alt="Menu">
-                  <img class="menu-amber" src="/images/puppet-icons/menu-amber.svg" alt="Menu">
-                </a>
-              </div>
-
               <!-- Search -->
               <div class="global-header__nav-main__item search">
                 <a class="dropdown__tab">
                   <img class="search-white" src="/images/puppet-icons/search-white-2.svg" alt="Search">
-                  <img class="search-amber" src="/images/puppet-icons/search-amber.svg" alt="Search">
+                  <img id="search-icon" class="search-amber" src="/images/puppet-icons/search-amber.svg" alt="Search">
                 </a>
               <div class="search-slider">
                 <div class="search-slider-table">
@@ -171,6 +164,23 @@
         </div>
       </div>
     </header>
+
+    <script type="text/javascript">
+      // Handle routing of search to real (hidden) search input
+      var search_input = $("#search-container");
+      var search_icon = $("#search-icon");
+      search_input.on( 'keypress', function (e) {
+        if (e.keyCode == 13) {
+          $('#cse-search-box [type="text"]').val(search_input.val());
+          $('#cse-search-box [type="submit"]').click();
+          return false;
+        }
+      });
+      search_icon.on( 'click', function(e) {
+        $('#cse-search-box [type="text"]').val(search_input.val());
+        $('#cse-search-box [type="submit"]').click();
+      });
+    </script>
 
   <section id="masthead">
     <div class="site-width">
