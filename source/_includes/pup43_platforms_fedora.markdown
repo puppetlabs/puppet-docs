@@ -1,4 +1,4 @@
-We publish and test official `puppet-agent` packages for the following versions of Fedora:
+We publish and test official [`puppet-agent`](/puppet/latest/reference/about_agent.html) packages for the following versions of Fedora:
 
 * Fedora 22
 * Fedora 21

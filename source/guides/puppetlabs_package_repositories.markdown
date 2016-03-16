@@ -38,7 +38,7 @@ To enable the repository, run the command below that corresponds to your OS vers
 
     sudo rpm -ivh https://yum.puppetlabs.com/puppetlabs-release-pc1-el-5.noarch.rpm
 
-> **Note:** For recent versions of Puppet, we only ship new versions of the `puppet-agent` package for RHEL 5.
+> **Note:** For recent versions of Puppet, we only ship new versions of the [`puppet-agent`](/puppet/latest/reference/about_agent.html) package for RHEL 5.
 
 #### Fedora 22
 
