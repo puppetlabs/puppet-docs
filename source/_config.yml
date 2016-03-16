@@ -199,7 +199,7 @@ documents:
     my_versions:
       facter: 3.1
       hiera: 3.0
-      puppetserver: 2.2
+      puppetserver: 2.3
   /puppet/4.3/reference:
     doc: puppet
     version: 4.3
@@ -335,7 +335,7 @@ documents:
     nav: /puppet/4.4/reference/_puppet_toc.html
     external_source:
       repo: git://github.com/puppetlabs/puppet-server.git
-      commit: origin/stable
+      commit: a5e8b42
       subdirectory: documentation
     my_versions:
       puppet: 4.4
