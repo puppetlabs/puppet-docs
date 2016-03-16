@@ -5,8 +5,21 @@ title: "Facter 3.1: Release Notes"
 
 [puppet-agent 1.2.x]: /puppet/4.2/reference/about_agent.html
 [puppet-agent 1.3.x]: /puppet/4.3/reference/about_agent.html
+[puppet-agent 1.4.x]: /puppet/4.4/reference/about_agent.html
+
 
 This page documents the history of the Facter 3.1 series. (Previous version: [Facter 3.0 release notes](../3.0/release_notes.html).)
+
+## Facter 3.1.5
+
+Released March 16, 2016.
+
+Shipped in [`puppet-agent` 1.4.0][puppet-agent 1.4.x].
+
+Facter 3.1.4 is a feature and bug fix release in the Facter 3.1 series.
+
+* [Fixed in Facter 3.1.5](https://tickets.puppetlabs.com/issues/?jql=fixVersion+%3D+%27FACT+3.1.5%27)
+* [Introduced in Facter 3.1.5](https://tickets.puppetlabs.com/issues/?jql=affectedVersion+%3D+%27FACT+3.1.5%27)
 
 ## Facter 3.1.4
 
