@@ -335,7 +335,7 @@ documents:
     nav: /puppet/4.4/reference/_puppet_toc.html
     external_source:
       repo: git://github.com/puppetlabs/puppet-server.git
-      commit: a5e8b42
+      commit: origin/stable
       subdirectory: documentation
     my_versions:
       puppet: 4.4
