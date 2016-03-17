@@ -9,7 +9,7 @@ canonical: "/puppet/latest/reference/about_agent.html"
 [MCollective]: /mcollective/
 [agent]: ./services_agent_unix.html
 [apply]: ./services_apply.html
-[Puppet Server]: /puppetserver/latest/
+[Puppet Server]: {{puppetserver}}/
 [release notes]: ./release_notes_agent.html
 
 ## Release Contents: `puppet-agent` 1.x

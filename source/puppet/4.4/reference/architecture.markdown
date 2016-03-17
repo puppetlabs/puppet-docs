@@ -14,7 +14,7 @@ title: "Overview of Puppet's Architecture"
 [apply]: ./services_apply.html
 [puppetdb]: /puppetdb/latest
 [resource]: ./lang_resources.html
-[Puppet Server]: /puppetserver/latest/
+[Puppet Server]: {{puppetserver}}/
 
 Puppet usually uses an agent/master (client/server) architecture for configuring systems, using the **Puppet agent** and **Puppet master** applications. It can also run in a self-contained architecture with the **Puppet apply** application.
 

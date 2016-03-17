@@ -62,7 +62,7 @@ Once these tasks are complete, you can install Puppet.
 
 Install Puppet Server before installing Puppet on your agent nodes.
 
-* [Installing Puppet Server](/puppetserver/2.2/install_from_packages.html)
+* [Installing Puppet Server]({{puppetserver}}/install_from_packages.html)
 
 If you're using PuppetDB, install it once Puppet Server is up and running.
 

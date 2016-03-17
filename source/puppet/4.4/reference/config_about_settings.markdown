@@ -9,7 +9,7 @@ canonical: "/puppet/latest/reference/config_about_settings.html"
 [puppet.conf]: ./config_file_main.html
 [auth.conf]: ./config_file_auth.html
 [puppetdb.conf]: ./config_file_puppetdb.html
-[puppetserver_config]: /puppetserver/2.2/configuration.html
+[puppetserver_config]: {{puppetserver}}/configuration.html
 
 Puppet's commands and services can be extensively configured, and its settings can be specified in a variety of places.
 

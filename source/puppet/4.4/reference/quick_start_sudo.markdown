@@ -20,7 +20,7 @@ In most cases, managing sudo on your agents involves controlling which users hav
 
 > Before starting this walk-through, complete the previous exercises in the [essential configuration tasks](./quick_start_essential_config.html). Log in as root or administrator on your nodes.
 
-> **Prerequisites**: This guide assumes you've already [installed Puppet](/puppetserver/2.2/install_from_packages.html), and have installed at least one [*nix agent](./install_linux.html).
+> **Prerequisites**: This guide assumes you've already [installed Puppet]({{puppetserver}}/install_from_packages.html), and have installed at least one [*nix agent](./install_linux.html).
 
 >**Note**: You can add the sudo and privileges classes to as many agents as needed, although we describe only one for ease of explanation.
 

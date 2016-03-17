@@ -8,7 +8,7 @@ canonical: "/puppet/latest/reference/static_catalogs.html"
 [catalog endpoint]: ./http_api/http_catalog.html
 [file metadata]: ./http_api/http_file_metadata.html
 [`file_content`]: ./http_api/http_file_content.html
-[`static_file_content`]: /puppetserver/latest/puppet-api/v3/static_file_content.html
+[`static_file_content`]: {{puppetserver}}/puppet-api/v3/static_file_content.html
 [resource_declaration]: ./lang_resources.html
 [file resources]: ./types/file.html
 [puppet catalog]: ./man/catalog.html
@@ -24,12 +24,12 @@ canonical: "/puppet/latest/reference/static_catalogs.html"
 [`puppet.conf`]: ./config_file_main.html
 [`environment.conf`]: ./config_file_environment.html
 
-[Puppet Server]: /puppetserver/latest/
-[`puppetserver.conf`]: /puppetserver/latest/config_file_puppetserver.html
+[Puppet Server]: {{puppetserver}}/
+[`puppetserver.conf`]: {{puppetserver}}/config_file_puppetserver.html
 [Application Orchestration]: /pe/latest/app_orchestration_overview.html
 [file sync]: /pe/latest/cmgmt_filesync.html
 [Code Manager]: /pe/latest/code_mgr.html
-[`code_content`]: /puppetserver/latest/
+[`code_content`]: {{puppetserver}}/
 
 Puppet 4.4 and Puppet Server 2.3 introduce a new feature for [catalog compilation][catalogs]: **static catalogs**.
 

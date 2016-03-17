@@ -13,7 +13,7 @@ Every module contains one or more **classes**. [Classes](./lang_classes.html) ar
 * [Use the `apache` class to launch the default Apache virtual host](#add-apache-to-the-main-manifest)
 * [Edit class parameters in the main manifest](#editing-class-parameters-in-the-main-manifest)
 
-> **Prerequisites**: This guide assumes you've already [installed Puppet](/puppetserver/2.2/install_from_packages.html), and have installed at least one [*nix agent](./install_linux.html) and the [puppetlabs-apache module](./quick_start_module_install_nix.html).
+> **Prerequisites**: This guide assumes you've already [installed Puppet]({{puppetserver}}/install_from_packages.html), and have installed at least one [*nix agent](./install_linux.html) and the [puppetlabs-apache module](./quick_start_module_install_nix.html).
 
 > Before starting this walk-through, complete the previous exercises in the [introductory quick start guide](./quick_start.html). You should still be logged in as root or administrator on your nodes.
 

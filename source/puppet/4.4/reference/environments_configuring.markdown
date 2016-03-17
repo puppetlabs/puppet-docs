@@ -44,7 +44,7 @@ The `environmentpath` setting should usually be set in the `[main]` section of [
 
 Although environments should contain their own modules, you might want some modules to be available to all environments.
 
-[The `basemodulepath` setting][basemodulepath] configures the global module directories. By default, it includes `$codedir/modules` for user-accessible modules and `/opt/puppetlabs/puppet/modules` for system modules. 
+[The `basemodulepath` setting][basemodulepath] configures the global module directories. By default, it includes `$codedir/modules` for user-accessible modules and `/opt/puppetlabs/puppet/modules` for system modules.
 
 To add additional directories containing global modules, you can set your own value for `basemodulepath`. See [the page on the modulepath][modulepath] for more details.
 
@@ -73,8 +73,8 @@ This requires `default_manifest` to be an absolute path.
 ## `environment_timeout`
 
 [inpage_timeout]: #environmenttimeout
-[puppetserver.conf]: /puppetserver/latest/configuration.html#puppetserverconf
-[environment-cache]: /puppetserver/latest/admin-api/v1/environment-cache.html
+[puppetserver.conf]: {{puppetserver}}/configuration.html#puppetserverconf
+[environment-cache]: {{puppetserver}}/admin-api/v1/environment-cache.html
 
 [(See also: Full description of `environment_timeout` setting.)](./configuration.html#environmenttimeout)
 

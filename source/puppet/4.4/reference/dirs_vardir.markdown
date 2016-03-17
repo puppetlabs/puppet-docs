@@ -6,7 +6,7 @@ canonical: "/puppet/latest/reference/dirs_vardir.html"
 
 [confdir]: ./dirs_confdir.html
 [config_ref]: ./configuration.html
-[puppetserver_conf]: /puppetserver/2.2/configuration.html#puppetserverconf
+[puppetserver_conf]: {{puppetserver}}/configuration.html#puppetserverconf
 
 Puppet's cache directory, sometimes called `vardir`, contains **dynamic and/or growing data** that Puppet creates automatically in the course of its normal operations. Some of this data can be mined for interesting analysis, or to integrate other tools with Puppet; other parts are just infrastructure and should be ignored by most or all users.
 

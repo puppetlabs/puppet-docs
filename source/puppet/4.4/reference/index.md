@@ -9,7 +9,7 @@ toc: false
 [pre-install instructions]: ./install_pre.html
 [Facter 3]: /facter/latest/
 [Hiera 3]: /hiera/latest/
-[Puppet Server 2.3]: /puppetserver/latest/
+[Puppet Server 2.3]: {{puppetserver}}/
 [PuppetDB 3]: /puppetdb/latest/
 [Linux installation]: ./install_linux.html
 [Windows installation]: ./install_windows.html

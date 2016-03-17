@@ -76,13 +76,13 @@ canonical: "/puppet/latest/reference/config_important_settings.html"
 [alwayscachefeatures]: ./configuration.html#alwayscachefeatures
 [environment_timeout]: ./configuration.html#environmenttimeout
 [configuring_timeout]: ./environments_configuring.html#environmenttimeout
-[puppetserver_config_files]: /puppetserver/2.2/configuration.html
-[settings_diffs]: /puppetserver/2.2/puppet_conf_setting_diffs.html
-[puppet_admin]: /puppetserver/2.2/config_file_puppetserver.html
-[jruby_puppet]: /puppetserver/2.2/tuning_guide.html#puppet-server-and-jruby
-[jvm_heap_config]: /puppetserver/2.2/install_from_packages.html#memory-allocation
-[puppetserver_ca]: /puppetserver/2.2/puppet_conf_setting_diffs.html#cahttpsdocspuppetlabscomreferenceslatestconfigurationhtmlca
-[service_bootstrap]: /puppetserver/2.2/configuration.html#service-bootstrapping
+[puppetserver_config_files]: {{puppetserver}}/configuration.html
+[settings_diffs]: {{puppetserver}}/puppet_conf_setting_diffs.html
+[puppet_admin]: {{puppetserver}}/config_file_puppetserver.html
+[jruby_puppet]: {{puppetserver}}/tuning_guide.html#puppet-server-and-jruby
+[jvm_heap_config]: {{puppetserver}}/install_from_packages.html#memory-allocation
+[puppetserver_ca]: {{puppetserver}}/puppet_conf_setting_diffs.html#cahttpsdocspuppetlabscomreferenceslatestconfigurationhtmlca
+[service_bootstrap]: {{puppetserver}}/configuration.html#service-bootstrapping
 [trusted_server_facts]: ./lang_facts_and_builtin_vars.html#serverfacts-variable
 
 

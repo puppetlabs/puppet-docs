@@ -13,7 +13,7 @@ canonical: "/puppet/latest/reference/install_windows.html"
 [confdir]: ./dirs_confdir.html
 [codedir]: ./dirs_codedir.html
 [vardir]: ./dirs_vardir.html
-[server_install]: /puppetserver/2.2/install_from_packages.html
+[server_install]: {{puppetserver}}/install_from_packages.html
 
 ## Make Sure You're Ready
 
