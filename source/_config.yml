@@ -56,7 +56,6 @@ symlink_latest:
   - facter
   - pe
 lock_latest:
-  puppetdb: 3.2
 #  puppet: 4.3
 #  hiera: 3.0
 
