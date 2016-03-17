@@ -27,7 +27,6 @@ Released March 16, 2016.
 * [Fixed in Puppet 4.4.0](https://tickets.puppetlabs.com/issues/?jql=fixVersion+%3D+%27PUP+4.4.0%27)
 * [Introduced in Puppet 4.4.0](https://tickets.puppetlabs.com/issues/?jql=affectedVersion+%3D+%27PUP+4.4.0%27)
 
-
 ### New features
 
 #### NEW: Iterable and Iterator Types added
@@ -48,27 +47,25 @@ Released March 16, 2016.
 
 * [PUP-5836](https://tickets.puppetlabs.com/browse/PUP-5836): It is possible to produce an Array from Iterator values by using the splat operator. As an example the expression: 
 
-	~~~
-
-	[1,2,3].reverse_each 
-
-	# produces [3,2,1] 
-
-	~~~
+  ~~~
+  [1,2,3].reverse_each 
+  # produces [3,2,1] 
+  
+  ~~~
 
 #### NEW: Static catalogs
 
-* [PUP-5694](https://tickets.puppetlabs.com/browse/PUP-5694): static_catalogs is a new Puppet setting for controlling if the master should compile a static catalog. It can also be overridden per-environment in `$codedir/environments/<env>/environment.conf`. By default, the property is true, but can be set to false globally or per-environment. 
+* [PUP-5694](https://tickets.puppetlabs.com/browse/PUP-5694): `static_catalogs` is a new Puppet setting for controlling if the master should compile a static catalog. It can also be overridden per-environment in `$codedir/environments/<env>/environment.conf`. By default, the property is `true`, but can be set to `false` globally or per-environment. 
 
-	>>Note: the master will only compile a static catalog if static_catalogs is enabled via this setting, the agent is Puppet 4.4.0 or newer, and the master has a code_id, which identifies the version of puppet code that was used to generate the catalog.
+>>Note: the master will only compile a static catalog if static_catalogs is enabled via this setting, the agent is Puppet 4.4.0 or newer, and the master has a code_id, which identifies the version of puppet code that was used to generate the catalog.
 
-#### Misc NEW features
+#### Misc new features and behaviors
 
 * [PUP-5703](https://tickets.puppetlabs.com/browse/PUP-5703): By default, the value of `pluginsync` will be coerced to be compatible with value of `use_cached_catalog`. 
 
 	If `pluginsync` is explicitly set via command-line or `puppet.conf`, then that setting will be honored even when it may result in an inconsistent state between the catalog and the plugins that support it. 
 
-* [PUP-5695](https://tickets.puppetlabs.com/browse/PUP-5695): Adds the checksum_value parameter to the file type. If present, puppet will use the checksum (existing parameter) and checksum_value (new parameter) to determine if a file resource is insync or not.
+* [PUP-5695](https://tickets.puppetlabs.com/browse/PUP-5695): Adds the `checksum_value` parameter to the file type. If present, Puppet will use the checksum (existing parameter) and checksum_value (new parameter) to determine if a file resource is insync or not.
 
 * [PUP-1540](https://tickets.puppetlabs.com/browse/PUP-1540): For undefined variables Puppet automatically issued warnings for qualified names with more than one name segment. This means that no warnings are issued for qualified references to global variables (such as `$::missing`). This fix adds the option to set `--strict_variables` to the value `warning` to make all cases of missing parameter a warning.
 
@@ -88,9 +85,9 @@ Released March 16, 2016.
 
 * [PUP-3149](https://tickets.puppetlabs.com/browse/PUP-3149): Previously, when uninstalling packages on platforms which include the Zypper package manager, Puppet would always fall back to using RPM to try and do the uninstallation. As RPM is incapable of dependency management, uninstallation would fail if the package had any dependencies. This change adds an `uninstall` method to the Zypper provider for versions of Zypper 1.0 and above to properly manage dependencies and remove packages using Zypper itself.
 
-* [PUP-5487](https://tickets.puppetlabs.com/browse/PUP-5487): The output of warnings about expressions that require storeconfigs to be turned on has been irritating users for quite some time. It is after all valid puppet code, and almost everyone is running with storeconfigs turned on - except when doing testing. This is now changed so that the warnings are only issued when expressions are evaluated/used.
+* [PUP-5487](https://tickets.puppetlabs.com/browse/PUP-5487): The output of warnings about expressions that require storeconfigs to be turned on has been irritating users for quite some time. It is after all valid Puppet code, and almost everyone is running with storeconfigs turned on - except when doing testing. This is now changed so that the warnings are only issued when expressions are evaluated/used.
 
-* [PUP-1780](https://tickets.puppetlabs.com/browse/PUP-1780): All references to non-existing variables will now generate a warning. Earlier puppet only warned about non existing qualified variables with more than one namespace segment. 
+* [PUP-1780](https://tickets.puppetlabs.com/browse/PUP-1780): All references to non-existing variables will now generate a warning. Earlier Puppet only warned about non existing qualified variables with more than one namespace segment. 
 
 	It is possible to disable these warnings by adding 'undefined_variables' to the setting 'disabled_warnings'. 
 
@@ -124,7 +121,7 @@ Released March 16, 2016.
 
 * [PUP-5923](https://tickets.puppetlabs.com/browse/PUP-5923): Administrative token detection for Windows 2003 and earlier, used internally to guard code paths requiring administrative privileges, was flawed and always thought the current user has administrative privileges. This could lead to Puppet attempting to execute code that the operating system will not allow it to (such as creating symlinks).
 
-* [PUP-5728](https://tickets.puppetlabs.com/browse/PUP-5728): As part of Puppet 4, Puppet declared that UTF-8 was the only valid encoding for manifest files. However, while this behavior was correct on non-Windows systems, because Puppet did not explicitly specify the encoding when reading manifests, the behavior on Windows was incorrect. On Windows, Ruby continued to load files from disk, then convert them to whatever the current local codepage was defined as (often IBM437 or 1252). Depending on whether the Unicode characters in the manifest contained bytes that could be represented in the current codepage or not, this could lead to either a crash while attempting to treat the bytes as characters in the codepage, or more typically, corruption of the intended strings when loading internally. This corruption would result in resources being created that didn't match what was specified in the manifest. In addition to addressing the loading of manifest files, similar changes were made to the loading of resource templates, Ruby based Puppet module code (such as custom functions), puppet apply, puppet lookup, the epp and parser faces.
+* [PUP-5728](https://tickets.puppetlabs.com/browse/PUP-5728): As part of Puppet 4, Puppet declared that UTF-8 was the only valid encoding for manifest files. However, while this behavior was correct on non-Windows systems, because Puppet did not explicitly specify the encoding when reading manifests, the behavior on Windows was incorrect. On Windows, Ruby continued to load files from disk, then convert them to whatever the current local codepage was defined as (often IBM437 or 1252). Depending on whether the Unicode characters in the manifest contained bytes that could be represented in the current codepage or not, this could lead to either a crash while attempting to treat the bytes as characters in the codepage, or more typically, corruption of the intended strings when loading internally. This corruption would result in resources being created that didn't match what was specified in the manifest. In addition to addressing the loading of manifest files, similar changes were made to the loading of resource templates, Ruby based Puppet module code (such as custom functions), `puppet apply`, `puppet looku`p, the epp and parser faces.
 
 * [PUP-5726](https://tickets.puppetlabs.com/browse/PUP-5726): Due to a Ruby bug on Windows, reading and writing environment variables that contain Unicode characters may corrupt the local processes copy when they are accessed through Ruby's ENV class. As a result, prior to this fix, the process environment for Puppet will corrupt environment variables with any Unicode characters that can't be represented in the current local codepage when the internal helper function withenv is used. This affects Windows and PowerShell exec providers, and when arbitrary exec resources are run, can result in the creation of multiple user directories similar to the current username when a Windows user profile directory contains Unicode characters. The Ruby bug around ENV access is filed as https://bugs.ruby-lang.org/issues/8822 and has not yet been backported to the version of Ruby that Puppet runs on. A related issue is filed at https://bugs.ruby-lang.org/issues/9715
 
@@ -169,23 +166,23 @@ Puppet always uses UTF-8, and forbids Byte Order Marks to be present in source f
 
 * [PUP-4997](https://tickets.puppetlabs.com/browse/PUP-4997): The correct version of pip might not be found on newer EL6 versions because the previous logic assumed that it was always 'pip-python' on EL6. This fix changes the logic to check for both 'pip' and 'pip-python' (in that order) and use the first one it finds.
 
-* [PUP-5646](https://tickets.puppetlabs.com/browse/PUP-5646): The fqdn_rand function when used to produce a series of random values for a node in a given range did not produce an even (random) spread over the range. This has now been improved by lengthening the salt that is used to produce the series. 
+* [PUP-5646](https://tickets.puppetlabs.com/browse/PUP-5646): The `fqdn_rand` function when used to produce a series of random values for a node in a given range did not produce an even (random) spread over the range. This has now been improved by lengthening the salt that is used to produce the series. 
 
-As a consequence those resources (cron entries, resources with titles generated containing a random number, etc.) may be reported as having changed the first time the version containing this fix is in use. 
+  As a consequence those resources (cron entries, resources with titles generated containing a random number, etc.) may be reported as having changed the first time the version containing this fix is in use. 
 
-* [PUP-5897](https://tickets.puppetlabs.com/browse/PUP-5897): This fix specifies systemd as the default service provider for Ubuntu 16.04. (But note that this release of puppet-agent does not yet include packages for 16.04.)
+* [PUP-5897](https://tickets.puppetlabs.com/browse/PUP-5897): This fix specifies systemd as the default service provider for Ubuntu 16.04. (But note that this release of `puppet-agent` does not yet include packages for 16.04.)
 
-* [PUP-5555](https://tickets.puppetlabs.com/browse/PUP-5555): This fixes a scenario where the yum provider fails if the output of 'yum check-update' includes an "Update" notice, e.g. as seen with "broken update" notices.
+* [PUP-5555](https://tickets.puppetlabs.com/browse/PUP-5555): This fixes a scenario where the yum provider fails if the output of `yum check-update` includes an "Update" notice, as seen with "broken update" notices.
 
 * [PUP-5963](https://tickets.puppetlabs.com/browse/PUP-5963): Tidying recursive directories was broken in 4.3.0 due to PUP-1963, this ticket restores the previous behavior.
 
 * [PUP-5015](https://tickets.puppetlabs.com/browse/PUP-5015): User attributes will no longer be down-cased on AIX.
 
-* [PUP-5895](https://tickets.puppetlabs.com/browse/PUP-5895): puppet parser validate failed when validating manifests containing functions written in the puppet language when they were in regular manifests. The functions in autoloaded locations are not validated by "puppet parser validate".
+* [PUP-5895](https://tickets.puppetlabs.com/browse/PUP-5895): `puppet parser validate` failed when validating manifests containing functions written in the puppet language when they were in regular manifests. The functions in autoloaded locations are not validated by `puppet parser validate`.
 
-* [PUP-5970](https://tickets.puppetlabs.com/browse/PUP-5970): Adds a "catalog_format" version field to the catalog identifying its schema. Newly compiled catalogs will have version 1. In the future, the version will be bumped if changes are made to the catalog format. This makes it possible to read a catalog in the future and know what data to expect.
+* [PUP-5970](https://tickets.puppetlabs.com/browse/PUP-5970): Adds a `catalog_format` version field to the catalog identifying its schema. Newly compiled catalogs will have version 1. In the future, the version will be bumped if changes are made to the catalog format. This makes it possible to read a catalog in the future and know what data to expect.
 
-* [PUP-5978](https://tickets.puppetlabs.com/browse/PUP-5978): As part of the 4.4 documentation around static_catalogs we should mention that static_compiler is now deprecated.
+* [PUP-5978](https://tickets.puppetlabs.com/browse/PUP-5978): `static_compiler` is now deprecated.
 
 * [PUP-5428](https://tickets.puppetlabs.com/browse/PUP-5428): POST messages in the Puppet v3 API will now include the environment as a query parameter, providing uniformity between GET and POST URLs. Puppet will use POST instead of GET for large requests, so this ensures load balancers can make decisions based on the environment.
 
