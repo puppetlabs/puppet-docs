@@ -117,7 +117,7 @@ these services and use the Puppet master&#39;s data for other purposes.</p>
 
 <p>The V3 API contains endpoints of two types: those that are based on dispatching
 to Puppet&#39;s internal &quot;indirector&quot; framework, and those that are not (namely the
-<a href="#environments-endpoint">environments endpoint</a>).</p>
+<a href="#environment-endpoints">environment endpoints</a>).</p>
 
 <p>Every HTTP endpoint that dispatches to the indirector follows the form:
 <code>/puppet/v3/:indirection/:key?environment=:environment</code> where:</p>
@@ -158,16 +158,27 @@ tools.</p>
 <li><a href="./http_status.md">Status</a></li>
 </ul>
 
-<h3>Environments Endpoint</h3>
+<h3>Environment Endpoints</h3>
 
-<p>The one endpoint with a different format is the <code>/puppet/v3/environments</code>
-endpoint.</p>
+<p>The endpoints with a different format are the <code>/puppet/v3/environments</code> and
+the <code>/puppet/v3/environment/:environment</code> endpoints.</p>
 
-<p>This endpoint will only accept payloads formatted as JSON and respond with JSON
-(MIME type of <code>application/json</code>).</p>
+<p>These endpoints will only accept payloads formatted as JSON and respond
+with JSON (MIME type of <code>application/json</code>).</p>
 
 <ul>
 <li><a href="./http_environments.md">Environments</a></li>
+<li><a href="./http_environment.md">Environment Catalog</a></li>
+</ul>
+
+<h3>Puppet Server-specific endpoints</h3>
+
+<p>When using <a href="https://docs.puppetlabs.com/puppetserver/2.3/">Puppet Server 2.3 or newer</a>
+as a Puppet master, Puppet Server adds additional <code>/puppet/v3/</code> endpoints:</p>
+
+<ul>
+<li><a href="https://docs.puppetlabs.com/puppetserver/latest/puppet-api/v3/static_file_content.md">Static File Content</a></li>
+<li><a href="https://docs.puppetlabs.com/puppetserver/latest/puppet-api/v3/environment_classes.md">Environment Classes</a></li>
 </ul>
 
 <h4>Error Responses</h4>
@@ -245,7 +256,7 @@ REST services support all of the formats.</p>
 </div></div>
 
     <div id="footer">
-  Generated on Fri Jan 15 16:54:44 2016 by
+  Generated on Wed Mar 16 18:28:44 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.6 (ruby-2.0.0).
 </div>

@@ -66,6 +66,10 @@
 <p>The <code>certificate</code> endpoint returns the certificate for the specified name,
 which might be either a standard certname or <code>ca</code>.</p>
 
+<p>Under Puppet Server&#39;s CA service, the <code>environment</code> parameter is ignored and can
+be omitted. Under a Rack or WEBrick Puppet master, <code>environment</code> is required and
+must be a valid environment, but it has no effect on the response.</p>
+
 <h2>Find</h2>
 
 <p>Get a certificate.</p>
@@ -86,10 +90,6 @@ which might be either a standard certname or <code>ca</code>.</p>
 <h3>Parameters</h3>
 
 <p>None</p>
-
-<h3>Notes</h3>
-
-<p>The environment field is ignored.</p>
 
 <h3>Responses</h3>
 
@@ -172,7 +172,7 @@ json/pson/yaml, so no schema is applicable.</p>
 </div></div>
 
     <div id="footer">
-  Generated on Fri Jan 15 16:54:44 2016 by
+  Generated on Wed Mar 16 18:28:44 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.6 (ruby-2.0.0).
 </div>

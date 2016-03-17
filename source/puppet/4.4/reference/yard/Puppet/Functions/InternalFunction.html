@@ -341,19 +341,19 @@ accessor method calls.</p>
       <pre class="lines">
 
 
-505
-506
-507
-508
-509
-510
-511
-512
-513
-514</pre>
+544
+545
+546
+547
+548
+549
+550
+551
+552
+553</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/functions.rb', line 505</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/functions.rb', line 544</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_attr_injected'>attr_injected</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='id identifier rubyid_attribute_name'>attribute_name</span><span class='comma'>,</span> <span class='id identifier rubyid_injection_name'>injection_name</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_define_method'>define_method</span><span class='lparen'>(</span><span class='id identifier rubyid_attribute_name'>attribute_name</span><span class='rparen'>)</span> <span class='kw'>do</span>
@@ -399,19 +399,19 @@ accessor method calls.</p>
       <pre class="lines">
 
 
-519
-520
-521
-522
-523
-524
-525
-526
-527
-528</pre>
+558
+559
+560
+561
+562
+563
+564
+565
+566
+567</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/functions.rb', line 519</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/functions.rb', line 558</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_attr_injected_producer'>attr_injected_producer</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='id identifier rubyid_attribute_name'>attribute_name</span><span class='comma'>,</span> <span class='id identifier rubyid_injection_name'>injection_name</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_define_method'>define_method</span><span class='lparen'>(</span><span class='id identifier rubyid_attribute_name'>attribute_name</span><span class='rparen'>)</span> <span class='kw'>do</span>
@@ -456,19 +456,19 @@ accessor method calls.</p>
       <pre class="lines">
 
 
-496
-497
-498
-499
-500</pre>
+535
+536
+537
+538
+539</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/functions.rb', line 496</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/functions.rb', line 535</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_builder'>builder</span>
   <span class='ivar'>@type_parser</span> <span class='op'>||=</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Pops</span><span class='op'>::</span><span class='const'>Types</span><span class='op'>::</span><span class='const'>TypeParser</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
   <span class='ivar'>@all_callables</span> <span class='op'>||=</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Pops</span><span class='op'>::</span><span class='const'>Types</span><span class='op'>::</span><span class='const'>TypeFactory</span><span class='period'>.</span><span class='id identifier rubyid_all_callables'>all_callables</span>
-  <span class='const'>InternalDispatchBuilder</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_dispatcher'>dispatcher</span><span class='comma'>,</span> <span class='ivar'>@type_parser</span><span class='comma'>,</span> <span class='ivar'>@all_callables</span><span class='rparen'>)</span>
+  <span class='const'>InternalDispatchBuilder</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_dispatcher'>dispatcher</span><span class='comma'>,</span> <span class='ivar'>@type_parser</span><span class='comma'>,</span> <span class='ivar'>@all_callables</span><span class='comma'>,</span> <span class='id identifier rubyid_loader'>loader</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -574,12 +574,12 @@ scope. The callable functions are those visible to the same loader that loaded t
       <pre class="lines">
 
 
-540
-541
-542</pre>
+579
+580
+581</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/functions.rb', line 540</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/functions.rb', line 579</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_call_function_with_scope'>call_function_with_scope</span><span class='lparen'>(</span><span class='id identifier rubyid_scope'>scope</span><span class='comma'>,</span> <span class='id identifier rubyid_function_name'>function_name</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_internal_call_function'>internal_call_function</span><span class='lparen'>(</span><span class='id identifier rubyid_scope'>scope</span><span class='comma'>,</span> <span class='id identifier rubyid_function_name'>function_name</span><span class='comma'>,</span> <span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
@@ -594,7 +594,7 @@ scope. The callable functions are those visible to the same loader that loaded t
 </div>
 
     <div id="footer">
-  Generated on Fri Jan 15 16:54:47 2016 by
+  Generated on Wed Mar 16 18:28:48 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.6 (ruby-2.0.0).
 </div>

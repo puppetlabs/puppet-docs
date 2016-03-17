@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 3b5d15cb1c5ed830cb460f2687fde710e5383e69
+built_from_commit: e800bc25e695b8e8b58521d0a6ecdbd18aab031b
 title: 'Puppet HTTP API: File Content'
 canonical: /puppet/latest/reference/http_api/http_file_content.html
 ---
@@ -18,7 +18,7 @@ Get a file.
     GET /puppet/v3/file_content/:mount_point/:name
 
 `:mount_point` is one of mounts configured in the `fileserver.conf`.
-See [the puppet file server guide](http://docs.puppetlabs.com/guides/file_serving.html)
+See [the puppet file server guide](https://docs.puppetlabs.com/guides/file_serving.html)
 for more information about how mount points work.
 
 `:name` is the path to the file within the `:mount_point` that is requested.

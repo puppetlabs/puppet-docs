@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 3b5d15cb1c5ed830cb460f2687fde710e5383e69
+built_from_commit: e800bc25e695b8e8b58521d0a6ecdbd18aab031b
 title: 'Resource Type: user'
 canonical: /puppet/latest/reference/types/user.html
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-01-27 14:15:19 +0000
+> **NOTE:** This page was generated from the Puppet source code on 2016-03-16 18:28:11 -0700
 
 user
 -----
@@ -62,7 +62,7 @@ user's roles, the user resource will autorequire those role accounts.
   <a href="#user-attribute-purge_ssh_keys">purge_ssh_keys</a>       =&gt; <em># Whether to purge authorized SSH keys for this...</em>
   <a href="#user-attribute-role_membership">role_membership</a>      =&gt; <em># Whether specified roles should be considered the </em>
   <a href="#user-attribute-roles">roles</a>                =&gt; <em># The roles the user has.  Multiple roles should...</em>
-  <a href="#user-attribute-salt">salt</a>                 =&gt; <em># This is the 32 byte salt used to generate the...</em>
+  <a href="#user-attribute-salt">salt</a>                 =&gt; <em># This is the 32-byte salt used to generate the...</em>
   <a href="#user-attribute-shell">shell</a>                =&gt; <em># The user's login shell.  The shell must exist...</em>
   <a href="#user-attribute-system">system</a>               =&gt; <em># Whether the user is a system user, according to...</em>
   <a href="#user-attribute-uid">uid</a>                  =&gt; <em># The user ID; must be specified numerically. If...</em>
@@ -226,8 +226,9 @@ Requires features manages_aix_lam.
 _(**Property:** This attribute represents concrete state on the target system.)_
 
 This is the number of iterations of a chained computation of the
-password hash (http://en.wikipedia.org/wiki/PBKDF2).  This parameter
-is used in OS X. This field is required for managing passwords on OS X >= 10.8.
+[PBKDF2 password hash](https://en.wikipedia.org/wiki/PBKDF2). This parameter
+is used in OS X, and is required for managing passwords on OS X 10.8 and
+newer.
 
 
 
@@ -293,25 +294,26 @@ Valid values are `inclusive`, `minimum`.
 
 _(**Property:** This attribute represents concrete state on the target system.)_
 
-The user's password, in whatever encrypted format the local
-system requires.
+The user's password, in whatever encrypted format the local system
+requires. Consult your operating system's documentation for acceptable password
+encryption formats and requirements.
 
-* Most modern Unix-like systems use salted SHA1 password hashes. You can use
-  Puppet's built-in `sha1` function to generate a hash from a password.
-* Mac OS X 10.5 and 10.6 also use salted SHA1 hashes.
-* Mac OS X 10.7 (Lion) uses salted SHA512 hashes. The Puppet Labs [stdlib][]
-  module contains a `str2saltedsha512` function which can generate password
-  hashes for Lion.
-* Mac OS X 10.8 and higher use salted SHA512 PBKDF2 hashes. When
-  managing passwords on these systems the salt and iterations properties
-  need to be specified as well as the password.
+* Mac OS X 10.5 and 10.6, and some older Linux distributions, use salted SHA1
+  hashes. You can use Puppet's built-in `sha1` function to generate a salted SHA1
+  hash from a password.
+* Mac OS X 10.7 (Lion), and many recent Linux distributions, use salted SHA512
+  hashes. The Puppet Labs [stdlib][] module contains a `str2saltedsha512` function
+  which can generate password hashes for these operating systems.
+* OS X 10.8 and higher use salted SHA512 PBKDF2 hashes. When managing passwords
+  on these systems, the `salt` and `iterations` attributes need to be specified as
+  well as the password.
 * Windows passwords can only be managed in cleartext, as there is no Windows API
   for setting the password hash.
 
 [stdlib]: https://github.com/puppetlabs/puppetlabs-stdlib/
 
-Be sure to enclose any value that includes a dollar sign ($) in single
-quotes (') to avoid accidental variable interpolation.
+Enclose any value that includes a dollar sign ($) in single quotes (') to avoid
+accidental variable interpolation.
 
 
 
@@ -443,7 +445,7 @@ Requires features manages_solaris_rbac.
 
 _(**Property:** This attribute represents concrete state on the target system.)_
 
-This is the 32 byte salt used to generate the PBKDF2 password used in
+This is the 32-byte salt used to generate the PBKDF2 password used in
 OS X. This field is required for managing passwords on OS X >= 10.8.
 
 
@@ -510,7 +512,7 @@ User management for AIX.
 
 User management on OS X.
 
-* Required binaries: `/usr/bin/dscacheutil`, `/usr/bin/dscl`, `/usr/bin/dsimport`, `/usr/bin/plutil`, `/usr/bin/uuidgen`.
+* Required binaries: `/usr/bin/dscacheutil`, `/usr/bin/dscl`, `/usr/bin/dsimport`, `/usr/bin/uuidgen`.
 * Default for `operatingsystem` == `darwin`.
 * Supported features: `manages_password_salt`, `manages_passwords`, `manages_shell`.
 
@@ -761,4 +763,4 @@ Provider support:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-01-27 14:15:19 +0000
+> **NOTE:** This page was generated from the Puppet source code on 2016-03-16 18:28:11 -0700

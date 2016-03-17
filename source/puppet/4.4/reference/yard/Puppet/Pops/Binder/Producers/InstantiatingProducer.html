@@ -32,7 +32,7 @@
       <div id="menu">
   
     <a href="../../../../_index.html">Index (I)</a> &raquo;
-    <span class='title'><span class='object_link'><a href="../../../../Puppet.html" title="Puppet (module)">Puppet</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../../../Pops.html" title="Puppet::Pops (module)">Pops</a></span></span> &raquo; <span class='title'><span class='object_link'>Binder</span></span> &raquo; <span class='title'><span class='object_link'><a href="../Producers.html" title="Puppet::Pops::Binder::Producers (module)">Producers</a></span></span>
+    <span class='title'><span class='object_link'><a href="../../../../Puppet.html" title="Puppet (module)">Puppet</a></span></span> &raquo; <span class='title'><span class='object_link'>Pops</span></span> &raquo; <span class='title'><span class='object_link'>Binder</span></span> &raquo; <span class='title'><span class='object_link'><a href="../Producers.html" title="Puppet::Pops::Binder::Producers (module)">Producers</a></span></span>
      &raquo; 
     <span class="title">InstantiatingProducer</span>
   
@@ -300,7 +300,7 @@
         <span class='name'>injector</span>
       
       
-        <span class='type'>(<tt><span class='object_link'><a href="../Injector.html" title="Puppet::Pops::Binder::Injector (class)">Puppet::Pops::Binder::Injector</a></span></tt>)</span>
+        <span class='type'>(<tt><span class='object_link'><a href="../Injector.html" title="Puppet::Pops::Binder::Injector (class)">Injector</a></span></tt>)</span>
       
       
       
@@ -315,7 +315,7 @@
         <span class='name'>binding</span>
       
       
-        <span class='type'>(<tt><span class='object_link'><a href="../Bindings/Binding.html" title="Puppet::Pops::Binder::Bindings::Binding (class)">Puppet::Pops::Binder::Bindings::Binding</a></span></tt>, <tt>nil</tt>)</span>
+        <span class='type'>(<tt><span class='object_link'><a href="../Bindings/Binding.html" title="Puppet::Pops::Binder::Bindings::Binding (class)">Bindings::Binding</a></span></tt>, <tt>nil</tt>)</span>
       
       
       
@@ -371,7 +371,7 @@
       
         <li>
           <span class="name">:transformer</span>
-          <span class="type">(<tt><span class='object_link'>Puppet::Pops::Model::LambdaExpression</span></tt>)</span>
+          <span class="type">(<tt><span class='object_link'>Model::LambdaExpression</span></tt>)</span>
           <span class="default">
             
               &mdash; default:
@@ -434,9 +434,6 @@
       <pre class="lines">
 
 
-215
-216
-217
 218
 219
 220
@@ -445,10 +442,13 @@
 223
 224
 225
-226</pre>
+226
+227
+228
+229</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/producers.rb', line 215</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/producers.rb', line 218</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_injector'>injector</span><span class='comma'>,</span> <span class='id identifier rubyid_binding'>binding</span><span class='comma'>,</span> <span class='id identifier rubyid_scope'>scope</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
   <span class='comment'># Better do this, even if a transformation of a created instance is kind of an odd thing to do, one can imagine
@@ -458,7 +458,7 @@
   <span class='id identifier rubyid_class_name'>class_name</span> <span class='op'>=</span> <span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:class_name</span><span class='rbracket'>]</span>
   <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Option &#39;class_name&#39; must be given for an InstantiatingProducer</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>unless</span> <span class='id identifier rubyid_class_name'>class_name</span>
   <span class='comment'># get class by name
-</span>  <span class='ivar'>@the_class</span> <span class='op'>=</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Pops</span><span class='op'>::</span><span class='const'>Types</span><span class='op'>::</span><span class='const'>ClassLoader</span><span class='period'>.</span><span class='id identifier rubyid_provide'>provide</span><span class='lparen'>(</span><span class='id identifier rubyid_class_name'>class_name</span><span class='rparen'>)</span>
+</span>  <span class='ivar'>@the_class</span> <span class='op'>=</span> <span class='const'>Types</span><span class='op'>::</span><span class='const'>ClassLoader</span><span class='period'>.</span><span class='id identifier rubyid_provide'>provide</span><span class='lparen'>(</span><span class='id identifier rubyid_class_name'>class_name</span><span class='rparen'>)</span>
   <span class='ivar'>@init_args</span> <span class='op'>=</span> <span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:init_args</span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
   <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Can not load the class </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_class_name'>class_name</span><span class='embexpr_end'>}</span><span class='tstring_content'> specified in binding named: &#39;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_binding'>binding</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39;</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>unless</span> <span class='ivar'>@the_class</span>
 <span class='kw'>end</span></pre>
@@ -498,12 +498,12 @@
       <pre class="lines">
 
 
-205
-206
-207</pre>
+208
+209
+210</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/producers.rb', line 205</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/producers.rb', line 208</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_init_args'>init_args</span>
   <span class='ivar'>@init_args</span>
@@ -539,12 +539,12 @@
       <pre class="lines">
 
 
-202
-203
-204</pre>
+205
+206
+207</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/producers.rb', line 202</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/producers.rb', line 205</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_the_class'>the_class</span>
   <span class='ivar'>@the_class</span>
@@ -591,9 +591,6 @@ constructor)</p>
       <pre class="lines">
 
 
-234
-235
-236
 237
 238
 239
@@ -607,10 +604,13 @@ constructor)</p>
 247
 248
 249
-250</pre>
+250
+251
+252
+253</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/producers.rb', line 234</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/producers.rb', line 237</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_internal_produce'>internal_produce</span><span class='lparen'>(</span><span class='id identifier rubyid_scope'>scope</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='kw'>nil</span>
@@ -639,7 +639,7 @@ constructor)</p>
 </div>
 
     <div id="footer">
-  Generated on Fri Jan 15 16:54:49 2016 by
+  Generated on Wed Mar 16 18:28:52 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.6 (ruby-2.0.0).
 </div>

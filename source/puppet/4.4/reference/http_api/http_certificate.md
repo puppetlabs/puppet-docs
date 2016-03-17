@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 3b5d15cb1c5ed830cb460f2687fde710e5383e69
+built_from_commit: e800bc25e695b8e8b58521d0a6ecdbd18aab031b
 title: 'Puppet HTTP API: Certificate'
 canonical: /puppet/latest/reference/http_api/http_certificate.html
 ---
@@ -10,6 +10,10 @@ Certificate
 
 The `certificate` endpoint returns the certificate for the specified name,
 which might be either a standard certname or `ca`.
+
+Under Puppet Server's CA service, the `environment` parameter is ignored and can
+be omitted. Under a Rack or WEBrick Puppet master, `environment` is required and
+must be a valid environment, but it has no effect on the response.
 
 Find
 ----
@@ -32,10 +36,6 @@ The returned certificate is always in the `.pem` format.
 ### Parameters
 
 None
-
-### Notes
-
-The environment field is ignored.
 
 ### Responses
 

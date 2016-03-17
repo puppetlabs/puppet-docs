@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 3b5d15cb1c5ed830cb460f2687fde710e5383e69
+built_from_commit: e800bc25e695b8e8b58521d0a6ecdbd18aab031b
 title: 'Resource Type: macauthorization'
 canonical: /puppet/latest/reference/types/macauthorization.html
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-01-27 14:15:19 +0000
+> **NOTE:** This page was generated from the Puppet source code on 2016-03-16 18:28:11 -0700
 
 macauthorization
 -----
@@ -16,7 +16,7 @@ macauthorization
 <h3 id="macauthorization-description">Description</h3>
 
 Manage the Mac OS X authorization database. See the
-[Apple developer site](http://developer.apple.com/documentation/Security/Conceptual/Security_Overview/Security_Services/chapter_4_section_5.html)
+[Apple developer site](https://developer.apple.com/documentation/Security/Conceptual/Security_Overview/Security_Services/chapter_4_section_5.html)
 for more information.
 
 Note that authorization store directives with hyphens in their names have
@@ -230,4 +230,4 @@ Manage Mac OS X authorization database rules and rights.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-01-27 14:15:19 +0000
+> **NOTE:** This page was generated from the Puppet source code on 2016-03-16 18:28:11 -0700

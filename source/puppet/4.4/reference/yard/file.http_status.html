@@ -72,8 +72,8 @@
 <pre class="code ruby"><code class="ruby">GET /puppet/v3/status/:name?environment=:environment
 </code></pre>
 
-<p>The <code>:environment</code> and <code>:name</code> sections of the URL are both ignored, but a
-value must be provided for both.</p>
+<p>The <code>environment</code> parameter and the <code>:name</code> are both required, but have no
+effect on the response. The <code>environment</code> must be a valid environment.</p>
 
 <h3>Supported HTTP Methods</h3>
 
@@ -103,7 +103,7 @@ Content-Type: text/pson
 </div></div>
 
     <div id="footer">
-  Generated on Fri Jan 15 16:54:44 2016 by
+  Generated on Wed Mar 16 18:28:44 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.6 (ruby-2.0.0).
 </div>

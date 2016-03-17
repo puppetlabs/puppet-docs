@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 3b5d15cb1c5ed830cb460f2687fde710e5383e69
+built_from_commit: e800bc25e695b8e8b58521d0a6ecdbd18aab031b
 title: 'Puppet HTTP API: File Metadata'
 canonical: /puppet/latest/reference/http_api/http_file_metadata.html
 ---
@@ -20,8 +20,8 @@ the following three types:
 
 The endpoint path includes a `:mount` which can be one of three types:
 
-* custom file serving mounts as specified in fileserver.conf -- see [the puppet file serving guide](http://docs.puppetlabs.com/guides/file_serving.html#serving-files-from-custom-mount-points)
-* `modules/<module>` -- a semi-magical mount point which allows access to the `files` subdirectory of `module` -- see [the puppet file serving guide](http://docs.puppetlabs.com/guides/file_serving.html#serving-module-files)
+* custom file serving mounts as specified in fileserver.conf -- see [the puppet file serving guide](https://docs.puppetlabs.com/guides/file_serving.html#serving-files-from-custom-mount-points)
+* `modules/<module>` -- a semi-magical mount point which allows access to the `files` subdirectory of `module` -- see [the puppet file serving guide](https://docs.puppetlabs.com/guides/file_serving.html#serving-module-files)
 * `plugins` -- a highly magical mount point which merges many directories together: used for plugin sync, sub-paths can not be specified, not intended for general consumption
 
 Note: PSON responses in the examples below are pretty-printed for readability.

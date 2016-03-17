@@ -32,7 +32,7 @@
       <div id="menu">
   
     <a href="../../../_index.html">Index (B)</a> &raquo;
-    <span class='title'><span class='object_link'><a href="../../../Puppet.html" title="Puppet (module)">Puppet</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../../Pops.html" title="Puppet::Pops (module)">Pops</a></span></span> &raquo; <span class='title'><span class='object_link'>Loader</span></span>
+    <span class='title'><span class='object_link'><a href="../../../Puppet.html" title="Puppet (module)">Puppet</a></span></span> &raquo; <span class='title'><span class='object_link'>Pops</span></span> &raquo; <span class='title'><span class='object_link'>Loader</span></span>
      &raquo; 
     <span class="title">BaseLoader</span>
   
@@ -514,7 +514,7 @@
       <pre class="code"><span class="info file"># File 'lib/puppet/pops/loader/base_loader.rb', line 51</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_set_entry'>set_entry</span><span class='lparen'>(</span><span class='id identifier rubyid_typed_name'>typed_name</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='comma'>,</span> <span class='id identifier rubyid_origin'>origin</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
-  <span class='kw'>if</span> <span class='id identifier rubyid_entry'>entry</span> <span class='op'>=</span> <span class='ivar'>@named_values</span><span class='lbracket'>[</span><span class='id identifier rubyid_typed_name'>typed_name</span><span class='rbracket'>]</span> <span class='kw'>then</span> <span class='id identifier rubyid_fail_redefined'>fail_redefined</span><span class='lparen'>(</span><span class='id identifier rubyid_entry'>entry</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_entry'>entry</span> <span class='op'>=</span> <span class='ivar'>@named_values</span><span class='lbracket'>[</span><span class='id identifier rubyid_typed_name'>typed_name</span><span class='rbracket'>]</span> <span class='kw'>then</span> <span class='id identifier rubyid_fail_redefine'>fail_redefine</span><span class='lparen'>(</span><span class='id identifier rubyid_entry'>entry</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span>
   <span class='ivar'>@named_values</span><span class='lbracket'>[</span><span class='id identifier rubyid_typed_name'>typed_name</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Pops</span><span class='op'>::</span><span class='const'>Loader</span><span class='op'>::</span><span class='const'>Loader</span><span class='op'>::</span><span class='const'>NamedEntry</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_typed_name'>typed_name</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='comma'>,</span> <span class='id identifier rubyid_origin'>origin</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -527,7 +527,7 @@
 </div>
 
     <div id="footer">
-  Generated on Fri Jan 15 16:54:50 2016 by
+  Generated on Wed Mar 16 18:28:52 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.6 (ruby-2.0.0).
 </div>

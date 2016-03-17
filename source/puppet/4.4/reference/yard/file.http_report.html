@@ -65,7 +65,7 @@
 
 <p>This document describes the Puppet master&#39;s report endpoint and the schema for
 Report Format 4 in technical term. Also see the
-<a href="http://docs.puppetlabs.com/puppet/latest/reference/format_report.html">documentation</a>.</p>
+<a href="https://docs.puppetlabs.com/puppet/latest/reference/format_report.html">documentation</a>.</p>
 
 <p>The <code>report</code> endpoint allows clients to send reports to the master via <code>http</code>
 or <code>https</code>.  Once received by the master they are processed by the <em>report
@@ -117,7 +117,10 @@ Content-Length: 1428
  &quot;time&quot;=&gt;&quot;2013-09-12T03:50:59.009301000+02:00&quot;,
  &quot;configuration_version&quot;=&gt;1357986,
  &quot;transaction_uuid&quot;=&gt;&quot;df34516e-4050-402d-a166-05b03b940749&quot;,
- &quot;report_format&quot;=&gt;4,
+ &quot;code_id&quot;=&gt;null,
+ &quot;catalog_uuid&quot;=&gt;&quot;827a74c8-cf98-44da-9ff7-18c5e4bee41e&quot;,
+ &quot;catalog_format&quot;=&gt;1,
+ &quot;report_format&quot;=&gt;5,
  &quot;puppet_version&quot;=&gt;&quot;3.3.0&quot;,
  &quot;kind&quot;=&gt;&quot;apply&quot;,
  &quot;status&quot;=&gt;&quot;unchanged&quot;,
@@ -173,7 +176,8 @@ Content-Length: 1428
      &quot;skipped&quot;=&gt;false,
      &quot;change_count&quot;=&gt;0,
      &quot;out_of_sync_count&quot;=&gt;0,
-     &quot;events&quot;=&gt;[]}}}
+     &quot;events&quot;=&gt;[]}},
+  &quot;cached_catalog_status&quot;=&gt; &quot;not_used&quot;}
 </code></pre>
 
 <h2>Schema</h2>
@@ -183,7 +187,7 @@ Content-Length: 1428
 </div></div>
 
     <div id="footer">
-  Generated on Fri Jan 15 16:54:44 2016 by
+  Generated on Wed Mar 16 18:28:44 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.6 (ruby-2.0.0).
 </div>

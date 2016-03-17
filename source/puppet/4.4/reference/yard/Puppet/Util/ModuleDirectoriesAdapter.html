@@ -4,7 +4,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>
-  Class: Puppet::Environments::Legacy
+  Class: Puppet::Util::ModuleDirectoriesAdapter
   
     &mdash; Documentation by YARD 0.8.7.6
   
@@ -17,7 +17,7 @@
 <script type="text/javascript" charset="utf-8">
   hasFrames = window.top.frames.main ? true : false;
   relpath = '../../';
-  framesUrl = "../../frames.html#!Puppet/Environments/Legacy.html";
+  framesUrl = "../../frames.html#!Puppet/Util/ModuleDirectoriesAdapter.html";
 </script>
 
 
@@ -31,10 +31,10 @@
     <div id="header">
       <div id="menu">
   
-    <a href="../../_index.html">Index (L)</a> &raquo;
-    <span class='title'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../Environments.html" title="Puppet::Environments (module)">Environments</a></span></span>
+    <a href="../../_index.html">Index (M)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span> &raquo; <span class='title'><span class='object_link'>Util</span></span>
      &raquo; 
-    <span class="title">Legacy</span>
+    <span class="title">ModuleDirectoriesAdapter</span>
   
 
   <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
@@ -63,7 +63,7 @@
 
     <iframe id="search_frame"></iframe>
 
-    <div id="content"><h1>Class: Puppet::Environments::Legacy
+    <div id="content"><h1>Class: Puppet::Util::ModuleDirectoriesAdapter
   
   
   <span class="private note title">Private</span>
@@ -73,12 +73,14 @@
   
     <dt class="r1">Inherits:</dt>
     <dd class="r1">
-      <span class="inheritName"><span class='object_link'>Object</span></span>
+      <span class="inheritName"><span class='object_link'>Pops::Adaptable::Adapter</span></span>
       
         <ul class="fullTree">
           <li><span class='object_link'>Object</span></li>
           
-            <li class="next">Puppet::Environments::Legacy</li>
+            <li class="next"><span class='object_link'>Pops::Adaptable::Adapter</span></li>
+          
+            <li class="next">Puppet::Util::ModuleDirectoriesAdapter</li>
           
         </ul>
         <a href="#" class="inheritanceTree">show all</a>
@@ -90,15 +92,11 @@
     
   
     
-      <dt class="r2">Includes:</dt>
-      <dd class="r2"><span class='object_link'><a href="EnvironmentCreator.html" title="Puppet::Environments::EnvironmentCreator (module)">EnvironmentCreator</a></span></dd>
-      
-    
   
   
   
-    <dt class="r1 last">Defined in:</dt>
-    <dd class="r1 last">lib/puppet/environments.rb</dd>
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">lib/puppet/util/autoload.rb</dd>
   
 </dl>
 <div class="clear"></div>
@@ -109,36 +107,19 @@
   <strong>This class is part of a private API.</strong>
   You should avoid using this class if possible, as it may be removed or be changed in the future.
 </p>
-<p>Old-style environments that come either from explicit stanzas in
-puppet.conf or from dynamic environments created from use of <code>$environment</code>
-in puppet.conf.</p>
+<p>An adapter that ties the module_directories cache to the environment where the modules are parsed. This
+adapter ensures that the life-cycle of this cache doesn&#39;t exceed  the life-cycle of the environment.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-        <p class="example_title"><div class='inline'><p>Explicit Stanza</p>
-</div></p>
-      
-      <pre class="example code"><code>[environment_name]
-modulepath=/var/my_env/modules</code></pre>
-    
-      
-        <p class="example_title"><div class='inline'><p>Dynamic Environments</p>
-</div></p>
-      
-      <pre class="example code"><code>[master]
-modulepath=/var/$environment/modules</code></pre>
-    
-  </div>
-
 
 </div>
+  <h2>Constant Summary</h2>
+  
+
 
 
 
@@ -154,14 +135,14 @@ modulepath=/var/$environment/modules</code></pre>
   
   <h2>Method Summary</h2>
   
-  <h3 class="inherited">Methods included from <span class='object_link'><a href="EnvironmentCreator.html" title="Puppet::Environments::EnvironmentCreator (module)">EnvironmentCreator</a></span></h3>
-  <p class="inherited"><span class='object_link'><a href="EnvironmentCreator.html#for-instance_method" title="Puppet::Environments::EnvironmentCreator#for (method)">#for</a></span></p>
+  <h3 class="inherited">Methods inherited from <span class='object_link'>Pops::Adaptable::Adapter</span></h3>
+  <p class="inherited"><span class='object_link'><a href="../Pops/Adaptable/Adapter.html#instance_var_name-class_method" title="Puppet::Pops::Adaptable::Adapter.instance_var_name (method)">instance_var_name</a></span>, <span class='object_link'><a href="../Pops/Adaptable/Adapter.html#self_attr_name-class_method" title="Puppet::Pops::Adaptable::Adapter.self_attr_name (method)">self_attr_name</a></span></p>
 
 
 </div>
 
     <div id="footer">
-  Generated on Fri Jan 15 16:32:34 2016 by
+  Generated on Wed Mar 16 18:28:49 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.6 (ruby-2.0.0).
 </div>
