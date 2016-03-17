@@ -78,7 +78,7 @@ canonical: "/puppet/latest/reference/config_important_settings.html"
 [configuring_timeout]: ./environments_configuring.html#environmenttimeout
 [puppetserver_config_files]: /puppetserver/2.2/configuration.html
 [settings_diffs]: /puppetserver/2.2/puppet_conf_setting_diffs.html
-[puppet_admin]: /puppetserver/2.2/configuration.html#puppetserverconf
+[puppet_admin]: /puppetserver/2.2/config_file_puppetserver.html
 [jruby_puppet]: /puppetserver/2.2/tuning_guide.html#puppet-server-and-jruby
 [jvm_heap_config]: /puppetserver/2.2/install_from_packages.html#memory-allocation
 [puppetserver_ca]: /puppetserver/2.2/puppet_conf_setting_diffs.html#cahttpsdocspuppetlabscomreferenceslatestconfigurationhtmlca
