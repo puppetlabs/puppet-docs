@@ -38,9 +38,9 @@ Includes [Puppet 4.4.0][], [Facter 3.1.5][], [Hiera 3.1.0][], [MCollective 2.8.8
 
 * Updates [Puppet](/puppet/4.4/reference/), [Hiera](/hiera/3.1/), and [Facter](/facter/3.1/). This release also updates Mcollective and pxp-agent, but the updates to these components contain no functional changes.
 
-### New Platform
+### New Platforms
 
-This release adds `puppet-agent` packages for Fedora 23.
+This release adds `puppet-agent` packages for Fedora 23. Windows packages will also now run on Windows 10.
 
 ### Windows Certificate Updates
 
