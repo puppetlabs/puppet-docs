@@ -16,7 +16,7 @@ Released March 16, 2016.
 
 Shipped in [`puppet-agent` 1.4.0][puppet-agent 1.4.x].
 
-Facter 3.1.4 is an improvement and bug fix release in the Facter 3.1 series.
+Facter 3.1.5 is an improvement and bug fix release in the Facter 3.1 series.
 
 * [Fixed in Facter 3.1.5](https://tickets.puppetlabs.com/issues/?jql=fixVersion+%3D+%27FACT+3.1.5%27)
 * [Introduced in Facter 3.1.5](https://tickets.puppetlabs.com/issues/?jql=affectedVersion+%3D+%27FACT+3.1.5%27)
