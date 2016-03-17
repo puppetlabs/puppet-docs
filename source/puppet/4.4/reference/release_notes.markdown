@@ -13,7 +13,7 @@ Puppet's version numbers use the format X.Y.Z, where:
 * Y can increase for backwards-compatible new functionality
 * Z can increase for bug fixes
 
-## If You're Upgrading from Puppet 3.x
+## If you're upgrading from Puppet 3.x
 
 Read the [Puppet 4.0 release notes](/puppet/4.0/reference/release_notes.html), since they cover breaking changes since Puppet 3.8.
 
@@ -153,9 +153,9 @@ If `pluginsync` is explicitly set via command-line or `puppet.conf`, then that s
 
 * [PUP-5734](https://tickets.puppetlabs.com/browse/PUP-5734): Prior to this ticket, when the dependencies field of the metadata for a module was not an array, the user would receive an uninformative error message. This ticket improves the error message for this error case.
 
-* [PUP-3077](https://tickets.puppetlabs.com/browse/PUP-3077): `puppet agent` and `pupept apply` will no longer cache its catalog during a noop run. This ensures the next non-noop run won't fall back to using the cached catalog and deploy code that was never meant to be "live". Also, if the agent falls back to using its cached catalog and the catalog was compiled for a different environment than the agent is currently in, then the agent will fail the run. This way, the server remains authoritative about which environment the agent is supposed to be in.
+* [PUP-3077](https://tickets.puppetlabs.com/browse/PUP-3077): `puppet agent` and `puppet apply` will no longer cache its catalog during a noop run. This ensures the next non-noop run won't fall back to using the cached catalog and deploy code that was never meant to be "live". Also, if the agent falls back to using its cached catalog and the catalog was compiled for a different environment than the agent is currently in, then the agent will fail the run. This way, the server remains authoritative about which environment the agent is supposed to be in.
 
-* [PUP-5813](https://tickets.puppetlabs.com/browse/PUP-5813): Puppet now requires less memory under heavy and continuos load, as two 
+* [PUP-5813](https://tickets.puppetlabs.com/browse/PUP-5813): Puppet now requires less memory under heavy and continuous load, as two 
 hard to detect memory leaks have been found and fixed.
 
 * [PUP-5819](https://tickets.puppetlabs.com/browse/PUP-5819): Puppet will now raise an error if a Puppet language source file starts with a Byte Order Mark. The error identifies the name of the Byte Order Mark, and shows the bytes in hex that should be removed. Earlier, such marks caused a SyntaxError to be issued and it was hard to understand the cause. Puppet always uses UTF-8, and forbids Byte Order Marks to be present in source files.
@@ -194,5 +194,5 @@ hard to detect memory leaks have been found and fixed.
 
 * [PUP-5729](https://tickets.puppetlabs.com/browse/PUP-5729): The function `reverse_each` has been added. It works similar to the `each` function but iterates over elements in reverser order. This function in contrast to stdlib's `reverse` does not create a new reversed copy, which makes it ideal for chaining into other Iterable functions. Also see the new Puppet data types Iterable and Iterator.
 
-* [PUP-5730](https://tickets.puppetlabs.com/browse/PUP-5730): The iterative function `an_iterable.step(n)` has been added. It yields every *nth* succesor from its input iterable when chained into another function. Earlier, it was difficult to iterate in steps other than one. This function makes use of the new types Iterable and Iterator which enable efficient chaining of iterative functions.
+* [PUP-5730](https://tickets.puppetlabs.com/browse/PUP-5730): The iterative function `an_iterable.step(n)` has been added. It yields every *nth* successor from its input iterable when chained into another function. Earlier, it was difficult to iterate in steps other than one. This function makes use of the new types Iterable and Iterator, which enable efficient chaining of iterative functions.
 
